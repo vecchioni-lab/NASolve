@@ -136,3 +136,130 @@ def test_reader_retains_first_snapshot_when_paths_repeat(tmp_path):
     with pytest.raises(ValueError,match='changed between reads'):
         remember(snapshots,{path:b'changed'})
     assert snapshots[path]==b'original'
+
+
+def representative_capture():
+    """Synthetic directed native rows; Cedar authentication remains a caller duty."""
+    gemmi=pytest.importorskip('gemmi');cell=gemmi.UnitCell(30,30,40,90,90,90)
+    points=[[1.,2.,3.],[4.,5.,6.]];labels=['A','B'];mappings=[];pairs=[];measurements=[]
+    rows=[('simple',0,1,'x,y,z',1.),('simple',0,1,'x,y,z',1.),
+          ('asu',0,1,'-y,x,z+1/4',.5),('asu',1,0,'y,-x,z-1/4',.5),
+          ('asu',0,0,'-y,x,z+1/4',.5)]
+    for number,(kind,i,j,xyz,weight) in enumerate(rows):
+        image=0 if kind=='simple' else number+1;op=gemmi.Op(xyz)
+        if kind=='asu':
+            for atom,image_id,operation in ((i,0,gemmi.Op('x,y,z')),(j,image,op)):
+                if not any(row[:2]==[atom,image_id] for row in mappings):
+                    mappings.append([atom,image_id,[x/operation.DEN for row in operation.rot for x in row],
+                                     [x/operation.DEN for x in operation.tran],I])
+        q=cell.op_as_transform(op).apply(gemmi.Position(*points[j]))
+        distance=math.dist(points[i],list(q));vdw=20.
+        pairs.append([kind,i,j,image,vdw])
+        measurements.append(dict(proxy_index=number,kind=kind,i_seqs=[i,j],image_j=image,
+            atoms=[labels[i],labels[j]],vdw_distance=vdw,distance=distance,overlap=vdw-distance,
+            residual=max(0.,vdw-distance)**4*weight,residual_weight=weight))
+    return dict(atom_count=2,atoms=[dict(i_seq=i,label=s,xyz=points[i]) for i,s in enumerate(labels)],
+        geometry=dict(sites_cart_exact=points),nonbonded_inventory=dict(policy_id=NATIVE_POLICY,
+            unit_cell=[30,30,40,90,90,90],pairs=pairs,mappings=mappings),
+        _test_review=dict(policy_id=NATIVE_POLICY,analysis_completed=True,pair_sum_and_gradient_replay=True,
+            fixed_manager_repeats=True,geometry_accepted=False,measurements=measurements,pair_count=len(pairs),
+            total_residual=sum(v['residual'] for v in measurements)))
+
+
+def reframe(n,**kw):
+    from nasolve.topostitch_packing import reframe_native_packing,_digest
+    args=dict(atom_labels=['A','B'],atom_images=['x+2,y,z','-y,x,z+1/4'],space_group='P 41',
+              expected_native_sha256=_digest(n),reviewer=lambda native:deepcopy(native['_test_review']))
+    args.update(kw)
+    return reframe_native_packing(n,**args)
+
+
+def test_representative_contacts_preserve_distances_rows_and_native_multiplicity():
+    n=representative_capture();original=deepcopy(n);r=reframe(n)
+    assert n==original and r['source_directed_row_count']==5 and r['source_group_count']==4
+    assert sum(x['source']['multiplicity'] for x in r['contacts'])==5
+    assert r['contacts'][0]['source']['kind'] in ('simple','asu')
+    assert r['maximum_distance_error_angstrom']<1e-10
+    assert r['source_total_residual']==pytest.approx(n['_test_review']['total_residual'])
+    for row in r['contacts']:
+        assert row['representative_distance_angstrom']==pytest.approx(row['source']['distance'],abs=1e-10)
+        assert len(row['source']['directed_rows'])==row['source']['multiplicity']
+    assert any(abs(x['direct_representative_distance_angstrom']-x['source']['distance'])>10 for x in r['contacts'])
+    assert not any(r[k] for k in ('runtime_authority','geometry_accepted','native_pair_tables_rebuilt','chemical_connectivity_changed'))
+
+
+def test_representative_reciprocal_and_self_image_contacts_remain_distinct():
+    gemmi=pytest.importorskip('gemmi');r=reframe(representative_capture())
+    forward=next(x for x in r['contacts'] if x['source']['kind']=='asu' and x['source']['atoms']==['A','B'])
+    reverse=next(x for x in r['contacts'] if x['source']['atoms']==['B','A'])
+    assert gemmi.Op(forward['representative_target_operator_xyz']).inverse().triplet()==reverse['representative_target_operator_xyz']
+    self_row=next(x for x in r['contacts'] if x['source']['atoms']==['A','A'])
+    assert self_row['direct_representative_distance_angstrom']==0
+    assert self_row['representative_distance_angstrom']>0
+
+
+def test_representative_translation_is_not_wrapped_or_reclassified():
+    r=reframe(representative_capture(),atom_images=['x+2,y,z','x,y-1,z'])
+    row=next(x for x in r['contacts'] if x['source']['kind']=='simple')
+    assert row['source']['multiplicity']==2
+    assert row['representative_target_operator_xyz']=='x+2,y+1,z'
+    assert row['source_target_operator_xyz']=='x,y,z'
+
+
+def test_identity_representatives_leave_every_source_operation_exact():
+    r=reframe(representative_capture(),atom_images=['x,y,z','x,y,z'])
+    assert all(row['representative_target_operator_xyz']==row['source_target_operator_xyz'] for row in r['contacts'])
+
+
+@pytest.mark.parametrize('defect',['hash','labels','missing_image','extra_image','wrong_group','improper',
+    'non_group_translation','huge_translation','nonfinite','wrong_count','wrong_order','wrong_distance','bad_review','source_operation'])
+def test_representative_contact_context_and_geometry_fail_closed(defect):
+    n=representative_capture();kw={}
+    if defect=='hash':kw['expected_native_sha256']='0'*64
+    elif defect=='labels':kw['atom_labels']=['B','A']
+    elif defect=='missing_image':kw['atom_images']=['x,y,z']
+    elif defect=='extra_image':kw['atom_images']=['x,y,z']*3
+    elif defect=='wrong_group':kw['space_group']='P 1'
+    elif defect=='improper':kw['atom_images']=['-x,y,z','x,y,z']
+    elif defect=='non_group_translation':kw['atom_images']=['x+1/3,y,z','x,y,z']
+    elif defect=='huge_translation':kw['atom_images']=['x+99999999,y,z','x,y,z']
+    elif defect=='nonfinite':n['geometry']['sites_cart_exact'][0][0]=math.inf
+    elif defect=='wrong_count':n['atom_count']=3
+    elif defect=='wrong_order':n['atoms'][0]['i_seq']=1
+    elif defect=='wrong_distance':n['_test_review']['measurements'][2]['distance']+=.1;n['_test_review']['measurements'][2]['overlap']-=.1
+    elif defect=='bad_review':n['_test_review']['pair_sum_and_gradient_replay']=False
+    elif defect=='source_operation':
+        n['nonbonded_inventory']['mappings'][1][3][0]+=1/3
+    with pytest.raises((ValueError,OverflowError)):reframe(n,**kw)
+
+
+def test_representative_contact_result_detaches_source_and_reviewer_drift_refuses():
+    n=representative_capture();r=reframe(n);r['contacts'][0]['source']['directed_rows'].clear()
+    assert len(n['_test_review']['measurements'])==5
+    def drifting(native):
+        native['atoms'][0]['label']='changed'
+        return deepcopy(native['_test_review'])
+    with pytest.raises(ValueError):reframe(n,reviewer=drifting)
+
+
+def test_representative_empty_native_membership_remains_explicit():
+    n=representative_capture();n['nonbonded_inventory']['pairs']=[];n['nonbonded_inventory']['mappings']=[]
+    n['_test_review'].update(measurements=[],pair_count=0,total_residual=0.)
+    r=reframe(n)
+    assert r['contacts']==[] and r['source_directed_row_count']==0
+    assert r['source_total_residual']==0 and r['maximum_distance_error_angstrom']==0
+    assert not r['native_pair_tables_rebuilt']
+
+
+def test_representative_cell_metric_must_fit_the_requested_rotations():
+    n=representative_capture();n['nonbonded_inventory']['unit_cell'][1]=37
+    with pytest.raises(ValueError):reframe(n)
+
+
+def test_representative_direct_distance_overflow_refuses_non_json_numbers():
+    n=representative_capture();n['geometry']['sites_cart_exact']=[[1e308,0.,0.],[1e308,0.,0.]]
+    n['nonbonded_inventory']['pairs']=n['nonbonded_inventory']['pairs'][:1]
+    n['nonbonded_inventory']['mappings']=[]
+    row=n['_test_review']['measurements'][0];row.update(distance=0.,overlap=20.,residual=20.**4)
+    n['_test_review'].update(measurements=[row],pair_count=1,total_residual=20.**4)
+    with pytest.raises(ValueError):reframe(n,atom_images=['x,y,z','-x,-y,z+1/2'])

@@ -2513,3 +2513,46 @@ payloads, read-back verified against its manifest. Archive SHA-256:
 `9b68353c8d8f72001b1b5445bdf825ad886ac9ba1b5192ce64df1babafd32d7c`.
 The original W75 probe directories remain available for Cedar coordination.
 This archive has the same forensic-only, non-publication limitations as W71–W74.
+
+
+## W76 — Represent captured native contacts in chosen crystal images
+
+`topostitch_packing.reframe_native_packing` adds a read-only report to the existing
+packing owner. The caller supplies Cedar-authenticated native evidence, its exact
+digest, complete ordered atom labels and images, an explicit space group, and
+Cedar's maintained nonbonded reviewer. Gemmi is imported only for this optional
+operation; existing packing comparisons remain unchanged.
+
+For a source contact `x_i → h x_j` and representatives `y_i = g_i x_i`, the report
+uses the exact relative operation **`g_i h g_j^-1`**. It retains lattice translations,
+reciprocal/self-image rows, native multiplicity, weights and source proxy kind.
+Source simple terms stay labelled as source simple terms even when the new drawing
+crosses symmetry. It checks both the Cartesian composition and agreement with the
+reviewed native distance; direct-ASU distance is separately labelled. No neighbor
+search, native proxy/table reconstruction, exclusion edit, new bond or physical
+identity/special-position approval follows.
+
+The new schema-1 kind `topostitch-representative-native-packing` records the source
+digest, complete frame and frame digest, contacts and numerical discrepancies.
+It is a diagnostic return value, not a persisted run/checkpoint schema or runtime
+permission. The existing comparison kind/schema and all installed CLI defaults
+remain unchanged. A stale source, reordered/incomplete identity, non-group image,
+incompatible cell metric, invalid native review or changed input refuses.
+
+Synthetic screw-axis, noncommuting image, reciprocal/self, translation, duplicate
+row, empty-inventory and context-drift controls protect this scope. Nineteen new
+tests fail before implementation; three further empty/metric/overflow controls supplement
+them. The focused packing/transport/graph/native-link group passes 118 tests.
+
+Authenticated replay of the existing Phenix **2.2.1-6174** source capture preserves
+**8,305 directed rows per cut** for both retained public controls. Maximum distance
+error is **1.69e-14 Å**; the captured native total residual remains
+1115.6313838790597 with its original weights/multiplicity. This is host-Python
+read-only capture replay, **not a fresh native execution** or refinement.
+Source model, receipt and plan bytes remain unchanged; all reports stay local.
+
+This closes a bounded report-arithmetic component of P04, not P04 itself. Native
+model copying, pair-table consumers, source construction/freeze policy, automatic
+weighting and output serialization still require their own integration. Cedar owns
+the separately demonstrated hierarchy/scattering-ADP export synchronization; do
+not implement a second exporter or subtract a logged B shift from old models here.

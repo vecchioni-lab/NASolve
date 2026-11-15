@@ -941,6 +941,11 @@ reconstruction, chemistry or activation.
 bounded rational image identity, retaining multiplicity and collateral changes.
 Its developer wrapper authenticates captures through Cedar; no second native
 worker, neighbor finder, optimizer or approval lifecycle is introduced.
+Its optional Gemmi-backed `reframe_native_packing` API describes the same captured
+contacts in complete chosen atom images using exact `g_i h g_j^-1` operations.
+Source proxy kinds, directed rows and multiplicity remain provenance; this output
+is not a replacement native pair table. Coordinate/distance checks and source
+digests guard the report while Cedar retains authentication and native review.
 
 `topostitch_recipe` freezes complete canonical NARestraints selections for explicit
 atom images; `topostitch_native_recipe` binds them to unmodified PDB atom order

@@ -147,3 +147,98 @@ def compare_native_packing(before, after, *, reviewer):
                 'No torsion/plane comparison, optimizer, refinement or model publication.'])
     except (KeyError,IndexError,TypeError,OverflowError) as exc:
         raise ValueError('Incomplete native packing comparison evidence') from exc
+
+
+def reframe_native_packing(native, *, atom_labels, atom_images, space_group,
+                           expected_native_sha256, reviewer):
+    """Describe captured directed contacts in explicitly chosen representatives.
+
+    Cedar must authenticate the source capture and supply its maintained reviewer.
+    This is a frozen-coordinate report, not a native pair-table replacement. For
+    y_i = g_i x_i, a source contact x_i -> h x_j becomes y_i -> g_i h g_j^-1 y_j.
+    Never wrap lattice translations, deduplicate reciprocal rows, or reclassify a
+    source simple proxy as a new native ASU proxy. No neighbor search is performed.
+    """
+    from .topostitch_graph import _operator, _compose, _inverse, _MAX_NUMERATOR
+    from .topostitch_periodic import _crystal, _op_key
+    from .topostitch_transport import crystallographic_image, _vector
+    from .topostitch_recut import _arithmetic_bound
+    try:
+        original_digest = _digest(native)
+        if original_digest != expected_native_sha256:
+            raise ValueError('Native contact source checksum differs')
+        atoms = native['atoms']; labels = [a['label'] for a in atoms]
+        count = native['atom_count']; inventory = native['nonbonded_inventory']
+        if (type(count) is not int or not 1 <= count <= 100000 or count != len(atoms)
+                or list(atom_labels) != labels or len(set(labels)) != count
+                or any(type(a['i_seq']) is not int or a['i_seq'] != i for i,a in enumerate(atoms))
+                or not isinstance(atom_images,(list,tuple)) or len(atom_images) != count
+                or len(inventory['pairs']) > 20000):
+            raise ValueError('Require complete ordered atom/image bindings within the contact budget')
+        points = tuple(_vector(p) for p in native['geometry']['sites_cart_exact'])
+        if len(points) != count:
+            raise ValueError('Native contact source coordinate count differs')
+        cell_parameters = list(inventory['unit_cell'])
+        gemmi,cell,group = _crystal(cell_parameters,space_group)
+        identity = gemmi.Op('x,y,z')
+        members = {_op_key(op) for op in group.operations()}
+        images = [_operator(text,gemmi,members) for text in atom_images]
+        inverses = [_inverse(op,identity) for op in images]
+        transforms = {}
+        def transform(op):
+            text = op.triplet()
+            if text not in transforms:
+                transforms[text] = crystallographic_image(cell_parameters,space_group,text)
+            return transforms[text]
+        proposed = [transform(op).apply(p) for op,p in zip(images,points)]
+        review = reviewer(native)
+        if _digest(native) != original_digest:
+            raise ValueError('Native contact source changed during review')
+        grouped = _groups(native,review)
+        indices = {label:i for i,label in enumerate(labels)}
+        rows = []; maximum_distance_error = 0.
+        for key,source in sorted(grouped.items()):
+            i,j = (indices[label] for label in source['atoms'])
+            # The existing packing owner retains exact rational relative images.
+            rotation,translation = key[3:]
+            values = [Fraction(v)*identity.DEN for v in (*rotation,*translation)]
+            if any(v.denominator != 1 or abs(v) > _MAX_NUMERATOR for v in values):
+                raise ValueError('Source contact operation exceeds exact arithmetic budget')
+            op = gemmi.Op('x,y,z')
+            op.rot = [[int(values[3*a+b]) for b in range(3)] for a in range(3)]
+            op.tran = [int(v) for v in values[9:]]
+            op = _operator(op.triplet(),gemmi,members)
+            represented = _compose(_compose(images[i],op),inverses[j])
+            before = (points[i],transform(op).apply(points[j]))
+            after = (proposed[i],transform(represented).apply(proposed[j]))
+            expected = tuple(transform(images[i]).apply(p) for p in before)
+            tolerance = _arithmetic_bound(*before,*after,*expected)
+            error = max(abs(a-b) for p,q in zip(after,expected) for a,b in zip(p,q))
+            distance = math.dist(*after)
+            distance_error = max(abs(math.dist(*before)-source['distance']),abs(distance-source['distance']))
+            if error > tolerance or distance_error > 4*tolerance:
+                raise ValueError('Representative contact disagrees with captured native geometry')
+            maximum_distance_error = max(maximum_distance_error,distance_error)
+            rows.append(dict(source=source,source_atom_indices=[i,j],
+                source_target_operator_xyz=op.triplet(),
+                representative_target_operator_xyz=represented.triplet(),
+                representative_distance_angstrom=distance,
+                direct_representative_distance_angstrom=_number(math.dist(proposed[i],proposed[j])),
+                maximum_coordinate_error_angstrom=error))
+        if _digest(native) != original_digest:
+            raise ValueError('Native contact source changed during representation')
+        frame = dict(atom_labels=labels,atom_images=[op.triplet() for op in images],
+                     cell_parameters=cell_parameters,space_group=group.xhm())
+        return dict(schema_version=1,kind='topostitch-representative-native-packing',
+            source_native_sha256=original_digest,frame=frame,frame_sha256=_digest(frame),
+            source_directed_row_count=review['pair_count'],source_group_count=len(rows),
+            source_total_residual=review['total_residual'],contacts=rows,
+            maximum_distance_error_angstrom=maximum_distance_error,
+            native_pair_tables_rebuilt=False,chemical_connectivity_changed=False,
+            runtime_authority=False,geometry_accepted=False,
+            limitations=['Caller authenticates source/context through Cedar; a checksum is not approval.',
+                'Only captured coordinates, directed membership, multiplicity and native weights are represented; no new contacts, exclusions or bonds.',
+                'Source proxy kind remains provenance, not a reconstructed native proxy kind in the new frame.',
+                'No physical-identity/special-position qualification, native manager integration, optimization or model export.'])
+    except (KeyError,IndexError,TypeError,OverflowError) as exc:
+        raise ValueError('Incomplete representative native contact evidence') from exc

@@ -380,7 +380,19 @@
       "native_worker_added": false,
       "runtime_authority": false,
       "geometry_accepted": false,
-      "campaign_integration": false
+      "campaign_integration": false,
+      "representative_report": {
+        "api": "reframe_native_packing",
+        "report_kind": "topostitch-representative-native-packing",
+        "report_schema_version": 1,
+        "optional_dependency": "Gemmi",
+        "binding": "complete native atom order, source checksum, source cell, explicit group and per-atom images",
+        "image_rule": "g_i h g_j^-1; exact translations retained",
+        "scope": "captured coordinates/membership only, preserving source proxy kinds and directed multiplicity",
+        "native_pair_table_replacement": false,
+        "model_export": false,
+        "runtime_authority": false
+      }
     },
     "captured_native_job": {
       "module": "nasolve.topostitch_captured_job",

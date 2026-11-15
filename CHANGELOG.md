@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W76 — Represent captured native contacts in chosen crystal images
+
+- Add a read-only packing API that transports exact directed contact operations
+  into complete source-bound representative frames, preserving native row
+  multiplicity, weights and source proxy kinds.
+- Check captured and transformed distances; refuse stale bindings, incompatible
+  images/metrics or changed review input. Existing comparison output is unchanged.
+  This does not rebuild native pair tables, alter exclusions or enable refinement.
+
 ### W75 — Observe native copy, weighting and report consumers
 
 - Record stock source-only synthetic dry-run and coordinate-cycle call traces,
