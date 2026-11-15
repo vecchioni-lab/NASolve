@@ -138,157 +138,94 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**Willow update W68; next W69.** Human W-numbers and exact code provenance live
-in the [audited roadmap](topostitch-roadmap.md); its JSON is the one status queue.
-The [intent record](topostitch-intent.json) lists implemented owners but grants no
-runtime authority. The [periodic guide](topostitch-periodic.md) and
-[bend-preview guide](topostitch-preview.md) retain exact commands, native failures,
-versions, historical validation and scientific limits. Git retains earlier handoffs.
-Do not restart completed probes merely because their chronological notes were
-removed here.
+**W68 recorded; next W69.** Runtime implementation is W67 `baac9850` on isolated
+`willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
+JSON status queue; the [intent record](topostitch-intent.json) lists owners without
+granting authority. Exact commands, native evidence and historical limits live in
+[periodic topology](topostitch-periodic.md) and [bend previews](topostitch-preview.md).
+Do not repeat completed probes merely because this compact handoff omits chronology.
 
-**Current edge:** W56 freezes explicit representative-image proposals with unchanged
-source/discovery/registration and anchored replay. W57 displays them through the
-existing installed `nasolve-topostitch-view`: all atoms, logical ownership, exact
-edge-image endpoints, unit cell, declared boundaries and missing scope. Its
-before/after comparison is read-only; no replacement ASU, chemical bond, approval
-or checkpoint is written. Full Willow: **1,674 plus 229 subtests**; W67 adds26 regressions;
-installed/relocated468, six helps, lean import and 3.10 syntax. Public and legacy
-replay agree exactly. JavaScript DOM/canvas checks pass, but actual browser/user
-visual review remains open after the earlier local-file automation policy block.
+**Current behavior:** the existing graph/packet owners freeze explicit image or
+chosen-forest proposals, replay them after relocation, compare 2–8 cuts through
+one viewer/camera and save source-bound preferences. These are review inputs,
+not model/checkpoint selection or authenticated approval. Optional native-link
+and backbone-intent observations expose image seams, incomplete graph coverage,
+declared/chemical/unknown boundaries and exact phosphate inventory.
 
-**W59 addition:** the existing graph owner now calculates representative images
-along an explicitly chosen acyclic set of links, with one fixed anchor per component.
-It preserves exact path order and full graph winding; no partner/tree/cut is inferred.
-Two predeclared public alternatives pass packet/view/scattering observations but
-remain unselected. Their partial topology is not a complete ASU or chemistry proof.
+W67 resolves explicitly declared directed 3′→5′ partners through schema-2
+representative/forest requests. Both endpoints must already be representation
+boundaries. Chemical/unknown/interior/do-not-connect sites, competing partners
+and stale graph digests refuse. Exact images, periodic winding and unresolved
+coordinate partners survive replay. Old schema-1 packets/default observations
+remain exact; old readers reject schema 2. The public development control adds
+one declared existing source link, preserves all 855 proposed coordinates exactly,
+and covers one of two native seams; the other remains outside the partial routes.
+No partner is inferred, atom edited, restraint activated or new ASU written.
 
-W60 retains those chosen edges/anchors in a `topostitch-forest-proposal` request
-through the existing packet command. Reopening derives the same images and verifies
-compact selection provenance; direct-image packets/scenes remain exact. The viewer
-shows the fixed logical sites and chosen links. This is proposal intent, not review.
+**Code validation:** full Willow **1,674 + 229 subtests**; installed/relocated
+**468**, six helps, lean import and Python 3.10 syntax. Actual JavaScript
+DOM/canvas controls and exported-preference readback pass, including exact legacy
+views and relocation with original paths blocked. A temporary installed composition
+with published Cedar `a2e73603` passes **468 Willow + 221 Cedar / 6 subtests**, six
+helps and exact default-owner replay. Cedar coverage is complete-request,
+child-bounds, attachment-native and checkpoints; package metadata union and runtime
+hashes are explicit. This is not a branch merge or full combined-suite qualification.
 
-W63 adds an optional authenticated source-native link comparison to those packets
-and the viewer. Each public cut moves two existing O3′–P bonds across the proposed
-ASU boundary that are absent from the partial declared graph. Exact-image distance
-and source P/OP1/OP2 are preserved. Source symmetry bonds and surrounding angle/
-exclusion policy remain unqualified. Source interpretation is evidence, not full
-intended topology; the observer neither extends the graph nor activates a bond.
-One complete Phenix 2.2.1-6174 source capture passed (no optimization/refinement);
-initial input/output-parent setup refusal is preserved. P04 is partial for this
-observation only. Exact hashes, commands and limits are in the W63 periodic guide.
+**W68 native finding:** complete fresh Phenix **2.2.1-6174** reconstruction matches
+the authenticated source. Eight crossing source-native angle terms per cut preserve
+image-aware energies/rotated gradients; subset/reindexing preserves operators.
+But native proxy pickle/generic manager deepcopy lose `sym_ops`, and the isolated
+geometry manager already omits unit-cell evaluation context before serialization.
+Correct image-bearing proxies alone therefore do not qualify a seam. Direct kernels
+and the ordinary manager are distinct; this was not a full refinement execution.
+Three setup failures and all negative controls are retained. See the
+[angle/lifecycle audit](topostitch-periodic.md#w68--inspect-source-seam-angles-and-proxy-persistence).
 
-W64 lets the existing view compare 2–8 explicit same-source/graph packets through
-`--compare`, with human Cut numbers and one camera/scale. Switching refreshes native
-seams/provenance and clears old atom/edge inspection. No packet changes or saved
-human decision; legacy scenes are exact. Public replay and actual JavaScript
-interaction controls pass, but rendered/browser review is still open.
+**Next P04 work:** coordinate with Rowan on distinct angle construction, rebinding
+and image-aware evaluation, including complete effective terms/exclusions and all
+supported lifecycle boundaries. Cedar's `cif_refinement_runtime` wraps/audits the
+parallelity kernel; it does not restore missing metadata, and its kernel rejects
+symmetry-bearing proxies. `refinement_parallelity` owns reusable frozen helpers,
+zero-cycle preflight and exact checkpoint/round ancestry, not existing angle support.
+Do not fork a refinement driver or patch Cedar during Rowan's pinned native work.
 
-W65 adds saved preferences (prefer cut / keep original / needs revision) and
-`--preference` readback bound to the exact ordered comparison. Backend validation
-replays explicit packet paths; no model/checkpoint selection or authenticated
-approval is implied. The old comparison/scene stays exact. Actual JavaScript
-exports validate after relocation; browser downloads/human review remain open.
-Existing Pine/Campaign record and checkpoint owners will consume this evidence;
-no parallel history or model writer was added.
+**Other gates stay open:** actual browser rendering/download and human cut review
+remain blocked by the explicit local-file URL policy; no workaround was attempted.
+P01/P02 remain partial. W62 proves labelled orbit permutations/complete source-atom
+ownership; W55 observes sampled Fcalc and in-memory ANISOU transport. Physical unique
+identity, special-position weights and serialized tensors remain distinct. Do not
+materialize an ASU before P03/P04 qualify its physical identity and seam chemistry;
+recutting cannot repair a physical gap.
 
-W66 projects the existing declared routes/boundaries into a verified backbone-intent
-observation and optional `--backbone-intent` view. It retains directed O3′→P image
-relations, unresolved continuation, exact phosphate inventory, missing/ambiguous
-atoms and continuation-scoped OP3 conflicts. Separate terminal-phosphate consent
-remains unknown. Public partial routes report24 continuations and0 route seams;
-Cedar's independent source interpretation still exposes2 cut-crossing bonds outside
-those routes. No topology is inferred, phosphate edited or restraint enabled.
-The optional context binds saved preferences; old scenes remain exact. Full and
-installed validation passed; temporary installed C303 composition passes442 Willow
-and221 Cedar tests plus6 subtests, six helps and exact default-owner replay.
+**Stitch capability:** source-bound frames, periodic image search, logical
+registration, declared routes, fixed-anchor paired windows, explicit previews and
+bounded fitting exist. Selected-image reciprocal incidence is checked; complete
+molecular/global identity, unassisted inference, rebuilding and campaign adoption
+remain open. Native observers/trials reuse Cedar owners; all whole-window trials
+remain capped/failed, unselected and local. W51 line-search rounding failures remain
+failures. W53/W54 pass full/rounded accepted-point diagnostics without adopting a
+candidate. W61 shows scalar/pair improvements can coexist with worse individual
+packing/torsion/plane terms. Do not relax stopping policy merely to produce a pass.
 
-W67 adds explicit directed representation-boundary partners through the existing
-graph and schema-2 representative/forest requests. Both boundaries must already
-be representation; chemical/unknown, interior, do-not-connect and competing
-partners refuse. Exact images, unresolved coordinates and periodic winding survive
-replay. The public development control explicitly declares one source-native link;
-all 855 proposed coordinates stay exact, one seam gains graph coverage and the
-other remains outside routes. Old schema-1 packets and default observations stay
-exact. No new bond/angle enforcement or phosphate/model edit.
+W34's matched same-data/Free-R controls give bend-plus-cleanup Rfree .2276 versus
+cleanup .2274, with worse bond/angle RMSDs: no meaningful extra held-out benefit.
+Private MR repair remains open. General tools must handle straight→bent,
+bent→straight and changed/nonuniform/distal curvature. Benchmark IDs/transforms
+belong in requests. Calibrated read-only negative-backbone-density detection stays
+in **S06**, after exact model/map/data binding and matched refinement, then review,
+then density-guided placement. Construct 4T28/PDB 8SJW is a future example;
+its exact B:11 interpretation remains unverified.
 
-W68 is evidence-only: a fresh Phenix 2.2.1-6174 source reconstruction matches
-exactly; eight crossing native angle terms per cut preserve energies and rotated
-gradients. Native array selection keeps image operators, but pickle drops them
-and changes residuals drastically. This does not establish that ordinary refinement
-uses that serialization path. Existing synthetic angle support was already known;
-reuse it. The next P04 gate is complete term/exclusion and supported lifecycle
-qualification with Cedar, not another kernel proof or a bond-only writer. The
-[local diagnostic audit](topostitch-periodic.md#w68--inspect-source-seam-angles-and-proxy-persistence)
-records scope, commands and failures. Runtime/package validation remains W67.
+**Shared boundary:** Pine owns editable periodic intent; TopoStitch exposes it;
+Cedar owns native enforcement. Preserve **P/OP1/OP2** on declared continuation even
+with unresolved partners. No automatic OP3/dephosphorylation or lone symmetry bond
+while surrounding geometry/exclusions are unqualified. Virtual L/R recipe labels
+are not ordinary source-model selections. See the [shared contract](construct-registration.md#shared-periodic-connectivity-intent-pine-topostitch-and-cedar).
 
-**Next bounded work:** actual browser cut inspection, preference download and human review
-still need qualification. The new local-file attempt again hit the explicit browser
-URL policy; no workaround was attempted. Inspect source-native seam angle/image semantics through maintained Cedar owners,
-preserving unknown scope and separate enforcement. Explicit partner declarations
-are now implemented; do not repeat that plumbing. W61 completed the two read-only W54 failed-point reviews
-under one common complete recipe: selected/core pair and scalar geometry improve,
-but individual packing/torsion/plane regressions remain visible. Original FAILED
-outcomes persist; no optimizer rerun, candidate or acceptance. See the W61 preview
-guide audit. W62 now proves exact labelled group-image permutations/inverse lattice
-shifts and complete atom ownership for explicit proposals, with independent point
-binding. Special-position weights, ADP serialization and physical unique-atom
-identity remain separate. Continue P02 choices/review and coordinate complete Cedar native
-enforcement without treating recutting as geometry repair. P01 and P02 remain partial. Do not materialize an ASU before the
-P03 identity/scattering and P04 seam-chemistry gates. W55 supplies an independent
-sampled complex-Fcalc/ANISOU transport diagnostic, not complete invariance proof.
-
-**Stitch capability and scientific boundary:** source-bound end frames, periodic
-image search, logical registration, declared-route discovery, fixed-anchor paired
-windows, explicit bend previews and bounded fitting exist. Periodic fitting checks
-selected source/transformed atom identity and reciprocal incidence; complete
-molecular/global image equivalence remains open. Unassisted partner inference,
-reconstruction and campaign adoption are unimplemented. Native capture/trial and
-endpoint observers reuse Cedar owners and preserve intended/core pair changes,
-packing regressions, derivatives and rounded-coordinate readback separately.
-All fixed-base/whole-window trials remain capped or failed, unselected and local.
-
-W51's 500-iteration controls retain line-search rounding failures. W53 exactly
-replays their last accepted points: complete derivatives pass, while predeclared
-precision probes support score-resolution limits. This is not convergence or
-chemistry approval. W54 preserves separately audited last-accepted diagnostics
-without converting failed jobs to success or emitting candidates. Do not relax
-stopping policy merely to obtain a pass. Scalar outlier improvements can coexist
-with worse individual contacts and affected geometry.
-
-W34's three matched reference refinements used the same observations/Free-R:
-bend-plus-cleanup Rfree .2276 versus cleanup .2274 gives no meaningful additional
-held-out benefit, with worse bond/angle RMSDs. No candidate adoption follows.
-The private MR repair and density-inspection gates remain open. General tools
-must handle straight→bent, bent→straight and changed/nonuniform/distal curvature;
-benchmark IDs and transforms belong in requests, not algorithm branches.
-Calibrated read-only negative-backbone-density observation is queued in S06,
-then human review, then later density-guided placement. Construct 4T28/PDB 8SJW
-is a future example; the exact B:11 interpretation remains unverified.
-
-**Shared Pine/Cedar boundary:** Pine retains editable periodic connectivity and
-user choices across reslicing; TopoStitch exposes them, Cedar reports enforcement.
-A declared periodic bond preserves **P/OP1/OP2** independently of partner resolution.
-No automatic OP3/dephosphorylation and no lone symmetry-bond restraint while the
-surrounding phosphate-angle/exclusion policy is unqualified. See the
-[shared contract](construct-registration.md#shared-periodic-connectivity-intent-pine-topostitch-and-cedar).
-Virtual L/R recipe labels are not ordinary source-model refinement selections.
-Callback lifetime, normalization, native exclusions/LINK bookkeeping and exact
-movement masks require their own qualified consumer policy.
-
-**Compatibility:** Willow remains isolated from dirty Pine/Cedar checkouts. W67's
-temporary installed composition with published Cedar `a2e73603` passes 468
-Willow + 221 Cedar tests and 6 subtests, six helps and exact old/new packet/orbit/
-view/scattering/source-native/preference replay through default installed owners.
-Cedar checks cover complete-request, child-bounds, attachment-native and checkpoints.
-Metadata union is explicit (extras, entry points, exact viewer asset); runtime
-overlays have source hashes. This is scoped compatibility, not a merge, full
-combined suite, combined human-guide review or native execution.
-
-Do not edit Cedar or its installation. Preserve immutable runs, unpublished inputs,
-maps, Free-R and all negative evidence. Scientific artifacts stay local; evidence
-archives are forensic records, not resumable portable runs. Retained W34 controls
-have no parallelity proxies, so they were not rerun merely to test C299's correction.
+Keep dirty Pine/Cedar worktrees, immutable runs, maps and Free-R untouched.
+Scientific inputs/results and failed probes remain in Git-ignored local evidence;
+archives are forensic records, not resumable portable runs. Do not rerun W34's
+plane-free controls merely to test a parallelity correction.
 
 ## Work discipline and doc ownership
 

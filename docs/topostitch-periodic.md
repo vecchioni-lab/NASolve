@@ -1894,12 +1894,25 @@ unit-cell-aware angular energies then describe the same source geometry.
 | Residual after native proxy-array pickle/reopen | 5631.849771642584 | 5458.774223097205 |
 
 The direct angular residual/gradient API and native `energies` path agree.
-Identity atom selection preserves the image operators. In contrast, individual
+Identity and subset/reindexing selections preserve the image operators and
+expected angular energies/gradients. In contrast, individual
 angle and shared-array **pickle round trips lose `sym_ops`** on this installation;
-the reopened terms therefore evaluate the wrong Cartesian geometry. Deliberately
+the reopened terms therefore evaluate the wrong Cartesian geometry. Generic
+deepcopy of an isolated angular manager also loses the operators. Deliberately
 omitting the unit cell is another retained negative control. This is a concrete
 serialization failure, **not evidence that every ordinary Phenix refinement path
 uses pickle or loses these fields**. That exact lifecycle still needs inspection.
+
+A follow-up isolates the **actual geometry-manager call path** without changing
+the original source manager: an angular-only manager with the correct crystal
+symmetry and all eight image-bearing proxies is evaluated with explicit angle-only
+flags. Its residuals are already **5631.849771642584 / 5458.774223097205**, before
+serialization, exactly matching the cell-omitting negative control. The installed
+`manager.energies_sites` does not forward `unit_cell` to the angular `energies`
+constructor. `manager.select` preserves the image assignments, but this evaluator
+still omits their cell context. Thus simply attaching correct proxies is not a
+supported solution. This is a complete native microprobe of the isolated angular
+manager, not a complete ordinary refinement or exclusion-policy test.
 
 The installed `angle.h`/`angle_bpl.cpp` provide per-atom operators and image-aware
 gradients. The installed `pdb_interpretation.py` angle-edit scope/constructor does
@@ -1911,20 +1924,32 @@ bond alone or by treating a pickled proxy as durable scientific intent.
 
 **Next P04 gate:** coordinate with Cedar on the existing native reconstruction/
 refinement owner. A prospective adapter must bind exact logical/coordinate/image
-identity and complete effective terms, reconstruct operators explicitly, and
-verify them after every supported selection/rebuild/reload boundary. Qualify
+identity and complete effective terms, reconstruct operators explicitly, supply
+the required cell/image evaluation context, and verify both at every supported
+selection/rebuild/reload boundary. Qualify
 ordinary entry, checkpoints/workers, normalization, missing/extra terms, torsions/
 chirality/planes and exclusions before enabling a seam. Recutting still cannot
 repair a physical gap or bypass P02/P03. Intent stays in Pine; native enforcement
 and its diagnostic report stay in Cedar. No new driver or persistent registry was
 introduced for this experiment.
 
+Rowan confirms that `cif_refinement_runtime.run_compatible_refinement` wraps the
+parallelity kernel and audits its parameter sets; it **does not** restore lost
+proxy metadata. `refinement_parallelity` owns reusable frozen helpers, zero-cycle
+preflight, exact round/checkpoint receipts and ancestry. Its existing kernel rejects
+unit-cell/symmetry-bearing proxies. Reuse that lifecycle shell only after a distinct
+angle construction/rebinding/evaluation contract is qualified; do not label it
+existing symmetry-angle support. Potential approaches remain an explicit
+unit-cell-aware angular evaluator or existing Cartesian image expansion/pullback,
+with complete term replacement/double-counting and normalization checks. Neither
+approach is activated by these notes.
+
 Validation consisted of complete fresh native reconstruction and angle microprobes,
 not dry runs and not optimization/refinement. The final owned execution was:
 
 ```bash
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/path/to/verified/Willow/src \
-  python /path/to/local/attempt-3/run-owned.py
+  python /path/to/local/attempt-5/run-owned.py
 # The maintained owner launched, in that new attempt directory:
 phenix.python -B probe.py
 ```
@@ -1933,8 +1958,26 @@ The local driver uses Cedar `cif_native_validation._run_native_command`, a 120 s
 watchdog and the pinned installed composition at Cedar `a2e73603`; the bootstrap
 comes from maintained source, never untrusted captured worker text. First attempts
 retain an unsupported operator-multiplication call and a module/class lookup
-error; neither was treated as scientific evidence. The final receipt, scripts,
+error; a later isolated-manager attempt omitted its angle-only flags and refused
+before a result. All three setup failures remain separate from successful
+observations. The final follow-up uses explicit angle-only flags. The final receipt, scripts,
 source hashes, raw controls and earlier failures are archived locally. This
 experiment-specific scaffolding is not a new public CLI or a committed runtime.
 No software test rerun is needed for this evidence/docs-only slice: W67's full,
 installed and composition results remain the applicable code validation.
+
+
+The W66–W68 local evidence is retained under the Git-ignored
+`TopoTrace/local/topostitch-native-2026-11-15` archive root. Each archive has a JSON
+index with every payload's size/hash, and all payloads were read back and verified.
+These names/hashes locate forensic evidence, not an operational resume contract:
+
+| Update | Archive | SHA-256 |
+| --- | --- | --- |
+| W66 | `W66-evidence.tar.gz` | `fe0df70627b07c0d758502af241d4f61acc5ed765fad507641a8aed0c8bb751b` |
+| W67 | `W67-evidence.tar.gz` | `9c2af2a8a3fb07885c97637e4fce13d2597de543ad3b4a8664e299a3372493c8` |
+| W68 | `W68-evidence.tar.gz` | `3db1d6050124703313fb037a0ca26ce74d2ba6b06376f27825662bec9d4272f6` |
+
+W68 attempt 3 is the first complete kernel/pickle observation; attempt 5 adds the
+manager, subset/reindex and deepcopy controls. Attempts 1, 2 and 4 retain setup
+failures. No generated scientific artifact is committed or uploaded.

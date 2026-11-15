@@ -827,7 +827,10 @@
         "image_energies_and_gradients_match": true,
         "proxy_pickle_preserves_images": false,
         "ordinary_refinement_uses_this_pickle_path_verified": false,
-        "reference": "docs/topostitch-periodic.md#w68--inspect-source-seam-angles-and-proxy-persistence"
+        "reference": "docs/topostitch-periodic.md#w68--inspect-source-seam-angles-and-proxy-persistence",
+        "angular_only_manager_forwards_cell_context": false,
+        "subset_reindex_preserves_images": true,
+        "cedar_parallelity_bridge_is_angle_support": false
       }
     },
     "contract": "docs/construct-registration.md#shared-periodic-connectivity-intent-pine-topostitch-and-cedar"

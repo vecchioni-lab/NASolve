@@ -20,7 +20,8 @@ entries are reconstructed from repository history.
 ### W68 — Identify seam-angle persistence limits
 
 - Record a read-only source-native angle transport and lifecycle audit: exact image
-  energies/gradients pass, while native proxy pickling drops image operators.
+  energies/gradients pass, while native proxy pickling drops image operators and
+  the tested geometry manager omits cell context during angle evaluation.
 - Refine the P04 next gate to explicit reconstruction/persistence plus complete
   seam chemistry; no runtime, schema, native installation or activation change.
 
