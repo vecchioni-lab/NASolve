@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W74 recorded; next W75.** Runtime implementation is W73 `c4add34c` on isolated
+**W75 recorded; next W76.** Runtime implementation is W73 `c4add34c` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -219,11 +219,24 @@ which the narrow local facade deliberately lacks. Model pickle drops restraints;
 ADP and reporting consumers need their own frame semantics. No experimental data,
 ordinary refinement, ADP optimization or serialized ASU/tensor change.
 
-**Next P04 work:** specify the supported coordinate-only consumer protocol with
-Cedar, including pair tables/reporting and model-copy semantics. Bind source/frame identity and explicitly handle selection,
-reconstruction and supported coordinate/ADP/NCS/callback policies through Cedar.
+**W75 consumer evidence:** stock Phenix source-only synthetic dry-run and one
+coordinate cycle complete. Geometry has 94 energy evaluations from weight-related
+regularization/dynamics, statistics and restraints versus ten model energy calls.
+Copies, pair tables, `.geo` and mmCIF links need explicit frame semantics. Matched
+unprofiled/caller-aware controls give identical saved coordinates/tensors/cell and
+`.geo` bytes. The five-module Python trace is a lower bound, not recut qualification.
+ADP-weight/NCS-update entry points can be inactive; bind state rather than rejecting
+names alone. Two setup failures remain local.
+
+**Next P04 work:** freeze source/native/frame identity after ordinary construction;
+qualify a complete geometry owner across copying, neighbor tables, reporting and
+weight regularization. First use explicit source-bound fixed weights or correctly
+transported weighting; equal random seeds alone do not produce equal atomwise
+shakes in different frames. Preserve private gradient accumulation/normalization
+and reject unsupported active branches, partial selections or context changes.
+See the [bounded integration contract](topostitch-periodic.md#next-implementation-contract).
 Whole-objective evaluation is promising; neither its local facade nor W71's angle
-observer qualifies ordinary refinement. Preserve P02/P03 and no-bond-alone gates.
+observer qualifies ordinary recut refinement. Preserve P02/P03 and no-bond-alone gates.
 Cedar's `cif_refinement_runtime` wraps/audits the
 parallelity kernel; it does not restore missing metadata, and its kernel rejects
 symmetry-bearing proxies. `refinement_parallelity` owns reusable frozen helpers,

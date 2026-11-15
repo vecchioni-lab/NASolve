@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W75 — Observe native copy, weighting and report consumers
+
+- Record stock source-only synthetic dry-run and coordinate-cycle call traces,
+  with matched unprofiled output and preserved setup failures.
+- Make geometry ownership, copy/report semantics and frame-aware weighting explicit
+  next gates. No runtime hook, recut refinement or scientific adoption is enabled.
+
 ### W74 — Check joint diffraction/geometry and model-copy boundaries
 
 - Record native synthetic-target agreement with explicit anisotropic tensor

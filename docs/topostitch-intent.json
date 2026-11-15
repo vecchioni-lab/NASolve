@@ -820,7 +820,19 @@
       "source_missing_links_repaired": false,
       "joint_synthetic_diffraction_target_checked": true,
       "anisotropic_transport_scope": "in-memory fixed tensors only; no ADP refinement or serialization",
-      "model_copy_pair_proxy_protocol_qualified": false
+      "model_copy_pair_proxy_protocol_qualified": false,
+      "complete_numerical_reindex_binding_checked": true,
+      "stock_source_consumer_protocol_observation": {
+        "human_update": 75,
+        "reference": "docs/topostitch-periodic.md#w75--observe-stock-native-consumers-before-choosing-an-integration-hook",
+        "dry_run_complete": true,
+        "coordinate_cycle_complete": true,
+        "synthetic_data_only": true,
+        "matched_profiler_control_passed": true,
+        "model_energy_only_hook_sufficient": false,
+        "full_consumer_protocol_qualified": false,
+        "ordinary_recut_refinement_qualified": false
+      }
     }
   },
   "planned_diffraction_benchmark": {

@@ -2412,3 +2412,97 @@ These are forensic records, not resumable portable NASolve runs. Restoring an
 experiment requires its declared source/environment and verified anchored inputs;
 old absolute paths are provenance, not a basename-search instruction. No generated
 scientific payload is committed or uploaded. W73 remains the runtime baseline.
+
+
+## W75 — Observe stock native consumers before choosing an integration hook
+
+A local Python call profiler observes five installed Phenix **2.2.1-6174**
+modules during an ordinary source-model dry-run and one coordinate-refinement
+cycle. It does not replace any geometry method or install a facade. The unchanged
+855-atom source and W74's 1,008 synthetic amplitudes/test flags are used; no
+experimental dataset, recut model or existing run is modified.
+
+The dry-run completes with zero cycles. The coordinate control completes one
+`individual_sites` cycle, `main.max_number_of_iterations=5`, `nproc=1`, LS/wk1995,
+bulk-solvent/overall ADP scaling off and no ordered solvent. Native weight
+estimation retains its default shaking/regularization: **five requested coordinate
+iterations is not a five-evaluation cap on the whole job**. All attempts use a
+600-second owned-process watchdog. The synthetic refined output is a diagnostic,
+not an adopted model or evidence of useful experimental repair.
+
+| Observed interface | Dry-run calls | Coordinate-cycle calls |
+| --- | ---: | ---: |
+| Native model `deep_copy` | 2 | 9 |
+| Native model `select` | 4 | 18 |
+| Geometry-manager `select` | 9 | 28 |
+| Geometry-manager `pair_proxies` | 16 | 127 |
+| Geometry-manager `energies_sites` | 2 | 94 |
+| Model `restraints_manager_energies_sites` | 0 | 10 |
+| Geometry `write_geo_file` / `show_sorted` | 1 / 1 | 1 / 1 |
+| Geometry `get_struct_conn_mmcif` | 0 | 1 |
+
+The 94 geometry evaluations are attributed to **54 geometry L-BFGS**, **20
+Cartesian-dynamics**, **9 statistics** and **11 restraint-manager** calls. The
+last 11 comprise ten model energy calls plus one weight-estimation call. Thus a
+patch at only the model energy entry would miss real consumers, even in this
+coordinate-only control. Standard mmCIF writing also consumes the native bond
+description; an energy-equivalent frame does not automatically qualify that output.
+
+State matters as well as method names. `adp_weights` is entered with
+`compute_wxu=False`, and `update_dihedral_ncs_restraints` sees no NCS-dihedral
+manager. Those observed calls do not establish ADP/NCS support or justify silently
+forwarding active branches. Two `add_angles_in_place` calls originate in native
+conformation-dependent model preparation; a later binding must distinguish that
+construction phase from forbidden changes after freezing effective restraints.
+All observed selections retain all 855 atoms. This says nothing about ordinary
+partial selection or model-level reordering.
+
+A matched unprofiled coordinate run gives **identical PDB atom/ANISOU/cell records
+and identical `.geo` bytes**. Full-precision maximum coordinate/tensor changes
+also agree; all full-precision in-memory coordinates were not serialized for this
+comparison. A caller/state-aware repeat matches the same saved records and report.
+Anisotropic flags remain intact, with maximum `U_star` difference 2.04e-11 between
+independently interpreted initial/final structures. Two setup failures remain:
+the first used the wrong flex namespace for Miller indices; the second requested
+the old test-flag PHIL namespace. The successful input explicitly uses
+`data_manager.fmodel.xray_data.r_free_flags.test_flag_value=1`.
+
+### Next implementation contract
+
+The following is a bounded design gate, **not an installed runtime protocol**:
+
+1. **Freeze after native construction.** Bind the complete ordered source,
+   crystal, effective live restraint parameters and image frame after ordinary
+   preparation has finished. Recompute/verify that identity before use; repeating
+   an old digest is insufficient. An initialization mutator is not permission to
+   mutate the frozen objective later.
+2. **Keep one complete geometry owner.** Energy, derivative, statistics and
+   weight/regularization consumers must use the same source-frame semantics.
+   Preserve private gradient accumulation and outer normalization from W72/W73.
+   A model-energy-only patch or unrestricted attribute forwarding is inadequate.
+3. **Make copies and reports explicit.** Qualify complete model copies with
+   source reconstruction and bound frames. Pair tables, distances, `.geo` and
+   mmCIF bond exports must have declared coordinate/image semantics. Do not return
+   raw source tables to representative-coordinate consumers merely to make a
+   call succeed. Reject unsupported partial selection/reordering and changed
+   chemistry/cell before evaluation or export.
+4. **Qualify weights separately.** Random shaking in one frame is not the same
+   atomwise displacement as reusing its random seed in another frame. First
+   compare explicitly fixed, source-bound weights or a correctly transported
+   weighting experiment; then assess ordinary automatic weighting. Do not hide
+   weight-estimation differences inside a supposed representation-invariance test.
+5. **Distinguish disabled from supported branches.** Verify NCS/ADP/TLS/IAS,
+   callbacks and auxiliary managers are absent or explicitly qualified. A no-op
+   entry can be allowed only with its inactive state bound; its active version
+   remains unsupported. Reuse Cedar's process/preflight/lineage owners without
+   expanding its qualified parallelity-only hook by implication.
+6. **Prove the complete supported path.** A future adapter must pass fresh-process
+   source/representative controls, copy/report checks and matched actual refinement
+   before ordinary activation. This profiling exercise is only a lower bound:
+   it covers Python calls in five modules, not every C++ consumer or attribute
+   access, and does not close P03/P04 or the missing-link/physical-gap gates.
+
+W75 changes documentation/evidence only; runtime and full/install/composition
+validation remain W73. Exact commands, scripts, effective parameters, initial
+failures, stock outputs and matched comparisons remain local. No scientific
+payload or standalone diagnostic subsystem is added to the repository.

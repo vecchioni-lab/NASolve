@@ -528,14 +528,15 @@
         "W71 freezes complete live angle metadata and rebuilds private image-bearing proxies with explicit unit-cell evaluation. JSON/deepcopy/pickle and a fresh native interpreter preserve two complete 1467-angle cut evaluations. Source-manager behavior and complete seam chemistry remain unchanged.",
         "W72 observes complete source-frame objective transport, changed-neighbor cache rebuilds and mmtbx normalization/shared-gradient-buffer agreement. Identity selection drops the local facade mapping and remains a negative control; no runtime activation.",
         "W73 adds a complete immutable source/image binding and explicit full reindexing.36 local mmtbx entry controls preserve geometry through identity/reverse/cyclic orders; partial selection and changed cell refuse. This is a numerical backend component, not an installed native selection hook.",
-        "W74 native synthetic diffraction and geometry targets agree with all855 anisotropic tensors transported in memory; source work/test values and derivatives are invariant across both cuts. Actual model copy/selection reveals an unsupported pair_proxies protocol. No ordinary refinement or tensor serialization is qualified."
+        "W74 native synthetic diffraction and geometry targets agree with all855 anisotropic tensors transported in memory; source work/test values and derivatives are invariant across both cuts. Actual model copy/selection reveals an unsupported pair_proxies protocol. No ordinary refinement or tensor serialization is qualified.",
+        "W75 observes the stock source-only dry-run and coordinate-cycle consumer path; geometry, weight regularization and reports bypass a model-energy-only hook. Matched profiling controls agree; complete frame-aware native integration remains open."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "With Cedar, specify the supported coordinate-only model consumer protocol: source/frame/native identity, full model copy/selection, pair tables/reporting and normalization; explicitly refuse unsupported ADP/TLS/NCS/callback/cell/rebuild paths. Then qualify ordinary fresh-process entry and matched refinement, without bypassing P02/P03.",
+      "next_action": "With Cedar, bind the source only after native model construction, then qualify one geometry owner across copies, pair tables, statistics, weight regularization and report/export consumers. Start with explicitly fixed source-bound weights or correctly transported weighting; distinguish inactive ADP/NCS entries from unsupported active branches. Prove fresh-process source/representative refinement before enabling an adapter; preserve P02/P03.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
@@ -545,14 +546,15 @@
         "E_ANGLE_SNAPSHOT",
         "E_REFERENCE_FRAME_GEOMETRY",
         "E_REFERENCE_FRAME_BINDING",
-        "E_JOINT_FRAME_TARGET"
+        "E_JOINT_FRAME_TARGET",
+        "E_NATIVE_CONSUMER_PROTOCOL"
       ],
       "last_audit": {
         "date": "2026-11-15",
         "code_commit": "c4add34c3cdee0582e50efbf9f104e6b63de7698",
         "reviewer": "Linden",
-        "human_update": 74,
-        "scope": "Native synthetic joint target, in-memory fixed tensors and actual model energy/copy boundary; no physical/materialization/ordinary-refinement closure"
+        "human_update": 75,
+        "scope": "Stock source-only synthetic dry-run and coordinate-cycle Python consumers with matched profiling control; P04 remains partial, no representative-model refinement"
       }
     },
     {
@@ -1039,6 +1041,14 @@
       "reference": "docs/topostitch-periodic.md#w74--check-diffraction-agreement-and-deeper-model-boundaries",
       "result": "Phenix2.2.1-6174 direct synthetic1008-reflection target with855 transported anisotropic tensors preserves Fcalc, target, work/test R and rotated gradients across both cuts. Joint geometry/data directional derivatives pass. Actual model energy entry matches; identity selection/deep_copy explicitly refuse the missing pair_proxies protocol.",
       "limitation": "First isotropic-only guard failure and omitted-tensor negative control retained. No experimental reflection/Free-R changes, ADP refinement, serialization, optimization or ordinary refinement. Partial selections, model-copy/pair-table reporting, ADP/NCS/callback/rebuild protocols remain open. W73 runtime/test baseline unchanged; science local."
+    },
+    "E_NATIVE_CONSUMER_PROTOCOL": {
+      "kind": "stock_source_only_native_consumer_observation",
+      "code_commit": "c4add34c3cdee0582e50efbf9f104e6b63de7698",
+      "human_update": 75,
+      "reference": "docs/topostitch-periodic.md#w75--observe-stock-native-consumers-before-choosing-an-integration-hook",
+      "result": "Stock Phenix 2.2.1-6174 source-only synthetic dry-run and one individual_sites cycle complete. Call/state tracing identifies copies, pair tables, geometry L-BFGS, weight-shaking dynamics, statistics and mmCIF link exports beyond the model energy entry. Matched unprofiled and caller-aware runs preserve saved coordinate/tensor/cell records and .geo bytes.",
+      "limitation": "Five-module Python-call inventory is a lower bound, not a complete native protocol or ordinary recut-refinement qualification. Disabled ADP/NCS entries are distinguished from active calculations. No adapter, source chemistry change, experimental input or scientific adoption. W73 runtime and full/install/composition checks unchanged; generated outputs and initial setup failures local."
     }
   },
   "benchmarks": [
@@ -1154,8 +1164,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 74,
-    "next": 75,
+    "current": 75,
+    "next": 76,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1407,6 +1417,12 @@
       {
         "number": 74,
         "title": "Check joint diffraction geometry and actual model-copy boundaries",
+        "state": "RECORDED",
+        "code_commit": "c4add34c3cdee0582e50efbf9f104e6b63de7698"
+      },
+      {
+        "number": 75,
+        "title": "Observe native copy weighting and report consumers",
         "state": "RECORDED",
         "code_commit": "c4add34c3cdee0582e50efbf9f104e6b63de7698"
       }
