@@ -2983,3 +2983,47 @@ W82's485-payload forensic archive is read-back verified, SHA-256
 Owned duplicate source/test build trees were removed after verification; the
 installed validation runtime remains available. This is forensic evidence,
 not an autonomous portable campaign; no scientific payload is committed.
+
+
+## W84 — Verify the repaired installed composition
+
+Cedar C325 supplies the canonical historical-reader frame as a dedicated package
+resource. A fresh virtual combination pins Willow
+`29723067dff6e3ad12bac5dd15e8a51e46105091` and Cedar
+`cad829a60a6ecc97643e220d4f5d16496bca39e6`. There are zero source conflicts,
+seven documentation conflicts and one `pyproject.toml` package-data conflict.
+The temporary tree retains both `data/topostitch-view.html` and
+`data/replay/*.pdb`, plus Willow's extras and six entry points. Its resolved tree
+is `b61a58636501a86b6aef4d969d5baf9f74eb9ce5`; neither branch was merged.
+
+The installed wheel SHA256 is
+`7a53ab01571d4be77253c74b0a376e5b0d319b57050271afa2685f9170968e82`.
+After moving the build source away, **873 tests and 16 subtests pass** in72.44s:
+28 explicitly selected TopoStitch modules and seven shared/Cedar modules. The
+exact pytest command, environment, module list and raw output are retained in
+`check.py`, `receipt.json`, `audit-scope.json` and `tests.log` in the local W84
+archive. The receipt's original phrase "All topology tests" is too broad; the
+addendum corrects its scope without modifying executed evidence. Six CLI helps,
+both packaged resources, old/new graph/native-link/packing replay and W82's two
+855-atom complete saved frames also pass with original paths blocked.
+
+This verifies the C325 default historical-reader repair in the later installed
+combination. It does not turn W81's original four failures into a full green
+result. No full-suite rerun, native execution, coordinate writer, new runtime or
+schema is included. Future integration must retain the package-data union and
+reconcile the seven documentation conflicts. Physical stitching, seam chemistry
+and ordinary recut refinement remain unqualified.
+
+### Retained W81–W83 evidence
+
+Git-ignored local forensic archives retain original failures and positive controls;
+all payload sizes and SHA256 values were read back and verified. These are
+forensic records, not autonomous relocated campaign runs. Archive references are
+relative to the local evidence root recorded with the session, not input-discovery
+rules; no scientific payload is committed or uploaded.
+
+| Archive | Files | SHA256 |
+| --- | ---: | --- |
+| W81-evidence.tar.gz | 3892 | `187ff8fe7197dce6f108521d1ef5e171989d825efb9040d03147992d98f510ae` |
+| W82-evidence.tar.gz | 485 | `9576ef749f9eb919fb2c1a95626f61e7e2c5966058ffba1ed6c1161d2b2f41dc` |
+| W83-evidence.tar.gz | 8 | `3975d1767daa20861e5184ac202ad7ddbe6aa3f53faef27de754c78975b5006b` |

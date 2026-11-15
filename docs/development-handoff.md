@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W83 recorded; next W84.** Latest runtime implementation is W82 `e570d15f` on isolated
+**W84 recorded; next W85.** Latest runtime implementation is W82 `e570d15f` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -276,8 +276,8 @@ virtual build pins Willow2a76967c + Cedar dc82aee1:4 failed,11,109 passed +284
 subtests. Two source-only test assumptions and two genuine default installed
 historical-reader resource failures are distinguished. All90 affected source tests
 +20 subtests pass; explicit historical runtime-source installed C62/C63 replay,
-old/new native/packing replay and six helps pass. Cedar owns the missing packaged
-canonical frame. Do not call the original full run green; no full rerun or actual
+old/new native/packing replay and six helps pass. Cedar repaired the missing packaged canonical frame in C325; W84 verifies
+the later installed combination. Do not call the original full run green; no full rerun or actual
 merge. C323/W82 are outside that pin. Eight tiny installed native cross-setting
 Fcalc/tensor controls pass separately; no refinement.
 
@@ -294,6 +294,21 @@ coincident atoms, partial/zero occupancies, multiplicities and ADP flags. Fcalc
 error<=7.62e-13; dropped-label, wrong-tensor and overwritten-occupancy controls fail.
 This preserves the supplied scattering object, not approval of its physical or
 chemical validity. No writer/runtime change; W82 full/install remains baseline.
+
+**W84 installed composition:** Willow29723067 + Cedar C325 cad829a60 passes
+873 tests +16 subtests in a fresh installation: 28 selected TopoStitch modules
+and seven shared/Cedar modules, six helps and exact saved-packet replay. Both
+viewer HTML and historical PDB resources are packaged. One package-data conflict
+was resolved by retaining both declarations in a temporary virtual tree; seven
+documentation conflicts remain and neither branch was merged. No full rerun or
+native execution; the original W81 full result remains unchanged.
+
+**Next physical-stitch diagnostic:** reuse the authenticated W38/W41 source,
+complete pair recipe and existing masked native objective. First verify a
+six-parameter weighted rigid-motion derivative and cached versus forced-rebuilt
+contacts at declared displacements. No optimizer or relaxed stopping policy;
+Cedar still owns the complete live policy guard. Density-aware placement stays
+in S06 after exact map/model/data binding and matched refinement.
 
 **Next Pine integration candidate (agreed with Cedar):** for pure representative
 recuts, keep the whole native process in one computational/source frame and derive

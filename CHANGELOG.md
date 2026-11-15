@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W84 — Verify the repaired installed Willow/Cedar composition
+
+- Record focused installed checks of Cedar C325 historical-reader repair and
+  saved TopoStitch frame/contact replay, retaining both package resources.
+- Preserve the earlier full-suite failures and the distinction between a tested
+  virtual composition and an actual merge. No runtime or schema changes.
+
 ### W83 — Separate scattering preservation from source scientific validity
 
 - Record complete native special-position, partial/zero-occupancy and mixed-ADP

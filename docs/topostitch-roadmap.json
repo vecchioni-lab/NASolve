@@ -562,14 +562,15 @@
         "E_PREVIEW_PACKING_BINDING",
         "E_NATIVE_SOURCE_COPY",
         "E_NATIVE_REPORT_FRAMES",
-        "E_COMBINED_FULL_AUDIT"
+        "E_COMBINED_FULL_AUDIT",
+        "E_C325_INSTALLED_COMPOSITION"
       ],
       "last_audit": {
         "date": "2026-11-15",
         "code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5",
         "reviewer": "Linden",
-        "human_update": 82,
-        "scope": "Whole-process boundary candidate; full combined audit retains installed historical-reader resource gap, no seam/runtime qualification"
+        "human_update": 84,
+        "scope": "Focused installed composition verifies C325 historical-reader repair; original full failures retained, seam/runtime qualification unchanged"
       }
     },
     {
@@ -1111,7 +1112,7 @@
       "human_update": 81,
       "reference": "docs/topostitch-periodic.md#w81--audit-the-combined-installation-and-narrow-the-pine-boundary",
       "result": "Frozen Willow2a76967c + Cedar dc82aee1 full installed virtual audit:4failed,11109passed+284subtests. Two source-test assumptions and two default historical-reader resource failures diagnosed. Affected source modules90+20pass; explicit historical runtime-source installed C62/C63 replay passes with originals/processes blocked. Exact old/new graph/native-link/packing replay and six helps pass. Eight separate installed Phenix2.2.1-6174 cross-setting Fcalc/tensor cases pass.",
-      "limitation": "Default installed canonical-frame resource gap remains Cedar-owned. Original full failures retained; no full combined rerun or green full claim. C323/W82 excluded from pin; seven documentation conflicts and no actual merge. No native workflow activation, writer, physical repair or recut-refinement qualification."
+      "limitation": "Default installed canonical-frame resource gap remains Cedar-owned. Original full failures retained; no full combined rerun or green full claim. C323/W82 excluded from pin; seven documentation conflicts and no actual merge. No native workflow activation, writer, physical repair or recut-refinement qualification. Later C325/W84 repairs and verifies the default reader at a new pin; this original full result remains unchanged."
     },
     "E_SAVED_FRAME_BINDING": {
       "kind": "replayed_preview_to_complete_numerical_reference_frame",
@@ -1128,6 +1129,14 @@
       "reference": "docs/topostitch-periodic.md#w83--preserve-the-labelled-scattering-object-at-special-positions",
       "result": "Installed Phenix2.2.1-6174 complete synthetic C2/R3:H/P4 diagnostic:five mixed-ADP/partial/zero-occupancy scatterers, coincident separately labelled special-position atoms, three orders. Nine cases preserve native multiplicity/weights/flags and Fcalc<=7.62e-13 with freshly reconstructed target symmetry tables. Dropped-label, omitted-tensor and overwritten-occupancy controls fail strongly; source unchanged.",
       "limitation": "Full-precision in-memory supplied-scattering-object preservation only; no source physical/chemical validity, unique molecular identity, classification-tolerance boundary, serialization, refinement or writer. Source runtime/schema unchanged; W82full/install baseline. P02/P03/P04 remain partial; science stays local."
+    },
+    "E_C325_INSTALLED_COMPOSITION": {
+      "kind": "focused_installed_virtual_composition_after_C325",
+      "code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5",
+      "human_update": 84,
+      "reference": "docs/topostitch-periodic.md#w84--verify-the-repaired-installed-composition",
+      "result": "Willow29723067dff6e3ad12bac5dd15e8a51e46105091 plus Cedar cad829a60a6ecc97643e220d4f5d16496bca39e6, resolved virtual tree b61a58636501a86b6aef4d969d5baf9f74eb9ce5: 873 tests and16 subtests pass in a fresh installation with original source path absent. Exactly28 TopoStitch modules plus seven shared/Cedar modules, six entrypoint helps, saved old/new graph/native-link/packing/frame replay and both packaged resources checked. C325 repairs default historical readers.",
+      "limitation": "No full combined rerun or native execution; original W81 failures remain recorded. Zero source conflicts, seven documentation conflicts and one package-data conflict resolved only in the virtual tree by retaining both HTML and replay PDB resources. No actual branch merge, runtime/schema changes, source writer or refinement qualification."
     }
   },
   "benchmarks": [
@@ -1243,8 +1252,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 83,
-    "next": 84,
+    "current": 84,
+    "next": 85,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1550,6 +1559,12 @@
       {
         "number": 83,
         "title": "Preserve labelled scattering at special positions",
+        "state": "RECORDED",
+        "code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5"
+      },
+      {
+        "number": 84,
+        "title": "Verify repaired historical readers in installed Willow/Cedar composition",
         "state": "RECORDED",
         "code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5"
       }

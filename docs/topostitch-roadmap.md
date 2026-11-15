@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W83 — Preserve labelled scattering at special positions.** Next: W84.
+**Current update: W84 — Verify repaired historical readers in installed Willow/Cedar composition.** Next: W85.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W74 | Check joint diffraction geometry and actual model-copy boundaries | RECORDED |
 | W75 | Observe native copy weighting and report consumers | RECORDED |
 | W76 | Represent captured native contacts in chosen crystal images | RECORDED |
 | W77 | Bind native contact reports to immutable saved previews | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W81 | Audit combined installation and choose computational view boundary | RECORDED |
 | W82 | Bind numerical frames to immutable saved previews | RECORDED |
 | W83 | Preserve labelled scattering at special positions | RECORDED |
+| W84 | Verify repaired historical readers in installed Willow/Cedar composition | RECORDED |
 
 ## Finish lines
 
@@ -315,8 +315,8 @@ Make a representation seam remain a continuous backbone where chemistry says it 
 - Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified.
 
 **Next action:** With Cedar, authenticate complete live source policy including nonbonded and exclusion tables. For pure recuts, first keep the entire native process in one computational frame and derive bound views at workflow boundaries. This does not repair physical gaps or missing links. Require checked inverse mapping for re-entered edits and fresh qualification for changed identity/intent. If an in-engine facade is actually needed, retain full copy, pair-table, outlier/report, weighting and native source/representative controls. Preserve P02/P03; never activate a symmetry bond alone.
-**Evidence:** [E_PINE_TEST_BANK](#e_pine_test_bank), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams), [E_BACKBONE_INTENT](#e_backbone_intent), [E_EXPLICIT_CONTINUATIONS](#e_explicit_continuations), [E_SEAM_ANGLE_LIFECYCLE](#e_seam_angle_lifecycle), [E_ANGLE_SNAPSHOT](#e_angle_snapshot), [E_REFERENCE_FRAME_GEOMETRY](#e_reference_frame_geometry), [E_REFERENCE_FRAME_BINDING](#e_reference_frame_binding), [E_JOINT_FRAME_TARGET](#e_joint_frame_target), [E_NATIVE_CONSUMER_PROTOCOL](#e_native_consumer_protocol), [E_REPRESENTATIVE_PACKING](#e_representative_packing), [E_PREVIEW_PACKING_BINDING](#e_preview_packing_binding), [E_NATIVE_SOURCE_COPY](#e_native_source_copy), [E_NATIVE_REPORT_FRAMES](#e_native_report_frames), [E_COMBINED_FULL_AUDIT](#e_combined_full_audit).
-**Last audit:** 2026-11-15, Linden, [W82](https://github.com/vecchioni-lab/NASolve/commit/e570d15f308ec46a0b2bc6f62c43c3346e17abb5); Whole-process boundary candidate; full combined audit retains installed historical-reader resource gap, no seam/runtime qualification.
+**Evidence:** [E_PINE_TEST_BANK](#e_pine_test_bank), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams), [E_BACKBONE_INTENT](#e_backbone_intent), [E_EXPLICIT_CONTINUATIONS](#e_explicit_continuations), [E_SEAM_ANGLE_LIFECYCLE](#e_seam_angle_lifecycle), [E_ANGLE_SNAPSHOT](#e_angle_snapshot), [E_REFERENCE_FRAME_GEOMETRY](#e_reference_frame_geometry), [E_REFERENCE_FRAME_BINDING](#e_reference_frame_binding), [E_JOINT_FRAME_TARGET](#e_joint_frame_target), [E_NATIVE_CONSUMER_PROTOCOL](#e_native_consumer_protocol), [E_REPRESENTATIVE_PACKING](#e_representative_packing), [E_PREVIEW_PACKING_BINDING](#e_preview_packing_binding), [E_NATIVE_SOURCE_COPY](#e_native_source_copy), [E_NATIVE_REPORT_FRAMES](#e_native_report_frames), [E_COMBINED_FULL_AUDIT](#e_combined_full_audit), [E_C325_INSTALLED_COMPOSITION](#e_c325_installed_composition).
+**Last audit:** 2026-11-15, Linden, [W84](https://github.com/vecchioni-lab/NASolve/commit/e570d15f308ec46a0b2bc6f62c43c3346e17abb5); Focused installed composition verifies C325 historical-reader repair; original full failures retained, seam/runtime qualification unchanged.
 
 <a id="p05"></a>
 ### P05 — Complete the persistent Pine surgery/refine GUI loop
@@ -806,7 +806,7 @@ Shared Cartesian R U R^T and complete ReferenceFrame forward/inverse tensor tran
 
 [Evidence contract](topostitch-periodic.md#w81--audit-the-combined-installation-and-narrow-the-pine-boundary) at [W81](https://github.com/vecchioni-lab/NASolve/commit/cc9fe96d456f9c3fbbf819e9afe7541f03aec361).
 Frozen Willow2a76967c + Cedar dc82aee1 full installed virtual audit:4failed,11109passed+284subtests. Two source-test assumptions and two default historical-reader resource failures diagnosed. Affected source modules90+20pass; explicit historical runtime-source installed C62/C63 replay passes with originals/processes blocked. Exact old/new graph/native-link/packing replay and six helps pass. Eight separate installed Phenix2.2.1-6174 cross-setting Fcalc/tensor cases pass.
-**Limit:** Default installed canonical-frame resource gap remains Cedar-owned. Original full failures retained; no full combined rerun or green full claim. C323/W82 excluded from pin; seven documentation conflicts and no actual merge. No native workflow activation, writer, physical repair or recut-refinement qualification.
+**Limit:** Default installed canonical-frame resource gap remains Cedar-owned. Original full failures retained; no full combined rerun or green full claim. C323/W82 excluded from pin; seven documentation conflicts and no actual merge. No native workflow activation, writer, physical repair or recut-refinement qualification. Later C325/W84 repairs and verifies the default reader at a new pin; this original full result remains unchanged.
 
 <a id="e_saved_frame_binding"></a>
 ### E_SAVED_FRAME_BINDING — replayed_preview_to_complete_numerical_reference_frame
@@ -821,6 +821,13 @@ Exactly pinned immutable preview compiles complete identity/image frame includin
 [Evidence contract](topostitch-periodic.md#w83--preserve-the-labelled-scattering-object-at-special-positions) at [W83](https://github.com/vecchioni-lab/NASolve/commit/e570d15f308ec46a0b2bc6f62c43c3346e17abb5).
 Installed Phenix2.2.1-6174 complete synthetic C2/R3:H/P4 diagnostic:five mixed-ADP/partial/zero-occupancy scatterers, coincident separately labelled special-position atoms, three orders. Nine cases preserve native multiplicity/weights/flags and Fcalc<=7.62e-13 with freshly reconstructed target symmetry tables. Dropped-label, omitted-tensor and overwritten-occupancy controls fail strongly; source unchanged.
 **Limit:** Full-precision in-memory supplied-scattering-object preservation only; no source physical/chemical validity, unique molecular identity, classification-tolerance boundary, serialization, refinement or writer. Source runtime/schema unchanged; W82full/install baseline. P02/P03/P04 remain partial; science stays local.
+
+<a id="e_c325_installed_composition"></a>
+### E_C325_INSTALLED_COMPOSITION — focused_installed_virtual_composition_after_C325
+
+[Evidence contract](topostitch-periodic.md#w84--verify-the-repaired-installed-composition) at [W84](https://github.com/vecchioni-lab/NASolve/commit/e570d15f308ec46a0b2bc6f62c43c3346e17abb5).
+Willow29723067dff6e3ad12bac5dd15e8a51e46105091 plus Cedar cad829a60a6ecc97643e220d4f5d16496bca39e6, resolved virtual tree b61a58636501a86b6aef4d969d5baf9f74eb9ce5: 873 tests and16 subtests pass in a fresh installation with original source path absent. Exactly28 TopoStitch modules plus seven shared/Cedar modules, six entrypoint helps, saved old/new graph/native-link/packing/frame replay and both packaged resources checked. C325 repairs default historical readers.
+**Limit:** No full combined rerun or native execution; original W81 failures remain recorded. Zero source conflicts, seven documentation conflicts and one package-data conflict resolved only in the virtual tree by retaining both HTML and replay PDB resources. No actual branch merge, runtime/schema changes, source writer or refinement qualification.
 
 ## Deferred extensions, not hidden blockers
 
