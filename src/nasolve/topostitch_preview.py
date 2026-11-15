@@ -19,6 +19,7 @@ from .topostitch_coordinates import ResidueSite, _read_atoms, _residue, _plane, 
 from .topostitch_discovery import plan_editable_windows
 from .topostitch_inspect import _keys, _unique_object, load_registered_end_assignments
 from .topostitch_registration import _coordinate_site
+from .topostitch_transport import CartesianImage
 
 
 class TrialLimitError(ValueError):
@@ -96,10 +97,8 @@ def _render(data, transforms, origin, translation):
                 u11,u22,u33,u12,u13,u23 = [int(line[a:a+7]) for a in (28,35,42,49,56,63)]
             except ValueError as exc:
                 raise ValueError('Malformed selected ANISOU record') from exc
-            tensor = ((u11,u12,u13),(u12,u22,u23),(u13,u23,u33))
-            rotated = [[sum(rotation[i][a]*tensor[a][b]*rotation[j][b]
-                            for a in range(3) for b in range(3)) for j in range(3)] for i in range(3)]
-            values = [round(rotated[i][j]) for i,j in ((0,0),(1,1),(2,2),(0,1),(0,2),(1,2))]
+            rotated = CartesianImage(rotation,(0.,0.,0.)).rotate_tensor((u11,u22,u33,u12,u13,u23))
+            values = [round(v) for v in rotated]
             fields = [f'{v:7d}' for v in values]
             if any(len(f) != 7 for f in fields):
                 raise ValueError('Rotated ANISOU tensor exceeds PDB field width')

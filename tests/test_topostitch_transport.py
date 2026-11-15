@@ -137,3 +137,54 @@ def test_reference_frame_plain_copy_pickle_and_input_detachment():
     assert copy.deepcopy(frame)==frame and pickle.loads(pickle.dumps(frame))==frame
     with pytest.raises(ValueError):ReferenceFrame(('A','A'),(IDENTITY_IMAGE,IDENTITY_IMAGE),'a'*64)
     with pytest.raises(ValueError):ReferenceFrame(('A',),(IDENTITY_IMAGE,),'unbound')
+
+
+@pytest.mark.parametrize('cell,group,operator',[
+    ((10,11,12,80,75,20),'P 1','x+19,y-3,z+2'),
+    ((10,10,40,90,90,90),'P 43','y,-x,z+1/4'),
+    ((105.547,105.547,96.268,90,90,120),'R 3:H','-x+y+2/3,-x+1/3,z+1/3'),
+])
+def test_cartesian_tensor_rotation_matches_independent_crystal_path(cell,group,operator):
+    gemmi=pytest.importorskip('gemmi')
+    image=crystallographic_image(cell,group,operator)
+    tensor=(.14,.23,.37,.021,-.032,.044)
+    expected=gemmi.SMat33d(*tensor).transformed_by(gemmi.UnitCell(*cell).op_as_transform(gemmi.Op(operator)).mat)
+    actual=image.rotate_tensor(tensor)
+    assert actual==pytest.approx(expected.elements_pdb(),abs=1e-14)
+    assert image.inverse().rotate_tensor(actual)==pytest.approx(tensor,abs=1e-14)
+    assert sum(actual[:3])==pytest.approx(sum(tensor[:3]),abs=1e-14)
+    norm=lambda u:sum(v*v for v in u[:3])+2*sum(v*v for v in u[3:])
+    assert norm(actual)==pytest.approx(norm(tensor),abs=1e-14)
+    assert CartesianImage(image.rotation,(1e6,-2e6,3e6)).rotate_tensor(tensor)==actual
+
+
+def test_complete_tensor_frame_reindexing_retains_identity_and_off_diagonal_signs():
+    frame=bound_frame().reindex([1,0]);tensors=((.1,.1,.1,0.,0.,0.),(1.,2.,3.,.4,.5,.6))
+    represented=frame.tensors_to_representatives(tensors,source_labels=('A','B'),context_sha256='a'*64)
+    assert represented[0]==pytest.approx((2.,1.,3.,-.4,-.6,.5))
+    assert represented[1]==tensors[0]
+    restored=frame.tensors_to_source(represented,atom_labels=('B','A'),context_sha256='a'*64)
+    for actual,expected in zip(restored,tensors):assert actual==pytest.approx(expected)
+    # Covariance rotates; translations must not be added to any tensor component.
+    zero=((0.,)*6,)*2
+    assert frame.tensors_to_representatives(zero,source_labels=('A','B'),context_sha256='a'*64)==zero
+
+
+@pytest.mark.parametrize('method,keyword',[
+    ('tensors_to_source','atom_labels'),('tensors_to_representatives','source_labels')])
+def test_tensor_binding_refuses_stale_context_reassigned_atoms_and_incomplete_inventory(method,keyword):
+    frame=bound_frame();call=getattr(frame,method);u=[(.1,.2,.3,0.,0.,0.)]*2
+    with pytest.raises(ValueError,match='context'):call(u,**{keyword:('A','B')},context_sha256='b'*64)
+    with pytest.raises(ValueError,match='order'):call(u,**{keyword:('B','A')},context_sha256='a'*64)
+    with pytest.raises(ValueError,match='complete source'):call(u[:1],**{keyword:('A','B')},context_sha256='a'*64)
+    with pytest.raises(ValueError):call([None,u[1]],**{keyword:('A','B')},context_sha256='a'*64)
+
+
+@pytest.mark.parametrize('tensor',[(1,2,3,4,5),(1,2,3,4,5,6,7),None,(1,2,3,4,float('nan'),6),(1,2,3,4,float('inf'),6),(1,2,3,True,5,6)])
+def test_tensor_transport_rejects_ambiguous_or_nonfinite_components(tensor):
+    with pytest.raises(ValueError):IDENTITY_IMAGE.rotate_tensor(tensor)
+
+
+def test_tensor_transport_refuses_finite_input_that_overflows_on_rotation():
+    c=math.sqrt(.5);image=CartesianImage(((c,-c,0.),(c,c,0.),(0.,0.,1.)),(0.,0.,0.))
+    with pytest.raises(ValueError):image.rotate_tensor((1.5e308,1.5e308,1.,1.5e308,0.,0.))

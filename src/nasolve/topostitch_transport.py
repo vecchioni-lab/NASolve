@@ -18,6 +18,14 @@ def _vector(values):
     return tuple(float(v) for v in values)
 
 
+def _tensor(values):
+    if not isinstance(values,(tuple,list)) or len(values)!=6:
+        raise ValueError('Require six symmetric Cartesian tensor components')
+    if any(type(v) not in (int,float) or not math.isfinite(v) for v in values):
+        raise ValueError('Require finite Cartesian tensor components')
+    return tuple(float(v) for v in values)
+
+
 def _dot(a, b):
     try:
         value = math.fsum(x*y for x, y in zip(a, b))
@@ -57,6 +65,20 @@ class CartesianImage:
         point = _vector(point)
         result = tuple(_dot(row,point)+t for row,t in zip(self.rotation,self.translation))
         return _vector(result)
+
+    def rotate_tensor(self, tensor):
+        """Return R U R^T in (U11,U22,U33,U12,U13,U23) Cartesian order.
+
+        Translation does not act on a covariance tensor. Units are retained;
+        fractional U_star must be converted by the caller first. This arithmetic
+        does not validate physical ADPs or choose isotropic/anisotropic flags.
+        """
+        u11,u22,u33,u12,u13,u23 = _tensor(tensor)
+        matrix=((u11,u12,u13),(u12,u22,u23),(u13,u23,u33))
+        values=tuple(sum(self.rotation[i][a]*matrix[a][b]*self.rotation[j][b]
+                         for a in range(3) for b in range(3))
+                     for i,j in ((0,0),(1,1),(2,2),(0,1),(0,2),(1,2)))
+        return _tensor(values)
 
     def pullback(self, gradient):
         """Translation has no derivative; the inverse rotation acts on gradients."""
@@ -237,14 +259,14 @@ class ReferenceFrame:
         return ReferenceFrame(self.source_labels,self.images,self.context_sha256,
                               tuple(self.order[i] for i in order))
 
-    def _check(self, values, labels, expected_labels, context_sha256):
+    def _check(self, values, labels, expected_labels, context_sha256, *, validator=_vector):
         if context_sha256 != self.context_sha256:
             raise ValueError('Reference-frame source context changed')
         if tuple(labels) != expected_labels:
             raise ValueError('Reference-frame atom order or identity changed')
-        values=tuple(_vector(v) for v in values)
+        values=tuple(validator(v) for v in values)
         if len(values)!=len(self.source_labels):
-            raise ValueError('Reference-frame coordinates/gradients must cover the complete source')
+            raise ValueError('Reference-frame values must cover the complete source')
         return values
 
     def to_source(self, points, *, atom_labels, context_sha256):
@@ -263,3 +285,20 @@ class ReferenceFrame:
         # x_source = image^-1(x_rep); its transpose Jacobian maps source forces.
         # Translations never act on gradients.
         return tuple(self.images[i].inverse().pullback(gradients[i]) for i in self.order)
+
+    def tensors_to_source(self, tensors, *, atom_labels, context_sha256):
+        """Inverse-rotate a complete Cartesian tensor inventory into source order.
+
+        Missing/isotropic flags remain caller-owned; None is not an implicit ADP
+        policy. Tensor values use the six-component order in rotate_tensor.
+        """
+        tensors=self._check(tensors,atom_labels,self.atom_labels,context_sha256,validator=_tensor)
+        source=[None]*len(tensors)
+        for tensor,index in zip(tensors,self.order):
+            source[index]=self.images[index].inverse().rotate_tensor(tensor)
+        return tuple(source)
+
+    def tensors_to_representatives(self, tensors, *, source_labels, context_sha256):
+        """Rotate complete Cartesian tensors with the same atom binding as sites."""
+        tensors=self._check(tensors,source_labels,self.source_labels,context_sha256,validator=_tensor)
+        return tuple(self.images[i].rotate_tensor(tensors[i]) for i in self.order)

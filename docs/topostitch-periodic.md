@@ -2745,3 +2745,30 @@ unuploaded; these are not portable resumable campaign runs.
 | W76 | 321 | `518f6442af7c5204c9b2c6311ea88d2a9833487ca191e0065cec271bfd2cedee` |
 | W77 | 320 | `4d5f35b5198e9968a885ed58b3902759a5b70ff6282bbb74e6b79a674a2a3c5a` |
 | W78 | 2008 | `467776cd11d3267d28e2a54519a27acf28bd759b56a919c39746760a1726f9d2` |
+
+
+## W80 — Bind Cartesian displacement tensors to the coordinate frame
+
+`CartesianImage.rotate_tensor` provides the existing preview's `R U R^T` rotation
+in the shared transport owner. Its six-component order is
+**U11, U22, U33, U12, U13, U23**, in Cartesian coordinates and unchanged caller units.
+Translation has no effect. `ReferenceFrame.tensors_to_representatives` and
+`tensors_to_source` apply that rotation with the same complete ordered atom labels,
+caller-authenticated context and full permutation as coordinates/gradients. Missing,
+nonfinite, stale or ambiguously assigned tensors refuse; `None` does not silently
+choose an isotropic/anisotropic policy. Fractional `U_star` must be converted by
+the caller, and the arithmetic does not validate physical ADPs or their flags.
+
+The existing bend-preview ANISOU writer now calls this rotation, preserving its
+integer PDB scaling, summation order, field rounding, unchanged-source behavior and
+field-width rejection. The independent Gemmi scattering observer remains an
+independent oracle. No new writer, packet schema, automatic tensor inference,
+ADP optimization, chemistry or representative-ASU export is introduced.
+
+Thirteen new regressions fail before implementation. They check independent Gemmi
+rotations in triclinic, tetragonal and hexagonal settings, trace/norm/roundtrip
+invariants, off-diagonal signs, full reordered atom binding, translation independence
+and invalid/overflow refusal. The focused transport/preview/scattering/endpoint/
+packet/fitter group passes **184 tests**; the complete Willow suite passes **1769 tests +229
+subtests**. Installed/native verification will be recorded in this same audit
+after completion.

@@ -946,6 +946,12 @@ contacts in complete chosen atom images using exact `g_i h g_j^-1` operations.
 Source proxy kinds, directed rows and multiplicity remain provenance; this output
 is not a replacement native pair table. Coordinate/distance checks and source
 digests guard the report while Cedar retains authentication and native review.
+The same `topostitch_transport` core rotates symmetric Cartesian tensors as
+`R U R^T` and transports complete tensor inventories through `ReferenceFrame`'s
+source labels, context and full permutation. The existing bend-preview ANISOU
+writer reuses the rotation while retaining its scaling/rounding policy. Fractional
+`U_star`, ADP presence/flags and physical displacement validation remain caller-owned;
+this arithmetic does not enable model export or refinement.
 `topostitch_recut_bundle.observe_relabel_native_packing` binds that report to a
 saved preview through the same immutable capture/packet context as native links.
 It checks complete native-to-preview atom correspondence, source cell/coordinates

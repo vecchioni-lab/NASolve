@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W80 — Bind Cartesian tensors to the same frame as coordinates
+
+- Add finite symmetric-tensor rotation and complete label/context-bound tensor
+  transport in the existing coordinate core, retaining full reindexing and inverse
+  mapping. Translation never acts on tensor components.
+- Reuse that rotation in the existing ANISOU preview writer; retain PDB scaling,
+  field rounding, source/anchor preservation and existing packet formats. This
+  does not choose ADP flags, refine displacement parameters or enable ASU export.
+
 ### W79 — Audit native outlier and geometry-report coordinate frames
 
 - Record an actual native statistics mismatch: an energy-only frame adapter can

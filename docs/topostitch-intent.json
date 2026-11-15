@@ -882,6 +882,26 @@
         "raw_geo_bytes_identical": false,
         "representative_export_qualified": false,
         "runtime_change": false
+      },
+      "bound_tensor_transport": {
+        "implemented": true,
+        "owner": "nasolve.topostitch_transport",
+        "component_order": [
+          "U11",
+          "U22",
+          "U33",
+          "U12",
+          "U13",
+          "U23"
+        ],
+        "coordinate_system": "Cartesian; caller converts fractional U_star",
+        "frame_binding": "complete source labels, context digest and full permutation",
+        "inverse_mapping": true,
+        "translation_applied": false,
+        "preview_anisou_writer_reuses_rotation": true,
+        "adp_flags_or_occupancies_changed": false,
+        "physical_adp_validation": false,
+        "native_refinement_or_asu_export_enabled": false
       }
     }
   },
