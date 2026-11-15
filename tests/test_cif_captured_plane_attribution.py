@@ -201,3 +201,16 @@ def test_ambiguous_inventory_storage_is_refused_before_output(tmp_path,value):
     args,sdk,refs=fixture(tmp_path)
     with pytest.raises(ValueError):m.audit_captured_plane_attribution(*args,None,tmp_path/'out',compact_inventory=value)
     assert not (tmp_path/'out').exists()
+
+
+def test_historical_plane_worker_and_contract_identities_remain_frozen():
+    from nasolve import cif_captured_plane_attribution as m
+    expected={
+        '_WORKER':'6645e2383f14a943ef3353c9a68d0bb810a05b43b759b9aebf244e07d11b79c5',
+        '_REFERENCED_WORKER':'c86b10c7457e671d1f262c32dccfae9036c45e400e3eb075e08213bcdeb4d4bc',
+        '_FIXED':'fb9a77f6879f5ad7b8da7e4419bf036c344d004fb4eae30dba9470df898d3a7c',
+    }
+    for name,digest in expected.items():
+        value=getattr(m,name)
+        raw=value.encode() if isinstance(value,str) else json.dumps(value,sort_keys=True).encode()
+        assert sha256(raw).hexdigest()==digest

@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve replayable native bond-target evidence (C322)
+
+- Add bounded owned execution and read-only relocation-safe replay of complete
+  bond-target energy/force attribution. Freeze exact source, supplied reference,
+  ordered native captures and maintained evaluator; retain failed attempts.
+- Share the existing plane-attribution lifecycle, preserving historical plane
+  worker identities, policy and report format. The bond adapter uses compact
+  inventory references and never executes captured code during inspection.
+- Reference authority, source chemical approval and automatic repair selection
+  remain separate; no default route or native SDK change.
+
 ### Attribute bond-target changes to their actual native energy and forces (C321)
 
 - Add a fixed-point gate that requires local native bond evaluations to explain

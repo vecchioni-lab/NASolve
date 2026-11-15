@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-15, C321 native bond energy/force attribution — Rowan**.
+Updated **2026-11-15, C322 durable bond attribution complete — Rowan**.
 Worktree **NASolve-c96**, branch **cedar**. Native source checkpoint **1b9a9918**;
 C319 published as **c4adb6b2**, C320 as **794e0d7b**. This follow-up adds
 native target-only energy/force attribution and compact evidence. Focused
@@ -50,12 +50,27 @@ Final local root: `320_Cedar_native-target-delivery-kpghikw9`. Source pins are i
 Earlier pre-producer-hardening cold pass is retained at
 `320_Cedar_native-target-delivery-2jx19f6g`; do not duplicate it again.
 
-**Current next step:** durable owned bond attribution/cold readback, then
-reference authority and existing repair/selection integration. Reuse the existing
-plane-attribution lifecycle instead of copying another executor. C321's pure
-numerical gate explicitly leaves caller-authentication of kernel observations
-separate. Diagnostic PHIL delivery is not ordinary corrected-CIF delivery.
-PDU's remaining bend and whole-substituent survival remain open Q06 work.
+**C322 is complete/stopped:** `322_Cedar_durable-bond-attribution-yn1bos1w`.
+Both PDU/5PC pass the shared owned attribution route: two native jobs, four exact
+manager rebuilds, 13.49 s including cold relocation. Both fresh readers pass with
+original inputs/SDK blocked; 176 saved files and all 88 original files stay
+unchanged. The unpacked proof trees total 60.8 MB, not a new ordinary retention
+policy. Source pins (working C322 over 315fe3e2) remain unchanged.
+
+The old plane worker identities/policy are unchanged. A synthetic old-format
+report reads identically after relocation with original paths removed. The actual
+native PDU preparation/registry also passes: **1,234 files unchanged**, current
+**refine-001**, checkpoints through refine-003 retained (70.29 s; no native job).
+The focused selection passes **193 tests (47.87 s)**, including plane lifecycle,
+repair chain and prepared execution. A new relocation test fails on 315fe3e2
+before the bond API exists. No full suite; no repeated successful controls needed.
+
+**Current next step:** authenticate selected-library reference authority and bind
+it through existing repair/selection owners. C322 closes durable kernel evidence,
+not source chemical approval, derivative qualification or ordinary selection.
+Diagnostic PHIL delivery is not ordinary corrected-CIF delivery. PDU's remaining
+bend and whole-substituent survival remain open Q06 work. Keep native readers
+serial with Linden; all C322 owners are stopped and its window is clear.
 
 Linden W78 reports a distinct native-copy hazard: generic deepcopy/pickle drops
 nonbonded radius/ionic/donor tables despite matching contacts, whereas tested
@@ -112,6 +127,8 @@ commands, hashes, local anchors and limits; avoid duplicating its full history:
   optimizer-history reconstruction or permission to strengthen restraints.
 - C318 `versioned_refinement_output_state_2026_11_15`: implementation and isolated
   native guard; its then-pending writer limitation is closed by the new entry.
+- C322 `durable_linear_bond_attribution_2026_11_15`: shared owned lifecycle,
+  native PDU/5PC cold relocation, legacy compatibility and focused regressions.
 - C321 `native_linear_bond_target_energy_2026_11_15`: full fixed-point energy/
   force attribution and native bond options; persistent owned replay remains next.
 - C320 `native_linear_bond_target_delivery_2026_11_15`: exact target-only

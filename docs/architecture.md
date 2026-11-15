@@ -35,6 +35,13 @@ new checkpoints. V1 frozen-code identities/readers keep their original meaning;
 old model files are never repaired on read. This is output-state consistency,
 not a new B-factor model, chemical target or automatic default route.
 
+Plane and target-only bond attributions share one bounded input-freezing,
+execution and cold-read lifecycle. Family adapters retain their distinct chemical
+and numerical gates. Bond proof freezes the supplied reference and exact ordered
+captures, validates fresh native observations, and replays without source SDK
+access. Historical plane worker bytes/policy stay fixed. Reference authority and
+ordinary repair selection are separate gates; this adds no process or retention owner.
+
 Ordinary mixed Coot construction includes declared canonical mutations in an
 explicit serial-only scope bound to actual input/output component identities.
 That scope grants neither graph transport nor phosphate deletion. Source-graph

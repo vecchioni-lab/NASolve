@@ -176,6 +176,27 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Existing owned acquisition handles ordinary checked-route misses; interrupted work needs an explicit fresh attempt after known-stopped evidence. Initial checked adoption exists. Explicit automatic plane support and later alternatives are implemented. Default activation, solution-PDF reporting and per-family release coverage remain integration milestones; chosen-model phasing has the bounded C270–C272 acceptance. |
 
 
+### Replayable bond-target evidence (C322)
+
+`audit_captured_bond_attribution` now freezes the exact source, supplied numerical
+reference and before/after native captures, then runs one bounded owned job.
+`read_captured_bond_attribution` rebuilds the claims without Phenix or executing
+saved workers. Preparation-only, numerical failure, stopped timeout and uncertain
+interruption retain their distinct meanings; evidence never grants selection.
+
+The implementation shares the existing plane-attribution execution/readback
+lifecycle. Historical plane workers, policy and report format remain unchanged.
+Both PDU and 5PC pass complete native attribution on Phenix 2.2.1-6174, then pass
+fresh cold readback after moving the evidence and blocking original-input/SDK
+access. All 88 original files remain unchanged. The two unpacked proof trees
+occupy 60.8 MB total; this is bounded diagnostic evidence, not a new ordinary
+retention policy or a claim of 100-dataset capacity. Inventory references avoid
+embedding an additional copy of each complete inventory inside job specifications.
+
+The remaining integration gates are selected-library reference authority, source
+chemical qualification, existing repair-chain/selection routing and complete
+chemical-survival checks. No automatic target adoption follows from this proof.
+
 ### Native energy of corrected bond targets (C321)
 
 After the exact dictionary-delivery gate, `qualify_linked_linear_bond_energy`
@@ -190,8 +211,8 @@ Exact PDU and 5PC before/after manager rebuilds pass: target differences of
 −55.15143 and −11.10162 native units are completely accounted for, with gradient
 difference errors below 6e−14. Their bond potential options are unchanged.
 A synthetic native softened-potential control also passes central finite
-differences. Durable attribution/readback and ordinary selection integration
-remain the next step; raw native observations stay in the local test archive.
+differences. C322 supplies durable attribution/readback. Reference authority and ordinary
+selection integration remain open; raw observations stay in the local test archive.
 
 ### Exact dictionary bond-target delivery (C320)
 

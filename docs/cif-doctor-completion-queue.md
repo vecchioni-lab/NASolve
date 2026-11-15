@@ -210,8 +210,10 @@ repair/selection owners, then inspect whole-substituent survival. C320 now binds
 exact source/reference and dictionary change to complete native before/after
 inventories, retaining the normal component origin, for both saved PDU and 5PC
 controls. C321 now accounts for their whole energy/force difference using actual
-native bond options and single/container evaluations. Next bind that proof into
-durable owned attribution/cold readback and qualify reference authority before
+native bond options and single/container evaluations. C322 now binds that proof
+through the shared owned attribution lifecycle and passes cold readback after
+relocation with original inputs/SDK blocked. Next qualify selected-library reference
+authority and connect it through existing repair-chain/selection owners before
 ordinary repair selection; do not promote the local diagnostic script to an owner. Reuse existing capture,
 numerical and repair-chain owners; diagnostic PHIL edits alone do not establish
 corrected-CIF delivery. Keep neighboring targets, source hands and terminal intent

@@ -100052,5 +100052,126 @@
         "size": 13873
       }
     ]
+  },
+  "durable_linear_bond_attribution_2026_11_15": {
+    "milestone": "C322",
+    "status": "DURABLE_NATIVE_ATTRIBUTION_COLD_RELOCATION_AND_LEGACY_READ_PASS",
+    "source_base_commit": "315fe3e2",
+    "source_state": "Working C322 pinned in start.json; native driver verifies unchanged source and stopped ownership.",
+    "behavior_before": "Pure target-only energy checks required caller authentication; no maintained durable bond attribution reader existed.",
+    "behavior_after": "Exact source/reference/captures and maintained native evaluator are frozen through the shared plane/bond lifecycle; bounded owned execution and cold readers preserve distinct prepared, failed, interrupted and passing outcomes.",
+    "files": [
+      "src/nasolve/cif_captured_attribution.py",
+      "src/nasolve/cif_captured_bond_attribution.py",
+      "src/nasolve/cif_captured_plane_attribution.py",
+      "tests/test_cif_captured_bond_attribution.py",
+      "tests/test_cif_captured_plane_attribution.py"
+    ],
+    "policy": "cif-captured-linear-bond-target-attribution-v1",
+    "validation": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_captured_bond_attribution.py tests/test_cif_captured_plane_attribution.py tests/test_cif_linear_bond_energy.py tests/test_cif_repair_chain.py tests/test_cif_prepared_repair_execution.py --tb=short",
+      "result": "193 passed in 47.87 s",
+      "before": "New preparation/relocation regression fails against archived 315fe3e2 source because the maintained bond API is absent.",
+      "full_suite": "NOT_RUN",
+      "native_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/cedar/runners/c322_start.py",
+      "legacy_command": "Same environment/interpreter, branch-artifacts/cedar/runners/c322_legacy.py"
+    },
+    "native": {
+      "build": "Phenix 2.2.1-6174 / dispatcher 2.2.1, Darwin arm64",
+      "mode": "Complete fixed-point interpretation/evaluation; no refinement or optimization",
+      "new_native_jobs": 2,
+      "full_manager_rebuilds": 4,
+      "source_unchanged": true,
+      "owners_stopped": true,
+      "original_files_unchanged": 88,
+      "elapsed_seconds": 13.489086250017863,
+      "controls": {
+        "PDU": {
+          "status": "CAPTURED_BOND_TARGET_ATTRIBUTION_PASS",
+          "target_delta": -55.15142665168787,
+          "gradient_delta_error_norm": 5.859285502108464e-14
+        },
+        "5PC": {
+          "status": "CAPTURED_BOND_TARGET_ATTRIBUTION_PASS",
+          "target_delta": -11.101618049795434,
+          "gradient_delta_error_norm": 3.1776437161565096e-14
+        }
+      }
+    },
+    "cold_read": {
+      "status": "MOVED_NATIVE_PROOFS_READ_WITHOUT_ORIGINALS_OR_SDK",
+      "results": {
+        "PDU": "CAPTURED_BOND_TARGET_ATTRIBUTION_PASS",
+        "5PC": "CAPTURED_BOND_TARGET_ATTRIBUTION_PASS"
+      },
+      "preserved_files": 176,
+      "physical_bytes": 60803843,
+      "elapsed_seconds": 2.173400125000626
+    },
+    "legacy_native_read": {
+      "status": "EXISTING_NATIVE_PREPARATION_AND_CHECKPOINT_READ_PASS",
+      "current": "refine-001",
+      "checkpoint_ids": [
+        "postmr",
+        "refine-001",
+        "refine-002",
+        "refine-003"
+      ],
+      "preserved_files": 1234,
+      "elapsed_seconds": 70.28559899999527,
+      "scope": "Existing native plane-bearing preparation and checkpoint validation through unchanged public reader; no native execution"
+    },
+    "legacy_synthetic_compatibility": {
+      "status": "LEGACY_PLANE_REPORT_IDENTICAL_AFTER_RELOCATION",
+      "legacy_commit": "315fe3e2",
+      "constants": {
+        "_WORKER": "6645e2383f14a943ef3353c9a68d0bb810a05b43b759b9aebf244e07d11b79c5",
+        "_REFERENCED_WORKER": "c86b10c7457e671d1f262c32dccfae9036c45e400e3eb075e08213bcdeb4d4bc",
+        "_FIXED": "fb9a77f6879f5ad7b8da7e4419bf036c344d004fb4eae30dba9470df898d3a7c"
+      },
+      "preserved_files": 75,
+      "scope": "Synthetic contract compatibility only; original paths removed, subprocess launch forbidden."
+    },
+    "compatibility": "Old plane worker bytes, policy and report fields unchanged. Existing archived native PDU preparation/checkpoints still validate. No migration or default activation.",
+    "limitations": [
+      "Supplied reference authority and source chemical qualification remain caller gates.",
+      "Full-manager derivative qualification, ordinary repair-chain/selection integration and chemical survival remain open.",
+      "60.8 MB unpacked native evidence is a bounded local diagnostic, not a new storage owner or 100-dataset capacity claim."
+    ],
+    "artifacts": {
+      "included": "Code, tests, compact signed evidence and current documentation only.",
+      "excluded": "Models, CIFs, reflections, raw inventories, full logs, SDK sources and local runners.",
+      "anchor": "NASolve-live-tests",
+      "path": "322_Cedar_durable-bond-attribution-yn1bos1w",
+      "references": [
+        {
+          "path": "start.json",
+          "sha256": "b8af521bc7c611e4c55d00156cd3c7d78635584cb1d7542e5d8b86b4f8189712",
+          "size": 27414
+        },
+        {
+          "path": "driver-result.json",
+          "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+          "size": 78
+        },
+        {
+          "path": "summary.json",
+          "sha256": "2e7f173523b22afc8d2b0fcb087d427876ce613a33d7378292f4e40c40716d65",
+          "size": 4023
+        },
+        {
+          "path": "cold-summary.json",
+          "sha256": "22e045cc6d01c93057dec352b7419c3e7ed6fd99915e303b9afcf73cc28ce754",
+          "size": 287
+        },
+        {
+          "path": "legacy-native-summary.json",
+          "sha256": "25139626c782c7fb6b66768d36e1fd232e4299209e46aab935e5a116763d216c",
+          "size": 419
+        }
+      ]
+    },
+    "next": "Selected-library reference authority and existing repair/selection integration; whole-substituent survival stays open.",
+    "author": "Rowan"
   }
 }
