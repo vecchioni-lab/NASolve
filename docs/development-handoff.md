@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W71 recorded; next W72.** Runtime implementation is W71 `0e8e6298` on isolated
+**W72 recorded; next W73.** Runtime implementation is W71 `0e8e6298` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -194,10 +194,19 @@ and the ordinary manager are distinct; this was not a full refinement execution.
 Three setup failures and all negative controls are retained. See the
 [angle/lifecycle audit](topostitch-periodic.md#w68--inspect-source-seam-angles-and-proxy-persistence).
 
-**Next P04 work:** inventory every seam-crossing term family and exclusion
-obligation, then coordinate complete replacement and lifecycle handling with Rowan.
-W71 qualifies private angle reconstruction only; all supported ordinary entry,
-selection/rebuild, checkpoint/worker and normalization paths remain to qualify. Cedar's `cif_refinement_runtime` wraps/audits the
+**W72 scientific result:** retaining the complete source geometry and inverse-
+mapping chosen representatives preserves the full target/gradients, including
+forced native neighbor rebuilding with changed membership. Source seams contain
+two bonds/eight angles/six torsions. Twelve actual mmtbx energy-entry controls pass
+normalization and gradient-buffer combinations. A local facade's identity selection
+**drops its mapping** and remains a demonstrated failure. No runtime hook or
+ordinary refinement was installed; a recut PDB alone lacks this geometry context.
+
+**Next P04 work:** bind source/frame identity and explicitly handle selection,
+reconstruction and supported coordinate/ADP/NCS/callback policies through Cedar.
+Whole-objective evaluation is promising; neither its local facade nor W71's angle
+observer qualifies ordinary refinement. Preserve P02/P03 and no-bond-alone gates.
+Cedar's `cif_refinement_runtime` wraps/audits the
 parallelity kernel; it does not restore missing metadata, and its kernel rejects
 symmetry-bearing proxies. `refinement_parallelity` owns reusable frozen helpers,
 zero-cycle preflight and exact checkpoint/round ancestry, not existing angle support.

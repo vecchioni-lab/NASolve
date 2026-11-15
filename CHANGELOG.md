@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W72 — Audit complete geometry in a retained reference frame
+
+- Record native whole-objective/image-gradient equivalence, directed-neighbor
+  rebuild controls and the actual mmtbx normalization/shared-buffer entry path.
+- Retain identity-selection loss as a blocker. This is evidence only: no runtime
+  hook, new chemical link, model materialization or ordinary refinement activation.
+
 ### W71 — Preserve native angle images across diagnostic reloads
 
 - Add a checked plain-data angle snapshot and private native reconstruction with

@@ -2199,3 +2199,68 @@ packet and graph replay. Only the angle-observation module differs in runtime
 from the W70 virtual tree. Seven documentation conflicts remain, zero source
 conflicts; no actual merge or full combined-suite claim. Runtime commit:
 `0e8e62986158f8b4373506c5ea34baece223621f`.
+
+
+## W72 — Evaluate complete geometry in a retained reference frame
+
+The source seam inventory contains **two bonds, eight angles and six torsions**
+for each saved cut. No captured chirality, constant-dihedral, planarity or
+parallelity term crosses these particular whole-residue image assignments.
+That observation is not a universal seam recipe or evidence that an omitted
+source term is unnecessary.
+
+A read-only alternative keeps the complete authenticated source geometry manager.
+For a fixed representative assignment `y_i = R_i x_i + t_i`, evaluate its existing
+objective at `x_i = R_i^T (y_i - t_i)`, then return `R_i g_i` as the gradient with
+respect to `y_i`. Existing `CartesianImage`, `expand_sites` and accumulated
+image-gradient transport supply this arithmetic; Cedar supplies native evaluation
+and directed-neighbor capture. No proxy family is replaced or added. The same
+source bond tables and exclusion rules remain in force. This preserves existing
+chemistry; it cannot create an intended connection missing from the source or
+make a physical gap disappear.
+
+Three retained complete **Phenix 2.2.1-6174** diagnostics, using fresh maintained
+Cedar `dca8ee82` reconstruction, establish the following bounded observations:
+
+- Both cuts preserve the complete source objective, component sums and rotated
+  gradients at the source and deterministic 0.002/0.03 Å perturbations.
+- A second attempt explicitly resets/rebuilds native pair caches. Its 1.5 Å
+  numerical stress case changes neighbor membership; source and mapped evaluation
+  still have identical directed pair/mapping/function inventories. Maximum target
+  difference is 2.24e-8 and gradient difference 1.29e-9. This deliberately distorted
+  stress case is not a candidate model or evidence of good geometry.
+- Three full-coordinate directions at steps 1e-4, 1e-5 and 1e-6 Å satisfy the
+  predeclared screen: at least two step sizes below 1e-4 error, all below 1e-3.
+  The largest observed directional error is 1.15e-4. Static native definitions
+  remain unchanged. Directly sending recut coordinates to the original manager
+  instead triggers its long-bond refusal; that negative control is retained.
+- A third local microprobe exercises the actual `mmtbx.restraints.manager`
+  energy entry with an experimental geometry facade. Both cuts pass gradients
+  on/off, normalization on/off and preseeded shared gradient buffers: **12 cases**.
+  Rotate only the newly computed contribution, then accumulate into the caller's
+  buffer. Outer normalization retains **11,378 restraints**. It must not rotate
+  or double-count a preexisting caller contribution.
+
+**Selection remains a demonstrated blocker:** delegating the facade's identity
+selection to its source manager silently drops the image mapping. The selected
+ordinary manager then refuses the recut coordinates. A real implementation must
+rebind mappings and source identities explicitly at selection/reconstruction;
+ordinary model pickle/rebuild cannot be assumed to retain a restraint manager.
+The facade is local experimental code, not installed or attached to refinement.
+
+No production code, schema, model, restraint, checkpoint or installation changes
+in W72; W71 remains the runtime and software-test baseline. Native commands were
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/verified/Willow/src python run-owned.py`,
+launching `phenix.python -B probe.py` through Cedar's owned runner with a 600 s
+watchdog. Attempts 1/2/3 retain 89/93/89 counted evaluator calls respectively;
+Cedar's additional two-pass neighbor captures are separately retained. These are
+actual executions, not dry runs, optimization or full refinement. Scripts,
+source hashes and scientific results stay local.
+
+This makes whole-objective reference-frame evaluation a promising candidate for
+the existing Cedar lifecycle, without closing P04. Further gates include explicit
+selection/reindexing, reconstructed source identity, callback/NCS policy, ADP
+coordinates/tensors, gradient-buffer semantics at all consumers, normalization,
+and diffraction/geometry frame agreement. A standalone recut PDB does not carry
+this runtime context and is not thereby safe for stock Phenix. P02/P03 and human
+review still precede any supported ASU materialization.

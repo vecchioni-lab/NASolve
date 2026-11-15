@@ -523,28 +523,30 @@
         "W66 projects declared directed backbone continuation, representation/chemical/unknown boundaries and existing phosphate inventory from replayed packets. Unresolved partners retain P/OP1/OP2 intent; OP3 conflicts are scoped to continuation, with terminal phosphate consent separate. Exact route-image transport, optional view and preference context are read-only; no new edge or native enforcement.",
         "W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement.",
         "W68 observes eight existing source-native crossing angles per explicit cut: exact image energies, rotated gradients and native energies path agree. Live source symmetry/slack are verified; native proxy pickle loses sym_ops. This narrows lifecycle qualification without enabling restraints. A follow-up native angular manager omits cell context before serialization; subset/reindexing retains images, generic deepcopy does not.",
-        "W71 freezes complete live angle metadata and rebuilds private image-bearing proxies with explicit unit-cell evaluation. JSON/deepcopy/pickle and a fresh native interpreter preserve two complete 1467-angle cut evaluations. Source-manager behavior and complete seam chemistry remain unchanged."
+        "W71 freezes complete live angle metadata and rebuilds private image-bearing proxies with explicit unit-cell evaluation. JSON/deepcopy/pickle and a fresh native interpreter preserve two complete 1467-angle cut evaluations. Source-manager behavior and complete seam chemistry remain unchanged.",
+        "W72 observes complete source-frame objective transport, changed-neighbor cache rebuilds and mmtbx normalization/shared-gradient-buffer agreement. Identity selection drops the local facade mapping and remains a negative control; no runtime activation."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "Inventory all seam-crossing term families and exclusion obligations; coordinate a complete Cedar lifecycle/replacement contract. The angle snapshot is a read-only component, never add its energy to existing angles. Keep P02/P03 and no-bond-alone gates.",
+      "next_action": "Qualify source/frame identity and explicit selection/reconstruction for a whole-objective Cedar adapter; keep native angle snapshot as independent evidence. Reject lost mappings and unknown callback/ADP/NCS policies; no driver activation or ASU materialization before remaining gates.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
         "E_BACKBONE_INTENT",
         "E_EXPLICIT_CONTINUATIONS",
         "E_SEAM_ANGLE_LIFECYCLE",
-        "E_ANGLE_SNAPSHOT"
+        "E_ANGLE_SNAPSHOT",
+        "E_REFERENCE_FRAME_GEOMETRY"
       ],
       "last_audit": {
         "date": "2026-11-15",
         "code_commit": "0e8e62986158f8b4373506c5ea34baece223621f",
         "reviewer": "Linden",
-        "human_update": 71,
-        "scope": "Explicit private angle reconstruction/evaluation only; native ordinary-manager omission and complete seam chemistry remain unqualified"
+        "human_update": 72,
+        "scope": "Complete native reference-frame diagnostic and actual energy-entry microprobe; selection and ordinary lifecycle remain unqualified"
       }
     },
     {
@@ -1007,6 +1009,14 @@
       "reference": "docs/topostitch-periodic.md#w71--reconstruct-image-bearing-angle-diagnostics-explicitly",
       "result": "Checked complete live angle records preserve operators/slack/scalars and explicitly reconstruct private proxies with unit-cell evaluation. Phenix 2.2.1-6174 synthetic and two 1467-angle public cuts pass JSON/deepcopy/pickle and fresh installed-interpreter reload; source energy/rotated gradients and directional derivatives agree. Full Willow 1715 +229 subtests; installed509; virtual Cedar dca8ee82 composition585 +16 subtests, six helps and exact old/new default-owner replay.",
       "limitation": "Read-only numerical family observer, not an additive correction, manager patch or refinement integration. Raw native pickle/cell-omission negative controls remain failures. Complete seam terms/exclusions, supported lifecycle and physical identity remain open. Scientific artifacts local; seven doc conflicts and no actual merge/full combined suite."
+    },
+    "E_REFERENCE_FRAME_GEOMETRY": {
+      "kind": "complete_native_reference_frame_diagnostic",
+      "code_commit": "0e8e62986158f8b4373506c5ea34baece223621f",
+      "human_update": 72,
+      "reference": "docs/topostitch-periodic.md#w72--evaluate-complete-geometry-in-a-retained-reference-frame",
+      "result": "Two cuts cross2 bonds/8 angles/6 torsions. Complete Phenix2.2.1-6174 source-frame objective/gradient transport agrees through perturbations and forced neighbor rebuilds with changed membership. Actual mmtbx energy entry passes12 gradient/normalization/shared-buffer cases; source definitions unchanged.",
+      "limitation": "Local diagnostic facade only; identity selection demonstrably drops mapping. No installed/runtime change, ordinary refinement, ADP/NCS/rebuild qualification, missing-link repair, materialization or diffraction improvement. W71 remains code/test baseline; scientific evidence local."
     }
   },
   "benchmarks": [
@@ -1122,8 +1132,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 71,
-    "next": 72,
+    "current": 72,
+    "next": 73,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1357,6 +1367,12 @@
       {
         "number": 71,
         "title": "Preserve angle images through explicit diagnostic reconstruction",
+        "state": "RECORDED",
+        "code_commit": "0e8e62986158f8b4373506c5ea34baece223621f"
+      },
+      {
+        "number": 72,
+        "title": "Audit complete reference-frame geometry and native entry boundaries",
         "state": "RECORDED",
         "code_commit": "0e8e62986158f8b4373506c5ea34baece223621f"
       }

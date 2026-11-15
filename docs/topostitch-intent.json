@@ -802,6 +802,14 @@
         "coordinate_mapping_and_density_claim_verified": false,
         "role": "localized versus redistributed curvature acceptance case, never a preferred algorithmic answer"
       }
+    },
+    "reference_frame_observation": {
+      "reference": "docs/topostitch-periodic.md#w72--evaluate-complete-geometry-in-a-retained-reference-frame",
+      "runtime_implemented": false,
+      "scope": "complete source objective and actual mmtbx energy-entry microprobe",
+      "selection_mapping_preserved": false,
+      "ordinary_refinement_qualified": false,
+      "source_missing_links_repaired": false
     }
   },
   "planned_diffraction_benchmark": {
