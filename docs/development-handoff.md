@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W87 recorded; W88 is next.** Latest audited runtime is W86 `82ac2b3f` on isolated
+**W88 recorded; W89 in progress.** Latest audited runtime is W88 `109ee1f8` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -338,11 +338,16 @@ host/interpreter exact-arithmetic mismatch was resolved by replay in the origina
 native interpreter and consuming its verified recorded displacements; original
 failures remain local. See the [W87 audit](topostitch-periodic.md#w87--compare-matched-six-variable-placements-without-promoting-failures).
 
-**Next W88:** compile motion from a pinned saved bend preview, reusing its source,
-registration, pair weights and pivot. Caller-constructed arrays are currently the
-provenance gap. Keep exact model binding and bounds; no new optimizer, packet,
-writer or Cedar policy. Physical-search/stopping, local cleanup, nonuniform
-curvature and matched refinement remain distinct open gates. Density stays in
+**W88 source binding:** `load_bend_motion` now compiles a pinned saved preview's
+registered weights, pivot and complete source-order mask; native evaluation checks
+its optional exact model digest. Nineteen fail-before /111 focused /1,821 full
++229 subtests /731 installed tests pass, including relocated public saved-preview
+replay with original paths blocked. No schema, CLI, optimizer, writer or tensor
+change; other parameter vectors still need fresh backbone/packing review.
+
+**Next W89:** diagnose W87 six-variable stopping resolution without modifying
+those failures, before choosing coarse-placement/local-cleanup integration.
+Nonuniform curvature and matched refinement remain open gates. Density stays in
 S06 after exact map/model/data binding. Do not relax errors to obtain a pass.
 
 **Next Pine integration candidate (agreed with Cedar):** for pure representative
