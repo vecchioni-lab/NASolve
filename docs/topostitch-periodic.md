@@ -2386,3 +2386,29 @@ hashes are retained. Some preparation/execution metadata inherited older angle-p
 wording; local scope/provenance addenda identify that wording and the actual executed
 scripts/results without rewriting the original evidence. No scientific payloads are
 committed or uploaded.
+
+
+### W71–W74 local retention
+
+The declared Git-ignored `TopoTrace/local/topostitch-native-2026-11-15`
+evidence root retains the completed native probes, failed attempts, effective
+contexts, scripts, wheels and exact test receipts. Every payload was read back
+from its archive and checked against its relative-path size/SHA-256 manifest.
+Only verified duplicate build/test trees were removed; scientific inputs,
+results, probes and supporting native-only installs remain locally available.
+
+| Update | Archive | SHA-256 |
+| --- | --- | --- |
+| W71 | `W71-evidence.tar.gz` | `8fb5671d0a5fe2f88df1c83a27a4092ebf1181f9868fb28e595a1620b5b83df0` |
+| W72 | `W72-evidence.tar.gz` | `9acf21c1b4db788915cd47880d95009130da5b10c9ee4537fa56ed490c712b46` |
+| W73 | `W73-evidence.tar.gz` | `89667cc2a2806d9e70f3921161190f6ba2ae50fefee8a49b0dc6e76fb637e8fa` |
+| W74 | `W74-evidence.tar.gz` | `686579bbdfe4306bb7f933a13a11f8296888e78a227e9a9b611d45f47acb9353` |
+
+Each archive includes a scope/provenance addendum distinguishing the actual
+executed experiment from inherited angle-probe metadata. Additional installed
+source hashes in that addendum were recorded after execution; the native
+reconstruction's own effective-context checks remain in the original receipts.
+These are forensic records, not resumable portable NASolve runs. Restoring an
+experiment requires its declared source/environment and verified anchored inputs;
+old absolute paths are provenance, not a basename-search instruction. No generated
+scientific payload is committed or uploaded. W73 remains the runtime baseline.

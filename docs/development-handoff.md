@@ -265,7 +265,9 @@ are not ordinary source-model selections. See the [shared contract](construct-re
 
 Keep dirty Pine/Cedar worktrees, immutable runs, maps and Free-R untouched.
 Scientific inputs/results and failed probes remain in Git-ignored local evidence;
-archives are forensic records, not resumable portable runs. Do not rerun W34's
+[W71–W74 archives and checksums](topostitch-periodic.md#w71w74-local-retention)
+retain every diagnostic payload. Verified duplicate build/test trees were removed.
+Archives are forensic records, not resumable portable runs. Do not rerun W34's
 plane-free controls merely to test a parallelity correction.
 
 ## Work discipline and doc ownership
