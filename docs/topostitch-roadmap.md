@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W69 — Audit installed virtual Willow/Cedar integration.** Next: W70.
+**Current update: W70 — Describe verified graph identity before building a cut.** Next: W71.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W60 | Retain chosen graph links and anchors in saved proposals | RECORDED |
 | W61 | Inspect chemistry and packing at failed last accepted points | RECORDED |
 | W62 | Verify exact labelled crystal-image permutations | RECORDED |
 | W63 | Expose existing source bonds at proposed representation seams | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W67 | Resolve explicit representation-boundary partners | RECORDED |
 | W68 | Inspect source seam angles and proxy persistence | RECORDED |
 | W69 | Audit installed virtual Willow/Cedar integration | RECORDED |
+| W70 | Describe verified graph identity before building a cut | RECORDED |
 
 ## Finish lines
 
@@ -274,7 +274,7 @@ Represent the observed periodic object independently of a tile hypothesis or PDB
 
 Let the scientist decide where to slice the ASU while seeing the same physical periodic object.
 
-**Delivered:** W57 reuses the offline renderer for a verified explicit representative proposal: all present atoms, exact typed edge-image endpoints, logical ownership, declared boundaries, missing scope, unit cell and atom/edge inspection. It does not enumerate cut alternatives, record human choices, write a model or claim rendered-browser validation. W58 fails before output creation on missing assets and qualifies an explicit temporary installed C299 package/owner composition; no rendered visual review or branch merge. W59 computes node images from an explicit selected forest and fixed anchors using existing path/relabel owners; full winding and unselected vertices remain. Two public alternatives compose with existing packets/view/scattering. No automatic alternatives or human selection. W60 persists explicit chosen edges/anchors in the existing source-bound packet and recomputes derivation on load; viewer exposes that proposal intent. Old direct-image packets/scenes retain exact behavior; no human acceptance or editing UI. W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change. W64 compares 2–8 explicit same-source/graph packets in the existing viewer with a shared camera and local Cut numbers; switching refreshes seam/provenance details and clears stale inspection. Exact old scenes remain; no model selection/approval or rendered review claimed. W65 adds a source-bound preference download/readback for prefer-cut, keep-original or needs-revision. Fresh comparison replay rejects stale choices; scene remains unchanged and no authenticated approval/model selection is claimed. Browser/download validation still open. W66 projects declared directed backbone continuation, representation/chemical/unknown boundaries and existing phosphate inventory from replayed packets. Unresolved partners retain P/OP1/OP2 intent; OP3 conflicts are scoped to continuation, with terminal phosphate consent separate. Exact route-image transport, optional view and preference context are read-only; no new edge or native enforcement. W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement.
+**Delivered:** W57 reuses the offline renderer for a verified explicit representative proposal: all present atoms, exact typed edge-image endpoints, logical ownership, declared boundaries, missing scope, unit cell and atom/edge inspection. It does not enumerate cut alternatives, record human choices, write a model or claim rendered-browser validation. W58 fails before output creation on missing assets and qualifies an explicit temporary installed C299 package/owner composition; no rendered visual review or branch merge. W59 computes node images from an explicit selected forest and fixed anchors using existing path/relabel owners; full winding and unselected vertices remain. Two public alternatives compose with existing packets/view/scattering. No automatic alternatives or human selection. W60 persists explicit chosen edges/anchors in the existing source-bound packet and recomputes derivation on load; viewer exposes that proposal intent. Old direct-image packets/scenes retain exact behavior; no human acceptance or editing UI. W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change. W64 compares 2–8 explicit same-source/graph packets in the existing viewer with a shared camera and local Cut numbers; switching refreshes seam/provenance details and clears stale inspection. Exact old scenes remain; no model selection/approval or rendered review claimed. W65 adds a source-bound preference download/readback for prefer-cut, keep-original or needs-revision. Fresh comparison replay rejects stale choices; scene remains unchanged and no authenticated approval/model selection is claimed. Browser/download validation still open. W66 projects declared directed backbone continuation, representation/chemical/unknown boundaries and existing phosphate inventory from replayed packets. Unresolved partners retain P/OP1/OP2 intent; OP3 conflicts are scoped to continuation, with terminal phosphate consent separate. Exact route-image transport, optional view and preference context are read-only; no new edge or native enforcement. W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement. W70 exposes verified graph node/link IDs and checksum through existing cut-preview --describe-graph, with optional request MATCH/MISMATCH and explicit cut_selection_validated=false. No output directory or stale-hash rewrite; default preview semantics remain.
 
 **Closure audit:**
 
@@ -282,8 +282,8 @@ Let the scientist decide where to slice the ASU while seeing the same physical p
 - Provide an actual selectable graphical before/after preview with explicit ambiguity and unchanged-source identity. No fake Apply action before materialization is supported.
 
 **Next action:** Qualify actual browser rendering, preference downloads and human review; then wire the source-bound choice into existing Pine/Campaign owners. Keep physical identity, model materialization and seam chemistry gated.
-**Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view), [E_VIEW_PACKAGE_BOUNDARY](#e_view_package_boundary), [E_EXPLICIT_FOREST](#e_explicit_forest), [E_SAVED_FOREST_INTENT](#e_saved_forest_intent), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams), [E_CUT_COMPARISON](#e_cut_comparison), [E_CUT_PREFERENCE](#e_cut_preference), [E_BACKBONE_INTENT](#e_backbone_intent), [E_EXPLICIT_CONTINUATIONS](#e_explicit_continuations).
-**Last audit:** 2026-11-15, Linden, [W67](https://github.com/vecchioni-lab/NASolve/commit/baac9850e2a8df086fd6cbe236c5ff31e00930aa); Explicit boundary partners only; partial topology, physical identity, rendered review and complete seam enforcement remain open.
+**Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view), [E_VIEW_PACKAGE_BOUNDARY](#e_view_package_boundary), [E_EXPLICIT_FOREST](#e_explicit_forest), [E_SAVED_FOREST_INTENT](#e_saved_forest_intent), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams), [E_CUT_COMPARISON](#e_cut_comparison), [E_CUT_PREFERENCE](#e_cut_preference), [E_BACKBONE_INTENT](#e_backbone_intent), [E_EXPLICIT_CONTINUATIONS](#e_explicit_continuations), [E_GRAPH_DESCRIPTION](#e_graph_description).
+**Last audit:** 2026-11-15, Linden, [W70](https://github.com/vecchioni-lab/NASolve/commit/01069fe01e005bb5e53a4d29ad8bc3dd8c59b31a); Read-only pre-proposal graph description and current installed composition; graphical/user review and scientific gates remain open.
 
 <a id="p03"></a>
 ### P03 — Materialize a cut without changing the crystal
@@ -723,6 +723,13 @@ Complete Phenix2.2.1-6174 reconstruction matches the authenticated855-atom conte
 [Evidence contract](topostitch-periodic.md#w69--audit-the-virtual-willowcedar-integration) at [W69](https://github.com/vecchioni-lab/NASolve/commit/6cfe42e967fb7680e5596a112d126d69c8622689).
 Virtual Willow6cfe42e9/Cedar a2e73603 tree has0source conflicts and7documentation conflicts. Runtime equals W67 composition except the existing11-line autorefine final-PDB RMSD fallback. Installed relocated combined autorefine/refinement runtime/parallelity controls pass76 tests plus16 subtests; six helps pass.
 **Limit:** No actual merge/ref change or conflict resolution; no full combined-suite, native execution or scientific qualification. Shared parser gap audited only. All generated evidence local.
+
+<a id="e_graph_description"></a>
+### E_GRAPH_DESCRIPTION — read_only_registered_graph_cli
+
+[Evidence contract](topostitch-periodic.md#w70--describe-the-registered-graph-before-choosing-a-cut) at [W70](https://github.com/vecchioni-lab/NASolve/commit/01069fe01e005bb5e53a4d29ad8bc3dd8c59b31a).
+14 added cases; focused115; full1688 plus229subtests; installed/relocated482,six helps,lean import,3.10syntax and exact old/new public replay. Source-bound graph IDs/hash and optional request MATCH/MISMATCH are read-only; stale builder rejection remains. Current Cedar dca8ee82 installed virtual composition passes558 plus16subtests, six helps and exact default-owner native/packet/graph replay.
+**Limit:** Graph description is not cut selection/geometry validation or approval; no request rebinding, new registry or model/chemistry edit. Initial sandboxed full run had5 process-permission failures; unfiltered permission-enabled rerun passed. Seven documentation conflicts remain; no real merge/full combined-suite/native execution. Scientific evidence local.
 
 ## Deferred extensions, not hidden blockers
 

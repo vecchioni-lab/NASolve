@@ -2029,7 +2029,9 @@ and perform release-level combined validation in the chosen final tree.
 
 Use the existing cut-preview command to see the graph's logical sites, numbered
 nodes/links, exact symmetry operators, declared boundaries and graph checksum
-before authoring a cut. This mode prints JSON and creates no directory or model:
+before authoring a cut. Node/link numbers belong to that exact graph hash; review
+them again when source or declarations change. This mode prints JSON and creates
+no directory or model:
 
 ```bash
 nasolve-topostitch-cut-preview model.pdb \
@@ -2096,3 +2098,14 @@ python -m pip wheel --no-deps --no-build-isolation --wheel-dir /path/to/wheels .
 The host used its NASolve Python 3.12.14 `.venv`, adding the isolated installed
 Gemmi site to `PYTHONPATH`; the exact vectors are retained locally. Wheel SHA-256:
 `9298b86b4b2c57c31aa1c0ab2b041ce6c6eac606053cefca2e2cc6a731992f12`.
+
+
+W70's installed virtual composition with Rowan's final Cedar tip `dca8ee82` passes
+**558 tests + 16 subtests** (43.24 s): 482 TopoStitch owner controls plus the 76
+combined statistics-parser/refinement-runtime/parallelity controls. Six helps pass;
+old and schema-2 public packets, graph descriptions and authenticated source-native
+links replay exactly through the default installed Cedar owners after relocation
+with original paths blocked. Cedar's runtime bytes/package metadata are unchanged
+from tested `a2e73603`. No new native execution or full combined-suite claim.
+Virtual tree `ff0935d44624430498eeb86674d8c97d80371267` retains seven documentation
+conflicts and no source conflicts; no branch, index or worktree is merged.

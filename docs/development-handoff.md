@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W69 recorded; next W70.** Runtime implementation is W67 `baac9850` on isolated
+**W70 recorded; next W71.** Runtime implementation is W70 `01069fe0` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -161,23 +161,25 @@ remain exact; old readers reject schema 2. The public development control adds
 one declared existing source link, preserves all 855 proposed coordinates exactly,
 and covers one of two native seams; the other remains outside the partial routes.
 No partner is inferred, atom edited, restraint activated or new ASU written.
+W70 adds read-only `cut-preview --describe-graph`: graph IDs/hash and optional
+request MATCH/MISMATCH, with cut_selection_validated=false. It writes no directory,
+never rebinds a request, and leaves ordinary preview validation unchanged.
 
-**Code validation:** full Willow **1,674 + 229 subtests**; installed/relocated
-**468**, six helps, lean import and Python 3.10 syntax. Actual JavaScript
-DOM/canvas controls and exported-preference readback pass, including exact legacy
-views and relocation with original paths blocked. A temporary installed composition
-with published Cedar `a2e73603` passes **468 Willow + 221 Cedar / 6 subtests**, six
-helps and exact default-owner replay. Cedar coverage is complete-request,
-child-bounds, attachment-native and checkpoints; package metadata union and runtime
-hashes are explicit. This is not a branch merge or full combined-suite qualification.
+**Code validation:** full Willow **1,688 + 229 subtests**; installed/relocated
+**482**, six helps, lean import and Python 3.10 syntax. The first sandboxed full
+run retained five process-control permission failures; the unfiltered run with
+owned-process permissions passed. Old/new packets and graph descriptions replay
+exactly after relocation with original paths blocked. Viewer JavaScript controls
+remain separately validated; no new rendered-browser claim.
 
-W69 additionally audits the actual virtual Willow/Cedar source combination: no
-source conflicts, seven unresolved human/agent documentation conflicts. The only
-runtime difference from the prior composition is Willow's older final-PDB RMSD
-fallback in `autorefine.py`. Installed combined parser/refinement-lifecycle tests
-pass **76 + 16 subtests**, plus six helps. No branch/index/worktree change; reconcile
-contracts and run release-level combined validation before any real merge. See
-[virtual integration](topostitch-periodic.md#w69--audit-the-virtual-willowcedar-integration).
+The installed virtual composition with published Cedar `dca8ee82` passes
+**558 + 16 subtests** (482 TopoStitch plus 76 combined autorefine/refinement-runtime/
+parallelity), six helps and exact default-owner source-native/packet/graph replay.
+Cedar runtime bytes are unchanged from `a2e73603`, where the separate 221-test/
+6-subtest complete-request, child-bounds, attachment-native and checkpoint subset
+also passed. Seven human/agent documentation conflicts and zero source conflicts
+remain. No actual merge or full combined-suite qualification: reconcile contracts
+and run release-level validation in the final chosen tree before integration.
 
 **W68 native finding:** complete fresh Phenix **2.2.1-6174** reconstruction matches
 the authenticated source. Eight crossing source-native angle terms per cut preserve

@@ -4,7 +4,7 @@
   "updated": "2026-11-15",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "6cfe42e967fb7680e5596a112d126d69c8622689",
+  "audited_code_commit": "01069fe01e005bb5e53a4d29ad8bc3dd8c59b31a",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -450,7 +450,8 @@
         "W64 compares 2\u20138 explicit same-source/graph packets in the existing viewer with a shared camera and local Cut numbers; switching refreshes seam/provenance details and clears stale inspection. Exact old scenes remain; no model selection/approval or rendered review claimed.",
         "W65 adds a source-bound preference download/readback for prefer-cut, keep-original or needs-revision. Fresh comparison replay rejects stale choices; scene remains unchanged and no authenticated approval/model selection is claimed. Browser/download validation still open.",
         "W66 projects declared directed backbone continuation, representation/chemical/unknown boundaries and existing phosphate inventory from replayed packets. Unresolved partners retain P/OP1/OP2 intent; OP3 conflicts are scoped to continuation, with terminal phosphate consent separate. Exact route-image transport, optional view and preference context are read-only; no new edge or native enforcement.",
-        "W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement."
+        "W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement.",
+        "W70 exposes verified graph node/link IDs and checksum through existing cut-preview --describe-graph, with optional request MATCH/MISMATCH and explicit cut_selection_validated=false. No output directory or stale-hash rewrite; default preview semantics remain."
       ],
       "acceptance": [
         "Enumerate bounded, intent-compatible cut alternatives; show central ASU plus connected mates, ownership, real nicks, seams, exposed ends and affected logical sites.",
@@ -467,14 +468,15 @@
         "E_CUT_COMPARISON",
         "E_CUT_PREFERENCE",
         "E_BACKBONE_INTENT",
-        "E_EXPLICIT_CONTINUATIONS"
+        "E_EXPLICIT_CONTINUATIONS",
+        "E_GRAPH_DESCRIPTION"
       ],
       "last_audit": {
         "date": "2026-11-15",
-        "code_commit": "baac9850e2a8df086fd6cbe236c5ff31e00930aa",
+        "code_commit": "01069fe01e005bb5e53a4d29ad8bc3dd8c59b31a",
         "reviewer": "Linden",
-        "human_update": 67,
-        "scope": "Explicit boundary partners only; partial topology, physical identity, rendered review and complete seam enforcement remain open"
+        "human_update": 70,
+        "scope": "Read-only pre-proposal graph description and current installed composition; graphical/user review and scientific gates remain open"
       }
     },
     {
@@ -987,6 +989,14 @@
       "reference": "docs/topostitch-periodic.md#w69--audit-the-virtual-willowcedar-integration",
       "result": "Virtual Willow6cfe42e9/Cedar a2e73603 tree has0source conflicts and7documentation conflicts. Runtime equals W67 composition except the existing11-line autorefine final-PDB RMSD fallback. Installed relocated combined autorefine/refinement runtime/parallelity controls pass76 tests plus16 subtests; six helps pass.",
       "limitation": "No actual merge/ref change or conflict resolution; no full combined-suite, native execution or scientific qualification. Shared parser gap audited only. All generated evidence local."
+    },
+    "E_GRAPH_DESCRIPTION": {
+      "kind": "read_only_registered_graph_cli",
+      "code_commit": "01069fe01e005bb5e53a4d29ad8bc3dd8c59b31a",
+      "human_update": 70,
+      "reference": "docs/topostitch-periodic.md#w70--describe-the-registered-graph-before-choosing-a-cut",
+      "result": "14 added cases; focused115; full1688 plus229subtests; installed/relocated482,six helps,lean import,3.10syntax and exact old/new public replay. Source-bound graph IDs/hash and optional request MATCH/MISMATCH are read-only; stale builder rejection remains. Current Cedar dca8ee82 installed virtual composition passes558 plus16subtests, six helps and exact default-owner native/packet/graph replay.",
+      "limitation": "Graph description is not cut selection/geometry validation or approval; no request rebinding, new registry or model/chemistry edit. Initial sandboxed full run had5 process-permission failures; unfiltered permission-enabled rerun passed. Seven documentation conflicts remain; no real merge/full combined-suite/native execution. Scientific evidence local."
     }
   },
   "benchmarks": [
@@ -1102,8 +1112,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 69,
-    "next": 70,
+    "current": 70,
+    "next": 71,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1327,6 +1337,12 @@
         "title": "Audit installed virtual Willow/Cedar integration",
         "state": "RECORDED",
         "code_commit": "6cfe42e967fb7680e5596a112d126d69c8622689"
+      },
+      {
+        "number": 70,
+        "title": "Describe verified graph identity before building a cut",
+        "state": "RECORDED",
+        "code_commit": "01069fe01e005bb5e53a4d29ad8bc3dd8c59b31a"
       }
     ]
   }
