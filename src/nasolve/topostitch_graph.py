@@ -155,14 +155,51 @@ def describe_periodic_graph(node_ids, edges, *, cell_parameters, space_group):
     return report
 
 
-def build_registered_periodic_graph(model, discovery_path, registration_path, *, extra_edges=()):
+def _boundary_continuations(values, declared):
+    """Validate explicit directed seam intent within the existing discovery copy.
+
+    A declaration resolves representation boundaries only. It cannot rewrite a
+    true/unknown boundary or override a do-not-connect choice by proximity.
+    Exact crystallographic operators are validated by the common graph owner.
+    """
+    if not isinstance(values, (list, tuple)) or len(values) > _MAX_EDGES:
+        raise ValueError('Require a bounded array of explicit backbone continuations')
+    owners = {site: (route, i) for route in declared['strands'] for i, site in enumerate(route['sites'])}
+    ids, sources, targets, result = set(), set(), set(), []
+    fields = {'continuation_id', 'source_site', 'target_site', 'target_operator_xyz'}
+    for row in values:
+        if not isinstance(row, dict) or set(row) != fields:
+            raise ValueError('Malformed backbone continuation fields')
+        number = row['continuation_id']
+        if type(number) is not int or number < 1 or number in ids:
+            raise ValueError('Require unique positive integer continuation identifiers')
+        if any(not isinstance(row[k], str) or row[k] not in owners for k in ('source_site', 'target_site')):
+            raise ValueError('Unknown logical route site in backbone continuation')
+        source, target = row['source_site'], row['target_site']
+        if source in sources or target in targets:
+            raise ValueError('A backbone boundary cannot have competing incoming or outgoing partners')
+        left, i = owners[source]; right, j = owners[target]
+        if i != len(left['sites'])-1:
+            raise ValueError('Continuation source must be a declared 3-prime route endpoint')
+        if j != 0:
+            raise ValueError('Continuation target must be a declared 5-prime route endpoint')
+        if left['three_prime_boundary'] != 'representation' or right['five_prime_boundary'] != 'representation':
+            raise ValueError('Explicit continuation requires two declared representation boundaries')
+        if {source, target} & set(declared['do_not_connect_sites']):
+            raise ValueError('Backbone continuation conflicts with a do-not-connect declaration')
+        ids.add(number); sources.add(source); targets.add(target)
+        result.append(dict(row))
+    return sorted(result, key=lambda row: row['continuation_id'])
+
+
+def build_registered_periodic_graph(model, discovery_path, registration_path, *, extra_edges=(), backbone_continuations=()):
     """Bind one discovery copy's declared routes to source bytes and Pine sites.
 
     All logical target sites are retained, including missing mappings and sites
     outside declared routes. Other registered copies and unrepresented atoms
     remain explicit excluded scope. Extra noncovalent edges are caller intent,
-    never inferred from endpoint proximity. Representation-seam covalent links
-    need a future explicit chemistry-aware route adapter.
+    never inferred from endpoint proximity. Explicit directed continuations may
+    resolve two representation boundaries without a bond or chemistry edit.
     """
     from .construct_registration import validate_construct_registration
     from .topostitch_inspect import _unique_object, load_registered_end_assignments
@@ -181,6 +218,7 @@ def build_registered_periodic_graph(model, discovery_path, registration_path, *,
         raise ValueError('Graph inputs changed during registration resolution')
     registration = validate_construct_registration(json.loads(registration_bytes, object_pairs_hook=_unique_object))
     declared = mapping['discovery_assessment']['inputs']
+    continuations = _boundary_continuations(backbone_continuations, declared)
     copy = next(c for c in registration['copies'] if c['copy_id'] == declared['copy_id'])
     if len(registration['target']['sites']) > _MAX_NODES:
         raise ValueError('Registered periodic graph exceeds node budget')
@@ -232,7 +270,7 @@ def build_registered_periodic_graph(model, discovery_path, registration_path, *,
             add('covalent_backbone', a, b, 'x,y,z', {'strand_id': strand['strand_id']})
     for a, b in declared['duplex_pairs']:
         add('base_pairing', a, b, 'x,y,z', 'declared_duplex_core')
-    if not isinstance(extra_edges, (list, tuple)) or len(extra_edges)+len(edges) > _MAX_EDGES:
+    if not isinstance(extra_edges, (list, tuple)) or len(extra_edges)+len(edges)+len(continuations) > _MAX_EDGES:
         raise ValueError('Registered periodic graph exceeds edge budget')
     for row in extra_edges:
         if not isinstance(row, dict) or set(row) != {'kind', 'source_site', 'target_site', 'target_operator_xyz'}:
@@ -242,6 +280,10 @@ def build_registered_periodic_graph(model, discovery_path, registration_path, *,
         if any(not isinstance(row[k], str) or row[k] not in numbers for k in ('source_site', 'target_site')):
             raise ValueError('Unknown logical site in declared extra edge')
         add(row['kind'], row['source_site'], row['target_site'], row['target_operator_xyz'], 'caller_declared_extra_edge')
+    for row in continuations:
+        add('covalent_backbone', row['source_site'], row['target_site'], row['target_operator_xyz'],
+            {'continuation_id': row['continuation_id'], 'source': 'caller_declared_representation_boundary'})
+        row['edge_id'] = len(edges)
     _, cell, group = crystal_from_pdb_bytes(data)
     graph = describe_periodic_graph(list(numbers.values()), edges,
                                    cell_parameters=list(cell.parameters), space_group=group)
@@ -257,6 +299,10 @@ def build_registered_periodic_graph(model, discovery_path, registration_path, *,
                         'unresolved_node_ids': [n['node_id'] for n in nodes if n['issues']],
                         'whole_asu_graph_validated': False, 'tile_multiplicity_inferred': False},
               'source_bytes_verified': True, 'runtime_authority': False, 'changes': []}
+    if continuations:
+        by_edge = {edge['edge_id']: edge for edge in graph['edges']}
+        report['declared_continuations'] = [{**row, 'target_operator_xyz': by_edge[row['edge_id']]['target_operator_xyz']}
+                                            for row in continuations]
     report['report_sha256'] = _fingerprint(report)
     return report
 

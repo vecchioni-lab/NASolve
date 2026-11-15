@@ -27,19 +27,23 @@ def _prepare(model,discovery,registration,proposal):
     snapshots={name:path.read_bytes() for name,path in paths.items()}
     request=_json(snapshots['proposal'])
     if (not isinstance(request,dict) or type(request.get('schema_version')) is not int
-            or request['schema_version']!=1 or request.get('kind') not in
+            or request['schema_version'] not in (1,2) or request.get('kind') not in
             ('topostitch-representative-proposal','topostitch-forest-proposal')):
         raise ValueError('Unsupported representative proposal kind/schema')
     common={'schema_version','kind','registered_graph_sha256','extra_edges',
             'coincidence_tolerance_angstrom','max_atom_tests'}
+    if request['schema_version'] == 2:
+        common.add('backbone_continuations')
     forest_request=request['kind']=='topostitch-forest-proposal'
     _keys(request,common|({'selected_edge_ids','anchor_node_ids'} if forest_request else {'node_images'}))
     if not isinstance(request['registered_graph_sha256'],str) or not re.fullmatch(r'[0-9a-f]{64}',request['registered_graph_sha256']):
         raise ValueError('Require the exact registered graph SHA-256')
+    continuation_options = ({'backbone_continuations': request['backbone_continuations']}
+                            if request['schema_version'] == 2 else {})
     selection=None
     if forest_request:
         from .topostitch_graph import build_registered_periodic_graph,propose_forest_representatives
-        bound=build_registered_periodic_graph(paths['source'],paths['discovery'],paths['registration'],extra_edges=request['extra_edges'])
+        bound=build_registered_periodic_graph(paths['source'],paths['discovery'],paths['registration'],extra_edges=request['extra_edges'],**continuation_options)
         if bound['report_sha256']!=request['registered_graph_sha256']:
             raise ValueError('Registered graph checksum mismatch for the selected forest')
         graph=bound['periodic_graph']
@@ -50,7 +54,7 @@ def _prepare(model,discovery,registration,proposal):
             source_graph_sha256=graph['graph_sha256'],graph_proposal_sha256=derived['proposal_sha256'])
     else:images=request['node_images']
     observation=preview_registered_relabel(paths['source'],paths['discovery'],paths['registration'],
-        node_images=images,extra_edges=request['extra_edges'],
+        node_images=images,extra_edges=request['extra_edges'],**continuation_options,
         expected_registered_graph_sha256=request['registered_graph_sha256'],
         coincidence_tolerance_angstrom=request['coincidence_tolerance_angstrom'],
         max_atom_tests=request['max_atom_tests'])
@@ -141,6 +145,8 @@ def _backbone_intent_observation(packet, receipt_sha256):
     atoms = preview['source_orbit_observation']['atoms']
     points = preview['proposed_points_angstrom']
     nodes = {node['logical_site']: node for node in bound['nodes']}
+    nodes_by_id = {node['node_id']: node for node in bound['nodes']}
+    explicit = {row['edge_id']: row for row in bound.get('declared_continuations', [])}
     incoming = {edge['target']: edge for edge in graph['edges'] if edge['kind'] == 'covalent_backbone'}
     after_edges = {edge['edge_id']: edge for edge in preview['graph_relabeling']['periodic_graph']['edges']}
     images = {row['node_id']: row['operator_xyz'] for row in preview['atom_image_groups']}
@@ -174,10 +180,10 @@ def _backbone_intent_observation(packet, receipt_sha256):
                 issues.append('EXISTING_OP3_CONFLICTS_WITH_DECLARED_CONTINUATION')
         issues.extend('AMBIGUOUS_' + role for role, values in inventory.items() if len(values) > 1)
         partner = None
-        if route is not None and offset > 0:
-            donor = nodes[route['sites'][offset-1]]
-            edge = incoming.get(node['node_id'])
-            if edge is None or edge['source'] != donor['node_id']:
+        edge = incoming.get(node['node_id'])
+        if edge is not None:
+            donor = nodes_by_id[edge['source']]
+            if edge['edge_id'] not in explicit and (route is None or offset == 0 or donor['logical_site'] != route['sites'][offset-1]):
                 raise ValueError('Declared incoming backbone route differs from the verified graph')
             after = after_edges[edge['edge_id']]
             donor_indices = indices(donor, ("O3'", 'O3*'))
@@ -191,6 +197,8 @@ def _backbone_intent_observation(packet, receipt_sha256):
                            after_target_operator_xyz=after['target_operator_xyz'],
                            proposed_representation_seam=after['target_operator_xyz'] != 'x,y,z',
                            coordinate_endpoints_resolved=resolved, geometry=None)
+            if edge['edge_id'] in explicit:
+                partner['continuation_id'] = explicit[edge['edge_id']]['continuation_id']
             if resolved:
                 i, j = donor_indices[0], phosphate_indices[0]
                 before = [atoms[i]['position_angstrom'], transform(edge['target_operator_xyz'], atoms[j]['position_angstrom'])]

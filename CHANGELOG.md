@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W67 — Resolve explicitly declared representation-boundary partners
+
+- Add directed backbone continuation declarations to the existing registered graph
+  and schema-2 representative/forest requests, with exact crystallographic images.
+- Require two representation boundaries; reject interior sites, chemical/unknown
+  boundaries, competing partners and do-not-connect sites. Preserve periodic winding.
+- Replay partner intent and image geometry through existing packets, observers and
+  views. Keep old schema-1/default results exact; no native bond/angle activation,
+  automatic partner inference, phosphate edit or model materialization.
+
 ### W66 — Retain declared backbone continuation at proposed cuts
 
 - Add a replay-bound observation of directed route links, representation/chemical/

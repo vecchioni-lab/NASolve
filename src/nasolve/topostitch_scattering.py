@@ -80,7 +80,7 @@ def _structure(data, orbit):
 
 
 def observe_registered_relabel_scattering(model,discovery,registration,*,node_images,
-        expected_registered_graph_sha256,hkls,extra_edges=(),
+        expected_registered_graph_sha256,hkls,extra_edges=(),backbone_continuations=(),
         coincidence_tolerance_angstrom=.01,max_atom_tests=2_000_000,
         max_structure_factor_terms=5_000_000):
     """Observe unrefined complex Fcalc at explicit reflections before/after a cut.
@@ -98,6 +98,7 @@ def observe_registered_relabel_scattering(model,discovery,registration,*,node_im
     originals={p:p.read_bytes() for p in paths}
     preview=preview_registered_relabel(*paths,node_images=node_images,
         expected_registered_graph_sha256=expected_registered_graph_sha256,extra_edges=extra_edges,
+        backbone_continuations=backbone_continuations,
         coincidence_tolerance_angstrom=coincidence_tolerance_angstrom,max_atom_tests=max_atom_tests)
     import gemmi
     source,source_atoms,anisou_count=_structure(originals[paths[0]],preview['source_orbit_observation'])

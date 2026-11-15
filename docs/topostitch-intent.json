@@ -653,6 +653,37 @@
       "bond_enforcement_enabled": false,
       "phosphate_atoms_changed": false,
       "runtime_authority": false
+    },
+    "explicit_backbone_continuations": {
+      "module": "nasolve.topostitch_graph",
+      "api": "build_registered_periodic_graph(..., backbone_continuations=...)",
+      "packet_owner": "nasolve.topostitch_recut_bundle",
+      "proposal_schema_version": 2,
+      "packet_schema_version": 1,
+      "proposal_kinds": [
+        "topostitch-representative-proposal",
+        "topostitch-forest-proposal"
+      ],
+      "fields": [
+        "continuation_id",
+        "source_site",
+        "target_site",
+        "target_operator_xyz"
+      ],
+      "policy": "Directed logical 3-prime route endpoint to 5-prime route endpoint; both boundaries must already be representation. No inference or automatic change of boundary intent.",
+      "conflicts_rejected": [
+        "chemical/unknown boundary",
+        "interior or unknown site",
+        "do-not-connect site",
+        "competing incoming/outgoing partner",
+        "invalid/nonmember/excessive operator",
+        "stale graph digest"
+      ],
+      "legacy": "Schema-1 packets and empty-declaration graph/view observations remain exact; old readers reject schema 2.",
+      "coordinate_presence_required_for_intent": false,
+      "native_enforcement_enabled": false,
+      "phosphate_atoms_changed": false,
+      "runtime_authority": false
     }
   },
   "geometry_development": {

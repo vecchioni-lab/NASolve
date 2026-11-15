@@ -22,7 +22,7 @@ def _arithmetic_bound(*points):
 
 
 def preview_registered_relabel(model, discovery, registration, *, node_images,
-                               expected_registered_graph_sha256, extra_edges=(),
+                               expected_registered_graph_sha256, extra_edges=(), backbone_continuations=(),
                                coincidence_tolerance_angstrom=.01, max_atom_tests=2_000_000):
     """Bind explicit whole-residue representative images to a fresh source graph.
 
@@ -34,7 +34,7 @@ def preview_registered_relabel(model, discovery, registration, *, node_images,
     """
     paths = [Path(p) for p in (model, discovery, registration)]
     originals = {p: p.read_bytes() for p in paths}
-    bound = build_registered_periodic_graph(*paths, extra_edges=extra_edges)
+    bound = build_registered_periodic_graph(*paths, extra_edges=extra_edges, backbone_continuations=backbone_continuations)
     if bound['report_sha256'] != expected_registered_graph_sha256:
         raise ValueError('Registered graph checksum mismatch; rebuild the proposed cut against current inputs')
     graph = bound['periodic_graph']
@@ -175,7 +175,7 @@ def _orbit_permutation(op, operations, gemmi):
 
 
 def observe_registered_relabel_orbits(model, discovery, registration, *, node_images,
-        expected_registered_graph_sha256, extra_edges=(),
+        expected_registered_graph_sha256, extra_edges=(), backbone_continuations=(),
         coincidence_tolerance_angstrom=.01, max_atom_tests=2_000_000,
         max_permutation_rows=200_000):
     """Certify labelled position-orbit reassignment, without physical acceptance.
@@ -194,6 +194,7 @@ def observe_registered_relabel_orbits(model, discovery, registration, *, node_im
     originals = {p: p.read_bytes() for p in paths}
     preview = preview_registered_relabel(*paths, node_images=node_images,
         expected_registered_graph_sha256=expected_registered_graph_sha256, extra_edges=extra_edges,
+        backbone_continuations=backbone_continuations,
         coincidence_tolerance_angstrom=coincidence_tolerance_angstrom, max_atom_tests=max_atom_tests)
     if _fingerprint({k:v for k,v in preview.items() if k != 'preview_sha256'}) != preview['preview_sha256']:
         raise ValueError('Registered preview checksum differs')

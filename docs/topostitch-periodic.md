@@ -1789,3 +1789,72 @@ subset covers complete-request, child-bounds, attachment-native and checkpoints
 (311.38 s). Source/runtime asset hashes and explicit package metadata union are
 retained. This is scoped compatibility, not a merge, full combined suite or new
 native execution. Rowan's subsequent work remains separate.
+
+
+## W67 — Resolve explicitly declared boundary partners
+
+An existing route may end because the chosen representation ends. W67 lets a caller
+resolve that particular boundary through the existing registered graph, without
+inventing a second topology registry or native restraint writer:
+
+```python
+continuations = [{
+    "continuation_id": 1,
+    "source_site": "logical-3-prime-end",
+    "target_site": "logical-5-prime-end",
+    "target_operator_xyz": "x+1,y,z",
+}]
+bound = build_registered_periodic_graph(
+    model, discovery, registration, backbone_continuations=continuations)
+```
+
+The source must be the last site of a declared route and the target its partner's
+first site. **Both boundaries must already be `representation`.** Chemical and
+unknown boundaries, interior/unknown sites, do-not-connect sites and competing
+incoming/outgoing partners refuse. Operators use the existing exact group and
+arithmetic validation. A translated closed route can retain nonzero periodic
+winding; choosing a tree does not erase the original cycle.
+
+Use `schema_version: 2` and the required `backbone_continuations` array in either
+`topostitch-representative-proposal` or `topostitch-forest-proposal`, with the exact
+new `registered_graph_sha256`. All other request fields and the existing
+`nasolve-topostitch-cut-preview` command remain the same. The outer packet stays
+schema 1; its frozen proposal and graph bind the added intent. Old readers refuse
+the new proposal version. Old schema-1 packets, empty declarations and default
+observations remain exact; old requests cannot hide an extra continuation field.
+
+The optional W66 observation now resolves the incoming partner and carries the
+continuation number and exact before/after target image. A missing coordinate
+partner remains a declared continuation with unresolved geometry, preserving
+existing P/OP1/OP2 intent. This is **declared topology**, not proof of a good bond,
+complete seam angles, appropriate exclusions or a valid whole-ASU cut. No terminal
+phosphate permission, atom edit, native activation or model writer is introduced.
+
+A predeclared public development control uses one authenticated existing source
+link, C:108 O3′ → C:109 P, to test this plumbing on the two retained 8D93 cuts.
+It changes those two previously unknown boundary declarations explicitly in a new
+manifest; no nearest-neighbor inference occurs. All **855 proposed atom coordinates
+remain exactly equal** to their earlier proposals. One of two native seams is now
+covered by declared intent; the other remains outside the partial routes. The
+1.618695153511 Å source distance survives image transport. Sampled 125-HKL complex
+Fcalc maximum differences are 5.046e-7 and 1.113e-6, numerical observations only.
+No complete physical-scattering qualification or scientific adoption is implied.
+
+Twenty-six new regressions cover strict declarations, unresolved coordinates,
+noncommuting screw transforms, oblique translations, centering, winding, stale
+requests, old behavior and relocation. Full Willow: **1,674 tests + 229 subtests**
+(94.28 s). Installed/relocated owner suite: **468** (23.84 s). Full-suite and wheel
+commands are the W66 commands above, with the W67 wheel/output directory. Actual
+viewer JavaScript passes DOM/canvas controls for both cuts and all three preference
+exports; this remains distinct from the blocked rendered-browser/download/human
+review gate. No Phenix/Coot execution was added; the existing Phenix 2.2.1-6174
+capture is read-only evidence. Generated scientific inputs and results stay local.
+
+The installed wheel also passes six entry-point helps, lean import and Python 3.10
+syntax; exact old/new views and three JavaScript-exported preferences replay after
+relocation with the original paths blocked. Wheel SHA-256:
+`4b46546f869b9806d1116849e9cc3d75b083e4d38fdb0ab66b143c8690843ac8`.
+Temporary installed composition with published Cedar `a2e73603` passes **468 Willow
++ 221 Cedar tests and 6 subtests**, six helps and exact old/new default-owner replay.
+It uses explicit metadata union and recorded module/asset hashes; no merge, full
+combined-suite qualification or native execution is claimed.
