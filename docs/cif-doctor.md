@@ -176,6 +176,24 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Existing owned acquisition handles ordinary checked-route misses; interrupted work needs an explicit fresh attempt after known-stopped evidence. Initial checked adoption exists. Explicit automatic plane support and later alternatives are implemented. Default activation, solution-PDF reporting and per-family release coverage remain integration milestones; chosen-model phasing has the bounded C270–C272 acceptance. |
 
 
+### Exact dictionary bond-target delivery (C320)
+
+`qualify_linked_linear_bond_candidate` reconstructs the exact explicitly selected
+candidate and checks every modeled occurrence against complete monomer mappings.
+Only the selected distances may change in effective definitions and both native
+bond inventories. Strengths, normal component origin, atom labels, coordinates,
+planes, parallelities, links and all other recorded fields must remain unchanged.
+The captured wrapper reuses the maintained reader and repair-chain context to
+bind the exact ordered dictionary slot, model, PHIL and consumer. It never runs
+saved code. Source chemical authority, supplied reference quality, energy/force
+attribution and ordinary adoption remain separate gates. No new threshold is set.
+
+PDU and 5PC's existing native captures pass this maintained check without any
+native repeat; their supplied energy references also reproduce from the exact
+saved library table. This proves delivery of the recorded target-only candidates,
+not automatic repaired-CIF selection or whole-ligand survival. See the
+[current queue](cif-doctor-completion-queue.md#pipeline-position).
+
 ### Checked refinement output state (C318)
 
 The explicit `autorefine --checked-plane-forces` route uses the ordinary

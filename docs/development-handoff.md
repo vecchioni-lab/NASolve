@@ -1,8 +1,9 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-15, C319 written-output acceptance — Rowan**.
+Updated **2026-11-15, C320 exact native dictionary-target delivery — Rowan**.
 Worktree **NASolve-c96**, branch **cedar**. Native source checkpoint **1b9a9918**;
-this follow-up adds reader hardening and compact acceptance evidence. Focused
+C319 published as **c4adb6b2**. This follow-up adds the source-derived native
+target-delivery gate and compact evidence. Focused
 checks only; no full suite, branch, default activation or merge. Linden owns
 Pine/Willow and does not edit Cedar.
 
@@ -28,12 +29,27 @@ Rwork/Rfree 0.206236/0.236192 and retains the original Free-R mapping. Coordinat
 and printed geometry exactly match C308; only model ADPs change. Do not rerun
 these successful controls or reinterpret them as chemical-survival approval.
 
-**Current next step:** numerical-candidate delivery through existing repair and
-selection owners. Bind the exact source/reference and target-only dictionary
-change to complete native before/after inventories, retaining component origin.
-Existing native captures, numerical replay, selection and repair-chain code must
-be reused. Diagnostic PHIL delivery is not ordinary corrected-CIF delivery.
+**C320 delivery gate is complete:** the maintained source/reference candidate
+rebuild, full-monomer coverage and captured-input binding pass for PDU and 5PC's
+existing C308 dictionary captures. One bond target changes in each; every other
+recorded native field is exact. Both source library references reproduce. All 46
+input/capture files per control remain unchanged; no native tool was rerun.
+Final local root: `320_Cedar_native-target-delivery-kpghikw9`. Source pins are in `start.json`.
+Earlier pre-producer-hardening cold pass is retained at
+`320_Cedar_native-target-delivery-2jx19f6g`; do not duplicate it again.
+
+**Current next step:** qualify numerical energy/force attribution and reference
+authority, then integrate through existing repair/selection owners. Native bond
+slack/top-out options are not in old inventory rows: inspect them explicitly
+before assuming harmonic energy. Existing capture/numerical/repair-chain owners
+must be reused. Diagnostic PHIL delivery is not ordinary corrected-CIF delivery.
 PDU's remaining bend and whole-substituent survival remain open Q06 work.
+
+C320 focused validation: **184 passed in 21.17 s**, covering the new gate,
+reference candidates, repair chain and captured mixed gradients. Initial 34
+regressions fail before implementation; the first implementation also exposed
+the macOS temporary-directory alias, now resolved before strict candidate replay.
+No full suite. Exact command is in the ledger entry below.
 
 ## What changed and what is qualified
 
@@ -77,6 +93,8 @@ commands, hashes, local anchors and limits; avoid duplicating its full history:
   optimizer-history reconstruction or permission to strengthen restraints.
 - C318 `versioned_refinement_output_state_2026_11_15`: implementation and isolated
   native guard; its then-pending writer limitation is closed by the new entry.
+- C320 `native_linear_bond_target_delivery_2026_11_15`: exact target-only
+  dictionary delivery and captured context; energy/authority still separate.
 - C319 `ordinary_written_refinement_output_state_2026_11_15`: actual writer,
   independent native readback, reader regression and preservation evidence.
 

@@ -70,6 +70,13 @@ effective native restraint membership or changing selection. Display notes do no
 published message used to validate historical checkpoints. Classified optional
 failure still requires independent qualification; no new executor or chemical rule.
 
+The additive [bond-target delivery gate](cif-doctor.md#exact-dictionary-bond-target-delivery-c320)
+rebuilds explicit source/reference candidates and composes existing complete
+capture and repair-context validation. It checks all modeled copies and unrelated
+native fields; it does not create a new executor or selection authority. Reference
+authority and native energy/derivative attribution remain separate from an exact
+recorded inventory change.
+
 ## Runtime precedence
 
 Phenix is resolved in this order:

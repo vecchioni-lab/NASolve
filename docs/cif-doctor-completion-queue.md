@@ -194,9 +194,11 @@ available. This does not fix PDU's remaining bend or qualify other native builds
 Ledger: `ordinary_written_refinement_output_state_2026_11_15`.
 
 **Next bounded work (Q06):** qualify numerical-candidate delivery through existing
-repair/selection owners, then inspect whole-substituent survival. First bind the
+repair/selection owners, then inspect whole-substituent survival. C320 now binds the
 exact source/reference and dictionary change to complete native before/after
-inventories, retaining the normal component origin. Reuse existing capture,
+inventories, retaining the normal component origin, for both saved PDU and 5PC
+controls. Next qualify the actual energy/force change and reference authority;
+inspect the native bond options instead of assuming a simple harmonic term. Reuse existing capture,
 numerical and repair-chain owners; diagnostic PHIL edits alone do not establish
 corrected-CIF delivery. Keep neighboring targets, source hands and terminal intent
 visible. No repeated Coot, replacement recovery owner, blanket flattening or

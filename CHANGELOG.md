@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Check target-only dictionary delivery across the full native model (C320)
+
+- Add read-only qualification of exact source/reference bond-target candidates
+  against complete before/after native captures, including every modeled copy.
+  Preserve strengths, component origin, coordinates, phosphate/link terms and
+  all other captured definitions/proxies; reject unexplained changes.
+- Reuse existing candidate, capture and repair-context validation. This diagnostic
+  does not approve a supplied parameter reference or change ordinary selection.
+
 ### Report malformed checked-refinement policies consistently (C319)
 
 - Reject non-text policy identifiers through the existing checkpoint error path,

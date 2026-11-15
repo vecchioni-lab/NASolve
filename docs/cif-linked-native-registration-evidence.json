@@ -99795,5 +99795,98 @@
         "size": 8511
       }
     ]
+  },
+  "native_linear_bond_target_delivery_2026_11_15": {
+    "milestone": "C320",
+    "status": "COMPLETE_NATIVE_INVENTORY_DELIVERY_PASS",
+    "source_base_commit": "c4adb6b2",
+    "source_state": "Working source pins in anchored start.json match the committed source files; native runtime helpers unchanged.",
+    "behavior_before": "Reference candidates existed, but exact dictionary-to-native target delivery was checked only by local diagnostics.",
+    "behavior_after": "Maintained cold gate reconstructs candidate bytes and compares all captured native fields except separately unqualified energy observations. Every modeled copy must retain the selected target, ESD, normal component origin, complete monomer identity and unrelated chemistry.",
+    "files": [
+      "src/nasolve/cif_linear_bond_native.py",
+      "tests/test_cif_linear_bond_native.py"
+    ],
+    "policies": [
+      "cif-linked-linear-bond-target-inventory-v1",
+      "cif-captured-linear-bond-target-inventory-v1"
+    ],
+    "owners": "Existing candidate serializer, complete native capture reader, full-monomer validator and repair-chain context; no new process/publication/selection owner.",
+    "validation": {
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_linear_bond_native.py tests/test_cif_linear_bond_reference.py tests/test_cif_repair_chain.py tests/test_cif_captured_mixed_gradients.py --tb=short",
+      "focused_result": "184 passed in 21.17 s; 34 initial regressions fail before implementation.",
+      "initial_iteration": "Resolved the macOS temporary-directory alias before replaying the strict candidate serializer; then all 34 inventory cases passed.",
+      "cold_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c320_capture_readback.py",
+      "cold_result": {
+        "status": "BOTH_CAPTURED_NATIVE_TARGET_DELTAS_PASS",
+        "controls": {
+          "PDU": {
+            "status": "EXACT_TARGET_DELIVERY_PASS",
+            "changed_native_bonds": 1,
+            "original_capture": "304_Cedar_PDU-recovery-1f37ak8q/consumer/prepared/cif-native-kxj6t1f_",
+            "candidate_capture": "308_Cedar_target-only-25kntshu/PDU/candidate/cif-native-3qy9uhto",
+            "input_files_unchanged": 46,
+            "native_execution": "NOT_RERUN",
+            "reference_table_reproduces": true
+          },
+          "5PC": {
+            "status": "EXACT_TARGET_DELIVERY_PASS",
+            "changed_native_bonds": 1,
+            "original_capture": "305_Cedar_5PC-campaign-nu1t7jyw/consumer/prepared/cif-native-h2if0a3s",
+            "candidate_capture": "308_Cedar_target-only-lt9o0nqd/5PC/candidate/cif-native-90fbacr2",
+            "input_files_unchanged": 46,
+            "native_execution": "NOT_RERUN",
+            "reference_table_reproduces": true
+          }
+        },
+        "source_unchanged": true,
+        "new_native_calls": 0,
+        "elapsed_seconds": 1.1065831659943797
+      },
+      "full_suite": "NOT_RUN"
+    },
+    "compatibility": "Additive diagnostic APIs only; no migration, default, scientific threshold or ordinary repair-selection change.",
+    "limitations": [
+      "Native capture integrity is not cryptographic origin proof.",
+      "Supplied reference authority and ESD calibration remain unqualified.",
+      "Complete recorded inventory delta is not complete native energy/gradient attribution: unrecorded slack/top-out bond options require explicit native inspection before a harmonic assumption.",
+      "Whole-substituent survival and ordinary repaired-CIF publication/selection remain open Q06 work."
+    ],
+    "artifacts": {
+      "included": "Maintained source/tests and compact measurements/hashes.",
+      "excluded": "All scientific inputs, native captures, dictionaries, workers and logs remain local; no repeated native execution or copied raw data."
+    },
+    "local_records": [
+      {
+        "anchor": "local_live_tests",
+        "path": "320_Cedar_native-target-delivery-kpghikw9/start.json",
+        "sha256": "060d851770aacad97667d1e6ad752e7f21d32ab11cd891a1a9944907bbab17c4",
+        "size": 27094
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "320_Cedar_native-target-delivery-kpghikw9/worker.py",
+        "sha256": "752bb06360692ea2b32d8c53357cf5f59042a5628d75c4b0c633410ef8c208c3",
+        "size": 3570
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "320_Cedar_native-target-delivery-kpghikw9/summary.json",
+        "sha256": "3bc030c6d444dc25d57a695d53f30d53c0f8352e96b84f28b32372bc5e461d87",
+        "size": 988
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "320_Cedar_native-target-delivery-kpghikw9/PDU.json",
+        "sha256": "c76322e4aae8dfe99b9c4c7c6e2de4042f8169b317b7a7131c81f3c5a586b77d",
+        "size": 3797
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "320_Cedar_native-target-delivery-kpghikw9/5PC.json",
+        "sha256": "f86675894ba40dfbce8c8088fcf91715d37a223dbe9c3a21197b993f199ee921",
+        "size": 3811
+      }
+    ]
   }
 }
