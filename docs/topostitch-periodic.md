@@ -3027,3 +3027,73 @@ rules; no scientific payload is committed or uploaded.
 | W81-evidence.tar.gz | 3892 | `187ff8fe7197dce6f108521d1ef5e171989d825efb9040d03147992d98f510ae` |
 | W82-evidence.tar.gz | 485 | `9576ef749f9eb919fb2c1a95626f61e7e2c5966058ffba1ed6c1161d2b2f41dc` |
 | W83-evidence.tar.gz | 8 | `3975d1767daa20861e5184ac202ad7ddbe6aa3f53faef27de754c78975b5006b` |
+
+
+## W85 — Check coarse-motion derivatives against native geometry
+
+This local diagnostic joins two existing owners: the six-parameter tapered
+whole-residue motion in `topostitch_preview` and the authenticated native/pair/
+tether objective in `topostitch_native_recipe`. It adds no product runtime or
+second chemistry engine. The analytical chain rule converts Cartesian forces
+into derivatives with respect to rotation-vector and translation parameters.
+The local probe uses scales of 1 degree and 0.1 Angstrom per dimensionless variable,
+with stable small-angle rotation derivatives. Whole paired residues share weights;
+fixed atoms remain exact. The pivot is freshly measured from the declared terminal
+pair in the diagnostic model; an old preview is not rebound to new coordinates.
+
+The exact W38/W41 model SHA256 is
+`dbdaac83c67a60c0d3df48ac19f1dbd2ddd2e15307dcb41cce564d560ab23465`.
+Its complete 14-pair recipe, 204-atom mask and prior window/registration are pinned.
+The recipe's canonical digest is distinct from its raw-file SHA256; an initial
+preparation assertion confused these, stopped before native execution, and is
+retained with the correction and original byte comparison. Later Pine-view 8D93
+bytes are a different model and were not substituted. Runtime comes from W84's
+installed virtual tree `b61a58636501a86b6aef4d969d5baf9f74eb9ce5`.
+
+Validation is a **complete native diagnostic, not a dry run or refinement**, using
+**Phenix2.2.1-6174** through Cedar's owned process runner with a 600-second ceiling.
+The parent returned 0, all frozen inputs remained unchanged and the native window
+was released. Local evidence contains exact commands and paths in the scripts,
+plan/source hashes, capture, worker, execution receipt and logs. Commands use
+`PYTHONDONTWRITEBYTECODE=1`; host preparation/review use the W84 installed package
+and existing dependency environment, while native execution uses its Phenix
+interpreter and the pinned pure-Python package.
+
+- `math-check.py`: 60 independent finite-difference controls across zero, tiny,
+  mixed and large rotations, five taper weights and three points. Maximum error
+  `5.88e-11` versus the predeclared `1e-7`; fixed-point and equal-weight internal
+  distance checks pass.
+- `prepare.py`, then `run-owned.py`: fresh maintained Cedar reconstruction exactly
+  matches the authenticated original observed context. Five controls (zero,
+  positive/negative tilt, translation and mixed), six variables and step sizes
+  `1e-3`/`1e-4` are evaluated both cached and with `reset_internals()` before each
+  evaluation. All 270 native objective evaluations complete; maximum derivative
+  discrepancy `9.98e-7` is below the predeclared absolute `1e-3` per variable.
+  Maximum physical displacement is 0.064 Angstrom; zero-control arithmetic has
+  approximately 1.3e-15 Angstrom roundoff.
+- `review.py`: Cedar replays every saved directed capture and the existing packing
+  comparator matches exact relative operations and multiplicity. Forced rebuilds
+  yield 8314–8316 directed rows. Changed buffered rows have zero repulsion residual;
+  common multiplicities are unchanged, and cached/rebuilt total energy and all
+  Cartesian gradients agree exactly at these controls.
+
+Correct derivatives are not a successful stitch. The positive-tilt control lowers
+nonbonded residual from 1077.72 to 1071.19, while worsening 48 existing directed
+overlaps and making one previously nonoverlapping row overlap. Its total composed
+objective also includes other geometry, pairing and tether terms. No control is
+selected or emitted as a candidate. Large physical displacements, flexible taper,
+window expansion, a supported optimizer and density/refinement benefit remain
+untested. The complete live nonbonded/exclusion policy guard remains Cedar-owned;
+this observation does not independently enumerate neighbors or prove all exclusions.
+W51/W54 failure classifications and S04/S05 partial status are unchanged.
+
+The next reusable component should be a small explicit coarse-motion adapter over
+these existing owners, followed by matched bounded placement/cleanup experiments
+under the shared native policy. The current Cartesian optimizer assumes 3N variables
+and cannot be reused unchanged for six variables. No full suite is repeated for
+this local diagnostic/documentation slice; W82's full runtime and W84's focused
+installed-composition results retain their stated scope. No scientific files are
+committed or uploaded.
+
+W84's verified local forensic archive contains 2295 files, SHA256
+`5a65007c6b7afe76cd8e3489e9bc467140b43c30e280268d403fda9744c1cf97`.

@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W84 recorded; next W85.** Latest runtime implementation is W82 `e570d15f` on isolated
+**W85 recorded; next W86.** Latest runtime implementation is W82 `e570d15f` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -303,12 +303,24 @@ was resolved by retaining both declarations in a temporary virtual tree; seven
 documentation conflicts remain and neither branch was merged. No full rerun or
 native execution; the original W81 full result remains unchanged.
 
-**Next physical-stitch diagnostic:** reuse the authenticated W38/W41 source,
-complete pair recipe and existing masked native objective. First verify a
-six-parameter weighted rigid-motion derivative and cached versus forced-rebuilt
-contacts at declared displacements. No optimizer or relaxed stopping policy;
-Cedar still owns the complete live policy guard. Density-aware placement stays
-in S06 after exact map/model/data binding and matched refinement.
+**W85 physical-stitch derivative diagnostic:** the existing six-parameter tapered
+motion now has local analytical pullback evidence against the authenticated
+W38/W41 native/pair/tether objective. Sixty independent motion controls and five
+complete Phenix2.2.1-6174 native cases pass at two finite-difference steps, both
+cached and forced-reset/rebuilt. Maximum derivative error 9.98e-7 versus the
+predeclared 1e-3; 270 objective calls, 204 movable atoms, 14 complete pair recipes.
+Cached/rebuilt energy and Cartesian gradients agree exactly; changed buffered
+contact rows have zero residual. One tilt lowers total repulsion but worsens 48
+directed overlaps. No optimizer, candidate, density or refinement; S04/S05 stay
+partial, and the full live policy guard remains Cedar Q06.
+
+**Next physical-stitch step:** a minimal checked coarse-motion adapter should reuse
+the existing preview and masked-objective owners after shared policy coordination.
+The Cartesian optimizer assumes 3N variables and cannot consume six parameters
+unchanged. Predeclare matched bounded placement/cleanup controls, protect anchors,
+and retain individual packing and stopping failures. A fixed taper is initialization,
+not measured curvature. Density-aware placement stays in S06 after exact
+map/model/data binding and matched refinement.
 
 **Next Pine integration candidate (agreed with Cedar):** for pure representative
 recuts, keep the whole native process in one computational/source frame and derive

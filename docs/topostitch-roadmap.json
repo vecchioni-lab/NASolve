@@ -215,24 +215,27 @@
       "delivered": [
         "Explicit tapered previews and one-window six-parameter fitting work; ANISOU, anchors, source bytes, budgets and rounded-output limits are tested.",
         "Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed.",
-        "Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy."
+        "Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy.",
+        "W85 local diagnostic pulls existing native/pair/tether gradients through the existing six-parameter tapered motion; finite differences and forced-rebuilt contact energy agree at five declared small controls. No optimizer, candidate or physical acceptance."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation."
       ],
-      "next_action": "Use the current fitter as a baseline; qualify one physical connection and expand only when the smaller window fails.",
+      "next_action": "Coordinate with Cedar on the complete live policy guard, then expose a minimal checked coarse-motion adapter around existing preview and masked-objective owners. Predeclare bounded coarse placement versus cleanup controls, preserve anchors and individual packing checks; do not reuse the Cartesian optimizer with a six-variable vector. Qualify one physical connection before broader window expansion.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
-        "E_EXTENDED_BACKBONE"
+        "E_EXTENDED_BACKBONE",
+        "E_COARSE_NATIVE_DERIVATIVES"
       ],
       "last_audit": {
-        "date": "2026-11-13",
+        "date": "2026-11-15",
+        "code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5",
         "reviewer": "Linden",
-        "code_commit": "6fc48984b5170a2411f576ab3262826963384226",
-        "scope": "Schema-2 source-change coverage and matched native diagnostic; no scientific closure"
+        "human_update": 85,
+        "scope": "Local small-motion derivative bridge and forced-neighbor-rebuild comparison; physical stitching and chemistry remain partial"
       }
     },
     {
@@ -268,7 +271,8 @@
         "W51 predeclared500-iteration paired/core-only controls reproduce the old200-iteration traces, then retain native rounding line-search failures; no candidate or endpoint qualification follows.",
         "W53 fresh native contexts reproduce both W51 last accepted points exactly and pass unchanged complete612-variable derivatives. Predeclared directional probes show score quantization and local steepest-direction quadratic decreases below one score ULP; this supports a precision limit, not convergence or acceptance.",
         "W54 separately audits only callback-confirmed last accepted points after optimizer errors. Both native W51 trajectories/errors reproduce exactly; full/rounded612-variable diagnostics pass and original FAILED/no-adoption status remains. Source drift, absent accepted steps, budget shortage and partial diagnostic failure remain explicit.",
-        "W61 reuses existing read-only native endpoint observation for both W54 failed accepted points under a common complete recipe. Source/full/rounded cases reproduce; scalar and selected/core-pair improvements coexist with individual packing/torsion/plane regressions. Both original optimizer failures persist; no candidate, new threshold or acceptance."
+        "W61 reuses existing read-only native endpoint observation for both W54 failed accepted points under a common complete recipe. Source/full/rounded cases reproduce; scalar and selected/core-pair improvements coexist with individual packing/torsion/plane regressions. Both original optimizer failures persist; no candidate, new threshold or acceptance.",
+        "W85 local diagnostic pulls existing native/pair/tether gradients through the existing six-parameter tapered motion; finite differences and forced-rebuilt contact energy agree at five declared small controls. No optimizer, candidate or physical acceptance."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
@@ -298,14 +302,15 @@
         "E_NATIVE_STOPPING_LIMIT",
         "E_NATIVE_PRECISION",
         "E_FAILED_ENDPOINT_DIAGNOSTIC",
-        "E_FAILED_ENDPOINT_CHEMISTRY"
+        "E_FAILED_ENDPOINT_CHEMISTRY",
+        "E_COARSE_NATIVE_DERIVATIVES"
       ],
       "last_audit": {
-        "date": "2026-11-14",
-        "code_commit": "27878592c8d06975fa9c8a6dc11272ff5d7ef3c2",
+        "date": "2026-11-15",
+        "code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5",
         "reviewer": "Linden",
-        "human_update": 61,
-        "scope": "Two complete read-only native observations of authenticated failed points; diagnostic improvement does not close chemistry, enforcement or convergence"
+        "human_update": 85,
+        "scope": "Local small-motion derivative bridge and forced-neighbor-rebuild comparison; physical stitching and chemistry remain partial"
       }
     },
     {
@@ -1137,6 +1142,14 @@
       "reference": "docs/topostitch-periodic.md#w84--verify-the-repaired-installed-composition",
       "result": "Willow29723067dff6e3ad12bac5dd15e8a51e46105091 plus Cedar cad829a60a6ecc97643e220d4f5d16496bca39e6, resolved virtual tree b61a58636501a86b6aef4d969d5baf9f74eb9ce5: 873 tests and16 subtests pass in a fresh installation with original source path absent. Exactly28 TopoStitch modules plus seven shared/Cedar modules, six entrypoint helps, saved old/new graph/native-link/packing/frame replay and both packaged resources checked. C325 repairs default historical readers.",
       "limitation": "No full combined rerun or native execution; original W81 failures remain recorded. Zero source conflicts, seven documentation conflicts and one package-data conflict resolved only in the virtual tree by retaining both HTML and replay PDB resources. No actual branch merge, runtime/schema changes, source writer or refinement qualification."
+    },
+    "E_COARSE_NATIVE_DERIVATIVES": {
+      "kind": "local_coarse_motion_native_derivatives_and_forced_contact_rebuild",
+      "code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5",
+      "human_update": 85,
+      "reference": "docs/topostitch-periodic.md#w85--check-coarse-motion-derivatives-against-native-geometry",
+      "result": "Complete Phenix2.2.1-6174 local diagnostic reuses authenticated W38/W41 source,204-atom mask,14-pair recipe and existing NativeMaskedObjective.60 independent motion controls pass. Five declared six-parameter controls, two finite-difference steps, cached and forced-reset evaluations:270 native objective calls, max derivative discrepancy9.98e-7 below predeclared1e-3. Cached/rebuilt energy and Cartesian gradients match exactly; changed directed buffered rows have zero repulsion residual and common multiplicities are unchanged.",
+      "limitation": "Local probe only, no installed coarse optimizer, new runtime/schema, model output, density or refinement. Maximum tested physical displacement0.064 Angstrom; fixed taper and one window do not qualify large bending/window expansion. A lower total repulsion still worsens48 individual directed overlaps in one control. Full live nonbonded/exclusion guard remains Cedar Q06; source chemistry and original failed/capped optimizers remain unaccepted."
     }
   },
   "benchmarks": [
@@ -1252,8 +1265,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 84,
-    "next": 85,
+    "current": 85,
+    "next": 86,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1565,6 +1578,12 @@
       {
         "number": 84,
         "title": "Verify repaired historical readers in installed Willow/Cedar composition",
+        "state": "RECORDED",
+        "code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5"
+      },
+      {
+        "number": 85,
+        "title": "Check coarse-motion derivatives and forced native neighbor rebuilds",
         "state": "RECORDED",
         "code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5"
       }

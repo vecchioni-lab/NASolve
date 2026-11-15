@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W85 — Audit coarse bending against native gradients and rebuilt contacts
+
+- Record local finite-difference checks of the existing tapered motion coupled
+  to the authenticated native, pair and tether objective.
+- Distinguish correct derivatives and stable rebuilt energies from individual
+  packing improvement; no runtime, optimizer, model or schema changes.
+
 ### W84 — Verify the repaired installed Willow/Cedar composition
 
 - Record focused installed checks of Cedar C325 historical-reader repair and
