@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W70 recorded; next W71.** Runtime implementation is W70 `01069fe0` on isolated
+**W71 recorded; next W72.** Runtime implementation is W71 `0e8e6298` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -165,21 +165,24 @@ W70 adds read-only `cut-preview --describe-graph`: graph IDs/hash and optional
 request MATCH/MISMATCH, with cut_selection_validated=false. It writes no directory,
 never rebinds a request, and leaves ordinary preview validation unchanged.
 
-**Code validation:** full Willow **1,688 + 229 subtests**; installed/relocated
-**482**, six helps, lean import and Python 3.10 syntax. The first sandboxed full
-run retained five process-control permission failures; the unfiltered run with
-owned-process permissions passed. Old/new packets and graph descriptions replay
-exactly after relocation with original paths blocked. Viewer JavaScript controls
-remain separately validated; no new rendered-browser claim.
+**W71 angle component:** `topostitch_native_terms` freezes complete live angle
+metadata against captured definitions, then reconstructs a private proxy array
+with explicit cell evaluation. JSON/deepcopy/pickle and fresh installed native
+reload preserve exact observations. Two public cuts retain all 1,467 angles;
+source energy/rotated gradients and predeclared directional checks agree. This is
+read-only and must not be added to an objective already containing those angles.
+No source manager, native installation, chemistry or refinement is changed.
 
-The installed virtual composition with published Cedar `dca8ee82` passes
-**558 + 16 subtests** (482 TopoStitch plus 76 combined autorefine/refinement-runtime/
-parallelity), six helps and exact default-owner source-native/packet/graph replay.
-Cedar runtime bytes are unchanged from `a2e73603`, where the separate 221-test/
-6-subtest complete-request, child-bounds, attachment-native and checkpoint subset
-also passed. Seven human/agent documentation conflicts and zero source conflicts
-remain. No actual merge or full combined-suite qualification: reconcile contracts
-and run release-level validation in the final chosen tree before integration.
+**Code validation:** full Willow **1,715 + 229 subtests**; installed/relocated
+**509**, six helps, lean import and Python 3.10 syntax. Old/new packets and graph
+replay stay exact with original paths blocked. Initial missing-Gemmi and native
+Python/NumPy ABI environment failures are retained; correctly isolated checks pass.
+
+Installed virtual composition with published Cedar `dca8ee82` passes
+**585 + 16 subtests** (509 TopoStitch plus 76 combined autorefine/refinement-runtime/
+parallelity), six helps and exact default-owner native/packet/graph replay.
+Seven documentation conflicts and zero source conflicts remain. No actual merge,
+full combined suite or ordinary native refinement qualification is claimed.
 
 **W68 native finding:** complete fresh Phenix **2.2.1-6174** reconstruction matches
 the authenticated source. Eight crossing source-native angle terms per cut preserve
@@ -191,9 +194,10 @@ and the ordinary manager are distinct; this was not a full refinement execution.
 Three setup failures and all negative controls are retained. See the
 [angle/lifecycle audit](topostitch-periodic.md#w68--inspect-source-seam-angles-and-proxy-persistence).
 
-**Next P04 work:** coordinate with Rowan on distinct angle construction, rebinding
-and image-aware evaluation, including complete effective terms/exclusions and all
-supported lifecycle boundaries. Cedar's `cif_refinement_runtime` wraps/audits the
+**Next P04 work:** inventory every seam-crossing term family and exclusion
+obligation, then coordinate complete replacement and lifecycle handling with Rowan.
+W71 qualifies private angle reconstruction only; all supported ordinary entry,
+selection/rebuild, checkpoint/worker and normalization paths remain to qualify. Cedar's `cif_refinement_runtime` wraps/audits the
 parallelity kernel; it does not restore missing metadata, and its kernel rejects
 symmetry-bearing proxies. `refinement_parallelity` owns reusable frozen helpers,
 zero-cycle preflight and exact checkpoint/round ancestry, not existing angle support.

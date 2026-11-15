@@ -2191,3 +2191,11 @@ Scientific snapshots, inputs and outputs remain local and excluded from Git.
 The next gate is complete seam terms/exclusions and supported Cedar lifecycle
 integration. The W68 ordinary-manager cell omission remains unresolved. P04 stays
 partial; P02/P03, physical closure and human review remain separate prerequisites.
+
+
+W71's installed virtual composition with Cedar `dca8ee82` additionally passes
+**585 + 16 subtests**, six helps and exact old/new default-owner native-link,
+packet and graph replay. Only the angle-observation module differs in runtime
+from the W70 virtual tree. Seven documentation conflicts remain, zero source
+conflicts; no actual merge or full combined-suite claim. Runtime commit:
+`0e8e62986158f8b4373506c5ea34baece223621f`.

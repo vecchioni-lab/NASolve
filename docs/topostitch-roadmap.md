@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W70 — Describe verified graph identity before building a cut.** Next: W71.
+**Current update: W71 — Preserve angle images through explicit diagnostic reconstruction.** Next: W72.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W61 | Inspect chemistry and packing at failed last accepted points | RECORDED |
 | W62 | Verify exact labelled crystal-image permutations | RECORDED |
 | W63 | Expose existing source bonds at proposed representation seams | RECORDED |
 | W64 | Compare explicit cuts through a shared-camera preview | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W68 | Inspect source seam angles and proxy persistence | RECORDED |
 | W69 | Audit installed virtual Willow/Cedar integration | RECORDED |
 | W70 | Describe verified graph identity before building a cut | RECORDED |
+| W71 | Preserve angle images through explicit diagnostic reconstruction | RECORDED |
 
 ## Finish lines
 
@@ -306,7 +306,7 @@ Write a new ASU representative while preserving the physical scattering object e
 
 Make a representation seam remain a continuous backbone where chemistry says it is continuous.
 
-**Delivered:** W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change. W66 projects declared directed backbone continuation, representation/chemical/unknown boundaries and existing phosphate inventory from replayed packets. Unresolved partners retain P/OP1/OP2 intent; OP3 conflicts are scoped to continuation, with terminal phosphate consent separate. Exact route-image transport, optional view and preference context are read-only; no new edge or native enforcement. W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement. W68 observes eight existing source-native crossing angles per explicit cut: exact image energies, rotated gradients and native energies path agree. Live source symmetry/slack are verified; native proxy pickle loses sym_ops. This narrows lifecycle qualification without enabling restraints. A follow-up native angular manager omits cell context before serialization; subset/reindexing retains images, generic deepcopy does not.
+**Delivered:** W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change. W66 projects declared directed backbone continuation, representation/chemical/unknown boundaries and existing phosphate inventory from replayed packets. Unresolved partners retain P/OP1/OP2 intent; OP3 conflicts are scoped to continuation, with terminal phosphate consent separate. Exact route-image transport, optional view and preference context are read-only; no new edge or native enforcement. W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement. W68 observes eight existing source-native crossing angles per explicit cut: exact image energies, rotated gradients and native energies path agree. Live source symmetry/slack are verified; native proxy pickle loses sym_ops. This narrows lifecycle qualification without enabling restraints. A follow-up native angular manager omits cell context before serialization; subset/reindexing retains images, generic deepcopy does not. W71 freezes complete live angle metadata and rebuilds private image-bearing proxies with explicit unit-cell evaluation. JSON/deepcopy/pickle and a fresh native interpreter preserve two complete 1467-angle cut evaluations. Source-manager behavior and complete seam chemistry remain unchanged.
 
 **Closure audit:**
 
@@ -314,9 +314,9 @@ Make a representation seam remain a continuous backbone where chemistry says it 
 - Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.
 - Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified.
 
-**Next action:** Coordinate with Cedar on separate image-aware angle construction/rebinding/evaluation, reusing existing lifecycle/receipt owners only after qualification. Correct proxies alone are insufficient: the tested manager omits cell context. Preserve complete chemistry/exclusion, no-bond-alone and P02/P03 gates.
-**Evidence:** [E_PINE_TEST_BANK](#e_pine_test_bank), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams), [E_BACKBONE_INTENT](#e_backbone_intent), [E_EXPLICIT_CONTINUATIONS](#e_explicit_continuations), [E_SEAM_ANGLE_LIFECYCLE](#e_seam_angle_lifecycle).
-**Last audit:** 2026-11-15, Linden, [W68](https://github.com/vecchioni-lab/NASolve/commit/98302b2b901318db9d81f1bc683d7474ac5c716b); Read-only source-native angle/image and pickle diagnostic; no runtime change or full seam/refinement qualification.
+**Next action:** Inventory all seam-crossing term families and exclusion obligations; coordinate a complete Cedar lifecycle/replacement contract. The angle snapshot is a read-only component, never add its energy to existing angles. Keep P02/P03 and no-bond-alone gates.
+**Evidence:** [E_PINE_TEST_BANK](#e_pine_test_bank), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams), [E_BACKBONE_INTENT](#e_backbone_intent), [E_EXPLICIT_CONTINUATIONS](#e_explicit_continuations), [E_SEAM_ANGLE_LIFECYCLE](#e_seam_angle_lifecycle), [E_ANGLE_SNAPSHOT](#e_angle_snapshot).
+**Last audit:** 2026-11-15, Linden, [W71](https://github.com/vecchioni-lab/NASolve/commit/0e8e62986158f8b4373506c5ea34baece223621f); Explicit private angle reconstruction/evaluation only; native ordinary-manager omission and complete seam chemistry remain unqualified.
 
 <a id="p05"></a>
 ### P05 — Complete the persistent Pine surgery/refine GUI loop
@@ -730,6 +730,13 @@ Virtual Willow6cfe42e9/Cedar a2e73603 tree has0source conflicts and7documentatio
 [Evidence contract](topostitch-periodic.md#w70--describe-the-registered-graph-before-choosing-a-cut) at [W70](https://github.com/vecchioni-lab/NASolve/commit/01069fe01e005bb5e53a4d29ad8bc3dd8c59b31a).
 14 added cases; focused115; full1688 plus229subtests; installed/relocated482,six helps,lean import,3.10syntax and exact old/new public replay. Source-bound graph IDs/hash and optional request MATCH/MISMATCH are read-only; stale builder rejection remains. Current Cedar dca8ee82 installed virtual composition passes558 plus16subtests, six helps and exact default-owner native/packet/graph replay.
 **Limit:** Graph description is not cut selection/geometry validation or approval; no request rebinding, new registry or model/chemistry edit. Initial sandboxed full run had5 process-permission failures; unfiltered permission-enabled rerun passed. Seven documentation conflicts remain; no real merge/full combined-suite/native execution. Scientific evidence local.
+
+<a id="e_angle_snapshot"></a>
+### E_ANGLE_SNAPSHOT — native_angle_snapshot_reconstruction
+
+[Evidence contract](topostitch-periodic.md#w71--reconstruct-image-bearing-angle-diagnostics-explicitly) at [W71](https://github.com/vecchioni-lab/NASolve/commit/0e8e62986158f8b4373506c5ea34baece223621f).
+Checked complete live angle records preserve operators/slack/scalars and explicitly reconstruct private proxies with unit-cell evaluation. Phenix 2.2.1-6174 synthetic and two 1467-angle public cuts pass JSON/deepcopy/pickle and fresh installed-interpreter reload; source energy/rotated gradients and directional derivatives agree. Full Willow 1715 +229 subtests; installed509; virtual Cedar dca8ee82 composition585 +16 subtests, six helps and exact old/new default-owner replay.
+**Limit:** Read-only numerical family observer, not an additive correction, manager patch or refinement integration. Raw native pickle/cell-omission negative controls remain failures. Complete seam terms/exclusions, supported lifecycle and physical identity remain open. Scientific artifacts local; seven doc conflicts and no actual merge/full combined suite.
 
 ## Deferred extensions, not hidden blockers
 
