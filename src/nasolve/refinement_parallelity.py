@@ -11,11 +11,17 @@ from types import SimpleNamespace
 from .campaign_records import path_in, read_record, write_record
 from .refinement_inputs import _directory, _bound_path
 from .cif_parallelity_kernel import parallelity_parameters
+from .cif_refinement_output import validate_output_observations
 
-POLICY_ID = 'round-local-parallelity-execution-v1'
+LEGACY_POLICY_ID = 'round-local-parallelity-execution-v1'
+POLICY_ID = 'round-local-parallelity-execution-v2'
 # Filled from the qualified C297 checkpoint; historical readers keep these exact
 # identities even when a future policy uses different native/helper sources.
 _SOURCE_DIGESTS = {'cif_parallelity_kernel.py': '074c51faa384856f014631c72d97a14237ec3b7b6d833d405ca92aa02b507568', 'cif_parallelity_correction.py': '701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f', 'cif_refinement_runtime.py': '5b9329c988b3c07c9c3da4586ecce03c6751955fc02ccdf2f35b42088eaa2900', 'data/parallelity-native-profile.json': '5fe3c6657c78e2b85ea6bab3da68f4e79a3f91a2b1498f745be77f1080a2db28'}
+_CURRENT_SOURCE_DIGESTS = {'cif_parallelity_kernel.py': '074c51faa384856f014631c72d97a14237ec3b7b6d833d405ca92aa02b507568', 'cif_parallelity_correction.py': '701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f', 'cif_refinement_runtime.py': '78a7afd54b7f5ca835ad3e42f0a823aea3fb56eda59b1fe643716fec78593741', 'cif_refinement_output.py': '0e231d2d8502b3df7982688709bc9cc9322d2bde2becffcc7962250e9ebc08b5', 'data/parallelity-native-profile.json': '0b447a84abff9ef3efbe1d9481d918581a06299023ac0b6a1d78927c7cd7d3ee'}
+_SOURCES = {LEGACY_POLICY_ID:_SOURCE_DIGESTS, POLICY_ID:_CURRENT_SOURCE_DIGESTS}
+_RUNTIME_POLICIES = {LEGACY_POLICY_ID:'explicit-native-parallelity-refinement-v1',
+                     POLICY_ID:'explicit-native-parallelity-refinement-v2'}
 _ENTRY = b'''from pathlib import Path
 import sys
 root=Path(__file__).resolve().parent
@@ -43,16 +49,18 @@ def _root(checkpoint): return _directory(checkpoint)+'/parallelity_runtime'
 
 def _code():
     package=Path(__file__).parent
-    values={name:(package/name).read_bytes() for name in _SOURCE_DIGESTS}
-    _need(all(_digest(value)==_SOURCE_DIGESTS[name] for name,value in values.items()),
+    values={name:(package/name).read_bytes() for name in _CURRENT_SOURCE_DIGESTS}
+    _need(all(_digest(value)==_CURRENT_SOURCE_DIGESTS[name] for name,value in values.items()),
           'Current helper differs from the qualified runtime policy')
     return {'entry.py':_ENTRY,'code/_nasolve_refinement/__init__.py':b'',
             **{'code/_nasolve_refinement/'+name:value for name,value in values.items()}}
 
 
-def _expected_code():
+def _expected_code(policy=None):
+    policy=POLICY_ID if policy is None else policy
+    _need(policy in _SOURCES,'Unknown native execution policy')
     return {'entry.py':_digest(_ENTRY),'code/_nasolve_refinement/__init__.py':_digest(b''),
-            **{'code/_nasolve_refinement/'+n:h for n,h in _SOURCE_DIGESTS.items()}}
+            **{'code/_nasolve_refinement/'+n:h for n,h in _SOURCES[policy].items()}}
 
 
 def read_execution_request(run, reference, *, checkpoint):
@@ -63,17 +71,20 @@ def read_execution_request(run, reference, *, checkpoint):
     record=read_record(path)
     _need(set(record) in ({'schema_version','policy_id','checkpoint','parent','inputs','command','code','record_sha256'}, {'schema_version','policy_id','checkpoint','parent','inputs','command','code','record_sha256','preflight_mode','macro_cycles'})
           and type(record['schema_version']) is int and record['schema_version']==1
-          and record['policy_id']==POLICY_ID and record['checkpoint']==checkpoint
+          and record['policy_id'] in _SOURCES and record['checkpoint']==checkpoint
           and isinstance(record['parent'],str) and isinstance(record['inputs'],list)
           and record['inputs'] and isinstance(record['command'],list) and len(record['command'])>1
           and all(isinstance(a,str) and a for a in record['command'])
-          and isinstance(record['code'],dict) and set(record['code'])==set(_expected_code()))
+          and isinstance(record['code'],dict) and set(record['code'])==set(_expected_code(record['policy_id'])))
     if 'preflight_mode' in record:
         _need(record['preflight_mode'] in ('native-model-zero-cycle-v1','native-model-zero-cycle-isolated-v1')
               and type(record['macro_cycles']) is int and record['macro_cycles']>0)
+    if record['policy_id']!=LEGACY_POLICY_ID:
+        _need(record.get('preflight_mode')=='native-model-zero-cycle-isolated-v1',
+              'Current native execution requires isolated zero-cycle preflight')
     path_in(run,reference['relative_path'])
     for item in record['inputs']:_bound_path(item,'parallelity refinement input',run)
-    for name,digest in _expected_code().items():
+    for name,digest in _expected_code(record['policy_id']).items():
         ref=record['code'][name]
         _need(isinstance(ref,dict) and ref.get('anchor')=='run'
               and ref.get('relative_path')==root+'/'+name and ref.get('sha256')==digest,
@@ -165,7 +176,7 @@ def _phase(run, root, phase, code, request, *, require_complete):
           and type(result.get('schema_version')) is int
           and type(result.get('pid')) is int and result['pid']>0
           and type(result.get('parent_pid')) is int and result['parent_pid']>=0
-          and result.get('policy_id')=='explicit-native-parallelity-refinement-v1'
+          and result.get('policy_id')==_RUNTIME_POLICIES[request['policy_id']]
           and result.get('arguments')==expected_arguments
           and result.get('scientific_approval')=='NOT_RUN')
     _need(result.get('status') in ('RUNNING','FAILED','COMPLETE'))
@@ -190,6 +201,10 @@ def _phase(run, root, phase, code, request, *, require_complete):
         cycles=result.get('macro_cycles');_need(type(cycles) is int and (cycles==0 if phase=='preflight' else cycles==request.get('macro_cycles')))
         labels=result.get('atom_labels');_need(isinstance(labels,list) and all(isinstance(x,str) for x in labels))
         _parameters(dict(site_count=len(labels),proxies=result.get('parallelity_parameters')))
+        if request['policy_id']!=LEGACY_POLICY_ID:
+            _need(result.get('output_binding_restored') is True)
+            validate_output_observations(result.get('output_synchronization'),
+                dry_run=phase=='preflight',atom_count=len(labels))
         names=result.get('usage_observations');_need(isinstance(names,list) and all(isinstance(n,str) for n in names) and names==sorted(set(names)))
         files=sorted(p.name for p in path_in(run,root+'/'+phase+'/calls').iterdir())
         _need(files==names,'Runtime usage membership differs')
@@ -231,7 +246,7 @@ def finish_execution(run, reference, *, checkpoint, preflight_returncode, refine
                 if p.is_file():files.append(_file_reference(p,run))
         phases.append(dict(name=phase,returncode=returncode,files=files))
     target=path_in(run,root+'/execution.json')
-    write_record(target,dict(schema_version=1,policy_id=POLICY_ID,checkpoint=checkpoint,request=reference,phases=phases))
+    write_record(target,dict(schema_version=1,policy_id=request['policy_id'],checkpoint=checkpoint,request=reference,phases=phases))
     return _file_reference(target,run)
 
 
@@ -243,9 +258,10 @@ def validate_execution(run, reference, *, checkpoint, parent=None, usable=False)
     record=read_record(_bound_path(reference,'parallelity execution receipt',run))
     _need(set(record)=={'schema_version','policy_id','checkpoint','request','phases','record_sha256'}
           and type(record['schema_version']) is int and record['schema_version']==1
-          and record['policy_id']==POLICY_ID and record['checkpoint']==checkpoint
+          and record['policy_id'] in _SOURCES and record['checkpoint']==checkpoint
           and isinstance(record['phases'],list) and len(record['phases'])==2)
     request=read_execution_request(run,record['request'],checkpoint=checkpoint)
+    _need(record['policy_id']==request['policy_id'],'Native execution policies differ')
     if parent is not None:_need(request['parent']==parent,'Runtime parent checkpoint differs')
     codes=[]
     for expected,row in zip(('preflight','refine'),record['phases']):

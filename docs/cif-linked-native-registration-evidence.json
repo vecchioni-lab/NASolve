@@ -99483,5 +99483,131 @@
       }
     ],
     "preserved_import_failure": "310_Cedar_data-opening-1cvcxc1j"
+  },
+  "versioned_refinement_output_state_2026_11_15": {
+    "milestone": "C318",
+    "status": "IMPLEMENTED_FOCUSED_AND_NATIVE_ISOLATED_PASS_FULL_WRITER_PENDING",
+    "source_base_commit": "2f87eebe",
+    "source_state": "Working implementation; exact source hashes frozen in start.json and helper request/code. No native source edits after this check began.",
+    "behavior_before": "Native group-ADP final scaling may leave hierarchy/output displacement parameters stale while current scattering and FCALC are correct.",
+    "behavior_after": "New v2 checked refinements synchronize only stale ADPs from the exact current refined object before final native export, require unchanged scattering/geometry and completed output evidence, and restore bindings. Legacy v1 readers keep exact frozen source identities.",
+    "changed_files": [
+      "src/nasolve/cif_refinement_output.py",
+      "src/nasolve/cif_refinement_runtime.py",
+      "src/nasolve/refinement_parallelity.py",
+      "src/nasolve/data/parallelity-native-profile.json",
+      "tests/test_cif_refinement_output.py",
+      "tests/test_cif_refinement_runtime.py",
+      "tests/test_refinement_parallelity.py",
+      "tests/fixtures/refinement_runtime_v1/cif_refinement_runtime.py",
+      "tests/fixtures/refinement_runtime_v1/data/parallelity-native-profile.json",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/development-handoff.md"
+    ],
+    "policies": {
+      "request_and_receipt": "round-local-parallelity-execution-v2",
+      "native_result": "explicit-native-parallelity-refinement-v2",
+      "output_observation": "native-refinement-output-state-v1",
+      "legacy": "Exact v1 hashes preserved; cold readers do not execute old/native code. V2 requires isolated zero-cycle preflight, one completed final-writer observation and restored bindings."
+    },
+    "compatibility": "No historical model/checkpoint migration. Older readers refuse v2. Explicit checked-plane-force choice, ordinary executor, lineage and fallback owners remain; no default activation.",
+    "validation": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_refinement_output.py tests/test_cif_refinement_runtime.py tests/test_refinement_parallelity.py tests/test_cif_parallelity_kernel.py tests/test_autorefine.py tests/test_refine_doctor.py --tb=short",
+      "result": "140 passed +13 subtests, 16.58 s",
+      "before": "19 new isolated regressions fail before implementation; four subsequent test-only bound-method identity assertions corrected to equality.",
+      "scope": "Stale isotropic/anisotropic ADPs; non-ADP refusal; scattering/geometry preservation; native failure/restoration; missing/rehashed/weakened output observations; moved v1/v2 cold readback; AutoRefine and Refine Doctor.",
+      "full_suite": "NOT_RUN; last full C220/583d30df, 9178 tests +276 subtests, not this revision."
+    },
+    "native": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c318_start.py",
+      "command_role": "Historical invocation; anchored exact native worker below.",
+      "build": "Phenix 2.2.1-6174 / dispatcher 2.2.1, Darwin arm64",
+      "mode": "Zero-cycle setup through actual v2 helper, then complete isolated native final scaling and production synchronization guard. No actual final-writer invocation or refinement.",
+      "guard": {
+        "policy_id": "native-refinement-output-state-v1",
+        "status": "SYNCHRONIZED",
+        "atom_count": 855,
+        "changed_adp_atoms": 855,
+        "scattering_sha256": "bdfee47a6ece7e23f8d6b1373b1c60bbb4f72e3485f5052ecec4e353a69df584",
+        "hierarchy_before_sha256": "24b8b2bf111d485630d6d087e87ca9525d6e9968e930b53f23b8856fc169054c",
+        "hierarchy_after_sha256": "ceedb9881fc02362aa60527242aec7a8f6521b294b48d295cee72bcc8c430a0c",
+        "fcalc_sha256": "8bd0de71aaa6a658e06a30b67498d1306b198494378b76462f7bdd1a10a2a4c0",
+        "scattering_unchanged": true,
+        "geometry_owner_unchanged": true,
+        "write_completed": false
+      },
+      "serialization": {
+        "pdb": {
+          "maximum_b_error": 0.00016847208922854406,
+          "coordinate_max_error": 2.1316282072803006e-14
+        },
+        "mmcif": {
+          "maximum_b_error": 1.5279109106813848e-06,
+          "coordinate_max_error": 2.1316282072803006e-14
+        }
+      },
+      "unchanged_original_run_files": 1146,
+      "selected_checkpoint": "refine-001",
+      "new_checkpoint": false,
+      "stopped_verified": true
+    },
+    "limitations": [
+      "Actual written PDB/mmCIF/scattering comparison through ordinary five-cycle refinement remains the next gate.",
+      "Joint neutron output and mismatches beyond stale ADPs are unqualified; no guessing or log-derived correction.",
+      "PDU bending, ordinary numerical-candidate delivery and whole-ligand qualification remain Q06.",
+      "No installed SDK edit, new restraint target, strength adjustment, scientific-model approval or 100-dataset capacity claim."
+    ],
+    "artifacts": {
+      "included": "Maintained source/tests, two exact legacy helper/profile fixtures, documentation and compact native measurements/hashes.",
+      "excluded": "All scientific input/output files, native logs and diagnostic workers remain local."
+    },
+    "local_records": [
+      {
+        "anchor": "local_live_tests",
+        "path": "318_Cedar_versioned-output-sync-idigk1z3/start.json",
+        "sha256": "2c648168fd6c15261bddbdc6a088c5ed3109d56022c2efd43951976f07aba0b4",
+        "size": 26953
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "318_Cedar_versioned-output-sync-idigk1z3/worker.py",
+        "sha256": "96a38f0e571e1d64fb1515f8bedba6c003dd2bbe2d4867f444a315ea4105dadc",
+        "size": 3899
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "318_Cedar_versioned-output-sync-idigk1z3/native_worker.py",
+        "sha256": "7d1e758fba46791234f2681200f8365569cff3b494d5098538c28780d6f7cfdd",
+        "size": 7575
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "318_Cedar_versioned-output-sync-idigk1z3/driver-result.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+        "size": 78
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "318_Cedar_versioned-output-sync-idigk1z3/summary.json",
+        "sha256": "f26d0185878d219429702dbaff783ba386a007bab3a33881c7786138411fdb6b",
+        "size": 270
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "318_Cedar_versioned-output-sync-idigk1z3/result.json",
+        "sha256": "0ac1cd6656e8d07737a20a4746eda565e67f07fac70451f90d3c8487330986d5",
+        "size": 4768
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "318_Cedar_versioned-output-sync-idigk1z3/runtime/result.json",
+        "sha256": "63928acb64d9d1df57df1d1557cc46b3f43620236ecb68eaccd1421624446e12",
+        "size": 40699
+      }
+    ]
   }
 }

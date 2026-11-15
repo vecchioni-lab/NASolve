@@ -1,11 +1,12 @@
 {
-  "profile_id": "phenix-2.2.1-6174-local-darwin-arm64-c294-c296",
+  "profile_id": "phenix-2.2.1-6174-local-darwin-arm64-output-v2",
   "system": "Darwin",
   "machine": "arm64",
   "qualification": [
     "C294 actual five-cycle full-objective/fork/replacement-manager control",
     "C296 complete parameters and synthetic capability controls",
-    "C297 native program-wrapper control required for the added entry-point source bindings"
+    "C297 native program-wrapper control required for the added entry-point source bindings",
+    "C317 isolated final-output ADP synchronization; v2 writer and relocation acceptance recorded separately in the evidence ledger"
   ],
   "distribution_attestation": false,
   "modules": {
@@ -23,6 +24,10 @@
     "phenix.refinement.fsr.preprocess": "6cdd7a0ae669a03c0869e4e49c9d4eee45f83d820b9b2e784eb8f5a8b49f826c",
     "iotbx.cli_parser": "4d21181bf453fd6fc9ffe84b305ce4ba828a7261d9f9ebe6cf2fdd2475fc340d",
     "cctbx.geometry_restraints": "49b1a2f97978b74e416f763417d6a76f2ce6e00c1496afb7b24fe51072120950",
-    "cctbx.array_family.flex": "2344b006d5e9cc096b45e2e38da82d3c1fc6fbfc8626f59349887d46652da2fb"
+    "cctbx.array_family.flex": "2344b006d5e9cc096b45e2e38da82d3c1fc6fbfc8626f59349887d46652da2fb",
+    "iotbx.pdb.hierarchy": "005a30625ce111c87275bdc1d09a8e4b4576e2ba51dc4ea11f93a351bca70b15",
+    "iotbx_pdb_hierarchy_ext": "6765fd7eeef41ef54abddf4ff14b722fdd9e125fbcd9c680cd1530315e243c36",
+    "cctbx.xray.structure": "7ae793fd96a8b96837c685ebe012c6d13cc090c06102e2cc5f9919c92ec21963",
+    "cctbx_xray_ext": "094a2ccc234048ce36d0324566d976582758a077dc52d37fd11b06e7bc4ba56b"
   }
 }

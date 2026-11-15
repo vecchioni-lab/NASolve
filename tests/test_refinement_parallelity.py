@@ -26,13 +26,18 @@ def completed(tmp_path,monkeypatch,*,failure=None,changed=None,bad_preflight=Fal
             if phase=='preflight':(folder/'native_001.geo').write_text('preflight geometry preserved')
             profile=json.loads((root/'code/_nasolve_refinement/data/parallelity-native-profile.json').read_text())
             failed=phase==failure
-            result=dict(schema_version=1,policy_id='explicit-native-parallelity-refinement-v1',
+            from nasolve.refinement_parallelity import _RUNTIME_POLICIES,LEGACY_POLICY_ID
+            request=json.loads((root/'request.json').read_text())
+            result=dict(schema_version=1,policy_id=_RUNTIME_POLICIES[request['policy_id']],
                 status='FAILED' if failed else 'COMPLETE',arguments=native_args,pid=123,parent_pid=122,
                 scientific_approval='NOT_RUN',binding_restored=True,native_profile=profile,
                 dry_run=phase=='preflight',macro_cycles=0 if phase=='preflight' else 5,
                 atom_labels=['a','b'],parallelity_parameters=[],usage_observations=[],
                 parent_kernel_statistics=dict(policy_id='native-parallelity-kernel-adapter-v1',
                     successful_calls=0,gradient_calls=0,energy_only_calls=0,maximum_proxy_count=0))
+            if request['policy_id']!=LEGACY_POLICY_ID:
+                from tests.test_cif_refinement_runtime import output_row
+                result.update(output_binding_restored=True,output_synchronization=[] if phase=='preflight' else [output_row(2)])
             if bad_preflight and phase=='preflight':result['status']='RUNNING'
             if failed:result['error']=dict(type='RuntimeError',message='native failed')
             (folder/'result.json').write_text(json.dumps(result))
@@ -57,7 +62,7 @@ def test_explicit_route_uses_original_executor_and_saves_exact_round_evidence(tm
     request=json.loads((run/record['request']['relative_path']).read_text())
     assert request['parent']==child['parent'] and request['checkpoint']==child['id']
     assert child['outputs']['parallelity_execution']['anchor']=='run'
-    assert len(request['code'])==6 and len(request['inputs'])==6
+    assert len(request['code'])==7 and len(request['inputs'])==6
     assert (result.round_directory/'received_args.json').exists()
 
 
@@ -178,3 +183,48 @@ def test_checked_ancestry_reuses_strict_lineage_validation():
     parent=dict(id='refine-001',parent='missing',outputs={'parallelity_execution':{}})
     with pytest.raises(ValueError,match='unknown parent'):
         requires_checked_plane_forces({'checkpoints':[parent]},parent)
+
+
+
+def test_frozen_v1_reader_survives_current_helper_upgrade_and_relocation(tmp_path,monkeypatch):
+    from nasolve import refinement_parallelity as module
+    from hashlib import sha256
+    package=Path(module.__file__).parent
+    fixture=Path(__file__).parent/'fixtures/refinement_runtime_v1'
+    code={'entry.py':module._ENTRY,'code/_nasolve_refinement/__init__.py':b''}
+    for name,digest in module._SOURCE_DIGESTS.items():
+        path=fixture/name if (fixture/name).exists() else package/name
+        data=path.read_bytes();assert sha256(data).hexdigest()==digest
+        code['code/_nasolve_refinement/'+name]=data
+    with monkeypatch.context() as legacy:
+        legacy.setattr(module,'POLICY_ID',module.LEGACY_POLICY_ID)
+        legacy.setattr(module,'_code',lambda:code)
+        run,result,registry,child,receipt,commands=completed(tmp_path,legacy)
+    old=run.parents[1];moved=tmp_path/'relocated';old.rename(moved)
+    assert not old.exists()
+    with patch('subprocess.Popen',side_effect=AssertionError('historical read must stay cold')):
+        _,saved=read_registry(moved/'AutoMR/run_001')
+    assert resolve_checkpoint(saved,child['id'])['usable']
+    assert module.POLICY_ID!='round-local-parallelity-execution-v1'
+
+
+@pytest.mark.parametrize('defect',['missing','unfinished','count','hash','false','policy','receipt_policy'])
+def test_rehashed_v2_output_proof_cannot_be_weakened(tmp_path,monkeypatch,defect):
+    run,result,registry,child,receipt,commands=completed(tmp_path,monkeypatch)
+    record=json.loads(receipt.read_text());request_path=run/record['request']['relative_path']
+    output_path=request_path.parent/'refine/result.json';output=json.loads(output_path.read_text())
+    if defect=='missing':del output['output_synchronization']
+    elif defect=='unfinished':output['output_synchronization'][0]['write_completed']=False
+    elif defect=='count':output['output_synchronization'][0]['atom_count']=3
+    elif defect=='hash':output['output_synchronization'][0]['fcalc_sha256']='broken'
+    elif defect=='false':output['output_synchronization'][0]['scattering_unchanged']=False
+    elif defect=='policy':output['policy_id']='explicit-native-parallelity-refinement-v1'
+    elif defect=='receipt_policy':record['policy_id']='round-local-parallelity-execution-v1'
+    output_path.write_text(json.dumps(output))
+    for ref in record['phases'][1]['files']:
+        if ref['relative_path']==str(output_path.relative_to(run)):
+            ref.update(_file_reference(output_path,run))
+    write_record(receipt,record,replace=True);child['outputs']['parallelity_execution']=_file_reference(receipt,run)
+    (run/'AutoRefine/checkpoints.json').write_text(json.dumps(registry))
+    with patch('subprocess.Popen',side_effect=AssertionError('cold refusal')):
+        with pytest.raises(CheckpointError):read_registry(run)

@@ -6,6 +6,18 @@ import pytest
 from tests.test_cif_parallelity_kernel import setup, Buffer
 
 
+def output_row(count):
+    return dict(policy_id='native-refinement-output-state-v1',status='SYNCHRONIZED',
+        atom_count=count,changed_adp_atoms=count,scattering_sha256='a'*64,
+        hierarchy_before_sha256='b'*64,hierarchy_after_sha256='c'*64,fcalc_sha256='d'*64,
+        scattering_unchanged=True,geometry_owner_unchanged=True,write_completed=True)
+
+
+def output(result, observe):
+    observe([] if result.iparams.refinement.dry_run else
+            [output_row(len(result.model.get_hierarchy().atoms()))],True)
+
+
 def runtime(monkeypatch, program=None, verify=None):
     from nasolve import cif_refinement_runtime as module
     points,p,gr,flex=setup()
@@ -14,9 +26,10 @@ def runtime(monkeypatch, program=None, verify=None):
         get_hierarchy=lambda:NS(atoms=lambda:[NS(id_str=lambda i=i:str(i)) for i in range(len(points))])),
         iparams=NS(refinement=NS(dry_run=True)),macro_cycle=1,
         params=NS(main=NS(number_of_macro_cycles=1)))
-    def default(args):
+    def default(args,observe):
         for _ in range(3):
             gr.parallelity_residual_sum(sites_cart=Buffer(points),proxies=[p],gradient_array=Buffer([(0.,0.,0.)]*len(points)))
+        output(result,observe)
         return result
     original=gr.parallelity_residual_sum
     monkeypatch.setattr(module,'_native_runtime',lambda:(gr,flex,program or default,dict(profile_id='test'),verify or (lambda:None)))
@@ -40,9 +53,10 @@ def test_native_result_and_arguments_preserved_with_deduplicated_observations(tm
 @pytest.mark.parametrize('failure',['native','verify','binding','special_position','mode','cycles'])
 def test_failure_is_recorded_and_original_binding_restored(tmp_path,monkeypatch,failure):
     module,gr,result,original=runtime(monkeypatch)
-    def program(args):
+    def program(args,observe):
         if failure=='native':raise RuntimeError('native line search failed')
         if failure=='binding':gr.parallelity_residual_sum=lambda **kw:0.
+        output(result,observe)
         return result
     if failure=='special_position':result.model.restraints_manager.geometry.site_symmetry_table.special_position_indices=lambda:[0]
     if failure=='mode':result.iparams.refinement.dry_run=None
@@ -84,13 +98,30 @@ def test_actual_cycle_count_is_required_and_recorded(tmp_path,monkeypatch):
 def test_parameter_changes_are_retained_instead_of_overwriting_prior_calls(tmp_path,monkeypatch):
     module,gr,result,original=runtime(monkeypatch)
     points,p,_,flex=setup()
-    def program(args):
+    def program(args,observe):
         for value in [1.4,2.7,1.4]:
             p.limit=value
             gr.parallelity_residual_sum(sites_cart=Buffer(points),proxies=[p],gradient_array=None)
+        output(result,observe)
         return result
     monkeypatch.setattr(module,'_native_runtime',lambda:(gr,flex,program,dict(profile_id='test'),lambda:None))
     module.run_compatible_refinement(['model.pdb'],evidence_directory=tmp_path/'native')
     rows=[json.loads(p.read_text()) for p in (tmp_path/'native/calls').glob('*.json')]
     assert len(rows)==2
     assert sorted(r['parameters']['proxies'][0]['limit'] for r in rows)==[1.4,2.7]
+
+
+@pytest.mark.parametrize('defect',['missing','repeated','unfinished','binding'])
+def test_actual_refinement_requires_completed_output_synchronization(tmp_path,monkeypatch,defect):
+    module,gr,result,original=runtime(monkeypatch);result.iparams.refinement.dry_run=False
+    def program(args,observe):
+        rows=[output_row(len(result.model.get_hierarchy().atoms()))]
+        if defect=='missing':rows=[]
+        if defect=='repeated':rows*=2
+        if defect=='unfinished':rows[0]['write_completed']=False
+        observe(rows,defect!='binding')
+        return result
+    monkeypatch.setattr(module,'_native_runtime',lambda:(gr,setup()[3],program,dict(profile_id='test'),lambda:None))
+    with pytest.raises(ValueError):module.run_compatible_refinement(['model.pdb'],evidence_directory=tmp_path/'native')
+    assert json.loads((tmp_path/'native/result.json').read_text())['status']=='FAILED'
+    assert gr.parallelity_residual_sum == original

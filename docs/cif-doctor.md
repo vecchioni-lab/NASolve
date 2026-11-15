@@ -142,7 +142,9 @@
 
 <a id="current-capability-boundary-c251"></a>
 
-## Current capability boundary (C258)
+<a id="current-capability-boundary-c258"></a>
+
+## Current capability boundary
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -169,9 +171,37 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Native symmetry pair attribution | C202 explicitly captures and replays complete simple and directed ASU pairs, including self-images, with compact receipts and bounded native work. The connected PDU control and old/new cold replay pass. | Diagnostic arithmetic only. C203 freezes this mode in fresh owned continuation; old absent settings keep C127. No chemical, covalent-symmetry optimizer or refinement approval. |
 | Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; C183 owns one complete continuation execution with bounded C140 scheduling. C184 binds that child to the existing complete request with fresh recovery and bounded evidence partitions. C203 qualifies the connected crystal through the frozen ASU mode. C223–C225 connect explicit initial checkpoint adoption and ordinary/campaign entry; C231 checks compact request handoff. C251 adds explicit later alternatives; C270–C272 qualify the selected-model phasing/inspection control. Default activation and broader native/refinement acceptance remain open. No actual refinement claim. |
 | Current installation configuration | C182 derives consumer and generation arguments from the explicitly selected packaged Phenix installation using maintained source lists and existing validators. Fresh generation/repair, current cache reuse and cold request/runtime replay pass. | Read-only configuration, not observed import or scientific qualification. Explicit dialect/representation intent remains required; C183 owns the continuation child. C184 integrates the continuation with the existing request. Explicit ordinary/campaign entry and initial checkpoint adoption now exist (C223–C225); C251 adds explicit later alternatives. Default activation and broader native/refinement coverage stay open; C270–C272 qualify the chosen-model phasing/inspection control. |
-| Checked preparation and interrupted work | C220 commands run the ordinary construction/NAR-derived request, report the checked ReadySet result or verified retained starting model, read one exact attempt and continue saved preparation in a fresh attempt. C219 native evidence rereads through this interface after relocation, with no SDK or new execution. C222 opens a named checked preparation or verified fallback in Coot against the original MR map. C223 explicitly saves that exact choice as an initial REVIEW checkpoint for ordinary inspection and trial refinement, with interrupted-save recovery and later proof checks. C224 composes execution and publication through `postmr --checked-preparation`; C225 freezes that opt-in in schema-2 campaigns. | Explicit choices only. C251 saves later alternatives without changing the root/current selection; Coot and refinement use their exact inputs. Default activation and real refinement remain open; C270–C272 qualify the chosen-model phasing/inspection control. C249 reports scoped explicit selected-CIF coverage. C247 exposes verified generation notes through publication/status. C246 exposes explicit support acquisition through checked PostMR and schema-2 campaigns. C245 exposes the choice through prepare-run and reports generation outcomes. Unqualified preparation offers no model; uncertain process state blocks continuation. |
-| Archived working evidence | C258 explicitly retires only successful, qualified working duplicates after durable archive/intent publication. Ordinary exact reads, interrupted removal/resume and stable public paths pass on copied native evidence: 33.7 MB instead of 181.6 MB. | Failed/active work stays unpacked. C260 connects new ordinary/campaign preparation. Campaign-scale resource acceptance remains Q04; historical unarchived campaigns are not migrated and old readers refuse new storage receipts. |
+| Checked preparation and interrupted work | C220 commands run the ordinary construction/NAR-derived request, report the checked ReadySet result or verified retained starting model, read one exact attempt and continue saved preparation in a fresh attempt. C219 native evidence rereads through this interface after relocation, with no SDK or new execution. C222 opens a named checked preparation or verified fallback in Coot against the original MR map. C223 explicitly saves that exact choice as an initial REVIEW checkpoint for ordinary inspection and trial refinement, with interrupted-save recovery and later proof checks. C224 composes execution and publication through `postmr --checked-preparation`; C225 freezes that opt-in in schema-2 campaigns. | Explicit choices only. C251 saves later alternatives without changing the root/current selection; Coot and refinement use their exact inputs. Q04/Q05 supported-route acceptance includes chosen-model phasing/inspection and ordinary five-cycle campaign refinement (C285). Default activation and broader chemical survival remain separate Q06/release gates. C249 reports scoped explicit selected-CIF coverage. C247 exposes verified generation notes through publication/status. C246 exposes explicit support acquisition through checked PostMR and schema-2 campaigns. C245 exposes the choice through prepare-run and reports generation outcomes. Unqualified preparation offers no model; uncertain process state blocks continuation. |
+| Archived working evidence | C258 explicitly retires only successful, qualified working duplicates after durable archive/intent publication. Ordinary exact reads, interrupted removal/resume and stable public paths pass on copied native evidence: 33.7 MB instead of 181.6 MB. | Failed/active work stays unpacked. C260 connects new ordinary/campaign preparation. C280–C284 accept the recorded serial/recovery envelope, including 100 synthetic datasets; 100 native-dataset capacity remains unqualified. Historical unarchived campaigns are not migrated and old readers refuse new storage receipts. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Existing owned acquisition handles ordinary checked-route misses; interrupted work needs an explicit fresh attempt after known-stopped evidence. Initial checked adoption exists. Explicit automatic plane support and later alternatives are implemented. Default activation, solution-PDF reporting and per-family release coverage remain integration milestones; chosen-model phasing has the bounded C270–C272 acceptance. |
+
+
+### Checked refinement output state (C318)
+
+The explicit `autorefine --checked-plane-forces` route uses the ordinary
+AutoRefine executor and numbered checkpoints. Its qualified native helper keeps
+the complete requested plane forces and, in new v2 requests, synchronizes final
+ADPs with the actual refined scattering state immediately before Phenix exports
+its results. It does not infer corrections from a log, modify old models or
+change restraint targets. Non-ADP disagreement and changed scattering/geometry
+refuse completion; failed work stays preserved through existing owners.
+
+New request/receipt policy `round-local-parallelity-execution-v2` binds exact
+helper bytes and requires isolated zero-cycle setup. Native result policy
+`explicit-native-parallelity-refinement-v2` records one completed
+`native-refinement-output-state-v1` observation for actual refinement and none
+for preflight. The final writer and parallelity bindings must both be restored.
+Compact hashes/counts retain the observation; no per-atom duplicate data store
+is added. V1 requests keep exact historical source validation and cold readback;
+older NASolve readers refuse v2 instead of silently treating it as v1.
+
+C318 focused checks cover native-state invariants, output failures, weakened
+proof refusal and v1/v2 relocation. Native written-output acceptance is pending;
+use the [current handoff](development-handoff.md) for the execution edge.
+Joint neutron synchronization and mismatches beyond stale ADPs are not qualified.
+Successful output synchronization does not close Q06 chemical survival or approve
+PDU’s remaining bend. The [completion queue](cif-doctor-completion-queue.md#pipeline-position)
+owns those separate gates.
 
 Source state and numerical usability are independent. Missing OP3 never means
 “add OP3”; a retained true terminal phosphate is protected. Lower scores under

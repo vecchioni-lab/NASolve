@@ -1,28 +1,39 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-15, C317 bounded checkpoint complete — Rowan**.
+Updated **2026-11-15, C318 versioned output handoff in progress — Rowan**.
 Worktree **NASolve-c96**, branch **cedar**, published source **393aea60** (C307).
 Focused checks only; no full suite, new branch, default activation or merge.
 Linden owns Pine/Willow; no Cedar edits from that work.
 
 ## Current work and interruption recovery
 
-**All native jobs are stopped and source remains unchanged.** C308’s matched
-refinements and C309–C317 diagnostics are complete; do not rerun them to recover
-context. C310–C317 preserved all 1,146 original PDU run files and the
-selected `refine-001`. The last control is local
-`317_Cedar_native-output-sync-i18n6frt`; `driver-result.json` verifies exit 0,
-known-stopped ownership and unchanged source. There is no pending native process.
+**Current window: 16:25–19:25 London, 2026-11-15.** Linden relayed Simon’s
+three-hour extension and owns separate Willow work. The short native check is complete and stopped;
+C318 source is frozen for one ordinary five-cycle PDU comparison after commit. Keep expensive checks serial with Linden.
 
-**Next is a bounded Q06 output-consistency patch.** Native group-ADP final scaling
-updates current scattering B factors but leaves the output hierarchy/PDB stale.
-C317 qualifies native `model.set_xray_structure(current_xrs)` before serialization
-in isolation: PDB/mmCIF agree, coordinates/scattering/geometry owner stay intact.
-Integrate through the existing refinement owner with a **new qualified helper
-version**, retain frozen v1 sources/readers and old results, then verify actual
-written PDB/mmCIF/scattering agreement. Do not overwrite `_SOURCE_DIGESTS` and
-invalidate earlier checkpoints; do not repair historical files or infer B shifts.
-Ordinary numerical-candidate delivery and whole-substituent survival follow.
+**C318 implementation is this source checkpoint, based on 2f87eebe.** A small native
+output synchronizer validates matching model/scattering state, permits only ADP
+staleness, calls Phenix’s own synchronization method and preserves coordinates,
+FCALC and the geometry owner. A temporary final-writer binding records completion
+and restores itself on success/failure. New checked requests use helper policy v2;
+exact v1 source hashes/readers remain, with immutable legacy fixtures. No SDK edit,
+new checkpoint owner, chemical target or default activation.
+
+Focused checks: **140 tests +13 subtests pass** (16.58 s), covering the synchronizer,
+runtime, old/new relocated checkpoint readers, AutoRefine and Refine Doctor.
+The first 19 regressions failed before implementation; four later mock-binding
+identity assertions were corrected to bound-method equality. The native guard also passes on 855 atoms, preserving all 1,146 prior run files;
+in-memory PDB/mmCIF B errors are 0.0001685/0.00000153 Å². Actual final-writer and
+written-export checks remain pending; do not claim ordinary native qualification.
+No full suite. Source/test files and existing profile/changelog are the only
+implementation scope; current queue and evidence will be updated at the checkpoint.
+
+**Prior work remains complete:** C308 matched refinements and C309–C317 diagnostics
+are stopped. C310–C317 preserved 1,146 original PDU run files and selected
+`refine-001`. C317’s local `317_Cedar_native-output-sync-i18n6frt` proves isolated
+PDB/mmCIF synchronization. Do not repeat those controls or rewrite their results.
+Ordinary numerical-candidate delivery and whole-substituent survival follow this
+versioned output-state handoff, using existing repair/selection owners.
 
 **C307 is committed/pushed as 393aea60.** The additive
 `cif_linear_bond_reference.py` selects triples and neighboring single bonds from
@@ -93,6 +104,7 @@ history; do not duplicate it into another notebook or rerun completed controls:
 - `matched_linear_neighbor_refinement_2026_11_15` (C308).
 - `linear_arm_opening_force_review_2026_11_15` (C309).
 - `pdu_scattering_state_and_opening_forces_2026_11_15` (C310–C317).
+- `versioned_refinement_output_state_2026_11_15` (C318 implementation/isolated native).
 
 Final C308 comparison root: `308_Cedar_target-comparison-rhj4xwif`.
 PDU execution: `308_Cedar_target-only-25kntshu`; matched 5PC execution:

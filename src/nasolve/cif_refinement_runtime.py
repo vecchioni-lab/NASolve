@@ -12,8 +12,9 @@ import platform
 import tempfile
 
 from .cif_parallelity_kernel import ParallelityKernel, parallelity_parameters
+from .cif_refinement_output import synchronized_outputs, validate_output_observations
 
-POLICY_ID = 'explicit-native-parallelity-refinement-v1'
+POLICY_ID = 'explicit-native-parallelity-refinement-v2'
 
 
 def _canonical(value):
@@ -50,10 +51,16 @@ def _native_runtime():
         raise ValueError('Native parallelity binding was already replaced')
     from iotbx.cli_parser import run_program
     from phenix.programs.phenix_refine import Program, PhenixRefineParser, custom_process_arguments
-    def program(arguments):
-        return run_program(program_class=Program, parser_class=PhenixRefineParser,
-            custom_process_arguments=custom_process_arguments,
-            unused_phil_raises_sorry=False, args=arguments)
+    driver_class=modules['phenix.refinement.driver'].refine
+    writer=driver_class.write_after_run_outputs
+    if (writer.__module__!='phenix.refinement.driver' or
+            writer.__qualname__!='refine.write_after_run_outputs'):
+        raise ValueError('Native final output binding was already replaced')
+    def program(arguments, observe_output):
+        with synchronized_outputs(driver_class,observe_output):
+            return run_program(program_class=Program, parser_class=PhenixRefineParser,
+                custom_process_arguments=custom_process_arguments,
+                unused_phil_raises_sorry=False, args=arguments)
     return gr, flex, program, profile, verify
 
 
@@ -72,7 +79,8 @@ def run_compatible_refinement(arguments, *, evidence_directory):
     directory.mkdir()  # A previous or partial observation is never overwritten.
     record = dict(schema_version=1, policy_id=POLICY_ID, status='RUNNING',
                   arguments=list(arguments), pid=os.getpid(), parent_pid=os.getppid(),
-                  scientific_approval='NOT_RUN', binding_restored=False)
+                  scientific_approval='NOT_RUN', binding_restored=False,
+                  output_binding_restored=False,output_synchronization=[])
     _save(directory/'result.json', record)
     gr = original = observed = kernel = None
     try:
@@ -100,7 +108,10 @@ def run_compatible_refinement(arguments, *, evidence_directory):
                 seen.add(identity)
             return target
         gr.parallelity_residual_sum = observed
-        refined = program(list(arguments))
+        def observe_output(rows,restored):
+            record.update(output_synchronization=rows,output_binding_restored=restored)
+            _save(directory/'result.json',record)
+        refined = program(list(arguments),observe_output)
         if gr.parallelity_residual_sum is not observed:
             raise ValueError('Native parallelity binding changed during refinement')
         model = refined.model
@@ -115,6 +126,10 @@ def run_compatible_refinement(arguments, *, evidence_directory):
         cycles = 0 if dry_run else refined.macro_cycle
         if not dry_run and cycles != refined.params.main.number_of_macro_cycles:
             raise ValueError('Native program did not complete its requested cycles')
+        if record['output_binding_restored'] is not True:
+            raise ValueError('Native final output binding was not restored')
+        validate_output_observations(record['output_synchronization'],
+                                     dry_run=dry_run,atom_count=len(labels))
         verify()
         record.update(status='COMPLETE', dry_run=dry_run, macro_cycles=cycles,
                       atom_labels=labels, parallelity_parameters=parameters)

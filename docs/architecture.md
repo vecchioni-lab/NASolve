@@ -27,6 +27,14 @@ policies and Doctor API/CLI now forward the explicit choice through that owner;
 shared prerequisite/ancestry validation refuses silent loss before new work.
 Default activation and achieved-chemistry qualification remain separate.
 
+New checked refinements use the v2 frozen helper. Immediately before final
+native export it synchronizes stale displacement parameters from the exact
+current scattering object, refusing non-ADP mismatch or changed refined state.
+Complete output evidence and restored native bindings are required for successful
+new checkpoints. V1 frozen-code identities/readers keep their original meaning;
+old model files are never repaired on read. This is output-state consistency,
+not a new B-factor model, chemical target or automatic default route.
+
 Ordinary mixed Coot construction includes declared canonical mutations in an
 explicit serial-only scope bound to actual input/output component identities.
 That scope grants neither graph transport nor phosphate deletion. Source-graph

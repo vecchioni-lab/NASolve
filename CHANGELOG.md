@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve current refined ADPs in checked final outputs (C318)
+
+- New checked refinements synchronize the native output hierarchy with Phenix’s
+  actual refined displacement parameters immediately before final export. Refuse
+  non-ADP disagreement or changed scattering/geometry; preserve failed attempts.
+- Version the frozen helper and require completed output-state evidence for new
+  successful checkpoints. Retain exact v1 source identities and read-only legacy
+  validation; historical models and checkpoints are not rewritten.
+- Existing explicit checked-plane-force selection and ordinary process/checkpoint
+  owners remain. No installed Phenix edit, new chemical target or default activation.
+
 ### Compare and isolate linear-neighborhood bond targets (C307)
 
 - Add an explicit, coordinate-free comparison of source-declared triple bonds
