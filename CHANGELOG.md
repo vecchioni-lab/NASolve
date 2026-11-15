@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Compose explicit reference-backed bond repairs with existing checks (C324)
+
+- Add optional bond-target stages to the ordered repair chain, sharing one checked
+  native energy library. Preserve exact model/PHIL/consumer context, dictionary
+  order and component ownership through every transition.
+- Reuse source qualification, full native identity, derivative checks and the
+  verified original fallback. New bond chains use v2; historical linear/plane
+  chains keep v1. No ordinary executor or automatic-selection change.
+
+### Bind numerical references to the library Phenix actually opened (C323)
+
+- Capture one bounded native energy-library lookup from the selected installation,
+  retaining module/resource identities and agreement between native parsed tables
+  and the frozen CIF. Cold readers need no installation or saved-code execution.
+- Bind source-selected reference rows and durable bond attribution to the same
+  complete native consumer. Preserve failed/uncertain attempts; do not substitute
+  a guessed library, approve chemistry, recalibrate strengths or select repairs.
+
 ### Preserve replayable native bond-target evidence (C322)
 
 - Add bounded owned execution and read-only relocation-safe replay of complete

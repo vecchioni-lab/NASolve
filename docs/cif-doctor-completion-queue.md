@@ -100,6 +100,20 @@ validation or permission to change SDK files. Do not interrupt target repair to
 build a second contact engine. Current output synchronization preserves the same
 native geometry object, and Python copies of JSON reports are unaffected.
 
+**Queued representative-boundary alternative (Linden W79/W80):** W79 reports
+that outlier callbacks can mix source and displayed coordinate frames even when
+scalar energies agree; W80 qualifies tensor transport in its own Willow controls.
+A narrower possible integration is to retain one complete computational native
+model and derive the displayed/exported representative only at the workflow
+boundary. Require exact per-atom operators/identity and tensor bindings, immutable
+source/derived artifacts in checkpoint lineage, and traceable scientific reports.
+Manual edits to a derived Coot model need checked inverse mapping; new/deleted or
+renamed atoms and changed intent cannot borrow the old map. This is a design
+alternative, not an activated route, a standalone recut-PDB qualification or a
+solution to missing-link/winding-seam chemistry. Keep its evidence in Willow and
+compare it with in-engine adapters before choosing an integration. Do not derail
+the current target-repair work or rebuild completed Q04/Q05 owners.
+
 Q07 retains mixed and held-out tests; Q08–Q14 retain chemistry learning, followed
 by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 
@@ -205,6 +219,19 @@ models, checkpoint records and selection remain unchanged. Exact v1 readers stay
 available. This does not fix PDU's remaining bend or qualify other native builds.
 Ledger: `ordinary_written_refinement_output_state_2026_11_15`.
 
+**Generation-first reminder and source trace (2026-11-15):** ReadySet/eLBOW remain
+the primary builders; Cedar checks chemical intent and the delivered numerics.
+The saved source-preserving 180-step PDU RM1/GDIIS attempt already emits 1.607 Å
+from an initial 1.472376 Å geometry after reported nonconvergence. C206's larger
+600-step attempt retains 1.607 Å too (different ESD; no qualified convergence
+claim). The later checked ReadySet route makes zero builder calls and retains that
+input target, including in its raw emitted CIF. Do not label this as a demonstrated
+failure of every fresh ReadySet route, or repeat the old longer attempt. A bounded
+alternative native route must preserve the same graph/state/stereo and receive the
+same target/delivery/derivative checks. Arbitrary coordinate-derived targets and
+blanket rejection on nonconvergence remain outside the contract. Evidence root:
+`323_Cedar_target-origin-vehkjax0` under the live-test anchor.
+
 **Next bounded work (Q06):** qualify numerical-candidate delivery through existing
 repair/selection owners, then inspect whole-substituent survival. C320 now binds the
 exact source/reference and dictionary change to complete native before/after
@@ -214,11 +241,23 @@ native bond options and single/container evaluations. C322 now binds that proof
 through the shared owned attribution lifecycle and passes cold readback after
 relocation with original inputs/SDK blocked. Next qualify selected-library reference
 authority and connect it through existing repair-chain/selection owners before
-ordinary repair selection; do not promote the local diagnostic script to an owner. Reuse existing capture,
+ordinary repair selection. C323/C324 close the selected-library and ordered-chain join: native lookup and
+real PDU/5PC cold readback pass, as do focused synthetic source/derivative/fallback
+contracts. No ordinary executor/request activation follows. The next boundary is the existing prepared repair executor and
+request protocol, not a second repair engine; do not promote the local diagnostic script to an owner. Reuse existing capture,
 numerical and repair-chain owners; diagnostic PHIL edits alone do not establish
 corrected-CIF delivery. Keep neighboring targets, source hands and terminal intent
 visible. No repeated Coot, replacement recovery owner, blanket flattening or
 Free-R tuning. Q07–Q16 remain as ordered below.
+
+**Installed replay holdover (new W81 integration finding):** at fixed Cedar C322,
+`cif_construction_return` falls back to a checkout-only canonical `MR_frames` path
+when installed, affecting context-return replay too. Check existing declared
+runtime-source and packaged canonical resource contracts before fixing it; no
+basename discovery. Rowan owns Cedar; Linden owns source-context and explicit-source
+controls. This is separate from two Git/source-path assumptions in the combined
+harness. Preserve the reported four failures; no combined pass claim or full rerun.
+Finish this bounded portability correction before ordinary target integration.
 
 ### The next small steps
 

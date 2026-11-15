@@ -82,7 +82,11 @@ rebuilds explicit source/reference candidates and composes existing complete
 capture and repair-context validation. It checks all modeled copies and unrelated
 native fields; it does not create a new executor or selection authority. Reference
 authority and native energy/derivative attribution remain separate from an exact
-recorded inventory change.
+recorded inventory change. C322 shares the plane lifecycle for durable bond
+attribution. C323 captures the selected native library once; C324 composes explicit
+bond stages through the existing ordered chain and whole-bundle selector, retaining
+historical v1 chains and using v2 only for new bond stages. Neither adapter adds a
+process owner, changes defaults or grants chemical-survival approval.
 
 ## Runtime precedence
 

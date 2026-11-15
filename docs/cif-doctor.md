@@ -176,6 +176,31 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Existing owned acquisition handles ordinary checked-route misses; interrupted work needs an explicit fresh attempt after known-stopped evidence. Initial checked adoption exists. Explicit automatic plane support and later alternatives are implemented. Default activation, solution-PDF reporting and per-family release coverage remain integration milestones; chosen-model phasing has the bounded C270–C272 acceptance. |
 
 
+### Native reference authority and ordered target repairs (C323–C324)
+
+`capture_energy_library` records one actual lookup by the selected Phenix
+monomer-library resolver, checks its implementation and bounds the resource before
+parsing. It freezes the resource and verifies that the native parsed tables agree
+with the saved CIF. `read_energy_library` requires no SDK or saved-code execution.
+`qualify_bond_attribution_reference` requires the same complete consumer as both
+native captures and exact replay of source-selected library rows. This is numerical
+provenance, not source chemical approval or validation of restraint strengths.
+
+`prepare_repair_chain` accepts explicit bond attributions and one shared library
+capture after any existing torsion/plane stages. Exact dictionary order, unchanged
+model/PHIL/consumer context and the changed component slot must join at every step.
+Bond-containing chains use `cif-ordered-source-repair-chain-v2`; historical calls
+retain exact v1 bytes. The existing bundle selector still owns source identity,
+whole-model native identity, final derivatives and independently verified fallback.
+Public runtime/ReadySet-parent reads carry that same choice after relocation.
+No prepared executor/request or automatic candidate-selection route is added yet.
+
+Native selected-library binding and both real PDU/5PC bond-only chain reads pass
+after moving code/evidence with originals/SDK blocked. Multi-stage public selection
+and fallback use synthetic native fixtures. Successful duplicate proof copies are
+removed; compact results retain verifiable reproduction references. See the current
+handoff and evidence ledger for exact commands, source pins and limits.
+
 ### Replayable bond-target evidence (C322)
 
 `audit_captured_bond_attribution` now freezes the exact source, supplied numerical
@@ -193,9 +218,9 @@ occupy 60.8 MB total; this is bounded diagnostic evidence, not a new ordinary
 retention policy or a claim of 100-dataset capacity. Inventory references avoid
 embedding an additional copy of each complete inventory inside job specifications.
 
-The remaining integration gates are selected-library reference authority, source
-chemical qualification, existing repair-chain/selection routing and complete
-chemical-survival checks. No automatic target adoption follows from this proof.
+C323/C324 add selected-library reference authority and ordered repair-chain
+composition. Ordinary executor/request integration, complete derivative proof and
+chemical-survival checks remain separate. No automatic target adoption follows from this proof.
 
 ### Native energy of corrected bond targets (C321)
 

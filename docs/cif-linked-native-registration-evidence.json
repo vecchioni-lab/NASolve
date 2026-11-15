@@ -100173,5 +100173,289 @@
     },
     "next": "Selected-library reference authority and existing repair/selection integration; whole-substituent survival stays open.",
     "author": "Rowan"
+  },
+  "selected_native_energy_library_2026_11_15": {
+    "milestone": "C323",
+    "status": "SELECTED_NATIVE_LIBRARY_AND_EXACT_BOND_REFERENCES_PASS",
+    "source_base_commit": "dc82aee1",
+    "source_state": "Working C323/C324 source pinned in start.json; driver verifies unchanged source and stopped ownership.",
+    "behavior_before": "Numerical references recorded a supplied library hash without proving which library the selected native resolver opened.",
+    "behavior_after": "One bounded native resolver capture freezes exact tables and implementation identities; cold replay binds source-selected references and durable bond attribution to the same complete consumer.",
+    "files": [
+      "src/nasolve/cif_energy_library.py",
+      "tests/test_cif_energy_library.py"
+    ],
+    "policy": "cif-selected-native-energy-library-v1",
+    "validation": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_energy_library.py tests/test_cif_linear_bond_reference.py tests/test_cif_phenix_configuration.py --tb=short",
+      "result": "108 passed in 3.86 s",
+      "before": "21 initial contracts and two consumer/reference join contracts fail against published dc82aee1 before implementation; maintained-worker external/oversized controls pass afterward.",
+      "full_suite": "NOT_RUN",
+      "native_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/cedar/runners/c323_start.py"
+    },
+    "native": {
+      "build": "Phenix 2.2.1-6174 / dispatcher 2.2.1, Darwin arm64",
+      "mode": "Complete selected-library lookup and parsing; no model interpretation, optimization or refinement",
+      "new_native_jobs": 1,
+      "owners_stopped": true,
+      "source_unchanged": true,
+      "resource": {
+        "anchor": "phenix_installation",
+        "path": "lib/python3.11/site-packages/chem_data/geostd/ener_lib.cif",
+        "sha256": "33c526d188364c7ae34bd3cb4d7b1d683548bf911a6e16a07f52e2120676e091",
+        "size": 105989
+      },
+      "parsed_tables_sha256": "c2f98df164f58964da8bdb3a5699b1d617c3cbf18116b43dfdcd7e86189722be",
+      "controls": {
+        "PDU": {
+          "status": "LIBRARY_BOUND_BOND_ATTRIBUTION_PASS",
+          "supported_bonds": [
+            [
+              "C5B",
+              "C5M"
+            ]
+          ],
+          "unsupported_bonds": [
+            [
+              "C5",
+              "C5A"
+            ],
+            [
+              "C5A",
+              "C5B"
+            ]
+          ]
+        },
+        "5PC": {
+          "status": "LIBRARY_BOUND_BOND_ATTRIBUTION_PASS",
+          "supported_bonds": [
+            [
+              "C8",
+              "C9"
+            ]
+          ],
+          "unsupported_bonds": [
+            [
+              "C5",
+              "C7"
+            ],
+            [
+              "C7",
+              "C8"
+            ]
+          ]
+        }
+      },
+      "original_files_unchanged": 176,
+      "elapsed_seconds": 7.033196708012838
+    },
+    "cold_read": {
+      "status": "MOVED_LIBRARY_AND_BOND_BINDING_READ_WITHOUT_ORIGINALS_OR_SDK",
+      "preserved_files": 182,
+      "code_relocated": true,
+      "library_files": 6,
+      "library_physical_bytes": 114807,
+      "elapsed_seconds": 2.4409960830234922
+    },
+    "upstream_target_origin": {
+      "status": "UPSTREAM_GENERATED_TARGET_AND_READYSET_RETENTION_TRACED",
+      "anchor": "NASolve-live-tests",
+      "path": "323_Cedar_target-origin-vehkjax0",
+      "summary": {
+        "path": "summary.json",
+        "sha256": "db59d83e4a521efdd27a0522c72aaf90094070ae2e98202ea65f33f4546e160c",
+        "size": 9931
+      },
+      "source_ideal_distance_angstrom": 1.472376310594543,
+      "source_and_generated_graph_equal": true,
+      "generated_target_angstrom": 1.607,
+      "generated_esd_angstrom": 0.02,
+      "historical_600_target_angstrom": 1.607,
+      "historical_600_esd_angstrom": 0.04,
+      "historical_stopping": "NOT_REPORTED; no convergence claim",
+      "readyset_builder_calls": 0,
+      "readyset_preserved_target": true,
+      "preserved_files": 10,
+      "limits": [
+        "Printed stopping is not chemical accuracy; the longer historical receipt retains NOT_REPORTED stopping.",
+        "Exact same source graph and retained triples do not independently establish every hidden optimizer perception or backend choice.",
+        "Current ReadySet control consumed the supplied numerical dictionary without another builder call. It does not test every fresh ReadySet route.",
+        "Do not replace restraint targets with source coordinates or treat nonconvergence alone as a universal rejection."
+      ]
+    },
+    "compatibility": "Additive API/policy; no historical reader migration, SDK edit or default activation.",
+    "limitations": [
+      "Native numerical-library provenance does not approve source chemistry, calibrate ESDs or select a correction.",
+      "Current exact source-typed library support is limited to the explicitly supported sp-carbon/sp3-carbon single-bond neighborhood. Other queried bonds remain unsupported.",
+      "The demonstrated ReadySet route retained a pre-existing bad target; fresh source-faithful native generation remains a possible alternative, not a disproven route."
+    ],
+    "artifacts": {
+      "anchor": "NASolve-live-tests",
+      "path": "323_Cedar_selected-energy-library-lznnh6qv",
+      "references": [
+        {
+          "path": "start.json",
+          "sha256": "48013a8ee8a3b73ef9e67f7a609fa9b34a55aa1616f8b7f07a452d23efa6b4ef",
+          "size": 27523
+        },
+        {
+          "path": "driver-result.json",
+          "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+          "size": 78
+        },
+        {
+          "path": "summary.json",
+          "sha256": "d69aff74ff032304ee0f48f8b91f2f662deaddae8848e2af766525a6b5fe8027",
+          "size": 5284
+        },
+        {
+          "path": "cold-summary.json",
+          "sha256": "db87cc478dc3d115e30534928708c868d779e8d05411ab46b51b1f7dea54051e",
+          "size": 230
+        }
+      ],
+      "included": "Code, tests, compact evidence and current documentation.",
+      "excluded": "Models, CIFs, reflections, raw inventories, full logs, SDK source and local runners."
+    },
+    "next": "Compose explicit repairs through existing owners; preserve whole-substituent and actual-refinement qualification as separate gates.",
+    "author": "Rowan"
+  },
+  "reference_bound_ordered_bond_chain_2026_11_15": {
+    "milestone": "C324",
+    "status": "REFERENCE_BOUND_NATIVE_BOND_CHAINS_PASS",
+    "source_base_commit": "dc82aee1",
+    "source_state": "Working C323/C324 source pinned in start.json; driver verifies unchanged source and stopped ownership.",
+    "behavior_before": "Ordered source repair chains composed linear torsion and plane changes only.",
+    "behavior_after": "Optional explicit bond-target stages share one selected-library capture and use existing source, complete native identity, derivative, fallback and runtime-publication owners.",
+    "files": [
+      "src/nasolve/cif_repair_chain.py",
+      "src/nasolve/cif_dictionary_bundle_repair.py",
+      "tests/test_cif_bond_repair_chain.py"
+    ],
+    "policy": "cif-ordered-source-repair-chain-v2",
+    "validation": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_bond_repair_chain.py tests/test_cif_dictionary_bundle_repair.py tests/test_cif_repaired_component_runtime.py tests/test_cif_prepared_repair_execution.py --tb=short",
+      "result": "155 passed in 11.76 s",
+      "additional_command": "Same environment/interpreter: tests/test_cif_bond_repair_chain.py tests/test_cif_repair_chain.py tests/test_cif_energy_library.py --tb=short",
+      "additional_result": "81 passed in 10.49 s before adding the two-component ordering control, which is included in the final 155-test selection.",
+      "before": "20 initial bond-chain contracts fail against pre-change implementation in 2.30 s.",
+      "legacy_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider /private/tmp/test_c324_legacy_bytes.py --tb=short",
+      "legacy_result": "1 passed in 1.11 s; 28 files and report byte-identical to dc82aee1 using existing synthetic linear/plane fixtures.",
+      "full_suite": "NOT_RUN",
+      "readback_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/cedar/runners/c324_start.py"
+    },
+    "real_existing_proof_readback": {
+      "status": "REFERENCE_BOUND_NATIVE_BOND_CHAINS_PASS",
+      "new_native_jobs": 0,
+      "cold_owner_stopped": true,
+      "original_files_unchanged": 182,
+      "reproduction": {
+        "anchor": "NASolve-live-tests",
+        "attributions": "322_Cedar_durable-bond-attribution-yn1bos1w/relocated",
+        "library": "323_Cedar_selected-energy-library-lznnh6qv/relocated"
+      },
+      "temporary_duplicate_evidence_removed": true,
+      "cold": {
+        "status": "MOVED_NATIVE_BOND_CHAINS_PASS_WITHOUT_ORIGINALS_OR_SDK",
+        "proofs": {
+          "PDU": {
+            "status": "ATTRIBUTED_REPAIR_CHAIN",
+            "steps": [
+              {
+                "kind": "source_linear_bond_target",
+                "component": "PDU",
+                "dictionary_index": 0
+              }
+            ],
+            "dictionary_sha256_before": [
+              "1f7be9dbcaa38b8c3e4fb83b1081f45e0b2ab6a8b1708de6bc801cdd2fca1892",
+              "d0ac98cc93c4fb5aa5d89e17217e99c894b8aa4b80b27d66747a001520b5e713"
+            ],
+            "dictionary_sha256_after": [
+              "e0a3342167cdc6a391cde5470de9b4b2cdb59acb89fa126cb8d2e14c5b32fe8b",
+              "d0ac98cc93c4fb5aa5d89e17217e99c894b8aa4b80b27d66747a001520b5e713"
+            ]
+          },
+          "5PC": {
+            "status": "ATTRIBUTED_REPAIR_CHAIN",
+            "steps": [
+              {
+                "kind": "source_linear_bond_target",
+                "component": "5PC",
+                "dictionary_index": 0
+              }
+            ],
+            "dictionary_sha256_before": [
+              "89c6e8e90eed402b02dd964f7d61891308f24871cd2e61b510e0015114aaabd9",
+              "96ed7ce3722889cbeca85a22561697974ce5e2e2f5272c97ab8204256d2f5a8b"
+            ],
+            "dictionary_sha256_after": [
+              "f3e4c00b69e0aae7067a6753f88863022ca5c6fb3093035d73fa4003ddccf255",
+              "96ed7ce3722889cbeca85a22561697974ce5e2e2f5272c97ab8204256d2f5a8b"
+            ]
+          }
+        },
+        "preserved_files": 190,
+        "temporary_proof_bytes": 61068731,
+        "code_relocated": true,
+        "elapsed_seconds": 3.3166053330060095
+      },
+      "scope": "Existing exact PDU and 5PC native proof composition only; no full derivative proof, ordinary executor or refinement approval",
+      "elapsed_seconds": 10.821429333009291
+    },
+    "cold_read_mode": "Complete pure replay of existing Phenix 2.2.1-6174 native proofs; no new native execution. Original code/input/SDK access blocked after moving code and proof trees.",
+    "storage": {
+      "library_validation_persistent_bytes": 161322,
+      "chain_validation_persistent_bytes": 84198,
+      "temporary_proof_bytes": 61068731,
+      "successful_temporary_duplicates_removed": true,
+      "original_scientific_evidence_preserved": true
+    },
+    "compatibility": "Historical linear/plane calls retain exact v1 bytes; only bond-containing chains use v2. No ordinary prepared executor/request or automatic-selection change.",
+    "limitations": [
+      "Real control validates separate exact PDU and 5PC bond-only chains; multi-stage/multi-component public selection uses synthetic native qualification fixtures.",
+      "Full derivative proof, ordinary executor/request integration and chemical survival remain open.",
+      "PDU residual propyne bending is not resolved by this record."
+    ],
+    "artifacts": {
+      "anchor": "NASolve-live-tests",
+      "path": "324_Cedar_bound-repair-chain-jat790k2",
+      "references": [
+        {
+          "path": "start.json",
+          "sha256": "86499889f0754f7442e4083497ff4c535e463add4f68a840a35c8528b8be4d94",
+          "size": 27523
+        },
+        {
+          "path": "driver-result.json",
+          "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+          "size": 78
+        },
+        {
+          "path": "summary.json",
+          "sha256": "f49d08ee0f0803f820471ff453fe24ee4b900bbe47897b444cd3743ce6701448",
+          "size": 2119
+        },
+        {
+          "path": "cold-summary.json",
+          "sha256": "378d938de4df314d1e055669eca4cebd81a20e4b93496386d4fdda2854e75851",
+          "size": 1437
+        },
+        {
+          "path": "PDU-repair-chain.json",
+          "sha256": "8d842242a7e8aa0f6c5e19cd8ad5a8a96a4f773d2a9f66d3a8b3ddda4f3dc6ff",
+          "size": 21936
+        },
+        {
+          "path": "5PC-repair-chain.json",
+          "sha256": "6cfe542637fa68232bed225204694abe53768a03ded5d2cb6fb26e54c7e3467b",
+          "size": 21936
+        }
+      ],
+      "included": "Code, tests, compact evidence and current documentation.",
+      "excluded": "Models, CIFs, reflections, raw inventories, full logs, SDK source and local runners."
+    },
+    "next": "Repair the newly observed installed replay resource gap, then integrate explicit target proposals into the existing prepared repair owner/request without changing ordinary defaults.",
+    "author": "Rowan"
   }
 }

@@ -90,7 +90,11 @@ single bonds from source connectivity, without using coordinates or residue-name
 rules. It can prepare a separate candidate changing only selected bond lengths,
 while preserving all other parameters. The comparison does not authenticate a
 supplied reference or set an acceptance threshold: independent parameter quality,
-native survival and ordinary automatic adoption remain separate work.
+native survival and ordinary automatic adoption remain separate work. The new
+reference check records which numerical library Phenix actually opened and whether
+its exact entries support the proposed correction. Explicit corrections can then
+join the existing source, derivative and verified-fallback checks. This still does
+not automatically choose a correction or establish that it survives refinement.
 Matched refinement trials now show that changing only the terminal bond target
 brings both PDU and 5PC to sensible lengths near 1.48 Å, while retaining the
 original restraint strengths, observations and Free-R flags. The previous selected

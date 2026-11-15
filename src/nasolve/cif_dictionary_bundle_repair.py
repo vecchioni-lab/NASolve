@@ -108,7 +108,7 @@ def _inspect(bundle, baseline_receipt, attribution_directory, repaired_gradient_
                   'Repair component lacks its exact source-qualified owner')
             if stage['source'] is not None:
                 source=resolve_dictionary_snapshot(root/'components'/code/'snapshot')['source']
-                _need(_read(source)==_read(stage['source']), 'Plane repair borrows a different chemical source')
+                _need(_read(source)==_read(stage['source']), 'Repair borrows a different chemical source')
             stages.extend([(stage['before_receipt'],stage['before_dictionaries']),
                            (stage['after_receipt'],stage['after_dictionaries'])])
         attributed=chain['report']['all_steps_attributed'];attribution_file=REPORT

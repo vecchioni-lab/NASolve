@@ -1,6 +1,7 @@
 """Ordered existing repair proofs, without another executor or chemical selector.
 
-An optional declared-linear chain precedes one or more owned plane completions.
+An optional declared-linear chain precedes owned plane completions and explicit
+reference-backed bond-target repairs. Historical plane chains retain v1.
 Every transition retains identical model/PHIL/consumer context and exact dictionary
 order. Source authority and derivative qualification belong to the existing selector.
 """
@@ -19,9 +20,11 @@ from .cif_linked_linear_torsion import _exact
 from .cif_mixed_geometry import _ref
 
 POLICY_ID = 'cif-ordered-source-repair-chain-v1'
+BOND_POLICY_ID = 'cif-ordered-source-repair-chain-v2'
 REPORT = 'repair_chain.json'
 ANCHOR = 'repair_chain_directory'
 MAX_PLANES = 16
+MAX_BONDS = 16
 _FIXED = dict(schema_version=1, policy_id=POLICY_ID, coordinate_selection='UNCHANGED_PREPARED_MODEL',
     source_qualification='CALLER_REQUIRED', derivative_qualification='NOT_RUN',
     automatic_adoption=False, new_native_calls=0, captured_code_execution='NOT_RUN')
@@ -41,12 +44,17 @@ def _context(entry):
 
 
 def _derive(root, controls):
-    _need(isinstance(controls,dict) and set(controls) == {'linear', 'plane_count'}
-          and type(controls['linear']) is bool and type(controls['plane_count']) is int
-          and 1 <= controls['plane_count'] <= MAX_PLANES)
-    expected={'planes'} | ({'linear'} if controls['linear'] else set())
+    _need(isinstance(controls,dict) and set(controls) in
+          ({'linear','plane_count'},{'linear','plane_count','bond_count'}))
+    bond_count=controls.get('bond_count',0);with_bonds='bond_count' in controls
+    _need(type(controls['linear']) is bool and type(controls['plane_count']) is int
+          and (0 if with_bonds else 1) <= controls['plane_count'] <= MAX_PLANES
+          and type(bond_count) is int and (1 if with_bonds else 0) <= bond_count <= MAX_BONDS)
+    expected=({'planes'} if controls['plane_count'] else set()) | ({'linear'} if controls['linear'] else set())
+    if with_bonds:expected |= {'bonds','library'}
     _need({p.name for p in root.iterdir()} - {REPORT} == expected)
-    _need({p.name for p in (root/'planes').iterdir()} == {f'{i:03d}' for i in range(controls['plane_count'])})
+    for name,count in [('planes',controls['plane_count']),('bonds',bond_count)]:
+        if count:_need({p.name for p in (root/name).iterdir()} == {f'{i:03d}' for i in range(count)})
     steps=[]; stages=[]; context=None; current=None; attributed=True
     def append(kind, code, index, before_path, after_path, source=None):
         nonlocal context, current
@@ -92,24 +100,45 @@ def _derive(root, controls):
             directory/'inputs/before/native_receipt.json',directory/'inputs/after/native_receipt.json',
             directory/'inputs/source.cif')
     _need(len(set(plane_codes)) == len(plane_codes), 'A component cannot borrow two independent plane choices')
+    if with_bonds:
+        from .cif_energy_library import qualify_bond_attribution_reference
+        consumer=_json((root/'library/spec.json').read_bytes())['consumer'];bond_codes=[]
+        for i in range(bond_count):
+            directory=root/'bonds'/f'{i:03d}'
+            binding=qualify_bond_attribution_reference(directory,root/'library',consumer=consumer)
+            code=binding['reference']['component'];bond_codes.append(code)
+            attributed &= binding['status']=='LIBRARY_BOUND_BOND_ATTRIBUTION_PASS'
+            append('source_linear_bond_target',code,binding['dictionary_index'],
+                directory/'inputs/before/native_receipt.json',directory/'inputs/after/native_receipt.json',
+                directory/'inputs/source.cif')
+        _need(len(set(bond_codes))==len(bond_codes),'A component cannot borrow two independent target choices')
     first=_inputs(stages[0]['before_receipt'].parent)
     report=dict(_FIXED,controls=controls,steps=steps,all_steps_attributed=bool(attributed),
         status='ATTRIBUTED_REPAIR_CHAIN' if attributed else 'REVIEW',
         outputs=[_ref(root/name,root,ANCHOR) for name in _tree(root) if name != REPORT],
         directories=sorted(p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_dir()))
+    if with_bonds:report['policy_id']=BOND_POLICY_ID
     return report,dict(model=first[1],phils=first[3],before_dictionaries=stages[0]['before_dictionaries'],
         after_dictionaries=stages[-1]['after_dictionaries'],stages=stages,report=report)
 
 
-def prepare_repair_chain(plane_attributions, output, *, linear_attribution=None):
+def prepare_repair_chain(plane_attributions, output, *, linear_attribution=None,
+        bond_attributions=(), energy_library=None):
     """Freeze existing proofs in explicit order; no native work or selection.
 
-    Plane-only chains are supported. No-op/linear-only work keeps its old reader.
-    Every component plane operation must already have its owned source proof.
+    Old linear/plane calls retain exact v1 output. Explicit bond stages use v2,
+    follow any planes, and share one authenticated library capture. Source
+    qualification and derivatives remain the existing selector's responsibility.
     """
-    _need(isinstance(plane_attributions,(list,tuple)) and 1 <= len(plane_attributions) <= MAX_PLANES)
+    _need(isinstance(bond_attributions,(list,tuple)) and len(bond_attributions)<=MAX_BONDS
+          and bool(bond_attributions)==(energy_library is not None), 'Bond repairs require exactly one shared library')
+    _need(isinstance(plane_attributions,(list,tuple))
+          and (0 if bond_attributions else 1) <= len(plane_attributions) <= MAX_PLANES)
     sources={f'planes/{i:03d}':_path(p,directory=True) for i,p in enumerate(plane_attributions)}
     if linear_attribution is not None: sources['linear']=_path(linear_attribution,directory=True)
+    if bond_attributions:
+        sources.update({f'bonds/{i:03d}':_path(p,directory=True) for i,p in enumerate(bond_attributions)})
+        sources['library']=_path(energy_library,directory=True)
     _need(len(set(sources.values()))==len(sources))
     output=Path(output).expanduser().absolute()
     _need(not output.exists() and not any(p.is_symlink() for p in (output,*output.parents))
@@ -120,6 +149,7 @@ def prepare_repair_chain(plane_attributions, output, *, linear_attribution=None)
     directories={name:sorted(p.relative_to(source).as_posix() for p in source.rglob('*') if p.is_dir())
                  for name,source in sources.items()}
     controls=dict(linear=linear_attribution is not None,plane_count=len(plane_attributions))
+    if bond_attributions:controls['bond_count']=len(bond_attributions)
     with TemporaryDirectory(prefix='repair-chain-') as temporary:
         staging=Path(temporary).resolve()
         for name,files in snapshots.items():
