@@ -200,7 +200,8 @@ remains unknown. Public partial routes report24 continuations and0 route seams;
 Cedar's independent source interpretation still exposes2 cut-crossing bonds outside
 those routes. No topology is inferred, phosphate edited or restraint enabled.
 The optional context binds saved preferences; old scenes remain exact. Full and
-installed validation passed; current C303 composition check is pending.
+installed validation passed; temporary installed C303 composition passes442 Willow
+and221 Cedar tests plus6 subtests, six helps and exact default-owner replay.
 
 **Next bounded work:** actual browser cut inspection, preference download and human review
 still need qualification. The new local-file attempt again hit the explicit browser
@@ -256,8 +257,8 @@ Virtual L/R recipe labels are not ordinary source-model refinement selections.
 Callback lifetime, normalization, native exclusions/LINK bookkeeping and exact
 movement masks require their own qualified consumer policy.
 
-**Compatibility:** Willow remains isolated from dirty Pine/Cedar checkouts. W65's
-temporary installed composition with published Cedar C303 `c9736e39` passes 424
+**Compatibility:** Willow remains isolated from dirty Pine/Cedar checkouts. W66's
+temporary installed composition with published Cedar C303 `c9736e39` passes 442
 Willow + 221 Cedar tests and 6 subtests, six helps and exact old/new packet/orbit/
 view/scattering/source-native/preference replay through default installed owners.
 Cedar checks cover complete-request, child-bounds, attachment-native and checkpoints.

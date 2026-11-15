@@ -700,8 +700,8 @@ Two complete Phenix2.2.1-6174 fixed-manager controls using frozen Cedar f2345a8.
 ### E_BACKBONE_INTENT — declared_backbone_intent_observation
 
 [Evidence contract](topostitch-periodic.md#w66--observe-declared-backbone-intent-across-a-cut) at [W66](https://github.com/vecchioni-lab/NASolve/commit/d042f586e7ea2427cbfc7d34b3e079a2bafecfca).
-18 new regressions; full1648 plus229subtests; installed/relocated442,six helps,lean import,3.10syntax. Exact public and old comparison replay; three JavaScript-exported preferences validate after relocation. Public partial graph has24 declared continuations and0 route seams while the independent native observer retains2 source-native out-of-route seams. Actual viewer logic passes DOM/canvas controls.
-**Limit:** No inferred partner, chemistry change, atom edit, native enforcement or scientific acceptance. Browser URL policy again refused local-file opening; no bypass and no rendered/download/human review claim. Scientific artifacts local only. Cedar C303 composition verification is pending; W65 remains the prior validated integration boundary.
+18 new regressions; full1648 plus229subtests; installed/relocated442,six helps,lean import,3.10syntax. Exact public and old comparison replay; three JavaScript-exported preferences validate after relocation. Public partial graph has24 declared continuations and0 route seams while the independent native observer retains2 source-native out-of-route seams. Actual viewer logic passes DOM/canvas controls. Temporary installed C303 composition passes442 Willow and221 Cedar tests plus6 subtests, six helps and exact default-owner public/legacy/native/intent replay.
+**Limit:** No inferred partner, chemistry change, atom edit, native enforcement or scientific acceptance. Browser URL policy again refused local-file opening; no bypass and no rendered/download/human review claim. Scientific artifacts local only. Scoped installed owner/package compatibility only; no merge or complete combined-suite qualification.
 
 ## Deferred extensions, not hidden blockers
 

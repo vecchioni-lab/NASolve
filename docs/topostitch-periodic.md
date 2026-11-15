@@ -1780,3 +1780,12 @@ and the host NASolve `.venv/bin/python`; the packaging interpreter was
 `/private/tmp/topotrace-rename-env/bin/python`. These paths are validation
 provenance only. Installed replay used the wheel's site-packages, copied tests
 and explicit relocated packet paths; it did not import the original checkout.
+
+
+W66's temporary installed composition with published Cedar C303 `c9736e39` passes
+**442 Willow + 221 Cedar tests and 6 subtests**, six helps and exact public/legacy/
+native-link/backbone-intent replay through default installed owners. The Cedar
+subset covers complete-request, child-bounds, attachment-native and checkpoints
+(311.38 s). Source/runtime asset hashes and explicit package metadata union are
+retained. This is scoped compatibility, not a merge, full combined suite or new
+native execution. Rowan's subsequent work remains separate.
