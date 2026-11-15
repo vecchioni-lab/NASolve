@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W73 recorded; next W74.** Runtime implementation is W73 `c4add34c` on isolated
+**W74 recorded; next W75.** Runtime implementation is W73 `c4add34c` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -210,7 +210,17 @@ wheel in a fresh native interpreter after relocation. The facade itself remains
 local; no native selection hook or ordinary refinement support is claimed. The
 caller must authenticate/recompute context, not merely repeat an old digest.
 
-**Next P04 work:** bind source/frame identity and explicitly handle selection,
+**W74 joint target/boundary:** 1,008 native synthetic reflections preserve Fcalc,
+work/test target and gradients across both cuts only when all 855 existing ANISOU
+tensors are also transported. Combined geometry/data derivatives pass. Initial
+isotropic-only refusal and omitted-tensor controls remain. Actual model energy
+entry agrees, but identity selection/deep_copy needs `geometry.pair_proxies`,
+which the narrow local facade deliberately lacks. Model pickle drops restraints;
+ADP and reporting consumers need their own frame semantics. No experimental data,
+ordinary refinement, ADP optimization or serialized ASU/tensor change.
+
+**Next P04 work:** specify the supported coordinate-only consumer protocol with
+Cedar, including pair tables/reporting and model-copy semantics. Bind source/frame identity and explicitly handle selection,
 reconstruction and supported coordinate/ADP/NCS/callback policies through Cedar.
 Whole-objective evaluation is promising; neither its local facade nor W71's angle
 observer qualifies ordinary refinement. Preserve P02/P03 and no-bond-alone gates.

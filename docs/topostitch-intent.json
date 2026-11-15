@@ -812,12 +812,15 @@
       }
     },
     "reference_frame_observation": {
-      "reference": "docs/topostitch-periodic.md#w72--evaluate-complete-geometry-in-a-retained-reference-frame",
+      "reference": "docs/topostitch-periodic.md#w74--check-diffraction-agreement-and-deeper-model-boundaries",
       "runtime_implemented": false,
       "scope": "complete source objective and actual mmtbx energy-entry microprobe",
       "selection_mapping_preserved": false,
       "ordinary_refinement_qualified": false,
-      "source_missing_links_repaired": false
+      "source_missing_links_repaired": false,
+      "joint_synthetic_diffraction_target_checked": true,
+      "anisotropic_transport_scope": "in-memory fixed tensors only; no ADP refinement or serialization",
+      "model_copy_pair_proxy_protocol_qualified": false
     }
   },
   "planned_diffraction_benchmark": {

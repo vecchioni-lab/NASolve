@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W73 — Keep complete source-frame bindings through explicit reindexing.** Next: W74.
+**Current update: W74 — Check joint diffraction geometry and actual model-copy boundaries.** Next: W75.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W64 | Compare explicit cuts through a shared-camera preview | RECORDED |
 | W65 | Save and reopen source-bound cut preferences | RECORDED |
 | W66 | Retain declared backbone continuation across representative cuts | RECORDED |
 | W67 | Resolve explicit representation-boundary partners | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W71 | Preserve angle images through explicit diagnostic reconstruction | RECORDED |
 | W72 | Audit complete reference-frame geometry and native entry boundaries | RECORDED |
 | W73 | Keep complete source-frame bindings through explicit reindexing | RECORDED |
+| W74 | Check joint diffraction geometry and actual model-copy boundaries | RECORDED |
 
 ## Finish lines
 
@@ -290,7 +290,7 @@ Let the scientist decide where to slice the ASU while seeing the same physical p
 
 Write a new ASU representative while preserving the physical scattering object exactly within validated numerical tolerance.
 
-**Delivered:** W55 adds a source-bound read-only sampled complex Fcalc observer with in-memory Cartesian ANISOU transport and explicit scope. Synthetic P43/R3/P21, wrong-tensor/coordinate controls and independent native allowed-reflection observations exist; no coordinate materializer or full scattering qualification. W62 proves exact labelled group-image permutations and inverse integer lattice shifts for each explicit representative, covers every source atom once and independently binds proposed coordinates. Special-position images remain a labelled multiset, not a unique physical-atom or occupancy proof; no materializer.
+**Delivered:** W55 adds a source-bound read-only sampled complex Fcalc observer with in-memory Cartesian ANISOU transport and explicit scope. Synthetic P43/R3/P21, wrong-tensor/coordinate controls and independent native allowed-reflection observations exist; no coordinate materializer or full scattering qualification. W62 proves exact labelled group-image permutations and inverse integer lattice shifts for each explicit representative, covers every source atom once and independently binds proposed coordinates. Special-position images remain a labelled multiset, not a unique physical-atom or occupancy proof; no materializer. W74 native synthetic diffraction and geometry targets agree with all855 anisotropic tensors transported in memory; source work/test values and derivatives are invariant across both cuts. Actual model copy/selection reveals an unsupported pair_proxies protocol. No ordinary refinement or tensor serialization is qualified.
 
 **Closure audit:**
 
@@ -298,15 +298,15 @@ Write a new ASU representative while preserving the physical scattering object e
 - Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap.
 
 **Next action:** Qualify P02 graphical choice/review and full physical inventory/tensor serialization before a model writer. Reuse W62 exact labelled image correspondence alongside W55 independent sampled scattering; keep special-position weights, missing content and seam chemistry explicit.
-**Evidence:** [E_REPRESENTATIVE_SCATTERING](#e_representative_scattering), [E_ORBIT_PERMUTATIONS](#e_orbit_permutations).
-**Last audit:** 2026-11-14, Linden, [W62](https://github.com/vecchioni-lab/NASolve/commit/ea27b49bdbb08f4806eb9b200d223050c46e3164); Exact labelled position orbit correspondence and floating coordinate binding; P03 remains partial without model writing, tensor serialization, physical identity or chemistry approval.
+**Evidence:** [E_REPRESENTATIVE_SCATTERING](#e_representative_scattering), [E_ORBIT_PERMUTATIONS](#e_orbit_permutations), [E_JOINT_FRAME_TARGET](#e_joint_frame_target).
+**Last audit:** 2026-11-15, Linden, [W74](https://github.com/vecchioni-lab/NASolve/commit/c4add34c3cdee0582e50efbf9f104e6b63de7698); Native synthetic joint target, in-memory fixed tensors and actual model energy/copy boundary; no physical/materialization/ordinary-refinement closure.
 
 <a id="p04"></a>
 ### P04 — Qualify seam chemistry and native interpretation
 
 Make a representation seam remain a continuous backbone where chemistry says it is continuous.
 
-**Delivered:** W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change. W66 projects declared directed backbone continuation, representation/chemical/unknown boundaries and existing phosphate inventory from replayed packets. Unresolved partners retain P/OP1/OP2 intent; OP3 conflicts are scoped to continuation, with terminal phosphate consent separate. Exact route-image transport, optional view and preference context are read-only; no new edge or native enforcement. W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement. W68 observes eight existing source-native crossing angles per explicit cut: exact image energies, rotated gradients and native energies path agree. Live source symmetry/slack are verified; native proxy pickle loses sym_ops. This narrows lifecycle qualification without enabling restraints. A follow-up native angular manager omits cell context before serialization; subset/reindexing retains images, generic deepcopy does not. W71 freezes complete live angle metadata and rebuilds private image-bearing proxies with explicit unit-cell evaluation. JSON/deepcopy/pickle and a fresh native interpreter preserve two complete 1467-angle cut evaluations. Source-manager behavior and complete seam chemistry remain unchanged. W72 observes complete source-frame objective transport, changed-neighbor cache rebuilds and mmtbx normalization/shared-gradient-buffer agreement. Identity selection drops the local facade mapping and remains a negative control; no runtime activation. W73 adds a complete immutable source/image binding and explicit full reindexing.36 local mmtbx entry controls preserve geometry through identity/reverse/cyclic orders; partial selection and changed cell refuse. This is a numerical backend component, not an installed native selection hook.
+**Delivered:** W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change. W66 projects declared directed backbone continuation, representation/chemical/unknown boundaries and existing phosphate inventory from replayed packets. Unresolved partners retain P/OP1/OP2 intent; OP3 conflicts are scoped to continuation, with terminal phosphate consent separate. Exact route-image transport, optional view and preference context are read-only; no new edge or native enforcement. W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement. W68 observes eight existing source-native crossing angles per explicit cut: exact image energies, rotated gradients and native energies path agree. Live source symmetry/slack are verified; native proxy pickle loses sym_ops. This narrows lifecycle qualification without enabling restraints. A follow-up native angular manager omits cell context before serialization; subset/reindexing retains images, generic deepcopy does not. W71 freezes complete live angle metadata and rebuilds private image-bearing proxies with explicit unit-cell evaluation. JSON/deepcopy/pickle and a fresh native interpreter preserve two complete 1467-angle cut evaluations. Source-manager behavior and complete seam chemistry remain unchanged. W72 observes complete source-frame objective transport, changed-neighbor cache rebuilds and mmtbx normalization/shared-gradient-buffer agreement. Identity selection drops the local facade mapping and remains a negative control; no runtime activation. W73 adds a complete immutable source/image binding and explicit full reindexing.36 local mmtbx entry controls preserve geometry through identity/reverse/cyclic orders; partial selection and changed cell refuse. This is a numerical backend component, not an installed native selection hook. W74 native synthetic diffraction and geometry targets agree with all855 anisotropic tensors transported in memory; source work/test values and derivatives are invariant across both cuts. Actual model copy/selection reveals an unsupported pair_proxies protocol. No ordinary refinement or tensor serialization is qualified.
 
 **Closure audit:**
 
@@ -314,9 +314,9 @@ Make a representation seam remain a continuous backbone where chemistry says it 
 - Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.
 - Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified.
 
-**Next action:** Define and audit the supported whole-objective Cedar lifecycle: freshly verify complete source/native identity, explicitly consume/rebind full frame permutations, and reject unsupported subset/rebuild/callback/ADP/NCS paths. Geometry/diffraction frame agreement and P02/P03 still precede activation/materialization.
-**Evidence:** [E_PINE_TEST_BANK](#e_pine_test_bank), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams), [E_BACKBONE_INTENT](#e_backbone_intent), [E_EXPLICIT_CONTINUATIONS](#e_explicit_continuations), [E_SEAM_ANGLE_LIFECYCLE](#e_seam_angle_lifecycle), [E_ANGLE_SNAPSHOT](#e_angle_snapshot), [E_REFERENCE_FRAME_GEOMETRY](#e_reference_frame_geometry), [E_REFERENCE_FRAME_BINDING](#e_reference_frame_binding).
-**Last audit:** 2026-11-15, Linden, [W73](https://github.com/vecchioni-lab/NASolve/commit/c4add34c3cdee0582e50efbf9f104e6b63de7698); Complete numerical frame binding and explicit full permutations; ordinary native lifecycle, source mutation detection and chemistry remain separately owned/unqualified.
+**Next action:** With Cedar, specify the supported coordinate-only model consumer protocol: source/frame/native identity, full model copy/selection, pair tables/reporting and normalization; explicitly refuse unsupported ADP/TLS/NCS/callback/cell/rebuild paths. Then qualify ordinary fresh-process entry and matched refinement, without bypassing P02/P03.
+**Evidence:** [E_PINE_TEST_BANK](#e_pine_test_bank), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams), [E_BACKBONE_INTENT](#e_backbone_intent), [E_EXPLICIT_CONTINUATIONS](#e_explicit_continuations), [E_SEAM_ANGLE_LIFECYCLE](#e_seam_angle_lifecycle), [E_ANGLE_SNAPSHOT](#e_angle_snapshot), [E_REFERENCE_FRAME_GEOMETRY](#e_reference_frame_geometry), [E_REFERENCE_FRAME_BINDING](#e_reference_frame_binding), [E_JOINT_FRAME_TARGET](#e_joint_frame_target).
+**Last audit:** 2026-11-15, Linden, [W74](https://github.com/vecchioni-lab/NASolve/commit/c4add34c3cdee0582e50efbf9f104e6b63de7698); Native synthetic joint target, in-memory fixed tensors and actual model energy/copy boundary; no physical/materialization/ordinary-refinement closure.
 
 <a id="p05"></a>
 ### P05 — Complete the persistent Pine surgery/refine GUI loop
@@ -751,6 +751,13 @@ Two cuts cross2 bonds/8 angles/6 torsions. Complete Phenix2.2.1-6174 source-fram
 [Evidence contract](topostitch-periodic.md#w73--retain-complete-frame-bindings-through-explicit-reindexing) at [W73](https://github.com/vecchioni-lab/NASolve/commit/c4add34c3cdee0582e50efbf9f104e6b63de7698).
 Immutable ReferenceFrame retains complete source labels/images/context and full permutations.12 new regressions; focused113; full1727 +229; installed521. Actual local mmtbx facade passes36 identity/reverse/cyclic entry cases and refuses partial/duplicate selection and cell drift before evaluation. Installed fresh-native reload survives relocation. Virtual Cedar393aea60 composition640 +16 passes including43 new Cedar reference tests.
 **Limit:** Caller authenticates/recomputes context and verifies crystal operations; numerical matrices are not standalone crystallographic proof. No native selection hook, subset/rebuild/ADP/NCS support, ordinary refinement, model materialization or complete scientific acceptance. Seven doc conflicts; no actual merge/full combined suite. Generated science local.
+
+<a id="e_joint_frame_target"></a>
+### E_JOINT_FRAME_TARGET — native_synthetic_joint_target_and_model_boundary_diagnostic
+
+[Evidence contract](topostitch-periodic.md#w74--check-diffraction-agreement-and-deeper-model-boundaries) at [W74](https://github.com/vecchioni-lab/NASolve/commit/c4add34c3cdee0582e50efbf9f104e6b63de7698).
+Phenix2.2.1-6174 direct synthetic1008-reflection target with855 transported anisotropic tensors preserves Fcalc, target, work/test R and rotated gradients across both cuts. Joint geometry/data directional derivatives pass. Actual model energy entry matches; identity selection/deep_copy explicitly refuse the missing pair_proxies protocol.
+**Limit:** First isotropic-only guard failure and omitted-tensor negative control retained. No experimental reflection/Free-R changes, ADP refinement, serialization, optimization or ordinary refinement. Partial selections, model-copy/pair-table reporting, ADP/NCS/callback/rebuild protocols remain open. W73 runtime/test baseline unchanged; science local.
 
 ## Deferred extensions, not hidden blockers
 

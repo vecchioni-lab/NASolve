@@ -2316,3 +2316,73 @@ virtual composition with Cedar `393aea60`: **640 + 16 subtests**, including the
 43 new Cedar numerical-reference tests, six helps and exact old/new default-owner
 native/packet/graph replay. Seven documentation conflicts remain, zero source
 conflicts; no branch merge or full combined-suite claim.
+
+
+## W74 — Check diffraction agreement and deeper model boundaries
+
+A complete native diagnostic extends W73 to the actual
+`mmtbx.model.manager.restraints_manager_energies_sites` entry and to a synthetic
+`mmtbx.f_model` least-squares target. It uses **1,008 calculated reflections to
+6 Å**, neutral `wk1995` scattering, direct structure factors, zero solvent scale,
+fixed deterministic synthetic amplitude perturbations and fixed synthetic test
+flags. **No experimental reflection data or existing Free-R flags are used or
+changed.** These synthetic R factors measure representation agreement, not repair
+or experimental improvement. Geometry weight `1e-6` is a declared arithmetic-test
+weight, not a proposed refinement calibration.
+
+The first attempt correctly stops at an isotropic-only guard: **all 855 source
+atoms carry anisotropic displacement tensors**. Its failure remains. The second
+attempt rotates the existing tensors in memory by the same `R U R^T` rule as W55
+(expressed natively as fractional `U_star` congruence), preserving flags and other
+scattering parameters. ADPs are not refined and no coordinate/tensor file is written.
+
+| Native observation | Cut 1 | Cut 21 |
+| --- | ---: | ---: |
+| Largest complex Fcalc difference | 1.61e-11 | 9.84e-12 |
+| Largest diffraction-gradient discrepancy | 9.42e-18 | 4.31e-18 |
+| Largest joint-target directional error | 3.84e-12 | 1.94e-12 |
+| Fcalc discrepancy if tensor rotation is omitted | 363.27 | 340.97 |
+
+Three directions at steps 1e-4/1e-5 Å pass the predeclared joint-target derivative
+bound of 1e-6. Synthetic work/test R factors agree within 1e-10. Native model-level
+coordinate-energy calls also reproduce the already checked restraint-manager
+values. This is **Phenix 2.2.1-6174** execution, not optimization or ordinary
+refinement; anisotropic-parameter derivatives and serialized tensors remain open.
+
+Both actual model identity selection and `deep_copy` hit a new explicit boundary:
+`model.select` immediately calls `geometry.pair_proxies` after selecting its
+restraints. The narrow experimental facade deliberately has no such forwarding
+method, so both operations refuse. Merely returning source-frame pair tables to
+consumers using representative coordinates would not establish correct distances,
+indices, exclusions or `.geo` reporting. Also, `model.select(flex.size_t(...))`
+converts indices to a boolean selection: W73's lower-level full permutation test
+must not be described as a model-level reorder.
+
+Pinned installed source additionally shows:
+
+- Coordinate minimization consumes the model energy entry and adds its Cartesian
+  gradient to the diffraction gradient; this joint-frame arithmetic is now tested.
+- ADP weighting/restraints directly consume geometry pair tables and the x-ray
+  structure. They remain outside the tested coordinate-only scope.
+- Model `deep_copy` uses selection. Model pickle deliberately removes its
+  restraints manager; reloading ordinary model state therefore needs explicit
+  source-context reconstruction, even if plain frame data themselves survive.
+- Weight shaking, geometry minimization, native geometry reporting and auxiliary
+  managers have further direct geometry consumers. They need an explicit supported
+  protocol, not unrestricted attribute forwarding.
+
+**Next bounded integration gate:** inventory the precise coordinate-only consumer
+protocol with Cedar; bind current model/source/frame identities and native effective
+parameters, handle supported model copy/selection and pair-table/reporting semantics,
+and refuse unsupported partial selection, callbacks, NCS, ADP/TLS, cell changes and
+rebuilds before evaluation. Then qualify a fresh-process ordinary entry and matched
+refinement control. Keep physical gaps, missing intended links and P02/P03/human
+review separate. A passing synthetic joint target is not an installation-ready
+refinement adapter or permission to materialize an ASU.
+
+W74 changes evidence/docs only; runtime remains W73 and its full/install/combined
+validation remains applicable. Both local attempts, exact scripts and native source
+hashes are retained. Some preparation/execution metadata inherited older angle-probe
+wording; local scope/provenance addenda identify that wording and the actual executed
+scripts/results without rewriting the original evidence. No scientific payloads are
+committed or uploaded.

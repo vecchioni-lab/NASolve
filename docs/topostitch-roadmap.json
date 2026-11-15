@@ -490,7 +490,8 @@
       "goal": "Write a new ASU representative while preserving the physical scattering object exactly within validated numerical tolerance.",
       "delivered": [
         "W55 adds a source-bound read-only sampled complex Fcalc observer with in-memory Cartesian ANISOU transport and explicit scope. Synthetic P43/R3/P21, wrong-tensor/coordinate controls and independent native allowed-reflection observations exist; no coordinate materializer or full scattering qualification.",
-        "W62 proves exact labelled group-image permutations and inverse integer lattice shifts for each explicit representative, covers every source atom once and independently binds proposed coordinates. Special-position images remain a labelled multiset, not a unique physical-atom or occupancy proof; no materializer."
+        "W62 proves exact labelled group-image permutations and inverse integer lattice shifts for each explicit representative, covers every source atom once and independently binds proposed coordinates. Special-position images remain a labelled multiset, not a unique physical-atom or occupancy proof; no materializer.",
+        "W74 native synthetic diffraction and geometry targets agree with all855 anisotropic tensors transported in memory; source work/test values and derivatives are invariant across both cuts. Actual model copy/selection reveals an unsupported pair_proxies protocol. No ordinary refinement or tensor serialization is qualified."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
@@ -499,14 +500,15 @@
       "next_action": "Qualify P02 graphical choice/review and full physical inventory/tensor serialization before a model writer. Reuse W62 exact labelled image correspondence alongside W55 independent sampled scattering; keep special-position weights, missing content and seam chemistry explicit.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
-        "E_ORBIT_PERMUTATIONS"
+        "E_ORBIT_PERMUTATIONS",
+        "E_JOINT_FRAME_TARGET"
       ],
       "last_audit": {
-        "date": "2026-11-14",
-        "code_commit": "ea27b49bdbb08f4806eb9b200d223050c46e3164",
+        "date": "2026-11-15",
+        "code_commit": "c4add34c3cdee0582e50efbf9f104e6b63de7698",
         "reviewer": "Linden",
-        "human_update": 62,
-        "scope": "Exact labelled position orbit correspondence and floating coordinate binding; P03 remains partial without model writing, tensor serialization, physical identity or chemistry approval"
+        "human_update": 74,
+        "scope": "Native synthetic joint target, in-memory fixed tensors and actual model energy/copy boundary; no physical/materialization/ordinary-refinement closure"
       }
     },
     {
@@ -525,14 +527,15 @@
         "W68 observes eight existing source-native crossing angles per explicit cut: exact image energies, rotated gradients and native energies path agree. Live source symmetry/slack are verified; native proxy pickle loses sym_ops. This narrows lifecycle qualification without enabling restraints. A follow-up native angular manager omits cell context before serialization; subset/reindexing retains images, generic deepcopy does not.",
         "W71 freezes complete live angle metadata and rebuilds private image-bearing proxies with explicit unit-cell evaluation. JSON/deepcopy/pickle and a fresh native interpreter preserve two complete 1467-angle cut evaluations. Source-manager behavior and complete seam chemistry remain unchanged.",
         "W72 observes complete source-frame objective transport, changed-neighbor cache rebuilds and mmtbx normalization/shared-gradient-buffer agreement. Identity selection drops the local facade mapping and remains a negative control; no runtime activation.",
-        "W73 adds a complete immutable source/image binding and explicit full reindexing.36 local mmtbx entry controls preserve geometry through identity/reverse/cyclic orders; partial selection and changed cell refuse. This is a numerical backend component, not an installed native selection hook."
+        "W73 adds a complete immutable source/image binding and explicit full reindexing.36 local mmtbx entry controls preserve geometry through identity/reverse/cyclic orders; partial selection and changed cell refuse. This is a numerical backend component, not an installed native selection hook.",
+        "W74 native synthetic diffraction and geometry targets agree with all855 anisotropic tensors transported in memory; source work/test values and derivatives are invariant across both cuts. Actual model copy/selection reveals an unsupported pair_proxies protocol. No ordinary refinement or tensor serialization is qualified."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "Define and audit the supported whole-objective Cedar lifecycle: freshly verify complete source/native identity, explicitly consume/rebind full frame permutations, and reject unsupported subset/rebuild/callback/ADP/NCS paths. Geometry/diffraction frame agreement and P02/P03 still precede activation/materialization.",
+      "next_action": "With Cedar, specify the supported coordinate-only model consumer protocol: source/frame/native identity, full model copy/selection, pair tables/reporting and normalization; explicitly refuse unsupported ADP/TLS/NCS/callback/cell/rebuild paths. Then qualify ordinary fresh-process entry and matched refinement, without bypassing P02/P03.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
@@ -541,14 +544,15 @@
         "E_SEAM_ANGLE_LIFECYCLE",
         "E_ANGLE_SNAPSHOT",
         "E_REFERENCE_FRAME_GEOMETRY",
-        "E_REFERENCE_FRAME_BINDING"
+        "E_REFERENCE_FRAME_BINDING",
+        "E_JOINT_FRAME_TARGET"
       ],
       "last_audit": {
         "date": "2026-11-15",
         "code_commit": "c4add34c3cdee0582e50efbf9f104e6b63de7698",
         "reviewer": "Linden",
-        "human_update": 73,
-        "scope": "Complete numerical frame binding and explicit full permutations; ordinary native lifecycle, source mutation detection and chemistry remain separately owned/unqualified"
+        "human_update": 74,
+        "scope": "Native synthetic joint target, in-memory fixed tensors and actual model energy/copy boundary; no physical/materialization/ordinary-refinement closure"
       }
     },
     {
@@ -1027,6 +1031,14 @@
       "reference": "docs/topostitch-periodic.md#w73--retain-complete-frame-bindings-through-explicit-reindexing",
       "result": "Immutable ReferenceFrame retains complete source labels/images/context and full permutations.12 new regressions; focused113; full1727 +229; installed521. Actual local mmtbx facade passes36 identity/reverse/cyclic entry cases and refuses partial/duplicate selection and cell drift before evaluation. Installed fresh-native reload survives relocation. Virtual Cedar393aea60 composition640 +16 passes including43 new Cedar reference tests.",
       "limitation": "Caller authenticates/recomputes context and verifies crystal operations; numerical matrices are not standalone crystallographic proof. No native selection hook, subset/rebuild/ADP/NCS support, ordinary refinement, model materialization or complete scientific acceptance. Seven doc conflicts; no actual merge/full combined suite. Generated science local."
+    },
+    "E_JOINT_FRAME_TARGET": {
+      "kind": "native_synthetic_joint_target_and_model_boundary_diagnostic",
+      "code_commit": "c4add34c3cdee0582e50efbf9f104e6b63de7698",
+      "human_update": 74,
+      "reference": "docs/topostitch-periodic.md#w74--check-diffraction-agreement-and-deeper-model-boundaries",
+      "result": "Phenix2.2.1-6174 direct synthetic1008-reflection target with855 transported anisotropic tensors preserves Fcalc, target, work/test R and rotated gradients across both cuts. Joint geometry/data directional derivatives pass. Actual model energy entry matches; identity selection/deep_copy explicitly refuse the missing pair_proxies protocol.",
+      "limitation": "First isotropic-only guard failure and omitted-tensor negative control retained. No experimental reflection/Free-R changes, ADP refinement, serialization, optimization or ordinary refinement. Partial selections, model-copy/pair-table reporting, ADP/NCS/callback/rebuild protocols remain open. W73 runtime/test baseline unchanged; science local."
     }
   },
   "benchmarks": [
@@ -1142,8 +1154,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 73,
-    "next": 74,
+    "current": 74,
+    "next": 75,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1389,6 +1401,12 @@
       {
         "number": 73,
         "title": "Keep complete source-frame bindings through explicit reindexing",
+        "state": "RECORDED",
+        "code_commit": "c4add34c3cdee0582e50efbf9f104e6b63de7698"
+      },
+      {
+        "number": 74,
+        "title": "Check joint diffraction geometry and actual model-copy boundaries",
         "state": "RECORDED",
         "code_commit": "c4add34c3cdee0582e50efbf9f104e6b63de7698"
       }

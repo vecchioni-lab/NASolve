@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W74 — Check joint diffraction/geometry and model-copy boundaries
+
+- Record native synthetic-target agreement with explicit anisotropic tensor
+  transport, retaining the isotropic-guard and omitted-tensor controls.
+- Identify actual model-copy/pair-table and ADP consumers beyond the energy entry.
+  No runtime, chemistry, model materialization or ordinary refinement change.
+
 ### W73 — Keep complete coordinate-frame bindings through explicit reindexing
 
 - Add an immutable complete-model `ReferenceFrame` to the existing transport core.
