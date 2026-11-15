@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W72 recorded; next W73.** Runtime implementation is W71 `0e8e6298` on isolated
+**W73 recorded; next W74.** Runtime implementation is W73 `c4add34c` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -173,14 +173,14 @@ source energy/rotated gradients and predeclared directional checks agree. This i
 read-only and must not be added to an objective already containing those angles.
 No source manager, native installation, chemistry or refinement is changed.
 
-**Code validation:** full Willow **1,715 + 229 subtests**; installed/relocated
-**509**, six helps, lean import and Python 3.10 syntax. Old/new packets and graph
+**Code validation:** full Willow **1,727 + 229 subtests**; installed/relocated
+**521**, six helps, lean import and Python 3.10 syntax. Old/new packets and graph
 replay stay exact with original paths blocked. Initial missing-Gemmi and native
 Python/NumPy ABI environment failures are retained; correctly isolated checks pass.
 
-Installed virtual composition with published Cedar `dca8ee82` passes
-**585 + 16 subtests** (509 TopoStitch plus 76 combined autorefine/refinement-runtime/
-parallelity), six helps and exact default-owner native/packet/graph replay.
+Installed virtual composition with published Cedar `393aea60` passes
+**640 + 16 subtests** (521 TopoStitch, 76 combined autorefine/refinement-runtime/
+parallelity and 43 Cedar numerical-reference checks), six helps and exact default-owner native/packet/graph replay.
 Seven documentation conflicts and zero source conflicts remain. No actual merge,
 full combined suite or ordinary native refinement qualification is claimed.
 
@@ -201,6 +201,14 @@ two bonds/eight angles/six torsions. Twelve actual mmtbx energy-entry controls p
 normalization and gradient-buffer combinations. A local facade's identity selection
 **drops its mapping** and remains a demonstrated failure. No runtime hook or
 ordinary refinement was installed; a recut PDB alone lacks this geometry context.
+
+**W73 binding component:** immutable `ReferenceFrame` keeps complete source labels,
+proper numerical images and caller-owned context through explicit full permutations.
+The local mmtbx facade now passes 36 identity/reverse/cyclic cases; partial selection
+and actual cell drift refuse before evaluation. Plain frames reopen from the installed
+wheel in a fresh native interpreter after relocation. The facade itself remains
+local; no native selection hook or ordinary refinement support is claimed. The
+caller must authenticate/recompute context, not merely repeat an old digest.
 
 **Next P04 work:** bind source/frame identity and explicitly handle selection,
 reconstruction and supported coordinate/ADP/NCS/callback policies through Cedar.

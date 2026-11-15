@@ -4,7 +4,7 @@
   "updated": "2026-11-15",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "0e8e62986158f8b4373506c5ea34baece223621f",
+  "audited_code_commit": "c4add34c3cdee0582e50efbf9f104e6b63de7698",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -524,14 +524,15 @@
         "W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement.",
         "W68 observes eight existing source-native crossing angles per explicit cut: exact image energies, rotated gradients and native energies path agree. Live source symmetry/slack are verified; native proxy pickle loses sym_ops. This narrows lifecycle qualification without enabling restraints. A follow-up native angular manager omits cell context before serialization; subset/reindexing retains images, generic deepcopy does not.",
         "W71 freezes complete live angle metadata and rebuilds private image-bearing proxies with explicit unit-cell evaluation. JSON/deepcopy/pickle and a fresh native interpreter preserve two complete 1467-angle cut evaluations. Source-manager behavior and complete seam chemistry remain unchanged.",
-        "W72 observes complete source-frame objective transport, changed-neighbor cache rebuilds and mmtbx normalization/shared-gradient-buffer agreement. Identity selection drops the local facade mapping and remains a negative control; no runtime activation."
+        "W72 observes complete source-frame objective transport, changed-neighbor cache rebuilds and mmtbx normalization/shared-gradient-buffer agreement. Identity selection drops the local facade mapping and remains a negative control; no runtime activation.",
+        "W73 adds a complete immutable source/image binding and explicit full reindexing.36 local mmtbx entry controls preserve geometry through identity/reverse/cyclic orders; partial selection and changed cell refuse. This is a numerical backend component, not an installed native selection hook."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "Qualify source/frame identity and explicit selection/reconstruction for a whole-objective Cedar adapter; keep native angle snapshot as independent evidence. Reject lost mappings and unknown callback/ADP/NCS policies; no driver activation or ASU materialization before remaining gates.",
+      "next_action": "Define and audit the supported whole-objective Cedar lifecycle: freshly verify complete source/native identity, explicitly consume/rebind full frame permutations, and reject unsupported subset/rebuild/callback/ADP/NCS paths. Geometry/diffraction frame agreement and P02/P03 still precede activation/materialization.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
@@ -539,14 +540,15 @@
         "E_EXPLICIT_CONTINUATIONS",
         "E_SEAM_ANGLE_LIFECYCLE",
         "E_ANGLE_SNAPSHOT",
-        "E_REFERENCE_FRAME_GEOMETRY"
+        "E_REFERENCE_FRAME_GEOMETRY",
+        "E_REFERENCE_FRAME_BINDING"
       ],
       "last_audit": {
         "date": "2026-11-15",
-        "code_commit": "0e8e62986158f8b4373506c5ea34baece223621f",
+        "code_commit": "c4add34c3cdee0582e50efbf9f104e6b63de7698",
         "reviewer": "Linden",
-        "human_update": 72,
-        "scope": "Complete native reference-frame diagnostic and actual energy-entry microprobe; selection and ordinary lifecycle remain unqualified"
+        "human_update": 73,
+        "scope": "Complete numerical frame binding and explicit full permutations; ordinary native lifecycle, source mutation detection and chemistry remain separately owned/unqualified"
       }
     },
     {
@@ -1017,6 +1019,14 @@
       "reference": "docs/topostitch-periodic.md#w72--evaluate-complete-geometry-in-a-retained-reference-frame",
       "result": "Two cuts cross2 bonds/8 angles/6 torsions. Complete Phenix2.2.1-6174 source-frame objective/gradient transport agrees through perturbations and forced neighbor rebuilds with changed membership. Actual mmtbx energy entry passes12 gradient/normalization/shared-buffer cases; source definitions unchanged.",
       "limitation": "Local diagnostic facade only; identity selection demonstrably drops mapping. No installed/runtime change, ordinary refinement, ADP/NCS/rebuild qualification, missing-link repair, materialization or diffraction improvement. W71 remains code/test baseline; scientific evidence local."
+    },
+    "E_REFERENCE_FRAME_BINDING": {
+      "kind": "complete_frame_binding_and_native_reindex_diagnostic",
+      "code_commit": "c4add34c3cdee0582e50efbf9f104e6b63de7698",
+      "human_update": 73,
+      "reference": "docs/topostitch-periodic.md#w73--retain-complete-frame-bindings-through-explicit-reindexing",
+      "result": "Immutable ReferenceFrame retains complete source labels/images/context and full permutations.12 new regressions; focused113; full1727 +229; installed521. Actual local mmtbx facade passes36 identity/reverse/cyclic entry cases and refuses partial/duplicate selection and cell drift before evaluation. Installed fresh-native reload survives relocation. Virtual Cedar393aea60 composition640 +16 passes including43 new Cedar reference tests.",
+      "limitation": "Caller authenticates/recomputes context and verifies crystal operations; numerical matrices are not standalone crystallographic proof. No native selection hook, subset/rebuild/ADP/NCS support, ordinary refinement, model materialization or complete scientific acceptance. Seven doc conflicts; no actual merge/full combined suite. Generated science local."
     }
   },
   "benchmarks": [
@@ -1132,8 +1142,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 72,
-    "next": 73,
+    "current": 73,
+    "next": 74,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1375,6 +1385,12 @@
         "title": "Audit complete reference-frame geometry and native entry boundaries",
         "state": "RECORDED",
         "code_commit": "0e8e62986158f8b4373506c5ea34baece223621f"
+      },
+      {
+        "number": 73,
+        "title": "Keep complete source-frame bindings through explicit reindexing",
+        "state": "RECORDED",
+        "code_commit": "c4add34c3cdee0582e50efbf9f104e6b63de7698"
       }
     ]
   }

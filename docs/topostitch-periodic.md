@@ -2309,3 +2309,10 @@ unqualified. Future Cedar integration must deliberately consume/rebind this
 mapping, preserve complete source identity and refuse unsupported lifecycle paths.
 Existing runtime behavior and schemas remain unchanged; generated science stays
 local and outside Git.
+
+
+W73 runtime `c4add34c3cdee0582e50efbf9f104e6b63de7698` also passes an installed
+virtual composition with Cedar `393aea60`: **640 + 16 subtests**, including the
+43 new Cedar numerical-reference tests, six helps and exact old/new default-owner
+native/packet/graph replay. Seven documentation conflicts remain, zero source
+conflicts; no branch merge or full combined-suite claim.
