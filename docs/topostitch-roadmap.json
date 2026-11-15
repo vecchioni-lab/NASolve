@@ -493,7 +493,8 @@
         "W62 proves exact labelled group-image permutations and inverse integer lattice shifts for each explicit representative, covers every source atom once and independently binds proposed coordinates. Special-position images remain a labelled multiset, not a unique physical-atom or occupancy proof; no materializer.",
         "W74 native synthetic diffraction and geometry targets agree with all855 anisotropic tensors transported in memory; source work/test values and derivatives are invariant across both cuts. Actual model copy/selection reveals an unsupported pair_proxies protocol. No ordinary refinement or tensor serialization is qualified.",
         "W80 binds complete Cartesian tensor transport to the same source labels/context/full permutation as coordinates and reuses the rotation in existing ANISOU previews. Installed native two-cut/three-order Fcalc and tensor controls pass; physical inventory and serialization remain separate gates.",
-        "W82 replays an exactly pinned saved preview into the existing complete numerical ReferenceFrame, preserving source identity/order and unchanged context atoms; no model writer or child rebinding."
+        "W82 replays an exactly pinned saved preview into the existing complete numerical ReferenceFrame, preserving source identity/order and unchanged context atoms; no model writer or child rebinding.",
+        "W83 native synthetic special-position/partial-occupancy controls preserve the supplied labelled scattering object and fresh native multiplicity/weights in three settings and orders; source scientific validity remains separate."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
@@ -505,14 +506,15 @@
         "E_ORBIT_PERMUTATIONS",
         "E_JOINT_FRAME_TARGET",
         "E_BOUND_TENSOR_TRANSPORT",
-        "E_SAVED_FRAME_BINDING"
+        "E_SAVED_FRAME_BINDING",
+        "E_SPECIAL_POSITION_SCATTERING"
       ],
       "last_audit": {
         "date": "2026-11-15",
         "code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5",
         "reviewer": "Linden",
-        "human_update": 82,
-        "scope": "Saved-preview frame binding, full Willow and installed/relocated validation; no materializer or scientific closure"
+        "human_update": 83,
+        "scope": "Native fresh-table special-position/mixed-ADP preservation; no serialized writer or source scientific acceptance"
       }
     },
     {
@@ -567,7 +569,7 @@
         "code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5",
         "reviewer": "Linden",
         "human_update": 82,
-        "scope": "Whole-process boundary candidate agreed; combined full audit pending, no native workflow or seam qualification"
+        "scope": "Whole-process boundary candidate; full combined audit retains installed historical-reader resource gap, no seam/runtime qualification"
       }
     },
     {
@@ -1104,12 +1106,12 @@
       "limitation": "Arithmetic and complete in-memory diagnostic only; caller owns fractional conversion, ADP presence/flags and physical validation. No new writer/schema, ADP optimization, experimental data, model materialization or ordinary recut refinement. Scientific evidence local; P03/P04 remain partial."
     },
     "E_COMBINED_FULL_AUDIT": {
-      "kind": "installed_combined_audit_in_progress",
+      "kind": "installed_combined_audit_with_explicit_limitations",
       "code_commit": "cc9fe96d456f9c3fbbf819e9afe7541f03aec361",
       "human_update": 81,
       "reference": "docs/topostitch-periodic.md#w81--audit-the-combined-installation-and-narrow-the-pine-boundary",
-      "result": "Frozen Willow2a76967c + Cedar dc82aee1 virtual tree6414a2c8 builds/installs and main pytest imports isolated wheel after original build relocation. Full unfiltered suite is still running; no pass claimed. Whole-process computational-frame/derived-view candidate agreed with Cedar.",
-      "limitation": "Full/replay/CLI results pending; C323 excluded. Seven documentation conflicts, no real merge. No native workflow activation, physical repair or standalone recut-refinement qualification."
+      "result": "Frozen Willow2a76967c + Cedar dc82aee1 full installed virtual audit:4failed,11109passed+284subtests. Two source-test assumptions and two default historical-reader resource failures diagnosed. Affected source modules90+20pass; explicit historical runtime-source installed C62/C63 replay passes with originals/processes blocked. Exact old/new graph/native-link/packing replay and six helps pass. Eight separate installed Phenix2.2.1-6174 cross-setting Fcalc/tensor cases pass.",
+      "limitation": "Default installed canonical-frame resource gap remains Cedar-owned. Original full failures retained; no full combined rerun or green full claim. C323/W82 excluded from pin; seven documentation conflicts and no actual merge. No native workflow activation, writer, physical repair or recut-refinement qualification."
     },
     "E_SAVED_FRAME_BINDING": {
       "kind": "replayed_preview_to_complete_numerical_reference_frame",
@@ -1117,7 +1119,15 @@
       "human_update": 82,
       "reference": "docs/topostitch-periodic.md#w82--bind-numerical-frames-to-immutable-saved-previews",
       "result": "Exactly pinned immutable preview compiles complete identity/image frame including unchanged context.12 fail-before regressions; focused99; full1781 +229; installed/relocated680; six helps/lean imports/Python3.10 syntax. Both855-atom old/new packets reproduce exactly in three orders with original paths blocked.",
-      "limitation": "Receipt context is preview identity, not native policy/checkpoint lineage. No writer, changed-child rebind, edit import, chemistry/refinement activation or new packet schema. Physical/scattering and P02/P03/P04 gates remain. W81 combined full build predates this runtime and is separately pending."
+      "limitation": "Receipt context is preview identity, not native policy/checkpoint lineage. No writer, changed-child rebind, edit import, chemistry/refinement activation or new packet schema. Physical/scattering and P02/P03/P04 gates remain. W81 combined full build predates this runtime and retains the installed historical-reader limitation."
+    },
+    "E_SPECIAL_POSITION_SCATTERING": {
+      "kind": "native_fresh_symmetry_table_scattering_preservation",
+      "code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5",
+      "human_update": 83,
+      "reference": "docs/topostitch-periodic.md#w83--preserve-the-labelled-scattering-object-at-special-positions",
+      "result": "Installed Phenix2.2.1-6174 complete synthetic C2/R3:H/P4 diagnostic:five mixed-ADP/partial/zero-occupancy scatterers, coincident separately labelled special-position atoms, three orders. Nine cases preserve native multiplicity/weights/flags and Fcalc<=7.62e-13 with freshly reconstructed target symmetry tables. Dropped-label, omitted-tensor and overwritten-occupancy controls fail strongly; source unchanged.",
+      "limitation": "Full-precision in-memory supplied-scattering-object preservation only; no source physical/chemical validity, unique molecular identity, classification-tolerance boundary, serialization, refinement or writer. Source runtime/schema unchanged; W82full/install baseline. P02/P03/P04 remain partial; science stays local."
     }
   },
   "benchmarks": [
@@ -1233,8 +1243,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 82,
-    "next": 83,
+    "current": 83,
+    "next": 84,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1534,6 +1544,12 @@
       {
         "number": 82,
         "title": "Bind numerical frames to immutable saved previews",
+        "state": "RECORDED",
+        "code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5"
+      },
+      {
+        "number": 83,
+        "title": "Preserve labelled scattering at special positions",
         "state": "RECORDED",
         "code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5"
       }

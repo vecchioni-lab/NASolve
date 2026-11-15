@@ -993,6 +993,17 @@
       "changed_child_rebinding": false,
       "external_edit_import": false,
       "runtime_authority": false
+    },
+    "source_validity_distinct_from_representation_preservation": true,
+    "special_position_preservation_diagnostic": {
+      "human_update": 83,
+      "reference": "docs/topostitch-periodic.md#w83--preserve-the-labelled-scattering-object-at-special-positions",
+      "native_version": "Phenix2.2.1-6174",
+      "cases": "C2/R3:H/P4; five synthetic scatterers, three complete orders",
+      "fresh_native_target_symmetry_tables": true,
+      "labelled_multiplicity_occupancies_and_adp_flags_preserved": true,
+      "source_scientific_validity_approved": false,
+      "serialization_or_refinement_qualified": false
     }
   }
 }

@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W83 — Separate scattering preservation from source scientific validity
+
+- Record complete native special-position, partial/zero-occupancy and mixed-ADP
+  controls with freshly constructed target symmetry tables and retained labels.
+- Preserve the distinction between equivalent representatives and scientifically
+  valid source content. No runtime, schema, model writer or refinement changes.
+
 ### W82 — Bind numerical frames to immutable saved previews
 
 - Replay an explicitly pinned preview before compiling its complete source-order
@@ -29,7 +36,8 @@ entries are reconstructed from repository history.
 ### W81 — Record combined validation and a narrower Pine integration candidate
 
 - Pin a fresh combined Willow/Cedar installation for an unfiltered full audit;
-  the full result is pending and does not yet qualify compatibility.
+  the full run records four failures, with source-test assumptions separated
+  from a real installed historical-reader resource gap assigned to Cedar.
 - Prefer evaluating one native computational frame with explicitly bound derived
   views before an in-engine adapter. Changed children and external edits need
   fresh checked binding; no runtime workflow or repair is enabled.

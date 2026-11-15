@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W82 recorded; next W83.** Latest runtime implementation is W82 `e570d15f` on isolated
+**W83 recorded; next W84.** Latest runtime implementation is W82 `e570d15f` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -271,10 +271,15 @@ installed/relocated 668 pass. Installed native checks preserve all 855 tensors a
 omitted rotation fails strongly. ADP flags/physical validity, fractional conversion
 and serialization remain caller-owned; no new ASU export or refinement support.
 
-**W81 validation remains active:** the unfiltered full installed virtual build
-pins Willow2a76967c + Cedar dc82aee1; zero source/seven documentation conflicts,
-no real merge. Build/import/relocation pass, full/replay/CLI results pending.
-C323 and W82 are outside that pin. Do not claim a complete combined pass yet.
+**W81 combined audit completed with limitations:** the unfiltered full installed
+virtual build pins Willow2a76967c + Cedar dc82aee1:4 failed,11,109 passed +284
+subtests. Two source-only test assumptions and two genuine default installed
+historical-reader resource failures are distinguished. All90 affected source tests
++20 subtests pass; explicit historical runtime-source installed C62/C63 replay,
+old/new native/packing replay and six helps pass. Cedar owns the missing packaged
+canonical frame. Do not call the original full run green; no full rerun or actual
+merge. C323/W82 are outside that pin. Eight tiny installed native cross-setting
+Fcalc/tensor controls pass separately; no refinement.
 
 **W82 saved-frame boundary:** exact receipt pinning and ordinary immutable preview
 replay now produce the existing complete numerical ReferenceFrame. All source
@@ -282,6 +287,13 @@ identity/context atoms are retained; compiled positions must reproduce the packe
 Twelve fail-before controls, focused99, full1,781 +229 and installed680 pass; both
 855-atom saved cuts reproduce exactly in three orders after relocation. No schema,
 CLI, writer, native hook or changed-child/import authority is added.
+
+**W83 special-position preservation:** nine complete synthetic Phenix2.2.1-6174
+cases in C2/R3:H/P4 use fresh target symmetry tables and retain separately labelled
+coincident atoms, partial/zero occupancies, multiplicities and ADP flags. Fcalc
+error<=7.62e-13; dropped-label, wrong-tensor and overwritten-occupancy controls fail.
+This preserves the supplied scattering object, not approval of its physical or
+chemical validity. No writer/runtime change; W82 full/install remains baseline.
 
 **Next Pine integration candidate (agreed with Cedar):** for pure representative
 recuts, keep the whole native process in one computational/source frame and derive

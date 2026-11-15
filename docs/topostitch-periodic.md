@@ -2826,20 +2826,54 @@ for Cedar coordination remain available; no scientific source was deleted.
 
 ## W81 — Audit the combined installation and narrow the Pine boundary
 
-The first **unfiltered combined full suite is still running** as of this audit.
-Its frozen inputs are Willow `2a76967c0182d3a4719f4aab29e6fe7ab5b43b8e`
-and Cedar C322 `dc82aee125dbe4e2341a3af7be8dd6477d8fb7e7`, virtual tree
-`6414a2c8a3071c8f4ed91d8a6b15f147e365f04b`. The virtual tree has zero source
-conflicts and seven documentation conflicts; no branch merge or reference move
-was performed. A fresh wheel installs and the main test process imports it after
-the original build directory is renamed. Full-suite, subsequent replay and CLI
-results are **pending**, not a compatibility pass. C323 is not part of this pin.
+The first unfiltered combined full suite completed: **4 failed,11,109 passed,
+284 subtests passed**,2671.02s. Its frozen inputs are Willow
+`2a76967c0182d3a4719f4aab29e6fe7ab5b43b8e` and Cedar C322
+`dc82aee125dbe4e2341a3af7be8dd6477d8fb7e7`, virtual tree
+`6414a2c8a3071c8f4ed91d8a6b15f147e365f04b`. Zero source/seven documentation
+conflicts; no real branch merge. Main pytest imports a fresh isolated wheel after
+original build relocation. C323 and W82 are outside this pin.
 
-The command is `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<isolated-site>:<topology-deps>
-<host-python> -m pytest -q -p no:cacheprovider` from the relocated virtual checkout;
-exact paths, pins, commands and logs are local in the W81 evidence directory.
-Test subprocesses may deliberately exercise their own source fixtures. This is
-an installed main-process audit, not a claim that every child imports the wheel.
+The failures are retained, not relabelled as a green full suite:
+
+- The ATL shuttle-builder test needs NASolve and NARestraints Git metadata; an
+  archived/wheel environment does not meet that source-builder assumption.
+- A sequence-family test compares the installed resource path with a checkout
+  `src` path. Its content lookup is distinct from that path-equality assertion.
+- The C62 construction and C63 context replay readers default to a canonical
+  frame under checkout `MR_frames`. That resource is absent from the installed
+  wheel: this is an actual installed historical-reader limitation. Cedar owns
+  the narrow packaging correction; no Willow runtime workaround was added.
+
+Follow-ups preserve the exact virtual source tree in a separate temporary Git
+fixture, plus the exact NARestraints v1.1.3 commit from installed `direct_url.json`.
+The four affected modules pass **90 tests +20 subtests** there. Source-only
+builder assumptions are therefore tested in their proper context. The installed
+C62/C63 reader also passes with explicit `runtime_sources` from its exact pinned
+historical commits, all bytes/hash checked, with original checkouts and process
+execution blocked; changed canonical bytes refuse. This does not fix the default
+installed resource gap. Broad negative `ValueError` tests can otherwise pass too
+early on that missing resource, so the installed pass count alone is insufficient
+coverage for those reader modules.
+
+The installed old/new graph/packet/default-Cedar native-link and W77 packing
+replays pass exactly with original paths blocked; all six CLI helps pass. Wheel
+SHA-256 `5d72b573d8874442d2a6582fa0702e0b61fbb87eeb5ed8f054d404e065f1c12b`.
+The full command is `PYTHONDONTWRITEBYTECODE=1
+PYTHONPATH=<isolated-site>:<topology-deps> <host-python> -m pytest -q -p
+no:cacheprovider` from the relocated virtual checkout. Follow-ups use the explicit
+virtual source and pinned NARestraints paths in `PYTHONPATH`, targeting only the
+four failing tests and then their four modules. Exact commands, environment,
+pins, original failures and subsequent receipts remain local under W81 evidence.
+Test subprocesses may deliberately exercise source fixtures; do not claim every
+child imports the installed wheel. No complete combined rerun was performed.
+
+A separate complete Phenix2.2.1-6174 synthetic diagnostic uses the installed wheel:
+six atoms in triclinic P1, P43, R3:H and P212121, each in identity/reverse order.
+All eight cases preserve direct wk1995 Fcalc (maximum error5.01e-13) and tensor
+round trips (maximum5.00e-16 square Angstrom). Omitted tensor rotation fails for
+rotating images and is neutral for translation-only P1. No experimental data,
+coordinate writer or refinement is exercised.
 
 W78/W79 motivate the agreed next integration candidate: retain one computational
 native frame and derive explicitly bound views at workflow boundaries. The
@@ -2892,6 +2926,60 @@ Validation of runtime `e570d15f308ec46a0b2bc6f62c43c3346e17abb5`:
 Exact build/install/test commands, before-failure logs, receipts and relocated
 replay remain local under W82 evidence. No new native execution was required for
 this packet-to-existing-arithmetic boundary; W81's older combined build remains a
-separate pending audit. Generated payloads are excluded from Git. Next qualify the
+separate audit with the recorded installed historical-reader limitation. Generated payloads are excluded from Git. Next qualify the
 workflow boundary and human review; do not silently reuse this context for a
 changed computational child or turn a preview into a Phenix input.
+
+
+## W83 — Preserve the labelled scattering object at special positions
+
+A pure representative change must preserve the supplied scattering object; it
+need not declare that object's chemistry or packing valid. W62's exact labelled
+image bijection and W80 tensor transport remain the algebraic basis. This bounded
+native diagnostic tests the additional native special-position/occupancy behavior
+without merging labels or treating coordinate coincidence as chemical identity.
+
+The installed W82 wheel is exercised under **Phenix2.2.1-6174**, using only five
+synthetic scatterers per case in C2, R3:H and P4. Two separately labelled carbon
+scatterers share a special-position orbit with occupancies0.25 and0.35; context
+also includes isotropic/anisotropic general-position atoms, a partial occupancy
+and a zero-occupancy atom. Each case uses identity/reverse/cyclic ordering.
+The target is freshly constructed through native `xray.structure`, recomputing
+its site-symmetry table rather than carrying the source table across images.
+
+All **nine complete native diagnostic cases pass**. Native multiplicities,
+occupancies, scattering types and isotropic/anisotropic flags remain exactly
+bound to their source labels. Direct wk1995 Fcalc at4 Angstrom resolution agrees
+within7.62e-13 (360/156/327 reflections for C2/R3:H/P4). Native construction adjusts
+mapped coordinates by at most1.43e-14 Angstrom and Cartesian tensors by1.15e-16
+square Angstrom. Source state remains unchanged. These are full-precision
+in-memory checks, not serialized-coordinate or refinement results.
+
+The controls deliberately break preservation: dropping one coincident label
+changes Fcalc by2.09–6.21; omitting anisotropic rotation by1.28–4.24; replacing
+occupancies with1 by69.34–140.71. The source special-position multiplicities are
+2,3,1 respectively, with native weights retained after changing representatives.
+No test silently normalizes occupancies, deduplicates atoms or changes ADP flags.
+
+Exact scripts, predeclared tolerances, results and selected native Python/kernel
+hashes remain local under W83 evidence. Execution is
+`phenix.python -B probe.py` through Cedar's existing bounded process owner; it is
+a complete synthetic calculation, **not a phenix.refine dry-run or refinement**.
+No SDK, source runtime, artifact schema or user model changes. W82 full/install
+checks remain the runtime baseline; documentation/roadmap checks are sufficient
+for this evidence-only update. Installed-default historical replay remains the
+separate W81/Cedar issue.
+
+This narrows P03 to preservation of the supplied labelled/scattering inventory.
+It does not establish unique molecular identity, correct occupancies, missing
+content, behavior near native special-position classification tolerances,
+serialization, anomalous/bulk-solvent policies or physical seam closure. P02/P03/
+P04 remain partial. Keep source scientific validity and representation equivalence
+as separate questions when implementing the computational-model/derived-view
+boundary.
+
+W82's485-payload forensic archive is read-back verified, SHA-256
+`9576ef749f9eb919fb2c1a95626f61e7e2c5966058ffba1ed6c1161d2b2f41dc`.
+Owned duplicate source/test build trees were removed after verification; the
+installed validation runtime remains available. This is forensic evidence,
+not an autonomous portable campaign; no scientific payload is committed.
