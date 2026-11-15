@@ -97884,5 +97884,335 @@
       "native-geometry-linked-review.json": "98a90d2230ebcc273bf219a795c4a899ca47518a8ba8d34a06b30a80246c9c13",
       "consumer/comparison.json": "dc5df573585d841b831e5455f2eea3f2601def3b6d85488d560661750fcceeb7"
     }
+  },
+  "triple_neighbor_numerical_target_review_2026_11_15": {
+    "milestone": "C306",
+    "status": "READ_ONLY_NEIGHBOR_TARGET_PROVENANCE_REVIEW",
+    "selection": "Explicit source triple bonds and adjacent source-declared heavy-atom single bonds; no component/atom-name selection rule.",
+    "observations": [
+      {
+        "component": "PDU",
+        "atoms": [
+          "C5",
+          "C5A"
+        ],
+        "declared_order": "SINGLE",
+        "elements": [
+          "C",
+          "C"
+        ],
+        "source_coordinate_family": "SOURCE_IDEAL",
+        "source_ideal_distance_angstrom": 1.4321693335635979,
+        "selected_seed_distance_angstrom": 1.430825136066598,
+        "dictionary_target_angstrom": 1.431,
+        "dictionary_esd_angstrom": 0.02,
+        "native": {
+          "prepared": {
+            "target_angstrom": 1.431,
+            "esd_angstrom": 0.02,
+            "observed_angstrom": 1.4309482869761556
+          },
+          "refined": {
+            "target_angstrom": 1.431,
+            "esd_angstrom": 0.02,
+            "observed_angstrom": 1.4586034416523215
+          }
+        },
+        "source_ideal_target_difference_angstrom": -0.0011693335635978297
+      },
+      {
+        "component": "PDU",
+        "atoms": [
+          "C5B",
+          "C5M"
+        ],
+        "declared_order": "SINGLE",
+        "elements": [
+          "C",
+          "C"
+        ],
+        "source_coordinate_family": "SOURCE_IDEAL",
+        "source_ideal_distance_angstrom": 1.472376310594543,
+        "selected_seed_distance_angstrom": 1.6073791463124059,
+        "dictionary_target_angstrom": 1.607,
+        "dictionary_esd_angstrom": 0.02,
+        "native": {
+          "prepared": {
+            "target_angstrom": 1.607,
+            "esd_angstrom": 0.02,
+            "observed_angstrom": 1.4579869683916962
+          },
+          "refined": {
+            "target_angstrom": 1.607,
+            "esd_angstrom": 0.02,
+            "observed_angstrom": 1.624249672925933
+          }
+        },
+        "source_ideal_target_difference_angstrom": 0.13462368940545688
+      },
+      {
+        "component": "5PC",
+        "atoms": [
+          "C5",
+          "C7"
+        ],
+        "declared_order": "SINGLE",
+        "elements": [
+          "C",
+          "C"
+        ],
+        "source_coordinate_family": "SOURCE_IDEAL",
+        "source_ideal_distance_angstrom": 1.4197446953589934,
+        "selected_seed_distance_angstrom": 1.4193812243368586,
+        "dictionary_target_angstrom": 1.419,
+        "dictionary_esd_angstrom": 0.03,
+        "native": {
+          "prepared": {
+            "target_angstrom": 1.419,
+            "esd_angstrom": 0.03,
+            "observed_angstrom": 1.4607426193549646
+          },
+          "refined": {
+            "target_angstrom": 1.419,
+            "esd_angstrom": 0.03,
+            "observed_angstrom": 1.409973758621059
+          }
+        },
+        "source_ideal_target_difference_angstrom": -0.0007446953589933525
+      },
+      {
+        "component": "5PC",
+        "atoms": [
+          "C8",
+          "C9"
+        ],
+        "declared_order": "SINGLE",
+        "elements": [
+          "C",
+          "C"
+        ],
+        "source_coordinate_family": "SOURCE_IDEAL",
+        "source_ideal_distance_angstrom": 1.461941859309049,
+        "selected_seed_distance_angstrom": 1.3635541976760588,
+        "dictionary_target_angstrom": 1.364,
+        "dictionary_esd_angstrom": 0.027,
+        "native": {
+          "prepared": {
+            "target_angstrom": 1.364,
+            "esd_angstrom": 0.027,
+            "observed_angstrom": 1.4551749035768884
+          },
+          "refined": {
+            "target_angstrom": 1.364,
+            "esd_angstrom": 0.027,
+            "observed_angstrom": 1.3564092302841353
+          }
+        },
+        "source_ideal_target_difference_angstrom": -0.09794185930904886
+      }
+    ],
+    "installed_writer_sources": [
+      {
+        "anchor": "phenix_installation",
+        "path": "lib/python3.11/site-packages/elbow/chemistry/IOMixins.py",
+        "sha256": "fa92d8a28dc08c2c83ab790c7c64f5b5b016ffebd33a0aca52295f692bc8bfe4"
+      },
+      {
+        "anchor": "phenix_installation",
+        "path": "lib/python3.11/site-packages/elbow/chemistry/BondClass.py",
+        "sha256": "9d65bd691cf55e2e21336aff28fc5fd8ba065d6fe52eaab0af2892bc0b4b7026"
+      }
+    ],
+    "writer_observation": "GetCIFBonds starts from bond.value(); BondClass.value returns coordinate distance. Explicit ideal/Mogul/transfer/overwrite branches also exist. Selected printed targets match selected seed distances to CIF precision; this is consistent with default coordinate-derived writing, not proof that every override path was inactive.",
+    "scope": "No native execution, coordinate/target edits, source-chemical approval or new numerical acceptance threshold. Source ideal coordinates provide a discrepancy observation, not independent replacement restraint authority. Native targets and observed model distances are separate.",
+    "remaining": "Calibrate the whole linear neighborhood using independent parameter authority; do not infer a correct target from these source coordinates or copy one chemistry’s weight to another.",
+    "source_commit": "91591126ef4fb2e854b03943058041e98555f3c2",
+    "prior_work": {
+      "PDU": "C206 already identified the 1.607 Å C5B–C5M target as unqualified; C304 confirms it is consumed during real refinement.",
+      "5PC": "C305 passes the scoped triple-length/linearity screen; this does not test adjoining single-bond targets.",
+      "policy": "cif-declared-triple-bond-screen-v1 remains unchanged. Broader neighborhood calibration requires separately versioned evidence, not retroactive reinterpretation.",
+      "longer_optimization": "C206 already tried PDU at 180 and 600 steps; normal termination of the latter did not establish accurate targets. Do not treat a larger step count as a new numerical authority or repeat without a discriminating question."
+    },
+    "installed_lookup": {
+      "tool_build": "phenix-2.2.1-6174",
+      "tool_version": "2.2.1",
+      "mode": "READ_ONLY_MONOMER_LOOKUP_NO_GENERATION",
+      "results": {
+        "PDU": {
+          "schema_version": 1,
+          "policy_id": "cif-installed-component-resource-v1",
+          "status": "UNSUPPORTED",
+          "component": "PDU",
+          "dictionary_generation": "NOT_RUN",
+          "optimization": "NOT_RUN",
+          "readyset": "NOT_RUN",
+          "automatic_adoption": false,
+          "error": "Missing requested installed component"
+        },
+        "5PC": {
+          "schema_version": 1,
+          "policy_id": "cif-installed-component-resource-v1",
+          "status": "UNSUPPORTED",
+          "component": "5PC",
+          "dictionary_generation": "NOT_RUN",
+          "optimization": "NOT_RUN",
+          "readyset": "NOT_RUN",
+          "automatic_adoption": false,
+          "error": "Missing requested installed component"
+        }
+      }
+    },
+    "independent_reference": {
+      "url": "https://cccbdb.nist.gov/listgeomexpx.asp?casno=74997&charge=0",
+      "title": "NIST CCCBDB experimental internal coordinates: propyne",
+      "accessed": "2026-11-15",
+      "reference": "Duncan, McKean, Mallinson and McCulloch, J. Mol. Spec. 46, 232–239 (1973), as tabulated by NIST",
+      "methyl_to_sp_carbon_angstrom": 1.46,
+      "triple_bond_angstrom": 1.207,
+      "scope": "Independent simple-propyne benchmark supporting review, not a qualified PDU/5PC target or a source of restraint ESDs. No target is adopted."
+    },
+    "inputs": [
+      {
+        "component": "PDU",
+        "references": [
+          {
+            "role": "source_path",
+            "anchor": "local_live_tests",
+            "path": "303_Cedar_PDU-campaign-btuh5sop/relocated-after-c304/DiU/AutoMR/run_001/PostMR/Coot/source_dictionaries/PDU.cif",
+            "sha256": "98421454d759d217f48dc7cec1daa3d8ded6b7a64503486c8fd8b4e46e717258"
+          },
+          {
+            "role": "dictionary_path",
+            "anchor": "local_live_tests",
+            "path": "303_Cedar_PDU-campaign-btuh5sop/relocated-after-c304/DiU/AutoMR/run_001/PostMR/DictionaryEngine/request/attempts/attempt-0002/continuation/runtime/dictionaries/000.cif",
+            "sha256": "1f7be9dbcaa38b8c3e4fb83b1081f45e0b2ab6a8b1708de6bc801cdd2fca1892"
+          },
+          {
+            "role": "prepared_native_receipt",
+            "anchor": "local_live_tests",
+            "path": "304_Cedar_PDU-recovery-1f37ak8q/consumer/prepared/cif-native-kxj6t1f_/native_receipt.json",
+            "sha256": "42c706490707c044b62f47143e29bc8a9f43e71469d3cdccd86533cc8b1408ba"
+          },
+          {
+            "role": "refined_native_receipt",
+            "anchor": "local_live_tests",
+            "path": "304_Cedar_PDU-recovery-1f37ak8q/consumer/refined/cif-native-1i4h0y76/native_receipt.json",
+            "sha256": "03499b97bc6ede9e51fa081cb0d48136272a6adc2f5208695a2b6fa2bd79dfaf"
+          }
+        ]
+      },
+      {
+        "component": "5PC",
+        "references": [
+          {
+            "role": "source_path",
+            "anchor": "local_live_tests",
+            "path": "305_Cedar_5PC-campaign-nu1t7jyw/relocated/DiU/AutoMR/run_001/PostMR/Coot/source_dictionaries/5PC.cif",
+            "sha256": "b0adede0c334091261cba543d9848c47165d8fdf3d46baf22b064e455bf38025"
+          },
+          {
+            "role": "dictionary_path",
+            "anchor": "local_live_tests",
+            "path": "305_Cedar_5PC-campaign-nu1t7jyw/relocated/DiU/AutoMR/run_001/PostMR/DictionaryEngine/request/attempts/attempt-0001/continuation/runtime/dictionaries/000.cif",
+            "sha256": "89c6e8e90eed402b02dd964f7d61891308f24871cd2e61b510e0015114aaabd9"
+          },
+          {
+            "role": "prepared_native_receipt",
+            "anchor": "local_live_tests",
+            "path": "305_Cedar_5PC-campaign-nu1t7jyw/consumer/prepared/cif-native-h2if0a3s/native_receipt.json",
+            "sha256": "5ce4880df7ce023d3d9153d4567717c0df4393f40bec73a19bf01aa6d3a9d80d"
+          },
+          {
+            "role": "refined_native_receipt",
+            "anchor": "local_live_tests",
+            "path": "305_Cedar_5PC-campaign-nu1t7jyw/consumer/refined/cif-native-f7zjet0v/native_receipt.json",
+            "sha256": "5f5783fbf49fda1f48bcec872ed0f959858b090a38092f4b5f3003059e9f967e"
+          }
+        ]
+      }
+    ],
+    "local_records": [
+      {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c306_neighbor_targets.py",
+        "sha256": "f13e434230006da9d1d07f2b54955f16b49652ecdd0730f25fad6f86ae231135"
+      },
+      {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c306_neighbor_targets.json",
+        "sha256": "7dd588cfe51902d068cb0da1175074b07bc565aae96e97793757959d08e24101"
+      },
+      {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c306_installed_lookup.py",
+        "sha256": "8394c2c01d7be5d1748e3c533f8ede4d7181b403e5bf9c4db843ddfeff94c7a5"
+      },
+      {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c306_installed_resources/summary.json",
+        "sha256": "a932dfe8a8d4507e447cb0de3ad33b3864314690707c54f117f636590f764627"
+      }
+    ],
+    "validation": {
+      "commands": [
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src \"$NASOLVE_PYTHON\" \"$EVERYDAY_CHECKOUT/branch-artifacts/cedar/runners/c306_neighbor_targets.py\"",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src \"$NASOLVE_PYTHON\" \"$EVERYDAY_CHECKOUT/branch-artifacts/cedar/runners/c306_installed_lookup.py\""
+      ],
+      "working_directory": "Cedar checkout at source_commit",
+      "bindings": {
+        "NASOLVE_PYTHON": "Existing NASolve .venv/bin/python",
+        "EVERYDAY_CHECKOUT": "Machine-local NASolve checkout; runner hashes above identify the exact retained scripts"
+      },
+      "results": "Both commands exited 0. Four graph-selected adjoining bonds match dictionary and prepared/refined native targets; source/dictionary bytes and mtimes unchanged. Installed lookup returns UNSUPPORTED for both exact components. No generation, ReadySet, optimization or refinement rerun.",
+      "tests": "No source change or new full/focused suite for this read-only evidence step; C304 source fix has 147 focused passes."
+    },
+    "artifacts": "Compact measurements, fingerprints and reference only. Native models/data/logs, installed SDK sources, captures and runners remain local.",
+    "next": "Establish independent numerical authority for adjoining bonds and the complete linear neighborhood, then use the existing dictionary repair/selection/native verification owners. Keep unknown chemistry explicit. No component-name switch, copied weights or invented targets; Q06 stays open with Q08 calibration dependency.",
+    "generation_context": [
+      {
+        "component": "PDU",
+        "provenance": {
+          "anchor": "local_live_tests",
+          "path": "303_Cedar_PDU-campaign-btuh5sop/relocated-after-c304/DiU/AutoMR/run_001/PostMR/DictionaryEngine/request/attempts/attempt-0002/preparation/bundle/components/PDU/snapshot/entry/provenance.json",
+          "sha256": "5384e5bd1c978503c11c17be81892ee4bf13879518b2c43ca5e72be755a7a9d2"
+        },
+        "generation_status": "CANDIDATE_REVIEW",
+        "generator": "phenix.elbow.source-preserving",
+        "generator_version": "2.2.1",
+        "recipe": {
+          "bond_representation_policy": "cif-source-declared-neutral-purine-aromatic-v1",
+          "expected_dialect": "CHEMICAL_COMPONENTS_CIF",
+          "policy_id": "cif-source-preserving-generation-recipe-v1",
+          "single_block_steps": 180,
+          "source_input_policy": "cif-source-reader-preparation-v1"
+        },
+        "converged": false,
+        "stopping": "NOT_CONVERGED_REPORTED",
+        "generation_receipt_sha256": "c963391f2594ea4a8d0c38384b3a5664f11ae18b419cf49df62d7db623b69e77",
+        "request_sha256": "6981afb893a97a1d7406e47160fe7fb2b94e7efa27762b721d642c82110ea5f5"
+      },
+      {
+        "component": "5PC",
+        "provenance": {
+          "anchor": "local_live_tests",
+          "path": "305_Cedar_5PC-campaign-nu1t7jyw/relocated/DiU/AutoMR/run_001/PostMR/DictionaryEngine/request/attempts/attempt-0001/preparation/bundle/components/5PC/snapshot/entry/provenance.json",
+          "sha256": "bd4736b0846fdd51ba3d30a48b8848688cef46aaf45f104fc16a6f70e54b98ad"
+        },
+        "generation_status": "CANDIDATE_REVIEW",
+        "generator": "phenix.elbow.source-preserving",
+        "generator_version": "2.2.1",
+        "recipe": {
+          "bond_representation_policy": "cif-source-declared-neutral-purine-aromatic-v1",
+          "expected_dialect": "CHEMICAL_COMPONENTS_CIF",
+          "policy_id": "cif-source-preserving-generation-recipe-v1",
+          "single_block_steps": 180,
+          "source_input_policy": "cif-source-reader-preparation-v1"
+        },
+        "converged": null,
+        "stopping": "NOT_REPORTED",
+        "generation_receipt_sha256": "6d0c4d51b72cd2fb64d3ee116dd5e64caf044ac0c7eba8917b35663ad0dfb3c3",
+        "request_sha256": "d4b950e873172f052d7cfd9043e8d27da943cd9a5afcc8242fc503a0f2c9fb20"
+      }
+    ]
   }
 }

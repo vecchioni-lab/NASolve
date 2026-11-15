@@ -72,16 +72,21 @@ force-calculation problem separately from missing CIF planes; it does not establ
 the cause of the reported PDU distortion. The fresh PDU control now completes
 explicit recovery and five real refinement cycles, preserving its intended
 orientation and native plane/parallelity membership. Its propyne nevertheless
-bends beyond the existing review screen. Correct dictionary targets and successful
-execution therefore remain distinct from acceptable achieved geometry; target
-calibration and the balance of packing, data and restraints need further work.
+bends beyond the existing review screen. Passing the limited dictionary screen
+and completing refinement therefore remain distinct from acceptable chemistry;
+target calibration and the balance of packing, data and restraints need further work.
 The failed attempt stays preserved and the successful result reopens after moving
 the run. No acceptance threshold or numerical target was changed to call it a pass.
 A related 5PC campaign now uses the same construction and repair machinery, archives
 its successful working copies, and completes real refinement. Its propyne becomes
 straighter and passes the existing coordinate screen, with native planes and
-parallelity groups retained. This supports the route for that control; it neither
-settles PDU's remaining parameters nor qualifies the whole ligand catalogue.
+parallelity groups retained. A follow-up also finds questionable single-bond
+length targets beside the triple bond in both PDU and 5PC; Phenix follows those
+targets, driving one long and the other short. The current triple-bond screen does
+not test those adjoining targets. Doctor therefore still needs independent
+numerical checks for the whole connected group before either ligand is approved.
+This finding belongs to the existing numerical-calibration work, with no new
+residue-specific repair or change to historical acceptance rules.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.
 

@@ -127,11 +127,21 @@ challenge or evidence that PDU passed. The controls have different bases, partne
 and numerical parameters; their contrast does not authorize copying weights. Original symmetry-linked PDU:PDU/B:1 remains separate. C304 also restores
 ordinary cleanup's policy export (147 focused tests); Q04/Q05 owners are unchanged.
 
-**Next bounded diagnosis:** reuse the saved PDU endpoint and existing numerical
-readers to distinguish parameter authority and local/data forces. Check the
-recorded C206 terminal-bond question and the current source/native generation
-provenance before creating another repair. Do not repeat Coot, rebuild recovery
-owners, tune against Free-R or flatten the entire substituent by assumption.
+**C306 numerical gap:** the current triple screen does not qualify adjacent
+single-bond targets. PDU's historical terminal target is 1.607 Å (refined 1.6242 Å);
+5PC's is 1.364 Å (refined 1.3564 Å). Both exact selected dictionaries and native
+captures agree. Thus 5PC's scoped triple PASS is not whole-ligand approval. Source
+ideal coordinates and an independent simple-propyne benchmark motivate review,
+not automatic replacement targets. Current installed-component lookups find
+neither component. No numerical parameter, threshold or scientific output changed.
+
+**Next bounded diagnosis (Q06/Q08):** qualify independent numerical authority for
+the complete linear neighborhood, then reuse dictionary repair/selection and
+native verification. Preserve historical triple-screen meaning; any broader
+calibration needs separately versioned evidence. Keep parameter errors distinct
+from packing/data forces, and retain the saved endpoints. Do not repeat Coot,
+rebuild recovery owners, tune against Free-R, copy weights or flatten the entire
+substituent by assumption. Ledger: `triple_neighbor_numerical_target_review_2026_11_15`.
 
 ### The next small steps
 

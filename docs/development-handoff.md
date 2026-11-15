@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-15, C304/C305 native validation complete**. Worktree NASolve-c96, branch
-**cedar**, source fix **a2e73603**, compact PDU evidence **f28b0dbc**. Simon's window is **08:20–10:20 London**;
+Updated **2026-11-15, C306 numerical-target review complete**. Worktree NASolve-c96, branch
+**cedar**, source fix **a2e73603**, C304/C305 compact native evidence **91591126**. Simon's window is **08:20–10:20 London**;
 interruptions expected. Focused checks only; no full suite, new branch or merge.
 Linden owns Pine/Willow; no Cedar edits from that work.
 
@@ -13,13 +13,46 @@ C305 consumer/readback source differs only by compact documentation. No full sui
 Completed controls use Phenix 2.2.1-6174 / dispatcher 2.2.1; C305 also uses Coot
 1.3.3 revision 0. See exact records, source pins and limits in the evidence ledger.
 
-**Next bounded task:** retain the PDU endpoint and diagnose its residual bending
-through existing numerical/force readers and source/native parameter provenance.
-C206 already flagged the 1.607 Å C5B–C5M target; do not rediscover that as a new
-bug or invent a replacement from model coordinates. Distinguish numerical target
-calibration, local contacts and diffraction/restraint compromise. Do not silently
-copy 5PC weights, flatten the whole substituent, rerun Coot or rebuild Q04/Q05.
-The related control passes its scoped geometry check, but **PDU and Q06 remain open**.
+**Next bounded task:** establish trustworthy numerical parameters for the whole
+linear substituent, including the single bonds beside its triple bond, through
+existing repair/selection owners. C306 confirms C206's unresolved PDU target and
+finds the related 5PC terminal bond needs review too. Do not use seed coordinates
+as replacement targets, copy weights or change historical triple-screen meaning.
+Separate parameter calibration from packing and diffraction/restraint compromise.
+No Coot repeat, new recovery owner or blanket flattening. **Q06 remains open**;
+Q08 supplies the numerical diagnosis. All C306 read-only commands have exited.
+
+## C306: a straight triple bond can still have a wrong neighbor
+
+The source-graph diagnostic selects explicit triple bonds and their adjoining
+heavy-atom single bonds, without residue-name rules. Exact selected dictionaries
+and prepared/refined native captures agree on these terminal single-bond targets:
+
+| Control | Terminal bond | Target / ESD (Å) | Prepared → refined distance (Å) |
+| --- | --- | --- | --- |
+| PDU | C5B–C5M | 1.607 / 0.020 | 1.4580 → 1.6242 |
+| 5PC | C8–C9 | 1.364 / 0.027 | 1.4552 → 1.3564 |
+
+Source ideal-coordinate distances are 1.4724 and 1.4619 Å respectively, but those
+coordinates are not independent numerical authority. As a separate benchmark,
+[NIST's experimental propyne table](https://cccbdb.nist.gov/listgeomexpx.asp?casno=74997&charge=0)
+reports 1.460 Å for the methyl–sp-carbon bond. That supports scrutiny, not copying
+a PDU/5PC target or ESD from a different molecule. The existing triple screen
+checks triple length/linearity, not these neighboring single-bond targets; retain
+its historical meaning. The 5PC scoped PASS therefore is **not whole-ligand approval**.
+
+Both selected targets match selected seed-coordinate distances at CIF precision.
+Installed eLBOW writing starts from coordinate bond lengths, with optional ideal,
+Mogul/transfer/override branches; this is consistent provenance, not proof of
+which generation branch executed. Retained generation provenance uses the same
+180-step source-preserving recipe: PDU reports nonconvergence; 5PC convergence
+is not reported. C206 already tried longer PDU optimization, without qualifying
+these targets, so increasing steps is not the next answer. Fresh bounded installed
+lookups find neither component in this exact Phenix consumer. No easy installed
+numerical fallback was found; no new generation, target edit or acceptance gate ran.
+Exact anchored inputs, SDK hashes, local runner hashes and scope are in ledger
+`triple_neighbor_numerical_target_review_2026_11_15`. Existing C304/C305 entries
+remain unchanged. Native captures and every scientific output remain local.
 
 ## C305 related control
 
