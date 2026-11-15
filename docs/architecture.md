@@ -977,6 +977,11 @@ for live identity-only proxies. It verifies otherwise uncaptured policy fields,
 original single-proxy and full-container target/gradient agreement, then reports
 individual endpoint changes by coordinate dependence. Unsupported categories stay
 explicitly deferred; it adds neither a chemical acceptance nor a new optimizer.
+The same module's `NativeAngleSnapshot` freezes live angle metadata and reconstructs
+its own private proxies after reload. Evaluation always supplies the unit cell and
+requires the frozen ordered atom labels. This read-only angle-family observer is
+not attached to a native manager and cannot be added to an existing angle objective
+without double counting. Ordinary refinement and complete seam policy remain open.
 
 Preview folders freeze exact inputs and source/candidate PDBs under checksummed
 run-relative references; replay verifies the result after relocation. They are

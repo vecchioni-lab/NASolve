@@ -2121,3 +2121,73 @@ All indexed payloads were read back and verified, including the initial denied
 full-suite attempt. The local session index records verified disposable source/
 installation/test-copy cleanup; scientific outputs and negative evidence remain.
 The convenient `W70-graph-description.json` is a read-only report, not a proposal.
+
+
+## W71 — Reconstruct image-bearing angle diagnostics explicitly
+
+`topostitch_native_terms.freeze_native_angles` now compares every live angle's
+indices, labels, ideal, weight and origin with its supplied native capture, then
+records the otherwise uncaptured `sym_ops` and `slack`. The caller must first
+authenticate that capture through Cedar's existing owner. The schema-1
+`topostitch-native-angle-snapshot` contains the complete ordered family, atom
+labels, native-context digest, cell and space group; it has no operational paths
+or runtime authority. Absent versus explicit identity operators remain distinct.
+Zero weights and nonzero slack are preserved rather than silently reset.
+
+`validate_angle_snapshot` is available without Phenix. `NativeAngleSnapshot`
+requires an independently retained snapshot digest, validates native group/metric
+compatibility and canonical operators, and reconstructs its own private array.
+`evaluate(points, atom_labels=...)` requires the exact ordered inventory and calls
+the native angular kernel with the explicit unit cell. It returns an unnormalized
+family target and Cartesian gradients, with source/point bindings. Changed live
+metadata refuses before evaluation or serialization. JSON records, copying and
+trusted local Python pickle reconstruct operators rather than pickling the native
+array. No source manager or native installation is changed.
+
+This is an **angle-family observer**, not an additive correction: adding it to a
+manager already containing those angles would double count. A hash is not creator
+authentication. The snapshot does not authorize a seam, infer image placement,
+remap a selected atom subset, reconstruct other term families or restore an
+ordinary Phenix model manager. Duplicate atom labels/repeated indices within one
+angle, improper operations, unsupported fields and excess budgets refuse.
+
+The developer diagnostic is reproducible without structure inputs:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 phenix.python -B \
+  scripts/probe_topostitch_native_images.py --angle-snapshot-only --out new-angle-check.json
+```
+
+Under **Phenix 2.2.1-6174**, the synthetic nonorthogonal R3 control passes JSON,
+deepcopy and pickle reconstruction, finite differences (largest absolute error
+1.42e-6), native subset/reindex observation and deliberate metadata/ordering/group
+refusals. Raw native proxy pickle and cell omission still give the wrong energy;
+these are retained negative controls. A wheel-only installation reopens the
+pickled adapter in a fresh native interpreter after its test directory moves.
+The first installed attempt mixed Python 3.12 NumPy with Phenix Python 3.11 and
+failed; the separate dependency-free wheel directory fixes the test environment,
+not Phenix. Both failed logs are retained locally.
+
+A fresh maintained Cedar bootstrap at `dca8ee82` reproduces the authenticated
+855-atom source exactly. Each of the two saved cuts retains all **1,467 angles**,
+including its eight crossing terms. The full source residual is
+**3753.3791532751893**; transported residual errors are below **9.6e-12**, rotated
+gradient errors below **6.7e-10**, and three predeclared full-coordinate directional
+checks at two step sizes have errors below **1.83e-5**. JSON/deepcopy/pickle
+reproduce each complete evaluation exactly. Raw proxy pickle instead gives
+9364.86008654694 / 9200.516898451082. These are complete native diagnostics,
+**not refinement executions, chemical approval or R-factor improvement**.
+
+Validation: 27 added software cases (26 demonstrated failures before the API was
+added); focused **101**, full Willow **1,715 + 229 subtests**, installed/relocated
+**509**, six entry-point helps, lean import and Python 3.10 syntax. Old/new packet
+and graph replay remain exact with original paths blocked. The first focused
+invocation omitted the optional topology environment and retained 15 Gemmi
+import failures; the properly provisioned invocation passed. Commands use
+`PYTHONDONTWRITEBYTECODE=1`, `PYTHONPATH=src` plus the declared topology environment,
+and `pytest -q -p no:cacheprovider`; the full run used owned-process permissions.
+Scientific snapshots, inputs and outputs remain local and excluded from Git.
+
+The next gate is complete seam terms/exclusions and supported Cedar lifecycle
+integration. The W68 ordinary-manager cell omission remains unresolved. P04 stays
+partial; P02/P03, physical closure and human review remain separate prerequisites.

@@ -697,6 +697,20 @@
       "input_bytes_preserved": true,
       "runtime_authority": false,
       "new_topology_registry": false
+    },
+    "native_angle_snapshot": {
+      "module": "nasolve.topostitch_native_terms",
+      "contract": "docs/topostitch-periodic.md#w71--reconstruct-image-bearing-angle-diagnostics-explicitly",
+      "snapshot_kind": "topostitch-native-angle-snapshot",
+      "schema_version": 1,
+      "scope": "read-only complete live angle family; private reconstruction and explicit unit-cell evaluation",
+      "capture_authentication_owner": "Cedar; caller must authenticate before freezing",
+      "preserves_live_symmetry_and_slack": true,
+      "serialized_state": "plain checked record; no native proxy pickle",
+      "automatic_reindexing": false,
+      "manager_integration": false,
+      "complete_seam_chemistry_qualified": false,
+      "runtime_authority": false
     }
   },
   "geometry_development": {

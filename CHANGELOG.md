@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W71 — Preserve native angle images across diagnostic reloads
+
+- Add a checked plain-data angle snapshot and private native reconstruction with
+  explicit unit-cell evaluation. Preserve live symmetry operators, slack, weights,
+  origins and atom order; reject missing or changed metadata.
+- Qualify JSON, deepcopy and pickle reconstruction independently of the still-broken
+  raw native proxy pickle. Existing managers, refinement and seam chemistry are
+  unchanged; this angle-family diagnostic must not be added twice to an objective.
+
 ### W70 — Describe a registered graph before choosing a cut
 
 - Add read-only `--describe-graph` to the existing cut-preview command, exposing

@@ -1,8 +1,9 @@
-"""Read-only live native torsion/plane observations through maintained kernels.
+"""Read-only native term observations and explicit angle snapshot evaluation.
 
 Cedar owns the numerical kernels. This adapter verifies that complete live proxy
 semantics fit those kernels before comparing them with original native objects.
-No proxy, weight, gradient, model or chemical acceptance policy is changed.
+The angle snapshot reconstructs only its private proxy array with explicit cell
+context. No source proxy, manager, model or chemical acceptance policy is changed.
 """
 from copy import deepcopy
 import math
@@ -237,3 +238,196 @@ def compare_native_term_observations(before, after):
         increases_are_descriptive_not_acceptance_thresholds=True,
         derivative_qualification='NOT_RUN', chemical_qualification='NOT_ESTABLISHED',
         runtime_authority=False, scientific_acceptance=False)
+
+
+ANGLE_SNAPSHOT_KIND = 'topostitch-native-angle-snapshot'
+_ANGLE_FIELDS = {'proxy_index', 'i_seqs', 'angle_ideal', 'weight', 'slack', 'origin_id', 'sym_ops'}
+
+
+def _digest(value):
+    return (isinstance(value, str) and len(value) == 64
+            and all(c in '0123456789abcdef' for c in value))
+
+
+def _angle_proxy_row(proxy, index):
+    if any(not hasattr(proxy, key) for key in _ANGLE_FIELDS - {'proxy_index'}):
+        raise ValueError('Live angle proxy omits required policy fields')
+    return dict(proxy_index=index, i_seqs=list(proxy.i_seqs),
+                angle_ideal=proxy.angle_ideal, weight=proxy.weight, slack=proxy.slack,
+                origin_id=proxy.origin_id,
+                sym_ops=None if proxy.sym_ops is None else [op.as_xyz() for op in proxy.sym_ops])
+
+
+def validate_angle_snapshot(snapshot, *, expected_sha256):
+    """Validate/detach a plain record without importing a native interpreter.
+
+    Operator membership, metric compatibility and exact native reconstruction are
+    checked by NativeAngleSnapshot. A digest binds data; it is not authentication
+    of its creator or permission to apply restraints.
+    """
+    if not _digest(expected_sha256) or recipe_digest(snapshot) != expected_sha256:
+        raise ValueError('Angle snapshot checksum mismatch')
+    fields = {'schema_version', 'kind', 'source_native_sha256', 'atom_count',
+              'atom_labels', 'crystal', 'terms', 'normalization', 'runtime_authority'}
+    if (not isinstance(snapshot, dict) or set(snapshot) != fields
+            or type(snapshot['schema_version']) is not int or snapshot['schema_version'] != 1
+            or snapshot['kind'] != ANGLE_SNAPSHOT_KIND
+            or snapshot['normalization'] is not False or snapshot['runtime_authority'] is not False
+            or not _digest(snapshot['source_native_sha256'])):
+        raise ValueError('Unsupported angle snapshot schema or policy')
+    count, labels, terms = snapshot['atom_count'], snapshot['atom_labels'], snapshot['terms']
+    if (type(count) is not int or not 1 <= count <= 100000
+            or not isinstance(labels, list) or len(labels) != count
+            or any(not isinstance(s, str) or not s or len(s) > 512 for s in labels)
+            or len(set(labels)) != count
+            or not isinstance(terms, list) or len(terms) > MAX_TERMS):
+        raise ValueError('Invalid angle snapshot inventory or budget')
+    crystal = snapshot['crystal']
+    if not isinstance(crystal, dict) or set(crystal) != {'cell_parameters', 'space_group'}:
+        raise ValueError('Require an explicit angle crystal context')
+    cell, group = crystal['cell_parameters'], crystal['space_group']
+    if (not isinstance(cell, list) or len(cell) != 6 or any(not _finite(v) for v in cell)
+            or any(v <= 0 for v in cell[:3]) or any(not 0 < v < 180 for v in cell[3:])
+            or not isinstance(group, str) or not group.strip() or len(group) > 120):
+        raise ValueError('Invalid angle crystal context')
+    for index, row in enumerate(terms):
+        if not isinstance(row, dict) or set(row) != _ANGLE_FIELDS:
+            raise ValueError('Unsupported angle term fields')
+        ids, ops = row['i_seqs'], row['sym_ops']
+        if (type(row['proxy_index']) is not int or row['proxy_index'] != index
+                or not isinstance(ids, list) or len(ids) != 3
+                or any(type(i) is not int or not 0 <= i < count for i in ids)
+                or len(set(ids)) != 3
+                or not _finite(row['angle_ideal']) or not 0 <= row['angle_ideal'] <= 180
+                or not _finite(row['weight']) or row['weight'] < 0
+                or not _finite(row['slack']) or row['slack'] < 0
+                or type(row['origin_id']) is not int or not 0 <= row['origin_id'] <= 255
+                or ops is not None and (not isinstance(ops, list) or len(ops) != 3
+                    or any(not isinstance(op, str) or not op.strip() or len(op) > 160 for op in ops))):
+            raise ValueError('Invalid or unsupported angle term policy')
+    return deepcopy(snapshot)
+
+
+def freeze_native_angles(geometry, native, *, cell_parameters, space_group):
+    """Freeze complete live angle semantics after the caller authenticates context.
+
+    Every scalar/index/label is compared with the existing descriptive capture.
+    Images and slack come from live objects, never from absent historical fields.
+    This does not infer new terms, select seams, transport images or edit a manager.
+    """
+    atoms, count = native['atoms'], native['atom_count']
+    if (type(count) is not int or count != len(atoms)
+            or any(type(a['i_seq']) is not int or a['i_seq'] != i for i, a in enumerate(atoms))):
+        raise ValueError('Native angle atom ordering differs')
+    rows = native['geometry']['proxy_details']['angle']
+    proxies = geometry.angle_proxies
+    proxies = [] if proxies is None else proxies
+    if (len(rows) > MAX_TERMS or len(proxies) != len(rows)
+            or type(native['geometry']['proxy_counts']['angle']) is not int
+            or native['geometry']['proxy_counts']['angle'] != len(rows)):
+        raise ValueError('Live and captured angle inventories differ')
+    labels = [a['label'] for a in atoms]; terms = []
+    for index, (proxy, row) in enumerate(zip(proxies, rows)):
+        if set(row) != {'i_seqs', 'atoms', 'angle_ideal', 'weight', 'origin_id'}:
+            raise ValueError('Unsupported captured angle definition')
+        term = _angle_proxy_row(proxy, index)
+        ids = term['i_seqs']
+        if (any(type(i) is not int or not 0 <= i < count for i in ids)
+                or row != dict(i_seqs=ids, atoms=[labels[i] for i in ids],
+                    angle_ideal=term['angle_ideal'], weight=term['weight'], origin_id=term['origin_id'])):
+            raise ValueError('Live angle definition differs from captured context')
+        terms.append(term)
+    record = dict(schema_version=1, kind=ANGLE_SNAPSHOT_KIND,
+                  source_native_sha256=recipe_digest(native), atom_count=count,
+                  atom_labels=labels, crystal=dict(cell_parameters=list(cell_parameters), space_group=space_group),
+                  terms=terms, normalization=False, runtime_authority=False)
+    return validate_angle_snapshot(record, expected_sha256=recipe_digest(record))
+
+
+class NativeAngleSnapshot:
+    """Rebuild and evaluate a frozen angle family with explicit crystal context.
+
+    This diagnostic owns only its new proxy array, never a native manager. It
+    serializes plain records and reconstructs operators, avoiding native proxy
+    pickle. It is not a refinement callback, a seam policy or an additive term:
+    adding its energy to a manager containing the same angles would double count.
+    Only trusted local pickle data may be loaded, as with any Python pickle.
+    """
+    def __init__(self, snapshot, *, expected_sha256):
+        from cctbx import crystal, geometry_restraints as gr, sgtbx
+        from scitbx.array_family import flex
+        from scitbx import matrix
+        from .topostitch_transport import CartesianImage
+        self._record = validate_angle_snapshot(snapshot, expected_sha256=expected_sha256)
+        self._digest = expected_sha256
+        self._gr, self._flex = gr, flex
+        context = self._record['crystal']
+        symmetry = crystal.symmetry(unit_cell=context['cell_parameters'],
+                                    space_group_symbol=context['space_group'])
+        self._cell = symmetry.unit_cell()
+        # cctbx may symmetrize a cell. This observer must not silently change it.
+        if any(abs(a-b) > 1e-9 for a,b in zip(self._cell.parameters(), context['cell_parameters'])):
+            raise ValueError('Native angle crystal changed the declared cell')
+        orth = matrix.sqr(self._cell.orthogonalization_matrix())
+        frac = matrix.sqr(self._cell.fractionalization_matrix())
+        operations = {}
+        for row in self._record['terms']:
+            for text in row['sym_ops'] or []:
+                if text in operations:
+                    continue
+                op = sgtbx.rt_mx(text)
+                if op.as_xyz() != text or op.mod_positive() not in symmetry.space_group():
+                    raise ValueError('Angle operator is noncanonical or outside the declared group')
+                rot = orth * matrix.sqr(op.r().as_double()) * frac
+                CartesianImage(tuple(tuple(rot[3*i+j] for j in range(3)) for i in range(3)),
+                               tuple(self._cell.orthogonalize(op.t().as_double())))
+                operations[text] = op
+        self._proxies = gr.shared_angle_proxy()
+        for row in self._record['terms']:
+            self._proxies.append(gr.angle_proxy(i_seqs=row['i_seqs'],
+                sym_ops=None if row['sym_ops'] is None else [operations[t] for t in row['sym_ops']],
+                angle_ideal=row['angle_ideal'], weight=row['weight'], slack=row['slack'],
+                origin_id=row['origin_id']))
+        self._verify_live()
+
+    def _verify_live(self):
+        if (len(self._proxies) != len(self._record['terms'])
+                or [_angle_proxy_row(p, i) for i,p in enumerate(self._proxies)] != self._record['terms']):
+            raise ValueError('Reconstructed angle metadata changed or was lost')
+
+    def snapshot(self):
+        self._verify_live()
+        return deepcopy(self._record)
+
+    def __getstate__(self):
+        return dict(snapshot=self.snapshot(), expected_sha256=self._digest)
+
+    def __setstate__(self, state):
+        if not isinstance(state, dict) or set(state) != {'snapshot', 'expected_sha256'}:
+            raise ValueError('Unsupported native angle reload state')
+        self.__init__(**state)
+
+    def evaluate(self, points, *, atom_labels):
+        """Full ordered Cartesian coordinates; explicit labels guard reindexing.
+
+        Return the unnormalized angle-family target and ASU Cartesian gradient.
+        The caller owns model/image placement and must not mistake this numerical
+        observation for complete chemistry or ordinary refinement qualification.
+        """
+        self._verify_live()
+        points = [list(p) for p in points]
+        if (list(atom_labels) != self._record['atom_labels'] or len(points) != self._record['atom_count']
+                or any(len(p) != 3 or any(not _finite(v) for v in p) for p in points)):
+            raise ValueError('Angle evaluation requires the exact ordered finite atom inventory')
+        xyz = self._flex.vec3_double(points)
+        gradient = self._flex.vec3_double(len(points), (0.,0.,0.))
+        target = float(self._gr.angle_residual_sum(unit_cell=self._cell, sites_cart=xyz,
+                       proxies=self._proxies, gradient_array=gradient))
+        gradients = [list(p) for p in gradient]
+        if not _finite(target) or target < 0 or any(not _finite(v) for p in gradients for v in p):
+            raise ValueError('Native angle evaluation returned nonfinite or negative values')
+        self._verify_live()
+        return dict(schema_version=1, kind='topostitch-native-angle-evaluation',
+                    snapshot_sha256=self._digest, points_sha256=recipe_digest(points),
+                    residual_sum=target, gradients=gradients, term_count=len(self._proxies),
+                    normalization=False, runtime_authority=False, scientific_acceptance=False)
