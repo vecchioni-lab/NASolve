@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W90 recorded; W91 in progress.** Latest audited runtime is W90 `5965d858` on isolated
+**W91 recorded; W92 in progress.** Latest audited runtime is W90 `5965d858` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -312,7 +312,8 @@ predeclared 1e-3; 270 objective calls, 204 movable atoms, 14 complete pair recip
 Cached/rebuilt energy and Cartesian gradients agree exactly; changed buffered
 contact rows have zero residual. One tilt lowers total repulsion but worsens 48
 directed overlaps. No optimizer, candidate, density or refinement; S04/S05 stay
-partial, and the full live policy guard remains Cedar Q06.
+partial. The complete live nonbonded-policy guard remains open, separately from
+Cedar Q06 actual refinement chemistry survival.
 
 **W86 software slice:** immutable `TaperedMotion` shares the existing preview
 rotation kernel and enforces complete weights, exact mask order and displacement
@@ -357,13 +358,24 @@ and original stopping/error/audit policy remains. Remaining-budget preflight
 accounts for earlier calls. Fourteen fail-before /75 focused /1,835 full+229
 subtests /745 installed tests pass, with helps/lean imports/syntax/saved replay.
 
-**W91 running:** matched cold and W87 paired-point-seeded atomic trials use the
-same full14 recipe, .5 Angstrom bound, .1 Angstrom tether,500 iterations/2,000
-optimizer calls and10,000 total budget; isolated serial native owners have1,200s
-timeouts. The parent remains FAILED, and each atomic trial gets independent
-initial/full/rounded derivative and stopping records. No candidate or refinement.
-Compare common-recipe endpoint geometry/packing before claiming benefit.
-Nonuniform curvature, matched diffraction and density-aware S06 remain open.
+**W91 native result:** matched cold/coarse-seeded atomic trials both FAILED
+rounding (358/363 accepted steps;390/401 optimizer calls). Both last accepted
+points pass full/rounded derivatives and common-recipe observers. Endpoints differ
+by at most2.65e-7 Angstrom; all855 PDB-rounded triplets match. Active bond/angle
+nominal>=3 counts9/14→0 and boundary angle1→0; individual packing/torsion reviews
+remain. No demonstrated benefit from this small coarse polish, no candidate,
+refinement or parent-failure promotion. Keep the start API without enabling a
+redundant default stage. Raw evidence remains local; software full/installed
+checks above remain current.
+
+**Next W92 / Rowan coordination:** qualify an additive Cedar-owned live
+nonbonded-policy snapshot/compare helper, then consume its concrete interface in
+Willow. Capture all supported parameter/assignment/exclusion/symmetry inputs,
+including unused entries, while allowing legitimate coordinate-driven rebuilds.
+No pickle/deepcopy or new executor/legacy-worker change. This missing guard is
+separate from Cedar Q06 refinement chemistry/PDU achieved-angle review. Do not
+label partial coverage complete. Nonuniform curvature, matched diffraction and
+density-aware S06 remain open.
 
 **Next Pine integration candidate (agreed with Cedar):** for pure representative
 recuts, keep the whole native process in one computational/source frame and derive

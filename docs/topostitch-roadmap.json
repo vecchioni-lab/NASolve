@@ -221,13 +221,14 @@
         "W87 matched installed six-variable trials both fail rounding; exact accepted-point derivative audits and common full-recipe observations are retained without promotion. Coarse pair preservation and modest aggregate improvements do not establish chemical or diffraction acceptance.",
         "W88 compiles numerical motion from an exactly pinned/replayed saved preview and its registration, with complete atom order, fixed context and source-byte guard. Full and installed/relocated software checks pass; no physical-search acceptance is inferred.",
         "W89 directly observes a numerical-resolution limitation at the W87 coarse points; retains FAILED and distinguishes six-variable stationarity from substantial remaining atomic gradients.",
-        "W90 adds explicit diagnostic initialization to the existing atomic trial and checks remaining evaluation budget, with unchanged source/tether, derivatives and stopping/failure policy. Full/installed validation passes; native benefit is being compared in W91."
+        "W90 adds explicit diagnostic initialization to the existing atomic trial and checks remaining evaluation budget, with unchanged source/tether, derivatives and stopping/failure policy. Full/installed validation passes; native benefit is being compared in W91.",
+        "W91 qualifies execution of the explicit diagnostic-start interface through matched native trials and endpoint observations, preserving both failures. This small coarse seed reaches the same rounded atomic point as cold cleanup and gives no demonstrated benefit; local improvements and remaining packing/torsion reviews stay separate."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation."
       ],
-      "next_action": "Finish W91 matched cold and explicit coarse-diagnostic-start atomic trials, retaining parent failures and independent atomic stopping/audit records. Compare individual geometry/packing before any proposal for subsequent scientific qualification; full native live policy and diffraction remain open.",
+      "next_action": "Avoid default redundant coarse polishing from W91; keep explicit initialization for real displaced placements. Coordinate/qualify the shared complete live nonbonded-policy guard before broadening native repair claims; then expand independent shape controls and local geometry qualification.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -238,14 +239,15 @@
         "E_MATCHED_COARSE_TRIALS",
         "E_SAVED_BEND_MOTION",
         "E_COARSE_RESOLUTION",
-        "E_ATOMIC_DIAGNOSTIC_START"
+        "E_ATOMIC_DIAGNOSTIC_START",
+        "E_MATCHED_ATOMIC_STARTS"
       ],
       "last_audit": {
         "date": "2026-11-15",
         "code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
         "reviewer": "Linden",
-        "human_update": 90,
-        "scope": "Atomic initialization interface only; native/scientific comparison pending"
+        "human_update": 91,
+        "scope": "Matched native diagnostics; no successful optimizer, scientific repair or default change"
       }
     },
     {
@@ -286,7 +288,8 @@
         "W86 exposes immutable bounded TaperedMotion and an optional six-parameter view of the existing native objective; independent regressions, full/install checks and complete native derivative/cache replay pass. No optimizer, writer or scientific acceptance is enabled.",
         "W87 matched installed six-variable trials both fail rounding; exact accepted-point derivative audits and common full-recipe observations are retained without promotion. Coarse pair preservation and modest aggregate improvements do not establish chemical or diffraction acceptance.",
         "W88 compiles numerical motion from an exactly pinned/replayed saved preview and its registration, with complete atom order, fixed context and source-byte guard. Full and installed/relocated software checks pass; no physical-search acceptance is inferred.",
-        "W90 adds explicit diagnostic initialization to the existing atomic trial and checks remaining evaluation budget, with unchanged source/tether, derivatives and stopping/failure policy. Full/installed validation passes; native benefit is being compared in W91."
+        "W90 adds explicit diagnostic initialization to the existing atomic trial and checks remaining evaluation budget, with unchanged source/tether, derivatives and stopping/failure policy. Full/installed validation passes; native benefit is being compared in W91.",
+        "W91 qualifies execution of the explicit diagnostic-start interface through matched native trials and endpoint observations, preserving both failures. This small coarse seed reaches the same rounded atomic point as cold cleanup and gives no demonstrated benefit; local improvements and remaining packing/torsion reviews stay separate."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
@@ -321,14 +324,15 @@
         "E_BOUNDED_NATIVE_MOTION",
         "E_MATCHED_COARSE_TRIALS",
         "E_SAVED_BEND_MOTION",
-        "E_ATOMIC_DIAGNOSTIC_START"
+        "E_ATOMIC_DIAGNOSTIC_START",
+        "E_MATCHED_ATOMIC_STARTS"
       ],
       "last_audit": {
         "date": "2026-11-15",
         "code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
         "reviewer": "Linden",
-        "human_update": 90,
-        "scope": "Atomic initialization interface only; native/scientific comparison pending"
+        "human_update": 91,
+        "scope": "Matched native diagnostics; no successful optimizer, scientific repair or default change"
       }
     },
     {
@@ -1167,7 +1171,7 @@
       "human_update": 85,
       "reference": "docs/topostitch-periodic.md#w85--check-coarse-motion-derivatives-against-native-geometry",
       "result": "Complete Phenix2.2.1-6174 local diagnostic reuses authenticated W38/W41 source,204-atom mask,14-pair recipe and existing NativeMaskedObjective.60 independent motion controls pass. Five declared six-parameter controls, two finite-difference steps, cached and forced-reset evaluations:270 native objective calls, max derivative discrepancy9.98e-7 below predeclared1e-3. Cached/rebuilt energy and Cartesian gradients match exactly; changed directed buffered rows have zero repulsion residual and common multiplicities are unchanged.",
-      "limitation": "Local probe only, no installed coarse optimizer, new runtime/schema, model output, density or refinement. Maximum tested physical displacement0.064 Angstrom; fixed taper and one window do not qualify large bending/window expansion. A lower total repulsion still worsens48 individual directed overlaps in one control. Full live nonbonded/exclusion guard remains Cedar Q06; source chemistry and original failed/capped optimizers remain unaccepted."
+      "limitation": "Local probe only, no installed coarse optimizer, new runtime/schema, model output, density or refinement. Maximum tested physical displacement0.064 Angstrom; fixed taper and one window do not qualify large bending/window expansion. A lower total repulsion still worsens48 individual directed overlaps in one control. The complete live nonbonded/exclusion guard remains open, separate from CedarQ06 refinement chemistry; source chemistry and original failed/capped optimizers remain unaccepted."
     },
     "E_BOUNDED_NATIVE_MOTION": {
       "kind": "installed_bounded_tapered_motion_and_native_chain_rule",
@@ -1183,7 +1187,7 @@
       "human_update": 87,
       "reference": "docs/topostitch-periodic.md#w87--compare-matched-six-variable-placements-without-promoting-failures",
       "result": "Phenix2.2.1-6174 paired/core-only trials both FAILED rounding after11/10 accepted steps; exact callback replay and full/rounded Cartesian derivative checks pass. Common14-recipe observers complete: selected-pair target -7.122/-5.318, nonbonded1077.722\u21921055.746/1059.585, retained pairs invariant, motions .0538/.0444 Angstrom. Individual packing/AT component regressions retained with severity, not count-based rejection.",
-      "limitation": "No success endpoint, candidate, refinement, scientific acceptance, runtime/schema changes or new full-suite run. Host/native arithmetic mismatch preserved and resolved through exact same-interpreter replay; full live policy remains CedarQ06. Geometry-only observations do not close S04/S05."
+      "limitation": "No success endpoint, candidate, refinement, scientific acceptance, runtime/schema changes or new full-suite run. Host/native arithmetic mismatch preserved and resolved through exact same-interpreter replay; the live-policy guard remains open, separate from CedarQ06 refinement chemistry. Geometry-only observations do not close S04/S05."
     },
     "E_SAVED_BEND_MOTION": {
       "kind": "source_bound_saved_preview_motion",
@@ -1208,6 +1212,14 @@
       "reference": "docs/topostitch-periodic.md#w90--add-explicit-diagnostic-starts-to-the-existing-atomic-trial",
       "result": "Existing atomic trial accepts frozen explicit mask displacements, records diagnostic initialization and audits that start without rebasing source/tether or modifying stopping/failure policy. Remaining-budget preflight now includes prior calls.14 fail-before,75 focused,1835 full+229 subtests,745 installed/relocated,6 helps,lean import,syntax and saved replay pass.",
       "limitation": "Additive low-level API and optional initialization observation only; no CLI/candidate/writer/campaign promotion or native-policy change. Caller authenticates parent/failure provenance. W91 matched native validation pending; no actual branch merge."
+    },
+    "E_MATCHED_ATOMIC_STARTS": {
+      "kind": "complete_native_matched_atomic_initialization",
+      "code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
+      "human_update": 91,
+      "reference": "docs/topostitch-periodic.md#w91--compare-cold-and-explicitly-coarse-seeded-atomic-cleanup",
+      "result": "Two complete Phenix2.2.1-6174 trials use installedW90 and pinnedC325 owners. Cold/seeded FAILED rounding at358/363 accepted steps,390/401 optimizercalls; both failed-point full/rounded derivatives pass. Common-recipe observers complete. Max endpoint difference2.65e-7 Angstrom; all855 rounded triplets identical; no demonstrated seed benefit. Active bond/angle nominal>=3 counts9/14\u21920, boundary angle1\u21920; packing severity retained.",
+      "limitation": "No parent failure promotion, numerical/scientific acceptance, model/checkpoint/refinement or default change. One small coarse polish is not large-shape qualification. Live-policy mutation guard is distinct from CedarQ06 chemistry survival. Evidence-only update; W90 software checks retained."
     }
   },
   "benchmarks": [
@@ -1323,8 +1335,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 91,
-    "next": 92,
+    "current": 92,
+    "next": 93,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1678,6 +1690,12 @@
       {
         "number": 91,
         "title": "Compare cold and explicit coarse-seeded atomic diagnostics",
+        "state": "RECORDED",
+        "code_commit": "5965d8588984c6991f587bdaec049639264d03e4"
+      },
+      {
+        "number": 92,
+        "title": "Coordinate and consume the shared live nonbonded-policy guard",
         "state": "IN_PROGRESS",
         "code_commit": null
       }

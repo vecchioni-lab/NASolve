@@ -3234,7 +3234,8 @@ claim, full live-policy qualification or supported repair route is introduced.
 inputs before exposing it to workflow callers. Keep the physical-search question
 open: coarse initialization needs a justified stopping/cleanup route, individual
 chemistry/packing review, nonuniform curvature and matched diffraction evidence.
-Cedar owns full live policy (Q06); density enters S06 after exact map/model/data
+The shared complete live-policy guard remains open; Cedar Q06 separately owns
+actual refinement chemistry survival. Density enters S06 after exact map/model/data
 binding. Do not loosen failed trial policy while wiring the general interface.
 
 W86's verified local forensic archive contains 544 files, SHA256
@@ -3284,7 +3285,8 @@ Wheel SHA256: `e60931ddbb694732518894d57524cb492665e9134a6b44647ce5e7e253abad4d`
 Cedar C328 `11fd6ee6` has no overlapping runtime files in this slice; this is not
 an actual merge or a new combined/native qualification. No external crystallographic
 execution was needed for this binding-only patch. S04/S05 remain partial; W87
-failures and Cedar's live-policy Q06 gate remain unchanged. Next investigate the
+failures remain unchanged. The shared live-policy guard and Cedar Q06 refinement
+chemistry survival are separate open gates. Next investigate the
 six-variable stopping resolution without changing the original trial policy,
 before deciding how coarse placement should feed local atomic cleanup.
 
@@ -3384,3 +3386,81 @@ Wheel SHA256: `fe84f7ba5bf9e924287423f74defd13d56cf953e7bed1fc726b0ecb6460e7604`
 All scientific payloads remain local. S04/S05, complete native live policy, physical
 closure, nonuniform curvature and matched diffraction gates remain open. An atomic
 trial's own derivative pass or numerical stop cannot supply scientific acceptance.
+
+
+## W91 — Compare cold and explicitly coarse-seeded atomic cleanup
+
+Two complete **Phenix 2.2.1-6174** trials exercise the installed W90 API with
+explicit pinned C325 native owners. All frozen worker/model/recipe/mask/bootstrap
+inputs match; plans differ only in label and starting displacements. Both retain
+the original W38 source/tether, full 14-pair recipe, 204 movable atoms, 0.5 Angstrom
+bound, 0.1 Angstrom tether sigma, 500 iterations/2,000 optimizer-call limits,
+10,000 total evaluations and 1,200-second owned timeout. The seeded start is the
+exact W87 paired callback-confirmed point, whose parent remains **FAILED**.
+Both source and parent coordinates/gradients replay exactly before either trial.
+
+| Observation | Cold source start | Explicit coarse diagnostic start |
+| --- | ---: | ---: |
+| Atomic outcome | FAILED: line-search rounding | FAILED: line-search rounding |
+| Accepted steps / optimizer calls | 358 /390 | 363 /401 |
+| Total calls including audits and two prechecks | 7,742 | 7,753 |
+| Maximum motion from original source (Angstrom) | 0.196911 | 0.196911 |
+| Total target | 7094.401789628126 | 7094.401789628118 |
+| Projected atomic gradient norm | 0.00038015 | 0.00040430 |
+
+Both callback-confirmed points pass full-precision and rounded Cartesian derivative
+checks. Independent existing common-recipe endpoint observers complete with
+`ENDPOINT_OBSERVATIONS_REVIEW`; no candidate/model, checkpoint or refinement is
+created. The parent processes return0 for a completed diagnostic; each nested
+atomic trial remains FAILED. This does not establish numerical convergence.
+
+Maximum inter-control coordinate difference is **2.65e-7 Angstrom**, RMS1.38e-8;
+all855 PDB-rounded coordinate triplets are identical. Native/pair/tether components
+differ slightly while the total is within8 ULPs. This particular small coarse
+polish provides no demonstrated endpoint or iteration-count benefit over cold
+atomic cleanup. Keep the reusable explicit-start interface for genuinely displaced
+placements, but do not add redundant coarse polishing to the default pipeline or
+generalize this one-window result to large bending/unbending problems.
+
+The common observations are practically equal: movable-region nominal>=3
+bond deviations9→0, angles14→0, boundary angles1→0, and no observed chirality sign
+conflicts. Fixed-only deviations remain unchanged; this is not whole-model repair.
+Selected and retained-core pair targets decrease52.145 and77.019. Overall native
+nonbonded target improves1077.722→1002.146, but110 directed existing overlaps
+worsen and18 previously nonpositive rows become positive. The largest increase
+is0.139359 Angstrom (0.082822→0.222182); largest new positive overlap0.075566.
+These are descriptive severities, not calibrated rejection/acceptance thresholds
+or counts of independent physical clashes. Dihedral target rises1.391813 and
+planarity drops0.980100. Individual geometry/packing remains a review gate.
+
+Exact historical local commands, separately for `cold` and `coarse-seeded`:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/private/tmp/willow-w90-atomic-start/site:/private/tmp/willow-periodic-install/lib/python3.12/site-packages /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/willow-w91-atomic-handoff/<control>/run-owned.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/private/tmp/willow-w90-atomic-start/site:/private/tmp/willow-periodic-install/lib/python3.12/site-packages /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/willow-w91-atomic-handoff/observe.py <control>
+python3 /private/tmp/willow-w91-atomic-handoff/summarize.py
+```
+
+Per-control receipts preserve frozen hashes and unchanged inputs. W91 adds no
+runtime/schema changes and repeats no source suite; W90 full1,835+229 and installed
+745 remain current. All raw scientific and failed evidence remains local; no
+ordinary chemistry, physical gap closure, data/Rfree or full combined-current
+branch claim is made.
+
+**Shared dependency correction:** Cedar Q06 concerns actual refinement's effective
+restraints and achieved chemistry. It is not a synonym for the missing complete
+live nonbonded/exclusion-policy mutation guard identified in W78. Existing Cedar
+capture/ASU/cache readers observe generated contacts and fixed-state arithmetic;
+they do not authenticate every parameter-table entry/assignment/exclusion capable
+of generating later contacts. PDU's achieved-angle review does not block unrelated
+TopoStitch numerical work. Rowan owns the proposed additive native-policy helper;
+Willow will consume a concrete qualified interface rather than duplicate it.
+Legitimate neighbor rebuilds must remain distinct from hidden policy changes.
+
+Verified local forensic archives: W89 (48files), SHA256
+`cf6dea676c5d03cd9861588c756dfb1c7220ffd14aa864874c414e315131370a`;
+W90 (497files), SHA256
+`32e4438f2247175364ed97082906fff1495f5cce040c06836bede7117556a4df`.
+W90's297 duplicate build/test files (5,903,264bytes) were removed only after exact
+archive comparison; active installed runtimes/scientific evidence remain. These
+archives are forensic records, not autonomous resumable campaigns.

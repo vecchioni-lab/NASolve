@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W91 — Compare staged atomic starts and clarify shared native-policy work
+
+- Record matched cold/coarse-seeded atomic diagnostics: retained failures,
+  independent derivative/geometry observations and no demonstrated seed benefit.
+- Separate the missing live nonbonded-policy guard from Cedar Q06 chemistry
+  survival. Evidence and documentation only; no defaults, schema or model changes.
+
 ### W90 — Accept explicit diagnostic starts for atomic trials
 
 - Allow a frozen displacement start in the existing bounded atomic trial, retaining
