@@ -391,7 +391,24 @@
         "scope": "captured coordinates/membership only, preserving source proxy kinds and directed multiplicity",
         "native_pair_table_replacement": false,
         "model_export": false,
-        "runtime_authority": false
+        "runtime_authority": false,
+        "saved_preview_binding": {
+          "api": "nasolve.topostitch_recut_bundle.observe_relabel_native_packing",
+          "report_kind": "topostitch-representative-native-packing-observation",
+          "report_schema_version": 1,
+          "capture_owner": "Cedar",
+          "packet_owner": "existing immutable representative preview",
+          "checks": [
+            "source and receipt bytes",
+            "complete native/preview atom correspondence",
+            "source coordinates and cell",
+            "proposed coordinates",
+            "unchanged inputs after evaluation"
+          ],
+          "output_files_created": false,
+          "cli_view_defaults_changed": false,
+          "native_pair_table_replacement": false
+        }
       }
     },
     "captured_native_job": {

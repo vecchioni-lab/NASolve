@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W77 — Bind native contact reports to saved representative previews
+
+- Add a read-only preview API that reuses Cedar authentication and the existing
+  immutable packet binding; verify native atom order, source coordinates, cell
+  and proposed positions before representing contacts.
+- Share the binding owner with existing native-link observations, retaining their
+  output and all CLI/view defaults. Reports write no files and activate no native
+  pair table, chemistry, refinement or ASU export.
+
 ### W76 — Represent captured native contacts in chosen crystal images
 
 - Add a read-only packing API that transports exact directed contact operations

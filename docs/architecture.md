@@ -946,6 +946,11 @@ contacts in complete chosen atom images using exact `g_i h g_j^-1` operations.
 Source proxy kinds, directed rows and multiplicity remain provenance; this output
 is not a replacement native pair table. Coordinate/distance checks and source
 digests guard the report while Cedar retains authentication and native review.
+`topostitch_recut_bundle.observe_relabel_native_packing` binds that report to a
+saved preview through the same immutable capture/packet context as native links.
+It checks complete native-to-preview atom correspondence, source cell/coordinates
+and proposed positions. Link/view defaults and existing report fields stay exact;
+neither API returns a replacement native pair table or writes a model.
 
 `topostitch_recipe` freezes complete canonical NARestraints selections for explicit
 atom images; `topostitch_native_recipe` binds them to unmodified PDB atom order

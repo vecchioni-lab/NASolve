@@ -6,6 +6,7 @@ packet is neither an edited ASU nor a NASolve checkpoint or chemistry decision.
 from __future__ import annotations
 
 import argparse
+from contextlib import contextmanager
 from hashlib import sha256
 import json
 from pathlib import Path
@@ -297,19 +298,11 @@ def observe_relabel_backbone_intent(directory):
     return result
 
 
-def observe_relabel_native_links(directory, native_receipt, *, cedar_source=None):
-    """Expose existing source bonds that a proposed representation cuts.
-
-    Cedar authenticates the capture and binds native atoms/identity links. Only
-    those already interpreted interresidue identity bonds are transported here.
-    Source symmetry bonds remain explicit unqualified evidence; no bond, angle,
-    terminal atom or model is generated, and native interpretation is not run.
-    """
-    import math
+@contextmanager
+def _native_relabel_context(directory, native_receipt, cedar_source):
+    """One immutable preview/capture binding shared by read-only native reports."""
     from .topostitch_captured_job import _cedar
-    from .topostitch_graph import _compose, _inverse
     from .topostitch_periodic import _crystal
-    from .topostitch_recut import _arithmetic_bound
     root=Path(directory);manifest=root/'preview.json';manifest_bytes=manifest.read_bytes()
     packet=load_relabel_preview(root)
     frozen={root/ref['relative_path']:(root/ref['relative_path']).read_bytes() for ref in packet['artifacts'].values()}
@@ -324,7 +317,6 @@ def observe_relabel_native_links(directory, native_receipt, *, cedar_source=None
         receipt,native,captured=owner._capture(Path(native_receipt),model)
         if receipt['status']!='REVIEW':raise ValueError('Require a complete read-only source native capture')
         keys,labels=owner._native_atoms(native,model)
-        links,symmetry=owner._links(native,keys,labels,{key[0] for key in keys})
         crystal=bound['periodic_graph']['crystal']
         gemmi,cell,_=_crystal(crystal['cell_parameters'],crystal['space_group']);identity=gemmi.Op('x,y,z')
         atoms=preview['source_orbit_observation']['atoms'];by_key={};site_images={}
@@ -343,6 +335,34 @@ def observe_relabel_native_links(directory, native_receipt, *, cedar_source=None
             if key[0] in site_images and site_images[key[0]]!=xyz:
                 raise ValueError('Native link observation requires whole-residue images')
             site_images[key[0]]=xyz
+        yield dict(root=root,manifest_bytes=manifest_bytes,packet=packet,model=model,
+            preview=preview,bound=bound,receipt=receipt,native=native,captured=captured,
+            keys=keys,labels=labels,by_key=by_key,atoms=atoms,site_images=site_images,
+            gemmi=gemmi,cell=cell,identity=identity,owner=owner,cedar=cedar)
+        if any(path.read_bytes()!=data for path,data in captured.items()):
+            raise ValueError('Native capture changed during representative observation')
+        if manifest.read_bytes()!=manifest_bytes or any(path.read_bytes()!=data for path,data in frozen.items()):
+            raise ValueError('Representative packet changed during native observation')
+
+
+def observe_relabel_native_links(directory, native_receipt, *, cedar_source=None):
+    """Expose existing source bonds that a proposed representation cuts.
+
+    Cedar authenticates the capture and binds native atoms/identity links. Only
+    those already interpreted interresidue identity bonds are transported here.
+    Source symmetry bonds remain explicit unqualified evidence; no bond, angle,
+    terminal atom or model is generated, and native interpretation is not run.
+    """
+    import math
+    from .topostitch_graph import _compose, _inverse
+    from .topostitch_recut import _arithmetic_bound
+    with _native_relabel_context(directory,native_receipt,cedar_source) as context:
+        root,manifest_bytes,packet,model = (context['root'],context['manifest_bytes'],context['packet'],context['model'])
+        preview,bound,receipt,native = (context['preview'],context['bound'],context['receipt'],context['native'])
+        captured,keys,labels,by_key = (context['captured'],context['keys'],context['labels'],context['by_key'])
+        atoms,site_images,gemmi,cell = (context['atoms'],context['site_images'],context['gemmi'],context['cell'])
+        identity,owner = (context['identity'],context['owner'])
+        links,symmetry=owner._links(native,keys,labels,{key[0] for key in keys})
         node_by_site={node['mapping']['coordinate_site']:node['node_id'] for node in bound['nodes'] if node['mapping'] is not None}
         rows=[]
         for number,link in enumerate(links,1):
@@ -373,9 +393,6 @@ def observe_relabel_native_links(directory, native_receipt, *, cedar_source=None
                 before_distance_angstrom=math.dist(*before),after_image_distance_angstrom=math.dist(*actual),
                 after_direct_distance_angstrom=math.dist(*proposed),maximum_coordinate_error_angstrom=error,
                 declared_backbone_edge_ids=declared,phosphate_inventory=phosphate))
-        if any(path.read_bytes()!=data for path,data in captured.items()):raise ValueError('Native capture changed during seam observation')
-    if manifest.read_bytes()!=manifest_bytes or any(path.read_bytes()!=data for path,data in frozen.items()):
-        raise ValueError('Representative packet changed during seam observation')
     result=dict(schema_version=1,kind='topostitch-representative-native-link-observation',status='SOURCE_LINKS_REVIEW_REQUIRED',
         source_model_sha256=packet['source_model_sha256'],preview_receipt_sha256=sha256(manifest_bytes).hexdigest(),
         preview_sha256=preview['preview_sha256'],native_receipt_sha256=sha256(captured[Path(native_receipt).expanduser().resolve()]).hexdigest(),
@@ -390,6 +407,55 @@ def observe_relabel_native_links(directory, native_receipt, *, cedar_source=None
                      'Direct proposed-ASU separation may be large while exact-image distance is unchanged; no automatic bond, OP3 or dephosphorylation'])
     result['report_sha256']=_fingerprint(result)
     return result
+
+
+def observe_relabel_native_packing(directory, native_receipt, *, cedar_source=None):
+    """Bind a captured-contact representation to an immutable saved preview.
+
+    The shared native-preview owner authenticates input bytes and complete atom
+    identities. This layer additionally checks exact source coordinates/cell and
+    the proposed coordinates before returning the W76 contact report. It neither
+    creates a file nor changes the ordinary native-link/view defaults.
+    """
+    from .topostitch_packing import reframe_native_packing, _digest, _number
+    from .topostitch_transport import _vector, crystallographic_image
+    from .topostitch_recut import _arithmetic_bound
+    with _native_relabel_context(directory,native_receipt,cedar_source) as context:
+        native=context['native'];keys=context['keys'];preview=context['preview']
+        atoms=context['atoms'];by_key=context['by_key']
+        crystal=context['bound']['periodic_graph']['crystal']
+        cell=tuple(_number(v) for v in native['nonbonded_inventory']['unit_cell'])
+        if len(cell)!=6 or any(abs(a-b)>1e-8 for a,b in zip(cell,crystal['cell_parameters'])):
+            raise ValueError('Native contact cell differs from the representative preview')
+        points=tuple(_vector(p) for p in native['geometry']['sites_cart_exact'])
+        if len(points)!=len(keys):
+            raise ValueError('Native contact coordinate inventory is incomplete')
+        expected_source=[atoms[by_key[key]]['position_angstrom'] for key in keys]
+        expected_proposed=[preview['proposed_points_angstrom'][by_key[key]] for key in keys]
+        images=[context['site_images'][key[0]] for key in keys]
+        transforms={op:crystallographic_image(cell,crystal['space_group'],op) for op in set(images)}
+        proposed=[transforms[op].apply(point) for op,point in zip(images,points)]
+        tolerance=_arithmetic_bound(*points,*expected_source,*proposed,*expected_proposed)
+        source_error=max(abs(a-b) for p,q in zip(points,expected_source) for a,b in zip(p,q))
+        preview_error=max(abs(a-b) for p,q in zip(proposed,expected_proposed) for a,b in zip(p,q))
+        if source_error>tolerance or preview_error>tolerance:
+            raise ValueError('Native contact coordinates do not bind the saved representative preview')
+        packing=reframe_native_packing(native,atom_labels=context['labels'],atom_images=images,
+            space_group=crystal['space_group'],expected_native_sha256=_digest(native),
+            reviewer=context['cedar']['cif_native_nonbonded'].review_native_nonbonded)
+        receipt=context['receipt'];packet=context['packet']
+        report=dict(schema_version=1,kind='topostitch-representative-native-packing-observation',
+            source_model_sha256=packet['source_model_sha256'],
+            preview_receipt_sha256=sha256(context['manifest_bytes']).hexdigest(),
+            preview_sha256=preview['preview_sha256'],
+            native_receipt_sha256=sha256(context['captured'][Path(native_receipt).expanduser().resolve()]).hexdigest(),
+            native_policy_id=receipt['policy_id'],native_version=receipt['phenix_version'],
+            maximum_source_coordinate_error_angstrom=source_error,
+            maximum_preview_coordinate_error_angstrom=preview_error,packing=packing,
+            runtime_authority=False,scientific_acceptance=False,coordinates_materialized=False,
+            limitations=['Frozen source/preview/native correspondence and captured contacts only; no geometry or topology approval.',
+                'Native pair tables, exclusions, live neighbor rebuilding, model copying and refinement remain separate gates.'])
+    return report
 
 
 def main(argv=None):

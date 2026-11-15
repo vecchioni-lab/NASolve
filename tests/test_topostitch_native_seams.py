@@ -29,11 +29,15 @@ def seam(tmp_path,monkeypatch):
         def read(path,model):
             assert model==state['model'] and path==state['receipt']
             if state.get('refuse'):raise ValueError('Native receipt authentication refused')
-            return dict(status=state['status'],policy_id='synthetic-policy',phenix_version='synthetic-version'),dict(geometry=dict(proxy_counts=state['native_counts'])),{path.resolve():path.read_bytes()}
+            return dict(status=state['status'],policy_id='synthetic-policy',phenix_version='synthetic-version'),state.get('native',dict(geometry=dict(proxy_counts=state['native_counts']))),{path.resolve():path.read_bytes()}
         def links(*args):
             if state.get('drift'):state['receipt'].write_text('changed capture')
             return deepcopy(state['links']),deepcopy(state['symmetry'])
-        yield dict(cif_attachment_native=SimpleNamespace(_capture=read,_native_atoms=lambda *a:(state['keys'],['synthetic']*len(keys)),_links=links))
+        def review(native):
+            if state.get('packing_drift'):state['receipt'].write_text('changed during packing review')
+            return deepcopy(state['review'])
+        yield dict(cif_attachment_native=SimpleNamespace(_capture=read,_native_atoms=lambda *a:(state['keys'],state.get('labels',['synthetic']*len(keys))),_links=links),
+                   cif_native_nonbonded=SimpleNamespace(review_native_nonbonded=review))
     import nasolve.topostitch_captured_job as jobs
     monkeypatch.setattr(jobs,'_cedar',owners)
     return state
@@ -109,3 +113,77 @@ def test_invalid_native_view_options_and_bad_capture_create_no_html(seam,tmp_pat
     seam['refuse']=True
     with pytest.raises(ValueError,match='authentication'):write_preview_view(seam['packet'],out,native_receipt=seam['receipt'])
     assert not out.exists()
+
+
+def packing_source(state):
+    import math
+    from nasolve.topostitch_recut_bundle import load_relabel_preview
+    from nasolve.topostitch_packing import NATIVE_POLICY
+    preview=load_relabel_preview(state['packet'])['observation']
+    points=[a['position_angstrom'][:] for a in preview['source_orbit_observation']['atoms']]
+    labels=['source-atom-'+str(i) for i in range(len(points))]
+    keys=[tuple(v) for v in state['links'][0]['endpoints']]
+    i,j=[state['keys'].index(key) for key in keys];distance=math.dist(points[i],points[j]);vdw=3.
+    state['labels']=labels
+    state['native']=dict(atom_count=len(points),atoms=[dict(i_seq=i,label=label,xyz=points[i]) for i,label in enumerate(labels)],
+        geometry=dict(proxy_counts=state['native_counts'],sites_cart_exact=points),
+        nonbonded_inventory=dict(policy_id=NATIVE_POLICY,unit_cell=preview['registered_graph']['periodic_graph']['crystal']['cell_parameters'],
+            pairs=[['simple',i,j,0,vdw]],mappings=[]))
+    row=dict(proxy_index=0,kind='simple',i_seqs=[i,j],image_j=0,atoms=[labels[i],labels[j]],vdw_distance=vdw,
+             distance=distance,overlap=vdw-distance,residual=max(0.,vdw-distance)**4,residual_weight=1.)
+    state['review']=dict(policy_id=NATIVE_POLICY,analysis_completed=True,pair_sum_and_gradient_replay=True,
+        fixed_manager_repeats=True,geometry_accepted=False,measurements=[row],pair_count=1,total_residual=row['residual'])
+    return state
+
+
+def packing_report(state):
+    from nasolve.topostitch_recut_bundle import observe_relabel_native_packing
+    return observe_relabel_native_packing(state['packet'],state['receipt'])
+
+
+def test_native_packing_report_binds_complete_preview_and_receipt_without_edits(seam):
+    from hashlib import sha256
+    state=packing_source(seam);paths=[*state['packet'].iterdir(),state['receipt']]
+    frozen={p:p.read_bytes() for p in paths};r=packing_report(state)
+    assert r['preview_receipt_sha256']==sha256(frozen[state['packet']/'preview.json']).hexdigest()
+    assert r['native_receipt_sha256']==sha256(frozen[state['receipt']]).hexdigest()
+    assert r['source_model_sha256']==sha256(state['model']).hexdigest()
+    assert r['packing']['source_directed_row_count']==1
+    assert r['packing']['maximum_distance_error_angstrom']<1e-10
+    assert r['maximum_preview_coordinate_error_angstrom']<1e-10
+    assert not any(r[k] for k in ('runtime_authority','scientific_acceptance','coordinates_materialized'))
+    assert all(p.read_bytes()==data for p,data in frozen.items())
+    assert str(state['packet'].parent) not in json.dumps(r)
+
+
+def test_native_packing_uses_native_order_without_reassigning_atom_identity(seam):
+    state=packing_source(seam);before=packing_report(state);n=state['native'];size=n['atom_count']
+    state['keys'].reverse();state['labels'].reverse();n['atoms'].reverse();n['geometry']['sites_cart_exact'].reverse()
+    for i,a in enumerate(n['atoms']):a['i_seq']=i
+    pair=n['nonbonded_inventory']['pairs'][0];pair[1],pair[2]=size-1-pair[1],size-1-pair[2]
+    state['review']['measurements'][0]['i_seqs']=[pair[1],pair[2]]
+    after=packing_report(state)
+    a,b=before['packing']['contacts'][0],after['packing']['contacts'][0]
+    assert a['source']['atoms']==b['source']['atoms']
+    assert a['representative_target_operator_xyz']==b['representative_target_operator_xyz']
+    assert a['representative_distance_angstrom']==pytest.approx(b['representative_distance_angstrom'],abs=1e-10)
+    assert before['packing']['source_native_sha256']!=after['packing']['source_native_sha256']
+
+
+@pytest.mark.parametrize('defect',['missing','translated','cell','review_drift'])
+def test_native_packing_refuses_incomplete_or_changed_preview_context(seam,defect):
+    state=packing_source(seam)
+    if defect=='missing':state['keys'].pop()
+    elif defect=='translated':
+        for point in state['native']['geometry']['sites_cart_exact']:point[0]+=.1
+    elif defect=='cell':state['native']['nonbonded_inventory']['unit_cell']=list(state['native']['nonbonded_inventory']['unit_cell']);state['native']['nonbonded_inventory']['unit_cell'][2]+=1
+    else:state['packing_drift']=True
+    with pytest.raises(ValueError):packing_report(state)
+
+
+def test_native_packing_replays_after_declared_packet_and_capture_relocation(seam,tmp_path):
+    state=packing_source(seam);before=packing_report(state);oldpacket=state['packet'];oldcapture=state['capture']
+    moved=tmp_path/'native-packing-relocated';moved.mkdir();shutil.move(oldpacket,moved/'packet');shutil.move(oldcapture,moved/'capture')
+    state.update(packet=moved/'packet',capture=moved/'capture',receipt=moved/'capture/receipt.json')
+    assert not oldpacket.exists() and not oldcapture.exists()
+    assert packing_report(state)==before

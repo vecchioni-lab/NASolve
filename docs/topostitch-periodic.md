@@ -2565,3 +2565,39 @@ source paths blocked. Wheel SHA-256:
 The complete suite passed **1,748 + 229 subtests** before the final finite-distance
 guard; that newly demonstrated failure is fixed and passes focused/installed
 checks. Final complete-suite validation waits for Cedar's serial native window.
+
+
+## W77 — Bind contact reports to immutable saved previews
+
+`topostitch_recut_bundle.observe_relabel_native_packing(preview_directory,
+native_receipt, *, cedar_source=None)` supplies the authenticated bridge from an
+existing saved representative preview to W76's contact arithmetic. It reuses the
+native-link observer's packet/capture owner, now factored into one context shared
+by both read-only reports. Cedar still authenticates captures and reviews native
+nonbonded evidence. The development `cedar_source` option remains explicit; a
+combined installation uses its installed Cedar owners.
+
+The bridge resolves complete atom correspondence in native order, checks the
+captured cell and exact source coordinates against the saved preview, derives
+whole-residue images from the frozen proposal and verifies its transformed points.
+It then returns a new schema-1
+`topostitch-representative-native-packing-observation` with source/preview/capture
+hashes, coordinate discrepancies and the W76 report. Input bytes are checked
+again before the context closes. Reordered native storage can be mapped without
+reassigning identities; incomplete, shifted or stale data refuse. The existing
+unambiguous-residue/whole-residue preview scope is retained.
+
+This API creates no output file, changes no packet/checkpoint schema and leaves
+all CLI/view defaults and existing native-link report fields unchanged. It does
+not export coordinates/tensors, replace native pair tables, add contacts, change
+exclusions or approve topology/refinement. In particular, a packing-distance
+report does not qualify the separate scattering/hierarchy ADP serialization gate.
+
+Seven new regressions fail before implementation. The focused native-link,
+packing, packet/view/preference and continuation group passes **167 tests**.
+Both existing public saved previews produce packing subreports **exactly equal**
+to W76's independently assembled inputs, preserving all **8,305 directed rows**
+per cut. Source-coordinate discrepancy is at most 7.11e-15 Å; proposed-coordinate
+discrepancy is at most 1.43e-14 Å. This replays authenticated Phenix 2.2.1-6174
+captures on the host; it performs no fresh native execution. Scientific outputs
+remain local, and P04 integration remains open.
