@@ -1,9 +1,9 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-15, C320 exact native dictionary-target delivery — Rowan**.
+Updated **2026-11-15, C321 native bond energy/force attribution — Rowan**.
 Worktree **NASolve-c96**, branch **cedar**. Native source checkpoint **1b9a9918**;
-C319 published as **c4adb6b2**. This follow-up adds the source-derived native
-target-delivery gate and compact evidence. Focused
+C319 published as **c4adb6b2**, C320 as **794e0d7b**. This follow-up adds
+native target-only energy/force attribution and compact evidence. Focused
 checks only; no full suite, branch, default activation or merge. Linden owns
 Pine/Willow and does not edit Cedar.
 
@@ -11,8 +11,8 @@ Pine/Willow and does not edit Cedar.
 
 **Window: 16:25–19:25 London, extended by up to one hour if needed.** C318/C319
 jobs are complete with return code 0, verified stopped owners and unchanged
-source pins. No native job remains active. Keep expensive checks serial with
-Linden; he was told the native window is free after C319.
+source pins. C321 is also complete/stopped; the native window is free and Linden
+has been informed. Keep expensive checks serial.
 
 C319 ordinary root: `319_Cedar_ordinary-output-sync-_ycu9ff8` under the local
 `NASolve-live-tests` anchor. It creates unselected PDU **refine-003** from postmr,
@@ -29,6 +29,18 @@ Rwork/Rfree 0.206236/0.236192 and retains the original Free-R mapping. Coordinat
 and printed geometry exactly match C308; only model ADPs change. Do not rerun
 these successful controls or reinterpret them as chemical-survival approval.
 
+**C321 is complete/stopped:** `321_Cedar_native-bond-attribution-lf7mvpjs` under
+the live-test anchor. One 5.53 s native job rebuilt four exact PDU/5PC contexts,
+recorded actual bond slack/limit/top-out and compared native single/container
+energies and gradients. Target changes account for the whole energy difference
+(−55.15143/−11.10162 native units), with force-difference errors below 6e−14.
+Potential options are unchanged: slack 0, limit −1, top-out false. An independent
+synthetic softened-potential finite-difference control passes. All 88 old files
+remain unchanged. No refinement or adoption. Source pins: working C321 over
+794e0d7b; see start/driver/native execution records. No retry is needed.
+The 25 new regressions failed before implementation; **123 focused tests pass**
+(1.90 s), including existing torsion/plane numerical gates. No full suite.
+
 **C320 delivery gate is complete:** the maintained source/reference candidate
 rebuild, full-monomer coverage and captured-input binding pass for PDU and 5PC's
 existing C308 dictionary captures. One bond target changes in each; every other
@@ -38,12 +50,19 @@ Final local root: `320_Cedar_native-target-delivery-kpghikw9`. Source pins are i
 Earlier pre-producer-hardening cold pass is retained at
 `320_Cedar_native-target-delivery-2jx19f6g`; do not duplicate it again.
 
-**Current next step:** qualify numerical energy/force attribution and reference
-authority, then integrate through existing repair/selection owners. Native bond
-slack/top-out options are not in old inventory rows: inspect them explicitly
-before assuming harmonic energy. Existing capture/numerical/repair-chain owners
-must be reused. Diagnostic PHIL delivery is not ordinary corrected-CIF delivery.
+**Current next step:** durable owned bond attribution/cold readback, then
+reference authority and existing repair/selection integration. Reuse the existing
+plane-attribution lifecycle instead of copying another executor. C321's pure
+numerical gate explicitly leaves caller-authentication of kernel observations
+separate. Diagnostic PHIL delivery is not ordinary corrected-CIF delivery.
 PDU's remaining bend and whole-substituent survival remain open Q06 work.
+
+Linden W78 reports a distinct native-copy hazard: generic deepcopy/pickle drops
+nonbonded radius/ionic/donor tables despite matching contacts, whereas tested
+native identity selections retain energy/gradient behavior. It is queued under
+Q06; no Cedar fix or source-manager-copy adapter is installed. Current final
+output synchronization retains the same geometry owner. Do not interrupt target
+repair or build a duplicate contact engine for this new idea.
 
 C320 focused validation: **184 passed in 21.17 s**, covering the new gate,
 reference candidates, repair chain and captured mixed gradients. Initial 34
@@ -93,6 +112,8 @@ commands, hashes, local anchors and limits; avoid duplicating its full history:
   optimizer-history reconstruction or permission to strengthen restraints.
 - C318 `versioned_refinement_output_state_2026_11_15`: implementation and isolated
   native guard; its then-pending writer limitation is closed by the new entry.
+- C321 `native_linear_bond_target_energy_2026_11_15`: full fixed-point energy/
+  force attribution and native bond options; persistent owned replay remains next.
 - C320 `native_linear_bond_target_delivery_2026_11_15`: exact target-only
   dictionary delivery and captured context; energy/authority still separate.
 - C319 `ordinary_written_refinement_output_state_2026_11_15`: actual writer,

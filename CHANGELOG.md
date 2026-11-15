@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Attribute bond-target changes to their actual native energy and forces (C321)
+
+- Add a fixed-point gate that requires local native bond evaluations to explain
+  the whole model's energy/gradient change while retaining all other terms/counts.
+- Preserve actual native slack, limit and top-out options instead of assuming a
+  harmonic bond. Kernel/reference authority, derivative validation and ordinary
+  adoption remain separate; existing numerical tolerances are unchanged.
+
 ### Check target-only dictionary delivery across the full native model (C320)
 
 - Add read-only qualification of exact source/reference bond-target candidates

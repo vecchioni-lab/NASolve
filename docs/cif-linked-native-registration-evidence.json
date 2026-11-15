@@ -99888,5 +99888,169 @@
         "size": 3811
       }
     ]
+  },
+  "native_linear_bond_target_energy_2026_11_15": {
+    "milestone": "C321",
+    "status": "NATIVE_TARGET_ONLY_ENERGY_AND_FORCE_ATTRIBUTION_PASS",
+    "source_base_commit": "794e0d7b",
+    "source_state": "Working maintained energy source is frozen by start.json; no source edits during native job.",
+    "behavior_before": "Target delivery could be checked, but it did not establish the native energy/gradient difference or expose actual bond potential options.",
+    "behavior_after": "A maintained native evaluator retains slack, limit and top-out and compares actual native single-bond and local-accumulator evaluations. A pure gate requires these to explain the whole fixed-point energy and gradient change, with every other term/count unchanged.",
+    "files": [
+      "src/nasolve/cif_linear_bond_energy.py",
+      "tests/test_cif_linear_bond_energy.py"
+    ],
+    "policy": "cif-linked-linear-bond-target-energy-v1",
+    "validation": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_linear_bond_energy.py tests/test_cif_linear_bond_native.py tests/test_cif_linked_torsion_energy.py tests/test_cif_plane_energy.py --tb=short",
+      "result": "123 passed in 1.90 s; 25 new regressions failed before implementation.",
+      "full_suite": "NOT_RUN",
+      "native_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c321_start.py"
+    },
+    "native": {
+      "build": "Phenix 2.2.1-6174 / dispatcher 2.2.1, Darwin arm64",
+      "mode": "Complete native interpretation and fixed-point evaluation of four exact contexts in one owned serial job; no optimization or refinement.",
+      "elapsed_seconds": 5.528945583035238,
+      "original_files_unchanged": 88,
+      "stopped_verified": true,
+      "controls": {
+        "PDU": {
+          "numerical_checks_pass": true,
+          "changed_bond_count": 1,
+          "bond_target_delta": -55.15142665168811,
+          "target_delta": -55.15142665168787,
+          "gradient_delta_error_norm": 5.859285502108464e-14
+        },
+        "5PC": {
+          "numerical_checks_pass": true,
+          "changed_bond_count": 1,
+          "bond_target_delta": -11.10161804979468,
+          "target_delta": -11.101618049795434,
+          "gradient_delta_error_norm": 3.1776437161565096e-14
+        }
+      },
+      "potential_options": {
+        "PDU": {
+          "before": {
+            "slack": 0.0,
+            "limit": -1.0,
+            "top_out": false
+          },
+          "after": {
+            "slack": 0.0,
+            "limit": -1.0,
+            "top_out": false
+          }
+        },
+        "5PC": {
+          "before": {
+            "slack": 0.0,
+            "limit": -1.0,
+            "top_out": false
+          },
+          "after": {
+            "slack": 0.0,
+            "limit": -1.0,
+            "top_out": false
+          }
+        }
+      },
+      "synthetic_native_sanity": [
+        {
+          "parameters": {
+            "slack": 0.0,
+            "limit": -1.0,
+            "top_out": false
+          },
+          "finite_difference_error": 3.6812111485123717e-10
+        },
+        {
+          "parameters": {
+            "slack": 0.1,
+            "limit": 0.3,
+            "top_out": true
+          },
+          "finite_difference_error": 2.4534886713283185e-11
+        }
+      ]
+    },
+    "compatibility": "Additive diagnostic gate; existing native capture policies, parallelity helper and ordinary repair selection unchanged.",
+    "limitations": [
+      "Current pure gate requires caller-authenticated native kernel observations; persistent owned attribution/cold readback is the next integration seam.",
+      "Reference authority, ESD calibration, full-manager derivative qualification and whole-substituent survival remain separate.",
+      "Scaffold controls are not modified-crystal validation. No stronger restraints, coordinate optimization or Free-R tuning."
+    ],
+    "artifacts": {
+      "included": "Maintained evaluator/gate/tests, compact observations and anchored hashes.",
+      "excluded": "All models, dictionaries, complete inventories, diagnostic workers and logs stay local."
+    },
+    "local_records": [
+      {
+        "anchor": "local_live_tests",
+        "path": "321_Cedar_native-bond-attribution-lf7mvpjs/start.json",
+        "sha256": "c4825f4f270c2bedec789071e0eaed1c0093137023602217fcffb4250e2b1186",
+        "size": 27179
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "321_Cedar_native-bond-attribution-lf7mvpjs/worker.py",
+        "sha256": "96b5b741b6987c7bfca1b8800eab96a1be666ab065f6f89ce6ca76821922e9e8",
+        "size": 5037
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "321_Cedar_native-bond-attribution-lf7mvpjs/native_worker.py",
+        "sha256": "576b450c3f78488066fcdb51b854a9aa0881f047f3133aaf06fb5dab4beefed6",
+        "size": 3646
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "321_Cedar_native-bond-attribution-lf7mvpjs/driver-result.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+        "size": 78
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "321_Cedar_native-bond-attribution-lf7mvpjs/native-execution.json",
+        "sha256": "a113663da54d1ae1679addbe26c1fb08c3b08112a579d12d8d93bb8e780fd37b",
+        "size": 50
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "321_Cedar_native-bond-attribution-lf7mvpjs/summary.json",
+        "sha256": "8938c3063065abef6c399b794ab8009ca652c1295d4cfc45ae62473fc7c7b5a9",
+        "size": 2985
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "321_Cedar_native-bond-attribution-lf7mvpjs/PDU-energy.json",
+        "sha256": "a6c50bf5235dcc0657ed51dc9ca4d806bcaada91771393ea22e59cb297c7d279",
+        "size": 1191
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "321_Cedar_native-bond-attribution-lf7mvpjs/5PC-energy.json",
+        "sha256": "1632bff92fece539b2adb848348e874d0f98eaffb7d946152c84869fdb5026f0",
+        "size": 1193
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "321_Cedar_native-bond-attribution-lf7mvpjs/job/evaluator.py",
+        "sha256": "3edcf4e65d50d08bf0cea37da0b9331c07a462230051185dd954930214bdb982",
+        "size": 1439
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "321_Cedar_native-bond-attribution-lf7mvpjs/job/spec.json",
+        "sha256": "99215942cdf72ca14b9090b6a185971776808ae9eb0357a8433fb7306ae30512",
+        "size": 2719
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "321_Cedar_native-bond-attribution-lf7mvpjs/job/native-result.json",
+        "sha256": "f8ab2cc0a7cf9416f9c445c94fb398761645db95112b3bd6853a7daa4209ceae",
+        "size": 13873
+      }
+    ]
   }
 }

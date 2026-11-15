@@ -88,6 +88,18 @@ successful ReadySet result is insufficient. Keep ordinary bond edits distinct
 from additive contact energy over an unchanged native manager: Linden's reported
 Willow evidence shows changed exclusions from symmetry distance edits. Willow
 W38/W39 are context, not a combined Cedar validation or a phosphodiester-link grant.
+**Queued shared native-policy check (Linden W78, 2026-11-15):** his controlled
+copy experiment reports that generic Python `deepcopy`/pickle of native
+nonbonded parameters drops radius, ionic-radius and donor/acceptor tables while
+retaining scalar settings and captured contacts. Native/model identity selection
+retains the tested energy/gradient behavior. Before installing a geometry-copy
+adapter, Cedar must authenticate the complete live nonbonded policy and copy
+semantics using the existing native-interpretation owner. Retain W78's exact
+evidence in Willow; this is a reported integration requirement, not a Cedar
+validation or permission to change SDK files. Do not interrupt target repair to
+build a second contact engine. Current output synchronization preserves the same
+native geometry object, and Python copies of JSON reports are unaffected.
+
 Q07 retains mixed and held-out tests; Q08–Q14 retain chemistry learning, followed
 by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 
@@ -197,8 +209,10 @@ Ledger: `ordinary_written_refinement_output_state_2026_11_15`.
 repair/selection owners, then inspect whole-substituent survival. C320 now binds the
 exact source/reference and dictionary change to complete native before/after
 inventories, retaining the normal component origin, for both saved PDU and 5PC
-controls. Next qualify the actual energy/force change and reference authority;
-inspect the native bond options instead of assuming a simple harmonic term. Reuse existing capture,
+controls. C321 now accounts for their whole energy/force difference using actual
+native bond options and single/container evaluations. Next bind that proof into
+durable owned attribution/cold readback and qualify reference authority before
+ordinary repair selection; do not promote the local diagnostic script to an owner. Reuse existing capture,
 numerical and repair-chain owners; diagnostic PHIL edits alone do not establish
 corrected-CIF delivery. Keep neighboring targets, source hands and terminal intent
 visible. No repeated Coot, replacement recovery owner, blanket flattening or

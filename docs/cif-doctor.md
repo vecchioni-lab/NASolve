@@ -176,6 +176,23 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Existing owned acquisition handles ordinary checked-route misses; interrupted work needs an explicit fresh attempt after known-stopped evidence. Initial checked adoption exists. Explicit automatic plane support and later alternatives are implemented. Default activation, solution-PDF reporting and per-family release coverage remain integration milestones; chosen-model phasing has the bounded C270–C272 acceptance. |
 
 
+### Native energy of corrected bond targets (C321)
+
+After the exact dictionary-delivery gate, `qualify_linked_linear_bond_energy`
+requires repeated native single/container evaluations of every changed bond to
+explain the complete fixed-coordinate energy and force difference. It retains
+actual slack, limit and top-out settings and checks all unaffected residuals and
+counts. Native kernel provenance remains the caller's responsibility; this does
+not qualify an external reference or turn a fixed-point check into convergence.
+The gate reuses existing numerical tolerances and never moves model atoms.
+
+Exact PDU and 5PC before/after manager rebuilds pass: target differences of
+−55.15143 and −11.10162 native units are completely accounted for, with gradient
+difference errors below 6e−14. Their bond potential options are unchanged.
+A synthetic native softened-potential control also passes central finite
+differences. Durable attribution/readback and ordinary selection integration
+remain the next step; raw native observations stay in the local test archive.
+
 ### Exact dictionary bond-target delivery (C320)
 
 `qualify_linked_linear_bond_candidate` reconstructs the exact explicitly selected
