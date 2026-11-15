@@ -241,3 +241,102 @@ def test_graph_description_relocates_without_source_path_lookup(tmp_path,monkeyp
         return opener(self,*a,**kw)
     monkeypatch.setattr(Path,'open',guarded)
     assert describe_relabel_graph(**new)==expected
+
+
+def test_saved_frame_reproduces_every_atom_and_explicit_reverse_order(tmp_path):
+    from nasolve import topostitch_recut_bundle as bundle
+    from nasolve.topostitch_transport import ReferenceFrame
+    args,_=setup(tmp_path);out=tmp_path/'preview';packet=build_relabel_preview(**args,output_directory=out)
+    frozen={p:p.read_bytes() for p in out.iterdir()};digest=sha256(frozen[out/'preview.json']).hexdigest()
+    frame=bundle.load_relabel_reference_frame(out,expected_receipt_sha256=digest)
+    atoms=packet['observation']['source_orbit_observation']['atoms'];points=[a['position_angstrom'] for a in atoms]
+    expected=packet['observation']['proposed_points_angstrom'];order=list(reversed(range(len(atoms))))
+    assert isinstance(frame,ReferenceFrame) and frame.context_sha256==digest
+    assert [json.loads(label) for label in frame.source_labels]==[a['identity'] for a in atoms]
+    assert frame.order==tuple(range(len(atoms)))
+    reverse=frame.reindex(order)
+    moved=reverse.to_representatives(points,source_labels=frame.source_labels,context_sha256=digest)
+    for actual,i in zip(moved,order):assert actual==pytest.approx(expected[i],abs=1e-10)
+    restored=reverse.to_source(moved,atom_labels=reverse.atom_labels,context_sha256=digest)
+    for actual,want in zip(restored,points):assert actual==pytest.approx(want,abs=1e-10)
+    fixed=packet['observation']['fixed_atom_indices'];assert fixed
+    assert all(frame.images[i].apply(points[i])==tuple(points[i]) for i in fixed)
+    tensors=[(.1,.2,.3,.01,.02,.03)]*len(atoms)
+    rotated=reverse.tensors_to_representatives(tensors,source_labels=frame.source_labels,context_sha256=digest)
+    back=reverse.tensors_to_source(rotated,atom_labels=reverse.atom_labels,context_sha256=digest)
+    for actual,want in zip(back,tensors):assert actual==pytest.approx(want,abs=1e-12)
+    assert set(out.iterdir())==set(frozen) and all(p.read_bytes()==b for p,b in frozen.items())
+
+
+@pytest.mark.parametrize('expected',[None,True,'','f'*63,'A'*64,'0'*64])
+def test_saved_frame_requires_exact_expected_receipt(tmp_path,expected):
+    from nasolve import topostitch_recut_bundle as bundle
+    args,_=setup(tmp_path);out=tmp_path/'preview';build_relabel_preview(**args,output_directory=out)
+    with pytest.raises(ValueError,match='receipt'):
+        bundle.load_relabel_reference_frame(out,expected_receipt_sha256=expected)
+
+
+def test_saved_frame_survives_relocation_without_original_sources(tmp_path,monkeypatch):
+    from pathlib import Path
+    from nasolve import topostitch_recut_bundle as bundle
+    original=tmp_path/'original';original.mkdir();args,_=setup(original);out=original/'preview'
+    build_relabel_preview(**args,output_directory=out);digest=sha256((out/'preview.json').read_bytes()).hexdigest()
+    expected=bundle.load_relabel_reference_frame(out,expected_receipt_sha256=digest)
+    moved=tmp_path/'moved';shutil.move(out,moved);shutil.rmtree(original)
+    opener=Path.open
+    def guarded(self,*a,**k):
+        if self.is_relative_to(original):pytest.fail('Original source lookup')
+        return opener(self,*a,**k)
+    monkeypatch.setattr(Path,'open',guarded)
+    assert bundle.load_relabel_reference_frame(moved,expected_receipt_sha256=digest)==expected
+
+
+def test_saved_frame_rejects_changed_source_even_with_original_receipt(tmp_path):
+    from nasolve import topostitch_recut_bundle as bundle
+    args,_=setup(tmp_path);out=tmp_path/'preview';build_relabel_preview(**args,output_directory=out)
+    digest=sha256((out/'preview.json').read_bytes()).hexdigest()
+    with (out/'source.pdb').open('ab') as stream:stream.write(b'REMARK different source\n')
+    with pytest.raises(ValueError):bundle.load_relabel_reference_frame(out,expected_receipt_sha256=digest)
+
+
+def test_saved_frame_refuses_drift_during_transform_compilation(tmp_path,monkeypatch):
+    from nasolve import topostitch_recut_bundle as bundle,topostitch_transport as transport
+    args,_=setup(tmp_path);out=tmp_path/'preview';build_relabel_preview(**args,output_directory=out)
+    digest=sha256((out/'preview.json').read_bytes()).hexdigest();original=transport.crystallographic_image
+    # Replay uses the recut module's existing import; this hook targets the new boundary.
+    def changed(*a,**k):
+        value=original(*a,**k)
+        with (out/'proposal.json').open('ab') as stream:stream.write(b' ')
+        return value
+    monkeypatch.setattr(transport,'crystallographic_image',changed)
+    with pytest.raises(ValueError,match='changed'):
+        bundle.load_relabel_reference_frame(out,expected_receipt_sha256=digest)
+
+
+def test_saved_frame_checks_compiled_points_against_independent_packet(tmp_path,monkeypatch):
+    from nasolve import topostitch_recut_bundle as bundle,topostitch_transport as transport
+    args,_=setup(tmp_path);out=tmp_path/'preview';build_relabel_preview(**args,output_directory=out)
+    digest=sha256((out/'preview.json').read_bytes()).hexdigest()
+    monkeypatch.setattr(transport,'crystallographic_image',lambda *a,**k:transport.IDENTITY_IMAGE)
+    with pytest.raises(ValueError,match='coordinates'):
+        bundle.load_relabel_reference_frame(out,expected_receipt_sha256=digest)
+
+
+def test_saved_frame_keeps_unregistered_water_with_exact_identity(tmp_path):
+    from .helpers import pdb_record
+    from nasolve import topostitch_recut_bundle as bundle
+    args,request=setup(tmp_path);model=args['model'];reg=args['registration_path'];discovery=args['discovery']
+    water=pdb_record('HETATM',999,'O','HOH','W',9,x=11,y=2,z=3,occupancy=.5)
+    water=water[:16]+'A'+water[17:26]+'B'+water[27:]
+    model.write_text(model.read_text().replace('END\n','')+water+'END\n')
+    registration=json.loads(reg.read_bytes());registration['model']['sha256']=sha256(model.read_bytes()).hexdigest();reg.write_text(json.dumps(registration))
+    value=json.loads(discovery.read_bytes());value['model_sha256']=registration['model']['sha256'];value['registration_sha256']=sha256(reg.read_bytes()).hexdigest();discovery.write_text(json.dumps(value))
+    request['registered_graph_sha256']=build_registered_periodic_graph(model,discovery,reg)['report_sha256']
+    args['proposal_path'].write_text(json.dumps(request));out=tmp_path/'preview';packet=build_relabel_preview(**args,output_directory=out)
+    digest=sha256((out/'preview.json').read_bytes()).hexdigest();frame=bundle.load_relabel_reference_frame(out,expected_receipt_sha256=digest)
+    atom=packet['observation']['source_orbit_observation']['atoms'][-1]
+    assert atom['record_type']=='HETATM' and atom['occupancy']==.5
+    identity=json.loads(frame.source_labels[-1]);assert identity==atom['identity']
+    assert identity['altloc']=='A' and identity['insertion_code']=='B' and identity['chain']=='W'
+    assert frame.images[-1].apply((11.,2.,3.))==(11.,2.,3.)
+    assert len(frame.source_labels)==len(packet['observation']['proposed_points_angstrom'])

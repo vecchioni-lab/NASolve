@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W82 — Bind numerical frames to immutable saved previews
+
+- Replay an explicitly pinned preview before compiling its complete source-order
+  coordinate/tensor frame. Preserve exact atom identities and unchanged context
+  atoms; check the compiled coordinates against the saved observation.
+- Reject stale receipts and inputs changed during binding. This read-only API
+  adds no packet schema, model writer, checkpoint adoption or external-edit import.
+
+
 ### W80 — Bind Cartesian tensors to the same frame as coordinates
 
 - Add finite symmetric-tensor rotation and complete label/context-bound tensor

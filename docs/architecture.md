@@ -957,6 +957,12 @@ saved preview through the same immutable capture/packet context as native links.
 It checks complete native-to-preview atom correspondence, source cell/coordinates
 and proposed positions. Link/view defaults and existing report fields stay exact;
 neither API returns a replacement native pair table or writes a model.
+`topostitch_recut_bundle.load_relabel_reference_frame` replays an explicitly
+pinned saved preview and returns the existing immutable numerical `ReferenceFrame`.
+Its context is the exact preview receipt byte digest; source labels are canonical
+JSON atom identities in record order, including unchanged context atoms. Compiled
+positions must reproduce the saved observation. This is a preview binding, not a
+native policy/checkpoint identity or permission to import edits or rebase a cut.
 
 `topostitch_recipe` freezes complete canonical NARestraints selections for explicit
 atom images; `topostitch_native_recipe` binds them to unmodified PDB atom order

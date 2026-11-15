@@ -174,6 +174,53 @@ def load_relabel_preview(directory):
 
 
 
+def load_relabel_reference_frame(directory, *, expected_receipt_sha256):
+    """Compile a complete numerical frame from an exactly pinned saved preview.
+
+    Replays the existing packet and checks compiled coordinates against its
+    observation. Labels are canonical JSON atom-identity objects in source record
+    order; unrequested/context atoms retain identity images. The context digest
+    is the exact preview.json byte digest, not a checkpoint or native-policy ID.
+
+    This returns immutable arithmetic only. It neither adopts a cut nor rebases
+    it onto a refined child, authenticates external edits or writes a model.
+    Callers must freshly bind changed inputs through their owning workflow.
+    """
+    from .topostitch_transport import ReferenceFrame, IDENTITY_IMAGE, crystallographic_image
+    from .topostitch_recut import _arithmetic_bound
+
+    if (not isinstance(expected_receipt_sha256,str)
+            or not re.fullmatch(r'[0-9a-f]{64}',expected_receipt_sha256)):
+        raise ValueError('Require the exact expected preview receipt SHA-256')
+    root=Path(directory);manifest=root/'preview.json'
+    frozen={path:path.read_bytes() for path in [manifest,*(root/name for name in _FILES.values())]}
+    if sha256(frozen[manifest]).hexdigest()!=expected_receipt_sha256:
+        raise ValueError('Saved preview receipt differs from the requested frame binding')
+    packet=load_relabel_preview(root)
+    if (_fingerprint(packet)!=_fingerprint(_json(frozen[manifest]))
+            or any(sha256(frozen[root/ref['relative_path']]).hexdigest()!=ref['sha256']
+                   for ref in packet['artifacts'].values())):
+        raise ValueError('Representative packet changed before reference-frame binding')
+    preview=packet['observation'];atoms=preview['source_orbit_observation']['atoms']
+    labels=tuple(json.dumps(atom['identity'],sort_keys=True,separators=(',',':'),ensure_ascii=True)
+                 for atom in atoms)
+    images=[IDENTITY_IMAGE]*len(atoms);cache={}
+    crystal=preview['registered_graph']['periodic_graph']['crystal']
+    for group in preview['atom_image_groups']:
+        xyz=group['operator_xyz']
+        if xyz not in cache:cache[xyz]=crystallographic_image(**crystal,operator_xyz=xyz)
+        for i in group['atom_indices']:images[i]=cache[xyz]
+    frame=ReferenceFrame(labels,images,expected_receipt_sha256)
+    points=[atom['position_angstrom'] for atom in atoms]
+    derived=frame.to_representatives(points,source_labels=labels,context_sha256=expected_receipt_sha256)
+    for before,actual,expected in zip(points,derived,preview['proposed_points_angstrom']):
+        if max(abs(a-b) for a,b in zip(actual,expected))>_arithmetic_bound(before,actual,expected):
+            raise ValueError('Compiled reference-frame coordinates differ from the replayed preview')
+    if any(path.read_bytes()!=data for path,data in frozen.items()):
+        raise ValueError('Representative packet changed during reference-frame binding')
+    return frame
+
+
 def _backbone_intent_observation(packet, receipt_sha256):
     """Project verified route intent without inventing a partner or chemistry."""
     import math
