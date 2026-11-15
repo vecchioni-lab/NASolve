@@ -303,60 +303,29 @@ was resolved by retaining both declarations in a temporary virtual tree; seven
 documentation conflicts remain and neither branch was merged. No full rerun or
 native execution; the original W81 full result remains unchanged.
 
-**W85 physical-stitch derivative diagnostic:** the existing six-parameter tapered
-motion now has local analytical pullback evidence against the authenticated
-W38/W41 native/pair/tether objective. Sixty independent motion controls and five
-complete Phenix2.2.1-6174 native cases pass at two finite-difference steps, both
-cached and forced-reset/rebuilt. Maximum derivative error 9.98e-7 versus the
-predeclared 1e-3; 270 objective calls, 204 movable atoms, 14 complete pair recipes.
-Cached/rebuilt energy and Cartesian gradients agree exactly; changed buffered
-contact rows have zero residual. One tilt lowers total repulsion but worsens 48
-directed overlaps. No optimizer, candidate, density or refinement; S04/S05 stay
-partial. The complete live nonbonded-policy guard remains open, separately from
-Cedar Q06 actual refinement chemistry survival.
+**Current reusable backend (W86/W88/W90):** immutable `TaperedMotion` shares the
+preview rotation kernel and exact coordinate-mask bounds. The native motion view
+preserves target/components and Cartesian gradients. `load_bend_motion` compiles
+weights/pivot/order from a pinned replayed preview and registration, with exact
+source-byte binding. The atomic trial accepts an explicit diagnostic displacement
+start without rebasing source/tether or accepting the seed as an optimizer step;
+remaining-budget checks include prior evaluations. Default callers remain compatible.
 
-**W86 software slice:** immutable `TaperedMotion` shares the existing preview
-rotation kernel and enforces complete weights, exact mask order and displacement
-bounds. `NativeMaskedObjective.evaluate_motion` retains the original energy,
-components, Cartesian gradient and call budget, adding a six-parameter chain-rule
-view. Twenty-one fail-before controls, focused 156, full 1,802 +229 subtests and
-installed/relocated 712 pass; six helps, lean imports, Python 3.10 syntax and exact
-old/new preview replay pass. The initial full run hit five sandbox-denied `/bin/ps`
-checks; that log is retained and the complete run with process access passed.
-Installed Phenix 2.2.1-6174 replay passes all five controls and 270 calls, including
-forced neighbor rebuilds and W85 reproduction within roundoff. The host reviewer
-needed explicit pinned C325 owners; its failed default import is retained.
+**Latest software validation — W90:**14 fail-before controls,75 focused,
+**1,835 full Willow tests +229 subtests**, **745 installed/relocated tests**, six
+CLI helps, lean imports, Python3.10 syntax and saved preview/frame replay pass.
+The earlier [W86](topostitch-periodic.md#w86--expose-bounded-tapered-motion-through-the-existing-native-objective)
+software/native audit and [W88](topostitch-periodic.md#w88--compile-source-bound-motions-from-saved-bend-previews)
+source-binding audit remain recorded; do not repeat them merely to refresh context.
 
-**W87 physical-stitch experiment:** both matched six-variable trials failed with
-native line-search rounding errors (11/10 accepted steps); their callback-confirmed
-points replay exactly and pass full/rounded Cartesian derivatives. Common full
-recipe observations show selected-pair changes -7.122/-5.318 and nonbonded
-1077.722→1055.746/1059.585, with maximum motion 0.0538/0.0444 Angstrom. Individual
-packing and some AT terms worsen slightly; counts are descriptive, not acceptance
-thresholds. Retained pairs are invariant under the pairwise rigid parameterization.
-No successful endpoint, candidate, refinement or scientific acceptance. The
-host/interpreter exact-arithmetic mismatch was resolved by replay in the original
-native interpreter and consuming its verified recorded displacements; original
-failures remain local. See the [W87 audit](topostitch-periodic.md#w87--compare-matched-six-variable-placements-without-promoting-failures).
-
-**W88 source binding:** `load_bend_motion` now compiles a pinned saved preview's
-registered weights, pivot and complete source-order mask; native evaluation checks
-its optional exact model digest. Nineteen fail-before /111 focused /1,821 full
-+229 subtests /731 installed tests pass, including relocated public saved-preview
-replay with original paths blocked. No schema, CLI, optimizer, writer or tensor
-change; other parameter vectors still need fresh backbone/packing review.
-
-**W89 resolution audit:** two complete read-only 240-call native probes exactly
-replay W87. Stable local Hessians imply only8.05e-9/2.70e-8 Angstrom further
-motion and score changes near roundoff; actual samples quantize. This supports a
-resolution explanation, not convergence or atomic/scientific acceptance.
-
-**W90 atomic interface:** optional `initial_displacements` starts the existing
-trial from a frozen diagnostic vector in its original mask/source/tether frame;
-only explicit starts add initialization metadata. No seed is an accepted step,
-and original stopping/error/audit policy remains. Remaining-budget preflight
-accounts for earlier calls. Fourteen fail-before /75 focused /1,835 full+229
-subtests /745 installed tests pass, with helps/lean imports/syntax/saved replay.
+**Coarse-stage evidence to retain:** W85/W86 local derivatives and forced neighbor
+rebuilds pass. W87 paired/core-only coarse trials both fail rounding; their exact
+last accepted points pass full/rounded Cartesian derivatives. W89's stable local
+Hessians place further coarse motion near8e-9/3e-8 Angstrom and score changes near
+roundoff. This supports a resolution explanation, not convergence. Retained-pair
+geometry is invariant under pairwise rigid motion, and aggregate score improvement
+can coexist with individual packing/AT regressions. Original process/import/host
+arithmetic failures remain in the local evidence and detailed W85–W89 ledger.
 
 **W91 native result:** matched cold/coarse-seeded atomic trials both FAILED
 rounding (358/363 accepted steps;390/401 optimizer calls). Both last accepted

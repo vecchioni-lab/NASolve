@@ -3464,3 +3464,60 @@ W90 (497files), SHA256
 W90's297 duplicate build/test files (5,903,264bytes) were removed only after exact
 archive comparison; active installed runtimes/scientific evidence remain. These
 archives are forensic records, not autonomous resumable campaigns.
+
+
+## W92 — Shared live nonbonded-policy contract (qualification pending)
+
+Rowan confirmed that existing Cedar interpretation/context, directed-ASU capture,
+nonbonded readers, cache-transition proofs and static bonded signatures do **not**
+implement a complete live nonbonded-policy mutation guard. Extend those owners;
+do not create a second executor or treat generated-neighbor equality as proof of
+unchanged inputs. This is distinct from Q06 achieved refinement chemistry.
+
+The proposed Cedar owner is `cif_live_nonbonded_policy`, with
+`snapshot_live_nonbonded_policy(geo, *, flags, normalization, ...)` and
+`require_live_nonbonded_policy(geo, expected, **same_evaluation_options)`.
+The machine-readable proposed contract is in roadmap evidence
+`E_LIVE_NONBONDED_CONTRACT`; it is **not an installed API or qualification claim**.
+Snapshotting requires an already-resolved numeric cutoff and must not warm up,
+mutate, pickle or deepcopy the manager. Coverage must include all four parameter
+maps/five scalars, ordered assignments, complete exclusion/shell symmetry inputs,
+crystal/site symmetry, supported function parameters and fixed search controls.
+Unused entries matter even when current contacts/energy remain unchanged.
+
+The intended Willow consumer takes an explicit trusted owner plus a frozen
+expected primitive snapshot, records its digest/source provenance, and checks
+before and after energy evaluation. It must pass the **same actual flags** used
+by `evaluate_fixed_native`, `normalization=False`, and no function/external/
+extension overrides. Existing static definitions, atom identity/order and fixed
+source-coordinate checks remain; no energy owner or callback is replaced.
+Defaults and unguarded report shapes remain unchanged until explicit adoption.
+
+Actual current calls are `geo.pair_proxies(sites_cart=points)` inside the static
+signature and `geo.energies_sites(..., flags=active_flags, compute_gradients=True,
+normalization=False)` inside the pinned correction owner (`plane_order_safe=True`).
+Ordinary movement uses native neighbor rebuilding; forced diagnostic controls use
+`geo.reset_internals()`. Adjusted cutoff, effective buffer, update count and the
+automatic-cutoff marker are observed cache/derived state, not independently frozen
+chemistry: reset legitimately changes them. Generated pair/mapping/force checks
+remain with the existing ASU owner and are not replaced by a policy hash.
+
+Required negatives include an unused table entry or inactive exclusion changing
+while energy stays equal, W78 serialization loss, changed call flags/function/
+normalization, and mid-evaluation mutation. Positives include motion and forced
+rebuilds with fixed policy, plus unchanged legacy callers. Parent/source
+provenance and actual native-version coverage stay explicit. A fresh snapshot
+cannot retroactively authenticate fields absent from an old capture.
+
+No Willow runtime guard is implemented in this update. Owner implementation and
+native qualification are pending; a partial inventory must not be labelled
+complete. This is planning/documentation only, with JSON/roadmap synchronization
+and whitespace checks; W90 source/install validation remains current. The current
+handoff is condensed to latest behavior/results, while prior failures and exact
+validation commands remain in the detailed ledger. No scientific payload is
+committed or uploaded.
+
+W91's142-file local forensic archive is verified, SHA256
+`57138c778486e0bacf90519dbb0a333cb246c1e6fa9c3fb563aac53ca4329635`.
+It preserves both atomic failures and common-recipe observations; it is not an
+autonomous resumable campaign or evidence of scientific adoption.

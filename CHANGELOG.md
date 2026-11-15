@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W92 — Specify the shared live-policy guard boundary
+
+- Record the proposed Cedar owner/Willow consumer contract, including hidden
+  parameter changes, actual evaluation options and legitimate neighbor rebuilds.
+- Keep implementation/qualification pending and condense the active handoff to
+  current results. Documentation only; no runtime, schema or default change.
+
 ### W91 — Compare staged atomic starts and clarify shared native-policy work
 
 - Record matched cold/coarse-seeded atomic diagnostics: retained failures,

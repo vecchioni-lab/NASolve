@@ -228,7 +228,7 @@
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation."
       ],
-      "next_action": "Avoid default redundant coarse polishing from W91; keep explicit initialization for real displaced placements. Coordinate/qualify the shared complete live nonbonded-policy guard before broadening native repair claims; then expand independent shape controls and local geometry qualification.",
+      "next_action": "Finish Cedar-owned live nonbonded-policy implementation/native negatives, then qualify an optional Willow consumer using exact actual invocation options and frozen source snapshot. Preserve legacy workers/defaults and valid rebuilds. Do not conflate this guard with generated-contact proof, chemistry or Q06 closure.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -240,7 +240,8 @@
         "E_SAVED_BEND_MOTION",
         "E_COARSE_RESOLUTION",
         "E_ATOMIC_DIAGNOSTIC_START",
-        "E_MATCHED_ATOMIC_STARTS"
+        "E_MATCHED_ATOMIC_STARTS",
+        "E_LIVE_NONBONDED_CONTRACT"
       ],
       "last_audit": {
         "date": "2026-11-15",
@@ -295,7 +296,7 @@
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "Qualify affected chemistry and complete ordinary native enforcement through Cedar before a supported repair/refinement route. Preserve failed/capped outcomes; passing accepted-point derivatives do not justify tolerance relaxation or adoption. Continue shared physical identity and Pine preview/scattering gates without treating recutting as repair.",
+      "next_action": "Finish Cedar-owned live nonbonded-policy implementation/native negatives, then qualify an optional Willow consumer using exact actual invocation options and frozen source snapshot. Preserve legacy workers/defaults and valid rebuilds. Do not conflate this guard with generated-contact proof, chemistry or Q06 closure.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -325,7 +326,8 @@
         "E_MATCHED_COARSE_TRIALS",
         "E_SAVED_BEND_MOTION",
         "E_ATOMIC_DIAGNOSTIC_START",
-        "E_MATCHED_ATOMIC_STARTS"
+        "E_MATCHED_ATOMIC_STARTS",
+        "E_LIVE_NONBONDED_CONTRACT"
       ],
       "last_audit": {
         "date": "2026-11-15",
@@ -1220,6 +1222,71 @@
       "reference": "docs/topostitch-periodic.md#w91--compare-cold-and-explicitly-coarse-seeded-atomic-cleanup",
       "result": "Two complete Phenix2.2.1-6174 trials use installedW90 and pinnedC325 owners. Cold/seeded FAILED rounding at358/363 accepted steps,390/401 optimizercalls; both failed-point full/rounded derivatives pass. Common-recipe observers complete. Max endpoint difference2.65e-7 Angstrom; all855 rounded triplets identical; no demonstrated seed benefit. Active bond/angle nominal>=3 counts9/14\u21920, boundary angle1\u21920; packing severity retained.",
       "limitation": "No parent failure promotion, numerical/scientific acceptance, model/checkpoint/refinement or default change. One small coarse polish is not large-shape qualification. Live-policy mutation guard is distinct from CedarQ06 chemistry survival. Evidence-only update; W90 software checks retained."
+    },
+    "E_LIVE_NONBONDED_CONTRACT": {
+      "kind": "proposed_shared_live_native_policy_contract",
+      "code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
+      "human_update": 92,
+      "reference": "docs/topostitch-periodic.md#w92--shared-live-nonbonded-policy-contract-qualification-pending",
+      "result": "Cedar owner/Willow consumer contract records full supported parameter/assignment/exclusion/symmetry and invocation scope, cache-state separation, unchanged defaults and mandatory equal-energy hidden-mutation controls.",
+      "limitation": "PROPOSED; no Willow consumer implementation or complete native-policy qualification. CedarQ06 chemistry is a separate gate. Existing native capture/static signatures do not establish this missing guard.",
+      "contract": {
+        "kind": "shared-live-nonbonded-policy-consumer-contract",
+        "status": "PROPOSED_NOT_IMPLEMENTED_IN_WILLOW",
+        "runtime_authority": false,
+        "scientific_acceptance": false,
+        "native_version_scope": "Phenix 2.2.1-6174; explicit supported API qualification required",
+        "owner": "Cedar native interpretation/validation",
+        "proposed_owner_module": "nasolve.cif_live_nonbonded_policy",
+        "proposed_snapshot_api": "snapshot_live_nonbonded_policy(geo, *, flags, normalization, custom_nonbonded_function=None, external_energy_function=None, extension_objects=())",
+        "proposed_require_api": "require_live_nonbonded_policy(geo, expected, **same_evaluation_options)",
+        "willow_consumer": "NativeMaskedObjective, optional explicit owner plus expected snapshot",
+        "construction": [
+          "Caller authenticates fresh native interpretation and its source inputs; the snapshot does not retroactively authenticate missing fields in historical captures.",
+          "Require already-resolved finite numeric cutoff; snapshot reads primitive values without warming up, copying or mutating the manager.",
+          "Detach expected primitive data as canonical JSON; caller mutation cannot alter the bound expectation.",
+          "Record exact snapshot digest, owner policy identifier and trusted owner source provenance without claiming native chemistry or packing acceptance."
+        ],
+        "evaluation": [
+          "Create the actual ordinary-geometry flags used by evaluate_fixed_native; check those exact flags before and after energy evaluation.",
+          "Use compute_gradients=True, normalization=False, plane_order_safe=True and no function/external/extension overrides.",
+          "Retain existing atom-order, fixed-source-coordinate, symmetry and static bonded-definition checks.",
+          "Ordinary pair_proxies coordinate-driven rebuilds and explicit reset_internals must remain legitimate; validate policy independently of generated neighbor membership.",
+          "A failed guard prevents returning an accepted energy/gradient; existing trial failure provenance remains unchanged."
+        ],
+        "required_owner_scope": [
+          "All four parameter maps, including entries unused by current atoms/contacts; five scalar controls.",
+          "Ordered atom type/charge/model/conformer/symmetry-exclusion/donor-acceptor assignments supported by the pinned API.",
+          "Complete shell/exclusion tables with exact symmetry operations; crystal and site-symmetry inputs.",
+          "Supported PROLSQ function parameters and fixed search controls.",
+          "Actual invocation flags and normalization; unsupported overrides/extensions fail closed."
+        ],
+        "cache_observations_separate_from_fixed_policy": [
+          "adjusted_nonbonded_distance_cutoff",
+          "effective_nonbonded_buffer",
+          "n_updates_pair_proxies",
+          "nonbonded_distance_cutoff_was_determined_automatically",
+          "cached sites, generated pair lists and ASU mappings"
+        ],
+        "negative_and_positive_controls": [
+          "Unused parameter-table entry changes while current energy and pair list stay equal: reject.",
+          "Inactive assignment/exclusion changes while current energy stays equal: reject.",
+          "Native deepcopy/pickle table loss demonstrated by W78: reject.",
+          "Changed cutoff, function parameter, invocation flag/normalization or unsupported override: reject.",
+          "Policy mutation during evaluation with identical returned target/gradient: reject before returning.",
+          "Coordinate-only motion and reset/rebuilt neighbor controls: preserve fixed-policy equality; generated-contact proof remains with existing ASU owner.",
+          "Changed caller snapshot after binding: cannot alter frozen expected policy.",
+          "Unguarded existing callers and report shape remain unchanged until explicit supported adoption."
+        ],
+        "not_qualified_by_this_contract": [
+          "A complete implemented guard",
+          "Arbitrary native versions or callbacks",
+          "Independent reconstruction of physical exclusions or generated contacts",
+          "Source chemistry, scattering or full live refinement",
+          "Cedar Q06 achieved chemistry closure",
+          "Large bending, nonuniform curvature, physical gap closure or diffraction benefit"
+        ]
+      }
     }
   },
   "benchmarks": [
