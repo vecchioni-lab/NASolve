@@ -118,9 +118,20 @@ screen; terminal methyl distance from the descriptive existing plane fit grows
 from 0.112 to 0.261 Å. Targets pass the current screen; achieved geometry remains
 REVIEW. C206's unqualified 1.607 Å terminal bond target remains an explicit gap.
 Do not claim Q06 closure, silently strengthen restraints or blame dropped planes.
-Related G:5PC is now a separate transfer/comparison control, not evidence that PDU
-passed. Original symmetry-linked PDU:PDU/B:1 remains separate. C304 also restores
+Related **G:5PC now completes the ordinary campaign** and moved archive-backed
+readback (C305). Its triple angles improve 172.37°/176.97°→177.38°/178.14°;
+linked native coordinate screen goes REVIEW→PASS. Both controls retain all three
+recorded sugar chirality signs, protected terminal phosphate and 45/58 plane groups.
+This is transfer within a recorded related chemistry, not the unfamiliar Q07
+challenge or evidence that PDU passed. The controls have different bases, partners
+and numerical parameters; their contrast does not authorize copying weights. Original symmetry-linked PDU:PDU/B:1 remains separate. C304 also restores
 ordinary cleanup's policy export (147 focused tests); Q04/Q05 owners are unchanged.
+
+**Next bounded diagnosis:** reuse the saved PDU endpoint and existing numerical
+readers to distinguish parameter authority and local/data forces. Check the
+recorded C206 terminal-bond question and the current source/native generation
+provenance before creating another repair. Do not repeat Coot, rebuild recovery
+owners, tune against Free-R or flatten the entire substituent by assumption.
 
 ### The next small steps
 

@@ -97588,6 +97588,301 @@
       "readback/geometry.json": "1671a002f2c18bdd5e5190f210666a7ce6a40c50774df3051ef5db6f50faef3c",
       "native-geometry-linked-review.json": "ee3a884fd2d04bb5d9c04b4c2001f19d795e8e40d2b31ecdc6fa7eac956b1b91",
       "consumer/comparison.json": "dc5df573585d841b831e5455f2eea3f2601def3b6d85488d560661750fcceeb7"
+    },
+    "recorded_native_sugar_signs": {
+      "prepared": {
+        "count": 3,
+        "all_agree": true
+      },
+      "refined": {
+        "count": 3,
+        "all_agree": true
+      }
+    },
+    "successful_attempt_retention": {
+      "status": "SUCCESSFUL_ATTEMPT_2_ARCHIVED_AND_READABLE",
+      "request_before_logical_bytes": 388379160,
+      "request_after_logical_bytes": 231022649,
+      "run_after_logical_bytes": 242035198,
+      "retirement": {
+        "schema_version": 1,
+        "policy_id": "cif-complete-attempt-working-retirement-v1",
+        "intent_sha256": "afb14810dced03647f8ccf4e07dc18f9272c5a8d515653d03f763e83d314053e",
+        "retired_files": 698,
+        "retired_logical_bytes": 173907280,
+        "record_sha256": "509ec8d541e3c4687dd1ab27650601563b8b9887ba198ae8d911a937195a0c93"
+      },
+      "failed_attempt_files_unchanged": 744,
+      "all_other_prior_files_unchanged": 998,
+      "readback_files_unchanged": 1057,
+      "current": "refine-001",
+      "checkpoint": "refine-001",
+      "phase_returncodes": [
+        0,
+        0
+      ],
+      "elapsed_seconds": 242.7630607910105,
+      "scope": "Existing qualified archive owner retires only exact archived successful-attempt working duplicates. Public models/restraints, prior failed attempt and campaign history unchanged. No native jobs or new selection. Logical bytes are not physical peak disk or campaign capacity."
+    }
+  },
+  "related_5pc_ordinary_refinement_2026_11_15": {
+    "milestone": "C305",
+    "status": "ORDINARY_5PC_CAMPAIGN_AND_SCOPED_REFINEMENT_GEOMETRY_PASS",
+    "native_source_commit": "a2e73603",
+    "behavior": "Ordinary checked campaign uses the same graph-selected plane machinery for G:5PC, archives qualified working duplicates, then runs five actual corrected-plane-force refinement cycles. No component-name fix or new scientific parameter.",
+    "intent": {
+      "control": "A:12 DG / B:4 5PC, replacing only the declared C270 A:5IU recipe pair",
+      "source_inputs_preserved": 5,
+      "terminal_phosphate": "D:1",
+      "observations_and_free_r": "Original retained scaffold inputs; not observations of a 5PC crystal",
+      "autosol": "Frozen disabled policy; stage skipped, no experimental phases"
+    },
+    "native": {
+      "anchor": "local_live_tests",
+      "directory": "305_Cedar_5PC-campaign-nu1t7jyw",
+      "driver": {
+        "returncode": 0,
+        "stopped_verified": true,
+        "code_unchanged": true
+      },
+      "tool_build": "phenix-2.2.1-6174",
+      "tool_version": "2.2.1",
+      "coot_version": "1.3.3 revision-count 0",
+      "campaign_status": "SOLVED",
+      "status_meaning": "Numerical refinement criteria passed; inspect the model and maps before approval",
+      "inspection_required": true,
+      "elapsed_monotonic_seconds": 907.8784930420225,
+      "timing_limit": "A wall-clock discontinuity occurred during the session; this monotonic worker duration is not elapsed wall time or a production benchmark.",
+      "original_inputs_unchanged": 5,
+      "source_dictionary_unchanged": true,
+      "readback": {
+        "status": "FRESH_5PC_CAMPAIGN_COLD_READ_AND_STAGED_GEOMETRY_COMPLETE",
+        "checkpoint": "refine-001",
+        "parent": "postmr",
+        "selected": "refine-001",
+        "run": "relocated/DiU/AutoMR/run_001",
+        "relocated_files_unchanged": 349,
+        "old_campaign_anchor_absent": true,
+        "plan_integrity": "OK",
+        "native_macro_cycles": 5,
+        "parallelity_count": 58,
+        "native_process_observations": 42,
+        "phase_returncodes": [
+          0,
+          0
+        ],
+        "statistics": {
+          "r_work": 0.221,
+          "r_free": 0.2449,
+          "clashscore": 26.97
+        },
+        "terminal_geometry_audit": "PASS",
+        "runtime_evidence_bytes": 2465973,
+        "elapsed_seconds": 64.68878020794364,
+        "scope": "Actual complete ordinary campaign and five-cycle refinement, followed by read-only relocated validation and descriptive staged chemistry. No structure acceptance or original symmetry-linked PDU:PDU/B:1 resolution."
+      },
+      "native_consumer_comparison": {
+        "planarity_printed_membership_and_rounded_weights_match": true,
+        "parallelity_printed_ordered_membership_match": true,
+        "planarity_native_count": 45,
+        "planarity_printed_count": 45,
+        "parallelity_native_count": 58,
+        "parallelity_printed_count": 58,
+        "planarity_prepared_vs_refined_inventory_same": true,
+        "parallelity_prepared_vs_refined_inventory_same": true
+      },
+      "consumer_source_files_unchanged": 297,
+      "stopped_consumer_processes": 3,
+      "models": {
+        "raw": {
+          "chi_degrees": -108.48339643648225,
+          "parent_chi_difference_degrees": 0.0004476786353393436,
+          "sha256": "28979df1f9cb71d1ba6070b68cf73378b220864f0941e2e8778492aafa26944c"
+        },
+        "after_coot": {
+          "chi_degrees": -108.44607697460233,
+          "parent_chi_difference_degrees": 0.03776714051525687,
+          "sha256": "3e2b500eafc888e20feb70d393a47d9b38fe334334a00b0ab823529825285bc1"
+        },
+        "prepared": {
+          "chi_degrees": -108.44607697460233,
+          "parent_chi_difference_degrees": 0.03776714051525687,
+          "sha256": "3e2b500eafc888e20feb70d393a47d9b38fe334334a00b0ab823529825285bc1"
+        },
+        "parent": {
+          "chi_degrees": -108.48384411511758,
+          "parent_chi_difference_degrees": 0.0,
+          "sha256": "9c2ef1cf38b01e5bc0b526db25fcb318ccc3799d6e91f1b991441a68d490ee49"
+        },
+        "readyset": {
+          "chi_degrees": -108.44607697460233,
+          "parent_chi_difference_degrees": 0.03776714051525687,
+          "sha256": "1dd1939928ecce4dfa0d9f1412f9312a9ae9daaf45e1aae3c53fd76171880f5e",
+          "C5_attachment_elevation_degrees": 5.036818208763401,
+          "C5_angle_sum_degrees": 359.6987762820168,
+          "triple_bonds": [
+            {
+              "atoms": [
+                "C7",
+                "C8"
+              ],
+              "distance_angstrom": 1.2021202102951254,
+              "linear_angles": [
+                {
+                  "atoms": [
+                    "C5",
+                    "C7",
+                    "C8"
+                  ],
+                  "degrees": 172.3722175799104
+                },
+                {
+                  "atoms": [
+                    "C9",
+                    "C8",
+                    "C7"
+                  ],
+                  "degrees": 176.9665088222566
+                }
+              ]
+            }
+          ],
+          "existing_plane_fit_distances_angstrom": {
+            "C1'": 0.06750006938169928,
+            "C2": 0.007662746118690278,
+            "C4": 0.05615844419713878,
+            "C5": 0.021090556816254047,
+            "C6": 0.047234287259645805,
+            "C7": 0.07359969187717297,
+            "C8": 0.3099818295193757,
+            "C9": 0.6635881943838571,
+            "N1": 0.033358075366060225,
+            "N3": 0.032172311568527526,
+            "N4": 0.05664395136700828,
+            "O2": 0.07408206030413289
+          },
+          "existing_plane_max_member_distance_angstrom": 0.07408206030413289
+        },
+        "refined": {
+          "chi_degrees": -108.64053810288489,
+          "parent_chi_difference_degrees": 0.15669398776731214,
+          "sha256": "83c40b5659cf20177e80aabdddc7d3c7e84bfbf2d1eabf6c364c9aa0c55b829e",
+          "C5_attachment_elevation_degrees": 1.0462402663686,
+          "C5_angle_sum_degrees": 359.9881279254029,
+          "triple_bonds": [
+            {
+              "atoms": [
+                "C7",
+                "C8"
+              ],
+              "distance_angstrom": 1.1951372306141244,
+              "linear_angles": [
+                {
+                  "atoms": [
+                    "C5",
+                    "C7",
+                    "C8"
+                  ],
+                  "degrees": 177.37506418642613
+                },
+                {
+                  "atoms": [
+                    "C9",
+                    "C8",
+                    "C7"
+                  ],
+                  "degrees": 178.13668507446343
+                }
+              ]
+            }
+          ],
+          "existing_plane_fit_distances_angstrom": {
+            "C1'": 0.010984153332009639,
+            "C2": 0.0005374813210068385,
+            "C4": 0.012636327420542326,
+            "C5": 0.0048858069545987814,
+            "C6": 0.010407511659172097,
+            "C7": 0.012630688136899049,
+            "C8": 0.06314555620432216,
+            "C9": 0.14061802880484708,
+            "N1": 0.007910210721531585,
+            "N3": 0.006714118502630777,
+            "N4": 0.006262894017052045,
+            "O2": 0.013464555468054695
+          },
+          "existing_plane_max_member_distance_angstrom": 0.013464555468054695
+        }
+      },
+      "linked_native_review": {
+        "prepared": {
+          "target_screen": "PASS",
+          "coordinate_screen": "REVIEW",
+          "findings": [
+            {
+              "rule": "linear-coordinate-bending",
+              "atoms": [
+                "C5",
+                "C7",
+                "C8"
+              ],
+              "observed": 172.3722175799104
+            }
+          ],
+          "checked_sugar_chiralities": 3,
+          "all_recorded_chiral_signs_agree": true
+        },
+        "refined": {
+          "target_screen": "PASS",
+          "coordinate_screen": "PASS",
+          "findings": [],
+          "checked_sugar_chiralities": 3,
+          "all_recorded_chiral_signs_agree": true
+        }
+      }
+    },
+    "storage": {
+      "retirement": {
+        "intent_sha256": "fa2c3e7c1f1c0928dcaf4c56f578882b30198c12660943d01f5e0ea50449c4ca",
+        "policy_id": "cif-complete-attempt-working-retirement-v1",
+        "record_sha256": "f9a702464b09d9e49e95302bc807b13febd81004fecd7c791f718f70cb2ffbdc",
+        "retired_files": 694,
+        "retired_logical_bytes": 174286937,
+        "schema_version": 1
+      },
+      "archive": {
+        "path": "evidence.zip",
+        "sha256": "ec620fa31d64f13e5189504aed72e94276948caea58ebd9d48df035f34e30383",
+        "size": 16652804
+      },
+      "retained_request_logical_bytes": 39741830,
+      "delivery_bytes_at_native_completion": 58684921,
+      "additional_native_consumer_bytes": 20518973,
+      "sampled_peak_process_tree_rss_kib": 2773184,
+      "limits": "Logical persistent bytes and sampled RSS, not physical peak disk/RAM limits or 100-dataset capacity. Archive-backed reads were tested with the old campaign anchor absent."
+    },
+    "validation": {
+      "source_changes": "None after C304 cleanup fix",
+      "tests": "C304 147 focused checks; no redundant rerun or full suite for this native-only control.",
+      "native_mode": "Complete ordinary execution, not dry-run. Separate zero-cycle preflight and read-only native observations.",
+      "read_only": "349 moved campaign files unchanged; archived preparation, checkpoint receipt, construction and native parameters validate. Printed plane/parallelity membership and rounded plane weights agree."
+    },
+    "artifacts": "Compact evidence/docs only; raw models/data/logs/captures and runners remain local. Existing archive owner retired only authenticated working duplicates.",
+    "limitations": [
+      "Scoped triple geometry and native delivery pass, not universal numerical-target calibration or scientific structure approval.",
+      "5PC dictionary seed geometry remains separate from the actual built/refined model; do not substitute its seed-coordinate review for model geometry.",
+      "PDU and 5PC differ in base, partner, numerical targets/ESDs and model context. Their contrast does not isolate a causal parameter or justify copying weights.",
+      "PDU refined geometry remains REVIEW and original symmetry-linked PDU:PDU/B:1 remains separate.",
+      "This related chemistry was predeclared and already appeared in earlier diagnostic work; it is not the unfamiliar Q07 challenge."
+    ],
+    "next": [
+      "Use existing Q06/Q08 numerical/force diagnosis on retained PDU result; establish independent parameter authority before edits.",
+      "Preserve Q07 combined and unfamiliar-modification controls, Q08–Q14 learning, Q15 report and Q16 integration/AutoPhase/full regression."
+    ],
+    "local_record_sha256": {
+      "summary.json": "4c7765eab22eca09a85681ed7716efb075a077381adb84595ac120f9ae9be5fd",
+      "readback/geometry.json": "fd55617aa83d479a49ad86b6dbe2dd8057229ce6829b538a9094c59b8b9aa7f2",
+      "native-geometry-linked-review.json": "98a90d2230ebcc273bf219a795c4a899ca47518a8ba8d34a06b30a80246c9c13",
+      "consumer/comparison.json": "dc5df573585d841b831e5455f2eea3f2601def3b6d85488d560661750fcceeb7"
     }
   }
 }

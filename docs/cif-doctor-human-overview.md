@@ -77,6 +77,11 @@ execution therefore remain distinct from acceptable achieved geometry; target
 calibration and the balance of packing, data and restraints need further work.
 The failed attempt stays preserved and the successful result reopens after moving
 the run. No acceptance threshold or numerical target was changed to call it a pass.
+A related 5PC campaign now uses the same construction and repair machinery, archives
+its successful working copies, and completes real refinement. Its propyne becomes
+straighter and passes the existing coordinate screen, with native planes and
+parallelity groups retained. This supports the route for that control; it neither
+settles PDU's remaining parameters nor qualifies the whole ligand catalogue.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.
 
