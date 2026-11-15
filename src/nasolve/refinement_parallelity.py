@@ -58,7 +58,7 @@ def _code():
 
 def _expected_code(policy=None):
     policy=POLICY_ID if policy is None else policy
-    _need(policy in _SOURCES,'Unknown native execution policy')
+    _need(isinstance(policy,str) and policy in _SOURCES,'Unknown native execution policy')
     return {'entry.py':_digest(_ENTRY),'code/_nasolve_refinement/__init__.py':_digest(b''),
             **{'code/_nasolve_refinement/'+n:h for n,h in _SOURCES[policy].items()}}
 
@@ -71,7 +71,8 @@ def read_execution_request(run, reference, *, checkpoint):
     record=read_record(path)
     _need(set(record) in ({'schema_version','policy_id','checkpoint','parent','inputs','command','code','record_sha256'}, {'schema_version','policy_id','checkpoint','parent','inputs','command','code','record_sha256','preflight_mode','macro_cycles'})
           and type(record['schema_version']) is int and record['schema_version']==1
-          and record['policy_id'] in _SOURCES and record['checkpoint']==checkpoint
+          and isinstance(record['policy_id'],str) and record['policy_id'] in _SOURCES
+          and record['checkpoint']==checkpoint
           and isinstance(record['parent'],str) and isinstance(record['inputs'],list)
           and record['inputs'] and isinstance(record['command'],list) and len(record['command'])>1
           and all(isinstance(a,str) and a for a in record['command'])
@@ -258,7 +259,8 @@ def validate_execution(run, reference, *, checkpoint, parent=None, usable=False)
     record=read_record(_bound_path(reference,'parallelity execution receipt',run))
     _need(set(record)=={'schema_version','policy_id','checkpoint','request','phases','record_sha256'}
           and type(record['schema_version']) is int and record['schema_version']==1
-          and record['policy_id'] in _SOURCES and record['checkpoint']==checkpoint
+          and isinstance(record['policy_id'],str) and record['policy_id'] in _SOURCES
+          and record['checkpoint']==checkpoint
           and isinstance(record['phases'],list) and len(record['phases'])==2)
     request=read_execution_request(run,record['request'],checkpoint=checkpoint)
     _need(record['policy_id']==request['policy_id'],'Native execution policies differ')

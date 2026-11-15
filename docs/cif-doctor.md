@@ -196,8 +196,11 @@ is added. V1 requests keep exact historical source validation and cold readback;
 older NASolve readers refuse v2 instead of silently treating it as v1.
 
 C318 focused checks cover native-state invariants, output failures, weakened
-proof refusal and v1/v2 relocation. Native written-output acceptance is pending;
-use the [current handoff](development-handoff.md) for the execution edge.
+proof refusal and v1/v2 relocation. C319 completes five native refinement cycles
+and independently recalculates scattering from both written formats: PDB/mmCIF
+agree with the saved result within serialized precision, without any later B-factor
+correction. Earlier models and selected checkpoints remain unchanged. This is
+qualified on Phenix 2.2.1-6174, Darwin arm64; other builds remain unqualified.
 Joint neutron synchronization and mismatches beyond stale ADPs are not qualified.
 Successful output synchronization does not close Q06 chemical survival or approve
 PDU’s remaining bend. The [completion queue](cif-doctor-completion-queue.md#pipeline-position)

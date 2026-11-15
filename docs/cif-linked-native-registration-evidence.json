@@ -99609,5 +99609,191 @@
         "size": 40699
       }
     ]
+  },
+  "ordinary_written_refinement_output_state_2026_11_15": {
+    "milestone": "C319",
+    "status": "ORDINARY_WRITTEN_OUTPUT_STATE_PASS",
+    "source_commit": "1b9a9918",
+    "behavior_before": "The prior checked helper could save stale ADPs after native group-ADP final scaling; recalculating from that PDB did not reproduce its saved scattering.",
+    "behavior_after": "Actual five-cycle refinement synchronizes only the final hierarchy ADPs before the native writer. Written PDB and mmCIF independently reproduce saved scattering/fit without a log-derived correction.",
+    "native_build": "Phenix 2.2.1-6174 / dispatcher 2.2.1, Darwin arm64",
+    "execution": {
+      "mode": "Complete five-cycle ordinary AutoRefine execution; independent readback uses zero-cycle setup and no optimization.",
+      "macro_cycles": 5,
+      "processors": 4,
+      "checkpoint": "refine-003",
+      "selected_checkpoint": "refine-001",
+      "old_checkpoint_records_unchanged": true,
+      "old_scientific_files_unchanged": true,
+      "expected_mutable_files": [
+        "report.json",
+        "AutoRefine/checkpoints.json"
+      ],
+      "original_root_report_reconstructs": true,
+      "atom_records_identical_except_b": true,
+      "printed_geometry_bytes_identical": true,
+      "output_proof": {
+        "atom_count": 855,
+        "changed_adp_atoms": 855,
+        "fcalc_sha256": "8e95a39a3e2c8e6352ddaedeabfcff95199b375141499bfdbc699d4552212348",
+        "geometry_owner_unchanged": true,
+        "hierarchy_after_sha256": "a9e74181379054d0a6ae20e24eab864f3e9ef5d18c4afab88083e495e649dc67",
+        "hierarchy_before_sha256": "a6ca5655abe83ac17cfa6882b860e68ae16f8c88367703de2b7538d53720cbab",
+        "policy_id": "native-refinement-output-state-v1",
+        "scattering_sha256": "3d815277ef283ffae80c07dbeb680ee307b39834d87cdc8260a2c5a9e64ab607",
+        "scattering_unchanged": true,
+        "status": "SYNCHRONIZED",
+        "write_completed": true
+      },
+      "metrics": {
+        "r_work": 0.2062,
+        "r_free": 0.2362
+      },
+      "terminal_phosphate_audit": "PASS",
+      "settings_and_original_free_r_unchanged": true
+    },
+    "readback": {
+      "result": {
+        "status": "WRITTEN_MODELS_MATCH_SAVED_SCATTERING",
+        "scope": "Exact written PDB/mmCIF and saved-scattering readback; no optimization, log-derived correction or file mutation.",
+        "saved_scattering": {
+          "r_work": 0.20623621479246534,
+          "r_free": 0.23619152216406372,
+          "fmodel_relative_error": 1.306952630383781e-07,
+          "reflections": 2267,
+          "original_free_r_mapping_preserved": true
+        },
+        "models": {
+          "pdb": {
+            "atom_count": 855,
+            "r_work": 0.20623665452733356,
+            "r_free": 0.2362232004268678,
+            "relative_fcalc_rms_error": 0.0001718898475844582,
+            "absolute_r_work_error": 4.397348682128044e-07,
+            "absolute_r_free_error": 3.167826280409125e-05,
+            "explicit_b_correction": 0
+          },
+          "mmcif": {
+            "atom_count": 855,
+            "r_work": 0.20623735413602046,
+            "r_free": 0.23619505307945537,
+            "relative_fcalc_rms_error": 1.332994897773e-05,
+            "absolute_r_work_error": 1.1393435551121378e-06,
+            "absolute_r_free_error": 3.5309153916529556e-06,
+            "explicit_b_correction": 0
+          }
+        },
+        "format_comparison": {
+          "coordinate_max_difference": 0.0005000000000094929,
+          "maximum_b_difference": 0.004960000000039457
+        },
+        "refinement_cycles": 0,
+        "model_adoption": false,
+        "observations_modified": false,
+        "limitations": [
+          "Saved masks/scales retained; no new fit or target tuning. Small differences reflect serialized precision and native FFT calculation.",
+          "This is output-state consistency, not PDU chemical-survival acceptance or historical optimizer reconstruction."
+        ]
+      },
+      "unchanged_run_files": 1234,
+      "stopped_verified": true
+    },
+    "validation": {
+      "commands": [
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c319_start.py",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c319_readback_start.py"
+      ],
+      "command_role": "Historical invocations; exact workers and records anchored below.",
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_refinement_parallelity.py --tb=short",
+      "focused_result": "39 passed in 9.91 s; four new malformed-policy regressions failed before the type guard.",
+      "full_suite": "NOT_RUN"
+    },
+    "reader_hardening": {
+      "files": [
+        "src/nasolve/refinement_parallelity.py",
+        "tests/test_refinement_parallelity.py"
+      ],
+      "behavior": "Non-text policy identifiers now produce the existing CheckpointError instead of an uncaught TypeError; cold refusal preserves all files.",
+      "native_helper_bytes": "UNCHANGED_FROM_1b9a9918"
+    },
+    "compatibility": "No schema change after C318; v1/v2 readers remain. Historical artifacts/selected checkpoints are not migrated. Existing explicit route only.",
+    "limitations": [
+      "Output-state consistency does not qualify PDU remaining angles or whole-ligand chemical survival.",
+      "Scaffold observations are not diffraction data from a PDU-modified crystal.",
+      "Numerical target delivery still used the exact C308 diagnostic PHIL; ordinary repaired-CIF delivery remains next.",
+      "No new full suite, Coot repeat, native relocation or other-platform qualification in C319."
+    ],
+    "artifacts": {
+      "included": "Reader guard, regression, compact measurements/hashes and documentation.",
+      "excluded": "Scientific models/reflections/dictionaries, native logs, workers and full inventories remain local."
+    },
+    "local_records": [
+      {
+        "anchor": "local_live_tests",
+        "path": "319_Cedar_ordinary-output-sync-_ycu9ff8/start.json",
+        "sha256": "8cfcec5d3aba39696388932c174d0ee1a6dfcab0587a7d065ef11ee992e1b552",
+        "size": 26930
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "319_Cedar_ordinary-output-sync-_ycu9ff8/worker.py",
+        "sha256": "3173989e8f328ef92e39d8467ac987de87832f8859244417d63b0f84997c32e2",
+        "size": 5885
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "319_Cedar_ordinary-output-sync-_ycu9ff8/driver-result.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+        "size": 78
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "319_Cedar_ordinary-output-sync-_ycu9ff8/summary.json",
+        "sha256": "bca1212e219a79d33ee189438224c75725013ba5cd394fbcd753d5bb02ab3dd8",
+        "size": 2319
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "319_Cedar_written-output-readback-0ed6xqcd/start.json",
+        "sha256": "8d3254fdd3069154cbdf35ccaf520eccd483c14809ab169c36a6317f37899983",
+        "size": 27019
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "319_Cedar_written-output-readback-0ed6xqcd/worker.py",
+        "sha256": "ecad60cf8ee9a101a4ad5557539b673b727b2fd2fe42aef36f6fd707ed27bd38",
+        "size": 3415
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "319_Cedar_written-output-readback-0ed6xqcd/native_worker.py",
+        "sha256": "d1a1399d1ab4e8621a0e0811eb5ae5a8a0a79a7d2eab4930a749887fe255b6bb",
+        "size": 4982
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "319_Cedar_written-output-readback-0ed6xqcd/driver-result.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+        "size": 78
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "319_Cedar_written-output-readback-0ed6xqcd/summary.json",
+        "sha256": "9bfad4ccc5cc1f6ea966ecc359fe15b466e6d5b46a7788d6be5d2f8563a14249",
+        "size": 236
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "319_Cedar_written-output-readback-0ed6xqcd/result.json",
+        "sha256": "50242e6ef507e35fbbec9558bd6c58ae03d27acec467e3859b7da6fb03d24700",
+        "size": 1560
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "319_Cedar_written-output-readback-0ed6xqcd/spec.json",
+        "sha256": "f9759b28acddea8e1ebdf1a250bda5b9db93699631dda11e818e9d3366d42733",
+        "size": 8511
+      }
+    ]
   }
 }

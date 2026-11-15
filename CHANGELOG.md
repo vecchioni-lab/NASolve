@@ -8,6 +8,12 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Report malformed checked-refinement policies consistently (C319)
+
+- Reject non-text policy identifiers through the existing checkpoint error path,
+  preserving read-only inspection and the original evidence instead of leaking
+  a Python type error. Valid v1/v2 records and native helpers are unchanged.
+
 ### Preserve current refined ADPs in checked final outputs (C318)
 
 - New checked refinements synchronize the native output hierarchy with Phenix’s

@@ -228,3 +228,23 @@ def test_rehashed_v2_output_proof_cannot_be_weakened(tmp_path,monkeypatch,defect
     (run/'AutoRefine/checkpoints.json').write_text(json.dumps(registry))
     with patch('subprocess.Popen',side_effect=AssertionError('cold refusal')):
         with pytest.raises(CheckpointError):read_registry(run)
+
+
+@pytest.mark.parametrize('location',['request','receipt'])
+@pytest.mark.parametrize('policy',[[],{}])
+def test_malformed_policy_is_a_controlled_checkpoint_refusal(tmp_path,monkeypatch,location,policy):
+    run,result,registry,child,receipt,commands=completed(tmp_path,monkeypatch)
+    record=json.loads(receipt.read_text())
+    if location=='request':
+        path=run/record['request']['relative_path'];request=json.loads(path.read_text())
+        request['policy_id']=policy;write_record(path,request,replace=True)
+        record['request']=_file_reference(path,run)
+    else:record['policy_id']=policy
+    write_record(receipt,record,replace=True)
+    child['outputs']['parallelity_execution']=_file_reference(receipt,run)
+    (run/'AutoRefine/checkpoints.json').write_text(json.dumps(registry))
+    before={p:p.read_bytes() for p in run.rglob('*') if p.is_file()}
+    with patch('subprocess.Popen',side_effect=AssertionError('cold refusal')):
+        with pytest.raises(CheckpointError,match='Invalid explicit parallelity execution evidence'):
+            read_registry(run)
+    assert all(p.read_bytes()==data for p,data in before.items())

@@ -102,9 +102,10 @@ route updates the B factors used for scattering but can export their older value
 in the model. A temporary use of Phenix’s own synchronization method makes PDB
 and mmCIF agree with its actual refined state, without moving atoms or changing
 restraints. C318 now places that check immediately before final export in a new
-version of the explicit checked-refinement helper; actual native written-output
-acceptance is pending. Older checkpoints retain their original readers and model
-files. With the final scattering state reconstructed,
+version of the explicit checked-refinement helper. C319 verifies that both actual
+written formats reproduce the saved scattering calculation after five refinement
+cycles, without a later correction. Coordinates and geometry match the earlier
+control; older checkpoints retain their original readers and model files. With the final scattering state reconstructed,
 data favors straightening one angle and opposes the other. This does not justify
 arbitrarily stronger restraints or establish the optimizer’s historical path.
 These are controlled diagnostic corrections, not yet automatic repaired-CIF

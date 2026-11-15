@@ -185,17 +185,22 @@ with the exact current scattering object, retaining coordinates, FCALC and the
 geometry owner. This is a tested remedy at the native boundary, not an installed
 runtime fix or permission to subtract a guessed B shift from historical models.
 
-**Next bounded patch (Q06):** carry that exact-state output synchronization into
-a separately qualified/versioned helper through the existing refinement owner.
-Preserve the frozen v1 sources/readers and all old results; verify real final
-PDB/mmCIF/scattering agreement before claiming ordinary correction. Then qualify
-numerical-candidate delivery through existing repair/selection owners and inspect
-whole-substituent survival. Diagnostic PHIL edits alone do not prove corrected-CIF
-delivery. Keep neighboring targets, source hands and terminal intent visible.
-No repeated Coot, replacement recovery owner, blanket flattening or Free-R tuning.
-Ledger: `matched_linear_neighbor_refinement_2026_11_15`,
-`linear_arm_opening_force_review_2026_11_15` and
-`pdu_scattering_state_and_opening_forces_2026_11_15`.
+**C318/C319 close the output-state boundary:** the versioned checked helper now
+synchronizes final ADPs before the ordinary writer. Five-cycle native execution
+and independent recalculation from actual PDB/mmCIF reproduce saved scattering
+without a later correction. Coordinates/printed geometry match C308; previous
+models, checkpoint records and selection remain unchanged. Exact v1 readers stay
+available. This does not fix PDU's remaining bend or qualify other native builds.
+Ledger: `ordinary_written_refinement_output_state_2026_11_15`.
+
+**Next bounded work (Q06):** qualify numerical-candidate delivery through existing
+repair/selection owners, then inspect whole-substituent survival. First bind the
+exact source/reference and dictionary change to complete native before/after
+inventories, retaining the normal component origin. Reuse existing capture,
+numerical and repair-chain owners; diagnostic PHIL edits alone do not establish
+corrected-CIF delivery. Keep neighboring targets, source hands and terminal intent
+visible. No repeated Coot, replacement recovery owner, blanket flattening or
+Free-R tuning. Q07–Q16 remain as ordered below.
 
 ### The next small steps
 
