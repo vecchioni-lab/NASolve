@@ -485,11 +485,15 @@ class NativeMaskedObjective:
         This optional six-parameter view is not the 3N Cartesian optimizer
         protocol. It changes neither the objective nor its native policy, call
         budget, neighbor lifecycle or scientific acceptance. The caller owns
-        motion provenance and must qualify the native context as usual.
+        motion provenance and must qualify the native context as usual. A saved
+        preview motion additionally checks its exact source-model byte digest.
         """
         from .topostitch_transport import TaperedMotion
         if not isinstance(motion, TaperedMotion) or motion.mask != self._mask:
             raise ValueError('Motion must bind the exact native coordinate mask and order')
+        if (motion.source_model_sha256 is not None
+                and motion.source_model_sha256 != self._report['source_model_sha256']):
+            raise ValueError('Motion source model differs from the native objective binding')
         parameters = motion.parameters(parameters)
         evaluation = self.evaluate(motion.displacements(parameters))
         cartesian = evaluation['gradient']

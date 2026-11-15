@@ -127,3 +127,11 @@ def test_tapered_motion_rejects_invalid_origin_mask_and_nonfinite_arithmetic():
     with pytest.raises(ValueError):TaperedMotion(CoordinateMask(((0.,0.,0.),),(0,),1.),(0.,float('inf'),0.),(1.,))
     motion=TaperedMotion(CoordinateMask(((1e308,0.,0.),),(0,),1.),(-1e308,0.,0.),(1.,))
     with pytest.raises(ValueError):motion.displacements((0.,0.,1.,0.,0.,0.))
+
+
+@pytest.mark.parametrize('digest',[True,'','a'*63,'A'*64,'g'*64,123])
+def test_tapered_motion_rejects_invalid_optional_source_digest(digest):
+    from nasolve.topostitch_transport import TaperedMotion
+    m=tapered_motion()
+    with pytest.raises(ValueError,match='SHA-256'):
+        TaperedMotion(m.mask,m.origin,m.weights,source_model_sha256=digest)

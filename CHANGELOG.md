@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W88 — Bind reusable motions to saved bend previews
+
+- Compile atom-order masks, registered pair weights and pivots from an exactly
+  pinned, replayed preview; reject changed inputs and unrounded bound violations.
+- Bind workflow motions to exact source model bytes before native evaluation.
+  Existing numerical callers, CLI behavior and saved schemas remain compatible.
+
 ### W87 — Preserve matched coarse-placement failures and endpoint evidence
 
 - Record paired/core-only native trials and exact failed-last-accepted diagnostics

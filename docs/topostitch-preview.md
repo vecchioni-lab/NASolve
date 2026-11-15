@@ -5,6 +5,33 @@ window and terminal motion. It preserves the source model and fixed anchors.
 This is a controlled trial generator: it does not find the best placement, close
 an atomistic backbone, refine a model or recommend campaign adoption.
 
+## Reuse a saved motion in backend code
+
+`load_bend_motion` replays a preview pinned by its exact receipt digest and returns
+an immutable motion plus its six saved rotation/translation parameters:
+
+```python
+from nasolve.topostitch_preview import load_bend_motion
+
+motion, parameters = load_bend_motion(
+    preview_directory, expected_receipt_sha256=expected_preview_digest,
+)
+displacements = motion.displacements(parameters)
+```
+
+The source atom order, fixed atoms, paired weights, pivot and displacement bound
+come from the verified packet and registration. The motion binds the **source**
+model; the saved candidate or a refined child requires a new workflow binding.
+`NativeMaskedObjective.evaluate_motion` checks that source digest as well as the
+exact mask/reference/bound. Existing previews need no migration. Compilation may
+conservatively refuse a preview whose unrounded motion exceeds a bound that its
+rounded candidate passed, or whose coordinate fields do not reproduce exactly.
+
+This returns coordinate arithmetic, not a model or permission to optimize. ADPs
+are not transported by this API, and a different parameter vector must undergo
+fresh backbone/packing and scientific review. It neither restores a failed trial
+nor changes optimizer stopping policy.
+
 ## Inputs and use
 
 Start with the existing [registered discovery manifest](topostitch-periodic.md)

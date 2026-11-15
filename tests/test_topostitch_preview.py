@@ -318,3 +318,90 @@ def test_extended_zero_trial_and_relocation_preserve_frozen_inputs(tmp_path):
     (tmp_path/'old').rename(tmp_path/'moved')
     for p in paths[:4]:p.unlink()
     assert load_bend_preview(tmp_path/'moved')==report
+
+
+@pytest.mark.parametrize('rotation,translation', [((0,0,0),(0,0,0)), ((.3,-.2,.1),(.1,-.05,.02))])
+def test_saved_motion_uses_verified_preview_weights_and_preserves_context(tmp_path,rotation,translation):
+    from nasolve.topostitch_preview import load_bend_motion
+    from nasolve.topostitch_transport import TaperedMotion
+    paths=setup_preview(tmp_path,rotation=rotation,translation=translation)
+    out=tmp_path/'preview';report=build(paths,out)
+    frozen={p.name:p.read_bytes() for p in out.iterdir()}
+    motion,parameters=load_bend_motion(out,expected_receipt_sha256=digest(frozen['preview.json']))
+    assert isinstance(motion,TaperedMotion)
+    assert parameters==tuple(rotation)+tuple(translation)
+    assert motion.source_model_sha256==digest(frozen['source.pdb'])
+    assert motion.origin==tuple(report['terminal_origin_angstrom'])
+    assert motion.mask.max_displacement_angstrom==report['trial']['max_atom_displacement_angstrom']
+    source=[s for s in frozen['source.pdb'].decode().splitlines() if s.startswith(('ATOM  ','HETATM'))]
+    candidate=[s for s in frozen['candidate.pdb'].decode().splitlines() if s.startswith(('ATOM  ','HETATM'))]
+    assert len(motion.weights)==len(source)
+    expected_weights=tuple(report['site_weights'].get(f'{s[21]}:{int(s[22:26])}',0.) for s in source)
+    assert motion.weights==expected_weights
+    assert motion.mask.indices==tuple(i for i,w in enumerate(expected_weights) if w>0)
+    points=motion.mask.expand(motion.displacements(parameters))
+    assert any(w==0 for w in motion.weights)
+    for i,(point,line) in enumerate(zip(points,candidate)):
+        assert ''.join(f'{v:8.3f}' for v in point)==line[30:54]
+        if not motion.weights[i]:assert point==motion.mask.reference[i]
+    assert frozen=={p.name:p.read_bytes() for p in out.iterdir()}
+
+
+def test_saved_motion_uses_registration_for_renamed_coordinate_chains(tmp_path):
+    from nasolve.topostitch_preview import load_bend_motion
+    paths=setup_preview(tmp_path)
+    text=''.join(line[:21]+'X'+line[22:] if line.startswith(('ATOM  ','ANISOU')) and line[21]=='A' else line
+                 for line in paths[0].read_text().splitlines(keepends=True))
+    paths[0].write_text(text)
+    codes={f'{c}:{i}':'DA' if c=='A' else 'DT' for c,n in [('A',8),('B',6)] for i in range(1,n+1)}
+    reg=build_construct_registration(inspect_pdb(paths[0],polymer_ligand_codes={'DA','DT'}),target(*codes.items()),
+        {'copy_1':{s:('X'+s[1:] if s.startswith('A:') else s) for s in codes}},source='renamed-motion')
+    paths[2].write_text(json.dumps(reg));rebind_source(paths,text)
+    out=tmp_path/'preview';report=build(paths,out)
+    motion,q=load_bend_motion(out,expected_receipt_sha256=digest((out/'preview.json').read_bytes()))
+    lines=[s for s in text.splitlines() if s.startswith('ATOM')]
+    for i,line in enumerate(lines):
+        logical=f'{"A" if line[21]=="X" else line[21]}:{int(line[22:26])}'
+        assert motion.weights[i]==report['site_weights'].get(logical,0.)
+
+
+def test_saved_motion_relocates_after_original_inputs_are_removed(tmp_path):
+    from nasolve.topostitch_preview import load_bend_motion
+    original=tmp_path/'original';original.mkdir();paths=setup_preview(original)
+    out=original/'preview';build(paths,out);pin=digest((out/'preview.json').read_bytes())
+    first=load_bend_motion(out,expected_receipt_sha256=pin)
+    moved=tmp_path/'moved';shutil.move(str(out),moved);shutil.rmtree(original)
+    assert load_bend_motion(moved,expected_receipt_sha256=pin)==first
+
+
+@pytest.mark.parametrize('filename',['source.pdb','candidate.pdb','discovery.json','registration.json','trial.json','preview.json'])
+def test_saved_motion_rejects_changed_packet_before_compilation(tmp_path,filename):
+    from nasolve.topostitch_preview import load_bend_motion
+    paths=setup_preview(tmp_path);out=tmp_path/'preview';build(paths,out)
+    pin=digest((out/'preview.json').read_bytes());p=out/filename;p.write_bytes(p.read_bytes()+b' ')
+    with pytest.raises(ValueError):load_bend_motion(out,expected_receipt_sha256=pin)
+
+
+def test_saved_motion_requires_exact_receipt_and_rechecks_during_binding(tmp_path,monkeypatch):
+    import nasolve.topostitch_preview as module
+    paths=setup_preview(tmp_path);out=tmp_path/'preview';build(paths,out)
+    pin=digest((out/'preview.json').read_bytes())
+    for bad in (None,True,'','x'*64,'a'*64):
+        with pytest.raises(ValueError):module.load_bend_motion(out,expected_receipt_sha256=bad)
+    loader=module.load_bend_preview
+    def changed(root):
+        packet=loader(root)
+        p=out/'source.pdb';p.write_bytes(p.read_bytes()+b'REMARK changed during binding\n')
+        return packet
+    monkeypatch.setattr(module,'load_bend_preview',changed)
+    with pytest.raises(ValueError,match='changed'):module.load_bend_motion(out,expected_receipt_sha256=pin)
+
+
+def test_saved_motion_does_not_relax_unrounded_displacement_bound(tmp_path):
+    from nasolve.topostitch_preview import load_bend_motion
+    paths=setup_preview(tmp_path,rotation=(0,0,0),translation=(.0004,0,0))
+    change_trial(paths,max_atom_displacement_angstrom=.0003)
+    out=tmp_path/'preview';build(paths,out)  # Rounded candidate has not moved.
+    assert coords((out/'candidate.pdb').read_bytes())==coords((out/'source.pdb').read_bytes())
+    with pytest.raises(ValueError,match='bound'):
+        load_bend_motion(out,expected_receipt_sha256=digest((out/'preview.json').read_bytes()))

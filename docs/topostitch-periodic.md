@@ -3240,3 +3240,55 @@ binding. Do not loosen failed trial policy while wiring the general interface.
 W86's verified local forensic archive contains 544 files, SHA256
 `392eb4fc602860fbe6a10694ffca5d6144e788dc1eda94bd62ff4eb18ab13e6d`.
 These archives are forensic records, not autonomous portable campaign runs.
+
+
+## W88 — Compile source-bound motions from saved bend previews
+
+Before this change, W86 callers supplied their own weights/pivot/mask provenance.
+`load_bend_motion` now reuses the existing complete saved-preview replay and
+registration mapping, returning `(motion, parameters)` with exact source atom
+order and fixed context. It checks the full-precision bound, exact rounded
+coordinate fields, receipt pin and unchanged snapshots. A motion's optional
+`source_model_sha256` is checked by the native evaluator before spending a call;
+identical coordinates alone cannot authorize reuse on changed model bytes.
+
+Changed runtime owners are `topostitch_preview`, `topostitch_transport` and
+`topostitch_native_recipe`; regressions extend their existing preview/mask/trial
+tests. There is **no new packet schema or migration**, CLI, optimizer, model writer
+or tensor transport. Existing unbound numerical callers remain supported. A
+previous rounded preview may be refused if its unrounded motion exceeds the same
+bound or exact coordinate serialization differs; the existing preview loader and
+writer remain unchanged. Other parameters do not inherit its backbone audit.
+
+Validation: **19 fail-before regressions**, **111 focused tests**, complete source
+**1,821 tests +229 subtests**, and **731 installed/relocated tests** pass. Six CLI
+helps, lean imports, Python 3.10 syntax and old/new representative-frame replays
+pass. The public saved bend preview compiles 855 source atoms /204 movable atoms
+after relocation with original paths blocked, retaining its original `91db…`
+source rather than the later `dbda…` diagnostic candidate. Commands use
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:<declared-dependencies>` and
+`<host-python> -m pytest -q -p no:cacheprovider` for source checks; the installed
+check instead puts the newly built wheel's isolated site first. Expanded commands,
+file hashes and results remain in the local installation receipt.
+
+Exact source validation commands below are historical local invocations, not
+portable environment requirements (run from the Willow checkout):
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:/private/tmp/willow-periodic-install/lib/python3.12/site-packages /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_topostitch_preview.py tests/test_topostitch_mask.py tests/test_topostitch_trial.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:/private/tmp/willow-periodic-install/lib/python3.12/site-packages /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider
+python3 /private/tmp/willow-w88-preview-motion/install-check.py
+```
+
+Wheel SHA256: `e60931ddbb694732518894d57524cb492665e9134a6b44647ce5e7e253abad4d`.
+Cedar C328 `11fd6ee6` has no overlapping runtime files in this slice; this is not
+an actual merge or a new combined/native qualification. No external crystallographic
+execution was needed for this binding-only patch. S04/S05 remain partial; W87
+failures and Cedar's live-policy Q06 gate remain unchanged. Next investigate the
+six-variable stopping resolution without changing the original trial policy,
+before deciding how coarse placement should feed local atomic cleanup.
+
+W87's 166-file local forensic archive was verified, SHA256
+`8199617fc46c9e22bae915be7cced4802bfab926f2218f0647c48ee7e350fbe3`.
+No scientific payload is committed or uploaded; archives are forensic evidence,
+not autonomous portable campaign runs.

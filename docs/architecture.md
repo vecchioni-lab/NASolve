@@ -994,6 +994,16 @@ policy, model writer or tensor/diffraction handling. Callers own residue/pair
 weights and provenance. Chemical, live-neighbor-policy and endpoint qualification
 remain separate requirements.
 
+`topostitch_preview.load_bend_motion(directory, expected_receipt_sha256=...)`
+compiles `(TaperedMotion, parameters)` from the existing replayed preview. It maps
+logical weights through the pinned registration, retains all source atoms in
+order, checks the unrounded bound and exact saved coordinate fields, and rechecks
+the frozen files. Its optional `source_model_sha256` binding is checked by the
+native motion view before evaluation, even if different model bytes have identical
+coordinates. Existing numerical callers may omit the digest. No new saved schema
+or native policy is introduced; other parameter values still need backbone,
+packing, tensor and scientific qualification through their existing owners.
+
 `topostitch_trial` reuses installed scitbx for explicit bounded diagnostic trials,
 with complete initial/full-precision/rounded derivative gates and retained capped
 outcomes. `topostitch_captured_job.run_captured_objective` owns their package-level

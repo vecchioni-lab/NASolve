@@ -232,10 +232,14 @@ class TaperedMotion:
     the caller's explicit pivot. Shared residue/pair weights are caller-owned;
     this arithmetic does not infer a duplex, topology, curvature or permission.
     The complete weights and mask reference/order are detached and immutable.
+    An optional source digest prevents using a workflow-bound motion on different
+    model bytes; it is caller-supplied provenance, not independent authentication.
+    Numerical callers may omit it. Saved previews bind it through their loader.
     """
     mask: CoordinateMask
     origin: tuple
     weights: tuple
+    source_model_sha256: str | None = None
 
     def __post_init__(self):
         if not isinstance(self.mask, CoordinateMask):
@@ -248,6 +252,10 @@ class TaperedMotion:
         weights = tuple(float(w) for w in self.weights)
         if {i for i,w in enumerate(weights) if w > 0} != set(self.mask.indices):
             raise ValueError('Positive taper weights must match the complete movable mask')
+        digest = self.source_model_sha256
+        if digest is not None and (not isinstance(digest,str) or len(digest)!=64
+                                   or any(c not in '0123456789abcdef' for c in digest)):
+            raise ValueError('Require a lowercase source model SHA-256 when supplied')
         object.__setattr__(self, 'origin', origin)
         object.__setattr__(self, 'weights', weights)
 

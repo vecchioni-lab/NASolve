@@ -324,3 +324,22 @@ def test_native_motion_view_retains_cartesian_evaluation_and_complete_chain_rule
     with pytest.raises(ValueError,match='mask'):objective.evaluate_motion(bad,q)
     with pytest.raises(ValueError):objective.evaluate_motion(motion,(float('inf'),)*6)
     assert len(calls)==before
+
+
+
+def test_native_motion_checks_exact_source_even_with_identical_coordinates():
+    from nasolve.topostitch_transport import TaperedMotion
+    objective=object.__new__(NativeMaskedObjective)
+    objective._mask=CoordinateMask(((1.,2.,3.),),(0,),1.)
+    objective._report={'source_model_sha256':'a'*64}
+    calls=[]
+    def evaluate(delta):
+        calls.append(delta)
+        return {'target':0.,'gradient':(0.,0.,0.)}
+    objective.evaluate=evaluate
+    wrong=TaperedMotion(objective._mask,(0.,0.,0.),(1.,),source_model_sha256='b'*64)
+    with pytest.raises(ValueError,match='source model'):objective.evaluate_motion(wrong,(0.,)*6)
+    assert calls==[]
+    right=TaperedMotion(objective._mask,(0.,0.,0.),(1.,),source_model_sha256='a'*64)
+    assert objective.evaluate_motion(right,(0.,)*6)['target']==0.
+    assert len(calls)==1

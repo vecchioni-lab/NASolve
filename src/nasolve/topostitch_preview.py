@@ -363,6 +363,64 @@ def load_bend_preview(directory):
     return report
 
 
+def load_bend_motion(directory, *, expected_receipt_sha256):
+    """Return (immutable motion, six trial parameters) from a pinned preview.
+
+    Reuses the existing source/registration/trial replay; no atom-name, chain or
+    sequence inference occurs here. Every source atom retains its original order,
+    and context/fixed atoms receive zero weight. The motion is bound to the exact
+    source model, not the candidate or a subsequently refined child.
+
+    This is coordinate arithmetic only: it does not transport ADPs, authorize an
+    optimizer, preserve backbone audit limits at other parameter values, or confer
+    scientific acceptance. Existing previews audit rounded displacements; this
+    loader also enforces their bound before rounding and conservatively refuses
+    a compiled motion that cannot reproduce the saved coordinate fields exactly.
+    """
+    from .topostitch_recipe import model_atom_rows
+    from .topostitch_transport import CoordinateMask, TaperedMotion
+
+    pin = expected_receipt_sha256
+    if (not isinstance(pin,str) or len(pin)!=64
+            or any(c not in '0123456789abcdef' for c in pin)):
+        raise ValueError('Require the exact expected preview receipt SHA-256')
+    root=Path(directory);manifest=root/'preview.json'
+    frozen={path:path.read_bytes() for path in (manifest,*(root/name for name in _FILES.values()))}
+    if sha256(frozen[manifest]).hexdigest()!=pin:
+        raise ValueError('Saved preview receipt differs from the requested motion binding')
+    packet=load_bend_preview(root)
+    if (packet!=_json(frozen[manifest])
+            or any(sha256(frozen[root/ref['relative_path']]).hexdigest()!=ref['sha256']
+                   for ref in packet['artifacts'].values())):
+        raise ValueError('Bend packet changed before motion binding')
+    source=frozen[root/_FILES['source']]
+    model_atom_rows(source)  # Validate complete distinct source identities/order.
+    registry=validate_construct_registration(_json(frozen[root/_FILES['registration']]))
+    site_weights=packet['site_weights']
+    sites,_=_mapped_residues(source,registry,packet['window']['copy_id'],set(site_weights))
+    by_site={sites[logical]:weight for logical,weight in site_weights.items()}
+    lines=[line for line in source.decode('ascii').splitlines() if line[:6] in ('ATOM  ','HETATM')]
+    points=tuple(tuple(float(line[a:a+8]) for a in (30,38,46)) for line in lines)
+    weights=tuple(by_site.get(_site(line),0.) for line in lines)
+    indices=tuple(i for i,w in enumerate(weights) if w>0)
+    trial=packet['trial']
+    motion=TaperedMotion(CoordinateMask(points,indices,trial['max_atom_displacement_angstrom']),
+                         packet['terminal_origin_angstrom'],weights,
+                         source_model_sha256=packet['source_model_sha256'])
+    parameters=motion.parameters(trial['rotation_vector_degrees']+trial['translation_angstrom'])
+    derived=motion.mask.expand(motion.displacements(parameters))
+    candidate=frozen[root/_FILES['candidate']]
+    if model_atom_rows(candidate)!=model_atom_rows(source):
+        raise ValueError('Candidate atom identity/order differs from source motion binding')
+    expected=[line[30:54] for line in candidate.decode('ascii').splitlines()
+              if line[:6] in ('ATOM  ','HETATM')]
+    if [''.join(f'{v:8.3f}' for v in point) for point in derived]!=expected:
+        raise ValueError('Compiled motion coordinates differ from the replayed preview')
+    if any(path.read_bytes()!=data for path,data in frozen.items()):
+        raise ValueError('Bend packet changed during motion binding')
+    return motion,parameters
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(prog='nasolve-topostitch-preview',
         description='Write an isolated explicit DNA bend preview; no repair or refinement acceptance.')
