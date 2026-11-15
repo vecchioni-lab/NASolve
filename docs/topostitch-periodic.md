@@ -2770,5 +2770,34 @@ rotations in triclinic, tetragonal and hexagonal settings, trace/norm/roundtrip
 invariants, off-diagonal signs, full reordered atom binding, translation independence
 and invalid/overflow refusal. The focused transport/preview/scattering/endpoint/
 packet/fitter group passes **184 tests**; the complete Willow suite passes **1769 tests +229
-subtests**. Installed/native verification will be recorded in this same audit
-after completion.
+subtests**. The installed/relocated package passes **668 tests**, all six entry-point
+helps, lean imports, Python 3.10 syntax and exact old/new packet/graph replay with
+original paths blocked. Wheel SHA-256:
+`056c36f1d346e88e944469eb82250c5d04398a4a26fc4789bbff35d7268833af`.
+
+A fresh **Phenix 2.2.1-6174** execution imports the installed pure-Python wheel into
+its native interpreter and reconstructs the authenticated source through maintained
+Cedar `c4adb6b2`. All **855 source anisotropic tensors** pass both cuts in identity,
+reverse and cyclic atom orders. Native conversion from Cartesian U to fractional
+`U_star` agrees with an independent fractional-rotation calculation within
+**1.63e-19**; Cartesian roundtrip error is at most **3.56e-15 Å²**. Native direct
+`wk1995` Fcalc at **1,008 reflections, 6 Å limit**, agrees within **4.43e-11**.
+Omitting tensor rotation produces a 341–363 maximum Fcalc discrepancy, retaining
+a sensitive negative control. Source scatterers, anisotropic flags and occupancies
+remain unchanged. This is complete diagnostic execution with synthetic calculated
+scattering only, no experimental reflections/Free-R, model output or refinement.
+
+Exact commands and logs reside in the local W80 evidence: source tests use
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:<topology-dependency-prefix> python -m
+pytest -q -p no:cacheprovider`; focused files are transport, preview, scattering,
+endpoint, recut_bundle and fit. The installed receipt records its complete test
+list and each help/replay command. The owned native call is
+`phenix.python -B probe.py`. P03/P04 remain partial; physical inventory, ADP
+serialization, native policy and ordinary recut-refinement qualification are
+separate gates.
+
+W79's 44-payload forensic archive is also read-back verified, SHA-256
+`88b9f5e60e1f863f6a67fba8eac7f1fcbfe2b6eeb0a126981ee2d2757f87a315`.
+The W76–W78 duplicate build/test/install trees were removed only after matching
+all their files to the verified archives. Native probes and pinned source needed
+for Cedar coordination remain available; no scientific source was deleted.

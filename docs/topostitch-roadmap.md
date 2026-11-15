@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W79 — Keep native outlier queries bound to the energy frame.** Next: W80.
+**Current update: W80 — Bind complete Cartesian tensors to coordinate frames.** Next: W81.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W70 | Describe verified graph identity before building a cut | RECORDED |
 | W71 | Preserve angle images through explicit diagnostic reconstruction | RECORDED |
 | W72 | Audit complete reference-frame geometry and native entry boundaries | RECORDED |
 | W73 | Keep complete source-frame bindings through explicit reindexing | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W77 | Bind native contact reports to immutable saved previews | RECORDED |
 | W78 | Audit native source copies and current Cedar composition | RECORDED |
 | W79 | Keep native outlier queries bound to the energy frame | RECORDED |
+| W80 | Bind complete Cartesian tensors to coordinate frames | RECORDED |
 
 ## Finish lines
 
@@ -290,7 +290,7 @@ Let the scientist decide where to slice the ASU while seeing the same physical p
 
 Write a new ASU representative while preserving the physical scattering object exactly within validated numerical tolerance.
 
-**Delivered:** W55 adds a source-bound read-only sampled complex Fcalc observer with in-memory Cartesian ANISOU transport and explicit scope. Synthetic P43/R3/P21, wrong-tensor/coordinate controls and independent native allowed-reflection observations exist; no coordinate materializer or full scattering qualification. W62 proves exact labelled group-image permutations and inverse integer lattice shifts for each explicit representative, covers every source atom once and independently binds proposed coordinates. Special-position images remain a labelled multiset, not a unique physical-atom or occupancy proof; no materializer. W74 native synthetic diffraction and geometry targets agree with all855 anisotropic tensors transported in memory; source work/test values and derivatives are invariant across both cuts. Actual model copy/selection reveals an unsupported pair_proxies protocol. No ordinary refinement or tensor serialization is qualified.
+**Delivered:** W55 adds a source-bound read-only sampled complex Fcalc observer with in-memory Cartesian ANISOU transport and explicit scope. Synthetic P43/R3/P21, wrong-tensor/coordinate controls and independent native allowed-reflection observations exist; no coordinate materializer or full scattering qualification. W62 proves exact labelled group-image permutations and inverse integer lattice shifts for each explicit representative, covers every source atom once and independently binds proposed coordinates. Special-position images remain a labelled multiset, not a unique physical-atom or occupancy proof; no materializer. W74 native synthetic diffraction and geometry targets agree with all855 anisotropic tensors transported in memory; source work/test values and derivatives are invariant across both cuts. Actual model copy/selection reveals an unsupported pair_proxies protocol. No ordinary refinement or tensor serialization is qualified. W80 binds complete Cartesian tensor transport to the same source labels/context/full permutation as coordinates and reuses the rotation in existing ANISOU previews. Installed native two-cut/three-order Fcalc and tensor controls pass; physical inventory and serialization remain separate gates.
 
 **Closure audit:**
 
@@ -298,8 +298,8 @@ Write a new ASU representative while preserving the physical scattering object e
 - Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap.
 
 **Next action:** Qualify P02 graphical choice/review and full physical inventory/tensor serialization before a model writer. Reuse W62 exact labelled image correspondence alongside W55 independent sampled scattering; keep special-position weights, missing content and seam chemistry explicit.
-**Evidence:** [E_REPRESENTATIVE_SCATTERING](#e_representative_scattering), [E_ORBIT_PERMUTATIONS](#e_orbit_permutations), [E_JOINT_FRAME_TARGET](#e_joint_frame_target).
-**Last audit:** 2026-11-15, Linden, [W74](https://github.com/vecchioni-lab/NASolve/commit/c4add34c3cdee0582e50efbf9f104e6b63de7698); Native synthetic joint target, in-memory fixed tensors and actual model energy/copy boundary; no physical/materialization/ordinary-refinement closure.
+**Evidence:** [E_REPRESENTATIVE_SCATTERING](#e_representative_scattering), [E_ORBIT_PERMUTATIONS](#e_orbit_permutations), [E_JOINT_FRAME_TARGET](#e_joint_frame_target), [E_BOUND_TENSOR_TRANSPORT](#e_bound_tensor_transport).
+**Last audit:** 2026-11-15, Linden, [W80](https://github.com/vecchioni-lab/NASolve/commit/cc9fe96d456f9c3fbbf819e9afe7541f03aec361); Bound tensor implementation, full/installed checks and native Fcalc; no materializer or ordinary refinement qualification.
 
 <a id="p04"></a>
 ### P04 — Qualify seam chemistry and native interpretation
@@ -793,6 +793,13 @@ Phenix2.2.1-6174 source identity geometry/model selection and model.deep_copy pr
 [Evidence contract](topostitch-periodic.md#w79--keep-outlier-queries-in-the-same-frame-as-the-energy) at [W79](https://github.com/vecchioni-lab/NASolve/commit/78ecdc54c28775364e1e9cf3641bdd208f2ffe3c).
 Actual Phenix2.2.1-6174 statistics retain scalar geometry but lose/substitute torsion-outlier quartets under an energy-only representative facade. Explicit callback coordinate remapping restores all measured source lists and scalar statistics within3.55e-11 across two cuts/two coordinate controls. Source-frame geo semantic comparisons agree after explicit +/-180 ideal display and directed-record ordering treatment.
 **Limit:** Local diagnostic only; no runtime hook, arbitrary reorder, representative export or ordinary refinement. Raw geo bytes differ and cached contact counts are not forced-rebuild evidence. Optional-Gemmi setup failure retained. Existing W77/W78 full/install/composition validation unchanged; science local.
+
+<a id="e_bound_tensor_transport"></a>
+### E_BOUND_TENSOR_TRANSPORT — bound_Cartesian_tensor_transport_and_installed_native_scattering
+
+[Evidence contract](topostitch-periodic.md#w80--bind-cartesian-displacement-tensors-to-the-coordinate-frame) at [W80](https://github.com/vecchioni-lab/NASolve/commit/cc9fe96d456f9c3fbbf819e9afe7541f03aec361).
+Shared Cartesian R U R^T and complete ReferenceFrame forward/inverse tensor transport retain labels/context/full permutation; existing preview ANISOU writer reuses rotation.13 fail-before regressions; focused184; full1769 +229; installed/relocated668. Installed Phenix2.2.1-6174:855 tensors,2cuts×3orders,1008 Fcalc values maxerror4.43e-11; independent native fractional tensor comparison and omitted-rotation negative control pass.
+**Limit:** Arithmetic and complete in-memory diagnostic only; caller owns fractional conversion, ADP presence/flags and physical validation. No new writer/schema, ADP optimization, experimental data, model materialization or ordinary recut refinement. Scientific evidence local; P03/P04 remain partial.
 
 ## Deferred extensions, not hidden blockers
 

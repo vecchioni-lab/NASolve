@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W79 recorded; next W80.** Latest runtime implementation is W77 `78ecdc54` on isolated
+**W80 recorded; next W81.** Latest runtime implementation is W80 `cc9fe96d` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -173,8 +173,8 @@ source energy/rotated gradients and predeclared directional checks agree. This i
 read-only and must not be added to an objective already containing those angles.
 No source manager, native installation, chemistry or refinement is changed.
 
-**Code validation:** full Willow **1,756 + 229 subtests**; installed/relocated
-**571**, six helps, lean import and Python 3.10 syntax. Old/new packets and graph
+**Code validation:** full Willow **1,769 + 229 subtests**; installed/relocated
+**668**, six helps, lean import and Python 3.10 syntax. Old/new packets and graph
 replay stay exact with original paths blocked. Initial missing-Gemmi and native
 Python/NumPy ABI environment failures are retained; correctly isolated checks pass.
 
@@ -261,6 +261,15 @@ source-frame result object. Explicit remapping of four query callbacks restores
 all source outlier lists in both cuts/two coordinate controls. Source-frame `.geo`
 records agree after narrowly accounting for +/-180 display and tied contact
 ordering; raw bytes differ. No representative export or ordinary adapter is enabled.
+
+**W80 tensor binding:** shared Cartesian tensor rotation and complete frame-bound
+forward/inverse transport now reuse the coordinate labels/context/permutation.
+The existing preview ANISOU writer uses the same arithmetic with its old scaling
+and rounding policy. Thirteen new controls, 184 focused, full 1,769 +229 and
+installed/relocated 668 pass. Installed native checks preserve all 855 tensors and
+1,008 Fcalc values across both cuts and three orders (max Fcalc difference4.43e-11);
+omitted rotation fails strongly. ADP flags/physical validity, fractional conversion
+and serialization remain caller-owned; no new ASU export or refinement support.
 
 **Next P04 work:** freeze source/native/frame identity after ordinary construction;
 qualify a complete geometry owner across copying, neighbor tables, reporting and
