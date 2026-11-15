@@ -3521,3 +3521,26 @@ W91's142-file local forensic archive is verified, SHA256
 `57138c778486e0bacf90519dbb0a333cb246c1e6fa9c3fb563aac53ca4329635`.
 It preserves both atomic failures and common-recipe observations; it is not an
 autonomous resumable campaign or evidence of scientific adoption.
+
+W92 closes as a **recorded contract-only update**. W93 starts with qualification of
+the Cedar owner; the proposed API/schema/policy identifier must not be consumed as
+stable before then. Rowan's native inventory is complete, but that is not an
+implemented guard. Prospective failing tests are evidence until implemented; they
+must not leave the maintained suite failing on an absent module. No further Willow
+runtime change was made at shutdown. S04/S05 remain PARTIAL, and W90's full and
+installed validation remain the latest software checks. All Linden native trial
+and observer processes have completed. Next-session work should use the explicit
+roadmap gate rather than rerun W91 or resume nonexistent background work.
+
+Pinned owner preparation: [Cedar C330 contract](https://github.com/vecchioni-lab/NASolve/blob/3bd46f6e96ef7a923936bb74b8a8f0366a17aaba/docs/architecture.md#live-nonbonded-policy-boundary-c330-planned),
+commit `3bd46f6e96ef7a923936bb74b8a8f0366a17aaba`. The same commit's
+`docs/cif-linked-native-registration-evidence.json` key
+`live_nonbonded_policy_contract_2026_11_15` records exact inspected source hashes,
+commands, synthetic API observations and pending qualification controls. Rowan
+reports 122 adjacent existing tests passed in 7.71 s, no full-suite rerun and no
+runtime/test/config change. All C330 native jobs stopped. These observations
+support the planned interface; they do not qualify an implemented guard or change
+Willow's runtime pins. No merge, scientific payload or local workspace state is
+included. W92 validation: `PYTHONDONTWRITEBYTECODE=1 python3
+scripts/audit_topostitch_roadmap.py --write`, the corresponding `--check`, and
+`git diff --check` pass. No runtime/artifact-schema migration is required.

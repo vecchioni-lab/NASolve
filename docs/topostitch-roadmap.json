@@ -228,7 +228,7 @@
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation."
       ],
-      "next_action": "Finish Cedar-owned live nonbonded-policy implementation/native negatives, then qualify an optional Willow consumer using exact actual invocation options and frozen source snapshot. Preserve legacy workers/defaults and valid rebuilds. Do not conflate this guard with generated-contact proof, chemistry or Q06 closure.",
+      "next_action": "W93: first qualify the Cedar-owned live nonbonded-policy owner against its pinned native inventory and negative controls. Only then integrate an optional Willow consumer using its concrete API, the actual invocation options and a frozen expected snapshot. Preserve legacy defaults, valid rebuilds and separate generated-contact/chemistry/Q06 gates.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -296,7 +296,7 @@
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "Finish Cedar-owned live nonbonded-policy implementation/native negatives, then qualify an optional Willow consumer using exact actual invocation options and frozen source snapshot. Preserve legacy workers/defaults and valid rebuilds. Do not conflate this guard with generated-contact proof, chemistry or Q06 closure.",
+      "next_action": "W93: first qualify the Cedar-owned live nonbonded-policy owner against its pinned native inventory and negative controls. Only then integrate an optional Willow consumer using its concrete API, the actual invocation options and a frozen expected snapshot. Preserve legacy defaults, valid rebuilds and separate generated-contact/chemistry/Q06 gates.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -1229,7 +1229,7 @@
       "human_update": 92,
       "reference": "docs/topostitch-periodic.md#w92--shared-live-nonbonded-policy-contract-qualification-pending",
       "result": "Cedar owner/Willow consumer contract records full supported parameter/assignment/exclusion/symmetry and invocation scope, cache-state separation, unchanged defaults and mandatory equal-energy hidden-mutation controls.",
-      "limitation": "PROPOSED; no Willow consumer implementation or complete native-policy qualification. CedarQ06 chemistry is a separate gate. Existing native capture/static signatures do not establish this missing guard.",
+      "limitation": "Contract-only W92 recorded; owner implementation/native qualification and optional Willow integration are next-session work (W93). No complete live-policy guard, stable schema/POLICY_ID or consumer is claimed. Cedar Q06 chemistry remains a separate gate.",
       "contract": {
         "kind": "shared-live-nonbonded-policy-consumer-contract",
         "status": "PROPOSED_NOT_IMPLEMENTED_IN_WILLOW",
@@ -1259,7 +1259,8 @@
           "Ordered atom type/charge/model/conformer/symmetry-exclusion/donor-acceptor assignments supported by the pinned API.",
           "Complete shell/exclusion tables with exact symmetry operations; crystal and site-symmetry inputs.",
           "Supported PROLSQ function parameters and fixed search controls.",
-          "Actual invocation flags and normalization; unsupported overrides/extensions fail closed."
+          "Actual invocation flags and normalization; unsupported overrides/extensions fail closed.",
+          "Retain exact rational symmetry operations and directed duplicate shell entries. Special-position projection operators can be singular; do not apply proper-rotation determinant checks to special_op."
         ],
         "cache_observations_separate_from_fixed_policy": [
           "adjusted_nonbonded_distance_cutoff",
@@ -1286,6 +1287,16 @@
           "Cedar Q06 achieved chemistry closure",
           "Large bending, nonuniform curvature, physical gap closure or diffraction benefit"
         ]
+      },
+      "owner_contract_provenance": {
+        "branch": "cedar",
+        "commit": "3bd46f6e96ef7a923936bb74b8a8f0366a17aaba",
+        "architecture_path": "docs/architecture.md",
+        "architecture_anchor": "live-nonbonded-policy-boundary-c330-planned",
+        "ledger_path": "docs/cif-linked-native-registration-evidence.json",
+        "ledger_key": "live_nonbonded_policy_contract_2026_11_15",
+        "status": "CONTRACT_ONLY_NO_IMPLEMENTED_GUARD",
+        "qualification_scope": "Synthetic Phenix 2.2.1-6174 API inventory; 122 adjacent existing tests pass. No production guard, stable policy identifier, full-suite rerun or Willow consumer."
       }
     }
   },
@@ -1762,9 +1773,9 @@
       },
       {
         "number": 92,
-        "title": "Coordinate and consume the shared live nonbonded-policy guard",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "title": "Record the shared live nonbonded-policy contract and qualification gate",
+        "state": "RECORDED",
+        "code_commit": "5965d8588984c6991f587bdaec049639264d03e4"
       }
     ]
   }

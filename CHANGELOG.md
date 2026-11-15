@@ -21,8 +21,9 @@ entries are reconstructed from repository history.
 
 - Record the proposed Cedar owner/Willow consumer contract, including hidden
   parameter changes, actual evaluation options and legitimate neighbor rebuilds.
-- Keep implementation/qualification pending and condense the active handoff to
-  current results. Documentation only; no runtime, schema or default change.
+- Close W92 as a recorded contract and gate W93 on Cedar owner qualification
+  before optional Willow integration. Condense the handoff to current results.
+  Documentation only; no runtime, schema or default change.
 
 ### W91 — Compare staged atomic starts and clarify shared native-policy work
 

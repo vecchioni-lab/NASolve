@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W92 — Coordinate and consume the shared live nonbonded-policy guard.** Next: W93.
+**Current update: W92 — Record the shared live nonbonded-policy contract and qualification gate.** Next: W93.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -27,7 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W89 | Diagnose coarse-step resolution before choosing cleanup integration | RECORDED |
 | W90 | Allow explicit diagnostic starts in the existing atomic trial | RECORDED |
 | W91 | Compare cold and explicit coarse-seeded atomic diagnostics | RECORDED |
-| W92 | Coordinate and consume the shared live nonbonded-policy guard | IN_PROGRESS |
+| W92 | Record the shared live nonbonded-policy contract and qualification gate | RECORDED |
 
 ## Finish lines
 
@@ -174,7 +174,7 @@ Move a usable duplex toward the chosen connection while preserving local residue
 - Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.
 - Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.
 
-**Next action:** Finish Cedar-owned live nonbonded-policy implementation/native negatives, then qualify an optional Willow consumer using exact actual invocation options and frozen source snapshot. Preserve legacy workers/defaults and valid rebuilds. Do not conflate this guard with generated-contact proof, chemistry or Q06 closure.
+**Next action:** W93: first qualify the Cedar-owned live nonbonded-policy owner against its pinned native inventory and negative controls. Only then integrate an optional Willow consumer using its concrete API, the actual invocation options and a frozen expected snapshot. Preserve legacy defaults, valid rebuilds and separate generated-contact/chemistry/Q06 gates.
 **Evidence:** [E_SOFTWARE](#e_software), [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_COARSE_NATIVE_DERIVATIVES](#e_coarse_native_derivatives), [E_BOUNDED_NATIVE_MOTION](#e_bounded_native_motion), [E_MATCHED_COARSE_TRIALS](#e_matched_coarse_trials), [E_SAVED_BEND_MOTION](#e_saved_bend_motion), [E_COARSE_RESOLUTION](#e_coarse_resolution), [E_ATOMIC_DIAGNOSTIC_START](#e_atomic_diagnostic_start), [E_MATCHED_ATOMIC_STARTS](#e_matched_atomic_starts), [E_LIVE_NONBONDED_CONTRACT](#e_live_nonbonded_contract).
 **Last audit:** 2026-11-15, Linden, [W91](https://github.com/vecchioni-lab/NASolve/commit/5965d8588984c6991f587bdaec049639264d03e4); Matched native diagnostics; no successful optimizer, scientific repair or default change.
 
@@ -190,7 +190,7 @@ Turn a plausible placement into a chemically usable candidate before refinement 
 - Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.
 - Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.
 
-**Next action:** Finish Cedar-owned live nonbonded-policy implementation/native negatives, then qualify an optional Willow consumer using exact actual invocation options and frozen source snapshot. Preserve legacy workers/defaults and valid rebuilds. Do not conflate this guard with generated-contact proof, chemistry or Q06 closure.
+**Next action:** W93: first qualify the Cedar-owned live nonbonded-policy owner against its pinned native inventory and negative controls. Only then integrate an optional Willow consumer using its concrete API, the actual invocation options and a frozen expected snapshot. Preserve legacy defaults, valid rebuilds and separate generated-contact/chemistry/Q06 gates.
 **Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe), [E_MASKED_COMPOSITION](#e_masked_composition), [E_CAPTURED_COMPOSITION](#e_captured_composition), [E_ENDPOINT_REVIEW](#e_endpoint_review), [E_BOUNDED_TRIAL](#e_bounded_trial), [E_CAPTURED_JOB_API](#e_captured_job_api), [E_ENDPOINT_OBSERVATIONS](#e_endpoint_observations), [E_PAIR_ATTRIBUTION](#e_pair_attribution), [E_CORE_CONTROL](#e_core_control), [E_NATIVE_TERMS](#e_native_terms), [E_NATIVE_STOPPING_LIMIT](#e_native_stopping_limit), [E_NATIVE_PRECISION](#e_native_precision), [E_FAILED_ENDPOINT_DIAGNOSTIC](#e_failed_endpoint_diagnostic), [E_FAILED_ENDPOINT_CHEMISTRY](#e_failed_endpoint_chemistry), [E_COARSE_NATIVE_DERIVATIVES](#e_coarse_native_derivatives), [E_BOUNDED_NATIVE_MOTION](#e_bounded_native_motion), [E_MATCHED_COARSE_TRIALS](#e_matched_coarse_trials), [E_SAVED_BEND_MOTION](#e_saved_bend_motion), [E_ATOMIC_DIAGNOSTIC_START](#e_atomic_diagnostic_start), [E_MATCHED_ATOMIC_STARTS](#e_matched_atomic_starts), [E_LIVE_NONBONDED_CONTRACT](#e_live_nonbonded_contract).
 **Last audit:** 2026-11-15, Linden, [W91](https://github.com/vecchioni-lab/NASolve/commit/5965d8588984c6991f587bdaec049639264d03e4); Matched native diagnostics; no successful optimizer, scientific repair or default change.
 
@@ -883,7 +883,7 @@ Two complete Phenix2.2.1-6174 trials use installedW90 and pinnedC325 owners. Col
 
 [Evidence contract](topostitch-periodic.md#w92--shared-live-nonbonded-policy-contract-qualification-pending) at [W92](https://github.com/vecchioni-lab/NASolve/commit/5965d8588984c6991f587bdaec049639264d03e4).
 Cedar owner/Willow consumer contract records full supported parameter/assignment/exclusion/symmetry and invocation scope, cache-state separation, unchanged defaults and mandatory equal-energy hidden-mutation controls.
-**Limit:** PROPOSED; no Willow consumer implementation or complete native-policy qualification. CedarQ06 chemistry is a separate gate. Existing native capture/static signatures do not establish this missing guard.
+**Limit:** Contract-only W92 recorded; owner implementation/native qualification and optional Willow integration are next-session work (W93). No complete live-policy guard, stable schema/POLICY_ID or consumer is claimed. Cedar Q06 chemistry remains a separate gate.
 
 ## Deferred extensions, not hidden blockers
 

@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W91 recorded; W92 in progress.** Latest audited runtime is W90 `5965d858` on isolated
+**W92 recorded; W93 is next-session gated.** Latest audited runtime is W90 `5965d858` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -337,14 +337,28 @@ refinement or parent-failure promotion. Keep the start API without enabling a
 redundant default stage. Raw evidence remains local; software full/installed
 checks above remain current.
 
-**Next W92 / Rowan coordination:** qualify an additive Cedar-owned live
-nonbonded-policy snapshot/compare helper, then consume its concrete interface in
-Willow. Capture all supported parameter/assignment/exclusion/symmetry inputs,
-including unused entries, while allowing legitimate coordinate-driven rebuilds.
-No pickle/deepcopy or new executor/legacy-worker change. This missing guard is
-separate from Cedar Q06 refinement chemistry/PDU achieved-angle review. Do not
-label partial coverage complete. Nonuniform curvature, matched diffraction and
-density-aware S06 remain open.
+**W92 close / next W93:** the proposed Cedar owner/Willow consumer contract is
+recorded; there is no qualified production live nonbonded-policy guard and no
+Willow consumer patch. Rowan's native inventory and prospective negative controls
+are preparation, not an implemented API or stable policy identifier. First qualify
+the Cedar owner; then integrate and test the optional Willow consumer against that
+concrete interface. Capture all supported parameter/assignment/exclusion/symmetry
+inputs, including unused entries, while permitting legitimate neighbor rebuilds.
+No pickle/deepcopy, new executor or legacy-worker change. Keep prospective failing
+tests in forensic evidence until their implementation belongs in the maintained
+suite. All Linden native trials/observers are finished; no pending process needs
+resuming. Installed runtimes and local raw evidence remain available.
+
+Owner preparation is pinned to [Cedar C330](https://github.com/vecchioni-lab/NASolve/blob/3bd46f6e96ef7a923936bb74b8a8f0366a17aaba/docs/architecture.md#live-nonbonded-policy-boundary-c330-planned)
+(`3bd46f6e96ef7a923936bb74b8a8f0366a17aaba`). Its existing evidence ledger key is
+`live_nonbonded_policy_contract_2026_11_15`; this is inventory and pending controls,
+not production qualification. No branch merge is implied.
+
+This missing guard is separate from Cedar Q06 refinement chemistry/PDU angle
+review. Nonuniform curvature, matched diffraction and density-aware S06 remain
+open. Do not restart the completed small-polish comparison: W91 showed no seed
+benefit. After the shared guard, choose a genuinely displaced general motion case
+and retain a matched control, rather than tuning to one benchmark structure.
 
 **Next Pine integration candidate (agreed with Cedar):** for pure representative
 recuts, keep the whole native process in one computational/source frame and derive
