@@ -1137,6 +1137,13 @@ wrong orientation or clashes. Creative angle-policy work is deferred until it
 can be qualified as a complete local geometry/native policy; no new enforcement
 or atom editing is authorized by recording the intent.
 
+W68 narrows this limitation: existing source-native symmetry-angle energies and
+gradients can be transported correctly in memory, but the tested native proxy
+pickle loses image operators and the ordinary angle-edit interface does not
+carry them. The [angle/lifecycle audit](topostitch-periodic.md#w68--inspect-source-seam-angles-and-proxy-persistence)
+is a diagnostic, not a supported restraint route. Cedar must qualify the complete
+reconstruction/refinement lifecycle and surrounding chemistry before activation.
+
 The implemented W66 read-only projection now exposes these distinctions from a
 verified representative packet through `observe_relabel_backbone_intent` and
 `nasolve-topostitch-view --backbone-intent`. It preserves directed route images,

@@ -1858,3 +1858,83 @@ Temporary installed composition with published Cedar `a2e73603` passes **468 Wil
 + 221 Cedar tests and 6 subtests**, six helps and exact old/new default-owner replay.
 It uses explicit metadata union and recorded module/asset hashes; no merge, full
 combined-suite qualification or native execution is claimed.
+
+
+## W68 — Inspect source seam angles and proxy persistence
+
+This is a **read-only native diagnostic**, extending the existing
+[synthetic image-kernel evidence](topostitch-preview.md#reproducible-native-plane-gate).
+It does not rediscover or replace that probe, enable a bond, alter Cedar/cctbx,
+materialize an ASU or run refinement. The unchanged W67 package remains the latest
+runtime implementation.
+
+A fresh maintained Cedar bootstrap under **Phenix 2.2.1-6174** reconstructs the
+retained 855-atom source with exact observed-context equality. The historical
+capture does not describe angle `sym_ops` or `slack`, so the diagnostic inspects
+all **1,467 live source angle objects**: every image assignment is absent/identity
+and every slack is zero. Captured indices, labels, ideals, weights and origins
+are also bound; the frozen packet/plan/source/worker bytes remain unchanged.
+
+For each explicit W67 cut, eight source-native angle terms cross the proposed
+representation boundary, involving twelve atoms. Each seam contributes the
+existing O3′–P–O5′, O3′–P–OP1, O3′–P–OP2 and C3′–O3′–P terms. These are observed
+source terms, **not a declaration that four angles exhaust the chemistry policy**.
+Targets/weights are carried from the native interpretation, never hard-coded from
+these examples. With source images `G_i` and middle-atom image `G_c`, the diagnostic
+uses per-atom operators `G_c * inverse(G_i)` on the proposed coordinates. Native
+unit-cell-aware angular energies then describe the same source geometry.
+
+| Observation | Cut anchored at node 1 | Cut anchored at node 21 |
+| --- | ---: | ---: |
+| Source angle residual sum | 20.368838370829 | 11.636477921299 |
+| Transported angle residual sum | 20.368838370831 | 11.636477921298 |
+| Largest rotated-gradient discrepancy | 2.65e-11 | 8.34e-12 |
+| Finite-difference error, step 1e-5 Å | 1.67e-7 | 1.22e-7 |
+| Finite-difference error, step 1e-6 Å | 3.08e-7 | 3.35e-7 |
+| Residual after native proxy-array pickle/reopen | 5631.849771642584 | 5458.774223097205 |
+
+The direct angular residual/gradient API and native `energies` path agree.
+Identity atom selection preserves the image operators. In contrast, individual
+angle and shared-array **pickle round trips lose `sym_ops`** on this installation;
+the reopened terms therefore evaluate the wrong Cartesian geometry. Deliberately
+omitting the unit cell is another retained negative control. This is a concrete
+serialization failure, **not evidence that every ordinary Phenix refinement path
+uses pickle or loses these fields**. That exact lifecycle still needs inspection.
+
+The installed `angle.h`/`angle_bpl.cpp` provide per-atom operators and image-aware
+gradients. The installed `pdb_interpretation.py` angle-edit scope/constructor does
+not expose/populate those operators. Upstream [PHIL edit definitions](https://github.com/cctbx/cctbx_project/blob/master/mmtbx/monomer_library/pdb_interpretation.py)
+show the same interface distinction; the pinned installed source and native
+execution, rather than a moving upstream page, support the numerical result.
+Do not work around the missing ordinary input contract by writing a symmetry
+bond alone or by treating a pickled proxy as durable scientific intent.
+
+**Next P04 gate:** coordinate with Cedar on the existing native reconstruction/
+refinement owner. A prospective adapter must bind exact logical/coordinate/image
+identity and complete effective terms, reconstruct operators explicitly, and
+verify them after every supported selection/rebuild/reload boundary. Qualify
+ordinary entry, checkpoints/workers, normalization, missing/extra terms, torsions/
+chirality/planes and exclusions before enabling a seam. Recutting still cannot
+repair a physical gap or bypass P02/P03. Intent stays in Pine; native enforcement
+and its diagnostic report stay in Cedar. No new driver or persistent registry was
+introduced for this experiment.
+
+Validation consisted of complete fresh native reconstruction and angle microprobes,
+not dry runs and not optimization/refinement. The final owned execution was:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/path/to/verified/Willow/src \
+  python /path/to/local/attempt-3/run-owned.py
+# The maintained owner launched, in that new attempt directory:
+phenix.python -B probe.py
+```
+
+The local driver uses Cedar `cif_native_validation._run_native_command`, a 120 s
+watchdog and the pinned installed composition at Cedar `a2e73603`; the bootstrap
+comes from maintained source, never untrusted captured worker text. First attempts
+retain an unsupported operator-multiplication call and a module/class lookup
+error; neither was treated as scientific evidence. The final receipt, scripts,
+source hashes, raw controls and earlier failures are archived locally. This
+experiment-specific scaffolding is not a new public CLI or a committed runtime.
+No software test rerun is needed for this evidence/docs-only slice: W67's full,
+installed and composition results remain the applicable code validation.

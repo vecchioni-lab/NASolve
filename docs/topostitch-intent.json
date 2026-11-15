@@ -819,7 +819,16 @@
       "do_not_infer_terminal_OP3": true,
       "missing_literal_neighbor_authorizes_dephosphorylation": false,
       "generate_symmetry_bond_alone": false,
-      "complete_phosphate_angle_policy": "DEFERRED_UNQUALIFIED"
+      "complete_phosphate_angle_policy": "NATIVE_KERNEL_OBSERVED_LIFECYCLE_AND_COMPLETE_POLICY_UNQUALIFIED",
+      "native_angle_observation": {
+        "human_update": 68,
+        "phenix_version": "2.2.1-6174",
+        "scope": "Existing source-native crossing angles under two explicit representative cuts; no runtime activation",
+        "image_energies_and_gradients_match": true,
+        "proxy_pickle_preserves_images": false,
+        "ordinary_refinement_uses_this_pickle_path_verified": false,
+        "reference": "docs/topostitch-periodic.md#w68--inspect-source-seam-angles-and-proxy-persistence"
+      }
     },
     "contract": "docs/construct-registration.md#shared-periodic-connectivity-intent-pine-topostitch-and-cedar"
   }
