@@ -1,15 +1,15 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-15, C323/C324 selected references and repair composition complete — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. Published base **dc82aee1 (C322)**;
-C323/C324 working source is pinned in the new native/readback start records.
+Updated **2026-11-15, C325 installed replay fixed; C323/C324 complete — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. Published **f9d90319 (C323/C324)**; working C325 is pinned in its build/readback
+start record.
 Focused checks only; no Rowan full suite, branch, default activation or merge.
 Linden owns Pine/Willow and does not edit Cedar.
 
 ## Current work and interruption recovery
 
 **Window: 16:25–23:00 London**, extended by Simon at the evening check-in.
-All Rowan driver/native/cold owners through C324 are stopped, with unchanged source
+All Rowan driver/native/cold owners through C325 are stopped, with unchanged source
 pins. Native window released to Linden; coordinate before another expensive job.
 
 **C323 complete:** `323_Cedar_selected-energy-library-lznnh6qv` under the local
@@ -40,19 +40,35 @@ readback. Successful 61,068,731-byte duplicate proofs are removed; only 84,198 b
 of compact validation/reproduction records remain. Driver: 10.82 s. This does not
 qualify ordinary executor/request delivery, automatic choice or chemical survival.
 
-**Current next step:** inspect the newly observed installed construction replay
-resource gap, then return to explicit bond-target integration through the existing
-prepared executor/request. Do not build a new process/recovery owner or repeat
-successful native controls. Full derivative proof and whole-substituent survival
-remain required; Q06 is open.
+**C325 complete:** `325_Cedar_packaged-replay-33qnyo7v`. Linden's installed check
+exposed a genuine historical replay dependency on an unshipped checkout frame.
+Read C62/C63/C64 history and the explicit runtime-source contract before fixing it.
+The exact already-public scaffold now ships under `data/replay/`; explicit captured
+runtime bytes and all canonical hash/size checks remain unchanged. This does not
+activate a partial ordinary MR catalogue. Two regressions fail before the fix;
+**52 focused tests pass (6.77 s)** afterward.
 
-Linden's fixed C322/Willow combined installed check reports **4 failed, 11,109
-passed +284 subtests (2671.02 s)**, not a pass. Two tests assume Git/source paths.
-The other two expose `cif_construction_return` defaulting to an unshipped checkout
-`MR_frames` path; `cif_context_return` shares that route. Linden owns source-context
-reruns and explicit runtime-source diagnosis; Rowan owns any Cedar fix. Raw log is
-local `/private/tmp/willow-w81-combined/tests.log`. Check existing resource/history
-contracts before changing it; no full rerun is requested.
+A fresh wheel builds with existing setuptools 84.2.1/wheel 0.48.0, installs into
+its own target, moves and replays both routes after the temporary source checkout
+is removed. Original source/SDK access and child execution are blocked. Both altered
+resource controls refuse; both explicit-runtime precedence controls pass. All 273
+installed/evidence files stay unchanged during normal reads. Successful temporary
+build/install/fixture copies are removed; whole driver 5.23 s, no native scientific
+job. All exact commands and compact references are in the existing evidence ledger.
+
+**Current next step:** return to explicit bond-target integration through the
+existing prepared executor/request. Retain original derivative-qualified fallback,
+exact source/context and bounded owned attempts. C323/C324 do not themselves provide
+ordinary execution or full derivative proof. Whole-substituent survival remains
+required; PDU still bends and Q06 remains open.
+
+Linden's fixed C322/Willow full installed check remains **4 failed, 11,109 passed
++284 subtests (2671.02 s)**, not a pass. Two tests assume Git/source paths; C325
+addresses the missing default replay resource underlying the other two. Linden's
+focused source-context rerun reports 90 passed +20 subtests and explicit installed
+runtime-source replay passes. He will check focused installed composition once C325
+is pinned; no full rerun requested. Original log:
+`/private/tmp/willow-w81-combined/tests.log`.
 
 ## Scientific findings and preserved evidence
 
@@ -110,7 +126,8 @@ pass remains **C220/583d30df, 9,178 +276 subtests**, not this revision.
 The existing `cif-linked-native-registration-evidence.json` ledger holds exact
 commands, hashes, anchor-relative evidence and limitations. New entries:
 `selected_native_energy_library_2026_11_15` and
-`reference_bound_ordered_bond_chain_2026_11_15`. Reuse the earlier C307–C322 entries
+`reference_bound_ordered_bond_chain_2026_11_15`, plus
+`installed_historical_construction_resource_2026_11_15`. Reuse the earlier C307–C322 entries
 for target, force, writer and native identity evidence rather than duplicating it.
 
 Original PDU:PDU **B:1 = incoming symmetry continuation P/OP1/OP2, no OP3**,

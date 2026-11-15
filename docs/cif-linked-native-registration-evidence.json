@@ -100457,5 +100457,103 @@
     },
     "next": "Repair the newly observed installed replay resource gap, then integrate explicit target proposals into the existing prepared repair owner/request without changing ordinary defaults.",
     "author": "Rowan"
+  },
+  "installed_historical_construction_resource_2026_11_15": {
+    "milestone": "C325",
+    "status": "BUILT_INSTALLED_MOVED_C62_C63_REPLAY_PASS",
+    "source_base_commit": "f9d90319",
+    "behavior_before": "Default C62/C63 cold construction replay required an MR_frames file above the installed package, although the frame was not shipped.",
+    "behavior_after": "Load the same immutable public canonical frame from dedicated package data; explicit historical runtime bytes retain precedence and original hash/size checks.",
+    "files": [
+      "src/nasolve/cif_construction_return.py",
+      "src/nasolve/data/replay/5W6W_noPO4.pdb",
+      "pyproject.toml",
+      "tests/test_cif_construction_return.py"
+    ],
+    "schemas": "Unchanged historical policies, reports, runtime-source keys and canonical checksum.",
+    "prior_work": "C62/C63 replay and C64 native-return history, existing explicit runtime_sources contract and architecture MR catalogue packaging limits checked. No prior installed default resource exists; ordinary MR catalogue packaging remains separate.",
+    "validation": {
+      "before_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_construction_return.py -k does_not_require --tb=short",
+      "before_result": "2 failed, 31 deselected in 2.24 s: missing checkout-relative frame for both replay routes.",
+      "command": "Same environment/interpreter: -m pytest -q -p no:cacheprovider tests/test_cif_construction_return.py tests/test_cif_context_return.py --tb=short",
+      "result": "52 passed in 6.77 s",
+      "installed_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/cedar/runners/c325_start.py",
+      "installed": {
+        "status": "BUILT_INSTALLED_MOVED_C62_C63_REPLAY_PASS",
+        "wheel": {
+          "filename": "nasolve-0.1.0-py3-none-any.whl",
+          "sha256": "d53ce2da9f4cb2ad68030c858c48e815bd9108152d25e462bf4d7ced4b0a0bdd",
+          "size": 1341193
+        },
+        "build_tools": {
+          "filename": "nasolve-0.1.0-py3-none-any.whl",
+          "setuptools": "84.2.1",
+          "wheel": "0.48.0"
+        },
+        "owners_stopped": true,
+        "temporary_build_install_proofs_removed": true,
+        "cold": {
+          "status": "RELOCATED_INSTALLED_HISTORICAL_REPLAY_PASS",
+          "default_cases": [
+            "C62",
+            "C63"
+          ],
+          "altered_resource_refusals": [
+            "C62",
+            "C63"
+          ],
+          "explicit_runtime_precedence_cases": [
+            "C62",
+            "C63"
+          ],
+          "default_reads_preserved_files": 273,
+          "source_checkout_removed": true,
+          "old_install_removed": true,
+          "new_native_calls": 0,
+          "captured_code_execution": "NOT_RUN",
+          "resource_sha256": "61dfb0f46571eda7fa5b5c5375a4602f04ffb6721e60ed188efa2dc1b3b3a637"
+        },
+        "mode": "Complete wheel build/install and synthetic historical replay; no Phenix/Coot scientific calculation",
+        "elapsed_seconds": 5.230721083993558
+      },
+      "full_suite": "NOT_RUN",
+      "native_scientific_execution": "NOT_RUN"
+    },
+    "compatibility": "No migration or changed scientific result. Historical declared runtime bytes retain priority; wrong resource bytes still refuse. This dedicated replay resource does not create a partial ordinary MR catalogue.",
+    "artifacts": {
+      "included": "Existing already-public canonical frame copied byte-for-byte into package data, code, tests and compact evidence.",
+      "excluded": "No unpublished model, diffraction data, raw native log, SDK code, installed package or build environment included.",
+      "anchor": "NASolve-live-tests",
+      "path": "325_Cedar_packaged-replay-33qnyo7v",
+      "references": [
+        {
+          "path": "start.json",
+          "sha256": "d516a9583b4fec5c91aa8bf81a81b7e5d0d579653cffab5f3f8703038287aa5d",
+          "size": 27727
+        },
+        {
+          "path": "driver-result.json",
+          "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+          "size": 78
+        },
+        {
+          "path": "summary.json",
+          "sha256": "cff52e739c45bda82ce1cbc62135989ccc57591dabdfb7b2c34cf5d81001b0b7",
+          "size": 1128
+        },
+        {
+          "path": "cold-summary.json",
+          "sha256": "4f94f55d59ae4f9d6874791affb485c4b786e049d3cdcd9d97a1e35401a90e52",
+          "size": 494
+        }
+      ]
+    },
+    "limitations": [
+      "Validation uses synthetic historical Coot results with exact public canonical inputs; no fresh native Coot calculation.",
+      "Linden W81 full combined result retains its four originally reported failures; only this identified replay gap and targeted followups are addressed. No new full-suite pass claim.",
+      "Ordinary standard-mode frame catalogue shipping remains separately planned."
+    ],
+    "next": "Return to Q06 explicit bond-target delivery through the existing prepared executor/request and its derivative/fallback checks.",
+    "author": "Rowan"
   }
 }

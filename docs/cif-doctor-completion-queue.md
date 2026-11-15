@@ -250,14 +250,14 @@ corrected-CIF delivery. Keep neighboring targets, source hands and terminal inte
 visible. No repeated Coot, replacement recovery owner, blanket flattening or
 Free-R tuning. Q07–Q16 remain as ordered below.
 
-**Installed replay holdover (new W81 integration finding):** at fixed Cedar C322,
-`cif_construction_return` falls back to a checkout-only canonical `MR_frames` path
-when installed, affecting context-return replay too. Check existing declared
-runtime-source and packaged canonical resource contracts before fixing it; no
-basename discovery. Rowan owns Cedar; Linden owns source-context and explicit-source
-controls. This is separate from two Git/source-path assumptions in the combined
-harness. Preserve the reported four failures; no combined pass claim or full rerun.
-Finish this bounded portability correction before ordinary target integration.
+**Installed replay holdover closed by C325:** the exact public C62/C63 canonical
+frame is now a dedicated package resource, with explicit historical runtime inputs
+still preferred and all checks unchanged. Both routes pass from a built/installed,
+relocated wheel after the temporary source checkout is removed; changed packaged
+bytes refuse. No ordinary MR catalogue activation. Linden's original W81 four-fail
+combined result remains recorded; two other failures were Git/source-path fixture
+assumptions. Targeted followups do not become a new full-suite pass. Resume ordinary
+explicit bond-target integration through the existing prepared owner/request.
 
 ### The next small steps
 

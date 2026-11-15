@@ -9,6 +9,7 @@ Neither replay establishes scientific geometry qualification.
 import ast
 from dataclasses import asdict
 from hashlib import sha256
+from importlib.resources import files
 import json
 from pathlib import Path, PurePosixPath
 import re
@@ -115,7 +116,7 @@ def replay_postmr_construction(members, *, runtime_sources=None):
 
     The full exact C61 parent is the caller's responsibility. Optional original
     runtime bytes are hash-checked as data only. The canonical packaged frame is
-    loaded from that explicit mapping or this maintained runtime's MR resource.
+    loaded from that explicit mapping or the exact packaged historical resource.
     """
     try:
         receipt = _json(members, 'probe_receipt.json'); report = receipt['postmr_construction_audit']
@@ -133,7 +134,7 @@ def replay_postmr_construction(members, *, runtime_sources=None):
                 _need(type(runtime_sources.get(name)) is bytes and sha256(runtime_sources[name]).hexdigest() == digest,
                     'Original C62 runtime source bytes differ: ' + name)
         canonical = (runtime_sources[CANONICAL_FRAME] if runtime_sources is not None and CANONICAL_FRAME in runtime_sources
-            else (Path(__file__).resolve().parents[2] / CANONICAL_FRAME).read_bytes())
+            else files('nasolve').joinpath('data','replay','5W6W_noPO4.pdb').read_bytes())
         _need(sha256(canonical).hexdigest() == CANONICAL_SHA256
             and build['runtime_files'][CANONICAL_FRAME]['sha256'] == CANONICAL_SHA256
             and len(canonical) == build['runtime_files'][CANONICAL_FRAME]['size'],

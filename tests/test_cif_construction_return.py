@@ -221,3 +221,18 @@ def test_saved_construction_has_strict_data_and_optional_original_runtime_bounda
             module.C62_SOURCE_SHA256 = original
         return
     with pytest.raises(ValueError): replay_postmr_construction(members, **kwargs)
+
+
+@pytest.mark.parametrize('context',[False,True])
+def test_historical_replay_does_not_require_a_source_checkout(tmp_path,monkeypatch,context):
+    import nasolve.cif_construction_return as module
+    if context:
+        from tests.test_cif_context_return import context_case
+        members,_=context_case(tmp_path,monkeypatch)
+    else:members,_=construction_case(tmp_path)
+    expected=module.replay_postmr_construction(members)
+    # Installed packages have no repository MR_frames ancestor. The historical
+    # frame must come from package data or the explicit captured-runtime mapping.
+    monkeypatch.setattr(module,'__file__',str(tmp_path/'installed/nasolve/cif_construction_return.py'))
+    monkeypatch.setattr(subprocess,'Popen',lambda *a,**k:pytest.fail('Replay executed a process'))
+    assert module.replay_postmr_construction(members)==expected

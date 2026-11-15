@@ -176,6 +176,15 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Existing owned acquisition handles ordinary checked-route misses; interrupted work needs an explicit fresh attempt after known-stopped evidence. Initial checked adoption exists. Explicit automatic plane support and later alternatives are implemented. Default activation, solution-PDF reporting and per-family release coverage remain integration milestones; chosen-model phasing has the bounded C270–C272 acceptance. |
 
 
+### Installed historical construction replay (C325)
+
+C62/C63 cold replay loads its exact public canonical frame from dedicated package
+resources when no explicit historical runtime bytes are supplied. The original
+source/size/hash checks and reports are unchanged. Built-wheel installation,
+relocation and source-checkout removal pass for both routes; changed resource bytes
+refuse. This is historical evidence replay, not new construction/refinement or
+shipping the ordinary MR frame catalogue.
+
 ### Native reference authority and ordered target repairs (C323–C324)
 
 `capture_energy_library` records one actual lookup by the selected Phenix

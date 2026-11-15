@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Replay historical construction from an installed package (C325)
+
+- Ship the exact public canonical scaffold needed by C62/C63 construction replay
+  as dedicated package data, removing its accidental dependency on a Git checkout.
+- Preserve explicit historical runtime inputs and all hash/size checks. Saved
+  reports and scientific behavior are unchanged; ordinary MR catalogue packaging
+  remains separate.
+
 ### Compose explicit reference-backed bond repairs with existing checks (C324)
 
 - Add optional bond-target stages to the ordered repair chain, sharing one checked

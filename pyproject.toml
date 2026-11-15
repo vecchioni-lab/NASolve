@@ -31,6 +31,7 @@ nasolve = [
   "data/restraints/*.eff",
   "data/restraints/*.txt",
   "data/*.json",
+  "data/replay/*.pdb",
 ]
 
 [tool.pytest.ini_options]

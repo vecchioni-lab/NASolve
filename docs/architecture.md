@@ -150,7 +150,9 @@ run snapshot.
 Current standard models are found in repository `MR_frames/`, through
 `NASOLVE_MR_FRAMES`, or with `--frames-dir`. Approved models will later move
 into package data for installed releases. `W` and `5W6W` resolve to the same
-frame; absence of an explicit standard frame never defaults to W.
+frame; absence of an explicit standard frame never defaults to W. Historical
+C62/C63 construction replay separately ships its exact checksum-pinned canonical
+frame under `data/replay/`; that resource does not provide an ordinary MR catalogue.
 
 The model catalogue is organized by frame and ordered pair:
 
