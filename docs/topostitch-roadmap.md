@@ -1,6 +1,6 @@
 # TopoStitch and Pine completion roadmap
 
-**Current audited work queue: 2026-11-14.** Generated from
+**Current audited work queue: 2026-11-15.** Generated from
 [the machine-readable ledger](topostitch-roadmap.json); edit that ledger and run
 `python scripts/audit_topostitch_roadmap.py --write`, then `--check`.
 This is one queue with two linked tracks, not two competing implementations.
@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W65 — Save and reopen source-bound cut preferences.** Next: W66.
+**Current update: W66 — Retain declared backbone continuation across representative cuts.** Next: W67.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W56 | Save and replay explicit representative proposals | RECORDED |
 | W57 | Inspect periodic representative proposals in the shared viewer | RECORDED |
 | W58 | Qualify viewer packaging and Cedar composition | RECORDED |
 | W59 | Calculate representatives along explicitly chosen graph links | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W63 | Expose existing source bonds at proposed representation seams | RECORDED |
 | W64 | Compare explicit cuts through a shared-camera preview | RECORDED |
 | W65 | Save and reopen source-bound cut preferences | RECORDED |
+| W66 | Retain declared backbone continuation across representative cuts | RECORDED |
 
 ## Finish lines
 
@@ -274,7 +274,7 @@ Represent the observed periodic object independently of a tile hypothesis or PDB
 
 Let the scientist decide where to slice the ASU while seeing the same physical periodic object.
 
-**Delivered:** W57 reuses the offline renderer for a verified explicit representative proposal: all present atoms, exact typed edge-image endpoints, logical ownership, declared boundaries, missing scope, unit cell and atom/edge inspection. It does not enumerate cut alternatives, record human choices, write a model or claim rendered-browser validation. W58 fails before output creation on missing assets and qualifies an explicit temporary installed C299 package/owner composition; no rendered visual review or branch merge. W59 computes node images from an explicit selected forest and fixed anchors using existing path/relabel owners; full winding and unselected vertices remain. Two public alternatives compose with existing packets/view/scattering. No automatic alternatives or human selection. W60 persists explicit chosen edges/anchors in the existing source-bound packet and recomputes derivation on load; viewer exposes that proposal intent. Old direct-image packets/scenes retain exact behavior; no human acceptance or editing UI. W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change. W64 compares 2–8 explicit same-source/graph packets in the existing viewer with a shared camera and local Cut numbers; switching refreshes seam/provenance details and clears stale inspection. Exact old scenes remain; no model selection/approval or rendered review claimed. W65 adds a source-bound preference download/readback for prefer-cut, keep-original or needs-revision. Fresh comparison replay rejects stale choices; scene remains unchanged and no authenticated approval/model selection is claimed. Browser/download validation still open.
+**Delivered:** W57 reuses the offline renderer for a verified explicit representative proposal: all present atoms, exact typed edge-image endpoints, logical ownership, declared boundaries, missing scope, unit cell and atom/edge inspection. It does not enumerate cut alternatives, record human choices, write a model or claim rendered-browser validation. W58 fails before output creation on missing assets and qualifies an explicit temporary installed C299 package/owner composition; no rendered visual review or branch merge. W59 computes node images from an explicit selected forest and fixed anchors using existing path/relabel owners; full winding and unselected vertices remain. Two public alternatives compose with existing packets/view/scattering. No automatic alternatives or human selection. W60 persists explicit chosen edges/anchors in the existing source-bound packet and recomputes derivation on load; viewer exposes that proposal intent. Old direct-image packets/scenes retain exact behavior; no human acceptance or editing UI. W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change. W64 compares 2–8 explicit same-source/graph packets in the existing viewer with a shared camera and local Cut numbers; switching refreshes seam/provenance details and clears stale inspection. Exact old scenes remain; no model selection/approval or rendered review claimed. W65 adds a source-bound preference download/readback for prefer-cut, keep-original or needs-revision. Fresh comparison replay rejects stale choices; scene remains unchanged and no authenticated approval/model selection is claimed. Browser/download validation still open. W66 projects declared directed backbone continuation, representation/chemical/unknown boundaries and existing phosphate inventory from replayed packets. Unresolved partners retain P/OP1/OP2 intent; OP3 conflicts are scoped to continuation, with terminal phosphate consent separate. Exact route-image transport, optional view and preference context are read-only; no new edge or native enforcement.
 
 **Closure audit:**
 
@@ -282,8 +282,8 @@ Let the scientist decide where to slice the ASU while seeing the same physical p
 - Provide an actual selectable graphical before/after preview with explicit ambiguity and unchanged-source identity. No fake Apply action before materialization is supported.
 
 **Next action:** Qualify actual browser rendering, preference downloads and human review; then wire the source-bound choice into existing Pine/Campaign owners. Keep physical identity, model materialization and seam chemistry gated.
-**Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view), [E_VIEW_PACKAGE_BOUNDARY](#e_view_package_boundary), [E_EXPLICIT_FOREST](#e_explicit_forest), [E_SAVED_FOREST_INTENT](#e_saved_forest_intent), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams), [E_CUT_COMPARISON](#e_cut_comparison), [E_CUT_PREFERENCE](#e_cut_preference).
-**Last audit:** 2026-11-14, Linden, [W65](https://github.com/vecchioni-lab/NASolve/commit/3993bb3abce5ef64157e08a07658d7698fc4b652); Saved caller preference and exact backend readback only; real graphical/human review and execution remain open.
+**Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view), [E_VIEW_PACKAGE_BOUNDARY](#e_view_package_boundary), [E_EXPLICIT_FOREST](#e_explicit_forest), [E_SAVED_FOREST_INTENT](#e_saved_forest_intent), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams), [E_CUT_COMPARISON](#e_cut_comparison), [E_CUT_PREFERENCE](#e_cut_preference), [E_BACKBONE_INTENT](#e_backbone_intent).
+**Last audit:** 2026-11-15, Linden, [W66](https://github.com/vecchioni-lab/NASolve/commit/d042f586e7ea2427cbfc7d34b3e079a2bafecfca); Declared continuation observation only; browser policy block retained, no topology editing, model materialization or native enforcement.
 
 <a id="p03"></a>
 ### P03 — Materialize a cut without changing the crystal
@@ -306,7 +306,7 @@ Write a new ASU representative while preserving the physical scattering object e
 
 Make a representation seam remain a continuous backbone where chemistry says it is continuous.
 
-**Delivered:** W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change.
+**Delivered:** W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change. W66 projects declared directed backbone continuation, representation/chemical/unknown boundaries and existing phosphate inventory from replayed packets. Unresolved partners retain P/OP1/OP2 intent; OP3 conflicts are scoped to continuation, with terminal phosphate consent separate. Exact route-image transport, optional view and preference context are read-only; no new edge or native enforcement.
 
 **Closure audit:**
 
@@ -314,9 +314,9 @@ Make a representation seam remain a continuous backbone where chemistry says it 
 - Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.
 - Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified.
 
-**Next action:** Carry Pine declared continuation/terminus intent into Cedar without atom deletion or OP3 inference from an ASU boundary; keep bond enforcement disabled until full seam angle/native policy is qualified.
-**Evidence:** [E_PINE_TEST_BANK](#e_pine_test_bank), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams).
-**Last audit:** 2026-11-14, Linden, [W63](https://github.com/vecchioni-lab/NASolve/commit/23939692f20f16ffaecc0352d4e3060e47f6ed20); Read-only source-native seam coverage; graphical review and complete native seam enforcement remain unqualified.
+**Next action:** Use the verified continuation observation at the Cedar boundary; add explicitly declared and source-bound seam partners through existing graph/packet owners, retaining contradictions and unresolved scope. Keep native bond enforcement disabled pending complete angle/exclusion qualification.
+**Evidence:** [E_PINE_TEST_BANK](#e_pine_test_bank), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams), [E_BACKBONE_INTENT](#e_backbone_intent).
+**Last audit:** 2026-11-15, Linden, [W66](https://github.com/vecchioni-lab/NASolve/commit/d042f586e7ea2427cbfc7d34b3e079a2bafecfca); Declared continuation observation only; browser policy block retained, no topology editing, model materialization or native enforcement.
 
 <a id="p05"></a>
 ### P05 — Complete the persistent Pine surgery/refine GUI loop
@@ -695,6 +695,13 @@ Two complete Phenix2.2.1-6174 fixed-manager controls using frozen Cedar f2345a8.
 [Evidence contract](topostitch-periodic.md#w65--save-and-reopen-a-source-bound-cut-preference) at [W65](https://github.com/vecchioni-lab/NASolve/commit/3993bb3abce5ef64157e08a07658d7698fc4b652).
 15 regressions; focused57,full1630 plus229subtests. Actual JavaScript exports all three choices; backend validates those requests after public packet/capture relocation with old paths blocked. Reopened note and legacy interactions pass doubles; old comparison remains exact. Installed/relocated424,six helps,lean/3.10 and exact installed preference/comparison/legacy readback pass. Temporary installed C303 composition passes424Willow/221Cedar plus6subtests and exact default-owner capture/preference/legacy replay.
 **Limit:** Preference is caller-supplied evidence, not authenticated human or scientific approval; no model/checkpoint action or separate campaign history. Real browser/download/human review remains open. Scientific artifacts local only.
+
+<a id="e_backbone_intent"></a>
+### E_BACKBONE_INTENT — declared_backbone_intent_observation
+
+[Evidence contract](topostitch-periodic.md#w66--observe-declared-backbone-intent-across-a-cut) at [W66](https://github.com/vecchioni-lab/NASolve/commit/d042f586e7ea2427cbfc7d34b3e079a2bafecfca).
+18 new regressions; full1648 plus229subtests; installed/relocated442,six helps,lean import,3.10syntax. Exact public and old comparison replay; three JavaScript-exported preferences validate after relocation. Public partial graph has24 declared continuations and0 route seams while the independent native observer retains2 source-native out-of-route seams. Actual viewer logic passes DOM/canvas controls.
+**Limit:** No inferred partner, chemistry change, atom edit, native enforcement or scientific acceptance. Browser URL policy again refused local-file opening; no bypass and no rendered/download/human review claim. Scientific artifacts local only. Cedar C303 composition verification is pending; W65 remains the prior validated integration boundary.
 
 ## Deferred extensions, not hidden blockers
 

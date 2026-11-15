@@ -136,9 +136,9 @@ Then promote Scout along the
 ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 [metal restraint builder](metal-restraint-builder.md) are separate later scopes.
 
-## Separate Willow work — 2026-11-14
+## Separate Willow work — 2026-11-15
 
-**Willow update W65; next W66.** Human W-numbers and exact code provenance live
+**Willow update W66; next W67.** Human W-numbers and exact code provenance live
 in the [audited roadmap](topostitch-roadmap.md); its JSON is the one status queue.
 The [intent record](topostitch-intent.json) lists implemented owners but grants no
 runtime authority. The [periodic guide](topostitch-periodic.md) and
@@ -152,8 +152,8 @@ source/discovery/registration and anchored replay. W57 displays them through the
 existing installed `nasolve-topostitch-view`: all atoms, logical ownership, exact
 edge-image endpoints, unit cell, declared boundaries and missing scope. Its
 before/after comparison is read-only; no replacement ASU, chemical bond, approval
-or checkpoint is written. Full Willow: **1,630 plus 229 subtests**; focused57;
-installed/relocated424, six helps, lean import and 3.10 syntax. Public and legacy
+or checkpoint is written. Full Willow: **1,648 plus 229 subtests**; W66 adds18 regressions;
+installed/relocated442, six helps, lean import and 3.10 syntax. Public and legacy
 replay agree exactly. JavaScript DOM/canvas checks pass, but actual browser/user
 visual review remains open after the earlier local-file automation policy block.
 
@@ -192,8 +192,21 @@ exports validate after relocation; browser downloads/human review remain open.
 Existing Pine/Campaign record and checkpoint owners will consume this evidence;
 no parallel history or model writer was added.
 
+W66 projects the existing declared routes/boundaries into a verified backbone-intent
+observation and optional `--backbone-intent` view. It retains directed O3′→P image
+relations, unresolved continuation, exact phosphate inventory, missing/ambiguous
+atoms and continuation-scoped OP3 conflicts. Separate terminal-phosphate consent
+remains unknown. Public partial routes report24 continuations and0 route seams;
+Cedar's independent source interpretation still exposes2 cut-crossing bonds outside
+those routes. No topology is inferred, phosphate edited or restraint enabled.
+The optional context binds saved preferences; old scenes remain exact. Full and
+installed validation passed; current C303 composition check is pending.
+
 **Next bounded work:** actual browser cut inspection, preference download and human review
-still need qualification. W61 completed the two read-only W54 failed-point reviews
+still need qualification. The new local-file attempt again hit the explicit browser
+URL policy; no workaround was attempted. Continue source-bound explicit seam
+partner declarations through the existing graph/packet owners, preserving unknown
+scope and separate Cedar enforcement. W61 completed the two read-only W54 failed-point reviews
 under one common complete recipe: selected/core pair and scalar geometry improve,
 but individual packing/torsion/plane regressions remain visible. Original FAILED
 outcomes persist; no optimizer rerun, candidate or acceptance. See the W61 preview
