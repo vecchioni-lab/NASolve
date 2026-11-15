@@ -2686,3 +2686,62 @@ and its explicit `phenix.python -B probe.py` invocation. W78 changes documentati
 and evidence only. W77's full Willow **1756 +229** and installed **571** remain the
 runtime baseline. This composition check is not a full combined suite or a native
 combined refinement. Scientific outputs stay local; migration impact is none.
+
+
+## W79 — Keep outlier queries in the same frame as the energy
+
+A complete local **Phenix 2.2.1-6174** diagnostic reconstructs the same authenticated
+855-atom source through maintained Cedar `c4adb6b2`, then calls actual
+`mmtbx.model.statistics.geometry` with source coordinates, an energy-only local
+representative facade, and a facade whose four outlier callbacks explicitly map
+query coordinates back to the source. Both saved cuts are tested at the original
+coordinates and a deterministic 0.002 Å perturbation. This is a reporting execution,
+not refinement, an installed hook or a model writer.
+
+The native statistics constructor obtains scalar deviations from the returned
+source-frame energy object, but its bond/angle/dihedral/chirality methods pass
+hierarchy coordinates back into `get_*_outliers`. Without remapping those calls,
+scalar targets still agree while **outlier identity is wrong**. The source has
+four dihedral outlier quartets: cut 1 loses two; cut 21 replaces one with a different
+quartet, at both coordinate controls. Other measured families do not show changed
+outlier lists in this particular fixture; this is not proof they are generally safe.
+
+A diagnostic-only remapping of all four callback inputs restores the exact source
+outlier lists and scalar statistics (largest absolute difference **3.55e-11**).
+The returned native atom indices remain in source order; this test does not qualify
+arbitrary model reordering or frontend selection indices. The static source
+signature remains unchanged. We do not install the facade, forward unknown methods,
+change native definitions, patch Cedar/cctbx, or infer full live-policy ownership.
+
+The source-frame `.geo` writer is also checked after inverse mapping. Raw output
+is **not byte-identical**: the observed differences are equivalent +180/-180 ideal
+angle display and ordering of nearly equal nonbonded distances. A separate host
+audit normalizes only the explicit sinusoidal dihedral ideal display and compares
+nonbonded records as multisets, retaining every directed label, printed distance,
+VDW value, symmetry string and multiplicity. All four comparisons agree; each
+contains 8,305 cached contact rows. This is source-frame report equivalence, not
+representative-frame operator/export qualification or a forced-neighbor-rebuild
+test. Raw reports and the exact differences remain preserved.
+
+The first host preparation lacked the optional Gemmi path, and the ensuing native
+attempt refused missing plans. Both failures remain; the successful second attempt
+uses the topology-enabled host environment and keeps the native Python environment
+separate. The native invocation is `phenix.python -B probe.py` through the maintained
+Cedar process owner; the host comparison is `python compare-reports.py`, both with
+`PYTHONDONTWRITEBYTECODE=1`. No runtime/schema changes or migration occur, so W77's
+full **1756 +229**, installed **571** and W78's combined **782 +16** remain the
+validation baseline. Complete policy binding, pair-table consumers, representative
+reports/exports and ordinary recut refinement remain open.
+
+### Local evidence preservation for W76–W78
+
+The existing declared local evidence root now retains the following forensic
+archives. Every payload was read back and checked by size and SHA-256 before
+removing any disposable build copy. Generated science remains uncommitted and
+unuploaded; these are not portable resumable campaign runs.
+
+| Update | Payload files | Archive SHA-256 |
+| --- | --- | --- |
+| W76 | 321 | `518f6442af7c5204c9b2c6311ea88d2a9833487ca191e0065cec271bfd2cedee` |
+| W77 | 320 | `4d5f35b5198e9968a885ed58b3902759a5b70ff6282bbb74e6b79a674a2a3c5a` |
+| W78 | 2008 | `467776cd11d3267d28e2a54519a27acf28bd759b56a919c39746760a1726f9d2` |

@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W78 recorded; next W79.** Latest runtime implementation is W77 `78ecdc54` on isolated
+**W79 recorded; next W80.** Latest runtime implementation is W77 `78ecdc54` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -254,6 +254,13 @@ pickle/deepcopy while scalars survive. Successful selection shares its nonbonded
 parameter owner, so it is not a proof of independent mutable policy. Full live
 policy binding belongs to Cedar; neither copy route qualifies recut refinement.
 All failures and native diagnostics remain local and preserved.
+
+**W79 reporting boundary:** actual native statistics can return correct scalar
+geometry but wrong torsion outliers when representative coordinates reach a
+source-frame result object. Explicit remapping of four query callbacks restores
+all source outlier lists in both cuts/two coordinate controls. Source-frame `.geo`
+records agree after narrowly accounting for +/-180 display and tied contact
+ordering; raw bytes differ. No representative export or ordinary adapter is enabled.
 
 **Next P04 work:** freeze source/native/frame identity after ordinary construction;
 qualify a complete geometry owner across copying, neighbor tables, reporting and

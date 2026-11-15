@@ -532,14 +532,15 @@
         "W75 observes the stock source-only dry-run and coordinate-cycle consumer path; geometry, weight regularization and reports bypass a model-energy-only hook. Matched profiling controls agree; complete frame-aware native integration remains open.",
         "W76 adds source-bound representative native contact reports preserving exact image operations, directed membership and native multiplicity; native pair-table/report consumers remain unqualified.",
         "W77 binds representative contact reports through the immutable native-preview context, preserving old link/view defaults and proving source/cell/proposed-coordinate correspondence; native copy/refinement integration remains open.",
-        "W78 distinguishes exact source identity/model copies from generic geometry deepcopy that drops nonbonded policy despite retaining contact rows. Isolated native parameter-object control reproduces table loss; complete live policy/copy ownership stays unqualified."
+        "W78 distinguishes exact source identity/model copies from generic geometry deepcopy that drops nonbonded policy despite retaining contact rows. Isolated native parameter-object control reproduces table loss; complete live policy/copy ownership stays unqualified.",
+        "W79 observes actual native outlier-query frame mixing despite correct scalar geometry; explicit local callback remapping restores source outlier identities. Source-frame geo records compare semantically, with raw presentation differences preserved."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "With Cedar, authenticate complete live source policy after construction, including nonbonded parameter/exclusion tables and all restraint fields. Do not use generic native deepcopy/pickle or infer independent policy from successful identity selection. Then qualify one geometry owner across copies, pair tables, statistics, source-bound weights and exports; require fresh-process source/representative controls before runtime activation and preserve P02/P03.",
+      "next_action": "With Cedar, authenticate complete live source policy after construction, including nonbonded parameter/exclusion tables and all restraint fields. Do not use generic native deepcopy/pickle or infer independent policy from successful identity selection. Then qualify one geometry owner across copies, pair tables, statistics, source-bound weights and exports; require fresh-process source/representative controls before runtime activation and preserve P02/P03. Bind coordinate-taking methods on returned energy/results too, including outlier queries; keep source-order indices and source/representative report operators explicit.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
@@ -553,14 +554,15 @@
         "E_NATIVE_CONSUMER_PROTOCOL",
         "E_REPRESENTATIVE_PACKING",
         "E_PREVIEW_PACKING_BINDING",
-        "E_NATIVE_SOURCE_COPY"
+        "E_NATIVE_SOURCE_COPY",
+        "E_NATIVE_REPORT_FRAMES"
       ],
       "last_audit": {
         "date": "2026-11-15",
         "code_commit": "78ecdc54c28775364e1e9cf3641bdd208f2ffe3c",
         "reviewer": "Linden",
-        "human_update": 78,
-        "scope": "Source-native copy diagnostics and installed current Cedar composition; live policy and ordinary recut refinement remain open"
+        "human_update": 79,
+        "scope": "Native reporting callbacks/source-frame geo diagnostic; no runtime or ordinary refinement activation"
       }
     },
     {
@@ -1079,6 +1081,14 @@
       "reference": "docs/topostitch-periodic.md#w78--distinguish-source-manager-copying-from-policy-preservation",
       "result": "Phenix2.2.1-6174 source identity geometry/model selection and model.deep_copy preserve target/gradients at three coordinate controls. Generic geometry deepcopy retains8305 rows but loses1115.631 nonbonded residual; isolated parameter-object control reproduces dropped tables with scalar preservation. Current Cedar794e0d7b installed virtual composition passes782 +16, six helps and exact old/new plus W77 packing replay.",
       "limitation": "Source-only diagnostics; inspected proxy inventory is not a complete policy fingerprint. Successful identity selection shares nonbonded parameters. No recut copy/ordinary refinement, SDK/runtime change or complete exclusion qualification. Initial failure preserved; science local. Seven doc conflicts, no actual merge/full combined suite. W77 runtime full1756 +229 and installed571 unchanged."
+    },
+    "E_NATIVE_REPORT_FRAMES": {
+      "kind": "native_statistics_and_source_geo_frame_diagnostic",
+      "code_commit": "78ecdc54c28775364e1e9cf3641bdd208f2ffe3c",
+      "human_update": 79,
+      "reference": "docs/topostitch-periodic.md#w79--keep-outlier-queries-in-the-same-frame-as-the-energy",
+      "result": "Actual Phenix2.2.1-6174 statistics retain scalar geometry but lose/substitute torsion-outlier quartets under an energy-only representative facade. Explicit callback coordinate remapping restores all measured source lists and scalar statistics within3.55e-11 across two cuts/two coordinate controls. Source-frame geo semantic comparisons agree after explicit +/-180 ideal display and directed-record ordering treatment.",
+      "limitation": "Local diagnostic only; no runtime hook, arbitrary reorder, representative export or ordinary refinement. Raw geo bytes differ and cached contact counts are not forced-rebuild evidence. Optional-Gemmi setup failure retained. Existing W77/W78 full/install/composition validation unchanged; science local."
     }
   },
   "benchmarks": [
@@ -1194,8 +1204,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 78,
-    "next": 79,
+    "current": 79,
+    "next": 80,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1471,6 +1481,12 @@
       {
         "number": 78,
         "title": "Audit native source copies and current Cedar composition",
+        "state": "RECORDED",
+        "code_commit": "78ecdc54c28775364e1e9cf3641bdd208f2ffe3c"
+      },
+      {
+        "number": 79,
+        "title": "Keep native outlier queries bound to the energy frame",
         "state": "RECORDED",
         "code_commit": "78ecdc54c28775364e1e9cf3641bdd208f2ffe3c"
       }

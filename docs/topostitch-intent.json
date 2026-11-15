@@ -872,6 +872,16 @@
         "live_policy_owner": "Cedar",
         "ordinary_representative_copy_qualified": false,
         "runtime_change": false
+      },
+      "native_reporting_observation": {
+        "human_update": 79,
+        "reference": "docs/topostitch-periodic.md#w79--keep-outlier-queries-in-the-same-frame-as-the-energy",
+        "energy_only_outlier_semantics_valid": false,
+        "explicit_outlier_query_remapping_checked": true,
+        "source_frame_geo_semantic_comparison_checked": true,
+        "raw_geo_bytes_identical": false,
+        "representative_export_qualified": false,
+        "runtime_change": false
       }
     }
   },

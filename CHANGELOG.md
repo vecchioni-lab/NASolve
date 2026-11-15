@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W79 — Audit native outlier and geometry-report coordinate frames
+
+- Record an actual native statistics mismatch: an energy-only frame adapter can
+  preserve scalar geometry while losing or substituting torsion-outlier identities.
+- Qualify explicit coordinate remapping only in a local diagnostic. Preserve raw
+  report differences and narrow their causes; no native adapter is activated.
+
 ### W78 — Audit native source-manager copies and current Cedar composition
 
 - Distinguish native identity/model copies from generic Python deepcopy: the latter
