@@ -861,6 +861,17 @@
         "model_energy_only_hook_sufficient": false,
         "full_consumer_protocol_qualified": false,
         "ordinary_recut_refinement_qualified": false
+      },
+      "source_copy_observation": {
+        "human_update": 78,
+        "reference": "docs/topostitch-periodic.md#w78--distinguish-source-manager-copying-from-policy-preservation",
+        "phenix_version": "2.2.1-6174",
+        "source_identity_selection_and_model_deep_copy_energy_checked": true,
+        "generic_geometry_deepcopy_preserves_nonbonded_policy": false,
+        "complete_policy_independence_qualified": false,
+        "live_policy_owner": "Cedar",
+        "ordinary_representative_copy_qualified": false,
+        "runtime_change": false
       }
     }
   },

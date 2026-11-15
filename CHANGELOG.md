@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W78 — Audit native source-manager copies and current Cedar composition
+
+- Distinguish native identity/model copies from generic Python deepcopy: the latter
+  loses nonbonded parameter tables and clash energy despite retaining contact rows.
+- Record source-only native controls and installed Willow/Cedar compatibility.
+  No native hook, runtime schema, SDK patch or recut-refinement activation changes.
+
 ### W77 — Bind native contact reports to saved representative previews
 
 - Add a read-only preview API that reuses Cedar authentication and the existing

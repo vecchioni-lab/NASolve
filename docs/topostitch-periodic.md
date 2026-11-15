@@ -2609,3 +2609,80 @@ exact old/new packet/graph replay with original paths blocked. This includes W76
 final finite-distance guard. Wheel SHA-256:
 `861b2e50289baa6174a6fe2c3c3dd70abb2857f9b98bf967c38a6896ea7aa7f2`.
 No combined-Cedar full-suite result or native manager activation is implied.
+
+
+## W78 — Distinguish source-manager copying from policy preservation
+
+Complete **Phenix 2.2.1-6174** source-only diagnostics reconstruct the authenticated
+855-atom source through the current maintained Cedar worker (`c4adb6b2`). The
+observed native context matches the frozen capture before any copy experiment.
+No facade, representative coordinates, optimization or refinement is installed.
+These are complete diagnostic executions, not dry-run predictions.
+
+The experiment records every public non-callable field on angle, dihedral,
+constant-dihedral, chirality, planarity and parallelity proxies; it also checks
+Cedar's static bond signature, W71's full angle snapshot, checked torsion/plane
+rows, crystal and ordered model labels. That inventory is explicitly **not** a
+complete nonbonded-policy fingerprint. At the source and deterministic 0.002/0.03 Å
+perturbations, original and copied managers independently rebuild neighbor tables.
+
+| Source-only copy route | Energy / gradient result |
+| --- | --- |
+| Geometry identity selection | Exact in all three coordinate controls |
+| Actual model identity selection | Exact in all three coordinate controls |
+| Actual model `deep_copy()` | Exact in all three coordinate controls |
+| Python `copy.deepcopy(geometry)` | Fails: complete nonbonded residual disappears |
+
+At the original coordinates the failing copy retains **8,305 contact rows**, but
+its nonbonded residual changes from **1115.6313838790597 to zero**. The full target
+changes from 7222.455461706065 to 6106.824077827005, and maximum component gradient
+error is 397.51122015948863. At the two perturbations, 8,296 and 8,291 contacts
+remain, again with zero copied nonbonded residual. Other reported family energies
+match. All four copy routes preserve the inspected proxy metadata; changing a
+single angle weight only on each disposable clone leaves the original snapshot
+intact, while the W71 checker rejects the changed clone. This establishes only
+that particular mutation's isolation, not independent ownership of all tables.
+Parallelity is absent in this source.
+
+A separate tiny native-object control, with no scientific input, reproduces the
+serialization mechanism: `nonbonded_params` deepcopy and pickle drop populated
+radius, ionic-radius and donor/acceptor tables while preserving the five scalar
+options. The PROLSQ function's four parameters survive unchanged. The installed
+`nonbonded_bpl.cpp` pickle wrapper serializes only scalar constructor arguments,
+not those tables. Ordinary identity selection instead passes the source parameter
+object into the new manager; its numerical success does **not** prove independent
+mutable policy ownership. No installed cctbx/Phenix code is changed.
+
+The initial fail-fast attempt is retained. Its detailed follow-up records all
+four routes without changing thresholds; `SOURCE_COPY_MISMATCH` remains a failure,
+not a promoted pass. Preserve this negative control alongside W68's image-angle
+serialization loss. Future source ownership must authenticate live parameter
+and exclusion tables, use qualified native selection or explicit reconstruction,
+and reject unsupported copying; equal proxy counts or scalar settings are not
+enough. A report of captured coordinates cannot replace rebuilt native tables.
+No complete exclusion policy, arbitrary partial selection, recut copy, pair-table
+consumer, ordinary refinement, physical gap repair or scientific acceptance is
+qualified here. Source/receipt bytes and historical evidence remain unchanged.
+
+### Current installed Willow/Cedar composition
+
+An isolated virtual tree combines Willow `7e846aec` with published Cedar
+`794e0d7b`, including its versioned output synchronization and dictionary-target
+inventory checks. Tree `4266c2e1fe2868968dfe0c6267b7c23c3d91be75` has **zero source
+conflicts and seven documentation conflicts**; neither branch is merged or moved.
+The built wheel is installed into a separate prefix, its original source directory
+is removed by relocation, and **782 tests + 16 subtests pass**. This includes all
+571 TopoStitch cases plus combined AutoRefine, refinement runtime/parallelity,
+output synchronization, bond-reference and native target-delivery checks. All six
+entry-point helps pass. Old/new packet, graph and default-owner native-link replay
+stay exact with original paths blocked; the new saved-preview packing report is
+also exactly equal. Wheel SHA-256:
+`417692da12b71bb98d01a24d4f2600fe9eefc867b9edc1d3133bfaed611cc30c`.
+
+The local `virtual-integration/receipt.json` records exact build/install/test and
+help commands. Validation uses `PYTHONDONTWRITEBYTECODE=1` and the installed
+package prefix on `PYTHONPATH`; native calls use the pinned Cedar process owner
+and its explicit `phenix.python -B probe.py` invocation. W78 changes documentation
+and evidence only. W77's full Willow **1756 +229** and installed **571** remain the
+runtime baseline. This composition check is not a full combined suite or a native
+combined refinement. Scientific outputs stay local; migration impact is none.

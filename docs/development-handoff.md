@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W77 recorded; next W78.** Latest runtime implementation is W77 `78ecdc54` on isolated
+**W78 recorded; next W79.** Latest runtime implementation is W77 `78ecdc54` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -178,9 +178,10 @@ No source manager, native installation, chemistry or refinement is changed.
 replay stay exact with original paths blocked. Initial missing-Gemmi and native
 Python/NumPy ABI environment failures are retained; correctly isolated checks pass.
 
-Installed virtual composition with published Cedar `393aea60` passes
-**640 + 16 subtests** (521 TopoStitch, 76 combined autorefine/refinement-runtime/
-parallelity and 43 Cedar numerical-reference checks), six helps and exact default-owner native/packet/graph replay.
+Installed virtual composition with published Cedar `794e0d7b` passes
+**782 + 16 subtests**, six helps and exact old/new default-owner native-link,
+graph, packet and W77 packing replay after relocation with original paths blocked.
+This includes current Cedar output synchronization and dictionary-target checks.
 Seven documentation conflicts and zero source conflicts remain. No actual merge,
 full combined suite or ordinary native refinement qualification is claimed.
 
@@ -242,8 +243,17 @@ context to verify complete native atom order, cell, source/proposed coordinates
 and unchanged receipt bytes. Seven new regressions and 167 focused checks pass;
 full 1,756 +229 and installed/relocated 571 pass. Both saved cuts exactly reproduce
 W76 reports. Existing link observations, CLI/view defaults and packet schemas are
-unchanged. Next, qualify native source-manager copy/reconstruction and live policy
-binding; a contact report alone cannot stand in for native pair tables.
+unchanged. W78 narrows the native copy boundary; complete live-policy binding and reporting
+remain open. A contact report cannot stand in for native pair tables.
+
+**W78 copy boundary:** actual native source identity selections and model
+`deep_copy()` preserve energies/gradients through three neighbor-rebuild controls.
+Generic Python geometry deepcopy retains contact rows but loses all nonbonded
+energy. A tiny native-object control confirms parameter tables disappear during
+pickle/deepcopy while scalars survive. Successful selection shares its nonbonded
+parameter owner, so it is not a proof of independent mutable policy. Full live
+policy binding belongs to Cedar; neither copy route qualifies recut refinement.
+All failures and native diagnostics remain local and preserved.
 
 **Next P04 work:** freeze source/native/frame identity after ordinary construction;
 qualify a complete geometry owner across copying, neighbor tables, reporting and
