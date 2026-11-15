@@ -4,7 +4,7 @@
   "updated": "2026-11-15",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "c4add34c3cdee0582e50efbf9f104e6b63de7698",
+  "audited_code_commit": "4ef71008f1a654816bde10ff24f334ab8bb720f2",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -529,7 +529,8 @@
         "W72 observes complete source-frame objective transport, changed-neighbor cache rebuilds and mmtbx normalization/shared-gradient-buffer agreement. Identity selection drops the local facade mapping and remains a negative control; no runtime activation.",
         "W73 adds a complete immutable source/image binding and explicit full reindexing.36 local mmtbx entry controls preserve geometry through identity/reverse/cyclic orders; partial selection and changed cell refuse. This is a numerical backend component, not an installed native selection hook.",
         "W74 native synthetic diffraction and geometry targets agree with all855 anisotropic tensors transported in memory; source work/test values and derivatives are invariant across both cuts. Actual model copy/selection reveals an unsupported pair_proxies protocol. No ordinary refinement or tensor serialization is qualified.",
-        "W75 observes the stock source-only dry-run and coordinate-cycle consumer path; geometry, weight regularization and reports bypass a model-energy-only hook. Matched profiling controls agree; complete frame-aware native integration remains open."
+        "W75 observes the stock source-only dry-run and coordinate-cycle consumer path; geometry, weight regularization and reports bypass a model-energy-only hook. Matched profiling controls agree; complete frame-aware native integration remains open.",
+        "W76 adds source-bound representative native contact reports preserving exact image operations, directed membership and native multiplicity; native pair-table/report consumers remain unqualified."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
@@ -547,14 +548,15 @@
         "E_REFERENCE_FRAME_GEOMETRY",
         "E_REFERENCE_FRAME_BINDING",
         "E_JOINT_FRAME_TARGET",
-        "E_NATIVE_CONSUMER_PROTOCOL"
+        "E_NATIVE_CONSUMER_PROTOCOL",
+        "E_REPRESENTATIVE_PACKING"
       ],
       "last_audit": {
         "date": "2026-11-15",
-        "code_commit": "c4add34c3cdee0582e50efbf9f104e6b63de7698",
+        "code_commit": "4ef71008f1a654816bde10ff24f334ab8bb720f2",
         "reviewer": "Linden",
-        "human_update": 75,
-        "scope": "Stock source-only synthetic dry-run and coordinate-cycle Python consumers with matched profiling control; P04 remains partial, no representative-model refinement"
+        "human_update": 76,
+        "scope": "Read-only contact representation, focused/installed checks and authenticated native-capture replay; no native table or ordinary recut-refinement closure"
       }
     },
     {
@@ -1049,6 +1051,14 @@
       "reference": "docs/topostitch-periodic.md#w75--observe-stock-native-consumers-before-choosing-an-integration-hook",
       "result": "Stock Phenix 2.2.1-6174 source-only synthetic dry-run and one individual_sites cycle complete. Call/state tracing identifies copies, pair tables, geometry L-BFGS, weight-shaking dynamics, statistics and mmCIF link exports beyond the model energy entry. Matched unprofiled and caller-aware runs preserve saved coordinate/tensor/cell records and .geo bytes.",
       "limitation": "Five-module Python-call inventory is a lower bound, not a complete native protocol or ordinary recut-refinement qualification. Disabled ADP/NCS entries are distinguished from active calculations. No adapter, source chemistry change, experimental input or scientific adoption. W73 runtime and full/install/composition checks unchanged; generated outputs and initial setup failures local."
+    },
+    "E_REPRESENTATIVE_PACKING": {
+      "kind": "captured_native_contact_representation",
+      "code_commit": "4ef71008f1a654816bde10ff24f334ab8bb720f2",
+      "human_update": 76,
+      "reference": "docs/topostitch-periodic.md#w76--represent-captured-native-contacts-in-chosen-crystal-images",
+      "result": "Exact g_i h g_j^-1 contact operations preserve source directed rows, weights/multiplicity and distances. Focused118 and installed/relocated564 pass; 22 new packing controls. Authenticated saved Phenix2.2.1-6174 replay preserves8305 directed rows in each cut, max distance error1.69e-14 Angstrom.",
+      "limitation": "Read-only captured-coordinate report, not native pair-table reconstruction, new neighbors/exclusions, physical identity or refinement support. Full1748 +229 passed before the final finite-output guard; final full-suite recheck is queued after Cedar native work. Generated reports remain local; caller authenticates source through Cedar."
     }
   },
   "benchmarks": [
@@ -1164,8 +1174,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 75,
-    "next": 76,
+    "current": 76,
+    "next": 77,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1425,6 +1435,12 @@
         "title": "Observe native copy weighting and report consumers",
         "state": "RECORDED",
         "code_commit": "c4add34c3cdee0582e50efbf9f104e6b63de7698"
+      },
+      {
+        "number": 76,
+        "title": "Represent captured native contacts in chosen crystal images",
+        "state": "RECORDED",
+        "code_commit": "4ef71008f1a654816bde10ff24f334ab8bb720f2"
       }
     ]
   }

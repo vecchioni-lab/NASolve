@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W75 recorded; next W76.** Runtime implementation is W73 `c4add34c` on isolated
+**W76 recorded; next W77.** Latest runtime implementation is W76 `4ef71008` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -228,6 +228,16 @@ unprofiled/caller-aware controls give identical saved coordinates/tensors/cell a
 ADP-weight/NCS-update entry points can be inactive; bind state rather than rejecting
 names alone. Two setup failures remain local. W75's 85-payload local archive is
 verified; its checksum and exact control scope are in the periodic guide.
+
+**W76 contact report:** `reframe_native_packing` represents reviewed source contacts
+with exact `g_i h g_j^-1` operations, retaining directed rows, weights and source
+proxy kinds. Complete labels/images/source digest and actual distances bind the
+report. Both saved native controls preserve all 8,305 rows; max distance error
+1.69e-14 Å. Focused 118 and installed/relocated 564 pass. Full 1,748 +229 passed
+before a final finite-output guard; its regression and installed checks pass, and
+the final full-suite recheck is queued until Cedar's native window clears. No
+native table, exclusion, neighbor search or runtime hook changes. Next, bind this
+report through the existing representative-packet owner without changing defaults.
 
 **Next P04 work:** freeze source/native/frame identity after ordinary construction;
 qualify a complete geometry owner across copying, neighbor tables, reporting and

@@ -2556,3 +2556,12 @@ model copying, pair-table consumers, source construction/freeze policy, automati
 weighting and output serialization still require their own integration. Cedar owns
 the separately demonstrated hierarchy/scattering-ADP export synchronization; do
 not implement a second exporter or subtract a logged B shift from old models here.
+
+
+Installed/relocated W76 validation passes **564 tests**, all six entry-point helps,
+lean import, Python 3.10 syntax and exact old/new packet/graph replay with original
+source paths blocked. Wheel SHA-256:
+`45ce8b63acf4c4f314e5df8af28bd4d8947d16c343e3e7742ffd13a714cec61e`.
+The complete suite passed **1,748 + 229 subtests** before the final finite-distance
+guard; that newly demonstrated failure is fixed and passes focused/installed
+checks. Final complete-suite validation waits for Cedar's serial native window.
