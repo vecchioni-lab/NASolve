@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W86 in progress; next W87.** Last fully audited runtime is W82 `e570d15f` on isolated
+**W86 recorded; W87 in progress.** Latest audited runtime is W86 `82ac2b3f` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -318,15 +318,20 @@ partial, and the full live policy guard remains Cedar Q06.
 rotation kernel and enforces complete weights, exact mask order and displacement
 bounds. `NativeMaskedObjective.evaluate_motion` retains the original energy,
 components, Cartesian gradient and call budget, adding a six-parameter chain-rule
-view. Twenty-one fail-before controls, focused156, full1,802 +229 subtests and
-installed/relocated712 pass; six helps, lean imports, Python3.10 syntax and exact
+view. Twenty-one fail-before controls, focused 156, full 1,802 +229 subtests and
+installed/relocated 712 pass; six helps, lean imports, Python 3.10 syntax and exact
 old/new preview replay pass. The initial full run hit five sandbox-denied `/bin/ps`
 checks; that log is retained and the complete run with process access passed.
-Installed native replay is prepared and waiting for Cedar's execution window.
+Installed Phenix 2.2.1-6174 replay passes all five controls and 270 calls, including
+forced neighbor rebuilds and W85 reproduction within roundoff. The host reviewer
+needed explicit pinned C325 owners; its failed default import is retained.
 
-**Next physical-stitch step:** finish W86 native replay, then predeclare matched
-bounded coarse-placement/cleanup diagnostics. The existing Cartesian optimizer
-assumes3N variables and cannot consume six parameters unchanged. Preserve anchors,
+**W87 physical-stitch experiment:** paired/core-only six-variable trials are
+predeclared and running serially with 100 iterations/500 optimizer calls, the
+existing 0.5 Angstrom bound and complete Cartesian endpoint derivatives. The
+existing failed-last-accepted diagnostic remains separate from a successful
+endpoint; no failure or cap is promoted. The existing Cartesian optimizer
+assumes 3N variables and cannot consume six parameters unchanged. Preserve anchors,
 individual packing and stopping failures; the full live policy guard remains
 Cedar Q06. A fixed taper is initialization, not measured curvature. Density-aware
 placement stays in S06 after exact map/model/data binding and matched refinement.

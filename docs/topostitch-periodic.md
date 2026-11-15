@@ -3123,12 +3123,29 @@ CLI change, optimizer or scientific acceptance is introduced.
 Software validation uses the standard source command
 `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:<existing dependencies> <project Python> -m pytest -q -p no:cacheprovider`.
 The local W86 logs/installation receipt preserve exact expanded commands:
-21 new controls fail before the patch; focused156 pass; full1,802 tests and229
-subtests pass; a fresh relocated installation passes712 selected tests, six CLI
-helps, lean imports, Python3.10 parsing and exact saved-preview/frame replay.
+21 new controls fail before the patch; focused 156 pass; full 1,802 tests and 229
+subtests pass; a fresh relocated installation passes 712 selected tests, six CLI
+helps, lean imports, Python 3.10 parsing and exact saved-preview/frame replay.
 The first full run retained five process-lifecycle failures caused by sandbox
 refusal of `/bin/ps`; a complete rerun with process-list access passes, without
 changing tests or cleanup behavior. Wheel SHA256:
 `6774cb3046d7b62ff2638a6764b21f60941b14323132103d875d225d356aa44b`.
-Installed native replay of the five W85 controls is prepared but not yet run.
-S04/S05 remain partial; Cedar owns the full live source-policy guard.
+Complete **Phenix 2.2.1-6174** replay through the installed API passes all five
+W85 controls: 270 objective calls, both finite-difference steps, and forced
+neighbor resets/rebuilds. Maximum scaled derivative discrepancy remains 9.98e-7;
+cached/rebuilt energies and Cartesian gradients agree exactly. Cedar replay
+confirms changed buffered rows contribute zero residual. Prior W85 targets and
+scaled gradients reproduce within 9.1e-13 and 5.8e-13; exact zero motion removes
+its earlier tiny pivot-arithmetic roundoff.
+
+Native construction and review use the explicit pinned C325 owners from W84's
+virtual installation. The copied host reviewer initially assumed a combined
+package and could not import a Cedar-only module from Willow; a separate
+`review-pinned.py` uses those same explicit owners. The original failed import
+and script remain, with no native rerun or runtime correction. The native parent
+returned 0 and frozen inputs were unchanged at completion. This is a complete
+native diagnostic, not refinement or a full combined-suite audit. S04/S05 remain
+partial; Cedar owns the full live source-policy guard.
+
+W85's verified local forensic archive contains 58 files, SHA256
+`59b91b792ae52bb8586b1d33ea64e4a5f08b6d3011ceefda89f4daa7c8bfc80a`.
