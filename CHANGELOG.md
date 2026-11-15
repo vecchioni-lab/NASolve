@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W90 — Accept explicit diagnostic starts for atomic trials
+
+- Allow a frozen displacement start in the existing bounded atomic trial, retaining
+  the original source, tether, initial/endpoint audits and failure/stopping policy.
+- Refuse an insufficient remaining evaluation budget before launching work.
+  Default zero starts remain unchanged; explicit starts add initialization metadata.
+
 ### W89 — Record the numerical-resolution audit and atomic handoff boundary
 
 - Preserve failed coarse trials while measuring their local step/score resolution.

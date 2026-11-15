@@ -88,19 +88,30 @@ def _observe_failed_last_accepted(objective, result, sources, pinned):
     return report
 
 
-def run_native_masked_trial(objective, *, max_iterations, max_calls):
+def run_native_masked_trial(objective, *, max_iterations, max_calls, initial_displacements=None):
     """Use the installed scitbx optimizer with hard motion/evaluation bounds.
 
     Initial, full-precision and rounded endpoint derivatives are required. Errors
     and iteration limits remain explicit; no candidate file is written here.
+    An optional explicit diagnostic start uses displacements from the original
+    objective source. It does not rebase the mask/tether or adopt a prior trial.
+    Callers authenticate any parent point and retain its original outcome; this
+    stage independently checks its starting and ending derivatives and bounds.
     """
     if type(max_iterations) is not int or not 1<=max_iterations<=500 or type(max_calls) is not int or not 10<=max_calls<=5000:
         raise ValueError('Require 1-500 iterations and 10-5000 optimizer evaluations')
     from scitbx import lbfgs
     from scitbx.array_family import flex
     binding=objective.binding_report();count=3*len(binding['movable_indices'])
-    if 3*(4*count+2)+max_calls>binding['max_evaluations']:
-        raise ValueError('Mask evaluation budget cannot cover declared optimizer and three derivative audits')
+    if initial_displacements is None:
+        initial_values=(0.,)*count
+    else:
+        if not isinstance(initial_displacements,(list,tuple)):
+            raise ValueError('Require explicit diagnostic-start displacement numbers')
+        initial_values=tuple(initial_displacements)
+        objective._mask.expand(initial_values)  # Same source, order and hard bound.
+    if 3*(4*count+2)+max_calls>binding['max_evaluations']-objective._calls:
+        raise ValueError('Remaining mask evaluation budget cannot cover declared optimizer and three derivative audits')
     def sources():
         return [dict(module=name,sha256=sha256(Path(importlib.import_module(name).__file__).read_bytes()).hexdigest())
                 for name in ('scitbx.lbfgs','scitbx_lbfgs_ext')]
@@ -109,13 +120,16 @@ def run_native_masked_trial(objective, *, max_iterations, max_calls):
         max_iterations=max_iterations,max_optimizer_calls=max_calls,optimizer_sources=pinned,
         accepted_steps=[],trace=[],optimization_started=False,refinement=False,automatic_adoption=False,
         scientific_acceptance=False)
+    if initial_displacements is not None:
+        result['initialization']=dict(coordinate_origin='EXPLICIT_DIAGNOSTIC_START',
+            reference='ORIGINAL_OBJECTIVE_SOURCE',displacements=list(initial_values))
     try:
-        initial=check_masked_derivatives(objective.evaluate,[0.]*count)
+        initial=check_masked_derivatives(objective.evaluate,initial_values)
         result['initial_derivatives']=initial
         if initial['status']!='DERIVATIVES_PASS':
             result['status']='INITIAL_DERIVATIVE_REVIEW';return result
         class Evaluator:
-            def __init__(self):self.x=flex.double(count,0.)
+            def __init__(self):self.x=flex.double(initial_values)
             def compute_functional_and_gradients(self):
                 if len(result['trace'])>=max_calls:raise ValueError('Optimizer evaluation budget exhausted')
                 self.current=objective.evaluate(self.x)

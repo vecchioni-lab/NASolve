@@ -343,3 +343,98 @@ def test_native_motion_checks_exact_source_even_with_identical_coordinates():
     right=TaperedMotion(objective._mask,(0.,0.,0.),(1.,),source_model_sha256='a'*64)
     assert objective.evaluate_motion(right,(0.,)*6)['target']==0.
     assert len(calls)==1
+
+
+
+def test_explicit_atomic_start_keeps_source_reference_and_seed_audits(fake_optimizer):
+    from nasolve.topostitch_trial import run_native_masked_trial
+    objective=TrialObjective();source=objective._mask.reference;seed=[.1254,.02,-.01]
+    original=objective.evaluate
+    def evaluate(x):
+        value=original(x)
+        seed[:]=[.9,.9,.9]  # Caller mutation must not change the frozen start.
+        return value
+    objective.evaluate=evaluate
+    def run(*,target_evaluator,termination_params,exception_handling_params,log,**kw):
+        assert list(target_evaluator.x)==[.1254,.02,-.01]
+        assert termination_params['traditional_convergence_test_eps']==1e-5
+        assert exception_handling_params['ignore_line_search_failed_rounding_errors'] is False
+        target_evaluator.compute_functional_and_gradients()
+        target_evaluator.x[:]=[.2004,0.,0.];target_evaluator.compute_functional_and_gradients()
+        opt=SimpleNamespace(iter=lambda:1,nfun=lambda:2,error=None)
+        target_evaluator.callback_after_step(opt);log.write('lbfgs minimizer stop: max_iterations\n');return opt
+    fake_optimizer.run=run
+    result=run_native_masked_trial(objective,max_iterations=2,max_calls=10,initial_displacements=seed)
+    assert result['status']=='ENDPOINT_DERIVATIVES_PASS'
+    assert objective.visited[0]==(.1254,.02,-.01)
+    assert result['initialization']=={'coordinate_origin':'EXPLICIT_DIAGNOSTIC_START',
+        'reference':'ORIGINAL_OBJECTIVE_SOURCE','displacements':[.1254,.02,-.01]}
+    assert result['initial_derivatives']['baseline']['target']==pytest.approx((.1254-.3)**2+.02**2+.01**2)
+    assert result['trace'][0]['displacements']==[.1254,.02,-.01]
+    assert objective._mask.reference==source
+    assert result['full_precision_derivatives']['baseline']['points'][1]==source[1]
+    assert result['serialized_derivatives']['baseline']['points'][0][0]==pytest.approx(1.2)
+    assert not result['stopping']['native_criterion_met']  # Cap is not convergence.
+    assert not result['scientific_acceptance'] and not result['automatic_adoption']
+
+
+def test_explicit_start_is_not_an_accepted_optimizer_step(fake_optimizer):
+    from nasolve.topostitch_trial import run_native_masked_trial
+    objective=TrialObjective()
+    def run(**kw):raise RuntimeError('failure before accepting anything')
+    fake_optimizer.run=run
+    result=run_native_masked_trial(objective,max_iterations=2,max_calls=10,initial_displacements=[.1,0.,0.])
+    assert result['status']=='FAILED' and result['failure_endpoint']['status']=='NO_ACCEPTED_STEP'
+    assert result['accepted_steps']==[] and result['trace']==[]
+    assert result['initialization']['coordinate_origin']=='EXPLICIT_DIAGNOSTIC_START'
+    assert 'full_precision_derivatives' not in result
+
+
+def test_explicit_start_does_not_promote_subsequent_failed_trial(fake_optimizer):
+    from nasolve.topostitch_trial import run_native_masked_trial
+    objective=TrialObjective();failed_optimizer(fake_optimizer,objective)
+    result=run_native_masked_trial(objective,max_iterations=2,max_calls=10,initial_displacements=[.1,0.,0.])
+    assert result['status']=='FAILED' and result['error']=='RuntimeError: original line-search failure'
+    assert result['initial_derivatives']['baseline']['points'][0][0]==1.1
+    assert result['failure_endpoint']['full_precision_derivatives']['baseline']['points'][0][0]==pytest.approx(1.2004)
+    assert 'full_precision_derivatives' not in result and 'stopping' not in result
+
+
+@pytest.mark.parametrize('seed',[[],[.1],[0.,0.,0.,0.],[float('nan'),0.,0.],[float('inf'),0.,0.],[True,0.,0.],[1.01,0.,0.],'abc'])
+def test_invalid_atomic_start_refused_before_evaluation(fake_optimizer,seed):
+    from nasolve.topostitch_trial import run_native_masked_trial
+    objective=TrialObjective()
+    with pytest.raises(ValueError):run_native_masked_trial(objective,max_iterations=2,max_calls=10,initial_displacements=seed)
+    assert objective._calls==0
+
+
+def test_explicit_start_does_not_bypass_budget_or_initial_gradient_gate(fake_optimizer):
+    from nasolve.topostitch_trial import run_native_masked_trial
+    objective=TrialObjective();objective.budget=20
+    with pytest.raises(ValueError,match='budget'):
+        run_native_masked_trial(objective,max_iterations=2,max_calls=10,initial_displacements=[.1,0.,0.])
+    assert objective._calls==0
+    objective.budget=100;objective.bad_gradient=True
+    fake_optimizer.run=lambda **kw:pytest.fail('Initial bad derivatives cannot launch the optimizer')
+    result=run_native_masked_trial(objective,max_iterations=2,max_calls=10,initial_displacements=[.1,0.,0.])
+    assert result['status']=='INITIAL_DERIVATIVE_REVIEW' and not result['optimization_started']
+
+
+def test_default_atomic_start_report_and_behavior_remain_unchanged(fake_optimizer):
+    from nasolve.topostitch_trial import run_native_masked_trial
+    first=TrialObjective();failed_optimizer(fake_optimizer,first)
+    default=run_native_masked_trial(first,max_iterations=2,max_calls=10)
+    second=TrialObjective();failed_optimizer(fake_optimizer,second)
+    explicit=run_native_masked_trial(second,max_iterations=2,max_calls=10,initial_displacements=[0.,0.,0.])
+    assert explicit.pop('initialization')['coordinate_origin']=='EXPLICIT_DIAGNOSTIC_START'
+    assert default==explicit and first.visited==second.visited
+
+
+
+def test_atomic_start_checks_remaining_not_original_evaluation_budget(fake_optimizer):
+    from nasolve.topostitch_trial import run_native_masked_trial
+    objective=TrialObjective();objective._calls=50;objective.budget=100
+    fake_optimizer.run=lambda **kw:pytest.fail('Insufficient remaining budget must refuse before optimizer')
+    with pytest.raises(ValueError,match='budget'):
+        run_native_masked_trial(objective,max_iterations=2,max_calls=10,initial_displacements=[.1,0.,0.])
+    assert objective._calls==50 and objective.visited==[]

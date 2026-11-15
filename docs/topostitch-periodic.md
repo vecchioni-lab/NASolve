@@ -3340,3 +3340,47 @@ Only W86/W88 duplicate build/test trees (588 files, 11,374,761 bytes total) were
 removed after exact comparison against verified archives. Installed runtimes,
 raw native/failed evidence and immutable runs remain; archives are forensic,
 not independently resumable campaign runs.
+
+
+## W90 — Add explicit diagnostic starts to the existing atomic trial
+
+Previously `run_native_masked_trial` always started at zero displacement. It now
+accepts optional `initial_displacements` in the **original objective mask order**.
+The vector is detached, checked against the same source/bound, and used for both
+the complete initial derivative audit and the optimizer start. No reference model,
+tether, restraint, finite-difference step, native stopping epsilon or rounding-error
+policy changes. The seed is not an accepted optimizer step; subsequent failures
+retain their original errors and only callback-confirmed accepted-point diagnostics.
+
+Explicit starts add an `initialization` observation with
+`coordinate_origin=EXPLICIT_DIAGNOSTIC_START`, original-source reference and frozen
+displacements. Default calls retain their prior result shape/behavior. This is an
+additive backend API/report field, with no CLI, file-format migration, candidate
+writer or campaign adoption. Callers authenticate the chosen parent point and
+retain its failed/capped status. The existing capture-job CLI is not expanded.
+
+A staged caller can already have spent evaluations, so preflight now checks the
+**remaining** budget for the declared optimizer plus all three derivative audits.
+An inadequate reused objective is refused before further evaluation; it previously
+could enter work and fail only when the hard budget ran out.
+
+Fourteen fail-before controls (13 initialization cases plus the independently
+observed remaining-budget failure), **75 focused**, full **1,835 +229 subtests**,
+and installed/relocated **745** tests pass. Six CLI helps, lean imports, Python3.10
+syntax, saved preview/frame replay and source/install hash equality pass. Changed
+runtime/test files are `topostitch_trial.py` and its existing test module. No Cedar
+runtime file changes or actual branch merge; native validation is the next W91
+matched cold/coarse-seeded diagnostic, not yet claimed here.
+
+Exact historical local validation commands, from the Willow checkout:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:/private/tmp/willow-periodic-install/lib/python3.12/site-packages /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_topostitch_trial.py tests/test_topostitch_captured_job.py tests/test_topostitch_endpoint.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:/private/tmp/willow-periodic-install/lib/python3.12/site-packages /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider
+python3 /private/tmp/willow-w90-atomic-start/install-check.py
+```
+
+Wheel SHA256: `fe84f7ba5bf9e924287423f74defd13d56cf953e7bed1fc726b0ecb6460e7604`.
+All scientific payloads remain local. S04/S05, complete native live policy, physical
+closure, nonuniform curvature and matched diffraction gates remain open. An atomic
+trial's own derivative pass or numerical stop cannot supply scientific acceptance.
