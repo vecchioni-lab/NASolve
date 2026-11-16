@@ -1850,6 +1850,15 @@ request for an absent model/map or a complete-artifact cache hit.
 
 ## Disk budgets and recoverable trial retention
 
+The [current storage plan](metal-campaign-storage.md) specializes this policy:
+frozen XYZ/B/f′ trials retain shared pristine inputs and compact Q/f″ records,
+with aggressive retirement of declared native payload after assessment; moving
+XYZ/B uses the stronger geometry policy. Important tree nodes stay protected.
+Small maps may remain until selection under a byte cap. The implementation gate
+is in the [development roadmap](metal-development-roadmap.md). These refined
+rules supersede any inference below that every frozen point needs a complete
+geometry-style archive; old manifests still cannot be pruned in place.
+
 **Planned, with no cleanup of existing runs in this change.** Hundreds of jobs
 across thousands of datasets require a campaign-wide disk budget as well as
 job/time/processor limits. Estimate peak scratch/output space, reserve space

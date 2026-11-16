@@ -38,6 +38,11 @@ entries are reconstructed from repository history.
 
 ### Documentation
 
+- Add the metal development roadmap and task-specific campaign storage plan:
+  shared pristine parents, lean frozen Q/f″ records, protected branch points,
+  measured map retention, recovery evidence levels and disk-budget gates.
+  These are planned capabilities; no existing scientific payload is removed.
+
 - Record the local open-refinement settings rehearsal and phase/B-export qualification gates; production protocols and schemas are unchanged.
 
 
