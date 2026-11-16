@@ -13806,3 +13806,20 @@ all21 isolated checks pass; cold relocation preserves106 files/timestamps. Forma
 charge readback remains unavailable. No mutation, numerical weighting, automatic
 selection or experimental validation is implied. Exact commands, source identity,
 failures and installed replay: `cycle_local_public_ring_control_2026_11_16`.
+
+
+### Independent ring-junction response (C351)
+
+Reuse the C341 fixed-native method with the C350 public PIM capture. Select both
+bridge endpoints and each moving component from the qualified graph. The frozen
+native manager, parameters, coordinates and source identities must match before
+each control. Full-precision in-memory spins (±30/90°) and junction bends
+(±1/5/10/20°) preserve internal pair distances, bridge length and fixed atoms.
+
+Both junctions give covalent spin invariance <5.6e-14; nonbonded contacts change.
+Plane/angle bending response and all sampled family derivatives agree in1829
+evaluations per end. Four constant bridge terms have weight0 and no active bridge
+torsion exists. Initial plane target13.2264 is already strained, so neither
+monotonic response from that point nor ideal geometry is claimed. No optimizer,
+refinement, new plane, weight or acceptance change. Exact compact evidence:
+`heldout_pim_junction_response_2026_11_16`; original native files remain local.

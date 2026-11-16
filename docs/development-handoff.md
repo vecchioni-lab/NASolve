@@ -1,12 +1,25 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C350 held-out ring qualification — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. C349 pushed at `3b11fdf0`; C350 is this
+Updated **2026-11-16, C351 independent junction response — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. C350 pushed at `0e3622ed`; C351 is this
 completed code/evidence checkpoint. No full suite, branch, default activation or
 merge. Linden owns Pine/Willow; frozen restoration/C331/C338 unchanged. Simon
 confirmed work through **23:00 London**. All Rowan jobs stopped at this checkpoint.
 
 ## Current result and next bounded task
+
+**C351 complete:** both graph-selected PIM junctions reproduce C350's exact native
+manager. ±30/90° ring spins change covalent contributions by <5.6e-14; only contacts
+change. ±1/5/10/20° bends show plane/angle support;1829 evaluations per end pass
+all sampled family derivatives. Starting plane target13.2264 is nonzero, so small
+bends can reduce existing strain; this is not an ideal-geometry claim.
+Root `351_Cedar_PIM-junction-response-ont1xtaq`,3.25s/~3.91MB, all jobs stopped;
+106 prior files/timestamps preserved. No code/weights/defaults or pytest rerun.
+Evidence: `heldout_pim_junction_response_2026_11_16`.
+**Next:** deterministic prelaunch timeout cold-reader repair; qualified source/
+context selection and Q06 achieved geometry remain open. Older next text below
+is historical. C350's350 focused/350 installed checks remain current.
+
 
 **C350 complete:** public PIM passes all21 isolated native checks after an explicit
 reader-copy correction to its contradictory SINGLE/aromatic bridge flag. Native

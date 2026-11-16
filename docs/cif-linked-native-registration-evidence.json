@@ -105607,5 +105607,315 @@
       "Rotation/bending response next; no full suite."
     ],
     "next": "Held-out native ring rotation/junction response; deterministic prelaunch timeout reader fix; qualified source/context selection and Q06 achieved geometry remain open."
+  },
+  "heldout_pim_junction_response_2026_11_16": {
+    "milestone": "C351",
+    "date": "2026-11-16",
+    "signed": "Rowan",
+    "purpose": "Independent fixed-native ring rotation versus junction bending on both ends of the PIM bridge",
+    "source_commit": "0e3622ed",
+    "scope": "Complete fixed-manager Phenix2.2.1-6174 execution; existing C341 response method applied to graph-selected bridge/ring components, no name-based chemistry exception",
+    "root": {
+      "anchor": "NASolve-live-tests",
+      "path": "351_Cedar_PIM-junction-response-ont1xtaq"
+    },
+    "summary": {
+      "status": "BOTH_GRAPH_SELECTED_JUNCTION_RESPONSES_RECORDED",
+      "centres": [
+        "C5",
+        "C6"
+      ],
+      "evaluation_calls": {
+        "C5": 1829,
+        "C6": 1829
+      },
+      "elapsed_seconds": 3.2536966250008845,
+      "physical_bytes": 3907354,
+      "prior_files_preserved": 106,
+      "native_version": "Phenix2.2.1-6174",
+      "all_processes_stopped": true,
+      "source_preserved": true,
+      "model_optimization": "NOT_RUN",
+      "restraint_editing": "NOT_RUN",
+      "scientific_approval": "NOT_RUN"
+    },
+    "cases": {
+      "C5": {
+        "ring": [
+          "C2",
+          "C4",
+          "C5",
+          "N1",
+          "N3"
+        ],
+        "moving": [
+          "C2",
+          "C4",
+          "C5",
+          "H2",
+          "H4",
+          "HN1",
+          "N1",
+          "N3"
+        ],
+        "source_sha256": "af049e7b0feb29f0e8f608498737eee68227786fac5bab0f764b64b792755e8e",
+        "origin": {
+          "anchor": "NASolve-live-tests",
+          "path": "350_Cedar_PIM-ring-control-3_11z738/request/attempts/attempt-0001/qualification/native/native/001/cif-native-9qby_r_g",
+          "receipt_sha256": "bc67ebbc4dcd67cdd2fe4a02e829c4f4ddccce87f9c156b18cb4822adcdb1a02"
+        },
+        "response_worker_sha256": "ee6774de00d5e3d85b360393afdfb84bb965b3afe7a89d1f2d3e5dd7efab7dd6",
+        "result_sha256": "e328532a5decf7cf5a212540f022dbc57175431735609b5de36c633dc3b9b6ce",
+        "gradient_sha256": "9ea108e06d166a8a51c3d1eaadcd97e2568aeb8d487f738d2e722189124cdf30",
+        "initial_targets": {
+          "all": 13.29418322608272,
+          "bond": 0.007136699878998718,
+          "angle": 0.004581709974993322,
+          "dihedral": 0.0,
+          "chirality": 0.0,
+          "planarity": 13.226394869207933,
+          "parallelity": 0.0,
+          "nonbonded": 0.05606994702079493
+        },
+        "maximum_spin_target_change": {
+          "all": 0.12404794093309945,
+          "bond": 8.396061623727746e-16,
+          "angle": 9.497611030973019e-16,
+          "dihedral": 0.0,
+          "chirality": 0.0,
+          "planarity": 1.7763568394002505e-14,
+          "parallelity": 0.0,
+          "nonbonded": 0.12404794093308116
+        },
+        "bend_changes": {
+          "bend_-20": {
+            "angle": 1.7786489847524343,
+            "planarity": 183.59349680396198
+          },
+          "bend_-10": {
+            "angle": 0.10093124830631194,
+            "planarity": 42.82376077779405
+          },
+          "bend_-5": {
+            "angle": 0.004715164144934104,
+            "planarity": 8.995757871129115
+          },
+          "bend_-1": {
+            "angle": 7.162507545252148e-07,
+            "planarity": -0.19416210669049505
+          },
+          "bend_1": {
+            "angle": 6.46702048750199e-05,
+            "planarity": 1.1911558532228135
+          },
+          "bend_5": {
+            "angle": 0.012761652014586001,
+            "planarity": 15.911734872727234
+          },
+          "bend_10": {
+            "angle": 0.1643496929228987,
+            "planarity": 56.589401624296
+          },
+          "bend_20": {
+            "angle": 2.2570499388778957,
+            "planarity": 210.5946909048289
+          }
+        },
+        "gradients": {
+          "initial": {
+            "sampled_gradients_consistent": true,
+            "family_checks": {
+              "all": true,
+              "bond": true,
+              "angle": true,
+              "dihedral": true,
+              "chirality": true,
+              "planarity": true,
+              "parallelity": true,
+              "nonbonded": true
+            }
+          },
+          "spin_30": {
+            "sampled_gradients_consistent": true,
+            "family_checks": {
+              "all": true,
+              "bond": true,
+              "angle": true,
+              "dihedral": true,
+              "chirality": true,
+              "planarity": true,
+              "parallelity": true,
+              "nonbonded": true
+            }
+          },
+          "bend_10": {
+            "sampled_gradients_consistent": true,
+            "family_checks": {
+              "all": true,
+              "bond": true,
+              "angle": true,
+              "dihedral": true,
+              "chirality": true,
+              "planarity": true,
+              "parallelity": true,
+              "nonbonded": true
+            }
+          }
+        },
+        "calls": 1829,
+        "fixed_manager_exact": true,
+        "active_bridge_torsions": 0,
+        "zero_weight_constant_bridge_terms": 4,
+        "driver": {
+          "returncode": 0,
+          "stopped_verified": true
+        }
+      },
+      "C6": {
+        "ring": [
+          "C10",
+          "C11",
+          "C6",
+          "C7",
+          "C8",
+          "C9"
+        ],
+        "moving": [
+          "C10",
+          "C11",
+          "C6",
+          "C7",
+          "C8",
+          "C9",
+          "H10",
+          "H11",
+          "H7",
+          "H8",
+          "H9"
+        ],
+        "source_sha256": "af049e7b0feb29f0e8f608498737eee68227786fac5bab0f764b64b792755e8e",
+        "origin": {
+          "anchor": "NASolve-live-tests",
+          "path": "350_Cedar_PIM-ring-control-3_11z738/request/attempts/attempt-0001/qualification/native/native/001/cif-native-9qby_r_g",
+          "receipt_sha256": "bc67ebbc4dcd67cdd2fe4a02e829c4f4ddccce87f9c156b18cb4822adcdb1a02"
+        },
+        "response_worker_sha256": "ee6774de00d5e3d85b360393afdfb84bb965b3afe7a89d1f2d3e5dd7efab7dd6",
+        "result_sha256": "430a29b5d01ea9d2c1125ec33b6e6659bf3de7b8232e5dc8ba6f68f768e4f9a5",
+        "gradient_sha256": "f8d73e4d6422228b0637b229232480e9640e803fa2a2319d4926215e3d4d235f",
+        "initial_targets": {
+          "all": 13.29418322608272,
+          "bond": 0.007136699878998718,
+          "angle": 0.004581709974993322,
+          "dihedral": 0.0,
+          "chirality": 0.0,
+          "planarity": 13.226394869207933,
+          "parallelity": 0.0,
+          "nonbonded": 0.05606994702079493
+        },
+        "maximum_spin_target_change": {
+          "all": 0.12404794093305505,
+          "bond": 1.3860440573054689e-15,
+          "angle": 1.2299189444675562e-15,
+          "dihedral": 0.0,
+          "chirality": 0.0,
+          "planarity": 5.5067062021407764e-14,
+          "parallelity": 0.0,
+          "nonbonded": 0.12404794093308194
+        },
+        "bend_changes": {
+          "bend_-20": {
+            "angle": 1.6743008205504792,
+            "planarity": 290.529937393458
+          },
+          "bend_-10": {
+            "angle": 0.17134589147135446,
+            "planarity": 94.49038255765501
+          },
+          "bend_-5": {
+            "angle": 0.02047179577582144,
+            "planarity": 34.250469078885104
+          },
+          "bend_-1": {
+            "angle": 6.736578776946837e-05,
+            "planarity": 4.752824005911936
+          },
+          "bend_1": {
+            "angle": 0.0005357935120129673,
+            "planarity": -3.7002326726707153
+          },
+          "bend_5": {
+            "angle": 0.001532572140175101,
+            "planarity": -7.954613462083632
+          },
+          "bend_10": {
+            "angle": 0.0024040034813336067,
+            "planarity": 10.456448359485893
+          },
+          "bend_20": {
+            "angle": 0.34377366790253017,
+            "planarity": 125.47180799660866
+          }
+        },
+        "gradients": {
+          "initial": {
+            "sampled_gradients_consistent": true,
+            "family_checks": {
+              "all": true,
+              "bond": true,
+              "angle": true,
+              "dihedral": true,
+              "chirality": true,
+              "planarity": true,
+              "parallelity": true,
+              "nonbonded": true
+            }
+          },
+          "spin_30": {
+            "sampled_gradients_consistent": true,
+            "family_checks": {
+              "all": true,
+              "bond": true,
+              "angle": true,
+              "dihedral": true,
+              "chirality": true,
+              "planarity": true,
+              "parallelity": true,
+              "nonbonded": true
+            }
+          },
+          "bend_10": {
+            "sampled_gradients_consistent": true,
+            "family_checks": {
+              "all": true,
+              "bond": true,
+              "angle": true,
+              "dihedral": true,
+              "chirality": true,
+              "planarity": true,
+              "parallelity": true,
+              "nonbonded": true
+            }
+          }
+        },
+        "calls": 1829,
+        "fixed_manager_exact": true,
+        "active_bridge_torsions": 0,
+        "zero_weight_constant_bridge_terms": 4,
+        "driver": {
+          "returncode": 0,
+          "stopped_verified": true
+        }
+      }
+    },
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=../NASolve-c96/src .venv/bin/python -B branch-artifacts/cedar/runners/c351_start.py",
+    "interpretation": "Each ring rotates independently without covalent penalty; nonbonded contact penalty changes. Junction bending has native plane/angle restoring support. Initial numerical model is not a zero-strain optimum; small bends may reduce its existing plane strain.",
+    "compatibility": "No code, schema, restraint, weight, default, worker or acceptance change; C350 focused350/installed350 results remain current.",
+    "retention": "Compact measurements/hashes only committed. Native dictionaries/models/SDK snapshots/logs local; prior106 files and timestamps preserved. No full suite or repeated generation.",
+    "limitations": [
+      "Sampled derivative consistency is local, not a torsional quantum-energy profile or universal chemistry proof.",
+      "No optimization/refinement/mutation/scaffold/experimental test for PIM.",
+      "Source/context selection and Q06 achieved geometry remain open."
+    ],
+    "next": "Deterministic prelaunch timeout failure readback, then qualified source/context selection; no stronger planes/weights justified by this control."
   }
 }

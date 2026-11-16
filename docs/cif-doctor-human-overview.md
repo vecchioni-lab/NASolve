@@ -4231,5 +4231,9 @@ rings. Original source and actual native bond-order checks remain intact.
 
 Complete generation and isolated qualification pass. Both junctions have plane
 coverage and no plane ties both rings together. That is dictionary evidence;
-rotation versus junction bending still needs a native response control. No forced
-common plane, added weight, default mutation or source-chemistry edit follows.
+C351 now tests both ends of the connecting bond with the exact native restraints.
+Rotating either ring leaves covalent penalties unchanged; bending the junction
+changes plane and angle penalties, with forces agreeing with numerical checks.
+The starting geometry already has some plane strain, so a small bend can improve
+it. This establishes restraint behavior, not an ideal model or refinement result.
+No forced common plane, added weight, default mutation or source edit follows.
