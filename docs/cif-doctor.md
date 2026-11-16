@@ -13691,3 +13691,34 @@ and timestamps. No runtime, schema, source or default changes; no migration.
 Models/CIFs/logs remain local. This does not establish diffraction-refinement
 survival, infer DY pairing or enable automatic source/end-state selection.
 Evidence: `mixed_dy_end_states_readyset_2026_11_16`.
+
+
+### DY in actual covalent-only diffraction refinement (C346)
+
+An explicit diagnostic reuses C303's declared canonical MR scaffold, constructs
+A:12 DA/B:4 DY, and qualifies its full-model bundle and observed ReadySet endpoint.
+It preserves observations/Free-R, five-cycle strategy, one-process execution and
+D:1 terminal protection; no NAR pair/stack restraints or DY pairing are imposed.
+This is separate from the original symmetry-linked B:1 case. Source-pinned,
+unchanged C338 runtime code observes DY through its explicit `chemistry_sites`
+API, retaining the actual original monomer definitions, exact internal targets,
+full native coordinates and final writer binding. No production checkpoint or
+existing triple-screen approval is claimed.
+
+Phenix2.2.1-6174 completes five cycles; Coot1.3.3 constructs the input. DY native
+definitions and internal targets remain identical. Final ring RMS plane deviations
+are 0.02070/0.002515 Å, C4–N1T is 1.377807 Å against 1.377 Å, chi changes 10.95°,
+and all three sugar signs remain. N1T's C4 elevation improves 8.39°→2.84°; ring
+rotation remains allowed. These are descriptive measurements, not new thresholds,
+experimental DY validation or Q06 closure. Cold relocated readback verifies the
+same ReadySet result, namespace adaptation, frozen helper, actual manager and
+written model with execution forbidden. All168 source files/timestamps survive.
+
+The first stopped attempt exposed unsupported PDU→DT parent conversion in Coot:
+its success code was insufficient and the existing chi gate stopped output.
+The second was a harness mistake placing refinement-only terminal changes into
+custom-addition qualification. Both failed roots remain intact; the successful
+fresh control follows existing stage separation. Next: actual canonical identity
+checking and generalized modified-parent-modified coverage. No source/schema/
+default edits or migration; only compact evidence is committed. See
+`dy_actual_refinement_survival_2026_11_16`.

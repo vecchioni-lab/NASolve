@@ -104559,5 +104559,169 @@
     ],
     "next": "Actual refinement survival, then ordinary source/context selection within existing owners.",
     "signed": "Rowan"
+  },
+  "dy_actual_refinement_survival_2026_11_16": {
+    "source_commit": "53116e1f1ff2e1d51d6ec2709dd8077c2d72af22",
+    "local_root": {
+      "anchor": "NASolve-live-tests",
+      "path": "346_Cedar_DY-covalent-refinement-ljkqwcjn"
+    },
+    "summary": {
+      "status": "C346_DY_FIVE_CYCLE_COVALENT_CONTROL_COMPLETE",
+      "versions": {
+        "coot": "1.3.3",
+        "phenix": "2.2.1",
+        "build": "phenix-2.2.1-6174"
+      },
+      "initial_checks": {
+        "PASS": 103,
+        "UNSUPPORTED": 1
+      },
+      "readyset_status": "READYSET_CACHED_INPUT_PASS",
+      "endpoint_mechanics": true,
+      "macro_cycles": 5,
+      "actual_manager_observed": true,
+      "written_model_bound": true,
+      "native_definitions_unchanged": true,
+      "native_intrasite_targets_unchanged": true,
+      "selected_heavy_atoms": 23,
+      "full_atom_count": 856,
+      "source_files_preserved": 137,
+      "all_native_jobs_stopped": true,
+      "elapsed_seconds": 56.07080133400086,
+      "physical_bytes": 36951253,
+      "coordinate_geometry": "PENDING_READ_ONLY_ANALYSIS",
+      "pairing": "NOT_INFERRED; NO_NAR_PAIR_OR_STACK_RESTRAINTS",
+      "automatic_alias": "NOT_ENABLED",
+      "scientific_approval": "NOT_RUN"
+    },
+    "geometry": {
+      "preflight": {
+        "chi_degrees": -108.98122582540641,
+        "interring_dihedral_degrees": -173.7208586403004,
+        "rings": {
+          "pyrimidine": {
+            "atoms": [
+              "N1",
+              "C2",
+              "N3",
+              "C4",
+              "C5",
+              "C6"
+            ],
+            "rms_A": 0.008356930855702637,
+            "max_A": 0.011303486223248227
+          },
+          "triazole": {
+            "atoms": [
+              "N1T",
+              "N2T",
+              "C3T",
+              "N4T",
+              "C5T"
+            ],
+            "rms_A": 0.0064386063129287996,
+            "max_A": 0.008875032204786554
+          }
+        },
+        "bridge": {
+          "atoms": [
+            "C4",
+            "N1T"
+          ],
+          "observed_A": 1.3774073471562396,
+          "target_A": 1.377,
+          "weight": 1599.9999999999998,
+          "deviation_in_esds": 0.016293886249583167
+        },
+        "C4_angle_sum_degrees": 359.9926268780242,
+        "N1T_angle_sum_degrees": 359.1509149952965,
+        "N1T_C4_elevation_degrees": 8.39158086516513
+      },
+      "refine": {
+        "chi_degrees": -98.02790007354007,
+        "interring_dihedral_degrees": 172.27497987918633,
+        "rings": {
+          "pyrimidine": {
+            "atoms": [
+              "N1",
+              "C2",
+              "N3",
+              "C4",
+              "C5",
+              "C6"
+            ],
+            "rms_A": 0.02070154832984451,
+            "max_A": 0.03328932539633411
+          },
+          "triazole": {
+            "atoms": [
+              "N1T",
+              "N2T",
+              "C3T",
+              "N4T",
+              "C5T"
+            ],
+            "rms_A": 0.00251504071821359,
+            "max_A": 0.0035266189702810036
+          }
+        },
+        "bridge": {
+          "atoms": [
+            "C4",
+            "N1T"
+          ],
+          "observed_A": 1.3778073238696158,
+          "target_A": 1.377,
+          "weight": 1599.9999999999998,
+          "deviation_in_esds": 0.03229295478463179
+        },
+        "C4_angle_sum_degrees": 359.9998923779061,
+        "N1T_angle_sum_degrees": 359.90267289662575,
+        "N1T_C4_elevation_degrees": 2.8435660871584867
+      }
+    },
+    "chirality_signs_preserved": true,
+    "receipt_hashes": {
+      "preflight": "8c5e44d7b11348072c948dd03564ef07d00926bd947801a6799d65a894e400a9",
+      "refine": "51d126cc57c5704fe69f60b7707e055deeaae77d76a80f0da70ecf1217be296d"
+    },
+    "written_model_sha256": "46aea8fb14a2fce0c059790bdea41090586deaae3a0e60f7439989e461fd7377",
+    "readback": {
+      "status": "C346_DY_READYSET_AND_ACTUAL_REFINEMENT_COLD_REPLAY_PASS",
+      "original_temporary_path_absent": true,
+      "native_execution_forbidden": true,
+      "exact_readyset_result": true,
+      "namespace_adaptation_verified": true,
+      "frozen_helper_bytes_verified": true,
+      "actual_manager_and_written_model_bound": true,
+      "macro_cycles": 5,
+      "preserved_original_files": 168,
+      "temporary_bytes_removed": 36952243,
+      "production_checkpoint": "NOT_CREATED; EXPLICIT_DIAGNOSTIC_CONTROL"
+    },
+    "failed_attempts": [
+      {
+        "path": "346_Cedar_DY-covalent-refinement-s21teulq",
+        "reason": "Coot reports parent mutation success from PDU but leaves an unrecognized parent; existing chi check stops before output. Modified-to-parent-to-modified coverage is queued."
+      },
+      {
+        "path": "346_Cedar_DY-covalent-refinement-dm1owzcz",
+        "reason": "Local harness incorrectly put refinement-only terminal angle changes into the custom-addition qualification scope. No chemistry approval or continuation; fresh attempt uses established stage separation."
+      }
+    ],
+    "failed_artifact_policy": "Both stopped attempts preserved unchanged; no in-place retry.",
+    "scientific_scope": "C303 declared canonical MR substitution scaffold; A:12 DC->DA, B:4 DG->DY. Same observations/Free-R and five-cycle strategy, one process. Omit NAR pair/stack restraints; preserve D:1 terminal protection. Not original symmetry-linked B:1, experimental DY density or pairing approval.",
+    "runtime": "Unchanged frozen C338 helper through explicit run_compatible_refinement chemistry_sites API. Source-pinned actual manager, original monomer definitions and final writer; no production checkpoint or triple-screen claim.",
+    "commands": {
+      "start": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=../NASolve-c96/src .venv/bin/python -B branch-artifacts/cedar/runners/c346_start.py",
+      "analysis": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=../NASolve-c96/src .venv/bin/python -B branch-artifacts/cedar/runners/c346_analysis.py",
+      "readback": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=../NASolve-c96/src .venv/bin/python -B branch-artifacts/cedar/runners/c346_readback.py"
+    },
+    "validation": "Complete native Coot/ReadySet/Phenix controls and cold relocation. C343 focused tests remain current; no new pytest or full suite for docs-only result.",
+    "compatibility": "No runtime/schema/default change; no migration.",
+    "retention": "Compact docs/evidence only committed. All models, diffraction, generated dictionaries, logs and native sources remain local; successful temporary replay copy removed.",
+    "next": "Verify native canonical mutation actually changes residue identity; retain generalized modified-parent-modified round-trip gate before automatic source/alias integration.",
+    "signed": "Rowan"
   }
 }

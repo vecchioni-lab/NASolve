@@ -4199,3 +4199,15 @@ ReadySet retains both intended atom sets, heavy coordinates and numerical restra
 and Phenix still recognizes the resulting mechanics. This uses explicitly chosen
 end-state dictionaries. Actual refinement survival and ordinary automatic selection
 remain separate checks.
+
+
+DY has now completed five actual refinement cycles in a declared substitution
+control (C346). Its original restraint targets survive into the actual Phenix
+manager and written model; both rings remain near planar, the connecting junction
+improves, and all three sugar stereochemical signs remain. The single bond between
+rings is allowed to rotate. This test uses the scaffold's existing diffraction
+data without claiming they came from a DY crystal, and imposes no DY pairing.
+It establishes a bounded survival result, not universal mutation or Q06 closure.
+The attempted modified→canonical→different-modification route also exposed Coot
+reporting success before actually making its canonical parent; that is the next
+construction check, with both failed attempts retained.

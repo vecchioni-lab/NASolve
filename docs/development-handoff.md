@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C345 mixed-end DY ReadySet control — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. C344 pushed at `c0dd51fb`; C345 is this
+Updated **2026-11-16, C346 actual DY refinement control — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. C345 pushed at `53116e1f`; C346 is this
 completed evidence checkpoint. No full suite, new branch, default activation
 or merge. Linden owns Pine/Willow; C331 unchanged. Simon confirmed work through
 **23:00 London**. All Rowan native/controller jobs stopped at this checkpoint.
@@ -38,10 +38,29 @@ files/timestamps preserved, 5.70 MB temporary replay copy removed. Coot1.3.3,
 Phenix2.2.1-6174. C343 focused tests remain current; no new pytest/full suite.
 Compact evidence: `mixed_dy_end_states_readyset_2026_11_16`.
 
-**Next:** actual refinement survival with explicit chemical intent and matching
-restraints; do not reuse PDU pair restraints for DY or infer its pairing pattern.
-Then ordinary source/context selection, still no automatic alias until qualified.
-The older active/next paragraphs below are retained evidence, superseded here.
+**C346 complete:** canonical MR → A:12 DA/B:4 DY, full-scaffold native
+preparation (103 PASS / one unsupported formal-charge readback), observed ReadySet,
+then five actual Phenix cycles with original Free-R and D:1 protection. This is a
+covalent-only substitution control, without NAR pair/stack restraints or a DY
+pairing hypothesis. It uses the separately declared C303 scaffold, not the original
+symmetry-linked B:1 case. Exact actual-manager definitions/targets survive, final
+model is bound. The two ring RMS plane deviations finish 0.02070 / 0.002515 Å;
+bridge 1.377807 Å against 1.377 Å, chi changes 10.95°, all three sugar signs remain.
+N1T bridge elevation improves 8.39°→2.84°; no added plane/weight or common ring plane.
+Root `346_Cedar_DY-covalent-refinement-ljkqwcjn`, 56.07 s / 36.95 MB; all jobs dead.
+Cold replay preserves168 files, removes36.95 MB temporary copy. Compact evidence
+`dy_actual_refinement_survival_2026_11_16`. Raw scientific files remain local.
+
+**Next C347:** verify Coot's claimed canonical mutation by its actual residue
+identity. First C346 attempt `s21teulq` reported success converting PDU→DT but
+failed the later chi check; no valid DY output. Simon explicitly endorses the
+general modified→canonical→different-modification round-trip as a useful gate.
+Keep this separate from ordinary canonical-source success; preserve failed inputs.
+Second `dm1owzcz` was a harness scope mismatch (refinement-only terminal angle
+changes passed to a custom-addition checker); corrected through existing stage
+separation in the fresh successful run. Both stopped failed roots are retained.
+Then source/context integration and held-out rotation control; no automatic alias.
+Older active/next paragraphs below are retained evidence, superseded here.
 
 **Latest C343 complete — Rowan, 2026-11-16.** C342 pushed `d17dd326`; C343 is this
 code/evidence checkpoint. All Rowan jobs stopped. Continue through 23:00 London,

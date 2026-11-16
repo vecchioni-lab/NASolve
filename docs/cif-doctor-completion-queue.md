@@ -864,8 +864,14 @@ bundle preparation (87 PASS / two unavailable formal-charge readbacks), observed
 ReadySet and exact endpoint mechanics. ReadySet preserves heavy coordinates and
 numerics without observed builder/template calls. Cold replay passes. C344's
 explicit end-state dictionary choice remains necessary; the sanitizer does not
-remove an unwanted whole phosphate. **Next:** actual refinement survival with
-matching explicit restraints, then ordinary source/context selection. No DY pair
+remove an unwanted whole phosphate. **C346:** five actual covalent-only refinement cycles on the separately declared
+substitution scaffold retain exact DY native targets/definition and sugar signs.
+Both rings remain near planar, the junction improves, and rotation is not frozen.
+Cold exact-manager/written-model replay passes. No DY pairing or universal
+refinement claim. **Next C347:** actual canonical residue identity after Coot
+mutation, then the generalized modified→canonical→different-modification test
+Simon endorsed. C346's first PDU→DT step reported native success but failed the
+later orientation gate. Ordinary source/context integration remains after this. No DY pair
 pattern, automatic alias or per-site selector is inferred from these controls.
 See `mixed_dy_end_states_readyset_2026_11_16`; older next steps are historical.
 
