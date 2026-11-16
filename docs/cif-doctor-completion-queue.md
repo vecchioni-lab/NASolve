@@ -1,9 +1,13 @@
 # CIF Doctor completion queue
 
-**Current work order, 2026-11-15.** This is the one unfinished-work queue. The
+**Current work order, 2026-11-16.** This is the one unfinished-work queue. The
 [capability table](cif-doctor.md#current-capability-boundary) records demonstrated
 support; the [handoff](development-handoff.md) says where work stopped. Old notes
 record what was known then. They do not create a second set of instructions.
+
+The active bounded task is [ordinary DY integration](#dy--packaged-retained-triazole-reference-and-mutation-support)
+after C356; then return to Q06 achieved geometry. C357 consolidates the handoff
+and audits local workspace retention without changing scientific acceptance.
 
 ## Finish line and ordering
 
