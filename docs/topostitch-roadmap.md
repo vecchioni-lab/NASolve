@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W94 — Compile checked molecular rotations about an explicit Cartesian pivot.** Next: W95.
+**Current update: W95 — Prepare the qualified shared guard consumer and native acceptance checks.** Next: W96.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W85 | Check coarse-motion derivatives and forced native neighbor rebuilds | RECORDED |
 | W86 | Expose bounded tapered motion through the existing native objective | RECORDED |
 | W87 | Compare bounded paired and retained-core coarse placements | RECORDED |
 | W88 | Bind reusable motion to verified saved bend previews | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W92 | Record the shared live nonbonded-policy contract and qualification gate | RECORDED |
 | W93 | Plan density-aware blunt contacts and three-orientation asymmetric trials | RECORDED |
 | W94 | Compile checked molecular rotations about an explicit Cartesian pivot | RECORDED |
+| W95 | Prepare the qualified shared guard consumer and native acceptance checks | RECORDED |
 
 ## Finish lines
 
@@ -175,9 +175,9 @@ Move a usable duplex toward the chosen connection while preserving local residue
 - Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.
 - Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.
 
-**Next action:** W95: first qualify the Cedar-owned live nonbonded-policy owner against its pinned native inventory and negative controls. Only then integrate an optional Willow consumer using its concrete API, the actual invocation options and a frozen expected snapshot. Preserve legacy defaults, valid rebuilds and separate generated-contact/chemistry/Q06 gates.
-**Evidence:** [E_SOFTWARE](#e_software), [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_COARSE_NATIVE_DERIVATIVES](#e_coarse_native_derivatives), [E_BOUNDED_NATIVE_MOTION](#e_bounded_native_motion), [E_MATCHED_COARSE_TRIALS](#e_matched_coarse_trials), [E_SAVED_BEND_MOTION](#e_saved_bend_motion), [E_COARSE_RESOLUTION](#e_coarse_resolution), [E_ATOMIC_DIAGNOSTIC_START](#e_atomic_diagnostic_start), [E_MATCHED_ATOMIC_STARTS](#e_matched_atomic_starts), [E_LIVE_NONBONDED_CONTRACT](#e_live_nonbonded_contract), [E_BLUNT_ASYM_PLAN](#e_blunt_asym_plan), [E_PIVOT_ROTATION](#e_pivot_rotation).
-**Last audit:** 2026-11-16, Linden, [W94](https://github.com/vecchioni-lab/NASolve/commit/eb8e5d6ed55a75ce33863c1fc4e6f37a95d23465); Explicit pivot arithmetic and preserved preview rounding validated in source and installed builds. Scientific geometry/density gates remain open..
+**Next action:** W96: consume only a pinned, qualified Cedar live nonbonded-policy owner/profile. Add an optional direct NativeMaskedObjective consumer using the W95 checklist, frozen expected snapshot and actual invocation options; prove hidden-mutation refusals, legitimate rebuilds, unchanged legacy behavior, full regression and installed native composition. Captured-worker/default adoption remains separate.
+**Evidence:** [E_SOFTWARE](#e_software), [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_COARSE_NATIVE_DERIVATIVES](#e_coarse_native_derivatives), [E_BOUNDED_NATIVE_MOTION](#e_bounded_native_motion), [E_MATCHED_COARSE_TRIALS](#e_matched_coarse_trials), [E_SAVED_BEND_MOTION](#e_saved_bend_motion), [E_COARSE_RESOLUTION](#e_coarse_resolution), [E_ATOMIC_DIAGNOSTIC_START](#e_atomic_diagnostic_start), [E_MATCHED_ATOMIC_STARTS](#e_matched_atomic_starts), [E_LIVE_NONBONDED_CONTRACT](#e_live_nonbonded_contract), [E_BLUNT_ASYM_PLAN](#e_blunt_asym_plan), [E_PIVOT_ROTATION](#e_pivot_rotation), [E_GUARD_INTEGRATION_PREP](#e_guard_integration_prep).
+**Last audit:** 2026-11-16, Linden, [W95](https://github.com/vecchioni-lab/NASolve/commit/eb8e5d6ed55a75ce33863c1fc4e6f37a95d23465); Reviewed real consumer/correction/static-signature boundary and acceptance sequence. Documentation only; shared guard and scientific gates remain open..
 
 <a id="s05"></a>
 ### S05 — Close and qualify the local atomic geometry
@@ -191,9 +191,9 @@ Turn a plausible placement into a chemically usable candidate before refinement 
 - Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.
 - Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.
 
-**Next action:** W95: first qualify the Cedar-owned live nonbonded-policy owner against its pinned native inventory and negative controls. Only then integrate an optional Willow consumer using its concrete API, the actual invocation options and a frozen expected snapshot. Preserve legacy defaults, valid rebuilds and separate generated-contact/chemistry/Q06 gates.
-**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe), [E_MASKED_COMPOSITION](#e_masked_composition), [E_CAPTURED_COMPOSITION](#e_captured_composition), [E_ENDPOINT_REVIEW](#e_endpoint_review), [E_BOUNDED_TRIAL](#e_bounded_trial), [E_CAPTURED_JOB_API](#e_captured_job_api), [E_ENDPOINT_OBSERVATIONS](#e_endpoint_observations), [E_PAIR_ATTRIBUTION](#e_pair_attribution), [E_CORE_CONTROL](#e_core_control), [E_NATIVE_TERMS](#e_native_terms), [E_NATIVE_STOPPING_LIMIT](#e_native_stopping_limit), [E_NATIVE_PRECISION](#e_native_precision), [E_FAILED_ENDPOINT_DIAGNOSTIC](#e_failed_endpoint_diagnostic), [E_FAILED_ENDPOINT_CHEMISTRY](#e_failed_endpoint_chemistry), [E_COARSE_NATIVE_DERIVATIVES](#e_coarse_native_derivatives), [E_BOUNDED_NATIVE_MOTION](#e_bounded_native_motion), [E_MATCHED_COARSE_TRIALS](#e_matched_coarse_trials), [E_SAVED_BEND_MOTION](#e_saved_bend_motion), [E_ATOMIC_DIAGNOSTIC_START](#e_atomic_diagnostic_start), [E_MATCHED_ATOMIC_STARTS](#e_matched_atomic_starts), [E_LIVE_NONBONDED_CONTRACT](#e_live_nonbonded_contract), [E_BLUNT_ASYM_PLAN](#e_blunt_asym_plan).
-**Last audit:** 2026-11-16, Linden, [W93](https://github.com/vecchioni-lab/NASolve/commit/5965d8588984c6991f587bdaec049639264d03e4); Planning acceptance extended for blunt/asymmetric controls; prior delivered runtime scope and open scientific gates unchanged. No new native solve..
+**Next action:** W96: consume only a pinned, qualified Cedar live nonbonded-policy owner/profile. Add an optional direct NativeMaskedObjective consumer using the W95 checklist, frozen expected snapshot and actual invocation options; prove hidden-mutation refusals, legitimate rebuilds, unchanged legacy behavior, full regression and installed native composition. Captured-worker/default adoption remains separate.
+**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe), [E_MASKED_COMPOSITION](#e_masked_composition), [E_CAPTURED_COMPOSITION](#e_captured_composition), [E_ENDPOINT_REVIEW](#e_endpoint_review), [E_BOUNDED_TRIAL](#e_bounded_trial), [E_CAPTURED_JOB_API](#e_captured_job_api), [E_ENDPOINT_OBSERVATIONS](#e_endpoint_observations), [E_PAIR_ATTRIBUTION](#e_pair_attribution), [E_CORE_CONTROL](#e_core_control), [E_NATIVE_TERMS](#e_native_terms), [E_NATIVE_STOPPING_LIMIT](#e_native_stopping_limit), [E_NATIVE_PRECISION](#e_native_precision), [E_FAILED_ENDPOINT_DIAGNOSTIC](#e_failed_endpoint_diagnostic), [E_FAILED_ENDPOINT_CHEMISTRY](#e_failed_endpoint_chemistry), [E_COARSE_NATIVE_DERIVATIVES](#e_coarse_native_derivatives), [E_BOUNDED_NATIVE_MOTION](#e_bounded_native_motion), [E_MATCHED_COARSE_TRIALS](#e_matched_coarse_trials), [E_SAVED_BEND_MOTION](#e_saved_bend_motion), [E_ATOMIC_DIAGNOSTIC_START](#e_atomic_diagnostic_start), [E_MATCHED_ATOMIC_STARTS](#e_matched_atomic_starts), [E_LIVE_NONBONDED_CONTRACT](#e_live_nonbonded_contract), [E_BLUNT_ASYM_PLAN](#e_blunt_asym_plan), [E_GUARD_INTEGRATION_PREP](#e_guard_integration_prep).
+**Last audit:** 2026-11-16, Linden, [W95](https://github.com/vecchioni-lab/NASolve/commit/eb8e5d6ed55a75ce33863c1fc4e6f37a95d23465); Reviewed real consumer/correction/static-signature boundary and acceptance sequence. Documentation only; shared guard and scientific gates remain open..
 
 <a id="s06"></a>
 ### S06 — Demonstrate improvement against diffraction data
@@ -888,7 +888,7 @@ Two complete Phenix2.2.1-6174 trials use installedW90 and pinnedC325 owners. Col
 
 [Evidence contract](topostitch-periodic.md#w92--shared-live-nonbonded-policy-contract-qualification-pending) at [W92](https://github.com/vecchioni-lab/NASolve/commit/5965d8588984c6991f587bdaec049639264d03e4).
 Cedar owner/Willow consumer contract records full supported parameter/assignment/exclusion/symmetry and invocation scope, cache-state separation, unchanged defaults and mandatory equal-energy hidden-mutation controls.
-**Limit:** Contract-only W92 recorded; owner implementation/native qualification and optional Willow integration are next-session work (W93). No complete live-policy guard, stable schema/POLICY_ID or consumer is claimed. Cedar Q06 chemistry remains a separate gate.
+**Limit:** Contract-only W92. W95 specifies the direct integration boundary; exact Cedar owner/profile/native qualification still required before W96 consumer. No stable imported API or Willow guard is claimed; Cedar Q06 chemistry remains separate.
 
 <a id="e_blunt_asym_plan"></a>
 ### E_BLUNT_ASYM_PLAN — requirements_and_read_only_inventory
@@ -903,6 +903,13 @@ Paper/local SI inspected; 9PGR single-base stacking and 7U3O molecular-axis orie
 [Evidence contract](topostitch-preview.md#w94-validation--2026-11-16) at [W94](https://github.com/vecchioni-lab/NASolve/commit/eb8e5d6ed55a75ce33863c1fc4e6f37a95d23465).
 Existing CartesianImage gains checked R(x-p)+p+t construction, reused for preview ANISOU without changing centered coordinate rounding. Nine fail-before cases; 139 focused, 1844 full plus 229 subtests, 139 installed/relocated tests, six CLI helps and pip check pass. Source/installed module bytes match; Python 3.10 syntax passes. PostMR/first-refinement-only orientation plan corrected, no re-MR; missing third local AlphaFold model is optional follow-up.
 **Limit:** Numerical transform only; no axis inference, placement authorization, new schema, three-sibling campaign implementation, native Phenix/Coot execution or scientific acceptance. First install harness omitted relative-import test helpers; complete relocated test package passes against the unchanged fresh wheel. Shared Cedar live-policy consumer remains gated; no Cedar edits or combined-build qualification. Generated test/build artifacts stay local.
+
+<a id="e_guard_integration_prep"></a>
+### E_GUARD_INTEGRATION_PREP — implementation_boundary_review
+
+[Evidence contract](topostitch-periodic.md#w95--prepare-the-qualified-guard-consumer) at [W95](https://github.com/vecchioni-lab/NASolve/commit/eb8e5d6ed55a75ce33863c1fc4e6f37a95d23465).
+Reviewed actual NativeMaskedObjective and Cedar correction/static-signature paths. Plan checks before pair_proxies can rebuild, same flags/options on the real energy call, immutable primitive baseline, preserved failures, opt-in provenance and installed profile/resource closure. Direct consumer and later captured-worker adoption are separate acceptance steps.
+**Limit:** Documentation only. C331 implementation is under Rowan qualification; uncommitted source/profile are not pinned dependencies. No Willow guard, new runtime/schema, native execution, scientific closure or automatic campaign adoption. W94 full/install validation remains current.
 
 ## Deferred extensions, not hidden blockers
 

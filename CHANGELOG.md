@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W95 — Prepare the shared guard integration boundary
+
+- Specify the optional objective consumer, native/static check ordering, frozen
+  baseline and error semantics, exact call options and installed profile checks.
+- Keep Cedar qualification, direct integration and captured-worker adoption
+  distinct. Documentation only; no runtime, schema or default change.
+
 ### W94 — Compile explicit molecular rotations about a Cartesian pivot
 
 - Add a checked pivot constructor to the existing rigid image owner, retaining

@@ -3544,3 +3544,86 @@ Willow's runtime pins. No merge, scientific payload or local workspace state is
 included. W92 validation: `PYTHONDONTWRITEBYTECODE=1 python3
 scripts/audit_topostitch_roadmap.py --write`, the corresponding `--check`, and
 `git diff --check` pass. No runtime/artifact-schema migration is required.
+
+## W95 — Prepare the qualified guard consumer
+
+This is an implementation plan, not a qualified consumer. W94 runtime remains
+unchanged. Rowan is implementing/testing C331 on Cedar; its uncommitted source
+and native profile are review inputs only. Wait for an exact qualified commit,
+interface, packaged profile and native receipt before using them as an owner.
+The machine contract remains `E_LIVE_NONBONDED_CONTRACT` in the roadmap.
+
+The concrete existing boundary is `NativeMaskedObjective` in
+`topostitch_native_recipe.py`. Its `_check_native` calls Cedar's
+`cif_gradient_audit.fixed_signature`, which invokes `pair_proxies` and may rebuild
+neighbors. Consequently a check only after `_check_native` is too late to detect
+pre-existing policy drift before native work. The proposed optional integration:
+
+1. Require the trusted qualified owner and expected snapshot together; neither
+   means the legacy path. Supplying one without the other, an unsupported native
+   profile, or malformed baseline must fail explicitly, never fall back.
+2. Freeze the expected primitive snapshot without native copy/pickle. Check it
+   before construction's static checks and again afterward. Caller changes to
+   the original snapshot cannot update the bound expectation. Baseline creation
+   belongs to the authenticated fresh context, after deliberate cutoff resolution;
+   the consumer must not warm up an unresolved manager to obtain a snapshot.
+3. For each evaluation, construct one ordinary `active_flags` object and pass that
+   same object to both guard and corrected native evaluator. Supply the actual
+   options explicitly: `compute_gradients=True`, `normalization=False`,
+   `disable_asu_cache=False`, no supplied gradient buffer or custom/external/
+   extension energy. `plane_order_safe=True` remains the correction owner's
+   separate contract. Guard before the first native/static check and after all
+   evaluation/static checks, before returning a target or gradient.
+4. Preserve original failures and budget accounting. A guard failure produces no
+   accepted result and never refreshes the expected baseline. A native exception
+   stays a failure even when post-error inspection is unavailable; any additional
+   policy diagnosis must not mask the original error. This is sequential mutation
+   detection, not a concurrency lock or proof against transient mutate-and-restore.
+5. Add guard provenance only to explicitly guarded binding reports: expected
+   policy digest, owner/profile identity and trusted source/profile hashes. Keep
+   default result shape, fixed-source/atom-order checks, source masks, plane
+   correction and interpretation ownership intact. Policy equality alone does
+   not authenticate historical captures, generated contacts or physical packing.
+
+Acceptance uses existing native-seam/trial tests and one bounded native comparison:
+
+| Check | Required result |
+| --- | --- |
+| Existing unguarded construction/evaluation | Same behavior and report shape; optional owner never imported implicitly |
+| Missing owner/baseline, malformed or caller-mutated baseline | Refused or detached as appropriate; no silent downgrade |
+| Hidden unused table, assignment or exclusion drift before a call | Rejected before any static/native helper is invoked |
+| Identical returned energy with policy mutation during evaluation | Rejected before a result escapes |
+| Flags/options changed on the actual evaluation object | Detected, including gradients and normalization |
+| Coordinate motion and forced neighbor reset/rebuild | Fixed policy passes; ASU owner separately checks generated contacts |
+| Guarded versus unguarded supported native controls | Same targets/gradients under identical policy and inputs |
+| Frozen-source, identity, budget, native failure and trial reporting | Existing refusal/failure behavior remains |
+
+After focused fail-before tests, run the full suite for this shared evaluation
+boundary and verify a fresh wheel with the qualified Cedar owner/profile. Use
+Phenix 2.2.1-6174 only within the owner's exact supported platform/API profile;
+record complete execution versus dry-run, dependencies and source hashes. No
+cross-platform support claim follows from ordinary Python tests.
+
+Start with direct optional objective integration. The existing captured worker
+stages Willow modules plus renamed correction/audit files; adding only a guard
+`.py` would omit its `data/nonbonded-native-profile.json`. Later worker adoption
+must stage and hash the full owner/resource dependency closure through existing
+runtime provenance, verify installed and relocated execution, and retain old
+readers. Do not expand the worker, CLI or campaign defaults in the first slice.
+
+After that gate, predeclare a genuinely displaced intact-duplex case and matched
+cleanup control, with contact, collateral geometry/packing, derivatives and
+failure outcomes. W91's small-polish experiment is complete and offers no reason
+to repeat it. Density-aware S06 and independently bent post-first-refinement
+orientation siblings stay in sequence; do not tune a geometry-only winner to
+one dataset or rank repeated trials on Rfree. Campaign desk remains the human
+review direction: show the proposed motion, completed change, retained failure
+and comparison evidence, with acceptance separate from computation.
+
+W95 validation (documentation only): `PYTHONDONTWRITEBYTECODE=1 python3
+scripts/audit_topostitch_roadmap.py --write` and `--check`, plus
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src
+/private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider
+tests/test_topostitch_roadmap.py` (**8 passed**) and `git diff --check`.
+No new full suite, installation or external-tool execution was required; W94
+remains the runtime validation receipt. No generated scientific artifacts included.

@@ -361,22 +361,25 @@ refinement or parent-failure promotion. Keep the start API without enabling a
 redundant default stage. Raw evidence remains local; software full/installed
 checks above remain current.
 
-**W92 shared guard / next implementation W94:** the proposed Cedar owner/Willow consumer contract is
-recorded; there is no qualified production live nonbonded-policy guard and no
-Willow consumer patch. Rowan's native inventory and prospective negative controls
-are preparation, not an implemented API or stable policy identifier. First qualify
-the Cedar owner; then integrate and test the optional Willow consumer against that
-concrete interface. Capture all supported parameter/assignment/exclusion/symmetry
-inputs, including unused entries, while permitting legitimate neighbor rebuilds.
-No pickle/deepcopy, new executor or legacy-worker change. Keep prospective failing
-tests in forensic evidence until their implementation belongs in the maintained
-suite. All Linden native trials/observers are finished; no pending process needs
-resuming. Installed runtimes and local raw evidence remain available.
+**W95 integration preparation recorded; W96 is the next implementation slice.**
+Rowan's C331 owner is under implementation/native qualification, not yet a pinned
+consumer dependency. The [concrete integration checklist](topostitch-periodic.md#w95--prepare-the-qualified-guard-consumer)
+identifies `NativeMaskedObjective`, exact evaluation options, checks before the
+static signature can rebuild neighbors, frozen-baseline/error behavior and the
+installed profile/resource requirement. First qualify the Cedar owner, then add
+one optional direct consumer. Leave the legacy worker and defaults unchanged;
+captured-worker adoption requires a separate complete dependency/provenance test.
+No new runtime code, artifact schema or scientific run in W95. W94 full/install
+results remain current; roadmap checks and focused roadmap tests validate this
+documentation update. Source and profile pins will be recorded when Rowan's
+qualified commit is available, not inferred from an uncommitted working tree.
 
-Owner preparation is pinned to [Cedar C330](https://github.com/vecchioni-lab/NASolve/blob/3bd46f6e96ef7a923936bb74b8a8f0366a17aaba/docs/architecture.md#live-nonbonded-policy-boundary-c330-planned)
-(`3bd46f6e96ef7a923936bb74b8a8f0366a17aaba`). Its existing evidence ledger key is
-`live_nonbonded_policy_contract_2026_11_15`; this is inventory and pending controls,
-not production qualification. No branch merge is implied.
+The last committed owner preparation remains [Cedar C330](https://github.com/vecchioni-lab/NASolve/blob/3bd46f6e96ef7a923936bb74b8a8f0366a17aaba/docs/architecture.md#live-nonbonded-policy-boundary-c330-planned)
+(`3bd46f6e96ef7a923936bb74b8a8f0366a17aaba`), evidence key
+`live_nonbonded_policy_contract_2026_11_15`. No branch merge is implied.
+All prior Linden native trials/observers are finished. The OS update removed
+temporary runtimes; persistent forensic archives retain prior native evidence.
+Rebuild a pinned runtime when needed rather than resuming an absent scratch job.
 
 This missing guard is separate from Cedar Q06 refinement chemistry/PDU angle
 review. Nonuniform curvature, matched diffraction and density-aware S06 remain
