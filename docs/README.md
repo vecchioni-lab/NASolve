@@ -27,6 +27,13 @@ historical handoffs as current instructions.
   prepared-nonstandard P5 test. Then final review/merge. After Pine:
   blind AlphaFold geometry campaign, then operational Scout.
 
+## Publication demonstration plan
+
+The [shared publication shortlist](campaign-model-roadmap.md#nasolve-publication-demonstrations)
+records A2T7 rotation, ASU recuts combined with bending, standard test data
+including DOHU, and metal cases coordinated with Hazel. These are downstream
+demonstration goals with explicit evidence gates, not completed-result claims.
+
 ## User and contributor reading
 
 - [User guide](../README.md): installed commands, run/view workflows,

@@ -17,6 +17,12 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Publication demonstration planning
+
+- Record the requested A2T7 rotation, recut-with-bending, standard-data/DOHU and
+  metal-data demonstrations in the shared campaign roadmap, linked from the
+  documentation index and current handoff. Planning only; no runtime or data release.
+
 ### W98 — Forward declared starts through captured native trials
 
 - Add optional `initial_displacements` to the captured-objective Python API.

@@ -127,6 +127,67 @@ must preserve originals and checksums. Use 7U3O as a blinded known-answer contro
 including degraded-resolution and true symmetry-equivalent controls, before the
 unresolved data; deposited answers must not guide blind fitting.
 
+## NASolve publication demonstrations
+
+**Requested by Simon, 2026-11-16; downstream planning, not completed results.**
+The final NASolve demonstration should combine the following cases. This is the
+shared publication shortlist; subsystem ledgers retain implementation and exact
+validation authority. Audit this list when selecting final datasets and again
+before preparing figures, so planned capabilities do not become reported results.
+
+| ID | Demonstration | Scientific question and required comparison | Current planning state |
+| --- | --- | --- | --- |
+| PUB01 | **A2T7 rotation** | Can the post-MR/first-refinement three-orientation comparison distinguish the correct sequence/shape placement? Retain all 0/120/240-degree hypotheses, independent bending/refinement, matched observations/Free-R and explicit favored/indistinguishable/failed results. Follow the orientation protocol above; no re-MR of rotated siblings. | Planned. Bind the exact A2T7 dataset, sequence, model, axis and motif correspondence before execution; do not equate this label with another deposited or MegaAsym example by guesswork. |
+| PUB02 | **ASU recuts combined with bending** | Demonstrate how Pine/TopoStitch chooses a useful representation across the periodic crystal and repairs physical misalignment. Prove the pure recut's coordinate/scattering equivalence separately, then assess bending against density, contacts, geometry and matched refinement. Show the original, proposed and completed states with immutable lineage in Campaign desk. | Planned; depends on the [TopoStitch/Pine milestones](topostitch-roadmap.md), including physical geometry, density/refinement and graphical review. A representation change alone is not physical improvement. |
+| PUB03 | **Standard test data, including DOHU** | Establish the ordinary end-to-end baseline across the existing test panel, with reproducible inputs, stage/checkpoint outcomes and final crystallographic evidence. | Existing test evidence must be reconciled into a frozen final panel; DOHU is explicitly requested and the other members remain to be selected. |
+| PUB04 | **Metal data** | Demonstrate metal-aware chemistry/coordination and the supporting crystallographic evidence alongside the ordinary workflow. Keep component geometry, metal-site/occupancy hypotheses and evidence for the actual metal distinct. | Hazel supplied the seven-case shortlist below on 2026-11-16. These are known-positive examples with separate readiness gates; no current case is claimed as a publication-ready blind automated solve. |
+
+### Metal-case shortlist
+
+Hazel checked the local `examples/TestSets/Metals/` inventory and current metal
+ledgers on 2026-11-16. These are logical dataset identifiers; bind the exact
+observations, sequences, models and checksummed dataset anchors when freezing
+the final demonstration. **F means 2-thio-dT (component DF), not fluorine.**
+
+| Dataset ID | Demonstration role | Existing evidence and remaining gate |
+| --- | --- | --- |
+| **FT_Hg** | Single-Hg F:T coordination baseline and geometry/occupancy/anomalous-response comparison. | Fresh MR-to-refinement/f″ rehearsal exists. DF effective bond-order/chemistry discrepancies and the geometry/R trade-off remain; qualify source chemistry and rerun matched controls. |
+| **FF_AuAg** | Mixed Au/Ag identity, alternative site counts/occupancies and ambiguous extra-site adjudication. | Fresh rehearsal exists. Four AutoSol sites do not establish four metals or their identities; compare fewer-site/alternate-occupancy recipes with matched maps/f″ and qualified DF chemistry. |
+| **7CCA_Ag4** | Unresolved four-Ag cluster versus a single density proxy; explicit cluster topology and aggregate response. | Proxy/four-site diagnostic branches and map inspection exist, but no accepted cluster solve. Poor Rfree/mixed-sign f″ and a reference-versus-data wavelength/cell mismatch remain to resolve. |
+| **7CCA_Ag6** | Nonplanar six-Ag cluster and aggregate counting when individual atoms are unresolved. | Reference inventory/geometry is inspected; no qualified end-to-end metal solve. Expected wavelength-dependent response is calculated, not a recovered fitted f″ result. |
+| **FF_3Ag** | Three-metal F:F pair versus fewer-site or alternative geometry hypotheses. | Reflections and three-Ag reference are inventoried; qualified source chemistry and a matched fresh end-to-end demonstration remain pending. |
+| **iCiU_Ag** | Covalent iodine anchors alongside free Ag, preserving background anomalous scatterers. | Two-I/one-Ag reference is inventoried; the full qualified pipeline remains pending. Preserve iodine in the model/scattering context when assessing the Ag site. |
+| **PP_Hg** | Two-Hg PDU:PDU slip geometry, competing donor assignments and explicit ambiguous outcomes. | Metal-free PDU refinement/inspection exists. Component preparation advanced in Cedar C333; C334 retains terminal-angle REVIEW. No qualified two-Hg slip geometry or Hg occupancy/f″ result is established. |
+
+The metal methods/evidence owners are Alder's
+[metal screen](https://github.com/vecchioni-lab/NASolve/blob/9a1b2ceb9cceb667fcc6c7daf09914aa3782a53c/docs/metal-screen.md)
+and [anomalous doctor](https://github.com/vecchioni-lab/NASolve/blob/9a1b2ceb9cceb667fcc6c7daf09914aa3782a53c/docs/metal-anomalous-doctor.md)
+at the inspected `9a1b2ce` snapshot. The newer PDU component evidence is Cedar
+[C333](https://github.com/vecchioni-lab/NASolve/commit/340bda128612836c2c8558f76ff62913fd4b2e60)
+and [C334](https://github.com/vecchioni-lab/NASolve/commit/a79a5db0012eb53941bf1dc1d1101af9d305cce1),
+which supersede the older component-preparation status without establishing Hg
+inference. These cross-branch receipts are not a tested combined build.
+
+Suggested figure progression is single metal → mixed identity/ambiguous sites →
+covalent-heavy-atom control → unresolved clusters; FF_3Ag and PP_Hg add count and
+geometry challenges. Final membership should follow qualified outcomes and
+retain informative failures/ambiguity. Use held-out solved coordinates for
+comparison rather than solution seeds. Qualify component chemistry first;
+retain the metal contracts' B/occupancy/f″ calibration, actual wavelength,
+original FreeR_flag, phase/stage provenance and competing recipes. Cluster
+aggregate response is not automatically an integer atom count. These positive
+examples need matched no-metal/incorrect-recipe controls before supporting
+specificity or a reliable no-metal decision.
+
+For each selected case, retain the dataset/model/sequence binding, software and
+native-tool versions, numbered runs and checkpoints, the tested alternatives,
+Rwork/Rfree with resolution and reflection/test counts, and the relevant local
+map/geometry evidence and human interpretation. Use the same audited Free-R
+assignment for matched alternatives; no repeated Rfree-guided tuning. Record
+negative/ambiguous outcomes as well as improvements. Local numerical recovery
+controls such as W98 are development evidence, not substitutes for these final
+scientific demonstrations. This note starts no jobs and publishes no datasets.
+
 ## Three scientific state layers
 
 For sequence and chemistry, NASolve should reason in three layers.
