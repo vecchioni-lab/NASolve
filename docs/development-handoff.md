@@ -361,30 +361,32 @@ refinement or parent-failure promotion. Keep the start API without enabling a
 redundant default stage. Raw evidence remains local; software full/installed
 checks above remain current.
 
-**W95 integration preparation recorded; W96 is the next implementation slice.**
-Rowan's C331 owner is under implementation/native qualification, not yet a pinned
-consumer dependency. The [concrete integration checklist](topostitch-periodic.md#w95--prepare-the-qualified-guard-consumer)
-identifies `NativeMaskedObjective`, exact evaluation options, checks before the
-static signature can rebuild neighbors, frozen-baseline/error behavior and the
-installed profile/resource requirement. First qualify the Cedar owner, then add
-one optional direct consumer. Leave the legacy worker and defaults unchanged;
-captured-worker adoption requires a separate complete dependency/provenance test.
-No new runtime code, artifact schema or scientific run in W95. W94 full/install
-results remain current; roadmap checks and focused roadmap tests validate this
-documentation update. Source and profile pins will be recorded when Rowan's
-qualified commit is available, not inferred from an uncommitted working tree.
+**W96 optional direct guard is qualified; captured-worker adoption remains open.**
+`NativeMaskedObjective` accepts explicit `live_policy_owner` and
+`expected_live_policy` together, checks before native/static helpers and after
+evaluation, detaches the baseline and records opt-in owner/profile provenance.
+Native failures and legacy reports/defaults remain unchanged. The owner is Cedar
+C331 `c4e5ddb8530358c524feb473f3c4ffe77c64b6ac`, including its packaged native
+profile; no Cedar source was merged or copied into tracked Willow runtime.
+See the [API and exact validation receipt](topostitch-periodic.md#w96--optional-direct-live-policy-consumer).
 
-The last committed owner preparation remains [Cedar C330](https://github.com/vecchioni-lab/NASolve/blob/3bd46f6e96ef7a923936bb74b8a8f0366a17aaba/docs/architecture.md#live-nonbonded-policy-boundary-c330-planned)
-(`3bd46f6e96ef7a923936bb74b8a8f0366a17aaba`), evidence key
-`live_nonbonded_policy_contract_2026_11_15`. No branch merge is implied.
-All prior Linden native trials/observers are finished. The OS update removed
-temporary runtimes; persistent forensic archives retain prior native evidence.
-Rebuild a pinned runtime when needed rather than resuming an absent scratch job.
+Nine before-implementation regression failures/errors become passes; **84 focused,
+1,853 full +229 subtests, 84 installed**, six CLI helps and `pip check` pass.
+Complete Phenix 2.2.1-6174 source/installed checks cover actual construction,
+exact guarded/unguarded energies/gradients, six-variable derivatives, movement/
+reset and hidden/mid-call mutation refusal. Scope is a synthetic three-atom native
+manager with zero additive-pair control, not a DNA solve or physical acceptance.
+An initial native installation harness mixed Python ABIs; corrected pure-Python
+wheel staging passes with Phenix's own compiled dependencies. Evidence retains
+that failure. The next slice must qualify captured-worker owner/profile staging
+and provenance before adding any explicit job option; no automatic activation.
+All Linden native jobs are finished. Historical temporary runtimes removed by
+the OS update are not resumable; persistent forensic archives retain old evidence.
 
-This missing guard is separate from Cedar Q06 refinement chemistry/PDU angle
+This direct guard is separate from Cedar Q06 refinement chemistry/PDU angle
 review. Nonuniform curvature, matched diffraction and density-aware S06 remain
 open. Do not restart the completed small-polish comparison: W91 showed no seed
-benefit. After the shared guard, choose a genuinely displaced general motion case
+benefit. After worker qualification, choose a genuinely displaced general motion case
 and retain a matched control, rather than tuning to one benchmark structure.
 
 **Next Pine integration candidate (agreed with Cedar):** for pure representative
@@ -396,8 +398,8 @@ rebasing of an old preference. Coot edits or re-entered exports need a checked
 inverse mapping; additions/deletions/renames or changed intent require fresh
 qualification. No runtime implementation or standalone recut refinement is claimed.
 
-Cedar still owns the complete live source-policy guard, including nonbonded and
-exclusion tables. If a concrete requirement needs an in-engine facade, retain the
+Cedar owns the qualified live nonbonded-policy guard and exclusion-table inventory;
+Willow consumes it only through the explicit direct API. If a concrete requirement needs an in-engine facade, retain the
 copy, pair-table, outlier/report and source-bound weighting qualification contract;
 equal random seeds alone are not equal atomwise shakes in different frames.
 See the [bounded integration contract](topostitch-periodic.md#next-implementation-contract).

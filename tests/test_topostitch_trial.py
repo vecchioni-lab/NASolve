@@ -438,3 +438,105 @@ def test_atomic_start_checks_remaining_not_original_evaluation_budget(fake_optim
     with pytest.raises(ValueError,match='budget'):
         run_native_masked_trial(objective,max_iterations=2,max_calls=10,initial_displacements=[.1,0.,0.])
     assert objective._calls==50 and objective.visited==[]
+
+
+@pytest.fixture
+def guarded_objective(tmp_path):
+    # Protocol doubles only: the pinned native owner is qualified separately.
+    import json
+    from hashlib import sha256
+    objective=object.__new__(NativeMaskedObjective)
+    objective._mask=CoordinateMask(((0,0,0),),(0,),1)
+    objective._calls=0;objective._max_calls=10
+    objective._geometry=SimpleNamespace(policy={'unused_radius':1.9},cache=0)
+    objective._gr=object();objective._flex=object();objective._identities=['first']
+    objective._pair_weight=0.;objective._tether_weight=.25
+    trace=[];active=SimpleNamespace(nonbonded=True)
+    objective._flags=SimpleNamespace(flags=lambda **kw:active)
+    def static(points):trace.append('static');objective._geometry.cache+=1
+    objective._check_native=static
+    def native(geo,points,flags,*args,**kwargs):
+        assert flags is active and kwargs=={'plane_order_safe':True}
+        trace.append('native');geo.cache+=1
+        return dict(target=1.,gradient=[2.,0.,0.],terms={},proxy_counts={})
+    objective._correction=SimpleNamespace(evaluate_fixed_native=native)
+    objective._pairs=SimpleNamespace(evaluate=lambda *a,**kw:dict(target=0.,gradients=((0.,0.,0.),),components={}))
+    source=tmp_path/'owner.py';source.write_text('# trusted test double')
+    profile=tmp_path/'data/nonbonded-native-profile.json';profile.parent.mkdir();profile.write_text('{}')
+    def require(geo,expected,**options):
+        trace.append('guard')
+        assert options['flags'] is active
+        assert {k:v for k,v in options.items() if k!='flags'}==dict(normalization=False,
+            compute_gradients=True,disable_asu_cache=False,gradients=None,
+            custom_nonbonded_function=None,external_energy_function=None,extension_objects=())
+        if geo.policy!=expected['policy'] or not active.nonbonded:raise ValueError('Policy changed')
+        return expected
+    owner=SimpleNamespace(__file__=str(source),require_live_nonbonded_policy=require)
+    expected=dict(policy={'unused_radius':1.9},policy_id='synthetic',native_profile_id='synthetic',policy_sha256='d'*64)
+    provenance=objective._bind_live_policy(owner,expected,active)
+    assert provenance['owner_source_sha256']==sha256(source.read_bytes()).hexdigest()
+    assert provenance['native_profile_sha256']==sha256(profile.read_bytes()).hexdigest()
+    trace.clear()
+    return objective,expected,trace,active
+
+
+def test_live_policy_uses_actual_flags_and_brackets_native_helpers(guarded_objective):
+    objective,expected,trace,active=guarded_objective
+    result=objective.evaluate((.2,0,0))
+    assert trace[0]==trace[-1]=='guard'
+    assert trace.index('guard')<trace.index('static')<trace.index('native')
+    assert trace.count('static')==2 and trace.count('native')==1
+    assert result['target']==1.01 and result['gradient']==(2.1,0.,0.)
+    assert 'live_nonbonded_policy' not in result  # binding provenance only
+    assert objective._geometry.cache==3
+
+
+def test_live_policy_detaches_baseline_and_refuses_preexisting_drift(guarded_objective):
+    objective,expected,trace,active=guarded_objective
+    expected['policy']['unused_radius']=2.1
+    objective.evaluate((0,0,0))  # original caller dict cannot redefine expectation
+    trace.clear();objective._geometry.policy['unused_radius']=2.1
+    with pytest.raises(ValueError,match='Policy changed'):objective.evaluate((0,0,0))
+    assert trace==['guard'] and objective._calls==2
+
+
+@pytest.mark.parametrize('where',['native','final_static','flags'])
+def test_live_policy_rejects_mutation_before_returning_identical_energy(guarded_objective,where):
+    objective,expected,trace,active=guarded_objective
+    if where=='final_static':
+        original=objective._check_native
+        def change(points):
+            original(points)
+            if trace.count('static')==2:objective._geometry.policy['unused_radius']=9.
+        objective._check_native=change
+    else:
+        original=objective._correction.evaluate_fixed_native
+        def change(*args,**kw):
+            value=original(*args,**kw)
+            if where=='flags':active.nonbonded=False
+            else:objective._geometry.policy['unused_radius']=9.
+            return value
+        objective._correction.evaluate_fixed_native=change
+    with pytest.raises(ValueError,match='Policy changed'):objective.evaluate((0,0,0))
+    assert trace[-1]=='guard'
+
+
+def test_live_policy_preserves_native_error_and_exhausted_budget(guarded_objective):
+    objective,expected,trace,active=guarded_objective
+    def fail(*args,**kw):
+        objective._geometry.policy['unused_radius']=9.
+        raise RuntimeError('original native error')
+    objective._correction.evaluate_fixed_native=fail
+    with pytest.raises(RuntimeError,match='original native error'):objective.evaluate((0,0,0))
+    trace.clear();objective._calls=objective._max_calls
+    with pytest.raises(ValueError,match='budget exhausted'):objective.evaluate((0,0,0))
+    assert not trace
+
+
+@pytest.mark.parametrize('arguments',[{'live_policy_owner':object()},{'expected_live_policy':{}},
+    {'live_policy_owner':object(),'expected_live_policy':{}}])
+def test_live_policy_invalid_dependency_refuses_before_sdk_import(arguments):
+    with pytest.raises(ValueError,match='live policy'):
+        NativeMaskedObjective(None,None,b'',None,movable_indices=[],expected_native_signature='',
+            correction=None,native_audit=None,tether_sigma_angstrom=1,max_displacement_angstrom=1,
+            max_evaluations=100,**arguments)

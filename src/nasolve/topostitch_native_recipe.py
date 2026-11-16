@@ -356,7 +356,13 @@ class NativeMaskedObjective:
     """
     def __init__(self, geometry, native_hierarchy, model_bytes, pair_binding, *,
                  movable_indices, expected_native_signature, correction, native_audit,
-                 tether_sigma_angstrom, max_displacement_angstrom, max_evaluations, include_pairs=True):
+                 tether_sigma_angstrom, max_displacement_angstrom, max_evaluations, include_pairs=True,
+                 live_policy_owner=None, expected_live_policy=None):
+        if ((live_policy_owner is None) != (expected_live_policy is None)
+                or (live_policy_owner is not None and not callable(
+                    getattr(live_policy_owner, 'require_live_nonbonded_policy', None)))):
+            raise ValueError('Require both a trusted live policy owner and expected snapshot')
+        self._live_policy_owner = None
         if type(include_pairs) is not bool:
             raise ValueError('Pair inclusion must be an explicit boolean')
         from iotbx import pdb
@@ -401,7 +407,13 @@ class NativeMaskedObjective:
         self._signature = expected_native_signature
         self._crystal = inp.crystal_symmetry()
         self._tether_weight, self._max_calls, self._calls = weight,max_evaluations,0
+        guard_report = None
+        if live_policy_owner is not None:
+            active_flags = self._flags.flags(default=True)
+            guard_report = self._bind_live_policy(live_policy_owner, expected_live_policy, active_flags)
         self._check_native(points)
+        if guard_report is not None:
+            self._check_live_policy(active_flags)
         self._report = {'schema_version':1,'kind':'topostitch-masked-native-objective',
             'source_model_sha256':binding['source_model_sha256'],
             'pair_recipe_sha256':binding['recipe_sha256'],
@@ -423,6 +435,39 @@ class NativeMaskedObjective:
                 'Static-definition signature does not freeze nonbonded neighbours or qualify packing',
                 'Explicit mask is not permission to move atoms or proof of complete chemistry',
                 'No optimizer, manager rebuild, refinement or campaign lifecycle is qualified']}
+        if guard_report is not None:
+            self._report['live_nonbonded_policy'] = guard_report
+
+    @staticmethod
+    def _live_policy_options(active_flags):
+        # These must match evaluate_fixed_native's actual energies_sites call.
+        return dict(flags=active_flags, normalization=False, compute_gradients=True,
+            disable_asu_cache=False, gradients=None, custom_nonbonded_function=None,
+            external_energy_function=None, extension_objects=())
+
+    def _bind_live_policy(self, owner, expected, active_flags):
+        # The trusted owner validates bounded primitive data and the actual
+        # manager before copying the baseline. Never snapshot away a mismatch.
+        owner.require_live_nonbonded_policy(self._geometry, expected,
+            **self._live_policy_options(active_flags))
+        frozen = json.dumps(expected, sort_keys=True, allow_nan=False)
+        try:
+            source = Path(owner.__file__)
+            profile = source.parent/'data/nonbonded-native-profile.json'
+            provenance = dict(policy_id=expected['policy_id'],
+                native_profile_id=expected['native_profile_id'], policy_sha256=expected['policy_sha256'],
+                owner_source_sha256=sha256(source.read_bytes()).hexdigest(),
+                native_profile_sha256=sha256(profile.read_bytes()).hexdigest())
+        except (AttributeError, OSError, KeyError, TypeError) as exc:
+            raise ValueError('Require complete trusted live policy owner/profile provenance') from exc
+        self._live_policy_owner, self._live_policy_expected = owner, frozen
+        return provenance
+
+    def _check_live_policy(self, active_flags):
+        owner = getattr(self, '_live_policy_owner', None)
+        if owner is not None:
+            owner.require_live_nonbonded_policy(self._geometry, json.loads(self._live_policy_expected),
+                **self._live_policy_options(active_flags))
 
     def _check_native(self, points):
         geo = self._geometry
@@ -458,9 +503,12 @@ class NativeMaskedObjective:
         if self._calls >= self._max_calls:
             raise ValueError('Masked objective evaluation budget exhausted')
         self._calls += 1
+        active_flags = self._flags.flags(default=True)
+        self._check_live_policy(active_flags)
         self._check_native(points)
         native = self._correction.evaluate_fixed_native(self._geometry,points,
-            self._flags.flags(default=True),self._gr,self._flex,plane_order_safe=True)
+            active_flags,self._gr,self._flex,plane_order_safe=True)
+        self._check_live_policy(active_flags)
         pair = self._pairs.evaluate(points,atom_identities=self._identities)
         full = tuple(tuple(native['gradient'][3*i+k]+self._pair_weight*pair['gradients'][i][k] for k in range(3))
                      for i in range(len(points)))
@@ -470,6 +518,7 @@ class NativeMaskedObjective:
         if not math.isfinite(target) or any(not math.isfinite(v) for v in gradient):
             raise ValueError('Nonfinite masked objective value or gradient')
         self._check_native(points)
+        self._check_live_policy(active_flags)
         return {'target':target,'gradient':gradient,'points':points,
             'native_target':native['target'],'pair_target':self._pair_weight*pair['target'],'tether_target':tether,
             'unweighted_pair_target':pair['target'],

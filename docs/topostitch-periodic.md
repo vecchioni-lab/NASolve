@@ -3627,3 +3627,82 @@ scripts/audit_topostitch_roadmap.py --write` and `--check`, plus
 tests/test_topostitch_roadmap.py` (**8 passed**) and `git diff --check`.
 No new full suite, installation or external-tool execution was required; W94
 remains the runtime validation receipt. No generated scientific artifacts included.
+
+## W96 — Optional direct live-policy consumer
+
+`NativeMaskedObjective` now accepts keyword-only `live_policy_owner` and
+`expected_live_policy`. Supply both or neither. The trusted owner validates the
+expected primitive snapshot and actual manager before the baseline is frozen as
+JSON. A missing/incomplete owner/profile or policy mismatch raises; there is no
+fallback or replacement snapshot. The original caller dictionary cannot change
+the stored expectation. The owner still owns bounds, supported native types and
+policy comparison; Willow does not duplicate those mechanics.
+
+Construction checks bracket the existing static-signature check. Evaluation
+checks precede all native/static work, follow the corrected native energy, and
+follow the final static check before a result can return. All checks and the
+corrected evaluator share the actual flags object; explicit options match
+`compute_gradients=True`, `normalization=False`, `disable_asu_cache=False`, with
+no supplied gradient buffer or function/external/extension overrides. The existing
+plane correction is unchanged. Native errors propagate without a later guard
+masking them; failed attempts retain existing budget accounting. Sequential
+checks cannot detect a concurrent transient mutation that is restored in between.
+
+Opt-in binding reports gain `live_nonbonded_policy` containing `policy_id`,
+`native_profile_id`, `policy_sha256`, `owner_source_sha256` and
+`native_profile_sha256`. These hashes are provenance, not authority to adopt a
+model. Existing callers keep their old binding and evaluation shapes. There is
+no new CLI, worker bootstrap, campaign default or dependency; the guard owner is
+not imported implicitly. The caller remains responsible for trusted source
+lifetime and interpretation. Historical captures do not gain missing policy
+provenance, and the guard does not authenticate generated contacts or chemistry.
+
+The qualified owner is Cedar **C331** commit
+`c4e5ddb8530358c524feb473f3c4ffe77c64b6ac`,
+`cif_live_nonbonded_policy.py` plus `data/nonbonded-native-profile.json`.
+Supported profile: `phenix-2.2.1-6174-darwin-arm64-nonbonded-v1`.
+Owner SHA256 `0a812020882d5452554a4f6629c5af1aa56e01f6060c26fce585e9174bcfaf3e`;
+profile SHA256 `d35a0b61dd49a75132d16d3bb53b1c636eefbd30c21d19fe5d50a03d018e6ee6`.
+No Cedar files were copied into Willow's tracked source and no branch was merged.
+
+Nine new regressions exercise the previously absent API (three failures and six
+missing-helper fixture errors before implementation). **84 focused**, **1,853 full
++229 subtests**, **84 fresh-wheel** tests, six installed CLI helps and `pip check`
+pass. The full suite covers shared evaluation behavior. Source and installed
+runtime bytes match; Python 3.10 syntax parsing passes. Exact local commands:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider tests/test_topostitch_trial.py tests/test_topostitch_captured_job.py tests/test_topostitch_endpoint.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w96-guard/install-check.py
+PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python /private/tmp/willow-w96-guard/native-check.py /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-linden/src
+PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python /private/tmp/willow-w96-guard/native-check.py /private/tmp/willow-w96-guard/native-installed/site-packages /private/tmp/willow-w96-guard/native-installed/site-packages/nasolve
+```
+
+Both native runs were **complete executions**, not dry-runs, under Phenix
+**2.2.1-6174 / Python 3.11.15**. Eight bounded checks pass: real constructor/opt-in
+provenance; exact guarded/unguarded source, local-motion and forced-reset/moved
+targets/gradients; all six movable-variable finite differences; caller snapshot
+detachment; an unused-radius mutation refused before any static/energy helper;
+and a mid-evaluation mutation refused before returning. The synthetic three-atom
+manager uses a zero additive-pair control. This qualifies the guard/native seam,
+not a canonical DNA recipe, physical gap closure, diffraction or refinement.
+
+Installation builds an sdist, deletes its staging source, builds a wheel after
+relocation and tests a fresh environment without source PYTHONPATH. A separate
+temporary native installation combines that pure-Python wheel with exactly four
+C331 wheel members: guard, profile, existing correction and static auditor. Their
+bytes match the pinned sources. This is a bounded installed composition, not a
+full merged-Cedar regression. The first native install attempt accidentally put
+the ordinary Python 3.12 environment ahead of Phenix's Python 3.11 NumPy and failed
+ABI import. The corrected `--no-deps` wheel target retains Phenix's own compiled
+dependencies and passes; the failed harness log is retained. No product fallback
+or SDK patch was used. Willow wheel SHA256:
+`853d8bfbb8a476a65e5f6d673de8dce8a4f81a5112b9a01b70ff6f87c4118d79`.
+
+Raw scripts/receipts/logs remain ignored local evidence; no scientific payload,
+SDK or generated model is committed. Next: qualify explicit captured-worker
+staging of the complete owner/profile dependency set and report provenance before
+any supported job option is added. Keep the direct interface opt-in. Large-motion
+DNA, independent packing/contact checks, density-aware matched refinement and
+Pine/campaign acceptance remain separate open milestones.

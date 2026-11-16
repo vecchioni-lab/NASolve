@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W96 — Bind the optional shared native policy guard
+
+- Let `NativeMaskedObjective` accept an explicit trusted live-policy owner and
+  expected snapshot together. Freeze the baseline, check before native/static
+  work and after evaluation, and record owner/profile provenance when opted in.
+- Reject hidden/mid-call policy drift while allowing native neighbor rebuilding;
+  preserve existing native failures and default binding/result shapes.
+- Qualify the direct consumer against Cedar C331 with focused/full/install and
+  bounded actual Phenix controls. Captured workers and campaign defaults are
+  unchanged; no automatic guard activation or geometry acceptance is added.
+
 ### W95 — Prepare the shared guard integration boundary
 
 - Specify the optional objective consumer, native/static check ordering, frozen
