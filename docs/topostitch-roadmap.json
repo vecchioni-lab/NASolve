@@ -387,7 +387,8 @@
         "W103 observes complete exact-image pair supports, native shell exclusions and directed repulsion in actual initialized/selected/reinterpreted managers. Ordinary core PHIL reveals107 terms that a full callback would duplicate and117 removed directed nonbonded rows; integration must bind complete intended coverage and exclusions rather than append all terms. Local diagnostic only.",
         "W104 adds the reusable declared-coverage checker: exact source/crystal/exclusion and inventory bindings, explicit native/additive providers, score parameters, rational images and duplicate/missing/stale refusal. Installed replay covers the W103 native controls; authenticated actual-manager production and activation lifecycle remain open.",
         "W105 exports exact requested-term declarations from the existing compiled NativePairRecipe, checking original binding, actual proxy parameters and Cartesian/image roles without changing the compiler/workers. Installed native observation passes; complete actual-manager producer and activation remain open.",
-        "W106 observes the actual callback-free native manager through the existing C331 policy owner, exactly binds supported term images and origins, and composes W104/W105 coverage for native core plus explicit missing terms. Native/installed controls pass including an evidence-driven rational-denominator fix; active-force/lifecycle integration remains open."
+        "W106 observes the actual callback-free native manager through the existing C331 policy owner, exactly binds supported term images and origins, and composes W104/W105 coverage for native core plus explicit missing terms. Native/installed controls pass including an evidence-driven rational-denominator fix; active-force/lifecycle integration remains open.",
+        "W107 composes107ordinary nativecore terms with17explicitmissing periodicterms using existing compiler andcoverage APIs. Actual model entry andexplicit select-all rebinding pass completeenergy/force/normalization andderivativecontrols. Term-level providerselection,activecallback guarding,exclusionapproval andordinary refinementlifecycle remainopen."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -395,7 +396,7 @@
         "Blunt and asymmetric-orientation trials retain matched observations/Free-R and independent bends/maps; calibrate inconclusive outcomes rather than force alignment or a statistical winner.",
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning."
       ],
-      "next_action": "Use W104 coverage, W105 compiled declarations and W106 callback-free native observation in the existing frozen AutoRefine actual-manager/final-writer lifecycle. Qualify only explicitly missing additive terms with native core terms, preserving whole-objective normalization and frozen exclusions; do not append the full recipe or infer exclusions. Keep helper/source provenance, general-position scope, callback-aware guarding, selection/rebuild and final-writer binding explicit. Then compare predeclared candidate/no-repair siblings with matched observations/Free-R/phase/refinement budgets and model-bound maps.",
+      "next_action": "Do not repeat W107 arithmetic controls. Qualify general frozen term-level provider selection, then callback-aware buffer/force/normalization and source/exclusion lifetime through existing AutoRefine prepare/frozen-round/actual-manager/final-writer owners. Preserve C331 idle guarding and explicitly decide/qualify periodic exclusion policy; do not infer providers from pair purpose or append the full recipe. Then matched candidate/no-repair diffraction/Free-R/map trials with geometry and B09 final gates. See W107 integration-gate audit.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -406,14 +407,15 @@
         "E_PAIR_NATIVE_INVENTORY",
         "E_PAIR_COVERAGE",
         "E_COMPILED_PAIR_DECLARATIONS",
-        "E_NATIVE_PAIR_OBSERVER"
+        "E_NATIVE_PAIR_OBSERVER",
+        "E_MISSING_PAIR_ARITHMETIC"
       ],
       "last_audit": {
         "date": "2026-11-16",
         "reviewer": "Linden",
         "code_commit": "ff0059f9a0cdf274636a2fcf84f2a697ea2da52f",
-        "human_update": 106,
-        "scope": "Actual callback-free native inventory and explicit coverage qualified on pinned native profile; active missing-term forces, exclusions, lifecycle, diffraction andscientificacceptance remainopen."
+        "human_update": 107,
+        "scope": "Bounded native-core plus missing-periodic arithmetic qualified; no productionselection,activeguard/exclusionapproval,lifecycle,diffraction orscientificacceptance."
       }
     },
     {
@@ -1784,6 +1786,25 @@
         "committed": false,
         "portable_campaign": false
       }
+    },
+    "E_MISSING_PAIR_ARITHMETIC": {
+      "kind": "actual_model_core_plus_missing_periodic_arithmetic",
+      "code_commit": "ff0059f9a0cdf274636a2fcf84f2a697ea2da52f",
+      "human_update": 107,
+      "reference": "docs/topostitch-periodic.md#w107--native-core-plus-only-the-missing-periodic-terms",
+      "result": "Complete107native+17additive coverage before/after explicit all-atomrebinding;8x20/20derivative controls,1296objectivecalls,12unsupported-settingrefusals. Zero callback exactlypreserves target/fullgradients; addedenergy/forces useactualnative N11379healthy/N11253displaced. Maxforcecompositionerror1.39e-17;192.80s Phenix2.2.1-6174 completeexecution. Sourceinputs/software/definitions/exclusions/kernelbindings preserved. Independentreviewreplaypasses;6Cedarowners/profilefilesmatch162ffe1d.",
+      "limitation": "Bounded diagnostic with explicitly declared whole-pair split, not a general provider selector. C331 guards restored idle policy, not activecallback/internalgradientbuffers. Existing periodicrepulsion retained; noexclusionapproval,automaticlifecycle/refinement/density/geometryacceptance ormergedruntime. Initialpreparationwrongimport andarchiveprefixfailure retained/corrected; productioncodeunchanged.",
+      "plan_sha256": "6d90fd5c5b57e9f5a28b52a71b8ebb65e46a7ffc48fa19a0dddc275149a1deee",
+      "local_forensic_archive": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/w107-missing-pair-arithmetic-2026-11-16.tar.gz",
+        "sha256": "795758f4ddf7453b0adbd2884a1c10eb21fa96803f972ab5225e188c91003658",
+        "bytes": 1024844,
+        "files": 60,
+        "payload_index_verified": true,
+        "committed": false,
+        "portable_campaign": false
+      }
     }
   },
   "benchmarks": [
@@ -1935,8 +1956,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 106,
-    "next": 107,
+    "current": 107,
+    "next": 108,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -2380,6 +2401,12 @@
       {
         "number": 106,
         "title": "Observe complete native pair inventories with exact image membership",
+        "state": "RECORDED",
+        "code_commit": "ff0059f9a0cdf274636a2fcf84f2a697ea2da52f"
+      },
+      {
+        "number": 107,
+        "title": "Qualify native core plus explicitly missing periodic forces",
         "state": "RECORDED",
         "code_commit": "ff0059f9a0cdf274636a2fcf84f2a697ea2da52f"
       }

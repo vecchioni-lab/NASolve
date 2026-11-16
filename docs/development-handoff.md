@@ -148,7 +148,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-16
 
-**W100–W103 diagnostics and W104–W106 coverage/export/native-observation APIs are audited; explicit missing-term forces and ordinary refinement lifecycle remain next.**
+**W100–W107 diagnostics and coverage APIs are audited; general provider selection, active policy and ordinary refinement lifecycle remain next.**
 W102 checks original and explicitly rebound select-all native managers with unchanged
 normalization: eight derivative controls and twelve negative controls pass. This is
 not automatic callback persistence, a callback-aware C331 policy guard, or a
@@ -182,9 +182,15 @@ negatives pass. A separate native image codec exposes and fixes a denominator
 mismatch with exact rational group comparison while retaining lattice offsets.
 All failed diagnostics are preserved, including unsupported native parallelity
 image construction. [Scope and commands](topostitch-periodic.md#w106--complete-callback-free-native-inventory-observation).
-Latest software is W106; earlier bending controls remain pinned W98/C331. The
-native reader requires the trusted frozen Cedar policy owner; active forces,
-callback-aware guarding and refinement lifecycle are not enabled. The [audited roadmap](topostitch-roadmap.md) is generated from the one
+W107 now qualifies **107 native core +17 explicit missing periodic terms** through
+actual model entry and explicit select-all rebinding: **eight 20/20 derivative
+controls, 1,296 calls, twelve negatives**, exact zero-callback preservation and
+correct native normalization. No production code changed; current software is
+W106. The bounded callback is diagnostic only. [Results and next integration gates](topostitch-periodic.md#w107--native-core-plus-only-the-missing-periodic-terms)
+separate general term-level provider selection, active callback/buffer guarding,
+periodic exclusion policy and frozen refinement lifecycle. Earlier bending
+controls remain pinned W98/C331; ordinary refinement and scientific acceptance
+remain open. Do not repeat passed arithmetic controls as a substitute. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
 [periodic topology](topostitch-periodic.md) and [bend previews](topostitch-preview.md).

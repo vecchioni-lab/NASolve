@@ -4714,3 +4714,109 @@ autonomous portable campaign. Next: qualify only the explicitly missing additive
 terms with existing native core terms, retaining complete frozen coverage,
 exclusion policy and actual normalization; then integrate the existing frozen
 refinement lifecycle. Do not append the complete recipe or infer exclusions.
+
+
+## W107 — Native core plus only the missing periodic terms
+
+The next bounded arithmetic control composes the W104–W106 APIs with the
+existing W102 actual-model energy probe. Ordinary core PHIL supplies **107**
+requested terms. The existing `prepare_pair_recipe` generates a separate packet
+for the two explicitly declared periodic pairs, supplying the remaining **17**.
+Its pair rows must exactly equal the corresponding rows of the complete original
+packet. Both source/recipe identities are frozen; full requested coverage is
+checked against the actual manager before/after each manager case. The whole
+124-term recipe is never appended on top of native core forces.
+
+This uses the current W106 installed wheel and pinned C331 owners with complete
+Phenix **2.2.1-6174 (dispatcher 2.2.1)** execution. Healthy and displaced sources,
+each before/after explicit all-atom selection/rebinding, are tested in native-only
+and native-plus-missing-pair modes. All **eight derivative cases pass 20/20
+directions**, using the unchanged four-step Cedar probe: **162 evaluations each,
+1,296 total**. The diagnostic completes in **192.80 seconds**, under its original
+900-second owned-process cap. No optimizer, diffraction data, edited model or
+Coot session is involved.
+
+| Input | Actual native denominator | Raw 17-term additive energy |
+| --- | ---: | ---: |
+| Healthy | 11,379 | 228.7895161473 |
+| Displaced | 11,253 | 499.2917956480 |
+
+Zero-valued callbacks preserve native targets and complete gradients exactly.
+The additive energy and complete force vectors use the actual native denominator
+without incrementing its count. Maximum force-composition discrepancy is
+**1.39e-17**; maximum target-composition discrepancy is **5.21e-17**. Energy-only
+calls agree. These are arithmetic errors, not geometric displacement measures or
+claims that either structure improved. The two denominators differ: never carry
+a normalization count blindly across input models or rebuilt managers.
+
+All **12 negative controls** refuse partial atom selection, changed identity,
+existing callbacks, disabled normalization, changed family flags and supplied
+external gradient buffers before invoking the diagnostic callback. Complete
+native definitions, exclusion policies, input/software hashes and temporary
+kernel/method bindings are preserved. Independent replay reproduces all saved
+Cedar derivative reviews and coverage results. Six reused Cedar source/profile
+files are byte-identical in current Cedar `162ffe1d`; that is a source compatibility
+check, not a merged latest-Cedar runtime qualification.
+
+C331 still observes only the restored callback-free, default energy-only policy
+before/after calls. It does **not** qualify the active custom callback or actual
+model-provided internal gradient buffer. The diagnostic binds its callback for
+each call and restores it; no automatic ordinary-refinement interception,
+selection/rebuild lifetime or final-writer integration is enabled. Existing
+periodic nonbonded repulsion is deliberately retained. Arithmetic correctness
+does not approve that exclusion policy or make it equivalent to ordinary PHIL
+for every periodic contact.
+
+The initial preparation failed before staging inputs because `ResidueSite` was
+imported from the wrong module; its original driver is retained and the import
+was corrected to the existing coordinate owner. Archive assembly initially
+refused an unchanged base-module provenance path from the earlier pinned
+installation. An explicit installed-file/wheel-member hash audit proves the
+actual imported copy has identical bytes; archive classification was corrected.
+Both failures remain recorded. No diagnostic settings, runtime code or acceptance
+thresholds changed to obtain a pass.
+
+Exact commands (historical local validation root):
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w107-missing-pair-arithmetic/prepare.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w107-missing-pair-arithmetic/run.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w107-missing-pair-arithmetic/audit.py
+python3 /private/tmp/willow-w107-missing-pair-arithmetic/archive-finish.py
+```
+
+All scientific inputs, native logs, recipes and retained failures are local and
+excluded from Git. The verified forensic archive is not an autonomous portable
+campaign. This is a diagnostic/documentation update; no source patch requires
+another install/full-suite run beyond W106's recorded validation.
+
+### Next integration gates after W107
+
+1. **Explicit provider selection.** General production selection must consume
+   frozen term-level provider assignments and exact compiled parameters/images.
+   Do not infer a provider from `selected`/`core` labels or assume whole pairs are
+   always missing. W107's whole-pair split is a declared control, not the general
+   selection algorithm. Reuse the existing compiler; qualify any compiled-term
+   subset against the complete recipe and reject overlap or omissions.
+2. **Frozen lifetime and active guarding.** Reuse Cedar's
+   `refinement_parallelity.prepare_execution`, frozen round/checkpoint lifecycle,
+   C338 actual-manager observation and final-writer owners. Bind all consumed
+   helper/profile bytes and both complete/additive recipe identities. A separate
+   callback-aware protocol must qualify buffer ownership, actual force activity,
+   normalization and source/exclusion preservation through selection/rebuild;
+   keep C331's callback-free contract unchanged. Boundary scans are not a proven
+   per-evaluation guard or a concurrency lock.
+3. **Exclusion policy.** Preserve W103's distinction between score coverage and
+   native shell exclusions. The missing periodic hydrogen-bond contacts still
+   participate in native repulsion here. Either retain that policy explicitly or
+   qualify an intended ordinary-pair-equivalent periodic exclusion transformation
+   against identity-image and periodic controls, complete repulsion and force
+   counts. Never silently delete repulsion or infer covalent closure. Cross-image
+   phosphate bonds/angles remain a separate gate; Cedar keeps OP1/OP2 intent.
+4. **Matched scientific trials.** Only after those gates, use predeclared
+   candidate/no-repair siblings with identical observations, Free-R, refinement
+   budgets and model-bound maps. Retain healthy/wrong-connection and forward/reverse
+   shape controls, geometry/packing/twist/rise tradeoffs, and calibrated backbone
+   difference-density review. B09 geotest alignment remains the final demonstration,
+   not an acceptance claim from these derivative controls. No repeated Rfree-led
+   tuning or campaign adoption is enabled.

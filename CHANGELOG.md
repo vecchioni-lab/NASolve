@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W107 — Qualify native core plus explicit missing-pair arithmetic
+
+- Record eight actual-model derivative controls with 107 ordinary native pair
+  terms plus only 17 explicitly missing periodic terms. Complete coverage,
+  native normalization and zero-callback invariance pass before/after selection.
+- Preserve callback-aware policy, exclusion choice, frozen refinement lifecycle
+  and scientific acceptance as separate gates. No production code or activation
+  changes; retain bounded results and failed preparation/archive tooling locally.
+
 ### W106 — Observe native pair coverage without activation
 
 - Add optional `observe_native_pair_terms` for complete bond, angle, planarity and
