@@ -13760,3 +13760,27 @@ generic Coot torsion matcher missed by5.18899°; its unchanged guard and failed 
 remain. This API is opt-in construction only, with no ordinary caller/alias activation,
 Phenix rerun, target change or historical migration. See
 `source_bound_canonical_roundtrip_2026_11_16` for exact commands and limitations.
+
+
+### Explicit canonical input in ordinary construction (C349)
+
+`construct_postmr_model(..., canonical_seed_dictionaries={site: (source, template)})`
+uses the existing Coot stage. Each explicit overlap site must have a distinct
+incoming identity, canonical DNA parent and no passthrough conflict. Inputs freeze
+under `Coot/canonical_seeds`; the original model and actions remain authority for
+context/restoration, while only the native action's incoming identity follows the
+seed. No current production/CLI caller opts in automatically.
+
+`read_canonical_parent_input(directory)` verifies the local-anchor schema-1 receipt,
+source bytes and every pure construction proof, then compares the reconstructed final
+model. It writes nothing and launches nothing. Shared dictionaries are deduplicated
+by content; only initial/final model files persist regardless of the number of
+mutations. Intermediate models are immutable in-memory bytes. A failed native call
+retains this completed input evidence; the same output cannot be retried in place.
+
+Both native Coot1.3.3 PDU/DY round trips pass through this route. Existing context
+proves the internal OP3 deletions, retaining all original11 scaffold coordinates.
+160 focused/installed checks plus83 existing-caller checks and exact relocated native
+seed replay pass. No Phenix/full-suite rerun, numerical change, alias, default or
+historical migration. Source/template selection and chemical qualification remain
+separate caller responsibilities. Exact evidence: `ordinary_explicit_canonical_input_2026_11_16`.

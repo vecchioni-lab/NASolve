@@ -105082,5 +105082,177 @@
       "No full suite; last full C220/583d30df,9178 tests+276 subtests."
     ],
     "next": "Connect explicit source/canonical choices through the existing construction owner; then held-out rotating-ring control and ordinary source/context selection."
+  },
+  "ordinary_explicit_canonical_input_2026_11_16": {
+    "milestone": "C349",
+    "date": "2026-11-16",
+    "signed": "Rowan",
+    "purpose": "Deliver explicit canonical parents through the existing ordinary Coot constructor, with compact reconstructable evidence",
+    "before": "C348 pure helper required a local caller to save the canonical seed and arrange the second mutation.",
+    "after": "construct_postmr_model accepts optional canonical_seed_dictionaries mapping sites to incoming-source and canonical-template paths. It freezes explicit inputs and seeds before its existing Coot call; original model/actions remain context authority. Default callers and result shape stay unchanged.",
+    "schemas": {
+      "policy": "postmr-explicit-canonical-parent-input-v1",
+      "schema_version": 1,
+      "anchor": "canonical_parent_input",
+      "report": "canonical_input.json",
+      "reader": "read_canonical_parent_input",
+      "migration": "None; new opt-in saved evidence only."
+    },
+    "storage": "Keep initial/final model only, content-deduplicated dictionaries, per-site input/output hashes and pure construction proofs. Intermediate whole-model bytes remain in memory. Existing native outputs/failed attempts retained; no new executor or retention owner.",
+    "validation": {
+      "focused": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_postmr_canonical_input.py tests/test_postmr_canonical_seed.py tests/test_postmr_conformation.py tests/test_postmr.py tests/test_postmr_context.py tests/test_postmr_restoration.py --tb=short",
+        "result": "160 passed in 4.27s",
+        "new_tests": 18
+      },
+      "existing_callers": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_postmr_construction.py tests/test_postmr_identity_serials.py tests/test_cif_mixed_pair_fixture.py --tb=short",
+        "result": "83 passed in 8.85s"
+      },
+      "installed": {
+        "status": "INSTALLED_RELOCATED_CANONICAL_INPUT_PASS",
+        "wheel_sha256": "34bd1714583e6c3256909f71758116385fbd04e415434e56da867be5a38fdbd0",
+        "wheel_bytes": 1385681,
+        "source_copy_removed": true,
+        "original_install_path_absent": true,
+        "package_reference_bytes_match": true,
+        "validation_command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-c",
+          "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_postmr_canonical_input.py', 'tests/test_postmr_canonical_seed.py', 'tests/test_postmr_conformation.py', 'tests/test_postmr.py', 'tests/test_postmr_context.py', 'tests/test_postmr_restoration.py', '--tb=short']))"
+        ],
+        "validation_output": "........................................................................ [ 45%]\n........................................................................ [ 90%]\n................                                                         [100%]\n160 passed in 3.48s\n",
+        "build_command": "phenix.python -m pip wheel --no-deps --no-build-isolation --no-index",
+        "temporary_bytes_removed": 11008653
+      },
+      "negative_scope": [
+        "Invalid/unknown/passthrough choices refuse before native work.",
+        "Changed bytes, re-signed false proofs, wrong anchors, traversal, symlinks and wrong final seed refuse.",
+        "Native failure retains a cold-readable parent and cannot retry in place.",
+        "Multiple sites share source copies and retain only two model PDBs.",
+        "Cold unit replay deletes original input folder and moves saved evidence before readback."
+      ]
+    },
+    "native": {
+      "root": {
+        "anchor": "NASolve-live-tests",
+        "path": "349_Cedar_ordinary-canonical-input-isgh8jh6"
+      },
+      "version": "Coot 1.3.3",
+      "execution": "Complete ordinary construction, no Phenix/refinement rerun",
+      "elapsed_seconds": 2.791414708000957,
+      "physical_bytes": 1765435,
+      "source_files_preserved": 5,
+      "driver": {
+        "returncode": 0,
+        "stopped_verified": true,
+        "source_unchanged": true
+      },
+      "cases": {
+        "PDU_to_DT_to_DY": {
+          "chi_before": -109.04357012327162,
+          "chi_parent": -109.04604407692702,
+          "chi_final": -109.0338071114228,
+          "unchanged_scaffold_atoms": [
+            "C1'",
+            "C2'",
+            "C3'",
+            "C4'",
+            "C5'",
+            "O3'",
+            "O4'",
+            "O5'",
+            "OP1",
+            "OP2",
+            "P"
+          ],
+          "unselected_heavy_coordinates_unchanged": true,
+          "model_sha256": "4d52ccf1a393c0b2aef3c220552dbaafa6516a5144381cb04411e5dc5812db57",
+          "context_status": "CONTEXT_PREPARED",
+          "removed_atoms": [
+            {
+              "site": "B:4",
+              "chain_id": "B",
+              "resseq": "4",
+              "icode": "",
+              "altloc": "",
+              "component": "DY",
+              "atom": "OP3",
+              "canonical_atom": "OP3",
+              "element": "O",
+              "serial": 877,
+              "old_serial": 22,
+              "new_serial": 877,
+              "reason": "verified-incoming-O3-prime-P-link"
+            }
+          ],
+          "canonical_input_receipt_sha256": "08591faf9011f7112596d200867a7a62e1a3f399f8ea7e44eba1980cf55cc710",
+          "source_model_sha256": "636223e4edb19caf32e6bf70799f20d008c8ae45a65cc83a727bf1a3d38203d3"
+        },
+        "DY_to_DT_to_PDU": {
+          "chi_before": -108.98122582540628,
+          "chi_parent": -108.99636547675374,
+          "chi_final": -108.99845108390213,
+          "unchanged_scaffold_atoms": [
+            "C1'",
+            "C2'",
+            "C3'",
+            "C4'",
+            "C5'",
+            "O3'",
+            "O4'",
+            "O5'",
+            "OP1",
+            "OP2",
+            "P"
+          ],
+          "unselected_heavy_coordinates_unchanged": true,
+          "model_sha256": "1ddddc0157490c825199e1558e800e68f526434249e0231f81a84e494fb538fe",
+          "context_status": "CONTEXT_PREPARED",
+          "removed_atoms": [
+            {
+              "site": "B:4",
+              "chain_id": "B",
+              "resseq": "4",
+              "icode": "",
+              "altloc": "",
+              "component": "PDU",
+              "atom": "OP3",
+              "canonical_atom": "OP3",
+              "element": "O",
+              "serial": 880,
+              "old_serial": 23,
+              "new_serial": 880,
+              "reason": "verified-incoming-O3-prime-P-link"
+            }
+          ],
+          "canonical_input_receipt_sha256": "8c5d65066e257000b35f4bd40dc15056c6bd7700e5ff5729a6a0a68e625271a2",
+          "source_model_sha256": "1fc98fcddf22b11b8a204458091b0db41ab5bcbfad5a5e9fd3875922a1aa1b32"
+        }
+      },
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=../NASolve-c96/src .venv/bin/python -B branch-artifacts/cedar/runners/c349_start.py"
+    },
+    "cold": {
+      "status": "EXACT_RELATIVE_CANONICAL_REPLAY",
+      "original_temporary_location_absent": true,
+      "native_execution": "FORBIDDEN",
+      "original_files_and_timestamps_preserved": 53,
+      "temporary_bytes_removed": 335205
+    },
+    "prototype": {
+      "root": "349_Cedar_ordinary-canonical-input-mnj0fwxk",
+      "status": "Native integration and159 focused/installed checks passed before compact multi-site storage refinement; original preserved.",
+      "source_recovery": "Exact changed prototype modules retained locally and verified against its original source pins; final attempt carries its own changed-source overlay."
+    },
+    "compatibility": "Explicit API only, no current production/CLI caller activation. Frozen restoration/C331/C338, default scripts, target dictionaries, chemistry/weights and existing context policy unchanged.",
+    "retention": "Only source/tests/docs/compact measurements committed; models/dictionaries/logs and source overlays remain local. Successful package and cold-replay scratch removed.",
+    "limitations": [
+      "Sources/templates are explicit caller authorities, not automatically discovered or newly chemically qualified here.",
+      "No ordinary DY alias or per-site end-state selector yet.",
+      "Only the C348 compatible unbridged-DNA parent boundary; not general sugar conversion or cross-family placement.",
+      "No Phenix/full-suite rerun; C346 survival and C220 last full remain the separately recorded evidence."
+    ],
+    "next": "Qualified source/context selection and held-out rotating-ring control; retain Q06 achieved-geometry distinction."
   }
 }

@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C348 modified–canonical–modified construction — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. C347 pushed at `0b1cba41`; C348 is this
+Updated **2026-11-16, C349 ordinary explicit canonical parents — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. C348 pushed at `09295ec5`; C349 is this
 completed code/evidence checkpoint. No full suite, branch, default activation or
 merge. Linden owns Pine/Willow; frozen restoration/C331/C338 unchanged. Simon
 confirmed work through **23:00 London**. All Rowan jobs stopped at this checkpoint.
@@ -73,10 +73,22 @@ A native generic torsion matcher missed by5.18899° (guard retained); local prot
 success and a bare-TER format refusal also remain preserved. No Phenix rerun.
 Evidence: `source_bound_canonical_roundtrip_2026_11_16`.
 
-**Next:** connect explicit source/canonical choices through the existing ordinary
-construction owner; no second workflow or automatic alias. Then ordinary source/
-context selection and held-out rotating-ring control. Modified sugars, cross-family
-placement, absolute CIP assignment and universal refinement remain outside C348.
+**C349 complete:** existing `construct_postmr_model` now accepts explicit per-site
+incoming-source/canonical-template pairs. One ordinary Coot stage follows the saved
+seed; original model/actions remain phosphate context authority. Both PDU/DY round
+trips pass with `CONTEXT_PREPARED`, only proven internal OP3 removed and all11 input
+scaffold coordinates exact. Root `349_Cedar_ordinary-canonical-input-isgh8jh6`;
+all source/process checks pass. Exact cold replay preserves53 source files/times,
+removes335205B temporary copies, launches nothing. Only input/final model are saved
+for any number of seeds; shared dictionary copies and per-site proofs suffice.
+160 focused /4.27s,83 existing-caller checks /8.85s,160 installed/relocated /3.48s.
+The earlier successful prototype `mnj0fwxk` remains intact with exact changed source
+preserved separately. No new Phenix/refinement/full-suite/default call. Evidence:
+`ordinary_explicit_canonical_input_2026_11_16`.
+
+**Next:** qualified source/context selection and held-out rotating-ring control.
+No automatic DY alias yet. Explicit template/source choice is not fresh chemical
+qualification; modified sugars and cross-family placement remain outside this rule.
 Both C346 failures remain preserved: unsupported native PDU parent conversion,
 and a harness scope mismatch for refinement-only terminal angle changes. C346's
 successful canonical-input result is independent evidence, not a repaired failure.

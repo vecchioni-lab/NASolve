@@ -1746,6 +1746,7 @@ def construct_postmr_model(
     timeout_seconds: float | None = None,
     allow_op3_sites: tuple[str, ...] = (),
     passthrough_sites: tuple[str, ...] = (),
+    canonical_seed_dictionaries: Mapping[str, tuple[Path, Path]] | None = None,
 ) -> dict[str, object]:
     """Run the ordinary PostMR Coot construction stage without MR/MTZ state.
 
@@ -1753,7 +1754,10 @@ def construct_postmr_model(
     snapshots. Existing phosphate policy proves only selected internal OP3
     context deletion before intact-base transport. It does not run NARestraints, ReadySet,
     optimization, or claim a completed PostMR run. The optional external-process
-    budget leaves default production invocation behavior unchanged.
+    budget leaves default production invocation behavior unchanged. Explicit
+    canonical_seed_dictionaries maps a site to (incoming source, canonical template).
+    It prepares a frozen canonical seed before this same Coot stage; ordinary
+    context/restoration still uses the original model and declared actions.
     """
     input_model, output_model = Path(input_model), Path(output_model)
     reference_model = Path(reference_model) if reference_model is not None else input_model
@@ -1765,6 +1769,13 @@ def construct_postmr_model(
     coot_actions = tuple(a for a in actions if a.method in {"coot-mutate-base", "coot-parent-overlap"})
     if len({a.site for a in coot_actions}) != len(coot_actions):
         raise PostMRPreparationError("Duplicate Coot construction sites")
+    seed_plan = None
+    if canonical_seed_dictionaries is not None:
+        from .postmr_canonical_input import canonical_input_plan
+        seed_plan = canonical_input_plan(coot_actions, canonical_seed_dictionaries, passthrough_sites)
+        inputs.extend(p for _, source, template in seed_plan for p in (source, template))
+        if output_model.resolve() in {p.resolve() for p in inputs}:
+            raise PostMRPreparationError("Construction output must be separate from seed dictionaries")
     output_model.parent.mkdir(parents=True, exist_ok=True)
     if not coot_actions:
         with output_model.open("xb") as handle:
@@ -1791,7 +1802,15 @@ def construct_postmr_model(
             raise PostMRPreparationError("Construction intermediates must be separate from every input")
     coot_dictionaries = {a.after: Path(dictionary_paths[a.after]) for a in overlap_actions}
     coot_directory.mkdir(parents=True, exist_ok=True)
-    _, coot_log = _run_coot(input_model, raw_model, coot_actions, coot_executable,
+    native_input, native_actions, seeded = input_model, coot_actions, None
+    if seed_plan is not None:
+        from .postmr_canonical_input import prepare_canonical_parent_input
+        seeded = prepare_canonical_parent_input(input_model, seed_plan, coot_directory / "canonical_seeds")
+        native_input = seeded["model"]
+        selected = {a.site for a, _, _ in seed_plan}
+        native_actions = tuple(replace(a, before=a.parent_code) if a.site in selected else a
+                               for a in coot_actions)
+    _, coot_log = _run_coot(native_input, raw_model, native_actions, coot_executable,
         coot_directory, environment, coot_dictionaries, parent_models,
         **({"timeout_seconds": timeout_seconds} if timeout_seconds is not None else {}))
     from .postmr_context import (IDENTITY_SERIAL_POLICY_ID, CANONICAL_SERIAL_POLICY_ID,
@@ -1868,11 +1887,15 @@ def construct_postmr_model(
                 context["receipt"]["attempted_canonical_serial_scope"] = context["receipt"].pop("canonical_serial_scope")
         else:
             context["receipt"]["final_sanitizer_recheck"] = final_check
-    return {"model": output_model, "raw_model": raw_model, "geometry_model": geometry_model,
+    result = {"model": output_model, "raw_model": raw_model, "geometry_model": geometry_model,
             "parent_models": parent_models, "coot_log": coot_log,
             "coordinate_restoration": restoration, "restoration_input": restoration_input,
             "context_receipt": context["receipt"], "context_shadow": context["shadow"],
             "context_sanitized_shadow": context["sanitized_shadow"], "context_rechecked_model": rechecked}
+
+    if seeded is not None:
+        result["canonical_parent_input"] = seeded
+    return result
 
 
 @dataclass(frozen=True)

@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Carry explicit canonical parents through ordinary Coot construction (C349)
+
+- Let the existing constructor accept source/template choices for selected
+  overlap sites. Freeze and validate a canonical input before its usual Coot call;
+  original models/actions still own phosphate context and restoration.
+- Save initial/final models, shared dictionary copies and per-site pure proofs.
+  Cold readback reconstructs every step without native execution; corrupt evidence
+  and in-place retry refuse. Default callers and historical receipts are unchanged.
+
 ### Build an explicit canonical parent from a modified DNA base (C348)
 
 - Add a pure opt-in constructor that places a complete caller-supplied canonical

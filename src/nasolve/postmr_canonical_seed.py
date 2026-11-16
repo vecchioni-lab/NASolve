@@ -203,7 +203,7 @@ def _seed(data, site, source, code, template, parent):
 
 def canonical_parent_seed(model, site, source_dictionary, source_component,
                           canonical_dictionary, canonical_component):
-    """Return model bytes and compact provenance without writing any input.
+    """Return model bytes and compact provenance from a model path or immutable bytes.
 
     Standard unbridged DNA, a shared N-glycosidic frame and matching model/template
     sugar hand are required. Preserve the incoming sugar, phosphate atom set and
@@ -211,10 +211,12 @@ def canonical_parent_seed(model, site, source_dictionary, source_component,
     unrelated records stay byte-identical. This does not certify either supplied
     dictionary, assign absolute stereochemistry or choose a chemical end state.
     """
-    paths = [Path(model), Path(source_dictionary), Path(canonical_dictionary)]
+    sources = [Path(source_dictionary), Path(canonical_dictionary)]
+    paths = sources if isinstance(model, bytes) else [Path(model), *sources]
     originals = [p.read_bytes() for p in paths]
+    data = model if isinstance(model, bytes) else originals[0]
     try:
-        return _seed(originals[0], site, paths[1], source_component, paths[2], canonical_component)
+        return _seed(data, site, sources[0], source_component, sources[1], canonical_component)
     finally:
         if any(p.read_bytes() != original for p, original in zip(paths, originals)):
             raise ValueError('Canonical seed input changed during construction')

@@ -4214,5 +4214,8 @@ attempts. This catches the false success before building from the wrong parent;
 C348 now supplies an explicit canonical-base seed that preserves the incoming
 sugar, phosphate and base orientation. Both PDU→thymidine→DY and the reverse route
 work through Coot. This uses the complete source graph, not a PDU/DY name switch.
-Connecting explicit source/template choices to ordinary construction remains next;
+C349 connects those explicit choices to ordinary construction. The original model
+still determines phosphate checks. Saved inputs and small per-residue proofs can
+rebuild the parent after relocation without rerunning Coot; whole-model copies do
+not accumulate for every mutation. Automatic source/context selection remains next;
 these controls do not establish modified-sugar or universal refinement support.

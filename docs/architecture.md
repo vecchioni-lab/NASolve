@@ -15,6 +15,16 @@ not certify dictionaries or infer end state. Ambiguous records, partial chemistr
 wrong hand and lost chi refuse. Ordinary callers remain unchanged; no second
 native/process owner is introduced.
 
+The ordinary constructor can explicitly receive `canonical_seed_dictionaries`
+for overlap sites. It freezes sources/templates and the input under its existing
+Coot directory, constructs the canonical input, then runs the same native stage.
+Only native action input identities change; the original model/actions still own
+context/restoration. The saved local-anchor receipt retains two model files and
+shared dictionaries; per-site proofs reconstruct intermediate bytes in memory.
+Its cold reader recomputes every seed and verifies the final result without
+execution or writes. No source discovery, alias, new process owner or default
+caller activation follows from this opt-in extension.
+
 Custom free-nucleoside references may be combined with an explicitly selected
 DNA source through the pure `compose_dna_source` API. Each source owns its retained
 subgraph; hashes and per-atom origins accompany the new source. Conventional

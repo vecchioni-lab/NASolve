@@ -156,3 +156,8 @@ def test_bare_chain_terminators_are_retained(tmp_path):
     model.write_text(model.read_text().replace('ATOM    901', 'TER\nATOM    901'))
     output, _ = canonical_parent_seed(model, 'A:1', source, 'PDU', template, 'DT')
     assert 'TER\nATOM    901' in output.decode()
+
+
+def test_immutable_bytes_match_path_construction_exactly(tmp_path):
+    model, source, template = case(tmp_path)
+    assert canonical_parent_seed(model.read_bytes(), 'A:1', source, 'PDU', template, 'DT') == canonical_parent_seed(model, 'A:1', source, 'PDU', template, 'DT')
