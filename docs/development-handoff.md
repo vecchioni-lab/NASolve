@@ -148,7 +148,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-16
 
-**W100–W103 native diagnostics and W104 declared-coverage checking are audited; authenticated native observation and ordinary refinement lifecycle remain next.**
+**W100–W103 native diagnostics and W104–W105 coverage/export APIs are audited; complete actual-manager observation and ordinary refinement lifecycle remain next.**
 W102 checks original and explicitly rebound select-all native managers with unchanged
 normalization: eight derivative controls and twelve negative controls pass. This is
 not automatic callback persistence, a callback-aware C331 policy guard, or a
@@ -169,8 +169,14 @@ and twelve negatives replay exactly from the installed wheel. The original
 installed harness's missing developer-script fixture is retained and corrected
 without changing the package. [API and validation](topostitch-periodic.md#w104--explicit-nativeadditive-term-coverage)
 retain the authentication, special-position, force/normalization and lifecycle
-limits. Latest software is W104; completed live native controls remain pinned to
-W98 `7faff1a1` and C331. No new native execution or activation is claimed. The [audited roadmap](topostitch-roadmap.md) is generated from the one
+limits. W105 `4253e378` exports requested terms directly from the existing compiled
+recipe, with **47 focused, 1,923 full +229 subtests and 216 installed tests** passing.
+Four complete Phenix 2.2.1-6174 observation cases match all 124 independently
+expected terms and preserve full energies/gradients/bindings; eighteen native
+negative controls pass. The first harness's read-only C++ setter failure is
+preserved and corrected in a separate attempt. [API and native scope](topostitch-periodic.md#w105--declarations-from-the-existing-compiled-recipe).
+Latest software is W105; earlier bending/manager controls remain pinned W98/C331.
+No actual-manager producer, callback or refinement activation is enabled. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
 [periodic topology](topostitch-periodic.md) and [bend previews](topostitch-preview.md).
