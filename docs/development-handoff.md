@@ -13,11 +13,105 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## A01 — FT_Hg ligand geometry and open XYZ/B, 2026-11-16
+
+**Current milestone: A01**, preparatory evidence for the explicitly post-merge
+[roadmap](metal-development-roadmap.md). The user resumed native work after the
+storage pause. A02 quantitation remains gated on a defensible open-XYZ/B
+endpoint; no new f″ fit or checkpoint adoption occurs in this pass.
+
+**Before/after.** The captured metal dictionary reader previously compared
+connectivity alone, allowing a later definition to silently replace a bond order
+or formal charge. It now rejects contradictory component definitions, duplicate
+bond rows and competing order columns. Standard order aliases and equivalent
+finite numeric charge spellings compare equal; absent metadata is not inferred.
+Original stored values/hashes and single graph-only inputs retain their existing
+representation. This prevents environment/ligand interpretation from depending
+on which inconsistent resource happens to be read last.
+
+**Files/schema/compatibility.** `src/nasolve/metal/chemistry.py`, new
+`tests/test_metal_dictionary_conflicts.py`, changelog, architecture, metal
+workflow descriptor, roadmap and this handoff. No schema or native default
+change; no migration of consistent bundles. Re-reading an old contradictory
+bundle may now fail explicitly. Preserve the original evidence and prepare a
+separate consistent bundle; do not rewrite historical inputs to pass the check.
+
+**Shared mechanics and native evidence.** Private runners use captured Cedar
+`53116e1f1ff2e1d51d6ec2709dd8077c2d72af22` through its supported APIs, not a
+separate refinement kernel. Native secondary-structure controls were previously
+re-enabled by the retained pair PHIL. The NA policy compiler preserves the
+explicit pair/metal terms, converts declared stacks to explicit NARestraints,
+and disables competing native secondary-structure generation. Fresh linked
+checks pass all supported checks, including exact backbone links and the
+PostMR-declared terminal phosphate. Formal-charge readback remains unsupported.
+
+Phenix **2.2.1-6174** completes matched five-cycle open XYZ/group-ADP comparisons
+with distinct dry preflights and fixed endpoint interpretation. Original Free-R
+membership and HL phases are audited; Q/f′ stay fixed. MLHL geometry work uses
+merged observations and zero f″, so it does not qualify anomalous quantitation.
+The shared runtime synchronizes final hierarchy ADPs to active scattering state;
+PDB state and independently reconstructed R statistics are checked. Real-space
+XYZ is requested but native logs report zero processed residues for this model.
+Source-preserving DF and stronger geometry weighting expose remaining local
+shape/fit tradeoffs; no endpoint has yet passed the scientific gate.
+
+A separate owned eLBOW generation supplies support for the missing C7 plane
+membership. Cedar preparation changes only that membership, retaining existing
+ESD and other terms; fresh isolated, linked, whole-inventory, energy-attribution
+and mixed-derivative checks pass their supported scopes. Generation and
+mechanical checks do not establish chemical correctness or convergence. The
+matched plane-only refinements at the original and stronger geometry weights
+are complete. The actual final native plane retains the expected C7 membership
+and weights. Default weighting passes the project Rwork target and improves C7
+planarity; stronger weighting improves the Hg recipe but worsens the global fit.
+Glycosidic/sugar strain and base-environment B remain unresolved. No winner is
+adopted. Five audited comparisons and their models/maps are in private
+`review-v3.md` and checksummed `review-data-v3.json`; earlier reviews remain
+retained. All owned native processes exited and were reaped.
+
+**Validation.** Commands use the everyday checkout’s `.venv/bin/python`
+(Python 3.12) from the named source tree, with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`:
+
+```sh
+python -B -m pytest -q -p no:cacheprovider tests/test_metal_dictionary_conflicts.py tests/test_metal_b_environment.py tests/test_metal_inspection.py tests/test_metal_cluster_environment.py
+python -B -m pytest -q -p no:cacheprovider tests/test_metal_xyz.py tests/test_metal_xyz_weights.py tests/test_metal_b_environment.py tests/test_metal_fit_diagnostics.py
+```
+
+The first command passes **48 tests in 7.54 s**; initial regression execution
+before the fix had **7 failures and 2 passes**. The second command is the
+pre-change relevant baseline: **75 passed in 6.41 s**. In the exact captured
+Cedar source/test tree, with the same environment:
+
+```sh
+python -B -m pytest -q -p no:cacheprovider tests/test_cif_na_policy.py tests/test_cif_native_context.py tests/test_cif_refinement_output.py tests/test_cif_refinement_runtime.py tests/test_cif_refinement_sites.py
+```
+
+**138 passed in 2.92 s.** An initial copied-test harness lacked one transitive
+fixture; its six failures are retained and the exact-version fixture was captured
+before rerun. No full suite, Coot session or portability qualification in this
+pass. Six added documentation links, milestone order A01–A08 and
+`git diff --check` pass. Private review links, hashes and completed run receipts
+are verified separately. This change does not alter operational path handling.
+
+**Evidence/remaining work.** Exact inputs, models, maps, numeric comparisons,
+full-state audits, source snapshot, failed postludes and bounded native receipts
+remain local under the everyday checkout's ignored
+`branch-artifacts/Alder/ft-hg-foundation-20261116-01/`; runner prefix `A40_`.
+They are deliberately excluded from Git. No scientific payload is pruned.
+The first completed refinement's overly strict reflection-hash postlude is
+preserved; later attempts capture full rows and use the existing common-scale
+reflection audit. Independent endpoint checks are separate from actual runtime
+site observations. Remaining work is local geometry/map review, the Hg recipe
+and fit/B diagnosis, then a qualified A02 entry point and mixed Au/Ag control.
+The [storage plan](metal-campaign-storage.md) still precedes large fan-out;
+important geometry nodes retain the stronger evidence policy.
+
 ## FT_Hg foundation and storage scoping 2026-11-16 — A40
 
-**Current stop:** user requested a pause after storage scoping to lower compute.
-Wait for their explicit continuation before returning to FT_Hg. All owned native
-jobs are stopped. [Roadmap](metal-development-roadmap.md) and [storage plan](metal-campaign-storage.md)
+**Earlier checkpoint:** the user requested a pause after storage scoping to lower
+compute; all owned native jobs were stopped. They subsequently resumed A01 work;
+the newer A01 handoff above supersedes this historical pause. [Roadmap](metal-development-roadmap.md) and [storage plan](metal-campaign-storage.md)
 record the implementation order; focused tests only for subsequent bounded work.
 
 **Roadmap correction.** At the user's request, the feature milestones are
@@ -174,7 +268,9 @@ readable, while new kinds require the updated reader. Presentation-only
 native version and worker hash. Scientific XYZ/fdp/count schemas and workers
 are unchanged; no migration or checkpoint adoption is performed.
 
-**Validation.** Python 3.12, with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`:
+**Validation.** Commands use the everyday checkout’s `.venv/bin/python`
+(Python 3.12) from the named source tree, with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`:
 
 ```sh
 python -B -m pytest -q -p no:cacheprovider tests/test_metal_inspection.py tests/test_metal_viewer.py tests/test_metal_workbench.py tests/test_metal_b_environment.py tests/test_metal_cluster_environment.py tests/test_metal_fdp_count.py

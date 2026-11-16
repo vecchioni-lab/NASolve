@@ -2,6 +2,7 @@
 import io
 import re
 import hashlib
+from decimal import Decimal, InvalidOperation
 from Bio.PDB.MMCIF2Dict import MMCIF2Dict
 from .recipe import RecipeError, canonical
 
@@ -13,6 +14,22 @@ _CANONICAL = {
  'T': 'N1 C2 O2 N3 C4 O4 C5 C7 C6',
  'U': 'N1 C2 O2 N3 C4 O4 C5 C6',
 }
+
+
+def _bond_order(value):
+    """Compare explicit spelling aliases without inferring an absent order."""
+    aliases = {'SING':'SINGLE', '1':'SINGLE', 'DOUB':'DOUBLE', '2':'DOUBLE',
+               'TRIP':'TRIPLE', '3':'TRIPLE', 'AROM':'AROMATIC', 'DELO':'DELOC'}
+    return aliases.get(value.upper(), value.upper())
+
+
+def _charge_value(value):
+    """Normalize numeric spelling only; unknown charge tokens stay unknown."""
+    try:
+        number=Decimal(value)
+    except InvalidOperation:
+        return value
+    return number if number.is_finite() else value
 
 
 def dictionaries(resources):
@@ -40,10 +57,28 @@ def dictionaries(resources):
             if any(a==b or a not in names or b not in names for a,b in edges):raise RecipeError('Invalid component bond endpoint')
             graph=dict(elements=dict(zip(names,elements)),edges=edges)
             raw_orders=values.get('_chem_comp_bond.value_order',values.get('_chem_comp_bond.type',[]))
-            orders={canonical(sorted((a,b))):o.upper() for a,b,o in zip(left,right,raw_orders)}
-            charges=dict(zip(names,values.get('_chem_comp_atom.charge',[])))
+            if raw_orders and len(raw_orders)!=len(left):raise RecipeError('Incomplete captured bond orders')
+            if '_chem_comp_bond.value_order' in values and '_chem_comp_bond.type' in values:
+                if list(map(_bond_order,raw_orders))!=list(map(_bond_order,values['_chem_comp_bond.type'])):
+                    raise RecipeError('Conflicting captured bond order columns')
+            orders={}
+            for a,b,order in zip(left,right,raw_orders):
+                edge=canonical(sorted((a,b)))
+                if edge in orders and _bond_order(orders[edge])!=_bond_order(order):
+                    raise RecipeError('Conflicting captured bond orders: '+codes[0])
+                orders[edge]=order.upper()
+            raw_charges=values.get('_chem_comp_atom.charge',[])
+            if raw_charges and len(raw_charges)!=len(names):raise RecipeError('Incomplete captured atom charges')
+            charges=dict(zip(names,raw_charges))
             code=codes[0]
-            if code in result and canonical(result[code]['graph'])!=canonical(graph):raise RecipeError('Conflicting captured component graphs: '+code)
+            if code in result:
+                previous=result[code]
+                if (canonical(previous['graph'])!=canonical(graph)
+                        or {e:_bond_order(o) for e,o in previous['bond_orders'].items()}!=
+                           {e:_bond_order(o) for e,o in orders.items()}
+                        or {a:_charge_value(v) for a,v in previous['charges'].items()}!=
+                           {a:_charge_value(v) for a,v in charges.items()}):
+                    raise RecipeError('Conflicting captured component chemistry: '+code)
             result[code]=dict(graph=graph,sha256=hashlib.sha256(raw).hexdigest(),bond_orders=orders,charges=charges)
     return result
 

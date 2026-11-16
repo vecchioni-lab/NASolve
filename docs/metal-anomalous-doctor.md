@@ -60,6 +60,16 @@ warnings. It does not infer groups from proximity or turn a summed coefficient
 into an observed structure-factor sum or an integer atom count. The full site
 table remains available for alternatives and occupancy review.
 
+**Captured dictionary consistency.** The metal reader compares repeated
+component definitions by atom/connectivity graph, explicit bond orders and atom
+charges. Conflicting resources or blocks, contradictory duplicate bond rows and
+conflicting order columns stop interpretation instead of letting the last entry
+win. Known order spellings such as DOUB/DOUBLE/2 compare equivalently; missing
+orders or charges remain unknown. The original values and resource hashes remain
+unchanged. A graph-only resource remains usable on its own, but it cannot erase
+metadata from another definition of the same component. This is a consistency
+guard, not chemical qualification or an instruction to edit a source dictionary.
+
 **Chemical intent.** The collapsed recipe panel exposes source component bond
 orders, attached atoms, source hashes and captured-dictionary discrepancies.
 Defaults are Au(I), Ag(I), Hg(II), and mixed Ag(0)/Ag(I) for recipe-linked Ag

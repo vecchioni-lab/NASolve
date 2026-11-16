@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Reject contradictory captured metal ligand definitions
+
+- Reject duplicate component definitions that disagree on bond order or atom
+  charge, including conflicting duplicate bond rows or two order columns.
+  Missing metadata cannot silently replace a declared order/charge.
+- Recognize standard bond-order aliases and equivalent finite numeric charge
+  spellings when comparing definitions;
+  keep the original captured values and hashes. Single unambiguous resources,
+  including graph-only inputs, keep their existing representation.
+- No artifact schema or native refinement default changes. Ambiguous inputs
+  formerly resolved by resource order now require an explicit consistent bundle;
+  historical scientific files are not rewritten.
+
+
 ### Compare signed cluster responses across matched frozen trials
 
 - Add `metal compare-fdp-count` and `metal verify-fdp-count-comparison` for

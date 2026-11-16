@@ -11,9 +11,15 @@ the [anomalous workflow](metal-anomalous-doctor.md) and [restraint design](metal
 own scientific contracts. A mechanism passing tests does not close its scientific
 gate. Update milestone status, evidence, limitations and next action together.
 
-**Current evidence:** FT_Hg ligand/open-XYZ/B foundation is incomplete. Native
-work remains **paused at the user's request** until they explicitly resume.
-This roadmap update does not restart it or authorize a merge.
+**Current milestone: A01 — ligand geometry and open XYZ/B foundation.**
+The user resumed bounded FT_Hg work on 16 November. Source-preserving linked DF
+mechanics and explicit NARestraints coverage have passed their supported checks;
+five audited native geometry/B comparisons are complete. The supported plane
+completion improves C7 planarity and passes the Rwork target at default weighting,
+but local Hg/glycosidic/sugar strain keeps the scientific gate open. See the
+[current handoff](development-handoff.md) for the latest completed comparison and
+remaining scientific gates. These are preparatory experiments for the post-merge
+milestone; no merge or feature-completion claim is implied.
 
 ## Merge checkpoint
 
@@ -29,7 +35,7 @@ release are different decisions.
 
 | Milestone | Current evidence | Post-merge completion gate | Dependencies |
 | --- | --- | --- | --- |
-| **A01 — Ligand geometry and open XYZ/B foundation** | PARTIAL; FT_Hg controls in progress | Qualify exact source chemistry, linkage/terminal context, all intended NARestraints and metal recipe terms; demonstrate open XYZ/B refinement, explicit phase/Free-R policy, active-state B export and inspectable maps. FT_Hg first, then mixed Au/Ag. | Merged development base |
+| **A01 — Ligand geometry and open XYZ/B foundation** | PARTIAL; FT_Hg matched controls complete, local geometry gate open | Qualify exact source chemistry, linkage/terminal context, all intended NARestraints and metal recipe terms; demonstrate open XYZ/B refinement, explicit phase/Free-R policy, active-state B export and inspectable maps. FT_Hg first, then mixed Au/Ag. | Merged development base |
 | **A02 — Controlled f″/Q quantitation** | PARTIAL; frozen fits, B environments and matched comparisons implemented | Use qualified endpoints; freeze XYZ/all ADPs/f′, prepare metal B from the refined environment, and qualify Q/start/budget responses, mixed elements, cluster sums/cancellation and anomalous-background controls. | A01 |
 | **A03 — Editable recipes and structural alternatives** | PARTIAL; recipe core and candidate comparisons implemented | Source-backed ligand/metal-state targets, saved editable recipes, count/identity alternatives, optional chi flips and multiple/adjacent sites; preserve ambiguity and human choice. | A01–A02 |
 | **A04 — Lean storage and regeneration** | SCOPED; [storage plan](metal-campaign-storage.md), no pruning implementation | Shared pristine parents, compact frozen-trial records, protected important nodes, size-capped map retention, cold native regeneration, crash-safe retirement and campaign disk reservations. | Qualified A01–A02 examples; before large fan-out |
@@ -161,14 +167,14 @@ single-wavelength release or for the earlier integration merge.
 | A37 | Fresh MR/PostMR/AutoSol and screenshot-settings rehearsal | Private diagnostic; chemistry and production protocol qualification open |
 | A38 | Native trial map/Coot inspection and chemistry discrepancies | Mechanism tested; GUI inspection and target-library work remain |
 | A39 | Matched signed cluster responses from saved frozen fits | Implemented and pushed; accounting/provenance evidence, not accepted atom counts |
-| A40 | FT_Hg foundation plus storage/roadmap scoping | In progress, paused before further native work |
+| A40 | FT_Hg foundation plus storage/roadmap scoping | Preparatory A01 native comparisons; scientific gate open |
 
-A40 fresh DF source/candidate isolated checks and fixed-model interpretation
-completed. The old verifier rejected its missing terminal context; a newer
-captured Cedar readback preserves PostMR's explicit D:1 phosphate. The latest
-check remains **REVIEW** for custom-restraint realization, with formal-charge
-readback separately **UNSUPPORTED**. No open XYZ/B rerun or new f″ fit has yet
-been made in A40. Parent models and prior trials remain unchanged.
+A40 resumed as preparatory A01 work. Source-preserving linked DF, explicit
+NARestraints and actual-state B export have native evidence. Matched open XYZ/B
+comparisons and a source-supported missing-plane derivative are recorded in the
+[current handoff](development-handoff.md). Supported mechanics checks pass;
+formal-charge readback remains unsupported and scientific geometry/fit review
+remains open. No new f″ fit or checkpoint adoption is implied.
 
 ## Handoff discipline
 

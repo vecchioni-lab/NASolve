@@ -1319,6 +1319,13 @@ automation but do not replace visual inspection or user approval.
 
 ## Metal authoring core and frozen anomalous diagnostics
 
+Captured component interpretation rejects conflicting bond orders and atom
+charges as well as conflicting graphs, including contradictions within a CIF.
+Order spelling aliases are compared without changing captured values. This
+shared metal reader supports environmental B selection and inspection; it does
+not select a source, repair chemistry or alter native refinement protocols.
+
+
 The offline `metal.phil_import` adapter inspects a bounded add-only PHIL edits
 subset and explicitly rebinds every historical selector to a logical recipe
 node. It captures source bytes/hash and preserves ordered angle vertices. It
