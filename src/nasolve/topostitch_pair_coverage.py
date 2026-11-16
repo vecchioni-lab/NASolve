@@ -216,3 +216,123 @@ def review_pair_coverage(requested, native, additive, *, frozen, current_context
             runtime_authority=False, scientific_acceptance=False)
     except (KeyError, TypeError, IndexError, OverflowError, ZeroDivisionError) as exc:
         raise ValueError('Malformed pair coverage declarations') from exc
+
+
+def _compiled_fractional_image(text, cell_parameters):
+    """Read exact native operator fields and check their compiled Cartesian image."""
+    from cctbx import sgtbx, uctbx
+    from scitbx import matrix
+    operation = sgtbx.rt_mx(text)
+    cell = uctbx.unit_cell(cell_parameters)
+    rotation = [Fraction(v, operation.r().den()) for v in operation.r().num()]
+    _need(all(v.denominator == 1 for v in rotation), 'Noninteger fractional rotation is unsupported')
+    declaration = dict(rotation=[int(v) for v in rotation],
+        translation=[str(Fraction(v, operation.t().den())) for v in operation.t().num()])
+    cart = (matrix.sqr(cell.orthogonalization_matrix()) * matrix.sqr(operation.r().as_double())
+            * matrix.sqr(cell.fractionalization_matrix()))
+    return declaration, [[cart[3*i+j] for j in range(3)] for i in range(3)], list(
+        cell.orthogonalize(operation.t().as_double()))
+
+
+def describe_compiled_pair_terms(recipe, packet, *, expected_binding_sha256):
+    """Export W104 declarations from an already constructed NativePairRecipe.
+
+    The original class remains the sole PHIL/compiler owner. This optional native
+    adapter checks its frozen packet/binding, live proxy membership and parameters,
+    and exact image roles against compiled Cartesian references. It evaluates no
+    forces and changes neither the recipe, a native manager nor existing workers.
+    Native cctbx imports are delayed until this function needs an image. The caller
+    still owns native-profile qualification and complete actual-manager observation.
+    """
+    from .topostitch_native_recipe import NativePairRecipe
+    try:
+        _need(isinstance(recipe, NativePairRecipe), 'Require a constructed NativePairRecipe')
+        packet = json.loads(json.dumps(packet, allow_nan=False))
+        binding = recipe.binding_report()
+        _need(_digest(expected_binding_sha256) and recipe_digest(binding) == expected_binding_sha256,
+              'Changed compiled pair binding')
+        _need(binding['recipe_sha256'] == recipe_digest(packet)
+              and binding['source_model_sha256'] == packet['source_model_sha256']
+              and _digest(packet['source_model_sha256']), 'Changed frozen pair packet')
+        _need(recipe._identities == packet['atom_identities']
+              and recipe._count == binding['atom_count'] == packet['atom_count']
+              and recipe._count == len(recipe._identities)
+              and recipe._terms == binding['terms'], 'Changed compiled pair atom/term inventory')
+        labels = [json.dumps(row, sort_keys=True, separators=(',', ':')) for row in recipe._identities]
+        _need(len(set(labels)) == len(labels), 'Ambiguous compiled atom labels')
+        def references():
+            return json.loads(json.dumps([dict(asu_index=i, rotation=image.rotation,
+                translation=image.translation) for i, image in recipe._refs], allow_nan=False))
+        _need(references() == binding['references'], 'Changed compiled Cartesian references')
+        pairs = {p['pair_id']:p for p in packet['pairs']}
+        _need(len(pairs) == len(packet['pairs']), 'Duplicate bound pair ID')
+        containers = dict(bond=recipe._bonds, angle=recipe._angles,
+                          planarity=recipe._planes, parallelity=recipe._parallel)
+        positions = {kind:0 for kind in containers}
+        counts = {name:{kind:0 for kind in containers} for name in pairs}
+        images = {}; rows = []
+        for ordinal, definition in enumerate(binding['terms']):
+            kind = definition['kind']; pair = pairs[definition['pair_id']]
+            _need(kind in containers and definition['purpose'] == pair['purpose'],
+                  'Changed compiled pair family or purpose')
+            proxy = containers[kind][positions[kind]]; positions[kind] += 1
+            counts[definition['pair_id']][kind] += 1
+            indices = list(proxy.i_seqs)
+            others = list(proxy.j_seqs) if kind == 'parallelity' else []
+            _need(indices == definition['i_seqs'] and others == definition.get('j_seqs', []),
+                  'Changed live compiled proxy membership')
+            if kind == 'bond':
+                _need(proxy.rt_mx_ji is None, 'Unexpected live bond image')
+            else:
+                _need(proxy.sym_ops is None or len(proxy.sym_ops) == 0,
+                      'Unexpected live proxy images on expanded coordinates')
+            left, right = set(pair['role_indices']['L']), set(pair['role_indices']['R'])
+            _need(not left & right, 'Ambiguous compiled pair roles')
+            def atoms(ids):
+                result = []
+                for index in ids:
+                    reference = binding['references'][index]; atom_index = reference['asu_index']
+                    _need(type(atom_index) is int and 0 <= atom_index < len(labels)
+                          and atom_index in left | right, 'Compiled reference is outside pair roles')
+                    text = 'x,y,z' if atom_index in left else pair['target_operator_xyz']
+                    if text not in images:
+                        images[text] = _compiled_fractional_image(text, packet['crystal']['cell_parameters'])
+                    exact, rotation, translation = images[text]
+                    expected = [v for row in rotation for v in row] + translation
+                    actual = [v for row in reference['rotation'] for v in row] + reference['translation']
+                    _need(len(actual) == 12 and all(math.isclose(a, b, rel_tol=1e-12, abs_tol=1e-10)
+                                                   for a, b in zip(actual, expected)),
+                          'Exact role image differs from compiled Cartesian reference')
+                    result.append(dict(atom=labels[atom_index], **exact))
+                return result
+            a, b = atoms(indices), atoms(others)
+            weight = 1 / definition['sigma'] ** 2
+            if kind == 'planarity':
+                parameters = dict(weights=list(proxy.weights)); expected = dict(weights=[weight]*len(a))
+            else:
+                ideal_name = {'bond':'distance_ideal', 'angle':'angle_ideal',
+                              'parallelity':'target_angle_deg'}[kind]
+                parameters = dict(ideal=getattr(proxy, ideal_name), weight=proxy.weight, slack=proxy.slack)
+                expected = dict(ideal=definition['ideal'], weight=weight, slack=0.)
+                if kind in ('bond', 'parallelity'):
+                    parameters.update(limit=proxy.limit, top_out=proxy.top_out)
+                    expected.update(limit=-1. if kind == 'bond' else 1., top_out=False)
+            _parameters(kind, parameters, len(a))
+            _need(_same_parameters(expected, parameters), 'Changed live compiled proxy parameters')
+            rows.append(dict(term_id=definition['pair_id']+':'+str(ordinal), kind=kind,
+                             atoms=a, other_atoms=b, parameters=parameters))
+        _need(all(positions[k] == len(v) for k, v in containers.items()), 'Extra compiled proxy terms')
+        _need(all(counts[k] == p['expected_counts'] for k, p in pairs.items()),
+              'Incomplete compiled pair family coverage')
+        _inventory(rows, set(labels))
+        _need(recipe.binding_report() == binding and references() == binding['references'],
+              'Compiled pair binding changed during observation')
+        # Detach nested arrays and native scalar wrappers from the returned declaration.
+        result = dict(policy_id='topostitch-compiled-pair-declarations-v1',
+            compiled_binding_sha256=expected_binding_sha256,
+            source_model_sha256=binding['source_model_sha256'], recipe_sha256=binding['recipe_sha256'],
+            atom_labels=labels, terms=rows, terms_sha256=recipe_digest(rows),
+            runtime_authority=False, scientific_acceptance=False)
+        return json.loads(json.dumps(result, allow_nan=False))
+    except (KeyError, TypeError, AttributeError, IndexError, OverflowError, ZeroDivisionError) as exc:
+        raise ValueError('Incomplete compiled pair declaration') from exc

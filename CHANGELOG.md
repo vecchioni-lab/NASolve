@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W105 — Export the existing compiled pair recipe
+
+- Add optional `describe_compiled_pair_terms` to the coverage module. Read live
+  compiled proxy parameters and exact packet image roles, checking the original
+  binding, atom membership, counts and Cartesian references before export.
+- Preserve the existing compiler, workers and runtime behavior. This supplies
+  requested-term declarations; actual-manager observation, exclusions and
+  refinement activation remain separate qualification gates.
+
 ### W104 — Check explicit native/additive pair coverage
 
 - Add the opt-in, read-only `review_pair_coverage` API. Bind declared inventories,

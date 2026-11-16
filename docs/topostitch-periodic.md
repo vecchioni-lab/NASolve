@@ -4534,3 +4534,79 @@ The verified 29-file local forensic archive under the everyday NASolve anchor is
 It retains software/distributions, exact inputs, both installed-test outcomes,
 commands and replay results. Generated scientific observations remain uncommitted;
 the archive is not an autonomous portable campaign or scientific approval.
+
+
+## W105 — Declarations from the existing compiled recipe
+
+`nasolve.topostitch_pair_coverage.describe_compiled_pair_terms(recipe, packet,
+expected_binding_sha256=...)` exports an already-constructed `NativePairRecipe`
+for the W104 checker. Freeze the expected digest from the original
+`recipe.binding_report()` with `recipe_digest`; supply the original checksum-bound
+packet. Do not refresh that digest to accept drift. The existing constructor
+remains the sole PHIL parser/compiler and source-model validation owner.
+
+The adapter reads the actual compiled bond, angle, planarity and parallelity
+proxies, checking their membership, complete score parameters, family counts and
+absence of additional images on already-expanded coordinates. Each reference
+must belong to the packet's disjoint L/R roles. Exact fractional operators come
+from cctbx and retain lattice translations; their Cartesian form must agree with
+the compiled references (relative tolerance 1e-12, absolute 1e-10). This tolerance
+checks a floating-point representation, not coverage equivalence: W104 still
+compares rational images exactly. No force evaluation or native attachment occurs.
+
+The returned policy is `topostitch-compiled-pair-declarations-v1`, with
+`compiled_binding_sha256`, `source_model_sha256`, `recipe_sha256`, `atom_labels`,
+`terms` and `terms_sha256`. Atom labels are sorted-key compact JSON of each full
+source identity, in the existing source order. Term IDs combine pair ID and
+zero-based global term ordinal. Both authority/acceptance flags are false. The
+returned arrays are detached from the recipe and caller data.
+
+This is an explicit adapter to the existing class's compiled containers, with
+regressions guarding that interface. It does not create a second compiler,
+change binding schema 1, or modify captured worker sources. Imports remain lean;
+cctbx/scitbx are needed only when the optional native exporter is called. The
+caller still owns native-profile qualification, complete actual-manager
+observation, special-position scope, exclusion approval, active forces,
+normalization, lifecycle and final-writer binding. There is no new CLI or
+migration of existing packets/checkpoints.
+
+### W105 validation — 2026-11-16
+
+Twelve new regressions fail before implementation; all **47 coverage tests**
+now pass. The complete suite passes **1,923 tests +229 subtests in 92.86 seconds**.
+A fresh relocated sdist/wheel passes **216 installed tests**, six CLI helps,
+`pip check`, lean import and Python 3.10 syntax. Both staging source directories
+are absent during installed validation. The installed recipe engine and captured
+worker files remain byte-identical to W104.
+
+A complete read-only **Phenix 2.2.1-6174 (dispatcher 2.2.1)** execution checks
+healthy and displaced sources under raw and Cedar-corrected kernels: all four
+cases export **124 terms (36 bonds, 60 angles, 14 planes, 14 parallelities)**,
+exactly matching the independently Gemmi-derived W103 records. Full energy and
+gradient arrays and old recipe bindings are unchanged before/after. Eighteen
+native negative controls reject changed proxy parameters/images, missing/extra
+proxies and stale binding/packet inputs. All inputs/software and kernel binding
+are preserved. This is an installed exporter qualification against pinned C331,
+not a new refinement, density test or combined latest-Cedar qualification.
+
+The original native attempt is retained: two healthy cases pass, then the harness
+tries to assign read-only `parallelity_proxy.top_out`. Native return code 2 is
+recorded. A separate V2 harness substitutes distinct native proxy objects and
+restores original containers; unchanged product/wheel passes in 3.02 seconds.
+No thresholds or scientific acceptance criteria changed. Cedar `6f2bd7e0` has no
+source-path overlap with this change; no Cedar files were edited.
+
+Exact commands from the Willow checkout and local validation root:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider tests/test_topostitch_pair_coverage.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w105-declarations/install-check.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w105-declarations/native-v2/run.py
+```
+
+Scientific inputs, native records, distributions and failed-attempt evidence stay
+in a local forensic archive, excluded from Git. This is not a portable autonomous
+campaign. Next: authenticate the actual manager's complete native inventory and
+bind it to the existing exclusion-policy and frozen lifecycle owners before any
+force activation. S06 remains partial.

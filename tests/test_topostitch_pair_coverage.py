@@ -156,3 +156,76 @@ def test_noncommuting_periodic_images_match_under_common_motion_and_reversal():
     addition['atoms'][1].update(rotation=half,translation=['1','2','13/4'])
     addition['atoms'].reverse()
     assert review(values)['declared_coverage_complete']
+
+
+def compiled_fixture(monkeypatch):
+    from types import SimpleNamespace as NS
+    from nasolve.topostitch_native_recipe import NativePairRecipe
+    from nasolve import topostitch_pair_coverage as coverage
+    identities=[dict(atom_name=x) for x in 'abcdef']
+    packet=dict(source_model_sha256='a'*64,atom_count=6,atom_identities=identities,
+        crystal=dict(cell_parameters=[10.,10.,10.,90.,90.,90.],space_group='P 1'),
+        pairs=[dict(pair_id='p',purpose='core',target_operator_xyz='x,y,z',
+                    role_indices=dict(L=[0,1,2],R=[3,4,5]),
+                    expected_counts=dict(bond=1,angle=1,planarity=1,parallelity=1))])
+    definitions=[dict(kind=k,pair_id='p',purpose='core',sigma=.2,i_seqs=ids,**extra)
+        for k,ids,extra in [('bond',[0,3],dict(ideal=2.8)),
+            ('angle',[0,1,3],dict(ideal=116.2)),('planarity',list(range(6)),{}),
+            ('parallelity',[0,1,2],dict(ideal=0.,j_seqs=[3,4,5]))]]
+    refs=[dict(asu_index=i,rotation=[[1.,0.,0.],[0.,1.,0.],[0.,0.,1.]],translation=[0.,0.,0.]) for i in range(6)]
+    recipe=NativePairRecipe.__new__(NativePairRecipe)
+    recipe._identities=identities;recipe._count=6;recipe._terms=definitions
+    recipe._refs=tuple((v['asu_index'],NS(rotation=v['rotation'],translation=v['translation'])) for v in refs)
+    recipe._report=dict(schema_version=1,kind='topostitch-native-pair-binding',source_model_sha256='a'*64,
+        recipe_sha256=recipe_digest(packet),atom_count=6,terms=definitions,references=refs)
+    recipe._bonds=[NS(i_seqs=[0,3],distance_ideal=2.8,weight=1/.2**2,slack=0.,limit=-1.,top_out=False,rt_mx_ji=None)]
+    recipe._angles=[NS(i_seqs=[0,1,3],angle_ideal=116.2,weight=1/.2**2,slack=0.,sym_ops=None)]
+    recipe._planes=[NS(i_seqs=list(range(6)),weights=[1/.2**2]*6,sym_ops=None)]
+    recipe._parallel=[NS(i_seqs=[0,1,2],j_seqs=[3,4,5],target_angle_deg=0.,weight=1/.2**2,slack=0.,limit=1.,top_out=False,sym_ops=None)]
+    def image(text, cell):
+        assert text=='x,y,z'
+        return dict(rotation=[1,0,0,0,1,0,0,0,1],translation=['0','0','0']),refs[0]['rotation'],refs[0]['translation']
+    monkeypatch.setattr(coverage,'_compiled_fractional_image',image,raising=False)
+    return recipe,packet
+
+
+def export(recipe,packet):
+    from nasolve.topostitch_pair_coverage import describe_compiled_pair_terms
+    return describe_compiled_pair_terms(recipe,packet,expected_binding_sha256=recipe_digest(recipe.binding_report()))
+
+
+def test_compiled_export_preserves_old_binding_and_returns_detached_terms(monkeypatch):
+    recipe,packet=compiled_fixture(monkeypatch);before=deepcopy([recipe.binding_report(),packet]);result=export(recipe,packet)
+    assert result['recipe_sha256']==recipe_digest(packet)
+    assert result['compiled_binding_sha256']==recipe_digest(before[0])
+    assert [r['term_id'] for r in result['terms']]==['p:0','p:1','p:2','p:3']
+    assert [r['kind'] for r in result['terms']]==['bond','angle','planarity','parallelity']
+    assert result['terms'][0]['parameters']['limit']==-1.
+    assert result['terms'][3]['parameters']['limit']==1.
+    assert [recipe.binding_report(),packet]==before
+    result['terms'][0]['parameters']['weight']=999.
+    assert export(recipe,packet)['terms'][0]['parameters']['weight']!=999.
+    assert not result['runtime_authority']
+
+
+@pytest.mark.parametrize('change',['missing_proxy','extra_proxy','proxy_indices','proxy_weight','proxy_mode','proxy_image','virtual_reference','packet','purpose','identity'])
+def test_compiled_export_refuses_drift_in_live_proxy_or_bound_packet(monkeypatch,change):
+    recipe,packet=compiled_fixture(monkeypatch)
+    if change=='missing_proxy':recipe._angles=[]
+    elif change=='extra_proxy':recipe._bonds.append(recipe._bonds[0])
+    elif change=='proxy_indices':recipe._bonds[0].i_seqs=[1,3]
+    elif change=='proxy_weight':recipe._bonds[0].weight=26.
+    elif change=='proxy_mode':recipe._parallel[0].limit=2.
+    elif change=='proxy_image':recipe._angles[0].sym_ops=['x+1,y,z']
+    elif change=='virtual_reference':recipe._refs[0][1].translation=[1.,0.,0.]
+    elif change=='packet':packet['pairs'][0]['purpose']='selected'
+    elif change=='purpose':recipe._terms[0]['purpose']='selected'
+    else:recipe._identities=[dict(atom_name='wrong')]+recipe._identities[1:]
+    with pytest.raises(ValueError):export(recipe,packet)
+
+
+def test_compiled_export_requires_original_binding_digest(monkeypatch):
+    from nasolve.topostitch_pair_coverage import describe_compiled_pair_terms
+    recipe,packet=compiled_fixture(monkeypatch)
+    with pytest.raises(ValueError,match='binding'):
+        describe_compiled_pair_terms(recipe,packet,expected_binding_sha256='0'*64)

@@ -970,6 +970,13 @@ and evaluates unnormalized additive pair energies/ASU gradients. The new schema-
 packet contains hashes and identities, not a model path or runtime authority.
 Virtual L/R labels are internal selection scaffolding, not ordinary refinement
 PHIL for the source model.
+`topostitch_pair_coverage.describe_compiled_pair_terms` optionally exports the
+already-constructed `NativePairRecipe` as exact atom/image declarations. Its
+original packet and binding digest remain required; live proxy parameters,
+membership and Cartesian references must reproduce the bound recipe. The
+existing compiler and native workers are unchanged. This adapter reads requested
+terms, not the actual manager's existing inventory or active force policy.
+
 `topostitch_pair_coverage.review_pair_coverage` compares caller-authenticated,
 frozen requested/native/additive term declarations with explicit providers. It
 retains exact fractional images, checks complete score parameters and refuses
