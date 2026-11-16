@@ -33,6 +33,8 @@ from .cif_energy_library import capture_energy_library, read_energy_library, qua
 from .cif_linear_bond_reference import (linear_bond_query, energy_library_linear_reference,
     compare_linear_bond_reference, prepare_linear_bond_candidate, _pair)
 from .cif_captured_bond_attribution import audit_captured_bond_attribution
+from .cif_prepared_bond_discovery import (bond_discovery_fields, prepared_bond_queries,
+    bond_discovery_plan, validate_prepared_bond_discovery, REPORT as DISCOVERY_REPORT)
 
 POLICY_ID = 'cif-prepared-bundle-repair-execution-v1'
 PLANE_SUPPORT_POLICY = 'cif-prepared-owned-plane-support-v1'
@@ -132,7 +134,7 @@ class PreparedRepairBudgetExceeded(TimeoutError):
 
 def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout_seconds=120,
         attribution_timeout_seconds=90, derivative_timeout_seconds=300,
-        total_timeout_seconds=None, qualify_no_repair=False, optional_failure_policy=None, compact_evidence=False, plane_support=None, bond_targets=None, _attempt_identity=None, _remaining_seconds=None):
+        total_timeout_seconds=None, qualify_no_repair=False, optional_failure_policy=None, compact_evidence=False, plane_support=None, bond_targets=None, automatic_bond_targets=False, _attempt_identity=None, _remaining_seconds=None):
     """Run a bounded repair chain and freeze only an independently usable result.
 
     The input is the existing source/site bundle, including acquired component
@@ -151,7 +153,10 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
     library and try only requested target changes, leaving ESDs unchanged. Missing
     reference support or unchanged targets keep the existing qualification path;
     a stopped lookup failure requires the existing explicit optional-failure policy;
-    no new scientific acceptance threshold or automatic candidate choice is made.
+    no new scientific acceptance threshold is assigned. Optional automatic_bond_targets
+    instead freezes source/library-discovered choices after earlier stages, using
+    the same attribution/selection route. It cannot be combined with explicit pairs.
+    Matching/unsupported proposals remain visible; omitted intent keeps old behavior.
 
     An optional integer total allowance (1-3600 seconds) begins before preflight.
     Each native job receives at most the whole seconds remaining. Local Python
@@ -163,6 +168,7 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
     """
     # Explicit support is an already completed generation, never a new generator
     # or a permission to retry. The same owner runs all new native calculations.
+    discovery_fields = bond_discovery_fields(automatic_bond_targets,bond_targets)
     storage_fields = compact_evidence_fields(compact_evidence)
     failure_fields = failure_policy_fields(optional_failure_policy)
     _need(type(qualify_no_repair) is bool, 'Require a boolean no-repair qualification mode')
@@ -239,6 +245,7 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
     report.update(failure_fields); report.update(storage_fields)
     if support_config is not None: report['plane_support'] = support_config
     if bond_config is not None: report['bond_targets'] = bond_config
+    report.update(discovery_fields)
     if qualify_no_repair: report['qualify_no_repair'] = True
 
     processes = PreparedRepairProcesses(output, attempt_identity=_attempt_identity)
@@ -262,6 +269,7 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
               'Explicit bond target choices changed during execution')
         refs = [*report['native_receipts'], *report.get('plane_plans',[]), *report.get('bond_plans',[]),
                 *([report['energy_library']] if 'energy_library' in report else []),
+                *([report['bond_discovery']] if 'bond_discovery' in report else []),
                 *([report['plan']] if 'plan' in report else [])]
         _need(all(reference(output/ref['path']) == ref for ref in refs),
               'Recorded execution reference changed during repair execution')
@@ -298,9 +306,10 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
 
     def finish(status):
         unchanged()
+        report['status'] = status
+        if automatic_bond_targets: validate_prepared_bond_discovery(output,report)
         elapsed = monotonic() - started
         check_budget(elapsed=elapsed)
-        report['status'] = status
         report['elapsed_seconds'] = elapsed
         with (output/'repair_execution.json').open('xb') as stream: stream.write(_bytes(report))
         event(status)
@@ -317,7 +326,8 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
         modeled = sorted({site['code'] for site in _model_inventory(prepared['model']).values()})
         plan = prepare_linear_torsion_bundle(prepared['after_dictionaries'], modeled, output/'plan')
         report['plan'] = reference(output/'plan/linear_torsion_bundle.json')
-        if not plan['steps'] and support_config is None and bond_config is None and not qualify_no_repair:
+        discovered_codes = [code for code,row in prepared_bond_queries(frozen).items() if row['selected_bonds']] if automatic_bond_targets else []
+        if not plan['steps'] and support_config is None and bond_config is None and not discovered_codes and not qualify_no_repair:
             return finish('NO_SUPPORTED_GRAPH_REPAIR; BUNDLE_USABILITY_NOT_ASSESSED')
         phase = 'SOURCE_NATIVE'; event('STARTED')
         baseline = capture('baseline', prepared['before_dictionaries'], prepared['before_phils'])
@@ -385,7 +395,7 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
                     attribution=reference(attribution/'captured_plane_attribution.json')))
                 plane_attributions.append(attribution); dictionaries = changed; receipts.append(after)
                 unchanged()
-        if bond_config is not None and 'optional_failure' not in report:
+        if (bond_config is not None or discovered_codes) and 'optional_failure' not in report:
             phase='BOND_REFERENCE';event('STARTED');report['bond_results']=[];report['bond_plans']=[]
             library=output/'energy-library'
             lookup=capture_energy_library(phenix,consumer,library,
@@ -394,7 +404,14 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
             report['energy_library']=reference(library/'energy_library_receipt.json');unchanged()
             _need(lookup['status']=='SELECTED_NATIVE_ENERGY_LIBRARY_CAPTURED' or optional_failure_policy is not None,
                   'Numerical library lookup failed without the explicit optional-failure policy')
-            for i,(code,bonds) in enumerate(bond_config['choices'].items()):
+            bond_choices = bond_config['choices'] if bond_config is not None else {code:[] for code in discovered_codes}
+            if automatic_bond_targets:
+                discovery = bond_discovery_plan(output,dictionaries)
+                with (output/DISCOVERY_REPORT).open('xb') as stream:stream.write(_bytes(discovery))
+                report['bond_discovery'] = reference(output/DISCOVERY_REPORT)
+                if discovery['status']=='DISCOVERED': bond_choices=discovery['choices']
+                unchanged()
+            for i,(code,bonds) in enumerate(bond_choices.items()):
                 if lookup['status']!='SELECTED_NATIVE_ENERGY_LIBRARY_CAPTURED':
                     report['bond_results'].append(dict(component=code,status='REFERENCE_UNAVAILABLE',
                         library=report['energy_library']));continue
@@ -419,7 +436,8 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
                 stage=dict(schema_version=1,policy_id='cif-prepared-bond-stage-v1',component=code,
                     dictionary_index=index,requested_bonds=bonds,native_number=len(receipts),
                     candidate=reference(candidate),numerical_reference=reference(reference_path),
-                    library=report['energy_library'],reference_qualification=qualification,proposal=proposal)
+                    library=report['energy_library'],reference_qualification=qualification,proposal=proposal,
+                    **({'discovery':report['bond_discovery']} if automatic_bond_targets else {}))
                 stage_path=candidate.with_suffix('.json')
                 with stage_path.open('xb') as stream:stream.write(_bytes(stage))
                 report['bond_plans'].append(reference(stage_path));unchanged()

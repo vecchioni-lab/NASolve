@@ -1,82 +1,66 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C332 source-aware bond discovery — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. Current delivery **C332**; prior
-published **c4e5ddb8 (C331)** and chemistry delivery **11fd6ee6 (C328)**.
-Focused checks only; no Rowan full suite, branch, default activation or merge.
-Linden owns Pine/Willow and does not edit Cedar.
+Updated **2026-11-16, C333 automatic bond discovery in preparation — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. Current delivery **C333**; prior
+published **2d77cb6e (C332)**. Focused checks only; no Rowan full suite, new branch,
+default activation or merge. Linden owns Pine/Willow and does not edit Cedar.
+Current work window ends about **14:34 London**.
 
 ## Current work and interruption recovery
 
-**C332 qualified:** read-only `discover_bond_targets` now uses the existing C307
-source query/comparison and C323 complete library qualification to propose all
-supported differing target pairs. Matching, unsupported and separate nuclear-
-distance cases stay explicit. No residue rules, coordinates, new acceptance
-thresholds, ESD changes, native processes or ordinary activation. The same private
-reference validation serves the old public qualifier with unchanged receipts.
+**C333 qualified:** explicit `automatic_bond_targets=True` now reaches checked
+PostMR/ordinary/complete/prepared Python entry. Source/library-discovered pairs
+are frozen after prior linear/plane stages, then use the existing candidate,
+attribution, derivative selection, fallback and ReadySet route. One captured
+library serves all eligible components. Matching/unsupported/nuclear-distance
+cases remain visible; empty selection is not chemical approval. Defaults and
+explicit pairs retain their previous shape. Automatic and manual choices cannot
+mix; ordinary fresh requests use v4, with unchanged storage limits.
 
-**Validation:** 16 fail-before cases; **177 focused passes (45.00 s)** including
-existing reference, prepared/complete/ordinary-entry tests. No full suite. Read-only
-C323/C322 replay identifies PDU C5B–C5M (1.607 → reference 1.470 Å) and 5PC C8–C9
-(1.364 → 1.470 Å); corrected dictionaries yield no further proposals. Existing
-ESDs remain .020/.027 Å, unsupported neighbors remain unapproved, complete reference
-qualification matches C323 and **182 files plus timestamps remain unchanged**.
-Replay takes 0.49 s; zero new native jobs. All jobs finished. Exact commands/hashes
-are in `source_aware_bond_discovery_2026_11_16`; local runner/output stay under the
-everyday checkout's ignored `branch-artifacts/cedar/`.
+**Validation complete:** **658 focused passes (553.80 s)**, including 52 new
+checks; **52 fresh-wheel passes (48.40 s)**. No full suite. The installed native
+PDU control independently discovers C5B–C5M and returns the **same final model
+and corrected CIF hashes as C327**, retaining 1.470 Å / ESD .020 Å, named heavy
+coordinates and ordered PHIL. Original/final derivative and ReadySet checks pass.
+Phenix **2.2.1-6174 / dispatcher 2.2.1, Darwin arm64**; no Coot or diffraction
+refinement rerun. All 14 native phases and the outer owner are stopped. Historical
+79 input files remain unchanged. Request retirement: **234,015,903 → 40,719,525
+bytes**; moved cold read preserves all 141 files in 88.44 s with original code/
+inputs/SDK/store blocked. Entire control 980.56 s. No active Rowan job remains.
 
-**Next:** wire explicit automatic-discovery intent into fresh preparation requests,
-reuse one qualified library capture, freeze/revalidate source/dictionary/consumer/
-reference choices and use existing attribution, selection, ReadySet, v4 retention
-and recovery/fallback owners. Do not silently rediscover during continuation or
-activate defaults. C332 is candidate selection, not chemical approval. Q06 still
-needs honest residual-geometry reporting and whole-substituent/held-out survival;
-PDU's remaining bend is not resolved. Reuse C329 and C309/C314 rather than rerunning
-identical refinement or strengthening restraints to force a pass.
+Live-test anchor: `333_Cedar_automatic-bond-readyset-e73fslc3`; exact commands,
+source pins, runner/output references and limitations are in
+`automatic_preparation_bond_discovery_2026_11_16`. Local runners/logs stay in the
+everyday checkout's ignored `branch-artifacts/cedar/`. Temporary native-copy code
+was removed; raw science stays local. Fresh wheel SHA:
+`5501b04b5495811de3487b5e7683d7853273c4d6c70958ef7b07434efc77c7c8`.
 
-**Shared guard:** C331 owner/profile remain unchanged. Linden reports W96/c6549408
-qualifies its direct optional caller; W97 also reports completed captured-worker
-dependency/provenance and installed relocation checks (original input/capture paths
-removed). This is separate-branch evidence, not a merge or Q06 acceptance. The [guard contract](architecture.md#live-nonbonded-policy-guard-c331)
-retains source/identity/cache obligations and limits; no speculative Cedar API change.
+**Next bounded Q06 step:** reuse authenticated C329 final native evidence and the
+frozen bundle's declared site projection for honest achieved-geometry reporting.
+Prior-work search found `cif_construction_native._triple_readback` already scopes
+that comparison (introduced at `94ababa1`, with duplicate-site and PDU/5PC/Q17
+controls). C329 fed it the full OP3-bearing runtime CIF; verify the declared
+linked-site projection rather than prune observations or implement another screen.
+No new refinement is needed for this reporting check. Keep genuine PDU bending in
+REVIEW. Broader whole-substituent/held-out survival still gates Q06; do not change
+restraint strengths or rerun identical C329/C309/C314 work to force a pass.
 
-**Prior work reused:** C323 authenticates the selected native numerical library;
-C324 composes target-only changes through the existing chain/whole-bundle checks.
-C325 supplies the byte-pinned public canonical replay frame from an installed
-package. C326 delivers explicit graph-selected bond choices through prepared
-execution and its immutable owner. C327 freezes the same choice through the
-complete request, actual ReadySet, archive/retirement and moved cold readback.
-No second process, chemistry or storage owner is needed. Exact older validation
-commands and source/consumer pins remain in the existing ledger, not duplicated
-here. Do not repeat native controls merely because context was compacted.
+**Prior solutions:** C326–C328 already own prepared/complete/ordinary explicit
+repair, fallback and immutable attempts; C332 supplies source/library selection
+and historical PDU/5PC replay (182 files unchanged). C327's first v3 storage failure
+remains failed/unpacked; never repair it in place. Its successful fresh v4 control
+separates native captures from derived evidence without enlarging per-part or
+shared archive bounds. These owners and their exact older evidence remain in the
+ledger; do not rebuild them or repeat native controls after context compaction.
 
-**C327 native boundary:** the fresh v4 control selected the corrected PDU target
-**1.470 Å / ESD 0.020 Å**, preserving named heavy coordinates and ordered PHIL.
-Original/final full derivatives and ReadySet native comparisons passed under
-Phenix **2.2.1-6174 / dispatcher 2.2.1, Darwin arm64**. Whole request retirement:
-**234,017,802 → 40,735,983 bytes**; moved cold read preserved all 141 files in
-87.15 s with original inputs/SDK/store blocked. Raw science stays local.
-
-The first v3 request completed repair/ReadySet but exceeded the combined repair
-working bound. It remains failed and unpacked, with all 853 files preserved.
-Fresh explicit v4 separates native captures from derived evidence: each group's
-128 MiB/1,024-file and each member's 32 MiB limit remain fixed, as does the shared
-128 MiB archive expansion cap. V3 retains its meaning/default. One successful
-control does not establish 100-dataset capacity or refinement survival.
-Native roots under the live-test anchor:
-`327_Cedar_complete-bond-readyset-v0v9evls` (preserved failure),
-`327_Cedar_complete-bond-capture-policy-b1fuaz79` (successful archived request).
-
-**C328 complete:** ordinary request constructors and checked `prepare_postmr`
-Python entry accept explicit source-neighborhood atom pairs. Shared declaration
-validation runs before tool setup; full frozen source validation remains with the
-complete owner. These new requests use C327 v4; omitted choices retain the old
-shape/default. Existing continuation accepts no changed choice. No CLI/campaign
-option or automatic target-discovery rule. Current tests: 30 failures/9 passes
-before the handoff, **191 focused passes (74.83 s)** afterward; existing complete
-choice/continuation tests add **17 passes (45.21 s)**. Exact commands are in the ledger. C327's actual saved request
-configuration rereads with all **141 files unchanged (1.27 s)**, without native
-execution. This is configuration compatibility, not a repeated full native replay.
+**Shared guard:** C331 source/profile remain byte-identical. Linden reports W96
+and W97 qualify optional direct/captured callers, including installed relocation;
+W98/7faff1a1 forwards explicit displaced starts through its existing trial and has
+focused/full/installed results on Willow. Its native recovery comparison remains
+separate/pending. Rowan reviewed the exact W98 runtime/test diff read-only, finding
+no Cedar compatibility blocker; that is not native or combined-merge approval.
+The [guard contract](architecture.md#live-nonbonded-policy-guard-c331) retains its
+source/identity/cache obligations. No Pine/Willow edits or integration here.
 
 **C329 complete:** exact C327 selected runtime → isolated zero-cycle preflight →
 five real refinement cycles through the existing frozen v2 helper. Same C319 model,
@@ -178,7 +162,8 @@ commands, hashes, anchor-relative evidence and limitations. New entries:
 `corrected_cif_refinement_survival_2026_11_15` and
 `live_nonbonded_policy_contract_2026_11_15` and
 `live_nonbonded_policy_guard_2026_11_16` and
-`source_aware_bond_discovery_2026_11_16`. The packaged public PDB
+`source_aware_bond_discovery_2026_11_16` and
+`automatic_preparation_bond_discovery_2026_11_16`. The packaged public PDB
 retains its original fixed-column padding and exact hash. C325 whitespace checking
 excludes only that byte-pinned PDB (`git diff HEAD^ HEAD --check -- .
 ':(exclude)src/nasolve/data/replay/5W6W_noPO4.pdb'`); all code/docs pass. Reuse the earlier C307–C322 entries

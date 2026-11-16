@@ -101791,5 +101791,290 @@
       "No ESD recalibration, unsupported reference expansion or chemical approval.",
       "C329 PDU bend remains REVIEW; honest residual geometry and broader held-out refinement survival still gate Q06."
     ]
+  },
+  "automatic_preparation_bond_discovery_2026_11_16": {
+    "milestone": "C333",
+    "status": "EXPLICIT_AUTOMATIC_DISCOVERY_COMPLETE_REQUEST_READYSET_RELOCATION_PASS",
+    "author": "Rowan",
+    "source_base_commit": "2d77cb6e5f0aadeeeb9245866aa4fe5e357a1578",
+    "behavior_before": "C332 proposed source/library-bound pairs read-only; preparation still required caller-supplied explicit choices.",
+    "behavior_after": "Explicit automatic_bond_targets freezes discovery intent from checked PostMR/ordinary/complete/prepared Python entry, captures one selected library for eligible sources, freezes exact proposals after prior stages and uses existing repair/attribution/derivative/fallback/ReadySet owners. Saved readers reconstruct decisions without native execution.",
+    "contract": "docs/cif-doctor.md#automatic-bond-discovery-in-fresh-preparation-c333",
+    "policy_id": "cif-prepared-source-bond-discovery-v1",
+    "schema_version": 1,
+    "implementation_files": {
+      "src/nasolve/cif_prepared_bond_discovery.py": {
+        "sha256": "a070f56064c2b93ae88b38beacac7e035b8899e6e36c798a3c13bace86ca60d0",
+        "bytes": 8438
+      },
+      "src/nasolve/cif_prepared_repair_execution.py": {
+        "sha256": "d1e9ac472c25dfdc73b5313d4f68a5ecd7101dccd51ccb91b45cd2baa8ab5ed6",
+        "bytes": 33325
+      },
+      "src/nasolve/cif_repair_attempt.py": {
+        "sha256": "7b7b73e33f0c434f42e427c54af9b000f9f75534807ae853530a9bf7639a0eb2",
+        "bytes": 23101
+      },
+      "src/nasolve/cif_complete_request.py": {
+        "sha256": "f2c934d3de0b188c9edb2767a4b0c8fa3d6efeee9722ce7d16621e9d04673079",
+        "bytes": 69054
+      },
+      "src/nasolve/cif_postmr_request.py": {
+        "sha256": "46bb4bb631ba2e34d5546b6572239b3bdb2f6c9b16eed28a927c80af54eabfa3",
+        "bytes": 14373
+      },
+      "src/nasolve/cif_ordinary_postmr.py": {
+        "sha256": "f880e00ba6d68ce01cbbc596f77c20de39d5f2d1e379ee12a8ea396a92cef39a",
+        "bytes": 21070
+      },
+      "src/nasolve/postmr.py": {
+        "sha256": "605adb5ee9946035cdc6992330943bf8b8dbe6acdc113386c751950b5564439f",
+        "bytes": 125706
+      },
+      "tests/test_cif_prepared_bond_discovery.py": {
+        "sha256": "3efe6bfee8d169d6491efb1d9ee10f620dd236f47420ae0832c5d2b0766bbc20",
+        "bytes": 12062
+      },
+      "tests/test_cif_automatic_bond_requests.py": {
+        "sha256": "6258d267b6cff1c1d1d5622cc2793a6e4ae2368e71682ffb25c08ab1b03963b5",
+        "bytes": 7673
+      }
+    },
+    "prior_work": "C326 explicit prepared execution, C327 complete/ReadySet/v4 retention, C328 ordinary Python transport and C332 source/library proposal selection reused. No separate graph/type/target, process, retry, selection or storage owner.",
+    "interface": {
+      "option": "automatic_bond_targets=True",
+      "default": false,
+      "conflict": "Cannot combine with explicit bond_targets; invalid flags refuse before tool setup/intake.",
+      "request_field": "bond_discovery_policy",
+      "decision": "bond_discovery.json under the owned repair execution; exact source queries, ordered post-stage dictionaries, library receipt, proposals and pairs; each automatic bond stage binds this decision.",
+      "readback": "Same source/library decision owner, exact preceding stage/dictionary/consumer binding and complete/malformed/missing choice checks. No write or execution by proposal readers.",
+      "continuation": "No choice override; new work uses existing fresh immutable attempts and known-stopped ownership. Prior proposals/partial outputs never change.",
+      "retention": "Direct complete API requires existing v4 CAPTURE_ARTIFACT_POLICY; ordinary constructors select it for this explicit option. No changed size/archive limits.",
+      "nonclaims": "No new acceptance threshold, ESD changes, chemical identity edits, model-derived targets, automatic default, CLI/campaign switch or refinement survival approval."
+    },
+    "validation": {
+      "fail_before": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_prepared_bond_discovery.py --tb=short",
+        "result": "6 failed, 7 fixture errors in 1.45 s because the new binding module was absent. Additional integration/negative cases added afterward."
+      },
+      "focused": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_prepared_bond_discovery.py tests/test_cif_automatic_bond_requests.py tests/test_cif_bond_target_discovery.py tests/test_cif_prepared_bond_repair.py tests/test_cif_prepared_repair_execution.py tests/test_cif_prepared_repair_failure.py tests/test_cif_repair_attempt.py tests/test_cif_complete_bond_targets.py tests/test_cif_postmr_bond_targets.py tests/test_cif_complete_request.py tests/test_cif_complete_continuation.py tests/test_cif_postmr_request.py tests/test_cif_ordinary_postmr.py tests/test_postmr_runtime.py --tb=short",
+        "cwd_anchor": "Cedar checkout",
+        "result": "658 passed in 553.80 s; 52 new checks plus directly affected owners. No full suite."
+      },
+      "installed": {
+        "build_command": "PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python -B branch-artifacts/cedar/runners/c333_build.py",
+        "build": "Offline pip wheel --no-deps --no-build-isolation --no-index with existing Phenix setuptools. All 248 Python source files and supported guard profile verified against the wheel. Initial verification expected non-package historical provenance JSON; corrected verification reused the already built wheel, without dependency installation.",
+        "wheel_sha256": "5501b04b5495811de3487b5e7683d7853273c4d6c70958ef7b07434efc77c7c8",
+        "wheel_bytes": 1355505,
+        "command": "PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -c 'import sys; sys.path.insert(0,\"/private/tmp/c333-installed-39lneeb0/installed\"); import nasolve.cif_prepared_bond_discovery as b; assert b.__file__.startswith(\"/private/tmp/c333-installed-39lneeb0/installed/\"); import pytest; sys.exit(pytest.main([\"-q\",\"-p\",\"no:cacheprovider\",\"/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/tests/test_cif_prepared_bond_discovery.py\",\"/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/tests/test_cif_automatic_bond_requests.py\",\"--tb=short\"]))' ",
+        "cwd": "/private/tmp",
+        "result": "52 passed in 48.40 s from the fresh extracted wheel; native control also uses that installed package."
+      },
+      "controls": [
+        "Real source/library reader and candidate writer with synthetic native outcomes: two components/one lookup, matched/nuclear/no-triple cases, source rejection, failed lookup with/without authorized fallback, interrupted lookup, negative attribution/derivatives and stopped native failure.",
+        "Cold decision replay after SDK/source removal; rehashed choice, stage, dictionary, source, consumer and library mutations refuse.",
+        "Frozen flags across outer/child/execution; changed/dropped intent refuses. ReadySet continuation, two immutable attempts, archival retirement and moved cold read with original SDK/store/input paths removed.",
+        "Ordinary fresh/frozen intake and checked Python forwarding; nonboolean/conflicting/manual choices refuse before tool/source setup. Omitted choice retains old fields/default policy."
+      ],
+      "native": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/private/tmp/c333-installed-39lneeb0/installed /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/cedar/runners/c333_start.py",
+        "cwd_anchor": "everyday NASolve checkout",
+        "run_anchor": "NASolve-live-tests",
+        "run_directory": "333_Cedar_automatic-bond-readyset-e73fslc3",
+        "environment": "Phenix 2.2.1-6174 / dispatcher 2.2.1, Darwin arm64. Complete actual interpretation/attribution/derivative/ReadySet execution; no diffraction refinement or Coot rerun.",
+        "request_delta": "Exact C327 successful configuration except explicit bond_targets replaced by frozen discovery policy; same retained scientific inputs, plane support, original 900-second allowance and v4 limits.",
+        "result": {
+          "artifact_policy": "cif-complete-request-partitioned-artifacts-v4",
+          "status": "COMPLETE_AUTOMATIC_TARGET_READYSET_RETIREMENT_RELOCATION_PASS",
+          "native": {
+            "native_build": "phenix-2.2.1-6174",
+            "dispatcher_version": "2.2.1",
+            "selected": "readyset_checked_model",
+            "prepared_selected": "repaired_prepared_bundle",
+            "all_owners_stopped": true,
+            "repair_phases": [
+              "attribution",
+              "bond-attribution-000",
+              "energy-library",
+              "native-000",
+              "native-001",
+              "native-002",
+              "native-003",
+              "native-baseline",
+              "original-gradient",
+              "plane-attribution-000",
+              "repaired-gradient"
+            ],
+            "continuation_phases": [
+              "native-baseline",
+              "native-endpoint",
+              "readyset"
+            ],
+            "original_derivatives": {
+              "qualified": true,
+              "report": {
+                "anchor": "original_gradient_directory",
+                "path": "captured_mixed_gradients.json",
+                "sha256": "0f4430923a03f8c1153b4576bd2f342742492f9731b2e3676c4644e21d565af7",
+                "size": 14541
+              },
+              "status": "CAPTURED_MIXED_DERIVATIVES_PASS"
+            },
+            "repaired_derivatives": {
+              "qualified": true,
+              "report": {
+                "anchor": "repaired_gradient_directory",
+                "path": "captured_mixed_gradients.json",
+                "sha256": "f6e32b7aea4b5680a5623d3659c67edfd232a26d075dbc60934c51d2a690fccc",
+                "size": 14541
+              },
+              "status": "CAPTURED_MIXED_DERIVATIVES_PASS"
+            },
+            "heavy_coordinates_unchanged": true,
+            "model_bytes_unchanged": false,
+            "ordered_phils_unchanged": true,
+            "selected_target": {
+              "atoms": [
+                "C5M",
+                "C5B"
+              ],
+              "comp_id": "PDU",
+              "type": "single",
+              "value_dist": "1.47",
+              "value_dist_esd": "0.020"
+            },
+            "model_sha256": "636223e4edb19caf32e6bf70799f20d008c8ae45a65cc83a727bf1a3d38203d3",
+            "selected_dictionary_sha256": "e0a3342167cdc6a391cde5470de9b4b2cdb59acb89fa126cb8d2e14c5b32fe8b",
+            "discovered_choices": {
+              "PDU": [
+                [
+                  "C5B",
+                  "C5M"
+                ]
+              ]
+            }
+          },
+          "cold": {
+            "status": "ARCHIVED_MOVED_AUTOMATIC_TARGET_READYSET_PASS",
+            "preserved_files": 141,
+            "physical_request_bytes": 40719525,
+            "selected": "readyset_checked_model",
+            "new_native_calls": 0,
+            "code_relocated": true,
+            "originals_sdk_store_blocked": true,
+            "elapsed_seconds": 88.44261091599947
+          },
+          "original_input_files_unchanged": 79,
+          "before_retirement_bytes": 234015903,
+          "after_retirement_bytes": 40719525,
+          "temporary_relocated_code_removed": true,
+          "sampled_peak_root_bytes": 316821062,
+          "sampling_limit": "One-second root samples exclude transient owner scratch/RSS; not exact peak or campaign capacity",
+          "elapsed_seconds": 980.5586615829998,
+          "scope": "One fresh complete automatic-discovery request from retained exact inputs, installed C333 code, actual ReadySet, no refinement/checkpoint adoption/default activation. PDU whole-substituent survival remains open."
+        },
+        "driver": {
+          "returncode": 0,
+          "stopped_verified": true,
+          "source_unchanged": true
+        },
+        "comparison_with_c327": "Final model, selected PDU dictionary and selected target/ESD match the previous explicit control exactly. Heavy coordinates and ordered PHIL preserved; initial model file formatting is not byte-identical after ReadySet."
+      },
+      "full_suite": "NOT_RUN per Simon. Last full Cedar C220/583d30df: 9178 tests +276 subtests. Not a combined Willow/merge pass.",
+      "other_checks": "git diff --check, JSON/source/evidence hash verification and old ledger entry equality; C331 guard/profile and captured numerical-library worker unchanged."
+    },
+    "compatibility": "Additive explicit Python option and schema-1 decision record/policy field. Absent/False keeps old request/report shapes and worker bytes. New requests require a reader that understands discovery intent; no old request migration or reclassification.",
+    "artifacts": {
+      "included": "Source, focused tests, maintained docs/descriptor caption and compact evidence only.",
+      "excluded": "Models, diffraction data, CIFs/native captures, SDK files, raw logs, local runners/wheel/temporary build trees; all science stays local.",
+      "live_anchor": "NASolve-live-tests",
+      "live_references": [
+        {
+          "path": "333_Cedar_automatic-bond-readyset-e73fslc3/summary.json",
+          "sha256": "c137c602d0193f1f2e1c209c56997696cdf3b03c16cb0a0a198453079a0bbbf5",
+          "bytes": 2983
+        },
+        {
+          "path": "333_Cedar_automatic-bond-readyset-e73fslc3/driver-result.json",
+          "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+          "bytes": 78
+        },
+        {
+          "path": "333_Cedar_automatic-bond-readyset-e73fslc3/input-origin.json",
+          "sha256": "35a983bd0fff40715284711a661462b217af720b7dce9bee5bc0b51f048a5f67",
+          "bytes": 1429
+        },
+        {
+          "path": "333_Cedar_automatic-bond-readyset-e73fslc3/discovery-summary.json",
+          "sha256": "fc361f52ea04b8fb540e18bc27fa899b4b36664bb6470cdd4b7540241259b436",
+          "bytes": 312
+        },
+        {
+          "path": "333_Cedar_automatic-bond-readyset-e73fslc3/native-summary.json",
+          "sha256": "31bf7e86f4e3f567a7d206e5e81392e94ebd45f22891adf390305377d86325dd",
+          "bytes": 1771
+        },
+        {
+          "path": "333_Cedar_automatic-bond-readyset-e73fslc3/cold-summary.json",
+          "sha256": "352e26c62b4f152a1d52d52fef4bdcfc41de7fa9b2f7f999c86f9425d705c2c9",
+          "bytes": 298
+        },
+        {
+          "path": "333_Cedar_automatic-bond-readyset-e73fslc3/retirement.json",
+          "sha256": "c59d7e3e70a672eb5eacef85dbced1d3ea7f3085fd91b6d699877a4d6847e4df",
+          "bytes": 323
+        },
+        {
+          "path": "333_Cedar_automatic-bond-readyset-e73fslc3/start.json",
+          "sha256": "f323847cfcc5f375b860063fa0c9f1c09b34b8c0e6ffcca6fe545cb4102f056e",
+          "bytes": 27758
+        }
+      ],
+      "local_anchor": "everyday NASolve checkout",
+      "local_references": [
+        {
+          "path": "branch-artifacts/cedar/runners/c333_start.py",
+          "sha256": "b634f20eda35fbff55aee20bc0bc3b4e591eeda1582fd31cbbd1f46a92fee190",
+          "bytes": 1758
+        },
+        {
+          "path": "branch-artifacts/cedar/runners/c333_worker.py",
+          "sha256": "9b50ac3a0a6558b5366cc75599db9a15c3d817455bb34e9a46c0e3ba055db135",
+          "bytes": 12472
+        },
+        {
+          "path": "branch-artifacts/cedar/runners/c333_build.py",
+          "sha256": "909588de71e1bcc45099e072d1181742706ba9fcdc27871ccf8bdfb76ab8b183",
+          "bytes": 1632
+        },
+        {
+          "path": "branch-artifacts/cedar/c333-automatic-bonds/build.json",
+          "sha256": "7cd7aa6977875a877d71a703cc623bc20b5f2ad8eabc864ddf347ec6590041d9",
+          "bytes": 253
+        },
+        {
+          "path": "branch-artifacts/cedar/c333-automatic-bonds/before.log",
+          "sha256": "1d034ce6c29bbcaeec4fdec89246fc6894a2061c135b0b39c92161d64a517797",
+          "bytes": 6480
+        },
+        {
+          "path": "branch-artifacts/cedar/c333-automatic-bonds/focused.log",
+          "sha256": "39f6a09e24ce74a388ac7eb34983c09a90a19126777973ca034cfcd9a94f625e",
+          "bytes": 832
+        },
+        {
+          "path": "branch-artifacts/cedar/c333-automatic-bonds/installed.log",
+          "sha256": "5fcd80e58b143381a8903a9cde9eef5ccdefa9ad5caa106667356a95a6a1487e",
+          "bytes": 100
+        }
+      ]
+    },
+    "remaining": [
+      "Q06 whole-substituent/held-out achieved refinement geometry remains REVIEW. C329 still has PDU bending; no thresholds/weights/Free-R were adjusted.",
+      "Ordinary CLI/campaign exposure and default activation remain later Q15/Q16 integration work.",
+      "One control does not qualify all ligands, SDKs/platforms or 100-dataset campaign capacity."
+    ],
+    "next": "Reuse existing explicit-site _triple_readback (94ababa1) and declared frozen bundle projections against authenticated C329 final native evidence, rather than feed a full isolated OP3-bearing dictionary or invent a second screen. Retain genuine bending and source/geometry uncertainty."
   }
 }

@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Carry discovered bond corrections through model preparation (C333)
+
+- Add explicit `automatic_bond_targets=True` to checked Python preparation and
+  its existing request owners. Source connectivity selects the neighborhoods;
+  one captured native library supplies supported target proposals. Existing
+  attribution, derivative checks, original fallback and ReadySet remain in charge.
+- Freeze discovery intent and exact per-attempt decisions, revalidate them on
+  offline read, and retain existing v4 capture limits. Conflicting manual choices
+  refuse before work. Omitted choices, historical requests and CLI/campaign
+  defaults remain unchanged; this does not approve achieved refinement geometry.
+
 ### Discover source-bound bond-target candidates (C332)
 
 - Add read-only automatic proposal of differing supported targets from source

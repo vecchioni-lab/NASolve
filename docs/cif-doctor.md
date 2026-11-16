@@ -236,13 +236,57 @@ malformed source/parameters refuse. No files or ESDs change and no program runs.
 
 Nonempty choices can feed the existing explicit candidate/repair route, which
 must still qualify the source, native changes, derivatives and selected bundle.
-The report is not a saved repair authorization. Automatic fresh-request wiring,
-freezing/revalidating the discovery decision, and complete recovery/fallback
-integration remain next. Ordinary entry/defaults, old requests and Q06 achieved
-geometry are unchanged. Existing PDU/5PC evidence reproduces the previously
+The report is not a saved repair authorization. C333 below connects explicit
+fresh-request intent to this discovery through the existing repair and recovery
+owners. Ordinary defaults, old requests and Q06 achieved geometry are unchanged. Existing PDU/5PC evidence reproduces the previously
 selected bonds and no further proposal after their target correction, with all
 182 files/timestamps preserved and no new native jobs. Exact evidence is in the
 maintained ledger under `source_aware_bond_discovery_2026_11_16`.
+
+### Automatic bond discovery in fresh preparation (C333)
+
+The checked `prepare_postmr(..., checked_preparation=True,
+automatic_bond_targets=True)` Python route and ordinary/prepared request
+constructors now freeze explicit discovery intent. `False`/omitted preserves the
+old configuration and behavior. It cannot be combined with explicit `bond_targets`.
+There is no new CLI/campaign switch or default activation. Direct complete-request
+callers must select `CAPTURE_ARTIFACT_POLICY`; ordinary constructors select that
+existing v4 policy for this choice. No storage limit is enlarged.
+
+Source/site qualification and the original derivative checks still precede repair.
+The existing source query screens every supplied component; an empty linear
+neighborhood adds no library job. After any existing linear/plane stages, one
+owned library lookup serves every eligible component. C332 then proposes all
+supported differing targets. Matching, unsupported and separate nuclear-distance
+cases remain visible; no proposed pair is not a chemistry pass. Each proposal
+uses the exact post-stage dictionary, with distinct source-owned component slots.
+No new atom typing, numerical threshold, uncertainty change or coordinate target
+is introduced.
+
+New request configurations and execution reports carry
+`bond_discovery_policy=cif-prepared-source-bond-discovery-v1`. An attempt's
+`bond_discovery.json` (schema 1) binds complete ordered dictionaries, source-query
+fingerprints, the captured library receipt, all proposals and selected pairs.
+New automatic bond stages reference that exact decision; explicit stages retain
+their previous shape. Offline readers reconstruct the decision from captured
+bytes, verify preceding dictionary stages and reject missing/replaced decisions,
+changed choices, another consumer or detached library evidence. They neither run
+programs nor write new decisions. Unsupported/failed attempts remain preserved.
+A fresh retry retains request intent and gets its own immutable attempt and
+library evidence only after existing ownership checks; it never edits an older
+proposal. Continuation has no discovery override.
+
+Candidates use the existing target-only writer, native bond attribution, whole-
+bundle derivative/selection and ReadySet route. A known stopped lookup failure
+can retain the independently qualified original only under the existing explicit
+optional-failure policy. Contradictory proof, changed inputs, unknown ownership or
+interruption never become a successful fallback. Source rejection stops before
+lookup. This adapter adds no executor, native worker, retention owner or chemistry
+approval. Installed PDU execution discovers the same correction and returns the
+same final model/CIF as the prior explicit route; native derivative/ReadySet and
+archived relocation checks pass. Focused validation: 658 passes, plus 52 from a
+fresh wheel; no full suite. Exact scope and commands are in the maintained handoff
+and `automatic_preparation_bond_discovery_2026_11_16` evidence entry.
 
 ### Explicit prepared target execution (C326)
 

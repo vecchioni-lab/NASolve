@@ -105,8 +105,13 @@ The existing source query and exact qualified rows identify differing supported
 bond targets automatically; unsupported/matching/separate nuclear-target cases
 remain explicit. No new discrepancy threshold, source typing, strength, process
 owner or adoption authority. Reports can supply the existing explicit pair
-choices, but automatic fresh-request freezing/execution remains separate. See the
-[discovery contract](cif-doctor.md#source-aware-bond-target-discovery-c332).
+choices. C333 carries explicitly requested discovery through the existing prepared,
+complete and ordinary Python owners. It freezes intent, captures one numerical
+library per eligible attempt, records exact decisions after earlier stages and
+revalidates them offline. Existing attribution, fallback, ReadySet and v4 limits
+remain authoritative; no CLI/default activation or new executor. See the
+[discovery contract](cif-doctor.md#source-aware-bond-target-discovery-c332) and
+[request binding](cif-doctor.md#automatic-bond-discovery-in-fresh-preparation-c333).
 
 ## Runtime precedence
 
@@ -4185,7 +4190,8 @@ geometry-copy permission, other-force/whole-objective or chemical approval follo
 The optional Willow consumer remains separately qualified: retain its existing
 source/atom/bonded/ASU owners and unchanged legacy worker/default reports. C331
 ships no integration into captured workers or refinement. Q06's remaining PDU
-geometry review and source-aware target discovery stay open. Exact commands,
+geometry review stays open; C332/C333 separately provide source-aware target
+discovery and explicit request delivery. Exact guard commands,
 native/source/installed results and measured overhead are recorded under
 `live_nonbonded_policy_guard_2026_11_16` in the existing evidence ledger; C330's
 inventory remains historical evidence, not a second implementation owner.

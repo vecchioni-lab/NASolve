@@ -104,12 +104,14 @@ policy separates native captures from their analysis while retaining the shared
 archive-expansion limit. The failed first request stays preserved. Normal model
 preparation can now pass an explicitly chosen correction into that same checked
 route through its Python entry point. This connects the existing tools; it does
-not yet run automatic discovery inside preparation. A read-only discovery step now
-identifies differing supported targets from source connectivity and the captured
-native library, finding the earlier PDU/5PC candidates without residue-name rules.
-It preserves matching and unsupported results and does not change uncertainties
-or approve the resulting geometry. Connecting these proposals to fresh owned
-requests remains next. Actual corrected-CIF
+not change ordinary defaults. An explicit Python preparation option can now find
+supported target corrections from source connectivity and the captured native
+library, without asking the caller to name the affected bonds. It retains the
+reason for every proposal and uses the same repair, native checks and ReadySet
+handoff. The earlier PDU/5PC discovery controls need no residue-name rules.
+Matching and unsupported results remain visible; uncertainties and chemical
+identity are preserved. This is a checked proposal/repair route, not approval of
+the achieved geometry or a new reference model. Actual corrected-CIF
 refinement has now been tested with the corrected CIF itself: the final printed
 restraints retain the intended target, and the written models reproduce Phenix's
 saved scattering. The corrected bond reaches 1.482 Å, but the same PDU bend
@@ -1039,7 +1041,10 @@ explain export and maintenance.
 Solid arrows indicate the existing model-preparation path; dashed arrows
 indicate read-only audits of exact construction sources, frozen source/runtime
 inputs and the selected effective restraint bundle. ReadySet remains the
-external preparation program. Explicit native pair diagnostics also retain
+external preparation program. The separate opt-in preparation engine can now
+freeze source/library-discovered bond corrections and qualify them before that
+ReadySet handoff; the read-only audit arrows do not themselves authorize a repair
+or establish survival in diffraction refinement. Explicit native pair diagnostics also retain
 directed symmetry images; they add no automatic adoption arrow. The explicit stored-site route binds the saved
 policy to current site preparation and captured native inputs, with no automatic
 adoption arrow. Separate catalogue/core inspection binds source ports; explicit site contracts propose bounded source-table deletions and

@@ -25,6 +25,8 @@ from .cif_prepared_repair_execution import execute_prepared_dictionary_repair, P
 from .cif_repair_process import inspect_prepared_repair_processes, _uuid, POLICY_ID as PROCESS_POLICY
 from .cif_prepared_repair_failure import inspect_prepared_native_failure, failure_policy_fields, FALLBACK_POLICY_ID
 
+from .cif_prepared_bond_discovery import bond_discovery_fields, validate_prepared_bond_discovery
+
 POLICY_ID = 'cif-prepared-repair-request-v1'
 ANCHOR = 'request_directory'
 _LIMITS = {'native_timeout_seconds':600, 'attribution_timeout_seconds':300,
@@ -58,7 +60,7 @@ def _inventory(tree):
     return {name:_digest(data) for name,data in tree.items()}
 
 
-def _configuration(tree, limits, max_attempts, *, qualify_no_repair=False, optional_failure_policy=None, compact_evidence=False, plane_support=None, bond_targets=None):
+def _configuration(tree, limits, max_attempts, *, qualify_no_repair=False, optional_failure_policy=None, compact_evidence=False, plane_support=None, bond_targets=None, automatic_bond_targets=False):
     _need(type(qualify_no_repair) is bool, "Require a boolean no-repair qualification mode")
     _need(set(limits) == set(_LIMITS) and all(type(v) is int and 1 <= v <= _LIMITS[k]
           for k,v in limits.items()), 'Require bounded integer repair deadlines')
@@ -69,7 +71,8 @@ def _configuration(tree, limits, max_attempts, *, qualify_no_repair=False, optio
                 **({'qualify_no_repair':True} if qualify_no_repair else {}),**failure_policy_fields(optional_failure_policy),
                 **compact_evidence_fields(compact_evidence),
                 **({'plane_support':plane_support} if plane_support is not None else {}),
-                **({'bond_targets':bond_targets} if bond_targets is not None else {}))
+                **({'bond_targets':bond_targets} if bond_targets is not None else {}),
+                **bond_discovery_fields(automatic_bond_targets,bond_targets))
 
 
 def _support_declarations(root, config):
@@ -101,7 +104,7 @@ def _request(root):
     bond_choices=None if bond_config is None else bond_config['choices']
     expected_bonds=_bond_target_choices(root/'inputs/bundle',bond_choices)
     _need(expected_bonds==bond_config,'Prepared bond targets changed')
-    expected = _configuration(_tree(path_in(root,'inputs/bundle')),config.get('limits',{}),config.get('max_attempts'),qualify_no_repair=config.get('qualify_no_repair',False),optional_failure_policy=config.get('optional_failure_policy'),compact_evidence=config.get('compact_evidence',False),plane_support=expected_support,bond_targets=expected_bonds)
+    expected = _configuration(_tree(path_in(root,'inputs/bundle')),config.get('limits',{}),config.get('max_attempts'),qualify_no_repair=config.get('qualify_no_repair',False),optional_failure_policy=config.get('optional_failure_policy'),compact_evidence=config.get('compact_evidence',False),plane_support=expected_support,bond_targets=expected_bonds,automatic_bond_targets='bond_discovery_policy' in config)
     _need(config == expected, 'Prepared request snapshot or configuration changed')
     return request
 
@@ -123,7 +126,8 @@ def _execution(attempt, intent, config):
             if 'job' not in evidence:
                 continue
             if phase=='energy-library' or phase.startswith('bond-attribution-'):
-                _need(config.get('bond_targets') is not None,'Native bond work lacks frozen explicit targets')
+                _need(config.get('bond_targets') is not None or 'bond_discovery_policy' in config,
+                      'Native bond work lacks frozen targets or discovery intent')
             limit = ('native_timeout_seconds' if phase.startswith('native-') or phase=='energy-library' else
                      'attribution_timeout_seconds' if phase == 'attribution' or phase.startswith(('plane-attribution-','bond-attribution-')) else 'derivative_timeout_seconds')
             _need(evidence['job']['timeout_seconds'] <= config['limits'][limit], 'Worker exceeded frozen phase limit')
@@ -134,6 +138,10 @@ def _execution(attempt, intent, config):
               'Execution plane support differs from frozen request')
         _need(value.get('bond_targets')==config.get('bond_targets'),
               'Execution bond targets differ from frozen request')
+        _need(value.get('bond_discovery_policy')==config.get('bond_discovery_policy'),
+              'Execution discovery differs from frozen request')
+        if 'bond_discovery_policy' in config: validate_prepared_bond_discovery(work,value)
+        else: _need('bond_discovery' not in value,'Unrequested bond discovery')
         storage = value.get('compact_evidence',False)
         _need(type(storage) is bool and storage == config.get('compact_evidence',False),
               'Execution storage choice differs from frozen request')
@@ -224,7 +232,7 @@ def _seal(attempt, intent, request, outcome, error=None):
 
 def execute_prepared_dictionary_repair_attempt(bundle, phenix, request_directory, *,
         native_timeout_seconds=120, attribution_timeout_seconds=90, derivative_timeout_seconds=300,
-        total_timeout_seconds=600, max_attempts=2, qualify_no_repair=False, optional_failure_policy=None, compact_evidence=False, plane_support=None, bond_targets=None,
+        total_timeout_seconds=600, max_attempts=2, qualify_no_repair=False, optional_failure_policy=None, compact_evidence=False, plane_support=None, bond_targets=None, automatic_bond_targets=False,
         _parent_attempt_identity=None, _remaining_seconds=None):
     """Perform one fresh, bounded repair attempt under an immutable logical request.
 
@@ -235,6 +243,7 @@ def execute_prepared_dictionary_repair_attempt(bundle, phenix, request_directory
     enclosing identity is per attempt; a remaining callback clamps preflight,
     execution and sealing without replacing the frozen request limits.
     """
+    bond_discovery_fields(automatic_bond_targets,bond_targets)
     started = monotonic()
     parent = parent_identity(_parent_attempt_identity)
     outer = OuterAllowance(_remaining_seconds, monotonic, PreparedRepairBudgetExceeded)
@@ -266,7 +275,7 @@ def execute_prepared_dictionary_repair_attempt(bundle, phenix, request_directory
         _need(_bond_target_choices(original,bond_targets)==bond_config,'Bond targets changed during request')
     limits = dict(native_timeout_seconds=native_timeout_seconds,attribution_timeout_seconds=attribution_timeout_seconds,
                   derivative_timeout_seconds=derivative_timeout_seconds,total_timeout_seconds=total_timeout_seconds)
-    config = _configuration(before,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,compact_evidence=compact_evidence,plane_support=support_config,bond_targets=bond_config)
+    config = _configuration(before,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,compact_evidence=compact_evidence,plane_support=support_config,bond_targets=bond_config,automatic_bond_targets=automatic_bond_targets)
     consumer = read_dictionary_bundle(original)['report']['consumer']
     _need(verify_current_consumer(phenix,phenix.executables['phenix.ready_set'],consumer), 'Prepared repair consumer differs')
     _need(_tree(original) == before, 'Prepared source changed during preflight')
@@ -321,6 +330,7 @@ def execute_prepared_dictionary_repair_attempt(bundle, phenix, request_directory
                                                      **({'plane_support':_support_declarations(root/'inputs/plane-support',support_config)}
                                                         if support_config is not None else {}),
                                                      **({'bond_targets':bond_config['choices']} if bond_config is not None else {}),
+                                                     **({'automatic_bond_targets':True} if automatic_bond_targets else {}),
                                                      **({'_remaining_seconds':remaining} if _remaining_seconds is not None else {}))
             _need(_tree(original) == before and _tree(root/'inputs/bundle') == before,
                   'Prepared source or request snapshot changed during execution')

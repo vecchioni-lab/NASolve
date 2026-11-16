@@ -105,17 +105,30 @@ not approve native copies, neighbour completeness or Q06 geometry. Return to
 automatic request delivery of source-aware proposals and honest remaining-geometry
 reporting; preserve C329's corrected-CIF evidence rather than rerunning it without a new hypothesis.
 
-**Source-aware discovery available (C332):** the read-only selected-library owner
-now identifies differing supported target candidates and supplies explicit pair
-choices. Matching/unsupported/nuclear-reference cases remain visible; no proposal
-is not chemical acceptance. C323 PDU/5PC replay agrees, all 182 files preserved.
-Next: explicit automatic-discovery intent in fresh requests, one shared library
-lookup when eligible source neighborhoods exist, frozen/revalidated plan binding,
-existing native attribution/selection/ReadySet and recovery/fallback controls.
-Retain v4 accounting when bond captures are requested; no silent continuation
-rediscovery, default activation, new executor or strength change. C329's residual
-PDU bend and broader held-out geometry remain Q06 gates. See the
-[discovery contract](cif-doctor.md#source-aware-bond-target-discovery-c332).
+**Source-aware discovery and request delivery (C332/C333):** read-only source/
+library discovery identifies supported differing targets; explicitly opted-in
+Python preparation now freezes that intent and the exact per-attempt proposals.
+It reuses attribution/selection/ReadySet, immutable recovery and v4 storage. Empty,
+matching, unsupported and nuclear-reference cases stay honest; no proposal is not
+chemical acceptance. Installed PDU delivery/ReadySet and archived cold relocation pass; exact
+native/focused/installed validation is in the handoff and existing evidence ledger. No new executor, reference model, ESD change, CLI flag
+or ordinary default. Do not rebuild this path to add a residue-specific fix.
+
+**Next Q06 boundary:** report what remains distorted after the chosen dictionaries
+reach refinement, preserving the C329 finding that a correct target can coexist
+with PDU's residual bend. Reuse its exact model/restraint/force evidence before a
+new experiment; distinguish wrong targets, effective restraints and competing
+forces. Close whole-substituent and related held-out survival with scientifically
+justified criteria, not stronger restraints chosen to force a pass. Prior-work check found that `cif_construction_native._triple_readback` already
+scopes a declared heavy-atom projection to one native site (introduced at
+`94ababa1`, with PDU/5PC/Q17 and duplicate-site controls). C329 called that reader
+with the full runtime CIF, which explains why its OP3 inventory warning must stay
+separate from real linked-site omissions. Reuse the frozen bundle's declared
+site projection and authenticated final capture before inventing another screen
+or rerunning refinement; do not silently prune atoms to match an observation.
+Later ordinary CLI/campaign exposure and default/release scope belong with Q15/Q16; a numerical
+repair or delivery pass does not close Q06. See the
+[request contract](cif-doctor.md#automatic-bond-discovery-in-fresh-preparation-c333).
 
 **Queued representative-boundary alternative (Linden W79/W80):** W79 reports
 that outlier callbacks can mix source and displayed coordinate frames even when
@@ -249,45 +262,32 @@ same target/delivery/derivative checks. Arbitrary coordinate-derived targets and
 blanket rejection on nonconvergence remain outside the contract. Evidence root:
 `323_Cedar_target-origin-vehkjax0` under the live-test anchor.
 
-**Next bounded work (Q06):** qualify numerical-candidate delivery through existing
-repair/selection owners, then inspect whole-substituent survival. C320 now binds the
-exact source/reference and dictionary change to complete native before/after
-inventories, retaining the normal component origin, for both saved PDU and 5PC
-controls. C321 now accounts for their whole energy/force difference using actual
-native bond options and single/container evaluations. C322 now binds that proof
-through the shared owned attribution lifecycle and passes cold readback after
-relocation with original inputs/SDK blocked. C323/C324 close selected-library
-reference authority and ordered-chain composition. C326 closes explicit prepared
-executor/request delivery: the real PDU control selects a corrected CIF after
-original/final complete derivative checks, with unchanged model/PHIL/ESD; moved
-request/runtime/ReadySet-parent reads pass. The final lookup-failure policy guard
-passes focused negative controls. C327 completes explicit complete-request/ReadySet delivery and existing retirement,
-then reads the archived result after relocation. Its first v3 storage failure is
-preserved; fresh explicit v4 separates native captures from derived evidence with
-unchanged per-part/shared expansion bounds. C328 connects the explicit choice at
-ordinary preparation/checked PostMR Python entry, using the same frozen owner;
-focused transport/continuation and saved-native-configuration checks pass. No
-native ordinary-entry control or automatic-selection claim is added.
-C329 now completes five actual cycles from C327's corrected runtime, with no
-extra bond-edit PHIL. The final GEO retains the 1.470/0.020 target at normal
-component origin, all 45 planes/58 parallels survive, and written PDB/mmCIF
-reproduce saved scattering. C319 atom records reproduce exactly; full C308 native
-parameters differ only by declared origin. The terminal length is 1.481829 Å,
-but angles 175.019°/173.937° and plane offset 0.258 Å keep Q06 in REVIEW. This
-is an isolated diagnostic refinement, not a new ordinary checkpoint/default.
-Do not rerun the same delivery or the already-relevant C309/C314 force analysis.
-**Next: source-aware automatic numerical selection and useful achieved-geometry
-reporting; whole-substituent/held-out survival remains unqualified.** The generic
-triple diagnostic compares isolated OP3-bearing reference atoms against linked
-B:4: preserve that scope warning separately from actual native missing atoms
-(none). Q14 should use explicit site projections rather than suppressing membership
-checks or adding unwanted OP3. Changed intent needs a fresh request/run; never
-bypass lineage by manufacturing a checkpoint or rewriting the original request.
-No automatic target discovery/defaults or residue-name special cases. Reuse existing
-owners rather than promote a diagnostic script or add recovery/storage machinery.
-Diagnostic PHIL edits alone do not establish corrected-CIF delivery. Keep neighboring
-targets, source hands and terminal intent visible. No repeated Coot, blanket
-flattening or Free-R tuning. Q07–Q16 remain as ordered below.
+**Target-delivery foundation (C320–C333):** source-bound dictionary/native
+attribution, selected-library authority, ordered repair, derivative selection and
+immutable preparation/ReadySet delivery already have their existing owners.
+C327's failed v3 request stays preserved; fresh v4 separates native captures while
+retaining per-part and shared archive bounds. C328 connects explicit choices to
+ordinary Python preparation; C332/C333 add source/library discovery and its frozen
+request binding. C333 installed delivery/ReadySet/relocation passes; the handoff and ledger retain exact historical
+commands and scopes in the existing evidence ledger. Do not add another process,
+repair, storage or residue-specific selection owner.
+
+C329's five real cycles from the corrected runtime retain the 1.470/0.020 target
+at normal component origin, all 45 planes/58 parallels, and written PDB/mmCIF
+that reproduce saved scattering. C319 atom records reproduce exactly; full C308
+native parameters differ only by declared origin. The terminal length is
+1.481829 Å, but angles 175.019°/173.937° and plane offset 0.258 Å keep Q06 in
+REVIEW. This is diagnostic refinement, not an ordinary checkpoint/default.
+Do not rerun identical delivery or the already-relevant C309/C314 force analysis.
+
+**Next: useful achieved-geometry reporting and whole-substituent/held-out
+survival.** Keep the generic triple diagnostic's isolated OP3-bearing reference
+warning separate from actual linked B:4 native missing atoms (none). Q14 should
+use explicit site projections, not suppress membership checks or add unwanted
+OP3. Changed intent needs a fresh request/run; never manufacture a checkpoint or
+rewrite original evidence. Neighboring targets, source hands and terminal intent
+remain visible. No blanket flattening, restraint strengthening to force acceptance,
+repeated Coot construction or Free-R tuning. Q07–Q16 remain ordered below.
 
 **Installed replay holdover closed by C325:** the exact public C62/C63 canonical
 frame is now a dedicated package resource, with explicit historical runtime inputs

@@ -1899,6 +1899,7 @@ def prepare_postmr(
     checked_preparation: bool = False,
     automatic_plane_support: bool = False,
     bond_targets: dict | None = None,
+    automatic_bond_targets: bool = False,
     dictionary_input_policy: str | None = None,
     coot_executable: Path | None = None,
     environment: Mapping[str, str] | None = None,
@@ -1918,6 +1919,8 @@ def prepare_postmr(
     Explicit bond_targets requires the checked route and names source-neighborhood
     atom pairs, not target lengths. The selected native library supplies any
     supported reference; qualification and independently checked fallback remain.
+    Alternatively automatic_bond_targets requests source/library-selected proposals
+    through that same owner. Both choices require the checked route and cannot mix.
     """
     if type(checked_preparation) is not bool:
         raise PostMRPreparationError('checked_preparation must be a boolean')
@@ -1925,6 +1928,13 @@ def prepare_postmr(
         raise PostMRPreparationError('automatic_plane_support must be a boolean')
     if automatic_plane_support and not checked_preparation:
         raise PostMRPreparationError('automatic_plane_support requires checked_preparation')
+    from .cif_prepared_bond_discovery import bond_discovery_fields
+    try:
+        bond_discovery_fields(automatic_bond_targets,bond_targets)
+    except ValueError as exc:
+        raise PostMRPreparationError(str(exc)) from exc
+    if automatic_bond_targets and not checked_preparation:
+        raise PostMRPreparationError('automatic_bond_targets requires checked_preparation')
     if bond_targets is not None:
         if not checked_preparation:
             raise PostMRPreparationError('bond_targets requires checked_preparation')
@@ -1955,6 +1965,7 @@ def prepare_postmr(
             return prepare_published_postmr(run_directory, phenix_installation,
                 **({"automatic_plane_support": True} if automatic_plane_support else {}),
                 **({"bond_targets": bond_targets} if bond_targets is not None else {}),
+                **({"automatic_bond_targets": True} if automatic_bond_targets else {}),
                 **({"generation_options": generation_options} if generation_options else {}), **options)
         except (OSError, ValueError, CampaignError, CheckpointError) as exc:
             raise PostMRPreparationError(f'Checked preparation could not complete: {exc}') from exc
