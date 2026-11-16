@@ -120,6 +120,16 @@ deciding whether directional terms are appropriate. **Do not simply fix a
 heavy-atom angle at 180°, enforce flat base planes, or edit `run_003`.**
 Not a blocker for `show` or for the successful native integration.
 
+## Downstream publication demonstrations
+
+Simon requested **A2T7 rotation, recuts combined with bending, standard test data
+including DOHU, and metal data** for the final NASolve demonstration. The
+[shared publication shortlist](campaign-model-roadmap.md#nasolve-publication-demonstrations)
+is the canonical planning note; Hazel supplied seven metal cases with separate
+component, geometry and metal-inference readiness limits. Keep this downstream scope in the queue while completing the
+current guarded-geometry milestones. No final scientific results or data release
+are implied by the note.
+
 ## After Pine: blind AlphaFold baseline, then operational Scout
 
 The user requested this order on 2026-10-07. Use the existing prepared-
@@ -138,8 +148,8 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-16
 
-**W97 explicit guarded captured diagnostics are qualified in the declared scope.**
-Latest audited runtime is W97 `1d600879` on isolated `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
+**W98 declared-start API and bounded paired-step controls are qualified in their stated scope.**
+Latest audited runtime is W98 `7faff1a1` on isolated `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
 [periodic topology](topostitch-periodic.md) and [bend previews](topostitch-preview.md).
@@ -376,13 +386,39 @@ paths reproduces values, gradients and binding. This qualifies the explicit
 installed-Cedar owner route on its pinned profile, not a fully merged branch or
 physical DNA repair. Scientific evidence remains ignored local material.
 
-W98 should predeclare a genuinely displaced intact-duplex/cleanup comparison,
-measure guard overhead to choose bounded native budgets, then retain individual
-contact/packing/geometry/derivative failures before density-aware refinement.
-Do not rerun W91's completed small-polish comparison. Long guarded trajectories
-and endpoint-observer combinations still need their own qualification. Cedar
-C331 remains pinned; Rowan's separate C332 chemistry work does not change that
-interface. All Linden native jobs from this slice are finished.
+**W98 is recorded.** `run_captured_objective` now forwards frozen, finite,
+mask-bounded diagnostic starts to the existing trial. Twelve fail-before cases,
+96 focused, 1,876 full +229 subtests, 96 installed tests, six CLI helps and
+`pip check` pass. Rowan reviewed runtime `7faff1a1` without a Cedar compatibility
+blocker. Full-suite sandbox failures were resolved by the unchanged unsandboxed
+run. See the [W98 contract and exact evidence](topostitch-periodic.md#w98--declared-starts-through-captured-native-trials).
+
+The oversized 204-atom run is retained as interrupted/unqualified; sandboxed
+cleanup reported OWNERSHIP_ERROR and an independent check proved its worker
+absent. Smaller installed C331 controls move one intact pair (41 atoms/123
+variables) by 1.15 Å RMS, preserving 814 fixed atoms and the original 0.1 Å tether.
+Matched 25-step pilots and one declared 300-step extension all pass full and
+PDB-rounded derivatives/guard checks, but all stop NOT_CONVERGED_LIMIT. Extended
+RMS displacement is 0.0654 / 0.0641 Å (pair forces on/off). Initial states match
+exactly across budgets. The reference tether makes this numerical recovery,
+not blind MR/density repair or selected sticky-end closure.
+
+Three guarded endpoint-observer jobs also pass consistency checks. Added pair
+forces reduce the changing core-pair penalty (14.94→10.61 versus 21.13 without),
+primarily through plane terms; not every bond/angle or packing contact improves.
+Source and endpoints remain environmental REVIEW; rounding changes stationarity
+and must stay visible. The verified 487-file local forensic archive and exact
+commands/hashes are in the W98 receipt. All jobs are stopped; no candidate or
+scientific payload was published.
+
+**W99 next:** use the measured ~0.28 s/evaluation rate to reserve complete matched
+full-window budgets with margin, retaining individual contact, boundary, packing,
+serialization and failed/limited outcomes. Local paired-step evidence does not
+close S04/S05; general source-displaced and density/matched-refinement controls
+remain ahead. A later owner-side prepared immutable baseline may improve cost
+while retaining every fresh policy/source check; do not weaken coverage or reuse
+mutable policy/contact caches. C331 stays pinned; current Cedar C333/C334 chemistry
+work is separate. Do not rerun the completed W91 small-polish comparison.
 
 This direct guard is separate from Cedar Q06 refinement chemistry/PDU angle
 review. Nonuniform curvature, matched diffraction and density-aware S06 remain

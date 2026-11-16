@@ -31,6 +31,9 @@ entries are reconstructed from repository history.
 - Reuse the existing atomic trial, original model/tether and derivative/budget
   policy. Retain the vector in the immutable request and original trial failures.
   Default calls and worker text remain unchanged; no new CLI or adoption policy.
+- Qualify the installed guarded path with bounded paired-step trials and
+  per-contact/native/packing observations. Preserve iteration limits, reference
+  tether bias and the interrupted full-window attempt; no physical repair claim.
 
 
 ### W97 — Carry the explicit policy guard into captured diagnostics

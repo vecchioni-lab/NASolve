@@ -4,7 +4,7 @@
   "updated": "2026-11-16",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "1d6008791c730cc576d21fb7f7872f5c1eb36466",
+  "audited_code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -228,13 +228,14 @@
         "W91 qualifies execution of the explicit diagnostic-start interface through matched native trials and endpoint observations, preserving both failures. This small coarse seed reaches the same rounded atomic point as cold cleanup and gives no demonstrated benefit; local improvements and remaining packing/torsion reviews stay separate.",
         "W94 adds checked explicit pivot rotation through the existing Cartesian image owner and preview tensor path. Off-origin cycles/inverses and software/install regressions pass; no axis inference or three-orientation campaign runner.",
         "W96 qualifies an explicit direct shared-policy consumer with frozen baseline, hidden-mutation rejection and legitimate native rebuilds. Full/install and bounded source/native composition checks pass; no worker/default activation or scientific acceptance.",
-        "W97 carries the C331 guard/profile through explicit captured diagnostics, preserves fresh baseline/provenance and verifies success evidence. Source and installed/relocated read-only public-DNA controls agree exactly; no scientific acceptance or default activation."
+        "W97 carries the C331 guard/profile through explicit captured diagnostics, preserves fresh baseline/provenance and verifies success evidence. Source and installed/relocated read-only public-DNA controls agree exactly; no scientific acceptance or default activation.",
+        "W98 qualifies explicit captured starts and installed guarded paired-step trials/endpoint observations. Matched 25/300-iteration controls pass full/rounded derivatives but retain NOT_CONVERGED_LIMIT; original-source tether bias, contact/packing trade-offs and interrupted full-window evidence remain explicit. No full-window or density repair claim."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation."
       ],
-      "next_action": "W98: predeclare a genuinely displaced intact-duplex and matched cleanup diagnostic using the guarded worker, explicit source/mask/bounds/protected junctions. Measure guard overhead to reserve bounded native budgets. Keep individual contact/packing/geometry/derivative and failed outcomes; long guarded trajectories and density/matched refinement need separate qualification. Do not repeat W91 small-polish work.",
+      "next_action": "W99: reserve complete matched full-window budgets from the measured approximately 0.28 s/evaluation rate with margin; retain individual contacts, boundary/native terms, packing, rounding and failures/limits. Then qualify general source-displaced and density/matched refinement controls. Owner-side immutable baseline preparation is a later performance option only with complete fresh live-policy/source checks; no coverage reduction or mutable-cache reuse. Do not repeat W91 small-polish work.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -252,14 +253,15 @@
         "E_PIVOT_ROTATION",
         "E_GUARD_INTEGRATION_PREP",
         "E_LIVE_POLICY_CONSUMER",
-        "E_GUARDED_CAPTURED_WORKER"
+        "E_GUARDED_CAPTURED_WORKER",
+        "E_CAPTURED_DIAGNOSTIC_START"
       ],
       "last_audit": {
         "date": "2026-11-16",
         "reviewer": "Linden",
-        "code_commit": "1d6008791c730cc576d21fb7f7872f5c1eb36466",
-        "human_update": 97,
-        "scope": "Explicit guarded read-only captured-worker path qualified with installed C331 and original-path-absent relocation. Scientific geometry, long trajectories and diffraction gates remain open."
+        "code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4",
+        "human_update": 98,
+        "scope": "Explicit-start API, installed guarded paired-step trials and endpoint-observer consistency qualified. All trials remain iteration-limited; original-source tether bias, collateral geometry and full-window/density gates remain open."
       }
     },
     {
@@ -303,13 +305,14 @@
         "W90 adds explicit diagnostic initialization to the existing atomic trial and checks remaining evaluation budget, with unchanged source/tether, derivatives and stopping/failure policy. Full/installed validation passes; native benefit is being compared in W91.",
         "W91 qualifies execution of the explicit diagnostic-start interface through matched native trials and endpoint observations, preserving both failures. This small coarse seed reaches the same rounded atomic point as cold cleanup and gives no demonstrated benefit; local improvements and remaining packing/torsion reviews stay separate.",
         "W96 qualifies an explicit direct shared-policy consumer with frozen baseline, hidden-mutation rejection and legitimate native rebuilds. Full/install and bounded source/native composition checks pass; no worker/default activation or scientific acceptance.",
-        "W97 carries the C331 guard/profile through explicit captured diagnostics, preserves fresh baseline/provenance and verifies success evidence. Source and installed/relocated read-only public-DNA controls agree exactly; no scientific acceptance or default activation."
+        "W97 carries the C331 guard/profile through explicit captured diagnostics, preserves fresh baseline/provenance and verifies success evidence. Source and installed/relocated read-only public-DNA controls agree exactly; no scientific acceptance or default activation.",
+        "W98 qualifies explicit captured starts and installed guarded paired-step trials/endpoint observations. Matched 25/300-iteration controls pass full/rounded derivatives but retain NOT_CONVERGED_LIMIT; original-source tether bias, contact/packing trade-offs and interrupted full-window evidence remain explicit. No full-window or density repair claim."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "W98: predeclare a genuinely displaced intact-duplex and matched cleanup diagnostic using the guarded worker, explicit source/mask/bounds/protected junctions. Measure guard overhead to reserve bounded native budgets. Keep individual contact/packing/geometry/derivative and failed outcomes; long guarded trajectories and density/matched refinement need separate qualification. Do not repeat W91 small-polish work.",
+      "next_action": "W99: reserve complete matched full-window budgets from the measured approximately 0.28 s/evaluation rate with margin; retain individual contacts, boundary/native terms, packing, rounding and failures/limits. Then qualify general source-displaced and density/matched refinement controls. Owner-side immutable baseline preparation is a later performance option only with complete fresh live-policy/source checks; no coverage reduction or mutable-cache reuse. Do not repeat W91 small-polish work.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -344,14 +347,15 @@
         "E_BLUNT_ASYM_PLAN",
         "E_GUARD_INTEGRATION_PREP",
         "E_LIVE_POLICY_CONSUMER",
-        "E_GUARDED_CAPTURED_WORKER"
+        "E_GUARDED_CAPTURED_WORKER",
+        "E_CAPTURED_DIAGNOSTIC_START"
       ],
       "last_audit": {
         "date": "2026-11-16",
         "reviewer": "Linden",
-        "code_commit": "1d6008791c730cc576d21fb7f7872f5c1eb36466",
-        "human_update": 97,
-        "scope": "Explicit guarded read-only captured-worker path qualified with installed C331 and original-path-absent relocation. Scientific geometry, long trajectories and diffraction gates remain open."
+        "code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4",
+        "human_update": 98,
+        "scope": "Explicit-start API, installed guarded paired-step trials and endpoint-observer consistency qualified. All trials remain iteration-limited; original-source tether bias, collateral geometry and full-window/density gates remain open."
       }
     },
     {
@@ -1422,6 +1426,48 @@
         "portable_campaign": false,
         "committed": false
       }
+    },
+    "E_CAPTURED_DIAGNOSTIC_START": {
+      "kind": "captured_explicit_start_interface_and_displaced_recovery_diagnostic",
+      "code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4",
+      "human_update": 98,
+      "reference": "docs/topostitch-periodic.md#w98--declared-starts-through-captured-native-trials",
+      "result": "Twelve fail-before cases; 96 focused, 1,876 full plus 229 subtests, 96 installed tests, six CLI help checks, pip check and Python 3.10 syntax pass. The frozen 3N start matches complete mask/radial bounds before allocation and reaches the unchanged W90 trial. Complete installed Phenix 2.2.1-6174 guarded controls with 41 atoms/123 variables at 25 and 300 iterations pass initial/full/rounded derivatives and baseline/source checks; all retain NOT_CONVERGED_LIMIT. Extended RMS from reference is 0.065399/0.064062 Angstrom with/without pair forces, from 1.150583. Three guarded endpoint observers pass consistency; the changing core pair penalty goes from 14.9391 to 10.6100/21.1327, but individual contacts, packing and torsions retain trade-offs and environment REVIEW. The full-window attempt was interrupted without a verdict; its original OWNERSHIP_ERROR is retained and process-group absence was independently verified.",
+      "limitation": "The original 0.1 Angstrom tether biases toward the known source. No selected sticky-end change, full-window/broad recovery, convergence, density/refinement, Coot check, adoption or merged-build claim. PDB rounding alters stationarity despite passing derivatives. Scientific data remain local; the archive is forensic, not autonomous portable execution. Profile instrumentation and observed approximately 0.28 s/evaluation wall-rate are distinct; no guard optimization, new CLI/dependency or schema version.",
+      "wheel_sha256": "97594379a1aa6c3a71f390f8017ebed010df59b18dd8a12b59dbda289e35140e",
+      "owner_commit": "c4e5ddb8530358c524feb473f3c4ffe77c64b6ac",
+      "peer_review": {
+        "reviewer": "Rowan",
+        "date": "2026-11-16",
+        "reviewed_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4",
+        "scope": "Read-only runtime/test diff; no additional test run or native recovery endorsement",
+        "result": "No Cedar compatibility blocker; frozen start, finite/count/radial checks and existing worker forwarding preserve legacy behavior."
+      },
+      "local_forensic_archive": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/w98-declared-starts-2026-11-16.tar.gz",
+        "sha256": "8b5aaf98b3d394c8245ff426334c4f663d94337e92dc90f8c6e9c89f5307679d",
+        "bytes": 40234280,
+        "files": 487,
+        "payload_index_verified": true,
+        "portable_campaign": false,
+        "committed": false
+      },
+      "native_controls": {
+        "atom_count": 855,
+        "movable_atoms": 41,
+        "variables": 123,
+        "reference_tether_sigma_angstrom": 0.1,
+        "pilot_iterations": 25,
+        "extended_iterations": 300,
+        "all_stopping_classification": "NOT_CONVERGED_LIMIT",
+        "all_derivative_status": "DERIVATIVES_PASS",
+        "observer_jobs": 3,
+        "observer_status": "ENDPOINT_OBSERVATIONS_REVIEW",
+        "all_environment_status": "REVIEW",
+        "full_window_status": "INTERRUPTED_UNQUALIFIED",
+        "scientific_acceptance": false
+      }
     }
   },
   "benchmarks": [
@@ -1561,8 +1607,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 97,
-    "next": 98,
+    "current": 98,
+    "next": 99,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1954,7 +2000,14 @@
         "title": "Qualify explicit guarded captured-worker diagnostics and relocation",
         "state": "RECORDED",
         "code_commit": "1d6008791c730cc576d21fb7f7872f5c1eb36466"
+      },
+      {
+        "number": 98,
+        "title": "Qualify declared starts and bounded paired-step native controls",
+        "state": "RECORDED",
+        "code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4"
       }
     ]
-  }
+  },
+  "publication_demonstrations_reference": "docs/campaign-model-roadmap.md#nasolve-publication-demonstrations"
 }

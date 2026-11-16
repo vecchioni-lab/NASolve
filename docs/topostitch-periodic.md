@@ -3856,7 +3856,121 @@ PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/
 Fresh Willow wheel SHA256:
 `97594379a1aa6c3a71f390f8017ebed010df59b18dd8a12b59dbda289e35140e`.
 The existing captured-job module and tests own the change; no Cedar code or
-native optimizer is modified. W98's predeclared, bounded native recovery
-comparison is in progress; software validation is not evidence of physical
-repair. Its original-source tether makes it a numerical recovery control,
-not a blind MR or density-supported result. S04/S05 remain partial.
+native optimizer is modified. Runtime source and installed module bytes match,
+and Python 3.10 syntax parsing passes. Rowan reviewed the exact `7faff1a1` diff
+without a Cedar compatibility blocker; this was code review, not a native or
+scientific endorsement. The explicit installed C331 owner remains
+`c4e5ddb8530358c524feb473f3c4ffe77c64b6ac`; no branch merge is implied.
+
+### Native controls and preserved budget correction
+
+Complete **Phenix 2.2.1-6174** native geometry execution used the existing
+855-atom source and 14-pair recipe. A predeclared +5-degree tapered window selected
+204 atoms (612 variables), maximum movement 1.768 Å and RMS 0.917 Å, with a 3 Å
+radial bound and the original 0.1 Å reference tether. The instrumented four-call
+profile measured 0.640 s per objective evaluation; a separate unprofiled whole
+read-only job took 4.456 s. Profiling includes overhead and is not a native
+throughput guarantee. The chosen 1,800-second cap did not have a justified margin
+for 7,350 finite-difference evaluations plus optimization. The first window run
+was interrupted before a complete verdict; the second was not launched.
+
+The sandboxed interruption returned `OWNERSHIP_ERROR` because process cleanup
+was denied. Its original FAILED receipt and partial files remain intact. An
+independent unsandboxed `killpg(group, 0)` check returned ESRCH, establishing that
+the worker group was absent. Subsequent native controls ran outside the sandbox
+through the unchanged owned process runner. This is retained budget/environment
+evidence, **not** a numerical failure, a policy-drift finding or a qualified
+full-window trajectory. Do not silently retry or promote the interrupted run.
+
+The smaller, separately declared control retained the original displacement for
+the **complete A103/C114 base pair**: 41 moving atoms/123 variables and 814 fixed
+atoms, maximum displacement **1.3825 Å**, RMS **1.1506 Å**. All source coordinates,
+weights, pair definitions, tether and hard bounds stayed fixed. Two 25-iteration/
+50-call pilots had 1,600-evaluation budgets and passed all derivative audits but
+stopped at their iteration limits with large remaining gradients. One equal,
+predeclared 300-iteration/500-call extension restarted both cases from the exact
+original displaced coordinates with fresh L-BFGS history, 2,200-evaluation budgets
+and 900-second owned caps. Its initial audits exactly match the pilots. No sign,
+weight, taper or coordinate choice was tuned from the outcomes.
+
+| Iteration cap | Added pair forces | Objective calls | Wall s | RMS from source, Å | Native target | Raw pair target | Full gradient norm |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 25 | Pairs on | 1510 | 425.42 | 0.591970 | 7819.1091 | 581.4880 | 3468.139735 |
+| 25 | Pairs off | 1510 | 421.65 | 0.588683 | 7793.1830 | 596.1614 | 3642.844013 |
+| 300 | Pairs on | 1805 | 514.59 | 0.065399 | 7032.7809 | 560.5891 | 0.091188 |
+| 300 | Pairs off | 1795 | 512.31 | 0.064062 | 7029.9549 | 571.1117 | 0.043267 |
+
+All four cases are **ENDPOINT_DERIVATIVES_PASS** and **NOT_CONVERGED_LIMIT**;
+the declared native convergence criterion is false. Every initial/full/rounded
+123-variable audit at 1e-4 and 1e-5 Å passes the unchanged 1e-3 absolute-error
+bound. Guard baselines verify and inputs/trusted sources are preserved. These
+unnormalized scores are not R factors, and the total weighted objective is not
+used to rank different pair-force policies. The observed complete-job rate is
+about 0.28 s/evaluation; plan a larger full-window budget from that observation,
+with margin, rather than treating the instrumented estimate as a measured limit.
+
+### Contact, packing and rounding observations
+
+Three additional fresh guarded read-only jobs inspect the displaced initial
+point and both extended endpoints, each in source/full/rounded coordinate form.
+All return **ENDPOINT_OBSERVATIONS_REVIEW**, with verified guard baselines,
+repeated native inventories and existing per-term/packing reviewers. Only core
+pair `core-0` changes: its raw pair penalty is **14.9391 → 10.6100** with pair
+forces, versus **21.1327** without. The two selected sticky-end pair terms are
+unchanged. The improvement with pair forces comes from planarity/parallelity;
+its bond and angle contributions still increase by 1.2143 and 0.9152 relative to
+the initial rigid pair. A better aggregate pair penalty does not mean every
+contact improved.
+
+Native packing residual falls from 3,089.1081 at the displaced point to
+1,052.6228 / 1,051.3692 (pairs on/off), compared with 1,077.7216 at the original
+source. Relative to source, **5 / 6** existing directed rows become overlapping,
+and **41 / 38** have worsened positive overlap; worst increases are **0.0618 /
+0.0588 Å**. All 8,316 source/endpoint directed identities match, with no added,
+removed or changed-multiplicity rows. These counts are native directed records,
+not unique physical contacts or a MolProbity clashscore. Native dihedral residual
+increases by about 0.8374 / 0.7096 relative to source; fixed-only terms do not
+change. Source and endpoint environment reviews all remain **REVIEW**.
+
+PDB three-decimal rounding changes the full gradient norms from **0.0912 /
+0.0433** to **225.31 / 232.95**, while rounded derivative consistency still passes.
+Retain numerical stationarity and serialization evidence separately; neither a
+small coordinate change nor a passing derivative check establishes physical
+acceptance. No PDB candidate, diffraction refinement, Coot check, R statistic,
+campaign selection or automatic adoption was produced.
+
+The original-source tether explicitly biases these controls toward the reference.
+They qualify the installed API/guard/atomic-trial and endpoint-observer
+composition in this local paired-step scope, **not** blind MR repair, full-window
+bending, selected sticky-end closure or density-supported recovery. S04/S05 remain
+PARTIAL. Next: reserve realistic complete matched full-window budgets, retaining
+per-contact/boundary/packing and serialization outcomes, then address general
+source-displaced and density/matched-refinement controls. A later owner-side
+immutable prepared baseline may reduce repeated expected-tree validation, but
+must preserve complete fresh live-policy/source checks; no optimization or
+policy-cache shortcut is introduced here. Do not repeat W91's small-polish study.
+
+Exact native/evidence commands (historical scratch paths; all native workers were
+complete executions except the explicitly interrupted full-window attempt):
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w98-starts/profile.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w98-starts/timing.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w98-starts/run-trials.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w98-starts/paired-step/run-trials.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w98-starts/paired-step/extended/run-trials.py
+nice -n 10 env PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w98-starts/paired-step/extended/observe.py
+python3 /private/tmp/willow-w98-starts/summarize.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w98-starts/archive.py
+```
+
+The ignored local forensic archive at the ordinary NASolve repository anchor is
+`branch-artifacts/willow/w98-declared-starts-2026-11-16.tar.gz`, SHA256
+`8b5aaf98b3d394c8245ff426334c4f663d94337e92dc90f8c6e9c89f5307679d`:
+**487 files / 40,234,280 bytes**, with every indexed payload
+checksum verified. It retains declarations, interrupted and complete jobs,
+profile command/output, installed wheels, source capture, comparisons and logs.
+Historical paths are provenance only. This is not an autonomous portable campaign
+or a bundled native SDK. No scientific inputs or generated outputs are committed
+or uploaded; only code, tests and documentation are pushed. All native jobs from
+this slice are finished.
