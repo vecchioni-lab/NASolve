@@ -1,12 +1,43 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C341 DY rotation/junction response — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. C340 pushed at `6049514b`; C341 is this
-completed evidence checkpoint. No full suite, new branch, default activation or
-merge. Linden owns Pine/Willow; C331 unchanged. Simon confirmed work through
-**23:00 London**. All Rowan native/controller jobs stopped.
+Updated **2026-11-16, C342 explicit DY nucleotide source — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. C341 pushed at `5c960cc4`; C342 is this
+completed code/evidence checkpoint. No full suite, new branch, default activation
+or merge. Linden owns Pine/Willow; C331 unchanged. Simon confirmed work through
+**23:00 London**. All Rowan native/controller jobs stopped at this checkpoint.
 
 ## Current result and next bounded task
+
+**C342 complete:** pure `compose_dna_source` preserves the explicitly selected
+DNA sugar/phosphate and the complete reference base. Source H/D/charge/stereo,
+matching deoxy hand and relative configuration are checked; source/atom provenance
+accompanies new constructed-seed coordinates. No native targets, source edits,
+model mutation or alias activation. Conventional unbridged N-glycosidic deoxy
+scope only; no E/Z or extra stereocentres. Reuses C291 frame and C116 atom ordering;
+`postmr_restoration.py` bytes and historical frozen policies remain untouched.
+
+Fresh successful native control:
+`NASolve-live-tests/342_Cedar_DY-DNA-source-native-1veizued`, 25.73 s, about 5.21 MB.
+Phenix 2.2.1-6174 / dispatcher 2.2.1: all 21 isolated checks pass. Candidate SHA
+`692d27c45775f13bf017deaa3b822ea315466b0b8f1b6a854eb47d786cf0a732`.
+Cold relocated acquisition and exact source recomposition pass without native
+execution; 104 original files/timestamps preserved. The first failed lexical-order
+attempt, `342_Cedar_DY-DNA-source-native-ga0h4avb`, remains intact: eLBOW added a
+nonchemical C3T–C1′ bond at 7.72 Å, the known C116 Z-matrix ordering failure.
+Connected whole-row ordering changes no declarations and succeeds in a fresh run.
+
+Validation: **192 focused / 5.90 s; 192 installed relocated / 6.02 s**. An installed
+harness initially lacked one legacy test's tree-relative data fixture; corrected
+from wheel resources, not a product change. Successful build/replay scratch copies
+removed. Exact evidence: `explicit_reference_composition_2026_11_16`. Last full
+suite remains C220/583d30df, 9178 +276 subtests; no full suite this turn.
+
+**Next C343:** use existing stored-dictionary site preparation and native context
+owners for linked/internal and free-OH/terminal controls, then whole-base mutation.
+Do not bypass source authority or add a new execution owner. Source DT OP3/HOP3 is
+a declared leaving cap, not model OP3 authority; OP2 H/charge remains explicit.
+C342 is an isolated source qualification, not linked/refinement approval. Preserve
+DY C4–N1T rotation and inspect junction survival rather than adding weights now.
 
 **C340 complete:** the new explicit neutral five-membered C/N aromatic policy
 recognizes the source-declared triazole without changing native bond orders.
@@ -52,7 +83,7 @@ is `dy_junction_response_2026_11_16`; runners `c341_start.py`/`c341_native.py` r
 in the usual ignored local runner folder. No new pytest run for this docs-only
 checkpoint; C340 focused tests remain current. No full suite.
 
-**Next C342:** source-owned linked/terminal DY preparation, then whole-base
+**Prior planning (superseded by C342/C343 above):** source-owned linked/terminal DY preparation, then whole-base
 mutation. Read C133–C139 plus later construction docs before choosing the path.
 The packaged reference is a free nucleoside: explicitly verify the existing
 backbone-source/context contract, rather than inventing a phosphate or bypassing

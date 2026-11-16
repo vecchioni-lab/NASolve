@@ -103657,5 +103657,490 @@
     "next": "Review C133\u2013C139 and existing linked/source-construction machinery, then qualify explicit linked/terminal DY contexts using source-owned backbone chemistry. Keep numerical survival and whole-base mutation separate; no blanket plane or DY-name fix.",
     "scientific_approval": "NOT_RUN",
     "signed": "Rowan"
+  },
+  "explicit_reference_composition_2026_11_16": {
+    "status": "C342_EXPLICIT_COMPOSITION_AND_ISOLATED_NATIVE_PASS_CONTEXTS_OPEN",
+    "source_parent": "5c960cc4",
+    "before": "No explicit chemical-source compositor; non-polymer nucleoside does not authorize phosphate invention.",
+    "after": "Pure explicit two-source deoxy nucleotide composition with retained subgraph authority and provenance; existing native acquisition succeeds.",
+    "policy": "cif-explicit-deoxy-base-source-composition-v1",
+    "prior_work": [
+      "C107/C133\u2013C139 explicit linked/terminal projections",
+      "C291 immutable whole-base sugar-frame transport",
+      "C116 connected whole-row atom ordering"
+    ],
+    "composition": {
+      "schema_version": 1,
+      "policy_id": "cif-explicit-deoxy-base-source-composition-v1",
+      "status": "COMPOSED_SOURCE_REQUIRES_QUALIFICATION",
+      "component": "DY",
+      "source_pins": {
+        "backbone": {
+          "component": "DT",
+          "sha256": "47a7972b4707d3d2b4bd01ab4916b90bbfa659867d612f58a3a79665cce5e9d7",
+          "size": 9049
+        },
+        "reference": {
+          "component": "DY",
+          "sha256": "d8345c307d35f5385c95d7ba9ad46d1462fb39f3b6bd4e1904ffc41b0c5ac572",
+          "size": 6243
+        }
+      },
+      "atom_origins": {
+        "C1'": {
+          "role": "backbone",
+          "source_atom": "C1'"
+        },
+        "C2": {
+          "role": "reference",
+          "source_atom": "C2"
+        },
+        "C2'": {
+          "role": "backbone",
+          "source_atom": "C2'"
+        },
+        "C3'": {
+          "role": "backbone",
+          "source_atom": "C3'"
+        },
+        "C3T": {
+          "role": "reference",
+          "source_atom": "C3T"
+        },
+        "C4": {
+          "role": "reference",
+          "source_atom": "C4"
+        },
+        "C4'": {
+          "role": "backbone",
+          "source_atom": "C4'"
+        },
+        "C5": {
+          "role": "reference",
+          "source_atom": "C5"
+        },
+        "C5'": {
+          "role": "backbone",
+          "source_atom": "C5'"
+        },
+        "C5T": {
+          "role": "reference",
+          "source_atom": "C5T"
+        },
+        "C6": {
+          "role": "reference",
+          "source_atom": "C6"
+        },
+        "H1": {
+          "role": "reference",
+          "source_atom": "H1"
+        },
+        "H1'": {
+          "role": "backbone",
+          "source_atom": "H1'"
+        },
+        "H2": {
+          "role": "reference",
+          "source_atom": "H2"
+        },
+        "H2'": {
+          "role": "backbone",
+          "source_atom": "H2'"
+        },
+        "H2''": {
+          "role": "backbone",
+          "source_atom": "H2''"
+        },
+        "H3": {
+          "role": "reference",
+          "source_atom": "H3"
+        },
+        "H3'": {
+          "role": "backbone",
+          "source_atom": "H3'"
+        },
+        "H4": {
+          "role": "reference",
+          "source_atom": "H4"
+        },
+        "H4'": {
+          "role": "backbone",
+          "source_atom": "H4'"
+        },
+        "H5'": {
+          "role": "backbone",
+          "source_atom": "H5'"
+        },
+        "H5''": {
+          "role": "backbone",
+          "source_atom": "H5''"
+        },
+        "HO3'": {
+          "role": "backbone",
+          "source_atom": "HO3'"
+        },
+        "HOP2": {
+          "role": "backbone",
+          "source_atom": "HOP2"
+        },
+        "HOP3": {
+          "role": "backbone",
+          "source_atom": "HOP3"
+        },
+        "N1": {
+          "role": "reference",
+          "source_atom": "N1"
+        },
+        "N1T": {
+          "role": "reference",
+          "source_atom": "N1T"
+        },
+        "N2T": {
+          "role": "reference",
+          "source_atom": "N2T"
+        },
+        "N3": {
+          "role": "reference",
+          "source_atom": "N3"
+        },
+        "N4T": {
+          "role": "reference",
+          "source_atom": "N4T"
+        },
+        "O2": {
+          "role": "reference",
+          "source_atom": "O2"
+        },
+        "O3'": {
+          "role": "backbone",
+          "source_atom": "O3'"
+        },
+        "O4'": {
+          "role": "backbone",
+          "source_atom": "O4'"
+        },
+        "O5'": {
+          "role": "backbone",
+          "source_atom": "O5'"
+        },
+        "OP1": {
+          "role": "backbone",
+          "source_atom": "OP1"
+        },
+        "OP2": {
+          "role": "backbone",
+          "source_atom": "OP2"
+        },
+        "OP3": {
+          "role": "backbone",
+          "source_atom": "OP3"
+        },
+        "P": {
+          "role": "backbone",
+          "source_atom": "P"
+        }
+      },
+      "removed_backbone_base": [
+        "C2",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "H3",
+        "H6",
+        "H71",
+        "H72",
+        "H73",
+        "N1",
+        "N3",
+        "O2",
+        "O4"
+      ],
+      "unused_reference_scaffold": [
+        "C1'",
+        "C2'",
+        "C3'",
+        "C4'",
+        "C5'",
+        "H10",
+        "H11",
+        "H12",
+        "H13",
+        "H5",
+        "H6",
+        "H7",
+        "H8",
+        "H9",
+        "O3'",
+        "O4'",
+        "O5'"
+      ],
+      "attachment": [
+        "C1'",
+        "N1"
+      ],
+      "sugar_configuration": [
+        {
+          "centre": "C1'",
+          "state": "PRESERVED",
+          "declared": "R",
+          "source_volumes": [
+            2.3692132160000003,
+            2.3806902513363752
+          ]
+        },
+        {
+          "centre": "C3'",
+          "state": "PRESERVED",
+          "declared": "S",
+          "source_volumes": [
+            -2.6776939019999997,
+            -2.5828034185655406
+          ]
+        },
+        {
+          "centre": "C4'",
+          "state": "PRESERVED",
+          "declared": "R",
+          "source_volumes": [
+            2.606118211000001,
+            2.490521372324866
+          ]
+        }
+      ],
+      "coordinate_families": {
+        "backbone": "SOURCE_IDEAL",
+        "reference": "SOURCE_MODEL"
+      },
+      "coordinate_authority": "CONSTRUCTED_SEED_NOT_INDEPENDENT_IDEAL",
+      "base_pair_distance_max_change": 3.552713678800501e-15,
+      "bond_stereo_encoding": "NO_E_Z_DECLARATIONS_PERMITTED; UNASSERTED_COLUMN_OMITTED",
+      "atom_order": {
+        "policy_id": "cif-connected-heavy-atom-order-v1",
+        "input_order": [
+          "C1'",
+          "C2",
+          "C2'",
+          "C3'",
+          "C3T",
+          "C4",
+          "C4'",
+          "C5",
+          "C5'",
+          "C5T",
+          "C6",
+          "H1",
+          "H1'",
+          "H2",
+          "H2'",
+          "H2''",
+          "H3",
+          "H3'",
+          "H4",
+          "H4'",
+          "H5'",
+          "H5''",
+          "HO3'",
+          "HOP2",
+          "HOP3",
+          "N1",
+          "N1T",
+          "N2T",
+          "N3",
+          "N4T",
+          "O2",
+          "O3'",
+          "O4'",
+          "O5'",
+          "OP1",
+          "OP2",
+          "OP3",
+          "P"
+        ],
+        "output_order": [
+          "C1'",
+          "C2'",
+          "N1",
+          "O4'",
+          "C3'",
+          "C2",
+          "C6",
+          "C4'",
+          "O3'",
+          "N3",
+          "O2",
+          "C5",
+          "C5'",
+          "C4",
+          "O5'",
+          "N1T",
+          "P",
+          "C5T",
+          "N2T",
+          "OP1",
+          "OP2",
+          "OP3",
+          "N4T",
+          "C3T",
+          "H1",
+          "H1'",
+          "H2",
+          "H2'",
+          "H2''",
+          "H3",
+          "H3'",
+          "H4",
+          "H4'",
+          "H5'",
+          "H5''",
+          "HO3'",
+          "HOP2",
+          "HOP3"
+        ]
+      },
+      "output_sha256": "a7d9ed314862298e589be0f873cc41c9abaa0d2608aa709ce26fc0a59aaf1d55",
+      "model_editing": "NOT_RUN",
+      "native_qualification": "NOT_RUN",
+      "restraint_generation": "NOT_RUN",
+      "linked_state_qualification": "NOT_RUN",
+      "automatic_adoption": false
+    },
+    "local_root": {
+      "anchor": "NASolve-live-tests",
+      "path": "342_Cedar_DY-DNA-source-native-1veizued"
+    },
+    "native": {
+      "build": "Phenix 2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "dry_run": false,
+      "summary": {
+        "status": "BOUNDED_DY_ACQUISITION_OBSERVED",
+        "error": null,
+        "acquisition": "PREPARED_AND_FROZEN",
+        "generation_diagnostic": {
+          "policy_id": "cif-source-candidate-diagnostic-v1",
+          "generation_status": "CANDIDATE_REVIEW",
+          "candidate_state": "RETAINED_REVIEW",
+          "blocking_stage": null,
+          "summary": "Candidate retained for review; native usability requires separate qualification.",
+          "builder_started": true,
+          "failed_handoff_checks": [],
+          "handoff_reason": null,
+          "native_exception": null,
+          "execution_status": "COMPLETED",
+          "execution_returncode": 0,
+          "rejection_reasons": [],
+          "identity_change_fields": [],
+          "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+          "automatic_adoption": false
+        },
+        "candidate_status": "CANDIDATE_REVIEW",
+        "rejection_reasons": [],
+        "source_preserved": true,
+        "elapsed_seconds": 25.734162332999404,
+        "physical_bytes": 5209809,
+        "scientific_approval": "NOT_RUN",
+        "mutation_enabled": false,
+        "readyset": "NOT_RUN",
+        "coot": "NOT_RUN",
+        "refinement": "NOT_RUN"
+      },
+      "replay": {
+        "status": "C342_COMPOSED_NATIVE_DICTIONARY_COLD_REPLAY_PASS",
+        "candidate_sha256": "692d27c45775f13bf017deaa3b822ea315466b0b8f1b6a854eb47d786cf0a732",
+        "candidate_bytes": 14030,
+        "source_sha256": "a7d9ed314862298e589be0f873cc41c9abaa0d2608aa709ce26fc0a59aaf1d55",
+        "qualification_status": "ISOLATED_NATIVE_USABILITY_PASS",
+        "native_usable": true,
+        "qualification_checks": {
+          "effective_declared_bond_orders": true,
+          "energy_inventory": true,
+          "exact_active_angles": true,
+          "exact_active_bonds": true,
+          "exact_active_planes": true,
+          "exact_active_torsions": true,
+          "exact_effective_definitions": true,
+          "exact_fixed_chirality_membership": true,
+          "exact_model_and_component": true,
+          "finite_active_proxy_parameters": true,
+          "finite_energy_and_gradient": true,
+          "fixed_coordinate_repeats": true,
+          "native_completed": true,
+          "native_coordinate_roundtrip": true,
+          "no_competing_native_ss": true,
+          "no_contradictory_native_formal_charges": true,
+          "no_native_fatal_or_unused": true,
+          "omitted_unoriented_volume_coverage": true,
+          "one_complete_monomer": true,
+          "proxy_counts_complete": true,
+          "source_chemistry_and_configuration": true
+        },
+        "formal_charge_readback": "UNSUPPORTED",
+        "absolute_cip_assignment": "NOT_RUN",
+        "relocation": {
+          "original_path_absent": true,
+          "exact_acquisition_equal": true,
+          "exact_composition_equal": true,
+          "native_execution_forbidden": true,
+          "all_attempts_stopped": true,
+          "temporary_bytes_removed": 4384466
+        },
+        "preserved_original_files": 104,
+        "scientific_approval": "NOT_RUN",
+        "scope": "Explicit source composition and isolated native qualification only; linked/terminal/mutation/ReadySet/Coot/refinement NOT_RUN"
+      }
+    },
+    "validation": {
+      "before": "New composition test fails on parent: ModuleNotFoundError",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_reference_composition.py tests/test_cif_connected_atom_order.py tests/test_postmr_restoration.py tests/test_cif_preparation_qualification.py tests/test_cif_five_ring_representation.py tests/test_packaged_dy_reference.py --tb=short",
+      "result": "192 passed in 5.90s",
+      "installed": {
+        "status": "INSTALLED_RELOCATED_REFERENCE_COMPOSITION_PASS",
+        "wheel_sha256": "def40ab4d38c06b986a6c24168170c69ec07d84d29eb7def576293b03f0ac88a",
+        "wheel_bytes": 1378533,
+        "source_copy_removed": true,
+        "original_install_path_absent": true,
+        "package_reference_bytes_match": true,
+        "validation_command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-c",
+          "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_cif_reference_composition.py', 'tests/test_cif_connected_atom_order.py', 'tests/test_postmr_restoration.py', 'tests/test_cif_preparation_qualification.py', 'tests/test_cif_five_ring_representation.py', 'tests/test_packaged_dy_reference.py', '--tb=short']))"
+        ],
+        "validation_output": "........................................................................ [ 37%]\n........................................................................ [ 75%]\n................................................                         [100%]\n192 passed in 6.02s\n",
+        "build_command": "phenix.python -m pip wheel --no-deps --no-build-isolation --no-index",
+        "temporary_bytes_removed": 10740926
+      },
+      "full_suite": "NOT_RUN per user; last full C220/583d30df: 9178 +276"
+    },
+    "preserved_failed_attempt": {
+      "anchor": "NASolve-live-tests",
+      "path": "342_Cedar_DY-DNA-source-native-ga0h4avb",
+      "reason": "Known eLBOW ZMatrix2Internal added nonsource C3T\u2013C1\u2032 7.72 \u00c5 bond with lexical atom order; stopped before CIF. Fresh C116-connected-row retry succeeds; compare_dictionaries changes=[]; all processes dead before retry."
+    },
+    "test_fixture": {
+      "path": "tests/fixtures/chemical_reference_DT.cif",
+      "source": "Exact public CCD DT source supplied by Phenix 2.2.1-6174, revision 2024-09-27",
+      "sha256": "47a7972b4707d3d2b4bd01ab4916b90bbfa659867d612f58a3a79665cce5e9d7"
+    },
+    "compatibility": "New opt-in pure Python API/report-v1; no defaults, aliases, source policies, frozen construction bytes, model or checkpoint schemas changed; no migration.",
+    "retention": {
+      "raw_scientific_outputs": "Local only; no models, candidate dictionaries, logs or pickles committed.",
+      "failed_package_harness": "One legacy tree-relative test fixture absent; corrected using wheel data.",
+      "failed_package_scratch_bytes_removed": 10738411
+    },
+    "next": [
+      "C343 existing site context/native checks",
+      "Whole-base construction",
+      "ReadySet/Coot/refinement survival"
+    ],
+    "limitations": [
+      "Conventional unbridged beta-deoxy matching hand, neutral N-glycosidic attachment only.",
+      "No E/Z or additional source stereocentres.",
+      "Explicit source phosphate protonation retained, not inferred.",
+      "Native formal-charge readback unsupported; absolute CIP assignment not run.",
+      "Source OP3 cap does not authorize OP3 in linked model."
+    ],
+    "signed": "Rowan"
   }
 }

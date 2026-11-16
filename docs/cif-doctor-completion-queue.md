@@ -890,7 +890,15 @@ bend; all static terms stay fixed. This is not a quantum torsion profile, linked
 model or refinement-survival approval. Both native attempts are stopped; the
 first local harness field-lookup failure is preserved separately.
 
-**Next:** source-owned linked/terminal preparation and whole-base mutation gates,
+**C342 source composition complete:** an explicit DNA scaffold supplies the
+sugar/phosphate; the free reference supplies its complete base. Both source hashes,
+atom origins and configurations are retained. C116 connected whole-row ordering
+avoids the observed eLBOW Z-matrix artifact without changing chemistry. A fresh
+DY nucleotide build passes all 21 isolated checks; 192 focused and 192 installed
+relocated tests pass. The failed lexical-order attempt is preserved. No mutation
+alias, linked/terminal approval or model phosphate change follows.
+
+**Next C343:** source-owned linked/terminal preparation and whole-base mutation gates,
 reusing C133–C139 and later construction owners. Verify how the free-nucleoside
 reference enters explicit backbone contexts rather than inventing phosphate
 chemistry or activating a DY-name workaround. Retain junction survival as a

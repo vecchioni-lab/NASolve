@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Compose a custom base with an explicitly chosen DNA source (C342)
+
+- Add a pure, opt-in source compositor: retain the complete reference base and
+  the explicitly selected deoxy-DNA sugar/phosphate, including their declared
+  hydrogens, charges, isotopes and stereochemistry. Record both source hashes and
+  each atom's origin; refuse incompatible hands, unsupported links or ambiguity.
+- Reuse established whole-base transport and connected atom ordering. Emit a new
+  chemical source with constructed seed coordinates, never numerical restraints
+  or a model mutation. Original sources and existing frozen policies stay intact.
+- Linked/terminal preparation, native consumers and mutation activation remain
+  separate gates; source OP3 is a declared leaving-group cap, not model authority.
+
 ### Recognize explicitly declared neutral five-membered aromatic rings (C340)
 
 - Add an opt-in representation rule for isolated neutral C/N rings with two

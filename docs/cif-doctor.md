@@ -13588,3 +13588,36 @@ weights. Adequacy under linked-model forces and actual refinement remains open.
 No plane/target/model/source edits or optimizer were used. Exact evidence and the
 preserved initial local harness failure are recorded under
 `dy_junction_response_2026_11_16`; this is not a new production policy.
+
+
+### Explicit two-source nucleotide composition (C342)
+
+A free nucleoside reference does not authorize inventing its phosphate state.
+`compose_dna_source` therefore requires a second, explicitly chosen DNA source.
+It keeps that source's complete sugar/phosphate and replaces only its connected
+base with the complete reference base. Both sources retain their own H/D, charge,
+bond and aromatic declarations. Matching beta-deoxy hand, conventional unbridged
+sugar connectivity, a neutral N-glycosidic attachment and compatible source-relative
+configuration are required. Carbon glycosides, bridged/modified sugars, additional
+stereocentres and E/Z declarations are outside this first rule. No pH or tautomer
+is selected. Output bond-stereo fields are omitted only because the rule forbids
+E/Z claims; it does not manufacture a missing declaration for old native policies.
+
+The pure API returns CIF bytes plus source hashes, atom origins, source-relative
+configuration checks and constructed-coordinate provenance. It writes nothing,
+launches nothing, imports no drawing, activates no alias and supplies no numerical
+restraints. It uses the existing PostMR rigid-frame helper without modifying its
+fingerprinted source, and C116 connected whole-row atom ordering. A new source's
+model coordinates are explicitly non-independent seeds, not ideal validation.
+Source OP3/HOP3 describe a leaving-group cap; existing site context owns removal
+before any actual linked model. Explicit OP2 protonation is preserved, not inferred.
+
+An exact public CCD DT source from Phenix 2.2.1-6174 (CCD revision 2024-09-27)
+provides the bounded test scaffold. The first lexical-order native attempt exposed
+the already known eLBOW Z-matrix artifact: it invented C3T–C1′ at 7.72 Å and stopped.
+The failed attempt is preserved. Reusing C116 ordering changes no declarations;
+a fresh attempt then passes all 21 existing isolated native checks. Source and
+candidate hashes plus the complete commands are in
+`explicit_reference_composition_2026_11_16`. Native charge readback remains
+unsupported; absolute CIP assignment is not run. Linked/terminal contexts,
+ReadySet/Coot, whole-base mutation and refinement survival remain open.

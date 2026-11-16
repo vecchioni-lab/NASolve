@@ -4172,3 +4172,17 @@ ReadySet timeout retains the repaired parent. New and legacy complete requests
 replay after relocation without the SDK. Both nested evidence partitions retain
 their own resource limits. This is opt-in whole-request integration; ordinary
 checkpoint adoption and diffraction-refinement qualification remain open.
+
+
+### Giving a custom base an explicitly chosen DNA backbone (C342)
+
+The packaged DY reference is a free nucleoside. To prepare a nucleotide source,
+Cedar can now keep the sugar and phosphate from a separately chosen DNA reference
+and carry over DY's complete base, including the rotatable triazole. It checks
+that the two sugars have matching declared handedness and keeps the chosen
+hydrogens and charges. It does not guess a phosphate state from a missing atom.
+
+The first resulting dictionary passes isolated Phenix checks. That is a useful
+preparation step, not yet permission to mutate a model: chain-end and linked
+contexts, Coot/ReadySet and refinement survival remain to be tested. In particular,
+a source phosphate cap is not an instruction to add OP3 to a linked model.

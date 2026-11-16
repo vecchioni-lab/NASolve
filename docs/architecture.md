@@ -2,6 +2,15 @@
 
 NASolve orchestrates external crystallographic programs; it does not reimplement them.
 
+Custom free-nucleoside references may be combined with an explicitly selected
+DNA source through the pure `compose_dna_source` API. Each source owns its retained
+subgraph; hashes and per-atom origins accompany the new source. Conventional
+matching-hand deoxy sugars, explicit H/charges and a neutral N-glycosidic attachment
+bound the first rule. Existing rigid-base transport and connected atom ordering
+are reused without altering frozen construction code. Constructed coordinates
+remain seeds; numerical qualification and explicit linked/terminal preparation
+must follow. This does not enable a mutation alias or add phosphate atoms to a model.
+
 For current CIF Doctor work order, use the [completion map](cif-doctor-completion-queue.md#pipeline-position);
 for demonstrated support, use the [capability matrix](cif-doctor.md#current-capability-boundary).
 The numbered sections below retain implementation contracts and historical evidence.
