@@ -411,6 +411,11 @@ and must stay visible. The verified 487-file local forensic archive and exact
 commands/hashes are in the W98 receipt. All jobs are stopped; no candidate or
 scientific payload was published.
 
+User inspection PDBs and the replayed cut viewer are available under the ordinary
+NASolve anchor at `branch-artifacts/willow/inspection-2026-11-16/`; see the
+[inspection-export receipt](topostitch-periodic.md#user-requested-coordinate-inspection-exports).
+These are visual diagnostics, with no new physical or refinement qualification.
+
 **W99 next:** use the measured ~0.28 s/evaluation rate to reserve complete matched
 full-window budgets with margin, retaining individual contact, boundary, packing,
 serialization and failed/limited outcomes. Local paired-step evidence does not

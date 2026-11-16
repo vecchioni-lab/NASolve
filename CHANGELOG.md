@@ -25,6 +25,9 @@ entries are reconstructed from repository history.
 
 ### W98 — Forward declared starts through captured native trials
 
+- Record user-requested local inspection PDBs and a replayed cut viewer from
+  existing evidence; these are visual diagnostics with unchanged scientific status.
+
 - Add optional `initial_displacements` to the captured-objective Python API.
   Freeze and validate the 3N vector before job allocation, including the explicit
   movement mask's atom count and radial limit; require an opted-in trial.

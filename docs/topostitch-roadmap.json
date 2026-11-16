@@ -1467,6 +1467,19 @@
         "all_environment_status": "REVIEW",
         "full_window_status": "INTERRUPTED_UNQUALIFIED",
         "scientific_acceptance": false
+      },
+      "inspection_exports": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/inspection-2026-11-16",
+        "receipt": "inspection-receipt.json",
+        "receipt_sha256": "c8a59c4401fe69258503733fee7bfc832131ca4df42177b562c8f27276119525",
+        "pdb_files": 5,
+        "atoms_per_pdb": 855,
+        "cut_viewer": "05_cut_preview.html",
+        "cut_packet_replay_verified": true,
+        "browser_visual_review": false,
+        "scientific_acceptance": false,
+        "committed": false
       }
     }
   },
