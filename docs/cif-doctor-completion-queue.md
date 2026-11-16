@@ -286,7 +286,15 @@ survival.** Keep the generic triple diagnostic's isolated OP3-bearing reference
 warning separate from actual linked B:4 native missing atoms (none). Q14 should
 use explicit site projections, not suppress membership checks or add unwanted
 OP3. C334 confirms that this existing reader removes only the scope warning and
-retains real bending; ordinary achieved-geometry reporting remains to be joined. Changed intent needs a fresh request/run; never manufacture a checkpoint or
+retains real bending. C336 exposes an exact-checkpoint Python reader that follows
+the selected preparation, binds optional final-model native evidence and keeps
+missing evidence unassessed. It reuses the same validated preparation read and
+passes relocated reporting checks. **Next integration boundary:** collect/bind
+that evidence through the existing refinement owner and join the scoped result
+into normal output; separate interpretation is not proof of the actual refining
+manager. No new process/retention owner or duplicated full inventories merely to
+make a report. The DY qualification remains queued after this bounded Q06
+reporting connection. Changed intent needs a fresh request/run; never manufacture a checkpoint or
 rewrite original evidence. Neighboring targets, source hands and terminal intent
 remain visible. No blanket flattening, restraint strengthening to force acceptance,
 repeated Coot construction or Free-R tuning. Q07–Q16 remain ordered below.

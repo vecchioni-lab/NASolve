@@ -265,6 +265,14 @@ their existing refinement paths. A native Doctor trial preserves Free-R and the
 current model. A helper completing refinement is not structure approval; achieved
 chemistry and PDU survival remain Q06.
 
+The C336 refinement reader now separates two questions for an exact saved model:
+were the supplied triple-bond targets sensible, and did the atoms retain that
+geometry? It follows the selected preparation and declared phosphate state.
+Missing evidence is reported as unassessed. A separate Phenix interpretation can
+answer the scoped model/restraint question, but does not prove the original
+refinement manager; automatic collection and normal refinement-output reporting
+remain the next integration boundary. This changes reporting, not the forces.
+
 ## Catalogue scope and progression
 
 The programme includes every ligand in the selected NARestraints catalogue,

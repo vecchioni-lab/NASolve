@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Read achieved chemistry for an exact refinement checkpoint (C336)
+
+- Add a read-only Python report using the chosen checkpoint's own checked
+  preparation, declared site projections and exact final model/ordered restraints.
+  Reuse existing native receipt and triple-bond screens; keep target quality and
+  achieved coordinates separate. Missing evidence remains unassessed.
+- Explicitly distinguish separate final-model interpretation from the actual
+  refinement manager. No native job, adoption, checkpoint change, new chemical
+  threshold or default activation. Registry callers retain their public contract;
+  one read reuses its already validated preparation results.
+
 ### Package the retained-triazole DY chemical reference (C335)
 
 - Ship a named CIF chemical definition/coordinate preview and hash-bound identity,

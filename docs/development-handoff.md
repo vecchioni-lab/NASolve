@@ -1,12 +1,56 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C335 packaged DY reference and queued mutation — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. Current delivery **C335 reference data**; runtime
-published **340bda12 (C333)**. Focused checks only; no Rowan full suite, new branch,
-default activation or merge. Linden owns Pine/Willow and does not edit Cedar.
-The prior work window is complete; no native/controller jobs remain active.
+Updated **2026-11-16, C336 exact-checkpoint chemistry reader — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. C336 validation complete; no full suite,
+new branch, default activation or merge. Linden owns Pine/Willow, currently W99
+native trials on unchanged C331. Simon directly confirmed work through **23:00
+London**. No Rowan native/controller job is active.
 
 ## Current work and interruption recovery
+
+**C336:** a read-only Python report follows an exact refinement checkpoint to its
+own selected preparation and source-bound site projections. Optional preserved
+native evidence must describe the exact final PDB and ordered execution CIF/PHIL;
+namespace adaptation is reused. Existing triple screening separates target and
+coordinate results, keeps real bending REVIEW, and reports absent evidence or no
+supported triples as UNASSESSED. No changes to forces, numerical acceptance,
+checkpoint schemas, saved scientific files, C331 or frozen v2 helper sources.
+
+Prior-work review: C334 supplied the site-scoped screen. Ordinary v2 refinement
+records output synchronization/parallelity usage but not the complete final native
+inventory. The new report therefore labels separate final-model reinterpretation
+explicitly; it does not claim the actual refinement manager was captured. The
+registry reader retains call-local preparation results instead of replaying the
+complete history twice; its existing public return and validation stay intact.
+
+**Validation:** 359 focused tests +29 subtests pass (31.38 s), including 21 new
+report checks. Fresh installed/relocated wheel: 21 pass (3.93 s), with temporary
+build source and original installation absent. C329/C334 native-evidence replay
+reproduces every scoped triple result in 0.97 s, preserving all 190 historical
+files/timestamps and launching no native job. Prepared geometry passes; final
+PDU targets pass while the existing 173.9366° bend remains REVIEW. Recorded
+capture build: Phenix **2.2.1-6174 / dispatcher 2.2.1**, not rerun; Coot not run.
+Initial new-entry regression fails on the prior revision with ModuleNotFoundError.
+No full suite; last Cedar full gate remains C220/583d30df, 9178 +276 subtests.
+
+Exact focused command (Cedar cwd):
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_refinement_chemistry.py tests/test_checkpoints.py tests/test_autorefine.py tests/test_coot_view.py tests/test_refinement_parallelity.py tests/test_refinement_inputs.py tests/test_cif_postmr_publication.py tests/test_cif_campaign_first_refinement.py tests/test_cif_triple_bond_audit.py tests/test_cif_construction_native.py --tb=short`.
+Installed runner: `branch-artifacts/cedar/runners/c336_package_check.py` with
+Phenix Python, offline wheel build; replay: `c336_site_readback.py` with project
+Python and `PYTHONDONTWRITEBYTECODE=1`. Both live in the everyday ignored runner
+folder. Wheel SHA `f96325d9c7465d80de3258ee75c0b23d526b11152ac485001201e242ef89e21e`;
+1,363,261 bytes, temporary 10,602,399 bytes removed. Compact ledger entry:
+`refinement_geometry_report_2026_11_16`. No raw scientific artifacts committed.
+
+Changed source: `refinement_chemistry.py` and call-local result plumbing in
+`checkpoints.py`; new tests and maintained docs. Report schema/policy v1 is a live
+read result, not a checkpoint migration. Historical bytes and defaults unchanged.
+
+**Next:** connect collection/reporting through the existing refinement owner;
+the Python reader is complete, automatic capture and normal saved output are not.
+Retain actual-manager versus separate-interpretation limits, bounded storage,
+explicit unavailable evidence and independently usable fallback. Then take the
+queued DY qualification slice; whole-substituent/held-out survival still gates Q06.
 
 **C335:** DY is now a packaged reusable chemical reference under
 `data/chemical_references/DY.cif` with relative-path/hash provenance in `DY.json`.
@@ -77,16 +121,6 @@ everyday checkout's ignored `branch-artifacts/cedar/`. Temporary native-copy cod
 was removed; raw science stays local. Fresh wheel SHA:
 `5501b04b5495811de3487b5e7683d7853273c4d6c70958ef7b07434efc77c7c8`.
 
-**Next bounded Q06 step:** integrate this existing site-scoped achieved-geometry
-readback into ordinary refinement reporting. Bind the exact selected runtime and
-its declared projection to the authenticated final model/native evidence; preserve
-unavailable evidence honestly and keep genuine bending REVIEW visible without
-turning a qualified fallback into a silent failure. C334 confirms the reporting
-inputs; it does not implement ordinary output integration. Reuse
-`cif_construction_native._triple_readback` (`94ababa1`) and existing projection/
-capture owners. Broader whole-substituent/held-out survival still gates Q06. Do not
-add OP3, strengthen restraints or rerun identical C329/C309/C314 work to force a pass.
-
 **Prior solutions:** C326–C328 already own prepared/complete/ordinary explicit
 repair, fallback and immutable attempts; C332 supplies source/library selection
 and historical PDU/5PC replay (182 files unchanged). C327's first v3 storage failure
@@ -127,8 +161,8 @@ native missing/unexpected heavy lists are empty under the existing declared site
 modifier. This is a diagnostic reference-scope warning, distinct from bending;
 never use it to add OP3 or alter the protected D:1 terminal state.
 
-**Next:** source-aware automatic target discovery and faithful reporting of
-remaining achieved-geometry reviews, using the established owners. Do not re-run
+**Remaining scientific work:** whole-substituent and held-out achieved-geometry
+reviews, using the established owners. Source-aware discovery is implemented by C333. Do not re-run
 this same corrected-CIF delivery or strengthen restraints to force a pass. Any
 new finite-motion/parameter experiment needs a specific hypothesis using prior
 force/target evidence. Q06 still needs whole-substituent and related held-out

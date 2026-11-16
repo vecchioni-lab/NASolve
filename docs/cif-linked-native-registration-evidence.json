@@ -102293,5 +102293,64 @@
       ]
     },
     "next": "Reuse the declared-projection/capture readers when integrating achieved-geometry notes into ordinary refinement output. Bind exact selected runtime, final native/model identity and projection, preserve genuine REVIEW and explicit unavailable evidence; do not infer a missing OP3 or claim a new chemistry fix."
+  },
+  "refinement_geometry_report_2026_11_16": {
+    "milestone": "C336",
+    "status": "SCOPED_READER_VALIDATED_Q06_STILL_REVIEW",
+    "base_commit": "e9281986",
+    "policy": "refinement-declared-site-triple-readback-v1",
+    "source_files": {
+      "src/nasolve/refinement_chemistry.py": "5ff38832c3ddad02f8bd669356ec24fff28f4bf8d69e6b46c5542cbe66b93659",
+      "src/nasolve/checkpoints.py": "f8773e5de84f93d0b8196de84618f4b612b79afd5d0c6cda23bed7a31380735b"
+    },
+    "validation": {
+      "focused": {
+        "passed": 359,
+        "subtests": 29,
+        "seconds": 31.38,
+        "full_suite": false
+      },
+      "installed": {
+        "status": "INSTALLED_RELOCATED_REFINEMENT_REPORT_PASS",
+        "wheel_sha256": "f96325d9c7465d80de3258ee75c0b23d526b11152ac485001201e242ef89e21e",
+        "wheel_bytes": 1363261,
+        "source_copy_removed": true,
+        "original_install_path_absent": true,
+        "package_reference_bytes_match": true,
+        "validation_command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-c",
+          "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q','-p','no:cacheprovider','tests/test_refinement_chemistry.py','--tb=short']))"
+        ],
+        "validation_output": ".....................                                                    [100%]\n21 passed in 3.93s\n",
+        "build_command": "phenix.python -m pip wheel --no-deps --no-build-isolation --no-index",
+        "temporary_bytes_removed": 10602399
+      },
+      "read_only_replay": {
+        "historical_files_preserved": 190,
+        "seconds": 0.9696859169998788,
+        "new_native_calls": 0,
+        "prepared_status": "TRIPLE_SCREEN_PASS",
+        "final_status": "REVIEW",
+        "reference_evidence": "declared_linked_site_geometry_readback_2026_11_16"
+      }
+    },
+    "artifacts": {
+      "anchor": "everyday_branch_artifacts_cedar",
+      "replay": "c336-site-readback/summary.json",
+      "package": "c336-refinement-report/package-check.json",
+      "runners": [
+        "runners/c336_site_readback.py",
+        "runners/c336_package_check.py"
+      ],
+      "scientific_artifacts_committed": false
+    },
+    "limitations": [
+      "Separate final-model reinterpretation, not actual refinement-manager capture.",
+      "Explicit triple screen only; whole-substituent/held-out chemistry remains open.",
+      "No automatic capture, CLI/default activation or saved AutoRefine-output integration.",
+      "No new native run, schema migration or historical modification."
+    ]
   }
 }

@@ -13480,3 +13480,22 @@ and composed numerical jobs need a current reader. No old attempt is rewritten,
 no CLI default changes, and a capture alone still cannot authorize chemical use.
 Focused/relocation results and the subsequent live acceptance control are recorded
 in ledger `retained_phosphate_observed_names_2026_11_13`.
+
+## Reading chemistry after refinement (C336)
+
+`nasolve.refinement_chemistry.read_refinement_chemistry(run_directory,
+checkpoint="refine-003", native_receipt=receipt_path)` is an explicit read-only
+Python report. It follows that checkpoint's preparation ancestry and checks a
+preserved native interpretation of its final PDB against the exact ordered
+restraints. Omitting `native_receipt` reports missing evidence honestly; it never
+runs Phenix or guesses a receipt location. A supplied corrupt or mismatched
+receipt raises instead of becoming an empty pass.
+
+The source graph selects triple bonds, independently of residue names. The
+existing site projection supplies the intended linked/terminal atom inventory,
+and the existing triple screen reports targets separately from observed lengths
+and angles. `SCOPED_TRIPLE_SCREEN_PASS` is only that screen; other chemistry,
+whole-substituent planarity, derivatives and diffraction acceptance are not
+qualified. Separate reinterpretation does **not** prove which manager the
+refinement job used. Automatic capture and joining this result into normal saved
+AutoRefine output remain pending. No CLI, default or historical-file change.

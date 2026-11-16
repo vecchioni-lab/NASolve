@@ -357,13 +357,13 @@ def _root_payload(report: Mapping[str, object], run: Path) -> dict[str, object]:
 def _validate_preparation(run, report, registry=None):
     from .cif_postmr_publication import validate_published_preparation
     try:
-        validate_published_preparation(run, report, registry)
+        return validate_published_preparation(run, report, registry)
     except (OSError, ValueError, RuntimeError) as exc:
         raise CheckpointError(str(exc)) from exc
 
 
-def read_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
-    """Read a registry or derive its validated PostMR root without writing files."""
+def _read_registry_with_preparations(run_directory: Path):
+    """Keep call-local preparation results from the same validated registry read."""
     run, report = _run_and_report(run_directory)
     path = registry_path(run)
     if path.is_file():
@@ -384,7 +384,7 @@ def read_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
             isinstance(item, Mapping) and item.get("id") == "postmr" for item in checkpoints
         ):
             raise CheckpointError("Checkpoint registry has no PostMR root")
-        _validate_preparation(run, report, registry)
+        verified = _validate_preparation(run, report, registry)
         from .refinement_inputs import validate_checkpoint_refinement_inputs
         from .refinement_parallelity import validate_checkpoint_execution
         try:
@@ -394,7 +394,7 @@ def read_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
                     validate_checkpoint_execution(run, item, registry)
         except (OSError, ValueError, RuntimeError) as exc:
             raise CheckpointError(str(exc)) from exc
-        return run, registry
+        return run, registry, verified
     registry = {
         "schema_version": SCHEMA_VERSION,
         "run_directory": ".",
@@ -404,7 +404,13 @@ def read_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
         "bookmarks": {},
         "checkpoints": [_root_payload(report, run)],
     }
-    _validate_preparation(run, report, registry)
+    verified = _validate_preparation(run, report, registry)
+    return run, registry, verified
+
+
+def read_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
+    """Read a registry or derive its validated PostMR root without writing files."""
+    run, registry, _ = _read_registry_with_preparations(run_directory)
     return run, registry
 
 

@@ -35,6 +35,17 @@ new checkpoints. V1 frozen-code identities/readers keep their original meaning;
 old model files are never repaired on read. This is output-state consistency,
 not a new B-factor model, chemical target or automatic default route.
 
+The read-only `read_refinement_chemistry` adapter resolves an explicit refinement
+checkpoint and its nearest checked preparation ancestor, preserving alternatives
+and ignoring current/latest selection. It retains the existing registry reader's
+call-local validated preparation results rather than replaying that history again.
+Optional final-model native evidence must match the exact model and ordered
+execution dictionaries/PHIL, including verified namespace adaptations. Declared
+site projections, not observed atom absence, own the reference chemistry.
+Separate interpretation remains explicitly distinct from the actual refinement
+manager; missing evidence and no supported triples remain unassessed. This report
+neither changes checkpoint schemas/selection nor launches a native capture.
+
 Plane and target-only bond attributions share one bounded input-freezing,
 execution and cold-read lifecycle. Family adapters retain their distinct chemical
 and numerical gates. Bond proof freezes the supplied reference and exact ordered
