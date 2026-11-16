@@ -150,6 +150,87 @@ These observations support retaining alternatives for review; they do not
 establish a new metal, an accepted cluster count or a universal B policy. See
 the [current validation receipt](development-handoff.md#grouped-candidate-reviews-and-geometryb-comparisons-2026-10-30).
 
+## Implemented matched cluster response comparisons
+
+A cluster needs a group-level response alongside the individual fitted sites.
+`metal compare-fdp-count` compares **2–128 existing audited frozen-fdp trials**
+within one geometry and **1–32 explicitly declared groups**. It preserves every
+trial as a snapshot with the complete placed-metal Q vector, individual f-double-prime,
+reference values, B, settings and per-element accounting. It never runs Phenix,
+merges geometry branches, infers an integer count or selects a checkpoint.
+
+Use the same group declaration as `count-fdp`; for example, a JSON file containing
+`{"cluster":{"nodes":["m1","m2","m3","m4"],"representation":"explicit-sites"}}`.
+An `unresolved-proxy` group must contain exactly one fitted node. All named nodes
+must be explicitly fitted; omitted sites and background scatterers are excluded.
+Groups may overlap but their sums must never be added together.
+
+```sh
+nasolve metal compare-fdp-count /path/to/run_001 --trial Metal/fdp_001 --trial Metal/fdp_002 --groups /path/to/groups.json
+nasolve metal verify-fdp-count-comparison /path/to/run_001 --comparison Metal/fdp_count_comparison_001
+```
+
+**Methods.** The existing trial verifier replays source derivation and the frozen
+state audit. Strict matched-comparison loading requires the same parent geometry,
+observations/Free-R membership, background and nuisance policies, reference
+scattering, B preparation, worker and native implementation. Only declared
+occupancies, starting f-double-prime and iteration budgets may differ. For each
+group, compute `sum(Q_i * fdp_i)` and `sum(Q_i * fdp_calc_i)`, retaining the raw
+`sum(fdp_i)` separately. Reference-normalized responses and atom equivalents
+remain separate for each element; a mixed Au/Ag total cannot validate either
+identity. A zero reference gives an undefined ratio, never zero or infinity.
+
+Keep positive and negative Q-weighted contributions separately. Cancellation is
+`1 - abs(sum(Q_i * fdp_i)) / sum(abs(Q_i * fdp_i))`, undefined when every
+contribution is zero. `MIXED_SIGN_FDP` identifies opposing signs; existing
+negative-fit and zero-reference warnings remain. Record the minimum, maximum
+and range of site B; `DIFFERENT_SITE_B` discloses any difference without imposing
+an arbitrary acceptance threshold. These are **coefficient diagnostics**, not
+observed structure-factor sums: positions, phase relationships, B attenuation
+and parameter correlations still matter. A small net response with large
+cancellation must not be interpreted as a small cluster.
+
+Each occupancy profile holds every other placed-metal Q fixed, including metals
+outside the reported group, and holds all fit settings fixed. Each start/budget
+profile fixes the complete Q vector and every other setting. Points retain all
+trial IDs and descriptive endpoint ranges; replicas at one value remain
+`NOT_TESTED`. Simultaneous Q changes remain available as snapshots but do not
+become a one-variable response profile. No uncertainty or convergence is inferred.
+
+```mermaid
+flowchart LR
+    T[Explicit saved frozen trials] --> A[Replay inputs and freeze audits]
+    A --> M[Require shared geometry and scientific controls]
+    M --> G[Named groups: signed sums and per-element response]
+    G --> P[Match one-variable profiles; retain every snapshot]
+    P --> R[Immutable report for review]
+    R -. future .-> V[Compact tables and plots across geometry branches]
+```
+
+*Figure: comparison reuses verified evidence without launching refinement.
+Geometry alternatives remain separate, and presentation/selection are later steps.*
+
+The new schema-1 `metal-fdp-count-comparison-v1` artifact contains `manifest.json`
+and `report.json` under a fresh `Metal/fdp_count_comparison_NNN`. The manifest
+records explicit groups, run-anchored checksummed trial references and a report
+reference. One shared comparison basis avoids repeating full B-environment
+provenance per site. A failed publication retains its numbered `failure.json`;
+input checks precede allocation and repeat before publication. Verification
+rebuilds the report from audited inputs and rejects changed/rehashed calculations,
+review state, unexpected files or symlinks. Existing count/comparison/scan schemas
+and native workers remain unchanged; no migration is needed.
+
+**Evidence and limits.** Regression coverage exercises signed cancellation,
+matched and confounded occupancy changes, external group members, replicate and
+zero-reference behavior, B-policy rejection, publication races, CLI execution,
+tampering and fresh-interpreter source/data relocation with original paths absent.
+Offline replays of saved Hg and mixed Au/Ag trials exercise the new reports;
+verified four-Ag fits exercise the signed diagnostics and different-B rejection.
+These validate accounting and provenance, not the underlying models, ligand
+chemistry, optimum Q, convergence or cluster atom count. The known low-B legacy
+fixtures remain conditional controls. No new native refinement or Coot execution
+is part of this pass. See the [validation handoff](development-handoff.md#matched-cluster-response-comparisons-2026-11-16).
+
 ## Implemented frozen-fdp anomalous map capture
 
 Use API-only `capture_anomalous_map=True` in `metal.fdp.make_plan` or `run_fdp`

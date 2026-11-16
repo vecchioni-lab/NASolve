@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Compare signed cluster responses across matched frozen trials
+
+- Add `metal compare-fdp-count` and `metal verify-fdp-count-comparison` for
+  existing audited trials, with explicit cluster/site groups and no native jobs.
+- Retain Q-weighted and raw response sums, per-element equivalents, positive and
+  negative contributions, cancellation, B ranges and all site/occupancy values.
+  Compare one changed occupancy or fit setting only when other controls match.
+- Save immutable `metal-fdp-count-comparison-v1` schema-1 reports with full
+  offline replay. Changed geometry, B preparation, references, observations or
+  native protocols cannot be silently pooled. Old artifacts need no migration.
+- No count acceptance, convergence claim, checkpoint selection or GUI change is
+  introduced. Scientific data and generated reports remain local.
+
 ### Inspect native metal trials with matching maps
 
 - Accept verified native XYZ candidates and individual frozen-fdp trials in the

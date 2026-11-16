@@ -1436,6 +1436,15 @@ this preparation, while older trial replay retains its original B. See the
 Viewer auto fitting, display connectivity, labels, trial grouping and default
 navigation remain presentation operations. A preview never edits a saved trial.
 
+`metal.fdp_count_compare` adds offline, explicitly scoped group comparisons over
+strictly matched frozen trials. Schema-1 `metal-fdp-count-comparison-v1` records
+signed/Q-weighted sums, per-element accounting and cancellation diagnostics,
+with complete snapshots and one-variable profiles. It reuses the existing fdp
+verifier and comparison basis, writes new numbered run-anchored reports and
+replays their arithmetic after relocation. It neither changes native fitting
+nor admits different geometry/B policies into one controlled profile. See the
+[methods and limits](metal-anomalous-doctor.md#implemented-matched-cluster-response-comparisons).
+
 The planned [metal-screen recipe](metal-screen.md) is a separate opt-in path,
 not an expansion of the ordinary nucleotide-heavy-atom AutoSol gate. It captures
 AutoSol's discovered sites and phase lineage, permits fewer/more-site branches,

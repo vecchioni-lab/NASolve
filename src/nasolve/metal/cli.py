@@ -63,6 +63,11 @@ def configure(subparsers):
     count.add_argument('--trial', type=Path, required=True)
     count.add_argument('--groups', type=Path, required=True, help='JSON group names with nodes and explicit-sites/unresolved-proxy representation')
     count_verify.add_argument('--count-report', type=Path, required=True)
+    count_compare = actions.add_parser('compare-fdp-count', help='compare signed cluster responses across matched frozen fdp trials')
+    count_compare_verify = actions.add_parser('verify-fdp-count-comparison', help='replay a matched cluster response comparison offline')
+    count_compare.add_argument('--trial', type=Path, action='append', required=True)
+    count_compare.add_argument('--groups', type=Path, required=True, help='JSON explicit count groups, as for count-fdp')
+    count_compare_verify.add_argument('--comparison', type=Path, required=True)
     scan_plan = actions.add_parser('plan-fdp-scan', help='plan an explicit occupancy grid from one audited seed trial')
     scan = actions.add_parser('run-fdp-scan', help='execute a bounded pass or resume an existing occupancy scan')
     scan_verify = actions.add_parser('verify-fdp-scan', help='verify saved scan results without native execution')
@@ -73,7 +78,7 @@ def configure(subparsers):
     scan.add_argument('--job-budget', type=int, required=True)
     scan.add_argument('--resume', type=Path)
     scan_verify.add_argument('--scan', type=Path, required=True)
-    for parser in (count, count_verify, scan_plan, scan, scan_verify, inspect, preview, build, verify, geometry, verify_geometry, fdp, verify_fdp, compare_fdp, verify_comparison, compare_ref, verify_ref):
+    for parser in (count, count_verify, count_compare, count_compare_verify, scan_plan, scan, scan_verify, inspect, preview, build, verify, geometry, verify_geometry, fdp, verify_fdp, compare_fdp, verify_comparison, compare_ref, verify_ref):
         parser.add_argument('run', type=Path, help='explicit NASolve run directory')
         if parser in (inspect, preview, build):
             parser.add_argument('--checkpoint', default='postmr', help='exact checkpoint/bookmark (default: postmr)')
@@ -141,6 +146,8 @@ def execute(args):
             return _reference_snapshot(args)
         if args.metal_action in {'compare-fdp', 'verify-fdp-comparison'}:
             return _fdp_comparison(args)
+        if args.metal_action in {'compare-fdp-count', 'verify-fdp-count-comparison'}:
+            return _fdp_count_comparison(args)
         if args.metal_action in {'count-fdp', 'verify-fdp-count'}:
             return _fdp_count(args)
         if args.metal_action in {'fdp', 'verify-fdp'}:
@@ -572,4 +579,36 @@ def _fdp_count(args):
             if group['warnings']: print('  Review: '+', '.join(group['warnings']))
         print('Conditional atom-equivalent evidence; no integer atom count or automatic structural choice.')
         print('Report: '+str(path))
+    return 0
+
+
+def _fdp_count_comparison(args):
+    from .fdp_count_compare import build_count_comparison, verify_count_comparison
+    if args.output and not args.output.parent.is_dir():
+        raise RecipeError('Output parent directory must already exist')
+    if args.metal_action == 'compare-fdp-count':
+        result = build_count_comparison(args.run, args.trial, _json(args.groups))
+    else:
+        result = verify_count_comparison(args.run, args.comparison)
+    serialized = json.dumps(result, indent=2, allow_nan=False)+'\n'
+    if args.output:
+        with args.output.open('x') as handle: handle.write(serialized)
+    if args.json:
+        print(serialized, end='')
+    else:
+        path = args.run.expanduser().resolve()/result['files']['report']['relative_path']
+        report = _json(path)
+        print(f'Cluster response comparison: {len(report["snapshots"])} audited trials; {report["wavelength_A"]:.8g} A')
+        print('Trial / group: sum Q (occ); sum Q*fdp (e); expected (e); ratio; cancellation')
+        for snapshot in report['snapshots']:
+            trial = Path(snapshot['manifest']['relative_path']).parent.name
+            for group in snapshot['groups']:
+                ratio = 'undefined' if group['response_ratio'] is None else f'{group["response_ratio"]:.6g}'
+                cancellation = 'undefined' if group['cancellation_fraction'] is None else f'{group["cancellation_fraction"]:.1%}'
+                print(f'{trial} / {group["group_id"]}: {group["occupancy_sum"]:.6g}; {group["q_weighted_fdp_e"]:.6g}; '
+                      f'{group["q_weighted_reference_e"]:.6g}; {ratio}; {cancellation}')
+                if group['warnings']: print('  Review: '+', '.join(group['warnings']))
+        compared = sum(p['status']=='COMPARED' for p in report['profiles'])
+        print(f'{compared} matched one-variable profiles; full Q vectors, per-site values and controls: {path}')
+        print('Coefficient diagnostics only; no integer count, convergence claim or checkpoint selection.')
     return 0

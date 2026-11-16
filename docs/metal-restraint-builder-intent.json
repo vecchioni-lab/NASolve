@@ -672,6 +672,25 @@
       "automatic_checkpoint_selection": false,
       "scientific_acceptance": "NOT_ASSESSED",
       "refine_doctor_execution": "PENDING_EXACT_METAL_CHECKPOINT_BRIDGE"
+    },
+    "fdp_count_comparison": {
+      "status": "IMPLEMENTED",
+      "contract": "docs/metal-anomalous-doctor.md#implemented-matched-cluster-response-comparisons",
+      "commands": [
+        "metal compare-fdp-count",
+        "metal verify-fdp-count-comparison"
+      ],
+      "protocol": "metal-fdp-count-comparison-v1",
+      "schema_version": 1,
+      "maximum_trials": 128,
+      "maximum_groups": 32,
+      "same_geometry_and_scientific_controls_required": true,
+      "signed_contributions_and_cancellation_retained": true,
+      "full_occupancy_vectors_retained": true,
+      "one_variable_profiles_fix_all_other_occupancies_and_settings": true,
+      "integer_count_inferred": false,
+      "native_execution": false,
+      "automatic_checkpoint_selection": false
     }
   },
   "solution_search": {

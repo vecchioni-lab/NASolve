@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Metal integration updated **2026-10-30** in the section below. The following
+Metal integration updated **2026-11-16** in the section below. The following
 Cedar boundary is the retained **2026-10-26 snapshot**, not a new statement of
 the separate checkout's current status. It records native receipts, user visual
 review and verified geometry/DF bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
@@ -12,6 +12,78 @@ are preserved. Preserve this local unpublished diagnostic head; do not pull or
 replace it with a remote head to continue the run. Diagnostic scripts/derivatives are
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
+
+## Matched cluster response comparisons 2026-11-16
+
+**Before/after.** Existing count reports summarized one fit, while matched
+comparisons exposed individual sites. The new backend compares explicitly
+scoped cluster responses across saved trials, retains signed cancellation and
+per-element evidence, and holds all other Q/settings fixed for one-variable
+profiles. It leaves native refinement and GUI behavior unchanged. The
+[descriptor and editable methods figure](metal-anomalous-doctor.md#implemented-matched-cluster-response-comparisons)
+record the algorithm, CLI, scope and scientific limits.
+
+**Files/schema.** New `src/nasolve/metal/fdp_count_compare.py` and
+`tests/test_metal_fdp_count_compare.py`; CLI additions in `metal/cli.py`;
+architecture, feature descriptor, intent JSON, documentation index, changelog
+and this handoff updated. New `metal-fdp-count-comparison-v1` schema 1 uses
+`Metal/fdp_count_comparison_NNN/{manifest,report}.json`, or a retained failure.
+Inputs remain explicit run-anchored/checksummed trial manifests. Existing count,
+comparison, scan, XYZ and fdp artifacts need no migration; old source versions
+cannot read this new artifact kind. No native defaults or selected checkpoint
+change.
+
+**Validation.** Regression collection failed before implementation (the module
+was absent). With Python 3.12 and `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`:
+
+```sh
+python -B -m pytest -q -p no:cacheprovider tests/test_metal_fdp_count_compare.py tests/test_metal_fdp_count.py tests/test_metal_fdp_compare.py tests/test_metal_fdp_endpoint.py tests/test_metal_fdp_scan.py
+```
+
+**102 passed in 43.94 s**, including fresh-interpreter verification after the
+temporary source/data root was renamed and its original path removed. Native
+execution is forbidden during replay. Additional checks with the same environment:
+
+```sh
+python -B -m pytest -q -p no:cacheprovider tests/test_metal_workflow_intent.py
+python -B -m pytest -q -p no:cacheprovider
+git diff --check
+```
+
+Intent checks: **25 passed in 0.06 s**. Complete suite: **6,271 passed and
+276 subtests passed in 819.83 s** (15-minute bounded wrapper, exit zero).
+All 16 added documentation links/anchors and whitespace checks pass. The suite
+ran on this Alder source, not the newer Cedar/Willow branches. The user has
+reaffirmed that subsequent bounded passes should use relevant focused tests;
+this already-running full check completed within its bound.
+
+**Saved-data execution.** Two new comparison bundles replayed successfully:
+four frozen Hg trials and five mixed Au/Ag trials. Two separately verified
+four-Ag endpoints exercise signed diagnostics, and their differing B policies
+are correctly rejected before comparison allocation. Source native receipts
+record **Phenix 2.2.1-6174**. This pass performs complete offline verification,
+not a new Phenix/Coot execution or native dry run. Private review/receipts are
+under the everyday checkout's ignored
+`branch-artifacts/Alder/count-comparison-20261116-01/`; runner/log prefix `A39_`.
+All new scientific reports, models, reflections, maps and logs are deliberately
+excluded from Git. No heavy map/model copies or new fits were generated.
+
+**Remaining limits and next step.** Opposing fitted signs can almost cancel in
+the four-Ag example; the net response alone is not count evidence. A mixed Au/Ag
+total can look close to expectation while its individual element responses do
+not. Hg and mixed-pair controls retain their original conditional B and ligand
+assumptions; this accounting change cannot qualify them. Return to chemically
+qualified, source-bound ligand dictionaries and the open-XYZ/B endpoint protocol
+before using these profiles to evaluate new recipe hypotheses. Different
+geometries remain separate comparisons for later compact side-by-side display.
+Do not admit the private open-refinement rehearsal as a production-verified
+endpoint without its explicit protocol qualification.
+
+Current Cedar was inspected read-only at **5c960cc4** (`NASolve-c96`, C341).
+Source/library preparation and native ligand diagnostics have advanced since
+the retained October snapshot above, but they do not establish a validated
+metal geometry. No Cedar merge, model replacement or source-CIF substitution
+was performed by this pass.
 
 ## Native-trial inspection and chemistry review 2026-10-30
 
