@@ -1,6 +1,7 @@
 # NASolve documentation map
 
-Updated **2026-10-26**. Start with the
+Metal navigation audited **2026-11-16**; the Cedar capability narrative below
+is the retained **2026-10-26** branch snapshot. Start with the
 [current development handoff](development-handoff.md) for completed checks,
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.

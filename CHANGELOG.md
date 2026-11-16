@@ -52,6 +52,10 @@ entries are reconstructed from repository history.
 
 ### Documentation
 
+- Audit the metal workspace and document index; separate superseded pause/Cedar
+  snapshots from the current A01 handoff. Preserve diagnostic paths and evidence;
+  no runtime or artifact schema changes.
+
 - Make the metal feature milestones explicitly post-merge and number them
   A01–A08. Add a dedicated GUI co-design session and a reconstruction gate using
   experimental inputs and general mechanics, with human solutions reserved for

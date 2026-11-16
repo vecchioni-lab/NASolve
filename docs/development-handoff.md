@@ -1,17 +1,39 @@
 # NASolve development handoff — current state
 
-Metal integration updated **2026-11-16** in the section below. The following
-Cedar boundary is the retained **2026-10-26 snapshot**, not a new statement of
-the separate checkout's current status. It records native receipts, user visual
-review and verified geometry/DF bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
-then `main` (draft PR #23).** The current laptop Cedar checkout remains at
-**`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
-authorized `src/nasolve/phaser.py` fix modified after the GeoTest rerun.
-Its other 45 frozen source hashes, including the distinct curated source,
-are preserved. Preserve this local unpublished diagnostic head; do not pull or
-replace it with a remote head to continue the run. Diagnostic scripts/derivatives are
-not general production support. Earlier wording remains in Git and the
-[exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
+Metal integration updated **2026-11-16**. Active metal branch: **Alder**;
+current milestone: **A01 — ligand geometry and open XYZ/B**. Start with the
+[post-merge roadmap](metal-development-roadmap.md) and the A01 evidence below.
+The older Cedar/metal pause narrative is retained in
+[history](history/metal-foundation-pause-2026-11-16.md), not current instructions.
+
+## Workspace audit — 16 November 2026
+
+Alder source checkpoint `a135871105b46b75b1329c0a86f26e35f99156f9` was clean
+and pushed before this documentation cleanup. Its isolation remains necessary
+while shared chemistry/native interfaces evolve independently. The integration
+target remains the reviewed NASolve main line after interface reconciliation;
+confirm the receiving branch with its owner at merge. Retire this worktree only
+after reviewed integration and preservation of local evidence. Post-merge
+feature milestones do not become additional merge prerequisites.
+
+The audit removed only the ignored, disposable pytest cache from this worktree.
+Local diagnostics and runners are already contained in the ignored everyday
+checkout `branch-artifacts/Alder/` tree. Two byte-identical runner groups retain
+their historical names and dependencies. Scientific runs, failed receipts,
+empty run directories, environments, prototypes and peer worktrees are retained.
+The local `workspace-audit-20261116-01/` inventory records counts, sizes, cache
+hashes and current review pointers. It is excluded from Git.
+
+Before/after: stale pause/current-worktree wording is now a historical pointer;
+A01 and its next scientific gate are explicit. Changed files are this handoff,
+the documentation index, historical scoping note and changelog. No runtime,
+schema, operational path or compatibility change; no scientific data relocation.
+Validation: **9 documents, 250 local links/anchors**, A01–A08 numbering,
+preserved history and **52 current review file checksums** pass. Replay from the
+everyday checkout with `.venv/bin/python -B branch-artifacts/Alder/workspace-audit-20261116-01/validate.py ../NASolve-metal-coordination`;
+`git diff --check` in Alder also passes. No pytest or native execution
+for this documentation/cache-only pass. Shared-root cleanup is coordinated with
+the Cedar owner and remains outside this worktree's changes.
 
 ## A01 — FT_Hg ligand geometry and open XYZ/B, 2026-11-16
 
@@ -109,71 +131,11 @@ important geometry nodes retain the stronger evidence policy.
 
 ## FT_Hg foundation and storage scoping 2026-11-16 — A40
 
-**Earlier checkpoint:** the user requested a pause after storage scoping to lower
-compute; all owned native jobs were stopped. They subsequently resumed A01 work;
-the newer A01 handoff above supersedes this historical pause. [Roadmap](metal-development-roadmap.md) and [storage plan](metal-campaign-storage.md)
-record the implementation order; focused tests only for subsequent bounded work.
-
-**Roadmap correction.** At the user's request, the feature milestones are
-explicitly **post-merge**, numbered **A01–A08**. Merging the current experimental
-implementation has separate integration/compatibility checks; the feature
-completion gates are not prerequisites. A05 is a dedicated scientist/developer
-GUI co-design session. A07 requires reconstruction of the metal test solutions
-from declared experimental inputs and general mechanics, keeping human solutions
-out of construction/search and recording all extra priors and manual intervention.
-Historical implementation receipts A37–A40 keep their existing identifiers.
-This documentation update does not resume paused native work. Validation: the
-Python local-link/numbering audit passes five document links, ordered A01–A08
-IDs, both new scope sections and index/handoff consistency; `git diff --check`
-passes. No runtime/schema change, scientific artifact changes or pytest run.
-
-**Before/after.** A39 supplied comparison accounting. A40 begins the ligand/open
-XYZ/B foundation and now scopes operation-specific storage before campaign
-fan-out. Frozen XYZ/B/f′ points keep one pristine parent plus compact Q/f″ data;
-geometry-changing work retains Cedar's stronger evidence policy. Important nodes
-remain protected, and small fdp maps may be kept until selection within a byte
-budget. This is documentation/design, not a pruning implementation or migration.
-
-**Coordination.** Rowan confirmed the C98 DF source/candidate hashes and existing
-qualification/preparation APIs. A40 owns a source snapshot of Cedar
-`53116e1f1ff2e1d51d6ec2709dd8077c2d72af22`; Alder remains `bcffed56` before this
-documentation checkpoint. Cedar archive/retirement owners were inspected and
-remain unchanged. The lean metal profile must add its own compact-record and
-regeneration contract rather than applying complete-attempt archives to every
-frozen point. No general campaign garbage collector is implemented.
-
-**Native evidence.** Phenix 2.2.1-6174, complete fixed-coordinate executions,
-not dry runs: two fresh isolated DF controls and baseline/corrected full-model
-interpretations completed. Initial reporting failed because the harness omitted
-an API argument; native evidence is preserved. A newer full-inventory attempt
-stopped because `use_ncs_to_build_restraints=False` was not explicit. Fresh v3
-controls supplied it and preserved the PostMR-declared D:1 terminal phosphate.
-The latest linked report is **REVIEW** for custom-restraint realization; exact
-formal-charge readback is independently **UNSUPPORTED**. Do not claim the full
-model is qualified. No A40 XYZ/B refinement or f″ execution has occurred.
-
-Private evidence: everyday checkout `branch-artifacts/Alder/ft-hg-foundation-20261116-01/`,
-runner prefix `A40_`. Resume by inspecting `linked-qualification-v3.json` and the
-captured custom-restraint evidence, then use the supported Cedar native runtime
-and output-state synchronization for a bounded matched geometry comparison.
-Preserve the exact DF source HOP2/OP2 state; a different phosphate state is not a
-silent replacement. Parent files and every failed attempt remain intact.
-
-**Storage evidence.** A read-only inventory of three saved frozen trials measured
-about 1.0–1.17 MB each, with two anomalous maps at 21,420/26,100 bytes. Exact
-private file inventories and the explicit 200×100 extrapolation are in
-`branch-artifacts/Alder/storage-plan-20261116-01/footprint.json`. Compact 1–8 KiB
-records are a design target, not measured implementation. Inputs, maps, native
-payloads and this inventory are excluded from Git; no scientific files deleted.
-
-**Files/validation.** Documentation only: new roadmap/storage descriptors,
-existing index, anomalous-workflow retention section, changelog and this handoff.
-No artifact schema or runtime compatibility changes. Validation: a Python path/anchor audit passes all five new-document links and
-three navigation cross-links; the 200×100 size arithmetic passes.
-`git diff --check` passes. No pytest/full suite for this documentation slice.
-Native results above establish only their stated scopes; the next scientific
-gate remains open. User requested the storage plan be settled before returning
-to the paused FT_Hg work.
+The [historical scoping checkpoint](history/metal-foundation-pause-2026-11-16.md#ft_hg-foundation-and-storage-scoping-2026-11-16--a40)
+records the earlier pause, initial qualification failures and storage measurements.
+The resumed A01 evidence above supersedes its next-action instructions. Storage
+implementation remains [A04](metal-campaign-storage.md); no payload pruning is
+implemented or performed here.
 
 ## Matched cluster response comparisons 2026-11-16
 
