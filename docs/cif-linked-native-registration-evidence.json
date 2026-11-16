@@ -106552,5 +106552,112 @@
       "Ordinary custom-source freezing and source/context selection remain next; no full suite or fresh Phenix/Coot run."
     ],
     "next": "Pass explicitly selected composed/custom sources into the existing frozen source-selection owner, without relaxing curated-source precedence or inventing aliases."
+  },
+  "explicit_custom_source_selection_2026_11_16": {
+    "milestone": "C355",
+    "date": "2026-11-16",
+    "signed": "Rowan",
+    "before": "Ordinary frozen selection required NARestraints registration before a non-curated custom source could be selected.",
+    "after": "An explicit nonempty mapping supplies selected non-curated source files to the existing freezer. Other sources retain ordinary precedence. No extra owner, lookup, numerical generation or implicit registration.",
+    "prior_work": {
+      "owner_commit": "a088a9d4",
+      "contract": "docs/cif-doctor.md#frozen-acquisition-source-selection-c168",
+      "reused": "C168 source owner, existing complete-request frozen_sources intake, C354 package compositor, C342 exact isolated qualification"
+    },
+    "schema": {
+      "schema_version": 1,
+      "policy": "cif-acquisition-explicit-sources-v1",
+      "new_field": "explicit_components: sorted nonempty subset of components",
+      "source_kind": "explicit-file",
+      "source_authority": "EXPLICIT",
+      "anchor": "source_selection_directory",
+      "historical_paths": "PROVENANCE_ONLY"
+    },
+    "validation": {
+      "before": "19 missing-API failures,11 invalid-input controls passed/1.12s",
+      "new_cases": 33,
+      "focused": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_explicit_sources.py tests/test_cif_acquisition_sources.py tests/test_cif_packaged_reference.py tests/test_cif_postmr_request.py --tb=short",
+        "result": "160 passed in63.45s"
+      },
+      "installed": {
+        "status": "INSTALLED_RELOCATED_EXPLICIT_SOURCES_PASS",
+        "wheel_sha256": "ba523e469a7c669107cf1ad4e414db97303c6e4ed60e3b55c250c4a86bb02c3b",
+        "wheel_bytes": 1390872,
+        "source_copy_removed": true,
+        "original_install_path_absent": true,
+        "package_reference_bytes_match": true,
+        "validation_command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-c",
+          "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_cif_explicit_sources.py', 'tests/test_cif_acquisition_sources.py', 'tests/test_cif_packaged_reference.py', 'tests/test_cif_postmr_request.py', '--tb=short']))"
+        ],
+        "validation_output": "........................................................................ [ 45%]\n........................................................................ [ 90%]\n................                                                         [100%]\n160 passed in 65.00s (0:01:04)\n",
+        "build_command": "phenix.python -m pip wheel --no-deps --no-build-isolation --no-index",
+        "temporary_bytes_removed": 11073822
+      },
+      "legacy": {
+        "status": "PASS",
+        "comparison_revision": "6f2bd7e0",
+        "ordinary_report_and_all_artifact_bytes": "EXACT",
+        "old_reader_on_new_ordinary_output": "PASS",
+        "new_reader_on_old_ordinary_output": "PASS",
+        "original_sources_removed": true,
+        "native_execution": "FORBIDDEN",
+        "temporary_bytes_removed": 3134
+      },
+      "scope": [
+        "Unregistered DY and renamed Q17, exact packaged composed bytes.",
+        "Mixed curated/installed/explicit precedence; missing curated source cannot fall back.",
+        "Source changes, symlinks, wrong identities, undeclared/curated choices and resigned false claims refuse.",
+        "Partial copies retained, no in-place retry.",
+        "Existing component cache acquisition/reuse and complete-request initialization/cold relocation, not only file copying."
+      ]
+    },
+    "saved_dy": {
+      "status": "PACKAGED_DY_THROUGH_EXPLICIT_FREEZE_AND_EXISTING_ACQUISITION_PASS",
+      "root": "355_Cedar_explicit-DY-cache-sk2trw3i",
+      "source_sha256": "a7d9ed314862298e589be0f873cc41c9abaa0d2608aa709ce26fc0a59aaf1d55",
+      "acquisition": "PREPARED_AND_FROZEN",
+      "dictionary_sha256": "692d27c45775f13bf017deaa3b822ea315466b0b8f1b6a854eb47d786cf0a732",
+      "qualification": "EXACT_C342",
+      "entry_id": null,
+      "source_original_removed": true,
+      "source_policy": "cif-acquisition-explicit-sources-v1",
+      "sdk": "ABSENT",
+      "native_execution": "FORBIDDEN; ONLY_SYSCTL_PS_PROCESS_IDENTITY_ALLOWED",
+      "system_checks": 2,
+      "generation_child": "NOT_CREATED",
+      "cold_relocation": "EXACT_READ_ONLY",
+      "prior_files_and_timestamps_preserved": 104,
+      "all_jobs_stopped": true,
+      "elapsed_seconds": 1.387596583001141,
+      "physical_bytes": 759582,
+      "scope": "ISOLATED_C342_QUALIFICATION_REUSED; NO_NEW_NATIVE_RUN_OR_AUTOMATIC_MODEL_SELECTION",
+      "prior_failed_control": "355_Cedar_explicit-DY-cache-cleqbnlb: overbroad subprocess guard stopped before acquisition reservation; preserved"
+    },
+    "saved_entry_id": "9fde96589068502a51e001f32493a595d50a9e356d2e882fbf2f969b198596ce",
+    "changed_files": [
+      "src/nasolve/cif_acquisition_sources.py",
+      "tests/test_cif_explicit_sources.py",
+      "tests/test_cif_acquisition_sources.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/development-handoff.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "compatibility": "Default output bytes exactly match C354; historical/current readers cross-read after originals removed. Old software refuses the new explicit policy. No migration required. No CLI alias or ordinary default change.",
+    "retention": "Code/tests/docs/compact evidence only. No model, diffraction, generated dictionary, native log or SDK upload. Successful local control ~0.76MB; prior104 files/timestamps exact; failed harness retained. Installed scratch11.07MB removed.",
+    "limitations": [
+      "Source freezing validates selection/component identity, not chemical or numerical usability.",
+      "Composition proof remains a separate caller artifact; frozen source bytes do not assert package/composition provenance.",
+      "Per-site source/context choice, ordinary DY activation and Q06 achieved geometry remain open.",
+      "No new Phenix/Coot execution or full suite. Last full suite remains C220/583d30df:9178 tests+276 subtests."
+    ],
+    "next": "Join explicit source composition proof to qualified per-site selection through existing context/construction owners; preserve phosphate intent and avoid duplicating source or process ownership."
   }
 }

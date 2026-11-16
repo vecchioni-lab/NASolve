@@ -3988,7 +3988,7 @@ No generation, ReadySet, Coot, diffraction refinement or SDK modification occurr
 ### Frozen acquisition source selection (C168)
 
 `cif_acquisition_sources.freeze_acquisition_sources(codes, output, *, data_root=None,
-ready_set_executable=None)` freezes one to sixteen explicit unique PDB component
+ready_set_executable=None, explicit_sources=None)` freezes one to sixteen explicit unique PDB component
 codes before numerical acquisition. It reuses the ordinary selector and source
 validator: reviewed curated definitions retain precedence, verified local sources
 precede the configured Phenix CCD, and missing curated resources never silently
@@ -4009,6 +4009,25 @@ authority/kind and current source validator, rejects extra approval claims and
 wrong boolean types, and rechecks bytes after validation. It performs no source
 rediscovery, live NARestraints registry lookup, SDK access, subprocess or write.
 Captured source choice is input provenance, not proof of numerical usability.
+
+C355 optionally accepts a nonempty code-to-file mapping for a subset of requested
+non-curated components. The caller's mapping is captured at entry; selected files
+bypass registry lookup and discovery, but retain exact component/file validation
+and all batch rechecks. Explicit curated overrides refuse, including an identical
+file; other codes still use ordinary precedence. No aliases or registration follow.
+The distinct schema-1 policy `cif-acquisition-explicit-sources-v1` records sorted
+`explicit_components` and marks those rows `EXPLICIT`/`explicit-file`. The cold
+reader requires that exact correspondence and rejects extra success claims.
+Historical/default reports remain byte-identical. Older software refuses the new
+opt-in policy; no historical migration is needed.
+
+Existing component acquisition and complete-request intake use this reader as-is.
+Tests cover cache reuse, mixed selection, partial work, and relocated requests with
+original sources removed. A packaged DY control reuses C342's exact qualified
+snapshot without an SDK/native job. Composition proof is still separate caller
+evidence: source selection binds bytes, not their chemical derivation.160 focused
+and160 installed/relocated checks pass; no full suite or fresh native qualification.
+See `explicit_custom_source_selection_2026_11_16` for commands and retained limits.
 
 The reader supplies `source` and `source_authority` directly to C167 component
 acquisition. Tests remove the original local source tree, consume a retained

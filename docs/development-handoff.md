@@ -1,26 +1,32 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C354 packaged chemical-source intake — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. C353 pushed at `84f27a3e`; C354 is this
+Updated **2026-11-16, C355 explicit custom source freezing — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. C354 pushed at `6f2bd7e0`; C355 is this
 completed code/evidence checkpoint. No full suite, branch, default activation or
 merge. Linden owns Pine/Willow; frozen restoration/C331/C338 unchanged. Simon
 confirmed work through **23:00 London**. All Rowan jobs stopped at this checkpoint.
 
 ## Current result and next bounded task
 
-**C354 complete:** exact packaged reference lookup and explicit source composition
-reuse existing chemistry. Package/ZIP paths return source bytes plus package
-identities, never temporary paths. Twenty new cases;70 focused/4.76s and70
-installed relocated/4.09s pass. Packaged DY composition is byte-for-byte C342's
-qualified source and has the exact old composition proof; cold acquisition replay
-passes all21 recorded isolated checks,104 prior files/timestamps unchanged.
-No new native run, source edits, aliases/defaults, or full suite. Evidence:
-`packaged_reference_intake_2026_11_16`. All jobs stopped.
-**Next:** explicitly selected composed/custom sources through the existing frozen
-source-selection owner, preserving curated precedence. This supports reusable
-definitions without interpreting metadata as native qualification or forcing NAR
-pairing. Qualified source/context selection and ordinary DY activation remain open.
-Earlier next statements are historical.
+**C355 complete:** explicit custom/composed source files enter the existing source
+freezer, with curated precedence preserved and a distinct opt-in selection policy.
+No registry lookup is needed for an explicit non-curated choice. Existing acquisition
+and complete-request owners consume the result.160 focused/63.45s and160 installed
+relocated/65.00s pass; default artifact bytes exactly match C354.
+
+Packaged DY → explicit source freeze → existing acquisition reuses the exact C342
+qualified dictionary without an SDK or native job. Relocated readback is exact;
+104 prior files/timestamps remain unchanged. Local control
+`355_Cedar_explicit-DY-cache-sk2trw3i`,~0.76MB; first harness failure preserved.
+C354 package source/composition was already byte-identical to C342. Evidence:
+`explicit_custom_source_selection_2026_11_16` and
+`packaged_reference_intake_2026_11_16`. All jobs stopped. No full suite.
+
+**Next:** bind source-composition evidence to qualified per-site choice through
+existing context/construction owners. Explicit file selection does not itself
+retain composition proof, select phosphate state, register DY, or authorize pairing.
+Q06 achieved geometry and ordinary DY activation remain open. Older next statements
+below are historical evidence, not the current queue.
 
 
 **C353 complete:** ordinary lineage now joins the existing canonical seed proof

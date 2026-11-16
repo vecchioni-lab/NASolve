@@ -4268,4 +4268,11 @@ the saved Phenix qualification replays without generating another dictionary.
 This works after installation, relocation and ZIP packaging. A different packaged
 code follows the same route. It does not decide the model's phosphate state,
 invent a pairing pattern or turn a preview into numerical restraints. Ordinary
-source selection and automatic mutation still need their remaining integration.
+automatic mutation still needs qualified per-site selection.
+
+Explicit custom definitions can now enter the same source freezer used by ordinary
+preparation, even without a NARestraints registry entry. Curated definitions retain
+precedence. The frozen bytes survive relocation and feed existing acquisition;
+packaged DY reuses its exact saved Phenix qualification without regeneration.
+This records which source was chosen. It does not certify its chemistry, carry a
+composition proof by implication, choose phosphate state or invent base pairing.

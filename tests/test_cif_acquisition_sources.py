@@ -138,7 +138,8 @@ def test_unsafe_or_existing_output_does_not_discover(sources,monkeypatch,kind):
     with pytest.raises((ValueError,FileExistsError)):m.freeze_acquisition_sources(['DE'],out,data_root=data)
 
 
-def test_frozen_source_feeds_component_request_without_live_selection(tmp_path,monkeypatch):
+@pytest.mark.parametrize('explicit', [False, True])
+def test_frozen_source_feeds_component_request_without_live_selection(tmp_path,monkeypatch,explicit):
     from nasolve import cif_acquisition_sources as m
     from nasolve import cif_acquisition_attempt as acquisition
     from nasolve import curated_ligands as ligands
@@ -147,7 +148,9 @@ def test_frozen_source_feeds_component_request_without_live_selection(tmp_path,m
     args=inputs(tmp_path,terminal=False);saved=resolve_dictionary_snapshot(args['snapshot'])
     data=tmp_path/'ordinary';(data/'ligands').mkdir(parents=True);(data/'ligands/ZZZ.cif').write_bytes(saved['source'].read_bytes())
     monkeypatch.setattr(ligands,'_registered_record',lambda code: {'Ligand code':code})
-    out=tmp_path/'selection';m.freeze_acquisition_sources(['ZZZ'],out,data_root=data);shutil.rmtree(data)
+    out=tmp_path/'selection'
+    options={'explicit_sources':{'ZZZ':data/'ligands/ZZZ.cif'}} if explicit else {'data_root':data}
+    m.freeze_acquisition_sources(['ZZZ'],out,**options);shutil.rmtree(data)
     def forbidden(*a,**k):raise AssertionError('Frozen cache hit rediscovered or launched')
     monkeypatch.setattr(m,'ligand_source',forbidden);monkeypatch.setattr(acquisition,'execute_candidate_qualification',forbidden);monkeypatch.setattr(acquisition,'generate_source_candidate_attempt',forbidden)
     selected=m.read_acquisition_sources(out)['sources']['ZZZ'];sdk=tmp_path/'unavailable-sdk'

@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Freeze explicitly selected custom chemical sources (C355)
+
+- Accept exact non-curated source files through the existing frozen-source owner,
+  with a distinct opt-in policy and recorded component choices. Preserve curated
+  precedence and all ordinary default output bytes; reject changing or invalid files.
+- Existing component acquisition and complete requests consume these frozen inputs
+  after relocation. Selection grants no native qualification, automatic mutation,
+  pairing rule or implicit registry entry; chemical validation remains required.
+
 ### Read chemical references from the installed package (C354)
 
 - Add exact manifest/checksum/component-bound reference lookup and explicit DNA

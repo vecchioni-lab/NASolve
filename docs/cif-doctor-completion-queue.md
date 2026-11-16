@@ -886,8 +886,11 @@ installed checks pass, without granting retry or plane-support authority.
 seed evidence; historical policies remain unchanged. Both C349 native round-trip
 closures replay after relocation. **C354:** package-bound reference intake and
 composition pass70 focused/installed cases; exact C342 source/native evidence is
-reused without regeneration. **Next:** explicit custom/composed source freezing
-through the existing owner, then qualified context selection. APIs stay opt-in. No DY pair pattern, automatic alias or per-site selector is
+reused without regeneration. **C355:** explicit custom sources now use the same
+freezer/acquisition owner;160 focused/installed checks pass. Packaged DY reuses
+C342's exact isolated qualification without native execution. **Next:** bind
+composition proof to qualified per-site choice; the freezer records source bytes,
+not that separate composition authority. APIs stay opt-in. No DY pair pattern, automatic alias or per-site selector is
 inferred. See `source_bound_canonical_roundtrip_2026_11_16`.
 See `mixed_dy_end_states_readyset_2026_11_16`; older next steps are historical.
 

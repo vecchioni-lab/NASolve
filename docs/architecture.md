@@ -1322,6 +1322,11 @@ partial output, and publishes completion last. Its strict reader validates the
 source snapshot without rediscovery or historical paths, then supplies explicit
 source/authority arguments to C167. This is the preparation input boundary; complete
 request coordination, shared deadlines and multi-component repair remain separate.
+C355 adds an explicit non-curated file mapping to that same owner. A separate
+policy records the sorted explicit subset and `explicit-file` kind. Curated codes
+cannot be overridden; unselected codes retain ordinary precedence. No new registry,
+process owner or qualification claim is introduced. Package/composition proof remains
+separate from frozen source choice. Defaults keep their exact historical bytes.
 See [source selection](cif-doctor.md#frozen-acquisition-source-selection-c168).
 
 C169 connects C168 selected sources and explicit completed C167 attempts to the
