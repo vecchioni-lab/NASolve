@@ -60,6 +60,70 @@ frozen into dataset target intent with dataset overrides retaining higher
 precedence. This binding still does not establish search-model compatibility or
 cross-dataset model reuse; broader family/model orchestration remains separate.
 
+## Three-orientation asymmetric-triangle check (W93; planned)
+
+Simon requested an opt-in campaign check, tentatively `-checkasym` (spelling and
+runtime schema are not implemented). Starting from one usable placed triangle,
+compare Orientation 1/2/3: nominal 0, 120 and 240 degree rotations about a
+**molecular approximate threefold axis** through a registered pivot. This is not
+an assumed crystallographic operation: the public better-resolved control
+[7U3O](https://www.rcsb.org/structure/7U3O) is P1 at 3.31 Angstrom. Infer/validate
+the pivot and axis from labelled junction/arm correspondence; unequal shapes may
+need fitted cyclic placements instead of literal exact 120-degree symmetry.
+Preserve sequence labels, strand polarity and arm identity with each rotated
+model. A base relabelling alone is not equivalent when shapes differ.
+
+Keep observations, unit cell, indexing/origin and Free-R assignments stationary.
+Rotate the molecular coordinates in the crystal Cartesian frame about the pivot,
+not the cell origin, and retain exact transforms. Reconstruct a whole motif from
+registered ASU pieces if needed before rotation and choose a valid representative
+cut afterward. A Pine representative recut leaves the physical crystal unchanged;
+this proposed sequence/shape reorientation deliberately tests a different model.
+Exact crystallographic duplicates must collapse, but a cyclic sequence permutation
+is not a duplicate just because its unlabeled scaffold is similar.
+
+Use three independent immutable siblings from the same source, each with its own
+sequence preparation, local placement adjustment, bending/relaxation and matched
+refinement. Do not inherit the first candidate's optimized bend. An unrestricted
+MR search on three merely pre-rotated input files can recover the same placement
+three times; retain the three placed hypotheses through bounded local refinement
+or an explicitly qualified orientation-constrained search, then classify converged
+duplicates. Resolve independent ASU copies/NCS relationships before deciding
+whether to rotate the whole assembly or individual motifs; do not silently turn
+three tests into an unbounded 3^N search.
+
+The data frame stays fixed, but model-derived maps must be recomputed per sibling
+under matched coefficient/phase/scaling rules. A map phased by the first model is
+not independent truth for all three. Freeze resolution/anisotropic selection,
+reflection identities, Free-R membership, chemistry, occupancies/ADP policy and
+compute budgets before comparison. Validate existing Free-R flags once; if absent,
+create one shared audited assignment before branching. Use working-set evidence
+for optimization, then one small predeclared Free-R comparison; avoid repeated
+Rfree-guided parameter tuning. A tiny delta is not an automatic winner, especially
+with a small/correlated test set. Calibrate uncertainty/repeatability on controls.
+
+Campaign desk should show three sibling solutions in a common crystal frame,
+arm/sequence labels, their actual per-branch bend, contacts/clashes, Rwork/Rfree,
+reflection/test counts, common resolution/mask, local map evidence and all failure
+states. Report **favored**, **indistinguishable**, **same final placement** or
+**failed/incomparable**. A failed run is not evidence that its orientation is false.
+Retain all alternatives for human selection; strong support can justify a ranked
+recommendation, not an unconditional correctness claim. Export the matched table
+and provenance for a paper, including all tested alternatives.
+
+Pipeline order: existing shared native-policy guard first; S04/S05 geometry and
+S06 density/matched-refinement qualification; then this bounded campaign branch
+using existing campaign/checkpoint/sequence owners and S07/S08 review. An isolated
+comparison can precede broad automatic connection inference but must not claim
+S08 completion. No AI/agent runtime dependency is needed. Read-only inventory of
+three user-supplied MegaAsym datasets is complete; local anchored hashes and
+unresolved model mapping stay in ignored workspace evidence. Two top-level
+AlphaFold-labelled models are present; the third source/sequence remains to be
+bound. No solve is launched by this planning update. User-authorized future copies
+must preserve originals and checksums. Use 7U3O as a blinded known-answer control,
+including degraded-resolution and true symmetry-equivalent controls, before the
+unresolved data; deposited answers must not guide blind fitting.
+
 ## Three scientific state layers
 
 For sequence and chemistry, NASolve should reason in three layers.

@@ -136,14 +136,32 @@ Then promote Scout along the
 ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 [metal restraint builder](metal-restraint-builder.md) are separate later scopes.
 
-## Separate Willow work — 2026-11-15
+## Separate Willow work — 2026-11-16
 
-**W92 recorded; W93 is next-session gated.** Latest audited runtime is W90 `5965d858` on isolated
+**W93 requirements recorded; W94 implementation remains gated.** Latest audited runtime is W90 `5965d858` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
 [periodic topology](topostitch-periodic.md) and [bend previews](topostitch-preview.md).
 Do not repeat completed probes merely because this compact handoff omits chronology.
+
+**W93 commute requirements (planning only):** designed blunt interfaces may use
+one base-stack pair with noncanonical polarity/twist; place them using density
+rather than continuous-backbone alignment. See the [blunt contact contract](topostitch.md#designed-blunt-contacts-and-single-base-stacking-w93-planned).
+The [three-orientation campaign plan](campaign-model-roadmap.md#three-orientation-asymmetric-triangle-check-w93-planned)
+keeps observed data/Free-R fixed and independently bends/refines labelled molecular
+placements at nominal 0/120/240 degrees. A free MR rerun may erase the intended
+alternatives; maps are recalculated per model, and ties/failures remain explicit.
+7U3O is the public control. Three private dataset triplets were inventoried;
+two top-level AlphaFold-labelled models exist and the third binding is pending.
+No dataset copy/solve/runtime change. Private anchored hashes and source-SI receipt
+are under the everyday checkout's ignored `branch-artifacts/willow/commute-2026-11-16/`.
+W94 still begins with the qualified Cedar owner/optional consumer, not this later
+experiment. Validation: `PYTHONDONTWRITEBYTECODE=1 python3
+scripts/audit_topostitch_roadmap.py --write` and `--check`, JSON parsing of both
+intent/roadmap, and `git diff --check` pass. Documentation only; no runtime or
+artifact-schema migration and no full-suite/native rerun. Latest W90 software
+validation stands.
 
 **Current behavior:** the existing graph/packet owners freeze explicit image or
 chosen-forest proposals, replay them after relocation, compare 2–8 cuts through
@@ -337,7 +355,7 @@ refinement or parent-failure promotion. Keep the start API without enabling a
 redundant default stage. Raw evidence remains local; software full/installed
 checks above remain current.
 
-**W92 close / next W93:** the proposed Cedar owner/Willow consumer contract is
+**W92 shared guard / next implementation W94:** the proposed Cedar owner/Willow consumer contract is
 recorded; there is no qualified production live nonbonded-policy guard and no
 Willow consumer patch. Rowan's native inventory and prospective negative controls
 are preparation, not an implemented API or stable policy identifier. First qualify

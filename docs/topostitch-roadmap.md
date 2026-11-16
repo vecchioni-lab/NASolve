@@ -1,6 +1,6 @@
 # TopoStitch and Pine completion roadmap
 
-**Current audited work queue: 2026-11-15.** Generated from
+**Current audited work queue: 2026-11-16.** Generated from
 [the machine-readable ledger](topostitch-roadmap.json); edit that ledger and run
 `python scripts/audit_topostitch_roadmap.py --write`, then `--check`.
 This is one queue with two linked tracks, not two competing implementations.
@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W92 — Record the shared live nonbonded-policy contract and qualification gate.** Next: W93.
+**Current update: W93 — Plan density-aware blunt contacts and three-orientation asymmetric trials.** Next: W94.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W83 | Preserve labelled scattering at special positions | RECORDED |
 | W84 | Verify repaired historical readers in installed Willow/Cedar composition | RECORDED |
 | W85 | Check coarse-motion derivatives and forced native neighbor rebuilds | RECORDED |
 | W86 | Expose bounded tapered motion through the existing native objective | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W90 | Allow explicit diagnostic starts in the existing atomic trial | RECORDED |
 | W91 | Compare cold and explicit coarse-seeded atomic diagnostics | RECORDED |
 | W92 | Record the shared live nonbonded-policy contract and qualification gate | RECORDED |
+| W93 | Plan density-aware blunt contacts and three-orientation asymmetric trials | RECORDED |
 
 ## Finish lines
 
@@ -141,10 +141,11 @@ Reduce manual end declarations while retaining true nicks, protected junctions, 
 
 - Reuse NARestraints geometric seeds and weak-pair run rescue through logical routes; preserve alternatives, gaps, missing coverage and explicit do-not-connect declarations.
 - Validate intact and mangled models, repeated/single-base overhangs and false neighbors; a guessed pair list cannot silently become complete topology.
+- Classify designed blunts from construct intent and observed coverage; allow one supported stacking pair and same-polarity contact without inferring covalent continuation.
 
 **Next action:** Build a bounded evidence adapter after the explicit-placement physics is qualified; do not reimplement the guesser.
-**Evidence:** [E_SOFTWARE](#e_software), [E_NAR_REVIEW](#e_nar_review).
-**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69); Backend implementation and documented evidence; no new scientific approval.
+**Evidence:** [E_SOFTWARE](#e_software), [E_NAR_REVIEW](#e_nar_review), [E_BLUNT_ASYM_PLAN](#e_blunt_asym_plan).
+**Last audit:** 2026-11-16, Linden, [W93](https://github.com/vecchioni-lab/NASolve/commit/5965d8588984c6991f587bdaec049639264d03e4); Planning acceptance extended for blunt/asymmetric controls; prior delivered runtime scope and open scientific gates unchanged. No new native solve..
 
 <a id="s03"></a>
 ### S03 — Choose a defensible periodic connection scheme
@@ -174,9 +175,9 @@ Move a usable duplex toward the chosen connection while preserving local residue
 - Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.
 - Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.
 
-**Next action:** W93: first qualify the Cedar-owned live nonbonded-policy owner against its pinned native inventory and negative controls. Only then integrate an optional Willow consumer using its concrete API, the actual invocation options and a frozen expected snapshot. Preserve legacy defaults, valid rebuilds and separate generated-contact/chemistry/Q06 gates.
-**Evidence:** [E_SOFTWARE](#e_software), [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_COARSE_NATIVE_DERIVATIVES](#e_coarse_native_derivatives), [E_BOUNDED_NATIVE_MOTION](#e_bounded_native_motion), [E_MATCHED_COARSE_TRIALS](#e_matched_coarse_trials), [E_SAVED_BEND_MOTION](#e_saved_bend_motion), [E_COARSE_RESOLUTION](#e_coarse_resolution), [E_ATOMIC_DIAGNOSTIC_START](#e_atomic_diagnostic_start), [E_MATCHED_ATOMIC_STARTS](#e_matched_atomic_starts), [E_LIVE_NONBONDED_CONTRACT](#e_live_nonbonded_contract).
-**Last audit:** 2026-11-15, Linden, [W91](https://github.com/vecchioni-lab/NASolve/commit/5965d8588984c6991f587bdaec049639264d03e4); Matched native diagnostics; no successful optimizer, scientific repair or default change.
+**Next action:** W94: first qualify the Cedar-owned live nonbonded-policy owner against its pinned native inventory and negative controls. Only then integrate an optional Willow consumer using its concrete API, the actual invocation options and a frozen expected snapshot. Preserve legacy defaults, valid rebuilds and separate generated-contact/chemistry/Q06 gates.
+**Evidence:** [E_SOFTWARE](#e_software), [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_COARSE_NATIVE_DERIVATIVES](#e_coarse_native_derivatives), [E_BOUNDED_NATIVE_MOTION](#e_bounded_native_motion), [E_MATCHED_COARSE_TRIALS](#e_matched_coarse_trials), [E_SAVED_BEND_MOTION](#e_saved_bend_motion), [E_COARSE_RESOLUTION](#e_coarse_resolution), [E_ATOMIC_DIAGNOSTIC_START](#e_atomic_diagnostic_start), [E_MATCHED_ATOMIC_STARTS](#e_matched_atomic_starts), [E_LIVE_NONBONDED_CONTRACT](#e_live_nonbonded_contract), [E_BLUNT_ASYM_PLAN](#e_blunt_asym_plan).
+**Last audit:** 2026-11-16, Linden, [W93](https://github.com/vecchioni-lab/NASolve/commit/5965d8588984c6991f587bdaec049639264d03e4); Planning acceptance extended for blunt/asymmetric controls; prior delivered runtime scope and open scientific gates unchanged. No new native solve..
 
 <a id="s05"></a>
 ### S05 — Close and qualify the local atomic geometry
@@ -190,9 +191,9 @@ Turn a plausible placement into a chemically usable candidate before refinement 
 - Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.
 - Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.
 
-**Next action:** W93: first qualify the Cedar-owned live nonbonded-policy owner against its pinned native inventory and negative controls. Only then integrate an optional Willow consumer using its concrete API, the actual invocation options and a frozen expected snapshot. Preserve legacy defaults, valid rebuilds and separate generated-contact/chemistry/Q06 gates.
-**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe), [E_MASKED_COMPOSITION](#e_masked_composition), [E_CAPTURED_COMPOSITION](#e_captured_composition), [E_ENDPOINT_REVIEW](#e_endpoint_review), [E_BOUNDED_TRIAL](#e_bounded_trial), [E_CAPTURED_JOB_API](#e_captured_job_api), [E_ENDPOINT_OBSERVATIONS](#e_endpoint_observations), [E_PAIR_ATTRIBUTION](#e_pair_attribution), [E_CORE_CONTROL](#e_core_control), [E_NATIVE_TERMS](#e_native_terms), [E_NATIVE_STOPPING_LIMIT](#e_native_stopping_limit), [E_NATIVE_PRECISION](#e_native_precision), [E_FAILED_ENDPOINT_DIAGNOSTIC](#e_failed_endpoint_diagnostic), [E_FAILED_ENDPOINT_CHEMISTRY](#e_failed_endpoint_chemistry), [E_COARSE_NATIVE_DERIVATIVES](#e_coarse_native_derivatives), [E_BOUNDED_NATIVE_MOTION](#e_bounded_native_motion), [E_MATCHED_COARSE_TRIALS](#e_matched_coarse_trials), [E_SAVED_BEND_MOTION](#e_saved_bend_motion), [E_ATOMIC_DIAGNOSTIC_START](#e_atomic_diagnostic_start), [E_MATCHED_ATOMIC_STARTS](#e_matched_atomic_starts), [E_LIVE_NONBONDED_CONTRACT](#e_live_nonbonded_contract).
-**Last audit:** 2026-11-15, Linden, [W91](https://github.com/vecchioni-lab/NASolve/commit/5965d8588984c6991f587bdaec049639264d03e4); Matched native diagnostics; no successful optimizer, scientific repair or default change.
+**Next action:** W94: first qualify the Cedar-owned live nonbonded-policy owner against its pinned native inventory and negative controls. Only then integrate an optional Willow consumer using its concrete API, the actual invocation options and a frozen expected snapshot. Preserve legacy defaults, valid rebuilds and separate generated-contact/chemistry/Q06 gates.
+**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe), [E_MASKED_COMPOSITION](#e_masked_composition), [E_CAPTURED_COMPOSITION](#e_captured_composition), [E_ENDPOINT_REVIEW](#e_endpoint_review), [E_BOUNDED_TRIAL](#e_bounded_trial), [E_CAPTURED_JOB_API](#e_captured_job_api), [E_ENDPOINT_OBSERVATIONS](#e_endpoint_observations), [E_PAIR_ATTRIBUTION](#e_pair_attribution), [E_CORE_CONTROL](#e_core_control), [E_NATIVE_TERMS](#e_native_terms), [E_NATIVE_STOPPING_LIMIT](#e_native_stopping_limit), [E_NATIVE_PRECISION](#e_native_precision), [E_FAILED_ENDPOINT_DIAGNOSTIC](#e_failed_endpoint_diagnostic), [E_FAILED_ENDPOINT_CHEMISTRY](#e_failed_endpoint_chemistry), [E_COARSE_NATIVE_DERIVATIVES](#e_coarse_native_derivatives), [E_BOUNDED_NATIVE_MOTION](#e_bounded_native_motion), [E_MATCHED_COARSE_TRIALS](#e_matched_coarse_trials), [E_SAVED_BEND_MOTION](#e_saved_bend_motion), [E_ATOMIC_DIAGNOSTIC_START](#e_atomic_diagnostic_start), [E_MATCHED_ATOMIC_STARTS](#e_matched_atomic_starts), [E_LIVE_NONBONDED_CONTRACT](#e_live_nonbonded_contract), [E_BLUNT_ASYM_PLAN](#e_blunt_asym_plan).
+**Last audit:** 2026-11-16, Linden, [W93](https://github.com/vecchioni-lab/NASolve/commit/5965d8588984c6991f587bdaec049639264d03e4); Planning acceptance extended for blunt/asymmetric controls; prior delivered runtime scope and open scientific gates unchanged. No new native solve..
 
 <a id="s06"></a>
 ### S06 — Demonstrate improvement against diffraction data
@@ -205,10 +206,11 @@ Compare repaired and unmodified models fairly, then determine where data support
 
 - Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.
 - Run compatible forward and reverse shape benchmarks plus healthy/wrong-connection controls. Freeze trial policies before Rfree; density interpretation must distinguish displacement from occupancy/ADP/model errors.
+- Blunt and asymmetric-orientation trials retain matched observations/Free-R and independent bends/maps; calibrate inconclusive outcomes rather than force alignment or a statistical winner.
 
 **Next action:** First prove that a complete periodic pair policy survives the intended refinement path and is reported with its actual normalization/exclusion semantics. Then compare a frozen damaged/mismatched duplex with unmodified and cleanup controls; keep the healthy reference pilot and resolve supplied-data copy/composition before claiming private-data repair.
-**Evidence:** [E_MR_LOCAL](#e_mr_local), [E_PUBLIC_REFERENCE](#e_public_reference), [E_NATIVE_CALLBACK](#e_native_callback).
-**Last audit:** 2026-11-14, Linden, [W36](https://github.com/vecchioni-lab/NASolve/commit/a890fffacc12e62046b7ecac96b60a2cf101c23b); Read-only native callback lifecycle diagnosis; no change to partial status, scientific acceptance or ordinary refinement support.
+**Evidence:** [E_MR_LOCAL](#e_mr_local), [E_PUBLIC_REFERENCE](#e_public_reference), [E_NATIVE_CALLBACK](#e_native_callback), [E_BLUNT_ASYM_PLAN](#e_blunt_asym_plan).
+**Last audit:** 2026-11-16, Linden, [W93](https://github.com/vecchioni-lab/NASolve/commit/5965d8588984c6991f587bdaec049639264d03e4); Planning acceptance extended for blunt/asymmetric controls; prior delivered runtime scope and open scientific gates unchanged. No new native solve..
 
 <a id="s07"></a>
 ### S07 — Expose one ordinary, inspectable repair trial
@@ -223,8 +225,8 @@ Let a scientist see what was proposed, built, refined and reviewed through the e
 - Show actual before/after coordinates, moved/fixed sites, mates, geometry and matched refinement deltas. Test stale evidence, interruption, relocation and explicit keep/reject/use decisions.
 
 **Next action:** Finish human browser validation, then reuse this display component when a qualified ordinary trial can connect to existing checkpoint/review owners; do not invent a second history system.
-**Evidence:** [E_SOFTWARE](#e_software), [E_VIEW](#e_view).
-**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/0f176a965223af7aafbc433939d2d054f608524a); Read-only display component only; native/refinement/ordinary-trial gates stay open.
+**Evidence:** [E_SOFTWARE](#e_software), [E_VIEW](#e_view), [E_BLUNT_ASYM_PLAN](#e_blunt_asym_plan).
+**Last audit:** 2026-11-16, Linden, [W93](https://github.com/vecchioni-lab/NASolve/commit/5965d8588984c6991f587bdaec049639264d03e4); Planning acceptance extended for blunt/asymmetric controls; prior delivered runtime scope and open scientific gates unchanged. No new native solve..
 
 <a id="s08"></a>
 ### S08 — Run bounded opt-in campaigns and transfer schemes
@@ -237,10 +239,11 @@ Avoid repetitive prompts while keeping inferred/borrowed connections tentative a
 
 - Freeze campaign authorization once; re-resolve logical schemes in each member, preserve donor ancestry and negative evidence, honor vetoes and bound retries/resources.
 - Use the existing Campaign Doctor and Campaign desk; verify mixed success/failure, deterministic resume and held-out families before claiming unattended support. No automatic global recipe promotion.
+- Optional asymmetric-triangle check preserves three distinct sequence-labelled physical placements, detects duplicates and bounds multi-copy branching; GUI/export retains all matched outcomes.
 
 **Next action:** Reuse the qualified standalone engine and campaign owners; enable broad inference only after member-level evidence is reliable.
-**Evidence:** None yet.
-**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69); Backend implementation and documented evidence; no new scientific approval.
+**Evidence:** [E_BLUNT_ASYM_PLAN](#e_blunt_asym_plan).
+**Last audit:** 2026-11-16, Linden, [W93](https://github.com/vecchioni-lab/NASolve/commit/5965d8588984c6991f587bdaec049639264d03e4); Planning acceptance extended for blunt/asymmetric controls; prior delivered runtime scope and open scientific gates unchanged. No new native solve..
 
 ## Roadmap B — Pine ASU slicing and required GUI
 
@@ -364,6 +367,8 @@ operational paths or proof that an arbitrary model/dataset combination is solvab
 | B04 — Blind 8D93-to-3GBI-style ASU cut | PLANNED | P03, P04, P06 | Withhold reference coordinates during surgery; use same-crystal before/after scattering invariance and independent later topology/cut comparison. |
 | B05 — Healthy, wrong/ambiguous, impossible and representation controls | PARTIAL_SYNTHETIC | F02, S02, S03, S04, P01, P06 | Extend current synthetic controls to physically qualified and held-out structures; include special positions, partial copies and winding. |
 | B06 — Density-guided and nonuniform/strand-specific relaxation | PLANNED_EXTENSION | S04, S06 | After qualified geometric placement and matched refinement, add a read-only model/map-bound detector of sustained negative difference-density patches along sugar-phosphate backbones. Calibrate with Simon against healthy/noisy and displaced controls across resolution, occupancy/ADP and map-processing conditions before proposing motion. Then consider nonuniform/strand-specific density-guided fitting; a red voxel or universal sigma cutoff is not a displacement instruction. Also qualify bend center/width and localized, distributed or distal curvature variants using support before and after refinement. Construct 4T28/PDB 8SJW at 7.64 A is a user-proposed localized B:11 bend control; entry identity verified, residue/density interpretation pending. Predeclare search budgets and retain all attempts; avoid repeated Rfree-guided tuning. |
+| B07 — 9PGR designed blunt single-base stacking | PLANNED_EXTENSION | S02, S04, S05, S06 | Reconstruct labelled contact frames/operators and signed-twist convention; qualify density-supported single-pair contact and healthy/wrong-mate controls without coaxial or covalent closure. Local SI table inspected; no fit/refinement executed. |
+| B08 — 7U3O and three user-supplied asymmetric-triangle datasets | READ_ONLY_INVENTORY_PLANNED | S04, S06, S07, S08 | Bind sequences, motif/copy mapping, molecular pivot/axis and common Free-R data; third AlphaFold source unresolved. Compare independently bent 0/120/240-degree placed siblings with fixed data and per-model maps, prevent MR seed undoing, and retain ambiguous/duplicate/failed states. Blinded known-answer and degraded-resolution controls before private unresolved benchmarks. |
 
 ## Evidence and limits
 
@@ -884,6 +889,13 @@ Two complete Phenix2.2.1-6174 trials use installedW90 and pinnedC325 owners. Col
 [Evidence contract](topostitch-periodic.md#w92--shared-live-nonbonded-policy-contract-qualification-pending) at [W92](https://github.com/vecchioni-lab/NASolve/commit/5965d8588984c6991f587bdaec049639264d03e4).
 Cedar owner/Willow consumer contract records full supported parameter/assignment/exclusion/symmetry and invocation scope, cache-state separation, unchanged defaults and mandatory equal-energy hidden-mutation controls.
 **Limit:** Contract-only W92 recorded; owner implementation/native qualification and optional Willow integration are next-session work (W93). No complete live-policy guard, stable schema/POLICY_ID or consumer is claimed. Cedar Q06 chemistry remains a separate gate.
+
+<a id="e_blunt_asym_plan"></a>
+### E_BLUNT_ASYM_PLAN — requirements_and_read_only_inventory
+
+[Evidence contract](topostitch.md#designed-blunt-contacts-and-single-base-stacking-w93-planned) at [W93](https://github.com/vecchioni-lab/NASolve/commit/5965d8588984c6991f587bdaec049639264d03e4).
+Paper/local SI inspected; 9PGR single-base stacking and 7U3O molecular-axis orientation controls distinguished from covalent closure and representative recuts. Three private dataset triplets inventoried locally, two top-level model sources present. Three matched sequence-labelled orientation siblings and uncertain outcomes specified in campaign-model-roadmap.md.
+**Limit:** Design only: no CLI, runtime schema, guard, benchmark solve, operator rederivation or scientific adoption. Third AlphaFold model/sequence and copy/motif mapping unresolved. Local SI not verified identical to publisher supplement; private paths/hashes/inputs excluded from Git.
 
 ## Deferred extensions, not hidden blockers
 

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "topostitch-development-roadmap",
-  "updated": "2026-11-15",
+  "updated": "2026-11-16",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
   "audited_code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
@@ -157,18 +157,21 @@
       ],
       "acceptance": [
         "Reuse NARestraints geometric seeds and weak-pair run rescue through logical routes; preserve alternatives, gaps, missing coverage and explicit do-not-connect declarations.",
-        "Validate intact and mangled models, repeated/single-base overhangs and false neighbors; a guessed pair list cannot silently become complete topology."
+        "Validate intact and mangled models, repeated/single-base overhangs and false neighbors; a guessed pair list cannot silently become complete topology.",
+        "Classify designed blunts from construct intent and observed coverage; allow one supported stacking pair and same-polarity contact without inferring covalent continuation."
       ],
       "next_action": "Build a bounded evidence adapter after the explicit-placement physics is qualified; do not reimplement the guesser.",
       "evidence": [
         "E_SOFTWARE",
-        "E_NAR_REVIEW"
+        "E_NAR_REVIEW",
+        "E_BLUNT_ASYM_PLAN"
       ],
       "last_audit": {
-        "date": "2026-11-13",
-        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "date": "2026-11-16",
         "reviewer": "Linden",
-        "scope": "Backend implementation and documented evidence; no new scientific approval"
+        "code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
+        "human_update": 93,
+        "scope": "Planning acceptance extended for blunt/asymmetric controls; prior delivered runtime scope and open scientific gates unchanged. No new native solve."
       }
     },
     {
@@ -228,7 +231,7 @@
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation."
       ],
-      "next_action": "W93: first qualify the Cedar-owned live nonbonded-policy owner against its pinned native inventory and negative controls. Only then integrate an optional Willow consumer using its concrete API, the actual invocation options and a frozen expected snapshot. Preserve legacy defaults, valid rebuilds and separate generated-contact/chemistry/Q06 gates.",
+      "next_action": "W94: first qualify the Cedar-owned live nonbonded-policy owner against its pinned native inventory and negative controls. Only then integrate an optional Willow consumer using its concrete API, the actual invocation options and a frozen expected snapshot. Preserve legacy defaults, valid rebuilds and separate generated-contact/chemistry/Q06 gates.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -241,14 +244,15 @@
         "E_COARSE_RESOLUTION",
         "E_ATOMIC_DIAGNOSTIC_START",
         "E_MATCHED_ATOMIC_STARTS",
-        "E_LIVE_NONBONDED_CONTRACT"
+        "E_LIVE_NONBONDED_CONTRACT",
+        "E_BLUNT_ASYM_PLAN"
       ],
       "last_audit": {
-        "date": "2026-11-15",
-        "code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
+        "date": "2026-11-16",
         "reviewer": "Linden",
-        "human_update": 91,
-        "scope": "Matched native diagnostics; no successful optimizer, scientific repair or default change"
+        "code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
+        "human_update": 93,
+        "scope": "Planning acceptance extended for blunt/asymmetric controls; prior delivered runtime scope and open scientific gates unchanged. No new native solve."
       }
     },
     {
@@ -296,7 +300,7 @@
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "W93: first qualify the Cedar-owned live nonbonded-policy owner against its pinned native inventory and negative controls. Only then integrate an optional Willow consumer using its concrete API, the actual invocation options and a frozen expected snapshot. Preserve legacy defaults, valid rebuilds and separate generated-contact/chemistry/Q06 gates.",
+      "next_action": "W94: first qualify the Cedar-owned live nonbonded-policy owner against its pinned native inventory and negative controls. Only then integrate an optional Willow consumer using its concrete API, the actual invocation options and a frozen expected snapshot. Preserve legacy defaults, valid rebuilds and separate generated-contact/chemistry/Q06 gates.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -327,14 +331,15 @@
         "E_SAVED_BEND_MOTION",
         "E_ATOMIC_DIAGNOSTIC_START",
         "E_MATCHED_ATOMIC_STARTS",
-        "E_LIVE_NONBONDED_CONTRACT"
+        "E_LIVE_NONBONDED_CONTRACT",
+        "E_BLUNT_ASYM_PLAN"
       ],
       "last_audit": {
-        "date": "2026-11-15",
-        "code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
+        "date": "2026-11-16",
         "reviewer": "Linden",
-        "human_update": 91,
-        "scope": "Matched native diagnostics; no successful optimizer, scientific repair or default change"
+        "code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
+        "human_update": 93,
+        "scope": "Planning acceptance extended for blunt/asymmetric controls; prior delivered runtime scope and open scientific gates unchanged. No new native solve."
       }
     },
     {
@@ -352,20 +357,22 @@
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
-        "Run compatible forward and reverse shape benchmarks plus healthy/wrong-connection controls. Freeze trial policies before Rfree; density interpretation must distinguish displacement from occupancy/ADP/model errors."
+        "Run compatible forward and reverse shape benchmarks plus healthy/wrong-connection controls. Freeze trial policies before Rfree; density interpretation must distinguish displacement from occupancy/ADP/model errors.",
+        "Blunt and asymmetric-orientation trials retain matched observations/Free-R and independent bends/maps; calibrate inconclusive outcomes rather than force alignment or a statistical winner."
       ],
       "next_action": "First prove that a complete periodic pair policy survives the intended refinement path and is reported with its actual normalization/exclusion semantics. Then compare a frozen damaged/mismatched duplex with unmodified and cleanup controls; keep the healthy reference pilot and resolve supplied-data copy/composition before claiming private-data repair.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
-        "E_NATIVE_CALLBACK"
+        "E_NATIVE_CALLBACK",
+        "E_BLUNT_ASYM_PLAN"
       ],
       "last_audit": {
-        "date": "2026-11-14",
+        "date": "2026-11-16",
         "reviewer": "Linden",
-        "code_commit": "a890fffacc12e62046b7ecac96b60a2cf101c23b",
-        "human_update": 36,
-        "scope": "Read-only native callback lifecycle diagnosis; no change to partial status, scientific acceptance or ordinary refinement support"
+        "code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
+        "human_update": 93,
+        "scope": "Planning acceptance extended for blunt/asymmetric controls; prior delivered runtime scope and open scientific gates unchanged. No new native solve."
       }
     },
     {
@@ -388,13 +395,15 @@
       "next_action": "Finish human browser validation, then reuse this display component when a qualified ordinary trial can connect to existing checkpoint/review owners; do not invent a second history system.",
       "evidence": [
         "E_SOFTWARE",
-        "E_VIEW"
+        "E_VIEW",
+        "E_BLUNT_ASYM_PLAN"
       ],
       "last_audit": {
-        "date": "2026-11-13",
+        "date": "2026-11-16",
         "reviewer": "Linden",
-        "code_commit": "0f176a965223af7aafbc433939d2d054f608524a",
-        "scope": "Read-only display component only; native/refinement/ordinary-trial gates stay open"
+        "code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
+        "human_update": 93,
+        "scope": "Planning acceptance extended for blunt/asymmetric controls; prior delivered runtime scope and open scientific gates unchanged. No new native solve."
       }
     },
     {
@@ -410,15 +419,19 @@
       "delivered": [],
       "acceptance": [
         "Freeze campaign authorization once; re-resolve logical schemes in each member, preserve donor ancestry and negative evidence, honor vetoes and bound retries/resources.",
-        "Use the existing Campaign Doctor and Campaign desk; verify mixed success/failure, deterministic resume and held-out families before claiming unattended support. No automatic global recipe promotion."
+        "Use the existing Campaign Doctor and Campaign desk; verify mixed success/failure, deterministic resume and held-out families before claiming unattended support. No automatic global recipe promotion.",
+        "Optional asymmetric-triangle check preserves three distinct sequence-labelled physical placements, detects duplicates and bounds multi-copy branching; GUI/export retains all matched outcomes."
       ],
       "next_action": "Reuse the qualified standalone engine and campaign owners; enable broad inference only after member-level evidence is reliable.",
-      "evidence": [],
+      "evidence": [
+        "E_BLUNT_ASYM_PLAN"
+      ],
       "last_audit": {
-        "date": "2026-11-13",
-        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "date": "2026-11-16",
         "reviewer": "Linden",
-        "scope": "Backend implementation and documented evidence; no new scientific approval"
+        "code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
+        "human_update": 93,
+        "scope": "Planning acceptance extended for blunt/asymmetric controls; prior delivered runtime scope and open scientific gates unchanged. No new native solve."
       }
     },
     {
@@ -1298,6 +1311,14 @@
         "status": "CONTRACT_ONLY_NO_IMPLEMENTED_GUARD",
         "qualification_scope": "Synthetic Phenix 2.2.1-6174 API inventory; 122 adjacent existing tests pass. No production guard, stable policy identifier, full-suite rerun or Willow consumer."
       }
+    },
+    "E_BLUNT_ASYM_PLAN": {
+      "kind": "requirements_and_read_only_inventory",
+      "code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
+      "human_update": 93,
+      "reference": "docs/topostitch.md#designed-blunt-contacts-and-single-base-stacking-w93-planned",
+      "result": "Paper/local SI inspected; 9PGR single-base stacking and 7U3O molecular-axis orientation controls distinguished from covalent closure and representative recuts. Three private dataset triplets inventoried locally, two top-level model sources present. Three matched sequence-labelled orientation siblings and uncertain outcomes specified in campaign-model-roadmap.md.",
+      "limitation": "Design only: no CLI, runtime schema, guard, benchmark solve, operator rederivation or scientific adoption. Third AlphaFold model/sequence and copy/motif mapping unresolved. Local SI not verified identical to publisher supplement; private paths/hashes/inputs excluded from Git."
     }
   },
   "benchmarks": [
@@ -1365,6 +1386,30 @@
         "S06"
       ],
       "remaining": "After qualified geometric placement and matched refinement, add a read-only model/map-bound detector of sustained negative difference-density patches along sugar-phosphate backbones. Calibrate with Simon against healthy/noisy and displaced controls across resolution, occupancy/ADP and map-processing conditions before proposing motion. Then consider nonuniform/strand-specific density-guided fitting; a red voxel or universal sigma cutoff is not a displacement instruction. Also qualify bend center/width and localized, distributed or distal curvature variants using support before and after refinement. Construct 4T28/PDB 8SJW at 7.64 A is a user-proposed localized B:11 bend control; entry identity verified, residue/density interpretation pending. Predeclare search budgets and retain all attempts; avoid repeated Rfree-guided tuning."
+    },
+    {
+      "id": "B07",
+      "case": "9PGR designed blunt single-base stacking",
+      "state": "PLANNED_EXTENSION",
+      "jobs": [
+        "S02",
+        "S04",
+        "S05",
+        "S06"
+      ],
+      "remaining": "Reconstruct labelled contact frames/operators and signed-twist convention; qualify density-supported single-pair contact and healthy/wrong-mate controls without coaxial or covalent closure. Local SI table inspected; no fit/refinement executed."
+    },
+    {
+      "id": "B08",
+      "case": "7U3O and three user-supplied asymmetric-triangle datasets",
+      "state": "READ_ONLY_INVENTORY_PLANNED",
+      "jobs": [
+        "S04",
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "remaining": "Bind sequences, motif/copy mapping, molecular pivot/axis and common Free-R data; third AlphaFold source unresolved. Compare independently bent 0/120/240-degree placed siblings with fixed data and per-model maps, prevent MR seed undoing, and retain ambiguous/duplicate/failed states. Blinded known-answer and degraded-resolution controls before private unresolved benchmarks."
     }
   ],
   "deferred": [
@@ -1413,8 +1458,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 92,
-    "next": 93,
+    "current": 93,
+    "next": 94,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1774,6 +1819,12 @@
       {
         "number": 92,
         "title": "Record the shared live nonbonded-policy contract and qualification gate",
+        "state": "RECORDED",
+        "code_commit": "5965d8588984c6991f587bdaec049639264d03e4"
+      },
+      {
+        "number": 93,
+        "title": "Plan density-aware blunt contacts and three-orientation asymmetric trials",
         "state": "RECORDED",
         "code_commit": "5965d8588984c6991f587bdaec049639264d03e4"
       }

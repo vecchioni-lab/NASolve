@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "topostitch-development-intent",
-  "date": "2026-11-15",
+  "date": "2026-11-16",
   "status": "BOUNDED_PLACEMENT_PROPOSALS_IMPLEMENTED",
   "runtime_authority": false,
   "contract": "docs/topostitch.md",
@@ -115,7 +115,42 @@
     "user_approved_by_automation": false,
     "inspection_required": true,
     "ambiguous_or_failed": "retain original, flag review, continue other members",
-    "resume_respects_user_veto": true
+    "resume_respects_user_veto": true,
+    "asymmetric_triangle_orientation_check": {
+      "status": "PLANNED_NOT_IMPLEMENTED",
+      "contract": "docs/campaign-model-roadmap.md#three-orientation-asymmetric-triangle-check-w93-planned",
+      "proposed_flag": "-checkasym",
+      "default": "off",
+      "nominal_angles_degrees": [
+        0,
+        120,
+        240
+      ],
+      "axis": "Registered molecular approximate threefold axis and pivot; not assumed space-group symmetry.",
+      "fixed": [
+        "observations",
+        "cell/indexing/origin",
+        "Free-R flags",
+        "comparison/refinement policy and budget"
+      ],
+      "each_candidate": [
+        "sequence-labelled placement",
+        "independent bending/relaxation",
+        "matched refinement",
+        "recomputed model-dependent maps",
+        "complete retained provenance"
+      ],
+      "avoid": "Unrestricted MR undoing all seed rotations; Rfree-guided repeated tuning; three-to-the-copy-count explosion.",
+      "decision_states": [
+        "favored",
+        "indistinguishable",
+        "same_final_placement",
+        "failed_or_incomparable"
+      ],
+      "public_control": "7U3O P1, 3.31 Angstrom; blinded fitting and later known-answer comparison",
+      "private_benchmark": "Three user-supplied MegaAsym datasets; local inventory only, third AlphaFold source/sequence binding pending.",
+      "runtime_authority": false
+    }
   },
   "ui": {
     "concept": "Campaign desk",
@@ -926,6 +961,31 @@
         "physical_adp_validation": false,
         "native_refinement_or_asu_export_enabled": false
       }
+    },
+    "designed_blunt_contacts": {
+      "status": "PLANNED_NOT_IMPLEMENTED",
+      "contract": "docs/topostitch.md#designed-blunt-contacts-and-single-base-stacking-w93-planned",
+      "classification": "Frozen construct/strand/end chemistry plus coordinate evidence; missing coordinates alone are insufficient.",
+      "contact_unit": "One individually supported base-stack pair can suffice; no whole-duplex coaxial or dual-base-overlap requirement.",
+      "same_polarity_allowed": true,
+      "canonical_interfacial_twist_required": false,
+      "new_covalent_bond_authorized": false,
+      "density_support_required_for_placement": true,
+      "benchmarks": [
+        "9PGR single-pyrimidine 5-prime/5-prime interface",
+        "healthy/no-op and wrong-image contacts"
+      ],
+      "source_twist_degrees": [
+        -123,
+        -38.2
+      ],
+      "exact_frame_operator_rederivation": "PENDING",
+      "schedule": [
+        "S02 classification",
+        "S04/S05 contact-specific placement",
+        "S06 density and matched refinement",
+        "S07 review"
+      ]
     }
   },
   "planned_diffraction_benchmark": {

@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W93 — Queue blunt-contact and asymmetric-orientation experiments
+
+- Specify density-aware single-base blunt stacking without mandatory backbone
+  alignment, and an opt-in three-orientation campaign with independent bending,
+  matched data/Free-R and explicit ambiguous/duplicate/failed outcomes.
+- Add public controls and a private inventory gate to the existing roadmap.
+  Planning only: no new CLI, artifact schema, runtime behavior or solve.
+
 ### W92 — Specify the shared live-policy guard boundary
 
 - Record the proposed Cedar owner/Willow consumer contract, including hidden

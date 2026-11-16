@@ -126,6 +126,46 @@ while remaining chemically nicked. Neither proximity nor a completed stack
 licenses a new phosphodiester, missing phosphate, OP3 or changed strand routing.
 An ASU seam is not a chemical nick; a PDB chain end is not necessarily either.
 
+## Designed blunt contacts and single-base stacking (W93; planned)
+
+A designed blunt interface is a noncovalent stacking contact, not a request to
+continue the backbone or enforce coaxial duplex-end frames. Classify it from
+frozen construct/strand pairing and terminal chemistry, with observed coordinates
+as supporting evidence. A truncated model alone cannot prove a designed blunt.
+Keep unknown ends and the no-contact hypothesis explicit. Mixed sticky/blunt
+constructs need per-interface intent rather than one global repair rule.
+
+[Blunt-force assembly](https://doi.org/10.1038/s41467-026-69973-1) demonstrates
+noncanonical terminal polarity and twist. Public [9PGR](https://www.rcsb.org/structure/9PGR)
+(P321, 3.62 Angstrom) is the single-pyrimidine-pair stacking challenge. Local SI
+version 2.8, Table S4 and Fig. S6, inspected 2026-11-16, records the 18_7 G|A
+5-prime/5-prime face at -123 degrees and the other face at -38.2 degrees.
+The local PDF was not verified byte-identical to the publisher supplement.
+These are signed interface twists, not plane-normal tilt targets; exact ordered
+atom frames/symmetry mates and the sign convention still need reconstruction.
+Do not translate prose about inverted motif orientation into an improper
+crystallographic operation or a change of DNA handedness.
+
+Represent contact evidence at the individual-base/ring level. A single supported
+stacking pair can be sufficient; do not require both terminal bases to overlap,
+Watson-Crick complementarity, opposite polarity, or B-DNA twist across the blunt.
+Measure plane separation/angle, lateral overlap and in-plane twist separately,
+using full labelled frames where needed to distinguish polarity. Normals alone
+lose the signed twist. Keep within-duplex covalent geometry, chirality, junction
+routing and periodic clashes constrained. A stacking edge never authorizes a
+phosphodiester bond, phosphate deletion, terminal cap or missing-residue fill.
+
+Schedule classification with S02; qualify contact-specific S04/S05 targets only
+with S06 map/model/data binding and density-aware matched refinement. A small
+stack provides fewer orientational constraints, so report uncertainty and let
+diffraction support resolve motion. Retain multiple plausible contacts rather
+than forcing helical alignment. The newly merged TopoTrace 0.4.0/NAtopo-derived
+terminal-stack detector is reusable candidate evidence, not yet a NASolve
+restraint policy or proof that its fixed thresholds cover 9PGR. Existing Cedar
+pair/plane and NARestraints atom-mapping owners need explicit supported recipes.
+Benchmark preserved 9PGR contact, perturbed contacts and healthy no-op/wrong-mate
+controls; do not hard-code its angle into a general acceptance threshold.
+
 ## Finding candidate connections
 
 Start read-only from an explicit, checksummed checkpoint and its frozen target,
