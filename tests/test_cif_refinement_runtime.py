@@ -125,3 +125,53 @@ def test_actual_refinement_requires_completed_output_synchronization(tmp_path,mo
     with pytest.raises(ValueError):module.run_compatible_refinement(['model.pdb'],evidence_directory=tmp_path/'native')
     assert json.loads((tmp_path/'native/result.json').read_text())['status']=='FAILED'
     assert gr.parallelity_residual_sum == original
+
+
+@pytest.mark.parametrize('dry_run',[False,True])
+@pytest.mark.parametrize('defect',[None,'missing_definition','changed_export','missing_output'])
+def test_optional_selected_observation_preserves_native_result_and_exact_written_serial(tmp_path,monkeypatch,dry_run,defect):
+    from tests.test_cif_refinement_sites import model,SITES
+    from nasolve.cif_refinement_output import _digest,_hierarchy
+    from hashlib import sha256
+    module,gr,result,original=runtime(monkeypatch)
+    m,klass,selected,other,atoms=model();summary=klass.summary
+    m.restraints_manager.geometry.site_symmetry_table=NS(special_position_indices=lambda:[])
+    result.model=m;result.iparams.refinement.dry_run=dry_run
+    result.ofm=NS(serial=1)
+    result.ofm.get_file_name=lambda ext:str(tmp_path/f'written_{result.ofm.serial:03d}{ext}')
+    monkeypatch.setattr(module,'_monomer_mapping_class',lambda:klass)
+    def program(args,observe,observe_final):
+        m._all_monomer_mappings=[selected.summary(),other.summary()]
+        if defect=='missing_definition':m._all_monomer_mappings=[]
+        if not dry_run:
+            row=output_row(len(atoms));row['hierarchy_after_sha256']=_digest(_hierarchy(m))
+            observe([row],False)
+            observe_final(result,False)
+            if defect!='missing_output':Path(result.ofm.get_file_name('.pdb')).write_bytes(b'exact native model')
+            result.ofm.serial+=1  # Native .def writer advances before program return.
+            if defect=='changed_export':atoms[0].xyz=(99.,98.,97.)
+            observe_final(result,True)
+            observe([row],True)
+        else:observe([],True)
+        return result
+    from pathlib import Path
+    monkeypatch.setattr(module,'_native_runtime',lambda:(gr,setup()[3],program,dict(profile_id='test'),lambda:None))
+    returned=module.run_compatible_refinement(['model.pdb'],evidence_directory=tmp_path/'native',chemistry_sites=SITES)
+    assert returned is result and klass.summary is summary and gr.parallelity_residual_sum == original
+    record=json.loads((tmp_path/'native/result.json').read_text())
+    assert record['status']=='COMPLETE' and record['chemistry_binding_restored']
+    missing=defect=='missing_definition' or (not dry_run and defect is not None)
+    assert record['chemistry_observation']['status']==('UNASSESSED' if missing else 'OBSERVED')
+    assert record['chemistry_model']==(None if dry_run or missing else dict(sha256=sha256(b'exact native model').hexdigest(),size=18))
+
+
+def test_selected_observation_interruption_restores_both_native_bindings(tmp_path,monkeypatch):
+    from tests.test_cif_refinement_sites import model,SITES
+    module,gr,result,original=runtime(monkeypatch);m,klass,*_=model();summary=klass.summary
+    monkeypatch.setattr(module,'_monomer_mapping_class',lambda:klass)
+    def interrupted(*args):raise KeyboardInterrupt('stop')
+    monkeypatch.setattr(module,'_native_runtime',lambda:(gr,setup()[3],interrupted,dict(profile_id='test'),lambda:None))
+    with pytest.raises(KeyboardInterrupt):module.run_compatible_refinement(['model.pdb'],evidence_directory=tmp_path/'native',chemistry_sites=SITES)
+    assert gr.parallelity_residual_sum == original and klass.summary is summary
+    record=json.loads((tmp_path/'native/result.json').read_text())
+    assert record['status']=='FAILED' and record['chemistry_binding_restored']

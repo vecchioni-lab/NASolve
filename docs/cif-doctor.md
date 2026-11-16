@@ -13481,13 +13481,14 @@ no CLI default changes, and a capture alone still cannot authorize chemical use.
 Focused/relocation results and the subsequent live acceptance control are recorded
 in ledger `retained_phosphate_observed_names_2026_11_13`.
 
-## Reading chemistry after refinement (C336)
+## Reading chemistry after refinement (C336–C338)
 
 `nasolve.refinement_chemistry.read_refinement_chemistry(run_directory,
 checkpoint="refine-003", native_receipt=receipt_path)` is an explicit read-only
 Python report. It follows that checkpoint's preparation ancestry and checks a
 preserved native interpretation of its final PDB against the exact ordered
-restraints. Omitting `native_receipt` reports missing evidence honestly; it never
+restraints. Omitting `native_receipt` uses the round's validated v3 actual-manager
+observation when available, otherwise reports missing evidence honestly. It never
 runs Phenix or guesses a receipt location. A supplied corrupt or mismatched
 receipt raises instead of becoming an empty pass.
 
@@ -13497,5 +13498,22 @@ and the existing triple screen reports targets separately from observed lengths
 and angles. `SCOPED_TRIPLE_SCREEN_PASS` is only that screen; other chemistry,
 whole-substituent planarity, derivatives and diffraction acceptance are not
 qualified. Separate reinterpretation does **not** prove which manager the
-refinement job used. Automatic capture and joining this result into normal saved
-AutoRefine output remain pending. No CLI, default or historical-file change.
+refinement job used. C338 adds automatic collection during the already explicit
+checked-plane-force route. Source projections choose sites independently of code
+names. The observer returns original Phenix summaries untouched, verifies their
+identity in the final model and records only selected heavy atoms and intra-site
+restraint terms. Cross-site chemistry is outside this screen. Full-precision native
+coordinates are bound to the export-state digest and written-model bytes, with PDB
+rounding explicitly distinguished.
+
+The existing runtime receipt stores `chemistry_observation`, `chemistry_model`
+and `chemistry_binding_restored`; its request optionally carries anchored,
+checksummed `chemistry_projections`. New helper/runtime policy v3 preserves frozen
+v1/v2 readers and introduces no checkpoint-registry schema migration. Successful
+observation is not scientific approval. Normal AutoRefine statistics and checkpoint
+metrics expose `chemical_geometry`; a real REVIEW keeps a usable result, returns
+exit code zero and prevents automatic selection. Optional observation failure is
+recorded as UNASSESSED and does not by itself invalidate refinement. Damaged saved
+evidence still refuses; it is not reclassified as an optional missing observation.
+No new executor, separate capture job, CLI default or historical-file change.
+Whole-substituent planarity and held-out refinement survival remain Q06.

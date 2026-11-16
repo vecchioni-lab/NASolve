@@ -270,8 +270,14 @@ were the supplied triple-bond targets sensible, and did the atoms retain that
 geometry? It follows the selected preparation and declared phosphate state.
 Missing evidence is reported as unassessed. A separate Phenix interpretation can
 answer the scoped model/restraint question, but does not prove the original
-refinement manager; automatic collection and normal refinement-output reporting
-remain the next integration boundary. This changes reporting, not the forces.
+refinement manager. C338 collects the selected sites from the actual Phenix
+manager during the existing explicitly checked refinement route and includes the
+screen in ordinary reports. A genuine geometry concern preserves the model for
+inspection but prevents automatic selection. If optional observation is unavailable,
+the report says so and keeps an otherwise usable refinement. Full native coordinates
+and rounded written PDB coordinates are explicitly different. No extra Phenix run
+or duplicate whole-model inventory is needed. This changes reporting, not forces;
+whole-substituent survival and held-out chemistry still need qualification.
 
 ## Catalogue scope and progression
 

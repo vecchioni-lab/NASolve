@@ -91,13 +91,15 @@ def synchronize_output(refined):
 
 
 @contextmanager
-def synchronized_outputs(driver_class, observe):
+def synchronized_outputs(driver_class, observe, *, observe_final=None):
     """Temporarily guard the final writer; always restore its original binding."""
     original=driver_class.write_after_run_outputs;events=[]
     def write(refined):
         if events:raise ValueError('Repeated native final output invocation')
         row=synchronize_output(refined);events.append(row);observe(events,False)
+        if observe_final is not None: observe_final(refined, False)
         result=original(refined)
+        if observe_final is not None: observe_final(refined, True)
         row['write_completed']=True;observe(events,False)
         return result
     driver_class.write_after_run_outputs=write

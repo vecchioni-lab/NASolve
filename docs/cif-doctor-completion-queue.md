@@ -289,18 +289,25 @@ OP3. C334 confirms that this existing reader removes only the scope warning and
 retains real bending. C336 exposes an exact-checkpoint Python reader that follows
 the selected preparation, binds optional final-model native evidence and keeps
 missing evidence unassessed. It reuses the same validated preparation read and
-passes relocated reporting checks. **Next integration boundary:** collect/bind
-that evidence through the existing refinement owner and join the scoped result
-into normal output; separate interpretation is not proof of the actual refining
-manager. C337 now demonstrates compact actual-manager observation in a five-cycle native
-probe: observe the selected full mapping before Phenix reduces it to a summary,
-then require that exact summary object in the final model. Its approximately
-50 KB observation retains the selected atoms and restraints without another
-whole-model capture. Production helper/versioning, written-model binding and
-normal output integration are still pending. Full native coordinates and rounded
-PDB coordinates must remain distinct. No new process/retention owner or duplicated
-full inventories merely to make a report. The DY qualification remains queued after this bounded Q06
-reporting connection. Changed intent needs a fresh request/run; never manufacture a checkpoint or
+passes relocated reporting checks. C337 demonstrated compact actual-manager
+observation; **C338 now connects it to the existing explicit refinement owner**.
+Frozen v3 observes original summaries unchanged, verifies exact final-manager
+membership, binds native precision/export state and actual written PDB bytes, and
+records the established triple screen in ordinary AutoRefine output. Real REVIEW
+preserves usable output but prevents automatic selection; optional unavailable
+evidence stays UNASSESSED. Frozen v1/v2 cold readers remain supported. No new
+process/retention owner or duplicate full capture.
+
+C338's exact helper passed zero-cycle preflight plus five real cycles in 270.10 s
+(Phenix 2.2.1-6174, one process). Selected coordinates, definitions and proxies,
+and the written whole-model inventory match C337. About 27 KB/phase; targets PASS,
+final angles 175.4494°/174.4251° keep coordinates REVIEW. All processes stopped;
+168 historical input files preserved. 423 focused tests +19 subtests and 155 fresh
+installed/relocated checks pass. No full suite. Full native coordinates and rounded
+PDB coordinates remain distinct. Ledger: `compact_refinement_observation_2026_11_16`.
+**Next: the queued DY native/source qualification**, then resume Q06's remaining
+whole-substituent and held-out survival work. Do not repeat unchanged target/force
+experiments merely to produce another report. Changed intent needs a fresh request/run; never manufacture a checkpoint or
 rewrite original evidence. Neighboring targets, source hands and terminal intent
 remain visible. No blanket flattening, restraint strengthening to force acceptance,
 repeated Coot construction or Free-R tuning. Q07–Q16 remain ordered below.

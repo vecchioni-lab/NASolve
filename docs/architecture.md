@@ -43,8 +43,17 @@ Optional final-model native evidence must match the exact model and ordered
 execution dictionaries/PHIL, including verified namespace adaptations. Declared
 site projections, not observed atom absence, own the reference chemistry.
 Separate interpretation remains explicitly distinct from the actual refinement
-manager; missing evidence and no supported triples remain unassessed. This report
-neither changes checkpoint schemas/selection nor launches a native capture.
+manager; missing evidence and no supported triples remain unassessed. C338 adds
+frozen runtime v3: observe original monomer-summary creation, require that exact
+summary object in the final manager, retain only source-selected intra-site heavy
+atom geometry, and bind the existing final-export state digest plus written PDB
+bytes. Native output names are resolved before the writer advances its serial.
+Existing execution receipts retain these compact observations; v1/v2 readers keep
+their original source identities. AutoRefine stores the same scoped screen in
+ordinary statistics/checkpoint metrics. Real chemistry REVIEW prevents automatic
+selection without discarding a usable model; optional unavailable observation
+remains UNASSESSED. A cold reader launches nothing and never changes selection.
+Only explicit source triples are screened; this is not whole-ligand approval.
 
 Plane and target-only bond attributions share one bounded input-freezing,
 execution and cold-read lifecycle. Family adapters retain their distinct chemical

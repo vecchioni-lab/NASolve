@@ -146,3 +146,18 @@ def test_no_output_is_allowed_during_zero_cycle_preflight():
     from tests.test_cif_refinement_runtime import output_row
     validate_output_observations([],dry_run=True,atom_count=2)
     with pytest.raises(ValueError):validate_output_observations([output_row(2)],dry_run=True,atom_count=2)
+
+
+def test_optional_final_observer_surrounds_the_original_writer():
+    from nasolve.cif_refinement_output import synchronized_outputs
+    result,atoms,*_=model();events=[]
+    class Driver:
+        def write_after_run_outputs(self):
+            events.append('written')
+            return 'unchanged result'
+    def final(refined,completed):
+        assert refined is result and atoms[0].b==pytest.approx(11.)
+        events.append(completed)
+    with synchronized_outputs(Driver,lambda *args:None,observe_final=final):
+        assert Driver.write_after_run_outputs(result)=='unchanged result'
+    assert events==[False,'written',True]

@@ -14,15 +14,18 @@ from .cif_parallelity_kernel import parallelity_parameters
 from .cif_refinement_output import validate_output_observations
 
 LEGACY_POLICY_ID = 'round-local-parallelity-execution-v1'
-POLICY_ID = 'round-local-parallelity-execution-v2'
+V2_POLICY_ID = 'round-local-parallelity-execution-v2'
+POLICY_ID = 'round-local-parallelity-execution-v3'
 # Filled from the qualified C297 checkpoint; historical readers keep these exact
 # identities even when a future policy uses different native/helper sources.
 _SOURCE_DIGESTS = {'cif_parallelity_kernel.py': '074c51faa384856f014631c72d97a14237ec3b7b6d833d405ca92aa02b507568', 'cif_parallelity_correction.py': '701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f', 'cif_refinement_runtime.py': '5b9329c988b3c07c9c3da4586ecce03c6751955fc02ccdf2f35b42088eaa2900', 'data/parallelity-native-profile.json': '5fe3c6657c78e2b85ea6bab3da68f4e79a3f91a2b1498f745be77f1080a2db28'}
-_CURRENT_SOURCE_DIGESTS = {'cif_parallelity_kernel.py': '074c51faa384856f014631c72d97a14237ec3b7b6d833d405ca92aa02b507568', 'cif_parallelity_correction.py': '701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f', 'cif_refinement_runtime.py': '78a7afd54b7f5ca835ad3e42f0a823aea3fb56eda59b1fe643716fec78593741', 'cif_refinement_output.py': '0e231d2d8502b3df7982688709bc9cc9322d2bde2becffcc7962250e9ebc08b5', 'data/parallelity-native-profile.json': '0b447a84abff9ef3efbe1d9481d918581a06299023ac0b6a1d78927c7cd7d3ee'}
-_SOURCES = {LEGACY_POLICY_ID:_SOURCE_DIGESTS, POLICY_ID:_CURRENT_SOURCE_DIGESTS}
+_V2_SOURCE_DIGESTS = {'cif_parallelity_kernel.py': '074c51faa384856f014631c72d97a14237ec3b7b6d833d405ca92aa02b507568', 'cif_parallelity_correction.py': '701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f', 'cif_refinement_runtime.py': '78a7afd54b7f5ca835ad3e42f0a823aea3fb56eda59b1fe643716fec78593741', 'cif_refinement_output.py': '0e231d2d8502b3df7982688709bc9cc9322d2bde2becffcc7962250e9ebc08b5', 'data/parallelity-native-profile.json': '0b447a84abff9ef3efbe1d9481d918581a06299023ac0b6a1d78927c7cd7d3ee'}
+_CURRENT_SOURCE_DIGESTS = {'cif_parallelity_kernel.py': '074c51faa384856f014631c72d97a14237ec3b7b6d833d405ca92aa02b507568', 'cif_parallelity_correction.py': '701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f', 'cif_refinement_runtime.py': '6698585c1da6225895dd1d639554321ccab695eda1b4366d243deb39106c3503', 'cif_refinement_output.py': 'd1b6ff5a6c47407626be27745f30fda0dcede6b56666b9f30abc334d023f4533', 'cif_refinement_sites.py': 'd690273cc3de2b54594d763674e9716177cf2c178f36ab55ca4d29686644a340', 'data/parallelity-native-profile.json': 'f7aa742b2f00026b6bfa63695702e2b74fb65d5e78b598aec654abcea249758b'}
+_SOURCES = {LEGACY_POLICY_ID:_SOURCE_DIGESTS, V2_POLICY_ID:_V2_SOURCE_DIGESTS, POLICY_ID:_CURRENT_SOURCE_DIGESTS}
 _RUNTIME_POLICIES = {LEGACY_POLICY_ID:'explicit-native-parallelity-refinement-v1',
-                     POLICY_ID:'explicit-native-parallelity-refinement-v2'}
-_ENTRY = b'''from pathlib import Path
+                     V2_POLICY_ID:'explicit-native-parallelity-refinement-v2',
+                     POLICY_ID:'explicit-native-parallelity-refinement-v3'}
+_V2_ENTRY = b'''from pathlib import Path
 import sys
 root=Path(__file__).resolve().parent
 sys.path.insert(0,str(root/'code'))
@@ -31,6 +34,20 @@ phase=sys.argv[1]
 if phase not in ('preflight','refine'):raise ValueError('Unknown native execution phase')
 run_compatible_refinement(sys.argv[2:],evidence_directory=root/phase)
 '''
+_ENTRY = b'''from pathlib import Path
+import json,sys
+root=Path(__file__).resolve().parent
+sys.path.insert(0,str(root/'code'))
+from _nasolve_refinement.cif_refinement_runtime import run_compatible_refinement
+phase=sys.argv[1]
+if phase not in ('preflight','refine'):raise ValueError('Unknown native execution phase')
+request=json.loads((root/'request.json').read_text())
+sites=[{k:row[k] for k in ('site','component')} for row in request.get('chemistry_projections',[])]
+run_compatible_refinement(sys.argv[2:],evidence_directory=root/phase,chemistry_sites=sites)
+'''
+
+_ENTRIES = {LEGACY_POLICY_ID:_V2_ENTRY, V2_POLICY_ID:_V2_ENTRY, POLICY_ID:_ENTRY}
+_CURRENT_POLICY = POLICY_ID
 
 
 def _need(value, message='Invalid explicit parallelity execution evidence'):
@@ -59,7 +76,7 @@ def _code():
 def _expected_code(policy=None):
     policy=POLICY_ID if policy is None else policy
     _need(isinstance(policy,str) and policy in _SOURCES,'Unknown native execution policy')
-    return {'entry.py':_digest(_ENTRY),'code/_nasolve_refinement/__init__.py':_digest(b''),
+    return {'entry.py':_digest(_ENTRIES[policy]),'code/_nasolve_refinement/__init__.py':_digest(b''),
             **{'code/_nasolve_refinement/'+n:h for n,h in _SOURCES[policy].items()}}
 
 
@@ -69,7 +86,8 @@ def read_execution_request(run, reference, *, checkpoint):
           and reference.get('relative_path')==root+'/request.json')
     path=_bound_path(reference,'parallelity execution request',run)
     record=read_record(path)
-    _need(set(record) in ({'schema_version','policy_id','checkpoint','parent','inputs','command','code','record_sha256'}, {'schema_version','policy_id','checkpoint','parent','inputs','command','code','record_sha256','preflight_mode','macro_cycles'})
+    fields = set(record) - ({'chemistry_projections'} if record.get('policy_id') == _CURRENT_POLICY else set())
+    _need(fields in ({'schema_version','policy_id','checkpoint','parent','inputs','command','code','record_sha256'}, {'schema_version','policy_id','checkpoint','parent','inputs','command','code','record_sha256','preflight_mode','macro_cycles'})
           and type(record['schema_version']) is int and record['schema_version']==1
           and isinstance(record['policy_id'],str) and record['policy_id'] in _SOURCES
           and record['checkpoint']==checkpoint
@@ -83,6 +101,10 @@ def read_execution_request(run, reference, *, checkpoint):
     if record['policy_id']!=LEGACY_POLICY_ID:
         _need(record.get('preflight_mode')=='native-model-zero-cycle-isolated-v1',
               'Current native execution requires isolated zero-cycle preflight')
+    if 'chemistry_projections' in record:
+        from .refinement_chemistry import _projection_scope
+        _need(bool(record['chemistry_projections']), 'Empty requested chemistry scope')
+        _projection_scope(run,record['chemistry_projections'])
     path_in(run,reference['relative_path'])
     for item in record['inputs']:_bound_path(item,'parallelity refinement input',run)
     for name,digest in _expected_code(record['policy_id']).items():
@@ -95,13 +117,16 @@ def read_execution_request(run, reference, *, checkpoint):
     return record
 
 
-def prepare_execution(run, *, checkpoint, parent, inputs, command, python_executable, macro_cycles):
+def prepare_execution(run, *, checkpoint, parent, inputs, command, python_executable, macro_cycles, chemistry_projections=None):
     """Freeze only the small qualified helper; retain all original input files."""
     from .checkpoints import _file_reference
     _need(isinstance(command,list) and len(command)>1)
     inputs=[Path(p).expanduser().resolve() for p in inputs]
     _need(command[1:1+len(inputs)]==[str(p) for p in inputs],
           'Runtime input order differs from the native command')
+    if chemistry_projections is not None:
+        from .refinement_chemistry import _projection_scope
+        _projection_scope(run,chemistry_projections)
     root=path_in(run,_root(checkpoint));root.mkdir()
     code={}
     for name,data in _code().items():
@@ -112,7 +137,8 @@ def prepare_execution(run, *, checkpoint, parent, inputs, command, python_execut
     write_record(request,dict(schema_version=1,policy_id=POLICY_ID,checkpoint=checkpoint,
         parent=parent,preflight_mode='native-model-zero-cycle-isolated-v1',macro_cycles=macro_cycles,
         inputs=[_file_reference(Path(p),run) for p in inputs],
-        command=list(command),code=code))
+        command=list(command),code=code,
+        **({'chemistry_projections':chemistry_projections} if chemistry_projections else {})))
     reference=_file_reference(request,run)
     prefix=[str(python_executable),'-B',str(root/'entry.py')]
     request_record=read_execution_request(run,reference,checkpoint=checkpoint)
@@ -206,6 +232,10 @@ def _phase(run, root, phase, code, request, *, require_complete):
             _need(result.get('output_binding_restored') is True)
             validate_output_observations(result.get('output_synchronization'),
                 dry_run=phase=='preflight',atom_count=len(labels))
+        if request['policy_id']==_CURRENT_POLICY:
+            from .cif_refinement_sites import validate_phase_observation
+            sites=[{k:row[k] for k in ('site','component')} for row in request.get('chemistry_projections',[])]
+            validate_phase_observation(result,sites,dry_run=phase=='preflight',labels=labels)
         names=result.get('usage_observations');_need(isinstance(names,list) and all(isinstance(n,str) for n in names) and names==sorted(set(names)))
         files=sorted(p.name for p in path_in(run,root+'/'+phase+'/calls').iterdir())
         _need(files==names,'Runtime usage membership differs')
@@ -310,4 +340,27 @@ def validate_checkpoint_execution(run, item, registry):
         _need(tail==[parameter] or (item.get('phases') is not None and
               tail==[_ref_path(item['phases'],'runtime phase',run),parameter]),
               'Runtime parameter/phase inputs differ from their round')
+        if (item.get('usable') is True and request['policy_id']==_CURRENT_POLICY
+                and request.get('chemistry_projections')):
+            result=_phase(run,_root(item['id']),'refine',request['code'],request,require_complete=True)
+            if result.get('chemistry_model') is not None:
+                data=_ref_path(item['model'],'refinement model',run).read_bytes()
+                _need(result['chemistry_model']==dict(sha256=_digest(data),size=len(data)),
+                      'Observed native output differs from the checkpoint model')
         return record
+
+
+def read_execution_chemistry(run, reference, *, checkpoint, parent, model):
+    """Read sealed actual-manager evidence without launching or adopting anything."""
+    record=validate_execution(run,reference,checkpoint=checkpoint,parent=parent,usable=True)
+    request=read_execution_request(run,record['request'],checkpoint=checkpoint)
+    if request['policy_id']!=_CURRENT_POLICY or not request.get('chemistry_projections'):
+        return None
+    result=_phase(run,_root(checkpoint),'refine',request['code'],request,require_complete=True)
+    from .refinement_chemistry import _projection_scope, _observed_readback
+    _,projections=_projection_scope(run,request['chemistry_projections'])
+    data=Path(model).read_bytes()
+    if result['chemistry_observation']['status']=='OBSERVED':
+        _need(result['chemistry_model']==dict(sha256=_digest(data),size=len(data)),
+              'Observed native output differs from the checkpoint model')
+    return _observed_readback(data,projections,result['chemistry_observation'])

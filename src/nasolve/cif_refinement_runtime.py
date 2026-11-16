@@ -12,9 +12,10 @@ import platform
 import tempfile
 
 from .cif_parallelity_kernel import ParallelityKernel, parallelity_parameters
-from .cif_refinement_output import synchronized_outputs, validate_output_observations
+from .cif_refinement_output import synchronized_outputs, validate_output_observations, _digest, _hierarchy
+from .cif_refinement_sites import observe_monomers, unavailable, validate_sites, validate_phase_observation
 
-POLICY_ID = 'explicit-native-parallelity-refinement-v2'
+POLICY_ID = 'explicit-native-parallelity-refinement-v3'
 
 
 def _canonical(value):
@@ -56,15 +57,66 @@ def _native_runtime():
     if (writer.__module__!='phenix.refinement.driver' or
             writer.__qualname__!='refine.write_after_run_outputs'):
         raise ValueError('Native final output binding was already replaced')
-    def program(arguments, observe_output):
-        with synchronized_outputs(driver_class,observe_output):
+    def program(arguments, observe_output, observe_final=None):
+        with synchronized_outputs(driver_class,observe_output,observe_final=observe_final):
             return run_program(program_class=Program, parser_class=PhenixRefineParser,
                 custom_process_arguments=custom_process_arguments,
                 unused_phil_raises_sorry=False, args=arguments)
     return gr, flex, program, profile, verify
 
 
-def run_compatible_refinement(arguments, *, evidence_directory):
+def _monomer_mapping_class():
+    from mmtbx.monomer_library import pdb_interpretation
+    klass = pdb_interpretation.monomer_mapping
+    if (klass.summary.__module__ != pdb_interpretation.__name__ or
+            klass.summary.__qualname__ != 'monomer_mapping.summary'):
+        raise ValueError('Native monomer summary binding was already replaced')
+    return klass
+
+
+def _run_observed(program, arguments, observe_output, sites, record, directory):
+    """Optional observations share the existing native call and final writer."""
+    klass = _monomer_mapping_class(); original = klass.summary
+    record['chemistry_binding_restored'] = False
+    pending_output = []
+    def failed(exc):
+        record.update(chemistry_observation=unavailable(sites, type(exc).__name__ + ': ' + str(exc)),
+                      chemistry_model=None)
+    try:
+        with observe_monomers(klass, sites) as observer:
+            def observe_final(refined, completed):
+                try:
+                    if not completed:
+                        record['chemistry_observation'] = observer.snapshot(refined.model)
+                        # The native writer increments its serial for final .def;
+                        # resolve the PDB before that happens, never after return.
+                        pending_output.append(Path(refined.ofm.get_file_name(ext='.pdb')))
+                    elif record['chemistry_observation']['status'] == 'OBSERVED':
+                        if (len(pending_output) != 1 or
+                                _digest(_hierarchy(refined.model)) != record['chemistry_observation']['model_state_sha256']):
+                            raise ValueError('Native writer changed the observed model state')
+                        output = pending_output[0]
+                        if not output.is_file() or output.is_symlink():
+                            raise ValueError('Native written model is unavailable')
+                        data = output.read_bytes()
+                        record['chemistry_model'] = dict(sha256=hashlib.sha256(data).hexdigest(),size=len(data))
+                except (AttributeError, TypeError, ValueError, OSError, OverflowError) as exc:
+                    failed(exc)
+                _save(directory/'result.json',record)
+            refined = program(arguments, observe_output, observe_final)
+            if refined.iparams.refinement.dry_run is True:
+                try:
+                    record['chemistry_observation'] = observer.snapshot(refined.model)
+                except (AttributeError, TypeError, ValueError, OverflowError) as exc:
+                    failed(exc)
+            elif record['chemistry_observation'] is None:
+                failed(ValueError('No final-writer chemistry observation was made'))
+            return refined
+    finally:
+        record['chemistry_binding_restored'] = klass.summary is original
+
+
+def run_compatible_refinement(arguments, *, evidence_directory, chemistry_sites=None):
     """Run the native program with explicit correction and retained observations.
 
     Only the recorded native source/platform profile is admitted. Every observed
@@ -75,12 +127,14 @@ def run_compatible_refinement(arguments, *, evidence_directory):
     """
     if not isinstance(arguments, list) or not all(isinstance(a, str) and a for a in arguments):
         raise ValueError('Require explicit native refinement arguments')
+    sites = [dict(row) for row in validate_sites([] if chemistry_sites is None else chemistry_sites)]
     directory = Path(evidence_directory)
     directory.mkdir()  # A previous or partial observation is never overwritten.
     record = dict(schema_version=1, policy_id=POLICY_ID, status='RUNNING',
                   arguments=list(arguments), pid=os.getpid(), parent_pid=os.getppid(),
                   scientific_approval='NOT_RUN', binding_restored=False,
-                  output_binding_restored=False,output_synchronization=[])
+                  output_binding_restored=False,output_synchronization=[],
+                  chemistry_observation=None,chemistry_model=None,chemistry_binding_restored=True)
     _save(directory/'result.json', record)
     gr = original = observed = kernel = None
     try:
@@ -111,7 +165,8 @@ def run_compatible_refinement(arguments, *, evidence_directory):
         def observe_output(rows,restored):
             record.update(output_synchronization=rows,output_binding_restored=restored)
             _save(directory/'result.json',record)
-        refined = program(list(arguments),observe_output)
+        refined = (_run_observed(program,list(arguments),observe_output,sites,record,directory)
+                   if sites else program(list(arguments),observe_output))
         if gr.parallelity_residual_sum is not observed:
             raise ValueError('Native parallelity binding changed during refinement')
         model = refined.model
@@ -130,6 +185,7 @@ def run_compatible_refinement(arguments, *, evidence_directory):
             raise ValueError('Native final output binding was not restored')
         validate_output_observations(record['output_synchronization'],
                                      dry_run=dry_run,atom_count=len(labels))
+        validate_phase_observation(record,sites,dry_run=dry_run,labels=labels)
         verify()
         record.update(status='COMPLETE', dry_run=dry_run, macro_cycles=cycles,
                       atom_labels=labels, parallelity_parameters=parameters)

@@ -1,12 +1,13 @@
 {
-  "profile_id": "phenix-2.2.1-6174-local-darwin-arm64-output-v2",
+  "profile_id": "phenix-2.2.1-6174-local-darwin-arm64-selected-sites-v3",
   "system": "Darwin",
   "machine": "arm64",
   "qualification": [
     "C294 actual five-cycle full-objective/fork/replacement-manager control",
     "C296 complete parameters and synthetic capability controls",
     "C297 native program-wrapper control required for the added entry-point source bindings",
-    "C317 isolated final-output ADP synchronization; v2 writer and relocation acceptance recorded separately in the evidence ledger"
+    "C317 isolated final-output ADP synchronization; v2 writer and relocation acceptance recorded separately in the evidence ledger",
+    "C338 compact selected-site observation; exact v3 native execution and relocation acceptance recorded separately in the evidence ledger"
   ],
   "distribution_attestation": false,
   "modules": {
@@ -28,6 +29,8 @@
     "iotbx.pdb.hierarchy": "005a30625ce111c87275bdc1d09a8e4b4576e2ba51dc4ea11f93a351bca70b15",
     "iotbx_pdb_hierarchy_ext": "6765fd7eeef41ef54abddf4ff14b722fdd9e125fbcd9c680cd1530315e243c36",
     "cctbx.xray.structure": "7ae793fd96a8b96837c685ebe012c6d13cc090c06102e2cc5f9919c92ec21963",
-    "cctbx_xray_ext": "094a2ccc234048ce36d0324566d976582758a077dc52d37fd11b06e7bc4ba56b"
+    "cctbx_xray_ext": "094a2ccc234048ce36d0324566d976582758a077dc52d37fd11b06e7bc4ba56b",
+    "mmtbx.monomer_library.pdb_interpretation": "6b9c8ad96e521b933d4bf02c626598378efe731542d4e34b8433b1af1e3c3235",
+    "phenix.refinement.fsr.io": "64dd35ea2735749f7b03f488d17a64c0ddb4ca56e1bc52c75847d149f9d033a3"
   }
 }

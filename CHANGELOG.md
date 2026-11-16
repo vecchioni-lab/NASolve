@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Report selected chemistry from the actual refinement manager (C338)
+
+- The explicit checked-plane-force route now observes source-declared triple-bond
+  sites in the actual Phenix manager. Keep only selected heavy atoms, definitions
+  and local restraint terms; bind full native precision and the exact written
+  model to the existing round receipt. No extra native job or whole-model capture.
+- Reuse the established triple-bond screen in ordinary AutoRefine reports and
+  checkpoint metrics. A real concern keeps the output usable and requires review
+  instead of automatic selection; an unavailable optional observation is explicit
+  and does not discard usable refinement output. Existing thresholds are unchanged.
+- Version the frozen helper to v3 while preserving cold v1/v2 readers and bytes.
+  Exact-checkpoint readback automatically uses v3 evidence when present; an explicit
+  separate interpretation remains separately labelled. No default activation,
+  historical rewrite, new process owner or whole-ligand approval.
+
 ### Read achieved chemistry for an exact refinement checkpoint (C336)
 
 - Add a read-only Python report using the chosen checkpoint's own checked

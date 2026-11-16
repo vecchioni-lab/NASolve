@@ -11,8 +11,14 @@ from nasolve.checkpoints import read_registry,resolve_checkpoint,CheckpointError
 from nasolve.campaign_records import write_record
 
 
-def completed(tmp_path,monkeypatch,*,failure=None,changed=None,bad_preflight=False):
+def completed(tmp_path,monkeypatch,*,failure=None,changed=None,bad_preflight=False,chemistry=None):
     run,policy,refine,dump=inputs(tmp_path);original=subprocess.run;commands=[]
+    if chemistry is not None:
+        from tests.test_cif_triple_bond_audit import fixture
+        directory=run/'PostMR/projection';directory.mkdir()
+        source,_=fixture(directory)
+        scope=[dict(site='A:1',component='Q17',projection=_file_reference(source,run))]
+        monkeypatch.setattr('nasolve.refinement_chemistry.prepare_chemistry_scope',lambda *args:scope)
     def consume(command,*args,**kwargs):
         if len(command)>2 and str(command[2]).endswith('/parallelity_runtime/entry.py'):
             phase=command[3];commands.append(phase)
@@ -38,6 +44,8 @@ def completed(tmp_path,monkeypatch,*,failure=None,changed=None,bad_preflight=Fal
             if request['policy_id']!=LEGACY_POLICY_ID:
                 from tests.test_cif_refinement_runtime import output_row
                 result.update(output_binding_restored=True,output_synchronization=[] if phase=='preflight' else [output_row(2)])
+            if request['policy_id']=='round-local-parallelity-execution-v3':
+                result.update(chemistry_observation=None,chemistry_model=None,chemistry_binding_restored=True)
             if bad_preflight and phase=='preflight':result['status']='RUNNING'
             if failed:result['error']=dict(type='RuntimeError',message='native failed')
             (folder/'result.json').write_text(json.dumps(result))
@@ -45,7 +53,27 @@ def completed(tmp_path,monkeypatch,*,failure=None,changed=None,bad_preflight=Fal
                 (root/'code/_nasolve_refinement/cif_parallelity_kernel.py').write_text('changed helper')
             if failed:return subprocess.CompletedProcess(command,1)
             fake_args=['--dry_run',*native_args[:-1]] if phase=='preflight' else native_args
-            return original([str(refine),*fake_args],*args,**kwargs)
+            native_result=original([str(refine),*fake_args],*args,**kwargs)
+            if chemistry is not None:
+                from tests.test_cif_refinement_sites import capture,SITES
+                from nasolve.cif_refinement_sites import unavailable
+                observation,labels=capture()
+                result['atom_labels']=labels
+                if chemistry=='straight':
+                    observation['atoms'][3]['xyz'][1]=.001
+                if chemistry=='unavailable':observation=unavailable(SITES,'Synthetic observer interface unavailable')
+                result['chemistry_observation']=observation
+                if phase=='refine':
+                    from tests.test_cif_refinement_runtime import output_row
+                    row=output_row(len(labels))
+                    if chemistry!='unavailable':
+                        row['hierarchy_after_sha256']=observation['model_state_sha256']
+                        model=root.parent/'refined_001.pdb'
+                        ref=_file_reference(model,run)
+                        result['chemistry_model']={key:ref[key] for key in ('sha256','size')}
+                    result['output_synchronization']=[row]
+                (folder/'result.json').write_text(json.dumps(result))
+            return native_result
         return original(command,*args,**kwargs)
     monkeypatch.setattr(subprocess,'run',consume)
     result=execute_autorefine(run,refine,dump,phenix_version='2.2.1-6174',
@@ -62,7 +90,7 @@ def test_explicit_route_uses_original_executor_and_saves_exact_round_evidence(tm
     request=json.loads((run/record['request']['relative_path']).read_text())
     assert request['parent']==child['parent'] and request['checkpoint']==child['id']
     assert child['outputs']['parallelity_execution']['anchor']=='run'
-    assert len(request['code'])==7 and len(request['inputs'])==6
+    assert len(request['code'])==8 and len(request['inputs'])==6
     assert (result.round_directory/'received_args.json').exists()
 
 
@@ -186,18 +214,20 @@ def test_checked_ancestry_reuses_strict_lineage_validation():
 
 
 
-def test_frozen_v1_reader_survives_current_helper_upgrade_and_relocation(tmp_path,monkeypatch):
+@pytest.mark.parametrize('version',[1,2])
+def test_frozen_reader_survives_current_helper_upgrade_and_relocation(tmp_path,monkeypatch,version):
     from nasolve import refinement_parallelity as module
     from hashlib import sha256
     package=Path(module.__file__).parent
-    fixture=Path(__file__).parent/'fixtures/refinement_runtime_v1'
-    code={'entry.py':module._ENTRY,'code/_nasolve_refinement/__init__.py':b''}
-    for name,digest in module._SOURCE_DIGESTS.items():
+    fixture=Path(__file__).parent/f'fixtures/refinement_runtime_v{version}'
+    code={'entry.py':module._V2_ENTRY,'code/_nasolve_refinement/__init__.py':b''}
+    policy=module.LEGACY_POLICY_ID if version==1 else module.V2_POLICY_ID
+    for name,digest in module._SOURCES[policy].items():
         path=fixture/name if (fixture/name).exists() else package/name
         data=path.read_bytes();assert sha256(data).hexdigest()==digest
         code['code/_nasolve_refinement/'+name]=data
     with monkeypatch.context() as legacy:
-        legacy.setattr(module,'POLICY_ID',module.LEGACY_POLICY_ID)
+        legacy.setattr(module,'POLICY_ID',policy)
         legacy.setattr(module,'_code',lambda:code)
         run,result,registry,child,receipt,commands=completed(tmp_path,legacy)
     old=run.parents[1];moved=tmp_path/'relocated';old.rename(moved)
@@ -248,3 +278,63 @@ def test_malformed_policy_is_a_controlled_checkpoint_refusal(tmp_path,monkeypatc
         with pytest.raises(CheckpointError,match='Invalid explicit parallelity execution evidence'):
             read_registry(run)
     assert all(p.read_bytes()==data for p,data in before.items())
+
+
+@pytest.mark.parametrize('chemistry',['bent','straight','unavailable'])
+def test_native_chemistry_report_preserves_usable_model_but_real_review_prevents_selection(tmp_path,monkeypatch,chemistry):
+    # Synthetic native records exercise the ordinary AutoRefine/checkpoint owner;
+    # this is not an executed Phenix scientific qualification.
+    run,result,registry,child,receipt,_=completed(tmp_path,monkeypatch,chemistry=chemistry)
+    report=result.statistics['chemical_geometry']
+    assert result.exit_code==0 and child['usable']
+    assert report['status']=={'bent':'REVIEW','straight':'SCOPED_TRIPLE_SCREEN_PASS','unavailable':'UNASSESSED'}[chemistry]
+    assert report['scientific_approval']=='NOT_RUN' and not report['automatic_adoption']
+    assert result.status==('AUTOREFINE_REVIEW' if chemistry=='bent' else 'AUTOREFINE_READY')
+    if chemistry=='bent':assert not result.selected_as_current and registry['current']=='postmr'
+    assert child['metrics']['chemical_geometry']==report
+    saved=json.loads(result.report_path.read_text())
+    assert saved['statistics']['chemical_geometry']==report
+    assert saved['acceptance']['chemical_geometry_review'] is (chemistry=='bent')
+    from nasolve.refinement_parallelity import read_execution_chemistry
+    before={p:p.read_bytes() for p in run.rglob('*') if p.is_file()}
+    with patch('subprocess.Popen',side_effect=AssertionError('read only')):
+        actual=read_execution_chemistry(run,child['outputs']['parallelity_execution'],checkpoint=child['id'],parent=child['parent'],model=result.model_path)
+    assert actual==report and all(p.read_bytes()==data for p,data in before.items())
+
+
+def test_actual_manager_observation_relocates_without_original_paths(tmp_path,monkeypatch):
+    from nasolve.refinement_parallelity import read_execution_chemistry
+    run,result,registry,child,receipt,_=completed(tmp_path,monkeypatch,chemistry='bent')
+    old=run.parents[1];moved=tmp_path/'moved';old.rename(moved);new=moved/run.relative_to(old)
+    assert not old.exists()
+    with patch('subprocess.Popen',side_effect=AssertionError('no native job for readback')):
+        _,registry=read_registry(new)
+        report=read_execution_chemistry(new,child['outputs']['parallelity_execution'],checkpoint=child['id'],parent=child['parent'],model=new/child['model']['relative_path'])
+    assert report==result.statistics['chemical_geometry']
+
+
+@pytest.mark.parametrize('defect',['state','model_hash','missing','scope','proxy','definition','unrestored','projection','relabelled_projection'])
+def test_rehashed_compact_observation_cannot_claim_other_model_state_or_source(tmp_path,monkeypatch,defect):
+    run,result,registry,child,receipt,_=completed(tmp_path,monkeypatch,chemistry='bent')
+    record=json.loads(receipt.read_text());request_path=run/record['request']['relative_path'];request=json.loads(request_path.read_text())
+    path=request_path.parent/'refine/result.json';value=json.loads(path.read_text())
+    if defect=='state':value['chemistry_observation']['model_state_sha256']='f'*64
+    elif defect=='model_hash':value['chemistry_model']['sha256']='f'*64
+    elif defect=='missing':value.pop('chemistry_observation')
+    elif defect=='scope':value['chemistry_observation']['sites'][0]['site']='B:4'
+    elif defect=='proxy':value['chemistry_observation']['geometry']['proxy_details']['angle'][0]['atoms'][0]='wrong'
+    elif defect=='definition':value['chemistry_observation']['monomer_mappings']['rows']=[]
+    elif defect=='unrestored':value['chemistry_binding_restored']=False
+    else:
+        p=run/request['chemistry_projections'][0]['projection']['relative_path']
+        p.write_text(p.read_text().replace('TRIP','SING'))
+        if defect=='relabelled_projection':
+            request['chemistry_projections'][0]['projection']=_file_reference(p,run)
+            write_record(request_path,request,replace=True);record['request']=_file_reference(request_path,run)
+    path.write_text(json.dumps(value))
+    for ref in record['phases'][1]['files']:
+        if ref['relative_path']==str(path.relative_to(run)):ref.update(_file_reference(path,run))
+    write_record(receipt,record,replace=True);child['outputs']['parallelity_execution']=_file_reference(receipt,run)
+    (run/'AutoRefine/checkpoints.json').write_text(json.dumps(registry))
+    with patch('subprocess.Popen',side_effect=AssertionError('cold refusal')):
+        with pytest.raises(CheckpointError):read_registry(run)

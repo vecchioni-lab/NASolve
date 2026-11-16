@@ -1564,8 +1564,14 @@ def execute_autorefine(
     ):
         raise AutoRefineError("Malformed expected checkpoint registry checksum")
     try:
-        registry_reader = read_registry if expected_registry_sha256 is not None else initialize_registry
-        run, registry = registry_reader(run_directory)
+        verified_preparations = None
+        if correct_native_parallelity:
+            from .checkpoints import _read_registry_with_preparations, _initialize_registry_with_preparations
+            registry_reader = _read_registry_with_preparations if expected_registry_sha256 is not None else _initialize_registry_with_preparations
+            run, registry, verified_preparations = registry_reader(run_directory)
+        else:
+            registry_reader = read_registry if expected_registry_sha256 is not None else initialize_registry
+            run, registry = registry_reader(run_directory)
         if expected_registry_sha256 is not None and registry.get("record_sha256") != expected_registry_sha256:
             raise AutoRefineError("Checkpoint registry changed before refinement; preserve newer choices")
         parent = resolve_checkpoint(registry, from_checkpoint)
@@ -1582,6 +1588,13 @@ def execute_autorefine(
         )
     except CheckpointError as exc:
         raise AutoRefineError(str(exc)) from exc
+    chemistry_projections = []
+    if correct_native_parallelity:
+        from .refinement_chemistry import prepare_chemistry_scope
+        try:
+            chemistry_projections = prepare_chemistry_scope(run,registry,verified_preparations,parent)
+        except (OSError,ValueError,RuntimeError) as exc:
+            raise AutoRefineError(f'Checked chemistry scope is inconsistent: {exc}') from exc
     report = _run_report(run)
     try:
         terminal_phosphate_sites = requested_op3_sites(report)
@@ -1816,7 +1829,8 @@ def execute_autorefine(
                 run, checkpoint=checkpoint_id, parent=parent['id'],
                 inputs=[observations, model, *execution_restraints,
                         *([phase_file] if phase_file is not None else []), parameters],
-                command=command, python_executable=phenix_python_executable, macro_cycles=macro_cycles)
+                command=command, python_executable=phenix_python_executable, macro_cycles=macro_cycles,
+                chemistry_projections=chemistry_projections)
         except (OSError, ValueError, RuntimeError) as exc:
             raise AutoRefineError(f'Parallelity execution preparation failed: {exc}') from exc
     if progress is not None:
@@ -1921,6 +1935,17 @@ def execute_autorefine(
     )
     statistics = parse_refinement_statistics(log_text, model_text)
     statistics["terminal_geometry_audit"] = terminal_geometry_audit
+    chemistry_review = False
+    if parallelity_execution_reference is not None and completed_returncode == 0 and output_model is not None:
+        from .refinement_parallelity import read_execution_chemistry
+        try:
+            chemistry = read_execution_chemistry(run,parallelity_execution_reference,
+                checkpoint=checkpoint_id,parent=parent['id'],model=output_model)
+        except (OSError,ValueError,RuntimeError) as exc:
+            raise AutoRefineError(f'Refinement chemistry evidence is inconsistent: {exc}') from exc
+        if chemistry is not None:
+            statistics['chemical_geometry'] = chemistry
+            chemistry_review = chemistry['status'] == 'REVIEW'
     statistics["anomalous_scatterers"] = anomalous_scatterer_diagnostics(
         log_text,
         output_model,
@@ -2054,6 +2079,12 @@ def execute_autorefine(
         checkpoint_status = "REVIEW"
         usable = True
         exit_code = 0
+    elif chemistry_review:
+        status = "AUTOREFINE_REVIEW"
+        message = "Refinement completed, but declared triple-bond chemistry requires inspection"
+        checkpoint_status = "REVIEW"
+        usable = True
+        exit_code = 0
     elif numerical_success:
         status = "AUTOREFINE_READY"
         message = "Numerical refinement criteria passed; inspect the model and maps"
@@ -2179,6 +2210,7 @@ def execute_autorefine(
             "r_work_less_than_0_30": r_work < 0.30 if isinstance(r_work, float) else False,
             "numerical_success": numerical_success,
             "terminal_geometry_review": terminal_geometry_audit["requires_review"],
+            "chemical_geometry_review": chemistry_review,
             "visual_inspection_required": True,
         },
         "outputs": {

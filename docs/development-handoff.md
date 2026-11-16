@@ -1,96 +1,68 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C337 actual-manager capability probe — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. Runtime C336 is pushed at
-**e7638db8**. No full suite, new branch, default activation or merge. Linden owns
-Pine/Willow and W99 native trials; C331 stays unchanged. Simon directly confirmed
-work through **23:00 London**. All Rowan native/controller processes are stopped.
+Updated **2026-11-16, C338 compact actual-refinement chemistry reporting — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. C338 is the current completed source
+checkpoint; parent C337 `649e41a4`, C336 `e7638db8`. No full suite, new branch,
+default activation or merge. Linden owns Pine/Willow; C331 stays unchanged. Simon
+confirmed work through **23:00 London**. All Rowan native/controller jobs stopped.
 
-## Current work and interruption recovery
+## Current result and next bounded task
 
-**C337 completed, diagnostic only:** actual five-cycle Phenix execution can expose
-compact selected-site observations. The first probe stopped after preflight because
-ordinary refinement keeps `monomer_mapping_summary`, while the separate interpreter
-retains full mappings. Its immutable failed folder is preserved. A fresh probe
-observes the original summary creation, retains only B:4's full mapping and proves
-that exact summary object belongs to the final model. Both native bindings restore.
-No production helper/runtime source has changed after C336.
+**C338 complete:** the explicit checked refinement route now observes selected
+source-declared triple sites inside the actual Phenix manager, recording original
+monomer definitions, heavy-atom geometry and local effective restraints. It retains
+original summary behavior and verifies identity in the final model. Final-export
+state and exact written model bytes are bound; filename resolution occurs before
+Phenix advances its output serial. Full native coordinates remain distinct from
+rounded PDB coordinates. No extra native capture or whole-model inventory.
 
-Successful root: `NASolve-live-tests/337_Cedar_final-manager-capability-vybvb_rb`;
-failed root: `337_Cedar_final-manager-capability-gipf5sa4`. Existing owned-command
-controller/native identities are verified stopped, `active.json=false`. Two native
-phases, 273.44 s total; **Phenix 2.2.1-6174 / dispatcher 2.2.1**, nice 10, one process
-instead of C329's four. All 168 C329 files/timestamps preserved. B:4's 22 heavy atoms
-are observed in the 855-atom model; preflight/final observation files are
-50,277/50,798 bytes; whole fresh control 7,308,105 bytes. This is not a peak-memory
-or campaign-capacity claim. No raw scientific artifacts committed.
+Normal AutoRefine reports/checkpoint metrics now expose this scoped chemistry
+screen. Real REVIEW preserves usable output and prevents automatic selection.
+Optional unavailable observation stays UNASSESSED; it does not discard usable
+refinement. Damaged saved evidence still refuses. This is reporting, not a force,
+target, phosphate, Free-R or threshold change. Only explicit source triples are
+screened; whole-substituent and diffraction approval remain separate.
 
-Native hierarchy/manager coordinates agree exactly; exported PDB rounding differs
-by at most 0.000483945 Å. Preserve this precision distinction. Effective monomer
-bonds and full proxy counts are unchanged through the trial. Existing triple screen:
-targets pass; final angles 175.4494°/174.4251° keep coordinates REVIEW. This
-one-process interface check is not an exact numerical repeat of C329 or a new
-force/target experiment. No weight, target, OP3, Free-R or source-chemistry change.
+**Validation:** 423 focused tests +19 subtests pass (37.00 s). Fresh wheel installed
+and moved after build source/original installation removal: 155 pass (20.58 s).
+Wheel SHA `cbf8aa329cc1dbd5db8a1d95c279388e3e505dadd3e8fd4a8cff574683890c14`;
+1,371,485 bytes; 10,678,831 temporary bytes removed. New writer-observation regression
+fails on parent `649e41a4`. Frozen v1/v2 cold/relocated readers pass. No full suite;
+last full remains C220/583d30df: 9178 tests +276 subtests.
 
-Exact provenance and receipt pins: `actual_final_manager_observation_2026_11_16`.
-Everyday ignored runners: `c337_start.py`, `c337_worker.py`, `c337_native_probe.py`,
-`c337_readback.py` under `branch-artifacts/cedar/runners/`. Launch used project Python
-with `PYTHONDONTWRITEBYTECODE=1`, Cedar `PYTHONPATH`, and existing `run_owned_command`
-limits (2100 s controller, 900 s/native phase). Readback used project Python and
-launched no tools. All native/derived outputs remain local; no native job remains.
+Actual **Phenix 2.2.1-6174 / dispatcher 2.2.1**: isolated zero-cycle preflight plus
+five real cycles, nice 10, one process, 270.10 s. Local root
+`NASolve-live-tests/338_Cedar_compact-refinement-567jpr2k`; active=false, all two
+native and one controller processes verified stopped. All 168 historical C329
+files/timestamps unchanged. Compact observations 27,099/27,361 bytes; whole control
+7,301,945 bytes (not a peak-memory/campaign-capacity claim). No Coot run.
 
-**Next production slice:** use this observed interface for compact exact-site
-capture inside the existing refinement owner, with a newly versioned helper while
-preserving frozen v1/v2 readers. Bind summary identity, source profile, actual final
-manager, full-precision state and written-model bytes; reuse C336's projections and
-screen. Unavailable evidence must remain explicit, usable refinement must survive
-optional diagnostic failure, and normal saved output must expose real reviews.
-Do not add a second native executor or store repeated whole-model inventories.
-Then start DY qualification; Q06 whole-substituent/held-out acceptance stays open.
+The 22 selected heavy atoms in the 855-atom model, monomer definitions and all
+selected proxies exactly match C337; the written whole-model inventory matches as
+well. PDU targets PASS; 1.213226 Å triple distance, angles 175.4494°/174.4251° keep
+coordinates REVIEW. Native/PDB rounding differs by up to 0.000483945 Å. This is a
+reporting acceptance control, not a new target/force experiment or modified-crystal
+validation. Cold replay preserves all 57 control files and launches no process.
 
-**C336:** a read-only Python report follows an exact refinement checkpoint to its
-own selected preparation and source-bound site projections. Optional preserved
-native evidence must describe the exact final PDB and ordered execution CIF/PHIL;
-namespace adaptation is reused. Existing triple screening separates target and
-coordinate results, keeps real bending REVIEW, and reports absent evidence or no
-supported triples as UNASSESSED. No changes to forces, numerical acceptance,
-checkpoint schemas, saved scientific files, C331 or frozen v2 helper sources.
+**Compatibility:** frozen helper/runtime v3 adds optional source-projection and
+compact observation fields to the existing request/receipt, plus ordinary
+`chemical_geometry` statistics. Checkpoint-registry schema/public registry APIs are
+unchanged. Old v1/v2 helper identities remain frozen; explicit separate native
+receipts retain C336's different interpretation scope. No historical migration.
 
-Prior-work review: C334 supplied the site-scoped screen. Ordinary v2 refinement
-records output synchronization/parallelity usage but not the complete final native
-inventory. The new report therefore labels separate final-model reinterpretation
-explicitly; it does not claim the actual refinement manager was captured. The
-registry reader retains call-local preparation results instead of replaying the
-complete history twice; its existing public return and validation stay intact.
+Exact commands, source/receipt pins and scope:
+`compact_refinement_observation_2026_11_16` in the maintained evidence ledger.
+Everyday ignored runners: `c338_start.py`, `c338_worker.py`, `c338_readback.py`,
+`c338_package_check.py` under `branch-artifacts/cedar/runners/`; package/replay
+receipts under `branch-artifacts/cedar/c338-refinement-observation/`. Source/tests,
+maintained docs and compact evidence only are committed; models/data/logs remain
+local. Runtime modules and normal reporting changed; no new execution owner.
 
-**Validation:** 359 focused tests +29 subtests pass (31.38 s), including 21 new
-report checks. Fresh installed/relocated wheel: 21 pass (3.93 s), with temporary
-build source and original installation absent. C329/C334 native-evidence replay
-reproduces every scoped triple result in 0.97 s, preserving all 190 historical
-files/timestamps and launching no native job. Prepared geometry passes; final
-PDU targets pass while the existing 173.9366° bend remains REVIEW. Recorded
-capture build: Phenix **2.2.1-6174 / dispatcher 2.2.1**, not rerun; Coot not run.
-Initial new-entry regression fails on the prior revision with ModuleNotFoundError.
-No full suite; last Cedar full gate remains C220/583d30df, 9178 +276 subtests.
-
-Exact focused command (Cedar cwd):
-`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_refinement_chemistry.py tests/test_checkpoints.py tests/test_autorefine.py tests/test_coot_view.py tests/test_refinement_parallelity.py tests/test_refinement_inputs.py tests/test_cif_postmr_publication.py tests/test_cif_campaign_first_refinement.py tests/test_cif_triple_bond_audit.py tests/test_cif_construction_native.py --tb=short`.
-Installed runner: `branch-artifacts/cedar/runners/c336_package_check.py` with
-Phenix Python, offline wheel build; replay: `c336_site_readback.py` with project
-Python and `PYTHONDONTWRITEBYTECODE=1`. Both live in the everyday ignored runner
-folder. Wheel SHA `f96325d9c7465d80de3258ee75c0b23d526b11152ac485001201e242ef89e21e`;
-1,363,261 bytes, temporary 10,602,399 bytes removed. Compact ledger entry:
-`refinement_geometry_report_2026_11_16`. No raw scientific artifacts committed.
-
-Changed source: `refinement_chemistry.py` and call-local result plumbing in
-`checkpoints.py`; new tests and maintained docs. Report schema/policy v1 is a live
-read result, not a checkpoint migration. Historical bytes and defaults unchanged.
-
-**Next:** connect collection/reporting through the existing refinement owner;
-the Python reader is complete, automatic capture and normal saved output are not.
-Retain actual-manager versus separate-interpretation limits, bounded storage,
-explicit unavailable evidence and independently usable fallback. Then take the
-queued DY qualification slice; whole-substituent/held-out survival still gates Q06.
+**Next:** qualify the already packaged DY chemical reference through existing
+source/native boundaries. This follows the completed bounded reporting connection;
+it does not close Q06. Then resume whole-substituent/held-out survival. Keep original
+PDU bending visible, full precision distinct, and source-graph-selected mechanics
+independent of ligand code. Consult the queue/history before adding another route.
 
 **C335:** DY is now a packaged reusable chemical reference under
 `data/chemical_references/DY.cif` with relative-path/hash provenance in `DY.json`.

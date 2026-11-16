@@ -1,8 +1,8 @@
 """Read-only, site-scoped chemistry reporting for an exact refinement checkpoint.
 
-Separate final-model interpretation is evidence about that model and those
-restraints, not proof of the manager used inside a diffraction-refinement job.
-No capture is launched, stored code executed, checkpoint selected or file saved.
+Actual-manager observations and separate final-model interpretations retain
+their distinct scope and precision. No capture is launched, stored code executed,
+checkpoint selected or scientific file saved by this reader.
 """
 from hashlib import sha256
 from pathlib import Path
@@ -62,12 +62,102 @@ def _readback(model, projections, dictionaries, phils, native_receipt=None):
     return result
 
 
+def _observed_readback(model_bytes, projections, observation):
+    snapshots={Path(p):_read(Path(p)) for p,_ in projections.values()}
+    result=_unassessed(observation.get('reason'))
+    result.update(policy_id='refinement-declared-site-triple-readback-v2',
+        model_sha256=sha256(model_bytes).hexdigest(),
+        declared_sites={site:dict(component=code,projection_sha256=sha256(snapshots[Path(p)]).hexdigest())
+                        for site,(p,code) in sorted(projections.items())},
+        limitations=['Explicit source triple bonds only; no whole-ligand or diffraction approval.',
+                     'Coordinates retain native precision; the written PDB rounds coordinates.'])
+    if observation['status']=='OBSERVED':
+        sites={site:_triple_readback(path,code,observation,site) for site,(path,code) in sorted(projections.items())}
+        screened=[row for row in sites.values() if row['triple_bonds']]
+        result.update(sites=sites,reason=None,actual_refinement_manager='OBSERVED',
+            native_scope=observation['scope'],coordinate_precision=observation['coordinate_precision'],
+            model_state_sha256=observation['model_state_sha256'],
+            target_screen=('REVIEW' if any(r['target_screen']!='PASS' for r in screened) else 'PASS') if screened else 'UNASSESSED',
+            coordinate_screen=('REVIEW' if any(r['coordinate_screen']!='PASS' for r in screened) else 'PASS') if screened else 'UNASSESSED',
+            status=('REVIEW' if any(r['status']!='TRIPLE_SCREEN_PASS' for r in screened) else 'SCOPED_TRIPLE_SCREEN_PASS') if screened else 'UNASSESSED')
+    _need(all(_read(p)==data for p,data in snapshots.items()), 'Selected chemistry projection changed during read')
+    return result
+
+
+def _preparation_context(run, registry, verified, item):
+    """Resolve only this branch's already validated preparation, without replay."""
+    from .checkpoints import _ref_path
+    from .campaign_records import read_record
+    indexed = {node['id']: node for node in registry['checkpoints']}
+    node = item; seen = set()
+    while 'checked_preparation' not in node and node.get('parent') is not None:
+        _need(node['id'] not in seen and node['parent'] in indexed, 'Invalid preparation ancestry')
+        seen.add(node['id']); node = indexed[node['parent']]
+    if 'checked_preparation' not in node:
+        return None
+    reference = node['checked_preparation']
+    record_path = _ref_path(reference, 'checked preparation', run)
+    publication = read_record(record_path)
+    metadata = publication.get('preparation', publication)['checked_preparation']
+    _need(verified is not None and metadata['attempt_number'] in verified,
+          'Missing validated preparation result')
+    checked, exact = verified[metadata['attempt_number']]
+    acquired = exact.get('preparation')
+    prepared = None if acquired is None else acquired.get('bundle')
+    _need(checked.model_path is not None and prepared is not None and prepared.get('projections'),
+          'Checked result has no declared site projections')
+    return acquired, node['id'], reference
+
+
+def _projection_scope(run, references):
+    """Resolve exact source-selected triple sites from frozen portable references."""
+    from .checkpoints import _ref_path
+    from .cif_refinement_sites import validate_sites
+    from .cif_linked_preparation import component_values
+    from .cif_stereochemistry_audit import _graph
+    _need(isinstance(references,list), 'Missing selected projection references')
+    sites = []; projections = {}
+    for row in references:
+        _need(isinstance(row,dict) and set(row) == {'site','component','projection'}, 'Malformed selected projection reference')
+        sites.append({k:row[k] for k in ('site','component')})
+        _need(isinstance(row['projection'],dict) and row['projection'].get('anchor') == 'run',
+              'Selected projection must retain its declared run anchor')
+        path = _ref_path(row['projection'],'selected chemistry projection',run)
+        _need('TRIPLE' in _graph(component_values(path,row['component']))[1].values(),
+              'Requested site has no explicit source triple bond')
+        projections[row['site']] = (path,row['component'])
+    validate_sites(sites)
+    return sites, projections
+
+
+def prepare_chemistry_scope(run, registry, verified, parent):
+    """Use the selected branch's existing source graphs; do not infer chemistry."""
+    from .checkpoints import _file_reference
+    from .cif_linked_preparation import component_values
+    from .cif_stereochemistry_audit import _graph
+    context = _preparation_context(run,registry,verified,parent)
+    if context is None:
+        return []
+    acquired, _, _ = context; bundle = acquired['bundle']
+    pins = {row['path']:row for row in bundle['report']['files']}
+    result = []
+    for site,(path,code) in sorted(bundle['projections'].items()):
+        reference = _file_reference(path,run)
+        relative = Path(path).relative_to(acquired['bundle_directory']).as_posix()
+        _need(reference['sha256'] == pins[relative]['sha256'], 'Declared site projection changed during read')
+        if 'TRIPLE' in _graph(component_values(path,code))[1].values():
+            result.append(dict(site=site,component=code,projection=reference))
+    _projection_scope(run,result)
+    return result
+
+
 def read_refinement_chemistry(run_directory, *, checkpoint, native_receipt=None):
     """Report one saved refinement against its own checked preparation lineage.
 
-    The optional receipt must describe this final PDB and the exact ordered
-    dictionaries/PHIL inherited by this round, including round-local namespace
-    adaptations. Legacy or unavailable evidence stays explicitly unassessed.
+    With no explicit receipt, use validated actual-manager observations when
+    available. The optional separate receipt must describe this final PDB and
+    exact ordered dictionaries/PHIL, including round-local namespace adaptations.
+    Legacy or unavailable evidence stays explicitly unassessed.
     Supplied damaged or mismatched evidence raises; it is never an empty pass.
     """
     from .checkpoints import (_read_registry_with_preparations, resolve_checkpoint,
@@ -83,26 +173,13 @@ def read_refinement_chemistry(run_directory, *, checkpoint, native_receipt=None)
         _need(native_receipt is None, 'An unusable checkpoint cannot supply final-model evidence')
         return dict(_unassessed('Refinement has no reusable final model.'), **identity)
     inherited = inherited_paths(item, run)
-    indexed = {node['id']: node for node in registry['checkpoints']}
-    node = item; seen = set()
-    while 'checked_preparation' not in node and node.get('parent') is not None:
-        _need(node['id'] not in seen and node['parent'] in indexed, 'Invalid preparation ancestry')
-        seen.add(node['id']); node = indexed[node['parent']]
-    if 'checked_preparation' not in node:
+    context = _preparation_context(run, registry, verified, item)
+    if context is None:
         _need(native_receipt is None, 'Final-model evidence requires declared checked-preparation projections')
         return dict(_unassessed('This lineage has no checked site projections.'), **identity)
-    identity['preparation_checkpoint'] = node['id']
-    record_path = _ref_path(node['checked_preparation'], 'checked preparation', run)
-    from .campaign_records import read_record
-    publication = read_record(record_path)
-    metadata = publication.get('preparation', publication)['checked_preparation']
-    _need(verified is not None and metadata['attempt_number'] in verified,
-          'Missing validated preparation result')
-    checked, exact = verified[metadata['attempt_number']]
-    acquired = exact.get('preparation')
-    prepared = None if acquired is None else acquired.get('bundle')
-    _need(checked.model_path is not None and prepared is not None and prepared.get('projections'),
-          'Checked result has no declared site projections')
+    acquired, preparation_id, _ = context
+    identity['preparation_checkpoint'] = preparation_id
+    prepared = acquired['bundle']
     # The registry's preparation reader and lineage validator already bind the
     # exact selected runtime and inherited order. Apply only its verified spelling adapter.
     restraints = list(inherited['restraints'])
@@ -112,10 +189,21 @@ def read_refinement_chemistry(run_directory, *, checkpoint, native_receipt=None)
             restraints[row['index']] = _ref_path(row['execution'], 'refinement execution input', run)
     dictionaries = [p for p in restraints if p.suffix.casefold() == '.cif']
     phils = [p for p in restraints if p.suffix.casefold() != '.cif']
-    result = _readback(inherited['model'], prepared['projections'], dictionaries, phils, native_receipt)
+    result = None
+    execution = item.get('outputs',{}).get('parallelity_execution')
+    if native_receipt is None and execution is not None:
+        from .refinement_parallelity import read_execution_chemistry
+        result = read_execution_chemistry(run,execution,checkpoint=item['id'],parent=item['parent'],model=inherited['model'])
+    if result is None:
+        result = _readback(inherited['model'], prepared['projections'], dictionaries, phils, native_receipt)
+    else:
+        expected = prepare_chemistry_scope(run,registry,verified,item)
+        _need(result['declared_sites'] == {row['site']:dict(component=row['component'],projection_sha256=row['projection']['sha256'])
+              for row in expected}, 'Observed scope differs from checked preparation')
     _need(result['model_sha256'] == item['model']['sha256'].lower(), 'Final checkpoint model changed during read')
     references = {row['path']: row for row in prepared['report']['files']}
-    for site, (path, _) in prepared['projections'].items():
+    for site in result['declared_sites']:
+        path, _ = prepared['projections'][site]
         relative = Path(path).relative_to(acquired['bundle_directory']).as_posix()
         _need(result['declared_sites'][site]['projection_sha256'] == references[relative]['sha256'],
               'Declared site projection changed during read')

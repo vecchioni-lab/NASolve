@@ -263,3 +263,26 @@ def test_absent_triples_are_not_a_chemistry_pass(tmp_path):
     result=_readback(model,projections,[],[],receipt)
     assert result['status']==result['target_screen']==result['coordinate_screen']=='UNASSESSED'
     assert result['sites']['A:1']['triple_bonds']==[]
+
+
+def test_automatic_scope_selects_explicit_triples_from_verified_source_without_replaying_history(tmp_path,monkeypatch):
+    from nasolve.checkpoints import _read_registry_with_preparations,resolve_checkpoint
+    from nasolve.refinement_chemistry import prepare_chemistry_scope,_projection_scope
+    run,exact,calls,item=checked_run(tmp_path,monkeypatch)
+    run,registry,verified=_read_registry_with_preparations(run)
+    calls.clear();before=snapshot(run)
+    scope=prepare_chemistry_scope(run,registry,verified,resolve_checkpoint(registry,item['id']))
+    assert scope==[dict(site='A:1',component='Q17',projection=_file_reference(exact['preparation']['bundle']['projections']['A:1'][0],run))]
+    assert _projection_scope(run,scope)[0]==[dict(site='A:1',component='Q17')]
+    assert calls==[] and snapshot(run)==before
+
+
+def test_no_explicit_source_triple_does_not_claim_general_chemical_coverage(tmp_path,monkeypatch):
+    from nasolve.checkpoints import _read_registry_with_preparations,resolve_checkpoint
+    from nasolve.refinement_chemistry import prepare_chemistry_scope
+    run,exact,calls,item=checked_run(tmp_path,monkeypatch)
+    source=exact['preparation']['bundle']['projections']['A:1'][0]
+    source.write_text(source.read_text().replace('TRIP','SING'))
+    exact['preparation']['bundle']['report']['files'][0]['sha256']=sha256(source.read_bytes()).hexdigest()
+    run,registry,verified=_read_registry_with_preparations(run)
+    assert prepare_chemistry_scope(run,registry,verified,resolve_checkpoint(registry,item['id']))==[]

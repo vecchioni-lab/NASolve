@@ -416,12 +416,17 @@ def read_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
 
 def initialize_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
     """Persist the root PostMR checkpoint when a modifying operation needs it."""
-    run, registry = read_registry(run_directory)
+    run, registry, _ = _initialize_registry_with_preparations(run_directory)
+    return run, registry
+
+
+def _initialize_registry_with_preparations(run_directory):
+    run, registry, verified = _read_registry_with_preparations(run_directory)
     path = registry_path(run)
     if not path.is_file():
         path.parent.mkdir(parents=True, exist_ok=True)
         _write_json(path, registry)
-    return run, registry
+    return run, registry, verified
 
 
 def save_registry(run: Path, registry: dict[str, object]) -> Path:
