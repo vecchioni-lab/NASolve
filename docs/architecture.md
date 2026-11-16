@@ -25,6 +25,15 @@ Its cold reader recomputes every seed and verifies the final result without
 execution or writes. No source discovery, alias, new process owner or default
 caller activation follows from this opt-in extension.
 
+Cycle-local aromatic representation is separately opt-in. It reuses existing
+neutral five/six-member C/N classifiers, excludes graph bridges from aromatic
+conversion, and requires any contradictory flagged bridge to join two disjoint
+qualified rings with explicit SINGLE order. A distinct reader-input policy clears
+only those flags in a derived copy, recording original/consumer hashes and exact
+changed fields. Native reader/conversion/finished inventory must preserve the
+single bridge and source state. Existing acquisition/replay owners carry the
+choice; original-source assessment and independent qualification remain required.
+
 Custom free-nucleoside references may be combined with an explicitly selected
 DNA source through the pure `compose_dna_source` API. Each source owns its retained
 subgraph; hashes and per-atom origins accompany the new source. Conventional

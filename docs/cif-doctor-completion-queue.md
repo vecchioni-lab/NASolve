@@ -874,8 +874,12 @@ pass. **C348:** explicit source-bound canonical seeds now complete PDU→DT→DY
 DY→DT→PDU through ordinary Coot, retaining sugar/phosphate and chi.142 focused and
 installed/relocated tests pass. **C349:** explicit source/template choices now pass
 through the existing constructor, with original context authority and compact cold
-replay;160 focused/installed checks and83 existing-caller checks pass. **Next:**
-qualified source/context selection and a held-out rotating-ring control. No DY pair pattern, automatic alias or per-site selector is
+replay;160 focused/installed checks and83 existing-caller checks pass. **C350:**
+held-out public PIM reaches isolated native qualification through separate
+cycle-local representation/reader-input policies; bridge stays single, all21
+native checks pass, no cross-ring plane. **Next:** fixed-manager rotation/bending
+response, then deterministic prelaunch-timeout cold-readback repair observed in
+focused testing; qualified source/context selection remains open. No DY pair pattern, automatic alias or per-site selector is
 inferred. See `source_bound_canonical_roundtrip_2026_11_16`.
 See `mixed_dy_end_states_readyset_2026_11_16`; older next steps are historical.
 

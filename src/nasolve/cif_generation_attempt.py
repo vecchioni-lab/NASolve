@@ -248,7 +248,7 @@ def _configuration(root, python, elbow, api, source_bytes, code, options, max_at
         config['recipe']['multiple_planes']=True
     if options.get('source_input_policy') is not None:
         config['recipe']['source_input_policy']=options['source_input_policy']
-        config['source_preparation']=source_input_files(source_bytes,code)[0]
+        config['source_preparation']=source_input_files(source_bytes,code,policy=options['source_input_policy'])[0]
     _validate_configuration(config)
     for row in config['generator']['api_sources'] + config['generator']['prior_sources']:
         path = _inside(root, row['path'])
@@ -266,7 +266,7 @@ def _validate_inputs(root, config):
     if 'source_preparation' not in config:
         _members(folder,{'source.cif'})
         return
-    expected,files=source_input_files(original,config['component'])
+    expected,files=source_input_files(original,config['component'],policy=config['recipe']['source_input_policy'])
     if expected!=config['source_preparation']:
         raise ValueError('Generation source projection differs from original')
     _members(folder,{'source.cif','prepared'})
@@ -338,7 +338,7 @@ def generate_source_candidate_attempt(installation_root, python_executable, elbo
             inputs = root/'inputs'; inputs.mkdir()
             files={'source.cif':original}
             if source_input_policy is not None:
-                projection,prepared=source_input_files(original,code)
+                projection,prepared=source_input_files(original,code,policy=source_input_policy)
                 if projection!=config['source_preparation']:
                     raise ValueError('Generation source projection changed before publication')
                 files.update(prepared)

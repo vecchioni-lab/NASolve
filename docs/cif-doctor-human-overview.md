@@ -4219,3 +4219,17 @@ still determines phosphate checks. Saved inputs and small per-residue proofs can
 rebuild the parent after relocation without rerunning Coot; whole-model copies do
 not accumulate for every mutation. Automatic source/context selection remains next;
 these controls do not establish modified-sugar or universal refinement support.
+
+
+### Keep connected rings free to rotate (C350)
+
+Public phenyl-imidazole PIM supplies an independent control. Its source labels the
+inter-ring bond both single and aromatic; Phenix reads it as order1.5. Cedar catches
+that disagreement. A new explicit option makes a documented reader copy that
+clears only the contradictory flag after proving that the bond joins two supported
+rings. Original source and actual native bond-order checks remain intact.
+
+Complete generation and isolated qualification pass. Both junctions have plane
+coverage and no plane ties both rings together. That is dictionary evidence;
+rotation versus junction bending still needs a native response control. No forced
+common plane, added weight, default mutation or source-chemistry edit follows.

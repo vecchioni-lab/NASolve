@@ -10,7 +10,7 @@ from inspect import getsource
 import json
 from pathlib import Path
 
-from .cif_purine_representation import validate_policy
+from .cif_purine_representation import validate_policy, CYCLE_LOCAL_POLICY_ID
 
 POLICY_ID = "cif-source-native-complete-candidate-v2"
 CONTRACT_POLICY = "cif-source-native-representation-contract-v1"
@@ -33,18 +33,48 @@ def generation_representation_contract(source, code, policy):
         raise ValueError("Require one valid source graph and complete unambiguous formal charges")
     source_component = components[0]
     projected = deepcopy(source_component)
+    retained = []
+    bridges = set()
+    if policy == CYCLE_LOCAL_POLICY_ID:
+        from .cif_doctor import _bridges
+        from .cif_purine_representation import _orders
+        adjacency = {}
+        for row in source_component['inventory']['bond_orders']:
+            x, y = row['atoms']
+            adjacency.setdefault(x, set()).add(y)
+            adjacency.setdefault(y, set()).add(x)
+        bridges = _bridges(adjacency)
     for row in projected["inventory"]["bond_orders"]:
-        if set(row["aromatic_declarations"].values()) == {"Y"}:
-            row["declarations"] = {"type": "AROMATIC"}
+        flags = set(row["aromatic_declarations"].values())
+        if policy == CYCLE_LOCAL_POLICY_ID and "Y" in flags and flags != {"Y"}:
+            raise ValueError("Conflicting source aromatic declarations")
+        if flags == {"Y"}:
+            if policy == CYCLE_LOCAL_POLICY_ID and frozenset(row['atoms']) in bridges:
+                if _orders(row) != {'SINGLE'} or not set(row['stereo_declarations'].values()) <= {'N'}:
+                    raise ValueError("Flagged inter-ring bridge must remain an unstereogenic single bond")
+                retained.append(dict(atoms=sorted(row['atoms']), source_aromatic_declaration='Y',
+                                     source_order='SINGLE', native_order_required=1))
+            else:
+                row["declarations"] = {"type": "AROMATIC"}
     representation = assess_bond_representation(source_component, projected,
         _bond_representation(source_component, projected), policy)
     if representation["status"] not in {"EXACT", "SOURCE_DECLARED_EQUIVALENT"}:
         raise ValueError("Source aromatic conversion is outside the explicit representation policy")
     systems = representation["equivalent_rings"] + representation["equivalent_fused_systems"]
-    return {"schema_version": 1, "policy_id": CONTRACT_POLICY, "representation_policy": policy,
+    if policy == CYCLE_LOCAL_POLICY_ID:
+        rings = [set(row['atoms']) for row in systems]
+        for bridge in retained:
+            a, b = bridge['atoms']
+            if not any(a in left and b in right and left.isdisjoint(right)
+                       for left in rings for right in rings):
+                raise ValueError("Flagged single bridge must join two independently qualified rings")
+    result = {"schema_version": 1, "policy_id": CONTRACT_POLICY, "representation_policy": policy,
             "component": code, "source_sha256": sha256(source.read_bytes()).hexdigest(),
             "representation": representation,
             "allowed_systems": [[b["atoms"] for b in row["bonds"]] for row in systems]}
+    if policy == CYCLE_LOCAL_POLICY_ID:
+        result['retained_single_bridges'] = sorted(retained, key=lambda row: row['atoms'])
+    return result
 
 
 def native_representation_check(snapshot, expected, contract, *, coordinates=False, charges=False):

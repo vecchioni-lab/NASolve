@@ -7,3 +7,4 @@
 /tests/fixtures/public_ccd/PDU.cif -text whitespace=-blank-at-eol
 /tests/fixtures/public_ccd/5PC.cif -text whitespace=-blank-at-eol
 /tests/fixtures/public_ccd/ATL.cif -text whitespace=-blank-at-eol
+/tests/fixtures/public_ccd/PIM.cif -text whitespace=-blank-at-eol

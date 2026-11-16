@@ -13784,3 +13784,25 @@ proves the internal OP3 deletions, retaining all original11 scaffold coordinates
 seed replay pass. No Phenix/full-suite rerun, numerical change, alias, default or
 historical migration. Source/template selection and chemical qualification remain
 separate caller responsibilities. Exact evidence: `ordinary_explicit_canonical_input_2026_11_16`.
+
+
+### Cycle-local reader flags for independent rings (C350)
+
+`cif-source-declared-cycle-local-neutral-cn-aromatic-v1` reuses the existing
+neutral five/six-member C/N classifier. A flagged graph bridge is excluded from
+aromatic conversion only when explicitly SINGLE, unstereogenic and joining two
+disjoint qualified rings. Conflicting flags, charged/incomplete rings and flagged
+hydrogen/side-chain edges refuse. Only the new contract adds `retained_single_bridges`.
+
+`source_input_files(..., policy='cif-source-reader-cycle-local-flags-v1')` separately
+projects Y→N in the reader copy, records exact fields/hashes and preserves native
+CIF tag case and all other parsed values. Graph/stereo agree with original source;
+original bytes stay exact. Existing generation recipe/reader carry the choice.
+The unchanged native worker still rejects bridge aromatization, partial conversion
+and chemical changes. Qualification compares against the original source.
+
+Public PIM supplies15 regressions plus complete generation/native qualification:
+all21 isolated checks pass; cold relocation preserves106 files/timestamps. Formal
+charge readback remains unavailable. No mutation, numerical weighting, automatic
+selection or experimental validation is implied. Exact commands, source identity,
+failures and installed replay: `cycle_local_public_ring_control_2026_11_16`.

@@ -26,3 +26,13 @@ auditor independently, with C7/C8 instead of PDU's C5A/C5B. Its graph passes;
 the pinned NARestraints workbook has two matching 5PC records, so this slice
 preserves the ambiguity and compiles no 5PC pair/stack policy. Both fixtures
 are public graph/isolated-component controls, never scaffold insertions.
+
+`PIM.cif` is the unmodified public download from
+https://files.rcsb.org/ligands/download/PIM.cif, retrieved 2026-11-16:
+5,750 bytes, SHA-256
+`af049e7b0feb29f0e8f608498737eee68227786fac5bab0f764b64b792755e8e`.
+This neutral phenyl-imidazole control declares inter-ring C5–C6 SINGLE and
+aromatic Y. It tests a separate graph-based reader correction: qualified rings
+may become aromatic, but their bridge stays single. Source bytes stay exact;
+renamed/reordered controls exclude a PIM-name exception. This is an isolated
+public control, not a curated production dictionary or experimental model.

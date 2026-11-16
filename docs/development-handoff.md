@@ -1,12 +1,31 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C349 ordinary explicit canonical parents — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. C348 pushed at `09295ec5`; C349 is this
+Updated **2026-11-16, C350 held-out ring qualification — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. C349 pushed at `3b11fdf0`; C350 is this
 completed code/evidence checkpoint. No full suite, branch, default activation or
 merge. Linden owns Pine/Willow; frozen restoration/C331/C338 unchanged. Simon
 confirmed work through **23:00 London**. All Rowan jobs stopped at this checkpoint.
 
 ## Current result and next bounded task
+
+**C350 complete:** public PIM passes all21 isolated native checks after an explicit
+reader-copy correction to its contradictory SINGLE/aromatic bridge flag. Native
+bridge remains single; no plane spans both rings. No name exception/default change.
+Root `350_Cedar_PIM-ring-control-3_11z738`,11.75s/~3.49MB, all jobs stopped.
+Cold relocation preserves106 files/timestamps, removes2.81MB scratch. Complete
+Phenix2.2.1-6174 generation/qualification; formal-charge readback unsupported.
+350 focused/29.72s and350 installed relocated/30.70s pass. Historical input bytes,
+DY contract and native worker exact. Two failed attempts remain preserved.
+Evidence: `cycle_local_public_ring_control_2026_11_16`.
+
+**Next:** independent ring rotation/bending response, then deterministic prelaunch
+timeout cold-reader repair. Restricted focused testing exposed missing
+`representation_validation` when a0.5s allowance expires before candidate launch;
+proper process access passes but that branch still needs a deterministic check.
+Qualified source/context selection and Q06 geometry stay open. No full suite.
+Simon now explicitly permits coordination with Hazel as well as Linden.
+Older next statements below are historical.
+
 
 **Earlier C344 complete — Rowan.** C343 pushed `e4f7ef7f`; C344 is this docs/evidence
 checkpoint. All jobs stopped, no code/default changes or new pytest run; C343's

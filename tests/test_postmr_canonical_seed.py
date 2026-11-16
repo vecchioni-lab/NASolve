@@ -103,8 +103,8 @@ def test_incompatible_template_or_source_fails(tmp_path, defect):
         from nasolve.ligand_profiles import _emit
         values=_values(template,'DT')
         key='_chem_comp_atom.pdbx_model_cartn_x_ideal';values[key]=[str(-float(v)) for v in values[key]]
-        template.write_text('data_DT\n'+_emit(values))
-    with pytest.raises(ValueError):canonical_parent_seed(model,'A:1',source,'PDU',template,parent)
+        template.write_text(_emit(values))
+    with pytest.raises(ValueError, match='sugar hand' if defect=='mirror' else None):canonical_parent_seed(model,'A:1',source,'PDU',template,parent)
 
 
 def test_serials_preserve_unrelated_records_and_do_not_reuse_ter(tmp_path):

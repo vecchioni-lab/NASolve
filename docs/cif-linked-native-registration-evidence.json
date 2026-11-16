@@ -105254,5 +105254,358 @@
       "No Phenix/full-suite rerun; C346 survival and C220 last full remain the separately recorded evidence."
     ],
     "next": "Qualified source/context selection and held-out rotating-ring control; retain Q06 achieved-geometry distinction."
+  },
+  "cycle_local_public_ring_control_2026_11_16": {
+    "milestone": "C350",
+    "date": "2026-11-16",
+    "signed": "Rowan",
+    "before": "Public PIM declares C5-C6 SINGLE and aromatic Y. Historical policy refuses; native reader turns bridge into1.5. Initial control rejects before builder.",
+    "after": "Separate explicit policies permit only supported isolated neutral C/N rings and clear contradictory flags only on proven SINGLE bridges between independently qualified rings. Original source unchanged; native bridge remains single.",
+    "source": {
+      "url": "https://files.rcsb.org/ligands/download/PIM.cif",
+      "retrieved": "2026-11-16",
+      "path": "tests/fixtures/public_ccd/PIM.cif",
+      "sha256": "af049e7b0feb29f0e8f608498737eee68227786fac5bab0f764b64b792755e8e",
+      "bytes": 5750,
+      "public": true
+    },
+    "schemas": {
+      "representation": "cif-source-declared-cycle-local-neutral-cn-aromatic-v1",
+      "reader_input": "cif-source-reader-cycle-local-flags-v1",
+      "schema_version": 1,
+      "contract_addition": "retained_single_bridges for new policy only",
+      "reader_addition": "cycle_local_flags, exact changed fields and hashes",
+      "migration": "None; opt-in only"
+    },
+    "validation": {
+      "focused": "350 passed/29.72s, same pytest file list as installed command below; PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src, ordinary venv python, -q -p no:cacheprovider --tb=short, native process-identity access",
+      "installed": {
+        "status": "INSTALLED_RELOCATED_CYCLE_LOCAL_INPUT_PASS",
+        "wheel_sha256": "fc7a8a3651949e0110c0a7149c48149580f183a8a1691708c37d1f8e07f6cd3d",
+        "wheel_bytes": 1387238,
+        "source_copy_removed": true,
+        "original_install_path_absent": true,
+        "package_reference_bytes_match": true,
+        "validation_command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-c",
+          "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_cif_cycle_local_representation.py', 'tests/test_cif_generation_input.py', 'tests/test_cif_source_representation.py', 'tests/test_cif_five_ring_representation.py', 'tests/test_cif_purine_representation.py', 'tests/test_cif_oxo_purine_representation.py', 'tests/test_cif_generation_attempt.py', 'tests/test_cif_generation_acquisition.py', 'tests/test_postmr_canonical_seed.py', '--tb=short']))"
+        ],
+        "validation_output": "........................................................................ [ 20%]\n........................................................................ [ 41%]\n........................................................................ [ 61%]\n........................................................................ [ 82%]\n..............................................................           [100%]\n350 passed in 30.70s\n",
+        "build_command": "phenix.python -m pip wheel --no-deps --no-build-isolation --no-index",
+        "temporary_bytes_removed": 11027736
+      },
+      "historical": {
+        "status": "HISTORICAL_DEFAULTS_BYTE_IDENTICAL",
+        "baseline_commit": "3b11fdf0efb599b0dc9a3bcc72f1202932b03bcd",
+        "checks": [
+          "DY/PDU/PIM default source input binding and exact prepared bytes",
+          "DY five-ring contract exact JSON",
+          "native representation worker exact bytes"
+        ],
+        "comparison_sha256": "9dd1be705ad316328ea8635b7b305119b64e5d36ec60357fcf74acdc2cbb499e"
+      },
+      "new_tests": 15,
+      "caveats": [
+        "Restricted run348pass2fail/32.38s: Darwin process identity unavailable; proper-access run passes.",
+        "0.5s deadline can expire before candidate launch, exposing missing representation_validation during cold inspection. Separate deterministic recovery regression queued; not fixed here.",
+        "Corrected duplicate data-block prefix in new test fixtures and existing canonical mirror test; latter now specifically checks sugar-hand refusal."
+      ]
+    },
+    "native": {
+      "root": {
+        "anchor": "NASolve-live-tests",
+        "path": "350_Cedar_PIM-ring-control-3_11z738"
+      },
+      "version": "Phenix2.2.1-6174, dispatcher2.2.1, Python3.11 Darwinarm64",
+      "execution": "Complete generation and isolated qualification",
+      "summary": {
+        "status": "BOUNDED_PIM_ACQUISITION_OBSERVED",
+        "error": null,
+        "acquisition": "PREPARED_AND_FROZEN",
+        "generation_diagnostic": {
+          "policy_id": "cif-source-candidate-diagnostic-v1",
+          "generation_status": "CANDIDATE_REVIEW",
+          "candidate_state": "RETAINED_REVIEW",
+          "blocking_stage": null,
+          "summary": "Candidate retained for review; native usability requires separate qualification.",
+          "builder_started": true,
+          "failed_handoff_checks": [],
+          "handoff_reason": null,
+          "native_exception": null,
+          "execution_status": "COMPLETED",
+          "execution_returncode": 0,
+          "rejection_reasons": [],
+          "identity_change_fields": [],
+          "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+          "automatic_adoption": false
+        },
+        "candidate_status": "CANDIDATE_REVIEW",
+        "rejection_reasons": [],
+        "source_preserved": true,
+        "elapsed_seconds": 11.748983084002248,
+        "physical_bytes": 3492253,
+        "scientific_approval": "NOT_RUN",
+        "mutation_enabled": false,
+        "readyset": "NOT_RUN",
+        "coot": "NOT_RUN",
+        "refinement": "NOT_RUN"
+      },
+      "driver": {
+        "returncode": 0,
+        "stopped_verified": true,
+        "source_unchanged": true
+      },
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=../NASolve-c96/src .venv/bin/python -B branch-artifacts/cedar/runners/c350_start.py"
+    },
+    "cold": {
+      "status": "C350_COLD_NATIVE_DICTIONARY_AND_JUNCTION_READBACK",
+      "candidate_sha256": "0124447f84f14a295867273816e8d27fed6f9955bc725fb5b31623848939f19b",
+      "qualification_status": "ISOLATED_NATIVE_USABILITY_PASS",
+      "native_usable": true,
+      "qualification_checks": {
+        "effective_declared_bond_orders": true,
+        "energy_inventory": true,
+        "exact_active_angles": true,
+        "exact_active_bonds": true,
+        "exact_active_planes": true,
+        "exact_active_torsions": true,
+        "exact_effective_definitions": true,
+        "exact_fixed_chirality_membership": true,
+        "exact_model_and_component": true,
+        "finite_active_proxy_parameters": true,
+        "finite_energy_and_gradient": true,
+        "fixed_coordinate_repeats": true,
+        "native_completed": true,
+        "native_coordinate_roundtrip": true,
+        "no_competing_native_ss": true,
+        "no_contradictory_native_formal_charges": true,
+        "no_native_fatal_or_unused": true,
+        "omitted_unoriented_volume_coverage": true,
+        "one_complete_monomer": true,
+        "proxy_counts_complete": true,
+        "source_chemistry_and_configuration": true
+      },
+      "formal_charge_readback": "UNSUPPORTED",
+      "absolute_cip_assignment": "NOT_RUN",
+      "planes": {
+        "plan-1": [
+          "C2",
+          "C4",
+          "H2",
+          "HN1",
+          "N1",
+          "N3"
+        ],
+        "plan-2": [
+          "C4",
+          "C5",
+          "C6",
+          "H4",
+          "HN1",
+          "N1",
+          "N3"
+        ],
+        "plan-3": [
+          "C11",
+          "C5",
+          "C6",
+          "C7",
+          "C8",
+          "H7"
+        ],
+        "plan-4": [
+          "C10",
+          "C7",
+          "C8",
+          "C9",
+          "H8",
+          "H9"
+        ],
+        "plan-5": [
+          "C10",
+          "C11",
+          "C6",
+          "C9",
+          "H10",
+          "H11"
+        ]
+      },
+      "planes_spanning_off_axis_atoms_of_both_rings": [],
+      "bridge_order": "SINGLE",
+      "bridge_torsions": [
+        {
+          "comp_id": "PIM",
+          "id": "CONST_03",
+          "atom_id_1": "C7",
+          "atom_id_2": "C6",
+          "atom_id_3": "C5",
+          "atom_id_4": "N1",
+          "value_angle": "141.85",
+          "value_angle_esd": "0.0",
+          "period": "0"
+        },
+        {
+          "comp_id": "PIM",
+          "id": "CONST_04",
+          "atom_id_1": "C11",
+          "atom_id_2": "C6",
+          "atom_id_3": "C5",
+          "atom_id_4": "N1",
+          "value_angle": "-42.48",
+          "value_angle_esd": "0.0",
+          "period": "0"
+        },
+        {
+          "comp_id": "PIM",
+          "id": "CONST_10",
+          "atom_id_1": "C7",
+          "atom_id_2": "C6",
+          "atom_id_3": "C5",
+          "atom_id_4": "C4",
+          "value_angle": "-37.27",
+          "value_angle_esd": "0.0",
+          "period": "0"
+        },
+        {
+          "comp_id": "PIM",
+          "id": "CONST_11",
+          "atom_id_1": "C11",
+          "atom_id_2": "C6",
+          "atom_id_3": "C5",
+          "atom_id_4": "C4",
+          "value_angle": "138.40",
+          "value_angle_esd": "0.0",
+          "period": "0"
+        }
+      ],
+      "junction": [
+        {
+          "centre": "C5",
+          "neighbors": [
+            "C4",
+            "C6",
+            "N1"
+          ],
+          "covering_planes": [
+            "plan-2"
+          ],
+          "angles": [
+            {
+              "comp_id": "PIM",
+              "atom_id_1": "C6",
+              "atom_id_2": "C5",
+              "atom_id_3": "C4",
+              "value_angle": "128.11",
+              "value_angle_esd": "2.484"
+            },
+            {
+              "comp_id": "PIM",
+              "atom_id_1": "C6",
+              "atom_id_2": "C5",
+              "atom_id_3": "N1",
+              "value_angle": "125.57",
+              "value_angle_esd": "2.622"
+            },
+            {
+              "comp_id": "PIM",
+              "atom_id_1": "C4",
+              "atom_id_2": "C5",
+              "atom_id_3": "N1",
+              "value_angle": "106.31",
+              "value_angle_esd": "2.499"
+            }
+          ],
+          "geometry": {
+            "status": "DESCRIPTIVE",
+            "absolute_normalized_volume": 0.009822432727927096
+          }
+        },
+        {
+          "centre": "C6",
+          "neighbors": [
+            "C11",
+            "C5",
+            "C7"
+          ],
+          "covering_planes": [
+            "plan-3"
+          ],
+          "angles": [
+            {
+              "comp_id": "PIM",
+              "atom_id_1": "C11",
+              "atom_id_2": "C6",
+              "atom_id_3": "C7",
+              "value_angle": "120.85",
+              "value_angle_esd": "2.556"
+            },
+            {
+              "comp_id": "PIM",
+              "atom_id_1": "C11",
+              "atom_id_2": "C6",
+              "atom_id_3": "C5",
+              "value_angle": "120.76",
+              "value_angle_esd": "2.889"
+            },
+            {
+              "comp_id": "PIM",
+              "atom_id_1": "C7",
+              "atom_id_2": "C6",
+              "atom_id_3": "C5",
+              "value_angle": "118.24",
+              "value_angle_esd": "2.891"
+            }
+          ],
+          "geometry": {
+            "status": "DESCRIPTIVE",
+            "absolute_normalized_volume": 0.05711046699590347
+          }
+        }
+      ],
+      "native_receipts": [
+        {
+          "path": "request/attempts/attempt-0001/qualification/native/native/000/cif-native-xqzv3gn5/native_receipt.json",
+          "sha256": "c6a99474fe677a34ecf2bb18201b499dd79cd08931bd28b927ab9551aa4a0b34"
+        },
+        {
+          "path": "request/attempts/attempt-0001/qualification/native/native/001/cif-native-9qby_r_g/native_receipt.json",
+          "sha256": "bc67ebbc4dcd67cdd2fe4a02e829c4f4ddccce87f9c156b18cb4822adcdb1a02"
+        }
+      ],
+      "relocation": {
+        "original_path_absent": true,
+        "exact_acquisition_equal": true,
+        "native_execution_forbidden": true,
+        "all_attempts_stopped": true,
+        "temporary_bytes_removed": 2810901
+      },
+      "preserved_original_files": 106,
+      "scientific_approval": "NOT_RUN",
+      "limitations": [
+        "Zero-ESD constant torsion records are not evidence of a restoring force.",
+        "Plane absence alone is not proof of inadequate alternative angle restraints.",
+        "Separate ring rotation and junction deformation need actual native response controls before force changes or mutation approval."
+      ]
+    },
+    "preserved_failures": [
+      {
+        "root": "350_Cedar_PIM-ring-control-e_rtekek",
+        "reason": "Bridge read as1.5; rejected before builder."
+      },
+      {
+        "root": "350_Cedar_PIM-ring-control-28sbeub5",
+        "reason": "Initial projection lowercased native-sensitive Cartn tags; serializer now retains original case. No builder started."
+      }
+    ],
+    "compatibility": "Default reader bytes, prior DY contract and native worker exact. No new process owner/default/weight/threshold/chemistry editing or automatic adoption.",
+    "retention": "Only code/tests/docs/compact evidence and unmodified public CCD fixture committed. Native dictionaries, code captures and logs local. Successful package/cold scratch removed.",
+    "limitations": [
+      "Isolated usability only; formal-charge readback UNSUPPORTED.",
+      "No nucleotide/mutation/refinement or experimental claim.",
+      "Rotation/bending response next; no full suite."
+    ],
+    "next": "Held-out native ring rotation/junction response; deterministic prelaunch timeout reader fix; qualified source/context selection and Q06 achieved geometry remain open."
   }
 }

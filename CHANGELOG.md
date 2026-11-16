@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve single bridges between independently qualified rings (C350)
+
+- Add separate opt-in representation and reader-input policies for supported
+  isolated neutral C/N rings. Clear a contradictory aromatic flag only on a proven
+  single bridge in a recorded reader copy; preserve original source, bond order,
+  hydrogens, charge, stereo and coordinates.
+- Require native readback to keep the bridge single. Existing policies/default
+  bytes/native worker remain unchanged. Add the unmodified public PIM fixture;
+  no automatic mutation or numerical-restraint change follows.
+
 ### Carry explicit canonical parents through ordinary Coot construction (C349)
 
 - Let the existing constructor accept source/template choices for selected
