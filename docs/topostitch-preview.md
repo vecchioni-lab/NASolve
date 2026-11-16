@@ -1537,6 +1537,17 @@ validates group membership (including a retained lattice shift) and compiles
 finite proper Cartesian matrices without importing Gemmi or Phenix; those
 matrices alone are numerical inputs, not proof of crystallographic membership.
 
+W94 adds `CartesianImage.around_pivot(rotation, pivot, translation=(0,0,0))`
+(translation is keyword-only). It compiles `R(x-p)+p+t` into the existing rigid
+image, with translation applied after rotation and the same inverse, tensor and
+gradient rules. `(I-R)p+t` preserves a small translation at a large pivot under
+identity rotation. Invalid/improper rotations, nonfinite vectors and overflowing
+offsets are rejected. This explicit numerical constructor neither infers a
+molecular axis nor authorizes a placement or symmetry operation. The preview
+uses it for ANISOU transport; centered coordinate arithmetic and serialized PDB
+replay retain their existing rounding. Three-orientation campaign execution is
+still planned, strictly after PostMR and first refinement, with no MR rerun.
+
 `expand_sites` retains each explicit atom/image instance.
 `accumulate_image_gradients` applies `R_cart` transpose and **adds** all image
 contributions to their shared ASU atom. Repeated ASU indices are intentional;
@@ -1553,6 +1564,37 @@ hash. Under Phenix 2.2.1-6174, Cartesian planarity and Cedar-corrected paralleli
 pullback still pass; the intentionally retained raw negative controls still fail.
 The viewer keeps JSON arrays and schema 1. Source/candidate PDBs and frozen
 preview replay are unchanged; only floating-point display arithmetic is shared.
+
+### W94 validation — 2026-11-16
+
+Nine new cases fail before `around_pivot` exists and pass afterward. They check
+an off-origin 120-degree cycle, inverse and post-rotation translation, tensor and
+gradient semantics, detached inputs, identity translation at a large pivot,
+invalid/improper inputs and overflow. Focused **139**, full **1,844 +229 subtests**
+and fresh-wheel **139** tests pass. Six installed CLI helps and `pip check` pass.
+The full suite covers the shared numerical boundary; no native external program
+was executed, so this is software validation, not Phenix/geometry qualification.
+
+Exact validation commands (temporary paths record historical local provenance):
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider tests/test_topostitch_transport.py tests/test_topostitch_preview.py tests/test_topostitch_trial.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w94-pivot/install-check.py
+env -u PYTHONPATH -u PYTHONHOME PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/install/env/bin/python -m pytest -q -p no:cacheprovider /private/tmp/willow-w94-pivot/install/test-suite/tests/test_topostitch_transport.py /private/tmp/willow-w94-pivot/install/test-suite/tests/test_topostitch_preview.py /private/tmp/willow-w94-pivot/install/test-suite/tests/test_topostitch_trial.py
+```
+
+The install check builds an sdist, removes its staging source, extracts elsewhere,
+builds a wheel and installs it plus declared test/topology-fit dependencies into a
+fresh environment. Tests import the installed package without source PYTHONPATH.
+The first harness invocation reached installation/CLI checks but test collection
+failed because setuptools' default sdist test selection omitted relative-import
+helpers. Supplying the complete relocated test package fixed the harness; the
+wheel was unchanged and all 139 tests passed. This does not claim the distributed
+sdist contains a self-contained test suite. Wheel SHA256:
+`809be293c07093398600ad2fa39b259812ef48cc9e482181e210a89abfdb01a4`.
+Generated models/builds/logs stay local and are excluded from Git. No published
+scientific dataset or artifact-format migration is part of W94.
 
 ### Reproducible native plane gate
 

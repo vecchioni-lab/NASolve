@@ -63,7 +63,8 @@ cross-dataset model reuse; broader family/model orchestration remains separate.
 ## Three-orientation asymmetric-triangle check (W93; planned)
 
 Simon requested an opt-in campaign check, tentatively `-checkasym` (spelling and
-runtime schema are not implemented). Starting from one usable placed triangle,
+runtime schema are not implemented). Start strictly **after PostMR and the first
+refinement**, from one usable placed, sequence-labelled triangle checkpoint;
 compare Orientation 1/2/3: nominal 0, 120 and 240 degree rotations about a
 **molecular approximate threefold axis** through a registered pivot. This is not
 an assumed crystallographic operation: the public better-resolved control
@@ -86,8 +87,8 @@ Use three independent immutable siblings from the same source, each with its own
 sequence preparation, local placement adjustment, bending/relaxation and matched
 refinement. Do not inherit the first candidate's optimized bend. An unrestricted
 MR search on three merely pre-rotated input files can recover the same placement
-three times; retain the three placed hypotheses through bounded local refinement
-or an explicitly qualified orientation-constrained search, then classify converged
+three times. **Do not rerun MR in these siblings.** Retain the placed hypotheses
+through bounded local adjustment and matched refinement, then classify converged
 duplicates. Resolve independent ASU copies/NCS relationships before deciding
 whether to rotate the whole assembly or individual motifs; do not silently turn
 three tests into an unbounded 3^N search.
@@ -118,8 +119,10 @@ comparison can precede broad automatic connection inference but must not claim
 S08 completion. No AI/agent runtime dependency is needed. Read-only inventory of
 three user-supplied MegaAsym datasets is complete; local anchored hashes and
 unresolved model mapping stay in ignored workspace evidence. Two top-level
-AlphaFold-labelled models are present; the third source/sequence remains to be
-bound. No solve is launched by this planning update. User-authorized future copies
+AlphaFold-labelled models are present. Simon confirmed the available three
+examples suffice: the absent third local AlphaFold model is optional follow-up,
+not a prerequisite. Bind the actual selected examples and their sequence/motif
+mapping before execution. No solve is launched by this planning update. User-authorized future copies
 must preserve originals and checksums. Use 7U3O as a blinded known-answer control,
 including degraded-resolution and true symmetry-equivalent controls, before the
 unresolved data; deposited answers must not guide blind fitting.

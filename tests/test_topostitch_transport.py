@@ -188,3 +188,55 @@ def test_tensor_transport_rejects_ambiguous_or_nonfinite_components(tensor):
 def test_tensor_transport_refuses_finite_input_that_overflows_on_rotation():
     c=math.sqrt(.5);image=CartesianImage(((c,-c,0.),(c,c,0.),(0.,0.,1.)),(0.,0.,0.))
     with pytest.raises(ValueError):image.rotate_tensor((1.5e308,1.5e308,1.,1.5e308,0.,0.))
+
+
+def test_pivoted_rotation_keeps_molecular_center_and_cycles_three_placements():
+    # A 120-degree molecular rotation is valid arithmetic even in a P1 dataset.
+    # The cell origin must not become the molecular pivot.
+    c, s = -.5, math.sqrt(3)/2
+    rotation=((c,-s,0.),(s,c,0.),(0.,0.,1.))
+    pivot=(11.,-7.,3.)
+    image=CartesianImage.around_pivot(rotation,pivot)
+    assert image.apply(pivot)==pytest.approx(pivot,abs=1e-13)
+    point=(13.,-7.,4.)
+    assert image.apply(point)==pytest.approx((10.,-7.+math.sqrt(3),4.),abs=1e-13)
+    assert image.apply(image.apply(image.apply(point)))==pytest.approx(point,abs=1e-13)
+    assert image.inverse().apply(image.apply(point))==pytest.approx(point,abs=1e-13)
+    assert image.apply(point)!=CartesianImage(rotation,(0.,0.,0.)).apply(point)
+
+
+def test_pivoted_rotation_translates_after_rotation_and_retains_tensor_gradient_rules():
+    rotation=((0.,-1.,0.),(1.,0.,0.),(0.,0.,1.))
+    image=CartesianImage.around_pivot(rotation,(10.,20.,30.),translation=(2.,-3.,4.))
+    assert image.apply((11.,20.,32.))==pytest.approx((12.,18.,36.))
+    tensor=(.1,.2,.3,.04,.05,.06)
+    assert image.rotate_tensor(tensor)==CartesianImage(rotation,(0.,0.,0.)).rotate_tensor(tensor)
+    assert image.pullback((2.,3.,4.))==(3.,-2.,4.)
+    assert image.inverse().apply(image.apply((11.,20.,32.)))==pytest.approx((11.,20.,32.))
+
+
+def test_identity_pivot_preserves_small_translation_at_large_origin_and_detaches_inputs():
+    rotation=[[1.,0.,0.],[0.,1.,0.],[0.,0.,1.]]
+    pivot=[1e20,-1e20,1e20];translation=[.1,.2,.3]
+    image=CartesianImage.around_pivot(rotation,pivot,translation=translation)
+    assert image.translation==(.1,.2,.3)  # p+t-p would erase these translations.
+    rotation[0][0]=2.;pivot[0]=0.;translation[0]=9.
+    assert image.apply((1.,2.,3.))==(1.1,2.2,3.3)
+    assert CartesianImage.around_pivot(IDENTITY_IMAGE.rotation,(1e300,)*3)==IDENTITY_IMAGE
+
+
+@pytest.mark.parametrize('pivot,translation',[
+    ((1.,2.),(0.,0.,0.)), ((0.,float('nan'),0.),(0.,0.,0.)),
+    ((False,0.,0.),(0.,0.,0.)), ((0.,0.,0.),(0.,float('inf'),0.)),
+    ((0.,0.,0.),(0.,0.,True)),
+])
+def test_pivoted_rotation_refuses_invalid_origin_or_translation(pivot,translation):
+    with pytest.raises(ValueError):
+        CartesianImage.around_pivot(IDENTITY_IMAGE.rotation,pivot,translation=translation)
+
+
+def test_pivoted_rotation_refuses_improper_rotation_and_overflow():
+    with pytest.raises(ValueError,match='proper rotation'):
+        CartesianImage.around_pivot(((-1.,0.,0.),(0.,1.,0.),(0.,0.,1.)),(1.,2.,3.))
+    with pytest.raises(ValueError,match='finite'):
+        CartesianImage.around_pivot(((-1.,0.,0.),(0.,-1.,0.),(0.,0.,1.)),(1e308,0.,0.))

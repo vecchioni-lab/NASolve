@@ -61,6 +61,23 @@ class CartesianImage:
         object.__setattr__(self, 'rotation', rotation)
         object.__setattr__(self, 'translation', translation)
 
+    @classmethod
+    def around_pivot(cls, rotation, pivot, *, translation=(0.,0.,0.)):
+        """Construct x' = R(x - pivot) + pivot + translation.
+
+        The pivot and optional post-rotation translation use the same Cartesian
+        frame as the coordinates. A molecular rotation is not automatically a
+        crystallographic symmetry operation or an authorized model placement.
+        The existing rigid-image validation and tensor/gradient rules apply.
+        """
+        image = cls(rotation, (0.,0.,0.))
+        pivot, translation = _vector(pivot), _vector(translation)
+        # (I-R)p avoids erasing a small translation by adding/subtracting a
+        # large pivot, and makes identity rotation exactly translation-only.
+        offset = tuple(_dot(tuple((1. if i==j else 0.)-v for j,v in enumerate(row)),pivot)+t
+                       for i,(row,t) in enumerate(zip(image.rotation,translation)))
+        return cls(image.rotation, _vector(offset))
+
     def apply(self, point):
         point = _vector(point)
         result = tuple(_dot(row,point)+t for row,t in zip(self.rotation,self.translation))

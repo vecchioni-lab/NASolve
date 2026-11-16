@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W94 — Compile explicit molecular rotations about a Cartesian pivot
+
+- Add a checked pivot constructor to the existing rigid image owner, retaining
+  inverse, tensor and gradient transport; reuse it for preview ANISOU handling.
+  Existing centered PDB coordinate rounding, artifact schemas and defaults remain.
+- Correct the future asymmetric-triangle experiment to start after PostMR and
+  first refinement without rerunning MR. The missing third local AlphaFold model
+  is optional follow-up. Shared Cedar live-policy integration remains gated.
+
 ### W93 — Queue blunt-contact and asymmetric-orientation experiments
 
 - Specify density-aware single-base blunt stacking without mandatory backbone

@@ -140,7 +140,7 @@
         "recomputed model-dependent maps",
         "complete retained provenance"
       ],
-      "avoid": "Unrestricted MR undoing all seed rotations; Rfree-guided repeated tuning; three-to-the-copy-count explosion.",
+      "avoid": "MR reruns that undo the placed hypotheses; Rfree-guided repeated tuning; three-to-the-copy-count explosion.",
       "decision_states": [
         "favored",
         "indistinguishable",
@@ -148,8 +148,10 @@
         "failed_or_incomparable"
       ],
       "public_control": "7U3O P1, 3.31 Angstrom; blinded fitting and later known-answer comparison",
-      "private_benchmark": "Three user-supplied MegaAsym datasets; local inventory only, third AlphaFold source/sequence binding pending.",
-      "runtime_authority": false
+      "private_benchmark": "Three MegaAsym datasets inventoried locally. Available three examples suffice per user; missing third local AlphaFold model is optional follow-up, not a gate. Bind chosen examples, sequences and motif/copy mapping before execution.",
+      "runtime_authority": false,
+      "entry_checkpoint": "After PostMR and the first refinement; all three siblings share that immutable source checkpoint.",
+      "rerun_mr": false
     }
   },
   "ui": {

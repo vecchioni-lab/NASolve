@@ -138,8 +138,8 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-16
 
-**W93 requirements recorded; W94 implementation remains gated.** Latest audited runtime is W90 `5965d858` on isolated
-`willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
+**W94 pivot arithmetic is validated; shared native-policy integration
+remains gated.** Work stays on isolated `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
 [periodic topology](topostitch-periodic.md) and [bend previews](topostitch-preview.md).
@@ -150,18 +150,24 @@ one base-stack pair with noncanonical polarity/twist; place them using density
 rather than continuous-backbone alignment. See the [blunt contact contract](topostitch.md#designed-blunt-contacts-and-single-base-stacking-w93-planned).
 The [three-orientation campaign plan](campaign-model-roadmap.md#three-orientation-asymmetric-triangle-check-w93-planned)
 keeps observed data/Free-R fixed and independently bends/refines labelled molecular
-placements at nominal 0/120/240 degrees. A free MR rerun may erase the intended
-alternatives; maps are recalculated per model, and ties/failures remain explicit.
+placements at nominal 0/120/240 degrees, strictly after PostMR and the first
+refinement. Do not rerun MR: it can erase the intended alternatives. Maps are
+recalculated per model, and ties/failures remain explicit.
 7U3O is the public control. Three private dataset triplets were inventoried;
-two top-level AlphaFold-labelled models exist and the third binding is pending.
-No dataset copy/solve/runtime change. Private anchored hashes and source-SI receipt
+two top-level AlphaFold-labelled models exist. The user confirmed three available
+examples suffice; a missing third local AlphaFold model is not a blocker.
+No dataset copy or solve. Private anchored hashes and source-SI receipt
 are under the everyday checkout's ignored `branch-artifacts/willow/commute-2026-11-16/`.
-W94 still begins with the qualified Cedar owner/optional consumer, not this later
-experiment. Validation: `PYTHONDONTWRITEBYTECODE=1 python3
-scripts/audit_topostitch_roadmap.py --write` and `--check`, JSON parsing of both
-intent/roadmap, and `git diff --check` pass. Documentation only; no runtime or
-artifact-schema migration and no full-suite/native rerun. Latest W90 software
-validation stands.
+The Cedar consumer waits for Rowan's qualified owner; W94 only adds explicit
+pivot arithmetic to the existing Cartesian image owner and reuses it for preview
+ANISOU. No MR/refinement behavior, axis inference, schema or dependency change.
+W94 validation: nine regressions failed before the API existed; **139 focused**,
+**1,844 full +229 subtests**, and **139 installed/relocated** tests pass, along with
+six installed CLI help checks and `pip check`. The full suite ran because this is
+shared coordinate arithmetic. See the [exact receipt](topostitch-preview.md#w94-validation--2026-11-16).
+No Phenix/Coot execution or scientific acceptance is claimed. The patch changes
+the existing transport/preview modules and transport tests, with no new module,
+schema, dependency or migration; generated test/build files remain local.
 
 **Current behavior:** the existing graph/packet owners freeze explicit image or
 chosen-forest proposals, replay them after relocation, compare 2–8 cuts through
