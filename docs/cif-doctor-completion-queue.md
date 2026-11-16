@@ -868,8 +868,9 @@ remove an unwanted whole phosphate. **C346:** five actual covalent-only refineme
 substitution scaffold retain exact DY native targets/definition and sugar signs.
 Both rings remain near planar, the junction improves, and rotation is not frozen.
 Cold exact-manager/written-model replay passes. No DY pairing or universal
-refinement claim. **Next C347:** actual canonical residue identity after Coot
-mutation, then the generalized modified→canonical→different-modification test
+refinement claim. **C347:** actual canonical residue identity is now checked immediately after
+Coot mutation; both native refusal/success controls and109 focused/installed tests
+pass. **Next:** the generalized modified→canonical→different-modification test
 Simon endorsed. C346's first PDU→DT step reported native success but failed the
 later orientation gate. Ordinary source/context integration remains after this. No DY pair
 pattern, automatic alias or per-site selector is inferred from these controls.

@@ -2,6 +2,11 @@
 
 NASolve orchestrates external crystallographic programs; it does not reimplement them.
 
+Ordinary Coot construction verifies actual canonical residue identity after each
+native mutation, before writing a parent snapshot or constructing its replacement.
+Native success codes do not establish chemical identity. Historical script
+generation defaults remain exact; current execution explicitly enables the check.
+
 Custom free-nucleoside references may be combined with an explicitly selected
 DNA source through the pure `compose_dna_source` API. Each source owns its retained
 subgraph; hashes and per-atom origins accompany the new source. Conventional

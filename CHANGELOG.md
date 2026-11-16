@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Check that Coot actually made the requested canonical residue (C347)
+
+- Read the actual residue identity after native canonical mutation, including
+  the temporary parent used to place a modification. A success return code with
+  an unchanged or missing residue now stops before that parent is used.
+- Keep original models/partial evidence and historical script generation intact.
+  This adds no reconstruction, chemistry change or mutation alias.
+
 ### Carry explicit chemistry rules into DNA classification for construction (C343)
 
 - Forward the optional bond-representation policy through the existing DNA

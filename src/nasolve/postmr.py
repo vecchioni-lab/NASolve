@@ -425,8 +425,9 @@ def _coot_script(
     parent_models: Mapping[str, Path],
     *,
     conformation_plans: Mapping[str, dict] | None = None,
+    verify_mutation_identity: bool = False,
 ) -> str:
-    # Absent plans preserve exact historical script generation for replay.
+    # Default options preserve exact historical script generation for replay.
     from .postmr_conformation import native_helpers, native_match_lines, native_overlap_check_lines
     lines = [
         "import coot",
@@ -445,6 +446,15 @@ def _coot_script(
         "if imol < 0:",
         "    raise RuntimeError('Coot could not read the PostMR model')",
     ])
+    def identity_lines(site, chain, residue, expected):
+        if not verify_mutation_identity:
+            return []
+        return [
+            f"result_name = coot.residue_name(imol, {chain!r}, {residue}, '')",
+            f"print('NASOLVE_MUTATION_IDENTITY', {site!r}, {expected!r}, result_name)",
+            f"if result_name != {expected!r}:",
+            f"    raise RuntimeError('Coot did not produce {expected} at {site}')",
+        ]
     for action in actions:
         chain, resid = _site_parts(action.site)
         try:
@@ -463,6 +473,7 @@ def _coot_script(
                 "if status != 1:",
                 f"    raise RuntimeError('Coot mutation failed at {action.site}')",
             ])
+            lines.extend(identity_lines(action.site, chain, residue_number, action.after))
             continue
         if action.method != "coot-parent-overlap" or action.parent_code is None:
             raise PostMRPreparationError(
@@ -478,6 +489,7 @@ def _coot_script(
                 "if status != 1:",
                 f"    raise RuntimeError('Coot parent mutation failed at {action.site}')",
             ])
+            lines.extend(identity_lines(action.site, chain, residue_number, action.parent_code))
         lines.extend([
             f"coot.write_pdb_file(imol, {json.dumps(str(parent_models[action.site]))})",
             f"ligand_imol = coot.get_monomer_from_dictionary({action.after!r}, 0)",
@@ -553,6 +565,7 @@ def _run_coot(
             dictionary_paths,
             parent_models,
             conformation_plans=plans,
+            verify_mutation_identity=True,
         ),
         encoding="utf-8",
     )

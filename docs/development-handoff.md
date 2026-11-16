@@ -1,14 +1,14 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C346 actual DY refinement control — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. C345 pushed at `53116e1f`; C346 is this
-completed evidence checkpoint. No full suite, new branch, default activation
+Updated **2026-11-16, C347 Coot canonical identity guard — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. C346 pushed at `b1d885a8`; C347 is this
+completed code/evidence checkpoint. No full suite, new branch, default activation
 or merge. Linden owns Pine/Willow; C331 unchanged. Simon confirmed work through
 **23:00 London**. All Rowan native/controller jobs stopped at this checkpoint.
 
 ## Current result and next bounded task
 
-**Latest C344 complete — Rowan.** C343 pushed `e4f7ef7f`; C344 is this docs/evidence
+**Earlier C344 complete — Rowan.** C343 pushed `e4f7ef7f`; C344 is this docs/evidence
 checkpoint. All jobs stopped, no code/default changes or new pytest run; C343's
 36 direct / 186 installed focused passes remain current. Continue through 23:00.
 Successful root `NASolve-live-tests/344_Cedar_DY-free-end-native-ah13s9fb`, 7.85 s,
@@ -51,15 +51,26 @@ Root `346_Cedar_DY-covalent-refinement-ljkqwcjn`, 56.07 s / 36.95 MB; all jobs d
 Cold replay preserves168 files, removes36.95 MB temporary copy. Compact evidence
 `dy_actual_refinement_survival_2026_11_16`. Raw scientific files remain local.
 
-**Next C347:** verify Coot's claimed canonical mutation by its actual residue
-identity. First C346 attempt `s21teulq` reported success converting PDU→DT but
-failed the later chi check; no valid DY output. Simon explicitly endorses the
-general modified→canonical→different-modification round-trip as a useful gate.
-Keep this separate from ordinary canonical-source success; preserve failed inputs.
-Second `dm1owzcz` was a harness scope mismatch (refinement-only terminal angle
-changes passed to a custom-addition checker); corrected through existing stage
-separation in the fresh successful run. Both stopped failed roots are retained.
-Then source/context integration and held-out rotation control; no automatic alias.
+**C347 complete:** ordinary Coot execution checks the actual residue identity
+immediately after canonical mutation, before parent snapshots or ligand placement.
+Native success code alone is insufficient. Eleven new regressions fail on C346;
+109 focused pass /2.23s and109 installed/relocated pass /2.46s. Three historical
+script comparisons retain exact bytes. Complete Coot1.3.3 negative PDU→DT and
+positive canonical→DA/DY controls pass; all jobs stopped. Root
+`347_Cedar_Coot-canonical-identity-j1ybx5y8`,1.78s/~0.82MB. First `wjk8attm`
+ran both controls then failed a local buffered-stdout assertion; it is preserved.
+Fresh positive verification uses saved model identities. No new refinement/full
+suite, alias, source chemistry or weight changes. Frozen restoration/C331/C338
+helpers untouched. See `coot_canonical_identity_2026_11_16`.
+
+**Next:** investigate source-supported modified→canonical→different-modification
+construction, which Simon explicitly endorses as a useful general test. The guard
+does not yet reconstruct Coot's unsupported parent. Check prior graph/parent
+machinery before introducing a route. Then ordinary source/context integration
+and the held-out rotating-ring control; no automatic DY alias yet.
+Both C346 failures remain preserved: unsupported native PDU parent conversion,
+and a harness scope mismatch for refinement-only terminal angle changes. C346's
+successful canonical-input result is independent evidence, not a repaired failure.
 Older active/next paragraphs below are retained evidence, superseded here.
 
 **Latest C343 complete — Rowan, 2026-11-16.** C342 pushed `d17dd326`; C343 is this

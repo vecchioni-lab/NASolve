@@ -23,6 +23,7 @@ class CootDouble:
         self.overlap_chi = []
         self.matches = []
         self.measurement = None
+        self.parent_code = "DG"
 
     def read_cif_dictionary(self, path):
         return 1
@@ -31,6 +32,7 @@ class CootDouble:
         return 0
 
     def mutate_base(self, *args):
+        self.parent_code = args[-1]
         return 1
 
     def write_pdb_file(self, imol, path):
@@ -57,8 +59,8 @@ class CootDouble:
     def add_ligand_delete_residue_copy_molecule(self, *args):
         return 2
 
-    def residue_name(self, *args):
-        return self.code
+    def residue_name(self, imol, *args):
+        return self.parent_code if imol == 0 else self.code
 
     def delete_hydrogen_atoms(self, *args):
         return 0
@@ -236,3 +238,30 @@ def test_purine_graph_match_that_swaps_ring_roles_is_refused(tmp_path, monkeypat
     with pytest.raises(PostMRPreparationError):
         _run_coot(*args)
     assert fake.matches and not fake.overlap_chi and not args[1].exists()
+
+
+@pytest.mark.parametrize("method", ["coot-parent-overlap", "coot-mutate-base"])
+@pytest.mark.parametrize("observed", ["PDU", "DC", "", None, True])
+def test_native_success_with_wrong_canonical_identity_stops_before_use(tmp_path, monkeypatch, method, observed):
+    fake, args = case(tmp_path, monkeypatch)
+    # Match chi perfectly: residue identity must be checked independently.
+    fake.chi = fake.expected
+    fake.residue_name = lambda *a: observed
+    if method == "coot-mutate-base":
+        args = (*args[:2], (MutationAction("A:12", "DC", "DT", method),), *args[3:6], {}, {})
+    with pytest.raises(PostMRPreparationError):
+        _run_coot(*args)
+    assert not args[1].exists()
+    assert not fake.matches and not fake.overlap_chi
+    assert not any(p.exists() for p in args[7].values())
+    assert "Coot did not produce DT at A:12" in (args[4] / "coot.log").read_text()
+
+
+def test_parent_identity_check_applies_when_graph_conformation_is_unassessed(tmp_path, monkeypatch):
+    fake, args = case(tmp_path, monkeypatch)
+    args[6]["PDU"].unlink()
+    fake.residue_name = lambda *a: "PDU"
+    with pytest.raises(PostMRPreparationError):
+        _run_coot(*args)
+    assert not fake.matches and not fake.overlap_chi and not args[1].exists()
+    assert "Coot did not produce DT" in (args[4] / "coot.log").read_text()

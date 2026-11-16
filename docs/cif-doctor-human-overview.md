@@ -4209,5 +4209,6 @@ rings is allowed to rotate. This test uses the scaffold's existing diffraction
 data without claiming they came from a DY crystal, and imposes no DY pairing.
 It establishes a bounded survival result, not universal mutation or Q06 closure.
 The attempted modified→canonical→different-modification route also exposed Coot
-reporting success before actually making its canonical parent; that is the next
-construction check, with both failed attempts retained.
+reporting success before actually making its canonical parent; C347 now checks the actual residue identity immediately, retaining both failed
+attempts. This catches the false success before building from the wrong parent;
+constructing a valid canonical parent from modified input remains the next step.
