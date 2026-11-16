@@ -4186,3 +4186,11 @@ The first resulting dictionary passes isolated Phenix checks. That is a useful
 preparation step, not yet permission to mutate a model: chain-end and linked
 contexts, Coot/ReadySet and refinement survival remain to be tested. In particular,
 a source phosphate cap is not an instruction to add OP3 to a linked model.
+
+
+The internal-DY control (C343) now also succeeds in ordinary Coot construction
+and Phenix interpretation: the complete base keeps the parent orientation, both
+backbone links survive, and the intended local restraints are present. The same
+chemistry rule governs dictionary generation and DNA classification. Native
+formal-charge readback is still unavailable. Free-end DY, ReadySet, refinement
+survival and the ordinary DY mutation name remain separate checks.

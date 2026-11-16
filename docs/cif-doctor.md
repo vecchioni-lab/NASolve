@@ -13621,3 +13621,29 @@ candidate hashes plus the complete commands are in
 `explicit_reference_composition_2026_11_16`. Native charge readback remains
 unsupported; absolute CIP assignment is not run. Linked/terminal contexts,
 ReadySet/Coot, whole-base mutation and refinement survival remain open.
+
+
+### Explicit representation through DNA metadata and internal construction (C343)
+
+`prepare_source_dna_metadata` and `qualify_source_dna_metadata` accept optional
+`bond_representation_policy`, using the existing classifier/native checker.
+Only explicit callers record that field. Historical defaults and all chemical
+and numerical rows stay unchanged. This connects C57's metadata route to already
+supported representation rules; it adds no chemical exception or inferred state.
+
+Actual Coot 1.3.3 and Phenix 2.2.1-6174 construct internal DY at A:12 of an explicit
+A:11–13 test fragment. Source-owned header conversion preserves isolated covalent
+proxies, full target and named gradients. Ordinary parent-chi matching, whole-base
+transport and internal OP3 context checks succeed. Both backbone links, all
+projected definitions, selected active terms, unchanged cross-site proxies and
+phosphate tetrahedral coverage pass: 67 PASS, one UNSUPPORTED formal-charge
+readback. Existing diagnostic continuation is permitted; scientific approval is
+not implied. A:11 is the deliberately created free end of this test fragment,
+not a change to the original scaffold's chemical intent; free-end DY remains open.
+
+A first local harness used an invalid PHIL adapter name after successful Coot
+construction. It is preserved; all jobs were dead before the successful fresh
+attempt. Cold relocation reproduces the exact linked result and metadata bytes
+without native execution. Exact commands/hashes and scope are in
+`explicit_metadata_linked_dy_2026_11_16`. ReadySet, refinement survival and ordinary
+DY alias activation remain separate. No additional plane or weight is justified.

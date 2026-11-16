@@ -11,6 +11,12 @@ are reused without altering frozen construction code. Constructed coordinates
 remain seeds; numerical qualification and explicit linked/terminal preparation
 must follow. This does not enable a mutation alias or add phosphate atoms to a model.
 
+The metadata-only construction adapter forwards optional explicit representation
+policy into its existing source assessment and native-equivalence checks. It
+records that choice while preserving default receipts and every chemical and
+numerical row. Source DNA declarations and identical native mechanics still gate
+use of the header; classification never substitutes for site context.
+
 For current CIF Doctor work order, use the [completion map](cif-doctor-completion-queue.md#pipeline-position);
 for demonstrated support, use the [capability matrix](cif-doctor.md#current-capability-boundary).
 The numbered sections below retain implementation contracts and historical evidence.

@@ -1,12 +1,50 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C342 explicit DY nucleotide source — Rowan**.
+Updated **2026-11-16, C343 internal DY construction — Rowan**.
 Worktree **NASolve-c96**, branch **cedar**. C341 pushed at `5c960cc4`; C342 is this
 completed code/evidence checkpoint. No full suite, new branch, default activation
 or merge. Linden owns Pine/Willow; C331 unchanged. Simon confirmed work through
 **23:00 London**. All Rowan native/controller jobs stopped at this checkpoint.
 
 ## Current result and next bounded task
+
+**Latest C343 complete — Rowan, 2026-11-16.** C342 pushed `d17dd326`; C343 is this
+code/evidence checkpoint. All Rowan jobs stopped. Continue through 23:00 London,
+focused tests only. Older active/next statements below are superseded by this
+paragraph; their evidence is preserved for continuity.
+
+The existing source-DNA metadata adapter now forwards optional representation
+policy through source assessment and both native checks; default receipts and
+all chemical/numerical rows stay unchanged. Actual Coot 1.3.3 / Phenix 2.2.1-6174
+construct internal DY at A:12 of an explicit A:11–13 test fragment. Parent chi,
+whole-base transport, both native links and intended phosphate state survive:
+67 PASS / one UNSUPPORTED formal-charge readback. Diagnostic continuation only.
+Successful root `NASolve-live-tests/343_Cedar_DY-internal-native-m_w8cvlk`, 5.63 s,
+about 5.97 MB. Exact cold native/header replay passes; 80 files/timestamps preserved.
+First harness `343_Cedar_DY-internal-native-9k0l_bjs` used an invalid PHIL adapter
+name after successful Coot; preserved and verified stopped before fresh retry.
+
+Validation: 36 direct focused tests / 1.15 s; 186 installed relocated / 13.26 s. Eight new
+regressions fail on C342. One initial fixture-directory mistake was corrected and
+covered by both later passes. Exact commands/hashes:
+`explicit_metadata_linked_dy_2026_11_16`. No full suite; last full remains C220.
+No raw scientific artifacts committed; ignored runners/receipts use `c343_*` and
+`branch-artifacts/cedar/c343-dy-source/` under the everyday checkout.
+
+**Next C344:** free-end DY, using ordinary construction followed by the existing
+explicit phosphate sanitizer and captured terminal-resource preparation. The
+shared construction helper alone proves internal OP3 removal; inspect its raw
+fallback at a free end before altering anything. Reuse the later ordinary PostMR
+sanitizer with the original reference, then exact site/native checks. Do not
+invent another phosphate rule. ReadySet/refinement and alias activation follow.
+The C4–N1T bond remains rotatable; do not add weights just to pass a screen.
+
+**C343 active:** existing source-DNA metadata adapter predates explicit aromatic
+representation policies. Forward the same optional caller policy through its
+assessment and native equivalence; default serialization unchanged. Eight new
+regressions fail on C342. Then use this source-owned numerical header for actual
+Coot construction and existing linked/free-end native preparation, without manual
+header edits or a second chemical validator. C342 pushed `d17dd326`.
 
 **C342 complete:** pure `compose_dna_source` preserves the explicitly selected
 DNA sugar/phosphate and the complete reference base. Source H/D/charge/stereo,

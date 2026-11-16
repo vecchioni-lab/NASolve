@@ -859,6 +859,15 @@ recorded above; finish the active Q06 chemical-survival control first.**
 
 ### DY — Packaged retained-triazole reference and mutation support
 
+**Latest C343:** explicit representation now reaches the source-owned DNA metadata
+adapter and native equivalence. Actual internal DY Coot construction and Phenix
+site preparation give 67 PASS / one unavailable formal-charge readback; both links
+and intended phosphate state survive. 186 installed/relocated focused tests and
+cold native replay pass. **Next C344:** free-end DY through existing phosphate and
+terminal-resource owners, then ReadySet/refinement survival. Ordinary alias
+activation waits for the qualified route. Earlier numbered next steps below are
+historical context; this paragraph is the current order for DY.
+
 **Reference packaged; ordinary mutation open (Simon, 2026-11-16; C335).**
 Laboratory **DY** means the retained **4-(1,2,4-triazol-1-yl)-pyrimidin-2-one
 beta-D-2-deoxyriboside**: direct pyrimidine C4–triazole N1T, C2=O retained,
@@ -898,7 +907,7 @@ DY nucleotide build passes all 21 isolated checks; 192 focused and 192 installed
 relocated tests pass. The failed lexical-order attempt is preserved. No mutation
 alias, linked/terminal approval or model phosphate change follows.
 
-**Next C343:** source-owned linked/terminal preparation and whole-base mutation gates,
+**Next C343:** **Completed; current next is C344 below.** source-owned linked/terminal preparation and whole-base mutation gates,
 reusing C133–C139 and later construction owners. Verify how the free-nucleoside
 reference enters explicit backbone contexts rather than inventing phosphate
 chemistry or activating a DY-name workaround. Retain junction survival as a

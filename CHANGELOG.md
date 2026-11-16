@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Carry explicit chemistry rules into DNA classification for construction (C343)
+
+- Forward the optional bond-representation policy through the existing DNA
+  metadata adapter and both native checks. Explicit receipts record the choice;
+  default callers and their receipt shape stay unchanged.
+- Source DNA classification still owns the header. All chemical/numerical rows
+  remain intact; aromatic equivalence cannot invent nucleotide chemistry.
+  Internal DY Coot/Phenix mechanics pass assessable checks. Free-end DY,
+  ReadySet/refinement and ordinary alias activation remain separate gates.
+
 ### Compose a custom base with an explicitly chosen DNA source (C342)
 
 - Add a pure, opt-in source compositor: retain the complete reference base and
