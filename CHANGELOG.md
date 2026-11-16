@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Recognize explicitly declared neutral five-membered aromatic rings (C340)
+
+- Add an opt-in representation rule for isolated neutral C/N rings with two
+  localized double bonds and one valence-complete pyrrolic nitrogen. Preserve
+  source hydrogens, charges and single bridge substituents; reject incomplete
+  conversions, fused rings and unrelated chemical changes.
+- Reuse existing generation, qualification and cold-replay paths. Historical
+  policies/defaults remain unchanged. This permits DY's declared triazole to reach
+  isolated native qualification; it does not activate mutation or certify geometry.
+
 ### Read complete CCD model coordinates as a declared generation seed (C339)
 
 - Accept the standard `model_Cartn_x/y/z` component-coordinate family when the

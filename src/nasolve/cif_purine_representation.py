@@ -13,8 +13,11 @@ POLICY_ID = "cif-source-declared-neutral-purine-aromatic-v1"
 OXO_POLICY_ID = "cif-source-declared-neutral-6-oxo-purine-aromatic-v1"
 
 
+FIVE_RING_POLICY_ID = "cif-source-declared-neutral-five-membered-cn-aromatic-v1"
+
+
 def validate_policy(policy):
-    if policy not in (None, POLICY_ID, OXO_POLICY_ID):
+    if policy not in (None, POLICY_ID, OXO_POLICY_ID, FIVE_RING_POLICY_ID):
         raise ValueError("Unsupported bond representation policy: " + repr(policy))
 
 
@@ -159,6 +162,9 @@ def purine_bond_representation(source, generated, legacy):
 def assess_bond_representation(source, generated, legacy, policy):
     """Dispatch explicit policies without widening any historical policy."""
     validate_policy(policy)
+    if policy == FIVE_RING_POLICY_ID:
+        from .cif_five_ring_representation import five_ring_bond_representation
+        return five_ring_bond_representation(source, generated, legacy)
     if policy == OXO_POLICY_ID:
         from .cif_oxo_purine_representation import oxo_purine_bond_representation
         return oxo_purine_bond_representation(source, generated, legacy)

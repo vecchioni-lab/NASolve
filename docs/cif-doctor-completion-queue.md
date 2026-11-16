@@ -871,18 +871,22 @@ no phosphate describe this reference only. `YTR` remains a historical preview
 label; do not silently alias bare `Y`, infer a deposition code, or turn this
 free nucleoside into a linked nucleotide without explicit context.
 
-**C339 source-format step complete:** the generic generation adapter now accepts
-complete CCD model coordinates as an explicitly non-independent seed. The first
-owned native attempt preserves source identities, charges, coordinates and sugar
-markers but stops before construction: Phenix represents exactly the five
-source-declared aromatic triazole edges as order 1.5. Existing isolated-six-ring
-and fused-purine policies do not authorize that isolated five-ring conversion.
-The failed attempt is preserved and cold-relocatable; there is no numerical
-candidate or mutation activation. Next add a separate source-declared neutral C/N
-five-ring representation rule, with fixed H/charges, complete valence and one
-pyrrolic donor, unchanged single bridge substituents, strict negative controls and
-no widening of historical policies. Then use a fresh owned attempt, not in-place
-retry. C4–N1T remains single and legitimate ring rotation must survive.
+**C339/C340 source and isolated-native steps complete:** the model-coordinate
+adapter accepts the packaged preview as a non-independent seed. A separately
+versioned source-declared neutral five-membered C/N representation policy now
+permits the complete triazole conversion, preserving H/charges/valence and the
+single C4–N1T bridge. Historical policies remain unchanged. A fresh owned Phenix
+2.2.1-6174 build passes the existing two-seed isolated native qualification and
+cold relocation; the original C339 failure remains intact. No mutation alias,
+linked context, ReadySet, Coot or refinement approval yet.
+
+**Next bounded check:** distinguish legitimate rigid inter-ring rotation from
+nitrogen-junction bending using actual native responses. Generated planes do not
+span both rings. Inter-ring constant torsions have zero native weight; N1T has
+angle targets but no explicit complete junction plane. Neither zero-weight labels
+nor a missing plane alone establishes a defect. Reuse native response/derivative
+machinery and compare unchanged controls before adding any restraint. This also
+informs Q06 whole-substituent survival without a DY-specific repair.
 
 C338's bounded Q06 reporting connection is complete. Continue this DY qualification
 without waiting for an entire ChemDraw importer. The existing future-reference contract and C59–C70 source/alias ownership,

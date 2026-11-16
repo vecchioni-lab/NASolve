@@ -1,57 +1,63 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C339 standard CCD model-coordinate seeds — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. C338 is pushed at `80c10e2c`;
-C339 is this completed source checkpoint. No full suite, new branch, default
-activation or merge. Linden owns Pine/Willow; C331 unchanged. Simon confirmed work
-through **23:00 London**. All Rowan native/controller jobs stopped.
+Updated **2026-11-16, C340 declared five-ring representation — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. C339 pushed at `89c7bf32`; C340 is this
+completed source checkpoint. No full suite, new branch, default activation or
+merge. Linden owns Pine/Willow; C331 unchanged. Simon confirmed work through
+**23:00 London**. All Rowan native/controller jobs stopped.
 
 ## Current result and next bounded task
 
-**C339 complete:** DY exposed a generic format gap. The source-generation adapter
-now accepts complete finite CCD `model_Cartn_x/y/z` when ideal/plain families are
-absent, preserving source atoms/charges/stereo and marking the seed explicitly
-non-independent. No mixing/filling incomplete coordinate families; all old accepted
-seed precedence and bytes remain fixed. No DY-specific repair or target generation.
+**C340 complete:** the new explicit neutral five-membered C/N aromatic policy
+recognizes the source-declared triazole without changing native bond orders.
+It requires complete conversion, two nonadjacent doubles, one valence-complete
+pyrrolic nitrogen, fixed H/isotopes/charges and single bridge substituents. Related
+pyrrole/diazole/triazole, renamed/reordered and negative cases are covered; old
+six-ring/purine/oxo policies and worker contracts remain unchanged.
 
-One real bounded eLBOW reader/handoff in
-`NASolve-live-tests/339_Cedar_DY-source-native-fqx7w9mm` stops before construction:
-exactly the five explicitly aromatic triazole bonds become order 1.5. Source
-identities, charges, coordinates and sugar markers survive. Existing isolated-six
-and fused-purine representation rules correctly refuse this unsupported five-ring
-conversion. No candidate, native qualification, ReadySet, Coot, linkage or refinement.
-All owned attempts/controller stopped; active=false, 444,638 bytes retained locally.
-The failed request replays after relocation with its temporary original absent and
-native execution forbidden; 366,992 temporary replay bytes removed.
+Fresh native root `NASolve-live-tests/340_Cedar_DY-five-ring-native-m14ht3ff`:
+actual eLBOW construction plus existing two-seed isolated qualification succeeds
+in 12.99 s, Phenix 2.2.1-6174 / dispatcher 2.2.1. Candidate SHA
+`8099ad00e640d941e1ff0289a3fb56ca558360d92acfe0c4c707a60516cd2c1e`, 12,742 bytes.
+Whole local control about 4.73 MB, active=false, all children/controller stopped.
+Source unchanged. Cold relocation passes with original temporary path absent and
+native execution forbidden; all 102 original files/timestamps preserved. No
+ReadySet, Coot, linked mutation or refinement approval. Native formal-charge
+readback is unsupported; absolute CIP assignment NOT_RUN.
 
-Focused command/result in ledger `declared_model_coordinate_seed_2026_11_16`:
-263 pass initially; five process-identity tests cannot observe macOS process state
-under the restricted sandbox, then **all five pass** with approved host visibility
-(2.72 s), with no process-owner code change. Initial two new regressions fail on
-C338. Installed/relocated package: **56 pass (5.30 s)** after source/original-install
-removal. Wheel SHA `258ce832fb68efb4199f43c49c725443763601335cf231dce7e37266a3fc8194`;
-1,371,603 bytes, 10,683,201 temporary bytes removed. A test's checkout-relative ligand
-lookup was corrected to the packaged resource. No full suite; last full remains
-C220/583d30df: 9178 tests +276 subtests.
+**Validation:** 346 focused tests pass (23.60 s); 184 installed/relocated tests pass
+(14.41 s). New positive regression fails on C339. Wheel SHA
+`f8b1f7f4ddf13c817192672801c8b3382488d3775a62fe3aef0b3abda8024274`, 1,373,537 bytes.
+10,700,189 package bytes and 3,973,709 successful replay-copy bytes removed. One
+local replay harness initially assumed the wrong API return wrapper; corrected,
+with its temporary copy removed. No production defect or failed native attempt
+was erased. Exact command/evidence in `neutral_five_ring_representation_2026_11_16`.
+No full suite; last full C220/583d30df: 9178 tests +276 subtests.
 
-**Next:** add a separate explicit neutral C/N five-membered aromatic representation
-rule. Reuse C117/C118/C121 source/native contracts, require source-declared aromatic
-edges, complete valence, one pyrrolic donor, unchanged H/charges and single bridge
-substituents, and test negative controls/renamed related rings. Keep historical
-policies fixed; no inferred tautomer, protonation or native bond-order edit. The
-C4–N1T bridge remains single and inter-ring rotation stays legitimate. Then a fresh
-owned DY attempt, not in-place retry. The numerical/reference/mutation gates remain
-open. This is the next bounded task after the completed Q06 reporting connection.
+**Next C341:** actual response controls for the rotating-ring/junction distinction.
+No generated plane spans off-axis atoms in both rings. C4–N1T stays single; four
+bridge constant torsions have zero native weight. C4 has a complete local plane;
+N1T has angle targets summing to 360 degrees but lacks a plane containing its
+three neighbors. Do not call this a defect or invent a plane/force before checking
+actual rotation versus junction-bending responses and derivatives. Reuse existing
+native machinery, preserve the candidate and all prior failed runs, and avoid
+DY-name repair rules. Then linked contexts/whole-base mutation/ReadySet/refinement
+survival. Keep Q06 whole-substituent closure and related controls in view.
 
-Runners `c339_start.py`, `c339_worker.py`, `c339_package_check.py` live in everyday
-ignored `branch-artifacts/cedar/runners/`; compact local checks are under
-`branch-artifacts/cedar/c339-dy-source/`. Only source/tests/docs and compact evidence
-committed; raw native outputs remain local. Historical runs and NAR workbook unchanged.
+C339's complete CCD model-coordinate adapter and failed reader attempt remain
+recorded in `declared_model_coordinate_seed_2026_11_16`; source/model coordinates
+are non-independent seeds, not calibrated targets. DY packaged definition/metadata
+and aliases remain unchanged. C4–N1T is not a phosphate or an inter-residue link.
 
-Linden reviewed C338's helper/registry boundary and found no direct conflict with
-pinned C331/Willow, **not** combined-runtime qualification. Intra-site triple reporting
-must not become backbone/seam approval. Queue one complete Cedar suite at a sensible
-consolidation/before merge, respecting Simon's current no-full-suite instruction.
+Ignored local runners `c340_start.py`, `c340_worker.py`, `c340_readback.py`,
+`c340_package_check.py` live under everyday `branch-artifacts/cedar/runners/`;
+compact receipts under `branch-artifacts/cedar/c340-dy-source/`. Source/tests/docs
+and compact evidence only committed; native outputs remain local. NAR untouched.
+
+Linden completed W99/read-only C338 boundary review and is running sequential W100
+source controls, one nice-10 worker. No direct C338/pinned-C331 interface conflict
+found; combined-runtime qualification is not claimed. A later full Cedar suite
+is queued for consolidation/before merge; current instruction is focused only.
 
 **C338 complete:** the explicit checked refinement route now observes selected
 source-declared triple sites inside the actual Phenix manager, recording original

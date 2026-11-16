@@ -102979,5 +102979,353 @@
     "next": "Separate explicit graph/valence-bound neutral C/N five-ring representation policy, preserving historical policies, source H/charges/stereo, unchanged inter-ring single bridge and bounded native ownership. Fresh attempt only; no mutation alias yet.",
     "full_suite_gate": "Queued complete Cedar consolidation/before-merge check; current user authorization remains focused only. Last full C220/583d30df: 9178 +276.",
     "signed": "Rowan"
+  },
+  "neutral_five_ring_representation_2026_11_16": {
+    "status": "C340_DY_ISOLATED_NATIVE_USABILITY_PASS_SITE_AND_GEOMETRY_OPEN",
+    "source_parent": "89c7bf32",
+    "before": "The source-preserving native handoff rejected a complete source-declared isolated neutral triazole conversion from localized to aromatic bond types.",
+    "after": "Separately versioned explicit neutral five-membered C/N policy recognizes only complete source-declared rings with two nonadjacent doubles, one valence-complete pyrrolic nitrogen, unchanged H/isotopes/charges, and unchanged single bridge substituents. No native bond-order edits, tautomer inference, default activation or restraints supplied by this rule.",
+    "prior_work": [
+      "C117/C118 purine representation and shared native worker/cold contract",
+      "C121 bounded five-ring within 6-oxo purine; remains unchanged",
+      "C339 source CCD model-coordinate seed adapter"
+    ],
+    "policy": "cif-source-declared-neutral-five-membered-cn-aromatic-v1",
+    "validation": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_five_ring_representation.py tests/test_cif_purine_representation.py tests/test_cif_oxo_purine_representation.py tests/test_cif_aromatic_representation.py tests/test_cif_source_representation.py tests/test_cif_candidate_usability.py tests/test_cif_generation_acquisition.py tests/test_cif_phenix_configuration.py tests/test_cif_generation_input.py tests/test_packaged_dy_reference.py --tb=short",
+      "result": "346 passed in 23.60 s",
+      "before_regression": "New related-ring test fails on C339 with unsupported representation policy.",
+      "installed": {
+        "status": "INSTALLED_RELOCATED_FIVE_RING_REPRESENTATION_PASS",
+        "wheel_sha256": "f8b1f7f4ddf13c817192672801c8b3382488d3775a62fe3aef0b3abda8024274",
+        "wheel_bytes": 1373537,
+        "source_copy_removed": true,
+        "original_install_path_absent": true,
+        "package_reference_bytes_match": true,
+        "validation_command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-c",
+          "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_cif_five_ring_representation.py', 'tests/test_cif_purine_representation.py', 'tests/test_cif_oxo_purine_representation.py', 'tests/test_cif_aromatic_representation.py', 'tests/test_cif_source_representation.py', 'tests/test_packaged_dy_reference.py', '--tb=short']))"
+        ],
+        "validation_output": "........................................................................ [ 39%]\n........................................................................ [ 78%]\n........................................                                 [100%]\n184 passed in 14.41s\n",
+        "build_command": "phenix.python -m pip wheel --no-deps --no-build-isolation --no-index",
+        "temporary_bytes_removed": 10700189
+      },
+      "readback": {
+        "status": "C340_COLD_NATIVE_DICTIONARY_AND_JUNCTION_READBACK",
+        "candidate_sha256": "8099ad00e640d941e1ff0289a3fb56ca558360d92acfe0c4c707a60516cd2c1e",
+        "qualification_status": "ISOLATED_NATIVE_USABILITY_PASS",
+        "native_usable": true,
+        "qualification_checks": {
+          "effective_declared_bond_orders": true,
+          "energy_inventory": true,
+          "exact_active_angles": true,
+          "exact_active_bonds": true,
+          "exact_active_planes": true,
+          "exact_active_torsions": true,
+          "exact_effective_definitions": true,
+          "exact_fixed_chirality_membership": true,
+          "exact_model_and_component": true,
+          "finite_active_proxy_parameters": true,
+          "finite_energy_and_gradient": true,
+          "fixed_coordinate_repeats": true,
+          "native_completed": true,
+          "native_coordinate_roundtrip": true,
+          "no_competing_native_ss": true,
+          "no_contradictory_native_formal_charges": true,
+          "no_native_fatal_or_unused": true,
+          "omitted_unoriented_volume_coverage": true,
+          "one_complete_monomer": true,
+          "proxy_counts_complete": true,
+          "source_chemistry_and_configuration": true
+        },
+        "formal_charge_readback": "UNSUPPORTED",
+        "absolute_cip_assignment": "NOT_RUN",
+        "planes": {
+          "plan-1": [
+            "C2",
+            "C4",
+            "C5",
+            "N1T",
+            "N3"
+          ],
+          "plan-2": [
+            "C1'",
+            "C4",
+            "C5",
+            "C6",
+            "H1",
+            "H2",
+            "N1"
+          ],
+          "plan-3": [
+            "C1'",
+            "C2",
+            "N1",
+            "N3",
+            "O2"
+          ],
+          "plan-4": [
+            "C3T",
+            "H3",
+            "N1T",
+            "N2T",
+            "N4T"
+          ],
+          "plan-5": [
+            "C3T",
+            "C5T",
+            "H4",
+            "N1T",
+            "N4T"
+          ]
+        },
+        "planes_spanning_off_axis_atoms_of_both_rings": [],
+        "bridge_order": "SINGLE",
+        "bridge_torsions": [
+          {
+            "comp_id": "DY",
+            "id": "CONST_13",
+            "atom_id_1": "N2T",
+            "atom_id_2": "N1T",
+            "atom_id_3": "C4",
+            "atom_id_4": "N3",
+            "value_angle": "-179.66",
+            "value_angle_esd": "0.0",
+            "period": "0"
+          },
+          {
+            "comp_id": "DY",
+            "id": "CONST_14",
+            "atom_id_1": "C5T",
+            "atom_id_2": "N1T",
+            "atom_id_3": "C4",
+            "atom_id_4": "N3",
+            "value_angle": "0.26",
+            "value_angle_esd": "0.0",
+            "period": "0"
+          },
+          {
+            "comp_id": "DY",
+            "id": "CONST_15",
+            "atom_id_1": "N2T",
+            "atom_id_2": "N1T",
+            "atom_id_3": "C4",
+            "atom_id_4": "C5",
+            "value_angle": "0.36",
+            "value_angle_esd": "0.0",
+            "period": "0"
+          },
+          {
+            "comp_id": "DY",
+            "id": "CONST_16",
+            "atom_id_1": "C5T",
+            "atom_id_2": "N1T",
+            "atom_id_3": "C4",
+            "atom_id_4": "C5",
+            "value_angle": "-179.72",
+            "value_angle_esd": "0.0",
+            "period": "0"
+          }
+        ],
+        "junction": [
+          {
+            "centre": "C4",
+            "neighbors": [
+              "C5",
+              "N1T",
+              "N3"
+            ],
+            "covering_planes": [
+              "plan-1"
+            ],
+            "angles": [
+              {
+                "comp_id": "DY",
+                "atom_id_1": "N1T",
+                "atom_id_2": "C4",
+                "atom_id_3": "C5",
+                "value_angle": "119.07",
+                "value_angle_esd": "2.424"
+              },
+              {
+                "comp_id": "DY",
+                "atom_id_1": "N1T",
+                "atom_id_2": "C4",
+                "atom_id_3": "N3",
+                "value_angle": "109.29",
+                "value_angle_esd": "2.445"
+              },
+              {
+                "comp_id": "DY",
+                "atom_id_1": "C5",
+                "atom_id_2": "C4",
+                "atom_id_3": "N3",
+                "value_angle": "131.64",
+                "value_angle_esd": "2.435"
+              }
+            ],
+            "geometry": {
+              "status": "DESCRIPTIVE",
+              "absolute_normalized_volume": 0.0002752946298449819
+            }
+          },
+          {
+            "centre": "N1T",
+            "neighbors": [
+              "C4",
+              "C5T",
+              "N2T"
+            ],
+            "covering_planes": [],
+            "angles": [
+              {
+                "comp_id": "DY",
+                "atom_id_1": "C5T",
+                "atom_id_2": "N1T",
+                "atom_id_3": "N2T",
+                "value_angle": "111.57",
+                "value_angle_esd": "2.732"
+              },
+              {
+                "comp_id": "DY",
+                "atom_id_1": "C5T",
+                "atom_id_2": "N1T",
+                "atom_id_3": "C4",
+                "value_angle": "130.04",
+                "value_angle_esd": "2.746"
+              },
+              {
+                "comp_id": "DY",
+                "atom_id_1": "N2T",
+                "atom_id_2": "N1T",
+                "atom_id_3": "C4",
+                "value_angle": "118.39",
+                "value_angle_esd": "2.421"
+              }
+            ],
+            "geometry": {
+              "status": "DESCRIPTIVE",
+              "absolute_normalized_volume": 0.0009847277526470744
+            }
+          }
+        ],
+        "native_receipts": [
+          {
+            "path": "request/attempts/attempt-0001/qualification/native/native/000/cif-native-5p2fx__t/native_receipt.json",
+            "sha256": "238b5a7a2ae229632221ad1f21cb3db9be45cf90f569e9c3cdeb02020fefb4f0"
+          },
+          {
+            "path": "request/attempts/attempt-0001/qualification/native/native/001/cif-native-dvthvyj5/native_receipt.json",
+            "sha256": "95f625ba40f7ee3d78efd0dfb3b7def6f19cf27d353fa1469cdeb9d8858b6e94"
+          }
+        ],
+        "relocation": {
+          "original_path_absent": true,
+          "exact_acquisition_equal": true,
+          "native_execution_forbidden": true,
+          "all_attempts_stopped": true,
+          "temporary_bytes_removed": 3973709
+        },
+        "preserved_original_files": 102,
+        "scientific_approval": "NOT_RUN",
+        "limitations": [
+          "Zero-ESD constant torsion records are not evidence of a restoring force.",
+          "Plane absence alone is not proof of inadequate alternative angle restraints.",
+          "Separate ring rotation and junction deformation need actual native response controls before force changes or mutation approval."
+        ]
+      },
+      "full_suite": "NOT_RUN per user; last full C220/583d30df: 9178 +276"
+    },
+    "native": {
+      "build": "Phenix 2.2.1-6174 / dispatcher 2.2.1",
+      "dry_run": false,
+      "summary": {
+        "status": "BOUNDED_DY_ACQUISITION_OBSERVED",
+        "error": null,
+        "acquisition": "PREPARED_AND_FROZEN",
+        "generation_diagnostic": {
+          "policy_id": "cif-source-candidate-diagnostic-v1",
+          "generation_status": "CANDIDATE_REVIEW",
+          "candidate_state": "RETAINED_REVIEW",
+          "blocking_stage": null,
+          "summary": "Candidate retained for review; native usability requires separate qualification.",
+          "builder_started": true,
+          "failed_handoff_checks": [],
+          "handoff_reason": null,
+          "native_exception": null,
+          "execution_status": "COMPLETED",
+          "execution_returncode": 0,
+          "rejection_reasons": [],
+          "identity_change_fields": [],
+          "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+          "automatic_adoption": false
+        },
+        "candidate_status": "CANDIDATE_REVIEW",
+        "rejection_reasons": [],
+        "source_preserved": true,
+        "elapsed_seconds": 12.994842000000062,
+        "physical_bytes": 4733800,
+        "scientific_approval": "NOT_RUN",
+        "mutation_enabled": false,
+        "readyset": "NOT_RUN",
+        "coot": "NOT_RUN",
+        "refinement": "NOT_RUN"
+      },
+      "source_unchanged": true,
+      "controller_and_children_stopped": true,
+      "scope": "Actual eLBOW build plus existing two-seed isolated native qualification; no ReadySet/Coot/linked mutation/refinement"
+    },
+    "local_root": {
+      "anchor": "NASolve-live-tests",
+      "path": "340_Cedar_DY-five-ring-native-m14ht3ff"
+    },
+    "receipts": [
+      {
+        "path": "start.json",
+        "sha256": "32fe30fde04362b6be2c32ebc65a9f39f9aae55c052b39841d73ced61a86c93a",
+        "size": 30127
+      },
+      {
+        "path": "input-origin.json",
+        "sha256": "48da88322af893cc4a5cee7040538223401e7489e0f54fc717d9e8983d6b52e5",
+        "size": 1270
+      },
+      {
+        "path": "summary.json",
+        "sha256": "cb184ccdf88f1c43458640f0b5726bcad2e7358282020946abb211b8cf46da78",
+        "size": 1052
+      },
+      {
+        "path": "driver-result.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+        "size": 78
+      },
+      {
+        "path": "active.json",
+        "sha256": "595219792dd54a38a8ace80a6a7fc33b928ea74f0dd1bdfac6a2b708dbe0dd1e",
+        "size": 22
+      },
+      {
+        "path": "acquisition-result.json",
+        "sha256": "8611939460cd54dc40a2514ea7444fbc79839f5c34941489a4568ee53c1fe225",
+        "size": 1578
+      },
+      {
+        "path": "acquisition-state.json",
+        "sha256": "6ba1c8f9991e0384fad1cfedf7d43025115e14796f8177dc9f5051631fd23401",
+        "size": 42587
+      },
+      {
+        "path": "generation-state.json",
+        "sha256": "4761d45bc801720beabdbe8f3c02027426f56a51808ba58d0d18359b61dbb3dc",
+        "size": 6755
+      }
+    ],
+    "compatibility": "Explicit factory/API policy only; existing six-ring/purine/oxo policies, worker strings, request ownership and schemas unchanged. DY reference bytes and runtime aliases unchanged. No migration.",
+    "retention": "102 original run files unchanged during cold replay. Raw artifacts remain local; compact evidence only committed. Temporary wheel/replay copies removed, including one local replay harness failure caused by assuming the wrong return wrapper. No product defect was hidden by that harness correction.",
+    "next": "Observe rigid inter-ring rotation separately from nitrogen-junction bending with existing native response machinery; verify actual active terms and derivatives before any force change. Missing explicit N plane alone is not proof of inadequate angles. Then linked-context, whole-base mutation, ReadySet and refinement survival gates.",
+    "signed": "Rowan"
   }
 }

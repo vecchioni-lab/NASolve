@@ -13538,3 +13538,32 @@ localized-to-aromatic triazole bonds. No candidate, ReadySet, linkage or refinem
 approval follows from this format fix. The next explicit representation rule must
 use source-declared ring connectivity, charge, H and valence, retaining C4–N1T as
 a single inter-ring bridge and keeping old aromatic policies unchanged.
+
+
+### Explicit isolated neutral five-membered C/N representation (C340)
+
+The optional `cif-source-declared-neutral-five-membered-cn-aromatic-v1` policy
+recognizes a complete declared five-ring conversion to aromatic native orders.
+It requires source aromatic bond flags, two nonadjacent localized double bonds,
+exactly one neutral pyrrolic nitrogen with three single neighbors, complete C/N
+valence, unchanged H/isotopes/charges, and unchanged single bridge substituents.
+Charged/fused/incompletely converted rings, changed connectivity and outside order
+changes remain rejected. No residue-name rule, tautomer prediction or native
+bond-order rewriting is involved. Existing six-ring and purine policies are fixed.
+
+Use the existing explicit dictionary-configuration API; no CLI default or
+source-preserving recipe mapping changes. The existing generation worker,
+immutable acquisition owner, two-seed native qualification and cold reader all
+consume the same declared representation contract. The source CIF remains intact.
+
+DY now yields an isolated numerical dictionary that passes exact native term
+membership and fixed-coordinate repeat checks in Phenix 2.2.1-6174. No plane spans
+off-axis atoms from both rings, and C4–N1T remains single. Four inter-ring constant
+torsion records have zero ESD and zero native weight; their presence must not be
+reported as a torsional restoring force. The C4 junction has an explicit plane;
+the pyrrolic N1T junction has three angle targets summing to 360 degrees but no
+plane covering all three neighbors. That is a response-test question, not grounds
+to flatten both rings or retune their angles. Source chemistry, numerical
+usability, achieved geometry and scientific approval remain separate. Native
+formal-charge readback is unsupported and absolute CIP assignment was not run.
+Linked mutation, ReadySet/Coot and actual refinement survival remain open.
