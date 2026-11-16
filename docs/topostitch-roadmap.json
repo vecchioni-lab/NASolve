@@ -1381,6 +1381,13 @@
         "files": 19,
         "portable_campaign": false,
         "committed": false
+      },
+      "peer_review": {
+        "reviewer": "Rowan",
+        "date": "2026-11-16",
+        "reviewed_commit": "c6549408137f83b431f8519480702656bf9183c6",
+        "scope": "Read-only runtime/test diff review; no additional reruns or Cedar edits",
+        "result": "No blocking issue in direct optional scope. Confirmed paired opt-in, frozen baseline, actual shared flags/options, unchanged legacy reports and original exceptions. Source/profile hashes are provenance; trusted source lifetime remains caller-owned. Worker staging must preserve helper/profile closure and resolved-cutoff precondition."
       }
     }
   },

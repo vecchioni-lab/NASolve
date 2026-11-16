@@ -380,6 +380,8 @@ An initial native installation harness mixed Python ABIs; corrected pure-Python
 wheel staging passes with Phenix's own compiled dependencies. Evidence retains
 that failure. The next slice must qualify captured-worker owner/profile staging
 and provenance before adding any explicit job option; no automatic activation.
+Rowan reviewed the exact W96 runtime/test diff and found no blocking issue in
+this direct optional scope; no extra tests or Cedar edits were part of that review.
 All Linden native jobs are finished. Historical temporary runtimes removed by
 the OS update are not resumable; persistent forensic archives retain old evidence.
 
