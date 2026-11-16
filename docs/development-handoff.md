@@ -418,7 +418,11 @@ These are visual diagnostics, with no new physical or refinement qualification.
 
 **Final demonstration gate added (2026-11-16, planning only):** B09 in the
 [roadmap](topostitch-roadmap.md) now requires geotest altered-arm alignment,
-including X11_18 in P4_3 and X11_22, with the exact panel still to be frozen.
+including X11_18 in P4_3 and X11_22. A read-only local inventory now binds the
+two named seeds and nine historical members (204 hash/size checks pass); the
+remaining panel and sequence/arm/partner mappings are still to be frozen.
+X11_18 is dataset2/refine-002 under REVIEW, with current `postmr` unchanged;
+its P4_1 input/P4_3 model lineage requires an explicit audit before repair.
 The [gate contract](topostitch.md#final-geotest-alignment-gate-planned) requires
 coupled bend/rise/twist/backbone relaxation and contacts that survive matched
 refinement, with healthy arms/junctions preserved. Small preview motion is not

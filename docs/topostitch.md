@@ -540,6 +540,26 @@ observations, Free-R flags, source checkpoints, cell/setting and intended
 symmetry-partner connections in checksummed run/dataset-anchored receipts.
 Do not infer other members' space groups from X11_18 or search by basename.
 
+Read-only inventory on 2026-11-16 binds nine historical members and the two
+named seeds through their existing receipts/checkpoint registries; all 204
+recorded hash/size comparisons pass. X11_18 means **dataset2, P4_3,
+refine-002**, whose recorded state remains REVIEW and whose current checkpoint
+is still `postmr`. Its original observation MTZ is labelled P4_1: audit the exact
+model/data/setting lineage before execution, without relabelling observations
+or selecting this seed implicitly. X11_22's bound seed is `refine-001`.
+Independent sequence agreement and residue-to-arm/partner mapping remain
+unverified; the other panel members have not been selected. Raw HKL/Free-R
+column hashes are recorded, but do not establish a complete changed-setting or
+refinement Free-R audit. No new native run, coordinate edit or adoption occurred.
+
+The local receipt lives at the ordinary NASolve repository anchor,
+`branch-artifacts/willow/geotest-inventory-2026-11-16/inventory.json`, SHA256
+`82a1ba1cd70bbf587b2c2c96b1a75bf8b03514082bac9fa6ce283daa3f9b9f02`.
+It carries campaign/member/run anchors, historical root provenance, model/map/
+observation/parameter hashes and Gemmi 0.7.5 readback. Private coordinates,
+reflections, sequences and historical statistics stay local; this receipt is
+an inventory, not a portable autonomous campaign or a scientific acceptance.
+
 Pass only when the intended altered-arm sticky ends align in their exact
 periodic images with correct register, pairing/stacking and qualified local
 backbone geometry, while junctions and already aligned 21-bp arms remain sound.

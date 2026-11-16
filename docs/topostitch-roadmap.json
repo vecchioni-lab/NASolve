@@ -1579,14 +1579,14 @@
     {
       "id": "B09",
       "case": "Final geotest altered-arm alignment: X11_18 (P4_3), X11_22 and frozen related members",
-      "state": "PLANNED_FINAL_GATE",
+      "state": "READ_ONLY_INVENTORY_BOUND_REPAIR_PENDING",
       "jobs": [
         "S04",
         "S05",
         "S06",
         "S07"
       ],
-      "remaining": "Inventory and bind the exact local geotest-fullauto-fqce98w3 panel through anchored checksummed receipts before execution. X11_18 is 18/21/21 bp; X11_22 is 22/21/21 bp. Qualify coupled bend/rise/twist/backbone relaxation, correct periodic partner/register and surviving contacts after matched refinement; retain healthy arms/junctions, geometry/density/Rwork/Rfree tradeoffs and human before/proposed/refined review. No new run or scientific success claimed; see docs/topostitch.md#final-geotest-alignment-gate-planned."
+      "remaining": "Nine historical members inventoried locally with 204 recorded hash/size comparisons passing. Named seeds bound: X11_18 dataset2/P4_3/refine-002 (REVIEW, current checkpoint remains postmr) and X11_22/refine-001. X11_18 input MTZ is labelled P4_1; preserve exact saved model/data setting lineage before repair. Raw Free-R columns are bound, not a complete workflow audit. Remaining panel selection, independent sequence/arm/symmetry-partner mapping, coupled geometry and matched refinement/human review remain open. No new solve or adoption; see docs/topostitch.md#final-geotest-alignment-gate-planned."
     }
   ],
   "deferred": [

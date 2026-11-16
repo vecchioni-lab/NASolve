@@ -25,6 +25,10 @@ entries are reconstructed from repository history.
 
 ### Geotest final alignment gate
 
+- Bind the named geotest seeds through read-only historical receipts and
+  checkpoint hashes, retaining X11_18's review/current-checkpoint distinction
+  and input/model symmetry-setting lineage. Private inventory stays local.
+
 - Add the altered-arm geotest family (X11_18 in P4_3, X11_22 and a panel to be
   frozen) as the final TopoStitch end-to-end demonstration. Require coupled
   bend/rise/twist/backbone relaxation and intended contacts that survive matched
