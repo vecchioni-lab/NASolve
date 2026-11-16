@@ -4,7 +4,7 @@
   "updated": "2026-11-16",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "c6549408137f83b431f8519480702656bf9183c6",
+  "audited_code_commit": "1d6008791c730cc576d21fb7f7872f5c1eb36466",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -227,13 +227,14 @@
         "W90 adds explicit diagnostic initialization to the existing atomic trial and checks remaining evaluation budget, with unchanged source/tether, derivatives and stopping/failure policy. Full/installed validation passes; native benefit is being compared in W91.",
         "W91 qualifies execution of the explicit diagnostic-start interface through matched native trials and endpoint observations, preserving both failures. This small coarse seed reaches the same rounded atomic point as cold cleanup and gives no demonstrated benefit; local improvements and remaining packing/torsion reviews stay separate.",
         "W94 adds checked explicit pivot rotation through the existing Cartesian image owner and preview tensor path. Off-origin cycles/inverses and software/install regressions pass; no axis inference or three-orientation campaign runner.",
-        "W96 qualifies an explicit direct shared-policy consumer with frozen baseline, hidden-mutation rejection and legitimate native rebuilds. Full/install and bounded source/native composition checks pass; no worker/default activation or scientific acceptance."
+        "W96 qualifies an explicit direct shared-policy consumer with frozen baseline, hidden-mutation rejection and legitimate native rebuilds. Full/install and bounded source/native composition checks pass; no worker/default activation or scientific acceptance.",
+        "W97 carries the C331 guard/profile through explicit captured diagnostics, preserves fresh baseline/provenance and verifies success evidence. Source and installed/relocated read-only public-DNA controls agree exactly; no scientific acceptance or default activation."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation."
       ],
-      "next_action": "W97: qualify explicit captured-worker owner/profile dependency staging, actual evaluation options and source/report provenance before adding a supported opt-in job argument. Preserve legacy workers/readers and failure handling. Then select a predeclared displaced-duplex case plus matched cleanup; DNA/packing/density/chemistry gates remain separate.",
+      "next_action": "W98: predeclare a genuinely displaced intact-duplex and matched cleanup diagnostic using the guarded worker, explicit source/mask/bounds/protected junctions. Measure guard overhead to reserve bounded native budgets. Keep individual contact/packing/geometry/derivative and failed outcomes; long guarded trajectories and density/matched refinement need separate qualification. Do not repeat W91 small-polish work.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -250,14 +251,15 @@
         "E_BLUNT_ASYM_PLAN",
         "E_PIVOT_ROTATION",
         "E_GUARD_INTEGRATION_PREP",
-        "E_LIVE_POLICY_CONSUMER"
+        "E_LIVE_POLICY_CONSUMER",
+        "E_GUARDED_CAPTURED_WORKER"
       ],
       "last_audit": {
         "date": "2026-11-16",
         "reviewer": "Linden",
-        "code_commit": "c6549408137f83b431f8519480702656bf9183c6",
-        "human_update": 96,
-        "scope": "Optional direct shared-policy consumer qualified with C331 on its exact native profile. Full/install/bounded native checks pass; worker adoption and scientific geometry/diffraction gates remain open."
+        "code_commit": "1d6008791c730cc576d21fb7f7872f5c1eb36466",
+        "human_update": 97,
+        "scope": "Explicit guarded read-only captured-worker path qualified with installed C331 and original-path-absent relocation. Scientific geometry, long trajectories and diffraction gates remain open."
       }
     },
     {
@@ -300,13 +302,14 @@
         "W88 compiles numerical motion from an exactly pinned/replayed saved preview and its registration, with complete atom order, fixed context and source-byte guard. Full and installed/relocated software checks pass; no physical-search acceptance is inferred.",
         "W90 adds explicit diagnostic initialization to the existing atomic trial and checks remaining evaluation budget, with unchanged source/tether, derivatives and stopping/failure policy. Full/installed validation passes; native benefit is being compared in W91.",
         "W91 qualifies execution of the explicit diagnostic-start interface through matched native trials and endpoint observations, preserving both failures. This small coarse seed reaches the same rounded atomic point as cold cleanup and gives no demonstrated benefit; local improvements and remaining packing/torsion reviews stay separate.",
-        "W96 qualifies an explicit direct shared-policy consumer with frozen baseline, hidden-mutation rejection and legitimate native rebuilds. Full/install and bounded source/native composition checks pass; no worker/default activation or scientific acceptance."
+        "W96 qualifies an explicit direct shared-policy consumer with frozen baseline, hidden-mutation rejection and legitimate native rebuilds. Full/install and bounded source/native composition checks pass; no worker/default activation or scientific acceptance.",
+        "W97 carries the C331 guard/profile through explicit captured diagnostics, preserves fresh baseline/provenance and verifies success evidence. Source and installed/relocated read-only public-DNA controls agree exactly; no scientific acceptance or default activation."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "W97: qualify explicit captured-worker owner/profile dependency staging, actual evaluation options and source/report provenance before adding a supported opt-in job argument. Preserve legacy workers/readers and failure handling. Then select a predeclared displaced-duplex case plus matched cleanup; DNA/packing/density/chemistry gates remain separate.",
+      "next_action": "W98: predeclare a genuinely displaced intact-duplex and matched cleanup diagnostic using the guarded worker, explicit source/mask/bounds/protected junctions. Measure guard overhead to reserve bounded native budgets. Keep individual contact/packing/geometry/derivative and failed outcomes; long guarded trajectories and density/matched refinement need separate qualification. Do not repeat W91 small-polish work.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -340,14 +343,15 @@
         "E_LIVE_NONBONDED_CONTRACT",
         "E_BLUNT_ASYM_PLAN",
         "E_GUARD_INTEGRATION_PREP",
-        "E_LIVE_POLICY_CONSUMER"
+        "E_LIVE_POLICY_CONSUMER",
+        "E_GUARDED_CAPTURED_WORKER"
       ],
       "last_audit": {
         "date": "2026-11-16",
         "reviewer": "Linden",
-        "code_commit": "c6549408137f83b431f8519480702656bf9183c6",
-        "human_update": 96,
-        "scope": "Optional direct shared-policy consumer qualified with C331 on its exact native profile. Full/install/bounded native checks pass; worker adoption and scientific geometry/diffraction gates remain open."
+        "code_commit": "1d6008791c730cc576d21fb7f7872f5c1eb36466",
+        "human_update": 97,
+        "scope": "Explicit guarded read-only captured-worker path qualified with installed C331 and original-path-absent relocation. Scientific geometry, long trajectories and diffraction gates remain open."
       }
     },
     {
@@ -1250,10 +1254,10 @@
       "human_update": 92,
       "reference": "docs/topostitch-periodic.md#w92--shared-live-nonbonded-policy-contract-qualification-pending",
       "result": "Cedar owner/Willow consumer contract records full supported parameter/assignment/exclusion/symmetry and invocation scope, cache-state separation, unchanged defaults and mandatory equal-energy hidden-mutation controls.",
-      "limitation": "Historical W92 contract and C330 preparation; W96 now qualifies the explicit direct consumer with C331 (E_LIVE_POLICY_CONSUMER). Captured-worker and automatic adoption remain unqualified; Q06 chemistry stays separate.",
+      "limitation": "Historical W92 contract/C330 preparation; W96 direct and W97 explicit captured-diagnostic consumers now qualify with C331. Automatic adoption and scientific/chemistry gates remain open; Q06 separate.",
       "contract": {
         "kind": "shared-live-nonbonded-policy-consumer-contract",
-        "status": "DIRECT_OPTIONAL_CONSUMER_QUALIFIED_CAPTURED_WORKER_PENDING",
+        "status": "EXPLICIT_DIRECT_AND_CAPTURED_DIAGNOSTIC_CONSUMERS_QUALIFIED",
         "runtime_authority": false,
         "scientific_acceptance": false,
         "native_version_scope": "Phenix 2.2.1-6174; explicit supported API qualification required",
@@ -1299,14 +1303,14 @@
           "Unguarded existing callers and report shape remain unchanged until explicit supported adoption."
         ],
         "not_qualified_by_this_contract": [
-          "Captured worker, CLI or automatic campaign guard adoption",
+          "Automatic campaign/default guard adoption, long optimizer trajectories or arbitrary endpoint combinations",
           "Arbitrary native versions or callbacks",
           "Independent reconstruction of physical exclusions or generated contacts",
           "Source chemistry, scattering or full live refinement",
           "Cedar Q06 achieved chemistry closure",
           "Large bending, nonuniform curvature, physical gap closure or diffraction benefit"
         ],
-        "integration_checklist": "docs/topostitch-periodic.md#w96--optional-direct-live-policy-consumer",
+        "integration_checklist": "docs/topostitch-periodic.md#w97--explicit-guarded-captured-diagnostics",
         "integration_stages": [
           "Qualified exact Cedar owner/profile/native receipt",
           "Optional direct NativeMaskedObjective consumer with unchanged legacy behavior",
@@ -1315,7 +1319,8 @@
         ],
         "owner_module": "nasolve.cif_live_nonbonded_policy",
         "snapshot_api": "snapshot_live_nonbonded_policy(geo, *, flags, normalization, compute_gradients=False, disable_asu_cache=False, gradients=None, custom_nonbonded_function=None, external_energy_function=None, extension_objects=())",
-        "require_api": "require_live_nonbonded_policy(geo, expected, **same_evaluation_options)"
+        "require_api": "require_live_nonbonded_policy(geo, expected, **same_evaluation_options)",
+        "captured_consumer": "run_captured_objective(..., guard_live_policy=True); default False, complete selected Cedar owner/profile required"
       },
       "owner_contract_provenance": {
         "branch": "cedar",
@@ -1388,6 +1393,34 @@
         "reviewed_commit": "c6549408137f83b431f8519480702656bf9183c6",
         "scope": "Read-only runtime/test diff review; no additional reruns or Cedar edits",
         "result": "No blocking issue in direct optional scope. Confirmed paired opt-in, frozen baseline, actual shared flags/options, unchanged legacy reports and original exceptions. Source/profile hashes are provenance; trusted source lifetime remains caller-owned. Worker staging must preserve helper/profile closure and resolved-cutoff precondition."
+      }
+    },
+    "E_GUARDED_CAPTURED_WORKER": {
+      "kind": "worker_software_native_and_installed_relocation_qualification",
+      "code_commit": "1d6008791c730cc576d21fb7f7872f5c1eb36466",
+      "human_update": 97,
+      "reference": "docs/topostitch-periodic.md#w97--explicit-guarded-captured-diagnostics",
+      "result": "Explicit boolean guard_live_policy on run_captured_objective stages C331 guard/profile with source hashes, freezes model/capture-bound fresh baseline only after reconstructed-context comparison, and verifies child identity/digest/binding before accepting success. Legacy worker and default metadata unchanged. Ten fail-before cases;84 focused,1864 full+229 subtests,84 fresh-wheel tests,six CLI helps,pip check pass. Complete Phenix 2.2.1-6174 capture and guarded/unguarded read-only workers on855 atoms/204 movable/14 pair recipes match exactly. Installed guarded worker after original input/capture paths are removed reproduces values,gradients,binding and anchored checksum references.",
+      "limitation": "Explicit installed/developer Cedar route on the pinned native profile only, not a full merged build or universal portability. Fresh baseline does not authenticate unknown historical policy fields. No CLI/campaign-default activation, optimization, edited model, refinement or scientific acceptance. Long guarded trajectories, endpoint combinations and displaced/bent DNA/density qualification remain open. Scientific payload stays local.",
+      "owner_commit": "c4e5ddb8530358c524feb473f3c4ffe77c64b6ac",
+      "wheel_sha256": "3025cf64334f134b566615a3373c80680d7941f2734a204c4fdee235a639b048",
+      "native_policy_sha256": "4765d4a0173a162dda89d0673654e8080e4201e9e82848afc45b457918e0da31",
+      "new_artifact": {
+        "path": "live-policy.json",
+        "schema_version": 1,
+        "kind": "topostitch-live-policy-baseline",
+        "origin": "FRESH_RECONSTRUCTED_CONTEXT",
+        "reference_anchor": "probe_directory"
+      },
+      "default_guard_live_policy": false,
+      "local_forensic_archive": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/w97-guarded-worker-2026-11-16.tar.gz",
+        "sha256": "e95861400eba30f8bc1fd3defbda47c92a646dfe47739c7049a8507ce96a7216",
+        "files": 144,
+        "bytes": 6067690,
+        "portable_campaign": false,
+        "committed": false
       }
     }
   },
@@ -1528,8 +1561,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 96,
-    "next": 97,
+    "current": 97,
+    "next": 98,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1915,6 +1948,12 @@
         "title": "Qualify the optional direct shared native policy guard",
         "state": "RECORDED",
         "code_commit": "c6549408137f83b431f8519480702656bf9183c6"
+      },
+      {
+        "number": 97,
+        "title": "Qualify explicit guarded captured-worker diagnostics and relocation",
+        "state": "RECORDED",
+        "code_commit": "1d6008791c730cc576d21fb7f7872f5c1eb36466"
       }
     ]
   }

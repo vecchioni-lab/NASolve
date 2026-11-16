@@ -3801,3 +3801,15 @@ and failure evidence, then the separate density-aware/matched-refinement gate.
 W91's small-polish result is settled and need not be rerun. Guarded long optimizer
 trajectories, endpoint-observer combinations and scientific bend acceptance are
 not established by these read-only worker cases.
+
+The verified 144-file forensic archive is ignored local evidence under the
+ordinary NASolve checkout at
+`branch-artifacts/willow/w97-guarded-worker-2026-11-16.tar.gz`, SHA256
+`e95861400eba30f8bc1fd3defbda47c92a646dfe47739c7049a8507ce96a7216`.
+It retains the declared relocated inputs/capture, immutable diagnostic outputs,
+source/profile snapshots, validation scripts and receipts with a payload index;
+it is not an autonomous resumable campaign. Roadmap validation passes via
+`PYTHONDONTWRITEBYTECODE=1 python3 scripts/audit_topostitch_roadmap.py --write`
+and `--check`; focused `tests/test_topostitch_roadmap.py` gives **8 passed** with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m pytest -q -p no:cacheprovider`.
+Whitespace checks pass. No scientific payload is committed or pushed.
