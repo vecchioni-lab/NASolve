@@ -4256,3 +4256,16 @@ how it was placed. It verifies that these belong to the requested mutation and
 original phosphate intent. Only declared files travel with the result; unrelated
 files are excluded. The two saved PDU/DY round trips replay from about0.47MB each
 without Coot. This preserves the explanation; it does not approve the chemistry.
+
+
+### Reuse a chemical definition from the installed software (C354)
+
+DY can now be read from NASolve's packaged reference by its exact laboratory code.
+The reader checks its identity and checksum. With an explicitly chosen DNA source,
+the existing compositor builds exactly the same nucleotide source tested in C342;
+the saved Phenix qualification replays without generating another dictionary.
+
+This works after installation, relocation and ZIP packaging. A different packaged
+code follows the same route. It does not decide the model's phosphate state,
+invent a pairing pattern or turn a preview into numerical restraints. Ordinary
+source selection and automatic mutation still need their remaining integration.

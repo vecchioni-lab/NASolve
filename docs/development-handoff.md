@@ -1,12 +1,27 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C353 canonical construction lineage — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. C352 pushed at `9c646428`; C353 is this
+Updated **2026-11-16, C354 packaged chemical-source intake — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. C353 pushed at `84f27a3e`; C354 is this
 completed code/evidence checkpoint. No full suite, branch, default activation or
 merge. Linden owns Pine/Willow; frozen restoration/C331/C338 unchanged. Simon
 confirmed work through **23:00 London**. All Rowan jobs stopped at this checkpoint.
 
 ## Current result and next bounded task
+
+**C354 complete:** exact packaged reference lookup and explicit source composition
+reuse existing chemistry. Package/ZIP paths return source bytes plus package
+identities, never temporary paths. Twenty new cases;70 focused/4.76s and70
+installed relocated/4.09s pass. Packaged DY composition is byte-for-byte C342's
+qualified source and has the exact old composition proof; cold acquisition replay
+passes all21 recorded isolated checks,104 prior files/timestamps unchanged.
+No new native run, source edits, aliases/defaults, or full suite. Evidence:
+`packaged_reference_intake_2026_11_16`. All jobs stopped.
+**Next:** explicitly selected composed/custom sources through the existing frozen
+source-selection owner, preserving curated precedence. This supports reusable
+definitions without interpreting metadata as native qualification or forcing NAR
+pairing. Qualified source/context selection and ordinary DY activation remain open.
+Earlier next statements are historical.
+
 
 **C353 complete:** ordinary lineage now joins the existing canonical seed proof
 to original construction bytes/actions/passthrough intent. The complete request

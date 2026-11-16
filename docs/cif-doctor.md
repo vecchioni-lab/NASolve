@@ -13866,3 +13866,24 @@ Both archived C349 Coot1.3.3 round trips replay exactly under relocation without
 new native work. Complete-request intake and missing/re-signed contradictory proofs
 are covered by focused regressions. Exact commands/results and retained-artifact
 scope: `canonical_construction_lineage_2026_11_16`.
+
+
+### Exact packaged chemical-reference intake (C354)
+
+`read_packaged_reference(code)` returns immutable definition bytes, parsed original
+metadata and checksum/size references under `nasolve:data/chemical_references`.
+Only an exact1–3-character uppercase laboratory code is accepted; metadata identity,
+schema, kind, same-code resource path, hash and parsed component must agree.
+Sources/metadata are rechecked after reading. This is package integrity, not native
+usability; metadata qualification claims do not activate mutation or aliases.
+
+`compose_packaged_dna_source(backbone_source, backbone_code, reference_code,
+component=...)` uses the existing explicit `compose_dna_source` unchanged. Resource
+paths remain inside their extraction context; returned bytes/proof bind package
+manifest/source hashes and the original composition proof. Caller-selected backbone,
+hand and chemical state remain explicit. No search, default, generation, graph
+special case or process owner is added. Existing linked/terminal/native checks follow.
+
+Package and ZIP controls produce identical source/proof; DY exactly matches the
+saved C342 source and its isolated native evidence.70 focused/installed checks
+pass; no new science run/full suite. Evidence: `packaged_reference_intake_2026_11_16`.

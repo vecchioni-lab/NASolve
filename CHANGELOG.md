@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Read chemical references from the installed package (C354)
+
+- Add exact manifest/checksum/component-bound reference lookup and explicit DNA
+  composition through the existing compositor. Package and ZIP-resource use
+  return the same source bytes with package anchors, without temporary paths.
+- Keep metadata claims separate from native qualification. No implicit Y/DY
+  alias, curated dictionary, numerical generation or automatic mutation is added.
+
 ### Retain canonical-parent proof through ordinary preparation (C353)
 
 - Bind explicit canonical input to original construction bytes, actions and

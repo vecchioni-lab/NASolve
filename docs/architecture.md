@@ -45,6 +45,12 @@ changed fields. Native reader/conversion/finished inventory must preserve the
 single bridge and source state. Existing acquisition/replay owners carry the
 choice; original-source assessment and independent qualification remain required.
 
+Packaged chemical references have an exact manifest/checksum/component-bound
+reader and an explicit wrapper around the same source compositor. Package anchors
+identify metadata and definition bytes; temporary extraction paths never become
+operational references. Original descriptive qualification fields are not native
+authority. No local/CCD search, alias or new chemistry classifier is introduced.
+
 Custom free-nucleoside references may be combined with an explicitly selected
 DNA source through the pure `compose_dna_source` API. Each source owns its retained
 subgraph; hashes and per-atom origins accompany the new source. Conventional

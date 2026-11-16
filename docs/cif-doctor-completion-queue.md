@@ -884,9 +884,10 @@ sampled finite-difference agreement. Initial model strain remains explicit.
 installed checks pass, without granting retry or plane-support authority.
 **C353:** ordinary lineage/complete-request freezing now retain exact canonical
 seed evidence; historical policies remain unchanged. Both C349 native round-trip
-closures replay after relocation. **Next:** package-bound reference intake through
-existing composition, then qualified source/context selection. Explicit APIs stay
-separate from defaults. No DY pair pattern, automatic alias or per-site selector is
+closures replay after relocation. **C354:** package-bound reference intake and
+composition pass70 focused/installed cases; exact C342 source/native evidence is
+reused without regeneration. **Next:** explicit custom/composed source freezing
+through the existing owner, then qualified context selection. APIs stay opt-in. No DY pair pattern, automatic alias or per-site selector is
 inferred. See `source_bound_canonical_roundtrip_2026_11_16`.
 See `mixed_dy_end_states_readyset_2026_11_16`; older next steps are historical.
 

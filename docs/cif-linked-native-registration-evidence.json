@@ -106095,5 +106095,462 @@
       "Automatic source/context selection and DY alias remain separate; no full suite or fresh Phenix/Coot science run."
     ],
     "next": "Provide package-bound reusable reference intake through the existing explicit source compositor, then qualified ordinary source/context selection; preserve Q06 survival limits."
+  },
+  "packaged_reference_intake_2026_11_16": {
+    "milestone": "C354",
+    "date": "2026-11-16",
+    "signed": "Rowan",
+    "before": "Packaged DY reference was present, but callers had to locate its development/package file manually before composing a DNA source.",
+    "after": "Exact code lookup verifies package manifest/schema/checksum/component and returns definition bytes with package anchors. A small explicit wrapper reuses compose_dna_source with caller-selected backbone and output component; no absolute or temporary resource path escapes.",
+    "schemas": {
+      "reference_policy": "cif-packaged-chemical-reference-v1",
+      "composition_policy": "cif-packaged-deoxy-source-composition-v1",
+      "schema_version": 1,
+      "anchor": "nasolve:data/chemical_references",
+      "migration": "None; new opt-in APIs, old compositor and package data unchanged."
+    },
+    "validation": {
+      "before": "19 missing-API regressions fail/5.81s",
+      "new_cases": 20,
+      "focused": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_packaged_reference.py tests/test_packaged_dy_reference.py tests/test_cif_reference_composition.py tests/test_cif_generation_input.py --tb=short",
+        "result": "70 passed in4.76s"
+      },
+      "installed": {
+        "status": "INSTALLED_RELOCATED_PACKAGED_REFERENCE_PASS",
+        "wheel_sha256": "133f826e514c70278e7742c664cab82f3d139fd9e3a9423633ef40da851ebf92",
+        "wheel_bytes": 1390255,
+        "source_copy_removed": true,
+        "original_install_path_absent": true,
+        "package_reference_bytes_match": true,
+        "validation_command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-c",
+          "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_cif_packaged_reference.py', 'tests/test_packaged_dy_reference.py', 'tests/test_cif_reference_composition.py', 'tests/test_cif_generation_input.py', '--tb=short']))"
+        ],
+        "validation_output": "......................................................................   [100%]\n70 passed in 4.09s\n",
+        "build_command": "phenix.python -m pip wheel --no-deps --no-build-isolation --no-index",
+        "temporary_bytes_removed": 11061272
+      },
+      "scope": [
+        "Exact old composed bytes/proof.",
+        "Renamed Q17/Q18 control, no DY-name branch.",
+        "ZIP resource extraction returns exact same bytes/proof without temporary path.",
+        "Unsafe names, implicit Y/YTR aliases, wrong hash/component/anchor/path/schema and changing metadata refuse.",
+        "Descriptive qualification claims cannot activate mutation/native usability."
+      ]
+    },
+    "archived": {
+      "status": "EXACT_PACKAGED_SOURCE_REUSES_C342_EVIDENCE",
+      "packaged_composition": {
+        "schema_version": 1,
+        "policy_id": "cif-packaged-deoxy-source-composition-v1",
+        "component": "DY",
+        "source": {
+          "anchor": "nasolve:data/chemical_references",
+          "path": "DY.cif",
+          "sha256": "d8345c307d35f5385c95d7ba9ad46d1462fb39f3b6bd4e1904ffc41b0c5ac572",
+          "size": 6243
+        },
+        "manifest": {
+          "anchor": "nasolve:data/chemical_references",
+          "path": "DY.json",
+          "sha256": "2ea80e099e49d129017d30e6772fee02ce63f9b080351458328b5119aed95db8",
+          "size": 4828
+        },
+        "composition": {
+          "schema_version": 1,
+          "policy_id": "cif-explicit-deoxy-base-source-composition-v1",
+          "status": "COMPOSED_SOURCE_REQUIRES_QUALIFICATION",
+          "component": "DY",
+          "source_pins": {
+            "backbone": {
+              "component": "DT",
+              "sha256": "47a7972b4707d3d2b4bd01ab4916b90bbfa659867d612f58a3a79665cce5e9d7",
+              "size": 9049
+            },
+            "reference": {
+              "component": "DY",
+              "sha256": "d8345c307d35f5385c95d7ba9ad46d1462fb39f3b6bd4e1904ffc41b0c5ac572",
+              "size": 6243
+            }
+          },
+          "atom_origins": {
+            "C1'": {
+              "role": "backbone",
+              "source_atom": "C1'"
+            },
+            "C2": {
+              "role": "reference",
+              "source_atom": "C2"
+            },
+            "C2'": {
+              "role": "backbone",
+              "source_atom": "C2'"
+            },
+            "C3'": {
+              "role": "backbone",
+              "source_atom": "C3'"
+            },
+            "C3T": {
+              "role": "reference",
+              "source_atom": "C3T"
+            },
+            "C4": {
+              "role": "reference",
+              "source_atom": "C4"
+            },
+            "C4'": {
+              "role": "backbone",
+              "source_atom": "C4'"
+            },
+            "C5": {
+              "role": "reference",
+              "source_atom": "C5"
+            },
+            "C5'": {
+              "role": "backbone",
+              "source_atom": "C5'"
+            },
+            "C5T": {
+              "role": "reference",
+              "source_atom": "C5T"
+            },
+            "C6": {
+              "role": "reference",
+              "source_atom": "C6"
+            },
+            "H1": {
+              "role": "reference",
+              "source_atom": "H1"
+            },
+            "H1'": {
+              "role": "backbone",
+              "source_atom": "H1'"
+            },
+            "H2": {
+              "role": "reference",
+              "source_atom": "H2"
+            },
+            "H2'": {
+              "role": "backbone",
+              "source_atom": "H2'"
+            },
+            "H2''": {
+              "role": "backbone",
+              "source_atom": "H2''"
+            },
+            "H3": {
+              "role": "reference",
+              "source_atom": "H3"
+            },
+            "H3'": {
+              "role": "backbone",
+              "source_atom": "H3'"
+            },
+            "H4": {
+              "role": "reference",
+              "source_atom": "H4"
+            },
+            "H4'": {
+              "role": "backbone",
+              "source_atom": "H4'"
+            },
+            "H5'": {
+              "role": "backbone",
+              "source_atom": "H5'"
+            },
+            "H5''": {
+              "role": "backbone",
+              "source_atom": "H5''"
+            },
+            "HO3'": {
+              "role": "backbone",
+              "source_atom": "HO3'"
+            },
+            "HOP2": {
+              "role": "backbone",
+              "source_atom": "HOP2"
+            },
+            "HOP3": {
+              "role": "backbone",
+              "source_atom": "HOP3"
+            },
+            "N1": {
+              "role": "reference",
+              "source_atom": "N1"
+            },
+            "N1T": {
+              "role": "reference",
+              "source_atom": "N1T"
+            },
+            "N2T": {
+              "role": "reference",
+              "source_atom": "N2T"
+            },
+            "N3": {
+              "role": "reference",
+              "source_atom": "N3"
+            },
+            "N4T": {
+              "role": "reference",
+              "source_atom": "N4T"
+            },
+            "O2": {
+              "role": "reference",
+              "source_atom": "O2"
+            },
+            "O3'": {
+              "role": "backbone",
+              "source_atom": "O3'"
+            },
+            "O4'": {
+              "role": "backbone",
+              "source_atom": "O4'"
+            },
+            "O5'": {
+              "role": "backbone",
+              "source_atom": "O5'"
+            },
+            "OP1": {
+              "role": "backbone",
+              "source_atom": "OP1"
+            },
+            "OP2": {
+              "role": "backbone",
+              "source_atom": "OP2"
+            },
+            "OP3": {
+              "role": "backbone",
+              "source_atom": "OP3"
+            },
+            "P": {
+              "role": "backbone",
+              "source_atom": "P"
+            }
+          },
+          "removed_backbone_base": [
+            "C2",
+            "C4",
+            "C5",
+            "C6",
+            "C7",
+            "H3",
+            "H6",
+            "H71",
+            "H72",
+            "H73",
+            "N1",
+            "N3",
+            "O2",
+            "O4"
+          ],
+          "unused_reference_scaffold": [
+            "C1'",
+            "C2'",
+            "C3'",
+            "C4'",
+            "C5'",
+            "H10",
+            "H11",
+            "H12",
+            "H13",
+            "H5",
+            "H6",
+            "H7",
+            "H8",
+            "H9",
+            "O3'",
+            "O4'",
+            "O5'"
+          ],
+          "attachment": [
+            "C1'",
+            "N1"
+          ],
+          "sugar_configuration": [
+            {
+              "centre": "C1'",
+              "state": "PRESERVED",
+              "declared": "R",
+              "source_volumes": [
+                2.3692132160000003,
+                2.3806902513363752
+              ]
+            },
+            {
+              "centre": "C3'",
+              "state": "PRESERVED",
+              "declared": "S",
+              "source_volumes": [
+                -2.6776939019999997,
+                -2.5828034185655406
+              ]
+            },
+            {
+              "centre": "C4'",
+              "state": "PRESERVED",
+              "declared": "R",
+              "source_volumes": [
+                2.606118211000001,
+                2.490521372324866
+              ]
+            }
+          ],
+          "coordinate_families": {
+            "backbone": "SOURCE_IDEAL",
+            "reference": "SOURCE_MODEL"
+          },
+          "coordinate_authority": "CONSTRUCTED_SEED_NOT_INDEPENDENT_IDEAL",
+          "base_pair_distance_max_change": 3.552713678800501e-15,
+          "bond_stereo_encoding": "NO_E_Z_DECLARATIONS_PERMITTED; UNASSERTED_COLUMN_OMITTED",
+          "atom_order": {
+            "policy_id": "cif-connected-heavy-atom-order-v1",
+            "input_order": [
+              "C1'",
+              "C2",
+              "C2'",
+              "C3'",
+              "C3T",
+              "C4",
+              "C4'",
+              "C5",
+              "C5'",
+              "C5T",
+              "C6",
+              "H1",
+              "H1'",
+              "H2",
+              "H2'",
+              "H2''",
+              "H3",
+              "H3'",
+              "H4",
+              "H4'",
+              "H5'",
+              "H5''",
+              "HO3'",
+              "HOP2",
+              "HOP3",
+              "N1",
+              "N1T",
+              "N2T",
+              "N3",
+              "N4T",
+              "O2",
+              "O3'",
+              "O4'",
+              "O5'",
+              "OP1",
+              "OP2",
+              "OP3",
+              "P"
+            ],
+            "output_order": [
+              "C1'",
+              "C2'",
+              "N1",
+              "O4'",
+              "C3'",
+              "C2",
+              "C6",
+              "C4'",
+              "O3'",
+              "N3",
+              "O2",
+              "C5",
+              "C5'",
+              "C4",
+              "O5'",
+              "N1T",
+              "P",
+              "C5T",
+              "N2T",
+              "OP1",
+              "OP2",
+              "OP3",
+              "N4T",
+              "C3T",
+              "H1",
+              "H1'",
+              "H2",
+              "H2'",
+              "H2''",
+              "H3",
+              "H3'",
+              "H4",
+              "H4'",
+              "H5'",
+              "H5''",
+              "HO3'",
+              "HOP2",
+              "HOP3"
+            ]
+          },
+          "output_sha256": "a7d9ed314862298e589be0f873cc41c9abaa0d2608aa709ce26fc0a59aaf1d55",
+          "model_editing": "NOT_RUN",
+          "native_qualification": "NOT_RUN",
+          "restraint_generation": "NOT_RUN",
+          "linked_state_qualification": "NOT_RUN",
+          "automatic_adoption": false
+        },
+        "output_sha256": "a7d9ed314862298e589be0f873cc41c9abaa0d2608aa709ce26fc0a59aaf1d55",
+        "native_qualification": "NOT_RUN",
+        "automatic_adoption": false
+      },
+      "prior": {
+        "anchor": "NASolve-live-tests",
+        "path": "342_Cedar_DY-DNA-source-native-1veizued"
+      },
+      "entry_id": "9fde96589068502a51e001f32493a595d50a9e356d2e882fbf2f969b198596ce",
+      "qualification_status": "ISOLATED_NATIVE_USABILITY_PASS",
+      "native_usable": true,
+      "qualification_checks": {
+        "effective_declared_bond_orders": true,
+        "energy_inventory": true,
+        "exact_active_angles": true,
+        "exact_active_bonds": true,
+        "exact_active_planes": true,
+        "exact_active_torsions": true,
+        "exact_effective_definitions": true,
+        "exact_fixed_chirality_membership": true,
+        "exact_model_and_component": true,
+        "finite_active_proxy_parameters": true,
+        "finite_energy_and_gradient": true,
+        "fixed_coordinate_repeats": true,
+        "native_completed": true,
+        "native_coordinate_roundtrip": true,
+        "no_competing_native_ss": true,
+        "no_contradictory_native_formal_charges": true,
+        "no_native_fatal_or_unused": true,
+        "omitted_unoriented_volume_coverage": true,
+        "one_complete_monomer": true,
+        "proxy_counts_complete": true,
+        "source_chemistry_and_configuration": true
+      },
+      "native_execution": "FORBIDDEN; C342_PHENIX2.2.1-6174_EVIDENCE_REUSED",
+      "preserved_files_and_timestamps": 104,
+      "automatic_adoption": false
+    },
+    "changed_files": [
+      "src/nasolve/cif_packaged_reference.py",
+      "tests/test_cif_packaged_reference.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/development-handoff.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "compatibility": "Exact source and metadata bytes preserved. No curated/NARestraints alias, automatic discovery, numerical generation, default activation, extra owner or graph classifier.",
+    "retention": "Code/tests/docs/compact source hashes and archived-check results only; no new scientific run/dictionary/model/log copies.104 prior files/timestamps preserved;11.06MB installed build/replay scratch removed.",
+    "limitations": [
+      "Caller explicitly chooses backbone, source chemical state and output component; model end chemistry remains separate.",
+      "Original metadata is descriptive, not current scientific or native authority.",
+      "Ordinary custom-source freezing and source/context selection remain next; no full suite or fresh Phenix/Coot run."
+    ],
+    "next": "Pass explicitly selected composed/custom sources into the existing frozen source-selection owner, without relaxing curated-source precedence or inventing aliases."
   }
 }
