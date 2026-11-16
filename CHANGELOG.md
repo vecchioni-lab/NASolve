@@ -38,6 +38,11 @@ entries are reconstructed from repository history.
 
 ### Documentation
 
+- Make the metal feature milestones explicitly post-merge and number them
+  A01–A08. Add a dedicated GUI co-design session and a reconstruction gate using
+  experimental inputs and general mechanics, with human solutions reserved for
+  assessment and extra priors/intervention recorded. Runtime behavior is unchanged.
+
 - Add the metal development roadmap and task-specific campaign storage plan:
   shared pristine parents, lean frozen Q/f″ records, protected branch points,
   measured map retention, recovery evidence levels and disk-budget gates.

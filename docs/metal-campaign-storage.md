@@ -1,8 +1,10 @@
 # Metal campaign storage and recovery plan
 
 Status: **design scoped, implementation pending**; 16 November 2026.
-The [development roadmap](metal-development-roadmap.md) places this work after
-single-dataset ligand/open-refinement qualification and before large f″ campaigns.
+The [post-merge development roadmap](metal-development-roadmap.md) places this
+work at **A04**, after single-dataset ligand/open-refinement qualification and
+before large f″ campaigns. It is a feature milestone after merge, not a
+prerequisite for merging the current experimental implementation.
 This document does not enable cleanup or change an existing immutable run.
 
 ## Governing decision

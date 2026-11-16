@@ -20,6 +20,19 @@ Wait for their explicit continuation before returning to FT_Hg. All owned native
 jobs are stopped. [Roadmap](metal-development-roadmap.md) and [storage plan](metal-campaign-storage.md)
 record the implementation order; focused tests only for subsequent bounded work.
 
+**Roadmap correction.** At the user's request, the feature milestones are
+explicitly **post-merge**, numbered **A01–A08**. Merging the current experimental
+implementation has separate integration/compatibility checks; the feature
+completion gates are not prerequisites. A05 is a dedicated scientist/developer
+GUI co-design session. A07 requires reconstruction of the metal test solutions
+from declared experimental inputs and general mechanics, keeping human solutions
+out of construction/search and recording all extra priors and manual intervention.
+Historical implementation receipts A37–A40 keep their existing identifiers.
+This documentation update does not resume paused native work. Validation: the
+Python local-link/numbering audit passes five document links, ordered A01–A08
+IDs, both new scope sections and index/handoff consistency; `git diff --check`
+passes. No runtime/schema change, scientific artifact changes or pytest run.
+
 **Before/after.** A39 supplied comparison accounting. A40 begins the ligand/open
 XYZ/B foundation and now scopes operation-specific storage before campaign
 fan-out. Frozen XYZ/B/f′ points keep one pristine parent plus compact Q/f″ data;
