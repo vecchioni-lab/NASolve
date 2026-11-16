@@ -1,12 +1,38 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C343 internal DY construction — Rowan**.
+Updated **2026-11-16, C344 free-end DY native control — Rowan**.
 Worktree **NASolve-c96**, branch **cedar**. C341 pushed at `5c960cc4`; C342 is this
 completed code/evidence checkpoint. No full suite, new branch, default activation
 or merge. Linden owns Pine/Willow; C331 unchanged. Simon confirmed work through
 **23:00 London**. All Rowan native/controller jobs stopped at this checkpoint.
 
 ## Current result and next bounded task
+
+**Latest C344 complete — Rowan.** C343 pushed `e4f7ef7f`; C344 is this docs/evidence
+checkpoint. All jobs stopped, no code/default changes or new pytest run; C343's
+36 direct / 186 installed focused passes remain current. Continue through 23:00.
+Successful root `NASolve-live-tests/344_Cedar_DY-free-end-native-ah13s9fb`, 7.85 s,
+about 7.41 MB. Existing terminal-resource/site APIs qualify explicit free-OH DY,
+then ordinary Coot constructs it using that exact projected dictionary. Native
+counts: initial 65 PASS, actual Coot model 66 PASS, each one UNSUPPORTED formal
+charge readback. No phosphate atoms at the free end; base/parent chi/outgoing link
+survive. Coot1.3.3, Phenix2.2.1-6174. Cold relocation preserves119 files and exact
+results, launches nothing. First `344_Cedar_DY-free-end-native-ee6th6ki` harness
+mis-unpacked `(path,code)`; all jobs dead before fresh retry; failed files retained.
+
+**Important correction to older C343 planning:** `sanitize_phosphates` removes
+only OP3 with a proven incoming bond, not a whole phosphate at a free end. The
+successful route prepares the explicit free-OH dictionary before Coot. Do not
+weaken the sanitizer or infer end state from missing atoms. Ordinary automatic
+per-site dictionary selection is still open; this is an explicit caller control.
+
+**Next C345:** use the C344 free-end model, construct an additional internal DY
+with C343's verified full nucleotide dictionary, prepare both contexts together
+through `prepare_dictionary_bundle`, and run existing observed ReadySet + exact
+endpoint native checks. All code/source owners already exist. No pairing pattern
+is invented for DY. Then refinement survival / ordinary source selection, still
+without alias activation until qualified. See `explicit_free_end_dy_2026_11_16`.
+Older active/next paragraphs below are retained history, superseded by this one.
 
 **Latest C343 complete — Rowan, 2026-11-16.** C342 pushed `d17dd326`; C343 is this
 code/evidence checkpoint. All Rowan jobs stopped. Continue through 23:00 London,

@@ -4192,5 +4192,7 @@ The internal-DY control (C343) now also succeeds in ordinary Coot construction
 and Phenix interpretation: the complete base keeps the parent orientation, both
 backbone links survive, and the intended local restraints are present. The same
 chemistry rule governs dictionary generation and DNA classification. Native
-formal-charge readback is still unavailable. Free-end DY, ReadySet, refinement
-survival and the ordinary DY mutation name remain separate checks.
+formal-charge readback is still unavailable. C344 also demonstrates a free 5′-OH DY end: an explicitly prepared end-state
+dictionary lets Coot build the right atoms from the start, and Phenix retains
+its outgoing link. ReadySet, refinement survival and ordinary automatic selection
+remain separate checks.

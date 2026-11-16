@@ -13647,3 +13647,30 @@ attempt. Cold relocation reproduces the exact linked result and metadata bytes
 without native execution. Exact commands/hashes and scope are in
 `explicit_metadata_linked_dy_2026_11_16`. ReadySet, refinement survival and ordinary
 DY alias activation remain separate. No additional plane or weight is justified.
+
+
+### Explicit free-end DY preparation and construction (C344)
+
+The existing terminal-resource and site-preparation APIs support DY at an explicit
+free 5′-OH/outgoing-linked end. A fresh installed 5*END resource capture provides
+the native O5′/HO5′ fragment; no protonation is guessed and the new H formal charge
+stays unassessed. The initial two-residue control has 65 PASS / one unavailable
+formal-charge readback. Its exact projected dictionary then drives ordinary Coot
+construction at a free end of the canonical three-residue fragment. Complete base
+transport and parent chi succeed; no P/OP1/OP2/OP3 appear at that end. The actual
+Coot model passes 66 native checks with the same one charge-readback limitation.
+Phenix 2.2.1-6174 / dispatcher 2.2.1; Coot 1.3.3; complete executions, no refinement.
+
+This clarifies the construction boundary: the phosphate sanitizer only removes
+OP3 after proving an incoming bond; it does not remove an entire phosphate to
+create a free hydroxyl. Supply the declared end-state dictionary before Coot
+construction. This control selects it explicitly; ordinary automatic per-site
+selection and a global DY mutation alias are not yet enabled. Existing internal
+and terminal phosphate guards remain intact, including symmetry distinctions.
+
+Both saved native results replay after relocation without execution, preserving
+119 original files/timestamps. First local harness failed by treating the returned
+projection `(path, code)` as a path after successful qualification; preserved and
+verified stopped before the successful fresh attempt. Evidence:
+`explicit_free_end_dy_2026_11_16`. Next: combined free-end/internal DY through
+ReadySet, then refinement survival and source-owned ordinary selection.

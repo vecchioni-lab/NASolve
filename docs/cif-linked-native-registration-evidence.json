@@ -104309,5 +104309,160 @@
     ],
     "next": "Existing free-end context and terminal owners,then ReadySet/refinement.",
     "signed": "Rowan"
+  },
+  "explicit_free_end_dy_2026_11_16": {
+    "status": "C344_EXPLICIT_FREE_OH_DY_PREPARATION_AND_COOT_NATIVE_MECHANICS_OBSERVED",
+    "source_commit": "e4f7ef7f",
+    "runtime_changes": "NONE",
+    "summary": {
+      "status": "C344_EXPLICIT_FREE_OH_DY_PREPARATION_AND_COOT_NATIVE_MECHANICS_OBSERVED",
+      "version": {
+        "coot": "1.3.3",
+        "phenix": "2.2.1",
+        "phenix_build": "phenix-2.2.1-6174"
+      },
+      "counts": {
+        "projected_control": {
+          "PASS": 65,
+          "UNSUPPORTED": 1
+        },
+        "actual_coot_model": {
+          "PASS": 66,
+          "UNSUPPORTED": 1
+        }
+      },
+      "continuation": {
+        "status": "CONTINUE_WITH_NOTES",
+        "allowed": true,
+        "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+        "automatic_adoption": false,
+        "policy": "EXISTING_MECHANICS_CONTINUATION; UNAVAILABLE_FORMAL_CHARGE_ONLY"
+      },
+      "restoration": {
+        "policy_id": "postmr-source-graph-fragment-restoration-v1",
+        "component": "DY",
+        "fragment_atoms": [
+          "C2",
+          "C3T",
+          "C4",
+          "C5",
+          "C5T",
+          "C6",
+          "N1",
+          "N1T",
+          "N2T",
+          "N3",
+          "N4T",
+          "O2"
+        ],
+        "attachment_atom": "N1",
+        "frame_atoms": [
+          "C1'",
+          "O4'",
+          "C2'"
+        ],
+        "source_sha256": "c22fdedf55ef09b1706d11d259a922796207f657ba6eccdf1a443290e02a95f5",
+        "status": "GRAPH_FRAGMENT_RESTORED",
+        "scaffold_atoms": [
+          "C1'",
+          "C2'",
+          "C3'",
+          "C4'",
+          "C5'",
+          "O3'",
+          "O4'",
+          "O5'"
+        ],
+        "count": 8,
+        "atoms": [
+          "C1'",
+          "C2'",
+          "C3'",
+          "C4'",
+          "C5'",
+          "O3'",
+          "O4'",
+          "O5'"
+        ],
+        "parent_atom_count": 17,
+        "substitutions": [],
+        "rotation_determinant": 1.0000000000000004,
+        "max_fragment_distance_change": 0.0010706634684727323,
+        "attachment_orientation_preserved": true,
+        "metadata_preserved": true,
+        "requires_cif_review": false,
+        "notes": [
+          "The complete raw base was transported rigidly; its internal geometry was not optimized."
+        ]
+      },
+      "coordinate_phosphate_atoms_at_free_end": [],
+      "native_resources": "20f8f5f4961885d1f770cd7ae4756a3d4dc8ebcfb0bff5102b67729a870e38b3",
+      "source_files_preserved": 80,
+      "all_native_jobs_stopped": true,
+      "elapsed_seconds": 7.84700970799895,
+      "physical_bytes": 7414343,
+      "ordinary_end_state_dictionary_selection": "CALLER_EXPLICIT; NOT_YET_AUTOMATIC",
+      "readyset": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "automatic_alias": "NOT_ENABLED",
+      "scientific_approval": "NOT_RUN"
+    },
+    "local_root": {
+      "anchor": "NASolve-live-tests",
+      "path": "344_Cedar_DY-free-end-native-ah13s9fb"
+    },
+    "readback": {
+      "status": "C344_FREE_END_NATIVE_COLD_REPLAY_PASS",
+      "original_path_absent": true,
+      "native_execution_forbidden": true,
+      "exact_results": {
+        "free-end-sites": true,
+        "constructed-sites": true
+      },
+      "preserved_original_files": 119,
+      "temporary_bytes_removed": 7159025
+    },
+    "native_receipts": {
+      "free-end-sites-before": {
+        "anchor": "control_directory",
+        "path": "free-end-sites-before/cif-native-htg_bbtz/native_receipt.json",
+        "sha256": "05d4baba04f051c23dffd53dfaf6f90044a20107e7d052e7c6d350dcaad77eb2"
+      },
+      "free-end-sites-after": {
+        "anchor": "control_directory",
+        "path": "free-end-sites-after/cif-native-gu4svmwt/native_receipt.json",
+        "sha256": "32e8e9605be138902842b9e2886f0f3a97c6c69c0d6a8e2c888569441b738cf0"
+      },
+      "constructed-sites-before": {
+        "anchor": "control_directory",
+        "path": "constructed-sites-before/cif-native-7apf7kkz/native_receipt.json",
+        "sha256": "14f1741f393a5b627bc5642860e17cdc78369f1aefdb1568a5adb1d35a4f5ff7"
+      },
+      "constructed-sites-after": {
+        "anchor": "control_directory",
+        "path": "constructed-sites-after/cif-native-lhr24g55/native_receipt.json",
+        "sha256": "6e370add89fdeb151d9bc2a7981ebaa1161cec83acffdebd5dffa7cb10755fa0"
+      }
+    },
+    "failed_harness": {
+      "anchor": "NASolve-live-tests",
+      "path": "344_Cedar_DY-free-end-native-ee6th6ki",
+      "reason": "Projection returns (path,code); local harness expected path. Native initial qualification succeeded; all jobs stopped before fresh run."
+    },
+    "commands": {
+      "native": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/cedar/runners/c344_start.py",
+      "readback": "Same environment/python: branch-artifacts/cedar/runners/c344_readback.py"
+    },
+    "validation": "Complete Coot/Phenix native controls and cold relocation; no new pytest for docs-only checkpoint. C343 focused tests remain current; no full suite.",
+    "compatibility": "No runtime/schema/default/alias changes; no migration.",
+    "retention": "Compact evidence/docs only committed; all models, generated CIFs, logs, native resources/captures and runners stay local.",
+    "limitations": [
+      "Source terminal H formal charge unassessed; no partial-charge substitution.",
+      "Caller explicitly selects end-state dictionary before Coot; no automatic per-site adapter yet.",
+      "No ReadySet/refinement/ordinary alias activation.",
+      "Fragment end intent does not revise original scaffold/symmetry chemistry."
+    ],
+    "next": "Combined free-end/internal DY ReadySet and endpoint native readback.",
+    "signed": "Rowan"
   }
 }
