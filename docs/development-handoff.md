@@ -1,10 +1,10 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C347 Coot canonical identity guard — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. C346 pushed at `b1d885a8`; C347 is this
-completed code/evidence checkpoint. No full suite, new branch, default activation
-or merge. Linden owns Pine/Willow; C331 unchanged. Simon confirmed work through
-**23:00 London**. All Rowan native/controller jobs stopped at this checkpoint.
+Updated **2026-11-16, C348 modified–canonical–modified construction — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. C347 pushed at `0b1cba41`; C348 is this
+completed code/evidence checkpoint. No full suite, branch, default activation or
+merge. Linden owns Pine/Willow; frozen restoration/C331/C338 unchanged. Simon
+confirmed work through **23:00 London**. All Rowan jobs stopped at this checkpoint.
 
 ## Current result and next bounded task
 
@@ -63,11 +63,20 @@ Fresh positive verification uses saved model identities. No new refinement/full
 suite, alias, source chemistry or weight changes. Frozen restoration/C331/C338
 helpers untouched. See `coot_canonical_identity_2026_11_16`.
 
-**Next:** investigate source-supported modified→canonical→different-modification
-construction, which Simon explicitly endorses as a useful general test. The guard
-does not yet reconstruct Coot's unsupported parent. Check prior graph/parent
-machinery before introducing a route. Then ordinary source/context integration
-and the held-out rotating-ring control; no automatic DY alias yet.
+**C348 complete:** pure explicit `canonical_parent_seed` preserves the incoming
+DNA sugar/phosphate/anchor and places the complete supplied canonical base rigidly.
+33 new regressions;142 focused /2.42s,142 installed/relocated /2.89s. Actual Coot1.3.3
+PDU→DT→DY and DY→DT→PDU both pass, all11 scaffold coordinates exact, unselected
+heavy coordinates unchanged, final chi within0.02° of original. Root
+`348_Cedar_modified-canonical-roundtrip-2onapiub`,2.09s/~1.41MB; source files unchanged.
+A native generic torsion matcher missed by5.18899° (guard retained); local prototype
+success and a bare-TER format refusal also remain preserved. No Phenix rerun.
+Evidence: `source_bound_canonical_roundtrip_2026_11_16`.
+
+**Next:** connect explicit source/canonical choices through the existing ordinary
+construction owner; no second workflow or automatic alias. Then ordinary source/
+context selection and held-out rotating-ring control. Modified sugars, cross-family
+placement, absolute CIP assignment and universal refinement remain outside C348.
 Both C346 failures remain preserved: unsupported native PDU parent conversion,
 and a harness scope mismatch for refinement-only terminal angle changes. C346's
 successful canonical-input result is independent evidence, not a repaired failure.

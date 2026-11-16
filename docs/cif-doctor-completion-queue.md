@@ -870,10 +870,12 @@ Both rings remain near planar, the junction improves, and rotation is not frozen
 Cold exact-manager/written-model replay passes. No DY pairing or universal
 refinement claim. **C347:** actual canonical residue identity is now checked immediately after
 Coot mutation; both native refusal/success controls and109 focused/installed tests
-pass. **Next:** the generalized modified→canonical→different-modification test
-Simon endorsed. C346's first PDU→DT step reported native success but failed the
-later orientation gate. Ordinary source/context integration remains after this. No DY pair
-pattern, automatic alias or per-site selector is inferred from these controls.
+pass. **C348:** explicit source-bound canonical seeds now complete PDU→DT→DY and
+DY→DT→PDU through ordinary Coot, retaining sugar/phosphate and chi.142 focused and
+installed/relocated tests pass. **Next:** deliver the explicit source/template choice
+through the existing construction owner, then source/context selection and a held-out
+rotating-ring control. No DY pair pattern, automatic alias or per-site selector is
+inferred. See `source_bound_canonical_roundtrip_2026_11_16`.
 See `mixed_dy_end_states_readyset_2026_11_16`; older next steps are historical.
 
 **Latest C343:** explicit representation now reaches the source-owned DNA metadata

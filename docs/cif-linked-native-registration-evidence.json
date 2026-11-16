@@ -104800,5 +104800,287 @@
     ],
     "next": "Investigate source-supported canonical-parent reconstruction for modified input, preserving complete source intent and existing construction owner.",
     "signed": "Rowan"
+  },
+  "source_bound_canonical_roundtrip_2026_11_16": {
+    "milestone": "C348",
+    "date": "2026-11-16",
+    "signed": "Rowan",
+    "purpose": "Source-bound modified-to-canonical-to-other-modification construction without moving the incoming DNA scaffold",
+    "before": "Native Coot canonical mutation can report success without changing a modified residue; C347 refuses that. Generic native torsion matching also misses the source PDU chi by 5.18899 degrees in a separate preserved control.",
+    "after": "Pure explicit canonical_parent_seed returns model bytes and provenance; standard unbridged DNA graph and matching sugar hand gate proper rigid placement of the complete canonical base. Existing ordinary Coot construction completes the second modification.",
+    "policy": "postmr-explicit-canonical-base-seed-v1",
+    "schemas": "New opt-in in-memory report schema 1 only; no existing artifact migration or runtime/default caller change.",
+    "history_review": [
+      "C207 native set_torsion_py failed on absent internal Coot atom tree; not retried.",
+      "Existing source_graph_fragment, parent_conformation_plan, rigid frames and serialization guard reused; frozen restoration bytes unchanged."
+    ],
+    "focused": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_postmr_canonical_seed.py tests/test_postmr_conformation.py tests/test_postmr.py tests/test_postmr_context.py tests/test_postmr_restoration.py --tb=short",
+      "result": "142 passed in 2.42s",
+      "new_tests": 33,
+      "before": "New API regression collection fails on C347: missing module."
+    },
+    "installed": {
+      "status": "INSTALLED_RELOCATED_CANONICAL_SEED_PASS",
+      "wheel_sha256": "d8e83aceff16246e10188aa9e68838869bca9321eb547454c7bfbeb956aacbac",
+      "wheel_bytes": 1383032,
+      "source_copy_removed": true,
+      "original_install_path_absent": true,
+      "package_reference_bytes_match": true,
+      "validation_command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-B",
+        "-c",
+        "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_postmr_canonical_seed.py', 'tests/test_postmr_conformation.py', 'tests/test_postmr.py', 'tests/test_postmr_context.py', 'tests/test_postmr_restoration.py', '--tb=short']))"
+      ],
+      "validation_output": "........................................................................ [ 50%]\n......................................................................   [100%]\n142 passed in 2.89s\n",
+      "build_command": "phenix.python -m pip wheel --no-deps --no-build-isolation --no-index",
+      "temporary_bytes_removed": 10990050
+    },
+    "native": {
+      "root": {
+        "anchor": "NASolve-live-tests",
+        "path": "348_Cedar_modified-canonical-roundtrip-2onapiub"
+      },
+      "version": "Coot 1.3.3",
+      "execution": "Complete construction, no Phenix/refinement rerun",
+      "elapsed_seconds": 2.088192125000205,
+      "physical_bytes": 1406488,
+      "source_files_preserved": 5,
+      "driver": {
+        "returncode": 0,
+        "stopped_verified": true,
+        "source_unchanged": true
+      },
+      "cases": {
+        "PDU_to_DT_to_DY": {
+          "chi_before": -109.04357012327162,
+          "chi_parent": -109.04604407692702,
+          "chi_final": -109.0338071114228,
+          "unchanged_scaffold_atoms": [
+            "C1'",
+            "C2'",
+            "C3'",
+            "C4'",
+            "C5'",
+            "O3'",
+            "O4'",
+            "O5'",
+            "OP1",
+            "OP2",
+            "P"
+          ],
+          "unselected_heavy_coordinates_unchanged": true,
+          "model_sha256": "4d52ccf1a393c0b2aef3c220552dbaafa6516a5144381cb04411e5dc5812db57",
+          "seed": {
+            "schema_version": 1,
+            "policy_id": "postmr-explicit-canonical-base-seed-v1",
+            "status": "CANONICAL_BASE_SEED",
+            "site": "B:4",
+            "source_component": "PDU",
+            "canonical_component": "DT",
+            "source_sha256": "e0a3342167cdc6a391cde5470de9b4b2cdb59acb89fa126cb8d2e14c5b32fe8b",
+            "canonical_dictionary_sha256": "c24976988c284dc6244add52cccb2383e6cda4509fff11b5912c1df2b8a2796b",
+            "input_model_sha256": "636223e4edb19caf32e6bf70799f20d008c8ae45a65cc83a727bf1a3d38203d3",
+            "output_model_sha256": "135e0a9c74f7f9c24f38121d29b73e5dc298584817c7e58e9e96d5e4675b9eb5",
+            "template_coordinate_family": "RESTRAINT_CARTESIAN",
+            "frame_atoms": [
+              "N1",
+              "C2",
+              "C6"
+            ],
+            "preserved_scaffold_atoms": [
+              "C1'",
+              "C2'",
+              "C3'",
+              "C4'",
+              "C5'",
+              "O3'",
+              "O4'",
+              "O5'",
+              "OP1",
+              "OP2",
+              "P"
+            ],
+            "preserved_attachment_atom": "N1",
+            "removed_base_atoms": [
+              "C5A",
+              "C5B",
+              "C5M"
+            ],
+            "added_base_atoms": [
+              "C7"
+            ],
+            "rotation_determinant": 1.0000000000000002,
+            "maximum_template_pair_distance_change_A": 0.0004881337924369511,
+            "chi_before_degrees": -109.04357012327164,
+            "chi_after_degrees": -109.04604407692702,
+            "chi_difference_degrees": 0.002473953655396599,
+            "relative_sugar_hand": [
+              {
+                "center": "C1'",
+                "ordered_neighbors": [
+                  "C2'",
+                  "N1",
+                  "O4'"
+                ],
+                "model_volume": 2.5826020009999944,
+                "template_volume": 2.47196014
+              },
+              {
+                "center": "C3'",
+                "ordered_neighbors": [
+                  "C2'",
+                  "C4'",
+                  "O3'"
+                ],
+                "model_volume": -2.7281183260000006,
+                "template_volume": -2.638685281
+              },
+              {
+                "center": "C4'",
+                "ordered_neighbors": [
+                  "C3'",
+                  "C5'",
+                  "O4'"
+                ],
+                "model_volume": -2.4071822460000014,
+                "template_volume": -2.469359868
+              }
+            ],
+            "absolute_cip_assignment": "NOT_RUN",
+            "native_qualification": "NOT_RUN",
+            "automatic_adoption": false
+          }
+        },
+        "DY_to_DT_to_PDU": {
+          "chi_before": -108.98122582540628,
+          "chi_parent": -108.99636547675374,
+          "chi_final": -108.99845108390213,
+          "unchanged_scaffold_atoms": [
+            "C1'",
+            "C2'",
+            "C3'",
+            "C4'",
+            "C5'",
+            "O3'",
+            "O4'",
+            "O5'",
+            "OP1",
+            "OP2",
+            "P"
+          ],
+          "unselected_heavy_coordinates_unchanged": true,
+          "model_sha256": "1ddddc0157490c825199e1558e800e68f526434249e0231f81a84e494fb538fe",
+          "seed": {
+            "schema_version": 1,
+            "policy_id": "postmr-explicit-canonical-base-seed-v1",
+            "status": "CANONICAL_BASE_SEED",
+            "site": "B:4",
+            "source_component": "DY",
+            "canonical_component": "DT",
+            "source_sha256": "39640bbcb554e5708acd8000668c63cca75f3f55a9309af9d82a4788e7a0caec",
+            "canonical_dictionary_sha256": "c24976988c284dc6244add52cccb2383e6cda4509fff11b5912c1df2b8a2796b",
+            "input_model_sha256": "1fc98fcddf22b11b8a204458091b0db41ab5bcbfad5a5e9fd3875922a1aa1b32",
+            "output_model_sha256": "bbd893e6a6b1ea3aa17c0d69dd3aad4d514255f758f1a6dd286178d44a88e72f",
+            "template_coordinate_family": "RESTRAINT_CARTESIAN",
+            "frame_atoms": [
+              "N1",
+              "C2",
+              "C6"
+            ],
+            "preserved_scaffold_atoms": [
+              "C1'",
+              "C2'",
+              "C3'",
+              "C4'",
+              "C5'",
+              "O3'",
+              "O4'",
+              "O5'",
+              "OP1",
+              "OP2",
+              "P"
+            ],
+            "preserved_attachment_atom": "N1",
+            "removed_base_atoms": [
+              "C3T",
+              "C5T",
+              "N1T",
+              "N2T",
+              "N4T"
+            ],
+            "added_base_atoms": [
+              "C7",
+              "O4"
+            ],
+            "rotation_determinant": 0.9999999999999998,
+            "maximum_template_pair_distance_change_A": 0.0007496991489435167,
+            "chi_before_degrees": -108.9812258254063,
+            "chi_after_degrees": -108.99636547675375,
+            "chi_difference_degrees": 0.015139651347453764,
+            "relative_sugar_hand": [
+              {
+                "center": "C1'",
+                "ordered_neighbors": [
+                  "C2'",
+                  "N1",
+                  "O4'"
+                ],
+                "model_volume": 2.5183276879999994,
+                "template_volume": 2.47196014
+              },
+              {
+                "center": "C3'",
+                "ordered_neighbors": [
+                  "C2'",
+                  "C4'",
+                  "O3'"
+                ],
+                "model_volume": -2.7281183260000006,
+                "template_volume": -2.638685281
+              },
+              {
+                "center": "C4'",
+                "ordered_neighbors": [
+                  "C3'",
+                  "C5'",
+                  "O4'"
+                ],
+                "model_volume": -2.4071822460000014,
+                "template_volume": -2.469359868
+              }
+            ],
+            "absolute_cip_assignment": "NOT_RUN",
+            "native_qualification": "NOT_RUN",
+            "automatic_adoption": false
+          }
+        }
+      },
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=../NASolve-c96/src .venv/bin/python -B branch-artifacts/cedar/runners/c348_start.py"
+    },
+    "preserved_attempts": [
+      {
+        "path": "348_Cedar_modified-canonical-roundtrip-rcza0ssx",
+        "result": "Native generic torsion matcher differs by 5.18899 degrees; strict unchanged 0.1 degree guard refuses."
+      },
+      {
+        "path": "348_Cedar_modified-canonical-roundtrip-lyyt668g",
+        "result": "Local rigid-placement prototype succeeds both directions; superseded by tested helper, not rewritten."
+      },
+      {
+        "path": "348_Cedar_modified-canonical-roundtrip-q1fmg9ad",
+        "result": "First helper run rejects valid bare TER records before native work; format support added with a regression, then fresh attempt."
+      }
+    ],
+    "compatibility": "Opt-in pure helper only; existing script generation, C331/C338 helpers, phosphate rules, numerical targets and mutation aliases unchanged.",
+    "retention": "Only code/tests/docs/compact evidence committed. All models/dictionaries/logs and failed attempts remain local. Successful relocated package scratch removed.",
+    "limitations": [
+      "No automatic alias/source/template discovery or ordinary construction integration yet.",
+      "Only complete heavy-atom unbridged DNA with a shared N-glycosidic frame and matching template hand; not general modified sugars, cross-family placement or absolute CIP assignment.",
+      "Source/template qualification and achieved refinement geometry remain separate gates; C346 survival evidence unchanged.",
+      "No full suite; last full C220/583d30df,9178 tests+276 subtests."
+    ],
+    "next": "Connect explicit source/canonical choices through the existing construction owner; then held-out rotating-ring control and ordinary source/context selection."
   }
 }

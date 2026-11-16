@@ -4211,4 +4211,8 @@ It establishes a bounded survival result, not universal mutation or Q06 closure.
 The attempted modified→canonical→different-modification route also exposed Coot
 reporting success before actually making its canonical parent; C347 now checks the actual residue identity immediately, retaining both failed
 attempts. This catches the false success before building from the wrong parent;
-constructing a valid canonical parent from modified input remains the next step.
+C348 now supplies an explicit canonical-base seed that preserves the incoming
+sugar, phosphate and base orientation. Both PDU→thymidine→DY and the reverse route
+work through Coot. This uses the complete source graph, not a PDU/DY name switch.
+Connecting explicit source/template choices to ordinary construction remains next;
+these controls do not establish modified-sugar or universal refinement support.

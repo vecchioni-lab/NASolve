@@ -7,6 +7,14 @@ native mutation, before writing a parent snapshot or constructing its replacemen
 Native success codes do not establish chemical identity. Historical script
 generation defaults remain exact; current execution explicitly enables the check.
 
+The pure `canonical_parent_seed` API accepts an explicit modified source and
+canonical template. Existing graph/chi/frame owners gate a proper rigid base
+placement; original sugar/phosphate and attachment coordinates are retained.
+It returns bytes plus hashes and relative-hand evidence, writes nothing and does
+not certify dictionaries or infer end state. Ambiguous records, partial chemistry,
+wrong hand and lost chi refuse. Ordinary callers remain unchanged; no second
+native/process owner is introduced.
+
 Custom free-nucleoside references may be combined with an explicitly selected
 DNA source through the pure `compose_dna_source` API. Each source owns its retained
 subgraph; hashes and per-atom origins accompany the new source. Conventional

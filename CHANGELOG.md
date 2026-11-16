@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Build an explicit canonical parent from a modified DNA base (C348)
+
+- Add a pure opt-in constructor that places a complete caller-supplied canonical
+  base while retaining the input sugar, phosphate atom set and glycosidic anchor.
+  Require a compatible source graph, sugar hand and complete coordinate frame.
+- Return bytes and hash-bound provenance without editing inputs or choosing end
+  chemistry. Ordinary mutation activation and native qualification stay separate;
+  existing callers, numerical targets and frozen construction code are unchanged.
+
 ### Check that Coot actually made the requested canonical residue (C347)
 
 - Read the actual residue identity after native canonical mutation, including

@@ -13739,3 +13739,24 @@ Eleven failing-before regressions,109 focused tests,109 installed/relocated test
 three exact historical-script comparisons and actual Coot1.3.3 negative/positive
 controls pass. No chemistry, weights, alias or artifact-schema change; no migration
 or full-suite claim. See `coot_canonical_identity_2026_11_16`.
+
+
+### Source-bound canonical parents for modified input (C348)
+
+`canonical_parent_seed(model, site, source_dictionary, source_component,
+canonical_dictionary, canonical_component)` returns model bytes and compact
+provenance without writing inputs. Explicit unbridged DNA graphs, a shared
+N-glycosidic frame and three matching nondegenerate sugar signs gate placement.
+A proper rotation places the entire canonical base in the incoming base frame;
+sugar/phosphate/anchor coordinates stay exact, unrelated records stay intact,
+and existing chi/serialization bounds apply. No end state is inferred or phosphate
+added/removed. Bare TER records are retained; selected labelled TER follows identity.
+Ambiguous models, partial coordinate families, unknown atoms and incompatible hand
+refuse. Relative hand is not absolute CIP assignment or dictionary qualification.
+
+Actual Coot1.3.3 completes PDU→DT→DY and DY→DT→PDU with exact11-atom scaffolds and
+final chi within0.02° of input.142 focused/installed-relocated tests pass. A prior
+generic Coot torsion matcher missed by5.18899°; its unchanged guard and failed attempt
+remain. This API is opt-in construction only, with no ordinary caller/alias activation,
+Phenix rerun, target change or historical migration. See
+`source_bound_canonical_roundtrip_2026_11_16` for exact commands and limitations.
