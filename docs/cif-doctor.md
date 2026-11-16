@@ -8246,11 +8246,19 @@ C98 validation: **5562 passed, 276 subtests passed in 770.65s (0:12:50)**, 154 f
 
 ### Future chemical-reference input
 
+C335 packages the first manually interpreted custom reference, **DY**, as
+`data/chemical_references/DY.cif` plus `DY.json`. It records the retained triazole
+free nucleoside, named chemistry, sugar stereo and computed preview. It does not
+implement ChemDraw import, numerical qualification or ordinary DY mutation.
+The [DY queue](cif-doctor-completion-queue.md#dy--packaged-retained-triazole-reference-and-mutation-support)
+owns promotion; the [reference layout](architecture.md#future-chemical-references-and-restraints)
+keeps chemical definitions separate from operational dictionaries.
+
 Future CIF Doctor work must accept an explicit chemical reference associated
 with a component and produce a source-bound, qualified restraints bundle from
 it. A ChemDraw document or an explicitly exported chemical interchange form
 (for example a structure file or stereochemically explicit SMILES) is a future
-input candidate; no format or importer is implemented or selected here.
+input candidate; no general drawing/export importer is implemented here.
 Preserve the original bytes/hash, conversion tool/version/options, atom mapping,
 connectivity, bond order, hydrogens, formal charge and declared stereochemistry.
 Record unsupported or lossy information rather than inventing it. Linkage and

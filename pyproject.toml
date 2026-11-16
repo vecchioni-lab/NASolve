@@ -27,6 +27,8 @@ nasolve = [
   "data/presets/*.toml",
   "data/sequence_references/*.json",
   "data/ligands/*.cif",
+  "data/chemical_references/*.cif",
+  "data/chemical_references/*.json",
   "data/restraints/*.phil",
   "data/restraints/*.eff",
   "data/restraints/*.txt",

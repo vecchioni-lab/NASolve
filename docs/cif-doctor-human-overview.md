@@ -455,7 +455,11 @@ Ordinary source audits, supported connected-base construction and qualified cach
 reuse work today. General automatic recovery on misses, modified-sugar mutation,
 candidate adoption and solution-PDF integration remain planned. ChemDraw-derived
 references/restraint bundles are future input scope; drawing-to-model construction
-is outside CIF Doctor. The [milestones](https://github.com/vecchioni-lab/NASolve/blob/654328105f193f25011fe927dc1db860cb82bca0/docs/development-handoff.md#generalizer-milestones-and-interruption-boundary)
+is outside CIF Doctor. DY now supplies a packaged, manually interpreted retained-
+triazole reference and viewing model for this work. Its two rings and rotatable
+junction must survive numerical restraint generation, linked-site construction
+and actual refinement before ordinary DY mutation is enabled; see the
+[DY task](cif-doctor-completion-queue.md#dy--packaged-retained-triazole-reference-and-mutation-support). The [milestones](https://github.com/vecchioni-lab/NASolve/blob/654328105f193f25011fe927dc1db860cb82bca0/docs/development-handoff.md#generalizer-milestones-and-interruption-boundary)
 separate a bounded integration checkpoint from complete catalogue support.
 
 ## What it does

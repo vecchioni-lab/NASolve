@@ -1,12 +1,43 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C334 declared linked-site geometry readback — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. Current delivery **C334 evidence**; runtime
+Updated **2026-11-16, C335 packaged DY reference and queued mutation — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. Current delivery **C335 reference data**; runtime
 published **340bda12 (C333)**. Focused checks only; no Rowan full suite, new branch,
 default activation or merge. Linden owns Pine/Willow and does not edit Cedar.
-Current work window ends about **14:34 London**.
+The prior work window is complete; no native/controller jobs remain active.
 
 ## Current work and interruption recovery
+
+**C335:** DY is now a packaged reusable chemical reference under
+`data/chemical_references/DY.cif` with relative-path/hash provenance in `DY.json`.
+It is the retained triazole free nucleoside, renamed from the user-approved YTR
+preview with coordinates/graph unchanged and explicit sugar stereo added.
+No runtime mutation, NAR edit, numerical restraints or phosphate inference.
+The current Q06 step below stays first; then start the bounded
+[DY qualification task](cif-doctor-completion-queue.md#dy--packaged-retained-triazole-reference-and-mutation-support).
+Prior custom-input scope and source/context owners are recorded there. The original
+visualization remains untouched; packaged data now removes dependence on its local
+path. **54 focused tests pass (11.25 s); 4 installed/relocated checks pass
+(0.14 s)** after removing the temporary build source and original install path.
+ChimeraX **1.12**, complete file-read check: DY has the exact 33 atoms/35 bonds;
+no Phenix/eLBOW/ReadySet native chemistry execution. The initial four reference
+tests fail before data is added. No full suite; package/runtime defaults unchanged.
+
+Validation command (Cedar cwd):
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_packaged_dy_reference.py tests/test_residue_aliases.py tests/test_curated_cif_loops.py --tb=short`.
+Offline wheel command: `phenix.python -m pip wheel --no-deps --no-build-isolation
+--no-index`; the ignored everyday runner
+`branch-artifacts/cedar/runners/c335_package_check.py` removes its temporary source,
+relocates the installed wheel, asserts the imported package location and runs the
+four reference tests. Exact receipt: `branch-artifacts/cedar/c335-dy-reference/package-check.json`.
+Wheel SHA `69cc5fab427fc0eab40a0195e43fdb539923050ab0d2614e6fc6e94078647849`;
+1,360,216 bytes. Its 5,927,434 bytes of temporary build/install files were removed.
+
+Included: user-authorized computed DY reference, compact provenance, packaging,
+tests and maintained docs. Excluded: vendor drawing/HTML, local viewing outputs,
+logs and all diffraction/live-test artifacts. New resource metadata version 1 is
+not a request/checkpoint schema; no historical migration. Existing visualization
+and unrelated dirty NARestraints files remain untouched.
 
 **C334 read-only result:** the existing declared-projection reader now confirms
 B:4's 22 heavy atoms match its linked B:3/B:5 intent exactly. C329's full-runtime-CIF

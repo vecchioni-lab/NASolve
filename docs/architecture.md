@@ -296,10 +296,26 @@ mode. Implementation and blind-test ordering belong in the
 A user-declared chemical reference must be able to seed a qualified restraints
 bundle, with exact source/conversion provenance, chemical-state preservation,
 explicit polymer context and NARestraints ownership. ChemDraw documents and
-exported chemical representations are future input candidates; no format is
-selected or implemented. Drawing-to-model construction is a separate workflow.
+exported chemical representations are future input candidates; no general
+drawing/export importer is implemented. Drawing-to-model construction is a separate workflow.
 The [CIF Doctor scope](cif-doctor.md#future-chemical-reference-input) owns the
 requirements and qualification boundary.
+
+Packaged custom chemistry now has a small reference tier,
+`src/nasolve/data/chemical_references/`: one named component CIF and matching JSON
+provenance/qualification record. DY is its first entry (C335). The CIF carries
+explicit atom/bond/charge/stereo declarations and a computed coordinate preview;
+the JSON pins that file relative to the installed package and records its
+stereochemical SMILES, exact chemical state, sources and pending checks. SMILES is
+a cross-check, not the sole atom-name/link authority. No importer, external
+runtime lookup, user-local path or new runtime dependency is introduced.
+
+This tier ships with NASolve but is not searched as an operational restraint
+library. Qualified numerical dictionaries continue to use `data/ligands` and the
+existing curated/NARestraints contracts. Promotion requires source, numerical,
+polymer-context, construction and refinement evidence. A preview has no invented
+bond/angle ESDs, polymer links or pairing rules. See the
+[DY acceptance task](cif-doctor-completion-queue.md#dy--packaged-retained-triazole-reference-and-mutation-support).
 
 ### Dataset and symmetry discovery
 

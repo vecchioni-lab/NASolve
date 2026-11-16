@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Package the retained-triazole DY chemical reference (C335)
+
+- Ship a named CIF chemical definition/coordinate preview and hash-bound identity,
+  stereo, SMILES and provenance record under `data/chemical_references`.
+- Queue ordinary DY mutation and native/refinement qualification through existing
+  source/context owners. This adds reusable reference data, not operational
+  restraints, an enabled mutation alias or a ChemDraw importer.
+
 ### Carry discovered bond corrections through model preparation (C333)
 
 - Add explicit `automatic_bond_targets=True` to checked Python preparation and

@@ -836,6 +836,47 @@ host/segment recipe are preparation gates; Q09–Q13 retain family/state ownersh
 **Queued for closure, not the next test. Q04/Q05 supported-route acceptance is now
 recorded above; finish the active Q06 chemical-survival control first.**
 
+### DY — Packaged retained-triazole reference and mutation support
+
+**Reference packaged; ordinary mutation open (Simon, 2026-11-16; C335).**
+Laboratory **DY** means the retained **4-(1,2,4-triazol-1-yl)-pyrimidin-2-one
+beta-D-2-deoxyriboside**: direct pyrimidine C4–triazole N1T, C2=O retained,
+no O4 bridge, pyridyl ring, 5-methyl group or triazole displacement. Simon approved
+the preview and authorized distributing the reusable definition with NASolve.
+The [packaged CIF](../src/nasolve/data/chemical_references/DY.cif) and
+[identity/provenance record](../src/nasolve/data/chemical_references/DY.json)
+are the starting reference, not qualified refinement targets. Free 3′/5′ OH and
+no phosphate describe this reference only. `YTR` remains a historical preview
+label; do not silently alias bare `Y`, infer a deposition code, or turn this
+free nucleoside into a linked nucleotide without explicit context.
+
+Start the smallest DY qualification step after the active bounded Q06 reporting
+checkpoint; do not wait for an entire ChemDraw importer or interrupt current
+work. The existing future-reference contract and C59–C70 source/alias ownership,
+C133–C139 linked-context machinery and C326–C333 preparation owners are the
+prior work to reuse. A broad arbitrary-drawing builder remains separate.
+
+1. Qualify the named source graph/stereo and generate numerical restraints through
+   the existing bounded native route. Audit both rings and the C4–N1T junction;
+   keep legitimate inter-ring rotation. Do not merge ring planes or erase a
+   justified torsional energy merely because the connecting bond is single.
+2. Qualify linked and explicitly requested terminal states, sugar hand, hydrogen/
+   charge transitions and phosphate handling. Exercise native membership and
+   derivatives using existing readers. Keep unsupported chemistry visible.
+3. Validate ordinary Coot/PostMR mutation to **DY**, whole connected-base placement,
+   chi, unaffected neighbors and reusable packaged lookup. Register DY through
+   existing curated/sequence and NARestraints interfaces after these gates pass;
+   no residue-name repair script or dependency on this Mac's preview folder.
+4. Verify actual ReadySet and Phenix refinement survival plus a sound related
+   rotating-ring control. NAR pairing/stacking needs explicit chemical roles;
+   no Watson–Crick partner or metal coordination is implied by the definition.
+
+Use this as a custom-source addition to Q07/Q12/Q14, not a replacement for the
+existing mixed scaffold or held-out catalogue challenge. Close the task when an
+installed, relocated ordinary mutation consumes the packaged definition and
+retains the intended atoms, stereo, ring/junction geometry and honest residual
+reviews. Global DY mutation support is **not enabled by C335**.
+
 ### Q08 — Explain persistent mixed-pair geometry
 
 **Open; depends on exact source/NAR evidence, not more iteration budget.**
