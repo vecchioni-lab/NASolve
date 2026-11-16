@@ -4237,3 +4237,12 @@ changes plane and angle penalties, with forces agreeing with numerical checks.
 The starting geometry already has some plane strain, so a small bend can improve
 it. This establishes restraint behavior, not an ideal model or refinement result.
 No forced common plane, added weight, default mutation or source edit follows.
+
+
+### Explain a timeout before the builder starts (C352)
+
+If Phenix capability checks consume the generation allowance, no builder starts.
+Cedar now reads that saved failure correctly instead of asking for chemical
+validation that could never have been produced. It checks the recorded capability
+job and absence of candidate work, preserves the original diagnostic and changes
+no data. This is honest inspection; it does not approve a dictionary or a retry.

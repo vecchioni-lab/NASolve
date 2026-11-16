@@ -105917,5 +105917,61 @@
       "Source/context selection and Q06 achieved geometry remain open."
     ],
     "next": "Deterministic prelaunch timeout failure readback, then qualified source/context selection; no stronger planes/weights justified by this control."
+  },
+  "unlaunched_generation_failure_readback_2026_11_16": {
+    "milestone": "C352",
+    "date": "2026-11-16",
+    "signed": "Rowan",
+    "purpose": "Read the exact failure when generation allowance expires after capability checks but before candidate launch",
+    "before": "The writer retains a FAILED/TIMED_OUT receipt without representation validation because no builder ran. The representation reader looked for that absent field and hid the original failure behind an incomplete-evidence error.",
+    "after": "After unchanged source/spec/worker/inventory validation, recognize only the exact unlaunched budget error with completed matching capability evidence, no candidate phase/output/result/support and elapsed allowance. Return the same negative receipt and diagnostic.",
+    "schema": "No writer, policy, schema or native-worker change; bounded read compatibility for existing negative receipts only.",
+    "history_review": [
+      "C156/C170 immutable process ownership and prelaunch budget controls already exist; no new owner.",
+      "C240/C243/C244 multiple-plane support and failure classifiers deliberately exclude unlaunched jobs; retain that boundary."
+    ],
+    "validation": {
+      "regression_before": "1 failed/10 passed in4.18s, deterministic prelaunch missing representation_validation; clock shim affects only adapter, real capability subprocess unchanged",
+      "after_initial": "11 passed/2.13s",
+      "new_cases": 12,
+      "focused": "281 passed/52.09s; same six-file list/flags as installed command, PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src",
+      "installed": {
+        "status": "INSTALLED_RELOCATED_PRELAUNCH_FAILURE_PASS",
+        "wheel_sha256": "a67598ba7bb1e07d3e7db5e5e33c251242cd523eed4a3770cc5575c6972c8e55",
+        "wheel_bytes": 1387869,
+        "source_copy_removed": true,
+        "original_install_path_absent": true,
+        "package_reference_bytes_match": true,
+        "validation_command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-c",
+          "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_cif_source_representation.py', 'tests/test_cif_source_candidate.py', 'tests/test_cif_plane_generation.py', 'tests/test_cif_generation_attempt.py', 'tests/test_cif_generation_input.py', 'tests/test_cif_cycle_local_representation.py', '--tb=short']))"
+        ],
+        "validation_output": "........................................................................ [ 25%]\n........................................................................ [ 51%]\n........................................................................ [ 76%]\n.................................................................        [100%]\n281 passed in 50.51s\n",
+        "build_command": "phenix.python -m pip wheel --no-deps --no-build-isolation --no-index",
+        "temporary_bytes_removed": 11036139
+      },
+      "scope": "Direct and request-owned relocated negative replay after originals/SDK gone; execution forbidden, bytes/timestamps exact. Re-signed wrong capability context, phase, returncode, elapsed allowance, result/candidate/support/stopping/error refuse. All multiple-plane readers still refuse."
+    },
+    "changed_files": [
+      "src/nasolve/cif_source_representation.py",
+      "tests/test_cif_source_representation.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/development-handoff.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "compatibility": "Existing successful/negative readers remain scoped. No usability, fallback or retry authorization. Native ownership, source chemistry and scientific thresholds unchanged; no migration.",
+    "retention": "Synthetic evidence in temporary test directories only; no scientific/native run added. Installed relocation scratch11.04MB removed.",
+    "limitations": [
+      "Bounded adapter deadline error only; other incomplete native/capability failures remain unsupported.",
+      "Multiple-plane fallback does not become allowed for an unlaunched process.",
+      "No full suite or new Phenix/Coot science run."
+    ],
+    "next": "Bind canonical seed evidence through ordinary construction lineage before enabling automatic source/context selection; preserve Q06 closure limits."
   }
 }

@@ -25,6 +25,12 @@ Its cold reader recomputes every seed and verifies the final result without
 execution or writes. No source discovery, alias, new process owner or default
 caller activation follows from this opt-in extension.
 
+Read-only source-generation inspection recognizes the exact adapter deadline
+failure between completed capabilities and an unlaunched candidate. Source/spec/
+worker checks still precede this negative branch; matching process context and
+absence of candidate activity/output are required. The same failure is returned,
+never chemical support or retry authority. Multiple-plane outcome scope is unchanged.
+
 Cycle-local aromatic representation is separately opt-in. It reuses existing
 neutral five/six-member C/N classifiers, excludes graph bridges from aromatic
 conversion, and requires any contradictory flagged bridge to join two disjoint

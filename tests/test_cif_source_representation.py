@@ -191,3 +191,73 @@ def test_unknown_policy_fails_before_any_native_path_or_output_access(tmp_path):
     with pytest.raises(ValueError,match="representation policy"):
         generate_source_candidate(tmp_path/'absent',tmp_path/'absent',tmp_path/'absent',[],tmp_path/'absent','Q17',tmp_path/'out',environment={},expected_dialect='CHEMICAL_COMPONENTS_CIF',prior_sources=[],phenix_version='fake',bond_representation_policy='guess')
     assert not (tmp_path/'out').exists()
+
+
+def _expire_after_capabilities(tmp_path, monkeypatch, *, multiple_planes=False, request_owned=False):
+    """Advance only the adapter clock, leaving real process deadlines untouched."""
+    import types
+    import nasolve.cif_source_candidate as module
+    real = module._generator_capabilities
+    clock = [0.0]
+    def capabilities(*args, **kwargs):
+        result = real(*args, **kwargs)
+        clock[0] = 11.0
+        return result
+    monkeypatch.setattr(module, 'time', types.SimpleNamespace(monotonic=lambda: clock[0]))
+    monkeypatch.setattr(module, '_generator_capabilities', capabilities)
+    out, report = fake_generation(tmp_path, multiple_planes=multiple_planes, request_owned=request_owned)
+    assert report['execution']['status'] == 'TIMED_OUT'
+    assert report['execution']['returncode'] is None
+    assert report['error'] == 'ValueError: Generation budget exhausted before candidate launch'
+    assert not (out/'execution/candidate').exists()
+    return out, report
+
+
+@pytest.mark.parametrize("request_owned", [False, True])
+def test_prelaunch_budget_failure_replays_after_relocation_without_execution(tmp_path, monkeypatch, request_owned):
+    from nasolve.cif_source_representation import read_representation_candidate
+    import shutil, subprocess
+    out, report = _expire_after_capabilities(tmp_path/'original', monkeypatch, request_owned=request_owned)
+    moved = tmp_path/'relocated'; out.rename(moved)
+    shutil.rmtree(tmp_path/'original')
+    before = {p.relative_to(moved): (p.read_bytes(), p.stat().st_mtime_ns) for p in moved.rglob('*') if p.is_file()}
+    def forbidden(*args, **kwargs): raise AssertionError('Cold reader launched a process')
+    monkeypatch.setattr(subprocess, 'Popen', forbidden)
+    assert read_representation_candidate(moved) == report
+    assert report['candidate'] is None and report['status'] == 'FAILED'
+    assert report['diagnostic']['blocking_stage'] == 'ADAPTER'
+    assert before == {p.relative_to(moved): (p.read_bytes(), p.stat().st_mtime_ns) for p in moved.rglob('*') if p.is_file()}
+
+
+@pytest.mark.parametrize('defect', ['returncode','elapsed','error','candidate','result','validation','stopping','phase','capabilities_context'])
+def test_prelaunch_failure_does_not_hide_contradictory_evidence(tmp_path, monkeypatch, defect):
+    from nasolve.cif_source_representation import read_representation_candidate
+    from nasolve.cif_source_candidate import candidate_generation_diagnostic
+    from nasolve.campaign_records import read_record, write_record
+    out, r = _expire_after_capabilities(tmp_path, monkeypatch)
+    if defect == 'returncode': r['execution']['returncode'] = 0
+    elif defect == 'elapsed': r['execution']['elapsed_seconds'] = 0
+    elif defect == 'error': r['error'] = 'Some other adapter failure'
+    elif defect == 'candidate': r['candidate_retained'] = True
+    elif defect == 'result': r['result'] = {}
+    elif defect == 'validation': r['representation_validation'] = {'status':'SOURCE_REPRESENTATION_PASS'}
+    elif defect == 'stopping': r['stopping'] = {'status':'CONVERGED'}
+    elif defect == 'phase': (out/'execution/candidate').mkdir()
+    else:
+        folder=out/'execution/capabilities';job=read_record(folder/'job.json')
+        job['context']['component']='BAD';job=write_record(folder/'job.json',job,replace=True)
+        proc=read_record(folder/'process.json');proc['job_sha256']=job['record_sha256'];proc=write_record(folder/'process.json',proc,replace=True)
+        done=read_record(folder/'finished.json');done['job_sha256']=job['record_sha256'];done['process_sha256']=proc['record_sha256'];write_record(folder/'finished.json',done,replace=True)
+        for ref in r['outputs']:
+            p=out/ref['path'];ref.update(sha256=sha256(p.read_bytes()).hexdigest(),size=p.stat().st_size)
+    r['diagnostic']=candidate_generation_diagnostic(r)
+    (out/'source_candidate_receipt.json').write_text(json.dumps(r,indent=2)+'\n')
+    with pytest.raises(ValueError):read_representation_candidate(out)
+
+
+def test_prelaunch_timeout_does_not_become_multiple_plane_support_or_launched_failure(tmp_path, monkeypatch):
+    from nasolve.cif_source_representation import (read_multiple_plane_candidate,
+        read_rejected_multiple_plane_candidate, read_multiple_plane_execution_failure)
+    out, _ = _expire_after_capabilities(tmp_path, monkeypatch, multiple_planes=True)
+    for reader in [read_multiple_plane_candidate, read_rejected_multiple_plane_candidate, read_multiple_plane_execution_failure]:
+        with pytest.raises(ValueError):reader(out)

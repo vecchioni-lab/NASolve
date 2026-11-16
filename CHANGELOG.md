@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve inspection of an unlaunched generation timeout (C352)
+
+- Read the original negative receipt when the allowance expires after capability
+  checks but before builder launch. Verify matching stopped capability evidence
+  and the absence of a candidate phase, output or chemical-success claim.
+- Preserve the exact failure and all artifacts. This grants no native usability,
+  plane support, fallback or retry authority; writers and historical workers stay
+  unchanged. Relocated inspection launches nothing and writes nothing.
+
 ### Preserve single bridges between independently qualified rings (C350)
 
 - Add separate opt-in representation and reader-input policies for supported

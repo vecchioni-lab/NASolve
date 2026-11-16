@@ -880,8 +880,10 @@ cycle-local representation/reader-input policies; bridge stays single, all21
 native checks pass, no cross-ring plane. **C351:** exact native controls at both
 junctions confirm covalent rotation invariance (<5.6e-14), bending support and
 sampled finite-difference agreement. Initial model strain remains explicit.
-**Next:** deterministic prelaunch-timeout cold-readback repair observed in focused
-testing; qualified source/context selection remains open. No DY pair pattern, automatic alias or per-site selector is
+**C352:** deterministic unlaunched-timeout inspection is fixed;281 focused and281
+installed checks pass, without granting retry or plane-support authority.
+**Next:** retain canonical seed evidence in ordinary construction lineage, then
+qualified source/context selection. Explicit API remains separate from defaults. No DY pair pattern, automatic alias or per-site selector is
 inferred. See `source_bound_canonical_roundtrip_2026_11_16`.
 See `mixed_dy_end_states_readyset_2026_11_16`; older next steps are historical.
 

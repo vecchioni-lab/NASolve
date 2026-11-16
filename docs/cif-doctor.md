@@ -13823,3 +13823,22 @@ torsion exists. Initial plane target13.2264 is already strained, so neither
 monotonic response from that point nor ideal geometry is claimed. No optimizer,
 refinement, new plane, weight or acceptance change. Exact compact evidence:
 `heldout_pim_junction_response_2026_11_16`; original native files remain local.
+
+
+### Read an exhausted prelaunch generation allowance (C352)
+
+The existing representation reader accepts the exact adapter error `Generation
+budget exhausted before candidate launch` only after full source, worker, native
+specification, capability and output-inventory validation. It requires a matching
+completed capability process, no candidate phase/log/result/output, no chemical
+validation or convergence claim, and a finite elapsed allowance consistent with
+the writer's six-decimal clock. The original FAILED/TIMED_OUT negative receipt
+and diagnostic are returned unchanged. Optional attempt ownership remains validated
+by the process reader and bound by the outer owner; this read grants no retry.
+
+Writers/native workers and schema are unchanged. Multiple-plane success, rejection
+and launched-failure readers still refuse this unlaunched case. Deterministic
+clock controls reproduce the prior bug; direct and request-owned captures replay
+after relocation and removal of original inputs/SDK with native execution forbidden.
+Contradictory or re-signed foreign evidence refuses. No chemistry or scientific
+acceptance change; exact validation: `unlaunched_generation_failure_readback_2026_11_16`.

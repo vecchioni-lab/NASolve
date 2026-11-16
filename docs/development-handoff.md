@@ -1,12 +1,26 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C351 independent junction response — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. C350 pushed at `0e3622ed`; C351 is this
+Updated **2026-11-16, C352 unlaunched failure inspection — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. C351 pushed at `32316a76`; C352 is this
 completed code/evidence checkpoint. No full suite, branch, default activation or
 merge. Linden owns Pine/Willow; frozen restoration/C331/C338 unchanged. Simon
 confirmed work through **23:00 London**. All Rowan jobs stopped at this checkpoint.
 
 ## Current result and next bounded task
+
+**C352 complete:** deterministic regression reproduces the prelaunch-timeout
+inspection bug. The reader now validates the completed capability phase and
+absence of candidate work, then returns the original failure. No successful
+chemistry, multiple-plane fallback or retry authority is inferred. Twelve new
+cases;281 focused/52.09s and281 installed relocated/50.51s pass. Native workers,
+writer, schemas and defaults unchanged; no new scientific run/full suite.
+Evidence: `unlaunched_generation_failure_readback_2026_11_16`.
+**Next:** bind C349 canonical seed evidence through ordinary construction lineage
+before automatic source/context selection. Current lineage retains the original
+input and final output but has no canonical-seed closure; keep the explicit API
+until that evidence path is joined. Source/context selection and Q06 remain open.
+Older next statements below are historical.
+
 
 **C351 complete:** both graph-selected PIM junctions reproduce C350's exact native
 manager. ±30/90° ring spins change covalent contributions by <5.6e-14; only contacts

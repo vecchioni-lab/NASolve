@@ -285,6 +285,39 @@ def _replay_exact_handoff(result, expected):
         raise ValueError("Completed native source/charge handoff differs")
 
 
+def _validate_unlaunched_budget_failure(root, report):
+    """Inspect one adapter deadline failure; grant no chemical or retry authority."""
+    import math
+    from .cif_generation_process import inspect_generation_process
+    execution = report['execution']
+    elapsed = execution.get('elapsed_seconds')
+    if (report['status'] != 'FAILED' or report['candidate'] is not None
+            or report.get('candidate_retained') is not False
+            or execution.get('status') != 'TIMED_OUT' or execution.get('returncode') is not None
+            or type(elapsed) not in (int, float) or not math.isfinite(elapsed)
+            or elapsed + 0.0000005 < execution['timeout_seconds']
+            or any(k in report for k in ('result', 'representation_validation', 'inspection',
+                                        'finished_stereo', 'formal_charges_preserved', 'stopping'))
+            or any((root/name).exists() for name in ('candidate.cif', 'candidate_result.json', 'candidate_worker.log'))):
+        raise ValueError('Contradictory unlaunched generation timeout')
+    capability = inspect_generation_process(root, 'capabilities')
+    candidate = inspect_generation_process(root, 'candidate')
+    context = dict(component=report['component'], source_sha256=report['source_sha256'],
+        candidate_policy_id=report['policy_id'], phenix_version=report['phenix_version'],
+        single_block_steps=report['single_block_steps'], total_timeout_seconds=execution['timeout_seconds'])
+    job = capability.get('job', {})
+    recorded_context = job.get('context', {})
+    if 'attempt_owner' in recorded_context:
+        context['attempt_owner'] = recorded_context['attempt_owner']
+    if (capability['state'] != 'STOPPED' or 'identity' not in capability
+            or capability.get('finished', {}).get('status') != 'COMPLETED'
+            or capability.get('finished', {}).get('returncode') != 0
+            or job.get('argv_provenance') != report['generator_capabilities']['command']
+            or job.get('timeout_seconds') != execution['timeout_seconds']
+            or recorded_context != context or candidate['state'] != 'NOT_RECORDED'):
+        raise ValueError('Unlaunched timeout lacks exact completed capability evidence')
+
+
 def _read_representation_candidate(root, *, multiple_planes=False, execution_failure=False):
     from .cif_source_candidate import WORKER,SOURCE_PATHS,native_object_reference,complete_candidate_stereo,candidate_generation_diagnostic
     from .cif_constructor_setup import native_setup_reference
@@ -379,6 +412,13 @@ def _read_representation_candidate(root, *, multiple_planes=False, execution_fai
     if contract is not None:wanted["source_representation_contract"]=contract
     if len(caps.get("command",[]))!=2 or caps["command"][1]!="--help" or not Path(caps["command"][0]).is_relative_to(historical):raise ValueError("Unselected historical help dispatcher")
     if spec!=wanted or report["arguments"]!=args:raise ValueError("Complete native specification differs")
+    if (not multiple_planes and report.get('error') ==
+            'ValueError: Generation budget exhausted before candidate launch'):
+        _validate_unlaunched_budget_failure(root, report)
+        if report['diagnostic'] != candidate_generation_diagnostic(report):
+            raise ValueError('Unlaunched generation diagnostic differs')
+        verify_inventory()
+        return report
     if execution_failure:
         execution=report["execution"]
         if (not multiple_planes or execution.get("status") not in {"FAILED","TIMED_OUT"}
