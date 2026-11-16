@@ -4610,3 +4610,107 @@ in a local forensic archive, excluded from Git. This is not a portable autonomou
 campaign. Next: authenticate the actual manager's complete native inventory and
 bind it to the existing exclusion-policy and frozen lifecycle owners before any
 force activation. S06 remains partial.
+
+
+## W106 — Complete callback-free native inventory observation
+
+`nasolve.topostitch_native_coverage.observe_native_pair_terms(model,
+frozen_context=..., frozen_policy=..., policy_owner=...,
+expected_policy_owner_sha256=...)` reads the actual manager's bond, angle,
+planarity and parallelity proxies. `model` must be the qualified native mmtbx
+model class. `policy_owner` is the caller's trusted Cedar live-nonbonded-policy
+module, checked against a previously frozen source SHA256. Its existing
+`require_live_nonbonded_policy` owns API/profile validation and exact policy
+comparison; no second exclusion or symmetry-policy reader is introduced.
+
+`frozen_context` is the W104 context, including complete ordered atom labels,
+source/recipe digests, crystal digest and native exclusion-policy digest. The
+crystal digest is `recipe_digest(frozen_policy['policy']['symmetry'])`. This
+observer verifies current native atom identities against those labels, finite
+coordinates, general-position scope and the frozen policy. It does not prove
+that the caller's source/recipe digests came from an authoritative run; existing
+checkpoint/frozen-runtime owners must establish that lineage and source lifetime.
+C331's platform/native-profile and callback-free restrictions remain in force.
+The current qualified profile is Phenix 2.2.1-6174 on macOS ARM64.
+
+Both simple and ASU bonds retain exact endpoint images; other supported families
+retain their native per-atom images. Group membership uses exact rational
+rotations and translations modulo integers, avoiding cctbx's denominator-sensitive
+membership assertion. **Only membership** uses that reduction: exported atom
+images retain every whole-cell offset. Native atom/term bounds and parameter
+validation reuse the coverage checker. Origin IDs are recorded in term order as
+provenance, separate from the score parameters used for coverage.
+
+The observer reads inventories twice and invokes the unchanged policy owner
+before/after. It also checks the manager identity, coordinates, atom identities
+and policy-owner source remain unchanged. Pair-cache refresh is possible; no
+energy evaluation, coordinate edit, callback attachment or exclusion mutation
+is requested. Single-owner access is required: repeated reads detect drift but
+are not a lock against concurrent mutation. An already warm, supported manager
+and its independently qualified baseline are required.
+
+The returned policy is `topostitch-native-pair-observation-v1`: `context`,
+`policy_owner_sha256`, `terms`, `origin_ids`, `terms_sha256` and `points_sha256`,
+with both runtime/scientific authority flags false. The complete observation
+should be frozen by its caller; the term digest deliberately represents score
+coverage, not origin metadata. These are the four configured proxy families,
+not all crystallographic forces or a normalization denominator. Callback-aware
+active policy, force accounting, selection/rebuild interception and final-writer
+integration remain separate gates. No new CLI, dependency, existing-packet
+migration or change to NativePairRecipe/captured workers is made.
+
+### W106 validation — 2026-11-16
+
+Twelve initial regressions fail before implementation. A later native ASU-image
+control exposes a real denominator-sensitive membership failure; its added
+regression fails before the rational fix. Final **60 focused tests**, **1,936
+full tests +229 subtests in 97.27 seconds**, and **229 installed tests** pass.
+Fresh sdist/wheel staging sources are removed before installed validation; six
+CLI helps, `pip check`, lean import, Python 3.10 syntax and unchanged existing
+compiler/worker bytes are verified. Initial 1,935+229/228 installed results are
+retained as pre-fix evidence, not substituted for final validation.
+
+The final installed Phenix 2.2.1-6174 (dispatcher 2.2.1) execution completes eight
+healthy/displaced original, select-all, reinterpreted and ordinary-core manager
+cases in 34.16 seconds. Every term/image/parameter/origin exactly matches the
+independent W103/Gemmi records. Ordinary sources contain 2,465 supported native
+terms and require 124 additions; ordinary-core sources contain 2,572 native
+terms and supply 107 requested terms, leaving 17 explicit additions. All eight
+coverage checks pass with unchanged complete energy/gradient arrays and sites.
+Twelve negatives reject existing callbacks, stale rebuilt policies and changed
+native core targets. Small reinterpretation cell drift remains a strict mismatch.
+
+A separate isolated C++ proxy-codec control covers a symmetry-bearing simple
+bond, a real ASU-mapped bond, image-bearing angle/plane proxies and ordinary
+parallelity. Independent Gemmi 0.7.5 replay verifies all five rows, retained
+whole-cell offsets and nonuniform plane weights. The model is not given these
+synthetic restraints; its complete energies/gradients remain unchanged. This
+qualifies encoding, not the stock manager's ability to evaluate image-bearing
+angles or a physical connection.
+
+All attempts remain local: the first image probe finds that the native
+parallelity constructor rejects `sym_ops`; V2 then exposes the denominator
+assertion; V3 passes after the product fix. Ordinary native parallelity therefore
+remains identity-image; periodic parallelity uses the existing virtual expanded
+recipe. The eight-manager panel is rerun against the corrected wheel and passes.
+Neither this observation API nor the codec probe enables refinement or proves
+scientific acceptance. Cedar source paths are untouched; this is pinned-C331
+composition, not a merged latest-Cedar build.
+
+Exact principal validation commands (Willow checkout unless absolute):
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider tests/test_topostitch_native_coverage.py tests/test_topostitch_pair_coverage.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w106-native-coverage/install-check-v2.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w106-native-coverage/native-v2/run.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w106-native-coverage/image-codec-v3/run.py
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w106-native-coverage/audit-images.py
+```
+
+Generated models, inputs, native reports, wheels and failed diagnostics are
+excluded from Git and retained in the local forensic archive. They are not an
+autonomous portable campaign. Next: qualify only the explicitly missing additive
+terms with existing native core terms, retaining complete frozen coverage,
+exclusion policy and actual normalization; then integrate the existing frozen
+refinement lifecycle. Do not append the complete recipe or infer exclusions.

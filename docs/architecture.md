@@ -970,6 +970,14 @@ and evaluates unnormalized additive pair energies/ASU gradients. The new schema-
 packet contains hashes and identities, not a model path or runtime authority.
 Virtual L/R labels are internal selection scaffolding, not ordinary refinement
 PHIL for the source model.
+`topostitch_native_coverage.observe_native_pair_terms` reads the actual native
+manager's four pair-related families and checks exact atom order, crystal and
+Cedar exclusion policy before/after. It requires a trusted checksum-bound Cedar
+policy owner and a frozen context; it retains general-position and callback-free
+limits. Exact fractional group membership is independent of native denominator
+representation, while exported images preserve lattice offsets. Source/recipe
+provenance, active forces and frozen runtime lifetime remain upstream obligations.
+
 `topostitch_pair_coverage.describe_compiled_pair_terms` optionally exports the
 already-constructed `NativePairRecipe` as exact atom/image declarations. Its
 original packet and binding digest remain required; live proxy parameters,

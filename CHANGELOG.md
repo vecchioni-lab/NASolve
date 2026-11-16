@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W106 — Observe native pair coverage without activation
+
+- Add optional `observe_native_pair_terms` for complete bond, angle, planarity and
+  parallelity inventories, with exact atom/image references and origin metadata.
+  Reuse the checksum-bound Cedar callback-free policy owner before/after reading.
+- Compare group membership with exact rationals across native denominator choices;
+  retain full lattice offsets in declarations. Reject changed source ordering,
+  policy, unsupported types, special positions and drift during observation.
+- Preserve existing workers and refinement behavior. Document the native
+  parallelity constructor's image limit and retain all diagnostic failures.
+
 ### W105 — Export the existing compiled pair recipe
 
 - Add optional `describe_compiled_pair_terms` to the coverage module. Read live
