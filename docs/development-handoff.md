@@ -138,8 +138,8 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-16
 
-**W94 pivot arithmetic is validated; shared native-policy integration
-remains gated.** Latest audited runtime is W94 `eb8e5d6e` on isolated `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
+**W96 direct shared-policy guard is qualified; captured-worker adoption remains
+open.** Latest audited runtime is W96 `c6549408` on isolated `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
 [periodic topology](topostitch-periodic.md) and [bend previews](topostitch-preview.md).
@@ -158,8 +158,8 @@ two top-level AlphaFold-labelled models exist. The user confirmed three availabl
 examples suffice; a missing third local AlphaFold model is not a blocker.
 No dataset copy or solve. Private anchored hashes and source-SI receipt
 are under the everyday checkout's ignored `branch-artifacts/willow/commute-2026-11-16/`.
-The Cedar consumer waits for Rowan's qualified owner; W94 only adds explicit
-pivot arithmetic to the existing Cartesian image owner and reuses it for preview
+W94 added explicit
+pivot arithmetic to the existing Cartesian image owner and reused it for preview
 ANISOU. No MR/refinement behavior, axis inference, schema or dependency change.
 W94 validation: nine regressions failed before the API existed; **139 focused**,
 **1,844 full +229 subtests**, and **139 installed/relocated** tests pass, along with

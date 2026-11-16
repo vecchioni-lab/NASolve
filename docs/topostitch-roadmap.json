@@ -4,7 +4,7 @@
   "updated": "2026-11-16",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "eb8e5d6ed55a75ce33863c1fc4e6f37a95d23465",
+  "audited_code_commit": "c6549408137f83b431f8519480702656bf9183c6",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -226,13 +226,14 @@
         "W89 directly observes a numerical-resolution limitation at the W87 coarse points; retains FAILED and distinguishes six-variable stationarity from substantial remaining atomic gradients.",
         "W90 adds explicit diagnostic initialization to the existing atomic trial and checks remaining evaluation budget, with unchanged source/tether, derivatives and stopping/failure policy. Full/installed validation passes; native benefit is being compared in W91.",
         "W91 qualifies execution of the explicit diagnostic-start interface through matched native trials and endpoint observations, preserving both failures. This small coarse seed reaches the same rounded atomic point as cold cleanup and gives no demonstrated benefit; local improvements and remaining packing/torsion reviews stay separate.",
-        "W94 adds checked explicit pivot rotation through the existing Cartesian image owner and preview tensor path. Off-origin cycles/inverses and software/install regressions pass; no axis inference or three-orientation campaign runner."
+        "W94 adds checked explicit pivot rotation through the existing Cartesian image owner and preview tensor path. Off-origin cycles/inverses and software/install regressions pass; no axis inference or three-orientation campaign runner.",
+        "W96 qualifies an explicit direct shared-policy consumer with frozen baseline, hidden-mutation rejection and legitimate native rebuilds. Full/install and bounded source/native composition checks pass; no worker/default activation or scientific acceptance."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation."
       ],
-      "next_action": "W96: consume only a pinned, qualified Cedar live nonbonded-policy owner/profile. Add an optional direct NativeMaskedObjective consumer using the W95 checklist, frozen expected snapshot and actual invocation options; prove hidden-mutation refusals, legitimate rebuilds, unchanged legacy behavior, full regression and installed native composition. Captured-worker/default adoption remains separate.",
+      "next_action": "W97: qualify explicit captured-worker owner/profile dependency staging, actual evaluation options and source/report provenance before adding a supported opt-in job argument. Preserve legacy workers/readers and failure handling. Then select a predeclared displaced-duplex case plus matched cleanup; DNA/packing/density/chemistry gates remain separate.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -248,14 +249,15 @@
         "E_LIVE_NONBONDED_CONTRACT",
         "E_BLUNT_ASYM_PLAN",
         "E_PIVOT_ROTATION",
-        "E_GUARD_INTEGRATION_PREP"
+        "E_GUARD_INTEGRATION_PREP",
+        "E_LIVE_POLICY_CONSUMER"
       ],
       "last_audit": {
         "date": "2026-11-16",
         "reviewer": "Linden",
-        "code_commit": "eb8e5d6ed55a75ce33863c1fc4e6f37a95d23465",
-        "human_update": 95,
-        "scope": "Reviewed real consumer/correction/static-signature boundary and acceptance sequence. Documentation only; shared guard and scientific gates remain open."
+        "code_commit": "c6549408137f83b431f8519480702656bf9183c6",
+        "human_update": 96,
+        "scope": "Optional direct shared-policy consumer qualified with C331 on its exact native profile. Full/install/bounded native checks pass; worker adoption and scientific geometry/diffraction gates remain open."
       }
     },
     {
@@ -297,13 +299,14 @@
         "W87 matched installed six-variable trials both fail rounding; exact accepted-point derivative audits and common full-recipe observations are retained without promotion. Coarse pair preservation and modest aggregate improvements do not establish chemical or diffraction acceptance.",
         "W88 compiles numerical motion from an exactly pinned/replayed saved preview and its registration, with complete atom order, fixed context and source-byte guard. Full and installed/relocated software checks pass; no physical-search acceptance is inferred.",
         "W90 adds explicit diagnostic initialization to the existing atomic trial and checks remaining evaluation budget, with unchanged source/tether, derivatives and stopping/failure policy. Full/installed validation passes; native benefit is being compared in W91.",
-        "W91 qualifies execution of the explicit diagnostic-start interface through matched native trials and endpoint observations, preserving both failures. This small coarse seed reaches the same rounded atomic point as cold cleanup and gives no demonstrated benefit; local improvements and remaining packing/torsion reviews stay separate."
+        "W91 qualifies execution of the explicit diagnostic-start interface through matched native trials and endpoint observations, preserving both failures. This small coarse seed reaches the same rounded atomic point as cold cleanup and gives no demonstrated benefit; local improvements and remaining packing/torsion reviews stay separate.",
+        "W96 qualifies an explicit direct shared-policy consumer with frozen baseline, hidden-mutation rejection and legitimate native rebuilds. Full/install and bounded source/native composition checks pass; no worker/default activation or scientific acceptance."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "W96: consume only a pinned, qualified Cedar live nonbonded-policy owner/profile. Add an optional direct NativeMaskedObjective consumer using the W95 checklist, frozen expected snapshot and actual invocation options; prove hidden-mutation refusals, legitimate rebuilds, unchanged legacy behavior, full regression and installed native composition. Captured-worker/default adoption remains separate.",
+      "next_action": "W97: qualify explicit captured-worker owner/profile dependency staging, actual evaluation options and source/report provenance before adding a supported opt-in job argument. Preserve legacy workers/readers and failure handling. Then select a predeclared displaced-duplex case plus matched cleanup; DNA/packing/density/chemistry gates remain separate.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -336,14 +339,15 @@
         "E_MATCHED_ATOMIC_STARTS",
         "E_LIVE_NONBONDED_CONTRACT",
         "E_BLUNT_ASYM_PLAN",
-        "E_GUARD_INTEGRATION_PREP"
+        "E_GUARD_INTEGRATION_PREP",
+        "E_LIVE_POLICY_CONSUMER"
       ],
       "last_audit": {
         "date": "2026-11-16",
         "reviewer": "Linden",
-        "code_commit": "eb8e5d6ed55a75ce33863c1fc4e6f37a95d23465",
-        "human_update": 95,
-        "scope": "Reviewed real consumer/correction/static-signature boundary and acceptance sequence. Documentation only; shared guard and scientific gates remain open."
+        "code_commit": "c6549408137f83b431f8519480702656bf9183c6",
+        "human_update": 96,
+        "scope": "Optional direct shared-policy consumer qualified with C331 on its exact native profile. Full/install/bounded native checks pass; worker adoption and scientific geometry/diffraction gates remain open."
       }
     },
     {
@@ -1246,18 +1250,15 @@
       "human_update": 92,
       "reference": "docs/topostitch-periodic.md#w92--shared-live-nonbonded-policy-contract-qualification-pending",
       "result": "Cedar owner/Willow consumer contract records full supported parameter/assignment/exclusion/symmetry and invocation scope, cache-state separation, unchanged defaults and mandatory equal-energy hidden-mutation controls.",
-      "limitation": "Contract-only W92. W95 specifies the direct integration boundary; exact Cedar owner/profile/native qualification still required before W96 consumer. No stable imported API or Willow guard is claimed; Cedar Q06 chemistry remains separate.",
+      "limitation": "Historical W92 contract and C330 preparation; W96 now qualifies the explicit direct consumer with C331 (E_LIVE_POLICY_CONSUMER). Captured-worker and automatic adoption remain unqualified; Q06 chemistry stays separate.",
       "contract": {
         "kind": "shared-live-nonbonded-policy-consumer-contract",
-        "status": "PROPOSED_NOT_IMPLEMENTED_IN_WILLOW",
+        "status": "DIRECT_OPTIONAL_CONSUMER_QUALIFIED_CAPTURED_WORKER_PENDING",
         "runtime_authority": false,
         "scientific_acceptance": false,
         "native_version_scope": "Phenix 2.2.1-6174; explicit supported API qualification required",
         "owner": "Cedar native interpretation/validation",
-        "proposed_owner_module": "nasolve.cif_live_nonbonded_policy",
-        "proposed_snapshot_api": "snapshot_live_nonbonded_policy(geo, *, flags, normalization, compute_gradients=False, disable_asu_cache=False, gradients=None, custom_nonbonded_function=None, external_energy_function=None, extension_objects=()); final signature awaits qualified Cedar commit",
-        "proposed_require_api": "require_live_nonbonded_policy(geo, expected, **same_evaluation_options)",
-        "willow_consumer": "NativeMaskedObjective, optional explicit owner plus expected snapshot",
+        "willow_consumer": "NativeMaskedObjective(live_policy_owner=trusted_owner, expected_live_policy=snapshot); both optional together",
         "construction": [
           "Caller authenticates fresh native interpretation and its source inputs; the snapshot does not retroactively authenticate missing fields in historical captures.",
           "Require already-resolved finite numeric cutoff; snapshot reads primitive values without warming up, copying or mutating the manager.",
@@ -1298,20 +1299,23 @@
           "Unguarded existing callers and report shape remain unchanged until explicit supported adoption."
         ],
         "not_qualified_by_this_contract": [
-          "A complete implemented guard",
+          "Captured worker, CLI or automatic campaign guard adoption",
           "Arbitrary native versions or callbacks",
           "Independent reconstruction of physical exclusions or generated contacts",
           "Source chemistry, scattering or full live refinement",
           "Cedar Q06 achieved chemistry closure",
           "Large bending, nonuniform curvature, physical gap closure or diffraction benefit"
         ],
-        "integration_checklist": "docs/topostitch-periodic.md#w95--prepare-the-qualified-guard-consumer",
+        "integration_checklist": "docs/topostitch-periodic.md#w96--optional-direct-live-policy-consumer",
         "integration_stages": [
           "Qualified exact Cedar owner/profile/native receipt",
           "Optional direct NativeMaskedObjective consumer with unchanged legacy behavior",
           "Installed/relocated captured-worker dependency and provenance adoption, separately qualified",
           "General displaced-duplex matched control before broader campaign/density integration"
-        ]
+        ],
+        "owner_module": "nasolve.cif_live_nonbonded_policy",
+        "snapshot_api": "snapshot_live_nonbonded_policy(geo, *, flags, normalization, compute_gradients=False, disable_asu_cache=False, gradients=None, custom_nonbonded_function=None, external_energy_function=None, extension_objects=())",
+        "require_api": "require_live_nonbonded_policy(geo, expected, **same_evaluation_options)"
       },
       "owner_contract_provenance": {
         "branch": "cedar",
@@ -1322,6 +1326,16 @@
         "ledger_key": "live_nonbonded_policy_contract_2026_11_15",
         "status": "CONTRACT_ONLY_NO_IMPLEMENTED_GUARD",
         "qualification_scope": "Synthetic Phenix 2.2.1-6174 API inventory; 122 adjacent existing tests pass. No production guard, stable policy identifier, full-suite rerun or Willow consumer."
+      },
+      "qualified_owner_provenance": {
+        "branch": "cedar",
+        "commit": "c4e5ddb8530358c524feb473f3c4ffe77c64b6ac",
+        "architecture_path": "docs/architecture.md",
+        "architecture_anchor": "live-nonbonded-policy-guard-c331",
+        "ledger_path": "docs/cif-linked-native-registration-evidence.json",
+        "ledger_key": "live_nonbonded_policy_guard_2026_11_16",
+        "status": "C331_QUALIFIED_EXPLICIT_OWNER",
+        "qualification_scope": "Pinned native API/profile; Rowan reports 198 focused and 108 fresh-wheel tests including 32 native. Willow W96 separately qualifies its bounded direct consumer. No chemistry acceptance or worker/default activation."
       }
     },
     "E_BLUNT_ASYM_PLAN": {
@@ -1347,6 +1361,27 @@
       "reference": "docs/topostitch-periodic.md#w95--prepare-the-qualified-guard-consumer",
       "result": "Reviewed actual NativeMaskedObjective and Cedar correction/static-signature paths. Plan checks before pair_proxies can rebuild, same flags/options on the real energy call, immutable primitive baseline, preserved failures, opt-in provenance and installed profile/resource closure. Direct consumer and later captured-worker adoption are separate acceptance steps.",
       "limitation": "Documentation only. C331 implementation is under Rowan qualification; uncommitted source/profile are not pinned dependencies. No Willow guard, new runtime/schema, native execution, scientific closure or automatic campaign adoption. W94 full/install validation remains current."
+    },
+    "E_LIVE_POLICY_CONSUMER": {
+      "kind": "software_and_bounded_native_qualification",
+      "code_commit": "c6549408137f83b431f8519480702656bf9183c6",
+      "human_update": 96,
+      "reference": "docs/topostitch-periodic.md#w96--optional-direct-live-policy-consumer",
+      "result": "Optional NativeMaskedObjective owner/expected-snapshot binding checks construction/static/energy boundaries, freezes caller data and records opt-in provenance. Nine fail-before cases; 84 focused, 1853 full plus 229 subtests, 84 fresh-wheel tests and six CLI helps pass. Eight complete Phenix 2.2.1-6174 source and installed-composition checks pass, including real construction, exact guarded/unguarded native values/gradients across movement/reset, full six-variable derivatives and hidden/mid-call mutation refusals.",
+      "limitation": "Direct explicit consumer only. Synthetic three-atom native manager with zero additive-pair control; no canonical DNA/packing/physical-gap/diffraction acceptance. Captured worker, CLI and campaign defaults unchanged. No Cedar merge or full merged-branch regression. First installed-native harness mixed Python 3.12 dependencies with Phenix 3.11 and failed; corrected pure-Python wheel staging passes with native dependencies. Sequential checks do not prove concurrent/transient mutation protection.",
+      "owner_commit": "c4e5ddb8530358c524feb473f3c4ffe77c64b6ac",
+      "owner_source_sha256": "0a812020882d5452554a4f6629c5af1aa56e01f6060c26fce585e9174bcfaf3e",
+      "profile_sha256": "d35a0b61dd49a75132d16d3bb53b1c636eefbd30c21d19fe5d50a03d018e6ee6",
+      "profile_id": "phenix-2.2.1-6174-darwin-arm64-nonbonded-v1",
+      "wheel_sha256": "853d8bfbb8a476a65e5f6d673de8dce8a4f81a5112b9a01b70ff6f87c4118d79",
+      "local_forensic_archive": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/w96-live-policy-2026-11-16.tar.gz",
+        "sha256": "751a1a34a74410d826c68fee0ef222c85d45dabb7edf89c8abdfde0e0b88451d",
+        "files": 19,
+        "portable_campaign": false,
+        "committed": false
+      }
     }
   },
   "benchmarks": [
@@ -1486,8 +1521,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 95,
-    "next": 96,
+    "current": 96,
+    "next": 97,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1867,6 +1902,12 @@
         "title": "Prepare the qualified shared guard consumer and native acceptance checks",
         "state": "RECORDED",
         "code_commit": "eb8e5d6ed55a75ce33863c1fc4e6f37a95d23465"
+      },
+      {
+        "number": 96,
+        "title": "Qualify the optional direct shared native policy guard",
+        "state": "RECORDED",
+        "code_commit": "c6549408137f83b431f8519480702656bf9183c6"
       }
     ]
   }

@@ -3653,7 +3653,8 @@ Opt-in binding reports gain `live_nonbonded_policy` containing `policy_id`,
 `native_profile_sha256`. These hashes are provenance, not authority to adopt a
 model. Existing callers keep their old binding and evaluation shapes. There is
 no new CLI, worker bootstrap, campaign default or dependency; the guard owner is
-not imported implicitly. The caller remains responsible for trusted source
+not imported implicitly. Existing objective restrictions, including rejection of
+special-position constraints, remain even though the guard can read them. The caller remains responsible for trusted source
 lifetime and interpretation. Historical captures do not gain missing policy
 provenance, and the guard does not authenticate generated contacts or chemistry.
 
@@ -3706,3 +3707,13 @@ staging of the complete owner/profile dependency set and report provenance befor
 any supported job option is added. Keep the direct interface opt-in. Large-motion
 DNA, independent packing/contact checks, density-aware matched refinement and
 Pine/campaign acceptance remain separate open milestones.
+
+W96's 19-file local forensic archive is verified under the everyday NASolve
+checkout at ignored `branch-artifacts/willow/w96-live-policy-2026-11-16.tar.gz`,
+SHA256 `751a1a34a74410d826c68fee0ef222c85d45dabb7edf89c8abdfde0e0b88451d`.
+It retains scripts, pinned owner/profile files, checksummed receipts and the
+failed harness log; it is not a portable/resumable campaign. Roadmap validation:
+`PYTHONDONTWRITEBYTECODE=1 python3 scripts/audit_topostitch_roadmap.py --write`
+and `--check`; `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m pytest -q
+-p no:cacheprovider tests/test_topostitch_roadmap.py` gives **8 passed**; whitespace
+checks pass. These documentation checks do not replace the native receipt above.
