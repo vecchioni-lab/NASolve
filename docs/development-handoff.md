@@ -1,8 +1,8 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C344 free-end DY native control — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. C341 pushed at `5c960cc4`; C342 is this
-completed code/evidence checkpoint. No full suite, new branch, default activation
+Updated **2026-11-16, C345 mixed-end DY ReadySet control — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. C344 pushed at `c0dd51fb`; C345 is this
+completed evidence checkpoint. No full suite, new branch, default activation
 or merge. Linden owns Pine/Willow; C331 unchanged. Simon confirmed work through
 **23:00 London**. All Rowan native/controller jobs stopped at this checkpoint.
 
@@ -26,13 +26,22 @@ successful route prepares the explicit free-OH dictionary before Coot. Do not
 weaken the sanitizer or infer end state from missing atoms. Ordinary automatic
 per-site dictionary selection is still open; this is an explicit caller control.
 
-**Next C345:** use the C344 free-end model, construct an additional internal DY
-with C343's verified full nucleotide dictionary, prepare both contexts together
-through `prepare_dictionary_bundle`, and run existing observed ReadySet + exact
-endpoint native checks. All code/source owners already exist. No pairing pattern
-is invented for DY. Then refinement survival / ordinary source selection, still
-without alias activation until qualified. See `explicit_free_end_dy_2026_11_16`.
-Older active/next paragraphs below are retained history, superseded by this one.
+**C345 completed:** Coot adds internal DY beside the C344 free-OH DY in one
+fragment. Existing bundle preparation yields 87 PASS / two unavailable formal-charge
+readbacks. Observed ReadySet passes all eight checks, preserves heavy coordinates
+and exact numerics, and calls no observed builder/template. Fresh endpoint native
+mechanics pass; the existing decision chooses `readyset_checked_model`, diagnostic
+continuation only. No inferred DY pairing or automatic alias/per-site selection.
+Root `345_Cedar_DY-mixed-ends-readyset-ghxi92ze`: 16.78 s, 5.92 MB; all jobs stopped.
+Cold relocation reproduces the exact result with execution forbidden; 136 original
+files/timestamps preserved, 5.70 MB temporary replay copy removed. Coot1.3.3,
+Phenix2.2.1-6174. C343 focused tests remain current; no new pytest/full suite.
+Compact evidence: `mixed_dy_end_states_readyset_2026_11_16`.
+
+**Next:** actual refinement survival with explicit chemical intent and matching
+restraints; do not reuse PDU pair restraints for DY or infer its pairing pattern.
+Then ordinary source/context selection, still no automatic alias until qualified.
+The older active/next paragraphs below are retained evidence, superseded here.
 
 **Latest C343 complete — Rowan, 2026-11-16.** C342 pushed `d17dd326`; C343 is this
 code/evidence checkpoint. All Rowan jobs stopped. Continue through 23:00 London,

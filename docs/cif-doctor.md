@@ -13674,3 +13674,20 @@ projection `(path, code)` as a path after successful qualification; preserved an
 verified stopped before the successful fresh attempt. Evidence:
 `explicit_free_end_dy_2026_11_16`. Next: combined free-end/internal DY through
 ReadySet, then refinement survival and source-owned ordinary selection.
+
+
+### Mixed DY end states through observed ReadySet (C345)
+
+Ordinary Coot adds internal DY beside an existing explicitly prepared free-OH DY.
+Existing bundle preparation qualifies both contexts together: 87 PASS, with two
+unsupported formal-charge readbacks. Observed ReadySet passes all eight consumption
+checks, preserves heavy coordinates and exact numerical restraints, and makes no
+observed builder/template calls. Exact endpoint native checks pass; the existing
+decision selects `readyset_checked_model` for diagnostic continuation only.
+
+Complete execution uses Coot1.3.3 and Phenix2.2.1-6174. Cold relocation reproduces
+the exact result without executing native tools, preserving all 136 original files
+and timestamps. No runtime, schema, source or default changes; no migration.
+Models/CIFs/logs remain local. This does not establish diffraction-refinement
+survival, infer DY pairing or enable automatic source/end-state selection.
+Evidence: `mixed_dy_end_states_readyset_2026_11_16`.

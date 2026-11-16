@@ -859,14 +859,15 @@ recorded above; finish the active Q06 chemical-survival control first.**
 
 ### DY — Packaged retained-triazole reference and mutation support
 
-**Latest C344:** explicit free-5′-OH DY native preparation and ordinary Coot
-construction pass assessable mechanics (65 / 66 PASS, each one unavailable
-formal-charge readback); exact cold relocation passes. No phosphate atoms appear
-at the free end. The old sanitizer cannot remove a whole unwanted phosphate;
-choose the declared end-state dictionary before construction. **Next C345:**
-combined free-end/internal DY, ReadySet consumption and exact native readback.
-Automatic per-site construction-dictionary choice, alias activation and actual
-refinement survival remain open. This supersedes the C343 next step below.
+**Latest C345:** combined free-OH and internal DY pass Coot construction, existing
+bundle preparation (87 PASS / two unavailable formal-charge readbacks), observed
+ReadySet and exact endpoint mechanics. ReadySet preserves heavy coordinates and
+numerics without observed builder/template calls. Cold replay passes. C344's
+explicit end-state dictionary choice remains necessary; the sanitizer does not
+remove an unwanted whole phosphate. **Next:** actual refinement survival with
+matching explicit restraints, then ordinary source/context selection. No DY pair
+pattern, automatic alias or per-site selector is inferred from these controls.
+See `mixed_dy_end_states_readyset_2026_11_16`; older next steps are historical.
 
 **Latest C343:** explicit representation now reaches the source-owned DNA metadata
 adapter and native equivalence. Actual internal DY Coot construction and Phenix

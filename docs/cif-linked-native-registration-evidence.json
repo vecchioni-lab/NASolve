@@ -104464,5 +104464,100 @@
     ],
     "next": "Combined free-end/internal DY ReadySet and endpoint native readback.",
     "signed": "Rowan"
+  },
+  "mixed_dy_end_states_readyset_2026_11_16": {
+    "source_commit": "c0dd51fb",
+    "local_root": {
+      "anchor": "NASolve-live-tests",
+      "path": "345_Cedar_DY-mixed-ends-readyset-ghxi92ze"
+    },
+    "summary": {
+      "status": "C345_MIXED_DY_END_STATES_READYSET_OBSERVED",
+      "versions": {
+        "coot": "1.3.3",
+        "phenix": "2.2.1",
+        "build": "phenix-2.2.1-6174"
+      },
+      "initial_checks": {
+        "PASS": 87,
+        "UNSUPPORTED": 2
+      },
+      "readyset_status": "READYSET_CACHED_INPUT_PASS",
+      "readyset_checks": {
+        "single_effective_dictionary": true,
+        "effective_numerics_exact": true,
+        "unchanged_heavy_sites": true,
+        "readyset_completed": true,
+        "observer_complete": true,
+        "effective_actions": true,
+        "no_observed_builder_or_template_calls": true,
+        "no_unclassified_subprocess_calls": true
+      },
+      "decision": {
+        "status": "CONTINUE_WITH_NOTES",
+        "selected": "readyset_checked_model",
+        "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+        "requires_cif_review": false,
+        "automatic_adoption": false
+      },
+      "endpoint_error": null,
+      "endpoint_mechanics": true,
+      "unselected_heavy_coordinates_preserved": true,
+      "source_files_preserved": 199,
+      "all_native_jobs_stopped": true,
+      "elapsed_seconds": 16.77596050000284,
+      "physical_bytes": 5924544,
+      "refinement": "NOT_RUN",
+      "automatic_alias": "NOT_ENABLED",
+      "ordinary_end_state_dictionary_selection": "CALLER_EXPLICIT",
+      "scientific_approval": "NOT_RUN"
+    },
+    "readback": {
+      "status": "C345_MIXED_DY_READYSET_COLD_REPLAY_PASS",
+      "original_path_absent": true,
+      "native_execution_forbidden": true,
+      "exact_result_reproduced": true,
+      "decision": {
+        "status": "CONTINUE_WITH_NOTES",
+        "selected": "readyset_checked_model",
+        "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+        "requires_cif_review": false,
+        "automatic_adoption": false
+      },
+      "preserved_original_files": 136,
+      "temporary_bytes_removed": 5697993
+    },
+    "native_receipts": {
+      "native-before": {
+        "anchor": "control_directory",
+        "path": "native-before/cif-native-fzm8ewyl/native_receipt.json",
+        "sha256": "03c6686ac98abd7dd71e8250b796399c9eb5dd70de6cbe38a57d3afa7d4394b5"
+      },
+      "native-prepared": {
+        "anchor": "control_directory",
+        "path": "native-prepared/cif-native-qcr9hs67/native_receipt.json",
+        "sha256": "62b31e4ac2eb2874bd00a8a13c93a8f19f1b947d4a79eecf549f98ce5e8fdfd1"
+      },
+      "native-readyset": {
+        "anchor": "control_directory",
+        "path": "native-readyset/cif-native-1j2ut6vp/native_receipt.json",
+        "sha256": "947944d280a5b83abec881f98bcd585c12b796e61bfdc4f729abdd58d0c31a26"
+      }
+    },
+    "commands": {
+      "native": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=../NASolve-c96/src .venv/bin/python -B branch-artifacts/cedar/runners/c345_start.py",
+      "readback": "Same environment/python: branch-artifacts/cedar/runners/c345_readback.py",
+      "working_directory": "everyday NASolve checkout"
+    },
+    "validation": "Complete Coot/ReadySet/Phenix execution and relocated cold replay; no new pytest for docs-only checkpoint. C343 focused results remain current. No full suite.",
+    "compatibility": "No source/schema/default changes; no migration.",
+    "retention": "Compact evidence only committed; models, diffraction data, generated CIFs, logs, native captures and runners remain local.",
+    "limitations": [
+      "Two formal-charge readbacks unsupported; no partial-charge substitution.",
+      "Explicit caller-selected end-state dictionaries; no automatic DY alias or per-site selector.",
+      "No diffraction refinement or inferred DY pairing."
+    ],
+    "next": "Actual refinement survival, then ordinary source/context selection within existing owners.",
+    "signed": "Rowan"
   }
 }

@@ -4194,5 +4194,8 @@ backbone links survive, and the intended local restraints are present. The same
 chemistry rule governs dictionary generation and DNA classification. Native
 formal-charge readback is still unavailable. C344 also demonstrates a free 5′-OH DY end: an explicitly prepared end-state
 dictionary lets Coot build the right atoms from the start, and Phenix retains
-its outgoing link. ReadySet, refinement survival and ordinary automatic selection
+its outgoing link. C345 puts free-end and internal DY in the same fragment:
+ReadySet retains both intended atom sets, heavy coordinates and numerical restraints,
+and Phenix still recognizes the resulting mechanics. This uses explicitly chosen
+end-state dictionaries. Actual refinement survival and ordinary automatic selection
 remain separate checks.
