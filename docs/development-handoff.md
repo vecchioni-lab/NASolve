@@ -148,7 +148,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-16
 
-**W99 complete full-window controls are audited; W100 source-displaced controls are running.**
+**W100 actual-input source controls and W101 pair-kernel composition are audited; ordinary refinement integration remains next.**
 Latest audited runtime is W98 `7faff1a1` on isolated `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -440,15 +440,17 @@ stationarity. No physical closure, density/Rfree or adoption claim. Exact
 results, commands, local archive and four inspection PDBs are in the
 [W99 evidence](topostitch-periodic.md#w99--complete-full-window-native-bend-controls).
 
-**W100 is in progress:** three separately declared controls use the actual
-reference/displaced sources and a common weaker 1-Angstrom tether to each
-input, with no pristine-reference target in the displaced worker. All 22
-fresh native chemistry/proxy/policy checks pass. A stale source checksum in
-the unexecuted preparation was corrected in a new declaration, retaining the
-original plan and identical coordinates/forces/budgets. The whole sequential
-panel must fit before 23:00 London. See the
-[W100 declaration](topostitch-periodic.md#w100--source-displaced-controls-in-progress).
-S04/S05 and density/matched-refinement gates remain open. C331 stays pinned.
+**W100 is recorded:** all three actual-input-tether controls and common native
+observers pass full/rounded derivatives, while every trial hits its 300-iteration
+limit. Displaced pair forces on/off give reference RMS0.6982/0.9426 Å from0.9174,
+and pair penalties333.8/1292.3 from835.3. Lower native energy without pairs is not
+better pairing. The reference control itself moves0.4210 Å. Affected bond/angle
+screens improve and chiral signs hold, but individual packing/torsion/plane
+regressions and rounding sensitivity remain. No physical repair or density claim.
+The [complete W100 evidence](topostitch-periodic.md#w100--source-displaced-controls)
+records the corrected preparation, exact commands, local archive and five
+inspection PDBs. All W100 native processes are terminal; installed W98/C331 stays pinned.
+S04/S05 remain partial.
 The separate installed virtual Willow/Cedar C338 combination passes 1,062 tests
 +22 subtests, six helps and exact saved graph/frame/native-link/packing replay;
 see the [explicit scope and retained setup failures](topostitch-periodic.md#installed-c338-compatibility-during-w100).
@@ -456,11 +458,18 @@ Zero source conflicts; seven documentation conflicts and the package-data union
 still need actual merge review. No branch merge, full combined suite or native
 combined refinement. C338 intra-site chemistry reporting is not backbone/seam
 acceptance; C340 is outside this pin. Rowan retains a full-suite consolidation
-gate. No runtime/schema changes in W99/W100.
+gate. No runtime/schema changes in W99–W101.
 The [next ordinary refinement boundary](topostitch-periodic.md#next-ordinary-refinement-boundary)
 reuses Cedar's frozen AutoRefine round and final-writer owners, with separately
 qualified complete periodic-pair, exclusion and normalization/force accounting.
 A second refinement runner or C338 reporting pass cannot substitute for that gate.
+**W101:** the [native pair-kernel comparison](topostitch-periodic.md#w101--pair-kernel-composition-before-ordinary-refinement)
+passes20/20 directions in all four cases with exact baseline target/gradient
+agreement. The suspected double correction does not occur in these controls;
+no fix is needed. Preserve the initial Python ABI setup failure and isolated V2
+success. Actual ordinary-manager attachment, rebuild persistence, normalization,
+exclusions and matched diffraction remain unqualified. Archives/inspection files
+stay local; W98 is still the latest runtime. Documentation checks only were rerun.
 
 This direct guard is separate from Cedar Q06 refinement chemistry/PDU angle
 review. Nonuniform curvature, matched diffraction and density-aware S06 remain

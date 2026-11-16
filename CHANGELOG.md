@@ -17,7 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
-### W100 — Declare independent source-displaced controls
+### W101 — Qualify existing pair-kernel composition
+
+- Verify complete pair recipes under raw and globally Cedar-corrected native
+  kernels: all four derivative controls pass with exact baseline targets/forces.
+  No double-correction fix is needed. Preserve the initial ABI launcher failure;
+  ordinary refinement lifecycle and scientific acceptance remain unqualified.
+
+### W100 — Audit independent source-displaced controls
 
 - Clarify the next ordinary-refinement integration gate with Cedar: reuse frozen
   round/final-writer owners and separately qualify complete periodic-pair forces,
@@ -25,9 +32,11 @@ entries are reconstructed from repository history.
 - Verify focused installed/relocated Willow + Cedar C338 compatibility, preserving
   package resources, legacy-reader pins and unresolved documentation conflicts.
   No actual merge, full combined suite or new native execution in this check.
-- Freeze reference/displaced-source controls with the same weaker actual-input
-  tether; fresh native interpretation preserves every declared chemical proxy.
-  Retain the corrected unexecuted preparation and pending outcomes. No runtime change.
+- Audit all three actual-input-tether controls and endpoint observations. Pair
+  forces preserve contacts better than native-only relaxation in the displaced
+  control; nonconvergence, healthy drift and local packing/torsion tradeoffs remain.
+  Verify the local archive and five inspection PDBs, retaining preparation history.
+  No physical acceptance, runtime/schema change or scientific data release.
 
 ### W99 — Audit the complete full-window comparison
 

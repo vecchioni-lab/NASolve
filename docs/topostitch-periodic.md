@@ -4079,7 +4079,7 @@ remains the applicable code evidence. Documentation validation:
 `python3 scripts/audit_topostitch_roadmap.py --write`, then `--check`, JSON
 readback and `git diff --check`; no new full-suite or installation claim.
 
-## W100 — Source-displaced controls (in progress)
+## W100 — Source-displaced controls
 
 The next predeclared panel removes the pristine-reference tether from the
 perturbed worker: a reference-source control with pair forces, a displaced-source
@@ -4103,10 +4103,68 @@ Fresh native interpretation of the displaced source passes all **22** exact
 identity, monomer-definition, complete proxy, installed-API and policy checks.
 No link or angle is lost. The existing owned runner executes the three trials
 sequentially; launching requires all three worst-case caps plus 600 seconds
-before the 23:00 London cutoff. Results remain pending. Historical working root:
-`/private/tmp/willow-w99-window/next-source-control-v2/`; predecessor preparation,
-checksummed sources, declaration and preflight are retained locally. Do not
-change policy from interim outcomes or promote a failed/limited result.
+before the 23:00 London cutoff. All three complete executions and three common
+full-recipe endpoint observers are now audited under **Phenix 2.2.1-6174**.
+Initial points and native/raw-pair/tether components match exactly between the
+displaced controls. Every initial/full/rounded 612-variable derivative check
+passes the unchanged 1e-4/1e-5-Angstrom steps and absolute 1e-3 bound. All trials
+remain **NOT_CONVERGED_LIMIT at 300 iterations**; no endpoint is adopted.
+
+| Actual input / pair forces | Native target, final | Raw pair target, final | RMS from actual input / Å | RMS from reference / Å | Objective evaluations |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Reference / on | 6307.5844 | 270.0376 | 0.421001 | 0.421001 | 7657 |
+| Displaced / on | 6327.2791 | 333.7927 | 0.634082 | 0.698233 | 7655 |
+| Displaced / off | 6244.5665 | 1292.3020 | 0.478782 | 0.942609 | 7660 |
+
+The displaced start has native target 10883.1943, raw pair target 835.3084 and
+reference RMS 0.917427 Å. Pair forces improve both selected pairs and the four
+movable core-pair totals; the eight fixed core pairs stay exact. Without those
+forces, one selected pair and all four movable core pairs worsen, despite lower
+native geometry energy. These are bounded controls, not a converged optimum or
+proof of blind recovery. Total objectives with different input tethers are not
+one comparable objective. Even the reference control moves 0.421 Å; geometry
+regularization alone does not show that this motion is supported by diffraction.
+The paired displaced endpoint's maximum distance from the reference increases
+1.7680 → 1.8635 Å while its RMS improves.
+
+All three full and rounded endpoints have zero nominal absolute deviations ≥3
+among the **230 affected simple bonds and 356 affected angles**, with no sign
+conflict among 39 affected chiralities. The fixed-context source outliers remain.
+These native sigma screens are descriptive, not calibrated validation grades.
+Packing improves in aggregate but retains 125/145/106 worsened directed overlaps
+(reference/paired displaced/unpaired displaced), including 55/81/49 newly
+overlapping existing rows. Largest positive-overlap increases are
+0.3777/0.4392/0.4354 Å. Native directed multiplicity changes are 0/2/3; no newly
+listed overlapping contact is observed. Aggregate torsion and plane targets
+improve, while individual torsions and one plane in the paired displaced case
+worsen. Boundary torsion penalties also increase. The full gradients remain
+107.03/174.05/210.65; PDB rounding raises them to 551.00/596.70/588.17.
+
+The 324-file local archive is verified member by member under the everyday
+NASolve anchor: `branch-artifacts/willow/w100-source-controls-2026-11-16.tar.gz`,
+SHA256 `e7afd8c9e48cc55958335ce282031d794d7f6e561b0a0f077c6bac4401190444`.
+It retains the unexecuted stale-mask preparation, corrected declaration,
+checksummed inputs, complete trials/observations, accepted-step samples, drivers,
+logs and exact wheels. Historical working root:
+`/private/tmp/willow-w99-window/next-source-control-v2/`.
+This is a forensic archive, not an autonomous portable campaign.
+
+Five local inspection PDBs and their receipt are under
+`branch-artifacts/willow/inspection-w100-2026-11-16/`: original input, displaced
+input and all three endpoints. Existing masked endpoint auditing preserves the
+651 fixed atoms and original ADPs; Gemmi 0.7.5 independently reads 855 atoms,
+H3 and the original cell from every file. No GUI visual review is claimed.
+Full versus rounded coordinates remain distinct. Nothing is committed/uploaded
+from either generated directory; no checkpoint or selection is created.
+
+Exact local commands use `PYTHONDONTWRITEBYTECODE=1` and the pinned Python 3.12
+controller with `run-source-controls.py`, `summarize-source-controls.py`,
+`observe-source-controls.py`, `review-source-observations.py`,
+`archive-source-controls.py` and `export-source-inspection.py`. Their complete
+bytes/logs are archived. The existing owned runner launches native
+`phenix.python -B evaluate.py`, with 3600-second trial and 600-second observer
+caps. This is complete execution, not a dry-run. W98/C331 runtime, scientific
+thresholds and schema stay unchanged; no new full-suite or installation claim.
 
 ### Installed C338 compatibility during W100
 
@@ -4146,7 +4204,7 @@ and `pytest -q -p no:cacheprovider` with the 39 named modules in `receipt.json`.
 `audit-scope.json` is the authoritative test selection. This is focused installed
 compatibility, not a full combined suite, native combined refinement, resolved
 human-document merge or scientific acceptance. C340 is not part of this pin.
-W100 native controls continue with unchanged installed W98/C331; no dependency,
+W100 native controls completed with unchanged installed W98/C331; no dependency,
 API, runtime or branch migration. No archive payload is committed or uploaded.
 
 
@@ -4177,3 +4235,52 @@ budget. Inspect local geometry, periodic contacts and model-bound maps alongside
 Rwork/Rfree. This is the path to density-aware bending; current W100 geometry
 regularization and installed C338 compatibility do not close S06. No new runner,
 callback, force policy, schema or native execution is introduced by this plan.
+
+
+## W101 — Pair-kernel composition before ordinary refinement
+
+A static concern was that Willow's explicit plane-force correction might be
+applied twice when Cedar's ordinary runtime installs its corrected
+`ParallelityKernel`. Reading the correction showed a possible safe composition:
+it subtracts the currently evaluated container contribution before adding the
+checked manual contribution. A complete native microprobe now tests that point;
+no defect or product patch is presumed from the initial concern.
+
+For both W100 source models, the same complete ordered recipe is evaluated with
+the original native residual-sum binding and with the existing Cedar kernel
+installed temporarily at that binding. Cedar's existing whole-objective probe
+uses its unchanged four finite-difference steps, tolerances, six deterministic
+plane atoms and full/global directions. **All four cases pass 20/20 directions**
+(162 evaluations each), baseline repeats and recorded context checks. Baseline
+targets and all gradient components are **exactly equal** between the two kernel
+contexts for each source. The existing correction composes safely in these cases;
+no corrective code, native binding change or tolerance adjustment is needed.
+The original binding is restored, and inputs/software remain unchanged.
+
+The complete owned **Phenix 2.2.1-6174 / dispatcher 2.2.1 / Python 3.11.15**
+execution takes 18.04 seconds under a 600-second cap. The native module profile
+is verified, and the pinned C331 kernel bytes equal C338's kernel. This tests
+pair-energy/force arithmetic only: it does not attach the complete policy to an
+ordinary refinement manager, prove selection/rebuild persistence, normalize the
+combined geometry objective, or qualify a diffraction refinement or final writer.
+Those remain the [S06 integration gate](#next-ordinary-refinement-boundary).
+
+An earlier launcher exposed the Python 3.12 installed prefix to native Python
+3.11; NumPy import failed and the native process exited -11 before numerical
+comparison. That attempt is retained. A fresh V2 preparation exposes only the
+pure package path, rejects foreign dependency paths and verifies the old process
+is absent before launch. Models, recipes, cases and numerical policy are unchanged.
+The plan's pre-execution state is historical; execution receipts record the
+completed native observation. No failed numerical result was replaced.
+
+The verified 41-file local archive is under the everyday NASolve anchor:
+`branch-artifacts/willow/w101-pair-kernel-composition-2026-11-16.tar.gz`, SHA256
+`3bd123dc9dad4dd9daf021889e6255812cb58bd29860abcdd949c8c3bd7ce832`.
+It includes both attempts, exact plans/inputs, consumed helper sources, native
+profile, process receipts and raw/replayed derivative records. It is not committed,
+not an autonomous portable campaign and not scientific acceptance. Historical
+V2 root: `/private/tmp/willow-pair-kernel-boundary-v2/`. Exact controller command:
+`PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python run.py`;
+the existing owner launches `phenix.python -B probe.py`. Runtime/API/schema and
+installation remain W98; documentation validation is roadmap regeneration/check,
+JSON readback and `git diff --check`, not a repeated full software suite.
