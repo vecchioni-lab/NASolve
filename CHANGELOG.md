@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W102 — Qualify actual model-entry pair arithmetic
+
+- Verify complete pair targets/forces and native normalization through the actual
+  model energy method, with explicit rebinding after all-atom selection. Eight
+  derivative controls and twelve unsupported-setting controls pass. No automatic
+  lifecycle, exclusion policy, refinement or scientific acceptance is enabled.
+
 ### W101 — Qualify existing pair-kernel composition
 
 - Verify complete pair recipes under raw and globally Cedar-corrected native

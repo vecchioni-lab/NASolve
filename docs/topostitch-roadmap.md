@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W101 — Qualify existing pair-kernel composition.** Next: W102.
+**Current update: W102 — Qualify complete pair arithmetic through actual model entry.** Next: W103.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W92 | Record the shared live nonbonded-policy contract and qualification gate | RECORDED |
 | W93 | Plan density-aware blunt contacts and three-orientation asymmetric trials | RECORDED |
 | W94 | Compile checked molecular rotations about an explicit Cartesian pivot | RECORDED |
 | W95 | Prepare the qualified shared guard consumer and native acceptance checks | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W99 | Qualify complete full-window native bend controls | RECORDED |
 | W100 | Compare independently tethered reference and displaced sources | RECORDED |
 | W101 | Qualify existing pair-kernel composition | RECORDED |
+| W102 | Qualify complete pair arithmetic through actual model entry | RECORDED |
 
 ## Finish lines
 
@@ -201,7 +201,7 @@ Turn a plausible placement into a chemically usable candidate before refinement 
 
 Compare repaired and unmodified models fairly, then determine where data support curvature and strand-specific motion.
 
-**Delivered:** Three matched public-reference coordinate-only refinements now preserve deposited observations/Free-R and measure contact, geometry and diffraction tradeoffs; no repaired-MR success or meaningful extra Rfree benefit of bending is claimed. Supplied-data input checks and five local native MR placement controls completed, including forward and reverse-shape candidates; no repair/refinement comparison yet. W101 native pair-only composition passes20/20 directions in each raw/global-Cedar-corrected context for two source models, with exact baseline target/gradient equality. No double-correction fix is needed; actual refinement attachment, normalization/exclusion accounting and lifecycle remain unqualified.
+**Delivered:** Three matched public-reference coordinate-only refinements now preserve deposited observations/Free-R and measure contact, geometry and diffraction tradeoffs; no repaired-MR success or meaningful extra Rfree benefit of bending is claimed. Supplied-data input checks and five local native MR placement controls completed, including forward and reverse-shape candidates; no repair/refinement comparison yet. W101 native pair-only composition passes20/20 directions in each raw/global-Cedar-corrected context for two source models, with exact baseline target/gradient equality. No double-correction fix is needed; actual refinement attachment, normalization/exclusion accounting and lifecycle remain unqualified. W102 passes complete pair/native objective arithmetic through actual mmtbx model energy entry before and after explicit all-atom selection/rebinding. Native normalization and zero-callback invariance are checked; automatic lifecycle, complete term/exclusion accounting and diffraction integration remain open.
 
 **Closure audit:**
 
@@ -210,9 +210,9 @@ Compare repaired and unmodified models fairly, then determine where data support
 - Blunt and asymmetric-orientation trials retain matched observations/Free-R and independent bends/maps; calibrate inconclusive outcomes rather than force alignment or a statistical winner.
 - Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.
 
-**Next action:** Reuse AutoRefine/refinement_parallelity frozen round ownership. First qualify a versioned observer of the complete ordered periodic pair policy, atom/image binding and actual exclusions in initialized, selected/rebuilt and final native managers; prove active-term, normalization and added energy/force accounting with missing/duplicate/stale negative controls and exact final-writer binding. C338 source-projected local-triple reporting is not this qualification. Then compare a predeclared damaged/mismatched duplex with no-repair and cleanup siblings under identical observations/Free-R/phase/refinement budgets; resolve supplied-data copy/composition and inspect model-bound maps before claiming repair. See docs/topostitch-periodic.md#next-ordinary-refinement-boundary.
-**Evidence:** [E_MR_LOCAL](#e_mr_local), [E_PUBLIC_REFERENCE](#e_public_reference), [E_NATIVE_CALLBACK](#e_native_callback), [E_BLUNT_ASYM_PLAN](#e_blunt_asym_plan), [E_PAIR_KERNEL_COMPOSITION](#e_pair_kernel_composition).
-**Last audit:** 2026-11-16, Linden, [W101](https://github.com/vecchioni-lab/NASolve/commit/7faff1a1247e78de1c48adb4ca620a93307660f4); Complete pair-kernel composition microprobe and retained launcher failure audited. Existing correction composes safely in the tested scope; no ordinary-refinement or scientific gate closes..
+**Next action:** Do not repeat W101/W102 arithmetic. Reuse AutoRefine/refinement_parallelity frozen round ownership. Next qualify complete ordered periodic pair terms, exact atom/images and actual exclusions in initialized, selected/rebuilt and final managers, with missing/duplicate/stale controls and actual final-writer binding. Reuse C331 rational shell inventory and Cedar directed-ASU capture; neither C338 intra-site observer nor a static signature inventories all image-bearing terms. Explicit per-call callback arithmetic is qualified, not automatic lifecycle or callback-aware policy guarding. Then run predeclared candidate/no-repair siblings with matched data/Free-R/phase/refinement budgets and inspect model-bound maps.
+**Evidence:** [E_MR_LOCAL](#e_mr_local), [E_PUBLIC_REFERENCE](#e_public_reference), [E_NATIVE_CALLBACK](#e_native_callback), [E_BLUNT_ASYM_PLAN](#e_blunt_asym_plan), [E_PAIR_KERNEL_COMPOSITION](#e_pair_kernel_composition), [E_PAIR_MODEL_ENTRY](#e_pair_model_entry).
+**Last audit:** 2026-11-16, Linden, [W102](https://github.com/vecchioni-lab/NASolve/commit/7faff1a1247e78de1c48adb4ca620a93307660f4); Eight actual-model objective controls,12 negative controls,independent derivative replay and local archive verified. Explicit rebinding only; S06 remains PARTIAL..
 
 <a id="s07"></a>
 ### S07 — Expose one ordinary, inspectable repair trial
@@ -963,6 +963,13 @@ Three complete installed Phenix2.2.1-6174 source controls and common full-recipe
 [Evidence contract](topostitch-periodic.md#w101--pair-kernel-composition-before-ordinary-refinement) at [W101](https://github.com/vecchioni-lab/NASolve/commit/7faff1a1247e78de1c48adb4ca620a93307660f4).
 Two exact W100 source recipes × raw/global-Cedar-corrected kernel contexts:4 cases each20/20 directions,162 evaluations and unchanged context/repeat. Baseline targets/gradients exactly equal; existing subtraction/replacement is idempotent here, so no fix needed. Complete owned Phenix2.2.1-6174 execution,18.04s,600s cap; native profile verified; original binding restored; inputs/software fixed.
 **Limit:** Pair arithmetic only, not ordinary manager attachment/rebuild, combined normalization/exclusions, native full refinement or scientific acceptance. Retain initial Python3.12→3.11 NumPy ABI launcher failure; V2 package-only import isolation and old-process absence check do not change numerical policy. No runtime/schema change.
+
+<a id="e_pair_model_entry"></a>
+### E_PAIR_MODEL_ENTRY — native_actual_model_entry_diagnostic
+
+[Evidence contract](topostitch-periodic.md#w102--complete-pair-arithmetic-through-actual-model-entry) at [W102](https://github.com/vecchioni-lab/NASolve/commit/7faff1a1247e78de1c48adb4ca620a93307660f4).
+Two sources × original/select-all actual model managers × native-only/pair-active objectives: eight cases each20/20 directions and162 evaluations, unchanged context and baseline repeat. Zero-valued callback leaves target/all gradients exact. Pair residual/forces share native normalization without increasing count; counts11389healthy/11263displaced. Twelve unsupported-setting controls reject. Complete owned Phenix2.2.1-6174 execution168.92s under900s cap; bindings restored and inputs/software fixed.
+**Limit:** Explicit checked per-call binding, not automatic manager reconstruction/selection interception or ordinary refinement. C331 snapshots are idle callback-free/default energy-only observations, not qualification of internal shared buffers/custom callback. Static fingerprint does not independently inventory every angle/plane symmetry field. No exclusion changes, diffraction/optimizer/final writer/adoption or runtime/schema change.
 
 ## Deferred extensions, not hidden blockers
 

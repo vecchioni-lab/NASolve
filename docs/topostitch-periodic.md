@@ -4284,3 +4284,59 @@ V2 root: `/private/tmp/willow-pair-kernel-boundary-v2/`. Exact controller comman
 the existing owner launches `phenix.python -B probe.py`. Runtime/API/schema and
 installation remain W98; documentation validation is roadmap regeneration/check,
 JSON readback and `git diff --check`, not a repeated full software suite.
+
+
+## W102 — Complete pair arithmetic through actual model entry
+
+The W101 pair kernels now compose through the real
+`mmtbx.model.manager.restraints_manager_energies_sites` entry point. The probe
+constructs each W100 source with its frozen NCS parameter, unchanged atom order,
+normalization enabled and the existing Cedar corrected parallelity kernel. It
+checks all 855 atom identities, crystal identity and the W100 static fingerprint,
+then repeats on the actual `model.select(all_atoms)` result. That fingerprint
+alone does not independently inventory every angle/plane symmetry field.
+
+A local diagnostic binds the complete pair callback only for an explicit call,
+restoring the prior empty slot afterward. **Eight controls pass 20/20 derivative
+directions each** (162 evaluations per case): two sources, original/select-all
+managers and native-only/pair-active objectives. Existing Cedar four-step probe
+tolerances remain unchanged; independent review reproduces every saved review,
+baseline repeat and unchanged recorded context. Zero-valued callbacks leave the
+target and every gradient exactly unchanged; energy-only evaluation agrees.
+
+The pair residual and forces use the same native denominator without increasing
+its restraint count. Healthy and displaced managers have **11,389 and 11,263**
+restraints respectively; each select-all result retains its own source count.
+Maximum added-gradient accounting error is 2.78e-17. Different coordinate-dependent
+neighbor inventories can produce different denominators, so normalized targets
+across models must not be compared as if the count were fixed.
+
+Twelve local negative controls reject partial atom selection, changed identity,
+an existing callback, disabled normalization, disabled geometry families and a
+supplied external gradient buffer, once per source. Native bindings are restored;
+source inputs and consumed software hashes remain unchanged. **Phenix
+2.2.1-6174 / dispatcher 2.2.1** completes the owned execution in 168.92 seconds
+under its predeclared 900-second cap, exit 0. No optimizer or diffraction data
+are used, and no output coordinates are produced.
+
+This is explicit per-call rebinding, **not automatic ordinary-refinement
+selection/rebuild integration**. C331 policy snapshots observe idle, callback-free
+default energy-only settings before/after restoration; they do not qualify the
+actual internal shared gradient buffer or custom callback. Existing exclusions
+are unchanged; complete image-bearing term/exclusion accounting, missing/duplicate
+term controls, callback-aware guarding, final-writer binding and matched refinement
+remain separate gates. No production adapter or second refinement runner is added.
+
+Exact historical controller: `/private/tmp/willow-model-entry-boundary/`, with
+`PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python run.py`,
+then the same interpreter running `audit.py`, and `python3 archive.py`. The owned
+runner invokes `phenix.python -B probe.py`. Plan SHA256:
+`bcd4abc700ce07a5c33f54851f029caaa7345022e3ef11313b618028ae0899fb`.
+The verified 43-file local forensic archive is under the everyday NASolve anchor:
+`branch-artifacts/willow/w102-model-entry-2026-11-16.tar.gz`, SHA256
+`334b644f247427531bd4942cde6506d11eb995495212966a9391c534fcdd4e72`.
+It retains plans, sources, native/process records, numerical probes and audit
+code/results. It is uncommitted and not an autonomous portable campaign.
+Runtime/API/schema and installation remain W98; this documentation update uses
+roadmap regeneration/check, JSON/evidence readback and `git diff --check`, without
+claiming a repeated full suite or new installation validation.

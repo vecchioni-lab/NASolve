@@ -382,7 +382,8 @@
       "delivered": [
         "Three matched public-reference coordinate-only refinements now preserve deposited observations/Free-R and measure contact, geometry and diffraction tradeoffs; no repaired-MR success or meaningful extra Rfree benefit of bending is claimed.",
         "Supplied-data input checks and five local native MR placement controls completed, including forward and reverse-shape candidates; no repair/refinement comparison yet.",
-        "W101 native pair-only composition passes20/20 directions in each raw/global-Cedar-corrected context for two source models, with exact baseline target/gradient equality. No double-correction fix is needed; actual refinement attachment, normalization/exclusion accounting and lifecycle remain unqualified."
+        "W101 native pair-only composition passes20/20 directions in each raw/global-Cedar-corrected context for two source models, with exact baseline target/gradient equality. No double-correction fix is needed; actual refinement attachment, normalization/exclusion accounting and lifecycle remain unqualified.",
+        "W102 passes complete pair/native objective arithmetic through actual mmtbx model energy entry before and after explicit all-atom selection/rebinding. Native normalization and zero-callback invariance are checked; automatic lifecycle, complete term/exclusion accounting and diffraction integration remain open."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -390,20 +391,21 @@
         "Blunt and asymmetric-orientation trials retain matched observations/Free-R and independent bends/maps; calibrate inconclusive outcomes rather than force alignment or a statistical winner.",
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning."
       ],
-      "next_action": "Reuse AutoRefine/refinement_parallelity frozen round ownership. First qualify a versioned observer of the complete ordered periodic pair policy, atom/image binding and actual exclusions in initialized, selected/rebuilt and final native managers; prove active-term, normalization and added energy/force accounting with missing/duplicate/stale negative controls and exact final-writer binding. C338 source-projected local-triple reporting is not this qualification. Then compare a predeclared damaged/mismatched duplex with no-repair and cleanup siblings under identical observations/Free-R/phase/refinement budgets; resolve supplied-data copy/composition and inspect model-bound maps before claiming repair. See docs/topostitch-periodic.md#next-ordinary-refinement-boundary.",
+      "next_action": "Do not repeat W101/W102 arithmetic. Reuse AutoRefine/refinement_parallelity frozen round ownership. Next qualify complete ordered periodic pair terms, exact atom/images and actual exclusions in initialized, selected/rebuilt and final managers, with missing/duplicate/stale controls and actual final-writer binding. Reuse C331 rational shell inventory and Cedar directed-ASU capture; neither C338 intra-site observer nor a static signature inventories all image-bearing terms. Explicit per-call callback arithmetic is qualified, not automatic lifecycle or callback-aware policy guarding. Then run predeclared candidate/no-repair siblings with matched data/Free-R/phase/refinement budgets and inspect model-bound maps.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
         "E_NATIVE_CALLBACK",
         "E_BLUNT_ASYM_PLAN",
-        "E_PAIR_KERNEL_COMPOSITION"
+        "E_PAIR_KERNEL_COMPOSITION",
+        "E_PAIR_MODEL_ENTRY"
       ],
       "last_audit": {
         "date": "2026-11-16",
         "reviewer": "Linden",
         "code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4",
-        "human_update": 101,
-        "scope": "Complete pair-kernel composition microprobe and retained launcher failure audited. Existing correction composes safely in the tested scope; no ordinary-refinement or scientific gate closes."
+        "human_update": 102,
+        "scope": "Eight actual-model objective controls,12 negative controls,independent derivative replay and local archive verified. Explicit rebinding only; S06 remains PARTIAL."
       }
     },
     {
@@ -1676,6 +1678,25 @@
         "committed": false,
         "portable_campaign": false
       }
+    },
+    "E_PAIR_MODEL_ENTRY": {
+      "kind": "native_actual_model_entry_diagnostic",
+      "code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4",
+      "human_update": 102,
+      "reference": "docs/topostitch-periodic.md#w102--complete-pair-arithmetic-through-actual-model-entry",
+      "result": "Two sources × original/select-all actual model managers × native-only/pair-active objectives: eight cases each20/20 directions and162 evaluations, unchanged context and baseline repeat. Zero-valued callback leaves target/all gradients exact. Pair residual/forces share native normalization without increasing count; counts11389healthy/11263displaced. Twelve unsupported-setting controls reject. Complete owned Phenix2.2.1-6174 execution168.92s under900s cap; bindings restored and inputs/software fixed.",
+      "limitation": "Explicit checked per-call binding, not automatic manager reconstruction/selection interception or ordinary refinement. C331 snapshots are idle callback-free/default energy-only observations, not qualification of internal shared buffers/custom callback. Static fingerprint does not independently inventory every angle/plane symmetry field. No exclusion changes, diffraction/optimizer/final writer/adoption or runtime/schema change.",
+      "owner_commit": "c4e5ddb8530358c524feb473f3c4ffe77c64b6ac",
+      "local_forensic_archive": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/w102-model-entry-2026-11-16.tar.gz",
+        "sha256": "334b644f247427531bd4942cde6506d11eb995495212966a9391c534fcdd4e72",
+        "bytes": 797044,
+        "files": 43,
+        "payload_index_verified": true,
+        "committed": false,
+        "portable_campaign": false
+      }
     }
   },
   "benchmarks": [
@@ -1827,8 +1848,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 101,
-    "next": 102,
+    "current": 102,
+    "next": 103,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -2242,6 +2263,12 @@
       {
         "number": 101,
         "title": "Qualify existing pair-kernel composition",
+        "state": "RECORDED",
+        "code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4"
+      },
+      {
+        "number": 102,
+        "title": "Qualify complete pair arithmetic through actual model entry",
         "state": "RECORDED",
         "code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4"
       }
