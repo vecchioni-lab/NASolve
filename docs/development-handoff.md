@@ -148,11 +148,18 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-16
 
-**W100 source controls, W101 kernel composition and W102 actual model-entry arithmetic are audited; complete term/exclusion accounting and ordinary refinement lifecycle remain next.**
+**W100–W103 native diagnostics are audited; production membership/exclusion guarding and ordinary refinement lifecycle remain next.**
 W102 checks original and explicitly rebound select-all native managers with unchanged
 normalization: eight derivative controls and twelve negative controls pass. This is
 not automatic callback persistence, a callback-aware C331 policy guard, or a
 diffraction/refinement result. See the [exact scope and commands](topostitch-periodic.md#w102--complete-pair-arithmetic-through-actual-model-entry).
+W103 adds the actual membership/exclusion evidence: ordinary core PHIL already
+supplies 107 matching terms and removes 117 directed nonbonded rows. Adding the
+complete callback on top would duplicate core forces and use a different exclusion
+policy. Preserve ordinary core terms and explicitly qualify missing periodic terms,
+complete coverage and exclusions through the existing refinement owner. The
+[exact inventory controls](topostitch-periodic.md#w103--actual-pair-membership-and-ordinary-phil-exclusions)
+remain local diagnostics, not a production adapter or activation authority.
 Latest audited runtime is W98 `7faff1a1` on isolated `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in

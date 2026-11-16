@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W102 — Qualify complete pair arithmetic through actual model entry.** Next: W103.
+**Current update: W103 — Audit actual pair membership and ordinary PHIL exclusions.** Next: W104.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W93 | Plan density-aware blunt contacts and three-orientation asymmetric trials | RECORDED |
 | W94 | Compile checked molecular rotations about an explicit Cartesian pivot | RECORDED |
 | W95 | Prepare the qualified shared guard consumer and native acceptance checks | RECORDED |
 | W96 | Qualify the optional direct shared native policy guard | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W100 | Compare independently tethered reference and displaced sources | RECORDED |
 | W101 | Qualify existing pair-kernel composition | RECORDED |
 | W102 | Qualify complete pair arithmetic through actual model entry | RECORDED |
+| W103 | Audit actual pair membership and ordinary PHIL exclusions | RECORDED |
 
 ## Finish lines
 
@@ -201,7 +201,7 @@ Turn a plausible placement into a chemically usable candidate before refinement 
 
 Compare repaired and unmodified models fairly, then determine where data support curvature and strand-specific motion.
 
-**Delivered:** Three matched public-reference coordinate-only refinements now preserve deposited observations/Free-R and measure contact, geometry and diffraction tradeoffs; no repaired-MR success or meaningful extra Rfree benefit of bending is claimed. Supplied-data input checks and five local native MR placement controls completed, including forward and reverse-shape candidates; no repair/refinement comparison yet. W101 native pair-only composition passes20/20 directions in each raw/global-Cedar-corrected context for two source models, with exact baseline target/gradient equality. No double-correction fix is needed; actual refinement attachment, normalization/exclusion accounting and lifecycle remain unqualified. W102 passes complete pair/native objective arithmetic through actual mmtbx model energy entry before and after explicit all-atom selection/rebinding. Native normalization and zero-callback invariance are checked; automatic lifecycle, complete term/exclusion accounting and diffraction integration remain open.
+**Delivered:** Three matched public-reference coordinate-only refinements now preserve deposited observations/Free-R and measure contact, geometry and diffraction tradeoffs; no repaired-MR success or meaningful extra Rfree benefit of bending is claimed. Supplied-data input checks and five local native MR placement controls completed, including forward and reverse-shape candidates; no repair/refinement comparison yet. W101 native pair-only composition passes20/20 directions in each raw/global-Cedar-corrected context for two source models, with exact baseline target/gradient equality. No double-correction fix is needed; actual refinement attachment, normalization/exclusion accounting and lifecycle remain unqualified. W102 passes complete pair/native objective arithmetic through actual mmtbx model energy entry before and after explicit all-atom selection/rebinding. Native normalization and zero-callback invariance are checked; automatic lifecycle, complete term/exclusion accounting and diffraction integration remain open. W103 observes complete exact-image pair supports, native shell exclusions and directed repulsion in actual initialized/selected/reinterpreted managers. Ordinary core PHIL reveals107 terms that a full callback would duplicate and117 removed directed nonbonded rows; integration must bind complete intended coverage and exclusions rather than append all terms. Local diagnostic only.
 
 **Closure audit:**
 
@@ -210,9 +210,9 @@ Compare repaired and unmodified models fairly, then determine where data support
 - Blunt and asymmetric-orientation trials retain matched observations/Free-R and independent bends/maps; calibrate inconclusive outcomes rather than force alignment or a statistical winner.
 - Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.
 
-**Next action:** Do not repeat W101/W102 arithmetic. Reuse AutoRefine/refinement_parallelity frozen round ownership. Next qualify complete ordered periodic pair terms, exact atom/images and actual exclusions in initialized, selected/rebuilt and final managers, with missing/duplicate/stale controls and actual final-writer binding. Reuse C331 rational shell inventory and Cedar directed-ASU capture; neither C338 intra-site observer nor a static signature inventories all image-bearing terms. Explicit per-call callback arithmetic is qualified, not automatic lifecycle or callback-aware policy guarding. Then run predeclared candidate/no-repair siblings with matched data/Free-R/phase/refinement budgets and inspect model-bound maps.
-**Evidence:** [E_MR_LOCAL](#e_mr_local), [E_PUBLIC_REFERENCE](#e_public_reference), [E_NATIVE_CALLBACK](#e_native_callback), [E_BLUNT_ASYM_PLAN](#e_blunt_asym_plan), [E_PAIR_KERNEL_COMPOSITION](#e_pair_kernel_composition), [E_PAIR_MODEL_ENTRY](#e_pair_model_entry).
-**Last audit:** 2026-11-16, Linden, [W102](https://github.com/vecchioni-lab/NASolve/commit/7faff1a1247e78de1c48adb4ca620a93307660f4); Eight actual-model objective controls,12 negative controls,independent derivative replay and local archive verified. Explicit rebinding only; S06 remains PARTIAL..
+**Next action:** Promote only a qualified, versioned complete-pair membership/exclusion observation into the existing frozen AutoRefine actual-manager/final-writer lifecycle. W103 proves ordinary core PHIL already supplies107 terms and changes exclusions/normalization: retain native core and explicitly bind only missing periodic terms; do not append the full recipe, infer exclusions from absence, or silently deduplicate. Add missing/duplicate/stale and target/image mismatch refusal, callback-aware policy checks and selection/rebuild/final-writer binding. Keep exact reinterpretation drift explicit. Then run predeclared candidate/no-repair siblings with matched observations/Free-R/phase/refinement budgets and model-bound maps.
+**Evidence:** [E_MR_LOCAL](#e_mr_local), [E_PUBLIC_REFERENCE](#e_public_reference), [E_NATIVE_CALLBACK](#e_native_callback), [E_BLUNT_ASYM_PLAN](#e_blunt_asym_plan), [E_PAIR_KERNEL_COMPOSITION](#e_pair_kernel_composition), [E_PAIR_MODEL_ENTRY](#e_pair_model_entry), [E_PAIR_NATIVE_INVENTORY](#e_pair_native_inventory).
+**Last audit:** 2026-11-16, Linden, [W103](https://github.com/vecchioni-lab/NASolve/commit/7faff1a1247e78de1c48adb4ca620a93307660f4); Six source-manager inventories and two ordinary-core PHIL controls audited with independent Gemmi image matching, Cedar residual replay and local archive. Exact tiny reinterpretation drift retained; no activation/refinement/scientific gate closes..
 
 <a id="s07"></a>
 ### S07 — Expose one ordinary, inspectable repair trial
@@ -970,6 +970,13 @@ Two exact W100 source recipes × raw/global-Cedar-corrected kernel contexts:4 ca
 [Evidence contract](topostitch-periodic.md#w102--complete-pair-arithmetic-through-actual-model-entry) at [W102](https://github.com/vecchioni-lab/NASolve/commit/7faff1a1247e78de1c48adb4ca620a93307660f4).
 Two sources × original/select-all actual model managers × native-only/pair-active objectives: eight cases each20/20 directions and162 evaluations, unchanged context and baseline repeat. Zero-valued callback leaves target/all gradients exact. Pair residual/forces share native normalization without increasing count; counts11389healthy/11263displaced. Twelve unsupported-setting controls reject. Complete owned Phenix2.2.1-6174 execution168.92s under900s cap; bindings restored and inputs/software fixed.
 **Limit:** Explicit checked per-call binding, not automatic manager reconstruction/selection interception or ordinary refinement. C331 snapshots are idle callback-free/default energy-only observations, not qualification of internal shared buffers/custom callback. Static fingerprint does not independently inventory every angle/plane symmetry field. No exclusion changes, diffraction/optimizer/final writer/adoption or runtime/schema change.
+
+<a id="e_pair_native_inventory"></a>
+### E_PAIR_NATIVE_INVENTORY — native_pair_support_and_exclusion_diagnostic
+
+[Evidence contract](topostitch-periodic.md#w103--actual-pair-membership-and-ordinary-phil-exclusions) at [W103](https://github.com/vecchioni-lab/NASolve/commit/7faff1a1247e78de1c48adb4ca620a93307660f4).
+Six actual original/select-all/selected-reinterpreted managers preserve956bonds,1467angles,42planes; all124 requested terms absent from native supports, all36 requested Hbond contacts retain39 directed repulsion rows and no shell exclusion. Two ordinary identity-core PHIL controls instead install107 matching terms with verified targets/weights, preserve prior definitions, exclude31core contacts and remove117 directed nonbonded rows; native normalization count changes by-10. Independent Gemmi exact-image matching and Cedar pair-residual replay pass; observations leave each manager target/forces/sites exact.
+**Limit:** Read-only local diagnostic, not a production observer or runtime activation. General-position atoms only. Initial rt_mx operator API failure retained; corrected multiplication leaves inputs/policy unchanged. Reinterpretation changes cell/coordinates by1.42e-14 and therefore exact policy SHA; retain/requalify rather than weaken C331. No callback-aware guard, duplicate/missing/stale activation rejection, periodic exclusion policy, diffraction/refinement or scientific acceptance.
 
 ## Deferred extensions, not hidden blockers
 

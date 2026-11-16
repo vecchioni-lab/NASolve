@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W103 — Audit native pair membership and exclusions
+
+- Compare complete periodic-pair supports with actual native managers and ordinary
+  core-pair PHIL. Record existing terms that must not be added twice, exclusion
+  changes and their normalization effect. Preserve the initial diagnostic API
+  failure and tiny reinterpretation drift; no force or runtime policy changes.
+
 ### W102 — Qualify actual model-entry pair arithmetic
 
 - Verify complete pair targets/forces and native normalization through the actual

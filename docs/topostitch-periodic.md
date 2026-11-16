@@ -4340,3 +4340,89 @@ code/results. It is uncommitted and not an autonomous portable campaign.
 Runtime/API/schema and installation remain W98; this documentation update uses
 roadmap regeneration/check, JSON/evidence readback and `git diff --check`, without
 claiming a repeated full suite or new installation validation.
+
+
+## W103 — Actual pair membership and ordinary PHIL exclusions
+
+The next boundary is not just adding the numerically qualified W102 callback.
+Ordinary refinement can already contain core-pair terms and a different exclusion
+policy. A local read-only probe now compares each complete requested term with
+actual bond, angle, plane and parallelity proxies, retaining targets, weights,
+per-atom images and ordered native occurrences. Support comparison allows a common
+crystallographic image and the appropriate endpoint/plane permutations; it never
+wraps lattice translations or discards native multiplicity. Cedar's C331 observer
+supplies exact exclusion shells, and `capture_asu_pairs` supplies directed repulsion.
+
+Both source models are inspected before selection, after actual all-atom selection,
+and after selected-model reinterpretation with a newly constructed geometry manager.
+All six have the same **956 bonds, 1,467 angles and 42 planes**. None of the complete
+recipe's **124 terms** (36 bonds, 60 angles, 14 planes, 14 parallelity terms) have
+matching native supports. All 36 intended hydrogen-bond contacts remain in native
+repulsion (39 directed rows), with none in the exclusion shells. This describes
+the earlier additive diagnostic policy; it does not establish that removing or
+retaining those terms is scientifically preferable.
+
+A separate predeclared control applies ordinary PHIL for exactly the 12
+identity-image core pairs. It replaces only the frozen virtual L/R selections
+with declared source sites, leaving the two periodic selected pairs uninstalled.
+Both inputs then contain **107 matching core terms**: 31 bonds, 52 angles,
+12 planes and 12 parallelity terms. All targets/weights/modes match the recipe,
+and all previous native definitions are preserved. The 31 core contacts acquire
+native shell exclusions; only the five periodic requested contacts remain in
+repulsion. Ordinary PHIL removes **117 directed nonbonded rows**, including
+indirect exclusions, rather than only the 31 requested contacts. The normalization
+count consequently decreases by ten: **11,389 → 11,379** for the healthy source
+and **11,263 → 11,253** for the displaced source (107 added minus 117 removed).
+A complete callback appended here would double-count core forces. Equal pair
+formulas alone do not establish equal full objectives or exclusion semantics.
+
+Each observation leaves that manager's target, complete gradient and coordinates
+exactly unchanged. Independent **Gemmi 0.7.5** image matching checks every saved
+native/requested support, exclusion and directed-contact association; maintained
+Cedar pair arithmetic reproduces captured repulsion sums. Five algebra controls
+cover reciprocal bonds, reversed angles, permuted planes, exchanged parallel
+planes and preservation of integer cell translations. These are not runtime
+missing/duplicate/stale rejection tests. All observed atoms occupy general
+positions; special-position equivalence remains unqualified.
+
+Selected-model reinterpretation changes only the recorded cell lengths in the
+C331 policy: `105.54699999999998` becomes `105.54699999999997` for a and b. The
+maximum coordinate change is 1.42e-14 Å; target changes are at most 6.0e-15. Static
+term definitions and exclusion shells stay exact. The exact policy digest does
+change, so future lifecycle integration must explicitly requalify the reconstructed
+manager; this result does not justify loosening the shared guard or silently
+adopting a new baseline.
+
+Complete owned **Phenix 2.2.1-6174 / dispatcher 2.2.1** executions take 6.13 seconds
+for six source-manager observations and 4.27 seconds for two ordinary-core controls,
+each under a 600-second cap. Both exit 0, restore native kernel bindings and preserve
+inputs/software. An initial attempt used Python `*` for `rt_mx` composition and
+failed before model construction; the fresh attempt uses native `.multiply` and
+retains the original failure. No optimizer, diffraction refinement, coordinate
+output, production observer, callback activation or scientific acceptance is added.
+
+The next implementation should bind the complete intended recipe to native terms
+plus explicitly authorized missing periodic terms, with target/image mismatches
+and duplicate/missing/stale coverage refusing. Retain ordinary core restraints and
+qualify periodic exclusion behavior separately. Integrate through the existing
+frozen AutoRefine actual-manager/final-writer owners; do not create a second runner
+or infer exclusion policy from a missing neighbor row. W100 remains a valid matched
+comparison under its recorded additive policy, not an ordinary-PHIL-equivalent run.
+
+Historical roots are `/private/tmp/willow-pair-inventory-boundary/` (failed API
+attempt), `/private/tmp/willow-pair-inventory-boundary-v2/` (source observations)
+and `/private/tmp/willow-pair-inventory-native-core/` (ordinary PHIL control).
+The latter two run `run.py` then `audit.py` using
+`/private/tmp/willow-w94-pivot/env/bin/python`; the owned runner invokes
+`phenix.python -B probe.py`. Source plan SHA256 is
+`73363c4edd79a703001c6fd8cdf275e30cb757075845b7cf75be95376888bb5a`;
+ordinary-core plan is
+`7b4fa84c273ea218ab7f101509c597374f3a9cc53e79ed048a31ea3d6ba9f24a`.
+The 73-file verified local forensic archive under the everyday NASolve anchor is
+`branch-artifacts/willow/w103-pair-inventory-2026-11-16.tar.gz`, SHA256
+`a9bad887a61288978a9cc6394692b1a6e8c4aa3a3d2f712edd1575274266336e`.
+All inputs, failures, native inventories, plans, consumed sources and independent
+audits remain local and uncommitted; this is not an autonomous portable campaign.
+Runtime/API/schema and installation remain W98. Documentation validation is
+roadmap regeneration/check, JSON/archive readback and `git diff --check`; no new
+full-suite or installation result is claimed.
