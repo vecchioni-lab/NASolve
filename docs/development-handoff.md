@@ -1,37 +1,37 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-15, C330 live-policy contract — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. Current delivery **C330**; published
-code **11fd6ee6 (C328)**, **a766d2a3 (C327)**, **818edda7 (C326)**.
+Updated **2026-11-16, C331 qualified live-policy guard — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. Current delivery **C331**; prior
+published **3bd46f6e (C330)** and product **11fd6ee6 (C328)**.
 Focused checks only; no Rowan full suite, branch, default activation or merge.
 Linden owns Pine/Willow and does not edit Cedar.
 
 ## Current work and interruption recovery
 
-**C330 contract complete; production guard pending:** audited the existing native
-ASU/cache, bonded signature and context owners before adding scope. None binds
-all unused live nonbonded parameter tables. Actual synthetic Phenix 2.2.1-6174
-controls observe copy loss of all four maps, exact rational symmetry/multiplicity,
-special-position projections and unchanged energy/gradients after cache reset and
-rebuild. A coordinate-driven rebuild changes three pairs to one with unchanged
-parameter tables; reset clears the automatic-cutoff marker but keeps its resolved
-cutoff. Working fields must not masquerade as immutable chemistry. Existing
-adjacent tests: **122 passes (7.71 s)**; no full suite or production guard test.
-The [maintained contract](architecture.md#live-nonbonded-policy-boundary-c330-planned)
-and existing ledger's `live_nonbonded_policy_contract_2026_11_15` carry field lists,
-source hashes, commands and pending negative controls. No helper/consumer, stable
-policy ID, default activation or Q06 chemical acceptance. Linden's optional
-consumer is gated on implementing and qualifying this owner, using the same actual
-evaluation flags. The prospective 40-case test draft was never a product test:
-all errored because the proposed module was absent; it is preserved only in ignored
-local diagnostics, not shipped as a failing suite. No half-implemented source files.
-All C330 inputs are synthetic; runner/evidence remain under the everyday checkout's
-ignored `branch-artifacts/cedar/`. No PDU rerun, SDK or Willow change.
+**C331 qualified (source and packaged API):** the C330 read-only
+live-policy owner now snapshots complete supported native tables, assignments,
+exclusion/symmetry inputs and actual evaluation settings. It catches the observed
+native-copy loss while permitting ordinary coordinate-driven and reset/rebuild
+changes. No energy evaluator, native copy, manager mutation or ordinary activation.
+The [current contract](architecture.md#live-nonbonded-policy-guard-c331) and ledger
+`live_nonbonded_policy_guard_2026_11_16` hold the exact API, profile, limits and commands.
 
-**Window: 16:25–23:00 London**, extended by Simon at the evening check-in.
-All Rowan driver/native/cold owners through C330 are stopped. Independent Phenix
-CLI jobs may overlap with isolated working/output folders and process records;
-coordinate CPU/RAM and deadlines with Linden. Campaign execution stays serial.
+**Validation:** 198 focused passes with the opt-in native file skipped in ordinary
+Python; 31 initial final-source native passes and **108 fresh-wheel passes**
+(76 synthetic +32 native, including the added supported crystal wrapper control).
+Phenix 2.2.1-6174 / dispatcher 2.2.1, Darwin arm64; real tiny native energy/gradient
+execution, not diffraction refinement. No full suite. A 600-atom/1,797-operation
+comparison measured about 29 ms after removing redundant serialization and an
+expensive native iterator boundary, versus 205 ms initially; no capacity guarantee.
+All probes finished. Raw logs, wheel/build scratch and benchmark runners stay local.
+
+**Next:** Linden qualifies the direct optional consumer with identical actual flags
+and explicit `compute_gradients=True`, normalizing nothing. Freeze both helper
+and profile; source lifetime, atom identity, other forces and cache completeness
+remain with existing owners. Captured-worker adoption is separate. Q06 geometry
+is not closed: source-aware automatic bond-target discovery and faithful residual
+review reporting remain the direct chemistry work. Do not repeat C329 or strengthen
+restraints to force acceptance. No new fixed deadline supplied this morning.
 
 **Prior work reused:** C323 authenticates the selected native numerical library;
 C324 composes target-only changes through the existing chain/whole-bundle checks.
@@ -103,13 +103,12 @@ survival; Q07 mixed challenges remain downstream. Changed intent needs a fresh
 request/run. Profile repeated evidence reads before optimizing and preserve exact
 file/owner checks. No default activation or merge.
 
-Linden's fixed C322/Willow full installed check remains **4 failed, 11,109 passed
-+284 subtests (2671.02 s)**, not a pass. His W84 focused installed composition of
-Willow 29723067 + Cedar cad829a6 passes **873 tests +16 subtests (72.44 s)**. It
-retains both TopoStitch HTML and Cedar replay PDB package data; eventual integration
-must keep that union. Seven documentation conflicts remain, no product merge.
-W85's small-displacement derivative/rebuilt-contact checks pass within Willow's
-scope; they do not qualify chemical improvement or Cedar Q06. Native window released.
+Linden reports W94's independent Willow runtime at eb8e5d6e (delivery 8399512a),
+1,844 full tests +229 subtests and 139 fresh-wheel focused tests. W95/c4b601c9
+records the proposed caller boundary; C331 integration is not yet qualified.
+These are separate-branch checks, not a combined-source pass. The older C322
+combined check remains 4 failed/11,109 passed +284 subtests; eventual integration
+must resolve its failures and preserve both TopoStitch HTML and Cedar replay data.
 
 ## Scientific findings and preserved evidence
 
@@ -173,7 +172,8 @@ commands, hashes, anchor-relative evidence and limitations. New entries:
 `complete_reference_target_delivery_2026_11_15` and
 `ordinary_reference_target_entry_2026_11_15` and
 `corrected_cif_refinement_survival_2026_11_15` and
-`live_nonbonded_policy_contract_2026_11_15`. The packaged public PDB
+`live_nonbonded_policy_contract_2026_11_15` and
+`live_nonbonded_policy_guard_2026_11_16`. The packaged public PDB
 retains its original fixed-column padding and exact hash. C325 whitespace checking
 excludes only that byte-pinned PDB (`git diff HEAD^ HEAD --check -- .
 ':(exclude)src/nasolve/data/replay/5W6W_noPO4.pdb'`); all code/docs pass. Reuse the earlier C307–C322 entries
@@ -185,8 +185,8 @@ not confirmed linkage. D:1's separately declared complete terminal phosphate is
 distinct. No blanket OP3 removal or lone symmetry bond without surrounding forces.
 Pine owns editable intent; TopoStitch previews; Cedar enforces qualified chemistry.
 
-Linden's native-copy hazard and pure-view tensor/frame alternative remain queued,
-not installed Cedar adapters. Generic deepcopy/pickle can drop native nonbonded
+The shared live-policy guard is now explicit; its caller integration and the
+pure-view tensor/frame alternative remain separate, unactivated work. Generic deepcopy/pickle can drop native nonbonded
 parameter tables; final ADP synchronization retains the same geometry owner.
 Pure representative recuts may keep one computational owner and derive views, but
 require explicit identity/tensor/inverse-edit checks; no chemistry approval follows.

@@ -91,21 +91,19 @@ successful ReadySet result is insufficient. Keep ordinary bond edits distinct
 from additive contact energy over an unchanged native manager: Linden's reported
 Willow evidence shows changed exclusions from symmetry distance edits. Willow
 W38/W39 are context, not a combined Cedar validation or a phosphodiester-link grant.
-**Shared live-policy guard, contract ready / implementation pending (C330):**
-Linden W78 identified native-copy table loss; C330 directly observes loss of all
-four populated maps in this pinned SDK and inventories complete live parameters,
-assignments, exclusion shells and exact symmetry inputs. Current contacts alone
-cannot bind future contact rules. Normal native rebuilds legitimately change
-adjusted cutoff/buffer/count/automatic marker; they must not be treated as chemical
-policy changes. See [the maintained contract](architecture.md#live-nonbonded-policy-boundary-c330-planned)
-and `live_nonbonded_policy_contract_2026_11_15` in the evidence ledger.
-No production helper, schema/POLICY_ID or Willow consumer is qualified yet.
-Next: implement the bounded read-only owner, pass all contract negative controls
-and actual native rebuild controls, then qualify Linden's optional before/after
-consumer with identical evaluation flags. Preserve existing source/ASU/bonded
-owners and defaults. No pickle/deepcopy, SDK edits, new evaluator, geometry-copy
-permission or Q06 chemistry approval. Current output synchronization retains the
-same native geometry; copies of primitive JSON reports are unaffected.
+**Shared live-policy guard implemented (C331); consumer integration pending:**
+The opt-in read-only owner now guards complete supported tables, assignments,
+exclusion shells, exact symmetry and evaluation settings under the pinned native
+API. Actual native tests catch copy loss and permit legitimate movement/reset
+rebuilds; installed-package checks include its profile. See the
+[guard contract](architecture.md#live-nonbonded-policy-guard-c331) and ledger
+`live_nonbonded_policy_guard_2026_11_16`. No ordinary worker/default or chemical
+target changes. Next, Linden qualifies the optional before/after caller with the
+same actual flags, keeping source/ASU/bonded owners and original failures. Captured
+worker adoption needs the complete helper/profile closure separately. This does
+not approve native copies, neighbour completeness or Q06 geometry. Return to
+source-aware target discovery and honest remaining-geometry reporting; preserve
+C329's corrected-CIF evidence rather than rerunning it without a new hypothesis.
 
 **Queued representative-boundary alternative (Linden W79/W80):** W79 reports
 that outlier callbacks can mix source and displayed coordinate frames even when

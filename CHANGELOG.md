@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Guard live Phenix contact rules without changing them (C331)
+
+- Add an explicit bounded, read-only snapshot/comparison API for the qualified
+  native parameter tables, atom assignments, exclusion/symmetry inputs and actual
+  evaluation settings. Preserve unused entries and exact symmetry multiplicity.
+- Separate legitimate neighbour-cache rebuilding from fixed policy; reject
+  unsupported settings/builds and malformed baselines. Ship the required native
+  profile. No ordinary caller/default, chemistry, checkpoint or historical change.
+
 ### Deliver explicit bond choices from normal preparation (C328)
 
 - Accept explicit source-neighborhood atom pairs through the checked PostMR Python

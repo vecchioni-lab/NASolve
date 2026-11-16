@@ -101513,5 +101513,118 @@
       "Q06 remains REVIEW from C329; scientific target/achieved-geometry closure is distinct."
     ],
     "next": "Implement the bounded read-only live-policy owner and qualify pending native/synthetic controls, then Linden can bind the optional consumer. Reuse existing process/source/ASU/bonded owners."
+  },
+  "live_nonbonded_policy_guard_2026_11_16": {
+    "milestone": "C331",
+    "status": "EXPLICIT_LIVE_POLICY_OWNER_QUALIFIED_CONSUMER_PENDING",
+    "author": "Rowan",
+    "source_base_commit": "3bd46f6e",
+    "prior_work": "C330 inventory/contract and pinned native copy/rebuild observations reused. Existing native ASU, source-context, bonded signature and cache owners retained. No new evaluator/executor or scientific target.",
+    "behavior_before": "Current contacts and bonded signatures did not bind unused nonbonded parameter entries or all upstream assignments/exclusions. C330 was contract-only.",
+    "behavior_after": "Explicit bounded read-only live snapshot and comparison detect changes to complete supported fixed policy, without mutating/warming the manager. Working cache observations remain separate. No ordinary caller or default activation.",
+    "contract": "docs/architecture.md#live-nonbonded-policy-guard-c331",
+    "policy_id": "cif-live-nonbonded-policy-v1",
+    "schema_version": 1,
+    "profile_id": "phenix-2.2.1-6174-darwin-arm64-nonbonded-v1",
+    "implementation_files": {
+      "src/nasolve/cif_live_nonbonded_policy.py": {
+        "bytes": 16613,
+        "sha256": "0a812020882d5452554a4f6629c5af1aa56e01f6060c26fce585e9174bcfaf3e"
+      },
+      "src/nasolve/data/nonbonded-native-profile.json": {
+        "bytes": 2039,
+        "sha256": "d35a0b61dd49a75132d16d3bb53b1c636eefbd30c21d19fe5d50a03d018e6ee6"
+      },
+      "tests/test_cif_live_nonbonded_policy.py": {
+        "bytes": 13158,
+        "sha256": "25a21946637a5619ac98480156f1074e38ddb37bd23f8814a09918b13c0b4859"
+      },
+      "tests/test_cif_live_nonbonded_policy_native.py": {
+        "bytes": 8814,
+        "sha256": "f12b650d80eceb8d2a42b3e718ec5d5a7010a29d611cb8f8d3fc70e85f05dfcb"
+      }
+    },
+    "api": {
+      "snapshot": "snapshot_live_nonbonded_policy(geo, *, flags, normalization, compute_gradients=False, disable_asu_cache=False, gradients=None, custom_nonbonded_function=None, external_energy_function=None, extension_objects=())",
+      "compare": "require_live_nonbonded_policy(geo, expected, **same_evaluation_options)",
+      "return": "Detached schema-1 snapshot, or ValueError for unsupported/malformed/changed policy; compare returns current snapshot only after equality.",
+      "caller_requirements": [
+        "Same actual resolved flags/options; corrected-gradient consumer explicitly compute_gradients=True, normalization=False, disable_asu_cache=False.",
+        "Already resolved numeric configured cutoff; no guard-triggered energy/pair generation.",
+        "Single owned manager; no concurrent mutation during observation.",
+        "Freeze baseline and complete helper/profile source closure; retain existing identity/source/ASU/bonded owners.",
+        "File profile qualification is cached once per process, not continuous SDK authentication."
+      ],
+      "unsupported": [
+        "Other native builds/platforms/types",
+        "Noncrystallographic manager",
+        "Custom functions, manager/call external energy, extensions, supplied gradient buffers",
+        "Instance-overridden native evaluation and direct custom pair-proxy tolerance routes"
+      ]
+    },
+    "validation": {
+      "environment": "Phenix 2.2.1-6174 / dispatcher 2.2.1, Darwin arm64; synthetic atoms only, complete native energy/gradient execution, no diffraction refinement.",
+      "fail_before": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_live_nonbonded_policy.py --tb=short",
+        "result": "40 fixture import errors in 0.13 s before module existed; no chemical-failure claim."
+      },
+      "focused": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_live_nonbonded_policy.py tests/test_cif_live_nonbonded_policy_native.py tests/test_cif_native_nonbonded.py tests/test_cif_nonbonded_cache_audit.py tests/test_cif_native_validation.py tests/test_cif_gradient_audit.py --tb=short",
+        "result": "198 passed, 1 skipped in 7.65 s. Native file is explicitly opt-in; 76 new synthetic cases plus 122 adjacent cases."
+      },
+      "native_checkout": {
+        "command": "NASOLVE_TEST_NATIVE_NONBONDED=1 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src \"$PHENIX_ROOT/bin/phenix.python\" -B -c 'import sys; sys.path.insert(0, \"src\"); import pytest; sys.exit(pytest.main([\"-q\", \"-p\", \"no:cacheprovider\", \"tests/test_cif_live_nonbonded_policy_native.py\", \"--tb=short\"]))' ",
+        "result": "31 passed in 0.68 s before adding the supported special_position_settings wrapper test; final installed pass includes all 32 native cases. Explicit path bootstrap is needed because the Phenix dispatcher replaces PYTHONPATH."
+      },
+      "installed": {
+        "build_command": "PYTHONDONTWRITEBYTECODE=1 \"$PHENIX_ROOT/bin/phenix.python\" -B branch-artifacts/cedar/runners/c331_build.py (cwd everyday NASolve; temporary source copied only from tracked src plus the two new runtime/profile files, pyproject and README)",
+        "build": "Offline pip wheel --no-deps --no-build-isolation --no-index, using already-installed Phenix setuptools after ordinary venv lacked the build backend. No dependency installation/network.",
+        "wheel_sha256": "75a287432671ee543ea2faa4e0e28ab339294923fc4fd2415ef052770bcb2738",
+        "wheel_bytes": 1350401,
+        "command": "NASOLVE_TEST_NATIVE_NONBONDED=1 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src \"$PHENIX_ROOT/bin/phenix.python\" -B -c 'import sys; sys.path.insert(0, \"/private/tmp/c331-installed-r62nu9e4/installed\"); import nasolve.cif_live_nonbonded_policy as p; assert p.__file__.startswith(\"/private/tmp/c331-installed-r62nu9e4/installed/\"); import pytest; sys.exit(pytest.main([\"-q\", \"-p\", \"no:cacheprovider\", \"/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/tests/test_cif_live_nonbonded_policy.py\", \"/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/tests/test_cif_live_nonbonded_policy_native.py\", \"--tb=short\"]))' ",
+        "result": "108 passed in 0.74 s (76 synthetic +32 actual native). Cwd /private/tmp; asserted imported module came from extracted fresh wheel. Module/profile bytes equal checkout. Original checkout was not removed: installed-package check, not relocated scientific-run proof."
+      },
+      "native_coverage": [
+        "No manager field replacement or cache warming by snapshot/compare.",
+        "All four populated maps lost by deepcopy are detected, even though scalar values survive.",
+        "Unused table changes, all five scalar values and all six ordered assignment fields detected.",
+        "All three standard shells plus an extra shell preserve directed duplicates and rational operations.",
+        "Nontrivial stabilizers/singular special-position projections and nonidentity ASU contacts pass; both supported crystal wrappers qualify.",
+        "Ordinary movement changes neighbour membership without changing fixed policy; explicit reset/rebuild reproduces exact energy and gradients.",
+        "Automatic-cutoff marker clears on reset while resolved configured cutoff stays fixed.",
+        "All four prolsq fields and actual gradient/cache-call settings covered."
+      ],
+      "full_suite": "NOT_RUN per standing focused-development instruction; last full Cedar C220/583d30df, 9178 +276 subtests. No merge qualification.",
+      "process_state": "All native/test jobs completed; no persistent process or new run/checkpoint.",
+      "other_checks": "git diff --check and JSON parse/source-hash verification; older ledger entries unchanged."
+    },
+    "performance": {
+      "command": "NASOLVE_TEST_NATIVE_NONBONDED=1 PYTHONDONTWRITEBYTECODE=1 \"$PHENIX_ROOT/bin/phenix.python\" -B branch-artifacts/cedar/runners/c331_benchmark.py (cwd everyday NASolve)",
+      "probe": "600 synthetic atoms, 1797 shell operations, 179354-byte JSON snapshot; mean of ten comparisons after initial profile qualification.",
+      "initial_seconds_mean": 0.20547747079999681,
+      "after_serialization_cleanup_seconds_mean": 0.17809707079998133,
+      "after_indexed_native_reads_seconds_mean": 0.028708595799980686,
+      "finding": "Profile attributed most time to per-entry native iterator termination. Indexed operation reads preserve order/multiplicity. Removed redundant primitive walks without baseline caching or weaker comparison.",
+      "limits": "One local synthetic measurement, not a universal speedup, optimizer overhead bound or campaign-capacity claim."
+    },
+    "compatibility": "New opt-in module, profile and schema only. No ordinary caller, frozen worker, historical artifact/checkpoint, chemical target, SDK or migration change. Caller adoption requires separate validation.",
+    "artifacts": {
+      "included": "Python helper, supported native profile, focused synthetic/native tests, updated existing docs and compact evidence.",
+      "excluded": "Native libraries/source, raw logs, temporary wheel/build trees, private scientific data/models/maps; no scientific inputs read.",
+      "local_anchor": "everyday NASolve checkout",
+      "local_evidence": "branch-artifacts/cedar/c331-live-policy",
+      "local_runners": [
+        "branch-artifacts/cedar/runners/c331_build.py",
+        "branch-artifacts/cedar/runners/c331_benchmark.py",
+        "branch-artifacts/cedar/runners/c331_profile_compare.py"
+      ]
+    },
+    "remaining": [
+      "Linden optional caller qualification with exact invocation settings and default/legacy preservation.",
+      "Captured-worker packaging/adoption of complete helper/profile closure.",
+      "Other SDK/platform/noncrystallographic/function support not qualified.",
+      "Guard does not validate generated cache integrity/completeness, source lifetime, atom identity, other forces or chemical intent.",
+      "Q06 remains REVIEW; automatic source-aware target discovery/reporting and whole-substituent/held-out refinement acceptance remain."
+    ]
   }
 }

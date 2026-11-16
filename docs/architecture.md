@@ -4088,82 +4088,99 @@ there is no CLI, production mutation or run/checkpoint migration. See the
 bounds, serialization, runtime portability and remaining chemistry/geometry gates.
 
 
-## Live nonbonded policy boundary (C330; planned)
+<a id="live-nonbonded-policy-boundary-c330-planned"></a>
 
-A contact list describes the pairs Phenix currently evaluates; it does not bind
-all the rules that could generate a different list after atoms move. Existing
-C127/C202 capture and cache arithmetic, fixed bonded signatures and source-context
-checks retain their own responsibilities. C330 inventories the missing live-policy
-boundary; **no snapshot/compare helper, consumer or production policy ID ships**.
-This is separate from Q06 chemistry acceptance and does not qualify native copies.
+## Live nonbonded policy guard (C331)
 
-The inspected API is **Phenix 2.2.1-6174 / dispatcher 2.2.1, Darwin arm64**.
-Exact Python/extension hashes, field lists, synthetic observations and pending
-negative controls are in `live_nonbonded_policy_contract_2026_11_15` in the existing
-[evidence ledger](cif-linked-native-registration-evidence.json). Those hashes
-record the inspected installation; they are not a new runtime authentication
-mechanism or a claim of Linux/other-build compatibility.
+A contact list describes the pairs Phenix currently evaluates; it cannot bind
+all the rules that may generate different contacts after atoms move. The explicit
+`cif_live_nonbonded_policy` helper now snapshots those live inputs without energy
+evaluation, neighbour generation, manager mutation or native copying. It extends
+C330's recorded contract; existing ASU/cache, source-context and bonded-force
+owners keep their responsibilities. No ordinary worker or default caller changes.
 
-The future read-only snapshot must retain:
+The supported API is **Phenix 2.2.1-6174 / dispatcher 2.2.1, Darwin arm64**.
+`data/nonbonded-native-profile.json` pins thirteen Python/extension files by size
+and SHA256, without host paths. Qualification is lazy and cached once per process;
+the enclosing owner must still authenticate its source lifetime and freeze the
+helper **and profile** together. This is not distribution attestation, protection
+against arbitrary in-process code replacement or Linux/other-build qualification.
+Imports outside Phenix remain safe until this explicit helper is called.
+
+The public interface is:
+
+```python
+snapshot_live_nonbonded_policy(
+    geo, *, flags, normalization, compute_gradients=False,
+    disable_asu_cache=False, gradients=None,
+    custom_nonbonded_function=None, external_energy_function=None,
+    extension_objects=(),
+)
+require_live_nonbonded_policy(geo, expected, **same_evaluation_options)
+```
+
+Use the **same actual resolved flags/options** as native evaluation, including
+`compute_gradients=True` for corrected-gradient callers. The caller selects and
+freezes one baseline, brackets native/cache activity and preserves original
+failures. This is a synchronous observation of a single owned manager, not an
+atomic view during concurrent mutation. `require` returns the current snapshot
+or raises `ValueError` for unsupported/malformed/changed policy; it never repairs
+or advances the baseline. Store one baseline and compact outcomes rather than
+accumulating identical snapshots at every optimization step.
+
+Schema 1 / `cif-live-nonbonded-policy-v1` contains `native_profile_id`, `policy`,
+`policy_sha256` and separate `cache_observations`. The checksum binds canonical
+fixed-policy primitives, not scientific authority. JSON roundtrips preserve the
+snapshot; unknown envelopes, altered digests, nonfinite values and oversized
+inputs are refused. Limits are 10,000 atoms, 100,000 cumulative read items,
+32 shells, 384 group/stabilizer operations per collection, 256-byte strings,
+1,000,000 primitive nodes, nesting depth 32 and 16 MiB encoded bytes. These are
+explicit diagnostic bounds, not a promise every model below the atom cap fits.
+
+The fixed policy retains:
 
 - All four `nonbonded_params` maps, including unused entries and empty nested
-  rows: distance, radius, ionic radius and donor/acceptor. Preserve the five
-  native scalar controls and actual prolsq function parameters as finite values;
-  do not impose new chemical thresholds. The synthetic copy control loses all
-  four populated maps while retaining the five scalars.
-- Ordered model, conformer, symmetry-exclusion, donor/acceptor-exclusion, type
-  and charge arrays. Distinguish absent and empty arrays. Bind their relationship
-  to the source's atom order through the existing context owner.
-- Every exclusion shell, row, partner and exact symmetry operation, including
-  direction, multiplicity and unused rows. Shells 0/1 exclude 1–2/1–3 pairs;
-  shell 2 changes 1–4 handling. Preserve all supplied shells. The pinned C++
-  donor/acceptor-group exclusion conditional is commented out; retain the input
-  anyway, without claiming that it currently excludes a contact.
-- Unit cell, complete space-group operations, site-symmetry indices/table,
-  stabilizer matrices, multiplicities and special-position projections. Read
-  integer numerators/denominators directly. A special-position projection can
-  be singular: it must not be rejected for failing a rotation determinant test.
-- Resolved configured cutoff, configured buffer, minimum cubicle edge, plain-pair
-  radius and maximum reasonable bond distance. A missing configured cutoff must
-  refuse snapshotting; the caller's existing evaluation may resolve it first.
-  Snapshotting itself must never generate pairs, evaluate energy or change caches.
-- Actual resolved evaluation flags and normalization, with explicit treatment of
-  gradient/ASU-cache invocation settings. Initial scope rejects custom nonbonded
-  functions, manager/call external energy and extension objects. Direct custom
-  `pair_proxies` tolerances are outside the ordinary `energies_sites` route and
-  must not silently borrow its qualification.
+  rows: distance, radius, ionic radius and donor/acceptor. Preserve all five
+  scalar controls and actual prolsq parameters. No new chemical thresholds.
+- Ordered model, conformer, symmetry-exclusion, donor/acceptor-exclusion, atom
+  type and charge arrays, distinguishing absent and empty. Existing context
+  checks still bind these positions to atom identities.
+- Every exclusion shell, row, partner and exact rational symmetry operation,
+  including direction, multiplicity and empty rows. Shells 0/1 exclude 1–2/1–3;
+  shell 2 changes 1–4 handling. All supplied shells are retained. The pinned C++
+  donor/acceptor-group exclusion conditional is commented out; the supplied
+  input remains guarded without claiming it currently excludes a contact.
+- Unit cell, all space-group operations, site-symmetry indices/table, stabilizer
+  matrices, multiplicities and special-position projections. Integer numerators
+  and denominators remain exact; singular special-position projections are valid.
+- Already resolved configured cutoff, buffer, minimum cubicle edge, plain-pair
+  radius and maximum reasonable bond distance, plus actual evaluation settings.
+  Unresolved cutoff refuses without warming the manager. The existing caller may
+  first resolve it through its normal owned evaluation.
 
-Adjusted cutoff, effective buffer, rebuild count and the automatic-cutoff marker
-are observations, not immutable policy. `reset_internals()` legitimately resets
-these; a later ordinary evaluation rebuilds them. The synthetic control changes
-adjusted cutoff **5.0 → 3.4 Å** and effective buffer **1.0 → 2.6 Å**, retaining
-configured cutoff **5.0 Å** and exact energy/gradients after reset/rebuild. A separate
-coordinate move rebuilds the neighbour list from three pairs to one while the
-configured cutoff and parameter tables stay fixed. With automatic cutoff enabled,
-ordinary evaluation sets the marker true; reset clears it while retaining the
-resolved cutoff. These are native API observations, not a passed guard test.
-Excluding these working fields from fixed-policy equality **does not authenticate
-cache contents or prove complete neighbours**. Those remain the existing native
-ASU/capture owner's responsibility, including ordinary coordinate-driven rebuilds.
+Initial support is limited to the exact native manager/parameter/prolsq types,
+crystallographic `symmetry` or `special_position_settings` and supported native
+containers. Supplied gradient buffers, custom nonbonded functions, manager/call
+external energy, extension objects and instance-overridden evaluation methods
+are refused. Direct custom `pair_proxies` tolerances are outside the ordinary
+`energies_sites` route and cannot borrow this qualification.
 
-The proposed API is `snapshot_live_nonbonded_policy(geo, *, flags, normalization,
-...)` and `require_live_nonbonded_policy(geo, expected, ...)`; names, envelope and
-policy ID remain provisional. Establish bounded primitive serialization, exact
-supported-type/source qualification, malformed/nonfinite/oversized rejection,
-JSON roundtrip/digest validation and immutable-baseline comparison before sharing
-an executable interface. Do not use native pickle/deepcopy or silently update a
-baseline after mismatch. A checksum binds a recorded snapshot, not its scientific
-authority. No filesystem path is needed to operate on the live snapshot.
+Adjusted cutoff, effective buffer, rebuild count and automatic-cutoff marker
+are observations excluded from fixed equality. Native tests demonstrate both
+coordinate-driven neighbour changes and explicit reset/rebuild, including exact
+energy/gradients after rebuilding the same coordinates. Other native controls
+cover map loss on copying, unused entries/scalars/assignments, directed duplicate
+rational shell operations, special positions, nonidentity contacts and actual
+invocation settings. No generated cache integrity, neighbour completeness,
+geometry-copy permission, other-force/whole-objective or chemical approval follows.
 
-Before a Willow consumer is enabled, qualify unused-map mutations, each scalar,
-ordered assignments, all shell/symmetry inputs, function/call overrides and fixed
-search settings, plus native coordinate-driven and explicit-reset rebuilds.
-Tests must demonstrate no snapshot side effects and refusals for unsupported
-builds/settings. Then the optional consumer can freeze a primitive baseline and
-check it before/after evaluation using the same actual flags; default consumers
-and report shapes stay unchanged. Geometry/atom identity, other bonded forces,
-source authentication, neighbour completeness and chemical approval remain with
-their existing owners. No second energy evaluator or process owner is proposed.
+The optional Willow consumer remains separately qualified: retain its existing
+source/atom/bonded/ASU owners and unchanged legacy worker/default reports. C331
+ships no integration into captured workers or refinement. Q06's remaining PDU
+geometry review and source-aware target discovery stay open. Exact commands,
+native/source/installed results and measured overhead are recorded under
+`live_nonbonded_policy_guard_2026_11_16` in the existing evidence ledger; C330's
+inventory remains historical evidence, not a second implementation owner.
 
 ## Native nonbonded attribution (C127)
 

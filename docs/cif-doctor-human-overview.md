@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Current explanation, 2026-11-15.** CIF Doctor checks whether the model and
+**Current explanation, 2026-11-16.** CIF Doctor checks whether the model and
 chemical dictionaries preserve the intended molecule, whether Phenix can read
 the resulting restraints, and whether a proposed repair changes only what it
 should. It works around ReadySet and NARestraints; it does not replace them.
@@ -131,6 +131,14 @@ These are controlled diagnostic corrections, not yet automatic repaired-CIF
 delivery, and the test scaffold is not diffraction data from those modified crystals.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.
+
+An explicit development guard now checks that Phenix's contact rules remain the
+same as atoms move. It reads the full tables and symmetry exclusions, including
+entries not used by the current contacts, while allowing normal neighbour-list
+rebuilding. Actual native tests detect tables lost by copying without changing
+energy, coordinates or chemical targets. This check is available for the qualified
+Phenix installation; connecting callers and demonstrating acceptable refined
+chemistry remain separate steps. See the [guard contract](architecture.md#live-nonbonded-policy-guard-c331).
 
 Checked preparation also keeps explicitly requested terminal phosphates on
 unchanged background DNA. Their declarations now reach the native dictionary
