@@ -4148,3 +4148,32 @@ compatibility, not a full combined suite, native combined refinement, resolved
 human-document merge or scientific acceptance. C340 is not part of this pin.
 W100 native controls continue with unchanged installed W98/C331; no dependency,
 API, runtime or branch migration. No archive payload is committed or uploaded.
+
+
+### Next ordinary refinement boundary
+
+Read-only coordination with Rowan and inspection of Cedar's C338/C343 source
+confirm that S06 should reuse `refinement_parallelity.prepare_execution` and
+AutoRefine's frozen round/checkpoint owner. `cif_refinement_runtime._run_observed`
+already shares the actual native manager and final writer;
+`cif_refinement_output` binds the scattering state and written coordinates.
+The C338 `cif_refinement_sites` observer covers source-projected local triples;
+it is not a complete periodic-pair observer or an additive-force adapter.
+
+The next integration qualification must bind the complete ordered pair recipe,
+exact atom/image identities and actual exclusion policy to the initialized,
+selected/rebuilt and final managers. Observe native normalization and prove
+added energy/force accounting, with missing, duplicate and stale-term negative
+controls. Bind the result to the actual final model and a versioned frozen helper;
+reusing a lifecycle owner alone does not qualify these new terms. C291-C294's
+whole-objective controls provide the existing method: call the actual
+`model.restraints_manager_energies_sites` without switching restraint families,
+and retain each manager's own normalization/contact inventory. Do not compare
+normalized targets across rebuilt managers as if their denominators were fixed.
+
+Only after that boundary is qualified should a predeclared candidate/no-repair
+comparison reuse the same observations, Free-R flags, phase policy and refinement
+budget. Inspect local geometry, periodic contacts and model-bound maps alongside
+Rwork/Rfree. This is the path to density-aware bending; current W100 geometry
+regularization and installed C338 compatibility do not close S06. No new runner,
+callback, force policy, schema or native execution is introduced by this plan.

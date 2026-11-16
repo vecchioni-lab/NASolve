@@ -457,6 +457,10 @@ still need actual merge review. No branch merge, full combined suite or native
 combined refinement. C338 intra-site chemistry reporting is not backbone/seam
 acceptance; C340 is outside this pin. Rowan retains a full-suite consolidation
 gate. No runtime/schema changes in W99/W100.
+The [next ordinary refinement boundary](topostitch-periodic.md#next-ordinary-refinement-boundary)
+reuses Cedar's frozen AutoRefine round and final-writer owners, with separately
+qualified complete periodic-pair, exclusion and normalization/force accounting.
+A second refinement runner or C338 reporting pass cannot substitute for that gate.
 
 This direct guard is separate from Cedar Q06 refinement chemistry/PDU angle
 review. Nonuniform curvature, matched diffraction and density-aware S06 remain

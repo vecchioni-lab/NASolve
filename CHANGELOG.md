@@ -19,6 +19,9 @@ entries are reconstructed from repository history.
 
 ### W100 — Declare independent source-displaced controls
 
+- Clarify the next ordinary-refinement integration gate with Cedar: reuse frozen
+  round/final-writer owners and separately qualify complete periodic-pair forces,
+  exclusions and normalization before matched density/refinement comparisons.
 - Verify focused installed/relocated Willow + Cedar C338 compatibility, preserving
   package resources, legacy-reader pins and unresolved documentation conflicts.
   No actual merge, full combined suite or new native execution in this check.

@@ -384,7 +384,7 @@
         "Blunt and asymmetric-orientation trials retain matched observations/Free-R and independent bends/maps; calibrate inconclusive outcomes rather than force alignment or a statistical winner.",
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning."
       ],
-      "next_action": "First prove that a complete periodic pair policy survives the intended refinement path and is reported with its actual normalization/exclusion semantics. Then compare a frozen damaged/mismatched duplex with unmodified and cleanup controls; keep the healthy reference pilot and resolve supplied-data copy/composition before claiming private-data repair.",
+      "next_action": "Reuse AutoRefine/refinement_parallelity frozen round ownership. First qualify a versioned observer of the complete ordered periodic pair policy, atom/image binding and actual exclusions in initialized, selected/rebuilt and final native managers; prove active-term, normalization and added energy/force accounting with missing/duplicate/stale negative controls and exact final-writer binding. C338 source-projected local-triple reporting is not this qualification. Then compare a predeclared damaged/mismatched duplex with no-repair and cleanup siblings under identical observations/Free-R/phase/refinement budgets; resolve supplied-data copy/composition and inspect model-bound maps before claiming repair. See docs/topostitch-periodic.md#next-ordinary-refinement-boundary.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -394,9 +394,9 @@
       "last_audit": {
         "date": "2026-11-16",
         "reviewer": "Linden",
-        "code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
-        "human_update": 93,
-        "scope": "Planning acceptance extended for blunt/asymmetric controls; prior delivered runtime scope and open scientific gates unchanged. No new native solve."
+        "code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4",
+        "human_update": 100,
+        "scope": "Read-only Cedar owner/source review and Rowan coordination clarify the next S06 integration gate. No new runtime, native execution or scientific acceptance; prior delivered evidence and partial status unchanged."
       }
     },
     {
