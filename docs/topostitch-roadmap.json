@@ -7,7 +7,7 @@
   "audited_code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4",
   "runtime_authority": false,
   "finish_lines": {
-    "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
+    "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
     "campaign_stitch": "Add qualified end inference and bounded campaign-local transfer/review (S02, S08), without repeated member prompts or silent promotion.",
     "pine_slicing": "A scientist can choose, preview and materialize a faithful ASU cut, prove physical/scattering invariance, preserve seam chemistry and complete the persistent graphical review/refine loop (P01-P06)."
   },
@@ -233,7 +233,8 @@
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
-        "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation."
+        "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
+        "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
       "next_action": "W99: reserve complete matched full-window budgets from the measured approximately 0.28 s/evaluation rate with margin; retain individual contacts, boundary/native terms, packing, rounding and failures/limits. Then qualify general source-displaced and density/matched refinement controls. Owner-side immutable baseline preparation is a later performance option only with complete fresh live-policy/source checks; no coverage reduction or mutable-cache reuse. Do not repeat W91 small-polish work.",
       "evidence": [
@@ -374,7 +375,8 @@
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
         "Run compatible forward and reverse shape benchmarks plus healthy/wrong-connection controls. Freeze trial policies before Rfree; density interpretation must distinguish displacement from occupancy/ADP/model errors.",
-        "Blunt and asymmetric-orientation trials retain matched observations/Free-R and independent bends/maps; calibrate inconclusive outcomes rather than force alignment or a statistical winner."
+        "Blunt and asymmetric-orientation trials retain matched observations/Free-R and independent bends/maps; calibrate inconclusive outcomes rather than force alignment or a statistical winner.",
+        "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning."
       ],
       "next_action": "First prove that a complete periodic pair policy survives the intended refinement path and is reported with its actual normalization/exclusion semantics. Then compare a frozen damaged/mismatched duplex with unmodified and cleanup controls; keep the healthy reference pilot and resolve supplied-data copy/composition before claiming private-data repair.",
       "evidence": [
@@ -406,7 +408,8 @@
       ],
       "acceptance": [
         "Create immutable children with exact model/CIF/PHIL inputs, preserve current selection, and reuse existing Coot/model-tree paths; viewing never selects or approves.",
-        "Show actual before/after coordinates, moved/fixed sites, mates, geometry and matched refinement deltas. Test stale evidence, interruption, relocation and explicit keep/reject/use decisions."
+        "Show actual before/after coordinates, moved/fixed sites, mates, geometry and matched refinement deltas. Test stale evidence, interruption, relocation and explicit keep/reject/use decisions.",
+        "For final B09 review, show source, proposed and refined geotest coordinates with the intended periodic mates and per-member pass/review/failure evidence."
       ],
       "next_action": "Finish human browser validation, then reuse this display component when a qualified ordinary trial can connect to existing checkpoint/review owners; do not invent a second history system.",
       "evidence": [
@@ -1572,6 +1575,18 @@
         "S08"
       ],
       "remaining": "Bind chosen examples, sequences, motif/copy mapping, molecular pivot/axis and common Free-R data. User confirms available three examples suffice; third local AlphaFold source is optional follow-up. Compare independently bent 0/120/240-degree placed siblings strictly after PostMR and first refinement, with no MR rerun, fixed data and per-model maps. Retain ambiguous/duplicate/failed states; blinded known-answer and degraded-resolution controls before unresolved benchmarks."
+    },
+    {
+      "id": "B09",
+      "case": "Final geotest altered-arm alignment: X11_18 (P4_3), X11_22 and frozen related members",
+      "state": "PLANNED_FINAL_GATE",
+      "jobs": [
+        "S04",
+        "S05",
+        "S06",
+        "S07"
+      ],
+      "remaining": "Inventory and bind the exact local geotest-fullauto-fqce98w3 panel through anchored checksummed receipts before execution. X11_18 is 18/21/21 bp; X11_22 is 22/21/21 bp. Qualify coupled bend/rise/twist/backbone relaxation, correct periodic partner/register and surviving contacts after matched refinement; retain healthy arms/junctions, geometry/density/Rwork/Rfree tradeoffs and human before/proposed/refined review. No new run or scientific success claimed; see docs/topostitch.md#final-geotest-alignment-gate-planned."
     }
   ],
   "deferred": [

@@ -416,6 +416,16 @@ NASolve anchor at `branch-artifacts/willow/inspection-2026-11-16/`; see the
 [inspection-export receipt](topostitch-periodic.md#user-requested-coordinate-inspection-exports).
 These are visual diagnostics, with no new physical or refinement qualification.
 
+**Final demonstration gate added (2026-11-16, planning only):** B09 in the
+[roadmap](topostitch-roadmap.md) now requires geotest altered-arm alignment,
+including X11_18 in P4_3 and X11_22, with the exact panel still to be frozen.
+The [gate contract](topostitch.md#final-geotest-alignment-gate-planned) requires
+coupled bend/rise/twist/backbone relaxation and contacts that survive matched
+refinement, with healthy arms/junctions preserved. Small preview motion is not
+that success. No new scientific run, schema or Cedar behavior changes; the
+current next step remains W99. Documentation validation: roadmap regeneration
+and check, JSON readback, and `git diff --check`; no runtime/full-suite rerun.
+
 **W99 next:** use the measured ~0.28 s/evaluation rate to reserve complete matched
 full-window budgets with margin, retaining individual contact, boundary, packing,
 serialization and failed/limited outcomes. Local paired-step evidence does not

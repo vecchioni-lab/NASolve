@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Geotest final alignment gate
+
+- Add the altered-arm geotest family (X11_18 in P4_3, X11_22 and a panel to be
+  frozen) as the final TopoStitch end-to-end demonstration. Require coupled
+  bend/rise/twist/backbone relaxation and intended contacts that survive matched
+  refinement with geometry, density and human review. Planning only; no new
+  runtime, schema, scientific run or data release.
+
 ### Publication demonstration planning
 
 - Record the requested A2T7 rotation, recut-with-bending, standard-data/DOHU and

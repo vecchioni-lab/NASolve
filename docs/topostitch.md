@@ -272,6 +272,13 @@ one sugar-phosphate path more than the other while maintaining pairing, stacking
 and chemical geometry. Record the initial proposal and the post-refinement
 movement separately; do not mistake an imposed taper for a measured conformation.
 
+Bending and elongation must allow coupled changes in step twist/rise and in
+both sugar-phosphate paths: the backbone needs room to breathe. Do not impose a
+universal twist change or keep phosphate positions/radii rigid while moving base
+frames. Qualify local torsions, sugar geometry, stacking, pairing and clashes
+after relaxation, including the transition into fixed context. The small imposed
+preview demonstrates motion only; it does not qualify this coupled relaxation.
+
 Density-aware placement is a later capability. A cluster of negative difference
 density at phosphates is a useful review signal, but does not uniquely prescribe
 a displacement: occupancy/ADPs and model/map errors can contribute. Combine
@@ -521,6 +528,36 @@ complete suite when shared/global mechanics change. Retain clean-install
 checks, relocation tests for artifact changes, and exact native tool versions
 with dry-run versus full-execution receipts. Known-answer scientific recovery
 and human inspection are separate from unit-test success.
+
+### Final geotest alignment gate (planned)
+
+The user-requested end-to-end gate is the altered-arm family from the local
+`geotest-fullauto-fqce98w3` campaign: X11_18 (18/21/21 bp arms, **P4_3** as
+requested), X11_22 (22/21/21), and additional members selected when the panel is
+inventoried. These are benchmark labels, not operational file references.
+Before execution, freeze the exact members, sequence/chain correspondence,
+observations, Free-R flags, source checkpoints, cell/setting and intended
+symmetry-partner connections in checksummed run/dataset-anchored receipts.
+Do not infer other members' space groups from X11_18 or search by basename.
+
+Pass only when the intended altered-arm sticky ends align in their exact
+periodic images with correct register, pairing/stacking and qualified local
+backbone geometry, while junctions and already aligned 21-bp arms remain sound.
+Allow coupled bending, extension/compression, twist and strand-specific backbone
+relaxation within declared editable windows. Check the seam, surrounding packing
+and window boundaries; visual proximity or a representation-only recut is not
+closure. Preserve nicks and chemical intent; no unsupported symmetry bond is
+introduced just to make a display look connected.
+
+The connection must survive a matched refinement comparison with unchanged
+observations/Free-R, budget and unrelated restraints, supported by maps and
+reported Rwork/Rfree alongside geometry and contacts. Predeclare trial budgets
+and acceptance criteria; retain ambiguous/failed cases and tradeoffs. Lower R
+values alone do not establish the right connection, and repeated Rfree-driven
+tuning cannot substitute for validation. Show source, proposed and refined
+coordinates with the connected mates for human review. This is final B09
+acceptance evidence after S04-S07, not an immediate rerun or a structure-specific
+algorithm. Independent families and healthy/wrong-partner controls remain required.
 
 ## References and design limits
 
