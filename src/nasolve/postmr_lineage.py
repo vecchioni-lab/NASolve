@@ -15,6 +15,7 @@ from .cif_dictionary_sites import _need, _read
 from .cif_repair_attempt import _root
 
 POLICY_ID = 'postmr-construction-lineage-v1'
+CANONICAL_POLICY_ID = 'postmr-canonical-construction-lineage-v1'
 RECORD_PATH = 'PostMR/Coot/construction.json'
 
 
@@ -86,6 +87,33 @@ def begin_postmr_construction(run, model, reference_model, dictionaries, actions
     return dict(inputs=inputs,controls=controls)
 
 
+def _canonical_closure(root, reference, inputs, controls):
+    """Join the existing pure seed proof to original input/actions, without copying a tree."""
+    from .postmr_canonical_input import read_canonical_parent_input, _resolve as seed_resolve, REPORT
+    path = _resolve(reference, root)
+    _need(reference['path'] == 'PostMR/Coot/canonical_seeds/' + REPORT,
+          'Canonical construction evidence has the wrong role')
+    saved = read_canonical_parent_input(path.parent)
+    receipt = saved['receipt']
+    original = seed_resolve(path.parent, receipt['input'])
+    _need(_read(original) == _read(_resolve(inputs['model'], root)),
+          'Canonical seed does not start from the recorded construction input')
+    actions = [step['action'] for step in receipt['steps']]
+    sites = {a['site'] for a in actions}
+    _need(actions == [a for a in controls['actions'] if a['site'] in sites]
+          and not sites.intersection(controls['passthrough_sites']),
+          'Canonical seed actions differ from original construction intent')
+    references = [receipt['input'], receipt['model'],
+                  *[step[k] for step in receipt['steps'] for k in ('source', 'template')]]
+    files = {reference['path']: _read(path)}
+    for ref in references:
+        artifact = seed_resolve(path.parent, ref)
+        files[artifact.relative_to(root).as_posix()] = _read(artifact)
+    _need(_reference(path, root) == reference and read_canonical_parent_input(path.parent) == saved,
+          'Canonical seed evidence changed during lineage readback')
+    return saved, files
+
+
 def finish_postmr_construction(run, started, prepared_model, construction):
     """Seal a fresh, non-qualifying record before downstream numerical work."""
     root=_root(run); path=root/RECORD_PATH
@@ -100,6 +128,18 @@ def finish_postmr_construction(run, started, prepared_model, construction):
     record=dict(schema_version=1,policy_id=POLICY_ID,status='CONSTRUCTION_RETURNED',
         scientific_qualification='NOT_ASSESSED',native_interpretation='NOT_RUN',automatic_adoption=False,
         **started,outputs=outputs,evidence=evidence)
+    if 'canonical_parent_input' in construction:
+        from .postmr_canonical_input import REPORT
+        supplied = construction['canonical_parent_input']
+        _need(isinstance(supplied, dict) and set(supplied) == {'model', 'directory', 'receipt'},
+              'Invalid returned canonical construction evidence')
+        reference = _reference(Path(supplied['directory']) / REPORT, root)
+        saved, _ = _canonical_closure(root, reference, started['inputs'], started['controls'])
+        _need(supplied == saved, 'Returned canonical construction evidence differs from saved proof')
+        record.update(policy_id=CANONICAL_POLICY_ID, canonical_parent_input=reference)
+    else:
+        _need(not (root/'PostMR/Coot/canonical_seeds').exists(),
+              'Canonical construction evidence cannot be silently omitted')
     write_record(path,record)
     return read_postmr_construction(root)['report']
 
@@ -112,10 +152,13 @@ def read_postmr_construction(run):
     Missing execution evidence stays missing and cannot become qualification.
     """
     root=_root(run); raw=_read(root/RECORD_PATH); r=read_record(root/RECORD_PATH)
-    _need(set(r)=={'schema_version','policy_id','status','scientific_qualification','native_interpretation',
-                  'automatic_adoption','inputs','outputs','controls','evidence','record_sha256'}
+    canonical = 'canonical_parent_input' in r
+    fields = {'schema_version','policy_id','status','scientific_qualification','native_interpretation',
+              'automatic_adoption','inputs','outputs','controls','evidence','record_sha256'}
+    if canonical: fields.add('canonical_parent_input')
+    _need(set(r)==fields
           and type(r['schema_version']) is int and r['schema_version']==1
-          and r['policy_id']==POLICY_ID and r['status']=='CONSTRUCTION_RETURNED'
+          and r['policy_id']==(CANONICAL_POLICY_ID if canonical else POLICY_ID) and r['status']=='CONSTRUCTION_RETURNED'
           and r['scientific_qualification']=='NOT_ASSESSED' and r['native_interpretation']=='NOT_RUN'
           and r['automatic_adoption'] is False, 'Invalid construction lineage claims')
     _, reference = _inputs(root,r['inputs']); _controls(r['controls'],r['inputs']['dictionaries'])
@@ -132,6 +175,9 @@ def read_postmr_construction(run):
                 *r['outputs'].values(),*(v for v in r['evidence'].values() if v is not None)]
     files={RECORD_PATH:raw}
     for ref in references:files[ref['path']]=_read(_resolve(ref,root))
+    if canonical:
+        _, seed_files = _canonical_closure(root, r['canonical_parent_input'], r['inputs'], r['controls'])
+        files.update(seed_files)
     # Check declared identities with the ordinary caller's existing parser. This
     # is a model/action join, not a second chemistry or geometry validator.
     from .postmr import PostMRPreparationError, residue_name

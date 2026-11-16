@@ -105973,5 +105973,127 @@
       "No full suite or new Phenix/Coot science run."
     ],
     "next": "Bind canonical seed evidence through ordinary construction lineage before enabling automatic source/context selection; preserve Q06 closure limits."
+  },
+  "canonical_construction_lineage_2026_11_16": {
+    "milestone": "C353",
+    "date": "2026-11-16",
+    "signed": "Rowan",
+    "before": "C349 freezes canonical inputs inside construction, but ordinary lineage omits their record/model/dictionaries. A later complete request therefore does not retain that construction proof.",
+    "after": "Existing lineage producer binds the existing canonical-input reader to exact original input bytes/actions and passthrough intent. Retain only its declared receipt, initial/final models and source/template dictionaries. Existing complete request freezes that closure and its actual validated lineage policy.",
+    "schemas": {
+      "policy": "postmr-canonical-construction-lineage-v1",
+      "schema_version": 1,
+      "added_field": "canonical_parent_input: run-anchored checksum reference to PostMR/Coot/canonical_seeds/canonical_input.json",
+      "default": "postmr-construction-lineage-v1 unchanged",
+      "request": "Same schema; construction_inputs.policy_id is bound to the validated lineage policy"
+    },
+    "validation": {
+      "before": "15 failed/1 passed in1.31s; lost closure, mismatched seed/context and omitted evidence reproduced",
+      "focused": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_postmr_canonical_lineage.py tests/test_postmr_canonical_input.py tests/test_postmr_component_inputs.py tests/test_cif_postmr_request.py tests/test_cif_ordinary_postmr.py tests/test_cif_complete_request.py tests/test_cif_literal_na_inputs.py --tb=short",
+        "result": "331 passed in369.14s; collected before the final legacy-shape regression was added",
+        "final_changed_tests": "18 passed in2.93s, includes the added legacy-shape control",
+        "full_suite": false
+      },
+      "final_new_cases": "18 passed/2.93s",
+      "installed": {
+        "status": "INSTALLED_RELOCATED_CANONICAL_LINEAGE_PASS",
+        "wheel_sha256": "fb8eb9ece065716a1efcc280e040de4122e0e855be42e1e3555d2c5fa3e06bf2",
+        "wheel_bytes": 1388566,
+        "source_copy_removed": true,
+        "original_install_path_absent": true,
+        "package_reference_bytes_match": true,
+        "validation_command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-c",
+          "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_postmr_canonical_lineage.py', 'tests/test_postmr_canonical_input.py', 'tests/test_postmr_component_inputs.py', 'tests/test_cif_postmr_request.py::test_prepared_request_freezes_only_declared_construction_closure', 'tests/test_cif_postmr_request.py::test_construction_lineage_survives_owned_attempt_recovery_and_cold_move', 'tests/test_cif_postmr_request.py::test_prepared_request_rejects_unbound_construction_before_attempt', 'tests/test_cif_postmr_request.py::test_construction_source_change_during_request_freezing_refuses', 'tests/test_cif_complete_request.py::test_initialization_freezes_complete_intent_before_any_children', '--tb=short']))"
+        ],
+        "validation_output": "...................................................................      [100%]\n67 passed in 19.94s\n",
+        "build_command": "phenix.python -m pip wheel --no-deps --no-build-isolation --no-index",
+        "temporary_bytes_removed": 11048771
+      },
+      "coverage": [
+        "Exact closure relocation after original run/source paths disappear; no execution or writes.",
+        "Full complete-request initializer/readback with actual new policy and original sources removed.",
+        "Wrong original bytes/action/passthrough/producer return/seed proof or missing field refuses.",
+        "Legacy field shape and unrelated-folder read semantics stay exact."
+      ]
+    },
+    "archived_native": {
+      "root": {
+        "anchor": "NASolve-live-tests",
+        "path": "353_Cedar_canonical-lineage-replay-zxkb59sx"
+      },
+      "summary": {
+        "status": "ARCHIVED_C349_NATIVE_OUTPUTS_JOINED_TO_RELOCATABLE_LINEAGE",
+        "cases": {
+          "PDU_to_DT_to_DY": {
+            "lineage_policy": "postmr-canonical-construction-lineage-v1",
+            "lineage_sha256": "362cd270cd3c3e4f6858eb66572a0ed33751c6b710cb586afa9616733b0eb2d6",
+            "canonical_receipt_sha256": "08591faf9011f7112596d200867a7a62e1a3f399f8ea7e44eba1980cf55cc710",
+            "source_model_sha256": "636223e4edb19caf32e6bf70799f20d008c8ae45a65cc83a727bf1a3d38203d3",
+            "final_model_sha256": "4d52ccf1a393c0b2aef3c220552dbaafa6516a5144381cb04411e5dc5812db57",
+            "closure_files": 13,
+            "closure_bytes": 473513,
+            "cold_exact": true,
+            "temporary_original_path_absent": true,
+            "native_execution": "FORBIDDEN",
+            "source_capture": {
+              "anchor": "NASolve-live-tests",
+              "path": "349_Cedar_ordinary-canonical-input-isgh8jh6/PDU_to_DT_to_DY"
+            }
+          },
+          "DY_to_DT_to_PDU": {
+            "lineage_policy": "postmr-canonical-construction-lineage-v1",
+            "lineage_sha256": "2b0ab630c787303c88de5caabe8aacea5368481267ac0cf5dbc12f8f455f6780",
+            "canonical_receipt_sha256": "8c5d65066e257000b35f4bd40dc15056c6bd7700e5ff5729a6a0a68e625271a2",
+            "source_model_sha256": "1fc98fcddf22b11b8a204458091b0db41ab5bcbfad5a5e9fd3875922a1aa1b32",
+            "final_model_sha256": "1ddddc0157490c825199e1558e800e68f526434249e0231f81a84e494fb538fe",
+            "closure_files": 13,
+            "closure_bytes": 479225,
+            "cold_exact": true,
+            "temporary_original_path_absent": true,
+            "native_execution": "FORBIDDEN",
+            "source_capture": {
+              "anchor": "NASolve-live-tests",
+              "path": "349_Cedar_ordinary-canonical-input-isgh8jh6/DY_to_DT_to_PDU"
+            }
+          }
+        },
+        "prior_files_and_timestamps_preserved": 56,
+        "temporary_bytes_removed": 952738,
+        "physical_bytes": 1033705,
+        "source_pins": {
+          "src/nasolve/postmr_lineage.py": "15310e2fad0af5816ce7422fd961ce4d00700087741145754d61109476ef9919",
+          "src/nasolve/cif_complete_request.py": "8ee6c6589c709d2ca95969e59f54a5dc9148f4ccae5a8e259911febf597dcd3e"
+        },
+        "native_execution": "NOT_RUN; C349_Coot1.3.3_EVIDENCE_REUSED",
+        "qualification": "NOT_REPEATED",
+        "new_PostMR_preparation": "NOT_CLAIMED",
+        "all_jobs_stopped": true
+      },
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=../NASolve-c96/src .venv/bin/python -B branch-artifacts/cedar/runners/c353_archive_replay.py",
+      "scope": "Existing C349 Coot1.3.3 output/proofs joined to new local lineage records and cold-replayed; no native execution or new PostMR preparation claimed."
+    },
+    "changed_files": [
+      "src/nasolve/postmr_lineage.py",
+      "src/nasolve/cif_complete_request.py",
+      "tests/test_postmr_canonical_lineage.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/development-handoff.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "compatibility": "No old receipt rewrite, default construction/source selection, chemistry, weight, worker or process owner change. Old software does not understand the new opt-in lineage policy; current readers keep old evidence exact. A new producer refuses an unreported canonical-seed folder rather than silently omit it.",
+    "retention": "Only code/tests/docs/compact hashes and sizes committed. Both scientific closures stay local (~0.47MB each);56 prior files/timestamps preserved. Temporary cold replay952738B removed; no per-mutation whole-model intermediate storage.",
+    "limitations": [
+      "Lineage does not qualify source/template chemistry or native consumption independently.",
+      "Automatic source/context selection and DY alias remain separate; no full suite or fresh Phenix/Coot science run."
+    ],
+    "next": "Provide package-bound reusable reference intake through the existing explicit source compositor, then qualified ordinary source/context selection; preserve Q06 survival limits."
   }
 }

@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Retain canonical-parent proof through ordinary preparation (C353)
+
+- Bind explicit canonical input to original construction bytes, actions and
+  passthrough policy; include only its declared models/dictionaries/proof in the
+  ordinary lineage and complete-request copy. Missing or contradictory proof refuses.
+- Use a distinct opt-in lineage policy. Historical records/default construction
+  remain unchanged; cold relocation reconstructs the proof without native tools.
+  This establishes provenance, not chemical qualification or automatic selection.
+
 ### Preserve inspection of an unlaunched generation timeout (C352)
 
 - Read the original negative receipt when the allowance expires after capability

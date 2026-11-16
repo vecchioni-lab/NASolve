@@ -4246,3 +4246,13 @@ Cedar now reads that saved failure correctly instead of asking for chemical
 validation that could never have been produced. It checks the recorded capability
 job and absence of candidate work, preserves the original diagnostic and changes
 no data. This is honest inspection; it does not approve a dictionary or a retry.
+
+
+### Keep the intermediate construction explanation with the model (C353)
+
+For modified → standard → modified construction, later preparation now keeps the
+exact original source, canonical template, intermediate model and small proof of
+how it was placed. It verifies that these belong to the requested mutation and
+original phosphate intent. Only declared files travel with the result; unrelated
+files are excluded. The two saved PDU/DY round trips replay from about0.47MB each
+without Coot. This preserves the explanation; it does not approve the chemistry.

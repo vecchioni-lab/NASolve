@@ -13842,3 +13842,27 @@ clock controls reproduce the prior bug; direct and request-owned captures replay
 after relocation and removal of original inputs/SDK with native execution forbidden.
 Contradictory or re-signed foreign evidence refuses. No chemistry or scientific
 acceptance change; exact validation: `unlaunched_generation_failure_readback_2026_11_16`.
+
+
+### Canonical-parent evidence in ordinary lineage (C353)
+
+`finish_postmr_construction` recognizes an explicit returned `canonical_parent_input`
+and uses `read_canonical_parent_input` to reconstruct its pure proof. The seed's
+initial bytes must equal the recorded construction input; ordered selected actions
+must match original actions and exclude passthrough sites. The returned producer
+object must equal saved evidence. New records use schema1 policy
+`postmr-canonical-construction-lineage-v1` with a run-anchored checksum reference
+to the canonical-input record. A new producer cannot silently omit an existing
+canonical-seed folder. Historical readers retain their unrelated-folder semantics.
+
+The lineage reader includes only declared seed receipt, initial/final models and
+source/template files. Complete-request initialization and cold validation bind
+the actual validated lineage policy and preserve that closure. No extra owner,
+chemical classifier, native execution or per-mutation model copies are introduced.
+Existing schema1/default records are unchanged; older software will refuse the
+new opt-in policy. No migration or automatic source/alias activation occurs.
+
+Both archived C349 Coot1.3.3 round trips replay exactly under relocation without
+new native work. Complete-request intake and missing/re-signed contradictory proofs
+are covered by focused regressions. Exact commands/results and retained-artifact
+scope: `canonical_construction_lineage_2026_11_16`.

@@ -33,7 +33,7 @@ from .cif_repair_attempt import _root, _members, _inventory
 from .cif_repair_process import _uuid
 from .cif_runtime_bundle import resolve_runtime_bundle
 from .cif_model_context import validate_prepared_model_context
-from .postmr_lineage import read_postmr_construction, POLICY_ID as CONSTRUCTION_POLICY
+from .postmr_lineage import read_postmr_construction
 from .cif_restraint_context import validate_restraint_context
 from .cif_literal_na_inputs import resolve_literal_na_inputs
 from .cif_explicit_na_policy import read_explicit_na_policy
@@ -293,9 +293,9 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
         allowed.update(folder+'/'+n for n in _tree(inputs/folder))
     construction_ref = {}
     if construction_inputs is not None:
-        reference = dict(anchor=ANCHOR,path='inputs/construction',policy_id=CONSTRUCTION_POLICY)
-        _need(construction_inputs == reference, 'Invalid construction lineage reference')
         bound = _construction_input(inputs/'construction',inputs/'model.pdb',selected['sources'],model_context)
+        reference = dict(anchor=ANCHOR,path='inputs/construction',policy_id=bound['report']['policy_id'])
+        _need(construction_inputs == reference, 'Invalid construction lineage reference')
         allowed.update('construction/'+name for name in bound['files'])
         construction_ref['construction_inputs'] = reference
     files, directories = _capture(inputs)
@@ -433,7 +433,7 @@ def initialize_dictionary_request(source_selection, components, model, output, *
         files.update({'construction/'+n:b for n,b in bound['files'].items()})
         originals.update({source_root/n:b for n,b in bound['files'].items()})
         directories.update(str(p) for n in bound['files'] for p in (Path('construction')/n).parents if str(p) != '.')
-        construction_ref = dict(anchor=ANCHOR,path='inputs/construction',policy_id=CONSTRUCTION_POLICY)
+        construction_ref = dict(anchor=ANCHOR,path='inputs/construction',policy_id=bound['report']['policy_id'])
     captured = {}
     for name,p in trees.items():
         _need(not p.is_relative_to(root) and not root.is_relative_to(p), 'Complete request overlaps input tree')

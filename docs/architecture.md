@@ -23,7 +23,12 @@ context/restoration. The saved local-anchor receipt retains two model files and
 shared dictionaries; per-site proofs reconstruct intermediate bytes in memory.
 Its cold reader recomputes every seed and verifies the final result without
 execution or writes. No source discovery, alias, new process owner or default
-caller activation follows from this opt-in extension.
+caller activation follows from this opt-in extension. Ordinary lineage now binds
+the optional seed record under `postmr-canonical-construction-lineage-v1`, checks
+original input/actions/passthrough intent and returns only the declared seed files
+as part of its closure. Complete-request freezing uses that validated policy;
+old lineage shape remains exact. The existing pure seed reader owns reconstruction,
+so no second chemical validator or native executor is introduced.
 
 Read-only source-generation inspection recognizes the exact adapter deadline
 failure between completed capabilities and an unlaunched candidate. Source/spec/

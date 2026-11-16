@@ -1,12 +1,27 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C352 unlaunched failure inspection — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. C351 pushed at `32316a76`; C352 is this
+Updated **2026-11-16, C353 canonical construction lineage — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. C352 pushed at `9c646428`; C353 is this
 completed code/evidence checkpoint. No full suite, branch, default activation or
 merge. Linden owns Pine/Willow; frozen restoration/C331/C338 unchanged. Simon
 confirmed work through **23:00 London**. All Rowan jobs stopped at this checkpoint.
 
 ## Current result and next bounded task
+
+**C353 complete:** ordinary lineage now joins the existing canonical seed proof
+to original construction bytes/actions/passthrough intent. The complete request
+retains exactly those declared files under a distinct opt-in lineage policy;
+historical shape and defaults stay unchanged. Eighteen new focused cases cover
+relocation, complete-request intake and mismatches. Broader/installed results:
+`canonical_construction_lineage_2026_11_16`; no full suite.
+Both C349 actual Coot round trips cold-replay through this path (13 files each,
+473513/479225B). Root `353_Cedar_canonical-lineage-replay-zxkb59sx`,~1.03MB;
+56 original files/timestamps preserved,952738B replay scratch removed. No native
+rerun/new PostMR preparation claimed; all jobs stopped after validation.
+**Next:** package-bound reusable reference intake through existing explicit source
+composition, then qualified source/context selection. No automatic DY alias or
+chemical qualification follows from provenance. Earlier next text is historical.
+
 
 **C352 complete:** deterministic regression reproduces the prelaunch-timeout
 inspection bug. The reader now validates the completed capability phase and

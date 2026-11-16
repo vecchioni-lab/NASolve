@@ -882,8 +882,11 @@ junctions confirm covalent rotation invariance (<5.6e-14), bending support and
 sampled finite-difference agreement. Initial model strain remains explicit.
 **C352:** deterministic unlaunched-timeout inspection is fixed;281 focused and281
 installed checks pass, without granting retry or plane-support authority.
-**Next:** retain canonical seed evidence in ordinary construction lineage, then
-qualified source/context selection. Explicit API remains separate from defaults. No DY pair pattern, automatic alias or per-site selector is
+**C353:** ordinary lineage/complete-request freezing now retain exact canonical
+seed evidence; historical policies remain unchanged. Both C349 native round-trip
+closures replay after relocation. **Next:** package-bound reference intake through
+existing composition, then qualified source/context selection. Explicit APIs stay
+separate from defaults. No DY pair pattern, automatic alias or per-site selector is
 inferred. See `source_bound_canonical_roundtrip_2026_11_16`.
 See `mixed_dy_end_states_readyset_2026_11_16`; older next steps are historical.
 
