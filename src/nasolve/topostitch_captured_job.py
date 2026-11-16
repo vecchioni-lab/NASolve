@@ -102,7 +102,7 @@ def _save(path, value, *, compact=False):
 
 
 @contextmanager
-def _cedar(source=None):
+def _cedar(source=None, *, guard_live_policy=False):
     """Use installed owners, or isolate one explicitly trusted developer checkout.
 
     A fresh temporary namespace permits repeated jobs without reusing stale
@@ -116,6 +116,7 @@ def _cedar(source=None):
         names=('cif_attachment_native','cif_native_validation','cif_candidate_usability',
                'cif_native_nonbonded','cif_native_monomers','cif_fixed_geometry','phenix_runtime',
                'cif_captured_mixed_gradients','campaign_process','cif_selected_environment')
+        if guard_live_policy:names+=('cif_live_nonbonded_policy',)
         modules={n:importlib.import_module(name+'.'+n) for n in names}
         if any(not Path(m.__file__).resolve().is_relative_to(package_root) for m in modules.values()):
             raise ValueError('Cedar owner resolved outside the selected package')
@@ -136,7 +137,7 @@ def _unchanged(*records):
 def run_captured_objective(model, recipe, mask, native_receipt, output_parent, *,
         recipe_sha256, mask_sha256, phenix, cedar_source=None, trial_iterations=0,
         trial_calls=2000, include_pairs=True, timeout_seconds=600, _process_runner=None,
-        endpoint_points=None, endpoint_sha256=None):
+        endpoint_points=None, endpoint_sha256=None, guard_live_policy=False):
     """Return ``(new_directory, report)`` for one immutable diagnostic job.
 
     ``phenix`` is an existing discovered installation or an explicit installation
@@ -144,8 +145,13 @@ def run_captured_objective(model, recipe, mask, native_receipt, output_parent, *
     an explicit source directory is only a developer compatibility route.
     The optional owned runner follows Cedar's existing process-runner protocol.
     Uncertain process cleanup escapes to that owner after retaining evidence.
+    ``guard_live_policy=True`` requires the qualified Cedar owner/profile and
+    freezes a new policy baseline only after fresh reconstruction matches capture.
+    Historical captures do not gain missing policy provenance.
     Defaults perform no optimization. No candidate/checkpoint is published.
     """
+    if type(guard_live_policy) is not bool:
+        raise ValueError('Live policy guard must be an explicit boolean')
     if ((endpoint_points is None)!=(endpoint_sha256 is None)
             or endpoint_points is not None and trial_iterations!=0):
         raise ValueError('Endpoint observation needs points plus checksum and cannot optimize')
@@ -162,8 +168,10 @@ def run_captured_objective(model, recipe, mask, native_receipt, output_parent, *
         mask=mask,native_receipt=native_receipt,output_parent=output_parent).items()},
         recipe_sha256=recipe_sha256,mask_sha256=mask_sha256,trial_iterations=trial_iterations,
         trial_calls=trial_calls,without_pairs=not include_pairs,timeout_seconds=timeout_seconds,
-        endpoint_points=None if endpoint_points is None else Path(endpoint_points),endpoint_sha256=endpoint_sha256)
-    with _cedar(cedar_source) as cedar:
+        endpoint_points=None if endpoint_points is None else Path(endpoint_points),endpoint_sha256=endpoint_sha256,
+        guard_live_policy=guard_live_policy)
+    owners=_cedar(cedar_source,guard_live_policy=True) if guard_live_policy else _cedar(cedar_source)
+    with owners as cedar:
         return _run(args,cedar,phenix,_process_runner)
 
 
@@ -180,6 +188,73 @@ def _worker(spec, capture, cedar):
     worker=cedar['cif_candidate_usability'].native_energy_worker(worker)
     worker=cedar['cif_native_nonbonded'].native_nonbonded_worker(worker,policy=spec['nonbonded_policy'])
     return cedar['cif_captured_mixed_gradients']._native_context_worker(worker,capture)
+
+
+
+def _guard_assets(cedar):
+    """Read the qualified explicit owner/resource closure before allocating a job."""
+    owner=cedar['cif_live_nonbonded_policy']
+    package=Path(cedar['cif_attachment_native'].__file__).resolve().parent
+    source=Path(owner.__file__).resolve(strict=True)
+    profile=(source.parent/'data/nonbonded-native-profile.json').resolve(strict=True)
+    if (source!=package/'cif_live_nonbonded_policy.py'
+            or profile!=package/'data/nonbonded-native-profile.json'):
+        raise ValueError('Live policy owner/profile differs from qualified package layout')
+    if not all(callable(getattr(owner,n,None)) for n in ('snapshot_live_nonbonded_policy','require_live_nonbonded_policy')):
+        raise ValueError('Incomplete live policy owner interface')
+    assets={source:source.read_bytes(),profile:profile.read_bytes()}
+    if json.loads(assets[profile]).get('profile_id')!=owner.PROFILE_ID:
+        raise ValueError('Live policy owner/profile identity mismatch')
+    return assets,dict(policy_id=owner.POLICY_ID,native_profile_id=owner.PROFILE_ID,
+        owner_source_sha256=sha256(assets[source]).hexdigest(),native_profile_sha256=sha256(assets[profile]).hexdigest())
+
+
+def _evaluation_worker(guard_live_policy):
+    if not guard_live_policy:return WORKER
+    block=r"""    from hashlib import sha256
+    from cctbx.geometry_restraints.flags import flags
+    from nasolve import cif_live_nonbonded_policy as live_policy
+    guard=spec['live_policy_guard']
+    owner_path=Path(live_policy.__file__)
+    if (sha256(owner_path.read_bytes()).hexdigest()!=guard['owner_source_sha256']
+            or sha256((owner_path.parent/'data/nonbonded-native-profile.json').read_bytes()).hexdigest()!=guard['native_profile_sha256']
+            or sha256(model).hexdigest()!=guard['source_model_sha256']):
+        raise ValueError('Staged live policy owner/profile/source mismatch')
+    baseline=live_policy.snapshot_live_nonbonded_policy(geo,flags=flags(default=True),
+        compute_gradients=True,normalization=False,disable_asu_cache=False,
+        gradients=None,custom_nonbonded_function=None,external_energy_function=None,extension_objects=())
+    baseline_record=dict(schema_version=1,kind='topostitch-live-policy-baseline',origin='FRESH_RECONSTRUCTED_CONTEXT',
+        source_model_sha256=guard['source_model_sha256'],source_receipt_sha256=guard['source_receipt_sha256'],snapshot=baseline)
+    (root/'live-policy.json').write_text(json.dumps(baseline_record,sort_keys=True,allow_nan=False)+'\n')
+"""
+    marker="    signature=audit.fixed_signature(geo,ns['sites'])"
+    if WORKER.count(marker)!=1:raise ValueError('Guard worker construction boundary changed')
+    guarded=WORKER.replace(marker,block+marker,1)
+    marker="        correction=correction,native_audit=audit,include_pairs=spec['include_pairs'],"
+    if guarded.count(marker)!=1:raise ValueError('Guard objective construction boundary changed')
+    return guarded.replace(marker,marker+"\n        live_policy_owner=live_policy,expected_live_policy=baseline,",1)
+
+
+def _verify_guard_result(root, evaluation, expected):
+    """Cross-check worker evidence; native policy validation remains Cedar's."""
+    try:
+        record=json.loads((root/'live-policy.json').read_bytes())
+        snapshot=record['snapshot']
+        if (set(record)!={'schema_version','kind','origin','source_model_sha256','source_receipt_sha256','snapshot'}
+                or type(record['schema_version']) is not int or record['schema_version']!=1
+                or record['kind']!='topostitch-live-policy-baseline' or record['origin']!='FRESH_RECONSTRUCTED_CONTEXT'
+                or any(record[k]!=expected[k] for k in ('source_model_sha256','source_receipt_sha256'))
+                or type(snapshot['schema_version']) is not int or snapshot['schema_version']!=1
+                or any(snapshot[k]!=expected[k] for k in ('policy_id','native_profile_id'))
+                or sha256(json.dumps(snapshot['policy'],sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()!=snapshot['policy_sha256']):
+            raise ValueError('Live policy baseline identity/digest mismatch')
+        binding={k:snapshot[k] for k in ('policy_id','native_profile_id','policy_sha256')}
+        binding.update({k:expected[k] for k in ('owner_source_sha256','native_profile_sha256')})
+        if evaluation['binding']['live_nonbonded_policy']!=binding:
+            raise ValueError('Guarded worker binding differs from expected baseline/provenance')
+        return snapshot['policy_sha256']
+    except (KeyError,TypeError,AttributeError) as exc:
+        raise ValueError('Missing or malformed guarded-worker evidence') from exc
 
 
 def _run(args, cedar, phenix, process_runner):
@@ -219,6 +294,7 @@ def _run(args, cedar, phenix, process_runner):
     # Keep both labels as provenance; exact dispatcher/native source bytes bind it.
     if sha256(executable.read_bytes()).hexdigest()!=receipt['executable_sha256']:
         raise ValueError('Native dispatcher bytes differ from captured installation')
+    guard_assets,guard_metadata=_guard_assets(cedar) if args.guard_live_policy else ({},None)
     parent=args.output_parent.absolute()
     if any(p.is_symlink() for p in [parent,*parent.parents]):raise ValueError('Output cannot traverse symlinks')
     if parent.is_relative_to(paths['native_receipt'].parent):raise ValueError('Output must be outside the frozen capture')
@@ -246,6 +322,12 @@ def _run(args, cedar, phenix, process_runner):
     for source,name in [('cif_parallelity_correction.py','correction_core.py'),('cif_gradient_audit.py','audit_core.py')]:
         p=Path(cedar['cif_attachment_native'].__file__).with_name(source);sources[p]=p.read_bytes()
         (runtime/name).write_bytes(sources[p])
+    if guard_metadata is not None:
+        source=Path(cedar['cif_live_nonbonded_policy'].__file__).resolve()
+        for path,data in guard_assets.items():
+            target=runtime/'nasolve'/path.relative_to(source.parent)
+            target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data)
+        sources.update(guard_assets)
     sources[Path(__file__).resolve()]=Path(__file__).read_bytes()
     owner_namespace=cedar['cif_attachment_native'].__package__
     if args.endpoint_points is not None:
@@ -263,8 +345,12 @@ def _run(args, cedar, phenix, process_runner):
     request=dict(schema_version=1,recipe_sha256=args.recipe_sha256,mask_sha256=args.mask_sha256,include_pairs=not args.without_pairs)
     if args.endpoint_points is not None:request['endpoint_sha256']=args.endpoint_sha256
     if args.trial_iterations:request['trial']=dict(max_iterations=args.trial_iterations,max_calls=args.trial_calls)
+    if guard_metadata is not None:
+        guard_metadata.update(source_model_sha256=sha256(originals[paths['model']]).hexdigest(),
+            source_receipt_sha256=sha256(originals[paths['native_receipt']]).hexdigest())
+        request['live_policy_guard']=guard_metadata
     _save(root/'request.json',request)
-    (root/'evaluate.py').write_text(WORKER)
+    (root/'evaluate.py').write_text(_evaluation_worker(args.guard_live_policy))
     frozen={p:p.read_bytes() for p in root.rglob('*') if p.is_file()}
     report=dict(schema_version=1,kind='topostitch-captured-objective-probe',status='FAILED',
         runtime_authority=False,optimization_requested=bool(args.trial_iterations),optimization=False,refinement=False,scientific_acceptance=False,
@@ -274,6 +360,7 @@ def _run(args, cedar, phenix, process_runner):
         source_receipt_sha256=sha256(originals[paths['native_receipt']]).hexdigest(),
         recipe_sha256=args.recipe_sha256,mask_sha256=args.mask_sha256,
         execution={'status':'NOT_RUN','timeout_seconds':args.timeout_seconds})
+    if guard_metadata is not None:report['live_policy_guard']=dict(guard_metadata,baseline_verified=False)
     try:
         environment=dict(installation.environment,PYTHONDONTWRITEBYTECODE='1')
         code=cedar['cif_native_validation']._run_native_command([str(executable),'-B','evaluate.py'],
@@ -288,6 +375,9 @@ def _run(args, cedar, phenix, process_runner):
             if 'stopping' in evaluation['trial']:
                 report['stopping_classification']=cedar['cif_fixed_geometry'].classify_stopping(evaluation['trial']['stopping'])
         if code!=0:raise ValueError('Native probe/trial remains under review; inspect retained evaluation.json/native.log')
+        if guard_metadata is not None:
+            digest=_verify_guard_result(root,evaluation,guard_metadata)
+            report['live_policy_guard'].update(baseline_verified=True,policy_sha256=digest)
         rebuilt=json.loads((root/'bootstrap/native_validation.json').read_bytes())
         cedar['cif_native_monomers'].review_full_monomers(rebuilt)
         cedar['cif_native_nonbonded'].review_native_nonbonded(rebuilt)
@@ -335,11 +425,15 @@ def _run(args, cedar, phenix, process_runner):
     finally:
         report['inputs_and_sources_preserved']=_unchanged(originals,snapshots,sources,frozen)
         if not report['inputs_and_sources_preserved']:report.update(status='FAILED',error='Input or trusted source changed')
+        if guard_metadata is not None and not report['inputs_and_sources_preserved']:
+            report['live_policy_guard']['baseline_verified']=False
         report['trusted_sources']=[dict(historical_path=str(p),sha256=sha256(data).hexdigest()) for p,data in sources.items()]
         report['files']=[dict(anchor='probe_directory',path=p.relative_to(root).as_posix(),
             sha256=sha256(p.read_bytes()).hexdigest(),size=p.stat().st_size)
             for p in sorted(root.rglob('*')) if p.is_file()]
         if (root/'endpoint-review.json').is_file():
             report['endpoint_review']=next(row for row in report['files'] if row['path']=='endpoint-review.json')
+        if guard_metadata is not None and (root/'live-policy.json').is_file():
+            report['live_policy_guard']['baseline']=next(row for row in report['files'] if row['path']=='live-policy.json')
         _save(root/'receipt.json',report)
     return root,report

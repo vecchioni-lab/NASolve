@@ -3717,3 +3717,87 @@ failed harness log; it is not a portable/resumable campaign. Roadmap validation:
 and `--check`; `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m pytest -q
 -p no:cacheprovider tests/test_topostitch_roadmap.py` gives **8 passed**; whitespace
 checks pass. These documentation checks do not replace the native receipt above.
+
+## W97 — Explicit guarded captured diagnostics
+
+`run_captured_objective(..., guard_live_policy=True)` carries W96's explicit guard
+into the existing captured worker. The new Python argument is strictly boolean
+and defaults to `False`. No new CLI or campaign default is added. The default
+worker text and its request/report shape are unchanged; a legacy installation
+does not need to import the optional owner. Opt-in requires Cedar C331's qualified
+`cif_live_nonbonded_policy.py` and `data/nonbonded-native-profile.json` in the
+selected installed/developer package. Missing assets or a different qualified
+layout fail before allocating a job; there is no fallback to unguarded work.
+
+The same existing runtime staging/provenance mechanism retains the complete
+two-file guard closure. `request.json.live_policy_guard` binds owner/profile
+hashes and IDs plus source-model and original-capture digests. The guarded worker
+verifies staged bytes, reconstructs the native context using maintained Cedar
+code, compares it with the authenticated capture, and only then snapshots the
+new live policy before the static signature can generate pairs. The configured
+cutoff must already be resolved; this adapter does not warm up a manager to make
+snapshotting succeed. All W96 invocation options and baseline rules apply.
+
+`live-policy.json` is a new schema-1 observation with kind
+`topostitch-live-policy-baseline`, origin `FRESH_RECONSTRUCTED_CONTEXT`, source
+model/capture SHA256 values and the Cedar snapshot. It records a fresh baseline;
+it does **not** reconstruct policy fields missing from a historical capture.
+The controller cross-checks identity, policy digest and exact objective-binding
+provenance even when the child returns zero. The receipt gains an opt-in
+`live_policy_guard` object, `baseline_verified`, and a checksummed
+`probe_directory` reference to the baseline. Source/staged-file drift invalidates
+the job and clears baseline verification. A retained baseline file or verified
+binding alone does not imply the whole job, geometry or chemistry passed.
+Original failures and uncertain-process-ownership behavior remain unchanged.
+
+Ten new cases fail before implementation; the new legacy-with-owner control
+already passed. **84 focused**, **1,864 full +229 subtests**, **84 fresh-wheel**
+tests, six installed CLI help checks and `pip check` pass. Tests cover lazy owner
+loading/cleanup, missing assets before allocation, immutable staged resources,
+missing/mismatched success evidence, changed source/profile and legacy behavior.
+Full regression is appropriate for the worker orchestration change. Runtime
+source/installed bytes match and Python 3.10 syntax parsing passes.
+
+Complete **Phenix 2.2.1-6174** execution uses the explicit, hash-verified W91
+archive inputs: **855 atoms, 204 movable atoms, 14 canonical pair recipes**.
+One fresh native capture remains REVIEW. Unguarded and guarded read-only workers
+both return `INITIAL_CONTEXT_AND_EVALUATIONS_MATCH`, with exactly equal source
+and nonuniform evaluation values/gradients (including repeat evaluations).
+Their guard baseline is new evidence, not a promotion of W91's failed trials.
+No optimizer, coordinate editing or refinement was run.
+
+A fresh installed Willow wheel and the explicitly selected installed C331 wheel
+repeat guarded execution after both original input/capture directories are moved
+away. Values, gradients and binding match the source run exactly; baseline
+references/checksums and retained-source checks pass. Trusted-source entries use
+installed packages, not the old source checkout. This qualifies the explicit
+installed-Cedar route and the declared relocation on this host; it is not a full
+merged-branch test, another native profile, or a universal portable campaign.
+
+Exact local validation commands (historical scratch paths):
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider tests/test_topostitch_captured_job.py tests/test_topostitch_trial.py tests/test_topostitch_capture.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w97-worker/native.py /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-linden/src
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w97-worker/install-check.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w97-worker/install/env/bin/python /private/tmp/willow-w97-worker/installed-native.py
+```
+
+Willow wheel SHA256:
+`3025cf64334f134b566615a3373c80680d7941f2734a204c4fdee235a639b048`.
+Cedar owner remains `c4e5ddb8530358c524feb473f3c4ffe77c64b6ac`; its source/profile
+hashes are unchanged from W96. Native baseline policy digest in this declared
+case is `4765d4a0173a162dda89d0673654e8080e4201e9e82848afc45b457918e0da31`.
+Changed runtime/test files are the existing captured-job module and its tests;
+no Cedar edits, branch merge, dependency change or migration of legacy receipts.
+Scientific inputs, generated captures and job outputs remain local and uncommitted.
+
+Next: predeclare a genuinely displaced intact-duplex diagnostic and matched
+cleanup control, with explicit mask/bounds and protected junctions. Measure guard
+overhead before reserving a longer native evaluation/time budget; do not weaken
+the policy checks for speed. Use contact, collateral geometry/packing, derivative
+and failure evidence, then the separate density-aware/matched-refinement gate.
+W91's small-polish result is settled and need not be rerun. Guarded long optimizer
+trajectories, endpoint-observer combinations and scientific bend acceptance are
+not established by these read-only worker cases.

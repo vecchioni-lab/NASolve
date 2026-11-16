@@ -17,6 +17,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W97 — Carry the explicit policy guard into captured diagnostics
+
+- Add `guard_live_policy=False` to the captured-objective Python API. Opt-in
+  requires the qualified Cedar guard/profile, stages both with tracked hashes,
+  and freezes a new baseline after authenticated fresh-context comparison.
+- Retain a model/capture-bound `live-policy.json` observation and verify its
+  identity/digest against the child binding before accepting a successful job.
+  Legacy worker bytes and default request/report shapes remain unchanged.
+- Qualify installed, relocated execution on the retained public-DNA case with
+  original input paths absent and exact guarded/unguarded values and gradients.
+  No optimization, refinement, edited model or automatic adoption is enabled.
+
 ### W96 — Bind the optional shared native policy guard
 
 - Let `NativeMaskedObjective` accept an explicit trusted live-policy owner and

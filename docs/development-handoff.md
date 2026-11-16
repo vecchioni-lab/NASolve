@@ -361,34 +361,33 @@ refinement or parent-failure promotion. Keep the start API without enabling a
 redundant default stage. Raw evidence remains local; software full/installed
 checks above remain current.
 
-**W96 optional direct guard is qualified; captured-worker adoption remains open.**
-`NativeMaskedObjective` accepts explicit `live_policy_owner` and
-`expected_live_policy` together, checks before native/static helpers and after
-evaluation, detaches the baseline and records opt-in owner/profile provenance.
-Native failures and legacy reports/defaults remain unchanged. The owner is Cedar
-C331 `c4e5ddb8530358c524feb473f3c4ffe77c64b6ac`, including its packaged native
-profile; no Cedar source was merged or copied into tracked Willow runtime.
-See the [API and exact validation receipt](topostitch-periodic.md#w96--optional-direct-live-policy-consumer).
+**W97 guarded captured diagnostics are qualified in the declared read-only case.**
+`run_captured_objective(..., guard_live_policy=True)` stages the explicit C331
+guard/profile, snapshots only after fresh-context comparison, preserves the
+model/capture-bound baseline and verifies child binding/digest evidence. Default
+worker bytes and request/report shape remain unchanged. No CLI/campaign default,
+optimization or edited model is enabled. See the [API and exact validation receipt](topostitch-periodic.md#w97--explicit-guarded-captured-diagnostics).
 
-Nine before-implementation regression failures/errors become passes; **84 focused,
-1,853 full +229 subtests, 84 installed**, six CLI helps and `pip check` pass.
-Complete Phenix 2.2.1-6174 source/installed checks cover actual construction,
-exact guarded/unguarded energies/gradients, six-variable derivatives, movement/
-reset and hidden/mid-call mutation refusal. Scope is a synthetic three-atom native
-manager with zero additive-pair control, not a DNA solve or physical acceptance.
-An initial native installation harness mixed Python ABIs; corrected pure-Python
-wheel staging passes with Phenix's own compiled dependencies. Evidence retains
-that failure. The next slice must qualify captured-worker owner/profile staging
-and provenance before adding any explicit job option; no automatic activation.
-Rowan reviewed the exact W96 runtime/test diff and found no blocking issue in
-this direct optional scope; no extra tests or Cedar edits were part of that review.
-All Linden native jobs are finished. Historical temporary runtimes removed by
-the OS update are not resumable; persistent forensic archives retain old evidence.
+Validation: **84 focused, 1,864 full +229 subtests, 84 installed**, six CLI helps
+and `pip check` pass. Complete Phenix 2.2.1-6174 capture plus guarded/unguarded
+workers on the retained public-DNA case (855 atoms/204 movable/14 pairs) agree
+exactly. Installed guarded execution after removal of original input/capture
+paths reproduces values, gradients and binding. This qualifies the explicit
+installed-Cedar owner route on its pinned profile, not a fully merged branch or
+physical DNA repair. Scientific evidence remains ignored local material.
+
+W98 should predeclare a genuinely displaced intact-duplex/cleanup comparison,
+measure guard overhead to choose bounded native budgets, then retain individual
+contact/packing/geometry/derivative failures before density-aware refinement.
+Do not rerun W91's completed small-polish comparison. Long guarded trajectories
+and endpoint-observer combinations still need their own qualification. Cedar
+C331 remains pinned; Rowan's separate C332 chemistry work does not change that
+interface. All Linden native jobs from this slice are finished.
 
 This direct guard is separate from Cedar Q06 refinement chemistry/PDU angle
 review. Nonuniform curvature, matched diffraction and density-aware S06 remain
 open. Do not restart the completed small-polish comparison: W91 showed no seed
-benefit. After worker qualification, choose a genuinely displaced general motion case
+benefit. For the next native diagnostic, choose a genuinely displaced general motion case
 and retain a matched control, rather than tuning to one benchmark structure.
 
 **Next Pine integration candidate (agreed with Cedar):** for pure representative
@@ -401,7 +400,7 @@ inverse mapping; additions/deletions/renames or changed intent require fresh
 qualification. No runtime implementation or standalone recut refinement is claimed.
 
 Cedar owns the qualified live nonbonded-policy guard and exclusion-table inventory;
-Willow consumes it only through the explicit direct API. If a concrete requirement needs an in-engine facade, retain the
+Willow consumes it through explicit direct and captured-diagnostic opt-ins. If a concrete requirement needs an in-engine facade, retain the
 copy, pair-table, outlier/report and source-bound weighting qualification contract;
 equal random seeds alone are not equal atomwise shakes in different frames.
 See the [bounded integration contract](topostitch-periodic.md#next-implementation-contract).
