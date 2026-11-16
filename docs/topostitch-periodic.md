@@ -3998,33 +3998,112 @@ checkpoint, chemical connection, refinement or scientific acceptance. No runtime
 code or CLI changed, and no new scientific calculation or full-suite rerun was
 needed to materialize/replay the existing observations.
 
-## W99 — Complete full-window native bend controls (in progress)
+## W99 — Complete full-window native bend controls
 
-This separately declared comparison retains the W98 +5-degree taper, all 204
+The separately declared comparison retains the W98 +5-degree taper, all 204
 movable atoms (612 variables), the complete 855-atom source, 14-pair recipe,
 3-Angstrom bound and original 0.1-Angstrom reference tether. The interrupted
-W98 attempt remains unqualified evidence; it is not overwritten or promoted.
-Both pair-enabled and native-only siblings start afresh with identical settings
-apart from the declared pair-force switch. Each has 300 iterations, 500 optimizer
-calls and an 8,000-evaluation mask budget. Initial, full-precision and PDB-rounded
-checks retain every variable at both finite-difference steps (7,350 evaluations
-before optimization). The observed W98 rate of about 0.285 seconds/evaluation
-estimates 2,237 seconds for the maximum 7,850 declared calls; the existing API's
-3,600-second owned cap provides margin without changing runtime policy.
-
-Execution is sequential at low scheduling priority, using installed W98 and
-pinned Cedar C331 under Phenix 2.2.1-6174. The local plan checks source/capture,
-mask and start hashes and refuses another launch without deadline margin.
-Historical working path: `/private/tmp/willow-w99-window/`; plan SHA256
+W98 attempt remains unqualified evidence. Both siblings start afresh with
+identical settings apart from the declared added-pair-force switch: 300
+iterations, 500 optimizer calls, 8,000 total evaluations and a 3,600-second
+owned cap. Initial, full-precision and PDB-rounded derivative checks retain
+every variable at both finite-difference steps (7,350 evaluations before
+optimization). Plan SHA256:
 `fb04b4fcf7905995879a3f3871c8d5aa2b4d992b6d2b9a639e0a76500edab60c`.
-No completion, convergence, coordinate recovery or scientific acceptance is yet
-claimed. Original-source tether bias remains; this is not a blind repair or a
-density/refinement result. Later endpoint observations must retain individual
-contacts, boundaries, packing, rounding and every failure/limit.
 
-Only this declaration and the current queue are committed. Local native inputs
-and outputs remain excluded. No runtime/schema/dependency changes; existing W98
-software/install qualification remains applicable. Documentation checks use
-`python3 scripts/audit_topostitch_roadmap.py --write`, then `--check`, and
-`git diff --check`. Full-suite and installation reruns are not warranted by this
-planning-only change.
+**Completed execution, limited scientific result:** installed W98 with pinned
+Cedar C331 under **Phenix 2.2.1-6174**, sequential at nice 10. Both initial
+coordinates and native/raw-pair/tether components match exactly. All six
+initial/full/rounded derivative audits pass the unchanged 0.001 absolute bound;
+maximum error is 0.0002662 at 1e-4 Angstrom and 0.000002732 at 1e-5 Angstrom.
+Guard baselines, input hashes and all retained payload checks pass. Both stop
+**NOT_CONVERGED_LIMIT**, not native convergence.
+
+| Observation | With pair forces | Without added pair forces |
+| --- | ---: | ---: |
+| Wall time, seconds | 2191.33 | 2184.94 |
+| Total objective evaluations | 7661 | 7663 |
+| RMS from original source, Angstrom | 0.074182 | 0.058718 |
+| Full-precision native target | 6546.3873 | 6531.5154 |
+| Common raw pair target | 435.7551 | 575.4410 |
+| Full / PDB-rounded gradient norm | 0.0633 / 512.77 | 0.2102 / 522.41 |
+
+The common imposed start was 0.917496 Angstrom RMS from source, with native
+and raw-pair targets 10881.6017 and 835.3249. These are objective values, not
+physical energies or crystallographic statistics. PDB rounding substantially
+changes stationarity even though derivative consistency still passes.
+
+Three fresh guarded observers use the same complete pair recipe for the initial
+point and both endpoints. They retain full/rounded native geometry, individual
+pair terms, torsions/planes and symmetry-aware packing. Both endpoints remove
+the imposed affected simple-bond/angle nominal >=3 screens, with no chirality
+sign conflicts; these screens are descriptive, not calibrated acceptance.
+The A104 O3'-A105 P link is 1.9361 Angstrom initially and 1.6082 with pairs,
+against a 1.607 target. Fixed-boundary links and angles remain included.
+
+Compared with the original source, the pair-enabled endpoint improves both
+selected contacts (penalty changes -33.2131 and -18.9310) and the core total
+(-77.0189). The no-added-pair control worsens selected-0 and two core pairs.
+Aggregate packing residual improves from 1077.72 to 1002.14 / 1000.31, while
+110 / 109 existing overlaps worsen and 18 / 16 existing contacts newly overlap.
+The largest positive-overlap increases are 0.1394 / 0.1627 Angstrom. Aggregate
+native dihedral penalties increase by 1.3913 / 1.0995. These individual trade-offs
+and environmental REVIEW survive the favorable aggregate scores. Fixed-only
+native torsion/plane terms remain unchanged.
+
+**Limit:** the original-source tether strongly favors return toward that known
+reference. This qualifies a complete numerical control and observer path, not
+blind MR repair, intended end closure, chemical acceptance, density agreement,
+Rwork/Rfree improvement, or S04/S05 completion. No model is adopted.
+
+The everyday NASolve repository anchor contains the local forensic archive
+`branch-artifacts/willow/w99-full-window-2026-11-16.tar.gz`:
+SHA256 `979172fbdd4c590bdecebf6c840b06da4f4216960a0685ce7ac7c0b713f46c4f`,
+255 payloads, 35,543,397 bytes. Every indexed member was read back and checked.
+Inputs, exact wheels, raw receipts, full comparisons, scripts and stopping
+outcomes are retained. This is not an autonomously portable campaign; Phenix
+is not bundled. Four audited inspection PDBs are in
+`branch-artifacts/willow/inspection-w99-2026-11-16/` under the same anchor.
+Overlay reference, imposed start and either endpoint without independent
+alignment. ADPs are held fixed for inspection only; no new bonds/checkpoints.
+No GUI visual review is claimed. Scientific artifacts remain local, excluded
+from Git.
+
+Historical driver root: `/private/tmp/willow-w99-window/`. Exact controller
+commands used the pinned `/private/tmp/willow-w94-pivot/env/bin/python` with
+`PYTHONDONTWRITEBYTECODE=1`: `run-trials.py`, then `observe.py` at nice 10,
+`summarize.py`, `scalar-endpoints.py`, `scientific-summary.py`, `archive.py` and
+`export-inspection.py`. Native processes use the existing owned-command runner.
+No runtime/schema/dependency changes, so W98 software/install qualification
+remains the applicable code evidence. Documentation validation:
+`python3 scripts/audit_topostitch_roadmap.py --write`, then `--check`, JSON
+readback and `git diff --check`; no new full-suite or installation claim.
+
+## W100 — Source-displaced controls (in progress)
+
+The next predeclared panel removes the pristine-reference tether from the
+perturbed worker: a reference-source control with pair forces, a displaced-source
+control with pair forces, and a matched displaced-source control without them.
+Each starts at its own actual input coordinates with the same **1-Angstrom
+tether sigma**, 204-atom mask, 3-Angstrom radius and W99 iteration/evaluation/
+time caps. The original reference is only a separate control and after-the-fact
+comparison; it is not a displaced-worker restraint target. The source already
+has geometry REVIEW and is not an ideal chemical truth. All ADPs remain fixed;
+no diffraction, inference or physical repair claim.
+
+Before execution, a preparation audit caught a stale original-source checksum
+in the displaced movement mask. The first unexecuted declaration is preserved.
+A fresh declaration corrects only that binding; model/recipe/PHIL bytes, force
+policy, coordinates, cases and budgets are identical. Revised plan SHA256:
+`5fc8b01082cbaf6bfa8d6000baf9a22d34f26b614c3b920efee973cdc4f615c6`.
+The local preflight explicitly maps Willow's candidate checksum field to the
+existing Cedar qualifier's spelling; no owner API or acceptance rule changes.
+
+Fresh native interpretation of the displaced source passes all **22** exact
+identity, monomer-definition, complete proxy, installed-API and policy checks.
+No link or angle is lost. The existing owned runner executes the three trials
+sequentially; launching requires all three worst-case caps plus 600 seconds
+before the 23:00 London cutoff. Results remain pending. Historical working root:
+`/private/tmp/willow-w99-window/next-source-control-v2/`; predecessor preparation,
+checksummed sources, declaration and preflight are retained locally. Do not
+change policy from interim outcomes or promote a failed/limited result.

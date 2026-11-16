@@ -148,7 +148,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-16
 
-**W98 declared-start API and bounded paired-step controls are qualified in their stated scope.**
+**W99 complete full-window controls are audited; W100 source-displaced controls are running.**
 Latest audited runtime is W98 `7faff1a1` on isolated `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -427,20 +427,32 @@ The [gate contract](topostitch.md#final-geotest-alignment-gate-planned) requires
 coupled bend/rise/twist/backbone relaxation and contacts that survive matched
 refinement, with healthy arms/junctions preserved. Small preview motion is not
 that success. No new scientific run, schema or Cedar behavior changes; the
-current next step remains W99. Documentation validation: roadmap regeneration
+current next step is the W100 source-displaced comparison. Documentation validation: roadmap regeneration
 and check, JSON readback, and `git diff --check`; no runtime/full-suite rerun.
 
-**W99 is in progress:** the separately predeclared matched full-window controls
-retain the existing source/start and guards. Both get 300 iterations/500 calls,
-8,000 evaluations and a 3,600-second owned cap, running sequentially. See the
-[declaration](topostitch-periodic.md#w99--complete-full-window-native-bend-controls-in-progress).
-No result is yet qualified; retain individual contact, boundary, packing,
-serialization and failed/limited outcomes. Local paired-step evidence does not
-close S04/S05; general source-displaced and density/matched-refinement controls
-remain ahead. A later owner-side prepared immutable baseline may improve cost
-while retaining every fresh policy/source check; do not weaken coverage or reuse
-mutable policy/contact caches. C331 stays pinned; current Cedar C333/C334 chemistry
-work is separate. Do not rerun the completed W91 small-polish comparison.
+**W99 is recorded:** both complete 204-atom/612-variable controls and three
+common endpoint observers pass numerical/binding checks. Both remain
+NOT_CONVERGED_LIMIT. RMS from the known source is 0.0742 / 0.0587 Angstrom
+(pair forces on/off), from 0.9175; the original 0.1-Angstrom tether biases this
+return. Added pair forces improve both selected contacts and the core total,
+but individual packing/torsion regressions persist and rounding changes
+stationarity. No physical closure, density/Rfree or adoption claim. Exact
+results, commands, local archive and four inspection PDBs are in the
+[W99 evidence](topostitch-periodic.md#w99--complete-full-window-native-bend-controls).
+
+**W100 is in progress:** three separately declared controls use the actual
+reference/displaced sources and a common weaker 1-Angstrom tether to each
+input, with no pristine-reference target in the displaced worker. All 22
+fresh native chemistry/proxy/policy checks pass. A stale source checksum in
+the unexecuted preparation was corrected in a new declaration, retaining the
+original plan and identical coordinates/forces/budgets. The whole sequential
+panel must fit before 23:00 London. See the
+[W100 declaration](topostitch-periodic.md#w100--source-displaced-controls-in-progress).
+S04/S05 and density/matched-refinement gates remain open. C331 stays pinned.
+Cedar C338 (`80c10e2c`) was reviewed at the helper/version/registry boundary;
+no direct Willow conflict found, but no merged-runtime qualification. Its
+intra-site chemistry reporting is not backbone/seam acceptance. Rowan retains
+a full-suite consolidation gate. No runtime/schema changes in W99/W100.
 
 This direct guard is separate from Cedar Q06 refinement chemistry/PDU angle
 review. Nonuniform curvature, matched diffraction and density-aware S06 remain

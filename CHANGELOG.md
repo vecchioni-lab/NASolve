@@ -17,11 +17,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
-### W99 — Budget the complete full-window comparison
+### W100 — Declare independent source-displaced controls
 
-- Declare sequential paired/native-only full-window controls with realistic
-  complete derivative and process budgets. Runs are in progress; no numerical
-  or scientific result, runtime change, or data release is claimed.
+- Freeze reference/displaced-source controls with the same weaker actual-input
+  tether; fresh native interpretation preserves every declared chemical proxy.
+  Retain the corrected unexecuted preparation and pending outcomes. No runtime change.
+
+### W99 — Audit the complete full-window comparison
+
+- Record matched full-window numerical controls and common native endpoint
+  observations, preserving iteration limits, reference bias, rounding sensitivity
+  and individual packing/torsion regressions. Local archive and inspection PDBs
+  are verified; no scientific acceptance, runtime change or data release.
 
 ### Geotest final alignment gate
 

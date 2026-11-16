@@ -229,14 +229,15 @@
         "W94 adds checked explicit pivot rotation through the existing Cartesian image owner and preview tensor path. Off-origin cycles/inverses and software/install regressions pass; no axis inference or three-orientation campaign runner.",
         "W96 qualifies an explicit direct shared-policy consumer with frozen baseline, hidden-mutation rejection and legitimate native rebuilds. Full/install and bounded source/native composition checks pass; no worker/default activation or scientific acceptance.",
         "W97 carries the C331 guard/profile through explicit captured diagnostics, preserves fresh baseline/provenance and verifies success evidence. Source and installed/relocated read-only public-DNA controls agree exactly; no scientific acceptance or default activation.",
-        "W98 qualifies explicit captured starts and installed guarded paired-step trials/endpoint observations. Matched 25/300-iteration controls pass full/rounded derivatives but retain NOT_CONVERGED_LIMIT; original-source tether bias, contact/packing trade-offs and interrupted full-window evidence remain explicit. No full-window or density repair claim."
+        "W98 qualifies explicit captured starts and installed guarded paired-step trials/endpoint observations. Matched 25/300-iteration controls pass full/rounded derivatives but retain NOT_CONVERGED_LIMIT; original-source tether bias, contact/packing trade-offs and interrupted full-window evidence remain explicit. No full-window or density repair claim.",
+        "W99 completes matched installed full-window controls and common native observers: all numerical/binding checks pass, but both remain iteration-limited and reference-biased. Selected/core pair improvements coexist with individual packing/torsion regressions and rounding sensitivity; no scientific gate closes."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "W99 in progress: sequential installed full-window paired/native-only controls retain the W98 +5-degree start, original source/tether and unchanged guards. Each gets 300 iterations/500 optimizer calls, 8000 total evaluations and a 3600-second owned cap; expected 7350 full derivative evaluations are budgeted. Observe complete endpoints/last accepted failures with common per-contact, boundary, packing and serialization reviewers. No full-window qualification until results are audited. General source-displaced and density/matched-refinement controls remain next; do not repeat W91 small-polish work.",
+      "next_action": "W100 in progress: predeclared reference-with-pairs and displaced-source with/without-pairs controls use the same 1 A tether to their own actual input, 204-atom mask and unchanged W99 budgets/guards. Fresh displaced-source native interpretation passes all 22 exact chemistry/proxy/policy checks. Audit all three full/rounded outcomes under common observers; preserve limits/failures and healthy-source REVIEW. No pristine-reference target in displaced workers, policy tuning, density or scientific acceptance. Follow with general source/density/matched-refinement qualification, not repeated small-polish controls.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -255,14 +256,15 @@
         "E_GUARD_INTEGRATION_PREP",
         "E_LIVE_POLICY_CONSUMER",
         "E_GUARDED_CAPTURED_WORKER",
-        "E_CAPTURED_DIAGNOSTIC_START"
+        "E_CAPTURED_DIAGNOSTIC_START",
+        "E_FULL_WINDOW_NATIVE_CONTROL"
       ],
       "last_audit": {
         "date": "2026-11-16",
         "reviewer": "Linden",
         "code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4",
-        "human_update": 98,
-        "scope": "Explicit-start API, installed guarded paired-step trials and endpoint-observer consistency qualified. All trials remain iteration-limited; original-source tether bias, collateral geometry and full-window/density gates remain open."
+        "human_update": 99,
+        "scope": "Complete W99 native execution and endpoint observations audited. Numerical control path qualifies; iteration limits, source-tether bias, local tradeoffs and scientific/density gates remain."
       }
     },
     {
@@ -307,13 +309,14 @@
         "W91 qualifies execution of the explicit diagnostic-start interface through matched native trials and endpoint observations, preserving both failures. This small coarse seed reaches the same rounded atomic point as cold cleanup and gives no demonstrated benefit; local improvements and remaining packing/torsion reviews stay separate.",
         "W96 qualifies an explicit direct shared-policy consumer with frozen baseline, hidden-mutation rejection and legitimate native rebuilds. Full/install and bounded source/native composition checks pass; no worker/default activation or scientific acceptance.",
         "W97 carries the C331 guard/profile through explicit captured diagnostics, preserves fresh baseline/provenance and verifies success evidence. Source and installed/relocated read-only public-DNA controls agree exactly; no scientific acceptance or default activation.",
-        "W98 qualifies explicit captured starts and installed guarded paired-step trials/endpoint observations. Matched 25/300-iteration controls pass full/rounded derivatives but retain NOT_CONVERGED_LIMIT; original-source tether bias, contact/packing trade-offs and interrupted full-window evidence remain explicit. No full-window or density repair claim."
+        "W98 qualifies explicit captured starts and installed guarded paired-step trials/endpoint observations. Matched 25/300-iteration controls pass full/rounded derivatives but retain NOT_CONVERGED_LIMIT; original-source tether bias, contact/packing trade-offs and interrupted full-window evidence remain explicit. No full-window or density repair claim.",
+        "W99 completes matched installed full-window controls and common native observers: all numerical/binding checks pass, but both remain iteration-limited and reference-biased. Selected/core pair improvements coexist with individual packing/torsion regressions and rounding sensitivity; no scientific gate closes."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "W99 in progress: sequential installed full-window paired/native-only controls retain the W98 +5-degree start, original source/tether and unchanged guards. Each gets 300 iterations/500 optimizer calls, 8000 total evaluations and a 3600-second owned cap; expected 7350 full derivative evaluations are budgeted. Observe complete endpoints/last accepted failures with common per-contact, boundary, packing and serialization reviewers. No full-window qualification until results are audited. General source-displaced and density/matched-refinement controls remain next; do not repeat W91 small-polish work.",
+      "next_action": "W100 in progress: predeclared reference-with-pairs and displaced-source with/without-pairs controls use the same 1 A tether to their own actual input, 204-atom mask and unchanged W99 budgets/guards. Fresh displaced-source native interpretation passes all 22 exact chemistry/proxy/policy checks. Audit all three full/rounded outcomes under common observers; preserve limits/failures and healthy-source REVIEW. No pristine-reference target in displaced workers, policy tuning, density or scientific acceptance. Follow with general source/density/matched-refinement qualification, not repeated small-polish controls.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -349,14 +352,15 @@
         "E_GUARD_INTEGRATION_PREP",
         "E_LIVE_POLICY_CONSUMER",
         "E_GUARDED_CAPTURED_WORKER",
-        "E_CAPTURED_DIAGNOSTIC_START"
+        "E_CAPTURED_DIAGNOSTIC_START",
+        "E_FULL_WINDOW_NATIVE_CONTROL"
       ],
       "last_audit": {
         "date": "2026-11-16",
         "reviewer": "Linden",
         "code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4",
-        "human_update": 98,
-        "scope": "Explicit-start API, installed guarded paired-step trials and endpoint-observer consistency qualified. All trials remain iteration-limited; original-source tether bias, collateral geometry and full-window/density gates remain open."
+        "human_update": 99,
+        "scope": "Complete W99 native execution and endpoint observations audited. Numerical control path qualifies; iteration limits, source-tether bias, local tradeoffs and scientific/density gates remain."
       }
     },
     {
@@ -508,7 +512,7 @@
         "W59 computes node images from an explicit selected forest and fixed anchors using existing path/relabel owners; full winding and unselected vertices remain. Two public alternatives compose with existing packets/view/scattering. No automatic alternatives or human selection.",
         "W60 persists explicit chosen edges/anchors in the existing source-bound packet and recomputes derivation on load; viewer exposes that proposal intent. Old direct-image packets/scenes retain exact behavior; no human acceptance or editing UI.",
         "W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change.",
-        "W64 compares 2\u20138 explicit same-source/graph packets in the existing viewer with a shared camera and local Cut numbers; switching refreshes seam/provenance details and clears stale inspection. Exact old scenes remain; no model selection/approval or rendered review claimed.",
+        "W64 compares 2–8 explicit same-source/graph packets in the existing viewer with a shared camera and local Cut numbers; switching refreshes seam/provenance details and clears stale inspection. Exact old scenes remain; no model selection/approval or rendered review claimed.",
         "W65 adds a source-bound preference download/readback for prefer-cut, keep-original or needs-revision. Fresh comparison replay rejects stale choices; scene remains unchanged and no authenticated approval/model selection is claimed. Browser/download validation still open.",
         "W66 projects declared directed backbone continuation, representation/chemical/unknown boundaries and existing phosphate inventory from replayed packets. Unresolved partners retain P/OP1/OP2 intent; OP3 conflicts are scoped to continuation, with terminal phosphate consent separate. Exact route-image transport, optional view and preference context are read-only; no new edge or native enforcement.",
         "W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement.",
@@ -932,7 +936,7 @@
       "code_commit": "6ff9eb874bc3f07cd64231f52cf21e3485f657ec",
       "human_update": 51,
       "reference": "docs/topostitch-preview.md#w51--native-convergence-ceiling-control",
-      "result": "Two complete Phenix 2.2.1-6174 executions retain FAILED line-search rounding outcomes at358/351 accepted steps. Initial derivative gates pass and both old200-iteration traces reproduce exactly. Source/input bytes preserved. Last accepted coordinate changes beyond200 are below0.000105 \u00c5, but no post-exception endpoint derivative gate or candidate emission occurs.",
+      "result": "Two complete Phenix 2.2.1-6174 executions retain FAILED line-search rounding outcomes at358/351 accepted steps. Initial derivative gates pass and both old200-iteration traces reproduce exactly. Source/input bytes preserved. Last accepted coordinate changes beyond200 are below0.000105 Å, but no post-exception endpoint derivative gate or candidate emission occurs.",
       "limitation": "Negative evidence only; no convergence, scientific acceptance, stopping tolerance relaxation, ordinary refinement or Cedar change. Runtime code remains W50, whose full/installed validation applies; roadmap/doc checks pass. Generated runs/traces stay local."
     },
     "E_REGISTERED_RELABEL_PREVIEW": {
@@ -1164,7 +1168,7 @@
       "code_commit": "cc9fe96d456f9c3fbbf819e9afe7541f03aec361",
       "human_update": 80,
       "reference": "docs/topostitch-periodic.md#w80--bind-cartesian-displacement-tensors-to-the-coordinate-frame",
-      "result": "Shared Cartesian R U R^T and complete ReferenceFrame forward/inverse tensor transport retain labels/context/full permutation; existing preview ANISOU writer reuses rotation.13 fail-before regressions; focused184; full1769 +229; installed/relocated668. Installed Phenix2.2.1-6174:855 tensors,2cuts\u00d73orders,1008 Fcalc values maxerror4.43e-11; independent native fractional tensor comparison and omitted-rotation negative control pass.",
+      "result": "Shared Cartesian R U R^T and complete ReferenceFrame forward/inverse tensor transport retain labels/context/full permutation; existing preview ANISOU writer reuses rotation.13 fail-before regressions; focused184; full1769 +229; installed/relocated668. Installed Phenix2.2.1-6174:855 tensors,2cuts×3orders,1008 Fcalc values maxerror4.43e-11; independent native fractional tensor comparison and omitted-rotation negative control pass.",
       "limitation": "Arithmetic and complete in-memory diagnostic only; caller owns fractional conversion, ADP presence/flags and physical validation. No new writer/schema, ADP optimization, experimental data, model materialization or ordinary recut refinement. Scientific evidence local; P03/P04 remain partial."
     },
     "E_COMBINED_FULL_AUDIT": {
@@ -1220,7 +1224,7 @@
       "code_commit": "82ac2b3f695fe81bdb09b4347d2f6e6b0adfd782",
       "human_update": 87,
       "reference": "docs/topostitch-periodic.md#w87--compare-matched-six-variable-placements-without-promoting-failures",
-      "result": "Phenix2.2.1-6174 paired/core-only trials both FAILED rounding after11/10 accepted steps; exact callback replay and full/rounded Cartesian derivative checks pass. Common14-recipe observers complete: selected-pair target -7.122/-5.318, nonbonded1077.722\u21921055.746/1059.585, retained pairs invariant, motions .0538/.0444 Angstrom. Individual packing/AT component regressions retained with severity, not count-based rejection.",
+      "result": "Phenix2.2.1-6174 paired/core-only trials both FAILED rounding after11/10 accepted steps; exact callback replay and full/rounded Cartesian derivative checks pass. Common14-recipe observers complete: selected-pair target -7.122/-5.318, nonbonded1077.722→1055.746/1059.585, retained pairs invariant, motions .0538/.0444 Angstrom. Individual packing/AT component regressions retained with severity, not count-based rejection.",
       "limitation": "No success endpoint, candidate, refinement, scientific acceptance, runtime/schema changes or new full-suite run. Host/native arithmetic mismatch preserved and resolved through exact same-interpreter replay; the live-policy guard remains open, separate from CedarQ06 refinement chemistry. Geometry-only observations do not close S04/S05."
     },
     "E_SAVED_BEND_MOTION": {
@@ -1252,7 +1256,7 @@
       "code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
       "human_update": 91,
       "reference": "docs/topostitch-periodic.md#w91--compare-cold-and-explicitly-coarse-seeded-atomic-cleanup",
-      "result": "Two complete Phenix2.2.1-6174 trials use installedW90 and pinnedC325 owners. Cold/seeded FAILED rounding at358/363 accepted steps,390/401 optimizercalls; both failed-point full/rounded derivatives pass. Common-recipe observers complete. Max endpoint difference2.65e-7 Angstrom; all855 rounded triplets identical; no demonstrated seed benefit. Active bond/angle nominal>=3 counts9/14\u21920, boundary angle1\u21920; packing severity retained.",
+      "result": "Two complete Phenix2.2.1-6174 trials use installedW90 and pinnedC325 owners. Cold/seeded FAILED rounding at358/363 accepted steps,390/401 optimizercalls; both failed-point full/rounded derivatives pass. Common-recipe observers complete. Max endpoint difference2.65e-7 Angstrom; all855 rounded triplets identical; no demonstrated seed benefit. Active bond/angle nominal>=3 counts9/14→0, boundary angle1→0; packing severity retained.",
       "limitation": "No parent failure promotion, numerical/scientific acceptance, model/checkpoint/refinement or default change. One small coarse polish is not large-shape qualification. Live-policy mutation guard is distinct from CedarQ06 chemistry survival. Evidence-only update; W90 software checks retained."
     },
     "E_LIVE_NONBONDED_CONTRACT": {
@@ -1484,6 +1488,45 @@
         "scientific_acceptance": false,
         "committed": false
       }
+    },
+    "E_FULL_WINDOW_NATIVE_CONTROL": {
+      "kind": "complete_full_window_native_control_and_endpoint_audit",
+      "code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4",
+      "human_update": 99,
+      "reference": "docs/topostitch-periodic.md#w99--complete-full-window-native-bend-controls",
+      "result": "Both predeclared installed Phenix 2.2.1-6174 204-atom/612-variable controls pass initial/full/rounded derivatives and guards; initial components/points match. Both remain NOT_CONVERGED_LIMIT at 300 iterations, with 7661/7663 total evaluations. RMS from original source 0.074182/0.058718 A from 0.917496. Three common guarded endpoint observers pass; scalar affected screens improve, both selected contacts and core total improve with pair forces, but individual packing/torsion regressions persist.",
+      "limitation": "Original-source 0.1 A tether favors known-reference recovery. PDB rounding changes stationarity; no convergence, broad or blind recovery, chemical acceptance, end closure, density/R statistics, adoption or merged-build qualification.",
+      "owner_commit": "c4e5ddb8530358c524feb473f3c4ffe77c64b6ac",
+      "local_forensic_archive": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/w99-full-window-2026-11-16.tar.gz",
+        "sha256": "979172fbdd4c590bdecebf6c840b06da4f4216960a0685ce7ac7c0b713f46c4f",
+        "bytes": 35543397,
+        "files": 255,
+        "payload_index_verified": true,
+        "portable_campaign": false,
+        "committed": false
+      },
+      "native_controls": {
+        "atom_count": 855,
+        "movable_atoms": 204,
+        "variables": 612,
+        "all_stopping_classification": "NOT_CONVERGED_LIMIT",
+        "all_derivative_status": "DERIVATIVES_PASS",
+        "observer_jobs": 3,
+        "observer_status": "ENDPOINT_OBSERVATIONS_REVIEW",
+        "scientific_acceptance": false
+      },
+      "inspection_exports": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/inspection-w99-2026-11-16",
+        "receipt": "inspection-receipt.json",
+        "receipt_sha256": "fea7b293db16b106719a099ebcb27cb1c3edb37445dc5969132196ef53917192",
+        "pdb_files": 4,
+        "atoms_per_pdb": 855,
+        "scientific_acceptance": false,
+        "committed": false
+      }
     }
   },
   "benchmarks": [
@@ -1630,13 +1673,13 @@
     "Periodic fit guard 84cb847 consumes the existing selected-image audit. Tighter native controls establish a contact/strain tradeoff, not scientific closure; preserve the original failed angle result.",
     "Schema-2 extended backbone patch 6fc4898 preserves schema-1 replay; S04/S05 remain partial pending native image-aware closure and matched refinement.",
     "Post-transform image guard a3e4978 catches source-clear candidates that collide after fitting. Native bond/angle derivative and fixed-base relaxation diagnostics narrow S05 uncertainty without creating another Cedar engine or closing scientific gates.",
-    "Native plane probe 7255bfd reuses Cedar correction and records raw failures. A plausible energy is not derivative qualification; do not repeat C23\u2013C27 diagnosis or create another plane-correction implementation."
+    "Native plane probe 7255bfd reuses Cedar correction and records raw failures. A plausible energy is not derivative qualification; do not repeat C23–C27 diagnosis or create another plane-correction implementation."
   ],
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 99,
-    "next": 100,
+    "current": 100,
+    "next": 101,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -2038,6 +2081,12 @@
       {
         "number": 99,
         "title": "Qualify complete full-window native bend controls",
+        "state": "RECORDED",
+        "code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4"
+      },
+      {
+        "number": 100,
+        "title": "Compare independently tethered reference and displaced sources",
         "state": "IN_PROGRESS",
         "code_commit": null
       }
