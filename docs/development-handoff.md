@@ -1,12 +1,23 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C333 automatic bond discovery in preparation — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. Current delivery **C333**; prior
-published **2d77cb6e (C332)**. Focused checks only; no Rowan full suite, new branch,
+Updated **2026-11-16, C334 declared linked-site geometry readback — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. Current delivery **C334 evidence**; runtime
+published **340bda12 (C333)**. Focused checks only; no Rowan full suite, new branch,
 default activation or merge. Linden owns Pine/Willow and does not edit Cedar.
 Current work window ends about **14:34 London**.
 
 ## Current work and interruption recovery
+
+**C334 read-only result:** the existing declared-projection reader now confirms
+B:4's 22 heavy atoms match its linked B:3/B:5 intent exactly. C329's full-runtime-CIF
+comparison carried an isolated-versus-linked OP3 warning; the projected replay
+removes only that warning. Prepared triple geometry passes the existing screen;
+after refinement the target screen passes but the terminal-side angle stays
+173.9366° and coordinate status stays REVIEW. All geometric measurements and
+screen settings are unchanged, all 190 historical files/timestamps preserved,
+zero new native jobs, 0.47 s replay. No runtime/schema/model changes. Exact binding
+and commands: `declared_linked_site_geometry_readback_2026_11_16`. All Rowan jobs
+are stopped; no further heavy checks are queued.
 
 **C333 qualified:** explicit `automatic_bond_targets=True` now reaches checked
 PostMR/ordinary/complete/prepared Python entry. Source/library-discovered pairs
@@ -35,15 +46,15 @@ everyday checkout's ignored `branch-artifacts/cedar/`. Temporary native-copy cod
 was removed; raw science stays local. Fresh wheel SHA:
 `5501b04b5495811de3487b5e7683d7853273c4d6c70958ef7b07434efc77c7c8`.
 
-**Next bounded Q06 step:** reuse authenticated C329 final native evidence and the
-frozen bundle's declared site projection for honest achieved-geometry reporting.
-Prior-work search found `cif_construction_native._triple_readback` already scopes
-that comparison (introduced at `94ababa1`, with duplicate-site and PDU/5PC/Q17
-controls). C329 fed it the full OP3-bearing runtime CIF; verify the declared
-linked-site projection rather than prune observations or implement another screen.
-No new refinement is needed for this reporting check. Keep genuine PDU bending in
-REVIEW. Broader whole-substituent/held-out survival still gates Q06; do not change
-restraint strengths or rerun identical C329/C309/C314 work to force a pass.
+**Next bounded Q06 step:** integrate this existing site-scoped achieved-geometry
+readback into ordinary refinement reporting. Bind the exact selected runtime and
+its declared projection to the authenticated final model/native evidence; preserve
+unavailable evidence honestly and keep genuine bending REVIEW visible without
+turning a qualified fallback into a silent failure. C334 confirms the reporting
+inputs; it does not implement ordinary output integration. Reuse
+`cif_construction_native._triple_readback` (`94ababa1`) and existing projection/
+capture owners. Broader whole-substituent/held-out survival still gates Q06. Do not
+add OP3, strengthen restraints or rerun identical C329/C309/C314 work to force a pass.
 
 **Prior solutions:** C326–C328 already own prepared/complete/ordinary explicit
 repair, fallback and immutable attempts; C332 supplies source/library selection
@@ -163,7 +174,8 @@ commands, hashes, anchor-relative evidence and limitations. New entries:
 `live_nonbonded_policy_contract_2026_11_15` and
 `live_nonbonded_policy_guard_2026_11_16` and
 `source_aware_bond_discovery_2026_11_16` and
-`automatic_preparation_bond_discovery_2026_11_16`. The packaged public PDB
+`automatic_preparation_bond_discovery_2026_11_16` and
+`declared_linked_site_geometry_readback_2026_11_16`. The packaged public PDB
 retains its original fixed-column padding and exact hash. C325 whitespace checking
 excludes only that byte-pinned PDB (`git diff HEAD^ HEAD --check -- .
 ':(exclude)src/nasolve/data/replay/5W6W_noPO4.pdb'`); all code/docs pass. Reuse the earlier C307–C322 entries

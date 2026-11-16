@@ -102076,5 +102076,222 @@
       "One control does not qualify all ligands, SDKs/platforms or 100-dataset campaign capacity."
     ],
     "next": "Reuse existing explicit-site _triple_readback (94ababa1) and declared frozen bundle projections against authenticated C329 final native evidence, rather than feed a full isolated OP3-bearing dictionary or invent a second screen. Retain genuine bending and source/geometry uncertainty."
+  },
+  "declared_linked_site_geometry_readback_2026_11_16": {
+    "milestone": "C334",
+    "status": "LINKED_SITE_SCOPE_CONFIRMED_POST_REFINEMENT_GEOMETRY_STILL_REVIEW",
+    "author": "Rowan",
+    "source_commit": "340bda128612836c2c8558f76ff62913fd4b2e60",
+    "prior_work": "Existing _triple_readback introduced at 94ababa1 already isolates a declared heavy-atom site and reuses the original screen. C329 called it with the full runtime CIF, retaining an isolated-versus-linked inventory warning. C326 supplies the independently frozen site projection; no new adapter or screen was needed.",
+    "behavior_before": "Historical C329 triple report includes native-atom-inventory-differs because the full isolated numerical dictionary includes OP3 while explicitly linked B:4 does not.",
+    "behavior_after": "Separate read-only replay using the authenticated declared B:4 projection matches all 22 native heavy atoms and removes only that scope warning. Prepared triple screen passes; refined target screen passes but achieved-coordinate bending remains REVIEW. Runtime behavior and original C329 records are unchanged.",
+    "changed_files": "Maintained docs/queue/handoff and this compact evidence only; no src/tests/schema/default changes.",
+    "validation": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/cedar/runners/c334_site_readback.py",
+      "cwd_anchor": "everyday NASolve checkout",
+      "environment": "Offline ordinary-Python replay of existing Phenix 2.2.1-6174 / dispatcher 2.2.1 Darwin arm64 evidence. No new Phenix/Coot/dry-run/energy/gradient/refinement execution. Audit hook forbids subprocess/system/spawn.",
+      "authentication": "C329 compact receipt hashes checked against ledger; C333 input-origin checksum binds C326 prepared root. Existing bundle reader replays declared projection, existing capture reader validates exact model/inputs/worker/native evidence, native atoms match captured model, model hashes and old full-scope reports reproduce C329, corrected CIF hash equals C327/C333 output.",
+      "result": {
+        "status": "DECLARED_LINKED_SITE_READBACK_PASS_GEOMETRY_STILL_REVIEW",
+        "scope": "Existing source-bound projection and same authenticated native captures; no atom pruning from observations or changed screen.",
+        "component": "PDU",
+        "site": "B:4",
+        "context": {
+          "five_prime_state": "linked",
+          "incoming_site": "B:3",
+          "outgoing_site": "B:5",
+          "site": "B:4",
+          "three_prime_state": "linked"
+        },
+        "models": {
+          "prepared": {
+            "model_sha256": "636223e4edb19caf32e6bf70799f20d008c8ae45a65cc83a727bf1a3d38203d3",
+            "native_receipt_sha256": "5ff8f5d8eda99562b8043b338279c4000250b4fca318b2f9973f00377e0974c4",
+            "full_dictionary_sha256": "e0a3342167cdc6a391cde5470de9b4b2cdb59acb89fa126cb8d2e14c5b32fe8b",
+            "declared_projection_sha256": "8d244673bca2038a19d9811170649be221fe1330c761608a6aa94b34cb6df833",
+            "old_findings": [
+              {
+                "rule": "native-atom-inventory-differs",
+                "atoms": []
+              }
+            ],
+            "scoped_findings": [],
+            "target_screen": "PASS",
+            "coordinate_screen": "PASS",
+            "status": "TRIPLE_SCREEN_PASS",
+            "triple_bonds": [
+              {
+                "atoms": [
+                  "C5A",
+                  "C5B"
+                ],
+                "declared_order": "TRIPLE",
+                "distance": {
+                  "target": 1.174,
+                  "esd": 0.02,
+                  "observed": 1.1894326378572284,
+                  "membership_count": 1
+                },
+                "angles": [
+                  {
+                    "atoms": [
+                      "C5",
+                      "C5A",
+                      "C5B"
+                    ],
+                    "target": 180.0,
+                    "esd": 3.0,
+                    "observed": 176.40104309719186,
+                    "membership_count": 1
+                  },
+                  {
+                    "atoms": [
+                      "C5M",
+                      "C5B",
+                      "C5A"
+                    ],
+                    "target": 180.0,
+                    "esd": 3.0,
+                    "observed": 176.88499926052592,
+                    "membership_count": 1
+                  }
+                ]
+              }
+            ],
+            "exact_declared_heavy_atom_inventory": true,
+            "heavy_atom_count": 22,
+            "all_original_geometric_measurements_unchanged": true
+          },
+          "refined": {
+            "model_sha256": "757701e6faed1021289d4308bf4af45e29a47afac1dc4d681443f2d609863985",
+            "native_receipt_sha256": "7fc956f2f64c1950240a7eb59a4fc495ed0251350948b230acfccaeb9026edf6",
+            "full_dictionary_sha256": "e0a3342167cdc6a391cde5470de9b4b2cdb59acb89fa126cb8d2e14c5b32fe8b",
+            "declared_projection_sha256": "8d244673bca2038a19d9811170649be221fe1330c761608a6aa94b34cb6df833",
+            "old_findings": [
+              {
+                "rule": "native-atom-inventory-differs",
+                "atoms": []
+              },
+              {
+                "rule": "linear-coordinate-bending",
+                "atoms": [
+                  "C5M",
+                  "C5B",
+                  "C5A"
+                ],
+                "observed": 173.9366437084452
+              }
+            ],
+            "scoped_findings": [
+              {
+                "rule": "linear-coordinate-bending",
+                "atoms": [
+                  "C5M",
+                  "C5B",
+                  "C5A"
+                ],
+                "observed": 173.9366437084452
+              }
+            ],
+            "target_screen": "PASS",
+            "coordinate_screen": "REVIEW",
+            "status": "REVIEW",
+            "triple_bonds": [
+              {
+                "atoms": [
+                  "C5A",
+                  "C5B"
+                ],
+                "declared_order": "TRIPLE",
+                "distance": {
+                  "target": 1.174,
+                  "esd": 0.02,
+                  "observed": 1.1943320308858816,
+                  "membership_count": 1
+                },
+                "angles": [
+                  {
+                    "atoms": [
+                      "C5",
+                      "C5A",
+                      "C5B"
+                    ],
+                    "target": 180.0,
+                    "esd": 3.0,
+                    "observed": 175.01932819180604,
+                    "membership_count": 1
+                  },
+                  {
+                    "atoms": [
+                      "C5M",
+                      "C5B",
+                      "C5A"
+                    ],
+                    "target": 180.0,
+                    "esd": 3.0,
+                    "observed": 173.9366437084452,
+                    "membership_count": 1
+                  }
+                ]
+              }
+            ],
+            "exact_declared_heavy_atom_inventory": true,
+            "heavy_atom_count": 22,
+            "all_original_geometric_measurements_unchanged": true
+          }
+        },
+        "new_native_calls": 0,
+        "historical_files_preserved": 190,
+        "elapsed_seconds": 0.4678948330001731,
+        "input_anchors": {
+          "live": "NASolve-live-tests",
+          "refinement": "329_Cedar_corrected-CIF-refinement-3j49p8v8",
+          "prepared_bundle": "326_Cedar_prepared-bond-repair-j1iemjfx/relocated/inputs/bundle",
+          "projection": "326_Cedar_prepared-bond-repair-j1iemjfx/relocated/inputs/bundle/components/PDU/prepared/projected_B_4.cif"
+        },
+        "limitations": [
+          "No new runtime/reporting API or ordinary refinement integration.",
+          "This removes an isolated-versus-linked inventory warning only; PDU bending remains REVIEW.",
+          "No phosphate policy change, OP3 addition/deletion, new thresholds, model edits, energy/force run or scientific acceptance.",
+          "C329 historical report remains unchanged; this is a separately bound scoped interpretation."
+        ]
+      },
+      "tests": "No tests rerun for unchanged production code. C333 658 focused and 52 installed remain the source validation; existing PDU/5PC/Q17 duplicate-site/defect tests already exercise this reader. No full suite; last full Cedar C220/583d30df.",
+      "checks": "Historical file bytes/mtimes unchanged, old ledger entries preserved, JSON/link/hash checks and git diff --check."
+    },
+    "scientific_scope": {
+      "linked_intent": "B:3 -> B:4 -> B:5; both ends explicitly linked in frozen preparation. No blanket phosphate or OP3 policy.",
+      "interpretation": "Existing target-screen PASS is a bounded diagnostic, not independent calibration of every target or chemical approval. One terminal-side angle remains 173.9366437084452 degrees against unchanged 180/3-degree-ESD restraints; the other is 175.01932819180604 degrees. All measured distances/angles, memberships and original screen settings are unchanged.",
+      "limitations": [
+        "No new ordinary refinement/reporting integration or runtime API.",
+        "No added/deleted native atoms, altered model/CIF/PHIL, restraint strengthening, reference expansion or acceptance-threshold change.",
+        "Q06 whole-substituent and held-out survival remain open; substituted-scaffold data are not diffraction from modified crystals.",
+        "C329 remains preserved with its original scope; this separate evidence supersedes only the interpretation that its inventory warning could indicate missing OP3 at linked B:4."
+      ]
+    },
+    "compatibility": "Documentation/evidence only; no migration, historical rewrite, checkpoint or selected result change.",
+    "artifacts": {
+      "included": "Compact measurements/input fingerprints and updated maintained documents.",
+      "excluded": "All models/CIFs/native inventories, raw science/logs and local runner. No new live-test run directory; only a small ignored local readback report.",
+      "local_anchor": "everyday NASolve checkout",
+      "references": [
+        {
+          "path": "branch-artifacts/cedar/runners/c334_site_readback.py",
+          "sha256": "26498e089a48f1e964593a8f22733951b445b8a3639b5fb366dc2e5ca01b877b",
+          "bytes": 6368
+        },
+        {
+          "path": "branch-artifacts/cedar/c334-site-readback/summary.json",
+          "sha256": "fbeee007277f333efd86890cb691c4b303a641b24a74f4a9ed92ba4bc2c9a268",
+          "bytes": 5165
+        },
+        {
+          "path": "branch-artifacts/cedar/c334-site-readback/readback.log",
+          "sha256": "8bb870c0ad3966eb2976d027cd8fd4fa59f8bd0240407c790e0c6023568d13e1",
+          "bytes": 189
+        }
+      ]
+    },
+    "next": "Reuse the declared-projection/capture readers when integrating achieved-geometry notes into ordinary refinement output. Bind exact selected runtime, final native/model identity and projection, preserve genuine REVIEW and explicit unavailable evidence; do not infer a missing OP3 or claim a new chemistry fix."
   }
 }

@@ -121,11 +121,12 @@ new experiment; distinguish wrong targets, effective restraints and competing
 forces. Close whole-substituent and related held-out survival with scientifically
 justified criteria, not stronger restraints chosen to force a pass. Prior-work check found that `cif_construction_native._triple_readback` already
 scopes a declared heavy-atom projection to one native site (introduced at
-`94ababa1`, with PDU/5PC/Q17 and duplicate-site controls). C329 called that reader
-with the full runtime CIF, which explains why its OP3 inventory warning must stay
-separate from real linked-site omissions. Reuse the frozen bundle's declared
-site projection and authenticated final capture before inventing another screen
-or rerunning refinement; do not silently prune atoms to match an observation.
+`94ababa1`, with PDU/5PC/Q17 and duplicate-site controls). C334 replays C329 using the frozen linked B:4 projection instead of the full
+runtime CIF: all 22 heavy atoms match, the isolated-versus-linked OP3 warning
+clears, and the genuine terminal-side bend remains REVIEW with identical
+measurements. All 190 old files are unchanged; no native rerun. Ordinary final-
+refinement reporting still needs this existing projection/capture binding; do not
+invent another screen or silently prune atoms to match observations.
 Later ordinary CLI/campaign exposure and default/release scope belong with Q15/Q16; a numerical
 repair or delivery pass does not close Q06. See the
 [request contract](cif-doctor.md#automatic-bond-discovery-in-fresh-preparation-c333).
@@ -284,7 +285,8 @@ Do not rerun identical delivery or the already-relevant C309/C314 force analysis
 survival.** Keep the generic triple diagnostic's isolated OP3-bearing reference
 warning separate from actual linked B:4 native missing atoms (none). Q14 should
 use explicit site projections, not suppress membership checks or add unwanted
-OP3. Changed intent needs a fresh request/run; never manufacture a checkpoint or
+OP3. C334 confirms that this existing reader removes only the scope warning and
+retains real bending; ordinary achieved-geometry reporting remains to be joined. Changed intent needs a fresh request/run; never manufacture a checkpoint or
 rewrite original evidence. Neighboring targets, source hands and terminal intent
 remain visible. No blanket flattening, restraint strengthening to force acceptance,
 repeated Coot construction or Free-R tuning. Q07–Q16 remain ordered below.

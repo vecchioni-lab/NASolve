@@ -114,7 +114,11 @@ identity are preserved. This is a checked proposal/repair route, not approval of
 the achieved geometry or a new reference model. Actual corrected-CIF
 refinement has now been tested with the corrected CIF itself: the final printed
 restraints retain the intended target, and the written models reproduce Phenix's
-saved scattering. The corrected bond reaches 1.482 Å, but the same PDU bend
+saved scattering. A read-only check using the declared linked-site projection
+also confirms that B:4 has exactly its intended atoms: the earlier OP3 inventory
+warning compared different chemical contexts. That correction to report scope
+preserves the genuine bending warning and every measured angle. The corrected
+bond reaches 1.482 Å, but the same PDU bend
 remains. This closes the delivery question, not whole-substituent approval; the
 earlier force analysis remains relevant and no restraint strength was increased.
 Matched refinement trials now show that changing only the terminal bond target

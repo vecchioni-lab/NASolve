@@ -288,6 +288,21 @@ archived relocation checks pass. Focused validation: 658 passes, plus 52 from a
 fresh wheel; no full suite. Exact scope and commands are in the maintained handoff
 and `automatic_preparation_bond_discovery_2026_11_16` evidence entry.
 
+### Declared linked-site geometry readback (C334)
+
+The existing construction reader `_triple_readback` already accepts a declared
+site projection and isolates that exact native site. C334 reuses it against C329's
+authenticated prepared/refined captures and C326's frozen B:4 projection. All 22
+native heavy atoms match the linked declaration, so only the isolated-versus-linked
+inventory warning disappears. Existing targets remain screened PASS; the final
+terminal-side angle remains 173.9366° and coordinates remain REVIEW. No source,
+model, phosphate policy, target/ESD, screen or historical report changes.
+
+This is a read-only scope correction, not new runtime/report integration or
+whole-substituent acceptance. Ordinary reporting must still bind the selected
+runtime/projection to its actual final model/native evidence. Exact replay and
+input hashes: `declared_linked_site_geometry_readback_2026_11_16` in the ledger.
+
 ### Explicit prepared target execution (C326)
 
 The existing prepared executor and immutable request accept `bond_targets`, a
