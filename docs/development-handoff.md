@@ -1,32 +1,38 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C355 explicit custom source freezing — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. C354 pushed at `6f2bd7e0`; C355 is this
+Updated **2026-11-16, C356 packaged-source mixed-context connection — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. C355 pushed at `0cff3995`; C356 is this
 completed code/evidence checkpoint. No full suite, branch, default activation or
 merge. Linden owns Pine/Willow; frozen restoration/C331/C338 unchanged. Simon
 confirmed work through **23:00 London**. All Rowan jobs stopped at this checkpoint.
 
 ## Current result and next bounded task
 
-**C355 complete:** explicit custom/composed source files enter the existing source
-freezer, with curated precedence preserved and a distinct opt-in selection policy.
-No registry lookup is needed for an explicit non-curated choice. Existing acquisition
-and complete-request owners consume the result.160 focused/63.45s and160 installed
-relocated/65.00s pass; default artifact bytes exactly match C354.
+**C356 complete:** C355's packaged-source acquisition reproduces all 25 C345
+mixed-context bundle files exactly. Saved native/ReadySet results and cold relocation
+are unchanged: 87 PASS/two unsupported formal-charge readbacks; selected
+`readyset_checked_model` remains diagnostic, not automatic adoption. A valid
+phosphate declaration rejects the free-OH model; linked-as-free-OH also refuses.
+No source/schema/test changes or new native execution. C355's 160 focused/160 installed
+checks remain current; default source-freezing bytes match C354. No full suite.
 
-Packaged DY → explicit source freeze → existing acquisition reuses the exact C342
-qualified dictionary without an SDK or native job. Relocated readback is exact;
-104 prior files/timestamps remain unchanged. Local control
-`355_Cedar_explicit-DY-cache-sk2trw3i`,~0.76MB; first harness failure preserved.
-C354 package source/composition was already byte-identical to C342. Evidence:
-`explicit_custom_source_selection_2026_11_16` and
-`packaged_reference_intake_2026_11_16`. All jobs stopped. No full suite.
+Control `356_Cedar_packaged-DY-contexts-5_fqbufb`,~2.28 MB; 161 previous files/timestamps
+preserved; 5.70 MB replay scratch removed. Separate corrected negative control
+`356_Cedar_DY-phosphate-negative-gc_1553f`. Initial invalid `terminal_P` token is
+retained but is not phosphate-chemistry evidence. All jobs stopped.
+Evidence: `packaged_dy_mixed_context_replay_2026_11_16` and
+`explicit_custom_source_selection_2026_11_16`.
 
-**Next:** bind source-composition evidence to qualified per-site choice through
-existing context/construction owners. Explicit file selection does not itself
-retain composition proof, select phosphate state, register DY, or authorize pairing.
-Q06 achieved geometry and ordinary DY activation remain open. Older next statements
-below are historical evidence, not the current queue.
+**Next ordinary DY integration has three concrete seams:** recognize the requested
+packaged target without fabricating NAR pairing; supply correct per-site dictionaries
+before Coot construction; retain their compact derivation/choice in existing lineage.
+The current ordinary handler runs after construction, and Coot receives dictionaries
+by component code. C344/C345 used sequential explicit calls and already-built DY
+controls; that is not automatic mixed-end construction. Do not repeat those completed
+chemistry controls or introduce another source/process/proof owner. The machine-readable
+C356 audit names existing functions and acceptance criteria. Then return to Q06
+achieved geometry and Q07 combined/held-out tests. Older next statements below are
+historical evidence, not the current queue.
 
 
 **C353 complete:** ordinary lineage now joins the existing canonical seed proof

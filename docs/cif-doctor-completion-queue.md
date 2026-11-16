@@ -888,22 +888,47 @@ closures replay after relocation. **C354:** package-bound reference intake and
 composition pass70 focused/installed cases; exact C342 source/native evidence is
 reused without regeneration. **C355:** explicit custom sources now use the same
 freezer/acquisition owner;160 focused/installed checks pass. Packaged DY reuses
-C342's exact isolated qualification without native execution. **Next:** bind
-composition proof to qualified per-site choice; the freezer records source bytes,
-not that separate composition authority. APIs stay opt-in. No DY pair pattern, automatic alias or per-site selector is
+C342's exact isolated qualification without native execution. **C356:** that exact
+snapshot reproduces all 25 mixed-end C345 bundle files and the saved native/ReadySet
+result after relocation. Contradictory end states refuse. **Next:** ordinary target
+recognition and pre-Coot per-site selection, with compact derivation in existing
+lineage. The explicit freezer is complete; no separate proof owner is needed.
+APIs stay opt-in. No DY pair pattern, automatic alias or per-site selector is
 inferred. See `source_bound_canonical_roundtrip_2026_11_16`.
 See `mixed_dy_end_states_readyset_2026_11_16`; older next steps are historical.
 
-**Latest C343:** explicit representation now reaches the source-owned DNA metadata
+**Historical C343:** explicit representation reached the source-owned DNA metadata
 adapter and native equivalence. Actual internal DY Coot construction and Phenix
 site preparation give 67 PASS / one unavailable formal-charge readback; both links
 and intended phosphate state survive. 186 installed/relocated focused tests and
-cold native replay pass. **Next C344:** free-end DY through existing phosphate and
-terminal-resource owners, then ReadySet/refinement survival. Ordinary alias
-activation waits for the qualified route. Earlier numbered next steps below are
-historical context; this paragraph is the current order for DY.
+cold native replay pass. C344-C356 now cover the explicit free-end, mixed-context,
+ReadySet and covalent-refinement controls. Ordinary activation is still open; the
+C356 acceptance list below owns remaining work. Earlier numbered next steps are
+historical context; the C356 acceptance list owns the current order for DY.
 
-**Reference packaged; ordinary mutation open (Simon, 2026-11-16; C335).**
+**Reference packaged; ordinary mutation open (Simon, 2026-11-16; C335-C356).**
+
+Current remaining integration, in order:
+
+1. Recognize a requested packaged target through an explicit construction contract,
+   without making up a NARestraints pairing row. Current `build_mutation_plan` calls
+   `ligand_definition`, which still requires curated/catalogue registration.
+2. Select qualified dictionaries for each site's declared end state **before Coot**.
+   `_coot_script` currently loads by component code; the ordinary dictionary handler
+   runs after construction. C344/C345 sequential explicit calls and projections from
+   already-built DY controls are evidence to reuse, not proof of this automatic route.
+   Acceptance: free-OH and internal DY together in one ordinary request, with preserved
+   sugar/chi/neighbours and actual-model native validation.
+3. Bind source composition, selected dictionaries and canonical seeds through existing
+   construction/request lineage. C353 already owns canonical proof; C355 owns selected
+   source bytes. Keep only declared inputs, and verify cold installed/relocated use.
+
+Source/native chemistry, rotatable bridge controls and saved mixed-context replay
+are already established within their recorded scope. Do not add another source,
+process or proof owner, or repeat unchanged generation to fill these integration
+seams. C356's machine-readable audit gives functions and acceptance criteria.
+The numbered original plan below is historical scope, not four new unstarted jobs.
+
 Laboratory **DY** means the retained **4-(1,2,4-triazol-1-yl)-pyrimidin-2-one
 beta-D-2-deoxyriboside**: direct pyrimidine C4–triazole N1T, C2=O retained,
 no O4 bridge, pyridyl ring, 5-methyl group or triazole displacement. Simon approved
@@ -942,7 +967,7 @@ DY nucleotide build passes all 21 isolated checks; 192 focused and 192 installed
 relocated tests pass. The failed lexical-order attempt is preserved. No mutation
 alias, linked/terminal approval or model phosphate change follows.
 
-**Next C343:** **Completed; current next is C344 below.** source-owned linked/terminal preparation and whole-base mutation gates,
+**Historical C343 task (completed through later controls):** source-owned linked/terminal preparation and whole-base mutation gates,
 reusing C133–C139 and later construction owners. Verify how the free-nucleoside
 reference enters explicit backbone contexts rather than inventing phosphate
 chemistry or activating a DY-name workaround. Retain junction survival as a

@@ -106659,5 +106659,164 @@
       "No new Phenix/Coot execution or full suite. Last full suite remains C220/583d30df:9178 tests+276 subtests."
     ],
     "next": "Join explicit source composition proof to qualified per-site selection through existing context/construction owners; preserve phosphate intent and avoid duplicating source or process ownership."
+  },
+  "packaged_dy_mixed_context_replay_2026_11_16": {
+    "milestone": "C356",
+    "date": "2026-11-16",
+    "signed": "Rowan",
+    "code_revision": "0cff3995",
+    "before": "Packaged DY was proven through isolated source acquisition; the new source-selection route had not been joined to the mixed free-OH/linked preparation control.",
+    "after": "C355 exact acquired snapshot reproduces every file of the C345 mixed-context bundle; existing native/ReadySet readers reproduce the exact archived result and cold relocated result.",
+    "control": {
+      "status": "PACKAGED_DY_MIXED_CONTEXT_PREPARATION_AND_SAVED_READYSET_REPLAY_PASS",
+      "root": "356_Cedar_packaged-DY-contexts-5_fqbufb",
+      "source_anchor": "NASolve-live-tests",
+      "source_selection": "355_Cedar_explicit-DY-cache-sk2trw3i/relocated/selection",
+      "source_sha256": "a7d9ed314862298e589be0f873cc41c9abaa0d2608aa709ce26fc0a59aaf1d55",
+      "source_and_qualification": "EXACT_C355_C342",
+      "bundle_artifact_count": 25,
+      "bundle_bytes": "EXACT_C345_ALL_FILES",
+      "sites": [
+        {
+          "five_prime_state": "free_OH",
+          "incoming_site": null,
+          "outgoing_site": "A:12",
+          "site": "A:11",
+          "three_prime_state": "linked"
+        },
+        {
+          "five_prime_state": "linked",
+          "incoming_site": "A:11",
+          "outgoing_site": "A:13",
+          "site": "A:12",
+          "three_prime_state": "linked"
+        }
+      ],
+      "native_receipts": {
+        "native-before": {
+          "anchor": "NASolve-live-tests",
+          "path": "345_Cedar_DY-mixed-ends-readyset-ghxi92ze/native-before/cif-native-fzm8ewyl/native_receipt.json",
+          "sha256": "03c6686ac98abd7dd71e8250b796399c9eb5dd70de6cbe38a57d3afa7d4394b5"
+        },
+        "native-prepared": {
+          "anchor": "NASolve-live-tests",
+          "path": "345_Cedar_DY-mixed-ends-readyset-ghxi92ze/native-prepared/cif-native-qcr9hs67/native_receipt.json",
+          "sha256": "62b31e4ac2eb2874bd00a8a13c93a8f19f1b947d4a79eecf549f98ce5e8fdfd1"
+        },
+        "native-readyset": {
+          "anchor": "NASolve-live-tests",
+          "path": "345_Cedar_DY-mixed-ends-readyset-ghxi92ze/native-readyset/cif-native-1j2ut6vp/native_receipt.json",
+          "sha256": "947944d280a5b83abec881f98bcd585c12b796e61bfdc4f729abdd58d0c31a26"
+        }
+      },
+      "initial_checks": {
+        "PASS": 87,
+        "UNSUPPORTED": 2
+      },
+      "readyset_checks": "EXACT_C345_RESULT",
+      "decision": {
+        "status": "CONTINUE_WITH_NOTES",
+        "selected": "readyset_checked_model",
+        "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+        "requires_cif_review": false,
+        "automatic_adoption": false
+      },
+      "negative_contexts": {
+        "invented_terminal_phosphate": "Exactly the free 5-prime OH sites require terminal resources",
+        "linked_as_free_OH": "Explicit links and terminal states disagree: A:12"
+      },
+      "cold_relocation": "EXACT_RESULT; ALL_REPLAY_FILES_READ_ONLY; ORIGINAL_TEMPORARY_LOCATION_ABSENT",
+      "temporary_bytes_removed": 5697993,
+      "prior_files_and_timestamps_preserved": 161,
+      "native_execution": "FORBIDDEN; SAVED_PHENIX_2.2.1-6174_EVIDENCE_REUSED",
+      "all_jobs_stopped": true,
+      "elapsed_seconds": 5.048637833002431,
+      "physical_bytes": 2276605,
+      "limitation": "Caller-explicit source/context; no new native qualification, Coot construction, refinement, automatic DY alias or base-pairing authority."
+    },
+    "corrected_phosphate_negative": {
+      "status": "VALID_PHOSPHATE_STATE_REFUSED_FOR_FREE_OH_MODEL",
+      "root": "356_Cedar_DY-phosphate-negative-gc_1553f",
+      "contexts": [
+        {
+          "five_prime_state": "phosphate",
+          "incoming_site": null,
+          "outgoing_site": "A:12",
+          "site": "A:11",
+          "three_prime_state": "linked"
+        },
+        {
+          "five_prime_state": "linked",
+          "incoming_site": "A:11",
+          "outgoing_site": "A:13",
+          "site": "A:12",
+          "three_prime_state": "linked"
+        }
+      ],
+      "terminal_resource": null,
+      "error": "Requested terminal phosphate is incomplete: A:11",
+      "native_execution": "FORBIDDEN",
+      "all_jobs_stopped": true,
+      "note": "Earlier C356 terminal_P token was not a valid state; do not count that probe as phosphate-chemistry validation. This control uses supported phosphate with matching absence of free-OH resources."
+    },
+    "source_and_schema_changes": "NONE; uses existing source, acquisition, site/bundle and ReadySet owners/readers unchanged.",
+    "validation": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python ../NASolve/branch-artifacts/cedar/runners/c356_context_replay.py",
+      "negative_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python ../NASolve/branch-artifacts/cedar/runners/c356_phosphate_negative.py",
+      "pytest": "No rerun: no production/test code changed; C355160 focused and160 installed remain current.",
+      "native": "No new Phenix/Coot execution. Exact archived Phenix2.2.1-6174/Coot1.3.3 control, 87PASS/two unavailable formal-charge readbacks, same diagnostic selection."
+    },
+    "audit": {
+      "baseline": "0cff3995",
+      "existing": [
+        "C354 package source/composition",
+        "C355 explicit file freezing and exact cache acquisition",
+        "C133-C139 linked/terminal projections and native checks",
+        "C343-C346 explicit DY construction, mixed ReadySet and covalent refinement",
+        "C349/C353 canonical seed/lineage owners"
+      ],
+      "remaining": [
+        {
+          "gate": "Recognize an explicitly requested packaged component without inventing a pairing record",
+          "locations": [
+            "src/nasolve/postmr.py:build_mutation_plan",
+            "src/nasolve/curated_ligands.py:ligand_definition",
+            "src/nasolve/curated_ligands.py:_registered_record"
+          ],
+          "finding": "Ordinary mutation planning still requires a curated or NARestraints target definition. Packaged free-nucleoside metadata is deliberately not a numerical dictionary or NAR pairing record.",
+          "acceptance": "An installed explicit DY target uses the packaged identity and a checked construction-parent choice; no implicit Y/YTR alias or invented base-pair roles."
+        },
+        {
+          "gate": "Supply the correct dictionary before Coot builds each site",
+          "locations": [
+            "src/nasolve/postmr.py:_prepare_postmr",
+            "src/nasolve/postmr.py:_coot_script",
+            "src/nasolve/cif_ordinary_postmr.py:initialize_ordinary_postmr_request",
+            "src/nasolve/cif_dictionary_sites.py:read_dictionary_sites"
+          ],
+          "finding": "Existing construction receives one dictionary per component code. C344/C345 demonstrated free-OH/internal DY in sequential explicit calls; their projections were prepared from already-built DY controls. The ordinary handler currently runs after construction. A global DY dictionary alone cannot establish both end states before first construction.",
+          "acceptance": "Use existing context/resource authority to prepare each requested site, preserve whole-base chi/scaffold and reject contradictory context; then independently validate the actual Coot model. Demonstrate free-OH and internal DY in one ordinary request without caller scripts."
+        },
+        {
+          "gate": "Retain compact lineage through that actual route",
+          "locations": [
+            "src/nasolve/cif_packaged_reference.py:compose_packaged_dna_source",
+            "src/nasolve/cif_acquisition_sources.py:freeze_acquisition_sources",
+            "src/nasolve/postmr_lineage.py:finish_postmr_construction",
+            "src/nasolve/cif_complete_request.py:initialize_dictionary_request"
+          ],
+          "finding": "C355 freezes exact bytes/authority; source composition proof is separate. C353 already retains canonical input closure. Bind the declared inputs when the ordinary route consumes them rather than adding an independent proof/attempt owner.",
+          "acceptance": "Cold relocated ordinary run reproduces source composition, selected dictionaries, canonical seed and actual model lineage after originals are absent; retain only declared inputs, not whole SDKs or previous runs."
+        }
+      ],
+      "priorities": "Finish the bounded ordinary DY integration, then return to Q06 achieved geometry and Q07 mixed/held-out tests. Do not repeat unchanged isolated qualification, rebuild Q04/Q05 owners or gate all explicit custom sources on a speculative new archive."
+    },
+    "compatibility": "Documentation/evidence only. No defaults, aliases, schemas, weights, Free-R or phosphate intent changed.",
+    "artifacts": "Compact JSON evidence only committed. Generated bundle/native/ReadySet data stay local. 5.70MB temporary replay removed; 161 prior files/timestamps exact. ~2.28MB new local bundle/control retained.",
+    "limitations": [
+      "No automatic model-site dictionary selection, global DY mutation activation, DY pairing, fresh native execution or full refinement claim.",
+      "The initial terminal_P probe is an invalid-token/resource mismatch only; the separate supported phosphate probe rejects the absent phosphate explicitly.",
+      "Q06 remains open; source/native qualification is not achieved refinement geometry."
+    ]
   }
 }

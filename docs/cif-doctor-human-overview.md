@@ -4276,3 +4276,7 @@ precedence. The frozen bytes survive relocation and feed existing acquisition;
 packaged DY reuses its exact saved Phenix qualification without regeneration.
 This records which source was chosen. It does not certify its chemistry, carry a
 composition proof by implication, choose phosphate state or invent base pairing.
+The packaged-source route reproduces the earlier internal/free-OH DY bundle exactly,
+including its saved ReadySet/native checks. The remaining work is ordinary request
+recognition and choosing the right dictionary before Coot builds each site; the
+current mixed-end demonstration used explicit sequential construction.
