@@ -4,7 +4,7 @@
   "updated": "2026-11-16",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
+  "audited_code_commit": "eb8e5d6ed55a75ce33863c1fc4e6f37a95d23465",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -225,13 +225,14 @@
         "W88 compiles numerical motion from an exactly pinned/replayed saved preview and its registration, with complete atom order, fixed context and source-byte guard. Full and installed/relocated software checks pass; no physical-search acceptance is inferred.",
         "W89 directly observes a numerical-resolution limitation at the W87 coarse points; retains FAILED and distinguishes six-variable stationarity from substantial remaining atomic gradients.",
         "W90 adds explicit diagnostic initialization to the existing atomic trial and checks remaining evaluation budget, with unchanged source/tether, derivatives and stopping/failure policy. Full/installed validation passes; native benefit is being compared in W91.",
-        "W91 qualifies execution of the explicit diagnostic-start interface through matched native trials and endpoint observations, preserving both failures. This small coarse seed reaches the same rounded atomic point as cold cleanup and gives no demonstrated benefit; local improvements and remaining packing/torsion reviews stay separate."
+        "W91 qualifies execution of the explicit diagnostic-start interface through matched native trials and endpoint observations, preserving both failures. This small coarse seed reaches the same rounded atomic point as cold cleanup and gives no demonstrated benefit; local improvements and remaining packing/torsion reviews stay separate.",
+        "W94 adds checked explicit pivot rotation through the existing Cartesian image owner and preview tensor path. Off-origin cycles/inverses and software/install regressions pass; no axis inference or three-orientation campaign runner."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation."
       ],
-      "next_action": "W94: first qualify the Cedar-owned live nonbonded-policy owner against its pinned native inventory and negative controls. Only then integrate an optional Willow consumer using its concrete API, the actual invocation options and a frozen expected snapshot. Preserve legacy defaults, valid rebuilds and separate generated-contact/chemistry/Q06 gates.",
+      "next_action": "W95: first qualify the Cedar-owned live nonbonded-policy owner against its pinned native inventory and negative controls. Only then integrate an optional Willow consumer using its concrete API, the actual invocation options and a frozen expected snapshot. Preserve legacy defaults, valid rebuilds and separate generated-contact/chemistry/Q06 gates.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -245,14 +246,15 @@
         "E_ATOMIC_DIAGNOSTIC_START",
         "E_MATCHED_ATOMIC_STARTS",
         "E_LIVE_NONBONDED_CONTRACT",
-        "E_BLUNT_ASYM_PLAN"
+        "E_BLUNT_ASYM_PLAN",
+        "E_PIVOT_ROTATION"
       ],
       "last_audit": {
         "date": "2026-11-16",
         "reviewer": "Linden",
-        "code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
-        "human_update": 93,
-        "scope": "Planning acceptance extended for blunt/asymmetric controls; prior delivered runtime scope and open scientific gates unchanged. No new native solve."
+        "code_commit": "eb8e5d6ed55a75ce33863c1fc4e6f37a95d23465",
+        "human_update": 94,
+        "scope": "Explicit pivot arithmetic and preserved preview rounding validated in source and installed builds. Scientific geometry/density gates remain open."
       }
     },
     {
@@ -300,7 +302,7 @@
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "W94: first qualify the Cedar-owned live nonbonded-policy owner against its pinned native inventory and negative controls. Only then integrate an optional Willow consumer using its concrete API, the actual invocation options and a frozen expected snapshot. Preserve legacy defaults, valid rebuilds and separate generated-contact/chemistry/Q06 gates.",
+      "next_action": "W95: first qualify the Cedar-owned live nonbonded-policy owner against its pinned native inventory and negative controls. Only then integrate an optional Willow consumer using its concrete API, the actual invocation options and a frozen expected snapshot. Preserve legacy defaults, valid rebuilds and separate generated-contact/chemistry/Q06 gates.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -1318,7 +1320,15 @@
       "human_update": 93,
       "reference": "docs/topostitch.md#designed-blunt-contacts-and-single-base-stacking-w93-planned",
       "result": "Paper/local SI inspected; 9PGR single-base stacking and 7U3O molecular-axis orientation controls distinguished from covalent closure and representative recuts. Three private dataset triplets inventoried locally, two top-level model sources present. Three matched sequence-labelled orientation siblings and uncertain outcomes specified in campaign-model-roadmap.md.",
-      "limitation": "Design only: no CLI, runtime schema, guard, benchmark solve, operator rederivation or scientific adoption. Third AlphaFold model/sequence and copy/motif mapping unresolved. Local SI not verified identical to publisher supplement; private paths/hashes/inputs excluded from Git."
+      "limitation": "Design only: no CLI, runtime schema, guard, benchmark solve, operator rederivation or scientific adoption. Copy/motif and selected sequence mapping must be bound before execution; user confirms missing third local AlphaFold model is not a gate. Local SI not verified identical to publisher supplement; private paths/hashes/inputs excluded from Git."
+    },
+    "E_PIVOT_ROTATION": {
+      "kind": "software_regression_and_installation",
+      "code_commit": "eb8e5d6ed55a75ce33863c1fc4e6f37a95d23465",
+      "human_update": 94,
+      "reference": "docs/topostitch-preview.md#w94-validation--2026-11-16",
+      "result": "Existing CartesianImage gains checked R(x-p)+p+t construction, reused for preview ANISOU without changing centered coordinate rounding. Nine fail-before cases; 139 focused, 1844 full plus 229 subtests, 139 installed/relocated tests, six CLI helps and pip check pass. Source/installed module bytes match; Python 3.10 syntax passes. PostMR/first-refinement-only orientation plan corrected, no re-MR; missing third local AlphaFold model is optional follow-up.",
+      "limitation": "Numerical transform only; no axis inference, placement authorization, new schema, three-sibling campaign implementation, native Phenix/Coot execution or scientific acceptance. First install harness omitted relative-import test helpers; complete relocated test package passes against the unchanged fresh wheel. Shared Cedar live-policy consumer remains gated; no Cedar edits or combined-build qualification. Generated test/build artifacts stay local."
     }
   },
   "benchmarks": [
@@ -1409,7 +1419,7 @@
         "S07",
         "S08"
       ],
-      "remaining": "Bind sequences, motif/copy mapping, molecular pivot/axis and common Free-R data; third AlphaFold source unresolved. Compare independently bent 0/120/240-degree placed siblings with fixed data and per-model maps, prevent MR seed undoing, and retain ambiguous/duplicate/failed states. Blinded known-answer and degraded-resolution controls before private unresolved benchmarks."
+      "remaining": "Bind chosen examples, sequences, motif/copy mapping, molecular pivot/axis and common Free-R data. User confirms available three examples suffice; third local AlphaFold source is optional follow-up. Compare independently bent 0/120/240-degree placed siblings strictly after PostMR and first refinement, with no MR rerun, fixed data and per-model maps. Retain ambiguous/duplicate/failed states; blinded known-answer and degraded-resolution controls before unresolved benchmarks."
     }
   ],
   "deferred": [
@@ -1458,8 +1468,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 93,
-    "next": 94,
+    "current": 94,
+    "next": 95,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1827,6 +1837,12 @@
         "title": "Plan density-aware blunt contacts and three-orientation asymmetric trials",
         "state": "RECORDED",
         "code_commit": "5965d8588984c6991f587bdaec049639264d03e4"
+      },
+      {
+        "number": 94,
+        "title": "Compile checked molecular rotations about an explicit Cartesian pivot",
+        "state": "RECORDED",
+        "code_commit": "eb8e5d6ed55a75ce33863c1fc4e6f37a95d23465"
       }
     ]
   }

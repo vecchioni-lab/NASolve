@@ -139,7 +139,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 ## Separate Willow work — 2026-11-16
 
 **W94 pivot arithmetic is validated; shared native-policy integration
-remains gated.** Work stays on isolated `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
+remains gated.** Latest audited runtime is W94 `eb8e5d6e` on isolated `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
 [periodic topology](topostitch-periodic.md) and [bend previews](topostitch-preview.md).
