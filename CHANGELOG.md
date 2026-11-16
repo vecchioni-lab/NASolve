@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Documentation housekeeping — 2026-11-16
+
+- Replace the stale October Pine opening and accumulated Willow session diary
+  with a current branch-scoped handoff, validation pins and next integration gates.
+- Refresh the documentation map and retain historical agent-link anchors.
+  Runtime, schemas, dependencies and scientific artifacts are unchanged.
+
 ### W107 — Qualify native core plus explicit missing-pair arithmetic
 
 - Record eight actual-model derivative controls with 107 ordinary native pair

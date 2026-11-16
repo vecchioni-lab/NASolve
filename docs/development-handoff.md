@@ -1,598 +1,155 @@
-# NASolve development handoff — current state
+# NASolve development handoff — Willow
 
-Updated **2026-10-08**. **Working branch: `pine`.** Finish the bounded
-Pine scientific gates, merge [Pine PR #23](https://github.com/vecchioni-lab/NASolve/pull/23)
-into `main`, then the **blind AlphaFold geometry baseline**, then
-**operational Scout**. No GUI/Topo Net implementation is a prerequisite.
-This is the compact active handoff, not a chronology. The complete previous
-handoff is [archived](history/development-handoff-2026-10-08-pre-consolidation.md).
+Updated **2026-11-16**. This is the **`willow` branch** handoff, not the
+project-wide status of Pine, Cedar or Alder. **W107 is audited; W108 is next.**
+Runtime code is W106 (`ff0059f9`); W107 adds diagnostic evidence only.
+The [machine roadmap](topostitch-roadmap.json) owns milestone status; its
+[generated human view](topostitch-roadmap.md) owns the numbered progress queue.
 
-## Executive state
+## Read this first: current development edge
 
-| Workstream | Verified result | Remaining gate |
+The reusable backend can bind source atoms and periodic images, replay declared
+recuts, preview bounded bending, and inspect native geometry without selecting a
+repaired structure. Whole-window trials remain unselected, capped or failed.
+**General sticky-end repair and ordinary recut refinement are not qualified.**
+S04/S05/S06 and P01/P02 remain partial; use the roadmap for individual gates.
+
+| Current component | Proven scope | Boundary still open |
 | --- | --- | --- |
-| NARestraints | **v1.1.3 released** ([release](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3), `main a9264f9`); Python 3.10/3.12/3.14 CI, wheel/sdist and SHA256SUMS passed. Corrected Z:P and K:X role/stacking orientation; B:S and D:T retained. Bundled workbook unchanged. | One combined Z:P/B:S/K:X/D:T native stress run; verify old local .venv version and missing IGU/IMC/CGY/DX CIFs first. |
-| Modified-W Saenger overlay | [NASolve PR #24](https://github.com/vecchioni-lab/NASolve/pull/24) **MERGED into Pine** at `0017081`. Exact reconciled branch `612881d` passed **40 focused + 2 subtests** and **967 full + 226 subtests (85.38 s)**; combined D:T/B:S(IGU:IMC)/Z:P/K:X plus 5CM:G/DF:A workbook regression passed. Earlier native Z:P `run_003/refine-001` SOLVED numerically with user Coot visual PASS. | No combined-family native execution yet. Resolve IGU/IMC/CGY/DX monomer definitions through existing libraries and validated generic preparation before freezing that challenge. |
-| Coot viewing | [PR #25](https://github.com/vecchioni-lab/NASolve/pull/25) **merged** into Pine at `e8613bf`; isolated **59 focused + 30 subtests**, **960 full + 226 subtests**. User fast-forwarded their Pine checkout, manually selected `run_003`, then confirmed **bare `./nasolve show` works in real Coot**, with screenshot. | **USER LIVE PASS** for pathless view of a selected run. Auto-activation following *new* single-dataset execution is regression-tested, not independently live-trialled. |
-| P2 modified-component preparation | Published at `dec56c2`; **276 focused + 20 subtests**, **927 full + 224 subtests** at that code point. Source-derived `1W5→DZ` and `1WA→DP` preparation implemented. | True native source-component/DP preparation and refinement with artifact provenance; fixture-only and W Z:P runs do not close this. |
-| Campaigns / full auto | Ordinary guarded MR→PostMR→conditional AutoSol→refinement and immutable checkpoints work. Separate EA/DiU/Q5cm/QiC full-auto campaign reached numerical SOLVED for all four, preserving EA MR_REVIEW and QiC provisional (not user-approved) selection. | Bounded evidence review and user-veto/resume where still missing; do not rerun passed cohorts merely to refresh docs. |
-| Prepared nonstandard P5 | Explicit per-dataset PDB/sequence and mixed schema-2 campaigns implemented and fixture-tested. | Small **3–5-member real geometry-diverse** native smoke check; W-only successes cannot substitute. |
-| Scout / registration / Topo / GUI | Registration/Scout shadow primitives and earlier scoped checks are recorded. | Operational Scout, symmetry surgery, Topo and GUI remain separate future work, **not** claimed complete. |
+| W104 `review_pair_coverage` | Read-only comparison of explicit requested/native/additive terms; rejects missing, duplicate, stale, image and parameter mismatches | Caller authenticates complete declarations; no activation |
+| W105 `describe_compiled_pair_terms` | Exports terms from the existing compiled recipe and original bound packet | Not a native force or lifecycle qualification |
+| W106 `observe_native_pair_terms` | Callback-free actual-manager inventory with checksum-bound Cedar policy checks and exact rational image comparison | Special positions unsupported; source authenticity and active callback policy remain upstream |
+| W107 native composition diagnostic | 107 native core terms plus 17 explicitly missing periodic terms preserve coverage and normalization in the tested managers | General provider selection, active guarding, exclusions and production refinement remain open |
 
-**Integrated code regression:** the last pre-merge PR #24 head contained
-PR #25 pathless `show` and the NARestraints v1.1.3 dependency pin; this
-combined head returned **967 tests + 226 subtests PASS** before squash
-merge. The post-merge Pine checkout has not been rerun on the user's terminal.
-One earlier first-pass mixed fixture with S6G instead of Benner IMC correctly
-failed closed as B:G; the reviewed IMC replacement passed. Neither unit
-tests nor numerical `SOLVED` establish experimental chemistry or deposition
-approval.
+W107 passed **eight 20/20 directional controls (1,296 evaluations), twelve
+negative controls and exact zero-callback preservation**, before and after
+explicit select-all rebinding. This was complete native diagnostic execution with
+**Phenix 2.2.1-6174**, not optimization or diffraction refinement. It retains native
+periodic repulsion; it does not approve an exclusion policy. See the
+[W107 receipt](topostitch-periodic.md#w107--native-core-plus-only-the-missing-periodic-terms)
+for exact commands, failed preparations, archive checksums and limitations.
 
-## Immediate next scientific work — one bounded sequence
+## Next bounded work
 
-1. **Next engineering slice — library-first generic monomer resolver.**
-   With [PR #24](https://github.com/vecchioni-lab/NASolve/pull/24)
-   merged, the combined-family workbook regression is green, but four
-   monomer dictionaries **IGU, IMC, CGY, DX** are not bundled in NASolve.
-   NASolve currently requires a local `CODE.cif` before Coot parent-overlap,
-   whereas ReadySet normally runs *after* that placement. Resolve existing
-   validated Phenix/CCD monomers before asking for curated overrides, and
-   where supported produce an **audited, frozen derivative**, never
-   fabricate bonds/stereochemistry from NARestraints' atom-role mappings.
-   Keep exceptional local recipes only for demonstrated broken cases.
-   Review prospective HelixWeld/HelixMeld implementations before making
-   them providers; no verified integration yet. Pin/run against released
-   NARestraints v1.1.3 with exact import verification; don't edit the
-   user's dirty workbook or historical native models.
-2. **Attempt one simultaneous four-family W model first**, as explicitly
-   requested by the user on 2026-10-08. Use distinct original W paired sites:
-   **D:T at A:5/C:11** (1AP/DT), **B:S at A:6/C:10** (IGU/IMC),
-   **Z:P at A:12/B:4** (DZ/DP, existing `pair=Z:P` route), and
-   **K:X at A:20/D:3** (CGY/DX). Keep the prior off-pair A:7/C:9
-   **5CM:G** and A:19/D:4 **DF:A** simultaneously. These sites align
-   their source A:T/G:C/C:G templates with reviewed NARestraints roles,
-   but are still **proposed design intent**, not frozen/validated.
-   The Saenger overlay should retain **12 original Saenger blocks and
-   replace 5 with explicit pairs**; the central Z:P stays in Std_padd.
-   **Before any native run**, locate source-verified `IGU`, `IMC`, `CGY`, `DX`
-   monomer dictionaries (absent from committed NASolve resources) and
-   audit the actual W model/42-site sequence targets, restraint interfaces,
-   atom names and phosphate policy. Do not invent CIFs, force chemistry
-   to G:C, or silently downgrade to the old five-independent-matrix plan.
-   One *new* frozen single-member campaign, one stage boundary at a time,
-   with preserved failures and human Coot/.geo checks; independent A:T,
-   D:T, B:S, Z:P, K:X datasets remain a **diagnostic fallback**, not
-   today's required first trial. **D:A is unsupported**; D:T is the
-   reviewed three-hydrogen-bond D-family recipe, while `DA` means
-   ordinary DNA adenine.
-3. **Close the independent P2 source-native gate** (`1W5→DZ`,
-   `1WA→DP`) with actual source components and verified dictionaries,
-   source-to-target atom mapping, raw preservation and native refinement.
-   This is not the same as already successful Z:P synthetic-target model.
-4. **Finish the bounded Pine close-out:** retain existing GZ11 and multi-member
-   saved receipts; resolve remaining exact effective-dictionary evidence (P1),
-   saved normal-GZ11 evidence (P3), and limited campaign human-veto/current-
-   pointer evidence (P4), plus **P5** geometry-diverse real smoke check.
-   Then final integrated tests/review **P6**, followed by [PR #23](https://github.com/vecchioni-lab/NASolve/pull/23)
-   merge/ancestry verification **P7**. Do not clean, reset or prune original
-   scientific artifacts to retire branches.
+1. Select providers at the **term level** from authenticated frozen inventories.
+   Do not infer ownership from a core/selected label or assume a whole pair is missing.
+2. Integrate active callback, gradient-buffer, normalization and source-policy
+   guards through Cedar's existing prepare/frozen-round/actual-manager/final-writer
+   owners. The idle C331 observer does not qualify an active callback.
+3. Qualify periodic exclusion policy explicitly. Retain repulsion until justified;
+   do not activate a symmetry phosphate bond without qualified surrounding angles.
+4. Only then compare repaired and no-repair models with matched observations,
+   Free-R, budgets and maps; retain geometry/packing, healthy and wrong-connection
+   controls, forward/reverse shape cases and B09 final validation.
 
-The exact **combined-first site layout**, candidate chain sequences,
-dictionary sourcing gate, optional independent controls, immutable Z:P
-attempt history and human-verdict limits live in the
-[native modified-pair ledger](native-modified-pair-live-validation.md).
-The [modified-component contract](modified-component-preparation.md) owns
-1W5/1WA mapping and source-preservation rules. [Campaign execution](campaign-execution.md)
-owns CLI semantics; [full-auto checkpoint](full-auto-patch-handoff.md) retains
-the completed four-member validation.
+Use the [ordinary refinement boundary](topostitch-periodic.md#next-ordinary-refinement-boundary)
+and [integration contract](topostitch-periodic.md#next-implementation-contract).
+Do not fork a refinement runner or repeat passed arithmetic probes as a substitute
+for lifecycle integration. Coordinate owner changes with Rowan before native work.
+No native jobs remain active at this checkpoint.
 
-## Preserved W native evidence and user review
+## Validation and compatibility
 
-The original frozen synthetic-target dataset is
-`~/NASolve-live-tests/zp-paired-native-oiipj_t2`. It uses **real GZ11
-diffraction observations** but altered target chemistry; it is **not**
-evidence the experimental crystal contained the tested modifications.
+Latest production-code validation, **W106**: **60 focused, 1,936 full tests +229
+subtests, and 229 installed tests** passed. Fresh wheel/sdist installation,
+relocated checks with staging paths removed, six CLI helps, `pip check`, lean
+import and Python 3.10 syntax checks passed. Eight actual-manager cases and twelve
+native negatives passed; the separate image-codec control retained failed attempts
+before resolving the denominator mismatch. Exact commands are in the
+[W106 receipt](topostitch-periodic.md#w106--complete-callback-free-native-inventory-observation).
+W107 and this handoff cleanup change no runtime, schema or dependencies.
 
-- **`run_001`:** retained Z:P PostMR **BLOCKED** by the former reversed
-  role mapping (Z lacked G-like N2). Native Phaser TFZ **12.9**, LLG **210**.
-- **`run_002`:** corrected NARestraints Z:P PostMR **PASS**: expected
-  `P.N2/Z.O2`, `P.N1/Z.N3`, `P.O6/Z.N4` contacts, all 42 target
-  identities checked, no `force` override. First AutoRefine **BLOCKED**
-  before refinement by old W Saenger classes at modified 5CM:G and DF:A.
-- **`run_003`:** PR #24 candidate; frozen integrity **OK**, 17 template
-  pairs → **15 unchanged Saenger + 2 explicit modified** (5CM:G GC/3 bonds;
-  DF:A AT/2). D:1 phosphate protection retained, sequence-family
-  mismatches empty, AutoSol correctly skipped; native AutoRefine returned
-  **`SOLVED`, `refine-001`**. User's Coot inspection reported **good bonds
-  and planes**, tolerable nonideal planarity: **INSPECTED_PASS for overall
-  visual software integration**, not site-resolved density or experimental
-  chemistry. Exact Rwork/Rfree, `.geo` and per-site map/clash metrics are
-  still to be recorded if needed.
-- **`./nasolve show`:** after PR #25 integration the user selected
-  `run_003` as their active workspace and confirmed bare `show` launched
-  the expected model in Coot. **Live usability gate passed**.
+The latest recorded installed **virtual** Willow/Cedar C338 combination passed
+**1,062 tests +22 subtests**, six CLI helps and saved graph/frame/native-link/packing
+replay. It was not a branch merge, complete combined suite or native combined
+refinement. Seven documentation conflicts and the package-data union required
+integration review at that pin. Later Cedar work is outside that qualification;
+see the [compatibility receipt](topostitch-periodic.md#installed-c338-compatibility-during-w100).
+Check current branches again before integration; textual compatibility alone is
+not a runtime test. Earlier full virtual-build failures remain recorded, not
+superseded by claims of a full green combined suite.
 
-**Separately parked geometry question:** user noticed tilted/directional
-hydrogen-bond contacts in the displayed modified pair (named N1/N3 and
-O4/N6 sites). First verify the exact donor–H–acceptor assignment, atom
-definitions, existing restraint angular terms and achieved geometry before
-deciding whether directional terms are appropriate. **Do not simply fix a
-heavy-atom angle at 180°, enforce flat base planes, or edit `run_003`.**
-Not a blocker for `show` or for the successful native integration.
+## Scientific limits and demonstration gates
 
-## Downstream publication demonstrations
+- **Bending:** W100 uses actual-input tethers and three matched controls. All
+  pass full/PDB-rounded derivative checks but stop `NOT_CONVERGED_LIMIT`;
+  endpoints remain `REVIEW`. Some individual packing/torsion/plane terms worsen.
+  [Exact results and inspection files](topostitch-periodic.md#w100--source-displaced-controls)
+  are local evidence, not selected repaired models. W91 found no benefit from the
+  small coarse polish; do not restart it without a different justified question.
+- **Diffraction and density:** W34 found no meaningful held-out benefit from
+  bend-plus-cleanup (Rfree .2276 versus .2274 for cleanup), with worse bond/angle
+  RMSDs. S06 requires exact model/map/data binding and matched refinement before
+  calibrated sustained negative-backbone-density detection. Noise, resolution,
+  occupancy and ADPs matter. Keep straight→bent, bent→straight and changed,
+  nonuniform or distal curvature as general cases; 4T28/8SJW interpretation remains
+  unverified. No density-aware repair is implemented by W107.
+- **B09 final gate:** geotest altered arms, including **X11_18 in P4_3** and
+  X11_22, must align and survive matched refinement with healthy arms/junctions
+  preserved. The local inventory passed 204 hash/size checks; remaining sequence,
+  arm and partner mappings are not frozen. Preserve X11_18's P4_1-input/P4_3-model
+  lineage for explicit audit. See the [gate contract](topostitch.md#final-geotest-alignment-gate-planned).
+- **Blunts and asymmetry:** designed blunts can depend on one base-stack contact
+  and need density-aware placement. Three labelled triangle orientations must
+  start **after PostMR and the first refinement**, with fixed data/Free-R and
+  separate bending/refinement. Re-running MR can erase those alternatives.
+  [Blunt scope](topostitch.md#designed-blunt-contacts-and-single-base-stacking-w93-planned)
+  and [rotation scope](campaign-model-roadmap.md#three-orientation-asymmetric-triangle-check-w93-planned)
+  remain plans; no new dataset solve is claimed.
+- **Publication:** the [shared shortlist](campaign-model-roadmap.md#nasolve-publication-demonstrations)
+  records A2T7 rotations, recuts with bending, standard datasets including DOHU,
+  and Hazel's metal cases, with separate readiness and scientific evidence gates.
 
-Simon requested **A2T7 rotation, recuts combined with bending, standard test data
-including DOHU, and metal data** for the final NASolve demonstration. The
-[shared publication shortlist](campaign-model-roadmap.md#nasolve-publication-demonstrations)
-is the canonical planning note; Hazel supplied seven metal cases with separate
-component, geometry and metal-inference readiness limits. Keep this downstream scope in the queue while completing the
-current guarded-geometry milestones. No final scientific results or data release
-are implied by the note.
+## Pine recuts and shared ownership
 
-## After Pine: blind AlphaFold baseline, then operational Scout
+Pine owns editable periodic intent; TopoStitch exposes it; Cedar owns native
+chemistry/enforcement. Preserve **P/OP1/OP2** for declared continuations even when
+partners are unresolved. No automatic OP3/dephosphorylation or isolated symmetry
+bond while surrounding geometry/exclusions remain unqualified. See the
+[shared connectivity contract](construct-registration.md#shared-periodic-connectivity-intent-pine-topostitch-and-cedar).
 
-The user requested this order on 2026-10-07. Use the existing prepared-
-nonstandard path with **frozen** supplied predictions, complete chain-labelled
-sequences and untouched diffraction/Free-R; audit chain/residue correspondence,
-coordinate/ASU completeness, model confidence/B factors and input metadata.
-Predicted coordinates are *unseen candidate models*, not solved truth.
-Do not consult outcome structures during blind candidate selection. Preserve
-every success and failure; later hypotheses get new attempts.
+For pure representative recuts, prefer one computational/source frame throughout
+the native process, deriving views at explicit boundaries. Bind atom/operator/tensor
+correspondence and checkpoint lineage. Refined children need fresh bindings;
+Coot edits and re-entered exports need checked inverse mappings. Additions,
+deletions, renames or changed intent require new qualification. P03/P04 physical
+identity and seam chemistry precede ASU materialization; recutting cannot close a
+physical gap. Native reporting, copying, ADPs and writers retain their own gates.
 
-Then promote Scout along the
-[registration contract](construct-registration.md) and
-[human live-check queue](construct-registration-live-checks.md); keep guided
-ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
-[metal restraint builder](metal-restraint-builder.md) are separate later scopes.
+## Historical Pine references
 
-## Separate Willow work — 2026-11-16
+The inherited October queue is historical, not today's Willow instructions.
+The [October handoff](history/development-handoff-2026-10-08-pre-consolidation.md)
+and [native modified-pair ledger](native-modified-pair-live-validation.md) preserve
+chemistry, run and user-review evidence. The full pre-cleanup Willow handoff is
+retained in Git at `6352c8aa45b1e464fda03794bc302591f5a79ab5`.
+Existing agent-readable references below remain valid historical pointers.
 
-**W100–W107 diagnostics and coverage APIs are audited; general provider selection, active policy and ordinary refinement lifecycle remain next.**
-W102 checks original and explicitly rebound select-all native managers with unchanged
-normalization: eight derivative controls and twelve negative controls pass. This is
-not automatic callback persistence, a callback-aware C331 policy guard, or a
-diffraction/refinement result. See the [exact scope and commands](topostitch-periodic.md#w102--complete-pair-arithmetic-through-actual-model-entry).
-W103 adds the actual membership/exclusion evidence: ordinary core PHIL already
-supplies 107 matching terms and removes 117 directed nonbonded rows. Adding the
-complete callback on top would duplicate core forces and use a different exclusion
-policy. Preserve ordinary core terms and explicitly qualify missing periodic terms,
-complete coverage and exclusions through the existing refinement owner. The
-[exact inventory controls](topostitch-periodic.md#w103--actual-pair-membership-and-ordinary-phil-exclusions)
-remain local diagnostics, not a production adapter or activation authority.
-W104 `97f5bbec` adds the opt-in read-only coverage checker, preserving all existing
-runtime and recipe behavior. It rejects duplicate/missing/provider/target/image
-and stale-context mismatches in caller-authenticated declarations. **35 new
-regressions, 1,911 full +229 subtests, 204 installed/relocated tests**, six CLI helps,
-`pip check`, lean import and Python 3.10 syntax pass; eight W103 saved native cases
-and twelve negatives replay exactly from the installed wheel. The original
-installed harness's missing developer-script fixture is retained and corrected
-without changing the package. [API and validation](topostitch-periodic.md#w104--explicit-nativeadditive-term-coverage)
-retain the authentication, special-position, force/normalization and lifecycle
-limits. W105 `4253e378` exports requested terms directly from the existing compiled
-recipe, with **47 focused, 1,923 full +229 subtests and 216 installed tests** passing.
-Four complete Phenix 2.2.1-6174 observation cases match all 124 independently
-expected terms and preserve full energies/gradients/bindings; eighteen native
-negative controls pass. The first harness's read-only C++ setter failure is
-preserved and corrected in a separate attempt. [API and native scope](topostitch-periodic.md#w105--declarations-from-the-existing-compiled-recipe).
-W106 `ff0059f9` adds the optional callback-free actual-manager inventory reader:
-**60 focused, 1,936 full +229 subtests, 229 installed** pass. Eight Phenix managers
-match independent inventories and preserve energies/gradients/sites; twelve
-negatives pass. A separate native image codec exposes and fixes a denominator
-mismatch with exact rational group comparison while retaining lattice offsets.
-All failed diagnostics are preserved, including unsupported native parallelity
-image construction. [Scope and commands](topostitch-periodic.md#w106--complete-callback-free-native-inventory-observation).
-W107 now qualifies **107 native core +17 explicit missing periodic terms** through
-actual model entry and explicit select-all rebinding: **eight 20/20 derivative
-controls, 1,296 calls, twelve negatives**, exact zero-callback preservation and
-correct native normalization. No production code changed; current software is
-W106. The bounded callback is diagnostic only. [Results and next integration gates](topostitch-periodic.md#w107--native-core-plus-only-the-missing-periodic-terms)
-separate general term-level provider selection, active callback/buffer guarding,
-periodic exclusion policy and frozen refinement lifecycle. Earlier bending
-controls remain pinned W98/C331; ordinary refinement and scientific acceptance
-remain open. Do not repeat passed arithmetic controls as a substitute. The [audited roadmap](topostitch-roadmap.md) is generated from the one
-JSON status queue; the [intent record](topostitch-intent.json) lists owners without
-granting authority. Exact commands, native evidence and historical limits live in
-[periodic topology](topostitch-periodic.md) and [bend previews](topostitch-preview.md).
-Do not repeat completed probes merely because this compact handoff omits chronology.
+### Pine close-out
 
-**W93 commute requirements (planning only):** designed blunt interfaces may use
-one base-stack pair with noncanonical polarity/twist; place them using density
-rather than continuous-backbone alignment. See the [blunt contact contract](topostitch.md#designed-blunt-contacts-and-single-base-stacking-w93-planned).
-The [three-orientation campaign plan](campaign-model-roadmap.md#three-orientation-asymmetric-triangle-check-w93-planned)
-keeps observed data/Free-R fixed and independently bends/refines labelled molecular
-placements at nominal 0/120/240 degrees, strictly after PostMR and the first
-refinement. Do not rerun MR: it can erase the intended alternatives. Maps are
-recalculated per model, and ties/failures remain explicit.
-7U3O is the public control. Three private dataset triplets were inventoried;
-two top-level AlphaFold-labelled models exist. The user confirmed three available
-examples suffice; a missing third local AlphaFold model is not a blocker.
-No dataset copy or solve. Private anchored hashes and source-SI receipt
-are under the everyday checkout's ignored `branch-artifacts/willow/commute-2026-11-16/`.
-W94 added explicit
-pivot arithmetic to the existing Cartesian image owner and reused it for preview
-ANISOU. No MR/refinement behavior, axis inference, schema or dependency change.
-W94 validation: nine regressions failed before the API existed; **139 focused**,
-**1,844 full +229 subtests**, and **139 installed/relocated** tests pass, along with
-six installed CLI help checks and `pip check`. The full suite ran because this is
-shared coordinate arithmetic. See the [exact receipt](topostitch-preview.md#w94-validation--2026-11-16).
-No Phenix/Coot execution or scientific acceptance is claimed. The patch changes
-the existing transport/preview modules and transport tests, with no new module,
-schema, dependency or migration; generated test/build files remain local.
+See the [archived Pine gates](history/development-handoff-2026-10-08-pre-consolidation.md#pine-close-out).
+They do not establish current Cedar or Pine completion.
 
-**Current behavior:** the existing graph/packet owners freeze explicit image or
-chosen-forest proposals, replay them after relocation, compare 2–8 cuts through
-one viewer/camera and save source-bound preferences. These are review inputs,
-not model/checkpoint selection or authenticated approval. Optional native-link
-and backbone-intent observations expose image seams, incomplete graph coverage,
-declared/chemical/unknown boundaries and exact phosphate inventory.
+### Nine-member baseline results
 
-W67 resolves explicitly declared directed 3′→5′ partners through schema-2
-representative/forest requests. Both endpoints must already be representation
-boundaries. Chemical/unknown/interior/do-not-connect sites, competing partners
-and stale graph digests refuse. Exact images, periodic winding and unresolved
-coordinate partners survive replay. Old schema-1 packets/default observations
-remain exact; old readers reject schema 2. The public development control adds
-one declared existing source link, preserves all 855 proposed coordinates exactly,
-and covers one of two native seams; the other remains outside the partial routes.
-No partner is inferred, atom edited, restraint activated or new ASU written.
-W70 adds read-only `cut-preview --describe-graph`: graph IDs/hash and optional
-request MATCH/MISMATCH, with cut_selection_validated=false. It writes no directory,
-never rebinds a request, and leaves ordinary preview validation unchanged.
+See the [archived baseline](history/development-handoff-2026-10-08-pre-consolidation.md#nine-member-baseline-results).
 
-**W71 angle component:** `topostitch_native_terms` freezes complete live angle
-metadata against captured definitions, then reconstructs a private proxy array
-with explicit cell evaluation. JSON/deepcopy/pickle and fresh installed native
-reload preserve exact observations. Two public cuts retain all 1,467 angles;
-source energy/rotated gradients and predeclared directional checks agree. This is
-read-only and must not be added to an objective already containing those angles.
-No source manager, native installation, chemistry or refinement is changed.
+### After Pine: blind AlphaFold geometry campaign, then Scout
 
-**Code validation:** full Willow **1,769 + 229 subtests**; installed/relocated
-**668**, six helps, lean import and Python 3.10 syntax. Old/new packets and graph
-replay stay exact with original paths blocked. Initial missing-Gemmi and native
-Python/NumPy ABI environment failures are retained; correctly isolated checks pass.
-
-Installed virtual composition with published Cedar `794e0d7b` passes
-**782 + 16 subtests**, six helps and exact old/new default-owner native-link,
-graph, packet and W77 packing replay after relocation with original paths blocked.
-This includes current Cedar output synchronization and dictionary-target checks.
-Seven documentation conflicts and zero source conflicts remain. No actual merge,
-full combined suite or ordinary native refinement qualification is claimed.
-
-**W68 native finding:** complete fresh Phenix **2.2.1-6174** reconstruction matches
-the authenticated source. Eight crossing source-native angle terms per cut preserve
-image-aware energies/rotated gradients; subset/reindexing preserves operators.
-But native proxy pickle/generic manager deepcopy lose `sym_ops`, and the isolated
-geometry manager already omits unit-cell evaluation context before serialization.
-Correct image-bearing proxies alone therefore do not qualify a seam. Direct kernels
-and the ordinary manager are distinct; this was not a full refinement execution.
-Three setup failures and all negative controls are retained. See the
-[angle/lifecycle audit](topostitch-periodic.md#w68--inspect-source-seam-angles-and-proxy-persistence).
-
-**W72 scientific result:** retaining the complete source geometry and inverse-
-mapping chosen representatives preserves the full target/gradients, including
-forced native neighbor rebuilding with changed membership. Source seams contain
-two bonds/eight angles/six torsions. Twelve actual mmtbx energy-entry controls pass
-normalization and gradient-buffer combinations. A local facade's identity selection
-**drops its mapping** and remains a demonstrated failure. No runtime hook or
-ordinary refinement was installed; a recut PDB alone lacks this geometry context.
-
-**W73 binding component:** immutable `ReferenceFrame` keeps complete source labels,
-proper numerical images and caller-owned context through explicit full permutations.
-The local mmtbx facade now passes 36 identity/reverse/cyclic cases; partial selection
-and actual cell drift refuse before evaluation. Plain frames reopen from the installed
-wheel in a fresh native interpreter after relocation. The facade itself remains
-local; no native selection hook or ordinary refinement support is claimed. The
-caller must authenticate/recompute context, not merely repeat an old digest.
-
-**W74 joint target/boundary:** 1,008 native synthetic reflections preserve Fcalc,
-work/test target and gradients across both cuts only when all 855 existing ANISOU
-tensors are also transported. Combined geometry/data derivatives pass. Initial
-isotropic-only refusal and omitted-tensor controls remain. Actual model energy
-entry agrees, but identity selection/deep_copy needs `geometry.pair_proxies`,
-which the narrow local facade deliberately lacks. Model pickle drops restraints;
-ADP and reporting consumers need their own frame semantics. No experimental data,
-ordinary refinement, ADP optimization or serialized ASU/tensor change.
-
-**W75 consumer evidence:** stock Phenix source-only synthetic dry-run and one
-coordinate cycle complete. Geometry has 94 energy evaluations from weight-related
-regularization/dynamics, statistics and restraints versus ten model energy calls.
-Copies, pair tables, `.geo` and mmCIF links need explicit frame semantics. Matched
-unprofiled/caller-aware controls give identical saved coordinates/tensors/cell and
-`.geo` bytes. The five-module Python trace is a lower bound, not recut qualification.
-ADP-weight/NCS-update entry points can be inactive; bind state rather than rejecting
-names alone. Two setup failures remain local. W75's 85-payload local archive is
-verified; its checksum and exact control scope are in the periodic guide.
-
-**W76 contact report:** `reframe_native_packing` represents reviewed source contacts
-with exact `g_i h g_j^-1` operations, retaining directed rows, weights and source
-proxy kinds. Complete labels/images/source digest and actual distances bind the
-report. Both saved native controls preserve all 8,305 rows; max distance error
-1.69e-14 Å. Focused 118 and installed/relocated 564 pass; W77's final full suite
-also covers the finite-output guard. No native table, exclusion, neighbor search
-or runtime hook changes.
-
-**W77 preview binding:** the saved-preview API reuses the immutable native-link
-context to verify complete native atom order, cell, source/proposed coordinates
-and unchanged receipt bytes. Seven new regressions and 167 focused checks pass;
-full 1,756 +229 and installed/relocated 571 pass. Both saved cuts exactly reproduce
-W76 reports. Existing link observations, CLI/view defaults and packet schemas are
-unchanged. W78 narrows the native copy boundary; complete live-policy binding and reporting
-remain open. A contact report cannot stand in for native pair tables.
-
-**W78 copy boundary:** actual native source identity selections and model
-`deep_copy()` preserve energies/gradients through three neighbor-rebuild controls.
-Generic Python geometry deepcopy retains contact rows but loses all nonbonded
-energy. A tiny native-object control confirms parameter tables disappear during
-pickle/deepcopy while scalars survive. Successful selection shares its nonbonded
-parameter owner, so it is not a proof of independent mutable policy. Full live
-policy binding belongs to Cedar; neither copy route qualifies recut refinement.
-All failures and native diagnostics remain local and preserved.
-
-**W79 reporting boundary:** actual native statistics can return correct scalar
-geometry but wrong torsion outliers when representative coordinates reach a
-source-frame result object. Explicit remapping of four query callbacks restores
-all source outlier lists in both cuts/two coordinate controls. Source-frame `.geo`
-records agree after narrowly accounting for +/-180 display and tied contact
-ordering; raw bytes differ. No representative export or ordinary adapter is enabled.
-
-**W80 tensor binding:** shared Cartesian tensor rotation and complete frame-bound
-forward/inverse transport now reuse the coordinate labels/context/permutation.
-The existing preview ANISOU writer uses the same arithmetic with its old scaling
-and rounding policy. Thirteen new controls, 184 focused, full 1,769 +229 and
-installed/relocated 668 pass. Installed native checks preserve all 855 tensors and
-1,008 Fcalc values across both cuts and three orders (max Fcalc difference4.43e-11);
-omitted rotation fails strongly. ADP flags/physical validity, fractional conversion
-and serialization remain caller-owned; no new ASU export or refinement support.
-
-**W81 combined audit completed with limitations:** the unfiltered full installed
-virtual build pins Willow2a76967c + Cedar dc82aee1:4 failed,11,109 passed +284
-subtests. Two source-only test assumptions and two genuine default installed
-historical-reader resource failures are distinguished. All90 affected source tests
-+20 subtests pass; explicit historical runtime-source installed C62/C63 replay,
-old/new native/packing replay and six helps pass. Cedar repaired the missing packaged canonical frame in C325; W84 verifies
-the later installed combination. Do not call the original full run green; no full rerun or actual
-merge. C323/W82 are outside that pin. Eight tiny installed native cross-setting
-Fcalc/tensor controls pass separately; no refinement.
-
-**W82 saved-frame boundary:** exact receipt pinning and ordinary immutable preview
-replay now produce the existing complete numerical ReferenceFrame. All source
-identity/context atoms are retained; compiled positions must reproduce the packet.
-Twelve fail-before controls, focused99, full1,781 +229 and installed680 pass; both
-855-atom saved cuts reproduce exactly in three orders after relocation. No schema,
-CLI, writer, native hook or changed-child/import authority is added.
-
-**W83 special-position preservation:** nine complete synthetic Phenix2.2.1-6174
-cases in C2/R3:H/P4 use fresh target symmetry tables and retain separately labelled
-coincident atoms, partial/zero occupancies, multiplicities and ADP flags. Fcalc
-error<=7.62e-13; dropped-label, wrong-tensor and overwritten-occupancy controls fail.
-This preserves the supplied scattering object, not approval of its physical or
-chemical validity. No writer/runtime change; W82 full/install remains baseline.
-
-**W84 installed composition:** Willow29723067 + Cedar C325 cad829a60 passes
-873 tests +16 subtests in a fresh installation: 28 selected TopoStitch modules
-and seven shared/Cedar modules, six helps and exact saved-packet replay. Both
-viewer HTML and historical PDB resources are packaged. One package-data conflict
-was resolved by retaining both declarations in a temporary virtual tree; seven
-documentation conflicts remain and neither branch was merged. No full rerun or
-native execution; the original W81 full result remains unchanged.
-
-**Current reusable backend (W86/W88/W90):** immutable `TaperedMotion` shares the
-preview rotation kernel and exact coordinate-mask bounds. The native motion view
-preserves target/components and Cartesian gradients. `load_bend_motion` compiles
-weights/pivot/order from a pinned replayed preview and registration, with exact
-source-byte binding. The atomic trial accepts an explicit diagnostic displacement
-start without rebasing source/tether or accepting the seed as an optimizer step;
-remaining-budget checks include prior evaluations. Default callers remain compatible.
-
-**Latest software validation — W90:**14 fail-before controls,75 focused,
-**1,835 full Willow tests +229 subtests**, **745 installed/relocated tests**, six
-CLI helps, lean imports, Python3.10 syntax and saved preview/frame replay pass.
-The earlier [W86](topostitch-periodic.md#w86--expose-bounded-tapered-motion-through-the-existing-native-objective)
-software/native audit and [W88](topostitch-periodic.md#w88--compile-source-bound-motions-from-saved-bend-previews)
-source-binding audit remain recorded; do not repeat them merely to refresh context.
-
-**Coarse-stage evidence to retain:** W85/W86 local derivatives and forced neighbor
-rebuilds pass. W87 paired/core-only coarse trials both fail rounding; their exact
-last accepted points pass full/rounded Cartesian derivatives. W89's stable local
-Hessians place further coarse motion near8e-9/3e-8 Angstrom and score changes near
-roundoff. This supports a resolution explanation, not convergence. Retained-pair
-geometry is invariant under pairwise rigid motion, and aggregate score improvement
-can coexist with individual packing/AT regressions. Original process/import/host
-arithmetic failures remain in the local evidence and detailed W85–W89 ledger.
-
-**W91 native result:** matched cold/coarse-seeded atomic trials both FAILED
-rounding (358/363 accepted steps;390/401 optimizer calls). Both last accepted
-points pass full/rounded derivatives and common-recipe observers. Endpoints differ
-by at most2.65e-7 Angstrom; all855 PDB-rounded triplets match. Active bond/angle
-nominal>=3 counts9/14→0 and boundary angle1→0; individual packing/torsion reviews
-remain. No demonstrated benefit from this small coarse polish, no candidate,
-refinement or parent-failure promotion. Keep the start API without enabling a
-redundant default stage. Raw evidence remains local; software full/installed
-checks above remain current.
-
-**W97 guarded captured diagnostics are qualified in the declared read-only case.**
-`run_captured_objective(..., guard_live_policy=True)` stages the explicit C331
-guard/profile, snapshots only after fresh-context comparison, preserves the
-model/capture-bound baseline and verifies child binding/digest evidence. Default
-worker bytes and request/report shape remain unchanged. No CLI/campaign default,
-optimization or edited model is enabled. See the [API and exact validation receipt](topostitch-periodic.md#w97--explicit-guarded-captured-diagnostics).
-
-Validation: **84 focused, 1,864 full +229 subtests, 84 installed**, six CLI helps
-and `pip check` pass. Complete Phenix 2.2.1-6174 capture plus guarded/unguarded
-workers on the retained public-DNA case (855 atoms/204 movable/14 pairs) agree
-exactly. Installed guarded execution after removal of original input/capture
-paths reproduces values, gradients and binding. This qualifies the explicit
-installed-Cedar owner route on its pinned profile, not a fully merged branch or
-physical DNA repair. Scientific evidence remains ignored local material.
-
-**W98 is recorded.** `run_captured_objective` now forwards frozen, finite,
-mask-bounded diagnostic starts to the existing trial. Twelve fail-before cases,
-96 focused, 1,876 full +229 subtests, 96 installed tests, six CLI helps and
-`pip check` pass. Rowan reviewed runtime `7faff1a1` without a Cedar compatibility
-blocker. Full-suite sandbox failures were resolved by the unchanged unsandboxed
-run. See the [W98 contract and exact evidence](topostitch-periodic.md#w98--declared-starts-through-captured-native-trials).
-
-The oversized 204-atom run is retained as interrupted/unqualified; sandboxed
-cleanup reported OWNERSHIP_ERROR and an independent check proved its worker
-absent. Smaller installed C331 controls move one intact pair (41 atoms/123
-variables) by 1.15 Å RMS, preserving 814 fixed atoms and the original 0.1 Å tether.
-Matched 25-step pilots and one declared 300-step extension all pass full and
-PDB-rounded derivatives/guard checks, but all stop NOT_CONVERGED_LIMIT. Extended
-RMS displacement is 0.0654 / 0.0641 Å (pair forces on/off). Initial states match
-exactly across budgets. The reference tether makes this numerical recovery,
-not blind MR/density repair or selected sticky-end closure.
-
-Three guarded endpoint-observer jobs also pass consistency checks. Added pair
-forces reduce the changing core-pair penalty (14.94→10.61 versus 21.13 without),
-primarily through plane terms; not every bond/angle or packing contact improves.
-Source and endpoints remain environmental REVIEW; rounding changes stationarity
-and must stay visible. The verified 487-file local forensic archive and exact
-commands/hashes are in the W98 receipt. All jobs are stopped; no candidate or
-scientific payload was published.
-
-User inspection PDBs and the replayed cut viewer are available under the ordinary
-NASolve anchor at `branch-artifacts/willow/inspection-2026-11-16/`; see the
-[inspection-export receipt](topostitch-periodic.md#user-requested-coordinate-inspection-exports).
-These are visual diagnostics, with no new physical or refinement qualification.
-
-**Final demonstration gate added (2026-11-16, planning only):** B09 in the
-[roadmap](topostitch-roadmap.md) now requires geotest altered-arm alignment,
-including X11_18 in P4_3 and X11_22. A read-only local inventory now binds the
-two named seeds and nine historical members (204 hash/size checks pass); the
-remaining panel and sequence/arm/partner mappings are still to be frozen.
-X11_18 is dataset2/refine-002 under REVIEW, with current `postmr` unchanged;
-its P4_1 input/P4_3 model lineage requires an explicit audit before repair.
-The [gate contract](topostitch.md#final-geotest-alignment-gate-planned) requires
-coupled bend/rise/twist/backbone relaxation and contacts that survive matched
-refinement, with healthy arms/junctions preserved. Small preview motion is not
-that success. No new scientific run, schema or Cedar behavior changes; the
-current next step is the W100 source-displaced comparison. Documentation validation: roadmap regeneration
-and check, JSON readback, and `git diff --check`; no runtime/full-suite rerun.
-
-**W99 is recorded:** both complete 204-atom/612-variable controls and three
-common endpoint observers pass numerical/binding checks. Both remain
-NOT_CONVERGED_LIMIT. RMS from the known source is 0.0742 / 0.0587 Angstrom
-(pair forces on/off), from 0.9175; the original 0.1-Angstrom tether biases this
-return. Added pair forces improve both selected contacts and the core total,
-but individual packing/torsion regressions persist and rounding changes
-stationarity. No physical closure, density/Rfree or adoption claim. Exact
-results, commands, local archive and four inspection PDBs are in the
-[W99 evidence](topostitch-periodic.md#w99--complete-full-window-native-bend-controls).
-
-**W100 is recorded:** all three actual-input-tether controls and common native
-observers pass full/rounded derivatives, while every trial hits its 300-iteration
-limit. Displaced pair forces on/off give reference RMS0.6982/0.9426 Å from0.9174,
-and pair penalties333.8/1292.3 from835.3. Lower native energy without pairs is not
-better pairing. The reference control itself moves0.4210 Å. Affected bond/angle
-screens improve and chiral signs hold, but individual packing/torsion/plane
-regressions and rounding sensitivity remain. No physical repair or density claim.
-The [complete W100 evidence](topostitch-periodic.md#w100--source-displaced-controls)
-records the corrected preparation, exact commands, local archive and five
-inspection PDBs. All W100 native processes are terminal; installed W98/C331 stays pinned.
-S04/S05 remain partial.
-The separate installed virtual Willow/Cedar C338 combination passes 1,062 tests
-+22 subtests, six helps and exact saved graph/frame/native-link/packing replay;
-see the [explicit scope and retained setup failures](topostitch-periodic.md#installed-c338-compatibility-during-w100).
-Zero source conflicts; seven documentation conflicts and the package-data union
-still need actual merge review. No branch merge, full combined suite or native
-combined refinement. C338 intra-site chemistry reporting is not backbone/seam
-acceptance; C340 is outside this pin. Rowan retains a full-suite consolidation
-gate. No runtime/schema changes in W99–W101.
-The [next ordinary refinement boundary](topostitch-periodic.md#next-ordinary-refinement-boundary)
-reuses Cedar's frozen AutoRefine round and final-writer owners, with separately
-qualified complete periodic-pair, exclusion and normalization/force accounting.
-A second refinement runner or C338 reporting pass cannot substitute for that gate.
-**W101:** the [native pair-kernel comparison](topostitch-periodic.md#w101--pair-kernel-composition-before-ordinary-refinement)
-passes20/20 directions in all four cases with exact baseline target/gradient
-agreement. The suspected double correction does not occur in these controls;
-no fix is needed. Preserve the initial Python ABI setup failure and isolated V2
-success. Actual ordinary-manager attachment, rebuild persistence, normalization,
-exclusions and matched diffraction remain unqualified. Archives/inspection files
-stay local; W98 is still the latest runtime. Documentation checks only were rerun.
-
-This direct guard is separate from Cedar Q06 refinement chemistry/PDU angle
-review. Nonuniform curvature, matched diffraction and density-aware S06 remain
-open. Do not restart the completed small-polish comparison: W91 showed no seed
-benefit. For the next native diagnostic, choose a genuinely displaced general motion case
-and retain a matched control, rather than tuning to one benchmark structure.
-
-**Next Pine integration candidate (agreed with Cedar):** for pure representative
-recuts, keep the whole native process in one computational/source frame and derive
-views at explicit boundaries. Bind exact atom/operator/tensor correspondence and
-immutable checkpoint lineage; scientific statistics remain attached to the
-computational model. A refined child needs a fresh source binding, never silent
-rebasing of an old preference. Coot edits or re-entered exports need a checked
-inverse mapping; additions/deletions/renames or changed intent require fresh
-qualification. No runtime implementation or standalone recut refinement is claimed.
-
-Cedar owns the qualified live nonbonded-policy guard and exclusion-table inventory;
-Willow consumes it through explicit direct and captured-diagnostic opt-ins. If a concrete requirement needs an in-engine facade, retain the
-copy, pair-table, outlier/report and source-bound weighting qualification contract;
-equal random seeds alone are not equal atomwise shakes in different frames.
-See the [bounded integration contract](topostitch-periodic.md#next-implementation-contract).
-Physical closure, missing links and P02/P03/P04 remain separate gates.
-Cedar's `cif_refinement_runtime` wraps/audits the
-parallelity kernel; it does not restore missing metadata, and its kernel rejects
-symmetry-bearing proxies. `refinement_parallelity` owns reusable frozen helpers,
-zero-cycle preflight and exact checkpoint/round ancestry, not existing angle support.
-Do not fork a refinement driver or patch Cedar during Rowan's pinned native work.
-
-**Other gates stay open:** actual browser rendering/download and human cut review
-remain blocked by the explicit local-file URL policy; no workaround was attempted.
-P01/P02 remain partial. W62 proves labelled orbit permutations/complete source-atom
-ownership; W55 observes sampled Fcalc and in-memory ANISOU transport. Physical unique
-identity, special-position weights and serialized tensors remain distinct. Do not
-materialize an ASU before P03/P04 qualify its physical identity and seam chemistry;
-recutting cannot repair a physical gap.
-
-**Stitch capability:** source-bound frames, periodic image search, logical
-registration, declared routes, fixed-anchor paired windows, explicit previews and
-bounded fitting exist. Selected-image reciprocal incidence is checked; complete
-molecular/global identity, unassisted inference, rebuilding and campaign adoption
-remain open. Native observers/trials reuse Cedar owners; all whole-window trials
-remain capped/failed, unselected and local. W51 line-search rounding failures remain
-failures. W53/W54 pass full/rounded accepted-point diagnostics without adopting a
-candidate. W61 shows scalar/pair improvements can coexist with worse individual
-packing/torsion/plane terms. Do not relax stopping policy merely to produce a pass.
-
-W34's matched same-data/Free-R controls give bend-plus-cleanup Rfree .2276 versus
-cleanup .2274, with worse bond/angle RMSDs: no meaningful extra held-out benefit.
-Private MR repair remains open. General tools must handle straight→bent,
-bent→straight and changed/nonuniform/distal curvature. Benchmark IDs/transforms
-belong in requests. Calibrated read-only negative-backbone-density detection stays
-in **S06**, after exact model/map/data binding and matched refinement, then review,
-then density-guided placement. Construct 4T28/PDB 8SJW is a future example;
-its exact B:11 interpretation remains unverified.
-
-**Shared boundary:** Pine owns editable periodic intent; TopoStitch exposes it;
-Cedar owns native enforcement. Preserve **P/OP1/OP2** on declared continuation even
-with unresolved partners. No automatic OP3/dephosphorylation or lone symmetry bond
-while surrounding geometry/exclusions are unqualified. Virtual L/R recipe labels
-are not ordinary source-model selections. See the [shared contract](construct-registration.md#shared-periodic-connectivity-intent-pine-topostitch-and-cedar).
-
-Keep dirty Pine/Cedar worktrees, immutable runs, maps and Free-R untouched.
-Scientific inputs/results and failed probes remain in Git-ignored local evidence;
-[W71–W74 archives and checksums](topostitch-periodic.md#w71w74-local-retention)
-retain every diagnostic payload. Verified duplicate build/test trees were removed.
-Archives are forensic records, not resumable portable runs. Do not rerun W34's
-plane-free controls merely to test a parallelity correction.
+See the [historical sequencing](history/development-handoff-2026-10-08-pre-consolidation.md#after-pine-blind-alphafold-geometry-campaign-then-scout)
+and current [registration contract](construct-registration.md). Predictions are
+candidate models, not solved truth; preserve frozen sequences, diffraction and
+Free-R, and do not consult outcome structures during blind selection.
 
 ## Work discipline and doc ownership
 
-- **One terminal action per user turn** for live NASolve debugging, then
-  inspect the output before proceeding. Prefer isolated Git worktrees
-  for candidates. Preserve the user's dirty `../NARestraints` tree (including
-  unpublished `Ligands.xlsx` and Excel lockfile), the original NASolve
-  untracked files/patches, all immutable numbered runs, maps and Free-R.
-- Do not represent an unrun test as passing. Keep native-tool receipt,
-  chemical identity, numerical statistics and human Coot verdict as
-  separate fields. Confirm environment imports instead of assuming the
-  v1.1.3 metadata pin upgraded a preexisting `.venv`.
-- **This file** owns current priorities/results; the
-  [documentation map](README.md) routes to active subsystem contracts;
-  the [native ledger](native-modified-pair-live-validation.md) owns exact
-  pair-matrix evidence and per-member status. Earlier full chronology
-  is preserved [in history](history/development-handoff-2026-10-08-pre-consolidation.md)
-  and Git. Do not re-append old session logs here.
+Use [AGENTS.md](../AGENTS.md) and the [collaboration contract](collaboration.md).
+Keep branch-local state out of Git. Preserve immutable runs, failures, maps,
+Free-R, pinned diagnostic environments and other authors' untracked work.
+Scientific archives are local forensic records, **not automatically portable or
+resumable runs**. No scientific payload is included in this documentation update.
+
+Keep this handoff concise. The roadmap owns milestone status, subsystem guides
+own behavior, and the periodic/preview ledgers own exact validation commands and
+historical evidence. Do not append repeated session diaries or promote a numerical
+or software PASS into scientific acceptance.

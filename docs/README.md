@@ -1,31 +1,26 @@
 # NASolve documentation map
 
-Updated **2026-10-08**. **Start with the
-[current development handoff](development-handoff.md)** — the single short
-ledger of proven capabilities, remaining Pine gates and *next test*. Read
-subsystem contracts only for the subsystem being changed; do not ingest
-historical handoffs as current instructions.
+Updated **2026-11-16** for **`willow`**. Start with the
+[current development handoff](development-handoff.md) for the proven edge,
+remaining gates and next bounded task. Historical handoffs are evidence, not
+current instructions; other branches retain their own status and validation pins.
 
 ## What's current?
 
-- **Current project queue:** [Development handoff](development-handoff.md).
-  NARestraints **v1.1.3 is released**; NASolve PR #25 pathless Coot `show`
-  is merged and user-live verified; **modified-W Saenger PR #24 is also
-  merged** (commit `0017081`) after **40 focused + 2 subtests**
-  and **967 full + 226 subtests**. The earlier native Z:P Phenix
-  refinement and overall Coot visual PASS remain preserved.
-- **Next chemistry work:** library-first **generic monomer dictionary
-  resolver**, then [one simultaneous modified-pair model](native-modified-pair-live-validation.md)
-  — distinct **D:T, B:S, Z:P and K:X** sites in the same 42-residue W
-  model, plus the existing 5CM:G and DF:A contextual pairs. The
-  original independent A:T/D:T/B:S/Z:P/K:X staging helper is retained
-  as a diagnostic fallback, **not** today's default experiment. **D:A
-  is not a registered recipe.** IGU/IMC/CGY/DX authoritative monomer CIFs
-  are missing from NASolve and must be verified before native PostMR.
-- **Still required for Pine:** [specific component P2](modified-component-preparation.md)
-  true 1W5→DZ/1WA→DP native provenance and the small real
-  prepared-nonstandard P5 test. Then final review/merge. After Pine:
-  blind AlphaFold geometry campaign, then operational Scout.
+- **Willow queue:** [Development handoff](development-handoff.md). W107 qualifies
+  native core plus explicitly missing periodic-pair arithmetic; runtime remains
+  W106. General provider selection, active guards, exclusion policy and ordinary
+  refinement integration remain open. No physical repair is claimed.
+- **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
+  [machine-readable source](topostitch-roadmap.json). Next human update is W108;
+  do not restart completed probes merely because a handoff is shorter.
+- **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
+  [preview ledger](topostitch-preview.md). These preserve commands, failed
+  attempts, compatibility pins and limits; they are not duplicate action queues.
+- **Other branches:** inspect current Pine/Cedar/Alder handoffs before integration.
+  The [October Pine handoff](history/development-handoff-2026-10-08-pre-consolidation.md)
+  and [modified-pair ledger](native-modified-pair-live-validation.md) retain earlier
+  chemistry evidence, not a claim about today's other-branch implementation.
 
 ## Publication demonstration plan
 
@@ -50,17 +45,16 @@ demonstration goals with explicit evidence gates, not completed-result claims.
 | Work area | Read here |
 | --- | --- |
 | Modified residues, CCD aliases and terminal phosphate | [Modified-component preparation](modified-component-preparation.md), [backbone chemistry](backbone-chemistry.md), [sequence-family targets](sequence-family-targets.md) |
-| Pair recipes, successful Z:P run, combined four-family next challenge | [Native modified-pair validation](native-modified-pair-live-validation.md) |
+| Pair recipes and historical modified-pair native evidence | [Native modified-pair validation](native-modified-pair-live-validation.md) |
 | Campaigns and stages | [Campaign architecture](campaigns.md), [planning](campaign-planning.md), [execution](campaign-execution.md), [full-auto recipe](campaign-full-auto.md) |
 | Other-family model selection and proposed providers | [Campaign model roadmap](campaign-model-roadmap.md), [model compatibility facts](model-compatibility-facts.md) |
 | Operational Scout and eventual ASU/Topo surgery | [Construct registration](construct-registration.md), [registration intent](construct-registration-intent.json), [Scout/Topo live checks](construct-registration-live-checks.md) |
 | TopoStitch recut and connection repair | [Audited completion roadmap](topostitch-roadmap.md), [design contract](topostitch.md), [development intent](topostitch-intent.json) — [candidate screen](topostitch-backend.md) and [coordinate adapter](topostitch-coordinates.md), [periodic inspector, saved proposals and read-only representative views](topostitch-periodic.md) and [explicit bend previews and offline comparison](topostitch-preview.md); campaign inference, scheme transfer and repair remain planned |
 | Future GUI | [GUI contract](gui.md), [GUI live checks](gui-live-checks.md) |
-| Proposed metal-coordination builder | [Metal restraint builder](metal-restraint-builder.md), [development intent](metal-restraint-builder-intent.json) — **design, not implemented** |
+| Metal-coordination design and intent (check Alder for implementation) | [Metal restraint builder](metal-restraint-builder.md), [development intent](metal-restraint-builder-intent.json) — branch-local design reference |
 
-Implementation-intent JSON is **not** runtime registration authority. The
-GUI/Topo/metal-builder designs are future scopes and do not enlarge the
-current Pine merge gate.
+Implementation-intent JSON is **not** runtime registration authority. Check each subsystem’s audited status and owning branch before treating a design
+as implemented or a diagnostic as production qualification.
 
 ## Older evidence, not an action queue
 
