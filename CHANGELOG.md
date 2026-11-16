@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W104 — Check explicit native/additive pair coverage
+
+- Add the opt-in, read-only `review_pair_coverage` API. Bind declared inventories,
+  atom/crystal/exclusion context and explicit providers; reject duplicate/missing
+  coverage, target or image mismatches, stale context and unrequested additions.
+- Preserve exact lattice translations and per-atom plane weights while comparing
+  equivalent term orderings. No native observer, callback, exclusion mutation,
+  refinement behavior or scientific approval is added; existing APIs stay unchanged.
+
 ### W103 — Audit native pair membership and exclusions
 
 - Compare complete periodic-pair supports with actual native managers and ordinary

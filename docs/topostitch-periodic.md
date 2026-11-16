@@ -4426,3 +4426,62 @@ audits remain local and uncommitted; this is not an autonomous portable campaign
 Runtime/API/schema and installation remain W98. Documentation validation is
 roadmap regeneration/check, JSON/archive readback and `git diff --check`; no new
 full-suite or installation result is claimed.
+
+
+## W104 — Explicit native/additive term coverage
+
+`nasolve.topostitch_pair_coverage.review_pair_coverage` is an opt-in, read-only
+Python API for the W103 double-counting boundary. It requires every requested
+term exactly once from its explicitly assigned native or additive provider.
+It does not infer a provider, remove existing terms, manufacture missing terms,
+modify exclusions or attach a callback. Existing commands, runtime behavior and
+saved recipe packets remain unchanged.
+
+The caller supplies three ordered lists: the complete requested recipe, complete
+observed native terms in the four supported families, and explicit proposed
+additions. Each term contains `term_id`, `kind`, `atoms`, `other_atoms` and
+`parameters`. An atom reference is `{"atom": "source label", "rotation": [nine
+integers], "translation": [three reduced rational strings]}`. The nine fractional
+rotation entries are row-major; translations retain whole-cell offsets. Complete
+source atom labels are distinct and frozen. `other_atoms` is nonempty only for
+the second parallelity plane.
+
+| Family | Complete score parameters |
+| --- | --- |
+| bond | `ideal`, `weight`, `slack`, `limit`, `top_out` |
+| angle | `ideal`, `weight`, `slack` |
+| planarity | `weights`, in the same order as `atoms` |
+| parallelity | `ideal`, `weight`, `slack`, `limit`, `top_out` |
+
+`frozen` contains `context`, `requested_sha256`, `native_sha256`,
+`additive_sha256` and the ordered `native_requested_ids`. Compute inventory
+fingerprints with the existing `recipe_digest`; the remaining requested IDs
+must be supplied by the additive list. `current_context` must reproduce the
+frozen context exactly: `source_model_sha256`, `recipe_sha256`, `atom_labels`,
+`crystal_sha256` and `native_exclusion_policy_sha256`. A changed manager requires
+explicit upstream requalification, never silent baseline replacement.
+
+The checker reuses the existing packing owner's exact rational relative-image
+arithmetic. Bond endpoints and angle ends may reverse; plane atom order and the
+two parallel planes may exchange under a common crystallographic image. Plane
+weights follow their atoms. Different lattice translations stay different.
+Targets and modes compare exactly; reciprocal-square weights allow only relative
+rounding tolerance 1e-12, with no absolute tolerance that could merge distinct tiny
+weights. Inventories are bounded to 25,000 terms each and 64 references per term;
+standard fractional translation denominators must divide 24. Unsupported fields,
+malformed images and duplicate occurrence IDs refuse.
+
+The result records ordered provider/occurrence coverage, frozen and input digests,
+requested-term counts for each provider and the total observed native term count.
+These counts are **not Phenix's normalization denominator**. The result has
+`declared_coverage_complete=true`, `runtime_authority=false` and
+`scientific_acceptance=false`; it cannot authorize activation.
+
+This is a declaration checker, not a native observation or authentication engine.
+The caller must establish complete actual inventories, valid group membership,
+general-position scope, source/recipe identity and exclusion-policy authenticity.
+It cannot detect native terms omitted by a dishonest or incomplete producer whose
+hashes were frozen that way. Special-position equivalence, actual forces,
+normalization, callback-aware policy guarding, selection/rebuild interception,
+final-writer binding and diffraction remain with their existing owners and still
+need integration qualification. No new serialized runtime helper is activated.

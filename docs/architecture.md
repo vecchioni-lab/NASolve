@@ -969,7 +969,14 @@ atom images; `topostitch_native_recipe` binds them to unmodified PDB atom order
 and evaluates unnormalized additive pair energies/ASU gradients. The new schema-1
 packet contains hashes and identities, not a model path or runtime authority.
 Virtual L/R labels are internal selection scaffolding, not ordinary refinement
-PHIL for the source model. Cedar still owns native correction/policy machinery;
+PHIL for the source model.
+`topostitch_pair_coverage.review_pair_coverage` compares caller-authenticated,
+frozen requested/native/additive term declarations with explicit providers. It
+retains exact fractional images, checks complete score parameters and refuses
+missing, duplicated, stale or mismatched coverage. The existing packing owner
+supplies rational relative-image arithmetic. It neither captures native managers
+nor qualifies exclusions, actual force activity, normalization or lifecycle;
+Cedar and the frozen refinement owner must establish those separately. Cedar still owns native correction/policy machinery;
 this component neither attaches callbacks nor supplies a complete masked native
 objective. See W37 in the preview guide for the developer API and evidence.
 
