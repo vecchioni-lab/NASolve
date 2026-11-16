@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W98 — Forward declared starts through captured native trials
+
+- Add optional `initial_displacements` to the captured-objective Python API.
+  Freeze and validate the 3N vector before job allocation, including the explicit
+  movement mask's atom count and radial limit; require an opted-in trial.
+- Reuse the existing atomic trial, original model/tether and derivative/budget
+  policy. Retain the vector in the immutable request and original trial failures.
+  Default calls and worker text remain unchanged; no new CLI or adoption policy.
+
+
 ### W97 — Carry the explicit policy guard into captured diagnostics
 
 - Add `guard_live_policy=False` to the captured-objective Python API. Opt-in

@@ -280,3 +280,49 @@ def test_guard_option_requires_boolean_before_loading_owners(monkeypatch):
     with pytest.raises(ValueError,match='boolean'):
         job.run_captured_objective('a','b','c','d','out',recipe_sha256='a'*64,mask_sha256='b'*64,
             phenix='native',guard_live_policy='yes')
+
+
+@pytest.mark.parametrize('value',[[],[0.,0.],['x',0.,0.],[True,0.,0.],[float('nan'),0.,0.],
+    [float('inf'),0.,0.],[0.]*1203,iter([0.,0.,0.])])
+def test_explicit_trial_start_refuses_bad_vectors_before_owners(monkeypatch,value):
+    def forbidden(*a,**kw):raise AssertionError('owner loaded')
+    monkeypatch.setattr(job,'_cedar',forbidden)
+    with pytest.raises(ValueError,match='start'):
+        job.run_captured_objective('a','b','c','d','out',recipe_sha256='a'*64,mask_sha256='b'*64,
+            phenix='native',trial_iterations=1,initial_displacements=value)
+
+
+def test_explicit_start_requires_an_opted_in_trial_before_owners(monkeypatch):
+    def forbidden(*a,**kw):raise AssertionError('owner loaded')
+    monkeypatch.setattr(job,'_cedar',forbidden)
+    with pytest.raises(ValueError,match='trial'):
+        job.run_captured_objective('a','b','c','d','out',recipe_sha256='a'*64,mask_sha256='b'*64,
+            phenix='native',initial_displacements=[0.,0.,0.])
+
+
+@pytest.mark.parametrize('value',[[0.]*6,[.4,.4,0.]])
+def test_explicit_start_matches_mask_count_and_radial_bound_before_allocation(context,value):
+    with pytest.raises(ValueError,match='start'):
+        job.run_captured_objective(**context.args,trial_iterations=1,initial_displacements=value)
+    assert not context.args['output_parent'].exists() and not context.seen
+
+
+def test_explicit_trial_start_is_frozen_and_forwarded_with_guard(guard_context,monkeypatch):
+    c=guard_context;start=[.1,-.1,.2]
+    original=job._run
+    def enter(args,*rest):
+        start[0]=99.  # Changing caller data after API entry cannot change request.
+        return original(args,*rest)
+    monkeypatch.setattr(job,'_run',enter)
+    def runner(*a,cwd,log_path,**kw):
+        request=json.loads((cwd/'request.json').read_bytes())
+        assert request['trial']==dict(max_iterations=1,max_calls=10,initial_displacements=[.1,-.1,.2])
+        guarded_result(cwd,c)
+        p=cwd/'evaluation.json';v=json.loads(p.read_bytes());v.update(status='TRIAL_REVIEW_REQUIRED',optimization=True,
+            trial=dict(status='FAILED',error='original bounded failure'));p.write_text(json.dumps(v))
+        log_path.write_text('failed trial retains its explicit initialization');return 2
+    root,r=job.run_captured_objective(**c.args,trial_iterations=1,trial_calls=10,
+        initial_displacements=start,guard_live_policy=True,_process_runner=runner)
+    assert r['status']==r['trial_status']=='FAILED' and r['inputs_and_sources_preserved']
+    assert json.loads((root/'request.json').read_bytes())['trial']['initial_displacements']==[.1,-.1,.2]
+    assert json.loads((root/'evaluation.json').read_bytes())['trial']['error']=='original bounded failure'

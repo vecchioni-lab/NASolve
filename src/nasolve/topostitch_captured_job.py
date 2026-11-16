@@ -137,7 +137,7 @@ def _unchanged(*records):
 def run_captured_objective(model, recipe, mask, native_receipt, output_parent, *,
         recipe_sha256, mask_sha256, phenix, cedar_source=None, trial_iterations=0,
         trial_calls=2000, include_pairs=True, timeout_seconds=600, _process_runner=None,
-        endpoint_points=None, endpoint_sha256=None, guard_live_policy=False):
+        endpoint_points=None, endpoint_sha256=None, guard_live_policy=False, initial_displacements=None):
     """Return ``(new_directory, report)`` for one immutable diagnostic job.
 
     ``phenix`` is an existing discovered installation or an explicit installation
@@ -148,8 +148,20 @@ def run_captured_objective(model, recipe, mask, native_receipt, output_parent, *
     ``guard_live_policy=True`` requires the qualified Cedar owner/profile and
     freezes a new policy baseline only after fresh reconstruction matches capture.
     Historical captures do not gain missing policy provenance.
+    Optional ``initial_displacements`` forwards a frozen 3N vector in mask order
+    to the existing trial; it retains the original source, tether and hard bound.
     Defaults perform no optimization. No candidate/checkpoint is published.
     """
+    if initial_displacements is not None:
+        if not trial_iterations:raise ValueError('An explicit start requires an opted-in trial')
+        if not isinstance(initial_displacements,(list,tuple)):
+            raise ValueError('Require explicit start displacement numbers')
+        initial_displacements=tuple(initial_displacements)
+        try:
+            valid=(0<len(initial_displacements)<=1200 and len(initial_displacements)%3==0
+                and all(type(v) in (int,float) and math.isfinite(v) for v in initial_displacements))
+        except OverflowError:valid=False
+        if not valid:raise ValueError('Require finite 3N start displacement numbers, at most 1200')
     if type(guard_live_policy) is not bool:
         raise ValueError('Live policy guard must be an explicit boolean')
     if ((endpoint_points is None)!=(endpoint_sha256 is None)
@@ -169,7 +181,7 @@ def run_captured_objective(model, recipe, mask, native_receipt, output_parent, *
         recipe_sha256=recipe_sha256,mask_sha256=mask_sha256,trial_iterations=trial_iterations,
         trial_calls=trial_calls,without_pairs=not include_pairs,timeout_seconds=timeout_seconds,
         endpoint_points=None if endpoint_points is None else Path(endpoint_points),endpoint_sha256=endpoint_sha256,
-        guard_live_policy=guard_live_policy)
+        guard_live_policy=guard_live_policy,initial_displacements=initial_displacements)
     owners=_cedar(cedar_source,guard_live_policy=True) if guard_live_policy else _cedar(cedar_source)
     with owners as cedar:
         return _run(args,cedar,phenix,_process_runner)
@@ -282,6 +294,15 @@ def _run(args, cedar, phenix, process_runner):
             or mask['kind']!='topostitch-native-mask-request'
             or mask['source_model_sha256']!=sha256(originals[paths['model']]).hexdigest()):
         raise ValueError('Unsupported or stale movement request')
+    if args.initial_displacements is not None:
+        bound=mask['max_displacement_angstrom']
+        try:valid_bound=type(bound) in (int,float) and math.isfinite(bound) and bound>0
+        except OverflowError:valid_bound=False
+        if (not isinstance(mask['movable_indices'],list) or not valid_bound
+                or len(args.initial_displacements)!=3*len(mask['movable_indices'])
+                or any(math.hypot(*args.initial_displacements[i:i+3])>bound
+                    for i in range(0,len(args.initial_displacements),3))):
+            raise ValueError('Explicit start differs from movement mask count or radial bound')
     if args.endpoint_points is not None:
         data=originals[paths['endpoint_points']]
         if sha256(data).hexdigest()!=args.endpoint_sha256:raise ValueError('Endpoint point checksum mismatch')
@@ -345,6 +366,7 @@ def _run(args, cedar, phenix, process_runner):
     request=dict(schema_version=1,recipe_sha256=args.recipe_sha256,mask_sha256=args.mask_sha256,include_pairs=not args.without_pairs)
     if args.endpoint_points is not None:request['endpoint_sha256']=args.endpoint_sha256
     if args.trial_iterations:request['trial']=dict(max_iterations=args.trial_iterations,max_calls=args.trial_calls)
+    if args.initial_displacements is not None:request['trial']['initial_displacements']=list(args.initial_displacements)
     if guard_metadata is not None:
         guard_metadata.update(source_model_sha256=sha256(originals[paths['model']]).hexdigest(),
             source_receipt_sha256=sha256(originals[paths['native_receipt']]).hexdigest())

@@ -3813,3 +3813,50 @@ it is not an autonomous resumable campaign. Roadmap validation passes via
 and `--check`; focused `tests/test_topostitch_roadmap.py` gives **8 passed** with
 `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 -m pytest -q -p no:cacheprovider`.
 Whitespace checks pass. No scientific payload is committed or pushed.
+
+
+## W98 — Declared starts through captured native trials
+
+The captured-objective Python API now accepts `initial_displacements=None`.
+When supplied, this is an explicit list/tuple of finite numbers in the movement
+mask's 3N order, frozen at API entry. Booleans, iterators, empty/partial vectors,
+more than 1,200 variables, and nonfinite numbers fail before owner loading.
+An explicit start requires a nonzero `trial_iterations` request. Its complete
+atom count and each atom's radial displacement must match the authenticated
+mask before a job is allocated. Endpoint-observation and optimization requests
+remain mutually exclusive.
+
+The controller records the vector as
+`request.json.trial.initial_displacements` and forwards it to W90's existing
+`run_native_masked_trial`. It does not rewrite the source model, rebase the
+reference tether, relax bounds, skip derivatives or replace a failed outcome.
+The optional shared policy guard can be used with this path. Legacy requests
+omit the new member; worker text, schema version 1 and default behavior remain
+unchanged. There is no new CLI flag, dependency, candidate publication or
+campaign selection authority. Consumers requesting this optional member need
+the updated captured-job API; historical requests need no migration.
+
+Twelve new regressions fail before this change and pass afterward. **96 focused,
+1,876 complete-suite tests +229 subtests, and 96 fresh-wheel tests** pass, as do
+six installed CLI help checks and `pip check`. The first sandboxed full-suite
+attempt passed 1,871 tests but failed five process-ownership tests because macOS
+denied `/bin/ps`; the unchanged suite passed outside the sandbox. Both logs are
+retained. Installation used a relocated sdist after removing its source staging
+path; the installed test process imported NASolve from `site-packages` without
+source `PYTHONPATH`.
+
+Exact validation commands (historical scratch paths):
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider tests/test_topostitch_captured_job.py tests/test_topostitch_trial.py tests/test_topostitch_capture.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w98-starts/install-check.py
+```
+
+Fresh Willow wheel SHA256:
+`97594379a1aa6c3a71f390f8017ebed010df59b18dd8a12b59dbda289e35140e`.
+The existing captured-job module and tests own the change; no Cedar code or
+native optimizer is modified. W98's predeclared, bounded native recovery
+comparison is in progress; software validation is not evidence of physical
+repair. Its original-source tether makes it a numerical recovery control,
+not a blind MR or density-supported result. S04/S05 remain partial.
