@@ -17,6 +17,12 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W99 — Budget the complete full-window comparison
+
+- Declare sequential paired/native-only full-window controls with realistic
+  complete derivative and process budgets. Runs are in progress; no numerical
+  or scientific result, runtime change, or data release is claimed.
+
 ### Geotest final alignment gate
 
 - Add the altered-arm geotest family (X11_18 in P4_3, X11_22 and a panel to be

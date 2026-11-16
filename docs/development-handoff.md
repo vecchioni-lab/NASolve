@@ -426,8 +426,11 @@ that success. No new scientific run, schema or Cedar behavior changes; the
 current next step remains W99. Documentation validation: roadmap regeneration
 and check, JSON readback, and `git diff --check`; no runtime/full-suite rerun.
 
-**W99 next:** use the measured ~0.28 s/evaluation rate to reserve complete matched
-full-window budgets with margin, retaining individual contact, boundary, packing,
+**W99 is in progress:** the separately predeclared matched full-window controls
+retain the existing source/start and guards. Both get 300 iterations/500 calls,
+8,000 evaluations and a 3,600-second owned cap, running sequentially. See the
+[declaration](topostitch-periodic.md#w99--complete-full-window-native-bend-controls-in-progress).
+No result is yet qualified; retain individual contact, boundary, packing,
 serialization and failed/limited outcomes. Local paired-step evidence does not
 close S04/S05; general source-displaced and density/matched-refinement controls
 remain ahead. A later owner-side prepared immutable baseline may improve cost

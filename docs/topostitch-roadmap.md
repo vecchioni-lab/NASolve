@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W98 — Qualify declared starts and bounded paired-step native controls.** Next: W99.
+**Current update: W99 — Qualify complete full-window native bend controls.** Next: W100.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W89 | Diagnose coarse-step resolution before choosing cleanup integration | RECORDED |
 | W90 | Allow explicit diagnostic starts in the existing atomic trial | RECORDED |
 | W91 | Compare cold and explicit coarse-seeded atomic diagnostics | RECORDED |
 | W92 | Record the shared live nonbonded-policy contract and qualification gate | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W96 | Qualify the optional direct shared native policy guard | RECORDED |
 | W97 | Qualify explicit guarded captured-worker diagnostics and relocation | RECORDED |
 | W98 | Qualify declared starts and bounded paired-step native controls | RECORDED |
+| W99 | Qualify complete full-window native bend controls | IN_PROGRESS |
 
 ## Finish lines
 
@@ -176,7 +176,7 @@ Move a usable duplex toward the chosen connection while preserving local residue
 - Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.
 - Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient.
 
-**Next action:** W99: reserve complete matched full-window budgets from the measured approximately 0.28 s/evaluation rate with margin; retain individual contacts, boundary/native terms, packing, rounding and failures/limits. Then qualify general source-displaced and density/matched refinement controls. Owner-side immutable baseline preparation is a later performance option only with complete fresh live-policy/source checks; no coverage reduction or mutable-cache reuse. Do not repeat W91 small-polish work.
+**Next action:** W99 in progress: sequential installed full-window paired/native-only controls retain the W98 +5-degree start, original source/tether and unchanged guards. Each gets 300 iterations/500 optimizer calls, 8000 total evaluations and a 3600-second owned cap; expected 7350 full derivative evaluations are budgeted. Observe complete endpoints/last accepted failures with common per-contact, boundary, packing and serialization reviewers. No full-window qualification until results are audited. General source-displaced and density/matched-refinement controls remain next; do not repeat W91 small-polish work.
 **Evidence:** [E_SOFTWARE](#e_software), [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_COARSE_NATIVE_DERIVATIVES](#e_coarse_native_derivatives), [E_BOUNDED_NATIVE_MOTION](#e_bounded_native_motion), [E_MATCHED_COARSE_TRIALS](#e_matched_coarse_trials), [E_SAVED_BEND_MOTION](#e_saved_bend_motion), [E_COARSE_RESOLUTION](#e_coarse_resolution), [E_ATOMIC_DIAGNOSTIC_START](#e_atomic_diagnostic_start), [E_MATCHED_ATOMIC_STARTS](#e_matched_atomic_starts), [E_LIVE_NONBONDED_CONTRACT](#e_live_nonbonded_contract), [E_BLUNT_ASYM_PLAN](#e_blunt_asym_plan), [E_PIVOT_ROTATION](#e_pivot_rotation), [E_GUARD_INTEGRATION_PREP](#e_guard_integration_prep), [E_LIVE_POLICY_CONSUMER](#e_live_policy_consumer), [E_GUARDED_CAPTURED_WORKER](#e_guarded_captured_worker), [E_CAPTURED_DIAGNOSTIC_START](#e_captured_diagnostic_start).
 **Last audit:** 2026-11-16, Linden, [W98](https://github.com/vecchioni-lab/NASolve/commit/7faff1a1247e78de1c48adb4ca620a93307660f4); Explicit-start API, installed guarded paired-step trials and endpoint-observer consistency qualified. All trials remain iteration-limited; original-source tether bias, collateral geometry and full-window/density gates remain open..
 
@@ -192,7 +192,7 @@ Turn a plausible placement into a chemically usable candidate before refinement 
 - Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.
 - Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.
 
-**Next action:** W99: reserve complete matched full-window budgets from the measured approximately 0.28 s/evaluation rate with margin; retain individual contacts, boundary/native terms, packing, rounding and failures/limits. Then qualify general source-displaced and density/matched refinement controls. Owner-side immutable baseline preparation is a later performance option only with complete fresh live-policy/source checks; no coverage reduction or mutable-cache reuse. Do not repeat W91 small-polish work.
+**Next action:** W99 in progress: sequential installed full-window paired/native-only controls retain the W98 +5-degree start, original source/tether and unchanged guards. Each gets 300 iterations/500 optimizer calls, 8000 total evaluations and a 3600-second owned cap; expected 7350 full derivative evaluations are budgeted. Observe complete endpoints/last accepted failures with common per-contact, boundary, packing and serialization reviewers. No full-window qualification until results are audited. General source-displaced and density/matched-refinement controls remain next; do not repeat W91 small-polish work.
 **Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe), [E_MASKED_COMPOSITION](#e_masked_composition), [E_CAPTURED_COMPOSITION](#e_captured_composition), [E_ENDPOINT_REVIEW](#e_endpoint_review), [E_BOUNDED_TRIAL](#e_bounded_trial), [E_CAPTURED_JOB_API](#e_captured_job_api), [E_ENDPOINT_OBSERVATIONS](#e_endpoint_observations), [E_PAIR_ATTRIBUTION](#e_pair_attribution), [E_CORE_CONTROL](#e_core_control), [E_NATIVE_TERMS](#e_native_terms), [E_NATIVE_STOPPING_LIMIT](#e_native_stopping_limit), [E_NATIVE_PRECISION](#e_native_precision), [E_FAILED_ENDPOINT_DIAGNOSTIC](#e_failed_endpoint_diagnostic), [E_FAILED_ENDPOINT_CHEMISTRY](#e_failed_endpoint_chemistry), [E_COARSE_NATIVE_DERIVATIVES](#e_coarse_native_derivatives), [E_BOUNDED_NATIVE_MOTION](#e_bounded_native_motion), [E_MATCHED_COARSE_TRIALS](#e_matched_coarse_trials), [E_SAVED_BEND_MOTION](#e_saved_bend_motion), [E_ATOMIC_DIAGNOSTIC_START](#e_atomic_diagnostic_start), [E_MATCHED_ATOMIC_STARTS](#e_matched_atomic_starts), [E_LIVE_NONBONDED_CONTRACT](#e_live_nonbonded_contract), [E_BLUNT_ASYM_PLAN](#e_blunt_asym_plan), [E_GUARD_INTEGRATION_PREP](#e_guard_integration_prep), [E_LIVE_POLICY_CONSUMER](#e_live_policy_consumer), [E_GUARDED_CAPTURED_WORKER](#e_guarded_captured_worker), [E_CAPTURED_DIAGNOSTIC_START](#e_captured_diagnostic_start).
 **Last audit:** 2026-11-16, Linden, [W98](https://github.com/vecchioni-lab/NASolve/commit/7faff1a1247e78de1c48adb4ca620a93307660f4); Explicit-start API, installed guarded paired-step trials and endpoint-observer consistency qualified. All trials remain iteration-limited; original-source tether bias, collateral geometry and full-window/density gates remain open..
 

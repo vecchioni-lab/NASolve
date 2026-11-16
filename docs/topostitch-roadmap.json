@@ -236,7 +236,7 @@
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "W99: reserve complete matched full-window budgets from the measured approximately 0.28 s/evaluation rate with margin; retain individual contacts, boundary/native terms, packing, rounding and failures/limits. Then qualify general source-displaced and density/matched refinement controls. Owner-side immutable baseline preparation is a later performance option only with complete fresh live-policy/source checks; no coverage reduction or mutable-cache reuse. Do not repeat W91 small-polish work.",
+      "next_action": "W99 in progress: sequential installed full-window paired/native-only controls retain the W98 +5-degree start, original source/tether and unchanged guards. Each gets 300 iterations/500 optimizer calls, 8000 total evaluations and a 3600-second owned cap; expected 7350 full derivative evaluations are budgeted. Observe complete endpoints/last accepted failures with common per-contact, boundary, packing and serialization reviewers. No full-window qualification until results are audited. General source-displaced and density/matched-refinement controls remain next; do not repeat W91 small-polish work.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -313,7 +313,7 @@
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "W99: reserve complete matched full-window budgets from the measured approximately 0.28 s/evaluation rate with margin; retain individual contacts, boundary/native terms, packing, rounding and failures/limits. Then qualify general source-displaced and density/matched refinement controls. Owner-side immutable baseline preparation is a later performance option only with complete fresh live-policy/source checks; no coverage reduction or mutable-cache reuse. Do not repeat W91 small-polish work.",
+      "next_action": "W99 in progress: sequential installed full-window paired/native-only controls retain the W98 +5-degree start, original source/tether and unchanged guards. Each gets 300 iterations/500 optimizer calls, 8000 total evaluations and a 3600-second owned cap; expected 7350 full derivative evaluations are budgeted. Observe complete endpoints/last accepted failures with common per-contact, boundary, packing and serialization reviewers. No full-window qualification until results are audited. General source-displaced and density/matched-refinement controls remain next; do not repeat W91 small-polish work.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -1635,8 +1635,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 98,
-    "next": 99,
+    "current": 99,
+    "next": 100,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -2034,6 +2034,12 @@
         "title": "Qualify declared starts and bounded paired-step native controls",
         "state": "RECORDED",
         "code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4"
+      },
+      {
+        "number": 99,
+        "title": "Qualify complete full-window native bend controls",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   },

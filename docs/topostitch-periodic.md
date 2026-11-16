@@ -3997,3 +3997,34 @@ archives, output checksums and audits. These local files create no candidate
 checkpoint, chemical connection, refinement or scientific acceptance. No runtime
 code or CLI changed, and no new scientific calculation or full-suite rerun was
 needed to materialize/replay the existing observations.
+
+## W99 — Complete full-window native bend controls (in progress)
+
+This separately declared comparison retains the W98 +5-degree taper, all 204
+movable atoms (612 variables), the complete 855-atom source, 14-pair recipe,
+3-Angstrom bound and original 0.1-Angstrom reference tether. The interrupted
+W98 attempt remains unqualified evidence; it is not overwritten or promoted.
+Both pair-enabled and native-only siblings start afresh with identical settings
+apart from the declared pair-force switch. Each has 300 iterations, 500 optimizer
+calls and an 8,000-evaluation mask budget. Initial, full-precision and PDB-rounded
+checks retain every variable at both finite-difference steps (7,350 evaluations
+before optimization). The observed W98 rate of about 0.285 seconds/evaluation
+estimates 2,237 seconds for the maximum 7,850 declared calls; the existing API's
+3,600-second owned cap provides margin without changing runtime policy.
+
+Execution is sequential at low scheduling priority, using installed W98 and
+pinned Cedar C331 under Phenix 2.2.1-6174. The local plan checks source/capture,
+mask and start hashes and refuses another launch without deadline margin.
+Historical working path: `/private/tmp/willow-w99-window/`; plan SHA256
+`fb04b4fcf7905995879a3f3871c8d5aa2b4d992b6d2b9a639e0a76500edab60c`.
+No completion, convergence, coordinate recovery or scientific acceptance is yet
+claimed. Original-source tether bias remains; this is not a blind repair or a
+density/refinement result. Later endpoint observations must retain individual
+contacts, boundaries, packing, rounding and every failure/limit.
+
+Only this declaration and the current queue are committed. Local native inputs
+and outputs remain excluded. No runtime/schema/dependency changes; existing W98
+software/install qualification remains applicable. Documentation checks use
+`python3 scripts/audit_topostitch_roadmap.py --write`, then `--check`, and
+`git diff --check`. Full-suite and installation reruns are not warranted by this
+planning-only change.
