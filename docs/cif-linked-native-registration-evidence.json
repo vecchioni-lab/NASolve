@@ -102352,5 +102352,224 @@
       "No automatic capture, CLI/default activation or saved AutoRefine-output integration.",
       "No new native run, schema migration or historical modification."
     ]
+  },
+  "actual_final_manager_observation_2026_11_16": {
+    "milestone": "C337",
+    "status": "NATIVE_CAPABILITY_OBSERVED_PRODUCTION_INTEGRATION_PENDING",
+    "source_commit": "e7638db84b0b80d42894105aa21668e55645c694",
+    "prior_work": [
+      "C336 exact-checkpoint read-only report",
+      "C329 corrected-CIF five-cycle control",
+      "C317 frozen v2 final-output synchronization"
+    ],
+    "inputs": {
+      "anchor": "NASolve-live-tests",
+      "successful_root": "337_Cedar_final-manager-capability-vybvb_rb",
+      "failed_root": "337_Cedar_final-manager-capability-gipf5sa4",
+      "source_evidence": "corrected_cif_refinement_survival_2026_11_15",
+      "differences": [
+        "Explicit anchored input path rebasing",
+        "nproc 4 to 1 for shared-machine interface probe"
+      ]
+    },
+    "native": {
+      "build": "phenix-2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "preflight": "COMPLETE_ZERO_CYCLE",
+      "refinement": "COMPLETE_FIVE_CYCLES",
+      "process_niceness": 10,
+      "scientific_approval": "NOT_RUN",
+      "observed_sites": [
+        "B:4"
+      ],
+      "selected_heavy_atoms": 22,
+      "full_atom_count": 855
+    },
+    "result": {
+      "summary": {
+        "status": "ACTUAL_FINAL_MANAGER_INTERFACES_OBSERVED",
+        "native_build": "phenix-2.2.1-6174",
+        "dispatcher": "2.2.1",
+        "stopped_processes": 2,
+        "historical_files_unchanged": 168,
+        "elapsed_seconds": 273.4367406249985,
+        "observation_bytes": {
+          "preflight": 50277,
+          "refine": 50798
+        },
+        "physical_bytes": 7308105,
+        "scientific_approval": "NOT_RUN"
+      },
+      "unchanged_effective_monomer_bonds": true,
+      "unchanged_full_proxy_counts": true,
+      "observed_selected_summaries": 1,
+      "summary_binding": "Exact returned summary object in final model; selected full mapping retained only in process",
+      "bindings_restored": true,
+      "max_hierarchy_manager_delta": 0.0,
+      "max_written_coordinate_rounding": 0.0004839446004254455,
+      "triple_screens": {
+        "preflight": [
+          {
+            "atoms": [
+              "C5A",
+              "C5B"
+            ],
+            "declared_order": "TRIPLE",
+            "distance": {
+              "target": 1.174,
+              "esd": 0.02,
+              "observed": 1.1894326378572302,
+              "membership_count": 1
+            },
+            "angles": [
+              {
+                "atoms": [
+                  "C5",
+                  "C5A",
+                  "C5B"
+                ],
+                "target": 180.0,
+                "esd": 3.0,
+                "observed": 176.40104309719158,
+                "membership_count": 1
+              },
+              {
+                "atoms": [
+                  "C5M",
+                  "C5B",
+                  "C5A"
+                ],
+                "target": 180.0,
+                "esd": 3.0,
+                "observed": 176.88499926052614,
+                "membership_count": 1
+              }
+            ]
+          }
+        ],
+        "refine": [
+          {
+            "atoms": [
+              "C5A",
+              "C5B"
+            ],
+            "declared_order": "TRIPLE",
+            "distance": {
+              "target": 1.174,
+              "esd": 0.02,
+              "observed": 1.2132259502811595,
+              "membership_count": 1
+            },
+            "angles": [
+              {
+                "atoms": [
+                  "C5",
+                  "C5A",
+                  "C5B"
+                ],
+                "target": 180.0,
+                "esd": 3.0,
+                "observed": 175.44943044712602,
+                "membership_count": 1
+              },
+              {
+                "atoms": [
+                  "C5M",
+                  "C5B",
+                  "C5A"
+                ],
+                "target": 180.0,
+                "esd": 3.0,
+                "observed": 174.4251375003005,
+                "membership_count": 1
+              }
+            ]
+          }
+        ]
+      },
+      "coordinate_status": {
+        "preflight": "PASS",
+        "refine": "REVIEW"
+      }
+    },
+    "failed_probe": {
+      "stage": "AFTER_ZERO_CYCLE_SETUP_BEFORE_REFINEMENT",
+      "reason": "Ordinary model retains monomer_mapping_summary without pdb_residue/full monomer; separate interpreter explicitly retains full mappings.",
+      "known_stopped": true,
+      "preserved": true
+    },
+    "receipts": [
+      {
+        "path": "337_Cedar_final-manager-capability-vybvb_rb/start.json",
+        "sha256": "ee050ce79f2094a6da983b20c402aa92de73f1ef4979f43b5f14dc4e950c6f96",
+        "size": 27938
+      },
+      {
+        "path": "337_Cedar_final-manager-capability-vybvb_rb/input-origin.json",
+        "sha256": "26c6c4e9a33ec10dac304288a08e16b863cf476720b375190b95b6b932b22876",
+        "size": 6739
+      },
+      {
+        "path": "337_Cedar_final-manager-capability-vybvb_rb/driver-result.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+        "size": 78
+      },
+      {
+        "path": "337_Cedar_final-manager-capability-vybvb_rb/summary.json",
+        "sha256": "3646bfca844cb9479da1e91b28e78abf19187581bcf680181e091f4c0974c497",
+        "size": 365
+      },
+      {
+        "path": "337_Cedar_final-manager-capability-vybvb_rb/preflight-mapping-hook.json",
+        "sha256": "6c2cc5e43f4fc2faa9f9635221b9de5515ddf8b81c6eae1530a970aed890d4ea",
+        "size": 148
+      },
+      {
+        "path": "337_Cedar_final-manager-capability-vybvb_rb/refine-mapping-hook.json",
+        "sha256": "6c2cc5e43f4fc2faa9f9635221b9de5515ddf8b81c6eae1530a970aed890d4ea",
+        "size": 148
+      },
+      {
+        "path": "337_Cedar_final-manager-capability-vybvb_rb/preflight-manager-observation.json",
+        "sha256": "d39afd68dbdfd455bcab6970153946b1f793eecb67ac379007e0b395a21f19b1",
+        "size": 50277
+      },
+      {
+        "path": "337_Cedar_final-manager-capability-vybvb_rb/refine-manager-observation.json",
+        "sha256": "f4598ebe976d47674eebf95bcd7082adbec183c534a4e2136b27ce0943a494b3",
+        "size": 50798
+      }
+    ],
+    "local_runners": [
+      {
+        "path": "runners/c337_start.py",
+        "sha256": "69e36e00237e183845b1d60256656ad87ca3fcf4a9ba190577a534ce85fbc344",
+        "size": 1957
+      },
+      {
+        "path": "runners/c337_worker.py",
+        "sha256": "568f2e033c753ae644d2c05bb9b6a42623f0589af7c79d3074eca5f5274d360f",
+        "size": 4343
+      },
+      {
+        "path": "runners/c337_native_probe.py",
+        "sha256": "eca71b8c38f4debd70c52b83406924aad1c9d83f35953b0f21619a6f8f2f7360",
+        "size": 5477
+      },
+      {
+        "path": "runners/c337_readback.py",
+        "sha256": "014fc89bfa87c95f816213a1ece08550285a14caef45ae514023c858c01630f1",
+        "size": 3809
+      }
+    ],
+    "limitations": [
+      "Capability prototype only; no production helper/runtime/checkpoint/default change.",
+      "Actual native full-precision coordinates differ from exported PDB rounding; do not apply capture equality intended for reinterpreted PDBs.",
+      "One-process result is not exact numerical repetition of the four-process C329 experiment.",
+      "PDU bending stays REVIEW; whole-substituent, held-out and diffraction acceptance remain open.",
+      "Observation size is not a peak-memory or 100-dataset campaign-capacity qualification.",
+      "No full regression; no source code changed after focused C336 validation.",
+      "Raw models, observations, logs and native captures remain local."
+    ]
   }
 }

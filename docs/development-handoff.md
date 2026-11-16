@@ -1,12 +1,52 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C336 exact-checkpoint chemistry reader — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. C336 validation complete; no full suite,
-new branch, default activation or merge. Linden owns Pine/Willow, currently W99
-native trials on unchanged C331. Simon directly confirmed work through **23:00
-London**. No Rowan native/controller job is active.
+Updated **2026-11-16, C337 actual-manager capability probe — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. Runtime C336 is pushed at
+**e7638db8**. No full suite, new branch, default activation or merge. Linden owns
+Pine/Willow and W99 native trials; C331 stays unchanged. Simon directly confirmed
+work through **23:00 London**. All Rowan native/controller processes are stopped.
 
 ## Current work and interruption recovery
+
+**C337 completed, diagnostic only:** actual five-cycle Phenix execution can expose
+compact selected-site observations. The first probe stopped after preflight because
+ordinary refinement keeps `monomer_mapping_summary`, while the separate interpreter
+retains full mappings. Its immutable failed folder is preserved. A fresh probe
+observes the original summary creation, retains only B:4's full mapping and proves
+that exact summary object belongs to the final model. Both native bindings restore.
+No production helper/runtime source has changed after C336.
+
+Successful root: `NASolve-live-tests/337_Cedar_final-manager-capability-vybvb_rb`;
+failed root: `337_Cedar_final-manager-capability-gipf5sa4`. Existing owned-command
+controller/native identities are verified stopped, `active.json=false`. Two native
+phases, 273.44 s total; **Phenix 2.2.1-6174 / dispatcher 2.2.1**, nice 10, one process
+instead of C329's four. All 168 C329 files/timestamps preserved. B:4's 22 heavy atoms
+are observed in the 855-atom model; preflight/final observation files are
+50,277/50,798 bytes; whole fresh control 7,308,105 bytes. This is not a peak-memory
+or campaign-capacity claim. No raw scientific artifacts committed.
+
+Native hierarchy/manager coordinates agree exactly; exported PDB rounding differs
+by at most 0.000483945 Å. Preserve this precision distinction. Effective monomer
+bonds and full proxy counts are unchanged through the trial. Existing triple screen:
+targets pass; final angles 175.4494°/174.4251° keep coordinates REVIEW. This
+one-process interface check is not an exact numerical repeat of C329 or a new
+force/target experiment. No weight, target, OP3, Free-R or source-chemistry change.
+
+Exact provenance and receipt pins: `actual_final_manager_observation_2026_11_16`.
+Everyday ignored runners: `c337_start.py`, `c337_worker.py`, `c337_native_probe.py`,
+`c337_readback.py` under `branch-artifacts/cedar/runners/`. Launch used project Python
+with `PYTHONDONTWRITEBYTECODE=1`, Cedar `PYTHONPATH`, and existing `run_owned_command`
+limits (2100 s controller, 900 s/native phase). Readback used project Python and
+launched no tools. All native/derived outputs remain local; no native job remains.
+
+**Next production slice:** use this observed interface for compact exact-site
+capture inside the existing refinement owner, with a newly versioned helper while
+preserving frozen v1/v2 readers. Bind summary identity, source profile, actual final
+manager, full-precision state and written-model bytes; reuse C336's projections and
+screen. Unavailable evidence must remain explicit, usable refinement must survive
+optional diagnostic failure, and normal saved output must expose real reviews.
+Do not add a second native executor or store repeated whole-model inventories.
+Then start DY qualification; Q06 whole-substituent/held-out acceptance stays open.
 
 **C336:** a read-only Python report follows an exact refinement checkpoint to its
 own selected preparation and source-bound site projections. Optional preserved

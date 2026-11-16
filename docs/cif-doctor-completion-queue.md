@@ -292,8 +292,14 @@ missing evidence unassessed. It reuses the same validated preparation read and
 passes relocated reporting checks. **Next integration boundary:** collect/bind
 that evidence through the existing refinement owner and join the scoped result
 into normal output; separate interpretation is not proof of the actual refining
-manager. No new process/retention owner or duplicated full inventories merely to
-make a report. The DY qualification remains queued after this bounded Q06
+manager. C337 now demonstrates compact actual-manager observation in a five-cycle native
+probe: observe the selected full mapping before Phenix reduces it to a summary,
+then require that exact summary object in the final model. Its approximately
+50 KB observation retains the selected atoms and restraints without another
+whole-model capture. Production helper/versioning, written-model binding and
+normal output integration are still pending. Full native coordinates and rounded
+PDB coordinates must remain distinct. No new process/retention owner or duplicated
+full inventories merely to make a report. The DY qualification remains queued after this bounded Q06
 reporting connection. Changed intent needs a fresh request/run; never manufacture a checkpoint or
 rewrite original evidence. Neighboring targets, source hands and terminal intent
 remain visible. No blanket flattening, restraint strengthening to force acceptance,
