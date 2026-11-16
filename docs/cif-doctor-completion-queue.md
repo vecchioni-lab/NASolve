@@ -880,13 +880,21 @@ single C4–N1T bridge. Historical policies remain unchanged. A fresh owned Phen
 cold relocation; the original C339 failure remains intact. No mutation alias,
 linked context, ReadySet, Coot or refinement approval yet.
 
-**Next bounded check:** distinguish legitimate rigid inter-ring rotation from
-nitrogen-junction bending using actual native responses. Generated planes do not
-span both rings. Inter-ring constant torsions have zero native weight; N1T has
-angle targets but no explicit complete junction plane. Neither zero-weight labels
-nor a missing plane alone establishes a defect. Reuse native response/derivative
-machinery and compare unchanged controls before adding any restraint. This also
-informs Q06 whole-substituent survival without a DY-specific repair.
+**C341 fixed-response control complete:** the exact C340 native manager preserves
+rigid inter-ring rotation: all covalent family targets remain unchanged at ±30/90
+degrees, with only nonbonded contacts changing. The existing angle restraints
+resist junction bending; +5/10/20-degree tilts add about 0.00652/0.10587/1.64511
+to the native angle target. No explicit plane change is justified solely by its
+absence. Sampled derivatives pass at the initial, 30-degree spin and 10-degree
+bend; all static terms stay fixed. This is not a quantum torsion profile, linked
+model or refinement-survival approval. Both native attempts are stopped; the
+first local harness field-lookup failure is preserved separately.
+
+**Next:** source-owned linked/terminal preparation and whole-base mutation gates,
+reusing C133–C139 and later construction owners. Verify how the free-nucleoside
+reference enters explicit backbone contexts rather than inventing phosphate
+chemistry or activating a DY-name workaround. Retain junction survival as a
+refinement check; no additional plane or altered angle weights now.
 
 C338's bounded Q06 reporting connection is complete. Continue this DY qualification
 without waiting for an entire ChemDraw importer. The existing future-reference contract and C59–C70 source/alias ownership,

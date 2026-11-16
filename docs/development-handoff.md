@@ -1,8 +1,8 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C340 declared five-ring representation — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. C339 pushed at `89c7bf32`; C340 is this
-completed source checkpoint. No full suite, new branch, default activation or
+Updated **2026-11-16, C341 DY rotation/junction response — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. C340 pushed at `6049514b`; C341 is this
+completed evidence checkpoint. No full suite, new branch, default activation or
 merge. Linden owns Pine/Willow; C331 unchanged. Simon confirmed work through
 **23:00 London**. All Rowan native/controller jobs stopped.
 
@@ -34,15 +34,31 @@ with its temporary copy removed. No production defect or failed native attempt
 was erased. Exact command/evidence in `neutral_five_ring_representation_2026_11_16`.
 No full suite; last full C220/583d30df: 9178 tests +276 subtests.
 
-**Next C341:** actual response controls for the rotating-ring/junction distinction.
-No generated plane spans off-axis atoms in both rings. C4–N1T stays single; four
-bridge constant torsions have zero native weight. C4 has a complete local plane;
-N1T has angle targets summing to 360 degrees but lacks a plane containing its
-three neighbors. Do not call this a defect or invent a plane/force before checking
-actual rotation versus junction-bending responses and derivatives. Reuse existing
-native machinery, preserve the candidate and all prior failed runs, and avoid
-DY-name repair rules. Then linked contexts/whole-base mutation/ReadySet/refinement
-survival. Keep Q06 whole-substituent closure and related controls in view.
+**C341 complete:** one fresh successful fixed-manager response control in
+`NASolve-live-tests/341_Cedar_DY-junction-response-jkoofks8`, 2,229,480 bytes.
+Exact C340 native inventory/manager match; 1,877 native evaluations. Rigid ring
+spin at ±30/90 degrees leaves every covalent target unchanged (numerical error
+below 1e-12); only nonbonded contacts change. Tilting the ring about its pyrrolic
+junction leaves internal distances/bridge length fixed and increases the angle
+target: +5/10/20 degrees give +0.00652/+0.10587/+1.64511. Initial/spin30/bend10
+sampled gradients pass, with all static restraints unchanged. No optimizer,
+model, force, plane or dictionary change; no quantum torsion-barrier claim.
+No need to add a junction plane solely because it is absent. Adequacy under
+linked/refinement forces stays open. The first local harness run used the wrong
+atom-record field; it stopped before controls, is preserved at
+`341_Cedar_DY-junction-response-ovxv4xh_`, and was verified dead before the fresh
+run. All jobs stopped and all C340 files/source unchanged. Exact compact evidence
+is `dy_junction_response_2026_11_16`; runners `c341_start.py`/`c341_native.py` remain
+in the usual ignored local runner folder. No new pytest run for this docs-only
+checkpoint; C340 focused tests remain current. No full suite.
+
+**Next C342:** source-owned linked/terminal DY preparation, then whole-base
+mutation. Read C133–C139 plus later construction docs before choosing the path.
+The packaged reference is a free nucleoside: explicitly verify the existing
+backbone-source/context contract, rather than inventing a phosphate or bypassing
+source authority. Reuse existing preparation/acquisition/qualification owners.
+ReadySet/Coot/refinement and related controls still gate mutation activation.
+Keep nitrogen-junction survival visible without changing weights pre-emptively.
 
 C339's complete CCD model-coordinate adapter and failed reader attempt remain
 recorded in `declared_model_coordinate_seed_2026_11_16`; source/model coordinates

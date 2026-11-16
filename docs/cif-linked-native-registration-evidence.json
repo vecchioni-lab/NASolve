@@ -103327,5 +103327,335 @@
     "retention": "102 original run files unchanged during cold replay. Raw artifacts remain local; compact evidence only committed. Temporary wheel/replay copies removed, including one local replay harness failure caused by assuming the wrong return wrapper. No product defect was hidden by that harness correction.",
     "next": "Observe rigid inter-ring rotation separately from nitrogen-junction bending with existing native response machinery; verify actual active terms and derivatives before any force change. Missing explicit N plane alone is not proof of inadequate angles. Then linked-context, whole-base mutation, ReadySet and refinement survival gates.",
     "signed": "Rowan"
+  },
+  "dy_junction_response_2026_11_16": {
+    "status": "C341_ROTATION_PRESERVED_AND_JUNCTION_ANGLE_RESPONSE_OBSERVED",
+    "source_commit": "6049514b",
+    "build": "Phenix 2.2.1-6174 / dispatcher 2.2.1",
+    "dry_run": false,
+    "method": "Rebuild exact C340 isolated native manager from current maintained worker; compare definitions/proxies/coordinates/API/energy inventory, then source-selected rigid ring spin and ring tilt about the pyrrolic junction. No optimization, force or model change.",
+    "selection": {
+      "policy": "cif-source-declared-neutral-five-membered-cn-aromatic-v1",
+      "ring": [
+        "C3T",
+        "C5T",
+        "N1T",
+        "N2T",
+        "N4T"
+      ],
+      "donor": "N1T",
+      "outside": "C4",
+      "moving": [
+        "C3T",
+        "C5T",
+        "H3",
+        "H4",
+        "N1T",
+        "N2T",
+        "N4T"
+      ]
+    },
+    "controls": {
+      "baseline_family_targets": {
+        "all": 4.023342580412548,
+        "bond": 0.013424594697729329,
+        "angle": 0.010099570357998007,
+        "dihedral": 4.891842255348054e-05,
+        "chirality": 0.00025072609968968625,
+        "planarity": 0.5446333226088428,
+        "parallelity": 0.0,
+        "nonbonded": 3.4548854482257343
+      },
+      "family_target_changes": {
+        "initial": {
+          "all": 0.0,
+          "bond": 0.0,
+          "angle": 0.0,
+          "dihedral": 0.0,
+          "chirality": 0.0,
+          "planarity": 0.0,
+          "parallelity": 0.0,
+          "nonbonded": 0.0
+        },
+        "spin_-90": {
+          "all": -0.08512221318883162,
+          "bond": 3.7470027081099033e-16,
+          "angle": 9.662409761190816e-16,
+          "dihedral": 0.0,
+          "chirality": 0.0,
+          "planarity": -6.661338147750939e-16,
+          "parallelity": 0.0,
+          "nonbonded": -0.08512221318883206
+        },
+        "spin_-30": {
+          "all": -0.08502343966877035,
+          "bond": -6.904199434387692e-16,
+          "angle": -6.418476861114186e-16,
+          "dihedral": 0.0,
+          "chirality": 0.0,
+          "planarity": -1.3322676295501878e-15,
+          "parallelity": 0.0,
+          "nonbonded": -0.08502343966876769
+        },
+        "spin_30": {
+          "all": -0.08506342385924226,
+          "bond": 2.419939248987646e-15,
+          "angle": 3.382710778154774e-16,
+          "dihedral": 0.0,
+          "chirality": 0.0,
+          "planarity": -4.440892098500626e-16,
+          "parallelity": 0.0,
+          "nonbonded": -0.08506342385924448
+        },
+        "spin_90": {
+          "all": -0.08512221318882851,
+          "bond": 4.805184028455756e-15,
+          "angle": -7.060324547225605e-16,
+          "dihedral": 0.0,
+          "chirality": 0.0,
+          "planarity": -4.440892098500626e-16,
+          "parallelity": 0.0,
+          "nonbonded": -0.08512221318883206
+        },
+        "bend_-20": {
+          "all": 1.73630592676653,
+          "bond": -5.6794846603480664e-15,
+          "angle": 1.6677740187888954,
+          "dihedral": 0.0,
+          "chirality": 0.0,
+          "planarity": 1.1102230246251565e-15,
+          "parallelity": 0.0,
+          "nonbonded": 0.06853190797763853
+        },
+        "bend_-10": {
+          "all": 0.12287183843801408,
+          "bond": -2.237793284010081e-16,
+          "angle": 0.10887261588056632,
+          "dihedral": 0.0,
+          "chirality": 0.0,
+          "planarity": 1.1102230246251565e-16,
+          "parallelity": 0.0,
+          "nonbonded": 0.013999222557447677
+        },
+        "bend_-5": {
+          "all": 0.010113736263400064,
+          "bond": -2.5240226575462543e-15,
+          "angle": 0.00689865194810616,
+          "dihedral": 0.0,
+          "chirality": 0.0,
+          "planarity": 1.1102230246251565e-16,
+          "parallelity": 0.0,
+          "nonbonded": 0.003215084315296046
+        },
+        "bend_-1": {
+          "all": 9.485856710345075e-05,
+          "bond": 6.782768791069316e-15,
+          "angle": 8.466062368423302e-06,
+          "dihedral": 0.0,
+          "chirality": 0.0,
+          "planarity": 0.0,
+          "parallelity": 0.0,
+          "nonbonded": 8.639250472786131e-05
+        },
+        "bend_1": {
+          "all": 0.00019326240254269322,
+          "bond": -2.858824288409778e-15,
+          "angle": 5.931622385118088e-06,
+          "dihedral": 0.0,
+          "chirality": 0.0,
+          "planarity": 0.0,
+          "parallelity": 0.0,
+          "nonbonded": 0.00018733078016008875
+        },
+        "bend_5": {
+          "all": 0.010250228431656794,
+          "bond": -2.255140518769849e-16,
+          "angle": 0.006520165080455465,
+          "dihedral": 0.0,
+          "chirality": 0.0,
+          "planarity": 1.1102230246251565e-16,
+          "parallelity": 0.0,
+          "nonbonded": 0.003730063351201629
+        },
+        "bend_10": {
+          "all": 0.12096821927374357,
+          "bond": 1.5681900222830336e-15,
+          "angle": 0.10587454037952007,
+          "dihedral": 0.0,
+          "chirality": 0.0,
+          "planarity": 1.1102230246251565e-15,
+          "parallelity": 0.0,
+          "nonbonded": 0.015093678894220197
+        },
+        "bend_20": {
+          "all": 1.716354124698948,
+          "bond": 5.4279497563314294e-15,
+          "angle": 1.6451117265623871,
+          "dihedral": 0.0,
+          "chirality": 0.0,
+          "planarity": 4.440892098500626e-16,
+          "parallelity": 0.0,
+          "nonbonded": 0.07124239813655464
+        }
+      },
+      "spin_covalent_target_max_change": 4.805184028455756e-15,
+      "internal_distance_max_change": 1.7763568394002505e-15,
+      "outside_coordinate_max_change": 0.0,
+      "bridge_length_max_change": 0.0,
+      "constant_bridge_terms": [
+        {
+          "atoms": [
+            "N3",
+            "C4",
+            "N1T",
+            "N2T"
+          ],
+          "weight": 0.0,
+          "target": -179.66
+        },
+        {
+          "atoms": [
+            "N3",
+            "C4",
+            "N1T",
+            "C5T"
+          ],
+          "weight": 0.0,
+          "target": 0.26
+        },
+        {
+          "atoms": [
+            "C5",
+            "C4",
+            "N1T",
+            "N2T"
+          ],
+          "weight": 0.0,
+          "target": 0.36
+        },
+        {
+          "atoms": [
+            "C5",
+            "C4",
+            "N1T",
+            "C5T"
+          ],
+          "weight": 0.0,
+          "target": -179.72
+        }
+      ],
+      "active_bridge_torsions": []
+    },
+    "derivative_checks": {
+      "cases": {
+        "initial": {
+          "sampled_gradients_consistent": true,
+          "family_checks": {
+            "all": true,
+            "bond": true,
+            "angle": true,
+            "dihedral": true,
+            "chirality": true,
+            "planarity": true,
+            "parallelity": true,
+            "nonbonded": true
+          }
+        },
+        "spin_30": {
+          "sampled_gradients_consistent": true,
+          "family_checks": {
+            "all": true,
+            "bond": true,
+            "angle": true,
+            "dihedral": true,
+            "chirality": true,
+            "planarity": true,
+            "parallelity": true,
+            "nonbonded": true
+          }
+        },
+        "bend_10": {
+          "sampled_gradients_consistent": true,
+          "family_checks": {
+            "all": true,
+            "bond": true,
+            "angle": true,
+            "dihedral": true,
+            "chirality": true,
+            "planarity": true,
+            "parallelity": true,
+            "nonbonded": true
+          }
+        }
+      },
+      "total_evaluation_calls": 1877,
+      "steps_angstrom": [
+        0.001,
+        0.0001,
+        1e-05,
+        1e-06
+      ],
+      "selected_atoms": [
+        "N1T",
+        "C5T"
+      ],
+      "static_constraint_signature": "8998e49dba78762560477c738b1dc33b7ad5c51df316ca88f8eee178297ca288",
+      "static_constraints_unchanged": true,
+      "normalization": false
+    },
+    "interpretation": "Existing planes/active covalent terms allow rigid inter-ring rotation. The unmodified angle terms resist junction bending, increasingly at larger tilt. This does not prove adequate stiffness in a linked model/refinement or establish a quantum torsional barrier; no new plane/weight is justified solely by missing plane membership.",
+    "local_root": {
+      "anchor": "NASolve-live-tests",
+      "path": "341_Cedar_DY-junction-response-jkoofks8"
+    },
+    "local_bytes": 2229480,
+    "receipts": [
+      {
+        "path": "control.json",
+        "sha256": "3c36b14ea9ca47560eca03d5d5e6fb637a7415eb4cb1095881e3743f138e26c4",
+        "size": 28768
+      },
+      {
+        "path": "result.json",
+        "sha256": "c1b3301aa2ae489aeccc7a2e8fd8350796dfc147259e68768a7bedb655a9599b",
+        "size": 11281
+      },
+      {
+        "path": "gradient-audit.json",
+        "sha256": "23755dac253692528fbd263e414d42e6dff690e417cd9e2fa6d52cdfcef7a2f8",
+        "size": 1689581
+      },
+      {
+        "path": "driver-result.json",
+        "sha256": "38eb9e4a29edcde7fbc6379c3c02753fece7ffb1279f80cf99e3750e2dfdf804",
+        "size": 92
+      },
+      {
+        "path": "active.json",
+        "sha256": "595219792dd54a38a8ace80a6a7fc33b928ea74f0dd1bdfac6a2b708dbe0dd1e",
+        "size": 22
+      },
+      {
+        "path": "response_worker.py",
+        "sha256": "92fdce9fd72365cea04dbdec0486ae1cc5b29d53cba72cdf9b4b552e6fdac798",
+        "size": 6149
+      }
+    ],
+    "preserved_first_attempt": {
+      "anchor": "NASolve-live-tests",
+      "path": "341_Cedar_DY-junction-response-ovxv4xh_",
+      "reason": "Local diagnostic used identity.name instead of the documented atom_id. Failed before control sampling; original native manager matched. Corrected harness used a fresh directory after prior process was verified dead.",
+      "driver": {
+        "returncode": 1,
+        "stopped_verified": true,
+        "prior_run_and_source_preserved": true
+      }
+    },
+    "exact_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/cedar/runners/c341_start.py",
+    "compatibility": "Documentation/evidence only; no runtime, schema, source, dictionary, numerical target or alias change.",
+    "validation": "Actual fixed-coordinate native experiment; no new pytest run needed for documentation-only checkpoint. C340 focused/installed tests remain the source checkpoint; full suite not run.",
+    "next": "Review C133\u2013C139 and existing linked/source-construction machinery, then qualify explicit linked/terminal DY contexts using source-owned backbone chemistry. Keep numerical survival and whole-base mutation separate; no blanket plane or DY-name fix.",
+    "scientific_approval": "NOT_RUN",
+    "signed": "Rowan"
   }
 }

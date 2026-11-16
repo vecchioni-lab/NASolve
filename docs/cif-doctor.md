@@ -13567,3 +13567,24 @@ to flatten both rings or retune their angles. Source chemistry, numerical
 usability, achieved geometry and scientific approval remain separate. Native
 formal-charge readback is unsupported and absolute CIP assignment was not run.
 Linked mutation, ReadySet/Coot and actual refinement survival remain open.
+
+
+### Rotating-ring and nitrogen-junction response control (C341)
+
+A fixed-manager experiment with the unmodified C340 DY dictionary distinguishes
+allowed ring spin from junction bending. Source-declared graph/valence selects
+the pyrrolic nitrogen, its single bridge and the complete attached ring fragment.
+Rigid rotations by ±30/90 degrees preserve all covalent family targets; only
+nonbonded contacts change. Tilting that same rigid fragment at the nitrogen keeps
+its internal distances and the bridge length but changes the external angles.
+At +5/10/20 degrees, the native angle target rises by approximately
+0.00652/0.10587/1.64511. Sampled finite differences agree at the original,
+30-degree spin and 10-degree bend, with static restraints unchanged. These are
+native target units, not kcal/mol or a calibrated torsional energy profile.
+
+The existing angles provide a restoring response. Missing explicit junction
+plane membership alone therefore does not justify adding a plane or changing
+weights. Adequacy under linked-model forces and actual refinement remains open.
+No plane/target/model/source edits or optimizer were used. Exact evidence and the
+preserved initial local harness failure are recorded under
+`dy_junction_response_2026_11_16`; this is not a new production policy.
