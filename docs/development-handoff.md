@@ -449,10 +449,14 @@ original plan and identical coordinates/forces/budgets. The whole sequential
 panel must fit before 23:00 London. See the
 [W100 declaration](topostitch-periodic.md#w100--source-displaced-controls-in-progress).
 S04/S05 and density/matched-refinement gates remain open. C331 stays pinned.
-Cedar C338 (`80c10e2c`) was reviewed at the helper/version/registry boundary;
-no direct Willow conflict found, but no merged-runtime qualification. Its
-intra-site chemistry reporting is not backbone/seam acceptance. Rowan retains
-a full-suite consolidation gate. No runtime/schema changes in W99/W100.
+The separate installed virtual Willow/Cedar C338 combination passes 1,062 tests
++22 subtests, six helps and exact saved graph/frame/native-link/packing replay;
+see the [explicit scope and retained setup failures](topostitch-periodic.md#installed-c338-compatibility-during-w100).
+Zero source conflicts; seven documentation conflicts and the package-data union
+still need actual merge review. No branch merge, full combined suite or native
+combined refinement. C338 intra-site chemistry reporting is not backbone/seam
+acceptance; C340 is outside this pin. Rowan retains a full-suite consolidation
+gate. No runtime/schema changes in W99/W100.
 
 This direct guard is separate from Cedar Q06 refinement chemistry/PDU angle
 review. Nonuniform curvature, matched diffraction and density-aware S06 remain

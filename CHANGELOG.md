@@ -19,6 +19,9 @@ entries are reconstructed from repository history.
 
 ### W100 — Declare independent source-displaced controls
 
+- Verify focused installed/relocated Willow + Cedar C338 compatibility, preserving
+  package resources, legacy-reader pins and unresolved documentation conflicts.
+  No actual merge, full combined suite or new native execution in this check.
 - Freeze reference/displaced-source controls with the same weaker actual-input
   tether; fresh native interpretation preserves every declared chemical proxy.
   Retain the corrected unexecuted preparation and pending outcomes. No runtime change.

@@ -257,7 +257,8 @@
         "E_LIVE_POLICY_CONSUMER",
         "E_GUARDED_CAPTURED_WORKER",
         "E_CAPTURED_DIAGNOSTIC_START",
-        "E_FULL_WINDOW_NATIVE_CONTROL"
+        "E_FULL_WINDOW_NATIVE_CONTROL",
+        "E_C338_INSTALLED_COMPOSITION"
       ],
       "last_audit": {
         "date": "2026-11-16",
@@ -353,7 +354,8 @@
         "E_LIVE_POLICY_CONSUMER",
         "E_GUARDED_CAPTURED_WORKER",
         "E_CAPTURED_DIAGNOSTIC_START",
-        "E_FULL_WINDOW_NATIVE_CONTROL"
+        "E_FULL_WINDOW_NATIVE_CONTROL",
+        "E_C338_INSTALLED_COMPOSITION"
       ],
       "last_audit": {
         "date": "2026-11-16",
@@ -1525,6 +1527,87 @@
         "pdb_files": 4,
         "atoms_per_pdb": 855,
         "scientific_acceptance": false,
+        "committed": false
+      }
+    },
+    "E_C338_INSTALLED_COMPOSITION": {
+      "kind": "focused_installed_virtual_composition_with_C338",
+      "code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4",
+      "human_update": 100,
+      "reference": "docs/topostitch-periodic.md#installed-c338-compatibility-during-w100",
+      "result": "Exact Willow06323002 plus Cedar80c10e2c virtual tree685811d0: 1062 tests +22 subtests in82.65s, exactly28 TopoStitch and11 shared modules, six CLI helps and saved old/new graph/frame/default-owner native-link/packing replay. Original build path absent; replay originals blocked. Viewer/replay package resources and legacy-v2 reader source pins verified.",
+      "limitation": "No actual merge, full combined suite, native combined refinement or scientific acceptance. Zero source conflicts, seven documentation conflicts and one package-data union resolved only temporarily. Retain scheduling refusal and incorrect local packaged-v2 assertion; corrected read-only validation needs no product change. C340 not included; W100 native trials stay pinned to C331 and remain pending.",
+      "pins": {
+        "willow_commit": "06323002aebafa1aaca0ad782a0f2c1956ccc3af",
+        "cedar_commit": "80c10e2c07cc8588a67927330a36f37a28509965",
+        "common_base": "d7913ddd95336fddb7cb266b0bc707ffd768d9ab",
+        "unresolved_tree": "b37982c4285c3dda16c7cae03f728b3b95ae0718",
+        "merge_returncode": 1,
+        "original_git_objects_read_only": true,
+        "merge_performed": false,
+        "tree": "685811d0fabc448d1e757896eff5d588d198348a",
+        "packaging_resolution": "Retain both Willow HTML and Cedar replay PDB resources; preserve all merged extras and entry points. Documentation conflicts remain unresolved.",
+        "source_conflicts": [],
+        "documentation_conflicts": [
+          "AGENTS.md",
+          "CHANGELOG.md",
+          "docs/architecture.md",
+          "docs/campaign-full-auto.md",
+          "docs/collaboration.md",
+          "docs/construct-registration.md",
+          "docs/development-handoff.md"
+        ]
+      },
+      "wheel_sha256": "6cf484ba5351e98bffbffe1ad65c78cfdbbbc59e9332723bff1be8bc35ced48f",
+      "test_modules": [
+        "tests/test_topostitch_preview.py",
+        "tests/test_topostitch_endpoint.py",
+        "tests/test_topostitch_fit.py",
+        "tests/test_topostitch_packing.py",
+        "tests/test_topostitch_graph.py",
+        "tests/test_topostitch_registration.py",
+        "tests/test_topostitch_discovery.py",
+        "tests/test_topostitch_periodic.py",
+        "tests/test_topostitch_inspect.py",
+        "tests/test_topostitch_images.py",
+        "tests/test_topostitch_recut.py",
+        "tests/test_topostitch_trial.py",
+        "tests/test_topostitch_captured_job.py",
+        "tests/test_topostitch_recipe.py",
+        "tests/test_topostitch_native_terms.py",
+        "tests/test_topostitch_transport.py",
+        "tests/test_topostitch_scattering.py",
+        "tests/test_topostitch_recut_bundle.py",
+        "tests/test_topostitch_view.py",
+        "tests/test_topostitch_recut_view.py",
+        "tests/test_topostitch_forest.py",
+        "tests/test_topostitch_forest_bundle.py",
+        "tests/test_topostitch_orbit_permutations.py",
+        "tests/test_topostitch_native_seams.py",
+        "tests/test_topostitch_cut_comparison.py",
+        "tests/test_topostitch_cut_preference.py",
+        "tests/test_topostitch_backbone_intent.py",
+        "tests/test_topostitch_continuations.py",
+        "tests/test_autorefine.py",
+        "tests/test_cif_refinement_runtime.py",
+        "tests/test_refinement_parallelity.py",
+        "tests/test_cif_construction_return.py",
+        "tests/test_cif_context_return.py",
+        "tests/test_cif_bond_repair_chain.py",
+        "tests/test_cif_energy_library.py",
+        "tests/test_cif_refinement_sites.py",
+        "tests/test_refinement_chemistry.py",
+        "tests/test_cif_refinement_output.py",
+        "tests/test_checkpoints.py"
+      ],
+      "local_forensic_archive": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/w100-c338-installed-composition-2026-11-16.tar.gz",
+        "sha256": "e152b276aeb087ff4fd8902e8b3b6ab1eed4e88691aa63a4e76c98bda4aeb5d9",
+        "bytes": 22569316,
+        "files": 51,
+        "payload_index_verified": true,
+        "portable_campaign": false,
         "committed": false
       }
     }

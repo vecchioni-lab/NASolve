@@ -4107,3 +4107,44 @@ before the 23:00 London cutoff. Results remain pending. Historical working root:
 `/private/tmp/willow-w99-window/next-source-control-v2/`; predecessor preparation,
 checksummed sources, declaration and preflight are retained locally. Do not
 change policy from interim outcomes or promote a failed/limited result.
+
+### Installed C338 compatibility during W100
+
+A separate, read-only virtual combination pins Willow
+`06323002aebafa1aaca0ad782a0f2c1956ccc3af` and Cedar
+`80c10e2c07cc8588a67927330a36f37a28509965`. A disposable Git object store reads
+the original objects without writing either branch/index. There are **zero
+source conflicts, seven documentation conflicts and one package-data conflict**.
+Only the temporary package-data conflict is resolved, retaining both the viewer
+HTML and replay PDB resources. Resolved tree:
+`685811d0fabc448d1e757896eff5d588d198348a`; no actual merge.
+
+The installed wheel passes **1,062 tests + 22 subtests in 82.65 seconds** after
+moving the build source away: exactly 28 TopoStitch modules and 11 shared/Cedar
+modules, including AutoRefine, checkpoints and C338's actual-manager reporting.
+Six CLI helps pass. Saved old/new graph, complete frame, default-owner native-link
+and packing replays are exact with original source/capture paths blocked. Both
+package resources survive. Installed legacy-v2 reader pins match the frozen
+helper fixtures and unchanged shared sources. Wheel SHA256:
+`6cf484ba5351e98bffbffe1ad65c78cfdbbbc59e9332723bff1be8bc35ced48f`.
+
+The first launch was refused by sandbox scheduling permissions before build/tests;
+the unchanged low-priority check then ran outside the sandbox. After the tests
+and saved replays passed, an extra local assertion incorrectly expected historical
+v2 helper fixtures to be packaged. The actual contract retains helpers in each
+run. That assertion was replaced by explicit legacy source-hash validation;
+replay and helps passed, without product changes or repeating passed tests.
+Both original failures remain in the evidence.
+
+Exact commands, explicit module list, raw logs, snapshots and wheel are in the
+verified local 51-file archive, under the everyday NASolve anchor:
+`branch-artifacts/willow/w100-c338-installed-composition-2026-11-16.tar.gz`,
+SHA256 `e152b276aeb087ff4fd8902e8b3b6ab1eed4e88691aa63a4e76c98bda4aeb5d9`.
+The controller uses `PYTHONDONTWRITEBYTECODE=1`, the installed prefix on
+`PYTHONPATH`, `pip wheel --no-deps --no-build-isolation`, isolated target install,
+and `pytest -q -p no:cacheprovider` with the 39 named modules in `receipt.json`.
+`audit-scope.json` is the authoritative test selection. This is focused installed
+compatibility, not a full combined suite, native combined refinement, resolved
+human-document merge or scientific acceptance. C340 is not part of this pin.
+W100 native controls continue with unchanged installed W98/C331; no dependency,
+API, runtime or branch migration. No archive payload is committed or uploaded.
