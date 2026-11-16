@@ -148,7 +148,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-16
 
-**W100–W103 native diagnostics and W104–W105 coverage/export APIs are audited; complete actual-manager observation and ordinary refinement lifecycle remain next.**
+**W100–W103 diagnostics and W104–W106 coverage/export/native-observation APIs are audited; explicit missing-term forces and ordinary refinement lifecycle remain next.**
 W102 checks original and explicitly rebound select-all native managers with unchanged
 normalization: eight derivative controls and twelve negative controls pass. This is
 not automatic callback persistence, a callback-aware C331 policy guard, or a
@@ -175,8 +175,16 @@ Four complete Phenix 2.2.1-6174 observation cases match all 124 independently
 expected terms and preserve full energies/gradients/bindings; eighteen native
 negative controls pass. The first harness's read-only C++ setter failure is
 preserved and corrected in a separate attempt. [API and native scope](topostitch-periodic.md#w105--declarations-from-the-existing-compiled-recipe).
-Latest software is W105; earlier bending/manager controls remain pinned W98/C331.
-No actual-manager producer, callback or refinement activation is enabled. The [audited roadmap](topostitch-roadmap.md) is generated from the one
+W106 `ff0059f9` adds the optional callback-free actual-manager inventory reader:
+**60 focused, 1,936 full +229 subtests, 229 installed** pass. Eight Phenix managers
+match independent inventories and preserve energies/gradients/sites; twelve
+negatives pass. A separate native image codec exposes and fixes a denominator
+mismatch with exact rational group comparison while retaining lattice offsets.
+All failed diagnostics are preserved, including unsupported native parallelity
+image construction. [Scope and commands](topostitch-periodic.md#w106--complete-callback-free-native-inventory-observation).
+Latest software is W106; earlier bending controls remain pinned W98/C331. The
+native reader requires the trusted frozen Cedar policy owner; active forces,
+callback-aware guarding and refinement lifecycle are not enabled. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
 [periodic topology](topostitch-periodic.md) and [bend previews](topostitch-preview.md).

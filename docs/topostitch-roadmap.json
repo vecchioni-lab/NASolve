@@ -4,7 +4,7 @@
   "updated": "2026-11-16",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "4253e378cc353cf26f1c2ae93b46c359e6f636aa",
+  "audited_code_commit": "ff0059f9a0cdf274636a2fcf84f2a697ea2da52f",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -386,7 +386,8 @@
         "W102 passes complete pair/native objective arithmetic through actual mmtbx model energy entry before and after explicit all-atom selection/rebinding. Native normalization and zero-callback invariance are checked; automatic lifecycle, complete term/exclusion accounting and diffraction integration remain open.",
         "W103 observes complete exact-image pair supports, native shell exclusions and directed repulsion in actual initialized/selected/reinterpreted managers. Ordinary core PHIL reveals107 terms that a full callback would duplicate and117 removed directed nonbonded rows; integration must bind complete intended coverage and exclusions rather than append all terms. Local diagnostic only.",
         "W104 adds the reusable declared-coverage checker: exact source/crystal/exclusion and inventory bindings, explicit native/additive providers, score parameters, rational images and duplicate/missing/stale refusal. Installed replay covers the W103 native controls; authenticated actual-manager production and activation lifecycle remain open.",
-        "W105 exports exact requested-term declarations from the existing compiled NativePairRecipe, checking original binding, actual proxy parameters and Cartesian/image roles without changing the compiler/workers. Installed native observation passes; complete actual-manager producer and activation remain open."
+        "W105 exports exact requested-term declarations from the existing compiled NativePairRecipe, checking original binding, actual proxy parameters and Cartesian/image roles without changing the compiler/workers. Installed native observation passes; complete actual-manager producer and activation remain open.",
+        "W106 observes the actual callback-free native manager through the existing C331 policy owner, exactly binds supported term images and origins, and composes W104/W105 coverage for native core plus explicit missing terms. Native/installed controls pass including an evidence-driven rational-denominator fix; active-force/lifecycle integration remains open."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -394,7 +395,7 @@
         "Blunt and asymmetric-orientation trials retain matched observations/Free-R and independent bends/maps; calibrate inconclusive outcomes rather than force alignment or a statistical winner.",
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning."
       ],
-      "next_action": "Use W104 coverage checking and W105 compiled requested-term export at a versioned, authenticated complete-pair observation boundary in the existing frozen AutoRefine actual-manager/final-writer lifecycle. The checker consumes declarations; the producer must independently bind complete native terms, exact atom/images, actual exclusions and group/general-position scope. Retain native core and explicitly bind missing periodic terms; no full-recipe append or inferred exclusion policy. Qualify callback-aware guarding, actual energy/forces/normalization, selection/rebuild and final-writer binding, preserving tiny reinterpretation drift. Then run predeclared candidate/no-repair siblings with matched observations/Free-R/phase/refinement budgets and model-bound maps.",
+      "next_action": "Use W104 coverage, W105 compiled declarations and W106 callback-free native observation in the existing frozen AutoRefine actual-manager/final-writer lifecycle. Qualify only explicitly missing additive terms with native core terms, preserving whole-objective normalization and frozen exclusions; do not append the full recipe or infer exclusions. Keep helper/source provenance, general-position scope, callback-aware guarding, selection/rebuild and final-writer binding explicit. Then compare predeclared candidate/no-repair siblings with matched observations/Free-R/phase/refinement budgets and model-bound maps.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -404,14 +405,15 @@
         "E_PAIR_MODEL_ENTRY",
         "E_PAIR_NATIVE_INVENTORY",
         "E_PAIR_COVERAGE",
-        "E_COMPILED_PAIR_DECLARATIONS"
+        "E_COMPILED_PAIR_DECLARATIONS",
+        "E_NATIVE_PAIR_OBSERVER"
       ],
       "last_audit": {
         "date": "2026-11-16",
         "reviewer": "Linden",
-        "code_commit": "4253e378cc353cf26f1c2ae93b46c359e6f636aa",
-        "human_update": 105,
-        "scope": "Optional compiled requested-term exporter native-qualified; complete actual-manager observation, exclusions, lifecycle, diffraction and scientific acceptance remain open."
+        "code_commit": "ff0059f9a0cdf274636a2fcf84f2a697ea2da52f",
+        "human_update": 106,
+        "scope": "Actual callback-free native inventory and explicit coverage qualified on pinned native profile; active missing-term forces, exclusions, lifecycle, diffraction andscientificacceptance remainopen."
       }
     },
     {
@@ -1762,6 +1764,26 @@
         "committed": false,
         "portable_campaign": false
       }
+    },
+    "E_NATIVE_PAIR_OBSERVER": {
+      "kind": "callback_free_actual_manager_pair_observer",
+      "code_commit": "ff0059f9a0cdf274636a2fcf84f2a697ea2da52f",
+      "human_update": 106,
+      "reference": "docs/topostitch-periodic.md#w106--complete-callback-free-native-inventory-observation",
+      "result": "Optional native observer reuses checksum-bound C331 policy owner.13new regressions,60focused,1936full+229subtests,229installed,sixhelps,pipcheck,leanimport,Py3.10syntax pass. Eight native managers match independent2465/2572term inventories,bind107native+17additive coverage,andpreserve energies/gradients/sites.12negativecontrols reject callbacks,stale rebuiltpolicy andchangednative targets. Separatefive-rowC++codec/Gemmi audit covers actualASU denominators andretainedlattice offsets.",
+      "limitation": "Callback-free general-position native-profile scope only. Caller owns source/recipe provenance and helper lifetime. Pair-cache refresh possible; no energy evaluation byobserver,noactivation,wholeobjective normalization,frozenlifecycle/finalwriter orscientificacceptance. Nativeparallelity constructorrejectssym_ops;virtualexpandedrecipe remainsowner. Preserve bothfailedcodec attempts:unsupportedparallelity argument anddenominator-sensitive native membershipassertion; exactrational productfixpassesV3 andrerunmanagerpanel.",
+      "api_policy_id": "topostitch-native-pair-observation-v1",
+      "installed_wheel_sha256": "aab5576d888635541b9c6983bcc185226f54d72b2d42483e8805a17ef1c8a36b",
+      "local_forensic_archive": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/w106-native-pair-observation-2026-11-16.tar.gz",
+        "sha256": "2a82fc916218790fe385583f7cf32cbd7675043d4ef7ffad73608e2ebd8fb931",
+        "bytes": 5214881,
+        "files": 141,
+        "payload_index_verified": true,
+        "committed": false,
+        "portable_campaign": false
+      }
     }
   },
   "benchmarks": [
@@ -1913,8 +1935,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 105,
-    "next": 106,
+    "current": 106,
+    "next": 107,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -2354,6 +2376,12 @@
         "title": "Export existing compiled pair declarations",
         "state": "RECORDED",
         "code_commit": "4253e378cc353cf26f1c2ae93b46c359e6f636aa"
+      },
+      {
+        "number": 106,
+        "title": "Observe complete native pair inventories with exact image membership",
+        "state": "RECORDED",
+        "code_commit": "ff0059f9a0cdf274636a2fcf84f2a697ea2da52f"
       }
     ]
   },
