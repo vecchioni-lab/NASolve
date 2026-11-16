@@ -100,6 +100,14 @@ C329 separately validates five-cycle corrected-CIF delivery and actual written
 model/scattering agreement. PDU's remaining bend is reproduced, so delivery does
 not imply achieved-chemistry approval or a new ordinary checkpoint.
 
+C332 adds read-only candidate discovery through that same selected-library owner.
+The existing source query and exact qualified rows identify differing supported
+bond targets automatically; unsupported/matching/separate nuclear-target cases
+remain explicit. No new discrepancy threshold, source typing, strength, process
+owner or adoption authority. Reports can supply the existing explicit pair
+choices, but automatic fresh-request freezing/execution remains separate. See the
+[discovery contract](cif-doctor.md#source-aware-bond-target-discovery-c332).
+
 ## Runtime precedence
 
 Phenix is resolved in this order:

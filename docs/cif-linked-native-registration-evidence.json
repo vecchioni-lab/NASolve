@@ -101626,5 +101626,170 @@
       "Guard does not validate generated cache integrity/completeness, source lifetime, atom identity, other forces or chemical intent.",
       "Q06 remains REVIEW; automatic source-aware target discovery/reporting and whole-substituent/held-out refinement acceptance remain."
     ]
+  },
+  "source_aware_bond_discovery_2026_11_16": {
+    "milestone": "C332",
+    "status": "READ_ONLY_SOURCE_BOUND_CANDIDATE_DISCOVERY_QUALIFIED",
+    "author": "Rowan",
+    "source_base_commit": "c4e5ddb8530358c524feb473f3c4ffe77c64b6ac",
+    "behavior_before": "Existing prepared/complete/ordinary-entry repair required explicit atom pairs. The library/reference owner qualified supplied references but did not propose a selection.",
+    "behavior_after": "Read-only discovery proposes every supported differing source-neighborhood target from the exact qualified captured library. Matching, unsupported and separate nuclear-target cases remain explicit. No automatic request execution or adoption.",
+    "contract": "docs/cif-doctor.md#source-aware-bond-target-discovery-c332",
+    "policy_id": "cif-selected-library-bond-discovery-v1",
+    "schema_version": 1,
+    "implementation_files": {
+      "src/nasolve/cif_energy_library.py": {
+        "sha256": "5d4293c457895be277d8ece6fb15689d5f8a6feb8257b6293115069f2443d4f5",
+        "bytes": 20669
+      },
+      "tests/test_cif_bond_target_discovery.py": {
+        "sha256": "5fe35457b01d9211afd85f8d218875662cc4ec50db7bd62982cfe9a7176a7573",
+        "bytes": 6809
+      }
+    },
+    "reuse": "Existing source graph query, comparison and numerical reference typing; shared private complete reference validation preserves the public qualifier and exact historical receipts. Existing explicit selection, candidate writer and prepared request remain the adoption owners.",
+    "api": {
+      "signature": "discover_bond_targets(source, dictionary, component, directory, *, consumer)",
+      "supported_scope": "Source-declared neutral sp-carbon/sp3-carbon single bond beside a triple bond, agreeing dictionary energy types and exact unique supported library rows. No residue-name rule or coordinate input.",
+      "selection": "All supported differing targets without separate nuclear-distance columns; exact equality, no new discrepancy/acceptance threshold.",
+      "bounds": "Each source/dictionary <=1 MiB; <=64 proposed pairs, refuse rather than truncate.",
+      "qualification": "Complete captured library/consumer validation before numerical rows; freeze and compare source/dictionary/library bytes across read.",
+      "not_authority": "Detached proposals are not a persisted repair authorization. Caller must still qualify source chemistry and use existing native attribution/derivative/selection gates. No candidate does not mean chemistry passed."
+    },
+    "validation": {
+      "fail_before": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_bond_target_discovery.py --tb=short",
+        "cwd_anchor": "Cedar checkout",
+        "result": "16 failed in 2.44 s because discovery API did not exist; three additional refusal cases added afterward."
+      },
+      "focused": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_bond_target_discovery.py tests/test_cif_energy_library.py tests/test_cif_linear_bond_reference.py tests/test_cif_prepared_bond_repair.py tests/test_cif_complete_bond_targets.py tests/test_cif_postmr_bond_targets.py --tb=short",
+        "cwd_anchor": "Cedar checkout",
+        "result": "177 passed in 45.00 s; 19 new discovery cases plus adjacent owners."
+      },
+      "coverage": [
+        "Different component names without coordinates, both too-long and too-short targets, existing explicit candidate writer.",
+        "Matching, unsupported energy types, no triple bond and separate nuclear columns remain unapproved.",
+        "Wrong consumer, modified library/source graph, malformed target, failed capture and changes during read refuse.",
+        "Relocated source/library with original inputs and SDK removed; same report and no process allowed.",
+        "Input size and 65 real source-selected candidate bonds refuse without truncation."
+      ],
+      "historical_replay": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/cedar/runners/c332_replay.py",
+        "cwd_anchor": "everyday NASolve checkout",
+        "input_anchor": "NASolve-live-tests",
+        "selected_library": "323_Cedar_selected-energy-library-lznnh6qv/relocated",
+        "attribution_root": "322_Cedar_durable-bond-attribution-yn1bos1w/relocated",
+        "input_resolution": "Exact C323 summary and attribution receipt hashes, declared source and before/after dictionary references; no basename search.",
+        "environment": "Offline replay of existing Phenix 2.2.1-6174 / dispatcher 2.2.1 Darwin arm64 capture. No new native execution, Coot run or refinement; Python audit hook rejects subprocess/system/spawn.",
+        "result": {
+          "status": "HISTORICAL_SOURCE_AWARE_DISCOVERY_PASS",
+          "controls": {
+            "PDU": {
+              "before_status": "BOND_TARGET_CANDIDATES",
+              "selected": {
+                "PDU": [
+                  [
+                    "C5B",
+                    "C5M"
+                  ]
+                ]
+              },
+              "original_target": 1.607,
+              "reference_target": 1.47,
+              "dictionary_esd": 0.02,
+              "after_status": "NO_BOND_TARGET_CANDIDATE",
+              "after_selected": {},
+              "unsupported": [
+                [
+                  "C5",
+                  "C5A"
+                ],
+                [
+                  "C5A",
+                  "C5B"
+                ]
+              ],
+              "reference_qualification_matches_c323": true,
+              "source_sha256": "98421454d759d217f48dc7cec1daa3d8ded6b7a64503486c8fd8b4e46e717258",
+              "before_dictionary_sha256": "1f7be9dbcaa38b8c3e4fb83b1081f45e0b2ab6a8b1708de6bc801cdd2fca1892",
+              "after_dictionary_sha256": "e0a3342167cdc6a391cde5470de9b4b2cdb59acb89fa126cb8d2e14c5b32fe8b"
+            },
+            "5PC": {
+              "before_status": "BOND_TARGET_CANDIDATES",
+              "selected": {
+                "5PC": [
+                  [
+                    "C8",
+                    "C9"
+                  ]
+                ]
+              },
+              "original_target": 1.364,
+              "reference_target": 1.47,
+              "dictionary_esd": 0.027,
+              "after_status": "NO_BOND_TARGET_CANDIDATE",
+              "after_selected": {},
+              "unsupported": [
+                [
+                  "C5",
+                  "C7"
+                ],
+                [
+                  "C7",
+                  "C8"
+                ]
+              ],
+              "reference_qualification_matches_c323": true,
+              "source_sha256": "b0adede0c334091261cba543d9848c47165d8fdf3d46baf22b064e455bf38025",
+              "before_dictionary_sha256": "89c6e8e90eed402b02dd964f7d61891308f24871cd2e61b510e0015114aaabd9",
+              "after_dictionary_sha256": "f3e4c00b69e0aae7067a6753f88863022ca5c6fb3093035d73fa4003ddccf255"
+            }
+          },
+          "unchanged_files": 182,
+          "new_native_jobs": 0,
+          "elapsed_seconds": 0.4881334580004477,
+          "chemistry_acceptance": "NOT_ASSESSED",
+          "source_commit": "c4e5ddb8 with C332 working change"
+        }
+      },
+      "full_suite": "NOT_RUN per Simon; last full Cedar C220/583d30df, 9178 tests +276 subtests. Not merge qualification.",
+      "other_checks": "git diff --check, ledger parse and old-entry equality, implementation/evidence hashes, unchanged C331 owner/profile and existing library worker.",
+      "process_state": "All jobs finished; no persistent worker or new run/checkpoint."
+    },
+    "compatibility": "Additive proposal API/report only. Existing qualifier signature/receipt, captured worker, explicit request shapes/defaults, saved runs and source chemistry unchanged. No migration.",
+    "artifacts": {
+      "included": "Runtime change, focused regression, existing documentation updates and compact evidence only.",
+      "excluded": "Scientific CIFs/models/data, captured native libraries/source, full logs, local replay runner/output; historical files untouched.",
+      "local_anchor": "everyday NASolve checkout",
+      "references": [
+        {
+          "path": "branch-artifacts/cedar/runners/c332_replay.py",
+          "sha256": "2afe865b96393f05e343eee5a032bdede0c8a4ffbebc9f2e7593e3424b1264fc",
+          "bytes": 3553
+        },
+        {
+          "path": "branch-artifacts/cedar/c332-discovery/replay.json",
+          "sha256": "f0cfa0cfdba9371bea256bcd5289813c6ab7d7a569dc9daf978c886e4d687890",
+          "bytes": 1944
+        },
+        {
+          "path": "branch-artifacts/cedar/c332-discovery/focused.log",
+          "sha256": "d2be236ed04b12bc76fdeaccccb08051ebf451d41b9bf04d21edc3c2ccc33990",
+          "bytes": 261
+        },
+        {
+          "path": "branch-artifacts/cedar/c332-discovery/before.log",
+          "sha256": "7c1035ae05a4ce8b925ebd3c8ad9205826c6893057c4c2db450f79dbe4ce162d",
+          "bytes": 8872
+        }
+      ]
+    },
+    "next": "Freeze explicit automatic-discovery intent in fresh preparation requests, capture one qualified library when eligible source neighborhoods exist, revalidate decisions and reuse existing native attribution/selection/ReadySet/v4 retention/recovery. No silent continuation rediscovery or default activation.",
+    "remaining": [
+      "Ordinary automatic request delivery is not implemented in this step.",
+      "No ESD recalibration, unsupported reference expansion or chemical approval.",
+      "C329 PDU bend remains REVIEW; honest residual geometry and broader held-out refinement survival still gate Q06."
+    ]
   }
 }

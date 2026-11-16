@@ -94,7 +94,7 @@ native survival and ordinary automatic adoption remain separate work. The new
 reference check records which numerical library Phenix actually opened and whether
 its exact entries support the proposed correction. Explicit corrections can then
 join the existing source, derivative and verified-fallback checks. This still does
-not automatically choose a correction or establish that it survives refinement.
+not establish that a correction survives refinement.
 The explicit engine route now carries a chosen correction through the whole
 preparation request and actual ReadySet, with the PDU target and named heavy-atom
 coordinates preserved. Successful working files can be archived by the existing
@@ -104,7 +104,12 @@ policy separates native captures from their analysis while retaining the shared
 archive-expansion limit. The failed first request stays preserved. Normal model
 preparation can now pass an explicitly chosen correction into that same checked
 route through its Python entry point. This connects the existing tools; it does
-not yet decide automatically which bonds need correction. Actual corrected-CIF
+not yet run automatic discovery inside preparation. A read-only discovery step now
+identifies differing supported targets from source connectivity and the captured
+native library, finding the earlier PDU/5PC candidates without residue-name rules.
+It preserves matching and unsupported results and does not change uncertainties
+or approve the resulting geometry. Connecting these proposals to fresh owned
+requests remains next. Actual corrected-CIF
 refinement has now been tested with the corrected CIF itself: the final printed
 restraints retain the intended target, and the written models reproduce Phenix's
 saved scattering. The corrected bond reaches 1.482 Å, but the same PDU bend

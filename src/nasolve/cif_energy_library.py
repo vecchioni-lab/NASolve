@@ -1,7 +1,7 @@
 """Freeze the numerical library opened by a selected native consumer.
 
 The existing process owner runs one read-only lookup. This is reusable reference
-provenance, not chemical approval, parameter calibration or repair selection.
+provenance, not chemical approval, parameter calibration or repair adoption.
 Readers never import captured code or reopen historical installation paths.
 """
 from copy import deepcopy
@@ -203,7 +203,7 @@ def read_energy_library(directory):
     except (KeyError,TypeError,IndexError,OverflowError) as exc:raise ValueError('Incomplete energy-library evidence') from exc
 
 
-def qualify_energy_reference(source,dictionary,component,reference,directory,*,consumer):
+def _selected_energy_reference(source,dictionary,component,directory,*,consumer):
     """Bind complete source-selected reference rows to the exact observed library.
 
     This establishes numerical provenance only. It does not approve the source
@@ -216,9 +216,8 @@ def qualify_energy_reference(source,dictionary,component,reference,directory,*,c
     _need(report['status']=='SELECTED_NATIVE_ENERGY_LIBRARY_CAPTURED' and _exact(consumer,spec['consumer']),
           'Reference library belongs to another or unqualified consumer')
     actual=energy_library_linear_reference(source,dictionary,component,root/'energy-library.cif')
-    _need(_exact(actual,reference),'Supplied reference does not reproduce from the selected native library')
     _need(frozen==(source.read_bytes(),dictionary.read_bytes(),(root/REPORT).read_bytes()),'Reference inputs changed during qualification')
-    return dict(policy_id='cif-selected-library-linear-reference-v1',component=component,
+    qualification=dict(policy_id='cif-selected-library-linear-reference-v1',component=component,
         source_sha256=actual['query']['source_sha256'],dictionary_sha256=sha256(frozen[1]).hexdigest(),
         reference_sha256=sha256(json.dumps(actual,sort_keys=True,allow_nan=False).encode()).hexdigest(),
         evidence=_ref(root/REPORT,root,ANCHOR),resource=report['qualification']['resource'],
@@ -227,6 +226,70 @@ def qualify_energy_reference(source,dictionary,component,reference,directory,*,c
         unsupported_bonds=[r['atoms'] for r in actual['bonds'] if r['status']=='UNSUPPORTED'],
         source_chemical_qualification='CALLER_REQUIRED',
         parameter_calibration='NOT_RUN',chemical_approval='NOT_ASSESSED',automatic_adoption=False)
+    return actual,qualification
+
+
+def qualify_energy_reference(source,dictionary,component,reference,directory,*,consumer):
+    """Bind supplied rows to the same complete selected-library validation."""
+    actual,qualification=_selected_energy_reference(source,dictionary,component,directory,consumer=consumer)
+    _need(_exact(actual,reference),'Supplied reference does not reproduce from the selected native library')
+    return qualification
+
+
+def discover_bond_targets(source,dictionary,component,directory,*,consumer):
+    """Propose differing supported targets from one authenticated library capture.
+
+    Read-only selection, not acceptance: no coordinates, new discrepancy threshold,
+    ESD adjustment or candidate write. The existing explicit repair owner must
+    requalify any proposed changes before adoption. No proposal is not a pass.
+    """
+    from .cif_linear_bond_reference import compare_linear_bond_reference
+    from .cif_stereochemistry_audit import _values
+    _need(isinstance(component,str) and _safe(component) and '/' not in component,
+          'Require one source-owned component identifier')
+    source,dictionary=_path(source),_path(dictionary)
+    root=_path(directory,directory=True)
+    _need(all(p.stat().st_size<=MAX_SOURCE_BYTES for p in (source,dictionary)),
+          'Bond discovery input exceeds source bound')
+    frozen=(source.read_bytes(),dictionary.read_bytes());library_before=_tree(root)
+    _need(all(len(data)<=MAX_SOURCE_BYTES for data in frozen),
+          'Bond discovery input exceeds source bound')
+    # Qualification below authenticates the complete capture/consumer, rather
+    # than treating a supplied file or a table lookup as numerical authority.
+    reference,qualification=_selected_energy_reference(source,dictionary,component,root,consumer=consumer)
+    comparison=compare_linear_bond_reference(source,dictionary,component,reference)
+    values=_values(dictionary,component)
+    nuclear=any(key.lower().startswith('_chem_comp_bond.') and 'value_dist_nucleus' in key.lower()
+                for key in values)
+    rows=[];selected=[]
+    for observed in comparison['bonds']:
+        row=deepcopy(observed)
+        if row['reference_status']=='UNSUPPORTED':
+            state='UNSUPPORTED_REFERENCE'
+        elif row['target_angstrom']==row['reference_equilibrium_angstrom']:
+            state='MATCHES_REFERENCE'
+        elif nuclear:
+            # The existing writer rejects separate nuclear-distance columns,
+            # including unknown values; discovery must not silently bypass it.
+            state='NUCLEAR_TARGET_REQUIRES_QUALIFICATION'
+        else:
+            state='DIFFERENT_SUPPORTED_TARGET';selected.append(list(row['atoms']))
+        row['discovery_status']=state;rows.append(row)
+    _need(len(selected)<=64,'Discovered bond choices exceed the existing explicit selection bound')
+    _need(frozen==(source.read_bytes(),dictionary.read_bytes()) and library_before==_tree(root),
+          'Bond discovery inputs changed during read')
+    return dict(schema_version=1,policy_id='cif-selected-library-bond-discovery-v1',
+        status='BOND_TARGET_CANDIDATES' if selected else 'NO_BOND_TARGET_CANDIDATE',
+        component=component,source_sha256=comparison['source_sha256'],
+        dictionary_sha256=comparison['dictionary_sha256'],reference_sha256=comparison['reference_sha256'],
+        reference_qualification=qualification,bonds=rows,
+        bond_targets={component:sorted(selected)} if selected else {},
+        selection_rule='ALL_SUPPORTED_DIFFERENT_TARGETS_WITHOUT_SEPARATE_NUCLEAR_TARGETS',
+        acceptance_threshold='NOT_ASSIGNED',coordinate_input='NOT_USED',
+        esd_policy='EXISTING_ESDS_UNCHANGED_NOT_NEWLY_CALIBRATED',
+        source_chemical_qualification='CALLER_REQUIRED',chemical_approval='NOT_ASSESSED',
+        achieved_geometry='NOT_ASSESSED',automatic_adoption=False,new_native_calls=0,
+        source_and_dictionary_preserved=True,library_evidence_preserved=True)
 
 
 def qualify_bond_attribution_reference(attribution_directory,library_directory,*,consumer):

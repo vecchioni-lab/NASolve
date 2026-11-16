@@ -91,19 +91,31 @@ successful ReadySet result is insufficient. Keep ordinary bond edits distinct
 from additive contact energy over an unchanged native manager: Linden's reported
 Willow evidence shows changed exclusions from symmetry distance edits. Willow
 W38/W39 are context, not a combined Cedar validation or a phosphodiester-link grant.
-**Shared live-policy guard implemented (C331); consumer integration pending:**
+**Shared live-policy guard implemented (C331); optional consumers qualified on Willow:**
 The opt-in read-only owner now guards complete supported tables, assignments,
 exclusion shells, exact symmetry and evaluation settings under the pinned native
 API. Actual native tests catch copy loss and permit legitimate movement/reset
 rebuilds; installed-package checks include its profile. See the
 [guard contract](architecture.md#live-nonbonded-policy-guard-c331) and ledger
 `live_nonbonded_policy_guard_2026_11_16`. No ordinary worker/default or chemical
-target changes. Next, Linden qualifies the optional before/after caller with the
-same actual flags, keeping source/ASU/bonded owners and original failures. Captured
-worker adoption needs the complete helper/profile closure separately. This does
+target changes. Linden reports W96/c6549408 qualifies the direct optional caller,
+keeping actual flags, source/ASU/bonded owners and original errors. W97 also reports captured-
+worker closure/installed relocation qualification; no combined-source merge. This does
 not approve native copies, neighbour completeness or Q06 geometry. Return to
-source-aware target discovery and honest remaining-geometry reporting; preserve
-C329's corrected-CIF evidence rather than rerunning it without a new hypothesis.
+automatic request delivery of source-aware proposals and honest remaining-geometry
+reporting; preserve C329's corrected-CIF evidence rather than rerunning it without a new hypothesis.
+
+**Source-aware discovery available (C332):** the read-only selected-library owner
+now identifies differing supported target candidates and supplies explicit pair
+choices. Matching/unsupported/nuclear-reference cases remain visible; no proposal
+is not chemical acceptance. C323 PDU/5PC replay agrees, all 182 files preserved.
+Next: explicit automatic-discovery intent in fresh requests, one shared library
+lookup when eligible source neighborhoods exist, frozen/revalidated plan binding,
+existing native attribution/selection/ReadySet and recovery/fallback controls.
+Retain v4 accounting when bond captures are requested; no silent continuation
+rediscovery, default activation, new executor or strength change. C329's residual
+PDU bend and broader held-out geometry remain Q06 gates. See the
+[discovery contract](cif-doctor.md#source-aware-bond-target-discovery-c332).
 
 **Queued representative-boundary alternative (Linden W79/W80):** W79 reports
 that outlier callbacks can mix source and displayed coordinate frames even when

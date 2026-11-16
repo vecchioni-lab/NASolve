@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Discover source-bound bond-target candidates (C332)
+
+- Add read-only automatic proposal of differing supported targets from source
+  connectivity and the exact captured Phenix library. Reuse existing reference
+  qualification and preserve matching, unsupported and separate nuclear-target
+  cases without assigning a new acceptance threshold or changing uncertainties.
+- Emit bounded explicit pair choices for existing repair tools. Automatic request
+  wiring/adoption remains separate; no default, native process or historical change.
+
 ### Guard live Phenix contact rules without changing them (C331)
 
 - Add an explicit bounded, read-only snapshot/comparison API for the qualified

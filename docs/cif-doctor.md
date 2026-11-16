@@ -211,6 +211,39 @@ and fallback use synthetic native fixtures. Successful duplicate proof copies ar
 removed; compact results retain verifiable reproduction references. See the current
 handoff and evidence ledger for exact commands, source pins and limits.
 
+### Source-aware bond-target discovery (C332)
+
+`cif_energy_library.discover_bond_targets(source, dictionary, component,
+library_directory, consumer=...)` now proposes pairs automatically from the
+existing source-linear query and the exact captured native numerical library.
+It shares C323's complete reference qualification with the explicit reference
+reader; no second source-typing scheme or table authority is introduced.
+
+The read-only schema-1 `cif-selected-library-bond-discovery-v1` report binds source,
+dictionary, reference and captured-library evidence. Each queried bond is marked
+`DIFFERENT_SUPPORTED_TARGET`, `MATCHES_REFERENCE`, `UNSUPPORTED_REFERENCE` or
+`NUCLEAR_TARGET_REQUIRES_QUALIFICATION`. Only differing supported targets without
+separate nuclear-distance columns enter `bond_targets`; matching values are
+compared exactly, without assigning a new acceptance threshold. All other rows
+remain visible. Empty selection means no candidate under this scope, not a pass.
+
+Support remains the source-declared neutral sp-carbon/sp3-carbon single-bond
+neighborhood beside a triple bond, with agreeing dictionary energy types and
+unique exact library rows. Coordinates and residue-name rules are not used.
+Source/dictionary inputs are bounded to 1 MiB each and choices to 64; excess
+choices refuse rather than truncate. Changed evidence, another consumer or
+malformed source/parameters refuse. No files or ESDs change and no program runs.
+
+Nonempty choices can feed the existing explicit candidate/repair route, which
+must still qualify the source, native changes, derivatives and selected bundle.
+The report is not a saved repair authorization. Automatic fresh-request wiring,
+freezing/revalidating the discovery decision, and complete recovery/fallback
+integration remain next. Ordinary entry/defaults, old requests and Q06 achieved
+geometry are unchanged. Existing PDU/5PC evidence reproduces the previously
+selected bonds and no further proposal after their target correction, with all
+182 files/timestamps preserved and no new native jobs. Exact evidence is in the
+maintained ledger under `source_aware_bond_discovery_2026_11_16`.
+
 ### Explicit prepared target execution (C326)
 
 The existing prepared executor and immutable request accept `bond_targets`, a
