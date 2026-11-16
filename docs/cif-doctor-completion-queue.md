@@ -871,9 +871,21 @@ no phosphate describe this reference only. `YTR` remains a historical preview
 label; do not silently alias bare `Y`, infer a deposition code, or turn this
 free nucleoside into a linked nucleotide without explicit context.
 
-Start the smallest DY qualification step after the active bounded Q06 reporting
-checkpoint; do not wait for an entire ChemDraw importer or interrupt current
-work. The existing future-reference contract and C59–C70 source/alias ownership,
+**C339 source-format step complete:** the generic generation adapter now accepts
+complete CCD model coordinates as an explicitly non-independent seed. The first
+owned native attempt preserves source identities, charges, coordinates and sugar
+markers but stops before construction: Phenix represents exactly the five
+source-declared aromatic triazole edges as order 1.5. Existing isolated-six-ring
+and fused-purine policies do not authorize that isolated five-ring conversion.
+The failed attempt is preserved and cold-relocatable; there is no numerical
+candidate or mutation activation. Next add a separate source-declared neutral C/N
+five-ring representation rule, with fixed H/charges, complete valence and one
+pyrrolic donor, unchanged single bridge substituents, strict negative controls and
+no widening of historical policies. Then use a fresh owned attempt, not in-place
+retry. C4–N1T remains single and legitimate ring rotation must survive.
+
+C338's bounded Q06 reporting connection is complete. Continue this DY qualification
+without waiting for an entire ChemDraw importer. The existing future-reference contract and C59–C70 source/alias ownership,
 C133–C139 linked-context machinery and C326–C333 preparation owners are the
 prior work to reuse. A broad arbitrary-drawing builder remains separate.
 

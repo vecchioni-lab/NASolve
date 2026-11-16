@@ -44,7 +44,8 @@ def test_unknown_input_policy_is_not_a_silent_legacy_fallback(case, value):
 
 def test_projection_records_declared_coordinates_and_original_monomer_dialect():
     from nasolve.cif_generation_input import source_input_files
-    original=(Path(__file__).resolve().parents[1]/'src/nasolve/data/ligands/1AP.cif').read_bytes()
+    from importlib.resources import files
+    original=files('nasolve').joinpath('data/ligands/1AP.cif').read_bytes()
     binding,files=source_input_files(original,'1AP')
     report=json.loads(files['prepared/preparation.json'])
     assert report['coordinate_origin']=='SOURCE_DECLARED_COORDINATES_NOT_INDEPENDENT_IDEAL'

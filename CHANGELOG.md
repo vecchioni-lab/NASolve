@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Read complete CCD model coordinates as a declared generation seed (C339)
+
+- Accept the standard `model_Cartn_x/y/z` component-coordinate family when the
+  previously supported ideal and plain Cartesian families are absent. Record
+  that these coordinates are not independent ideal validation or final targets.
+- Preserve old seed precedence and output bytes; partial preferred families,
+  missing/nonfinite axes and ambiguous chemistry still refuse. Reuse the existing
+  source-preserving generation owner without a DY-specific path or new defaults.
+
 ### Report selected chemistry from the actual refinement manager (C338)
 
 - The explicit checked-plane-force route now observes source-declared triple-bond

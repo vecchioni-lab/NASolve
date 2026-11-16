@@ -1,12 +1,57 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C338 compact actual-refinement chemistry reporting — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. C338 is the current completed source
-checkpoint; parent C337 `649e41a4`, C336 `e7638db8`. No full suite, new branch,
-default activation or merge. Linden owns Pine/Willow; C331 stays unchanged. Simon
-confirmed work through **23:00 London**. All Rowan native/controller jobs stopped.
+Updated **2026-11-16, C339 standard CCD model-coordinate seeds — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. C338 is pushed at `80c10e2c`;
+C339 is this completed source checkpoint. No full suite, new branch, default
+activation or merge. Linden owns Pine/Willow; C331 unchanged. Simon confirmed work
+through **23:00 London**. All Rowan native/controller jobs stopped.
 
 ## Current result and next bounded task
+
+**C339 complete:** DY exposed a generic format gap. The source-generation adapter
+now accepts complete finite CCD `model_Cartn_x/y/z` when ideal/plain families are
+absent, preserving source atoms/charges/stereo and marking the seed explicitly
+non-independent. No mixing/filling incomplete coordinate families; all old accepted
+seed precedence and bytes remain fixed. No DY-specific repair or target generation.
+
+One real bounded eLBOW reader/handoff in
+`NASolve-live-tests/339_Cedar_DY-source-native-fqx7w9mm` stops before construction:
+exactly the five explicitly aromatic triazole bonds become order 1.5. Source
+identities, charges, coordinates and sugar markers survive. Existing isolated-six
+and fused-purine representation rules correctly refuse this unsupported five-ring
+conversion. No candidate, native qualification, ReadySet, Coot, linkage or refinement.
+All owned attempts/controller stopped; active=false, 444,638 bytes retained locally.
+The failed request replays after relocation with its temporary original absent and
+native execution forbidden; 366,992 temporary replay bytes removed.
+
+Focused command/result in ledger `declared_model_coordinate_seed_2026_11_16`:
+263 pass initially; five process-identity tests cannot observe macOS process state
+under the restricted sandbox, then **all five pass** with approved host visibility
+(2.72 s), with no process-owner code change. Initial two new regressions fail on
+C338. Installed/relocated package: **56 pass (5.30 s)** after source/original-install
+removal. Wheel SHA `258ce832fb68efb4199f43c49c725443763601335cf231dce7e37266a3fc8194`;
+1,371,603 bytes, 10,683,201 temporary bytes removed. A test's checkout-relative ligand
+lookup was corrected to the packaged resource. No full suite; last full remains
+C220/583d30df: 9178 tests +276 subtests.
+
+**Next:** add a separate explicit neutral C/N five-membered aromatic representation
+rule. Reuse C117/C118/C121 source/native contracts, require source-declared aromatic
+edges, complete valence, one pyrrolic donor, unchanged H/charges and single bridge
+substituents, and test negative controls/renamed related rings. Keep historical
+policies fixed; no inferred tautomer, protonation or native bond-order edit. The
+C4–N1T bridge remains single and inter-ring rotation stays legitimate. Then a fresh
+owned DY attempt, not in-place retry. The numerical/reference/mutation gates remain
+open. This is the next bounded task after the completed Q06 reporting connection.
+
+Runners `c339_start.py`, `c339_worker.py`, `c339_package_check.py` live in everyday
+ignored `branch-artifacts/cedar/runners/`; compact local checks are under
+`branch-artifacts/cedar/c339-dy-source/`. Only source/tests/docs and compact evidence
+committed; raw native outputs remain local. Historical runs and NAR workbook unchanged.
+
+Linden reviewed C338's helper/registry boundary and found no direct conflict with
+pinned C331/Willow, **not** combined-runtime qualification. Intra-site triple reporting
+must not become backbone/seam approval. Queue one complete Cedar suite at a sensible
+consolidation/before merge, respecting Simon's current no-full-suite instruction.
 
 **C338 complete:** the explicit checked refinement route now observes selected
 source-declared triple sites inside the actual Phenix manager, recording original
@@ -69,7 +114,7 @@ independent of ligand code. Consult the queue/history before adding another rout
 It is the retained triazole free nucleoside, renamed from the user-approved YTR
 preview with coordinates/graph unchanged and explicit sugar stereo added.
 No runtime mutation, NAR edit, numerical restraints or phosphate inference.
-The current Q06 step below stays first; then start the bounded
+C338 reporting is complete; continue the bounded
 [DY qualification task](cif-doctor-completion-queue.md#dy--packaged-retained-triazole-reference-and-mutation-support).
 Prior custom-input scope and source/context owners are recorded there. The original
 visualization remains untouched; packaged data now removes dependence on its local

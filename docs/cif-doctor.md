@@ -13517,3 +13517,24 @@ recorded as UNASSESSED and does not by itself invalidate refinement. Damaged sav
 evidence still refuses; it is not reclassified as an optional missing observation.
 No new executor, separate capture job, CLI default or historical-file change.
 Whole-substituent planarity and held-out refinement survival remain Q06.
+
+
+### Standard CCD model-coordinate seeds (C339)
+
+The existing graph-generation adapter now accepts a complete finite
+`_chem_comp_atom.model_Cartn_x/y/z` family when neither ideal nor plain `x/y/z`
+fields are supplied. This closes the generic format gap exposed by the packaged
+DY preview. It preserves exact graph, charges, atom labels, stereo and original
+source bytes. The prepared receipt explicitly records
+`SOURCE_MODEL_COORDINATES_NOT_INDEPENDENT_IDEAL`; emitted ideal-field spelling is
+an installed-reader interface, not a new claim of independent ideal geometry.
+No experimental structure or map supplies restraint targets.
+
+Historical accepted inputs retain their old ideal-then-plain precedence and
+identical seed bytes. A partial preferred family is never repaired by mixing
+axes or silently taking a different family. The first bounded DY native attempt
+therefore reaches the existing chemical handoff and stops on exactly five
+localized-to-aromatic triazole bonds. No candidate, ReadySet, linkage or refinement
+approval follows from this format fix. The next explicit representation rule must
+use source-declared ring connectivity, charge, H and valence, retaining C4–N1T as
+a single inter-ring bridge and keeping old aromatic policies unchanged.

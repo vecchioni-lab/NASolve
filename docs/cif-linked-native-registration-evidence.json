@@ -102782,5 +102782,202 @@
     ],
     "last_full_suite": "C220/583d30df: 9178 tests +276 subtests",
     "signed": "Rowan"
+  },
+  "declared_model_coordinate_seed_2026_11_16": {
+    "status": "C339_GENERIC_CCD_MODEL_SEED_SUPPORTED_DY_NATIVE_HANDOFF_REVIEW",
+    "source_parent": "80c10e2c",
+    "before": "Graph generation refused a complete standard CCD model_Cartn coordinate family even though the stereo reader already supported it.",
+    "after": "Use the complete declared model family only when ideal and plain fields are absent; retain all old accepted seed precedence/bytes and refuse partial preferred families. Seed provenance explicitly denies independent ideal validation.",
+    "prior_work": [
+      "C31 canonical Cartn spelling and original/source authority separation",
+      "C162 preserve original ideal/plain seed precedence",
+      "C117/C118 bounded aromatic representation contracts",
+      "C121 source-declared fused five-ring representation, not an isolated triazole rule"
+    ],
+    "native": {
+      "summary": {
+        "status": "BOUNDED_DY_ACQUISITION_OBSERVED",
+        "error": {
+          "type": "ValueError",
+          "message": "Generation has no retained candidate for DY; inspect /Users/svecchio/NASolve-live-tests/339_Cedar_DY-source-native-fqx7w9mm/request/generation/attempts/attempt-0001/generation/source_candidate_receipt.json; recorded diagnostic SOURCE_HANDOFF: Source handoff blocked before construction: bond_orders."
+        },
+        "acquisition": null,
+        "generation_diagnostic": {
+          "policy_id": "cif-source-candidate-diagnostic-v1",
+          "generation_status": "FAILED",
+          "candidate_state": "ABSENT",
+          "blocking_stage": "SOURCE_HANDOFF",
+          "summary": "Source handoff blocked before construction: bond_orders.",
+          "builder_started": false,
+          "failed_handoff_checks": [
+            "bond_orders"
+          ],
+          "handoff_reason": null,
+          "native_exception": {
+            "exception_type": "ValueError",
+            "message": "Declared source charge handoff failed"
+          },
+          "execution_status": "COMPLETED",
+          "execution_returncode": 0,
+          "rejection_reasons": [],
+          "identity_change_fields": [],
+          "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+          "automatic_adoption": false
+        },
+        "candidate_status": null,
+        "rejection_reasons": null,
+        "source_preserved": true,
+        "elapsed_seconds": 3.1185192500015546,
+        "physical_bytes": 444638,
+        "scientific_approval": "NOT_RUN",
+        "mutation_enabled": false,
+        "readyset": "NOT_RUN",
+        "coot": "NOT_RUN",
+        "refinement": "NOT_RUN"
+      },
+      "build": "Phenix 2.2.1-6174 / dispatcher 2.2.1",
+      "dry_run": false,
+      "scope": "One real eLBOW reader/handoff; builder not started, no candidate or isolated qualification",
+      "source_preserved": true,
+      "exact_changed_edges": [
+        {
+          "atoms": [
+            "N1T",
+            "N2T"
+          ],
+          "source_order": "SINGLE",
+          "native_order": 1.5
+        },
+        {
+          "atoms": [
+            "C3T",
+            "N2T"
+          ],
+          "source_order": "DOUBLE",
+          "native_order": 1.5
+        },
+        {
+          "atoms": [
+            "C3T",
+            "N4T"
+          ],
+          "source_order": "SINGLE",
+          "native_order": 1.5
+        },
+        {
+          "atoms": [
+            "C5T",
+            "N4T"
+          ],
+          "source_order": "DOUBLE",
+          "native_order": 1.5
+        },
+        {
+          "atoms": [
+            "C5T",
+            "N1T"
+          ],
+          "source_order": "SINGLE",
+          "native_order": 1.5
+        }
+      ],
+      "native_bond_order_editing": "NOT_RUN",
+      "source_atom_charge_coordinates_stereo_preserved": true,
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "refinement": "NOT_RUN"
+    },
+    "local_root": {
+      "anchor": "NASolve-live-tests",
+      "path": "339_Cedar_DY-source-native-fqx7w9mm"
+    },
+    "receipts": [
+      {
+        "path": "start.json",
+        "sha256": "941c30c8cbf7287c8508f1f115541e6de3f7a598c984797ce5b21e78ac7c9cac",
+        "size": 30008
+      },
+      {
+        "path": "input-origin.json",
+        "sha256": "48da88322af893cc4a5cee7040538223401e7489e0f54fc717d9e8983d6b52e5",
+        "size": 1270
+      },
+      {
+        "path": "summary.json",
+        "sha256": "8c897f6f81976976f08ae9d9f4ca64ff9a87525e7b34329fb0f59b217f3d094a",
+        "size": 1459
+      },
+      {
+        "path": "driver-result.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+        "size": 78
+      },
+      {
+        "path": "driver-process.json",
+        "sha256": "108813606e369ba5e8e6388aae8dcc19bd4cc212cc58cc921ea8b09e1c0b87d2",
+        "size": 277
+      },
+      {
+        "path": "active.json",
+        "sha256": "595219792dd54a38a8ace80a6a7fc33b928ea74f0dd1bdfac6a2b708dbe0dd1e",
+        "size": 22
+      },
+      {
+        "path": "acquisition-error.json",
+        "sha256": "824e8cd2102ec5c8f61c7b4afd8749f8265abcf55dc28c14d399dfcc4a6d1a36",
+        "size": 343
+      },
+      {
+        "path": "acquisition-state.json",
+        "sha256": "e1ca46526f51be531c753310ded4c59234ed20f6228f41bf8cff65b9d00b17be",
+        "size": 24036
+      },
+      {
+        "path": "generation-state.json",
+        "sha256": "5c6a59ad2577f2e3a5240daf160a34342f79b49bb3f02c8b750cf16470fdd5a7",
+        "size": 6700
+      }
+    ],
+    "focused": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_numerical_recovery.py tests/test_packaged_dy_reference.py tests/test_cif_generation_input.py tests/test_cif_generation_attempt.py tests/test_cif_generation_acquisition.py tests/test_cif_phenix_configuration.py tests/test_cif_source_candidate.py --tb=short",
+      "result": "263 passed in 32.38 s; five process-observation checks could not observe macOS process identity under the restricted sandbox.",
+      "rerun_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src project-python -m pytest -q -p no:cacheprovider tests/test_cif_generation_attempt.py::test_timezone_change_cannot_make_live_coordinator_look_dead tests/test_cif_source_candidate.py::test_owned_complete_builder_keeps_output_even_without_convergence_or_success_exit[timeout-False] tests/test_cif_source_candidate.py::test_owned_complete_builder_keeps_output_even_without_convergence_or_success_exit[timeout-True] tests/test_cif_source_candidate.py::test_owned_complete_builder_keeps_output_even_without_convergence_or_success_exit[help_timeout-False] tests/test_cif_source_candidate.py::test_owned_complete_builder_keeps_output_even_without_convergence_or_success_exit[help_timeout-True] --tb=short",
+      "rerun_environment": "Approved host process visibility",
+      "rerun_result": "All five pass in 2.72 s; no source change to process ownership.",
+      "initial_regression": "Two new model-coordinate/DY tests fail on C338 with Require one complete declared coordinate family.",
+      "scope": "No full suite"
+    },
+    "installed": {
+      "status": "INSTALLED_RELOCATED_MODEL_COORDINATE_SEED_PASS",
+      "wheel_sha256": "258ce832fb68efb4199f43c49c725443763601335cf231dce7e37266a3fc8194",
+      "wheel_bytes": 1371603,
+      "source_copy_removed": true,
+      "original_install_path_absent": true,
+      "package_reference_bytes_match": true,
+      "validation_command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-B",
+        "-c",
+        "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_cif_numerical_recovery.py', 'tests/test_cif_generation_input.py', 'tests/test_packaged_dy_reference.py', '--tb=short']))"
+      ],
+      "validation_output": "........................................................                 [100%]\n56 passed in 5.30s\n",
+      "build_command": "phenix.python -m pip wheel --no-deps --no-build-isolation --no-index",
+      "temporary_bytes_removed": 10683201
+    },
+    "cold_relocation": {
+      "status": "FAILED_ATTEMPT_COLD_RELOCATION_PASS",
+      "acquisition_state": "RECORDED",
+      "generation_state": "RECORDED",
+      "acquisition_attempt": "STOPPED",
+      "generation_attempt": "STOPPED",
+      "original_path_absent": true,
+      "native_launches": 0,
+      "temporary_bytes_removed": 366992
+    },
+    "compatibility": "No source or old receipt rewriting; old source/seed precedence preserved. Existing request/policy schemas retained. One fixture now uses importlib.resources instead of assuming a checkout.",
+    "retention": "Original packaged definition untouched. Failed acquisition and all partial outputs remain immutable locally; only compact evidence committed. No native process remains. Temporary package/replay copies removed.",
+    "next": "Separate explicit graph/valence-bound neutral C/N five-ring representation policy, preserving historical policies, source H/charges/stereo, unchanged inter-ring single bridge and bounded native ownership. Fresh attempt only; no mutation alias yet.",
+    "full_suite_gate": "Queued complete Cedar consolidation/before-merge check; current user authorization remains focused only. Last full C220/583d30df: 9178 +276.",
+    "signed": "Rowan"
   }
 }

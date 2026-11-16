@@ -76,3 +76,18 @@ def test_dy_reference_is_self_contained_package_data():
     assert '/Users/' not in serialized and '/private/tmp/' not in serialized
     assert metadata['qualification']['chimerax_readback']['exact_named_connectivity'] is True
     assert metadata['qualification']['chimerax_readback']['atoms'] == 33
+
+
+def test_packaged_preview_enters_existing_generation_adapter_without_ideal_claim():
+    from nasolve.cif_generation_input import source_input_files
+    from nasolve.cif_stereochemistry_audit import _graph,_values
+    from tempfile import TemporaryDirectory
+    from pathlib import Path
+    source=files('nasolve').joinpath('data/chemical_references/DY.cif');original=source.read_bytes()
+    binding,derived=source_input_files(original,'DY');report=json.loads(derived['prepared/preparation.json'])
+    assert report['coordinate_origin']=='SOURCE_MODEL_COORDINATES_NOT_INDEPENDENT_IDEAL'
+    assert report['source']['sha256']==hashlib.sha256(original).hexdigest()
+    with TemporaryDirectory() as temporary:
+        path=Path(temporary)/'consumer.cif';path.write_bytes(derived['prepared/consumer.cif'])
+        assert _graph(_values(path,'DY'))==_graph(_values(source,'DY'))
+    assert source.read_bytes()==original and source_input_files(original,'DY')==(binding,derived)

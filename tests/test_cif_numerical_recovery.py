@@ -116,3 +116,48 @@ def test_saved_rotation_evidence_is_recomputed_before_recovery(tmp_path,defect):
     if defect=='none':assert validate_rotation_evidence(q,plan,saved,'signature')['directions_passed']==32
     else:
         with pytest.raises(ValueError):validate_rotation_evidence(q,plan,saved,'signature')
+
+
+def test_complete_model_coordinate_family_is_a_seed_not_independent_ideal(tmp_path):
+    from nasolve.cif_numerical_recovery import prepare_graph_generation_source
+    from nasolve.cif_generation import _ideal_seed
+    values=source_values('Q17')
+    for axis in 'xyz':
+        values['_chem_comp_atom.model_Cartn_'+axis]=values.pop('_chem_comp_atom.pdbx_model_Cartn_'+axis+'_ideal')
+    source=write(tmp_path/'source.cif',values);before=source.read_bytes();out=tmp_path/'graph.cif'
+    report=prepare_graph_generation_source(source,'Q17',out)
+    assert report['coordinate_origin']=='SOURCE_MODEL_COORDINATES_NOT_INDEPENDENT_IDEAL'
+    assert report['coordinate_input_fields']==['_chem_comp_atom.model_cartn_'+a for a in 'xyz']
+    assert report['experimental_model_used'] is False and source.read_bytes()==before
+    result={k.lower():v for k,v in _blocks(out)[0].values.items()}
+    for axis in 'xyz':
+        assert result['_chem_comp_atom.pdbx_model_cartn_'+axis+'_ideal']==values['_chem_comp_atom.model_Cartn_'+axis]
+    assert _ideal_seed(out,'Q17')[1]['role'].endswith('not final restraint targets')
+
+
+@pytest.mark.parametrize('defect',['partial_model','nonfinite_model','partial_ideal','partial_plain'])
+def test_model_seed_never_fills_or_mix_incomplete_coordinate_families(tmp_path,defect):
+    from nasolve.cif_numerical_recovery import prepare_graph_generation_source
+    values=source_values('Q17')
+    for axis in 'xyz':values['_chem_comp_atom.model_Cartn_'+axis]=values.pop('_chem_comp_atom.pdbx_model_Cartn_'+axis+'_ideal')
+    if defect=='partial_model':values.pop('_chem_comp_atom.model_Cartn_z')
+    elif defect=='nonfinite_model':values['_chem_comp_atom.model_Cartn_x'][0]='nan'
+    elif defect=='partial_ideal':values['_chem_comp_atom.pdbx_model_Cartn_x_ideal']=['1']*4
+    else:values['_chem_comp_atom.x']=['1']*4
+    source=write(tmp_path/'source.cif',values);out=tmp_path/'graph.cif'
+    with pytest.raises(ValueError):prepare_graph_generation_source(source,'Q17',out)
+    assert not out.exists()
+
+
+@pytest.mark.parametrize('family',['ideal','plain'])
+def test_existing_seed_precedence_and_receipt_bytes_ignore_extra_model_family(tmp_path,family):
+    from nasolve.cif_numerical_recovery import prepare_graph_generation_source
+    values=source_values('Q17')
+    if family=='plain':
+        for axis in 'xyz':values['_chem_comp_atom.'+axis]=values.pop('_chem_comp_atom.pdbx_model_Cartn_'+axis+'_ideal')
+    source=write(tmp_path/'source.cif',values);a=tmp_path/'a.cif';first=prepare_graph_generation_source(source,'Q17',a)
+    for axis in 'xyz':values['_chem_comp_atom.model_Cartn_'+axis]=['99']*4
+    source=write(source,values);b=tmp_path/'b.cif';second=prepare_graph_generation_source(source,'Q17',b)
+    assert a.read_bytes()==b.read_bytes()
+    assert first['coordinate_origin']==second['coordinate_origin']
+    assert first['coordinate_input_fields']==second['coordinate_input_fields']
