@@ -4485,3 +4485,52 @@ hashes were frozen that way. Special-position equivalence, actual forces,
 normalization, callback-aware policy guarding, selection/rebuild interception,
 final-writer binding and diffraction remain with their existing owners and still
 need integration qualification. No new serialized runtime helper is activated.
+
+
+### W104 validation — 2026-11-16
+
+Code `97f5bbec3b410338586481893855c635ef684831` changes one new optional module
+and its regression file, with architecture/usage/changelog documentation. There
+is no dependency, CLI, existing packet or runtime-helper migration. Thirty-four
+initial tests fail before the API exists; a further noncommuting-image regression
+brings the final new tests to **35 passing**. The complete Willow suite passes
+**1,911 tests +229 subtests in 101.75 seconds**. A fresh sdist is relocated after
+removing its staging source, then built/installed; both source staging paths are
+absent for **204 installed tests**, six CLI helps, `pip check`, lean import and
+exact source/installed module-byte checks. Python 3.10 syntax parsing passes.
+
+The installed checker replays all eight retained W103 native inventories: source
+cases have 124 additive terms; ordinary-core cases have 107 native and 17 additive
+terms. Twelve actual-derived negative controls reject duplicate complete callbacks,
+missing/duplicated native occurrences, changed targets, wrong periodic images and
+stale reconstructed contexts. Source and installed results are exact after input
+relocation; this is **saved native evidence replay**, not new Phenix execution.
+The earlier Phenix 2.2.1-6174 observations retain their W103 limits. No Coot run.
+
+The first installed test harness copied tests without the existing developer
+script used by one packing-reader regression: **203 pass, one fails with
+FileNotFoundError**. The original log/script are retained. Copying that unchanged
+script as a test fixture allows all 204 to pass with the same installed wheel;
+no product change or unsupported packaging claim is made. The new source/test
+paths have no overlap with Cedar `32316a76`; this is a compatibility review, not
+a combined branch or native-runtime qualification.
+
+Exact principal commands (historical scratch root
+`/private/tmp/willow-w104-coverage/`):
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider tests/test_topostitch_pair_coverage.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python install-check.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python install-finish.py
+```
+
+The first installation command's fixture failure and the second command's
+completion are distinguished above. Wheel SHA256:
+`c920e837f96cd043d77c86a71ca73ddd940513e97a6dd7a1fb73c689cdc01950`.
+The verified 29-file local forensic archive under the everyday NASolve anchor is
+`branch-artifacts/willow/w104-pair-coverage-2026-11-16.tar.gz`, SHA256
+`c8c427e12363c93ef0d0936c76e741a1bbe0bc5b2ad31b4ac0aec5d6b922e7f4`.
+It retains software/distributions, exact inputs, both installed-test outcomes,
+commands and replay results. Generated scientific observations remain uncommitted;
+the archive is not an autonomous portable campaign or scientific approval.

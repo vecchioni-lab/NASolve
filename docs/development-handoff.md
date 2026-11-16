@@ -148,7 +148,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-16
 
-**W100–W103 native diagnostics are audited; production membership/exclusion guarding and ordinary refinement lifecycle remain next.**
+**W100–W103 native diagnostics and W104 declared-coverage checking are audited; authenticated native observation and ordinary refinement lifecycle remain next.**
 W102 checks original and explicitly rebound select-all native managers with unchanged
 normalization: eight derivative controls and twelve negative controls pass. This is
 not automatic callback persistence, a callback-aware C331 policy guard, or a
@@ -160,7 +160,17 @@ policy. Preserve ordinary core terms and explicitly qualify missing periodic ter
 complete coverage and exclusions through the existing refinement owner. The
 [exact inventory controls](topostitch-periodic.md#w103--actual-pair-membership-and-ordinary-phil-exclusions)
 remain local diagnostics, not a production adapter or activation authority.
-Latest audited runtime is W98 `7faff1a1` on isolated `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
+W104 `97f5bbec` adds the opt-in read-only coverage checker, preserving all existing
+runtime and recipe behavior. It rejects duplicate/missing/provider/target/image
+and stale-context mismatches in caller-authenticated declarations. **35 new
+regressions, 1,911 full +229 subtests, 204 installed/relocated tests**, six CLI helps,
+`pip check`, lean import and Python 3.10 syntax pass; eight W103 saved native cases
+and twelve negatives replay exactly from the installed wheel. The original
+installed harness's missing developer-script fixture is retained and corrected
+without changing the package. [API and validation](topostitch-periodic.md#w104--explicit-nativeadditive-term-coverage)
+retain the authentication, special-position, force/normalization and lifecycle
+limits. Latest software is W104; completed live native controls remain pinned to
+W98 `7faff1a1` and C331. No new native execution or activation is claimed. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
 [periodic topology](topostitch-periodic.md) and [bend previews](topostitch-preview.md).
