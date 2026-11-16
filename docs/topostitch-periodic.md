@@ -4468,7 +4468,9 @@ weights follow their atoms. Different lattice translations stay different.
 Targets and modes compare exactly; reciprocal-square weights allow only relative
 rounding tolerance 1e-12, with no absolute tolerance that could merge distinct tiny
 weights. Inventories are bounded to 25,000 terms each and 64 references per term;
-standard fractional translation denominators must divide 24. Unsupported fields,
+standard fractional translation denominators must divide 24. Rotational parts
+must be proper unimodular integer matrices; inversion/reflection images are
+outside this coverage policy. Unsupported fields,
 malformed images and duplicate occurrence IDs refuse.
 
 The result records ordered provider/occurrence coverage, frozen and input digests,
