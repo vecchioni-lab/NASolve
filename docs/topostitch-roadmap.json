@@ -4,7 +4,7 @@
   "updated": "2026-11-17",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "eb98c6f1ab4fa9dbce97d9133642a97545d1528d",
+  "audited_code_commit": "89eccdf261e92efd0c67564ce2cae24a8432ff9c",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -319,7 +319,8 @@
         "W112 optionally binds both hierarchy and scattering state through existing Cedar readers; exact roundtrip and default-observer preservation controls pass. Active admission and ordinary lifecycle remain separate.",
         "W113 supplies the fresh frozen numerical contribution factory and explicit supported count by reusing existing compiler/coverage/evaluation. W114 qualifies direct native ownership/lifetime at exact C368 pins; ordinary runtime integration remains open.",
         "W115 qualifies the installed C371 read-only assembly on actual ordinary zero-cycle preflight. Ordered855 atoms,3333 observations and176 original Free-R selections are preserved;124 requested terms split107native/17missing. Initial default-MTZ cell precision mismatch remains refused; explicit working-frame control matches source. No forces, optimization or repair acceptance.",
-        "W116 completes three ordinary1cycle/10iteration refinements after independent actual preflights. Native-only and zero-addition full endpoint/statistics/score are exact;17 additional full-recipe terms participate through16checked model calls and final writer. Original3333 observations/176 Free-R and ADP/occupancy preserved; no diffraction benefit or repair adoption. Frozen C371/v3 diagnostic only, production admission and broader scopes remain open."
+        "W116 completes three ordinary1cycle/10iteration refinements after independent actual preflights. Native-only and zero-addition full endpoint/statistics/score are exact;17 additional full-recipe terms participate through16checked model calls and final writer. Original3333 observations/176 Free-R and ADP/occupancy preserved; no diffraction benefit or repair adoption. Frozen C371/v3 diagnostic only, production admission and broader scopes remain open.",
+        "W117 removes redundant arithmetic only for equal validated full images, retaining exact distinct-image lattice arithmetic and all checks. Complete source/installed checks pass; C373 actual native old/new targets,gradients,counts,normalization and initial selection are exact with retained mutation refusals. Direct checked call4.62s to1.57s; no whole-refinement speed or repair-benefit claim."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
@@ -369,14 +370,15 @@
         "E_FROZEN_PAIR_CONTRIBUTION",
         "E_COUNTED_OWNER_LIFETIME",
         "E_ACTUAL_PREPARED_STATE",
-        "E_BOUNDED_ORDINARY_LIFECYCLE"
+        "E_BOUNDED_ORDINARY_LIFECYCLE",
+        "E_EXACT_IMAGE_FASTPATH"
       ],
       "last_audit": {
         "date": "2026-11-17",
-        "code_commit": "eb98c6f1ab4fa9dbce97d9133642a97545d1528d",
-        "human_update": 116,
+        "code_commit": "89eccdf261e92efd0c67564ce2cae24a8432ff9c",
+        "human_update": 117,
         "reviewer": "Linden",
-        "scope": "Bounded ordinary optimizer/writer diagnostic qualified at C371/W113 pins, exact zero-addition identity. No diffraction benefit or physical closure; S05/S06 stay PARTIAL."
+        "scope": "Stateless exact-image optimization and source/installed/native old-new checks; no scientific gate closes."
       }
     },
     {
@@ -405,7 +407,8 @@
         "W112 optionally binds both hierarchy and scattering state through existing Cedar readers; exact roundtrip and default-observer preservation controls pass. Active admission and ordinary lifecycle remain separate.",
         "W113 supplies the fresh frozen numerical contribution factory and explicit supported count by reusing existing compiler/coverage/evaluation. W114 qualifies direct native ownership/lifetime at exact C368 pins; ordinary runtime integration remains open.",
         "W115 qualifies the installed C371 read-only assembly on actual ordinary zero-cycle preflight. Ordered855 atoms,3333 observations and176 original Free-R selections are preserved;124 requested terms split107native/17missing. Initial default-MTZ cell precision mismatch remains refused; explicit working-frame control matches source. No forces, optimization or repair acceptance.",
-        "W116 completes three ordinary1cycle/10iteration refinements after independent actual preflights. Native-only and zero-addition full endpoint/statistics/score are exact;17 additional full-recipe terms participate through16checked model calls and final writer. Original3333 observations/176 Free-R and ADP/occupancy preserved; no diffraction benefit or repair adoption. Frozen C371/v3 diagnostic only, production admission and broader scopes remain open."
+        "W116 completes three ordinary1cycle/10iteration refinements after independent actual preflights. Native-only and zero-addition full endpoint/statistics/score are exact;17 additional full-recipe terms participate through16checked model calls and final writer. Original3333 observations/176 Free-R and ADP/occupancy preserved; no diffraction benefit or repair adoption. Frozen C371/v3 diagnostic only, production admission and broader scopes remain open.",
+        "W117 removes redundant arithmetic only for equal validated full images, retaining exact distinct-image lattice arithmetic and all checks. Complete source/installed checks pass; C373 actual native old/new targets,gradients,counts,normalization and initial selection are exact with retained mutation refusals. Direct checked call4.62s to1.57s; no whole-refinement speed or repair-benefit claim."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -413,7 +416,7 @@
         "Blunt and asymmetric-orientation trials retain matched observations/Free-R and independent bends/maps; calibrate inconclusive outcomes rather than force alignment or a statistical winner.",
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning."
       ],
-      "next_action": "Integrate immutable prepared admission/same-phase consumption using existing execution owners and explicitly qualify coordinated package/dependency ownership; Willow factory remains external to Cedar wheel. Optimize only measured pure relative-image arithmetic while preserving all validation/refusals. Keep working frame, observations/Free-R, fixed provider selection and version-specific runtime gates. Then broader weights/phases, periodic exclusions, matched data/maps and healthy/wrong-connection/B09 controls; no scientific acceptance from W116.",
+      "next_action": "Qualify the current Willow/Cedar joined installed package, then integrate immutable prepared admission/same-phase consumption through existing execution owners. W117 pure arithmetic optimization is qualified; do not repeat historical whole-refinement controls just for timing. Keep working frame,observations/Free-R,frozen provider selection and version-specific runtime gates. Then broader weights/phases,periodic exclusions,matched data/maps and healthy/wrong-connection/B09 controls; no scientific acceptance from W116/W117.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -435,14 +438,15 @@
         "E_COUNTED_OWNER_LIFETIME",
         "E_FULL_SOURCE_C366",
         "E_ACTUAL_PREPARED_STATE",
-        "E_BOUNDED_ORDINARY_LIFECYCLE"
+        "E_BOUNDED_ORDINARY_LIFECYCLE",
+        "E_EXACT_IMAGE_FASTPATH"
       ],
       "last_audit": {
         "date": "2026-11-17",
-        "code_commit": "eb98c6f1ab4fa9dbce97d9133642a97545d1528d",
-        "human_update": 116,
+        "code_commit": "89eccdf261e92efd0c67564ce2cae24a8432ff9c",
+        "human_update": 117,
         "reviewer": "Linden",
-        "scope": "Bounded ordinary optimizer/writer diagnostic qualified at C371/W113 pins, exact zero-addition identity. No diffraction benefit or physical closure; S05/S06 stay PARTIAL."
+        "scope": "Stateless exact-image optimization and source/installed/native old-new checks; no scientific gate closes."
       }
     },
     {
@@ -2059,6 +2063,28 @@
         "committed": false,
         "portable_campaign": false
       }
+    },
+    "E_EXACT_IMAGE_FASTPATH": {
+      "kind": "stateless_exact_image_arithmetic_optimization",
+      "code_commit": "89eccdf261e92efd0c67564ce2cae24a8432ff9c",
+      "human_update": 117,
+      "reference": "docs/topostitch-periodic.md#w117--cancel-identical-validated-images-without-repeated-matrix-products",
+      "result": "Equal validated full images cancel exactly without repeated matrix products; distinct images retain exact lattice arithmetic. Nine regression cases: four fail before, five retain refusals. 223 focused,2009 full +229 subtests,302 installed tests pass; relocated sdist/wheel,six CLI helps,pip check,lean import,Python3.10 syntax and old worker bytes pass. Saved2572-term inventory exact,26415 redundant products become zero. C373 Phenix2.2.1-6174 complete direct native old/new call4.6208s to1.5670s with exact full target/gradient/count/normalization,call statistics,prepared selection/binding; inventory/policy poisoning refusals retained,source/state restored,process stopped.",
+      "limitation": "No cache, schema, tolerance, provider policy or physical objective change. Single native call timing is not whole-refinement speed or scientific acceptance; W116 remains historical at its original pins. Initial full-suite sandbox run had five /bin/ps permission failures, retained; one complete process-enabled rerun passes. Coordinated package ownership and production admission remain open.",
+      "runtime_pins": {
+        "willow_wheel_sha256": "b92d45cde4720fb2f5c9f387e72af0381943bd48b8dea2de98d2b5b2141200f7",
+        "coverage_helper_sha256": "e342d7aa4d6277dac0cd4b90d63fe1501c74249927fe909e119680901c21f591"
+      },
+      "local_forensic_archive": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/w117-exact-image-2026-11-17.tar.gz",
+        "sha256": "4a306751fbb75c61164b3f457bc5fa43cff2fdf3be00f027826970963f256de7",
+        "bytes": 1210750,
+        "files": 24,
+        "payload_index_verified": true,
+        "committed": false,
+        "portable_campaign": false
+      }
     }
   },
   "benchmarks": [
@@ -2210,8 +2236,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 116,
-    "next": 117,
+    "current": 117,
+    "next": 118,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -2717,6 +2743,12 @@
         "title": "Qualify one bounded ordinary optimizer and final-writer lifecycle",
         "state": "RECORDED",
         "code_commit": "eb98c6f1ab4fa9dbce97d9133642a97545d1528d"
+      },
+      {
+        "number": 117,
+        "title": "Cancel identical validated images with exact native agreement",
+        "state": "RECORDED",
+        "code_commit": "89eccdf261e92efd0c67564ce2cae24a8432ff9c"
       }
     ]
   },
