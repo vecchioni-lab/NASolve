@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W127 — Audit native-written-model checkpoint binding
+
+- Record Cedar C385 explicit v6 output provenance: actual final-writer bytes/state
+  must match the published usable checkpoint; historical v3/v4/v5 retain meaning.
+- Verify the installed/committed package, complete native reproduction of C382,
+  relocated cold reads and rejection of a checksum-valid previous output.
+- Keep ordinary workflow activation and physical acceptance open. This Willow
+  change is docs/evidence only; the scientific checkout and raw models stay local.
+
 ### W126 — Audit counted continuation and inherited restraint adaptation
 
 - Record Cedar C382's registered same-intent continuation and C383's reuse of

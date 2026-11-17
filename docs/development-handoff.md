@@ -1,10 +1,10 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-17**. **W126 registered continuation and inherited input
-adaptation are audited. Ordinary AutoRefine ownership is next.** This is Willow's
+Updated **2026-11-17**. **W127 native-written-model publication is audited.
+Ordinary AutoRefine ownership is next.** This is Willow's
 handoff, not the project-wide status of Pine, Cedar or Alder. Willow's latest
 periodic/factory source is W118; counted execution/continuation is committed on
-Cedar through C384. These audits are not a whole-branch merge or supported release.
+Cedar through C385. These audits are not a whole-branch merge or supported release.
 
 The backend can bind explicit periodic pair intent, apply the missing geometry
 terms during one qualified native refinement cycle, retain their original meaning
@@ -18,6 +18,7 @@ unqualified.** S04/S05/S06 and P01/P02 remain partial. The
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
+| W127 / C385 publication | Explicit v6 joins actual completed native writer bytes/state to the usable checkpoint; old payloads remain exact | Ordinary owner activation; historical v5 has no retroactive output proof |
 | W126 / C382–C384 continuation | Validated registered parent, preserved original intent, fresh rebind/preflight/admission; existing C278 namespace-only restraint copies | Ordinary AutoRefine/Doctor execution and broader protocol/chemistry |
 | W125 / C381 admission | Durable original/current request, exact prepared state, immutable admission, complete native cycle and truthful failure outcomes | No ordinary CLI activation or scientific acceptance |
 | W123 / W126 scientific readback | Modest local contact/plane improvement in saved endpoints; later descendants flatten further | Residual defects, worsening R stats, unqualified backbone/packing/density; descendants have no matched efficacy control |
@@ -34,10 +35,10 @@ not another work queue; do not repeat them because this handoff is shorter.
    explicit supported protocol, input proofs and normal checkpoint publication.
    Follow the [W126 integration contract](topostitch.md#ordinary-owner-integration-boundary-w126-planning).
    Rowan owns shared execution; Linden owns periodic geometry/factory semantics.
-   First close the final-writer/checkpoint-model binding gap: Rowan's read-only
-   C383 follow-up accepted a checksum-valid previous model substituted in a copied
-   registry. Actual C382 output hashes are independently correct; reader
-   rejection of that substitution is a separate pending gate.
+   C385 now closes final-writer/checkpoint binding for explicit v6. New ordinary
+   rounds promising that proof must request v6; the continuation helper preserves
+   inherited v5/v6 policy. A v5→v6 transition requires a fresh explicit request
+   and admission retaining original intent; it does not upgrade the old evidence.
    C278 PHIL namespace adaptation is now consumed; terminal-source additions and
    chemistry projections remain distinct gates. C291 is whole-base transport.
 2. Preserve one declared working frame and original data/Free-R. Do not turn the
@@ -61,7 +62,12 @@ large-bend repair follow later. No CLI/default activation follows from these doc
 
 ## Validation and scientific interpretation
 
-- **W126 / C382–C383:** 360 relocated installed tests +13 subtests for C382;
+- **W127 / C385:** 197 focused source /282 relocated installed tests; independent
+  299-file committed-source equality and immutable cold reads of 64 current /117
+  historical files. One complete native cycle reproduces C382 model bytes, output
+  state and counted-owner observation; a checksum-valid previous model is rejected
+  at publication read. [Exact W127 evidence](topostitch-periodic.md#w127--bind-the-published-checkpoint-to-the-native-written-model).
+- **W126 / C382–C384:** 360 relocated installed tests +13 subtests for C382;
   a separate 62-test installed adaptation panel for C383, and 144 installed
   checks for C384's missing-refinement ancestry guard. Independent 298-file
   committed-source checks for all three, 24 unchanged frozen native files per round,
@@ -77,7 +83,7 @@ large-bend repair follow later. No CLI/default activation follows from these doc
   [Source validation](topostitch-periodic.md#w118--rebind-frozen-pair-intent-to-a-compatible-child).
 
 The **12,138-test /284-subtest W112/C366 source-only** full suite and later W121
-joined-package checks remain historical, not current C384 full-suite results.
+joined-package checks remain historical, not current C385 full-suite results.
 Current peer panels are focused; no duplicate native/full-suite run was launched
 by Linden for these audits. Integration/merge qualification remains separate.
 

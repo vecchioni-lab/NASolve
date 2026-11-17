@@ -139,8 +139,9 @@ application; it closes no repair, inference, stacking or covalent-closure gate.
 
 ## Ordinary-owner integration boundary (W126; planning)
 
-C381–C383 now qualify explicit saved admission, registered same-intent
-continuation and existing C278 PHIL namespace copies. They do not activate the
+C381–C385 now qualify explicit saved admission, registered same-intent
+continuation, existing C278 PHIL namespace copies and v6 native-written-model
+binding. They do not activate the
 ordinary AutoRefine/Doctor route. Keep that next join bounded:
 
 1. **Factory identity:** W118 accepts coordinate/B/ANISOU changes within the
@@ -165,13 +166,12 @@ ordinary AutoRefine/Doctor route. Keep that next join bounded:
    separate gates.
 4. **Ordinary ownership:** consume the existing input-adaptation proof, processes,
    stopped-preflight admission, temporary prepared view, result and checkpoint
-   publication through AutoRefine's existing owner. Before this join, bind the
-   final native-written model to the published checkpoint reference: a valid
-   checksum for some other model is insufficient. Rowan's C383 follow-up found
-   that a copied registry could substitute the previous model and still read;
-   the actual audited C382 outputs remain correct. Reuse final-writer evidence
-   rather than trusting a file found later at an expected path. Preserve native
-   errors and partial outputs. No second executor, recipe engine or untracked side path.
+   publication through AutoRefine's existing owner. C385 now binds the actual
+   native-written model to the usable checkpoint for explicit v6; a valid checksum
+   for another model is insufficient. New ordinary rounds promising this guarantee
+   must request v6. The continuation helper preserves inherited v5/v6 policy; an
+   explicit v5→v6 transition requires fresh preparation/admission and retains the
+   old evidence's narrower meaning. Preserve native errors and partial outputs. No second executor, recipe engine or untracked side path.
    Keep initial counted diagnostics unselected REVIEW using existing selection
    controls, even if a metric improves; mechanical usability is not adoption.
 5. **Next validation:** cross that actual owner/publication boundary once with a

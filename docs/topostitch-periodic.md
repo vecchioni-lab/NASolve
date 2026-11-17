@@ -6603,3 +6603,81 @@ same everyday-NASolve repository anchor is
 `9d9ad0f1120a944d4a70222abd4f006a7e57eb6b35a6ac913b99eece82bd2619`,
 **20,420 bytes /6 indexed files**, all verified. This is forensic review evidence,
 not a portable or resumable run. W126's scientific interpretation is unchanged.
+
+
+### W127 — Bind the published checkpoint to the native-written model
+
+Cedar **C385 `2d4987ef6aa17d392e49f3f864d1a82eea8b2bfe`** closes the publication gap found after W126.
+Previously a checksum-valid previous model could replace a counted checkpoint's
+output reference and still pass the v5 reader. New explicit
+`round-local-counted-execution-v6` requires a `native-written-model-v1` observation
+from the actual native final writer. It resolves the fresh PDB path before Phenix
+increments its output serial, observes unchanged native hierarchy around the
+existing writer callback, and hashes the bytes only after the entire writer returns.
+The existing checkpoint validator joins that hash/size to the published usable
+model; the state hash must also match completed output-synchronization evidence.
+No filename search, extra executor, geometry term or scientific setting is added.
+
+Default v3 stays unchanged. Frozen v4/v5 helper bytes are preserved in the package
+resource `data/refinement-runtime-v5-sources.json`; independent source review
+checks all three archived files against committed C384. Historical v5 remains
+readable with its original limitations; it does not retroactively gain this proof.
+Continuation retains its inherited v5/v6 policy, and a v6 descendant cannot drop
+back to v5. Existing callers retain their defaults; v6 requires a capable reader.
+
+Changed Cedar source: `cif_refinement_output.py`, `cif_refinement_runtime.py`,
+`cif_counted_phase.py`, `refinement_counted.py`, `refinement_parallelity.py`, the
+historical-source resource and focused existing tests. Exact peer validation is in
+the [committed Cedar ledger](https://github.com/vecchioni-lab/NASolve/blob/2d4987ef6aa17d392e49f3f864d1a82eea8b2bfe/docs/cif-linked-native-registration-evidence.json),
+key `counted_native_written_model_2026_11_17`. Six new observation tests failed
+before implementation; **197 focused source tests pass (40.44s)** and
+**282 relocated installed tests pass (46.69s)**: actual callback
+ordering/serial, absent/changed/symlink/preexisting output, changed hierarchy,
+missing callback, retained partial output/original writer error, wrong published
+model, relocation, inherited policy and downgrade refusal. No current full suite
+or whole-branch integration qualification is claimed.
+
+**Actual Phenix 2.2.1-6174:** one dry-run preflight **11.42s**, followed by a
+complete refinement **35.35s**, both exit0. This is an explicit diagnostic import
+of C381's completed output, under the unchanged one-cycle/ten-iteration fixed-unit
+protocol. The owner closes unpoisoned after **15 calls**, with **11,392 native +17
+added =11,409** terms. Complete PDB bytes, native output-synchronization state and
+the entire counted-owner observation exactly match C382's first cycle. The native
+written-model record is SHA `55d28cbd19bf01874a313ff9b10b2ed4209e9e0f9b23e738b189ed5eda1082eb`,
+143,889 bytes, hierarchy-state SHA
+`f4d01d2e62d67354ddc86ea28dc6f5592e6ac91071b4f9de10296ccc4644dbed`.
+This qualifies provenance, not additional structural improvement.
+
+The registered checkpoint remains **unselected REVIEW**, with `postmr` selected.
+Logged Rwork/Rfree remain the existing **.2245/.2599 → .2251/.2609**. No new geometry
+or diffraction benefit is claimed, and the published five-file science checkout
+is intentionally unchanged. Ordinary AutoRefine/Doctor activation, broader native
+scope, terminal-source additions, physical repair and density acceptance remain open.
+
+**Independent audit:** verifies all **299 installed source/resource files**, exact
+wheel `12b613410142aed6ae7fd7aeb758d6d01e8f40a91458765356cac413672514d6`,
+the installed test log, all **24 v6 native payload files**, unchanged historical v5
+payloads and stopped owned processes. Relocated cold reads preserve **64 current
+and 117 historical C382 files** without launches or persistent writes. An
+in-memory copy substituting the checksum-valid previous model is rejected by the
+production publication validator; no on-disk registry is modified. The peer's
+separate disposable-copy previous-model/modified-copy controls are retained in its
+runner/receipt and reviewed, not duplicated. The original root and temporary
+expanded preparation are absent. Historical pending commands are not resumable.
+
+One earlier harness used a controller environment missing Gemmi; its preserved
+failed root reports zero cycles and stopped before runtime allocation/native
+launch. That setup failure is not a failed native chemistry experiment.
+
+Independent historical command: `PYTHONDONTWRITEBYTECODE=1
+/private/tmp/willow-w94-pivot/env/bin/python
+/private/tmp/willow-w127-written-model-review/audit.py` (one command; line breaks
+for reading). Final installed/committed source equality is checked separately by
+`committed-source.py` in the same directory. Review archive, repository anchor
+**everyday NASolve checkout**: `branch-artifacts/willow/w127-written-model-review-2026-11-17.tar.gz`, SHA `af30cd8135302f86cb8b8f164b8189b0efcfa353c764f5932dd676240a146f40`, **32,744 bytes
+/14 indexed files**, all verified. Scientific originals remain local and
+excluded from Git. This is forensic evidence, not a portable/resumable campaign.
+
+Willow changes are documentation/evidence only. S05/S06 remain partial. W122's
+explicit sticky-end feature remains planned; next join the qualified path to the
+existing ordinary refinement owner, without silently narrowing its defaults.
