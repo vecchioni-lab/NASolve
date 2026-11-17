@@ -1150,5 +1150,8 @@ admission, phase outcome and descendant retention remain existing-controller wor
 
 W120 carries the stronger sealed state through one complete fixed-weight ordinary
 cycle and final writer, reproducing the old full-recipe endpoint exactly. This
-qualifies the diagnostic lifetime at W118/C375 pins. A maintained wrapper and
-durable execution-policy integration remain separate; no runtime default changes.
+qualifies the diagnostic lifetime at W118/C375 pins. Cedar C377 subsequently owns
+that bounded module-level lifetime in `PreparedCountedRefinement`, around unchanged
+v4. W121 qualifies the W118/C377 joined installed package; its native evidence is
+C377's separate installed composition. Durable execution-policy integration and
+broader protocols remain open; no runtime default changes.

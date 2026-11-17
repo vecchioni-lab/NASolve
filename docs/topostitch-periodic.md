@@ -6084,3 +6084,61 @@ versioned original-request/preflight/admission/phase records and descendant
 intent retention in the existing controller. Preserve honest refusal outcomes
 and compact evidence. Broader phases, exclusions, calibrated density, useful
 repair and B09 remain open; S05/S06 stay partial.
+
+
+## W121 — Qualify the current joined installation and maintained lifetime
+
+**2026-11-17; installed software composition, not a branch merge.** Build one
+namespace from Willow `dbb5ae249ee087b5b62a218b94429629f8a10b2b` (runtime code W118)
+and Cedar `0aaec4bd0b7dc49ffd038a5be578523d9ed1a4f1` (C377). Reuse C374's temporary
+merge/package harness. Source and tests have no conflicts; resolve only the
+package-data union. Retain the eight documentation conflicts as unresolved:
+AGENTS, CHANGELOG, docs README/architecture/campaign-full-auto/collaboration/
+construct-registration/development-handoff. No repository branch or default changes.
+
+The offline wheel is installed into a temporary target and relocated; original
+build source and initial installation path are removed before verification.
+**556 focused tests, zero skips, pass in 25.06 seconds** in the existing Gemmi
+0.7.5 environment. All six installed CLI entry points and `pip check` pass.
+Independent readback verifies **306 Python/resource files** against qualified
+source hashes. The panel covers existing native ownership/runtime/output/sites,
+execution readers, counted ownership/new phase helper and current Willow recipe,
+coverage, packing, transport and native-term APIs. This is not a new complete
+suite or an actual native run of the joined package.
+
+Wheel SHA `1f712477c66eadb06b5dc27d576c4c0c6be930cbcd9cb105126cbd3f495d89b7`.
+Exact merge pins, resource hashes, commands, selected tests, CLI logs and harness
+are in the local forensic archive under repository anchor **everyday NASolve
+checkout**: `branch-artifacts/willow/w121-joined-package-2026-11-17.tar.gz`, SHA
+`b63e9549aba3baf18e6e305c24c800bc3b307264df61fdbe08939264fda98802`,
+1,771,781 bytes /70 indexed files, all verified. It contains software and committed
+fixtures, not generated scientific runs. It stays out of Git and is not a portable
+resumable campaign. The qualified relocated package remains available locally.
+
+Historical command:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w121-package.py 0aaec4bd0b7dc49ffd038a5be578523d9ed1a4f1
+```
+
+**Separate C377 native evidence:** `PreparedCountedRefinement` now owns the actual
+source-qualified module-level driver lifetime around unchanged v4, consuming the
+C375 strong seal and preserving the same model through final writing. Its initial
+scope is explicitly fixed unit weights, one process, one cycle /at most ten
+iterations, all-site XYZ, with changing targets/identities and broader phases
+refused. It performs no extra final energy call and preserves original errors and
+foreign hooks. Phenix 2.2.1-6174 complete preflight (7.79s) and cycle (34.92s) match
+W120's preparation, full endpoint, physical records, optimizer trace and diffraction
+exactly; 15 calls replace W120's 16 including the diagnostic final score. All jobs
+stop and hooks restore. The two early parameter-representation failures are retained
+as stopped preflights; 46 final helper and 230 relocated installed tests pass.
+Cedar's machine ledger key is `maintained_prepared_refinement_lifetime_2026_11_17`
+at the exact C377 commit. Its native proof uses separate installed packages; do not
+relabel it as W121 joined native qualification or scientific acceptance.
+
+Next: durable original intent/preflight/admission/phase outcomes and descendant
+retention through existing controller owners. Reuse the established ancestry checks
+for manual children and Doctor. Ordinary AutoRefine/Doctor settings are broader
+than the bounded helper: require an explicit supported protocol or refuse, rather
+than silently changing their defaults. Broader phases, periodic exclusions,
+calibrated density, physical repair and B09 remain open; S05/S06 stay partial.

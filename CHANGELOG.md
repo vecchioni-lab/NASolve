@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W121 — Qualify the current joined Willow/Cedar installation
+
+- Record one installed W118/C377 composition: 556 focused tests, six CLI entry
+  points and 306 source/resource byte checks pass after source removal/relocation.
+- Cross-reference Cedar's maintained one-cycle restraint lifetime and complete
+  native control separately. No branch merge, production activation or repair
+  acceptance; durable execution/admission and continuation remain next.
+
 ### W120 — Replay the complete cycle with stronger prepared-state ownership
 
 - Qualify one complete original W116 full-recipe control with current W118/C375
