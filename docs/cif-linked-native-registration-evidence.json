@@ -106818,5 +106818,70 @@
       "The initial terminal_P probe is an invalid-token/resource mismatch only; the separate supported phosphate probe rejects the absent phosphate explicitly.",
       "Q06 remains open; source/native qualification is not achieved refinement geometry."
     ]
+  },
+  "explicit_construction_planning_2026_11_17": {
+    "milestone": "C358",
+    "date": "2026-11-17",
+    "signed": "Rowan",
+    "before": "Unknown custom targets required catalogue registration to select a canonical parent.",
+    "after": "Optional explicit source/parent choices use existing source DNA graph and chi-frame checks plus declared D-deoxy stereo; ordinary actions/catalogue behavior unchanged.",
+    "prior_work": [
+      "C355 explicit frozen source owner",
+      "C354 packaged source composition",
+      "Existing source_graph_fragment owner",
+      "Existing parent_conformation_plan owner",
+      "C349/C353 canonical input and lineage"
+    ],
+    "changed_files": [
+      "src/nasolve/postmr.py",
+      "tests/test_postmr_explicit_targets.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": "No artifact/schema change; optional construction_sources argument only.",
+    "validation": {
+      "before": "Initial23 cases failed before implementation (2.12s).",
+      "new_cases": 25,
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_postmr_explicit_targets.py tests/test_postmr_conformation.py tests/test_postmr.py tests/test_cif_explicit_sources.py tests/test_cif_packaged_reference.py --tb=short",
+      "focused_result": "143 passed in3.58s",
+      "installed": {
+        "status": "INSTALLED_RELOCATED_EXPLICIT_PLANNING_PASS",
+        "wheel_sha256": "7d6526513c5e088307bc51dc26bfb9624c5830e22bef9960dc3e63b76c3e8c82",
+        "wheel_bytes": 1391802,
+        "source_copy_removed": true,
+        "original_install_path_absent": true,
+        "package_reference_bytes_match": true,
+        "validation_command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-c",
+          "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_postmr_explicit_targets.py', 'tests/test_postmr_conformation.py', 'tests/test_postmr.py', 'tests/test_cif_explicit_sources.py', 'tests/test_cif_packaged_reference.py', '--tb=short']))"
+        ],
+        "validation_output": "........................................................................ [ 50%]\n.......................................................................  [100%]\n143 passed in 2.94s\n",
+        "build_command": "phenix.python -m pip wheel --no-deps --no-build-isolation --no-index",
+        "temporary_bytes_removed": 11086176
+      },
+      "cases": [
+        "DY and renamed Q17 use source chemistry, not code-specific branching.",
+        "Explicit and ordinary catalogue targets coexist without mixing parent/deposition choices.",
+        "Wrong sugar/stereo/frame/identity, curated overrides, symlinks and changing sources refuse.",
+        "C355 frozen source consumed after original deletion/relocation.",
+        "Default/None paths preserve catalogue behavior; unchanged residues cannot bypass source checks."
+      ]
+    },
+    "compatibility": "Default behavior/action schema unchanged; no migration, CLI activation or registry update.",
+    "retention": "Only code/tests/docs/compact validation committed. No scientific run or native job; installed scratch11.09MB removed.",
+    "limitations": [
+      "Planning is not source qualification, phosphate selection or construction proof.",
+      "Only explicit supported D-deoxy N-glycosidic sources; modified sugars/mirrored routes stay separate.",
+      "Per-site pre-Coot dictionary choice, existing lineage binding and ordinary request forwarding remain open.",
+      "No full suite; last full Cedar C220/583d30df:9178tests+276subtests."
+    ],
+    "next": "Use the existing qualified context machinery to provide each Coot site its dictionary before construction; then bind through existing lineage."
   }
 }

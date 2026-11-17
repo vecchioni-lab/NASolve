@@ -1,13 +1,14 @@
 # CIF Doctor completion queue
 
-**Current work order, 2026-11-16.** This is the one unfinished-work queue. The
+**Current work order, 2026-11-17.** This is the one unfinished-work queue. The
 [capability table](cif-doctor.md#current-capability-boundary) records demonstrated
 support; the [handoff](development-handoff.md) says where work stopped. Old notes
 record what was known then. They do not create a second set of instructions.
 
 The active bounded task is [ordinary DY integration](#dy--packaged-retained-triazole-reference-and-mutation-support)
-after C356; then return to Q06 achieved geometry. C357 consolidates the handoff
-and audits local workspace retention without changing scientific acceptance.
+after C358 explicit source/parent planning; then return to Q06 achieved geometry.
+Next: per-site dictionaries before Coot, then source/choice lineage and ordinary
+request integration. C357 retention findings remain recorded locally.
 
 ## Finish line and ordering
 
@@ -914,9 +915,10 @@ historical context; the C356 acceptance list owns the current order for DY.
 
 Current remaining integration, in order:
 
-1. Recognize a requested packaged target through an explicit construction contract,
-   without making up a NARestraints pairing row. Current `build_mutation_plan` calls
-   `ligand_definition`, which still requires curated/catalogue registration.
+1. **Planning API complete at C358:** `build_mutation_plan(construction_sources=...)`
+   accepts an explicit dictionary/parent for non-curated requested targets, checked
+   against the existing D-deoxy graph and chi frame. No fabricated NARestraints row.
+   Ordinary CLI/request forwarding and frozen source/choice lineage remain open.
 2. Select qualified dictionaries for each site's declared end state **before Coot**.
    `_coot_script` currently loads by component code; the ordinary dictionary handler
    runs after construction. C344/C345 sequential explicit calls and projections from

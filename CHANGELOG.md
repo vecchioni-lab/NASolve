@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Plan a custom mutation from its explicit chemical source (C358)
+
+- Allow an explicit source dictionary and canonical parent for requested non-curated
+  targets. Check the existing DNA graph/chi frame and declared D-deoxy stereochemistry;
+  reject incompatible, changing or ambiguous sources before construction.
+- Preserve ordinary catalogue planning and action schemas. This opt-in planning API
+  adds no registry entry, pairing rule, numerical qualification or automatic CLI route.
+
 ### Freeze explicitly selected custom chemical sources (C355)
 
 - Accept exact non-curated source files through the existing frozen-source owner,

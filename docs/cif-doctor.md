@@ -13906,3 +13906,23 @@ special case or process owner is added. Existing linked/terminal/native checks f
 Package and ZIP controls produce identical source/proof; DY exactly matches the
 saved C342 source and its isolated native evidence.70 focused/installed checks
 pass; no new science run/full suite. Evidence: `packaged_reference_intake_2026_11_16`.
+
+
+### Explicit construction-target planning (C358)
+
+`build_mutation_plan(report, model, construction_sources={code: (source, parent)})`
+uses explicit files for one to sixteen requested non-curated modified targets.
+Existing `source_graph_fragment`/`parent_conformation_plan` check an unbranched
+DNA sugar and the parent's N-glycosidic chi frame; source C1′/C3′/C4′ must declare
+R/S/R. RNA, mirrored/modified sugars and ambiguous stereo require their separate
+reviewed routes. This narrow D-deoxy rule is not a universal CIP-to-sugar classifier.
+Regular non-symlink files, exact component identity and unchanged bytes are required.
+Frozen C355 source paths work after original sources disappear. The existing
+`MutationAction` shape is unchanged; no deposition code or pairing role is invented.
+
+Omission preserves catalogue behavior. Explicit curated/canonical overrides refuse;
+unselected targets still follow their existing registry route. Planning writes no
+artifact and launches no tool. Source choice must still be frozen and bound by the
+existing construction/request owners; this API alone grants no numerical qualification,
+phosphate choice, automatic CLI activation or completed construction.143 focused and
+143 installed/relocated checks pass. Evidence: `explicit_construction_planning_2026_11_17`.

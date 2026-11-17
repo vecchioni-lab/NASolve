@@ -4277,6 +4277,8 @@ packaged DY reuses its exact saved Phenix qualification without regeneration.
 This records which source was chosen. It does not certify its chemistry, carry a
 composition proof by implication, choose phosphate state or invent base pairing.
 The packaged-source route reproduces the earlier internal/free-OH DY bundle exactly,
-including its saved ReadySet/native checks. The remaining work is ordinary request
-recognition and choosing the right dictionary before Coot builds each site; the
-current mixed-end demonstration used explicit sequential construction.
+including its saved ReadySet/native checks. Explicit mutation planning now accepts that chosen source and a temporary canonical
+parent, after checking the DNA sugar and base attachment. A renamed definition uses
+the same rule; DY needs no fabricated NARestraints pairing entry. The remaining work
+is choosing the right dictionary before Coot builds each site and connecting the
+ordinary request. The current mixed-end demonstration used sequential construction.

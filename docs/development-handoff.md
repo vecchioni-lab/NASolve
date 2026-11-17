@@ -1,11 +1,13 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-16, C357 documentation/workspace audit — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. Latest runtime change:
-**C355 / `0cff3995`**; latest scientific evidence connection: **C356 / `162ffe1d`**.
-C357 changes documentation and retires audited disposable local build/cache copies.
-No runtime/schema, chemistry, default, branch integration or native execution change.
-All Rowan scientific jobs are stopped; no unfinished patch is pending.
+Updated **2026-11-17, C358 explicit construction-target planning — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. Latest runtime change: **C358**;
+latest saved scientific evidence connection: **C356 / `162ffe1d`**.
+C358 focused and installed/relocated checks pass; no native job is running.
+Next bounded work: per-site Coot dictionary selection, then existing source/choice
+lineage and ordinary request integration. Reuse C355/C356 source/site owners and
+C349/C353 canonical input/lineage. No new registration or execution owner.
+Focused tests only for this development pass; Linden/Hazel coordination is active.
 
 ## Current result and next bounded task
 
@@ -20,9 +22,9 @@ relocation: 87 PASS, two unsupported formal-charge readbacks. Selection remains
 The [DY task](cif-doctor-completion-queue.md#dy--packaged-retained-triazole-reference-and-mutation-support)
 has three remaining integration steps:
 
-1. **Recognize the requested packaged residue.** Ordinary mutation planning still
-   uses `ligand_definition` and curated/NARestraints registration. Introduce an
-   explicit construction contract without inventing a pairing record or Y/YTR alias.
+1. **Explicit planning now works (C358).** A chosen chemical source and canonical
+   parent pass existing DNA graph/chi-frame and explicit D-deoxy stereo checks.
+   Ordinary request forwarding remains open; no pairing record or Y/YTR alias.
 2. **Give Coot the right dictionary before building each site.** Current dictionaries
    are keyed by component code, and the ordinary dictionary handler runs after
    construction. C344/C345 used sequential explicit calls and already-built DY
@@ -78,6 +80,7 @@ unfinished-work order. A readable CIF or passing derivative check does not close
 
 Exact controls, commands, hashes and limitations are in the
 [evidence ledger](cif-linked-native-registration-evidence.json). Start with
+`explicit_construction_planning_2026_11_17`,
 `packaged_dy_mixed_context_replay_2026_11_16`,
 `explicit_custom_source_selection_2026_11_16`,
 `canonical_construction_lineage_2026_11_16`,
@@ -89,6 +92,8 @@ blob/checksum and offline retrieval. Historical next steps are not current instr
 
 ## Validation and limits
 
+- C358: **143 focused / 3.58 s; 143 installed/relocated / 2.94 s**.25 new
+  planning cases; initial23 fail before the API. No native execution/full suite.
 - C355: **160 focused tests / 63.45 s; 160 installed/relocated / 65.00 s**.
   Default source-selection bytes exactly match C354; old/new readers cross-read.
   C356 is exact saved-evidence replay, not another native run. C357 checks documents,

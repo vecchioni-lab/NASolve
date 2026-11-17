@@ -348,9 +348,62 @@ def _target_sites(
     return targets
 
 
+def _explicit_construction_sources(choices, targets, *, mirrored=False):
+    """Validate source/temporary-parent choices without registering chemical roles."""
+    if choices is None:
+        return {}
+    from .cif_dictionary_sites import _read
+    from .cif_linked_preparation import component_values
+    from .cif_stereochemistry_audit import _stereo
+    from .postmr_conformation import parent_conformation_plan
+
+    if not isinstance(choices, Mapping) or not 1 <= len(choices) <= 16:
+        raise PostMRPreparationError("Require one to sixteen explicit construction sources")
+    if mirrored:
+        raise PostMRPreparationError("Explicit construction sources need a reviewed mirrored route")
+    selected = {}
+    requested = set(targets.values())
+    for code, choice in choices.items():
+        if (not isinstance(code, str) or re.fullmatch(r"[A-Z0-9]{1,3}", code) is None
+                or code not in requested
+                or code in CURATED_LIGANDS or code in _COOT_BASES
+                or code in _MIRRORED_CANONICAL_CODES.values()):
+            raise PostMRPreparationError("Explicit construction source must name a requested non-curated modified target")
+        if not isinstance(choice, (tuple, list)) or len(choice) != 2:
+            raise PostMRPreparationError("Construction choice requires (source dictionary, canonical parent)")
+        dictionary, parent = choice
+        if not isinstance(dictionary, (str, os.PathLike)) or not isinstance(parent, str):
+            raise PostMRPreparationError("Invalid construction source path or parent")
+        path = Path(dictionary).absolute()
+        try:
+            original = _read(path)
+            validate_ligand_dictionary(code, path)
+            stereo = _stereo(component_values(path, code))
+            if tuple(stereo.get(n) for n in ("C1'", "C3'", "C4'")) != ('R', 'S', 'R'):
+                raise ValueError("Require explicitly declared beta-D-deoxy source stereochemistry")
+            plan = parent_conformation_plan(path, code, parent)
+            if plan['status'] != 'MATCH_PARENT_CHI':
+                raise ValueError(plan['reason'])
+            if _read(path) != original:
+                raise ValueError("Construction source changed during validation")
+        except (OSError, UnicodeError, ValueError, KeyError) as exc:
+            raise PostMRPreparationError(f"Explicit construction target {code} failed: {exc}") from exc
+        selected[code] = (parent, path, original)
+    return selected
+
+
 def build_mutation_plan(
     report: Mapping[str, object], model: Path, *, run_directory: Path | None = None,
+    construction_sources: Mapping[str, tuple[Path, str]] | None = None,
 ) -> tuple[MutationAction, ...]:
+    """Plan ordinary mutations, optionally using exact explicit source/parent choices.
+
+    Non-curated choices bypass catalogue lookup only for their named targets.
+    Existing source DNA graph and chi-frame rules check the temporary parent;
+    explicit D-deoxy stereochemistry is required. This is construction planning,
+    not native dictionary qualification, target registration or base-pair intent.
+    Frozen source-selection paths may be supplied without their original source.
+    """
     actions: list[MutationAction] = []
     raw_targets = _target_sites(report, model, run_directory=run_directory)
     try:
@@ -365,6 +418,8 @@ def build_mutation_plan(
             and (component_target_changes(raw_targets) or any(
                 residue_name(model, site) in PREFERRED_COMPONENTS for site in targets))):
         raise PostMRPreparationError("Preferred-component conversion of mirrored models needs a reviewed L-sugar route")
+    explicit = _explicit_construction_sources(construction_sources, targets,
+        mirrored=isinstance(inputs, Mapping) and inputs.get("mirror") is True)
     for site, target in targets.items():
         if len(target) > 3:
             raise PostMRPreparationError(
@@ -390,6 +445,9 @@ def build_mutation_plan(
             )
         elif target in _COOT_BASES:
             method = "coot-mutate-base"
+        elif target in explicit:
+            method = "coot-parent-overlap"
+            parent_code = explicit[target][0]
         else:
             try:
                 ligand = ligand_definition(target)
@@ -414,6 +472,13 @@ def build_mutation_plan(
                 deposition_code=deposition_code,
             )
         )
+    if explicit:
+        from .cif_dictionary_sites import _read
+        try:
+            if any(_read(path) != data for _, path, data in explicit.values()):
+                raise ValueError("Construction source changed during mutation planning")
+        except (OSError, ValueError) as exc:
+            raise PostMRPreparationError(str(exc)) from exc
     return tuple(actions)
 
 

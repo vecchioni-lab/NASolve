@@ -401,6 +401,12 @@ polymer-context, construction and refinement evidence. A preview has no invented
 bond/angle ESDs, polymer links or pairing rules. See the
 [DY acceptance task](cif-doctor-completion-queue.md#dy--packaged-retained-triazole-reference-and-mutation-support).
 
+C358 lets `build_mutation_plan` receive exact non-curated source/parent choices.
+The existing DNA graph and N-glycosidic frame plus explicit D-deoxy stereochemistry
+bound this planning route. It changes no action schema, catalogue precedence or
+native qualification. Ordinary request forwarding remains separate; see
+[explicit construction planning](cif-doctor.md#explicit-construction-target-planning-c358).
+
 ### Dataset and symmetry discovery
 
 Dataset discovery currently accepts the usual autoPROC/STARANISO naming variants
