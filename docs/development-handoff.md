@@ -22,9 +22,29 @@ attachment but worsens diffraction residuals and leaves the Hg geometry strained
 Neither endpoint is accepted. Original data, Free-R membership, phases, targets,
 uncertainties and initial model remain fixed. Independent R/state/export audits,
 linked endpoint interpretation and actual recipe coverage pass their supported
-scopes; formal-charge readback remains unsupported. A separate ten-macrocycle
-control with the original 25-step allowance is the next bounded comparison.
-Its execution state is recorded locally; no anomalous trial or adoption follows.
+scopes; formal-charge readback remains unsupported. The matched ten-macrocycle
+and phase-disabled controls also worsen the global fit. A native direct-factor
+control passes its sampled numerical derivative checks but still does not
+qualify the endpoint. Its selected weights differ from the FFT control, so the
+endpoint comparison includes algorithm-mediated weight/path changes; it does
+not isolate FFT approximation as the cause. All five comparison runs and their
+preflights are complete and stopped. No anomalous trial or adoption follows.
+
+Two separate geometry-only initialization experiments use the existing native
+runtime with actual zero diffraction weight: first the 18 source-backed base
+atoms plus Hg, then both complete coordinating residues plus Hg (41 atoms).
+They preserve every outside coordinate and all B/Q/f′/f″ values. Both use their
+100-step allowance, without a convergence claim. Hg geometry improves during
+preparation, but the attachment remains strained even without diffraction.
+
+Each original-profile open-refinement child is complete. Both return to similar
+local attachment/Hg-angle strain, with R statistics near the reference and
+substantial differences in refined B. These B changes remain visible in the
+review. Improved initialization alone does not qualify the endpoint. Only the
+declared seed XYZ fields enter each fresh pristine-input derivative; all original
+noncoordinate bytes and initial B/Q remain exact. No seed coordinate becomes a
+restraint target or an accepted fdp parent. Coordinate preparation scope does
+not change the later base-only environmental-B policy.
 
 **Before/after, files and schema.** The experimental XYZ API previously left the
 native main iteration allowance implicit. `metal.xyz.make_plan` and `run_xyz`
@@ -61,7 +81,7 @@ production audit.
 
 Four **Phenix 2.2.1-6174 typed-PHIL parser/readback checks** pass for omission,
 25, 100 and 200. These do not run refinement or validate data/phases. Separately,
-two complete bounded native scientific runs and their dry preflights establish
+five complete bounded native scientific runs and their dry preflights establish
 the diagnostic results above. No claim that the new API adopts that separate
 scientific profile. The private force reader passes **12 checks in 0.30 s**:
 
@@ -69,23 +89,65 @@ scientific profile. The private force reader passes **12 checks in 0.30 s**:
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python -B -m pytest -q -p no:cacheprovider branch-artifacts/Alder/runners/test_A43_force_review_v2.py
 ```
 
-Run that command from the everyday checkout. The private cold comparison uses
-`A43_review_forces_v3.py replay-v3` and `A43_review_budget.py`; the latter writes
-an immutable review and must not overwrite an existing result. Native provider
-coverage replays reject six altered-term/context controls at both ends of the
-longer-budget trial. No full suite, as requested. No Coot execution in this pass.
+Run that command from the everyday checkout. Historical review writers
+`A43_review_forces_v3.py` and `A43_review_budget.py` produced the saved records;
+do not rerun writers over sealed reviews. Use the cold validators below for
+read-only replay. Native provider coverage replays reject six altered-term/
+context controls at both ends of the longer-budget trial. No full suite, as requested. No Coot execution in this pass.
 
 **Evidence, retention and next action.** Private review is
-`branch-artifacts/Alder/ft-hg-forces-20261117-01/review-v2.md`; force/budget review
+`branch-artifacts/Alder/ft-hg-forces-20261117-01/review-v3.md`; force/budget review
 JSON, exact commands, source hashes, native receipts, failed harnesses and
 synthetic API compatibility checks are alongside it. Runners have prefix `A43_`.
 Generated science and user-local state are excluded from Git. Read-only storage
 measurement finds substantial byte-identical duplication in native coverage
 records; its compression projection is not a retention/recovery qualification.
-No files were pruned and no archive was written. Reuse shared packing/retention
-owners at A04 rather than duplicating their authority. Continue the bounded
-macrocycle comparison and map/geometry review; preserve the geometry-versus-fit
-tradeoff and all failed evidence before considering A02.
+No files were pruned and no archive was written. All ten coefficient maps in
+that comparison batch are small relative to repeated coverage inventories.
+Reuse shared packing/retention owners at A04 rather than duplicating their
+authority. The shared owners are also reducing repeated static per-phase state;
+those newer provider changes are not silently activated in the pinned controls.
+
+The cold comparison review validates **500 checksummed files / 22 links / five
+controls / ten completed native receipts**, with no new native calls:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/Alder/runners/A43_validate_review_v3.py
+```
+
+Run it from the everyday checkout. Three matched policy controls and 18
+contradictory-policy refusals cover the additional control reader. The separate
+initialization comparison is retained under
+`branch-artifacts/Alder/ft-hg-local-preparation-20261117-01/review-v2.md` with
+`A44_` runners. Its cold replay validates **414 files / 18 links / four completed
+experiments / eight completed preflight/refinement receipts**:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/Alder/runners/A44_validate_review_v2.py
+```
+
+All owned native jobs in both batches are stopped. Phenix remains **2.2.1-6174**;
+the four initialization runs were complete executions, each with a separate dry
+preflight. No additional production profile, public artifact schema or migration
+is introduced. The offline import/element-capitalization harness findings are
+recorded separately; no original input or prior attempt was overwritten.
+Documentation-only follow-up passes **nine documents / 255 links and anchors**,
+preserved history and A01–A08 numbering, plus `git diff --check`:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/Alder/workspace-audit-20261116-01/validate.py ../NASolve-metal-coordination
+```
+
+Run from the everyday checkout; no full-suite rerun for these documentation
+changes. This documentation follow-up changes `CHANGELOG.md`, this handoff,
+`docs/metal-development-roadmap.md` and `docs/metal-campaign-storage.md`.
+Generated payloads remain excluded from Git.
+
+Next inspect local geometry and map support, and resolve the remaining
+frame/recipe–diffraction tradeoff before selecting an f″ parent. Source chemistry
+is not declared wrong solely from these controls. Preserve the current evidence
+and B changes; do not continue an unbounded budget/parameter sweep to lower Rwork.
+A01 remains open, A02 remains gated, and A04/A05 retain their post-merge scope.
 
 ## A01 — explicit native coverage and preparation triage, 2026-11-17
 

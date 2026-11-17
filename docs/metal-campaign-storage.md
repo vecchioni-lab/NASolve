@@ -1,6 +1,6 @@
 # Metal campaign storage and recovery plan
 
-Status: **design scoped, implementation pending**; 16 November 2026.
+Status: **design scoped, implementation pending**; 17 November 2026.
 The [post-merge development roadmap](metal-development-roadmap.md) places this
 work at **A04**, after single-dataset ligand/open-refinement qualification and
 before large f″ campaigns. It is a feature milestone after merge, not a
@@ -146,6 +146,14 @@ that alone projects to roughly **20–23.4 GB**, before upstream geometry/MR,
 failures and working space. This is arithmetic over small examples, not a
 native 200-dataset stress test. Exact private inventories are retained with the
 handoff, not committed scientific payloads.
+
+A separate completed A01 geometry-control inventory on 17 November finds that
+repeated coverage records dominate storage, while its ten map-coefficient files
+are comparatively small. This supports storing static policy/inventory content
+once per authenticated phase and referencing it from compact observations.
+The measured gzip/dedup projection is read-only arithmetic: no archive or cold
+recovery qualification, deletion, or permission to prune those geometry nodes
+follows. Exact inventories remain in the private review linked by the handoff.
 
 A **1–8 KiB compact record per point** is a design target: 20,000 points would
 use roughly **20–164 MB**, plus shared inputs, protected geometry/evidence and

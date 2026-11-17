@@ -27,9 +27,16 @@ contributions, retaining the original FFT numerical limitation alongside passing
 geometry/direct-factor controls. A larger coordinate allowance improves the
 attachment but worsens diffraction residuals and does not qualify Hg geometry.
 The API can explicitly record/audit the native main iteration allowance without
-changing defaults. Next complete the bounded macrocycle comparison and inspect
-maps/geometry before A02. Exact validation and private review pointers are in the
-[handoff](development-handoff.md).
+changing defaults. Matched longer-macrocycle, phase-disabled and direct-factor
+controls also leave the scientific gate open. Direct numerical checks improve,
+but its selected weights and trajectory change and the endpoint is not accepted.
+Two zero-data-weight initialization scopes (bases or complete coordinating
+residues, plus Hg) improve seed coordination but retain attachment strain. Their
+original-profile open children return to similar local strain, with near-reference
+R statistics and substantial B changes. Both bounded comparisons are complete;
+no endpoint is accepted. Inspect maps and resolve the remaining local frame/
+recipe–diffraction tradeoff before A02. Exact validation and private evidence
+pointers are in the [handoff](development-handoff.md).
 
 ## Merge checkpoint
 
@@ -45,7 +52,7 @@ release are different decisions.
 
 | Milestone | Current evidence | Post-merge completion gate | Dependencies |
 | --- | --- | --- | --- |
-| **A01 — Ligand geometry and open XYZ/B foundation** | PARTIAL; FT_Hg matched controls complete, local geometry gate open | Qualify exact source chemistry, linkage/terminal context, all intended NARestraints and metal recipe terms; demonstrate open XYZ/B refinement, explicit phase/Free-R policy, active-state B export and inspectable maps. FT_Hg first, then mixed Au/Ag. | Merged development base |
+| **A01 — Ligand geometry and open XYZ/B foundation** | PARTIAL; FT_Hg controls and initialization comparisons complete, local geometry gate open | Qualify exact source chemistry, linkage/terminal context, all intended NARestraints and metal recipe terms; demonstrate open XYZ/B refinement, explicit phase/Free-R policy, active-state B export and inspectable maps. FT_Hg first, then mixed Au/Ag. | Merged development base |
 | **A02 — Controlled f″/Q quantitation** | PARTIAL; frozen fits, B environments and matched comparisons implemented | Use qualified endpoints; freeze XYZ/all ADPs/f′, prepare metal B from the refined environment, and qualify Q/start/budget responses, mixed elements, cluster sums/cancellation and anomalous-background controls. | A01 |
 | **A03 — Editable recipes and structural alternatives** | PARTIAL; recipe core and candidate comparisons implemented | Source-backed ligand/metal-state targets, saved editable recipes, count/identity alternatives, optional chi flips and multiple/adjacent sites; preserve ambiguity and human choice. | A01–A02 |
 | **A04 — Lean storage and regeneration** | SCOPED; [storage plan](metal-campaign-storage.md), no pruning implementation | Shared pristine parents, compact frozen-trial records, protected important nodes, size-capped map retention, cold native regeneration, crash-safe retirement and campaign disk reservations. | Qualified A01–A02 examples; before large fan-out |

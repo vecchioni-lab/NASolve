@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record bounded metal-refinement qualification and storage findings
+
+- Document matched iteration, macrocycle, phase-policy and structure-factor
+  controls with their remaining local-geometry and fit limitations; A01 remains
+  open and no fdp endpoint is automatically accepted.
+- Keep the separate geometry-only initialization experiment and its original-
+  profile child explicit. Record actual weights, protected state and lineage;
+  do not promote numerical or restraint-presence checks into scientific approval.
+- Add read-only storage findings to A04 planning: repeated coverage inventories
+  dominate the sampled geometry batch; small map files can remain useful.
+  No pruning, new default, artifact migration or runtime behavior change here.
+
 ### Record an explicit minimizer allowance for metal XYZ trials
 
 - Add API-only `refinement_max_iterations` (1–200), separately from macrocycles
