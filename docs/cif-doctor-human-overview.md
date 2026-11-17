@@ -270,8 +270,12 @@ including torsion/chirality targets and normalization, alongside the selected pa
 restraints and atom state. Refinement can reconstruct that same checked choice
 without choosing new restraints. Changes before entry refuse; normal atomic
 movement afterward is allowed. Native controls cover those boundaries and a fresh
-model built from the same inputs. Connecting this to ordinary saved preflight and
-refinement phases remains separate work; it is not chemical or structure approval.
+model built from the same inputs. An explicit refinement helper now keeps
+that choice attached to the same model
+through one bounded Phenix cycle and final writing. A complete native test exactly
+matches the earlier control's model, optimization and diffraction statistics.
+Connecting this to ordinary saved runs and continuation remains separate work;
+this is not chemical or structure approval.
 
 The C336 refinement reader now separates two questions for an exact saved model:
 were the supplied triple-bond targets sensible, and did the atoms retain that
@@ -607,8 +611,9 @@ request. C245 connects it to `prepare-run` and exact-result notes; C246 connects
 explicit checked PostMR/campaign activation. C247 carries verified generation
 notes through publication and campaign status without repeating the proof read.
 Final selected-plane coverage and real refinement remain separate gates. The
-C375 prepared-state consumer is an explicit native integration prerequisite,
-not another automatically active audit box in this figure.
+C375 prepared-state consumer and C377 cycle lifetime are explicit integration
+prerequisites,
+not additional automatically active audit boxes in this figure.
 
 | Audit point | What is inspected | Why it matters |
 | --- | --- | --- |

@@ -4439,6 +4439,22 @@ that owner. No files, adapter installation or durable preflight authority follow
 from reconstruction. The enclosing execution owner must authenticate actual
 request/preflight lineage; legacy pair-only observations cannot substitute.
 
+C377's explicit `PreparedCountedRefinement` context owns the source-qualified
+module-level `phenix.refinement.driver.run` once around unchanged v4 execution.
+`refinement_scope` reads actual prepared parameters; initially only the qualified
+single-process/all-site XYZ cycle with fixed unit weights and at most ten
+iterations is admitted. Native preprocessing represents disabled ion placement
+as `None` and all-site selection as a PHIL sequence; the reader checks those
+representations explicitly. This is not a recommended scientific protocol.
+At driver entry, C375 reconstructs its owner without replanning. The context
+retains the same model through the original driver and final writer, preserves
+foreign hook replacements and the first failure cause, and exposes compact
+statistics without another force call or file writer. The caller still owns
+actual preflight/request authority, processes, receipts and immutable outputs.
+Existing versions/defaults and helper bytes are unchanged. Initial native proof
+matches W120's complete endpoint/trace/data using separate installed packages;
+ordinary admission, wider protocols and scientific acceptance remain gated.
+
 Ordinary refinement remains gated on prepared-model and optimizer lifetime,
 copied/selected reporting managers and final output. C369 qualifies wrapper
 recognition for direct calls only, not that wider integration. Historical v3

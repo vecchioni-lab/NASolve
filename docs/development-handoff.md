@@ -1,62 +1,57 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C376 actual phase and compact evidence qualified — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. C375 / `b058581a` is pushed.
+Updated **2026-11-17, C377 maintained prepared phase complete — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. C376 / `fbdfd820` is pushed.
 Afternoon work window ends **17:30 UK / UTC**. No full Cedar suite requested.
 
 ## Current checkpoint and next bounded work
 
-**C375 complete: start from exactly the checked restraint setup.** The explicit
-`counted_baseline=True` observation adds C368's existing broad bonded fingerprint
-and outer normalization. This matters because C371's four pair families alone do
-not bind pre-existing torsions/chiralities. Default C371 records remain exact.
-`owner_from_prepared_pair_contribution` consumes the exact stronger record without
-choosing providers or evaluating forces, checks complete native state/baseline and
-compiled binding, and returns an unentered existing owner. Entry rechecks initial
-state; normal coordinate/ADP motion afterward remains allowed. No durable artifact,
-new executor, correction installer, target or ordinary activation is introduced.
+**C377 complete: keep checked restraints attached through refinement.** Explicit
+`PreparedCountedRefinement` owns one source-qualified native module `driver.run`
+around unchanged v4. It reconstructs C375's stronger prepared owner without
+replanning and retains the same actual model through the original driver/final
+writer. Repeated or unsupported entry refuses; foreign replacements survive
+cleanup; the first native failure cause remains recorded. No new executor,
+correction installer, file writer or final bookkeeping force call.
 
-184 focused /184 relocated installed tests pass.17 new actual native cases plus
-3 existing controls pass;4 relocated native cases also pass. They cover broader
-baseline/state drift, missing/rehashed records, reconstruction of a fresh model,
-unchanged legacy observations, existing usage wrapper and legitimate optimizer
-movement. One missing-API negative-before is preserved. All drivers are stopped.
-Exact commands/pins: `prepared_counted_consumption_2026_11_17` in the existing ledger.
+Actual parameters currently admit one all-site XYZ cycle/process, fixed unit
+weights and at most ten iterations, with no changing targets/identity, NCS or
+neutron. These are qualification bounds, not recommended defaults. Native
+preprocessing uses `place_ions=None` and a sequence for all-site selection;
+two safely stopped preflights exposed those representations and remain retained.
+The final candidate completes actual preflight 7.79 s + refinement 34.92 s, with the
+same W120 prepared record, full endpoint, physical model, optimizer trace and
+original data/Free-R. 15 energy calls rather than W120's 16: no extra diagnostic
+final score. All drivers stopped, native bindings restored, sources unchanged.
 
-**C376: the stronger check survives real refinement.** Linden W119 observes the
-actual non-dry driver boundary on a W118-rebound child, deliberately stops before
-optimization, and preserves the resulting failed runtime. W120 then completes one
-matched W116 full-added cycle at W118/C375 pins: complete endpoint, physical model
-records, scores/counts/normalization, original data/Free-R and optimizer trace are
-exact. Same actual model through final writer; 17 added terms, 11,396 total,
-10 iterations/12 evaluations. All native jobs stopped. One observed phase takes
-37.03s versus historical 83.21 s; not an isolated causal performance benchmark.
+46 focused helper tests pass; 230 relocated installed tests pass in 19.74 s after source
+copy removal. Earlier combined source profile: 224 passed in 21.52 s. Negative-before controls
+cover absent API, original-error loss and both native parameter representations.
+Exact pins/commands: `maintained_prepared_refinement_lifetime_2026_11_17` in the
+existing ledger. Linden owns the refreshed W118/C377 joined package check; this
+native proof uses separate installed packages. No full suite or branch merge.
 
-Existing evidence storage also packs the actual 7,560,261-byte W115 preparation to
-101,805 bytes and restores it byte exactly after archive relocation and logical
-source-copy removal. Temporary expansion disappears; wrong digest refuses without
-execution. The original source remains. 100 such payloads would be 10.18 MB excluding
-models/data/logs, not a campaign capacity claim. Reuse this serializer, not a second
-format/cache. Exact evidence: `strong_phase_and_compact_preparation_2026_11_17`.
+**Next: wire saved admission through the existing controller.** Bind original
+pair intent, exact source/current parent and chosen working frame before preflight.
+After validated actual preflight, explicitly seal its scope and stronger prepared
+record. Read validators never write. Refinement consumes those anchored references
+and C375/C377 without replanning. Native preflight 0 plus later admission refusal
+must stay 0 with distinct unlaunched refinement under a new outcome policy; never
+manufacture a native failure or reinterpret historical readers.
 
-**Next: maintain the qualified phase lifetime, then wire admission.** A thin helper
-can own source-qualified module-level `phenix.refinement.driver.run` around the
-unchanged v4 runtime. Require the actual prepared parameters to stay in the tested
-fixed-weight, single-process coordinate scope; reconstruct C375's owner there and
-keep the same actual model through the original driver/final writer. Refuse repeated
-entry, preserve foreign replacement bindings and failure statistics. Do not add a
-final force evaluation just for metadata. This is still a prerequisite, not a new
-executor or automatic activation; first prove the helper's normal/failure paths.
+Reuse `require_runtime_continuation` and `checkpoint_candidate._lineage` before
+AutoRefine/Doctor round allocation for manual descendants; fresh compatible-parent
+rebind and preparation preserve intent. Never silently fall back to native PHIL.
+Ordinary recipes enable automatic XYZ weight optimization and broader phases, so
+the bounded protocol needs an explicit choice or an honest pre-allocation refusal;
+do not overwrite established defaults to make this helper pass.
 
-Rowan owns versioned execution integration through `refinement_parallelity`:
-freeze original pair intent, exact source/current parent and working-frame inputs;
-observe actual returned preflight, then explicitly seal admission after successful
-validation. Read validators never write. The same refinement phase consumes its
-anchored reference/digest and C375 selection, never replans. If native preflight
-returns0 but admission refuses, preserve that0 and distinct unlaunched refinement;
-do not manufacture a failed native return code. Descendants, including manual and
-Doctor ancestry, must retain pair intent before round allocation, with a fresh
-parent/source binding and new preparation. No silent fallback to native PHIL alone.
+**Keep evidence small.** C376 reuses existing archive storage on actual 7.56 MB
+preparation: 101,805 bytes, byte-exact cold expansion after relocation/source-copy
+removal, wrong-digest refusal and temporary cleanup. Original sources remain.
+100 such payloads are 10.18 MB excluding models/data/logs, not campaign capacity.
+Use existing phase retention rather than another serializer/cache or raw+archive
+duplication without a policy. Q04/Q05 remain complete; Q06 achieved chemistry open.
 
 **Qualified foundations; reuse rather than repeat.**
 - C368/W114: direct counted ownership, exact counting/normalization, restoration

@@ -110038,5 +110038,225 @@
       "Use existing compact storage in eventual phase retention; this archive test is not 100-dataset campaign capacity or resumability.",
       "Q06 achieved chemistry, ordinary activation and current joined installed package remain separate gates; no PDU/DF repair or diffraction improvement established."
     ]
+  },
+  "maintained_prepared_refinement_lifetime_2026_11_17": {
+    "milestone": "C377",
+    "date": "2026-11-17",
+    "signed": "Rowan",
+    "before": "W119/W120 diagnostic hooks demonstrated initial prepared equality and complete native cycle; no maintained source-qualified module driver lifetime existed.",
+    "after": "Explicit PreparedCountedRefinement owns one source-qualified native module driver.run around unchanged v4, consumes exact C375 preparation, checks actual bounded protocol, keeps same model through original driver/writer, restores only its binding and retains original failure statistics. No process, planner, file writer, correction installer or extra force evaluation.",
+    "files": [
+      "src/nasolve/cif_counted_refinement.py",
+      "tests/test_cif_counted_refinement.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": "No persistent request/execution schema changes. Explicit in-memory prepared-counted-refinement-cycle-v1 scope/statistics are observations, not admission or scientific authority.",
+    "scope": "Actual prepared parameters: one all-site XYZ process/cycle, at most10 iterations, fixed unit weights, explicit seed, no target/identity-changing operations, NCS or neutron. These are initial qualification bounds, not scientific defaults or recommendations.",
+    "source": {
+      "parent": "fbdfd820",
+      "phase_sha256": "a5d7c820e511fdb80188563cb746d70516a9601dde83a8a99398542cba27c6e7",
+      "owner_sha256": "7322edee9e78a027bbd47c0043e1acc35494d1d4ecce1e671cb9225f771086b9",
+      "unchanged_runtime_sha256": "5611e658cb79e92996f24e92b1a13055e69bede04f1ab909a60216baea03b3e3"
+    },
+    "validation": {
+      "negative_before": [
+        "Absent helper:1error/39deselected .04s.",
+        "Swallowed original native error replaced by generic close error:1failed/39deselected .06s; first cause now retained.",
+        "Actual native disabled place_ions is None:1failed/40deselected .07s before representation fix.",
+        "Actual native all-sites selection is a PHIL sequence:1failed/43deselected .07s before representation fix."
+      ],
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <NASolve>/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_counted_refinement.py --tb=short",
+      "focused": "46passed .08s after the final scope fixes; earlier combined source profile224passed21.52s.",
+      "installed_command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-B",
+        "-c",
+        "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_cif_counted_refinement.py', 'tests/test_cif_refinement_ownership.py', 'tests/test_cif_refinement_runtime.py', 'tests/test_cif_refinement_output.py', 'tests/test_cif_refinement_sites.py', 'tests/test_refinement_parallelity.py', 'tests/test_cif_counted_contribution.py', '--tb=short']))"
+      ],
+      "installed": "........................................................................ [ 31%]\n........................................................................ [ 62%]\n........................................................................ [ 93%]\n..............                                                           [100%]\n230 passed in 19.74s\n",
+      "package": {
+        "wheel_sha256": "08a88e17c0b3a3b53e2fad563d71972e953b5ddba040c82becd15e69bdf2407d",
+        "wheel_bytes": 1427705,
+        "source_copy_removed": true,
+        "old_install_absent": true,
+        "reference_bytes_match": true
+      },
+      "native_command": "PYTHONDONTWRITEBYTECODE=1 <NASolve>/.venv/bin/python -B <NASolve>/branch-artifacts/cedar/runners/c377_start.py",
+      "native_audit_command": "PYTHONDONTWRITEBYTECODE=1 <NASolve>/.venv/bin/python -B <NASolve>/branch-artifacts/cedar/runners/c377_audit.py",
+      "runner_sha256": "5ab8f8404b7779769b956d92b33c4fd13efd8d62d856f1c81fe8f73df23f6578",
+      "worker_body_sha256": "5b19ebd95a548ba555e05afa702112ba20ff546e3f18e20d1a18a1480328338e",
+      "audit_runner_sha256": "ca96890cf80ed186811cf2453cf0ca6e08c8548e4dcd39e377f737e30a0caed0",
+      "native_audit": {
+        "status": "PASS",
+        "kind": "maintained-counted-phase-audit",
+        "native": "Phenix2.2.1-6174 Darwin arm64",
+        "scope": "Complete fixed-weight one-cycle native execution, not dry-run; no scientific acceptance/default activation.",
+        "checks": {
+          "actual_controls": true,
+          "optimizer_calls": true,
+          "diffraction_before": true,
+          "diffraction_after": true,
+          "same_model_through_writer": true,
+          "complete_final_state": true,
+          "written_physical_records": true,
+          "exact_prepared_record": true,
+          "original_input_bytes": true
+        },
+        "stopped_verified": true,
+        "original_sources_unchanged": true,
+        "owner": {
+          "policy_id": "cif-owned-counted-contribution-v1",
+          "successful_calls": 15,
+          "poisoned": false,
+          "closed": true,
+          "last": {
+            "policy_id": "cif-owned-counted-contribution-v1",
+            "native_count": 11379,
+            "supported_count": 17,
+            "complete_count": 11396,
+            "normalization": 8.775008775008775e-05,
+            "compute_gradients": false,
+            "native_owned_buffer": false,
+            "geometry_flags": {
+              "bond": true,
+              "nonbonded": true,
+              "angle": true,
+              "dihedral": true,
+              "reference_coordinate": true,
+              "reference_dihedral": true,
+              "ncs_dihedral": true,
+              "den_restraints": true,
+              "chirality": true,
+              "planarity": true,
+              "parallelity": true,
+              "bond_similarity": true,
+              "ramachandran_restraints": true
+            },
+            "default_geometry_flags": true,
+            "disable_asu_cache": false,
+            "existing_usage_observation": true,
+            "inner_calls": 1,
+            "extension_calls": 1,
+            "force_sites_sha256": "af1311201e4387045f9950ca0cc78bbf0505f367da5b6201e0309ab0fc084d85",
+            "fixed_policy_sha256": "46d43ae40c5a7720b169a6d0d862dd01451adc21285e72c6db55ed5a2c5e9110",
+            "contribution_binding_sha256": "c50531be6a05c61f4fff61e39fc257c9b03626ac88c9f40457a9d6c6af056e5e"
+          },
+          "runtime_authority": false,
+          "scientific_acceptance": false
+        },
+        "phase_policy": "prepared-counted-refinement-cycle-v1",
+        "preflight_seconds": 7.786551874996803,
+        "refinement_seconds": 34.92169095799909,
+        "optimizer": [
+          {
+            "wx": 1.0,
+            "wx_scale": 1.0,
+            "wc": 1.0,
+            "effective_wx": 1.0,
+            "iteration_cap": 10,
+            "macro_cycle": 1,
+            "same_prepared_model": true,
+            "iterations": 10,
+            "function_evaluations": 12
+          }
+        ],
+        "no_extra_final_energy_call": true,
+        "baseline": {
+          "anchor": "W120 local fixture",
+          "plan_sha256": "20e151d54936e68093420f32deb1bc3f32c0c193addbb91f93d05f6804e43f02",
+          "audit_sha256": "4fa74d0a3ce12399e31c38debad84bf4501c1082da78ba83a3c8201ef6e5307f",
+          "note": "W120 owner had16 successful calls including an explicit diagnostic final energy call; maintained helper has15 and makes no extra call."
+        },
+        "evidence": {
+          "anchor": "C377 local fixture",
+          "historical_path": "/private/tmp/c377-native-phase-s4hdf__t",
+          "plan_sha256": "ed87a950fb5405bd90ce4b20dece5e06776bb1b1f72d0712682c40c9b76b3e63",
+          "seal_sha256": "0518502e0bca0aeae61127507a716a60af589841d8ded8a39b690358c47a61ac",
+          "execution_sha256": "f171f9139864b3374b43e51e2ad70d08bf90ea06050f22e22578bd1a29562d8f",
+          "result_sha256": "d6d7b010d384d0840262ad2fa41515c5368468a779f3a6017d55d7106dab9605",
+          "final_state_sha256": "0cb252f081974ac02507590501c23a01ffe95a7cfb768503cf6db0a47d17af98",
+          "phase_sha256": "a5d7c820e511fdb80188563cb746d70516a9601dde83a8a99398542cba27c6e7"
+        },
+        "limits": "Separate installed Cedar/Willow packages; no maintained durable admission, ordinary AutoRefine/Doctor activation, chemistry repair, data benefit, current joined package or full suite claim."
+      },
+      "static": "Python3.10 AST and git diff --check pass",
+      "full_suite": "NOT_RUN"
+    },
+    "review": {
+      "peer": "Linden",
+      "findings": "Preserve first native failure when later close refuses; fixed and regression verified. Existing unit-weight scope matches native fix_wxc branch. Independent continuation review confirms reuse existing lineage and explicit new protocol; no default override."
+    },
+    "compatibility": "Additive explicit helper only. All previous owners/runtime versions, defaults, targets, flags, weights, data and Free-R retain behavior. No migration. Final maintained consumer uses15 native energy calls versus W120 diagnostic16 because it does not add a final score call.",
+    "retention": {
+      "included": "Source/tests and compact evidence only",
+      "excluded": "Models, reflections, native logs, phase/prepared records, local scripts/wheels and partial attempts stay local",
+      "attempts": [
+        {
+          "anchor": "C377 local fixture",
+          "historical_path": "/private/tmp/c377-native-phase-yhoeo9b2",
+          "execution_sha256": "4b5d6b52c4dd14e1d27655dbef532afcb764299d8c2d6e59c95bcaf89ce11046",
+          "status": "FAILED",
+          "phases": [
+            {
+              "phase": "preflight",
+              "returncode": 1,
+              "seconds": 5.335180041998683
+            }
+          ],
+          "stopped_verified": true,
+          "inputs_preserved": true,
+          "software_preserved": true
+        },
+        {
+          "anchor": "C377 local fixture",
+          "historical_path": "/private/tmp/c377-native-phase-em_uw4ct",
+          "execution_sha256": "3ac414f5f272ae8be7edab3b9ad4d7039abcac1bd6f7e882c9028bb8eca75ec3",
+          "status": "FAILED",
+          "phases": [
+            {
+              "phase": "preflight",
+              "returncode": 1,
+              "seconds": 5.218413624999812
+            }
+          ],
+          "stopped_verified": true,
+          "inputs_preserved": true,
+          "software_preserved": true
+        },
+        {
+          "anchor": "C377 local fixture",
+          "historical_path": "/private/tmp/c377-native-phase-s4hdf__t",
+          "execution_sha256": "f171f9139864b3374b43e51e2ad70d08bf90ea06050f22e22578bd1a29562d8f",
+          "status": "COMPLETED",
+          "phases": [
+            {
+              "phase": "preflight",
+              "returncode": 0,
+              "seconds": 7.786551874996803
+            },
+            {
+              "phase": "refine",
+              "returncode": 0,
+              "seconds": 34.92169095799909
+            }
+          ],
+          "stopped_verified": true,
+          "inputs_preserved": true,
+          "software_preserved": true
+        }
+      ]
+    },
+    "remaining": [
+      "Versioned existing execution controller must bind authenticated actual request/preflight/scope/prepared record and model-parent lineage; helper alone is not authority.",
+      "Preflight0 plus later admission refusal requires distinct unlaunched-refinement outcome in new policy; preserve old readers.",
+      "Reuse existing require_runtime_continuation/checkpoint_candidate._lineage before AutoRefine/Doctor allocation for manual descendants; fresh compatible-parent rebind/preflight, no native-PHIL-only fallback.",
+      "Ordinary AutoRefine/Doctor recipes use automatic XYZ weight optimization and broader phases. Do not silently override defaults to satisfy this bounded protocol; explicit qualified choice/refusal before allocation.",
+      "Refreshed W118/C377 joined installed composition is delegated to Linden; current native proof uses separate packages. Q06 chemistry and wider protocols remain open."
+    ]
   }
 }

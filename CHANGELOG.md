@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Keep checked pair restraints attached through one native cycle (C377)
+
+- Add an explicit prepared refinement lifetime around the unchanged v4 runtime:
+  authenticate the native driver, reuse the checked starting restraints, and keep
+  the same model through refinement and final writing.
+- Read the actual prepared protocol, refuse unsupported or repeated entry,
+  preserve foreign hooks on failure and retain the original error cause. Do not
+  add a final energy evaluation for bookkeeping.
+- Initial qualification is one all-site XYZ cycle/process, fixed unit weights and
+  at most ten iterations. This is not a scientific default; ordinary AutoRefine,
+  Doctor and saved execution policies are unchanged. Durable admission and broader
+  protocols remain separate work.
+
 ### Reuse the checked starting restraint setup without replanning (C375)
 
 - Explicit prepared observation can also bind existing torsion/chirality and

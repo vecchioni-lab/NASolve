@@ -95,12 +95,19 @@ meaning and cannot substitute. C376 records W119's actual driver-entry diagnosti
 (deliberately interrupted before optimization) and W120's complete matched W116
 full-added cycle: exact endpoint/scores/counts/optimizer trace and original Free-R.
 One whole phase takes 37.03 s versus historical 83.21 s; not an isolated performance
-benchmark. The same actual model survives through final writing. Next maintain
-that source-qualified driver lifetime around unchanged v4, then wire versioned
-immutable admission through the existing execution owner. Admission may refuse
+benchmark. The same actual model survives through final writing.
+C377 maintains that source-qualified driver lifetime around unchanged v4;
+its complete native cycle exactly matches W120 without an extra final energy
+call. 46 focused helper and 230 relocated installed tests pass. Initial actual scope
+is one all-site XYZ cycle/process, fixed unit weights and at most ten iterations.
+Next wire versioned immutable admission through the existing execution owner. Admission may refuse
 after successful native preflight; preserve its return 0 and explicitly unlaunched
 refinement. A descendant must retain intent through a fresh same-frame/identity
 source binding and prepared admission; Linden owns the pure rebind prerequisite.
+Reuse existing `require_runtime_continuation`/`checkpoint_candidate._lineage`
+before round/trial allocation, including manual children. Ordinary recipes enable
+automatic XYZ weights and broader phases, so this bounded route needs an explicit
+choice/refusal; never silently override existing AutoRefine/Doctor defaults.
 Numerical lifecycle success is not Q06 chemistry closure.
 C376 also qualifies existing compact evidence storage for the actual 7.56 MB W115
 prepared record: 101,805 bytes, exact cold expansion after relocation/source-copy
