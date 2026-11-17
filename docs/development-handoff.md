@@ -6,6 +6,86 @@ current milestone: **A01 — ligand geometry and open XYZ/B**. Start with the
 The older Cedar/metal pause narrative is retained in
 [history](history/metal-foundation-pause-2026-11-16.md), not current instructions.
 
+## A01 — exact live normalization history, 2026-11-17
+
+A passive replay of the same geometry-only control reproduces **all native result
+fields, PDB bytes and the 257-step line-search error exactly**. At two evaluations,
+all 859 full-precision XYZ coordinates and raw residual 1966.5449883885117 are
+identical, yet counts 11203 and 11082 produce normalized targets 0.1755373550 and
+0.1774539784. The count change is entirely in the nonbonded inventory (7900 to
+7779). This is direct same-site history dependence, beyond the earlier ratio
+inference. It explains the observed target discontinuity; it does not establish
+correct source chemistry or a scientifically accepted endpoint.
+
+The trace observes **266 callbacks**; the native minimizer reports **261 function
+evaluations**. Both are preserved as distinct counters on the failed line search.
+At the count transition, raw residual decreases by 2.60641089, while the changing
+denominator reverses the direction of the normalized score. No extra energy calls,
+cache resets, settings or source targets were introduced in the passive replay.
+
+Phenix **2.2.1-6174**: complete dry preflight and complete one-cycle geometry-only
+execution, 180/300 s bounds. Private `ft-hg-convergence-20261117-01/count-trace-v3`
+contains exact parity, decomposition and same-site assertions. Earlier observer
+attempts failed on an unsupported array method and an incorrect hierarchy/live-XYZ
+equality assumption; both are retained. Native geometry uses the X-ray structure,
+while the display hierarchy can lag during minimization. A review initially assumed
+callback count equalled the native counter; corrected review records both.
+
+The full diagnostic trace is 9,275,810 bytes compressed, retained once for this
+investigation, not a campaign output. Subsequent diagnostics retain scalar records
+and boundary/tail sites. Production stopping receipts stay compact. No pruning,
+new f″ fits or automatic checkpoint adoption.
+
+**Isolation control completed:** a private zero-data-weight comparison uses the
+original starting denominator 11170 for both target and complete gradient. Every
+dynamic proxy remains active (observed counts 11015–11238). It passes the prior
+line-search failure and reaches the unchanged **1,000-step cap**, with 1,037
+evaluations; this is `NOT_CONVERGED_LIMIT`. Raw geometry residual decreases from
+1966.545 to 1316.486, and raw gradient norm from 478.91 to 198.25. Native stopping
+thresholds depend on scale, so a changed stop alone is not acceptance.
+
+The DF attachment becomes **1.51612 Å** (target 1.499 Å), Hg distances
+**2.09825/2.09845 Å**, and donor-vertex angle **0.2651°**. Observed intra-DF bonds
+are within 0.85 nominal σ, angles within 1.31 σ; all three sugar chiral signs
+remain correct. Sixteen state/lineage/export checks pass with fixed B/Q/scattering,
+original phases/Free-R and unchanged source targets. However, 818 atoms outside
+the earlier local selection move RMS **1.0803 Å**, maximum **3.4515 Å**. This is
+geometry-only preparation, not an accepted diffraction fit or f″ parent.
+
+Private `constant-denominator-v1` retains complete Phenix 2.2.1-6174 dry-run and
+execution receipts, bounded at 180/300 s. Its scalar trace and 21 boundary/tail
+coordinate sets occupy **599,961 bytes**. Validation reuses the established state
+and geometry audits; no redundant suite or new parameter sweep. The read-only
+review checks every recorded target/gradient scale and compares raw endpoint
+penalties, not scores with different denominators.
+
+The new private cohort is sealed: **685 files, 131,717,537 bytes**, 15 complete
+and two failed native attempts; all execution receipts are terminal. This includes
+protected inputs, full diagnostic captures, prior attempts and source snapshots,
+not just trial summaries. It is not a per-trial campaign storage budget. No generated
+artifacts are committed and no portability claim or pruning is made.
+
+Exact focused diagnostic commands from the everyday checkout (Python 3.12):
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/Alder/runners/A57_review_v4.py
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/Alder/runners/A58_state_audit.py constant-denominator-v1
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/Alder/runners/A54_local_geometry.py constant-denominator-v1
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/Alder/runners/A58_review.py
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/Alder/runners/A59_seal.py
+```
+
+All pass. The geometry/state commands created immutable review outputs and should
+not be rerun into their original locations; the final seal command is read-only.
+Documentation checks pass for nine files, 257 links and A01–A08 ordering. This
+follow-up changes documentation only, not code, schemas or compatibility; no
+suite rerun is needed after the already-qualified backend commit.
+
+**Next boundary:** coordinate a real-data normalization/weighting policy with the
+shared owner before testing it in open XYZ/B. Production normalization, Cedar's
+counted-restraint contract and DF source chemistry remain unchanged. A01 remains
+partial and A02 remains gated; no automatic open-refinement child or f″ trial.
+
 ## A01 — native stopping evidence and matched scale controls, 2026-11-17
 
 **A01 remains partial; A02 remains gated.** New XYZ execution records the native
@@ -88,11 +168,10 @@ checks, full-precision states and generated models/maps remain local and exclude
 from Git. No pruning, campaign fan-out or new Coot/GUI session. Frozen-scale
 alternatives reuse saved arrays and produce no new maps or coordinate runs.
 
-**Next boundary.** Capture exact evaluator count/raw-target/normalization/site
-state around the geometry-only line-search failure before attributing it to
-neighbor-list changes. Cedar confirms fixed nonbonded policy does not mean a
-fixed neighbor inventory; no normalization/count change is authorized by a
-ratio inference. Keep source chemistry with its owner. The supplied SI was
+**Follow-up recorded above.** Exact live evaluator capture and one explicitly
+private normalization control now distinguish neighbor-count history from raw
+penalty improvement. Fixed nonbonded policy does not mean a fixed inventory;
+production normalization is unchanged. Keep source chemistry with its owner. The supplied SI was
 consulted for the staged anomalous workflow; later ADP validation/final refinement
 must remain a separate branch from frozen quantitation. Paper-specific wavelengths
 and refined endpoints are not silently transplanted into these datasets.

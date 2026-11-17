@@ -21,8 +21,12 @@ acceptance remain unassessed. A02 has not advanced.
 
 Latest controls separate the final B transfer from the R deterioration and show
 that the longer geometry-only preparation returns after a native line-search
-error. Next inspect exact evaluator state around that stop with the shared owner;
-do not repeat parameter sweeps or freeze neighbor counts on a ratio inference.
+error. Exact passive evaluator capture now shows identical XYZ/raw residual with
+different normalization denominators after a neighbor-list change. A private
+constant-denominator control retains every dynamic proxy, improves local geometry
+and gets past the earlier line-search failure, but reaches its 1,000-step cap.
+Next coordinate real-data weighting/normalization semantics before open XYZ/B.
+No production policy change, chemical repair or accepted f″ parent follows.
 The [handoff](development-handoff.md) records prior attempts, exact validation,
 private evidence and compatibility limits. Consult it before scheduling new tests.
 

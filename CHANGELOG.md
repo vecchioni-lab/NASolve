@@ -18,7 +18,8 @@ entries are reconstructed from repository history.
 - Restore scoped observation on success/failure; keep old trials readable.
   New additive receipts need the updated reader. No refinement setting, chemistry
   target, scientific acceptance, automatic checkpoint selection or migration changes.
-- Document matched scale controls and the unresolved full-frame line-search stop.
+- Document matched scale controls, exact same-site normalization history and a
+  bounded geometry-only isolation control; the open-fit scientific gate remains.
   Generated science and paper extracts remain local; no pruning is enabled.
 
 
