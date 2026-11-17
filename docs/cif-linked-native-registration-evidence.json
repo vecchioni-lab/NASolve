@@ -109813,5 +109813,230 @@
       "Versioned existing execution controller must bind original request, actual preflight and new admission; native return0 must not be rewritten if later admission refuses.",
       "Descendant recipe intent/new parent binding, full fixed-weight phase/writer lifetime and Q06 achieved chemistry; broader phases/defaults remain unqualified."
     ]
+  },
+  "strong_phase_and_compact_preparation_2026_11_17": {
+    "milestone": "C376",
+    "date": "2026-11-17",
+    "signed": "Rowan",
+    "before": "Strong prepared consumption had direct native proof; whole actual phase and compact cold storage of the large observation still needed qualification.",
+    "after": "Independent W119 actual driver-entry diagnostic and W120 complete fixed-weight cycle qualify the strong consumer across real preflight/refinement. Existing evidence storage preserves the large observation exactly after relocation and source-copy removal.",
+    "changed_files": [
+      "docs/development-handoff.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": "None. No source, default, execution policy or artifact schema changed.",
+    "storage": {
+      "status": "EXACT_PREPARED_EVIDENCE_ARCHIVE_PASS",
+      "source": {
+        "anchor": "W115 local fixture",
+        "path": "attempt-4/prepared-contribution.json",
+        "sha256": "15187e5bf0b7245ed66ec4299f8d23daa33df79f4101210e0db68da025a5d0f6",
+        "bytes": 7560261
+      },
+      "serializer_policy": "cif-content-addressed-runtime-evidence-v1",
+      "serializer_source_sha256": "70c11d5fb1ced7a97f42ea0015a9a5ef33b0ec41fa3f8ca4bf6c240dc3813159",
+      "package_commit": "b058581a2b75e9cab617c1c01eddb5866a0bb382",
+      "storage": {
+        "policy_id": "cif-content-addressed-runtime-evidence-v1",
+        "logical_files": 1,
+        "logical_bytes": 7560261,
+        "unique_files": 1,
+        "unique_bytes": 7560261,
+        "archive_bytes": 101805,
+        "archive_sha256": "3cbffe135edeed3ad997bd1e862d4f2e7dec22de942b32ff871b101f5c4671d0"
+      },
+      "pack_seconds": 0.1062660829993547,
+      "cold_expansion_check_seconds": 0.01772379199974239,
+      "python_traced_peak_bytes": 29402727,
+      "process_peak_rss_bytes": 83853312,
+      "original_logical_copy_removed": true,
+      "original_archive_path_absent": true,
+      "temporary_view_removed": true,
+      "exact_original_bytes": true,
+      "source_unchanged": true,
+      "changed_archive_digest_refused": true,
+      "no_subprocess": true,
+      "illustrative_100_record_payload_bytes": 10180500,
+      "limits": "Existing generic storage proof for one actual W115 record only. No schema, native execution, production retention/activation, 100-dataset disk/RAM capacity or resumable-campaign claim. Authoritative original evidence retained; model/data/log sizes excluded from illustration."
+    },
+    "storage_validation": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<Cedar>/src <NASolve>/.venv/bin/python <NASolve>/branch-artifacts/cedar/runners/c376_storage.py",
+      "runner_sha256": "fa015f39a05cfbd7b58f63648d1341fa3cf226c4a80d808b99e73179da342b59",
+      "receipt_sha256": "5f5b618a88de053104abe4df4588b239a0d900c3d6d7d082d7092d7414667bef",
+      "scope": "Complete Python archive execution; no native process, not a native dry-run or refinement. Uses existing serializer, no new retention owner."
+    },
+    "native_validation": {
+      "owner": "Linden / Willow W119 and W120",
+      "native_version": "Phenix 2.2.1-6174 Darwin arm64",
+      "sources": {
+        "cedar": "b058581a2b75e9cab617c1c01eddb5866a0bb382",
+        "willow": "c08f337024f8901c583c0988f652e9a1c3156a49"
+      },
+      "w119": {
+        "human_commit": "574b43273b8706c62df4fd4b9f1701153cb1c9e2",
+        "status": "BOUNDARY_OBSERVED",
+        "limitation": "Actual non-dry driver entry intentionally stopped before optimizer; base runtime FAILED on explicit sentinel, no successful execution or output checkpoint.",
+        "archive": {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w119-prepared-boundary-2026-11-17.tar.gz",
+          "sha256": "1159fdca85917be8f4772f9fab5e2d2836216cdf6e7a7ffad0324f700a37eaad",
+          "bytes": 2377760
+        }
+      },
+      "w120": {
+        "command": "<NASolve>/.venv/bin/python <W120 local fixture>/run.py full_added; <NASolve>/.venv/bin/python <W120 local fixture>/audit.py",
+        "local_anchor": "W120 local fixture",
+        "historical_path": "/private/tmp/willow-w120-strong-cycle",
+        "plan_sha256": "20e151d54936e68093420f32deb1bc3f32c0c193addbb91f93d05f6804e43f02",
+        "run_sha256": "47b2f64b1e8009bdc638fad895bf01e1d59db7462d15c129c17cbc8ed06ac047",
+        "probe_sha256": "5d344e00c72c558ce5f1d643044a5f7e2d58528529581350cd95b9063ce04873",
+        "audit_sha256": "4fa74d0a3ce12399e31c38debad84bf4501c1082da78ba83a3c8201ef6e5307f",
+        "audit_runner_sha256": "d695b24a90c8152991cbe4adc1ac32a5c70b99ba8e3015159bd7e932a2383f48",
+        "audit": {
+          "status": "PASS",
+          "kind": "strong-cycle-exact-historical-replay-audit",
+          "native_version": "Phenix2.2.1-6174",
+          "checks": {
+            "actual_controls": true,
+            "optimizer_calls": true,
+            "diffraction_before": true,
+            "diffraction_after": true,
+            "final_geometry_score": true,
+            "owner_after_exit": true,
+            "noncoordinate_scattering_preserved": true,
+            "same_model_through_writer": true,
+            "complete_final_state": true,
+            "written_physical_records": true,
+            "original_input_bytes": true
+          },
+          "current": {
+            "case": "full_added",
+            "status": "PASSED",
+            "source_preflight_seconds": 8.013052999995125,
+            "native_refinement_seconds": 37.02696475000266,
+            "before_r_work": 0.22364321255948455,
+            "before_r_free": 0.25919211972609113,
+            "after_r_work": 0.22452412623459253,
+            "after_r_free": 0.2599155744069031,
+            "final_geometry_score": {
+              "target": 0.40369365866288315,
+              "count": 11396,
+              "normalization": 8.775008775008775e-05,
+              "scope": "counted complete model"
+            },
+            "requested_count": 124,
+            "added_count": 17,
+            "optimizer": {
+              "wx": 1.0,
+              "wx_scale": 1.0,
+              "wc": 1.0,
+              "effective_wx": 1.0,
+              "iteration_cap": 10,
+              "macro_cycle": 1,
+              "same_prepared_model": true,
+              "iterations": 10,
+              "function_evaluations": 12
+            },
+            "native_family_report": {
+              "initial_r_work": 0.2236,
+              "initial_r_free": 0.2592,
+              "r_work": 0.2245,
+              "r_free": 0.2599,
+              "r_free_minus_r_work": 0.0354,
+              "bond_rmsd": 0.025,
+              "angle_rmsd": 2.104,
+              "clashscore": 32.28,
+              "cycle_series": [
+                {
+                  "index": 0,
+                  "r_work": 0.2236,
+                  "r_free": 0.2592
+                },
+                {
+                  "index": 1,
+                  "r_work": 0.2245,
+                  "r_free": 0.2599
+                },
+                {
+                  "index": 2,
+                  "r_work": 0.2236,
+                  "r_free": 0.2592
+                },
+                {
+                  "index": 3,
+                  "r_work": 0.2245,
+                  "r_free": 0.2599
+                }
+              ],
+              "diagnostics": []
+            },
+            "native_family_report_includes_added_terms": false,
+            "standalone_cedar_report": {
+              "initial_r_work": 0.2236,
+              "initial_r_free": 0.2592,
+              "r_work": 0.2245,
+              "r_free": 0.2599,
+              "r_free_minus_r_work": 0.0354,
+              "bond_rmsd": null,
+              "angle_rmsd": null,
+              "clashscore": 32.28,
+              "cycle_series": [
+                {
+                  "index": 0,
+                  "r_work": 0.2236,
+                  "r_free": 0.2592
+                },
+                {
+                  "index": 1,
+                  "r_work": 0.2245,
+                  "r_free": 0.2599
+                },
+                {
+                  "index": 2,
+                  "r_work": 0.2236,
+                  "r_free": 0.2592
+                },
+                {
+                  "index": 3,
+                  "r_work": 0.2245,
+                  "r_free": 0.2599
+                }
+              ],
+              "diagnostics": []
+            },
+            "report_parser_note": "Existing Willow W35 final-PDB fallback used; unmerged Cedar parser lacks it. No new parser or runtime change.",
+            "maximum_written_coordinate_axis_rounding": 0.000499837995242558,
+            "result_sha256": "439b26c48c56ff3da334c1230bd57eac76e0be1dce3819a97a06b51efa46a31e",
+            "execution_sha256": "04a11facaa9cb230593e89799c0a4d7f42b7c89d8dcfdf1b2c84e5c0d3d7d5ba",
+            "sealed_preflight_sha256": "9d523a626b99b1db1689269be468f6272bfe798c5d87361f3602d0aa96d8dd9d"
+          },
+          "historical_refine_seconds": 83.20768829200097,
+          "current_refine_seconds": 37.02696475000266,
+          "historical_over_current": 2.247218718947115,
+          "timing_scope": "One historical/current complete phase observation, not an isolated causal performance benchmark",
+          "scientific_acceptance": false,
+          "production_runtime_change": false,
+          "limitations": [
+            "Fixed-weight one-cycle lifecycle only; no new diffraction benefit or accepted repair.",
+            "Same full-recipe objective/input as historical W116, not a new sibling ranking or retuned weight.",
+            "Separate qualified installed packages and diagnostic hook, not maintained production admission or joined-package/default activation."
+          ]
+        },
+        "scope": "Complete actual one-cycle execution, not dry-run; independently audited original W116 inputs/controls and complete endpoint. Native drivers stopped. Separate installed packages and diagnostic lifecycle hooks, not maintained production admission."
+      },
+      "full_cedar_suite": "NOT_RUN"
+    },
+    "compatibility": "Documentation/evidence only; historical observations and v1-v4 execution contracts unchanged. No migration.",
+    "retention": {
+      "included": "Compact summary, hashes and provenance only",
+      "excluded": "Models, diffraction data, native logs, prepared records, wheels, archives and local runners remain local. Authoritative original W115/W116 evidence retained."
+    },
+    "remaining": [
+      "Maintain the source-qualified module-level driver lifetime around unchanged v4; exact actual-parameter bounded scope, one model through writer, owned-only cleanup and failure statistics.",
+      "Versioned existing controller admission and parent/request/preflight/descendant intent; actual native preflight return0 plus later refusal must remain distinct.",
+      "Use existing compact storage in eventual phase retention; this archive test is not 100-dataset campaign capacity or resumability.",
+      "Q06 achieved chemistry, ordinary activation and current joined installed package remain separate gates; no PDU/DF repair or diffraction improvement established."
+    ]
   }
 }

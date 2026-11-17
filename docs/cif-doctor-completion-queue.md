@@ -91,13 +91,22 @@ pass after source removal and install relocation. No full suite or branch merge.
 C375 now consumes an exact stronger prepared selection without replanning:
 explicit broad bonded targets/normalization plus full initial native state are
 checked again at entry. Default C371 pair-only records retain their narrower
-meaning and cannot substitute. Linden W119 will test the genuine ordinary
-preflight/driver seam with W118-rebound parent; then wire versioned immutable
-admission through the existing execution owner. Admission may refuse
-after successful native preflight; preserve its return0 and explicitly unlaunched
+meaning and cannot substitute. C376 records W119's actual driver-entry diagnostic
+(deliberately interrupted before optimization) and W120's complete matched W116
+full-added cycle: exact endpoint/scores/counts/optimizer trace and original Free-R.
+One whole phase takes 37.03 s versus historical 83.21 s; not an isolated performance
+benchmark. The same actual model survives through final writing. Next maintain
+that source-qualified driver lifetime around unchanged v4, then wire versioned
+immutable admission through the existing execution owner. Admission may refuse
+after successful native preflight; preserve its return 0 and explicitly unlaunched
 refinement. A descendant must retain intent through a fresh same-frame/identity
 source binding and prepared admission; Linden owns the pure rebind prerequisite.
 Numerical lifecycle success is not Q06 chemistry closure.
+C376 also qualifies existing compact evidence storage for the actual 7.56 MB W115
+prepared record: 101,805 bytes, exact cold expansion after relocation/source-copy
+removal, temporary-view cleanup and wrong-digest refusal. No new serializer or
+automatic retention; 100 such payloads are 10.18 MB only, excluding science/logs.
+This is not a campaign capacity or resumability claim.
 
 ## Finish line and ordering
 

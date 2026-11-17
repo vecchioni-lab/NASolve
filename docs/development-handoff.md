@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C375 prepared counted consumption complete — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. C374 / `fd5ab33d` is pushed.
+Updated **2026-11-17, C376 actual phase and compact evidence qualified — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. C375 / `b058581a` is pushed.
 Afternoon work window ends **17:30 UK / UTC**. No full Cedar suite requested.
 
 ## Current checkpoint and next bounded work
@@ -23,13 +23,30 @@ unchanged legacy observations, existing usage wrapper and legitimate optimizer
 movement. One missing-API negative-before is preserved. All drivers are stopped.
 Exact commands/pins: `prepared_counted_consumption_2026_11_17` in the existing ledger.
 
-**Next: actual preflight-to-refinement seam, then existing controller wiring.**
-Linden owns one independent W119 diagnostic using W118's rebound W116 child,
-an actual returned zero-cycle preflight model and the actual non-dry driver entry.
-Require stronger initial-state equality before optimizer entry; preserve refusals
-without adjusting tolerances. Use one fixed-weight/coordinate-only cycle at most,
-same original data/Free-R and verified writer state. No three-sibling/full-suite
-rerun. This is separate from C375's direct native/model-reconstruction controls.
+**C376: the stronger check survives real refinement.** Linden W119 observes the
+actual non-dry driver boundary on a W118-rebound child, deliberately stops before
+optimization, and preserves the resulting failed runtime. W120 then completes one
+matched W116 full-added cycle at W118/C375 pins: complete endpoint, physical model
+records, scores/counts/normalization, original data/Free-R and optimizer trace are
+exact. Same actual model through final writer; 17 added terms, 11,396 total,
+10 iterations/12 evaluations. All native jobs stopped. One observed phase takes
+37.03s versus historical 83.21 s; not an isolated causal performance benchmark.
+
+Existing evidence storage also packs the actual 7,560,261-byte W115 preparation to
+101,805 bytes and restores it byte exactly after archive relocation and logical
+source-copy removal. Temporary expansion disappears; wrong digest refuses without
+execution. The original source remains. 100 such payloads would be 10.18 MB excluding
+models/data/logs, not a campaign capacity claim. Reuse this serializer, not a second
+format/cache. Exact evidence: `strong_phase_and_compact_preparation_2026_11_17`.
+
+**Next: maintain the qualified phase lifetime, then wire admission.** A thin helper
+can own source-qualified module-level `phenix.refinement.driver.run` around the
+unchanged v4 runtime. Require the actual prepared parameters to stay in the tested
+fixed-weight, single-process coordinate scope; reconstruct C375's owner there and
+keep the same actual model through the original driver/final writer. Refuse repeated
+entry, preserve foreign replacement bindings and failure statistics. Do not add a
+final force evaluation just for metadata. This is still a prerequisite, not a new
+executor or automatic activation; first prove the helper's normal/failure paths.
 
 Rowan owns versioned execution integration through `refinement_parallelity`:
 freeze original pair intent, exact source/current parent and working-frame inputs;
