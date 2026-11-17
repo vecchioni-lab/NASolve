@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W116 — Qualify one bounded ordinary coordinate-refinement lifecycle
+
+- Record three actual one-cycle controls through the existing native driver and
+  writer. Zero-addition ownership reproduces the native-only endpoint exactly;
+  the full recipe carries its 17 added terms through optimization and writing.
+- Preserve sealed preflight selection, effective weights, iteration budget,
+  original observations/Free-R, non-coordinate scattering and binding evidence.
+- Retain the lack of diffraction improvement and measured checking overhead.
+  No production runtime/default/schema change or accepted stitch.
+
 ### W115 — Observe actual ordinary preflight before admitting pair forces
 
 - Qualify the installed shared prepared-state reader on the model returned by

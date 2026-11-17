@@ -5664,3 +5664,117 @@ through the existing driver and final writer. Native-only/zero-addition equality
 and the full recipe are distinct controls; the latter changes requested chemistry.
 Reporting copies, broader target/weight phases, exclusions and scientific
 stitch/density acceptance remain open. S05/S06 remain **PARTIAL**.
+
+
+## W116 — Qualify one bounded ordinary refinement cycle
+
+**2026-11-17; actual native execution, diagnostic integration only.** Three
+separate ordinary zero-cycle preflights precede three complete coordinate
+refinements under **Phenix 2.2.1-6174**. Each uses one macrocycle, 10 iterations,
+12 function evaluations, nproc1, seed2679941, fixed effective X-ray weight1 and
+geometry weight1. Automatic weight optimization/shaking, ADP/occupancy refinement,
+solvent/ion changes, bulk-solvent reoptimization and restraint target updates are
+disabled. No endpoint is adopted and no production runtime/default/schema changes.
+
+### What is joined and checked
+
+The existing execution/process owners freeze inputs and v3 runtime. The installed
+C371 helper assembles the initial records on the actual returned preflight model.
+The controller validates preflight before sealing its existing records, input and
+request/source references. The actual phase receives the seal checksum; it never
+calls the provider planner again. At module-level native `driver.run`, it verifies
+the actual prepared observation against the sealed one before binding the owner.
+The same prepared model remains owned through the optimizer and native final
+writer. A diagnostic observer calls the original `run_lbfgs` exactly once and
+records actual effective weights and iteration counts; it changes no arithmetic.
+
+This entry is a local diagnostic, not the production CLI or durable admission
+schema. Exact native methods/files are pinned. Binding checks happen **before**
+historical cleanup as well as after return, so restored booleans alone are not
+used as evidence of exclusivity. No competing-hook fault is injected here;
+foreign-replacement cleanup remains a separately versioned Cedar qualification.
+All source data, input bytes and software remain unchanged.
+
+### Controls and result
+
+| Sibling | Requested terms | Added by owner | Refine time | Rwork / Rfree |
+| --- | --- | --- | --- | --- |
+| Native core | 107 core terms | Owner absent | 12.10 s | .22451965 / .25989801 |
+| Zero addition | Same 107 core terms | 0 | 78.14 s | .22451965 / .25989801 |
+| Full recipe | 124 terms | 17 | 83.21 s | .22452413 / .25991557 |
+
+Native core and zero addition give **exactly identical** complete hierarchy,
+scattering, fractional/force coordinates, R statistics, optimizer counts and final
+geometry target/count/normalization. Their final model count is 11,379. Both active
+owner cases complete 16 checked model calls and close unpoisoned; full coverage
+counts 11,379 native +17 added =11,396. The existing usage wrapper remains owned.
+
+The full-recipe endpoint differs from native core by maximum0.033571 Å and
+RMS0.002797 Å, demonstrating that the additional forces participate in ordinary
+coordinate refinement. It is a different requested objective, not a numerical
+identity comparison. **No diffraction improvement is shown**: common preflight
+Rwork/Rfree are .22364321/.25919212, and both short fixed-weight runs worsen them
+slightly. These are lifecycle controls, not a ranking, optimized scientific weight
+choice or repaired structure. The original 3,333 observations, exact Miller set,
+176 Free-R selections, occupancy and anisotropic scattering remain intact.
+
+The actual writer's bound hierarchy/scattering/Fcalc observations match final
+saved state. Final PDB atom identities/order and expected coordinate rounding
+also pass independent readback. Native-family PDB/.geo statistics omit the added
+terms; separate counted-score evidence is retained. Existing Willow W35 parsing
+reads overall native-family bond/angle RMSDs .025 Å/2.104° in all three rounded
+PDB summaries. The unmerged standalone Cedar parser lacks that fallback and
+returns absent RMSDs; both readouts are retained, with no duplicate parser patch.
+
+The zero-addition actual refinement is **6.46×** the native baseline in this
+small control. Record this as overhead to investigate, not a reason to remove
+checks. Rowan's separate single-call profile identifies repeated pure exact
+relative-image arithmetic. Optimize only a measured, bounded operation while
+preserving results and refusals; do not rerun these siblings just for profiling.
+
+### Reproducibility and limits
+
+Inputs retain W115's declared derived-model/W34 observation lineage and explicit
+working crystal. Both core-only siblings use the same existing native-core recipe
+subset; full coverage uses the original full recipe. All use the same native core
+PHIL, coordinate model, data, Free-R and protocol. W116 deliberately fixes the
+weights before seeing its R statistics and performs no outcome-driven retries.
+
+Willow source stays W113 `3f5806106bdb233e648ad3c8442d878998c846da`;
+Cedar is the exact copied C371 candidate wheel
+`6d87257cb9a02fabe8b0efecb1a37b17ef8e7a5489d18da344688b8f34ed6119`.
+The native runtime remains v3 SHA
+`6698585c1da6225895dd1d639554321ccab695eda1b4366d243deb39106c3503`.
+The Willow factory is supplied by a separate qualified installation; it is not
+already in the Cedar wheel. Production needs a qualified coordinated package join
+or an explicit maintained dependency, not another vendored recipe implementation.
+Cedar C372 or later runtime changes are not silently included. Exact prepared
+records, native command arguments, source pins, phase receipts, process identities,
+full endpoint state and original writer output are retained. Current ordinary
+`finish_execution`/`validate_execution` and independent saved-evidence audit pass.
+
+Historical diagnostic commands:
+
+```text
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w116-ordinary-cycle/run.py native_core
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w116-ordinary-cycle/run.py zero_added
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w116-ordinary-cycle/run.py full_added
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w116-ordinary-cycle/audit.py
+```
+
+The latter siblings require earlier controls to pass; the full case additionally
+requires exact native/zero endpoint agreement. All six native phases are stopped.
+No new Willow production-code tests/full suite/install are implied by this
+docs-only checkpoint; preceding source/install and derivative gates retain their
+own pins. No data or generated coordinate outputs are committed.
+
+Repository anchor **everyday NASolve checkout**, forensic archive
+`branch-artifacts/willow/w116-ordinary-cycle-2026-11-17.tar.gz`, SHA
+`74867d382d806662f6469cf2318371425ade5c834f99fda68b4476748d4e15a3`:
+5,259,129 bytes, 123 indexed files verified. This preserves diagnostic evidence,
+not a portable resumable campaign or permission to execute archived workers.
+
+Next is **immutable production admission through the existing execution owner**,
+plus the measured pure-helper performance work. Broader weights/phases, exclusions,
+physical sticky-end closure, calibrated density evidence and B09 remain open.
+S05/S06 remain **PARTIAL**.

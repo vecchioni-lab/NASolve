@@ -1111,3 +1111,14 @@ silently changing the recipe frame. Working-frame choice must precede immutable
 admission. The optimizer, reporting consumers and final writer remain the next
 active integration boundary.
 See the [direct-owner receipt and next gate](topostitch-periodic.md#w114--qualify-the-shared-counted-owner-lifetime).
+
+
+W116 exercises the prepared observations through one diagnostic ordinary
+coordinate-refinement cycle using the existing counted owner, process owner and
+frozen v3 runtime. It seals selection after preflight, checks the actual prepared
+model at module-level `driver.run`, observes fixed effective weights and includes
+the final writer in that lifetime. Zero additions preserve complete native
+endpoints exactly; full coverage changes the requested objective. This is not
+production admission or a new runtime version. Broader phases, automatic weights,
+competing-hook recovery and exclusion policy remain separately qualified scopes.
+See the [bounded lifecycle receipt](topostitch-periodic.md#w116--qualify-one-bounded-ordinary-refinement-cycle).
