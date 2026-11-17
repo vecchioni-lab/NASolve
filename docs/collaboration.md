@@ -37,6 +37,37 @@ Use professional, attributable manuscript language and exact software versions;
 private collaboration/personality notes stay outside repository documentation.
 The [CIF Doctor overview](cif-doctor-human-overview.md) is the first example.
 
+## Lightweight science checkouts
+
+After a substantial scientific work stretch or at a planned checkout, leave a
+small human-readable visual record of the work. One table or figure with a short
+explanation can be enough; a few files are usually sufficient. Negative,
+ambiguous and diagnostic results belong in the trail as well as improvements.
+This complements the current handoff and underlying evidence, rather than
+creating another operational status ledger.
+
+Use the shared local **`GitHub/ScienceCheckouts/`** folder alongside the project
+repositories, with an **agent subfolder** and a fresh dated/topic directory:
+`ScienceCheckouts/<agent>/<YYYY-MM-DD_topic>/`. Each collaborator owns their
+subfolder. Keep previous published checkouts intact, link the latest one in the
+handoff, and point the user directly to its opening report or figure. Keep the
+common folder index small and preserve other collaborators' entries.
+
+Show the scientific question, compared inputs or conditions, principal measured
+effect, uncertainty and next boundary. Label units, refinement/freeze policies,
+actual stopping state and whether a result is diagnostic or scientifically
+accepted. Distinguish fixed or unmeasured f″/B/Q values from fitted measurements.
+Use a compact provenance record or links to exact models, maps and source receipts;
+verify references and available checksums. Keep map/model pairing explicit.
+
+Reuse existing evidence unless further calculation is scientifically warranted.
+Prefer links to large immutable artifacts over copied models, maps or run trees.
+Reports remain local and potentially unpublished; preparing a checkout does not
+authorize uploading or committing raw science. Rebase and verify links when
+publishing a report in the shared folder. Small HTML/Markdown, images or tables
+are suitable; use the PDF skill when PDF is useful, and inspect its rendered
+pages. A PDF or polished layout is not required for every checkout.
+
 ## Diagnostic evidence and student workflow
 
 CIF Doctor diagnostic review receipts are developer-facing evidence. They do

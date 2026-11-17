@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Keep lightweight scientific checkout records
+
+- Document small visual/table checkouts after substantial scientific work,
+  in the shared local `ScienceCheckouts/<agent>/` folder with dated entries.
+- Link the local metal inspection pack and preserve its measured/fixed-value
+  distinctions, scientific limits and source references. Generated science stays
+  local; no product behavior, artifact schema or migration changes.
+
+
 ### Retain native metal XYZ optimizer stopping evidence
 
 - Record compact per-call native XYZ/ADP stopping reasons, errors, limits and

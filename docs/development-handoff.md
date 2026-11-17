@@ -6,6 +6,28 @@ current milestone: **A01 — ligand geometry and open XYZ/B**. Start with the
 The older Cedar/metal pause narrative is retained in
 [history](history/metal-foundation-pause-2026-11-16.md), not current instructions.
 
+## Scientific checkout, 2026-11-17
+
+The user-facing A01 inspection pack is in the shared local folder
+`ScienceCheckouts/Hazel/2026-11-17_FT-Hg/` alongside the repositories. Open
+`review.html`: two figures compare geometry and normalization/scaling effects;
+a small table reports base-only and Hg B, Q and fixed/unfitted f″. `numbers.json`
+binds 18 existing sources to their checksums and declares the relative artifact
+anchor. Original models and matching maps are linked without copying them.
+
+The four-file pack is under 0.5 MB. No new native fits, source changes, product
+schemas or scientific acceptance are introduced. The starting attachment, later
+geometry improvement and still-poor separate open-fit attachment are all explicit.
+Figures were visually inspected; source hashes and all eight local report links
+were checked. The private branch-artifact snapshot remains historical evidence;
+the shared ScienceCheckouts location is the user-facing entry point.
+
+The [science-checkout collaboration policy](collaboration.md#lightweight-science-checkouts)
+now applies after substantial work stretches, using the common folder with agent
+subfolders. The request and folder convention were shared with the other active
+collaborators. This documentation-only addition needs no repeated native run or
+suite; existing scientific gates and A01–A08 order are unchanged.
+
 ## A01 — exact live normalization history, 2026-11-17
 
 A passive replay of the same geometry-only control reproduces **all native result
