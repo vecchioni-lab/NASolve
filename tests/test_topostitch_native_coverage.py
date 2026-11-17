@@ -96,3 +96,107 @@ def test_native_membership_uses_exact_rationals_and_retains_lattice_translation(
     geo.pair_proxies().bond_proxies.simple[0].rt_mx_ji=operation('x+1,y,z')
     result=module.observe_native_pair_terms(model,**kwargs)
     assert result['terms'][0]['atoms'][1]['translation']==['1','0','0']
+
+
+def dual_fixture(monkeypatch):
+    module, model, geo, kwargs, calls = fixture(monkeypatch)
+    class Xray:
+        def __init__(self):
+            self.frac = [(p[0]/10., 0., 0.) for p in model.get_sites_cart()]
+            self.cart = list(model.get_sites_cart())
+        def sites_frac(self): return self.frac
+        def sites_cart(self): return self.cart
+        def unit_cell(self): return geo.crystal_symmetry.unit_cell()
+        def space_group(self): return geo.crystal_symmetry.space_group()
+    xrs = Xray(); model.get_xray_structure = lambda: xrs
+    original_api = module._native_api()
+    monkeypatch.setattr(module, '_native_api', lambda: dict(original_api, XrayStructure=Xray))
+    def hierarchy(m):
+        return [dict(label=str(i), xyz=list(p), occupancy=1., element='C', charge='',
+                     fp=0., fdp=0., b=10., uij=None) for i,p in enumerate(m.get_sites_cart())]
+    def scattering(x):
+        rows = hierarchy(model)
+        for r,p in zip(rows,x.cart): r['xyz']=list(p)
+        return dict(cell=list(x.unit_cell().parameters()), space_group='P 1', atoms=deepcopy(rows)), rows
+    def close(a,b):
+        if isinstance(a,dict):return a.keys()==b.keys() and all(close(a[k],b[k]) for k in a)
+        if isinstance(a,(list,tuple)):return len(a)==len(b) and all(close(x,y) for x,y in zip(a,b))
+        if type(a) in (float,int):return abs(a-b)<=1e-8
+        return a==b
+    owner=NS(__file__=__file__, POLICY_ID='native-refinement-output-state-v1',
+             _hierarchy=hierarchy,_scattering=scattering,_close=close)
+    kwargs.update(state_owner=owner,expected_state_owner_sha256=sha256(Path(__file__).read_bytes()).hexdigest())
+    return module,model,geo,kwargs,calls,xrs
+
+
+def test_dual_state_observation_retains_legacy_and_binds_both_representations(monkeypatch):
+    module,model,geo,kwargs,calls,xrs=dual_fixture(monkeypatch)
+    legacy_kwargs={k:v for k,v in kwargs.items() if k not in ('state_owner','expected_state_owner_sha256')}
+    before=module.observe_native_pair_terms(model,**legacy_kwargs)
+    actual=module.observe_native_pair_terms(model,**kwargs)
+    assert actual['policy_id']=='topostitch-native-pair-observation-v2'
+    assert {k:v for k,v in actual.items() if k not in ('policy_id','native_state')}=={k:v for k,v in before.items() if k!='policy_id'}
+    state=actual['native_state']
+    assert state['fractional_sites_sha256']==recipe_digest(xrs.frac)
+    assert state['force_sites_sha256']==recipe_digest(xrs.cart)
+    assert state['hierarchy_sha256']==recipe_digest(kwargs['state_owner']._hierarchy(model))
+    assert state['scattering_sha256']==recipe_digest(kwargs['state_owner']._scattering(xrs)[0])
+    # The hierarchy-only legacy fingerprint misses fractional/force round trips.
+    xrs.frac[1]=(xrs.frac[1][0]+1e-16,0.,0.)
+    xrs.cart[1]=(xrs.cart[1][0]+1e-15,0.,0.)
+    changed=module.observe_native_pair_terms(model,**kwargs)
+    assert changed['points_sha256']==actual['points_sha256']
+    assert changed['native_state']['fractional_sites_sha256']!=state['fractional_sites_sha256']
+    assert changed['native_state']['force_sites_sha256']!=state['force_sites_sha256']
+    assert module.observe_native_pair_terms(model,**legacy_kwargs)==before
+
+
+@pytest.mark.parametrize('drift',['owner_missing','digest_missing','owner_hash','owner_policy',
+    'wrong_xray','fractional_count','fractional_nan','cartesian_mismatch','label_order',
+    'scatterer_count','cell','group','mid_read_fractional','mid_read_owner','mid_read_xray'])
+def test_dual_state_observation_refuses_incomplete_or_changed_state(monkeypatch,drift):
+    module,model,geo,kwargs,calls,xrs=dual_fixture(monkeypatch)
+    owner=kwargs['state_owner']
+    if drift=='owner_missing':kwargs['state_owner']=None
+    elif drift=='digest_missing':kwargs['expected_state_owner_sha256']=None
+    elif drift=='owner_hash':kwargs['expected_state_owner_sha256']='d'*64
+    elif drift=='owner_policy':owner.POLICY_ID='unknown'
+    elif drift=='wrong_xray':model.get_xray_structure=lambda:NS()
+    elif drift=='fractional_count':xrs.frac.pop()
+    elif drift=='fractional_nan':xrs.frac[0]=(float('nan'),0.,0.)
+    elif drift=='cartesian_mismatch':xrs.cart[0]=(.1,0.,0.)
+    elif drift in ('label_order','scatterer_count'):
+        original=owner._scattering
+        def altered(x):
+            state,projected=original(x)
+            if drift=='label_order':projected.reverse()
+            else:state['atoms'].pop()
+            return state,projected
+        owner._scattering=altered
+    elif drift=='cell':xrs.unit_cell=lambda:NS(parameters=lambda:[11.,10.,10.,90.,90.,90.])
+    elif drift=='group':xrs.space_group=lambda:[]
+    else:
+        original=geo.pair_proxies
+        def changed(**options):
+            if drift=='mid_read_fractional':xrs.frac[0]=(.01,0.,0.)
+            elif drift=='mid_read_owner':kwargs['expected_state_owner_sha256']='e'*64;owner.__file__=__file__+'.missing'
+            else:model.get_xray_structure=lambda:deepcopy(xrs)
+            return original(**options)
+        geo.pair_proxies=changed
+    with pytest.raises(ValueError):module.observe_native_pair_terms(model,**kwargs)
+
+
+def test_dual_state_observation_records_stale_adps_without_synchronizing(monkeypatch):
+    module,model,geo,kwargs,calls,xrs=dual_fixture(monkeypatch)
+    original=kwargs['state_owner']._scattering
+    def stale(x):
+        state,projected=original(x)
+        for row in state['atoms']:row['b']=20.
+        for row in projected:row['b']=20.
+        return state,projected
+    kwargs['state_owner']._scattering=stale
+    actual=module.observe_native_pair_terms(model,**kwargs)
+    assert actual['native_state']['hierarchy_sha256']==recipe_digest(kwargs['state_owner']._hierarchy(model))
+    assert actual['native_state']['scattering_sha256']==recipe_digest(stale(xrs)[0])
+    assert kwargs['state_owner']._hierarchy(model)[0]['b']==10.
+    assert not actual['runtime_authority']

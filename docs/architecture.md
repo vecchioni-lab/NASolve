@@ -1083,3 +1083,10 @@ not numbered NASolve checkpoints, do not change registration or chemistry, and
 have no campaign selection authority. Cedar construction/native audit remains
 a separate interface to qualify. See [preview usage and limits](topostitch-preview.md)
 and the [periodic inspector contract](topostitch-periodic.md).
+
+
+The optional v2 `observe_native_pair_terms` observation reuses Cedar's frozen
+output-state readers to bind hierarchy, scattering, original fractional and actual
+force coordinates separately. Legacy v1 output remains the default. It checks
+ordered atom/crystal consistency and state drift without synchronizing ADPs,
+activating callbacks or modifying refinement. See the [W112 contract](topostitch-periodic.md#w112--bind-both-hierarchy-and-scattering-coordinates).

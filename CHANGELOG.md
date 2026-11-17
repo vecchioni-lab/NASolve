@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W112 — Observe hierarchy and native scattering state together
+
+- Add an opt-in v2 native pair observation using the existing checksum-bound
+  Cedar output-state readers, with separate hierarchy, scattering, fractional
+  coordinate and actual-force coordinate fingerprints. Preserve default v1 output.
+- Refuse inconsistent atom ordering, crystal context or state drift; record stale
+  ADPs without synchronizing them. Native controls detect no-motion fractional
+  round trips and preserve original energies/forces. No active guard or refinement
+  behavior changes.
+
 ### W111 — Qualify local counted contributions and exact native restoration
 
 - Record provider-invariant normalized targets/forces through actual model entry

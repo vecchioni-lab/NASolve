@@ -837,7 +837,16 @@
         "scope": "Four canonical proxy families; local geometry-method facade rejected by C331",
         "installed_or_runtime_authority": false
       },
-      "source_state_requires_distinct_hierarchy_and_scattering_bindings": true
+      "source_state_requires_distinct_hierarchy_and_scattering_bindings": true,
+      "dual_state_observation": {
+        "reference": "docs/topostitch-periodic.md#w112--bind-both-hierarchy-and-scattering-coordinates",
+        "api": "observe_native_pair_terms(state_owner=..., expected_state_owner_sha256=...)",
+        "opt_in_policy": "topostitch-native-pair-observation-v2",
+        "default_policy_unchanged": "topostitch-native-pair-observation-v1",
+        "reuses_cedar_output_state_owner": true,
+        "synchronizes_state": false,
+        "active_owner_authority": false
+      }
     }
   },
   "geometry_development": {

@@ -5209,3 +5209,67 @@ frozen execution and final writer. Preserve callback-free C331 and old readers.
 Provider-invariant arithmetic is a gate passed in these controls; owner admission,
 ordinary refinement, exclusions, density and B09 remain open. Do not replay W111
 merely because the production adapter is still absent.
+
+
+## W112 — Bind both hierarchy and scattering coordinates
+
+`observe_native_pair_terms` accepts optional `state_owner` and
+`expected_state_owner_sha256` together. The caller supplies the trusted, frozen
+Cedar `cif_refinement_output` owner; Willow reuses its `_hierarchy`, `_scattering`
+and representation-agreement check. It never calls its synchronization or writer.
+The owner source digest and `native-refinement-output-state-v1` policy are required.
+The existing callback-free C331 policy check remains unchanged.
+
+Without those options, the complete **v1 result remains unchanged**. Opting in
+returns `topostitch-native-pair-observation-v2` with a compact `native_state` record
+(`topostitch-dual-native-state-v1`): owner policy/digest, atom count, and separate
+`hierarchy_sha256`, `scattering_sha256`, `fractional_sites_sha256` and
+`force_sites_sha256`. The original `points_sha256` continues to identify hierarchy
+coordinates. V2 reads bond-cache terms at the actual scattering-derived force sites.
+Existing provider declarations and their context are unchanged.
+
+The observer checks exact native model/scattering types, atom counts and order,
+geometry/scattering cell and group agreement, finite complete coordinates, and
+non-ADP state agreement using Cedar's existing 1e-8 representation tolerance.
+Hierarchy and scattering ADPs may differ; both are hashed separately and neither
+is overwritten. Before/after state reads and scattering-object identity detect
+changes during inventory observation. They are **not** concurrent-access protection,
+source authenticity, active contribution admission or a final-writer qualification.
+The caller still owns trusted helper loading, source provenance and single-owner
+access. An observation may refresh native neighbor caches but evaluates no forces.
+
+### W112 validation — 2026-11-17
+
+Seventeen new regressions fail before the patch. The focused observer/coverage
+set passes **105 tests**; the full suite passes **1,981 +229 subtests** in 106.97s.
+A fresh sdist→relocated wheel with source stages removed passes **274 installed
+checks**, six CLI helps, `pip check`, lean import and Python 3.10 syntax. Existing
+captured-worker bytes are unchanged; no dependency, CLI or checkpoint migration.
+
+A complete **Phenix 2.2.1-6174** execution takes **53.46 seconds**. Six cases cover
+healthy/displaced sources, select-all and deliberately stale hierarchy ADPs.
+Default observations equal the separately installed W106 implementation exactly;
+model target, full gradients and restraint count remain exact. Four no-motion
+`set_sites_cart` round trips leave the v1 hierarchy fingerprint unchanged but alter
+all three scattering/fractional/force fingerprints. Restoring original fractional
+sites recovers the complete observation and native result exactly. Twelve negative
+controls refuse missing/wrong owner, label/occupancy/position mismatches and
+fractional drift during inventory reading. Independent saved-result audit passes.
+These are observation controls, not refinement, bending or density acceptance.
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest tests/test_topostitch_native_coverage.py tests/test_topostitch_pair_coverage.py -q
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w112-dual-state/install-check.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w112-dual-state/run.py
+/private/tmp/willow-w112-dual-state/install/env/bin/python /private/tmp/willow-w112-dual-state/audit.py
+```
+
+Exact local scripts, plans, logs, inputs and wheel are retained in the checksum-indexed
+archive referenced by the roadmap, excluded from Git. Absolute command paths are
+historical provenance; this archive is not a portable campaign. A preliminary
+focused-test invocation named a nonexistent test module and ran no tests; corrected
+commands above provide the results. A non-escalated focused run emitted only pytest
+cache-write warnings; complete and installed runs use disabled cache writing.
+Next is the existing W110/W111 Cedar-owned admission/lifetime gate, not another
+coordinate observer or arithmetic probe.
