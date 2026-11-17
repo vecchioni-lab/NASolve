@@ -13,10 +13,12 @@ current instructions; other branches retain their own status and validation pins
   and records the shared active-guard proposal. W111 qualifies a local counted
   contribution; W112 adds opt-in dual hierarchy/scattering observation using Cedar
   readers while preserving default v1 output. W113 adds a fresh frozen numerical
-  contribution factory for the shared owner. Production admission, exclusion policy and ordinary
-  refinement integration remain open. No physical repair is claimed.
+  contribution factory for the shared owner. W114 qualifies direct lifetime calls
+  through the frozen Cedar owner and records a separate full-source compatibility
+  baseline. Ordinary runtime/report integration and exclusion policy remain open.
+  No physical repair is claimed.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Next human update is W114;
+  [machine-readable source](topostitch-roadmap.json). Next human update is W115;
   do not restart completed probes merely because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

@@ -5441,3 +5441,108 @@ composition baseline and is not a portable campaign. No scientific payload is
 committed. That separate baseline pins W112/C366 and cannot qualify W113 or C367;
 its outcome must be audited separately. No ordinary refinement or scientific
 repair is enabled by this factory.
+
+
+## W114 — Qualify the shared counted-owner lifetime
+
+The W113 numerical factory now passes direct actual-model calls through Cedar's
+separate C368 `CountedContributionOwner`. This is cross-branch qualification of a
+frozen Cedar wheel and the installed Willow factory, not a branch merge or ordinary
+refinement activation. No Willow runtime/API/schema changes are made in W114.
+
+One complete **Phenix 2.2.1-6174** diagnostic finishes in **302.62 seconds**:
+**eight cases, sixteen fresh owners/compilers and twenty-eight model calls**.
+Healthy and displaced sources each cover full native core, an actual all-native
+core packet with zero additions, three terms moved to the additive provider, and
+explicit select-all rebinding. Energy-only and native-owned gradients pass.
+
+| Source | Complete count, both providers | Normalized target | Largest target difference | Largest gradient-component difference |
+| --- | ---: | ---: | ---: | ---: |
+| Healthy | 11,396 | 0.6756064118611885 | 1.11e-16 | 1.39e-17 |
+| Displaced | 11,270 | 1.0346270022398707 | 4.44e-16 | 1.39e-17 |
+
+Changing the additive subset from 17 to 20 preserves the complete count and
+weighting within the existing W111 tolerances. Both zero-addition cases reproduce
+the native result exactly. Two scattering-only coordinate shifts leave hierarchy
+positions unchanged while the owner binds the actual force sites. Restoring the
+original fractional coordinates restores full state and native results exactly.
+Every owner closes cleanly; fresh restart reconstructs the evaluator and repeats
+the result exactly. Default flags, cache mode, count and single normalization are
+recorded. No optimizer, diffraction refinement, new derivative panel, exclusion
+change or scientifically accepted repair is claimed.
+
+**Exact code/package pins:** Willow code `3f5806106bdb233e648ad3c8442d878998c846da`,
+factory SHA256 `1739b2a7cf11d802bfa9293d7b79b9edcf7bb1ad868b53d4c1b1996b461d7748`;
+Cedar owner SHA256 `772fe23b3075414c355903d35f976dc8667292a576e64f7a68d222cf1a76d34b`,
+wheel SHA256 `409d3a963c90f4851bfc52860fa2aea03121e3330f4ccbf942ca3cdb9af47f1a`.
+Rowan separately reports **155 focused and 155 relocated-installed tests and 32
+native controls** for that owner. Those admission/failure controls are not counted
+as Linden's eight lifecycle cases. W109/W111 retain derivative/arithmetic scope.
+
+Historical diagnostic root: `/private/tmp/willow-w114-owner-lifecycle/`.
+Exact controller command:
+`/private/tmp/willow-w94-pivot/env/bin/python -B /private/tmp/willow-w114-owner-lifecycle/run.py`.
+It owns the native command `phenix.python -B probe.py` with a 900-second limit.
+`audit.py` independently checks saved outputs and source/input pins. Its first
+version incorrectly expected the build suffix in the reported semantic version;
+the correction binds reported `2.2.1` plus the exact qualified `6174` source profile.
+The native attempt passed once and was not rerun. No process remains active.
+
+The verified **local-only** archive is anchored at the everyday NASolve checkout:
+`branch-artifacts/willow/w114-counted-lifecycle-2026-11-17.tar.gz`, SHA256
+`e95c27b092fecf326f5d7ee69c2ad077eac66025b8cd9b385ac6e542ead7310c`
+(2,400,859 bytes; 27 indexed files). It preserves private inputs, both exact wheels,
+scripts, results, logs and source-review evidence. Generated data is excluded from
+Git. This is forensic evidence, not a claim of portable campaign execution.
+
+### Separate full-source compatibility baseline
+
+The full unfiltered SOURCE suite of a temporary W112/C366 composition passes:
+**12,138 tests, 284 subtests, one skipped module, 2,982.99 seconds**. The skipped
+module explicitly requires opt-in execution in pinned Phenix; this ordinary
+Python run is not native API qualification. The source remains clean afterward.
+
+Pins: Willow `e005b0da4fbaf793bab9a7f1de88558c1c462220`, Cedar
+`09303e803d64737bfa7ff89975fea96967372204`, NARestraints
+`a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691`; resolved temporary tree
+`b1d09eaf21c431bb6cce348f181a1010e2b46111`. There are no source, test or script
+conflicts. Only package resources were explicitly unioned. Eight documentation
+conflicts remain for actual integration; no branch/index merge occurred.
+
+From historical `/private/tmp/willow-w113-composition/source`, the exact command was
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:../narestraints /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider`.
+The controller supplies equivalent absolute anchored paths and caps native thread
+counts at one. `full-execution.json` retains ownership and timing; `full-audit.json`
+checks the completed result. This is a full **source** baseline, not a complete
+installed suite and not qualification of newer W113/C367/C368. Earlier W81
+installed-context failures remain preserved rather than retroactively relabelled.
+
+Verified local archive at the everyday NASolve checkout:
+`branch-artifacts/willow/w114-source-compatibility-2026-11-17.tar.gz`, SHA256
+`88b7d967d663aafba0ff8c33bffd14b1e0e899dbd07684873998da4172468ff8`
+(20,636,466 bytes; 12 indexed files). It includes both source snapshots and receipts;
+the temporary Git alternates are not a portable execution claim. No generated
+scientific data or archive is committed.
+
+### Next ordinary-runtime gate
+
+Static review of exact Phenix/Cedar sources identifies concrete consumers to
+qualify next; it does not implement a hook:
+
+- The existing refinement runtime wraps `ParallelityKernel` to record usage.
+  C368 intentionally accepts the exact kernel, so that observed wrapper still
+  refuses. Qualify the existing observation owner; do not bypass it or add an installer.
+- Preprocessing rebuilds restraints and can change nonbonded weight with resolution,
+  then modifies other model state. Bind the actual prepared manager and frozen
+  provider/policy contract at the correct boundary, not merely the input file.
+- Coordinate-dependent target updates, local restraint scaling, solvent changes and
+  model replacement require explicit scope or a separately frozen phase. Do not
+  reselect providers to conceal drift. Direct inner calls remain unsupported.
+- Native statistics often use selected copies, which drop instance admission, and
+  assert a decomposition into named native-family residuals. Keep native-family
+  statistics separate from added-pair evidence until reporting/weight consumers
+  are qualified. A successful copied report does not prove added terms were scored.
+
+Reuse the existing prepare/preflight/runtime/final-writer owners for a bounded
+optimizer/one-cycle check, then matched data/Free-R controls. S05/S06 and the B09
+physical alignment gate remain open; no density or geometry repair is selected.

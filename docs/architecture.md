@@ -1097,3 +1097,12 @@ contribution and a versioned supported count without installing anything. Cedar
 owns actual-manager admission, native buffer lifetime and repeated coverage checks;
 `CONTRIBUTION_SOURCE_MODULES` supplies helper names to its existing frozen loader.
 See the [factory contract](topostitch-periodic.md#w113--freeze-the-selected-pair-contribution-factory).
+
+
+W114 qualifies this factory through the separate Cedar counted owner using exact
+source/wheel pins: actual-model accumulation, stale hierarchy during coordinate
+movement, select-all fresh binding and restart. No ordinary driver is activated.
+Native reporting copies drop instance admission and use native-family residual
+decomposition; added-pair evidence must remain explicit. The existing usage wrapper,
+prepared-model boundary and final writer are the next integration consumers.
+See the [direct-owner receipt and next gate](topostitch-periodic.md#w114--qualify-the-shared-counted-owner-lifetime).

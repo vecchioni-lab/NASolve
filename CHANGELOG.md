@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W114 — Qualify shared direct-call ownership and source compatibility
+
+- Record eight native lifecycle cases through the frozen Cedar counted owner:
+  zero additions, provider-independent counts/weighting, select-all rebinding,
+  scattering movement with stale hierarchy, exact restoration and fresh restart.
+- Record the separate full-source W112/C366 baseline: 12,138 tests and 284 subtests
+  pass; the opt-in native module skips. Preserve exact pins and unresolved doc conflicts.
+- Advance the integration queue to existing runtime, copied reports and final
+  writer boundaries. No Willow runtime/API/schema change or refinement activation.
+
 ### W113 — Freeze a fresh selected-pair contribution
 
 - Add optional `NativePairContribution` in the existing recipe module. Construct

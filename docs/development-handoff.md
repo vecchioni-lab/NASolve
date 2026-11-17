@@ -1,9 +1,9 @@
 # NASolve development handoff — Willow
 
 Updated **2026-11-17**. This is the **`willow` branch** handoff, not the
-project-wide status of Pine, Cedar or Alder. **W113 is audited; W114 is next.**
+project-wide status of Pine, Cedar or Alder. **W114 is audited; W115 is next.**
 Runtime code is W113 (`3f580610`); W110/W111 remain diagnostic and protocol evidence.
-Native refinement activation remains open.
+Direct native ownership is qualified at the frozen C368/W113 pins. Ordinary refinement activation remains open.
 The [machine roadmap](topostitch-roadmap.json) owns milestone status; its
 [generated human view](topostitch-roadmap.md) owns the numbered progress queue.
 
@@ -20,6 +20,7 @@ S04/S05/S06 and P01/P02 remain partial; use the roadmap for individual gates.
 | W104 `review_pair_coverage` | Read-only comparison of explicit requested/native/additive terms; rejects missing, duplicate, stale, image and parameter mismatches | Caller authenticates complete declarations; no activation |
 | W105 `describe_compiled_pair_terms` | Exports terms from the existing compiled recipe and original bound packet | Not a native force or lifecycle qualification |
 | W106 `observe_native_pair_terms` | Callback-free actual-manager inventory with checksum-bound Cedar policy checks and exact rational image comparison | Special positions unsupported; source authenticity and active callback policy remain upstream |
+| W114 cross-branch direct owner | Eight lifecycle cases; zero additions, provider weighting, stale hierarchy, selection and restart | Ordinary runtime, copied reports and final writer remain open |
 | W113 `NativePairContribution` | Fresh compiler plus frozen W108 selection; exact W109 evaluation and four-family supported count | Cedar must authenticate actual manager/entry/exit; no activation |
 | W112 opt-in dual-state observation | Existing Cedar readers bind hierarchy, scattering, original fractional and actual force sites; default W106 output remains exact | Read-only; no synchronization or active/lifetime authority |
 | W108 `select_pair_providers` | Plans exact term-level native/additive ownership, including partial individual pairs; conflicts refuse | No activation authority |
@@ -36,34 +37,25 @@ for exact commands, failed preparations, archive checksums and limitations.
 
 ## Next bounded work
 
-1. Qualify the separate **active contribution admission/buffer owner** with Cedar.
-   The [W110 contract](topostitch-periodic.md#w110--provider-normalization-and-active-contribution-contract)
-   is reviewed; Cedar C367 factors its shared traversal, but active admission is
-   still open. W113 supplies the fresh trusted numerical factory. Keep C331
-   callback-free; do not detach a callback
-   to fake an idle guard or duplicate the reader. Restart must rebuild a trusted
-   callable, and cleanup must not overwrite a foreign replacement.
-2. Consume the [W111 counted-contribution evidence](topostitch-periodic.md#w111--counted-contributions-through-actual-model-entry)
-   in that owner. Six actual-model cases and four 20/20 derivative checks preserve
-   normalized weighting across providers. The local adapter remains rejected by
-   C331 and is not installed. Bind original hierarchy **and** fractional scattering
-   state; exact restoration of one alone is insufficient. W112 supplies an opt-in
-   observation of both through the existing Cedar readers. Then qualify the existing
-   prepare/frozen-round/actual-manager/final-writer lifecycle.
-3. Qualify periodic exclusion policy explicitly. Retain repulsion until justified;
-   do not activate a symmetry phosphate bond without qualified surrounding angles.
-4. Only then compare repaired and no-repair models with matched observations,
-   Free-R, budgets and maps; retain geometry/packing, healthy and wrong-connection
-   controls, forward/reverse shape cases and B09 final validation.
+1. Integrate the qualified direct owner through the **existing** frozen
+   prepare/preflight/runtime/final-writer path. The ordinary runtime's usage wrapper
+   is not C368's exact kernel and still refuses. Qualify that owner explicitly;
+   preserve observations and C331's callback-free behavior.
+2. Bind the actual prepared manager after native preprocessing, and qualify one
+   bounded optimizer/one-cycle lifecycle. Model replacement, target updates and
+   scaling require explicit scope or separately frozen phases; never hide drift
+   by replanning providers. Reuse W109/W111 arithmetic and W114 direct-call evidence.
+3. Qualify reporting and weight consumers. Native statistics often select/copy
+   managers and omit added terms; distinguish native-family reports from the
+   contribution evidence. Preserve direct-inner refusal and checked fresh binding.
+4. Qualify periodic exclusions separately, retaining repulsion meanwhile. Then use
+   matched observations, Free-R, budgets and maps, with healthy/wrong-connection,
+   forward/reverse shape and B09 controls. No isolated symmetry phosphate bond.
 
-Use the [ordinary refinement boundary](topostitch-periodic.md#next-ordinary-refinement-boundary)
-and [integration contract](topostitch-periodic.md#next-implementation-contract).
-Do not fork a refinement runner or repeat passed arithmetic probes as a substitute
-for lifecycle integration. Coordinate owner changes with Rowan before native work.
-No factory/native diagnostic jobs remain active at the W113 checkpoint.
-A separate bounded full-source virtual W112/C366 compatibility run is pending;
-it is not a branch merge or qualification of the newer factory/owner. W108/W109 optional APIs
-remain compatible; W110 makes no production normalization change.
+The [W114 receipt](topostitch-periodic.md#w114--qualify-the-shared-counted-owner-lifetime)
+owns exact pins, commands and limitations. Do not fork a runner or repeat passed
+derivatives as a substitute for integration. All W114 native and full-suite jobs
+are complete and stopped. Coordinate shared runtime changes with Rowan.
 
 ## Validation and compatibility
 
@@ -71,7 +63,7 @@ Latest production-code validation, **W113**: **153 focused, 2,000 full tests +22
 subtests, and 293 final installed checks** passed. The full run precedes only the
 exported tuple naming change; final relocated installation/native execution use
 `3f580610` source. Six CLI helps, pip check, lean import and Python3.10 syntax pass.
-Eight Phenix2.2.1-6174 cases compare fresh factories against the existing evaluator,
+Eight Phenix 2.2.1-6174 cases compare fresh factories against the existing evaluator,
 including actual all-native core packets with zero additions; all energy/gradient
 outputs match exactly and sixteen negatives refuse. Existing public class/function
 AST and captured-worker bytes are unchanged. See the [W113 receipt](topostitch-periodic.md#w113--freeze-the-selected-pair-contribution-factory).
@@ -81,19 +73,23 @@ legacy observation preservation. W109 owns the unchanged subset arithmetic's
 finite-difference/complement evidence. Keep their scopes and retained failures;
 new wrappers do not replace those scientific/numerical gates.
 
-The latest recorded installed **virtual** Willow/Cedar C338 combination passed
-**1,062 tests +22 subtests**, six CLI helps and saved graph/frame/native-link/packing
-replay. It was not a branch merge, complete combined suite or native combined
-refinement. Seven documentation conflicts and the package-data union required
-integration review at that pin. Later Cedar work is outside that qualification;
-see the [compatibility receipt](topostitch-periodic.md#installed-c338-compatibility-during-w100).
-Check current branches again before integration; textual compatibility alone is
-not a runtime test. The W110 read-only check against Cedar `678f0198`
-finds all eight consumed owner/profile files byte-identical to the pinned
-installation. Shared `autorefine.py` changes merge textually and parse; shared
-documentation/package metadata still require integration review. No actual merge
-or current combined suite was run. Earlier full virtual-build failures remain recorded, not
-superseded by claims of a full green combined suite.
+W114 direct integration passes **8 cases / 16 fresh owners / 28 model calls** in
+302.62 seconds with Phenix 2.2.1-6174. Zero additions and restored/restarted results
+are exact; provider switches preserve complete counts 11,396 / 11,270, with maximum
+target difference 4.44e-16 and gradient difference 1.39e-17. It uses frozen wheel
+bytes, not an ordinary refinement driver. Rowan's separate owner validation is
+155 focused, 155 relocated-installed and 32 native controls.
+
+The separate full-source virtual **W112/C366** suite passes **12,138 tests +284
+subtests**, with one opt-in native module skipped, in 2,982.99 seconds. Exact NARestraints
+Git metadata is present. No source/test/script conflicts; package resources were
+unioned and eight doc conflicts retained. This does not qualify newer W113/C367/C368,
+an installed complete suite, native refinement or an actual branch merge.
+
+The earlier installed virtual C338 combination passed 1,062 tests +22 subtests and
+six CLI helps; keep its narrower pins and the earlier W81 installed-context
+failures. Verified local archives preserve all evidence; scientific inputs and
+generated results remain excluded from Git.
 
 ## Scientific limits and demonstration gates
 
