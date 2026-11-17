@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C372 versioned recovery ownership complete — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. C371 / `8161d5b5` is pushed.
+Updated **2026-11-17, C373 native-call arithmetic comparison complete — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. C372 / `035560a2` is pushed.
 Afternoon work window ends **17:30 UK / UTC**.
 
 ## Current checkpoint and next bounded work
@@ -60,6 +60,31 @@ bytes/original declared Free-R arguments. This is not full-refinement acceptance
 All Cedar native drivers are stopped. Compact receipt:
 `versioned_runtime_owned_recovery_2026_11_17`. No full suite.
 
+**C373 complete: remove repeated arithmetic without skipping chemistry checks.**
+W116's native-only, zero-addition and full 17-addition one-cycle diagnostics pass
+on immutable C371/v3 code. Zero addition exactly preserves the final state, scores
+and 10-iteration/12-evaluation trace; full addition changes coordinates but proves
+neither diffraction improvement nor chemical repair. Both owners make 16 successful
+calls and retain the same model through writing. Native-only refinement takes
+12.10 s, zero-owner 78.14 s and full-owner 83.21 s.
+
+One-call profiling identifies repeated rational transforms of an image relative
+to itself. Willow W117 uses the exact identity operation, with no cache or omitted
+validation. The same actual native call falls from 4.62081 s to 1.56696 s; complete
+target, gradients, count, normalization, call statistics and prepared selection/
+binding remain exact. Changed torsion/policy still refuse and poison; original
+state is restored. Both Cedar diagnostic processes are stopped with source bytes
+unchanged. This is one-call evidence, not a whole-refinement speed claim. No Cedar
+source change or full suite. Receipt: `counted_native_arithmetic_profile_2026_11_17`.
+
+**Immediate next work: qualify one current installed Cedar/Willow package.**
+Reuse W114's temporary source composition, union package resources explicitly, and
+refuse source/test conflicts. Build only the needed package/test tree, remove the
+temporary source, relocate the install, and check focused recovery/factory tests
+plus an actual native consumer. No branch merge or second recipe implementation.
+The earlier W114 full source result predates C367–C372/W117 and is not a current
+package pass. Keep diagnostics private and retain compact reproducibility receipts.
+
 **Next gate: one checked prepared state before the same refinement phase.**
 Linden's proposal reuses the existing isolated preflight, execution owner,
 module-level native `driver.run` and final writer. Initial intent does not pretend
@@ -79,12 +104,10 @@ statistics, with separate checked added-pair evidence. Do not synchronize stale
 hierarchy XYZ during a force call or claim the copied report includes additions.
 C372 qualifies that recovery behavior in explicit v4; default/historical v3 retains
 its original semantics. Actual added-force integration remains separately gated.
-Linden's next bounded diagnostic tests the exact installed C371 result through the
-module-level native driver, one coordinate-only cycle and final writing. A native-
-only zero-addition recipe and the full 17-addition recipe must be labelled as
-separate requested objectives, not identical chemistry. Stop on the first failure;
-no production added-force activation is yet qualified. Q06 achieved
-chemistry remains open.
+W116 qualifies that bounded C371 diagnostic through the native driver and final
+writer. Native-only and full 17-addition requests remain different objectives. It
+does not qualify ordinary immutable admission or unrestricted refinement. Q06
+achieved chemistry remains open.
 
 **Established foundations:** C367 reuses C331's complete fixed-input traversal
 while retaining byte-identical callback-free admission, records and refusals:

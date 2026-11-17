@@ -68,6 +68,27 @@ admission. First fixed-weight qualification is not a recommended scientific
 weighting/default. Working source/data frame choice belongs upstream of recipe
 compilation; the explicit source-cell control is not a universal model-cell policy.
 
+**Before ordinary admission ships:** the qualified Willow recipe factory is still
+an external installed package in these Cedar diagnostics. Reuse the maintained
+source/package integration path and qualify one joined package; do not vendor a
+second recipe engine or silently treat arbitrary source folders as trusted code.
+No branch merge is implied by a temporary composition. Bind original recipe/source
+provenance separately from the actual prepared parent model. A later refinement
+child must retain the selected pair intent through checkpoint lineage; continuing
+with only the ordinary native PHIL must not silently lose the added terms. Changed
+atom identity/frame needs explicit new preparation, never in-phase replanning.
+
+**Measured performance and next package gate:** W116's one-cycle native-only
+control takes 12.10 s versus 78.14 s with zero addition and 83.21 s with 17 additions
+(16 owned calls, 10 iterations/12 evaluations). Zero addition is numerically exact.
+C373 traces overhead to repeated equal-image rational transform composition;
+Willow W117 uses its exact identity without caching or skipping checks. One actual
+native call drops 4.62081→1.56696 s with exact scores, forces, counts, preparation
+selection and unchanged refusal/recovery. This does not predict whole-refinement
+speed. Next qualify a current temporary joined installed package with focused
+tests/native controls; no full suite or branch merge. Then reuse the existing
+immutable-admission owner. Numerical lifecycle success is not Q06 chemistry closure.
+
 ## Finish line and ordering
 
 CIF Doctor should work quietly behind NASolve: preserve the intended chemistry,

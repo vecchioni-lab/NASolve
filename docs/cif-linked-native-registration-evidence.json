@@ -109385,5 +109385,103 @@
       "Linden W116 tests native baseline, native-only zero-add owner and distinct full17-added request using immutable C371; not production integration.",
       "Full optimizer/report/final-writer contribution lifetime, Q06 chemical survival and broader/default activation remain open."
     ]
+  },
+  "counted_native_arithmetic_profile_2026_11_17": {
+    "milestone": "C373",
+    "date": "2026-11-17",
+    "signed": "Rowan",
+    "before": "W116 actual one-cycle diagnostics pass numerical lifetime but repeated native inventory normalization adds substantial overhead.",
+    "after": "Profile identifies repeated equal-image rational transform composition. Willow W117 uses the exact identity for an image relative to itself; Cedar native comparison preserves complete numerics, preparation selection and refusal behavior.",
+    "changed_files": [
+      "docs/development-handoff.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": "None; diagnostic evidence only. No Cedar source or default change.",
+    "source": {
+      "cedar_parent": "035560a2888115269a6c8c00ac449bbde27ca89a",
+      "willow_wheel_sha256": "b92d45cde4720fb2f5c9f387e72af0381943bd48b8dea2de98d2b5b2141200f7",
+      "candidate_helper_sha256": "e342d7aa4d6277dac0cd4b90d63fe1501c74249927fe909e119680901c21f591",
+      "changed_factory_modules": [
+        "topostitch_pair_coverage"
+      ]
+    },
+    "profile": {
+      "native_seconds": 0.021641624996846076,
+      "owned_seconds": 4.326526000004378,
+      "profiled_calls": 90211171,
+      "profiled_total_seconds": 12.961241565,
+      "inventory_calls": 14,
+      "inventory_cumulative_seconds": 12.285419793,
+      "relative_operation_calls": 193580,
+      "relative_operation_cumulative_seconds": 9.726877769,
+      "result_identical": true,
+      "state_unchanged": true
+    },
+    "validation": {
+      "tool": "Phenix 2.2.1-6174 Darwin arm64; complete direct native calls, not dry-run",
+      "commands": [
+        "PYTHONDONTWRITEBYTECODE=1 <phenix.python> -B -c \"import sys; sys.path.insert(0, <cedar-src>); import runpy; runpy.run_path(<local-runners>/c373_profile_start.py, run_name='__main__')\"",
+        "PYTHONDONTWRITEBYTECODE=1 <phenix.python> -B -c \"import sys; sys.path.insert(0, <cedar-src>); import runpy; runpy.run_path(<local-runners>/c373_compare_start.py, run_name='__main__')\""
+      ],
+      "comparison": {
+        "status": "PASS",
+        "seconds": 29.550835000001825,
+        "call_seconds": {
+          "original": 4.620811417000368,
+          "fastpath": 1.5669595830040635
+        },
+        "exact_target_gradients_count_normalization": true,
+        "exact_call_statistics": true,
+        "exact_prepared_provider_selection_and_binding": true,
+        "changed_source_modules": [
+          "topostitch_pair_coverage"
+        ],
+        "candidate_helper_sha256": "e342d7aa4d6277dac0cd4b90d63fe1501c74249927fe909e119680901c21f591",
+        "wheel_sha256": "b92d45cde4720fb2f5c9f387e72af0381943bd48b8dea2de98d2b5b2141200f7",
+        "target_and_gradient_sha256": "ff67a95fcabf8589e69ada52890fc8926a7f92b590fbe29aee31c05759f59231",
+        "native_count": 11379,
+        "complete_count": 11396,
+        "refusal_controls": [
+          "changed torsion inventory",
+          "changed native policy"
+        ],
+        "poisoned_calls_cannot_resume": true,
+        "restored_state": true,
+        "scope": "Direct native old/new comparison and preparation/refusal controls; no full refinement or chemical acceptance"
+      },
+      "full_suite": "NOT_RUN",
+      "scope": "One timed call per candidate in the same native fixture; no whole-refinement speed estimate or chemical acceptance."
+    },
+    "compatibility": "No migration, tolerance/target/sigma/weight change, cache, skipped inventory checks or ordinary added-force activation. Exact new factory source pin required; historical captured source remains valid.",
+    "retention": {
+      "included": "Compact measurements, digests and documentation only",
+      "excluded": "Models, observations, native logs, profile binary and diagnostic runners remain local; all attempts retained",
+      "attempts": [
+        {
+          "anchor": "NASolve-live-tests",
+          "path": "373_Cedar_counted-profile-p6k3ltz2",
+          "summary_sha256": "82bb7fbeb9ea7d525e44e0c15ac2365d6ecb363ebbe13e3904befb93dbab1746",
+          "driver_sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+          "worker_sha256": "36ff640f57213cc1090d9a7ecd8e1d2565da0e04b2bbfbe24107625b626fe7cc",
+          "stopped_verified": true,
+          "source_unchanged": true
+        },
+        {
+          "anchor": "NASolve-live-tests",
+          "path": "373_Cedar_counted-fastpath-mwkqj3lm",
+          "summary_sha256": "b13a0ee50b8529c65a987439a7f244bf80363c55790d0de43e2873063d531794",
+          "driver_sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+          "worker_sha256": "728d1ae31c0cae6f1479a51f5941e79f59397e81a35a5969489b1e93a808f4c7",
+          "stopped_verified": true,
+          "source_unchanged": true
+        }
+      ]
+    },
+    "remaining": [
+      "Current joined installed-package qualification before ordinary immutable admission.",
+      "Production request/preflight/phase lineage, descendant pair intent and actual Q06 chemical survival.",
+      "Residual validation overhead remains; this isolated optimization does not establish campaign-scale performance."
+    ]
   }
 }
