@@ -207,3 +207,60 @@ def test_explicit_unnormalized_native_call_keeps_raw_target_and_gradient(native_
             assert list(actual.gradients.as_double())==pytest.approx(expected,rel=1e-11,abs=1e-10)
     finally:manager.normalization=original
     assert c.state()==c.before
+
+
+@pytest.mark.parametrize('defect',[None,'missing_runtime_pin','wrong_runtime_pin','kernel_cell','directory_cell','seen_cell','shrinking_seen','removed_record'])
+def test_existing_observed_wrapper_native_ownership(native_case,tmp_path,defect):
+    from nasolve import cif_refinement_runtime as runtime
+    c=native_case;directory=tmp_path/'calls';directory.mkdir()
+    def cell(value):return (lambda:value).__closure__[0]
+    code=next(c for c in runtime.run_compatible_refinement.__code__.co_consts
+              if isinstance(c,types.CodeType) and c.co_name=='observed')
+    seen=set();values=dict(kernel=c.kernel,observations=directory,seen=seen)
+    wrapper=types.FunctionType(code,vars(runtime),'observed',None,tuple(cell(values[n]) for n in code.co_freevars))
+    wrapper.__qualname__='run_compatible_refinement.<locals>.observed'
+    cells=dict(zip(code.co_freevars,wrapper.__closure__))
+    options=dict(c.options);options['helper_sources']=dict(options['helper_sources'],cif_refinement_runtime=digest(runtime.__file__))
+    gr.parallelity_residual_sum=wrapper
+    try:
+        assert c.state()==c.before  # Existing native calls produce an initial genuine record.
+        if defect in ('missing_runtime_pin','wrong_runtime_pin'):
+            if defect=='missing_runtime_pin':options['helper_sources'].pop('cif_refinement_runtime')
+            else:options['helper_sources']['cif_refinement_runtime']='0'*64
+            with pytest.raises(ValueError):owned.CountedContributionOwner(c.model,**options)
+        else:
+            owner=owned.CountedContributionOwner(c.model,**options);owner.__enter__()
+            if defect=='removed_record':
+                c.model.restraints_manager_energies_sites(compute_gradients=True)
+                path=next(directory.glob('*.json'));saved=path.read_bytes();path.unlink()
+                try:
+                    with pytest.raises(ValueError,match='cleanup failed'):owner.__exit__(None,None,None)
+                    assert owner.statistics()['closed'] and owner.statistics()['poisoned']
+                finally:path.write_bytes(saved)
+            else:
+                try:
+                    if defect is None:
+                        first=c.model.restraints_manager_energies_sites(compute_gradients=True)
+                        files={p.name:(p.read_bytes(),p.stat().st_mtime_ns) for p in directory.glob('*.json')}
+                        second=c.model.restraints_manager_energies_sites(compute_gradients=False)
+                        assert first.target==second.target and first.number_of_restraints==second.number_of_restraints
+                        assert files=={p.name:(p.read_bytes(),p.stat().st_mtime_ns) for p in directory.glob('*.json')}
+                        assert owner.statistics()['last']['existing_usage_observation'] is True
+                    else:
+                        saved_seen=set(seen);key={'kernel_cell':'kernel','directory_cell':'observations','seen_cell':'seen'}.get(defect)
+                        original=cells[key].cell_contents if key else None
+                        if key:cells[key].cell_contents=object() if key=='kernel' else (tmp_path if key=='observations' else set(seen))
+                        else:seen.clear()
+                        try:
+                            with pytest.raises(ValueError):c.model.restraints_manager_energies_sites(compute_gradients=True)
+                            assert owner.statistics()['poisoned']
+                        finally:
+                            if key:cells[key].cell_contents=original
+                            else:seen.update(saved_seen)
+                finally:owner.__exit__(None,None,None)
+        assert 'energies_sites' not in vars(c.model.restraints_manager) and 'energies_sites' not in vars(c.geo)
+        assert c.state()==c.before
+    finally:
+        assert gr.parallelity_residual_sum is wrapper
+        gr.parallelity_residual_sum=c.kernel
+    assert c.state()==c.before

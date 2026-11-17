@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Recognize existing refinement usage observations during direct calls (C369)
+
+- Explicit counted ownership can authenticate the existing frozen runtime's exact
+  observation function and closure, with one extra runtime-source pin. Preserve
+  its unique usage rows, verify history growth and reject changed retained records.
+- Keep the plain-kernel route, historical runtime bytes and v1/v2/v3 readers
+  unchanged. No new correction installer, runtime activation or migration. Global
+  cleanup changes remain gated on a separately qualified runtime version.
+
 ### Own explicit added pair forces during direct native calls (C368)
 
 - Add an opt-in process-local owner for a fresh, source-qualified pair contribution.

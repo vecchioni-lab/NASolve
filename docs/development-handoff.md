@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C368 direct counted-owner complete; publication pending — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. C367 / `f8bc1525` is pushed.
+Updated **2026-11-17, C369 existing observation-wrapper qualification complete — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. C368 / `2cc87f7d` is pushed.
 Afternoon work window ends **17:30 UK / UTC**.
 
 ## Current checkpoint and next bounded work
@@ -23,20 +23,46 @@ exact state/fractional/native restoration and fresh restarts. Switching three
 terms from native to added preserves total count and numerical target/gradients.
 No optimizer/refinement claim follows. All native drivers are stopped; source
 pins are unchanged. Compact evidence: `owned_counted_contribution_2026_11_17`.
-No full Cedar suite. Ready for reviewed publication on the existing Cedar branch.
+No full Cedar suite. C368 is published on the existing Cedar branch.
 
-**Next bounded gate: make ordinary refinement use the same checked forces.**
-Publish C368 with the peer result and compact receipt before starting this gate.
-The existing runtime wraps its corrected kernel to record unique uses; direct
-ownership deliberately refuses that unqualified wrapper. Preserve the observations
-and qualify the existing wrapper explicitly, rather than add a second installer.
-Phenix's report/weight paths also copy or select managers, and its native-family
-report assumes every residual belongs to a named native family. A copied report
-must not pretend it includes added pair forces. Qualify actual prepared-model,
-optimizer, copy/report and final-output boundaries before activation. Never
-synchronize stale hierarchy coordinates during a force evaluation or silently
-reselect providers after chemistry changes. Linden's W114 static source review
-records these seams; it is not optimizer or ordinary-runtime qualification.
+**C369 complete: recognize the existing usage wrapper without replacing it.**
+Wrapped direct admission additionally pins the exact existing runtime source,
+compiled nested function and kernel/directory/history closure cells. New unique
+observation rows must match their saved parameters/digest; retained rows are
+rechecked at entry/exit. Plain five-helper admission stays unchanged. All v3
+runtime bytes and v1/v2/v3 frozen readers remain unchanged; no new numerical
+wrapper, installer, optimizer activation or stored schema. Its foreign-global
+cleanup limitation remains for a later qualified runtime version.
+
+246 focused /246 relocated installed checks pass; nine targeted actual Phenix
+cases pass in89.01s, plus the installed wrapped positive in20.53s. The final
+portable fixture's40 pure tests pass. A new accepted-wrapper case fails before
+implementation. Native tests instantiate the exact existing nested body/globals
+with the same three closure cells; they do not run the full refinement program.
+Both owned attempts are stopped/source-unchanged. Compact receipt:
+`existing_usage_wrapper_admission_2026_11_17`. No full suite.
+
+**Next gate: one checked prepared state before the same refinement phase.**
+Linden's proposal reuses the existing isolated preflight, execution owner,
+module-level native `driver.run` and final writer. Initial intent does not pretend
+to know post-preprocessing restraints. Observe the returned preflight model, then
+explicitly seal one immutable admission tied to the original request and validated
+preflight. Refinement receives that anchored reference/digest as internal metadata,
+reconstructs and revalidates the same selection, and never silently replans.
+No mutation hidden in a read-only validator and no second request/process owner.
+
+First qualification scope is one coordinate-only cycle/process, frozen seed and
+fixed positive geometry/diffraction weights, with no automatic weight search,
+shaking, local scaling, NCS/IAS, identity-changing solvent/ions or target updates.
+This is a lifecycle control, not recommended scientific weighting. Native weight
+estimation can pass off-model shaken coordinates through the original manager;
+C368 correctly refuses that unqualified path. Reporting copies retain native-family
+statistics, with separate checked added-pair evidence. Do not synchronize stale
+hierarchy XYZ during a force call or claim the copied report includes additions.
+A new versioned runtime must also preserve foreign global replacements. Exact
+source/model/recipe/reflection/Free-R control references are being identified from
+declared prior evidence, not searched by basename. No new implementation is yet
+qualified at that boundary; Q06 achieved chemistry remains open.
 
 **Established foundations:** C367 reuses C331's complete fixed-input traversal
 while retaining byte-identical callback-free admission, records and refusals:

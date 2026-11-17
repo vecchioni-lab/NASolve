@@ -36,8 +36,9 @@ single normalization and failure cleanup. Cedar's focused/installed/native check
 pass; Linden's W114 eight-case cross-branch lifecycle panel also passes. No ordinary
 refinement activation follows from direct-call success.
 
-Next qualify the existing runtime's usage-observation wrapper and the real prepared
-model/optimizer/report/final-output boundaries. Reporting copies can lose instance
+C369 now recognizes the exact existing source-qualified usage-observation closure
+with its additional runtime pin, unchanged unique records and unchanged frozen v3
+bytes. Next qualify the real prepared-model/optimizer/report/final-output boundaries. Reporting copies can lose instance
 admission, and the native-family report cannot silently include extra residuals.
 Keep those reports distinct from added-pair evidence; never relax direct-inner
 admission, omit usage observations or invent another correction installer. Actual
@@ -46,6 +47,15 @@ synchronize them in a force call. Whole native count/normalization, selected-man
 rebinding and exact recovery remain prerequisites. Hazel's matched DF force/phase
 controls stay separate; more iterations or cycles have not produced an accepted
 endpoint. These mechanics do not close achieved chemistry or authorize a merge.
+
+The next bounded sequence reuses the existing execution owner: observe the actual
+returned preflight model; explicitly seal one immutable admission tied to request
+and validated preflight; revalidate that reference in the same refinement phase;
+then qualify one fixed-weight, coordinate-only cycle and final writing. Never
+rewrite the request, choose providers again during refinement, or make a read-only
+validator write admission. A later versioned runtime must preserve foreign global
+bindings; C369 intentionally leaves historical runtime bytes untouched. First
+fixed-weight qualification is not a recommended scientific weighting/default.
 
 ## Finish line and ordering
 

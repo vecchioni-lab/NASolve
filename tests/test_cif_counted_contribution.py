@@ -161,3 +161,73 @@ def test_failed_entry_without_adapters_cannot_be_reused():
     assert 'energies_sites' not in vars(owner._manager) and 'energies_sites' not in vars(owner._geo)
     owner._native_files=lambda:None
     with pytest.raises(ValueError,match='reused'):owner.__enter__()
+
+
+def observed_wrapper(tmp_path):
+    from types import CodeType,FunctionType
+    from nasolve import cif_refinement_runtime as runtime
+    from tests.test_cif_parallelity_kernel import setup,Buffer
+    points,proxy,gr,flex=setup();kernel=runtime.ParallelityKernel(gr,flex)
+    def cell(value):return (lambda:value).__closure__[0]
+    code=next(c for c in runtime.run_compatible_refinement.__code__.co_consts
+              if isinstance(c,CodeType) and c.co_name=='observed')
+    seen=set();values=dict(kernel=kernel,observations=tmp_path,seen=seen)
+    wrapper=FunctionType(code,vars(runtime),'observed',None,tuple(cell(values[n]) for n in code.co_freevars))
+    wrapper.__qualname__='run_compatible_refinement.<locals>.observed'
+    return wrapper,kernel,seen,dict(sites_cart=Buffer(points),proxies=[proxy],gradient_array=None)
+
+
+def test_exact_existing_runtime_wrapper_keeps_unique_original_records(tmp_path):
+    from nasolve import cif_counted_contribution as owned
+    from nasolve.refinement_parallelity import _code
+    wrapper,kernel,seen,call=observed_wrapper(tmp_path)
+    guard=owned._ObservedKernel(wrapper);assert guard.kernel is kernel
+    first=wrapper(**call);guard.check()
+    files=list(tmp_path.glob('*.json'));assert len(files)==len(seen)==1
+    before=files[0].read_bytes();stamp=files[0].stat().st_mtime_ns
+    assert wrapper(**call)==first;guard.check(full=True)
+    assert files[0].read_bytes()==before and files[0].stat().st_mtime_ns==stamp
+    assert len(list(tmp_path.glob('*.json')))==1
+    assert _code()  # The currently qualified v3 helper bytes still match exactly.
+
+
+@pytest.mark.parametrize('defect',['foreign','code','kernel_cell','directory_cell','seen_cell','unknown_cell'])
+def test_unqualified_existing_wrapper_shape_is_refused(tmp_path,defect):
+    from nasolve import cif_counted_contribution as owned
+    wrapper,kernel,seen,call=observed_wrapper(tmp_path)
+    if defect=='foreign':
+        def foreign(**kwargs):return 0.
+        foreign.__wrapped__=wrapper;wrapper=foreign
+    elif defect=='code':
+        def changed():
+            return lambda **kwargs:(kernel,seen,tmp_path)
+        wrapper.__code__=changed().__code__
+    else:
+        values=dict(zip(wrapper.__code__.co_freevars,wrapper.__closure__))
+        if defect=='kernel_cell':values['kernel'].cell_contents=object()
+        elif defect=='directory_cell':values['observations'].cell_contents='not a Path'
+        elif defect=='seen_cell':values['seen'].cell_contents=[]
+        else:wrapper.__qualname__='some_other_owner.<locals>.observed'
+    with pytest.raises(ValueError):owned._ObservedKernel(wrapper)
+
+
+@pytest.mark.parametrize('defect',['kernel','directory','seen','shrinking_seen','changed_record','deleted_record'])
+def test_observed_wrapper_lifetime_drift_is_refused(tmp_path,defect):
+    from nasolve import cif_counted_contribution as owned
+    wrapper,kernel,seen,call=observed_wrapper(tmp_path);guard=owned._ObservedKernel(wrapper)
+    wrapper(**call);guard.check()
+    values=dict(zip(wrapper.__code__.co_freevars,wrapper.__closure__))
+    if defect=='kernel':values['kernel'].cell_contents=object()
+    elif defect=='directory':values['observations'].cell_contents=tmp_path/'other'
+    elif defect=='seen':values['seen'].cell_contents=set(seen)
+    elif defect=='shrinking_seen':seen.clear()
+    elif defect=='changed_record':next(tmp_path.glob('*.json')).write_text('{}')
+    else:next(tmp_path.glob('*.json')).unlink()
+    with pytest.raises((ValueError,OSError)):guard.check(full=True)
+
+
+def test_observation_growth_requires_matching_record_bytes(tmp_path):
+    from nasolve import cif_counted_contribution as owned
+    wrapper,kernel,seen,call=observed_wrapper(tmp_path);guard=owned._ObservedKernel(wrapper)
+    seen.add((123,'0'*64))
+    with pytest.raises((ValueError,OSError)):guard.check()

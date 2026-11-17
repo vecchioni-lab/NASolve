@@ -108950,5 +108950,95 @@
       "Bind real prepared model, optimizer, selected/copied reports and final output; native-family statistics must not claim added residuals.",
       "No ordinary refinement activation, arbitrary selection, broad platform support or Q06 chemical-survival acceptance."
     ]
+  },
+  "existing_usage_wrapper_admission_2026_11_17": {
+    "milestone": "C369",
+    "date": "2026-11-17",
+    "signed": "Rowan",
+    "before": "Direct counted ownership refused the existing qualified runtime observation closure even though it calls the same corrected kernel.",
+    "after": "Authenticate the exact existing source/globals/nested code and closure cells with an additional runtime pin; preserve and validate original unique usage records without changing the frozen runtime.",
+    "changed_files": [
+      "src/nasolve/cif_counted_contribution.py",
+      "tests/test_cif_counted_contribution.py",
+      "tests/test_cif_counted_contribution_native.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": "No new persistent schema; additive process-local statistics flag only. Wrapped mode adds required runtime helper pin; plain five-helper route unchanged.",
+    "source": {
+      "parent_commit": "2cc87f7d8aa1c4bcf89e2ea4e1aa574e797c282d",
+      "owner_sha256": "98bcf5f5a0c2a903da972b1abf4bf01f28630433f87477497c13a014574b0087",
+      "unchanged_runtime_sha256": "6698585c1da6225895dd1d639554321ccab695eda1b4366d243deb39106c3503"
+    },
+    "validation": {
+      "before": "New accepted-wrapper regression fails with missing private guard before implementation:1 failed/39 deselected.",
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <NASolve-venv-python> -m pytest -q -p no:cacheprovider tests/test_cif_counted_contribution.py tests/test_cif_live_nonbonded_policy.py tests/test_cif_parallelity_kernel.py tests/test_cif_refinement_output.py tests/test_cif_refinement_runtime.py tests/test_refinement_parallelity.py --tb=short",
+      "focused": "246 passed in20.80s; final Python3.10-portable fixture-only adjustment40 passed in0.24s",
+      "installed_command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-B",
+        "-c",
+        "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_cif_counted_contribution.py', 'tests/test_cif_live_nonbonded_policy.py', 'tests/test_cif_parallelity_kernel.py', 'tests/test_cif_refinement_output.py', 'tests/test_cif_refinement_runtime.py', 'tests/test_refinement_parallelity.py', '--tb=short']))"
+      ],
+      "installed": "246 passed in19.49s; source copy/original install path absent",
+      "wheel_sha256": "0128b4862d01f13c14fd72ce9cab8241ba1886b2199c5e37e385fa6dfc96e5db",
+      "native_command": "C368 explicit checksum-bound native environment; same owned phenix.python bootstrap; pytest copied native test -k \"observed_wrapper or actual_owned_calls\". Installed check sets explicit relocated package and selects observed_wrapper_native_ownership/None only.",
+      "native": "9 passed/31 deselected in89.01s;1 installed passed/39 deselected in20.53s; Phenix2.2.1-6174 complete direct-call execution",
+      "native_scope": "Exact existing nested observation body instantiated with original module globals and the same three closure cells; actual Phenix model energies/gradients. No full native refinement-program execution, dry-run or optimizer qualification.",
+      "static": "Python3.10 AST; git diff --check; current frozen _code and historical reader tests pass",
+      "full_suite": "NOT_RUN"
+    },
+    "compatibility": "No change to v3 runtime, any existing source digest allowlist, historical v1/v2/v3 reads, CLI/default paths, targets, chemistry, Free-R or checkpoint lineage. New explicit wrapped callers supply one additional source pin. No migration.",
+    "retention": {
+      "included": "Source/tests/docs/compact evidence only",
+      "excluded": "Raw native inputs, observation records, logs and generated runners remain local",
+      "attempts": [
+        {
+          "anchor": "NASolve-live-tests",
+          "path": "369_Cedar_observed-owner-ir392bdb",
+          "driver": {
+            "returncode": 0,
+            "stopped_verified": true,
+            "source_unchanged": true
+          },
+          "driver_sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+          "summary": {
+            "status": "PASS",
+            "returncode": 0,
+            "seconds": 90.74734166699636,
+            "test_sha256": "2e7729d0046835c53bffc2fb608e9f0f0aeec4f030f5d5e5f203994b1cda93b8",
+            "test_unchanged": true,
+            "scope": "Native direct-call ownership matrix only; no refinement/full suite"
+          }
+        },
+        {
+          "anchor": "NASolve-live-tests",
+          "path": "369_Cedar_observed-owner-ix8vjsb_",
+          "driver": {
+            "returncode": 0,
+            "stopped_verified": true,
+            "source_unchanged": true
+          },
+          "driver_sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+          "summary": {
+            "status": "PASS",
+            "returncode": 0,
+            "seconds": 21.35170437499619,
+            "test_sha256": "5e98103f7b61716b7ae8ad7a26c2d62eca49590bc4b0bb82e935550bd24aa023",
+            "test_unchanged": true,
+            "scope": "Native direct-call ownership matrix only; no refinement/full suite"
+          }
+        }
+      ]
+    },
+    "remaining": [
+      "Versioned prepared-model observation and explicit post-preflight immutable admission through existing execution owner.",
+      "Qualify module-level native driver.run, actual optimizer/weights, report copies and final writing; no silent provider replan.",
+      "Preserve foreign global replacements in a later qualified runtime; unchanged historical v3 still has that limitation.",
+      "Q06 scientific geometry, broad chemistry/platform/default activation and merge remain open."
+    ]
   }
 }

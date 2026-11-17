@@ -55,6 +55,7 @@ def _function(module, function, compiled):
           'Foreign function globals in counted contribution')
     current = compiled
     for part in function.__qualname__.split('.'):
+        if part=='<locals>':continue
         matches = [c for c in current.co_consts if isinstance(c, CodeType) and c.co_name == part]
         _need(len(matches) == 1, 'Callable is absent from its qualified source')
         current = matches[0]
@@ -123,6 +124,60 @@ class _Sources:
         _need(all(len(fn.__closure__ or ())==len(values) and all(c.cell_contents is v
                   for c,v in zip(fn.__closure__ or (),values)) for fn,values in self.closures),
               'Counted helper closure changed')
+
+
+class _ObservedKernel:
+    """Recognize the unchanged v3 runtime closure, never unwrap arbitrary callbacks.
+
+    The enclosing source owner must pin cif_refinement_runtime as an extra helper.
+    Records grow only after successful existing wrapper calls. Check new records
+    during calls and all retained bytes at lifetime boundaries, without creating
+    another writer, journal or correction installer.
+    """
+    def __init__(self, wrapper):
+        runtime=importlib.import_module(__package__+'.cif_refinement_runtime')
+        _need(type(wrapper) is FunctionType and
+              wrapper.__qualname__=='run_compatible_refinement.<locals>.observed',
+              'Require the exact existing refinement observation wrapper')
+        self._function=_function(runtime,wrapper,compile(Path(runtime.__file__).read_bytes(),
+            str(runtime.__file__),'exec',dont_inherit=True))
+        _need(wrapper.__code__.co_freevars==('kernel','observations','seen') and len(wrapper.__closure__ or ())==3,
+              'Unsupported refinement observation closure')
+        self._cells=tuple((cell,cell.cell_contents) for cell in wrapper.__closure__)
+        self.kernel,self._directory,self._seen=(value for _,value in self._cells)
+        _need(type(self.kernel) is kernel_owner.ParallelityKernel and type(self._directory) is type(Path())
+              and type(self._seen) is set and self._directory.is_dir(), 'Unsupported owned observation state')
+        self._resolved=self._directory.resolve(); self._known={}
+        self.check(full=True)
+
+    def check(self, *, full=False):
+        fn,code,defaults,kwdefaults=self._function
+        _need(fn.__code__ is code and fn.__defaults__==defaults and fn.__kwdefaults__==kwdefaults
+              and all(cell.cell_contents is value for cell,value in self._cells),
+              'Refinement observation callable/closure changed')
+        _need(self._directory.resolve()==self._resolved and self._directory.is_dir()
+              and len(self._seen)<=4096 and set(self._known)<=self._seen,
+              'Refinement observation history/directory changed')
+        for identity in self._seen-set(self._known):
+            _need(type(identity) is tuple and len(identity)==2 and type(identity[0]) is int and identity[0]>0
+                  and type(identity[1]) is str and len(identity[1])==64
+                  and all(c in '0123456789abcdef' for c in identity[1]), 'Invalid observation identity')
+            path=self._resolved/(str(identity[0])+'-'+identity[1]+'.json')
+            _need(path.stat().st_size<=policy.MAX_BYTES, 'Observation record exceeds byte bound')
+            raw=path.read_bytes();row=json.loads(raw)
+            _need(type(row) is dict and set(row)=={'pid','parent_pid','parameter_sha256','parameters'}
+                  and type(row['pid']) is int and row['pid']==identity[0] and type(row['parent_pid']) is int and row['parent_pid']>=0
+                  and row['parameter_sha256']==identity[1], 'Observation record identity differs')
+            parameters=row['parameters']
+            _need(type(parameters) is dict and set(parameters)=={'site_count','proxies'}
+                  and type(parameters['proxies']) is list and len(parameters['proxies'])<=policy.MAX_ITEMS,
+                  'Invalid observed plane parameters')
+            reconstructed=kernel_owner.parallelity_parameters([SimpleNamespace(**p) for p in parameters['proxies']],
+                site_count=parameters['site_count'])
+            _need(reconstructed==parameters['proxies'] and _digest(parameters)==identity[1],
+                  'Observation parameters/digest differ')
+            self._known[identity]=(path,hashlib.sha256(raw).hexdigest())
+        if full:_check_files(tuple(self._known.values()))
 
 
 def _check_files(pins):
@@ -205,7 +260,12 @@ class CountedContributionOwner:
         modules={name:importlib.import_module(package+'.'+name) for name in names}
         _need(modules['topostitch_native_recipe'] is factory_module, 'Foreign factory module')
         self._factory_sources=_Sources(modules,factory_sources)
+        self._kernel_binding=api['gr'].parallelity_residual_sum
+        wrapped=type(self._kernel_binding) is FunctionType
+        _need(wrapped or type(self._kernel_binding) is kernel_owner.ParallelityKernel,
+              'Require the existing owned parallelity correction')
         helper_modules={m.__name__.rsplit('.',1)[-1]:m for m in (policy,correction,kernel_owner,state_owner,gradient_owner)}
+        if wrapped:helper_modules['cif_refinement_runtime']=importlib.import_module(__package__+'.cif_refinement_runtime')
         self._helper_sources=_Sources(helper_modules,helper_sources)
         self._observer=modules['topostitch_native_coverage']; self._factory=factory_module
         self._baseline=_detached(frozen_policy)
@@ -216,8 +276,8 @@ class CountedContributionOwner:
         self._context=_detached(factory_arguments['provider_selection']['frozen']['context'])
         _need(self._context['native_exclusion_policy_sha256']==observed['policy_sha256']
               and self._context['crystal_sha256']==_digest(self._fixed['symmetry']), 'Counted context differs from frozen native policy')
-        self._kernel=api['gr'].parallelity_residual_sum
-        _need(type(self._kernel) is kernel_owner.ParallelityKernel, 'Require the existing owned parallelity correction')
+        self._kernel_observation=_ObservedKernel(self._kernel_binding) if wrapped else None
+        self._kernel=self._kernel_observation.kernel if wrapped else self._kernel_binding
         self._kernel_api=dict(vars(self._kernel._api)); self._kernel_flex=self._kernel._flex
         _need(self._kernel_flex is api['flex'] and self._kernel_api == {name:getattr(api['ext'],name)
             for name in ('parallelity','parallelity_proxy','parallelity_residual_sum')}
@@ -254,6 +314,8 @@ class CountedContributionOwner:
         # Large native binaries are checked at admission/entry/exit, not on every
         # minimizer call. Small profiles and loaded bindings are checked each call.
         _check_files(self._api['profiles']); _check_files(self._api['native_files'])
+        observed=getattr(self,'_kernel_observation',None)
+        if observed is not None:observed.check(full=True)
 
     def _bindings(self, *, idle=False):
         _check_files(self._api['profiles'])
@@ -275,9 +337,10 @@ class CountedContributionOwner:
         _need(all(getattr(obj,name) is fn for obj,name,fn in self._native_bindings)
               and all(fn.__code__ is code and fn.__defaults__==defaults and fn.__kwdefaults__==kwdefaults
                       for fn,code,defaults,kwdefaults in self._native_codes), 'Native counted call chain changed')
-        _need(api['gr'].parallelity_residual_sum is self._kernel and self._kernel._flex is self._kernel_flex
+        _need(api['gr'].parallelity_residual_sum is self._kernel_binding and self._kernel._flex is self._kernel_flex
               and vars(self._kernel._api)==self._kernel_api, 'Existing correction owner changed')
         self._factory_sources.check(); self._helper_sources.check()
+        if self._kernel_observation is not None:self._kernel_observation.check()
 
     def _state(self):
         xrs=self._model.get_xray_structure(); api=self._api
@@ -411,6 +474,7 @@ class CountedContributionOwner:
                 normalization=factor,compute_gradients=gradient,native_owned_buffer=gradient,
                 geometry_flags={n:getattr(flags,n) for n in policy.FLAG_FIELDS},
                 default_geometry_flags=default_flags,disable_asu_cache=disable,
+                existing_usage_observation=self._kernel_observation is not None,
                 inner_calls=active.inner,extension_calls=active.extension,force_sites_sha256=_digest(state['sites']),
                 fixed_policy_sha256=_digest(self._fixed),contribution_binding_sha256=self._report_digest)
             return result
