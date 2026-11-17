@@ -34,9 +34,11 @@ current instructions; other branches retain their own status and validation pins
   but residual geometry defects and lack of Rfree benefit remain. No new refinement
   or physical repair is claimed. W124 independently audits C379 refused-admission
   records and C380's package-owned upstream library integration; positive counted
-  admission and continuation remain next.
+  admission follows in W125: C381's saved request/preflight/admission completes a
+  bounded native cycle with audited refusal/failure controls. Ordinary descendants
+  refuse rather than lose pair intent; positive continuation remains next.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Next human update is W125;
+  [machine-readable source](topostitch-roadmap.json). Next human update is W126;
   do not restart completed probes merely because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

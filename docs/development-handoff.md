@@ -1,7 +1,7 @@
 # NASolve development handoff — Willow
 
 Updated **2026-11-17**. This is the **`willow` branch** handoff, not the
-project-wide status of Pine, Cedar or Alder. **W124 package integration is audited; W125 is next.**
+project-wide status of Pine, Cedar or Alder. **W125 durable counted admission is audited; explicit descendant continuation is next.**
 Runtime code includes W113's factory, W117's exact-image optimization and W118's
 data-only same-frame recipe rebind; W110/W111 remain diagnostic and protocol evidence.
 Direct native ownership is qualified at C368/W113; actual prepared-state
@@ -11,8 +11,10 @@ consumption at C375/W118 pins, stopping before optimization. W120 extends those
 pins through the full short cycle/writer with exact W116 state/statistics agreement.
 Cedar C377 supplies the maintained bounded lifetime; W121 qualifies the current
 joined installed package. Cedar C379 records refused admission truthfully; C380 now packages the exact maintained
-Willow source closure. W124 independently audits that integration. Positive counted
-admission, descendant continuation and physical repair remain open.
+Willow source closure. W124 independently audits that integration. C381 now supplies
+explicit durable counted admission; W125 independently audits its native outcomes
+and final installed package. Positive descendant continuation and physical repair
+remain open.
 The [machine roadmap](topostitch-roadmap.json) owns milestone status; its
 [generated human view](topostitch-roadmap.md) owns the numbered progress queue.
 
@@ -26,7 +28,8 @@ S04/S05/S06 and P01/P02 remain partial; use the roadmap for individual gates.
 
 | Current component | Proven scope | Boundary still open |
 | --- | --- | --- |
-| W124 / C379–C380 source integration | Exact package-owned Willow closure, 887 relocated installed tests +13 subtests; independent 296-file audit; distinct refused-admission receipt | No positive counted admission, new native/full-suite result, ordinary activation or repair |
+| W125 / C381 durable counted admission | Saved intent → actual preflight → immutable admission → complete bounded cycle; independently audited success/failures and relocated final package | Ordinary descendants refuse rather than drop pair intent; positive continuation and repair remain open |
+| W124 / C379–C380 source integration | Exact package-owned Willow closure, 887 relocated installed tests +13 subtests; independent 296-file audit; distinct refused-admission receipt | Historical package gate; later counted admission is W125, ordinary activation/repair remain open |
 | W123 saved-endpoint pair attribution | Existing 124 terms across 14 pairs show modest targeted geometry improvement; full-precision native/zero endpoints exact | No Rfree benefit, repaired pair or density/backbone acceptance |
 | W104 `review_pair_coverage` | Read-only comparison of explicit requested/native/additive terms; rejects missing, duplicate, stale, image and parameter mismatches | Caller authenticates complete declarations; no activation |
 | W105 `describe_compiled_pair_terms` | Exports terms from the existing compiled recipe and original bound packet | Not a native force or lifecycle qualification |
@@ -60,26 +63,21 @@ inference and large-bend repair are later. No new code or native run is authoriz
 by this planning update. W121/C378 retain native lifecycle qualification; W124 records newer C380 package
 integration. W123 separately attributes saved endpoint geometry without another refinement.
 
-1. Wire versioned original request, validated preflight, immutable admission and
-   same-phase consumption through existing execution owners. C377's maintained
-   `PreparedCountedRefinement` and W121's joined installation close the preceding
-   helper/package gates, not durable provenance. C380 now owns the exact library in
-   its installed package; C379 preserves refused admission separately. Reuse C378's qualified bounded
-   frozen source set; do not import another worktree or copy the whole repository
-   into a saved round. Rowan owns the shared controller.
-   Bind original intent, actual parent/input/frame, selected providers and frozen
-   code. Preserve native preflight return 0 plus a distinct admission-refused /
-   unlaunched-refinement outcome; read-only validators must not write records.
-   The qualified unit-weight, one-cycle, all-site protocol is explicit. Ordinary
-   AutoRefine/Doctor defaults are broader: do not silently override them to fit it.
-2. Preserve declared pair intent across descendants, manual children and Doctor
-   ancestry, refusing omission or incompatible changes before allocating a round.
-   Reuse Cedar's `require_runtime_continuation` and strict `_lineage` owner at the
-   existing AutoRefine/Doctor entry points; do not copy execution authority into
-   manual-child output records.
-   W118 provides same-identity/frame recipe data only; every new parent requires
-   fresh native preflight and an explicitly sealed selection. Do not silently
-   replan an already admitted phase or substitute the weaker legacy C371 record.
+1. Preserve C381's explicit saved-intent/preflight/admission path and its exact
+   qualified worker. W125 verifies a complete native cycle and truthful failure
+   outcomes; do not repeat the original-source probe. Its programmatic diagnostic
+   is not an ordinary registered checkpoint or user-facing activation. Rowan owns
+   the shared controller. Unit weights, one cycle and all-site coordinates remain
+   explicit; ordinary AutoRefine/Doctor defaults are not silently narrowed.
+2. Qualify positive descendant continuation through the existing registry and
+   lineage owners. C381 now refuses ordinary descendants, including manual children,
+   rather than dropping counted pair intent. Resolve the selected current model
+   and original recipe/source, apply W118's checked same-frame rebind, then require
+   fresh native preflight and admission. Do not copy execution authority into a
+   manual child's output record or treat the C381 diagnostic's arbitrary parent
+   label as registered lineage. Reuse W119's already qualified stopped boundary;
+   the missing native gate is a maintained completed descendant, not another
+   direct factory probe. Never silently replan an admitted phase.
 3. Extend qualified native scope deliberately: copied reports, weight consumers,
    target/model changes and broader phases remain separate gates. Native-family
    reports omit additions, so retain separate contribution evidence. Reuse existing
@@ -95,6 +93,14 @@ not a campaign default. W116's short fixed-weight siblings show no diffraction
 benefit; W123 finds modest selected-pair improvement but substantial residual defects; W119 deliberately performs no optimization. Neither adopts a repair.
 
 ## Validation and compatibility
+
+W125 independently audits C381's real Phenix 2.2.1-6174 success, unsupported-scope
+refusal and final-writer failure. Final package: **347 focused tests +13 subtests**,
+298 source/resource files matching committed Cedar and 24 unchanged frozen native
+files. Completed cold reads survive relocation; final readers preserve all three
+outcomes without writes/launches. This is explicit programmatic admission, not
+ordinary continuation, a current full suite or repaired geometry. Exact pins and
+before/after scope: [W125 receipt](topostitch-periodic.md#w125--audit-durable-counted-admission-and-native-outcomes).
 
 W124 independently verifies C380's exact upstream integration and 296 installed
 source/resource files. Rowan's 887 installed tests +13 subtests pass; a separate

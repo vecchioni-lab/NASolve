@@ -6376,3 +6376,99 @@ revisions (revision 002 is authoritative), independent audit, installed receipts
 caller-check script/log and exact source/fixture manifests. External software and
 committed fixtures are represented by their pins rather than duplicated; no
 scientific data or portable-execution claim is included.
+
+
+### W125 — Audit durable counted admission and native outcomes
+
+Cedar C381 replaces the diagnostic-only handoff with an explicit saved request,
+actual native preflight, immutable admission and same-phase consumption. It reuses
+the existing execution owner, W118 recipe rebind, C375 contribution and C377
+bounded refinement lifetime. No new optimizer or pair engine is introduced.
+
+The new explicit `round-local-counted-execution-v5` request stores original recipe
+and source, checked current-parent recipe, anchored inputs and qualified code.
+After stopped successful native preflight, admission seals the actual prepared
+state, selected providers and protocol. The prepared JSON is compacted with the
+existing verified archive format; its directory is synchronized before retiring
+the transient raw copy. Cold readers validate records without publishing them.
+An exclusive launch marker prevents duplicate use of the same admitted attempt,
+including an early worker failure. Native errors survive secondary reporting
+errors; failed evidence is retained without being marked usable.
+
+Ordinary AutoRefine/Doctor defaults remain v3. Their existing lineage guard now
+refuses a counted ancestor, including a manual descendant, before allocating a
+new round: ordinary continuation must not silently drop pair restraints. Positive
+descendant continuation remains the next gate. The admitted protocol remains
+one cycle, 1–10 iterations, one process, fixed unit weights and all-site coordinate
+refinement; unsupported broader native scope refuses rather than being overridden.
+
+**Actual Phenix 2.2.1-6174 controls, run by Rowan:**
+
+- Success: preflight **16.21s**, complete refinement **35.78s**, native codes
+  **0/0**. Original W116 inputs and working crystal frame are preserved. The
+  saved preparation, final hierarchy/scattering/force sites and written physical
+  PDB records match the checksum-bound W120 control exactly. The owner closes
+  cleanly after **15 calls**, with **11,379 native +17 added =11,396** terms and
+  normalization **1/11,396**. The prepared archive is **67,216 bytes**.
+- Unsupported actual iteration scope: native preflight **4.57s /exit0**, then
+  explicit refusal; no admission, launch marker or refinement. The saved outcome
+  preserves the typed reason and codes **0/null**, rather than inventing a native
+  failure.
+- Blocked final MTZ: actual preflight **6.89s /exit0**, refinement **34.36s /exit1**.
+  Optimization reached the final writer. The original native `Sorry` survives;
+  partial PDB/output files remain, the owner closes poisoned after 15 calls and
+  its binding is restored. This is failed execution, not a usable checkpoint.
+
+**Independent Linden audit:** all 298 files in the native candidate's installed
+source/resource manifest and 60 relocated successful-run files verify. The original
+run root is absent. Completed execution/admission cold reads cannot launch a
+process or publish records, preserve bytes/mtime, and remove their temporary
+expanded view. Exact archived W120 preparation and final-state comparisons pass.
+Both native failure controls independently cold-read, reject usability, preserve
+input hashes and errors, and have stopped processes. Their roots were not relocated
+in this audit; relocation evidence is the successful case. No duplicate native run
+or duplicate peer test panel was launched by Linden.
+
+Cedar source pin: **C381 `571f3850b73bc4bd13a070d1f3c8dc0481854bdb`**.
+The [committed Cedar ledger](https://github.com/vecchioni-lab/NASolve/blob/571f3850b73bc4bd13a070d1f3c8dc0481854bdb/docs/cif-linked-native-registration-evidence.json),
+key `maintained_counted_admission_2026_11_17`, owns the exact native commands,
+source hashes, negative-before regressions and peer validation.
+
+The final relocated installation passes **347 focused tests +13 subtests in
+48.79s** after removing build source and the original install directory. Linden
+independently verifies all **298 installed source/resource files against the
+committed C381 tree**, the saved test log and wheel SHA
+`e81ffddb20c72a4a25ba0547601fe2429e641921bda978a14998e5d7b0f6f8ee`.
+The earlier native candidate wheel is
+`ed023b9c062674ed4255cb3331f0c766939d2bf2eea2c4148795619b7886d602`;
+all **24 frozen native payload files are byte-identical** in the final package.
+Only outer controller/cold-reader/storage guards changed after the native run.
+Final-package readers independently validate the success and both failures without
+launches or persistent writes; this is not another native execution.
+
+Historical independent commands:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w125-admission-review/audit.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w125-admission-review/controls.py
+```
+
+Local forensic review archive under repository anchor **everyday NASolve checkout**:
+`branch-artifacts/willow/w125-counted-admission-review-2026-11-17.tar.gz`, SHA
+`c2105880206b1939708ccd6df67f3ffa4a49f8d271a84f8b3befa75e9283362b`,
+**44,941 bytes /18 indexed files**, all verified. It retains independent audit
+scripts/results, both installed manifests/receipts and peer native summaries.
+Original scientific run artifacts remain local and excluded from Git; this compact
+review archive is not a portable or resumable campaign.
+Two further read-only commands, using the same Python/environment above, are
+`final-package.py` and `committed-source.py` in the same historical audit directory.
+
+This Willow change records evidence and roadmap progress only; Cedar owns the
+runtime/schema changes. The new records require a v5-capable reader; old policies
+and ordinary defaults retain their meanings, with no old-run migration. Relocated
+completed receipts are readable; historical pending commands are not resumable.
+No ordinary CLI activation, usable campaign selection, positive continuation,
+broader phase/weight scope, current full-suite or scientific-repair qualification
+is claimed. This independent audit does not recompute or compare full-precision
+R statistics. W123's residual defects and lack of diffraction benefit still apply.
+S05/S06 remain partial; W122's explicit user-facing option remains planning-only.

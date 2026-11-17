@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W125 — Audit durable counted admission and native outcomes
+
+- Record C381's saved intent, actual preflight, immutable admission and complete
+  bounded refinement, with truthful refusal/final-writer failure and a guard
+  against silently dropping pair intent in ordinary descendants.
+- Independently verify relocated cold reads, exact prior prepared/final state,
+  298 committed package files and unchanged native payload; reference 347
+  installed focused tests +13 subtests. Willow documentation/evidence only.
+- Positive descendant continuation, ordinary activation and physical repair
+  remain open; no current full-suite or diffraction-benefit claim.
+
 ### W124 — Audit maintained package integration and refused admission
 
 - Record Cedar C379's truthful preflight-success/admission-refusal outcome and
