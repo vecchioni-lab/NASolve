@@ -4,7 +4,7 @@
   "updated": "2026-11-17",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "77e3902be413f65c276c13a02efa90c5d966c62b",
+  "audited_code_commit": "d23ff8bcfab0e0b1c2dc3b07bdba087d8a4a1f08",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -324,7 +324,7 @@
         "W118 preserves frozen pair chemistry/images while explicitly rebinding compatible parent bytes, with full/install and saved/native compiler equivalence checks. It grants no lineage, admission or continuation authority. Separate C374 joined-package qualification passes at W117/C373 pins; no actual merge or W118 package-join claim.",
         "W119 qualifies stronger C375 prepared-state consumption at genuine non-dry driver.run after separate actual preflight, using W118 compatible-parent binding. One checked call preserves data/state and counts current native 11392 +17; exact sealed normalization/bonded/pair/dual state passes. Intentional FAILED/BoundaryObserved stops before optimizer, with no final model or usable checkpoint.",
         "W120 replays the original W116 full-recipe cycle at W118/C375 pins with stronger sealed prepared-state ownership through final writing. Full endpoint, physical records, optimizer trace, R statistics and counted owner results are exact; current 37.03s versus historical 83.21s is one observed phase comparison. No new repair benefit or maintained production activation.",
-        "C377 supplies the maintained bounded driver lifetime and separately qualified complete native cycle. W121 verifies the current W118/C377 joined installed namespace with 556 focused tests, six CLI entry points, exact 306 source/resource bytes and removed-source relocation. Durable controller integration, actual branch merge and scientific acceptance remain open; native and installed-composition evidence are distinct."
+        "C377 supplies the maintained bounded driver lifetime and separately qualified complete native cycle. W121 verifies the current W118/C377 joined installed namespace with 556 focused tests, six CLI entry points, exact 306 source/resource bytes and removed-source relocation. Durable controller integration, actual branch merge and scientific acceptance remain open; native and installed-composition evidence are distinct. C378 separately qualifies an isolated 21-file native code bundle and final-MTZ failure cleanup; these do not establish portable campaign or production admission."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
@@ -381,14 +381,15 @@
         "E_STRONG_PREPARED_PHASE",
         "E_STRONG_COMPLETE_CYCLE",
         "E_CURRENT_JOINED_INSTALLATION",
-        "E_C377_MAINTAINED_PHASE"
+        "E_C377_MAINTAINED_PHASE",
+        "E_FROZEN_PHASE_AND_FAILURE"
       ],
       "last_audit": {
         "date": "2026-11-17",
-        "code_commit": "77e3902be413f65c276c13a02efa90c5d966c62b",
+        "code_commit": "d23ff8bcfab0e0b1c2dc3b07bdba087d8a4a1f08",
         "human_update": 121,
         "reviewer": "Linden",
-        "scope": "Current joined installed package plus separately qualified maintained native lifetime; no scientific gate closes."
+        "scope": "Current joined installation, maintained lifetime, isolated frozen native source set and final-output failure cleanup are qualified in bounded controls. No scientific gate closes."
       }
     },
     {
@@ -422,7 +423,7 @@
         "W118 preserves frozen pair chemistry/images while explicitly rebinding compatible parent bytes, with full/install and saved/native compiler equivalence checks. It grants no lineage, admission or continuation authority. Separate C374 joined-package qualification passes at W117/C373 pins; no actual merge or W118 package-join claim.",
         "W119 qualifies stronger C375 prepared-state consumption at genuine non-dry driver.run after separate actual preflight, using W118 compatible-parent binding. One checked call preserves data/state and counts current native 11392 +17; exact sealed normalization/bonded/pair/dual state passes. Intentional FAILED/BoundaryObserved stops before optimizer, with no final model or usable checkpoint.",
         "W120 replays the original W116 full-recipe cycle at W118/C375 pins with stronger sealed prepared-state ownership through final writing. Full endpoint, physical records, optimizer trace, R statistics and counted owner results are exact; current 37.03s versus historical 83.21s is one observed phase comparison. No new repair benefit or maintained production activation.",
-        "C377 supplies the maintained bounded driver lifetime and separately qualified complete native cycle. W121 verifies the current W118/C377 joined installed namespace with 556 focused tests, six CLI entry points, exact 306 source/resource bytes and removed-source relocation. Durable controller integration, actual branch merge and scientific acceptance remain open; native and installed-composition evidence are distinct."
+        "C377 supplies the maintained bounded driver lifetime and separately qualified complete native cycle. W121 verifies the current W118/C377 joined installed namespace with 556 focused tests, six CLI entry points, exact 306 source/resource bytes and removed-source relocation. Durable controller integration, actual branch merge and scientific acceptance remain open; native and installed-composition evidence are distinct. C378 separately qualifies an isolated 21-file native code bundle and final-MTZ failure cleanup; these do not establish portable campaign or production admission."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -430,7 +431,7 @@
         "Blunt and asymmetric-orientation trials retain matched observations/Free-R and independent bends/maps; calibrate inconclusive outcomes rather than force alignment or a statistical winner.",
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning."
       ],
-      "next_action": "Wire original request, actual preflight, immutable admission, honest refused/unlaunched phase outcomes and descendant intent retention through the existing execution/ancestry owners, consuming C377 without replanning. Select the bounded qualified protocol explicitly or refuse unsupported ordinary AutoRefine/Doctor settings before allocation; never silently override their defaults. Preserve working frame, data/Free-R, providers and fixed trial budgets. Broader phases, exclusions, calibrated maps and B09 remain open; do not repeat W120/W121 without a changed question.",
+      "next_action": "Wire original request, actual preflight, immutable admission, honest refused/unlaunched phase outcomes and descendant intent retention through the existing execution/ancestry owners, consuming C377 without replanning and reusing the C378 bounded frozen source set rather than a live worktree or whole repository. Select the bounded qualified protocol explicitly or refuse unsupported ordinary AutoRefine/Doctor settings before allocation; never silently override their defaults. Preserve working frame, data/Free-R, providers and fixed trial budgets. Broader phases, exclusions, calibrated maps and B09 remain open; do not repeat W120/W121 without a changed question.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -459,14 +460,15 @@
         "E_STRONG_PREPARED_PHASE",
         "E_STRONG_COMPLETE_CYCLE",
         "E_CURRENT_JOINED_INSTALLATION",
-        "E_C377_MAINTAINED_PHASE"
+        "E_C377_MAINTAINED_PHASE",
+        "E_FROZEN_PHASE_AND_FAILURE"
       ],
       "last_audit": {
         "date": "2026-11-17",
-        "code_commit": "77e3902be413f65c276c13a02efa90c5d966c62b",
+        "code_commit": "d23ff8bcfab0e0b1c2dc3b07bdba087d8a4a1f08",
         "human_update": 121,
         "reviewer": "Linden",
-        "scope": "Current joined installed package plus separately qualified maintained native lifetime; no scientific gate closes."
+        "scope": "Current joined installation, maintained lifetime, isolated frozen native source set and final-output failure cleanup are qualified in bounded controls. No scientific gate closes."
       }
     },
     {
@@ -2241,6 +2243,34 @@
         "phase_helper_sha256": "a5d7c820e511fdb80188563cb746d70516a9601dde83a8a99398542cba27c6e7",
         "cedar_ledger_key": "maintained_prepared_refinement_lifetime_2026_11_17"
       }
+    },
+    "E_FROZEN_PHASE_AND_FAILURE": {
+      "kind": "cedar_isolated_frozen_phase_and_final_output_failure",
+      "code_commit": "d23ff8bcfab0e0b1c2dc3b07bdba087d8a4a1f08",
+      "human_update": 121,
+      "reference": "docs/topostitch-periodic.md#w121-follow-up--c378-failure-recovery-and-frozen-worker-code",
+      "result": "C378 runs a complete actual Phenix 2.2.1-6174 phase with 18 frozen modules and three profiles (342,556 bytes) from W121, all native imports under the owned directory and no live NASolve namespace. Preparation, full endpoint, physical records, trace and diffraction exactly match W120; 15 calls, restored bindings and stopped processes. A distinct deliberate MTZ collision fails during final writing after optimization, retaining the first native error, partial outputs, closed/poisoned owner and restored bindings; native return codes 0/1 and no usable execution.",
+      "limitation": "Failure occurred later than planned and remains failed, not a successful refinement or campaign recovery test. The isolated native worker uses frozen code, but the installed outer controller remains separate. No production admission, ordinary activation, optional chemistry-site observations, arbitrary protocol, portable campaign, independent SDK, branch merge or new complete-suite claim.",
+      "runtime_pins": {
+        "cedar_source_commit": "0aaec4bd0b7dc49ffd038a5be578523d9ed1a4f1",
+        "cedar_evidence_commit": "fbc4ea01df5a5e623e20dd555186ce3066cb6c95",
+        "cedar_ledger_key": "frozen_phase_failure_and_joined_package_2026_11_17",
+        "joined_wheel_sha256": "1f712477c66eadb06b5dc27d576c4c0c6be930cbcd9cb105126cbd3f495d89b7"
+      },
+      "local_receipts": [
+        {
+          "repository_anchor": "everyday NASolve checkout",
+          "relative_path": "branch-artifacts/cedar/c377-phase-lifetime/native-failure-audit.json",
+          "sha256": "5d9edf0217673fa2b311a431b3b25433465f6b6ab995832e3180933fa7fa2bae",
+          "bytes": 1964
+        },
+        {
+          "repository_anchor": "everyday NASolve checkout",
+          "relative_path": "branch-artifacts/cedar/c377-phase-lifetime/frozen-native-audit.json",
+          "sha256": "309c57785c712b2405623a95bcd8f3a98f4681f0acc420563818d0f4a19b67d5",
+          "bytes": 8043
+        }
+      ]
     }
   },
   "benchmarks": [
