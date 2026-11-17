@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Keep the chemical inputs used to compose a custom residue (C364)
+
+- The existing source freezer can retain explicitly selected backbone/base inputs
+  and reproduce the exact composed source and derivation during readback.
+- Complete requests carry that small closure after relocation. Older selection
+  modes keep their exact bytes; composition does not grant numerical qualification,
+  mutation activation or a base-pairing rule.
+
 ### Retain why each construction dictionary was chosen (C363)
 
 - Ordinary construction lineage can retain the existing canonical-input projection

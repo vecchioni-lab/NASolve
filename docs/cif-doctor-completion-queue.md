@@ -19,7 +19,12 @@ because this DF candidate improves. Reuse the existing transport primitive.
 Resume [ordinary DY integration](#dy--packaged-retained-triazole-reference-and-mutation-support):
 C362 derives projections from canonical input/end states; C363 binds that derivation
 through existing construction lineage and complete-request/actual-model context.
-Next retain source-composition provenance and connect ordinary intake. C357 retention findings remain recorded locally.
+C364 retains source-composition inputs/proof through the existing source freezer and
+complete request; exact prior DY source and old default bytes replay unchanged.
+Next join the original chemical source to the qualified projection source (rather
+than requiring it to equal the numerical Coot dictionary), then connect ordinary
+intake. Preserve separate source, numerical and end-state checks. C357 retention
+findings remain recorded locally.
 
 Linden's W111 counted-contribution diagnostic supports shared Q06 integration;
 C331 remains callback-free. Review exact owner admission, callable identity, native
@@ -948,7 +953,8 @@ Current remaining integration, in order:
    bytes; C359 now owns exact per-site dictionary choice through the same lineage and
    cold complete requests. C362 derives projections through the existing site owner;
    C363 binds their full derivation to construction and actual prepared-model end/link
-   context through that same request. Source-composition provenance and ordinary
+   context through that same request. C364 retains/rederives source composition.
+   The qualified projection source must now join the acquisition source; ordinary
    forwarding remain open; neither implies refinement acceptance.
 
 Source/native chemistry, rotatable bridge controls and saved mixed-context replay

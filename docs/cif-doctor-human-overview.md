@@ -4289,8 +4289,11 @@ chemical rules produce the same free-end/internal dictionaries. Coot builds the
 mixed model and Phenix readback passes 87 checks with two unavailable formal-charge
 observations. Ordinary construction history now retains why those dictionaries were
 chosen, and the complete request checks that their declared ends agree with the model
-it receives. This survives moving the files to another location. Source composition
-provenance and ordinary intake remain open; construction is not refinement approval.
+it receives. This survives moving the files to another location. The same source
+store now keeps the original backbone and custom base, then rebuilds their chemical
+definition to verify its history. The DY closure is four files, about 30 KB. Chemical
+source and Coot numerical dictionary still need their distinct roles joined through
+ordinary intake; construction is not refinement approval.
 
 A separate construction check now recognizes when Coot merely pads a residue name
 differently in the PDB field. It still checks all coordinates and other atom fields,
@@ -4302,6 +4305,7 @@ A DF control now separates a useful construction improvement from refinement:
 keeping the entire base together preserves its approximately 1.500 Å sugar–base
 bond while restoring the original sugar and backbone. The older curated placement
 copied a stretched 1.602 Å bond from Coot's temporary canonical base. All other
-atoms stay unchanged. This is a separately audited candidate; matched refinement
-and a general production rule are still required, including the protection supplied
-by older sulfur and iodine placement rules.
+atoms stay unchanged. Hazel's matched five-cycle refinement preserves the declared
+links and restraints but stretches the bond again to 1.66244 Å. This is a useful
+construction correction, not a solved refinement. A general production rule must
+also preserve the protection supplied by older sulfur and iodine placement rules.

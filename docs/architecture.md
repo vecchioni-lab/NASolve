@@ -1353,8 +1353,11 @@ request coordination, shared deadlines and multi-component repair remain separat
 C355 adds an explicit non-curated file mapping to that same owner. A separate
 policy records the sorted explicit subset and `explicit-file` kind. Curated codes
 cannot be overridden; unselected codes retain ordinary precedence. No new registry,
-process owner or qualification claim is introduced. Package/composition proof remains
-separate from frozen source choice. Defaults keep their exact historical bytes.
+process owner or qualification claim is introduced. C364 optionally binds explicit
+backbone/reference inputs through this same source owner and rederives the exact
+selected bytes and composition proof on readback. Complete requests copy the same
+four-file closure; original paths are provenance only. Descriptive package metadata
+is not chemical or numerical authority. Defaults keep their exact historical bytes.
 See [source selection](cif-doctor.md#frozen-acquisition-source-selection-c168).
 
 C169 connects C168 selected sources and explicit completed C167 attempts to the

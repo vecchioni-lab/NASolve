@@ -108334,5 +108334,83 @@
       "DF/PDU achieved geometry and shared active-counted owner integration remain Q06; no native weights or kernel changes.",
       "No full suite or merge."
     ]
+  },
+  "composed_acquisition_sources_2026_11_17": {
+    "milestone": "C364",
+    "date": "2026-11-17",
+    "signed": "Rowan",
+    "before": "Selected composed source bytes did not retain the original backbone/reference inputs or independently replay their derivation.",
+    "after": "An optional field on the existing acquisition-source freezer retains/rederives both chemical inputs and exact selected output, including in complete requests after relocation.",
+    "schema": {
+      "policy": "cif-acquisition-composed-sources-v1",
+      "field": "compositions",
+      "inputs": "Two anchored CIFs per selected composed component; original paths are provenance only.",
+      "migration": "None; default ordinary/explicit bytes unchanged and old readers reject new opt-in records."
+    },
+    "validation": {
+      "before": "19 failed,13 passed/3.43s before API; one later unbound-member regression failed/1.33s before final layout recheck",
+      "new_cases": 34,
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_composed_sources.py tests/test_cif_acquisition_sources.py tests/test_cif_explicit_sources.py tests/test_cif_reference_composition.py tests/test_cif_packaged_reference.py tests/test_cif_complete_request.py tests/test_cif_acquisition_preparation.py --tb=short",
+      "focused_result": "299 passed in 331.20s (0:05:31)",
+      "installed": {
+        "status": "INSTALLED_RELOCATED_COMPOSITION_SOURCE_PASS",
+        "wheel_sha256": "7a3a1acbec482478e7b95aefb38b1035216268b619132794f7281d17b2cb0197",
+        "wheel_bytes": 1398096,
+        "source_copy_removed": true,
+        "original_install_path_absent": true,
+        "package_reference_bytes_match": true,
+        "validation_command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-c",
+          "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_cif_composed_sources.py', 'tests/test_cif_acquisition_sources.py', 'tests/test_cif_explicit_sources.py', 'tests/test_cif_reference_composition.py', 'tests/test_cif_packaged_reference.py', 'tests/test_cif_complete_request.py', 'tests/test_cif_acquisition_preparation.py', '--tb=short']))"
+        ],
+        "validation_output": "........................................................................ [ 24%]\n........................................................................ [ 48%]\n........................................................................ [ 72%]\n........................................................................ [ 96%]\n...........                                                              [100%]\n299 passed in 331.61s (0:05:31)\n",
+        "build_command": "phenix.python -m pip wheel --no-deps --no-build-isolation --no-index",
+        "temporary_bytes_removed": 10949639
+      },
+      "prior_source_replay": {
+        "status": "EXACT_C342_SOURCE_COMPOSITION_COLD_REPLAY_PASS",
+        "root": "364_Cedar_composition-source-_7rpew2j",
+        "source_sha256": "a7d9ed314862298e589be0f873cc41c9abaa0d2608aa709ce26fc0a59aaf1d55",
+        "composition_policy": "cif-explicit-deoxy-base-source-composition-v1",
+        "source_policy": "cif-acquisition-composed-sources-v1",
+        "qualification": "EXISTING_C342_SOURCE_AND_QUALIFICATION_READ; NO_NEW_NATIVE_EXECUTION",
+        "entry_id": null,
+        "closure_files": 4,
+        "closure_bytes": 29583,
+        "prior_files_and_timestamps_preserved": 104,
+        "original_input_copies_removed": true,
+        "old_output_path_absent": true,
+        "cold_read_bytes_and_timestamps_unchanged": true,
+        "compatibility": {
+          "ordinary": "EXACT_REPORT_AND_ALL_BYTES",
+          "explicit": "EXACT_REPORT_AND_ALL_BYTES"
+        },
+        "old_reader_on_new_policy": "REFUSED",
+        "native_execution": "FORBIDDEN",
+        "temporary_bytes_removed": 6366,
+        "elapsed_seconds": 0.5451774169996497
+      },
+      "static": "git diff --check and Python3.10 AST; no full suite"
+    },
+    "changed_files": [
+      "src/nasolve/cif_acquisition_sources.py",
+      "tests/test_cif_composed_sources.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "compatibility": "Existing curated precedence, source authority/kind and exact old bytes preserved. Package descriptive qualification is never inferred. No chemistry, targets, weights, process ownership or automatic activation changes.",
+    "retention": "Only code/tests/docs/compact hashes and results committed; four-file 29583-byte source closure local. No new models/native logs/SDK snapshots. Prior104files/timestamps unchanged. Disposable successful package/temp copies removed.",
+    "remaining": [
+      "Correct source-versus-numerical-CIF join for projected construction in ordinary requests.",
+      "Ordinary PostMR planning/source/projection forwarding.",
+      "Q06 achieved refinement geometry; DF negative remains open."
+    ]
   }
 }

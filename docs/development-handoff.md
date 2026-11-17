@@ -1,29 +1,37 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C363 projection lineage — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. C362 / `368f549c` is pushed.
-C363 is complete: 22 new focused tests and 119 final installed/relocated tests pass.
-Earlier broad compatibility: 213 focused and 213 installed before the final context
-join. Fresh Coot plus exact prior Phenix replay pass; all Rowan jobs stopped.
-No full suite. Failed local diagnostic attempts remain preserved.
+Updated **2026-11-17, C364 retained source composition — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. C363 / `c102d714` is pushed.
+C364 is complete: 34 new cases and 299 focused/installed checks pass. The exact
+C342 chemical source replays with retained composition inputs after relocation.
+No new Phenix/Coot execution or full suite. All Rowan jobs stopped; local failed
+scientific attempts remain preserved.
 
 ## Immediate work and peer boundary
 
-**Next: source-composition provenance and ordinary DY intake.** C358 planning,
-C359 one-call mixed-end construction, C362 canonical-input projection and C363
-projection lineage are complete. Existing owners now retain exact original model,
-site choices, chemical derivation and declared ends, then compare them against the
-actual prepared model. A complete request replays that same closure after relocation.
-The mixed-end live closure is 29 files / 2.33 MB; native diagnostics are not copied
-into it. No additional source/process/proof store was introduced.
+**Next C365: join chemical-source identity to qualified construction projections.**
+C364 completes retained source composition through the existing acquisition-source
+owner: exact backbone/base inputs and operation proof reproduce the selected source
+under cold readback. Original/package paths are unnecessary. The C342 DY source is
+byte-exact, with four closure files / 29,583 bytes. Ordinary/explicit source policies
+remain byte-exact against C363. Focused/installed tests pass; no native execution.
 
-Composition remains distinct: C354's packaged-reference compositor reproduces the
-C342 source, and C355 freezes exact selected source bytes, but the original backbone/
-base composition inputs and operation proof still need an explicit joined record.
-Inspect `cif_reference_composition`, packaged reference lookup and the existing
-acquisition-source freezer before designing that seam. Then ordinary PostMR/request
-forwarding must use those checked choices without fabricating NARestraints pairing
-roles. Do not mistake successful explicit library controls for automatic activation.
+Prior-work review identifies a concrete integration mismatch: C196's original
+`_construction_input` expects the per-component construction CIF to equal the
+selected acquisition source. The real C363 DY record instead has a numerical Coot
+CIF and per-site projections derived from a separately qualified chemical source.
+Its actual context check passed, but automatic source join is still absent. C363's
+projection reader already validates the qualified snapshot and every consumed site
+CIF. Reuse that source/authority for the acquisition join while retaining all exact
+numerical/end-state checks; old non-projected lineage keeps its exact-byte rule.
+Validate with different source/numerical files, rejection of wrong source/authority,
+and the actual C363 model plus C364 source through ordinary prepared intake, cold.
+Do not bypass this mismatch by presenting a numerical dictionary as chemical source.
+
+After that bounded join, ordinary PostMR orchestration still needs to forward explicit
+source/parent/projection choices before Coot. Its current catalogue-only lookup cannot
+activate DY. Preserve explicit phosphate intent and NAR ownership; no invented pairing
+roles, new process/proof owner, defaults or native target changes. Keep Q06 open.
 
 **DF diagnostic complete; production restoration remains open.** C361 uses Hazel's
 separately prepared canonical parent, with its recorded D:1 terminal-phosphate
@@ -69,12 +77,13 @@ has three remaining integration steps:
 1. **Explicit planning now works (C358).** A chosen chemical source and canonical
    parent pass existing DNA graph/chi-frame and explicit D-deoxy stereo checks.
    Ordinary request forwarding remains open; no pairing record or Y/YTR alias.
-2. **One mixed-end Coot request now works (C359).** Explicit site dictionaries build
+2. **One mixed-end Coot request now works (C359/C362/C363).** Explicit site dictionaries build
    both DY sites in either order with exact scaffold/neighbours and chi <0.014degrees.
-   Phenix passes87 checks/two unsupported charge readbacks. Next derive projections
-   from the original canonical model; this control reused the C345 projections.
+   Phenix passes87 checks/two unsupported charge readbacks. C362 now derives the
+   projections from canonical input and C363 retains that exact derivation.
 3. **Carry the source and choice through existing lineage.** Bind composition inputs
-   and selected dictionaries through the existing construction/request owners.
+   and selected dictionaries through the existing construction/request owners;
+   C364 completes composition retention. The qualified source join above is next.
    C353 retains canonical seed proof; C355 owns frozen source bytes; C359 carries
    exact site dictionaries through existing lineage and complete requests.
    Verify installed, relocated readback without original paths. Do not add another
@@ -124,6 +133,7 @@ unfinished-work order. A readable CIF or passing derivative check does not close
 
 Exact controls, commands, hashes and limitations are in the
 [evidence ledger](cif-linked-native-registration-evidence.json). Start with
+`composed_acquisition_sources_2026_11_17`,
 `construction_projection_lineage_2026_11_17`,
 `canonical_input_projection_2026_11_17`,
 `df_existing_whole_base_diagnostic_2026_11_17`,
@@ -140,6 +150,10 @@ Exact controls, commands, hashes and limitations are in the
 blob/checksum and offline retrieval. Historical next steps are not current instructions.
 
 ## Validation and limits
+
+- C364: **299 passed in 331.20s (0:05:31) focused**; installed/relocated result is in the
+  evidence ledger. 34 new cases, with 19 missing-API failures and one later
+  unbound-member failure before implementation. No native execution/full suite.
 
 - C360: **281 focused / 12.19s;281 installed/relocated / 10.26s**.15 new
   cases;14 initial failures before implementation. Real Coot control ~4.00MB,

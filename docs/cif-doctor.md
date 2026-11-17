@@ -14052,3 +14052,30 @@ context join also passes. The complete retained construction closure is 29 files
 213-test compatibility pass preceded the final context guard. Exact evidence:
 `construction_projection_lineage_2026_11_17`. Source composition provenance and
 ordinary request forwarding remain the next explicit integration work.
+
+### Retained two-source chemical composition (C364)
+
+`freeze_acquisition_sources(..., composition_inputs={code: {
+"backbone": (path, component), "reference": (path, component)}})` optionally binds
+composition for a nonempty subset of explicitly selected non-curated sources. The
+existing `compose_dna_source` must reproduce each selected CIF byte-for-byte. The
+same source-selection directory retains two original input CIFs per component and
+the complete derivation in `source_selection.json`; no new owner or chemistry rule.
+The optional policy is `cif-acquisition-composed-sources-v1`. Source authority/kind
+remain `EXPLICIT`/`explicit-file`, and numerical/scientific qualification stays unset.
+
+Readback checks exact anchored references and closed inventories, then rederives
+both output and proof. Source roles, declared components, charges/stereochemistry,
+atom origins and constructed coordinates remain the compositor's authority. Input
+changes across validation/copy/readback refuse. Historical absolute paths are only
+provenance; package lookup and original sources are not needed after relocation.
+Package descriptive metadata is not retained as qualification or inferred from a
+matching definition. Complete requests already retain this exact declared source tree.
+
+Omission preserves old ordinary and explicit policies/bytes. No migration occurs;
+older readers refuse composed records. The exact C342 DY source and existing saved
+qualification replay without native execution. Four closure files occupy 29,583 bytes.
+Focused/installed validation, compatibility and retained evidence are recorded in
+`composed_acquisition_sources_2026_11_17`. The next integration join must distinguish
+the chemical source from the qualified numerical dictionary used by Coot; ordinary
+activation, model-context qualification and refinement acceptance remain separate.
