@@ -1103,6 +1103,10 @@ W114 qualifies this factory through the separate Cedar counted owner using exact
 source/wheel pins: actual-model accumulation, stale hierarchy during coordinate
 movement, select-all fresh binding and restart. No ordinary driver is activated.
 Native reporting copies drop instance admission and use native-family residual
-decomposition; added-pair evidence must remain explicit. The existing usage wrapper,
-prepared-model boundary and final writer are the next integration consumers.
+decomposition; added-pair evidence must remain explicit. C369 qualifies the existing usage wrapper separately; W115 qualifies read-only
+prepared assembly through the actual zero-cycle return. A direct source/native
+crystal join remains mandatory: MTZ/PDB representation precision does not permit
+silently changing the recipe frame. Working-frame choice must precede immutable
+admission. The optimizer, reporting consumers and final writer remain the next
+active integration boundary.
 See the [direct-owner receipt and next gate](topostitch-periodic.md#w114--qualify-the-shared-counted-owner-lifetime).

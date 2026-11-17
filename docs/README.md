@@ -15,10 +15,12 @@ current instructions; other branches retain their own status and validation pins
   readers while preserving default v1 output. W113 adds a fresh frozen numerical
   contribution factory for the shared owner. W114 qualifies direct lifetime calls
   through the frozen Cedar owner and records a separate full-source compatibility
-  baseline. Ordinary runtime/report integration and exclusion policy remain open.
+  baseline. W115 qualifies read-only assembly on actual ordinary preflight,
+  retaining the working-frame requirement and original data/Free-R.
+  Ordinary optimizer/report integration and exclusion policy remain open.
   No physical repair is claimed.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Next human update is W115;
+  [machine-readable source](topostitch-roadmap.json). Next human update is W116;
   do not restart completed probes merely because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

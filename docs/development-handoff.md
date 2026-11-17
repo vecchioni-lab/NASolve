@@ -1,9 +1,11 @@
 # NASolve development handoff — Willow
 
 Updated **2026-11-17**. This is the **`willow` branch** handoff, not the
-project-wide status of Pine, Cedar or Alder. **W114 is audited; W115 is next.**
+project-wide status of Pine, Cedar or Alder. **W115 is audited; W116 is next.**
 Runtime code is W113 (`3f580610`); W110/W111 remain diagnostic and protocol evidence.
-Direct native ownership is qualified at the frozen C368/W113 pins. Ordinary refinement activation remains open.
+Direct native ownership is qualified at C368/W113; actual prepared-state
+assembly is qualified at the frozen C371 candidate/W113 pins. Ordinary refinement
+activation remains open.
 The [machine roadmap](topostitch-roadmap.json) owns milestone status; its
 [generated human view](topostitch-roadmap.md) owns the numbered progress queue.
 
@@ -20,6 +22,7 @@ S04/S05/S06 and P01/P02 remain partial; use the roadmap for individual gates.
 | W104 `review_pair_coverage` | Read-only comparison of explicit requested/native/additive terms; rejects missing, duplicate, stale, image and parameter mismatches | Caller authenticates complete declarations; no activation |
 | W105 `describe_compiled_pair_terms` | Exports terms from the existing compiled recipe and original bound packet | Not a native force or lifecycle qualification |
 | W106 `observe_native_pair_terms` | Callback-free actual-manager inventory with checksum-bound Cedar policy checks and exact rational image comparison | Special positions unsupported; source authenticity and active callback policy remain upstream |
+| W115 actual ordinary preflight | Installed shared reader reproduces independent prepared inventory/selection; 855 atoms and original data/Free-R preserved | Working frame must be explicit; no force activation |
 | W114 cross-branch direct owner | Eight lifecycle cases; zero additions, provider weighting, stale hierarchy, selection and restart | Ordinary runtime, copied reports and final writer remain open |
 | W113 `NativePairContribution` | Fresh compiler plus frozen W108 selection; exact W109 evaluation and four-family supported count | Cedar must authenticate actual manager/entry/exit; no activation |
 | W112 opt-in dual-state observation | Existing Cedar readers bind hierarchy, scattering, original fractional and actual force sites; default W106 output remains exact | Read-only; no synchronization or active/lifetime authority |
@@ -37,25 +40,34 @@ for exact commands, failed preparations, archive checksums and limitations.
 
 ## Next bounded work
 
-1. Integrate the qualified direct owner through the **existing** frozen
-   prepare/preflight/runtime/final-writer path. The ordinary runtime's usage wrapper
-   is not C368's exact kernel and still refuses. Qualify that owner explicitly;
-   preserve observations and C331's callback-free behavior.
-2. Bind the actual prepared manager after native preprocessing, and qualify one
-   bounded optimizer/one-cycle lifecycle. Model replacement, target updates and
-   scaling require explicit scope or separately frozen phases; never hide drift
-   by replanning providers. Reuse W109/W111 arithmetic and W114 direct-call evidence.
-3. Qualify reporting and weight consumers. Native statistics often select/copy
-   managers and omit added terms; distinguish native-family reports from the
-   contribution evidence. Preserve direct-inner refusal and checked fresh binding.
+1. Use the existing prepare/preflight/runtime owners to seal the actual prepared
+   observation and initial provider selection. C369 qualifies the existing usage
+   wrapper; C370 joins the source recipe and actual native crystal; C371 assembles
+   the existing records. W115 qualifies its installed actual-preflight consumer.
+   These are explicit Cedar pins, not an implicit branch merge.
+2. Qualify one coordinate-only macrocycle with fixed positive effective weights,
+   a small iteration cap, original observations/Free-R and unchanged exclusions.
+   Bind the actual post-preprocessing model at module-level native `driver.run`
+   through the final writer. Compare native-only and zero-addition ownership, then
+   the full recipe. The latter requests 17 additional terms and is a different
+   objective, not an equal-chemistry numerical control. First failure stops that
+   sibling; no provider replanning or threshold loosening.
+3. Retain native-family reports separately from added-pair evidence. Copied
+   reporting managers drop instance admission; automatic weight estimation,
+   changed targets/models and broader phases remain unqualified. Coordinate
+   production admission/versioning with Rowan; reuse existing execution owners.
 4. Qualify periodic exclusions separately, retaining repulsion meanwhile. Then use
    matched observations, Free-R, budgets and maps, with healthy/wrong-connection,
    forward/reverse shape and B09 controls. No isolated symmetry phosphate bond.
 
-The [W114 receipt](topostitch-periodic.md#w114--qualify-the-shared-counted-owner-lifetime)
-owns exact pins, commands and limitations. Do not fork a runner or repeat passed
-derivatives as a substitute for integration. All W114 native and full-suite jobs
-are complete and stopped. Coordinate shared runtime changes with Rowan.
+The [W115 receipt](topostitch-periodic.md#w115--observe-the-actual-prepared-model)
+owns exact inputs, native commands, source pins and limitations. All four W115
+preflight processes are complete and stopped. The archived input labelled
+`healthy` is an earlier tiny bend preview, not the deposited original or an
+accepted repair. Ordinary preparation uses MTZ cell precision by default;
+**choose and freeze the working frame explicitly** before compiling/using its
+periodic images. W115's source-cell override is a declared diagnostic control,
+not a new general default or permission to change scientific cell parameters.
 
 ## Validation and compatibility
 
@@ -90,6 +102,17 @@ The earlier installed virtual C338 combination passed 1,062 tests +22 subtests a
 six CLI helps; keep its narrower pins and the earlier W81 installed-context
 failures. Verified local archives preserve all evidence; scientific inputs and
 generated results remain excluded from Git.
+
+W115 runs four complete native **zero-cycle dry-run preflights** with Phenix
+2.2.1-6174. The first inspection stops at a cell-frame mismatch; the second retains
+that refusal with full observations. An explicit working-cell control passes,
+then the installed C371 reader exactly reproduces its inventory, selection and
+compiled binding. All 855 ordered atoms, 3,333 reflections and 176 original Free-R
+selections remain intact. Each preflight uses two energy-only plane calls and no
+gradient calls. No added contribution or coordinate optimization occurs. Saved
+readback and independent audit pass; docs-only Willow changes require no new
+full suite or installation. C371's separate source/install/native tests remain
+Rowan's evidence, not a Willow test count.
 
 ## Scientific limits and demonstration gates
 

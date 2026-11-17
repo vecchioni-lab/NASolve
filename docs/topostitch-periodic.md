@@ -5546,3 +5546,121 @@ qualify next; it does not implement a hook:
 Reuse the existing prepare/preflight/runtime/final-writer owners for a bounded
 optimizer/one-cycle check, then matched data/Free-R controls. S05/S06 and the B09
 physical alignment gate remain open; no density or geometry repair is selected.
+
+
+## W115 — Observe the actual prepared model
+
+**2026-11-17; diagnostic evidence, no Willow runtime or schema change.** Use the
+[roadmap](topostitch-roadmap.md) for the current queue. W115 calls the existing
+`prepare_execution` and frozen `run_compatible_refinement` APIs, then inspects
+its actual returned preflight model. A diagnostic entry retains that return;
+it is not the unchanged normal command-line entry or production admission.
+The ordinary preflight reader validates the saved evidence. No added forces,
+coordinate optimization, checkpoint registration or structural adoption occurs.
+
+### Exact input lineage and working frame
+
+The current geometry control, historically called `healthy`, is the earlier
+small bend preview: model SHA `dbdaac83c67a60c0d3df48ac19f1dbd2ddd2e15307dcb41cce564d560ab23465`.
+Its archived source is the deposited reference, SHA
+`91db1085ca5ca585655912ca169dde1fb10e6071558c5c03a37fcecd5b0cf247`.
+All 855 identities/order and occupancy/isotropic-B fields match; 204 atoms and
+ANISOU tensors were transformed, maximum Cartesian displacement 0.178553 Å.
+The preview remains unvalidated. Do not substitute the original bytes under its
+already-bound recipe.
+
+Static discovery used declared archive indexes and verified three archives plus
+20 exact members in memory, without basename search. TopoTrace's declared local
+W34 archive supplies `experiment/observations.mtz`, SHA
+`f57083bb6d6b74789ba77c0c448c678356f7e3a52805a7142e1b33f9055d86a7`.
+Its 3,333 amplitudes/sigmas and 176 original test reflections use labels
+`Fobs,SIGFobs`, `FreeR_flag`, test value 0, generation disabled. Exact Miller IDs
+and the original flag identity
+`104271d1333e6fa01ce6712fd0f9b34a24eb86603541b76f7f91345b73fb918a`
+are verified in actual prepared fmodel readback; amplitudes/sigmas agree within
+relative tolerance 1e-6. The original MTZ bytes remain unchanged.
+
+Native default preparation takes the MTZ's stored cell: a=b105.54699707031247,
+c96.26799774169922 Å, whereas source/recipe has a=b105.547, c96.268 Å.
+The maximum difference, 2.93e-6 Å, correctly fails the existing 1e-10 frame join.
+The first inspection remains failed. The second completes read-only observation
+but explicitly refuses provider selection in that frame. No tolerance is widened.
+
+A separate control declares these native arguments before execution:
+
+```text
+refinement.crystal_symmetry.unit_cell=105.547,105.547,96.268,90,90,120
+refinement.crystal_symmetry.space_group=R 3 :H
+```
+
+Its actual prepared cell matches within 2.84e-14, with unchanged original data
+and flags. This is an explicit working-frame choice for the diagnostic, not an
+automatic source-cell preference for campaigns. A production route must choose
+and freeze its working model/data frame before accepting compiled periodic
+images; changing cell parameters or recompiling images requires explicit lineage.
+
+### Native result and installed shared reader
+
+All runs use **Phenix 2.2.1-6174**, complete native **zero-cycle dry-run
+preflight**, nproc1, seed2679941, individual-sites-only intent and declared
+`fix_wxc=1`, `wc=1`. The weight is a fixed lifecycle control, not a tuned scientific
+choice. No optimizer runs. Each preflight makes two energy-only corrected plane
+calls, zero gradient calls, and one deduplicated usage record.
+
+| Attempt | Result | Owned wall time |
+| --- | --- | --- |
+| 1 | Native preflight completes; diagnostic fails source-frame assertion | 6.29 s |
+| 2 | Full read-only observation; default-frame provider selection refused | 7.74 s |
+| 3 | Explicit working-frame observation and initial provider selection pass | 8.66 s |
+| 4 | Installed C371 read-only assembly exactly reproduces attempt 3 records | 11.12 s |
+
+The last three preserve all 855 ordered atoms and anisotropic scatterers, with
+no hierarchy/scattering ADP disagreement. Explicit-frame Cartesian roundtrip
+movement is at most 1.59e-14 Å. The actual supported-family native inventory is
+2,572 proxies; 124 requested pair terms divide into **107 native and 17 missing**.
+The missing terms are selected as declarations only. Native owners/methods,
+source files, inputs, kernel and prepared state remain unchanged.
+
+Attempt 4 uses `observe_prepared_pair_contribution` from the installed C371
+candidate. It returns the existing policy, compiled binding, dual-state
+observation and provider selection; no new durable schema or full-state duplicate.
+Its observation/selection exactly match independent attempt 3, and compiled
+binding SHA is `382f5618e4b332a192011dd59c2df9689de5d08c224669c2fa3b0ddc22ebaeef`.
+The ordinary saved preflight reader and independent saved-evidence audit pass.
+Preflight R statistics are not an improvement result or a repair-selection gate.
+
+### Pins, commands and retained evidence
+
+Willow numerical code remains W113 `3f5806106bdb233e648ad3c8442d878998c846da`.
+Attempts 1–3 use the frozen C368 wheel already recorded in W114. Attempt 4 uses
+C371 wheel SHA `6d87257cb9a02fabe8b0efecb1a37b17ef8e7a5489d18da344688b8f34ed6119`,
+counted helper SHA `2504e4718b7538ac96d36a0f65c120aa695010dbdc0d51bc5605226a6ee44918`.
+All retain exact v3 runtime SHA
+`6698585c1da6225895dd1d639554321ccab695eda1b4366d243deb39106c3503`.
+No actual branch merge, full-suite repeat or new Willow installation is claimed.
+Rowan separately qualifies C371 source/installed/native behavior.
+
+Historical local commands, with exact native argv, qualified source hashes,
+process identities and input references retained in their plans:
+
+```text
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w115-prepared-state/run.py
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w115-prepared-state/run-observe.py plan-2.json
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w115-prepared-state/run-observe.py plan-3.json
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w115-prepared-state/run-c371.py plan-4.json
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w115-prepared-state/audit.py
+```
+
+Repository anchor **everyday NASolve checkout**, local forensic archive
+`branch-artifacts/willow/w115-prepared-state-2026-11-17.tar.gz`, SHA
+`d877caa3ad7a82c930b3952dd6ed14aaeac7f22c511bed78ce8b1c32e450d13d`:
+5,152,349 bytes, 114 indexed files verified after writing. It retains all attempts,
+plans, scripts, original input bytes, runtime receipts and exact software wheels.
+Scientific inputs/results stay out of Git. It is not a portable resumable campaign;
+archived diagnostic workers are evidence, not execution authority.
+
+Next: immutable prepared admission, then a bounded fixed-weight ordinary lifecycle
+through the existing driver and final writer. Native-only/zero-addition equality
+and the full recipe are distinct controls; the latter changes requested chemistry.
+Reporting copies, broader target/weight phases, exclusions and scientific
+stitch/density acceptance remain open. S05/S06 remain **PARTIAL**.

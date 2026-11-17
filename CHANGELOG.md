@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W115 — Observe actual ordinary preflight before admitting pair forces
+
+- Qualify the installed shared prepared-state reader on the model returned by
+  ordinary Phenix preprocessing: exact ordered atoms, original observations and
+  Free-R, native inventory and frozen initial provider selection are retained.
+- Preserve the initial MTZ/PDB cell-precision refusal and an explicit working-cell
+  control. Do not widen the source-frame tolerance or silently rebuild images.
+- Record source-model lineage and the next bounded lifecycle gate. No Willow
+  runtime/API/schema change, optimization or accepted structural repair.
+
 ### W114 — Qualify shared direct-call ownership and source compatibility
 
 - Record eight native lifecycle cases through the frozen Cedar counted owner:
