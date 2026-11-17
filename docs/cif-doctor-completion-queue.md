@@ -78,42 +78,43 @@ child must retain the selected pair intent through checkpoint lineage; continuin
 with only the ordinary native PHIL must not silently lose the added terms. Changed
 atom identity/frame needs explicit new preparation, never in-phase replanning.
 
-**Measured performance and next package gate:** W116's one-cycle native-only
-control takes 12.10 s versus 78.14 s with zero addition and 83.21 s with 17 additions
-(16 owned calls, 10 iterations/12 evaluations). Zero addition is numerically exact.
-C373 traces overhead to repeated equal-image rational transform composition;
-Willow W117 uses its exact identity without caching or skipping checks. One actual
-native call drops 4.62081→1.56696 s with exact scores, forces, counts, preparation
-selection and unchanged refusal/recovery. This does not predict whole-refinement
-speed. C374 qualifies the current temporary joined installed package: 308 focused
-plus22 optional-library controls and actual native prepared/wrapped/refusal calls
-pass after source removal and install relocation. No full suite or branch merge.
-C375 now consumes an exact stronger prepared selection without replanning:
-explicit broad bonded targets/normalization plus full initial native state are
-checked again at entry. Default C371 pair-only records retain their narrower
-meaning and cannot substitute. C376 records W119's actual driver-entry diagnostic
-(deliberately interrupted before optimization) and W120's complete matched W116
-full-added cycle: exact endpoint/scores/counts/optimizer trace and original Free-R.
-One whole phase takes 37.03 s versus historical 83.21 s; not an isolated performance
-benchmark. The same actual model survives through final writing.
-C377 maintains that source-qualified driver lifetime around unchanged v4;
-its complete native cycle exactly matches W120 without an extra final energy
-call. 46 focused helper and 230 relocated installed tests pass. Initial actual scope
-is one all-site XYZ cycle/process, fixed unit weights and at most ten iterations.
-Next wire versioned immutable admission through the existing execution owner. Admission may refuse
-after successful native preflight; preserve its return 0 and explicitly unlaunched
-refinement. A descendant must retain intent through a fresh same-frame/identity
-source binding and prepared admission; Linden owns the pure rebind prerequisite.
-Reuse existing `require_runtime_continuation`/`checkpoint_candidate._lineage`
-before round/trial allocation, including manual children. Ordinary recipes enable
-automatic XYZ weights and broader phases, so this bounded route needs an explicit
-choice/refusal; never silently override existing AutoRefine/Doctor defaults.
-Numerical lifecycle success is not Q06 chemistry closure.
-C376 also qualifies existing compact evidence storage for the actual 7.56 MB W115
-prepared record: 101,805 bytes, exact cold expansion after relocation/source-copy
-removal, temporary-view cleanup and wrong-digest refusal. No new serializer or
-automatic retention; 100 such payloads are 10.18 MB only, excluding science/logs.
-This is not a campaign capacity or resumability claim.
+**Current counted-refinement integration checkpoint (C378 / W121):** C375
+reuses the exact stronger preparation without replanning; C377 keeps that owner
+through one native cycle and final writing. Initial actual scope is one all-site
+XYZ cycle/process, fixed unit weights and at most ten iterations. Native complete
+endpoint/optimizer/data remain exact relative to W120, without an extra final
+energy call. The deliberate final-MTZ failure preserves the first error and
+partial files, restores hooks and publishes no usable execution. Scientific PDU/DF
+survival is still not accepted; numerical lifecycle success is not Q06 closure.
+
+W121's current joined installation passes 556 focused tests and six CLI entry
+points after relocation/source removal; source/test composition is clean, with
+eight shared-documentation conflicts still unresolved. No merge or full suite.
+C378 separately qualifies the native process using 18 frozen modules and three
+profiles (342,556 bytes) from that candidate, with no live NASolve imports and the
+same complete numerical result. The outer controller remains installed code.
+
+**Next bounded controller slice:** reuse `refinement_parallelity`'s versioned code
+freezer and immutable records. Bind original intent/source, current parent/frame,
+actual validated preflight, its explicit protocol and stronger prepared record.
+Freeze the tested package-owned source set, deduplicating existing v4 members;
+never operationally import a sibling worktree or temporary candidate. Actual
+source/docs reconciliation or an explicitly packaged interface remains necessary
+before supported integration; temporary composition does not authorize a merge.
+Native preflight 0 followed by admission refusal needs its own unlaunched-refinement
+outcome under the new policy; preserve native 0 and all historical reader meanings.
+Use `require_runtime_continuation`/`checkpoint_candidate._lineage` before allocation,
+including manual/Doctor children, with fresh compatible-parent rebind/preparation.
+Ordinary recipes enable automatic XYZ weights and broader phases: use an explicit
+qualified choice/refusal, never silently overwrite their established defaults.
+
+**Storage and speed stay measured.** C373/W117's exact transform shortcut preserves
+all checks; W120 observes 37.03 s versus historical 83.21 s for one complete phase, not
+an isolated performance benchmark. C376 packs the actual 7.56 MB prepared record to
+101,805 bytes with exact cold expansion and temporary cleanup. Reuse that storage;
+100 such payloads are 10.18 MB excluding science/logs, not campaign capacity or
+resumability. C378 retires 16.41 MB of exact obsolete software/test copies while
+retaining wheels, compressed tests, receipts and all scientific/partial outputs.
 
 ## Finish line and ordering
 

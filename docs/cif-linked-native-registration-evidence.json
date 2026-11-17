@@ -110258,5 +110258,360 @@
       "Ordinary AutoRefine/Doctor recipes use automatic XYZ weight optimization and broader phases. Do not silently override defaults to satisfy this bounded protocol; explicit qualified choice/refusal before allocation.",
       "Refreshed W118/C377 joined installed composition is delegated to Linden; current native proof uses separate packages. Q06 chemistry and wider protocols remain open."
     ]
+  },
+  "frozen_phase_failure_and_joined_package_2026_11_17": {
+    "milestone": "C378",
+    "date": "2026-11-17",
+    "signed": "Rowan",
+    "before": "C377 complete native cycle passed; current joined install, actual final-output failure and small frozen native dependency set needed distinct proof.",
+    "after": "W121 current joined package passes focused/CLI checks. Deliberate output collision fails honestly after optimization with owner cleanup and partial files preserved. Isolated native code copied from that joined package reproduces the complete endpoint without live NASolve imports. Superseded software copies retired only after exact wheel/archive checks.",
+    "changed_files": [
+      "docs/development-handoff.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/architecture.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "source_commit": "0aaec4bd0b7dc49ffd038a5be578523d9ed1a4f1",
+    "schemas": "None; documentation and local qualification only. All product source, runtime policies/defaults and previous evidence are unchanged.",
+    "joined_package": {
+      "owner": "Linden W121",
+      "human_commit": "77e3902be413f65c276c13a02efa90c5d966c62b",
+      "pins": {
+        "willow_commit": "dbb5ae249ee087b5b62a218b94429629f8a10b2b",
+        "cedar_commit": "0aaec4bd0b7dc49ffd038a5be578523d9ed1a4f1",
+        "common_base": "d7913ddd95336fddb7cb266b0bc707ffd768d9ab",
+        "unresolved_tree": "257645957ee70e4f2d5ad405886789d3f8376a29",
+        "resolved_tree": "b943c18dabe8e76a16a778e8fcac2a149ff78f16",
+        "source_conflicts": [],
+        "documentation_conflicts": [
+          "AGENTS.md",
+          "CHANGELOG.md",
+          "docs/README.md",
+          "docs/architecture.md",
+          "docs/campaign-full-auto.md",
+          "docs/collaboration.md",
+          "docs/construct-registration.md",
+          "docs/development-handoff.md"
+        ],
+        "packaging_resolution": "Union package data only; unresolved documentation excluded from focused package fixture except unchanged README.",
+        "exported_paths": [
+          "src",
+          "tests",
+          "README.md",
+          "pyproject.toml",
+          "scripts/compare_topostitch_native_packing.py"
+        ],
+        "export_sha256": "e343de3af33b7952dece3a64c2b2a66aae3e3cf1d0e1efcb65675f50d3a190f1",
+        "export_bytes": 11325440,
+        "original_git_objects_read_only": true,
+        "branch_merge_performed": false
+      },
+      "wheel_sha256": "1f712477c66eadb06b5dc27d576c4c0c6be930cbcd9cb105126cbd3f495d89b7",
+      "wheel_bytes": 1594964,
+      "source_copy_removed": true,
+      "old_install_absent": true,
+      "python_resources_verified": 306,
+      "command": [
+        "/private/tmp/willow-w94-pivot/env/bin/python",
+        "-B",
+        "-c",
+        "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_cif_counted_refinement.py', 'tests/test_topostitch_recipe.py', 'tests/test_topostitch_native_coverage.py', 'tests/test_topostitch_transport.py', 'tests/test_topostitch_native_terms.py', 'tests/test_cif_refinement_ownership.py', 'tests/test_cif_refinement_runtime.py', 'tests/test_cif_refinement_output.py', 'tests/test_cif_refinement_sites.py', 'tests/test_refinement_parallelity.py', 'tests/test_cif_counted_contribution.py', 'tests/test_topostitch_pair_coverage.py', 'tests/test_topostitch_packing.py', '--tb=short']))"
+      ],
+      "result": "556passed,zero skips25.06s",
+      "six_cli_help": [
+        "nasolve",
+        "nasolve-topostitch-inspect",
+        "nasolve-topostitch-preview",
+        "nasolve-topostitch-fit",
+        "nasolve-topostitch-view",
+        "nasolve-topostitch-cut-preview"
+      ],
+      "archive": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/w121-joined-package-2026-11-17.tar.gz",
+        "sha256": "b63e9549aba3baf18e6e305c24c800bc3b307264df61fdbe08939264fda98802",
+        "bytes": 1771781,
+        "files": 70,
+        "payload_index_verified": true,
+        "committed": false,
+        "portable_campaign": false
+      },
+      "audit_sha256": "0ce98451f7d3943158f25370250caa9e8c50e1c360ed6e30b1c41271ae85e1fe",
+      "native_scope": "No new joined installed native execution. The following distinct frozen-code diagnostic uses exact source from this candidate.",
+      "branch_merge": false,
+      "full_suite": "NOT_RUN"
+    },
+    "native_failure": {
+      "status": "EXPECTED_NATIVE_OUTPUT_FAILURE_QUALIFIED",
+      "native": "Phenix2.2.1-6174 Darwin arm64",
+      "actual_scope": "Complete optimizer cycle followed by native final MTZ output refusal; not successful refinement, not dry-run.",
+      "plan_expected": "Initial output failure before optimizer",
+      "actual_observed": "The same input MTZ did not require an initial cumulative MTZ export. Native refusal occurred in final writing after10 iterations/12 evaluations. Preserve original plan/records; do not claim early failure.",
+      "failure": "Sorry: final refined_001.mtz already exists as the deliberately created directory",
+      "owner_closed_poisoned": true,
+      "successful_energy_calls": 15,
+      "driver_entries": 1,
+      "all_owned_bindings_restored": true,
+      "first_error_retained": true,
+      "stopped_verified": true,
+      "inputs_and_sources_unchanged": true,
+      "native_returncodes": [
+        0,
+        1
+      ],
+      "usable_execution_published": false,
+      "partial_outputs": [
+        "refined_001.eff",
+        "refined_001.geo",
+        "refined_001.log",
+        "refined_001.pdb",
+        "refined_001_final.geo"
+      ],
+      "preflight_seconds": 13.856417374998273,
+      "refinement_seconds": 34.496870874994784,
+      "evidence": {
+        "anchor": "C377 failure fixture",
+        "historical_path": "/private/tmp/c377-native-failure-hwbq8475",
+        "plan_sha256": "f1afe5e52fb4a45d9ee794c52147a73beaf756f9307040850402ca71ad8cae35",
+        "execution_sha256": "9bc80379d474330fec1bd02f3ab80044b389830c3b68554b68ae829b926f438e",
+        "result_sha256": "0a45f29952b931878206f8a60b00325ac873c0848e62761e6bf7cba73dca479c",
+        "native_result_sha256": "c35dfd1aa7ede880a7d4c4139cbe66673fccd597cce2b06ae9c314f4fd49aae5",
+        "phase_sha256": "a5d7c820e511fdb80188563cb746d70516a9601dde83a8a99398542cba27c6e7"
+      },
+      "limits": "No in-place retry, deletion, adoption or new scientific result. Preserved all partial outputs. Actual native failure complements unit lifecycle/foreign-hook cases, not campaign recovery qualification."
+    },
+    "frozen_native": {
+      "status": "PASS",
+      "native": "Phenix2.2.1-6174 Darwin arm64",
+      "checks": {
+        "actual_controls": true,
+        "optimizer_calls": true,
+        "diffraction_before": true,
+        "diffraction_after": true,
+        "same_model_through_writer": true,
+        "complete_final_state": true,
+        "written_physical_records": true,
+        "exact_prepared_record": true,
+        "original_input_bytes": true
+      },
+      "preflight_seconds": 7.856536249993951,
+      "refinement_seconds": 35.17052662499191,
+      "successful_energy_calls": 15,
+      "frozen_python_modules": 18,
+      "profile_resources": 3,
+      "frozen_source_bytes": 342556,
+      "manifest": [
+        {
+          "relative_path": "counted-code/cif_live_nonbonded_policy.py",
+          "sha256": "14aadda1bbd69ad89f66836610747e32797756b82f7c77d1479d6b7567869c58",
+          "bytes": 17038
+        },
+        {
+          "relative_path": "counted-code/cif_parallelity_correction.py",
+          "sha256": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+          "bytes": 30413
+        },
+        {
+          "relative_path": "counted-code/cif_parallelity_kernel.py",
+          "sha256": "074c51faa384856f014631c72d97a14237ec3b7b6d833d405ca92aa02b507568",
+          "bytes": 6708
+        },
+        {
+          "relative_path": "counted-code/cif_refinement_output.py",
+          "sha256": "7f4220abd718b6396e3e196d72abea4343c6f5b45187aa51b1dc6efaa651fc21",
+          "bytes": 7146
+        },
+        {
+          "relative_path": "counted-code/cif_gradient_audit.py",
+          "sha256": "a4d6571512313ae7ce8522668bd152ea806c5478803b74e296822bc313f275cc",
+          "bytes": 20742
+        },
+        {
+          "relative_path": "counted-code/cif_counted_contribution.py",
+          "sha256": "7322edee9e78a027bbd47c0043e1acc35494d1d4ecce1e671cb9225f771086b9",
+          "bytes": 46401
+        },
+        {
+          "relative_path": "counted-code/cif_refinement_sites.py",
+          "sha256": "7643d29e113b487975a0a47ef21686bc19627693e7ec724cc627aa82d07baac8",
+          "bytes": 16814
+        },
+        {
+          "relative_path": "counted-code/cif_refinement_runtime.py",
+          "sha256": "5611e658cb79e92996f24e92b1a13055e69bede04f1ab909a60216baea03b3e3",
+          "bytes": 11427
+        },
+        {
+          "relative_path": "counted-code/cif_counted_refinement.py",
+          "sha256": "a5d7c820e511fdb80188563cb746d70516a9601dde83a8a99398542cba27c6e7",
+          "bytes": 10307
+        },
+        {
+          "relative_path": "counted-code/topostitch.py",
+          "sha256": "93a11d54897fac53454cd22f901e908d6e7ebfea46dbf759993ece5db74302bf",
+          "bytes": 7658
+        },
+        {
+          "relative_path": "counted-code/topostitch_coordinates.py",
+          "sha256": "08d613f9dba70a7bf3bf8f265352e7f075e13282e356dfcf8a6565d2227e24ad",
+          "bytes": 12932
+        },
+        {
+          "relative_path": "counted-code/topostitch_periodic.py",
+          "sha256": "971d91c0fb1c29619b85fe90829a650214e7560f069dd4bdb8ec50376e12a5ce",
+          "bytes": 15843
+        },
+        {
+          "relative_path": "counted-code/topostitch_transport.py",
+          "sha256": "8a641d8f067b594e8ea446156b0252583a0d6178c967148a6b86214f9f8cfbfc",
+          "bytes": 21601
+        },
+        {
+          "relative_path": "counted-code/topostitch_recipe.py",
+          "sha256": "73b735197560d8b0e0f0c343b4636fdf9e83b5acffa179aa7586367931293e76",
+          "bytes": 14550
+        },
+        {
+          "relative_path": "counted-code/topostitch_native_recipe.py",
+          "sha256": "1739b2a7cf11d802bfa9293d7b79b9edcf7bb1ad868b53d4c1b1996b461d7748",
+          "bytes": 45629
+        },
+        {
+          "relative_path": "counted-code/topostitch_packing.py",
+          "sha256": "646f7a59ecea07617e5f3ace0e3bf7be2668c18cb85a408efe4b60a2c6bcd288",
+          "bytes": 15854
+        },
+        {
+          "relative_path": "counted-code/topostitch_pair_coverage.py",
+          "sha256": "e342d7aa4d6277dac0cd4b90d63fe1501c74249927fe909e119680901c21f591",
+          "bytes": 22823
+        },
+        {
+          "relative_path": "counted-code/topostitch_native_coverage.py",
+          "sha256": "e90359fe08fac9497f99d0a829a5bd14c7af803b5f6015730e2143116854fd0f",
+          "bytes": 13100
+        },
+        {
+          "relative_path": "counted-code/data/parallelity-native-profile.json",
+          "sha256": "f7aa742b2f00026b6bfa63695702e2b74fb65d5e78b598aec654abcea249758b",
+          "bytes": 2840
+        },
+        {
+          "relative_path": "counted-code/data/nonbonded-native-profile.json",
+          "sha256": "d35a0b61dd49a75132d16d3bb53b1c636eefbd30c21d19fe5d50a03d018e6ee6",
+          "bytes": 2039
+        },
+        {
+          "relative_path": "counted-code/data/counted-native-profile.json",
+          "sha256": "bf41896cc2269508a5ded1816ef4f5a4ed7bdee2fa5532bd94e38428d4715571",
+          "bytes": 691
+        }
+      ],
+      "native_imports_only_from_owned_code": true,
+      "no_live_nasolve_namespace": true,
+      "evidence": {
+        "anchor": "C378 frozen local fixture",
+        "historical_path": "/private/tmp/c378-frozen-phase-hv2c86ul",
+        "plan_sha256": "5d978bfbb0b903b2ec3e78f209fb686fe7eef982cce9b9e5dd8d9e4c38352842",
+        "seal_sha256": "d4fbfae1dce6db346b251b2abc9a79b803997513c4b244df75915ffb7dc3f1d4",
+        "execution_sha256": "e749452ee499dadf6f1fbdbc3b4f7766fa51e4b323de9d57d141530ef0d7d5a0",
+        "result_sha256": "478cacab29ea172d5756c7801a3658aa6e5305b6c371b96a3766494e6aeeae75",
+        "final_state_sha256": "0cb252f081974ac02507590501c23a01ffe95a7cfb768503cf6db0a47d17af98",
+        "phase_sha256": "a5d7c820e511fdb80188563cb746d70516a9601dde83a8a99398542cba27c6e7"
+      },
+      "audit_sha256": "309c57785c712b2405623a95bcd8f3a98f4681f0acc420563818d0f4a19b67d5",
+      "outer_controller_scope": "Existing installed controller orchestrates this local diagnostic. This does not prove a new durable request policy, branch merge, arbitrary protocol, optional chemistry-site observations, portable campaign or offline SDK independence.",
+      "qualification": "Complete actual fixed-unit-weight one-cycle Phenix2.2.1-6174 execution, not dry-run. No optional chemistry-site observation, wider protocol, portable-campaign or SDK-independence claim."
+    },
+    "commands": {
+      "failure": "PYTHONDONTWRITEBYTECODE=1 <NASolve>/.venv/bin/python -B <NASolve>/branch-artifacts/cedar/runners/c377_failure_start.py",
+      "failure_audit": "PYTHONDONTWRITEBYTECODE=1 <NASolve>/.venv/bin/python -B <NASolve>/branch-artifacts/cedar/runners/c378_failure_audit.py",
+      "frozen": "PYTHONDONTWRITEBYTECODE=1 <NASolve>/.venv/bin/python -B <NASolve>/branch-artifacts/cedar/runners/c378_frozen_start.py",
+      "frozen_audit": "PYTHONDONTWRITEBYTECODE=1 <NASolve>/.venv/bin/python -B <NASolve>/branch-artifacts/cedar/runners/c378_frozen_audit.py",
+      "retirement": "PYTHONDONTWRITEBYTECODE=1 <NASolve>/.venv/bin/python -B <NASolve>/branch-artifacts/cedar/runners/c378_retire_copies.py"
+    },
+    "runner_sha256": {
+      "c377_failure_start.py": "6c89b5789b5072f9e52382039312e5b6d14d65722b3b0e084293c24dae08f614",
+      "c378_failure_audit.py": "275e384dd6fdb0086d35fa94a45a3991854d71f0638a253ccebe903cf2c7d281",
+      "c378_frozen_start.py": "4d21ab41caa9926511ea7c552cc93d1e2bd74e60a82ba1428ac59601f65e8af8",
+      "c378_frozen_audit.py": "b309418e5150a8cc191087201eece207910b958e5960f543375ca7ee9940d8ab",
+      "c378_retire_copies.py": "2e0d7b32586eb458d714900a3a7869793c1567ad6a94d2b74d0b396b424f8bea"
+    },
+    "retention": {
+      "status": "EXACT_SOFTWARE_COPIES_RETIRED",
+      "records": [
+        {
+          "anchor": "local candidate package",
+          "historical_path": "/private/tmp/c377-package-j8unuza3",
+          "native_attempt": "c377-native-phase-yhoeo9b2",
+          "wheel": {
+            "relative_path": "wheel/nasolve-0.1.0-py3-none-any.whl",
+            "sha256": "3e960556fea972f01778a20bfe161a517fa704f0250a441a12298d74e99d4f34",
+            "bytes": 1427600
+          },
+          "tests_archive": {
+            "relative_path": "qualified-tests.zip",
+            "policy_id": "cif-content-addressed-runtime-evidence-v1",
+            "logical_files": 459,
+            "logical_bytes": 4932269,
+            "unique_files": 459,
+            "unique_bytes": 4932269,
+            "archive_bytes": 1524923,
+            "archive_sha256": "ca9da72d06ccfd79023fd607aa73da1f410cc19224986bcd11e19b23591587cb"
+          },
+          "wheel_members_exact": true,
+          "tests_cold_read_exact": true,
+          "process_stopped_verified": true,
+          "retired_directories": [
+            "relocated",
+            "tests"
+          ],
+          "retired_bytes": 9731816,
+          "net_saved_bytes": 8206893,
+          "note": "Only own superseded software/test copies. Wheels, exact compressed tests, receipts, original source repositories and all scientific/partial outputs retained. Old absolute software paths are historical; reconstruct from retained wheel if needed."
+        },
+        {
+          "anchor": "local candidate package",
+          "historical_path": "/private/tmp/c377-package-ing3sk33",
+          "native_attempt": "c377-native-phase-em_uw4ct",
+          "wheel": {
+            "relative_path": "wheel/nasolve-0.1.0-py3-none-any.whl",
+            "sha256": "36728fe8e870ae5aff11d9ae8afb4e134fcee2207e25d29b3d0a24f7dabf3887",
+            "bytes": 1427704
+          },
+          "tests_archive": {
+            "relative_path": "qualified-tests.zip",
+            "policy_id": "cif-content-addressed-runtime-evidence-v1",
+            "logical_files": 459,
+            "logical_bytes": 4932665,
+            "unique_files": 459,
+            "unique_bytes": 4932665,
+            "archive_bytes": 1525007,
+            "archive_sha256": "4881bbdf6919f425a1b41665680feac91143463e86871aa40970b7d645a5c0be"
+          },
+          "wheel_members_exact": true,
+          "tests_cold_read_exact": true,
+          "process_stopped_verified": true,
+          "retired_directories": [
+            "relocated",
+            "tests"
+          ],
+          "retired_bytes": 9732476,
+          "net_saved_bytes": 8207469,
+          "note": "Only own superseded software/test copies. Wheels, exact compressed tests, receipts, original source repositories and all scientific/partial outputs retained. Old absolute software paths are historical; reconstruct from retained wheel if needed."
+        }
+      ],
+      "net_saved_bytes": 16414362,
+      "scientific_outputs_deleted": false
+    },
+    "compatibility": "No source/API/default/schema migration. Existing failed native attempt stays failed despite its partial PDB; no in-place retry or accepted checkpoint. Older temporary software paths are historical and reconstructable from retained verified wheels. Prior raw scientific evidence unchanged.",
+    "included": "Compact evidence/manifest and existing documentation only",
+    "excluded": "Native models, reflections, logs, code copies, archives and local scripts stay local.",
+    "remaining": [
+      "New versioned existing controller policy binds exact request, actual preflight, explicit scope/prepared archive and parent lineage. Preserve native0/admission refusal as distinct unlaunched refine; do not reinterpret old readers.",
+      "Freeze the tested package-owned source set through existing code freezer, deduplicating exact existing v4 members. Do not trust live sibling worktrees or temporary candidate paths. W121 leaves8 documentation conflicts and does not authorize/perform a branch merge.",
+      "Explicit bounded protocol before allocation and manual/Doctor lineage reuse; no silent override of ordinary automatic weight optimization or wider defaults.",
+      "Q06 achieved PDU/DF chemistry and wider protocols, future catalogue/heldout closure and final regression/merge gates remain open."
+    ]
   }
 }

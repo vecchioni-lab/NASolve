@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C377 maintained prepared phase complete — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. C376 / `fbdfd820` is pushed.
+Updated **2026-11-17, C378 frozen phase / output failure / package qualified — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. C377 / `0aaec4bd` is pushed.
 Afternoon work window ends **17:30 UK / UTC**. No full Cedar suite requested.
 
 ## Current checkpoint and next bounded work
@@ -28,8 +28,24 @@ final score. All drivers stopped, native bindings restored, sources unchanged.
 copy removal. Earlier combined source profile: 224 passed in 21.52 s. Negative-before controls
 cover absent API, original-error loss and both native parameter representations.
 Exact pins/commands: `maintained_prepared_refinement_lifetime_2026_11_17` in the
-existing ledger. Linden owns the refreshed W118/C377 joined package check; this
-native proof uses separate installed packages. No full suite or branch merge.
+existing ledger. W121 now qualifies the current joined installation: 556 focused
+tests,
+zero skips and six CLI entry points after source removal/relocation. No merge or
+full suite; eight shared documentation conflicts remain explicit.
+
+**C378 adds two distinct native boundary checks.** A deliberately occupied final
+MTZ filename causes a real native failure after optimization. The owner closes
+and becomes unusable, its original error survives, all hooks restore and partial
+PDB/other outputs remain; no usable execution is published. This occurred later
+than the planned initial-write failure, and that distinction is recorded.
+
+A separate complete cycle uses only 18 frozen source modules plus three native
+profiles (342,556 bytes) copied from W121 into the owned attempt. No live NASolve
+namespace enters the native process. Prepared record, complete endpoint, written
+physical model, optimizer and original data/Free-R remain exact. All jobs stopped.
+The outer controller is still the existing installed code: this proves the small
+native source set, not a new durable request, portable campaign or broad protocol.
+Exact evidence: `frozen_phase_failure_and_joined_package_2026_11_17`.
 
 **Next: wire saved admission through the existing controller.** Bind original
 pair intent, exact source/current parent and chosen working frame before preflight.
@@ -51,7 +67,10 @@ preparation: 101,805 bytes, byte-exact cold expansion after relocation/source-co
 removal, wrong-digest refusal and temporary cleanup. Original sources remain.
 100 such payloads are 10.18 MB excluding models/data/logs, not campaign capacity.
 Use existing phase retention rather than another serializer/cache or raw+archive
-duplication without a policy. Q04/Q05 remain complete; Q06 achieved chemistry open.
+duplication without a policy. C378 retired 16.41 MB of exact duplicate old C377
+software/test copies after wheel and cold-archive verification; wheels, compressed
+tests, receipts and every scientific/partial output remain. Current packages stay.
+Q04/Q05 remain complete; Q06 achieved chemistry remains open.
 
 **Qualified foundations; reuse rather than repeat.**
 - C368/W114: direct counted ownership, exact counting/normalization, restoration
@@ -68,11 +87,8 @@ duplication without a policy. Q04/Q05 remain complete; Q06 achieved chemistry op
 - C373/W117 remove redundant exact image arithmetic without caching or skipping
   checks: one native call4.62081→1.56696s with exact complete numerics and refusals.
   This is not a whole-refinement speed claim; residual overhead remains.
-- C374 qualifies one temporary installed C373/W117 composition after source removal
-  and install relocation:308 focused+22 optional-library controls, actual native
-  consumer27.43s. All305 Python/resources match;8 documentation conflicts remain.
-  No branch merge. The retained candidate is~8.3MB; failed build copies retired
-  after their compact receipts were saved. This does not qualify later W118/C375.
+- C374's earlier joined package remains historical proof at its own source pins;
+  W121 above supersedes it for current installation qualification, not chemistry.
 - W118 `c08f3370` adds pure recipe rebind on Willow: retain pair definitions, images,
   chemistry/occupancy and same ordered identities/frame while updating source hash
   for changed coordinates/ADPs. No library regeneration, inferred topology or

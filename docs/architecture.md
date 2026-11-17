@@ -4455,8 +4455,17 @@ Existing versions/defaults and helper bytes are unchanged. Initial native proof
 matches W120's complete endpoint/trace/data using separate installed packages;
 ordinary admission, wider protocols and scientific acceptance remain gated.
 
-Ordinary refinement remains gated on prepared-model and optimizer lifetime,
-copied/selected reporting managers and final output. C369 qualifies wrapper
+C378 separately proves this bounded native route with 18 frozen source modules
+and three native profiles (342,556 bytes) copied from the qualified W121 joined
+installation; no live NASolve namespace is imported in the native process. The
+existing installed controller still owns the diagnostic. A deliberately blocked
+final MTZ export retains the original native error, closes the counted owner and
+restores bindings despite partial output. These are code/lifetime qualifications,
+not a new execution policy, portable campaign or scientific acceptance.
+
+Ordinary activation remains gated on durable preflight/request admission,
+parent lineage and explicit protocol choice. Copied native-family reports remain
+distinct from complete added-term statistics. C369 qualifies wrapper
 recognition for direct calls only, not that wider integration. Historical v3
 runtime/output/monomer cleanup retains its original replacement semantics; C372's
 explicit v4 preserves competing bindings without rewriting old code or artifacts. Native-family statistics cannot claim added residuals are included
