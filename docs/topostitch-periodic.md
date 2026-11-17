@@ -5778,3 +5778,70 @@ Next is **immutable production admission through the existing execution owner**,
 plus the measured pure-helper performance work. Broader weights/phases, exclusions,
 physical sticky-end closure, calibrated density evidence and B09 remain open.
 S05/S06 remain **PARTIAL**.
+
+
+## W117 — Cancel identical validated images without repeated matrix products
+
+**2026-11-17; code, installed-package and actual native checks.** The private
+coverage canonicalizer now returns exact identity when two already validated
+full image operations are equal. All proper-rotation, rational-translation,
+denominator and arithmetic-budget validation remains upstream and unchanged.
+Distinct images still use the existing exact operation, preserving unwrapped
+lattice shifts. There is no cache, new state, relaxed tolerance, public API,
+schema, dependency, physical target or activation change. Existing captured-worker
+bytes remain unchanged; historical readers need no migration.
+
+### Validation and measured effect
+
+- Nine regression cases cover common identity/screw/centering images across all
+  four term families, mixed noncommuting images with full lattice translation,
+  invalid equal images and distinct-image arithmetic budgets. Four fail before
+  the patch; the other five preserve existing refusal behavior.
+- **223 focused, 2,009 complete-source tests +229 subtests**, and **302 installed
+  tests** pass. The initial sandbox full run retains five campaign-process
+  failures caused by denied `/bin/ps` access. One complete rerun with process
+  inspection allowed passes; no source change was needed for those failures.
+- A relocated sdist builds a wheel; original staging and extracted source are
+  removed before fresh-environment installed checks. Six CLI helps, pip check,
+  lean import and Python 3.10 syntax pass. NARestraints resolves to
+  `a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691` (`v1.1.3`).
+- The saved W116 native inventory contains 2,572 terms and previously repeated
+  26,415 equal-image matrix products. These become zero, with exact inventory
+  equality; the isolated check takes 0.395 versus 0.101 seconds. This is a pure
+  saved-record benchmark, not native refinement.
+- Rowan's **C373 / Phenix 2.2.1-6174** complete native direct-call control takes
+  **4.6208 versus 1.5670 seconds** for the same model and terms. Full targets,
+  gradients, counts, normalization, call statistics and initial prepared provider
+  selection/binding match exactly. Native count11,379 plus17 additions remains
+  11,396. Changed torsion inventory and native policy still refuse, poison the
+  owner and prevent reuse. Native state restores, source files remain unchanged
+  and the process is verified stopped. This does not measure whole-refinement
+  speed, change W116's historical timing or demonstrate a successful repair.
+
+Exact source validation commands (from the Willow checkout):
+
+```bash
+env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider tests/test_topostitch_pair_coverage.py tests/test_topostitch_native_coverage.py tests/test_topostitch_packing.py tests/test_topostitch_native_seams.py tests/test_topostitch_recipe.py
+env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w117-identity/install-check.py
+python3 /private/tmp/willow-w117-identity/audit.py
+```
+
+These paths record historical validation, not operational dependencies. The
+indexed local archive preserves scripts, exact commands/logs including failed
+runs, source patch, package artifacts, dependency versions and C373 summary plus
+stopped/source receipt. Repository anchor **everyday NASolve checkout**:
+`branch-artifacts/willow/w117-exact-image-2026-11-17.tar.gz`, SHA
+`4a306751fbb75c61164b3f457bc5fa43cff2fdf3be00f027826970963f256de7`,
+1,210,750 bytes, 24 indexed files verified. Full native evidence remains owned by
+Cedar's C373 run; the copied summary is not a replacement for that run. Neither
+archive is a portable resumable campaign or committed scientific payload.
+
+Installed wheel SHA
+`b92d45cde4720fb2f5c9f387e72af0381943bd48b8dea2de98d2b5b2141200f7`;
+coverage helper SHA
+`e342d7aa4d6277dac0cd4b90d63fe1501c74249927fe909e119680901c21f591`.
+Only `topostitch_pair_coverage.py` changes production code, with regressions in
+`test_topostitch_pair_coverage.py` and existing human/machine documentation updated.
+Coordinated package ownership, immutable production admission, broader native
+phases/exclusions and matched scientific repair remain open; S05/S06 stay partial.

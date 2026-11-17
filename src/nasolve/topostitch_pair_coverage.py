@@ -67,7 +67,12 @@ def _site(row, labels):
 def _relative_sites(sites, anchor):
     result = []
     for label, operation in sites:
-        rotation, translation = _relative(anchor, operation)
+        # _site has validated both proper rotations and exact translations.
+        # A common full image cancels exactly, including its lattice shift.
+        if operation == anchor:
+            rotation, translation = (1,0,0,0,1,0,0,0,1), (Fraction(0),)*3
+        else:
+            rotation, translation = _relative(anchor, operation)
         _need(all(abs(v) <= 1000000 for v in rotation)
               and all(abs(v.numerator) <= 1000000 for v in translation),
               'Relative image exceeds exact arithmetic budget')

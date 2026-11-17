@@ -484,3 +484,69 @@ def test_contribution_refuses_invalid_mode_identity_or_evaluator_result(monkeypa
             return value
         monkeypatch.setattr(constructed[0],'_evaluate_proxies',altered)
     with pytest.raises(ValueError):contribution.evaluate([(1.,2.,3.)]*6,atom_identities=identities,compute_gradients=mode)
+
+
+@pytest.mark.parametrize('rotation,translation', [
+    ([1,0,0,0,1,0,0,0,1], ['0','0','0']),
+    ([0,-1,0,1,0,0,0,0,1], ['7','-2','13/4']),
+    ([0,-1,0,1,-1,0,0,0,1], ['4/3','-5/6','7/12']),
+])
+def test_common_validated_images_cancel_without_matrix_products(monkeypatch, rotation, translation):
+    # A common image cancels for every supported family, including screw/centering
+    # and unwrapped lattice shifts. Repeating a matrix product per plane anchor
+    # caused the measured native-inventory bottleneck; count work, not wall time.
+    from nasolve import topostitch_pair_coverage as coverage
+    from nasolve.topostitch_packing import _relative
+    values=inputs()
+    for rows in values[:3]:
+        for row in rows:
+            for site in row['atoms']+row['other_atoms']:
+                site.update(rotation=list(rotation), translation=list(translation))
+    expected=review(values);before=deepcopy(values);products=[]
+    def measured(first, second):
+        products.append((first,second))
+        return _relative(first,second)
+    monkeypatch.setattr(coverage,'_relative',measured)
+    assert review(values)==expected and values==before
+    assert products==[]
+
+
+def test_mixed_images_keep_exact_relative_arithmetic_and_lattice_shift(monkeypatch):
+    from fractions import Fraction
+    from nasolve import topostitch_pair_coverage as coverage
+    from nasolve.topostitch_packing import _relative
+    a=atom('a', ('0','0','1/4'));a['rotation']=[0,-1,0,1,0,0,0,0,1]
+    b=atom('b', ('1','2','13/4'));b['rotation']=[-1,0,0,0,-1,0,0,0,1]
+    sites=[coverage._site(row, {'a','b'}) for row in (a,b)]
+    anchor=sites[0][1];expected=tuple((label,*_relative(anchor,op)) for label,op in sites)
+    products=[]
+    def measured(first, second):
+        products.append((first,second))
+        return _relative(first,second)
+    monkeypatch.setattr(coverage,'_relative',measured)
+    assert coverage._relative_sites(sites,anchor)==expected
+    assert products==[(anchor,sites[1][1])]
+    assert expected[1][2]==(Fraction(2),Fraction(-1),Fraction(3))
+
+
+@pytest.mark.parametrize('change', ['improper','denominator','noncanonical','input_budget'])
+def test_common_images_still_require_complete_validation(change):
+    values=inputs()
+    for rows in values[:3]:
+        for row in rows:
+            for site in row['atoms']+row['other_atoms']:
+                if change=='improper':site['rotation'][0]=-1
+                elif change=='denominator':site['translation'][0]='1/5'
+                elif change=='noncanonical':site['translation'][0]='2/6'
+                else:site['translation'][0]='1000001'
+    with pytest.raises(ValueError):review(values)
+
+
+def test_distinct_valid_images_still_enforce_relative_arithmetic_budget():
+    values=inputs()
+    for rows in values[:3]:
+        for row in rows:
+            for index,site in enumerate(row['atoms']+row['other_atoms']):
+                site['translation'][0]='1000000' if index else '-1000000'
+    with pytest.raises(ValueError, match='Relative image exceeds'):
+        review(values)

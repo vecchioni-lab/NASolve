@@ -1,8 +1,8 @@
 # NASolve development handoff — Willow
 
 Updated **2026-11-17**. This is the **`willow` branch** handoff, not the
-project-wide status of Pine, Cedar or Alder. **W116 is audited; W117 is next.**
-Runtime code is W113 (`3f580610`); W110/W111 remain diagnostic and protocol evidence.
+project-wide status of Pine, Cedar or Alder. **W117 is audited; W118 is next.**
+Runtime code is W113 plus the W117 exact-image optimization; W110/W111 remain diagnostic and protocol evidence.
 Direct native ownership is qualified at C368/W113; actual prepared-state
 assembly and one bounded ordinary coordinate-refinement diagnostic are qualified
 at frozen C371/W113 pins. Production admission and physical repair remain open.
@@ -22,6 +22,7 @@ S04/S05/S06 and P01/P02 remain partial; use the roadmap for individual gates.
 | W104 `review_pair_coverage` | Read-only comparison of explicit requested/native/additive terms; rejects missing, duplicate, stale, image and parameter mismatches | Caller authenticates complete declarations; no activation |
 | W105 `describe_compiled_pair_terms` | Exports terms from the existing compiled recipe and original bound packet | Not a native force or lifecycle qualification |
 | W106 `observe_native_pair_terms` | Callback-free actual-manager inventory with checksum-bound Cedar policy checks and exact rational image comparison | Special positions unsupported; source authenticity and active callback policy remain upstream |
+| W117 equal-image arithmetic | Exact old/new native target, gradients, counts and selection; measured checked-call improvement | One direct-call comparison, not whole-refinement speed or repair benefit |
 | W116 bounded ordinary lifecycle | Native-only and zero-addition endpoints exact; 17 missing terms participate through optimizer/final writer | One diagnostic cycle, fixed weights, no repair benefit or production activation |
 | W115 actual ordinary preflight | Installed shared reader reproduces independent prepared inventory/selection; 855 atoms and original data/Free-R preserved | Working frame must be explicit; no force activation |
 | W114 cross-branch direct owner | Eight lifecycle cases; zero additions, provider weighting, stale hierarchy, selection and restart | Ordinary runtime, copied reports and final writer remain open |
@@ -50,9 +51,10 @@ for exact commands, failed preparations, archive checksums and limitations.
    package in these diagnostics; qualify a coordinated source/package join or an
    explicit maintained dependency before shipping admission. Do not vendor another
    recipe engine or infer that it already lives in the Cedar wheel.
-2. Address measured overhead with a narrowly qualified pure-helper optimization.
-   Rowan's one-call profile identifies repeated exact relative-image arithmetic;
-   preserve all source, state, inventory and refusal checks. No coordinate,
+2. Carry the qualified W117 equal-image arithmetic into that coordinated package
+   check. Its stateless identity shortcut preserves all checks and exact native
+   results; Rowan's single owned call falls from 4.62 to 1.57 seconds. Do not infer
+   whole-refinement timing or remove checks from this result. No coordinate,
    atom-label, policy or history cache, and no sibling reruns merely for profiling.
 3. Extend native qualification only after those boundaries: copied reporting and
    weight consumers, target/model changes and broader phases remain distinct
@@ -75,7 +77,18 @@ source-cell override is a diagnostic control, not a general campaign default.
 
 ## Validation and compatibility
 
-Latest production-code validation, **W113**: **153 focused, 2,000 full tests +229
+Latest code validation, **W117**: **223 focused, 2,009 full tests +229 subtests,
+and 302 installed tests** pass. Nine regression cases retain validation and exact
+lattice arithmetic; four fail before the optimization. The first full run's five
+sandbox process-inspection failures remain recorded; the complete rerun with
+process inspection allowed passes. Relocated sdist-to-wheel installation, six
+CLI helps, dependency checks, lean import and Python 3.10 syntax pass. Rowan's
+Phenix 2.2.1-6174 old/new native comparison preserves exact target, full gradients,
+counts, normalization, call statistics and prepared selection/binding; torsion
+and policy mutation refusals still poison the owner. See the
+[W117 receipt](topostitch-periodic.md#w117--cancel-identical-validated-images-without-repeated-matrix-products).
+
+Preceding **W113** validation: **153 focused, 2,000 full tests +229
 subtests, and 293 final installed checks** passed. The full run precedes only the
 exported tuple naming change; final relocated installation/native execution use
 `3f580610` source. Six CLI helps, pip check, lean import and Python3.10 syntax pass.

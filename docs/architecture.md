@@ -1122,3 +1122,9 @@ endpoints exactly; full coverage changes the requested objective. This is not
 production admission or a new runtime version. Broader phases, automatic weights,
 competing-hook recovery and exclusion policy remain separately qualified scopes.
 See the [bounded lifecycle receipt](topostitch-periodic.md#w116--qualify-one-bounded-ordinary-refinement-cycle).
+
+W117 cancels identical validated full symmetry images directly in the coverage
+canonicalizer. Distinct images retain exact matrix/rational arithmetic and full
+lattice shifts. This stateless optimization changes no validation, schema,
+provider selection, ownership, tolerance or physical objective. Native old/new
+results and mutation refusals are qualified separately from refinement speed.

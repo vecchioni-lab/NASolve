@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W117 — Avoid repeated arithmetic for identical validated images
+
+- Cancel equal full symmetry images directly inside pair coverage, retaining all
+  validation and the existing exact arithmetic for distinct images. No cache,
+  tolerance, schema, provider-selection or physical-objective change.
+- Qualify exact old/new inventory and native target/gradient/count equality;
+  retain mutation refusals, complete source tests and clean installation checks.
+- Record the measured direct-call improvement separately from whole-refinement
+  performance and scientific acceptance, which this patch does not establish.
+
 ### W116 — Qualify one bounded ordinary coordinate-refinement lifecycle
 
 - Record three actual one-cycle controls through the existing native driver and

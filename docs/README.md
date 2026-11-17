@@ -19,10 +19,11 @@ current instructions; other branches retain their own status and validation pins
   retaining the working-frame requirement and original data/Free-R.
   W116 qualifies one bounded ordinary optimizer/writer diagnostic, including exact
   zero-addition preservation. Production admission, broader phases and exclusion
-  policy remain open.
+  policy remain open. W117 removes redundant equal-image arithmetic with exact
+  native old/new agreement; it changes no physical objective or admission policy.
   No physical repair is claimed.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Next human update is W117;
+  [machine-readable source](topostitch-roadmap.json). Next human update is W118;
   do not restart completed probes merely because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed
