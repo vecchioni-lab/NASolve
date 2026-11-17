@@ -4,7 +4,7 @@
   "updated": "2026-11-17",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "c08f337024f8901c583c0988f652e9a1c3156a49",
+  "audited_code_commit": "574b43273b8706c62df4fd4b9f1701153cb1c9e2",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -321,7 +321,8 @@
         "W115 qualifies the installed C371 read-only assembly on actual ordinary zero-cycle preflight. Ordered855 atoms,3333 observations and176 original Free-R selections are preserved;124 requested terms split107native/17missing. Initial default-MTZ cell precision mismatch remains refused; explicit working-frame control matches source. No forces, optimization or repair acceptance.",
         "W116 completes three ordinary1cycle/10iteration refinements after independent actual preflights. Native-only and zero-addition full endpoint/statistics/score are exact;17 additional full-recipe terms participate through16checked model calls and final writer. Original3333 observations/176 Free-R and ADP/occupancy preserved; no diffraction benefit or repair adoption. Frozen C371/v3 diagnostic only, production admission and broader scopes remain open.",
         "W117 removes redundant arithmetic only for equal validated full images, retaining exact distinct-image lattice arithmetic and all checks. Complete source/installed checks pass; C373 actual native old/new targets,gradients,counts,normalization and initial selection are exact with retained mutation refusals. Direct checked call4.62s to1.57s; no whole-refinement speed or repair-benefit claim.",
-        "W118 preserves frozen pair chemistry/images while explicitly rebinding compatible parent bytes, with full/install and saved/native compiler equivalence checks. It grants no lineage, admission or continuation authority. Separate C374 joined-package qualification passes at W117/C373 pins; no actual merge or W118 package-join claim."
+        "W118 preserves frozen pair chemistry/images while explicitly rebinding compatible parent bytes, with full/install and saved/native compiler equivalence checks. It grants no lineage, admission or continuation authority. Separate C374 joined-package qualification passes at W117/C373 pins; no actual merge or W118 package-join claim.",
+        "W119 qualifies stronger C375 prepared-state consumption at genuine non-dry driver.run after separate actual preflight, using W118 compatible-parent binding. One checked call preserves data/state and counts current native 11392 +17; exact sealed normalization/bonded/pair/dual state passes. Intentional FAILED/BoundaryObserved stops before optimizer, with no final model or usable checkpoint."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
@@ -374,14 +375,15 @@
         "E_BOUNDED_ORDINARY_LIFECYCLE",
         "E_EXACT_IMAGE_FASTPATH",
         "E_SAME_FRAME_PAIR_REBIND",
-        "E_C374_JOINED_PACKAGE"
+        "E_C374_JOINED_PACKAGE",
+        "E_STRONG_PREPARED_PHASE"
       ],
       "last_audit": {
         "date": "2026-11-17",
-        "code_commit": "c08f337024f8901c583c0988f652e9a1c3156a49",
-        "human_update": 118,
+        "code_commit": "574b43273b8706c62df4fd4b9f1701153cb1c9e2",
+        "human_update": 119,
         "reviewer": "Linden",
-        "scope": "Same-frame frozen-intent rebind and separate immutable-pin joined package audit; no physical or diffraction gate closes."
+        "scope": "Genuine stronger preflight-to-driver boundary and one checked call; optimizer intentionally not entered. No scientific gate closes."
       }
     },
     {
@@ -412,7 +414,8 @@
         "W115 qualifies the installed C371 read-only assembly on actual ordinary zero-cycle preflight. Ordered855 atoms,3333 observations and176 original Free-R selections are preserved;124 requested terms split107native/17missing. Initial default-MTZ cell precision mismatch remains refused; explicit working-frame control matches source. No forces, optimization or repair acceptance.",
         "W116 completes three ordinary1cycle/10iteration refinements after independent actual preflights. Native-only and zero-addition full endpoint/statistics/score are exact;17 additional full-recipe terms participate through16checked model calls and final writer. Original3333 observations/176 Free-R and ADP/occupancy preserved; no diffraction benefit or repair adoption. Frozen C371/v3 diagnostic only, production admission and broader scopes remain open.",
         "W117 removes redundant arithmetic only for equal validated full images, retaining exact distinct-image lattice arithmetic and all checks. Complete source/installed checks pass; C373 actual native old/new targets,gradients,counts,normalization and initial selection are exact with retained mutation refusals. Direct checked call4.62s to1.57s; no whole-refinement speed or repair-benefit claim.",
-        "W118 preserves frozen pair chemistry/images while explicitly rebinding compatible parent bytes, with full/install and saved/native compiler equivalence checks. It grants no lineage, admission or continuation authority. Separate C374 joined-package qualification passes at W117/C373 pins; no actual merge or W118 package-join claim."
+        "W118 preserves frozen pair chemistry/images while explicitly rebinding compatible parent bytes, with full/install and saved/native compiler equivalence checks. It grants no lineage, admission or continuation authority. Separate C374 joined-package qualification passes at W117/C373 pins; no actual merge or W118 package-join claim.",
+        "W119 qualifies stronger C375 prepared-state consumption at genuine non-dry driver.run after separate actual preflight, using W118 compatible-parent binding. One checked call preserves data/state and counts current native 11392 +17; exact sealed normalization/bonded/pair/dual state passes. Intentional FAILED/BoundaryObserved stops before optimizer, with no final model or usable checkpoint."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -420,7 +423,7 @@
         "Blunt and asymmetric-orientation trials retain matched observations/Free-R and independent bends/maps; calibrate inconclusive outcomes rather than force alignment or a statistical winner.",
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning."
       ],
-      "next_action": "Qualify the stronger complete prepared baseline and no-replanning consumer with Cedar; C371 four-family observations alone omit broad bonded signature/outer normalization. Then integrate explicit versioned request/preflight/admission/phase wiring using existing owners, preserve truthful native-success/admission-refused outcomes and pair intent across descendants/manual/Doctor ancestry. W118 supplies data-only compatible-parent rebind. Keep working frame, observations/Free-R, fixed providers and native scopes; broader phases, exclusions, maps and B09 remain separate gates.",
+      "next_action": "One bounded W120 qualification may reuse original W116 full-added inputs/protocol at W118/C375 pins through a complete fixed-weight cycle and final writer, comparing exact saved state/trace/data rather than rerunning all siblings. Existing-controller versioned request/preflight/admission/phase outcomes and descendant retention remain separate work. Preserve truthful refusals, working frame, observations/Free-R and fixed providers; broader phases, exclusions, maps and B09 remain open.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -445,14 +448,15 @@
         "E_BOUNDED_ORDINARY_LIFECYCLE",
         "E_EXACT_IMAGE_FASTPATH",
         "E_SAME_FRAME_PAIR_REBIND",
-        "E_C374_JOINED_PACKAGE"
+        "E_C374_JOINED_PACKAGE",
+        "E_STRONG_PREPARED_PHASE"
       ],
       "last_audit": {
         "date": "2026-11-17",
-        "code_commit": "c08f337024f8901c583c0988f652e9a1c3156a49",
-        "human_update": 118,
+        "code_commit": "574b43273b8706c62df4fd4b9f1701153cb1c9e2",
+        "human_update": 119,
         "reviewer": "Linden",
-        "scope": "Same-frame frozen-intent rebind and separate immutable-pin joined package audit; no physical or diffraction gate closes."
+        "scope": "Genuine stronger preflight-to-driver boundary and one checked call; optimizer intentionally not entered. No scientific gate closes."
       }
     },
     {
@@ -2132,6 +2136,30 @@
         "sha256": "215766df2f656c1f894232b585f3412c967901454d08bc58913842553f6819d4",
         "committed": false
       }
+    },
+    "E_STRONG_PREPARED_PHASE": {
+      "kind": "actual_strong_preflight_to_driver_boundary",
+      "code_commit": "574b43273b8706c62df4fd4b9f1701153cb1c9e2",
+      "human_update": 119,
+      "reference": "docs/topostitch-periodic.md#w119--consume-strong-preflight-state-at-the-real-driver-boundary",
+      "result": "Installed W118/C375, Phenix 2.2.1-6174: genuine isolated zero-cycle preflight (7.93s), controller validation and sealed stronger state, then fresh non-dry preprocessing reaches actual driver.run (9.57s). Strong bonded/normalization/pair/dual-state checks pass without replanning. One checked full-gradient call, native 11392 +17 additions =11409, one inner/extension, native-owned buffer. Original 3333 observations/176 Free-R and all model state remain unchanged; phase diffraction is exact. All bindings restore and both processes stop; independent audit passes.",
+      "limitation": "Actual runtime retains FAILED/BoundaryObserved for intentional stop before original driver/optimizer. Diagnostic BOUNDARY_OBSERVED is not completed refinement; no final model, successful execution receipt, usable checkpoint, production admission or scientific acceptance. W119 changes Willow docs only. Separate installs, not a newer joined-package claim.",
+      "runtime_pins": {
+        "willow_code_commit": "c08f337024f8901c583c0988f652e9a1c3156a49",
+        "cedar_code_commit": "b058581a2b75e9cab617c1c01eddb5866a0bb382",
+        "willow_wheel_sha256": "d1a7319f9a3d7e63d68906974a25d22691d47b61296d9db7f94004dccbdb755d",
+        "cedar_wheel_sha256": "132abf48b06701154b35c68d755989decf0530c00c3d0e3d4a7eff7a58d9f3b9"
+      },
+      "local_forensic_archive": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/w119-prepared-boundary-2026-11-17.tar.gz",
+        "sha256": "1159fdca85917be8f4772f9fab5e2d2836216cdf6e7a7ffad0324f700a37eaad",
+        "bytes": 2377760,
+        "files": 43,
+        "payload_index_verified": true,
+        "committed": false,
+        "portable_campaign": false
+      }
     }
   },
   "benchmarks": [
@@ -2283,8 +2311,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 118,
-    "next": 119,
+    "current": 119,
+    "next": 120,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -2802,6 +2830,12 @@
         "title": "Rebind unchanged pair intent to a compatible child model",
         "state": "RECORDED",
         "code_commit": "c08f337024f8901c583c0988f652e9a1c3156a49"
+      },
+      {
+        "number": 119,
+        "title": "Qualify stronger prepared state at the actual non-dry driver boundary",
+        "state": "RECORDED",
+        "code_commit": "574b43273b8706c62df4fd4b9f1701153cb1c9e2"
       }
     ]
   },
