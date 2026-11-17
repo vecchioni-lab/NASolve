@@ -1146,3 +1146,9 @@ as well as pair/native state). Consumption reuses the sealed provider choice;
 legacy C371 four-field records cannot supply this stronger authority. The diagnostic
 stops before optimization and retains that native failure status. Durable request,
 admission, phase outcome and descendant retention remain existing-controller work.
+
+
+W120 carries the stronger sealed state through one complete fixed-weight ordinary
+cycle and final writer, reproducing the old full-recipe endpoint exactly. This
+qualifies the diagnostic lifetime at W118/C375 pins. A maintained wrapper and
+durable execution-policy integration remain separate; no runtime default changes.

@@ -1,14 +1,15 @@
 # NASolve development handoff — Willow
 
 Updated **2026-11-17**. This is the **`willow` branch** handoff, not the
-project-wide status of Pine, Cedar or Alder. **W119 is audited; W120 is next.**
+project-wide status of Pine, Cedar or Alder. **W120 is audited; W121 is next.**
 Runtime code includes W113's factory, W117's exact-image optimization and W118's
 data-only same-frame recipe rebind; W110/W111 remain diagnostic and protocol evidence.
 Direct native ownership is qualified at C368/W113; actual prepared-state
 assembly and one bounded ordinary coordinate-refinement diagnostic are qualified
 at frozen C371/W113 pins. W119 separately qualifies stronger actual phase-boundary
-consumption at C375/W118 pins, stopping before optimization. Production admission
-and physical repair remain open.
+consumption at C375/W118 pins, stopping before optimization. W120 extends those
+pins through the full short cycle/writer with exact W116 state/statistics agreement.
+Maintained production admission and physical repair remain open.
 The [machine roadmap](topostitch-roadmap.json) owns milestone status; its
 [generated human view](topostitch-roadmap.md) owns the numbered progress queue.
 
@@ -25,6 +26,7 @@ S04/S05/S06 and P01/P02 remain partial; use the roadmap for individual gates.
 | W104 `review_pair_coverage` | Read-only comparison of explicit requested/native/additive terms; rejects missing, duplicate, stale, image and parameter mismatches | Caller authenticates complete declarations; no activation |
 | W105 `describe_compiled_pair_terms` | Exports terms from the existing compiled recipe and original bound packet | Not a native force or lifecycle qualification |
 | W106 `observe_native_pair_terms` | Callback-free actual-manager inventory with checksum-bound Cedar policy checks and exact rational image comparison | Special positions unsupported; source authenticity and active callback policy remain upstream |
+| W120 stronger complete-cycle replay | Original W116 inputs produce exact final state/statistics/trace through current C375 owner and final writer | One bounded diagnostic; no maintained activation or new repair benefit |
 | W119 actual prepared boundary | Stronger preflight state equals fresh non-dry driver state; one checked call without replanning | Intentional stop before optimizer; no usable checkpoint or production admission |
 | W118 `rebind_pair_recipe` | Same frozen chemistry/images rebound to checked child bytes; saved endpoints and native compiler/evaluator agree exactly | No parent-lineage authority, provider selection or continued refinement |
 | W117 equal-image arithmetic | Exact old/new native target, gradients, counts and selection; measured checked-call improvement | One direct-call comparison, not whole-refinement speed or repair benefit |
@@ -43,9 +45,11 @@ attempts remain evidence; they are not duplicate current work queues.
 
 ## Next bounded work
 
-1. Wire explicit versioned original request, validated preflight, immutable admission
-   and same-phase consumption through the existing execution owners. C375 and W119
-   qualify the stronger native consumer; they do not establish durable provenance.
+1. Move the qualified module-level driver lifetime into a small maintained helper
+   around unchanged v4, with actual-parameter scope checks and foreign-hook-safe
+   cleanup. Then wire versioned original request, validated preflight, immutable
+   admission and same-phase consumption through existing execution owners. C375,
+   W119 and W120 qualify the diagnostic lifetime, not durable provenance.
    The controller binds original intent, actual parent/input/frame, selected providers
    and frozen source/code. Preserve native preflight return0 plus a distinct
    admission-refused/unlaunched-refinement outcome when appropriate. Keep read-only
@@ -78,15 +82,19 @@ worker bytes pass. Three saved-parent replays preserve all pair data; complete
 Phenix 2.2.1-6174 compiler/evaluator checks preserve 124 terms and exact energy/full
 855-atom gradients. See the [W118 receipt](topostitch-periodic.md#w118--rebind-frozen-pair-intent-to-a-compatible-child).
 
-Latest **W119** native diagnostic uses installed **C375 / `b058581a`** and W118.
-Actual isolated zero-cycle preflight and fresh non-dry `driver.run` agree exactly
-on strong prepared state, including broad bonded settings and outer normalization.
-One owned gradient call counts 11,392 native +17 added =11,409; all bindings and
-model state restore. Original 3,333 observations/176 Free-R selections remain
-intact. Processes stop after 7.93/9.57 seconds. The actual runtime retains
-`FAILED / BoundaryObserved` for the deliberate stop before optimization; there is
-no final model, usable checkpoint or completed refinement. Independent saved
-evidence audit passes. See the [W119 receipt](topostitch-periodic.md#w119--consume-strong-preflight-state-at-the-real-driver-boundary).
+Latest **W120** uses installed **C375 / `b058581a`** and W118 for one complete
+original W116 full-recipe cycle. Strong sealed preflight consumption, 10 iterations /
+12 evaluations, 16 checked calls and final writer pass. Complete final state,
+physical PDB records, Rwork/Rfree, score/count/normalization and optimizer trace
+match W116 exactly; 3,333 observations/176 Free-R selections remain unchanged.
+The current phase takes 37.03s versus historical 83.21s, a single observed timing
+comparison. Both processes stop and independent readback passes. No new physical
+benefit or maintained activation. See the [W120 receipt](topostitch-periodic.md#w120--replay-the-complete-cycle-with-stronger-prepared-ownership).
+
+The preceding [W119 boundary check](topostitch-periodic.md#w119--consume-strong-preflight-state-at-the-real-driver-boundary)
+uses a different rebound parent and deliberately retains native
+`FAILED / BoundaryObserved` before optimization. W120 does not relabel that record
+as a completed refinement or erase its distinct initial count of 11,392 +17.
 
 **C374** separately qualifies one joined relocated package at **W117/C373** pins:
 308 focused tests plus the 22 initially skipped Gemmi controls pass, along with
@@ -99,7 +107,7 @@ Earlier gates remain pinned in the ledger: W113 fresh factory, W114 direct lifet
 and the **12,138-test /284-subtest W112/C366 source-only** baseline, W115 actual
 preflight, W116 complete short optimizer/writer lifecycle, and W117 exact-image
 optimization. Do not repeat their probes or claim the older complete suite covers
-newer combinations. W119 changes Willow documentation only; C375's separate
+newer combinations. W119/W120 change Willow documentation only; C375's separate
 184 source/184 installed and native panel are Rowan's evidence, not added Willow
 test counts. Scientific artifacts remain local and excluded from Git.
 

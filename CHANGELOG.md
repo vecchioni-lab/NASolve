@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W120 — Replay the complete cycle with stronger prepared-state ownership
+
+- Qualify one complete original W116 full-recipe control with current W118/C375
+  sources, stronger sealed preflight consumption and the existing final writer.
+- Preserve exact final state, written physical records, R statistics, optimizer
+  trace, counted score and original data/Free-R. Record 37.03s versus historical
+  83.21s as one observed phase comparison, without a new scientific-benefit claim.
+- No production code/schema/default change or accepted repaired structure.
+
 ### W119 — Qualify the stronger actual preflight-to-refinement boundary
 
 - Record exact stronger prepared-state consumption at the genuine non-dry Phenix

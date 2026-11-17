@@ -6007,3 +6007,80 @@ Next: existing-controller versioned original-request/preflight/admission/phase
 wiring, honest admission-refusal outcomes and descendant intent retention.
 Broader phases, periodic exclusions, scientific repair and B09 stay open;
 S05/S06 remain partial. C375/W119 do not replace these gates.
+
+
+## W120 — Replay the complete cycle with stronger prepared ownership
+
+**2026-11-17; complete native execution, one historical-control replay.**
+Use the original W116 full-added source, full recipe, core PHIL, observations and
+fixed protocol byte-for-byte. This is not W119's rebound endpoint. At installed
+W118/C375 pins, a fresh actual zero-cycle preflight returns the stronger complete
+baseline; existing preflight validation precedes an immutable local seal. A fresh
+actual phase reconstructs the owner from that seal at module-level `driver.run`,
+without replanning, then retains the same model through original driver and final
+writer. The diagnostic observer records actual native optimizer settings/counts.
+
+The predeclared scope remains one coordinate-only macrocycle, 10 iterations /
+12 function evaluations, fixed effective X-ray and geometry weights of 1, seed 2679941,
+nproc 1, no automatic weights/shaking, ADP/occupancy refinement, solvent/ion changes
+or target updates. There is no new search, weight tuning, sibling ranking or
+three-sibling repeat. W116 remains immutable historical evidence at its own pins.
+
+### Exact replay and timing
+
+Independent saved-evidence comparison passes **exactly** for:
+
+- original scientific input bytes and effective controls;
+- complete final hierarchy, scattering, fractional and actual-force coordinates;
+- written ATOM/HETATM/ANISOU/TER/cell/SCALE records;
+- initial/final R statistics, optimizer trace and counted geometry score;
+- all owner statistics, including 16 successful calls, 11,379 native +17 additions
+  =11,396, normalization, force-site and contribution-binding hashes.
+
+The final Rwork/Rfree remain **.2245241262 / .2599155744**. This repeats W116's
+outcome; it does not add diffraction benefit or scientific acceptance. Original
+3,333 observations and 176 Free-R selections, non-coordinate scattering and all
+source inputs remain unchanged. Writer state/readback and expected PDB coordinate
+rounding pass; native-family RMSDs remain .025 Å /2.104° and omit the added terms.
+Existing `finish_execution` and `validate_execution(..., usable=True)` pass for
+the local ordinary runtime receipt; no campaign checkpoint is selected/published.
+
+Preflight takes **8.01 seconds** and the complete current refinement phase
+**37.03 seconds**, versus historical W116 full-recipe **83.21 seconds**. This is
+one observed historical/current phase comparison across the qualified helper
+updates, not an isolated causal performance benchmark or general speed guarantee.
+Both processes are stopped; ownership, kernel/writer/driver and observer bindings
+restore. This test does not inject a foreign-hook failure or qualify broader phases.
+
+### Reproducibility and remaining work
+
+Installed source/wheel pins remain exactly W119's W118/C375 pair. The runtime is
+explicit existing v4 with separately pinned counted/factory helpers; no production
+runtime bytes, default, schema or dependency change is made on Willow. This is
+still a local diagnostic hook, not the maintained lifetime/controller integration.
+No new Willow source suite or installation is implied by this docs-only result.
+
+Historical commands:
+
+```text
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w120-cycle-prepare.py
+python3 /private/tmp/willow-w120-strong-cycle/build-probe.py
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w120-strong-cycle/run.py full_added
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w120-strong-cycle/audit.py
+```
+
+Repository anchor **everyday NASolve checkout**, local forensic archive
+`branch-artifacts/willow/w120-strong-cycle-2026-11-17.tar.gz`, SHA
+`ba41b4488ceebaff82e9a1d0edeca7e4874269bb0c42480c0f1f6338c752ab04`:
+3,069,852 bytes, 50 indexed files verified. Plan SHA
+`20e151d54936e68093420f32deb1bc3f32c0c193addbb91f93d05f6804e43f02`;
+sealed preflight SHA `9d523a626b99b1db1689269be468f6272bfe798c5d87361f3602d0aa96d8dd9d`.
+The exact W116 baseline is read only from its declared checked archive members.
+Scientific data/results and software artifacts stay local and excluded from Git;
+this archive is not a portable resumable campaign.
+
+Next: a maintained driver-lifetime wrapper around unchanged v4, followed by
+versioned original-request/preflight/admission/phase records and descendant
+intent retention in the existing controller. Preserve honest refusal outcomes
+and compact evidence. Broader phases, exclusions, calibrated density, useful
+repair and B09 remain open; S05/S06 stay partial.
