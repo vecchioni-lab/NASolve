@@ -4,7 +4,7 @@
   "updated": "2026-11-17",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "c548519ecb7157b58c374e4a64a671a3caddc1c1",
+  "audited_code_commit": "93600202f84d84be9394cf0988a5287e779268fa",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -393,10 +393,10 @@
       ],
       "last_audit": {
         "date": "2026-11-17",
-        "code_commit": "c548519ecb7157b58c374e4a64a671a3caddc1c1",
+        "code_commit": "93600202f84d84be9394cf0988a5287e779268fa",
         "human_update": 124,
         "reviewer": "Linden",
-        "scope": "Independent read-only source/package/evidence audit of Cedar C379/C380. Positive counted request/preflight/admission/continuation remains next; no new scientific acceptance."
+        "scope": "Independent read-only source/package/evidence audit of Cedar C379/C380. Positive counted request/preflight/admission/continuation remains next; no new scientific acceptance. Separate installed campaign/Doctor caller panel15pass; no milestone status change."
       }
     },
     {
@@ -479,10 +479,10 @@
       ],
       "last_audit": {
         "date": "2026-11-17",
-        "code_commit": "c548519ecb7157b58c374e4a64a671a3caddc1c1",
+        "code_commit": "93600202f84d84be9394cf0988a5287e779268fa",
         "human_update": 124,
         "reviewer": "Linden",
-        "scope": "Independent read-only source/package/evidence audit of Cedar C379/C380. Positive counted request/preflight/admission/continuation remains next; no new scientific acceptance."
+        "scope": "Independent read-only source/package/evidence audit of Cedar C379/C380. Positive counted request/preflight/admission/continuation remains next; no new scientific acceptance. Separate installed campaign/Doctor caller panel15pass; no milestone status change."
       }
     },
     {
@@ -2319,10 +2319,10 @@
     },
     "E_PACKAGE_OWNED_INTEGRATION": {
       "kind": "maintained_library_integration_and_refused_admission",
-      "code_commit": "c548519ecb7157b58c374e4a64a671a3caddc1c1",
+      "code_commit": "93600202f84d84be9394cf0988a5287e779268fa",
       "human_update": 124,
       "reference": "docs/topostitch-periodic.md#w124--audit-package-owned-integration-and-refused-admission",
-      "result": "Cedar C379 preserves native preflight success plus separate refused admission/NOT_LAUNCHED outcome with immutable anchored raw evidence and unusable checkpoint. C380 integrates unchanged W118 library at original paths:18 modules,17 tests,one script/514308bytes, optional topology extra and early source qualification. 662 focused source tests and 887 relocated installed tests+13subtests pass. Linden independently verifies36 imported files, preserved shared files,296 installed source/resources against committed C380, wheel hash and saved test receipt. No duplicate peer tests.",
+      "result": "Cedar C379 preserves native preflight success plus separate refused admission/NOT_LAUNCHED outcome with immutable anchored raw evidence and unusable checkpoint. C380 integrates unchanged W118 library at original paths:18 modules,17 tests,one script/514308bytes, optional topology extra and early source qualification. 662 focused source tests and 887 relocated installed tests+13subtests pass. Linden independently verifies36 imported files, preserved shared files,296 installed source/resources against committed C380, wheel hash and saved test receipt. No duplicate peer tests. Separate existing installed campaign/Doctor caller panel:15 tests pass in4.24s, no skips, exact C380 fixture/package bytes unchanged and process stopped; no native execution.",
       "limitation": "No new native execution, full-suite qualification, whole-branch merge, positive counted admission, continuation or ordinary sticky-end activation. Schema2 refusal requires updated reader; original schema1/default native protocols unchanged. Source integration is exact maintained upstream, not a vendor fork; bounded worker closure remains separately qualified. S05/S06 remain PARTIAL.",
       "runtime_pins": {
         "upstream_willow_commit": "c08f337024f8901c583c0988f652e9a1c3156a49",
@@ -2341,6 +2341,13 @@
           "relative_path": "branch-artifacts/willow/w124-integration-audit.json",
           "sha256": "13aaf1ceaeee0caf4d5adf6176b3243afd7f2d7004d455b4dbae9b95d01225e5",
           "bytes": 1552
+        },
+        {
+          "repository_anchor": "everyday NASolve checkout",
+          "relative_path": "branch-artifacts/willow/w124-integration-review-2026-11-17.tar.gz",
+          "sha256": "795052794874791f5864d945abee9a0b96e80d2fe2836f2a32e06e9d812e1143",
+          "bytes": 43550,
+          "indexed_files": 11
         }
       ]
     }
