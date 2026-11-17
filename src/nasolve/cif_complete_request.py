@@ -159,6 +159,17 @@ def _construction_input(directory, model, sources, model_context):
         if code in sources:
             _need(_read(path) == _read(sources[code]['source']),
                   'Construction dictionary differs from selected acquisition source: '+code)
+    for code, projection in value.get('projection_contexts', {}).items():
+        if code not in sources:
+            continue
+        fields = ('site','incoming_site','outgoing_site','five_prime_state','three_prime_state')
+        def contexts(rows):
+            return {row['site']: {key: row.get(key) for key in fields} for row in rows}
+        _need(code in model_context.get('contexts', {})
+              and contexts(projection['contexts']) == contexts(model_context['contexts'][code])
+              and sorted(map(tuple, projection['expected_links'])) ==
+                  sorted(map(tuple, model_context.get('expected_links', []))),
+              'Construction projection end states/links differ from the actual prepared-model context: ' + code)
     return value
 
 

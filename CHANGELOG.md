@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Retain why each construction dictionary was chosen (C363)
+
+- Ordinary construction lineage can retain the existing canonical-input projection
+  bundle, checking exact input, actions, phosphate intent and consumed site dictionaries.
+- Complete requests preserve that same closure and compare its declared ends/links
+  against the actual prepared model. Cold replay requires no original paths or SDK;
+  old lineage defaults remain unchanged and no scientific acceptance is implied.
+
 ### Prepare modified dictionaries before building the modified model (C362)
 
 - The existing site preparer accepts explicit canonical input identities and

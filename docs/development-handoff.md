@@ -1,23 +1,29 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C362 canonical-input projection — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. Latest runtime **C362**:
-28 new focused tests and 238 installed/relocated affected tests pass. Fresh one-call
-mixed-end DY construction/native readback passes 87 checks/two unsupported charge
-observations. All Rowan jobs stopped; no full suite. C360 / 59441cf3 and compact
-C361 evidence / 0126d3aa are pushed.
+Updated **2026-11-17, C363 projection lineage — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. C362 / `368f549c` is pushed.
+C363 is complete: 22 new focused tests and 119 final installed/relocated tests pass.
+Earlier broad compatibility: 213 focused and 213 installed before the final context
+join. Fresh Coot plus exact prior Phenix replay pass; all Rowan jobs stopped.
+No full suite. Failed local diagnostic attempts remain preserved.
 
 ## Immediate work and peer boundary
 
-**Next: bind canonical-input projection to ordinary construction history.**
-C358 planning, C359 one-request mixed-end construction/lineage and C362 canonical
-projection are complete. C362 uses existing qualified source/site owners and the
-original canonical model; it never fabricates target coordinates. Its new explicit
-policy exposes only canonical input/projections and refuses actual-model native
-inspection until fresh downstream preparation. Bind the existing saved derivation
-to C359's exact selected dictionaries, original input/actions and complete-request
-closure, then connect ordinary intake. Composition provenance also remains explicit.
-Reuse existing owners; avoid another source/process/proof store.
+**Next: source-composition provenance and ordinary DY intake.** C358 planning,
+C359 one-call mixed-end construction, C362 canonical-input projection and C363
+projection lineage are complete. Existing owners now retain exact original model,
+site choices, chemical derivation and declared ends, then compare them against the
+actual prepared model. A complete request replays that same closure after relocation.
+The mixed-end live closure is 29 files / 2.33 MB; native diagnostics are not copied
+into it. No additional source/process/proof store was introduced.
+
+Composition remains distinct: C354's packaged-reference compositor reproduces the
+C342 source, and C355 freezes exact selected source bytes, but the original backbone/
+base composition inputs and operation proof still need an explicit joined record.
+Inspect `cif_reference_composition`, packaged reference lookup and the existing
+acquisition-source freezer before designing that seam. Then ordinary PostMR/request
+forwarding must use those checked choices without fabricating NARestraints pairing
+roles. Do not mistake successful explicit library controls for automatic activation.
 
 **DF diagnostic complete; production restoration remains open.** C361 uses Hazel's
 separately prepared canonical parent, with its recorded D:1 terminal-phosphate
@@ -33,8 +39,9 @@ Hazel completed the matched linked/recipe-preflight and five-cycle comparison us
 coordinate-only intake with B/Q, Hg and outside-site states preserved. Declared links,
 source and custom restraints survive, but C1′–N1 stretches again to 1.66244 Å
 (and N1–C2 also worsens). Construction is not sufficient under the diffraction
-objective. Do not adopt the endpoint or tighten sigmas ad hoc. Record Hazel's compact
-final receipt once published; C361 construction evidence remains independently valid. Historical curated sulfur/iodine
+objective. Do not adopt the endpoint or tighten sigmas ad hoc. Hazel's pushed Alder note is `47e7b333`; the C363 ledger binds the exact compact
+review/preflight/refinement receipts. C361 construction evidence remains valid.
+Serialized C1′–N1 is 1.662146 Å; the native full-precision endpoint is 1.662440 Å. Historical curated sulfur/iodine
 placements may repair bad raw substituents, so blindly switching every curated
 residue to whole-base transport is not justified. Reuse C17/C62's frozen primitive;
 a general production selection rule remains a specific Q06 follow-up.
@@ -117,6 +124,7 @@ unfinished-work order. A readable CIF or passing derivative check does not close
 
 Exact controls, commands, hashes and limitations are in the
 [evidence ledger](cif-linked-native-registration-evidence.json). Start with
+`construction_projection_lineage_2026_11_17`,
 `canonical_input_projection_2026_11_17`,
 `df_existing_whole_base_diagnostic_2026_11_17`,
 `construction_component_padding_2026_11_17`,

@@ -14023,3 +14023,32 @@ chi differences are below 0.014 degrees. Fresh Phenix 2.2.1-6174 readback gives
 87 PASS and two unsupported formal-charge observations. 28 new focused tests and
 238 installed/relocated affected tests pass. Exact commands/receipts and limits:
 `canonical_input_projection_2026_11_17` in the evidence ledger.
+
+### Construction projection lineage (C363)
+
+`begin_postmr_construction(..., construction_projections={code: directory})`
+accepts existing C362 artifacts under `PostMR/Coot/construction_projections/CODE`.
+The same construction owner checks their canonical input bytes, complete component
+mutation sites, before/after identities, phosphate/passthrough intent and exact
+selected site CIFs. Every explicit site choice needs its derivation when this mode
+is requested. No projection algorithm, source selection or process owner is copied.
+
+The new `postmr-projected-dictionary-construction-lineage-v1` record carries anchored
+receipt references and the existing reader returns their exact declared file closure.
+Sealing rechecks the captured choices and rejects omitted evidence in the reserved
+folder. Old records retain their historical interpretation. The complete-request
+owner freezes that closure and checks selected components' projected end states and
+whole-model links against the existing actual prepared-model context. A hash match
+alone cannot substitute for that chemical join. Cold relocation tests remove all
+original paths and prohibit native execution. New records require a current reader;
+no old artifact migration or changed native chemistry follows.
+
+A fresh Coot 1.3.3 mixed-end DY construction yields exactly the C362 model/CIF bytes,
+so its prior Phenix 2.2.1-6174 evidence is replayed read-only (87 PASS/two unsupported
+charge observations), without another interpreter run. The final actual-model
+context join also passes. The complete retained construction closure is 29 files /
+2,328,761 bytes; raw native diagnostic inventories remain local, outside that closure.
+22 new focused tests and 119 final installed/relocated tests pass; an earlier broader
+213-test compatibility pass preceded the final context guard. Exact evidence:
+`construction_projection_lineage_2026_11_17`. Source composition provenance and
+ordinary request forwarding remain the next explicit integration work.

@@ -424,6 +424,11 @@ identities and declared ends, without fabricated target coordinates. Readback
 rederives the chemical projection and exposes no native-ready model arguments;
 actual construction must receive separate ordinary site/native qualification.
 
+C363 joins that existing projection artifact into ordinary construction lineage.
+The reader replays its derivation, input/actions, phosphate intent and exact chosen
+CIFs. The complete-request owner then compares declared ends/links with the actual
+prepared-model context. It freezes only the declared closure, not the whole run.
+
 ### Dataset and symmetry discovery
 
 Dataset discovery currently accepts the usual autoPROC/STARANISO naming variants

@@ -11,13 +11,15 @@ transport preserves the good sugar–base bond and exact scaffold/neighbours, us
 source-qualified DNA metadata and the recorded terminal-phosphate preparation.
 Hazel's matched five-cycle check preserves all declared restraints/links, but DF's
 sugar–base bond stretches again from 1.49958 to 1.66244 Å. Construction alone does
-not close Q06; use the signed compact peer receipt when published. Production curated
+not close Q06; the signed Alder result is `47e7b333` with exact compact receipts bound in
+`construction_projection_lineage_2026_11_17`. Production curated
 selection remains open: do not discard sulfur/iodine placement protections merely
 because this DF candidate improves. Reuse the existing transport primitive.
 
 Resume [ordinary DY integration](#dy--packaged-retained-triazole-reference-and-mutation-support):
-C362 derives projections from canonical input/end states. Next bind that derivation
-through existing construction lineage, then join ordinary intake. C357 retention findings remain recorded locally.
+C362 derives projections from canonical input/end states; C363 binds that derivation
+through existing construction lineage and complete-request/actual-model context.
+Next retain source-composition provenance and connect ordinary intake. C357 retention findings remain recorded locally.
 
 Linden's W111 counted-contribution diagnostic supports shared Q06 integration;
 C331 remains callback-free. Review exact owner admission, callable identity, native
@@ -945,8 +947,9 @@ Current remaining integration, in order:
    construction/request lineage. C353 owns canonical proof; C355 owns selected source
    bytes; C359 now owns exact per-site dictionary choice through the same lineage and
    cold complete requests. C362 derives projections through the existing site owner;
-   binding that derivation/composition to construction and ordinary forwarding remain
-   open. Keep these distinct from actual-model/native qualification.
+   C363 binds their full derivation to construction and actual prepared-model end/link
+   context through that same request. Source-composition provenance and ordinary
+   forwarding remain open; neither implies refinement acceptance.
 
 Source/native chemistry, rotatable bridge controls and saved mixed-context replay
 are already established within their recorded scope. Do not add another source,

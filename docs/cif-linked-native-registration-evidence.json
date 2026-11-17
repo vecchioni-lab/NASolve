@@ -107858,5 +107858,481 @@
       "Modified-sugar, L-input, symmetry and nonstandard phosphate construction contexts need separate adapters.",
       "No native weights/targets/Free-R changes, refinement repetition, full suite or branch merge."
     ]
+  },
+  "construction_projection_lineage_2026_11_17": {
+    "milestone": "C363",
+    "date": "2026-11-17",
+    "signed": "Rowan",
+    "before": "Construction retained chosen CIF bytes but not the canonical-input derivation or its join to actual prepared end/link context.",
+    "after": "Existing lineage freezes/replays the existing projection owner and complete requests verify its chemical context against the actual prepared model.",
+    "schema": {
+      "policy": "postmr-projected-dictionary-construction-lineage-v1",
+      "field": "construction_projections",
+      "references": "Run-anchored CODE/site_receipt.json under PostMR/Coot/construction_projections; exact child closure only."
+    },
+    "validation": {
+      "fail_before": "18failures/9.89s missing API; later3negative context cases failed/4.34s before final guard",
+      "initial": "78passed/28.84s;19newpassed/20.77s;213broaderpassed/312.76s",
+      "final_focused": "22passed/27.29s",
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_postmr_projection_lineage.py --tb=short",
+      "initial_installed": {
+        "status": "INSTALLED_RELOCATED_PROJECTION_LINEAGE_PASS",
+        "wheel_sha256": "7f74ca46312eedc45cede8d1b8218273b2116a9f29622f20afd47c41336a12e1",
+        "wheel_bytes": 1396533,
+        "source_copy_removed": true,
+        "original_install_path_absent": true,
+        "package_reference_bytes_match": true,
+        "validation_command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-c",
+          "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_postmr_projection_lineage.py', 'tests/test_postmr_site_lineage.py', 'tests/test_postmr_canonical_lineage.py', 'tests/test_cif_construction_projection.py', 'tests/test_cif_construction_provenance.py', 'tests/test_cif_complete_request.py', '--tb=short']))"
+        ],
+        "validation_output": "........................................................................ [ 33%]\n........................................................................ [ 67%]\n.....................................................................    [100%]\n213 passed in 300.48s (0:05:00)\n",
+        "build_command": "phenix.python -m pip wheel --no-deps --no-build-isolation --no-index",
+        "temporary_bytes_removed": 11334698
+      },
+      "final_installed": {
+        "status": "INSTALLED_RELOCATED_PROJECTION_LINEAGE_PASS",
+        "wheel_sha256": "754e7889dc15deba1848f32ce8566add5f62eb28097c1e8f690c0b462a094603",
+        "wheel_bytes": 1396824,
+        "source_copy_removed": true,
+        "original_install_path_absent": true,
+        "package_reference_bytes_match": true,
+        "validation_command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-c",
+          "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_postmr_projection_lineage.py', 'tests/test_postmr_site_lineage.py', 'tests/test_postmr_canonical_lineage.py', 'tests/test_cif_construction_projection.py', 'tests/test_cif_model_context.py', '--tb=short']))"
+        ],
+        "validation_output": "........................................................................ [ 60%]\n...............................................                          [100%]\n119 passed in 42.90s\n",
+        "build_command": "phenix.python -m pip wheel --no-deps --no-build-isolation --no-index",
+        "temporary_bytes_removed": 11336794
+      },
+      "static": "Python3.10 syntax and git diff --check",
+      "native": {
+        "anchor": "NASolve-live-tests",
+        "path": "363_Cedar_projection-lineage-0e8h_fi4",
+        "summary": {
+          "status": "C363_PROJECTION_LINEAGE_COOT_EXACT_NATIVE_REPLAY",
+          "cases": {
+            "forward": {
+              "sites": {
+                "A:11": {
+                  "scaffold_atoms_preserved": [
+                    "C1'",
+                    "C2'",
+                    "C3'",
+                    "C4'",
+                    "C5'",
+                    "O3'",
+                    "O4'",
+                    "O5'"
+                  ],
+                  "chi_difference_degrees": 0.006623556550380272,
+                  "phosphate_atoms": [],
+                  "projection_sha256": "c22fdedf55ef09b1706d11d259a922796207f657ba6eccdf1a443290e02a95f5"
+                },
+                "A:12": {
+                  "scaffold_atoms_preserved": [
+                    "C1'",
+                    "C2'",
+                    "C3'",
+                    "C4'",
+                    "C5'",
+                    "O3'",
+                    "O4'",
+                    "O5'",
+                    "OP1",
+                    "OP2",
+                    "P"
+                  ],
+                  "chi_difference_degrees": 0.013926289700236794,
+                  "phosphate_atoms": [
+                    "OP1",
+                    "OP2",
+                    "P"
+                  ],
+                  "projection_sha256": "7958587819a3a8301b060868d874986b372cd9611f0afa5ebef31250423951a8"
+                }
+              },
+              "unselected_heavy_coordinates_preserved": true,
+              "model_sha256": "5756d6f6f3e23387a2d66b558fe46897db106201c80a09ef0e2e436539191ba2",
+              "lineage_policy": "postmr-projected-dictionary-construction-lineage-v1"
+            }
+          },
+          "native_checks": {
+            "PASS": 87,
+            "UNSUPPORTED": 2
+          },
+          "diagnostic_continuation": {
+            "status": "CONTINUE_WITH_NOTES",
+            "allowed": true,
+            "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+            "automatic_adoption": false,
+            "policy": "EXISTING_MECHANICS_CONTINUATION; UNAVAILABLE_FORMAL_CHARGE_ONLY"
+          },
+          "source_files_preserved": 335,
+          "cold_replay": "EXACT_DECLARED_FILES_WITH_ORIGINAL_TEMPORARY_PATH_ABSENT",
+          "temporary_bytes_removed": 2328761,
+          "all_native_jobs_stopped": true,
+          "elapsed_seconds": 6.231320209000842,
+          "physical_bytes": 2442241,
+          "versions": {
+            "coot": "1.3.3",
+            "phenix": "2.2.1",
+            "build": "phenix-2.2.1-6174"
+          },
+          "construction": "One ordinary constructor/Coot invocation using newly derived canonical-input projections",
+          "projection_derivation": "EXPLICIT_CANONICAL_INPUT_AND_DECLARED_END_STATES",
+          "projection_lineage": "BOUND_TO_ORIGINAL_MODEL_ACTIONS_PHOSPHATE_AND_CONSUMED_CIFS",
+          "native_execution": "PRIOR_EXACT_C362_CAPTURE_REPLAY_ONLY",
+          "ordinary_request_forwarding": "NOT_IMPLEMENTED",
+          "readyset": "NOT_REPEATED",
+          "refinement": "NOT_RUN",
+          "scientific_acceptance": "NOT_ASSESSED"
+        },
+        "driver": {
+          "returncode": 0,
+          "stopped_verified": true,
+          "source_unchanged": true
+        },
+        "prior_capture_replay": {
+          "anchor": "NASolve-live-tests",
+          "path": "362_Cedar_canonical-projection-hc5ow6vx",
+          "model_sha256": "5756d6f6f3e23387a2d66b558fe46897db106201c80a09ef0e2e436539191ba2",
+          "mode": "READ_ONLY_EXACT_PRIOR_CAPTURE_REPLAY",
+          "native_executed": false,
+          "qualification_status": "REVIEW",
+          "receipts": [
+            {
+              "anchor": "NASolve-live-tests",
+              "path": "362_Cedar_canonical-projection-hc5ow6vx/native-before/cif-native-l022obzy/native_receipt.json",
+              "sha256": "8d9a1b4d435deb3bb4ac356c984f9b9c1c5b9a7f31f38e2b8280728a012d324f"
+            },
+            {
+              "anchor": "NASolve-live-tests",
+              "path": "362_Cedar_canonical-projection-hc5ow6vx/native-after/cif-native-v2ofz_16/native_receipt.json",
+              "sha256": "6d9574cbe1890fd8cf751bdf7e7771d2fa92bba5ea8e8faaab8e6daa485e9107"
+            }
+          ]
+        }
+      },
+      "actual_context_join": {
+        "status": "EXACT_LIVE_CONSTRUCTION_TO_PREPARED_CONTEXT_PASS",
+        "root": {
+          "anchor": "NASolve-live-tests",
+          "path": "363_Cedar_projection-lineage-0e8h_fi4"
+        },
+        "policy": "postmr-projected-dictionary-construction-lineage-v1",
+        "prepared_sha256": "5756d6f6f3e23387a2d66b558fe46897db106201c80a09ef0e2e436539191ba2",
+        "model_context": {
+          "schema_version": 1,
+          "policy_id": "cif-prepared-model-context-v1",
+          "model_sha256": "5756d6f6f3e23387a2d66b558fe46897db106201c80a09ef0e2e436539191ba2",
+          "components": [
+            "DY"
+          ],
+          "intent": {
+            "post_mr_plan": {
+              "allow_op3_sites": [],
+              "backbone_policy": {
+                "allow_unreviewed": false,
+                "default": "standard_phosphodiester",
+                "experimental_passthrough_sites": [],
+                "schema_version": 1,
+                "sites": {}
+              },
+              "phosphate_intent": {
+                "allow_op3_sites": [],
+                "recipe": null,
+                "schema_version": 1,
+                "source": "none"
+              }
+            }
+          },
+          "contexts": {
+            "DY": [
+              {
+                "site": "A:11",
+                "incoming_site": null,
+                "outgoing_site": "A:12",
+                "five_prime_state": "free_OH",
+                "three_prime_state": "linked"
+              },
+              {
+                "site": "A:12",
+                "incoming_site": "A:11",
+                "outgoing_site": "A:13",
+                "five_prime_state": "linked",
+                "three_prime_state": "linked"
+              }
+            ]
+          },
+          "expected_links": [
+            [
+              "A:11",
+              "A:12"
+            ],
+            [
+              "A:12",
+              "A:13"
+            ]
+          ],
+          "phosphate_audit": {
+            "removed": [],
+            "retained": [],
+            "checked": [
+              {
+                "site": "A:12",
+                "residue": "DY",
+                "incoming_site": "A:11",
+                "outgoing_site": "A:13",
+                "p_o_distances_angstrom": {
+                  "A:12/OP1": 1.4855,
+                  "A:12/OP2": 1.4897,
+                  "A:12/O5'": 1.5938,
+                  "A:11/O3'": 1.6259
+                },
+                "o_p_o_angles_degrees": {
+                  "A:12/OP1-P-A:12/OP2": 119.45,
+                  "A:12/OP1-P-A:12/O5'": 107.31,
+                  "A:12/OP1-P-A:11/O3'": 107.9,
+                  "A:12/OP2-P-A:12/O5'": 108.08,
+                  "A:12/OP2-P-A:11/O3'": 109.86,
+                  "A:12/O5'-P-A:11/O3'": 102.98
+                }
+              },
+              {
+                "site": "A:13",
+                "residue": "DC",
+                "incoming_site": "A:12",
+                "outgoing_site": null,
+                "p_o_distances_angstrom": {
+                  "A:13/OP1": 1.4835,
+                  "A:13/OP2": 1.4937,
+                  "A:13/O5'": 1.6021,
+                  "A:12/O3'": 1.6422
+                },
+                "o_p_o_angles_degrees": {
+                  "A:13/OP1-P-A:13/OP2": 122.31,
+                  "A:13/OP1-P-A:13/O5'": 104.15,
+                  "A:13/OP1-P-A:12/O3'": 109.37,
+                  "A:13/OP2-P-A:13/O5'": 108.58,
+                  "A:13/OP2-P-A:12/O3'": 107.25,
+                  "A:13/O5'-P-A:12/O3'": 103.65
+                }
+              }
+            ],
+            "connectivity_distance_range_angstrom": [
+              1.2,
+              2.1
+            ],
+            "angle_range_degrees": [
+              60.0,
+              160.0
+            ],
+            "input_sha256": "5756d6f6f3e23387a2d66b558fe46897db106201c80a09ef0e2e436539191ba2",
+            "mode": "op3-explicit-opt-in-v1",
+            "allow_op3_sites": [],
+            "experimental_passthrough_sites": [],
+            "skipped": [],
+            "output_sha256": "5756d6f6f3e23387a2d66b558fe46897db106201c80a09ef0e2e436539191ba2"
+          },
+          "scientific_qualification": "NOT_ASSESSED"
+        },
+        "projection_contexts": {
+          "DY": {
+            "contexts": [
+              {
+                "five_prime_state": "free_OH",
+                "incoming_site": null,
+                "outgoing_site": "A:12",
+                "site": "A:11",
+                "three_prime_state": "linked"
+              },
+              {
+                "five_prime_state": "linked",
+                "incoming_site": "A:11",
+                "outgoing_site": "A:13",
+                "site": "A:12",
+                "three_prime_state": "linked"
+              }
+            ],
+            "expected_links": [
+              [
+                "A:11",
+                "A:12"
+              ],
+              [
+                "A:12",
+                "A:13"
+              ]
+            ]
+          }
+        },
+        "closed_files": 29,
+        "closure_bytes": 2328761,
+        "native_execution": false,
+        "scientific_acceptance": false
+      }
+    },
+    "failures": {
+      "retained_native_attempt": "363_Cedar_projection-lineage-5gehchds",
+      "reason": "Local runner reused the name planned for an action tuple after successful Coot; independent replay step failed. Driver/source unchanged and process stopped before fresh corrected attempt.",
+      "local_harness": "Final context guard runner initially wrote to the wrong local path; verified generated copy removed, corrected runner applied, expected fail-before negatives then pass. No user files touched."
+    },
+    "peer_DF": {
+      "signed": "Hazel",
+      "note_commit": "47e7b333d0860735408ed644f0f1b8c52ba2da69",
+      "review_validation": {
+        "status": "PASS",
+        "files": 147,
+        "links": 23,
+        "completed_receipts": [
+          "ml_default/preflight/execution.json",
+          "ml_default/refinement/execution.json",
+          "mlhl_weight_02/preflight/execution.json",
+          "mlhl_weight_02/refinement/execution.json",
+          "mlhl_open_q/preflight/execution.json",
+          "mlhl_open_q/refinement/execution.json",
+          "mlhl_graph_base/preflight/execution.json",
+          "mlhl_graph_base/refinement/execution.json"
+        ],
+        "recorded_native_pids_absent": true,
+        "scientific_acceptance": false
+      },
+      "references": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/ft-hg-triage-20261117-01/review-v2.md",
+          "sha256": "fc7886eb73ecd64bf3a76c04412997551bd7a47b6e8c99fc7440174cb0483ad5",
+          "size": 9010
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/ft-hg-triage-20261117-01/review-data-v2.json",
+          "sha256": "df64ef554df3f3e40967efb12b94342d70fb2bcfc535ffccf237320b6e759420",
+          "size": 73729
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/ft-hg-triage-20261117-01/review-validation-v2.json",
+          "sha256": "10725383496210630f7700bffdf6a4aff19fbb268e7f27c7bb082ccfd1c559b1",
+          "size": 525
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/ft-hg-triage-20261117-01/mlhl_graph_base/preparation.json",
+          "sha256": "f064005ebd3555cb033002a33c78bf2ce96c454ebe474f0b3e68cd6ceb8256fe",
+          "size": 1206
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/ft-hg-triage-20261117-01/mlhl_graph_base/preflight/endpoint-replay-checks.json",
+          "sha256": "845088b477810408e1482054b194244463b926079cd2be2e5b69406ce16ed208",
+          "size": 6734
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/ft-hg-triage-20261117-01/mlhl_graph_base/refinement/audit.json",
+          "sha256": "7e737bf7448b0cd4550d473ccfa7b96dda1afbb39df0bd4a08573ffcbeea90f5",
+          "size": 93937
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/ft-hg-triage-20261117-01/mlhl_graph_base/refinement/endpoint-replay-checks.json",
+          "sha256": "845088b477810408e1482054b194244463b926079cd2be2e5b69406ce16ed208",
+          "size": 6734
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/ft-hg-triage-20261117-01/mlhl_graph_base/refinement/endpoint-geometry.json",
+          "sha256": "6587d48f1785be8d70bc890eb966cf9455f789183e162575a2c61c2a4732bbda",
+          "size": 2044224
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/ft-hg-triage-20261117-01/mlhl_graph_base/preflight/recipe-coverage/review.json",
+          "sha256": "b041dd5c820f635ac95621f8d1386d802ed70f24088c8681abf11c648744ac80",
+          "size": 1076
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/ft-hg-triage-20261117-01/mlhl_graph_base/refinement/recipe-coverage/review.json",
+          "sha256": "b041dd5c820f635ac95621f8d1386d802ed70f24088c8681abf11c648744ac80",
+          "size": 1076
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/ft-hg-triage-20261117-01/mlhl_graph_base/preflight-capture-location.json",
+          "sha256": "c8c7397ac4973634d96d938c574b18a460da73a1787e31c357019c5981aaad2d",
+          "size": 339
+        }
+      ],
+      "outcome": "Construction improvement does not survive matched diffraction refinement; no production switch, ad hoc sigma change or endpoint adoption.",
+      "fit": {
+        "status": "MECHANICS_REVIEWED_SCIENCE_OPEN",
+        "r_work": 0.285532349974134,
+        "r_free": 0.29087990360801613,
+        "b_mean": 173.98480345209427,
+        "scientific_approval": "NOT_RUN"
+      },
+      "serialized_bond_measurements": [
+        {
+          "atoms": [
+            "pdb=\" C1'  DF A  12 \"",
+            "pdb=\" N1   DF A  12 \""
+          ],
+          "observed": 1.6621462029556875,
+          "target": 1.499,
+          "weight": 692.5207756232687,
+          "nominal_deviation": 4.293321130412826
+        },
+        {
+          "atoms": [
+            "pdb=\" C2   DF A  12 \"",
+            "pdb=\" N1   DF A  12 \""
+          ],
+          "observed": 1.5217736362547465,
+          "target": 1.396,
+          "weight": 1111.111111111111,
+          "nominal_deviation": 4.192454541824886
+        },
+        {
+          "atoms": [
+            "pdb=\" C6   DF A  12 \"",
+            "pdb=\" N1   DF A  12 \""
+          ],
+          "observed": 1.443069298405312,
+          "target": 1.404,
+          "weight": 1040.582726326743,
+          "nominal_deviation": 1.2602999485584527
+        }
+      ],
+      "full_precision_glycosidic_A": 1.66244,
+      "full_precision_value_source": "Hazel signed note; serialized audit bound independently above."
+    },
+    "changed_files": [
+      "src/nasolve/postmr_lineage.py",
+      "src/nasolve/cif_complete_request.py",
+      "tests/test_postmr_projection_lineage.py",
+      "tests/test_cif_construction_projection.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "compatibility": "Absent option preserves existing lineage policies and history. Old readers refuse the new explicit policy. No migration. Exact existing source-dictionary checks remain; projected selected-component contexts additionally bind actual end states/whole-model links.",
+    "retention": "Code/tests/docs/compact evidence only committed. New source closure29files/2328761bytes; scientific runs local, failed native attempt preserved; owned successful installed scratch removed.",
+    "remaining": [
+      "Source composition input/operation proof through existing acquisition owner.",
+      "Ordinary PostMR/request forwarding and source selection.",
+      "DF/PDU achieved geometry and shared active-counted owner integration remain Q06; no native weights or kernel changes.",
+      "No full suite or merge."
+    ]
   }
 }

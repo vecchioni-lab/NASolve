@@ -17,6 +17,7 @@ from .cif_repair_attempt import _root
 POLICY_ID = 'postmr-construction-lineage-v1'
 CANONICAL_POLICY_ID = 'postmr-canonical-construction-lineage-v1'
 SITE_DICTIONARY_POLICY_ID = 'postmr-site-dictionary-construction-lineage-v1'
+PROJECTION_POLICY_ID = 'postmr-projected-dictionary-construction-lineage-v1'
 RECORD_PATH = 'PostMR/Coot/construction.json'
 
 
@@ -97,8 +98,53 @@ def _site_dictionary_closure(root, references, inputs, controls):
     return checked, {ref['path']: _read(_resolve(ref, root)) for ref in references.values()}
 
 
+def _projection_closure(root, references, inputs, controls, site_references):
+    """Join the existing site derivation to exact consumed choices and intent."""
+    from .cif_dictionary_sites import read_dictionary_sites, CONSTRUCTION_POLICY_ID
+    _need(isinstance(references, dict) and 1 <= len(references) <= 16
+          and set(references) <= inputs['dictionaries'].keys(), 'Invalid construction projection inventory')
+    _need(isinstance(site_references, dict) and site_references,
+          'Construction projections require explicit consumed site dictionaries')
+    selected, files, contexts = {}, {}, {}
+    actions = {a['site']: a for a in controls['actions']}
+    for code, reference in sorted(references.items()):
+        path = _resolve(reference, root)
+        _need(reference['path'] == f'PostMR/Coot/construction_projections/{code}/site_receipt.json',
+              'Construction projection evidence has the wrong role')
+        saved = read_dictionary_sites(path.parent); report = saved['report']
+        _need(report['policy_id'] == CONSTRUCTION_POLICY_ID and report['component'] == code,
+              'Require a canonical-input projection for the declared component')
+        _need(_read(saved['canonical_model']) == _read(_resolve(inputs['model'], root)),
+              'Projection canonical model differs from construction input')
+        sites = set(report['construction_targets'])
+        _need(sites == {site for site,a in actions.items() if a['after'] == code}
+              and sites <= site_references.keys() and not sites & set(controls['passthrough_sites']),
+              'Projection sites differ from complete construction intent')
+        for context in report['contexts']:
+            site = context['site']; action = actions[site]
+            _need(action['method'] == 'coot-parent-overlap'
+                  and action['before'] == report['construction_targets'][site],
+                  'Projection original identity differs from construction action')
+            _need((context['five_prime_state'] == 'phosphate') == (site in controls['allow_op3_sites']),
+                  'Projection phosphate state differs from construction intent')
+            projection, component = saved['projections'][site]
+            _need(component == code and _read(projection) == _read(_resolve(site_references[site], root)),
+                  'Consumed site dictionary differs from its saved chemical projection')
+        selected.update({site: saved['projections'][site][0] for site in sites})
+        contexts[code] = {k: report[k] for k in ('contexts','expected_links')}
+        files[reference['path']] = _read(path)
+        for ref in report['files']:
+            artifact = path.parent/ref['path']
+            files[artifact.relative_to(root).as_posix()] = _read(artifact)
+        _need(_reference(path, root) == reference and read_dictionary_sites(path.parent)['report'] == report,
+              'Construction projection changed during lineage readback')
+    _need(set(selected) == set(site_references), 'Every chosen site dictionary needs its declared projection')
+    return contexts, files
+
+
 def begin_postmr_construction(run, model, reference_model, dictionaries, actions, *,
-                             allow_op3_sites=(), passthrough_sites=(), site_dictionary_paths=None):
+                             allow_op3_sites=(), passthrough_sites=(), site_dictionary_paths=None,
+                             construction_projections=None):
     """Capture the identities of existing consumed inputs before construction."""
     root=_root(run)
     inputs=dict(model=_reference(model,root),reference_model=_reference(reference_model,root),
@@ -112,6 +158,12 @@ def begin_postmr_construction(run, model, reference_model, dictionaries, actions
         references = {site: _reference(p, root) for site, p in site_dictionary_paths.items()}
         _site_dictionary_closure(root, references, inputs, controls)
         result['site_dictionaries'] = references
+    if construction_projections is not None:
+        _need(isinstance(construction_projections, dict), 'Invalid construction projection mapping')
+        references = {code: _reference(Path(directory)/'site_receipt.json', root)
+                      for code, directory in construction_projections.items()}
+        _projection_closure(root, references, inputs, controls, result.get('site_dictionaries'))
+        result['construction_projections'] = references
     return result
 
 
@@ -146,8 +198,9 @@ def finish_postmr_construction(run, started, prepared_model, construction):
     """Seal a fresh, non-qualifying record before downstream numerical work."""
     root=_root(run); path=root/RECORD_PATH
     if path.exists() or path.is_symlink():raise FileExistsError(path)
-    _need(isinstance(started,dict) and set(started) in (
-        {'inputs','controls'}, {'inputs','controls','site_dictionaries'}), 'Invalid construction start identity')
+    _need(isinstance(started,dict) and {'inputs','controls'} <= set(started)
+          and set(started) <= {'inputs','controls','site_dictionaries','construction_projections'},
+          'Invalid construction start identity')
     _inputs(root,started['inputs']); _controls(started['controls'],started['inputs']['dictionaries'])
     outputs=dict(after_coot=_reference(construction['model'],root),prepared=_reference(prepared_model,root))
     evidence={}
@@ -179,6 +232,13 @@ def finish_postmr_construction(run, started, prepared_model, construction):
         _need('site_dictionary_paths' not in construction
               and not (root/'PostMR/Coot/site_dictionaries').exists(),
               'Site dictionary choices cannot be silently omitted')
+    if 'construction_projections' in started:
+        _projection_closure(root, started['construction_projections'], started['inputs'],
+                            started['controls'], started.get('site_dictionaries'))
+        record['policy_id'] = PROJECTION_POLICY_ID
+    else:
+        _need(not (root/'PostMR/Coot/construction_projections').exists(),
+              'Construction projection evidence cannot be silently omitted')
     write_record(path,record)
     return read_postmr_construction(root)['report']
 
@@ -193,13 +253,16 @@ def read_postmr_construction(run):
     root=_root(run); raw=_read(root/RECORD_PATH); r=read_record(root/RECORD_PATH)
     canonical = 'canonical_parent_input' in r
     site_choices = 'site_dictionaries' in r
+    projections = 'construction_projections' in r
     fields = {'schema_version','policy_id','status','scientific_qualification','native_interpretation',
               'automatic_adoption','inputs','outputs','controls','evidence','record_sha256'}
     if canonical: fields.add('canonical_parent_input')
     if site_choices: fields.add('site_dictionaries')
+    if projections: fields.add('construction_projections')
     _need(set(r)==fields
           and type(r['schema_version']) is int and r['schema_version']==1
-          and r['policy_id']==(SITE_DICTIONARY_POLICY_ID if site_choices else
+          and r['policy_id']==(PROJECTION_POLICY_ID if projections else
+                               SITE_DICTIONARY_POLICY_ID if site_choices else
                                CANONICAL_POLICY_ID if canonical else POLICY_ID)
           and r['status']=='CONSTRUCTION_RETURNED'
           and r['scientific_qualification']=='NOT_ASSESSED' and r['native_interpretation']=='NOT_RUN'
@@ -225,6 +288,10 @@ def read_postmr_construction(run):
     if site_choices:
         selected, site_files = _site_dictionary_closure(root, r['site_dictionaries'], r['inputs'], r['controls'])
         files.update(site_files)
+    if projections:
+        projection_contexts, projection_files = _projection_closure(root, r['construction_projections'],
+            r['inputs'], r['controls'], r.get('site_dictionaries'))
+        files.update(projection_files)
     # Check declared identities with the ordinary caller's existing parser. This
     # is a model/action join, not a second chemistry or geometry validator.
     from .postmr import PostMRPreparationError, residue_name
@@ -238,4 +305,5 @@ def read_postmr_construction(run):
     _need(all(_read(root/name)==data for name,data in files.items()), 'Construction lineage changed during readback')
     return dict(report=r,files=files,model=root/r['outputs']['prepared']['path'],
                 dictionaries={c:root/ref['path'] for c,ref in r['inputs']['dictionaries'].items()},
-                **({'site_dictionary_paths': selected} if site_choices else {}))
+                **({'site_dictionary_paths': selected} if site_choices else {}),
+                **({'projection_contexts': projection_contexts} if projections else {}))

@@ -16,15 +16,18 @@ from tests.test_cif_dictionary_sites import inputs
 from tests.test_cif_preparation_qualification import qualification, POLICY
 
 
-def construction_inputs(tmp_path):
+def construction_inputs(tmp_path, *, chi_frame=False):
     args=inputs(tmp_path)
     source=tmp_path/'inputs/source.cif';numerical=tmp_path/'inputs/numerical.cif'
     v=component_values(source,'ZZZ');a,b,g='_chem_comp_atom.','_chem_comp_bond.','_chem_comp_angle.'
     additions={"C1'":'C',"C2'":'C',"C4'":'C',"O4'":'O','NX':'N','C6':'C'}
+    if chi_frame:
+        additions.pop('NX');additions.update(N1='N',C2='C')
     for name,element in additions.items():
         for field in [k for k in v if k.startswith(a)]:
             v[field].append({'comp_id':'ZZZ','atom_id':name,'type_symbol':element,'type_energy':element,'charge':'0'}[field[len(a):]])
     extra=[("C4'","C5'"),("C4'","O4'"),("O4'","C1'"),("C1'","C2'"),("C2'","C3'"),("C3'","C4'"),("C1'",'NX'),('NX','C6')]
+    if chi_frame:extra=[tuple('N1' if n=='NX' else n for n in pair) for pair in extra]+[('N1','C2')]
     for first,second in extra:
         for field in [k for k in v if k.startswith(b)]:
             v[field].append({'comp_id':'ZZZ','atom_id_1':first,'atom_id_2':second,'type':'single','value_dist':'1.5','value_dist_esd':'0.02'}[field[len(b):]])

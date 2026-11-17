@@ -4287,8 +4287,10 @@ The preparer now obtains those choices from the original canonical model and its
 explicitly declared end states, before any modified coordinates exist. The same
 chemical rules produce the same free-end/internal dictionaries. Coot builds the
 mixed model and Phenix readback passes 87 checks with two unavailable formal-charge
-observations. Binding that derivation through ordinary history and request intake
-remains open; constructing a model does not itself qualify its refinement.
+observations. Ordinary construction history now retains why those dictionaries were
+chosen, and the complete request checks that their declared ends agree with the model
+it receives. This survives moving the files to another location. Source composition
+provenance and ordinary intake remain open; construction is not refinement approval.
 
 A separate construction check now recognizes when Coot merely pads a residue name
 differently in the PDB field. It still checks all coordinates and other atom fields,
