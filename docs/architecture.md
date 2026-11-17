@@ -1138,3 +1138,11 @@ new naming, occupancy, chemistry, internal chain breaks and recuts are outside i
 scope. It uses the existing optional Gemmi parser, not NARestraints regeneration.
 Parent lineage, actual prepared state, fresh provider selection and native
 compilation remain separate mandatory owners; rebinding grants no runtime authority.
+
+
+W119 qualifies the actual ordinary preflight-to-driver boundary with C375's
+explicit stronger prepared record (broad bonded signature and outer normalization
+as well as pair/native state). Consumption reuses the sealed provider choice;
+legacy C371 four-field records cannot supply this stronger authority. The diagnostic
+stops before optimization and retains that native failure status. Durable request,
+admission, phase outcome and descendant retention remain existing-controller work.

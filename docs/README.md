@@ -23,9 +23,11 @@ current instructions; other branches retain their own status and validation pins
   native old/new agreement; it changes no physical objective or admission policy.
   W118 rebinds the same frozen pair definitions to compatible child model bytes,
   retaining chemistry and frame checks without authorizing continuation.
+  W119 qualifies stronger actual preflight-to-driver consumption, with an explicit
+  diagnostic stop before optimization. Versioned production wiring remains open.
   No physical repair is claimed.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Next human update is W119;
+  [machine-readable source](topostitch-roadmap.json). Next human update is W120;
   do not restart completed probes merely because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

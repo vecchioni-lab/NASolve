@@ -5920,3 +5920,90 @@ Only `topostitch_recipe.py` changes production code; existing recipe tests and
 human/machine docs are updated. S05/S06 remain partial. The separate C374 joined
 package uses W117/C373 pins and does not cover this new API. Production admission,
 descendant retention, broader phases/exclusions and scientific repair remain open.
+
+
+## W119 — Consume strong preflight state at the real driver boundary
+
+**2026-11-17; genuine native phase-boundary diagnostic, no optimization.**
+Installed C375 introduces an explicit stronger prepared capture and a consumer
+that reconstructs the existing owner without selecting providers again. The legacy
+C371 four-field record alone omits the broad bonded signature and outer restraint
+normalization. Its default output stays unchanged; stronger consumption requires
+the explicit new baseline. Rowan's source/installed/native tests own that API's
+refusal matrix. W119 independently checks its actual ordinary phase boundary.
+
+### Exact scope and outcome
+
+One isolated zero-cycle Phenix 2.2.1-6174 preflight returns the actual prepared
+model. The controller validates existing preflight evidence, then explicitly seals
+the stronger record, original request and input/source references. A separate
+fresh non-dry process reaches module-level native `driver.run`; before invoking
+that driver, the installed consumer compares the sealed state and reconstructs
+the owner. Entry rechecks the same initial state. No planner runs in consumption.
+
+The source is the existing W116 full-recipe endpoint, rebound by W118 while
+preserving original intent/chemistry and all 14 pair definitions. Exact declared
+archive members/checksums supply the parent, original recipe/source, core PHIL,
+fixed protocol and original data. This is no new benchmark search or weight choice.
+The original source/recipe and child bytes remain separately pinned.
+
+**The boundary passes.** Preflight and actual-driver state agree, including broad
+torsion/chirality settings, normalization, pair coverage and dual coordinate/ADP
+state. One checked energy/full-gradient call uses 11,392 current native terms plus
+17 additions =11,409. The native count is freshly observed for this reinput parent;
+W116's historical 11,379 is not reused as a fixed denominator. Exactly one inner
+call/extension uses the native-owned buffer. All model state and kernel, writer,
+driver, optimizer-monitor and monomer-summary bindings restore.
+
+The harness then raises the deliberate `BoundaryObserved` sentinel **before any
+optimizer or original driver invocation**. The native runtime truthfully retains
+`FAILED` with that exception. The diagnostic is `BOUNDARY_OBSERVED`, not completed
+refinement: no final model, ordinary successful execution receipt or usable
+checkpoint is written. Both owned processes stop; preflight takes 7.93 seconds and
+the driver-boundary process 9.57 seconds. No threshold is relaxed and no refused
+state is bypassed.
+
+Both phases retain the same 3,333 observations and 176 original Free-R selections;
+their Rwork/Rfree are exactly .2245247483/.2599282849. These initial values are not
+an improvement claim. The model is unchanged by the diagnostic call; no repair,
+diffraction optimization, repeated sibling panel or scientific adoption occurs.
+
+### Validation, pins and retained evidence
+
+Independent readback revalidates the existing preflight, sealed references,
+strong baseline, source/input hashes, owned call counts, original data/Free-R,
+intentional native failure, absence of optimizer/final output and stopped processes.
+This Willow slice changes documentation only, so no repeat full suite or package
+build is implied. W118 source/install and C375's 184 source/184 installed plus
+native controls remain separately pinned evidence.
+
+Historical commands:
+
+```text
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w119-phase-prepare.py
+python3 /private/tmp/willow-w119-prepared-boundary/build-probe.py
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w119-prepared-boundary/run.py
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w119-prepared-boundary/audit.py
+```
+
+Willow `c08f337024f8901c583c0988f652e9a1c3156a49`, wheel
+`d1a7319f9a3d7e63d68906974a25d22691d47b61296d9db7f94004dccbdb755d`;
+Cedar `b058581a2b75e9cab617c1c01eddb5866a0bb382`, wheel
+`132abf48b06701154b35c68d755989decf0530c00c3d0e3d4a7eff7a58d9f3b9`.
+The runtime is explicit existing v4; helper and native source pins are recorded
+separately. This diagnostic uses separately qualified installations, not a new
+joined-package or branch-merge claim.
+
+Repository anchor **everyday NASolve checkout**, local forensic archive
+`branch-artifacts/willow/w119-prepared-boundary-2026-11-17.tar.gz`, SHA
+`1159fdca85917be8f4772f9fab5e2d2836216cdf6e7a7ffad0324f700a37eaad`:
+2,377,760 bytes, 43 indexed files verified. Plan SHA
+`5e59471ed16ad7747e136aa8b1aefc14aa658c1ea44f1a55a011aecbb62fd6e3`;
+sealed preflight SHA `57a6059ba9c0d77dd3441008ab30120c148f3ab627368bfd2cd411a5ee662654`.
+Scientific inputs, native records/logs and package artifacts are excluded from Git.
+The archive is forensic evidence, not a portable resumable campaign.
+
+Next: existing-controller versioned original-request/preflight/admission/phase
+wiring, honest admission-refusal outcomes and descendant intent retention.
+Broader phases, periodic exclusions, scientific repair and B09 stay open;
+S05/S06 remain partial. C375/W119 do not replace these gates.

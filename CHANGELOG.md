@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W119 — Qualify the stronger actual preflight-to-refinement boundary
+
+- Record exact stronger prepared-state consumption at the genuine non-dry Phenix
+  driver boundary, using a W118-rebound parent and the installed C375 consumer.
+- Preserve original data/Free-R, one checked contribution call, explicit stop
+  before optimization and truthful native `FAILED` evidence for that planned stop.
+- Compact the current handoff; retain historical validation in existing ledgers.
+  No production code/schema/default change, completed refinement or accepted stitch.
+
 ### W118 — Rebind unchanged pair intent to a compatible refined parent
 
 - Add data-only `rebind_pair_recipe` in the existing recipe module. Preserve all
