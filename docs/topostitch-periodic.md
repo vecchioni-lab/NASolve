@@ -4822,3 +4822,65 @@ another install/full-suite run beyond W106's recorded validation.
    difference-density review. B09 geotest alignment remains the final demonstration,
    not an acceptance claim from these derivative controls. No repeated Rfree-led
    tuning or campaign adoption is enabled.
+
+
+## W108 — Frozen term-level provider selection
+
+`topostitch_pair_coverage.select_pair_providers(requested, native, *, frozen,
+current_context)` plans coverage using the existing exact atom/image and score
+parameter rules. `frozen` must contain exactly `context`, `requested_sha256` and
+`native_sha256`, bound before selection. The caller supplies authenticated complete
+observations; matching cannot discover omitted native terms or approve chemistry.
+
+The result contains detached `additive` declarations, the complete W104 `frozen`
+binding and its `review`. Native matches must be unique and parameter-compatible;
+a conflict refuses instead of adding a second force. Only absent requested supports
+become additions. Unrequested native terms, including custom chemistry/metal terms,
+remain untouched. Providers do not follow a pair's purpose or identifier: one pair
+can have native bonds and missing angles/planes. Retain the returned binding for
+`review_pair_coverage`; reselecting after drift is not a valid replay.
+
+This optional planner changes no existing default, compiler, worker, CLI, packet
+schema or dependency. It does not evaluate the selected subset, attach a callback,
+approve exclusions, infer metal/base roles or qualify ordinary refinement.
+General-position, proper-rotation and standard-setting limitations remain W104's.
+The next step is to evaluate the exact frozen additive subset through the existing
+compiler/kernels, then qualify active policy and the ordinary frozen-round lifetime.
+
+### W108 validation — 2026-11-17
+
+Fifteen selection regressions failed before the API existed; sixteen new tests
+cover mixed within-pair providers, all-native/all-additive plans, equivalent images,
+whole-cell offsets, weighted planes, stale bindings and conflicting/duplicate terms.
+**76 focused, 1,952 full tests +229 subtests, and 245 installed tests pass.**
+The full suite took 107.60 seconds. Fresh sdist→relocated wheel installation removes
+both source stages before testing; six CLI helps, `pip check`, lean imports and
+Python 3.10 syntax pass. Existing compiler and captured-worker bytes are unchanged.
+
+A complete **Phenix 2.2.1-6174** diagnostic uses the two retained sources and their
+independently recorded native inventories. Six cases compare full native core,
+a deliberately partial individual pair, and that partial manager after select-all.
+Removing one angle, one planarity and one parallelity term from a single pair
+changes the split from **107 native +17 additive** to **104 +20** while retaining
+that pair's native bonds. Complete remaining membership matches the independent
+inventory with precisely those three terms removed. Twelve negatives reject
+duplicate native support and conflicting native targets. Planning preserves every
+coordinate and complete native energy/gradient array. No optimizer, diffraction,
+model export, activation or scientific repair is claimed.
+
+Principal commands (Willow checkout unless absolute):
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider tests/test_topostitch_pair_coverage.py tests/test_topostitch_native_coverage.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w108-provider-selection/install-check.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w108-provider-selection/native/run.py
+/private/tmp/willow-w108-provider-selection/install/env/bin/python /private/tmp/willow-w108-provider-selection/audit-native.py
+```
+
+Absolute command paths are local historical provenance. Scientific inputs, native
+outputs, test logs and build products remain local; the machine roadmap records
+the anchored forensic archive and checksum. No scientific payload is committed.
+The native diagnostic composes the pinned C331 owner, not a merged current Cedar
+build. Full combined-branch, active callback/buffer policy, periodic exclusions and
+matched density/refinement acceptance remain open.

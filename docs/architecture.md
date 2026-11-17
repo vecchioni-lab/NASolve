@@ -985,6 +985,14 @@ membership and Cartesian references must reproduce the bound recipe. The
 existing compiler and native workers are unchanged. This adapter reads requested
 terms, not the actual manager's existing inventory or active force policy.
 
+`topostitch_pair_coverage.select_pair_providers` optionally plans term-level
+ownership from frozen requested/native inventories and current context. It uses
+exact support/parameter matching, preserves unrequested native terms and selects
+only missing requested supports. Duplicate/conflicting native coverage refuses;
+no pair-purpose or naming heuristic is used. Its detached additions and completed
+W104 binding must be retained and reviewed, not regenerated to accept drift.
+It does not filter native evaluators, activate callbacks or authorize chemistry.
+
 `topostitch_pair_coverage.review_pair_coverage` compares caller-authenticated,
 frozen requested/native/additive term declarations with explicit providers. It
 retains exact fractional images, checks complete score parameters and refuses

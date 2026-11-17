@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W108 — Select native and additive providers term by term
+
+- Add optional read-only `select_pair_providers` using frozen requested/native
+  inventories and existing exact-image coverage rules. Preserve native terms;
+  select only missing requested supports, including incomplete individual pairs.
+- Refuse duplicate coverage, conflicting score parameters and stale bindings.
+  Return detached declarations and the existing coverage binding/review; do not
+  activate forces, infer chemistry or change exclusions or refinement behavior.
+
 ### Documentation housekeeping — 2026-11-16
 
 - Replace the stale October Pine opening and accumulated Willow session diary

@@ -229,3 +229,106 @@ def test_compiled_export_requires_original_binding_digest(monkeypatch):
     recipe,packet=compiled_fixture(monkeypatch)
     with pytest.raises(ValueError,match='binding'):
         describe_compiled_pair_terms(recipe,packet,expected_binding_sha256='0'*64)
+
+
+# Provider selection must work within a pair, independently of purpose/ID names.
+def select_inputs(requested, native, current, binding=None):
+    from nasolve.topostitch_pair_coverage import select_pair_providers
+    if binding is None:
+        binding = dict(context=deepcopy(current), requested_sha256=recipe_digest(requested),
+                       native_sha256=recipe_digest(native))
+    return select_pair_providers(requested, native, frozen=binding, current_context=current)
+
+
+def test_select_providers_within_each_pair_and_replay_without_mutation():
+    r, _, _, c = inputs()
+    native = deepcopy([r[i] for i in (6, 0, 5, 3)])
+    for i, row in enumerate(native):
+        row['term_id'] = 'unrelated-native-name-' + str(i)
+    before = deepcopy([r, native, c])
+    result = select_inputs(r, native, c)
+    assert result['frozen']['native_requested_ids'] == [r[i]['term_id'] for i in (0, 3, 5, 6)]
+    assert result['additive'] == [r[i] for i in (1, 2, 4, 7)]
+    assert result['review'] == review((r, native, result['additive'], c), result['frozen'])
+    assert not result['review']['runtime_authority']
+    assert not result['review']['scientific_acceptance']
+    assert [r, native, c] == before
+    result['additive'][0]['parameters']['weight'] = 999.
+    result['frozen']['context']['atom_labels'][0] = 'changed'
+    assert [r, native, c] == before
+
+
+@pytest.mark.parametrize('all_native', [False, True])
+def test_select_all_native_or_all_additive(all_native):
+    r, _, _, c = inputs()
+    result = select_inputs(r, deepcopy(r) if all_native else [], c)
+    assert result['additive'] == ([] if all_native else r)
+    assert result['review']['native_requested_term_count'] == (8 if all_native else 0)
+
+
+def test_select_preserves_unrequested_native_terms_and_exact_periodic_offsets():
+    r, n, _, c = inputs()
+    r = [deepcopy(r[0])]
+    r[0]['atoms'][1]['translation'][0] = '1'
+    # The identity contact and the translated contact are different restraints.
+    result = select_inputs(r, n, c)
+    assert result['additive'] == r
+    assert result['review']['observed_native_term_count'] == len(n)
+    assert result['frozen']['native_sha256'] == recipe_digest(n)
+
+
+def test_select_equivalent_images_and_weighted_plane_order():
+    r, n, _, c = inputs()
+    for row in n:
+        for site in row['atoms'] + row['other_atoms']:
+            site.update(rotation=[0,-1,0,1,0,0,0,0,1], translation=['1','2','3'])
+        if row['kind'] in ('bond', 'angle'):
+            row['atoms'].reverse()
+        if row['kind'] == 'planarity':
+            row['atoms'].reverse(); row['parameters']['weights'].reverse()
+        if row['kind'] == 'parallelity':
+            row['atoms'], row['other_atoms'] = row['other_atoms'], row['atoms']
+    result = select_inputs(r, n, c)
+    assert result['frozen']['native_requested_ids'] == [row['term_id'] for row in r[:4]]
+
+
+@pytest.mark.parametrize('change', ['native_duplicate', 'requested_duplicate', 'conflicting_target',
+                                   'conflicting_plane_weights', 'empty_requested'])
+def test_select_refuses_ambiguous_or_conflicting_inventory(change):
+    r, n, _, c = inputs()
+    if change == 'native_duplicate':
+        duplicate = deepcopy(n[0]); duplicate['term_id'] += ':again'; n.append(duplicate)
+    elif change == 'requested_duplicate':
+        duplicate = deepcopy(r[0]); duplicate['term_id'] += ':again'; r.append(duplicate)
+    elif change == 'conflicting_target':
+        n[0]['parameters']['ideal'] += .1
+    elif change == 'conflicting_plane_weights':
+        n[2]['parameters']['weights'].reverse()
+    else:
+        r = []
+    with pytest.raises(ValueError):
+        select_inputs(r, n, c)
+
+
+@pytest.mark.parametrize('change', ['native', 'requested', 'context', 'binding_extra', 'binding_missing'])
+def test_select_requires_frozen_inputs_before_matching(change):
+    r, n, _, c = inputs()
+    binding = dict(context=deepcopy(c), requested_sha256=recipe_digest(r), native_sha256=recipe_digest(n))
+    if change == 'native': n.pop()
+    elif change == 'requested': r.pop()
+    elif change == 'context': c['native_exclusion_policy_sha256'] = 'e'*64
+    elif change == 'binding_extra': binding['native_requested_ids'] = []
+    else: del binding['native_sha256']
+    with pytest.raises(ValueError):
+        select_inputs(r, n, c, binding)
+
+
+def test_selected_binding_refuses_retargeting_or_reassignment_on_replay():
+    r, n, _, c = inputs()
+    selected = select_inputs(r, n, c)
+    changed = deepcopy(selected['additive']); changed[0]['parameters']['ideal'] += .1
+    with pytest.raises(ValueError, match='digest'):
+        review((r, n, changed, c), selected['frozen'])
+    n.pop()
+    with pytest.raises(ValueError, match='digest'):
+        review((r, n, selected['additive'], c), selected['frozen'])

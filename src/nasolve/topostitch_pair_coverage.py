@@ -218,6 +218,57 @@ def review_pair_coverage(requested, native, additive, *, frozen, current_context
         raise ValueError('Malformed pair coverage declarations') from exc
 
 
+def select_pair_providers(requested, native, *, frozen, current_context):
+    """Plan term-level coverage from authenticated frozen declarations.
+
+    ``frozen`` contains exactly ``context``, ``requested_sha256`` and
+    ``native_sha256``, captured before this call. Matching uses the existing exact
+    atom/image support and parameter rules, never pair purpose or term-ID names.
+    An existing matching support must have one occurrence and compatible scoring
+    parameters; conflicts refuse rather than becoming additive terms. Unrequested
+    native terms remain untouched. Only absent requested supports become additions.
+
+    Return detached ``additive`` declarations, a complete ``frozen`` W104 binding
+    and its ``review``. Persist that binding for later review; do not rerun selection
+    to silently adopt changed inputs. This is a read-only plan, not a filtered
+    native evaluator, restraint installation, exclusion decision or authentication
+    of the caller's observation. All W104 general-position/image limits apply.
+    """
+    try:
+        requested, native, frozen, current_context = json.loads(json.dumps(
+            [requested, native, frozen, current_context], allow_nan=False))
+        _need(isinstance(frozen, dict) and set(frozen) ==
+              {'context', 'requested_sha256', 'native_sha256'},
+              'Incomplete frozen provider-selection binding')
+        labels = _context(frozen['context']); _context(current_context)
+        _need(frozen['context'] == current_context, 'Changed pair coverage context')
+        for key, rows in (('requested', requested), ('native', native)):
+            digest = frozen[key + '_sha256']
+            _need(_digest(digest) and recipe_digest(rows) == digest,
+                  'Changed ' + key + ' inventory digest')
+        expected, existing = (_inventory(rows, labels) for rows in (requested, native))
+        native_supports = {}
+        for name, key, parameters in existing:
+            native_supports.setdefault(key, []).append((name, parameters))
+        assigned = []; additive = []
+        for declaration, (name, key, parameters) in zip(requested, expected):
+            occurrences = native_supports.get(key, [])
+            _need(len(occurrences) <= 1, 'Duplicate native coverage: ' + name)
+            if occurrences:
+                _need(_same_parameters(parameters, occurrences[0][1]),
+                      'Mismatched native term parameters: ' + name)
+                assigned.append(name)
+            else:
+                additive.append(declaration)
+        binding = dict(frozen, additive_sha256=recipe_digest(additive),
+                       native_requested_ids=assigned)
+        checked = review_pair_coverage(requested, native, additive,
+                                      frozen=binding, current_context=current_context)
+        return dict(additive=additive, frozen=binding, review=checked)
+    except (KeyError, TypeError, IndexError, OverflowError, ZeroDivisionError) as exc:
+        raise ValueError('Malformed pair provider declarations') from exc
+
+
 def _compiled_fractional_image(text, cell_parameters):
     """Read exact native operator fields and check their compiled Cartesian image."""
     from cctbx import sgtbx, uctbx
