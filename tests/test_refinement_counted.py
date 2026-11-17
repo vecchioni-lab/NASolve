@@ -480,3 +480,28 @@ def test_counted_continuation_refuses_unproven_policy_copy_before_runtime(tmp_pa
         saved.prepare_continuation(run,**options)
     assert not (run/'AutoRefine/round_002/parallelity_runtime').exists()
     assert {p.relative_to(run):p.read_bytes() for p in run.rglob('*') if p.is_file()}==before
+
+
+@pytest.mark.parametrize('manual', [False, True])
+def test_continuation_refuses_intervening_refinement_without_execution_receipt(tmp_path, manual):
+    from nasolve.checkpoints import append_checkpoint, add_checkpoint
+    run, reference, registry, parent = registered_counted_case(tmp_path)
+    missing = dict(parent, id='refine-002', parent='refine-001', kind='refinement', outputs={})
+    append_checkpoint(run, registry, missing, select=False)
+    selected = 'refine-002'
+    if manual:
+        selected = add_checkpoint(run, name='manual after unproven refinement',
+            model=run / parent['model']['relative_path'], parent=selected).checkpoint_id
+    options = continuation_options(run, selected)
+    folder = run / 'AutoRefine/round_002'
+    folder.rename(run / 'AutoRefine/round_003')
+    options['checkpoint'] = 'refine-003'
+    options['inputs'][-1] = run / 'AutoRefine/round_003/autorefine.params'
+    options['command'] = ['phenix.refine', *map(str, options['inputs']), 'output.prefix=refined']
+    before = {p.relative_to(run): (p.read_bytes(), p.stat().st_mtime_ns)
+              for p in run.rglob('*') if p.is_file()}
+    with pytest.raises(ValueError, match='lost its counted pair intent'):
+        saved.prepare_continuation(run, **options)
+    assert not (run / 'AutoRefine/round_003/parallelity_runtime').exists()
+    assert {p.relative_to(run): (p.read_bytes(), p.stat().st_mtime_ns)
+            for p in run.rglob('*') if p.is_file()} == before

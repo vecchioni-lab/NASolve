@@ -56,7 +56,17 @@ parent sources and this exact round. Focused installed62 tests pass; no new nati
 semantics, schema or duplicate native experiment. Required checkpoint output proof
 cannot be omitted. Broader source/chemistry changes remain separate.
 
-**Next bounded controller slice:** map and connect the explicit qualified protocol
+**C384 complete:** continuation rejects an intervening refinement with no execution
+receipt, directly or through a manual child. A declared manual import remains
+supported. Source and installed focused144 tests pass; no native/schema changes.
+
+**Next bounded controller slice:** bind the exact physical model written by Phenix
+to the published counted checkpoint. A copied C382 registry currently accepts the
+previous round's checksum-valid model as the final model; the original control's
+files and independently checked correspondence remain correct. Reuse C338's
+pre/post final-writer callback and preserve historical proof semantics. Do not infer
+an output basename or regard any later file hash as proof of native authorship.
+Then connect the explicit qualified protocol
 to the existing ordinary refinement owner. Preserve its terminal-phosphate and
 chemistry projection checks, the now-joined exact restraint adaptations, process ownership and
 checkpoint publication. Ordinary AutoRefine/Doctor still refuse to lose counted
@@ -211,9 +221,12 @@ scopes a declared heavy-atom projection to one native site (introduced at
 `94ababa1`, with PDU/5PC/Q17 and duplicate-site controls). C334 replays C329 using the frozen linked B:4 projection instead of the full
 runtime CIF: all 22 heavy atoms match, the isolated-versus-linked OP3 warning
 clears, and the genuine terminal-side bend remains REVIEW with identical
-measurements. All 190 old files are unchanged; no native rerun. Ordinary final-
-refinement reporting still needs this existing projection/capture binding; do not
-invent another screen or silently prune atoms to match observations.
+measurements. All 190 old files are unchanged; no native rerun. C338 completed
+ordinary final-refinement reporting through the existing compact
+actual-manager observation and projection binding; its separate five-cycle control
+still reports the genuine PDU bend as REVIEW. Reuse that completed report, rather
+than rebuilding it or pruning atoms to match observations. The new counted route's
+whole-model publication binding remains a distinct prerequisite above.
 Later ordinary CLI/campaign exposure and default/release scope belong with Q15/Q16; a numerical
 repair or delivery pass does not close Q06. See the
 [request contract](cif-doctor.md#automatic-bond-discovery-in-fresh-preparation-c333).

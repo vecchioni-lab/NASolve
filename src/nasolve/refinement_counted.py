@@ -103,7 +103,11 @@ def _inherited_request(run, registry, selected, *, include_selected):
     for identifier in lineage:
         item=by_id[identifier];outputs=item.get('outputs')
         reference=outputs.get('parallelity_execution') if isinstance(outputs,dict) else None
-        if reference is None:continue
+        if reference is None:
+            _need(inherited is None or (item.get('kind') == 'manual'
+                  and identifier.startswith('manual-')),
+                  'A later refinement lost its counted pair intent')
+            continue
         record=read_record(_bound_path(reference,'ancestor execution',run))
         if record['policy_id']!=execution.V5_POLICY_ID:
             _need(inherited is None,'A later refinement lost its counted pair intent')

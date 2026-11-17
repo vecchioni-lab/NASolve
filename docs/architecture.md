@@ -4526,8 +4526,8 @@ C379's refused-preflight outcome remains unchanged. All inputs require declared
 anchors/checksums. Completed relocated outcomes read cold; pending relocated native
 commands refuse and require a fresh anchored attempt. Ordinary AutoRefine/Doctor
 inspect validated lineage before allocation and refuse to drop a counted ancestor's
-intent, including through manual children. Positive counted continuation is the next
-boundary, not an implicit CLI/default activation or new scientific acceptance rule.
+intent, including through manual children. C382 adds the explicit continuation
+below; this is not CLI/default activation or a new scientific acceptance rule.
 
 C382 connects explicit `refinement_counted.prepare_continuation` to existing
 `read_registry`, exact checkpoint resolution, strict lineage, inherited inputs and
@@ -4546,8 +4546,19 @@ validator checks source hashes, exact namespace-only bytes, ordered indices and
 this round before the wrapper resolves execution copies. Original inherited
 restraints remain canonical; the caller must retain the same receipt in normal
 checkpoint outputs, and existing checkpoint validation rejects its omission.
-Additional restraints, model-identity/chemistry transformations and ordinary
+C384 also rejects an intervening refinement whose execution receipt is absent;
+only an existing `kind=manual`, `manual-*` import may lack its own native receipt
+after counted ancestry. This guard applies during continuation and validation of
+later counted descendants, before new runtime allocation. Additional restraints,
+model-identity/chemistry transformations and ordinary
 AutoRefine protocol selection remain outside this narrow wrapper.
+
+Ordinary activation also requires a native final-written-model binding. Current
+v5 verifies lifetime/admission and inputs but does not itself tie the published
+model to native writer bytes when no chemistry projection was requested. Independent
+C382 control readback proves its actual output correspondence; it is not a general
+reader safeguard. Preserve this historical distinction. C338's before/after writer
+callback already captures the correct native path before its serial increments.
 
 Ordinary activation remains gated on integration with the existing refinement
 owner and explicit protocol choice; durable admission and registered continuation

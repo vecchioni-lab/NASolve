@@ -111587,5 +111587,131 @@
       "No broadened chemical acceptance or ordinary command activation"
     ],
     "next": "Existing ordinary owner with explicit bounded protocol, declared frame, terminal/chemistry guards, established process ownership and unselected REVIEW publication; next native control must cross that actual owner rather than repeat a manual registry runner."
+  },
+  "counted_missing_refinement_ancestry_2026_11_17": {
+    "milestone": "C384",
+    "signed": "Rowan",
+    "source_parent": "e9afa595",
+    "before": "An intervening refinement without an execution reference was skipped like a manual import during counted-ancestry traversal.",
+    "after": "Require the existing declared manual-import kind and identity for a post-counted step without native execution evidence; otherwise refuse before fresh runtime allocation.",
+    "changed_files": [
+      "src/nasolve/refinement_counted.py",
+      "tests/test_refinement_counted.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "validation": {
+      "before": "2 failed, 47 deselected in 2.30 s: both DID NOT RAISE",
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider tests/test_refinement_counted.py tests/test_refinement_inputs.py tests/test_refinement_parallelity.py --tb=short",
+      "focused_result": "144 passed in 41.63 s",
+      "installed": {
+        "status": "INSTALLED_RELOCATED_SOURCE_INTEGRATION_PASS",
+        "copied_tests": [
+          "tests/__init__.py",
+          "tests/helpers.py",
+          "tests/test_autorefine.py",
+          "tests/test_checkpoints.py",
+          "tests/test_cif_candidate_usability.py",
+          "tests/test_cif_captured_geometry.py",
+          "tests/test_cif_catalogue.py",
+          "tests/test_cif_complete_request.py",
+          "tests/test_cif_dictionary_bundle.py",
+          "tests/test_cif_dictionary_sites.py",
+          "tests/test_cif_fana.py",
+          "tests/test_cif_fixed_geometry.py",
+          "tests/test_cif_fragment_restoration.py",
+          "tests/test_cif_generation.py",
+          "tests/test_cif_linked_preparation.py",
+          "tests/test_cif_model_context.py",
+          "tests/test_cif_native_validation.py",
+          "tests/test_cif_parallelity_audit.py",
+          "tests/test_cif_parallelity_correction.py",
+          "tests/test_cif_parallelity_kernel.py",
+          "tests/test_cif_postmr_publication.py",
+          "tests/test_cif_preparation_qualification.py",
+          "tests/test_cif_refinement_output.py",
+          "tests/test_cif_refinement_runtime.py",
+          "tests/test_cif_refinement_sites.py",
+          "tests/test_cif_repair_attempt.py",
+          "tests/test_cif_stereochemistry_audit.py",
+          "tests/test_cif_terminal_preparation.py",
+          "tests/test_cif_triple_bond_audit.py",
+          "tests/test_phosphate.py",
+          "tests/test_refinement_counted.py",
+          "tests/test_refinement_inputs.py",
+          "tests/test_refinement_parallelity.py",
+          "tests/test_topostitch_coordinates.py",
+          "tests/test_topostitch_periodic.py",
+          "tests/test_topostitch_recipe.py"
+        ],
+        "wheel_sha256": "11ca6e6db54959531ab57fd4db19858e3bb680b4930f6f78cca0873f59e2c735",
+        "wheel_bytes": 1535008,
+        "phase_sha256": "a5d7c820e511fdb80188563cb746d70516a9601dde83a8a99398542cba27c6e7",
+        "owner_sha256": "7322edee9e78a027bbd47c0043e1acc35494d1d4ecce1e671cb9225f771086b9",
+        "source_copy_removed": true,
+        "original_install_path_absent": true,
+        "package_reference_bytes_match": true,
+        "validation_command": [
+          "/private/tmp/willow-w94-pivot/env/bin/python",
+          "-B",
+          "-c",
+          "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_refinement_inputs.py', 'tests/test_refinement_counted.py', 'tests/test_refinement_parallelity.py', '--tb=short']))"
+        ],
+        "validation_output": "........................................................................ [ 50%]\n........................................................................ [100%]\n144 passed in 45.82s\n",
+        "build_command": [
+          "/private/tmp/willow-w94-pivot/env/bin/python",
+          "-m",
+          "pip",
+          "wheel",
+          "--no-deps",
+          "--no-build-isolation",
+          "--no-index",
+          "--wheel-dir",
+          "/private/tmp/c384-package-ot7f2m5l/wheel",
+          "/private/tmp/c384-package-ot7f2m5l/source"
+        ],
+        "retained_bytes": 7372066,
+        "candidate_package": "/private/tmp/c384-package-ot7f2m5l/relocated/nasolve",
+        "wheel_path": "/private/tmp/c384-package-ot7f2m5l/wheel/nasolve-0.1.0-py3-none-any.whl"
+      },
+      "full_suite": "NOT_RUN",
+      "native": "NOT_RUN; no native helper changed",
+      "cold_read": {
+        "status": "C384_COLD_C382_REGISTRY_PASS",
+        "files_unchanged": 117,
+        "current": "postmr",
+        "native_worker_files_unchanged_per_round": 24,
+        "native_launch": "NOT_RUN",
+        "gemmi_imported": false
+      }
+    },
+    "publication_audit": {
+      "status": "ACCEPTED_WRONG_PUBLISHED_MODEL",
+      "source_preserved_files": 108,
+      "original_model": {
+        "anchor": "run",
+        "relative_path": "AutoRefine/round_002/refined_001.pdb",
+        "sha256": "cddd7a8bd7f333e5bced3ed795eb710cdaa9192351c2fa01e1aaff21646e4e4c",
+        "size": 143889
+      },
+      "replacement_model": {
+        "anchor": "run",
+        "relative_path": "AutoRefine/round_001/refined_001.pdb",
+        "sha256": "55d28cbd19bf01874a313ff9b10b2ed4209e9e0f9b23e738b189ed5eda1082eb",
+        "size": 143889
+      },
+      "root": "/var/folders/48/tyw5h90d2qgct97z37rncmsr0000gp/T/c383-publication-audit-sa0xw12r",
+      "native_execution": "NOT_RUN",
+      "kind": "cold duplicated real C382 registry with deliberately mispublished last model",
+      "disposable_copy_bytes": 13796668,
+      "disposable_copy_retired": true
+    },
+    "compatibility": "No schema or native policy changes. Compatible manual descendants remain supported. Previously skipped unproven refinements now refuse continuation; this grants no repair or migration.",
+    "retention": "Only code/tests/docs/compact evidence committed. Original C382 data unchanged; disposable audit copy retired. Three-file local science checkout and peer reports remain outside Git.",
+    "roadmap": "Correct stale C334 reporting-next instruction: C338 already delivered that report. Native final-written-model binding remains open before ordinary owner integration; Q06 achieved chemistry is still REVIEW.",
+    "independent_review": "Linden read-only review of the ancestry diff and direct/manual regressions agrees with the existing manual checkpoint contract; final-writer join remains separate."
   }
 }

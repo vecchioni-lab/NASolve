@@ -1,11 +1,27 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C383 inherited policy adaptation joined — Rowan**.
+Updated **2026-11-17, C384 missing refinement ancestry refused — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Evening stop **23:00 UK / UTC**.
 Focused tests only; no full suite. Linden owns the small local symmetry-pair science
 inspection bundle for checkout; Hazel owns the separate Alder diagnostic display.
 
 ## Current checkpoint and next bounded work
+
+**C384 complete: do not skip an unproven refinement.** A counted ancestor followed
+by a refinement lacking its execution receipt can no longer regain continuation
+through that step or a later manual child. The existing declared manual-import
+step remains supported. Two regressions fail before the guard; 144 focused tests
+pass in source (41.63 s) and installed/relocated (45.82 s). No native rerun or schema
+change; frozen native files are unchanged.
+
+**Publication audit found a separate open prerequisite.** In a disposable copy
+of the real C382 run, replacing the final checkpoint's model reference with the
+checksum-valid previous model is accepted by the current reader. The real C382
+outputs are correctly paired and unchanged. Before ordinary counted integration,
+reuse C338's final-writer observation to bind the exact physical model Phenix wrote
+to the checkpoint; do not infer a filename or hash an arbitrary file afterward.
+The native output manager increments its serial after writing, so capture its path
+before the writer runs. Historical v5 proof must retain its actual narrower meaning.
 
 **C383 complete: accept the existing checked Phenix policy spelling.** Explicit
 continuation can take C278's `refinement_input_reference`, validate it against the
@@ -39,7 +55,7 @@ not independently assessed. PDB coordinate RMS movements .0231/.0138 Å, maxima
 continuity, not a matched efficacy comparison or improved chemistry. No weight,
 acceptance or source-chemistry policy changes follow.
 
-Next: connect this explicit supported protocol to the existing ordinary refinement
+Next: first close the written-model binding above, then connect this explicit supported protocol to the existing ordinary refinement
 owner without bypassing its terminal-phosphate, chemistry-projection, process or publication rules; C383 now joins the existing input adapter. First map that interface; do not invent another
 executor or override ordinary automatic weighting to force qualification. Q06
 achieved chemistry remains open. The prior W119 stopped boundary is not repeated.
@@ -48,6 +64,9 @@ Science checkout policy is now [documented](collaboration.md#small-science-check
 sibling `ScienceCheckouts/AGENT/`, few visual files, exact evidence links, no raw-data
 publication. Rowan's checkout summarizes continuity; Linden supplies pair visuals;
 Hazel's separate normalization diagnostic remains explicitly unadopted.
+Rowan's local three-file checkout is `ScienceCheckouts/Rowan/2026-11-17/review.html`
+under the sibling GitHub root (190,865 bytes); it links both peer checkouts. Its
+geometry improvement and slightly worse R factors are displayed together.
 
 **C381 complete: save, check and consume the same intended pair restraints.**
 Explicit v5 records original recipe/source separately from the current parent,
@@ -107,6 +126,7 @@ questions remain Q13, not a diagnosed cause of its stretched sugar–base bond.
 
 The [completion queue](cif-doctor-completion-queue.md#pipeline-position) is the sole
 work order. Exact source pins, commands and results are in
+`counted_missing_refinement_ancestry_2026_11_17`,
 `counted_continuation_input_adaptation_2026_11_17`,
 `registered_counted_continuation_2026_11_17` and
 `maintained_counted_admission_2026_11_17` in the existing

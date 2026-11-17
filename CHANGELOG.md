@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Refuse a missing refinement step in counted ancestry (C384)
+
+- Explicit counted continuation now refuses an intervening refinement with no
+  execution receipt, including through a later manual child. Only the existing
+  declared manual-import checkpoint may omit its own native execution record.
+  Refusal precedes new runtime allocation and preserves all earlier files.
+  Native helpers, schemas and ordinary defaults are unchanged.
+
 ### Reuse checked policy copies during counted continuation (C383)
 
 - Accept the existing round-local refinement-input receipt in explicit counted
