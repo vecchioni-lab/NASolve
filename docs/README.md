@@ -32,9 +32,11 @@ current instructions; other branches retain their own status and validation pins
   and large-bend repair; no new implementation or runs.
   W123 attributes the saved ordinary endpoints: targeted pair penalties decrease,
   but residual geometry defects and lack of Rfree benefit remain. No new refinement
-  or physical repair is claimed.
+  or physical repair is claimed. W124 independently audits C379 refused-admission
+  records and C380's package-owned upstream library integration; positive counted
+  admission and continuation remain next.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Next human update is W124;
+  [machine-readable source](topostitch-roadmap.json). Next human update is W125;
   do not restart completed probes merely because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

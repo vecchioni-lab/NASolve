@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W124 — Audit maintained package integration and refused admission
+
+- Record Cedar C379's truthful preflight-success/admission-refusal outcome and
+  C380's exact same-path Willow library integration with existing tests.
+- Independently verify 36 upstream files, 296 installed source/resources and the
+  qualified wheel; reference 887 relocated installed tests +13 subtests.
+- Willow evidence/docs only: no new native/full-suite claim, positive counted
+  admission, user-facing sticky-end activation or accepted repair.
+
 ### W123 — Attribute saved ordinary-refinement pair geometry
 
 - Reuse existing native attribution on the exact W116 saved endpoints: 124 terms,

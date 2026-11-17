@@ -1,7 +1,7 @@
 # NASolve development handoff — Willow
 
 Updated **2026-11-17**. This is the **`willow` branch** handoff, not the
-project-wide status of Pine, Cedar or Alder. **W123 saved-pair attribution is recorded; W124 is next.**
+project-wide status of Pine, Cedar or Alder. **W124 package integration is audited; W125 is next.**
 Runtime code includes W113's factory, W117's exact-image optimization and W118's
 data-only same-frame recipe rebind; W110/W111 remain diagnostic and protocol evidence.
 Direct native ownership is qualified at C368/W113; actual prepared-state
@@ -10,8 +10,9 @@ at frozen C371/W113 pins. W119 separately qualifies stronger actual phase-bounda
 consumption at C375/W118 pins, stopping before optimization. W120 extends those
 pins through the full short cycle/writer with exact W116 state/statistics agreement.
 Cedar C377 supplies the maintained bounded lifetime; W121 qualifies the current
-joined installed package. Durable production admission and physical repair remain
-open.
+joined installed package. Cedar C379 records refused admission truthfully; C380 now packages the exact maintained
+Willow source closure. W124 independently audits that integration. Positive counted
+admission, descendant continuation and physical repair remain open.
 The [machine roadmap](topostitch-roadmap.json) owns milestone status; its
 [generated human view](topostitch-roadmap.md) owns the numbered progress queue.
 
@@ -25,6 +26,7 @@ S04/S05/S06 and P01/P02 remain partial; use the roadmap for individual gates.
 
 | Current component | Proven scope | Boundary still open |
 | --- | --- | --- |
+| W124 / C379–C380 source integration | Exact package-owned Willow closure, 887 relocated installed tests +13 subtests; independent 296-file audit; distinct refused-admission receipt | No positive counted admission, new native/full-suite result, ordinary activation or repair |
 | W123 saved-endpoint pair attribution | Existing 124 terms across 14 pairs show modest targeted geometry improvement; full-precision native/zero endpoints exact | No Rfree benefit, repaired pair or density/backbone acceptance |
 | W104 `review_pair_coverage` | Read-only comparison of explicit requested/native/additive terms; rejects missing, duplicate, stale, image and parameter mismatches | Caller authenticates complete declarations; no activation |
 | W105 `describe_compiled_pair_terms` | Exports terms from the existing compiled recipe and original bound packet | Not a native force or lifecycle qualification |
@@ -55,13 +57,14 @@ as the first user-facing refinement application: declared canonical contacts fir
 separately qualified plane-only mismatch hypotheses next. Use 8D93 then an
 independent 5W6W/DOHU control; inventory 7R96 before mismatch trials. Automatic
 inference and large-bend repair are later. No new code or native run is authorized
-by this planning update. W121/C378 remain the latest lifecycle/package qualification;
-W123 separately attributes saved endpoint geometry without another refinement.
+by this planning update. W121/C378 retain native lifecycle qualification; W124 records newer C380 package
+integration. W123 separately attributes saved endpoint geometry without another refinement.
 
 1. Wire versioned original request, validated preflight, immutable admission and
    same-phase consumption through existing execution owners. C377's maintained
    `PreparedCountedRefinement` and W121's joined installation close the preceding
-   helper/package gates, not durable provenance. Reuse C378's qualified bounded
+   helper/package gates, not durable provenance. C380 now owns the exact library in
+   its installed package; C379 preserves refused admission separately. Reuse C378's qualified bounded
    frozen source set; do not import another worktree or copy the whole repository
    into a saved round. Rowan owns the shared controller.
    Bind original intent, actual parent/input/frame, selected providers and frozen

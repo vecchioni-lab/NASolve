@@ -6266,3 +6266,85 @@ claim; native read-only evaluation and documentation audits are the relevant che
 Next remains Rowan's durable controller/admission/continuation integration, followed
 by qualified contact controls. This analysis does not evaluate all backbone chemistry,
 clashes, adjacent stacking or density and does not justify retuning against Rfree.
+
+
+### W124 — Audit package-owned integration and refused admission
+
+Cedar now contains the unchanged maintained Willow library at its original module
+paths. This is a bounded source integration, not a second recipe implementation,
+a full branch merge or ordinary sticky-end activation. Source authority remains
+Willow for periodic geometry/factory code and Cedar for execution ownership.
+
+Exact Cedar pins:
+
+- **C379 `d9e2308e86615c7ed24ef355339fa4b6fefe01ac`** preserves successful
+  native preflight followed by rejected evidence as a separate schema-2
+  `preflight-admission-refusal-v1` outcome: native codes `[0, null]`, explicit
+  `NOT_LAUNCHED`, original typed refusal, exact anchored raw membership, unusable
+  failed checkpoint and unchanged selection. Readers retain invalid evidence
+  without making it valid or writing repairs. Historical schema-1 meaning and
+  native protocols remain unchanged. Old readers reject the new outcome; no
+  migration is required. Input/code failures outside preflight-evidence validation
+  remain outside this recording slice.
+- **C380 `7808e9edf0f863f1f0de21573757d8a5a403fb9e`** integrates exact upstream
+  **W118 `c08f337024f8901c583c0988f652e9a1c3156a49`** source: 18 modules,
+  17 existing test files and one existing comparison script, **514,308 bytes**.
+  No existing shared source is replaced. The optional `topology` extra matches
+  upstream Gemmi `>=0.7.5,<0.8`; native imports and recipe-generation dependencies
+  stay lazy. Missing or changed qualified runtime helpers now refuse before
+  allocating a round or its runtime directory.
+
+Why 18 modules rather than the nine used by the native worker: complete maintained
+modules have additional lazy graph/recut dependencies. The existing packing test
+also loads the comparison script, whose optional endpoint mode needs the endpoint
+audit. Keeping that bounded complete closure avoids shipping partially broken
+modules or rewriting qualified code. The **native worker still freezes only its
+separately qualified 18 modules /three profiles**; its closure includes Cedar
+helpers and is a different set from the installed Willow library. Do not expand
+a saved worker merely because additional APIs are installed.
+
+Rowan's validation, not repeated by Linden:
+
+- C379: one regression fails before the change; **135 focused tests +13 subtests**
+  pass. Three invalid-evidence variants survive dataset relocation after the
+  original path is gone; cold readers preserve bytes/mtime and cannot launch or
+  write. Contradictory codes, usability, schema, phase membership and modified
+  evidence refuse. Immutable receipt and original-error preservation checks pass.
+- C380: **662 focused source tests** pass. **887 relocated installed tests +13
+  subtests** pass in **42.28s**, after removing original build-source and install
+  directories. All 18 modules import in the base environment without Gemmi or the
+  native SDK; periodic use reports its optional dependency. Two allocation-guard
+  regressions fail before and pass after; Python 3.10 syntax checks pass.
+
+The exact commands, source hashes and scope are in the immutable
+[Cedar C380 evidence ledger](https://github.com/vecchioni-lab/NASolve/blob/7808e9edf0f863f1f0de21573757d8a5a403fb9e/docs/cif-linked-native-registration-evidence.json),
+keys `preflight_admission_refusal_2026_11_17` and
+`maintained_pair_recipe_package_2026_11_17`.
+Qualified wheel SHA:
+`f7da3ba3b129d016e6bd06d6a3a42414d9fb31c76a8be2463ddb27697009a49d`.
+
+**Independent read-only audit:** Linden verifies all 36 imported paths against
+both upstream and committed Cedar bytes, preserved shared source/fixture bytes,
+C379 source hashes, the wheel digest, test-log/receipt equality, absent original
+source/install directories and **296 installed Python/resource files against the
+committed C380 tree**. No duplicate tests or native run are performed. Exact
+integration-manifest SHA is
+`36a51365ac730863a8bccca22e917cdfb3aa201050e77139d4e5365c3bc93115`;
+the first static-only draft is superseded because it missed the script dependency.
+Local audit under repository anchor **everyday NASolve checkout**:
+`branch-artifacts/willow/w124-integration-audit.json`, SHA
+`13aaf1ceaeee0caf4d5adf6176b3243afd7f2d7004d455b4dbae9b95d01225e5`,
+1,552 bytes. Historical independent command:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 python3 /private/tmp/willow-w124-integration-audit.py
+```
+
+No new native execution, full-suite result, scientific artifact, repair acceptance
+or automatic counted admission is claimed. The older W112/C366 full-source result
+remains historical; current checks are the stated focused/installed panels. Willow
+repository changes for W124 are evidence/docs only; Cedar owns the code above.
+Next is explicit original-request/current-parent/frame binding, actual preflight,
+immutable positive admission and same-phase consumption through existing owners,
+then descendant intent retention. W122's user-facing sticky-end option remains
+planned, with no new CLI/default behavior. S05/S06 remain partial.
