@@ -4279,6 +4279,10 @@ composition proof by implication, choose phosphate state or invent base pairing.
 The packaged-source route reproduces the earlier internal/free-OH DY bundle exactly,
 including its saved ReadySet/native checks. Explicit mutation planning now accepts that chosen source and a temporary canonical
 parent, after checking the DNA sugar and base attachment. A renamed definition uses
-the same rule; DY needs no fabricated NARestraints pairing entry. The remaining work
-is choosing the right dictionary before Coot builds each site and connecting the
-ordinary request. The current mixed-end demonstration used sequential construction.
+the same rule; DY needs no fabricated NARestraints pairing entry. Coot can now build both free-OH and internal DY in one request, using explicit
+site dictionaries. Both build orders preserve sugar/backbone and neighbour coordinates;
+Phenix readback passes87 checks with two unavailable formal-charge observations.
+The existing history record keeps the dictionary chosen for each site after relocation.
+The remaining work is obtaining those choices from the original canonical model and
+its declared end states, then connecting ordinary request intake. The new control
+reuses already-qualified projections; it does not yet automate their selection.

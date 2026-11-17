@@ -1,13 +1,12 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C358 explicit construction-target planning — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. Latest runtime change: **C358**;
-latest saved scientific evidence connection: **C356 / `162ffe1d`**.
-C358 focused and installed/relocated checks pass; no native job is running.
-Next bounded work: per-site Coot dictionary selection, then existing source/choice
-lineage and ordinary request integration. Reuse C355/C356 source/site owners and
-C349/C353 canonical input/lineage. No new registration or execution owner.
-Focused tests only for this development pass; Linden/Hazel coordination is active.
+Updated **2026-11-17, C359 single-request mixed-end construction — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. Latest runtime change: **C359**;
+C358 / `07ecf92c` is pushed. C359 focused/native/installed checks pass; all jobs stopped.
+Next bounded work: derive site projections from the original canonical input and
+explicit end states, then bind composition/projection derivation and ordinary intake.
+Reuse C355/C356 source/site owners and C349/C353/C359 construction/lineage.
+Focused tests only; Linden/Hazel coordination remains active and worktrees separate.
 
 ## Current result and next bounded task
 
@@ -25,14 +24,14 @@ has three remaining integration steps:
 1. **Explicit planning now works (C358).** A chosen chemical source and canonical
    parent pass existing DNA graph/chi-frame and explicit D-deoxy stereo checks.
    Ordinary request forwarding remains open; no pairing record or Y/YTR alias.
-2. **Give Coot the right dictionary before building each site.** Current dictionaries
-   are keyed by component code, and the ordinary dictionary handler runs after
-   construction. C344/C345 used sequential explicit calls and already-built DY
-   controls. Acceptance requires free-OH and internal DY together in one ordinary
-   request, preserved sugar/chi/neighbours, and independent actual-model validation.
+2. **One mixed-end Coot request now works (C359).** Explicit site dictionaries build
+   both DY sites in either order with exact scaffold/neighbours and chi <0.014degrees.
+   Phenix passes87 checks/two unsupported charge readbacks. Next derive projections
+   from the original canonical model; this control reused the C345 projections.
 3. **Carry the source and choice through existing lineage.** Bind composition inputs
    and selected dictionaries through the existing construction/request owners.
-   C353 already retains canonical seed proof; C355 owns frozen source bytes.
+   C353 retains canonical seed proof; C355 owns frozen source bytes; C359 carries
+   exact site dictionaries through existing lineage and complete requests.
    Verify installed, relocated readback without original paths. Do not add another
    source, process or proof owner.
 
@@ -80,6 +79,7 @@ unfinished-work order. A readable CIF or passing derivative check does not close
 
 Exact controls, commands, hashes and limitations are in the
 [evidence ledger](cif-linked-native-registration-evidence.json). Start with
+`per_site_construction_dictionaries_2026_11_17`,
 `explicit_construction_planning_2026_11_17`,
 `packaged_dy_mixed_context_replay_2026_11_16`,
 `explicit_custom_source_selection_2026_11_16`,
@@ -92,6 +92,10 @@ blob/checksum and offline retrieval. Historical next steps are not current instr
 
 ## Validation and limits
 
+- C359: **264 affected tests / 9.09s**, then **31 changed-file checks / 3.26s**
+  including two further regressions; **266 installed/relocated / 8.73s**. Native
+  control ~4.59MB;335 prior files preserved. Initial pre-launch harness failure
+  retained; missing-fixture installed harness corrected and disposable copies removed.
 - C358: **143 focused / 3.58 s; 143 installed/relocated / 2.94 s**.25 new
   planning cases; initial23 fail before the API. No native execution/full suite.
 - C355: **160 focused tests / 63.45 s; 160 installed/relocated / 65.00 s**.
@@ -118,7 +122,10 @@ Linden owns Pine/Willow; Hazel owns Alder/metal coordination. Signed coordinatio
 is authorized; their separate successes are not a combined Cedar qualification.
 The [shared guard contract](architecture.md#live-nonbonded-policy-guard-c331) remains
 explicit and unactivated by documentation. Read each branch's current handoff
-before touching shared interfaces; do not edit another agent's worktree.
+before touching shared interfaces; do not edit another agent's worktree. Linden's
+W109 proposal remains gated on active callback ownership, buffers and actual model
+normalization/counts; C331 stays idle. Hazel's DF rebuild control must distinguish
+base reconstruction from repairing an already strained glycosidic anchor/sugar.
 
 Keep scientific data, native logs, SDK snapshots, local inventories and runners
 outside Git. Use the ignored everyday `branch-artifacts/cedar/` for local receipts

@@ -106883,5 +106883,174 @@
       "No full suite; last full Cedar C220/583d30df:9178tests+276subtests."
     ],
     "next": "Use the existing qualified context machinery to provide each Coot site its dictionary before construction; then bind through existing lineage."
+  },
+  "per_site_construction_dictionaries_2026_11_17": {
+    "milestone": "C359",
+    "date": "2026-11-17",
+    "signed": "Rowan",
+    "before": "One component-code dictionary served every Coot mutation; explicit free/internal DY needed separate calls.",
+    "after": "One constructor call can use exact per-site definitions, reload defaults to prevent leakage, check actual atom inventories and use the same dictionaries for context/restoration. Existing lineage and complete requests retain those choices.",
+    "prior_work": [
+      "C344/C345 qualified mixed-context projections",
+      "C358 explicit planning",
+      "Existing source_graph_fragment/parent_conformation_plan",
+      "C353 ordinary lineage owner; no new owner"
+    ],
+    "schemas": {
+      "policy": "postmr-site-dictionary-construction-lineage-v1",
+      "schema_version": 1,
+      "added_field": "site_dictionaries: site-to-run-anchored checksum/size references",
+      "layout": "PostMR/Coot/site_dictionaries/NNN.cif, sorted site order",
+      "canonical_seed": "May coexist under new policy"
+    },
+    "changed_files": [
+      "src/nasolve/postmr.py",
+      "src/nasolve/postmr_context.py",
+      "src/nasolve/postmr_lineage.py",
+      "tests/test_postmr_site_dictionaries.py",
+      "tests/test_postmr_site_lineage.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "validation": {
+      "before": [
+        "15 construction failures/1.04s before API",
+        "13 lineage failures/1.10s before API"
+      ],
+      "new_tests": 31,
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_postmr_site_lineage.py tests/test_postmr_site_dictionaries.py tests/test_postmr_canonical_input.py tests/test_postmr_canonical_lineage.py tests/test_postmr_conformation.py tests/test_postmr_context.py tests/test_postmr_context_mixed.py tests/test_postmr_identity_serials.py tests/test_postmr_canonical_serials.py tests/test_postmr_restoration.py tests/test_postmr.py tests/test_cif_postmr_construction.py --tb=short",
+      "focused_result": "264passed/9.09s before final2regressions;31changed-file tests/3.26s after",
+      "installed": {
+        "status": "INSTALLED_RELOCATED_SITE_DICTIONARIES_PASS",
+        "wheel_sha256": "f0684b2ae59d97c6830418e8dcac1ba1205ac65bb126689f0a2d722b55ec76f8",
+        "wheel_bytes": 1393686,
+        "source_copy_removed": true,
+        "original_install_path_absent": true,
+        "package_reference_bytes_match": true,
+        "validation_command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-c",
+          "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_postmr_site_lineage.py', 'tests/test_postmr_site_dictionaries.py', 'tests/test_postmr_canonical_input.py', 'tests/test_postmr_canonical_lineage.py', 'tests/test_postmr_conformation.py', 'tests/test_postmr_context.py', 'tests/test_postmr_context_mixed.py', 'tests/test_postmr_identity_serials.py', 'tests/test_postmr_canonical_serials.py', 'tests/test_postmr_restoration.py', 'tests/test_postmr.py', 'tests/test_cif_postmr_construction.py', '--tb=short']))"
+        ],
+        "validation_output": "........................................................................ [ 27%]\n........................................................................ [ 54%]\n........................................................................ [ 81%]\n..................................................                       [100%]\n266 passed in 8.73s\n",
+        "build_command": "phenix.python -m pip wheel --no-deps --no-build-isolation --no-index",
+        "temporary_bytes_removed": 11294058
+      },
+      "initial_installed_failure": "Harness omitted tracked 5W6W_noPO4.pdb;21FileNotFound failures,245passes. Corrected fresh harness passed266. No product edit;11,194,516B disposable scratch retired with local hash manifest.",
+      "legacy": "Default Coot script bytes exactly match C358/07ecf92c; Python3.10 syntax and git diff --check pass."
+    },
+    "native": {
+      "root": {
+        "anchor": "NASolve-live-tests",
+        "path": "359_Cedar_mixed-end-construction-d9m_ir6b"
+      },
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=../NASolve-c96/src .venv/bin/python -B branch-artifacts/cedar/runners/c359_start.py",
+      "summary": {
+        "status": "C359_ONE_REQUEST_MIXED_END_DICTIONARIES_NATIVE_OBSERVED",
+        "cases": {
+          "forward": {
+            "sites": {
+              "A:11": {
+                "chi_difference_degrees": 0.006623556550380272,
+                "phosphate_atoms": [],
+                "projection_sha256": "c22fdedf55ef09b1706d11d259a922796207f657ba6eccdf1a443290e02a95f5",
+                "scaffold_atom_count_preserved": 8
+              },
+              "A:12": {
+                "chi_difference_degrees": 0.013926289700236794,
+                "phosphate_atoms": [
+                  "OP1",
+                  "OP2",
+                  "P"
+                ],
+                "projection_sha256": "7958587819a3a8301b060868d874986b372cd9611f0afa5ebef31250423951a8",
+                "scaffold_atom_count_preserved": 11
+              }
+            },
+            "unselected_heavy_coordinates_preserved": true,
+            "model_sha256": "5756d6f6f3e23387a2d66b558fe46897db106201c80a09ef0e2e436539191ba2",
+            "lineage_policy": "postmr-site-dictionary-construction-lineage-v1"
+          },
+          "reverse": {
+            "sites": {
+              "A:12": {
+                "chi_difference_degrees": 0.013926289700236794,
+                "phosphate_atoms": [
+                  "OP1",
+                  "OP2",
+                  "P"
+                ],
+                "projection_sha256": "7958587819a3a8301b060868d874986b372cd9611f0afa5ebef31250423951a8",
+                "scaffold_atom_count_preserved": 11
+              },
+              "A:11": {
+                "chi_difference_degrees": 0.006623556550380272,
+                "phosphate_atoms": [],
+                "projection_sha256": "c22fdedf55ef09b1706d11d259a922796207f657ba6eccdf1a443290e02a95f5",
+                "scaffold_atom_count_preserved": 8
+              }
+            },
+            "unselected_heavy_coordinates_preserved": true,
+            "model_sha256": "521496c2f0a5f04bf9f2755d93df853dd965a7f676a619730df9d209011946a7",
+            "lineage_policy": "postmr-site-dictionary-construction-lineage-v1"
+          }
+        },
+        "native_checks": {
+          "PASS": 87,
+          "UNSUPPORTED": 2
+        },
+        "diagnostic_continuation": {
+          "status": "CONTINUE_WITH_NOTES",
+          "allowed": true,
+          "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+          "automatic_adoption": false,
+          "policy": "EXISTING_MECHANICS_CONTINUATION; UNAVAILABLE_FORMAL_CHARGE_ONLY"
+        },
+        "source_files_preserved": 335,
+        "cold_replay": "EXACT_DECLARED_FILES_WITH_ORIGINAL_TEMPORARY_PATH_ABSENT",
+        "temporary_bytes_removed": 159660,
+        "all_native_jobs_stopped": true,
+        "elapsed_seconds": 6.015352791000623,
+        "physical_bytes": 4585136,
+        "versions": {
+          "coot": "1.3.3",
+          "phenix": "2.2.1",
+          "build": "phenix-2.2.1-6174"
+        },
+        "construction": "One ordinary constructor and Coot invocation per ordering, explicit prepared projections",
+        "automatic_end_state_selection": "NOT_IMPLEMENTED",
+        "readyset": "NOT_REPEATED",
+        "refinement": "NOT_RUN",
+        "scientific_acceptance": "NOT_ASSESSED"
+      },
+      "driver": {
+        "returncode": 0,
+        "stopped_verified": true,
+        "source_unchanged": true
+      },
+      "order_independent_atom_coordinates": true,
+      "initial_failure": {
+        "root": "359_Cedar_mixed-end-construction-__fkj_0v",
+        "reason": "Local owned-command wrapper omitted PIPE/STDOUT constants;failed before Coot launch.",
+        "stopped": true,
+        "preserved": true
+      }
+    },
+    "compatibility": "Default scripts/results/records unchanged; no migration. Old readers refuse new explicit policy. New writer refuses omitted choices in reserved folder; historical reader unrelated-file semantics unchanged.",
+    "retention": "Only code/tests/docs/compact evidence committed; models, dictionaries, logs, source overlay and native artifacts remain local. No full suite or branch merge.",
+    "limitations": [
+      "Explicit numerical/end-state choice is not automatic projection or source/composition qualification.",
+      "C359 reuses C345 site projections; canonical-input projection remains next.",
+      "Curated sites retain their existing declared placement, not this override route.",
+      "ReadySet/refinement not repeated; Q06 geometry remains REVIEW.",
+      "C331/C338/native weights/Free-R/thresholds untouched. Last full Cedar C220/583d30df remains9178tests+276subtests."
+    ],
+    "next": "Derive explicit source-bound site projections from original canonical input, bind their derivation through existing owners, then ordinary intake."
   }
 }

@@ -13926,3 +13926,33 @@ artifact and launches no tool. Source choice must still be frozen and bound by t
 existing construction/request owners; this API alone grants no numerical qualification,
 phosphate choice, automatic CLI activation or completed construction.143 focused and
 143 installed/relocated checks pass. Evidence: `explicit_construction_planning_2026_11_17`.
+
+
+### Per-site Coot dictionaries and ordinary lineage (C359)
+
+`construct_postmr_model(..., site_dictionary_paths={site: path})` accepts a nonempty
+explicit mapping for non-curated, non-passthrough overlap sites with the supported
+DNA graph/parent frame. Caller-supplied dictionary qualification/end-state intent
+remain separate. Each overlap reloads its selected or fallback dictionary immediately
+before monomer creation; context and restoration consume that same choice. Exact
+heavy-atom names/elements, component identity and unchanged dictionary bytes are
+checked before context changes. Native failures/partial output remain preserved.
+Defaults keep historical script generation and returned shape.
+
+`begin_postmr_construction(..., site_dictionary_paths=...)` captures exact run-local
+`PostMR/Coot/site_dictionaries/NNN.cif` references (sorted site order). Finishing
+requires the returned choices to equal that captured inventory. Schema1 policy
+`postmr-site-dictionary-construction-lineage-v1` adds `site_dictionaries` to the
+existing record, optionally alongside canonical-seed proof. Readback rechecks the
+same constructor rule and includes only declared files. Complete requests preserve
+that closure without another owner. Old software refuses this opt-in policy;
+historical records remain unchanged and need no migration. New writers refuse a
+reserved site-dictionary folder whose choice metadata was omitted.
+
+One Coot1.3.3 request builds free-OH A:11 and internal A:12 DY in both orders; atom
+coordinates are order-independent, scaffold/neighbours exact and chi differences
+<0.014degrees. Actual-model Phenix2.2.1-6174 readback passes87 checks with two
+unsupported formal-charge readbacks. This reuses C345 projections, not automatic
+preconstruction projection from canonical input, ReadySet repetition or refinement.
+266 installed/relocated tests pass. Commands and scope:
+`per_site_construction_dictionaries_2026_11_17`.

@@ -16,6 +16,7 @@ from .cif_repair_attempt import _root
 
 POLICY_ID = 'postmr-construction-lineage-v1'
 CANONICAL_POLICY_ID = 'postmr-canonical-construction-lineage-v1'
+SITE_DICTIONARY_POLICY_ID = 'postmr-site-dictionary-construction-lineage-v1'
 RECORD_PATH = 'PostMR/Coot/construction.json'
 
 
@@ -75,8 +76,29 @@ def _controls(value, dictionaries):
     _need(not set(value['allow_op3_sites']) & set(value['passthrough_sites']), 'Conflicting construction site policy')
 
 
+def _site_dictionary_closure(root, references, inputs, controls):
+    """Validate only declared per-site files using the constructor's existing rule."""
+    from .postmr import MutationAction, PostMRPreparationError, _construction_site_dictionaries
+    _need(isinstance(references, dict) and references
+          and all(isinstance(site, str) for site in references), 'Invalid site dictionary inventory')
+    choices = {}
+    for index, (site, reference) in enumerate(sorted(references.items())):
+        path = _resolve(reference, root)
+        _need(reference['path'] == f'PostMR/Coot/site_dictionaries/{index:03d}.cif',
+              'Site dictionary role differs')
+        choices[site] = path
+    dictionaries = {c: _resolve(ref, root) for c, ref in inputs['dictionaries'].items()}
+    try:
+        checked, _ = _construction_site_dictionaries(
+            tuple(MutationAction(**a) for a in controls['actions']), dictionaries,
+            choices, controls['passthrough_sites'])
+    except PostMRPreparationError as exc:
+        raise ValueError('Invalid construction site dictionary: ' + str(exc)) from exc
+    return checked, {ref['path']: _read(_resolve(ref, root)) for ref in references.values()}
+
+
 def begin_postmr_construction(run, model, reference_model, dictionaries, actions, *,
-                             allow_op3_sites=(), passthrough_sites=()):
+                             allow_op3_sites=(), passthrough_sites=(), site_dictionary_paths=None):
     """Capture the identities of existing consumed inputs before construction."""
     root=_root(run)
     inputs=dict(model=_reference(model,root),reference_model=_reference(reference_model,root),
@@ -84,7 +106,13 @@ def begin_postmr_construction(run, model, reference_model, dictionaries, actions
     controls=dict(actions=[asdict(a) for a in actions],allow_op3_sites=sorted(allow_op3_sites),
                   passthrough_sites=sorted(passthrough_sites))
     _inputs(root,inputs); _controls(controls,inputs['dictionaries'])
-    return dict(inputs=inputs,controls=controls)
+    result = dict(inputs=inputs,controls=controls)
+    if site_dictionary_paths is not None:
+        _need(isinstance(site_dictionary_paths, dict), 'Invalid site dictionary mapping')
+        references = {site: _reference(p, root) for site, p in site_dictionary_paths.items()}
+        _site_dictionary_closure(root, references, inputs, controls)
+        result['site_dictionaries'] = references
+    return result
 
 
 def _canonical_closure(root, reference, inputs, controls):
@@ -118,7 +146,8 @@ def finish_postmr_construction(run, started, prepared_model, construction):
     """Seal a fresh, non-qualifying record before downstream numerical work."""
     root=_root(run); path=root/RECORD_PATH
     if path.exists() or path.is_symlink():raise FileExistsError(path)
-    _need(isinstance(started,dict) and set(started)=={'inputs','controls'}, 'Invalid construction start identity')
+    _need(isinstance(started,dict) and set(started) in (
+        {'inputs','controls'}, {'inputs','controls','site_dictionaries'}), 'Invalid construction start identity')
     _inputs(root,started['inputs']); _controls(started['controls'],started['inputs']['dictionaries'])
     outputs=dict(after_coot=_reference(construction['model'],root),prepared=_reference(prepared_model,root))
     evidence={}
@@ -140,6 +169,16 @@ def finish_postmr_construction(run, started, prepared_model, construction):
     else:
         _need(not (root/'PostMR/Coot/canonical_seeds').exists(),
               'Canonical construction evidence cannot be silently omitted')
+    if 'site_dictionaries' in started:
+        choices, _ = _site_dictionary_closure(root, started['site_dictionaries'], started['inputs'], started['controls'])
+        supplied = construction.get('site_dictionary_paths')
+        _need(isinstance(supplied, dict) and supplied == choices,
+              'Returned site dictionaries differ from the choices captured before construction')
+        record.update(policy_id=SITE_DICTIONARY_POLICY_ID, site_dictionaries=started['site_dictionaries'])
+    else:
+        _need('site_dictionary_paths' not in construction
+              and not (root/'PostMR/Coot/site_dictionaries').exists(),
+              'Site dictionary choices cannot be silently omitted')
     write_record(path,record)
     return read_postmr_construction(root)['report']
 
@@ -153,12 +192,16 @@ def read_postmr_construction(run):
     """
     root=_root(run); raw=_read(root/RECORD_PATH); r=read_record(root/RECORD_PATH)
     canonical = 'canonical_parent_input' in r
+    site_choices = 'site_dictionaries' in r
     fields = {'schema_version','policy_id','status','scientific_qualification','native_interpretation',
               'automatic_adoption','inputs','outputs','controls','evidence','record_sha256'}
     if canonical: fields.add('canonical_parent_input')
+    if site_choices: fields.add('site_dictionaries')
     _need(set(r)==fields
           and type(r['schema_version']) is int and r['schema_version']==1
-          and r['policy_id']==(CANONICAL_POLICY_ID if canonical else POLICY_ID) and r['status']=='CONSTRUCTION_RETURNED'
+          and r['policy_id']==(SITE_DICTIONARY_POLICY_ID if site_choices else
+                               CANONICAL_POLICY_ID if canonical else POLICY_ID)
+          and r['status']=='CONSTRUCTION_RETURNED'
           and r['scientific_qualification']=='NOT_ASSESSED' and r['native_interpretation']=='NOT_RUN'
           and r['automatic_adoption'] is False, 'Invalid construction lineage claims')
     _, reference = _inputs(root,r['inputs']); _controls(r['controls'],r['inputs']['dictionaries'])
@@ -178,6 +221,10 @@ def read_postmr_construction(run):
     if canonical:
         _, seed_files = _canonical_closure(root, r['canonical_parent_input'], r['inputs'], r['controls'])
         files.update(seed_files)
+    selected = None
+    if site_choices:
+        selected, site_files = _site_dictionary_closure(root, r['site_dictionaries'], r['inputs'], r['controls'])
+        files.update(site_files)
     # Check declared identities with the ordinary caller's existing parser. This
     # is a model/action join, not a second chemistry or geometry validator.
     from .postmr import PostMRPreparationError, residue_name
@@ -190,4 +237,5 @@ def read_postmr_construction(run):
         raise ValueError('Invalid construction model/action identity: '+str(exc)) from exc
     _need(all(_read(root/name)==data for name,data in files.items()), 'Construction lineage changed during readback')
     return dict(report=r,files=files,model=root/r['outputs']['prepared']['path'],
-                dictionaries={c:root/ref['path'] for c,ref in r['inputs']['dictionaries'].items()})
+                dictionaries={c:root/ref['path'] for c,ref in r['inputs']['dictionaries'].items()},
+                **({'site_dictionary_paths': selected} if site_choices else {}))

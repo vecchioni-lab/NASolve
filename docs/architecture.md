@@ -407,6 +407,12 @@ bound this planning route. It changes no action schema, catalogue precedence or
 native qualification. Ordinary request forwarding remains separate; see
 [explicit construction planning](cif-doctor.md#explicit-construction-target-planning-c358).
 
+C359 adds explicit per-site dictionaries to that same Coot constructor and the
+existing construction lineage. Same-code monomers reload their chosen dictionary;
+actual atom inventories must agree, and context/restoration use the same choice.
+A separate opt-in lineage policy carries only the declared run-local files through
+complete requests. Numerical qualification and end-state selection remain upstream.
+
 ### Dataset and symmetry discovery
 
 Dataset discovery currently accepts the usual autoPROC/STARANISO naming variants

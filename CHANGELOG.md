@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Build different end states of one residue in the same Coot request (C359)
+
+- Accept explicit per-site dictionaries for supported non-curated DNA overlap
+  sites. Reload the chosen dictionary before each monomer, including fallbacks;
+  check actual heavy atoms and retain the same choice through context/restoration.
+- Existing construction lineage records these exact run-local files under an
+  opt-in policy and carries them through complete-request freezing/relocation.
+  Defaults and historical readers stay unchanged. This does not choose end states,
+  qualify a source or automatically register custom mutations.
+
 ### Plan a custom mutation from its explicit chemical source (C358)
 
 - Allow an explicit source dictionary and canonical parent for requested non-curated

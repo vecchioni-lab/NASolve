@@ -491,6 +491,7 @@ def _coot_script(
     *,
     conformation_plans: Mapping[str, dict] | None = None,
     verify_mutation_identity: bool = False,
+    site_dictionary_paths: Mapping[str, Path] | None = None,
 ) -> str:
     # Default options preserve exact historical script generation for replay.
     from .postmr_conformation import native_helpers, native_match_lines, native_overlap_check_lines
@@ -555,6 +556,16 @@ def _coot_script(
                 f"    raise RuntimeError('Coot parent mutation failed at {action.site}')",
             ])
             lines.extend(identity_lines(action.site, chain, residue_number, action.parent_code))
+        if site_dictionary_paths is not None:
+            # Coot dictionaries are global by component code. Reload even a
+            # fallback so an earlier site's end state cannot leak into this one.
+            dictionary = site_dictionary_paths.get(action.site, dictionary_paths[action.after])
+            lines.extend([
+                f"dictionary_status = coot.read_cif_dictionary({json.dumps(str(dictionary))})",
+                f"print('NASOLVE_SITE_DICTIONARY', {action.site!r}, {action.after!r}, dictionary_status)",
+                "if not dictionary_status:",
+                f"    raise RuntimeError('Coot could not load the dictionary for {action.site}')",
+            ])
         lines.extend([
             f"coot.write_pdb_file(imol, {json.dumps(str(parent_models[action.site]))})",
             f"ligand_imol = coot.get_monomer_from_dictionary({action.after!r}, 0)",
@@ -611,13 +622,14 @@ def _run_coot(
     parent_models: Mapping[str, Path],
     *,
     timeout_seconds: float | None = None,
+    site_dictionary_paths: Mapping[str, Path] | None = None,
 ) -> tuple[Path, Path]:
     if timeout_seconds is not None and (isinstance(timeout_seconds, bool) or not isfinite(timeout_seconds) or timeout_seconds <= 0):
         raise PostMRPreparationError("Coot timeout must be finite and positive")
     script = coot_directory / "mutate.py"
     log = coot_directory / "coot.log"
     from .postmr_conformation import parent_conformation_plan
-    plans = {action.site: parent_conformation_plan(dictionary_paths[action.after],
+    plans = {action.site: parent_conformation_plan((site_dictionary_paths or {}).get(action.site, dictionary_paths[action.after]),
         action.after, action.parent_code) for action in actions
         if action.method == "coot-parent-overlap"}
     backups = coot_directory / "backups"
@@ -631,6 +643,7 @@ def _run_coot(
             parent_models,
             conformation_plans=plans,
             verify_mutation_identity=True,
+            site_dictionary_paths=site_dictionary_paths,
         ),
         encoding="utf-8",
     )
@@ -782,6 +795,7 @@ def _restore_shared_parent_coordinates(
     actions: tuple[MutationAction, ...],
     parent_models: Mapping[str, Path],
     dictionary_paths: Mapping[str, Path] | None = None,
+    *, site_dictionary_paths: Mapping[str, Path] | None = None,
 ) -> dict[str, object]:
     """Restore supported DNA scaffolds without copying partial same-name bases.
 
@@ -827,7 +841,8 @@ def _restore_shared_parent_coordinates(
             parent_records = [line for line in _coordinate_records(Path(parent_models[action.site]))
                 if (identity := _record_identity(line)) is not None and identity[:2] == (chain,resid)]
             replacements, item = restore_graph_site([records[i] for i in indices], parent_records,
-                dictionary_paths[action.after], action.after, action.parent_code)
+                (site_dictionary_paths or {}).get(action.site, dictionary_paths[action.after]),
+                action.after, action.parent_code)
         except (OSError, ValueError, KeyError, PostMRPreparationError) as exc:
             item = {"policy_id": POLICY_ID, "component": action.after,
                 "status": "RAW_SITE_RETAINED", "count": 0, "atoms": [],
@@ -1798,6 +1813,66 @@ def _cif_doctor_receipt(
     }
 
 
+def _construction_site_dictionaries(actions, dictionaries, choices, passthrough_sites=()):
+    """Check an explicit site mapping; numerical/context qualification is upstream."""
+    from .cif_dictionary_sites import _read
+    from .postmr_conformation import parent_conformation_plan
+    if not isinstance(choices, Mapping) or not choices:
+        raise PostMRPreparationError("Require a nonempty site dictionary mapping")
+    by_site = {a.site: a for a in actions}
+    selected = {}
+    try:
+        snapshots = {Path(p).absolute(): _read(p) for p in dictionaries.values()}
+        for site, value in choices.items():
+            action = by_site.get(site)
+            if (action is None or action.method != 'coot-parent-overlap'
+                    or action.after in CURATED_LIGANDS or site in passthrough_sites):
+                raise ValueError("Site dictionaries require selected non-curated overlap sites")
+            path = Path(value).absolute()
+            data = _read(path)
+            if path in snapshots and snapshots[path] != data:
+                raise ValueError("Site dictionary changed during validation")
+            snapshots[path] = data
+            validate_ligand_dictionary(action.after, path)
+            plan = parent_conformation_plan(path, action.after, action.parent_code)
+            if plan['status'] != 'MATCH_PARENT_CHI':
+                raise ValueError(plan['reason'])
+            if _read(path) != data:
+                raise ValueError("Site dictionary changed during validation")
+            selected[site] = path
+        if any(_read(path) != data for path, data in snapshots.items()):
+            raise ValueError("Site dictionary changed during validation")
+    except (OSError, ValueError, TypeError, KeyError) as exc:
+        raise PostMRPreparationError(f"Invalid site dictionary choice: {exc}") from exc
+    return selected, snapshots
+
+
+def _check_constructed_site_dictionaries(model, actions, dictionaries, choices, snapshots):
+    """Check the actual Coot atoms; a global same-code cache is not authority."""
+    from .cif_dictionary_sites import _read
+    from .cif_construction_provenance import _pdb_inventory
+    from .cif_linked_preparation import atom_rows, component_values
+    try:
+        if any(_read(p) != data for p, data in snapshots.items()):
+            raise ValueError("Construction dictionary changed during Coot execution")
+        inventory = _pdb_inventory(model)
+        for action in actions:
+            if action.method != 'coot-parent-overlap':
+                continue
+            dictionary = choices.get(action.site, dictionaries[action.after])
+            atoms = atom_rows(component_values(dictionary, action.after))
+            expected = {name: row['type_symbol'].upper() for name, row in atoms.items()
+                        if row['type_symbol'].upper() not in {'H', 'D'}}
+            selected = [(key, row) for key, row in inventory.items()
+                        if key[0]+':'+key[1]+key[2] == action.site]
+            actual = {key[-1]: row['element'] for key, row in selected}
+            if (actual != expected or len(actual) != len(selected)
+                    or any(key[3] or row['code'] != action.after for key, row in selected)):
+                raise ValueError("Coot atom inventory differs from the selected dictionary at " + action.site)
+    except (OSError, ValueError, KeyError) as exc:
+        raise PostMRPreparationError(str(exc)) from exc
+
+
 def construct_postmr_model(
     input_model: Path,
     actions: tuple[MutationAction, ...],
@@ -1812,6 +1887,7 @@ def construct_postmr_model(
     allow_op3_sites: tuple[str, ...] = (),
     passthrough_sites: tuple[str, ...] = (),
     canonical_seed_dictionaries: Mapping[str, tuple[Path, Path]] | None = None,
+    site_dictionary_paths: Mapping[str, Path] | None = None,
 ) -> dict[str, object]:
     """Run the ordinary PostMR Coot construction stage without MR/MTZ state.
 
@@ -1823,6 +1899,10 @@ def construct_postmr_model(
     canonical_seed_dictionaries maps a site to (incoming source, canonical template).
     It prepares a frozen canonical seed before this same Coot stage; ordinary
     context/restoration still uses the original model and declared actions.
+    Optional site_dictionary_paths selects exact dictionaries per overlap site;
+    Coot reloads them before each monomer and actual heavy-atom inventories must
+    agree. The same choices feed context/restoration and are returned for lineage.
+    Their upstream source/end-state/numerical qualification remains separate.
     """
     input_model, output_model = Path(input_model), Path(output_model)
     reference_model = Path(reference_model) if reference_model is not None else input_model
@@ -1834,6 +1914,14 @@ def construct_postmr_model(
     coot_actions = tuple(a for a in actions if a.method in {"coot-mutate-base", "coot-parent-overlap"})
     if len({a.site for a in coot_actions}) != len(coot_actions):
         raise PostMRPreparationError("Duplicate Coot construction sites")
+    site_options, site_snapshots = {}, {}
+    if site_dictionary_paths is not None:
+        site_dictionary_paths, site_snapshots = _construction_site_dictionaries(
+            coot_actions, dictionary_paths, site_dictionary_paths, passthrough_sites)
+        site_options = {"site_dictionary_paths": site_dictionary_paths}
+        inputs.extend(site_dictionary_paths.values())
+        if output_model.resolve() in {p.resolve() for p in inputs}:
+            raise PostMRPreparationError("Construction output must be separate from site dictionaries")
     seed_plan = None
     if canonical_seed_dictionaries is not None:
         from .postmr_canonical_input import canonical_input_plan
@@ -1877,19 +1965,22 @@ def construct_postmr_model(
                                for a in coot_actions)
     _, coot_log = _run_coot(native_input, raw_model, native_actions, coot_executable,
         coot_directory, environment, coot_dictionaries, parent_models,
-        **({"timeout_seconds": timeout_seconds} if timeout_seconds is not None else {}))
+        **({"timeout_seconds": timeout_seconds} if timeout_seconds is not None else {}), **site_options)
+    if site_dictionary_paths is not None:
+        _check_constructed_site_dictionaries(raw_model, coot_actions, dictionary_paths,
+            site_dictionary_paths, site_snapshots)
     from .postmr_context import (IDENTITY_SERIAL_POLICY_ID, CANONICAL_SERIAL_POLICY_ID,
                                  prepare_construction_context)
     context = prepare_construction_context(raw_model, reference_model, coot_actions,
         dictionary_paths, parent_models, output_model.with_name(output_model.stem + "_context.pdb"),
         allow_op3_sites=allow_op3_sites, passthrough_sites=passthrough_sites,
         serial_identity_policy=IDENTITY_SERIAL_POLICY_ID,
-        canonical_serial_policy=CANONICAL_SERIAL_POLICY_ID)
+        canonical_serial_policy=CANONICAL_SERIAL_POLICY_ID, **site_options)
     restoration_input = context["model"]
     restoration_actions = tuple(a for a in overlap_actions if a.site not in passthrough_sites)
     if restoration_actions:
         restoration = _restore_shared_parent_coordinates(restoration_input, geometry_model,
-            restoration_actions, parent_models, dictionary_paths)
+            restoration_actions, parent_models, dictionary_paths, **site_options)
     else:
         shutil.copyfile(restoration_input, geometry_model)
         restoration = {}
@@ -1922,7 +2013,7 @@ def construct_postmr_model(
             rollback_geometry = output_model.with_name(output_model.stem + "_context_rollback_geometry.pdb")
             if restoration_actions:
                 restoration = _restore_shared_parent_coordinates(raw_model, rollback_geometry,
-                    restoration_actions, parent_models, dictionary_paths)
+                    restoration_actions, parent_models, dictionary_paths, **site_options)
             else:
                 shutil.copyfile(raw_model, rollback_geometry)
                 restoration = {}
@@ -1960,6 +2051,11 @@ def construct_postmr_model(
 
     if seeded is not None:
         result["canonical_parent_input"] = seeded
+    if site_dictionary_paths is not None:
+        from .cif_dictionary_sites import _read
+        if any(_read(p) != data for p, data in site_snapshots.items()):
+            raise PostMRPreparationError("Construction dictionary changed before return")
+        result["site_dictionary_paths"] = site_dictionary_paths
     return result
 
 

@@ -6,9 +6,15 @@ support; the [handoff](development-handoff.md) says where work stopped. Old note
 record what was known then. They do not create a second set of instructions.
 
 The active bounded task is [ordinary DY integration](#dy--packaged-retained-triazole-reference-and-mutation-support)
-after C358 explicit source/parent planning; then return to Q06 achieved geometry.
-Next: per-site dictionaries before Coot, then source/choice lineage and ordinary
-request integration. C357 retention findings remain recorded locally.
+after C359 single-request mixed-end construction and per-site lineage; then return
+to Q06 achieved geometry. Next: derive projections from the original canonical model
+and declared end states, bind their chemical derivation, and connect ordinary intake.
+C357 retention findings remain recorded locally.
+
+Linden's W109 active-callback proposal is shared convergence work for Q06:
+C331 remains callback-free. Review owner admission, process-local callable identity,
+native-owned buffer lifetime and model-level counts/normalization before activation.
+Subset derivatives alone do not qualify refinement or altered periodic exclusions.
 
 ## Finish line and ordering
 
@@ -919,15 +925,16 @@ Current remaining integration, in order:
    accepts an explicit dictionary/parent for non-curated requested targets, checked
    against the existing D-deoxy graph and chi frame. No fabricated NARestraints row.
    Ordinary CLI/request forwarding and frozen source/choice lineage remain open.
-2. Select qualified dictionaries for each site's declared end state **before Coot**.
-   `_coot_script` currently loads by component code; the ordinary dictionary handler
-   runs after construction. C344/C345 sequential explicit calls and projections from
-   already-built DY controls are evidence to reuse, not proof of this automatic route.
-   Acceptance: free-OH and internal DY together in one ordinary request, with preserved
-   sugar/chi/neighbours and actual-model native validation.
+2. **Coot selection complete at C359:** explicit site dictionaries build free-OH and
+   internal DY in one constructor call, in both orders, with preserved sugar/chi/
+   neighbours and87 actual-model Phenix checks (two unsupported charge readbacks).
+   Remaining: derive those projections from the original canonical input and declared
+   end states. C359 reused C345 projections, so it does not close that planning seam.
 3. Bind source composition, selected dictionaries and canonical seeds through existing
-   construction/request lineage. C353 already owns canonical proof; C355 owns selected
-   source bytes. Keep only declared inputs, and verify cold installed/relocated use.
+   construction/request lineage. C353 owns canonical proof; C355 owns selected source
+   bytes; C359 now owns exact per-site dictionary choice through the same lineage and
+   cold complete requests. Composition/projection derivation and ordinary forwarding
+   remain open; keep those distinctions explicit.
 
 Source/native chemistry, rotatable bridge controls and saved mixed-context replay
 are already established within their recorded scope. Do not add another source,
