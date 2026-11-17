@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W113 — Freeze a fresh selected-pair contribution
+
+- Add optional `NativePairContribution` in the existing recipe module. Construct
+  a fresh compiler from exact model/packet inputs, preserve the frozen W108 provider
+  selection and revalidate it against supplied current native declarations.
+- Reuse the unchanged W109 evaluator, with finite full-gradient checks and an
+  explicit four-family one-per-proxy count policy. Export the fixed helper-module
+  closure for the existing loader; no callback, loader or persistent request schema.
+- Narrow the shared admission proposal to one counted-contribution owner, with
+  actual buffer ownership, hierarchy staleness and in-place normalization explicit.
+
 ### W112 — Observe hierarchy and native scattering state together
 
 - Add an opt-in v2 native pair observation using the existing checksum-bound

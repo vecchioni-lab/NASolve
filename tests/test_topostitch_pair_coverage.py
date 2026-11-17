@@ -381,3 +381,106 @@ def test_selected_recipe_refuses_drift_before_kernel(monkeypatch, change):
         recipe.evaluate_terms([(1.,2.,3.)]*6, atom_identities=recipe._identities,
             packet=packet, expected_binding_sha256=binding, selected_terms=selected,
             expected_terms_sha256=old_digest if change=='selected_digest' else recipe_digest(selected))
+
+
+def contribution_fixture(monkeypatch, native_indices=(0,2)):
+    from hashlib import sha256
+    from nasolve import topostitch_native_recipe as module
+    recipe, packet=compiled_fixture(monkeypatch);data=b'constructor-source'
+    packet['source_model_sha256']=sha256(data).hexdigest()
+    recipe._report.update(source_model_sha256=packet['source_model_sha256'],recipe_sha256=recipe_digest(packet))
+    declaration=export(recipe,packet);requested=declaration['terms']
+    native=[deepcopy(requested[i]) for i in native_indices]
+    context=dict(source_model_sha256=packet['source_model_sha256'],recipe_sha256=recipe_digest(packet),
+        atom_labels=declaration['atom_labels'],crystal_sha256='c'*64,native_exclusion_policy_sha256='d'*64)
+    selection=select_inputs(requested,native,context)
+    constructed=[];calls=[]
+    def initialize(self,p,m,*,expected_recipe_sha256,correction):
+        assert p==packet and m==data and expected_recipe_sha256==recipe_digest(packet)
+        self.__dict__.update(deepcopy(recipe.__dict__));constructed.append(self)
+    monkeypatch.setattr(module.NativePairRecipe,'__init__',initialize)
+    def evaluate(self,points,*,atom_identities,compute_gradients,proxies):
+        assert atom_identities==self._identities;calls.append(1)
+        count=sum(len(v) for v in proxies)
+        return dict(target=float(count),components={},gradients=[(float(count),0.,0.)]*6 if compute_gradients else None,
+                    normalization=module.POLICY['normalization'])
+    monkeypatch.setattr(module.NativePairRecipe,'_evaluate_proxies',evaluate)
+    kwargs=dict(expected_recipe_sha256=recipe_digest(packet),expected_binding_sha256=declaration['compiled_binding_sha256'],
+        provider_selection=selection,expected_provider_selection_sha256=recipe_digest(selection),
+        native_terms=native,current_context=context,correction=object())
+    return module,packet,data,kwargs,constructed,calls
+
+
+@pytest.mark.parametrize('native_indices',[(),(0,2),(0,1,2,3)])
+def test_contribution_factory_reuses_exact_selection_and_detaches_inputs(monkeypatch,native_indices):
+    module,packet,data,kwargs,constructed,calls=contribution_fixture(monkeypatch,native_indices)
+    original=deepcopy([packet,kwargs['provider_selection'],kwargs['native_terms'],kwargs['current_context']])
+    contribution=module.NativePairContribution(packet,data,**kwargs)
+    assert len(constructed)==1 and not calls
+    report=contribution.binding_report();assert report['supported_count']==4-len(native_indices)
+    assert report['count_policy']=='canonical-pair-one-per-proxy-v1'
+    assert report['provider_selection']==kwargs['provider_selection']
+    report['provider_selection']['additive'].clear()
+    assert contribution.revalidate(kwargs['native_terms'],current_context=kwargs['current_context'])==kwargs['provider_selection']['review']
+    points=[(1.,2.,3.)]*6
+    for mode in (False,True):
+        actual=contribution.evaluate(points,atom_identities=packet['atom_identities'],compute_gradients=mode)
+        assert actual['supported_count']==actual['target']==4-len(native_indices)
+        assert actual['count_policy']=='canonical-pair-one-per-proxy-v1'
+        assert actual['provider_selection_sha256']==kwargs['expected_provider_selection_sha256']
+        assert (actual['gradients'] is None)==(not mode)
+    assert [packet,kwargs['provider_selection'],kwargs['native_terms'],kwargs['current_context']]==original
+    packet['atom_identities'][0]['atom_name']='caller-edited';kwargs['provider_selection']['additive'].clear()
+    assert contribution.evaluate(points,atom_identities=original[0]['atom_identities'])['supported_count']==4-len(native_indices)
+
+
+@pytest.mark.parametrize('change',['selection_digest','selection_review','compiled_binding','packet_digest','source_context','native_terms','current_context'])
+def test_contribution_factory_refuses_changed_frozen_inputs(monkeypatch,change):
+    module,packet,data,kwargs,constructed,calls=contribution_fixture(monkeypatch)
+    if change=='selection_digest':kwargs['expected_provider_selection_sha256']='0'*64
+    elif change=='selection_review':
+        kwargs['provider_selection']['review']['declared_coverage_complete']=False
+        kwargs['expected_provider_selection_sha256']=recipe_digest(kwargs['provider_selection'])
+    elif change=='compiled_binding':kwargs['expected_binding_sha256']='0'*64
+    elif change=='packet_digest':kwargs['expected_recipe_sha256']='0'*64
+    elif change=='source_context':
+        kwargs['provider_selection']['frozen']['context']['source_model_sha256']='f'*64
+        kwargs['expected_provider_selection_sha256']=recipe_digest(kwargs['provider_selection'])
+    elif change=='native_terms':kwargs['native_terms'].pop()
+    else:kwargs['current_context']['native_exclusion_policy_sha256']='0'*64
+    with pytest.raises(ValueError):module.NativePairContribution(packet,data,**kwargs)
+    assert not calls
+
+
+@pytest.mark.parametrize('native_indices',[(0,2),(0,1,2,3)])
+def test_contribution_revalidates_live_definitions_and_current_coverage(monkeypatch,native_indices):
+    module,packet,data,kwargs,constructed,calls=contribution_fixture(monkeypatch,native_indices)
+    contribution=module.NativePairContribution(packet,data,**kwargs)
+    changed=deepcopy(kwargs['native_terms']);changed.pop()
+    with pytest.raises(ValueError):contribution.revalidate(changed,current_context=kwargs['current_context'])
+    constructed[0]._bonds[0].distance_ideal+=.1
+    with pytest.raises(ValueError):contribution.evaluate([(1.,2.,3.)]*6,atom_identities=packet['atom_identities'])
+    with pytest.raises(ValueError):contribution.binding_report()
+    assert not calls
+
+
+@pytest.mark.parametrize('invalid',['bool_mode','identity','nan_target','nan_gradient','short_gradient','energy_only_gradient','normalization'])
+def test_contribution_refuses_invalid_mode_identity_or_evaluator_result(monkeypatch,invalid):
+    module,packet,data,kwargs,constructed,calls=contribution_fixture(monkeypatch)
+    contribution=module.NativePairContribution(packet,data,**kwargs)
+    mode=False if invalid=='energy_only_gradient' else True
+    identities=deepcopy(packet['atom_identities'])
+    if invalid=='bool_mode':mode=1
+    elif invalid=='identity':identities.reverse()
+    else:
+        original=constructed[0]._evaluate_proxies
+        def altered(*args,**kw):
+            value=original(*args,**kw)
+            if invalid=='nan_target':value['target']=float('nan')
+            elif invalid=='nan_gradient':value['gradients'][0]=(float('inf'),0.,0.)
+            elif invalid=='short_gradient':value['gradients'].pop()
+            elif invalid=='energy_only_gradient':value['gradients']=[]
+            else:value['normalization']='normalized'
+            return value
+        monkeypatch.setattr(constructed[0],'_evaluate_proxies',altered)
+    with pytest.raises(ValueError):contribution.evaluate([(1.,2.,3.)]*6,atom_identities=identities,compute_gradients=mode)

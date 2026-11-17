@@ -4965,34 +4965,25 @@ weighting remain unqualified.
 
 ### Smallest owner extension
 
-Cedar should expose a **separate active-callback admission/check API** using the
+Cedar should expose a separate active-contribution admission/check API using the
 same native profile, exact-type reader and complete policy traversal as C331.
-Factor internal traversal only if needed; keep C331's callback-free signature,
-policy identity, records, refusal behavior and old installed replay unchanged.
-Do not copy `_Reader` or shell/symmetry/parameter inventory logic into Willow.
-The active record needs its own versioned policy identity and truthful invocation
-fields; it must not call C331 with fabricated callback-free arguments or detach
-an installed callback merely to inspect the manager. Cedar chooses final API names.
+Keep C331's callback-free signature, policy identity, records and refusal behavior
+unchanged. Do not copy `_Reader`, detach an adapter to fake idle inspection or
+present fabricated callback-free invocation options. The active record has its
+own versioned identity and truthful actual invocation fields.
 
-For admission diagnostics, start with one narrow configured-callback route: the geometry manager contains
-the exact callback object created by the checked runtime owner, and the per-call
-`external_energy_function` argument remains `None`. Reject competing configured
-or per-call callbacks, extension objects, custom nonbonded functions, externally
-supplied gradient buffers and unsupported geometry flags. The model-level native
-owner forwards its own buffer into geometry; authenticate that ownership boundary
-rather than rejecting every non-None buffer at the inner layer. Invocation-only and
-arbitrary third-party callback routes are separate future qualifications. This
-diagnostic route does not decide the counted production-contribution mechanism.
+W110 initially considered a configured callback for admission diagnostics. W111
+then qualified counted-extension arithmetic, so the **counted route is the current
+implementation candidate**, specified below. The configured callback is not a second
+queued implementation. Ordinary model entry does not forward native extensions;
+the proposed owner must qualify that missing boundary explicitly.
 
-A serialized digest does not authenticate a callable. The runtime factory must
-be trusted code frozen through the existing execution request, with helper/profile
-checksums and explicit construction. The active check compares the actual callback
-object with that runtime-owned object and binds its frozen contract digest; it
-never imports code or resolves a callable named by an untrusted record. A function
-name, object address or class name alone is not persistent proof. After restart,
-the frozen runtime factory must rebuild and authenticate its new process-local
-callable; a serialized object identity cannot be reused. Single-owner
-execution is required; before/after snapshots are not a concurrency lock.
+The trusted frozen runtime factory creates a new process-local callable and binds
+its exact object plus contract/source digests. A name, object address or serialized
+digest alone cannot authenticate executable code or survive restart. Single-owner
+execution remains required; before/after reads are not a concurrency lock. The
+actual model-owned inner gradient buffer needs provenance from its outer call,
+not a blanket ban on all non-None geometry buffers.
 
 ### Frozen contract and call lifecycle
 
@@ -5014,7 +5005,7 @@ rebuilding must remain distinct from a changed exclusion policy. On rebuild,
 coverage can change; do not regenerate a provider plan to conceal that drift.
 Any legitimate new plan belongs to a separately frozen phase with explicit lineage.
 
-The first profile admits energy-only calls and native-owned Cartesian gradient
+The proposed first profile admits energy-only calls and native-owned Cartesian gradient
 buffers. Buffer aliasing, size, mutability, accumulation semantics, repeated calls
 and reentrancy must be tested against actual C++ objects. Caller-supplied buffers
 remain unsupported until separately qualified. A zero-scale diagnostic still
@@ -5110,6 +5101,111 @@ The first deliverable is owner admission plus direct-call evidence, not all five
 steps at once. Exact numerical tolerances should reuse Cedar's established
 objective reviewer and be frozen before each control. This proposal grants no
 new runtime behavior, input/output schema or approval.
+
+
+### Counted-owner implementation slice — W112 follow-on proposal
+
+After W111, the first implementation candidate is the **counted extension route**,
+not a configured residual-only callback. The earlier configured-callback paragraph
+records the admission problem but is not a competing implementation queue. Keep
+`geo.external_energy_function` and the per-call callback empty in this slice.
+Use one trusted owner to forward exactly one native `energies_add` contribution;
+ordinary refinement still waits for the separate frozen-execution qualification.
+
+**Smallest Cedar API:** one opt-in context-managed admission owner plus its active
+policy check, implemented alongside the existing live-policy machinery. Final names
+belong to Cedar. The owner binds one actual model/restraints/geometry object triple,
+one frozen contribution contract, one freshly constructed process-local evaluator,
+and exact native/helper/profile sources. The active checker must share C331's
+complete `_Reader` traversal while retaining a distinct policy identifier and
+truthful invocation record. Legacy C331 signatures, results and refusals stay exact.
+A serialized contract cannot authorize an arbitrary supplied callable.
+
+For the first direct-call qualification, scope the temporary adapters to the
+**instance** `mmtbx.restraints.manager.energies_sites` and its geometry instance's
+`energies_sites`. Preserve the original class implementations and call them exactly
+once. The outer wrapper checks the real call and opens a one-shot invocation state;
+the inner wrapper may forward the frozen counted extension only within that state.
+Do not install a global factory hook, copy the native energy implementation, or
+introduce a separate refinement runner. Unsupported class/instance overrides and
+pre-existing adapters refuse before installation. A copied or selected manager has
+no admission; explicit preparation/rebinding is required before it can contribute.
+
+The inspected Phenix 2.2.1-6174 outer method allocates `scitbx.restraints.energies`
+with `gradients=None`, passes `result.gradients` to its geometry call, aggregates
+`result.geometry`, then normalizes once. Its optional AFITT and Cartesian-NCS paths
+are outside the first profile. Admission binds their absence, exact method/factory
+bindings and source hashes. Reuse the existing bounded native-objective scope:
+reference/NCS-dihedral, DEN and Ramachandran auxiliary managers and nonempty
+reference-coordinate proxies are not newly admitted merely because C331's
+nonbonded traversal passes. That reader is not a complete all-force policy.
+Reject supplied outer buffers, per-call custom forces,
+unknown options and unsupported flags; record the actual normalization mode.
+Resolve positional/keyword arguments and documented defaults through the qualified
+native signature, rejecting duplicates/unknowns. If incoming flags are `None`,
+record that native-default route and its effective flags; do not conceal actual
+arguments behind a fabricated invocation. IAS-filtered or otherwise partial atom
+arrays are outside the first full-model profile.
+
+**Inner buffer provenance:** a correctly sized `flex.vec3_double` is not proof of
+ownership. Require an active matching outer invocation, its same coordinate buffer,
+mode and exact trusted native call chain. Record the inner allocation identity and
+check on return that it is the *same storage* used by the actual outer result and
+its geometry result (`flex.id()`, not just Python wrapper identity). It must not alias
+coordinates; energy-only uses `None`. Reject direct inner calls, recursion, a second
+inner call, a foreign buffer, mode changes or an unexpected extension. Before adding,
+validate finite contribution target/gradients and the frozen supported count; add to
+existing gradients without replacing their storage. On return require exactly one
+inner call and one extension invocation, correct unnormalized inner result and
+complete outer count/normalization. Native neighbor counts can legitimately change
+with coordinates; compare the actual per-call pre-addition count plus frozen supported
+addition count, not an old absolute total. Outer finalization scales the shared
+buffer in place: after return, `result.geometry.gradients` is already normalized
+although `result.geometry.target` remains raw. Observe raw arithmetic before that
+boundary and do not normalize the shared gradients a second time. No accepted result
+may escape a failed check.
+
+The outer geometry family inventory, exclusion policy, source identity and contribution
+binding are checked before/after, without temporarily detaching adapters or calling
+C331 with pretend idle options. W112 remains a **callback-free preparation/recovery
+observer**; do not invoke it during active installation as if it authenticated that
+state. Active term observation must use the same inventory semantics through an
+explicit active guard boundary. The frozen provider selection cannot be regenerated
+to conceal a changed native inventory. Normal coordinate movement is permitted;
+new identities, cell/group, source reinterpretation or selected terms need new binding.
+The inspected minimizer replaces xray scatterers for coordinate steps and only
+synchronizes hierarchy later. Therefore preparation/recovery coordinate agreement
+is not an inner-loop requirement: bind the actual incoming force sites and current
+scattering order while allowing expected hierarchy-coordinate staleness. Never
+synchronize the hierarchy during energy evaluation. The first direct-call scope
+and later optimizer/final-writer qualification must state this distinction.
+
+**Lifetime and cleanup:** single-owner access is required. An invocation state lives
+only for the outer call; entering again before it closes refuses. A failure poisons
+that admission so it cannot be reused. Restore an adapter only while its exact
+installed binding is still present; if another owner replaced it, leave that foreign
+binding intact, report cleanup failure and preserve the failed attempt. Clean up
+other still-owned bindings even when one was replaced. No function address or live
+buffer identity is persisted as restart authority. Restart constructs and qualifies
+a new owner from the frozen factory and contract.
+
+The first regression/native matrix should protect distinct failures:
+
+| Boundary | Required controls |
+| --- | --- |
+| Legacy | Existing C331 records and callback/override refusals unchanged |
+| Install | Wrong factory/helper/profile/contract, stale manager, pre-existing callback/adapter, AFITT/NCS refuse without mutation |
+| Invocation | Direct inner entry, recursion, extra/missing inner or extension calls, foreign/aliased outer or inner buffers, wrong shape/mode/flags refuse |
+| Contribution | Full/empty/partial frozen subsets; provider-invariant count and normalized forces; changed selected definitions/exclusions refuse |
+| Exit | Normal return, evaluator/native exception, foreign replacement of either adapter; preserve others' bindings and forbid reuse after failure |
+| New manager | Select/copy/rebuild do not inherit admission; explicit checked fresh binding or documented refusal |
+
+Reuse W109–W112 arithmetic/state controls where applicable. New native work should
+exercise these ownership failures and the actual shared-owner entry, not repeat the
+local facade's numerical proof. Only after this scoped slice passes should the
+existing prepare/preflight/runtime/final-writer path receive an opt-in frozen
+contract. No ordinary-refinement activation or numerical tolerance change is
+approved by this proposal.
 
 
 ### W110 validation — 2026-11-17
@@ -5273,3 +5369,75 @@ commands above provide the results. A non-escalated focused run emitted only pyt
 cache-write warnings; complete and installed runs use disabled cache writing.
 Next is the existing W110/W111 Cedar-owned admission/lifetime gate, not another
 coordinate observer or arithmetic probe.
+
+
+## W113 — Freeze the selected-pair contribution factory
+
+`NativePairContribution` lives in `topostitch_native_recipe`; it accepts exact
+packet/model bytes, their expected recipe/compiled-binding digests, an existing
+W108 `provider_selection` with its independently retained digest, admitted
+`native_terms`/`current_context`, and the trusted Cedar correction module. It
+constructs a **fresh** `NativePairRecipe`, exports its W105 declarations and
+reproduces the existing W104 coverage review. It never replans native ownership.
+
+- `revalidate(native_terms, current_context=...)` rechecks current compiled
+  definitions and frozen coverage against newly supplied native observations.
+- `evaluate(points, atom_identities=..., compute_gradients=...)` delegates to
+  unchanged `evaluate_terms`. It enforces exact boolean mode, atom ordering,
+  finite target and full ordered finite gradients (`None` for energy-only).
+  Results retain existing fields and add `supported_count`, `count_policy` and
+  `provider_selection_sha256`.
+- `binding_report()` returns detached existing compiled/provider records and
+  count metadata. Caller edits cannot retarget the retained packet/selection.
+
+`canonical-pair-one-per-proxy-v1` counts only selected validated bond, angle,
+planarity and parallelity proxies. It is not a generic count for arbitrary forces.
+Empty subsets still authenticate the complete compiled/frozen bindings and return
+zero energy/count/gradients. The class observes no manager on its own: Cedar must
+call `revalidate` at admitted entry/exit boundaries. Neither evaluation nor a
+saved report grants active-owner, normalization or scientific authority.
+
+`CONTRIBUTION_SOURCE_MODULES` exposes the exact eight Python helper names for
+Cedar's existing frozen loader. Cedar authenticates the actual dependency modules,
+correction/native sources and runtime methods, and constructs the exact trusted
+factory class itself. There is no arbitrary evaluator argument, second loader,
+new persistent artifact schema, correction installer, callback or force activation.
+The [counted-owner proposal](#counted-owner-implementation-slice--w112-follow-on-proposal)
+was reviewed with Rowan; C367 factors the existing policy traversal while preserving
+C331. Active direct-call admission/lifetime is the next Cedar-owned slice.
+
+### W113 validation — 2026-11-17
+
+Nineteen new regression cases fail before implementation. **153 focused tests,
+2,000 full tests +229 subtests** pass (full:107.41s). The full run precedes only the
+exported tuple's agreed naming change; the final fresh relocated installation and
+native execution use the final source. **293 installed checks**, six CLI helps,
+pip check, lean import and Python3.10 syntax pass. AST comparison proves all prior
+public classes/functions in this module unchanged; captured-worker bytes also match.
+
+Eight complete **Phenix2.2.1-6174** cases pass in **87.59s** on two retained sources:
+full-core, partially covered individual pair, select-all, and core-only packets
+prepared through the existing recipe API with zero additions. Supported counts are
+17/20/20/0 respectively. All sixteen energy-only/gradient outputs exactly match the
+existing subset evaluator; native model energy/full gradients/count and both
+coordinate representations remain unchanged. Sixteen negatives reject changed
+native inventory/context, nonboolean mode and compiled drift, including empty
+subsets. The existing outer `ParallelityKernel` binding is preserved/restored;
+the factory installs nothing. Independent saved-result/source audit passes.
+No extra derivative panel is claimed: scoring/pullback code is unchanged and this
+slice checks fresh construction, frozen ownership and exact numerical reuse.
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest tests/test_topostitch_pair_coverage.py tests/test_topostitch_native_coverage.py tests/test_topostitch_recipe.py -q -p no:cacheprovider
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w113-composition/install-check-final.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w113-composition/native/run.py
+/private/tmp/willow-w113-composition/install-final/env/bin/python /private/tmp/willow-w113-composition/audit-factory.py
+```
+
+The verified local forensic archive contains factory/native inputs, scripts,
+logs and draft/final wheels. It excludes the independently running full-source
+composition baseline and is not a portable campaign. No scientific payload is
+committed. That separate baseline pins W112/C366 and cannot qualify W113 or C367;
+its outcome must be audited separately. No ordinary refinement or scientific
+repair is enabled by this factory.

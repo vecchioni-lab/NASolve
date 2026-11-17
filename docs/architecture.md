@@ -1090,3 +1090,10 @@ output-state readers to bind hierarchy, scattering, original fractional and actu
 force coordinates separately. Legacy v1 output remains the default. It checks
 ordered atom/crystal consistency and state drift without synchronizing ADPs,
 activating callbacks or modifying refinement. See the [W112 contract](topostitch-periodic.md#w112--bind-both-hierarchy-and-scattering-coordinates).
+
+`NativePairContribution` composes the existing fresh compiler, frozen W108 selection,
+W104 coverage reviewer and W109 subset evaluator. It returns a finite numerical
+contribution and a versioned supported count without installing anything. Cedar
+owns actual-manager admission, native buffer lifetime and repeated coverage checks;
+`CONTRIBUTION_SOURCE_MODULES` supplies helper names to its existing frozen loader.
+See the [factory contract](topostitch-periodic.md#w113--freeze-the-selected-pair-contribution-factory).

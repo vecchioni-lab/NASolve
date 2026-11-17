@@ -335,6 +335,109 @@ class NativePairRecipe:
             native_container_sum_verified=True,runtime_authority=False,scientific_acceptance=False)
 
 
+# Exact Python helper closure for the existing frozen execution loader. Native
+# API/profile and correction-source qualification remain the caller's owners.
+CONTRIBUTION_SOURCE_MODULES = (
+    'topostitch_native_recipe', 'topostitch_pair_coverage', 'topostitch_recipe',
+    'topostitch_transport', 'topostitch_coordinates', 'topostitch_periodic',
+    'topostitch', 'topostitch_packing',
+)
+PAIR_COUNT_POLICY = 'canonical-pair-one-per-proxy-v1'
+
+
+class NativePairContribution:
+    """Freeze a fresh numerical recipe and an existing term-provider selection.
+
+    This factory accepts data, never a caller evaluator. Cedar must authenticate
+    the factory/helper bytes and live methods, observe the actual native inventory
+    and call ``revalidate`` at its admission and entry/exit boundaries. Evaluation
+    checks the compiled/selected definitions but cannot observe a manager by itself.
+    No callbacks, arrays, exclusions, source coordinates or runtime are modified.
+    """
+    def __init__(self, packet, model_bytes, *, expected_recipe_sha256,
+                 expected_binding_sha256, provider_selection,
+                 expected_provider_selection_sha256, native_terms,
+                 current_context, correction):
+        from .topostitch_pair_coverage import _digest, _need
+        try:
+            self._packet, self._selection = json.loads(json.dumps(
+                [packet, provider_selection], allow_nan=False))
+            _need(_digest(expected_recipe_sha256)
+                  and recipe_digest(self._packet) == expected_recipe_sha256,
+                  'Changed contribution packet digest')
+            _need(type(self._selection) is dict and set(self._selection) == {'additive', 'frozen', 'review'}
+                  and _digest(expected_provider_selection_sha256)
+                  and recipe_digest(self._selection) == expected_provider_selection_sha256,
+                  'Changed contribution provider selection')
+            self._packet_sha256 = expected_recipe_sha256
+            self._binding_sha256 = expected_binding_sha256
+            self._selection_sha256 = expected_provider_selection_sha256
+            self._recipe = NativePairRecipe(self._packet, model_bytes,
+                expected_recipe_sha256=expected_recipe_sha256, correction=correction)
+            self.revalidate(native_terms, current_context=current_context)
+        except (KeyError, TypeError, AttributeError, IndexError, OverflowError) as exc:
+            raise ValueError('Incomplete frozen pair contribution') from exc
+
+    def _declarations(self):
+        from .topostitch_pair_coverage import describe_compiled_pair_terms, _need
+        _need(recipe_digest(self._packet) == self._packet_sha256
+              and recipe_digest(self._selection) == self._selection_sha256,
+              'Frozen contribution inputs changed')
+        declared = describe_compiled_pair_terms(self._recipe, self._packet,
+            expected_binding_sha256=self._binding_sha256)
+        context = self._selection['frozen']['context']
+        _need(context['source_model_sha256'] == declared['source_model_sha256']
+              and context['recipe_sha256'] == declared['recipe_sha256']
+              and context['atom_labels'] == declared['atom_labels'],
+              'Provider context differs from compiled contribution')
+        return declared
+
+    def revalidate(self, native_terms, *, current_context):
+        """Recheck frozen ownership against freshly admitted declarations; no plan selection."""
+        from .topostitch_pair_coverage import review_pair_coverage, _need
+        declared = self._declarations()
+        reviewed = review_pair_coverage(declared['terms'], native_terms,
+            self._selection['additive'], frozen=self._selection['frozen'],
+            current_context=current_context)
+        _need(reviewed == self._selection['review'], 'Frozen provider review does not reproduce')
+        return reviewed
+
+    def binding_report(self):
+        """Return detached existing binding/selection records and supported count semantics."""
+        self._declarations()
+        return json.loads(json.dumps(dict(compiled_binding=self._recipe.binding_report(),
+            provider_selection=self._selection, compiled_binding_sha256=self._binding_sha256,
+            provider_selection_sha256=self._selection_sha256,
+            supported_count=len(self._selection['additive']), count_policy=PAIR_COUNT_POLICY,
+            atom_count=self._packet['atom_count'], runtime_authority=False,
+            scientific_acceptance=False), allow_nan=False))
+
+    def evaluate(self, points, *, atom_identities, compute_gradients=True):
+        """Evaluate the frozen four-family subset; never infer native counts or ownership."""
+        from .topostitch_pair_coverage import _need
+        self._declarations()
+        _need(type(compute_gradients) is bool and atom_identities == self._packet['atom_identities'],
+              'Contribution atom ordering or gradient mode changed')
+        result = self._recipe.evaluate_terms(points, atom_identities=atom_identities,
+            packet=self._packet, expected_binding_sha256=self._binding_sha256,
+            selected_terms=self._selection['additive'],
+            expected_terms_sha256=self._selection['frozen']['additive_sha256'],
+            compute_gradients=compute_gradients)
+        _need(type(result['target']) in (int, float) and math.isfinite(result['target'])
+              and result['normalization'] == POLICY['normalization'],
+              'Invalid unnormalized contribution target')
+        gradients = result['gradients']
+        if compute_gradients:
+            _need(type(gradients) in (list, tuple) and len(gradients) == self._packet['atom_count']
+                  and all(type(p) in (list, tuple) and len(p) == 3
+                          and all(type(v) in (int, float) and math.isfinite(v) for v in p)
+                          for p in gradients), 'Invalid complete contribution gradient')
+        else:
+            _need(gradients is None, 'Energy-only contribution returned gradients')
+        return dict(result, supported_count=len(self._selection['additive']),
+                    count_policy=PAIR_COUNT_POLICY, provider_selection_sha256=self._selection_sha256)
+
+
 def _pair_term_summary(terms):
     """Pure attribution arithmetic; caller owns native execution/authentication."""
     if not isinstance(terms,list) or not terms or len(terms)>20000:
