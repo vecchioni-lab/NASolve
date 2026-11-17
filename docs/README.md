@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-11-16**. Use the subsystem contract for actual behavior, the
+Updated **2026-11-17**. Use the subsystem contract for actual behavior, the
 [development handoff](development-handoff.md) for the current implementation and
 validation edge, and linked evidence for exact scientific claims. Historical
 milestone statements preserve their original scope; they are not a second queue.
@@ -36,8 +36,8 @@ milestone statements preserve their original scope; they are not a second queue.
   No document update authorizes a merge or promotes diagnostic chemistry.
 - **Future inputs:** ChemDraw-derived chemical references/restraint bundles remain
   planned. Exact packaged chemical references and explicit DNA source composition
-  are implemented; ordinary DY target/per-site construction integration is still
-  open. Drawing-to-model construction is outside CIF Doctor. Sticky-end repair,
+  are implemented; explicit ordinary DY target/per-site construction is connected. Automatic
+  selection and pairing rules remain separate. Drawing-to-model construction is outside CIF Doctor. Sticky-end repair,
   blind AlphaFold prerequisites, Scout/Topo and the metal GUI retain their separate
   scopes and do not enlarge this chemistry checkpoint.
 

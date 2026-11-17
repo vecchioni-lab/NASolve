@@ -16,7 +16,7 @@ not close Q06; the signed Alder result is `47e7b333` with exact compact receipts
 selection remains open: do not discard sulfur/iodine placement protections merely
 because this DF candidate improves. Reuse the existing transport primitive.
 
-Resume [ordinary DY integration](#dy--packaged-retained-triazole-reference-and-mutation-support):
+Completed explicit [ordinary DY integration](#dy--packaged-retained-triazole-reference-and-mutation-support):
 C362 derives projections from canonical input/end states; C363 binds that derivation
 through existing construction lineage and complete-request/actual-model context.
 C364 retains source-composition inputs/proof through the existing source freezer and
@@ -28,13 +28,24 @@ C366 now forwards those exact choices before Coot in ordinary PostMR; actual mix
 construction and cold request readback pass. Return to Q06 achieved geometry and
 the shared counted-contribution owner boundary. C357 retention findings remain local.
 
-Linden's W111 counted-contribution diagnostic supports shared Q06 integration;
-C331 remains callback-free. C367 shares its complete fixed-input traversal with
-byte-identical legacy/native readback; this does not admit an active adapter. Review exact owner admission, callable identity, native
-buffer lifetime and full model count/normalization before activation. Hierarchy
-Cartesian and scattering fractional coordinates are distinct runtime representations
-and both require exact restoration. Local facade/derivative passes do not qualify
-production lifecycle, final writing or altered periodic exclusions.
+**Q06 active boundary — connect the intended pair forces without counting twice.**
+C367 reuses C331's complete fixed-input read without widening callback-free
+admission. C368's direct native owner composes the W113 fresh factory with actual
+force sites, source/code/native policy, owned buffers, dynamic restraint count,
+single normalization and failure cleanup. Cedar's focused/installed/native checks
+pass; Linden's W114 eight-case cross-branch lifecycle panel also passes. No ordinary
+refinement activation follows from direct-call success.
+
+Next qualify the existing runtime's usage-observation wrapper and the real prepared
+model/optimizer/report/final-output boundaries. Reporting copies can lose instance
+admission, and the native-family report cannot silently include extra residuals.
+Keep those reports distinct from added-pair evidence; never relax direct-inner
+admission, omit usage observations or invent another correction installer. Actual
+scattering sites may differ from stale hierarchy XYZ during optimization; do not
+synchronize them in a force call. Whole native count/normalization, selected-manager
+rebinding and exact recovery remain prerequisites. Hazel's matched DF force/phase
+controls stay separate; more iterations or cycles have not produced an accepted
+endpoint. These mechanics do not close achieved chemistry or authorize a merge.
 
 ## Finish line and ordering
 
@@ -312,8 +323,8 @@ native parameters differ only by declared origin. The terminal length is
 REVIEW. This is diagnostic refinement, not an ordinary checkpoint/default.
 Do not rerun identical delivery or the already-relevant C309/C314 force analysis.
 
-**Next: useful achieved-geometry reporting and whole-substituent/held-out
-survival.** Keep the generic triple diagnostic's isolated OP3-bearing reference
+**Achieved-geometry reporting is connected; whole-substituent/held-out
+survival remains open.** Keep the generic triple diagnostic's isolated OP3-bearing reference
 warning separate from actual linked B:4 native missing atoms (none). Q14 should
 use explicit site projections, not suppress membership checks or add unwanted
 OP3. C334 confirms that this existing reader removes only the scope warning and
@@ -336,7 +347,8 @@ final angles 175.4494°/174.4251° keep coordinates REVIEW. All processes stoppe
 168 historical input files preserved. 423 focused tests +19 subtests and 155 fresh
 installed/relocated checks pass. No full suite. Full native coordinates and rounded
 PDB coordinates remain distinct. Ledger: `compact_refinement_observation_2026_11_16`.
-**Next: the queued DY native/source qualification**, then resume Q06's remaining
+**DY native/source qualification and explicit ordinary construction are now
+connected through C366.** Resume the current Q06 boundary above, then remaining
 whole-substituent and held-out survival work. Do not repeat unchanged target/force
 experiments merely to produce another report. Changed intent needs a fresh request/run; never manufacture a checkpoint or
 rewrite original evidence. Neighboring targets, source hands and terminal intent
@@ -761,15 +773,14 @@ recorded once in **Pipeline position** above. Reuse those completed construction
 recovery, delivery and force checks; do not start another identical campaign to
 rediscover them.
 
-**Next:** finish C317’s isolated output-state correction as an explicitly
-qualified runtime version, preserving old frozen-helper readers, then qualify
-ordinary numerical-candidate delivery and remaining bending where evidence
-supports it. A diagnostic PHIL override alone cannot establish that the repair engine delivers a corrected
-CIF. Keep source-based selection, the whole neighborhood and unresolved targets
-visible; preserve the original selected results. The original PDU:PDU symmetry-
-linked B:1 case remains separate. Unknown native implementations and symmetry
-planes remain unsupported. No SDK edits, default activation, broad platform
-qualification or complete scientific acceptance.
+**Historical C317 next step is complete:** C318/C319 qualified final output-state
+synchronization; C333 delivers the chosen numerical target through the existing
+owners. Do not reopen those tasks. The current Q06 work order is recorded once
+under **Pipeline position** above. Remaining bending still requires evidence from
+the whole neighborhood and effective refinement forces; a diagnostic PHIL override
+or corrected target alone is insufficient. Original selected results and the
+PDU:PDU symmetry-linked B:1 case remain separate. No SDK edits, default activation,
+broad platform qualification or complete scientific acceptance.
 
 C290 separately checks the current ordinary PDU A:12/B:4 construction against the
 original accepted MR. Parent-chi deviations are 0.027°/0.006°, closing this control's

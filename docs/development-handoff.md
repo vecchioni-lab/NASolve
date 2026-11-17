@@ -1,71 +1,60 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C367 shared native-policy read complete — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. C366 / `09303e80` is pushed.
+Updated **2026-11-17, C368 direct counted-owner complete; publication pending — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. C367 / `f8bc1525` is pushed.
 Afternoon work window ends **17:30 UK / UTC**.
 
 ## Current checkpoint and next bounded work
 
-**C367 complete: one shared fixed-policy read, unchanged callback-free admission.**
-C331's existing `_Reader` now supplies the complete detached fixed-input observation;
-its legacy snapshot still owns and enforces callback/buffer/override refusal. No
-new active owner, profile, stored schema, force or normalization behavior. Five new
-cases cover sharing versus admission. 80 focused /128 installed checks pass;
-33 actual Phenix synthetic-atom checks pass. Eight native configurations produce
-byte-identical C331 records and cross-read both ways; seven refusal messages match.
-New source pins must bind the changed helper bytes; old captured helpers stay intact.
-Compact evidence: `shared_fixed_native_policy_read_2026_11_17`. No full suite.
+**C368 direct native ownership passes source, installed and peer lifecycle checks.**
+The opt-in owner joins Linden's W113 fresh pair-contribution factory to one actual
+Phenix model/manager. It checks source/code identity, unchanged chemical/restraint
+inputs, actual scattering coordinates, native-owned gradients, one addition and
+one normalization. Failed calls cannot return another score; exit removes only
+its own adapters, even when source checks fail. Foreign replacements are preserved
+and reported. No ordinary refinement activation or persistent artifact schema.
 
-**Next C368 candidate: owned counted-contribution direct calls.** Reuse this read
-for truthful active invocation checks, with distinct admission and single-call
-buffer ownership. Linden owns a small fresh contribution factory in his existing
-recipe module (API agreed, implementation pending); Cedar owns native admission,
-instance adapters and cleanup. No peer writes to Cedar. Bind actual force sites,
-not a stale hierarchy; preserve actual per-call counts and single normalization.
-No ordinary refinement activation until direct native lifetime controls pass.
-Hazel owns DF force attribution/one matched iteration-budget control. No Rowan
-native process active. Source/installed/native evidence is complete for C367.
+155 focused and the same 155 installed/relocated tests pass. 31 actual Phenix
+2.2.1-6174 ownership/refusal/cleanup cases pass in 173.70 s; one separately selected
+unnormalized-mode case passes in 19.26 s. An entry-failure regression fails before
+the correction. W114 passes eight healthy/displaced, zero/full/partial/selected
+manager cases:16 fresh owners/compilers,28 calls, two scattering-only movements,
+exact state/fractional/native restoration and fresh restarts. Switching three
+terms from native to added preserves total count and numerical target/gradients.
+No optimizer/refinement claim follows. All native drivers are stopped; source
+pins are unchanged. Compact evidence: `owned_counted_contribution_2026_11_17`.
+No full Cedar suite. Ready for reviewed publication on the existing Cedar branch.
 
-**C366 connects checked custom chemistry to ordinary PostMR before Coot.**
-Explicit frozen source composition, canonical parent and qualified per-site
-projections now pass through the existing planner, constructor and complete request.
-No new source/process/proof owner or stored schema. Exact source/authority, selected
-consumer, input model/actions, site coverage and phosphate intent remain required.
-Defaults stay unchanged; no automatic CLI/alias or fabricated NARestraints pairing.
+**Next bounded gate: make ordinary refinement use the same checked forces.**
+Publish C368 with the peer result and compact receipt before starting this gate.
+The existing runtime wraps its corrected kernel to record unique uses; direct
+ownership deliberately refuses that unqualified wrapper. Preserve the observations
+and qualify the existing wrapper explicitly, rather than add a second installer.
+Phenix's report/weight paths also copy or select managers, and its native-family
+report assumes every residual belongs to a named native family. A copied report
+must not pretend it includes added pair forces. Qualify actual prepared-model,
+optimizer, copy/report and final-output boundaries before activation. Never
+synchronize stale hierarchy coordinates during a force evaluation or silently
+reselect providers after chemistry changes. Linden's W114 static source review
+records these seams; it is not optimizer or ordinary-runtime qualification.
 
-190 affected checks pass in 27.87 s; the same 190 pass from a relocated installed
-wheel in 26.08 s. One fresh Coot 1.3.3 construction reproduces the exact accepted
-mixed-end DY model and dictionaries. A:11 stays free 5′ OH; A:12 retains P/OP1/OP2
-without OP3; all scaffold and unselected atom states remain exact. Prior exact
-Phenix 2.2.1-6174 captures replay: 87 PASS/two unsupported charge readbacks.
-This is ordinary prepared-request intake, not a new ReadySet/refinement claim.
-Cold relocated request readback passes: 46 files / 2,775,245 bytes. Original input
-controls (149 files/timestamps) are unchanged. No full suite or merge.
+**Established foundations:** C367 reuses C331's complete fixed-input traversal
+while retaining byte-identical callback-free admission, records and refusals:
+80 focused /128 installed /33 native checks. C366 forwards explicit frozen
+chemical source, canonical parent and qualified per-site construction through
+ordinary PostMR before Coot:190 focused /190 installed, actual mixed-end DY Coot
+and cold request readback pass. A:11 remains free OH; A:12 retains P/OP1/OP2
+without OP3. Defaults and automatic aliases/pairing rules remain unchanged.
+Exact receipts are `shared_fixed_native_policy_read_2026_11_17` and
+`ordinary_frozen_construction_intake_2026_11_17`; prior attempts stay preserved.
 
-Accepted local root: `366_Cedar_ordinary-construction-4haw5l83` under
-`NASolve-live-tests`. Earlier `366_Cedar_ordinary-construction-pjbytmsc` is preserved:
-the diagnostic wrapper omitted its default timeout before Coot launched. Its driver
-is verified stopped. The corrected fresh attempt and every native child are stopped;
-source pins are unchanged. Owned successful package/cold-copy scratch was removed.
-Exact commands, compact receipts and limits: `ordinary_frozen_construction_intake_2026_11_17`
-in the existing evidence ledger. Raw models/CIFs/native logs remain local.
-
-**Next: Q06 — make refinement preserve intended chemistry.** Review Linden's W112
-counted-contribution owner proposal before implementing the shared lifetime boundary.
-C331 stays callback-free; frozen restoration and C338 observers stay unchanged.
-W111 arithmetic is already qualified within its diagnostic scope: do not rerun it
-as a substitute for owner admission, actual buffer provenance and cleanup tests.
-Read the current W112 follow-on proposal in Linden's existing periodic contract;
-coordinate a precise non-overlapping scope before peer code work. No Cedar edits
-have been delegated. Linden's hierarchy/force observations are preparation/recovery
-checks: minimizer hierarchy positions may legitimately lag actual scattering sites.
-Active evaluation must bind actual force coordinates, never synchronize the model.
-
-Hazel is isolating DF's competing forces using actual selected refinement weights,
-complete family/count/gradient closure and a matched endpoint. Geometry and direct
-structure-factor controls distinguish an FFT finite-difference limitation; no
-relaxed tolerance, restraint tuning or production adoption follows. Await the exact
-actual-weight result and source-bound receipt before updating chemical conclusions.
+Hazel owns DF force attribution and matched controls, separately from this new
+owner. Longer minimization (25→100 iterations) improves attachment to ~1.598 Å
+but worsens Rwork/Rfree to ~0.30235/0.33311. Ten macrocycles with the original
+25 allowance also worsen the fit (~0.30450/0.32691). Neither is accepted; no
+restraint/sigma changes or automatic adoption. The matched ML/no-HL-use control
+is active under Hazel. Alder's optional iteration allowance is `a02b9c3` with
+unchanged omitted defaults; this is not Cedar integration evidence.
 
 The [completion queue](cif-doctor-completion-queue.md#pipeline-position) is the sole
 unfinished-work order. Q04/Q05 remain complete for the supported explicit route;
@@ -171,9 +160,12 @@ blob/checksum and offline retrieval. Historical next steps are not current instr
   C356 is exact saved-evidence replay, not another native run. C357 checks documents,
   historical retrieval and cleanup inventories; no pytest/full-suite rerun.
 - Last full Cedar suite remains **C220 / `583d30df`: 9,178 tests + 276 subtests**.
-  It is not a full pass for current Cedar. The older C322 combined-source result
-  was four failures / 11,109 passes + 284 subtests; integration must resolve those
-  failures and preserve both TopoStitch HTML and Cedar replay resources.
+  It is not a full pass for current Cedar. Linden's temporary W112 `e005b0da` +
+  C366 `09303e80` SOURCE composition passes 12,138 tests /1 skipped /284 subtests
+  in 2982.99 s with the package-resource union and exact NARestraints metadata.
+  Eight documentation conflicts remain; no branch merge occurred. This newer
+  baseline supersedes the old C322 four-failure baseline within its exact scope;
+  it does not qualify C367/C368, W113, installed/native integration or current HEAD.
 - Recorded native versions: **Phenix 2.2.1-6174** (dispatcher 2.2.1), **Coot 1.3.3**.
   Package references and source/recipe qualification do not imply universal support.
   Formal-charge readback remains unsupported where reported; Q06 geometry is open.
@@ -190,8 +182,9 @@ Linden owns Pine/Willow; Hazel owns Alder/metal coordination. Signed coordinatio
 is authorized; their separate successes are not a combined Cedar qualification.
 The [shared guard contract](architecture.md#live-nonbonded-policy-guard-c331) remains
 explicit and unactivated by documentation. Read each branch's current handoff
-before touching shared interfaces; do not edit another agent's worktree. Linden's W112 follow-on proposal remains gated on active ownership, native buffers
-and exact lifetime; C331 stays idle. Hazel owns the DF competing-force diagnostic.
+before touching shared interfaces; do not edit another agent's worktree. C368/W114
+qualify direct ownership only; ordinary refinement remains a separate gate and
+C331 stays callback-free. Hazel owns the DF competing-force diagnostic.
 
 Keep scientific data, native logs, SDK snapshots, local inventories and runners
 outside Git. Use the ignored everyday `branch-artifacts/cedar/` for local receipts

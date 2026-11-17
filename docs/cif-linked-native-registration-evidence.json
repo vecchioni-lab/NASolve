@@ -108787,5 +108787,168 @@
       "Qualify native buffers, counts, entry/exit/exception cleanup before frozen refinement integration.",
       "Q06 scientific geometry remains open."
     ]
+  },
+  "owned_counted_contribution_2026_11_17": {
+    "milestone": "C368",
+    "date": "2026-11-17",
+    "signed": "Rowan",
+    "before": "Idle C331 policy reads and W113 pure selected contributions had no shared active native call/gradient/count/lifetime owner.",
+    "after": "Opt-in direct-call owner instantiates the exact source-bound factory, validates actual native model/force state, owns one accumulation and normalization, poisons failures and restores only its adapters.",
+    "changed_files": [
+      "src/nasolve/cif_counted_contribution.py",
+      "src/nasolve/data/counted-native-profile.json",
+      "tests/test_cif_counted_contribution.py",
+      "tests/test_cif_counted_contribution_native.py",
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": "No persistent artifact schema. New process-local policy cif-owned-counted-contribution-v1 and additional native source profile; historical C331 profile/API unchanged.",
+    "source": {
+      "parent_commit": "f8bc1525168519923ae9243a73734f4b50fd78c0",
+      "owner_sha256": "772fe23b3075414c355903d35f976dc8667292a576e64f7a68d222cf1a76d34b",
+      "additional_profile_sha256": "bf41896cc2269508a5ded1816ef4f5a4ed7bdee2fa5532bd94e38428d4715571",
+      "willow_factory_commit": "3f5806106bdb233e648ad3c8442d878998c846da",
+      "willow_factory_sha256": "1739b2a7cf11d802bfa9293d7b79b9edcf7bb1ad868b53d4c1b1996b461d7748"
+    },
+    "validation": {
+      "before": "Failed-entry regression:1 failed,25 deselected in0.07s before entry poisoning.",
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <NASolve-venv-python> -m pytest -q -p no:cacheprovider tests/test_cif_counted_contribution.py tests/test_cif_live_nonbonded_policy.py tests/test_cif_parallelity_kernel.py tests/test_cif_refinement_output.py --tb=short",
+      "focused": "155 passed in0.33s",
+      "installed_command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-B",
+        "-c",
+        "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_cif_counted_contribution.py', 'tests/test_cif_live_nonbonded_policy.py', 'tests/test_cif_parallelity_kernel.py', 'tests/test_cif_refinement_output.py', '--tb=short']))"
+      ],
+      "installed": "155 passed in0.33s; source copy and original install path absent",
+      "wheel_sha256": "409d3a963c90f4851bfc52860fa2aea03121e3330f4ccbf942ca3cdb9af47f1a",
+      "wheel_bytes": 1410278,
+      "native_environment": {
+        "NASOLVE_TEST_NATIVE_COUNTED": "1",
+        "NASOLVE_COUNTED_NATIVE_PLAN": "explicit W113 local plan.json, checksum-bound inputs",
+        "NASOLVE_COUNTED_FACTORY_PACKAGE": "explicit W113 installed package",
+        "NASOLVE_COUNTED_FACTORY_SHA256": "1739b2a7cf11d802bfa9293d7b79b9edcf7bb1ad868b53d4c1b1996b461d7748"
+      },
+      "native_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src phenix.python -c \"import sys;sys.path.insert(0, CEDAR_SRC);import pytest;raise SystemExit(pytest.main(['-q','-x','-p','no:cacheprovider',EXACT_COPIED_NATIVE_TEST,'--tb=short']))\"; explicit source anchor required by dispatcher; final extra case uses -k explicit_unnormalized",
+      "native": "31 passed in173.70s; then1 passed/31 deselected in19.26s with unchanged implementation; complete Phenix2.2.1-6174 execution, not dry-run or refinement",
+      "peer": {
+        "status": "PASS",
+        "cases": 8,
+        "fresh_owners": 16,
+        "successful_model_calls": 28,
+        "scattering_only_movements": 2,
+        "all_native_zero_addition_cases": 2,
+        "provider_equivalence": [
+          {
+            "source": "healthy",
+            "compared": "partial_pair",
+            "complete_count": 11396,
+            "normalized_target": 0.6756064118611885,
+            "target_delta": -1.1102230246251565e-16,
+            "maximum_gradient_delta": 1.3877787807814457e-17
+          },
+          {
+            "source": "healthy",
+            "compared": "selected_all",
+            "complete_count": 11396,
+            "normalized_target": 0.6756064118611885,
+            "target_delta": -1.1102230246251565e-16,
+            "maximum_gradient_delta": 1.3877787807814457e-17
+          },
+          {
+            "source": "displaced",
+            "compared": "partial_pair",
+            "complete_count": 11270,
+            "normalized_target": 1.0346270022398707,
+            "target_delta": -4.440892098500626e-16,
+            "maximum_gradient_delta": 1.3877787807814457e-17
+          },
+          {
+            "source": "displaced",
+            "compared": "selected_all",
+            "complete_count": 11270,
+            "normalized_target": 1.0346270022398707,
+            "target_delta": -4.440892098500626e-16,
+            "maximum_gradient_delta": 1.3877787807814457e-17
+          }
+        ],
+        "phenix_version": "2.2.1-6174",
+        "reported_version": "2.2.1",
+        "native_profile_id": "phenix-2.2.1-6174-darwin-arm64-nonbonded-v1",
+        "execution": "COMPLETE_NATIVE_DIAGNOSTIC",
+        "wall_seconds": 302.6195680000019,
+        "plan_sha256": "b189066818feabb356a2436279f309d7135d7601d6081d136387c214b16a8d70",
+        "result_sha256": "58bbd4d06ce7dc88fb32d3c42a0642a5769b412564cc54160ed82c493a4f2313",
+        "execution_sha256": "125f548dd19e7f96c0a5ed93bb53405e4680ff55a1ae61fa7fd0b7dffbae8ac0",
+        "cedar_wheel": {
+          "path": "nasolve-0.1.0-py3-none-any.whl",
+          "sha256": "409d3a963c90f4851bfc52860fa2aea03121e3330f4ccbf942ca3cdb9af47f1a",
+          "owner_sha256": "772fe23b3075414c355903d35f976dc8667292a576e64f7a68d222cf1a76d34b"
+        },
+        "willow_code_commit": "3f5806106bdb233e648ad3c8442d878998c846da",
+        "native_optimization": false,
+        "ordinary_refinement": false,
+        "scientific_acceptance": false,
+        "limitations": "Cross-branch direct calls using a frozen wheel-extracted Cedar package and W113 installed factory; no whole-program runtime, new derivative panel, exclusion change or accepted physical repair."
+      },
+      "static": "Python3.10 AST for three new Python files; git diff --check",
+      "full_cedar_suite": "NOT_RUN",
+      "independent_source_baseline": {
+        "owner": "Linden",
+        "willow": "e005b0da",
+        "cedar": "09303e80",
+        "result": "12138 passed,1 skipped,284 subtests in2982.99s",
+        "scope": "Temporary SOURCE composition only, package-resource union, exact NARestraints metadata, eight docs conflicts retained; no merge and no C367/C368/W113/native qualification"
+      }
+    },
+    "compatibility": "Opt-in Python API only; unchanged default force paths, chemistry, thresholds, Free-R, historical captured helpers and lineage. Supports the exact Darwin-arm64 Phenix2.2.1-6174 profile and trusted W113 factory only. No run migration.",
+    "retention": {
+      "included": "Code, profile, tests and compact technical evidence only",
+      "excluded": "Models, dictionaries, native logs, SDK snapshots and diagnostic runners stay local",
+      "disposable_build_bytes_removed": 23235074,
+      "accepted_attempts": [
+        {
+          "anchor": "NASolve-live-tests",
+          "path": "368_Cedar_counted-owner-ddhxexin",
+          "driver": {
+            "returncode": 0,
+            "stopped_verified": true,
+            "source_unchanged": true
+          },
+          "driver_sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7"
+        },
+        {
+          "anchor": "NASolve-live-tests",
+          "path": "368_Cedar_owner-negatives-qhrfb9cf",
+          "driver": {
+            "returncode": 0,
+            "stopped_verified": true,
+            "source_unchanged": true
+          },
+          "driver_sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7"
+        },
+        {
+          "anchor": "NASolve-live-tests",
+          "path": "368_Cedar_owner-negatives-ms9v2cbd",
+          "driver": {
+            "returncode": 0,
+            "stopped_verified": true,
+            "source_unchanged": true
+          },
+          "driver_sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7"
+        }
+      ],
+      "prior_failures": "Three initial smoke admission failures before evaluation and one atom-name-test teardown failure remain preserved/stopped. An intermediate27-case native matrix passes. Package-only harness failures are summarized locally and disposable copies removed.",
+      "candidate": "One11MB installed candidate retained temporarily until peer checkpoint; no scientific files removed"
+    },
+    "remaining": [
+      "Qualify the existing usage-observation kernel wrapper without a second installer or arbitrary callable admission.",
+      "Bind real prepared model, optimizer, selected/copied reports and final output; native-family statistics must not claim added residuals.",
+      "No ordinary refinement activation, arbitrary selection, broad platform support or Q06 chemical-survival acceptance."
+    ]
   }
 }

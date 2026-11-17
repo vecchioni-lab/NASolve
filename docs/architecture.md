@@ -4354,6 +4354,49 @@ native/source/installed results and measured overhead are recorded under
 `live_nonbonded_policy_guard_2026_11_16` in the existing evidence ledger; C330's
 inventory remains historical evidence, not a second implementation owner.
 
+## Owned counted pair contribution (C368, direct calls only)
+
+`cif_counted_contribution.CountedContributionOwner` is an opt-in synchronous owner
+of one actual model, outer restraint manager and inner geometry manager. It takes
+existing packet/model/provider records and exact helper source pins, then creates
+a fresh `NativePairContribution` from the separately supplied qualified Willow
+factory. No caller evaluator, new provider planner, worker, correction installer,
+artifact schema or ordinary CLI activation is introduced. C331 remains idle-only;
+its shared fixed-input reader does not by itself authorize an active call.
+
+The owner binds loaded source/code/defaults/closures, the original qualified
+native call chain and complete fixed policy/bonded inventory. Small profile bytes
+and loaded bindings are checked during calls; native file bytes are checked at
+admission, entry and exit. `counted-native-profile.json` adds the three outer/model
+Python modules to the unchanged thirteen-file C331 profile. Both profile hashes
+are pinned in owner source. This exact Phenix 2.2.1-6174 Darwin-arm64 profile is not
+whole-distribution attestation or a defense against arbitrary in-process code.
+The enclosing runtime still owns isolated execution and frozen helper selection.
+
+Each admitted call must use the current scattering force sites with unchanged
+atom identity/cell/group; hierarchy XYZ may legitimately lag them. There is no
+coordinate synchronization. The trusted outer call must allocate a fresh empty
+gradient buffer, call the inner manager once and reach one extension. The existing
+factory supplies only uncovered requested terms; its count is added before the
+single native normalization. Zero contribution follows the same checks. Flags,
+gradient mode, cache mode, counts and compact digests are actual-call observations,
+not scientific acceptance. Caller buffers/callbacks, direct inner calls, AFITT,
+Cartesian NCS, IAS and unqualified auxiliary/torsion settings are refused.
+
+Failures poison that owner; a clean new admission is required. Exit rechecks the
+lifetime and independently removes each still-owned instance adapter even after a
+validation failure. Foreign replacements remain untouched and make cleanup fail.
+The existing corrected `ParallelityKernel` must be installed by its enclosing owner;
+C368 verifies that exact binding and never installs another one.
+
+Ordinary refinement remains gated on its existing usage-observation wrapper,
+prepared-model and optimizer lifetime, copied/selected reporting managers and
+final output. Native-family statistics cannot claim added residuals are included
+when their decomposition omits them. Direct-call/relocated tests do not qualify
+those paths, arbitrary selection, a full optimizer, or chemical survival.
+Exact compact validation is recorded in the existing evidence ledger; the
+completion queue is the sole order for this remaining integration.
+
 ## Native nonbonded attribution (C127)
 
 The opt-in `nonbonded_inventory` extension requires linked energy evidence and

@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Own explicit added pair forces during direct native calls (C368)
+
+- Add an opt-in process-local owner for a fresh, source-qualified pair contribution.
+  Bind actual model/scattering sites, complete fixed native inputs, actual call
+  settings and native-owned buffers; count each selected contribution once before
+  the native normalization. No automatic provider selection or refinement activation.
+- Poison failed calls and entries; verify lifetime and restore only owned instance
+  adapters. Retain the original native code qualification across cached admissions.
+  The added profile is scoped to Phenix 2.2.1-6174 on Darwin arm64; historical C331
+  admission/profile and frozen artifacts remain unchanged. No migration required.
+
 ### Share complete native-policy observation without widening admission (C367)
 
 - Reuse one complete fixed-input traversal for future native owners. The existing
