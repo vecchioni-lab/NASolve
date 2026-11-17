@@ -1,6 +1,6 @@
 # TopoStitch: periodic DNA connections, recutting and repair
 
-Current scope, **2026-11-15**: explicit placement proposals and source-bound
+Current scope, **2026-11-17**: explicit placement proposals and source-bound
 ASU-cut inspection are implemented on `willow`. Automatic sticky-end repair,
 new-ASU materialization and campaign integration remain future work. The
 [audited roadmap](topostitch-roadmap.md) owns milestones and evidence; the full
@@ -78,6 +78,64 @@ proper transformation of anisotropic displacement tensors when present. Its
 unrefined calculated structure factors should remain equivalent within numerical
 tolerance in the same setting. Later refinement may respond differently to a
 changed restraint/chain interpretation; record that separately from the recut.
+
+## Explicit sticky-end enforcement during refinement (planned W122)
+
+**User direction, 2026-11-17: planning only; no implementation or new runs.**
+Offer **Enforce sticky-end contacts during refinement** as an explicit opt-in
+through the existing refinement owner. This is a general, input-driven feature
+for supported models, not a special case for the benchmark PDBs. Ordinary
+refinement remains unchanged when disabled. CLI spelling and runtime schema are
+not finalized; this section does not document an available flag.
+
+**Pipeline position:** after versioned saved-request/preflight/admission and
+continuation integration (C377/C378 prerequisites), make declared canonical
+sticky-end enforcement the first user-facing refinement application. Test known,
+already feasible contacts before requiring automatic end finding or large-bend
+repair. Reuse the existing contact/registration and NARestraints/Cedar owners;
+do not build a second refinement engine. A distant or misregistered partner may
+still require placement first; strong restraints do not solve that problem.
+
+1. **Canonical full-pair mode first:** explicitly identified A–T/G–C contacts use
+   their H-bond heavy-atom distances, directional angles, joint planarity and
+   parallelity at exact symmetry images. Bind residue identities/register,
+   sequence, polarity, model/frame and image translations. Reuse native terms and
+   add only missing coverage. No duplicate weighting, new covalent phosphate bond,
+   automatic phosphate deletion or silent nonbonded-exclusion changes.
+2. **Separate plane-only mode next:** permit explicitly requested mismatched-pair
+   plane/parallelity hypotheses after independent recipe, coverage, gradient and
+   native-lifetime qualification. The current canonical packet/compiler does not
+   support arbitrary mismatches; do not bypass it by relabelling a pair. Do not
+   invent canonical H-bonds or report H-bond recovery in this mode. Planes alone
+   leave in-plane translation/rotation and pairing register underdetermined;
+   retain native chemistry, packing and diffraction checks. Joint coplanarity is
+   not an inter-base stacking or blunt-end model, and is not appropriate for every
+   mismatch merely because bases are nearby.
+3. **Inference later:** accept a declared scheme or an already reviewed contact
+   proposal first. General model availability does not authorize binding every
+   nearby end. Bounded automatic inference and campaign transfer reuse the
+   existing explicit permission policy; unsupported chemistry and ambiguous
+   partners remain visible rather than silently coerced.
+
+**Validation order, not new executions:** start with declared canonical 8D93
+sticky-end contacts, then an independent 5W6W/DOHU case. Inventory exact sequences,
+residues and symmetry partners before using 7R96 as the user-proposed mismatch /
+plane-only challenge. Include healthy contacts, modest deliberate displacement,
+wrong partner/image/register, missing atoms and duplicate native terms. A generic
+model can exercise geometry without data; R statistics require its matching
+observations and original Free-R flags. Compare otherwise identical enabled and
+disabled refinement siblings with a frozen budget and weights, preserving good
+contacts, backbone/sugar geometry, chirality, junctions and periodic packing.
+Report before/after pair distances/angles/plane measures, collateral changes,
+maps and Rwork/Rfree where available. Restraint-satisfied geometry alone does not
+validate the chosen pairing, and no Rfree improvement is promised.
+
+The review UI should show which contacts/images and restraint families were
+requested, which actually ran, and the result or refusal. Retain the request
+through fresh checked parent rebinding and manual/Doctor ancestry. Off-path
+compatibility, installability, cold read/relocation, failure retention and matching
+native scope must pass before the option is advertised. This plans an S05/S06
+application; it closes no repair, inference, stacking or covalent-closure gate.
 
 ## Human intent and unattended campaigns
 

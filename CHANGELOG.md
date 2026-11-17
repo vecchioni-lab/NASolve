@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W122 — Plan explicit sticky-end enforcement during refinement
+
+- Queue an opt-in, general supported-model feature after durable execution and
+  continuation integration: canonical full-pair enforcement first, separately
+  qualified plane-only mismatch hypotheses next, before inference/large-bend repair.
+- Record 8D93, independent 5W6W/DOHU and later 7R96 controls and honest geometry /
+  diffraction acceptance. Planning only: no code, runtime schema, defaults or runs.
+
 ### W121 — Qualify the current joined Willow/Cedar installation
 
 - Record one installed W118/C377 composition: 556 focused tests, six CLI entry

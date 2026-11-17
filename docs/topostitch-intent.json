@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "topostitch-development-intent",
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "status": "BOUNDED_PLACEMENT_PROPOSALS_IMPLEMENTED",
   "runtime_authority": false,
   "contract": "docs/topostitch.md",
@@ -1142,5 +1142,31 @@
       "source_scientific_validity_approved": false,
       "serialization_or_refinement_qualified": false
     }
+  },
+  "explicit_sticky_end_refinement_plan": {
+    "human_update": 122,
+    "date": "2026-11-17",
+    "status": "PLANNED_NOT_IMPLEMENTED",
+    "runtime_authority": false,
+    "reference": "docs/topostitch.md#explicit-sticky-end-enforcement-during-refinement-planned-w122",
+    "human_option": "Enforce sticky-end contacts during refinement",
+    "default_enabled": false,
+    "placement": "After durable saved-request/preflight/admission and continuation integration; first qualify declared canonical contacts, before automatic inference or large-bend repair.",
+    "owner": "Existing AutoRefine/Doctor execution and ancestry owners, with Pine/TopoStitch intent and NARestraints/Cedar geometry.",
+    "modes_in_order": [
+      "Canonical declared A-T/G-C full H-bond distance/angle and plane/parallelity recipe",
+      "Separately qualified explicitly requested plane-only mismatch hypothesis"
+    ],
+    "selection": "Declared or reviewed exact contact scheme first; inference/campaign transfer requires existing explicit permission policy.",
+    "initial_controls": [
+      "8D93 canonical sticky-end contacts",
+      "Independent 5W6W/DOHU case",
+      "7R96 user-proposed mismatch case after sequence/contact inventory and plane-only qualification",
+      "Healthy, displaced, wrong partner/image/register, missing-atom and duplicate-native controls"
+    ],
+    "scientific_gate": "Matched enabled/disabled refinement with healthy geometry and contacts preserved; fixed observations/Free-R and budgets when diffraction data exist. Plane-only is not H-bond, stacking or covalent-closure validation.",
+    "cli_and_runtime_schema_finalized": false,
+    "implementation_started": false,
+    "new_native_runs": false
   }
 }

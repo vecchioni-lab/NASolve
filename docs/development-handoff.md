@@ -1,7 +1,7 @@
 # NASolve development handoff — Willow
 
 Updated **2026-11-17**. This is the **`willow` branch** handoff, not the
-project-wide status of Pine, Cedar or Alder. **W121 is audited; W122 is next.**
+project-wide status of Pine, Cedar or Alder. **W122 planning is recorded; W123 is next.**
 Runtime code includes W113's factory, W117's exact-image optimization and W118's
 data-only same-frame recipe rebind; W110/W111 remain diagnostic and protocol evidence.
 Direct native ownership is qualified at C368/W113; actual prepared-state
@@ -47,6 +47,14 @@ Exact numerical and integration receipts live in the
 attempts remain evidence; they are not duplicate current work queues.
 
 ## Next bounded work
+
+**W122 is planning only.** After the existing durable execution/continuation work
+below, expose [explicit sticky-end enforcement](topostitch.md#explicit-sticky-end-enforcement-during-refinement-planned-w122)
+as the first user-facing refinement application: declared canonical contacts first,
+separately qualified plane-only mismatch hypotheses next. Use 8D93 then an
+independent 5W6W/DOHU control; inventory 7R96 before mismatch trials. Automatic
+inference and large-bend repair are later. No new code or native run is authorized
+by this planning update; W121/C378 remain the latest qualification evidence.
 
 1. Wire versioned original request, validated preflight, immutable admission and
    same-phase consumption through existing execution owners. C377's maintained
