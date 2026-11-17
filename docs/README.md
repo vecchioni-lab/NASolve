@@ -12,10 +12,11 @@ current instructions; other branches retain their own status and validation pins
   existing kernels. W110 demonstrates provider-dependent native normalization
   and records the shared active-guard proposal. W111 qualifies a local counted
   contribution; W112 adds opt-in dual hierarchy/scattering observation using Cedar
-  readers while preserving default v1 output. Production admission, exclusion policy and ordinary
+  readers while preserving default v1 output. W113 adds a fresh frozen numerical
+  contribution factory for the shared owner. Production admission, exclusion policy and ordinary
   refinement integration remain open. No physical repair is claimed.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Next human update is W113;
+  [machine-readable source](topostitch-roadmap.json). Next human update is W114;
   do not restart completed probes merely because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

@@ -1,8 +1,8 @@
 # NASolve development handoff — Willow
 
 Updated **2026-11-17**. This is the **`willow` branch** handoff, not the
-project-wide status of Pine, Cedar or Alder. **W112 is audited; W113 is next.**
-Runtime code is W112 (`9c452908`); W110/W111 remain diagnostic and protocol evidence.
+project-wide status of Pine, Cedar or Alder. **W113 is audited; W114 is next.**
+Runtime code is W113 (`3f580610`); W110/W111 remain diagnostic and protocol evidence.
 Native refinement activation remains open.
 The [machine roadmap](topostitch-roadmap.json) owns milestone status; its
 [generated human view](topostitch-roadmap.md) owns the numbered progress queue.
@@ -20,6 +20,7 @@ S04/S05/S06 and P01/P02 remain partial; use the roadmap for individual gates.
 | W104 `review_pair_coverage` | Read-only comparison of explicit requested/native/additive terms; rejects missing, duplicate, stale, image and parameter mismatches | Caller authenticates complete declarations; no activation |
 | W105 `describe_compiled_pair_terms` | Exports terms from the existing compiled recipe and original bound packet | Not a native force or lifecycle qualification |
 | W106 `observe_native_pair_terms` | Callback-free actual-manager inventory with checksum-bound Cedar policy checks and exact rational image comparison | Special positions unsupported; source authenticity and active callback policy remain upstream |
+| W113 `NativePairContribution` | Fresh compiler plus frozen W108 selection; exact W109 evaluation and four-family supported count | Cedar must authenticate actual manager/entry/exit; no activation |
 | W112 opt-in dual-state observation | Existing Cedar readers bind hierarchy, scattering, original fractional and actual force sites; default W106 output remains exact | Read-only; no synchronization or active/lifetime authority |
 | W108 `select_pair_providers` | Plans exact term-level native/additive ownership, including partial individual pairs; conflicts refuse | No activation authority |
 | W109 `NativePairRecipe.evaluate_terms` | Evaluates a frozen exact subset using the existing kernels, with per-call binding checks and full/complement derivative controls | No active callback/policy or ordinary refinement lifecycle |
@@ -37,7 +38,9 @@ for exact commands, failed preparations, archive checksums and limitations.
 
 1. Qualify the separate **active contribution admission/buffer owner** with Cedar.
    The [W110 contract](topostitch-periodic.md#w110--provider-normalization-and-active-contribution-contract)
-   is reviewed but not implemented. Keep C331 callback-free; do not detach a callback
+   is reviewed; Cedar C367 factors its shared traversal, but active admission is
+   still open. W113 supplies the fresh trusted numerical factory. Keep C331
+   callback-free; do not detach a callback
    to fake an idle guard or duplicate the reader. Restart must rebuild a trusted
    callable, and cleanup must not overwrite a foreign replacement.
 2. Consume the [W111 counted-contribution evidence](topostitch-periodic.md#w111--counted-contributions-through-actual-model-entry)
@@ -57,30 +60,26 @@ Use the [ordinary refinement boundary](topostitch-periodic.md#next-ordinary-refi
 and [integration contract](topostitch-periodic.md#next-implementation-contract).
 Do not fork a refinement runner or repeat passed arithmetic probes as a substitute
 for lifecycle integration. Coordinate owner changes with Rowan before native work.
-No native jobs remain active at the W112 checkpoint. W108/W109 optional APIs
+No factory/native diagnostic jobs remain active at the W113 checkpoint.
+A separate bounded full-source virtual W112/C366 compatibility run is pending;
+it is not a branch merge or qualification of the newer factory/owner. W108/W109 optional APIs
 remain compatible; W110 makes no production normalization change.
 
 ## Validation and compatibility
 
-Latest production-code validation, **W112**: **105 focused, 1,981 full tests +229
-subtests, and 274 installed checks** passed. Fresh sdist/wheel relocation, six CLI
-helps, pip check, lean import and Python 3.10 syntax pass. Six native model-state
-cases, four exact roundtrip/restoration controls and twelve negatives pass under
-Phenix 2.2.1-6174. Default v1 output matches the separately installed W106 owner;
-targets, complete gradients and counts remain exact. Scientific data are local.
-See the [W112 receipt](topostitch-periodic.md#w112--bind-both-hierarchy-and-scattering-coordinates).
+Latest production-code validation, **W113**: **153 focused, 2,000 full tests +229
+subtests, and 293 final installed checks** passed. The full run precedes only the
+exported tuple naming change; final relocated installation/native execution use
+`3f580610` source. Six CLI helps, pip check, lean import and Python3.10 syntax pass.
+Eight Phenix2.2.1-6174 cases compare fresh factories against the existing evaluator,
+including actual all-native core packets with zero additions; all energy/gradient
+outputs match exactly and sixteen negatives refuse. Existing public class/function
+AST and captured-worker bytes are unchanged. See the [W113 receipt](topostitch-periodic.md#w113--freeze-the-selected-pair-contribution-factory).
 
-Prior selected-force validation, **W109**: **117 focused, 1,964 full tests +229
-subtests, and 257 installed tests** passed. Fresh sdist/wheel relocation with source
-stages removed, six CLI helps, `pip check`, lean import and Python 3.10 syntax pass.
-Six Phenix 2.2.1-6174 derivative cases (20/20 directions each; 972 evaluations),
-twelve composition controls and twelve negatives qualify subset arithmetic.
-Default results exactly match W108; selected+complement gradients agree within
-7.11e-15. The initial panel remains FAILED after four passing cases because the
-harness sorted the synthetic fixture; only that fixture was corrected/rerun.
-See the [W109 receipt](topostitch-periodic.md#w109--evaluate-the-exact-frozen-additive-subset).
-W108 separately qualifies six actual-manager partial-pair provider cases. No new
-callback, CLI, packet schema, dependency or ordinary refinement activation.
+W112 separately qualifies dual hierarchy/scattering state, exact restoration and
+legacy observation preservation. W109 owns the unchanged subset arithmetic's
+finite-difference/complement evidence. Keep their scopes and retained failures;
+new wrappers do not replace those scientific/numerical gates.
 
 The latest recorded installed **virtual** Willow/Cedar C338 combination passed
 **1,062 tests +22 subtests**, six CLI helps and saved graph/frame/native-link/packing
