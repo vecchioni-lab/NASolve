@@ -391,7 +391,8 @@
         "W107 composes107ordinary nativecore terms with17explicitmissing periodicterms using existing compiler andcoverage APIs. Actual model entry andexplicit select-all rebinding pass completeenergy/force/normalization andderivativecontrols. Term-level providerselection,activecallback guarding,exclusionapproval andordinary refinementlifecycle remainopen.",
         "W108 selects native/additive providers term by term from frozen complete declarations, including partially covered individual pairs; exact-image/parameter matching and duplicate/conflict/stale refusals reuse the existing coverage owner. Native source and installed controls pass; force evaluation and lifecycle remain separate.",
         "W109 evaluates exact frozen selected terms through the existing complete compiler and shared kernels, rechecking live proxies and bindings even for an empty subset. Installed/full tests and native complement/derivative controls pass; no callback or ordinary refinement activation.",
-        "W110 proves actual model-level normalization depends on provider placement even when raw force coverage is identical. Six full/partial/select-all cases retain the effect and source/exclusion evidence. Active-guard owner contract is reviewed but unimplemented; provider-independent production weighting is an explicit gate."
+        "W110 proves actual model-level normalization depends on provider placement even when raw force coverage is identical. Six full/partial/select-all cases retain the effect and source/exclusion evidence. Active-guard owner contract is reviewed but unimplemented; provider-independent production weighting is an explicit gate.",
+        "W111 local native energies_add contribution restores provider-independent normalized actual-model targets/forces for complete and partial canonical pairs, with select-all and derivative controls. C331 deliberately refuses the local method facade. Exact restoration requires original hierarchy and fractional scattering coordinates; no production adapter is installed."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -399,7 +400,7 @@
         "Blunt and asymmetric-orientation trials retain matched observations/Free-R and independent bends/maps; calibrate inconclusive outcomes rather than force alignment or a statistical winner.",
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning."
       ],
-      "next_action": "With Cedar, qualify a separate active-contribution admission/buffer owner without weakening C331. Choose and prove provider-independent model-level geometry/data weighting through the existing runtime; callback-only native-N arithmetic is not enough. Then bind helper/recipe/policy lifetime across prepare_execution, isolated preflight, frozen rounds, actual manager and final writer. Keep exclusions, matched diffraction/density and B09 open.",
+      "next_action": "Qualify Cedar-owned admission and native-buffer ownership for a counted contribution through existing frozen execution. Preserve C331 and bind both hierarchy and scattering coordinates, complete provider/subset recipes, policy and source lifetime across selection/rebuild and final writer. Reuse W111 arithmetic evidence; ordinary refinement, exclusion policy, matched density and B09 remain open.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -414,14 +415,15 @@
         "E_MISSING_PAIR_ARITHMETIC",
         "E_PAIR_PROVIDER_SELECTION",
         "E_SELECTED_PAIR_FORCES",
-        "E_PROVIDER_NORMALIZATION"
+        "E_PROVIDER_NORMALIZATION",
+        "E_COUNTED_CONTRIBUTION"
       ],
       "last_audit": {
         "date": "2026-11-17",
         "reviewer": "Linden",
         "code_commit": "f732f2ed4f25b703d232d390df265cf80918a843",
-        "human_update": 110,
-        "scope": "Actual-model provider-dependent normalization demonstrated; separate active owner/lifetime contract reviewed. No production counting or active/refinement enablement."
+        "human_update": 111,
+        "scope": "Bounded actual-model counted-contribution arithmetic and exact dual-coordinate restoration qualify; active owner/frozen lifecycle and scientific refinement do not."
       }
     },
     {
@@ -1865,6 +1867,24 @@
         "committed": false,
         "portable_campaign": false
       }
+    },
+    "E_COUNTED_CONTRIBUTION": {
+      "kind": "local_actual_model_counted_contribution",
+      "code_commit": "f732f2ed4f25b703d232d390df265cf80918a843",
+      "human_update": 111,
+      "reference": "docs/topostitch-periodic.md#w111--counted-contributions-through-actual-model-entry",
+      "result": "Six actual-model full/partial/select-all cases give provider-invariant complete counts11396healthy/11270displaced and normalized target/fullgradients; max target error4.44e-16 and gradient1.39e-17. Four20/20 directional controls(648 calls),18negatives incl6C331facade refusals, empty-subset identity and energy-only/normalization controls pass.212.27s complete Phenix2.2.1-6174 execution. Independent roundtrip control restores both hierarchy and fractional scattering state exactly.",
+      "limitation": "Local geometry-method facade forwards native energies_add; not installed/qualified active owner or automatic refinement lifecycle. Counting scope is four canonical proxy families with unchanged repulsion. Attempt1 wrong module/class reference and attempt2 exact-restoration failure remain failed; isolated controls identify7.11e-15 force-site roundoff and dual restoration fixes harness without tolerance/product change. Production code stays W109; no ordinary refinement/density/scientific acceptance.",
+      "local_forensic_archive": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/w111-counted-contribution-2026-11-17.tar.gz",
+        "sha256": "b1d38015b932e8b52173e6a34190871135d4dfd57e55ec99e211881a483e8a2f",
+        "bytes": 1912089,
+        "files": 61,
+        "payload_index_verified": true,
+        "committed": false,
+        "portable_campaign": false
+      }
     }
   },
   "benchmarks": [
@@ -2016,8 +2036,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 110,
-    "next": 111,
+    "current": 111,
+    "next": 112,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -2485,6 +2505,12 @@
       {
         "number": 110,
         "title": "Audit provider-dependent normalization and active contribution contract",
+        "state": "RECORDED",
+        "code_commit": "f732f2ed4f25b703d232d390df265cf80918a843"
+      },
+      {
+        "number": 111,
+        "title": "Qualify local counted model contributions and exact dual-coordinate restoration",
         "state": "RECORDED",
         "code_commit": "f732f2ed4f25b703d232d390df265cf80918a843"
       }

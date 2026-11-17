@@ -830,7 +830,14 @@
       "native_count_only_callback_is_provider_invariant": false,
       "extension_objects_forwarded_by_ordinary_model_manager": false,
       "actual_runtime_schema_finalized": false,
-      "runtime_authority": false
+      "runtime_authority": false,
+      "counted_contribution_diagnostic": {
+        "reference": "docs/topostitch-periodic.md#w111--counted-contributions-through-actual-model-entry",
+        "actual_model_provider_invariance": true,
+        "scope": "Four canonical proxy families; local geometry-method facade rejected by C331",
+        "installed_or_runtime_authority": false
+      },
+      "source_state_requires_distinct_hierarchy_and_scattering_bindings": true
     }
   },
   "geometry_development": {

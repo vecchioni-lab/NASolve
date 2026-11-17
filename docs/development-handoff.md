@@ -1,8 +1,8 @@
 # NASolve development handoff — Willow
 
 Updated **2026-11-17**. This is the **`willow` branch** handoff, not the
-project-wide status of Pine, Cedar or Alder. **W110 is audited; W111 is next.**
-Runtime code is W109 (`f732f2ed`); W110 is diagnostic and protocol evidence.
+project-wide status of Pine, Cedar or Alder. **W111 is audited; W112 is next.**
+Runtime code is W109 (`f732f2ed`); W110/W111 are diagnostic and protocol evidence.
 Native refinement activation remains open.
 The [machine roadmap](topostitch-roadmap.json) owns milestone status; its
 [generated human view](topostitch-roadmap.md) owns the numbered progress queue.
@@ -39,13 +39,12 @@ for exact commands, failed preparations, archive checksums and limitations.
    is reviewed but not implemented. Keep C331 callback-free; do not detach a callback
    to fake an idle guard or duplicate the reader. Restart must rebuild a trusted
    callable, and cleanup must not overwrite a foreign replacement.
-2. Choose and qualify **provider-independent model-level weighting**. W110 shows
-   a three-term native→callback move preserves raw forces but shifts normalized
-   targets by ~0.026% because native N drops by three. An arithmetic candidate count
-   is not a qualified runtime. Then integrate active callback, gradient-buffer,
-   normalization and source-policy guards through Cedar's existing
-   prepare/frozen-round/actual-manager/final-writer
-   owners. The idle C331 observer does not qualify an active callback.
+2. Consume the [W111 counted-contribution evidence](topostitch-periodic.md#w111--counted-contributions-through-actual-model-entry)
+   in that owner. Six actual-model cases and four 20/20 derivative checks preserve
+   normalized weighting across providers. The local adapter remains rejected by
+   C331 and is not installed. Bind original hierarchy **and** fractional scattering
+   state; exact restoration of one alone is insufficient. Then qualify the existing
+   prepare/frozen-round/actual-manager/final-writer lifecycle.
 3. Qualify periodic exclusion policy explicitly. Retain repulsion until justified;
    do not activate a symmetry phosphate bond without qualified surrounding angles.
 4. Only then compare repaired and no-repair models with matched observations,
@@ -56,7 +55,7 @@ Use the [ordinary refinement boundary](topostitch-periodic.md#next-ordinary-refi
 and [integration contract](topostitch-periodic.md#next-implementation-contract).
 Do not fork a refinement runner or repeat passed arithmetic probes as a substitute
 for lifecycle integration. Coordinate owner changes with Rowan before native work.
-No native jobs remain active at the W110 checkpoint. W108/W109 optional APIs
+No native jobs remain active at the W111 checkpoint. W108/W109 optional APIs
 remain compatible; W110 makes no production normalization change.
 
 ## Validation and compatibility

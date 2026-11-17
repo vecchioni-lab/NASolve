@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W111 — Qualify local counted contributions and exact native restoration
+
+- Record provider-invariant normalized targets/forces through actual model entry
+  using the native counted-contribution hook in a local diagnostic adapter.
+  Preserve explicit C331 refusal; no production adapter or runtime policy changes.
+- Retain both failed attempts and the independent dual-coordinate restoration
+  finding: hierarchy and fractional scattering state require distinct binding.
+  Native derivative/composition controls pass after exact restoration, without
+  relaxing thresholds; active owner and ordinary refinement remain open.
+
 ### W110 — Audit model-level normalization and active contribution requirements
 
 - Demonstrate that moving unchanged terms between native and callback providers

@@ -5072,6 +5072,12 @@ neighbor rebuilds. Do not infer covalent stitching or add a symmetry phosphate
 bond alone; continuation intent preserves P/OP1/OP2 until surrounding chemistry is
 qualified. Custom metal/stack recipes retain their existing owners and hypotheses.
 
+W72/W73 already record actual-model accumulation and preseeded-buffer arithmetic;
+reuse those [12-case](#w72--evaluate-complete-geometry-in-a-retained-reference-frame)
+and [36-case](#w73--retain-complete-frame-bindings-through-explicit-reindexing)
+receipts as context. They do not establish active-owner admission; new controls
+should exercise the missing owner boundary rather than repeat old arithmetic.
+
 ### Acceptance sequence before ordinary refinement
 
 1. **Owner admission:** callback-free old records/readers remain exact. Active
@@ -5129,3 +5135,77 @@ source-trace hashes, plan, logs and archive stay local. The roadmap records the
 anchored archive checksum. Absolute command paths are historical provenance,
 not portable execution references. Native subset correctness and partial-pair
 coverage are proven separately from the proposed active guard and weighting policy.
+
+
+## W111 — Counted contributions through actual model entry
+
+A **local diagnostic adapter**, using the native `energies_add` extension hook,
+adds exactly the W109 selected residual, gradients and supported proxy count before
+the native result is finalized/aggregated. It forwards that extension through the
+existing geometry call to the actual mmtbx model entry. No second compiler or
+refinement runner is introduced. This adapter is **not installed product code**:
+it temporarily overrides one local geometry method, and C331 correctly refuses
+that override. It is evidence for selecting the shared runtime integration point,
+not an active-guard bypass or approval of production refinement.
+
+The count is justified here only for the four canonical proxy families whose
+ordinary native implementations each count one per proxy. No arbitrary inventory,
+new exclusion, custom metal role or covalent continuation is inferred. Both
+physical source cases retain their existing periodic repulsion.
+
+| Source | Full-core / partial native counts | Additive counts | Actual complete count | Normalized target |
+| --- | --- | --- | --- | --- |
+| Healthy | 11,379 / 11,376 | 17 / 20 | 11,396 for both | 0.675606411861 |
+| Displaced | 11,253 / 11,250 | 17 / 20 | 11,270 for both | 1.034627002240 |
+
+All **six actual-model cases**, including both partial managers after select-all,
+now reproduce the same normalized target and complete gradients across providers.
+Maximum target difference is **4.44e-16**, gradient difference **1.39e-17**. Four
+**20/20 directional checks (648 evaluations)** pass. Empty subsets exactly preserve
+native target/gradients/count; energy-only and normalization-on/off calls agree.
+Eighteen negatives include six deliberate C331 refusals of the local adapter.
+The final complete **Phenix 2.2.1-6174** execution takes **212.27 seconds**; independent
+saved-result review reproduces the findings. This qualifies bounded arithmetic,
+not automatic lifecycle, normalization for every force family or scientific repair.
+
+### Exact restoration and retained attempts
+
+Attempt 1 stops at the harness type check: `gr.energies` is a module; the native
+result class is `gr.energies.energies`. Attempt 2 passes its first derivative case
+but fails exact post-probe restoration. Both attempts remain FAILED and retained.
+
+Two isolated controls show why: `model.set_sites_cart` restores hierarchy Cartesian
+coordinates exactly but recalculates fractional scattering coordinates. Actual
+model energy reads `_xray_structure.sites_cart()`, while W106's `points_sha256`
+records the hierarchy sites. In the isolated unchanged-coordinate round trip,
+force sites differ by **7.11e-15 Å**, target by **6.66e-16**, gradients by **2.31e-14**;
+coverage declarations remain exact. This is numerical representation roundoff,
+not a physical deformation. Restoring **both** original hierarchy sites and original
+fractional scattering sites recovers target, gradients, force sites and observations
+exactly. Attempt 3 uses that restoration and passes with unchanged tolerances.
+Future active/source/writer contracts must distinguish these two representations;
+a hierarchy-coordinate hash alone does not authenticate the native force sites.
+
+Principal native commands (local historical paths):
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w111-counted-contribution/run.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w111-counted-contribution/run-v2.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w111-counted-contribution/run-roundtrip.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w111-counted-contribution/run-roundtrip-v2.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w111-counted-contribution/run-v3.py
+/private/tmp/willow-w109-selected-forces/install/env/bin/python /private/tmp/willow-w111-counted-contribution/audit.py
+```
+
+No production code changed after W109; its full/installed validation remains the
+baseline. Roadmap generation/check, documentation links and `git diff --check`
+cover this update. All native data, failed attempts, scripts and execution records
+stay in the local checksum-indexed archive referenced by the machine roadmap;
+they are forensic evidence, not an independently portable refinement campaign.
+
+**Next:** Cedar-owned admission for the counted contribution and authenticated
+native-owned buffer, then source/dual-coordinate/policy lifetime through the existing
+frozen execution and final writer. Preserve callback-free C331 and old readers.
+Provider-invariant arithmetic is a gate passed in these controls; owner admission,
+ordinary refinement, exclusions, density and B09 remain open. Do not replay W111
+merely because the production adapter is still absent.
