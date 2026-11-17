@@ -1,8 +1,9 @@
 # NASolve development handoff — Willow
 
 Updated **2026-11-17**. This is the **`willow` branch** handoff, not the
-project-wide status of Pine, Cedar or Alder. **W109 is audited; W110 is next.**
-Runtime code is W109 (`f732f2ed`); native refinement activation remains open.
+project-wide status of Pine, Cedar or Alder. **W110 is audited; W111 is next.**
+Runtime code is W109 (`f732f2ed`); W110 is diagnostic and protocol evidence.
+Native refinement activation remains open.
 The [machine roadmap](topostitch-roadmap.json) owns milestone status; its
 [generated human view](topostitch-roadmap.md) owns the numbered progress queue.
 
@@ -21,7 +22,7 @@ S04/S05/S06 and P01/P02 remain partial; use the roadmap for individual gates.
 | W106 `observe_native_pair_terms` | Callback-free actual-manager inventory with checksum-bound Cedar policy checks and exact rational image comparison | Special positions unsupported; source authenticity and active callback policy remain upstream |
 | W108 `select_pair_providers` | Plans exact term-level native/additive ownership, including partial individual pairs; conflicts refuse | No activation authority |
 | W109 `NativePairRecipe.evaluate_terms` | Evaluates a frozen exact subset using the existing kernels, with per-call binding checks and full/complement derivative controls | No active callback/policy or ordinary refinement lifecycle |
-| W107 native composition diagnostic | 107 native core terms plus 17 explicitly missing periodic terms preserve coverage and normalization in the tested managers | General provider selection, active guarding, exclusions and production refinement remain open |
+| W107 native composition diagnostic | 107 native core terms plus 17 explicitly missing periodic terms preserve coverage and normalization in the tested managers | Active guarding, provider-independent weighting, exclusions and production refinement remain open |
 
 W107 passed **eight 20/20 directional controls (1,296 evaluations), twelve
 negative controls and exact zero-callback preservation**, before and after
@@ -33,11 +34,17 @@ for exact commands, failed preparations, archive checksums and limitations.
 
 ## Next bounded work
 
-1. Agree the separate **active callback/policy contract** with Cedar. W108 now
-   selects providers and W109 evaluates the exact frozen additive subset. Preserve
-   C331's callback-free behavior; do not bypass it or duplicate its policy reader.
-2. Integrate active callback, gradient-buffer, normalization and source-policy
-   guards through Cedar's existing prepare/frozen-round/actual-manager/final-writer
+1. Qualify the separate **active contribution admission/buffer owner** with Cedar.
+   The [W110 contract](topostitch-periodic.md#w110--provider-normalization-and-active-contribution-contract)
+   is reviewed but not implemented. Keep C331 callback-free; do not detach a callback
+   to fake an idle guard or duplicate the reader. Restart must rebuild a trusted
+   callable, and cleanup must not overwrite a foreign replacement.
+2. Choose and qualify **provider-independent model-level weighting**. W110 shows
+   a three-term native→callback move preserves raw forces but shifts normalized
+   targets by ~0.026% because native N drops by three. An arithmetic candidate count
+   is not a qualified runtime. Then integrate active callback, gradient-buffer,
+   normalization and source-policy guards through Cedar's existing
+   prepare/frozen-round/actual-manager/final-writer
    owners. The idle C331 observer does not qualify an active callback.
 3. Qualify periodic exclusion policy explicitly. Retain repulsion until justified;
    do not activate a symmetry phosphate bond without qualified surrounding angles.
@@ -49,7 +56,8 @@ Use the [ordinary refinement boundary](topostitch-periodic.md#next-ordinary-refi
 and [integration contract](topostitch-periodic.md#next-implementation-contract).
 Do not fork a refinement runner or repeat passed arithmetic probes as a substitute
 for lifecycle integration. Coordinate owner changes with Rowan before native work.
-No native jobs remain active at this checkpoint.
+No native jobs remain active at the W110 checkpoint. W108/W109 optional APIs
+remain compatible; W110 makes no production normalization change.
 
 ## Validation and compatibility
 
@@ -72,7 +80,11 @@ refinement. Seven documentation conflicts and the package-data union required
 integration review at that pin. Later Cedar work is outside that qualification;
 see the [compatibility receipt](topostitch-periodic.md#installed-c338-compatibility-during-w100).
 Check current branches again before integration; textual compatibility alone is
-not a runtime test. Earlier full virtual-build failures remain recorded, not
+not a runtime test. The W110 read-only check against Cedar `678f0198`
+finds all eight consumed owner/profile files byte-identical to the pinned
+installation. Shared `autorefine.py` changes merge textually and parse; shared
+documentation/package metadata still require integration review. No actual merge
+or current combined suite was run. Earlier full virtual-build failures remain recorded, not
 superseded by claims of a full green combined suite.
 
 ## Scientific limits and demonstration gates

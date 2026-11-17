@@ -4953,3 +4953,179 @@ failed diagnostics and build/install products stay local and are not committed.
 The next gate is the separate active-callback policy/lifetime contract with Cedar;
 C331 remains callback-free. Native normalization and periodic exclusions still
 need qualification through the ordinary frozen-round refinement owner.
+
+## W110 — Provider normalization and active contribution contract
+
+W108 plans exact term ownership and W109 evaluates the chosen subset. Neither
+qualifies a live refinement callback. Rowan confirms no generic active-callback
+owner is currently qualified. The following is a bounded shared-owner proposal,
+not an instruction to relax C331 or activate ordinary refinement. Rowan reviewed
+the admission/lifetime boundary on 2026-11-17; implementation and production
+weighting remain unqualified.
+
+### Smallest owner extension
+
+Cedar should expose a **separate active-callback admission/check API** using the
+same native profile, exact-type reader and complete policy traversal as C331.
+Factor internal traversal only if needed; keep C331's callback-free signature,
+policy identity, records, refusal behavior and old installed replay unchanged.
+Do not copy `_Reader` or shell/symmetry/parameter inventory logic into Willow.
+The active record needs its own versioned policy identity and truthful invocation
+fields; it must not call C331 with fabricated callback-free arguments or detach
+an installed callback merely to inspect the manager. Cedar chooses final API names.
+
+For admission diagnostics, start with one narrow configured-callback route: the geometry manager contains
+the exact callback object created by the checked runtime owner, and the per-call
+`external_energy_function` argument remains `None`. Reject competing configured
+or per-call callbacks, extension objects, custom nonbonded functions, externally
+supplied gradient buffers and unsupported geometry flags. The model-level native
+owner forwards its own buffer into geometry; authenticate that ownership boundary
+rather than rejecting every non-None buffer at the inner layer. Invocation-only and
+arbitrary third-party callback routes are separate future qualifications. This
+diagnostic route does not decide the counted production-contribution mechanism.
+
+A serialized digest does not authenticate a callable. The runtime factory must
+be trusted code frozen through the existing execution request, with helper/profile
+checksums and explicit construction. The active check compares the actual callback
+object with that runtime-owned object and binds its frozen contract digest; it
+never imports code or resolves a callable named by an untrusted record. A function
+name, object address or class name alone is not persistent proof. After restart,
+the frozen runtime factory must rebuild and authenticate its new process-local
+callable; a serialized object identity cannot be reused. Single-owner
+execution is required; before/after snapshots are not a concurrency lock.
+
+### Frozen contract and call lifecycle
+
+| Boundary | Required binding/check | Failure action |
+| --- | --- | --- |
+| Prepare | Existing run/checkpoint/parent anchors and hashes, source model, ordered full atom identities, crystal/frame, complete compiled packet/binding, native inventory and exclusion policy, W108 provider binding, W109 selected declarations, exact helper/profile bytes | Refuse preparation; preserve parent |
+| Install | Actual manager and hierarchy match the frozen contract; no prior callback; original source labels/images remain valid; inspect whole requested/native coverage before installing once | Refuse, without replacing a native term or selecting a different provider |
+| Enter energy call | Correct manager instance, atom order, frame, current policy and selected binding; supported flags, normalization and energy/gradient mode; no competing extension or caller buffer | Refuse before adding energy/forces |
+| Inside callback | One invocation for this call; finite correctly ordered coordinates; buffer kind/length and requested gradient mode agree; source arrays are not overwritten; selected evaluator rechecks compiled definitions | Refuse and unwind; do not return an apparently valid partial score |
+| Return | Exactly one callback; finite added energy/forces; actual native restraint count and normalization accounted for; unchanged source/term/exclusion contract; callback ownership retained | Mark the attempt failed; never save a selected child from partial evidence |
+| Select/rebuild | Default native selection can drop the callback. Require explicit re-observation and checked rebinding to the same frozen intent; reordered/partial atoms need a qualified mapping | Unbound/new managers refuse. Do not silently inherit or reselect providers |
+| Final writer | Existing Cedar actual-manager/final-output observer binds the refined model, final recipe/policy and synchronized coordinates/tensors to the immutable round/checkpoint | Incomplete evidence blocks usable publication; preserve diagnostic outputs |
+| Exception/exit | Restore only bindings owned by this runtime, prove restoration, retain failure and child-process ownership evidence | A cleanup failure remains a failed attempt; never overwrite another owner's callback |
+
+Coordinates may move during optimization; atom identity, intended frame and
+restraint/exclusion ownership must remain authenticated. An updated cell, physical
+identity or chemistry is not an ordinary coordinate step. Allowed neighbor-cache
+rebuilding must remain distinct from a changed exclusion policy. On rebuild,
+coverage can change; do not regenerate a provider plan to conceal that drift.
+Any legitimate new plan belongs to a separately frozen phase with explicit lineage.
+
+The first profile admits energy-only calls and native-owned Cartesian gradient
+buffers. Buffer aliasing, size, mutability, accumulation semantics, repeated calls
+and reentrancy must be tested against actual C++ objects. Caller-supplied buffers
+remain unsupported until separately qualified. A zero-scale diagnostic still
+checks the same bindings; zero contribution is not a bypass for invalid inputs.
+
+### Energy, normalization and exclusions
+
+The inspected Phenix 2.2.1-6174 `geometry_restraints.energies` adds callback residual
+and gradients before finalization but **does not increment `number_of_restraints`**.
+The actual `mmtbx.restraints.manager` passes its own gradient buffer into geometry
+with `normalization=False`, aggregates counts/energies, then applies model-level
+normalization. W107's unchanged-native-denominator behavior is a valid diagnostic
+policy, **not provider-independent geometry/data weighting**.
+
+W110's six complete actual-model controls demonstrate the distinction. Move three
+angle/plane/parallelity terms from native containers into the exact W109 additive
+subset without changing their scoring or shell exclusions:
+
+| Source | Native/additive terms | Actual native count | Normalized target | Raw target |
+| --- | --- | --- | --- | --- |
+| Healthy, full core | 107 / 17 | 11,379 | 0.6766157544 | 7699.210669570105 |
+| Healthy, partial pair | 104 / 20 | 11,376 | 0.6767941868 | 7699.210669570104 |
+| Displaced, full core | 107 / 17 | 11,253 | 1.0361900218 | 11660.246315243341 |
+| Displaced, partial pair | 104 / 20 | 11,250 | 1.0364663391 | 11660.246315243337 |
+
+Select-all reproduces both partial cases. Raw gradients agree within 1.14e-13;
+normalized targets shift **0.02637% / 0.02667%**, exactly following the denominator
+ratio. This is small in these controls, but implementation placement must not
+silently choose relative geometry/data weight. Earlier unnormalized W100 trials
+and W109 raw-force checks are unaffected. No production normalization change is made.
+
+`N_native + N_additive` gives a provider-invariant candidate count for these exact
+supported controls (11,396 / 11,270). That is arithmetic evidence, **not a qualified
+counting implementation or general rule for all native terms**. Do not invent
+counts from inventory rows or multiply an already normalized target blindly.
+Trace actual native force-count semantics, special images, active families and
+other model-level contributions before adopting a policy. Competing custom or
+metal terms must remain with their existing explicit owners.
+
+The native geometry API exposes `extension_obj.energies_add(energies_obj=self)`
+before finalization, but the ordinary mmtbx manager does **not** forward
+`extension_objects`. A counted contribution therefore requires an explicitly
+qualified seam in the existing frozen runtime; setting a new manager attribute or
+passing a callback alone is insufficient. Compare this route with an explicit
+model-level normalization policy before choosing the smallest owner extension.
+Do not widen the configured-callback admission proposal into an unreviewed extension
+object bypass. Bind and test the actual denominator and force scaling at the model
+entry; preserve default behavior and report the policy in any future frozen phase.
+
+Retain current periodic repulsion explicitly in the first bounded qualification.
+Coverage success does not authorize editing shell exclusions. Later ordinary-pair-
+equivalent periodic exclusions need their own identity-image and periodic controls,
+including directed multiplicity, complete energy/force/count observations and
+neighbor rebuilds. Do not infer covalent stitching or add a symmetry phosphate
+bond alone; continuation intent preserves P/OP1/OP2 until surrounding chemistry is
+qualified. Custom metal/stack recipes retain their existing owners and hypotheses.
+
+### Acceptance sequence before ordinary refinement
+
+1. **Owner admission:** callback-free old records/readers remain exact. Active
+   snapshots traverse the same complete policy without mutation. Wrong callable,
+   source/helper/profile, context or invocation mode refuses; no fallback.
+2. **Direct actual-manager calls:** energy-only and native-owned gradient modes,
+   exact zero-callback preservation, provider-invariant model-level weighting under
+   the explicitly chosen policy, selected+complement accounting, ordinary and
+   partially covered pairs, native normalization and independently recomputed
+   directional derivatives. Inject policy/exclusion/term changes both before
+   entry and during the callback; restoration must work on success and exception.
+3. **Lifetime:** fresh manager, select-all, explicit full permutation, neighbor
+   rebuild, source-reinterpretation and copied-manager controls. Show which routes
+   rebind and which refuse. Deliberate dropped/duplicated callbacks, skipped or
+   repeated calls, stale selection, unknown/partial identities, recursive entry,
+   foreign/aliased buffers and changed flags/normalization must not pass silently.
+4. **Existing frozen execution:** stage through `refinement_parallelity.prepare_execution`,
+   its isolated zero-cycle preflight, `cif_refinement_runtime` and final-writer
+   observations. First an isolated geometry/one-cycle qualification, then matched
+   real-data candidate/control rounds; never create another refinement runner.
+   Reopen installed requests after relocation with original paths unavailable;
+   helper tampering, resume without required runtime and missing final evidence
+   must refuse. Preserve old checkpoint readers and opt-in/default behavior.
+5. **Science:** same observations, Free-R, phase policy, budget and map provenance;
+   geometry/packing and healthy/wrong-connection controls, then density calibration
+   and B09. Numerical force agreement alone does not close S05/S06 or authorize
+   campaign adoption, changed ASU output or publication.
+
+The first deliverable is owner admission plus direct-call evidence, not all five
+steps at once. Exact numerical tolerances should reuse Cedar's established
+objective reviewer and be frozen before each control. This proposal grants no
+new runtime behavior, input/output schema or approval.
+
+
+### W110 validation — 2026-11-17
+
+One complete **Phenix 2.2.1-6174** execution finishes in **59.97 seconds**:
+six actual-manager cases, energy-only/gradient and normalization-on/off calls,
+twelve duplicate/conflicting-target negative controls, unchanged source atoms,
+input/software bytes, exclusions and restored callback/kernel bindings. The
+actual-model provider-dependent normalization finding is independently replayed
+from saved results. This is a bounded diagnostic; it does not qualify active
+C331 checks, automatic callback lifetime, counted production forces or refinement.
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w110-provider-normalization/run.py
+python3 /private/tmp/willow-w110-provider-normalization/audit.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3 scripts/audit_topostitch_roadmap.py --check
+git diff --check
+```
+
+No production code changed after W109, so its full/installed results remain the
+software baseline; no redundant full-suite rerun. Native evidence, the exact
+source-trace hashes, plan, logs and archive stay local. The roadmap records the
+anchored archive checksum. Absolute command paths are historical provenance,
+not portable execution references. Native subset correctness and partial-pair
+coverage are proven separately from the proposed active guard and weighting policy.

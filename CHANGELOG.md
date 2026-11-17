@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W110 — Audit model-level normalization and active contribution requirements
+
+- Demonstrate that moving unchanged terms between native and callback providers
+  preserves raw forces but changes the model's normalization denominator.
+  Retain this as an explicit production-weighting gate; change no runtime policy.
+- Record the reviewed separate active-guard/lifetime proposal with Cedar, native
+  buffer ownership, restart/restoration requirements and the counted-contribution
+  seam still to qualify. Preserve C331's callback-free contract.
+
 ### W109 — Evaluate only frozen selected pair terms
 
 - Add optional `NativePairRecipe.evaluate_terms`, validating the original packet,

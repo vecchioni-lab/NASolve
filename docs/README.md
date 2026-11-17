@@ -9,10 +9,12 @@ current instructions; other branches retain their own status and validation pins
 
 - **Willow queue:** [Development handoff](development-handoff.md). W108 selects
   frozen term-level providers; W109 evaluates the exact missing subset through
-  existing kernels. Active guards, exclusion policy and ordinary
+  existing kernels. W110 demonstrates provider-dependent native normalization
+  and records the shared active-guard proposal. Production weighting, active
+  guards, exclusion policy and ordinary
   refinement integration remain open. No physical repair is claimed.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Next human update is W110;
+  [machine-readable source](topostitch-roadmap.json). Next human update is W111;
   do not restart completed probes merely because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

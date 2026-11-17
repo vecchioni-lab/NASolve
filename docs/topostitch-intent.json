@@ -808,6 +808,29 @@
       "manager_integration": false,
       "complete_seam_chemistry_qualified": false,
       "runtime_authority": false
+    },
+    "active_pair_contribution": {
+      "state": "PROPOSED_NOT_ENABLED",
+      "native_policy_owner": "Cedar",
+      "pair_declaration_and_subset_owner": "Willow",
+      "contract": "docs/topostitch-periodic.md#w110--provider-normalization-and-active-contribution-contract",
+      "existing_apis": [
+        "select_pair_providers",
+        "review_pair_coverage",
+        "NativePairRecipe.evaluate_terms"
+      ],
+      "preserve_c331_callback_free_contract": true,
+      "duplicate_policy_reader": false,
+      "temporary_callback_detach_for_guard": false,
+      "callable_identity_persistent": false,
+      "restart_requires_frozen_factory": true,
+      "foreign_callback_may_be_overwritten": false,
+      "internally_forwarded_native_gradient_buffer_requires_authentication": true,
+      "model_level_weighting": "UNQUALIFIED_PROVIDER_INDEPENDENT_POLICY_REQUIRED",
+      "native_count_only_callback_is_provider_invariant": false,
+      "extension_objects_forwarded_by_ordinary_model_manager": false,
+      "actual_runtime_schema_finalized": false,
+      "runtime_authority": false
     }
   },
   "geometry_development": {

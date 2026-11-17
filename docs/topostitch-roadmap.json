@@ -390,7 +390,8 @@
         "W106 observes the actual callback-free native manager through the existing C331 policy owner, exactly binds supported term images and origins, and composes W104/W105 coverage for native core plus explicit missing terms. Native/installed controls pass including an evidence-driven rational-denominator fix; active-force/lifecycle integration remains open.",
         "W107 composes107ordinary nativecore terms with17explicitmissing periodicterms using existing compiler andcoverage APIs. Actual model entry andexplicit select-all rebinding pass completeenergy/force/normalization andderivativecontrols. Term-level providerselection,activecallback guarding,exclusionapproval andordinary refinementlifecycle remainopen.",
         "W108 selects native/additive providers term by term from frozen complete declarations, including partially covered individual pairs; exact-image/parameter matching and duplicate/conflict/stale refusals reuse the existing coverage owner. Native source and installed controls pass; force evaluation and lifecycle remain separate.",
-        "W109 evaluates exact frozen selected terms through the existing complete compiler and shared kernels, rechecking live proxies and bindings even for an empty subset. Installed/full tests and native complement/derivative controls pass; no callback or ordinary refinement activation."
+        "W109 evaluates exact frozen selected terms through the existing complete compiler and shared kernels, rechecking live proxies and bindings even for an empty subset. Installed/full tests and native complement/derivative controls pass; no callback or ordinary refinement activation.",
+        "W110 proves actual model-level normalization depends on provider placement even when raw force coverage is identical. Six full/partial/select-all cases retain the effect and source/exclusion evidence. Active-guard owner contract is reviewed but unimplemented; provider-independent production weighting is an explicit gate."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -398,7 +399,7 @@
         "Blunt and asymmetric-orientation trials retain matched observations/Free-R and independent bends/maps; calibrate inconclusive outcomes rather than force alignment or a statistical winner.",
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning."
       ],
-      "next_action": "Agree and qualify a separate callback-aware policy/invocation protocol with Cedar while preserving C331 callback-free behavior. Then integrate exact provider/subset bindings and source/exclusion lifetime through existing prepare_execution, frozen rounds, actual manager and final writer. Periodic exclusion policy, matched diffraction/density and B09 remain open.",
+      "next_action": "With Cedar, qualify a separate active-contribution admission/buffer owner without weakening C331. Choose and prove provider-independent model-level geometry/data weighting through the existing runtime; callback-only native-N arithmetic is not enough. Then bind helper/recipe/policy lifetime across prepare_execution, isolated preflight, frozen rounds, actual manager and final writer. Keep exclusions, matched diffraction/density and B09 open.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -412,14 +413,15 @@
         "E_NATIVE_PAIR_OBSERVER",
         "E_MISSING_PAIR_ARITHMETIC",
         "E_PAIR_PROVIDER_SELECTION",
-        "E_SELECTED_PAIR_FORCES"
+        "E_SELECTED_PAIR_FORCES",
+        "E_PROVIDER_NORMALIZATION"
       ],
       "last_audit": {
         "date": "2026-11-17",
         "reviewer": "Linden",
         "code_commit": "f732f2ed4f25b703d232d390df265cf80918a843",
-        "human_update": 109,
-        "scope": "Frozen selected-term force arithmetic qualifies with exact old/full/empty and complementary controls; native harness failure retained. Active policy and ordinary refinement remain open."
+        "human_update": 110,
+        "scope": "Actual-model provider-dependent normalization demonstrated; separate active owner/lifetime contract reviewed. No production counting or active/refinement enablement."
       }
     },
     {
@@ -1845,6 +1847,24 @@
         "committed": false,
         "portable_campaign": false
       }
+    },
+    "E_PROVIDER_NORMALIZATION": {
+      "kind": "actual_model_provider_normalization_and_shared_protocol",
+      "code_commit": "f732f2ed4f25b703d232d390df265cf80918a843",
+      "human_update": 110,
+      "reference": "docs/topostitch-periodic.md#w110--provider-normalization-and-active-contribution-contract",
+      "result": "Six complete actual-manager cases preserve raw energy/forces after moving three terms from native to W109 additions, but native restraint count falls by3 and normalized target shifts0.02637/0.02667%. Native energy-only, gradient, normalization-on/off and select-all controls pass; raw gradient maxerror1.14e-13. Twelve negatives pass;59.97s Phenix2.2.1-6174 execution and independent audit. Reviewed separate active-admission/lifetime contract reuses Cedar reader and existing frozen execution; process-local callback identity/restart, buffer ownership and conditional restoration explicit.",
+      "limitation": "Native-N preservation is diagnostic, not provider-independent geometry/data weighting. Candidate complete counts are arithmetic only; no qualified counted runtime, active policy guard, automatic lifetime, exclusion change, ordinary refinement or scientific acceptance. No production change after W109. Configured-callback admission remains proposed; C331 stays callback-free. Native extension objects are not forwarded by the ordinary mmtbx manager.",
+      "local_forensic_archive": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/w110-provider-normalization-2026-11-17.tar.gz",
+        "sha256": "c32535162d6a64bedda803c613e75107f88c4e01a75af0257e3d8cd2268db438",
+        "bytes": 1404969,
+        "files": 29,
+        "payload_index_verified": true,
+        "committed": false,
+        "portable_campaign": false
+      }
     }
   },
   "benchmarks": [
@@ -1996,8 +2016,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 109,
-    "next": 110,
+    "current": 110,
+    "next": 111,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -2459,6 +2479,12 @@
       {
         "number": 109,
         "title": "Evaluate exact frozen selected pair terms with existing kernels",
+        "state": "RECORDED",
+        "code_commit": "f732f2ed4f25b703d232d390df265cf80918a843"
+      },
+      {
+        "number": 110,
+        "title": "Audit provider-dependent normalization and active contribution contract",
         "state": "RECORDED",
         "code_commit": "f732f2ed4f25b703d232d390df265cf80918a843"
       }
