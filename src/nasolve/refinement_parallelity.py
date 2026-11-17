@@ -18,6 +18,7 @@ V2_POLICY_ID = 'round-local-parallelity-execution-v2'
 V3_POLICY_ID = 'round-local-parallelity-execution-v3'
 V4_POLICY_ID = 'round-local-parallelity-execution-v4'
 POLICY_ID = V3_POLICY_ID  # Ordinary requests keep their existing default.
+ADMISSION_REFUSAL_POLICY_ID = 'preflight-admission-refusal-v1'
 # Filled from the qualified C297 checkpoint; historical readers keep these exact
 # identities even when a future policy uses different native/helper sources.
 _SOURCE_DIGESTS = {'cif_parallelity_kernel.py': '074c51faa384856f014631c72d97a14237ec3b7b6d833d405ca92aa02b507568', 'cif_parallelity_correction.py': '701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f', 'cif_refinement_runtime.py': '5b9329c988b3c07c9c3da4586ecce03c6751955fc02ccdf2f35b42088eaa2900', 'data/parallelity-native-profile.json': '5fe3c6657c78e2b85ea6bab3da68f4e79a3f91a2b1498f745be77f1080a2db28'}
@@ -280,25 +281,57 @@ def validate_preflight(run, reference, *, checkpoint):
     return _phase(run,_root(checkpoint),'preflight',request['code'],request,require_complete=True)
 
 
-def finish_execution(run, reference, *, checkpoint, preflight_returncode, refinement_returncode):
-    """Seal stopped command results; failed/partial evidence remains readable."""
+def _refusal(value):
+    """A stopped controller decision, never a native return code or permission."""
+    _need(isinstance(value,dict) and set(value)=={'stage','error'}
+          and value['stage']=='preflight_evidence'
+          and isinstance(value['error'],dict) and set(value['error'])=={'type','message'}
+          and all(isinstance(v,str) for v in value['error'].values())
+          and bool(value['error']['type']), 'Invalid preflight admission refusal')
+    return value
+
+
+def _phase_paths(run, root, phase):
+    """Inventory exact evidence even when its scientific content was refused."""
+    folder=path_in(run,root+'/'+phase);files=[]
+    if folder.exists():
+        _need(folder.is_dir(),'Native runtime phase is not a directory')
+        for p in sorted(folder.rglob('*')):
+            _need(not p.is_symlink(),'Symbolic link in runtime evidence')
+            if p.is_file():files.append(p)
+    return files
+
+
+def finish_execution(run, reference, *, checkpoint, preflight_returncode, refinement_returncode,
+                     admission_refusal=None):
+    """Seal stopped results; an explicit refusal preserves native success as zero.
+
+    Only the execution owner calls this after its subprocess has stopped. This
+    records a decision; it does not grant admission, authorize recovery or repair
+    invalid preflight contents. Historical schema-1 outcomes retain their meaning.
+    """
     from .checkpoints import _file_reference
     request=read_execution_request(run,reference,checkpoint=checkpoint);root=_root(checkpoint)
     _need(type(preflight_returncode) is int and (type(refinement_returncode) is int or refinement_returncode is None))
-    _need((refinement_returncode is None)==(preflight_returncode!=0))
+    refused=admission_refusal is not None
+    if refused:
+        _refusal(admission_refusal)
+        _need(preflight_returncode==0 and refinement_returncode is None,
+              'Admission refusal requires successful preflight and unlaunched refinement')
+    else:
+        _need((refinement_returncode is None)==(preflight_returncode!=0))
     phases=[]
     for phase,returncode in [('preflight',preflight_returncode),('refine',refinement_returncode)]:
         folder=path_in(run,root+'/'+phase)
         if returncode is None:_need(not folder.exists(),'Unrequested native refinement evidence exists')
-        else:_phase(run,root,phase,request['code'],request,require_complete=returncode==0)
-        files=[]
-        if folder.exists():
-            for p in sorted(folder.rglob('*')):
-                _need(not p.is_symlink(),'Symbolic link in runtime evidence')
-                if p.is_file():files.append(_file_reference(p,run))
-        phases.append(dict(name=phase,returncode=returncode,files=files))
+        elif not refused:_phase(run,root,phase,request['code'],request,require_complete=returncode==0)
+        phases.append(dict(name=phase,returncode=returncode,
+                           files=[_file_reference(p,run) for p in _phase_paths(run,root,phase)]))
     target=path_in(run,root+'/execution.json')
-    write_record(target,dict(schema_version=1,policy_id=request['policy_id'],checkpoint=checkpoint,request=reference,phases=phases))
+    write_record(target,dict(schema_version=2 if refused else 1,
+        policy_id=request['policy_id'],checkpoint=checkpoint,request=reference,phases=phases,
+        **(dict(outcome_policy_id=ADMISSION_REFUSAL_POLICY_ID,
+                refinement_status='NOT_LAUNCHED',admission_refusal=admission_refusal) if refused else {})))
     return _file_reference(target,run)
 
 
@@ -308,8 +341,16 @@ def validate_execution(run, reference, *, checkpoint, parent=None, usable=False)
           and reference.get('relative_path')==root+'/execution.json')
     path_in(run,reference['relative_path'])
     record=read_record(_bound_path(reference,'parallelity execution receipt',run))
-    _need(set(record)=={'schema_version','policy_id','checkpoint','request','phases','record_sha256'}
-          and type(record['schema_version']) is int and record['schema_version']==1
+    refused=record.get('schema_version')==2
+    fields={'schema_version','policy_id','checkpoint','request','phases','record_sha256'}
+    if refused:
+        fields|={'outcome_policy_id','refinement_status','admission_refusal'}
+        _need(record.get('outcome_policy_id')==ADMISSION_REFUSAL_POLICY_ID
+              and record.get('refinement_status')=='NOT_LAUNCHED',
+              'Unknown preflight admission outcome policy')
+        _refusal(record.get('admission_refusal'))
+    _need(set(record)==fields
+          and type(record['schema_version']) is int and record['schema_version'] in (1,2)
           and isinstance(record['policy_id'],str) and record['policy_id'] in _SOURCES
           and record['checkpoint']==checkpoint
           and isinstance(record['phases'],list) and len(record['phases'])==2)
@@ -327,11 +368,15 @@ def validate_execution(run, reference, *, checkpoint, parent=None, usable=False)
                   and ref['relative_path'].startswith(prefix))
             names.append(ref['relative_path']);path_in(run,ref['relative_path']);_bound_path(ref,'native parallelity observation',run)
         folder=path_in(run,root+'/'+expected)
-        current=sorted(p.relative_to(run).as_posix() for p in folder.rglob('*') if p.is_file()) if folder.exists() else []
+        current=[p.relative_to(run).as_posix() for p in _phase_paths(run,root,expected)]
         _need(names==sorted(set(names))==current,'Runtime evidence file membership differs')
         if row['returncode'] is None:_need(not folder.exists())
-        else:_phase(run,root,expected,request['code'],request,require_complete=row['returncode']==0)
-    _need(type(codes[0]) is int and ((codes[1] is None)==(codes[0]!=0)))
+        elif not refused:_phase(run,root,expected,request['code'],request,require_complete=row['returncode']==0)
+    if refused:
+        _need(type(codes[0]) is int and codes==[0,None],
+              'Refused admission cannot represent a launched refinement')
+    else:
+        _need(type(codes[0]) is int and ((codes[1] is None)==(codes[0]!=0)))
     if usable:_need(codes==[0,0],'Usable checkpoint requires both native runtime stages to complete')
     return record
 

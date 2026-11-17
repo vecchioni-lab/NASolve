@@ -1,10 +1,24 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C378 frozen phase / output failure / package qualified — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. C377 / `0aaec4bd` is pushed.
-Afternoon work window ends **17:30 UK / UTC**. No full Cedar suite requested.
+Updated **2026-11-17, C379 truthful preflight refusal — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. C378 / `fbc4ea01` is pushed.
+Evening work window ends **23:00 UK / UTC**. C379 focused validation is complete; no native jobs started. No full Cedar suite requested.
 
 ## Current checkpoint and next bounded work
+
+**C379: keep a truthful record when preflight evidence is rejected.** Existing
+AutoRefine now preserves native preflight zero and explicit unlaunched refinement
+in a separate schema-2 outcome envelope, with the original typed refusal and
+anchored raw evidence. Its checkpoint is FAILED/unusable and selection remains
+unchanged. Readers validate integrity without repairing or admitting invalid
+contents. Original schema-1/native policy meanings remain. Changed request/input
+sources still prevent publication; this is not a general failure/recovery seal.
+135 focused tests + 13 subtests pass in 39.23 s, including 78 execution tests.
+Three cold relocation controls preserve bytes/timestamps; no native or full suite.
+Exact commands are in `preflight_admission_refusal_2026_11_17` in the ledger.
+Linden's independent read-only review found no blocking issue. Positive counted
+admission and package-owned factory integration remain the next boundaries.
+
 
 **C377 complete: keep checked restraints attached through refinement.** Explicit
 `PreparedCountedRefinement` owns one source-qualified native module `driver.run`
@@ -51,9 +65,9 @@ Exact evidence: `frozen_phase_failure_and_joined_package_2026_11_17`.
 pair intent, exact source/current parent and chosen working frame before preflight.
 After validated actual preflight, explicitly seal its scope and stronger prepared
 record. Read validators never write. Refinement consumes those anchored references
-and C375/C377 without replanning. Native preflight 0 plus later admission refusal
-must stay 0 with distinct unlaunched refinement under a new outcome policy; never
-manufacture a native failure or reinterpret historical readers.
+and C375/C377 without replanning. C379 now preserves native preflight 0 plus rejected preflight evidence as a
+distinct unlaunched-refinement outcome; reuse it for later counted admission.
+Do not manufacture native failures or reinterpret historical readers.
 
 Reuse `require_runtime_continuation` and `checkpoint_candidate._lineage` before
 AutoRefine/Doctor round allocation for manual descendants; fresh compatible-parent

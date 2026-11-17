@@ -615,6 +615,12 @@ C375 prepared-state consumer and C377 cycle lifetime are explicit integration
 prerequisites,
 not additional automatically active audit boxes in this figure.
 
+If Phenix finishes the checked preflight but NASolve cannot trust its evidence,
+AutoRefine now keeps a readable failed checkpoint: “preflight finished;
+refinement was not launched.” The original files and reason remain available,
+and the previously selected model stays selected. This records the refusal;
+it does not repair the model, accept the restraints or authorize another attempt.
+
 | Audit point | What is inspected | Why it matters |
 | --- | --- | --- |
 | Before a requested Coot mutation | Exact target construction dictionaries, preserved as audit snapshots | Construction should use atom identities and connectivity that have been inspected. |

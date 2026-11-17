@@ -73,6 +73,8 @@ def completed(tmp_path,monkeypatch,*,failure=None,changed=None,bad_preflight=Fal
                         result['chemistry_model']={key:ref[key] for key in ('sha256','size')}
                     result['output_synchronization']=[row]
                 (folder/'result.json').write_text(json.dumps(result))
+            if phase=='preflight' and bad_preflight=='missing':(folder/'result.json').unlink()
+            if phase=='preflight' and bad_preflight=='malformed':(folder/'result.json').write_text('{broken evidence')
             return native_result
         return original(command,*args,**kwargs)
     monkeypatch.setattr(subprocess,'run',consume)
@@ -160,8 +162,21 @@ def test_opt_in_requires_python_before_creating_registry_or_round(tmp_path):
 
 
 def test_zero_exit_without_complete_model_preflight_cannot_start_refinement(tmp_path,monkeypatch):
-    with pytest.raises(AutoRefineError,match='preflight evidence'):
-        completed(tmp_path,monkeypatch,bad_preflight=True)
+    run,result,registry,child,receipt,commands=completed(tmp_path,monkeypatch,bad_preflight=True)
+    record=json.loads(receipt.read_text())
+    assert commands==['preflight'] and record['schema_version']==2
+    assert [phase['returncode'] for phase in record['phases']]==[0,None]
+    assert record['admission_refusal']['stage']=='preflight_evidence'
+    assert record['admission_refusal']['error']['type']=='ValueError'
+    assert child['status']=='FAILED' and child['usable'] is False
+    assert registry['current']=='postmr' and result.exit_code==2
+    assert 'not launched' in result.message and 'preflight evidence' in result.message
+    report=json.loads(result.report_path.read_text())
+    assert report['phenix_exit_code'] is None and report['preflight_exit_code']==0
+    assert report['preflight_failed'] is False
+    assert report['admission_refusal']==record['admission_refusal']
+    assert (receipt.parent/'preflight/native_001.geo').read_text()=='preflight geometry preserved'
+    assert not (receipt.parent/'refine').exists()
 
 
 def test_preflight_native_outputs_are_retained_in_the_phase_receipt(tmp_path,monkeypatch):
@@ -387,3 +402,75 @@ def test_unknown_new_runtime_policy_refuses_before_allocating(tmp_path,policy):
             command=['phenix.refine','model.pdb'],python_executable=sys.executable,
             macro_cycles=1,runtime_policy=policy)
     assert not list(tmp_path.iterdir())
+
+
+@pytest.mark.parametrize('defect',['running','missing','malformed'])
+def test_admission_refusal_relocates_and_readers_do_not_repair_evidence(tmp_path,monkeypatch,defect):
+    from nasolve import refinement_parallelity as module
+    run,result,registry,child,receipt,commands=completed(tmp_path,monkeypatch,bad_preflight=defect)
+    record=json.loads(receipt.read_text())
+    assert record['refinement_status']=='NOT_LAUNCHED'
+    assert record['outcome_policy_id']==module.ADMISSION_REFUSAL_POLICY_ID
+    old=run.parents[1];moved=tmp_path/'relocated';old.rename(moved)
+    new_run=moved/'AutoMR/run_001';assert not old.exists()
+    before={p.relative_to(new_run): (p.read_bytes(),p.stat().st_mtime_ns)
+            for p in new_run.rglob('*') if p.is_file()}
+    with patch('subprocess.Popen',side_effect=AssertionError('read only')), \
+         patch('nasolve.refinement_parallelity.write_record',side_effect=AssertionError('reader must not write')):
+        _,saved=read_registry(new_run)
+        assert resolve_checkpoint(saved,child['id'])['usable'] is False
+        with pytest.raises(ValueError):
+            module.validate_preflight(new_run,record['request'],checkpoint=child['id'])
+    assert {p.relative_to(new_run): (p.read_bytes(),p.stat().st_mtime_ns)
+            for p in new_run.rglob('*') if p.is_file()}==before
+
+
+@pytest.mark.parametrize('defect',['old_schema','unknown_schema','unknown_policy','launched',
+    'preflight_failed','refine_code','refine_folder','raw_changed','extra_raw','usable','refusal_stage'])
+def test_refused_receipt_cannot_claim_success_or_relabel_evidence(tmp_path,monkeypatch,defect):
+    run,result,registry,child,receipt,commands=completed(tmp_path,monkeypatch,bad_preflight=True)
+    record=json.loads(receipt.read_text())
+    if defect=='old_schema':
+        record['schema_version']=1
+        for key in ('outcome_policy_id','refinement_status','admission_refusal'):del record[key]
+    elif defect=='unknown_schema':record['schema_version']=3
+    elif defect=='unknown_policy':record['outcome_policy_id']='unknown'
+    elif defect=='launched':record['refinement_status']='COMPLETE'
+    elif defect=='preflight_failed':record['phases'][0]['returncode']=1
+    elif defect=='refine_code':record['phases'][1]['returncode']=0
+    elif defect=='refine_folder':(receipt.parent/'refine').mkdir()
+    elif defect=='raw_changed':(receipt.parent/'preflight/native_001.geo').write_text('changed')
+    elif defect=='extra_raw':(receipt.parent/'preflight/extra.json').write_text('{}')
+    elif defect=='usable':child['usable']=True
+    elif defect=='refusal_stage':record['admission_refusal']['stage']='refinement'
+    write_record(receipt,record,replace=True)
+    child['outputs']['parallelity_execution']=_file_reference(receipt,run)
+    (run/'AutoRefine/checkpoints.json').write_text(json.dumps(registry))
+    with patch('subprocess.Popen',side_effect=AssertionError('read only')):
+        with pytest.raises(CheckpointError):read_registry(run)
+
+
+def test_refused_receipt_is_immutable_and_cannot_hide_a_launched_phase(tmp_path,monkeypatch):
+    from nasolve.refinement_parallelity import finish_execution
+    run,result,registry,child,receipt,commands=completed(tmp_path,monkeypatch,bad_preflight=True)
+    record=json.loads(receipt.read_text());before=receipt.read_bytes()
+    arguments=dict(checkpoint=child['id'],preflight_returncode=0,refinement_returncode=None,
+                   admission_refusal=record['admission_refusal'])
+    with pytest.raises(RuntimeError,match='Cannot save'):
+        finish_execution(run,record['request'],**arguments)
+    assert receipt.read_bytes()==before
+    (receipt.parent/'refine').mkdir()
+    with pytest.raises(ValueError,match='Unrequested'):
+        finish_execution(run,record['request'],**arguments)
+    assert receipt.read_bytes()==before
+
+
+def test_refusal_preservation_failure_reports_original_cause(tmp_path,monkeypatch):
+    def cannot_save(*args,**kwargs):raise OSError('disk unavailable')
+    monkeypatch.setattr('nasolve.refinement_parallelity.finish_execution',cannot_save)
+    with pytest.raises(AutoRefineError,match='disk unavailable; original preflight admission refusal: ValueError:'):
+        completed(tmp_path,monkeypatch,bad_preflight=True)
+    root=tmp_path/'dataset/AutoMR/run_001/AutoRefine/round_001'
+    assert 'NASolve refused preflight evidence' in (root/'phenix.refine.log').read_text()
+    assert (root/'parallelity_runtime/preflight/native_001.geo').exists()
+    assert not (root/'parallelity_runtime/refine').exists()

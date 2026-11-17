@@ -101,8 +101,12 @@ Freeze the tested package-owned source set, deduplicating existing v4 members;
 never operationally import a sibling worktree or temporary candidate. Actual
 source/docs reconciliation or an explicitly packaged interface remains necessary
 before supported integration; temporary composition does not authorize a merge.
-Native preflight 0 followed by admission refusal needs its own unlaunched-refinement
-outcome under the new policy; preserve native 0 and all historical reader meanings.
+C379 now records rejected preflight evidence separately: native preflight 0,
+explicit unlaunched refinement, original typed reason, unusable checkpoint and
+unchanged selection. Its outcome schema is separate from native/runtime policies.
+Changed input/code refusals remain outside that publication scope. Positive counted
+admission still needs the request/preparation seal; do not repeat the completed
+failure-envelope work.
 Use `require_runtime_continuation`/`checkpoint_candidate._lineage` before allocation,
 including manual/Doctor children, with fresh compatible-parent rebind/preparation.
 Ordinary recipes enable automatic XYZ weights and broader phases: use an explicit

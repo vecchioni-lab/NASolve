@@ -110613,5 +110613,49 @@
       "Explicit bounded protocol before allocation and manual/Doctor lineage reuse; no silent override of ordinary automatic weight optimization or wider defaults.",
       "Q06 achieved PDU/DF chemistry and wider protocols, future catalogue/heldout closure and final regression/merge gates remain open."
     ]
+  },
+  "preflight_admission_refusal_2026_11_17": {
+    "milestone": "C379",
+    "base_commit": "fbc4ea01df5a5e623e20dd555186ce3066cb6c95",
+    "author": "Rowan",
+    "behavior_before": "Native preflight zero followed by invalid preflight evidence raised before an execution receipt/checkpoint could be published.",
+    "behavior_after": "Separate schema-2 preflight-admission-refusal-v1 outcome preserves native zero, explicit NOT_LAUNCHED refinement, original typed refusal and exact anchored raw phase files; FAILED unusable checkpoint retains previous selection.",
+    "sources": {
+      "src/nasolve/autorefine.py": "7e8eeb198c1dc375f434ad95d005d8468fd1722b41bdf825d63034674e9b2a1f",
+      "src/nasolve/refinement_parallelity.py": "d178e6157713c19517533ca8270eac774a954b01af7908b7f03b941aa765ac11",
+      "tests/test_refinement_parallelity.py": "07d521f3bd367b941a9507f7b8b1610a99ff309b1211efbe64c0f6e0ca18f19d"
+    },
+    "negative_before": {
+      "test": "tests/test_refinement_parallelity.py::test_zero_exit_without_complete_model_preflight_cannot_start_refinement",
+      "result": "1 failed in 3.17s; AutoRefineError instead of durable refusal checkpoint"
+    },
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_autorefine.py tests/test_refine_doctor.py tests/test_refinement_inputs.py tests/test_refinement_parallelity.py --tb=short",
+        "result": "135 passed, 13 subtests passed in 39.23s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_refinement_parallelity.py --tb=short",
+        "result": "78 passed in 23.08s"
+      },
+      {
+        "command": "Python ast.parse(feature_version=(3,10)) on changed Python files; git diff --check",
+        "result": "PASS"
+      }
+    ],
+    "relocation": "Three refused-evidence variants move the whole dataset and remove its original path; cold registry read preserves exact bytes/mtime and cannot invoke subprocess or write admission.",
+    "integrity": "Unknown/old relabelled schemas, unknown outcome policy, launched status, conflicting return codes, refinement directory, changed/extra raw evidence, usability and wrong refusal stage are rejected. Immutable receipt cannot be replaced. Preservation errors retain original refusal.",
+    "peer_review": {
+      "agent": "Linden",
+      "scope": "Independent read-only source review",
+      "result": "No blocking issue; historical phase inventory now also rejects symlink directories/non-directory phase paths; input/code failures remain outside refusal publication scope."
+    },
+    "compatibility": "Native/helper/default/request policies and schema-1 meaning unchanged; schema-2 refusal needs updated reader, no migration. Round report uses null phenix_exit_code, explicit preflight_exit_code 0 and separate admission_refusal only for this outcome.",
+    "exclusions": [
+      "No generated scientific artifacts or native logs committed",
+      "No native execution: existing Phenix 2.2.1-6174 helpers unchanged",
+      "No full suite",
+      "No positive counted admission, package integration, retry, Q06 scientific acceptance or branch merge"
+    ]
   }
 }

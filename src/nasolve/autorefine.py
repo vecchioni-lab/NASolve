@@ -1836,6 +1836,7 @@ def execute_autorefine(
     if progress is not None:
         progress(checkpoint_id, log_path)
     preflight_failed = False
+    admission_refusal = None
     try:
         with preflight_log.open("w", encoding="utf-8") as preflight_handle:
             preflight = subprocess.run(
@@ -1872,25 +1873,31 @@ def execute_autorefine(
                 try:
                     validate_preflight(run, parallelity_request, checkpoint=checkpoint_id)
                 except (OSError, ValueError, RuntimeError) as exc:
-                    raise AutoRefineError(f'Parallelity preflight evidence is incomplete: {exc}') from exc
-            try:
-                with log_path.open("w", encoding="utf-8") as log_handle:
-                    completed = subprocess.run(
-                        command,
-                        cwd=round_directory,
-                        env=dict(environment) if environment is not None else None,
-                        text=True,
-                        stdout=log_handle,
-                        stderr=subprocess.STDOUT,
-                        check=False,
+                    admission_refusal = dict(stage='preflight_evidence',
+                        error=dict(type=type(exc).__name__, message=str(exc)))
+                    log_path.write_text(
+                        f'Phenix preflight completed with exit status 0; refinement not launched: '
+                        f'NASolve refused preflight evidence: {exc}\n', encoding='utf-8')
+                    completed_returncode = None
+            if admission_refusal is None:
+                try:
+                    with log_path.open("w", encoding="utf-8") as log_handle:
+                        completed = subprocess.run(
+                            command,
+                            cwd=round_directory,
+                            env=dict(environment) if environment is not None else None,
+                            text=True,
+                            stdout=log_handle,
+                            stderr=subprocess.STDOUT,
+                            check=False,
+                        )
+                except OSError as exc:
+                    log_path.write_text(
+                        f"NASolve could not launch phenix.refine: {exc}\n", encoding="utf-8"
                     )
-            except OSError as exc:
-                log_path.write_text(
-                    f"NASolve could not launch phenix.refine: {exc}\n", encoding="utf-8"
-                )
-                completed_returncode = 127
-            else:
-                completed_returncode = completed.returncode
+                    completed_returncode = 127
+                else:
+                    completed_returncode = completed.returncode
     require_refinement_inputs_unchanged()
     parallelity_execution_reference = None
     if parallelity_request is not None:
@@ -1899,9 +1906,13 @@ def execute_autorefine(
             parallelity_execution_reference = finish_execution(run, parallelity_request,
                 checkpoint=checkpoint_id,
                 preflight_returncode=completed_returncode if preflight_failed else 0,
-                refinement_returncode=None if preflight_failed else completed_returncode)
+                refinement_returncode=None if preflight_failed else completed_returncode,
+                admission_refusal=admission_refusal)
         except (OSError, ValueError, RuntimeError) as exc:
-            raise AutoRefineError(f'Parallelity execution evidence is incomplete: {exc}') from exc
+            detail = ('; original preflight admission refusal: '
+                      + admission_refusal['error']['type'] + ': '
+                      + admission_refusal['error']['message']) if admission_refusal is not None else ''
+            raise AutoRefineError(f'Parallelity execution evidence is incomplete: {exc}{detail}') from exc
     log_text = log_path.read_text(encoding="utf-8", errors="replace")
     output_model = _discover_output(round_directory, "refined_*.pdb")
     model_cif = _discover_filtered_output(
@@ -2043,6 +2054,13 @@ def execute_autorefine(
         status = "AUTOREFINE_FAILED"
         message = phase_error
         checkpoint_status = "FAILED"
+        usable = False
+        exit_code = 2
+    elif admission_refusal is not None:
+        status = 'AUTOREFINE_FAILED'
+        message = ('Phenix preflight completed; refinement not launched because NASolve '
+                   'refused preflight evidence: ' + admission_refusal['error']['message'])
+        checkpoint_status = 'FAILED'
         usable = False
         exit_code = 2
     elif completed_returncode != 0 or output_model is None:
@@ -2229,6 +2247,8 @@ def execute_autorefine(
         "compatibility": compatibility,
         "phenix_exit_code": completed_returncode,
         "preflight_failed": preflight_failed,
+        **({"preflight_exit_code": 0, "admission_refusal": admission_refusal}
+           if admission_refusal is not None else {}),
     }
     report_path = round_directory / "report.json"
     _write_json(report_path, round_payload)

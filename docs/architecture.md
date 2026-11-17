@@ -4463,6 +4463,25 @@ final MTZ export retains the original native error, closes the counted owner and
 restores bindings despite partial output. These are code/lifetime qualifications,
 not a new execution policy, portable campaign or scientific acceptance.
 
+C379 adds a separate `preflight-admission-refusal-v1` outcome policy under
+execution receipt schema 2. It does not change native runtime/request policies.
+After a stopped preflight returns zero, rejected preflight evidence can be sealed
+as `[0, null]`, explicit `refinement_status=NOT_LAUNCHED` and a typed
+`admission_refusal` at `preflight_evidence`. The raw phase membership and hashes
+remain authoritative evidence of what was refused; their contents do not need to
+pass the scientific validator merely to be retained. No refinement directory may
+exist and the checkpoint cannot be usable. Readers validate this envelope without
+running native code or writing admission. Schema-1 outcomes retain their previous
+constraints; unknown schemas/policies fail closed. Phase inventory rejects symlink
+entries and non-directory phase paths, including historical reads.
+
+AutoRefine records an unusable FAILED checkpoint and preserves selection; its
+report has `phenix_exit_code=null`, `preflight_exit_code=0`, and the separate
+refusal, without claiming a native failure or authorizing retry. A failure while
+saving evidence also retains the original refusal in the raised diagnostic.
+Changed request inputs/code still prevent publication: this is preflight-evidence
+refusal recording, not a general recovery record or positive admission seal.
+
 Ordinary activation remains gated on durable preflight/request admission,
 parent lineage and explicit protocol choice. Copied native-family reports remain
 distinct from complete added-term statistics. C369 qualifies wrapper

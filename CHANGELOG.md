@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Keep a truthful record when preflight evidence is refused (C379)
+
+- Checked AutoRefine now saves an unusable failed checkpoint when Phenix returns
+  zero but NASolve rejects its preflight evidence. Record native preflight zero,
+  refinement `NOT_LAUNCHED`, and the original typed refusal separately; preserve
+  partial evidence and the previously selected checkpoint.
+- A distinct schema-2 outcome envelope retains raw files by anchored hashes even
+  when their contents are invalid. Cold reads never repair evidence or grant
+  admission. Missing, altered, added or symlinked evidence refuses; existing
+  schema-1 success/failure meanings and native helper versions stay unchanged.
+- New refusal records require the updated reader. No artifact migration, retry,
+  counted-force activation or change to scientific acceptance. Changed request
+  inputs/code still prevent publication rather than becoming a valid receipt.
+
 ### Keep checked pair restraints attached through one native cycle (C377)
 
 - Add an explicit prepared refinement lifetime around the unchanged v4 runtime:
