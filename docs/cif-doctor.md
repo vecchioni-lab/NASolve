@@ -14063,7 +14063,7 @@ context join also passes. The complete retained construction closure is 29 files
 source passes ordinary prepared-request intake and cold relocation, retaining 46
 files / 2,772,164 bytes with no new native execution. Exact commands/results and
 compatibility limits: `projected_construction_source_join_2026_11_17`. C364 retains
-source composition; pre-Coot ordinary PostMR forwarding is the next integration step.
+source composition; C366 forwards those choices through ordinary PostMR before Coot.
 
 ### Retained two-source chemical composition (C364)
 
@@ -14091,3 +14091,31 @@ Focused/installed validation, compatibility and retained evidence are recorded i
 `composed_acquisition_sources_2026_11_17`. C365 joins the chemical source to the
 qualified projection snapshot, distinct from its numerical Coot dictionary. Normal
 PostMR forwarding, automatic activation and refinement acceptance remain separate.
+
+
+### Explicit ordinary construction intake (C366)
+
+`initialize_ordinary_postmr_request(..., frozen_sources=selection,
+construction_choices={code: (projection_directory, canonical_parent)})` uses the
+existing source and canonical-input projection readers before Coot. It binds
+original chemical bytes/authority and selected consumer, then stages only checked
+closures in the existing run-local source/projection roles. Planning consumes the
+chemical source; Coot loads qualified numerical dictionaries and reloads each
+site's exact projection. Existing lineage checks original model/actions, complete
+site choices and phosphate intent; complete intake checks actual ends and links.
+
+The frozen component inventory must exactly match the planned prepared components.
+No catalogue entry or NAR pairing role is fabricated. Explicit `multiple_planes`
+passes through the existing generation configuration; absent options keep old
+behavior. Failed partial preparation is preserved and cannot be retried in place.
+No stored schema, chemistry classifier, process owner or automatic CLI activation.
+
+One actual ordinary Coot 1.3.3 mixed-end DY invocation reproduces the accepted
+model/CIF bytes, permitting exact prior Phenix 2.2.1-6174 capture replay (87 PASS,
+two unsupported formal-charge observations). Both end states and all scaffold/
+unselected atom states survive. The 46-file, 2,775,245-byte complete request reads
+cold after relocation; 149 original files/timestamps are unchanged. 190 affected
+checks pass in source and relocated installation. This is prepared-input evidence,
+not fresh ReadySet, diffraction refinement or a DY pair-pattern qualification.
+Exact commands, failed diagnostic attempt and compact receipts are in
+`ordinary_frozen_construction_intake_2026_11_17` in the existing ledger.

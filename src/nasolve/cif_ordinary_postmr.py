@@ -15,6 +15,66 @@ from .cif_prepared_bond_discovery import bond_discovery_fields
 from .phenix_runtime import PhenixInstallation
 
 
+def _read_construction_inputs(frozen_sources, choices, consumer):
+    """Bind existing source/projection owners, without inventing a stored record."""
+    from collections.abc import Mapping
+    from .cif_acquisition_sources import read_acquisition_sources
+    from .cif_acquisition_preparation import _capture
+    from .cif_dictionary_sites import read_dictionary_sites, CONSTRUCTION_POLICY_ID, _need, _read
+    from .cif_dictionary_store import _bytes
+    from .cif_repair_attempt import _root
+    if frozen_sources is None and choices is None:
+        return None
+    _need(frozen_sources is not None and isinstance(choices, Mapping) and bool(choices),
+          'Explicit construction requires frozen sources and nonempty projection/parent choices')
+    root = _root(frozen_sources); selected = read_acquisition_sources(root)
+    _need(set(choices) <= selected['sources'].keys(), 'Construction choice lacks its frozen chemical source')
+    captured = _capture(root); projected = {}
+    for code, choice in choices.items():
+        _need(isinstance(choice, (tuple, list)) and len(choice) == 2
+              and isinstance(choice[1], str), 'Construction choice requires (projection directory, canonical parent)')
+        directory = _root(choice[0]); saved = read_dictionary_sites(directory); report = saved['report']
+        _need(report['policy_id'] == CONSTRUCTION_POLICY_ID and report['component'] == code,
+              'Require the selected component canonical-input projection')
+        original = saved['snapshot']; source = selected['sources'][code]
+        _need(_read(original['source']) == _read(source['source'])
+              and original['manifest']['request']['source_authority'] == source['source_authority'],
+              'Construction projection differs from frozen source/authority')
+        _need(_bytes(report['consumer']) == _bytes(consumer), 'Construction projection has a different selected consumer')
+        projected[code] = dict(parent=choice[1], directory=directory, report=report, captured=_capture(directory))
+    _need(read_acquisition_sources(root)['report'] == selected['report'], 'Frozen source selection changed during intake')
+    return dict(selection=selected, captured=captured, choices=projected)
+
+
+def _stage_construction_inputs(inputs, run):
+    """Copy only already validated source/projection closures into existing roles."""
+    from .cif_acquisition_preparation import _freeze
+    from .cif_acquisition_sources import read_acquisition_sources
+    from .cif_dictionary_sites import read_dictionary_sites, _need, _read
+    from .cif_dictionary_store import _bytes
+    root = run/'PostMR'; source_root = root/'DictionaryEngine/sources'
+    _freeze(source_root, *inputs['captured'])
+    selected = read_acquisition_sources(source_root)
+    _need(_bytes(selected['report']) == _bytes(inputs['selection']['report']), 'Staged source selection differs')
+    projections = {}; dictionaries = {}; sites = {}
+    for code, choice in inputs['choices'].items():
+        destination = root/'Coot/construction_projections'/code
+        _freeze(destination, *choice['captured'])
+        saved = read_dictionary_sites(destination)
+        _need(_bytes(saved['report']) == _bytes(choice['report']), 'Staged construction projection differs')
+        projections[code] = destination
+        dictionaries[code] = saved['snapshot']['dictionary']
+        for site, (path, component) in saved['projections'].items():
+            _need(site not in sites and component == code, 'Overlapping construction projection sites')
+            sites[site] = path
+    names = {site: f'{i:03d}.cif' for i,site in enumerate(sorted(sites))}
+    site_root = root/'Coot/site_dictionaries'
+    _freeze(site_root, {names[site]: _read(path) for site,path in sites.items()}, [])
+    copies = {site: site_root/name for site,name in names.items()}
+    return dict(sources=selected['sources'], dictionaries=dictionaries,
+                construction_projections=projections, site_dictionary_paths=copies)
+
+
 @dataclass(frozen=True)
 class PreparedPostMRRequest:
     """Live execution arguments; the existing request owns durable evidence.
@@ -32,7 +92,8 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
         expected_dialect, coot_executable=None, data_root=None, allow_mr_review=False,
         modified_pairs_only=False, restraint_scope=None, allow_unreviewed_backbone=False,
         narestraints_builder=None, modified_pair_builder=None, generation_options=None,
-        continuation_options=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, **execution_limits) -> PreparedPostMRRequest:
+        continuation_options=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False,
+        frozen_sources=None, construction_choices=None, **execution_limits) -> PreparedPostMRRequest:
     """Prepare ordinary inputs once and publish a fresh complete request.
 
     Configuration/chemical permissions remain explicit. Existing constructors,
@@ -44,6 +105,12 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
     reads that saved choice rather than accepting a new override. Optional explicit
     bond_targets follows the same owner. Alternatively automatic_bond_targets asks
     that owner to freeze source/library-discovered choices in each fresh attempt.
+    Optional frozen_sources plus construction_choices={code: (projection, parent)}
+    reuse exact existing canonical-input projections before Coot. Source, consumer,
+    model/actions and phosphate intent must agree; no catalogue/pairing role is
+    fabricated. Original source composition and each numerical choice are retained
+    in the existing run/request owners. This route still does not execute the
+    complete request or enable automatic mutation/selection.
     """
     from .postmr import _prepare_postmr
     bond_discovery_fields(automatic_bond_targets,bond_targets)
@@ -53,22 +120,45 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
     if generation_options is not None and not isinstance(generation_options,dict):
         raise ValueError('Require explicit generation options')
     options = dict(generation_options or {})
-    allowed = {'single_block_steps','timeout_seconds','max_attempts','bond_representation_policy','source_input_policy'}
+    allowed = {'single_block_steps','timeout_seconds','max_attempts','bond_representation_policy','source_input_policy','multiple_planes'}
     if set(options)-allowed:
         raise ValueError('Unsupported ordinary generation option')
     configured = configure_dictionary_engine(phenix,expected_dialect=expected_dialect,**options)
+    construction = (None if frozen_sources is None and construction_choices is None else
+                    _read_construction_inputs(frozen_sources, construction_choices, configured.consumer))
     def initialize(inputs):
         root = inputs.run_directory/'PostMR'/'DictionaryEngine'
         sources, literal, request = [root/name for name in ('sources','literal','request')]
-        if root.exists() or root.is_symlink():raise FileExistsError(root)
-        freeze_acquisition_sources(list(inputs.components),sources,data_root=data_root,
-            ready_set_executable=configured.ready_set_executable)
+        if construction is None:
+            if root.exists() or root.is_symlink():raise FileExistsError(root)
+            freeze_acquisition_sources(list(inputs.components),sources,data_root=data_root,
+                ready_set_executable=configured.ready_set_executable)
+        else:
+            from .cif_acquisition_sources import read_acquisition_sources
+            from .cif_dictionary_sites import _need
+            from .cif_dictionary_store import _bytes
+            _need(not root.is_symlink() and {p.name for p in root.iterdir()} == {'sources'},
+                  'Unexpected preconstruction source owner members')
+            selected = read_acquisition_sources(sources)
+            _need(selected['report']['components'] == sorted(inputs.components)
+                  and _bytes(selected['report']) == _bytes(construction['selection']['report']),
+                  'Prepared components differ from the captured source selection')
         literal_inputs = None
         if inputs.supplementary_phils:
             prepare_postmr_literal_inputs(inputs.model_path,list(inputs.supplementary_phils),sources,literal,
                 data_root=data_root,ready_set_executable=configured.ready_set_executable)
             literal_inputs = literal
         components = [dict(code=code,generation=configured.generation) for code in inputs.components]
+        if construction is not None:
+            from .cif_dictionary_sites import read_dictionary_sites
+            for item in components:
+                code = item['code']
+                if code in construction['choices']:
+                    projected = inputs.run_directory/'PostMR/Coot/construction_projections'/code
+                    saved = read_dictionary_sites(projected)
+                    item['retained_snapshot'] = projected/'snapshot'
+                    if saved['report']['terminal_resource'] is not None:
+                        item['terminal_resource'] = projected/saved['report']['terminal_resource']
         record = initialize_postmr_dictionary_request(inputs.model_path,inputs.run_report,components,None,request,
             consumer=configured.consumer,ready_set_executable=None,supplementary_phils=list(inputs.supplementary_phils),
             literal_na_inputs=literal_inputs,frozen_sources=sources,construction_inputs=inputs.run_directory,
@@ -82,7 +172,8 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
         coot_executable=coot_executable,environment=phenix.environment,data_root=data_root,
         allow_mr_review=allow_mr_review,modified_pairs_only=modified_pairs_only,restraint_scope=restraint_scope,
         allow_unreviewed_backbone=allow_unreviewed_backbone,narestraints_builder=narestraints_builder,
-        modified_pair_builder=modified_pair_builder,_dictionary_handler=initialize)
+        modified_pair_builder=modified_pair_builder,_dictionary_handler=initialize,
+        **({"_construction_inputs":construction} if construction is not None else {}))
     if not isinstance(result,PreparedPostMRRequest):raise ValueError('Ordinary request boundary was not reached')
     return result
 

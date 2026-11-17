@@ -57,7 +57,7 @@ def _pin(path, root, *, source=False):
 
 def configure_dictionary_engine(installation: PhenixInstallation, *, expected_dialect: str,
         single_block_steps=180, timeout_seconds=600, max_attempts=2,
-        bond_representation_policy=None, source_input_policy=None) -> PhenixDictionaryConfiguration:
+        bond_representation_policy=None, source_input_policy=None, multiple_planes=False) -> PhenixDictionaryConfiguration:
     """Derive existing consumer/generation arguments from the selected installation.
 
     The caller supplies an already discovered installation and an explicit source
@@ -97,6 +97,9 @@ def configure_dictionary_engine(installation: PhenixInstallation, *, expected_di
         prior_sources=[pins[name] for name in SOURCE_PATHS], environment=selected.environment,
         expected_dialect=expected_dialect, phenix_version=selected.version,
         single_block_steps=single_block_steps, timeout_seconds=timeout_seconds, max_attempts=max_attempts)
+    _need(type(multiple_planes) is bool, 'multiple_planes must be a boolean')
+    if multiple_planes:
+        generation['multiple_planes'] = True
     if bond_representation_policy is not None:
         generation['bond_representation_policy'] = bond_representation_policy
     if source_input_policy is not None:

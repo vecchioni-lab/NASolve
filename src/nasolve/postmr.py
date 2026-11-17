@@ -2185,6 +2185,7 @@ def _prepare_postmr(
     narestraints_builder: Callable[[Path, Path, Path], object] | None = None,
     modified_pair_builder: Callable[[Path, Path, Path, Path], object] | None = None,
     _dictionary_handler: Callable[[_PreparedDictionaryInputs], _PostMRReturn] | None = None,
+    _construction_inputs: dict | None = None,
 ) -> PostMRResult | _PostMRReturn:
     """Prepare a completed Phaser solution without modifying the MR outputs.
 
@@ -2194,6 +2195,8 @@ def _prepare_postmr(
     existing cache adapter consumes that same installation without rediscovery.
     This does not enable the separate owned repair/adoption engine.
     """
+    if _construction_inputs is not None and _dictionary_handler is None:
+        raise PostMRPreparationError("Explicit projected construction requires the owned dictionary request")
     environment = _selected_postmr_environment(ready_set_executable, phenix_installation, environment)
     run, report = _read_report(run_directory)
     from .automr_input import validate_restraint_scope, AutoMRInputError
@@ -2240,9 +2243,14 @@ def _prepare_postmr(
     except SequenceReferenceError as exc:
         raise PostMRPreparationError(str(exc)) from exc
     # Validate opt-in frozen targets and mutation routes before creating PostMR.
+    explicit_planning = {}
+    if _construction_inputs is not None:
+        explicit_planning['construction_sources'] = {
+            code: (_construction_inputs['selection']['sources'][code]['source'], row['parent'])
+            for code, row in _construction_inputs['choices'].items()}
     family_actions = (
-        build_mutation_plan(report, source_model, run_directory=run)
-        if family is not None else None
+        build_mutation_plan(report, source_model, run_directory=run, **explicit_planning)
+        if family is not None or _construction_inputs is not None else None
     )
     postmr = run / "PostMR"
     try:
@@ -2268,14 +2276,33 @@ def _prepare_postmr(
         action.after for action in actions
         if action.method in {"coot-parent-overlap", "component-normalization"}
     })
-    ligand_specs = {code: ligand_definition(code) for code in target_ligand_codes}
+    staged = None
+    if _construction_inputs is not None:
+        replacements = {action.site: action.after for action in actions}
+        resulting_codes = {
+            replacements.get(f"{identity[0]}:{identity[1]}", identity[2])
+            for line in _coordinate_records(original)
+            if (identity := _record_identity(line)) is not None
+        }
+        required_sources = (resulting_codes & set(CURATED_LIGANDS)) | (resulting_codes & set(target_ligand_codes))
+        if set(_construction_inputs['selection']['sources']) != required_sources:
+            raise PostMRPreparationError("Frozen source selection differs from planned prepared components")
+        from .cif_ordinary_postmr import _stage_construction_inputs
+        staged = _stage_construction_inputs(_construction_inputs, run)
+    explicit_codes = set(_construction_inputs['choices']) if _construction_inputs is not None else set()
+    ligand_specs = {code: ligand_definition(code) for code in target_ligand_codes if code not in explicit_codes}
     ligand_sources: dict[str, Path] = {}
     initial_dictionary_hashes: dict[str, str] = {}
     for code in target_ligand_codes:
         try:
-            dictionary = ligand_dictionary(
-                code, data_root, ready_set_executable=ready_set_executable
-            ).resolve()
+            if staged is not None:
+                if code not in staged['sources']:
+                    raise ValueError("Construction target lacks its frozen source: " + code)
+                dictionary = staged['dictionaries'].get(code, staged['sources'][code]['source'])
+            else:
+                dictionary = ligand_dictionary(
+                    code, data_root, ready_set_executable=ready_set_executable
+                ).resolve()
             validate_ligand_dictionary(code, dictionary)
         except (KeyError, FileNotFoundError, ValueError) as exc:
             raise PostMRPreparationError(str(exc)) from exc
@@ -2346,7 +2373,8 @@ def _prepare_postmr(
     try:
         construction_start = begin_postmr_construction(run, coot_input, original,
             construction_sources, actions, allow_op3_sites=allowed_op3,
-            passthrough_sites=passthrough_sites)
+            passthrough_sites=passthrough_sites,
+            **({k:staged[k] for k in ('site_dictionary_paths','construction_projections')} if staged is not None else {}))
     except (OSError, ValueError, CampaignError) as exc:
         raise PostMRPreparationError(f"Construction dictionary/model lineage failed: {exc}") from exc
     after_coot = model_dir / "after_coot.pdb"
@@ -2355,6 +2383,7 @@ def _prepare_postmr(
         coot_executable=coot_executable, environment=environment,
         coot_directory=coot_dir, reference_model=original,
         allow_op3_sites=allowed_op3, passthrough_sites=passthrough_sites,
+        **({'site_dictionary_paths':staged['site_dictionary_paths']} if staged is not None else {}),
     )
     coot_actions = tuple(a for a in actions if a.method in {"coot-mutate-base", "coot-parent-overlap"})
     coot_log = construction["coot_log"]

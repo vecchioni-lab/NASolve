@@ -24,8 +24,9 @@ complete request; exact prior DY source and old default bytes replay unchanged.
 C365 joins the original chemical source/authority to the qualified projection source,
 with separate numerical/end-state checks. The real C363 mixed-end model and C364
 composition pass ordinary prepared-request initialization and cold readback.
-Next forward these explicit choices before Coot in normal PostMR orchestration. C357 retention
-findings remain recorded locally.
+C366 now forwards those exact choices before Coot in ordinary PostMR; actual mixed-end
+construction and cold request readback pass. Return to Q06 achieved geometry and
+the shared counted-contribution owner boundary. C357 retention findings remain local.
 
 Linden's W111 counted-contribution diagnostic supports shared Q06 integration;
 C331 remains callback-free. Review exact owner admission, callable identity, native
@@ -888,81 +889,27 @@ recorded above; finish the active Q06 chemical-survival control first.**
 
 ### DY — Packaged retained-triazole reference and mutation support
 
-**Latest C345:** combined free-OH and internal DY pass Coot construction, existing
-bundle preparation (87 PASS / two unavailable formal-charge readbacks), observed
-ReadySet and exact endpoint mechanics. ReadySet preserves heavy coordinates and
-numerics without observed builder/template calls. Cold replay passes. C344's
-explicit end-state dictionary choice remains necessary; the sanitizer does not
-remove an unwanted whole phosphate. **C346:** five actual covalent-only refinement cycles on the separately declared
-substitution scaffold retain exact DY native targets/definition and sugar signs.
-Both rings remain near planar, the junction improves, and rotation is not frozen.
-Cold exact-manager/written-model replay passes. No DY pairing or universal
-refinement claim. **C347:** actual canonical residue identity is now checked immediately after
-Coot mutation; both native refusal/success controls and109 focused/installed tests
-pass. **C348:** explicit source-bound canonical seeds now complete PDU→DT→DY and
-DY→DT→PDU through ordinary Coot, retaining sugar/phosphate and chi.142 focused and
-installed/relocated tests pass. **C349:** explicit source/template choices now pass
-through the existing constructor, with original context authority and compact cold
-replay;160 focused/installed checks and83 existing-caller checks pass. **C350:**
-held-out public PIM reaches isolated native qualification through separate
-cycle-local representation/reader-input policies; bridge stays single, all21
-native checks pass, no cross-ring plane. **C351:** exact native controls at both
-junctions confirm covalent rotation invariance (<5.6e-14), bending support and
-sampled finite-difference agreement. Initial model strain remains explicit.
-**C352:** deterministic unlaunched-timeout inspection is fixed;281 focused and281
-installed checks pass, without granting retry or plane-support authority.
-**C353:** ordinary lineage/complete-request freezing now retain exact canonical
-seed evidence; historical policies remain unchanged. Both C349 native round-trip
-closures replay after relocation. **C354:** package-bound reference intake and
-composition pass70 focused/installed cases; exact C342 source/native evidence is
-reused without regeneration. **C355:** explicit custom sources now use the same
-freezer/acquisition owner;160 focused/installed checks pass. Packaged DY reuses
-C342's exact isolated qualification without native execution. **C356:** that exact
-snapshot reproduces all 25 mixed-end C345 bundle files and the saved native/ReadySet
-result after relocation. Contradictory end states refuse. **Next:** ordinary target
-recognition and pre-Coot per-site selection, with compact derivation in existing
-lineage. The explicit freezer is complete; no separate proof owner is needed.
-APIs stay opt-in. No DY pair pattern, automatic alias or per-site selector is
-inferred. See `source_bound_canonical_roundtrip_2026_11_16`.
-See `mixed_dy_end_states_readyset_2026_11_16`; older next steps are historical.
+**Explicit ordinary construction complete through C366; automatic public mutation
+and pairing semantics remain open.** The existing packaged source, composition,
+qualified numerical snapshot and per-site end-state projections now pass through
+ordinary PostMR before Coot, then into the complete request. No duplicate owner.
 
-**Historical C343:** explicit representation reached the source-owned DNA metadata
-adapter and native equivalence. Actual internal DY Coot construction and Phenix
-site preparation give 67 PASS / one unavailable formal-charge readback; both links
-and intended phosphate state survive. 186 installed/relocated focused tests and
-cold native replay pass. C344-C356 now cover the explicit free-end, mixed-context,
-ReadySet and covalent-refinement controls. Ordinary activation is still open; the
-C356 acceptance list below owns remaining work. Earlier numbered next steps are
-historical context; the C356 acceptance list owns the current order for DY.
+| Established boundary | Evidence |
+| --- | --- |
+| Source identity, independently rotatable rings and held-out bridge | C339–C342/C350–C351; exact source/representation and native derivative controls. |
+| Free-OH/internal construction, ReadySet and covalent-only survival | C343–C346; 87 native checks/two unavailable charge readbacks for mixed ends. No DY pair claim. |
+| Modified → canonical → modified and retained seed evidence | C347–C349/C353; PDU↔DY via DT with preserved scaffold/chi. |
+| Packaged lookup, source composition and acquisition | C354–C356/C364; exact original inputs and existing native evidence retained. |
+| Explicit planning, per-site selection and derivation lineage | C358–C359/C362–C365; source and numerical CIF roles independently checked. |
+| Ordinary pre-Coot integration | C366; 190 focused and installed checks; exact mixed-end Coot model, cold complete request, preserved prior controls. |
 
-**Reference packaged; ordinary mutation open (Simon, 2026-11-16; C335-C356).**
-
-Current remaining integration, in order:
-
-1. **Planning API complete at C358:** `build_mutation_plan(construction_sources=...)`
-   accepts an explicit dictionary/parent for non-curated requested targets, checked
-   against the existing D-deoxy graph and chi frame. No fabricated NARestraints row.
-   Ordinary CLI/request forwarding and frozen source/choice lineage remain open.
-2. **Coot selection complete at C359:** explicit site dictionaries build free-OH and
-   internal DY in one constructor call, in both orders, with preserved sugar/chi/
-   neighbours and87 actual-model Phenix checks (two unsupported charge readbacks).
-   C362 closes the canonical-input projection seam: explicit input identities/end
-   states produce the same projections before mutation, with fresh Coot/native
-   readback and cold installed replay. Ordinary request forwarding remains open.
-3. Bind source composition, selected dictionaries and canonical seeds through existing
-   construction/request lineage. C353 owns canonical proof; C355 owns selected source
-   bytes; C359 now owns exact per-site dictionary choice through the same lineage and
-   cold complete requests. C362 derives projections through the existing site owner;
-   C363 binds their full derivation to construction and actual prepared-model end/link
-   context through that same request. C364 retains/rederives source composition.
-   C365 joins qualified source identity/authority through ordinary prepared intake.
-   Pre-Coot PostMR forwarding remains open; neither implies refinement acceptance.
-
-Source/native chemistry, rotatable bridge controls and saved mixed-context replay
-are already established within their recorded scope. Do not add another source,
-process or proof owner, or repeat unchanged generation to fill these integration
-seams. C356's machine-readable audit gives functions and acceptance criteria.
-The numbered original plan below is historical scope, not four new unstarted jobs.
+Remaining: deliberate automatic public selection/CLI integration, modified-input
+canonical-seed forwarding through the ordinary route, and chemically specified
+NARestraints pairing if requested. These are not supplied by a covalent-only
+control. Do not reopen completed source/projection work or regenerate identical
+numerics. Return first to Q06; see the existing methods and evidence ledger for
+exact controls, commands and historical failed attempts. C356's machine-readable
+audit is prior orientation, with these later completions superseding its queue.
 
 Laboratory **DY** means the retained **4-(1,2,4-triazol-1-yl)-pyrimidin-2-one
 beta-D-2-deoxyriboside**: direct pyrimidine C4–triazole N1T, C2=O retained,

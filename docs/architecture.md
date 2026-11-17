@@ -434,6 +434,13 @@ its numerical/site dictionaries separately. Non-projected lineage retains C196's
 exact construction/source-file equality. No new stored schema or qualification is
 introduced; source-like numerical files cannot borrow a projection's qualification.
 
+C366 forwards explicit frozen sources plus projection/canonical-parent choices
+through ordinary checked PostMR before Coot. It reuses the existing planning,
+per-site constructor, lineage and request owners, requiring exact component
+coverage and selected consumer. Source composition stays chemical evidence;
+numerical Coot choices retain separate validation. Defaults and stored schemas
+are unchanged; no alias, pairing role or automatic CLI activation is inferred.
+
 ### Dataset and symmetry discovery
 
 Dataset discovery currently accepts the usual autoPROC/STARANISO naming variants

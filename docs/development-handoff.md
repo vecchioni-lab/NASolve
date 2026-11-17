@@ -1,115 +1,73 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C365 source-to-construction join — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. C364 / `88ba9d27` is pushed.
-C365 is complete: 135 affected checks, 38 ordinary compatibility checks and
-173 installed/relocated checks pass. Real C363 construction plus C364 composition
-passes ordinary prepared-request intake and cold readback. No new Phenix/Coot run,
-full suite or merge. All Rowan jobs stopped; failed scientific attempts are preserved.
+Updated **2026-11-17, C366 complete — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. C365 / `a8f856e8` is the parent;
+C366 is being sealed. Afternoon work window ends **17:30 UK / UTC**.
 
-## Immediate work and peer boundary
+## Current checkpoint and next bounded work
 
-**Next: forward explicit source/parent/projection choices before Coot in ordinary
-PostMR.** C365 closes a concrete integration mismatch: C196's old equality check
-confused chemical acquisition source with numerical construction CIF. C363 already
-proved each actual site dictionary against its qualified projection. Its reader now
-returns that original chemical source/authority; acquisition compares those, while
-all numerical/end-state checks remain independent. Old non-projected lineage keeps
-its byte-equality rule. No new stored schema or weaker chemistry checks were needed.
+**C366 connects checked custom chemistry to ordinary PostMR before Coot.**
+Explicit frozen source composition, canonical parent and qualified per-site
+projections now pass through the existing planner, constructor and complete request.
+No new source/process/proof owner or stored schema. Exact source/authority, selected
+consumer, input model/actions, site coverage and phosphate intent remain required.
+Defaults stay unchanged; no automatic CLI/alias or fabricated NARestraints pairing.
 
-The actual mixed-end C363 DY model and C364 retained composition now enter
-`initialize_postmr_dictionary_request` and replay cold with no SDK/new process:
-46 files / 2,772,164 bytes. Original temporary copies and output location are gone;
-149 prior files/timestamps are unchanged. This is prepared-request initialization,
-not a fresh Coot/ReadySet/refinement or fabricated NARestraints pairing qualification.
+190 affected checks pass in 27.87 s; the same 190 pass from a relocated installed
+wheel in 26.08 s. One fresh Coot 1.3.3 construction reproduces the exact accepted
+mixed-end DY model and dictionaries. A:11 stays free 5′ OH; A:12 retains P/OP1/OP2
+without OP3; all scaffold and unselected atom states remain exact. Prior exact
+Phenix 2.2.1-6174 captures replay: 87 PASS/two unsupported charge readbacks.
+This is ordinary prepared-request intake, not a new ReadySet/refinement claim.
+Cold relocated request readback passes: 46 files / 2,775,245 bytes. Original input
+controls (149 files/timestamps) are unchanged. No full suite or merge.
 
-Prior-work orientation for the next bounded integration:
-- C354/C364 retain exact packaged-base/backbone composition through source selection.
-- C358 plans explicit source/temporary-parent mutations; C359 reloads exact per-site
-  Coot dictionaries; C362 derives those projections from canonical model/end intent.
-- C363/C365 bind original model, selected CIFs, qualified source and actual prepared
-  ends through existing construction and complete-request owners. Reuse these APIs.
-- `_prepare_postmr` still calls catalogue-only planning and `ligand_definition`/
-  `ligand_dictionary`; it does not forward explicit source/parent/projection choices.
-  `initialize_ordinary_postmr_request` currently rediscovers sources after Coot.
-- Forward a complete explicitly frozen selection and checked per-component projection
-  choices, preserving exact input model, component/site coverage, selected consumer,
-  source authority and phosphate intent. Copy only declared closures into existing
-  run-local roles before sealing. Never add a NAR pairing row to bypass lookup.
-- The selected-Phenix configuration currently omits the existing `multiple_planes`
-  recipe option used by DY. Carry that explicit option if this route needs it; do
-  not silently regenerate using a different recipe or change old default bytes.
-- Prove one fresh ordinary mixed-end construction/prepared request, compare its exact
-  model/dictionaries to the accepted controls, then cold readback. Full frame pairing,
-  automatic CLI activation and modified-input canonical seeding need separate scope.
+Accepted local root: `366_Cedar_ordinary-construction-4haw5l83` under
+`NASolve-live-tests`. Earlier `366_Cedar_ordinary-construction-pjbytmsc` is preserved:
+the diagnostic wrapper omitted its default timeout before Coot launched. Its driver
+is verified stopped. The corrected fresh attempt and every native child are stopped;
+source pins are unchanged. Owned successful package/cold-copy scratch was removed.
+Exact commands, compact receipts and limits: `ordinary_frozen_construction_intake_2026_11_17`
+in the existing evidence ledger. Raw models/CIFs/native logs remain local.
 
-After the bounded DY integration, return to Q06 achieved refinement geometry and
-Linden's queued native owner/lifetime contract. No target/sigma change, new process
-owner, automatic adoption or Q06 closure is implied by successful preparation.
+**Next: Q06 — make refinement preserve intended chemistry.** Review Linden's W112
+counted-contribution owner proposal before implementing the shared lifetime boundary.
+C331 stays callback-free; frozen restoration and C338 observers stay unchanged.
+W111 arithmetic is already qualified within its diagnostic scope: do not rerun it
+as a substitute for owner admission, actual buffer provenance and cleanup tests.
+Read the current W112 follow-on proposal in Linden's existing periodic contract;
+coordinate a precise non-overlapping scope before peer code work. No Cedar edits
+have been delegated. Linden's hierarchy/force observations are preparation/recovery
+checks: minimizer hierarchy positions may legitimately lag actual scattering sites.
+Active evaluation must bind actual force coordinates, never synchronize the model.
 
-**DF diagnostic complete; production restoration remains open.** C361 uses Hazel's
-separately prepared canonical parent, with its recorded D:1 terminal-phosphate
-operation intentionally moved before fresh Coot. Source-declared DNA metadata
-passes existing native equivalence against the exact saved isolated model/PHIL.
-C360 padding proof and the unchanged sanitizer independently authorize only A:12
-OP3 removal. Existing whole-base transport preserves all 11 scaffold coordinates
-and 838 other atom states; C1′–N1 is 1.49958 Å instead of curated placement's
-1.60172 Å. The independent full construction audit passes, including final phosphate
-checks. This is construction evidence, not linked/refinement acceptance.
+Hazel is isolating DF's competing forces using actual selected refinement weights,
+complete family/count/gradient closure and a matched endpoint. Geometry and direct
+structure-factor controls distinguish an FFT finite-difference limitation; no
+relaxed tolerance, restraint tuning or production adoption follows. Await the exact
+actual-weight result and source-bound receipt before updating chemical conclusions.
 
-Hazel completed the matched linked/recipe-preflight and five-cycle comparison using
-coordinate-only intake with B/Q, Hg and outside-site states preserved. Declared links,
-source and custom restraints survive, but C1′–N1 stretches again to 1.66244 Å
-(and N1–C2 also worsens). Construction is not sufficient under the diffraction
-objective. Do not adopt the endpoint or tighten sigmas ad hoc. Hazel's pushed Alder note is `47e7b333`; the C363 ledger binds the exact compact
-review/preflight/refinement receipts. C361 construction evidence remains valid.
-Serialized C1′–N1 is 1.662146 Å; the native full-precision endpoint is 1.662440 Å. Historical curated sulfur/iodine
-placements may repair bad raw substituents, so blindly switching every curated
-residue to whole-base transport is not justified. Reuse C17/C62's frozen primitive;
-a general production selection rule remains a specific Q06 follow-up.
+The [completion queue](cif-doctor-completion-queue.md#pipeline-position) is the sole
+unfinished-work order. Q04/Q05 remain complete for the supported explicit route;
+Q06 remains open, then Q07 combined/held-out chemistry and Q08–Q16 retained goals.
 
-Linden's W111 local counted-extension control reconciles native/subset restraint
-counts and forces through the actual model manager. It remains an unqualified
-local facade, deliberately refused by C331. Preserve both hierarchy Cartesian and
-scattering fractional coordinates in any later owner contract. No active callback
-admission, altered weights or lifecycle approval is implied; shared owner work is
-queued separately and Cedar's C331 remains unchanged.
+## DY integration boundary
 
-## Current result and next bounded task
+C354/C364 own package/backbone composition; C358 plans explicit source/parent
+mutations; C359 selects exact site dictionaries; C362 derives them from canonical
+input/end intent; C363/C365 bind derivation, original chemical source and actual
+prepared-model context. C366 now joins those parts in ordinary PostMR. Reuse them.
+Modified-input canonical seeds have separate C348/C349/C353 proof; forwarding that
+choice through this new ordinary route, automatic public selection and real DY
+pairing semantics still require explicit scope. A covalent control cannot invent
+NARestraints relationships or general modified-sugar support.
 
-**DY is an explicit, tested chemical source; ordinary automatic mutation is still
-open.** Installed package lookup, source composition and explicit source freezing
-now feed the existing acquisition owner. C355 reuses C342's exact isolated native
-qualification without its SDK. C356 reproduces all 25 files of C345's mixed
-free-OH/internal DY bundle and the exact saved ReadySet/native result after
-relocation: 87 PASS, two unsupported formal-charge readbacks. Selection remains
-`readyset_checked_model` for a diagnostic phase, not automatic adoption.
-
-The [DY task](cif-doctor-completion-queue.md#dy--packaged-retained-triazole-reference-and-mutation-support)
-has three remaining integration steps:
-
-1. **Explicit planning now works (C358).** A chosen chemical source and canonical
-   parent pass existing DNA graph/chi-frame and explicit D-deoxy stereo checks.
-   Ordinary request forwarding remains open; no pairing record or Y/YTR alias.
-2. **One mixed-end Coot request now works (C359/C362/C363).** Explicit site dictionaries build
-   both DY sites in either order with exact scaffold/neighbours and chi <0.014degrees.
-   Phenix passes87 checks/two unsupported charge readbacks. C362 now derives the
-   projections from canonical input and C363 retains that exact derivation.
-3. **Carry the source and choice through existing lineage.** Bind composition inputs
-   and selected dictionaries through the existing construction/request owners;
-   C364 completes composition retention; C365 completes the qualified source join.
-   Ordinary pre-Coot forwarding above is next.
-   C353 retains canonical seed proof; C355/C364 own frozen source bytes/composition; C359 carries
-   exact site dictionaries through existing lineage and complete requests.
-   Verify installed, relocated readback without original paths. Do not add another
-   source, process or proof owner.
-
-Reuse completed controls instead of regenerating unchanged dictionaries. C356's
-machine-readable audit names the existing functions and acceptance criteria.
-After this bounded integration, return to **Q06 achieved refinement geometry**,
-then Q07's combined and unfamiliar-ligand challenges. The
-[completion queue](cif-doctor-completion-queue.md#pipeline-position) is the sole
-unfinished-work order. A readable CIF or passing derivative check does not close Q06.
+**DF construction improves but refinement still stretches it.** C361's existing
+whole-base transport preserves the exact 11-atom scaffold and 838 other atom states,
+with C1′–N1 1.49958 Å rather than curated placement's 1.60172 Å. Hazel's matched five
+cycles retain all declared links/restraints but stretch it to 1.662440 Å at native
+precision (serialized 1.662146 Å). Alder `47e7b333` and C363's ledger bind that result.
+Do not adopt the endpoint or blindly replace curated sulfur/iodine protections.
 
 ## Scientific findings and preserved evidence
 
@@ -148,6 +106,7 @@ unfinished-work order. A readable CIF or passing derivative check does not close
 
 Exact controls, commands, hashes and limitations are in the
 [evidence ledger](cif-linked-native-registration-evidence.json). Start with
+`ordinary_frozen_construction_intake_2026_11_17`,
 `projected_construction_source_join_2026_11_17`,
 `composed_acquisition_sources_2026_11_17`,
 `construction_projection_lineage_2026_11_17`,
@@ -166,6 +125,9 @@ Exact controls, commands, hashes and limitations are in the
 blob/checksum and offline retrieval. Historical next steps are not current instructions.
 
 ## Validation and limits
+
+- C366: **190 focused / 27.87 s; 190 installed/relocated / 26.08 s**.
+  13 new cases; actual ordinary Coot construction and cold request readback pass.
 
 - C365: **135 focused / 100.82s; 38 ordinary compatibility / 8.49s;
   173 installed/relocated**. Six new source-join cases fail before the correction.
@@ -208,10 +170,8 @@ Linden owns Pine/Willow; Hazel owns Alder/metal coordination. Signed coordinatio
 is authorized; their separate successes are not a combined Cedar qualification.
 The [shared guard contract](architecture.md#live-nonbonded-policy-guard-c331) remains
 explicit and unactivated by documentation. Read each branch's current handoff
-before touching shared interfaces; do not edit another agent's worktree. Linden's
-W109 proposal remains gated on active callback ownership, buffers and actual model
-normalization/counts; C331 stays idle. Hazel's DF rebuild control must distinguish
-base reconstruction from repairing an already strained glycosidic anchor/sugar.
+before touching shared interfaces; do not edit another agent's worktree. Linden's W112 follow-on proposal remains gated on active ownership, native buffers
+and exact lifetime; C331 stays idle. Hazel owns the DF competing-force diagnostic.
 
 Keep scientific data, native logs, SDK snapshots, local inventories and runners
 outside Git. Use the ignored everyday `branch-artifacts/cedar/` for local receipts

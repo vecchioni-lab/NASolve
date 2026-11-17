@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Carry explicit custom chemistry through ordinary Coot preparation (C366)
+
+- Ordinary checked PostMR accepts frozen sources and qualified per-component
+  projection/parent choices before Coot. Existing planning, per-site selection,
+  source composition and request lineage retain their independent validations.
+- Reject mismatched source/component/site/model/consumer/phosphate choices before
+  construction. Preserve partial outputs and refuse in-place retries. Explicit
+  multiple-plane recipe selection is forwarded; default behavior is unchanged.
+- The mixed-end DY control passes actual Coot and relocated request readback.
+  No automatic alias, pairing rule, ReadySet execution or refinement approval.
+
 ### Distinguish chemical sources from construction restraints (C365)
 
 - Projected construction now joins the selected acquisition source to the original
