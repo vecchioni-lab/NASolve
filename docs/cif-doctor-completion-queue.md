@@ -72,7 +72,9 @@ proof they never captured; v6 continuation cannot drop its stronger proof.
 `execute_autorefine`, its parameter writer, C278 input adapter and checkpoint owner.
 The interface audit identifies these concrete joins:
 
-1. Request the qualified protocol explicitly; reject incompatible caller settings.
+1. Request v6 and the qualified protocol explicitly; reject incompatible caller settings.
+   Continuing an old v5 parent retains v5 proof. A v5→v6 transition needs an explicit
+   fresh request/admission with the same original intent; do not relabel old evidence.
    Ordinary five-cycle/automatic-weight defaults remain unchanged. Native resolved
    preflight, not command spelling alone, decides admission; the current command's
    `target=auto` must not override an explicitly qualified ML protocol.
@@ -274,7 +276,7 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Complete for recorded alternatives, selected-model phasing, Coot, cold inspection and the ordinary five-cycle refinement handoff. Actual chemical survival/effective restraint behavior is Q06; no default activation or historical migration. |
-| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | C278 supplies one actual 5IU refinement control. Still qualify effective plane/parallelity membership and derivatives, targets and achieved geometry; include PDU surviving refinement and a related held-out substituent. Numerical acceptance or a readable dictionary alone is insufficient. |
+| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C385 add bounded pair-force continuity and exact native-written-model proof. Still connect that counted route to ordinary refinement and resolve achieved PDU/DF geometry plus held-out survival. Mechanics or a readable dictionary alone is insufficient. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |
@@ -286,7 +288,7 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 | **Q15 — tell the scientist what happened** | Explain what was repaired or retained, what remains uncertain and exactly what to inspect. | Refresh the ordinary result report and user PDF after the behavior is integrated. |
 | **Q16 — finish the branch cleanly** | Finish with the AutoPhase naming/compatibility change, then check Cedar as part of NASolve and review integration into pine/main. | Preserve Phenix AutoSol calls and old runs; follow the [machine-readable rename audit](autophase-rename-plan.json), then full regression, representative native/relocation/platform checks, honest release scope and reviewed artifact cleanup. No automatic merge is authorized. |
 
-**Current PDU gate (C304):** explicit fresh attempt 2 now completes under the
+**Historical PDU survival baseline (C304; later C329/C338 evidence below):** explicit fresh attempt 2 now completes under the
 unchanged allowance, publishes and finishes five ordinary refinement cycles.
 Moved cold readback passes; all 45 planes and 58 parallelity groups retain native
 membership/weights. No chi flip occurs. However, propyne angles become 174.65° and
@@ -922,7 +924,8 @@ that an earlier Cedar-built PDU sent to a collaborator looked well formed before
 refinement but distorted afterward. The exact files, Cedar revision, native
 version, settings and before/after coordinates are not yet identified; this is a
 reported downstream failure, not a diagnosed mechanism. Keep it in Q06, then
-reuse the control in Q07; it does not interrupt the current Q04/Q05 handoff work.
+reuse the control in Q07. Q04/Q05 handoff is already complete for its supported route;
+this downstream chemistry question does not reopen it.
 
 Run the actual supported Phenix refinement with the selected complete bundle.
 Compare the built model, ReadySet output and final refined model: ring geometry,
@@ -958,8 +961,8 @@ nonconvergence, residual strain and scientific uncertainty separately. A one-off
 runner that chooses its repair from an ATL/PDU name does not satisfy this package.
 
 **Queued closure challenge — held-out mixed modifications (Simon, 2026-11-03):**
-After the current Q04 checkpoint, add a separate builder generalization control
-before the proposed Cedar integration with main. Mutate **eight residues** into
+After the qualified Q06 consumer is available, add a separate builder generalization
+control before the proposed Cedar integration with main. Mutate **eight residues** into
 Watson–Crick pairs spanning different base and sugar modifications, including an
 LNA:RNA combination and a source-supported PNA combination where its declared
 backbone context is compatible. Prefer catalogue ligands not explicitly repaired

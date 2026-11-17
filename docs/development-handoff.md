@@ -65,7 +65,9 @@ acceptance or source-chemistry policy changes follow.
 
 Next: connect this explicit supported protocol to the existing ordinary refinement
 owner without bypassing its terminal-phosphate, chemistry-projection, process or publication rules; C383 now joins the existing input adapter. First map that interface; do not invent another
-executor or override ordinary automatic weighting to force qualification. Q06
+executor or override ordinary automatic weighting to force qualification. New ordinary
+counted publication should explicitly request v6; an inherited v5 parent needs a
+fresh explicit v6 request/admission, never a retrospective proof upgrade. Q06
 achieved chemistry remains open. The prior W119 stopped boundary is not repeated.
 
 Science checkout policy is now [documented](collaboration.md#small-science-checkouts):
@@ -73,7 +75,7 @@ sibling `ScienceCheckouts/AGENT/`, few visual files, exact evidence links, no ra
 publication. Rowan's checkout summarizes continuity; Linden supplies pair visuals;
 Hazel's separate normalization diagnostic remains explicitly unadopted.
 Rowan's local three-file checkout is `ScienceCheckouts/Rowan/2026-11-17/review.html`
-under the sibling GitHub root (190,865 bytes); it links both peer checkouts. Its
+under the sibling GitHub root (197,552 bytes); it links both peer checkouts. Its
 geometry improvement and slightly worse R factors are displayed together.
 
 **C381 complete: save, check and consume the same intended pair restraints.**
@@ -110,6 +112,11 @@ record 67,216 bytes compressed, byte-exact temporary expansion, durable archive
 before transient raw retirement. No duplicate permanent prepared JSON. Failed
 partial outputs and original scientific inputs remain. C376/C378 retention proof
 remains historical; do not re-create duplicate storage systems or delete by age.
+At checkout, six obsolete C381–C384 software/test copies were restored exactly from
+verified local wheel/test archives before retirement. Measured footprint fell from
+44,984,499 to 11,138,312 bytes, including retained manifests (33,846,187 bytes saved).
+Scientific roots, failed attempts, the current C385 package and peer work stay intact.
+The local retention index resolves each wheel/test closure; no native replay is needed.
 
 **Foundations already qualified; reuse them.** C368 owns count/normalization and
 native lifecycle; C370 binds the declared working crystal frame; C371/C375 prepare

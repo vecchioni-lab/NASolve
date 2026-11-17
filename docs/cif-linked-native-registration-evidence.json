@@ -111989,7 +111989,104 @@
       "historical_source_payload_bytes": 24485,
       "negative_copy_retired_bytes": 7378712,
       "original_control_preserved": true,
-      "committed": "Code/tests/docs/compact evidence only; no models, diffraction inputs, native logs, or runners."
+      "committed": "Code/tests/docs/compact evidence only; no models, diffraction inputs, native logs, or runners.",
+      "software_retirement": {
+        "status": "EXACT_OWNED_SOFTWARE_RETIREMENT_COMPLETE",
+        "cases": 6,
+        "retired_bytes": 44771813,
+        "archive_bytes": 10211653,
+        "archives": [
+          {
+            "original_root": "/private/tmp/c381-package-tigt_2tk",
+            "archive": {
+              "anchor": "NASolve-local-artifacts",
+              "relative_path": "retained-software-2026-11-17/c381-package-tigt_2tk.tar.gz",
+              "sha256": "f689246de9defb695f3326af6661d357b727185be4b80709f5b24d10038c3010",
+              "size": 1681389
+            },
+            "retired_bytes": 7352534,
+            "wheel_member": "software/wheel/nasolve-0.1.0-py3-none-any.whl",
+            "wheel_sha256": "ed023b9c062674ed4255cb3331f0c766939d2bf2eea2c4148795619b7886d602",
+            "installed_files": 303,
+            "exact_restoration_verified": true
+          },
+          {
+            "original_root": "/private/tmp/c381-package-m_qmoq8t",
+            "archive": {
+              "anchor": "NASolve-local-artifacts",
+              "relative_path": "retained-software-2026-11-17/c381-package-m_qmoq8t.tar.gz",
+              "sha256": "108fa8e9cfccd62c769732b7ec10ec6ea15b5ee2a44399349a37f1dd4257d68d",
+              "size": 1725077
+            },
+            "retired_bytes": 7583282,
+            "wheel_member": "software/wheel/nasolve-0.1.0-py3-none-any.whl",
+            "wheel_sha256": "e81ffddb20c72a4a25ba0547601fe2429e641921bda978a14998e5d7b0f6f8ee",
+            "installed_files": 303,
+            "exact_restoration_verified": true
+          },
+          {
+            "original_root": "/private/tmp/c382-package-3wmlm6bt",
+            "archive": {
+              "anchor": "NASolve-local-artifacts",
+              "relative_path": "retained-software-2026-11-17/c382-package-3wmlm6bt.tar.gz",
+              "sha256": "fb81e71e0079827ddc439cc0f70ebd5703a9209583a78b1e7c5d41d772bb9ee2",
+              "size": 1728000
+            },
+            "retired_bytes": 7597891,
+            "wheel_member": "software/wheel/nasolve-0.1.0-py3-none-any.whl",
+            "wheel_sha256": "112761efcdfbab6753443076e875c66d421332f18039575ba2956c4975f4bc72",
+            "installed_files": 303,
+            "exact_restoration_verified": true
+          },
+          {
+            "original_root": "/private/tmp/c382-package-_kbjv52o",
+            "archive": {
+              "anchor": "NASolve-local-artifacts",
+              "relative_path": "retained-software-2026-11-17/c382-package-_kbjv52o.tar.gz",
+              "sha256": "0dfa326b6145e9db2d4edd5dd3468b531154fe20f245949b1776b39f48668aaf",
+              "size": 1728019
+            },
+            "retired_bytes": 7598643,
+            "wheel_member": "software/wheel/nasolve-0.1.0-py3-none-any.whl",
+            "wheel_sha256": "b208105fa2492af571f2e08901af8f4abd2870d77fc1171c77995344fabcaa12",
+            "installed_files": 303,
+            "exact_restoration_verified": true
+          },
+          {
+            "original_root": "/private/tmp/c383-package-fin1wkbr",
+            "archive": {
+              "anchor": "NASolve-local-artifacts",
+              "relative_path": "retained-software-2026-11-17/c383-package-fin1wkbr.tar.gz",
+              "sha256": "e555c8b2dd5b5a0315caf0d6e30cdbd6e970c05d37cf793a394340349aba1627",
+              "size": 1670554
+            },
+            "retired_bytes": 7298975,
+            "wheel_member": "software/wheel/nasolve-0.1.0-py3-none-any.whl",
+            "wheel_sha256": "810ad0dd99a56211950f0ac3f2d9dba1662e06b59f4212b8a7ae10fd96f9e85a",
+            "installed_files": 303,
+            "exact_restoration_verified": true
+          },
+          {
+            "original_root": "/private/tmp/c384-package-ot7f2m5l",
+            "archive": {
+              "anchor": "NASolve-local-artifacts",
+              "relative_path": "retained-software-2026-11-17/c384-package-ot7f2m5l.tar.gz",
+              "sha256": "0c88c6c14103d58db348afd119b0b4c2bec1804e7200d2a64db4d38ca213b61e",
+              "size": 1678614
+            },
+            "retired_bytes": 7340488,
+            "wheel_member": "software/wheel/nasolve-0.1.0-py3-none-any.whl",
+            "wheel_sha256": "11ca6e6db54959531ab57fd4db19858e3bb680b4930f6f78cca0873f59e2c735",
+            "installed_files": 303,
+            "exact_restoration_verified": true
+          }
+        ],
+        "excluded": "All scientific input/run/failure roots, current C385 candidate, unrelated files and peer worktrees untouched.",
+        "payload_reduction_before_retention_manifests": 34560160,
+        "before_bytes": 44984499,
+        "after_bytes": 11138312,
+        "net_reduction_bytes": 33846187
+      }
     },
     "compatibility": "New explicit v6 requires updated readers. Historical v3/v4/v5 payload bytes and their narrower proof remain unchanged; no migration or implicit upgrade. Continuation keeps its inherited v5/v6 policy.",
     "limitations": [
@@ -111997,6 +112094,22 @@
       "Fixed one-cycle unit-weight protocol remains bounded; ordinary AutoRefine/Doctor, terminal-protection additions and chemistry-projection combination remain separate.",
       "PDU/DF achieved geometry and Q06 closure remain REVIEW.",
       "No force, weight, threshold, chemical source, OP3 or Free-R policy change."
-    ]
+    ],
+    "science_checkout": {
+      "anchor": "GitHub-sibling",
+      "path": "ScienceCheckouts/Rowan/2026-11-17/review.html",
+      "files": 3,
+      "total_bytes": 197552,
+      "local_links_verified": 10,
+      "figure_visually_checked": true,
+      "raw_scientific_upload": false
+    },
+    "next_owner_contract": "Request v6 explicitly for new ordinary counted publication. Existing continuation inherits v5 or v6; v5 parent evidence is not upgraded, and a fresh explicit v6 request/admission must retain original intent.",
+    "independent_review": {
+      "agent": "Linden",
+      "scope": "Read-only source review, 299 installed-source files, exact wheel/test log, 64 native-root and 117 historical C382 files, full PDB/output-state/owner equality, production wrong-model rejection without registry mutation.",
+      "audit_sha256": "3254d275bf5e5e7d1fc44ea88012a85a71909d477c8c3f2c748e377645e8c717",
+      "native_rerun": false
+    }
   }
 }
