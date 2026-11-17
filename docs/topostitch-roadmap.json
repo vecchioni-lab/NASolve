@@ -4,7 +4,7 @@
   "updated": "2026-11-17",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "f732f2ed4f25b703d232d390df265cf80918a843",
+  "audited_code_commit": "9c4529080e3558e2c0d0f8a98e0c934e38db554d",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -315,7 +315,8 @@
         "W97 carries the C331 guard/profile through explicit captured diagnostics, preserves fresh baseline/provenance and verifies success evidence. Source and installed/relocated read-only public-DNA controls agree exactly; no scientific acceptance or default activation.",
         "W98 qualifies explicit captured starts and installed guarded paired-step trials/endpoint observations. Matched 25/300-iteration controls pass full/rounded derivatives but retain NOT_CONVERGED_LIMIT; original-source tether bias, contact/packing trade-offs and interrupted full-window evidence remain explicit. No full-window or density repair claim.",
         "W99 completes matched installed full-window controls and common native observers: all numerical/binding checks pass, but both remain iteration-limited and reference-biased. Selected/core pair improvements coexist with individual packing/torsion regressions and rounding sensitivity; no scientific gate closes.",
-        "W100 removes the pristine-reference tether from displaced workers. All three full-window controls and common observers pass numerical/binding checks but remain iteration-limited. Pair forces improve both selected and four movable core pairs; without them pair targets worsen despite lower native energy. Affected bond/angle screens and chiral signs pass, while healthy drift and individual packing/torsion tradeoffs prevent physical acceptance."
+        "W100 removes the pristine-reference tether from displaced workers. All three full-window controls and common observers pass numerical/binding checks but remain iteration-limited. Pair forces improve both selected and four movable core pairs; without them pair targets worsen despite lower native energy. Affected bond/angle screens and chiral signs pass, while healthy drift and individual packing/torsion tradeoffs prevent physical acceptance.",
+        "W112 optionally binds both hierarchy and scattering state through existing Cedar readers; exact roundtrip and default-observer preservation controls pass. Active admission and ordinary lifecycle remain separate."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
@@ -360,14 +361,15 @@
         "E_CAPTURED_DIAGNOSTIC_START",
         "E_FULL_WINDOW_NATIVE_CONTROL",
         "E_C338_INSTALLED_COMPOSITION",
-        "E_SOURCE_DISPLACED_NATIVE"
+        "E_SOURCE_DISPLACED_NATIVE",
+        "E_DUAL_NATIVE_STATE"
       ],
       "last_audit": {
-        "date": "2026-11-16",
+        "date": "2026-11-17",
+        "code_commit": "9c4529080e3558e2c0d0f8a98e0c934e38db554d",
+        "human_update": 112,
         "reviewer": "Linden",
-        "code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4",
-        "human_update": 100,
-        "scope": "Complete W100 native controls, common observers, verified archive and five inspection exports audited. Numerical diagnostic qualifies; geometry/packing tradeoffs, nonconvergence, density and physical repair gates remain open."
+        "scope": "Dual-state observation qualified; no active contribution, ordinary refinement or scientific closure. Milestone remains PARTIAL."
       }
     },
     {
@@ -392,7 +394,8 @@
         "W108 selects native/additive providers term by term from frozen complete declarations, including partially covered individual pairs; exact-image/parameter matching and duplicate/conflict/stale refusals reuse the existing coverage owner. Native source and installed controls pass; force evaluation and lifecycle remain separate.",
         "W109 evaluates exact frozen selected terms through the existing complete compiler and shared kernels, rechecking live proxies and bindings even for an empty subset. Installed/full tests and native complement/derivative controls pass; no callback or ordinary refinement activation.",
         "W110 proves actual model-level normalization depends on provider placement even when raw force coverage is identical. Six full/partial/select-all cases retain the effect and source/exclusion evidence. Active-guard owner contract is reviewed but unimplemented; provider-independent production weighting is an explicit gate.",
-        "W111 local native energies_add contribution restores provider-independent normalized actual-model targets/forces for complete and partial canonical pairs, with select-all and derivative controls. C331 deliberately refuses the local method facade. Exact restoration requires original hierarchy and fractional scattering coordinates; no production adapter is installed."
+        "W111 local native energies_add contribution restores provider-independent normalized actual-model targets/forces for complete and partial canonical pairs, with select-all and derivative controls. C331 deliberately refuses the local method facade. Exact restoration requires original hierarchy and fractional scattering coordinates; no production adapter is installed.",
+        "W112 optionally binds both hierarchy and scattering state through existing Cedar readers; exact roundtrip and default-observer preservation controls pass. Active admission and ordinary lifecycle remain separate."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -416,14 +419,15 @@
         "E_PAIR_PROVIDER_SELECTION",
         "E_SELECTED_PAIR_FORCES",
         "E_PROVIDER_NORMALIZATION",
-        "E_COUNTED_CONTRIBUTION"
+        "E_COUNTED_CONTRIBUTION",
+        "E_DUAL_NATIVE_STATE"
       ],
       "last_audit": {
         "date": "2026-11-17",
+        "code_commit": "9c4529080e3558e2c0d0f8a98e0c934e38db554d",
+        "human_update": 112,
         "reviewer": "Linden",
-        "code_commit": "f732f2ed4f25b703d232d390df265cf80918a843",
-        "human_update": 111,
-        "scope": "Bounded actual-model counted-contribution arithmetic and exact dual-coordinate restoration qualify; active owner/frozen lifecycle and scientific refinement do not."
+        "scope": "Dual-state observation qualified; no active contribution, ordinary refinement or scientific closure. Milestone remains PARTIAL."
       }
     },
     {
@@ -1885,6 +1889,24 @@
         "committed": false,
         "portable_campaign": false
       }
+    },
+    "E_DUAL_NATIVE_STATE": {
+      "kind": "opt_in_dual_native_state_observation",
+      "code_commit": "9c4529080e3558e2c0d0f8a98e0c934e38db554d",
+      "human_update": 112,
+      "reference": "docs/topostitch-periodic.md#w112--bind-both-hierarchy-and-scattering-coordinates",
+      "result": "Opt-in v2 reuses Cedar output readers and separately hashes hierarchy, scattering, original fractional and force coordinates.17 fail-before regressions;105 focused,1981 full+229 subtests,274 installed checks pass with relocated sdist/wheel,six helps,pip check,lean import and Python3.10 syntax. Six native cases and12 negatives pass in53.46s Phenix2.2.1-6174 complete execution. Four no-motion roundtrips alter scattering fingerprints while legacy v1 stays exact; dual restoration and native target/gradient/count preservation verified.",
+      "limitation": "Read-only callback-free observation, not active owner or lifetime authority. No setters, ADP synchronization, force activation, exclusion or refinement change. Caller authenticates source/helper and single-owner access; double-read does not establish concurrency safety. Existing v1 result remains default; v2 requires explicit state owner/source digest.",
+      "local_forensic_archive": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/w112-dual-state-2026-11-17.tar.gz",
+        "sha256": "8a74d9841fbffff40bd9fb5be648723ec473a2e2486a5a3e48f8636138da65d6",
+        "bytes": 1464929,
+        "files": 28,
+        "payload_index_verified": true,
+        "committed": false,
+        "portable_campaign": false
+      }
     }
   },
   "benchmarks": [
@@ -2036,8 +2058,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 111,
-    "next": 112,
+    "current": 112,
+    "next": 113,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -2513,6 +2535,12 @@
         "title": "Qualify local counted model contributions and exact dual-coordinate restoration",
         "state": "RECORDED",
         "code_commit": "f732f2ed4f25b703d232d390df265cf80918a843"
+      },
+      {
+        "number": 112,
+        "title": "Bind optional native observations to hierarchy and scattering state",
+        "state": "RECORDED",
+        "code_commit": "9c4529080e3558e2c0d0f8a98e0c934e38db554d"
       }
     ]
   },

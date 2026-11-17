@@ -1,8 +1,8 @@
 # NASolve development handoff — Willow
 
 Updated **2026-11-17**. This is the **`willow` branch** handoff, not the
-project-wide status of Pine, Cedar or Alder. **W111 is audited; W112 is next.**
-Runtime code is W109 (`f732f2ed`); W110/W111 are diagnostic and protocol evidence.
+project-wide status of Pine, Cedar or Alder. **W112 is audited; W113 is next.**
+Runtime code is W112 (`9c452908`); W110/W111 remain diagnostic and protocol evidence.
 Native refinement activation remains open.
 The [machine roadmap](topostitch-roadmap.json) owns milestone status; its
 [generated human view](topostitch-roadmap.md) owns the numbered progress queue.
@@ -20,6 +20,7 @@ S04/S05/S06 and P01/P02 remain partial; use the roadmap for individual gates.
 | W104 `review_pair_coverage` | Read-only comparison of explicit requested/native/additive terms; rejects missing, duplicate, stale, image and parameter mismatches | Caller authenticates complete declarations; no activation |
 | W105 `describe_compiled_pair_terms` | Exports terms from the existing compiled recipe and original bound packet | Not a native force or lifecycle qualification |
 | W106 `observe_native_pair_terms` | Callback-free actual-manager inventory with checksum-bound Cedar policy checks and exact rational image comparison | Special positions unsupported; source authenticity and active callback policy remain upstream |
+| W112 opt-in dual-state observation | Existing Cedar readers bind hierarchy, scattering, original fractional and actual force sites; default W106 output remains exact | Read-only; no synchronization or active/lifetime authority |
 | W108 `select_pair_providers` | Plans exact term-level native/additive ownership, including partial individual pairs; conflicts refuse | No activation authority |
 | W109 `NativePairRecipe.evaluate_terms` | Evaluates a frozen exact subset using the existing kernels, with per-call binding checks and full/complement derivative controls | No active callback/policy or ordinary refinement lifecycle |
 | W107 native composition diagnostic | 107 native core terms plus 17 explicitly missing periodic terms preserve coverage and normalization in the tested managers | Active guarding, provider-independent weighting, exclusions and production refinement remain open |
@@ -43,7 +44,8 @@ for exact commands, failed preparations, archive checksums and limitations.
    in that owner. Six actual-model cases and four 20/20 derivative checks preserve
    normalized weighting across providers. The local adapter remains rejected by
    C331 and is not installed. Bind original hierarchy **and** fractional scattering
-   state; exact restoration of one alone is insufficient. Then qualify the existing
+   state; exact restoration of one alone is insufficient. W112 supplies an opt-in
+   observation of both through the existing Cedar readers. Then qualify the existing
    prepare/frozen-round/actual-manager/final-writer lifecycle.
 3. Qualify periodic exclusion policy explicitly. Retain repulsion until justified;
    do not activate a symmetry phosphate bond without qualified surrounding angles.
@@ -55,12 +57,20 @@ Use the [ordinary refinement boundary](topostitch-periodic.md#next-ordinary-refi
 and [integration contract](topostitch-periodic.md#next-implementation-contract).
 Do not fork a refinement runner or repeat passed arithmetic probes as a substitute
 for lifecycle integration. Coordinate owner changes with Rowan before native work.
-No native jobs remain active at the W111 checkpoint. W108/W109 optional APIs
+No native jobs remain active at the W112 checkpoint. W108/W109 optional APIs
 remain compatible; W110 makes no production normalization change.
 
 ## Validation and compatibility
 
-Latest production-code validation, **W109**: **117 focused, 1,964 full tests +229
+Latest production-code validation, **W112**: **105 focused, 1,981 full tests +229
+subtests, and 274 installed checks** passed. Fresh sdist/wheel relocation, six CLI
+helps, pip check, lean import and Python 3.10 syntax pass. Six native model-state
+cases, four exact roundtrip/restoration controls and twelve negatives pass under
+Phenix 2.2.1-6174. Default v1 output matches the separately installed W106 owner;
+targets, complete gradients and counts remain exact. Scientific data are local.
+See the [W112 receipt](topostitch-periodic.md#w112--bind-both-hierarchy-and-scattering-coordinates).
+
+Prior selected-force validation, **W109**: **117 focused, 1,964 full tests +229
 subtests, and 257 installed tests** passed. Fresh sdist/wheel relocation with source
 stages removed, six CLI helps, `pip check`, lean import and Python 3.10 syntax pass.
 Six Phenix 2.2.1-6174 derivative cases (20/20 directions each; 972 evaluations),

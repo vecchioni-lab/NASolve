@@ -11,10 +11,11 @@ current instructions; other branches retain their own status and validation pins
   frozen term-level providers; W109 evaluates the exact missing subset through
   existing kernels. W110 demonstrates provider-dependent native normalization
   and records the shared active-guard proposal. W111 qualifies a local counted
-  contribution; production admission, exclusion policy and ordinary
+  contribution; W112 adds opt-in dual hierarchy/scattering observation using Cedar
+  readers while preserving default v1 output. Production admission, exclusion policy and ordinary
   refinement integration remain open. No physical repair is claimed.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Next human update is W112;
+  [machine-readable source](topostitch-roadmap.json). Next human update is W113;
   do not restart completed probes merely because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed
