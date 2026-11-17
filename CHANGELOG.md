@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W109 — Evaluate only frozen selected pair terms
+
+- Add optional `NativePairRecipe.evaluate_terms`, validating the original packet,
+  compiled binding and exact selected declarations on every call before using the
+  existing proxies and shared kernel/gradient path. Empty subsets remain checked.
+- Preserve full-recipe evaluation and compiler behavior. Qualify full/empty/subset
+  and complement forces with native derivatives; no callback, exclusion or
+  refinement activation is added.
+
 ### W108 — Select native and additive providers term by term
 
 - Add optional read-only `select_pair_providers` using frozen requested/native

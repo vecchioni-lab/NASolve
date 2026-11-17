@@ -332,3 +332,52 @@ def test_selected_binding_refuses_retargeting_or_reassignment_on_replay():
     n.pop()
     with pytest.raises(ValueError, match='digest'):
         review((r, n, selected['additive'], c), selected['frozen'])
+
+
+@pytest.mark.parametrize('indices', [[], [0, 1, 2, 3], [1, 3]])
+def test_selected_recipe_uses_exact_frozen_subset_without_mutating_compiler(monkeypatch, indices):
+    recipe, packet = compiled_fixture(monkeypatch)
+    declaration = export(recipe, packet)
+    selected = [declaration['terms'][i] for i in indices]
+    before = deepcopy([recipe.binding_report(), packet, selected])
+    containers = (recipe._bonds, recipe._angles, recipe._planes, recipe._parallel)
+    called = []
+    def evaluate(points, *, atom_identities, compute_gradients, proxies):
+        called.append(proxies)
+        assert points == [(1., 2., 3.)]*6
+        assert atom_identities == recipe._identities and compute_gradients is False
+        return dict(target=float(sum(len(p) for p in proxies)), gradients=None)
+    monkeypatch.setattr(recipe, '_evaluate_proxies', evaluate, raising=False)
+    result = recipe.evaluate_terms([(1., 2., 3.)]*6, atom_identities=recipe._identities,
+        packet=packet, expected_binding_sha256=declaration['compiled_binding_sha256'],
+        selected_terms=selected, expected_terms_sha256=recipe_digest(selected), compute_gradients=False)
+    assert result['target'] == len(indices)
+    assert len(called) == 1
+    assert [[id(p) for p in group] for group in called[0]] == [
+        [id(p) for p in group] if i in indices else [] for i, group in enumerate(containers)]
+    assert (recipe._bonds, recipe._angles, recipe._planes, recipe._parallel) == containers
+    assert [recipe.binding_report(), packet, selected] == before
+
+
+@pytest.mark.parametrize('change', ['duplicate', 'reorder', 'unknown', 'parameters', 'image',
+                                   'live_proxy', 'packet', 'binding', 'selected_digest'])
+def test_selected_recipe_refuses_drift_before_kernel(monkeypatch, change):
+    recipe, packet = compiled_fixture(monkeypatch); declaration = export(recipe, packet)
+    selected = deepcopy(declaration['terms'][:2]); binding = declaration['compiled_binding_sha256']
+    old_digest = recipe_digest(selected)
+    if change == 'duplicate': selected.append(deepcopy(selected[0]))
+    elif change == 'reorder': selected.reverse()
+    elif change == 'unknown': selected[0]['term_id'] = 'other'
+    elif change == 'parameters': selected[0]['parameters']['ideal'] += .1
+    elif change == 'image': selected[0]['atoms'][0]['translation'][0] = '1'
+    elif change == 'live_proxy': recipe._bonds[0].distance_ideal += .1
+    elif change == 'packet': packet['pairs'][0]['purpose'] = 'selected'
+    elif change == 'binding': binding = '0'*64
+    else: selected.pop()
+    def forbidden(*args, **kwargs):
+        pytest.fail('Kernel evaluated unqualified selected terms')
+    monkeypatch.setattr(recipe, '_evaluate_proxies', forbidden, raising=False)
+    with pytest.raises(ValueError):
+        recipe.evaluate_terms([(1.,2.,3.)]*6, atom_identities=recipe._identities,
+            packet=packet, expected_binding_sha256=binding, selected_terms=selected,
+            expected_terms_sha256=old_digest if change=='selected_digest' else recipe_digest(selected))

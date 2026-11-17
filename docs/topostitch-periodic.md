@@ -4884,3 +4884,72 @@ the anchored forensic archive and checksum. No scientific payload is committed.
 The native diagnostic composes the pinned C331 owner, not a merged current Cedar
 build. Full combined-branch, active callback/buffer policy, periodic exclusions and
 matched density/refinement acceptance remain open.
+
+
+## W109 — Evaluate the exact frozen additive subset
+
+`NativePairRecipe.evaluate_terms(points, *, atom_identities, packet,
+expected_binding_sha256, selected_terms, expected_terms_sha256,
+compute_gradients=True)` accepts the exact ordered subset exported by W105 or
+selected by W108. The original packet, compiled binding, live proxy parameters
+and image references are checked on every call. Changed/reordered/duplicate/unknown
+terms refuse, including a live-proxy mismatch when the selected subset is empty.
+
+The method filters existing proxy containers locally, then reuses the same
+kernel, Cedar parallelity correction and image-gradient pullback as full `evaluate`.
+No partial PHIL is generated and no second compiler is introduced. The return
+retains target/components/gradients/normalization, adds compiled-binding and
+selected-term digests, and explicitly grants no runtime or scientific authority.
+Default `evaluate`, binding reports, compilation and captured-worker requests
+remain compatible. There is no schema, dependency or CLI migration.
+
+The caller must replay the frozen coverage plan against the actual manager and
+qualify policy, exclusions, callback/buffer ownership, source order and lifetime
+separately. Reconstructing a subset digest after drift is not an authorized rebind.
+This is an additive numerical evaluator, not a production refinement adapter.
+
+### W109 validation — 2026-11-17
+
+Twelve regressions fail before the new method exists. **117 focused, 1,964 full
++229 subtests (101.61 seconds), and 257 installed tests** pass. Fresh relocated
+sdist/wheel installation removes source stages before testing; six CLI helps,
+`pip check`, lean imports and Python 3.10 syntax pass. Captured-worker bytes remain
+unchanged; native recipe evaluation is deliberately factored through one kernel path.
+
+Complete **Phenix 2.2.1-6174** diagnostics cover both retained sources plus an
+independent synthetic **P4_3** canonical pair with a screw image. All **six 20/20
+directional checks (972 evaluations)** pass; installed independent review agrees.
+Twelve composition controls at original and perturbed points prove full evaluation
+exactly matches the installed W108 implementation, all-selected exactly matches
+full evaluation, empty selection gives exactly zero energy/gradient, and selected
+plus complementary terms reproduce the complete objective. Maximum complementary
+gradient error is **7.11e-15**. Energy-only calls agree. Twelve native negatives
+reject stale subsets, wrong atom order and changed live proxies, including empty
+subsets. Inputs/software/kernel bindings are preserved.
+
+The original panel remains **FAILED** after its four retained-source derivative
+cases pass: the harness's default PDB hierarchy parser sorts the synthetic fixture,
+so its atom-identity guard refuses. Only that fixture is rerun with
+`construct_hierarchy(sort_atoms=False)` and passes; no product or geometry change.
+The original attempt took 139.91 seconds; the corrected synthetic-only execution
+6.61 seconds. Preserve both receipts; do not describe the first whole run as green.
+No optimizer, actual-manager callback, ordinary refinement or scientific repair is
+claimed by these subset controls.
+
+Principal commands (Willow checkout unless absolute):
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider tests/test_topostitch_pair_coverage.py tests/test_topostitch_native_coverage.py tests/test_topostitch_recipe.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w109-selected-forces/install-check.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w109-selected-forces/native/run.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w109-selected-forces/native-synthetic/run.py
+/private/tmp/willow-w109-selected-forces/install/env/bin/python /private/tmp/willow-w109-selected-forces/audit-native.py
+```
+
+Absolute command paths record local execution provenance only. The roadmap owns
+the anchored forensic archive/checksum. Generated scientific inputs/results,
+failed diagnostics and build/install products stay local and are not committed.
+The next gate is the separate active-callback policy/lifetime contract with Cedar;
+C331 remains callback-free. Native normalization and periodic exclusions still
+need qualification through the ordinary frozen-round refinement owner.

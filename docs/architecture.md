@@ -968,6 +968,12 @@ native policy/checkpoint identity or permission to import edits or rebase a cut.
 atom images; `topostitch_native_recipe` binds them to unmodified PDB atom order
 and evaluates unnormalized additive pair energies/ASU gradients. The new schema-1
 packet contains hashes and identities, not a model path or runtime authority.
+The optional `NativePairRecipe.evaluate_terms` accepts frozen ordered declarations
+and their digest, the original packet and compiled binding digest. W105 rechecks
+live proxy definitions/references before every selected evaluation, including an
+empty subset. Existing proxy containers are filtered locally and use the same
+kernel/correction/pullback path as complete evaluation. The caller still owns
+current native coverage, policy and runtime lifetime; this method installs nothing.
 Virtual L/R labels are internal selection scaffolding, not ordinary refinement
 PHIL for the source model.
 `topostitch_native_coverage.observe_native_pair_terms` reads the actual native

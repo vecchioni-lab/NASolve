@@ -224,6 +224,58 @@ class NativePairRecipe:
 
     def evaluate(self, points, *, atom_identities, compute_gradients=True):
         """Return component energies and ASU gradients, with no native attachment."""
+        return self._evaluate_proxies(points, atom_identities=atom_identities,
+            compute_gradients=compute_gradients,
+            proxies=(self._bonds, self._angles, self._planes, self._parallel))
+
+    def evaluate_terms(self, points, *, atom_identities, packet,
+                       expected_binding_sha256, selected_terms,
+                       expected_terms_sha256, compute_gradients=True):
+        """Evaluate an explicitly frozen ordered subset of the complete recipe.
+
+        Use W105/W108 declarations without rewriting their IDs, images or scoring
+        parameters. Authenticate the original packet, compiled binding and live
+        proxy definitions on every call, including an empty selection. This does
+        not observe native coverage: the caller must separately replay its frozen
+        provider plan and guard the manager, source, policy and callback lifetime.
+        Full-recipe evaluation and the compiler remain unchanged.
+        """
+        from .topostitch_pair_coverage import describe_compiled_pair_terms, _digest, _need
+        try:
+            selected = json.loads(json.dumps(selected_terms, allow_nan=False))
+            _need(isinstance(selected, list) and _digest(expected_terms_sha256)
+                  and recipe_digest(selected) == expected_terms_sha256,
+                  'Changed selected pair-term digest')
+            declared = describe_compiled_pair_terms(self, packet,
+                expected_binding_sha256=expected_binding_sha256)['terms']
+            _need(len(selected) <= len(declared), 'Too many selected pair terms')
+            names = [row['term_id'] for row in selected]
+            _need(all(isinstance(name, str) for name in names) and len(set(names)) == len(names),
+                  'Invalid selected pair-term identities')
+            chosen = set(names)
+            expected = [row for row in declared if row['term_id'] in chosen]
+            _need(recipe_digest(expected) == expected_terms_sha256,
+                  'Selected terms differ from the ordered compiled declarations')
+            containers = (self._bonds, self._angles, self._planes, self._parallel)
+            positions = {kind: 0 for kind in _ALLOWED}
+            included = {kind: [] for kind in _ALLOWED}
+            by_kind = dict(zip(_ALLOWED, containers))
+            for row in declared:
+                kind = row['kind']; proxy = by_kind[kind][positions[kind]]
+                positions[kind] += 1
+                if row['term_id'] in chosen:
+                    included[kind].append(proxy)
+            proxies = tuple(type(by_kind[kind])(included[kind]) for kind in _ALLOWED)
+            result = self._evaluate_proxies(points, atom_identities=atom_identities,
+                compute_gradients=compute_gradients, proxies=proxies)
+            return dict(result, compiled_binding_sha256=expected_binding_sha256,
+                        selected_terms_sha256=expected_terms_sha256,
+                        runtime_authority=False, scientific_acceptance=False)
+        except (KeyError, TypeError, IndexError, OverflowError) as exc:
+            raise ValueError('Malformed selected pair terms') from exc
+
+    def _evaluate_proxies(self, points, *, atom_identities, compute_gradients, proxies):
+        """Shared kernel/pullback path for complete and explicitly selected terms."""
         if atom_identities != self._identities or type(compute_gradients) is not bool:
             raise ValueError('Native atom order/identity or gradient request changed')
         points = list(points)
@@ -233,13 +285,14 @@ class NativePairRecipe:
         expanded = flex.vec3_double(expand_sites(points,self._refs))
         gradient = flex.vec3_double(len(expanded),(0,0,0)) if compute_gradients else flex.vec3_double()
         values = {}
-        for name,fn,proxies in [('bond',gr.bond_residual_sum,self._bonds),
-                ('angle',gr.angle_residual_sum,self._angles),('planarity',gr.planarity_residual_sum,self._planes),
-                ('parallelity',gr.parallelity_residual_sum,self._parallel)]:
-            values[name] = float(fn(sites_cart=expanded,proxies=proxies,gradient_array=gradient))
+        bonds, angles, planes, parallel = proxies
+        for name,fn,selected in [('bond',gr.bond_residual_sum,bonds),
+                ('angle',gr.angle_residual_sum,angles),('planarity',gr.planarity_residual_sum,planes),
+                ('parallelity',gr.parallelity_residual_sum,parallel)]:
+            values[name] = float(fn(sites_cart=expanded,proxies=selected,gradient_array=gradient))
         pulled = None
         if compute_gradients:
-            corrected = self._correction.correct_parallelity_gradient(gr,flex,self._parallel,list(expanded),
+            corrected = self._correction.correct_parallelity_gradient(gr,flex,parallel,list(expanded),
                 list(gradient.as_double()),native_residual=values['parallelity'],plane_order_safe=True)
             corrected = flex.vec3_double(flex.double(corrected['gradient']))
             pulled = accumulate_image_gradients(self._count,self._refs,list(corrected))
