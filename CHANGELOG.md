@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Describe explicit metal recipes for shared native coverage review
+
+- Add an API-only declaration adapter for enabled metal-recipe distances and
+  angles. Bind a revalidated preview to the complete native atom inventory;
+  preserve the angle vertex, target, uncertainty and PHIL export precision.
+- Reject incomplete identities, ambiguous model mappings, nonidentity images,
+  segments and mismatched elements. No partner, chemistry or provider inference.
+- Return a schema-1 in-memory declaration, separately from native observation
+  and coverage proof. Shared native policy/observer ownership is unchanged;
+  this adapter never activates restraints or approves a scientific endpoint.
+- Existing stored artifacts, CLI paths and native defaults are unchanged;
+  no migration or automatic rollout is required. Scientific evidence stays local.
+
+
 ### Reject contradictory captured metal ligand definitions
 
 - Reject duplicate component definitions that disagree on bond order or atom

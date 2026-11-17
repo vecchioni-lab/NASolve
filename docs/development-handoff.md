@@ -1,10 +1,113 @@
 # NASolve development handoff — current state
 
-Metal integration updated **2026-11-16**. Active metal branch: **Alder**;
+Metal integration updated **2026-11-17**. Active metal branch: **Alder**;
 current milestone: **A01 — ligand geometry and open XYZ/B**. Start with the
 [post-merge roadmap](metal-development-roadmap.md) and the A01 evidence below.
 The older Cedar/metal pause narrative is retained in
 [history](history/metal-foundation-pause-2026-11-16.md), not current instructions.
+
+## A01 — explicit native coverage and preparation triage, 2026-11-17
+
+**Current milestone: A01.** These are preparatory checks for the expressly
+post-merge A01–A08 roadmap, not merge or scientific-completion claims. A02 remains
+gated. No endpoint, parent repair or anomalous fit is adopted in this pass.
+
+**Before/after and ownership.** Explicit metal recipes previously had no narrow
+adapter to the shared native-coverage vocabulary. The new API-only
+`describe_native_terms` revalidates the preview using existing PHIL-export rules,
+binds the full native atom inventory without losing model/segment identities,
+and describes enabled bonds/angles with the original vertex and serialized
+uncertainty. It does not infer chemistry or partners, activate a provider, observe
+a manager, or approve an endpoint. Native policy authentication and observation/
+comparison remain shared services. No duplicate force or coverage implementation.
+
+**Files, schemas and compatibility.** New `src/nasolve/metal/native_terms.py` and
+`tests/test_metal_native_terms.py`; changelog, architecture, restraint-builder
+feature descriptor, roadmap and this handoff updated. The new schema-1 in-memory
+`metal-native-term-declaration` is not a stored trial format. Existing artifacts,
+CLI paths and refinement defaults are unchanged; no migration. Unsupported
+identity projections are rejected before declaring terms. No portability change
+or relocated-run qualification is claimed.
+
+**Validation.** From Alder, using the everyday checkout's Python 3.12 virtual
+environment interpreter:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_metal_native_terms.py tests/test_metal_model.py tests/test_metal_import.py tests/test_metal_materialize.py
+```
+
+**131 passed in 2.64 s.** Before implementation the new regression module failed
+collection because the adapter did not exist; the retained receipt records that
+failure. The 13 adapter cases exercise exact angle vertex/order, PHIL precision,
+disabled terms, reordered inventories, tampering, detached outputs and rejected
+identity/element/model ambiguity. In the captured shared observer source/test tree:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_topostitch_pair_coverage.py tests/test_topostitch_native_coverage.py
+```
+
+**76 passed in 0.24 s.** Source and test manifests pin that tree to
+`9b7f8b17511a62af2e062f3c8790734a5e9ea103`; native-policy/runtime ownership remains
+at captured `53116e1f1ff2e1d51d6ec2709dd8077c2d72af22`. No full suite, as requested.
+
+Documentation validation passes **9 documents / 252 local links and anchors**,
+A01–A08 numbering and preserved history. The current private review validates
+**72 checksummed files, 19 links and six completed native execution receipts**;
+all recorded refinement/preflight process IDs are absent. The previous 52-file
+review remains unchanged. Replay from the everyday checkout:
+
+```sh
+.venv/bin/python -B branch-artifacts/Alder/workspace-audit-20261116-01/validate.py ../NASolve-metal-coordination
+.venv/bin/python -B branch-artifacts/Alder/runners/A42_validate_review_v2.py
+```
+
+`git diff --check` passes. The initial review-validator harness expected a
+`status` field in the angle execution receipt; the corrected validator checks
+its existing `returncode`. That harness failure remains local and changed no
+scientific evidence. All owned native jobs have completed and been reaped.
+
+**Native evidence.** Phenix **2.2.1-6174** completed three separately bounded
+five-cycle comparisons: explicit ML with supplied phases disabled, an intermediate
+MLHL geometry weight, and MLHL with only the declared Hg occupancy open. Each had
+its own dry preflight. Original Free-R membership, phase policy, nonselected
+state, actual ADP export and independently reconstructed R values are audited.
+The open-Q control remains at the occupancy ceiling and reproduces the fixed-Q
+endpoint; it is not f″/Q quantitation. ML does not improve the reference fit;
+intermediate weighting leaves a geometry/fit tradeoff. Local glycosidic/sugar
+and metal geometry remain unresolved. Real-space XYZ processes zero residues.
+
+The actual initial and completed intermediate-weight/open-Q managers each
+contain all three requested Hg terms exactly once among 2,681 observed native
+terms. Six offline controls reject missing/duplicate terms, changed vertex,
+target, weight and context. A separate fixed-endpoint zero-angle native derivative
+probe agrees with finite differences at the tested nondegenerate geometry; it
+does not qualify the collinear cusp or optimizer convergence. Coverage does not
+prove chemical correctness. These native PHIL terms never switch to an external
+provider, so shared provider-normalization work is not consumed here.
+
+**Construction finding and coordination.** A complete bounded Coot **1.3.3**
+construction from the checksummed pre-mutation Phaser model localizes strain to
+the saved canonical-parent attachment: the raw modified base has a near-target
+bond but substantially displaced scaffold; curated restoration restores the
+scaffold and reintroduces the strained parent attachment. All outside-site atom
+identities/XYZ/Q/B remain exact. Raw output is not a safe replacement, and the
+isolated output still has an internal phosphate-context issue. No splicing,
+parent overwrite or DF-to-parent-to-DF repair claim. Exact source-qualified
+dictionary and input references were shared with the construction owner for an
+atom/chemistry-based diagnosis; native coverage reuse was shared with the
+observer owner. Their source trees were not edited.
+
+**Local evidence and follow-up.** Private inputs, models/maps, numeric comparisons,
+source/test snapshots, complete/dry receipts, failed harness attempts and review
+hashes stay in the everyday checkout's ignored
+`branch-artifacts/Alder/ft-hg-triage-20261117-01/`; runners have prefix `A42_`.
+`review.md` and `review-data.json` are the current scientific review; the previous
+foundation directory remains intact. Generated scientific artifacts are excluded
+from Git. No pruning or automatic compact retention is implemented. First resolve
+the supported parent/base repair with linked chemistry and scaffold audits, then
+run a matched native comparison and inspect maps. A qualified A01 endpoint must
+precede A02; mixed Au/Ag remains the next dataset. Formal-charge native readback
+and whole-model scientific acceptance remain open.
 
 ## Workspace audit — 16 November 2026
 

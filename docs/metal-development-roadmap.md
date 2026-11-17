@@ -1,6 +1,6 @@
 # Post-merge metal-coordination roadmap
 
-Updated **16 November 2026**. Working branch **Alder**. The feature milestones
+Updated **17 November 2026**. Working branch **Alder**. The feature milestones
 below are numbered **A01–A08** and are explicitly **post-merge work**. They are
 not prerequisites for merging the current experimental implementation.
 Historical implementation receipts A37–A40 retain their existing labels and
@@ -12,14 +12,16 @@ own scientific contracts. A mechanism passing tests does not close its scientifi
 gate. Update milestone status, evidence, limitations and next action together.
 
 **Current milestone: A01 — ligand geometry and open XYZ/B foundation.**
-The user resumed bounded FT_Hg work on 16 November. Source-preserving linked DF
-mechanics and explicit NARestraints coverage have passed their supported checks;
-five audited native geometry/B comparisons are complete. The supported plane
-completion improves C7 planarity and passes the Rwork target at default weighting,
-but local Hg/glycosidic/sugar strain keeps the scientific gate open. See the
-[current handoff](development-handoff.md) for the latest completed comparison and
-remaining scientific gates. These are preparatory experiments for the post-merge
-milestone; no merge or feature-completion claim is implied.
+Source-preserving linked DF mechanics and explicit NARestraints coverage have
+passed their supported checks. The current explicit metal-term adapter reuses
+shared native inventory/coverage review without changing providers or defaults.
+Three further native controls isolate phase use, intermediate geometry weighting
+and open metal occupancy. They do not resolve the local geometry gate. A fresh
+construction control identifies strain reintroduced by canonical-parent
+restoration; raw output also moves the scaffold and cannot simply replace it.
+Coordinate a supported parent/base repair, qualify its linked chemistry and
+compare a separate native endpoint before A02. Exact validation and private
+review pointers are in the [handoff](development-handoff.md).
 
 ## Merge checkpoint
 

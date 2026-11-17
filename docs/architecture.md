@@ -1319,6 +1319,15 @@ automation but do not replace visual inspection or user approval.
 
 ## Metal authoring core and frozen anomalous diagnostics
 
+The API-only `metal.native_terms` adapter describes explicit recipe distances
+and angles for shared native coverage review. It binds a complete native
+identity/element inventory to a revalidated preview, preserving angle vertices
+and existing PHIL precision. Its schema-1 declaration has no runtime authority.
+The shared native-policy owner, inventory observer and coverage comparator remain
+separate; no provider inference, activation or refinement default changes.
+See [recipe coverage declarations](metal-restraint-builder.md#explicit-recipe-coverage-declarations).
+
+
 Captured component interpretation rejects conflicting bond orders and atom
 charges as well as conflicting graphs, including contradictions within a CIF.
 Order spelling aliases are compared without changing captured values. This

@@ -22,6 +22,37 @@ receive a generic bond length. Metal–metal cluster lengths need their own fami
 and topology, not an arithmetic mean of ionic bond lengths. See the
 [implemented inspection boundary](metal-anomalous-doctor.md#implemented-native-trial-map-and-coot-inspection).
 
+## Explicit recipe coverage declarations
+
+The API `nasolve.metal.native_terms.describe_native_terms(preview, native_atoms)`
+connects a revalidated recipe preview to the shared native-coverage vocabulary.
+It reuses PHIL-export eligibility and numerical serialization, binds the entire
+source inventory to native atom identities/elements, and emits only the enabled
+explicit distances and angles. Native ordering may differ. The angle's middle
+atom remains its vertex, including zero-degree donor-vertex recipes; a
+metal-centered angle is a different scientific restraint.
+
+Each native row supplies the six-field shared identity, element, model ID and
+segment ID. Only a single model, blank segments, identity images and canonical
+integer residue IDs are supported. The implicit native model ID may bind source
+model `1`; other model aliases are not inferred. Missing, duplicate or lossy
+identities are rejected. Coordinates may have moved; their scientific meaning
+and provenance remain the caller's responsibility.
+
+The schema-1 in-memory declaration records source/recipe/preview and inventory
+hashes, ordered atom labels, requested terms and disabled IDs. It is not a saved
+trial format and does not prove that restraints are present or active. Native
+policy authentication, actual-manager observation and coverage comparison remain
+separate shared services; the caller must bind their frozen context and retain
+those proofs. There is no new native implementation, provider switch, automatic
+activation or scientific acceptance. Existing bundles need no migration.
+
+A bounded diagnostic uses the existing native-policy owner and shared inventory
+observer/comparator to check these declarations before and after refinement.
+Exact term coverage does not establish correct chemistry, force equivalence,
+convergence or an acceptable model. See the [current handoff](development-handoff.md)
+for pinned dependency versions, negative controls and remaining integration work.
+
 ## Integration objectives and milestones
 
 The metal workspace is a consumer of NASolve's generated models and immutable
