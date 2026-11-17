@@ -6472,3 +6472,110 @@ broader phase/weight scope, current full-suite or scientific-repair qualificatio
 is claimed. This independent audit does not recompute or compare full-precision
 R statistics. W123's residual defects and lack of diffraction benefit still apply.
 S05/S06 remain partial; W122's explicit user-facing option remains planning-only.
+
+
+### W126 — Audit registered continuation and inherited input adaptation
+
+Cedar **C382 `18283b3159a1f2404fd957da60328d88801fbb2e`** adds the explicit
+`refinement_counted.prepare_continuation` join. Before it, C381 could admit an
+initial request but ordinary descendants correctly refused rather than lose intent.
+The new helper uses existing registry/strict-lineage validation, exact selected
+model/observation/restraint/phase inputs, original recipe/source and W118's
+same-frame rebind. Each child still needs fresh native preflight and admission.
+Registry reads also reject changed original intent across counted descendants.
+The caller owns numbered rounds, processes and publication; the helper is not
+another executor and grants no scientific selection.
+
+Cedar **C383 `e9afa595a26116ce9ef5f88ff779c640efd936aa`** then accepts the
+existing C278 namespace-only PHIL execution copies through an optional
+`refinement_input_reference`. The existing validator authenticates the selected
+parent's original references, copy indices/contents and current round; the normal
+checkpoint output must retain that receipt. This changes PHIL scope spelling,
+not atom identities, chemistry or the compiled pair recipe. No new adapter,
+schema, native worker or default is introduced. C291 is whole-base transport,
+not this input adapter; retain the distinction.
+
+Changed Cedar runtime paths are `refinement_counted.py` and
+`refinement_parallelity.py`; existing `test_refinement_counted.py` gains focused
+controls. Exact commands and source pins are in the
+[committed Cedar ledger](https://github.com/vecchioni-lab/NASolve/blob/e9afa595a26116ce9ef5f88ff779c640efd936aa/docs/cif-linked-native-registration-evidence.json),
+keys `registered_counted_continuation_2026_11_17` and
+`counted_continuation_input_adaptation_2026_11_17`.
+
+**Peer validation, not duplicated by Linden:** C382 has 40 focused source tests
+and **360 relocated installed tests +13 subtests (53.73s)**. Compatible direct
+and manual children, changed/missing model atoms/frame, original intent replacement,
+broken lineage, lost intent, wrong inputs and relocation are covered. C383's
+targeted installed input/continuation panel has **62 passes (18.09s)**, including
+absent/previous-round receipts, changed execution bytes, identical bytes from the
+wrong declared source, missing checkpoint proof and relocation. Negative-before
+results are retained. No current full-suite claim.
+
+**Actual Phenix 2.2.1-6174:** the completed C381 model is explicitly imported
+into a diagnostic PostMR registry context; no MR/ReadySet rerun or retrospective
+registration of C381's arbitrary parent label is claimed. One registered cycle
+then supplies the exact parent output to a second cycle via the maintained helper:
+
+| Registered result | Actual preflight /refine | Final native +added count | Prepared archive |
+| --- | --- | --- | --- |
+| `refine-001` from diagnostic `postmr` | 11.83 /43.50s; both exit0 | 11,392 +17 =11,409 | 67,226 bytes |
+| `refine-002` from `refine-001` | 7.55 /35.76s; both exit0 | 11,382 +17 =11,399 | 67,225 bytes |
+
+Both owners close cleanly after 15 calls. Original intent is exact; rebound recipes
+and preparations differ appropriately for the new coordinates. Both checkpoints
+are usable for explicit continued inspection but remain **unselected REVIEW**;
+the selected checkpoint stays `postmr`. The retained runner asserts first-round
+bytes/mtime preservation through the second run. Its original root is gone after
+relocation. Historical pending commands are not thereby resumable.
+
+**Independent audit:** 117 relocated-run files, both C382 installed manifests,
+exact parent-output linkage, original intent, fresh preparation/counts and stopped
+owned processes verify. Cold registry/execution reads launch nothing, publish
+nothing and preserve bytes/mtime. Final C382 and C383 each have **298 installed
+source/resource files matching their committed tree**; C383 changes only the
+outer `refinement_counted.py` module relative to final C382. All 24 frozen native
+payload files per round remain exact. C383's final reader accepts the C382 registry.
+
+Wheel pins: native C382 `112761efcdfbab6753443076e875c66d421332f18039575ba2956c4975f4bc72`;
+final C382 `b208105fa2492af571f2e08901af8f4abd2870d77fc1171c77995344fabcaa12`;
+final C383 `810ad0dd99a56211950f0ac3f2d9dba1662e06b59f4212b8a7ae10fd96f9e85a`.
+Later outer-controller guards are independently separated from unchanged actual
+native payloads. No additional native cycle is run for C383.
+
+**PDB-only scientific readback:** using the same exact image and declared base
+atom groups, G·C plane mismatch is **18.69 →17.77 →16.77°**, and its short O6–N4
+contact is **2.207 →2.286 →2.340 Å** across imported parent and both descendants.
+A·T plane mismatch is **4.83 →4.37 →4.27°**; distances are mixed and remain long.
+The baseline calculation matches the existing W123 native written-PDB observations
+(distances within 1e-8 Å; plane angles within 1e-7°). This is SVD/distance readback,
+not new native force evaluation, complete geometry or matched efficacy evidence.
+Logged rounded Rwork/Rfree worsen **.2245/.2599 →.2251/.2609 →.2253/.2611**.
+There are no native-only continuation siblings; do not attribute all changes to
+the extra terms or call this repair. The fixed-unit, one-cycle capped protocol is
+a qualification diagnostic, not a recommended scientific default.
+
+Historical independent commands use `PYTHONDONTWRITEBYTECODE=1` and
+`/private/tmp/willow-w94-pivot/env/bin/python` on `audit.py`, `committed-source.py`,
+`adaptation.py` and `geometry.py` under
+`/private/tmp/willow-w126-continuation-review/`. Local review archive, repository
+anchor **everyday NASolve checkout**:
+`branch-artifacts/willow/w126-registered-continuation-review-2026-11-17.tar.gz`, SHA
+`028e88fbd3108f94952510f2a2ee0c07979a3524ba36adaf2b09cd9c421e4b86`,
+**67,493 bytes /25 indexed files**, all verified. It references separately verified
+Cedar native archives and verifies all three measured PDB members against their
+source hashes. Original models/maps remain local, excluded from Git; forensic
+archives are not portable resumable campaigns.
+
+Willow changes are docs/evidence only. Optional argument/API growth preserves old
+callers and schemas; incompatible ancestry now refuses intentionally. Ordinary
+AutoRefine/Doctor activation, broader protocol/chemical scope, periodic exclusions,
+physical repair and density-aware acceptance remain open. Next is the
+[ordinary-owner integration boundary](topostitch.md#ordinary-owner-integration-boundary-w126-planning),
+not another duplicate short-cycle probe. W122's user-facing feature remains planned.
+
+**Follow-up boundary:** Rowan subsequently tested a fresh copy of the C382 registry
+and found that substituting `refine-001`'s checksum-valid model reference into
+`refine-002` could pass the C383 reader. The original run was unchanged. This does
+not change the independently verified actual output hashes above; it identifies
+a missing final-writer-to-checkpoint binding that must close before ordinary-owner
+integration. No fixed reader or negative regression is claimed by W126.

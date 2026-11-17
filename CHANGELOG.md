@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W126 — Audit counted continuation and inherited restraint adaptation
+
+- Record Cedar C382's registered same-intent continuation and C383's reuse of
+  existing C278 input proof, with focused installed/source and native evidence.
+- Distinguish modest PDB contact/plane improvement from worsening R stats and
+  unselected REVIEW; no ordinary activation, current full-suite or repair claim.
+- Consolidate the current handoff and next owner/frame/protocol boundary; adopt
+  the shared local ScienceCheckouts policy and provide a small scientific view.
+- Willow documentation/evidence only; raw models/maps and reports stay local.
+
 ### W125 — Audit durable counted admission and native outcomes
 
 - Record C381's saved intent, actual preflight, immutable admission and complete

@@ -1,169 +1,104 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-17**. This is the **`willow` branch** handoff, not the
-project-wide status of Pine, Cedar or Alder. **W125 durable counted admission is audited; explicit descendant continuation is next.**
-Runtime code includes W113's factory, W117's exact-image optimization and W118's
-data-only same-frame recipe rebind; W110/W111 remain diagnostic and protocol evidence.
-Direct native ownership is qualified at C368/W113; actual prepared-state
-assembly and one bounded ordinary coordinate-refinement diagnostic are qualified
-at frozen C371/W113 pins. W119 separately qualifies stronger actual phase-boundary
-consumption at C375/W118 pins, stopping before optimization. W120 extends those
-pins through the full short cycle/writer with exact W116 state/statistics agreement.
-Cedar C377 supplies the maintained bounded lifetime; W121 qualifies the current
-joined installed package. Cedar C379 records refused admission truthfully; C380 now packages the exact maintained
-Willow source closure. W124 independently audits that integration. C381 now supplies
-explicit durable counted admission; W125 independently audits its native outcomes
-and final installed package. Positive descendant continuation and physical repair
-remain open.
-The [machine roadmap](topostitch-roadmap.json) owns milestone status; its
-[generated human view](topostitch-roadmap.md) owns the numbered progress queue.
+Updated **2026-11-17**. **W126 registered continuation and inherited input
+adaptation are audited. Ordinary AutoRefine ownership is next.** This is Willow's
+handoff, not the project-wide status of Pine, Cedar or Alder. Willow's latest
+periodic/factory source is W118; counted execution/continuation is committed on
+Cedar through C383. These audits are not a whole-branch merge or supported release.
 
-## Read this first: current development edge
+The backend can bind explicit periodic pair intent, apply the missing geometry
+terms during one qualified native refinement cycle, retain their original meaning
+across compatible registered descendants and refuse unsupported or unproven
+continuations. **General sticky-end repair and ordinary recut refinement remain
+unqualified.** S04/S05/S06 and P01/P02 remain partial. The
+[machine roadmap](topostitch-roadmap.json) is the status authority; its
+[human view](topostitch-roadmap.md) is generated from it.
 
-The reusable backend can bind source atoms and periodic images, replay declared
-recuts, preview bounded bending, and inspect native geometry without selecting a
-repaired structure. Whole-window trials remain unselected, capped or failed.
-**General sticky-end repair and ordinary recut refinement are not qualified.**
-S04/S05/S06 and P01/P02 remain partial; use the roadmap for individual gates.
+## Current development edge
 
-| Current component | Proven scope | Boundary still open |
+| Component | Proven scope | Still open |
 | --- | --- | --- |
-| W125 / C381 durable counted admission | Saved intent → actual preflight → immutable admission → complete bounded cycle; independently audited success/failures and relocated final package | Ordinary descendants refuse rather than drop pair intent; positive continuation and repair remain open |
-| W124 / C379–C380 source integration | Exact package-owned Willow closure, 887 relocated installed tests +13 subtests; independent 296-file audit; distinct refused-admission receipt | Historical package gate; later counted admission is W125, ordinary activation/repair remain open |
-| W123 saved-endpoint pair attribution | Existing 124 terms across 14 pairs show modest targeted geometry improvement; full-precision native/zero endpoints exact | No Rfree benefit, repaired pair or density/backbone acceptance |
-| W104 `review_pair_coverage` | Read-only comparison of explicit requested/native/additive terms; rejects missing, duplicate, stale, image and parameter mismatches | Caller authenticates complete declarations; no activation |
-| W105 `describe_compiled_pair_terms` | Exports terms from the existing compiled recipe and original bound packet | Not a native force or lifecycle qualification |
-| W106 `observe_native_pair_terms` | Callback-free actual-manager inventory with checksum-bound Cedar policy checks and exact rational image comparison | Special positions unsupported; source authenticity and active callback policy remain upstream |
-| W121 joined installation / C377 maintained lifetime | Current W118/C377 package passes 556 focused tests and six entry points after relocation; separate C377 native cycle exactly matches W120 | No actual merge, joined native/full-suite claim or durable controller admission |
-| W120 stronger complete-cycle replay | Original W116 inputs produce exact final state/statistics/trace through current C375 owner and final writer | One bounded diagnostic; no maintained activation or new repair benefit |
-| W119 actual prepared boundary | Stronger preflight state equals fresh non-dry driver state; one checked call without replanning | Intentional stop before optimizer; no usable checkpoint or production admission |
-| W118 `rebind_pair_recipe` | Same frozen chemistry/images rebound to checked child bytes; saved endpoints and native compiler/evaluator agree exactly | No parent-lineage authority, provider selection or continued refinement |
-| W117 equal-image arithmetic | Exact old/new native target, gradients, counts and selection; measured checked-call improvement | One direct-call comparison, not whole-refinement speed or repair benefit |
-| W116 bounded ordinary lifecycle | Native-only and zero-addition endpoints exact; 17 missing terms participate through optimizer/final writer | One diagnostic cycle, fixed weights, no repair benefit or production activation |
-| W115 actual ordinary preflight | Installed shared reader reproduces independent prepared inventory/selection; 855 atoms and original data/Free-R preserved | Working frame must be explicit; no force activation |
-| W114 cross-branch direct owner | Eight lifecycle cases; zero additions, provider weighting, stale hierarchy, selection and restart | Historical direct-call scope; broader runtime qualification stays separate |
-| W113 `NativePairContribution` | Fresh compiler plus frozen W108 selection; exact W109 evaluation and four-family supported count | Cedar must authenticate actual manager/entry/exit; no activation |
-| W112 opt-in dual-state observation | Existing Cedar readers bind hierarchy, scattering, original fractional and actual force sites; default W106 output remains exact | Read-only; no synchronization or active/lifetime authority |
-| W108 `select_pair_providers` | Plans exact term-level native/additive ownership, including partial individual pairs; conflicts refuse | No activation authority |
-| W109 `NativePairRecipe.evaluate_terms` | Evaluates a frozen exact subset using the existing kernels, with per-call binding checks and full/complement derivative controls | No active callback/policy or ordinary refinement lifecycle |
-| W107 native composition diagnostic | 107 native core terms plus 17 explicitly missing periodic terms preserve coverage and normalization in the tested managers | Active guarding, provider-independent weighting, exclusions and production refinement remain open |
+| W126 / C382–C383 continuation | Validated registered parent, preserved original intent, fresh rebind/preflight/admission; existing C278 namespace-only restraint copies | Ordinary AutoRefine/Doctor execution and broader protocol/chemistry |
+| W125 / C381 admission | Durable original/current request, exact prepared state, immutable admission, complete native cycle and truthful failure outcomes | No ordinary CLI activation or scientific acceptance |
+| W123 / W126 scientific readback | Modest local contact/plane improvement in saved endpoints; later descendants flatten further | Residual defects, worsening R stats, unqualified backbone/packing/density; descendants have no matched efficacy control |
+| W118 same-frame recipe rebind | Coordinates/B/ANISOU may change with exact identity, chemistry and frame invariants | No renamed/reordered atoms, changed occupancy/chemistry or frame migration |
+| W100 bending / existing Pine graph | Bounded source-driven trials, periodic identity and preview/cut machinery | Coupled physical repair, ordinary recut refinement and final demonstration gates |
 
-Exact numerical and integration receipts live in the
-[periodic/native ledger](topostitch-periodic.md). Their historical pins and failed
-attempts remain evidence; they are not duplicate current work queues.
+Exact numerical results, failures and pins are in the
+[periodic/native ledger](topostitch-periodic.md). Historical probes are evidence,
+not another work queue; do not repeat them because this handoff is shorter.
 
 ## Next bounded work
 
-**W122 is planning only.** After the existing durable execution/continuation work
-below, expose [explicit sticky-end enforcement](topostitch.md#explicit-sticky-end-enforcement-during-refinement-planned-w122)
-as the first user-facing refinement application: declared canonical contacts first,
-separately qualified plane-only mismatch hypotheses next. Use 8D93 then an
-independent 5W6W/DOHU control; inventory 7R96 before mismatch trials. Automatic
-inference and large-bend repair are later. No new code or native run is authorized
-by this planning update. W121/C378 retain native lifecycle qualification; W124 records newer C380 package
-integration. W123 separately attributes saved endpoint geometry without another refinement.
+1. Join the qualified counted path to the **existing AutoRefine owner** with an
+   explicit supported protocol, input proofs and normal checkpoint publication.
+   Follow the [W126 integration contract](topostitch.md#ordinary-owner-integration-boundary-w126-planning).
+   Rowan owns shared execution; Linden owns periodic geometry/factory semantics.
+   First close the final-writer/checkpoint-model binding gap: Rowan's read-only
+   C383 follow-up accepted a checksum-valid previous model substituted in a copied
+   registry. Actual C382 output hashes are independently correct; reader
+   rejection of that substitution is a separate pending gate.
+   C278 PHIL namespace adaptation is now consumed; terminal-source additions and
+   chemistry projections remain distinct gates. C291 is whole-base transport.
+2. Preserve one declared working frame and original data/Free-R. Do not turn the
+   diagnostic PDB-cell override into a campaign default or loosen exact compiled
+   bindings to hide precision differences. W118 is a same-frame rebind, not a
+   crystallographic setting conversion.
+3. Keep the first owner-level counted result unselected REVIEW. The qualified
+   native protocol is deliberately narrow: one all-site coordinate cycle,
+   1–10 iterations, one process and fixed unit weights, with target-changing
+   phases disabled. Ordinary automatic weights/ADPs/scaling are not qualified by
+   relabelling this diagnostic. Reuse existing owners; no new optimizer.
+4. After that join, qualify broader native scope and periodic exclusions
+   deliberately, then matched candidate/no-repair controls with geometry, packing
+   and diffraction/density evidence. Retain repulsion while exclusions are open;
+   never activate an isolated symmetry phosphate bond.
 
-1. Preserve C381's explicit saved-intent/preflight/admission path and its exact
-   qualified worker. W125 verifies a complete native cycle and truthful failure
-   outcomes; do not repeat the original-source probe. Its programmatic diagnostic
-   is not an ordinary registered checkpoint or user-facing activation. Rowan owns
-   the shared controller. Unit weights, one cycle and all-site coordinates remain
-   explicit; ordinary AutoRefine/Doctor defaults are not silently narrowed.
-2. Qualify positive descendant continuation through the existing registry and
-   lineage owners. C381 now refuses ordinary descendants, including manual children,
-   rather than dropping counted pair intent. Resolve the selected current model
-   and original recipe/source, apply W118's checked same-frame rebind, then require
-   fresh native preflight and admission. Do not copy execution authority into a
-   manual child's output record or treat the C381 diagnostic's arbitrary parent
-   label as registered lineage. Reuse W119's already qualified stopped boundary;
-   the missing native gate is a maintained completed descendant, not another
-   direct factory probe. Never silently replan an admitted phase.
-3. Extend qualified native scope deliberately: copied reports, weight consumers,
-   target/model changes and broader phases remain separate gates. Native-family
-   reports omit additions, so retain separate contribution evidence. Reuse existing
-   owners and the checked package; do not add another optimizer or recipe engine.
-4. Qualify periodic exclusions separately, retaining repulsion meanwhile. Then use
-   matched observations, Free-R, budgets and maps, with healthy/wrong-connection,
-   forward/reverse shape and B09 controls. No isolated symmetry phosphate bond.
+**W122 remains planning-only:** the first intended user-facing application is
+[explicit canonical sticky-end enforcement](topostitch.md#explicit-sticky-end-enforcement-during-refinement-planned-w122),
+then separately qualified plane-only mismatch hypotheses. Automatic inference and
+large-bend repair follow later. No CLI/default activation follows from these docs.
 
-**Choose and freeze the working frame explicitly** before compiling periodic
-images. This is internal provenance, not a request that users resolve insignificant
-MTZ/PDB precision differences. W115's source-cell override is a diagnostic control,
-not a campaign default. W116's short fixed-weight siblings show no diffraction
-benefit; W123 finds modest selected-pair improvement but substantial residual defects; W119 deliberately performs no optimization. Neither adopts a repair.
+## Validation and scientific interpretation
 
-## Validation and compatibility
+- **W126 / C382–C383:** 360 relocated installed tests +13 subtests for C382;
+  a separate 62-test installed adaptation panel for C383. Independent 298-file
+  committed-source checks for both, 24 unchanged frozen native files per round,
+  relocated cold registry reads with no launches/writes. Two complete registered
+  Phenix 2.2.1-6174 cycles preserve intent and parent-output linkage; both stay
+  unselected REVIEW. [Exact W126 evidence](topostitch-periodic.md#w126--audit-registered-continuation-and-inherited-input-adaptation).
+- **W125 / C381:** actual complete cycle, unsupported-scope refusal and final-MTZ
+  failure independently audited; final 347 installed tests +13 subtests.
+  [Exact admission evidence](topostitch-periodic.md#w125--audit-durable-counted-admission-and-native-outcomes).
+- **Latest Willow source W118 / `c08f3370`:** 237 focused, 2,033 full tests +229
+  subtests, 326 installed tests; relocated installation, six CLI helps, pip check,
+  lean import/Python3.10 and complete native compiler/evaluator checks.
+  [Source validation](topostitch-periodic.md#w118--rebind-frozen-pair-intent-to-a-compatible-child).
 
-W125 independently audits C381's real Phenix 2.2.1-6174 success, unsupported-scope
-refusal and final-writer failure. Final package: **347 focused tests +13 subtests**,
-298 source/resource files matching committed Cedar and 24 unchanged frozen native
-files. Completed cold reads survive relocation; final readers preserve all three
-outcomes without writes/launches. This is explicit programmatic admission, not
-ordinary continuation, a current full suite or repaired geometry. Exact pins and
-before/after scope: [W125 receipt](topostitch-periodic.md#w125--audit-durable-counted-admission-and-native-outcomes).
+The **12,138-test /284-subtest W112/C366 source-only** full suite and later W121
+joined-package checks remain historical, not current C383 full-suite results.
+Current peer panels are focused; no duplicate native/full-suite run was launched
+by Linden for these audits. Integration/merge qualification remains separate.
 
-W124 independently verifies C380's exact upstream integration and 296 installed
-source/resource files. Rowan's 887 installed tests +13 subtests pass; a separate
-15-test installed campaign/Doctor caller panel also passes. No current full-suite
-or new native-run claim; use the [W124 receipt](topostitch-periodic.md#w124--audit-package-owned-integration-and-refused-admission)
-for exact branch pins, ownership and limits.
+The matched W116/W123 control shows maximum extra motion about **0.034 Å** and
+modest selected-pair improvement, with no Rfree benefit. Subsequent C382 descendants
+reduce PDB G·C plane mismatch **18.69→17.77→16.77°**, but logged Rfree worsens
+**.2599→.2609→.2611**. Those descendants lack matched native-only siblings; do not
+attribute all changes to the added terms or claim repair. Full-precision native
+and serialized-PDB measurements remain distinguished.
 
-Latest Willow code is **W118 / `c08f3370`**: **237 focused, 2,033 full tests +229
-subtests, 326 installed tests** pass. A relocated sdist-to-wheel installation,
-six CLI helps, pip check, lean import, Python3.10 syntax and unchanged captured
-worker bytes pass. Three saved-parent replays preserve all pair data; complete
-Phenix 2.2.1-6174 compiler/evaluator checks preserve 124 terms and exact energy/full
-855-atom gradients. See the [W118 receipt](topostitch-periodic.md#w118--rebind-frozen-pair-intent-to-a-compatible-child).
+## Local science checkout
 
-Latest **W121** qualifies one joined W118/C377 installation: **556 focused tests,
-zero skips (25.06s)**, all six installed CLI entry points and pip check pass after
-removing the build source and original install path. All 306 Python/resource files
-match qualified sources. No source/test conflicts; explicit package-data union
-and eight unresolved documentation conflicts are retained. This is not a branch
-merge or new full suite. This installed test panel contains no native execution;
-C378's separate frozen-worker check is described below.
-
-Separate **C377 / `0aaec4bd`** native evidence uses Phenix 2.2.1-6174: actual
-preflight 7.79s plus complete one-cycle refinement 34.92s. Prepared state, complete
-endpoint, physical PDB records, optimizer trace and R statistics exactly match
-W120; 15 checked calls omit W120's extra diagnostic final score. All hooks restore,
-processes stop and native foreign-driver refusal/preservation passes. The two
-initial representation failures remain stopped preflights. C377 also records 46
-helper tests and 230 relocated installed tests. See the
-[W121 composition receipt](topostitch-periodic.md#w121--qualify-the-current-joined-installation-and-maintained-lifetime).
-
-C378's additional native controls retain an actual final-MTZ failure as failed:
-optimization completed, then export refused; the original error and partial outputs
-survive, the owner closes/poisons, and hooks restore. Separately, 18 frozen source
-modules plus three profiles (342,556 bytes) copied from W121 reproduce the complete
-control without a live NASolve import in the native worker. The installed outer
-controller remains separate; this is not a portable campaign or ordinary activation.
-The exact follow-up is linked in the W121 receipt; no new Willow code or test count.
-
-W120 remains the [stronger complete-cycle historical replay](topostitch-periodic.md#w120--replay-the-complete-cycle-with-stronger-prepared-ownership),
-with unchanged 3,333 observations/176 Free-R selections and exact W116 results.
-Its observed 37.03s versus historical 83.21s is not a general speed guarantee or a
-new physical-benefit claim.
-
-The preceding [W119 boundary check](topostitch-periodic.md#w119--consume-strong-preflight-state-at-the-real-driver-boundary)
-uses a different rebound parent and deliberately retains native
-`FAILED / BoundaryObserved` before optimization. W120 does not relabel that record
-as a completed refinement or erase its distinct initial count of 11,392 +17.
-
-**C374** separately qualifies one joined relocated package at **W117/C373** pins:
-308 focused tests plus the 22 initially skipped Gemmi controls pass, along with
-one 27.43-second native consumer. Original source/install are removed and 305
-source/resource files verify. No actual branch merge, full suite or later-version
-coverage is implied; eight documentation conflicts remain. Cedar's
-`joined_installed_counted_consumer_2026_11_17` ledger owns its exact commands/pins.
-
-Earlier gates remain pinned in the ledger: W113 fresh factory, W114 direct lifetime
-and the **12,138-test /284-subtest W112/C366 source-only** baseline, W115 actual
-preflight, W116 complete short optimizer/writer lifecycle, and W117 exact-image
-optimization. Do not repeat their probes or claim the older complete suite covers
-newer combinations. W119–W121 change Willow documentation only. Cedar's
-source/installed/native checks are distinct evidence, not added Willow complete-suite
-counts. Scientific artifacts remain local and excluded from Git.
+Use the shared **GitHub workspace** anchor, relative path
+`ScienceCheckouts/Linden/2026-11-17/review.html`. Five local files provide a compact
+scientific diagram, matched display-only PDBs, a ChimeraX script and measurements.
+The declared symmetry image, contact-distance monitors and fitted base planes are
+visible; no alignment, motion magnification or chemical bonds are added. The
+coordinate-only derivatives omit ANISOU/LINK and are not refinement inputs.
+ChimeraX 1.12 headless loading, figure inspection and local-link checks pass;
+automated browser layout preview is unavailable because local-file URLs were blocked.
+Follow the [lightweight checkout policy](collaboration.md#lightweight-science-checkouts).
+Keep raw data and reports local; this is not permission to publish scientific files.
 
 ## Scientific limits and demonstration gates
 

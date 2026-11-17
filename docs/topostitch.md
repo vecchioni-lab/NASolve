@@ -137,6 +137,54 @@ compatibility, installability, cold read/relocation, failure retention and match
 native scope must pass before the option is advertised. This plans an S05/S06
 application; it closes no repair, inference, stacking or covalent-closure gate.
 
+## Ordinary-owner integration boundary (W126; planning)
+
+C381–C383 now qualify explicit saved admission, registered same-intent
+continuation and existing C278 PHIL namespace copies. They do not activate the
+ordinary AutoRefine/Doctor route. Keep that next join bounded:
+
+1. **Factory identity:** W118 accepts coordinate/B/ANISOU changes within the
+   unchanged atom identities/order, occupancy, chemistry, internal chain breaks
+   and crystal frame. PHIL scope spelling through C278 is not an atom/residue
+   namespace change. Extra terminal restraints or chemistry projections require
+   their own checked join; never infer compatibility from filenames or atom count.
+2. **Working frame:** bind one declared frame before compiling images and native
+   preparation. Preserve exact space-group setting and lattice translations.
+   W115's explicit model-cell override is a diagnostic control, not a general
+   PDB-over-MTZ policy. Resolve representation precision internally with declared
+   provenance; do not silently relax the compiled-state tolerance or ask users to
+   arbitrate insignificant decimal differences. Changed frames require explicit
+   registration/qualification, not same-frame recipe rebinding.
+3. **Requested versus actual protocol:** reuse the existing parameter writer with
+   an explicit supported request/profile. Refuse incompatible ordinary options
+   rather than silently narrowing their defaults. C377 currently qualifies one
+   all-site XYZ cycle, 1–10 iterations, one process, fixed unit weights and no
+   target/identity-changing phases. Actual resolved native preflight remains the
+   authority; copied CLI strings are insufficient. This is not a recommended
+   scientific refinement default. Broader weights, ADPs, scaling and phases are
+   separate gates.
+4. **Ordinary ownership:** consume the existing input-adaptation proof, processes,
+   stopped-preflight admission, temporary prepared view, result and checkpoint
+   publication through AutoRefine's existing owner. Before this join, bind the
+   final native-written model to the published checkpoint reference: a valid
+   checksum for some other model is insufficient. Rowan's C383 follow-up found
+   that a copied registry could substitute the previous model and still read;
+   the actual audited C382 outputs remain correct. Reuse final-writer evidence
+   rather than trusting a file found later at an expected path. Preserve native
+   errors and partial outputs. No second executor, recipe engine or untracked side path.
+   Keep initial counted diagnostics unselected REVIEW using existing selection
+   controls, even if a metric improves; mechanical usability is not adoption.
+5. **Next validation:** cross that actual owner/publication boundary once with a
+   frozen supported request. Reuse C381/C382 lifecycle and failure evidence where
+   unchanged; repeat only boundaries changed by the new owner. Independent
+   structures, matched controls, broader native scope and full integration checks
+   still precede a supported feature or merge. Do not run more short cycles merely
+   to improve presentation or tune repeatedly against Rfree.
+
+This is a planning contract, not new runtime schema or CLI behavior. The planned
+W122 application remains canonical declared sticky-end contacts first; automatic
+inference, mismatch/plane-only variants and large-bend repair stay later.
+
 ## Human intent and unattended campaigns
 
 The concise human option should be **Find and repair sticky ends**. Exact CLI

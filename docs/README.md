@@ -27,7 +27,7 @@ current instructions; other branches retain their own status and validation pins
   diagnostic stop before optimization. W120 extends the stronger path through a
   complete short cycle/writer with exact historical agreement. Cedar C377 supplies
   the maintained bounded lifetime; W121 verifies the current joined installation.
-  Versioned production wiring remains open. W122 places the planned explicit
+  Ordinary AutoRefine ownership remains open. W122 places the planned explicit
   sticky-end refinement option immediately after that integration, before inference
   and large-bend repair; no new implementation or runs.
   W123 attributes the saved ordinary endpoints: targeted pair penalties decrease,
@@ -36,9 +36,12 @@ current instructions; other branches retain their own status and validation pins
   records and C380's package-owned upstream library integration; positive counted
   admission follows in W125: C381's saved request/preflight/admission completes a
   bounded native cycle with audited refusal/failure controls. Ordinary descendants
-  refuse rather than lose pair intent; positive continuation remains next.
+  refuse rather than lose pair intent. W126 audits C382 registered continuation
+  and C383 reuse of existing input-adaptation proof; ordinary AutoRefine ownership
+  under an explicit qualified protocol remains next. The local five-file science
+  checkout is linked from the handoff.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Next human update is W126;
+  [machine-readable source](topostitch-roadmap.json). Next human update is W127;
   do not restart completed probes merely because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed
