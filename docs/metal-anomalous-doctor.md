@@ -1155,6 +1155,20 @@ flowchart LR
     N --> V
 ```
 
+## Current geometry qualification boundary
+
+Private A01 comparisons now distinguish saved-map evidence, explicit metal
+restraints and freedom of the surrounding frame during geometry preparation.
+Whole-frame preparation improves a local attachment, but the subsequent open
+XYZ/group-B fit does not retain that improvement. Ordinary difference density
+at fixed Q is diagnostic, not an occupancy or atom-count measurement. A passive
+native replay localizes a final fit/B shift to the coupled scale update, without diagnosing a defect or changing parameters. Comparisons must use
+identified stages and the actual exported endpoint. Retained source-phosphate
+state remains a separate chemistry question. These observations do not change
+the implemented public workflow, its figure or native defaults, and do not
+qualify an f″ parent. See the [current handoff](development-handoff.md) for
+matched controls, source provenance, validation and remaining gates.
+
 ## Implemented human reference snapshots
 
 A supplied human endpoint is optional comparison evidence. It does not replace

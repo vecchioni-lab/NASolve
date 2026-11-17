@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record metal map and coordinate-boundary diagnostics
+
+- Compare saved exact maps in explicit endpoint/common frames; retain their
+  model-assisted, correlated-density and normalization limits.
+- Record recipe-off and full-frame preparation controls, protected state,
+  chirality and the subsequent open-fit failure to retain improved geometry.
+- Keep native final scaling and retained source-phosphate state as explicit
+  follow-ups. No public behavior, schema, chemistry target, default, model
+  adoption, pruning or migration changes.
+
 ### Record bounded metal-refinement qualification and storage findings
 
 - Document matched iteration, macrocycle, phase-policy and structure-factor

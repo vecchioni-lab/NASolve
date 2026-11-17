@@ -52,7 +52,7 @@ release are different decisions.
 
 | Milestone | Current evidence | Post-merge completion gate | Dependencies |
 | --- | --- | --- | --- |
-| **A01 — Ligand geometry and open XYZ/B foundation** | PARTIAL; FT_Hg controls and initialization comparisons complete, local geometry gate open | Qualify exact source chemistry, linkage/terminal context, all intended NARestraints and metal recipe terms; demonstrate open XYZ/B refinement, explicit phase/Free-R policy, active-state B export and inspectable maps. FT_Hg first, then mixed Au/Ag. | Merged development base |
+| **A01 — Ligand geometry and open XYZ/B foundation** | PARTIAL; FT_Hg map/frame controls complete, open-fit geometry gate remains | Qualify exact source chemistry, linkage/terminal context, all intended NARestraints and metal recipe terms; demonstrate open XYZ/B refinement, explicit phase/Free-R policy, active-state B export and inspectable maps. FT_Hg first, then mixed Au/Ag. | Merged development base |
 | **A02 — Controlled f″/Q quantitation** | PARTIAL; frozen fits, B environments and matched comparisons implemented | Use qualified endpoints; freeze XYZ/all ADPs/f′, prepare metal B from the refined environment, and qualify Q/start/budget responses, mixed elements, cluster sums/cancellation and anomalous-background controls. | A01 |
 | **A03 — Editable recipes and structural alternatives** | PARTIAL; recipe core and candidate comparisons implemented | Source-backed ligand/metal-state targets, saved editable recipes, count/identity alternatives, optional chi flips and multiple/adjacent sites; preserve ambiguity and human choice. | A01–A02 |
 | **A04 — Lean storage and regeneration** | SCOPED; [storage plan](metal-campaign-storage.md), no pruning implementation | Shared pristine parents, compact frozen-trial records, protected important nodes, size-capped map retention, cold native regeneration, crash-safe retirement and campaign disk reservations. | Qualified A01–A02 examples; before large fan-out |
@@ -60,6 +60,13 @@ release are different decisions.
 | **A06 — Campaign and GUI integration** | PARTIAL; identities, navigation and inspection mechanisms exist | Connect the agreed GUI to bounded multi-dataset execution, structures/sites, compact comparisons, branching history, maps/Coot, selection, reuse and recovery; include no-metal/empty-frame policy. | A02–A05 |
 | **A07 — Reconstruct known metal solutions through the mechanics** | OPEN; solved references and diagnostic fixtures available | Reconstruct defensible solutions from declared experimental inputs and general NASolve mechanics, with reference models withheld from construction/search; record intervention and remaining ambiguity against predeclared criteria. | Mechanical rehearsals through A01–A03; campaign demonstration after A06 |
 | **A08 — Supported feature completion and release** | OPEN | Complete end-to-end scientific/human review, independent/negative controls, installed/relocated/native integration, compatibility and release regression; publish the supported scope and remaining limits. | A01–A07 |
+
+A01 now includes saved-map comparisons and matched recipe-off versus full-frame
+geometry preparation. Freeing the frame improves preparation geometry, but its
+open XYZ/group-B child does not retain that improvement. A passive replay
+localizes the final R/B shift to the coupled native scale update; that mechanism
+and an explicit source-phosphate-state question remain under review. No model
+is adopted and no new A02 trial follows. See the current handoff for exact scope.
 
 Statuses describe evidence already available, not completed post-merge work.
 A01–A03 feed both the storage controls and GUI session. A04 must be qualified

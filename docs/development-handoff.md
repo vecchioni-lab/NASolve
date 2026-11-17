@@ -6,6 +6,110 @@ current milestone: **A01 — ligand geometry and open XYZ/B**. Start with the
 The older Cedar/metal pause narrative is retained in
 [history](history/metal-foundation-pause-2026-11-16.md), not current instructions.
 
+## A01 — saved maps and coordinate-boundary controls, 2026-11-17
+
+**A01 remains partial; A02 is gated.** A read-only comparison samples 14 saved
+ordinary maps from seven completed open fits at both their own coordinates and
+a common reference frame. Exact coefficients, labels, work/free membership and
+atom identities are checked. Native replay reproduces all 4,592 summaries
+exactly. The Q=1 Hg region shows strong positive 2mFo–DFc density alongside
+negative difference density; this is not an occupancy measurement, resolved
+atom count or independent map validation. Whole-cell sigma normalization differs
+between maps. No coefficients are regenerated or copied.
+
+A matched zero-data-weight preparation disables exactly the two Hg distances
+and donor-vertex angle while retaining Hg. The other 2,678 observed terms and
+all initial atom/data/phase/Free-R state match. The DF attachment barely changes
+(1.5844 to 1.5831 Å); explicit Hg terms alone do not explain the strain. Native
+per-term arithmetic closes the selected bond/angle gradients within 1.74e-18.
+Several sugar/base angle terms oppose attachment shortening. This is not proof
+that an individual ideal is wrong. Absent bonds may change native nonbonded
+exclusions; no isolated additive-force claim is made.
+
+A separate original-recipe preparation frees all 859 atoms instead of 41. The
+attachment improves to 1.5335 Å, Hg distances are 2.0962/2.1336 Å and the donor
+angle is 1.889°. The previously fixed 818 atoms move 0.3288 Å RMS, maximum
+1.3426 Å. All three observed DF sugar chiral signs remain correct. Both
+preparations exhaust their 100-step allowance; neither is called converged or
+accepted. All B/Q/f′/f″ values stay fixed during preparation.
+
+Only prepared XYZ fields enter a pristine-input derivative for one original-
+profile open XYZ/group-B child. Original B/Q, numerical targets, native inputs,
+phases and Free-R policy are retained. The improvement does not survive:
+attachment 1.6906 Å, final Rwork/Rfree 0.308274/0.329758 and mean B 129.31 Å².
+Actual-state export and reflection audits pass; no endpoint is adopted. The
+final native scaling stage materially changes intermediate R/B statistics;
+intermediate lower residuals must not replace the exported endpoint in reports.
+
+An additional passive replay reproduces the completed child exactly, including
+all endpoint result fields except MTZ file hashes and byte-identical PDB output.
+Separate native reading proves both complex map coefficient arrays identical.
+Four compact stage observations localize the change: the forced mask rebuild
+leaves Rwork/Rfree 0.279633/0.290867 and mean B 184.2325 Å² unchanged;
+`update_all_scales` changes them to 0.308274/0.329758 and 129.3131 Å²; subsequent
+ADP tidying changes nothing. XYZ, Q, f′/f″, HL and raw mask-factor hashes remain
+exact. This does not separate the coupled scale/back-trace/solvent operations
+or diagnose a native defect. The 6,118-byte observation restores its bindings
+and verifies its own reads leave native scientific state unchanged. The shared
+owner records this scientific-reporting question in existing Cedar Q06.
+
+The shared chemistry owner checked exact source/candidate/actual dictionaries:
+DF OP2 retains source charge zero, a single P–OP2 bond and OP2–HOP2; the candidate
+retains OH1 and a 1.571 Å target with 0.022 Å sigma. Internal projection preserves
+this nonreacting source state deliberately. This is an existing source-state
+question in Cedar Q13, linked from Q06, not delivery drift, a sanitizer failure
+or an established cause of the glycosidic strain. No deprotonation or retuning.
+
+**Before/after and compatibility.** This pass adds diagnostic evidence and
+narrows the unresolved mechanism; it changes no public API, schema, default,
+chemistry target, checkpoint policy or runtime provider. Updated files are this
+handoff, roadmap, scientific feature descriptor, storage plan and changelog.
+Private A45–A48
+runners and generated science stay outside Git. No migration, automatic pruning,
+new Coot session or full suite. Geometry-changing nodes retain their stronger
+retention policy; A04 remains before large campaign fan-out.
+
+**Validation/evidence.** Phenix **2.2.1-6174** completes two geometry-only runs,
+one open child and its passive replay, each after a separate successful dry
+preflight. A prior dry
+preflight completed native work but failed a zero-term coverage postlude: normal
+export and shared coverage both correctly reject empty active recipes. The
+private ablation uses a separately named absence check and unchanged raw native
+observation; no shared guard is relaxed. Both geometry controls pass 16 state/
+export/lineage checks, with sampled derivative checks; the open child passes
+maintained data/B/export and force reviews. Formal-charge native readback remains
+unsupported, independently of source declarations.
+
+From the everyday checkout:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python -B -m pytest -q -p no:cacheprovider branch-artifacts/Alder/runners/test_A45_maps.py
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/Alder/runners/A45_verify.py
+```
+
+**18 tests passed in 0.30 s** (final rerun: 0.27 s); cold verification checks
+42 input files, 14 maps
+and 41 sites per map without native calls. Native sampling replay recomputes
+4,592 values with zero difference. It is separate from the cold integrity reader.
+Private evidence: `branch-artifacts/Alder/ft-hg-map-comparison-20261117-01/review.md`
+and `ft-hg-recipe-ablation-20261117-01/review.md`, including matched-state,
+chirality, per-term, model/map and failed-harness records. Read-only stage equality command:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/Alder/runners/A48_validate.py
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/Alder/runners/A49_seal.py
+```
+
+Final-stage review and cohort seal live in
+`ft-hg-final-scale-20261117-01/review.md`. All nine recorded native process IDs
+are absent after the completed/failed drivers exit. The sealed cohort verifies
+376 files and 19 links; the preceding 500-file and 414-file review capsules
+still validate unchanged. Documentation checks pass for nine documents, 256
+links and A01–A08 order. No portability qualification is claimed by these
+checks. Recommended follow-up:
+review the now-localized coupled native scale update and explicit source-state
+question with the chemistry owner before further parameter sweeps or f″.
+
 ## A01 — objective attribution and explicit iteration budgets, 2026-11-17
 
 **Current milestone: A01; A02 remains gated.** A private passive five-cycle

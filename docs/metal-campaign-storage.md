@@ -155,6 +155,14 @@ The measured gzip/dedup projection is read-only arithmetic: no archive or cold
 recovery qualification, deletion, or permission to prune those geometry nodes
 follows. Exact inventories remain in the private review linked by the handoff.
 
+A later bounded map/frame/scaling cohort measures 79,946,678 bytes across 337
+files before sealing, including 25,300,254 bytes of exact duplication. Four
+coefficient maps total 98,880 bytes. Its passive final-scale observation is
+6,118 bytes, but this compact receipt does not replace the protected geometry
+inputs, full audits or replay evidence. The earlier 14-map comparison references
+existing coefficients without copying them. These distinct inventory boundaries
+are recorded locally; no pruning or archive was performed.
+
 A **1–8 KiB compact record per point** is a design target: 20,000 points would
 use roughly **20–164 MB**, plus shared inputs, protected geometry/evidence and
 maps. It is not an implemented footprint guarantee. Measured anomalous map
