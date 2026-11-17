@@ -4,7 +4,7 @@
   "updated": "2026-11-17",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "f72ee37404adced6502fbdecfaa1d2d4ecf38b3c",
+  "audited_code_commit": "7361cad48c9136661391494f21e3e74f1b9b00d2",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -325,7 +325,8 @@
         "W119 qualifies stronger C375 prepared-state consumption at genuine non-dry driver.run after separate actual preflight, using W118 compatible-parent binding. One checked call preserves data/state and counts current native 11392 +17; exact sealed normalization/bonded/pair/dual state passes. Intentional FAILED/BoundaryObserved stops before optimizer, with no final model or usable checkpoint.",
         "W120 replays the original W116 full-recipe cycle at W118/C375 pins with stronger sealed prepared-state ownership through final writing. Full endpoint, physical records, optimizer trace, R statistics and counted owner results are exact; current 37.03s versus historical 83.21s is one observed phase comparison. No new repair benefit or maintained production activation.",
         "C377 supplies the maintained bounded driver lifetime and separately qualified complete native cycle. W121 verifies the current W118/C377 joined installed namespace with 556 focused tests, six CLI entry points, exact 306 source/resource bytes and removed-source relocation. Durable controller integration, actual branch merge and scientific acceptance remain open; native and installed-composition evidence are distinct. C378 separately qualifies an isolated 21-file native code bundle and final-MTZ failure cleanup; these do not establish portable campaign or production admission.",
-        "W122 records the user-facing explicit sticky-end enforcement plan and its validation order; no new runtime capability or scientific evidence is claimed."
+        "W122 records the user-facing explicit sticky-end enforcement plan and its validation order; no new runtime capability or scientific evidence is claimed.",
+        "W123 reuses existing native pair attribution on exact saved W116 ordinary endpoints: all 124 terms/14 pairs, exact native/zero control and modest targeted geometry improvement. Residual short/long contacts and no Rfree benefit remain; retain two slight core increases and separate rounding/source-state limits. No new refinement or scientific gate closure."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
@@ -385,14 +386,15 @@
         "E_CURRENT_JOINED_INSTALLATION",
         "E_C377_MAINTAINED_PHASE",
         "E_FROZEN_PHASE_AND_FAILURE",
-        "E_EXPLICIT_STICKY_REFINEMENT_PLAN"
+        "E_EXPLICIT_STICKY_REFINEMENT_PLAN",
+        "E_ORDINARY_PAIR_ATTRIBUTION"
       ],
       "last_audit": {
         "date": "2026-11-17",
-        "code_commit": "f72ee37404adced6502fbdecfaa1d2d4ecf38b3c",
-        "human_update": 122,
+        "code_commit": "7361cad48c9136661391494f21e3e74f1b9b00d2",
+        "human_update": 123,
         "reviewer": "Linden",
-        "scope": "Planning-only feature placement and acceptance audit. W121/C378 remain the latest native/package qualification; no scientific gate closes."
+        "scope": "Read-only saved-endpoint geometry audit, with independent term arithmetic and unchanged input/source checks. Durable controller integration remains next; no physical repair acceptance."
       }
     },
     {
@@ -427,7 +429,8 @@
         "W119 qualifies stronger C375 prepared-state consumption at genuine non-dry driver.run after separate actual preflight, using W118 compatible-parent binding. One checked call preserves data/state and counts current native 11392 +17; exact sealed normalization/bonded/pair/dual state passes. Intentional FAILED/BoundaryObserved stops before optimizer, with no final model or usable checkpoint.",
         "W120 replays the original W116 full-recipe cycle at W118/C375 pins with stronger sealed prepared-state ownership through final writing. Full endpoint, physical records, optimizer trace, R statistics and counted owner results are exact; current 37.03s versus historical 83.21s is one observed phase comparison. No new repair benefit or maintained production activation.",
         "C377 supplies the maintained bounded driver lifetime and separately qualified complete native cycle. W121 verifies the current W118/C377 joined installed namespace with 556 focused tests, six CLI entry points, exact 306 source/resource bytes and removed-source relocation. Durable controller integration, actual branch merge and scientific acceptance remain open; native and installed-composition evidence are distinct. C378 separately qualifies an isolated 21-file native code bundle and final-MTZ failure cleanup; these do not establish portable campaign or production admission.",
-        "W122 records the user-facing explicit sticky-end enforcement plan and its validation order; no new runtime capability or scientific evidence is claimed."
+        "W122 records the user-facing explicit sticky-end enforcement plan and its validation order; no new runtime capability or scientific evidence is claimed.",
+        "W123 reuses existing native pair attribution on exact saved W116 ordinary endpoints: all 124 terms/14 pairs, exact native/zero control and modest targeted geometry improvement. Residual short/long contacts and no Rfree benefit remain; retain two slight core increases and separate rounding/source-state limits. No new refinement or scientific gate closure."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -467,14 +470,15 @@
         "E_CURRENT_JOINED_INSTALLATION",
         "E_C377_MAINTAINED_PHASE",
         "E_FROZEN_PHASE_AND_FAILURE",
-        "E_EXPLICIT_STICKY_REFINEMENT_PLAN"
+        "E_EXPLICIT_STICKY_REFINEMENT_PLAN",
+        "E_ORDINARY_PAIR_ATTRIBUTION"
       ],
       "last_audit": {
         "date": "2026-11-17",
-        "code_commit": "f72ee37404adced6502fbdecfaa1d2d4ecf38b3c",
-        "human_update": 122,
+        "code_commit": "7361cad48c9136661391494f21e3e74f1b9b00d2",
+        "human_update": 123,
         "reviewer": "Linden",
-        "scope": "Planning-only feature placement and acceptance audit. W121/C378 remain the latest native/package qualification; no scientific gate closes."
+        "scope": "Read-only saved-endpoint geometry audit, with independent term arithmetic and unchanged input/source checks. Durable controller integration remains next; no physical repair acceptance."
       }
     },
     {
@@ -2285,6 +2289,29 @@
       "reference": "docs/topostitch.md#explicit-sticky-end-enforcement-during-refinement-planned-w122",
       "result": "User-requested feature is placed after durable saved-request/preflight/admission and continuation integration, before automatic inference and large-bend repair. First expose declared canonical full-pair enforcement; independently qualify explicitly requested plane-only mismatch hypotheses afterward. Define enabled/disabled controls using 8D93, independent 5W6W/DOHU and later inventoried 7R96 contacts, reusing existing inputs/owners.",
       "limitation": "Planning only: no implementation, available CLI flag, runtime schema/default change, new refinement run or scientific acceptance. General supported-model scope is not universal chemistry support. Plane-only geometry leaves register and in-plane motion unresolved and does not establish H-bonds, stacking or covalent closure."
+    },
+    "E_ORDINARY_PAIR_ATTRIBUTION": {
+      "kind": "read_only_saved_ordinary_endpoint_pair_attribution",
+      "code_commit": "7361cad48c9136661391494f21e3e74f1b9b00d2",
+      "human_update": 123,
+      "reference": "docs/topostitch-periodic.md#w123--attribute-saved-ordinary-refinement-pair-geometry",
+      "result": "Read-only Phenix 2.2.1-6174 evaluation reuses the existing compiler/attribution API on verified W116 full-precision endpoints through the W121 installed package. All 124 terms/14 pairs reproduce complete native sums; native-only and zero endpoints are exact. Full vs native selected penalties decrease 23.486130; 12 retained-core pairs decrease 0.102301 in aggregate, with two small increases. Selected plane deviations improve modestly. Independent readback, input/source hashes, serialization sensitivity and stopped processes verified; successful analysis 1.42s, no new refinement.",
+      "limitation": "Residual selected-pair defects remain (GC distance 2.207122 A; AT distances 3.401875/3.491959 A) and Rfree slightly worsens. First failed attempt retains inability to reconstruct exact prepared initial force sites; source comparisons explicitly use serialized PDB only. Raw pair penalties are not whole-model normalized geometry scores. No backbone/stacking/packing/density acceptance, retuning, new implementation or repaired checkpoint. S05/S06 remain PARTIAL.",
+      "runtime_pins": {
+        "willow_code_commit": "c08f337024f8901c583c0988f652e9a1c3156a49",
+        "cedar_code_commit": "0aaec4bd0b7dc49ffd038a5be578523d9ed1a4f1",
+        "joined_wheel_sha256": "1f712477c66eadb06b5dc27d576c4c0c6be930cbcd9cb105126cbd3f495d89b7",
+        "attribution_sha256": "df798184f50c361eda7e9359333ac8929698e55220d75c868608f7840651dea7"
+      },
+      "local_receipts": [
+        {
+          "repository_anchor": "everyday NASolve checkout",
+          "relative_path": "branch-artifacts/willow/w123-pair-attribution-2026-11-17.tar.gz",
+          "sha256": "e6d5104e5c3394865217931318e595af82c23bce61c58d696836f474f3edaa72",
+          "bytes": 1182648,
+          "indexed_files": 30
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -2446,8 +2473,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 122,
-    "next": 123,
+    "current": 123,
+    "next": 124,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -2989,6 +3016,12 @@
         "title": "Plan explicit opt-in sticky-end enforcement during refinement",
         "state": "RECORDED",
         "code_commit": "f72ee37404adced6502fbdecfaa1d2d4ecf38b3c"
+      },
+      {
+        "number": 123,
+        "title": "Attribute saved ordinary-refinement pair geometry",
+        "state": "RECORDED",
+        "code_commit": "7361cad48c9136661391494f21e3e74f1b9b00d2"
       }
     ]
   },
