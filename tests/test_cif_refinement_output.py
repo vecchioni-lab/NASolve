@@ -150,3 +150,52 @@ def test_optional_final_observer_surrounds_the_original_writer():
     with synchronized_outputs(Driver,lambda *args:None,observe_final=final):
         assert Driver.write_after_run_outputs(result)=='unchanged result'
     assert events==[False,'written',True]
+
+
+def test_written_model_observer_uses_pre_writer_path_after_serial_increment(tmp_path):
+    from nasolve.cif_refinement_output import WrittenModelObservation, _digest, _hierarchy
+    import hashlib
+    refined, *_ = model()
+    serial = [1]
+    refined.ofm = NS(get_file_name=lambda ext: str(tmp_path / f'model_{serial[0]:03d}{ext}'))
+    observe = WrittenModelObservation()
+    observe(refined, False)
+    first = tmp_path / 'model_001.pdb'
+    first.write_bytes(b'actual native writer bytes\n')
+    serial[0] = 2
+    (tmp_path / 'model_002.pdb').write_bytes(b'wrong next serial\n')
+    observe(refined, True)
+    assert observe.record == dict(policy_id='native-written-model-v1',
+        sha256=hashlib.sha256(first.read_bytes()).hexdigest(), size=first.stat().st_size,
+        model_state_sha256=_digest(_hierarchy(refined.model)))
+
+
+@pytest.mark.parametrize('defect', ['no_before', 'missing_file', 'symlink', 'changed_state', 'duplicate'])
+def test_written_model_observer_refuses_unproven_native_export(tmp_path, defect):
+    from nasolve.cif_refinement_output import WrittenModelObservation
+    refined, atoms, *_ = model()
+    target = tmp_path / 'written.pdb'
+    refined.ofm = NS(get_file_name=lambda ext: str(target))
+    observe = WrittenModelObservation()
+    if defect != 'no_before':
+        observe(refined, False)
+    if defect == 'symlink':
+        other = tmp_path / 'other.pdb'; other.write_bytes(b'other bytes')
+        target.symlink_to(other)
+    elif defect != 'missing_file':
+        target.write_bytes(b'native bytes')
+    if defect == 'changed_state':
+        atoms[0].xyz = (9., 2., 3.)
+    if defect == 'duplicate':
+        observe(refined, True)
+    with pytest.raises(ValueError):
+        observe(refined, True)
+
+
+def test_written_model_observer_refuses_preexisting_output_before_writer(tmp_path):
+    from nasolve.cif_refinement_output import WrittenModelObservation
+    refined,*_=model();target=tmp_path/'old.pdb';target.write_bytes(b'previous output')
+    refined.ofm=NS(get_file_name=lambda ext:str(target))
+    with pytest.raises(ValueError,match='not fresh'):
+        WrittenModelObservation()(refined,False)
+    assert target.read_bytes()==b'previous output'

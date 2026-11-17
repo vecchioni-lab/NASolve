@@ -1,27 +1,35 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C384 missing refinement ancestry refused — Rowan**.
+Updated **2026-11-17, C385 exact written-model binding qualified — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Evening stop **23:00 UK / UTC**.
 Focused tests only; no full suite. Linden owns the small local symmetry-pair science
 inspection bundle for checkout; Hazel owns the separate Alder diagnostic display.
 
 ## Current checkpoint and next bounded work
 
-**C384 complete: do not skip an unproven refinement.** A counted ancestor followed
-by a refinement lacking its execution receipt can no longer regain continuation
-through that step or a later manual child. The existing declared manual-import
-step remains supported. Two regressions fail before the guard; 144 focused tests
-pass in source (41.63 s) and installed/relocated (45.82 s). No native rerun or schema
-change; frozen native files are unchanged.
+**C385 complete: save the model Phenix actually wrote.** Explicit v6 uses the
+existing final-writer callback, captures the fresh PDB path before Phenix increments
+its serial, and joins completed file bytes to the same native atom state and the
+usable checkpoint. Previous-model and altered-copy substitutions refuse despite
+valid checksums. Partial files and original writer failures stay preserved.
+Continuation retains its inherited v5/v6 policy; a v6 descendant cannot drop the
+new proof. Historical v4/v5 workers and the default v3 remain byte-pinned separately.
+No silent upgrade, ordinary activation, new executor or scientific setting change.
 
-**Publication audit found a separate open prerequisite.** In a disposable copy
-of the real C382 run, replacing the final checkpoint's model reference with the
-checksum-valid previous model is accepted by the current reader. The real C382
-outputs are correctly paired and unchanged. Before ordinary counted integration,
-reuse C338's final-writer observation to bind the exact physical model Phenix wrote
-to the checkpoint; do not infer a filename or hash an arbitrary file afterward.
-The native output manager increments its serial after writing, so capture its path
-before the writer runs. Historical v5 proof must retain its actual narrower meaning.
+One real installed v6 cycle passes: preflight 11.42 s, refinement 35.35 s, both zero.
+Its full written PDB, native output state and counted-owner observations match the
+prior C382 first cycle exactly. The moved registry reads cold; both wrong-model
+substitutions refuse in a disposable copy. Selection stays PostMR. All processes
+stopped. Installed focused282 pass46.69s; affected source197 pass40.44s. No full suite.
+This is a 42-residue canonical-DNA mechanics control, not PDU/DF chemical acceptance.
+A first harness used Python without Gemmi and stopped before native launch; its
+failed directory is preserved. The correctly equipped existing environment passed.
+
+**C384 complete:** a counted ancestor followed by an unrecorded refinement can no
+longer regain continuation directly or through a manual child. Declared manual
+imports remain supported. Source/installed focused144 tests pass. The separate
+wrong-model gap found in that audit is now closed for new explicit v6 records;
+C381/C382 v5 evidence retains its independently verified, narrower historical scope.
 
 **C383 complete: accept the existing checked Phenix policy spelling.** Explicit
 continuation can take C278's `refinement_input_reference`, validate it against the
@@ -55,7 +63,7 @@ not independently assessed. PDB coordinate RMS movements .0231/.0138 Å, maxima
 continuity, not a matched efficacy comparison or improved chemistry. No weight,
 acceptance or source-chemistry policy changes follow.
 
-Next: first close the written-model binding above, then connect this explicit supported protocol to the existing ordinary refinement
+Next: connect this explicit supported protocol to the existing ordinary refinement
 owner without bypassing its terminal-phosphate, chemistry-projection, process or publication rules; C383 now joins the existing input adapter. First map that interface; do not invent another
 executor or override ordinary automatic weighting to force qualification. Q06
 achieved chemistry remains open. The prior W119 stopped boundary is not repeated.
@@ -96,7 +104,8 @@ that a process is dead. The existing process owner supplies that evidence.
 **Keep evidence small.** Completed C381/C382 controls now also have verified local
 archives (1,112,954 / 2,152,311 bytes), with all original roots preserved and cold
 expanded reads checked. These are complete diagnostic archives, not per-dataset
-capacity claims. C381 uses the existing archive owner: actual prepared
+capacity claims. C385 adds a verified 1,152,662-byte local archive; its original
+root remains. C381 uses the existing archive owner: actual prepared
 record 67,216 bytes compressed, byte-exact temporary expansion, durable archive
 before transient raw retirement. No duplicate permanent prepared JSON. Failed
 partial outputs and original scientific inputs remain. C376/C378 retention proof
@@ -126,6 +135,7 @@ questions remain Q13, not a diagnosed cause of its stretched sugar–base bond.
 
 The [completion queue](cif-doctor-completion-queue.md#pipeline-position) is the sole
 work order. Exact source pins, commands and results are in
+`counted_native_written_model_2026_11_17`,
 `counted_missing_refinement_ancestry_2026_11_17`,
 `counted_continuation_input_adaptation_2026_11_17`,
 `registered_counted_continuation_2026_11_17` and

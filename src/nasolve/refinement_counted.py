@@ -109,13 +109,15 @@ def _inherited_request(run, registry, selected, *, include_selected):
                   'A later refinement lost its counted pair intent')
             continue
         record=read_record(_bound_path(reference,'ancestor execution',run))
-        if record['policy_id']!=execution.V5_POLICY_ID:
+        if record['policy_id'] not in execution._COUNTED_POLICIES:
             _need(inherited is None,'A later refinement lost its counted pair intent')
             continue
         _need([row['returncode'] for row in record['phases']]==[0,0],
               'Counted continuation requires a completed ancestor')
         request=execution.read_execution_request(run,record['request'],checkpoint=identifier)
         if inherited is not None:
+            _need(inherited['policy_id'] != execution.V6_POLICY_ID or record['policy_id'] == execution.V6_POLICY_ID,
+                  'Counted ancestry lost its native written-model proof')
             _need(_original_identity(inherited)==_original_identity(request),
                   'Counted ancestry changed its original pair intent')
         inherited=request
@@ -124,8 +126,11 @@ def _inherited_request(run, registry, selected, *, include_selected):
 
 def validate_intent_lineage(run, registry, selected, request):
     """Join original intent during existing checkpoint validation; no rebind or writes."""
+    from . import refinement_parallelity as execution
     inherited=_inherited_request(run,registry,selected,include_selected=False)
     if inherited is not None:
+        _need(inherited['policy_id'] != execution.V6_POLICY_ID or request['policy_id'] == execution.V6_POLICY_ID,
+              'Counted descendant lost its native written-model proof')
         _need(_original_identity(inherited)==_original_identity(request),
               'Counted descendant changed its original pair intent')
 
@@ -167,7 +172,7 @@ def prepare_continuation(run_directory, *, checkpoint, parent, inputs, command,
     intent=request['counted_intent']
     return execution.prepare_execution(run,checkpoint=checkpoint,parent=parent,inputs=inputs,
         command=command,python_executable=python_executable,macro_cycles=macro_cycles,
-        runtime_policy=execution.V5_POLICY_ID,counted_pair_request=dict(
+        runtime_policy=request['policy_id'],counted_pair_request=dict(
             recipe=_bound_path(intent['original_recipe'],'original pair recipe',run),
             source_model=_bound_path(intent['original_model'],'original pair source',run)))
 
@@ -242,7 +247,7 @@ def seal_admission(run, reference, *, checkpoint, preflight_returncode):
     from .cif_runtime_evidence import pack_runtime_evidence, expanded_runtime_evidence
     _need(type(preflight_returncode) is int and preflight_returncode==0,'Admission requires native preflight zero')
     request=execution.read_execution_request(run,reference,checkpoint=checkpoint)
-    _need(request['policy_id']==execution.V5_POLICY_ID,'Counted admission requires explicit v5')
+    _need(request['policy_id'] in execution._COUNTED_POLICIES,'Counted admission requires an explicit counted policy')
     root=execution._root(checkpoint);target=path_in(run,root+'/admission.json')
     _need(not target.exists(),'Counted admission is immutable')
     _need(not path_in(run,root+'/execution.json').exists()
@@ -277,7 +282,7 @@ def read_admission(run, request_reference, admission_reference, *, checkpoint):
     from . import refinement_parallelity as execution
     from .cif_runtime_evidence import expanded_runtime_evidence
     request=execution.read_execution_request(run,request_reference,checkpoint=checkpoint)
-    _need(request['policy_id']==execution.V5_POLICY_ID,'Counted admission requires explicit v5')
+    _need(request['policy_id'] in execution._COUNTED_POLICIES,'Counted admission requires an explicit counted policy')
     root=execution._root(checkpoint);ref=admission_reference
     _need(isinstance(ref,dict) and ref.get('anchor')=='run' and ref.get('relative_path')==root+'/admission.json',
           'Admission must belong to its exact round')

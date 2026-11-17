@@ -174,3 +174,44 @@ def test_selected_observation_interruption_restores_both_native_bindings(tmp_pat
     assert gr.parallelity_residual_sum == original and klass.summary is summary
     record=json.loads((tmp_path/'native/result.json').read_text())
     assert record['status']=='FAILED' and record['chemistry_binding_restored']
+
+
+@pytest.mark.parametrize('outcome', ['complete', 'dry_run', 'writer_failure', 'missing_callback'])
+def test_requested_written_model_capture_follows_actual_writer_lifetime(tmp_path,monkeypatch,outcome):
+    from tests.test_cif_refinement_output import Atom
+    from nasolve.cif_refinement_output import _digest,_hierarchy
+    import hashlib
+    module,gr,result,original=runtime(monkeypatch)
+    count=len(result.model.get_hierarchy().atoms());atoms=[Atom(str(i)) for i in range(count)]
+    result.model.get_hierarchy=lambda:NS(atoms=lambda:atoms)
+    result.iparams.refinement.dry_run=outcome=='dry_run'
+    serial=[1];result.ofm=NS(get_file_name=lambda ext:str(tmp_path/f'model_{serial[0]}{ext}'))
+    target=tmp_path/'model_1.pdb'
+    def program(args,observe,final):
+        if outcome!='dry_run':
+            final(result,False)
+            target.write_bytes(b'actual writer output\n')
+            if outcome=='writer_failure':raise RuntimeError('native final MTZ writer failed')
+            serial[0]=2
+            if outcome!='missing_callback':final(result,True)
+            row=output_row(count);row['hierarchy_after_sha256']=_digest(_hierarchy(result.model))
+            observe([row],True)
+        else:observe([],True)
+        return result
+    monkeypatch.setattr(module,'_native_runtime',lambda:(gr,setup()[3],program,dict(profile_id='test'),lambda:None))
+    call=lambda:module.run_compatible_refinement(['model.pdb'],evidence_directory=tmp_path/'native',capture_written_model=True)
+    if outcome=='writer_failure':
+        with pytest.raises(RuntimeError,match='native final MTZ writer failed'):call()
+    elif outcome=='missing_callback':
+        with pytest.raises(ValueError,match='written model'):call()
+    else:assert call() is result
+    record=json.loads((tmp_path/'native/result.json').read_text())
+    if outcome=='complete':
+        assert record['written_model']['sha256']==hashlib.sha256(target.read_bytes()).hexdigest()
+        assert record['status']=='COMPLETE'
+    else:
+        assert record['written_model'] is None
+        assert record['status']==('COMPLETE' if outcome=='dry_run' else 'FAILED')
+    if outcome=='writer_failure':
+        assert record['error']['message']=='native final MTZ writer failed' and target.exists()
+    assert gr.parallelity_residual_sum==original and record['binding_restored']

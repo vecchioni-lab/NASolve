@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bind a counted checkpoint to the model Phenix actually wrote (C385)
+
+- Add explicit counted execution policy v6. Reuse the existing final-writer
+  callback to capture a fresh native output path before Phenix increments its
+  serial, then bind the completed file's exact bytes to the unchanged native
+  atom state and the published usable checkpoint. Previous or modified models
+  refuse even when their own checksums are valid. Failed writers retain their
+  original error and partial files; they cannot claim a completed export.
+- Continuation retains its inherited policy and refuses loss of v6 output proof.
+  Freeze historical v4/v5 helper bytes separately; older evidence keeps its
+  original narrower meaning. Default v3 and scientific settings are unchanged.
+
 ### Refuse a missing refinement step in counted ancestry (C384)
 
 - Explicit counted continuation now refuses an intervening refinement with no

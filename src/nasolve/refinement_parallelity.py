@@ -18,6 +18,8 @@ V2_POLICY_ID = 'round-local-parallelity-execution-v2'
 V3_POLICY_ID = 'round-local-parallelity-execution-v3'
 V4_POLICY_ID = 'round-local-parallelity-execution-v4'
 V5_POLICY_ID = 'round-local-counted-execution-v5'
+V6_POLICY_ID = 'round-local-counted-execution-v6'
+_COUNTED_POLICIES = (V5_POLICY_ID, V6_POLICY_ID)
 POLICY_ID = V3_POLICY_ID  # Ordinary requests keep their existing default.
 ADMISSION_REFUSAL_POLICY_ID = 'preflight-admission-refusal-v1'
 # Filled from the qualified C297 checkpoint; historical readers keep these exact
@@ -48,13 +50,15 @@ _V5_SOURCE_DIGESTS = {'cif_counted_contribution.py': '7322edee9e78a027bbd47c0043
  'topostitch_periodic.py': '971d91c0fb1c29619b85fe90829a650214e7560f069dd4bdb8ec50376e12a5ce',
  'topostitch_recipe.py': '73b735197560d8b0e0f0c343b4636fdf9e83b5acffa179aa7586367931293e76',
  'topostitch_transport.py': '8a641d8f067b594e8ea446156b0252583a0d6178c967148a6b86214f9f8cfbfc'}
+_V6_SOURCE_DIGESTS = dict(_V5_SOURCE_DIGESTS, **{'cif_refinement_runtime.py': 'fba731d7d2a21301c1c11a84a6a0b515307e73665f2367e42bd2defa25eb1fc1', 'cif_refinement_output.py': 'f006c30fc139f5c52f328607025509d1dca7591ac9ab85c55ceaa3884bf258f2', 'cif_counted_phase.py': 'f9dcb633c6d3c274cb6f5176b603fb6834bb3ce240d138b3fcb86f2134e21cf9'})
 _SOURCES = {LEGACY_POLICY_ID:_SOURCE_DIGESTS, V2_POLICY_ID:_V2_SOURCE_DIGESTS,
-            V3_POLICY_ID:_CURRENT_SOURCE_DIGESTS, V4_POLICY_ID:_V4_SOURCE_DIGESTS, V5_POLICY_ID:_V5_SOURCE_DIGESTS}
+            V3_POLICY_ID:_CURRENT_SOURCE_DIGESTS, V4_POLICY_ID:_V4_SOURCE_DIGESTS, V5_POLICY_ID:_V5_SOURCE_DIGESTS, V6_POLICY_ID:_V6_SOURCE_DIGESTS}
 _RUNTIME_POLICIES = {LEGACY_POLICY_ID:'explicit-native-parallelity-refinement-v1',
                      V2_POLICY_ID:'explicit-native-parallelity-refinement-v2',
                      V3_POLICY_ID:'explicit-native-parallelity-refinement-v3',
                      V4_POLICY_ID:'explicit-native-parallelity-refinement-v4',
-                     V5_POLICY_ID:'explicit-native-parallelity-refinement-v4'}
+                     V5_POLICY_ID:'explicit-native-parallelity-refinement-v4',
+                     V6_POLICY_ID:'explicit-native-parallelity-refinement-v4'}
 _V2_ENTRY = b'''from pathlib import Path
 import sys
 root=Path(__file__).resolve().parent
@@ -123,8 +127,8 @@ from _nasolve_refinement.cif_counted_phase import run_phase
 run_phase(root,request,phase,arguments,admission=admission,prepared_path=prepared_path)
 '''
 
-_ENTRIES = {LEGACY_POLICY_ID:_V2_ENTRY, V2_POLICY_ID:_V2_ENTRY, V3_POLICY_ID:_ENTRY, V4_POLICY_ID:_ENTRY, V5_POLICY_ID:_COUNTED_ENTRY}
-_CHEMISTRY_POLICIES = (V3_POLICY_ID, V4_POLICY_ID, V5_POLICY_ID)
+_ENTRIES = {LEGACY_POLICY_ID:_V2_ENTRY, V2_POLICY_ID:_V2_ENTRY, V3_POLICY_ID:_ENTRY, V4_POLICY_ID:_ENTRY, V5_POLICY_ID:_COUNTED_ENTRY, V6_POLICY_ID:_COUNTED_ENTRY}
+_CHEMISTRY_POLICIES = (V3_POLICY_ID, V4_POLICY_ID, V5_POLICY_ID, V6_POLICY_ID)
 
 
 def _need(value, message='Invalid explicit parallelity execution evidence'):
@@ -144,7 +148,7 @@ def _root(checkpoint): return _directory(checkpoint)+'/parallelity_runtime'
 def _code(policy=None):
     """Freeze qualified bytes; default v3 remains exact after a helper upgrade."""
     policy=POLICY_ID if policy is None else policy
-    _need(isinstance(policy,str) and policy in (V3_POLICY_ID,V4_POLICY_ID,V5_POLICY_ID),
+    _need(isinstance(policy,str) and policy in (V3_POLICY_ID,V4_POLICY_ID,*_COUNTED_POLICIES),
           'Unsupported new native execution policy')
     package=Path(__file__).parent;frozen={}
     if policy==V3_POLICY_ID:
@@ -153,6 +157,12 @@ def _code(policy=None):
             'cif_refinement_runtime.py','cif_refinement_output.py','cif_refinement_sites.py'}
             and all(type(value) is str for value in frozen.values()),
             'Invalid frozen v3 helper source set')
+    if policy in (V4_POLICY_ID, V5_POLICY_ID):
+        frozen=json.loads((package/'data/refinement-runtime-v5-sources.json').read_text())
+        _need(isinstance(frozen,dict) and set(frozen)=={
+            'cif_refinement_runtime.py','cif_refinement_output.py','cif_counted_phase.py'}
+            and all(isinstance(value,str) for value in frozen.values()),
+            'Invalid frozen v4/v5 helper source set')
     expected=_SOURCES[policy]
     values={name:frozen[name].encode('utf-8') if name in frozen else (package/name).read_bytes()
             for name in expected}
@@ -175,7 +185,7 @@ def read_execution_request(run, reference, *, checkpoint):
           and reference.get('relative_path')==root+'/request.json')
     path=_bound_path(reference,'parallelity execution request',run)
     record=read_record(path)
-    counted=record.get('policy_id')==V5_POLICY_ID
+    counted=record.get('policy_id') in _COUNTED_POLICIES
     fields = set(record) - ({'chemistry_projections'} if record.get('policy_id') in _CHEMISTRY_POLICIES else set()) - ({'counted_intent'} if counted else set())
     _need(fields in ({'schema_version','policy_id','checkpoint','parent','inputs','command','code','record_sha256'}, {'schema_version','policy_id','checkpoint','parent','inputs','command','code','record_sha256','preflight_mode','macro_cycles'})
           and type(record['schema_version']) is int and record['schema_version']==(2 if counted else 1)
@@ -216,7 +226,7 @@ def prepare_execution(run, *, checkpoint, parent, inputs, command, python_execut
     """Freeze only the small qualified helper; retain all original input files."""
     from .checkpoints import _file_reference
     policy=POLICY_ID if runtime_policy is None else runtime_policy
-    _need(runtime_policy is None or (isinstance(policy,str) and policy in (V3_POLICY_ID,V4_POLICY_ID,V5_POLICY_ID)),
+    _need(runtime_policy is None or (isinstance(policy,str) and policy in (V3_POLICY_ID,V4_POLICY_ID,*_COUNTED_POLICIES)),
           'Unsupported new native execution policy')
     _need(isinstance(command,list) and len(command)>1)
     inputs=[Path(p).expanduser().resolve() for p in inputs]
@@ -227,7 +237,7 @@ def prepare_execution(run, *, checkpoint, parent, inputs, command, python_execut
         _projection_scope(run,chemistry_projections)
     payload=_code() if runtime_policy is None else _code(policy)
     intent_payload=None
-    if policy==V5_POLICY_ID:
+    if policy in _COUNTED_POLICIES:
         _need(type(macro_cycles) is int and macro_cycles==1 and chemistry_projections is None,
               'Initial counted scope requires one cycle and no chemistry projections')
         _need(isinstance(counted_pair_request,dict) and set(counted_pair_request)=={'recipe','source_model'}
@@ -237,7 +247,7 @@ def prepare_execution(run, *, checkpoint, parent, inputs, command, python_execut
         from .checkpoints import _file_reference
         _need(all(_file_reference(p,run)['anchor'] in ('run','dataset','repository') for p in inputs),
               'Counted inputs require declared portable anchors')
-    else:_need(counted_pair_request is None,'Counted intent requires explicit v5')
+    else:_need(counted_pair_request is None,'Counted intent requires an explicit counted policy')
     root=path_in(run,_root(checkpoint));root.mkdir()
     code={}
     for name,data in payload.items():
@@ -258,7 +268,7 @@ def prepare_execution(run, *, checkpoint, parent, inputs, command, python_execut
     reference=_file_reference(request,run)
     prefix=[str(python_executable),'-B',str(root/'entry.py')]
     request_record=read_execution_request(run,reference,checkpoint=checkpoint)
-    if policy==V5_POLICY_ID:
+    if policy in _COUNTED_POLICIES:
         return reference,[*prefix,'preflight',reference['sha256'],*_preflight_arguments(request_record)],None
     return reference,[*prefix,'preflight',*_preflight_arguments(request_record)],[*prefix,'refine',*command[1:]]
 
@@ -306,7 +316,7 @@ def require_runtime_continuation(registry, selected, enabled, *, run=None):
                 policy=record.get('policy_id')
                 _need(isinstance(policy,str) and policy in _SOURCES,'Unknown ancestor execution policy')
             except (OSError,ValueError,RuntimeError) as exc:raise ValueError(str(exc)) from exc
-            if policy==V5_POLICY_ID:
+            if policy in _COUNTED_POLICIES:
                 raise ValueError(
                     'This checkpoint inherits counted pair restraints. Ordinary continuation '
                     'is not yet qualified; prepare a fresh explicit counted request preserving '
@@ -376,6 +386,11 @@ def _phase(run, root, phase, code, request, *, require_complete):
             _need(result.get('output_binding_restored') is True)
             validate_output_observations(result.get('output_synchronization'),
                 dry_run=phase=='preflight',atom_count=len(labels))
+        if request['policy_id']==V6_POLICY_ID:
+            from .cif_refinement_output import validate_written_model
+            _need('written_model' in result,'Missing requested native written-model observation')
+            validate_written_model(result['written_model'],dry_run=phase=='preflight',
+                                   output_observations=result['output_synchronization'])
         if request['policy_id'] in _CHEMISTRY_POLICIES:
             from .cif_refinement_sites import validate_phase_observation
             sites=[{k:row[k] for k in ('site','component')} for row in request.get('chemistry_projections',[])]
@@ -395,7 +410,7 @@ def _phase(run, root, phase, code, request, *, require_complete):
             final_observed|=(row['parameters']==dict(site_count=len(labels),proxies=result['parallelity_parameters']))
         _need(parent_calls<=stats['successful_calls'] and final_observed,
               'Completed native parameter state lacks usage evidence')
-    if request['policy_id']==V5_POLICY_ID and phase=='refine' and require_complete:
+    if request['policy_id'] in _COUNTED_POLICIES and phase=='refine' and require_complete:
         counted=json.loads(path_in(run,root+'/refine/counted.json').read_text())
         _need(isinstance(counted,dict) and set(counted)=={'policy_id','lifetime','admission_record_sha256','prepared_sha256',
               'compiled_binding_sha256','provider_selection_sha256','recipe_sha256','scope_sha256'}
@@ -413,7 +428,7 @@ def _phase(run, root, phase, code, request, *, require_complete):
 def validate_preflight(run, reference, *, checkpoint):
     request=read_execution_request(run,reference,checkpoint=checkpoint)
     result=_phase(run,_root(checkpoint),'preflight',request['code'],request,require_complete=True)
-    if request['policy_id']==V5_POLICY_ID:
+    if request['policy_id'] in _COUNTED_POLICIES:
         from .refinement_counted import _observation
         _observation(run,_root(checkpoint),request)
     return result
@@ -458,7 +473,7 @@ def finish_execution(run, reference, *, checkpoint, preflight_returncode, refine
               'Admission refusal requires successful preflight and unlaunched refinement')
     else:
         _need((refinement_returncode is None)==(preflight_returncode!=0))
-    if request['policy_id']==V5_POLICY_ID and refinement_returncode is not None:
+    if request['policy_id'] in _COUNTED_POLICIES and refinement_returncode is not None:
         from .refinement_counted import read_admission
         admission=read_admission(run,reference,counted_admission,checkpoint=checkpoint)
         marker=path_in(run,root+'/refinement-launch.json')
@@ -490,7 +505,7 @@ def validate_execution(run, reference, *, checkpoint, parent=None, usable=False)
     record=read_record(_bound_path(reference,'parallelity execution receipt',run))
     refused=record.get('schema_version')==2
     fields={'schema_version','policy_id','checkpoint','request','phases','record_sha256'}
-    if record.get('policy_id')==V5_POLICY_ID and 'counted_admission' in record:
+    if record.get('policy_id') in _COUNTED_POLICIES and 'counted_admission' in record:
         fields|={'counted_admission','counted_launch'}
     if refused:
         fields|={'outcome_policy_id','refinement_status','admission_refusal'}
@@ -526,7 +541,7 @@ def validate_execution(run, reference, *, checkpoint, parent=None, usable=False)
               'Refused admission cannot represent a launched refinement')
     else:
         _need(type(codes[0]) is int and ((codes[1] is None)==(codes[0]!=0)))
-    if request['policy_id']==V5_POLICY_ID and codes[1] is not None:
+    if request['policy_id'] in _COUNTED_POLICIES and codes[1] is not None:
         from .refinement_counted import read_admission
         admission=read_admission(run,record['request'],record.get('counted_admission'),checkpoint=checkpoint)
         from .refinement_counted import read_outcome_binding
@@ -542,7 +557,7 @@ def validate_checkpoint_execution(run, item, registry):
         record=validate_execution(run,outputs['parallelity_execution'],checkpoint=item.get('id'),
                                   parent=item.get('parent'),usable=item.get('usable') is True)
         request=read_execution_request(run,record['request'],checkpoint=item['id'])
-        if request['policy_id']==V5_POLICY_ID:
+        if request['policy_id'] in _COUNTED_POLICIES:
             from .refinement_counted import validate_intent_lineage
             validate_intent_lineage(run,registry,item,request)
         from .checkpoints import _ref_path
@@ -564,6 +579,12 @@ def validate_checkpoint_execution(run, item, registry):
         _need(tail==[parameter] or (item.get('phases') is not None and
               tail==[_ref_path(item['phases'],'runtime phase',run),parameter]),
               'Runtime parameter/phase inputs differ from their round')
+        if item.get('usable') is True and request['policy_id']==V6_POLICY_ID:
+            result=_phase(run,_root(item['id']),'refine',request['code'],request,require_complete=True)
+            data=_ref_path(item['model'],'counted refinement model',run).read_bytes()
+            written=result['written_model']
+            _need(written['sha256']==_digest(data) and written['size']==len(data),
+                  'Published checkpoint model differs from the native written model')
         if (item.get('usable') is True and request['policy_id'] in _CHEMISTRY_POLICIES
                 and request.get('chemistry_projections')):
             result=_phase(run,_root(item['id']),'refine',request['code'],request,require_complete=True)

@@ -4553,16 +4553,34 @@ later counted descendants, before new runtime allocation. Additional restraints,
 model-identity/chemistry transformations and ordinary
 AutoRefine protocol selection remain outside this narrow wrapper.
 
-Ordinary activation also requires a native final-written-model binding. Current
-v5 verifies lifetime/admission and inputs but does not itself tie the published
-model to native writer bytes when no chemistry projection was requested. Independent
-C382 control readback proves its actual output correspondence; it is not a general
-reader safeguard. Preserve this historical distinction. C338's before/after writer
-callback already captures the correct native path before its serial increments.
+C385 adds explicit `round-local-counted-execution-v6`. Its frozen phase requests a
+`WrittenModelObservation` through the existing `synchronized_outputs` pre/post
+callback. Before writing, capture the native output manager's exact fresh PDB path
+and current hierarchy digest; after the complete native writer returns, require
+the same hierarchy and hash the physical file. Do not resolve the output manager
+again after its final `.def` increments the serial. No glob, basename search,
+post-hoc file selection or coordinate repair is involved.
+
+The optional native result field `written_model` has policy
+`native-written-model-v1`, exact `sha256`/`size`, and `model_state_sha256` tied to the
+existing completed output-synchronization observation. Preflight records `None`;
+a successful real v6 refinement must provide the proof. Usable checkpoint reads
+compare the published model bytes with that exact native result. Failed writers
+preserve their error and partial files and cannot publish a successful identity.
+This binds serialized bytes, including ordinary PDB rounding; it does not assert
+full-precision coordinates can be reconstructed from PDB.
+
+Existing request schema 2 and execution envelopes remain; the new policy identifier
+requires updated readers. Continuation preserves the inherited v5/v6 choice, and
+v6-to-v5 loss of written-model proof refuses. Historical v3/v4/v5 worker bytes stay
+separately frozen, with default v3 unchanged. The 24,485-byte v4/v5 source payload
+is package compatibility data, not an extra scientific run archive. v5 has its
+original narrower evidence: C382 independently verified its actual physical output,
+but old records cannot retrospectively claim a v6 writer observation.
 
 Ordinary activation remains gated on integration with the existing refinement
 owner and explicit protocol choice; durable admission and registered continuation
-are qualified only through the explicit v5 APIs. Copied native-family reports remain
+are qualified only through the explicit counted APIs. Copied native-family reports remain
 distinct from complete added-term statistics. C369 qualifies wrapper
 recognition for direct calls only, not that wider integration. Historical v3
 runtime/output/monomer cleanup retains its original replacement semantics; C372's

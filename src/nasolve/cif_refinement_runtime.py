@@ -12,7 +12,7 @@ import platform
 import tempfile
 
 from .cif_parallelity_kernel import ParallelityKernel, parallelity_parameters
-from .cif_refinement_output import synchronized_outputs, validate_output_observations, _digest, _hierarchy
+from .cif_refinement_output import synchronized_outputs, validate_output_observations, WrittenModelObservation, validate_written_model, _digest, _hierarchy
 from .cif_refinement_sites import observe_monomers, unavailable, validate_sites, validate_phase_observation
 
 POLICY_ID = 'explicit-native-parallelity-refinement-v4'
@@ -116,7 +116,7 @@ def _run_observed(program, arguments, observe_output, sites, record, directory):
         record['chemistry_binding_restored'] = klass.summary is original
 
 
-def run_compatible_refinement(arguments, *, evidence_directory, chemistry_sites=None):
+def run_compatible_refinement(arguments, *, evidence_directory, chemistry_sites=None, capture_written_model=False):
     """Run the native program with explicit correction and retained observations.
 
     Only the recorded native source/platform profile is admitted. Every observed
@@ -127,6 +127,8 @@ def run_compatible_refinement(arguments, *, evidence_directory, chemistry_sites=
     """
     if not isinstance(arguments, list) or not all(isinstance(a, str) and a for a in arguments):
         raise ValueError('Require explicit native refinement arguments')
+    if type(capture_written_model) is not bool:
+        raise ValueError('Written-model capture must be an explicit boolean')
     sites = [dict(row) for row in validate_sites([] if chemistry_sites is None else chemistry_sites)]
     directory = Path(evidence_directory)
     directory.mkdir()  # A previous or partial observation is never overwritten.
@@ -135,6 +137,8 @@ def run_compatible_refinement(arguments, *, evidence_directory, chemistry_sites=
                   scientific_approval='NOT_RUN', binding_restored=False,
                   output_binding_restored=False,output_synchronization=[],
                   chemistry_observation=None,chemistry_model=None,chemistry_binding_restored=True)
+    if capture_written_model:
+        record['written_model'] = None
     _save(directory/'result.json', record)
     gr = original = observed = kernel = None
     try:
@@ -165,8 +169,19 @@ def run_compatible_refinement(arguments, *, evidence_directory, chemistry_sites=
         def observe_output(rows,restored):
             record.update(output_synchronization=rows,output_binding_restored=restored)
             _save(directory/'result.json',record)
-        refined = (_run_observed(program,list(arguments),observe_output,sites,record,directory)
-                   if sites else program(list(arguments),observe_output))
+        selected_program = program
+        if capture_written_model:
+            written = WrittenModelObservation()
+            def selected_program(args, observe, observe_final=None):
+                def final(refined, completed):
+                    if observe_final is not None:
+                        observe_final(refined, completed)
+                    written(refined, completed)
+                    record['written_model'] = written.record
+                    _save(directory/'result.json', record)
+                return program(args, observe, final)
+        refined = (_run_observed(selected_program,list(arguments),observe_output,sites,record,directory)
+                   if sites else selected_program(list(arguments),observe_output))
         if gr.parallelity_residual_sum is not observed:
             raise ValueError('Native parallelity binding changed during refinement')
         model = refined.model
@@ -185,6 +200,9 @@ def run_compatible_refinement(arguments, *, evidence_directory, chemistry_sites=
             raise ValueError('Native final output binding was not restored')
         validate_output_observations(record['output_synchronization'],
                                      dry_run=dry_run,atom_count=len(labels))
+        if capture_written_model:
+            validate_written_model(record['written_model'], dry_run=dry_run,
+                                   output_observations=record['output_synchronization'])
         validate_phase_observation(record,sites,dry_run=dry_run,labels=labels)
         verify()
         record.update(status='COMPLETE', dry_run=dry_run, macro_cycles=cycles,

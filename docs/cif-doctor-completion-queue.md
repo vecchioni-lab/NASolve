@@ -60,19 +60,39 @@ cannot be omitted. Broader source/chemistry changes remain separate.
 receipt, directly or through a manual child. A declared manual import remains
 supported. Source and installed focused144 tests pass; no native/schema changes.
 
-**Next bounded controller slice:** bind the exact physical model written by Phenix
-to the published counted checkpoint. A copied C382 registry currently accepts the
-previous round's checksum-valid model as the final model; the original control's
-files and independently checked correspondence remain correct. Reuse C338's
-pre/post final-writer callback and preserve historical proof semantics. Do not infer
-an output basename or regard any later file hash as proof of native authorship.
-Then connect the explicit qualified protocol
-to the existing ordinary refinement owner. Preserve its terminal-phosphate and
-chemistry projection checks, the now-joined exact restraint adaptations, process ownership and
-checkpoint publication. Ordinary AutoRefine/Doctor still refuse to lose counted
-intent; no automatic v3 fallback. Avoid another executor or silent changes to
-ordinary cycle counts/automatic weights. Broader native scope requires its own
-qualification and must not be inferred from repeated short cycles.
+**C385 complete:** new explicit v6 binds the model Phenix actually wrote to the
+published checkpoint, using the existing final-writer callback before/after the
+native output manager increments its serial. A complete real cycle produces the
+exact C382 first-cycle PDB, native state and owner observations. Relocated readers
+reject a previous model and altered copy even with valid replacement checksums.
+Installed focused282 tests pass. Historical v5 records are not upgraded or given
+proof they never captured; v6 continuation cannot drop its stronger proof.
+
+**Next bounded controller slice — use this safely in ordinary refinement.** Reuse
+`execute_autorefine`, its parameter writer, C278 input adapter and checkpoint owner.
+The interface audit identifies these concrete joins:
+
+1. Request the qualified protocol explicitly; reject incompatible caller settings.
+   Ordinary five-cycle/automatic-weight defaults remain unchanged. Native resolved
+   preflight, not command spelling alone, decides admission; the current command's
+   `target=auto` must not override an explicitly qualified ML protocol.
+2. Preserve declared working crystal frame, Free-R, phases and phosphate intent.
+   Newly generated terminal protection is an additional restraint source; C383's
+   namespace-only adapter does not authorize it. Existing inherited protection
+   remains part of the exact source list. Nonempty chemistry projections still
+   require separate combined qualification; do not drop the existing chemistry report.
+3. Reuse campaign process ownership where present. Standalone currently calls
+   `subprocess.run` without durable child identity; it needs the existing owned
+   command primitive and explicit attempt/recovery contract, not another executor.
+   Never enter a second process group that escapes the enclosing campaign owner.
+4. Publish through the existing checkpoint owner with v6 written-model proof and
+   all input/admission receipts. Initial integration remains unselected REVIEW.
+   Do not confuse mechanically usable output with a scientifically accepted model.
+
+Ordinary AutoRefine/Doctor still refuse to lose counted intent. The next native
+control must cross that actual ordinary owner/publication boundary; repeating the
+manual C382 runner does not close it. Broader native scope has its own qualification
+and must not be inferred from repeated short cycles. Q06 achieved chemistry remains open.
 
 Initial supported scope is one all-site XYZ cycle/process, fixed unit weights,
 1–10 iterations, no changing targets/NCS/neutron or chemistry-projection combination.

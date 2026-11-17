@@ -7,6 +7,7 @@ from contextlib import contextmanager
 import hashlib
 import json
 import math
+from pathlib import Path
 
 POLICY_ID = 'native-refinement-output-state-v1'
 _TOLERANCE = 1.e-8  # In-memory representation agreement, not a chemistry cutoff.
@@ -131,3 +132,53 @@ def validate_output_observations(rows, *, dry_run, atom_count):
                        any(c not in '0123456789abcdef' for c in row[k])
                        for k in ('scattering_sha256','hierarchy_before_sha256','hierarchy_after_sha256','fcalc_sha256'))):
             raise ValueError('Invalid native output synchronization evidence')
+
+
+class WrittenModelObservation:
+    """Observe the existing final writer; never locate or create a model afterward."""
+    def __init__(self):
+        self._pending = None
+        self.record = None
+
+    def __call__(self, refined, completed):
+        if type(completed) is not bool or self.record is not None:
+            raise ValueError('Repeated or malformed native written-model observation')
+        state = _digest(_hierarchy(refined.model))
+        if not completed:
+            if self._pending is not None:
+                raise ValueError('Repeated native final writer entry')
+            # Phenix increments the serial for its final .def after writing PDB.
+            path = Path(refined.ofm.get_file_name(ext='.pdb')).absolute()
+            if path.exists() or path.is_symlink():
+                raise ValueError('Native final model path is not fresh')
+            self._pending = (path, state)
+            return
+        if self._pending is None or state != self._pending[1]:
+            raise ValueError('Native written model lacks its unchanged pre-writer state')
+        path = self._pending[0]
+        if path.is_symlink() or not path.is_file():
+            raise ValueError('Native written model is unavailable or linked')
+        data = path.read_bytes()
+        if not data:
+            raise ValueError('Native written model is empty')
+        self.record = dict(policy_id='native-written-model-v1',
+            sha256=hashlib.sha256(data).hexdigest(), size=len(data), model_state_sha256=state)
+
+
+def validate_written_model(record, *, dry_run, output_observations):
+    """Bind serialized bytes to the observed native state without parsing coordinates."""
+    if dry_run:
+        if record is not None:
+            raise ValueError('Preflight cannot claim a final written model')
+        return
+    if (not isinstance(record, dict) or set(record) !=
+            {'policy_id', 'sha256', 'size', 'model_state_sha256'}
+            or record['policy_id'] != 'native-written-model-v1'
+            or type(record['size']) is not int or record['size'] <= 0
+            or any(not isinstance(record[k], str) or len(record[k]) != 64
+                   or any(c not in '0123456789abcdef' for c in record[k])
+                   for k in ('sha256', 'model_state_sha256'))
+            or len(output_observations) != 1
+            or record['model_state_sha256'] != output_observations[0]['hierarchy_after_sha256']
+            or output_observations[0]['write_completed'] is not True):
+        raise ValueError('Native written model differs from completed output observation')

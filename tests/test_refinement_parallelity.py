@@ -373,7 +373,7 @@ def test_explicit_v4_keeps_chemistry_checks_and_cold_relocation(tmp_path,monkeyp
     assert module.POLICY_ID==module.V3_POLICY_ID
 
 
-def test_frozen_v3_default_and_explicit_v4_sources_are_independently_pinned(tmp_path,monkeypatch):
+def test_frozen_historical_and_current_sources_are_independently_pinned(tmp_path,monkeypatch):
     from nasolve import refinement_parallelity as module
     from hashlib import sha256
     package=Path(module.__file__).parent
@@ -382,16 +382,25 @@ def test_frozen_v3_default_and_explicit_v4_sources_are_independently_pinned(tmp_
     assert {n:sha256(v).hexdigest() for n,v in module._code(module.V4_POLICY_ID).items()}==module._expected_code(module.V4_POLICY_ID)
     # A damaged legacy payload cannot be hidden behind unchanged current sources.
     copied=tmp_path/'package';copied.mkdir()
-    for name in {*module._V4_SOURCE_DIGESTS,'data/refinement-runtime-v3-sources.json'}:
+    for name in {*module._V6_SOURCE_DIGESTS,'data/refinement-runtime-v3-sources.json','data/refinement-runtime-v5-sources.json'}:
         target=copied/name;target.parent.mkdir(exist_ok=True,parents=True);target.write_bytes((package/name).read_bytes())
     monkeypatch.setattr(module,'__file__',str(copied/'refinement_parallelity.py'))
     archive=copied/'data/refinement-runtime-v3-sources.json';saved=archive.read_bytes();value=json.loads(saved)
     value['cif_refinement_runtime.py']+='\n# changed\n';archive.write_text(json.dumps(value))
     with pytest.raises(ValueError,match='qualified runtime'):module._code()
     assert module._code(module.V4_POLICY_ID)
-    archive.write_bytes(saved);(copied/'cif_refinement_runtime.py').write_text('# changed current runtime')
+    archive.write_bytes(saved)
+    historical=copied/'data/refinement-runtime-v5-sources.json';old=historical.read_bytes()
+    value=json.loads(old);value['cif_refinement_runtime.py']+='\n# changed\n'
+    historical.write_text(json.dumps(value))
+    assert module._code()==default and module._code(module.V6_POLICY_ID)
+    for policy in (module.V4_POLICY_ID,module.V5_POLICY_ID):
+        with pytest.raises(ValueError,match='qualified runtime'):module._code(policy)
+    historical.write_bytes(old)
+    (copied/'cif_refinement_runtime.py').write_text('# changed current runtime')
     assert module._code()==default
-    with pytest.raises(ValueError,match='qualified runtime'):module._code(module.V4_POLICY_ID)
+    assert module._code(module.V4_POLICY_ID) and module._code(module.V5_POLICY_ID)
+    with pytest.raises(ValueError,match='qualified runtime'):module._code(module.V6_POLICY_ID)
 
 
 @pytest.mark.parametrize('policy',[[],{},'round-local-parallelity-execution-v2','unknown'])

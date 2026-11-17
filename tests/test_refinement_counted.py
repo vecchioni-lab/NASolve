@@ -34,8 +34,8 @@ def request_case(tmp_path, *, request_changes=None):
     return run,reference,preflight
 
 
-def observed_case(tmp_path):
-    run,reference,command=request_case(tmp_path)
+def observed_case(tmp_path, *, policy=execution.V5_POLICY_ID):
+    run,reference,command=request_case(tmp_path,request_changes={'runtime_policy':policy})
     request=execution.read_execution_request(run,reference,checkpoint='refine-001')
     root=run/execution._root('refine-001');phase=root/'preflight';phase.mkdir();(phase/'calls').mkdir()
     profile=json.loads((root/'code/_nasolve_refinement/data/parallelity-native-profile.json').read_text())
@@ -47,6 +47,7 @@ def observed_case(tmp_path):
             successful_calls=0,gradient_calls=0,energy_only_calls=0,maximum_proxy_count=0),
         output_binding_restored=True,output_synchronization=[],chemistry_observation=None,
         chemistry_model=None,chemistry_binding_restored=True)
+    if policy==execution.V6_POLICY_ID:result['written_model']=None
     (phase/'result.json').write_text(json.dumps(result))
     # This unit fixture stands in for the source-qualified native observer. It is
     # not scientific evidence and cannot qualify a real model for C375 ownership.
@@ -280,11 +281,11 @@ def test_archive_directory_sync_failure_preserves_raw_bytes(tmp_path,monkeypatch
     assert not (root/'admission.json').exists()
 
 
-def registered_counted_case(tmp_path, *, full_model=False):
+def registered_counted_case(tmp_path, *, full_model=False, policy=execution.V5_POLICY_ID):
     """Synthetic lifecycle evidence; no native or scientific qualification."""
     from nasolve.checkpoints import initialize_registry,append_checkpoint
     from tests.test_cif_refinement_runtime import output_row
-    run,reference,root,prepared=observed_case(tmp_path)
+    run,reference,root,prepared=observed_case(tmp_path,policy=policy)
     # The existing checkpoint owner requires its round-local parameter spelling.
     params=run/'AutoRefine/round_001/autorefine.params'
     params.write_bytes((run/'inputs/refinement.phil').read_bytes())
@@ -318,6 +319,13 @@ def registered_counted_case(tmp_path, *, full_model=False):
         lifetime=dict(policy_id='prepared-counted-refinement-cycle-v1',status='COMPLETE',binding_restored=True,
                       driver_entries=1,owner=dict(closed=True,poisoned=False,successful_calls=1)))
     (phase/'counted.json').write_text(json.dumps(outcome))
+    model=run/'inputs/model.pdb';observations=run/'inputs/observations.mtz'
+    child=root.parent/'refined_001.pdb';child.write_bytes(model.read_bytes().replace(b'   4.000',b'   4.010',1))
+    if policy==execution.V6_POLICY_ID:
+        result['written_model']=dict(policy_id='native-written-model-v1',
+            sha256=hashlib.sha256(child.read_bytes()).hexdigest(),size=child.stat().st_size,
+            model_state_sha256=result['output_synchronization'][0]['hierarchy_after_sha256'])
+        (phase/'result.json').write_text(json.dumps(result))
     receipt=execution.finish_execution(run,reference,checkpoint='refine-001',preflight_returncode=0,
         refinement_returncode=0,counted_admission=admission)
     model=run/'inputs/model.pdb';observations=run/'inputs/observations.mtz'
@@ -325,7 +333,6 @@ def registered_counted_case(tmp_path, *, full_model=False):
         postmr=dict(status='POSTMR_READY',prepared_model='inputs/model.pdb',prepared_sha256=_file_reference(model,run)['sha256'],
                     restraints=['inputs/full-model.phil'] if full_model else []))
     (run/'report.json').write_text(json.dumps(report));_,registry=initialize_registry(run)
-    child=root.parent/'refined_001.pdb';child.write_bytes(model.read_bytes().replace(b'   4.000',b'   4.010',1))
     item=dict(id='refine-001',parent='postmr',status='REVIEW',usable=True,kind='autorefine',recipe='explicit-test',
         model=_file_reference(child,run),observations=_file_reference(observations,run),restraints=restraint_refs,phases=None,
         outputs=dict(parallelity_execution=receipt,**({'refinement_inputs':adaptation} if adaptation is not None else {})))
@@ -505,3 +512,42 @@ def test_continuation_refuses_intervening_refinement_without_execution_receipt(t
     assert not (run / 'AutoRefine/round_003/parallelity_runtime').exists()
     assert {p.relative_to(run): (p.read_bytes(), p.stat().st_mtime_ns)
             for p in run.rglob('*') if p.is_file()} == before
+
+
+@pytest.mark.parametrize('relocate', [False, True])
+def test_v6_written_model_binding_reads_and_continues_with_same_proof(tmp_path, relocate):
+    from nasolve.checkpoints import read_registry
+    run, reference, registry, parent = registered_counted_case(tmp_path, policy=execution.V6_POLICY_ID)
+    if relocate:
+        moved=tmp_path/'moved';run.rename(moved);assert not run.exists();run=moved
+    before={p.relative_to(run):(p.read_bytes(),p.stat().st_mtime_ns) for p in run.rglob('*') if p.is_file()}
+    with patch('subprocess.Popen',side_effect=AssertionError('cold read')):
+        assert read_registry(run)[1]['current']=='postmr'
+    assert all((run/p).read_bytes()==data and (run/p).stat().st_mtime_ns==mtime for p,(data,mtime) in before.items())
+    reference,command,refine=saved.prepare_continuation(run,**continuation_options(run))
+    assert execution.read_execution_request(run,reference,checkpoint='refine-002')['policy_id']==execution.V6_POLICY_ID
+    assert refine is None
+
+
+@pytest.mark.parametrize('replacement', ['previous_model', 'modified_copy'])
+def test_v6_registry_refuses_checksum_valid_model_not_written_by_native(tmp_path,replacement):
+    from nasolve.checkpoints import read_registry,CheckpointError
+    run,reference,registry,parent=registered_counted_case(tmp_path,policy=execution.V6_POLICY_ID)
+    path=run/'AutoRefine/checkpoints.json';value=json.loads(path.read_text())
+    if replacement=='previous_model':
+        value['checkpoints'][1]['model']=value['checkpoints'][0]['model']
+    else:
+        model=run/'different.pdb';model.write_bytes((run/parent['model']['relative_path']).read_bytes()+b'REMARK changed\n')
+        value['checkpoints'][1]['model']=_file_reference(model,run)
+    path.write_text(json.dumps(value))
+    with pytest.raises(CheckpointError,match='differs from the native written model'):
+        read_registry(run)
+
+
+def test_v6_counted_lineage_cannot_drop_written_model_proof(tmp_path):
+    run,reference,registry,parent=registered_counted_case(tmp_path,policy=execution.V6_POLICY_ID)
+    request=execution.read_execution_request(run,reference,checkpoint='refine-001')
+    child=dict(parent,id='refine-002',parent='refine-001');registry['checkpoints'].append(child)
+    changed=dict(request,policy_id=execution.V5_POLICY_ID)
+    with pytest.raises(ValueError,match='lost its native written-model proof'):
+        saved.validate_intent_lineage(run,registry,child,changed)

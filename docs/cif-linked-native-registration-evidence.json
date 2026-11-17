@@ -111713,5 +111713,290 @@
     "retention": "Only code/tests/docs/compact evidence committed. Original C382 data unchanged; disposable audit copy retired. Three-file local science checkout and peer reports remain outside Git.",
     "roadmap": "Correct stale C334 reporting-next instruction: C338 already delivered that report. Native final-written-model binding remains open before ordinary owner integration; Q06 achieved chemistry is still REVIEW.",
     "independent_review": "Linden read-only review of the ancestry diff and direct/manual regressions agrees with the existing manual checkpoint contract; final-writer join remains separate."
+  },
+  "counted_native_written_model_2026_11_17": {
+    "milestone": "C385",
+    "signed": "Rowan",
+    "source_parent": "4fa8969b",
+    "before": "A copied real C382 registry accepted the previous round model as the last counted result when given that file's valid checksum; native lifetime/input evidence did not bind the physical output model.",
+    "after": "Explicit v6 records the fresh physical model produced by the complete existing native writer and requires exact checksum/size/native-state agreement at usable checkpoint read. Retain old policy semantics, require fresh attempts, refuse v6 proof downgrade.",
+    "prior_work": [
+      "C318/C319 existing output-state synchronization",
+      "C338 pre/post final-writer capture and serial increment handling",
+      "C378 native partial-output/first-error proof",
+      "C381-C384 counted admission, lineage and exact input adapter"
+    ],
+    "changed_files": [
+      "src/nasolve/cif_counted_phase.py",
+      "src/nasolve/cif_refinement_output.py",
+      "src/nasolve/cif_refinement_runtime.py",
+      "src/nasolve/refinement_counted.py",
+      "src/nasolve/refinement_parallelity.py",
+      "src/nasolve/data/refinement-runtime-v5-sources.json",
+      "tests/test_cif_refinement_output.py",
+      "tests/test_cif_refinement_runtime.py",
+      "tests/test_refinement_counted.py",
+      "tests/test_refinement_parallelity.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/development-handoff.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": {
+      "runtime_policy": "round-local-counted-execution-v6",
+      "request_schema": 2,
+      "ordinary_default": "round-local-parallelity-execution-v3",
+      "new_native_field": "written_model: native-written-model-v1, sha256, size, model_state_sha256; None in preflight"
+    },
+    "validation": {
+      "before": "6 new writer-observation tests fail before implementation in 0.13 s; original actual-registry counterexample retained under C384.",
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_refinement_output.py tests/test_cif_refinement_runtime.py tests/test_refinement_parallelity.py tests/test_refinement_counted.py --tb=short",
+      "focused_result": "197 passed in 40.44 s",
+      "installed": {
+        "status": "INSTALLED_RELOCATED_SOURCE_INTEGRATION_PASS",
+        "copied_tests": [
+          "tests/__init__.py",
+          "tests/helpers.py",
+          "tests/test_autorefine.py",
+          "tests/test_checkpoints.py",
+          "tests/test_cif_candidate_usability.py",
+          "tests/test_cif_captured_geometry.py",
+          "tests/test_cif_catalogue.py",
+          "tests/test_cif_complete_request.py",
+          "tests/test_cif_counted_refinement.py",
+          "tests/test_cif_dictionary_bundle.py",
+          "tests/test_cif_dictionary_sites.py",
+          "tests/test_cif_fana.py",
+          "tests/test_cif_fixed_geometry.py",
+          "tests/test_cif_fragment_restoration.py",
+          "tests/test_cif_generation.py",
+          "tests/test_cif_linked_preparation.py",
+          "tests/test_cif_model_context.py",
+          "tests/test_cif_native_validation.py",
+          "tests/test_cif_parallelity_audit.py",
+          "tests/test_cif_parallelity_correction.py",
+          "tests/test_cif_parallelity_kernel.py",
+          "tests/test_cif_postmr_publication.py",
+          "tests/test_cif_preparation_qualification.py",
+          "tests/test_cif_refinement_output.py",
+          "tests/test_cif_refinement_runtime.py",
+          "tests/test_cif_refinement_sites.py",
+          "tests/test_cif_repair_attempt.py",
+          "tests/test_cif_stereochemistry_audit.py",
+          "tests/test_cif_terminal_preparation.py",
+          "tests/test_cif_triple_bond_audit.py",
+          "tests/test_phosphate.py",
+          "tests/test_refinement_counted.py",
+          "tests/test_refinement_inputs.py",
+          "tests/test_refinement_parallelity.py",
+          "tests/test_topostitch_coordinates.py",
+          "tests/test_topostitch_periodic.py",
+          "tests/test_topostitch_recipe.py"
+        ],
+        "wheel_sha256": "12b613410142aed6ae7fd7aeb758d6d01e8f40a91458765356cac413672514d6",
+        "wheel_bytes": 1543729,
+        "phase_sha256": "a5d7c820e511fdb80188563cb746d70516a9601dde83a8a99398542cba27c6e7",
+        "owner_sha256": "7322edee9e78a027bbd47c0043e1acc35494d1d4ecce1e671cb9225f771086b9",
+        "source_copy_removed": true,
+        "original_install_path_absent": true,
+        "package_reference_bytes_match": true,
+        "validation_command": [
+          "/private/tmp/willow-w94-pivot/env/bin/python",
+          "-B",
+          "-c",
+          "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_cif_refinement_output.py', 'tests/test_cif_refinement_runtime.py', 'tests/test_cif_refinement_sites.py', 'tests/test_refinement_counted.py', 'tests/test_refinement_parallelity.py', 'tests/test_refinement_inputs.py', 'tests/test_cif_counted_refinement.py', '--tb=short']))"
+        ],
+        "validation_output": "........................................................................ [ 25%]\n........................................................................ [ 51%]\n........................................................................ [ 76%]\n..................................................................       [100%]\n282 passed in 46.69s\n",
+        "build_command": [
+          "/private/tmp/willow-w94-pivot/env/bin/python",
+          "-m",
+          "pip",
+          "wheel",
+          "--no-deps",
+          "--no-build-isolation",
+          "--no-index",
+          "--wheel-dir",
+          "/private/tmp/c385-package-clfhkmsg/wheel",
+          "/private/tmp/c385-package-clfhkmsg/source"
+        ],
+        "retained_bytes": 7429083,
+        "candidate_package": "/private/tmp/c385-package-clfhkmsg/relocated/nasolve",
+        "wheel_path": "/private/tmp/c385-package-clfhkmsg/wheel/nasolve-0.1.0-py3-none-any.whl"
+      },
+      "cold_read": {
+        "status": "NEW_AND_HISTORICAL_COLD_READ_PASS",
+        "controls": [
+          {
+            "control": "c381-native-admission-qah31a7q-relocated",
+            "files_unchanged": 62,
+            "status": "PASS"
+          },
+          {
+            "control": "c382-native-continuation-7_e9layr-relocated",
+            "files_unchanged": 117,
+            "status": "PASS"
+          },
+          {
+            "control": "c385-written-model-mpri3u5f-relocated",
+            "files_unchanged": 64,
+            "status": "PASS"
+          }
+        ],
+        "gemmi_imported": false,
+        "native_launch": "NOT_RUN"
+      },
+      "full_suite": "NOT_RUN",
+      "python310": "Syntax parse only; no Python 3.10 execution claim",
+      "initial_checks": "Fixed a missing local import and updated the existing copied-package fixture to include the new historical source payload; final focused and installed checks pass."
+    },
+    "native": {
+      "status": "COMPLETE",
+      "version": "Phenix 2.2.1-6174 Darwin arm64 / dispatcher 2.2.1",
+      "python": "Phenix Python 3.11",
+      "execution": "Complete one-cycle refinement after actual preflight, not a dry-run-only claim",
+      "coot": "NOT_RUN",
+      "root": "/private/tmp/c385-written-model-mpri3u5f-relocated",
+      "plan_sha256": "bf13b1d00746fd95bfa5c2bf4957b7a751e8e7d87fd5a92a09b3e383d6ce9b36",
+      "runner_sha256": "75adf3d9d906064645b1e67078203ab7bc1c94c5110b6d7ac4f6258c6d36184d",
+      "command": "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c385_native.py",
+      "phases": [
+        {
+          "name": "preflight",
+          "status": "COMPLETE",
+          "command": [
+            "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+            "-B",
+            "/private/tmp/c385-written-model-mpri3u5f/run/AutoRefine/round_001/parallelity_runtime/entry.py",
+            "preflight",
+            "9dbc37f597dadb79cd8b05c39317b7a53bd93d562fb517c95fdaf7be59bbb9a2",
+            "/private/tmp/c385-written-model-mpri3u5f/run/inputs/observations.mtz",
+            "/private/tmp/c385-written-model-mpri3u5f/run/inputs/model.pdb",
+            "/private/tmp/c385-written-model-mpri3u5f/run/inputs/prepared-restraints.phil",
+            "/private/tmp/c385-written-model-mpri3u5f/run/AutoRefine/round_001/autorefine.params",
+            "xray_data.file_name=/private/tmp/c385-written-model-mpri3u5f/run/inputs/observations.mtz",
+            "xray_data.labels=Fobs,SIGFobs",
+            "xray_data.r_free_flags.file_name=/private/tmp/c385-written-model-mpri3u5f/run/inputs/observations.mtz",
+            "xray_data.r_free_flags.label=FreeR_flag",
+            "xray_data.r_free_flags.test_flag_value=0",
+            "xray_data.r_free_flags.generate=False",
+            "xray_data.force_anomalous_flag_to_be_equal_to=False",
+            "output.prefix=parallelity_runtime/preflight/native",
+            "refinement.crystal_symmetry.unit_cell=105.547,105.547,96.268,90,90,120",
+            "refinement.crystal_symmetry.space_group=R 3 :H",
+            "refinement.dry_run=True"
+          ],
+          "process": {
+            "pid": 63529,
+            "pgid": 63529,
+            "host": "IC-KRX1XXVQ2J",
+            "boot_id": "darwin-boot:1794828737:916290",
+            "start_marker": "ps-lstart-utc:Tue Nov 17 22:07:33 2026",
+            "started_utc": "2026-11-17T22:07:33.719481+00:00",
+            "heartbeat_utc": "2026-11-17T22:07:33.719481+00:00"
+          },
+          "returncode": 0,
+          "seconds": 11.418375082997954
+        },
+        {
+          "name": "refine",
+          "status": "COMPLETE",
+          "command": [
+            "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+            "-B",
+            "/private/tmp/c385-written-model-mpri3u5f/run/AutoRefine/round_001/parallelity_runtime/entry.py",
+            "refine",
+            "9dbc37f597dadb79cd8b05c39317b7a53bd93d562fb517c95fdaf7be59bbb9a2",
+            "6d3e7b9112a30652470addd2a31c38fed0b7ae19d6d4f8004903b071fce79b4e",
+            "/private/var/folders/48/tyw5h90d2qgct97z37rncmsr0000gp/T/runtime-evidence-9_rcxy80/evidence/prepared.json",
+            "/private/tmp/c385-written-model-mpri3u5f/run/inputs/observations.mtz",
+            "/private/tmp/c385-written-model-mpri3u5f/run/inputs/model.pdb",
+            "/private/tmp/c385-written-model-mpri3u5f/run/inputs/prepared-restraints.phil",
+            "/private/tmp/c385-written-model-mpri3u5f/run/AutoRefine/round_001/autorefine.params",
+            "xray_data.file_name=/private/tmp/c385-written-model-mpri3u5f/run/inputs/observations.mtz",
+            "xray_data.labels=Fobs,SIGFobs",
+            "xray_data.r_free_flags.file_name=/private/tmp/c385-written-model-mpri3u5f/run/inputs/observations.mtz",
+            "xray_data.r_free_flags.label=FreeR_flag",
+            "xray_data.r_free_flags.test_flag_value=0",
+            "xray_data.r_free_flags.generate=False",
+            "xray_data.force_anomalous_flag_to_be_equal_to=False",
+            "output.prefix=refined",
+            "refinement.crystal_symmetry.unit_cell=105.547,105.547,96.268,90,90,120",
+            "refinement.crystal_symmetry.space_group=R 3 :H"
+          ],
+          "process": {
+            "pid": 63616,
+            "pgid": 63616,
+            "host": "IC-KRX1XXVQ2J",
+            "boot_id": "darwin-boot:1794828737:916290",
+            "start_marker": "ps-lstart-utc:Tue Nov 17 22:07:45 2026",
+            "started_utc": "2026-11-17T22:07:45.577960+00:00",
+            "heartbeat_utc": "2026-11-17T22:07:45.577960+00:00"
+          },
+          "returncode": 0,
+          "seconds": 35.34895500000857
+        }
+      ],
+      "written_model": {
+        "model_state_sha256": "f4d01d2e62d67354ddc86ea28dc6f5592e6ac91071b4f9de10296ccc4644dbed",
+        "policy_id": "native-written-model-v1",
+        "sha256": "55d28cbd19bf01874a313ff9b10b2ed4209e9e0f9b23e738b189ed5eda1082eb",
+        "size": 143889
+      },
+      "exact_prior_native_output_state": true,
+      "exact_prior_physical_model": true,
+      "reference": "C382 registered round 1",
+      "added_terms": 17,
+      "native_count": 11392,
+      "owner_calls": 15,
+      "Rwork": 0.2251,
+      "Rfree": 0.2609,
+      "publication_negatives": [
+        {
+          "defect": "previous_model",
+          "status": "REFUSED",
+          "error": "Published checkpoint model differs from the native written model"
+        },
+        {
+          "defect": "modified_copy",
+          "status": "REFUSED",
+          "error": "Published checkpoint model differs from the native written model"
+        }
+      ],
+      "relocated_cold_registry_read": true,
+      "selection": "postmr",
+      "all_processes_stopped": true,
+      "original_sources_preserved": true,
+      "initial_harness_failure": {
+        "root": "/private/tmp/c385-written-model-mvt16sgf",
+        "cause": "Base project Python lacks optional Gemmi; stopped before native launch/runtime allocation. Existing Gemmi-enabled environment used for a fresh attempt.",
+        "preserved": true
+      }
+    },
+    "retention": {
+      "archives": [
+        {
+          "label": "c385-written-model-2026-11-17",
+          "archive": "c385-written-model-2026-11-17.tar.gz",
+          "sha256": "6f6f4819db4b3ee030c1e21d286c446d5c7d46fedcd766b8bc1e543b96335560",
+          "bytes": 1152662,
+          "raw_bytes": 7535569,
+          "verified_expanded_cold_read": true,
+          "original_root_preserved": true
+        }
+      ],
+      "historical_source_payload_bytes": 24485,
+      "negative_copy_retired_bytes": 7378712,
+      "original_control_preserved": true,
+      "committed": "Code/tests/docs/compact evidence only; no models, diffraction inputs, native logs, or runners."
+    },
+    "compatibility": "New explicit v6 requires updated readers. Historical v3/v4/v5 payload bytes and their narrower proof remain unchanged; no migration or implicit upgrade. Continuation keeps its inherited v5/v6 policy.",
+    "limitations": [
+      "Canonical DNA,42 residues; writer provenance qualification, not a new modified-residue efficacy trial.",
+      "Fixed one-cycle unit-weight protocol remains bounded; ordinary AutoRefine/Doctor, terminal-protection additions and chemistry-projection combination remain separate.",
+      "PDU/DF achieved geometry and Q06 closure remain REVIEW.",
+      "No force, weight, threshold, chemical source, OP3 or Free-R policy change."
+    ]
   }
 }

@@ -46,8 +46,10 @@ def run_phase(root, request, phase, arguments, *, admission=None, prepared_path=
     helper_sources={name:pins[name] for name in counted.HELPER_MODULES}
     sites=[{k:row[k] for k in ('site','component')} for row in request.get('chemistry_projections',[])]
     folder=root/phase
+    output_options = ({'capture_written_model': True}
+        if request['policy_id'] == 'round-local-counted-execution-v6' else {})
     if phase=='preflight':
-        refined=runtime.run_compatible_refinement(arguments,evidence_directory=folder,chemistry_sites=sites)
+        refined=runtime.run_compatible_refinement(arguments,evidence_directory=folder,chemistry_sites=sites,**output_options)
         # Successful native preflight and subsequent preparation refusal are
         # different outcomes. Keep native zero and its complete raw evidence.
         try:
@@ -76,7 +78,7 @@ def run_phase(root, request, phase, arguments, *, admission=None, prepared_path=
     primary=None
     try:
         with owner:
-            runtime.run_compatible_refinement(arguments,evidence_directory=folder,chemistry_sites=sites)
+            runtime.run_compatible_refinement(arguments,evidence_directory=folder,chemistry_sites=sites,**output_options)
     except BaseException as exc:
         primary=exc
         raise

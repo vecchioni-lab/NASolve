@@ -5,6 +5,12 @@ chemical dictionaries preserve the intended molecule, whether Phenix can read
 the resulting restraints, and whether a proposed repair changes only what it
 should. It works around ReadySet and NARestraints; it does not replace them.
 
+The latest bounded work (C385) keeps the same intended pair restraints through
+successive explicit refinements and checks that a saved result is the exact model
+Phenix wrote. A canonical-DNA control demonstrates this bookkeeping without changing
+its refined model. Ordinary command integration and PDU/DF survival through refinement
+remain open; see the [current queue](cif-doctor-completion-queue.md#pipeline-position).
+
 Ordinary model construction now preserves supported modified-base orientation.
 The explicit checked-preparation route can use that construction and the supplied
 base-pair/stacking restraints, generate/check dictionaries and try ReadySet.
