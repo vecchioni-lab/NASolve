@@ -236,6 +236,22 @@ def _points(values, count):
     return rows
 
 
+def _require_recipe_crystal(geometry, packet, api):
+    """Join actual native geometry to the source frame used for Cartesian images.
+
+    The packet has already passed the existing NativePairRecipe compiler. Reuse
+    its 1e-10 cell comparison and native group equality, including group aliases;
+    a separately self-consistent native policy is not authority to change frames.
+    """
+    source=packet['crystal']; actual=geometry.crystal_symmetry
+    declared=api['types']['crystal'][0](unit_cell=source['cell_parameters'],
+                                     space_group_symbol=source['space_group'])
+    _need(all(abs(a-b)<=1e-10 for a,b in zip(actual.unit_cell().parameters(),
+                                           source['cell_parameters']))
+          and actual.space_group()==declared.space_group(),
+          'Native crystal differs from the source recipe crystal')
+
+
 class CountedContributionOwner:
     """One model, fresh trusted factory, instance adapters and explicit lifetime.
 
@@ -299,6 +315,7 @@ class CountedContributionOwner:
         _need(type(factory_arguments) is dict and set(factory_arguments)==allowed, 'Unsupported contribution factory arguments')
         self._contribution=factory_module.NativePairContribution(**factory_arguments,native_terms=terms,
             current_context=self._context,correction=correction)
+        _require_recipe_crystal(self._geo,self._contribution._packet,api)
         self._report=self._contribution.binding_report(); self._report_digest=_digest(self._report)
         _need(self._report['count_policy']==COUNT_POLICY and type(self._report['supported_count']) is int
               and 0<=self._report['supported_count']<=policy.MAX_ITEMS, 'Unsupported counted contribution semantics')

@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C369 existing observation-wrapper qualification complete — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. C368 / `2cc87f7d` is pushed.
+Updated **2026-11-17, C370 source-recipe/native crystal join complete — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. C369 / `5d61e647` is pushed.
 Afternoon work window ends **17:30 UK / UTC**.
 
 ## Current checkpoint and next bounded work
@@ -42,6 +42,20 @@ with the same three closure cells; they do not run the full refinement program.
 Both owned attempts are stopped/source-unchanged. Compact receipt:
 `existing_usage_wrapper_admission_2026_11_17`. No full suite.
 
+**C370 complete: source recipe and actual native crystal must share a frame.**
+The actual changed-cell negative reproduced a missing join: an internally
+consistent new native policy/provider context could admit Cartesian pair images
+compiled in the original cell. Admission now compares the already-validated recipe
+cell and actual native cell using the compiler's existing 1e-10 tolerance and
+native space-group equality. Equivalent group names pass; changed frames refuse
+before adapter installation. No recompile, new tolerance or scientific target.
+
+117 focused /117 relocated installed checks pass. Six actual Phenix 2.2.1-6174
+cases pass in59.36s, including the formerly admitted cell change, group alias and
+different-group controls, normalized/unnormalized calls and the existing usage
+wrapper. The negative-before and fixed attempts are stopped/source-unchanged.
+Compact receipt: `source_recipe_native_crystal_join_2026_11_17`. No full suite.
+
 **Next gate: one checked prepared state before the same refinement phase.**
 Linden's proposal reuses the existing isolated preflight, execution owner,
 module-level native `driver.run` and final writer. Initial intent does not pretend
@@ -59,9 +73,11 @@ estimation can pass off-model shaken coordinates through the original manager;
 C368 correctly refuses that unqualified path. Reporting copies retain native-family
 statistics, with separate checked added-pair evidence. Do not synchronize stale
 hierarchy XYZ during a force call or claim the copied report includes additions.
-A new versioned runtime must also preserve foreign global replacements. Exact
-source/model/recipe/reflection/Free-R control references are being identified from
-declared prior evidence, not searched by basename. No new implementation is yet
+A new versioned runtime must also preserve foreign global replacements. Linden has verified the exact W114 derived-model/recipe and W34 reflection
+archive members/checksums, including all176 original Free-R test0 flags among3333
+observations. The current W113/W114 model is a small earlier bend preview, not
+untouched deposited coordinates. His next ordinary preflight diagnostic retains
+that derived-control label and performs no optimization or added contribution. No new implementation is yet
 qualified at that boundary; Q06 achieved chemistry remains open.
 
 **Established foundations:** C367 reuses C331's complete fixed-input traversal

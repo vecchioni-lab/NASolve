@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Keep added pair forces in their declared crystal frame (C370)
+
+- Refuse explicit counted ownership when the actual native cell/group differs
+  from the validated source recipe, even if its new native policy is internally
+  consistent. Preserve the existing cell tolerance and equivalent group aliases.
+- Check before installing adapters. No new artifact schema, migration, automatic
+  refinement activation, target changes or modification of frozen v3 runtime.
+
 ### Recognize existing refinement usage observations during direct calls (C369)
 
 - Explicit counted ownership can authenticate the existing frozen runtime's exact

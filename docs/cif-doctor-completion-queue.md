@@ -38,7 +38,9 @@ refinement activation follows from direct-call success.
 
 C369 now recognizes the exact existing source-qualified usage-observation closure
 with its additional runtime pin, unchanged unique records and unchanged frozen v3
-bytes. Next qualify the real prepared-model/optimizer/report/final-output boundaries. Reporting copies can lose instance
+bytes. C370 joins actual native cell/group to the validated source recipe frame;
+a changed cell with a newly self-consistent native policy now refuses, while native
+space-group aliases pass. Next qualify the real prepared-model/optimizer/report/final-output boundaries. Reporting copies can lose instance
 admission, and the native-family report cannot silently include extra residuals.
 Keep those reports distinct from added-pair evidence; never relax direct-inner
 admission, omit usage observations or invent another correction installer. Actual

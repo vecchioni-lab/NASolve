@@ -4373,6 +4373,13 @@ are pinned in owner source. This exact Phenix 2.2.1-6174 Darwin-arm64 profile is
 whole-distribution attestation or a defense against arbitrary in-process code.
 The enclosing runtime still owns isolated execution and frozen helper selection.
 
+C370 also joins the actual native crystal to the validated recipe's source crystal
+before installing adapters. Reuse the existing recipe compiler's 1e-10 cell
+comparison and native group equality, including equivalent symbol aliases.
+Separately self-consistent provider/native policy records cannot authorize reuse
+of Cartesian image transforms from another cell or group. No silent frame
+conversion or recipe recompilation occurs.
+
 Each admitted call must use the current scattering force sites with unchanged
 atom identity/cell/group; hierarchy XYZ may legitimately lag them. There is no
 coordinate synchronization. The trusted outer call must allocate a fresh empty

@@ -109040,5 +109040,92 @@
       "Preserve foreign global replacements in a later qualified runtime; unchanged historical v3 still has that limitation.",
       "Q06 scientific geometry, broad chemistry/platform/default activation and merge remain open."
     ]
+  },
+  "source_recipe_native_crystal_join_2026_11_17": {
+    "milestone": "C370",
+    "date": "2026-11-17",
+    "signed": "Rowan",
+    "before": "An internally consistent changed native cell/policy/provider context could admit pair Cartesian images compiled for the original source cell.",
+    "after": "Join actual native geometry crystal to the already-validated recipe crystal before adapter installation, using the existing compiler tolerance and native group equality.",
+    "changed_files": [
+      "src/nasolve/cif_counted_contribution.py",
+      "tests/test_cif_counted_contribution_native.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": "No new persistent schema or field.",
+    "source": {
+      "parent_commit": "5d61e6472bb439a900b60f074d5cf294a385adbc",
+      "owner_sha256": "925dc4e702800957552ebfee52ac70e8c271ef093cbaa1bda9e134fef6c25b6d",
+      "unchanged_runtime_sha256": "6698585c1da6225895dd1d639554321ccab695eda1b4366d243deb39106c3503"
+    },
+    "validation": {
+      "before": "Actual Phenix changed-cell test failed before fix: DID NOT RAISE ValueError; 1failed/40deselected in11.96s. No wrongly admitted force evaluated.",
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <NASolve-venv-python> -m pytest -q -p no:cacheprovider tests/test_cif_counted_contribution.py tests/test_cif_refinement_runtime.py tests/test_refinement_parallelity.py --tb=short",
+      "focused": "117 passed in19.73s",
+      "installed_command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-B",
+        "-c",
+        "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_cif_counted_contribution.py', 'tests/test_cif_refinement_runtime.py', 'tests/test_refinement_parallelity.py', '--tb=short']))"
+      ],
+      "installed": "117 passed in18.47s; source copy removed and original installation path absent; imported relocated package verified",
+      "wheel_sha256": "126c477525c2045a11582f8711372dc9806bf19d41dee710d9bee33875031b35",
+      "native_command": "C368 explicit checksum-bound environment; owned Phenix bootstrap runs copied tests/test_cif_counted_contribution_native.py with -q -x -p no:cacheprovider --tb=short -k \"self_consistent_changed_native_cell or recipe_crystal_group or actual_owned_calls or explicit_unnormalized or (observed_wrapper and None)\"",
+      "native": "6 passed/37 deselected in59.36s; Phenix2.2.1-6174 Darwin arm64 complete native preparation/direct-call executions, not full refinement or dry-run",
+      "static": "Python3.10 AST; git diff --check; prior ledger entries unchanged",
+      "full_suite": "NOT_RUN"
+    },
+    "compatibility": "Existing cell tolerance1e-10 and native group equality; aliases retained. Reject formerly admitted inconsistent frame. Frozen runtime/readers, numerical targets, default paths, Free-R and lineage unchanged. No migration.",
+    "retention": {
+      "included": "Code/tests/docs and compact technical evidence only",
+      "excluded": "Raw models, native inputs/logs and diagnostic runners remain local; preserve negative-before attempt",
+      "attempts": [
+        {
+          "anchor": "NASolve-live-tests",
+          "path": "370_Cedar_recipe-frame-v324oqb5",
+          "driver": {
+            "returncode": 1,
+            "stopped_verified": true,
+            "source_unchanged": true
+          },
+          "driver_sha256": "3bac5b642abd24e11a25dc6198b24dabe0e1266a569d24823c20e9b003f3556d",
+          "summary": {
+            "status": "FAILED",
+            "returncode": 1,
+            "seconds": 12.710035875003086,
+            "test_sha256": "78ed333158d2d3359498175d28ca16e43075ab5a778e5e769b1bd7f017e77ee9",
+            "test_unchanged": true,
+            "scope": "Native direct-call ownership matrix only; no refinement/full suite"
+          }
+        },
+        {
+          "anchor": "NASolve-live-tests",
+          "path": "370_Cedar_recipe-frame-8wj00sdd",
+          "driver": {
+            "returncode": 0,
+            "stopped_verified": true,
+            "source_unchanged": true
+          },
+          "driver_sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+          "summary": {
+            "status": "PASS",
+            "returncode": 0,
+            "seconds": 60.131448416999774,
+            "test_sha256": "df0e6372e1839422a6ff64dbd37b9aa25ddbe751b38bbe18ffea4fb0caa3ca3b",
+            "test_unchanged": true,
+            "scope": "Native direct-call ownership matrix only; no refinement/full suite"
+          }
+        }
+      ]
+    },
+    "remaining": [
+      "Observe the actual returned preflight model using existing W106/W112, W105 and W108 owners; no duplicate numerical/provider engine.",
+      "Versioned immutable post-preflight admission and same-refinement validation remain to qualify.",
+      "Actual optimizer/report/final-output lifetime and Q06 chemical survival remain open."
+    ]
   }
 }

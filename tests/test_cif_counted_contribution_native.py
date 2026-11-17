@@ -57,7 +57,7 @@ def native_case():
             energy=model.restraints_manager_energies_sites(compute_gradients=True)
             return dict(hierarchy=state_owner._hierarchy(model),scattering=state_owner._scattering(model.get_xray_structure())[0],fractional=list(model.get_xray_structure().sites_frac()),target=energy.target,gradient=list(energy.gradients),count=energy.number_of_restraints)
         before=state()
-        yield types.SimpleNamespace(model=model,geo=model.restraints_manager.geometry,options=options,factory=factory,state=state,before=before,kernel=kernel,rd=rd)
+        yield types.SimpleNamespace(model=model,geo=model.restraints_manager.geometry,options=options,factory=factory,state=state,before=before,kernel=kernel,rd=rd,params=params)
         assert state()==before
         assert 'energies_sites' not in vars(model.restraints_manager) and 'energies_sites' not in vars(model.restraints_manager.geometry)
         assert gr.parallelity_residual_sum is kernel
@@ -263,4 +263,47 @@ def test_existing_observed_wrapper_native_ownership(native_case,tmp_path,defect)
     finally:
         assert gr.parallelity_residual_sum is wrapper
         gr.parallelity_residual_sum=c.kernel
+    assert c.state()==c.before
+
+
+def test_self_consistent_changed_native_cell_cannot_borrow_original_recipe_images(native_case):
+    from io import StringIO
+    c=native_case;data=c.options['factory_arguments']['model_bytes'];lines=data.decode('ascii').splitlines(keepends=True)
+    index=next(i for i,line in enumerate(lines) if line.startswith('CRYST1'))
+    line=lines[index];edge=float(line[6:15])+.1
+    lines[index]=line[:6]+f'{edge:9.3f}{edge:9.3f}'+line[24:]
+    model=Model(model_input=pdb.input(source_info='changed-cell-negative',lines=''.join(lines)),
+        expand_with_mtrix=False,process_biomt=False,log=StringIO())
+    model.process(pdb_interpretation_params=deepcopy(c.params),make_restraints=True,grm_normalization=True)
+    native_before=c.model.restraints_manager_energies_sites(compute_gradients=True).target
+    policy_now=policy.snapshot_live_nonbonded_policy(model.restraints_manager.geometry,
+        flags=owned._native_api()['types']['flags'](default=True),normalization=False)
+    args=dict(c.options['factory_arguments']);context=deepcopy(args['provider_selection']['frozen']['context'])
+    context['native_exclusion_policy_sha256']=policy_now['policy_sha256']
+    context['crystal_sha256']=c.rd(policy_now['policy']['symmetry'])
+    observer=importlib.import_module(c.factory.__package__+'.topostitch_native_coverage')
+    coverage=importlib.import_module(c.factory.__package__+'.topostitch_pair_coverage')
+    observed=observer.observe_native_pair_terms(model,frozen_context=context,frozen_policy=policy_now,
+        policy_owner=policy,expected_policy_owner_sha256=c.options['helper_sources']['cif_live_nonbonded_policy'])
+    compiled=c.factory.NativePairRecipe(args['packet'],data,expected_recipe_sha256=args['expected_recipe_sha256'],correction=correction)
+    requested=coverage.describe_compiled_pair_terms(compiled,args['packet'],expected_binding_sha256=args['expected_binding_sha256'])['terms']
+    selection=coverage.select_pair_providers(requested,observed['terms'],
+        frozen=dict(context=context,requested_sha256=c.rd(requested),native_sha256=observed['terms_sha256']),current_context=context)
+    args.update(provider_selection=selection,expected_provider_selection_sha256=c.rd(selection))
+    options=dict(c.options,factory_arguments=args,frozen_policy=policy_now)
+    assert context['crystal_sha256']!=c.options['factory_arguments']['provider_selection']['frozen']['context']['crystal_sha256']
+    with pytest.raises(ValueError,match='recipe crystal'):
+        owned.CountedContributionOwner(model,**options)
+    assert 'energies_sites' not in vars(model.restraints_manager) and 'energies_sites' not in vars(model.restraints_manager.geometry)
+    assert c.model.restraints_manager_energies_sites(compute_gradients=True).target==native_before
+    assert c.state()==c.before
+
+
+@pytest.mark.parametrize('group,accepted',[('R 3 :H',True),('P 3',False)])
+def test_recipe_crystal_group_uses_native_equivalence_not_symbol_text(native_case,group,accepted):
+    c=native_case;packet=deepcopy(c.options['factory_arguments']['packet']);packet['crystal']['space_group']=group
+    if accepted:owned._require_recipe_crystal(c.geo,packet,owned._native_api())
+    else:
+        with pytest.raises(ValueError,match='recipe crystal'):
+            owned._require_recipe_crystal(c.geo,packet,owned._native_api())
     assert c.state()==c.before
