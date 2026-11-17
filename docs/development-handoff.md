@@ -1,11 +1,20 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C382 registered counted continuation qualified — Rowan**.
+Updated **2026-11-17, C383 inherited policy adaptation joined — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Evening stop **23:00 UK / UTC**.
 Focused tests only; no full suite. Linden owns the small local symmetry-pair science
 inspection bundle for checkout; Hazel owns the separate Alder diagnostic display.
 
 ## Current checkpoint and next bounded work
+
+**C383 complete: accept the existing checked Phenix policy spelling.** Explicit
+continuation can take C278's `refinement_input_reference`, validate it against the
+selected parent's original ordered restraints, and use its exact round-local copies.
+No second adapter, schema, native worker or chemical transformation. Missing proof,
+wrong round/parent, changed copy or omitted checkpoint output proof refuse. Original
+sources remain unchanged, including after relocation. Installed focused62 pass18.09s;
+no new native/full-suite run. C278/C279 native semantics and C382 counted-cycle proof
+remain separate; this does not claim a fresh combined native experiment.
 
 **C382 complete: carry the same pair intent into a registered descendant.**
 Explicit `prepare_continuation` reuses the validated registry, exact selected parent,
@@ -31,8 +40,7 @@ continuity, not a matched efficacy comparison or improved chemistry. No weight,
 acceptance or source-chemistry policy changes follow.
 
 Next: connect this explicit supported protocol to the existing ordinary refinement
-owner without bypassing its terminal-phosphate, chemistry-projection, input-adapter,
-process or publication rules. First map that interface; do not invent another
+owner without bypassing its terminal-phosphate, chemistry-projection, process or publication rules; C383 now joins the existing input adapter. First map that interface; do not invent another
 executor or override ordinary automatic weighting to force qualification. Q06
 achieved chemistry remains open. The prior W119 stopped boundary is not repeated.
 
@@ -66,7 +74,10 @@ A completed moved run is readable; a moved pending native command needs a fresh
 anchored attempt. The launch marker prevents duplicate execution but never proves
 that a process is dead. The existing process owner supplies that evidence.
 
-**Keep evidence small.** C381 uses the existing archive owner: actual prepared
+**Keep evidence small.** Completed C381/C382 controls now also have verified local
+archives (1,112,954 / 2,152,311 bytes), with all original roots preserved and cold
+expanded reads checked. These are complete diagnostic archives, not per-dataset
+capacity claims. C381 uses the existing archive owner: actual prepared
 record 67,216 bytes compressed, byte-exact temporary expansion, durable archive
 before transient raw retirement. No duplicate permanent prepared JSON. Failed
 partial outputs and original scientific inputs remain. C376/C378 retention proof
@@ -96,6 +107,7 @@ questions remain Q13, not a diagnosed cause of its stretched sugar–base bond.
 
 The [completion queue](cif-doctor-completion-queue.md#pipeline-position) is the sole
 work order. Exact source pins, commands and results are in
+`counted_continuation_input_adaptation_2026_11_17`,
 `registered_counted_continuation_2026_11_17` and
 `maintained_counted_admission_2026_11_17` in the existing
 [evidence ledger](cif-linked-native-registration-evidence.json). No raw scientific

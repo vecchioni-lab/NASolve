@@ -4541,8 +4541,13 @@ Existing checkpoint validation compares original intent across counted ancestry
 without recursively reading the registry. It rejects changed intent and a later
 ordinary refinement that dropped the counted terms. Compatible manual children may
 continue; recut, renamed, reordered or chemically changed models still need a
-separate explicit route. Input adaptations/additional restraints and ordinary
-AutoRefine protocol selection are not newly admitted by this narrow wrapper.
+separate explicit route. C383 allows an optional existing `refinement_input_reference`: the unchanged C278
+validator checks source hashes, exact namespace-only bytes, ordered indices and
+this round before the wrapper resolves execution copies. Original inherited
+restraints remain canonical; the caller must retain the same receipt in normal
+checkpoint outputs, and existing checkpoint validation rejects its omission.
+Additional restraints, model-identity/chemistry transformations and ordinary
+AutoRefine protocol selection remain outside this narrow wrapper.
 
 Ordinary activation remains gated on integration with the existing refinement
 owner and explicit protocol choice; durable admission and registered continuation

@@ -127,12 +127,13 @@ def validate_intent_lineage(run, registry, selected, request):
 
 
 def prepare_continuation(run_directory, *, checkpoint, parent, inputs, command,
-                         python_executable, macro_cycles):
+                         python_executable, macro_cycles, refinement_input_reference=None):
     """Prepare a fresh explicit request from a registered compatible descendant.
 
     The existing caller owns its numbered round, parameters, process and result
-    publication. This joins validated lineage to the existing freezer and W118
-    rebind; it neither runs Phenix nor changes selection or ordinary defaults.
+    publication, including retention of any supplied input-adaptation receipt in
+    its checkpoint outputs. This joins validated lineage to the existing freezer
+    and W118 rebind; it neither runs Phenix nor changes selection or ordinary defaults.
     """
     from . import refinement_parallelity as execution
     from .checkpoints import read_registry,resolve_checkpoint,inherited_paths,REUSABLE_STATUSES
@@ -146,7 +147,14 @@ def prepare_continuation(run_directory, *, checkpoint, parent, inputs, command,
     request=_inherited_request(run,registry,selected,include_selected=True)
     _need(request is not None,'Selected checkpoint has no completed counted ancestor')
     paths=inherited_paths(selected,run)
-    expected=[paths['observations'],paths['model'],*paths['restraints']]
+    restraints=list(paths['restraints'])
+    if refinement_input_reference is not None:
+        from .refinement_inputs import validate_refinement_inputs
+        adapted=validate_refinement_inputs(run,selected['restraints'],refinement_input_reference,
+                                          checkpoint=checkpoint)
+        for row in adapted['adaptations']:
+            restraints[row['index']]=_bound_path(row['execution'],'inherited execution restraint',run)
+    expected=[paths['observations'],paths['model'],*restraints]
     if paths['phases'] is not None:expected.append(paths['phases'])
     expected.append(path_in(run,execution._root(checkpoint)).parent/'autorefine.params')
     inputs=[Path(p).expanduser().resolve() for p in inputs]

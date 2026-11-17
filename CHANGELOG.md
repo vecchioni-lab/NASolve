@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Reuse checked policy copies during counted continuation (C383)
+
+- Accept the existing round-local refinement-input receipt in explicit counted
+  continuation. Validate its exact namespace-only copies against the selected
+  parent's unchanged ordered sources before preparing runtime files. Wrong parent,
+  round, contents or missing publication proof refuse. Original input semantics,
+  native helpers, schemas and ordinary defaults remain unchanged.
+
 ### Preserve original pair intent across registered descendants (C382)
 
 - Add explicit counted continuation using existing checkpoint lineage, inherited

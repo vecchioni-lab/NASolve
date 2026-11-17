@@ -628,6 +628,9 @@ alone. Their logged R values worsen slightly: this demonstrates continuity of
 the machinery, not improved chemistry. Ordinary command integration and a broader
 scientifically qualified protocol remain separate gates; sticky-end activation
 is not automatic.
+The continuation also accepts NASolve's existing checked spelling of Phenix's
+full-model policy, while retaining its original source. This changes how the same
+setting is presented to refinement; it does not change atoms or chemistry.
 
 If Phenix finishes the checked preflight but NASolve cannot trust its evidence,
 AutoRefine now keeps a readable failed checkpoint: “preflight finished;

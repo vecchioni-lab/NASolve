@@ -280,7 +280,7 @@ def test_archive_directory_sync_failure_preserves_raw_bytes(tmp_path,monkeypatch
     assert not (root/'admission.json').exists()
 
 
-def registered_counted_case(tmp_path):
+def registered_counted_case(tmp_path, *, full_model=False):
     """Synthetic lifecycle evidence; no native or scientific qualification."""
     from nasolve.checkpoints import initialize_registry,append_checkpoint
     from tests.test_cif_refinement_runtime import output_row
@@ -291,6 +291,15 @@ def registered_counted_case(tmp_path):
     path=root/'request.json';request=json.loads(path.read_text())
     request['inputs'][-1]=_file_reference(params,run)
     request['command'][3]=str(params)
+    restraint_refs=[];adaptation=None
+    if full_model:
+        from nasolve.cif_native_monomers import FULL_MODEL_PHIL
+        from nasolve.refinement_inputs import prepare_refinement_inputs
+        policy=run/'inputs/full-model.phil';policy.write_text(FULL_MODEL_PHIL)
+        restraint_refs=[_file_reference(policy,run)]
+        paths,adaptation=prepare_refinement_inputs(run,restraint_refs,checkpoint='refine-001')
+        request['inputs'][2:2]=[_file_reference(p,run) for p in paths]
+        request['command'][3:3]=[str(p) for p in paths]
     write_record(path,request,replace=True);reference=_file_reference(path,run)
     result_path=root/'preflight/result.json';result=json.loads(result_path.read_text())
     result['arguments']=execution._preflight_arguments(request);result_path.write_text(json.dumps(result))
@@ -313,12 +322,13 @@ def registered_counted_case(tmp_path):
         refinement_returncode=0,counted_admission=admission)
     model=run/'inputs/model.pdb';observations=run/'inputs/observations.mtz'
     report=dict(workflow='automr',inputs=dict(reflections='inputs/observations.mtz',reflections_sha256=_file_reference(observations,run)['sha256']),
-        postmr=dict(status='POSTMR_READY',prepared_model='inputs/model.pdb',prepared_sha256=_file_reference(model,run)['sha256'],restraints=[]))
+        postmr=dict(status='POSTMR_READY',prepared_model='inputs/model.pdb',prepared_sha256=_file_reference(model,run)['sha256'],
+                    restraints=['inputs/full-model.phil'] if full_model else []))
     (run/'report.json').write_text(json.dumps(report));_,registry=initialize_registry(run)
     child=root.parent/'refined_001.pdb';child.write_bytes(model.read_bytes().replace(b'   4.000',b'   4.010',1))
     item=dict(id='refine-001',parent='postmr',status='REVIEW',usable=True,kind='autorefine',recipe='explicit-test',
-        model=_file_reference(child,run),observations=_file_reference(observations,run),restraints=[],phases=None,
-        outputs=dict(parallelity_execution=receipt))
+        model=_file_reference(child,run),observations=_file_reference(observations,run),restraints=restraint_refs,phases=None,
+        outputs=dict(parallelity_execution=receipt,**({'refinement_inputs':adaptation} if adaptation is not None else {})))
     append_checkpoint(run,registry,item,select=False)
     return run,reference,registry,item
 
@@ -418,3 +428,55 @@ def test_counted_lineage_cannot_cross_a_refinement_that_dropped_its_intent(tmp_p
     registry['checkpoints'].extend([ordinary,selected])
     with pytest.raises(ValueError,match='lost its counted pair intent'):
         saved._inherited_request(run,registry,selected,include_selected=True)
+
+
+
+def adapted_continuation_case(tmp_path, *, relocate=False):
+    from nasolve.checkpoints import read_registry,resolve_checkpoint
+    from nasolve.refinement_inputs import prepare_refinement_inputs
+    run,original,registry,parent=registered_counted_case(tmp_path,full_model=True)
+    if relocate:
+        moved=tmp_path/'relocated';run.rename(moved);assert not run.exists();run=moved
+    options=continuation_options(run)
+    _,registry=read_registry(run);parent=resolve_checkpoint(registry,'refine-001')
+    paths,reference=prepare_refinement_inputs(run,parent['restraints'],checkpoint='refine-002')
+    options['inputs'][2:-1]=paths
+    options['command']=['phenix.refine',*map(str,options['inputs']),'output.prefix=refined']
+    options['refinement_input_reference']=reference
+    return run,options,parent
+
+
+@pytest.mark.parametrize('relocate',[False,True])
+def test_counted_continuation_accepts_existing_exact_policy_adaptation(tmp_path,relocate):
+    from nasolve.cif_native_monomers import FULL_MODEL_PHIL
+    run,options,parent=adapted_continuation_case(tmp_path,relocate=relocate)
+    before={p.relative_to(run):(p.read_bytes(),p.stat().st_mtime_ns) for p in run.rglob('*') if p.is_file()}
+    reference,command,refine=saved.prepare_continuation(run,**options)
+    request=execution.read_execution_request(run,reference,checkpoint='refine-002')
+    source=run/parent['restraints'][0]['relative_path']
+    assert source.read_text()==FULL_MODEL_PHIL and refine is None
+    assert request['inputs'][2]==_file_reference(options['inputs'][2],run)
+    assert source!=options['inputs'][2]
+    assert options['inputs'][2].read_bytes()==b'refinement {\n'+FULL_MODEL_PHIL.encode()+b'}\n'
+    assert all((run/p).read_bytes()==data and (run/p).stat().st_mtime_ns==mtime for p,(data,mtime) in before.items())
+
+
+@pytest.mark.parametrize('defect',['missing_receipt','previous_round','changed_copy','other_parent','missing_checkpoint_reference'])
+def test_counted_continuation_refuses_unproven_policy_copy_before_runtime(tmp_path,defect):
+    run,options,parent=adapted_continuation_case(tmp_path)
+    if defect=='missing_receipt':options['refinement_input_reference']=None
+    elif defect=='previous_round':options['refinement_input_reference']=parent['outputs']['refinement_inputs']
+    elif defect=='other_parent':
+        receipt=run/options['refinement_input_reference']['relative_path'];record=json.loads(receipt.read_text())
+        other=run/'other-parent-policy.phil';other.write_bytes((run/parent['restraints'][0]['relative_path']).read_bytes())
+        record['adaptations'][0]['source']=_file_reference(other,run)
+        write_record(receipt,record,replace=True);options['refinement_input_reference']=_file_reference(receipt,run)
+    elif defect=='missing_checkpoint_reference':
+        path=run/'AutoRefine/checkpoints.json';registry=json.loads(path.read_text())
+        del registry['checkpoints'][1]['outputs']['refinement_inputs'];path.write_text(json.dumps(registry))
+    else:options['inputs'][2].write_text(options['inputs'][2].read_text().replace('False','True'))
+    before={p.relative_to(run):p.read_bytes() for p in run.rglob('*') if p.is_file()}
+    with pytest.raises((ValueError,RuntimeError)):
+        saved.prepare_continuation(run,**options)
+    assert not (run/'AutoRefine/round_002/parallelity_runtime').exists()
+    assert {p.relative_to(run):p.read_bytes() for p in run.rglob('*') if p.is_file()}==before

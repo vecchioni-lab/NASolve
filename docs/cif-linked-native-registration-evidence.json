@@ -111492,5 +111492,100 @@
       "No broader native protocol, ordinary command integration, projection/adaptation expansion or scientific acceptance"
     ],
     "next": "Map ordinary-owner integration preserving terminal-phosphate and chemistry scope, input adaptations, process identity and existing publication; no alternate executor."
+  },
+  "counted_continuation_input_adaptation_2026_11_17": {
+    "milestone": "C383",
+    "author": "Rowan",
+    "base_commit": "18283b3159a1f2404fd957da60328d88801fbb2e",
+    "prior_work": "C278 refinement_policy_namespace_2026_11_14 and C279 actual five-cycle native/relocation proof, not C291 whole-base transport. Existing validator/byte semantics unchanged.",
+    "behavior_before": "C382 exact original-path comparison rejected valid C278 namespace-only execution copies.",
+    "behavior_after": "Optional existing refinement_input_reference authenticates selected-parent original sources, indices, exact contents and current round before accepting ordered execution copies. Existing normal checkpoint validation requires its output receipt. No adapter/schema/helper added.",
+    "sources": {
+      "src/nasolve/refinement_counted.py": "32ce051c934b79ca6f3d00684fe932da9fc17cb9404aeffbeb61eb34c3cfab3b",
+      "tests/test_refinement_counted.py": "58cd2866880c97ff9979bca027c4751841c940e6f4215624ccfd25b7fcef9899"
+    },
+    "negative_before": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider tests/test_refinement_counted.py -k accepts_existing_exact --tb=short",
+      "result": "2 failed,43 deselected in2.31s; unexpected refinement_input_reference keyword"
+    },
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider tests/test_refinement_counted.py tests/test_refinement_inputs.py --tb=short",
+        "result": "60 passed17.07s before final2 peer-review negatives"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider tests/test_refinement_counted.py -k unproven_policy --tb=short",
+        "result": "5 passed,42 deselected in4.15s"
+      },
+      {
+        "command": [
+          "/private/tmp/willow-w94-pivot/env/bin/python",
+          "-B",
+          "-c",
+          "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_refinement_inputs.py', 'tests/test_refinement_counted.py', '--tb=short']))"
+        ],
+        "environment": {
+          "PYTHONPATH": "/private/tmp/c383-package-fin1wkbr/relocated",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        },
+        "result": "62 passed18.09s"
+      },
+      {
+        "command": "Python3.10 AST; source/install byte comparison; git diff --check",
+        "result": "PASS"
+      }
+    ],
+    "installed": {
+      "wheel_sha256": "810ad0dd99a56211950f0ac3f2d9dba1662e06b59f4212b8a7ae10fd96f9e85a",
+      "wheel_bytes": 1534974,
+      "build_command": [
+        "/private/tmp/willow-w94-pivot/env/bin/python",
+        "-m",
+        "pip",
+        "wheel",
+        "--no-deps",
+        "--no-build-isolation",
+        "--no-index",
+        "--wheel-dir",
+        "/private/tmp/c383-package-fin1wkbr/wheel",
+        "/private/tmp/c383-package-fin1wkbr/source"
+      ],
+      "source_copy_removed": true,
+      "original_install_path_absent": true,
+      "package_reference_bytes_match": true
+    },
+    "coverage": [
+      "Exact policy adaptation before and after run relocation; original files and mtimes unchanged",
+      "Missing receipt, previous-round receipt, changed copy, wrong-parent source even with identical contents, missing checkpoint output proof all refuse"
+    ],
+    "peer_review": "Linden read-only review: reuse existing validator; model-identity/frame and chemical transformations remain outside this PHIL-spelling join.",
+    "archive_retention": [
+      {
+        "label": "c381-native-admission-2026-11-17",
+        "archive": "c381-native-admission-2026-11-17.tar.gz",
+        "sha256": "0bed1b66c2c5de522219ffe7e159119a9441add92b98b098e2aad7b414ef2a3f",
+        "bytes": 1112954,
+        "raw_bytes": 7383092,
+        "verified_expanded_cold_read": true,
+        "original_root_preserved": true
+      },
+      {
+        "label": "c382-registered-continuation-2026-11-17",
+        "archive": "c382-registered-continuation-2026-11-17.tar.gz",
+        "sha256": "1fef97f33fe59a5e4be4aa24c226c1c0f35877dcba6196c08b62980cd7345cb5",
+        "bytes": 2152311,
+        "raw_bytes": 14380090,
+        "verified_expanded_cold_read": true,
+        "original_root_preserved": true
+      }
+    ],
+    "native": "No new native execution. C278/C279 and C382 native evidence remains at its original source/scope; no fresh combined native claim. Phenix2.2.1-6174 source pins unchanged; Coot not run.",
+    "compatibility": "Optional argument only; same receipt and checkpoint schema, default and historical readers unchanged. Explicit wrapper accepts proven namespace copies but not extra restraints or broader chemistry/protocol.",
+    "exclusions": [
+      "No full suite",
+      "No raw scientific data/logs/archives committed",
+      "No broadened chemical acceptance or ordinary command activation"
+    ],
+    "next": "Existing ordinary owner with explicit bounded protocol, declared frame, terminal/chemistry guards, established process ownership and unselected REVIEW publication; next native control must cross that actual owner rather than repeat a manual registry runner."
   }
 }

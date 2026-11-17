@@ -50,9 +50,15 @@ native cycles retain17 added terms and prior-round bytes; relocated registry rea
 without Gemmi/native execution. Final installed360+13 tests pass. Logged Rwork/Rfree
 worsen slightly, so this is continuity proof, not a repair or efficacy claim.
 
+**C383 complete:** the explicit continuation wrapper accepts only C278's existing
+validated, order-preserving refinement namespace copies, tied to unchanged selected
+parent sources and this exact round. Focused installed62 tests pass; no new native
+semantics, schema or duplicate native experiment. Required checkpoint output proof
+cannot be omitted. Broader source/chemistry changes remain separate.
+
 **Next bounded controller slice:** map and connect the explicit qualified protocol
 to the existing ordinary refinement owner. Preserve its terminal-phosphate and
-chemistry projection checks, exact restraint adaptations, process ownership and
+chemistry projection checks, the now-joined exact restraint adaptations, process ownership and
 checkpoint publication. Ordinary AutoRefine/Doctor still refuse to lose counted
 intent; no automatic v3 fallback. Avoid another executor or silent changes to
 ordinary cycle counts/automatic weights. Broader native scope requires its own
