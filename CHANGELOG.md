@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Reuse the checked starting restraint setup without replanning (C375)
+
+- Explicit prepared observation can also bind existing torsion/chirality and
+  other bonded targets plus outer normalization, using the existing fingerprint.
+- Reconstruct an unentered counted owner from the exact stronger record without
+  selecting providers again or evaluating forces. Recheck initial atom state at
+  entry; ordinary optimizer movement afterward remains allowed.
+- Default pair-only observations and frozen execution versions retain their
+  meaning. No ordinary activation, new execution owner or target changes; durable
+  request/preflight authority and actual phase integration remain separate.
+
 ### Preserve competing native hooks under explicit runtime v4 (C372)
 
 - Restore only owned kernel, final-writer and monomer-summary bindings. Preserve

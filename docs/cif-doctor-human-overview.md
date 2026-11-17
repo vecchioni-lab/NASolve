@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Current explanation, 2026-11-16.** CIF Doctor checks whether the model and
+**Current explanation, 2026-11-17.** CIF Doctor checks whether the model and
 chemical dictionaries preserve the intended molecule, whether Phenix can read
 the resulting restraints, and whether a proposed repair changes only what it
 should. It works around ReadySet and NARestraints; it does not replace them.
@@ -264,6 +264,14 @@ Campaign recipes and Refine Doctor now carry the same explicit choice through
 their existing refinement paths. A native Doctor trial preserves Free-R and the
 current model. A helper completing refinement is not structure approval; achieved
 chemistry and PDU survival remain Q06.
+
+An explicit internal check now records the full starting bonded-restraint setup,
+including torsion/chirality targets and normalization, alongside the selected pair
+restraints and atom state. Refinement can reconstruct that same checked choice
+without choosing new restraints. Changes before entry refuse; normal atomic
+movement afterward is allowed. Native controls cover those boundaries and a fresh
+model built from the same inputs. Connecting this to ordinary saved preflight and
+refinement phases remains separate work; it is not chemical or structure approval.
 
 The C336 refinement reader now separates two questions for an exact saved model:
 were the supplied triple-bond targets sensible, and did the atoms retain that
@@ -598,7 +606,9 @@ connects graph-selected support generation inside an explicitly enabled complete
 request. C245 connects it to `prepare-run` and exact-result notes; C246 connects
 explicit checked PostMR/campaign activation. C247 carries verified generation
 notes through publication and campaign status without repeating the proof read.
-Final selected-plane coverage and real refinement remain separate gates.
+Final selected-plane coverage and real refinement remain separate gates. The
+C375 prepared-state consumer is an explicit native integration prerequisite,
+not another automatically active audit box in this figure.
 
 | Audit point | What is inspected | Why it matters |
 | --- | --- | --- |

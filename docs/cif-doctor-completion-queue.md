@@ -88,11 +88,16 @@ selection and unchanged refusal/recovery. This does not predict whole-refinement
 speed. C374 qualifies the current temporary joined installed package: 308 focused
 plus22 optional-library controls and actual native prepared/wrapped/refusal calls
 pass after source removal and install relocation. No full suite or branch merge.
-Next consume an exact prepared selection without replanning, then wire versioned
-immutable admission through the existing execution owner. Admission may refuse
+C375 now consumes an exact stronger prepared selection without replanning:
+explicit broad bonded targets/normalization plus full initial native state are
+checked again at entry. Default C371 pair-only records retain their narrower
+meaning and cannot substitute. Linden W119 will test the genuine ordinary
+preflight/driver seam with W118-rebound parent; then wire versioned immutable
+admission through the existing execution owner. Admission may refuse
 after successful native preflight; preserve its return0 and explicitly unlaunched
 refinement. A descendant must retain intent through a fresh same-frame/identity
-source binding and prepared admission; Linden owns the pure rebind prerequisite. Numerical lifecycle success is not Q06 chemistry closure.
+source binding and prepared admission; Linden owns the pure rebind prerequisite.
+Numerical lifecycle success is not Q06 chemistry closure.
 
 ## Finish line and ordering
 
@@ -782,6 +787,14 @@ an older model with newer dictionaries, rewrite a prior checkpoint, or promote
 report-only findings into unreviewed universal gates.
 
 ### Q06 — Qualify the actual refinement consumer
+
+**Alder final-stage reporting holdover (2026-11-17, `ccb5e769`):** a passive exact-
+endpoint replay localizes one DF child's final R/B shift inside native
+`update_all_scales`. XYZ, occupancy, fp/fdp, phase probabilities and F_mask remain
+unchanged; scales/F_calc/B and scaled observations change. The final synchronized
+model is not the earlier cycle's printed R/B state. Reuse Hazel's compact staged
+receipt before attribution; no isolated backtrace/mask/scaling cause or native bug
+is established. Do not alter weights/targets or promote the endpoint to hide it.
 
 **Current consumer route through C307:** `autorefine --checked-plane-forces`
 explicitly uses the qualified local Phenix implementation, complete ordered plane

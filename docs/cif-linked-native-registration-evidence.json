@@ -109668,5 +109668,150 @@
     ],
     "follow_up": "Existing Q13: establish intended linked phosphate state and a justified general source-state transition before changing retained H/charge/targets. Q06 mechanical delivery does not certify that chemical state.",
     "limitations": "No source alteration, new native run, causal diagnosis of DF glycosidic stretching, or scientific acceptance. Raw dictionaries remain local."
+  },
+  "prepared_counted_consumption_2026_11_17": {
+    "milestone": "C375",
+    "date": "2026-11-17",
+    "signed": "Rowan",
+    "before": "C371 observes four pair families and nonbonded/state context; it does not bind pre-existing torsions/chiralities or outer normalization. A new ordinary counted owner establishes its own current baseline rather than proving equality to preflight.",
+    "after": "Explicit counted_baseline observation reuses the existing broad bonded fingerprint and normalization. New unentered owner consumer verifies exact stronger record/native state and existing selected providers without replanning or forces, then rechecks initial state at entry while allowing legitimate subsequent motion.",
+    "changed_files": [
+      "src/nasolve/cif_counted_contribution.py",
+      "tests/test_cif_counted_contribution_native.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": "Opt-in counted_baseline observation member with prepared-counted-native-baseline-v1 policy. Existing four-field default observation and all persistent execution/request schemas unchanged.",
+    "source": {
+      "parent_commit": "fd5ab33d",
+      "owner_sha256": "7322edee9e78a027bbd47c0043e1acc35494d1d4ecce1e671cb9225f771086b9",
+      "factory_composition": "C374 installed Willow W11789eccdf2; native_recipe SHA1739b2a7cf11d802bfa9293d7b79b9edcf7bb1ad868b53d4c1b1996b461d7748"
+    },
+    "validation": {
+      "negative_before": "One new actual native case fails3.15s because counted_baseline is unsupported; attempt retained.",
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <NASolve-venv-python> -m pytest -q -p no:cacheprovider tests/test_cif_counted_contribution.py tests/test_cif_refinement_ownership.py tests/test_cif_refinement_runtime.py tests/test_cif_refinement_output.py tests/test_cif_refinement_sites.py tests/test_refinement_parallelity.py --tb=short",
+      "focused": "184passed in24.44s",
+      "installed_command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-B",
+        "-c",
+        "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_cif_refinement_ownership.py', 'tests/test_cif_refinement_runtime.py', 'tests/test_cif_refinement_output.py', 'tests/test_cif_refinement_sites.py', 'tests/test_refinement_parallelity.py', 'tests/test_cif_counted_contribution.py', '--tb=short']))"
+      ],
+      "installed": "184passed in20.71s; source copy and original install absent before relocated import",
+      "native_command": "PYTHONDONTWRITEBYTECODE=1 NASOLVE_COUNTED_TEST_SELECT=<selector> [NASOLVE_COUNTED_CEDAR_INSTALL=<relocated-install>] <phenix.python> -B -c \"import sys;sys.path.insert(0,<cedar-src>);import runpy;runpy.run_path(<local-runners>/c375_tests_start.py,run_name='__main__')\"",
+      "native_selectors": [
+        "prepared_counted_admission",
+        "prepared_counted_admission_works_with or prepared_counted_admission_allows or actual_owned_calls or recipe_crystal_group",
+        "prepared_counted_admission_reuses_selection or prepared_counted_admission_accepts_fresh or prepared_counted_admission_works_with or prepared_counted_admission_refuses_state_drift"
+      ],
+      "native": "15newcases pass80.96s;2additionalnew+3existing pass29.89s;4 relocated installed native cases pass38.48s. All actual Phenix2.2.1-6174 Darwinarm64 executions, not dry-run; no optimizer cycle.",
+      "new_native_cases": 17,
+      "full_suite": "NOT_RUN",
+      "static": "Python3.10 AST and git diff --check",
+      "wheel_sha256": "132abf48b06701154b35c68d755989decf0530c00c3d0e3d4a7eff7a58d9f3b9",
+      "wheel_bytes": 1424118,
+      "properties": [
+        "No planner/evaluator calls or adapters during prepared reconstruction.",
+        "Fresh same-input model admitted; caller records detached.",
+        "Changed torsion/chirality/normalization/hierarchy or scattering ADPs refuse.",
+        "Missing stronger baseline, wrong digest, rehashed state/bonded signature and bool-int alias refuse.",
+        "Initial-state drift before entry refuses and poisons; no installed adapters remain.",
+        "Current usage wrapper accepted; scattering-coordinate motion after entry remains allowed.",
+        "Legacy default record remains exact, including its historical pair-only scope after a torsion change."
+      ]
+    },
+    "compatibility": "Additive explicit API only. No default v3/v4 entry/source changes, historical reader migration, new process/correction/planner, target/weight/sigma change or automatic activation. Source-qualified callers must pin new counted-owner bytes. Pair-only legacy observations remain readable but cannot authorize stronger admission.",
+    "retention": {
+      "included": "Source, focused native tests and compact evidence/documentation",
+      "excluded": "Models, data, native logs/runners and wheel candidates stay local; all partial attempts retained",
+      "attempts": [
+        {
+          "anchor": "NASolve-live-tests",
+          "path": "375_Cedar_prepared-owner-fe2j51wl",
+          "driver": {
+            "returncode": 1,
+            "stopped_verified": true,
+            "source_unchanged": true
+          },
+          "summary": {
+            "status": "FAILED",
+            "returncode": 1,
+            "seconds": 4.817478500001016,
+            "test_sha256": "ade70af645b0f7c5e08f7cca8ee84989daa2d2cf51fa86d328dc310ce56c31df",
+            "test_unchanged": true,
+            "scope": "Native direct-call ownership matrix only; no refinement/full suite"
+          },
+          "summary_sha256": "ca136331a813df22cf9ea1d749ae3fdcd057ddf09bb7887b473855ed887a4c28",
+          "driver_sha256": "3bac5b642abd24e11a25dc6198b24dabe0e1266a569d24823c20e9b003f3556d"
+        },
+        {
+          "anchor": "NASolve-live-tests",
+          "path": "375_Cedar_prepared-owner-ez_3pzzs",
+          "driver": {
+            "returncode": 0,
+            "stopped_verified": true,
+            "source_unchanged": true
+          },
+          "summary": {
+            "status": "PASS",
+            "returncode": 0,
+            "seconds": 81.71309870899859,
+            "test_sha256": "ade70af645b0f7c5e08f7cca8ee84989daa2d2cf51fa86d328dc310ce56c31df",
+            "test_unchanged": true,
+            "scope": "Native direct-call ownership matrix only; no refinement/full suite"
+          },
+          "summary_sha256": "347d66a4d4f8a77a91a5a9f7e1f8ef2ae5775a45a2bd500ab6b2e2c04f39b208",
+          "driver_sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7"
+        },
+        {
+          "anchor": "NASolve-live-tests",
+          "path": "375_Cedar_prepared-owner-eh1o_0vq",
+          "driver": {
+            "returncode": 0,
+            "stopped_verified": true,
+            "source_unchanged": true
+          },
+          "summary": {
+            "status": "PASS",
+            "returncode": 0,
+            "seconds": 30.622116250000545,
+            "test_sha256": "d4038b9df865d38a847b47278317bd9fee0834755d5293f15e7de8d9246d306f",
+            "test_unchanged": true,
+            "scope": "Native direct-call ownership matrix only; no refinement/full suite"
+          },
+          "summary_sha256": "7fa91b5c1bc84d1daab9f393da97df497eff33a146911c1e933ebd0ddb04c782",
+          "driver_sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7"
+        },
+        {
+          "anchor": "NASolve-live-tests",
+          "path": "375_Cedar_prepared-owner-h0p3doqo",
+          "driver": {
+            "returncode": 0,
+            "stopped_verified": true,
+            "source_unchanged": true
+          },
+          "summary": {
+            "status": "PASS",
+            "returncode": 0,
+            "seconds": 39.278121166003984,
+            "test_sha256": "d4038b9df865d38a847b47278317bd9fee0834755d5293f15e7de8d9246d306f",
+            "test_unchanged": true,
+            "scope": "Native direct-call ownership matrix only; no refinement/full suite"
+          },
+          "summary_sha256": "1e1ab309cab5676127ca2e27d205587e5d2be180462dea3372043b4baa152e57",
+          "driver_sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7"
+        }
+      ],
+      "installed_candidate_bytes": 11137860
+    },
+    "remaining": [
+      "Actual ordinary preflight-to-refinement initial-state seam; Linden W119 will qualify one actual W118 child/preflight/refinement diagnostic with immutable C375 wheel.",
+      "Versioned existing execution controller must bind original request, actual preflight and new admission; native return0 must not be rewritten if later admission refuses.",
+      "Descendant recipe intent/new parent binding, full fixed-weight phase/writer lifetime and Q06 achieved chemistry; broader phases/defaults remain unqualified."
+    ]
   }
 }

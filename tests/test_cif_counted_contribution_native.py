@@ -210,7 +210,7 @@ def test_explicit_unnormalized_native_call_keeps_raw_target_and_gradient(native_
 
 
 @pytest.mark.parametrize('defect',[None,'missing_runtime_pin','wrong_runtime_pin','kernel_cell','directory_cell','seen_cell','shrinking_seen','removed_record'])
-def test_existing_observed_wrapper_native_ownership(native_case,tmp_path,defect):
+def test_existing_observed_wrapper_native_ownership(native_case,tmp_path,defect,prepared=None):
     from nasolve import cif_refinement_runtime as runtime
     c=native_case;directory=tmp_path/'calls';directory.mkdir()
     def cell(value):return (lambda:value).__closure__[0]
@@ -229,7 +229,9 @@ def test_existing_observed_wrapper_native_ownership(native_case,tmp_path,defect)
             else:options['helper_sources']['cif_refinement_runtime']='0'*64
             with pytest.raises(ValueError):owned.CountedContributionOwner(c.model,**options)
         else:
-            owner=owned.CountedContributionOwner(c.model,**options);owner.__enter__()
+            owner=(owned.CountedContributionOwner(c.model,**options) if prepared is None else
+                   consume_preparation(c,prepared,helper_sources=options['helper_sources']))
+            owner.__enter__()
             if defect=='removed_record':
                 c.model.restraints_manager_energies_sites(compute_gradients=True)
                 path=next(directory.glob('*.json'));saved=path.read_bytes();path.unlink()
@@ -374,4 +376,143 @@ def test_prepared_pair_observation_refuses_unsynchronized_force_sites(native_cas
         assert list(xrs.sites_frac())==list(shifted)
         assert state_owner._hierarchy(c.model)==c.before['hierarchy']
     finally:xrs.set_sites_frac(sites)
+    assert c.state()==c.before
+
+
+def counted_preparation(c):
+    args=c.options['factory_arguments']
+    return owned.observe_prepared_pair_contribution(c.model,
+        factory_module=c.factory,factory_sources=c.options['factory_sources'],
+        helper_sources=c.options['helper_sources'],packet=args['packet'],
+        model_bytes=args['model_bytes'],expected_recipe_sha256=args['expected_recipe_sha256'],
+        counted_baseline=True)
+
+
+def consume_preparation(c,prepared,**changes):
+    args=c.options['factory_arguments']
+    options=dict(factory_module=c.factory,factory_sources=c.options['factory_sources'],
+        helper_sources=c.options['helper_sources'],packet=args['packet'],
+        model_bytes=args['model_bytes'],expected_recipe_sha256=args['expected_recipe_sha256'],
+        prepared=prepared,expected_prepared_sha256=c.rd(prepared))
+    options.update(changes)
+    return owned.owner_from_prepared_pair_contribution(c.model,**options)
+
+
+def test_prepared_counted_admission_reuses_selection_without_forces_or_replanning(native_case):
+    c=native_case;prepared=counted_preparation(c);original=deepcopy(prepared)
+    coverage=importlib.import_module(c.factory.__package__+'.topostitch_pair_coverage')
+    watched={coverage.select_pair_providers.__code__,c.factory.NativePairRecipe.evaluate_terms.__code__,
+        Model.restraints_manager_energies_sites.__code__,kernel_owner.ParallelityKernel.__call__.__code__}
+    calls=[];previous=sys.getprofile()
+    def profile(frame,event,arg):
+        if event=='call' and frame.f_code in watched:calls.append(frame.f_code.co_name)
+    sys.setprofile(profile)
+    try:owner=consume_preparation(c,prepared)
+    finally:sys.setprofile(previous)
+    assert calls==[] and prepared==original and c.state()==c.before
+    assert owner.statistics()['successful_calls']==0
+    assert 'energies_sites' not in vars(c.geo) and 'energies_sites' not in vars(c.model.restraints_manager)
+    # Returned ownership has detached its input, not retained mutable caller authority.
+    prepared['provider_selection'].clear();prepared['counted_baseline'].clear()
+    with owner:
+        result=c.model.restraints_manager_energies_sites(compute_gradients=True)
+        assert result.number_of_restraints==c.before['count']+17
+    assert c.state()==c.before
+
+
+@pytest.mark.parametrize('defect',['torsion','chirality','normalization','hierarchy_b','scattering_b'])
+def test_prepared_counted_admission_refuses_changed_start_before_construction(native_case,defect):
+    c=native_case;prepared=counted_preparation(c)
+    if defect in ('torsion','chirality'):
+        field='dihedral_proxies' if defect=='torsion' else 'chirality_proxies'
+        old=getattr(c.geo,field);assert old and len(old)>1
+        setattr(c.geo,field,type(old)(list(old)[1:]))
+        def restore():setattr(c.geo,field,old)
+    elif defect=='normalization':
+        old=c.model.restraints_manager.normalization;c.model.restraints_manager.normalization=not old
+        def restore():c.model.restraints_manager.normalization=old
+    elif defect=='hierarchy_b':
+        atom=c.model.get_hierarchy().atoms()[0];old=atom.b;atom.b=old+1
+        def restore():atom.b=old
+    else:
+        xrs=c.model.get_xray_structure();old=xrs.scatterers()[0].u_iso;xrs.scatterers()[0].u_iso=old+.01
+        def restore():xrs.scatterers()[0].u_iso=old
+    try:
+        with pytest.raises(ValueError,match='[Pp]repared|baseline'):
+            consume_preparation(c,prepared)
+        assert 'energies_sites' not in vars(c.geo) and 'energies_sites' not in vars(c.model.restraints_manager)
+    finally:restore()
+    assert c.state()==c.before
+
+
+@pytest.mark.parametrize('defect',['missing_baseline','digest','normalization_type','bonded_signature','native_state','extra_field'])
+def test_prepared_counted_admission_refuses_rehashed_incomplete_or_changed_records(native_case,defect):
+    c=native_case;prepared=counted_preparation(c);options={}
+    if defect=='missing_baseline':prepared.pop('counted_baseline')
+    elif defect=='digest':options['expected_prepared_sha256']='0'*64
+    elif defect=='normalization_type':prepared['counted_baseline']['outer_normalization']=int(prepared['counted_baseline']['outer_normalization'])
+    elif defect=='bonded_signature':prepared['counted_baseline']['bonded']['signature']='0'*64
+    elif defect=='native_state':prepared['native_observation']['native_state']['force_sites_sha256']='0'*64
+    else:prepared['authority']=True
+    with pytest.raises(ValueError):consume_preparation(c,prepared,**options)
+    assert 'energies_sites' not in vars(c.geo) and 'energies_sites' not in vars(c.model.restraints_manager)
+    assert c.state()==c.before
+
+
+def test_prepared_counted_admission_refuses_state_drift_before_entry(native_case):
+    c=native_case;owner=consume_preparation(c,counted_preparation(c))
+    atom=c.model.get_hierarchy().atoms()[0];old=atom.b;atom.b=old+1
+    try:
+        with pytest.raises(ValueError,match='[Pp]repared'):owner.__enter__()
+        assert owner.statistics()['poisoned'] and owner.statistics()['successful_calls']==0
+        assert 'energies_sites' not in vars(c.geo) and 'energies_sites' not in vars(c.model.restraints_manager)
+    finally:atom.b=old
+    with pytest.raises(ValueError,match='reused'):owner.__enter__()
+    assert c.state()==c.before
+
+
+def test_prepared_counted_admission_accepts_fresh_same_input_model(native_case):
+    c=native_case;prepared=counted_preparation(c);data=c.options['factory_arguments']['model_bytes']
+    model=Model(model_input=pdb.input(source_info='fresh-prepared-consumer',lines=data.decode('ascii')),
+        expand_with_mtrix=False,process_biomt=False,log=sys.stdout)
+    model.process(pdb_interpretation_params=c.params,make_restraints=True,grm_normalization=True)
+    fresh=types.SimpleNamespace(**dict(vars(c),model=model,geo=model.restraints_manager.geometry))
+    owner=consume_preparation(fresh,prepared)
+    with owner:result=model.restraints_manager_energies_sites(compute_gradients=True)
+    assert result.number_of_restraints==c.before['count']+17
+    assert 'energies_sites' not in vars(model.restraints_manager.geometry)
+    assert c.state()==c.before
+
+
+def test_prepared_counted_admission_preserves_legacy_pair_only_observation(native_case):
+    c=native_case;legacy=prepared_observation(c);strong=counted_preparation(c)
+    assert set(legacy)=={'frozen_policy','compiled_binding','native_observation','provider_selection'}
+    assert {k:v for k,v in strong.items() if k!='counted_baseline'}==legacy
+    old=c.geo.dihedral_proxies;c.geo.dihedral_proxies=gr.shared_dihedral_proxy(list(old)[1:])
+    try:
+        # Historical pair-only observation never claimed full bonded-phase admission.
+        assert prepared_observation(c)==legacy
+        assert counted_preparation(c)['counted_baseline']!=strong['counted_baseline']
+        with pytest.raises(ValueError):consume_preparation(c,strong)
+    finally:c.geo.dihedral_proxies=old
+    assert c.state()==c.before
+
+
+def test_prepared_counted_admission_works_with_existing_usage_wrapper(native_case,tmp_path):
+    c=native_case
+    test_existing_observed_wrapper_native_ownership(c,tmp_path,None,prepared=counted_preparation(c))
+
+
+def test_prepared_counted_admission_allows_optimizer_movement_after_entry(native_case):
+    c=native_case;owner=consume_preparation(c,counted_preparation(c))
+    xrs=c.model.get_xray_structure();original=xrs.sites_frac().deep_copy()
+    shifted=original.deep_copy();shifted[0]=tuple(v+(.0001 if i==0 else 0.) for i,v in enumerate(shifted[0]))
+    with owner:
+        first=c.model.restraints_manager_energies_sites(compute_gradients=True)
+        try:
+            xrs.set_sites_frac(shifted)
+            second=c.model.restraints_manager_energies_sites(compute_gradients=True)
+            assert first.target!=second.target and first.number_of_restraints==second.number_of_restraints
+            assert owner.statistics()['successful_calls']==2
+        finally:xrs.set_sites_frac(original)
     assert c.state()==c.before

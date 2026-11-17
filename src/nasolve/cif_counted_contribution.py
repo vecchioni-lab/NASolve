@@ -1,7 +1,8 @@
 """Opt-in direct native ownership for a frozen four-family pair contribution.
 
-No refinement runner, persistent artifact, provider selection or global kernel
-installation lives here. The existing outer runtime owns trusted helper selection,
+No refinement runner, persistent artifact or global kernel installation lives here.
+Initial observation reuses the existing provider planner; prepared consumption
+retains that choice. The existing outer runtime owns trusted helper selection,
 process lifetime and correction installation. This owner authenticates its exact
 factory, model/manager pair, actual force sites and native-owned accumulation.
 """
@@ -26,6 +27,7 @@ from . import cif_gradient_audit as gradient_owner
 
 POLICY_ID = 'cif-owned-counted-contribution-v1'
 COUNT_POLICY = 'canonical-pair-one-per-proxy-v1'
+COUNTED_BASELINE_POLICY = 'prepared-counted-native-baseline-v1'
 # Qualify these records before trusting the native-file digests they contain.
 # C331's historical profile and reader semantics are unchanged.
 _PROFILE_SHA256 = {
@@ -262,8 +264,39 @@ def _factory_modules(factory_module):
     return modules
 
 
+def _bonded_signature(geo, sites, api):
+    # Existing audit owns the broad static fingerprint. This narrow profile
+    # additionally refuses torsion/image settings that it does not include.
+    gr=api['gr']; count=len(sites); constant_alternates=[]
+    for kind in ('dihedral','const_dihedral','chirality'):
+        proxies=getattr(geo,kind+'_proxies')
+        if proxies is None:continue
+        native_kind='dihedral' if kind=='const_dihedral' else kind
+        _need(type(proxies) is getattr(gr,'shared_'+native_kind+'_proxy') and len(proxies)<=policy.MAX_ITEMS,
+              'Unsupported counted bonded container')
+        for proxy in proxies:
+            _need(type(proxy) is getattr(gr,native_kind+'_proxy') and len(proxy.i_seqs)==4
+                  and all(type(i) is int and 0<=i<count for i in proxy.i_seqs), 'Invalid counted bonded proxy')
+            if native_kind=='dihedral':
+                _need(proxy.slack==0 and proxy.limit==-1 and proxy.top_out is False,
+                      'Nondefault torsion force settings are outside counted scope')
+            if kind=='const_dihedral':constant_alternates.append(None if proxy.alt_angle_ideals is None else list(proxy.alt_angle_ideals))
+            images=getattr(proxy,'sym_ops',None)
+            _need(images is None or all(op.is_unit_mx() for op in images),
+                  'Symmetry-bearing torsion/chirality is outside counted scope')
+    return dict(signature=gradient_owner.fixed_signature(geo,api['flex'].vec3_double(sites)),
+                constant_torsion_alternates=constant_alternates)
+
+
+def _counted_baseline(model, api):
+    sites=list(model.get_xray_structure().sites_cart())
+    return dict(policy_id=COUNTED_BASELINE_POLICY,
+        outer_normalization=policy._boolean(model.restraints_manager.normalization),
+        bonded=_bonded_signature(model.restraints_manager.geometry,sites,api))
+
+
 def observe_prepared_pair_contribution(model, *, factory_module, factory_sources,
-        helper_sources, packet, model_bytes, expected_recipe_sha256):
+        helper_sources, packet, model_bytes, expected_recipe_sha256, counted_baseline=False):
     """Read one prepared model and make its initial existing provider selection.
 
     The enclosing execution owner must supply the actual returned preflight model
@@ -276,7 +309,10 @@ def observe_prepared_pair_contribution(model, *, factory_module, factory_sources
     occur. The existing observer may refresh native pair caches. Single-owner
     access is required. Frozen runtime/versioning and durable admission live outside
     this read, and source-frame mismatches are refused rather than reconciled.
+    Explicit counted_baseline also binds the existing broad bonded fingerprint
+    and outer normalization. The default four-field C371 record stays unchanged.
     """
+    _need(type(counted_baseline) is bool, 'Require explicit boolean counted baseline')
     api=_native_api();_check_files(api['profiles']);_check_files(api['native_files'])
     manager=model.restraints_manager;geo=manager.geometry
     _need(type(model) is api['Model'] and type(manager) is api['Restraints']
@@ -301,6 +337,7 @@ def observe_prepared_pair_contribution(model, *, factory_module, factory_sources
     options=dict(frozen_context=context,frozen_policy=baseline,policy_owner=policy,
         expected_policy_owner_sha256=helper_sources['cif_live_nonbonded_policy'],
         state_owner=state_owner,expected_state_owner_sha256=helper_sources['cif_refinement_output'])
+    counted=_counted_baseline(model,api) if counted_baseline else None
     observed=observer.observe_native_pair_terms(model,**options)
     selection=coverage.select_pair_providers(declared['terms'],observed['terms'],
         frozen=dict(context=context,requested_sha256=declared['terms_sha256'],
@@ -309,10 +346,66 @@ def observe_prepared_pair_contribution(model, *, factory_module, factory_sources
           and model.restraints_manager is manager and manager.geometry is geo,
           'Prepared native state changed during provider observation')
     _need(compiled.binding_report()==binding, 'Prepared recipe binding changed')
+    _need(not counted_baseline or _counted_baseline(model,api)==counted,
+          'Prepared counted baseline changed during observation')
     factory_guard.check();helper_guard.check()
     _check_files(api['profiles']);_check_files(api['native_files'])
-    return _detached(dict(frozen_policy=baseline,compiled_binding=binding,
-        native_observation=observed,provider_selection=selection))
+    result=dict(frozen_policy=baseline,compiled_binding=binding,
+        native_observation=observed,provider_selection=selection)
+    if counted_baseline:result['counted_baseline']=counted
+    return _detached(result)
+
+
+def owner_from_prepared_pair_contribution(model, *, factory_module, factory_sources,
+        helper_sources, packet, model_bytes, expected_recipe_sha256,
+        prepared, expected_prepared_sha256):
+    """Reconstruct one unentered owner from an exact stronger prepared record.
+
+    Reuse the frozen provider choice, never the initial planner. Fresh native
+    state, inventory, policy, compiled binding, broad bonded targets and outer
+    normalization must match; entry checks the initial state again before use.
+    Normal optimizer coordinate/ADP movement after entry remains permitted.
+
+    This creates no files/adapters, computes no forces and establishes no durable
+    request/preflight provenance. The enclosing execution owner supplies trusted
+    record/source digests and the existing correction kernel. Native pair caches
+    may refresh. Legacy pair-only observations cannot authorize this stronger use.
+    """
+    _need(type(prepared) is dict and set(prepared)=={'frozen_policy','compiled_binding',
+        'native_observation','provider_selection','counted_baseline'}
+        and type(expected_prepared_sha256) is str and _digest(prepared)==expected_prepared_sha256,
+        'Require exact prepared counted observation and digest')
+    prepared=_detached(prepared)
+    baseline=prepared['counted_baseline']
+    _need(type(baseline) is dict and set(baseline)=={'policy_id','outer_normalization','bonded'}
+          and baseline['policy_id']==COUNTED_BASELINE_POLICY
+          and type(baseline['outer_normalization']) is bool,
+          'Unsupported prepared counted baseline')
+    selection=prepared['provider_selection']
+    arguments=dict(packet=packet,model_bytes=model_bytes,expected_recipe_sha256=expected_recipe_sha256,
+        expected_binding_sha256=_digest(prepared['compiled_binding']),provider_selection=selection,
+        expected_provider_selection_sha256=_digest(selection))
+    owner=CountedContributionOwner(model,factory_module=factory_module,factory_sources=factory_sources,
+        helper_sources=helper_sources,factory_arguments=arguments,frozen_policy=prepared['frozen_policy'])
+    try:
+        state=owner._state()
+        _need(_digest(_counted_baseline(model,owner._api))==_digest(baseline),
+              'Prepared counted baseline differs from actual native model')
+        observed=owner._observer.observe_native_pair_terms(model,
+            frozen_context=owner._context,frozen_policy=owner._baseline,policy_owner=policy,
+            expected_policy_owner_sha256=helper_sources['cif_live_nonbonded_policy'],
+            state_owner=state_owner,expected_state_owner_sha256=helper_sources['cif_refinement_output'])
+        _need(_digest(observed)==_digest(prepared['native_observation']),
+              'Prepared native observation differs from actual initial state')
+        _need(_digest(owner._recipe.binding_report())==arguments['expected_binding_sha256']
+              and _digest(_counted_baseline(model,owner._api))==_digest(baseline)
+              and owner._state()==state, 'Prepared native state changed during reconstruction')
+        owner._native_files();owner._bindings(idle=True)
+        owner._prepared_state_sha256=_digest(state)
+        return owner
+    except BaseException:
+        owner._poisoned=True;owner._closed=True
+        raise
 
 
 class CountedContributionOwner:
@@ -364,6 +457,7 @@ class CountedContributionOwner:
             (api['GeometryEnergy'],'__init__',api['geometry_init'])]
         self._native_codes=api['native_codes']
         self._state_identity=None; self._origins=None; self._entered=False; self._closed=False; self._poisoned=False; self._call=None
+        self._prepared_state_sha256=None
         self._successful=0; self._last=None; self._outer_adapter=self._outer; self._inner_adapter=self._inner
         self._bindings(idle=True)
         state=self._state(); self._state_identity=state['identity']
@@ -442,27 +536,7 @@ class CountedContributionOwner:
         return terms
 
     def _bonded(self, sites):
-        # Existing audit owns the broad static fingerprint. This narrow profile
-        # additionally refuses torsion/image settings that it does not include.
-        gr=self._api['gr']; count=len(sites); constant_alternates=[]
-        for kind in ('dihedral','const_dihedral','chirality'):
-            proxies=getattr(self._geo,kind+'_proxies')
-            if proxies is None:continue
-            native_kind='dihedral' if kind=='const_dihedral' else kind
-            _need(type(proxies) is getattr(gr,'shared_'+native_kind+'_proxy') and len(proxies)<=policy.MAX_ITEMS,
-                  'Unsupported counted bonded container')
-            for proxy in proxies:
-                _need(type(proxy) is getattr(gr,native_kind+'_proxy') and len(proxy.i_seqs)==4
-                      and all(type(i) is int and 0<=i<count for i in proxy.i_seqs), 'Invalid counted bonded proxy')
-                if native_kind=='dihedral':
-                    _need(proxy.slack==0 and proxy.limit==-1 and proxy.top_out is False,
-                          'Nondefault torsion force settings are outside counted scope')
-                if kind=='const_dihedral':constant_alternates.append(None if proxy.alt_angle_ideals is None else list(proxy.alt_angle_ideals))
-                images=getattr(proxy,'sym_ops',None)
-                _need(images is None or all(op.is_unit_mx() for op in images),
-                      'Symmetry-bearing torsion/chirality is outside counted scope')
-        return dict(signature=gradient_owner.fixed_signature(self._geo,self._api['flex'].vec3_double(sites)),
-                    constant_torsion_alternates=constant_alternates)
+        return _bonded_signature(self._geo,sites,self._api)
 
     def _check(self):
         self._bindings()
@@ -485,10 +559,16 @@ class CountedContributionOwner:
         _need(not self._entered and not self._closed and not self._poisoned, 'Counted owner cannot be reused')
         try:
             self._native_files(); self._bindings(idle=True)
+            if self._prepared_state_sha256 is not None:
+                _need(_digest(self._state())==self._prepared_state_sha256,
+                      'Prepared native state changed before ownership entry')
             self._manager.energies_sites=self._outer_adapter
             self._geo.energies_sites=self._inner_adapter
             self._entered=True
-            self._check()
+            state=self._check()
+            if self._prepared_state_sha256 is not None:
+                _need(_digest(state)==self._prepared_state_sha256,
+                      'Prepared native state changed during ownership entry')
         except BaseException:
             self._poisoned=True
             if self._entered:self.__exit__(*sys.exc_info())

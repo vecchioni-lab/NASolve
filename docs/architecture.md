@@ -4425,6 +4425,20 @@ pair-cache refresh may occur. Repeated observation checks state across selection
 Never call this initial selector to replan a frozen refinement. Source/native
 working-cell choice stays explicit, including MTZ/PDB representation precision.
 
+C375 adds explicit `counted_baseline=True` to that observation. The existing
+broad bonded fingerprint (including torsion/chirality targets) and outer
+normalization are checked across observation under
+`prepared-counted-native-baseline-v1`; the default four-field C371 record remains
+unchanged. `owner_from_prepared_pair_contribution` requires the exact stronger
+record/digest, creates the existing fresh counted owner from its selected providers,
+and compares actual dual atom state, full pair inventory/policy, compiled binding
+and broader baseline. It never invokes the provider planner or evaluates forces.
+It returns an unentered owner; initial state is checked again before and across
+entry, after which normal coordinate/ADP evolution remains permitted. Drift poisons
+that owner. No files, adapter installation or durable preflight authority follows
+from reconstruction. The enclosing execution owner must authenticate actual
+request/preflight lineage; legacy pair-only observations cannot substitute.
+
 Ordinary refinement remains gated on prepared-model and optimizer lifetime,
 copied/selected reporting managers and final output. C369 qualifies wrapper
 recognition for direct calls only, not that wider integration. Historical v3
