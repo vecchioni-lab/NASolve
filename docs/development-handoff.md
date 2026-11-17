@@ -1,7 +1,7 @@
 # NASolve development handoff — Willow
 
 Updated **2026-11-17**. This is the **`willow` branch** handoff, not the
-project-wide status of Pine, Cedar or Alder. **W122 planning is recorded; W123 is next.**
+project-wide status of Pine, Cedar or Alder. **W123 saved-pair attribution is recorded; W124 is next.**
 Runtime code includes W113's factory, W117's exact-image optimization and W118's
 data-only same-frame recipe rebind; W110/W111 remain diagnostic and protocol evidence.
 Direct native ownership is qualified at C368/W113; actual prepared-state
@@ -25,6 +25,7 @@ S04/S05/S06 and P01/P02 remain partial; use the roadmap for individual gates.
 
 | Current component | Proven scope | Boundary still open |
 | --- | --- | --- |
+| W123 saved-endpoint pair attribution | Existing 124 terms across 14 pairs show modest targeted geometry improvement; full-precision native/zero endpoints exact | No Rfree benefit, repaired pair or density/backbone acceptance |
 | W104 `review_pair_coverage` | Read-only comparison of explicit requested/native/additive terms; rejects missing, duplicate, stale, image and parameter mismatches | Caller authenticates complete declarations; no activation |
 | W105 `describe_compiled_pair_terms` | Exports terms from the existing compiled recipe and original bound packet | Not a native force or lifecycle qualification |
 | W106 `observe_native_pair_terms` | Callback-free actual-manager inventory with checksum-bound Cedar policy checks and exact rational image comparison | Special positions unsupported; source authenticity and active callback policy remain upstream |
@@ -54,7 +55,8 @@ as the first user-facing refinement application: declared canonical contacts fir
 separately qualified plane-only mismatch hypotheses next. Use 8D93 then an
 independent 5W6W/DOHU control; inventory 7R96 before mismatch trials. Automatic
 inference and large-bend repair are later. No new code or native run is authorized
-by this planning update; W121/C378 remain the latest qualification evidence.
+by this planning update. W121/C378 remain the latest lifecycle/package qualification;
+W123 separately attributes saved endpoint geometry without another refinement.
 
 1. Wire versioned original request, validated preflight, immutable admission and
    same-phase consumption through existing execution owners. C377's maintained
@@ -87,7 +89,7 @@ by this planning update; W121/C378 remain the latest qualification evidence.
 images. This is internal provenance, not a request that users resolve insignificant
 MTZ/PDB precision differences. W115's source-cell override is a diagnostic control,
 not a campaign default. W116's short fixed-weight siblings show no diffraction
-benefit; W119 deliberately performs no optimization. Neither adopts a repair.
+benefit; W123 finds modest selected-pair improvement but substantial residual defects; W119 deliberately performs no optimization. Neither adopts a repair.
 
 ## Validation and compatibility
 

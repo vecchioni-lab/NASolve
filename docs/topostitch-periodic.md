@@ -6180,3 +6180,89 @@ These are separate C378 receipts, not additions to the immutable W121 software
 archive or new Willow source/installed test counts. Reuse the qualified frozen set
 and existing v4 files in the next versioned execution policy; avoid inferring a
 whole-repository dependency from unused diagnostic functions. S05/S06 remain partial.
+
+
+### W123 — Attribute saved ordinary-refinement pair geometry
+
+**Scope:** read-only Phenix **2.2.1-6174** analysis of the exact archived W116
+endpoints, using the W121 joined installation (Willow W118/Cedar C377). Reuse
+`NativePairRecipe.describe_terms` and `compare_pair_attribution`; no new evaluator,
+refinement, weight search, checkpoint or model adoption. This closes the missing
+per-pair readback of the existing ordinary-cycle controls, not S05/S06.
+
+All 123 members of the W116 archive and 306 installed source/resource hashes were
+verified before analysis. The same original full recipe measures **124 terms /14
+pairs** at each coordinate state. Native-only and zero-addition full endpoint and
+R-statistic records are exactly equal, so their observation is reused rather than
+recomputed. Saved full-precision force sites equal saved hierarchy coordinates;
+identity, term definitions, input bytes and native kernel bindings stay unchanged.
+Individual residuals reproduce complete native container sums. These are **raw
+unnormalized pair penalties**, not native whole-model geometry scores.
+
+| Pair / scope | Native-only endpoint | Full-addition endpoint | Interpretation |
+| --- | ---: | ---: | --- |
+| GC A:101–C:102 pair penalty | 152.497191 | 133.198389 | Decreases 19.298803 |
+| AT A:102–C:101 pair penalty | 81.470379 | 77.283052 | Decreases 4.187327 |
+| GC plane deviation | 20.185303° | 18.681316° | Modest improved alignment |
+| AT plane deviation | 5.147528° | 4.830166° | Modest improved alignment |
+| GC joint-plane RMS | 0.211030 Å | 0.196516 Å | Still nonplanar |
+| AT joint-plane RMS | 0.067061 Å | 0.063642 Å | Small change |
+
+Both selected pairs use the exact declared target image
+`-x+y+2/3,-x+1/3,z+1/3`. All four restraint-family penalties decrease for each
+selected pair. Their combined change is **−23.486130**; the 12 retained-core pairs
+change **−0.102301** in total. Two core pairs increase slightly: A:103–C:114
+(+0.001908) and A:108–C:109 (+0.004074). These signs are descriptive, not calibrated
+acceptance thresholds. Joint-plane and plane-deviation terms describe pairing,
+not adjacent-base stacking or phosphate closure.
+
+The geometry is not repaired: GC donor/acceptor distances are
+2.970351, 2.639261 and **2.207122 Å**, and AT distances remain
+**3.401875 and 3.491959 Å** against the frozen 2.8 Å targets. Exact saved Rfree
+remains 0.2598980109 (native-only) versus 0.2599155744 (full addition); no
+improvement or scientific acceptance is claimed. W116 was a short, fixed-weight
+lifecycle control using an existing tiny-bend preview, not a repaired deposited
+8D93 model or a general sticky-end test.
+
+**Precision and retained failure:** attempt 001 stops with return 1 in 1.88s
+because reconstructing coordinates from the source PDB does not reproduce the
+sealed prepared force-site hash. Exact prepared initial coordinates were not
+archived; a hash alone cannot recover them. Preserve that refusal. Attempt 002
+explicitly uses the serialized original PDB only for separately labelled source
+comparisons and uses exact archived full-precision endpoints for the main paired
+comparison. It completes in **1.42s**, return 0; both owned processes are verified
+stopped. No new preflight was run and no prepared-state claim was weakened.
+
+Written endpoint PDB coordinates differ by at most 0.000500 Å per Cartesian axis.
+Evaluating those rounded copies changes aggregate raw penalties by −0.219032
+(native-only) and +0.106915 (full addition). Consequently tiny individual core
+changes must not be inferred from rounded PDB readback alone. Full precision and
+serialization comparisons remain separate in the receipt.
+
+Historical commands (attempt 001 retained; attempt 002 is the successful analysis):
+
+```text
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w123-pair-readback/run.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w123-pair-readback/run_002.py
+PYTHONDONTWRITEBYTECODE=1 python3 /private/tmp/willow-w123-pair-readback/audit.py
+PYTHONDONTWRITEBYTECODE=1 python3 /private/tmp/willow-w123-pair-readback/archive.py
+```
+
+Independent saved-evidence audit passes: all input/script hashes, stopped outcomes,
+complete term definitions, sums, per-pair/family/purpose differences and honest
+source/endpoint scope. Local forensic archive under repository anchor **everyday
+NASolve checkout**:
+`branch-artifacts/willow/w123-pair-attribution-2026-11-17.tar.gz`, SHA
+`e6d5104e5c3394865217931318e595af82c23bce61c58d696836f474f3edaa72`,
+**1,182,648 bytes /30 indexed files**, every member verified. Scientific inputs,
+coordinates and generated measurements remain local and excluded from Git. This
+archive references qualified external software and is not a portable resumable
+campaign. Full attribution SHA:
+`df798184f50c361eda7e9359333ac8929698e55220d75c868608f7840651dea7`.
+
+Repository changes are documentation and roadmap evidence only: no runtime schema,
+API, default, compatibility or migration change. No new source/full/install test
+claim; native read-only evaluation and documentation audits are the relevant checks.
+Next remains Rowan's durable controller/admission/continuation integration, followed
+by qualified contact controls. This analysis does not evaluate all backbone chemistry,
+clashes, adjacent stacking or density and does not justify retuning against Rfree.

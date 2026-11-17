@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W123 — Attribute saved ordinary-refinement pair geometry
+
+- Reuse existing native attribution on the exact W116 saved endpoints: 124 terms,
+  14 pairs, modest selected-pair improvement and small retained-core changes.
+- Preserve the failed initial-state reconstruction, distinguish serialized source
+  and endpoint rounding, and retain no Rfree benefit or repair-acceptance claim.
+- Evidence/docs only; no production code, schema, defaults or new refinement.
+
 ### W122 — Plan explicit sticky-end enforcement during refinement
 
 - Queue an opt-in, general supported-model feature after durable execution and

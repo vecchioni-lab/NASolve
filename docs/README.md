@@ -30,9 +30,11 @@ current instructions; other branches retain their own status and validation pins
   Versioned production wiring remains open. W122 places the planned explicit
   sticky-end refinement option immediately after that integration, before inference
   and large-bend repair; no new implementation or runs.
-  No physical repair is claimed.
+  W123 attributes the saved ordinary endpoints: targeted pair penalties decrease,
+  but residual geometry defects and lack of Rfree benefit remain. No new refinement
+  or physical repair is claimed.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Next human update is W123;
+  [machine-readable source](topostitch-roadmap.json). Next human update is W124;
   do not restart completed probes merely because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed
