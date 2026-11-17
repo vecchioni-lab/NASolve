@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Package the maintained pair-recipe library for refinement integration (C380)
+
+- Integrate the exact complete library dependency set from Willow/W118 under its
+  existing `nasolve` module paths, with its existing tests and comparison script.
+  Recipe preparation/rebind and native compilation no longer require a sibling
+  worktree. Add the existing optional `topology` Gemmi dependency; native imports
+  remain lazy. No new console scripts, defaults or automatic pair activation.
+- Check qualified refinement helper bytes before allocating an AutoRefine/Doctor
+  round, and before a direct freezer creates its runtime directory. Missing or
+  changed helpers leave no new round; the freeze still rechecks actual bytes.
+- This is a bounded source integration, not a full Willow merge. Existing Cedar
+  native profiles and historical frozen helpers remain unchanged; durable counted
+  admission and continuation are still pending.
+
 ### Keep a truthful record when preflight evidence is refused (C379)
 
 - Checked AutoRefine now saves an unusable failed checkpoint when Phenix returns

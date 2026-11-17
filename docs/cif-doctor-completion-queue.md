@@ -68,11 +68,12 @@ admission. First fixed-weight qualification is not a recommended scientific
 weighting/default. Working source/data frame choice belongs upstream of recipe
 compilation; the explicit source-cell control is not a universal model-cell policy.
 
-**Before ordinary admission ships:** the qualified Willow recipe factory is still
-an external installed package in these Cedar diagnostics. Reuse the maintained
-source/package integration path and qualify one joined package; do not vendor a
-second recipe engine or silently treat arbitrary source folders as trusted code.
-No branch merge is implied by a temporary composition. Bind original recipe/source
+**Package boundary complete (C380):** the maintained Willow/W118 factory now
+ships under its existing NASolve module paths with its complete library dependency
+set and original tests. No sibling worktree or arbitrary external folder is needed.
+The smaller qualified native worker set remains distinct from the installed library.
+No new CLI/default activation or full Willow merge; shared full-merge documentation
+still needs reconciliation. Bind original recipe/source
 provenance separately from the actual prepared parent model. A later refinement
 child must retain the selected pair intent through checkpoint lineage; continuing
 with only the ordinary native PHIL must not silently lose the added terms. Changed
@@ -98,9 +99,8 @@ same complete numerical result. The outer controller remains installed code.
 freezer and immutable records. Bind original intent/source, current parent/frame,
 actual validated preflight, its explicit protocol and stronger prepared record.
 Freeze the tested package-owned source set, deduplicating existing v4 members;
-never operationally import a sibling worktree or temporary candidate. Actual
-source/docs reconciliation or an explicitly packaged interface remains necessary
-before supported integration; temporary composition does not authorize a merge.
+never operationally import a sibling worktree or temporary candidate. C380 now supplies the explicit package-owned interface; do not repeat temporary
+source composition. The remaining full-merge documentation still needs reconciliation.
 C379 now records rejected preflight evidence separately: native preflight 0,
 explicit unlaunched refinement, original typed reason, unusable checkpoint and
 unchanged selection. Its outcome schema is separate from native/runtime policies.

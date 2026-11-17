@@ -98,6 +98,12 @@ python3 -m venv .venv
 .venv/bin/python -m pip install -e ".[test]"
 ```
 
+The explicit TopoStitch recipe/geometry Python interface additionally uses
+`.venv/bin/python -m pip install -e ".[topology]"` (Gemmi). Its maintained library
+is packaged for refinement integration; this does not enable automatic sticky-end
+restraints or add TopoStitch commands to the main CLI. See the
+[counted-refinement boundary](docs/architecture.md#owned-counted-pair-contribution-c368-direct-calls-only).
+
 ### Check the runtime
 
 ```bash

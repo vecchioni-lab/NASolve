@@ -4482,6 +4482,22 @@ saving evidence also retains the original refusal in the raised diagnostic.
 Changed request inputs/code still prevent publication: this is preflight-evidence
 refusal recording, not a general recovery record or positive admission seal.
 
+C380 integrates the complete maintained Python dependency set for that factory
+from Willow/W118 `c08f337024f8901c583c0988f652e9a1c3156a49`: 18 unchanged
+modules under their original `nasolve.topostitch*` paths, their 17 existing test
+files and one comparison script. The installed closure includes optional lazy
+paths used by public functions; the nine factory modules alone were not complete.
+This does not enlarge the qualified 18-module native worker set or replace Cedar's
+profiles. Willow remains the periodic-geometry/factory source owner and Cedar the
+execution owner until branch convergence; future shared changes need explicit
+source/pin coordination to prevent silent drift. Gemmi is declared through the same optional `topology` extra; no new
+console entry points or default activation. Ordinary imports require no native SDK.
+The existing source freezer now checks its qualified bytes before any new runtime
+directory; AutoRefine and Doctor perform the same check before round allocation.
+The exact source integration and installed qualification live in the evidence
+ledger; this bounded integration does not merge the remaining Willow features or
+resolve the eight shared documentation conflicts from the full composition.
+
 Ordinary activation remains gated on durable preflight/request admission,
 parent lineage and explicit protocol choice. Copied native-family reports remain
 distinct from complete added-term statistics. C369 qualifies wrapper

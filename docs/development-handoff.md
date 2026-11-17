@@ -1,10 +1,26 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C379 truthful preflight refusal — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. C378 / `fbc4ea01` is pushed.
+Updated **2026-11-17, C380 maintained recipe package integrated — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. C379 / `d9e2308e` is pushed.
 Evening work window ends **23:00 UK / UTC**. C379 focused validation is complete; no native jobs started. No full Cedar suite requested.
 
 ## Current checkpoint and next bounded work
+
+**C380 complete: package the existing pair-recipe library.** Exact Willow/W118
+`c08f3370` source is integrated under the same maintained module paths: 18 modules,
+17 existing test files and one comparison script (514,308 bytes total). The optional
+Gemmi `topology` extra is declared; no CLI/default changes, altered native profiles
+or full branch merge. This closes the external-package dependency for the next
+controller step. Qualified worker freezing remains the smaller C378 set.
+
+662 focused source tests pass; 887 installed/relocated tests + 13 subtests pass in
+42.28 s after source-copy removal. All declared package resources/Python bytes are
+verified. All 18 modules import in the base environment without Gemmi/native SDK;
+a periodic request reports the missing optional dependency explicitly. Linden
+independently verified every imported byte. Existing helper qualification now
+precedes AutoRefine/Doctor/direct-freezer allocation (two negative-before controls).
+No native or full-suite run; exact commands/provenance are in the existing ledger.
+
 
 **C379: keep a truthful record when preflight evidence is rejected.** Existing
 AutoRefine now preserves native preflight zero and explicit unlaunched refinement
@@ -17,7 +33,7 @@ sources still prevent publication; this is not a general failure/recovery seal.
 Three cold relocation controls preserve bytes/timestamps; no native or full suite.
 Exact commands are in `preflight_admission_refusal_2026_11_17` in the ledger.
 Linden's independent read-only review found no blocking issue. Positive counted
-admission and package-owned factory integration remain the next boundaries.
+admission and continuation remain the next boundaries; C380 closes package ownership.
 
 
 **C377 complete: keep checked restraints attached through refinement.** Explicit

@@ -148,9 +148,9 @@ def prepare_execution(run, *, checkpoint, parent, inputs, command, python_execut
     if chemistry_projections is not None:
         from .refinement_chemistry import _projection_scope
         _projection_scope(run,chemistry_projections)
+    payload=_code() if runtime_policy is None else _code(policy)
     root=path_in(run,_root(checkpoint));root.mkdir()
     code={}
-    payload=_code() if runtime_policy is None else _code(policy)
     for name,data in payload.items():
         target=path_in(root,name);target.parent.mkdir(parents=True,exist_ok=True)
         with target.open('xb') as handle:handle.write(data)
@@ -191,6 +191,10 @@ def validate_runtime_choice(enabled, python_executable):
         raise ValueError('Native parallelity correction must be explicitly enabled or disabled')
     if enabled and (python_executable is None or not Path(python_executable).is_file()):
         raise ValueError('Explicit plane-force correction requires the configured phenix.python')
+    if enabled:
+        try:_code()
+        except OSError as exc:
+            raise ValueError('Required qualified runtime source is unavailable: '+str(exc)) from exc
 
 
 def require_runtime_continuation(registry, selected, enabled):

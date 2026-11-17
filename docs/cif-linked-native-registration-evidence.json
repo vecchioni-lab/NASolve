@@ -110657,5 +110657,116 @@
       "No full suite",
       "No positive counted admission, package integration, retry, Q06 scientific acceptance or branch merge"
     ]
+  },
+  "maintained_pair_recipe_package_2026_11_17": {
+    "milestone": "C380",
+    "author": "Rowan",
+    "base_commit": "d9e2308e86615c7ed24ef355339fa4b6fefe01ac",
+    "upstream_commit": "c08f337024f8901c583c0988f652e9a1c3156a49",
+    "integration_manifest_sha256": "36a51365ac730863a8bccca22e917cdfb3aa201050e77139d4e5365c3bc93115",
+    "exact_upstream_paths": [
+      "src/nasolve/topostitch.py",
+      "src/nasolve/topostitch_contacts.py",
+      "src/nasolve/topostitch_coordinates.py",
+      "src/nasolve/topostitch_discovery.py",
+      "src/nasolve/topostitch_endpoint.py",
+      "src/nasolve/topostitch_graph.py",
+      "src/nasolve/topostitch_images.py",
+      "src/nasolve/topostitch_inspect.py",
+      "src/nasolve/topostitch_native_coverage.py",
+      "src/nasolve/topostitch_native_recipe.py",
+      "src/nasolve/topostitch_packing.py",
+      "src/nasolve/topostitch_pair_coverage.py",
+      "src/nasolve/topostitch_pairings.py",
+      "src/nasolve/topostitch_periodic.py",
+      "src/nasolve/topostitch_recipe.py",
+      "src/nasolve/topostitch_recut.py",
+      "src/nasolve/topostitch_registration.py",
+      "src/nasolve/topostitch_transport.py",
+      "tests/test_topostitch.py",
+      "tests/test_topostitch_contacts.py",
+      "tests/test_topostitch_coordinates.py",
+      "tests/test_topostitch_discovery.py",
+      "tests/test_topostitch_endpoint.py",
+      "tests/test_topostitch_graph.py",
+      "tests/test_topostitch_images.py",
+      "tests/test_topostitch_inspect.py",
+      "tests/test_topostitch_native_coverage.py",
+      "tests/test_topostitch_packing.py",
+      "tests/test_topostitch_pair_coverage.py",
+      "tests/test_topostitch_pairings.py",
+      "tests/test_topostitch_periodic.py",
+      "tests/test_topostitch_recipe.py",
+      "tests/test_topostitch_recut.py",
+      "tests/test_topostitch_registration.py",
+      "tests/test_topostitch_transport.py",
+      "scripts/compare_topostitch_native_packing.py"
+    ],
+    "imported_bytes": 514308,
+    "preserved_existing_paths": [
+      "src/nasolve/construct_registration.py",
+      "src/nasolve/model_assessment.py",
+      "tests/__init__.py",
+      "tests/helpers.py",
+      "tests/test_construct_registration.py"
+    ],
+    "behavior": "Exact maintained factory/library closure is package-owned under original paths; optional topology Gemmi extra, no new CLI/defaults. Existing qualified helper checks precede round and runtime-directory allocation.",
+    "negative_before": [
+      "W118 factory import failed on C379 Cedar",
+      "2 focused early-allocation regressions failed because registry/round and runtime directory had already been created; both pass after source qualification moves earlier"
+    ],
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider tests/test_topostitch*.py tests/test_refinement_parallelity.py --tb=short",
+        "result": "662 passed in 30.62s"
+      },
+      {
+        "command": [
+          "/private/tmp/willow-w94-pivot/env/bin/python",
+          "-B",
+          "-c",
+          "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_autorefine.py', 'tests/test_refine_doctor.py', 'tests/test_refinement_inputs.py', 'tests/test_topostitch.py', 'tests/test_topostitch_contacts.py', 'tests/test_topostitch_coordinates.py', 'tests/test_topostitch_discovery.py', 'tests/test_topostitch_endpoint.py', 'tests/test_topostitch_graph.py', 'tests/test_topostitch_images.py', 'tests/test_topostitch_inspect.py', 'tests/test_topostitch_native_coverage.py', 'tests/test_topostitch_packing.py', 'tests/test_topostitch_pair_coverage.py', 'tests/test_topostitch_pairings.py', 'tests/test_topostitch_periodic.py', 'tests/test_topostitch_recipe.py', 'tests/test_topostitch_recut.py', 'tests/test_topostitch_registration.py', 'tests/test_topostitch_transport.py', 'tests/test_cif_counted_refinement.py', 'tests/test_cif_refinement_ownership.py', 'tests/test_cif_refinement_runtime.py', 'tests/test_cif_refinement_output.py', 'tests/test_cif_refinement_sites.py', 'tests/test_refinement_parallelity.py', 'tests/test_cif_counted_contribution.py', '--tb=short']))"
+        ],
+        "environment": {
+          "PYTHONPATH": "/private/tmp/c380-package-2y61s5fv/relocated",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        },
+        "result": "887 passed, 13 subtests passed in 42.28s"
+      },
+      {
+        "command": "Python3.10 AST parse of 36 imported files; exact upstream/preserved-source SHA256 checks; git diff --check",
+        "result": "PASS"
+      }
+    ],
+    "installed": {
+      "wheel_sha256": "f7da3ba3b129d016e6bd06d6a3a42414d9fb31c76a8be2463ddb27697009a49d",
+      "wheel_bytes": 1523488,
+      "build_command": [
+        "/private/tmp/willow-w94-pivot/env/bin/python",
+        "-m",
+        "pip",
+        "wheel",
+        "--no-deps",
+        "--no-build-isolation",
+        "--no-index",
+        "--wheel-dir",
+        "/private/tmp/c380-package-2y61s5fv/wheel",
+        "/private/tmp/c380-package-2y61s5fv/source"
+      ],
+      "source_copy_removed": true,
+      "original_install_path_absent": true,
+      "all_declared_python_resources_byte_verified": true,
+      "lean_import": "18 modules import without Gemmi or native SDK; explicit periodic use reports missing optional dependency",
+      "copied_test_dependency_files": 54
+    },
+    "peer_review": "Linden independently verified all36 imported files/514308bytes; source owner remains Willow, execution owner Cedar; no duplicate/native/full-suite tests by peer.",
+    "compatibility": "No existing source module replaced; exact W118 code at same paths, no vendor fork or full branch merge. Native profiles/default v3 frozen bytes unchanged. Optional topology extra matches upstream >=0.7.5,<0.8. Existing API lazy dependencies retained.",
+    "exclusions": [
+      "No generated models/data/native logs committed",
+      "No native execution or full suite",
+      "No automatic counted admission, sticky-end activation or scientific acceptance",
+      "Eight shared documentation conflicts in full Willow/Cedar composition remain separate"
+    ],
+    "next": "Existing controller freezes tested package-owned source subset, binds original recipe/current parent/frame, seals actual preflight preparation and preserves added intent through continuation."
   }
 }

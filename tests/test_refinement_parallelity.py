@@ -474,3 +474,26 @@ def test_refusal_preservation_failure_reports_original_cause(tmp_path,monkeypatc
     assert 'NASolve refused preflight evidence' in (root/'phenix.refine.log').read_text()
     assert (root/'parallelity_runtime/preflight/native_001.geo').exists()
     assert not (root/'parallelity_runtime/refine').exists()
+
+
+def test_unqualified_installed_helper_refuses_before_round_allocation(tmp_path,monkeypatch):
+    def damaged(*args,**kwargs):raise ValueError('Helper differs from the qualified runtime policy')
+    monkeypatch.setattr('nasolve.refinement_parallelity._code',damaged)
+    run,policy,refine,dump=inputs(tmp_path)
+    with pytest.raises(AutoRefineError,match='qualified runtime'):
+        execute_autorefine(run,refine,dump,phenix_version='2.2.1-6174',
+            correct_native_parallelity=True,phenix_python_executable=Path(sys.executable))
+    assert not (run/'AutoRefine').exists()
+
+
+def test_direct_freezer_checks_source_before_creating_runtime_directory(tmp_path,monkeypatch):
+    from nasolve.refinement_parallelity import prepare_execution
+    def damaged(*args,**kwargs):raise OSError('required helper missing')
+    monkeypatch.setattr('nasolve.refinement_parallelity._code',damaged)
+    directory=tmp_path/'AutoRefine/round_001';directory.mkdir(parents=True)
+    model=tmp_path/'model.pdb';model.write_text('input')
+    with pytest.raises(OSError,match='required helper missing'):
+        prepare_execution(tmp_path,checkpoint='refine-001',parent='postmr',inputs=[model],
+            command=['phenix.refine',str(model),'output.prefix=refined'],
+            python_executable=sys.executable,macro_cycles=1)
+    assert not (directory/'parallelity_runtime').exists()
