@@ -4,7 +4,7 @@
   "updated": "2026-11-17",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "3f5806106bdb233e648ad3c8442d878998c846da",
+  "audited_code_commit": "fb6475ff5b2e52e47278f32a41b0348e2d4d578b",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -317,7 +317,7 @@
         "W99 completes matched installed full-window controls and common native observers: all numerical/binding checks pass, but both remain iteration-limited and reference-biased. Selected/core pair improvements coexist with individual packing/torsion regressions and rounding sensitivity; no scientific gate closes.",
         "W100 removes the pristine-reference tether from displaced workers. All three full-window controls and common observers pass numerical/binding checks but remain iteration-limited. Pair forces improve both selected and four movable core pairs; without them pair targets worsen despite lower native energy. Affected bond/angle screens and chiral signs pass, while healthy drift and individual packing/torsion tradeoffs prevent physical acceptance.",
         "W112 optionally binds both hierarchy and scattering state through existing Cedar readers; exact roundtrip and default-observer preservation controls pass. Active admission and ordinary lifecycle remain separate.",
-        "W113 supplies the fresh frozen numerical contribution factory and explicit supported count by reusing existing compiler/coverage/evaluation. Actual native ownership, buffer lifetime and ordinary refinement remain Cedar integration gates."
+        "W113 supplies the fresh frozen numerical contribution factory and explicit supported count by reusing existing compiler/coverage/evaluation. W114 qualifies direct native ownership/lifetime at exact C368 pins; ordinary runtime integration remains open."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
@@ -364,14 +364,15 @@
         "E_C338_INSTALLED_COMPOSITION",
         "E_SOURCE_DISPLACED_NATIVE",
         "E_DUAL_NATIVE_STATE",
-        "E_FROZEN_PAIR_CONTRIBUTION"
+        "E_FROZEN_PAIR_CONTRIBUTION",
+        "E_COUNTED_OWNER_LIFETIME"
       ],
       "last_audit": {
         "date": "2026-11-17",
-        "code_commit": "3f5806106bdb233e648ad3c8442d878998c846da",
-        "human_update": 113,
+        "code_commit": "fb6475ff5b2e52e47278f32a41b0348e2d4d578b",
+        "human_update": 114,
         "reviewer": "Linden",
-        "scope": "Factory/native reuse qualified and shared counted-owner contract reviewed with Rowan; active admission and scientific closure remain open."
+        "scope": "Direct C368/W113 ownership and lifetime qualified; independent W112/C366 full-source compatibility passes. Ordinary runtime, reporting/weight consumers and scientific closure remain open."
       }
     },
     {
@@ -398,7 +399,7 @@
         "W110 proves actual model-level normalization depends on provider placement even when raw force coverage is identical. Six full/partial/select-all cases retain the effect and source/exclusion evidence. Active-guard owner contract is reviewed but unimplemented; provider-independent production weighting is an explicit gate.",
         "W111 local native energies_add contribution restores provider-independent normalized actual-model targets/forces for complete and partial canonical pairs, with select-all and derivative controls. C331 deliberately refuses the local method facade. Exact restoration requires original hierarchy and fractional scattering coordinates; no production adapter is installed.",
         "W112 optionally binds both hierarchy and scattering state through existing Cedar readers; exact roundtrip and default-observer preservation controls pass. Active admission and ordinary lifecycle remain separate.",
-        "W113 supplies the fresh frozen numerical contribution factory and explicit supported count by reusing existing compiler/coverage/evaluation. Actual native ownership, buffer lifetime and ordinary refinement remain Cedar integration gates."
+        "W113 supplies the fresh frozen numerical contribution factory and explicit supported count by reusing existing compiler/coverage/evaluation. W114 qualifies direct native ownership/lifetime at exact C368 pins; ordinary runtime integration remains open."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -406,7 +407,7 @@
         "Blunt and asymmetric-orientation trials retain matched observations/Free-R and independent bends/maps; calibrate inconclusive outcomes rather than force alignment or a statistical winner.",
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning."
       ],
-      "next_action": "Qualify Cedar-owned admission and native-buffer ownership for a counted contribution through existing frozen execution. Preserve C331 and bind both hierarchy and scattering coordinates, complete provider/subset recipes, policy and source lifetime across selection/rebuild and final writer. Reuse W111 arithmetic evidence; ordinary refinement, exclusion policy, matched density and B09 remain open.",
+      "next_action": "Qualify the existing runtime usage wrapper, actual prepared-model binding and bounded optimizer/one-cycle lifecycle, including copied reporting/weight consumers and final writer. Reuse W109/W111 arithmetic and W114 direct-call evidence. Preserve frozen coverage, native exclusions and exact state/source lifetime; no silent provider replanning. Then matched data/Free-R/maps, healthy/wrong-connection controls and B09.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -424,14 +425,16 @@
         "E_PROVIDER_NORMALIZATION",
         "E_COUNTED_CONTRIBUTION",
         "E_DUAL_NATIVE_STATE",
-        "E_FROZEN_PAIR_CONTRIBUTION"
+        "E_FROZEN_PAIR_CONTRIBUTION",
+        "E_COUNTED_OWNER_LIFETIME",
+        "E_FULL_SOURCE_C366"
       ],
       "last_audit": {
         "date": "2026-11-17",
-        "code_commit": "3f5806106bdb233e648ad3c8442d878998c846da",
-        "human_update": 113,
+        "code_commit": "fb6475ff5b2e52e47278f32a41b0348e2d4d578b",
+        "human_update": 114,
         "reviewer": "Linden",
-        "scope": "Factory/native reuse qualified and shared counted-owner contract reviewed with Rowan; active admission and scientific closure remain open."
+        "scope": "Direct C368/W113 ownership and lifetime qualified; independent W112/C366 full-source compatibility passes. Ordinary runtime, reporting/weight consumers and scientific closure remain open."
       }
     },
     {
@@ -1929,6 +1932,71 @@
         "committed": false,
         "portable_campaign": false
       }
+    },
+    "E_COUNTED_OWNER_LIFETIME": {
+      "kind": "cross_branch_direct_counted_owner_lifecycle",
+      "code_commit": "fb6475ff5b2e52e47278f32a41b0348e2d4d578b",
+      "human_update": 114,
+      "reference": "docs/topostitch-periodic.md#w114--qualify-the-shared-counted-owner-lifetime",
+      "result": "Complete Phenix 2.2.1-6174 diagnostic: 8 cases, 16 fresh owners/compilers, 28 actual-model calls, 302.62s. Zero additions reproduce native exactly; scattering-only movement preserves stale hierarchy and binds force sites; exact fractional/state restoration, select-all rebinding and fresh restart pass. Provider switch17\u219220 preserves complete counts11396/11270; maximum target difference4.44e-16 and gradient difference1.39e-17. Exact source/input pins and clean closure independently audited. Rowan separately reports155 focused/155 relocated-installed/32 native owner controls.",
+      "limitation": "Direct cross-branch calls only, no ordinary runtime/optimizer/refinement, exclusion change, new derivative panel or accepted repair. C368 candidate source/wheel is pinned independently of Willow; W114 changes docs only. Native usage wrapper and selected-copy report/weight/final-writer consumers still require qualification.",
+      "runtime_pins": {
+        "willow_code_commit": "3f5806106bdb233e648ad3c8442d878998c846da",
+        "cedar_owner_sha256": "772fe23b3075414c355903d35f976dc8667292a576e64f7a68d222cf1a76d34b",
+        "cedar_wheel_sha256": "409d3a963c90f4851bfc52860fa2aea03121e3330f4ccbf942ca3cdb9af47f1a"
+      },
+      "local_forensic_archive": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/w114-counted-lifecycle-2026-11-17.tar.gz",
+        "sha256": "e95c27b092fecf326f5d7ee69c2ad077eac66025b8cd9b385ac6e542ead7310c",
+        "bytes": 2400859,
+        "files": 27,
+        "payload_index_verified": true,
+        "committed": false,
+        "portable_campaign": false
+      }
+    },
+    "E_FULL_SOURCE_C366": {
+      "kind": "full_source_virtual_branch_composition",
+      "code_commit": "fb6475ff5b2e52e47278f32a41b0348e2d4d578b",
+      "human_update": 114,
+      "reference": "docs/topostitch-periodic.md#separate-full-source-compatibility-baseline",
+      "result": "Unfiltered source suite:12138 passed,284 subtests passed,1 opt-in native module skipped,2982.99s. Exact W112 e005b0da/C366 09303e80 and NARestraints a9264f9 source/Git metadata. No source/test/script conflicts; package-data union only; clean source afterward. Raw logs, controller receipt and source archives verified.",
+      "limitation": "Not an actual branch merge, complete installed suite, current W113/C367/C368 qualification or native refinement. Eight documentation conflicts remain. Earlier W81 installed-context failures stay preserved. Local Git alternates and forensic archives do not establish portable campaign execution.",
+      "source_pins": {
+        "willow_commit": "e005b0da4fbaf793bab9a7f1de88558c1c462220",
+        "cedar_commit": "09303e803d64737bfa7ff89975fea96967372204",
+        "common_base": "d7913ddd95336fddb7cb266b0bc707ffd768d9ab",
+        "unresolved_tree": "e0c3e6ec835d54a57e7ff562a02fa014213cf275",
+        "resolved_tree": "b1d09eaf21c431bb6cce348f181a1010e2b46111",
+        "temporary_source_commit": "a1493d95395a83d7b63e1988f7d0dfc3fdc95ead",
+        "narestraints_commit": "a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691",
+        "source_conflicts": [],
+        "documentation_conflicts": [
+          "AGENTS.md",
+          "CHANGELOG.md",
+          "docs/README.md",
+          "docs/architecture.md",
+          "docs/campaign-full-auto.md",
+          "docs/collaboration.md",
+          "docs/construct-registration.md",
+          "docs/development-handoff.md"
+        ],
+        "packaging_resolution": "Union package resources only; documentation conflicts retained for later human integration.",
+        "original_git_objects_read_only": true,
+        "branch_merge_performed": false,
+        "source_tar_sha256": "f38abd5d557583d9d564d7e86b43d2e659e0b26adaee0fb0c418ed6bb1569089"
+      },
+      "local_forensic_archive": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/w114-source-compatibility-2026-11-17.tar.gz",
+        "sha256": "88b7d967d663aafba0ff8c33bffd14b1e0e899dbd07684873998da4172468ff8",
+        "bytes": 20636466,
+        "files": 12,
+        "payload_index_verified": true,
+        "committed": false,
+        "portable_campaign": false
+      }
     }
   },
   "benchmarks": [
@@ -2080,8 +2148,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 113,
-    "next": 114,
+    "current": 114,
+    "next": 115,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -2569,6 +2637,12 @@
         "title": "Freeze a fresh contribution from the existing compiler and provider selection",
         "state": "RECORDED",
         "code_commit": "3f5806106bdb233e648ad3c8442d878998c846da"
+      },
+      {
+        "number": 114,
+        "title": "Qualify shared direct ownership and source compatibility",
+        "state": "RECORDED",
+        "code_commit": "fb6475ff5b2e52e47278f32a41b0348e2d4d578b"
       }
     ]
   },
