@@ -418,6 +418,12 @@ name with different PDB field padding. Other fields remain exact, old proofs rem
 byte-identical when applicable, and a separate nested policy is independently audited.
 It does not bypass source classification or missing declared terminal chemistry.
 
+C362 adds a preconstruction-only mode to the existing dictionary-site owner.
+It derives the same linked/terminal dictionaries from explicit canonical input
+identities and declared ends, without fabricated target coordinates. Readback
+rederives the chemical projection and exposes no native-ready model arguments;
+actual construction must receive separate ordinary site/native qualification.
+
 ### Dataset and symmetry discovery
 
 Dataset discovery currently accepts the usual autoPROC/STARANISO naming variants

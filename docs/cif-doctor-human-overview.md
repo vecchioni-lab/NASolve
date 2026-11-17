@@ -4283,9 +4283,12 @@ the same rule; DY needs no fabricated NARestraints pairing entry. Coot can now b
 site dictionaries. Both build orders preserve sugar/backbone and neighbour coordinates;
 Phenix readback passes87 checks with two unavailable formal-charge observations.
 The existing history record keeps the dictionary chosen for each site after relocation.
-The remaining work is obtaining those choices from the original canonical model and
-its declared end states, then connecting ordinary request intake. The new control
-reuses already-qualified projections; it does not yet automate their selection.
+The preparer now obtains those choices from the original canonical model and its
+explicitly declared end states, before any modified coordinates exist. The same
+chemical rules produce the same free-end/internal dictionaries. Coot builds the
+mixed model and Phenix readback passes 87 checks with two unavailable formal-charge
+observations. Binding that derivation through ordinary history and request intake
+remains open; constructing a model does not itself qualify its refinement.
 
 A separate construction check now recognizes when Coot merely pads a residue name
 differently in the PDB field. It still checks all coordinates and other atom fields,

@@ -1,17 +1,23 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C361 DF construction diagnostic — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. Latest runtime **C360 / 59441cf3**
-is pushed: 281 focused and 281 installed tests pass. C361 uses that exact revision;
-no runtime change. All Rowan native jobs are stopped. Focused tests only.
+Updated **2026-11-17, C362 canonical-input projection — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. Latest runtime **C362**:
+28 new focused tests and 238 installed/relocated affected tests pass. Fresh one-call
+mixed-end DY construction/native readback passes 87 checks/two unsupported charge
+observations. All Rowan jobs stopped; no full suite. C360 / 59441cf3 and compact
+C361 evidence / 0126d3aa are pushed.
 
 ## Immediate work and peer boundary
 
-**Resume DY canonical-input projection and ordinary intake.** C358 planning and
-C359 one-request mixed-end construction/lineage are complete. The remaining seam
-is deriving the per-site dictionaries before the modified model exists, without
-inventing atoms or treating a canonical model as the already-mutated component.
-Use existing source qualification, linked-state projection and lineage owners.
+**Next: bind canonical-input projection to ordinary construction history.**
+C358 planning, C359 one-request mixed-end construction/lineage and C362 canonical
+projection are complete. C362 uses existing qualified source/site owners and the
+original canonical model; it never fabricates target coordinates. Its new explicit
+policy exposes only canonical input/projections and refuses actual-model native
+inspection until fresh downstream preparation. Bind the existing saved derivation
+to C359's exact selected dictionaries, original input/actions and complete-request
+closure, then connect ordinary intake. Composition provenance also remains explicit.
+Reuse existing owners; avoid another source/process/proof store.
 
 **DF diagnostic complete; production restoration remains open.** C361 uses Hazel's
 separately prepared canonical parent, with its recorded D:1 terminal-phosphate
@@ -23,10 +29,12 @@ and 838 other atom states; C1′–N1 is 1.49958 Å instead of curated placement
 1.60172 Å. The independent full construction audit passes, including final phosphate
 checks. This is construction evidence, not linked/refinement acceptance.
 
-Hazel owns the matched linked/recipe-preflight and five-cycle comparison using
-coordinate-only intake into the actual experimental model, preserving B/Q, Hg and
-outside-site states. C361 records exact local references and hashes. Do not duplicate
-that work or automatically adopt the candidate. Historical curated sulfur/iodine
+Hazel completed the matched linked/recipe-preflight and five-cycle comparison using
+coordinate-only intake with B/Q, Hg and outside-site states preserved. Declared links,
+source and custom restraints survive, but C1′–N1 stretches again to 1.66244 Å
+(and N1–C2 also worsens). Construction is not sufficient under the diffraction
+objective. Do not adopt the endpoint or tighten sigmas ad hoc. Record Hazel's compact
+final receipt once published; C361 construction evidence remains independently valid. Historical curated sulfur/iodine
 placements may repair bad raw substituents, so blindly switching every curated
 residue to whole-base transport is not justified. Reuse C17/C62's frozen primitive;
 a general production selection rule remains a specific Q06 follow-up.
@@ -109,6 +117,7 @@ unfinished-work order. A readable CIF or passing derivative check does not close
 
 Exact controls, commands, hashes and limitations are in the
 [evidence ledger](cif-linked-native-registration-evidence.json). Start with
+`canonical_input_projection_2026_11_17`,
 `df_existing_whole_base_diagnostic_2026_11_17`,
 `construction_component_padding_2026_11_17`,
 `per_site_construction_dictionaries_2026_11_17`,

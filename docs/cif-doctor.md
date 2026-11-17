@@ -13987,3 +13987,39 @@ unsupported formal-charge readbacks. This reuses C345 projections, not automatic
 preconstruction projection from canonical input, ReadySet repetition or refinement.
 266 installed/relocated tests pass. Commands and scope:
 `per_site_construction_dictionaries_2026_11_17`.
+
+### Canonical-input construction dictionaries (C362)
+
+`prepare_dictionary_sites(..., construction_targets={site: canonical_code})`
+uses the existing frozen isolated qualification, explicit links/end states and
+installed terminal resource to prepare the dictionaries Coot needs before mutation.
+Every selected input identity must match DA/DC/DG/DT. Existing source-graph checks
+require the supported unbridged DNA scaffold, complete actual sugar, matching
+scaffold elements and explicit phosphate inventory. Canonical base geometry is
+not assessed or copied into the target definition. No coordinates are fabricated,
+relabelled, deleted or optimized.
+
+The shared linked/terminal preparers receive this explicit scope; their chemical
+projection, numerical targets, charge/configuration guards and hydroxyl resource
+remain the same. `cif-stored-construction-dictionaries-v1` stores the original model
+and target identities in the existing site artifact. Its read-only reader rederives
+every projection after relocation and returns `canonical_model` and `projections`,
+not native-ready before/after arguments. Native inspection explicitly refuses this
+preconstruction scope until a real constructed model has fresh ordinary preparation.
+Supplementary/native contexts and nonstandard phosphate-name adapters are excluded
+from this bounded mode. Existing ordinary policies/bytes and historical reads remain
+unchanged; old readers refuse the new explicit policy. No migration is required.
+
+The new low-level policies are `cif-source-preserving-construction-sites-v1` and
+`cif-native-construction-five-prime-hydroxyl-v1`, carrying the independently
+recomputed `cif-canonical-construction-context-v1` proof. These are construction
+choices, not final chemistry or refinement approval. The proof still needs binding
+to C359 ordinary lineage and ordinary intake; no new source/process owner is added.
+
+A fresh Coot 1.3.3 request builds free-OH/internal DY from projections derived from
+the original DT/DA model. Those CIFs exactly match the previously qualified
+actual-model projections. All 8/11 scaffold coordinates and neighbours remain;
+chi differences are below 0.014 degrees. Fresh Phenix 2.2.1-6174 readback gives
+87 PASS and two unsupported formal-charge observations. 28 new focused tests and
+238 installed/relocated affected tests pass. Exact commands/receipts and limits:
+`canonical_input_projection_2026_11_17` in the evidence ledger.

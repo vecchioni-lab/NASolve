@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Prepare modified dictionaries before building the modified model (C362)
+
+- The existing site preparer accepts explicit canonical input identities and
+  declared end states. It derives construction dictionaries from qualified sources
+  without relabelling coordinates or requiring an already-mutated model.
+- A separate preconstruction policy replays after relocation and exposes only
+  canonical input/projections. Actual constructed-model/native qualification is
+  still required; existing preparation defaults and chemical rules are unchanged.
+
 ### Recognize unchanged residue names despite Coot field padding (C360)
 
 - Permit only component-name padding differences in the existing explicit input

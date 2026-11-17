@@ -19,6 +19,7 @@ POLICY_ID = 'cif-stored-dictionary-sites-v1'
 CONTEXT_POLICY_ID = 'cif-stored-dictionary-sites-v2'
 FULL_MODEL_POLICY_ID = 'cif-stored-dictionary-sites-v3'
 SOURCE_NAMES_POLICY_ID = 'cif-stored-dictionary-sites-v4'
+CONSTRUCTION_POLICY_ID = 'cif-stored-construction-dictionaries-v1'
 ANCHOR = 'dictionary_site_directory'
 _SNAPSHOT_FILES = ('resolution.json', 'entry/manifest.json', 'entry/source.cif',
     'entry/dictionary.cif', 'entry/qualification.json', 'entry/provenance.json')
@@ -121,6 +122,11 @@ def _derive(root, controls, destination):
     _need(terminal==(resource is not None), 'Exactly the free 5-prime OH sites require terminal resources')
     options=dict(code=manifest['request']['component'],native_qualification=saved['qualification'],
         bond_representation_policy=policy)
+    if 'construction_targets' in controls:
+        _need(not any(k in controls for k in ('native_context','phosphate_atom_policy'))
+            and not controls['supplementary_dictionaries'] and not controls['supplementary_phils'],
+            'Construction-only projection cannot claim a constructed native restraint context')
+        options['construction_targets']=controls['construction_targets']
     if 'phosphate_atom_policy' in controls:
         from .cif_phosphate_names import POLICY_ID as names_policy
         _need(controls['phosphate_atom_policy']==names_policy
@@ -145,6 +151,7 @@ def _report(root, controls, saved, links, policy):
     site_policy=CONTEXT_POLICY_ID if 'native_context' in controls else POLICY_ID
     if controls.get('native_context',{}).get('monomer_inventory')=='full_model':site_policy=FULL_MODEL_POLICY_ID
     if 'phosphate_atom_policy' in controls:site_policy=SOURCE_NAMES_POLICY_ID
+    if 'construction_targets' in controls:site_policy=CONSTRUCTION_POLICY_ID
     return {'schema_version':1,'policy_id':site_policy,'status':'PREPARED_REVIEW',
         'entry_id':saved['entry_id'],'request_key':saved['manifest']['request_key'],
         'component':saved['manifest']['request']['component'],'bond_representation_policy':policy,
@@ -154,6 +161,8 @@ def _report(root, controls, saved, links, policy):
 
 
 def _inputs(root, controls):
+    if 'construction_targets' in controls:
+        return {'canonical_model':root/'inputs/model.pdb'}
     result={}
     for field,extension in [('supplementary_dictionaries','cif'),('supplementary_phils','phil')]:
         names=controls[field]
@@ -174,7 +183,8 @@ def _inputs(root, controls):
 
 
 def prepare_dictionary_sites(snapshot, model, contexts, output, *, consumer, expected_links,
-        terminal_resource=None, supplementary_dictionaries=(), supplementary_phils=(), native_context=None, phosphate_atom_policy=None):
+        terminal_resource=None, supplementary_dictionaries=(), supplementary_phils=(), native_context=None, phosphate_atom_policy=None,
+        construction_targets=None):
     """Freeze only explicit inputs and publish a fresh, replayable preparation.
 
     Consumer must equal the saved isolated qualification. Changed installations
@@ -186,6 +196,13 @@ def prepare_dictionary_sites(snapshot, model, contexts, output, *, consumer, exp
     contract. Omission preserves v1 preparation and qualification behavior.
     Context v2 additionally freezes full-model interpretation as the final PHIL
     input. Readback returns native_options for the maintained capture worker.
+
+    Optional construction_targets maps sites to their actual DA/DC/DG/DT input
+    codes. It selects a distinct preconstruction-only policy, freezes the same
+    canonical model and reuses chemical projections without fabricating target
+    coordinates. Readback exposes canonical_model/projections, not native-ready
+    model/dictionary arguments. Supplementary/native contexts are unavailable in
+    this mode; actual construction needs fresh ordinary site qualification.
     """
     output=Path(output).absolute()
     if output.exists() or output.is_symlink():raise FileExistsError(output)
@@ -200,6 +217,8 @@ def prepare_dictionary_sites(snapshot, model, contexts, output, *, consumer, exp
         controls['native_context']=validate_native_context(native_context)
     if phosphate_atom_policy is not None:
         controls['phosphate_atom_policy']=phosphate_atom_policy
+    if construction_targets is not None:
+        controls['construction_targets']=construction_targets
     original={}
     def freeze(source,target):
         source=Path(source); data=_read(source);original[source]=data
@@ -238,7 +257,7 @@ def read_dictionary_sites(output):
     """Read frozen inputs and rederive every generated file; never mutate the bundle."""
     root=Path(output).absolute();report=_json(_read(root/'site_receipt.json'))
     _need(type(report.get('schema_version')) is int and report['schema_version']==1
-        and report.get('policy_id') in {POLICY_ID,CONTEXT_POLICY_ID,FULL_MODEL_POLICY_ID,SOURCE_NAMES_POLICY_ID}, 'Unknown site preparation schema/policy')
+        and report.get('policy_id') in {POLICY_ID,CONTEXT_POLICY_ID,FULL_MODEL_POLICY_ID,SOURCE_NAMES_POLICY_ID,CONSTRUCTION_POLICY_ID}, 'Unknown site preparation schema/policy')
     _need(report.get('files')==_files(root), 'Site artifact inventory or checksum differs')
     controls={k:report[k] for k in ('consumer','contexts','expected_links','terminal_resource',
         'supplementary_dictionaries','supplementary_phils')}
@@ -247,6 +266,9 @@ def read_dictionary_sites(output):
         controls['native_context']=report['native_context']
     if 'phosphate_atom_policy' in report:
         controls['phosphate_atom_policy']=report['phosphate_atom_policy']
+    if report['policy_id']==CONSTRUCTION_POLICY_ID:
+        _need('construction_targets' in report, 'Missing canonical construction identities')
+        controls['construction_targets']=report['construction_targets']
     inputs=_inputs(root,controls)
     allowed={'snapshot/'+name for name in _SNAPSHOT_FILES}|{'inputs/model.pdb'}
     allowed.update(controls['supplementary_dictionaries']);allowed.update(controls['supplementary_phils'])
@@ -424,7 +446,10 @@ def inspect_dictionary_site_native(output, baseline_receipt, candidate_receipt):
     """
     from .cif_attachment_native import _capture, _native_atoms
     from .cif_terminal_qualification import qualify_terminal_bundle
-    prepared=read_dictionary_sites(output);report=prepared['report'];model=prepared['model']
+    prepared=read_dictionary_sites(output);report=prepared['report']
+    _need(report['policy_id']!=CONSTRUCTION_POLICY_ID,
+        'Construction-only projections require a real constructed model and fresh site qualification')
+    model=prepared['model']
     original_receipt=_read(Path(output)/'site_receipt.json')
     captures=[];pins=[];snapshots={}
     for label,path in [('before',baseline_receipt),('after',candidate_receipt)]:

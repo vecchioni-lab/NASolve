@@ -103,6 +103,48 @@ def _model_inventory(model: Path) -> dict:
     return residues
 
 
+def _construction_inventory(model, source, code, contexts, targets):
+    """View only canonical scaffold atoms when projecting a future component.
+
+    This does not rename/write a model or assess canonical base geometry. The
+    real constructed model must later pass ordinary site/native qualification.
+    """
+    from collections.abc import Mapping
+    from .postmr_restoration import source_graph_fragment, _atom_records
+    if (not isinstance(targets, Mapping) or not targets
+            or set(targets) != {c['site'] for c in contexts}
+            or any(not isinstance(v,str) or v not in {'DA','DC','DG','DT'} for v in targets.values())):
+        raise ValueError('Construction projections require exact canonical input identities for every context')
+    inventory = _model_inventory(model)
+    if any(row['code'] == code for row in inventory.values()):
+        raise ValueError('Construction projection requires canonical inputs, not an already constructed target')
+    graph = source_graph_fragment(source, code)
+    lines = model.read_text().splitlines(keepends=True)
+    proof = []
+    for site, before in targets.items():
+        _selection(site, code)
+        if site not in inventory or inventory[site]['code'] != before:
+            raise ValueError('Canonical construction input identity differs at ' + site)
+        chain, resid = site.split(':')
+        atoms = _atom_records([line for line in lines if line[:6] in {'ATOM  ','HETATM'}
+            and (line[21:22].strip() or '_') == chain and line[22:26].strip() == resid], before)
+        protected = (set(graph['sugar_atoms']) | {'P','OP1','OP2','OP3'}) & atoms.keys()
+        if (not protected <= set(graph['scaffold_atoms'])
+                or not set(graph['sugar_atoms']) <= protected
+                or any(atoms[n]['element'] != graph['elements'][n] for n in protected)
+                or any("'" in n and n not in graph['sugar_atoms'] for n in atoms)
+                or any(n != atoms[n]['line'][12:16].strip() for n in atoms)):
+            raise ValueError('Unsupported canonical sugar/backbone inventory at ' + site)
+        inventory[site] = {'code': code, 'atoms': protected}
+        proof.append(dict(site=site, before=before, after=code,
+            protected_atoms=sorted(protected)))
+    return inventory, dict(policy_id='cif-canonical-construction-context-v1',
+        scope='PRECONSTRUCTION_ONLY', targets=sorted(proof,key=lambda r:r['site']),
+        model_sha256=sha256(model.read_bytes()).hexdigest(),
+        source_sha256=sha256(source.read_bytes()).hexdigest(),
+        canonical_base_geometry='NOT_ASSESSED', constructed_model='NOT_CREATED')
+
+
 def _selection(site: str, code: str) -> str:
     if not re.fullmatch(r'[A-Za-z0-9_]:-?[0-9]+',site) or not re.fullmatch(r'[A-Za-z0-9]{1,3}',code):
         raise ValueError('Unsupported explicit PDB selector')
@@ -124,13 +166,19 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
                              contexts: Sequence[dict], output_directory: Path, *, code: str,
                              native_qualification: dict | None = None,
                              bond_representation_policy: str | None = None,
-                             phosphate_atom_policy: str | None = None) -> dict:
+                             phosphate_atom_policy: str | None = None,
+                             construction_targets: dict[str, str] | None = None) -> dict:
     """Prepare a DNA base dictionary, site modifiers and projected assessments.
 
     Links and end states are explicit caller evidence, never guessed from a
     residue code, adjacency, or spatial contact. Source-state loss must first be
     resolved by independent whole-component generation. OP2 protonation is
     preserved. Outgoing O3' uses the previously reviewed native OC2 type.
+    Optional construction_targets maps every selected site to its actual canonical
+    input code. Only its verified sugar/phosphate inventory enters projection;
+    the input is never relabelled or treated as an already constructed residue.
+    This explicit mode requires isolated qualification and later actual-model
+    site/native checks, and does not assess the canonical base geometry.
     """
     paths=[Path(source),Path(numerical),Path(model)]
     payloads=[p.read_bytes() for p in paths]
@@ -202,7 +250,13 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
     bonds={frozenset((a,b)) for a,b in zip(values[_BOND+'atom_id_1'],values[_BOND+'atom_id_2'])}
     if not all(frozenset(pair) in bonds for pair in [('P',p1),('P',p2),('P',"O5'"),("O3'","C3'")]):
         raise ValueError('Selected graph does not support standard phosphodiester chemistry')
-    model_sites=_model_inventory(paths[2])
+    construction = None
+    if construction_targets is not None:
+        if not qualified or phosphate_atom_policy is not None:
+            raise ValueError('Construction projections require isolated qualification and standard phosphate names')
+        model_sites, construction = _construction_inventory(paths[2], paths[0], code, contexts, construction_targets)
+    else:
+        model_sites=_model_inventory(paths[2])
     if not contexts: raise ValueError('Require explicit site contexts')
     if {context['site'] for context in contexts}!={site for site,row in model_sites.items() if row['code']==code}:
         raise ValueError('Require declared contexts for every model site sharing the component code')
@@ -317,6 +371,10 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
     if phosphate_atom_policy is not None:
         receipt['phosphate_atom_policy']=phosphate_atom_policy
         receipt['phosphate_names']=aliases
+    if construction is not None:
+        receipt['linked_preparation_policy'] = receipt['policy_id']
+        receipt['policy_id'] = 'cif-source-preserving-construction-sites-v1'
+        receipt['construction_context'] = construction
     if not receipt['source_preserved']: raise ValueError('Input changed while publishing preparation')
     (output/'preparation_receipt.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
     return receipt

@@ -9,13 +9,15 @@ C359 one-request mixed-end construction and C360 component-padding proof are
 complete. C361's bounded DF diagnostic also passes construction: existing whole-base
 transport preserves the good sugar–base bond and exact scaffold/neighbours, using
 source-qualified DNA metadata and the recorded terminal-phosphate preparation.
-Hazel owns its matched linked/preflight/refinement comparison. Production curated
+Hazel's matched five-cycle check preserves all declared restraints/links, but DF's
+sugar–base bond stretches again from 1.49958 to 1.66244 Å. Construction alone does
+not close Q06; use the signed compact peer receipt when published. Production curated
 selection remains open: do not discard sulfur/iodine placement protections merely
 because this DF candidate improves. Reuse the existing transport primitive.
 
 Resume [ordinary DY integration](#dy--packaged-retained-triazole-reference-and-mutation-support):
-derive projections from canonical input/end states, bind their derivation, and join
-ordinary intake. C357 retention findings remain recorded locally.
+C362 derives projections from canonical input/end states. Next bind that derivation
+through existing construction lineage, then join ordinary intake. C357 retention findings remain recorded locally.
 
 Linden's W111 counted-contribution diagnostic supports shared Q06 integration;
 C331 remains callback-free. Review exact owner admission, callable identity, native
@@ -936,13 +938,15 @@ Current remaining integration, in order:
 2. **Coot selection complete at C359:** explicit site dictionaries build free-OH and
    internal DY in one constructor call, in both orders, with preserved sugar/chi/
    neighbours and87 actual-model Phenix checks (two unsupported charge readbacks).
-   Remaining: derive those projections from the original canonical input and declared
-   end states. C359 reused C345 projections, so it does not close that planning seam.
+   C362 closes the canonical-input projection seam: explicit input identities/end
+   states produce the same projections before mutation, with fresh Coot/native
+   readback and cold installed replay. Ordinary request forwarding remains open.
 3. Bind source composition, selected dictionaries and canonical seeds through existing
    construction/request lineage. C353 owns canonical proof; C355 owns selected source
    bytes; C359 now owns exact per-site dictionary choice through the same lineage and
-   cold complete requests. Composition/projection derivation and ordinary forwarding
-   remain open; keep those distinctions explicit.
+   cold complete requests. C362 derives projections through the existing site owner;
+   binding that derivation/composition to construction and ordinary forwarding remain
+   open. Keep these distinct from actual-model/native qualification.
 
 Source/native chemistry, rotatable bridge controls and saved mixed-context replay
 are already established within their recorded scope. Do not add another source,
