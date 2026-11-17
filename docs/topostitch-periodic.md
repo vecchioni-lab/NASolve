@@ -6142,3 +6142,41 @@ for manual children and Doctor. Ordinary AutoRefine/Doctor settings are broader
 than the bounded helper: require an explicit supported protocol or refuse, rather
 than silently changing their defaults. Broader phases, periodic exclusions,
 calibrated density, physical repair and B09 remain open; S05/S06 stay partial.
+
+
+### W121 follow-up — C378 failure recovery and frozen worker code
+
+Cedar C378 adds two actual Phenix 2.2.1-6174 controls with unchanged C377 source.
+The exact Cedar ledger at commit `fbc4ea01df5a5e623e20dd555186ce3066cb6c95`,
+`docs/cif-linked-native-registration-evidence.json`, key
+`frozen_phase_failure_and_joined_package_2026_11_17`, retains commands and full
+control bindings. Source remains C377 `0aaec4bd0b7dc49ffd038a5be578523d9ed1a4f1`.
+The deliberate MTZ path collision occurs during **final writing after ten
+iterations /12 evaluations**, although the original plan expected earlier failure.
+Preserve that distinction: native phase return codes are 0/1, the first native
+`Sorry` survives, 15 calls complete, the owner closes/poisons and all owned hooks
+restore. Partial scientific outputs remain; no usable execution is published.
+This is native failure recovery evidence, not successful refinement or campaign
+recovery qualification.
+
+A separate fresh native process uses exactly **18 frozen Python modules and three
+profiles, 342,556 bytes**, copied from the W121 installed candidate. All 18 native
+imports resolve only under the owned code directory, with no live `nasolve`
+namespace. Actual preflight 7.86s plus full cycle 35.17s reproduce W120 preparation,
+full state, written physical records, optimizer trace and diffraction exactly,
+with 15 calls and restored/stopped ownership. This qualifies the bounded worker
+source set; the existing installed outer controller still orchestrates it. It does
+not establish a durable production request, optional chemistry-site observations,
+arbitrary protocols, portable campaign, independent SDK or branch merge.
+
+Exact read-only local receipts under repository anchor **everyday NASolve checkout**:
+
+- `branch-artifacts/cedar/c377-phase-lifetime/native-failure-audit.json`, SHA
+  `5d9edf0217673fa2b311a431b3b25433465f6b6ab995832e3180933fa7fa2bae` (1,964 bytes).
+- `branch-artifacts/cedar/c377-phase-lifetime/frozen-native-audit.json`, SHA
+  `309c57785c712b2405623a95bcd8f3a98f4681f0acc420563818d0f4a19b67d5` (8,043 bytes).
+
+These are separate C378 receipts, not additions to the immutable W121 software
+archive or new Willow source/installed test counts. Reuse the qualified frozen set
+and existing v4 files in the next versioned execution policy; avoid inferring a
+whole-repository dependency from unused diagnostic functions. S05/S06 remain partial.

@@ -51,7 +51,9 @@ attempts remain evidence; they are not duplicate current work queues.
 1. Wire versioned original request, validated preflight, immutable admission and
    same-phase consumption through existing execution owners. C377's maintained
    `PreparedCountedRefinement` and W121's joined installation close the preceding
-   helper/package gates, not durable provenance. Rowan owns the shared controller.
+   helper/package gates, not durable provenance. Reuse C378's qualified bounded
+   frozen source set; do not import another worktree or copy the whole repository
+   into a saved round. Rowan owns the shared controller.
    Bind original intent, actual parent/input/frame, selected providers and frozen
    code. Preserve native preflight return 0 plus a distinct admission-refused /
    unlaunched-refinement outcome; read-only validators must not write records.
@@ -93,7 +95,8 @@ zero skips (25.06s)**, all six installed CLI entry points and pip check pass aft
 removing the build source and original install path. All 306 Python/resource files
 match qualified sources. No source/test conflicts; explicit package-data union
 and eight unresolved documentation conflicts are retained. This is not a branch
-merge, new full suite or native check of the joined package.
+merge or new full suite. This installed test panel contains no native execution;
+C378's separate frozen-worker check is described below.
 
 Separate **C377 / `0aaec4bd`** native evidence uses Phenix 2.2.1-6174: actual
 preflight 7.79s plus complete one-cycle refinement 34.92s. Prepared state, complete
@@ -103,6 +106,14 @@ processes stop and native foreign-driver refusal/preservation passes. The two
 initial representation failures remain stopped preflights. C377 also records 46
 helper tests and 230 relocated installed tests. See the
 [W121 composition receipt](topostitch-periodic.md#w121--qualify-the-current-joined-installation-and-maintained-lifetime).
+
+C378's additional native controls retain an actual final-MTZ failure as failed:
+optimization completed, then export refused; the original error and partial outputs
+survive, the owner closes/poisons, and hooks restore. Separately, 18 frozen source
+modules plus three profiles (342,556 bytes) copied from W121 reproduce the complete
+control without a live NASolve import in the native worker. The installed outer
+controller remains separate; this is not a portable campaign or ordinary activation.
+The exact follow-up is linked in the W121 receipt; no new Willow code or test count.
 
 W120 remains the [stronger complete-cycle historical replay](topostitch-periodic.md#w120--replay-the-complete-cycle-with-stronger-prepared-ownership),
 with unchanged 3,333 observations/176 Free-R selections and exact W116 results.

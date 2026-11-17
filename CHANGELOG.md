@@ -21,8 +21,8 @@ entries are reconstructed from repository history.
 
 - Record one installed W118/C377 composition: 556 focused tests, six CLI entry
   points and 306 source/resource byte checks pass after source removal/relocation.
-- Cross-reference Cedar's maintained one-cycle restraint lifetime and complete
-  native control separately. No branch merge, production activation or repair
+- Cross-reference Cedar's maintained one-cycle restraint lifetime, actual final-
+  output failure recovery and a 343 KB frozen worker source set separately. No branch merge, production activation or repair
   acceptance; durable execution/admission and continuation remain next.
 
 ### W120 — Replay the complete cycle with stronger prepared-state ownership
