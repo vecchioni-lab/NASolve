@@ -97,15 +97,49 @@ dictionary and input references were shared with the construction owner for an
 atom/chemistry-based diagnosis; native coverage reuse was shared with the
 observer owner. Their source trees were not edited.
 
+**Matched whole-base follow-up.** The shared recorded terminal-phosphate producer
+prepares a separate canonical parent with the original declared terminal intent.
+All original atom states remain exact and the added quartet matches the captured
+protocol. This is an explicitly reordered diagnostic preparation, not a rewrite
+of the historical PostMR run. Shared construction `59441cf3b160edeec27b6c89742ab672a3db2149`
+then qualifies the source-declared DNA header against the exact isolated numerical
+baseline, applies the explicit component-padding context proof, and tests the
+existing rigid whole-base transport. Independent context and whole-construction
+readers pass; scaffold and outside-site states stay exact. Default curated
+substitution handling is unchanged; this result is not a general production switch.
+
+The consumer changes only nine base coordinates in the existing complete input,
+preserving every initial B/Q and all other records, including the metal and
+terminal phosphate. A new preview/declaration binds that actual model. Numerical
+dictionaries, data, flags, phases, weights and the earlier diffraction runtime
+remain byte-identical. Fresh linked preflight, a complete bounded five-cycle
+refinement, final linked interpretation, actual native recipe coverage and
+negative controls pass their supported scopes. The initial attachment improves,
+but diffraction refinement stretches it again without improving the reference
+R statistics. Construction repair is necessary evidence, not sufficient endpoint
+qualification; no selected bond uncertainty is tightened to force acceptance.
+
+The updated private `review-v2.md` and `review-data-v2.json` validate **147
+checksummed files, 23 links and eight completed preflight/refinement receipts**.
+The three-control review remains retained. Use
+`.venv/bin/python -B branch-artifacts/Alder/runners/A42_validate_review_v3.py`
+from the everyday checkout for this cumulative review. The separate preflight
+capture retains its helper's historical `endpoint-v1` directory name; its receipt
+explicitly identifies the preflight input. The completed geometry uses a fresh
+`endpoint-v2` capture. An exploratory read-only phosphate audit initially used
+an internal-repair-only argument for the terminal group; the corrected
+`inspect_sites` call passes without changing any input. Both harness attempts
+are retained. All owned native jobs completed and were reaped.
+
 **Local evidence and follow-up.** Private inputs, models/maps, numeric comparisons,
 source/test snapshots, complete/dry receipts, failed harness attempts and review
 hashes stay in the everyday checkout's ignored
 `branch-artifacts/Alder/ft-hg-triage-20261117-01/`; runners have prefix `A42_`.
-`review.md` and `review-data.json` are the current scientific review; the previous
+`review-v2.md` and `review-data-v2.json` are the current scientific review; the previous
 foundation directory remains intact. Generated scientific artifacts are excluded
-from Git. No pruning or automatic compact retention is implemented. First resolve
-the supported parent/base repair with linked chemistry and scaffold audits, then
-run a matched native comparison and inspect maps. A qualified A01 endpoint must
+from Git. No pruning or automatic compact retention is implemented. Next diagnose the remaining
+geometry/data-objective tradeoff and inspect the matched maps without conflating
+construction improvement with refinement acceptance. A qualified A01 endpoint must
 precede A02; mixed Au/Ag remains the next dataset. Formal-charge native readback
 and whole-model scientific acceptance remain open.
 

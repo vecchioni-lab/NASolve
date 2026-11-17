@@ -19,9 +19,12 @@ Three further native controls isolate phase use, intermediate geometry weighting
 and open metal occupancy. They do not resolve the local geometry gate. A fresh
 construction control identifies strain reintroduced by canonical-parent
 restoration; raw output also moves the scaffold and cannot simply replace it.
-Coordinate a supported parent/base repair, qualify its linked chemistry and
-compare a separate native endpoint before A02. Exact validation and private
-review pointers are in the [handoff](development-handoff.md).
+A shared, independently audited whole-base construction now supplies a better
+attachment while preserving the scaffold. Its matched linked/native comparison
+still stretches that attachment during open refinement and does not improve the
+reference fit. Diagnose the remaining geometry/data-objective tradeoff and inspect
+maps before A02. Exact validation and private review pointers are in the
+[handoff](development-handoff.md).
 
 ## Merge checkpoint
 

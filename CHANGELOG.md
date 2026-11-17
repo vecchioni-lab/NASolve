@@ -66,6 +66,10 @@ entries are reconstructed from repository history.
 
 ### Documentation
 
+- Record the independently audited whole-base construction and matched native
+  comparison. Keep construction repair distinct from endpoint acceptance;
+  no refinement defaults, chemical targets or stored schemas change.
+
 - Audit the metal workspace and document index; separate superseded pause/Cedar
   snapshots from the current A01 handoff. Preserve diagnostic paths and evidence;
   no runtime or artifact schema changes.
