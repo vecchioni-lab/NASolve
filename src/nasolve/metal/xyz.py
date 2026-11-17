@@ -228,6 +228,12 @@ def audit_result(plan, model, native, final_model):
                 native_version=native['native_version'],scientific_acceptance='NOT_ASSESSED',
                 automatic_checkpoint_selection=False,convergence='NOT_INDEPENDENTLY_ASSESSED',
                 fdp_quantitation_ready=False,environmental_b_applied=False)
+    if 'optimizer_stopping' in native:
+        from .optimizer_stopping import summarize as summarize_stopping
+        required = {'XYZ'}
+        if 'individual_adp' in plan['policy']['strategy']:
+            required.add('ADP')
+        result['optimizer_stopping'] = summarize_stopping(native['optimizer_stopping'], required_kinds=required)
     if 'fit_diagnostics' in native:
         from .fit_diagnostics import summarize
         result['fit_diagnostics']=summarize(native['fit_diagnostics'],native['reflection_after'],native['r_work'],native['r_free'])
@@ -338,6 +344,8 @@ def run_xyz(run,hypothesis,*,native,phases,phase_labels,cycles=3,free_r_test_val
         if not audit.valid:raise RecipeError('Original Free-R audit failed')
         evidence=_native(directory,native,timeout)
         result=audit_result(plan,model,evidence,(directory/'final.pdb').read_bytes())
+        from .optimizer_stopping import verify_file as verify_stopping_file
+        verify_stopping_file(evidence,directory)
         if 'map_diagnostics' in evidence:
             from .map_diagnostics import verify_files
             verify_files(evidence['map_diagnostics'],directory)
@@ -396,6 +404,8 @@ def verify_xyz(run,directory):
         if free.get('usable')is not True or free.get('status') not in {'VALID','NOISY'}:raise RecipeError('Invalid saved Free-R audit')
         evidence=_json(gzip.decompress((directory/'native-result.json.gz').read_bytes()))
         result=audit_result(plan,model,evidence,(directory/'final.pdb').read_bytes())
+        from .optimizer_stopping import verify_file as verify_stopping_file
+        verify_stopping_file(evidence,directory)
         if 'map_diagnostics' in evidence:
             from .map_diagnostics import verify_files
             verify_files(evidence['map_diagnostics'],directory)

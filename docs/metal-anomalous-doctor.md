@@ -12,6 +12,37 @@ sites and phase products, explores counts up and down, and records the campaign
 no-metal fallback policy. This is an opt-in experimental recipe; ordinary
 NASolve's conditional AutoSol behavior remains unchanged.
 
+## Native XYZ optimizer stopping evidence
+
+New native XYZ trials retain a compact `metal-optimizer-stopping-v1` receipt in
+both `optimizer-stopping.json` and the native payload. The offline audit requires
+agreement and uses the existing Cedar stopping classifier. Returned native errors,
+iteration/call limits, recorded native criteria and unreported reasons remain
+distinct. A native criterion is not independent convergence or scientific approval.
+The observation is bounded and restores its binding even when the caller fails.
+Receipt-write errors do not replace a primary native exception. Source fingerprints
+identify on-disk files; authentication of a pre-existing runtime wrapper remains
+explicitly unassessed.
+
+Supported calls are native XYZ and individual-ADP LBFGS minimizers in the worker
+process. Internal weight-search trials may also be observed; the receipt does not
+identify which trial produced the selected endpoint. `needs_review` exposes that
+uncertainty and any non-criterion stops for triage, without automatic rejection,
+retry or checkpoint selection. Group-ADP and other native optimizers are not
+silently claimed as covered. Legacy trials without receipts remain readable and
+unassessed. Settings, freeze policies and existing schema-1 manifests are unchanged;
+new evidence requires the updated reader. See the current [handoff](development-handoff.md)
+for focused tests, native equivalence and remaining scientific limits.
+
+The staged scientific contract also keeps **post-quantitation validation** distinct
+from the frozen f″/Q experiment. Historical procedures include testing B again
+with Q/f″ fixed and later final refinement for deposition. Those are separately
+identified children: their moved XYZ/ADPs cannot silently replace the parent used
+for frozen comparisons. The present environmental-B policy remains based on the
+qualified open-refined coordinating bases, excluding sugar/backbone, with provenance
+and explicit overrides. Dataset-specific wavelength/reference values are always
+read from the actual inputs; historical examples do not supply hidden constants.
+
 ## Implemented native-trial map and Coot inspection
 
 The local viewer can open verified native XYZ endpoints as candidate geometries

@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Retain native metal XYZ optimizer stopping evidence
+
+- Record compact per-call native XYZ/ADP stopping reasons, errors, limits and
+  source fingerprints; audit matching sidecar/native evidence offline using the
+  shared conservative stopping classifier.
+- Preserve unknown convergence and internal-trial/selected-endpoint ambiguity.
+  A completed job or lower residual does not erase a native minimizer error.
+- Restore scoped observation on success/failure; keep old trials readable.
+  New additive receipts need the updated reader. No refinement setting, chemistry
+  target, scientific acceptance, automatic checkpoint selection or migration changes.
+- Document matched scale controls and the unresolved full-frame line-search stop.
+  Generated science and paper extracts remain local; no pruning is enabled.
+
+
 ### Record metal map and coordinate-boundary diagnostics
 
 - Compare saved exact maps in explicit endpoint/common frames; retain their

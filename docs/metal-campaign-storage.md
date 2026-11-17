@@ -71,6 +71,14 @@ restraints, starts or optimizer settings constitute different requests. A shared
 parent plus a lossless, validated atom-keyed delta must recreate the exact input
 bytes/state expected by the native call before reuse or execution.
 
+A01 now retains a compact native XYZ/individual-ADP stopping receipt (2,257 bytes
+for six calls in a matched native qualification). Keep native errors, limit reasons,
+unknown convergence and internal-trial attribution limits in durable summaries;
+exit zero is not a substitute. This observation adds no pruning authority. The
+full geometry nodes and their inputs remain protected. Separate saved-array scale
+controls create no new coordinate runs or maps; they are diagnostics, not frozen
+f″ storage qualification or evidence that a large campaign is bounded.
+
 Keep enough compact results to plot and compare without rerunning: per-site Q,
 fitted/expected f″ and ratios, per-element/group signed sums and cancellation,
 B/environment identity, relevant R statistics with their stage, convergence and

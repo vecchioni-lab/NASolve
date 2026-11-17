@@ -12,31 +12,19 @@ own scientific contracts. A mechanism passing tests does not close its scientifi
 gate. Update milestone status, evidence, limitations and next action together.
 
 **Current milestone: A01 — ligand geometry and open XYZ/B foundation.**
-Source-preserving linked DF mechanics and explicit NARestraints coverage have
-passed their supported checks. The current explicit metal-term adapter reuses
-shared native inventory/coverage review without changing providers or defaults.
-Three further native controls isolate phase use, intermediate geometry weighting
-and open metal occupancy. They do not resolve the local geometry gate. A fresh
-construction control identifies strain reintroduced by canonical-parent
-restoration; raw output also moves the scaffold and cannot simply replace it.
-A shared, independently audited whole-base construction now supplies a better
-attachment while preserving the scaffold. Its matched linked/native comparison
-still stretches that attachment during open refinement and does not improve the
-reference fit. An exact passive replay now separates the geometry/data-objective
-contributions, retaining the original FFT numerical limitation alongside passing
-geometry/direct-factor controls. A larger coordinate allowance improves the
-attachment but worsens diffraction residuals and does not qualify Hg geometry.
-The API can explicitly record/audit the native main iteration allowance without
-changing defaults. Matched longer-macrocycle, phase-disabled and direct-factor
-controls also leave the scientific gate open. Direct numerical checks improve,
-but its selected weights and trajectory change and the endpoint is not accepted.
-Two zero-data-weight initialization scopes (bases or complete coordinating
-residues, plus Hg) improve seed coordination but retain attachment strain. Their
-original-profile open children return to similar local strain, with near-reference
-R statistics and substantial B changes. Both bounded comparisons are complete;
-no endpoint is accepted. Inspect maps and resolve the remaining local frame/
-recipe–diffraction tradeoff before A02. Exact validation and private evidence
-pointers are in the [handoff](development-handoff.md).
+Source-preserving construction, explicit restraint coverage and actual-state
+B export have mechanical evidence. Matched geometry, phase, iteration, map and
+scale controls leave the FT_Hg open-fit geometry gate unresolved. New native XYZ
+execution retains compact optimizer-stopping evidence: a completed job cannot
+silently stand for a converged minimizer. Independent convergence and scientific
+acceptance remain unassessed. A02 has not advanced.
+
+Latest controls separate the final B transfer from the R deterioration and show
+that the longer geometry-only preparation returns after a native line-search
+error. Next inspect exact evaluator state around that stop with the shared owner;
+do not repeat parameter sweeps or freeze neighbor counts on a ratio inference.
+The [handoff](development-handoff.md) records prior attempts, exact validation,
+private evidence and compatibility limits. Consult it before scheduling new tests.
 
 ## Merge checkpoint
 
@@ -52,7 +40,7 @@ release are different decisions.
 
 | Milestone | Current evidence | Post-merge completion gate | Dependencies |
 | --- | --- | --- | --- |
-| **A01 — Ligand geometry and open XYZ/B foundation** | PARTIAL; FT_Hg map/frame controls complete, open-fit geometry gate remains | Qualify exact source chemistry, linkage/terminal context, all intended NARestraints and metal recipe terms; demonstrate open XYZ/B refinement, explicit phase/Free-R policy, active-state B export and inspectable maps. FT_Hg first, then mixed Au/Ag. | Merged development base |
+| **A01 — Ligand geometry and open XYZ/B foundation** | PARTIAL; native stopping evidence implemented; FT_Hg open-fit geometry gate remains | Qualify exact source chemistry, linkage/terminal context, all intended NARestraints and metal recipe terms; demonstrate open XYZ/B refinement, explicit phase/Free-R policy, active-state B export and inspectable maps. FT_Hg first, then mixed Au/Ag. | Merged development base |
 | **A02 — Controlled f″/Q quantitation** | PARTIAL; frozen fits, B environments and matched comparisons implemented | Use qualified endpoints; freeze XYZ/all ADPs/f′, prepare metal B from the refined environment, and qualify Q/start/budget responses, mixed elements, cluster sums/cancellation and anomalous-background controls. | A01 |
 | **A03 — Editable recipes and structural alternatives** | PARTIAL; recipe core and candidate comparisons implemented | Source-backed ligand/metal-state targets, saved editable recipes, count/identity alternatives, optional chi flips and multiple/adjacent sites; preserve ambiguity and human choice. | A01–A02 |
 | **A04 — Lean storage and regeneration** | SCOPED; [storage plan](metal-campaign-storage.md), no pruning implementation | Shared pristine parents, compact frozen-trial records, protected important nodes, size-capped map retention, cold native regeneration, crash-safe retirement and campaign disk reservations. | Qualified A01–A02 examples; before large fan-out |
@@ -61,12 +49,11 @@ release are different decisions.
 | **A07 — Reconstruct known metal solutions through the mechanics** | OPEN; solved references and diagnostic fixtures available | Reconstruct defensible solutions from declared experimental inputs and general NASolve mechanics, with reference models withheld from construction/search; record intervention and remaining ambiguity against predeclared criteria. | Mechanical rehearsals through A01–A03; campaign demonstration after A06 |
 | **A08 — Supported feature completion and release** | OPEN | Complete end-to-end scientific/human review, independent/negative controls, installed/relocated/native integration, compatibility and release regression; publish the supported scope and remaining limits. | A01–A07 |
 
-A01 now includes saved-map comparisons and matched recipe-off versus full-frame
-geometry preparation. Freeing the frame improves preparation geometry, but its
-open XYZ/group-B child does not retain that improvement. A passive replay
-localizes the final R/B shift to the coupled native scale update; that mechanism
-and an explicit source-phosphate-state question remain under review. No model
-is adopted and no new A02 trial follows. See the current handoff for exact scope.
+A01 includes saved-map, recipe/frame and scale controls, plus an exact stopping
+replay of a longer geometry-only preparation. None supplies an accepted f″ parent.
+The native stopping receipt is a reporting mechanism, not an automated repair or
+new acceptance gate. Source-phosphate-state and open-fit geometry questions remain
+with their owners. See the current handoff before extending these controls.
 
 Statuses describe evidence already available, not completed post-merge work.
 A01–A03 feed both the storage controls and GUI session. A04 must be qualified

@@ -6,6 +6,97 @@ current milestone: **A01 — ligand geometry and open XYZ/B**. Start with the
 The older Cedar/metal pause narrative is retained in
 [history](history/metal-foundation-pause-2026-11-16.md), not current instructions.
 
+## A01 — native stopping evidence and matched scale controls, 2026-11-17
+
+**A01 remains partial; A02 remains gated.** New XYZ execution records the native
+optimizer's stopping evidence separately from job completion. No endpoint,
+chemistry target, refinement setting or f″ protocol is changed or accepted.
+
+**Backend behavior before/after.** Previously, a completed native XYZ job retained
+no structured minimizer-stop evidence. The maintained worker now observes
+supported native XYZ/individual-ADP LBFGS calls, saves a compact
+`optimizer-stopping.json` and embeds the same receipt in its native payload.
+Offline review reuses Cedar's `cif_fixed_geometry.classify_stopping`: errors and
+limits remain distinct from a recorded native criterion. Missing reasons never
+become convergence. Native error text and the unusual-error flag are preserved.
+Bindings restore on success/failure; foreign replacements are not overwritten.
+A secondary receipt-write failure does not hide the primary native exception.
+On-disk source hashes do not authenticate a pre-existing runtime wrapper;
+`entry_binding_authentication` explicitly remains `NOT_ASSESSED`.
+The sidecar and native receipt must agree. Calls may include internal weight-search
+trials; attribution to the selected endpoint and independent convergence remain
+unassessed. `needs_review` is a diagnostic signal, not a new adoption/rejection
+rule. Refinement Doctor execution is not introduced by this change.
+
+**Schemas/compatibility.** Additive `metal-optimizer-stopping-v1` evidence appears
+in new worker outputs and derived XYZ reviews. Existing schema-1 XYZ trials and
+explicit CLI paths remain supported; absence in a legacy trial means no stopping
+evidence, not convergence. New receipts require the updated reader; no migration
+or rerunning of old trials. No optimizer/weight/provider/default changes. Changed
+code: `metal/optimizer_stopping.py`, `metal/_xyz_native.py`, `metal/xyz.py` and
+`tests/test_metal_optimizer_stopping.py`; changelog, roadmap, scientific descriptor,
+storage plan and this handoff updated. Operational artifact references remain
+run-relative; source fingerprints contain no required host-absolute paths.
+
+**Native qualification.** Phenix **2.2.1-6174**, three complete three-cycle calls (legacy, initial
+observer and final reviewed observer)
+with identical inputs from an explicitly verified historical FT_Hg XYZ trial;
+300 s execution bounds and normal in-program validation, not separate dry-runs.
+Legacy/current workers produce byte-identical PDB, exact non-map native result
+fields and exact complex coefficients/indices/symmetry for both maps. Map
+container hashes differ; all remaining map evidence matches. The new **2,257-byte**
+receipt reports three XYZ iteration limits and three ADP rounding-error stops.
+Native marks these ADP errors non-unusual; the conservative review retains them
+without declaring the model invalid. No acceptance or coordinate change follows.
+
+**Separate A01 science controls.** A live paired final-scale experiment exactly
+reproduces the unchanged open-fit endpoint. Disabling only overall-B transfer
+retains mean B 184.23 rather than 129.31 Å², but both final scale fits give
+Rwork/Rfree 0.308274/0.329758. Independent complex-factor algebra confirms the
+uniform B shift is compensated by scales; it does not cause the R deterioration.
+A saved-array solvent grid control is slightly worse; exponential-only anisotropy
+trades worse Rwork for lower Rfree. Neither is selected. All 59 Free-R reflections
+remain held out from these scale fits. Cold replay agrees within 2.67e-15 scale
+roundoff; that is distinguished from the bit-exact live paired control.
+
+A distinct full-frame geometry-only preparation increases the allowance from
+100 to 1,000 steps, with unchanged source targets, recipe, zero diffraction weight,
+all 859 XYZ selected and B/Q fixed. It stops at 257 steps, attachment 1.553 Å and
+Hg distances 2.102/2.105 Å. A bit-exact passive replay identifies a native
+lower-bound line-search error, **not convergence**. Sixteen state/lineage/export
+checks and sampled local derivatives pass; all three DF sugar chiral signs remain
+correct. This neither qualifies the source state nor supplies an A02 parent.
+
+**Validation.** From Alder with the everyday checkout's Python 3.12 interpreter:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_metal_optimizer_stopping.py tests/test_metal_xyz.py tests/test_metal_xyz_weights.py tests/test_metal_xyz_iterations.py tests/test_metal_xyz_order.py
+```
+
+**99 passed in 5.70 s.** Before implementation the new regression module failed
+collection because the observer module was absent. Checks include native errors,
+limits, missing reasons, caller exceptions, binding ownership, source/receipt
+validation, legacy readback, relocated source/data with the original path gone,
+receipt-write failure precedence, pre-existing wrapper provenance limits,
+and rejection of a resealed false-convergence summary. Ten private scale-algebra
+checks pass (0.09 s). Full suite not run, per user scope.
+
+Private review roots under `branch-artifacts/Alder/`:
+`ft-hg-scale-copies-20261117-01`, `ft-hg-convergence-20261117-01`, and
+`optimizer-stopping-20261117-01`. Requests, helpers, failed preparation/replay
+checks, full-precision states and generated models/maps remain local and excluded
+from Git. No pruning, campaign fan-out or new Coot/GUI session. Frozen-scale
+alternatives reuse saved arrays and produce no new maps or coordinate runs.
+
+**Next boundary.** Capture exact evaluator count/raw-target/normalization/site
+state around the geometry-only line-search failure before attributing it to
+neighbor-list changes. Cedar confirms fixed nonbonded policy does not mean a
+fixed neighbor inventory; no normalization/count change is authorized by a
+ratio inference. Keep source chemistry with its owner. The supplied SI was
+consulted for the staged anomalous workflow; later ADP validation/final refinement
+must remain a separate branch from frozen quantitation. Paper-specific wavelengths
+and refined endpoints are not silently transplanted into these datasets.
+
 ## A01 — saved maps and coordinate-boundary controls, 2026-11-17
 
 **A01 remains partial; A02 is gated.** A read-only comparison samples 14 saved

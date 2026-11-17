@@ -70,6 +70,27 @@ def native_source_hashes():
                                 ('xray_kernel',cctbx_xray_ext),('lbfgs_kernel',scitbx_lbfgs_ext)]}
 
 
+def _run_observed(call, observer, receipt_path):
+    """Keep the primary native error if writing its diagnostic also fails."""
+    def save():
+        receipt_path.write_text(canonical(observer.receipt())+'\n')
+    try:
+        with observer:
+            value = call()
+    except BaseException as primary:
+        try:
+            save()
+        except BaseException as secondary:
+            note = 'Optimizer stopping receipt could not be saved: '+repr(secondary)
+            try:
+                primary.add_note(note)
+            except Exception:
+                pass
+        raise
+    save()
+    return value
+
+
 def run(filename):
     from iotbx.cli_parser import run_program
     from phenix.programs.phenix_refine import Program,PhenixRefineParser,custom_process_arguments
@@ -160,8 +181,16 @@ def run(filename):
             Path('effective-final.phil').write_text(r.master_params.format(python_object=r.iparams).as_str())
             return result
 
-    run_program(program_class=AuditedProgram,parser_class=PhenixRefineParser,
-                custom_process_arguments=custom_process_arguments,unused_phil_raises_sorry=False,args=request['args'])
+    from optimizer_stopping import observe
+    observer = observe()
+    _run_observed(lambda: run_program(program_class=AuditedProgram,parser_class=PhenixRefineParser,
+        custom_process_arguments=custom_process_arguments,unused_phil_raises_sorry=False,args=request['args']),
+        observer, Path('optimizer-stopping.json'))
+    stopping = observer.receipt()
+    path = Path('native-result.json.gz')
+    result = json.loads(gzip.decompress(path.read_bytes()))
+    result['optimizer_stopping'] = stopping
+    path.write_bytes(gzip.compress(canonical(result).encode(),mtime=0))
 
 
 if __name__=='__main__':
