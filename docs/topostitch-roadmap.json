@@ -4,7 +4,7 @@
   "updated": "2026-11-17",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "fb6475ff5b2e52e47278f32a41b0348e2d4d578b",
+  "audited_code_commit": "72962bf4c1f611a1b88d99efea0e2b635bb666da",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -317,7 +317,8 @@
         "W99 completes matched installed full-window controls and common native observers: all numerical/binding checks pass, but both remain iteration-limited and reference-biased. Selected/core pair improvements coexist with individual packing/torsion regressions and rounding sensitivity; no scientific gate closes.",
         "W100 removes the pristine-reference tether from displaced workers. All three full-window controls and common observers pass numerical/binding checks but remain iteration-limited. Pair forces improve both selected and four movable core pairs; without them pair targets worsen despite lower native energy. Affected bond/angle screens and chiral signs pass, while healthy drift and individual packing/torsion tradeoffs prevent physical acceptance.",
         "W112 optionally binds both hierarchy and scattering state through existing Cedar readers; exact roundtrip and default-observer preservation controls pass. Active admission and ordinary lifecycle remain separate.",
-        "W113 supplies the fresh frozen numerical contribution factory and explicit supported count by reusing existing compiler/coverage/evaluation. W114 qualifies direct native ownership/lifetime at exact C368 pins; ordinary runtime integration remains open."
+        "W113 supplies the fresh frozen numerical contribution factory and explicit supported count by reusing existing compiler/coverage/evaluation. W114 qualifies direct native ownership/lifetime at exact C368 pins; ordinary runtime integration remains open.",
+        "W115 qualifies the installed C371 read-only assembly on actual ordinary zero-cycle preflight. Ordered855 atoms,3333 observations and176 original Free-R selections are preserved;124 requested terms split107native/17missing. Initial default-MTZ cell precision mismatch remains refused; explicit working-frame control matches source. No forces, optimization or repair acceptance."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
@@ -365,14 +366,15 @@
         "E_SOURCE_DISPLACED_NATIVE",
         "E_DUAL_NATIVE_STATE",
         "E_FROZEN_PAIR_CONTRIBUTION",
-        "E_COUNTED_OWNER_LIFETIME"
+        "E_COUNTED_OWNER_LIFETIME",
+        "E_ACTUAL_PREPARED_STATE"
       ],
       "last_audit": {
         "date": "2026-11-17",
-        "code_commit": "fb6475ff5b2e52e47278f32a41b0348e2d4d578b",
-        "human_update": 114,
+        "code_commit": "72962bf4c1f611a1b88d99efea0e2b635bb666da",
+        "human_update": 115,
         "reviewer": "Linden",
-        "scope": "Direct C368/W113 ownership and lifetime qualified; independent W112/C366 full-source compatibility passes. Ordinary runtime, reporting/weight consumers and scientific closure remain open."
+        "scope": "Actual ordinary preflight and installed shared read-only assembly qualified; working frame explicit. S05/S06 remain PARTIAL, ordinary active lifecycle and scientific closure open."
       }
     },
     {
@@ -399,7 +401,8 @@
         "W110 proves actual model-level normalization depends on provider placement even when raw force coverage is identical. Six full/partial/select-all cases retain the effect and source/exclusion evidence. Active-guard owner contract is reviewed but unimplemented; provider-independent production weighting is an explicit gate.",
         "W111 local native energies_add contribution restores provider-independent normalized actual-model targets/forces for complete and partial canonical pairs, with select-all and derivative controls. C331 deliberately refuses the local method facade. Exact restoration requires original hierarchy and fractional scattering coordinates; no production adapter is installed.",
         "W112 optionally binds both hierarchy and scattering state through existing Cedar readers; exact roundtrip and default-observer preservation controls pass. Active admission and ordinary lifecycle remain separate.",
-        "W113 supplies the fresh frozen numerical contribution factory and explicit supported count by reusing existing compiler/coverage/evaluation. W114 qualifies direct native ownership/lifetime at exact C368 pins; ordinary runtime integration remains open."
+        "W113 supplies the fresh frozen numerical contribution factory and explicit supported count by reusing existing compiler/coverage/evaluation. W114 qualifies direct native ownership/lifetime at exact C368 pins; ordinary runtime integration remains open.",
+        "W115 qualifies the installed C371 read-only assembly on actual ordinary zero-cycle preflight. Ordered855 atoms,3333 observations and176 original Free-R selections are preserved;124 requested terms split107native/17missing. Initial default-MTZ cell precision mismatch remains refused; explicit working-frame control matches source. No forces, optimization or repair acceptance."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -407,7 +410,7 @@
         "Blunt and asymmetric-orientation trials retain matched observations/Free-R and independent bends/maps; calibrate inconclusive outcomes rather than force alignment or a statistical winner.",
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning."
       ],
-      "next_action": "Qualify the existing runtime usage wrapper, actual prepared-model binding and bounded optimizer/one-cycle lifecycle, including copied reporting/weight consumers and final writer. Reuse W109/W111 arithmetic and W114 direct-call evidence. Preserve frozen coverage, native exclusions and exact state/source lifetime; no silent provider replanning. Then matched data/Free-R/maps, healthy/wrong-connection controls and B09.",
+      "next_action": "Seal actual prepared observation and initial selection through the existing execution owner, then qualify bounded fixed-weight coordinate-only lifecycle at module-level native driver.run through final writer. Compare native-only and zero-addition ownership before the full17-addition recipe; the latter changes requested chemistry. Preserve explicit working frame, observations/Free-R, exclusions and source/state lifetime. No provider replanning, automatic weights or silent model replacement. Then matched data/maps, healthy/wrong-connection controls and B09.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -427,14 +430,15 @@
         "E_DUAL_NATIVE_STATE",
         "E_FROZEN_PAIR_CONTRIBUTION",
         "E_COUNTED_OWNER_LIFETIME",
-        "E_FULL_SOURCE_C366"
+        "E_FULL_SOURCE_C366",
+        "E_ACTUAL_PREPARED_STATE"
       ],
       "last_audit": {
         "date": "2026-11-17",
-        "code_commit": "fb6475ff5b2e52e47278f32a41b0348e2d4d578b",
-        "human_update": 114,
+        "code_commit": "72962bf4c1f611a1b88d99efea0e2b635bb666da",
+        "human_update": 115,
         "reviewer": "Linden",
-        "scope": "Direct C368/W113 ownership and lifetime qualified; independent W112/C366 full-source compatibility passes. Ordinary runtime, reporting/weight consumers and scientific closure remain open."
+        "scope": "Actual ordinary preflight and installed shared read-only assembly qualified; working frame explicit. S05/S06 remain PARTIAL, ordinary active lifecycle and scientific closure open."
       }
     },
     {
@@ -552,7 +556,7 @@
         "W59 computes node images from an explicit selected forest and fixed anchors using existing path/relabel owners; full winding and unselected vertices remain. Two public alternatives compose with existing packets/view/scattering. No automatic alternatives or human selection.",
         "W60 persists explicit chosen edges/anchors in the existing source-bound packet and recomputes derivation on load; viewer exposes that proposal intent. Old direct-image packets/scenes retain exact behavior; no human acceptance or editing UI.",
         "W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change.",
-        "W64 compares 2\u20138 explicit same-source/graph packets in the existing viewer with a shared camera and local Cut numbers; switching refreshes seam/provenance details and clears stale inspection. Exact old scenes remain; no model selection/approval or rendered review claimed.",
+        "W64 compares 2–8 explicit same-source/graph packets in the existing viewer with a shared camera and local Cut numbers; switching refreshes seam/provenance details and clears stale inspection. Exact old scenes remain; no model selection/approval or rendered review claimed.",
         "W65 adds a source-bound preference download/readback for prefer-cut, keep-original or needs-revision. Fresh comparison replay rejects stale choices; scene remains unchanged and no authenticated approval/model selection is claimed. Browser/download validation still open.",
         "W66 projects declared directed backbone continuation, representation/chemical/unknown boundaries and existing phosphate inventory from replayed packets. Unresolved partners retain P/OP1/OP2 intent; OP3 conflicts are scoped to continuation, with terminal phosphate consent separate. Exact route-image transport, optional view and preference context are read-only; no new edge or native enforcement.",
         "W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement.",
@@ -976,7 +980,7 @@
       "code_commit": "6ff9eb874bc3f07cd64231f52cf21e3485f657ec",
       "human_update": 51,
       "reference": "docs/topostitch-preview.md#w51--native-convergence-ceiling-control",
-      "result": "Two complete Phenix 2.2.1-6174 executions retain FAILED line-search rounding outcomes at358/351 accepted steps. Initial derivative gates pass and both old200-iteration traces reproduce exactly. Source/input bytes preserved. Last accepted coordinate changes beyond200 are below0.000105 \u00c5, but no post-exception endpoint derivative gate or candidate emission occurs.",
+      "result": "Two complete Phenix 2.2.1-6174 executions retain FAILED line-search rounding outcomes at358/351 accepted steps. Initial derivative gates pass and both old200-iteration traces reproduce exactly. Source/input bytes preserved. Last accepted coordinate changes beyond200 are below0.000105 Å, but no post-exception endpoint derivative gate or candidate emission occurs.",
       "limitation": "Negative evidence only; no convergence, scientific acceptance, stopping tolerance relaxation, ordinary refinement or Cedar change. Runtime code remains W50, whose full/installed validation applies; roadmap/doc checks pass. Generated runs/traces stay local."
     },
     "E_REGISTERED_RELABEL_PREVIEW": {
@@ -1208,7 +1212,7 @@
       "code_commit": "cc9fe96d456f9c3fbbf819e9afe7541f03aec361",
       "human_update": 80,
       "reference": "docs/topostitch-periodic.md#w80--bind-cartesian-displacement-tensors-to-the-coordinate-frame",
-      "result": "Shared Cartesian R U R^T and complete ReferenceFrame forward/inverse tensor transport retain labels/context/full permutation; existing preview ANISOU writer reuses rotation.13 fail-before regressions; focused184; full1769 +229; installed/relocated668. Installed Phenix2.2.1-6174:855 tensors,2cuts\u00d73orders,1008 Fcalc values maxerror4.43e-11; independent native fractional tensor comparison and omitted-rotation negative control pass.",
+      "result": "Shared Cartesian R U R^T and complete ReferenceFrame forward/inverse tensor transport retain labels/context/full permutation; existing preview ANISOU writer reuses rotation.13 fail-before regressions; focused184; full1769 +229; installed/relocated668. Installed Phenix2.2.1-6174:855 tensors,2cuts×3orders,1008 Fcalc values maxerror4.43e-11; independent native fractional tensor comparison and omitted-rotation negative control pass.",
       "limitation": "Arithmetic and complete in-memory diagnostic only; caller owns fractional conversion, ADP presence/flags and physical validation. No new writer/schema, ADP optimization, experimental data, model materialization or ordinary recut refinement. Scientific evidence local; P03/P04 remain partial."
     },
     "E_COMBINED_FULL_AUDIT": {
@@ -1264,7 +1268,7 @@
       "code_commit": "82ac2b3f695fe81bdb09b4347d2f6e6b0adfd782",
       "human_update": 87,
       "reference": "docs/topostitch-periodic.md#w87--compare-matched-six-variable-placements-without-promoting-failures",
-      "result": "Phenix2.2.1-6174 paired/core-only trials both FAILED rounding after11/10 accepted steps; exact callback replay and full/rounded Cartesian derivative checks pass. Common14-recipe observers complete: selected-pair target -7.122/-5.318, nonbonded1077.722\u21921055.746/1059.585, retained pairs invariant, motions .0538/.0444 Angstrom. Individual packing/AT component regressions retained with severity, not count-based rejection.",
+      "result": "Phenix2.2.1-6174 paired/core-only trials both FAILED rounding after11/10 accepted steps; exact callback replay and full/rounded Cartesian derivative checks pass. Common14-recipe observers complete: selected-pair target -7.122/-5.318, nonbonded1077.722→1055.746/1059.585, retained pairs invariant, motions .0538/.0444 Angstrom. Individual packing/AT component regressions retained with severity, not count-based rejection.",
       "limitation": "No success endpoint, candidate, refinement, scientific acceptance, runtime/schema changes or new full-suite run. Host/native arithmetic mismatch preserved and resolved through exact same-interpreter replay; the live-policy guard remains open, separate from CedarQ06 refinement chemistry. Geometry-only observations do not close S04/S05."
     },
     "E_SAVED_BEND_MOTION": {
@@ -1296,7 +1300,7 @@
       "code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
       "human_update": 91,
       "reference": "docs/topostitch-periodic.md#w91--compare-cold-and-explicitly-coarse-seeded-atomic-cleanup",
-      "result": "Two complete Phenix2.2.1-6174 trials use installedW90 and pinnedC325 owners. Cold/seeded FAILED rounding at358/363 accepted steps,390/401 optimizercalls; both failed-point full/rounded derivatives pass. Common-recipe observers complete. Max endpoint difference2.65e-7 Angstrom; all855 rounded triplets identical; no demonstrated seed benefit. Active bond/angle nominal>=3 counts9/14\u21920, boundary angle1\u21920; packing severity retained.",
+      "result": "Two complete Phenix2.2.1-6174 trials use installedW90 and pinnedC325 owners. Cold/seeded FAILED rounding at358/363 accepted steps,390/401 optimizercalls; both failed-point full/rounded derivatives pass. Common-recipe observers complete. Max endpoint difference2.65e-7 Angstrom; all855 rounded triplets identical; no demonstrated seed benefit. Active bond/angle nominal>=3 counts9/14→0, boundary angle1→0; packing severity retained.",
       "limitation": "No parent failure promotion, numerical/scientific acceptance, model/checkpoint/refinement or default change. One small coarse polish is not large-shape qualification. Live-policy mutation guard is distinct from CedarQ06 chemistry survival. Evidence-only update; W90 software checks retained."
     },
     "E_LIVE_NONBONDED_CONTRACT": {
@@ -1694,8 +1698,8 @@
       "code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4",
       "human_update": 101,
       "reference": "docs/topostitch-periodic.md#w101--pair-kernel-composition-before-ordinary-refinement",
-      "result": "Two exact W100 source recipes \u00d7 raw/global-Cedar-corrected kernel contexts:4 cases each20/20 directions,162 evaluations and unchanged context/repeat. Baseline targets/gradients exactly equal; existing subtraction/replacement is idempotent here, so no fix needed. Complete owned Phenix2.2.1-6174 execution,18.04s,600s cap; native profile verified; original binding restored; inputs/software fixed.",
-      "limitation": "Pair arithmetic only, not ordinary manager attachment/rebuild, combined normalization/exclusions, native full refinement or scientific acceptance. Retain initial Python3.12\u21923.11 NumPy ABI launcher failure; V2 package-only import isolation and old-process absence check do not change numerical policy. No runtime/schema change.",
+      "result": "Two exact W100 source recipes × raw/global-Cedar-corrected kernel contexts:4 cases each20/20 directions,162 evaluations and unchanged context/repeat. Baseline targets/gradients exactly equal; existing subtraction/replacement is idempotent here, so no fix needed. Complete owned Phenix2.2.1-6174 execution,18.04s,600s cap; native profile verified; original binding restored; inputs/software fixed.",
+      "limitation": "Pair arithmetic only, not ordinary manager attachment/rebuild, combined normalization/exclusions, native full refinement or scientific acceptance. Retain initial Python3.12→3.11 NumPy ABI launcher failure; V2 package-only import isolation and old-process absence check do not change numerical policy. No runtime/schema change.",
       "owner_commit": "c4e5ddb8530358c524feb473f3c4ffe77c64b6ac",
       "local_forensic_archive": {
         "repository_anchor": "everyday NASolve checkout",
@@ -1713,7 +1717,7 @@
       "code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4",
       "human_update": 102,
       "reference": "docs/topostitch-periodic.md#w102--complete-pair-arithmetic-through-actual-model-entry",
-      "result": "Two sources \u00d7 original/select-all actual model managers \u00d7 native-only/pair-active objectives: eight cases each20/20 directions and162 evaluations, unchanged context and baseline repeat. Zero-valued callback leaves target/all gradients exact. Pair residual/forces share native normalization without increasing count; counts11389healthy/11263displaced. Twelve unsupported-setting controls reject. Complete owned Phenix2.2.1-6174 execution168.92s under900s cap; bindings restored and inputs/software fixed.",
+      "result": "Two sources × original/select-all actual model managers × native-only/pair-active objectives: eight cases each20/20 directions and162 evaluations, unchanged context and baseline repeat. Zero-valued callback leaves target/all gradients exact. Pair residual/forces share native normalization without increasing count; counts11389healthy/11263displaced. Twelve unsupported-setting controls reject. Complete owned Phenix2.2.1-6174 execution168.92s under900s cap; bindings restored and inputs/software fixed.",
       "limitation": "Explicit checked per-call binding, not automatic manager reconstruction/selection interception or ordinary refinement. C331 snapshots are idle callback-free/default energy-only observations, not qualification of internal shared buffers/custom callback. Static fingerprint does not independently inventory every angle/plane symmetry field. No exclusion changes, diffraction/optimizer/final writer/adoption or runtime/schema change.",
       "owner_commit": "c4e5ddb8530358c524feb473f3c4ffe77c64b6ac",
       "local_forensic_archive": {
@@ -1938,7 +1942,7 @@
       "code_commit": "fb6475ff5b2e52e47278f32a41b0348e2d4d578b",
       "human_update": 114,
       "reference": "docs/topostitch-periodic.md#w114--qualify-the-shared-counted-owner-lifetime",
-      "result": "Complete Phenix 2.2.1-6174 diagnostic: 8 cases, 16 fresh owners/compilers, 28 actual-model calls, 302.62s. Zero additions reproduce native exactly; scattering-only movement preserves stale hierarchy and binds force sites; exact fractional/state restoration, select-all rebinding and fresh restart pass. Provider switch17\u219220 preserves complete counts11396/11270; maximum target difference4.44e-16 and gradient difference1.39e-17. Exact source/input pins and clean closure independently audited. Rowan separately reports155 focused/155 relocated-installed/32 native owner controls.",
+      "result": "Complete Phenix 2.2.1-6174 diagnostic: 8 cases, 16 fresh owners/compilers, 28 actual-model calls, 302.62s. Zero additions reproduce native exactly; scattering-only movement preserves stale hierarchy and binds force sites; exact fractional/state restoration, select-all rebinding and fresh restart pass. Provider switch17→20 preserves complete counts11396/11270; maximum target difference4.44e-16 and gradient difference1.39e-17. Exact source/input pins and clean closure independently audited. Rowan separately reports155 focused/155 relocated-installed/32 native owner controls.",
       "limitation": "Direct cross-branch calls only, no ordinary runtime/optimizer/refinement, exclusion change, new derivative panel or accepted repair. C368 candidate source/wheel is pinned independently of Willow; W114 changes docs only. Native usage wrapper and selected-copy report/weight/final-writer consumers still require qualification.",
       "runtime_pins": {
         "willow_code_commit": "3f5806106bdb233e648ad3c8442d878998c846da",
@@ -1993,6 +1997,36 @@
         "sha256": "88b7d967d663aafba0ff8c33bffd14b1e0e899dbd07684873998da4172468ff8",
         "bytes": 20636466,
         "files": 12,
+        "payload_index_verified": true,
+        "committed": false,
+        "portable_campaign": false
+      }
+    },
+    "E_ACTUAL_PREPARED_STATE": {
+      "kind": "ordinary_zero_cycle_prepared_state_observation",
+      "code_commit": "72962bf4c1f611a1b88d99efea0e2b635bb666da",
+      "human_update": 115,
+      "reference": "docs/topostitch-periodic.md#w115--observe-the-actual-prepared-model",
+      "result": "Four complete Phenix2.2.1-6174 zero-cycle preflights: first inspection refuses source/native cell mismatch, second records full observation while refusing selection, third explicit-frame control passes, fourth installed C371 reader exactly reproduces independent records.855 ordered atoms and anisotropic scatterers,3333 reflections/176 original Free-R selections unchanged;2572 native supported-family proxies,124 requested terms=107native+17missing. Each native preflight2energy-only calls/0gradient calls. Saved readers and independent audit pass; all processes stopped.",
+      "limitation": "Diagnostic returned-model entry reuses current runtime API; not the normal command-line entry, durable admission, owner activation, coordinate optimization or accepted repair. Default MTZ cell differs by2.93e-6Å; unchanged1e-10 frame gate refuses. Explicit source-cell control matches2.84e-14, not a production default. Current healthy geometry input is prior0.17855Å bend preview, not original deposited model. No new Willow API/schema/install or full-suite repeat.",
+      "runtime_pins": {
+        "willow_code_commit": "3f5806106bdb233e648ad3c8442d878998c846da",
+        "cedar_c371_wheel_sha256": "6d87257cb9a02fabe8b0efecb1a37b17ef8e7a5489d18da344688b8f34ed6119",
+        "cedar_counted_helper_sha256": "2504e4718b7538ac96d36a0f65c120aa695010dbdc0d51bc5605226a6ee44918",
+        "unchanged_v3_runtime_sha256": "6698585c1da6225895dd1d639554321ccab695eda1b4366d243deb39106c3503"
+      },
+      "source_identity": {
+        "derived_model_sha256": "dbdaac83c67a60c0d3df48ac19f1dbd2ddd2e15307dcb41cce564d560ab23465",
+        "original_model_sha256": "91db1085ca5ca585655912ca169dde1fb10e6071558c5c03a37fcecd5b0cf247",
+        "mtz_sha256": "f57083bb6d6b74789ba77c0c448c678356f7e3a52805a7142e1b33f9055d86a7",
+        "flag_identity_sha256": "104271d1333e6fa01ce6712fd0f9b34a24eb86603541b76f7f91345b73fb918a"
+      },
+      "local_forensic_archive": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/w115-prepared-state-2026-11-17.tar.gz",
+        "sha256": "d877caa3ad7a82c930b3952dd6ed14aaeac7f22c511bed78ce8b1c32e450d13d",
+        "bytes": 5152349,
+        "files": 114,
         "payload_index_verified": true,
         "committed": false,
         "portable_campaign": false
@@ -2143,13 +2177,13 @@
     "Periodic fit guard 84cb847 consumes the existing selected-image audit. Tighter native controls establish a contact/strain tradeoff, not scientific closure; preserve the original failed angle result.",
     "Schema-2 extended backbone patch 6fc4898 preserves schema-1 replay; S04/S05 remain partial pending native image-aware closure and matched refinement.",
     "Post-transform image guard a3e4978 catches source-clear candidates that collide after fitting. Native bond/angle derivative and fixed-base relaxation diagnostics narrow S05 uncertainty without creating another Cedar engine or closing scientific gates.",
-    "Native plane probe 7255bfd reuses Cedar correction and records raw failures. A plausible energy is not derivative qualification; do not repeat C23\u2013C27 diagnosis or create another plane-correction implementation."
+    "Native plane probe 7255bfd reuses Cedar correction and records raw failures. A plausible energy is not derivative qualification; do not repeat C23–C27 diagnosis or create another plane-correction implementation."
   ],
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 114,
-    "next": 115,
+    "current": 115,
+    "next": 116,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -2643,6 +2677,12 @@
         "title": "Qualify shared direct ownership and source compatibility",
         "state": "RECORDED",
         "code_commit": "fb6475ff5b2e52e47278f32a41b0348e2d4d578b"
+      },
+      {
+        "number": 115,
+        "title": "Bind actual prepared observations to an explicit working crystal frame",
+        "state": "RECORDED",
+        "code_commit": "72962bf4c1f611a1b88d99efea0e2b635bb666da"
       }
     ]
   },
