@@ -22,8 +22,13 @@ restoration; raw output also moves the scaffold and cannot simply replace it.
 A shared, independently audited whole-base construction now supplies a better
 attachment while preserving the scaffold. Its matched linked/native comparison
 still stretches that attachment during open refinement and does not improve the
-reference fit. Diagnose the remaining geometry/data-objective tradeoff and inspect
-maps before A02. Exact validation and private review pointers are in the
+reference fit. An exact passive replay now separates the geometry/data-objective
+contributions, retaining the original FFT numerical limitation alongside passing
+geometry/direct-factor controls. A larger coordinate allowance improves the
+attachment but worsens diffraction residuals and does not qualify Hg geometry.
+The API can explicitly record/audit the native main iteration allowance without
+changing defaults. Next complete the bounded macrocycle comparison and inspect
+maps/geometry before A02. Exact validation and private review pointers are in the
 [handoff](development-handoff.md).
 
 ## Merge checkpoint

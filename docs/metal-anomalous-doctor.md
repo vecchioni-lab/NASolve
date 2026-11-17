@@ -395,6 +395,36 @@ current checkpoint and make geometry-triage outcomes new branches before
 rederiving environmental B and frozen-fdp trials. Ordinary nucleotide-oriented
 scatterer discovery/calculation must not silently replace the metal declaration.
 
+## Implemented explicit refinement-iteration allowance
+
+The experimental `metal.xyz.make_plan` and `run_xyz` APIs accept
+`refinement_max_iterations`: an integer from **1 to 200**, separately from
+`cycles` (macrocycles) and the anomalous minimizer settings. It maps to Phenix
+`refinement.main.max_number_of_iterations`. The option permits a declared
+optimization-budget comparison without changing restraint targets, uncertainties,
+scattering, phases or refinement strategy. This is the native **main** allowance:
+XYZ uses it, and eligible NCS-constrained or auxiliary hydrogen/IAS refinement
+paths can also use it. It is not a universal coordinate-only limit. Ordinary
+non-NCS individual ADPs retain their separate native allowance. The existing
+timeout remains a separate bound; a larger allowance does not promise completion
+or convergence.
+
+Omission or `None` preserves the legacy plan, PHIL and policy exactly. An
+explicit value, including the native default of 25, adds
+`options.refinement_max_iterations` and `policy.refinement_max_iterations` to
+existing schema-1 XYZ artifacts. The worker captures the actual value before
+and after refinement and rejects a mismatch. Verification regenerates the PHIL
+from the saved option without native execution. New explicit-option trials need
+the updated reader; existing trials need no migration. The native worker hash
+changes, while the frozen-fdp protocol and automatic selection remain unchanged.
+
+This option does not adopt the separate group-B/optimized-weight diagnostic
+profile as the production XYZ profile. The current XYZ API retains its existing
+individual-isotropic-ADP and weight policy. Private FT_Hg objective/iteration
+experiments are A01 qualification evidence, with exact scope and native execution
+status in the [handoff](development-handoff.md). Scientific geometry acceptance
+continues to precede anomalous quantitation.
+
 ## Implemented explicit XYZ weight controls
 
 The API-only XYZ adapter accepts `xyz_weight_scale` in `make_plan` and `run_xyz`.

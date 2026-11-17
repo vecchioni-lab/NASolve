@@ -1413,6 +1413,9 @@ branches remain descriptive alternatives; the report selects no solution.
 The API-only XYZ step also supports [explicit geometry/data-weight probes](docs/metal-anomalous-doctor.md#implemented-explicit-xyz-weight-controls)
 through `xyz_weight_scale`. Each immutable sibling records native weight
 readbacks; no weight, geometry or count is chosen automatically.
+The optional [`refinement_max_iterations`](docs/metal-anomalous-doctor.md#implemented-explicit-refinement-iteration-allowance)
+records the native main minimizer allowance separately from macrocycles. Native
+readback is audited; a larger allowance does not establish convergence.
 
 New native trials retain [fit and endpoint recipe diagnostics](docs/metal-anomalous-doctor.md#implemented-native-fit-and-endpoint-recipe-diagnostics):
 reflection residuals and scale sensitivity, plus measured coordination distances

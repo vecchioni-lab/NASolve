@@ -26,7 +26,7 @@ PROTOCOL = 'metal-phased-xyz-v1'
 PHASE_FAMILIES = (['HLAM','HLBM','HLCM','HLDM'], ['HLA','HLB','HLC','HLD'], ['HL_A','HL_B','HL_C','HL_D'])
 
 
-def make_plan(raw, sites, metadata, references, phases, *, cycles=3, free_r_test_value=0, xyz_weight_scale=None,capture_maps=False):
+def make_plan(raw, sites, metadata, references, phases, *, cycles=3, free_r_test_value=0, xyz_weight_scale=None,capture_maps=False,refinement_max_iterations=None):
     """Declare merged-observation MLHL geometry; anomalous data remain intact.
 
     Phenix 2.2.1 cannot combine MLHL with nonzero anomalous scattering. f-prime
@@ -52,6 +52,10 @@ def make_plan(raw, sites, metadata, references, phases, *, cycles=3, free_r_test
     if type(capture_maps) is not bool:raise RecipeError('Require a boolean map-capture option')
     options=dict(cycles=cycles,free_r_test_value=free_r_test_value)
     extra={}
+    if refinement_max_iterations is not None:
+        allowance=_integer(refinement_max_iterations,1,200,'main refinement iteration allowance')
+        options['refinement_max_iterations']=allowance
+        policy['refinement_max_iterations']=allowance
     if capture_maps:
         from .map_diagnostics import request
         options['capture_maps']=True
@@ -83,6 +87,8 @@ def parameters(plan, resources):
         lines+=['   group {','    selection = '+canonical(g['selection']),
                 '    f_prime = '+repr(g['f_prime']),'    f_double_prime = 0','    refine = None','   }']
     lines+=['  }',' }',' main {',f'  number_of_macro_cycles = {p["cycles"]}',
+            *([f'  max_number_of_iterations = {p["refinement_max_iterations"]}']
+              if 'refinement_max_iterations' in p else []),
             '  random_seed = 42','  nproc = 1','  target = mlhl','  scattering_table = n_gaussian',
             '  bulk_solvent_and_scale = True','  apply_overall_isotropic_scale_to_adp = False',
             '  nqh_flips = False','  flip_peptides = False','  ordered_solvent = False',
@@ -310,7 +316,7 @@ def _native(directory,native,timeout):
     return _json(gzip.decompress((directory/'native-result.json.gz').read_bytes()))
 
 
-def run_xyz(run,hypothesis,*,native,phases,phase_labels,cycles=3,free_r_test_value=0,timeout=240,xyz_weight_scale=None,capture_maps=False):
+def run_xyz(run,hypothesis,*,native,phases,phase_labels,cycles=3,free_r_test_value=0,timeout=240,xyz_weight_scale=None,capture_maps=False,refinement_max_iterations=None):
     """Explicit API-only experiment; phases must have a declared portable anchor."""
     run=Path(run).expanduser().resolve();_integer(timeout,10,600,'timeout seconds')
     h,model,resources,parent_ref=_input_bundle(run,hypothesis)
@@ -320,7 +326,7 @@ def run_xyz(run,hypothesis,*,native,phases,phase_labels,cycles=3,free_r_test_val
     metadata=inspect_observations(obs_path,executable=native.executables['phenix.mtz.dump'],environment=native.environment)
     references=reference_scattering({a.element for a in parse_pdb(model).snapshot.atoms},metadata['wavelength_A'],
         executable=native.executables['phenix.python'],version=native.version,environment=native.environment)
-    plan=make_plan(model,h['sites'],metadata,references,phase_meta,cycles=cycles,free_r_test_value=free_r_test_value,xyz_weight_scale=xyz_weight_scale,capture_maps=capture_maps)
+    plan=make_plan(model,h['sites'],metadata,references,phase_meta,cycles=cycles,free_r_test_value=free_r_test_value,xyz_weight_scale=xyz_weight_scale,capture_maps=capture_maps,refinement_max_iterations=refinement_max_iterations)
     phil,args=parameters(plan,[name for name,_ in resources]);directory=_allocate(run)
     try:
         content={'input.pdb':model,'observations.mtz':obs,'phases.mtz':phase_bytes,'parameters.phil':phil,

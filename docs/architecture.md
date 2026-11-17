@@ -1520,6 +1520,11 @@ are read from native parameters both before and after refinement and replayed
 offline. Only the coordinate experimental multiplier varies; companion geometry
 and ADP controls remain declared and weight optimization stays disabled. The
 native base weight still adapts. See the [weight methods and limits](metal-anomalous-doctor.md#implemented-explicit-xyz-weight-controls).
+The optional `refinement_max_iterations` adds the same-named options/policy
+fields to schema-1 XYZ plans and emits `main.max_number_of_iterations`. Native
+pre/final readback must match; omission retains legacy bytes and explicit values
+require the updated reader. Native paths sharing that main allowance may also consume it; it does not
+change strategy, timeout or convergence status. See the [iteration allowance contract](metal-anomalous-doctor.md#implemented-explicit-refinement-iteration-allowance).
 Contact screening remains a local experiment. Completed-state XYZ map capture
 is implemented, while scientific decision authority and orchestration remain open.
 

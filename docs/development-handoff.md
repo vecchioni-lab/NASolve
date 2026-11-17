@@ -6,6 +6,87 @@ current milestone: **A01 — ligand geometry and open XYZ/B**. Start with the
 The older Cedar/metal pause narrative is retained in
 [history](history/metal-foundation-pause-2026-11-16.md), not current instructions.
 
+## A01 — objective attribution and explicit iteration budgets, 2026-11-17
+
+**Current milestone: A01; A02 remains gated.** A private passive five-cycle
+replay exactly reproduces the earlier whole-base endpoint. Complete native
+family targets/gradients close under the actual selected weights and full
+restraint-count normalization. Geometry and separately labeled direct-factor
+finite-difference controls pass; the original FFT numerical derivative
+limitation remains explicit. Observation preserves the original model state.
+The captured stage is post-XYZ/pre-ADP, after native weight selection rebuilds
+the target; it is not the exact last minimizer iteration or post-ADP objective.
+
+A matched increase of the coordinate allowance from 25 to 100 improves the
+attachment but worsens diffraction residuals and leaves the Hg geometry strained.
+Neither endpoint is accepted. Original data, Free-R membership, phases, targets,
+uncertainties and initial model remain fixed. Independent R/state/export audits,
+linked endpoint interpretation and actual recipe coverage pass their supported
+scopes; formal-charge readback remains unsupported. A separate ten-macrocycle
+control with the original 25-step allowance is the next bounded comparison.
+Its execution state is recorded locally; no anomalous trial or adoption follows.
+
+**Before/after, files and schema.** The experimental XYZ API previously left the
+native main iteration allowance implicit. `metal.xyz.make_plan` and `run_xyz`
+now accept optional `refinement_max_iterations` (integer 1–200), emit the native
+PHIL setting and audit actual pre/final readback. This setting also serves some
+eligible NCS/auxiliary native paths; it is not universally coordinate-only.
+`options.refinement_max_iterations` and `policy.refinement_max_iterations` are
+additive fields in existing schema-1 XYZ trials. Omission/`None` retains exact
+legacy plan/PHIL/policy bytes; explicit-option trials need the updated reader,
+while old trials need no migration. Strategy, timeout, restraints, fdp worker,
+automatic selection and convergence claims are unchanged. The private group-B/
+optimized-weight protocol remains separate from the public v1 XYZ profile.
+
+Changed implementation: `src/nasolve/metal/xyz.py`, `_xyz_native.py` and new
+`tests/test_metal_xyz_iterations.py`. Changelog, user/doc indexes, architecture,
+anomalous-workflow descriptor, roadmap and this handoff record the contract.
+Shared runtime, construction, force kernels and coverage owners are not copied
+or activated by this API change.
+
+**Validation.** From Alder with the everyday checkout's Python 3.12 interpreter:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_metal_xyz_iterations.py tests/test_metal_xyz.py tests/test_metal_xyz_weights.py tests/test_metal_xyz_order.py
+```
+
+**73 passed in 5.24 s.** The new option fails against the previous source API;
+an independent previous-commit comparison confirms byte-identical omitted-option
+plans/PHIL/arguments. Tests cover invalid values, explicit default versus
+omission, actual-policy mismatch, parent preservation, fdp lineage and three
+siblings replayed from a relocated temporary source/run tree after the original
+path is gone. An initial test fixture shared its expected policy by reference;
+copying the synthetic evidence fixes the negative test without weakening the
+production audit.
+
+Four **Phenix 2.2.1-6174 typed-PHIL parser/readback checks** pass for omission,
+25, 100 and 200. These do not run refinement or validate data/phases. Separately,
+two complete bounded native scientific runs and their dry preflights establish
+the diagnostic results above. No claim that the new API adopts that separate
+scientific profile. The private force reader passes **12 checks in 0.30 s**:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python -B -m pytest -q -p no:cacheprovider branch-artifacts/Alder/runners/test_A43_force_review_v2.py
+```
+
+Run that command from the everyday checkout. The private cold comparison uses
+`A43_review_forces_v3.py replay-v3` and `A43_review_budget.py`; the latter writes
+an immutable review and must not overwrite an existing result. Native provider
+coverage replays reject six altered-term/context controls at both ends of the
+longer-budget trial. No full suite, as requested. No Coot execution in this pass.
+
+**Evidence, retention and next action.** Private review is
+`branch-artifacts/Alder/ft-hg-forces-20261117-01/review-v2.md`; force/budget review
+JSON, exact commands, source hashes, native receipts, failed harnesses and
+synthetic API compatibility checks are alongside it. Runners have prefix `A43_`.
+Generated science and user-local state are excluded from Git. Read-only storage
+measurement finds substantial byte-identical duplication in native coverage
+records; its compression projection is not a retention/recovery qualification.
+No files were pruned and no archive was written. Reuse shared packing/retention
+owners at A04 rather than duplicating their authority. Continue the bounded
+macrocycle comparison and map/geometry review; preserve the geometry-versus-fit
+tradeoff and all failed evidence before considering A02.
+
 ## A01 — explicit native coverage and preparation triage, 2026-11-17
 
 **Current milestone: A01.** These are preparatory checks for the expressly

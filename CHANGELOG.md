@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record an explicit minimizer allowance for metal XYZ trials
+
+- Add API-only `refinement_max_iterations` (1–200), separately from macrocycles
+  and anomalous minimization. Save it in the plan, emit native PHIL and audit the
+  actual value before and after refinement.
+- Omission preserves legacy plan/parameter/policy bytes; explicit-option trials
+  require the updated reader. Existing trials need no migration. No refinement
+  strategy, timeout, restraint target, frozen-fdp policy or default changes.
+- Retain scientific review and convergence limits; the option declares a budget
+  rather than choosing or accepting a solution. Generated diagnostics stay local.
+
+
 ### Describe explicit metal recipes for shared native coverage review
 
 - Add an API-only declaration adapter for enabled metal-recipe distances and
