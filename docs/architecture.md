@@ -428,6 +428,11 @@ C363 joins that existing projection artifact into ordinary construction lineage.
 The reader replays its derivation, input/actions, phosphate intent and exact chosen
 CIFs. The complete-request owner then compares declared ends/links with the actual
 prepared-model context. It freezes only the declared closure, not the whole run.
+C365 also exposes the qualified projection source and its authority from that same
+reader. Acquisition binds those original chemical bytes, while construction binds
+its numerical/site dictionaries separately. Non-projected lineage retains C196's
+exact construction/source-file equality. No new stored schema or qualification is
+introduced; source-like numerical files cannot borrow a projection's qualification.
 
 ### Dataset and symmetry discovery
 

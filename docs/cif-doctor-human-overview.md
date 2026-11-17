@@ -4292,8 +4292,10 @@ chosen, and the complete request checks that their declared ends agree with the 
 it receives. This survives moving the files to another location. The same source
 store now keeps the original backbone and custom base, then rebuilds their chemical
 definition to verify its history. The DY closure is four files, about 30 KB. Chemical
-source and Coot numerical dictionary still need their distinct roles joined through
-ordinary intake; construction is not refinement approval.
+source and Coot numerical dictionary now retain their distinct roles through
+prepared-request intake. The real mixed-end DY model passes that join and can be
+reopened after relocation. Normal PostMR still needs to supply these choices before
+Coot; this does not establish automatic mutation or refinement approval.
 
 A separate construction check now recognizes when Coot merely pads a residue name
 differently in the PDB field. It still checks all coordinates and other atom fields,

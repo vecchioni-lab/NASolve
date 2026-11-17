@@ -13,7 +13,7 @@ from tests.test_cif_construction_projection import construction_inputs
 from tests.test_cif_complete_request import case
 
 
-def projection_case(tmp_path, *, seal=True):
+def projection_case(tmp_path, *, seal=True, distinct_dictionary=False):
     originals=tmp_path/'originals';originals.mkdir();args,actual=construction_inputs(originals,chi_frame=True)
     from tests.test_cif_model_context import model as backbone_model
     reference=backbone_model(originals/'linked-reference.pdb',chains=(('A','ZZZ'),('B','ZZZ')),last=2)
@@ -27,6 +27,7 @@ def projection_case(tmp_path, *, seal=True):
     projected=run/'PostMR/Coot/construction_projections/ZZZ'
     prepare_dictionary_sites(output=projected,**args);saved=read_dictionary_sites(projected)
     base=run/'PostMR/Coot/source_dictionaries/ZZZ.cif';base.parent.mkdir();base.write_bytes((originals/'inputs/source.cif').read_bytes())
+    if distinct_dictionary:base.write_bytes(base.read_bytes()+b'# distinct numerical construction input\n')
     choices={};actions=[]
     for i,(site,(p,code)) in enumerate(sorted(saved['projections'].items())):
         chosen=run/f'PostMR/Coot/site_dictionaries/{i:03d}.cif';chosen.parent.mkdir(exist_ok=True);chosen.write_bytes(p.read_bytes());choices[site]=chosen
@@ -100,7 +101,7 @@ def test_complete_input_owner_collects_projection_without_another_tree(tmp_path)
     from tests.test_cif_model_context import report
     context=derive_prepared_model_context(prepared,report('A:1'),['ZZZ'])
     original=read_postmr_construction(run)
-    bound=_construction_input(run,prepared,{'ZZZ':{'source':source}},context)
+    bound=_construction_input(run,prepared,{'ZZZ':{'source':source,'source_authority':'EXPLICIT'}},context)
     assert bound['files']==original['files']
     assert bound['report']['policy_id']=='postmr-projected-dictionary-construction-lineage-v1'
     assert sum(n.endswith('site_receipt.json') for n in bound['files'])==1
@@ -144,4 +145,4 @@ def test_complete_owner_checks_projection_against_actual_model_context(tmp_path,
     else:context['contexts']={}
     source=run/start['inputs']['dictionaries']['ZZZ']['path']
     with pytest.raises(ValueError,match='actual prepared-model context'):
-        _construction_input(run,prepared,{'ZZZ':{'source':source}},context)
+        _construction_input(run,prepared,{'ZZZ':{'source':source,'source_authority':'EXPLICIT'}},context)

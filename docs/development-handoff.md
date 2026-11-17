@@ -1,37 +1,51 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C364 retained source composition — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. C363 / `c102d714` is pushed.
-C364 is complete: 34 new cases and 299 focused/installed checks pass. The exact
-C342 chemical source replays with retained composition inputs after relocation.
-No new Phenix/Coot execution or full suite. All Rowan jobs stopped; local failed
-scientific attempts remain preserved.
+Updated **2026-11-17, C365 source-to-construction join — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. C364 / `88ba9d27` is pushed.
+C365 is complete: 135 affected checks, 38 ordinary compatibility checks and
+173 installed/relocated checks pass. Real C363 construction plus C364 composition
+passes ordinary prepared-request intake and cold readback. No new Phenix/Coot run,
+full suite or merge. All Rowan jobs stopped; failed scientific attempts are preserved.
 
 ## Immediate work and peer boundary
 
-**Next C365: join chemical-source identity to qualified construction projections.**
-C364 completes retained source composition through the existing acquisition-source
-owner: exact backbone/base inputs and operation proof reproduce the selected source
-under cold readback. Original/package paths are unnecessary. The C342 DY source is
-byte-exact, with four closure files / 29,583 bytes. Ordinary/explicit source policies
-remain byte-exact against C363. Focused/installed tests pass; no native execution.
+**Next: forward explicit source/parent/projection choices before Coot in ordinary
+PostMR.** C365 closes a concrete integration mismatch: C196's old equality check
+confused chemical acquisition source with numerical construction CIF. C363 already
+proved each actual site dictionary against its qualified projection. Its reader now
+returns that original chemical source/authority; acquisition compares those, while
+all numerical/end-state checks remain independent. Old non-projected lineage keeps
+its byte-equality rule. No new stored schema or weaker chemistry checks were needed.
 
-Prior-work review identifies a concrete integration mismatch: C196's original
-`_construction_input` expects the per-component construction CIF to equal the
-selected acquisition source. The real C363 DY record instead has a numerical Coot
-CIF and per-site projections derived from a separately qualified chemical source.
-Its actual context check passed, but automatic source join is still absent. C363's
-projection reader already validates the qualified snapshot and every consumed site
-CIF. Reuse that source/authority for the acquisition join while retaining all exact
-numerical/end-state checks; old non-projected lineage keeps its exact-byte rule.
-Validate with different source/numerical files, rejection of wrong source/authority,
-and the actual C363 model plus C364 source through ordinary prepared intake, cold.
-Do not bypass this mismatch by presenting a numerical dictionary as chemical source.
+The actual mixed-end C363 DY model and C364 retained composition now enter
+`initialize_postmr_dictionary_request` and replay cold with no SDK/new process:
+46 files / 2,772,164 bytes. Original temporary copies and output location are gone;
+149 prior files/timestamps are unchanged. This is prepared-request initialization,
+not a fresh Coot/ReadySet/refinement or fabricated NARestraints pairing qualification.
 
-After that bounded join, ordinary PostMR orchestration still needs to forward explicit
-source/parent/projection choices before Coot. Its current catalogue-only lookup cannot
-activate DY. Preserve explicit phosphate intent and NAR ownership; no invented pairing
-roles, new process/proof owner, defaults or native target changes. Keep Q06 open.
+Prior-work orientation for the next bounded integration:
+- C354/C364 retain exact packaged-base/backbone composition through source selection.
+- C358 plans explicit source/temporary-parent mutations; C359 reloads exact per-site
+  Coot dictionaries; C362 derives those projections from canonical model/end intent.
+- C363/C365 bind original model, selected CIFs, qualified source and actual prepared
+  ends through existing construction and complete-request owners. Reuse these APIs.
+- `_prepare_postmr` still calls catalogue-only planning and `ligand_definition`/
+  `ligand_dictionary`; it does not forward explicit source/parent/projection choices.
+  `initialize_ordinary_postmr_request` currently rediscovers sources after Coot.
+- Forward a complete explicitly frozen selection and checked per-component projection
+  choices, preserving exact input model, component/site coverage, selected consumer,
+  source authority and phosphate intent. Copy only declared closures into existing
+  run-local roles before sealing. Never add a NAR pairing row to bypass lookup.
+- The selected-Phenix configuration currently omits the existing `multiple_planes`
+  recipe option used by DY. Carry that explicit option if this route needs it; do
+  not silently regenerate using a different recipe or change old default bytes.
+- Prove one fresh ordinary mixed-end construction/prepared request, compare its exact
+  model/dictionaries to the accepted controls, then cold readback. Full frame pairing,
+  automatic CLI activation and modified-input canonical seeding need separate scope.
+
+After the bounded DY integration, return to Q06 achieved refinement geometry and
+Linden's queued native owner/lifetime contract. No target/sigma change, new process
+owner, automatic adoption or Q06 closure is implied by successful preparation.
 
 **DF diagnostic complete; production restoration remains open.** C361 uses Hazel's
 separately prepared canonical parent, with its recorded D:1 terminal-phosphate
@@ -83,8 +97,9 @@ has three remaining integration steps:
    projections from canonical input and C363 retains that exact derivation.
 3. **Carry the source and choice through existing lineage.** Bind composition inputs
    and selected dictionaries through the existing construction/request owners;
-   C364 completes composition retention. The qualified source join above is next.
-   C353 retains canonical seed proof; C355 owns frozen source bytes; C359 carries
+   C364 completes composition retention; C365 completes the qualified source join.
+   Ordinary pre-Coot forwarding above is next.
+   C353 retains canonical seed proof; C355/C364 own frozen source bytes/composition; C359 carries
    exact site dictionaries through existing lineage and complete requests.
    Verify installed, relocated readback without original paths. Do not add another
    source, process or proof owner.
@@ -133,6 +148,7 @@ unfinished-work order. A readable CIF or passing derivative check does not close
 
 Exact controls, commands, hashes and limitations are in the
 [evidence ledger](cif-linked-native-registration-evidence.json). Start with
+`projected_construction_source_join_2026_11_17`,
 `composed_acquisition_sources_2026_11_17`,
 `construction_projection_lineage_2026_11_17`,
 `canonical_input_projection_2026_11_17`,
@@ -150,6 +166,10 @@ Exact controls, commands, hashes and limitations are in the
 blob/checksum and offline retrieval. Historical next steps are not current instructions.
 
 ## Validation and limits
+
+- C365: **135 focused / 100.82s; 38 ordinary compatibility / 8.49s;
+  173 installed/relocated**. Six new source-join cases fail before the correction.
+  Actual composed DY/prepared intake replays cold; no native execution/full suite.
 
 - C364: **299 passed in 331.20s (0:05:31) focused**; installed/relocated result is in the
   evidence ledger. 34 new cases, with 19 missing-API failures and one later

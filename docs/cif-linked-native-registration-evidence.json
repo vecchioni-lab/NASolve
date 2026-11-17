@@ -108412,5 +108412,96 @@
       "Ordinary PostMR planning/source/projection forwarding.",
       "Q06 achieved refinement geometry; DF negative remains open."
     ]
+  },
+  "projected_construction_source_join_2026_11_17": {
+    "milestone": "C365",
+    "date": "2026-11-17",
+    "signed": "Rowan",
+    "before": "Complete intake demanded chemical acquisition source equal per-component numerical construction CIF, blocking actual qualified mixed-end DY despite correct projection lineage.",
+    "after": "Projection lineage exposes its qualified source/authority; complete intake binds these original chemical inputs while retaining exact numerical/site files and actual end/link context checks.",
+    "schema": {
+      "stored": "UNCHANGED",
+      "reader_return": "Optional projection_sources mapping on existing projected lineage; source path/authority from validated snapshot.",
+      "migration": "None. Old non-projected equality unchanged. Projected records with numerical files falsely supplied as distinct qualified source now refuse."
+    },
+    "validation": {
+      "before": "6 failed in8.95s; positive actual-role join and prepared intake failed old dictionary-equality check",
+      "new_cases": 6,
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_postmr_projected_source_join.py tests/test_postmr_projection_lineage.py tests/test_postmr_site_lineage.py tests/test_postmr_canonical_lineage.py tests/test_cif_postmr_request.py --tb=short",
+      "focused_result": "135 passed in 100.82s (0:01:40)",
+      "legacy_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_postmr_component_inputs.py tests/test_cif_ordinary_postmr.py --tb=short",
+      "legacy_result": "38 passed in 8.49s",
+      "installed": {
+        "status": "INSTALLED_RELOCATED_PROJECTED_SOURCE_JOIN_PASS",
+        "wheel_sha256": "8ad5c5fbe464cc7f9112c43b6848ae62bcbdb49ed7dd9bbb30b7bab0c76dea4b",
+        "wheel_bytes": 1398337,
+        "source_copy_removed": true,
+        "original_install_path_absent": true,
+        "package_reference_bytes_match": true,
+        "validation_command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-c",
+          "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_postmr_projected_source_join.py', 'tests/test_postmr_projection_lineage.py', 'tests/test_postmr_site_lineage.py', 'tests/test_postmr_canonical_lineage.py', 'tests/test_cif_postmr_request.py', 'tests/test_postmr_component_inputs.py', 'tests/test_cif_ordinary_postmr.py', '--tb=short']))"
+        ],
+        "validation_output": "........................................................................ [ 41%]\n........................................................................ [ 83%]\n.............................                                            [100%]\n173 passed in 100.15s (0:01:40)\n",
+        "build_command": "phenix.python -m pip wheel --no-deps --no-build-isolation --no-index",
+        "temporary_bytes_removed": 11359274
+      },
+      "actual": {
+        "status": "ACTUAL_DY_COMPOSED_SOURCE_TO_PREPARED_REQUEST_COLD_PASS",
+        "root": "365_Cedar_composed-prepared-c2xlbpd9",
+        "model_sha256": "5756d6f6f3e23387a2d66b558fe46897db106201c80a09ef0e2e436539191ba2",
+        "source_sha256": "a7d9ed314862298e589be0f873cc41c9abaa0d2608aa709ce26fc0a59aaf1d55",
+        "construction_dictionary_sha256": "39640bbcb554e5708acd8000668c63cca75f3f55a9309af9d82a4788e7a0caec",
+        "source_authority": "EXPLICIT",
+        "source_policy": "cif-acquisition-composed-sources-v1",
+        "construction_policy": "postmr-projected-dictionary-construction-lineage-v1",
+        "declared_ends": {
+          "A:11": {
+            "five_prime_state": "free_OH",
+            "three_prime_state": "linked"
+          },
+          "A:12": {
+            "five_prime_state": "linked",
+            "three_prime_state": "linked"
+          }
+        },
+        "prior_files_and_timestamps_preserved": 149,
+        "original_input_copy_removed": true,
+        "original_output_path_absent": true,
+        "cold_read_unchanged": true,
+        "native_execution": "FORBIDDEN",
+        "new_attempts": 0,
+        "retained_source_closure_files": 4,
+        "request_files": 46,
+        "request_bytes": 2772164,
+        "temporary_bytes_removed": 2358344,
+        "seconds": 4.7687321249977686,
+        "scope": "PREPARED REQUEST INITIALIZATION AND COLD READBACK; NO NEW CONSTRUCTION, READYSET, REFINEMENT, NAR PAIRING OR AUTOMATIC ADOPTION"
+      },
+      "static": "git diff --check; Python3.10 AST",
+      "full_suite": "NOT_RUN"
+    },
+    "changed_files": [
+      "src/nasolve/postmr_lineage.py",
+      "src/nasolve/cif_complete_request.py",
+      "tests/test_postmr_projected_source_join.py",
+      "tests/test_postmr_projection_lineage.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "compatibility": "No new owner, classifier, artifact schema or source rewrite. Consumed numerical dictionaries, projection qualifications/end states, input model and actual model checks remain required. No C331/frozen restoration/native targets changed.",
+    "retention": "Code/tests/docs/compact hashes/results committed. Actual46file2772164byte prepared request local; no new models/native calculations, no raw science/logs uploaded.149priorfiles/timestamps preserved; successful owned temporary copies removed.",
+    "remaining": [
+      "Ordinary pre-Coot explicit planning/source/projection forwarding, including exact supported generation recipe.",
+      "DY automatic mutation/NAR rules are not inferred from this covalent prepared-input control.",
+      "DF/PDU achieved refinement geometry and Linden active counted-contribution lifetime remain Q06."
+    ]
   }
 }

@@ -14024,7 +14024,7 @@ chi differences are below 0.014 degrees. Fresh Phenix 2.2.1-6174 readback gives
 238 installed/relocated affected tests pass. Exact commands/receipts and limits:
 `canonical_input_projection_2026_11_17` in the evidence ledger.
 
-### Construction projection lineage (C363)
+### Construction projection lineage (C363/C365)
 
 `begin_postmr_construction(..., construction_projections={code: directory})`
 accepts existing C362 artifacts under `PostMR/Coot/construction_projections/CODE`.
@@ -14039,7 +14039,16 @@ Sealing rechecks the captured choices and rejects omitted evidence in the reserv
 folder. Old records retain their historical interpretation. The complete-request
 owner freezes that closure and checks selected components' projected end states and
 whole-model links against the existing actual prepared-model context. A hash match
-alone cannot substitute for that chemical join. Cold relocation tests remove all
+alone cannot substitute for that chemical join. C365 returns `projection_sources`
+from the same validated snapshot: each source path and source authority must match
+selected acquisition. The numerical construction dictionary and every consumed
+site projection retain their independent exact checks. This fixes the old assumption
+that chemical source and numerical Coot dictionary must be the same file. Components
+without a projection retain C196's original equality check; no new stored schema.
+Previously accepted projected requests that substitute a numerical file for a
+*different* qualified chemical source now refuse rather than acquiring false source
+claims. The current ordinary source reader always supplies explicit authority.
+Cold relocation tests remove all
 original paths and prohibit native execution. New records require a current reader;
 no old artifact migration or changed native chemistry follows.
 
@@ -14050,8 +14059,11 @@ context join also passes. The complete retained construction closure is 29 files
 2,328,761 bytes; raw native diagnostic inventories remain local, outside that closure.
 22 new focused tests and 119 final installed/relocated tests pass; an earlier broader
 213-test compatibility pass preceded the final context guard. Exact evidence:
-`construction_projection_lineage_2026_11_17`. Source composition provenance and
-ordinary request forwarding remain the next explicit integration work.
+`construction_projection_lineage_2026_11_17`. C365's real C363 construction plus C364
+source passes ordinary prepared-request intake and cold relocation, retaining 46
+files / 2,772,164 bytes with no new native execution. Exact commands/results and
+compatibility limits: `projected_construction_source_join_2026_11_17`. C364 retains
+source composition; pre-Coot ordinary PostMR forwarding is the next integration step.
 
 ### Retained two-source chemical composition (C364)
 
@@ -14076,6 +14088,6 @@ Omission preserves old ordinary and explicit policies/bytes. No migration occurs
 older readers refuse composed records. The exact C342 DY source and existing saved
 qualification replay without native execution. Four closure files occupy 29,583 bytes.
 Focused/installed validation, compatibility and retained evidence are recorded in
-`composed_acquisition_sources_2026_11_17`. The next integration join must distinguish
-the chemical source from the qualified numerical dictionary used by Coot; ordinary
-activation, model-context qualification and refinement acceptance remain separate.
+`composed_acquisition_sources_2026_11_17`. C365 joins the chemical source to the
+qualified projection snapshot, distinct from its numerical Coot dictionary. Normal
+PostMR forwarding, automatic activation and refinement acceptance remain separate.

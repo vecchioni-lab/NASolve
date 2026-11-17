@@ -21,9 +21,10 @@ C362 derives projections from canonical input/end states; C363 binds that deriva
 through existing construction lineage and complete-request/actual-model context.
 C364 retains source-composition inputs/proof through the existing source freezer and
 complete request; exact prior DY source and old default bytes replay unchanged.
-Next join the original chemical source to the qualified projection source (rather
-than requiring it to equal the numerical Coot dictionary), then connect ordinary
-intake. Preserve separate source, numerical and end-state checks. C357 retention
+C365 joins the original chemical source/authority to the qualified projection source,
+with separate numerical/end-state checks. The real C363 mixed-end model and C364
+composition pass ordinary prepared-request initialization and cold readback.
+Next forward these explicit choices before Coot in normal PostMR orchestration. C357 retention
 findings remain recorded locally.
 
 Linden's W111 counted-contribution diagnostic supports shared Q06 integration;
@@ -954,8 +955,8 @@ Current remaining integration, in order:
    cold complete requests. C362 derives projections through the existing site owner;
    C363 binds their full derivation to construction and actual prepared-model end/link
    context through that same request. C364 retains/rederives source composition.
-   The qualified projection source must now join the acquisition source; ordinary
-   forwarding remain open; neither implies refinement acceptance.
+   C365 joins qualified source identity/authority through ordinary prepared intake.
+   Pre-Coot PostMR forwarding remains open; neither implies refinement acceptance.
 
 Source/native chemistry, rotatable bridge controls and saved mixed-context replay
 are already established within their recorded scope. Do not add another source,

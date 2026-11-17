@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Distinguish chemical sources from construction restraints (C365)
+
+- Projected construction now joins the selected acquisition source to the original
+  qualified chemical source and its authority. Numerical Coot dictionaries retain
+  their independent exact-file checks and declared chain-end derivation.
+- This admits the real mixed-end DY construction through prepared-request intake
+  and cold readback. Non-projected lineage keeps its original exact-byte rule;
+  a numerical dictionary cannot be substituted for the qualified chemical source.
+
 ### Keep the chemical inputs used to compose a custom residue (C364)
 
 - The existing source freezer can retain explicitly selected backbone/base inputs

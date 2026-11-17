@@ -156,7 +156,17 @@ def _construction_input(directory, model, sources, model_context):
           and controls['passthrough_sites'] == sorted(plan['backbone_policy']['experimental_passthrough_sites']),
           'Construction lineage differs from prepared phosphate/backbone intent')
     for code,path in value['dictionaries'].items():
-        if code in sources:
+        if code not in sources:
+            continue
+        projected = value.get('projection_sources', {}).get(code)
+        if projected is not None:
+            # The projection reader binds the qualified chemical source and every
+            # actually consumed site CIF. Numerical construction inputs retain
+            # their own exact closure; they are not acquisition source files.
+            _need(_read(projected['source']) == _read(sources[code]['source'])
+                  and projected['source_authority'] == sources[code].get('source_authority'),
+                  'Construction projection source differs from selected acquisition source/authority: '+code)
+        else:
             _need(_read(path) == _read(sources[code]['source']),
                   'Construction dictionary differs from selected acquisition source: '+code)
     for code, projection in value.get('projection_contexts', {}).items():

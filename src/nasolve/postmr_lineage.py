@@ -105,7 +105,7 @@ def _projection_closure(root, references, inputs, controls, site_references):
           and set(references) <= inputs['dictionaries'].keys(), 'Invalid construction projection inventory')
     _need(isinstance(site_references, dict) and site_references,
           'Construction projections require explicit consumed site dictionaries')
-    selected, files, contexts = {}, {}, {}
+    selected, files, contexts, sources = {}, {}, {}, {}
     actions = {a['site']: a for a in controls['actions']}
     for code, reference in sorted(references.items()):
         path = _resolve(reference, root)
@@ -132,6 +132,8 @@ def _projection_closure(root, references, inputs, controls, site_references):
                   'Consumed site dictionary differs from its saved chemical projection')
         selected.update({site: saved['projections'][site][0] for site in sites})
         contexts[code] = {k: report[k] for k in ('contexts','expected_links')}
+        sources[code] = dict(source=saved['snapshot']['source'],
+            source_authority=saved['snapshot']['manifest']['request']['source_authority'])
         files[reference['path']] = _read(path)
         for ref in report['files']:
             artifact = path.parent/ref['path']
@@ -139,7 +141,7 @@ def _projection_closure(root, references, inputs, controls, site_references):
         _need(_reference(path, root) == reference and read_dictionary_sites(path.parent)['report'] == report,
               'Construction projection changed during lineage readback')
     _need(set(selected) == set(site_references), 'Every chosen site dictionary needs its declared projection')
-    return contexts, files
+    return contexts, files, sources
 
 
 def begin_postmr_construction(run, model, reference_model, dictionaries, actions, *,
@@ -289,7 +291,7 @@ def read_postmr_construction(run):
         selected, site_files = _site_dictionary_closure(root, r['site_dictionaries'], r['inputs'], r['controls'])
         files.update(site_files)
     if projections:
-        projection_contexts, projection_files = _projection_closure(root, r['construction_projections'],
+        projection_contexts, projection_files, projection_sources = _projection_closure(root, r['construction_projections'],
             r['inputs'], r['controls'], r.get('site_dictionaries'))
         files.update(projection_files)
     # Check declared identities with the ordinary caller's existing parser. This
@@ -306,4 +308,4 @@ def read_postmr_construction(run):
     return dict(report=r,files=files,model=root/r['outputs']['prepared']['path'],
                 dictionaries={c:root/ref['path'] for c,ref in r['inputs']['dictionaries'].items()},
                 **({'site_dictionary_paths': selected} if site_choices else {}),
-                **({'projection_contexts': projection_contexts} if projections else {}))
+                **({'projection_contexts': projection_contexts, 'projection_sources': projection_sources} if projections else {}))
