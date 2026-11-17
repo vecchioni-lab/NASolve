@@ -109127,5 +109127,133 @@
       "Versioned immutable post-preflight admission and same-refinement validation remain to qualify.",
       "Actual optimizer/report/final-output lifetime and Q06 chemical survival remain open."
     ]
+  },
+  "prepared_pair_observation_2026_11_17": {
+    "milestone": "C371",
+    "date": "2026-11-17",
+    "signed": "Rowan",
+    "before": "Actual prepared policy/inventory/provider assembly existed only in diagnostic scripts; ordinary callers could otherwise reuse the earlier geometry-only state.",
+    "after": "Compose existing qualified compiler, C331 policy, W112 dual-state inventory, W105 declarations and W108 initial provider selection, with a shared factory source-binding path and no forces/files/adapters.",
+    "changed_files": [
+      "src/nasolve/cif_counted_contribution.py",
+      "tests/test_cif_counted_contribution_native.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": "Returns existing frozen_policy, compiled_binding, native_observation and provider_selection records; no new persistent schema or runtime authority.",
+    "source": {
+      "parent_commit": "28a84f19b2754f8c3421dea72d5ef4a2add8e04c",
+      "owner_sha256": "2504e4718b7538ac96d36a0f65c120aa695010dbdc0d51bc5605226a6ee44918",
+      "unchanged_runtime_sha256": "6698585c1da6225895dd1d639554321ccab695eda1b4366d243deb39106c3503"
+    },
+    "validation": {
+      "before": "Actual native positive fails because observe_prepared_pair_contribution is absent:1failed/45deselected in5.25s.",
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <NASolve-venv-python> -m pytest -q -p no:cacheprovider tests/test_cif_counted_contribution.py tests/test_cif_refinement_runtime.py tests/test_refinement_parallelity.py --tb=short",
+      "focused": "117passed in18.09s",
+      "installed_command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-B",
+        "-c",
+        "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_cif_counted_contribution.py', 'tests/test_cif_refinement_runtime.py', 'tests/test_refinement_parallelity.py', '--tb=short']))"
+      ],
+      "installed": "117passed in16.37s; source copy/original install path absent and relocated import verified",
+      "wheel_sha256": "6d87257cb9a02fabe8b0efecb1a37b17ef8e7a5489d18da344688b8f34ed6119",
+      "native_command": "C368 checksum-bound native environment and owned bootstrap; copied native test with -q -x -p no:cacheprovider --tb=short -k \"prepared_pair_observation or self_consistent_changed_native_cell or actual_owned_calls\"",
+      "native": "6passed/41deselected in70.73s; Phenix2.2.1-6174 Darwin arm64 complete preparation/direct-call tests. Earlier4case smoke45.40s. No full refinement.",
+      "static": "Python3.10 AST; git diff --check; historical ledger entries unchanged",
+      "full_suite": "NOT_RUN",
+      "independent_actual_preflight": {
+        "owner": "Linden W115 attempt4",
+        "execution_sha256": "489f33652a311d65b6f9948e02b1391b8dd8b077ebfa7984702a46bd65ba0072",
+        "result_sha256": "89e111c685c7cb2d083209f90316161e7e18ceda760f5fc246dd35a1cd015170",
+        "prepared_contribution_sha256": "15187e5bf0b7245ed66ec4299f8d23daa33df79f4101210e0db68da025a5d0f6",
+        "seconds": 11.124408999996376,
+        "mode": "Complete native zero-cycle preflight; dry_run=True, no optimizer or added force",
+        "atoms": 855,
+        "reflections": 3333,
+        "original_free_flags": 176,
+        "source_flag_identity_sha256": "104271d1333e6fa01ce6712fd0f9b34a24eb86603541b76f7f91345b73fb918a",
+        "native_terms": 2572,
+        "requested_terms": 124,
+        "native_requested_terms": 107,
+        "added_requested_terms": 17,
+        "independent_records_equal": true,
+        "state_bindings_inputs_software_preserved": true,
+        "existing_preflight_reader_passes": true,
+        "source": "W114 derived bend-preview model and exact W34 observation archive; no scientific endpoint claim",
+        "frame": "Default MTZ/PDB max2.9296875e-6A difference retained as refusal; explicit source-cell/group native control matches within2.84e-14A; no tolerance widening"
+      }
+    },
+    "compatibility": "Unchanged frozen v3 runtime and old readers/default paths; five-helper source contract retained, factory module discovery shared with direct owner. No migration, automatic activation, target/weight/sigma/Free-R change or silent frame reconciliation.",
+    "retention": {
+      "included": "Code/tests/docs/compact technical evidence only",
+      "excluded": "Raw models, observations, native logs and runners remain local; all failures preserved",
+      "disposable_build_bytes_removed": 22121260,
+      "attempts": [
+        {
+          "anchor": "NASolve-live-tests",
+          "path": "371_Cedar_prepared-observation-_v0ahfbb",
+          "driver": {
+            "returncode": 1,
+            "stopped_verified": true,
+            "source_unchanged": true
+          },
+          "driver_sha256": "3bac5b642abd24e11a25dc6198b24dabe0e1266a569d24823c20e9b003f3556d",
+          "summary": {
+            "status": "FAILED",
+            "returncode": 1,
+            "seconds": 6.1018035829984,
+            "test_sha256": "455b4bfb5b75255aada1af53cc41de113e7dc05ff9baae79370774a40a245d35",
+            "test_unchanged": true,
+            "scope": "Native direct-call ownership matrix only; no refinement/full suite"
+          }
+        },
+        {
+          "anchor": "NASolve-live-tests",
+          "path": "371_Cedar_prepared-observation-k6fjzf1x",
+          "driver": {
+            "returncode": 0,
+            "stopped_verified": true,
+            "source_unchanged": true
+          },
+          "driver_sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+          "summary": {
+            "status": "PASS",
+            "returncode": 0,
+            "seconds": 46.16239241600124,
+            "test_sha256": "455b4bfb5b75255aada1af53cc41de113e7dc05ff9baae79370774a40a245d35",
+            "test_unchanged": true,
+            "scope": "Native direct-call ownership matrix only; no refinement/full suite"
+          }
+        },
+        {
+          "anchor": "NASolve-live-tests",
+          "path": "371_Cedar_prepared-observation-sk1pwzk7",
+          "driver": {
+            "returncode": 0,
+            "stopped_verified": true,
+            "source_unchanged": true
+          },
+          "driver_sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+          "summary": {
+            "status": "PASS",
+            "returncode": 0,
+            "seconds": 71.62471329199616,
+            "test_sha256": "53f0db305ed50810809d9d4532b4e8e4d21fb8cee560a91913124647be4e087e",
+            "test_unchanged": true,
+            "scope": "Native direct-call ownership matrix only; no refinement/full suite"
+          }
+        }
+      ]
+    },
+    "remaining": [
+      "Seal one anchored immutable admission through existing execution owner after validated preflight; choose working source/data frame explicitly.",
+      "Qualify the actual native module-level driver/optimizer/report/final-writer boundary; no refinement-time provider replanning.",
+      "Versioned runtime must preserve foreign kernel, writer and monomer-summary replacements without changing historical qualified bytes.",
+      "Q06 chemical survival and broader/default activation remain open."
+    ]
   }
 }

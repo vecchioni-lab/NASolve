@@ -50,12 +50,18 @@ rebinding and exact recovery remain prerequisites. Hazel's matched DF force/phas
 controls stay separate; more iterations or cycles have not produced an accepted
 endpoint. These mechanics do not close achieved chemistry or authorize a merge.
 
-The next bounded sequence reuses the existing execution owner: observe the actual
-returned preflight model; explicitly seal one immutable admission tied to request
-and validated preflight; revalidate that reference in the same refinement phase;
+C371 now supplies the read-only prepared-model assembly through existing owners;
+the installed helper passes a fresh ordinary preflight and matches independently
+observed records. It neither writes admission nor evaluates forces. W115 also
+requires an explicit working-cell choice because MTZ/PDB precision differs; retain
+the original refusal and never silently widen the source-frame tolerance.
+
+The next bounded sequence reuses the existing execution owner: explicitly seal
+one immutable admission tied to request and validated preflight; revalidate that
+reference in the same refinement phase;
 then qualify one fixed-weight, coordinate-only cycle and final writing. Never
 rewrite the request, choose providers again during refinement, or make a read-only
-validator write admission. A later versioned runtime must preserve foreign global
+validator write admission. A later versioned runtime must preserve foreign kernel, final-writer and monomer-summary
 bindings; C369 intentionally leaves historical runtime bytes untouched. First
 fixed-weight qualification is not a recommended scientific weighting/default.
 

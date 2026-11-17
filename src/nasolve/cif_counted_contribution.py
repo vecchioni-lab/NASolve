@@ -252,6 +252,69 @@ def _require_recipe_crystal(geometry, packet, api):
           'Native crystal differs from the source recipe crystal')
 
 
+def _factory_modules(factory_module):
+    _need(factory_module.__name__.rsplit('.',1)[-1]=='topostitch_native_recipe',
+          'Require the fixed pair contribution factory module')
+    names=tuple(factory_module.CONTRIBUTION_SOURCE_MODULES)+('topostitch_native_coverage',)
+    _need(len(names)==len(set(names)), 'Duplicate contribution helper names')
+    modules={name:importlib.import_module(factory_module.__package__+'.'+name) for name in names}
+    _need(modules['topostitch_native_recipe'] is factory_module, 'Foreign factory module')
+    return modules
+
+
+def observe_prepared_pair_contribution(model, *, factory_module, factory_sources,
+        helper_sources, packet, model_bytes, expected_recipe_sha256):
+    """Read one prepared model and make its initial existing provider selection.
+
+    The enclosing execution owner must supply the actual returned preflight model
+    and trusted source pins. This function cannot establish that provenance alone.
+    Reuse the compiler, dual-state inventory and provider planner; return their
+    detached records, not a new persistent schema or permission to refine. Never
+    call this to replan an already sealed refinement admission.
+
+    No forces, coordinate synchronization, file writes or adapter/kernel installation
+    occur. The existing observer may refresh native pair caches. Single-owner
+    access is required. Frozen runtime/versioning and durable admission live outside
+    this read, and source-frame mismatches are refused rather than reconciled.
+    """
+    api=_native_api();_check_files(api['profiles']);_check_files(api['native_files'])
+    manager=model.restraints_manager;geo=manager.geometry
+    _need(type(model) is api['Model'] and type(manager) is api['Restraints']
+          and type(geo) is api['Geometry'], 'Unsupported prepared native owners')
+    modules=_factory_modules(factory_module);factory_guard=_Sources(modules,factory_sources)
+    helpers={m.__name__.rsplit('.',1)[-1]:m for m in (policy,correction,kernel_owner,state_owner,gradient_owner)}
+    helper_guard=_Sources(helpers,helper_sources)
+    packet=_detached(packet)
+    compiled=factory_module.NativePairRecipe(packet,model_bytes,
+        expected_recipe_sha256=expected_recipe_sha256,correction=correction)
+    _require_recipe_crystal(geo,packet,api)
+    binding=compiled.binding_report()
+    coverage=modules['topostitch_pair_coverage'];observer=modules['topostitch_native_coverage']
+    declared=coverage.describe_compiled_pair_terms(compiled,packet,
+        expected_binding_sha256=_digest(binding))
+    baseline=policy.snapshot_live_nonbonded_policy(geo,
+        flags=api['types']['flags'](default=True),normalization=False)
+    context=dict(source_model_sha256=declared['source_model_sha256'],
+        recipe_sha256=declared['recipe_sha256'],atom_labels=declared['atom_labels'],
+        crystal_sha256=_digest(baseline['policy']['symmetry']),
+        native_exclusion_policy_sha256=baseline['policy_sha256'])
+    options=dict(frozen_context=context,frozen_policy=baseline,policy_owner=policy,
+        expected_policy_owner_sha256=helper_sources['cif_live_nonbonded_policy'],
+        state_owner=state_owner,expected_state_owner_sha256=helper_sources['cif_refinement_output'])
+    observed=observer.observe_native_pair_terms(model,**options)
+    selection=coverage.select_pair_providers(declared['terms'],observed['terms'],
+        frozen=dict(context=context,requested_sha256=declared['terms_sha256'],
+                    native_sha256=observed['terms_sha256']),current_context=context)
+    _need(observer.observe_native_pair_terms(model,**options)==observed
+          and model.restraints_manager is manager and manager.geometry is geo,
+          'Prepared native state changed during provider observation')
+    _need(compiled.binding_report()==binding, 'Prepared recipe binding changed')
+    factory_guard.check();helper_guard.check()
+    _check_files(api['profiles']);_check_files(api['native_files'])
+    return _detached(dict(frozen_policy=baseline,compiled_binding=binding,
+        native_observation=observed,provider_selection=selection))
+
+
 class CountedContributionOwner:
     """One model, fresh trusted factory, instance adapters and explicit lifetime.
 
@@ -269,12 +332,7 @@ class CountedContributionOwner:
         self._model=model; self._manager=model.restraints_manager; self._geo=self._manager.geometry
         _need(type(model) is api['Model'] and type(self._manager) is api['Restraints']
               and type(self._geo) is api['Geometry'], 'Unsupported counted native owners')
-        _need(factory_module.__name__.rsplit('.',1)[-1]=='topostitch_native_recipe', 'Require the fixed pair contribution factory module')
-        package=factory_module.__package__
-        names=tuple(factory_module.CONTRIBUTION_SOURCE_MODULES)+('topostitch_native_coverage',)
-        _need(len(names)==len(set(names)), 'Duplicate contribution helper names')
-        modules={name:importlib.import_module(package+'.'+name) for name in names}
-        _need(modules['topostitch_native_recipe'] is factory_module, 'Foreign factory module')
+        modules=_factory_modules(factory_module)
         self._factory_sources=_Sources(modules,factory_sources)
         self._kernel_binding=api['gr'].parallelity_residual_sum
         wrapped=type(self._kernel_binding) is FunctionType

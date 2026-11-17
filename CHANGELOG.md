@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Read actual prepared pair restraints before selecting providers (C371)
+
+- Add an explicit read-only composition of the existing recipe compiler, native
+  policy/state observer and initial provider selector. Bind the actual native
+  inventory, source/frame and both atom representations; reject changed state.
+- Return existing detached records without forces, files, adapters or a new
+  persistent schema. Preflight lineage, immutable admission and actual refinement
+  remain the enclosing execution owner's responsibility. Default paths unchanged.
+
 ### Keep added pair forces in their declared crystal frame (C370)
 
 - Refuse explicit counted ownership when the actual native cell/group differs

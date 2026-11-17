@@ -294,6 +294,10 @@ def test_self_consistent_changed_native_cell_cannot_borrow_original_recipe_image
     assert context['crystal_sha256']!=c.options['factory_arguments']['provider_selection']['frozen']['context']['crystal_sha256']
     with pytest.raises(ValueError,match='recipe crystal'):
         owned.CountedContributionOwner(model,**options)
+    with pytest.raises(ValueError,match='recipe crystal'):
+        owned.observe_prepared_pair_contribution(model,factory_module=c.factory,
+            factory_sources=c.options['factory_sources'],helper_sources=c.options['helper_sources'],
+            packet=args['packet'],model_bytes=data,expected_recipe_sha256=args['expected_recipe_sha256'])
     assert 'energies_sites' not in vars(model.restraints_manager) and 'energies_sites' not in vars(model.restraints_manager.geometry)
     assert c.model.restraints_manager_energies_sites(compute_gradients=True).target==native_before
     assert c.state()==c.before
@@ -306,4 +310,68 @@ def test_recipe_crystal_group_uses_native_equivalence_not_symbol_text(native_cas
     else:
         with pytest.raises(ValueError,match='recipe crystal'):
             owned._require_recipe_crystal(c.geo,packet,owned._native_api())
+    assert c.state()==c.before
+
+
+def prepared_observation(c):
+    args=c.options['factory_arguments']
+    return owned.observe_prepared_pair_contribution(c.model,
+        factory_module=c.factory,factory_sources=c.options['factory_sources'],
+        helper_sources=c.options['helper_sources'],packet=args['packet'],
+        model_bytes=args['model_bytes'],expected_recipe_sha256=args['expected_recipe_sha256'])
+
+
+@pytest.mark.parametrize('native_kernel',[False,True])
+def test_prepared_pair_observation_is_force_free_and_reuses_existing_selection(native_case,native_kernel):
+    c=native_case;calls=[]
+    watched={Model.restraints_manager_energies_sites.__code__,
+        c.model.restraints_manager.energies_sites.__func__.__code__,
+        c.geo.energies_sites.__func__.__code__,c.factory.NativePairRecipe.evaluate_terms.__code__,
+        kernel_owner.ParallelityKernel.__call__.__code__}
+    def profile(frame,event,arg):
+        if event=='call' and frame.f_code in watched:calls.append(frame.f_code.co_name)
+    binding=c.kernel._api.parallelity_residual_sum if native_kernel else c.kernel
+    gr.parallelity_residual_sum=binding
+    previous=sys.getprofile();sys.setprofile(profile)
+    try:
+        result=prepared_observation(c)
+        assert gr.parallelity_residual_sum is binding
+    finally:
+        sys.setprofile(previous);gr.parallelity_residual_sum=c.kernel
+    assert calls==[]
+    assert result['provider_selection']==c.options['factory_arguments']['provider_selection']
+    assert c.rd(result['compiled_binding'])==c.options['factory_arguments']['expected_binding_sha256']
+    observed=result['native_observation']
+    assert observed['policy_id']=='topostitch-native-pair-observation-v2'
+    assert observed['native_state']['force_sites_sha256']==c.rd(list(c.model.get_xray_structure().sites_cart()))
+    assert observed['runtime_authority'] is observed['scientific_acceptance'] is False
+    assert result['frozen_policy']['policy_sha256']==c.options['frozen_policy']['policy_sha256']
+    assert c.state()==c.before
+    assert 'energies_sites' not in vars(c.geo) and 'energies_sites' not in vars(c.model.restraints_manager)
+
+
+def test_prepared_pair_observation_reads_changed_actual_inventory(native_case):
+    c=native_case;original=c.geo.parallelity_proxies
+    try:
+        c.geo.parallelity_proxies=gr.shared_parallelity_proxy()
+        result=prepared_observation(c)
+        assert len(result['provider_selection']['additive'])>len(c.options['factory_arguments']['provider_selection']['additive'])
+        assert not any(t['kind']=='parallelity' for t in result['native_observation']['terms'])
+        # It is a new initial selection, not a mutation of the old supplied record.
+        assert len(c.options['factory_arguments']['provider_selection']['additive'])==17
+        assert result['provider_selection']['frozen']['native_sha256']!=c.options['factory_arguments']['provider_selection']['frozen']['native_sha256']
+    finally:c.geo.parallelity_proxies=original
+    assert c.state()==c.before
+
+
+def test_prepared_pair_observation_refuses_unsynchronized_force_sites(native_case):
+    c=native_case;xrs=c.model.get_xray_structure();sites=xrs.sites_frac().deep_copy()
+    shifted=sites.deep_copy();shifted[0]=tuple(v+(.001 if i==0 else 0.) for i,v in enumerate(shifted[0]))
+    try:
+        xrs.set_sites_frac(shifted)
+        with pytest.raises(ValueError,match='Hierarchy and scattering'):
+            prepared_observation(c)
+        assert list(xrs.sites_frac())==list(shifted)
+        assert state_owner._hierarchy(c.model)==c.before['hierarchy']
+    finally:xrs.set_sites_frac(sites)
     assert c.state()==c.before

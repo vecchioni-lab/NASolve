@@ -4405,10 +4405,19 @@ refuses; all retained record bytes are rechecked at lifetime boundaries. The
 original runtime still writes and deduplicates those records, with no second
 writer/installer. Its frozen bytes and older readers remain unchanged.
 
+C371's `observe_prepared_pair_contribution` composes the existing compiler,
+actual policy reader, W112 dual-state observer, W105 declarations and W108 initial
+provider selection in this same module. It returns their existing detached records;
+the enclosing owner must establish actual-preflight provenance and later seal
+admission. No forces, state synchronization, files or adapters are created; native
+pair-cache refresh may occur. Repeated observation checks state across selection.
+Never call this initial selector to replan a frozen refinement. Source/native
+working-cell choice stays explicit, including MTZ/PDB representation precision.
+
 Ordinary refinement remains gated on prepared-model and optimizer lifetime,
 copied/selected reporting managers and final output. C369 qualifies wrapper
 recognition for direct calls only, not that wider integration. Historical v3
-runtime cleanup still overwrites a foreign global replacement; correcting it
+runtime/output/monomer cleanup still overwrites foreign kernel/writer/summary replacements; correcting it
 requires the separately qualified next runtime version, not silent source drift. Native-family statistics cannot claim added residuals are included
 when their decomposition omits them. Direct-call/relocated tests do not qualify
 those paths, arbitrary selection, a full optimizer, or chemical survival.

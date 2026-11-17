@@ -1,60 +1,45 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C370 source-recipe/native crystal join complete — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. C369 / `5d61e647` is pushed.
+Updated **2026-11-17, C371 prepared-state observation complete — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. C370 / `28a84f19` is pushed.
 Afternoon work window ends **17:30 UK / UTC**.
 
 ## Current checkpoint and next bounded work
 
-**C368 direct native ownership passes source, installed and peer lifecycle checks.**
-The opt-in owner joins Linden's W113 fresh pair-contribution factory to one actual
-Phenix model/manager. It checks source/code identity, unchanged chemical/restraint
-inputs, actual scattering coordinates, native-owned gradients, one addition and
-one normalization. Failed calls cannot return another score; exit removes only
-its own adapters, even when source checks fail. Foreign replacements are preserved
-and reported. No ordinary refinement activation or persistent artifact schema.
+**C371 complete: read what Phenix actually prepared before choosing providers.**
+The existing counted-contribution module now composes the fresh recipe compiler,
+actual fixed native policy, W112 dual-state inventory, W105 declarations and W108
+initial provider selection. It returns their detached records, evaluates no forces,
+writes no files and installs no adapters/kernel. Native cache refresh is allowed;
+source/model/frame/state drift refuses. The caller must supply the actual returned
+preflight model; this helper alone neither proves preflight lineage nor seals
+runtime authority. Never use it to replan an already admitted refinement.
 
-155 focused and the same 155 installed/relocated tests pass. 31 actual Phenix
-2.2.1-6174 ownership/refusal/cleanup cases pass in 173.70 s; one separately selected
-unnormalized-mode case passes in 19.26 s. An entry-failure regression fails before
-the correction. W114 passes eight healthy/displaced, zero/full/partial/selected
-manager cases:16 fresh owners/compilers,28 calls, two scattering-only movements,
-exact state/fractional/native restoration and fresh restarts. Switching three
-terms from native to added preserves total count and numerical target/gradients.
-No optimizer/refinement claim follows. All native drivers are stopped; source
-pins are unchanged. Compact evidence: `owned_counted_contribution_2026_11_17`.
-No full Cedar suite. C368 is published on the existing Cedar branch.
+117 focused /117 relocated installed tests pass. Six actual Phenix 2.2.1-6174 checks
+pass in 70.73 s, including original-native/corrected-kernel force-free reads, changed
+inventory, unsynchronized sites and changed-cell refusal. The missing-function
+regression fails before implementation. Linden's W115 attempt 4 consumes the exact
+installed wheel after a fresh ordinary zero-cycle preflight: all 855 ordered atoms,
+3333 observations and 176 original Free-R selections remain intact; 107 of 124
+requested terms are native and 17 need addition. The helper exactly reproduces the
+independent preflight records, with original state/method/kernel bindings retained.
+This is a real preflight execution, not a refinement or chemical-survival pass.
+Compact receipt: `prepared_pair_observation_2026_11_17`. No full suite.
 
-**C369 complete: recognize the existing usage wrapper without replacing it.**
-Wrapped direct admission additionally pins the exact existing runtime source,
-compiled nested function and kernel/directory/history closure cells. New unique
-observation rows must match their saved parameters/digest; retained rows are
-rechecked at entry/exit. Plain five-helper admission stays unchanged. All v3
-runtime bytes and v1/v2/v3 frozen readers remain unchanged; no new numerical
-wrapper, installer, optimizer activation or stored schema. Its foreign-global
-cleanup limitation remains for a later qualified runtime version.
+**Working-frame choice must be explicit.** The default MTZ cell differs from the
+source PDB by 2.93e-6 Å because of storage precision. W115 preserves that refusal;
+an explicit native source-cell/group choice passes at 2.84e-14 Å, with original
+Miller IDs/Free-R and amplitudes/sigmas preserved. No tolerance widening, hidden
+recipe recompilation or promotion of the failed attempt. The source model is the
+earlier W114 bend preview, not untouched deposited coordinates.
 
-246 focused /246 relocated installed checks pass; nine targeted actual Phenix
-cases pass in89.01s, plus the installed wrapped positive in20.53s. The final
-portable fixture's40 pure tests pass. A new accepted-wrapper case fails before
-implementation. Native tests instantiate the exact existing nested body/globals
-with the same three closure cells; they do not run the full refinement program.
-Both owned attempts are stopped/source-unchanged. Compact receipt:
-`existing_usage_wrapper_admission_2026_11_17`. No full suite.
-
-**C370 complete: source recipe and actual native crystal must share a frame.**
-The actual changed-cell negative reproduced a missing join: an internally
-consistent new native policy/provider context could admit Cartesian pair images
-compiled in the original cell. Admission now compares the already-validated recipe
-cell and actual native cell using the compiler's existing 1e-10 tolerance and
-native space-group equality. Equivalent group names pass; changed frames refuse
-before adapter installation. No recompile, new tolerance or scientific target.
-
-117 focused /117 relocated installed checks pass. Six actual Phenix 2.2.1-6174
-cases pass in59.36s, including the formerly admitted cell change, group alias and
-different-group controls, normalized/unnormalized calls and the existing usage
-wrapper. The negative-before and fixed attempts are stopped/source-unchanged.
-Compact receipt: `source_recipe_native_crystal_join_2026_11_17`. No full suite.
+**Completed direct-call foundations:** C368/W114 qualify owned added forces,
+single counting/normalization and recovery; C369 recognizes the unchanged existing
+usage wrapper; C370 joins source recipe and actual native crystal. Their source,
+installed and native receipts remain in the evidence ledger under
+`owned_counted_contribution_2026_11_17`, `existing_usage_wrapper_admission_2026_11_17`
+and `source_recipe_native_crystal_join_2026_11_17`. Reuse those checks; do not rerun
+their entire matrices without a new concern. All Cedar native drivers are stopped.
 
 **Next gate: one checked prepared state before the same refinement phase.**
 Linden's proposal reuses the existing isolated preflight, execution owner,
@@ -73,12 +58,14 @@ estimation can pass off-model shaken coordinates through the original manager;
 C368 correctly refuses that unqualified path. Reporting copies retain native-family
 statistics, with separate checked added-pair evidence. Do not synchronize stale
 hierarchy XYZ during a force call or claim the copied report includes additions.
-A new versioned runtime must also preserve foreign global replacements. Linden has verified the exact W114 derived-model/recipe and W34 reflection
-archive members/checksums, including all176 original Free-R test0 flags among3333
-observations. The current W113/W114 model is a small earlier bend preview, not
-untouched deposited coordinates. His next ordinary preflight diagnostic retains
-that derived-control label and performs no optimization or added contribution. No new implementation is yet
-qualified at that boundary; Q06 achieved chemistry remains open.
+A new versioned runtime must preserve foreign kernel, final-writer and monomer-
+summary replacements; all three historical cleanup paths currently overwrite them.
+Linden's next bounded diagnostic tests the exact installed C371 result through the
+module-level native driver, one coordinate-only cycle and final writing. A native-
+only zero-addition recipe and the full 17-addition recipe must be labelled as
+separate requested objectives, not identical chemistry. Stop on the first failure;
+no production activation or new runtime policy is yet qualified. Q06 achieved
+chemistry remains open.
 
 **Established foundations:** C367 reuses C331's complete fixed-input traversal
 while retaining byte-identical callback-free admission, records and refusals:
@@ -90,13 +77,13 @@ without OP3. Defaults and automatic aliases/pairing rules remain unchanged.
 Exact receipts are `shared_fixed_native_policy_read_2026_11_17` and
 `ordinary_frozen_construction_intake_2026_11_17`; prior attempts stay preserved.
 
-Hazel owns DF force attribution and matched controls, separately from this new
-owner. Longer minimization (25→100 iterations) improves attachment to ~1.598 Å
-but worsens Rwork/Rfree to ~0.30235/0.33311. Ten macrocycles with the original
-25 allowance also worsen the fit (~0.30450/0.32691). Neither is accepted; no
-restraint/sigma changes or automatic adoption. The matched ML/no-HL-use control
-is active under Hazel. Alder's optional iteration allowance is `a02b9c3` with
-unchanged omitted defaults; this is not Cedar integration evidence.
+Hazel's DF force/phase/seed controls remain separate. More iterations/cycles,
+ML rather than MLHL, direct rather than FFT calculation, and geometry seeds with
+either 19 base/Hg atoms or 41 whole-residue/Hg atoms have not produced an accepted
+endpoint. Better seeded attachment returns to ~1.66 Å and ~31° donor angle under the
+original open refinement, with mean B ~203 Å² in the whole-residue child. Do not
+interpret similar R values as restored local chemistry or promote fdp. Alder's
+optional iteration allowance remains `a02b9c3`; raw evidence stays private.
 
 The [completion queue](cif-doctor-completion-queue.md#pipeline-position) is the sole
 unfinished-work order. Q04/Q05 remain complete for the supported explicit route;
