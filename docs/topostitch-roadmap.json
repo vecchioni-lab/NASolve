@@ -4,7 +4,7 @@
   "updated": "2026-11-17",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "1b19d556996ef660ffa756a24b239a5dc35f52f1",
+  "audited_code_commit": "99da97d210d7c428fb4b07eee96e77c871de8adc",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -439,7 +439,8 @@
         "W123 reuses existing native pair attribution on exact saved W116 ordinary endpoints: all 124 terms/14 pairs, exact native/zero control and modest targeted geometry improvement. Residual short/long contacts and no Rfree benefit remain; retain two slight core increases and separate rounding/source-state limits. No new refinement or scientific gate closure.",
         "W124 audits C379 truthful refused-admission records and C380 package-owned exact W118 library integration. 887 relocated installed tests+13subtests and independent296-file/committed-source verification close package ownership, not positive counted admission, continuation, native/full-suite or scientific gates. Maintain Willow periodic-source/Cedar execution ownership without divergent vendor copies.",
         "W125 audits C381 durable explicit counted admission and same-phase native consumption: exact successful control, truthful refused/failure outcomes, immutable compact preparation, relocated cold reads,347 installed tests+13subtests and independent committed298-file/frozen24-file checks. Ordinary counted descendants refuse silent intent loss; positive registered continuation and physical repair remain open.",
-        "W126 audits C382 registered same-intent continuation and C383 inherited input-adaptation proof: two complete unselected REVIEW descendants, exact parent-output and original-intent joins, focused installed and committed-source checks, relocated cold reads. Contact/plane readback improves partly but R stats worsen; no matched continuation efficacy claim. Follow-up final-writer/checkpoint substitution gap remains pending before ordinary-owner activation."
+        "W126 audits C382 registered same-intent continuation and C383 inherited input-adaptation proof: two complete unselected REVIEW descendants, exact parent-output and original-intent joins, focused installed and committed-source checks, relocated cold reads. Contact/plane readback improves partly but R stats worsen; no matched continuation efficacy claim. Follow-up final-writer/checkpoint substitution gap remains pending before ordinary-owner activation.",
+        "W127 audits explicit v6 native-written-model checkpoint binding: completed original writer bytes/state are required; wrong checksum-valid model refuses. Actual cycle reproduces C382 exactly, current/historical payloads and relocated cold reads verify, old proof remains narrower. No scientific or ordinary-owner activation claim."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -448,7 +449,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Close final-writer/checkpoint-model binding before joining counted continuation to existing AutoRefine ownership. Preserve exact original intent, selected parent, C278 copied-input proof, declared working frame, supported actual native protocol and unselected REVIEW. Explicitly handle terminal-source additions; do not narrow ordinary defaults silently or create a second executor. Reuse unchanged C381/C382 evidence, then qualify changed owner boundaries and matched B10 controls. W122 stays planned; broader phases, exclusions, density and B09 remain open.",
+      "next_action": "Join explicit v6 counted execution to existing AutoRefine ownership under an explicitly supported actual native protocol; C385 closes native-written-model publication binding. Preserve original intent, selected parent, C278 copied-input proof, declared frame, existing process ownership and unselected REVIEW. The continuation helper preserves inherited v5/v6; any v5-to-v6 transition needs a fresh explicit request/admission and does not upgrade historical proof. Handle terminal-source additions/chemistry separately, avoid silently narrowing ordinary defaults or introducing a second executor. Reuse unchanged lifecycle evidence, qualify changed owner boundaries, then matched B10 controls. W122 remains planned; broader phases, exclusions, density and B09 remain open.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -483,14 +484,15 @@
         "E_ORDINARY_PAIR_ATTRIBUTION",
         "E_PACKAGE_OWNED_INTEGRATION",
         "E_DURABLE_COUNTED_ADMISSION",
-        "E_REGISTERED_COUNTED_CONTINUATION"
+        "E_REGISTERED_COUNTED_CONTINUATION",
+        "E_NATIVE_WRITTEN_MODEL_BINDING"
       ],
       "last_audit": {
         "date": "2026-11-17",
-        "code_commit": "1b19d556996ef660ffa756a24b239a5dc35f52f1",
-        "human_update": 126,
+        "code_commit": "99da97d210d7c428fb4b07eee96e77c871de8adc",
+        "human_update": 127,
         "reviewer": "Linden",
-        "scope": "Read-only audit of actual C382 continuation, C383 input proof, exact installed sources and saved PDB geometry; no duplicated native run. Mechanical continuation is scoped; final-writer publication gap, ordinary ownership and physical acceptance remain open."
+        "scope": "Independent committed/installed/native-output audit of C385; closes final-writer-to-checkpoint binding for explicit v6. Old v5 meaning, ordinary-owner boundary and physical acceptance remain separate."
       }
     },
     {
@@ -2418,6 +2420,31 @@
           "all_members_verified": true
         }
       ]
+    },
+    "E_NATIVE_WRITTEN_MODEL_BINDING": {
+      "kind": "native_written_model_publication_independent_audit",
+      "code_commit": "99da97d210d7c428fb4b07eee96e77c871de8adc",
+      "human_update": 127,
+      "reference": "docs/topostitch-periodic.md#w127--bind-the-published-checkpoint-to-the-native-written-model",
+      "result": "W127 independently audits Cedar C385 explicit v6 final-writer provenance and usable checkpoint binding. One completed Phenix 2.2.1-6174 cycle exactly reproduces C382 first-cycle PDB bytes, output synchronization and counted-owner observation;15 calls,11392+17=11409. Checksum-valid previous-model substitution refuses. Peer197 source/282 installed tests pass; independent299-file committed-source equality,24-file current/historical payload checks and immutable cold reads of64 current/117 historical files pass.",
+      "limitation": "Explicit v6 only; old v3/v4/v5 payload bytes and their narrower proof retain meaning. Inherited v5 continuation is not implicitly upgraded. No new geometry/Rfree benefit, scientific acceptance, native v6 descendant, ordinary AutoRefine/Doctor activation, whole-branch merge or current full-suite claim. Initial missing-Gemmi harness stopped before native allocation and remains retained. W122 stays planning-only; broader protocol, chemistry/terminal-source joins, periodic exclusions and density remain open.",
+      "runtime_pins": {
+        "cedar_commit": "2d4987ef6aa17d392e49f3f864d1a82eea8b2bfe",
+        "upstream_willow_commit": "c08f337024f8901c583c0988f652e9a1c3156a49",
+        "wheel_sha256": "12b613410142aed6ae7fd7aeb758d6d01e8f40a91458765356cac413672514d6",
+        "execution_policy": "round-local-counted-execution-v6",
+        "native_plan_sha256": "bf13b1d00746fd95bfa5c2bf4957b7a751e8e7d87fd5a92a09b3e383d6ce9b36"
+      },
+      "local_receipts": [
+        {
+          "repository_anchor": "everyday NASolve checkout",
+          "relative_path": "branch-artifacts/willow/w127-written-model-review-2026-11-17.tar.gz",
+          "sha256": "af30cd8135302f86cb8b8f164b8189b0efcfa353c764f5932dd676240a146f40",
+          "bytes": 32744,
+          "indexed_files": 14,
+          "all_members_verified": true
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -2579,8 +2606,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 126,
-    "next": 127,
+    "current": 127,
+    "next": 128,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -3146,6 +3173,12 @@
         "title": "Audit registered continuation and inherited input adaptation",
         "state": "RECORDED",
         "code_commit": "1b19d556996ef660ffa756a24b239a5dc35f52f1"
+      },
+      {
+        "number": 127,
+        "title": "Bind the published checkpoint to the native-written model",
+        "state": "RECORDED",
+        "code_commit": "99da97d210d7c428fb4b07eee96e77c871de8adc"
       }
     ]
   },
