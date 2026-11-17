@@ -209,3 +209,93 @@ def test_incomplete_or_changed_pair_attribution_cannot_be_compared(change):
     elif change=='claim':after['scientific_acceptance']=True
     else:after['binding_sha256']=before['binding_sha256']=None
     with pytest.raises(ValueError):compare_pair_attribution(before,after)
+
+
+
+def test_rebind_preserves_frozen_chemistry_and_images_without_regeneration(tmp_path, monkeypatch):
+    from copy import deepcopy
+    from nasolve import topostitch_recipe as recipes
+    packet=prepare(tmp_path,requests=[pair(),pair(pair_id="image",target_operator_xyz="y+1,-x,z+1/4")])
+    source=(tmp_path/"model.pdb").read_bytes();before=deepcopy(packet)
+    lines=source.decode().splitlines(keepends=True)
+    for i,line in enumerate(lines):
+        if line.startswith("ATOM"):
+            lines[i]=line[:30]+f"{float(line[30:38])+.5:8.3f}"+line[38:60]+" 31.00"+line[66:]
+    moved=("REMARK changed coordinates and ADP\n"+"".join(lines)).encode()
+    monkeypatch.setattr(recipes,'_library',lambda:pytest.fail('Frozen chemistry must not be regenerated'))
+    rebound=recipes.rebind_pair_recipe(packet,source,moved,
+        expected_recipe_sha256=recipe_digest(packet),expected_model_sha256=sha256(moved).hexdigest())
+    expected=deepcopy(packet);expected['source_model_sha256']=sha256(moved).hexdigest()
+    assert rebound==expected and packet==before
+    rebound['pairs'][0]['purpose']='core'
+    assert packet==before
+
+
+@pytest.mark.parametrize('change', ['element','charge','occupancy','name','residue','chain',
+    'reorder','missing','added','cell','group','internal_ter','blank_element','invalid_occupancy'])
+def test_rebind_refuses_changed_identity_chemistry_or_frame(tmp_path,change):
+    from nasolve.topostitch_recipe import rebind_pair_recipe
+    packet=prepare(tmp_path);source=(tmp_path/'model.pdb').read_bytes()
+    lines=source.decode().splitlines(keepends=True);i=1;line=lines[i]
+    if change=='element':lines[i]=line[:76]+' C'+line[78:]
+    elif change=='blank_element':lines[i]=line[:76]+'  '+line[78:]
+    elif change=='charge':lines[i]=line.rstrip('\n').ljust(78)+'1+\n'
+    elif change=='occupancy':lines[i]=line[:54]+'  0.50'+line[60:]
+    elif change=='invalid_occupancy':lines[i]=line[:54]+'   nan'+line[60:]
+    elif change=='name':lines[i]=line[:12]+'  NX'+line[16:]
+    elif change=='residue':lines[i]=line[:17]+' DG'+line[20:]
+    elif change=='chain':lines[i]=line[:21]+'Z'+line[22:]
+    elif change=='reorder':lines[1],lines[2]=lines[2],lines[1]
+    elif change=='missing':del lines[i]
+    elif change=='added':lines.insert(-1,pdb_record('HETATM',99,'O','HOH','W',1,element='O'))
+    elif change=='cell':lines[0]=cryst1((41,41,60,90,90,90),'P 43')
+    elif change=='group':lines[0]=cryst1((40,40,60,90,90,90),'P 41')
+    elif change=='internal_ter':lines.insert(2,'TER\n')
+    changed=''.join(lines).encode()
+    with pytest.raises(ValueError):
+        rebind_pair_recipe(packet,source,changed,expected_recipe_sha256=recipe_digest(packet),
+                           expected_model_sha256=sha256(changed).hexdigest())
+
+
+@pytest.mark.parametrize('change',['packet_digest','source_bytes','destination_digest','packet_source','packet_atoms','packet_frame','authority'])
+def test_rebind_refuses_unbound_original_or_destination(tmp_path,change):
+    from nasolve.topostitch_recipe import rebind_pair_recipe
+    packet=prepare(tmp_path);source=(tmp_path/'model.pdb').read_bytes();target=source
+    if change=='packet_source':packet['source_model_sha256']='0'*64
+    elif change=='packet_atoms':packet['atom_identities'].reverse()
+    elif change=='packet_frame':packet['crystal']['cell_parameters'][0]=41.
+    elif change=='authority':packet['runtime_authority']=True
+    expected=recipe_digest(packet)
+    if change=='packet_digest':expected='0'*64
+    elif change=='source_bytes':source+=b'REMARK changed original\n'
+    target_digest='0'*64 if change=='destination_digest' else sha256(target).hexdigest()
+    with pytest.raises(ValueError):
+        rebind_pair_recipe(packet,source,target,expected_recipe_sha256=expected,
+                           expected_model_sha256=target_digest)
+
+
+def test_rebind_accepts_equivalent_frame_spelling_and_chain_end_ter(tmp_path):
+    from nasolve.topostitch_recipe import rebind_pair_recipe
+    packet=prepare(tmp_path);source=(tmp_path/'model.pdb').read_bytes()
+    lines=source.decode().splitlines(keepends=True)
+    lines[0]=cryst1((40,40,60,90,90,90),'P43')
+    at=next(i for i,line in enumerate(lines) if line.startswith('ATOM') and line[21]=='B')
+    lines.insert(at,'TER\n');target=''.join(lines).encode()
+    result=rebind_pair_recipe(packet,source,target,expected_recipe_sha256=recipe_digest(packet),
+                             expected_model_sha256=sha256(target).hexdigest())
+    assert result['crystal']==packet['crystal'] and result['pairs']==packet['pairs']
+
+
+
+def test_rebind_detaches_before_reading_models(tmp_path,monkeypatch):
+    from copy import deepcopy
+    from nasolve import topostitch_recipe as recipes
+    packet=prepare(tmp_path);source=(tmp_path/'model.pdb').read_bytes();before=deepcopy(packet)
+    original=recipes.model_atom_rows
+    def read(data):
+        packet['pairs'][0]['phil']='changed by caller'
+        return original(data)
+    monkeypatch.setattr(recipes,'model_atom_rows',read)
+    result=recipes.rebind_pair_recipe(packet,source,source,
+        expected_recipe_sha256=recipe_digest(before),expected_model_sha256=sha256(source).hexdigest())
+    assert result==before

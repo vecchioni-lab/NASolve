@@ -1,8 +1,9 @@
 # NASolve development handoff — Willow
 
 Updated **2026-11-17**. This is the **`willow` branch** handoff, not the
-project-wide status of Pine, Cedar or Alder. **W117 is audited; W118 is next.**
-Runtime code is W113 plus the W117 exact-image optimization; W110/W111 remain diagnostic and protocol evidence.
+project-wide status of Pine, Cedar or Alder. **W118 is audited; W119 is next.**
+Runtime code includes W113's factory, W117's exact-image optimization and W118's
+data-only same-frame recipe rebind; W110/W111 remain diagnostic and protocol evidence.
 Direct native ownership is qualified at C368/W113; actual prepared-state
 assembly and one bounded ordinary coordinate-refinement diagnostic are qualified
 at frozen C371/W113 pins. Production admission and physical repair remain open.
@@ -22,6 +23,7 @@ S04/S05/S06 and P01/P02 remain partial; use the roadmap for individual gates.
 | W104 `review_pair_coverage` | Read-only comparison of explicit requested/native/additive terms; rejects missing, duplicate, stale, image and parameter mismatches | Caller authenticates complete declarations; no activation |
 | W105 `describe_compiled_pair_terms` | Exports terms from the existing compiled recipe and original bound packet | Not a native force or lifecycle qualification |
 | W106 `observe_native_pair_terms` | Callback-free actual-manager inventory with checksum-bound Cedar policy checks and exact rational image comparison | Special positions unsupported; source authenticity and active callback policy remain upstream |
+| W118 `rebind_pair_recipe` | Same frozen chemistry/images rebound to checked child bytes; saved endpoints and native compiler/evaluator agree exactly | No parent-lineage authority, provider selection or continued refinement |
 | W117 equal-image arithmetic | Exact old/new native target, gradients, counts and selection; measured checked-call improvement | One direct-call comparison, not whole-refinement speed or repair benefit |
 | W116 bounded ordinary lifecycle | Native-only and zero-addition endpoints exact; 17 missing terms participate through optimizer/final writer | One diagnostic cycle, fixed weights, no repair benefit or production activation |
 | W115 actual ordinary preflight | Installed shared reader reproduces independent prepared inventory/selection; 855 atoms and original data/Free-R preserved | Working frame must be explicit; no force activation |
@@ -47,10 +49,16 @@ for exact commands, failed preparations, archive checksums and limitations.
    qualifies one diagnostic module-level `driver.run` lifetime through the final
    writer. Neither supplies production admission. Cedar's explicit newer runtime
    and historical readers need their own version-scoped integration; keep W116's
-   C371/v3 pins intact. The Willow factory is still a separate qualified installed
-   package in these diagnostics; qualify a coordinated source/package join or an
-   explicit maintained dependency before shipping admission. Do not vendor another
-   recipe engine or infer that it already lives in the Cedar wheel.
+   C371/v3 pins intact. C374 qualifies one temporary joined installed package at
+   W117/C373 pins; it is not a branch merge or a W118 qualification. Do not vendor
+   another recipe engine. Rowan owns the stronger prepared baseline/consumer:
+   C371's four-family observation alone omits the broad bonded signature and outer
+   normalization, so it cannot authorize same-phase reconstruction by itself.
+   Preserve default C371 output; explicitly qualify the stronger consumer without
+   replanning providers. The later controller must bind original intent, actual
+   parent and preflight, and retain honest admission-refused/unlaunched outcomes.
+   W118 supplies only the compatible child recipe data. Descendants must preserve
+   pair intent through manual and Doctor ancestry or refuse before allocation.
 2. Carry the qualified W117 equal-image arithmetic into that coordinated package
    check. Its stateless identity shortcut preserves all checks and exact native
    results; Rowan's single owned call falls from 4.62 to 1.57 seconds. Do not infer
@@ -77,7 +85,16 @@ source-cell override is a diagnostic control, not a general campaign default.
 
 ## Validation and compatibility
 
-Latest code validation, **W117**: **223 focused, 2,009 full tests +229 subtests,
+Latest code validation, **W118**: **237 focused, 2,033 full tests +229 subtests,
+and 326 installed tests** pass. Twenty-four new regressions include chemistry/frame
+refusals and caller mutation; 23 were recorded failing before the API existed.
+Three saved W116 endpoints preserve all frozen pair data. Phenix 2.2.1-6174
+compiles the original and rebound 14-pair/124-term recipe with identical terms
+and images and gives exact energy-only/full-gradient results at the same 855-atom
+child coordinates. No refinement or owner is activated. See the
+[W118 receipt](topostitch-periodic.md#w118--rebind-frozen-pair-intent-to-a-compatible-child).
+
+Preceding code validation, **W117**: **223 focused, 2,009 full tests +229 subtests,
 and 302 installed tests** pass. Nine regression cases retain validation and exact
 lattice arithmetic; four fail before the optimization. The first full run's five
 sandbox process-inspection failures remain recorded; the complete rerun with
@@ -108,6 +125,15 @@ are exact; provider switches preserve complete counts 11,396 / 11,270, with maxi
 target difference 4.44e-16 and gradient difference 1.39e-17. It uses frozen wheel
 bytes, not an ordinary refinement driver. Rowan's separate owner validation is
 155 focused, 155 relocated-installed and 32 native controls.
+
+The later **C374 joined installed package**, at exact W117 `89eccdf2` and Cedar
+C373 `b653ad92`, passes 308 focused tests plus the 22 initially skipped Gemmi
+checks in the existing Gemmi environment. One complete 27.43-second native
+consumer passes exact numerical, prepared-state, wrapper and refusal controls in
+one relocated `nasolve` namespace. Source and original install are removed;
+305 source/resource files verify. No full suite, actual merge, W118 coverage or
+ordinary activation is claimed; eight documentation conflicts remain. Cedar's
+`joined_installed_counted_consumer_2026_11_17` ledger owns exact commands and pins.
 
 The separate full-source virtual **W112/C366** suite passes **12,138 tests +284
 subtests**, with one opt-in native module skipped, in 2,982.99 seconds. Exact NARestraints

@@ -5845,3 +5845,78 @@ Only `topostitch_pair_coverage.py` changes production code, with regressions in
 `test_topostitch_pair_coverage.py` and existing human/machine documentation updated.
 Coordinated package ownership, immutable production admission, broader native
 phases/exclusions and matched scientific repair remain open; S05/S06 stay partial.
+
+
+## W118 — Rebind frozen pair intent to a compatible child
+
+**2026-11-17; optional data API and complete native compiler check.**
+`topostitch_recipe.rebind_pair_recipe(packet, source_model_bytes, model_bytes,
+expected_recipe_sha256=..., expected_model_sha256=...)` returns a detached existing
+schema-1 packet with **only `source_model_sha256` changed**. It verifies the
+original packet/source and destination hashes, ordered identities and conventional
+crystal frame. Frozen pair IDs, sites, purposes, full image translations, library
+provenance, emitted PHIL, weights and all authority flags remain unchanged.
+
+Coordinates and displacement parameters may change. Element, formal charge,
+occupancy, ATOM/HETATM identity and internal same-chain TER breaks may not.
+Elements/occupancies/charges must be explicit and valid; missing elements are not
+guessed. Equivalent space-group spelling and TER separators between different
+chain IDs are accepted, while cell, setting, ordering, chemistry, added/missing
+atoms and internal chain-break changes refuse. Existing PDB/CRYST1/SCALE checks
+apply; mmCIF, recuts and renamed/reordered descendants are outside this API.
+The existing topology extra supplies Gemmi. No NARestraints loading/regeneration,
+file I/O, inference, native call or provider selection occurs inside this helper.
+
+This is not a full native packet validator or proof that the destination is the
+intended parent. The controller must preserve original intent and checked lineage,
+bind the actual parent/input/frame, obtain fresh preflight and freeze its initial
+selection. The unchanged native compiler validates the whole resulting packet.
+Same-phase consumption must compare its already sealed selection without choosing
+again. A read-only validator must never write admission records. If native
+preflight succeeds but admission fails, preserve native return code0 plus an
+explicit refusal/unlaunched-refinement outcome; do not fabricate native failure.
+
+### Checks and compatibility
+
+- **24 new regressions**, including held-out chemistry/frame refusals and mutation
+  of the caller's packet during parsing. The initial 23 cases fail before the API;
+  the later detachment regression is included in all final checks.
+- **237 focused, 2,033 complete-source tests +229 subtests, 326 installed tests**
+  pass. Relocated sdist-to-wheel installation removes original staging/source
+  before tests. Six CLI helps, pip check, lean import, Python 3.10 syntax and
+  unchanged captured-worker bytes pass. No existing preparation API/schema changes.
+- Verified W116 archive replay covers all three saved native endpoints: 855 ordered
+  atoms and all 14 pair definitions remain exact apart from the new source digest.
+  This replay launches no native tool and does not adopt those endpoints.
+- **Phenix 2.2.1-6174**, complete native compiler/direct-evaluator execution in
+  1.32 seconds of owned wall time: original recipe/source and rebound recipe/child
+  compile identical 124 terms/images, with exact energy-only and complete-gradient
+  results at the same child coordinates. Source pins and native kernel remain
+  unchanged; process return0 and stopped verification pass. No model owner,
+  optimization, diffraction refinement or continued-checkpoint qualification.
+
+Historical commands, with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` for source tests:
+
+```text
+/private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider tests/test_topostitch_recipe.py tests/test_topostitch_pair_coverage.py tests/test_topostitch_native_coverage.py tests/test_topostitch_transport.py
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w118-rebind/run-full.py
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w118-rebind/install-check.py
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w118-rebind/replay.py
+/private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w118-rebind/run-native.py
+python3 /private/tmp/willow-w118-rebind/audit-archive.py
+```
+
+Repository anchor **everyday NASolve checkout**, local forensic archive
+`branch-artifacts/willow/w118-recipe-rebind-2026-11-17.tar.gz`, SHA
+`d02350f6ee8c82a1d9ff34db929bec52287d1314b908761e01b74e5d52c8dae7`:
+1,235,612 bytes, 29 indexed files verified. It retains source/patch, package,
+tests/logs, exact input-member checksums, rebound packets and native receipts.
+Scientific source data remain in the verified W116 archive and are excluded from
+Git. This is diagnostic evidence, not a portable/resumable campaign.
+
+Wheel SHA `d1a7319f9a3d7e63d68906974a25d22691d47b61296d9db7f94004dccbdb755d`;
+recipe module SHA `73b735197560d8b0e0f0c343b4636fdf9e83b5acffa179aa7586367931293e76`.
+Only `topostitch_recipe.py` changes production code; existing recipe tests and
+human/machine docs are updated. S05/S06 remain partial. The separate C374 joined
+package uses W117/C373 pins and does not cover this new API. Production admission,
+descendant retention, broader phases/exclusions and scientific repair remain open.

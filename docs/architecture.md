@@ -1128,3 +1128,13 @@ canonicalizer. Distinct images retain exact matrix/rational arithmetic and full
 lattice shifts. This stateless optimization changes no validation, schema,
 provider selection, ownership, tolerance or physical objective. Native old/new
 results and mutation refusals are qualified separately from refinement speed.
+
+
+W118 `topostitch_recipe.rebind_pair_recipe` takes the existing packet, original
+and destination PDB bytes, and explicit packet/destination digests. It changes
+only the source-model binding after exact identity, chemistry and conventional
+frame checks. Frozen chemistry/images survive coordinate and displacement changes;
+new naming, occupancy, chemistry, internal chain breaks and recuts are outside its
+scope. It uses the existing optional Gemmi parser, not NARestraints regeneration.
+Parent lineage, actual prepared state, fresh provider selection and native
+compilation remain separate mandatory owners; rebinding grants no runtime authority.

@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W118 — Rebind unchanged pair intent to a compatible refined parent
+
+- Add data-only `rebind_pair_recipe` in the existing recipe module. Preserve all
+  frozen pair, image, purpose, library and restraint definitions; change only the
+  source-model digest after checking both explicit model byte strings.
+- Allow coordinate/displacement changes and equivalent group spelling; refuse
+  changed atom order/identity, element, charge, occupancy, internal chain breaks
+  or crystal frame. No regeneration, inference, files, schema or runtime authority.
+- Qualify saved-parent replay and exact native compiler/energy/gradient agreement.
+  Ordinary descendant execution still requires fresh preflight and lineage checks.
+
 ### W117 — Avoid repeated arithmetic for identical validated images
 
 - Cancel equal full symmetry images directly inside pair coverage, retaining all

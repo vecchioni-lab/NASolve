@@ -182,3 +182,72 @@ def prepare_pair_recipe(model_path, pairs, *, expected_sha256, max_pairs=1000):
     if path.read_bytes() != data:
         raise ValueError('Source model changed during recipe preparation')
     return packet
+
+
+
+def rebind_pair_recipe(packet, source_model_bytes, model_bytes, *,
+                       expected_recipe_sha256, expected_model_sha256):
+    """Bind unchanged explicit pair chemistry to a same-identity/frame PDB child.
+
+    Only the source-byte digest changes. Coordinates and displacement parameters
+    may change; atom order, element, formal charge, occupancy and internal chain
+    breaks may not. Preserve full image translations and frozen library/PHIL data;
+    never regenerate a recipe or infer a partner. Inputs and output are detached.
+
+    This is data preparation, not native validation or lineage authority. The
+    caller binds the actual parent and original intent, then obtains a fresh
+    checked preflight/provider selection. The native compiler still validates the
+    whole packet. No files are read/written and no runtime is activated. Recut,
+    renamed, reordered or chemically changed models require a different route.
+    """
+    try:
+        packet = json.loads(json.dumps(packet, allow_nan=False))
+        if (not isinstance(packet, dict) or recipe_digest(packet) != expected_recipe_sha256
+                or type(packet.get('schema_version')) is not int or packet['schema_version'] != 1
+                or packet.get('kind') != KIND or packet.get('policy') != POLICY
+                or any(packet.get(k) is not False for k in
+                       ('runtime_authority', 'scientific_acceptance', 'connection_capacity_validated'))):
+            raise ValueError('Unsupported or changed original recipe binding')
+        if (not isinstance(source_model_bytes, bytes) or not isinstance(model_bytes, bytes)
+                or sha256(source_model_bytes).hexdigest() != packet['source_model_sha256']
+                or sha256(model_bytes).hexdigest() != expected_model_sha256):
+            raise ValueError('Original or destination model checksum mismatch')
+        identities = model_atom_rows(source_model_bytes)
+        if (type(packet['atom_count']) is not int or packet['atom_count'] != len(identities)
+                or identities != packet['atom_identities'] or model_atom_rows(model_bytes) != identities):
+            raise ValueError('Rebinding requires unchanged ordered atom identities')
+        gemmi, source_cell, source_name = crystal_from_pdb_bytes(source_model_bytes)
+        _, target_cell, target_name = crystal_from_pdb_bytes(model_bytes)
+        declared = gemmi.find_spacegroup_by_name(packet['crystal']['space_group'])
+        source_group = gemmi.find_spacegroup_by_name(source_name)
+        target_group = gemmi.find_spacegroup_by_name(target_name)
+        if (declared is None or declared.hall != source_group.hall
+                or target_group.hall != source_group.hall
+                or list(source_cell.parameters) != packet['crystal']['cell_parameters']
+                or tuple(target_cell.parameters) != tuple(source_cell.parameters)):
+            raise ValueError('Rebinding requires the unchanged declared crystal frame')
+
+        def chemistry(data):
+            result = []; previous_chain = None; interrupted = False
+            for line in data.decode('ascii').splitlines():
+                if line[:6].strip() == 'TER':
+                    interrupted = True
+                elif line[:6] in ('ATOM  ', 'HETATM'):
+                    occupancy = float(line[54:60])
+                    element, charge = line[76:78].strip().upper(), line[78:80].strip()
+                    if (not math.isfinite(occupancy) or not 0 <= occupancy <= 1
+                            or not re.fullmatch('[A-Z]{1,2}', element)
+                            or gemmi.Element(element).atomic_number == 0
+                            or (charge and not re.fullmatch('[1-9][+-]', charge))):
+                        raise ValueError('Require explicit valid element, occupancy and formal charge')
+                    result.append((line[:6], element, charge, occupancy,
+                                   interrupted and previous_chain == line[21:22]))
+                    previous_chain = line[21:22]; interrupted = False
+            return result
+
+        if chemistry(source_model_bytes) != chemistry(model_bytes):
+            raise ValueError('Rebinding cannot change chemistry, occupancy or internal chain breaks')
+        packet['source_model_sha256'] = expected_model_sha256
+        return packet
+    except (KeyError, TypeError, AttributeError, IndexError, OverflowError) as exc:
+        raise ValueError('Incomplete original recipe or model binding') from exc
