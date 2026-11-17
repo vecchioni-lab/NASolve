@@ -17,6 +17,7 @@ LEGACY_POLICY_ID = 'round-local-parallelity-execution-v1'
 V2_POLICY_ID = 'round-local-parallelity-execution-v2'
 V3_POLICY_ID = 'round-local-parallelity-execution-v3'
 V4_POLICY_ID = 'round-local-parallelity-execution-v4'
+V5_POLICY_ID = 'round-local-counted-execution-v5'
 POLICY_ID = V3_POLICY_ID  # Ordinary requests keep their existing default.
 ADMISSION_REFUSAL_POLICY_ID = 'preflight-admission-refusal-v1'
 # Filled from the qualified C297 checkpoint; historical readers keep these exact
@@ -25,12 +26,35 @@ _SOURCE_DIGESTS = {'cif_parallelity_kernel.py': '074c51faa384856f014631c72d97a14
 _V2_SOURCE_DIGESTS = {'cif_parallelity_kernel.py': '074c51faa384856f014631c72d97a14237ec3b7b6d833d405ca92aa02b507568', 'cif_parallelity_correction.py': '701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f', 'cif_refinement_runtime.py': '78a7afd54b7f5ca835ad3e42f0a823aea3fb56eda59b1fe643716fec78593741', 'cif_refinement_output.py': '0e231d2d8502b3df7982688709bc9cc9322d2bde2becffcc7962250e9ebc08b5', 'data/parallelity-native-profile.json': '0b447a84abff9ef3efbe1d9481d918581a06299023ac0b6a1d78927c7cd7d3ee'}
 _CURRENT_SOURCE_DIGESTS = {'cif_parallelity_kernel.py': '074c51faa384856f014631c72d97a14237ec3b7b6d833d405ca92aa02b507568', 'cif_parallelity_correction.py': '701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f', 'cif_refinement_runtime.py': '6698585c1da6225895dd1d639554321ccab695eda1b4366d243deb39106c3503', 'cif_refinement_output.py': 'd1b6ff5a6c47407626be27745f30fda0dcede6b56666b9f30abc334d023f4533', 'cif_refinement_sites.py': 'd690273cc3de2b54594d763674e9716177cf2c178f36ab55ca4d29686644a340', 'data/parallelity-native-profile.json': 'f7aa742b2f00026b6bfa63695702e2b74fb65d5e78b598aec654abcea249758b'}
 _V4_SOURCE_DIGESTS = dict(_CURRENT_SOURCE_DIGESTS, **{'cif_refinement_runtime.py': '5611e658cb79e92996f24e92b1a13055e69bede04f1ab909a60216baea03b3e3', 'cif_refinement_output.py': '7f4220abd718b6396e3e196d72abea4343c6f5b45187aa51b1dc6efaa651fc21', 'cif_refinement_sites.py': '7643d29e113b487975a0a47ef21686bc19627693e7ec724cc627aa82d07baac8'})
+_V5_SOURCE_DIGESTS = {'cif_counted_contribution.py': '7322edee9e78a027bbd47c0043e1acc35494d1d4ecce1e671cb9225f771086b9',
+ 'cif_counted_phase.py': '5659d00cb21e2d389f098bd4e878c8c03408ac72e0a12bb6385c83889104de5f',
+ 'cif_counted_refinement.py': 'a5d7c820e511fdb80188563cb746d70516a9601dde83a8a99398542cba27c6e7',
+ 'cif_gradient_audit.py': 'a4d6571512313ae7ce8522668bd152ea806c5478803b74e296822bc313f275cc',
+ 'cif_live_nonbonded_policy.py': '14aadda1bbd69ad89f66836610747e32797756b82f7c77d1479d6b7567869c58',
+ 'cif_parallelity_correction.py': '701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f',
+ 'cif_parallelity_kernel.py': '074c51faa384856f014631c72d97a14237ec3b7b6d833d405ca92aa02b507568',
+ 'cif_refinement_output.py': '7f4220abd718b6396e3e196d72abea4343c6f5b45187aa51b1dc6efaa651fc21',
+ 'cif_refinement_runtime.py': '5611e658cb79e92996f24e92b1a13055e69bede04f1ab909a60216baea03b3e3',
+ 'cif_refinement_sites.py': '7643d29e113b487975a0a47ef21686bc19627693e7ec724cc627aa82d07baac8',
+ 'data/counted-native-profile.json': 'bf41896cc2269508a5ded1816ef4f5a4ed7bdee2fa5532bd94e38428d4715571',
+ 'data/nonbonded-native-profile.json': 'd35a0b61dd49a75132d16d3bb53b1c636eefbd30c21d19fe5d50a03d018e6ee6',
+ 'data/parallelity-native-profile.json': 'f7aa742b2f00026b6bfa63695702e2b74fb65d5e78b598aec654abcea249758b',
+ 'topostitch.py': '93a11d54897fac53454cd22f901e908d6e7ebfea46dbf759993ece5db74302bf',
+ 'topostitch_coordinates.py': '08d613f9dba70a7bf3bf8f265352e7f075e13282e356dfcf8a6565d2227e24ad',
+ 'topostitch_native_coverage.py': 'e90359fe08fac9497f99d0a829a5bd14c7af803b5f6015730e2143116854fd0f',
+ 'topostitch_native_recipe.py': '1739b2a7cf11d802bfa9293d7b79b9edcf7bb1ad868b53d4c1b1996b461d7748',
+ 'topostitch_packing.py': '646f7a59ecea07617e5f3ace0e3bf7be2668c18cb85a408efe4b60a2c6bcd288',
+ 'topostitch_pair_coverage.py': 'e342d7aa4d6277dac0cd4b90d63fe1501c74249927fe909e119680901c21f591',
+ 'topostitch_periodic.py': '971d91c0fb1c29619b85fe90829a650214e7560f069dd4bdb8ec50376e12a5ce',
+ 'topostitch_recipe.py': '73b735197560d8b0e0f0c343b4636fdf9e83b5acffa179aa7586367931293e76',
+ 'topostitch_transport.py': '8a641d8f067b594e8ea446156b0252583a0d6178c967148a6b86214f9f8cfbfc'}
 _SOURCES = {LEGACY_POLICY_ID:_SOURCE_DIGESTS, V2_POLICY_ID:_V2_SOURCE_DIGESTS,
-            V3_POLICY_ID:_CURRENT_SOURCE_DIGESTS, V4_POLICY_ID:_V4_SOURCE_DIGESTS}
+            V3_POLICY_ID:_CURRENT_SOURCE_DIGESTS, V4_POLICY_ID:_V4_SOURCE_DIGESTS, V5_POLICY_ID:_V5_SOURCE_DIGESTS}
 _RUNTIME_POLICIES = {LEGACY_POLICY_ID:'explicit-native-parallelity-refinement-v1',
                      V2_POLICY_ID:'explicit-native-parallelity-refinement-v2',
                      V3_POLICY_ID:'explicit-native-parallelity-refinement-v3',
-                     V4_POLICY_ID:'explicit-native-parallelity-refinement-v4'}
+                     V4_POLICY_ID:'explicit-native-parallelity-refinement-v4',
+                     V5_POLICY_ID:'explicit-native-parallelity-refinement-v4'}
 _V2_ENTRY = b'''from pathlib import Path
 import sys
 root=Path(__file__).resolve().parent
@@ -52,8 +76,55 @@ sites=[{k:row[k] for k in ('site','component')} for row in request.get('chemistr
 run_compatible_refinement(sys.argv[2:],evidence_directory=root/phase,chemistry_sites=sites)
 '''
 
-_ENTRIES = {LEGACY_POLICY_ID:_V2_ENTRY, V2_POLICY_ID:_V2_ENTRY, V3_POLICY_ID:_ENTRY, V4_POLICY_ID:_ENTRY}
-_CHEMISTRY_POLICIES = (V3_POLICY_ID, V4_POLICY_ID)
+_COUNTED_ENTRY = b'''from pathlib import Path
+import hashlib,json,sys,os,time
+root=Path(__file__).resolve().parent
+phase=sys.argv[1];expected=sys.argv[2]
+if phase not in ('preflight','refine'):raise ValueError('Unknown counted phase')
+raw=(root/'request.json').read_bytes()
+if hashlib.sha256(raw).hexdigest()!=expected:raise ValueError('Counted request changed')
+request=json.loads(raw)
+for name,ref in request['code'].items():
+ parts=Path(name).parts
+ if not parts or Path(name).is_absolute() or any(p in ('.','..') for p in parts):raise ValueError('Unsafe frozen code path')
+ target=root
+ for part in parts:
+  target=target/part
+  if target.is_symlink():raise ValueError('Linked frozen code')
+ data=target.read_bytes()
+ if len(data)!=ref['size'] or hashlib.sha256(data).hexdigest()!=ref['sha256']:raise ValueError('Frozen counted code changed')
+for key,name in [('original_recipe','original-recipe.json'),('original_model','original-model.pdb'),('current_recipe','current-recipe.json')]:
+ target=root/'intent'/name;ref=request['counted_intent'][key]
+ if target.is_symlink() or target.parent.is_symlink():raise ValueError('Linked counted intent')
+ data=target.read_bytes()
+ if len(data)!=ref['size'] or hashlib.sha256(data).hexdigest()!=ref['sha256']:raise ValueError('Frozen intent changed')
+admission=None;prepared_path=None
+if phase=='preflight':
+ arguments=sys.argv[3:]
+ expected_arguments=['output.prefix=parallelity_runtime/preflight/native' if a=='output.prefix=refined' else a for a in request['command'][1:]]+['refinement.dry_run=True']
+else:
+ if (root/'execution.json').exists():raise ValueError('Counted attempt already finished')
+ raw=(root/'admission.json').read_bytes()
+ if hashlib.sha256(raw).hexdigest()!=sys.argv[3]:raise ValueError('Counted admission changed')
+ admission=json.loads(raw);prepared_path=sys.argv[4];arguments=sys.argv[5:]
+ if admission['request']['sha256']!=expected or admission['checkpoint']!=request['checkpoint']:raise ValueError('Admission belongs to another request')
+ expected_arguments=request['command'][1:]
+if arguments!=expected_arguments:raise ValueError('Counted native arguments changed')
+if phase=='refine':
+ marker=dict(schema_version=1,checkpoint=request['checkpoint'],request_sha256=expected,
+  admission_sha256=sys.argv[3],pid=os.getpid(),parent_pid=os.getppid(),created_ns=time.time_ns())
+ with (root/'refinement-launch.json').open('x') as handle:
+  json.dump(marker,handle,sort_keys=True);handle.write('\\n');handle.flush();os.fsync(handle.fileno())
+ descriptor=os.open(root,os.O_RDONLY)
+ try:os.fsync(descriptor)
+ finally:os.close(descriptor)
+sys.path.insert(0,str(root/'code'))
+from _nasolve_refinement.cif_counted_phase import run_phase
+run_phase(root,request,phase,arguments,admission=admission,prepared_path=prepared_path)
+'''
+
+_ENTRIES = {LEGACY_POLICY_ID:_V2_ENTRY, V2_POLICY_ID:_V2_ENTRY, V3_POLICY_ID:_ENTRY, V4_POLICY_ID:_ENTRY, V5_POLICY_ID:_COUNTED_ENTRY}
+_CHEMISTRY_POLICIES = (V3_POLICY_ID, V4_POLICY_ID, V5_POLICY_ID)
 
 
 def _need(value, message='Invalid explicit parallelity execution evidence'):
@@ -73,7 +144,7 @@ def _root(checkpoint): return _directory(checkpoint)+'/parallelity_runtime'
 def _code(policy=None):
     """Freeze qualified bytes; default v3 remains exact after a helper upgrade."""
     policy=POLICY_ID if policy is None else policy
-    _need(isinstance(policy,str) and policy in (V3_POLICY_ID,V4_POLICY_ID),
+    _need(isinstance(policy,str) and policy in (V3_POLICY_ID,V4_POLICY_ID,V5_POLICY_ID),
           'Unsupported new native execution policy')
     package=Path(__file__).parent;frozen={}
     if policy==V3_POLICY_ID:
@@ -104,9 +175,10 @@ def read_execution_request(run, reference, *, checkpoint):
           and reference.get('relative_path')==root+'/request.json')
     path=_bound_path(reference,'parallelity execution request',run)
     record=read_record(path)
-    fields = set(record) - ({'chemistry_projections'} if record.get('policy_id') in _CHEMISTRY_POLICIES else set())
+    counted=record.get('policy_id')==V5_POLICY_ID
+    fields = set(record) - ({'chemistry_projections'} if record.get('policy_id') in _CHEMISTRY_POLICIES else set()) - ({'counted_intent'} if counted else set())
     _need(fields in ({'schema_version','policy_id','checkpoint','parent','inputs','command','code','record_sha256'}, {'schema_version','policy_id','checkpoint','parent','inputs','command','code','record_sha256','preflight_mode','macro_cycles'})
-          and type(record['schema_version']) is int and record['schema_version']==1
+          and type(record['schema_version']) is int and record['schema_version']==(2 if counted else 1)
           and isinstance(record['policy_id'],str) and record['policy_id'] in _SOURCES
           and record['checkpoint']==checkpoint
           and isinstance(record['parent'],str) and isinstance(record['inputs'],list)
@@ -119,6 +191,11 @@ def read_execution_request(run, reference, *, checkpoint):
     if record['policy_id']!=LEGACY_POLICY_ID:
         _need(record.get('preflight_mode')=='native-model-zero-cycle-isolated-v1',
               'Current native execution requires isolated zero-cycle preflight')
+    if counted:
+        _need('chemistry_projections' not in record and record.get('macro_cycles')==1,
+              'Initial counted scope excludes chemistry projections and multiple cycles')
+        from .refinement_counted import read_intent
+        read_intent(run,root,record)
     if 'chemistry_projections' in record:
         from .refinement_chemistry import _projection_scope
         _need(bool(record['chemistry_projections']), 'Empty requested chemistry scope')
@@ -135,11 +212,11 @@ def read_execution_request(run, reference, *, checkpoint):
     return record
 
 
-def prepare_execution(run, *, checkpoint, parent, inputs, command, python_executable, macro_cycles, chemistry_projections=None, runtime_policy=None):
+def prepare_execution(run, *, checkpoint, parent, inputs, command, python_executable, macro_cycles, chemistry_projections=None, runtime_policy=None, counted_pair_request=None):
     """Freeze only the small qualified helper; retain all original input files."""
     from .checkpoints import _file_reference
     policy=POLICY_ID if runtime_policy is None else runtime_policy
-    _need(runtime_policy is None or (isinstance(policy,str) and policy in (V3_POLICY_ID,V4_POLICY_ID)),
+    _need(runtime_policy is None or (isinstance(policy,str) and policy in (V3_POLICY_ID,V4_POLICY_ID,V5_POLICY_ID)),
           'Unsupported new native execution policy')
     _need(isinstance(command,list) and len(command)>1)
     inputs=[Path(p).expanduser().resolve() for p in inputs]
@@ -149,21 +226,40 @@ def prepare_execution(run, *, checkpoint, parent, inputs, command, python_execut
         from .refinement_chemistry import _projection_scope
         _projection_scope(run,chemistry_projections)
     payload=_code() if runtime_policy is None else _code(policy)
+    intent_payload=None
+    if policy==V5_POLICY_ID:
+        _need(type(macro_cycles) is int and macro_cycles==1 and chemistry_projections is None,
+              'Initial counted scope requires one cycle and no chemistry projections')
+        _need(isinstance(counted_pair_request,dict) and set(counted_pair_request)=={'recipe','source_model'}
+              and len(inputs)>=2,'Require original pair recipe/source and current parent')
+        from .refinement_counted import prepare_intent
+        intent_payload=prepare_intent(counted_pair_request['recipe'],counted_pair_request['source_model'],inputs[1])
+        from .checkpoints import _file_reference
+        _need(all(_file_reference(p,run)['anchor'] in ('run','dataset','repository') for p in inputs),
+              'Counted inputs require declared portable anchors')
+    else:_need(counted_pair_request is None,'Counted intent requires explicit v5')
     root=path_in(run,_root(checkpoint));root.mkdir()
     code={}
     for name,data in payload.items():
         target=path_in(root,name);target.parent.mkdir(parents=True,exist_ok=True)
         with target.open('xb') as handle:handle.write(data)
         code[name]=_file_reference(target,run)
+    intent=None
+    if intent_payload is not None:
+        from .refinement_counted import write_intent
+        intent=write_intent(run,root,intent_payload)
     request=root/'request.json'
-    write_record(request,dict(schema_version=1,policy_id=policy,checkpoint=checkpoint,
+    write_record(request,dict(schema_version=2 if intent is not None else 1,policy_id=policy,checkpoint=checkpoint,
         parent=parent,preflight_mode='native-model-zero-cycle-isolated-v1',macro_cycles=macro_cycles,
         inputs=[_file_reference(Path(p),run) for p in inputs],
         command=list(command),code=code,
+        **({'counted_intent':intent} if intent is not None else {}),
         **({'chemistry_projections':chemistry_projections} if chemistry_projections else {})))
     reference=_file_reference(request,run)
     prefix=[str(python_executable),'-B',str(root/'entry.py')]
     request_record=read_execution_request(run,reference,checkpoint=checkpoint)
+    if policy==V5_POLICY_ID:
+        return reference,[*prefix,'preflight',reference['sha256'],*_preflight_arguments(request_record)],None
     return reference,[*prefix,'preflight',*_preflight_arguments(request_record)],[*prefix,'refine',*command[1:]]
 
 
@@ -197,22 +293,44 @@ def validate_runtime_choice(enabled, python_executable):
             raise ValueError('Required qualified runtime source is unavailable: '+str(exc)) from exc
 
 
-def require_runtime_continuation(registry, selected, enabled):
-    if not enabled and requires_checked_plane_forces(registry, selected):
+def require_runtime_continuation(registry, selected, enabled, *, run=None):
+    ancestors=_checked_ancestors(registry,selected)
+    if run is not None:
+        # Ordinary owners have already validated the registry. Read only the
+        # pinned policy for this additional refusal; do not repeat native proof
+        # expansion or create a weaker positive admission path.
+        for item in ancestors:
+            try:
+                record=read_record(_bound_path(item['outputs']['parallelity_execution'],
+                    'ancestor execution policy',run))
+                policy=record.get('policy_id')
+                _need(isinstance(policy,str) and policy in _SOURCES,'Unknown ancestor execution policy')
+            except (OSError,ValueError,RuntimeError) as exc:raise ValueError(str(exc)) from exc
+            if policy==V5_POLICY_ID:
+                raise ValueError(
+                    'This checkpoint inherits counted pair restraints. Ordinary continuation '
+                    'is not yet qualified; prepare a fresh explicit counted request preserving '
+                    'the original recipe and current parent. No new round was started.')
+    if not enabled and ancestors:
         raise ValueError(
             'This checkpoint descends from checked plane-force refinement; '
             'continue explicitly with --checked-plane-forces. No new round was started.')
 
 
-def requires_checked_plane_forces(registry, selected):
-    """Reuse established ancestry validation; manual edits retain their history."""
+def _checked_ancestors(registry, selected):
     items=registry.get('checkpoints',[])
     corrected={item.get('id') for item in items if isinstance(item,dict)
                and isinstance(item.get('outputs'),dict) and 'parallelity_execution' in item['outputs']}
-    if not corrected:return False
+    if not corrected:return []
     from .checkpoint_candidate import _lineage,CheckpointCandidateError
-    try:return bool(corrected.intersection(_lineage(registry,selected)))
+    try:lineage=corrected.intersection(_lineage(registry,selected))
     except CheckpointCandidateError as exc:raise ValueError(str(exc)) from exc
+    return [item for item in items if item.get('id') in lineage]
+
+
+def requires_checked_plane_forces(registry, selected):
+    """Reuse established ancestry validation; manual edits retain their history."""
+    return bool(_checked_ancestors(registry,selected))
 
 
 def _phase(run, root, phase, code, request, *, require_complete):
@@ -277,12 +395,28 @@ def _phase(run, root, phase, code, request, *, require_complete):
             final_observed|=(row['parameters']==dict(site_count=len(labels),proxies=result['parallelity_parameters']))
         _need(parent_calls<=stats['successful_calls'] and final_observed,
               'Completed native parameter state lacks usage evidence')
+    if request['policy_id']==V5_POLICY_ID and phase=='refine' and require_complete:
+        counted=json.loads(path_in(run,root+'/refine/counted.json').read_text())
+        _need(isinstance(counted,dict) and set(counted)=={'policy_id','lifetime','admission_record_sha256','prepared_sha256',
+              'compiled_binding_sha256','provider_selection_sha256','recipe_sha256','scope_sha256'}
+              and counted['policy_id']=='counted-phase-observation-v1','Missing counted phase outcome')
+        lifetime=counted['lifetime'];owner=lifetime.get('owner') if isinstance(lifetime,dict) else None
+        _need(isinstance(lifetime,dict) and lifetime.get('policy_id')=='prepared-counted-refinement-cycle-v1'
+              and lifetime.get('status')=='COMPLETE' and lifetime.get('binding_restored') is True
+              and type(lifetime.get('driver_entries')) is int and lifetime['driver_entries']==1
+              and isinstance(owner,dict) and owner.get('closed') is True and owner.get('poisoned') is False
+              and type(owner.get('successful_calls')) is int and owner['successful_calls']>0,
+              'Counted refinement did not complete its admitted lifetime')
     return result
 
 
 def validate_preflight(run, reference, *, checkpoint):
     request=read_execution_request(run,reference,checkpoint=checkpoint)
-    return _phase(run,_root(checkpoint),'preflight',request['code'],request,require_complete=True)
+    result=_phase(run,_root(checkpoint),'preflight',request['code'],request,require_complete=True)
+    if request['policy_id']==V5_POLICY_ID:
+        from .refinement_counted import _observation
+        _observation(run,_root(checkpoint),request)
+    return result
 
 
 def _refusal(value):
@@ -307,7 +441,7 @@ def _phase_paths(run, root, phase):
 
 
 def finish_execution(run, reference, *, checkpoint, preflight_returncode, refinement_returncode,
-                     admission_refusal=None):
+                     admission_refusal=None, counted_admission=None):
     """Seal stopped results; an explicit refusal preserves native success as zero.
 
     Only the execution owner calls this after its subprocess has stopped. This
@@ -324,6 +458,14 @@ def finish_execution(run, reference, *, checkpoint, preflight_returncode, refine
               'Admission refusal requires successful preflight and unlaunched refinement')
     else:
         _need((refinement_returncode is None)==(preflight_returncode!=0))
+    if request['policy_id']==V5_POLICY_ID and refinement_returncode is not None:
+        from .refinement_counted import read_admission
+        admission=read_admission(run,reference,counted_admission,checkpoint=checkpoint)
+        marker=path_in(run,root+'/refinement-launch.json')
+        launch=_file_reference(marker,run) if marker.exists() else None
+        from .refinement_counted import read_outcome_binding
+        read_outcome_binding(run,root,request,admission,launch,complete=refinement_returncode==0)
+    else:_need(counted_admission is None,'Unrequested counted admission')
     phases=[]
     for phase,returncode in [('preflight',preflight_returncode),('refine',refinement_returncode)]:
         folder=path_in(run,root+'/'+phase)
@@ -334,6 +476,7 @@ def finish_execution(run, reference, *, checkpoint, preflight_returncode, refine
     target=path_in(run,root+'/execution.json')
     write_record(target,dict(schema_version=2 if refused else 1,
         policy_id=request['policy_id'],checkpoint=checkpoint,request=reference,phases=phases,
+        **({'counted_admission':counted_admission,'counted_launch':launch} if counted_admission is not None else {}),
         **(dict(outcome_policy_id=ADMISSION_REFUSAL_POLICY_ID,
                 refinement_status='NOT_LAUNCHED',admission_refusal=admission_refusal) if refused else {})))
     return _file_reference(target,run)
@@ -347,6 +490,8 @@ def validate_execution(run, reference, *, checkpoint, parent=None, usable=False)
     record=read_record(_bound_path(reference,'parallelity execution receipt',run))
     refused=record.get('schema_version')==2
     fields={'schema_version','policy_id','checkpoint','request','phases','record_sha256'}
+    if record.get('policy_id')==V5_POLICY_ID and 'counted_admission' in record:
+        fields|={'counted_admission','counted_launch'}
     if refused:
         fields|={'outcome_policy_id','refinement_status','admission_refusal'}
         _need(record.get('outcome_policy_id')==ADMISSION_REFUSAL_POLICY_ID
@@ -381,6 +526,12 @@ def validate_execution(run, reference, *, checkpoint, parent=None, usable=False)
               'Refused admission cannot represent a launched refinement')
     else:
         _need(type(codes[0]) is int and ((codes[1] is None)==(codes[0]!=0)))
+    if request['policy_id']==V5_POLICY_ID and codes[1] is not None:
+        from .refinement_counted import read_admission
+        admission=read_admission(run,record['request'],record.get('counted_admission'),checkpoint=checkpoint)
+        from .refinement_counted import read_outcome_binding
+        read_outcome_binding(run,root,request,admission,record.get('counted_launch'),complete=codes[1]==0)
+    else:_need('counted_admission' not in record,'Unrequested counted admission')
     if usable:_need(codes==[0,0],'Usable checkpoint requires both native runtime stages to complete')
     return record
 

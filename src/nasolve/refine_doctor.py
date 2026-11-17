@@ -545,7 +545,7 @@ def execute_refine_doctor(
         if source.get("usable") is not True:
             raise RefineDoctorError(f"Checkpoint {source.get('id')} is not reusable")
         try:
-            require_runtime_continuation(registry, source, correct_native_parallelity)
+            require_runtime_continuation(registry, source, correct_native_parallelity, run=run)
         except ValueError as exc:
             raise RefineDoctorError(str(exc)) from exc
         inherited = inherited_paths(source, run)

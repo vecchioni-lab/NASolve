@@ -617,9 +617,13 @@ not additional automatically active audit boxes in this figure.
 
 The maintained pair-recipe library is now included in NASolve's installed package.
 It can preserve declared canonical pair chemistry and image choices when preparing
-compatible later models, without borrowing code from another checkout. Saving and
-consuming its checked setup through ordinary refinement remains the next gate;
-packaging alone does not turn on sticky-end restraints.
+compatible later models, without borrowing code from another checkout. An explicit route now saves the intended pairs, checks Phenix’s actual starting
+model, and keeps those exact restraints attached through a real refinement cycle.
+The same result can be reopened after moving the run, without Phenix. A separate
+failed-output check preserves the failure and partial model rather than presenting
+it as success. The next gate is carrying the same intent into a later refinement
+without silently dropping it. This short fixed-weight control demonstrates the
+machinery, not chemical repair or automatic sticky-end activation.
 
 If Phenix finishes the checked preflight but NASolve cannot trust its evidence,
 AutoRefine now keeps a readable failed checkpoint: “preflight finished;

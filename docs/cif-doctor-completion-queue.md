@@ -28,89 +28,47 @@ C366 now forwards those exact choices before Coot in ordinary PostMR; actual mix
 construction and cold request readback pass. Return to Q06 achieved geometry and
 the shared counted-contribution owner boundary. C357 retention findings remain local.
 
-**Q06 active boundary — connect the intended pair forces without counting twice.**
-C367 reuses C331's complete fixed-input read without widening callback-free
-admission. C368's direct native owner composes the W113 fresh factory with actual
-force sites, source/code/native policy, owned buffers, dynamic restraint count,
-single normalization and failure cleanup. Cedar's focused/installed/native checks
-pass; Linden's W114 eight-case cross-branch lifecycle panel also passes. No ordinary
-refinement activation follows from direct-call success.
+**Q06 active boundary — preserve intended pair forces through repeated refinement.**
+C368–C378 qualify the direct owner, working frame, prepared providers, single native
+cycle/writer and frozen source set. C379 preserves honest preflight refusal; C380
+packages the unchanged maintained W118 library. Reuse these completed boundaries.
 
-C369 now recognizes the exact existing source-qualified usage-observation closure
-with its additional runtime pin, unchanged unique records and unchanged frozen v3
-bytes. C370 joins actual native cell/group to the validated source recipe frame;
-a changed cell with a newly self-consistent native policy now refuses, while native
-space-group aliases pass. Next qualify the real prepared-model/optimizer/report/final-output boundaries. Reporting copies can lose instance
-admission, and the native-family report cannot silently include extra residuals.
-Keep those reports distinct from added-pair evidence; never relax direct-inner
-admission, omit usage observations or invent another correction installer. Actual
-scattering sites may differ from stale hierarchy XYZ during optimization; do not
-synchronize them in a force call. Whole native count/normalization, selected-manager
-rebinding and exact recovery remain prerequisites. Hazel's matched DF force/phase
-controls stay separate; more iterations or cycles have not produced an accepted
-endpoint. These mechanics do not close achieved chemistry or authorize a merge.
+**C381 complete:** explicit v5 now records original recipe/source and current parent,
+runs actual preflight, seals immutable compact admission, and consumes the exact
+prepared providers without replanning. One complete native cycle reproduces W120's
+preparation, full endpoint and physical written model. Unsupported actual settings
+preserve preflight 0/refinement NOT_LAUNCHED; a final MTZ failure retains the original
+error and partial outputs. Final installed package passes 347 tests + 13 subtests;
+cold readers accept all three outcomes without writes or native imports. This does
+not establish PDU/DF repair, broad protocol support or Q06 closure.
 
-C371 now supplies the read-only prepared-model assembly through existing owners;
-the installed helper passes a fresh ordinary preflight and matches independently
-observed records. It neither writes admission nor evaluates forces. W115 also
-requires an explicit working-cell choice because MTZ/PDB precision differs; retain
-the original refusal and never silently widen the source-frame tolerance.
+**Next bounded controller slice:** an explicit compatible descendant must preserve
+the original recipe/source through existing checkpoint lineage, rebind only the
+current parent using W118, and run a fresh preflight/admission/owned cycle. Reuse
+W119's intentional child-boundary evidence; do not repeat its stopped probe or
+build another planner. Ordinary AutoRefine/Doctor currently refuse before allocation
+if a counted ancestor would otherwise lose its extra terms. This refusal includes
+manual descendants; actual automatic counted continuation remains unqualified.
 
-The next bounded sequence reuses the existing execution owner: explicitly seal
-one immutable admission tied to request and validated preflight; revalidate that
-reference in the same refinement phase;
-then qualify one fixed-weight, coordinate-only cycle and final writing. Never
-rewrite the request, choose providers again during refinement, or make a read-only
-validator write admission. C372 now preserves foreign kernel, final-writer and monomer-summary bindings
-under explicit v4. Ordinary default v3 remains exact; v1/v2/v3 readers retain their
-meaning. This recovery version does not activate pair contributions or seal an
-admission. First fixed-weight qualification is not a recommended scientific
-weighting/default. Working source/data frame choice belongs upstream of recipe
-compilation; the explicit source-cell control is not a universal model-cell policy.
+Initial supported scope is one all-site XYZ cycle/process, fixed unit weights,
+1–10 iterations, no changing targets/NCS/neutron or chemistry-projection combination.
+These are explicit qualification bounds, not scientific defaults. Preserve ordinary
+weight searches/cycle counts. Native-family reports cannot claim the added residuals
+are included when their decomposition omits them. Keep complete added-pair evidence
+separate and never synchronize stale hierarchy coordinates inside a force call.
 
-**Package boundary complete (C380):** the maintained Willow/W118 factory now
-ships under its existing NASolve module paths with its complete library dependency
-set and original tests. No sibling worktree or arbitrary external folder is needed.
-The smaller qualified native worker set remains distinct from the installed library.
-No new CLI/default activation or full Willow merge; shared full-merge documentation
-still needs reconciliation. Bind original recipe/source
-provenance separately from the actual prepared parent model. A later refinement
-child must retain the selected pair intent through checkpoint lineage; continuing
-with only the ordinary native PHIL must not silently lose the added terms. Changed
-atom identity/frame needs explicit new preparation, never in-phase replanning.
+The 24-file worker remains distinct from the full installed library. No operational
+sibling checkout, no new executor, no provider reselection during refinement. A
+launch marker blocks duplicate starts but is not process-liveness authority; failed
+or uncertain attempts stay immutable. Completed relocated evidence is readable;
+relocated pending commands require fresh anchored preparation. Eight full Willow
+merge documentation conflicts remain separate; no branch merge is authorized.
 
-**Current counted-refinement integration checkpoint (C378 / W121):** C375
-reuses the exact stronger preparation without replanning; C377 keeps that owner
-through one native cycle and final writing. Initial actual scope is one all-site
-XYZ cycle/process, fixed unit weights and at most ten iterations. Native complete
-endpoint/optimizer/data remain exact relative to W120, without an extra final
-energy call. The deliberate final-MTZ failure preserves the first error and
-partial files, restores hooks and publishes no usable execution. Scientific PDU/DF
-survival is still not accepted; numerical lifecycle success is not Q06 closure.
-
-W121's current joined installation passes 556 focused tests and six CLI entry
-points after relocation/source removal; source/test composition is clean, with
-eight shared-documentation conflicts still unresolved. No merge or full suite.
-C378 separately qualifies the native process using 18 frozen modules and three
-profiles (342,556 bytes) from that candidate, with no live NASolve imports and the
-same complete numerical result. The outer controller remains installed code.
-
-**Next bounded controller slice:** reuse `refinement_parallelity`'s versioned code
-freezer and immutable records. Bind original intent/source, current parent/frame,
-actual validated preflight, its explicit protocol and stronger prepared record.
-Freeze the tested package-owned source set, deduplicating existing v4 members;
-never operationally import a sibling worktree or temporary candidate. C380 now supplies the explicit package-owned interface; do not repeat temporary
-source composition. The remaining full-merge documentation still needs reconciliation.
-C379 now records rejected preflight evidence separately: native preflight 0,
-explicit unlaunched refinement, original typed reason, unusable checkpoint and
-unchanged selection. Its outcome schema is separate from native/runtime policies.
-Changed input/code refusals remain outside that publication scope. Positive counted
-admission still needs the request/preparation seal; do not repeat the completed
-failure-envelope work.
-Use `require_runtime_continuation`/`checkpoint_candidate._lineage` before allocation,
-including manual/Doctor children, with fresh compatible-parent rebind/preparation.
-Ordinary recipes enable automatic XYZ weights and broader phases: use an explicit
-qualified choice/refusal, never silently overwrite their established defaults.
+Alder A57/A58 identifies history-dependent normalization at identical sites, followed
+by a separate zero-data fixed-denominator control that reaches an iteration limit
+with whole-frame drift. Retain that mechanism evidence under Q06; no scientific
+acceptance, default/count policy or data-weight choice follows. Nonzero-data work
+requires coordination with Hazel. Preserve Q13's separate phosphate-state question.
 
 **Storage and speed stay measured.** C373/W117's exact transform shortcut preserves
 all checks; W120 observes 37.03 s versus historical 83.21 s for one complete phase, not

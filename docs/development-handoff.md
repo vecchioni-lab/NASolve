@@ -1,157 +1,78 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C380 maintained recipe package integrated — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. C379 / `d9e2308e` is pushed.
-Evening work window ends **23:00 UK / UTC**. C379 focused validation is complete; no native jobs started. No full Cedar suite requested.
+Updated **2026-11-17, C381 saved pair intent through real refinement — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. Evening stop **23:00 UK / UTC**.
+Focused tests only; no full suite. Linden owns the small local symmetry-pair science
+inspection bundle for checkout; Hazel owns the separate Alder diagnostic display.
 
 ## Current checkpoint and next bounded work
 
-**C380 complete: package the existing pair-recipe library.** Exact Willow/W118
-`c08f3370` source is integrated under the same maintained module paths: 18 modules,
-17 existing test files and one comparison script (514,308 bytes total). The optional
-Gemmi `topology` extra is declared; no CLI/default changes, altered native profiles
-or full branch merge. This closes the external-package dependency for the next
-controller step. Qualified worker freezing remains the smaller C378 set.
+**C381 complete: save, check and consume the same intended pair restraints.**
+Explicit v5 records original recipe/source separately from the current parent,
+freezes the qualified worker, runs actual native preflight, seals its checked
+preparation, and consumes that exact preparation through C377's complete cycle.
+One real cycle reproduces W120's preparation, full endpoint and written physical
+model. A refused protocol preserves native preflight 0/refinement NOT_LAUNCHED;
+a final MTZ failure preserves the original error and partial output. All processes
+are stopped. This is execution qualification, not chemical repair or Q06 closure.
 
-662 focused source tests pass; 887 installed/relocated tests + 13 subtests pass in
-42.28 s after source-copy removal. All declared package resources/Python bytes are
-verified. All 18 modules import in the base environment without Gemmi/native SDK;
-a periodic request reports the missing optional dependency explicitly. Linden
-independently verified every imported byte. Existing helper qualification now
-precedes AutoRefine/Doctor/direct-freezer allocation (two negative-before controls).
-No native or full-suite run; exact commands/provenance are in the existing ledger.
+347 installed/relocated focused tests + 13 subtests pass in 48.79 s. Linden verifies
+all 298 package files and all 24 frozen native files, then cold-reads success and both
+failures without writes or launches. The native-tested candidate precedes final
+controller-only malformed-input, ancestry and directory-sync guards; its frozen
+worker is byte-identical to the final package. Final readers accept all three
+saved outcomes. No native rerun is claimed for those controller-only changes.
 
+**Next bounded step: continue a compatible descendant without losing intent.**
+Use the existing checkpoint lineage and W118 recipe rebind, retaining the original
+recipe/source and hashing the current selected child. Fresh attempt, preflight and
+admission; never reuse the earlier native owner or repair a stopped attempt.
+Reuse W119's child-boundary evidence rather than repeat its stopped probe. Ordinary
+AutoRefine/Doctor currently refuse before allocation when a counted ancestor would
+otherwise lose its extra restraints. Automatic continuation is not implemented.
 
-**C379: keep a truthful record when preflight evidence is rejected.** Existing
-AutoRefine now preserves native preflight zero and explicit unlaunched refinement
-in a separate schema-2 outcome envelope, with the original typed refusal and
-anchored raw evidence. Its checkpoint is FAILED/unusable and selection remains
-unchanged. Readers validate integrity without repairing or admitting invalid
-contents. Original schema-1/native policy meanings remain. Changed request/input
-sources still prevent publication; this is not a general failure/recovery seal.
-135 focused tests + 13 subtests pass in 39.23 s, including 78 execution tests.
-Three cold relocation controls preserve bytes/timestamps; no native or full suite.
-Exact commands are in `preflight_admission_refusal_2026_11_17` in the ledger.
-Linden's independent read-only review found no blocking issue. Positive counted
-admission and continuation remain the next boundaries; C380 closes package ownership.
+The qualified protocol remains one all-site XYZ cycle/process, fixed unit weights,
+1–10 iterations, ML/n_gaussian, no ion placement or chemistry-projection combination.
+These are qualification limits, not recommended defaults. Default v3/CLI behavior
+and all historical readers retain their original meaning. Do not overwrite ordinary
+five/three-cycle or automatic-weight defaults to make an explicit control pass.
+A completed moved run is readable; a moved pending native command needs a fresh
+anchored attempt. The launch marker prevents duplicate execution but never proves
+that a process is dead. The existing process owner supplies that evidence.
 
+**Keep evidence small.** C381 uses the existing archive owner: actual prepared
+record 67,216 bytes compressed, byte-exact temporary expansion, durable archive
+before transient raw retirement. No duplicate permanent prepared JSON. Failed
+partial outputs and original scientific inputs remain. C376/C378 retention proof
+remains historical; do not re-create duplicate storage systems or delete by age.
 
-**C377 complete: keep checked restraints attached through refinement.** Explicit
-`PreparedCountedRefinement` owns one source-qualified native module `driver.run`
-around unchanged v4. It reconstructs C375's stronger prepared owner without
-replanning and retains the same actual model through the original driver/final
-writer. Repeated or unsupported entry refuses; foreign replacements survive
-cleanup; the first native failure cause remains recorded. No new executor,
-correction installer, file writer or final bookkeeping force call.
+**Foundations already qualified; reuse them.** C368 owns count/normalization and
+native lifecycle; C370 binds the declared working crystal frame; C371/C375 prepare
+and reconstruct the chosen providers without replanning; C377 keeps ownership
+through the native writer; C378 freezes the small worker set; C379 records honest
+refusal; C380 integrates unchanged W118 recipe library dependencies under maintained
+package paths. Willow owns geometry/factory sources, Cedar execution. No full Willow
+merge: eight shared-documentation conflicts remain separate. The previous detailed
+checkpoint narrative is retained in C380 Git history and the existing evidence ledger.
 
-Actual parameters currently admit one all-site XYZ cycle/process, fixed unit
-weights and at most ten iterations, with no changing targets/identity, NCS or
-neutron. These are qualification bounds, not recommended defaults. Native
-preprocessing uses `place_ions=None` and a sequence for all-site selection;
-two safely stopped preflights exposed those representations and remain retained.
-The final candidate completes actual preflight 7.79 s + refinement 34.92 s, with the
-same W120 prepared record, full endpoint, physical model, optimizer trace and
-original data/Free-R. 15 energy calls rather than W120's 16: no extra diagnostic
-final score. All drivers stopped, native bindings restored, sources unchanged.
+**Working frame remains explicit.** W115 MTZ/PDB cell differs by 2.93e-6 Å from
+storage precision. The declared source-frame control passes; no silent correction,
+model-cell preference or tolerance widening follows. Pair chemistry, image choices,
+ordered atom identities and occupancy must remain compatible through rebind.
 
-46 focused helper tests pass; 230 relocated installed tests pass in 19.74 s after source
-copy removal. Earlier combined source profile: 224 passed in 21.52 s. Negative-before controls
-cover absent API, original-error loss and both native parameter representations.
-Exact pins/commands: `maintained_prepared_refinement_lifetime_2026_11_17` in the
-existing ledger. W121 now qualifies the current joined installation: 556 focused
-tests,
-zero skips and six CLI entry points after source removal/relocation. No merge or
-full suite; eight shared documentation conflicts remain explicit.
-
-**C378 adds two distinct native boundary checks.** A deliberately occupied final
-MTZ filename causes a real native failure after optimization. The owner closes
-and becomes unusable, its original error survives, all hooks restore and partial
-PDB/other outputs remain; no usable execution is published. This occurred later
-than the planned initial-write failure, and that distinction is recorded.
-
-A separate complete cycle uses only 18 frozen source modules plus three native
-profiles (342,556 bytes) copied from W121 into the owned attempt. No live NASolve
-namespace enters the native process. Prepared record, complete endpoint, written
-physical model, optimizer and original data/Free-R remain exact. All jobs stopped.
-The outer controller is still the existing installed code: this proves the small
-native source set, not a new durable request, portable campaign or broad protocol.
-Exact evidence: `frozen_phase_failure_and_joined_package_2026_11_17`.
-
-**Next: wire saved admission through the existing controller.** Bind original
-pair intent, exact source/current parent and chosen working frame before preflight.
-After validated actual preflight, explicitly seal its scope and stronger prepared
-record. Read validators never write. Refinement consumes those anchored references
-and C375/C377 without replanning. C379 now preserves native preflight 0 plus rejected preflight evidence as a
-distinct unlaunched-refinement outcome; reuse it for later counted admission.
-Do not manufacture native failures or reinterpret historical readers.
-
-Reuse `require_runtime_continuation` and `checkpoint_candidate._lineage` before
-AutoRefine/Doctor round allocation for manual descendants; fresh compatible-parent
-rebind and preparation preserve intent. Never silently fall back to native PHIL.
-Ordinary recipes enable automatic XYZ weight optimization and broader phases, so
-the bounded protocol needs an explicit choice or an honest pre-allocation refusal;
-do not overwrite established defaults to make this helper pass.
-
-**Keep evidence small.** C376 reuses existing archive storage on actual 7.56 MB
-preparation: 101,805 bytes, byte-exact cold expansion after relocation/source-copy
-removal, wrong-digest refusal and temporary cleanup. Original sources remain.
-100 such payloads are 10.18 MB excluding models/data/logs, not campaign capacity.
-Use existing phase retention rather than another serializer/cache or raw+archive
-duplication without a policy. C378 retired 16.41 MB of exact duplicate old C377
-software/test copies after wheel and cold-archive verification; wheels, compressed
-tests, receipts and every scientific/partial output remain. Current packages stay.
-Q04/Q05 remain complete; Q06 achieved chemistry remains open.
-
-**Qualified foundations; reuse rather than repeat.**
-- C368/W114: direct counted ownership, exact counting/normalization, restoration
-  and eight native lifecycle controls. C369 recognizes the existing usage wrapper.
-- C370 joins actual native crystal to the declared recipe frame. C371 returns
-  force-free prepared observations; W115 actual ordinary preflight matches them.
-- C372's explicit v4 restores only still-owned kernel/writer/summary bindings.
-  Ordinary v3 retains exact historical source in35KB checked package data; v1–v4
-  cold readers and chemical REVIEW/UNASSESSED preserve their original contracts.
-- W116 completes three bounded one-cycle native/C371 diagnostics. Zero-addition
-  owner exactly matches native output/scores/optimizer trace. Full17 additions
-  participate but do not demonstrate repair or diffraction benefit. Native family
-  reports omit those additions; retain separate counted evidence.
-- C373/W117 remove redundant exact image arithmetic without caching or skipping
-  checks: one native call4.62081→1.56696s with exact complete numerics and refusals.
-  This is not a whole-refinement speed claim; residual overhead remains.
-- C374's earlier joined package remains historical proof at its own source pins;
-  W121 above supersedes it for current installation qualification, not chemistry.
-- W118 `c08f3370` adds pure recipe rebind on Willow: retain pair definitions, images,
-  chemistry/occupancy and same ordered identities/frame while updating source hash
-  for changed coordinates/ADPs. No library regeneration, inferred topology or
-  authority. Its separate installed/native proof is Linden's; W119 joins it to C375.
-
-**Keep the working frame explicit.** W115's MTZ cell differs from source PDB by
-2.93e-6Å from storage precision. An explicitly declared source-cell/group control
-passes; the default refusal remains. This does not establish a general preference
-for model cell. Choose the frame before compiling recipe images and preserve both
-original sources. W114/W115 source was a prior bend preview, not untouched deposited
-coordinates. No silent frame correction or widened tolerance.
-
-**Scientific/phase limits.** Initial integration is one coordinate-only process
-with fixed positive weights/seed. Native automatic weight search may use shaken
-off-model coordinates; C368 correctly refuses that unqualified path. Copied reports
-retain native-family statistics. Keep the actual model through final writing;
-do not synchronize stale hierarchy XYZ during a force call. Q04/Q05 remain complete
-for the supported explicit route; Q06 achieved chemistry remains open.
-
-**Hazel/Alder follow-ups stay in existing Q06/Q13.** DF source/candidate/plane/
-refinement dictionaries retain neutral protonated OP2, with P–OP2 target1.571Å
-(sigma0.022). Existing projection preserves that nonreacting H/charge; establish
-the intended linked state before a justified general transformation. This is not
-a diagnosed cause of glycosidic stretching. Alder `ccb5e769` also isolates a final
-R/B shift inside native `update_all_scales`, with XYZ/Q/fp/fdp/HL/F_mask unchanged
-and exact endpoint reproduction. Coupled scales/F_calc/B change; no isolated cause
-or native-bug claim. Reuse Hazel's compact stage receipt, not another blind rerun.
-Both achieved DF chemistry and broader PDU survival remain unaccepted.
+**Alder mechanism evidence is separate.** A57 observes identical XYZ/raw geometry
+penalty with different normalized scores after native contact counts change. A58's
+zero-data fixed-initial-denominator control passes the earlier 257-step lower-bound
+failure but reaches the 1000-step cap, with substantial whole-frame drift. It is not
+converged or an accepted diffraction endpoint. No normalization/weight policy is
+adopted; coordinate nonzero-data work with Hazel. DF OP2 protonation/source-state
+questions remain Q13, not a diagnosed cause of its stretched sugar–base bond.
 
 The [completion queue](cif-doctor-completion-queue.md#pipeline-position) is the sole
-work order. Exact source pins, commands and historical results live in the existing
-[evidence ledger](cif-linked-native-registration-evidence.json); C374 Git history
-retains the longer prior checkpoint narrative. No scientific raw data is published.
+work order. Exact source pins, commands and results are in
+`maintained_counted_admission_2026_11_17` in the existing
+[evidence ledger](cif-linked-native-registration-evidence.json). No raw scientific
+models, diffraction data, native logs or local runners are committed.
 
 ## DY integration boundary
 

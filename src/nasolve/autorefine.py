@@ -1578,7 +1578,7 @@ def execute_autorefine(
         if parent.get("usable") is not True:
             raise AutoRefineError(f"Checkpoint {parent.get('id')} is not reusable")
         try:
-            require_runtime_continuation(registry, parent, correct_native_parallelity)
+            require_runtime_continuation(registry, parent, correct_native_parallelity, run=run)
         except ValueError as exc:
             raise AutoRefineError(str(exc)) from exc
         inherited = (

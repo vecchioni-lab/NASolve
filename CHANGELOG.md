@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve explicit pair intent through preflight and refinement (C381)
+
+- Add opt-in v5 request schema 2 and immutable counted admission to the existing
+  execution owner. Save original pair recipe/source, validate the current parent,
+  freeze qualified source, and consume the exact actual preflight preparation.
+  Compact preparation uses the existing archive owner and temporary read views.
+- Bind successful native outcome to admission and exclusive durable launch marker;
+  preserve first errors and partial outputs. The marker prevents duplicate starts,
+  not process-liveness checks. Completed relocated runs remain readable; pending
+  moved commands require a fresh anchored attempt.
+- Refuse ordinary AutoRefine/Doctor continuation before allocating a round if its
+  ancestry carries counted intent that would be lost. Positive descendant
+  continuation remains separate. Default v3/CLI and old schemas retain their meaning.
+- Initial scope is one all-site XYZ cycle/process, fixed unit weights, 1–10 iterations,
+  and no chemistry-projection combination. New records require updated readers;
+  no migration, broader scientific acceptance or automatic activation is implied.
+
+
 ### Package the maintained pair-recipe library for refinement integration (C380)
 
 - Integrate the exact complete library dependency set from Willow/W118 under its

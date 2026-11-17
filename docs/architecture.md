@@ -4498,8 +4498,39 @@ The exact source integration and installed qualification live in the evidence
 ledger; this bounded integration does not merge the remaining Willow features or
 resolve the eight shared documentation conflicts from the full composition.
 
-Ordinary activation remains gated on durable preflight/request admission,
-parent lineage and explicit protocol choice. Copied native-family reports remain
+C381 adds explicit `round-local-counted-execution-v5` to the existing execution
+owner; default v3 is unchanged. Request schema 2 freezes exact original recipe/model
+bytes, a compatible current-parent recipe and the qualified 24-file worker. W118
+rebind validates the original intent before runtime allocation. No launchable
+refinement command is returned until actual preflight is validated and an explicit
+`seal_admission` publishes `prepared-counted-admission-v1`.
+
+The admission binds exact request, preflight membership, scope, compiled binding,
+provider selection and stronger prepared record. Existing bounded archive storage
+holds the record; its file and parent directory are synced before the verified
+transient raw copy is retired. Readers are data-only; expansion is temporary and
+owned around the caller's process. No second executor or provider planner is added.
+The frozen native phase consumes C375/C377 through unchanged v4, preserving the
+first native exception if recording secondary evidence fails.
+
+Refinement exclusively creates a durable launch marker before native import.
+It binds request/admission and process provenance, preventing concurrent or in-place
+retry even if failure precedes the phase folder. It is not proof of process death;
+the existing caller owns process identity and recovery. Completed outcome binding
+checks actual consumed preparation/provider/scope plus launch/native process identity.
+Failed partial outputs and markers remain evidence, never permission to retry.
+
+Initial scope is one all-site XYZ cycle/process, fixed unit weights, 1–10 iterations,
+ML/n_gaussian and no ion placement; chemistry projections are explicitly unsupported.
+C379's refused-preflight outcome remains unchanged. All inputs require declared
+anchors/checksums. Completed relocated outcomes read cold; pending relocated native
+commands refuse and require a fresh anchored attempt. Ordinary AutoRefine/Doctor
+inspect validated lineage before allocation and refuse to drop a counted ancestor's
+intent, including through manual children. Positive counted continuation is the next
+boundary, not an implicit CLI/default activation or new scientific acceptance rule.
+
+Ordinary activation remains gated on positive descendant continuation and explicit
+protocol choice; durable admission is qualified only for the explicit v5 route. Copied native-family reports remain
 distinct from complete added-term statistics. C369 qualifies wrapper
 recognition for direct calls only, not that wider integration. Historical v3
 runtime/output/monomer cleanup retains its original replacement semantics; C372's
