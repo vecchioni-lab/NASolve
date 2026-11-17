@@ -5,20 +5,24 @@
 support; the [handoff](development-handoff.md) says where work stopped. Old notes
 record what was known then. They do not create a second set of instructions.
 
-C359 single-request mixed-end construction/lineage and C360 component-padding
-proof are complete. The next bounded Q06 diagnostic addresses Hazel's DF control:
-verify source-owned DNA metadata, use the recorded terminal-phosphate producer's
-canonical input, and assess existing whole-base transport before changing curated
-restoration. A healthy raw glycosidic bond is not permission to adopt moved sugars.
-Then resume [ordinary DY integration](#dy--packaged-retained-triazole-reference-and-mutation-support):
-derive projections from canonical input/end states, bind their derivation, and join
-ordinary intake. No implementation was left unfinished when this concrete defect
-arrived; C357 retention findings remain recorded locally.
+C359 one-request mixed-end construction and C360 component-padding proof are
+complete. C361's bounded DF diagnostic also passes construction: existing whole-base
+transport preserves the good sugar–base bond and exact scaffold/neighbours, using
+source-qualified DNA metadata and the recorded terminal-phosphate preparation.
+Hazel owns its matched linked/preflight/refinement comparison. Production curated
+selection remains open: do not discard sulfur/iodine placement protections merely
+because this DF candidate improves. Reuse the existing transport primitive.
 
-Linden's W109 active-callback proposal is shared convergence work for Q06:
-C331 remains callback-free. Review owner admission, process-local callable identity,
-native-owned buffer lifetime and model-level counts/normalization before activation.
-Subset derivatives alone do not qualify refinement or altered periodic exclusions.
+Resume [ordinary DY integration](#dy--packaged-retained-triazole-reference-and-mutation-support):
+derive projections from canonical input/end states, bind their derivation, and join
+ordinary intake. C357 retention findings remain recorded locally.
+
+Linden's W111 counted-contribution diagnostic supports shared Q06 integration;
+C331 remains callback-free. Review exact owner admission, callable identity, native
+buffer lifetime and full model count/normalization before activation. Hierarchy
+Cartesian and scattering fractional coordinates are distinct runtime representations
+and both require exact restoration. Local facade/derivative passes do not qualify
+production lifecycle, final writing or altered periodic exclusions.
 
 ## Finish line and ordering
 

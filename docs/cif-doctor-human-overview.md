@@ -4292,3 +4292,11 @@ differently in the PDB field. It still checks all coordinates and other atom fie
 and phosphate removal still needs the existing chemical proof. The DF collaboration
 control exposed this formatting problem as well as a missing earlier terminal-phosphate
 preparation step; neither permits adopting raw Coot coordinates or weakening intent.
+
+A DF control now separates a useful construction improvement from refinement:
+keeping the entire base together preserves its approximately 1.500 Å sugar–base
+bond while restoring the original sugar and backbone. The older curated placement
+copied a stretched 1.602 Å bond from Coot's temporary canonical base. All other
+atoms stay unchanged. This is a separately audited candidate; matched refinement
+and a general production rule are still required, including the protection supplied
+by older sulfur and iodine placement rules.

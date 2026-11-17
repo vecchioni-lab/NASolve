@@ -13162,6 +13162,18 @@ base internal geometry and attachment hand within PDB rounding; parent base
 names supply no partial coordinate map. Canonical base-mutation backbones and
 explicit curated substitution/ring placements retain their documented behavior.
 
+C361 identifies a remaining curated-placement risk with a source-qualified DF
+control: copying the temporary DT parent's base also copies its stretched C1′–N1
+bond (1.60172 Å), whereas the existing whole-base transform preserves the raw
+bond near 1.49958 Å and all 11 scaffold coordinates. Source-declared DNA metadata
+passes isolated native equivalence, and the independent construction/phosphate
+checks pass with 838 other atoms unchanged. This separate candidate does not
+change production curated behavior. Linked/refinement survival and a general
+selection rule remain open; historical sulfur/iodine placement can correct bad raw
+substituents and must not be discarded blindly. Exact evidence:
+`df_existing_whole_base_diagnostic_2026_11_17`.
+
+
 Unsupported, bridged or ambiguous graph/context cases retain their entire raw
 Coot site with nonfatal notes. This includes the independent ATL control;
 unsupported transport is not an invitation to force a standard DNA sugar into

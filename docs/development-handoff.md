@@ -1,36 +1,42 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C360 component-padding proof — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. Latest runtime change: **C360**;
-C358 / `07ecf92c` and C359 / `678f0198` are pushed.281 focused and281 installed tests
-pass. Real Coot/Phenix proof passes67 checks/one unsupported charge; all jobs stopped.
-Next bounded work is the concrete DF construction diagnostic described below, then
-resume DY canonical-input projection and ordinary intake. Reuse existing owners.
-Focused tests only; Linden/Hazel coordination remains active and worktrees separate.
+Updated **2026-11-17, C361 DF construction diagnostic — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. Latest runtime **C360 / 59441cf3**
+is pushed: 281 focused and 281 installed tests pass. C361 uses that exact revision;
+no runtime change. All Rowan native jobs are stopped. Focused tests only.
 
-## Immediate DF diagnostic and shared work
+## Immediate work and peer boundary
 
-Hazel traced a source-built DF C1′–N1 bond of1.49914Å becoming1.60172Å after the
-curated rule copies its Coot DT parent's strained anchor. Raw sugar/phosphate atoms
-also move, so raw adoption is invalid. Early C17/C79 history already separated rigid
-whole-base transport from curated placement; do not invent another geometry algorithm.
-The numerical source has `non-polymer` metadata. C57/C343's source-declared DNA
-adapter prepares a header-only candidate; native equivalence must still be checked.
+**Resume DY canonical-input projection and ordinary intake.** C358 planning and
+C359 one-request mixed-end construction/lineage are complete. The remaining seam
+is deriving the per-site dictionaries before the modified model exists, without
+inventing atoms or treating a canonical model as the already-mutated component.
+Use existing source qualification, linked-state projection and lineage owners.
 
-C360 fixes only the next formatting obstacle:834 unchanged unselected names had
-left/right field-padding differences. The existing phosphate check then correctly
-refuses the raw Phaser input because declared D:1 P is absent. Hazel reproduced its
-recorded `ensure_five_prime_phosphates` producer in a separate canonical parent:
-all855 original atom states retained and the added D:1 quartet matches the captured
-reference. This intentionally moves the existing ensure step before this diagnostic
-Coot call; it is not an historical-parent claim. Use its exact receipt/hash, preserve
-the three earlier diagnostics and validate native metadata/context before any DF
-candidate/refinement comparison. No DF production repair is claimed by C360.
+**DF diagnostic complete; production restoration remains open.** C361 uses Hazel's
+separately prepared canonical parent, with its recorded D:1 terminal-phosphate
+operation intentionally moved before fresh Coot. Source-declared DNA metadata
+passes existing native equivalence against the exact saved isolated model/PHIL.
+C360 padding proof and the unchanged sanitizer independently authorize only A:12
+OP3 removal. Existing whole-base transport preserves all 11 scaffold coordinates
+and 838 other atom states; C1′–N1 is 1.49958 Å instead of curated placement's
+1.60172 Å. The independent full construction audit passes, including final phosphate
+checks. This is construction evidence, not linked/refinement acceptance.
 
-Local inputs are declared in Hazel's signed coordination and the C360 ledger; raw
-science remains outside Git. Linden's W109/W110 callback/normalization work is separate:
-raw subset forces do not settle model-level counts/weights or buffer ownership.
-C331 remains callback-free; owner admission is queued, not silently enabled.
+Hazel owns the matched linked/recipe-preflight and five-cycle comparison using
+coordinate-only intake into the actual experimental model, preserving B/Q, Hg and
+outside-site states. C361 records exact local references and hashes. Do not duplicate
+that work or automatically adopt the candidate. Historical curated sulfur/iodine
+placements may repair bad raw substituents, so blindly switching every curated
+residue to whole-base transport is not justified. Reuse C17/C62's frozen primitive;
+a general production selection rule remains a specific Q06 follow-up.
+
+Linden's W111 local counted-extension control reconciles native/subset restraint
+counts and forces through the actual model manager. It remains an unqualified
+local facade, deliberately refused by C331. Preserve both hierarchy Cartesian and
+scattering fractional coordinates in any later owner contract. No active callback
+admission, altered weights or lifecycle approval is implied; shared owner work is
+queued separately and Cedar's C331 remains unchanged.
 
 ## Current result and next bounded task
 
@@ -103,6 +109,7 @@ unfinished-work order. A readable CIF or passing derivative check does not close
 
 Exact controls, commands, hashes and limitations are in the
 [evidence ledger](cif-linked-native-registration-evidence.json). Start with
+`df_existing_whole_base_diagnostic_2026_11_17`,
 `construction_component_padding_2026_11_17`,
 `per_site_construction_dictionaries_2026_11_17`,
 `explicit_construction_planning_2026_11_17`,
