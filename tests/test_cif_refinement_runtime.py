@@ -50,12 +50,11 @@ def test_native_result_and_arguments_preserved_with_deduplicated_observations(tm
     assert record['scientific_approval']=='NOT_RUN'
 
 
-@pytest.mark.parametrize('failure',['native','verify','binding','special_position','mode','cycles'])
+@pytest.mark.parametrize('failure',['native','verify','special_position','mode','cycles'])
 def test_failure_is_recorded_and_original_binding_restored(tmp_path,monkeypatch,failure):
     module,gr,result,original=runtime(monkeypatch)
     def program(args,observe):
         if failure=='native':raise RuntimeError('native line search failed')
-        if failure=='binding':gr.parallelity_residual_sum=lambda **kw:0.
         output(result,observe)
         return result
     if failure=='special_position':result.model.restraints_manager.geometry.site_symmetry_table.special_position_indices=lambda:[0]

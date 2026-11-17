@@ -61,9 +61,12 @@ one immutable admission tied to request and validated preflight; revalidate that
 reference in the same refinement phase;
 then qualify one fixed-weight, coordinate-only cycle and final writing. Never
 rewrite the request, choose providers again during refinement, or make a read-only
-validator write admission. A later versioned runtime must preserve foreign kernel, final-writer and monomer-summary
-bindings; C369 intentionally leaves historical runtime bytes untouched. First
-fixed-weight qualification is not a recommended scientific weighting/default.
+validator write admission. C372 now preserves foreign kernel, final-writer and monomer-summary bindings
+under explicit v4. Ordinary default v3 remains exact; v1/v2/v3 readers retain their
+meaning. This recovery version does not activate pair contributions or seal an
+admission. First fixed-weight qualification is not a recommended scientific
+weighting/default. Working source/data frame choice belongs upstream of recipe
+compilation; the explicit source-cell control is not a universal model-cell policy.
 
 ## Finish line and ordering
 

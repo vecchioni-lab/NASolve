@@ -109255,5 +109255,135 @@
       "Versioned runtime must preserve foreign kernel, writer and monomer-summary replacements without changing historical qualified bytes.",
       "Q06 chemical survival and broader/default activation remain open."
     ]
+  },
+  "versioned_runtime_owned_recovery_2026_11_17": {
+    "milestone": "C372",
+    "date": "2026-11-17",
+    "signed": "Rowan",
+    "before": "Kernel, final-writer and monomer-summary finally blocks overwrote foreign replacements; changing their bytes directly would also break exact default v3 freezing.",
+    "after": "Explicit v4 restores only still-owned bindings and retains honest failure state. Preserve exact ordinary v3 bytes via three historical helper texts, with cold historical reads and shared chemistry gates.",
+    "changed_files": [
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/development-handoff.md",
+      "src/nasolve/cif_refinement_output.py",
+      "src/nasolve/cif_refinement_runtime.py",
+      "src/nasolve/cif_refinement_sites.py",
+      "src/nasolve/data/refinement-runtime-v3-sources.json",
+      "src/nasolve/refinement_parallelity.py",
+      "tests/test_cif_refinement_output.py",
+      "tests/test_cif_refinement_ownership.py",
+      "tests/test_cif_refinement_runtime.py",
+      "tests/test_cif_refinement_sites.py",
+      "tests/test_refinement_parallelity.py"
+    ],
+    "schemas": "Add round-local-parallelity-execution-v4 and explicit-native-parallelity-refinement-v4 policy identities; request/receipt field layout unchanged. Package source archive is code-only, not a scientific artifact.",
+    "source": {
+      "parent_commit": "8161d5b5e414dced5d958eb07f622e005ab7b19c",
+      "v3_archive_sha256": "e9208cba7f5c95bb465bdd65267d8edcd4e952fc80bc7147745f1ea4cfedc778",
+      "v3_raw_source_bytes": 35221,
+      "v4_helper_sha256": {
+        "cif_refinement_output.py": "7f4220abd718b6396e3e196d72abea4343c6f5b45187aa51b1dc6efaa651fc21",
+        "cif_refinement_runtime.py": "5611e658cb79e92996f24e92b1a13055e69bede04f1ab909a60216baea03b3e3",
+        "cif_refinement_sites.py": "7643d29e113b487975a0a47ef21686bc19627693e7ec724cc627aa82d07baac8"
+      },
+      "host_execution_owner_sha256": "2fe30169b1db3c8beff85f03d4cd940ac8b9a9c6caed7c17559806dde188afc0"
+    },
+    "validation": {
+      "before": "6 normal/error-exit foreign-binding regressions fail in0.65s before fix.",
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <NASolve-venv-python> -m pytest -q -p no:cacheprovider tests/test_cif_refinement_ownership.py tests/test_cif_refinement_runtime.py tests/test_cif_refinement_output.py tests/test_cif_refinement_sites.py tests/test_refinement_parallelity.py tests/test_cif_counted_contribution.py --tb=short",
+      "focused": "184passed in19.86s; first run183passed/1failed due new v3 test using obsolete v2 entry, corrected fixture only.",
+      "installed_command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-B",
+        "-c",
+        "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_cif_refinement_ownership.py', 'tests/test_cif_refinement_runtime.py', 'tests/test_cif_refinement_output.py', 'tests/test_cif_refinement_sites.py', 'tests/test_refinement_parallelity.py', 'tests/test_cif_counted_contribution.py', '--tb=short']))"
+      ],
+      "installed": "184passed in17.73s; source copy/original install absent, relocated import and archived resource bytes verified",
+      "wheel_sha256": "ee9d5a4a08cd27b0765c31deefca73500e4d36e2b05d9a935e32197a5c4eee3a",
+      "native_command": "C368 checksum-bound native environment and owned bootstrap; copied native test -q -x -p no:cacheprovider --tb=short -k \"actual_owned_calls or (observed_wrapper_native_ownership and None)\"",
+      "native": "2passed/45deselected in42.57s; Phenix2.2.1-6174 Darwin arm64 complete direct-call execution with current helper sources",
+      "preflight_command": [
+        "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+        "-B",
+        "/Users/svecchio/NASolve-live-tests/372_Cedar_v4-preflight-1623637u/run/AutoRefine/round_001/parallelity_runtime/entry.py",
+        "preflight",
+        "/Users/svecchio/NASolve-live-tests/372_Cedar_v4-preflight-1623637u/run/inputs/model.pdb",
+        "/Users/svecchio/NASolve-live-tests/372_Cedar_v4-preflight-1623637u/run/inputs/observations.mtz",
+        "/Users/svecchio/NASolve-live-tests/372_Cedar_v4-preflight-1623637u/run/inputs/prepared-restraints.phil",
+        "/Users/svecchio/NASolve-live-tests/372_Cedar_v4-preflight-1623637u/run/inputs/protocol.phil",
+        "xray_data.file_name=/Users/svecchio/NASolve-live-tests/372_Cedar_v4-preflight-1623637u/run/inputs/observations.mtz",
+        "xray_data.labels=Fobs,SIGFobs",
+        "xray_data.r_free_flags.file_name=/Users/svecchio/NASolve-live-tests/372_Cedar_v4-preflight-1623637u/run/inputs/observations.mtz",
+        "xray_data.r_free_flags.label=FreeR_flag",
+        "xray_data.r_free_flags.test_flag_value=0",
+        "xray_data.r_free_flags.generate=False",
+        "xray_data.force_anomalous_flag_to_be_equal_to=False",
+        "output.prefix=parallelity_runtime/preflight/native",
+        "refinement.crystal_symmetry.unit_cell=105.547,105.547,96.268,90,90,120",
+        "refinement.crystal_symmetry.space_group=R 3 :H",
+        "refinement.dry_run=True"
+      ],
+      "preflight": {
+        "status": "PASS",
+        "runtime_policy": "explicit-native-parallelity-refinement-v4",
+        "atom_count": 855,
+        "kernel_statistics": {
+          "energy_only_calls": 2,
+          "gradient_calls": 0,
+          "maximum_proxy_count": 12,
+          "policy_id": "native-parallelity-kernel-adapter-v1",
+          "successful_calls": 2
+        },
+        "runtime_result_sha256": "9881c732db2b5595b4031b15f7ed29e36603d041a09f0c126efa3160e48fd338",
+        "complete_native_zero_cycle": true,
+        "full_refinement": false,
+        "scientific_acceptance": false,
+        "input_bytes_preserved": true,
+        "original_declared_Free_R_arguments": true,
+        "bindings_restored": true,
+        "existing_preflight_reader_passes": true
+      },
+      "preflight_scope": "Complete ordinary native zero-cycle preflight, dry_run=True. Input bytes/original declared Free-R arguments unchanged; no independent new fmodel Free-R audit, no full optimizer or chemistry acceptance.",
+      "static": "Python3.10 AST; git diff --check; archived v3 text exactly equals C371 git source",
+      "full_suite": "NOT_RUN"
+    },
+    "compatibility": "Ordinary v3 default/entry/helper bytes unchanged. Explicit v4 requires new reader; earlier records do not migrate. v3/v4 both retain chemistry REVIEW/UNASSESSED and written-model binding. New source-qualified callers need current helper pins; captured historical helpers remain valid. No scientific targets, weights, sigmas or default activation changed.",
+    "retention": {
+      "included": "Source,35KB historical source text, focused tests and compact evidence only",
+      "excluded": "Native models, observations, logs and diagnostic runners stay local; prior attempts preserved",
+      "disposable_build_bytes_removed": 11071231,
+      "attempts": [
+        {
+          "anchor": "NASolve-live-tests",
+          "path": "372_Cedar_runtime-owner-qdkinbqe",
+          "driver": {
+            "returncode": 0,
+            "stopped_verified": true,
+            "source_unchanged": true
+          },
+          "driver_sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7"
+        },
+        {
+          "anchor": "NASolve-live-tests",
+          "path": "372_Cedar_v4-preflight-1623637u",
+          "execution": {
+            "returncode": 0,
+            "stopped_verified": true,
+            "inputs_unchanged": true
+          },
+          "execution_sha256": "458785170a981d604dff1ca5825ca6dac180e7032d2a8d4359b39c92a3bb21be",
+          "summary_sha256": "228d9c19198d3cf0fc333ee5cc2de3cfb2d0cae1086bba13898930c2911861e3"
+        }
+      ],
+      "prior_failure": "372_Cedar_v4-preflight-skwmosdc local diagnostic path mapping error before any native launch; preserved and new attempt uses existing _directory owner."
+    },
+    "remaining": [
+      "Bind one prepared observation/admission immutably to request/preflight and revalidate it in the same refinement phase.",
+      "Linden W116 tests native baseline, native-only zero-add owner and distinct full17-added request using immutable C371; not production integration.",
+      "Full optimizer/report/final-writer contribution lifetime, Q06 chemical survival and broader/default activation remain open."
+    ]
   }
 }

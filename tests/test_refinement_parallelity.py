@@ -44,7 +44,7 @@ def completed(tmp_path,monkeypatch,*,failure=None,changed=None,bad_preflight=Fal
             if request['policy_id']!=LEGACY_POLICY_ID:
                 from tests.test_cif_refinement_runtime import output_row
                 result.update(output_binding_restored=True,output_synchronization=[] if phase=='preflight' else [output_row(2)])
-            if request['policy_id']=='round-local-parallelity-execution-v3':
+            if request['policy_id'] in ('round-local-parallelity-execution-v3','round-local-parallelity-execution-v4'):
                 result.update(chemistry_observation=None,chemistry_model=None,chemistry_binding_restored=True)
             if bad_preflight and phase=='preflight':result['status']='RUNNING'
             if failed:result['error']=dict(type='RuntimeError',message='native failed')
@@ -214,17 +214,18 @@ def test_checked_ancestry_reuses_strict_lineage_validation():
 
 
 
-@pytest.mark.parametrize('version',[1,2])
+@pytest.mark.parametrize('version',[1,2,3])
 def test_frozen_reader_survives_current_helper_upgrade_and_relocation(tmp_path,monkeypatch,version):
     from nasolve import refinement_parallelity as module
     from hashlib import sha256
     package=Path(module.__file__).parent
     fixture=Path(__file__).parent/f'fixtures/refinement_runtime_v{version}'
-    code={'entry.py':module._V2_ENTRY,'code/_nasolve_refinement/__init__.py':b''}
-    policy=module.LEGACY_POLICY_ID if version==1 else module.V2_POLICY_ID
+    code={'entry.py':module._ENTRY if version==3 else module._V2_ENTRY,'code/_nasolve_refinement/__init__.py':b''}
+    policy={1:module.LEGACY_POLICY_ID,2:module.V2_POLICY_ID,3:module.V3_POLICY_ID}[version]
     for name,digest in module._SOURCES[policy].items():
         path=fixture/name if (fixture/name).exists() else package/name
-        data=path.read_bytes();assert sha256(data).hexdigest()==digest
+        data=module._code(module.V3_POLICY_ID)['code/_nasolve_refinement/'+name] if version==3 else path.read_bytes()
+        assert sha256(data).hexdigest()==digest
         code['code/_nasolve_refinement/'+name]=data
     with monkeypatch.context() as legacy:
         legacy.setattr(module,'POLICY_ID',policy)
@@ -338,3 +339,51 @@ def test_rehashed_compact_observation_cannot_claim_other_model_state_or_source(t
     (run/'AutoRefine/checkpoints.json').write_text(json.dumps(registry))
     with patch('subprocess.Popen',side_effect=AssertionError('cold refusal')):
         with pytest.raises(CheckpointError):read_registry(run)
+
+
+@pytest.mark.parametrize('chemistry',[None,'bent','unavailable'])
+def test_explicit_v4_keeps_chemistry_checks_and_cold_relocation(tmp_path,monkeypatch,chemistry):
+    from nasolve import refinement_parallelity as module
+    original=module.prepare_execution
+    monkeypatch.setattr(module,'prepare_execution',lambda *a,**k:original(*a,**k,runtime_policy=module.V4_POLICY_ID))
+    run,result,registry,child,receipt,commands=completed(tmp_path,monkeypatch,chemistry=chemistry)
+    record=json.loads(receipt.read_text());assert record['policy_id']==module.V4_POLICY_ID
+    assert child['usable'] and commands==['preflight','refine']
+    if chemistry=='bent':assert result.status=='AUTOREFINE_REVIEW' and not result.selected_as_current
+    old=run.parents[1];moved=tmp_path/'relocated';old.rename(moved)
+    assert not old.exists()
+    with patch('subprocess.Popen',side_effect=AssertionError('relocated read stays cold')):
+        _,saved=read_registry(moved/'AutoMR/run_001')
+    assert resolve_checkpoint(saved,child['id'])['usable']
+    assert module.POLICY_ID==module.V3_POLICY_ID
+
+
+def test_frozen_v3_default_and_explicit_v4_sources_are_independently_pinned(tmp_path,monkeypatch):
+    from nasolve import refinement_parallelity as module
+    from hashlib import sha256
+    package=Path(module.__file__).parent
+    default=module._code();assert default==module._code(module.V3_POLICY_ID)
+    assert {n:sha256(v).hexdigest() for n,v in default.items()}==module._expected_code(module.V3_POLICY_ID)
+    assert {n:sha256(v).hexdigest() for n,v in module._code(module.V4_POLICY_ID).items()}==module._expected_code(module.V4_POLICY_ID)
+    # A damaged legacy payload cannot be hidden behind unchanged current sources.
+    copied=tmp_path/'package';copied.mkdir()
+    for name in {*module._V4_SOURCE_DIGESTS,'data/refinement-runtime-v3-sources.json'}:
+        target=copied/name;target.parent.mkdir(exist_ok=True,parents=True);target.write_bytes((package/name).read_bytes())
+    monkeypatch.setattr(module,'__file__',str(copied/'refinement_parallelity.py'))
+    archive=copied/'data/refinement-runtime-v3-sources.json';saved=archive.read_bytes();value=json.loads(saved)
+    value['cif_refinement_runtime.py']+='\n# changed\n';archive.write_text(json.dumps(value))
+    with pytest.raises(ValueError,match='qualified runtime'):module._code()
+    assert module._code(module.V4_POLICY_ID)
+    archive.write_bytes(saved);(copied/'cif_refinement_runtime.py').write_text('# changed current runtime')
+    assert module._code()==default
+    with pytest.raises(ValueError,match='qualified runtime'):module._code(module.V4_POLICY_ID)
+
+
+@pytest.mark.parametrize('policy',[[],{},'round-local-parallelity-execution-v2','unknown'])
+def test_unknown_new_runtime_policy_refuses_before_allocating(tmp_path,policy):
+    from nasolve.refinement_parallelity import prepare_execution
+    with pytest.raises(ValueError,match='execution policy'):
+        prepare_execution(tmp_path,checkpoint='refine-001',parent='postmr',inputs=[],
+            command=['phenix.refine','model.pdb'],python_executable=sys.executable,
+            macro_cycles=1,runtime_policy=policy)
+    assert not list(tmp_path.iterdir())

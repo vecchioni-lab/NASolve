@@ -176,7 +176,7 @@ class _Observer:
 
 @contextmanager
 def observe_monomers(mapping_class, sites):
-    """Observe the original summary creation; always restore the native binding."""
+    """Observe original summary creation; restore only this owner's binding."""
     observer = _Observer(sites)
     original = mapping_class.summary
     def observed(mapping):
@@ -188,7 +188,8 @@ def observe_monomers(mapping_class, sites):
         yield observer
         _need(mapping_class.summary is observed, 'Native summary binding changed during observation')
     finally:
-        mapping_class.summary = original
+        if mapping_class.summary is observed:
+            mapping_class.summary = original
 
 
 def validate_phase_observation(record, sites, *, dry_run, labels):

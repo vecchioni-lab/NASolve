@@ -92,7 +92,7 @@ def synchronize_output(refined):
 
 @contextmanager
 def synchronized_outputs(driver_class, observe, *, observe_final=None):
-    """Temporarily guard the final writer; always restore its original binding."""
+    """Temporarily guard the final writer; restore only this owner's binding."""
     original=driver_class.write_after_run_outputs;events=[]
     def write(refined):
         if events:raise ValueError('Repeated native final output invocation')
@@ -108,7 +108,8 @@ def synchronized_outputs(driver_class, observe, *, observe_final=None):
         if driver_class.write_after_run_outputs is not write:
             raise ValueError('Native final output binding changed')
     finally:
-        driver_class.write_after_run_outputs=original
+        if driver_class.write_after_run_outputs is write:
+            driver_class.write_after_run_outputs=original
         observe(events,driver_class.write_after_run_outputs is original)
 
 

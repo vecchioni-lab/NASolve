@@ -15,7 +15,7 @@ from .cif_parallelity_kernel import ParallelityKernel, parallelity_parameters
 from .cif_refinement_output import synchronized_outputs, validate_output_observations, _digest, _hierarchy
 from .cif_refinement_sites import observe_monomers, unavailable, validate_sites, validate_phase_observation
 
-POLICY_ID = 'explicit-native-parallelity-refinement-v3'
+POLICY_ID = 'explicit-native-parallelity-refinement-v4'
 
 
 def _canonical(value):
@@ -195,7 +195,8 @@ def run_compatible_refinement(arguments, *, evidence_directory, chemistry_sites=
         raise
     finally:
         if original is not None:
-            gr.parallelity_residual_sum = original
+            if gr.parallelity_residual_sum is observed:
+                gr.parallelity_residual_sum = original
             record['binding_restored'] = gr.parallelity_residual_sum is original
         if kernel is not None: record['parent_kernel_statistics'] = kernel.statistics()
         record['usage_observations'] = sorted(p.name for p in (directory/'calls').glob('*.json'))

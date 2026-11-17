@@ -117,17 +117,6 @@ def test_writer_observes_current_adps_and_binding_is_restored(fail):
     assert events[-1][0][0]['write_completed'] is (not fail)
 
 
-def test_hook_replacement_is_refused_and_original_restored():
-    from nasolve.cif_refinement_output import synchronized_outputs
-    class Driver:
-        def write_after_run_outputs(self):pass
-    original=Driver.write_after_run_outputs
-    with pytest.raises(ValueError,match='binding'):
-        with synchronized_outputs(Driver,lambda *args:None):
-            Driver.write_after_run_outputs=lambda s:None
-    assert Driver.write_after_run_outputs is original
-
-
 @pytest.mark.parametrize('defect',['nan','inf','fraction','bool','negative','excess','unknown','unfinished','false_binding'])
 def test_output_evidence_requires_complete_finite_counts_and_invariants(defect):
     from nasolve.cif_refinement_output import validate_output_observations

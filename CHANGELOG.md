@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve competing native hooks under explicit runtime v4 (C372)
+
+- Restore only owned kernel, final-writer and monomer-summary bindings. Preserve
+  foreign replacements and report failed ownership, including interrupted calls.
+- Add explicit programmatic v4 selection through the existing execution owner.
+  Ordinary default v3 freezes its exact prior helper bytes from compact checked
+  package data; historical v1/v2/v3 reads and chemistry checks remain unchanged.
+- New v4 records need the updated reader. No CLI/default change, artifact migration,
+  added-force activation or new execution/storage framework.
+
 ### Read actual prepared pair restraints before selecting providers (C371)
 
 - Add an explicit read-only composition of the existing recipe compiler, native

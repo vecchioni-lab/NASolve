@@ -57,15 +57,14 @@ def test_original_summary_and_model_are_preserved_with_only_selected_local_restr
     assert klass.summary is original and selected.calls==unrelated.calls==1
 
 
-@pytest.mark.parametrize('failure',['raise','foreign_binding','equal_summary','lost_summary','changed_coordinates'])
+@pytest.mark.parametrize('failure',['raise','equal_summary','lost_summary','changed_coordinates'])
 def test_binding_or_identity_failure_cannot_be_borrowed_from_another_model(failure):
     m,klass,selected,_,atoms=model();original=klass.summary
     with pytest.raises((ValueError,RuntimeError)):
         with observe_monomers(klass,SITES) as observer:
             m._all_monomer_mappings=[selected.summary()]
             if failure=='raise':raise RuntimeError('interruption')
-            if failure=='foreign_binding':klass.summary=lambda x:None
-            elif failure=='equal_summary':m._all_monomer_mappings=[deepcopy(m._all_monomer_mappings[0])]
+            if failure=='equal_summary':m._all_monomer_mappings=[deepcopy(m._all_monomer_mappings[0])]
             elif failure=='lost_summary':m._all_monomer_mappings=[]
             else:m.get_sites_cart=lambda:[(9.,9.,9.)]*len(atoms)
             observer.snapshot(m)

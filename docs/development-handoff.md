@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C371 prepared-state observation complete — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. C370 / `28a84f19` is pushed.
+Updated **2026-11-17, C372 versioned recovery ownership complete — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. C371 / `8161d5b5` is pushed.
 Afternoon work window ends **17:30 UK / UTC**.
 
 ## Current checkpoint and next bounded work
@@ -31,7 +31,9 @@ source PDB by 2.93e-6 Å because of storage precision. W115 preserves that refus
 an explicit native source-cell/group choice passes at 2.84e-14 Å, with original
 Miller IDs/Free-R and amplitudes/sigmas preserved. No tolerance widening, hidden
 recipe recompilation or promotion of the failed attempt. The source model is the
-earlier W114 bend preview, not untouched deposited coordinates.
+earlier W114 bend preview, not untouched deposited coordinates. This control does
+not establish a general preference for model-cell over dataset-cell values; choose
+the working frame upstream of recipe image compilation and preserve both sources.
 
 **Completed direct-call foundations:** C368/W114 qualify owned added forces,
 single counting/normalization and recovery; C369 recognizes the unchanged existing
@@ -40,6 +42,23 @@ installed and native receipts remain in the evidence ledger under
 `owned_counted_contribution_2026_11_17`, `existing_usage_wrapper_admission_2026_11_17`
 and `source_recipe_native_crystal_join_2026_11_17`. Reuse those checks; do not rerun
 their entire matrices without a new concern. All Cedar native drivers are stopped.
+
+**C372 complete: recover only hooks that we still own.**
+Explicit runtime v4 preserves a competing kernel, final writer or monomer-summary
+replacement and reports failed ownership, including when the native body also
+raises. Ordinary requests still freeze the exact existing v3 code. Only the three
+changed historical helper texts are retained as checked package data (35,221 bytes
+before JSON encoding); no second runtime/process or numerical engine. New v4
+records require the updated reader; v1/v2/v3 meanings and byte identities remain.
+
+Six regressions fail before correction. 184 focused /184 relocated installed
+tests pass, including cold v1/v2/v3/v4 reads, v4 chemical REVIEW/UNASSESSED and
+independently pinned default/explicit source bytes. Two actual native plain/wrapped
+owner controls pass in 42.57 s. The installed v4 ordinary zero-cycle preflight
+passes with 855 atoms, two energy-only calls, restored bindings and unchanged input
+bytes/original declared Free-R arguments. This is not full-refinement acceptance.
+All Cedar native drivers are stopped. Compact receipt:
+`versioned_runtime_owned_recovery_2026_11_17`. No full suite.
 
 **Next gate: one checked prepared state before the same refinement phase.**
 Linden's proposal reuses the existing isolated preflight, execution owner,
@@ -58,13 +77,13 @@ estimation can pass off-model shaken coordinates through the original manager;
 C368 correctly refuses that unqualified path. Reporting copies retain native-family
 statistics, with separate checked added-pair evidence. Do not synchronize stale
 hierarchy XYZ during a force call or claim the copied report includes additions.
-A new versioned runtime must preserve foreign kernel, final-writer and monomer-
-summary replacements; all three historical cleanup paths currently overwrite them.
+C372 qualifies that recovery behavior in explicit v4; default/historical v3 retains
+its original semantics. Actual added-force integration remains separately gated.
 Linden's next bounded diagnostic tests the exact installed C371 result through the
 module-level native driver, one coordinate-only cycle and final writing. A native-
 only zero-addition recipe and the full 17-addition recipe must be labelled as
 separate requested objectives, not identical chemistry. Stop on the first failure;
-no production activation or new runtime policy is yet qualified. Q06 achieved
+no production added-force activation is yet qualified. Q06 achieved
 chemistry remains open.
 
 **Established foundations:** C367 reuses C331's complete fixed-input traversal

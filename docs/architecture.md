@@ -91,8 +91,8 @@ policies and Doctor API/CLI now forward the explicit choice through that owner;
 shared prerequisite/ancestry validation refuses silent loss before new work.
 Default activation and achieved-chemistry qualification remain separate.
 
-New checked refinements use the v2 frozen helper. Immediately before final
-native export it synchronizes stale displacement parameters from the exact
+The v2 frozen helper introduced output synchronization, retained by later policies.
+Immediately before final native export it synchronizes stale displacement parameters from the exact
 current scattering object, refusing non-ADP mismatch or changed refined state.
 Complete output evidence and restored native bindings are required for successful
 new checkpoints. V1 frozen-code identities/readers keep their original meaning;
@@ -118,6 +118,17 @@ ordinary statistics/checkpoint metrics. Real chemistry REVIEW prevents automatic
 selection without discarding a usable model; optional unavailable observation
 remains UNASSESSED. A cold reader launches nothing and never changes selection.
 Only explicit source triples are screened; this is not whole-ligand approval.
+
+C372 adds explicit execution/runtime v4 for owned cleanup: restore a temporary
+kernel, writer or monomer-summary binding only while it is still that owner's
+binding; preserve foreign replacements and fail the observation. Ordinary
+`prepare_execution` retains v3 unless its caller explicitly chooses `runtime_policy`
+v4. Three changed v3 helper texts are retained in checked package data; default
+frozen code remains byte-identical, and all old request/receipt readers stay cold.
+Both v3 and v4 retain selected-chemistry validation and final-model binding. No
+CLI/default switch, added contribution, new process owner or artifact migration.
+The existing native profile is unchanged. Full added-force refinement and sealed
+prepared admission remain separate qualifications.
 
 Plane and target-only bond attributions share one bounded input-freezing,
 execution and cold-read lifecycle. Family adapters retain their distinct chemical
@@ -4417,8 +4428,8 @@ working-cell choice stays explicit, including MTZ/PDB representation precision.
 Ordinary refinement remains gated on prepared-model and optimizer lifetime,
 copied/selected reporting managers and final output. C369 qualifies wrapper
 recognition for direct calls only, not that wider integration. Historical v3
-runtime/output/monomer cleanup still overwrites foreign kernel/writer/summary replacements; correcting it
-requires the separately qualified next runtime version, not silent source drift. Native-family statistics cannot claim added residuals are included
+runtime/output/monomer cleanup retains its original replacement semantics; C372's
+explicit v4 preserves competing bindings without rewriting old code or artifacts. Native-family statistics cannot claim added residuals are included
 when their decomposition omits them. Direct-call/relocated tests do not qualify
 those paths, arbitrary selection, a full optimizer, or chemical survival.
 Exact compact validation is recorded in the existing evidence ledger; the
