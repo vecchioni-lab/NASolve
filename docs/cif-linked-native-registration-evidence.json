@@ -109483,5 +109483,190 @@
       "Production request/preflight/phase lineage, descendant pair intent and actual Q06 chemical survival.",
       "Residual validation overhead remains; this isolated optimization does not establish campaign-scale performance."
     ]
+  },
+  "joined_installed_counted_consumer_2026_11_17": {
+    "milestone": "C374",
+    "date": "2026-11-17",
+    "signed": "Rowan",
+    "before": "Cedar direct-call diagnostics supplied a separate installed Willow factory; latest complete source composition predates C367-C372/W117.",
+    "after": "One temporary joined and relocated installed nasolve package passes current focused source-resource, historical runtime and actual native consumer checks. No branch merge or new activation.",
+    "changed_files": [
+      "docs/development-handoff.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": "None; diagnostic evidence only.",
+    "composition": {
+      "willow_commit": "89eccdf261e92efd0c67564ce2cae24a8432ff9c",
+      "cedar_commit": "b653ad9231e191d4a4c64bfd3b906345ec1c8d57",
+      "common_base": "d7913ddd95336fddb7cb266b0bc707ffd768d9ab",
+      "unresolved_tree": "59cdd5c7f54ec0611dc601f2c4125b540e3f6b5b",
+      "resolved_tree": "ebf1e626183c98aae854ad12d504406c52d8fab7",
+      "source_conflicts": [],
+      "documentation_conflicts": [
+        "AGENTS.md",
+        "CHANGELOG.md",
+        "docs/README.md",
+        "docs/architecture.md",
+        "docs/campaign-full-auto.md",
+        "docs/collaboration.md",
+        "docs/construct-registration.md",
+        "docs/development-handoff.md"
+      ],
+      "packaging_resolution": "Union package data only; unresolved documentation excluded from focused package fixture except unchanged README.",
+      "exported_paths": [
+        "src",
+        "tests",
+        "README.md",
+        "pyproject.toml",
+        "scripts/compare_topostitch_native_packing.py"
+      ],
+      "export_sha256": "d4d6d460be9e36320aba6d5959579382e094f50a7710fc0299f74fadf2eeef69",
+      "export_bytes": 11284480,
+      "original_git_objects_read_only": true,
+      "branch_merge_performed": false
+    },
+    "validation": {
+      "build_command": [
+        "/Users/svecchio/Applications/phenix-2.2.1-6174/python.app/Contents/MacOS/python",
+        "-m",
+        "pip",
+        "wheel",
+        "--no-deps",
+        "--no-build-isolation",
+        "--no-index",
+        "--wheel-dir",
+        "/private/tmp/c374-joined-package-d9f7x41m/wheel",
+        "/private/tmp/c374-joined-package-d9f7x41m/source"
+      ],
+      "focused_command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-B",
+        "-c",
+        "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_cif_refinement_ownership.py', 'tests/test_cif_refinement_runtime.py', 'tests/test_cif_refinement_output.py', 'tests/test_cif_refinement_sites.py', 'tests/test_refinement_parallelity.py', 'tests/test_cif_counted_contribution.py', 'tests/test_topostitch_pair_coverage.py', 'tests/test_topostitch_packing.py', '--tb=short']))"
+      ],
+      "focused": "308passed,22skipped in22.99s; skips were absent optional Gemmi in everyday venv.",
+      "optional_controls": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/private/tmp/c374-joined-package-d9f7x41m/relocated /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider tests/test_topostitch_packing.py -k representative --tb=short",
+        "result": "22 passed,21 deselected in0.09s",
+        "gemmi_version": "0.7.5",
+        "pytest_version": "9.2.0",
+        "scope": "Only the22 previously skipped optional-library controls; no installation or full suite"
+      },
+      "native": {
+        "tool": "Phenix2.2.1-6174 Darwin arm64, actual complete native direct calls; not dry-run",
+        "command": "phenix.python -B <local-runners>/c374_native_start.py",
+        "result": {
+          "status": "PASS",
+          "seconds": 27.43395112500002,
+          "one_installed_nasolve_namespace": true,
+          "exact_C373_target_gradients_count_normalization": true,
+          "numerical_sha256": "ff67a95fcabf8589e69ada52890fc8926a7f92b590fbe29aee31c05759f59231",
+          "prepared_read_force_free": true,
+          "prepared_selection_and_binding_exact": true,
+          "existing_v4_observation_wrapper_passes": true,
+          "changed_torsions_and_policy_refuse": true,
+          "poisoned_owners_cannot_resume": true,
+          "state_and_bindings_restored": true,
+          "source_bytes_unchanged": true,
+          "native_count": 11379,
+          "complete_count": 11396,
+          "fixture_original_sha256": "53f0db305ed50810809d9d4532b4e8e4d21fb8cee560a91913124647be4e087e",
+          "fixture_consumer_sha256": "e5e9a65fb70352671854aecf44a80033bbf84ab521ec534f44418f34cb7ed073",
+          "fixture_change": "Use existing nasolve namespace instead of synthetic counted_test_willow alias; scientific fixture and assertions unchanged.",
+          "scope": "Actual installed direct calls/prepared read/wrapped usage/refusals; no full optimizer, scientific acceptance or production activation."
+        },
+        "driver": {
+          "returncode": 0,
+          "stopped_verified": true,
+          "source_unchanged": true
+        }
+      },
+      "wheel_sha256": "a0d627701a67ed5ce26ff9fe0a1b06ad15bbeabf8decec4a7b889c285df2ee01",
+      "wheel_bytes": 1589163,
+      "python_and_declared_resource_files_verified": 305,
+      "source_copy_removed": true,
+      "original_install_absent": true,
+      "full_suite": "NOT_RUN"
+    },
+    "compatibility": "Both branch sources unchanged; package-data patterns explicitly unioned. Eight documentation conflicts remain for actual integration. v1-v4 cold readers and exact default-v3 archive pass. Current package/native controls do not qualify later W118 or ordinary lineage activation.",
+    "retention": {
+      "included": "Compact composition pins/measurements/receipts only; all prior ledger entries preserved",
+      "excluded": "Scientific inputs, native logs, package artifacts and diagnostic scripts remain local",
+      "measured_pre_removal_bytes": 24255542,
+      "removed_source_bytes": 15965639,
+      "retained_package_fixture_bytes": 8291152,
+      "native_attempt": {
+        "anchor": "NASolve-live-tests",
+        "path": "374_Cedar_joined-native-ac6uv7_2",
+        "summary_sha256": "215766df2f656c1f894232b585f3412c967901454d08bc58913842553f6819d4",
+        "driver_sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7"
+      },
+      "retired_disposable_builds": [
+        {
+          "directory": "c374-joined-package-8la2j2ub",
+          "reason": "Refused moving Willow tip before build; next attempt pins exact supplied source commit.",
+          "bytes": 0,
+          "retained_receipts": [],
+          "scientific_outputs": false
+        },
+        {
+          "directory": "c374-joined-package-y8zqc2ts",
+          "reason": "Collection refused missing tests.helpers in minimal copied test dependency closure; runner now follows relative imports. No source change; new package attempt.",
+          "bytes": 8274237,
+          "retained_receipts": [
+            "build.log",
+            "test-output.log",
+            "test-execution.json",
+            "pins.json",
+            "package-sources.json",
+            "resolved-pyproject.toml",
+            "merge-tree.log"
+          ],
+          "scientific_outputs": false
+        }
+      ]
+    },
+    "remaining": [
+      "Read-only reconstruction from an exact prepared selection without choosing providers again.",
+      "Versioned request/preflight/admission/phase wiring and honest admission-failure/unlaunched-refinement outcome.",
+      "Retain pair intent on descendants with explicit same-identity/frame rebind; no omission through manual/Doctor ancestry.",
+      "Full integration review, documentation reconciliation, broader phases and Q06 chemical survival."
+    ]
+  },
+  "df_retained_phosphate_state_2026_11_17": {
+    "milestone": "C374 audit",
+    "date": "2026-11-17",
+    "signed": "Rowan",
+    "authority": "Read-only exact hash-verified local source/candidate/refinement dictionaries supplied by Hazel; no chemistry changes.",
+    "sources": [
+      {
+        "anchor": "everyday NASolve checkout",
+        "path": "branch-artifacts/Alder/ft-hg-foundation-20261116-01/inputs/DF-source.cif",
+        "sha256": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e"
+      },
+      {
+        "anchor": "everyday NASolve checkout",
+        "path": "branch-artifacts/Alder/ft-hg-foundation-20261116-01/inputs/DF-candidate.cif",
+        "sha256": "8daa21379bba32f1abc91fafda59379ca811561dfe9b245644597943fa655a70"
+      },
+      {
+        "anchor": "everyday NASolve checkout",
+        "path": "branch-artifacts/Alder/ft-hg-foundation-20261116-01/plane-candidate/DF.cif",
+        "sha256": "ab1fe537cd1a0ef63ad93c7dff60047fec40fd84241bec3ba07aba302e4f6acb"
+      },
+      {
+        "anchor": "everyday NASolve checkout",
+        "path": "branch-artifacts/Alder/ft-hg-recipe-ablation-20261117-01/geometry-frame-v1/refinement/dictionary.cif",
+        "sha256": "c632ad07eed7feed22132021bed28a047d9441b5f762451e09d5f960a6e763cc"
+      }
+    ],
+    "findings": [
+      "Original source OP2 formal charge0, single P-OP2 and OP2-HOP2; OP1 double P-OP1.",
+      "Candidate/plane/refinement definitions preserve OP2 OH1 charge0/HOP2, P-OP2 ideal1.571 sigma0.022; OP1 ideal1.473 sigma0.012.",
+      "This matches the existing source-preserving contract for nonreacting phosphate H/charge; not evidence of delivery drift or silent OP3 sanitization."
+    ],
+    "follow_up": "Existing Q13: establish intended linked phosphate state and a justified general source-state transition before changing retained H/charge/targets. Q06 mechanical delivery does not certify that chemical state.",
+    "limitations": "No source alteration, new native run, causal diagnosis of DF glycosidic stretching, or scientific acceptance. Raw dictionaries remain local."
   }
 }

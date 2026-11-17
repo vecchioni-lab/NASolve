@@ -85,9 +85,14 @@ C373 traces overhead to repeated equal-image rational transform composition;
 Willow W117 uses its exact identity without caching or skipping checks. One actual
 native call drops 4.62081→1.56696 s with exact scores, forces, counts, preparation
 selection and unchanged refusal/recovery. This does not predict whole-refinement
-speed. Next qualify a current temporary joined installed package with focused
-tests/native controls; no full suite or branch merge. Then reuse the existing
-immutable-admission owner. Numerical lifecycle success is not Q06 chemistry closure.
+speed. C374 qualifies the current temporary joined installed package: 308 focused
+plus22 optional-library controls and actual native prepared/wrapped/refusal calls
+pass after source removal and install relocation. No full suite or branch merge.
+Next consume an exact prepared selection without replanning, then wire versioned
+immutable admission through the existing execution owner. Admission may refuse
+after successful native preflight; preserve its return0 and explicitly unlaunched
+refinement. A descendant must retain intent through a fresh same-frame/identity
+source binding and prepared admission; Linden owns the pure rebind prerequisite. Numerical lifecycle success is not Q06 chemistry closure.
 
 ## Finish line and ordering
 
@@ -1120,6 +1125,15 @@ unsupported. Name the workbook hash/version rather than assuming the installed
 NAR package version identifies that workbook.
 
 ### Q13 — Close chemical-state and attachment-policy gaps
+
+**C374 DF source-state confirmation:** exact original, numerical, plane-added and
+refinement dictionaries retain OP2 charge0/HOP2 and a single P–OP2 bond. Its
+1.571 Å target (sigma0.022), versus OP1's1.473 Å (sigma0.012), is source-derived.
+Source-preserving internal projection intentionally retains this nonreacting state.
+Establish the intended linked phosphate state before any general H/charge/target
+transition; coordinate OP3 removal and successful mechanical delivery do not
+decide it. This is not a diagnosed cause of DF glycosidic stretching. Reuse the
+existing Q13 contract; exact hashes live in `df_retained_phosphate_state_2026_11_17`.
 
 **C265 concrete holdover:** curated 1AP has singly bonded terminal OP3 with charge
 −1 and no H. The explicit native backbone rule supports a neutral hydroxyl leaving

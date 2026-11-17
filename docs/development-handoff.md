@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C373 native-call arithmetic comparison complete — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. C372 / `035560a2` is pushed.
+Updated **2026-11-17, C374 joined installed consumer complete — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. C373 / `b653ad92` is pushed.
 Afternoon work window ends **17:30 UK / UTC**.
 
 ## Current checkpoint and next bounded work
@@ -77,13 +77,27 @@ state is restored. Both Cedar diagnostic processes are stopped with source bytes
 unchanged. This is one-call evidence, not a whole-refinement speed claim. No Cedar
 source change or full suite. Receipt: `counted_native_arithmetic_profile_2026_11_17`.
 
-**Immediate next work: qualify one current installed Cedar/Willow package.**
-Reuse W114's temporary source composition, union package resources explicitly, and
-refuse source/test conflicts. Build only the needed package/test tree, remove the
-temporary source, relocate the install, and check focused recovery/factory tests
-plus an actual native consumer. No branch merge or second recipe implementation.
-The earlier W114 full source result predates C367–C372/W117 and is not a current
-package pass. Keep diagnostics private and retain compact reproducibility receipts.
+**C374 complete: one current installed Cedar/Willow package.**
+Temporary composition of Cedar `b653ad92` and Willow `89eccdf2` has no source/test
+conflicts. Union package resources only; eight documentation conflicts remain for
+actual integration. All 305 Python/resource files match the resolved tree. The
+source copy and original install are absent before relocated checks: 308 focused
+tests pass, then all 22 Gemmi-dependent skips pass in an existing Gemmi environment.
+The actual Phenix consumer passes in 27.43 s through one installed `nasolve`
+namespace: exact C373 scores/forces/counts, force-free prepared reading, v4 usage
+wrapper, drift refusals and recovery. Process stopped; bytes unchanged. No full
+suite, branch merge or ordinary activation. Retained candidate is about 8.3 MB;
+unused failed build copies are removed after keeping their small failure receipts.
+Receipt: `joined_installed_counted_consumer_2026_11_17`.
+
+**Immediate next work:** reuse the existing counted owner to consume a bound
+prepared observation without selecting providers again. Match fresh native state,
+policy/inventory and compiled binding before ownership; no file authority or new
+executor. Linden owns W118's pure same-identity/frame recipe rebind for descendants,
+preserving chemistry/occupancy and all pair definitions. Neither helper alone
+authorizes ordinary continuation. Preserve actual native preflight return0 if
+later admission refuses; distinguish unlaunched refinement rather than inventing
+a native failure code. Avoid a parallel controller or another intent engine.
 
 **Next gate: one checked prepared state before the same refinement phase.**
 Linden's proposal reuses the existing isolated preflight, execution owner,
@@ -126,6 +140,13 @@ endpoint. Better seeded attachment returns to ~1.66 Å and ~31° donor angle und
 original open refinement, with mean B ~203 Å² in the whole-residue child. Do not
 interpret similar R values as restored local chemistry or promote fdp. Alder's
 optional iteration allowance remains `a02b9c3`; raw evidence stays private.
+
+**DF phosphate state: exact source audit, not a new repair.** Hazel's supplied
+source/candidate/plane/refinement dictionaries all retain neutral protonated OP2;
+P–OP2 1.571 Å (sigma 0.022) comes from that numerical source. Existing projection
+deliberately preserves nonreacting H/charge. Q13 must establish the intended
+internal state before a justified general transformation. This does not diagnose
+glycosidic stretching or authorize retuning. Receipt: `df_retained_phosphate_state_2026_11_17`.
 
 The [completion queue](cif-doctor-completion-queue.md#pipeline-position) is the sole
 unfinished-work order. Q04/Q05 remain complete for the supported explicit route;
