@@ -413,6 +413,11 @@ actual atom inventories must agree, and context/restoration use the same choice.
 A separate opt-in lineage policy carries only the declared run-local files through
 complete requests. Numerical qualification and end-state selection remain upstream.
 
+C360 extends only construction identity proof to recognize an unchanged residue
+name with different PDB field padding. Other fields remain exact, old proofs remain
+byte-identical when applicable, and a separate nested policy is independently audited.
+It does not bypass source classification or missing declared terminal chemistry.
+
 ### Dataset and symmetry discovery
 
 Dataset discovery currently accepts the usual autoPROC/STARANISO naming variants

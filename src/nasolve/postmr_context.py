@@ -20,6 +20,7 @@ from .postmr_restoration import canonical_name, restore_graph_site, source_graph
 POLICY_ID = 'postmr-source-graph-internal-phosphate-context-v1'
 CURATED_CONTEXT_POLICY_ID = 'postmr-source-graph-curated-phosphate-context-v1'
 IDENTITY_SERIAL_POLICY_ID = 'postmr-input-identity-serial-context-v1'
+COMPONENT_PADDING_POLICY_ID = 'postmr-input-identity-component-padding-v1'
 CANONICAL_SERIAL_POLICY_ID = 'postmr-declared-canonical-serial-context-v1'
 _COORDINATE = {'ATOM  ', 'HETATM'}
 _ASSOCIATED = {'ANISOU', 'SIGATM', 'SIGUIJ'}
@@ -59,7 +60,7 @@ def _conect(lines):
     return result
 
 
-def _identity_serial_context(raw_lines, reference_lines, raw_inventory, reference_inventory, selected):
+def _identity_serial_context(raw_lines, reference_lines, raw_inventory, reference_inventory, selected, *, component_padding=False):
     """Repair serials only when immutable nonserial input identity is sufficient.
 
     No serial-referencing or explicit-model records are supported by this rule.
@@ -94,11 +95,20 @@ def _identity_serial_context(raw_lines, reference_lines, raw_inventory, referenc
     if unselected != original:
         raise ValueError('Identity serial repair requires unchanged unselected atoms and coordinates')
     raw_records = {_key(line): line for line in raw_lines if line[:6] in _COORDINATE}
+    padding_differences = 0
     for line in reference_lines:
         if line[:6] in _COORDINATE and _key(line) in original:
             other = raw_records[_key(line)]
             if (line[:6]+line[11:]).rstrip() != (other[:6]+other[11:]).rstrip():
-                raise ValueError('Identity serial repair requires exact unselected nonserial fields')
+                # PDB component-field alignment is formatting, not a new name.
+                # Every other nonserial field still compares byte-for-byte.
+                name = line[17:20].strip()
+                if (not component_padding or not name.isascii() or not name.isalnum()
+                        or name != other[17:20].strip()
+                        or (line[:6]+line[11:17]+name+line[20:]).rstrip()
+                        != (other[:6]+other[11:17]+name+other[20:]).rstrip()):
+                    raise ValueError('Identity serial repair requires exact unselected nonserial fields')
+                padding_differences += 1
     rendered = []; repairs = []; fresh = 0; reserved_set = set(reserved)
     for line in raw_lines:
         if line[:6] in _COORDINATE:
@@ -112,11 +122,18 @@ def _identity_serial_context(raw_lines, reference_lines, raw_inventory, referenc
                 repairs.append({**_identity(line), 'old_serial': serial(line), 'new_serial': fresh})
                 line = line[:6]+replacement+line[11:]
         rendered.append(line)
-    return rendered, repairs, {'status': 'INPUT_IDENTITY_AUTHORITY_PASS',
+    authority = {'status': 'INPUT_IDENTITY_AUTHORITY_PASS',
         'policy_id': IDENTITY_SERIAL_POLICY_ID,
         'order': 'RAW_COORDINATE_RECORD_ORDER_SKIP_TER', 'reserved_ter_serials': reserved,
         'unselected_atom_count': len(unselected), 'unselected_nonserial_fields_preserved': True,
         'serial_reference_records': 'ABSENT'}
+    if padding_differences:
+        authority.pop('unselected_nonserial_fields_preserved')
+        authority.update(policy_id=COMPONENT_PADDING_POLICY_ID,
+            component_padding_difference_count=padding_differences,
+            unselected_component_names_preserved=True,
+            unselected_other_nonserial_fields_preserved=True)
+    return rendered, repairs, authority
 
 
 def _serial_context(raw_lines, reference_lines, raw_inventory, reference_inventory, selected, identity_policy=None):
@@ -132,9 +149,10 @@ def _serial_context(raw_lines, reference_lines, raw_inventory, reference_invento
     raw_records = {_key(line): line for line in atoms}
     renumbered = any(_site(line) not in selected and _key(line) in raw_records
                      and raw_records[_key(line)][6:11] != line[6:11] for line in reference_atoms)
-    if identity_policy == IDENTITY_SERIAL_POLICY_ID and renumbered:
+    if identity_policy in {IDENTITY_SERIAL_POLICY_ID, COMPONENT_PADDING_POLICY_ID} and renumbered:
         return _identity_serial_context(raw_lines, reference_lines, raw_inventory,
-                                        reference_inventory, selected)
+                                        reference_inventory, selected,
+                                        component_padding=identity_policy == COMPONENT_PADDING_POLICY_ID)
     raw_rows, input_rows = _conect(raw_lines),_conect(reference_lines)
     if raw_rows != input_rows:
         raise ValueError('Serial repair requires exactly inherited original CONECT rows')
@@ -214,7 +232,7 @@ def prepare_construction_context(raw_model, reference_model, actions, dictionary
     as other sites. Frozen passthrough sites remain excluded. The ordinary final
     model must still pass the same sanitizer.
     """
-    if serial_identity_policy not in (None, IDENTITY_SERIAL_POLICY_ID):
+    if serial_identity_policy not in (None, IDENTITY_SERIAL_POLICY_ID, COMPONENT_PADDING_POLICY_ID):
         raise ValueError('Unknown construction serial identity policy')
     if canonical_serial_policy not in (None, CANONICAL_SERIAL_POLICY_ID):
         raise ValueError('Unknown construction canonical serial policy')

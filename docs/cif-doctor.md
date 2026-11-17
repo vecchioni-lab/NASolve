@@ -2454,6 +2454,25 @@ atom identities/serials and exact unselected nonserial fields, including XYZ,
 occupancy, B factor, element and charge. Only trailing line padding is ignored
 when comparing Coot to the input; every output nonserial byte remains raw.
 
+C360 adds explicit `postmr-input-identity-component-padding-v1` for the narrow
+case where the same ASCII alphanumeric component name changes alignment within
+PDB columns18–20. Fresh construction enables this capability; byte-exact cases
+still produce the exact old authority. A changed-padding proof records its exact
+atom count, preserved component names and preserved other nonserial fields, without
+claiming byte-identical original component fields. The independent audit reconstructs
+the permitted difference and rejects forged counts/policies or any other changed
+field. Raw output name padding is retained, not rewritten. Historical policy behavior
+is unchanged; old readers refuse the new nested authority. No migration is needed.
+
+A real Coot1.3.3 DY control demonstrates the old refusal and new independent proof
+on the same raw output. The unchanged sanitizer proves only the internal A:12 OP3
+removal; Phenix2.2.1-6174 readback passes67 checks/one unsupported charge readback.
+281 focused and281 installed/relocated tests pass. This corrects formatting authority,
+not chemical intent: a separately examined DF control still refuses a declared D:1
+phosphate absent from its raw Phaser input. Its recorded terminal-phosphate producer
+must supply the proper construction boundary. Evidence:
+`construction_component_padding_2026_11_17`.
+
 No CONECT, ANISOU, SIGATM, SIGUIJ or explicit MODEL/ENDMDL records are accepted by
 this rule. Valid TER serials are reserved and their records remain exact. New atom
 serials follow raw record order, skipping those reserved numbers. All deltas are

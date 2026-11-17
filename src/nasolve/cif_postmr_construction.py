@@ -142,10 +142,18 @@ def _audit_identity_serial_context(initial_model, raw_model, raw_lines, shadow_l
         raise ValueError("Identity context changed unselected atom identities")
     if not any(line[6:11] != raw_other[key][6:11] for key, line in original_other.items()):
         raise ValueError("Identity context authority lacks unselected renumbering")
+    padding_policy = authority.get("policy_id") == "postmr-input-identity-component-padding-v1"
+    padding_differences = 0
     for key, line in original_other.items():
         other = raw_other[key]
         if (line[:6]+line[11:]).rstrip() != (other[:6]+other[11:]).rstrip():
-            raise ValueError("Identity context changed unselected nonserial input fields")
+            name = line[17:20].strip()
+            if (not padding_policy or not name.isascii() or not name.isalnum()
+                    or name != other[17:20].strip()
+                    or (line[:6]+line[11:17]+name+line[20:]).rstrip()
+                    != (other[:6]+other[11:17]+name+other[20:]).rstrip()):
+                raise ValueError("Identity context changed unselected nonserial input fields")
+            padding_differences += 1
     reserved = []
     for path in (initial_model, raw_model):
         lines = Path(path).read_text().splitlines()
@@ -162,6 +170,14 @@ def _audit_identity_serial_context(initial_model, raw_model, raw_lines, shadow_l
         "order": "RAW_COORDINATE_RECORD_ORDER_SKIP_TER", "reserved_ter_serials": reserved,
         "unselected_atom_count": len(raw_other), "unselected_nonserial_fields_preserved": True,
         "serial_reference_records": "ABSENT"}
+    if padding_policy:
+        if not padding_differences:
+            raise ValueError("Component-padding authority lacks a formatting difference")
+        expected.pop("unselected_nonserial_fields_preserved")
+        expected.update(policy_id="postmr-input-identity-component-padding-v1",
+            component_padding_difference_count=padding_differences,
+            unselected_component_names_preserved=True,
+            unselected_other_nonserial_fields_preserved=True)
     if authority != expected:
         raise ValueError("Identity serial authority differs from independently reconstructed inputs")
     fresh = 0
@@ -199,7 +215,8 @@ def audit_construction_context(initial_model: Path, raw_model: Path, context_mod
     if not isinstance(authority, Mapping):
         raise ValueError("Invalid construction serial authority")
     identity_serials = (status == "CONTEXT_PREPARED"
-                        and authority.get("policy_id") == "postmr-input-identity-serial-context-v1")
+                        and authority.get("policy_id") in {"postmr-input-identity-serial-context-v1",
+                            "postmr-input-identity-component-padding-v1"})
     if status == "CONTEXT_PREPARED" and "policy_id" in authority and not identity_serials:
         raise ValueError("Unsupported construction serial authority policy")
     raw, context = _pdb_inventory(raw_model), _pdb_inventory(context_model)

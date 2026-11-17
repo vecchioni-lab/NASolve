@@ -1,12 +1,36 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C359 single-request mixed-end construction — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. Latest runtime change: **C359**;
-C358 / `07ecf92c` is pushed. C359 focused/native/installed checks pass; all jobs stopped.
-Next bounded work: derive site projections from the original canonical input and
-explicit end states, then bind composition/projection derivation and ordinary intake.
-Reuse C355/C356 source/site owners and C349/C353/C359 construction/lineage.
+Updated **2026-11-17, C360 component-padding proof — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. Latest runtime change: **C360**;
+C358 / `07ecf92c` and C359 / `678f0198` are pushed.281 focused and281 installed tests
+pass. Real Coot/Phenix proof passes67 checks/one unsupported charge; all jobs stopped.
+Next bounded work is the concrete DF construction diagnostic described below, then
+resume DY canonical-input projection and ordinary intake. Reuse existing owners.
 Focused tests only; Linden/Hazel coordination remains active and worktrees separate.
+
+## Immediate DF diagnostic and shared work
+
+Hazel traced a source-built DF C1′–N1 bond of1.49914Å becoming1.60172Å after the
+curated rule copies its Coot DT parent's strained anchor. Raw sugar/phosphate atoms
+also move, so raw adoption is invalid. Early C17/C79 history already separated rigid
+whole-base transport from curated placement; do not invent another geometry algorithm.
+The numerical source has `non-polymer` metadata. C57/C343's source-declared DNA
+adapter prepares a header-only candidate; native equivalence must still be checked.
+
+C360 fixes only the next formatting obstacle:834 unchanged unselected names had
+left/right field-padding differences. The existing phosphate check then correctly
+refuses the raw Phaser input because declared D:1 P is absent. Hazel reproduced its
+recorded `ensure_five_prime_phosphates` producer in a separate canonical parent:
+all855 original atom states retained and the added D:1 quartet matches the captured
+reference. This intentionally moves the existing ensure step before this diagnostic
+Coot call; it is not an historical-parent claim. Use its exact receipt/hash, preserve
+the three earlier diagnostics and validate native metadata/context before any DF
+candidate/refinement comparison. No DF production repair is claimed by C360.
+
+Local inputs are declared in Hazel's signed coordination and the C360 ledger; raw
+science remains outside Git. Linden's W109/W110 callback/normalization work is separate:
+raw subset forces do not settle model-level counts/weights or buffer ownership.
+C331 remains callback-free; owner admission is queued, not silently enabled.
 
 ## Current result and next bounded task
 
@@ -79,6 +103,7 @@ unfinished-work order. A readable CIF or passing derivative check does not close
 
 Exact controls, commands, hashes and limitations are in the
 [evidence ledger](cif-linked-native-registration-evidence.json). Start with
+`construction_component_padding_2026_11_17`,
 `per_site_construction_dictionaries_2026_11_17`,
 `explicit_construction_planning_2026_11_17`,
 `packaged_dy_mixed_context_replay_2026_11_16`,
@@ -92,6 +117,9 @@ blob/checksum and offline retrieval. Historical next steps are not current instr
 
 ## Validation and limits
 
+- C360: **281 focused / 12.19s;281 installed/relocated / 10.26s**.15 new
+  cases;14 initial failures before implementation. Real Coot control ~4.00MB,
+ 67 native PASS/one unavailable formal-charge readback. No full suite.
 - C359: **264 affected tests / 9.09s**, then **31 changed-file checks / 3.26s**
   including two further regressions; **266 installed/relocated / 8.73s**. Native
   control ~4.59MB;335 prior files preserved. Initial pre-launch harness failure

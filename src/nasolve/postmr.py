@@ -1969,12 +1969,12 @@ def construct_postmr_model(
     if site_dictionary_paths is not None:
         _check_constructed_site_dictionaries(raw_model, coot_actions, dictionary_paths,
             site_dictionary_paths, site_snapshots)
-    from .postmr_context import (IDENTITY_SERIAL_POLICY_ID, CANONICAL_SERIAL_POLICY_ID,
+    from .postmr_context import (COMPONENT_PADDING_POLICY_ID, CANONICAL_SERIAL_POLICY_ID,
                                  prepare_construction_context)
     context = prepare_construction_context(raw_model, reference_model, coot_actions,
         dictionary_paths, parent_models, output_model.with_name(output_model.stem + "_context.pdb"),
         allow_op3_sites=allow_op3_sites, passthrough_sites=passthrough_sites,
-        serial_identity_policy=IDENTITY_SERIAL_POLICY_ID,
+        serial_identity_policy=COMPONENT_PADDING_POLICY_ID,
         canonical_serial_policy=CANONICAL_SERIAL_POLICY_ID, **site_options)
     restoration_input = context["model"]
     restoration_actions = tuple(a for a in overlap_actions if a.site not in passthrough_sites)

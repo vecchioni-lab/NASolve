@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Recognize unchanged residue names despite Coot field padding (C360)
+
+- Permit only component-name padding differences in the existing explicit input
+  identity proof. Coordinates, occupancy, B factors, element, charge, atom names
+  and all other nonserial fields retain their exact checks; emitted fields stay raw.
+- Record a distinct nested policy/count only when padding actually differs and
+  independently reconstruct that proof. Byte-exact cases retain the old record.
+  Phosphate/source/serial-reference guards remain required; no DF repair is implied.
+
 ### Build different end states of one residue in the same Coot request (C359)
 
 - Accept explicit per-site dictionaries for supported non-curated DNA overlap

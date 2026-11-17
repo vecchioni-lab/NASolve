@@ -107052,5 +107052,161 @@
       "C331/C338/native weights/Free-R/thresholds untouched. Last full Cedar C220/583d30df remains9178tests+276subtests."
     ],
     "next": "Derive explicit source-bound site projections from original canonical input, bind their derivation through existing owners, then ordinary intake."
+  },
+  "construction_component_padding_2026_11_17": {
+    "milestone": "C360",
+    "date": "2026-11-17",
+    "signed": "Rowan",
+    "before": "Coot component-field padding changes falsely blocked exact atom-identity serial context proof.",
+    "after": "A narrow explicit capability permits only unchanged component names with different columns18-20 padding. Every other nonserial field stays exact; raw output padding remains unchanged. Independent audit reconstructs the count and permission.",
+    "prior_work": [
+      "C210 identity serial authority and independent audit",
+      "C57/C343 source-declared DNA metadata adapter",
+      "C17/C79 graph-selected whole-base transport",
+      "C359 complete before Hazel concrete DF evidence"
+    ],
+    "schema": {
+      "nested_policy": "postmr-input-identity-component-padding-v1",
+      "used_only_when_padding_differs": true,
+      "fields": [
+        "component_padding_difference_count",
+        "unselected_component_names_preserved",
+        "unselected_other_nonserial_fields_preserved"
+      ],
+      "old_field_omitted": "unselected_nonserial_fields_preserved",
+      "context_envelope": "unchanged"
+    },
+    "validation": {
+      "fail_before": "14failures/0.75s",
+      "new_tests": 15,
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_postmr_component_padding.py tests/test_postmr_site_lineage.py tests/test_postmr_site_dictionaries.py tests/test_postmr_canonical_input.py tests/test_postmr_canonical_lineage.py tests/test_postmr_conformation.py tests/test_postmr_context.py tests/test_postmr_context_mixed.py tests/test_postmr_identity_serials.py tests/test_postmr_canonical_serials.py tests/test_postmr_restoration.py tests/test_postmr.py tests/test_cif_postmr_construction.py --tb=short",
+      "focused_result": "281passed/12.19s",
+      "installed": {
+        "status": "INSTALLED_RELOCATED_COMPONENT_PADDING_PASS",
+        "wheel_sha256": "b2d43d8a540c53456a3cad78ec2162dc22e622650aacfc26fdf6da504e0a3031",
+        "wheel_bytes": 1394190,
+        "source_copy_removed": true,
+        "original_install_path_absent": true,
+        "package_reference_bytes_match": true,
+        "validation_command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-c",
+          "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_postmr_component_padding.py', 'tests/test_postmr_site_lineage.py', 'tests/test_postmr_site_dictionaries.py', 'tests/test_postmr_canonical_input.py', 'tests/test_postmr_canonical_lineage.py', 'tests/test_postmr_conformation.py', 'tests/test_postmr_context.py', 'tests/test_postmr_context_mixed.py', 'tests/test_postmr_identity_serials.py', 'tests/test_postmr_canonical_serials.py', 'tests/test_postmr_restoration.py', 'tests/test_postmr.py', 'tests/test_cif_postmr_construction.py', '--tb=short']))"
+        ],
+        "validation_output": "........................................................................ [ 25%]\n........................................................................ [ 51%]\n........................................................................ [ 76%]\n.................................................................        [100%]\n281 passed in 10.26s\n",
+        "build_command": "phenix.python -m pip wheel --no-deps --no-build-isolation --no-index",
+        "temporary_bytes_removed": 11302380
+      },
+      "static": "Python3.10 syntax and git diff --check pass",
+      "negative_scope": "Changed name/atom field/Q/B/charge/element/record type, forged proof/count/policy refuse; cold replay after original paths removed."
+    },
+    "native": {
+      "root": {
+        "anchor": "NASolve-live-tests",
+        "path": "360_Cedar_component-padding-coot-k2vif8c5"
+      },
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=../NASolve-c96/src .venv/bin/python -B branch-artifacts/cedar/runners/c360_start.py",
+      "summary": {
+        "status": "C360_COMPONENT_PADDING_COOT_NATIVE_CONTEXT_PASS",
+        "versions": {
+          "coot": "1.3.3",
+          "phenix": "2.2.1",
+          "build": "phenix-2.2.1-6174"
+        },
+        "serial_authority": {
+          "status": "INPUT_IDENTITY_AUTHORITY_PASS",
+          "policy_id": "postmr-input-identity-component-padding-v1",
+          "order": "RAW_COORDINATE_RECORD_ORDER_SKIP_TER",
+          "reserved_ter_serials": [],
+          "unselected_atom_count": 36,
+          "serial_reference_records": "ABSENT",
+          "component_padding_difference_count": 36,
+          "unselected_component_names_preserved": true,
+          "unselected_other_nonserial_fields_preserved": true
+        },
+        "removed_atoms": [
+          {
+            "site": "A:12",
+            "chain_id": "A",
+            "resseq": "12",
+            "icode": "",
+            "altloc": "",
+            "component": "DY",
+            "atom": "OP3",
+            "canonical_atom": "OP3",
+            "element": "O",
+            "serial": 39,
+            "old_serial": 22,
+            "new_serial": 39,
+            "reason": "verified-incoming-O3-prime-P-link"
+          }
+        ],
+        "unselected_state_preserved": true,
+        "legacy_refusal": "Identity serial repair requires exact unselected nonserial fields",
+        "independent_audit": "CONSTRUCTION_CONTEXT_DELTA_PASS",
+        "native_counts": {
+          "PASS": 67,
+          "UNSUPPORTED": 1
+        },
+        "all_jobs_stopped": true,
+        "source_files_preserved": 2,
+        "elapsed_seconds": 3.922761417001311,
+        "physical_bytes": 4000569,
+        "scientific_acceptance": false,
+        "refinement": "NOT_RUN",
+        "DF_repair": "NOT_ESTABLISHED"
+      },
+      "driver": {
+        "returncode": 0,
+        "stopped_verified": true,
+        "source_unchanged": true
+      }
+    },
+    "df_diagnostics": {
+      "anchor": "NASolve-live-tests",
+      "retained": [
+        {
+          "path": "360_Cedar_curated-anchor-audit-sdls2xiy",
+          "outcome": "Original numerical non-polymer header refuses source DNA graph."
+        },
+        {
+          "path": "360_Cedar_curated-anchor-audit-0gd4naz7",
+          "outcome": "Existing source metadata adapter allows graph; original component padding refuses serial proof."
+        },
+        {
+          "path": "360_Cedar_curated-anchor-audit-kkjy25ay",
+          "outcome": "New padding proof reaches unchanged phosphate guard; D:1 P absent from declared Phaser input. No bypass."
+        }
+      ],
+      "hazel_parent": {
+        "anchor": "NASolve/branch-artifacts/Alder",
+        "path": "ft-hg-triage-20261117-01/canonical-phosphate-parent-v1/parent.pdb",
+        "sha256": "000a4c2eaa286cbb76289125fde00007bdd7684d26da55ee62fea9717c95046e",
+        "provenance": "Hazel shared ensure_five_prime_phosphates producer, explicit earlier diagnostic stage order;855 original atoms unchanged, D1 quartet matches captured reference."
+      },
+      "next": "Verify metadata native equivalence, then fresh Coot on declared parent and existing whole-base transport; do not alter curated restoration until qualified."
+    },
+    "changed_files": [
+      "src/nasolve/postmr_context.py",
+      "src/nasolve/cif_postmr_construction.py",
+      "src/nasolve/postmr.py",
+      "tests/test_postmr_component_padding.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "compatibility": "Old policy/default explicit context behavior and byte-exact proof records remain unchanged; fresh constructor enables only additional formatting capability. Old readers refuse new nested policy. No migration.",
+    "retention": "Only code/tests/docs/compact evidence committed. Native models/dictionaries/logs and all failed diagnostics remain local;11.30MB installed scratch removed.",
+    "limitations": [
+      "No DF repair/adoption/geometry acceptance.",
+      "Missing declared terminal chemistry still refuses; no OP3 deletion without same existing proof.",
+      "No native targets/weights/Free-R, full suite, branch merge or active callback changes.",
+      "Last full Cedar C220/583d30df:9178tests+276subtests; not current."
+    ]
   }
 }

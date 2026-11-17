@@ -4286,3 +4286,9 @@ The existing history record keeps the dictionary chosen for each site after relo
 The remaining work is obtaining those choices from the original canonical model and
 its declared end states, then connecting ordinary request intake. The new control
 reuses already-qualified projections; it does not yet automate their selection.
+
+A separate construction check now recognizes when Coot merely pads a residue name
+differently in the PDB field. It still checks all coordinates and other atom fields,
+and phosphate removal still needs the existing chemical proof. The DF collaboration
+control exposed this formatting problem as well as a missing earlier terminal-phosphate
+preparation step; neither permits adopting raw Coot coordinates or weakening intent.
