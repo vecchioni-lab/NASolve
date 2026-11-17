@@ -4,7 +4,7 @@
   "updated": "2026-11-17",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "72962bf4c1f611a1b88d99efea0e2b635bb666da",
+  "audited_code_commit": "eb98c6f1ab4fa9dbce97d9133642a97545d1528d",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -318,7 +318,8 @@
         "W100 removes the pristine-reference tether from displaced workers. All three full-window controls and common observers pass numerical/binding checks but remain iteration-limited. Pair forces improve both selected and four movable core pairs; without them pair targets worsen despite lower native energy. Affected bond/angle screens and chiral signs pass, while healthy drift and individual packing/torsion tradeoffs prevent physical acceptance.",
         "W112 optionally binds both hierarchy and scattering state through existing Cedar readers; exact roundtrip and default-observer preservation controls pass. Active admission and ordinary lifecycle remain separate.",
         "W113 supplies the fresh frozen numerical contribution factory and explicit supported count by reusing existing compiler/coverage/evaluation. W114 qualifies direct native ownership/lifetime at exact C368 pins; ordinary runtime integration remains open.",
-        "W115 qualifies the installed C371 read-only assembly on actual ordinary zero-cycle preflight. Ordered855 atoms,3333 observations and176 original Free-R selections are preserved;124 requested terms split107native/17missing. Initial default-MTZ cell precision mismatch remains refused; explicit working-frame control matches source. No forces, optimization or repair acceptance."
+        "W115 qualifies the installed C371 read-only assembly on actual ordinary zero-cycle preflight. Ordered855 atoms,3333 observations and176 original Free-R selections are preserved;124 requested terms split107native/17missing. Initial default-MTZ cell precision mismatch remains refused; explicit working-frame control matches source. No forces, optimization or repair acceptance.",
+        "W116 completes three ordinary1cycle/10iteration refinements after independent actual preflights. Native-only and zero-addition full endpoint/statistics/score are exact;17 additional full-recipe terms participate through16checked model calls and final writer. Original3333 observations/176 Free-R and ADP/occupancy preserved; no diffraction benefit or repair adoption. Frozen C371/v3 diagnostic only, production admission and broader scopes remain open."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
@@ -367,14 +368,15 @@
         "E_DUAL_NATIVE_STATE",
         "E_FROZEN_PAIR_CONTRIBUTION",
         "E_COUNTED_OWNER_LIFETIME",
-        "E_ACTUAL_PREPARED_STATE"
+        "E_ACTUAL_PREPARED_STATE",
+        "E_BOUNDED_ORDINARY_LIFECYCLE"
       ],
       "last_audit": {
         "date": "2026-11-17",
-        "code_commit": "72962bf4c1f611a1b88d99efea0e2b635bb666da",
-        "human_update": 115,
+        "code_commit": "eb98c6f1ab4fa9dbce97d9133642a97545d1528d",
+        "human_update": 116,
         "reviewer": "Linden",
-        "scope": "Actual ordinary preflight and installed shared read-only assembly qualified; working frame explicit. S05/S06 remain PARTIAL, ordinary active lifecycle and scientific closure open."
+        "scope": "Bounded ordinary optimizer/writer diagnostic qualified at C371/W113 pins, exact zero-addition identity. No diffraction benefit or physical closure; S05/S06 stay PARTIAL."
       }
     },
     {
@@ -402,7 +404,8 @@
         "W111 local native energies_add contribution restores provider-independent normalized actual-model targets/forces for complete and partial canonical pairs, with select-all and derivative controls. C331 deliberately refuses the local method facade. Exact restoration requires original hierarchy and fractional scattering coordinates; no production adapter is installed.",
         "W112 optionally binds both hierarchy and scattering state through existing Cedar readers; exact roundtrip and default-observer preservation controls pass. Active admission and ordinary lifecycle remain separate.",
         "W113 supplies the fresh frozen numerical contribution factory and explicit supported count by reusing existing compiler/coverage/evaluation. W114 qualifies direct native ownership/lifetime at exact C368 pins; ordinary runtime integration remains open.",
-        "W115 qualifies the installed C371 read-only assembly on actual ordinary zero-cycle preflight. Ordered855 atoms,3333 observations and176 original Free-R selections are preserved;124 requested terms split107native/17missing. Initial default-MTZ cell precision mismatch remains refused; explicit working-frame control matches source. No forces, optimization or repair acceptance."
+        "W115 qualifies the installed C371 read-only assembly on actual ordinary zero-cycle preflight. Ordered855 atoms,3333 observations and176 original Free-R selections are preserved;124 requested terms split107native/17missing. Initial default-MTZ cell precision mismatch remains refused; explicit working-frame control matches source. No forces, optimization or repair acceptance.",
+        "W116 completes three ordinary1cycle/10iteration refinements after independent actual preflights. Native-only and zero-addition full endpoint/statistics/score are exact;17 additional full-recipe terms participate through16checked model calls and final writer. Original3333 observations/176 Free-R and ADP/occupancy preserved; no diffraction benefit or repair adoption. Frozen C371/v3 diagnostic only, production admission and broader scopes remain open."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -410,7 +413,7 @@
         "Blunt and asymmetric-orientation trials retain matched observations/Free-R and independent bends/maps; calibrate inconclusive outcomes rather than force alignment or a statistical winner.",
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning."
       ],
-      "next_action": "Seal actual prepared observation and initial selection through the existing execution owner, then qualify bounded fixed-weight coordinate-only lifecycle at module-level native driver.run through final writer. Compare native-only and zero-addition ownership before the full17-addition recipe; the latter changes requested chemistry. Preserve explicit working frame, observations/Free-R, exclusions and source/state lifetime. No provider replanning, automatic weights or silent model replacement. Then matched data/maps, healthy/wrong-connection controls and B09.",
+      "next_action": "Integrate immutable prepared admission/same-phase consumption using existing execution owners and explicitly qualify coordinated package/dependency ownership; Willow factory remains external to Cedar wheel. Optimize only measured pure relative-image arithmetic while preserving all validation/refusals. Keep working frame, observations/Free-R, fixed provider selection and version-specific runtime gates. Then broader weights/phases, periodic exclusions, matched data/maps and healthy/wrong-connection/B09 controls; no scientific acceptance from W116.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -431,14 +434,15 @@
         "E_FROZEN_PAIR_CONTRIBUTION",
         "E_COUNTED_OWNER_LIFETIME",
         "E_FULL_SOURCE_C366",
-        "E_ACTUAL_PREPARED_STATE"
+        "E_ACTUAL_PREPARED_STATE",
+        "E_BOUNDED_ORDINARY_LIFECYCLE"
       ],
       "last_audit": {
         "date": "2026-11-17",
-        "code_commit": "72962bf4c1f611a1b88d99efea0e2b635bb666da",
-        "human_update": 115,
+        "code_commit": "eb98c6f1ab4fa9dbce97d9133642a97545d1528d",
+        "human_update": 116,
         "reviewer": "Linden",
-        "scope": "Actual ordinary preflight and installed shared read-only assembly qualified; working frame explicit. S05/S06 remain PARTIAL, ordinary active lifecycle and scientific closure open."
+        "scope": "Bounded ordinary optimizer/writer diagnostic qualified at C371/W113 pins, exact zero-addition identity. No diffraction benefit or physical closure; S05/S06 stay PARTIAL."
       }
     },
     {
@@ -2031,6 +2035,30 @@
         "committed": false,
         "portable_campaign": false
       }
+    },
+    "E_BOUNDED_ORDINARY_LIFECYCLE": {
+      "kind": "bounded_actual_ordinary_counted_lifecycle",
+      "code_commit": "eb98c6f1ab4fa9dbce97d9133642a97545d1528d",
+      "human_update": 116,
+      "reference": "docs/topostitch-periodic.md#w116--qualify-one-bounded-ordinary-refinement-cycle",
+      "result": "Phenix2.2.1-6174:3actual1cycle coordinate refinements plus3zero-cycle preflights. Actual fixedwx=wx_scale=wc=1,10iterations/12functions,nproc1,seed2679941. Native-only versus zero owner full states/statistics/geometry scores EXACT. Full17-added recipe gives distinct max0.033571Å/RMS0.002797Å endpoint. Both owners16successful calls, same model through final writer, checked identities before cleanup/restored; original3333data/176FreeR and non-coordinate scattering preserved. finish/validate_execution and independent audit pass. All processes stopped.",
+      "limitation": "Diagnostic module-level driver.run/optimizer observer with immutable preflight records; no production admission/schema/default or branch merge. Full recipe changes requested chemistry; Rfree .25991557 versus core .25989801, both worse than preflight .25919212. No repair/diffraction benefit/adoption. Native-family reports omit additions. Standalone Cedar lacks existing Willow W35 PDB RMSD fallback; both readouts retained. Historical v3 competing-hook recovery not tested. Native refine12.10s, zero78.14s, full83.21s;6.46x overhead needs measured optimization, not fewer checks.",
+      "runtime_pins": {
+        "willow_code_commit": "3f5806106bdb233e648ad3c8442d878998c846da",
+        "cedar_wheel_sha256": "6d87257cb9a02fabe8b0efecb1a37b17ef8e7a5489d18da344688b8f34ed6119",
+        "cedar_counted_helper_sha256": "2504e4718b7538ac96d36a0f65c120aa695010dbdc0d51bc5605226a6ee44918",
+        "v3_runtime_sha256": "6698585c1da6225895dd1d639554321ccab695eda1b4366d243deb39106c3503"
+      },
+      "local_forensic_archive": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/w116-ordinary-cycle-2026-11-17.tar.gz",
+        "sha256": "74867d382d806662f6469cf2318371425ade5c834f99fda68b4476748d4e15a3",
+        "bytes": 5259129,
+        "files": 123,
+        "payload_index_verified": true,
+        "committed": false,
+        "portable_campaign": false
+      }
     }
   },
   "benchmarks": [
@@ -2182,8 +2210,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 115,
-    "next": 116,
+    "current": 116,
+    "next": 117,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -2683,6 +2711,12 @@
         "title": "Bind actual prepared observations to an explicit working crystal frame",
         "state": "RECORDED",
         "code_commit": "72962bf4c1f611a1b88d99efea0e2b635bb666da"
+      },
+      {
+        "number": 116,
+        "title": "Qualify one bounded ordinary optimizer and final-writer lifecycle",
+        "state": "RECORDED",
+        "code_commit": "eb98c6f1ab4fa9dbce97d9133642a97545d1528d"
       }
     ]
   },
