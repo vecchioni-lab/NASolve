@@ -4,7 +4,7 @@
   "updated": "2026-11-17",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "9b7f8b17511a62af2e062f3c8790734a5e9ea103",
+  "audited_code_commit": "f732f2ed4f25b703d232d390df265cf80918a843",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -389,7 +389,8 @@
         "W105 exports exact requested-term declarations from the existing compiled NativePairRecipe, checking original binding, actual proxy parameters and Cartesian/image roles without changing the compiler/workers. Installed native observation passes; complete actual-manager producer and activation remain open.",
         "W106 observes the actual callback-free native manager through the existing C331 policy owner, exactly binds supported term images and origins, and composes W104/W105 coverage for native core plus explicit missing terms. Native/installed controls pass including an evidence-driven rational-denominator fix; active-force/lifecycle integration remains open.",
         "W107 composes107ordinary nativecore terms with17explicitmissing periodicterms using existing compiler andcoverage APIs. Actual model entry andexplicit select-all rebinding pass completeenergy/force/normalization andderivativecontrols. Term-level providerselection,activecallback guarding,exclusionapproval andordinary refinementlifecycle remainopen.",
-        "W108 selects native/additive providers term by term from frozen complete declarations, including partially covered individual pairs; exact-image/parameter matching and duplicate/conflict/stale refusals reuse the existing coverage owner. Native source and installed controls pass; force evaluation and lifecycle remain separate."
+        "W108 selects native/additive providers term by term from frozen complete declarations, including partially covered individual pairs; exact-image/parameter matching and duplicate/conflict/stale refusals reuse the existing coverage owner. Native source and installed controls pass; force evaluation and lifecycle remain separate.",
+        "W109 evaluates exact frozen selected terms through the existing complete compiler and shared kernels, rechecking live proxies and bindings even for an empty subset. Installed/full tests and native complement/derivative controls pass; no callback or ordinary refinement activation."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -397,7 +398,7 @@
         "Blunt and asymmetric-orientation trials retain matched observations/Free-R and independent bends/maps; calibrate inconclusive outcomes rather than force alignment or a statistical winner.",
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning."
       ],
-      "next_action": "Evaluate the exact frozen additive subset through the existing NativePairRecipe compiler/kernels without changing complete-recipe defaults, then qualify active callback/buffer/normalization and source/exclusion lifetime through existing Cedar AutoRefine owners. Preserve native repulsion until periodic exclusion policy is explicitly qualified. Matched diffraction, density and B09 final gates remain open.",
+      "next_action": "Agree and qualify a separate callback-aware policy/invocation protocol with Cedar while preserving C331 callback-free behavior. Then integrate exact provider/subset bindings and source/exclusion lifetime through existing prepare_execution, frozen rounds, actual manager and final writer. Periodic exclusion policy, matched diffraction/density and B09 remain open.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -410,14 +411,15 @@
         "E_COMPILED_PAIR_DECLARATIONS",
         "E_NATIVE_PAIR_OBSERVER",
         "E_MISSING_PAIR_ARITHMETIC",
-        "E_PAIR_PROVIDER_SELECTION"
+        "E_PAIR_PROVIDER_SELECTION",
+        "E_SELECTED_PAIR_FORCES"
       ],
       "last_audit": {
         "date": "2026-11-17",
         "reviewer": "Linden",
-        "code_commit": "9b7f8b17511a62af2e062f3c8790734a5e9ea103",
-        "human_update": 108,
-        "scope": "Term-level read-only provider planning qualified with partial individual-pair native controls; no selected-force or ordinary refinement activation."
+        "code_commit": "f732f2ed4f25b703d232d390df265cf80918a843",
+        "human_update": 109,
+        "scope": "Frozen selected-term force arithmetic qualifies with exact old/full/empty and complementary controls; native harness failure retained. Active policy and ordinary refinement remain open."
       }
     },
     {
@@ -1825,6 +1827,24 @@
         "committed": false,
         "portable_campaign": false
       }
+    },
+    "E_SELECTED_PAIR_FORCES": {
+      "kind": "frozen_selected_native_pair_evaluation",
+      "code_commit": "f732f2ed4f25b703d232d390df265cf80918a843",
+      "human_update": 109,
+      "reference": "docs/topostitch-periodic.md#w109--evaluate-the-exact-frozen-additive-subset",
+      "result": "Optional evaluate_terms revalidates the complete compiled binding and exact ordered selected declarations before using the same kernel/correction/pullback path. Twelve fail-before regressions; 117 focused,1964 full+229 subtests,257 installed, fresh sdist/wheel relocation,six helps,pip check,lean import,Python3.10 syntax pass. Six native20/20 directional cases(972 evaluations),12 complement/full/empty/energy-only controls and12 negatives pass on two retained sources plus independent P43 screw fixture. Default target/full gradients exactly match W108; complement gradient maxerror7.11e-15.",
+      "limitation": "Numerical subset evaluator only; no actual-manager callback, active policy/buffer or automatic lifetime, exclusions, ordinary refinement or scientific acceptance. First native attempt remains FAILED after four passing cases because the harness sorted the synthetic source; only synthetic fixture rerun with original atom order passes. Compiler behavior and captured worker remain unchanged; shared evaluation implementation changes.",
+      "local_forensic_archive": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/w109-selected-forces-2026-11-17.tar.gz",
+        "sha256": "613fe98b501084669b9c0fe10791eeb3d3c77a0576f0f537e2ddaa793e2a5833",
+        "bytes": 1692754,
+        "files": 48,
+        "payload_index_verified": true,
+        "committed": false,
+        "portable_campaign": false
+      }
     }
   },
   "benchmarks": [
@@ -1976,8 +1996,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 108,
-    "next": 109,
+    "current": 109,
+    "next": 110,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -2435,6 +2455,12 @@
         "title": "Select frozen native and additive providers term by term",
         "state": "RECORDED",
         "code_commit": "9b7f8b17511a62af2e062f3c8790734a5e9ea103"
+      },
+      {
+        "number": 109,
+        "title": "Evaluate exact frozen selected pair terms with existing kernels",
+        "state": "RECORDED",
+        "code_commit": "f732f2ed4f25b703d232d390df265cf80918a843"
       }
     ]
   },

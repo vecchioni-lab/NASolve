@@ -7,12 +7,12 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Willow queue:** [Development handoff](development-handoff.md). W108 adds
-  frozen term-level native/additive provider selection, including partial pairs.
-  Selected-subset evaluation, active guards, exclusion policy and ordinary
+- **Willow queue:** [Development handoff](development-handoff.md). W108 selects
+  frozen term-level providers; W109 evaluates the exact missing subset through
+  existing kernels. Active guards, exclusion policy and ordinary
   refinement integration remain open. No physical repair is claimed.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Next human update is W109;
+  [machine-readable source](topostitch-roadmap.json). Next human update is W110;
   do not restart completed probes merely because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

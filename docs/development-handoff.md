@@ -1,8 +1,8 @@
 # NASolve development handoff — Willow
 
 Updated **2026-11-17**. This is the **`willow` branch** handoff, not the
-project-wide status of Pine, Cedar or Alder. **W108 is audited; W109 is next.**
-Runtime code is W108 (`9b7f8b17`); native refinement activation remains open.
+project-wide status of Pine, Cedar or Alder. **W109 is audited; W110 is next.**
+Runtime code is W109 (`f732f2ed`); native refinement activation remains open.
 The [machine roadmap](topostitch-roadmap.json) owns milestone status; its
 [generated human view](topostitch-roadmap.md) owns the numbered progress queue.
 
@@ -19,7 +19,8 @@ S04/S05/S06 and P01/P02 remain partial; use the roadmap for individual gates.
 | W104 `review_pair_coverage` | Read-only comparison of explicit requested/native/additive terms; rejects missing, duplicate, stale, image and parameter mismatches | Caller authenticates complete declarations; no activation |
 | W105 `describe_compiled_pair_terms` | Exports terms from the existing compiled recipe and original bound packet | Not a native force or lifecycle qualification |
 | W106 `observe_native_pair_terms` | Callback-free actual-manager inventory with checksum-bound Cedar policy checks and exact rational image comparison | Special positions unsupported; source authenticity and active callback policy remain upstream |
-| W108 `select_pair_providers` | Plans exact term-level native/additive ownership, including partial individual pairs; conflicts refuse | No subset force evaluator or activation |
+| W108 `select_pair_providers` | Plans exact term-level native/additive ownership, including partial individual pairs; conflicts refuse | No activation authority |
+| W109 `NativePairRecipe.evaluate_terms` | Evaluates a frozen exact subset using the existing kernels, with per-call binding checks and full/complement derivative controls | No active callback/policy or ordinary refinement lifecycle |
 | W107 native composition diagnostic | 107 native core terms plus 17 explicitly missing periodic terms preserve coverage and normalization in the tested managers | General provider selection, active guarding, exclusions and production refinement remain open |
 
 W107 passed **eight 20/20 directional controls (1,296 evaluations), twelve
@@ -32,9 +33,9 @@ for exact commands, failed preparations, archive checksums and limitations.
 
 ## Next bounded work
 
-1. Evaluate the **exact frozen additive subset** through the existing compiler
-   and kernels. W108 now selects providers term by term; preserve its bindings,
-   full-recipe defaults and unrelated native/custom chemistry terms.
+1. Agree the separate **active callback/policy contract** with Cedar. W108 now
+   selects providers and W109 evaluates the exact frozen additive subset. Preserve
+   C331's callback-free behavior; do not bypass it or duplicate its policy reader.
 2. Integrate active callback, gradient-buffer, normalization and source-policy
    guards through Cedar's existing prepare/frozen-round/actual-manager/final-writer
    owners. The idle C331 observer does not qualify an active callback.
@@ -52,15 +53,17 @@ No native jobs remain active at this checkpoint.
 
 ## Validation and compatibility
 
-Latest production-code validation, **W108**: **76 focused, 1,952 full tests +229
-subtests, and 245 installed tests** passed. Fresh sdist/wheel relocation with source
+Latest production-code validation, **W109**: **117 focused, 1,964 full tests +229
+subtests, and 257 installed tests** passed. Fresh sdist/wheel relocation with source
 stages removed, six CLI helps, `pip check`, lean import and Python 3.10 syntax pass.
-Six complete Phenix 2.2.1-6174 cases qualify 107/17 native/additive coverage and
-104/20 after three removals within one pair, including select-all; twelve negatives
-pass. Selection preserves complete energies/gradients and coordinates. Installed
-review replay passes. Exact commands and scope are in the
-[W108 receipt](topostitch-periodic.md#w108--frozen-term-level-provider-selection).
-No default, CLI, packet-schema, dependency or native compiler/worker change.
+Six Phenix 2.2.1-6174 derivative cases (20/20 directions each; 972 evaluations),
+twelve composition controls and twelve negatives qualify subset arithmetic.
+Default results exactly match W108; selected+complement gradients agree within
+7.11e-15. The initial panel remains FAILED after four passing cases because the
+harness sorted the synthetic fixture; only that fixture was corrected/rerun.
+See the [W109 receipt](topostitch-periodic.md#w109--evaluate-the-exact-frozen-additive-subset).
+W108 separately qualifies six actual-manager partial-pair provider cases. No new
+callback, CLI, packet schema, dependency or ordinary refinement activation.
 
 The latest recorded installed **virtual** Willow/Cedar C338 combination passed
 **1,062 tests +22 subtests**, six CLI helps and saved graph/frame/native-link/packing
