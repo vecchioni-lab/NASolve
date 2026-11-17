@@ -160,3 +160,20 @@ def test_native_special_position_settings_wrapper_preserves_policy():
     policy.require_live_nonbonded_policy(g,before,**options)
     g.energies_sites(sites_cart=sites,**options)
     policy.require_live_nonbonded_policy(g,before,**options)
+
+
+def test_native_fixed_read_does_not_grant_adapter_admission():
+    g,sites,options=make_case();baseline=policy.snapshot_live_nonbonded_policy(g,**options)
+    expected={k:v for k,v in baseline['policy'].items() if k!='invocation'}
+    original=g.energies_sites
+    def adapter(**kwargs):return original(**kwargs)
+    g.energies_sites=adapter
+    try:
+        assert policy._Reader(policy._native_types()).fixed_inputs(g)==expected
+        assert g._pair_proxies is None and g.n_updates_pair_proxies==0
+        with pytest.raises(ValueError,match='Overridden'):
+            policy.snapshot_live_nonbonded_policy(g,**options)
+    finally:
+        assert g.energies_sites is adapter
+        del g.energies_sites
+    assert policy.snapshot_live_nonbonded_policy(g,**options)==baseline

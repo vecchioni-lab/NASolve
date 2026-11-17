@@ -232,6 +232,47 @@ class _Reader:
             site_table=table_rows)
 
 
+    def fixed_inputs(self, geo):
+        """Read complete fixed inputs, without granting runtime admission.
+
+        Invocation/callable/buffer ownership belongs to the calling guard. This
+        detached observation neither evaluates energy nor claims an adapter is
+        supported. Both idle and future active owners must reuse this traversal.
+        """
+        self.exact(geo, 'manager')
+        if geo.nonbonded_distance_cutoff is None:
+            raise ValueError('Require an already resolved configured nonbonded cutoff')
+        self.exact(geo.nonbonded_params, 'params')
+        self.exact(geo.nonbonded_function, 'function')
+        self.exact(geo.nonbonded_types, 'types')
+        count = self.count(geo.nonbonded_types, MAX_ATOMS)
+        if not count:
+            raise ValueError('Require nonempty native atom/type assignments')
+        assignments = {}
+        for name in ASSIGNMENT_FIELDS:
+            values = getattr(geo, name)
+            if values is None:
+                assignments[name] = None
+                continue
+            kind = 'types' if name == 'nonbonded_types' else 'charges' if name == 'nonbonded_charges' else 'indices'
+            self.exact(values, kind)
+            size = self.count(values, MAX_ATOMS)
+            if size != count and (name == 'nonbonded_types' or size != 0):
+                raise ValueError('Native assignment/atom count differs: ' + name)
+            assignments[name] = [_text(v) if kind == 'types' else
+                _integer(v, minimum=None if kind == 'charges' else 0) for v in values]
+        p = geo.nonbonded_params
+        parameters = {name: _number(getattr(p, name)) for name in PARAMETER_SCALARS}
+        parameters.update({name: self.mapping(getattr(p, name)) for name in PARAMETER_TABLES})
+        parameters['distance_table'] = self.mapping(p.distance_table, nested=True)
+        return dict(parameters=parameters, assignments=assignments,
+            function={name: _number(getattr(geo.nonbonded_function, name)) for name in FUNCTION_FIELDS},
+            shells=self.shells(geo.shell_sym_tables, count),
+            symmetry=self.symmetry(geo.crystal_symmetry, geo.site_symmetry_table, count),
+            search={name: None if name in SEARCH_FIELDS[3:] and getattr(geo, name) is None
+                    else _number(getattr(geo, name)) for name in SEARCH_FIELDS})
+
+
 def _cache_observations(geo):
     return dict(adjusted_nonbonded_distance_cutoff=_number(geo.adjusted_nonbonded_distance_cutoff),
         effective_nonbonded_buffer=_number(geo.effective_nonbonded_buffer),
@@ -261,41 +302,11 @@ def snapshot_live_nonbonded_policy(geo, *, flags, normalization,
             raise ValueError('Unsupported custom live nonbonded evaluation settings')
         if any(name in vars(geo) for name in ('pair_proxies', 'energies_sites')):
             raise ValueError('Overridden native manager evaluation is unsupported')
-        if geo.nonbonded_distance_cutoff is None:
-            raise ValueError('Require an already resolved configured nonbonded cutoff')
-        reader.exact(geo.nonbonded_params, 'params')
-        reader.exact(geo.nonbonded_function, 'function')
-        reader.exact(geo.nonbonded_types, 'types')
-        count = reader.count(geo.nonbonded_types, MAX_ATOMS)
-        if not count:
-            raise ValueError('Require nonempty native atom/type assignments')
-        assignments = {}
-        for name in ASSIGNMENT_FIELDS:
-            values = getattr(geo, name)
-            if values is None:
-                assignments[name] = None
-                continue
-            kind = 'types' if name == 'nonbonded_types' else 'charges' if name == 'nonbonded_charges' else 'indices'
-            reader.exact(values, kind)
-            size = reader.count(values, MAX_ATOMS)
-            if size != count and (name == 'nonbonded_types' or size != 0):
-                raise ValueError('Native assignment/atom count differs: ' + name)
-            assignments[name] = [_text(v) if kind == 'types' else
-                _integer(v, minimum=None if kind == 'charges' else 0) for v in values]
-        p = geo.nonbonded_params
-        parameters = {name: _number(getattr(p, name)) for name in PARAMETER_SCALARS}
-        parameters.update({name: reader.mapping(getattr(p, name)) for name in PARAMETER_TABLES})
-        parameters['distance_table'] = reader.mapping(p.distance_table, nested=True)
-        policy = dict(parameters=parameters, assignments=assignments,
-            function={name: _number(getattr(geo.nonbonded_function, name)) for name in FUNCTION_FIELDS},
-            shells=reader.shells(geo.shell_sym_tables, count),
-            symmetry=reader.symmetry(geo.crystal_symmetry, geo.site_symmetry_table, count),
-            search={name: None if name in SEARCH_FIELDS[3:] and getattr(geo, name) is None
-                    else _number(getattr(geo, name)) for name in SEARCH_FIELDS},
-            invocation=dict(flags={name: _boolean(getattr(flags, name)) for name in FLAG_FIELDS},
+        policy = reader.fixed_inputs(geo)
+        policy['invocation'] = dict(flags={name: _boolean(getattr(flags, name)) for name in FLAG_FIELDS},
                 normalization=_boolean(normalization), compute_gradients=_boolean(compute_gradients),
                 disable_asu_cache=_boolean(disable_asu_cache), gradients=None,
-                custom_nonbonded_function=None, external_energy_function=None, extension_objects=[]))
+                custom_nonbonded_function=None, external_energy_function=None, extension_objects=[])
         snapshot = dict(schema_version=1, policy_id=POLICY_ID, native_profile_id=PROFILE_ID,
             policy=policy, policy_sha256=hashlib.sha256(_encoded(policy)).hexdigest(),
             cache_observations=_cache_observations(geo))

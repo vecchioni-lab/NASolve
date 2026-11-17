@@ -246,3 +246,32 @@ def test_module_import_does_not_require_a_native_installation():
 def test_required_search_settings_cannot_be_unresolved(case,field):
     m,g,options=case;setattr(g,field,None)
     with pytest.raises(ValueError):m.snapshot_live_nonbonded_policy(g,**options)
+
+
+@pytest.mark.parametrize('mode',['plain','external','adapter'])
+def test_fixed_input_read_is_separate_from_runtime_admission(case,mode):
+    m,g,options=case
+    baseline=m.snapshot_live_nonbonded_policy(g,**options)
+    expected={k:v for k,v in baseline['policy'].items() if k!='invocation'}
+    if mode=='external':g.external_energy_function=lambda:0.
+    elif mode=='adapter':g.energies_sites=lambda:None
+    before=dict(vars(g))
+    fixed=m._Reader(m._native_types()).fixed_inputs(g)
+    assert fixed==expected and 'invocation' not in fixed
+    assert set(vars(g))==set(before) and all(vars(g)[k] is v for k,v in before.items())
+    if mode!='plain':
+        with pytest.raises(ValueError):m.snapshot_live_nonbonded_policy(g,**options)
+    g.nonbonded_params.radius_table['UNUSED']=2.7
+    assert fixed==expected  # detached; complete unused tables remain observable
+    changed=m._Reader(m._native_types()).fixed_inputs(g)
+    assert changed['parameters']!=fixed['parameters']
+
+
+def test_legacy_snapshot_uses_shared_fixed_traversal_once(case,monkeypatch):
+    m,g,options=case;baseline=m.snapshot_live_nonbonded_policy(g,**options)
+    original=m._Reader.fixed_inputs;calls=[]
+    def observed(reader,geo):
+        calls.append(geo)
+        return original(reader,geo)
+    monkeypatch.setattr(m._Reader,'fixed_inputs',observed)
+    assert m.snapshot_live_nonbonded_policy(g,**options)==baseline and calls==[g]

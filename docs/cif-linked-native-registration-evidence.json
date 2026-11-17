@@ -108645,5 +108645,147 @@
       "Automatic public DY selection, modified-input canonical-seed forwarding and real pairing semantics are separately scoped.",
       "Final integration/full regression remains Q16."
     ]
+  },
+  "shared_fixed_native_policy_read_2026_11_17": {
+    "milestone": "C367",
+    "date": "2026-11-17",
+    "signed": "Rowan",
+    "before": "Complete fixed-input traversal was embedded in the callback-free snapshot; future active owners would need duplication or a fake idle call.",
+    "after": "Existing _Reader.fixed_inputs supplies one detached complete observation; callback-free public admission and records remain unchanged.",
+    "changed_files": [
+      "src/nasolve/cif_live_nonbonded_policy.py",
+      "tests/test_cif_live_nonbonded_policy.py",
+      "tests/test_cif_live_nonbonded_policy_native.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": "UNCHANGED; private helper only, no active policy or runtime contribution",
+    "validation": {
+      "before": "4 failed,76 deselected in0.06s before extraction",
+      "new_cases": 5,
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_live_nonbonded_policy.py --tb=short",
+      "focused": "80 passed in2.82s",
+      "installed_command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-B",
+        "-c",
+        "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_cif_live_nonbonded_policy.py', 'tests/test_cif_objective_probe.py', 'tests/test_cif_refinement_output.py', '--tb=short']))"
+      ],
+      "installed": "128 passed in1.51s; source/old install removed",
+      "wheel_sha256": "a373682c45470298e118002d7b31b53464d8050e0f1cbc674d04687bc459a738",
+      "native_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src NASOLVE_TEST_NATIVE_NONBONDED=1 phenix.python -c \"import sys; sys.path.insert(0, CEDAR_SRC); import pytest; raise SystemExit(pytest.main(['-q','-p','no:cacheprovider','tests/test_cif_live_nonbonded_policy_native.py','--tb=short']))\" (CEDAR_SRC explicit local source anchor)",
+      "native": "33 passed in0.69s; complete Phenix2.2.1-6174 synthetic native execution, not dry-run/refinement",
+      "compatibility": {
+        "status": "EXACT_C331_LEGACY_NATIVE_RECORDS_AND_REFUSALS",
+        "source_commit": "09303e80",
+        "original_source_sha256": "0a812020882d5452554a4f6629c5af1aa56e01f6060c26fce585e9174bcfaf3e",
+        "current_source_sha256": "14aadda1bbd69ad89f66836610747e32797756b82f7c77d1479d6b7567869c58",
+        "cases": [
+          {
+            "symmetry": "general",
+            "gradient": false,
+            "normalization": false,
+            "policy_sha256": "782ee69a50d4dbf0b3607cc491c276afb30e1d94cba4956a06f1ea93cbe10140"
+          },
+          {
+            "symmetry": "general",
+            "gradient": false,
+            "normalization": true,
+            "policy_sha256": "76545f47dde4304a8521cc05e703a9350482535f653347edbb702e9f4e39ee8c"
+          },
+          {
+            "symmetry": "general",
+            "gradient": true,
+            "normalization": false,
+            "policy_sha256": "f702c225d5799f924bf937c48e793703322534c468ac389531d1e4113557aada"
+          },
+          {
+            "symmetry": "general",
+            "gradient": true,
+            "normalization": true,
+            "policy_sha256": "c10570a80778187330bb35a5ffb5d71c2fda2fcc7a0966abe0b9b1689f353562"
+          },
+          {
+            "symmetry": "special",
+            "gradient": false,
+            "normalization": false,
+            "policy_sha256": "40bf80f36f6ff904804bfa766264c60cc52b08ec36156c3d42171adda84d7306"
+          },
+          {
+            "symmetry": "special",
+            "gradient": false,
+            "normalization": true,
+            "policy_sha256": "f8b9cfc6a8d740596fdf76d0fad94a30d22112fa09d40979ea43b72bd88e41d0"
+          },
+          {
+            "symmetry": "special",
+            "gradient": true,
+            "normalization": false,
+            "policy_sha256": "5addf6a277dcf83cdd6d09cd178289732f70851b17be293bca087b1c1e3dc540"
+          },
+          {
+            "symmetry": "special",
+            "gradient": true,
+            "normalization": true,
+            "policy_sha256": "b1fc89762f98c69ac8bb14805e01b5bba9f91d42961766ab662fd8bac1eaee8a"
+          }
+        ],
+        "negative_controls": [
+          {
+            "case": "external",
+            "error": "Unsupported custom live nonbonded evaluation settings"
+          },
+          {
+            "case": "adapter",
+            "error": "Overridden native manager evaluation is unsupported"
+          },
+          {
+            "case": "buffer",
+            "error": "Unsupported custom live nonbonded evaluation settings"
+          },
+          {
+            "case": "nan",
+            "error": "Require finite native policy numbers"
+          },
+          {
+            "case": "cutoff",
+            "error": "Require an already resolved configured nonbonded cutoff"
+          },
+          {
+            "case": "assignment",
+            "error": "Native assignment/atom count differs: nonbonded_charges"
+          },
+          {
+            "case": "flags",
+            "error": "Require resolved boolean evaluation settings"
+          }
+        ],
+        "previous_and_current_cross_read": true,
+        "version": "Phenix2.2.1-6174",
+        "execution": "Synthetic native managers/energies only; no crystallographic inputs or refinement",
+        "temporary_bytes_removed": 18652
+      },
+      "initial_native_attempt": "Collection only failed because dispatcher dropped relative PYTHONPATH; corrected explicit source anchor, no product edit or native calculation.",
+      "static": "git diff --check; Python3.10 AST",
+      "full_suite": "NOT_RUN"
+    },
+    "compatibility": "Legacy API/profile/schema/policy digests and refusal rules unchanged. New captured callers must pin new helper source; historical helper copies are untouched. No active adapter/evaluator/source synchronization or changed scientific targets.",
+    "retention": {
+      "raw_science": "NONE; synthetic atoms only",
+      "successful_temporary_bytes_removed": 11400947,
+      "receipt": {
+        "anchor": "NASolve/branch-artifacts/cedar",
+        "path": "c367-shared-policy/compatibility.json",
+        "sha256": "6776b610247894af4a913655e0fd260709cc1c215bcd5b4bbd49198e50013272"
+      }
+    },
+    "remaining": [
+      "Compose Linden existing packet/provider factory with Cedar direct-call active ownership.",
+      "Qualify native buffers, counts, entry/exit/exception cleanup before frozen refinement integration.",
+      "Q06 scientific geometry remains open."
+    ]
   }
 }

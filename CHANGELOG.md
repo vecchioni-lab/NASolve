@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Share complete native-policy observation without widening admission (C367)
+
+- Reuse one complete fixed-input traversal for future native owners. The existing
+  callback-free guard retains identical records, native profile and refusals;
+  reading fixed inputs alone does not authorize an adapter or force contribution.
+- New captured callers must pin the changed helper source. Historical captured
+  helpers and artifact schemas remain unchanged; no migration or force activation.
+
 ### Carry explicit custom chemistry through ordinary Coot preparation (C366)
 
 - Ordinary checked PostMR accepts frozen sources and qualified per-component

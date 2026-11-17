@@ -29,7 +29,8 @@ construction and cold request readback pass. Return to Q06 achieved geometry and
 the shared counted-contribution owner boundary. C357 retention findings remain local.
 
 Linden's W111 counted-contribution diagnostic supports shared Q06 integration;
-C331 remains callback-free. Review exact owner admission, callable identity, native
+C331 remains callback-free. C367 shares its complete fixed-input traversal with
+byte-identical legacy/native readback; this does not admit an active adapter. Review exact owner admission, callable identity, native
 buffer lifetime and full model count/normalization before activation. Hierarchy
 Cartesian and scattering fractional coordinates are distinct runtime representations
 and both require exact restoration. Local facade/derivative passes do not qualify

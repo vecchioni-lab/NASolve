@@ -4253,6 +4253,16 @@ bounds, serialization, runtime portability and remaining chemistry/geometry gate
 
 ## Live nonbonded policy guard (C331)
 
+C367 factors the complete fixed-input read into this same `_Reader.fixed_inputs`.
+It returns detached parameters, assignments, function, shells, symmetry and search
+settings without invocation claims. The legacy public snapshot still validates
+its exact callback-free invocation and refuses adapters/buffers before that read.
+This private observation is not active admission. Old records/profile/refusals
+are unchanged; helper source bytes require fresh pins for new captured callers.
+Eight actual native configurations cross-read byte-identically with the previous
+implementation, including cache updates; seven negative cases retain exact errors.
+Evidence: `shared_fixed_native_policy_read_2026_11_17` in the existing ledger.
+
 A contact list describes the pairs Phenix currently evaluates; it cannot bind
 all the rules that may generate different contacts after atoms move. The explicit
 `cif_live_nonbonded_policy` helper now snapshots those live inputs without energy

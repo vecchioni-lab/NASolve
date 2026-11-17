@@ -1,10 +1,30 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C366 complete — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. C365 / `a8f856e8` is the parent;
-C366 is being sealed. Afternoon work window ends **17:30 UK / UTC**.
+Updated **2026-11-17, C367 shared native-policy read complete — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. C366 / `09303e80` is pushed.
+Afternoon work window ends **17:30 UK / UTC**.
 
 ## Current checkpoint and next bounded work
+
+**C367 complete: one shared fixed-policy read, unchanged callback-free admission.**
+C331's existing `_Reader` now supplies the complete detached fixed-input observation;
+its legacy snapshot still owns and enforces callback/buffer/override refusal. No
+new active owner, profile, stored schema, force or normalization behavior. Five new
+cases cover sharing versus admission. 80 focused /128 installed checks pass;
+33 actual Phenix synthetic-atom checks pass. Eight native configurations produce
+byte-identical C331 records and cross-read both ways; seven refusal messages match.
+New source pins must bind the changed helper bytes; old captured helpers stay intact.
+Compact evidence: `shared_fixed_native_policy_read_2026_11_17`. No full suite.
+
+**Next C368 candidate: owned counted-contribution direct calls.** Reuse this read
+for truthful active invocation checks, with distinct admission and single-call
+buffer ownership. Linden owns a small fresh contribution factory in his existing
+recipe module (API agreed, implementation pending); Cedar owns native admission,
+instance adapters and cleanup. No peer writes to Cedar. Bind actual force sites,
+not a stale hierarchy; preserve actual per-call counts and single normalization.
+No ordinary refinement activation until direct native lifetime controls pass.
+Hazel owns DF force attribution/one matched iteration-budget control. No Rowan
+native process active. Source/installed/native evidence is complete for C367.
 
 **C366 connects checked custom chemistry to ordinary PostMR before Coot.**
 Explicit frozen source composition, canonical parent and qualified per-site
