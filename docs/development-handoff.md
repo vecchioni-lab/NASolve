@@ -96,6 +96,12 @@ benefit; W123 finds modest selected-pair improvement but substantial residual de
 
 ## Validation and compatibility
 
+W124 independently verifies C380's exact upstream integration and 296 installed
+source/resource files. Rowan's 887 installed tests +13 subtests pass; a separate
+15-test installed campaign/Doctor caller panel also passes. No current full-suite
+or new native-run claim; use the [W124 receipt](topostitch-periodic.md#w124--audit-package-owned-integration-and-refused-admission)
+for exact branch pins, ownership and limits.
+
 Latest Willow code is **W118 / `c08f3370`**: **237 focused, 2,033 full tests +229
 subtests, 326 installed tests** pass. A relocated sdist-to-wheel installation,
 six CLI helps, pip check, lean import, Python3.10 syntax and unchanged captured

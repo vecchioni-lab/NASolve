@@ -6348,3 +6348,31 @@ Next is explicit original-request/current-parent/frame binding, actual preflight
 immutable positive admission and same-phase consumption through existing owners,
 then descendant intent retention. W122's user-facing sticky-end option remains
 planned, with no new CLI/default behavior. S05/S06 remain partial.
+
+
+#### W124 focused caller follow-up
+
+The new early source guard also reaches campaign/Doctor callers. The existing
+`tests/test_workflow_plane_forces.py` panel was therefore run once against the
+same frozen C380 relocated installation: **15 pass, no skips, 4.24s** (4.53s owned
+wall). Exact committed fixture dependencies were copied to an isolated directory;
+all fixture and installed-package hashes remain unchanged and the process is
+verified stopped. No source/tests were edited, and this is neither another full
+suite nor a native refinement. It covers existing caller forwarding, cold campaign
+reads, Doctor continuation and refusal before allocation; it is not a new counted
+admission or complete campaign scientific qualification.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python /private/tmp/willow-w124-workflow.py
+# Owned child: python -m pytest -q -p no:cacheprovider tests/test_workflow_plane_forces.py --tb=short -ra
+# PYTHONPATH=/private/tmp/c380-package-2y61s5fv/relocated
+```
+
+Local review archive under repository anchor **everyday NASolve checkout**:
+`branch-artifacts/willow/w124-integration-review-2026-11-17.tar.gz`, SHA
+`795052794874791f5864d945abee9a0b96e80d2fe2836f2a32e06e9d812e1143`,
+**43,550 bytes /11 indexed files**, all members verified. It retains both planning
+revisions (revision 002 is authoritative), independent audit, installed receipts,
+caller-check script/log and exact source/fixture manifests. External software and
+committed fixtures are represented by their pins rather than duplicated; no
+scientific data or portable-execution claim is included.
