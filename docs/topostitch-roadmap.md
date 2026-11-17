@@ -1,6 +1,6 @@
 # TopoStitch and Pine completion roadmap
 
-**Current audited work queue: 2026-11-16.** Generated from
+**Current audited work queue: 2026-11-17.** Generated from
 [the machine-readable ledger](topostitch-roadmap.json); edit that ledger and run
 `python scripts/audit_topostitch_roadmap.py --write`, then `--check`.
 This is one queue with two linked tracks, not two competing implementations.
@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W107 — Qualify native core plus explicitly missing periodic forces.** Next: W108.
+**Current update: W108 — Select frozen native and additive providers term by term.** Next: W109.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W98 | Qualify declared starts and bounded paired-step native controls | RECORDED |
 | W99 | Qualify complete full-window native bend controls | RECORDED |
 | W100 | Compare independently tethered reference and displaced sources | RECORDED |
 | W101 | Qualify existing pair-kernel composition | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W105 | Export existing compiled pair declarations | RECORDED |
 | W106 | Observe complete native pair inventories with exact image membership | RECORDED |
 | W107 | Qualify native core plus explicitly missing periodic forces | RECORDED |
+| W108 | Select frozen native and additive providers term by term | RECORDED |
 
 ## Finish lines
 
@@ -201,7 +201,7 @@ Turn a plausible placement into a chemically usable candidate before refinement 
 
 Compare repaired and unmodified models fairly, then determine where data support curvature and strand-specific motion.
 
-**Delivered:** Three matched public-reference coordinate-only refinements now preserve deposited observations/Free-R and measure contact, geometry and diffraction tradeoffs; no repaired-MR success or meaningful extra Rfree benefit of bending is claimed. Supplied-data input checks and five local native MR placement controls completed, including forward and reverse-shape candidates; no repair/refinement comparison yet. W101 native pair-only composition passes20/20 directions in each raw/global-Cedar-corrected context for two source models, with exact baseline target/gradient equality. No double-correction fix is needed; actual refinement attachment, normalization/exclusion accounting and lifecycle remain unqualified. W102 passes complete pair/native objective arithmetic through actual mmtbx model energy entry before and after explicit all-atom selection/rebinding. Native normalization and zero-callback invariance are checked; automatic lifecycle, complete term/exclusion accounting and diffraction integration remain open. W103 observes complete exact-image pair supports, native shell exclusions and directed repulsion in actual initialized/selected/reinterpreted managers. Ordinary core PHIL reveals107 terms that a full callback would duplicate and117 removed directed nonbonded rows; integration must bind complete intended coverage and exclusions rather than append all terms. Local diagnostic only. W104 adds the reusable declared-coverage checker: exact source/crystal/exclusion and inventory bindings, explicit native/additive providers, score parameters, rational images and duplicate/missing/stale refusal. Installed replay covers the W103 native controls; authenticated actual-manager production and activation lifecycle remain open. W105 exports exact requested-term declarations from the existing compiled NativePairRecipe, checking original binding, actual proxy parameters and Cartesian/image roles without changing the compiler/workers. Installed native observation passes; complete actual-manager producer and activation remain open. W106 observes the actual callback-free native manager through the existing C331 policy owner, exactly binds supported term images and origins, and composes W104/W105 coverage for native core plus explicit missing terms. Native/installed controls pass including an evidence-driven rational-denominator fix; active-force/lifecycle integration remains open. W107 composes107ordinary nativecore terms with17explicitmissing periodicterms using existing compiler andcoverage APIs. Actual model entry andexplicit select-all rebinding pass completeenergy/force/normalization andderivativecontrols. Term-level providerselection,activecallback guarding,exclusionapproval andordinary refinementlifecycle remainopen.
+**Delivered:** Three matched public-reference coordinate-only refinements now preserve deposited observations/Free-R and measure contact, geometry and diffraction tradeoffs; no repaired-MR success or meaningful extra Rfree benefit of bending is claimed. Supplied-data input checks and five local native MR placement controls completed, including forward and reverse-shape candidates; no repair/refinement comparison yet. W101 native pair-only composition passes20/20 directions in each raw/global-Cedar-corrected context for two source models, with exact baseline target/gradient equality. No double-correction fix is needed; actual refinement attachment, normalization/exclusion accounting and lifecycle remain unqualified. W102 passes complete pair/native objective arithmetic through actual mmtbx model energy entry before and after explicit all-atom selection/rebinding. Native normalization and zero-callback invariance are checked; automatic lifecycle, complete term/exclusion accounting and diffraction integration remain open. W103 observes complete exact-image pair supports, native shell exclusions and directed repulsion in actual initialized/selected/reinterpreted managers. Ordinary core PHIL reveals107 terms that a full callback would duplicate and117 removed directed nonbonded rows; integration must bind complete intended coverage and exclusions rather than append all terms. Local diagnostic only. W104 adds the reusable declared-coverage checker: exact source/crystal/exclusion and inventory bindings, explicit native/additive providers, score parameters, rational images and duplicate/missing/stale refusal. Installed replay covers the W103 native controls; authenticated actual-manager production and activation lifecycle remain open. W105 exports exact requested-term declarations from the existing compiled NativePairRecipe, checking original binding, actual proxy parameters and Cartesian/image roles without changing the compiler/workers. Installed native observation passes; complete actual-manager producer and activation remain open. W106 observes the actual callback-free native manager through the existing C331 policy owner, exactly binds supported term images and origins, and composes W104/W105 coverage for native core plus explicit missing terms. Native/installed controls pass including an evidence-driven rational-denominator fix; active-force/lifecycle integration remains open. W107 composes107ordinary nativecore terms with17explicitmissing periodicterms using existing compiler andcoverage APIs. Actual model entry andexplicit select-all rebinding pass completeenergy/force/normalization andderivativecontrols. Term-level providerselection,activecallback guarding,exclusionapproval andordinary refinementlifecycle remainopen. W108 selects native/additive providers term by term from frozen complete declarations, including partially covered individual pairs; exact-image/parameter matching and duplicate/conflict/stale refusals reuse the existing coverage owner. Native source and installed controls pass; force evaluation and lifecycle remain separate.
 
 **Closure audit:**
 
@@ -210,9 +210,9 @@ Compare repaired and unmodified models fairly, then determine where data support
 - Blunt and asymmetric-orientation trials retain matched observations/Free-R and independent bends/maps; calibrate inconclusive outcomes rather than force alignment or a statistical winner.
 - Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.
 
-**Next action:** Do not repeat W107 arithmetic controls. Qualify general frozen term-level provider selection, then callback-aware buffer/force/normalization and source/exclusion lifetime through existing AutoRefine prepare/frozen-round/actual-manager/final-writer owners. Preserve C331 idle guarding and explicitly decide/qualify periodic exclusion policy; do not infer providers from pair purpose or append the full recipe. Then matched candidate/no-repair diffraction/Free-R/map trials with geometry and B09 final gates. See W107 integration-gate audit.
-**Evidence:** [E_MR_LOCAL](#e_mr_local), [E_PUBLIC_REFERENCE](#e_public_reference), [E_NATIVE_CALLBACK](#e_native_callback), [E_BLUNT_ASYM_PLAN](#e_blunt_asym_plan), [E_PAIR_KERNEL_COMPOSITION](#e_pair_kernel_composition), [E_PAIR_MODEL_ENTRY](#e_pair_model_entry), [E_PAIR_NATIVE_INVENTORY](#e_pair_native_inventory), [E_PAIR_COVERAGE](#e_pair_coverage), [E_COMPILED_PAIR_DECLARATIONS](#e_compiled_pair_declarations), [E_NATIVE_PAIR_OBSERVER](#e_native_pair_observer), [E_MISSING_PAIR_ARITHMETIC](#e_missing_pair_arithmetic).
-**Last audit:** 2026-11-16, Linden, [W107](https://github.com/vecchioni-lab/NASolve/commit/ff0059f9a0cdf274636a2fcf84f2a697ea2da52f); Bounded native-core plus missing-periodic arithmetic qualified; no productionselection,activeguard/exclusionapproval,lifecycle,diffraction orscientificacceptance..
+**Next action:** Evaluate the exact frozen additive subset through the existing NativePairRecipe compiler/kernels without changing complete-recipe defaults, then qualify active callback/buffer/normalization and source/exclusion lifetime through existing Cedar AutoRefine owners. Preserve native repulsion until periodic exclusion policy is explicitly qualified. Matched diffraction, density and B09 final gates remain open.
+**Evidence:** [E_MR_LOCAL](#e_mr_local), [E_PUBLIC_REFERENCE](#e_public_reference), [E_NATIVE_CALLBACK](#e_native_callback), [E_BLUNT_ASYM_PLAN](#e_blunt_asym_plan), [E_PAIR_KERNEL_COMPOSITION](#e_pair_kernel_composition), [E_PAIR_MODEL_ENTRY](#e_pair_model_entry), [E_PAIR_NATIVE_INVENTORY](#e_pair_native_inventory), [E_PAIR_COVERAGE](#e_pair_coverage), [E_COMPILED_PAIR_DECLARATIONS](#e_compiled_pair_declarations), [E_NATIVE_PAIR_OBSERVER](#e_native_pair_observer), [E_MISSING_PAIR_ARITHMETIC](#e_missing_pair_arithmetic), [E_PAIR_PROVIDER_SELECTION](#e_pair_provider_selection).
+**Last audit:** 2026-11-17, Linden, [W108](https://github.com/vecchioni-lab/NASolve/commit/9b7f8b17511a62af2e062f3c8790734a5e9ea103); Term-level read-only provider planning qualified with partial individual-pair native controls; no selected-force or ordinary refinement activation..
 
 <a id="s07"></a>
 ### S07 — Expose one ordinary, inspectable repair trial
@@ -1005,6 +1005,13 @@ Optional native observer reuses checksum-bound C331 policy owner.13new regressio
 [Evidence contract](topostitch-periodic.md#w107--native-core-plus-only-the-missing-periodic-terms) at [W107](https://github.com/vecchioni-lab/NASolve/commit/ff0059f9a0cdf274636a2fcf84f2a697ea2da52f).
 Complete107native+17additive coverage before/after explicit all-atomrebinding;8x20/20derivative controls,1296objectivecalls,12unsupported-settingrefusals. Zero callback exactlypreserves target/fullgradients; addedenergy/forces useactualnative N11379healthy/N11253displaced. Maxforcecompositionerror1.39e-17;192.80s Phenix2.2.1-6174 completeexecution. Sourceinputs/software/definitions/exclusions/kernelbindings preserved. Independentreviewreplaypasses;6Cedarowners/profilefilesmatch162ffe1d.
 **Limit:** Bounded diagnostic with explicitly declared whole-pair split, not a general provider selector. C331 guards restored idle policy, not activecallback/internalgradientbuffers. Existing periodicrepulsion retained; noexclusionapproval,automaticlifecycle/refinement/density/geometryacceptance ormergedruntime. Initialpreparationwrongimport andarchiveprefixfailure retained/corrected; productioncodeunchanged.
+
+<a id="e_pair_provider_selection"></a>
+### E_PAIR_PROVIDER_SELECTION — frozen_term_level_provider_selection
+
+[Evidence contract](topostitch-periodic.md#w108--frozen-term-level-provider-selection) at [W108](https://github.com/vecchioni-lab/NASolve/commit/9b7f8b17511a62af2e062f3c8790734a5e9ea103).
+Optional selector handles partial individual pairs using exact support and score matching. 15 fail-before tests; 76 focused, 1952 full +229 subtests, 245 installed tests, fresh sdist/wheel relocation, six helps and lean import pass. Six complete Phenix 2.2.1-6174 cases change 107 native/17 additive to 104/20 after three within-pair removals; select-all replay and twelve negative controls pass. Complete native energies/gradients and coordinates unchanged; independent installed replay passes. Native execution51.20s.
+**Limit:** Read-only planning from caller-authenticated complete declarations. No selected-subset evaluator, callback activation, active-policy/buffer qualification, exclusion approval, ordinary refinement or scientific acceptance. C331 pinned composition, not merged current Cedar. Existing image/general-position scope unchanged.
 
 ## Deferred extensions, not hidden blockers
 

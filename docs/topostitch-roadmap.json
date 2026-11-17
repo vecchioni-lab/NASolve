@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "kind": "topostitch-development-roadmap",
-  "updated": "2026-11-16",
+  "updated": "2026-11-17",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "ff0059f9a0cdf274636a2fcf84f2a697ea2da52f",
+  "audited_code_commit": "9b7f8b17511a62af2e062f3c8790734a5e9ea103",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -388,7 +388,8 @@
         "W104 adds the reusable declared-coverage checker: exact source/crystal/exclusion and inventory bindings, explicit native/additive providers, score parameters, rational images and duplicate/missing/stale refusal. Installed replay covers the W103 native controls; authenticated actual-manager production and activation lifecycle remain open.",
         "W105 exports exact requested-term declarations from the existing compiled NativePairRecipe, checking original binding, actual proxy parameters and Cartesian/image roles without changing the compiler/workers. Installed native observation passes; complete actual-manager producer and activation remain open.",
         "W106 observes the actual callback-free native manager through the existing C331 policy owner, exactly binds supported term images and origins, and composes W104/W105 coverage for native core plus explicit missing terms. Native/installed controls pass including an evidence-driven rational-denominator fix; active-force/lifecycle integration remains open.",
-        "W107 composes107ordinary nativecore terms with17explicitmissing periodicterms using existing compiler andcoverage APIs. Actual model entry andexplicit select-all rebinding pass completeenergy/force/normalization andderivativecontrols. Term-level providerselection,activecallback guarding,exclusionapproval andordinary refinementlifecycle remainopen."
+        "W107 composes107ordinary nativecore terms with17explicitmissing periodicterms using existing compiler andcoverage APIs. Actual model entry andexplicit select-all rebinding pass completeenergy/force/normalization andderivativecontrols. Term-level providerselection,activecallback guarding,exclusionapproval andordinary refinementlifecycle remainopen.",
+        "W108 selects native/additive providers term by term from frozen complete declarations, including partially covered individual pairs; exact-image/parameter matching and duplicate/conflict/stale refusals reuse the existing coverage owner. Native source and installed controls pass; force evaluation and lifecycle remain separate."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -396,7 +397,7 @@
         "Blunt and asymmetric-orientation trials retain matched observations/Free-R and independent bends/maps; calibrate inconclusive outcomes rather than force alignment or a statistical winner.",
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning."
       ],
-      "next_action": "Do not repeat W107 arithmetic controls. Qualify general frozen term-level provider selection, then callback-aware buffer/force/normalization and source/exclusion lifetime through existing AutoRefine prepare/frozen-round/actual-manager/final-writer owners. Preserve C331 idle guarding and explicitly decide/qualify periodic exclusion policy; do not infer providers from pair purpose or append the full recipe. Then matched candidate/no-repair diffraction/Free-R/map trials with geometry and B09 final gates. See W107 integration-gate audit.",
+      "next_action": "Evaluate the exact frozen additive subset through the existing NativePairRecipe compiler/kernels without changing complete-recipe defaults, then qualify active callback/buffer/normalization and source/exclusion lifetime through existing Cedar AutoRefine owners. Preserve native repulsion until periodic exclusion policy is explicitly qualified. Matched diffraction, density and B09 final gates remain open.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -408,14 +409,15 @@
         "E_PAIR_COVERAGE",
         "E_COMPILED_PAIR_DECLARATIONS",
         "E_NATIVE_PAIR_OBSERVER",
-        "E_MISSING_PAIR_ARITHMETIC"
+        "E_MISSING_PAIR_ARITHMETIC",
+        "E_PAIR_PROVIDER_SELECTION"
       ],
       "last_audit": {
-        "date": "2026-11-16",
+        "date": "2026-11-17",
         "reviewer": "Linden",
-        "code_commit": "ff0059f9a0cdf274636a2fcf84f2a697ea2da52f",
-        "human_update": 107,
-        "scope": "Bounded native-core plus missing-periodic arithmetic qualified; no productionselection,activeguard/exclusionapproval,lifecycle,diffraction orscientificacceptance."
+        "code_commit": "9b7f8b17511a62af2e062f3c8790734a5e9ea103",
+        "human_update": 108,
+        "scope": "Term-level read-only provider planning qualified with partial individual-pair native controls; no selected-force or ordinary refinement activation."
       }
     },
     {
@@ -1805,6 +1807,24 @@
         "committed": false,
         "portable_campaign": false
       }
+    },
+    "E_PAIR_PROVIDER_SELECTION": {
+      "kind": "frozen_term_level_provider_selection",
+      "code_commit": "9b7f8b17511a62af2e062f3c8790734a5e9ea103",
+      "human_update": 108,
+      "reference": "docs/topostitch-periodic.md#w108--frozen-term-level-provider-selection",
+      "result": "Optional selector handles partial individual pairs using exact support and score matching. 15 fail-before tests; 76 focused, 1952 full +229 subtests, 245 installed tests, fresh sdist/wheel relocation, six helps and lean import pass. Six complete Phenix 2.2.1-6174 cases change 107 native/17 additive to 104/20 after three within-pair removals; select-all replay and twelve negative controls pass. Complete native energies/gradients and coordinates unchanged; independent installed replay passes. Native execution51.20s.",
+      "limitation": "Read-only planning from caller-authenticated complete declarations. No selected-subset evaluator, callback activation, active-policy/buffer qualification, exclusion approval, ordinary refinement or scientific acceptance. C331 pinned composition, not merged current Cedar. Existing image/general-position scope unchanged.",
+      "local_forensic_archive": {
+        "repository_anchor": "everyday NASolve checkout",
+        "relative_path": "branch-artifacts/willow/w108-provider-selection-2026-11-17.tar.gz",
+        "sha256": "3b851d296e4da311a2d28767abb3225d3c44e0350d517e988069c2261fb8f35e",
+        "bytes": 1923692,
+        "files": 38,
+        "payload_index_verified": true,
+        "committed": false,
+        "portable_campaign": false
+      }
     }
   },
   "benchmarks": [
@@ -1956,8 +1976,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 107,
-    "next": 108,
+    "current": 108,
+    "next": 109,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -2409,6 +2429,12 @@
         "title": "Qualify native core plus explicitly missing periodic forces",
         "state": "RECORDED",
         "code_commit": "ff0059f9a0cdf274636a2fcf84f2a697ea2da52f"
+      },
+      {
+        "number": 108,
+        "title": "Select frozen native and additive providers term by term",
+        "state": "RECORDED",
+        "code_commit": "9b7f8b17511a62af2e062f3c8790734a5e9ea103"
       }
     ]
   },

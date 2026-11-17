@@ -1,18 +1,18 @@
 # NASolve documentation map
 
-Updated **2026-11-16** for **`willow`**. Start with the
+Updated **2026-11-17** for **`willow`**. Start with the
 [current development handoff](development-handoff.md) for the proven edge,
 remaining gates and next bounded task. Historical handoffs are evidence, not
 current instructions; other branches retain their own status and validation pins.
 
 ## What's current?
 
-- **Willow queue:** [Development handoff](development-handoff.md). W107 qualifies
-  native core plus explicitly missing periodic-pair arithmetic; runtime remains
-  W106. General provider selection, active guards, exclusion policy and ordinary
+- **Willow queue:** [Development handoff](development-handoff.md). W108 adds
+  frozen term-level native/additive provider selection, including partial pairs.
+  Selected-subset evaluation, active guards, exclusion policy and ordinary
   refinement integration remain open. No physical repair is claimed.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Next human update is W108;
+  [machine-readable source](topostitch-roadmap.json). Next human update is W109;
   do not restart completed probes merely because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed
