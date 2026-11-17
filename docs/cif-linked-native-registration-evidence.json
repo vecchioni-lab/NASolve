@@ -111104,5 +111104,393 @@
       "No scientific acceptance, PDU/DF repair, default activation or merge"
     ],
     "next": "Explicit compatible descendant via existing lineage and W118 rebind, original recipe/source retained, fresh preflight/admission/attempt; reuse W119 evidence."
+  },
+  "registered_counted_continuation_2026_11_17": {
+    "milestone": "C382",
+    "author": "Rowan",
+    "base_commit": "571f3850b73bc4bd13a070d1f3c8dc0481854bdb",
+    "behavior_before": "C381 explicit initial execution worked; ordinary continuation refused counted ancestry and no maintained registered-continuation API existed.",
+    "behavior_after": "Explicit prepare_continuation binds existing validated lineage and exact inherited inputs to original pair recipe/source and fresh W118 rebind. Registry validation preserves original intent across counted descendants; no new schema, worker or executor.",
+    "sources": {
+      "src/nasolve/refinement_counted.py": "7a0537f2f967972bd1a5010c9c2c83aa134b42f1d10af178f5c4ee747a84ab8e",
+      "src/nasolve/refinement_parallelity.py": "65b627b5bf03d7ccbac7a714ec92e8a392f53914682b865f69baba7e0f471477",
+      "tests/test_refinement_counted.py": "df4fb5b067d372afd1b4561a9117552f7688a35b13d1382ed900594a55a16be4"
+    },
+    "negative_before": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider tests/test_refinement_counted.py -k explicit_descendant --tb=short",
+      "result": "2 failed,34 deselected in4.64s: prepare_continuation absent"
+    },
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider tests/test_refinement_counted.py --tb=short",
+        "result": "40 passed in12.50s"
+      },
+      {
+        "command": [
+          "/private/tmp/willow-w94-pivot/env/bin/python",
+          "-B",
+          "-c",
+          "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_workflow_plane_forces.py', 'tests/test_autorefine.py', 'tests/test_refine_doctor.py', 'tests/test_refinement_inputs.py', 'tests/test_refinement_counted.py', 'tests/test_cif_counted_refinement.py', 'tests/test_cif_refinement_ownership.py', 'tests/test_cif_refinement_runtime.py', 'tests/test_cif_refinement_output.py', 'tests/test_cif_refinement_sites.py', 'tests/test_refinement_parallelity.py', 'tests/test_cif_counted_contribution.py', '--tb=short']))"
+        ],
+        "environment": {
+          "PYTHONPATH": "/private/tmp/c382-package-_kbjv52o/relocated",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        },
+        "result": "360 passed,13 subtests passed in53.73s"
+      },
+      {
+        "command": "Python3.10 AST of changed Python; source/install exact-byte comparison; git diff --check",
+        "result": "PASS"
+      }
+    ],
+    "installed": {
+      "wheel_sha256": "b208105fa2492af571f2e08901af8f4abd2870d77fc1171c77995344fabcaa12",
+      "wheel_bytes": 1534830,
+      "build_command": [
+        "/private/tmp/willow-w94-pivot/env/bin/python",
+        "-m",
+        "pip",
+        "wheel",
+        "--no-deps",
+        "--no-build-isolation",
+        "--no-index",
+        "--wheel-dir",
+        "/private/tmp/c382-package-_kbjv52o/wheel",
+        "/private/tmp/c382-package-_kbjv52o/source"
+      ],
+      "source_copy_removed": true,
+      "original_install_path_absent": true,
+      "package_reference_bytes_match": true
+    },
+    "native": {
+      "version": "Phenix2.2.1-6174 / dispatcher2.2.1 Darwinarm64",
+      "execution": "Two complete isolated dry preflights and complete one-cycle refinements; Coot not run",
+      "candidate_wheel_sha256": "112761efcdfbab6753443076e875c66d421332f18039575ba2956c4975f4bc72",
+      "plan_sha256": "d3aa276c9db86e59fafaeb6f0501d7329b3954faf93dac755b9661e4aba507d2",
+      "context": "C381 completed model explicitly imported into diagnostic PostMR registry context; no new MR or ReadySet execution claimed",
+      "cycles": [
+        {
+          "checkpoint": "refine-001",
+          "parent": "postmr",
+          "request_reference": {
+            "anchor": "run",
+            "relative_path": "AutoRefine/round_001/parallelity_runtime/request.json",
+            "sha256": "95f2db1a7d6da35cddbd1a502b2bf90702795a2241cff6ec79e78c8ccd66f957",
+            "size": 10560
+          },
+          "phases": [
+            {
+              "name": "preflight",
+              "status": "COMPLETE",
+              "command": [
+                "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+                "-B",
+                "/private/tmp/c382-native-continuation-7_e9layr/run/AutoRefine/round_001/parallelity_runtime/entry.py",
+                "preflight",
+                "95f2db1a7d6da35cddbd1a502b2bf90702795a2241cff6ec79e78c8ccd66f957",
+                "/private/tmp/c382-native-continuation-7_e9layr/run/inputs/observations.mtz",
+                "/private/tmp/c382-native-continuation-7_e9layr/run/inputs/model.pdb",
+                "/private/tmp/c382-native-continuation-7_e9layr/run/inputs/prepared-restraints.phil",
+                "/private/tmp/c382-native-continuation-7_e9layr/run/AutoRefine/round_001/autorefine.params",
+                "xray_data.file_name=/private/tmp/c382-native-continuation-7_e9layr/run/inputs/observations.mtz",
+                "xray_data.labels=Fobs,SIGFobs",
+                "xray_data.r_free_flags.file_name=/private/tmp/c382-native-continuation-7_e9layr/run/inputs/observations.mtz",
+                "xray_data.r_free_flags.label=FreeR_flag",
+                "xray_data.r_free_flags.test_flag_value=0",
+                "xray_data.r_free_flags.generate=False",
+                "xray_data.force_anomalous_flag_to_be_equal_to=False",
+                "output.prefix=parallelity_runtime/preflight/native",
+                "refinement.crystal_symmetry.unit_cell=105.547,105.547,96.268,90,90,120",
+                "refinement.crystal_symmetry.space_group=R 3 :H",
+                "refinement.dry_run=True"
+              ],
+              "process": {
+                "pid": 52862,
+                "pgid": 52862,
+                "host": "IC-KRX1XXVQ2J",
+                "boot_id": "darwin-boot:1794828737:916290",
+                "start_marker": "ps-lstart-utc:Tue Nov 17 21:25:39 2026",
+                "started_utc": "2026-11-17T21:25:39.802317+00:00",
+                "heartbeat_utc": "2026-11-17T21:25:39.802317+00:00"
+              },
+              "returncode": 0,
+              "seconds": 11.831993707994116
+            },
+            {
+              "name": "refine",
+              "status": "COMPLETE",
+              "command": [
+                "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+                "-B",
+                "/private/tmp/c382-native-continuation-7_e9layr/run/AutoRefine/round_001/parallelity_runtime/entry.py",
+                "refine",
+                "95f2db1a7d6da35cddbd1a502b2bf90702795a2241cff6ec79e78c8ccd66f957",
+                "1e9d90f283afa19399fd3fd77175bf3ae22fa30b72a2d52823f6d611ed43934b",
+                "/private/var/folders/48/tyw5h90d2qgct97z37rncmsr0000gp/T/runtime-evidence-vxoaa352/evidence/prepared.json",
+                "/private/tmp/c382-native-continuation-7_e9layr/run/inputs/observations.mtz",
+                "/private/tmp/c382-native-continuation-7_e9layr/run/inputs/model.pdb",
+                "/private/tmp/c382-native-continuation-7_e9layr/run/inputs/prepared-restraints.phil",
+                "/private/tmp/c382-native-continuation-7_e9layr/run/AutoRefine/round_001/autorefine.params",
+                "xray_data.file_name=/private/tmp/c382-native-continuation-7_e9layr/run/inputs/observations.mtz",
+                "xray_data.labels=Fobs,SIGFobs",
+                "xray_data.r_free_flags.file_name=/private/tmp/c382-native-continuation-7_e9layr/run/inputs/observations.mtz",
+                "xray_data.r_free_flags.label=FreeR_flag",
+                "xray_data.r_free_flags.test_flag_value=0",
+                "xray_data.r_free_flags.generate=False",
+                "xray_data.force_anomalous_flag_to_be_equal_to=False",
+                "output.prefix=refined",
+                "refinement.crystal_symmetry.unit_cell=105.547,105.547,96.268,90,90,120",
+                "refinement.crystal_symmetry.space_group=R 3 :H"
+              ],
+              "process": {
+                "pid": 55282,
+                "pgid": 55282,
+                "host": "IC-KRX1XXVQ2J",
+                "boot_id": "darwin-boot:1794828737:916290",
+                "start_marker": "ps-lstart-utc:Tue Nov 17 21:25:51 2026",
+                "started_utc": "2026-11-17T21:25:51.958710+00:00",
+                "heartbeat_utc": "2026-11-17T21:25:51.958710+00:00"
+              },
+              "returncode": 0,
+              "seconds": 43.496861207997426
+            }
+          ],
+          "status": "COMPLETE",
+          "admission": {
+            "anchor": "run",
+            "relative_path": "AutoRefine/round_001/parallelity_runtime/admission.json",
+            "sha256": "1e9d90f283afa19399fd3fd77175bf3ae22fa30b72a2d52823f6d611ed43934b",
+            "size": 3029
+          },
+          "execution_reference": {
+            "anchor": "run",
+            "relative_path": "AutoRefine/round_001/parallelity_runtime/execution.json",
+            "sha256": "56e3779bf52ebd124deb9a264777e35b3686edd44f588154cd9c640658805a03",
+            "size": 4055
+          },
+          "model": {
+            "anchor": "run",
+            "relative_path": "AutoRefine/round_001/refined_001.pdb",
+            "sha256": "55d28cbd19bf01874a313ff9b10b2ed4209e9e0f9b23e738b189ed5eda1082eb",
+            "size": 143889
+          },
+          "statistics": {
+            "initial_r_work": 0.2245,
+            "initial_r_free": 0.2599,
+            "r_work": 0.2251,
+            "r_free": 0.2609,
+            "r_free_minus_r_work": 0.0358,
+            "bond_rmsd": null,
+            "angle_rmsd": null,
+            "clashscore": 31.53
+          },
+          "original_intent_preserved": true,
+          "current_recipe_sha256": "536103fa3ecf91fedaa790d4ca094cac67fa8f64a9ba28debede3fadc7811247",
+          "selected_preserved": true,
+          "prepared_archive_bytes": 67226,
+          "lifetime_summary": {
+            "status": "COMPLETE",
+            "binding_restored": true,
+            "driver_entries": 1,
+            "closed": true,
+            "poisoned": false,
+            "successful_calls": 15,
+            "last_counts": {
+              "native_count": 11392,
+              "supported_count": 17,
+              "complete_count": 11409,
+              "normalization": 8.765010079761592e-05
+            }
+          }
+        },
+        {
+          "checkpoint": "refine-002",
+          "parent": "refine-001",
+          "request_reference": {
+            "anchor": "run",
+            "relative_path": "AutoRefine/round_002/parallelity_runtime/request.json",
+            "sha256": "4edf6dcfbf14563798e3711747e12b75748990e52057f54ffe7eb44f89fee05d",
+            "size": 10604
+          },
+          "phases": [
+            {
+              "name": "preflight",
+              "status": "COMPLETE",
+              "command": [
+                "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+                "-B",
+                "/private/tmp/c382-native-continuation-7_e9layr/run/AutoRefine/round_002/parallelity_runtime/entry.py",
+                "preflight",
+                "4edf6dcfbf14563798e3711747e12b75748990e52057f54ffe7eb44f89fee05d",
+                "/private/tmp/c382-native-continuation-7_e9layr/run/inputs/observations.mtz",
+                "/private/tmp/c382-native-continuation-7_e9layr/run/AutoRefine/round_001/refined_001.pdb",
+                "/private/tmp/c382-native-continuation-7_e9layr/run/inputs/prepared-restraints.phil",
+                "/private/tmp/c382-native-continuation-7_e9layr/run/AutoRefine/round_002/autorefine.params",
+                "xray_data.file_name=/private/tmp/c382-native-continuation-7_e9layr/run/inputs/observations.mtz",
+                "xray_data.labels=Fobs,SIGFobs",
+                "xray_data.r_free_flags.file_name=/private/tmp/c382-native-continuation-7_e9layr/run/inputs/observations.mtz",
+                "xray_data.r_free_flags.label=FreeR_flag",
+                "xray_data.r_free_flags.test_flag_value=0",
+                "xray_data.r_free_flags.generate=False",
+                "xray_data.force_anomalous_flag_to_be_equal_to=False",
+                "output.prefix=parallelity_runtime/preflight/native",
+                "refinement.crystal_symmetry.unit_cell=105.547,105.547,96.268,90,90,120",
+                "refinement.crystal_symmetry.space_group=R 3 :H",
+                "refinement.dry_run=True"
+              ],
+              "process": {
+                "pid": 56412,
+                "pgid": 56412,
+                "host": "IC-KRX1XXVQ2J",
+                "boot_id": "darwin-boot:1794828737:916290",
+                "start_marker": "ps-lstart-utc:Tue Nov 17 21:26:36 2026",
+                "started_utc": "2026-11-17T21:26:36.250392+00:00",
+                "heartbeat_utc": "2026-11-17T21:26:36.250392+00:00"
+              },
+              "returncode": 0,
+              "seconds": 7.548353916004999
+            },
+            {
+              "name": "refine",
+              "status": "COMPLETE",
+              "command": [
+                "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+                "-B",
+                "/private/tmp/c382-native-continuation-7_e9layr/run/AutoRefine/round_002/parallelity_runtime/entry.py",
+                "refine",
+                "4edf6dcfbf14563798e3711747e12b75748990e52057f54ffe7eb44f89fee05d",
+                "4863afe75297d15c3b73bb0775b9ee32657190604a28f22084fcbec31ee0bfe6",
+                "/private/var/folders/48/tyw5h90d2qgct97z37rncmsr0000gp/T/runtime-evidence-k9fj9990/evidence/prepared.json",
+                "/private/tmp/c382-native-continuation-7_e9layr/run/inputs/observations.mtz",
+                "/private/tmp/c382-native-continuation-7_e9layr/run/AutoRefine/round_001/refined_001.pdb",
+                "/private/tmp/c382-native-continuation-7_e9layr/run/inputs/prepared-restraints.phil",
+                "/private/tmp/c382-native-continuation-7_e9layr/run/AutoRefine/round_002/autorefine.params",
+                "xray_data.file_name=/private/tmp/c382-native-continuation-7_e9layr/run/inputs/observations.mtz",
+                "xray_data.labels=Fobs,SIGFobs",
+                "xray_data.r_free_flags.file_name=/private/tmp/c382-native-continuation-7_e9layr/run/inputs/observations.mtz",
+                "xray_data.r_free_flags.label=FreeR_flag",
+                "xray_data.r_free_flags.test_flag_value=0",
+                "xray_data.r_free_flags.generate=False",
+                "xray_data.force_anomalous_flag_to_be_equal_to=False",
+                "output.prefix=refined",
+                "refinement.crystal_symmetry.unit_cell=105.547,105.547,96.268,90,90,120",
+                "refinement.crystal_symmetry.space_group=R 3 :H"
+              ],
+              "process": {
+                "pid": 56474,
+                "pgid": 56474,
+                "host": "IC-KRX1XXVQ2J",
+                "boot_id": "darwin-boot:1794828737:916290",
+                "start_marker": "ps-lstart-utc:Tue Nov 17 21:26:44 2026",
+                "started_utc": "2026-11-17T21:26:44.125006+00:00",
+                "heartbeat_utc": "2026-11-17T21:26:44.125006+00:00"
+              },
+              "returncode": 0,
+              "seconds": 35.760088833005284
+            }
+          ],
+          "status": "COMPLETE",
+          "admission": {
+            "anchor": "run",
+            "relative_path": "AutoRefine/round_002/parallelity_runtime/admission.json",
+            "sha256": "4863afe75297d15c3b73bb0775b9ee32657190604a28f22084fcbec31ee0bfe6",
+            "size": 3029
+          },
+          "execution_reference": {
+            "anchor": "run",
+            "relative_path": "AutoRefine/round_002/parallelity_runtime/execution.json",
+            "sha256": "c8703c5f6ecd6f35418f4b04a34f35a30a9f162192a89a5cb4f35fac04d5fa30",
+            "size": 4055
+          },
+          "model": {
+            "anchor": "run",
+            "relative_path": "AutoRefine/round_002/refined_001.pdb",
+            "sha256": "cddd7a8bd7f333e5bced3ed795eb710cdaa9192351c2fa01e1aaff21646e4e4c",
+            "size": 143889
+          },
+          "statistics": {
+            "initial_r_work": 0.2251,
+            "initial_r_free": 0.2609,
+            "r_work": 0.2253,
+            "r_free": 0.2611,
+            "r_free_minus_r_work": 0.0358,
+            "bond_rmsd": null,
+            "angle_rmsd": null,
+            "clashscore": 33.78
+          },
+          "original_intent_preserved": true,
+          "current_recipe_sha256": "c962a031f45ce1bf1a483dd7b89a83fea6069e8e96888050e9af530ad33b99e9",
+          "selected_preserved": true,
+          "prepared_archive_bytes": 67225,
+          "prior_round_bytes_and_mtimes_preserved": true,
+          "lifetime_summary": {
+            "status": "COMPLETE",
+            "binding_restored": true,
+            "driver_entries": 1,
+            "closed": true,
+            "poisoned": false,
+            "successful_calls": 15,
+            "last_counts": {
+              "native_count": 11382,
+              "supported_count": 17,
+              "complete_count": 11399,
+              "normalization": 8.772699359592947e-05
+            }
+          }
+        }
+      ],
+      "all_processes_stopped": true,
+      "original_sources_preserved": true,
+      "selected_postmr_preserved": true,
+      "complete_local_receipt_sha256": "63953d2787669c855df6989a299068ba457384ad90f0aee10582f767a9bcf83b"
+    },
+    "cold_read": {
+      "status": "PASS",
+      "files_unchanged": 117,
+      "native_frozen_files_per_round": 24,
+      "current": "postmr",
+      "checkpoints": 3,
+      "no_gemmi_or_native_imports": true,
+      "no_writes_or_launches": true,
+      "package_sha256": "b208105fa2492af571f2e08901af8f4abd2870d77fc1171c77995344fabcaa12"
+    },
+    "final_delta": "Native worker24files/round unchanged. Final controller-only guards accept absent manual output metadata and consume input iterables once; no native rerun claimed. Final readers validate relocated registered results without original path, Gemmi/native imports, writes or launches.",
+    "science": {
+      "rounded_log_rwork_rfree": [
+        [
+          0.2245,
+          0.2599
+        ],
+        [
+          0.2251,
+          0.2609
+        ],
+        [
+          0.2253,
+          0.2611
+        ]
+      ],
+      "pdb_step_rms_angstrom": [
+        0.02306560691207199,
+        0.013837021279695116
+      ],
+      "pdb_step_max_angstrom": [
+        0.24951753445399424,
+        0.12617844506887815
+      ],
+      "atoms": 855,
+      "pdb_b_and_occupancy_unchanged": true,
+      "added_restraints_each": 17,
+      "owner_calls_each": 15,
+      "optimizer": "Each native log reports10 iterations/12functionevaluations; convergence not independently assessed",
+      "comparison": "Sequential short fixed-unit-weight cycles, not matched native-only efficacy comparison; no acceptance or weight selection from Rfree"
+    },
+    "compatibility": "Same v5request2/admission1/execution formats and frozen source; no CLI/default activation. Current-parent original-intent consistency is now checked during registry validation; previously relabelled incompatible ancestry refuses. No data migration.",
+    "exclusions": [
+      "No full suite",
+      "No raw models/data/logs/runners committed",
+      "No broader native protocol, ordinary command integration, projection/adaptation expansion or scientific acceptance"
+    ],
+    "next": "Map ordinary-owner integration preserving terminal-phosphate and chemistry scope, input adaptations, process identity and existing publication; no alternate executor."
   }
 }

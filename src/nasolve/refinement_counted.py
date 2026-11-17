@@ -84,6 +84,82 @@ def read_intent(run, root, request):
     return value
 
 
+
+def _original_identity(request):
+    intent=request['counted_intent']
+    return (intent['original_recipe_sha256'],
+            tuple(intent[name][key] for name in ('original_recipe','original_model') for key in ('sha256','size')))
+
+
+def _inherited_request(run, registry, selected, *, include_selected):
+    """Read pinned intent from validated ancestry without recursively reading a registry."""
+    from .checkpoint_candidate import _lineage, CheckpointCandidateError
+    from . import refinement_parallelity as execution
+    try:lineage=_lineage(registry,selected)
+    except CheckpointCandidateError as exc:raise ValueError(str(exc)) from exc
+    if not include_selected:lineage=lineage[:-1]
+    by_id={item['id']:item for item in registry['checkpoints']}
+    inherited=None
+    for identifier in lineage:
+        item=by_id[identifier];outputs=item.get('outputs')
+        reference=outputs.get('parallelity_execution') if isinstance(outputs,dict) else None
+        if reference is None:continue
+        record=read_record(_bound_path(reference,'ancestor execution',run))
+        if record['policy_id']!=execution.V5_POLICY_ID:
+            _need(inherited is None,'A later refinement lost its counted pair intent')
+            continue
+        _need([row['returncode'] for row in record['phases']]==[0,0],
+              'Counted continuation requires a completed ancestor')
+        request=execution.read_execution_request(run,record['request'],checkpoint=identifier)
+        if inherited is not None:
+            _need(_original_identity(inherited)==_original_identity(request),
+                  'Counted ancestry changed its original pair intent')
+        inherited=request
+    return inherited
+
+
+def validate_intent_lineage(run, registry, selected, request):
+    """Join original intent during existing checkpoint validation; no rebind or writes."""
+    inherited=_inherited_request(run,registry,selected,include_selected=False)
+    if inherited is not None:
+        _need(_original_identity(inherited)==_original_identity(request),
+              'Counted descendant changed its original pair intent')
+
+
+def prepare_continuation(run_directory, *, checkpoint, parent, inputs, command,
+                         python_executable, macro_cycles):
+    """Prepare a fresh explicit request from a registered compatible descendant.
+
+    The existing caller owns its numbered round, parameters, process and result
+    publication. This joins validated lineage to the existing freezer and W118
+    rebind; it neither runs Phenix nor changes selection or ordinary defaults.
+    """
+    from . import refinement_parallelity as execution
+    from .checkpoints import read_registry,resolve_checkpoint,inherited_paths,REUSABLE_STATUSES
+    run,registry=read_registry(run_directory)
+    selected=resolve_checkpoint(registry,parent)
+    _need(selected['id']==parent,'Counted continuation requires an exact checkpoint ID')
+    _need(selected.get('usable') is True and selected.get('status') in REUSABLE_STATUSES,
+          'Counted continuation requires a reusable selected parent')
+    _need(checkpoint not in {item['id'] for item in registry['checkpoints']},
+          'Counted continuation requires a fresh checkpoint')
+    request=_inherited_request(run,registry,selected,include_selected=True)
+    _need(request is not None,'Selected checkpoint has no completed counted ancestor')
+    paths=inherited_paths(selected,run)
+    expected=[paths['observations'],paths['model'],*paths['restraints']]
+    if paths['phases'] is not None:expected.append(paths['phases'])
+    expected.append(path_in(run,execution._root(checkpoint)).parent/'autorefine.params')
+    inputs=[Path(p).expanduser().resolve() for p in inputs]
+    _need(inputs==expected,
+          'Counted continuation inputs differ from selected ancestry and round parameters')
+    intent=request['counted_intent']
+    return execution.prepare_execution(run,checkpoint=checkpoint,parent=parent,inputs=inputs,
+        command=command,python_executable=python_executable,macro_cycles=macro_cycles,
+        runtime_policy=execution.V5_POLICY_ID,counted_pair_request=dict(
+            recipe=_bound_path(intent['original_recipe'],'original pair recipe',run),
+            source_model=_bound_path(intent['original_model'],'original pair source',run)))
+
+
 def _prepared(value, expected, request):
     _need(isinstance(value,dict) and set(value)=={'frozen_policy','compiled_binding',
         'native_observation','provider_selection','counted_baseline'} and _digest(value)==expected,

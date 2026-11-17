@@ -17,6 +17,24 @@ Keep one current queue and a short current handoff. Replace superseded status
 instead of adding another milestone diary. Link immutable Git history or the
 existing evidence ledger for older results; do not duplicate those records.
 
+## Small science checkouts
+
+After a substantial work stretch, leave a lightweight visual science report in
+`ScienceCheckouts/AGENT/YYYY-MM-DD-topic/`, under the shared GitHub workspace
+beside NASolve. Use an existing sibling root and one agent subfolder; do not scatter
+new report folders through product repositories. A concise table, figure or small
+HTML/PDF report is sufficient. Use the PDF skill when PDF is the appropriate form.
+
+Show the scientific question, what changed, measured effects (or a useful null
+result), remaining limits and links/checksums to the exact model and evidence.
+Distinguish constructed geometry, actual native refinement, numerical completion
+and chemical acceptance. Keep runtime qualification separate from structural repair.
+Do not invent extra experiments to decorate a report. Check the final visual and
+links, keep the packet small, and link other agents' complementary reports rather
+than duplicating their models. Original scientific evidence remains in its declared
+immutable location. Local checkout reports are not authorization to publish data;
+they do not replace the maintained queue, handoff or machine-readable receipts.
+
 ## Documentation roles
 
 The root `README.md` is the human-facing operating guide. `architecture.md` and

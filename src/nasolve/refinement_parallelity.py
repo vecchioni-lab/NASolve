@@ -542,6 +542,9 @@ def validate_checkpoint_execution(run, item, registry):
         record=validate_execution(run,outputs['parallelity_execution'],checkpoint=item.get('id'),
                                   parent=item.get('parent'),usable=item.get('usable') is True)
         request=read_execution_request(run,record['request'],checkpoint=item['id'])
+        if request['policy_id']==V5_POLICY_ID:
+            from .refinement_counted import validate_intent_lineage
+            validate_intent_lineage(run,registry,item,request)
         from .checkpoints import _ref_path
         from .refinement_inputs import validate_checkpoint_refinement_inputs
         parents=[p for p in registry['checkpoints'] if p.get('id')==item.get('parent')]

@@ -4529,8 +4529,24 @@ inspect validated lineage before allocation and refuse to drop a counted ancesto
 intent, including through manual children. Positive counted continuation is the next
 boundary, not an implicit CLI/default activation or new scientific acceptance rule.
 
-Ordinary activation remains gated on positive descendant continuation and explicit
-protocol choice; durable admission is qualified only for the explicit v5 route. Copied native-family reports remain
+C382 connects explicit `refinement_counted.prepare_continuation` to existing
+`read_registry`, exact checkpoint resolution, strict lineage, inherited inputs and
+W118 rebind. It requires a reusable selected parent and completed counted ancestry,
+unchanged original recipe/source bytes, exact inherited observation/model/restraint/
+phase inputs and the new round's parameter file. The caller still owns round,
+process and result publication. Original intent is copied into the existing v5
+request; current-parent preparation is always fresh. No new schema or native helper.
+
+Existing checkpoint validation compares original intent across counted ancestry
+without recursively reading the registry. It rejects changed intent and a later
+ordinary refinement that dropped the counted terms. Compatible manual children may
+continue; recut, renamed, reordered or chemically changed models still need a
+separate explicit route. Input adaptations/additional restraints and ordinary
+AutoRefine protocol selection are not newly admitted by this narrow wrapper.
+
+Ordinary activation remains gated on integration with the existing refinement
+owner and explicit protocol choice; durable admission and registered continuation
+are qualified only through the explicit v5 APIs. Copied native-family reports remain
 distinct from complete added-term statistics. C369 qualifies wrapper
 recognition for direct calls only, not that wider integration. Historical v3
 runtime/output/monomer cleanup retains its original replacement semantics; C372's

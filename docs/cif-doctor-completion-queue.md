@@ -42,13 +42,21 @@ error and partial outputs. Final installed package passes 347 tests + 13 subtest
 cold readers accept all three outcomes without writes or native imports. This does
 not establish PDU/DF repair, broad protocol support or Q06 closure.
 
-**Next bounded controller slice:** an explicit compatible descendant must preserve
-the original recipe/source through existing checkpoint lineage, rebind only the
-current parent using W118, and run a fresh preflight/admission/owned cycle. Reuse
-W119's intentional child-boundary evidence; do not repeat its stopped probe or
-build another planner. Ordinary AutoRefine/Doctor currently refuse before allocation
-if a counted ancestor would otherwise lose its extra terms. This refusal includes
-manual descendants; actual automatic counted continuation remains unqualified.
+**C382 complete:** explicit registered continuation now validates the selected
+parent/lineage, preserves original recipe/source, rebinds compatible current model
+and prepares a fresh v5 request. Direct/manual descendants have focused controls;
+original-intent replacement and counted→ordinary intent loss refuse. Two registered
+native cycles retain17 added terms and prior-round bytes; relocated registry reads
+without Gemmi/native execution. Final installed360+13 tests pass. Logged Rwork/Rfree
+worsen slightly, so this is continuity proof, not a repair or efficacy claim.
+
+**Next bounded controller slice:** map and connect the explicit qualified protocol
+to the existing ordinary refinement owner. Preserve its terminal-phosphate and
+chemistry projection checks, exact restraint adaptations, process ownership and
+checkpoint publication. Ordinary AutoRefine/Doctor still refuse to lose counted
+intent; no automatic v3 fallback. Avoid another executor or silent changes to
+ordinary cycle counts/automatic weights. Broader native scope requires its own
+qualification and must not be inferred from repeated short cycles.
 
 Initial supported scope is one all-site XYZ cycle/process, fixed unit weights,
 1–10 iterations, no changing targets/NCS/neutron or chemistry-projection combination.

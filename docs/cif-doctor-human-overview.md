@@ -621,9 +621,13 @@ compatible later models, without borrowing code from another checkout. An explic
 model, and keeps those exact restraints attached through a real refinement cycle.
 The same result can be reopened after moving the run, without Phenix. A separate
 failed-output check preserves the failure and partial model rather than presenting
-it as success. The next gate is carrying the same intent into a later refinement
-without silently dropping it. This short fixed-weight control demonstrates the
-machinery, not chemical repair or automatic sticky-end activation.
+it as success. An explicit continuation now carries the same original intent into a later
+registered refinement and checks its new starting model again. Two short native
+cycles retain the extra restraints and leave the earlier round and selected model
+alone. Their logged R values worsen slightly: this demonstrates continuity of
+the machinery, not improved chemistry. Ordinary command integration and a broader
+scientifically qualified protocol remain separate gates; sticky-end activation
+is not automatic.
 
 If Phenix finishes the checked preflight but NASolve cannot trust its evidence,
 AutoRefine now keeps a readable failed checkpoint: “preflight finished;

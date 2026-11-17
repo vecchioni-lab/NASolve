@@ -278,3 +278,143 @@ def test_archive_directory_sync_failure_preserves_raw_bytes(tmp_path,monkeypatch
         saved.seal_admission(run,reference,checkpoint='refine-001',preflight_returncode=0)
     assert raw.read_bytes()==before and (root/'preflight/prepared.zip').is_file()
     assert not (root/'admission.json').exists()
+
+
+def registered_counted_case(tmp_path):
+    """Synthetic lifecycle evidence; no native or scientific qualification."""
+    from nasolve.checkpoints import initialize_registry,append_checkpoint
+    from tests.test_cif_refinement_runtime import output_row
+    run,reference,root,prepared=observed_case(tmp_path)
+    # The existing checkpoint owner requires its round-local parameter spelling.
+    params=run/'AutoRefine/round_001/autorefine.params'
+    params.write_bytes((run/'inputs/refinement.phil').read_bytes())
+    path=root/'request.json';request=json.loads(path.read_text())
+    request['inputs'][-1]=_file_reference(params,run)
+    request['command'][3]=str(params)
+    write_record(path,request,replace=True);reference=_file_reference(path,run)
+    result_path=root/'preflight/result.json';result=json.loads(result_path.read_text())
+    result['arguments']=execution._preflight_arguments(request);result_path.write_text(json.dumps(result))
+    admission=saved.seal_admission(run,reference,checkpoint='refine-001',preflight_returncode=0)
+    admitted=saved.read_admission(run,reference,admission,checkpoint='refine-001')
+    phase=root/'refine';phase.mkdir();(phase/'calls').mkdir()
+    result.update(arguments=request['command'][1:],dry_run=False,macro_cycles=1,
+        atom_labels=['fixture-a','fixture-b'],output_synchronization=[output_row(2)])
+    (phase/'result.json').write_text(json.dumps(result))
+    (root/'refinement-launch.json').write_text(json.dumps(dict(schema_version=1,checkpoint='refine-001',
+        request_sha256=reference['sha256'],admission_sha256=admission['sha256'],pid=123,parent_pid=122,created_ns=1)))
+    outcome=dict(policy_id=saved.OBSERVATION_POLICY,admission_record_sha256=admitted['record_sha256'],
+        prepared_sha256=admitted['prepared_sha256'],compiled_binding_sha256=admitted['compiled_binding_sha256'],
+        provider_selection_sha256=admitted['provider_selection_sha256'],scope_sha256=saved._digest(admitted['scope']),
+        recipe_sha256=request['counted_intent']['current_recipe_sha256'],
+        lifetime=dict(policy_id='prepared-counted-refinement-cycle-v1',status='COMPLETE',binding_restored=True,
+                      driver_entries=1,owner=dict(closed=True,poisoned=False,successful_calls=1)))
+    (phase/'counted.json').write_text(json.dumps(outcome))
+    receipt=execution.finish_execution(run,reference,checkpoint='refine-001',preflight_returncode=0,
+        refinement_returncode=0,counted_admission=admission)
+    model=run/'inputs/model.pdb';observations=run/'inputs/observations.mtz'
+    report=dict(workflow='automr',inputs=dict(reflections='inputs/observations.mtz',reflections_sha256=_file_reference(observations,run)['sha256']),
+        postmr=dict(status='POSTMR_READY',prepared_model='inputs/model.pdb',prepared_sha256=_file_reference(model,run)['sha256'],restraints=[]))
+    (run/'report.json').write_text(json.dumps(report));_,registry=initialize_registry(run)
+    child=root.parent/'refined_001.pdb';child.write_bytes(model.read_bytes().replace(b'   4.000',b'   4.010',1))
+    item=dict(id='refine-001',parent='postmr',status='REVIEW',usable=True,kind='autorefine',recipe='explicit-test',
+        model=_file_reference(child,run),observations=_file_reference(observations,run),restraints=[],phases=None,
+        outputs=dict(parallelity_execution=receipt))
+    append_checkpoint(run,registry,item,select=False)
+    return run,reference,registry,item
+
+
+def continuation_options(run,parent='refine-001'):
+    from nasolve.checkpoints import read_registry,resolve_checkpoint,inherited_paths
+    _,registry=read_registry(run);paths=inherited_paths(resolve_checkpoint(registry,parent),run)
+    folder=run/'AutoRefine/round_002';folder.mkdir()
+    params=folder/'autorefine.params';params.write_text('one cycle fixture')
+    inputs=[paths['observations'],paths['model'],*paths['restraints'],params]
+    return dict(checkpoint='refine-002',parent=parent,inputs=inputs,
+        command=['phenix.refine',*map(str,inputs),'output.prefix=refined'],python_executable=sys.executable,macro_cycles=1)
+
+
+@pytest.mark.parametrize('manual',[False,True])
+def test_explicit_descendant_preserves_original_intent_and_rebinds_selected_model(tmp_path,manual):
+    from nasolve.checkpoints import add_checkpoint,read_registry
+    run,original,registry,parent=registered_counted_case(tmp_path)
+    selected='refine-001'
+    if manual:
+        child=run/parent['model']['relative_path']
+        selected=add_checkpoint(run,name='compatible manual child',model=child,parent=selected).checkpoint_id
+    options=continuation_options(run,selected)
+    before={p.relative_to(run):(p.read_bytes(),p.stat().st_mtime_ns) for p in run.rglob('*') if p.is_file()}
+    reference,command,refine=saved.prepare_continuation(run,**options)
+    assert refine is None and command[3]=='preflight'
+    request=execution.read_execution_request(run,reference,checkpoint='refine-002')
+    old=execution.read_execution_request(run,original,checkpoint='refine-001')
+    assert request['parent']==selected
+    for name in ('original_recipe','original_model'):
+        assert request['counted_intent'][name]['sha256']==old['counted_intent'][name]['sha256']
+    assert request['counted_intent']['current_recipe_sha256']!=old['counted_intent']['current_recipe_sha256']
+    assert request['inputs'][1]==_file_reference(options['inputs'][1],run)
+    assert read_registry(run)[1]['current']=='postmr'
+    assert all((run/p).read_bytes()==data and (run/p).stat().st_mtime_ns==mtime for p,(data,mtime) in before.items())
+
+
+@pytest.mark.parametrize('defect',['wrong_model','wrong_observations','not_counted','failed_parent','missing_atom','changed_frame','broken_lineage'])
+def test_descendant_refuses_incompatible_or_unproven_parent_before_runtime_allocation(tmp_path,defect):
+    from nasolve.checkpoints import save_registry,add_checkpoint
+    run,reference,registry,parent=registered_counted_case(tmp_path)
+    options=continuation_options(run)
+    if defect=='wrong_model':options['inputs'][1]=run/'inputs/model.pdb'
+    elif defect=='wrong_observations':options['inputs'][0]=run/'inputs/model.pdb'
+    elif defect=='not_counted':options['parent']='postmr'
+    elif defect=='failed_parent':parent['usable']=False;parent['status']='FAILED';save_registry(run,registry)
+    elif defect=='broken_lineage':parent['parent']='missing';save_registry(run,registry)
+    else:
+        model=run/parent['model']['relative_path'];text=model.read_text()
+        if defect=='missing_atom':text=''.join(line for line in text.splitlines(keepends=True) if line[12:16].strip()!='N7')
+        else:text=text.replace('  40.000','  41.000',1)
+        source=run/'manual.pdb';source.write_text(text)
+        selected=add_checkpoint(run,name='incompatible manual',model=source,parent='refine-001').checkpoint_id
+        options['parent']=selected
+        options['inputs'][1]=run/'AutoRefine/Checkpoints'/selected/'manual.pdb'
+    options['command']=['phenix.refine',*map(str,options['inputs']),'output.prefix=refined']
+    before={p.relative_to(run):p.read_bytes() for p in run.rglob('*') if p.is_file()}
+    with pytest.raises((ValueError,RuntimeError)):
+        saved.prepare_continuation(run,**options)
+    assert not (run/'AutoRefine/round_002/parallelity_runtime').exists()
+    assert {p.relative_to(run):p.read_bytes() for p in run.rglob('*') if p.is_file()}==before
+
+
+@pytest.mark.parametrize('field',['original_recipe_sha256','original_model'])
+def test_rehashed_child_intent_cannot_replace_its_counted_ancestry(tmp_path,field):
+    run,reference,registry,parent=registered_counted_case(tmp_path)
+    request=execution.read_execution_request(run,reference,checkpoint='refine-001')
+    child=dict(parent,id='refine-002',parent='refine-001');registry['checkpoints'].append(child)
+    changed=json.loads(json.dumps(request));intent=changed['counted_intent']
+    if field=='original_model':intent[field]['sha256']='0'*64
+    else:intent[field]='0'*64
+    with pytest.raises(ValueError,match='changed its original pair intent'):
+        saved.validate_intent_lineage(run,registry,child,changed)
+
+
+def test_registered_counted_ancestry_reads_cold_and_continues_after_relocation(tmp_path):
+    from nasolve.checkpoints import read_registry
+    run,reference,registry,parent=registered_counted_case(tmp_path)
+    moved=tmp_path/'relocated-run';run.rename(moved);assert not run.exists()
+    before={p.relative_to(moved):(p.read_bytes(),p.stat().st_mtime_ns) for p in moved.rglob('*') if p.is_file()}
+    with patch('subprocess.Popen',side_effect=AssertionError('read only')):
+        assert read_registry(moved)[1]['current']=='postmr'
+    assert all((moved/p).read_bytes()==data and (moved/p).stat().st_mtime_ns==mtime for p,(data,mtime) in before.items())
+    options=continuation_options(moved)
+    child,command,refine=saved.prepare_continuation(moved,**options)
+    assert refine is None
+    value=execution.read_execution_request(moved,child,checkpoint='refine-002')
+    assert value['parent']=='refine-001' and str(run) not in ' '.join(value['command'])
+
+
+def test_counted_lineage_cannot_cross_a_refinement_that_dropped_its_intent(tmp_path):
+    run,reference,registry,parent=registered_counted_case(tmp_path)
+    policy=run/'ordinary-policy-fixture.json'
+    write_record(policy,dict(policy_id=execution.V3_POLICY_ID))
+    ordinary=dict(id='refine-002',parent='refine-001',outputs=dict(parallelity_execution=_file_reference(policy,run)))
+    selected=dict(id='manual-001',parent='refine-002',outputs={})
+    registry['checkpoints'].extend([ordinary,selected])
+    with pytest.raises(ValueError,match='lost its counted pair intent'):
+        saved._inherited_request(run,registry,selected,include_selected=True)

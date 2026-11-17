@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve original pair intent across registered descendants (C382)
+
+- Add explicit counted continuation using existing checkpoint lineage, inherited
+  inputs and compatible-model rebind, with fresh preparation/admission per round.
+  Original recipe/source remain exact; ordinary defaults and native helper pins
+  do not change. Direct and compatible manual descendants are supported explicitly.
+- Existing checkpoint validation rejects changed original intent or an intervening
+  refinement that lost it, without recursive registry reads or new schemas.
+  Ordinary AutoRefine/Doctor integration, broader protocols and chemistry-projection
+  combinations remain separate; short-cycle completion is not scientific acceptance.
+- Record the shared small science-checkout convention: local sibling
+  `ScienceCheckouts/AGENT/` visual reports link exact evidence after substantial
+  work, without duplicating raw scientific storage or authorizing publication.
+
 ### Preserve explicit pair intent through preflight and refinement (C381)
 
 - Add opt-in v5 request schema 2 and immutable counted admission to the existing

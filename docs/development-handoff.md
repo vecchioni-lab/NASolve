@@ -1,11 +1,45 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-17, C381 saved pair intent through real refinement — Rowan**.
+Updated **2026-11-17, C382 registered counted continuation qualified — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Evening stop **23:00 UK / UTC**.
 Focused tests only; no full suite. Linden owns the small local symmetry-pair science
 inspection bundle for checkout; Hazel owns the separate Alder diagnostic display.
 
 ## Current checkpoint and next bounded work
+
+**C382 complete: carry the same pair intent into a registered descendant.**
+Explicit `prepare_continuation` reuses the validated registry, exact selected parent,
+strict lineage and W118 rebind, then creates a fresh v5 request. Both direct and
+compatible manual children pass. Changed atoms/frame/inputs, failed ancestors,
+replaced original intent and a refinement that dropped counted intent refuse.
+Existing checkpoint reads also validate the original-intent relationship without
+recursive registry reads. No new schema, native worker or executor.
+
+Two real registered cycles complete after explicitly importing C381's completed
+model into a diagnostic PostMR registry context (no new MR/ReadySet claim). Both
+retain the same original recipe/source and 17 added terms, with fresh preparation
+for each parent. Round 1 stays byte/mtime-identical through round 2; selection stays
+PostMR. The moved registry reads without its old path, Gemmi, Phenix, writes or
+launches. All processes stopped. Final installed360+13 focused tests pass53.73s;
+counted source40 pass12.50s. No full suite.
+
+Scientific limits are visible: rounded logged Rwork/Rfree .2245/.2599 → .2251/.2609
+→ .2253/.2611; both runs reach10 recorded optimizer iterations, with convergence
+not independently assessed. PDB coordinate RMS movements .0231/.0138 Å, maxima
+.2495/.1262 Å; B and occupancy unchanged. These sequential controls establish
+continuity, not a matched efficacy comparison or improved chemistry. No weight,
+acceptance or source-chemistry policy changes follow.
+
+Next: connect this explicit supported protocol to the existing ordinary refinement
+owner without bypassing its terminal-phosphate, chemistry-projection, input-adapter,
+process or publication rules. First map that interface; do not invent another
+executor or override ordinary automatic weighting to force qualification. Q06
+achieved chemistry remains open. The prior W119 stopped boundary is not repeated.
+
+Science checkout policy is now [documented](collaboration.md#small-science-checkouts):
+sibling `ScienceCheckouts/AGENT/`, few visual files, exact evidence links, no raw-data
+publication. Rowan's checkout summarizes continuity; Linden supplies pair visuals;
+Hazel's separate normalization diagnostic remains explicitly unadopted.
 
 **C381 complete: save, check and consume the same intended pair restraints.**
 Explicit v5 records original recipe/source separately from the current parent,
@@ -22,14 +56,6 @@ failures without writes or launches. The native-tested candidate precedes final
 controller-only malformed-input, ancestry and directory-sync guards; its frozen
 worker is byte-identical to the final package. Final readers accept all three
 saved outcomes. No native rerun is claimed for those controller-only changes.
-
-**Next bounded step: continue a compatible descendant without losing intent.**
-Use the existing checkpoint lineage and W118 recipe rebind, retaining the original
-recipe/source and hashing the current selected child. Fresh attempt, preflight and
-admission; never reuse the earlier native owner or repair a stopped attempt.
-Reuse W119's child-boundary evidence rather than repeat its stopped probe. Ordinary
-AutoRefine/Doctor currently refuse before allocation when a counted ancestor would
-otherwise lose its extra restraints. Automatic continuation is not implemented.
 
 The qualified protocol remains one all-site XYZ cycle/process, fixed unit weights,
 1–10 iterations, ML/n_gaussian, no ion placement or chemistry-projection combination.
@@ -70,6 +96,7 @@ questions remain Q13, not a diagnosed cause of its stretched sugar–base bond.
 
 The [completion queue](cif-doctor-completion-queue.md#pipeline-position) is the sole
 work order. Exact source pins, commands and results are in
+`registered_counted_continuation_2026_11_17` and
 `maintained_counted_admission_2026_11_17` in the existing
 [evidence ledger](cif-linked-native-registration-evidence.json). No raw scientific
 models, diffraction data, native logs or local runners are committed.
