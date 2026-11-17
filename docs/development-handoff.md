@@ -4,7 +4,7 @@ Updated **2026-11-17**. **W126 registered continuation and inherited input
 adaptation are audited. Ordinary AutoRefine ownership is next.** This is Willow's
 handoff, not the project-wide status of Pine, Cedar or Alder. Willow's latest
 periodic/factory source is W118; counted execution/continuation is committed on
-Cedar through C383. These audits are not a whole-branch merge or supported release.
+Cedar through C384. These audits are not a whole-branch merge or supported release.
 
 The backend can bind explicit periodic pair intent, apply the missing geometry
 terms during one qualified native refinement cycle, retain their original meaning
@@ -18,7 +18,7 @@ unqualified.** S04/S05/S06 and P01/P02 remain partial. The
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
-| W126 / C382–C383 continuation | Validated registered parent, preserved original intent, fresh rebind/preflight/admission; existing C278 namespace-only restraint copies | Ordinary AutoRefine/Doctor execution and broader protocol/chemistry |
+| W126 / C382–C384 continuation | Validated registered parent, preserved original intent, fresh rebind/preflight/admission; existing C278 namespace-only restraint copies | Ordinary AutoRefine/Doctor execution and broader protocol/chemistry |
 | W125 / C381 admission | Durable original/current request, exact prepared state, immutable admission, complete native cycle and truthful failure outcomes | No ordinary CLI activation or scientific acceptance |
 | W123 / W126 scientific readback | Modest local contact/plane improvement in saved endpoints; later descendants flatten further | Residual defects, worsening R stats, unqualified backbone/packing/density; descendants have no matched efficacy control |
 | W118 same-frame recipe rebind | Coordinates/B/ANISOU may change with exact identity, chemistry and frame invariants | No renamed/reordered atoms, changed occupancy/chemistry or frame migration |
@@ -62,8 +62,9 @@ large-bend repair follow later. No CLI/default activation follows from these doc
 ## Validation and scientific interpretation
 
 - **W126 / C382–C383:** 360 relocated installed tests +13 subtests for C382;
-  a separate 62-test installed adaptation panel for C383. Independent 298-file
-  committed-source checks for both, 24 unchanged frozen native files per round,
+  a separate 62-test installed adaptation panel for C383, and 144 installed
+  checks for C384's missing-refinement ancestry guard. Independent 298-file
+  committed-source checks for all three, 24 unchanged frozen native files per round,
   relocated cold registry reads with no launches/writes. Two complete registered
   Phenix 2.2.1-6174 cycles preserve intent and parent-output linkage; both stay
   unselected REVIEW. [Exact W126 evidence](topostitch-periodic.md#w126--audit-registered-continuation-and-inherited-input-adaptation).
@@ -76,7 +77,7 @@ large-bend repair follow later. No CLI/default activation follows from these doc
   [Source validation](topostitch-periodic.md#w118--rebind-frozen-pair-intent-to-a-compatible-child).
 
 The **12,138-test /284-subtest W112/C366 source-only** full suite and later W121
-joined-package checks remain historical, not current C383 full-suite results.
+joined-package checks remain historical, not current C384 full-suite results.
 Current peer panels are focused; no duplicate native/full-suite run was launched
 by Linden for these audits. Integration/merge qualification remains separate.
 

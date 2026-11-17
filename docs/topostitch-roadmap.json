@@ -2389,14 +2389,16 @@
       "code_commit": "1b19d556996ef660ffa756a24b239a5dc35f52f1",
       "human_update": 126,
       "reference": "docs/topostitch-periodic.md#w126--audit-registered-continuation-and-inherited-input-adaptation",
-      "result": "W126 independently audits C382 registered same-intent continuation through two complete Phenix 2.2.1-6174 cycles and C383 reuse of existing C278 namespace-only restraint copies. Exact parent outputs, original intent, fresh preparations and 24 frozen native files per round verify; both descendants stay unselected REVIEW. C382 has 360 installed tests +13 subtests; C383 has 62 installed tests. Independent 298-file committed-source checks and relocated cold reads pass. PDB G.C plane mismatch falls 18.69 to 17.77 to 16.77 degrees, while logged Rfree worsens .2599 to .2609 to .2611.",
+      "result": "W126 independently audits C382 registered same-intent continuation through two complete Phenix 2.2.1-6174 cycles and C383 reuse of existing C278 namespace-only restraint copies. Exact parent outputs, original intent, fresh preparations and 24 frozen native files per round verify; both descendants stay unselected REVIEW. C382 has 360 installed tests +13 subtests; C383 has 62 installed tests. Independent 298-file committed-source checks and relocated cold reads pass. PDB G.C plane mismatch falls 18.69 to 17.77 to 16.77 degrees, while logged Rfree worsens .2599 to .2609 to .2611. C384 closes skipped intervening refinements without execution records: two negative-before regressions, 144 source/144 installed tests, independent 298-file/source equality and unchanged 117-file cold registry /24-file native payload checks.",
       "limitation": "No matched native-only continuation siblings, scientific repair, ordinary CLI activation, whole-branch merge or current full-suite claim. W122 remains planning-only. Rowan follow-up on a copied C382 registry found C383 accepts a checksum-valid previous model substituted as the latest output; actual outputs above are independently verified, but final-writer/checkpoint binding must close before ordinary ownership. Broader protocol/chemistry, terminal-source changes, periodic exclusions, physical geometry and density remain open.",
       "runtime_pins": {
         "cedar_continuation_commit": "18283b3159a1f2404fd957da60328d88801fbb2e",
         "cedar_adaptation_commit": "e9afa595a26116ce9ef5f88ff779c640efd936aa",
         "upstream_willow_commit": "c08f337024f8901c583c0988f652e9a1c3156a49",
         "continuation_final_wheel_sha256": "b208105fa2492af571f2e08901af8f4abd2870d77fc1171c77995344fabcaa12",
-        "adaptation_final_wheel_sha256": "810ad0dd99a56211950f0ac3f2d9dba1662e06b59f4212b8a7ae10fd96f9e85a"
+        "adaptation_final_wheel_sha256": "810ad0dd99a56211950f0ac3f2d9dba1662e06b59f4212b8a7ae10fd96f9e85a",
+        "cedar_missing_ancestry_commit": "4fa8969b86c5dc971953ed29b152b8a96dd6ad19",
+        "ancestry_final_wheel_sha256": "11ca6e6db54959531ab57fd4db19858e3bb680b4930f6f78cca0873f59e2c735"
       },
       "local_receipts": [
         {
@@ -2405,6 +2407,14 @@
           "sha256": "028e88fbd3108f94952510f2a2ee0c07979a3524ba36adaf2b09cd9c421e4b86",
           "bytes": 67493,
           "indexed_files": 25,
+          "all_members_verified": true
+        },
+        {
+          "repository_anchor": "everyday NASolve checkout",
+          "relative_path": "branch-artifacts/willow/w126-c384-ancestry-review-2026-11-17.tar.gz",
+          "sha256": "9d9ad0f1120a944d4a70222abd4f006a7e57eb6b35a6ac913b99eece82bd2619",
+          "bytes": 20420,
+          "indexed_files": 6,
           "all_members_verified": true
         }
       ]

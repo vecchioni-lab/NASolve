@@ -6579,3 +6579,27 @@ and found that substituting `refine-001`'s checksum-valid model reference into
 not change the independently verified actual output hashes above; it identifies
 a missing final-writer-to-checkpoint binding that must close before ordinary-owner
 integration. No fixed reader or negative regression is claimed by W126.
+
+
+**C384 ancestry follow-up:** `4fa8969b86c5dc971953ed29b152b8a96dd6ad19`
+closes a separate missed case: an ordinary refinement with no execution receipt
+could previously be skipped when recovering inherited pair intent, including
+through a later manual import. The existing root-to-parent traversal now permits
+an unrecorded post-counted step only under the existing `manual` / `manual-*`
+contract. Two regressions failed before; peer source and relocated installed
+panels each pass **144 tests** (installed **45.82s**). No native/schema/default or
+worker changes; the final-writer/model-reference gap above remains open.
+
+Independent read-only `c384-audit.py` in the historical W126 review directory
+verifies all **298 installed source/resource files** against that commit, the
+144-test log and wheel `11ca6e6db54959531ab57fd4db19858e3bb680b4930f6f78cca0873f59e2c735`.
+Only outer `refinement_counted.py` differs from final C383; all **24 frozen native
+files per round** remain exact, and cold reads preserve all **117 C382 run files**
+without writes or launches. No peer test/native run is duplicated.
+Exact peer commands are in the committed Cedar ledger key
+`counted_missing_refinement_ancestry_2026_11_17`. The follow-up archive under the
+same everyday-NASolve repository anchor is
+`branch-artifacts/willow/w126-c384-ancestry-review-2026-11-17.tar.gz`, SHA
+`9d9ad0f1120a944d4a70222abd4f006a7e57eb6b35a6ac913b99eece82bd2619`,
+**20,420 bytes /6 indexed files**, all verified. This is forensic review evidence,
+not a portable or resumable run. W126's scientific interpretation is unchanged.
