@@ -113367,5 +113367,369 @@
       "No cause assigned to residual bending from a weight-choice association alone.",
       "Substituted scaffold observations do not establish a PDU-crystal structure."
     ]
+  },
+  "combined_final_capture_2026_11_18": {
+    "milestone": "C393",
+    "signed": "Rowan",
+    "source_commit": "8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6",
+    "before": "PDU chemical observer and added pair force qualified, but simultaneous actual-final pair capture not yet run.",
+    "after": "Actual bounded native control plus independent cold audit preserve prior endpoint while exposing pair measurements.",
+    "native": {
+      "status": "PASS",
+      "source_commit": "8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6",
+      "native_execution": false,
+      "scientific_acceptance": false,
+      "current_files_unchanged": 75,
+      "baseline_files_unchanged": 126,
+      "installed_sources_verified": 303,
+      "exact_old_written_model_and_native_state": true,
+      "exact_old_common_counted_lifetime": true,
+      "exact_old_chemistry": true,
+      "exact_mtz_arrays": true,
+      "cold_no_launch": true,
+      "independent_saved_measurement_arithmetic": true,
+      "retained_comparison_failure": "FAILED_COMPARISON_AFTER_NATIVE_SUCCESS",
+      "pair_geometry": {
+        "status": "OBSERVED",
+        "scope": "ACTUAL_FINAL_NATIVE_STATE",
+        "report_sha256": "e36124bdaba41c59e6da0f68315c7295c0dea0a87fd14aa0a546e872aa049118",
+        "force_sites_sha256": "c4acd9c79a42596b02f03af9633390a7a877013c981f7b0a78ceff74bc23d8de",
+        "pair_geometry": {
+          "bond": {
+            "count": 2,
+            "rms_deviation_angstrom": 0.954700864144797,
+            "max_abs_deviation_angstrom": 1.030687230645409
+          },
+          "angle": {
+            "count": 2,
+            "rms_deviation_degrees": 37.019026552284615,
+            "max_abs_deviation_degrees": 38.518782525181706
+          },
+          "planarity": {
+            "count": 1,
+            "rms_of_plane_rms_angstrom": 0.06285951621300725,
+            "max_abs_of_plane_rms_angstrom": 0.06285951621300725
+          },
+          "parallelity": {
+            "count": 1,
+            "rms_native_delta_degrees": 4.30563490423872,
+            "max_abs_native_delta_degrees": 4.30563490423872
+          }
+        },
+        "pair_count": 1,
+        "native_requested_term_count": 5,
+        "additive_requested_term_count": 1,
+        "unclassified_observed_term_count": 2656,
+        "unclassified_scope": "bond,angle,planarity,parallelity only",
+        "covalent_geometry": "UNASSESSED",
+        "scientific_acceptance": false
+      },
+      "kernel_before": {
+        "energy_only_calls": 16,
+        "gradient_calls": 36,
+        "maximum_proxy_count": 57,
+        "policy_id": "native-parallelity-kernel-adapter-v1",
+        "successful_calls": 52
+      },
+      "kernel_after": {
+        "energy_only_calls": 17,
+        "gradient_calls": 36,
+        "maximum_proxy_count": 57,
+        "policy_id": "native-parallelity-kernel-adapter-v1",
+        "successful_calls": 53
+      },
+      "native_version": "Phenix 2.2.1-6174",
+      "actual_preflight_seconds": 12.614028625001083,
+      "actual_refine_seconds": 42.78070154199668,
+      "peer_analysis_sha256": "339829b694c020d1391d9414119ff052557c872e94ed106368b74810e6488523",
+      "statistics": {
+        "initial_r_work": 0.4243,
+        "initial_r_free": 0.8364,
+        "r_work": 0.423,
+        "r_free": 0.836,
+        "r_free_minus_r_work": 0.413,
+        "bond_rmsd": 0.116,
+        "angle_rmsd": 4.368,
+        "clashscore": 34.51,
+        "cycle_series": [
+          {
+            "index": 0,
+            "r_work": 0.4243,
+            "r_free": 0.8364
+          },
+          {
+            "index": 1,
+            "r_work": 0.423,
+            "r_free": 0.836
+          },
+          {
+            "index": 2,
+            "r_work": 0.4243,
+            "r_free": 0.8364
+          },
+          {
+            "index": 3,
+            "r_work": 0.423,
+            "r_free": 0.836
+          }
+        ],
+        "diagnostics": [
+          "Warning: Unknown mtz labels: F-obs-filtered, SIGF-obs-filtered, F-model, PHIF-model, 2FOFCWT_no_fill, PH2FOFCWT_no_fill"
+        ]
+      },
+      "limitations": [
+        "Low-level one-cycle coexistence, not ordinary chemistry-descendant qualification.",
+        "PDU B4 local triple screen is distinct from canonical A11/B5 pair measurements.",
+        "Poor Rwork/Rfree .4230/.8360 and pair defects preclude scientific acceptance; no new repaired structure."
+      ]
+    },
+    "analysis_sha256": "339829b694c020d1391d9414119ff052557c872e94ed106368b74810e6488523",
+    "independent_audit_sha256": "61f29022b289333fadc76c34417b9546e513efe5281fe8f485a938769a448631",
+    "independent_source": "Linden W135 b81b6c0a",
+    "original_comparison_failure_preserved": true,
+    "archive": {
+      "anchor": "cedar-local-artifacts",
+      "relative_path": "c393-combined-final-capture-2026-11-18.tar.gz",
+      "size": 1388245,
+      "sha256": "df54aee5e9ec02954d7e5a81709bf2edb5aa362402ac1b0fec1e8c75a9e3d97e"
+    },
+    "raw_bytes": 8041610,
+    "commands": [
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c393_combined_capture.py",
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c393_analyse_completed.py",
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c393_archive.py"
+    ],
+    "artifact_scope": "Raw models, reflections, logs and partial outputs stay local. Archive reference uses declared cedar-local-artifacts anchor; local command paths are historical provenance only.",
+    "source_changes": [],
+    "schemas_changed": false,
+    "migration": "None; existing v7 readers and original records unchanged."
+  },
+  "ordinary_final_pair_continuation_2026_11_18": {
+    "milestone": "W134 accepted in Cedar C393",
+    "signed": "Rowan",
+    "peer_source": "742bc894",
+    "audit": {
+      "status": "PASS",
+      "native_rerun": false,
+      "cold_no_launch": true,
+      "record_writes_blocked": true,
+      "source_commit": "8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6",
+      "installed_source_files_verified": 303,
+      "preserved_files": {
+        "/private/tmp/willow-v7-descendant-m20lo6hl-relocated": 138,
+        "/private/tmp/c391-final-pair-geometry-nf7n7jjf-relocated": 77,
+        "/private/tmp/c382-native-continuation-7_e9layr-relocated": 117
+      },
+      "original_intent_preserved": true,
+      "ancestor_checkpoint_records_unchanged": true,
+      "selected": "postmr",
+      "new_checkpoint": "refine-002",
+      "parent": "refine-001",
+      "inherited_prepared_restraints": {
+        "anchor": "run",
+        "relative_path": "inputs/prepared-restraints.phil",
+        "sha256": "cf88b58f28633fe5be24d0399c322d7a53df75ad7c14c48121cc840b83fadac3",
+        "size": 29073
+      },
+      "additional_extra_restraints_tested": false,
+      "observations": {
+        "anchor": "run",
+        "relative_path": "inputs/observations.mtz",
+        "sha256": "7bb523e28f495712e8c8098a01c084b92ba9276a6cd29561b41e1961c0d9393f",
+        "size": 83032
+      },
+      "exact_c382_second_pdb": true,
+      "exact_c382_second_counted_owner": true,
+      "wrong_parent_model_refused": true,
+      "written_model": {
+        "model_state_sha256": "0da6ecf3824939d655424bb257f38a59e642dc5ffad042a764b875bb03adb701",
+        "policy_id": "native-written-model-v1",
+        "sha256": "cddd7a8bd7f333e5bced3ed795eb710cdaa9192351c2fa01e1aaff21646e4e4c",
+        "size": 143889
+      },
+      "pair_rms_deltas": {
+        "bond": -0.0041560616888950686,
+        "angle": -0.05333067618389542,
+        "planarity": -0.0032098600451043596,
+        "parallelity": -0.3885949834431255
+      },
+      "statistics": {
+        "initial_r_work": 0.2251,
+        "initial_r_free": 0.2609,
+        "r_work": 0.2253,
+        "r_free": 0.2611,
+        "bond_rmsd": 0.026,
+        "angle_rmsd": 1.731,
+        "clashscore": 33.78
+      },
+      "native_version": "Phenix 2.2.1-6174",
+      "actual_execution_seconds": 69.93773295899155,
+      "scientific_acceptance": false,
+      "limitations": [
+        "One continued ordinary bounded canonical XYZ cycle; not a matched native-only efficacy comparison.",
+        "Prepared NAR restraint inheritance is exercised, but there are no additional extra-restraint files in this parent.",
+        "Pair geometry improves modestly while Rwork/Rfree and clashscore worsen; retain unselected REVIEW.",
+        "Original and descendant observations, Free-R and chemistry are unchanged; no new MR or ReadySet.",
+        "Two private setup attempts stopped before native launch; both failures remain recorded."
+      ]
+    },
+    "audit_sha256": "020f721abc1d5d03f550a74a27efa333c5fbd488c2e549a27a7c1ef49c620488",
+    "archive": {
+      "anchor": "willow-local-artifacts",
+      "relative_path": "w134-ordinary-continuation-2026-11-18.tar.gz",
+      "size": 17421,
+      "sha256": "41f68a5293e644b8f01250c259b3d015b9e73a73130aeebb3ff7141b5b187e58"
+    },
+    "limits": "Ordinary prepared-restraint inheritance only; no optional extra-restraint files or chemical projection. No scientific adoption."
+  },
+  "full_c391_regression_2026_11_18": {
+    "milestone": "C391 full / W135 audit",
+    "signed": "Rowan",
+    "peer_source": "b81b6c0a",
+    "audit": {
+      "status": "PASS",
+      "source_commit": "8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6",
+      "scope": "Complete unfiltered tracked test directory",
+      "command": [
+        "/private/tmp/willow-w94-pivot/env/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "--durations=20",
+        "--junitxml",
+        "/private/tmp/willow-w133-final-geometry-review/full-suite/results.xml",
+        "tests"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "/private/tmp/willow-w133-final-geometry-review/c391/src:/private/tmp/willow-w132-full-regression/narestraints",
+        "PYTEST_ADDOPTS": ""
+      },
+      "complete_single_invocation": true,
+      "owned_seconds": 3200.093612334007,
+      "pytest_summary": "11983 passed, 2 skipped, 292 subtests passed in 3196.08s (0:53:16)",
+      "junit": {
+        "name": "pytest",
+        "errors": "0",
+        "failures": "0",
+        "skipped": "2",
+        "tests": "12277",
+        "time": "3195.763",
+        "timestamp": "2026-11-18T12:40:55.045340+00:00",
+        "hostname": "IC-KRX1XXVQ2J"
+      },
+      "existing_native_opt_in_skips": [
+        {
+          "classname": "",
+          "name": "tests.test_cif_counted_contribution_native",
+          "message": "collection skipped",
+          "text": "('/private/tmp/willow-w133-final-geometry-review/c391/tests/test_cif_counted_contribution_native.py', 10, 'Skipped: Explicit native counted-owner control required')"
+        },
+        {
+          "classname": "",
+          "name": "tests.test_cif_live_nonbonded_policy_native",
+          "message": "collection skipped",
+          "text": "('/private/tmp/willow-w133-final-geometry-review/c391/tests/test_cif_live_nonbonded_policy_native.py', 12, 'Skipped: Opt-in pinned Phenix API qualification')"
+        }
+      ],
+      "source_files_unchanged": 1413,
+      "source_git_clean": true,
+      "dependency_commit": "a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691",
+      "dependency_git_clean": true,
+      "dependency_installed_source_files_verified": 14,
+      "process_stopped": true,
+      "runner_sha256": "5ebd9a62fb5aa19019fce02ca622ecc36f0222fa7dc764c129d931eebb19b815",
+      "result_sha256": "1f5528e4ffd220c843535458bc4b5c15d2983fb065dd570675954fefc948c02e",
+      "log_sha256": "9ef4e6fcf5558ad227b4f06f3d19735068044266dc26dc0e6d246f81ba362b98",
+      "xml_sha256": "dc03ed85bc6baa46b484447febd5b60cd6e938e8c8bc82197913b6f4022571e3",
+      "scientific_acceptance": false,
+      "limitations": [
+        "Frozen C391 source regression; not later source revisions or whole-branch merge qualification.",
+        "Existing two actual-native opt-in tests remain skipped. Separate installed and bounded actual-native controls retain their own scope.",
+        "Shared local source clones depend on repository Git objects; no portable campaign or scientific acceptance claim."
+      ]
+    },
+    "audit_sha256": "9951b655ce205f16003013a3a6917aaf1f43e8ae88176ac51f67256af57d9830",
+    "archive": {
+      "path": "branch-artifacts/willow/w135-full-regression-and-coexistence-2026-11-18.tar.gz",
+      "sha256": "e23a140a794267be35d657387db1752e3a61b9ad2192dd9bc075cfda8176f357",
+      "size": 269662,
+      "indexed_files": 24,
+      "verified": true,
+      "scientific_payload_included": false
+    },
+    "later_source_scope": "C394 log-reader fix is separately focused-tested; no full rerun."
+  },
+  "numbered_native_stage_reporting_2026_11_18": {
+    "milestone": "C394",
+    "signed": "Rowan",
+    "kind": "C394-native-stage-label-reporting",
+    "status": "PASS",
+    "source_sha256": "c7bbedb01805b286de7c214c074a0a2b8763d8a4a7d72b547b5f4aa1649f1a62",
+    "before": [
+      null,
+      null
+    ],
+    "after": [
+      0.078,
+      2.744
+    ],
+    "source_table_sha256": "7ec9a1af4dade94877d533857cf9d289ac55e961e379feac6dc448ab6c8cc2ac",
+    "source_table_unchanged": true,
+    "native_version": "Phenix 2.2.1-6174",
+    "native_rerun": false,
+    "original_completed_execution": "C392 plain/observed matched five-cycle control",
+    "regression_before": "1 failed,1 passed,9 subtests passed; failure is missing final geometry after 1_realsrl2",
+    "focused_after": "64 passed,31 subtests passed in14.32s",
+    "prior_invocation_error": "Nonexistent guessed test_autorefine_parallelity.py; no tests collected; corrected existing paths only.",
+    "full_baseline": "C391 8ccec55b:11983 passed,2 skipped,292 subtests passed; not rerun for this patch",
+    "schemas_changed": false,
+    "saved_reports_modified": false,
+    "smoke_after": "148 passed,6 subtests passed in73.27s",
+    "changed_files": [
+      "src/nasolve/autorefine.py",
+      "tests/test_autorefine.py",
+      "CHANGELOG.md",
+      "docs/development-handoff.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "compatibility": "Existing saved reports and runtime/schema bytes unchanged apart from current log parser. Reparse retained logs to obtain newly recognized final summaries; no record migration.",
+    "validation_commands": [
+      "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:/private/tmp/willow-w132-full-regression/narestraints PYTEST_ADDOPTS='' /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider -o addopts= tests/test_autorefine.py tests/test_refine_doctor.py tests/test_checkpoints.py",
+      "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:/private/tmp/willow-w132-full-regression/narestraints PYTEST_ADDOPTS='' /private/tmp/willow-w94-pivot/env/bin/python -B scripts/run_tests.py smoke"
+    ],
+    "limits": "Pure reporting repair; no native rerun or new structural acceptance. Full regression remains exact C391.",
+    "source_table": {
+      "anchor": "cedar-local-artifacts",
+      "relative_path": "c392-pdu-weight-observation/geometry-table.txt"
+    },
+    "native_log": {
+      "anchor": "C392-control-root",
+      "relative_path": "plain/refined_001.log"
+    },
+    "independent_cold_review": {
+      "signed": "Linden",
+      "receipt_sha256": "38fc45f5c607bc72fef9b18ffca1c7b4d839c587924bf0885bdb5071ef8fcda9",
+      "old_new_worker_payloads_exact": {
+        "round-local-parallelity-execution-v3": 8,
+        "round-local-parallelity-execution-v4": 8,
+        "round-local-counted-execution-v5": 24,
+        "round-local-counted-execution-v6": 24,
+        "round-local-counted-execution-v7": 25
+      },
+      "actual_logs_and_table_only_changed_fields": [
+        "bond_rmsd",
+        "angle_rmsd"
+      ],
+      "no_native_execution": true,
+      "source_logs_unchanged": true
+    }
   }
 }

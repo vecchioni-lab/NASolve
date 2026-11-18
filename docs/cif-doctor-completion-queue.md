@@ -141,12 +141,32 @@ cannot be backfilled into weight trials. Next qualify exact per-trial semantic
 membership before selection changes. A predeclared longer fixed-weight control is
 a separate qualification and need not wait for a universal classifier.
 
-**Small reporting holdover before the next source checkpoint:** C387's stage-name
-reader excludes digit suffixes such as `1_realsrl2`; the actual C392 table therefore
-loses final 0.078 Å/2.744° summaries. An isolated one-token proposal plus actual-table
-and six refusal controls passes; it is not applied while C391's full suite runs.
-Implement a maintained regression and focused caller checks, preserving refusal of
-partial tables and avoiding initial/weight-candidate geometry. No native rerun needed.
+**C393 / W134 — actual measurement coexistence and continuation.** C393 adds
+final pair capture beside the PDU chemical observer and one supplied parallelity
+term, with exact previous model/native state/chemistry/reflection arrays and one
+extra descriptive energy call. The failed overly broad comparison remains preserved;
+separate cold analysis and W135 audit validate common fields and the new capture.
+This is a low-level bounded control with poor R factors and pair geometry, not
+ordinary chemistry-descendant qualification. Separately, W134's ordinary canonical
+second cycle preserves inherited prepared restraints, final measurements and the
+selected PostMR checkpoint. Pair geometry improves modestly; diffraction agreement
+and clashscore worsen. Its parent has no optional extras/chemical projection.
+
+**C394 reporting holdover closed.** A numbered native stage such as `1_realsrl2`
+no longer hides the completed final 0.078 Å/2.744° table. Strengthened regression
+fails before the one-token reader fix; 64 affected tests +31 subtests and
+148 smoke tests +6 subtests pass. Existing
+saved reports remain unchanged. No native rerun, scientific threshold or worker change.
+
+**Reuse before broader trials.** Hazel A63 already binds the copied reporting model
+used for native bond/angle summaries; do not rediscover that identity seam. A79's
+actual selected-call replay reproduces model/maps and exposes two same-coordinate
+normalization jumps. Three selected rounding failures remain unexplained. Preserve
+those actual evaluator counts in longer controls; no normalization fix is qualified.
+Longer counted scope needs a new explicit version, matched starts and source-bound
+control matrix, not widening historical 1–10-step semantics. A universal chemical
+classifier need not block every predeclared experiment, but unknown terms remain
+unknown and improved scalar scores do not establish repaired chemistry.
 
 
 Q06 achieved PDU/DF chemistry remains open. Ordinary AutoRefine/Doctor requests
@@ -260,8 +280,10 @@ Exact controls and commands live in the existing evidence ledger:
 `serial_campaign_resource_acceptance_2026_11_14`,
 `campaign_stage_integrity_scope_2026_11_14`,
 `owner_inspection_numerical_reuse_2026_11_14`, and
-`q04_q05_supported_scope_2026_11_14`. Last full suite remains C220/583d30df;
-current checks are focused, and final integration still needs full regression.
+`q04_q05_supported_scope_2026_11_14`. Last complete full baseline is C391/8ccec55b
+(11,983 passed, 2 existing
+native opt-in skips, 292 subtests); later C394 has focused checks. Final combined
+integration still needs its own full regression.
 
 Q06 still owns effective native membership, known parallelity-gradient behavior,
 scientific targets and achieved geometry. Simon's reported PDU distortion after
@@ -336,7 +358,7 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Complete for recorded alternatives, selected-model phasing, Coot, cold inspection and the ordinary five-cycle refinement handoff. Actual chemical survival/effective restraint behavior is Q06; no default activation or historical migration. |
-| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C391 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control, chemical observation and actual final pair measurements. C392 records real PDU weight fallback without changing selection. Wider protocols and achieved PDU/DF geometry plus held-out survival remain open. Mechanics or a readable dictionary alone is insufficient. |
+| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C391 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control, chemical observation and actual final pair measurements. C392 records real PDU weight fallback; C393/W134 qualify combined observation and ordinary canonical continuation without claiming chemical repair. Wider protocols and achieved PDU/DF geometry plus held-out survival remain open. Mechanics or a readable dictionary alone is insufficient. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |
@@ -1355,14 +1377,13 @@ full suite on the final combined source, relevant ordinary/native controls and
 relocation with original paths unavailable. Exercise macOS/Linux process/path
 assumptions for supported environments; record any untested platform explicitly.
 
-C220 now passes the full suite: **9,178 tests + 276 subtests**. The exact
-source/test/script hashes and command are retained in the C220 evidence record;
-no source changed during that run. This replaces C160 as the current full baseline.
-C222's full run passed 9,210 tests + 273 subtests and exposed one new optional-view
-argument omission in Refine Doctor (three tests + three subtests). That one-line
-compatibility fix passes 124 affected tests + 40 subtests; no full rerun, so C220
-remains the last completely green full baseline. Subsequent bounded Cedar passes
-use focused tests until a meaningful integration checkpoint.
+The current complete unfiltered baseline is **C391 `8ccec55b`**: **11,983 passed,
+2 existing native opt-in skips, 292 subtests passed**, 3196.08 s. W135 independently
+seals 1,413 unchanged tracked files, exact NARestraints `a9264f9e` and stopped
+process ownership. C394's subsequent log-only fix has focused validation, not a new
+full pass. Commands, skipped-test reasons and hashes are in ledger
+`full_c391_regression_2026_11_18`. Older C220 green and C222 partial results retain
+their original evidence; they no longer define the current baseline.
 C386's later unfiltered run finishes with 11,873 passed /46 failed /2 skipped
 and 281 subtests (3266.71 s). W132 resolves all 46 on the exact source: host
 process permissions give 45 passes and one residual; exact byte-identical

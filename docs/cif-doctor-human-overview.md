@@ -5,20 +5,31 @@ chemical dictionaries preserve the intended molecule, whether Phenix can read
 the resulting restraints, and whether a proposed repair changes only what it
 should. It works around ReadySet and NARestraints; it does not replace them.
 
-The latest bounded work (C386–C388) carries intended pair restraints through the
-ordinary refinement owner and keeps the existing chemical check beside them.
-Turning that check on or off produces the same model in matched PDU-containing
-controls, including a restraint supplied through the added-pair route. The saved
-model is checked against what Phenix actually wrote. Final native bond/angle
-statistics are also read correctly. These are short, explicitly selected mechanics
-controls; poor diffraction agreement prevents a structure-quality claim. Normal
-settings are unchanged, and broader PDU/DF survival remains open. See the
-[current queue](cif-doctor-completion-queue.md#pipeline-position).
+The explicit short-refinement route now measures intended base-pair distances,
+directional angles, planes and parallelism in the actual final native model,
+including declared crystallographic images. It checks that those measurements
+belong to the model Phenix wrote and reuses the original restraint inventory in a
+compact saved record. The next ordinary refinement can inherit this report without
+changing the selected checkpoint. Turning observation on leaves matched models
+and reflection arrays unchanged; a separate PDU-containing control keeps the local
+chemical check beside pair measurements. None of these controls establishes a
+repaired structure: local chemistry, pairing and diffraction agreement are distinct.
 
-A newly supplied restraint file can also enter this explicit short control and
-remain attached to its saved checkpoint. The same-file inherited/new-input native
-comparison produces the exact same model; changed source bytes are rejected before
-refinement. This closes a file-delivery gap, not a chemical-quality gap (C389).
+A matched five-cycle PDU experiment also records Phenix's actual weight choices.
+All four searches use its existing R-free fallback because no trial passes the
+combined pooled-geometry criteria. A separate source match shows why those pooled
+numbers cannot simply be called covalent geometry: supplied inter-residue distances
+and protected terminal angles contribute. The PDU bend still requires review.
+No weights, thresholds or automatic selections were changed. The log reader now
+keeps numbered native stages such as `realsrl2` so final summaries are not lost.
+
+These are explicit, source-qualified controls, not new normal settings or universal
+modified-residue support. New restraint files retain their identity through the
+saved checkpoint; incomplete ancestry refuses rather than silently losing intent.
+See the [current queue](cif-doctor-completion-queue.md#pipeline-position) for the
+remaining chemical-survival and integration gates, and the
+[evidence ledger](cif-linked-native-registration-evidence.json) for exact source,
+native-control and full-regression results.
 
 Ordinary model construction now preserves supported modified-base orientation.
 The explicit checked-preparation route can use that construction and the supplied
@@ -626,9 +637,9 @@ request. C245 connects it to `prepare-run` and exact-result notes; C246 connects
 explicit checked PostMR/campaign activation. C247 carries verified generation
 notes through publication and campaign status without repeating the proof read.
 Final selected-plane coverage and real refinement remain separate gates. The
-C375 prepared-state consumer and C377 cycle lifetime are explicit integration
-prerequisites,
-not additional automatically active audit boxes in this figure.
+explicit counted-refinement route and its final-model pair measurements sit
+downstream of the depicted preparation layer. They are not automatically active
+audit boxes in this figure; they do not replace chemical or structural acceptance.
 
 The maintained pair-recipe library is now included in NASolve's installed package.
 It can preserve declared canonical pair chemistry and image choices when preparing

@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Read final geometry after numbered native stage labels (C394)
+
+- Keep reading a recognized Phenix step table through stage names such as
+  `1_realsrl2`, so its completed `end` row supplies final bond/angle summaries.
+  Incomplete or malformed tables still do not supply final geometry. These remain
+  pooled native values, not covalent-only chemical acceptance.
+- No refinement, worker, schema, weight, threshold or checkpoint change. Existing
+  saved reports remain unchanged; the fix applies when parsing log text anew.
+
 ### Retain pair measurements from the actual refined model (C391)
 
 - Add explicit `counted_pair_geometry=True` to the Python counted control. New

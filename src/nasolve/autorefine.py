@@ -1172,7 +1172,7 @@ def _reported_geometry(log_text: str) -> tuple[float | None, float | None]:
         if not in_table:
             continue
         stage, separator, fields = line.strip().partition(":")
-        if not separator or not re.fullmatch(r"(?:[0-9]+(?:_[a-z_]+)?|end)", stage.strip()):
+        if not separator or not re.fullmatch(r"(?:[0-9]+(?:_[a-z_][a-z0-9_]*)?|end)", stage.strip()):
             in_table = False
             continue
         values = fields.split()

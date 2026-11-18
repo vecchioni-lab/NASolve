@@ -1,11 +1,11 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-18, C392 passive PDU weight-choice evidence — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. Runtime/tests are frozen at
-**C391 `8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6`** while Linden runs the
-unfiltered suite with exact NARestraints source `a9264f9e`. Development window ends
-14:55 UK; shared lab report 17:00 UK. Hazel owns the separate Alder selected-call
-replay. Do not duplicate either owner's active work or change this tested source.
+Updated **2026-11-18, C393 combined observation / C394 final-log reporting — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. Last complete unfiltered baseline:
+**C391 `8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6`**, exact NARestraints `a9264f9e`:
+**11,983 passed, 2 existing native opt-in skips, 292 subtests passed** in 3196.08 s.
+Linden W135 verifies unchanged source/dependency bytes and stopped ownership.
+C394's later log-only change has focused validation; it is not part of that full run.
 
 ## Current checkpoint and next bounded work
 
@@ -35,25 +35,56 @@ into earlier trial states. Existing parsers were reused; no native geometry call
 Observer entry-callable authentication and selected-trial endpoint attribution
 remain unassessed. Raw models/maps/logs stay local; no scientific adoption.
 
+**C393 complete — keep chemical and pair checks together.** Actual final-pair
+capture coexists with the existing PDU triple observer and one supplied parallelity
+term. Exact C388 control model, full native state, common counted lifetime, chemistry
+and reflection arrays remain unchanged; one extra energy-only measurement is
+descriptive. Both native phases stopped. The original comparison failure is retained:
+it compared the new capture field against a record that predated that field. Separate
+cold analysis and Linden W135 independently validate all common fields and the new
+capture, without repeating refinement. Poor Rwork/Rfree 0.4230/0.8360 and canonical
+pair-distance/angle RMS 0.9547 Å/37.019° prevent scientific acceptance. PDU B:4's
+narrow triple check and the canonical A:11/B:5 pair are different observations.
+
+**W134 complete — keep measurements through the next ordinary refinement.**
+The second canonical cycle inherits the prepared NAR restraints and final-pair
+capture, preserves the selected PostMR model and reproduces C382's second model.
+Pair distance/angle RMS improve modestly (0.22018→0.21602 Å; 4.78035→4.72702°),
+but Rwork/Rfree rise from 0.2251/0.2609 to 0.2253/0.2611. Remains unselected REVIEW.
+This parent has no optional extra-restraint files or chemistry projection; their
+combined ordinary-descendant qualification is not implied by C393's lower-level test.
+
+**C394 complete — show the final native geometry after numbered stage labels.**
+The actual `1_realsrl2` label no longer interrupts the recognized final step table.
+Existing final-only, finite and complete-row checks remain. Saved C392 text now
+reports 0.078 Å/2.744°; historical result files and native execution are unchanged.
+The strengthened existing regression fails before the one-token change. Exact
+focused results/commands are in the evidence ledger; no extra full or native run.
+Linden independently checks both actual C392 logs: only these two parsed fields
+change, all other statistics agree, and every v3–v7 worker payload remains exact.
+
 **Next bounded work, in order:**
 
-1. Finish Linden's current ordinary v7 descendant control and the exact C391 full
-   suite. Preserve independent results and source pins; no duplicate experiment.
-2. Close the observed log-reporting gap: C387 stops a completed table at native
-   stage `1_realsrl2`, so C392's final bond/angle values appear missing. A one-token
-   stage-label proposal reproduces 0.078 Å/2.744° from the actual saved table and
-   preserves six refusal cases. It is not applied to the frozen source. Add the
-   maintained regression, run focused reporting callers, and record its own pin.
-3. Before changing semantic weight selection, bind covalent/terminal intent and
-   declared pair/other edits to the exact measured trial state. Reuse existing
-   source/topology owners, W131/C391 geometry and Hazel's passive receipt. Unknown
-   terms remain unclassified. Do not introduce another force evaluator or infer
-   chemistry from an origin ID. C392 completes observation, not this classification.
-4. Broaden actual counted refinement only through a predeclared matched control.
-   A longer fixed-weight XYZ control can be qualified separately; a universal
-   classifier is not a prerequisite for every scientific experiment. Automatic
-   weights, changed targets, CLI/campaign activation and scientific selection remain
-   distinct gates. Q06 still requires useful PDU/DF geometry after refinement.
+1. Measure actual trial chemistry separately from intended pairing before changing
+   automatic weight selection. Reuse C392's observation and exact source matches,
+   existing topology/terminal owners and W131/C391 pair geometry. Hazel A63 already
+   handles Phenix's copied reporting model: bind its actual atom keys/coordinates,
+   not a different live-model object. Unknown terms remain unclassified; neither
+   origin IDs nor the complement of known pairs establish covalent chemistry.
+2. Qualify a longer fixed-weight coordinate control only with predeclared scope and
+   matched native-core / zero-added / complete-recipe starts. Preserve old 1–10-step
+   policies; do not widen them in place. Reuse actual target/count observations:
+   Hazel A79 reproduces selected trial models/maps and finds two same-coordinate
+   normalization jumps, but three other selected stopping failures are unexplained.
+   More iterations alone are not a repair; no normalization or selector fix is adopted.
+3. Close ordinary combined-descendant coverage when that route is needed, using the
+   existing process/checkpoint owners. No parallel recovery engine or repeated
+   copies of frozen inventories. Keep density fitting separately gated on explicit
+   map-generation/work-free/fill policy, not finite coefficient membership alone.
+4. Q06 still requires useful PDU/DF geometry after refinement. Then run the original
+   mixed scaffold with ATL alongside, the held-out modified-pair challenge and the
+   retained sugar/backbone programme. Keep Q15 explanation and final Q16 AutoPhase /
+   combined-source validation / merge review; no automatic merge or wider defaults.
 
 ## Completed foundations to reuse
 
@@ -88,8 +119,10 @@ qualification and are retained. Unrelated local material and peer work are untou
 The five-file local science checkout is
 `ScienceCheckouts/Rowan/2026-11-18/review.html` under the sibling GitHub root. It shows
 PDU geometry, actual pair measurements and weight choices, with links to retained
-evidence rather than duplicated raw datasets. Full-suite and peer outcomes will be
-added at checkout. Signed local continuity notes remain outside the product repo.
+evidence rather than duplicated raw datasets. It links the existing Linden and
+Hazel checkouts, including independent continuation/full regression and the separate
+DF/metal stopping-event diagnosis. Signed local continuity notes remain outside
+the product repo.
 
 Keep working-frame choice explicit; W115's MTZ/PDB cell precision difference does
 not justify widening tolerances. A launch marker is not proof of process death.

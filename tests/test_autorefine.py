@@ -1419,6 +1419,7 @@ class AutoRefineTests(unittest.TestCase):
             " stage r-work r-free bonds angles b_min b_max b_ave n_water shift\n"
             " 0 : 0.2245 0.2599 0.041 2.105 80.6 214.1 119.0 0 0.000\n"
             " 1_xyzrec: 0.2251 0.2609 0.025 1.772 80.6 214.1 119.0 0 0.016\n"
+            " 1_realsrl2: 0.2251 0.2609 0.025 1.772 80.6 214.1 119.0 0 0.016\n"
             " end: 0.2251 0.2609 0.025 1.772 80.6 214.1 119.0 0 0.016\n"
             "--------------------\n"
         )
@@ -1435,6 +1436,7 @@ class AutoRefineTests(unittest.TestCase):
             "wrong columns": header.replace("bonds angles", "angles bonds") + row,
             "no end": header + row.replace("end:", "1_xyzrec:"),
             "interrupted table": header + "native run failed\n" + row,
+            "malformed stage": header + row.replace("end:", "1_realsrl2!:") + row,
             "short row": header + "end: 0.22 0.26 0.025 1.772\n",
             "missing geometry": header + row.replace("0.025", "None"),
             "nonfinite geometry": header + row.replace("1.772", "nan"),
