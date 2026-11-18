@@ -6,6 +6,38 @@ current milestone: **A01 — ligand geometry and open XYZ/B**. Start with the
 The older Cedar/metal pause narrative is retained in
 [history](history/metal-foundation-pause-2026-11-16.md), not current instructions.
 
+## A01/A04 — shared recorder and compact-record integration delta
+
+A later disposable rehearsal combines Cedar runtime
+`589659201a15b4284e93e2c4dcfc47cdefbdcb64` with Alder
+`040b7aaf345ef26fb8a20e289306fb5bb40d41cf` (runtime unchanged from `e002e203`).
+This addresses the two changes absent from the earlier 755-test rehearsal.
+The same six textual conflicts remain; only the temporary package-resource union
+is resolved. No active branch merge or scientific input change is made.
+
+**166 focused tests pass in 41.01 s**, with all 951 exported source/fixture files
+unchanged. The exact command, run in that temporary export, uses:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q tests/test_refinement_declared_sites.py tests/test_refinement_parallelity.py tests/test_metal_compact.py tests/test_metal_storage.py tests/test_metal_fdp_compare.py tests/test_metal_fdp_endpoint.py --tb=short -p no:cacheprovider --basetemp /private/tmp/alder-c406-integration-ifgpe5y3/pytest-temp --junitxml /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/Alder/integration-delta-20261118-01/tests.xml
+```
+
+An offline local wheel retains both resource sets. After removing the build source,
+original installation and temporary source export, the installed package reproduces
+all three saved FT_Hg compact records and the Ag4 record byte-for-byte, and reads
+the already relocated C406 plain/declared-site pair exactly. Imports are exclusively
+from the installation; native subprocesses are forbidden. Existing original trial
+data remain explicitly mounted, so this does not claim their relocation or native
+regeneration. No new full suite or Phenix/Coot execution is performed.
+
+Private receipts/logs/manifests under the Alder anchor
+`integration-delta-20261118-01/` retain exact pins, commands and checksums. The
+owned temporary source/build/install/test copies are closed: **70,924,511 logical
+bytes** removed, zero original scientific payloads. Reproduction requires fresh
+owned paths; the recorded paths are historical command provenance. Five editorial
+conflicts, actual receiving-branch qualification, ordinary-preparation integration
+and scientific acceptance remain open. A01/A04 remain partial and A02 stays gated.
+
 ## A01 — source-to-effective/native term transfer, 2026-11-18 late review
 
 **Generalization requirement.** Construction and repair follow source chemistry,

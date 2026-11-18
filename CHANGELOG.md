@@ -16,6 +16,8 @@ entries are reconstructed from repository history.
 - Make the chemistry/connectivity-based constructor requirement explicit: PDU
   and related residues qualify a general mechanism, not residue-specific repairs.
   This documentation update changes no runtime or native scientific policy.
+- Record a pinned Cedar/Alder compatibility delta: 166 focused tests and installed
+  recorder/compact-record replay, retaining explicit merge and scientific limits.
 
 ### Project compact frozen-trial records without retiring evidence
 

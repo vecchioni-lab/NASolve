@@ -85,6 +85,11 @@ check is neither an active merge nor its release qualification. Compact storage
 must reuse the integrated Cedar owners. See the handoff for failed setup checks,
 reruns and exact scope; no scientific gate closes through this rehearsal.
 
+A later C406/Alder delta rehearsal passes 166 focused tests plus source-free
+installed replay of the new recorder and compact records. It preserves the same
+five unresolved documentation/contract conflicts after the temporary package
+resource union. No active merge, full receiving-branch gate or native run follows.
+
 The separate final Alder source gate now passes the complete tracked suite;
 installed/relocated native map sampling also reproduces the saved values exactly.
 A later frozen source gate also qualifies the read-only compact projection, with
