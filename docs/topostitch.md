@@ -188,11 +188,24 @@ are independent of which provider supplies each term. Output kind
 - `coverage` retains exact requested/provider/observed IDs. The
   `unclassified_native_terms` preserve native IDs/families/origins;
   `covalent_geometry` remains `UNASSESSED`. Origins 0/4 do not classify chemistry.
+  This remainder covers the four observed families only; dihedral, chirality and
+  nonbonded families are outside this inventory.
 
 This report does not change ordinary refinement, automatic weights, existing
 saved records or frozen v5/v6 helper bytes. It is not part of the native worker
 closure. Independent covalent/terminal ownership and density evidence remain
 future integration work with Cedar; no CLI/Doctor activation follows.
+
+Final-state capture is a separate qualification gate. The existing native writer
+runs while the counted contribution owner is active; the callback-free observer
+must not bypass that owner. The proposed read is after the counted owner closes,
+using the same returned model, exact force sites and frozen provider selection,
+with hierarchy **and** scattering digests joined to the completed writer. Never
+reinterpret a rounded PDB or treat a preflight summary as final geometry. Complete
+recipe attribution also calls the outer parallelity observer; those descriptive
+calls must remain distinct from optimizer/count-owner activity. New native helper
+behavior needs its own qualified policy while old v5/v6 bytes stay frozen. This
+paragraph is a planning boundary, not an implemented capture route.
 
 C381–C385 now qualify explicit saved admission, registered same-intent
 continuation, existing C278 PHIL namespace copies and v6 native-written-model

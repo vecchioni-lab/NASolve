@@ -6938,7 +6938,8 @@ one angle, plane and parallelity term changes native/additive coverage
 | Native parallelity delta | 14 | 9.823554° |
 
 Pair energy stays **564.9181277185738** under its existing unnormalized sum.
-**2,465** other supported native terms remain unclassified in each observation;
+**2,465** other supported native terms remain unclassified in each observation
+(bond/angle/planarity/parallelity only, not dihedral/chirality/nonbonded families);
 their ordinal IDs are local to each inventory and must not be treated as stable
 cross-provider atom identities. Coordinates/policy stay fixed; native proxy objects
 and temporary kernel binding are restored. No optimizer, selector, new PDB or
