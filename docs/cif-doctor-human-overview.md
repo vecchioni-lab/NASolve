@@ -15,6 +15,11 @@ controls; poor diffraction agreement prevents a structure-quality claim. Normal
 settings are unchanged, and broader PDU/DF survival remains open. See the
 [current queue](cif-doctor-completion-queue.md#pipeline-position).
 
+A newly supplied restraint file can also enter this explicit short control and
+remain attached to its saved checkpoint. The same-file inherited/new-input native
+comparison produces the exact same model; changed source bytes are rejected before
+refinement. This closes a file-delivery gap, not a chemical-quality gap (C389).
+
 Ordinary model construction now preserves supported modified-base orientation.
 The explicit checked-preparation route can use that construction and the supplied
 base-pair/stacking restraints, generate/check dictionaries and try ReadySet.

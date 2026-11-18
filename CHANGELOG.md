@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve newly supplied restraints in counted AutoRefine (C389)
+
+- Explicit counted controls can accept additional restraint files through the
+  ordinary input preparation and checkpoint inheritance paths. Capture their
+  portable references before allocating a round and verify the same source bytes
+  before freezing the native request; changed sources cannot be silently adopted.
+- Keep original files, exact namespace adaptations and source order. Relative
+  run/dataset/repository anchors are required for this explicit mode; ordinary
+  explicit-path behavior is unchanged. New terminal-protection records and
+  experimental phases remain outside this qualification. No native helper,
+  schema, force, weight or acceptance change.
+
 ### Keep chemical readback alongside counted pair forces (C388)
 
 - Explicit v6 counted controls can retain the existing source-selected triple-bond

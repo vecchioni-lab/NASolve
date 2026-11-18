@@ -1642,6 +1642,7 @@ def execute_autorefine(
     counted_pair_request = dict(counted_pair_request) if counted_pair_request is not None else None
     counted_identity = None
     counted_projection_identity = None
+    counted_extra_references = None
     xyz_wxc_scale = (1.0 if counted_protocol is not None else
         0.1 if recipe == "AutoRefine/geometry-conservative" else 0.5)
 
@@ -1771,8 +1772,14 @@ def execute_autorefine(
     if counted_protocol is not None:
         if phase_file is not None:
             raise AutoRefineError('Counted control does not yet support experimental phases; no phase input was dropped')
-        if resolved_extra_restraints or requested_terminal_protection is not None:
-            raise AutoRefineError('Counted control does not yet support new extra or terminal restraints')
+        if requested_terminal_protection is not None:
+            raise AutoRefineError('Counted control does not yet support new terminal protection')
+        # Bind explicit sources before round allocation; reuse the ordinary input
+        # adapter to verify these exact bytes before freezing the native request.
+        counted_extra_references = [_file_reference(path, run) for path in resolved_extra_restraints]
+        if any(ref.get('anchor') not in ('run', 'dataset', 'repository')
+               for ref in counted_extra_references):
+            raise AutoRefineError('Counted extra restraints require declared portable anchors')
         if terminal_phosphate_sites and inherited_terminal_protection is None:
             raise AutoRefineError('Counted control requires already recorded terminal-phosphate protection')
         from .refinement_counted import validate_autorefine_intent
@@ -1901,7 +1908,8 @@ def execute_autorefine(
     )
     from .refinement_inputs import prepare_refinement_inputs, validate_refinement_inputs
     execution_restraint_records = [*parent_restraint_records,
-        *[_file_reference(path, run) for path in resolved_extra_restraints]]
+        *(counted_extra_references if counted_extra_references is not None else
+          [_file_reference(path, run) for path in resolved_extra_restraints])]
     try:
         execution_restraints, refinement_input_reference = prepare_refinement_inputs(
             run, execution_restraint_records, checkpoint=checkpoint_id)

@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-18, C388 counted forces + chemical observation qualified — Rowan**.
+Updated **2026-11-18, C389 explicit restraint handoff qualified — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current development window ends
 **14:55 UK / UTC**; shared laboratory report **17:00 UK**.
 Rowan uses focused tests; Linden owns one isolated full validation at the final
@@ -8,6 +8,21 @@ source pin under his supplied contract. He also owns the passive provider-statis
 comparison; Hazel owns the separate Alder weight-selection diagnostic.
 
 ## Current checkpoint and next bounded work
+
+**C389 complete — keep newly supplied restraints through ordinary refinement.**
+Explicit counted controls now accept declared portable extra sources through the
+existing input owner. Their bytes are bound before allocation; changes during
+parameter writing fail before refinement, with the partial round preserved.
+Original source order, namespace copies and checkpoint inheritance remain intact.
+Source and installed/relocated panels each pass 143 tests + 24 subtests (55.06 /
+61.05 s). One actual Phenix 2.2.1-6174 ordinary control finishes in 58.05 s with
+exact C386 PDB/native state/lifetime and all processes stopped. The same restraint
+file is new input here, inherited input in C386. The resulting REVIEW checkpoint
+keeps it without changing selection. C386 and C388 readers reopen the relocated
+result without launches/writes. Verified archive 1,637,436 bytes; original retained.
+New terminal-protection records/automatic seeds and consumed phases remain refused.
+No helper/schema/default/weight change, no new chemical efficacy claim.
+
 
 **C388 complete; independent audit passed.** Existing actual
 PDU triple-bond observation now works alongside explicit v6 counted forces.
@@ -73,8 +88,9 @@ fresh diagnostic copy; all 3333 ordered arrays/missing masks and Free-R bits mat
 This is canonical-DNA mechanics, not PDU/DF or modified-data acceptance.
 
 Explicit `counted_frame="recipe"` records its validated crystal choice; absence
-retains native selection and the existing strict frame guard. Consumed phases,
-new extra/terminal restraints remain refused before allocation. C388 adds the
+retains native selection and the existing strict frame guard. Consumed phases and
+new terminal-protection records remain refused before allocation; C389 qualifies
+explicit extra-source delivery. C388 adds the
 existing source-selected chemistry observation without changing its native worker. Existing inherited protection stays checked. A command-context
 refusal preserves the attempt/launch evidence without inventing NOT_LAUNCHED.
 Standalone durable recovery, broader protocols/automatic weights and CLI/campaign

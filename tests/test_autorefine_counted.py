@@ -62,7 +62,7 @@ def test_changed_original_pair_intent_refuses_before_new_round(tmp_path):
     assert read_registry(run)[1]['current'] == 'postmr'
 
 
-def completed_control(tmp_path, monkeypatch, *, failure=None, initial=False, ancestor_policy=execution.V6_POLICY_ID, chemistry=None):
+def completed_control(tmp_path, monkeypatch, *, failure=None, initial=False, ancestor_policy=execution.V6_POLICY_ID, chemistry=None, extra=False):
     """Synthetic native envelopes exercise owners, not chemical qualification."""
     import hashlib
     import subprocess
@@ -72,6 +72,11 @@ def completed_control(tmp_path, monkeypatch, *, failure=None, initial=False, anc
     run, refine, dump, options = case(tmp_path, policy=ancestor_policy)
     if initial:
         options['from_checkpoint'] = 'postmr'
+    if extra:
+        from nasolve.cif_native_monomers import FULL_MODEL_PHIL
+        extra_path = run / 'new-restraints.phil'
+        extra_path.write_text(FULL_MODEL_PHIL)
+        options['extra_restraints'] = [extra_path, extra_path]
     if chemistry is not None:
         from tests.test_cif_triple_bond_audit import fixture
         directory = run / 'projection'; directory.mkdir()
@@ -227,7 +232,7 @@ def test_unsupported_scientific_scope_is_not_dropped(tmp_path, monkeypatch, scop
         monkeypatch.setattr('nasolve.refinement_chemistry.prepare_chemistry_scope',
                             lambda *args: [{'site': 'A:1', 'component': 'Q17'}])
     elif scope == 'extra':
-        p = run / 'new.phil'; p.write_text('geometry_restraints {}\n')
+        p = tmp_path.parent / (tmp_path.name + '-external.phil'); p.write_text('geometry_restraints {}\n')
         options['extra_restraints'] = [p]
     else:
         monkeypatch.setattr('nasolve.autorefine.requested_op3_sites', lambda report: ('A:1',))
@@ -322,7 +327,7 @@ def test_counted_control_keeps_existing_actual_chemistry_report(tmp_path, monkey
 @pytest.mark.parametrize('defect', [None, 'drop', 'replace'])
 def test_counted_descendant_preserves_original_chemistry_scope(tmp_path, monkeypatch, defect):
     from copy import deepcopy
-    from nasolve.checkpoints import inherited_paths
+    from nasolve.checkpoints import inherited_paths, CheckpointError
     run, result, registry, child, _ = completed_control(tmp_path, monkeypatch, chemistry='bent')
     paths = inherited_paths(child, run)
     folder = run / 'AutoRefine/round_003'; folder.mkdir()
@@ -356,3 +361,55 @@ def test_counted_descendant_preserves_original_chemistry_scope(tmp_path, monkeyp
         with pytest.raises(ValueError, match='inherited chemistry'):
             counted.validate_autorefine_intent(run, registry, child, original, paths['model'],
                 chemistry_projections=altered.get('chemistry_projections'))
+
+
+def test_new_counted_restraints_keep_source_execution_and_inheritance(tmp_path, monkeypatch):
+    from nasolve.checkpoints import inherited_paths, CheckpointError
+    from nasolve.refinement_inputs import validate_checkpoint_refinement_inputs
+    run, result, registry, child, commands = completed_control(tmp_path, monkeypatch, extra=True)
+    assert commands == ['preflight', 'refine']
+    source = run / 'new-restraints.phil'
+    assert inherited_paths(child, run)['restraints'].count(source) == 1
+    assert registry['current'] == 'postmr' and child['status'] == 'REVIEW'
+    reference = child['restraints'][-1]
+    assert reference['anchor'] == 'run' and reference['relative_path'] == 'new-restraints.phil'
+    adaptations = validate_checkpoint_refinement_inputs(run, child)['adaptations']
+    assert adaptations[-1]['source'] == reference
+    receipt = execution.validate_execution(run, child['outputs']['parallelity_execution'],
+        checkpoint=child['id'], parent=child['parent'], usable=True)
+    request = execution.read_execution_request(run, receipt['request'], checkpoint=child['id'])
+    assert adaptations[-1]['execution'] in request['inputs']
+    before = {p.relative_to(run): (p.read_bytes(), p.stat().st_mtime_ns) for p in run.rglob('*') if p.is_file()}
+    moved = run.with_name('relocated'); run.rename(moved)
+    with patch('subprocess.Popen', side_effect=AssertionError('cold read')):
+        assert read_registry(moved)[1]['current'] == 'postmr'
+        assert inherited_paths(child, moved)['restraints'][-1] == moved / reference['relative_path']
+    assert all((moved/p).read_bytes() == data and (moved/p).stat().st_mtime_ns == mtime
+               for p, (data, mtime) in before.items())
+    (moved / reference['relative_path']).write_text('changed after refinement')
+    with pytest.raises(CheckpointError, match='checksum|changed|match'):
+        read_registry(moved)
+
+
+def test_new_counted_restraint_cannot_change_after_preallocation_check(tmp_path, monkeypatch):
+    from nasolve import autorefine
+    run, refine, dump, options = case(tmp_path)
+    source = run / 'new-restraints.phil'; source.write_text('geometry_restraints {}\n')
+    options['extra_restraints'] = [source]
+    original = autorefine.write_recipe_parameters
+    def change_source(*args, **kwargs):
+        value = original(*args, **kwargs)
+        source.write_text('geometry_restraints { edits {} }\n')
+        return value
+    monkeypatch.setattr(autorefine, 'write_recipe_parameters', change_source)
+    before = (run / 'AutoRefine/checkpoints.json').read_bytes()
+    import subprocess
+    original_run = subprocess.run
+    def only_dump(command, *args, **kwargs):
+        assert Path(command[0]) == dump, 'Changed input must refuse before refinement'
+        return original_run(command, *args, **kwargs)
+    with patch('subprocess.run', side_effect=only_dump), \
+            pytest.raises(AutoRefineError, match='input preparation failed'):
+        execute_autorefine(run, refine, dump, **options)
+    assert (run / 'AutoRefine/round_002/autorefine.params').is_file()
+    assert (run / 'AutoRefine/checkpoints.json').read_bytes() == before

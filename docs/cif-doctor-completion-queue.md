@@ -91,8 +91,9 @@ not Q06 chemical survival or a replacement for ordinary refinement settings.
 1. Wider actual protocols, automatic weights and CLI/campaign activation remain
    unqualified. Keep the existing five/three-cycle defaults and original native
    thresholds; do not repeatedly run short controls as a substitute.
-2. Consumed phases and new extra/terminal restraints need explicit combined
-   qualification. Existing inherited protection is checked;
+2. Consumed phases and new terminal-protection records need explicit combined
+   qualification. C389 qualifies new portable extra-source delivery through the
+   ordinary input/namespace/checkpoint owners, preserving the exact C386 result. Existing inherited protection is checked;
    unsupported requests refuse before round allocation rather than losing meaning.
 3. Standalone durable attempt recovery needs the existing process/attempt authority.
    Campaign/controller children retain the existing process group. Never introduce

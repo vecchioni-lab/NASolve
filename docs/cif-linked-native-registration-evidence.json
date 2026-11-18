@@ -112601,5 +112601,136 @@
       "adoption": false
     },
     "requirement": "Distinguish known pair terms through exact request/coverage membership, retain legitimate covalent/terminal edits, and mark unclassified edits. Origin4 is not a noncovalent category. Prove stable categories and complete forces/counts before automatic weights."
+  },
+  "ordinary_counted_extra_restraints_2026_11_18": {
+    "milestone": "C389",
+    "signed": "Rowan",
+    "source_parent": "3eb4b55c",
+    "before": "Counted AutoRefine refused newly supplied extra restraints although the same inherited files were accepted.",
+    "after": "Capture portable extra-source references before allocation; reuse ordinary preparation/freezing/checkpoint inheritance. Refuse changed source bytes before native refinement. Existing terminal/phase restrictions remain.",
+    "prior_work": [
+      "C278 exact full-model namespace adaptation",
+      "C383 inherited input compatibility",
+      "C386 ordinary owner",
+      "C388 chemistry coexistence"
+    ],
+    "changed_files": [
+      "src/nasolve/autorefine.py",
+      "tests/test_autorefine_counted.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "source_sha256": "7cec72a731edbc04298b88ac753bdc3a99f5cdfcc3cd655757d005bca329226d",
+    "validation": {
+      "before": "2 new regressions fail at the old explicit-extra gate.",
+      "source_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider tests/test_autorefine_counted.py tests/test_autorefine.py tests/test_refinement_inputs.py tests/test_refinement_counted.py --tb=short",
+      "source_result": "143 passed,24 subtests in55.06s",
+      "installed_result": "........................................................................................................................ [ 83%]\n.......................                                                  [100%]\n143 passed, 24 subtests passed in 61.05s (0:01:01)",
+      "installed_command": [
+        "/private/tmp/willow-w94-pivot/env/bin/python",
+        "-B",
+        "-c",
+        "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_autorefine_counted.py', 'tests/test_autorefine.py', 'tests/test_refinement_counted.py', 'tests/test_refinement_inputs.py', '--tb=short']))"
+      ],
+      "wheel_sha256": "85b1cbf8296760b2b1305ba5ecd00a289759d02aefafb310603efd1d121001a6",
+      "wheel_bytes": 1546672,
+      "build_source_removed": true,
+      "installed_path_relocated": true,
+      "full_suite": "Separate Linden-owned C386 snapshot still running; not repeated for this later change.",
+      "harness_corrections": "Negative tests first placed external file within the dataset anchor and blocked the required MTZ header read. Corrected test placement and permitted only the dump; no product exception bypass."
+    },
+    "native": {
+      "version": "Phenix2.2.1-6174 Darwin arm64",
+      "execution": "Complete actual dry-run preflight and one real refinement cycle through ordinary owner; one outer-owned controller.",
+      "command": "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c389_native.py",
+      "plan_sha256": "023f7506ea1aea74109893942be19b202bf0287933c2b87b0d9ea33744fc1ae1",
+      "audit_sha256": "f47e55823be9d329b23848febf140fd76731d940bf32d6403d761cde30bedd7a",
+      "seconds": 58.045150457997806,
+      "returncode": 0,
+      "stopped": true,
+      "written_model": {
+        "model_state_sha256": "f4d01d2e62d67354ddc86ea28dc6f5592e6ac91071b4f9de10296ccc4644dbed",
+        "policy_id": "native-written-model-v1",
+        "sha256": "55d28cbd19bf01874a313ff9b10b2ed4209e9e0f9b23e738b189ed5eda1082eb",
+        "size": 143889
+      },
+      "exact_C386_native_state": true,
+      "exact_C386_lifetime": true,
+      "extra_source_preserved": true,
+      "extra_inherited": true,
+      "relocated_cold_read": true,
+      "bytes_mtimes_unchanged": true,
+      "input_label_adaptation": {
+        "policy": "diagnostic-column-label-only",
+        "original_sha256": "f57083bb6d6b74789ba77c0c448c678356f7e3a52805a7142e1b33f9055d86a7",
+        "staged_sha256": "7bb523e28f495712e8c8098a01c084b92ba9276a6cd29561b41e1961c0d9393f",
+        "old_labels": [
+          "H",
+          "K",
+          "L",
+          "Fobs",
+          "SIGFobs",
+          "FreeR_flag"
+        ],
+        "new_labels": [
+          "H",
+          "K",
+          "L",
+          "F",
+          "SIGF",
+          "FreeR_flag"
+        ],
+        "row_count": 3333,
+        "ordered_array_bytes_sha256": "4acc655aef270a54ea60f7a49187a84db371bc9542ba30a8a11803605967a8ea",
+        "ordered_arrays_bit_identical": true,
+        "missing_masks_equal": true,
+        "free_r_unchanged": true,
+        "cell": [
+          105.547,
+          105.547,
+          96.268,
+          90.0,
+          90.0,
+          120.0
+        ],
+        "space_group": "R 3:H"
+      },
+      "Rwork": 0.2251,
+      "Rfree": 0.2609,
+      "selected": "postmr",
+      "status": "REVIEW"
+    },
+    "compatibility": {
+      "schemas_changed": false,
+      "native_helpers_changed": false,
+      "old_readers": [
+        "C386",
+        "C388"
+      ],
+      "old_reader_cold_read": "PASS without launch or writes",
+      "receipt_sha256": "99c90c05e6e0c7796b99b33c704abfb05e08866aa6c5ca6a160bb2afe7fb3fff",
+      "migration": "None; existing request/checkpoint formats preserve the new source. Default ordinary behavior unchanged."
+    },
+    "archives": [
+      {
+        "archive": "c389-extra-restraints-2026-11-18.tar.gz",
+        "sha256": "5d9e4ae38012ae162b04cd0e532583ab6d728acca3ed857df1c7b237c75d8c7d",
+        "bytes": 1637436,
+        "raw_bytes": 9114611,
+        "verified_expanded_cold_read": true,
+        "original_root_preserved": true
+      }
+    ],
+    "generated_artifacts": "PDB,MTZ,PHIL,CIF,native logs,runner,package and complete archive stay local. Only compact receipts and regression source committed.",
+    "limitations": [
+      "No new chemistry or improved structure claim; canonical DNA control reproduces C386 exactly",
+      "New explicit terminal protection and automatic terminal generation remain refused",
+      "Consumed phases,broader weights/protocols,CLI/campaign activation and standalone recovery remain separate",
+      "Explicit source delivery is not automatic chemical approval of arbitrary restraints"
+    ]
   }
 }

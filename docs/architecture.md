@@ -4943,3 +4943,21 @@ policy must preserve source state and bind the extra mapper/extension identities
 with complete native and historical validation. No production exception is enabled.
 Actual refinement remains Q06. The complete explicit chain does not enable an
 ordinary default or authorize a merge.
+
+
+### Explicit extra restraints in counted AutoRefine (C389)
+
+The counted protocol now uses the ordinary extra-restraint input path. Each new
+source must have a declared run, dataset or repository anchor. Its checksum/size
+are captured before allocation and reused by `prepare_refinement_inputs`, so a
+change during parameter preparation fails rather than replacing the admitted
+source. The existing exact namespace adaptation and native request freezer remain
+responsible for execution spelling and immutable input validation. The resulting
+checkpoint carries the original sources through ordinary inheritance; it does not
+replace those sources with generated copies or introduce another input ledger.
+
+This is explicit caller intent, not automatic chemical acceptance of arbitrary
+restraints. Actual native preflight, coverage, fixed protocol and policy guards
+still apply. New semantic terminal-protection records, automatic terminal seed
+creation and consumed phases are not included. Existing inherited terminal
+protection remains checked. No native helper or artifact schema changes.
