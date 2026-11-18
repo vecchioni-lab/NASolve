@@ -16,13 +16,16 @@ current instructions; other branches retain their own status and validation pins
   observer coexistence. This does not qualify later revisions, ordinary chemistry
   descendants or general repair. W136 audits separate source-matched eligibility
   and normalization controls: the former worsens R factors; the latter remains
-  non-converged. Neither private policy is adopted. The longer canonical control,
-  density qualification and W122 user-facing sticky-end option remain planned.
+  non-converged. W137 independently checks same-state FFT/direct derivatives
+  and the ordinary chemistry provenance boundary. Neither private numerical
+  intervention is adopted. The explicit longer-control candidate passes focused
+  and installed checks; full/native gates remain pending. Density qualification
+  and W122 user-facing sticky-end activation remain planned.
   Willow owns periodic/numerical helpers and cold reporting; Cedar owns shared
   ordinary execution. Earlier evidence and failures remain in the ledgers.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W136;
-  the next substantial audit is W137. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W137;
+  the next substantial audit is W138. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

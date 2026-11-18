@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W137 — Audit actual-state derivatives and chemistry lineage
+
+- Record independent FFT/direct derivative and original preparation-provenance
+  checks; preserve failed setup attempts and non-acceptance limits.
+- Stage the separately reviewed longer-control candidate with focused/installed
+  evidence; full and native gates remain separate. No runtime source, default,
+  schema or migration changes on Willow in this documentation update.
+
 ### W136 — Audit separate screening and normalization controls
 
 - Record independent C396 source-bounded eligibility and A85 normalization audits;

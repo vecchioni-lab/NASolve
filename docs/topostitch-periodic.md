@@ -7437,3 +7437,90 @@ The combined source/report receipt is
 `1a930e499bcb4d778c8b3a4da9a764a8d6356c7a4168584423ea68b694de9bd9`;
 the static link receipt SHA is
 `450c2fe81ea55e93bfcbeac99ba410ac9d4398270c70adb038ec6f063b830610`.
+
+
+### W137 — Audit actual-state derivatives and ordinary chemistry lineage
+
+**2026-11-18.** Independent cold review of Rowan's C397/C398 diagnostics
+reproduces the exact first **2,779 actual evaluator returns** from Hazel's A85
+fixed-normalization control. This is one pre-ADP state, not iteration 2,779.
+All original physical terms remain; the fixed denominator is 11,170. The scope
+retains the private A71 eligibility selector and is not a canonical repair test.
+
+| Same state and declared 13 directions | Raw geometry | Diffraction | Combined |
+| --- | --- | --- | --- |
+| C397 FFT | 13/13 consistent | 0/13 consistent | 0/13 consistent |
+| C398 direct structure factors | 13/13 consistent | 13/13 consistent | 13/13 consistent |
+
+Consistency requires agreement at two adjacent sampled steps (10⁻³, 10⁻⁴,
+10⁻⁵, 10⁻⁶ Å). Absolute/relative tolerances are 10⁻⁴/10⁻⁴ for raw geometry
+and 10⁻⁷/10⁻⁴ for diffraction/combined objectives. Both runs retain the same
+11,143-proxy inventory, coordinates, non-coordinate state, likelihood core,
+scales, masks and raw geometry. C398 changes only FFT to direct; its separate
+FFT reproduction is exact. All 13 direction vectors are the frozen C397 vectors,
+including its FFT combined-gradient direction, not direct steepest descent.
+The direct baseline target is higher by 0.00017266277904681715; that numerical
+offset is not deterioration or improvement of a refined structure.
+
+C397 performs 106 diagnostic evaluations. C398 performs 106 direct evaluations
+plus one FFT reproduction. First/restored targets repeat exactly in both;
+C398 retains the full repeated vectors and cold review verifies zero gradient
+error. C397's repeated vectors were asserted live but not saved, so only the
+original full baseline and saved target repeats are independently recoverable.
+Combined-gradient closure differs by at most 8.67×10⁻¹⁹. C397 preserves 34 current
+and 35 original refinement files; C398 preserves 38 and 35, including mtimes.
+Small negative-FFT-gradient steps lower the objective in both calculations;
+these are not the actual L-BFGS search direction and do not establish why the
+original optimizer stopped. No optimizer resumes, final model is produced or
+production algorithm is adopted by either diagnostic.
+
+Actual external consumer: **Phenix 2.2.1-6174**. C397's replay plus stopped
+diagnostic takes 340.05 s; C398 takes 333.43 s. These are complete bounded
+diagnostics, not complete refinements. Preserve the unlaunched C397 candidate
+whose mapping fingerprint initially omitted values, and C398's first stopped
+309.97 s attempt: its helper expected bare mmtbx settings, while Phenix supplied
+`taam_verbose=0`. The corrected fresh attempt validates the actual typed scope;
+no probe ran in the failed attempt and no scientific result was overwritten.
+
+**Ordinary chemistry boundary.** The real C303 registered preparation supplies a
+1.607 Å C5M–C5B target; C327 separately qualifies 1.470 Å at unchanged sigma
+0.020 Å. Their models and ordered five PHIL inputs are byte-identical. The
+independent installed-C391 reader checks both owners with subprocess/publication
+blocked, preserving 1,234 C303 and 141 C327 files. C327 is a standalone request,
+not an adopted ordinary checkpoint. C393/C338's diagnostic parent label supplies
+no registry authority. A fresh checked ordinary construction can freeze the
+explicit bond-pair choice, qualify it and publish a new REVIEW root. The existing
+alternative-preparation API accepts only later attempts of the same frozen
+request; it cannot change C303's chemical intent in place. Keeping C327's exact
+already-prepared model/PHIL would need an explicit source-bound reprepare owner,
+not a manual import or retroactive producer claim. No such owner was added.
+
+**Next bounded code gate.** Rowan delegated the longer canonical control to
+Linden. Detached review candidate `d8656b2212ec1777e3da5f1979ac2a766fc71563`
+on clean Cedar `653587b9` adds only explicit configured cap 100, v8/cycle-v2 and
+mandatory final pair capture; old v3–v7 payload bytes and v1 bounds stay exact.
+334 focused tests pass; 35 final pin/lifecycle checks pass. A relocated installed
+wheel matches 304 packaged resources and passes the same 334 tests (77.04 s),
+dependency checks and root/AutoRefine/PostMR command helps. The first installation
+audit wrongly expected three historically unpackaged provenance JSON files;
+its failure remains recorded. No packaging or production fix was needed.
+The full candidate suite is a separate running gate; the last completed full
+baseline remains C391. No native v8 experiment, merge or new scientific approval
+is claimed here. The matched native/zero/full control still needs passive actual
+stopping/count history. C391's 12 core pairs provide a genuinely native-covered
+nonempty zero-addition subset; only the two selected end pairs contribute the
+17 additions. Preserve that subset/full-intent distinction rather than override
+provider selection or invent an empty recipe.
+
+**Reproduction and retained evidence.** Cold commands use
+`PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B`:
+`willow-c397-review.py ROOT RECEIPT`, `willow-c398-review.py ROOT RECEIPT`, and
+`PYTHONPATH=/private/tmp/c391-package-9d301ocz/relocated
+willow-chemistry-lineage-review.py`. Exact reader sources, receipt hashes,
+historical roots and limitations are sealed locally at declared NASolve anchor
+`branch-artifacts/willow/w137-actual-state-and-lineage-audits-2026-11-18.tar.gz`
+(10,601 bytes, seven indexed files plus manifest), SHA-256
+`d59ab2764fcef1b880bc8086433f1d5ca517dcc50976413b27b8b2f0710c41b3`.
+No raw models/maps/data are committed. The archive is evidence, not a claim that
+the original native runs are portable. S04/S05/S06 and P01/P02 remain partial;
+density calibration, B10 efficacy and altered-arm B09 success remain open.

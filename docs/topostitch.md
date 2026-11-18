@@ -161,6 +161,13 @@ application; it closes no repair, inference, stacking or covalent-closure gate.
 
 ### Next bounded coordinate control (planned after W135)
 
+**W137 review status:** detached candidate `d8656b22` on the Cedar code base
+implements the explicitly named 100-cap protocol and v8/cycle-v2 checks. The
+configured cap is exactly 100; actual convergence/errors may stop earlier.
+Focused/installed checks pass, with full/native gates pending. This candidate
+does not add passive per-evaluator history or qualify the matched scientific
+experiment below. Existing Willow runtime and old workers remain unchanged.
+
 W135 closes the frozen C391 regression and pair/chemistry-observer coexistence;
 W134 closes one ordinary canonical descendant. The next question is whether a
 longer **single** coordinate-minimization lifetime gives useful additional motion.

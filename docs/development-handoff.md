@@ -1,19 +1,21 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-18**. **W136 separates two diagnostic mechanisms:** source-matched
-geometry screening changes native choices but worsens the PDU control's R factors;
-fixed geometry normalization removes one line-search failure class in Hazel's
-metal control but leaves rounding failures/iteration limits. Neither becomes a
-production policy or accepted repair. **W134 closes the actual ordinary canonical-continuation
-check on unchanged Cedar C391.** The new child preserves pair intent, inherited
-prepared restraints, final-state reporting and immutable ancestry, and reproduces
-the earlier lower-level endpoint exactly. Pair geometry improves slightly but
-Rwork/Rfree and clashscore worsen; it remains unselected REVIEW. W133 separately
-qualifies final pair measurement against the actual completed writer. The complete
-Willow and frozen C391 integration suites pass. W135 also independently audits
-C393 pair/chemistry-observer coexistence at unchanged C391 source.
-Willow numerical helpers remain W118; W131 adds the cold reporter, and Cedar owns
-v7 capture. These are bounded backend qualifications, not a supported repair release.
+Updated **2026-11-18**. **W137 independently audits the actual-state numerical
+comparison:** raw geometry agrees in all 13 sampled directions; FFT diffraction
+and combined derivatives do not, while direct factors agree in all 13 at the same
+state. This is a stopped private diagnostic, not a completed or accepted repair.
+The chemistry-lineage audit separately distinguishes the qualified C327 correction
+from genuine C303 ordinary publication; neither can acquire the other's authority
+retroactively. Exact results and retained failures are in the periodic ledger.
+
+The next longer-control candidate is isolated at `d8656b22` on Cedar's code base:
+configured cap 100, explicit v8 scope and mandatory final pair capture, preserving
+old payloads/defaults. Focused and relocated installation checks pass; its full
+suite is running and native qualification remains pending. No integration yet.
+The last full-qualified baseline remains C391 (11,983 tests +292 subtests, two
+existing native skips). W134's ordinary canonical continuation preserves intent
+and final reporting but worsens R factors and clashes. Willow numerical helpers
+remain W118, with W131 cold reporting; no broader repair release is qualified.
 
 The backend can bind explicit periodic pair intent, apply the missing geometry
 terms during one qualified native refinement cycle, retain their original meaning
@@ -27,6 +29,7 @@ unqualified.** S04/S05/S06 and P01/P02 remain partial. The
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
+| W137 actual-state and lineage audits | Same-state FFT/direct derivative comparison and genuine ordinary/standalone chemistry provenance independently verified | No optimizer-causality or repair claim; longer candidate full/native gates pending |
 | W136 independent diagnostic audits | Actual source-matched eligibility and matched normalization arithmetic/choices verified; original inputs and failures retained | Neither intervention establishes convergence, general geometry classification or repair; canonical longer control remains planned |
 | W135 integration gates | One full C391 run: 11,983 tests +292 subtests, 2 existing native skips; C393 observer coexistence exact | Later source revisions, ordinary chemistry descendants and scientific acceptance |
 | W134 / C391 ordinary descendant | Actual second ordinary cycle preserves ancestry, intent, inherited prepared NAR PHIL and final pair capture; exact earlier endpoint | Optional extra-restraint/chemistry descendants, broader protocols and efficacy |
@@ -48,15 +51,15 @@ not another work queue; do not repeat them because this handoff is shorter.
 
 ## Next bounded work
 
-1. W135 closes the unfiltered C391 full regression and C393 observer coexistence;
-   W134 closes actual ordinary canonical continuation. Do not repeat these gates
-   without a changed source/scope or unresolved failure. Next, design and qualify
-   the [bounded longer fixed-weight control](topostitch.md#next-bounded-coordinate-control-planned-after-w135)
-   through existing owners, preserving the old strict protocol. Retain actual
-   normalization/termination observations; Hazel's metal-only denominator result
-   does not itself diagnose or repair the canonical case.
-   W136 retains the completed C396/A85 outcomes: neither private intervention
-   should be promoted or combined without a separate declared hypothesis.
+1. Finish review and the pinned full gate for detached longer-control candidate
+   `d8656b22`, then qualify actual ordinary v8 scope/writer/final measurements.
+   Keep that mechanics check separate from the predeclared native/zero/full
+   scientific matrix, which also needs passive actual stopping/count history.
+   Use the genuine native-covered core subset for zero addition; never suppress
+   provider terms from a full declared recipe. No repeat of completed C391 gates
+   without a changed source/scope. C397/C398 are a separate private diagnostic;
+   their result does not authorize a production FFT/direct or normalization change.
+
 2. W133 closes the bounded final-state pair-capture seam. Keep native remainder
    unclassified until chemical ownership is explicit. Reuse Cedar's source-backed
    component/link provenance, canonical pair coverage and Alder's explicit metal
@@ -84,6 +87,11 @@ then separately qualified plane-only mismatch hypotheses. Automatic inference an
 large-bend repair follow later. No CLI/default activation follows from these docs.
 
 ## Validation and scientific interpretation
+
+- **W137:** cold arithmetic reproduces C397 FFT and C398 direct observations,
+  exact baseline/restored C398 vectors and unchanged source files. C303/C327
+  owner checks preserve 1,375 scientific files with no native launch/publication.
+  [Scope, failures and candidate status](topostitch-periodic.md#w137--audit-actual-state-derivatives-and-ordinary-chemistry-lineage).
 
 - **W136 diagnostics:** independent cold source/physical-arithmetic/choice replay
   passes for C396 and A85, with all source runs unchanged. C396 worsens R factors;
