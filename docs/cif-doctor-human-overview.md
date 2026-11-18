@@ -48,8 +48,16 @@ FFT stops again with a rounding error after 41 iterations; direct reaches the
 score, but the sugar–base bond remains too long and the metal angle remains strained.
 This distinguishes a numerical obstacle from the remaining chemistry problem;
 it does not justify adopting direct calculation or increasing the iteration limit
-as a general cure. Next qualify ordinary delivery and a matched three-way comparison:
-native restraints alone, Cedar with nothing missing to add, and the complete recipe.
+as a general cure. A matched three-way comparison is now complete: the native
+restraint set, Cedar with nothing missing to add, and the complete recipe. All use
+the same existing plane-force correction. The zero-addition case reproduces native
+history, model and reflection arrays exactly. Adding seventeen pair terms improves
+selected G:C and A:T plane mismatches from 27.30→6.30° and 8.85→4.59°; the A:T
+contacts remain long. All three stop early with line-search errors. Rwork and final
+clashscore are worse with the complete recipe, despite a slightly lower Rfree.
+This demonstrates delivery and a physical effect, not convergence or PDU/DF repair.
+The explicit longer control has passed its full software gate and is integrated;
+next carry corrected PDU through genuine preparation and assess its refined geometry.
 
 These are explicit, source-qualified controls, not new normal settings or universal
 modified-residue support. New restraint files retain their identity through the

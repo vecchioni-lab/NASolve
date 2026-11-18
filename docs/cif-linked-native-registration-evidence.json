@@ -114593,5 +114593,300 @@
       "Fixed-scale pre-ADP R values are not final refined-model R values."
     ],
     "next": "End derivative/restart diagnostics for now; finish ordinary longer-control gate and matched passive native/zero/full matrix, then genuine corrected-PDU preparation ancestry and achieved chemical survival."
+  },
+  "matched_counted_controls_2026_11_18": {
+    "milestone": "C400",
+    "author": "Rowan",
+    "status": "COLD_MATRIX_READBACK_PASS",
+    "integrated_code_commit": "4f7aeb84b8762b3bd4ebcc1741c6b1116443632a",
+    "tested_candidate": "d8656b2212ec1777e3da5f1979ac2a766fc71563",
+    "scientific_acceptance": false,
+    "before": "Ordinary longer-control candidate and separate short controls; no matched native/zero/full history comparison.",
+    "after": "Explicit longer control integrated; passive observer and genuine zero-addition equivalence qualified; added terms improve canonical pair geometry without convergence or modified-chemistry acceptance.",
+    "native": {
+      "version": "Phenix 2.2.1-6174",
+      "execution": "COMPLETE_NATIVE_PROCESSES_WITH_EARLY_OPTIMIZER_STOPS",
+      "all_owned_processes_stopped": true,
+      "configured_iteration_cap": 100,
+      "shared_plane_force_correction": true
+    },
+    "equivalence": {
+      "actual_start_equivalence": "PASS: same complete coordinate/nonXYZ hashes, weighted and unweighted data target, data-gradient hash and absolute weights; full starts with precisely17additional counted terms.",
+      "full_observer_equivalence": "PASS: prepared state, native preflight geometry, owner lifetime, output model/scattering/Fcalc and all reflection arrays; MTZ metadata also checked.",
+      "zero_native_equivalence": "PASS: complete actual-return rows except deliberate owner receipt, accepted-step callbacks, stopping receipt, model/scattering/Fcalc and all reflection arrays/metadata."
+    },
+    "cases": {
+      "full": {
+        "actual_evaluator_returns": 82,
+        "stopping_calls": [
+          {
+            "sequence": 1,
+            "kind": "XYZ",
+            "iterations": 73,
+            "function_evaluations": 76,
+            "max_iterations": 100,
+            "max_calls": null,
+            "reason": "unreported",
+            "error": "lbfgs error: Line search failed: The step is at the lower bound stpmin().",
+            "is_unusual_error": true,
+            "native_criterion_met": null
+          }
+        ],
+        "restraint_count_range": [
+          11325,
+          11409
+        ],
+        "same_coordinate_count_changes": [
+          {
+            "instance": 1,
+            "evaluations": [
+              76,
+              82
+            ],
+            "counts": [
+              11409,
+              11325
+            ],
+            "raw_residuals": [
+              2637.52902110223,
+              2637.52902110223
+            ],
+            "targets": [
+              3.264359932094341,
+              3.2660746423374074
+            ],
+            "change_components": {
+              "data": 0.0,
+              "raw_geometry_at_old_count": 0.0,
+              "denominator": 0.00171471024306621
+            }
+          }
+        ],
+        "final_pdb_sha256": "5f07dc98723a6bf4b86abe5166ff32c43bec5ba03da7509aa9948a357bd9a9c4",
+        "final_statistics": {
+          "initial_r_work": 0.2245,
+          "initial_r_free": 0.2599,
+          "r_work": 0.2271,
+          "r_free": 0.2609,
+          "r_free_minus_r_work": 0.0338,
+          "bond_rmsd": 0.029,
+          "angle_rmsd": 1.489,
+          "clashscore": 24.77
+        }
+      },
+      "native": {
+        "actual_evaluator_returns": 86,
+        "stopping_calls": [
+          {
+            "sequence": 1,
+            "kind": "XYZ",
+            "iterations": 75,
+            "function_evaluations": 80,
+            "max_iterations": 100,
+            "max_calls": null,
+            "reason": "unreported",
+            "error": "lbfgs error: Line search failed: The step is at the lower bound stpmin().",
+            "is_unusual_error": true,
+            "native_criterion_met": null
+          }
+        ],
+        "restraint_count_range": [
+          11304,
+          11392
+        ],
+        "same_coordinate_count_changes": [
+          {
+            "instance": 1,
+            "evaluations": [
+              80,
+              85
+            ],
+            "counts": [
+              11392,
+              11304
+            ],
+            "raw_residuals": [
+              2576.301503895088,
+              2576.301503895088
+            ],
+            "targets": [
+              3.2564909636759993,
+              3.2582515090968585
+            ],
+            "change_components": {
+              "data": 0.0,
+              "raw_geometry_at_old_count": 0.0,
+              "denominator": 0.0017605454208591638
+            }
+          }
+        ],
+        "final_pdb_sha256": "ffdb9cd9c3d2f894af05a6002dcfa37e5521b040b675c0e3e087e53139b506f7",
+        "final_statistics": {
+          "initial_r_work": 0.2245,
+          "initial_r_free": 0.2599,
+          "r_work": 0.2267,
+          "r_free": 0.2613,
+          "r_free_minus_r_work": 0.0346,
+          "bond_rmsd": 0.029,
+          "angle_rmsd": 1.484,
+          "clashscore": 23.27
+        }
+      },
+      "zero": {
+        "exactly_matches": "native",
+        "evidence": "readback.json and independent union review; full actual-return/stopping/model/reflection equality except intentional owner receipt"
+      }
+    },
+    "common_fourteen_written_pdb": {
+      "native": {
+        "selected_GC_plane_deg": 27.298448,
+        "selected_AT_plane_deg": 8.85442,
+        "pair_distance_rms_A": 0.247179595
+      },
+      "full": {
+        "selected_GC_plane_deg": 6.298366,
+        "selected_AT_plane_deg": 4.591776,
+        "pair_distance_rms_A": 0.200020218
+      },
+      "independent_source": "w139-c400-common-geometry-2026-11-18.json"
+    },
+    "preserved_failure": "Original zero preflight refused stale effective-library evidence; no zero refinement there. Fresh existing-compiler output retains exact twelve pair definitions and native input; only effective-library emitted list/digest corrected. Completed full/native arms reused without rerun.",
+    "statistics_amendment": "Original log-only clashscore32.28 is INITIAL; hash-bound final PDB REMARK amendment yields23.27native/zero and24.77full. Existing ordinary parser already handles log+model; no product fix.",
+    "validation": {
+      "full_suite": {
+        "passed": 12008,
+        "skipped": 2,
+        "subtests": 293,
+        "seconds": 3581.07,
+        "source_files_unchanged": 1415,
+        "dependency_commit": "a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691"
+      },
+      "focused": "334 affected tests and final35 new matrix tests pass; installed334 pass.",
+      "independent_cold_reviews": {
+        "union_checks": 82,
+        "final_statistics_checks": 13,
+        "zero_recipe_replay_checks": 60,
+        "native_calls": 0
+      }
+    },
+    "validation_commands": [
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c400_execute.py",
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c400_zero_execute.py",
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c400_readback.py",
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c400_archive.py",
+      "Full gate exact command/environment is retained in referenced plan.json; PYTHONDONTWRITEBYTECODE=1 and explicit source/dependency PYTHONPATH.",
+      "git diff --exit-code d8656b2212ec1777e3da5f1979ac2a766fc71563 4f7aeb84b8762b3bd4ebcc1741c6b1116443632a -- src tests pyproject.toml .github",
+      "git diff --check"
+    ],
+    "evidence": {
+      "plan.json": {
+        "anchor": "local-branch-artifacts",
+        "relative_path": "willow/w137-long-control-full-suite-2026-11-18/plan.json",
+        "sha256": "8ebb1c5578b521c2d168624a50434308541e8e44eaa665524e851a70d70f2c7c",
+        "bytes": 1284
+      },
+      "execution.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c400-counted-matrix/execution.json",
+        "sha256": "93c13cc2675f53291bd522f36cb0f4fe65694b23da1b3f72ec8a046f3664f0f0",
+        "bytes": 38765
+      },
+      "readback.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c400-counted-matrix/readback.json",
+        "sha256": "aee2ca37d7c9046551fdd604122b4fcc6b0a3430209d49ddcb20474c8aa33b15",
+        "bytes": 14681
+      },
+      "completed-controls.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c400-counted-matrix/completed-controls.json",
+        "sha256": "2b1e7140f4bb30b3ce13b5b13ab4011c25ca4a1934ccb69b125fe42283f19e2f",
+        "bytes": 1184
+      },
+      "final-model-statistics.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c400-counted-matrix/final-model-statistics.json",
+        "sha256": "409b58c9edd4ce2909f874049d001b1eff71d8394a999103ed9076b037696320",
+        "bytes": 4074
+      },
+      "science-checkout.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c400-counted-matrix/science-checkout.json",
+        "sha256": "3bb74d4ab8c12faf888c8b97386ca241382397230a86cd929169a65670be5ed5",
+        "bytes": 1317
+      },
+      "result.json": {
+        "anchor": "local-branch-artifacts",
+        "relative_path": "willow/w137-long-control-full-suite-2026-11-18/result.json",
+        "sha256": "b6ee5150671725c79a8abbb9783379cf85f0ae8e0e44fae23bcd77e9f8c0e6d3",
+        "bytes": 7329
+      },
+      "source-manifest.json": {
+        "anchor": "local-branch-artifacts",
+        "relative_path": "willow/w137-long-control-full-suite-2026-11-18/source-manifest.json",
+        "sha256": "28df2597863d8670ec14d343fe7048a1231ae1ec67e53699a9be1d33196d2f84",
+        "bytes": 223608
+      },
+      "coordination-c400-union-review-20261118-v2.json": {
+        "anchor": "local-branch-artifacts",
+        "relative_path": "Alder/coordination-c400-union-review-20261118-v2.json",
+        "sha256": "5847f969d88a08938f9792caa4c9bbc83fc2615e1c36d88eb20b7085fc471c4f",
+        "bytes": 17552
+      },
+      "coordination-c400-final-statistics-review-20261118.json": {
+        "anchor": "local-branch-artifacts",
+        "relative_path": "Alder/coordination-c400-final-statistics-review-20261118.json",
+        "sha256": "465629cc598ad5e9607276ad3d2a933fa3ab41f666073b9e86099d02e4e00a34",
+        "bytes": 1551
+      },
+      "coordination-c400-zero-repair-review-20261118.json": {
+        "anchor": "local-branch-artifacts",
+        "relative_path": "Alder/coordination-c400-zero-repair-review-20261118.json",
+        "sha256": "a96b1bbf44eb3294e025256ea047a623bee71f0ef275b309d49324f1d8e82c2d",
+        "bytes": 7286
+      },
+      "w139-c400-common-geometry-2026-11-18.json": {
+        "anchor": "local-branch-artifacts",
+        "relative_path": "willow/w139-c400-common-geometry-2026-11-18.json",
+        "sha256": "5070d8545901852eed83c2e872ebb6a8c4226b639f2c7e3333ba05bb393bf943",
+        "bytes": 68912
+      }
+    },
+    "archive": {
+      "anchor": "cedar-local-artifacts",
+      "relative_path": "c400-counted-controls-2026-11-18.tar.gz",
+      "bytes": 7710957,
+      "sha256": "f7aca98a0ebf2bcc09eb4a3955695c77ba91ad53af9affa2978b4982a4780822"
+    },
+    "raw_archived_bytes": 36175887,
+    "code_changed_files": [
+      "src/nasolve/autorefine.py",
+      "src/nasolve/cif_counted_phase.py",
+      "src/nasolve/cif_counted_refinement.py",
+      "src/nasolve/refinement_counted.py",
+      "src/nasolve/refinement_parallelity.py",
+      "src/nasolve/data/refinement-runtime-v7-sources.json",
+      "tests/test_autorefine_counted.py",
+      "tests/test_counted_long_control.py",
+      "tests/test_refinement_counted.py",
+      "docs/architecture.md",
+      "CHANGELOG.md"
+    ],
+    "schemas": [
+      "Explicit round-local-counted-execution-v8 and prepared-counted-refinement-cycle-v2; historical worker bytes/readers retain meaning."
+    ],
+    "compatibility": "No default/CLI activation, normalization/force change or migration; explicit Python100-cap control, oneXYZcycle/fixedunitweights/seed1/process1. Mandatory writer and pair capture; ancestry cannot silently downgrade.",
+    "generated_artifacts": "Only compact evidence/hashes committed. All native models/reflections/logs/raw traces, review packets and archive remain local.",
+    "limitations": [
+      "Readback recomputes scalar arithmetic, not per-call gradients; gradient closure remains producer evidence.",
+      "Counts include candidate nonbonded contributions, not active forces.",
+      "Common-pair geometry compares the same12corepairs; full14 and zero12 aggregate summaries must not be ranked as if their populations match.",
+      "Canonical mechanics, not PDU/DF chemical survival, convergence assurance or automatic adoption.",
+      "Native-only v4 has existing writer observation; v8 has stronger explicit written-file proof.",
+      "Full14 and zero12 original summaries are not comparable; independent same14 written-PDB and separate same12 native-coordinate comparisons are used.",
+      "Independent scalar readback does not recompute all gradient vectors.",
+      "Same-coordinate count jumps account for scalar changes, not the complete cause of early stopping."
+    ],
+    "next": "Genuine fresh corrected-PDU preparation and ordinary refinement descendant; achieved PDU/DF chemistry, then mixed/held-out challenges. No duplicate derivatives/weight sweeps."
   }
 }

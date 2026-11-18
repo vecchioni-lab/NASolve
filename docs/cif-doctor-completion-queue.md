@@ -195,16 +195,24 @@ fresh-history restart is complete: FFT stops with rounding after 41 iterations,
 direct reaches the 100-iteration cap; neither converges or repairs the strained
 sugar–base/metal geometry. Native returned vectors and separate post-stop scoring
 read back exactly. Both lower their own objective; their raw scores are not ranked.
-Stop this diagnostic branch here. Finish the explicit longer-control software/native
-gates, then qualify passive history and matched native/zero-added/full-recipe controls.
-The twelve core pairs provide a genuine native-covered zero case; two selected end
-pairs supply seventeen additional terms. Corrected PDU still needs genuine ordinary
-preparation ancestry, not a retrospective checkpoint for C327 diagnostics.
-Do not repeat this baseline or confuse A43's post-weight-selection direct evidence
-with this actual state. No normalization fix or general convergence is qualified.
-Longer counted scope needs a new explicit version, matched starts and source-bound
-control matrix, not widening historical 1–10-step semantics. A universal chemical
-classifier need not block every predeclared experiment, but unknown terms remain
+Stop this diagnostic branch here. C400 completes the explicit longer-control
+software/native gates and matched native/zero-added/full-recipe matrix. Integrated
+`4f7aeb84` exactly matches full-tested `d8656b22` source/tests/packaging:
+12,008 tests and 293 subtests pass, with two existing native opt-in skips.
+The passive full-case endpoint matches the ordinary owner; a fresh existing-builder
+zero recipe exactly reproduces native history/model/reflections. Its first stale
+library fixture refusal stays preserved; no product repair was required.
+All arms share the existing plane-force correction. Seventeen added terms improve
+same-fourteen-pair geometry, but all stop at lower-bound line-search errors before
+the 100 cap. Same-coordinate scalar jumps are denominator-driven, not proof of the
+whole stopping cause. Neither convergence nor modified-residue survival is accepted.
+C400's log-only initial clashscore is superseded descriptively by its separate
+final-PDB amendment; immutable execution evidence is not rewritten.
+Corrected PDU now needs genuine ordinary preparation ancestry, not a retrospective
+checkpoint for C327 diagnostics. Verify new construction and exact restraints first.
+Do not repeat these baselines or confuse A43's post-weight-selection direct evidence
+with the actual C397 state. Historical 1–10-step policy bytes remain unchanged.
+A universal chemical classifier need not block every predeclared experiment, but unknown terms remain
 unknown and improved scalar scores do not establish repaired chemistry.
 
 
@@ -397,7 +405,7 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Complete for recorded alternatives, selected-model phasing, Coot, cold inspection and the ordinary five-cycle refinement handoff. Actual chemical survival/effective restraint behavior is Q06; no default activation or historical migration. |
-| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C391 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control, chemical observation and actual final pair measurements. C392/C395 record real PDU weight fallback and actual source membership; C396 changes screening privately but does not repair the model; C393/W134 qualify combined observation and ordinary canonical continuation without claiming chemical repair. Wider protocols and achieved PDU/DF geometry plus held-out survival remain open. Mechanics or a readable dictionary alone is insufficient. |
+| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C391 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control, chemical observation and actual final pair measurements. C392/C395 record real PDU weight fallback and actual source membership; C396 changes screening privately but does not repair the model; C393/W134 qualify combined observation and ordinary canonical continuation without claiming chemical repair. C400 qualifies an explicit longer control and matched native/zero/full pair mechanics; all arms stop early and chemical acceptance remains open. Wider protocols and achieved PDU/DF geometry plus held-out survival remain open. Mechanics or a readable dictionary alone is insufficient. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |

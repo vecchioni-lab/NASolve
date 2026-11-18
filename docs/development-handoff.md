@@ -1,62 +1,58 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-18, C399 matched native restart readback — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. Last complete unfiltered baseline:
-**C391 `8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6`**, exact NARestraints `a9264f9e`:
-**11,983 passed, 2 existing native opt-in skips, 292 subtests passed** in 3196.08 s.
-Linden W135 verifies unchanged source/dependency bytes and stopped ownership.
-C394's later log-only change has focused validation; it is not part of that full run.
+Updated **2026-11-18, C400 matched pair controls and longer-control integration — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. Integrated code **`4f7aeb84`**
+is source/test/packaging-identical to full-tested candidate **`d8656b22`**:
+**12,008 passed, 2 existing native opt-in skips, 293 subtests passed** in 3581.07 s,
+with exact NARestraints `a9264f9e`. All 1,415 candidate tracked files stayed unchanged;
+the test process stopped. C394 log parsing is included. No duplicate full run.
 
 ## Current checkpoint and next bounded work
 
-**C397 complete — actual failure-state derivative check (Rowan).**
-Exact A85 fixed-normalization prefix through global evaluator-return index 2779
-(XYZ instance 7, not native nfun) reproduces full state/gradients. At this state,
-106 probes in 13 directions keep one active restraint inventory and observed cache.
-Raw geometry agrees in all 13 sampled directions; FFT data/combined agree in none.
-All four negative combined-gradient steps still lower the objective, so this does
-not establish the cause of the line-search failure. Independent cold arithmetic
-passes; repeat full-gradient reproduction is a producer assertion. Dedicated native
-replay intentionally stops (340.05 s); no optimizer continuation or finished model.
-The earlier A43 probe was post-weight-selection, a different stage. Its direct
-control and unqualified changed adaptive-weight refinement remain historical limits.
+**C400 complete — added pair restraints have a matched native comparison.**
+The explicit Python-only 100-cap control is integrated after focused, installed,
+actual-native and full-suite checks. Older v3–v7 emitted workers remain exact;
+ordinary defaults and CLI/campaign support do not change. Each arm uses the same
+starting state, data, native parameters and existing plane-force correction.
+A genuinely zero-addition recipe reproduces the native restraint set's entire
+actual-return history, stopping receipt, model, scattering state and reflection
+arrays. Passive observation also reproduces the ordinary full-recipe endpoint.
 
-**C398 complete — direct calculation agrees at the same state.**
-After exact FFT-state reproduction, changing only the diffraction algorithm to
-`direct` gives 13/13 agreeing directions for data, raw geometry and combined score.
-One FFT repeat plus 106 direct calls retain the same likelihood core, scattering,
-observations/Free-R/HL, scales/mask, absolute weights, denominator and geometry/cache.
-First/restored full vectors are independently readable and exact. Complete dedicated
-replay 333.43 s; all owned processes stopped. The first accuracy-snapshot refusal
-(omitted Phenix `taam_verbose=0`) stopped before any switch/probe and remains preserved.
-Direct and FFT scores are distinct objectives; this is not a repaired structure.
+The complete recipe adds seventeen terms. On the same fourteen canonical pairs,
+selected G:C plane mismatch improves 27.30→6.30°, selected A:T 8.85→4.59° and
+pair-distance RMS error 0.247→0.200 Å. These are written-PDB measurements with
+declared crystal images; the independent full-precision twelve-core-pair comparison
+is separate. The A:T contacts remain long. Final Rwork worsens 0.2267→0.2271,
+Rfree improves slightly 0.2613→0.2609, and clashscore worsens 23.27→24.77.
+Both final R values remain worse than their common initial 0.2245/0.2599.
 
-**C399 complete — consistent forces do not yet rescue the chemistry.**
-Separate native FFT/direct restarts reproduce the same actual state, then reset
-history with the same fixed likelihood/scales/mask/nonXYZ/weights and 11170 denominator.
-FFT stops with a rounding error after 41 iterations (64 actual evaluator calls,
-native nfun 44); direct reaches the 100-iteration cap (106 calls). Neither meets
-the convergence criterion. FFT returns its own native best-seen vector; direct
-returns its terminal vector. Explicit post-stop scoring and cold coordinate/gradient
-readback pass; the original optimizer never resumes. Both owned processes stopped.
+All arms stop with the lower-bound line-search error: full 73 iterations/82 actual
+returns, native/zero 75/86, below the configured 100 cap. Same-coordinate score
+jumps are accounted for by changed restraint-count denominators with unchanged
+raw geometry, diffraction and weights; this does not prove stopping causality.
+This closes the bounded canonical control matrix, not convergence or Q06 chemistry.
 
-The sugar–base bond changes 1.616→1.603/1.607 Å (FFT/direct; target 1.499), while
-the donor-vertex metal angle changes 12.986→12.152/11.894° (target 0). Strain remains.
-Both lower their own objective. Fixed-scale pre-ADP Rwork worsens slightly in both;
-Rfree worsens slightly for FFT and improves slightly for direct. Do not rank the
-two raw objectives or call this a complete refinement/chemical repair. Source
-evidence remains unchanged; independent cold review and local byte archive are bound
-in the ledger. This closes the bounded diagnostic, not Q06 or A01.
+The first zero fixture retained stale full-library metadata and correctly refused
+before refinement. A fresh recipe built by the existing owner changes only that
+metadata; the already completed full/native arms are reused. The original failed
+record remains failed. Independent reviews, explicit successful-control joins and
+a byte-verified local archive preserve both attempts. Final clashscore comes from
+PDB REMARKs: the original runner's log-only value 32.28 is INITIAL and remains
+unchanged, with a separate hash-bound correction. No runtime parser fix is needed.
 
-**Active follow-up — qualify ordinary longer control, then its matched matrix.**
-Linden owns the detached v8 candidate `d8656b22`, installed/native checks and one
-pinned full gate. Rowan's source review finds no blocker and all v3–v7 worker maps
-remain exact. No integration before those gates. Rowan owns preparation of the
-native / genuinely zero-added / full-recipe control with passive actual-return
-history; first prove observation preserves the ordinary full-case endpoint.
-No extra evaluator, selector, normalization change or production default is implied.
-Corrected PDU publication remains separate: C327 diagnostics cannot silently inherit
-C303 checkpoint authority. Use genuine fresh preparation lineage.
+**Next — publish corrected PDU through genuine preparation, then test survival.**
+C327's corrected definitions have no ordinary checkpoint authority. Do not replace
+C303's old CIFs or manufacture historical ancestry. Reuse genuine fresh AutoMR /
+PostMR preparation with the explicit bond-target request, then its unselected
+refinement descendant. Determine whether fresh construction reproduces the intended
+chemistry before spending another refinement run. Q06 still requires useful PDU/DF
+geometry after Phenix and broader protocol qualification.
+
+**C397–C399 diagnostic branch is complete.** Actual-state FFT score/force checks
+fail the sampled agreement test while direct calculation agrees; matched fresh
+histories still stop at rounding/iteration cap without repairing sugar–base/metal
+strain. Reuse those receipts rather than repeat derivative, weight or iteration
+sweeps. The exact state, failed attempts and numerical boundaries remain in the ledger.
 
 **C396 complete — changing the geometry screen does not yet repair PDU.**
 A private five-cycle control excludes only source-matched declared pairing from
@@ -101,12 +97,10 @@ remain in the existing ledger; private models, maps and diagnostic traces stay l
    locally and progresses to the declared cap, but neither restart repairs geometry.
    Native convergence and physical chemistry remain distinct. Do not infer lost
    PDU restraints: C396 retains the captured C5A plane and local definitions.
-2. Finish the explicit longer-control software/native gates, then the matched
-   native-core / zero-added / full-recipe matrix with bound starting states,
-   actual evaluator counts/targets and stopped processes. Preserve old 1–10-step
-   policy bytes. The zero recipe uses the twelve native-covered core pairs;
-   no empty recipe or forced provider choice. The complete recipe adds seventeen
-   terms at the two selected ends. More iterations alone are not a repair.
+2. C400's explicit longer control and native/zero/full matrix are complete.
+   Carry corrected PDU through genuine new preparation; verify requested chemistry,
+   full restraints and checkpoint lineage before its ordinary refinement. Reuse
+   the existing owners; no retrospective authority for diagnostic copies.
 3. Close ordinary combined-descendant coverage when that route is needed, using the
    existing process/checkpoint owners. No parallel recovery engine or repeated
    copies of frozen inventories. Keep density fitting separately gated on explicit
@@ -147,9 +141,9 @@ owners/parameters; no accidental imported-test collection. No tests removed with
 demonstrated redundancy. Current build copies still serve historical-reader/native
 qualification and are retained. Unrelated local material and peer work are untouched.
 
-The seven-file local science checkout (under 1 MB) is
+The eight-file local science checkout (about 1.1 MB) is
 `ScienceCheckouts/Rowan/2026-11-18/review.html` under the sibling GitHub root. It shows
-PDU geometry, actual pair measurements and weight choices, with links to retained
+the matched pair-control effect, PDU geometry and weight choices, with links to retained
 evidence rather than duplicated raw datasets. It links the existing Linden and
 Hazel checkouts, including independent continuation/full regression and the separate
 DF/metal stopping-event diagnosis and its separately labelled A85 normalization
