@@ -13536,6 +13536,40 @@ in ledger `retained_phosphate_observed_names_2026_11_13`.
 
 ## Reading chemistry after refinement (C336–C338)
 
+### Explicit declared-site observation beyond triple bonds (C406)
+
+The ordinary Python owner accepts `observe_declared_sites=True` together with
+`correct_native_parallelity=True`. It selects every graph-valid site projection
+from the exact checked preparation. Selection depends on supplied chemistry and
+site identity, not PDU/DF names or a triple-bond requirement. Without a checked
+preparation there is no declared scope and no invented chemical evidence.
+
+A distinct `round-local-declared-sites-execution-v9` request binds the choice but
+reuses the byte-identical frozen v3 native helper. Historical requests and the
+ordinary triple-only default are unchanged. The existing process, preflight,
+phase, written-model and checkpoint owners remain responsible for execution.
+Ancestors, including manual imports, retain the observation requirement: dropping
+it refuses before a new round. Counted combinations and Refine Doctor forwarding
+are not qualified; Refine Doctor currently refuses such descendants explicitly.
+
+`refinement_parallelity.read_execution_chemistry_sites(run, reference,
+checkpoint=..., parent=..., model=...)` reads the sealed selected-site observation
+and source bindings without running Phenix. It preserves actual heavy atoms,
+source/effective-definition context, full-precision coordinates and captured
+intra-site terms. Missing observations remain unassessed. Hydrogen, cross-site
+and complete symmetry neighborhoods are not supplied. Existing triple screening
+still assesses only triples; an observed non-triple site is not a chemistry pass.
+The C404 local-carbon reader can consume this wider explicitly captured scope,
+while its own chemical selector remains unchanged. No force, target, uncertainty,
+constructor, scientific acceptance or CLI/default activation changes. Existing
+ordinary checkpoint-selection rules remain unchanged; use
+`auto_select_success=False` for an inspection-only refinement. Broader capture
+does not itself provide a non-triple chemical acceptance screen.
+
+Qualification is recorded under `declared_site_native_observation_2026_11_18`
+in the existing evidence ledger; source/installed tests are distinct from actual
+native execution and the full regression gate.
+
 ### Explicit actual-final trigonal shape (C404)
 
 `refinement_parallelity.read_execution_trigonal_geometry(run, reference,
@@ -13554,8 +13588,9 @@ captured local plane. Neither finding establishes native energy, missing alterna
 restraints or chemical acceptance. Zero weights, missing local atoms and degenerate
 geometry remain explicit. Charged/chiral/aromatic-only or otherwise unsupported
 source chemistry stays unassessed. No residue/atom-name repair rule is added.
-Current workers capture only their explicitly selected chemistry sites (presently
-source-declared triple sites); the reader does not enlarge that scope, launch a
+Workers capture only explicitly selected chemistry sites. The ordinary default
+selects source-declared triples; C406 separately admits all bound declared sites.
+The reader itself does not enlarge capture scope, launch a
 native calculation, infer a symmetry image, alter checkpoints or strengthen planes.
 This Python-only descriptor is not a new ordinary CLI/default behavior.
 

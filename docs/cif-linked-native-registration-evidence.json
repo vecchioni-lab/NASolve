@@ -116008,5 +116008,313 @@
       "Q06 achieved PDU/DF geometry and held-out survival remain open."
     ],
     "scientific_acceptance": false
+  },
+  "pdu_substituent_geometry_decomposition_2026_11_18": {
+    "milestone": "C405",
+    "date": "2026-11-18",
+    "signed": "Rowan",
+    "status": "COLD_REVIEW_COMPLETE",
+    "source_runtime": "4bfffbca068cfe74cc926ff68fefca5ba5c83c3a",
+    "before": "C396 recorded ring offsets and individual triple angles; C404 measured actual local trigonal geometry only at C403.",
+    "after": "Reuse qualified C404 geometry on authenticated saved endpoints; source graph selects unique ring-attached triple chain and signed bond increments account for terminal ring-plane height.",
+    "source_projection_sha256": "8d244673bca2038a19d9811170649be221fe1330c761608a6aa94b34cb6df833",
+    "native_results": {
+      "C396": "3c1fe1510d61d261683c98172535e7cec5a78927b073dfa7532eaab165bd936e",
+      "C403": "6cc56f263c1965aee8c044ed0128dadf3bdaa0a8bab595d6df5c05b9c7748c00"
+    },
+    "chain": [
+      "C5",
+      "C5A",
+      "C5B",
+      "C5M"
+    ],
+    "ring": [
+      "C5",
+      "C4",
+      "N3",
+      "C2",
+      "N1",
+      "C6"
+    ],
+    "geometry": {
+      "C403": {
+        "ring_plane_rms_angstrom": 0.007992089032186858,
+        "signed_offsets_angstrom": {
+          "C5": 0.008777140761518476,
+          "C5A": -0.012221336291260654,
+          "C5B": -0.0766027057913301,
+          "C5M": -0.17481209678297271
+        },
+        "segments": [
+          {
+            "atoms": [
+              "C5",
+              "C5A"
+            ],
+            "length_angstrom": 1.4629766896249228,
+            "signed_normal_increment_angstrom": -0.02099847705277924,
+            "signed_elevation_degrees": -0.8224091567165276
+          },
+          {
+            "atoms": [
+              "C5A",
+              "C5B"
+            ],
+            "length_angstrom": 1.2132259502811595,
+            "signed_normal_increment_angstrom": -0.0643813695000694,
+            "signed_elevation_degrees": -3.0419018267976567
+          },
+          {
+            "atoms": [
+              "C5B",
+              "C5M"
+            ],
+            "length_angstrom": 1.4995616265150704,
+            "signed_normal_increment_angstrom": -0.09820939099164261,
+            "signed_elevation_degrees": -3.7551067258717468
+          }
+        ],
+        "bends": [
+          {
+            "centre": "C5A",
+            "axis_deflection_degrees": 4.55056955287389
+          },
+          {
+            "centre": "C5B",
+            "axis_deflection_degrees": 5.574862499699453
+          }
+        ],
+        "terminal_offset_reconstruction_error_angstrom": 5.551115123125783e-17
+      },
+      "C396": {
+        "ring_plane_rms_angstrom": 0.008658071354372555,
+        "signed_offsets_angstrom": {
+          "C5": 0.012817201408142798,
+          "C5A": -0.020915266664817467,
+          "C5B": -0.1521955819204489,
+          "C5M": -0.36556475247934495
+        },
+        "segments": [
+          {
+            "atoms": [
+              "C5",
+              "C5A"
+            ],
+            "length_angstrom": 1.438112520332051,
+            "signed_normal_increment_angstrom": -0.033732468072960375,
+            "signed_elevation_degrees": -1.3440570864609336
+          },
+          {
+            "atoms": [
+              "C5A",
+              "C5B"
+            ],
+            "length_angstrom": 1.1791050741813665,
+            "signed_normal_increment_angstrom": -0.13128031525563139,
+            "signed_elevation_degrees": -6.392505643114256
+          },
+          {
+            "atoms": [
+              "C5B",
+              "C5M"
+            ],
+            "length_angstrom": 1.465315500727901,
+            "signed_normal_increment_angstrom": -0.21336917055889593,
+            "signed_elevation_degrees": -8.37278555901487
+          }
+        ],
+        "bends": [
+          {
+            "centre": "C5A",
+            "axis_deflection_degrees": 5.105717230754723
+          },
+          {
+            "centre": "C5B",
+            "axis_deflection_degrees": 3.0768883503615356
+          }
+        ],
+        "terminal_offset_reconstruction_error_angstrom": 5.551115123125783e-17
+      }
+    },
+    "local_maximum_bond_elevation_degrees": {
+      "C403": {
+        "C2": 0.8019390401894748,
+        "C4": 1.404853968645796,
+        "C5": 2.0385579132384355
+      },
+      "C396": {
+        "C2": 0.21115939822413896,
+        "C4": 2.2261847493074574,
+        "C5": 3.1493805000439234
+      }
+    },
+    "identical_captured_planes_and_weights": true,
+    "unchanged_native_files": 332,
+    "native_calls": 0,
+    "scientific_acceptance": false,
+    "independent_review": {
+      "author": "Hazel",
+      "checks": 73,
+      "anchor": "NASolve-local-artifacts",
+      "relative_path": "Alder/coordination-c405-geometry-review-20261118.json",
+      "sha256": "e83f01ad7d9bfeed6319cf92f636f5e80271dc113b0f0c754615beff9cde156b",
+      "method": "Gemmi connectivity, covariance eigendecomposition for ring plane, atan2 elevation/acos bend/determinant local geometry; different calculation from producer."
+    },
+    "local_evidence": {
+      "anchor": "NASolve-local-artifacts",
+      "relative_path": "cedar/c405-substituent-geometry/comparison.json",
+      "sha256": "4551741b92a51692b9e2fba385ab920b0ba90f7cc896316c4769b0ca29029a71"
+    },
+    "command": "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c405_substituent_geometry.py",
+    "limits": [
+      "C403 uses existing ordinary execution validation; C396 is an explicitly private diagnostic authenticated to its saved audit and previous receipt, not an ordinary checkpoint.",
+      "Same graph-selected ring atoms and normal orientation define each fitted ring plane; the two independently fitted planes are not one fixed laboratory plane.",
+      "Signed segment increments exactly decompose terminal height; this is geometric accounting, not an energy or causal attribution.",
+      "Unique ring-attached triple source graph only; ambiguous graphs refuse. No production ring classifier, additional plane restraint, native residual or acceptance threshold.",
+      "Saved full-native endpoints; no new Phenix execution, optimization, coordinate edit or scientific approval.",
+      "C5B total bend decreases while its normal increment grows; the geometric components are coupled, not independent causal contributions.",
+      "No production/test/schema change; no new full regression required for this cold evidence. Raw native states/models and editable local figure remain outside Git."
+    ],
+    "next": "Use source-selected actual neighborhoods for non-triple modified sites before asserting a missing term or changing a target; no repeated eligibility sweep."
+  },
+  "declared_site_native_observation_2026_11_18": {
+    "milestone": "C406",
+    "date": "2026-11-18",
+    "signed": "Rowan",
+    "status": "SOURCE_INSTALLED_NATIVE_PASS_FULL_RUNNING",
+    "source_commit": "589659201a15b4284e93e2c4dcfc47cdefbdcb64",
+    "before": "Ordinary checked chemistry scope required a source TRIPLE bond, although the existing native observer already supports arbitrary explicitly selected sites.",
+    "after": "Explicit ordinary Python observe_declared_sites=True selects all graph-valid checked-preparation projections. Distinct v9 request preserves exact frozen v3 native payload; default triple scope and every historical worker stay unchanged. Cold site reader returns authenticated atoms/intra-site effective terms; ancestors cannot silently drop the scope.",
+    "changed_files": [
+      "src/nasolve/autorefine.py",
+      "src/nasolve/refinement_chemistry.py",
+      "src/nasolve/refinement_parallelity.py",
+      "tests/test_refinement_declared_sites.py",
+      "tests/test_refinement_parallelity.py"
+    ],
+    "schemas": {
+      "request": "round-local-declared-sites-execution-v9; existing schema1 shape",
+      "reader": "refinement-declared-sites-observation-v1/schema1",
+      "native": "Unchanged exact frozen v3 native worker and capture format"
+    },
+    "fail_before": {
+      "status": "EXPECTED_FAILURE",
+      "source_commit": "0a398d15ee465b12ed44b7e749221e54a8e343a9",
+      "reason": "Old execute_autorefine rejects observe_declared_sites keyword; same new ordinary non-triple test passes after change.",
+      "receipt_sha256": "3a159d3c85a12e4c84db8cc8992f650517e4a1053955ed160e70f549632cfee6"
+    },
+    "focused": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider tests/test_refinement_declared_sites.py tests/test_refinement_parallelity.py tests/test_refinement_trigonal_geometry.py tests/test_refinement_chemistry.py tests/test_refinement_counted.py --tb=short",
+        "result": "183 passed in42.89s; before final explanatory no-triple reason and two additional regressions"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider tests/test_refinement_declared_sites.py --tb=short",
+        "result": "Final11 passed in2.96s"
+      }
+    ],
+    "setup_corrections": [
+      "New checksum-negative expected CheckpointError, not ValueError; owner correctly refused.",
+      "Manual-import helper returns CheckpointRecord.checkpoint_id, not dict. Corrected test only.",
+      "One command named a nonexistent counted-control test file and collected no tests; corrected to existing panel."
+    ],
+    "installed": {
+      "status": "PASS",
+      "tests": 231,
+      "seconds": 71.43,
+      "resources": 304,
+      "wheel_sha256": "2052324f1f8d8ea0ed2aad587feeb6f4a1890443ac7b091abb83e33a1f0b8e88",
+      "build_source_absent": true,
+      "old_install_path_absent": true,
+      "python_source_fallback": false,
+      "fixture_only": "Two existing 5W6W packaged fixture files; no Python source fallback",
+      "legacy_C403_report_exact": true,
+      "legacy_native_files_unchanged": 283,
+      "raw_site_report_equal_saved_observation": true,
+      "receipt_sha256": "fd2c3a273db0421125e1d4cdb2140f7b309de268e9e9ca3e3d6375971f5cdf09",
+      "runner": "branch-artifacts/cedar/runners/c406_install.py"
+    },
+    "independent_review": {
+      "author": "Hazel",
+      "status": "PASS_SCOPED_SOURCE_REVIEW",
+      "anchor": "NASolve-local-artifacts",
+      "relative_path": "Alder/coordination-c406-source-review-20261118.json",
+      "sha256": "73f17e66570d07bb6200b9184bded515ece1b09277217f25ed5751a5f8b0df0f"
+    },
+    "native": {
+      "status": "MATCHED_CAPTURE_AND_RELOCATION_PASS",
+      "attempt01": "Preflight stopped on absolute command inputs versus relative DataManager paths. All originals preserved, no refinement launched. Fresh attempt02 rebases only declared file paths; no array or label substitution.",
+      "attempt02": "Matched one-cycle direct owner v3 without scope vs v9 DF A12 capture, exact original initial model/dictionaries/PHIL/phases/Free-R; no private selector monkeypatch. Not a fabricated ordinary registry or a chemical repair.",
+      "native_version": "Phenix2.2.1-6174 (SDK reports2.2.1)",
+      "profile_id": "phenix-2.2.1-6174-local-darwin-arm64-selected-sites-v3",
+      "preflight": "Actual dry run in both arms",
+      "refinement": "One complete actual cycle in both arms",
+      "seconds": 331.71628983400296,
+      "both_complete_PDB_sha256": "b7e0ce038a282c5a9382655964c9b450f4e6ae971995d4755972fc0bbf50f430",
+      "output_state_and_kernel_counts_equal": true,
+      "selected_atoms": 20,
+      "full_atom_count": 859,
+      "captured_terms": {
+        "angle": 30,
+        "bond_asu": 0,
+        "bond_simple": 21,
+        "chirality": 3,
+        "const_dihedral": 8,
+        "dihedral": 24,
+        "parallelity": 0,
+        "planarity": 1
+      },
+      "original_input_files_unchanged": 12,
+      "installed_resources_unchanged": 304,
+      "relocated_files_unchanged": 66,
+      "original_root_absent": true,
+      "retained_native_bytes": 4037528,
+      "old_reader_refuses_new_policy": true,
+      "attachment_angstrom": 1.9297499569091319,
+      "chemical_status": "UNACCEPTED_DIAGNOSTIC; not repair/five-cycle survival",
+      "receipt_sha256": "40cc1b215a5008a5b2677b710361795f1b6bff60c60d947bc1141e2169b30f26",
+      "native_commands": [
+        "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c406_native_02.py",
+        "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c406_native_readback.py"
+      ],
+      "limits": [
+        "One-cycle direct existing native-owner qualification, not five-cycle scientific survival or a newly registered ordinary DF preparation.",
+        "Cold relocation read succeeds after original root is absent; frozen command/parameter absolute paths remain historical provenance. This does not prove portable native re-execution.",
+        "Source includes explicitly modified OP3/HO3/HOP3 context; capture reports actual selected heavy atoms, not universal source/effective atom equality.",
+        "No source target, sigma, force, observation array, Free-R or scientific acceptance change; old default behavior preserved."
+      ]
+    },
+    "full": {
+      "status": "RUNNING",
+      "owner": "Linden",
+      "source_commit": "589659201a15b4284e93e2c4dcfc47cdefbdcb64",
+      "evidence_anchor": "NASolve-local-artifacts",
+      "evidence_path": "willow/w144-c406-full-suite-2026-11-18",
+      "last_completed_source": "4bfffbca068cfe74cc926ff68fefca5ba5c83c3a"
+    },
+    "limits": [
+      "Explicit ordinary Python option only; counted controls/CLI/default activation remain separate.",
+      "Refine Doctor cannot forward this option and explicitly refuses V9 descendants until separately qualified.",
+      "No checked preparation supplies no declared sites and no claimed observation.",
+      "Heavy-atom intra-site capture excludes missing H/cross-site and complete symmetry neighborhoods; source graphs are not an acceptance threshold.",
+      "No native target/force/uncertainty, constructor, chemical-state, Free-R or checkpoint-selection policy changes.",
+      "Old readers refuse new v9; historical records need no migration. Raw science/worker logs remain local."
+    ],
+    "software_copy_retirement": {
+      "files": 488,
+      "bytes": 5274231,
+      "scientific_files_removed": 0,
+      "installed_resources_unchanged": 304,
+      "receipt_sha256": "42d8dff5f31561d6d430e3c55ba8baa1f4f334c9b368df2ec2db1df46e7f9363"
+    },
+    "independent_native_review": {
+      "author": "Hazel",
+      "checks": 700,
+      "status": "PASS",
+      "native_calls": 0,
+      "anchor": "NASolve-local-artifacts",
+      "relative_path": "Alder/coordination-c406-native-review-20261118.json",
+      "sha256": "cb4b42dfa41b885e1a5c003a3d0cebb611a8cfe12d004d99e09c54979e0ebf41"
+    }
   }
 }

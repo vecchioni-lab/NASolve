@@ -30,6 +30,18 @@ the terminal carbon moves farther out of the ring plane, and Rwork/Rfree worsen.
 The sugar hand and base orientation remain intact. This is useful diagnostic
 separation, not an adopted weight selector or repaired structure. Complete forces,
 normalization and numerical criteria stay unchanged; ordinary settings are untouched.
+A cold follow-up separates local attachment shape from bending accumulated along
+the substituent. The same source-selected ring and connected chain are measured
+in each saved model. Shorter bonds can coexist with greater terminal displacement;
+no missing plane or changed plane weight explains the comparison. This is a
+geometric account, not proof of the responsible forces or a new acceptance rule.
+
+An explicit Python option now records other declared modified sites, including
+those without a triple bond, through the same refinement owner. The old default
+is unchanged. It records what Phenix used and what shape resulted; it does not
+repair or approve DF merely because its atoms are now visible. Current validation
+and remaining scope are in the maintained queue.
+
 The log reader now keeps numbered native stages such as `realsrl2` so final
 summaries are not lost.
 

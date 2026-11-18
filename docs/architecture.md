@@ -2,6 +2,15 @@
 
 NASolve orchestrates external crystallographic programs; it does not reimplement them.
 
+Explicit ordinary `observe_declared_sites=True` uses graph-valid projections from
+checked preparation to record non-triple modified sites as well as triples. The
+v9 request retains exact frozen v3 native code and all established execution/source/
+model validation; ordinary defaults are unchanged. Descendants cannot drop this
+choice silently. The cold site reader exposes captured heavy-atom intra-site
+observations, not missing H/cross-site/symmetry context or scientific acceptance.
+Counted controls and Refine Doctor do not yet forward this option. See the
+[declared-site observation contract](cif-doctor.md#explicit-declared-site-observation-beyond-triple-bonds-c406).
+
 Ordinary Coot construction verifies actual canonical residue identity after each
 native mutation, before writing a parent snapshot or constructing its replacement.
 Native success codes do not establish chemical identity. Historical script

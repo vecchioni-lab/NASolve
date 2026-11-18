@@ -268,6 +268,26 @@ after the final full gate: 12,032 tests and 293 subtests pass, with two existing
 native opt-in skips. Do not rerun the established
 ordinary delivery, source-selection or derivative baselines to rediscover them.
 
+**C405 complete; C406 qualification in progress.** The retained private PDU
+control has a larger local C5 elevation (2.039→3.149°) and greater accumulated
+ring-normal displacement (0.174812→0.365565 Å), despite improved bond lengths.
+A graph-selected chain/ring and independently reviewed signed decomposition
+separate these geometric effects; they do not attribute forces. Both results
+retain REVIEW; the completed plane and weights are identical. Do not repeat the
+eligibility intervention or describe both individual bends as worsening.
+
+The next bounded tool step is explicit non-triple site observation through the
+same refinement owner (C406), not another PDU optimizer or bespoke DF target.
+Source/installed checks pass at `58965920`; matched actual one-cycle DF observation
+off/on preserves identical PDB/state/correction counts. Relocated cold read and
+old-reader refusal pass. The full gate is running; the 1.930 Å attachment in this
+short control remains unaccepted and is not a five-cycle comparison. Hazel's independent retained DF audit finds all surviving
+heavy bond/angle targets and the plane correctly delivered in both saved controls.
+No missing local term or new target repair is established. First use source-bound
+actual neighborhoods to distinguish achieved geometry from delivery; keep H,
+cross-site, symmetry and wider chemical-state questions explicit. Ordinary V9
+observation is separate from Refine Doctor/counting forwarding and automatic repair.
+
 **Scientific stopping boundary:** C403 uses substituted-scaffold observations, not
 a PDU crystal. Keep its existing REVIEW screen and whole-substituent measurements,
 but do not treat repeated flattening or optimizer convergence as an agreed universal

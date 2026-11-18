@@ -79,8 +79,15 @@ historical readers remain unchanged; descendants cannot silently drop this scope
 The cold reader exposes captured heavy-atom intra-site terms. It neither infers
 missing hydrogen/cross-site evidence nor invents a non-triple acceptance screen.
 Focused regressions cover ordinary capture, source/identity drift, relocated reads,
-manual ancestry and unsupported combinations. Full and actual native checks are
-pending. Hazel owns the complementary retained DF source-to-effective audit.
+manual ancestry and unsupported combinations. The relocated installation passes 231 focused tests. Matched actual DF controls
+complete dry preflight and one cycle each, preserving byte-identical PDBs, output
+state and correction counts with observation off/on. The new arm captures 20 heavy
+atoms, 21 bonds, 30 angles, three chirality terms and one plane. All 66 files read
+unchanged after relocation with the old path absent; the old reader refuses v9.
+Hazel independently verifies 700 bindings without native calls.
+The 1.930 Å attachment remains unaccepted: this is capture qualification, not a
+repair, five-cycle survival or a new ordinary DF preparation. Full regression is
+running on exact `58965920`; no source/test changes follow that pin. Hazel owns the complementary retained DF source-to-effective audit.
 
 ## Reuse the existing science
 
@@ -109,8 +116,9 @@ six-atom ring plane 0.094297 Å. These descriptive starting values are not accep
 
 ## Next work, in order
 
-1. C402–C404 are now qualified and ready for the Cedar checkpoint. Preserve the
-   completed ordinary control and source-selected readout; no repeated native matrix.
+1. Finish the pinned C406 full gate and compact handoff. C405 cold decomposition
+   and C406 installed/native observation checks are complete. Preserve the earlier
+   qualified ordinary control; no repeated native matrix.
 2. Use the resulting actual-manager evidence to identify the remaining chemical
    defect. Q06 needs useful PDU/DF geometry after refinement and whole-substituent
    evidence, not merely successful execution or a readable CIF. Reuse existing
