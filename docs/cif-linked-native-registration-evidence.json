@@ -114274,5 +114274,110 @@
     ],
     "preparation_review": "Nested-mapping fingerprint defect caught and corrected before launch; earlier frozen candidate retained unlaunched.",
     "next": "Same-state direct-factor comparison with actual core/scales/mask/scattering/weights preserved; no broad weight/budget sweep or production adoption."
+  },
+  "actual_state_direct_factor_control_2026_11_18": {
+    "milestone": "C398",
+    "status": "DIAGNOSTIC_COMPLETE_SCIENTIFIC_REVIEW",
+    "checkout_at_review": "3420051d",
+    "before": "C397 actual fixed-normalization FFT state has sampled data/combined derivative disagreement; A43 direct evidence was at another stage and adaptive refinement changed its path.",
+    "after": "At the exact reproduced FFT state, change only structure-factor algorithm to direct. All13 sampled directions agree for data, raw geometry and combined score. No optimizer continuation or scientific repair claim.",
+    "native": {
+      "version": "Phenix 2.2.1-6174",
+      "execution": "ACTUAL_REPLAY_INTENTIONALLY_STOPPED",
+      "seconds": 333.43458079099946,
+      "probe_seconds": 26.72814274999837,
+      "stopped": true,
+      "global_evaluator_return_index": 2779,
+      "direct_evaluations": 106,
+      "fft_repeat_evaluations": 1,
+      "total_diagnostic_evaluations": 107,
+      "native_refinement_complete": false
+    },
+    "components": {
+      "data": {
+        "agreeing_directions": 13,
+        "total_directions": 13,
+        "sampled_agreement": true
+      },
+      "raw_geometry": {
+        "agreeing_directions": 13,
+        "total_directions": 13,
+        "sampled_agreement": true
+      },
+      "combined": {
+        "agreeing_directions": 13,
+        "total_directions": 13,
+        "sampled_agreement": true
+      }
+    },
+    "static_context": "Exact coordinates/scattering/nonXYZ, observed likelihood core, observations/FreeR/HL, scales/mask, absoluteweights and11170 denominator retained. One actual inventory and observed cache unchanged; raw geometry identical.",
+    "baseline_targets": {
+      "fft": -14.301042375521352,
+      "direct": -14.300869712742305,
+      "interpretation": "Different numerical objectives, not a scientific-improvement comparison."
+    },
+    "direction_basis": "Exact 13 C397 FFT-derived vectors; full_gradient is not direct steepest descent.",
+    "repeated_full_gradients": "Full first/restored vectors retained and independently reproduced exactly.",
+    "evidence": {
+      "plan.json": {
+        "sha256": "fbfde0bac4b683471b9586ca43c16b0c709268d0b65214fd7fc8b95702af7519",
+        "bytes": 5314
+      },
+      "execution.json": {
+        "sha256": "d3f87dbc77ff42ea0258a007fbb287013f5da28934aec119455c8dc4a7a0652f",
+        "bytes": 2491
+      },
+      "refinement/diagnostic-status.json": {
+        "sha256": "ebbdb02e3791093e5e4bbfcb6fef171d60d68a2dc5b99d9cdbad6999c50f1a2d",
+        "bytes": 1444
+      },
+      "refinement/takeover-state.json.gz": {
+        "sha256": "ed566d443e3ee58240017619ae0515b792a2be26c7b733c86566f9a8f1173364",
+        "bytes": 656813
+      },
+      "refinement/derivative-samples.json.gz": {
+        "sha256": "1a4186118184b2119dc5713c859e91bec74cb6c06b20427caa5a01a197aa21de",
+        "bytes": 379085
+      },
+      "refinement/normalization-trace.json.gz": {
+        "sha256": "526d9d59e3aac4423393cc9ebe226a9915e95cd2f4800e823d2792de7ba0780f",
+        "bytes": 1955895
+      }
+    },
+    "independent_review": {
+      "author": "Linden",
+      "anchor": "NASolve-private-artifacts",
+      "relative_path": "willow/c398-actual-state-review-2026-11-18.json",
+      "sha256": "74d3f1b5f228c39cde1bfa2d0cd0361ea4e2543c8d7546d09b165e562b98bfb1"
+    },
+    "original_A85_files_unchanged": 67,
+    "original_C397_files_unchanged": 34,
+    "archive": {
+      "anchor": "cedar-local-artifacts",
+      "relative_path": "c398-actual-state-2026-11-18.tar.gz",
+      "size": 11295013,
+      "sha256": "d8483ecba86726f74c539f17d62ad261e6ccf960ac02c8d576ac5dbb7c6c0184"
+    },
+    "raw_archived_bytes": 13441992,
+    "preserved_failed_attempt": {
+      "outcome": "Stopped before algorithm switch/probes",
+      "seconds": 309.9655119579984,
+      "reason": "Diagnostic expected bare mmtbx accuracy scope; actual Phenix scope adds taam_verbose=0.",
+      "fix": "Explicitly record zero verbosity, reject unknown/nonzero options; verify actual saved EFF through typed Phenix master before fresh attempt."
+    },
+    "validation_commands": [
+      "PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python -B branch-artifacts/cedar/runners/c398_check_accuracy.py",
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c398_execute.py",
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c398_readback.py",
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c397_archive.py c398 c398-actual-state-direct"
+    ],
+    "compatibility": "No product code/schema/default/worker change; no migration or full-suite rerun for this evidence.",
+    "limits": [
+      "No convergence, repaired model or production algorithm adoption.",
+      "The13shared directions derive from originalFFT state; full_gradient is not direct steepest descent.",
+      "OriginalFFT negative-gradient steps still lower the score; derivative discrepancy alone does not establish stopping causality.",
+      "Raw inputs/models/reflections/logs/helpers stay local; archive is byte proof, not portable execution."
+    ],
+    "next": "One matched fresh-history FFT/direct bounded restart at this same state; preserve native stopping, actual returned parameter vector and each objective separately. Ordinary corrected-chemistry publication and longer canonical control remain distinct."
   }
 }

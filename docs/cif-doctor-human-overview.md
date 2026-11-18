@@ -39,8 +39,11 @@ sampled directions; the FFT diffraction and combined scores agree in none under
 the declared checks. Yet moves against the reported combined gradient still lower
 the score, so this does not establish why optimization stopped. No optimization
 continues and no finished model is produced. A separate same-state direct-calculation
-comparison is being tested; an earlier direct refinement changed the adaptive
-weight choices and did not demonstrate a repair.
+comparison now agrees in all 13 directions for chemistry, diffraction and their
+combined score, without changing the other state. This is numerical agreement,
+not chemical repair. An earlier direct refinement changed adaptive weight choices
+and did not demonstrate a repair. A matched short restart now keeps those weights
+fixed and tests whether resetting the optimizer alone explains any progress.
 
 These are explicit, source-qualified controls, not new normal settings or universal
 modified-residue support. New restraint files retain their identity through the

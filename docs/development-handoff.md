@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-18, C396 private pair-eligibility diagnostic — Rowan**.
+Updated **2026-11-18, C398 matched actual-state numerical check — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Last complete unfiltered baseline:
 **C391 `8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6`**, exact NARestraints `a9264f9e`:
 **11,983 passed, 2 existing native opt-in skips, 292 subtests passed** in 3196.08 s.
@@ -21,15 +21,28 @@ replay intentionally stops (340.05 s); no optimizer continuation or finished mod
 The earlier A43 probe was post-weight-selection, a different stage. Its direct
 control and unqualified changed adaptive-weight refinement remain historical limits.
 
-**Active follow-up — C398 same-state direct-factor comparison (Rowan).**
-One fresh replay reproduces the same FFT state, then changes only the diffraction
-calculation algorithm. Keep the actual likelihood core, observations/Free-R/HL,
-scattering, scale/mask, absolute weights, fixed denominator and geometry/cache.
-Use the same 13 FFT-derived directions; their names do not imply direct steepest
-descent. One FFT repeat plus 106 direct evaluations, 300-second probe bound and
-1,200-second owned-process bound. No optimizer resumes. Linden independently
-reviews; Hazel's sealed source cohort remains unchanged. Ordinary corrected-chemistry
-checkpoint publication and longer matched controls remain separate boundaries.
+**C398 complete — direct calculation agrees at the same state.**
+After exact FFT-state reproduction, changing only the diffraction algorithm to
+`direct` gives 13/13 agreeing directions for data, raw geometry and combined score.
+One FFT repeat plus 106 direct calls retain the same likelihood core, scattering,
+observations/Free-R/HL, scales/mask, absolute weights, denominator and geometry/cache.
+First/restored full vectors are independently readable and exact. Complete dedicated
+replay 333.43 s; all owned processes stopped. The first accuracy-snapshot refusal
+(omitted Phenix `taam_verbose=0`) stopped before any switch/probe and remains preserved.
+Direct and FFT scores are distinct objectives; this is not a repaired structure.
+
+**Active follow-up — C399 matched fresh-history restarts (Rowan).**
+Two separate serial replays reach the same FFT-derived state. Restart native L-BFGS
+with identical fresh history, fixed absolute weights/core/scales/mask/nonXYZ and
+11170 denominator; only FFT versus direct differs. Configured 100-iteration/native
+300-call limits retain native stopping, with separate hard 300-evaluation/180-second
+limits preserving partial failures. Score the actual returned parameters in a
+separately labelled post-stop call; native error recovery may return its own best-seen
+vector. No external best-model selection or original-optimizer continuation.
+Each owned process is bounded to 900 seconds. Linden separately owns the reviewed
+longer canonical-control candidate on a detached checkout; no shared Cedar code edit
+or integration is implied. Corrected PDU publication needs genuine fresh preparation
+lineage: C327 diagnostics cannot silently inherit C303 checkpoint authority.
 
 **C396 complete — changing the geometry screen does not yet repair PDU.**
 A private five-cycle control excludes only source-matched declared pairing from

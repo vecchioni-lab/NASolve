@@ -189,7 +189,10 @@ reuses the earlier fixed-evaluator checks at exact actual return 2779/instance 7
 full prefix/state reproduced, 13/13 geometry directions agree, 0/13 FFT data/combined.
 One inventory and the observed cache remain unchanged across 106 probes. Negative
 gradient steps still lower the score, so stopping causality remains unproven.
-C398's separately bound direct-factor comparison is next; no optimizer resumes.
+C398's separately bound direct-factor comparison now agrees in all 13 directions
+for all three components; the original optimizer never resumes. C399 tests one
+matched FFT/direct fresh-history restart with fixed actual state and weights,
+recording each own score, stopping reason and physical geometry separately.
 Do not repeat this baseline or confuse A43's post-weight-selection direct evidence
 with this actual state. No normalization fix or general convergence is qualified.
 Longer counted scope needs a new explicit version, matched starts and source-bound
