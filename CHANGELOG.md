@@ -17,6 +17,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W131 — Read pair geometry independently of force-provider placement
+
+- Add optional `topostitch_pair_geometry.review_pair_geometry`: join the existing
+  complete recipe attribution, compiled declarations, exact native force-state
+  observation and frozen provider coverage without launching Phenix.
+- Report unweighted pair-distance/angle deviations and separate plane metrics,
+  retain energy separately, and leave unmatched native terms explicitly unclassified.
+- Keep frozen runtime helpers, ordinary defaults, selectors and CLI unchanged.
+  This is a new descriptive report, not an operational schema migration or repair.
+- Validation: 203 focused and relocated installed tests; 2,050 full tests +229
+  subtests after preserving five sandbox process-inspection failures and repeating
+  with appropriate permission. One 15.13s passive Phenix 2.2.1-6174 comparison and
+  cold report/physical-arithmetic audit pass; no optimization or scientific approval.
+
 ### W130 — Audit chemistry and counted-pair coexistence
 
 - Record C388 projection inheritance, older-reader refusal and matched native

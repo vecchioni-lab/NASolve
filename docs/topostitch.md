@@ -1,6 +1,6 @@
 # TopoStitch: periodic DNA connections, recutting and repair
 
-Current scope, **2026-11-17**: explicit placement proposals and source-bound
+Current scope, **2026-11-18**: explicit placement proposals and source-bound
 ASU-cut inspection are implemented on `willow`. Automatic sticky-end repair,
 new-ASU materialization and campaign integration remain future work. The
 [audited roadmap](topostitch-roadmap.md) owns milestones and evidence; the full
@@ -143,7 +143,8 @@ application; it closes no repair, inference, stacking or covalent-closure gate.
 under the explicit Python-only `counted-xyz-fixed-unit-v1` protocol. It preserves
 original intent, optional declared recipe frame, existing input/process owners
 and final-writer proof before publishing an unselected REVIEW. Ordinary settings
-remain unchanged; unsupported chemistry, new terminal sources and phases refuse.
+remain unchanged. C388 subsequently qualifies passive site-scoped chemistry
+observation; broader terminal and phase protocols remain separate gates.
 See the [audited result](topostitch-periodic.md#w128--carry-explicit-pair-restraints-through-ordinary-autorefine).
 The original contract below remains the boundary for broader qualification;
 it is not a claim that the user-facing W122 option or Doctor integration is ready.
@@ -157,6 +158,41 @@ without an actual weight decision. Use semantic coverage to separate geometry;
 origin 4 edits can also contain legitimate covalent/terminal protections. Coordinate
 selector policy with Cedar/Hazel; do not repeat the passive comparison or add a
 new optimizer.
+
+
+W131 adds the optional **cold pair-geometry report** outside the frozen refinement
+helper closure. The caller first obtains existing `NativePairRecipe.describe_terms`
+at exact force coordinates, `describe_compiled_pair_terms`, a v2
+`observe_native_pair_terms` record, and the already frozen provider selection:
+
+```python
+from nasolve.topostitch_pair_geometry import review_pair_geometry
+from nasolve.topostitch_recipe import recipe_digest
+
+records = [attribution, compiled_declarations, native_observation, provider_selection]
+frozen_digest = recipe_digest(records)  # freeze at the trusted observation boundary
+report = review_pair_geometry(*records, expected_inputs_sha256=frozen_digest)
+```
+
+The caller authenticates the original observations. Recomputing a checksum after
+changing evidence does not authenticate it. The reader checks source/recipe/atom
+identity, compiled binding, exact force-site digest, complete coverage and measured
+targets. It imports no native engine and writes no files. Complete pair measurements
+are independent of which provider supplies each term. Output kind
+`topostitch-covered-pair-geometry`, schema 1, is descriptive only:
+
+- `pair_geometry` and per-pair `pairs` keep unweighted distance/angle deviations
+  separate from `pair_energy` and its existing normalization.
+- Plane RMS is RMS of per-plane RMS distances, **not** pooled per-atom RMS;
+  parallelity uses the native delta in degrees. No acceptance cutoffs are supplied.
+- `coverage` retains exact requested/provider/observed IDs. The
+  `unclassified_native_terms` preserve native IDs/families/origins;
+  `covalent_geometry` remains `UNASSESSED`. Origins 0/4 do not classify chemistry.
+
+This report does not change ordinary refinement, automatic weights, existing
+saved records or frozen v5/v6 helper bytes. It is not part of the native worker
+closure. Independent covalent/terminal ownership and density evidence remain
+future integration work with Cedar; no CLI/Doctor activation follows.
 
 C381–C385 now qualify explicit saved admission, registered same-intent
 continuation, existing C278 PHIL namespace copies and v6 native-written-model
