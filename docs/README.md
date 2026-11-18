@@ -21,11 +21,13 @@ current instructions; other branches retain their own status and validation pins
   W131 adds a cold descriptive pair-geometry reader with unchanged frozen numerical
   helpers: complete pair metrics are provider independent, native remainder stays
   unclassified, and no weight policy changes. Complete Willow tests pass; broader
-  C386 testing remains separate.
+  C386 testing remains separate. W132 resolves all original C386 failures through
+  exact-source environment/prerequisite reruns; the failed full attempt is retained,
+  and the next uninterrupted integration full run is still pending.
   Earlier arithmetic, lifecycle and continuation evidence lives in the ledgers;
   do not repeat it merely because this current guide is shorter.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Next human update is W132;
+  [machine-readable source](topostitch-roadmap.json). Next human update is W133;
   do not restart completed probes merely because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

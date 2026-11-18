@@ -6988,3 +6988,56 @@ Next: Cedar integration of this pure reporting seam, explicit ownership of
 covalent/terminal/metal terms and full C386 failure diagnosis. W129's native summary
 comparison need not be repeated. Automatic weighting, density, matched efficacy
 and W122 user-facing activation remain separate gates; S06 remains partial.
+
+
+### W132 — Resolve full-suite environment and source prerequisites
+
+The complete unfiltered Cedar C386 snapshot
+`d5c2fb7be944aae5e048903e1de495c67baa4b05` finished in **3,266.71s** with
+**11,873 passed /46 failed /2 skipped /281 subtests passed**. All **1,405** tracked
+files remained unchanged; no generated files appeared in the source snapshot,
+and the owned test process stopped. This is a failed full attempt, preserved intact.
+It includes the integrated W118 library, not a whole Willow/Pine/Cedar branch merge.
+
+A real detached local clone of the same commit, with process-inspection/cleanup
+permission, reran exactly the 46 failed node IDs: **45 passed /1 failed, 84.71s**.
+The remaining source-bundle test invokes Git for NARestraints provenance; an
+installed `site-packages` directory has no Git metadata. A separate detached
+NARestraints checkout at the installed distribution's exact VCS revision
+`a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691` supplies that prerequisite. All **14**
+installed library/resource files are byte-identical to this source checkout.
+The one residual test then **passes in 0.96s**. Source manifests are exact across
+all three attempts; both real checkouts remain clean and test owners stopped.
+
+Thus **all 46 original failures are resolved without a production fix or added
+skip**, across diagnostic reruns. This is **not an uninterrupted full-suite pass**,
+and it does not extend C386's result to later Cedar code. The two original skipped
+modules require explicit native qualification: counted-owner control and pinned
+live-nonbonded API. Existing native experiments remain separate evidence.
+
+Original command: with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<snapshot>/src`, the
+existing controller Python runs `scripts/run_tests.py full --junitxml results.xml`.
+The targeted reruns use `python -B -m pytest -q -p no:cacheprovider -o addopts=
+--junitxml results.xml` followed by the exact saved failed-node list. For the
+source-bundle test, `PYTHONPATH` explicitly orders the NASolve `src` directory
+before the exact NARestraints source checkout. The developer profile runner
+currently resets that variable, so the equivalent unfiltered direct pytest command
+must preserve the declared dependency-source path when needed. Do not silently
+substitute a different NARestraints revision or weaken source provenance.
+
+Plan, complete logs/XML, exact node lists, manifests and process results are in
+`/private/tmp/willow-w132-full-regression/` and the retained original
+`/private/tmp/willow-w128-autorefine-review/full-suite/`. These absolute locations
+are local evidence, not portable execution references. Verified repository-anchored
+archive: `NASolve/branch-artifacts/willow/w132-full-suite-diagnosis-2026-11-18.tar.gz`,
+SHA `af9b70d88ae9853fb9a4bad3e1b7998003fb0dfbe08433c638ef7ef8752e8293`,
+**476,111 bytes /26 indexed files**. The shared local software clones depend on
+read-only Git objects in the original repositories; no portability claim is made.
+
+Cedar C390 separately integrates W131's exact reporter and tests, with peer-reported
+**283 source /283 installed** checks and exact cold replay. Linden verified the two
+committed files match W131 byte-for-byte; this is not a new native refinement.
+The next full run is deferred to the final validated integration pin, avoiding a
+second hour-long gate on an intermediate revision. Final-state capture remains a
+separate qualification; old preflight/metal-only records cannot be relabeled to
+satisfy W131's complete canonical-pair/v2 force-state contract.

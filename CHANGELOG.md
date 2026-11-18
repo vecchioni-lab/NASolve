@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W132 — Record complete regression and resolve test prerequisites
+
+- Preserve the failed C386 full run and exact same-source diagnostic reruns:
+  all 46 failures resolve with process permissions and actual Git source metadata,
+  including the exact installed NARestraints revision; no product fix or added skip.
+- Keep failed full versus successful rerun scopes explicit. A final unfiltered
+  integration run remains separate; this documentation does not claim a current
+  uninterrupted full-suite pass or scientific acceptance.
+
 ### W131 — Read pair geometry independently of force-provider placement
 
 - Add optional `topostitch_pair_geometry.review_pair_geometry`: join the existing

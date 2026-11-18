@@ -444,7 +444,8 @@
         "W128 audits C386 explicit counted-pair execution through the existing ordinary AutoRefine owner, preserving original intent, declared frame and actual writer identity before publication. Installed/default/native/relocation controls pass; result remains unselected REVIEW and exactly reproduces C385, with no new efficacy claim.",
         "W129 measures provider-dependent actual native geometry summaries at identical coordinates and complete intended forces: moving one angle/plane/parallelity changes pooled angle RMS by0.000616deg; standard-origin statistics remain exact. No selector decision or scientific benefit claimed.",
         "W130 independently audits C388 chemistry observer coexistence with counted pair forces, original projection inheritance and old-reader refusal; both native0-additive and1-additive matched controls retain exact within-pair output and owner state, without scientific acceptance.",
-        "W131 optional cold pair-geometry reader joins existing full recipe attribution and v2 force-state/coverage records; complete physical pair metrics are provider independent and native remainder stays unclassified. Full/installed/native reporting qualification passes with frozen runtime helpers unchanged."
+        "W131 optional cold pair-geometry reader joins existing full recipe attribution and v2 force-state/coverage records; complete physical pair metrics are provider independent and native remainder stays unclassified. Full/installed/native reporting qualification passes with frozen runtime helpers unchanged.",
+        "W132 completes unfiltered C386 regression and exact-source failure triage: all46 failures resolve with process permissions/Git source prerequisites, no product fix or new skip; failed full and diagnostic reruns remain distinct. W131 reporter is separately integrated as exact files in Cedar C390."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -453,7 +454,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Finish and diagnose frozen C386 full suite. Integrate W131 optional cold pair-geometry report through Cedar existing records, with explicit covalent/terminal ownership and unknown native terms retained. Do not repeat W129 passive statistics comparison or change weight policy from diagnostic results. Broader phases/terminal/chemistry protocols require separate qualification. Matched efficacy, density/B09 and W122 activation remain open.",
+      "next_action": "Coordinate one final unfiltered suite on the final validated Cedar integration pin with explicit exact NAR source prerequisites; C386 failure triage is complete and must not be repeated. Qualify actual final-state pair attribution through the existing writer/closed counted-owner seam, retaining old runtime bytes and unclassified remainder. No phase/terminal/weight/inference activation from reporting. Matched efficacy, density/B09 and W122 activation remain open.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -493,14 +494,15 @@
         "E_ORDINARY_COUNTED_OWNER",
         "E_PROVIDER_GEOMETRY_SUMMARIES",
         "E_COUNTED_CHEMISTRY_COEXISTENCE",
-        "E_SEMANTIC_PAIR_GEOMETRY"
+        "E_SEMANTIC_PAIR_GEOMETRY",
+        "E_FULL_SUITE_PREREQUISITES"
       ],
       "last_audit": {
         "date": "2026-11-18",
-        "code_commit": "ead86be9f70280cb7c76e2df9416aadbea301463",
-        "human_update": 131,
+        "code_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05",
+        "human_update": 132,
         "reviewer": "Linden",
-        "scope": "New optional descriptive adapter with source/installed/full tests, actual native observation comparison and independent cold audit; no native runtime or physical repair claim."
+        "scope": "Completed full regression and same-source environment/prerequisite reproduction; no production change, latest full-pass or science acceptance claim."
       }
     },
     {
@@ -2536,6 +2538,23 @@
           "indexed_files": 28
         }
       ]
+    },
+    "E_FULL_SUITE_PREREQUISITES": {
+      "kind": "full_regression_and_exact_source_failure_diagnosis",
+      "code_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05",
+      "human_update": 132,
+      "reference": "docs/topostitch-periodic.md#w132--resolve-full-suite-environment-and-source-prerequisites",
+      "result": "Complete unfiltered C386 run11873pass/46fail/2skip/281subtests,3266.71s; owned process stopped,1405tracked files unchanged. Exact failed-node rerun with host process permission45pass/1fail; remaining ATL source-bundle test passes with Git source metadata at exact installed NAR a9264f9e revision.14 dependency library/resource files exact. All46 original failures resolve without production fix/test skip.",
+      "limitation": "Original failed full attempt retained; this is not an uninterrupted full pass or qualification of later Cedar revisions. Existing2 pinned-native opt-in skips remain. Full source-bundle gate requires real Git metadata and explicit dependency source path; installed-wheel checks are separate. Next full run waits for final validated integration pin.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w132-full-suite-diagnosis-2026-11-18.tar.gz",
+          "sha256": "af9b70d88ae9853fb9a4bad3e1b7998003fb0dfbe08433c638ef7ef8752e8293",
+          "size": 476111,
+          "indexed_files": 26
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -2697,8 +2716,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 131,
-    "next": 132,
+    "current": 132,
+    "next": 133,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -3294,6 +3313,12 @@
         "title": "Report complete pair geometry across force providers",
         "state": "RECORDED",
         "code_commit": "ead86be9f70280cb7c76e2df9416aadbea301463"
+      },
+      {
+        "number": 132,
+        "title": "Resolve full-suite environment and source prerequisites",
+        "state": "RECORDED",
+        "code_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05"
       }
     ]
   },

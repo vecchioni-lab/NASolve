@@ -2,8 +2,9 @@
 
 Updated **2026-11-18**. **W131 adds provider-independent descriptive pair
 geometry; W130 audits chemistry observation beside counted pair forces.**
-The complete Willow suite passes; the much broader frozen Cedar C386 suite is
-still running with failures to diagnose. This is Willow's handoff, not project-wide
+The complete Willow suite passes. W132 resolves all 46 failures from the broader
+frozen C386 run through exact-source environment/prerequisite reruns; the original
+failed full attempt remains retained, and a final integration full run is pending. This is Willow's handoff, not project-wide
 status. W131 is an optional reporting adapter; numerical/runtime helpers remain
 W118. Shared controller changes belong to Cedar. These are not a whole-branch
 merge or supported repair release.
@@ -37,12 +38,13 @@ not another work queue; do not repeat them because this handoff is shorter.
 
 ## Next bounded work
 
-1. Finish and diagnose the unfiltered full Cedar suite (failure markers already
-   observed) on frozen C386
-   `d5c2fb7be944aae5e048903e1de495c67baa4b05`; record scope, result and any
-   subsequent focused changes separately. This is not a whole-branch merge.
-2. W131's optional cold reader is implemented and installed/native-qualified.
-   Integrate the existing attribution/observation records with Cedar; leave native
+1. C386 full-run triage is complete (W132): process permissions and Git source
+   prerequisites resolve all 46 failures without code changes. Retain the failed
+   full attempt and distinguish the focused reruns from a clean full pass. Coordinate
+   one next unfiltered run on the final validated Cedar integration pin, with the
+   exact NARestraints source dependency declared; do not repeat obsolete gates.
+2. W131's optional cold reader is integrated in Cedar C390 with focused/installed
+   checks. Final-state capture still needs qualified actual-writer evidence; leave native
    remainder unclassified until chemical ownership is explicit. Do not classify
    covalent/terminal edits solely by origin IDs. W129's summary-dependence probe is
    complete; Hazel separately owns actual selector tradeoffs. No new weight policy.
@@ -64,6 +66,11 @@ large-bend repair follow later. No CLI/default activation follows from these doc
 
 ## Validation and scientific interpretation
 
+- **W132 / C386:** failed full 11,873 pass /46 fail /2 skip /281 subtests;
+  exact same-source reruns 45 pass /1 fail, then 1 pass after supplying the exact
+  NARestraints Git source. No product/test-skip change; 1,405 source and 14 dependency
+  resource hashes match. This is not an uninterrupted current full-suite pass.
+  [Exact W132 evidence](topostitch-periodic.md#w132--resolve-full-suite-environment-and-source-prerequisites).
 - **W131 / `ead86be9`:** 203 focused/installed; complete Willow 2,050 tests +229
   subtests after five sandbox process-inspection failures were preserved and the
   full suite repeated with permission. Six installed command helps, dependency
