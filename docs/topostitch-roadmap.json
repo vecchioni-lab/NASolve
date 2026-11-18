@@ -2604,8 +2604,8 @@
       "code_commit": "8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6",
       "human_update": 135,
       "reference": "docs/topostitch-periodic.md#w135--close-the-full-integration-regression-and-observer-coexistence",
-      "result": "One complete unfiltered C391 suite11983pass/292subtests/2existingnativeoptinskips,3196.08s;1413tracked files unchanged,14exact NAR source resources,cleanGit,process stopped. C393 actual Phenix2.2.1-6174 preflight12.61s/refine42.78s,independent cold equality of old PDB/native state/common owner/chemistry/MTZ arrays;75current/126baseline files unchanged,303installed sources exact.",
-      "limitation": "Frozen C391 only, not later source or whole-branch merge. C393 low-level coexistence is not ordinary chemistry continuation; poor RW/RF .423/.836 and pair geometry remain. Native opt-in skips retained; separate installed/native evidence keeps its scope. Longer100-iteration control and normalization observation are planning only; no count/weight/force policy or scientific approval.",
+      "result": "One complete unfiltered C391 suite11983pass/292subtests/2existingnativeoptinskips,3196.08s;1413tracked files unchanged,14exact NAR source resources,cleanGit,process stopped. C393 actual Phenix2.2.1-6174 preflight12.61s/refine42.78s,independent cold equality of old PDB/native state/common owner/chemistry/MTZ arrays;75current/126baseline files unchanged,303installed sources exact. C395 follow-up independently verifies48 actual reporting trials,141unique source matches,exact prior model/weight receipt/native calls/maps; unknown terms remain unclassified.",
+      "limitation": "Frozen C391 only, not later source or whole-branch merge. C393 low-level coexistence is not ordinary chemistry continuation; poor RW/RF .423/.836 and pair geometry remain. Native opt-in skips retained; separate installed/native evidence keeps its scope. Canonical longer100-iteration control and normalization-history observation are planning only; no count/weight/force policy or scientific approval.",
       "local_receipts": [
         {
           "anchor": "NASolve",
@@ -2613,6 +2613,12 @@
           "sha256": "e23a140a794267be35d657387db1752e3a61b9ad2192dd9bc075cfda8176f357",
           "size": 269662,
           "indexed_files": 24
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/c395-trial-membership-review-2026-11-18.json",
+          "sha256": "004accc05f46d6d3dfac408178f42b6f4995137c8cb82b9f8291dcaad025c0e1",
+          "size": 3234
         }
       ]
     }

@@ -180,6 +180,15 @@ control; full versus core is a different physical objective. Retain exact endpoi
 coordinates once through the existing observation seam so W123's complete-recipe
 readback can compare the same measurements; a digest cannot reconstruct them.
 
+The current counted owner adds the fixed supported contribution to each actual
+native restraint count; it does not freeze that native count. The observed
+11,382 +17 endpoint is not a general invariant. Its current statistics retain the
+last successful call, so longer controls need passive history from actual returned
+evaluations, without extra energy or neighbor-cache queries. Standalone masked
+bending already uses `UNNORMALIZED_SUM` with native normalization disabled; the
+ordinary-refinement denominator question does not retroactively diagnose those
+older bending trajectories.
+
 Record actual iterations/evaluations and termination, not only completed cycles.
 Reuse qualified passive observations of raw geometry, term counts/normalization,
 data terms and gradients where compatible. Hazel's A79/A84 metal replay exposes

@@ -7290,3 +7290,44 @@ were retained; C391 and the reusable exact NARestraints source clone remain.
 The separate retirement receipt is
 `NASolve/branch-artifacts/willow/w132-c386-clone-retirement-2026-11-18.json`, SHA
 `29c9e9e0e152d04985419e6b54fea04dad68e5ea501ce1d0a63104e0eb38d045`.
+
+
+Cedar C395 extends the passive observation to each actual XYZ weight-trial
+reporting object. One fresh Phenix **2.2.1-6174** execution (5.94 s preflight,
+276.54 s refinement) retains the exact C392 model, full native chemistry state,
+1,962 correction calls, all 3,239 MTZ rows and the complete public weight receipt.
+Independent cold replay resolves the frozen simple PHIL selections through literal
+PDB columns, matches **141 unique source requests** with no missing/ambiguous
+assignments, and reconstructs all **48 trials** on **855 heavy atoms**. The single
+stable inventory contains 51 declared pair distances, 84 pair angles and six
+protected terminal-phosphate angles; 956 bond and 1,462 angle terms remain
+**unclassified**. This is actual reporting-model evidence, not W131 complete
+force-site correspondence or a general chemical classifier.
+
+The 51 pair distances contribute **97.80–99.79%** of the unweighted squared
+bond deviations in the five selected trials. This is a property of the pooled
+RMS screening statistic, **not** the fraction of energy or force. It motivates a
+separate, predeclared private eligibility experiment that omits only source-matched
+pair terms from the screening means while retaining terminal protection, unknown
+terms and all optimizer forces. No such selector is activated by this review.
+The independent physical-delta replay agrees within **2.28e-13**; 48 current,
+65 baseline, 40 failed-setup and 308 installed-package files/mtimes stay unchanged.
+The first observer attempt, which assumed a non-None reporting-energy cell,
+remains preserved. No native execution occurred during Linden's review.
+
+Exact cold command (the retained runner is an identical copy of the scratch
+runner used):
+
+```text
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B /private/tmp/willow-c395-review.py
+```
+
+Local NASolve-anchor receipt
+`branch-artifacts/willow/c395-trial-membership-review-2026-11-18.json`, SHA
+`004accc05f46d6d3dfac408178f42b6f4995137c8cb82b9f8291dcaad025c0e1`;
+retained runner `branch-artifacts/willow/runners/c395-trial-membership-review-2026-11-18.py`,
+SHA `97c9b853feb867d33928a5b9d316640206af355d005e206137d1dfee02d58133`.
+These references complement the sealed W135 archive; they do not rewrite it or
+claim a portable campaign. Documentation/evidence only: no API, schema, default,
+migration or scientific-acceptance change, and raw crystallographic files stay
+local and excluded from Git.

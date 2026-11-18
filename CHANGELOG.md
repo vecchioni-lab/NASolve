@@ -25,6 +25,8 @@ entries are reconstructed from repository history.
   queue the bounded longer-control and normalization-observation requirements.
 - Record actual W-catalogue sequence/terminal inventory for B10 preparation;
   retain intentional-variant uncertainty and require explicit contact review.
+- Retain C395 actual-trial source-membership audit and distinguish pooled RMS
+  screening from energy, plus raw bending versus normalized refinement objectives.
 - Condense the handoff while preserving detailed ledger evidence. Documentation
   only; no new runtime scope, default, schema or scientific acceptance.
 

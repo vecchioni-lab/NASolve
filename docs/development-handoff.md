@@ -116,6 +116,10 @@ pass; worker payloads remain exact. This reporting-only follow-up does not chang
 the C391 full-suite pin. [Closeout notes](topostitch-periodic.md#w135-closeout-follow-ups)
 also retain the nonbonded candidate-count source distinction and verified retirement
 of the obsolete C386 software clone; no scientific runs were deleted.
+C395 subsequently qualifies source membership in all 48 actual weight-trial
+reporting objects: 51 pair distances, 84 pair angles and six protected terminal
+angles, with exact prior native outcomes. Unknown terms stay unclassified; this
+is a private diagnostic, not a new selector or complete force-site report.
 
 The matched W116/W123 control shows maximum extra motion about **0.034 Å** and
 modest selected-pair improvement, with no Rfree benefit. Subsequent C382 descendants
