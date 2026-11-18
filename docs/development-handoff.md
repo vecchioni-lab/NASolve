@@ -1,184 +1,100 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-18, C391 actual final pair measurements — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. Current development window ends
-**14:55 UK / UTC**; shared laboratory report **17:00 UK**.
-Rowan uses focused tests. Linden completed C386 full validation and exact-source
-failure triage (W132); a new full run waits for the final validated source pin.
-He also reviews final pair-state capture; Hazel owns the separate Alder
-weight-selection diagnostic.
+Updated **2026-11-18, C392 passive PDU weight-choice evidence — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. Runtime/tests are frozen at
+**C391 `8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6`** while Linden runs the
+unfiltered suite with exact NARestraints source `a9264f9e`. Development window ends
+14:55 UK; shared lab report 17:00 UK. Hazel owns the separate Alder selected-call
+replay. Do not duplicate either owner's active work or change this tested source.
 
 ## Current checkpoint and next bounded work
 
-**C391 complete — measure the pairs Phenix actually finished refining.** Explicit
-Python `counted_pair_geometry=True` uses new v7; older worker bytes/defaults stay
-exact. One native control from the relocated install finishes in 52.84 s with the
-same C386/C389 PDB, full atom state and 15 counted evaluations. One additional
-energy-only call measures final pair geometry; it is not an optimizer evaluation.
-The report covers 14 pairs /107 native +17 added requested terms. The extra compact
-archive is 15,492 bytes; covalent geometry remains unassessed. No new chemical
-acceptance, weight choice or automatic selection. Source checks give 251 passes,
-then one corrected test-fixture invocation passes; installed305 +24 subtests pass.
-Nine new regressions fail against C390; the historical-byte regression already passes.
-Moved/cold report is exact, wrong PDB refuses, v7→v6 loss refuses before a new round,
-and C386/C388/C389 historical files remain unchanged. Original failed outputs would
-remain immutable. Linden reviewed the proposal and exact historical payload bytes;
-his actual-run independent review and final-source full suite are next.
+**C392 complete — observe what Phenix actually chooses for PDU.** This is private
+diagnostic evidence and a documentation update; no runtime/default/selector change.
+Two complete five-cycle Phenix 2.2.1-6174 runs preserve C338's original model,
+dictionaries, restraints, terminal protection, observations and Free-R flags. The
+only difference is Hazel's passive weight observer at Alder `b992e44f`. Exact PDB,
+full native atom state, all 1,962 correction calls, statistics and every reflection
+array match. The native endpoint also reproduces C338. All four owned native phases
+stopped; total control 587.15 s. Historical 57 files and timestamps remain unchanged.
 
-Next: preserve exact covalent/terminal ownership alongside intended pair metrics
-and Hazel's passive actual weight-choice evidence. Do not adopt a selector or claim
-Q06 PDU/DF survival from this diagnostic. The 17:00 report must distinguish this
-validated observation from chemistry improvement and from the older full-suite pin.
+The receipt records 48 trials: cycle 1 is a singleton; cycles 2–5 all use native
+R-free fallback because no trial passes the combined criteria. All 47 searched
+trials fail the pooled bond criterion. All fail the angle criterion in cycles 2–4;
+seven of fourteen pass it in cycle 5. All satisfy the R-gap and R-free-window tests.
+Final Rwork/Rfree are 0.2125/0.2265, but PDU still requires review: triple length
+1.213226 Å, angles 175.4494°/174.4251°. This is actual selection evidence, not proof
+of the cause of bending or permission to change weights.
 
-**C390 complete — measure intended pair geometry independently of its provider.**
-Linden W131's exact optional pure adapter is integrated from `ead86be9`. It joins
-existing authenticated native measurements/declarations/coverage; no force or
-selector change. Source and installed/relocated panels pass 283 tests (24.10 /
-24.48 s). Cold replay reproduces both actual W131 reports exactly without launches
-or evidence writes. All 299 older C389 package files and all frozen runtime policies
-remain unchanged. Pair distance/angle deviations and plane metrics stay separate
-from energy; 2465 unmatched native terms remain unclassified, never assumed covalent.
+Saved final GEO text independently matches 51 supplied inter-residue N/O distances,
+84 supplied pair angles and six separate terminal-protection angles to frozen input
+selections. Those 51 distances account for 98.22% of the final pooled bond delta²
+at printed precision. Unmatched native rows remain unattributed. Do not blanket-
+exclude edit origins, call the complement covalent, or backfill final membership
+into earlier trial states. Existing parsers were reused; no native geometry call.
+Observer entry-callable authentication and selected-trial endpoint attribution
+remain unassessed. Raw models/maps/logs stay local; no scientific adoption.
 
-Historical C389 preparation has no measured attribution and remains unassessed.
-C391 adds actual capture prospectively; it does not relabel earlier evidence.
-PDB rounding cannot recreate native precision. C390 did not duplicate W131 native
-experiments, and no chemical/weight acceptance follows.
+**Next bounded work, in order:**
 
+1. Finish Linden's current ordinary v7 descendant control and the exact C391 full
+   suite. Preserve independent results and source pins; no duplicate experiment.
+2. Close the observed log-reporting gap: C387 stops a completed table at native
+   stage `1_realsrl2`, so C392's final bond/angle values appear missing. A one-token
+   stage-label proposal reproduces 0.078 Å/2.744° from the actual saved table and
+   preserves six refusal cases. It is not applied to the frozen source. Add the
+   maintained regression, run focused reporting callers, and record its own pin.
+3. Before changing semantic weight selection, bind covalent/terminal intent and
+   declared pair/other edits to the exact measured trial state. Reuse existing
+   source/topology owners, W131/C391 geometry and Hazel's passive receipt. Unknown
+   terms remain unclassified. Do not introduce another force evaluator or infer
+   chemistry from an origin ID. C392 completes observation, not this classification.
+4. Broaden actual counted refinement only through a predeclared matched control.
+   A longer fixed-weight XYZ control can be qualified separately; a universal
+   classifier is not a prerequisite for every scientific experiment. Automatic
+   weights, changed targets, CLI/campaign activation and scientific selection remain
+   distinct gates. Q06 still requires useful PDU/DF geometry after refinement.
 
-**C389 complete — keep newly supplied restraints through ordinary refinement.**
-Explicit counted controls now accept declared portable extra sources through the
-existing input owner. Their bytes are bound before allocation; changes during
-parameter writing fail before refinement, with the partial round preserved.
-Original source order, namespace copies and checkpoint inheritance remain intact.
-Source and installed/relocated panels each pass 143 tests + 24 subtests (55.06 /
-61.05 s). One actual Phenix 2.2.1-6174 ordinary control finishes in 58.05 s with
-exact C386 PDB/native state/lifetime and all processes stopped. The same restraint
-file is new input here, inherited input in C386. The resulting REVIEW checkpoint
-keeps it without changing selection. C386 and C388 readers reopen the relocated
-result without launches/writes. Verified archive 1,637,436 bytes; original retained.
-New terminal-protection records/automatic seeds and consumed phases remain refused.
-No helper/schema/default/weight change, no new chemical efficacy claim.
-Source `36b54a4c77d92c600ed2ae2a12821a092892eb17`; Linden reviewed the
-production diff without a blocker (source review only, not another native audit).
+## Completed foundations to reuse
 
+| Work | Result and boundary |
+| --- | --- |
+| C381–C385 | Sealed preflight, original-intent continuation, checked input copies, refusal of missing ancestry and exact written-model proof. Reuse existing attempt/process/archive owners. |
+| C386/C389 | Explicit bounded counted control through ordinary AutoRefine, including newly supplied portable restraint files and checkpoint inheritance. Native results agree; no CLI/default activation. |
+| C387 | Final native step-table reporting; the newly observed digit-suffix gap is queued above. Pooled geometry is not covalent-only. |
+| C388 | Existing source-selected PDU triple observation coexists with counted forces. On/off controls agree within each provider arrangement; cross-arrangement native states differ despite identical rounded PDBs. Short-control Rwork/Rfree 0.4230/0.8360 is poor. |
+| C390/C391 | Pure W131 pair report plus explicit v7 actual-final-state capture. Same canonical control PDB/full atom state/15 counted evaluations as C386/C389; one separate descriptive energy call. Fourteen pairs, 107 native +17 added requested terms; covalent chemistry unassessed. |
 
-**C388 complete; independent audit passed.** Existing actual
-PDU triple-bond observation now works alongside explicit v6 counted forces.
-Four native phases per matched pair (two preflights/two real cycles) finish and stop;
-observer on/off gives exact written PDB, full native output state and owner lifetime
-for both all-native and one-additive-term arrangements. The partial control removes
-only the declared A:11/B:5 parallelity block from a diagnostic PHIL copy; unchanged
-pair intent supplies it. Native+added counts 10,998+0 / 10,997+1 retain the same
-complete normalization. All four PDBs match; cross-provider native state hashes
-are not identical. PDU triple screen PASS is narrow: Rwork/Rfree 0.4230/0.8360 is
-poor. No structure adoption, target tuning or ordinary-weight recommendation.
+C391 installed/relocated panel passes **305 tests +24 subtests**. Nine new integration
+regressions fail against C390; the historical-byte regression already passes. Moved
+cold reports agree; wrong PDB and v7→v6 loss refuse before allocation. All v3–v6
+worker bytes remain exact. Linden W133 independently verifies 303 Git/wheel/installed
+files, actual native/writer/force joins and physical report arithmetic; 77 current
+and 72 baseline files/timestamps stay unchanged. W133 source `1a1db576`. No new
+native fit in that audit. Earlier exact commands/results are retained in the
+[evidence ledger](cif-linked-native-registration-evidence.json), including
+`final_refined_pair_geometry_2026_11_18`; no historical evidence is relabelled.
 
-Native workers/schemas are unchanged. The existing v6 optional projection field
-now has qualified coexistence; v5/default scope stays unchanged. Original
-site/component/source bytes survive continuation and cold reads. Old C386 readers
-explicitly reject new combined artifacts, so they require C388 or later. Installed
-377 tests + 24 subtests pass across the initial panel and 12 fixture-only retries;
-missing public PDU/ATL test files were restored to the isolated test closure, not
-product code. Source panel had 187 passes and one test-fixture overwrite error,
-then the corrected test and three continuation cases passed. Six scope/lineage
-checks pass separately. Native controls are matched low-level owner controls;
-ordinary combined forwarding has focused coverage, not a new checked-PostMR native
-campaign. One harness input-order mistake stopped before native launch and remains.
+**Storage and redundancy.** C391's added geometry archive is 15,492 bytes; complete
+matched run trees differ by 33,323 bytes, including other receipt/path differences.
+C392's weight receipt is 17,984 bytes; its verified archive is 2,468,484 bytes for
+14,586,919 raw bytes, retaining successful and early failed roots. This is an evidence
+archive, not a portable native-command claim or 100-dataset capacity measurement.
+An audit of 3,965 test definitions finds seven exact-body groups, mostly distinct
+owners/parameters; no accidental imported-test collection. No tests removed without
+demonstrated redundancy. Current build copies still serve historical-reader/native
+qualification and are retained. Unrelated local material and peer work are untouched.
 
-Linden W130 independently verifies all 299 Git/wheel/installed source files,
-125 + 126 relocated files and 57 historical input files unchanged, without native
-launches or writes. Source is `a67df6b7a70dad94d0f14e3cdabea5f8f5a9c21e`.
-The two verified expanded archives total 5,160,655 bytes; originals remain local.
+The five-file local science checkout is
+`ScienceCheckouts/Rowan/2026-11-18/review.html` under the sibling GitHub root. It shows
+PDU geometry, actual pair measurements and weight choices, with links to retained
+evidence rather than duplicated raw datasets. Full-suite and peer outcomes will be
+added at checkout. Signed local continuity notes remain outside the product repo.
 
-Next: exact covalent/terminal classification and actual weight-choice evidence,
-before expanding ordinary protocols.
-C386 full-suite triage is resolved as documented below; do not repeat its diagnosis. Linden W129 is passive provider comparison; Hazel A63 is a
-separate actual weight-selection experiment with better local geometry but worse
-R factors. Preserve covalent/terminal edits when distinguishing pair restraints;
-origin IDs alone are insufficient. Do not adopt a new scorer from these controls.
-
-**C387 complete — show the final geometry Phenix reports.** The ordinary reader
-now recognizes its final step-table row, retaining the old format and log order.
-Actual C386 log replay changes missing values to bond RMS 0.025 Å / angle RMS
-1.772°; Rwork/Rfree stay 0.2251/0.2609. These are pooled native summaries, not
-covalent-only or complete added-pair measurements. No native rerun or force,
-weight, selection or historical-record change. Focused AutoRefine/counting/Doctor
-checks pass 73 tests + 24 subtests in 26.84 s. Linden's separate full suite is pinned
-to C386 `d5c2fb7b`; it does not cover this later reporting change.
-
-**C386 complete; independent review passed.** The Python-only named
-`counted-xyz-fixed-unit-v1` control now uses ordinary AutoRefine's input checks,
-parameter writer, subprocesses and checkpoint publication. Caller settings must
-explicitly match the qualified one-cycle/one-process/XYZ-only protocol. Original
-recipe/source are checked before allocation and after freezing; actual preflight
-is sealed and its prepared view retained around the ordinary native call. Exact
-written-model evidence is checked before saving, so a substituted output cannot
-poison the registry. Usable results remain unselected REVIEW. Default parameter/
-command bytes match C385 across 32 independently compared ordinary settings.
-
-Installed/relocated focused 345 + 13 subtests pass in 75.83 s; source 207 + 13 pass
-in 72.41 s and five further boundary tests pass in 4.27 s. One actual Phenix
-2.2.1-6174 ordinary control finishes in 45.41 s under one outer-owned controller
-(both native phases exit 0). It preserves 17 added terms and writes the exact C385 PDB; cold moved registry read
-passes with the old path absent and no launches/writes. All processes stopped.
-The source control's Fobs/SIGFobs columns were explicitly relabelled F/SIGF in a
-fresh diagnostic copy; all 3333 ordered arrays/missing masks and Free-R bits match.
-This is canonical-DNA mechanics, not PDU/DF or modified-data acceptance.
-
-Explicit `counted_frame="recipe"` records its validated crystal choice; absence
-retains native selection and the existing strict frame guard. Consumed phases and
-new terminal-protection records remain refused before allocation; C389 qualifies
-explicit extra-source delivery. C388 adds the
-existing source-selected chemistry observation without changing its native worker. Existing inherited protection stays checked. A command-context
-refusal preserves the attempt/launch evidence without inventing NOT_LAUNCHED.
-Standalone durable recovery, broader protocols/automatic weights and CLI/campaign
-activation remain separate. No native helper changed. Source started at `eeb4f3f9`;
-Linden independently verifies all 299 package files, unchanged default commands,
-72 current and 64 historical evidence files, exact array/model identity and cold
-readback. Published source is `d5c2fb7be944aae5e048903e1de495c67baa4b05`.
-
-Provider-independent geometry and automatic-weight boundaries remain next after
-the current coexistence checkpoint; their measured scope is recorded above.
-
-**Reuse completed foundations.** C381 seals actual preflight and preserves honest
-refusal; C382 carries original intent through registered descendants; C383 reuses
-checked namespace copies; C384 refuses missing refinement ancestry; C385 binds the
-physical written model. Their exact validation is in the existing ledger, under
-`maintained_counted_admission_2026_11_17`,
-`registered_counted_continuation_2026_11_17`,
-`counted_continuation_input_adaptation_2026_11_17`,
-`counted_missing_refinement_ancestry_2026_11_17` and
-`counted_native_written_model_2026_11_17`. C386 closes their bounded ordinary Python
-owner connection; do not repeat those controls as new integration work. Earlier
-full narrative remains in the handoff at source parent `eeb4f3f9`.
-
-**Keep evidence small.** C381/C382/C385 have verified local archives of
-1,112,954 / 2,152,311 / 1,152,662 bytes; original scientific roots and partial failures
-remain. C376's compact prepared-record owner is reused, not duplicated. Last
-checkout retired six exactly restorable obsolete software/test copies, saving
-33,846,187 bytes while retaining wheel/test closures and manifests. No scientific
-root, current package or peer work was retired. Capacity for 100 native datasets
-remains a separate qualification; archive size is not peak memory or resumability.
-
-**Working frame remains explicit.** W115 MTZ/PDB cell differs by 2.93e-6 Å from
-storage precision. Use the declared-frame contract; do not widen tolerances or
-silently prefer the model cell. Pair chemistry, images, ordered atom identities
-and occupancy must remain compatible through rebind. A launch marker prevents
-duplicate starts but does not prove death; existing process ownership does.
-
-**Alder evidence is separate.** A57/A58's same-site normalization discontinuity
-and zero-data fixed-denominator drift remain valid in their original scope.
-A61's real-data replay reproduces the original endpoint without that discontinuity.
-A62/A63 investigate pooled geometry criteria; no changed normalization, selector
-or target is adopted. DF phosphate protonation remains Q13, not a diagnosed cause.
-
-Science checkouts follow [the shared policy](collaboration.md#small-science-checkouts).
-The current three-file report is `ScienceCheckouts/Rowan/2026-11-18/review.html`
-under the sibling GitHub root (197,752 bytes). Its PDU drawing, native triple-bond
-numbers and poor R factors are shown together; model/projection/archive links are
-checked. It distinguishes exact observer-pair state from rounded cross-provider
-PDB agreement. The 17:00 update will add the final peer/test status without copying
-raw datasets. The prior November 17 report remains intact.
+Keep working-frame choice explicit; W115's MTZ/PDB cell precision difference does
+not justify widening tolerances. A launch marker is not proof of process death.
+Preserve failed/unknown attempts, original Free-R and terminal intent. B:1 symmetry
+continuation and D:1 terminal protection are separate scientific declarations.
 
 ## DY integration boundary
 

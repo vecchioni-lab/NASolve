@@ -113069,7 +113069,303 @@
       "Unclassifiednative terms onlyfour supportedfamilies, not all forces; covalentUNASSESSED",
       "No PDU/DF efficacy or weightselector adoption",
       "Older readers refusev7; old v3-v6 workerpayloads exact; oldrecords not migrated",
-      "Focused and native validation only at this point; independent audit/final fullsuite pending"
+      "Independent W133 audit passed. Full regression running at exact C391 source; report its final disposition separately."
+    ],
+    "independent_review": {
+      "source": "Willow W133 1a1db576",
+      "receipt_sha256": "169a5952398bde0794ffcc008b302e0b6cbf1f5b05e383ee2e1b5a01b3b89193",
+      "result": "303 Git/wheel/installed files exact; actual native/writer/force joins and report arithmetic verified; 77 current +72 baseline files/timestamps unchanged; no new native fit"
+    }
+  },
+  "passive_pdu_weight_selection_2026_11_18": {
+    "milestone": "C392",
+    "signed": "Rowan",
+    "source_commit": "8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6",
+    "before": "C338 records final PDU geometry but actual native weight selection masks were not captured.",
+    "after": "Private passive matched observation records native decisions without changing results. No production source/test/runtime schema/default/selector change.",
+    "observer_commit": "b992e44f89a704e6deca02b54dcef8ab5e7bd911",
+    "observer_sha256": "abe11f5fe4b8a045993b046216ade29ea6deaac397c11447db2b0d055f2d44e9",
+    "native_source_sha256": "1407159a3f392466e92537048fc9cd5ea2c43f6a93c63a7c5a277837b18d7f17",
+    "native_version": "Phenix 2.2.1-6174 Darwin arm64; two complete five-cycle refinements plus isolated preflights, not dry-only",
+    "plan_sha256": "60e04a3ca065033af017e1f0c177ac73abbd61db95929bd11ce6b29101ed4447",
+    "native_audit_sha256": "3c5a6c4b5735a170d5a21c682678ffd3f2bfd29786b4571c261027bb9580f9cf",
+    "scope": "Original C338 settings, input model/restraints/dictionaries, terminal protection and Free-R; existing corrected v3 runtime. Substituted scaffold observations.",
+    "validation_commands": [
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c392_pdu_weights.py",
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c392_analysis.py",
+      "PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python -B branch-artifacts/cedar/runners/c392_saved_geometry.py",
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c392_archive.py"
+    ],
+    "commands_scope": "Exact local validation provenance; these host paths are not operational artifact references or replay instructions.",
+    "controller_sha256": "01be29dbfa7bec5f8433f5335527fbc9de3fe778f2c8601d0217e8a7be87e3d8",
+    "matched": {
+      "status": "MATCHED_PASS",
+      "elapsed_seconds": 587.1487049169955,
+      "exact_model": true,
+      "exact_native_state": true,
+      "exact_kernel_calls": true,
+      "exact_statistics": true,
+      "map_array_checks": [
+        {
+          "file": "refined_001.mtz",
+          "labels": [
+            "H",
+            "K",
+            "L",
+            "I-obs",
+            "SIGI-obs",
+            "R-free-flags",
+            "F-obs-filtered",
+            "SIGF-obs-filtered",
+            "F-model",
+            "PHIF-model",
+            "2FOFCWT",
+            "PH2FOFCWT",
+            "2FOFCWT_no_fill",
+            "PH2FOFCWT_no_fill",
+            "FOFCWT",
+            "PHFOFCWT"
+          ],
+          "rows": 3239,
+          "arrays_equal": true
+        }
+      ],
+      "historical_C338_native_state_equal": true,
+      "historical_C338_kernel_statistics_equal": true,
+      "historical_files_unchanged": 57
+    },
+    "all_processes_stopped": true,
+    "decisions": [
+      {
+        "cycle": 1,
+        "trials": 1,
+        "mode": "SINGLE_TRIAL",
+        "eligible": null,
+        "criterion_pass_counts": {
+          "bond": 0,
+          "angle": 0,
+          "r_gap": 1,
+          "r_free_window": 1
+        },
+        "selected_weight": 78.6525392376674
+      },
+      {
+        "cycle": 2,
+        "trials": 15,
+        "mode": "RFREE_FALLBACK",
+        "eligible": 0,
+        "criterion_pass_counts": {
+          "bond": 0,
+          "angle": 0,
+          "r_gap": 15,
+          "r_free_window": 15
+        },
+        "selected_weight": 8.0
+      },
+      {
+        "cycle": 3,
+        "trials": 9,
+        "mode": "RFREE_FALLBACK",
+        "eligible": 0,
+        "criterion_pass_counts": {
+          "bond": 0,
+          "angle": 0,
+          "r_gap": 9,
+          "r_free_window": 9
+        },
+        "selected_weight": 1.4119590817386583
+      },
+      {
+        "cycle": 4,
+        "trials": 9,
+        "mode": "RFREE_FALLBACK",
+        "eligible": 0,
+        "criterion_pass_counts": {
+          "bond": 0,
+          "angle": 0,
+          "r_gap": 9,
+          "r_free_window": 9
+        },
+        "selected_weight": 1.7136491708500254
+      },
+      {
+        "cycle": 5,
+        "trials": 14,
+        "mode": "RFREE_FALLBACK",
+        "eligible": 0,
+        "criterion_pass_counts": {
+          "bond": 0,
+          "angle": 7,
+          "r_gap": 14,
+          "r_free_window": 14
+        },
+        "selected_weight": 10.0
+      }
+    ],
+    "weight_receipt_sha256": "3686d6b0281f0d7c2c31837d9bfca986b4ad8c1cc1a174752f35b7ed6a1ff1c1",
+    "weight_receipt_bytes": 17984,
+    "final": {
+      "r_work": 0.2125,
+      "r_free": 0.2265,
+      "triple": [
+        {
+          "atoms": [
+            "C5A",
+            "C5B"
+          ],
+          "declared_order": "TRIPLE",
+          "distance": {
+            "target": 1.174,
+            "esd": 0.02,
+            "observed": 1.2132259502811595,
+            "membership_count": 1
+          },
+          "angles": [
+            {
+              "atoms": [
+                "C5",
+                "C5A",
+                "C5B"
+              ],
+              "target": 180.0,
+              "esd": 3.0,
+              "observed": 175.44943044712602,
+              "membership_count": 1
+            },
+            {
+              "atoms": [
+                "C5M",
+                "C5B",
+                "C5A"
+              ],
+              "target": 180.0,
+              "esd": 3.0,
+              "observed": 174.4251375003005,
+              "membership_count": 1
+            }
+          ]
+        }
+      ],
+      "screen": "REVIEW"
+    },
+    "cold_final_text_membership": {
+      "receipt_sha256": "3770b034b1c524c72208877d8249372354d3d3b541f149c14563d8aab0275461",
+      "matched_requests": 141,
+      "precision": "Exact ordered atom labels; targets/sigmas/weights compatible within printed GEO precision",
+      "groups": [
+        {
+          "kind": "angle",
+          "group": "parameters-000.phil",
+          "count": 10,
+          "printed_delta_sum_squares": 503.74280000000005,
+          "printed_delta_rms": 7.09748406127129,
+          "fraction_of_family_sum_squares": 0.04310830973217708
+        },
+        {
+          "kind": "angle",
+          "group": "parameters-002.phil",
+          "count": 74,
+          "printed_delta_sum_squares": 2826.1898000000015,
+          "printed_delta_rms": 6.1799477387801645,
+          "fraction_of_family_sum_squares": 0.2418541074141797
+        },
+        {
+          "kind": "angle",
+          "group": "terminal-protection.phil",
+          "count": 6,
+          "printed_delta_sum_squares": 13.5639,
+          "printed_delta_rms": 1.5035458090793243,
+          "fraction_of_family_sum_squares": 0.001160744733971933
+        },
+        {
+          "kind": "angle",
+          "group": "unattributed:covalent geometry",
+          "count": 1462,
+          "printed_delta_sum_squares": 8342.018499999975,
+          "printed_delta_rms": 2.388701531552221,
+          "fraction_of_family_sum_squares": 0.7138768381196716
+        },
+        {
+          "kind": "bond",
+          "group": "parameters-000.phil",
+          "count": 7,
+          "printed_delta_sum_squares": 1.0168589999999997,
+          "printed_delta_rms": 0.3811372081397609,
+          "fraction_of_family_sum_squares": 0.1659034105954376
+        },
+        {
+          "kind": "bond",
+          "group": "parameters-002.phil",
+          "count": 44,
+          "printed_delta_sum_squares": 5.003309,
+          "printed_delta_rms": 0.33721145914962347,
+          "fraction_of_family_sum_squares": 0.8163039589194259
+        },
+        {
+          "kind": "bond",
+          "group": "unattributed:covalent geometry",
+          "count": 956,
+          "printed_delta_sum_squares": 0.1090549999999998,
+          "printed_delta_rms": 0.01068055559334001,
+          "fraction_of_family_sum_squares": 0.017792630485136504
+        }
+      ],
+      "limits": [
+        "Saved final GEO text only; no native geometry/force evaluation or refinement launch.",
+        "Printed deltas are rounded. Pooled reconstruction agrees with the final table at its printed precision.",
+        "Native origin labels are reported verbatim, not treated as chemical authority.",
+        "Unmatched terms remain unattributed; no complement-of-pairs rule defines covalent chemistry.",
+        "The six terminal-protection angles are retained as supplied chemistry, not exempted with pairing edits.",
+        "Final-state source membership cannot be backfilled into earlier weight-search trial states.",
+        "No changed weights, thresholds, targets, normalization or scientific selection follows."
+      ]
+    },
+    "reporting_gap": {
+      "kind": "C392-reporting-gap-reproducer",
+      "source_commit": "8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6",
+      "file": "src/nasolve/autorefine.py",
+      "source_sha256": "2a901b45f18f72dba184d955723081565999b6df1f89c186b2760ecd6a3d495d",
+      "trigger": "native stage 1_realsrl2 stops table reading because suffix digits are disallowed",
+      "actual_before": [
+        null,
+        null
+      ],
+      "isolated_candidate_after": [
+        0.078,
+        2.744
+      ],
+      "negative_cases": [
+        "no_header",
+        "interrupted",
+        "wrong_columns",
+        "no_end",
+        "truncated",
+        "garbage_stage"
+      ],
+      "proposal_applied": false,
+      "native_rerun": false,
+      "scope": "log summary only; pooled geometry not covalent-only",
+      "validation": "isolated function compiled from one-token proposal; not a maintained patch or full integration validation"
+    },
+    "archive": {
+      "anchor": "cedar-local-artifacts",
+      "relative_path": "c392-pdu-passive-weight-observation-2026-11-18.tar.gz",
+      "size": 2468484,
+      "sha256": "ea5e6650d729f1b6d8e0fe87748b98f2bc303cdeafd56cfcb309a66f9b88b40b"
+    },
+    "archive_raw_bytes": 14586919,
+    "archive_scope": "Local byte-verified successful and early failed evidence; originals retained; no portable execution claim.",
+    "early_failure": "Missing evidence parent directory stopped worker before native initialization; preserved and corrected only in a fresh controller attempt.",
+    "compatibility": "No runtime or checkpoint format change; no migration or new scientific selection.",
+    "generated_artifacts": "Only compact technical measurements and fingerprints tracked. Models, diffraction data, maps, logs, runners and display figures remain local.",
+    "limits": [
+      "Pooled native bond and angle statistics are not covalent-only measurements.",
+      "Pass counts describe recorded scalars; for singleton cycles no eligibility test was applied.",
+      "Native scorer source file hashes are provenance, not authentication of pre-existing runtime callables.",
+      "Exact paired coordinates, native state, kernel calls and reflection arrays qualify this passive control only.",
+      "Within-trial R factors are not final post-ADP/scale statistics.",
+      "No cause assigned to residual bending from a weight-choice association alone.",
+      "Substituted scaffold observations do not establish a PDU-crystal structure."
     ]
   }
 }

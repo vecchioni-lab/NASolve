@@ -124,6 +124,31 @@ not Q06 chemical survival or a replacement for ordinary refinement settings.
    adding another evaluator or repeatedly qualifying the same owner.
 
 
+**C392 — actual PDU weight choices observed, not changed.** A matched private
+five-cycle control reuses C338's exact settings and Hazel's passive observer. Models,
+full native states, correction calls and reflection arrays agree; C338's native
+endpoint is reproduced. Of 48 trials, the first is a singleton and all four searched
+cycles take R-free fallback with zero combined-criteria eligibility. Every searched
+trial fails the pooled bond criterion; angle failures also contribute. Final
+Rwork/Rfree 0.2125/0.2265 coexists with the unchanged PDU bend review. This establishes
+actual fallback, not the chemical cause or a production-selector remedy.
+
+Cold final-GEO readback matches 51 supplied inter-residue distances, 84 pair angles
+and six terminal-protection angles to frozen source selections at printed numerical
+precision. The 51 distances contribute 98.22% of final pooled bond delta². Keep the
+terminal angles distinct; unmatched rows remain unattributed. Final-state evidence
+cannot be backfilled into weight trials. Next qualify exact per-trial semantic
+membership before selection changes. A predeclared longer fixed-weight control is
+a separate qualification and need not wait for a universal classifier.
+
+**Small reporting holdover before the next source checkpoint:** C387's stage-name
+reader excludes digit suffixes such as `1_realsrl2`; the actual C392 table therefore
+loses final 0.078 Å/2.744° summaries. An isolated one-token proposal plus actual-table
+and six refusal controls passes; it is not applied while C391's full suite runs.
+Implement a maintained regression and focused caller checks, preserving refusal of
+partial tables and avoiding initial/weight-candidate geometry. No native rerun needed.
+
+
 Q06 achieved PDU/DF chemistry remains open. Ordinary AutoRefine/Doctor requests
 without explicit counted intent still refuse to lose that ancestry. Original
 v5 evidence retains its scope; C386's explicitly requested new v6 admission is
@@ -141,8 +166,9 @@ The v5/v6 24-file workers and explicit v7 25-file worker remain distinct from th
 sibling checkout, no new executor, no provider reselection during refinement. A
 launch marker blocks duplicate starts but is not process-liveness authority; failed
 or uncertain attempts stay immutable. Completed relocated evidence is readable;
-relocated pending commands require fresh anchored preparation. Eight full Willow
-merge documentation conflicts remain separate; no branch merge is authorized.
+relocated pending commands require fresh anchored preparation. The earlier temporary
+full-Willow composition had eight documentation conflicts; this is historical evidence,
+not a fresh assessment of current branch heads. No branch merge is authorized.
 
 Alder A57/A58 identifies history-dependent normalization at identical sites, followed
 by a separate zero-data fixed-denominator control that reaches an iteration limit
@@ -310,7 +336,7 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Complete for recorded alternatives, selected-model phasing, Coot, cold inspection and the ordinary five-cycle refinement handoff. Actual chemical survival/effective restraint behavior is Q06; no default activation or historical migration. |
-| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C388 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control and existing chemical observation. Wider protocols and achieved PDU/DF geometry plus held-out survival remain open. Mechanics or a readable dictionary alone is insufficient. |
+| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C391 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control, chemical observation and actual final pair measurements. C392 records real PDU weight fallback without changing selection. Wider protocols and achieved PDU/DF geometry plus held-out survival remain open. Mechanics or a readable dictionary alone is insufficient. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |
