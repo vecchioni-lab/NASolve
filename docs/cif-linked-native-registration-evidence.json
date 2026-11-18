@@ -114774,17 +114774,11 @@
       "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c400_zero_execute.py",
       "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c400_readback.py",
       "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c400_archive.py",
-      "Full gate exact command/environment is retained in referenced plan.json; PYTHONDONTWRITEBYTECODE=1 and explicit source/dependency PYTHONPATH.",
+      "Full gate exact command/environment is retained in referenced full-suite-plan.json; PYTHONDONTWRITEBYTECODE=1 and explicit source/dependency PYTHONPATH.",
       "git diff --exit-code d8656b2212ec1777e3da5f1979ac2a766fc71563 4f7aeb84b8762b3bd4ebcc1741c6b1116443632a -- src tests pyproject.toml .github",
       "git diff --check"
     ],
     "evidence": {
-      "plan.json": {
-        "anchor": "local-branch-artifacts",
-        "relative_path": "willow/w137-long-control-full-suite-2026-11-18/plan.json",
-        "sha256": "8ebb1c5578b521c2d168624a50434308541e8e44eaa665524e851a70d70f2c7c",
-        "bytes": 1284
-      },
       "execution.json": {
         "anchor": "cedar-local-artifacts",
         "relative_path": "c400-counted-matrix/execution.json",
@@ -114850,6 +114844,18 @@
         "relative_path": "willow/w139-c400-common-geometry-2026-11-18.json",
         "sha256": "5070d8545901852eed83c2e872ebb6a8c4226b639f2c7e3333ba05bb393bf943",
         "bytes": 68912
+      },
+      "full-suite-plan.json": {
+        "anchor": "local-branch-artifacts",
+        "relative_path": "willow/w137-long-control-full-suite-2026-11-18/plan.json",
+        "sha256": "8ebb1c5578b521c2d168624a50434308541e8e44eaa665524e851a70d70f2c7c",
+        "bytes": 1284
+      },
+      "c400-plan.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c400-counted-matrix/plan.json",
+        "sha256": "aa0c5ba476183d7020c5effdd628151e6635f42cb8874ffaeb03195b9498716a",
+        "bytes": 74742
       }
     },
     "archive": {
