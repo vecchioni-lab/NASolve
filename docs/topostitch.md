@@ -507,6 +507,16 @@ adding another map reader. Its Hg radii, sigma values and occupancy/scattering
 assumptions are not phosphate calibration. The backbone detector and motion
 policy remain unimplemented; this note does not advance B06 or S06.
 
+Before using density as a search objective, bind its generation policy as well
+as its bytes: work/free reflection treatment, missing-data filling, filtering,
+isotropization and sharpening. Ordinary display-map columns need not be work-only;
+C391's existing output includes finite coefficients at test indices and a filled
+2mFo-DFc column. Coefficient membership alone does not prove which observed
+amplitudes contributed, so inspect that derivation separately. This does not
+invalidate ordinary inspection maps or change the current output. Hazel's private
+work-only, unfilled map policy is an explicit example, not an inherited default
+for all NASolve maps or independent validation of the resulting model.
+
 The later search must vary **where curvature sits**, not only the end transform:
 seed a bend using local density support, then consider bounded localized,
 distributed, distally shifted or staged curvature profiles. A sharper bend may

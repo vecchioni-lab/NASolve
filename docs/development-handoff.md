@@ -1,14 +1,14 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-18**. **W133 independently qualifies Cedar C391's actual-final
-pair geometry report.** It reproduces the earlier refined PDB/full native state
-and 15 counted evaluations exactly, with a separately recorded descriptive read.
-The complete Willow suite passes; the final unfiltered C391 integration suite is
-running on a frozen detached clone. W132 retains the failed earlier full attempt
-and resolves every failure through exact-source prerequisites, not code changes.
-This is Willow's handoff, not project-wide status. Willow numerical/runtime helpers
-remain W118; Cedar owns the new explicit v7 controller/capture. Neither this work
-nor passing tests establishes a whole-branch merge or supported repair release.
+Updated **2026-11-18**. **W134 closes the actual ordinary canonical-continuation
+check on unchanged Cedar C391.** The new child preserves pair intent, inherited
+prepared restraints, final-state reporting and immutable ancestry, and reproduces
+the earlier lower-level endpoint exactly. Pair geometry improves slightly but
+Rwork/Rfree and clashscore worsen; it remains unselected REVIEW. W133 separately
+qualifies final pair measurement against the actual completed writer. The complete
+Willow suite passes; one unfiltered frozen C391 integration suite is running.
+Willow numerical helpers remain W118; W131 adds the cold reporter, and Cedar owns
+v7 capture. These are bounded backend qualifications, not a supported repair release.
 
 The backend can bind explicit periodic pair intent, apply the missing geometry
 terms during one qualified native refinement cycle, retain their original meaning
@@ -22,13 +22,14 @@ unqualified.** S04/S05/S06 and P01/P02 remain partial. The
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
+| W134 / C391 ordinary descendant | Actual second ordinary cycle preserves ancestry, intent, inherited prepared NAR PHIL and final pair capture; exact earlier endpoint | Optional extra-restraint/chemistry descendants, broader protocols and efficacy |
 | W133 / C391 final pair readback | Actual final writer hierarchy/scattering/force-site joins, complete pair metrics, exact prior endpoint and counted lifetime | Broader protocols, semantic covalent/terminal classification and matched efficacy |
 | W131 semantic pair readback | Complete physical pair measurements independent of provider; native remainder explicit | Weighting policy and whole-model acceptance |
 | W130 / C388 chemistry coexistence | Source projection inheritance and two matched observer off/on controls, including one additive term | Poor-R mechanics only; native ordinary chemistry-descendant test and broader protocols remain open |
 | W129 geometry summaries | Same complete intended forces/coordinates, but native angle RMS changes by 0.000616° across provider splits | Actual selector effects, semantic geometry reporting and qualified weighting policy |
 | W128 / C386 ordinary owner | Explicit bounded Python request reuses AutoRefine, preserves original intent/frame and validates the written model before publication | Broader scientific protocols, CLI/Doctor activation and repair efficacy |
 | W127 / C385 publication | Explicit v6 joins actual completed native writer bytes/state to the usable checkpoint; old payloads remain exact | Historical v5 has no retroactive output proof |
-| W126 / C382–C384 continuation | Validated registered parent, preserved original intent, fresh rebind/preflight/admission; existing C278 namespace-only restraint copies | Actual ordinary descendant demonstration, Doctor execution and broader protocol/chemistry |
+| W126 / C382–C384 continuation | Validated registered parent, preserved original intent, fresh rebind/preflight/admission; existing C278 namespace-only restraint copies | Canonical ordinary descendant now qualified in W134; Doctor execution and broader protocol/chemistry remain open |
 | W125 / C381 admission | Durable original/current request, exact prepared state, immutable admission, complete native cycle and truthful failure outcomes | No ordinary CLI activation or scientific acceptance |
 | W123 / W126 scientific readback | Modest local contact/plane improvement in saved endpoints; later descendants flatten further | Residual defects, worsening R stats, unqualified backbone/packing/density; descendants have no matched efficacy control |
 | W118 same-frame recipe rebind | Coordinates/B/ANISOU may change with exact identity, chemistry and frame invariants | No renamed/reordered atoms, changed occupancy/chemistry or frame migration |
@@ -44,6 +45,8 @@ not another work queue; do not repeat them because this handoff is shorter.
    `8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6` with explicit exact NARestraints Git
    source and process permissions. Runtime/test source is frozen during this run.
    C386 failure triage is complete; do not repeat its obsolete diagnostic gates.
+   W134 also closes the actual ordinary canonical-descendant check; do not rerun it
+   without a changed scope or unresolved failure.
 2. W133 closes the bounded final-state pair-capture seam. Keep native remainder
    unclassified until chemical ownership is explicit. Reuse Cedar's source-backed
    component/link provenance, canonical pair coverage and Alder's explicit metal
@@ -71,6 +74,12 @@ then separately qualified plane-only mismatch hypotheses. Automatic inference an
 large-bend repair follow later. No CLI/default activation follows from these docs.
 
 ## Validation and scientific interpretation
+
+- **W134 / C391:** one 69.94s complete Phenix 2.2.1-6174 ordinary continuation;
+  independent cold audit preserves 138 descendant /77 source /117 historical files,
+  all ancestor records and 303 installed sources. Exact C382 second PDB/count owner;
+  wrong parent-model report refused. Two setup failures occurred before native launch.
+  [Exact W134 evidence](topostitch-periodic.md#w134--continue-the-ordinary-run-with-final-pair-readback).
 
 - **W133 / C391:** 303 committed/wheel/installed files exact, 77 current /72 baseline
   files unchanged on cold replay; actual 52.84s Phenix 2.2.1-6174 control retains
@@ -127,8 +136,9 @@ large-bend repair follow later. No CLI/default activation follows from these doc
 The **12,138-test /284-subtest W112/C366 source-only** full suite and later W121
 joined-package checks remain historical, not current C386 full-suite results.
 Those peer panels were focused; Linden did not duplicate their native runs.
-The new unfiltered C386 source suite is currently running in an isolated tracked
-snapshot. No current full pass or whole-branch merge qualification is yet claimed.
+W132 diagnoses the completed C386 attempt. The final unfiltered C391 suite is
+currently running in a detached tracked clone; no current full pass or whole-branch
+merge qualification is yet claimed.
 
 The matched W116/W123 control shows maximum extra motion about **0.034 Å** and
 modest selected-pair improvement, with no Rfree benefit. Subsequent C382 descendants

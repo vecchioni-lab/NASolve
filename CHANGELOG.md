@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W134 — Qualify ordinary continuation and retain density boundaries
+
+- Record the actual C391 ordinary descendant, immutable ancestry, exact earlier
+  endpoint and final-state pair readback; preserve worse R factors and review status.
+- Queue explicit map-generation/Free-R policy after inspecting current display-map
+  coefficient membership. No density threshold, force policy or CLI change.
+- Documentation and local evidence only; no source or artifact-schema migration.
+
 ### W133 — Audit actual final-state pair geometry
 
 - Independently verify Cedar C391's explicit v7 capture and cold readback against

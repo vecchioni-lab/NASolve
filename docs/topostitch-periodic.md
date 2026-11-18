@@ -7113,3 +7113,65 @@ open. Reuse Cedar's source graphs and Alder's explicit metal declarations when
 classifying chemistry; its private origin-0 selector experiment is not a general
 classifier. Existing map provenance/periodic sampling is a reuse candidate, not a
 phosphate-density threshold or a new density implementation.
+
+
+### W134 — Continue the ordinary run with final pair readback
+
+One **complete Phenix 2.2.1-6174 ordinary AutoRefine continuation, 69.94s**, on
+unchanged installed C391 creates `refine-002` from registered `refine-001`.
+The complete parent run was copied to a fresh root and renamed before execution;
+its original staging path is absent. Existing native owners retain the explicit
+v7 pair report and original pair intent, rebind to the actual parent model and
+inherit the prepared NARestraints PHIL. No extra-restraint file was supplied or
+present in this parent: optional extra-restraint/chemistry inheritance is **not**
+qualified by this control. No new MR, ReadySet, source patch or protocol change.
+
+The bounded protocol remains one all-site XYZ cycle, ten iterations, fixed unit
+weights, seed 1, one process and a 300-second process cap; ADP/occupancy/anomalous
+and real-space refinement are off. The original data and Free-R assignments are
+unchanged. The child is usable **REVIEW**, and `postmr` remains selected.
+
+| Exact final-state metric | Parent | Child |
+| --- | ---: | ---: |
+| Pair-distance RMS target deviation, 36 terms | 0.220180 Å | 0.216024 Å |
+| Pair-angle RMS target deviation, 60 terms | 4.780349° | 4.727018° |
+| RMS of per-plane RMS distances, 14 planes | 0.118995 Å | 0.115785 Å |
+| Native parallelity delta RMS, 14 pairs | 8.893697° | 8.505102° |
+| Rwork / Rfree | 0.2251 / 0.2609 | 0.2253 / 0.2611 |
+| Logged bond RMS / angle RMS | 0.025 Å / 1.772° | 0.026 Å / 1.731° |
+| Clashscore | 31.53 | 33.78 |
+
+The comparison uses successive authenticated native states, unlike the differently
+started passive W131 diagnostic. Pair geometry improves slightly while diffraction
+statistics and clashscore worsen. There is no matched native-only continuation
+sibling, so neither attribution of all movement to the added terms nor scientific
+acceptance follows. The PDB and counted owner exactly reproduce the earlier C382
+second endpoint: **15 calls, 11,382 native +17 added =11,399** complete terms.
+This closes the actual ordinary canonical-continuation integration gap; it does
+not add a new physical repair result. Full S06 acceptance remains open.
+
+The independent cold audit disables process launch and record writers, validates
+both final reports, verifies writer hierarchy/scattering/force-site joins and
+recomputes summary arithmetic from the saved native measurements. A parent PDB
+is refused for the child report. All **138 descendant /77 C391 source /117 C382
+historical files and mtimes** remain unchanged, all **303 installed source files**
+match the qualified manifest, and all ancestor checkpoint records remain exact.
+Native and controller processes are stopped. Two private setup failures are
+retained: a registry-directory/file mix-up, then an assumption that unsigned
+schema-2 registries carried `record_sha256`. Both stopped before Phenix; the
+successful harness uses the existing supported API and privately verifies the
+registry file digest. No production guard or schema was changed.
+
+Exact commands use the existing controller interpreter with
+`PYTHONDONTWRITEBYTECODE=1`: `python -B run-attempt-003.py` and
+`python -B cold-audit.py`; the latter launches no native process. Scripts, plans,
+process identity, successful and failed setup receipts are in the verified local
+archive `NASolve/branch-artifacts/willow/w134-ordinary-continuation-2026-11-18.tar.gz`,
+SHA `41f68a5293e644b8f01250c259b3d015b9e73a73130aeebb3ff7141b5b187e58`,
+**17,421 bytes /14 indexed files**. Cold audit SHA
+`020f721abc1d5d03f550a74a27efa333c5fbd488c2e549a27a7c1ef49c620488`;
+child PDB SHA `cddd7a8bd7f333e5bced3ed795eb710cdaa9192351c2fa01e1aaff21646e4e4c`;
+child pair report SHA `6192d58189e8680a78bbb45645e11a59a000cf090fb5b1fca774f90bfd497e6c`.
+The complete native root is `/private/tmp/willow-v7-descendant-m20lo6hl-relocated`;
+absolute paths are historical local provenance, not portable operational references.
+Coordinates/reflections stay local and are excluded from Git.
