@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W139 — Measure matched sticky-end benefit
+
+- Record exact native/zero identity, passive full-control equivalence and common
+  fourteen-pair endpoint measurements. Local pairing improves; Rwork and final
+  clashes worsen, and both optimizations stop with line-search errors.
+- Preserve the refused zero fixture and final-PDB statistics amendment; link the
+  compact matched ChimeraX checkout. Documentation only; no numerical-policy,
+  schema, migration or default changes.
+
 ### W138 — Qualify the explicit longer coordinate control
 
 - Record the 100-cap v8 candidate's full, installed and actual ordinary native

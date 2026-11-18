@@ -159,6 +159,7 @@ native scope must pass before the option is advertised. This plans an S05/S06
 application; it closes no repair, inference, stacking or covalent-closure gate.
 
 
+<a id="next-bounded-coordinate-control-planned-after-w135"></a>
 ### Longer coordinate control and matched scientific gate
 
 **W138:** candidate `d8656b22` on the Cedar code base qualifies the explicit
@@ -170,8 +171,12 @@ scientific weighting or a generally accepted repair.
 
 The same-start short/long comparison improves the selected GC plane angle
 17.78→6.29°, while Rfree stays .2609 and Rwork worsens .2251→.2271. It does not
-isolate restraint efficacy. Rowan owns the separate C400 matched matrix below,
-including passive actual stopping/count history; no duplicate implementation.
+isolate restraint efficacy. W139 completes the separate C400 matched matrix below,
+including passive actual stopping/count history. Native/zero are exact; full
+improves common14-pair geometry but worsens Rwork/final clashes. Both stop
+`stpmin()`. Same-coordinate count-driven score discontinuity is recorded, not
+fixed by a new policy. Do not duplicate these controls or conflate local benefit
+with accepted repair.
 See [W138 evidence](topostitch-periodic.md#w138--qualify-the-explicit-longer-coordinate-control).
 
 Use the existing controller, actual-preflight admission, counted owner and writer.

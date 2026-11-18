@@ -7641,3 +7641,103 @@ files plus manifest, 398,651 bytes, SHA-256
 commands and receipts; raw PDB/map/MTZ data are deliberately excluded and remain
 at their original declared local anchors. The archive is evidence, not a claim
 of executable run portability. Human/agent docs are the only Willow changes.
+
+
+### W139 — Measure matched sticky-end benefit without claiming repair
+
+**2026-11-18.** Rowan's C400 joins the retained completed native/full controls to
+one fresh zero-addition control. Native-only and genuinely zero-addition runs
+reproduce each other's complete returned-evaluator records, accepted-step and
+stopping history, model/scattering/Fcalc and reflection arrays/metadata exactly.
+The observed full run reproduces W138's ordinary full endpoint, prepared state,
+counted lifetime and reflections exactly. Hazel independently verifies the union
+in **82 cold checks**, with no native evaluations. This qualifies the passive
+observer composition and zero control, not optimizer convergence.
+
+Linden applies the **same full fourteen-pair frozen PHIL** to all three written
+PDBs: 36 distances, 60 angles, 14 joint fitted planes and 14 inter-base plane
+angles, using the exact unwrapped crystal image. Measuring the unrestrained end
+pairs in the native control does not apply those restraints to that control.
+All physical values below are rounded-PDB measurements; the full arm agrees
+with its full-precision final native report within declared serialization
+tolerances (0.002 Å for distances/plane RMS, 0.08° for angle/parallelity RMS).
+
+| Common endpoint measurement | Native / zero addition | Full pair intent |
+| --- | ---: | ---: |
+| Pair distance RMS (Å) | 0.247180 | 0.200020 |
+| Pair angle RMS (°) | 4.785545 | 3.085463 |
+| Joint plane RMS (Å) | 0.113594 | 0.086912 |
+| Pair plane-angle RMS (°) | 8.870410 | 4.800041 |
+| Selected GC plane mismatch (°) | 27.298448 | 6.298366 |
+| Selected AT plane mismatch (°) | 8.854420 | 4.591776 |
+| Final Rwork | 0.2267 | 0.2271 |
+| Final Rfree | 0.2613 | 0.2609 |
+| Final PDB clashscore | 23.27 | 24.77 |
+| Actual optimizer iterations | 75 | 73 |
+| Native function-evaluation counter | 80 | 76 |
+| Actual evaluator returns | 86 | 82 |
+
+GC contacts change from 3.314310/3.125281/2.823165 Å to
+2.981375/2.969891/2.826787 Å. AT contacts remain long at 3.258241/3.375554 Å
+against the requested 2.80 Å target. Pair alignment improves locally, but full
+Rwork and clashscore are worse than the matched control. Rfree is lower by
+0.0004 at log precision, with no statistical-significance claim; both final
+values remain worse than the common initial 0.2599. All endpoints remain
+diagnostic and unselected; no overall repair, backbone closure or large bend is
+accepted. Native pooled bond RMS is 0.029 Å in both cases.
+
+**Actual stopping and numerical boundary.** Both optimizations stop with the
+line-search lower-bound `stpmin()` error before their 100-iteration cap. Full
+returned evaluations 76 and 82 have identical coordinate/non-XYZ/data states
+and raw geometry 2637.52902110223, but complete count changes 11,409→11,325.
+The geometry target changes 0.2311796845562477→0.23289439479931393, entirely
+reproduced by the changed normalization. These counts include candidate
+nonbonded terms; they are not active-force counts. Hazel independently checks
+this recorded scalar discontinuity. It does **not** prove that normalization is
+the sole cause of every line-search failure or authorize an immediate policy
+change. A stable numerical objective is now the next explicit qualification
+boundary before larger motions; reuse C397–C399/A85 evidence rather than repeat
+equivalent derivative/restart or iteration sweeps.
+
+**Failures and summary correction stay visible.** The first zero fixture removed
+the two selected pairs but retained their effective-library record. Preflight
+correctly refused it; no zero refinement launched there. The existing recipe
+compiler rebuilt the twelve unchanged core pair definitions and their matching
+library fingerprint in a fresh directory. Full/native completed results were
+reused, never rerun. Fresh zero completes in 213.183 s. All native executions use
+**Phenix 2.2.1-6174** and are stopped.
+
+The immutable C400 runner supplied only the native log to the statistics reader;
+its clashscore 32.28 belongs to the **initial** model. Rowan's separate cold
+amendment supplies log plus final PDB, matching ordinary AutoRefine, and binds
+the parser/log/model hashes. Linden independently reproduces the amended final
+scores 23.27/24.77; all other statistics are unchanged. Original receipts remain
+intact. W138's short/long clashscores already came from the ordinary log-plus-PDB
+path and are final-model values; their comparison is a different experiment.
+
+**Validation and artifacts.** The common physical reader blocks subprocesses,
+preserves all 172 original-matrix and 75 fresh-zero files plus 304 installed
+resources, and requires exact native/zero PDBs/measurements. Command:
+`PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B
+branch-artifacts/willow/runners/w139-c400-geometry.py` from declared NASolve root.
+No source/API/schema/default or migration changes occur in W139; no new test
+suite or native calculation is needed for this cold evidence/documentation step.
+The W138 pinned full/installed/source-integration gates retain their own scope.
+
+The current local science view is GitHub workspace anchor
+`ScienceCheckouts/Linden/2026-11-18_matched-sticky-ends/review.html`.
+Four new files reuse W138's full display PDB through a relative checksum-bound
+reference. ChimeraX 1.12 headless validation checks both 1,140-atom models,
+four child planes and five contact guides per model; five links/checksums pass.
+No browser-layout check or graphic motion exaggeration. Earlier checkouts remain
+intact; raw models/maps/MTZ/trajectories are excluded from Git and from the compact
+cold-review archive. The latter is evidence only, not executable-run portability:
+`branch-artifacts/willow/w139-matched-pair-review-2026-11-18.tar.gz`, 27,720 bytes, 13
+indexed files plus manifest, SHA-256 `8a42558a55f4e4990d255dbfcc258f0e927cb96ec21826b657e020248fdbd339`.
+
+S04/S05/S06 and P01/P02 remain partial. The next bounded design must address the
+recorded objective discontinuity with an explicit invariant and matched controls;
+it must preserve physical forces/repulsion, original inputs and independent
+diffraction/geometry review. Broad normalization changes, automatic sticky-end
+enforcement, density calibration, geotest B09 and wider B10 efficacy remain open.
+No more native sweeps are scheduled for this work window.

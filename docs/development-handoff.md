@@ -1,19 +1,19 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-18**. **W138 qualifies an explicit longer coordinate control**
-on Cedar candidate `d8656b22`: focused, relocated installed, full-source and
-actual ordinary native gates pass. The same-start longer run flattens the selected
-GC pair (17.78→6.29°), but Rfree stays .2609, Rwork worsens and pooled bond error
-increases. It is an unselected REVIEW result, not an accepted repair. The new
-[five-file science checkout](#local-science-checkout) makes that movement visible.
+Updated **2026-11-18**. **W139 demonstrates bounded local sticky-end benefit**
+against matched native-only and zero-addition controls. Their coordinates/history
+match exactly; adding the pair restraints reduces GC plane mismatch 27.30→6.30°.
+Rfree improves slightly against that control (.2613→.2609), but stays worse than
+the initial .2599; Rwork and final clashscore worsen. Both optimizations stop by
+line-search error. **This is useful local movement, not an accepted repair.**
 
-Rowan integrated the qualified source into Cedar `4f7aeb84`
-and owns the separate C400 native/core-only-zero/full matrix with passive actual
-stopping/history. Do not duplicate it. The 100-cap
-protocol is explicit, uses v8/cycle-v2 and mandatory final capture; old worker
-payloads/defaults remain exact. Willow numerical helpers remain W118 with W131
-cold reporting. W137's actual-state/chemistry-lineage audits remain evidence;
-they authorize neither a production numerical policy change nor chemistry adoption.
+W138's explicit 100-cap ordinary mechanics pass full, focused, relocated installed
+and actual native gates, integrated by Rowan into Cedar `4f7aeb84`
+with exact qualified source/tests/package configuration. C400's passive observer
+and native/zero/full comparison are complete; do not rerun them. The next numerical
+boundary is the recorded normalization discontinuity at identical coordinates,
+before larger physical motions. Willow helpers remain W118 with W131 cold reporting.
+The [current four-file science view](#local-science-checkout) shows the matched effect.
 
 The backend can bind explicit periodic pair intent, apply the missing geometry
 terms during one qualified native refinement cycle, retain their original meaning
@@ -27,22 +27,12 @@ unqualified.** S04/S05/S06 and P01/P02 remain partial. The
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
-| W138 longer control | Explicit v8 ordinary mechanics, full/installed gates and actual final pair readback; visible GC flattening | Matched C400 efficacy/history and whole-model/density acceptance remain open |
-| W137 actual-state and lineage audits | Same-state FFT/direct derivative comparison and genuine ordinary/standalone chemistry provenance independently verified | No optimizer-causality or repair claim; longer mechanics subsequently qualified in W138 |
-| W136 independent diagnostic audits | Actual source-matched eligibility and matched normalization arithmetic/choices verified; original inputs and failures retained | Neither intervention establishes convergence, general geometry classification or repair; canonical longer mechanics subsequently qualified in W138 |
-| W135 integration gates | One full C391 run: 11,983 tests +292 subtests, 2 existing native skips; C393 observer coexistence exact | Later source revisions, ordinary chemistry descendants and scientific acceptance |
-| W134 / C391 ordinary descendant | Actual second ordinary cycle preserves ancestry, intent, inherited prepared NAR PHIL and final pair capture; exact earlier endpoint | Optional extra-restraint/chemistry descendants, broader protocols and efficacy |
-| W133 / C391 final pair readback | Actual final writer hierarchy/scattering/force-site joins, complete pair metrics, exact prior endpoint and counted lifetime | Broader protocols, semantic covalent/terminal classification and matched efficacy |
-| W131 semantic pair readback | Complete physical pair measurements independent of provider; native remainder explicit | Weighting policy and whole-model acceptance |
-| W130 / C388 chemistry coexistence | Source projection inheritance and two matched observer off/on controls, including one additive term | Poor-R mechanics only; native ordinary chemistry-descendant test and broader protocols remain open |
-| W129 geometry summaries | Same complete intended forces/coordinates, but native angle RMS changes by 0.000616° across provider splits | Actual selector effects, semantic geometry reporting and qualified weighting policy |
-| W128 / C386 ordinary owner | Explicit bounded Python request reuses AutoRefine, preserves original intent/frame and validates the written model before publication | Broader scientific protocols, CLI/Doctor activation and repair efficacy |
-| W127 / C385 publication | Explicit v6 joins actual completed native writer bytes/state to the usable checkpoint; old payloads remain exact | Historical v5 has no retroactive output proof |
-| W126 / C382–C384 continuation | Validated registered parent, preserved original intent, fresh rebind/preflight/admission; existing C278 namespace-only restraint copies | Canonical ordinary descendant now qualified in W134; Doctor execution and broader protocol/chemistry remain open |
-| W125 / C381 admission | Durable original/current request, exact prepared state, immutable admission, complete native cycle and truthful failure outcomes | No ordinary CLI activation or scientific acceptance |
-| W123 / W126 scientific readback | Modest local contact/plane improvement in saved endpoints; later descendants flatten further | Residual defects, worsening R stats, unqualified backbone/packing/density; descendants have no matched efficacy control |
-| W118 same-frame recipe rebind | Coordinates/B/ANISOU may change with exact identity, chemistry and frame invariants | No renamed/reordered atoms, changed occupancy/chemistry or frame migration |
-| W100 bending / existing Pine graph | Bounded source-driven trials, periodic identity and preview/cut machinery | Coupled physical repair, ordinary recut refinement and final demonstration gates |
+| W139 matched canonical control | Native/zero identity, passive full observer and common14-pair local improvement | Both stop stpmin; worse Rwork/final clashes, no whole-model acceptance |
+| W138 ordinary longer control | Explicit v8 100-cap route, actual final writer/pair capture; full/installed/native gates pass | Broader protocols, semantic weighting and CLI/Doctor activation |
+| W125–W134 shared execution/readback | Original pair intent, fresh admission, actual output proof and compatible registered continuation | Ordinary modified-chemistry descendants, unclassified native remainder and broader efficacy |
+| W137 chemistry/numerical audit | Source-bound ordinary versus standalone preparation; same-state FFT/direct arithmetic | No retroactive chemical adoption or production numerical-policy change |
+| W118/W100 periodic geometry | Same-identity/frame recipe rebind; source-driven bounded bending trials | Larger/general bends, stable optimization and diffraction/density acceptance |
+| Pine editable periodic graph | Intent, preview/cut and source/image correspondence machinery | Faithful recut refinement, seam chemistry and persistent user review |
 
 Exact numerical results, failures and pins are in the
 [periodic/native ledger](topostitch-periodic.md). Historical probes are evidence,
@@ -50,13 +40,13 @@ not another work queue; do not repeat them because this handoff is shorter.
 
 ## Next bounded work
 
-1. Finish Rowan's C400 matched native/core-only-zero/full experiment and
-   independent cold read; check passive observer identity, actual termination,
-   source-bound geometry and diffraction before interpreting efficacy. The W138
-   ordinary longer-control mechanics gate is complete; do not repeat it without
-   changed source/scope. Cedar integration preserves the qualified source/tests
-   and package configuration. C397–C399 remain a separate closed private diagnostic;
-   no FFT/direct or normalization change follows.
+1. Define the next stable-objective qualification using the exact recorded
+   C400 same-coordinate normalization jump and prior C397–C399/A85 evidence.
+   Coordinate with Rowan/Hazel; do not repeat the completed matched control or
+   equivalent derivative/restart/iteration sweeps. Declare the invariant and
+   matched test before changing numerical policy; retain all physical forces,
+   repulsion, original data/Free-R and unselected REVIEW. No further native work
+   is scheduled in the 18 November window.
 
 2. W133 closes the bounded final-state pair-capture seam. Keep native remainder
    unclassified until chemical ownership is explicit. Reuse Cedar's source-backed
@@ -67,7 +57,7 @@ not another work queue; do not repeat them because this handoff is shorter.
    A universal covalent classifier is not a prerequisite for explicitly labelled
    fixed-weight canonical controls; it remains a separate gate before semantic
    weight selection. Predeclare longer-coordinate budgets and matched controls
-   before widening the current ten-iteration scope.
+   before broadening beyond the qualified fixed-weight coordinate protocols.
 3. Keep ordinary protocols explicit: one all-site XYZ cycle, fixed unit weights,
    one process and seed 1; existing ten-cap route or opt-in v8 exactly 100-cap
    with mandatory final capture. Neither cap proves convergence. `counted_frame="recipe"`
@@ -87,102 +77,53 @@ large-bend repair follow later. No CLI/default activation follows from these doc
 
 ## Validation and scientific interpretation
 
-- **W138:** 334 focused and 334 relocated installed tests, final 35 pin checks,
-  complete pinned full source suite and a 280.319 s actual Phenix 2.2.1-6174
-  ordinary cycle pass. Original intent/inputs/writer/geometry and unselected
-  REVIEW lineage verify independently. [Exact commands, results, schemas,
-  retained failures and limitations](topostitch-periodic.md#w138--qualify-the-explicit-longer-coordinate-control).
+- **W138 source qualification:** candidate `d8656b22` passes **12,008 tests +293
+  subtests**, two existing native opt-in skips (3,581.07 s), with all 1,415 tracked
+  files unchanged. The 334 focused/334 relocated installed tests and final 35 pin
+  checks pass. All 304 packaged resources match; installed checks run after the
+  build-source copy and old install path are gone. Published Cedar `4f7aeb84`
+  matches all 792 source/test/package/CI files exactly; no second full-suite run
+  is claimed. [Commands, schemas, compatibility and retained attempts](topostitch-periodic.md#w138--qualify-the-explicit-longer-coordinate-control).
+- **W138 actual ordinary execution:** complete Phenix **2.2.1-6174** cycle,
+  280.319 s; original intent, actual writer/final geometry and unselected REVIEW
+  lineage verify independently. This uses the existing diagnostic PostMR parent,
+  not a fresh MR/ordinary chemical preparation.
+- **W139 scientific comparison:** Hazel's 82-check independent union and Linden's
+  common14-pair rounded-PDB measurements pass without new native evaluations.
+  The actual full native/zero controls and fresh zero correction are stopped.
+  A separate model-bound amendment distinguishes initial log clashscore from
+  final PDB values. [Results, stopping evidence and limitations](topostitch-periodic.md#w139--measure-matched-sticky-end-benefit-without-claiming-repair).
 
-- **W137:** cold arithmetic reproduces C397 FFT and C398 direct observations,
-  exact baseline/restored C398 vectors and unchanged source files. C303/C327
-  owner checks preserve 1,375 scientific files with no native launch/publication.
-  [Scope, failures and candidate status](topostitch-periodic.md#w137--audit-actual-state-derivatives-and-ordinary-chemistry-lineage).
-
-- **W136 diagnostics:** independent cold source/physical-arithmetic/choice replay
-  passes for C396 and A85, with all source runs unchanged. C396 worsens R factors;
-  A85 improves them modestly but all 21 minimizers still stop by error or cap.
-  [Exact scopes, commands and evidence](topostitch-periodic.md#w136--separate-trial-screening-from-optimizer-normalization).
-- **W135 full C391 / `8ccec55b`:** one unfiltered run passes **11,983 tests +292
-  subtests**, with two existing actual-native opt-in skips (3,196.08s). All 1,413
-  tracked files and 14 exact dependency resources remain unchanged; clean Git,
-  stopped process and complete XML/log audit. This qualifies that frozen source,
-  not later revisions or an entire branch merge. [Full evidence](topostitch-periodic.md#w135--close-the-full-integration-regression-and-observer-coexistence).
-- **W135 C393 coexistence:** one actual Phenix 2.2.1-6174 preflight/refinement
-  (12.61/42.78s), no source change. Cold audit reproduces C388's PDB/native state,
-  common counted lifetime, chemistry and all MTZ arrays; 75 current /126 historical
-  files remain unchanged. Poor pair geometry and R factors prevent acceptance.
-  Low-level coexistence does not qualify ordinary chemistry descendants.
-- **W134 continuation:** actual 69.94s ordinary Phenix 2.2.1-6174 continuation;
-  exact C382 second endpoint/count owner, immutable ancestry and original intent.
-  Independent cold audit preserves 138 descendant /77 source /117 historical files;
-  two private setup failures before native launch remain recorded.
-  [Continuation evidence](topostitch-periodic.md#w134--continue-the-ordinary-run-with-final-pair-readback).
-- **W133 final pair report:** actual 52.84s ordinary control; 303 committed/wheel/
-  installed files exact, 305 peer installed checks +24 subtests. Independent cold
-  read verifies writer joins, exact prior endpoint and unchanged counted lifetime.
-  [Final-state evidence](topostitch-periodic.md#w133--bind-complete-pair-measurements-to-the-actual-final-writer).
-- **W131 reporter / `ead86be9`:** 203 focused/installed and complete Willow **2,050
-  tests +229 subtests**, six installed command helps and dependency check. Initial
-  sandbox failures and permitted rerun are retained. One 15.13s passive native
-  comparison shows provider-independent complete pair metrics, not a new fit.
-  [Reporter qualification](topostitch-periodic.md#w131--report-complete-pair-geometry-across-force-providers).
-
-W132 preserves the earlier C386 full attempt (11,873 pass /46 fail /2 skip) and
-exact-source prerequisite diagnosis; it is not rewritten into today's clean pass.
-W125–W130 controller, writer, chemistry and geometry-summary evidence remains in
-the [periodic ledger](topostitch-periodic.md). Earlier W112/C366 full tests and
-W118's complete numerical/native qualification retain their original source pins.
-No native run or old test is repeated merely because this handoff is shorter.
-
-Later Cedar C394 (`5ccda59a`) fixes the log reader's digit-bearing stage labels.
-Its focused regression/smoke tests and independent old/new actual-log readback
-pass; worker payloads remain exact. This reporting-only follow-up does not change
-the C391 full-suite pin. [Closeout notes](topostitch-periodic.md#w135-closeout-follow-ups)
-also retain the nonbonded candidate-count source distinction and verified retirement
-of the obsolete C386 software clone; no scientific runs were deleted.
-C395 subsequently qualifies source membership in all 48 actual weight-trial
-reporting objects: 51 pair distances, 84 pair angles and six protected terminal
-angles, with exact prior native outcomes. Unknown terms stay unclassified; this
-is a private diagnostic, not a new selector or complete force-site report.
-
-The matched W116/W123 control shows maximum extra motion about **0.034 Å** and
-modest selected-pair improvement, with no Rfree benefit. Subsequent C382 descendants
-reduce PDB G·C plane mismatch **18.69→17.77→16.77°**, but logged Rfree worsens
-**.2599→.2609→.2611**. Those descendants lack matched native-only siblings; do not
-attribute all changes to the added terms or claim repair. Full-precision native
-and serialized-PDB measurements remain distinguished.
+Earlier tests, failed attempts and qualification pins remain in the existing
+[periodic/native ledger](topostitch-periodic.md) and Git history (the full W138
+handoff is `c33db066`). They are not a queue to repeat. W131 cold reporting and
+W118 numerical helpers retain their exact original scopes; no later software
+PASS upgrades older diagnostic models to accepted structures.
 
 ## Local science checkout
 
-**New W138 view:** GitHub workspace anchor,
-`ScienceCheckouts/Linden/2026-11-18_long-control/review.html`.
-Open its `open_inspection.py` in ChimeraX and toggle short/long parent models.
-Two display PDBs show the original coordinates plus the exact declared C→X image;
-four planes/five contacts per model make the GC flattening visible. These are
-same-start restrained controls with configured caps 10/100, not native/full
-siblings. The five-file packet passes headless ChimeraX 1.12 inventory and static
-link/checksum checks; no browser-layout validation or scientific approval.
-Morning and 17 November reports below are preserved historical comparisons.
+**Current W139 matched view:** GitHub workspace anchor,
+`ScienceCheckouts/Linden/2026-11-18_matched-sticky-ends/review.html`.
+Open `open_inspection.py` to toggle native-only versus full pair restraints.
+Four new files reuse the preceding full display PDB through a checksum-bound
+relative reference; keep the Linden folder together. GC plane mismatch changes
+27.30→6.30° without alignment or magnification. The report includes adverse
+Rwork/clashes and actual stopping. Headless ChimeraX 1.12 validates two 1,140-atom
+models, four child planes and five contacts each; five local links/checksums pass.
+No browser-layout validation is claimed. Display PDBs omit ANISOU/connectivity
+and must not be used as refinement or deposition inputs.
 
-Use the shared **GitHub workspace** anchor, relative path
-`ScienceCheckouts/Linden/2026-11-18/review.html`. Two files (HTML plus evidence JSON)
-explain consistent pair measurement, actual-final readback, ordinary continuation
-and observer coexistence, with exact archive references and current full-suite
-results. The report links Hazel's existing metal figures and the preserved
-`ScienceCheckouts/Linden/2026-11-17/review.html` coordinate view; no new coordinate
-or figure copies were needed. Static content/data/link/checksum checks pass;
-no browser-layout review is claimed. Rowan owns the shared **17:00 UK** lab-report
-handoff. See the [lightweight checkout policy](collaboration.md#lightweight-science-checkouts).
-The final consolidated page is `ScienceCheckouts/Rowan/2026-11-18/review.html`;
-it also links `ScienceCheckouts/Hazel/2026-11-18_FT-Hg_normalization/review.html`.
-Final static checks cover 49 local links across the three reports; selected PNGs
-were visually reviewed, with explicit expanded-scale labeling where needed.
+Earlier, preserved views at the same anchor:
+`ScienceCheckouts/Linden/2026-11-18_long-control/review.html` compares same-start
+restrained caps 10/100; `ScienceCheckouts/Linden/2026-11-18/review.html` is the
+morning readback summary; `ScienceCheckouts/Linden/2026-11-17/review.html` shows
+the earlier short matched effect. They answer different questions.
 
-The 17 November five-file view remains the earlier matched small-motion control:
-source and restrained display PDBs, fitted base planes and distance monitors,
-without alignment or exaggerated movement. Display derivatives omit ANISOU/LINK
-and are not refinement inputs; ChimeraX 1.12 headless loading passed. Keep all
-raw data and reports local. No scientific-publication authorization follows.
+Rowan owns the shared 17:00 UK report and its existing one-time reminder; do not
+duplicate it. His local report links this matched view and Hazel's metal work.
+Follow the [lightweight checkout policy](collaboration.md#lightweight-science-checkouts).
+All scientific payloads and reports remain local; documentation pushes do not
+authorize raw-data publication.
 
 ## Scientific limits and demonstration gates
 
