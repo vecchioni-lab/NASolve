@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W136 — Audit separate screening and normalization controls
+
+- Record independent C396 source-bounded eligibility and A85 normalization audits;
+  preserve worse-R and non-converged outcomes without activating private policies.
+- Refresh the next steps for bending/local geometry after the bounded ordinary
+  refinement integration; retain longer canonical controls and density gates.
+- Documentation/local evidence only; no runtime, schema, compatibility or migration
+  change, and no additional full suite is needed for this documentation update.
+
 ### W135 — Close frozen integration regression
 
 - Record the clean C391 full run (11,983 tests +292 subtests, two existing native

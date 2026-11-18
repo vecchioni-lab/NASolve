@@ -1,6 +1,10 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-18**. **W134 closes the actual ordinary canonical-continuation
+Updated **2026-11-18**. **W136 separates two diagnostic mechanisms:** source-matched
+geometry screening changes native choices but worsens the PDU control's R factors;
+fixed geometry normalization removes one line-search failure class in Hazel's
+metal control but leaves rounding failures/iteration limits. Neither becomes a
+production policy or accepted repair. **W134 closes the actual ordinary canonical-continuation
 check on unchanged Cedar C391.** The new child preserves pair intent, inherited
 prepared restraints, final-state reporting and immutable ancestry, and reproduces
 the earlier lower-level endpoint exactly. Pair geometry improves slightly but
@@ -23,6 +27,7 @@ unqualified.** S04/S05/S06 and P01/P02 remain partial. The
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
+| W136 independent diagnostic audits | Actual source-matched eligibility and matched normalization arithmetic/choices verified; original inputs and failures retained | Neither intervention establishes convergence, general geometry classification or repair; canonical longer control remains planned |
 | W135 integration gates | One full C391 run: 11,983 tests +292 subtests, 2 existing native skips; C393 observer coexistence exact | Later source revisions, ordinary chemistry descendants and scientific acceptance |
 | W134 / C391 ordinary descendant | Actual second ordinary cycle preserves ancestry, intent, inherited prepared NAR PHIL and final pair capture; exact earlier endpoint | Optional extra-restraint/chemistry descendants, broader protocols and efficacy |
 | W133 / C391 final pair readback | Actual final writer hierarchy/scattering/force-site joins, complete pair metrics, exact prior endpoint and counted lifetime | Broader protocols, semantic covalent/terminal classification and matched efficacy |
@@ -50,6 +55,8 @@ not another work queue; do not repeat them because this handoff is shorter.
    through existing owners, preserving the old strict protocol. Retain actual
    normalization/termination observations; Hazel's metal-only denominator result
    does not itself diagnose or repair the canonical case.
+   W136 retains the completed C396/A85 outcomes: neither private intervention
+   should be promoted or combined without a separate declared hypothesis.
 2. W133 closes the bounded final-state pair-capture seam. Keep native remainder
    unclassified until chemical ownership is explicit. Reuse Cedar's source-backed
    component/link provenance, canonical pair coverage and Alder's explicit metal
@@ -78,6 +85,10 @@ large-bend repair follow later. No CLI/default activation follows from these doc
 
 ## Validation and scientific interpretation
 
+- **W136 diagnostics:** independent cold source/physical-arithmetic/choice replay
+  passes for C396 and A85, with all source runs unchanged. C396 worsens R factors;
+  A85 improves them modestly but all 21 minimizers still stop by error or cap.
+  [Exact scopes, commands and evidence](topostitch-periodic.md#w136--separate-trial-screening-from-optimizer-normalization).
 - **W135 full C391 / `8ccec55b`:** one unfiltered run passes **11,983 tests +292
   subtests**, with two existing actual-native opt-in skips (3,196.08s). All 1,413
   tracked files and 14 exact dependency resources remain unchanged; clean Git,

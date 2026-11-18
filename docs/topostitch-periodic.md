@@ -7331,3 +7331,85 @@ These references complement the sealed W135 archive; they do not rewrite it or
 claim a portable campaign. Documentation/evidence only: no API, schema, default,
 migration or scientific-acceptance change, and raw crystallographic files stay
 local and excluded from Git.
+
+
+### W136 — Separate trial screening from optimizer normalization
+
+**2026-11-18, coordinated with Rowan and Hazel.** Two independently bounded
+private diagnostics answer different questions. Linden reviewed the source and
+sealed results without launching another native job. No production source,
+selector, count policy, force definition or scientific-acceptance gate changes.
+C395's actual reporting-object/source-membership qualification is retained above.
+
+| Diagnostic | Changed quantity | Result and limitation |
+| --- | --- | --- |
+| Rowan C396 | Only the bond/angle means used by native weight eligibility: omit the 135 exact source-matched pair terms, retain six protected terminal angles and all 2,418 unclassified terms | Actual choices change; final logged Rwork/Rfree **.2125/.2265 → .2277/.2444**, worse. PDU remains REVIEW. This is not a successful repair or a universal covalent classifier. |
+| Hazel A85 | Only the returned optimizer geometry objective **and gradient**, anchored to each minimizer's initial count 11,170; retain all raw terms, data contribution and the same private A71 selector | Dynamic **9 lower-bound +12 rounding errors** becomes fixed **16 rounding errors +5 iteration limits**. Final Rwork/Rfree **.297570/.314876 → .296857/.312645**; modest improvement without convergence or scientific acceptance. |
+
+**C396.** One actual Phenix **2.2.1-6174** control, 5.90 s preparation /250.37 s
+refinement, uses the same original model, restraints, observations and Free-R.
+Preflight semantic state and the first trial's full sites/deviations match C395.
+The changed trajectory has **40 trials**, not 48; its 2,559-term reporting
+inventory is unchanged. Independent arithmetic reconstructs every pooled and
+retained mean, then replays the exact native criterion, fallback and tie rules.
+The retained eligibility inventory is **956 bonds /1,468 angles**. Searched
+cycles 2/4/5 have 15/9/10 eligible trials; cycles 1/3 are native single-trial
+choices, not proof of meeting every eligibility threshold. Selected weights are
+78.65254, .5, .556593, .0852549 and 1.0. All 3,239 output HKL/Free-R assignments
+remain exact; the final model changes. Final native **pooled** bond/angle RMS is
+**.083 Å /1.972°**, distinct from the restricted eligibility means. The independent
+physical-delta reconstruction agrees within **2.28e-13**; 49 current and 48 C395
+files/mtimes remain unchanged. Native forces and normalization were not changed
+by the eligibility hook. No threshold relaxation or best-of-results adoption.
+
+**A85.** The dynamic baseline exactly reproduces A71's first-cycle trials,
+choices and stopping records. Each sibling has **21 minimizers** and selects
+trial 7, weight 2, with 13 eligible trials under the unchanged private origin-based
+A71 selector. That selector is not general chemical classification. There are
+4,598 /6,040 actual evaluator returns, distinct from the native-reported
+4,306 /5,720 function evaluations. The first **27 evaluator inputs/data/raw
+terms** match. At return 27, native count **11,237** versus anchored **11,170**
+first changes the returned objective/gradient; later trajectories diverge.
+Nine dynamic same-coordinate count changes explain their objective jumps within
+**6.67e-16**. Fixed has no count-changing same-coordinate repeat: the corresponding
+jump maximum is **null**, not a measured zero. Saved gradient norms/selected atom
+components are checked; unsaved full-vector identity is not asserted.
+
+Original input bytes, 1,151 reflection identities /59 Free-R flags and all HL
+coefficients are exact. The final fmodel amplitude hashes differ by an allowed
+common **F/sigma scale 1.0012296868232102**, verified using the existing
+`metal.fdp.audit_reflections` reader (maximum relative residual **2.22e-16**).
+An initial cold assertion of exact final amplitude hashes correctly refused;
+using the established scale-aware reader resolves the scope distinction without
+rerunning refinement. Native summaries/monitors retain dynamic normalization.
+Both native executions use Phenix **2.2.1-6174**; owned launcher durations are
+**544.17 /715.37 s**, distinct from inner refinement timing. Cold review preserves
+67 dynamic /67 fixed /65 A71 baseline files and mtimes.
+
+Exact cold commands:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B /private/tmp/willow-c396-review.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B /private/tmp/willow-a85-review.py
+```
+
+Both reviewers block subprocess creation. Retained runners under the NASolve
+anchor are `branch-artifacts/willow/runners/c396-eligibility-review-2026-11-18.py`
+and `branch-artifacts/willow/runners/a85-pair-cold-review-2026-11-18.py`.
+Their review receipts have SHA
+`1d04f09ba8935905a8aa128680113839aebf52638d72de616d2863f87a19645c`
+and `f8d749da733cfbaaf6fe7aff9eec6d63e2884ecba5ce5b20b2e8f24338f4d7fa`.
+The A85 receipt's selector wording was corrected before sealing; numerical audit
+results are unchanged. All seven source-review/receipt/runner files are indexed
+in the separate **14,041-byte** archive
+`NASolve/branch-artifacts/willow/w136-separate-diagnostic-audits-2026-11-18.tar.gz`,
+SHA `f31128093a52331f66392b29ee536b7f6639d58b646a41ad695fa2cab37c7238`.
+The archive excludes raw native coordinates, reflections and maps and is not a
+portable campaign. No supported API/schema migration or ordinary behavior change.
+
+**Next:** use these diagnostics to specify observations, not to install their
+private policies. Preserve the old ten-iteration protocol while qualifying the
+separate longer canonical native-core/zero-addition/full-recipe control. Standalone
+bending remains unnormalized; native refinement's count history must be observed
+without extra energy/cache queries. Physical geometry, healthy/wrong-contact B10
+controls, density calibration, general bending and Pine recuts remain open.
