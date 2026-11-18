@@ -19,6 +19,9 @@ entries are reconstructed from repository history.
 
 ### W144 — Bind saved density to the inspected frame
 
+- Close the separate C406 source gate: 12,043 tests +293 subtests pass, with
+  two expected native opt-in skips; preserve old-map-owner compatibility and
+  archive receipts before retiring only owned source/test scratch.
 - Verify the real ordinary checkpoint/diagnostic map join, inherited-map labels,
   relocation and rejection of substituted bytes or changed observations.
 - Measure symmetry-image interpolation differences and compose existing complete

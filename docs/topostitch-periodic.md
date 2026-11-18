@@ -8254,20 +8254,40 @@ science and receipts remain excluded from Git.
 ### Shared C406 qualification
 
 Rowan's explicit declared-site observation candidate
-`589659201a15b4284e93e2c4dcfc47cdefbdcb64` is undergoing one unfiltered full suite
-in an isolated clean checkout, with exact NARestraints
-`a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691`, the same qualified environment as C404
-and a fresh owned `--basetemp`. No full PASS is claimed until completion. This
-is separate from W144's map/frame science and does not change sampling policy.
+`589659201a15b4284e93e2c4dcfc47cdefbdcb64` passes the complete unfiltered source
+suite: **12,043 tests +293 subtests**, two existing native opt-in collection
+skips, in **3,104.30 s**. All **1,417 tracked files** remain unchanged;
+source and exact NARestraints `a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691` are clean.
+The stopped process, XML totals and both exact skip identities were independently
+checked. This qualifies the frozen Cedar source, not a combined Willow/Alder
+installation, the browser inspector or scientific repair.
 
-Continuation uses NASolve anchor
-`branch-artifacts/willow/w144-c406-full-suite-2026-11-18/`:
-`plan.json` freezes source, dependency, argv and environment; `process.json` owns
-the process identity; `result.json` and `results.xml` must be checked after
-completion before claiming a pass or starting another full suite. The prepared
-`branch-artifacts/willow/runners/w144-close-c406.py` verifies stopped ownership
-and archives evidence before owned cleanup; `--archive-only` leaves scratch
-under an explicit retirement plan when time is short. Never retire active scratch.
+The existing controller ran Python 3.12.14 / pytest 9.2.0 / Gemmi 0.7.5 /
+NumPy 2.5.5 with `PYTHONDONTWRITEBYTECODE=1` and `PYTHONPATH` set to the
+isolated checkout's `src` plus the explicit NARestraints source. The exact argv,
+environment, source manifest, output and XML are archived. Its pytest command is:
+
+```text
+<qualified-python> -B -m pytest -q -p no:cacheprovider -o addopts= --durations=20 --junitxml <new-results.xml> tests --basetemp <fresh-owned-test-scratch>
+```
+
+NASolve anchor `branch-artifacts/willow/w144-c406-qualification-2026-11-18.tar.gz` retains
+**13 indexed files + manifest**, 254,249 bytes, SHA256
+`738138a9569d76d58b4ae4df905c37fe52d11c9a47e2a25752a0dabb773031b7`. Every indexed member was independently checked.
+
+Owned detached source and test scratch are stopped and retained under `branch-artifacts/willow/w144-c406-retirement-plan-2026-11-18.json` at NASolve anchor. Cleanup is explicitly pending after the evening cutoff; the verified archive is complete. Recheck the recorded inode/device and absent process group before retiring those two roots.
+
+Scientific inputs/runs, qualified installed packages and shared dependencies
+remain.
+No native refinement was run by this source suite; Rowan's separate installed
+and actual native observation checks retain their own scope and evidence.
+
+The source-gate records remain at NASolve anchor
+`branch-artifacts/willow/w144-c406-full-suite-2026-11-18/`.
+The archived closure ran with `--archive-only` and is not an idempotent cleanup
+command: do not rerun it against already-created receipts. The only remaining
+operation is ownership-checked retirement of the two stopped roots in the saved
+plan. Do not repeat the full suite or remove scientific/installed artifacts.
 
 The exact C406 candidate also cold-replays the genuine W138 v8 child through
 existing execution/checkpoint/view owners: native-written model validation,

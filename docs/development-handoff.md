@@ -132,11 +132,15 @@ large-bend repair follow later. No CLI/default activation follows from these doc
   fixtures; all 304 resources match. The initial failure remains archived. After
   verification, 4.48 GB of owned source/test scratch was retired; science and
   installed packages remain. This is software qualification, not repaired geometry.
-- **C404 final shared regression complete:** exact `4bfffbca` passes **12,032
-  tests +293 subtests**, two existing native opt-in skips, in 3,226.56 s. All
-  1,416 tracked files remain unchanged; source/dependency status is clean and
-  the process stopped. The verified archive retains the exact command and XML.
-  This qualifies that source pin, not later Alder changes or the local viewer.
+- **C406 current shared regression complete:** exact `58965920` passes **12,043
+  tests +293 subtests**, two existing native opt-in skips, in 3,104.30 s.
+  All 1,417 tracked files remain unchanged; source/dependency status is clean
+  and the process stopped. The verified archive retains commands/XML and the
+  separate old-v8 map-owner compatibility check. Owned source/test scratch is
+  retained under the explicit retirement plan; cleanup is pending. Scientific
+  runs and installed packages remain. This source gate does
+  not qualify an active branch merge or scientifically accept a model.
+  [Exact gate, archive and scope](topostitch-periodic.md#shared-c406-qualification).
 - **W142 map-owner audit:** nine source files and seven scientific inputs remain
   unchanged. The existing owners and missing generation/frame evidence are now
   mapped explicitly; this is design and cold source inspection, not a new adapter.

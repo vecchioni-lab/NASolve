@@ -438,14 +438,15 @@
         "E_BACKBONE_SAVED_DENSITY",
         "E_SHARED_GRID_SAMPLER",
         "E_SHARED_GATES_MAP_BOUNDARY",
-        "E_MAP_FRAME_COMPOSITION"
+        "E_MAP_FRAME_COMPOSITION",
+        "E_SHARED_C406_COMPATIBILITY"
       ],
       "last_audit": {
         "date": "2026-11-18",
         "code_commit": "0a398d15ee465b12ed44b7e749221e54a8e343a9",
         "human_update": 144,
         "reviewer": "Linden",
-        "scope": "Read-only real-checkpoint and explicit source-frame/sampler composition; no production adapter or scientific acceptance. Separate C406 full gate pending."
+        "scope": "Read-only real-checkpoint and explicit source-frame/sampler composition; no production adapter or scientific acceptance. Separate C406 full source gate and old-v8 compatibility pass; no combined branch or scientific acceptance."
       }
     },
     {
@@ -2745,7 +2746,7 @@
       "code_commit": "0a398d15ee465b12ed44b7e749221e54a8e343a9",
       "reference": "docs/topostitch-periodic.md#w144--bind-saved-density-to-the-inspected-frame",
       "result": "Ordinary refine-002 and diagnostic full PDB bytes match; 8344x16 MTZ numeric entries/NaNs match. Inherited-map relocation and substitution/observation refusals pass. 16416 R3 image samples show up to 0.28 sigma interpolation variation; direct Fourier and existing complete source-frame sampling agree to numerical precision. Hazel independently passes 278 archive/frame/scalar checks without repeating native FFTs.",
-      "limitation": "No maintained adapter, new coefficients, fitting, density threshold, force gradients, generalized origin proof or accepted repair. Existing viewing remains compatible. C406 full gate pending separately; local science excluded from Git.",
+      "limitation": "No maintained adapter, new coefficients, fitting, density threshold, force gradients, generalized origin proof or accepted repair. Existing viewing remains compatible. Separate C406 source qualification is recorded under E_SHARED_C406_COMPATIBILITY; local science excluded from Git.",
       "local_receipts": [
         {
           "anchor": "NASolve",
@@ -2760,6 +2761,25 @@
           "path": "branch-artifacts/Alder/coordination-w144-frame-review-20261118.json",
           "sha256": "65eb426404e6c490f18b99f14348468bfab4c60b5bcb79d13026d6923fee6b28",
           "size": 2000
+        }
+      ]
+    },
+    "E_SHARED_C406_COMPATIBILITY": {
+      "kind": "full_source_and_cold_old_checkpoint_compatibility",
+      "date": "2026-11-18",
+      "human_update": 144,
+      "code_commit": "589659201a15b4284e93e2c4dcfc47cdefbdcb64",
+      "reference": "docs/topostitch-periodic.md#shared-c406-qualification",
+      "result": "12043 tests +293 subtests pass; two expected native opt-in collection skips; 3104.30s. All 1417 tracked files unchanged, source/dependency clean and process stopped. Cold genuine W138 v8 checkpoint/native output/map join remains compatible. Archive verified; owned source/test scratch stopped and retained with cleanup pending.",
+      "limitation": "Frozen Cedar source qualification and old-map continuity only. Separate installed/native and Alder integration evidence retain their scope. No active Willow/Alder merge, new sampling policy, browser qualification or scientific acceptance. Scientific payloads excluded from Git.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w144-c406-qualification-2026-11-18.tar.gz",
+          "sha256": "738138a9569d76d58b4ae4df905c37fe52d11c9a47e2a25752a0dabb773031b7",
+          "size": 254249,
+          "indexed_files": 13,
+          "archive_members": 14
         }
       ]
     }
