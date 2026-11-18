@@ -77,21 +77,39 @@ sampler's self-reported version was blank and is preserved; a separate source-
 hash crossreference records its qualified build provenance. The configured
 five-control sampler explicitly reports Phenix 2.2.1-6174.
 
-Because the longer allowance newly exposes actual real-data line-search errors,
-one passive exact-setting replay is running under a 70-minute cap, recording
-only the five previously chosen trial sequences. It changes no target, force,
-selection or scientific setting and performs no extra live energy evaluation.
-It must preserve exact endpoint, trial decisions and complex map arrays before
-its normalization trace can be interpreted. No repair or new parameter matrix
-is authorized by that observation alone.
+A passive exact-setting replay completed in 2,130.58 s under a 70-minute cap. It preserves exact endpoint fields/PDB, all trial metrics,
+weight choices and stopping outcomes, and both complex map arrays. It records
+1,190 existing evaluator returns from the five previously chosen trial sequences
+only; no target, force, selection or scientific setting
+changes and no extra live energy evaluations occur.
 
-New production work is limited to passive reporting. `weight_selection.py` reads
+One repeated-coordinate event has a changed restraint count and exactly
+identical raw geometric residual/data target. At cycle 1,
+one count change 11168→11140 changes the total target
+by +0.000542860539, accounted for by normalization alone.
+This establishes an objective discontinuity in this real-data replay. It does
+not establish the sole cause of all line-search failures or qualify a repair.
+A second event at cycle 3 changes count 11188→11071,
+with a raw-residual difference of only 2.27e-13 and identical
+data target/gradient; its total target jump is +0.00154078102.
+Both occur at the final evaluator return of selected lower-bound failures.
+The other three selected rounding failures remain unexplained; the final endpoint objective is not
+attributed from these evaluator returns. See `normalization-events.json`.
+
+The compressed trace is 5,975,464 bytes, a bounded one-off
+diagnostic rather than a campaign retention requirement. No normalization patch
+or further parameter matrix follows. The next boundary is shared review of the
+observed numerical mechanism and source-qualified trial geometry, preserving
+the completed controls and their ambiguity before a targeted intervention.
+
+New production work is limited to passive reporting and offline validation. `weight_selection.py` reads
 existing native scorer arrays/masks; `_xyz_native.py` records the bounded receipt
 and `xyz.py` verifies it offline. No extra geometry/target call or covalent filter
 is installed. Scalar selection evidence stays separate from final post-ADP/scale
 R factors and from scientific acceptance. The fixed-weight native qualification
-is exact, including maps; its receipt is 1,990 bytes. Optimized-search qualification also preserves exact model/scientific state and
-both complex map arrays: 84 trial rows occupy 26,680 bytes and reproduce the
+is exact, including maps; its receipt is 1,990 bytes. Optimized-search
+qualification also preserves exact model/scientific state and both complex map
+arrays: 84 trial rows occupy 26,680 bytes and reproduce the
 actual choices in all five cycles. The [subsystem contract](metal-anomalous-doctor.md#native-xyz-weight-selection-evidence)
 records schema and compatibility limits: legacy trials remain readable, new
 additive schema-1 receipts need this reader, and no migration/pruning occurs.
@@ -123,20 +141,22 @@ Private evidence uses the `Alder` artifact anchor:
   100-step control, state/geometry and only-changed-setting audits; helpers `A67_*`.
 - `ft-hg-budget400-20261118-01/`: completed allowance control; `A71_*` audits,
   `comparison.json` and `endpoint-comparison.json` join all five controls.
-- `ft-hg-selected-evaluator-20261118-01/`: pending passive 400-step replay;
-  helpers `A79_*`, five predeclared chosen trials only.
+- `ft-hg-selected-evaluator-20261118-01/`: completed passive 400-step replay;
+  `review.json`, `map-replay.json`, helpers `A79_*`; five predeclared chosen
+  trials only, with exact unchanged-behavior and target-arithmetic audits.
 - `ft-hg-map-selection-20261118-01/` and `ft-hg-map-budget400-20261118-01/`:
   read-only coefficient sampling and matched four-panel figures; helpers `A72_*`,
-  `A74_*`, and `A75_map_version.py`. Draft report remains private until final
-  source/visual checks and publication in the shared ScienceCheckouts folder.
+  `A74_*`, and `A75_map_version.py`. The three figures are included in the
+  validated shared science checkout below.
 
 Native version is **Phenix 2.2.1-6174**. Original passive replay was a complete
 402.74 s execution after dry preflight; forced search completed in 531.74 s.
 Passive public-worker qualification completed in 25.88 s (fixed weights) and
 444.75 s (optimized profile), with exact native model/map comparisons.
 No Coot or anomalous fit was run. Generated inputs, models, maps, traces and failed
-attempts remain local and excluded from Git. The evaluator trace is a one-off
-11.85 MB diagnostic, not a per-trial campaign record. A01 remains open; A02 has
+attempts remain local and excluded from Git. The earlier full short-run trace
+(11.85 MB) and selected long-run trace (5.98 MB) are one-off diagnostics, not
+per-trial campaign retention requirements. A01 remains open; A02 has
 not advanced. Rowan owns shared refinement changes; Linden owns semantic pair
 geometry diagnostics. The shared 17:00 science report is scheduled by Rowan.
 
@@ -156,6 +176,44 @@ terms only. Do not relabel/backfill it or treat unmatched origins as chemistry.
 A fresh complete canonical-pair capture is a later shared integration seam;
 Rowan/Linden retain ownership. The compact seam record is local beside the
 native receipt qualification. This does not change A01's scientific status.
+
+Shared coordination: C392's matched ordinary-PDU replay independently uses the
+same `b992e44f` passive observer. Its cold summary reports exact unchanged native
+state and 48 trials: cycle 1 is a singleton; cycles 2–5 use Rfree fallback with
+zero initially eligible candidates. This establishes the decisions, not their
+chemical cause or the cause of bending. Evidence uses the everyday repository's
+`branch-artifacts` anchor, `cedar/c392-pdu-weight-observation/weight-analysis.json`,
+SHA-256 `19ca0282366470feaa551feb0f1c24084d6bb6909b6bb34aa73ff91a65babb3a`.
+This session reviewed that summary; it did not independently rerun PDU.
+
+Alder's private trial-coordinate/static-inventory audit is not a fresh native
+proxy-membership/force-state capture per trial. The reporting model can be a
+selected deep copy; A63's preserved failed v1 and corrected v2 already document
+that boundary. Trial-specific semantic ownership remains the shared missing seam.
+Neither preflight inventories nor final-state captures backfill it, and no
+origin reassignment or alternate selector is adopted here.
+
+## Scientific checkout, 2026-11-18
+
+Open the local `ScienceCheckouts/Hazel/2026-11-18_FT-Hg/review.html`. Three
+figures compare geometry, selection/fit and exact matched map slices; one compact
+table reports all five controls with base-only/Hg B, Q and fixed/unfitted f″.
+The report distinguishes the 100-step fit improvement, 400-step line-search
+failures, passive replay findings and held-out human ADP/history limitations.
+Environmental-B previews are labeled unapplied; no f″ fit or checkpoint is
+accepted. Original models/maps are linked rather than duplicated.
+
+All five report files total 958,155 bytes. The three figures
+were visually checked; 53 source hashes, figure hashes and
+19 local report links pass, and published files match the
+private draft byte-for-byte. Validation is local, not a portability claim. The
+previous published checkout is preserved. Shared 17:00 reporting remains with
+the existing scheduled report; no duplicate schedule is created.
+
+Functional source checkpoint: `e3c3f213` (128 focused tests, saved native reader
+re-audit, relocation/negative cases and document checks). The passive native
+worker/observer remains byte-identical to `b992e44f`; this closeout changes
+documentation only. Generated scientific artifacts remain excluded from Git.
 
 ## Scientific checkout, 2026-11-17
 

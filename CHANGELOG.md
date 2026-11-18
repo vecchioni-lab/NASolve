@@ -30,6 +30,9 @@ entries are reconstructed from repository history.
 - Compare forced-search and 100/400-step controls, keeping selected versus
   unselected optimizer failures, matched local maps, B/Q/f″ and held-out human
   reference limitations explicit. Longer allowance is not monotonic improvement.
+- Record the exact passive selected-trial replay and its numerical limits; publish
+  a small local visual checkout with linked model/map provenance. No repair or
+  scientific acceptance is implied.
 - The scientific controls change no production refinement policy or pruning;
   generated scientific evidence remains local. The separate passive receipt
   addition is described above.

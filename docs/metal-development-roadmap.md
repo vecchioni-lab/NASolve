@@ -36,8 +36,10 @@ reach their 25-step caps. A matched 100-step allowance recovers Rwork/Rfree to
 the limit and the attachment remains long. A 400-step allowance improves local
 geometry but worsens Rwork/Rfree to 0.31129/0.30495; all 97 trials, including
 all five chosen fits, return line-search errors. Saved maps retain strong
-negative Hg residuals before environmental-B preparation. One passive matched
-replay is recording the chosen trials to test the actual failure mechanism. These are distinct from the earlier
+negative Hg residuals before environmental-B preparation. The exact passive
+replay demonstrates a normalization-dependent target change at identical
+coordinates, with unchanged data terms and geometry identical within rounding. A repair is
+not yet qualified; this does not close A01. These are distinct from the earlier
 pooled-selector experiment; failed unselected trials remain explicit.
 Production changes are limited to compact passive weight-selection reporting;
 no selector policy, chemical repair or accepted f″ parent follows.
