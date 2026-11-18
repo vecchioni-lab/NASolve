@@ -114072,6 +114072,29 @@
       "local_helper_syntax_checked": 7,
       "diff_check": "PASS",
       "runtime_changes": false
+    },
+    "local_definition_preservation": {
+      "status": "PASS",
+      "native_execution": false,
+      "source_sha256": [
+        "730b8d73f894d4c973efec0dd3a1a9ea02d0288b64d5dc19691de7df60054545",
+        "3c1fe1510d61d261683c98172535e7cec5a78927b073dfa7532eaab165bd936e"
+      ],
+      "captured_local_proxy_definitions_exact": true,
+      "captured_monomer_mappings_exact": true,
+      "scope": "All captured intra-site PDU proxies and whole-model family counts, not complete whole-model proxy identity",
+      "plane_membership": "Same completed ring plane including C5A, as qualified by C206 and later owned plane support; no claim that C5B/C5M omission is a new bug.",
+      "prior_work": [
+        "C206 trigonal attachment-plane completion",
+        "C309 corrected local geometry-force diagnosis",
+        "C314 logged-final-scattering data derivatives",
+        "C316-C319 actual final native ADP/writer synchronization"
+      ],
+      "limits": [
+        "Cold saved-data comparison only; no new energy/gradient calculation or optimizer attribution.",
+        "Do not repeat the historical force/scaling diagnosis without a changed state-specific question."
+      ],
+      "receipt_sha256": "4b656b2de965bb338ac5d8c2cccdad62f159c024ccac7a2984c15e1b8087e5e5"
     }
   }
 }

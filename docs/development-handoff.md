@@ -56,6 +56,11 @@ remain in the existing ledger; private models, maps and diagnostic traces stay l
    and cache history; do not refresh the live manager just to observe it. Preserve
    local chemical geometry and diffraction outcomes separately. Neither C396 nor
    A85 licenses a new selector, normalized objective or longer-run cure.
+   Reuse the already completed PDU C309 geometry and C314 data opening-direction
+   analyses; C316–C319 closed final native ADP/writer synchronization. Do not
+   mistake a cold PDB reconstruction for the optimizer's actual scattering state.
+   C396 preserves every captured local PDU proxy/definition, including C5A plane
+   completion; the observed bend is not evidence that those restraints disappeared.
 2. Qualify a longer fixed-weight coordinate control only with predeclared scope and
    matched native-core / zero-added / complete-recipe starts. Preserve old 1–10-step
    policies; do not widen them in place. Reuse actual target/count observations:
