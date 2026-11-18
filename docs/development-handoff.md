@@ -1,7 +1,8 @@
 # NASolve development handoff — Willow
 
 Updated **2026-11-18**. **W128 ordinary AutoRefine integration is audited.
-Full C386 regression is running; provider-statistics qualification is next.** This is Willow's
+W129 confirms provider-dependent geometry summaries; full C386 regression is
+running with failures to diagnose.** This is Willow's
 handoff, not the project-wide status of Pine, Cedar or Alder. Willow's latest
 periodic/factory source is W118; counted execution/continuation is committed on
 Cedar through C386. These audits are not a whole-branch merge or supported release.
@@ -18,6 +19,7 @@ unqualified.** S04/S05/S06 and P01/P02 remain partial. The
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
+| W129 geometry summaries | Same complete intended forces/coordinates, but native angle RMS changes by 0.000616° across provider splits | Actual selector effects, semantic geometry reporting and qualified weighting policy |
 | W128 / C386 ordinary owner | Explicit bounded Python request reuses AutoRefine, preserves original intent/frame and validates the written model before publication | Broader scientific protocols, CLI/Doctor activation and repair efficacy |
 | W127 / C385 publication | Explicit v6 joins actual completed native writer bytes/state to the usable checkpoint; old payloads remain exact | Historical v5 has no retroactive output proof |
 | W126 / C382–C384 continuation | Validated registered parent, preserved original intent, fresh rebind/preflight/admission; existing C278 namespace-only restraint copies | Actual ordinary descendant demonstration, Doctor execution and broader protocol/chemistry |
@@ -32,14 +34,16 @@ not another work queue; do not repeat them because this handoff is shorter.
 
 ## Next bounded work
 
-1. Finish the unfiltered full Cedar suite on frozen C386
+1. Finish and diagnose the unfiltered full Cedar suite (failure markers already
+   observed) on frozen C386
    `d5c2fb7be944aae5e048903e1de495c67baa4b05`; record scope, result and any
    subsequent focused changes separately. This is not a whole-branch merge.
-2. Make one passive comparison of actual geometry statistics under equivalent
-   native/additive provider splits, using the existing W110/W111 full/partial
-   constructions. Preserve coordinates and intended forces; no optimizer or
-   weight sweep. Hazel's pooled NA-pair/covalent statistics motivate this gate,
-   but do not prove provider-dependent selection or a better refinement policy.
+2. W129's passive full/partial comparison is complete: do not repeat it. Coordinate
+   semantic geometry readback with Cedar/Hazel before qualifying automatic weights.
+   Native summaries depend on provider placement even with equivalent complete
+   forces; no changed actual weight choice is established by W129. Preserve
+   legitimate covalent/terminal edits sharing the native edits origin. Hazel's
+   separate selector experiment owns actual weighting decisions and tradeoffs.
 3. Keep the supported ordinary protocol explicit: one all-site XYZ cycle,
    fixed unit weights, ten iterations, one process and seed 1. `counted_frame="recipe"`
    is an explicit, recorded choice; do not generalize it into model-cell preference.
@@ -57,6 +61,10 @@ large-bend repair follow later. No CLI/default activation follows from these doc
 
 ## Validation and scientific interpretation
 
+- **W129:** one passive Phenix 2.2.1-6174 process, 20.68s; complete target/forces
+  agree while native default angle RMS changes 2.30831009→2.30892601° with no motion.
+  Cold source/archive/variance and direct-angle audit passes; no optimizer, selector
+  or scientific acceptance. [Exact W129 evidence](topostitch-periodic.md#w129--measure-provider-dependent-geometry-summaries).
 - **W128 / C386:** 345 relocated installed tests +13 subtests; independent
   299-file committed-source equality and 32 exact ordinary PHIL/command comparisons.
   One complete Phenix 2.2.1-6174 ordinary-owner control reproduces the C385 PDB;

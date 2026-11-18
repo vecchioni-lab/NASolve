@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W129 — Separate force equivalence from geometry-summary equivalence
+
+- Record a passive native comparison: equivalent complete intended forces at
+  unchanged coordinates can still produce different native angle RMS when a
+  restraint moves between native and additive providers.
+- Preserve the tiny measured effect, unchanged standard-origin statistics and
+  lack of any actual weight-selection or repair claim. Future classification must
+  use semantic ownership rather than dropping every user-edited restraint.
+- Willow docs/evidence only; no new optimizer, weighting policy or scientific inputs
+  are committed. Full C386 validation continues as a separate gate.
+
 ### W128 — Audit ordinary counted-pair refinement
 
 - Record Cedar C386's explicit bounded Python API through ordinary AutoRefine,

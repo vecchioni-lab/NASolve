@@ -441,7 +441,8 @@
         "W125 audits C381 durable explicit counted admission and same-phase native consumption: exact successful control, truthful refused/failure outcomes, immutable compact preparation, relocated cold reads,347 installed tests+13subtests and independent committed298-file/frozen24-file checks. Ordinary counted descendants refuse silent intent loss; positive registered continuation and physical repair remain open.",
         "W126 audits C382 registered same-intent continuation and C383 inherited input-adaptation proof: two complete unselected REVIEW descendants, exact parent-output and original-intent joins, focused installed and committed-source checks, relocated cold reads. Contact/plane readback improves partly but R stats worsen; no matched continuation efficacy claim. Follow-up final-writer/checkpoint substitution gap remains pending before ordinary-owner activation.",
         "W127 audits explicit v6 native-written-model checkpoint binding: completed original writer bytes/state are required; wrong checksum-valid model refuses. Actual cycle reproduces C382 exactly, current/historical payloads and relocated cold reads verify, old proof remains narrower. No scientific or ordinary-owner activation claim.",
-        "W128 audits C386 explicit counted-pair execution through the existing ordinary AutoRefine owner, preserving original intent, declared frame and actual writer identity before publication. Installed/default/native/relocation controls pass; result remains unselected REVIEW and exactly reproduces C385, with no new efficacy claim."
+        "W128 audits C386 explicit counted-pair execution through the existing ordinary AutoRefine owner, preserving original intent, declared frame and actual writer identity before publication. Installed/default/native/relocation controls pass; result remains unselected REVIEW and exactly reproduces C385, with no new efficacy claim.",
+        "W129 measures provider-dependent actual native geometry summaries at identical coordinates and complete intended forces: moving one angle/plane/parallelity changes pooled angle RMS by0.000616deg; standard-origin statistics remain exact. No selector decision or scientific benefit claimed."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -450,7 +451,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Finish isolated unfiltered C386 full regression. Then compare actual native geometry statistics under equivalent native/additive provider splits at frozen coordinates before expanding automatic weights; objective/gradient normalization alone is insufficient. Reuse W110/W111 constructions and existing owners, no new optimizer or sweep. Keep explicit fixed-unit one-cycle protocol, original intent/frame/data/Free-R and unselected REVIEW. Broader phases, chemistry/terminal additions, periodic exclusions and matched B10 efficacy remain separate; W122 stays planned, density/B09 later.",
+      "next_action": "Finish and diagnose isolated unfiltered C386 full regression. W129 frozen provider-statistics comparison is complete; coordinate semantic geometry readback and any weighting policy with Cedar/Hazel, retaining legitimate covalent/terminal edits rather than excluding all origin4 terms. Actual selector decisions require separate evidence. Existing fixed-unit protocol remains unchanged; broaden phases/chemistry/exclusions only through explicit qualification and matched B10 controls. W122 stays planned; density/B09 later.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -487,14 +488,15 @@
         "E_DURABLE_COUNTED_ADMISSION",
         "E_REGISTERED_COUNTED_CONTINUATION",
         "E_NATIVE_WRITTEN_MODEL_BINDING",
-        "E_ORDINARY_COUNTED_OWNER"
+        "E_ORDINARY_COUNTED_OWNER",
+        "E_PROVIDER_GEOMETRY_SUMMARIES"
       ],
       "last_audit": {
         "date": "2026-11-18",
         "code_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05",
-        "human_update": 128,
+        "human_update": 129,
         "reviewer": "Linden",
-        "scope": "Independent installed/default/native/relocation audit of the bounded ordinary owner; full Cedar suite running separately. No physical or user-facing gate closure."
+        "scope": "Passive native summary comparison with complete intended force equivalence and independent cold audit; no actual weight selection or physical acceptance."
       }
     },
     {
@@ -2472,6 +2474,30 @@
           "all_members_verified": true
         }
       ]
+    },
+    "E_PROVIDER_GEOMETRY_SUMMARIES": {
+      "kind": "passive_native_provider_geometry_statistics",
+      "code_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05",
+      "human_update": 129,
+      "reference": "docs/topostitch-periodic.md#w129--measure-provider-dependent-geometry-summaries",
+      "result": "One20.68s Phenix2.2.1-6174 passive full/partial comparison preserves coordinates, force sites and complete normalized score0.6756064118611885; target/gradient errors9.09e-13/4.55e-13. Native default angle RMS2.30831009\u21922.30892601deg(count1519\u21921518) while origin0 statistics remain identical. Independent304-software/5-input audit, pooled variance and direct removed-angle reconstruction pass; native proxies/kernel restored.",
+      "limitation": "One retained reference, not accepted healthy geometry. No optimization, weight search, actual selector-decision change, new active runtime or repair benefit. Origin4 is edits, not blanket noncovalent classification. Initial optional-niceness setup refused before native launch and remains preserved. Production source/policies unchanged; C386 full regression separate and still running with failures pending traces.",
+      "runtime_pins": {
+        "cedar_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05",
+        "upstream_willow_commit": "c08f337024f8901c583c0988f652e9a1c3156a49",
+        "native_plan_sha256": "a14b2ad32e7eaa3a6270af1e9fbb69cbb3f965bdfbd6ac54b685dd50878bbd06",
+        "native_result_sha256": "9fb272796f99837f2a63bc4648521776eb3c6e415700b61ffc564a48a1e546ad"
+      },
+      "local_receipts": [
+        {
+          "repository_anchor": "everyday NASolve checkout",
+          "relative_path": "branch-artifacts/willow/w129-provider-statistics-2026-11-18.tar.gz",
+          "sha256": "253870ec10b63e3ccc767044bbe156c53b61f9e5e39f1892f00983c622e76072",
+          "bytes": 35842,
+          "indexed_files": 11,
+          "all_members_verified": true
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -2633,8 +2659,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 128,
-    "next": 129,
+    "current": 129,
+    "next": 130,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -3210,6 +3236,12 @@
       {
         "number": 128,
         "title": "Carry explicit pair restraints through ordinary AutoRefine",
+        "state": "RECORDED",
+        "code_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05"
+      },
+      {
+        "number": 129,
+        "title": "Measure provider-dependent geometry summaries",
         "state": "RECORDED",
         "code_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05"
       }

@@ -6765,3 +6765,78 @@ selector is a separate, initially untested hypothesis: first compare actual nati
 statistics at frozen coordinates with existing full/partial recipes, without an
 optimizer or weight sweep. Broader phases, exclusions, density-aware repair and
 matched independent-structure efficacy remain open.
+
+
+### W129 — Measure provider-dependent geometry summaries
+
+The installed native XYZ-weight summary reads `model.geometry_statistics()` bond
+and angle RMS. Provider-independent energies and gradients therefore do not, by
+themselves, prove provider-independent weight-selection inputs. W129 tests that
+specific distinction on **one retained W110 reference model**. The fixture's old
+`healthy` label does not imply accepted chemical geometry.
+
+One passive **Phenix 2.2.1-6174** process, **20.68s**, compares complete native core
+coverage with the existing partial-pair construction: move one angle, one plane
+and one parallelity term to the declared additive subset. Coordinates, fractional
+force sites, intended terms and shell exclusions stay fixed. The existing compiler
+and native energy API reconstruct the complete score/forces; no active contribution
+facade, optimizer, weight search or model output is introduced. Native requested
+coverage changes **107→104**, additive coverage **17→20**, total count stays
+**11,396**, and complete normalized target stays **0.6756064118611885**. Raw target
+and full-gradient differences are only **9.09e-13 /4.55e-13**, within the existing
+W110 arithmetic tolerances.
+
+| Actual native summary | Complete core | Partial pair |
+| --- | ---: | ---: |
+| Default bond RMS /count | 0.02638705 Å /987 | identical |
+| Default angle RMS /count | 2.30831009° /1519 | 2.30892601° /1518 |
+| Standard-origin 0 bond RMS /count | 0.01328101 Å /956 | identical |
+| Standard-origin 0 angle RMS /count | 2.32419589° /1467 | identical |
+| Origin 4 edited bond RMS /count | 0.12934085 Å /31 | identical |
+| Origin 4 edited angle RMS /count | 1.80337955° /52 | 1.81552098° /51 |
+
+The default angle statistic changes by **0.000615924° without moving any atoms**.
+This is a small bookkeeping effect, not a structural improvement or a demonstrated
+different weight choice. The native `Auto` origin filter includes origin 4,
+**edits**, which contains these NA-pair terms. It must not be treated as a universal
+noncovalent label: legitimate covalent and terminal-phosphate edits may share it.
+Future separation must use existing semantic request/coverage ownership, not
+blanket exclusion of edited restraints. The standard-origin angle RMS remains
+above 2°; separating soft pair terms does not establish good overall geometry.
+
+Independent cold audit verifies **304 software files /5 archived inputs**, pooled
+RMS arithmetic, exact restoration of native proxies/kernel and unchanged source
+and force coordinates. Direct PDB arithmetic gives the removed angle
+**117.205637532265°**, ideal **116.2°**; its **1.005637532265°** deviation accounts
+for the entire pooled variance change. No second native run is used for this audit.
+The first setup attempt failed on an optional OS niceness operation before native
+launch. Its receipt/runner remain retained; a fresh attempt omitted that scheduling
+request and used the same frozen scientific probe.
+
+Source/package pin: Cedar C386 `d5c2fb7be944aae5e048903e1de495c67baa4b05`, including
+the W118 library. Native plan SHA
+`a14b2ad32e7eaa3a6270af1e9fbb69cbb3f965bdfbd6ac54b685dd50878bbd06`;
+result SHA `9fb272796f99837f2a63bc4648521776eb3c6e415700b61ffc564a48a1e546ad`.
+The exact source trace includes the installed `xyz_reciprocal_space.summary`,
+`model.geometry_statistics`, statistics and origin-filter implementations; no
+general claim about every Phenix version is made.
+
+Historical launch: with `PYTHONDONTWRITEBYTECODE=1`, the existing controller Python
+`/private/tmp/willow-w94-pivot/env/bin/python` runs the repository-anchored
+`branch-artifacts/willow/runners/w129-run-provider-statistics.py` with explicit
+plan `/private/tmp/willow-w129-provider-statistics/plan.json` and `attempt-002`.
+The existing process owner bounds native execution to 300s and one numerical
+thread; `audit.py` in that local task directory performs cold review. Local archive,
+**everyday NASolve repository** anchor:
+`branch-artifacts/willow/w129-provider-statistics-2026-11-18.tar.gz`, SHA
+`253870ec10b63e3ccc767044bbe156c53b61f9e5e39f1892f00983c622e76072`, **35,842
+bytes /11 indexed files**, all verified. It references the existing checked W110
+input archive rather than duplicating scientific inputs. It is forensic evidence,
+not a portable/resumable campaign.
+
+Willow production code and refinement policies are unchanged. The C386 full suite
+continues separately and has reported failures pending complete traces. Next
+resolve those failures, coordinate semantic geometry readback with Cedar/Hazel,
+and qualify any automatic-weighting policy separately. Do not repeat this frozen
+comparison or manufacture an optimizer to avoid that decision. S06 stays partial;
+matched efficacy, density, broader protocols and W122 activation remain open.

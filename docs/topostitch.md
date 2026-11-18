@@ -151,8 +151,12 @@ it is not a claim that the user-facing W122 option or Doctor integration is read
 Before automatic weights, compare the actual geometry statistics used to select
 them across equivalent native/additive provider splits. Provider-independent
 objective normalization alone cannot establish provider-independent selection.
-Keep covalent, NA-pair and metal geometry distinct in scientific readback. Start
-with frozen-state comparisons using existing owners, not a new optimizer.
+Keep covalent, NA-pair and metal geometry distinct in scientific readback. W129
+now measures that summary dependence in one frozen-state comparison,
+without an actual weight decision. Use semantic coverage to separate geometry;
+origin 4 edits can also contain legitimate covalent/terminal protections. Coordinate
+selector policy with Cedar/Hazel; do not repeat the passive comparison or add a
+new optimizer.
 
 C381–C385 now qualify explicit saved admission, registered same-intent
 continuation, existing C278 PHIL namespace copies and v6 native-written-model
