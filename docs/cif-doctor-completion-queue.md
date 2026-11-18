@@ -212,25 +212,37 @@ C401 now supplies genuine fresh ordinary preparation: AutoMR/Phaser, Coot/NAR,
 new source/plane generation, automatic bond discovery, checked ReadySet and initial
 REVIEW publication all complete. Model, ordered PHIL and corrected PDU dictionary
 reproduce C327's earlier diagnostic inputs without borrowing its checkpoint authority.
-The ordinary refinement descendant is next; this is not new shape improvement,
-modified-crystal validation or Q06 survival acceptance.
+C403 now completes that genuine ordinary refinement child, preserving the parent
+and current selection. Its actual native state, definitions/proxies, final atom
+inventory and reflection arrays reproduce C338 exactly; chemical REVIEW remains.
+This closes ordinary integration, not shape improvement, modified-crystal validation
+or Q06 survival acceptance. Do not rerun that matched baseline.
 Do not repeat these baselines or confuse A43's post-weight-selection direct evidence
 with the actual C397 state. Historical 1–10-step policy bytes remain unchanged.
 A universal chemical classifier need not block every predeclared experiment, but unknown terms remain
 unknown and improved scalar scores do not establish repaired chemistry.
 
 
-**Ordinary-publication storage holdover (source-confirmed during C401).**
-Automatic bond discovery selects the existing v4 artifact policy, but
-`_retire_new_preparation` currently invokes automatic cleanup only for v3.
-The existing archive/retirement owner already supports v4; C333 separately proved
-manual retirement and moved readback. After the active preparation checkpoint,
-admit only the explicit v3/v4 publication cases through that owner. Keep older /
-unknown layouts, historical publication and cold reads unchanged. Cover v4 reaching
-the owner, v3 behavior, failed/uncertain retention, cleanup-error exact-result checks
-and archived relocation. Measure actual working/public bytes before and after;
-this is a small integration gap, not a new storage system or a chemistry repair.
-No runtime change is made during the live C401 attempt.
+**Ordinary-publication storage gap closed in C402 (full qualification pending).**
+New v3/v4 publications now call the existing archive/retirement owner; older and
+unknown layouts, historical publication and cold reads retain their contracts.
+The v4 regression fails before the change; 162 focused checks pass, including
+optional-error exact-result checks and real interrupted retirement/moved readback.
+Explicit existing-owner compaction of the completed C401 preparation reduces its
+whole root from 250,794,627 to 53,055,067 bytes (1,048 to 245 files). All eight public
+model/PHIL/CIF paths, bytes and timestamps remain exact. Archived result and ordinary
+registry cold reads pass. This is separate explicit retirement of a historical
+publication; automatic new-publication integration is covered by the regressions.
+No new storage owner, schema, chemistry rule or 100-native-dataset capacity claim.
+C402 source is `23c1f411`; Linden owns its one pinned installed/full gate. C403 has
+completed the exact C401 parent’s new unselected ordinary refinement child.
+
+**Next bounded report:** C206 calls for local trigonal/exocyclic geometry as well
+as triple-axis survival. Reuse C208's source selector/Cartesian measurement and
+C338's compact actual-manager atoms/planes in an explicit cold reader. Preserve
+historical report/worker contracts, report unsupported scope honestly and add no
+new force, flattening rule or acceptance threshold. The C403 saved observation
+provides actual evidence; no new native run is required for this reporting seam.
 
 Q06 achieved PDU/DF chemistry remains open. Ordinary AutoRefine/Doctor requests
 without explicit counted intent still refuse to lose that ancestry. Original

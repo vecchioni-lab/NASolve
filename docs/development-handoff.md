@@ -1,293 +1,147 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-18, C401 fresh automatic PDU preparation — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. Integrated code **`4f7aeb84`**
-is source/test/packaging-identical to full-tested candidate **`d8656b22`**:
-**12,008 passed, 2 existing native opt-in skips, 293 subtests passed** in 3581.07 s,
-with exact NARestraints `a9264f9e`. All 1,415 candidate tracked files stayed unchanged;
-the test process stopped. C394 log parsing is included. No duplicate full run.
+Updated **2026-11-18 evening, C402 / C403 — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. Runtime candidate **`23c1f411`**
+adds only the narrow publication cleanup fix described below. Its 162 focused checks
+pass; Linden owns independent review and one pinned installed/full qualification.
+The last full-qualified runtime is `4f7aeb84`, identical in source/tests/packaging to
+`d8656b22`: **12,008 passed, 2 existing native opt-in skips, 293 subtests** in
+3581.07 s with NARestraints `a9264f9e`. Do not describe that as a full pass of C402.
 
-## Current checkpoint and next bounded work
+## Current checkpoint
 
-**C400 complete — added pair restraints have a matched native comparison.**
-The explicit Python-only 100-cap control is integrated after focused, installed,
-actual-native and full-suite checks. Older v3–v7 emitted workers remain exact;
-ordinary defaults and CLI/campaign support do not change. Each arm uses the same
-starting state, data, native parameters and existing plane-force correction.
-A genuinely zero-addition recipe reproduces the native restraint set's entire
-actual-return history, stopping receipt, model, scattering state and reflection
-arrays. Passive observation also reproduces the ordinary full-recipe endpoint.
+**C402 — archive successful preparation without losing its usable result.**
+New v3/v4 ordinary publications now share the existing retirement owner. Previously,
+automatic bond preparation used v4 and skipped this cleanup. The v4 regression fails
+before the fix; focused coverage includes old/unknown layouts, optional cleanup
+errors, broken exact-result detection, real interrupted deletion and moved readback.
+Historical publication and inspection do not trigger cleanup. No new schema,
+chemistry rule, executor or storage owner.
 
-The complete recipe adds seventeen terms. On the same fourteen canonical pairs,
-selected G:C plane mismatch improves 27.30→6.30°, selected A:T 8.85→4.59° and
-pair-distance RMS error 0.247→0.200 Å. These are written-PDB measurements with
-declared crystal images; the independent full-precision twelve-core-pair comparison
-is separate. The A:T contacts remain long. Final Rwork worsens 0.2267→0.2271,
-Rfree improves slightly 0.2613→0.2609, and clashscore worsens 23.27→24.77.
-Both final R values remain worse than their common initial 0.2245/0.2599.
+Separately, explicit existing-owner retirement of completed C401 reduces its whole
+root from **250,794,627 to 53,055,067 bytes**, 1,048 to 245 files. All eight public
+model/PHIL/CIF paths, bytes and timestamps remain unchanged. Exact archived result
+and ordinary registry cold reads pass; the retirement worker stopped. This is one
+real preparation, not a 100-dataset capacity claim. The earlier C401/Hazel inventory
+is pre-retirement evidence; the transition is recorded, not hidden.
 
-All arms stop with the lower-bound line-search error: full 73 iterations/82 actual
-returns, native/zero 75/86, below the configured 100 cap. Same-coordinate score
-jumps are accounted for by changed restraint-count denominators with unchanged
-raw geometry, diffraction and weights; this does not prove stopping causality.
-This closes the bounded canonical control matrix, not convergence or Q06 chemistry.
+**C403 complete — the fresh PDU preparation reaches ordinary refinement.**
+The genuine C401 `postmr` REVIEW parent now has an unselected `refine-001` child.
+Five cycles preserve original observations/Free-R, all ordered restraints and D:1
+protection, with no experimental phases. Actual inputs/settings match C338 except
+paths. Both phases reproduce its native state, selected atoms/definitions/proxies
+and correction calls; final whole-model atom inventory and all 3,239 reflection rows
+also match. Rwork/Rfree are 0.2125/0.2265. Triple angles remain 175.4494°/174.4251°,
+so the existing coordinate screen remains REVIEW. This closes ordinary integration,
+not the remaining chemical-survival gate. No repeated native experiment is needed.
 
-The first zero fixture retained stale full-library metadata and correctly refused
-before refinement. A fresh recipe built by the existing owner changes only that
-metadata; the already completed full/native arms are reused. The original failed
-record remains failed. Independent reviews, explicit successful-control joins and
-a byte-verified local archive preserve both attempts. Final clashscore comes from
-PDB REMARKs: the original runner's log-only value 32.28 is INITIAL and remains
-unchanged, with a separate hash-bound correction. No runtime parser fix is needed.
+The worker stopped after 424.92 s; cold readback leaves 283 current and 57 C338 files
+unchanged. Hazel independently verifies 358 bindings/measurements without native
+calls. All 243 original surviving preparation files stay unchanged; only the ordinary
+registry/root report are appropriately updated. A byte-verified 1.28 MB delta archive
+records the new child and depends explicitly on the retained C401 parent archive.
 
-**C401 complete — corrected PDU now has genuine ordinary preparation ancestry.**
-A fresh A:PDU mechanics scaffold passes AutoMR/Phaser, Coot/NARestraints, new source
-and plane-support generation, automatic source/library bond discovery, qualification,
-ReadySet and initial REVIEW publication. No retained C327 snapshot/support was supplied.
-The published model, five ordered PHIL files and corrected PDU dictionary exactly
-reproduce C327's earlier diagnostic inputs. The discovered terminal C5B–C5M single
-bond is 1.470 Å; the distinct C5A≡C5B target remains 1.174 Å. Source-selected C5
-plane coverage is present. This closes fresh preparation/publication, not a new
-shape improvement or refinement survival. The substituted scaffold's observations
-are not claimed to come from a PDU crystal. Original PDU:PDU/B:1 intent stays separate.
+**Next bounded code: actual-final trigonal geometry, using existing evidence.**
+C206 requires local trigonal/exocyclic geometry alongside triple-axis reporting.
+C208 already selects supported centres from source connectivity; its Cartesian
+measurements exist in `cif_plane_geometry`. C338 already captures selected-site
+heavy coordinates and native plane membership at full precision. Ordinary chemical
+readback currently reports only triples. Compose these existing parts into a new
+explicit read-only report, preserving old reports/worker bytes and unsupported scope.
+No plane strengthening, coordinate editing, new acceptance threshold or PDU-name rule.
 
-**Next — carry that exact review result into ordinary refinement.** Preserve its
-real ancestry, full restraints, D:1 protection and original Free-R. Do not recreate
-C303/C327 history or repeat old weight/derivative diagnoses. Existing C338 physics
-remains relevant because the newly prepared chemical inputs reproduce the older
-control. Inspect the exact delivered native chemistry and resulting geometry;
-Q06 useful PDU/DF chemistry and broader protocols remain open. The v4 automatic
-working-copy cleanup holdover is recorded in the single queue; runtime is unchanged.
+## Reuse the existing science
 
-**C397–C399 diagnostic branch is complete.** Actual-state FFT score/force checks
-fail the sampled agreement test while direct calculation agrees; matched fresh
-histories still stop at rounding/iteration cap without repairing sugar–base/metal
-strain. Reuse those receipts rather than repeat derivative, weight or iteration
-sweeps. The exact state, failed attempts and numerical boundaries remain in the ledger.
-
-**C396 complete — changing the geometry screen does not yet repair PDU.**
-A private five-cycle control excludes only source-matched declared pairing from
-Phenix's eligibility means: 51 distances and 84 angles. Six protected terminal
-angles and every unclassified native contribution remain. Complete forces,
-normalization, native thresholds, fallback and ties are unchanged. This is
-“eligibility without declared pairing,” not a covalent-only classifier.
-
-The 40 actual trials retain the same 2,559-term /855-heavy-atom inventory. Cycles
-1/3 are singletons; searches 2/4/5 have 15/9/10 eligible choices. All six recorded preflight
-comparison fields match C395; Linden independently reproduces source assignments, physical
-arithmetic and every decision, with original observations and Free-R preserved.
-Both native phases stopped; complete control 256.41 s. No automatic adoption.
-
-PDU's triple length improves from 1.213226 to 1.179105 Å (target 1.174), but angles
-change from 175.4494°/174.4251° to 174.8943°/176.9231°: one still exceeds the unchanged
-five-degree bend screen. Terminal single length improves 1.49956→1.46532 Å (target
-1.470), while terminal carbon distance from the fitted six-atom ring plane worsens
-0.17481→0.36556 Å. Chi stays −112.59°→−112.70° and all three captured sugar chirality
-signs are preserved. These are descriptive full-native-coordinate measurements,
-not a new acceptance threshold. Final Rwork/Rfree worsen 0.2125/0.2265→0.2277/0.2444.
-The final ordinary pooled geometry is 0.083 Å/1.972°, separate from eligibility means.
-Q06 remains open; no production selector, normalization or scientific criterion changed.
-
-**Reuse the completed evidence, rather than repeat it:**
-
-| Evidence | What it establishes |
+| Evidence | What it establishes; what it does not |
 | --- | --- |
-| C392 / C395 | Original PDU five-cycle behavior and passive observation reproduce exact model, native state, reflection arrays and 1,962 correction calls. All original searches fall back; exact actual trial membership explains that supplied pairing dominates pooled unweighted bond delta², not necessarily energy. |
-| C393 / W134 | Chemical/pair observation coexistence and an ordinary canonical second refinement work within their distinct scopes. Modest pair improvements do not establish chemical or diffraction improvement. Combined ordinary chemistry-descendant coverage is still separate. |
-| C394 | Actual numbered `1_realsrl2` stage no longer hides final log geometry. Only log parsing changed; 64 affected tests +31 subtests and 148 smoke tests +6 subtests pass. Native worker bytes remain exact. |
-| C396 | Narrow eligibility intervention changes actual choices, improves some local lengths, but worsens other geometry and diffraction agreement. Independent cold review passes; scientific result remains REVIEW. |
-| Hazel A79 / A85 | A79 finds two same-coordinate normalization jumps. A85's private fixed-denominator intervention removes nine lower-bound line-search errors but leaves rounding/iteration-limit stops; slightly improved R values coexist with worse DF attachment/metal angle. No production remedy or converged model. |
+| C401 | Fresh AutoMR/Phaser → Coot/NARestraints → new source/plane generation → automatic bond discovery/repair → ReadySet → ordinary initial REVIEW publication. No borrowed C327 checkpoint authority. Published model, five PHILs and two dictionaries reproduce earlier corrected inputs. Preparation is not refinement survival. |
+| C329 / C338 / C392 | Corrected PDU targets reach actual Phenix; the terminal C5B–C5M single target is 1.470 Å and C5A≡C5B remains 1.174 Å. Five-cycle PDU still bends. C392's passive weight observer exactly reproduces model/native state/maps and 1,962 correction calls. Do not repeat delivery or weight sweeps. |
+| C395 / C396 | Declared pairing dominates pooled unweighted bond delta², not necessarily energy. Excluding only declared pairing from eligibility changes choices but does not repair chemistry: some lengths improve while terminal plane offset and diffraction agreement worsen. No production selector or threshold change. |
+| C397–C399 / Hazel A85 | Actual-state FFT score/force mismatch is isolated; direct calculation agrees locally. Matched fresh histories still stop at rounding/iteration bounds without repairing sugar–base/metal strain. These diagnostics are complete; do not restart them without a new hypothesis. |
+| C400 / Willow W137–W139 | Explicit 100-cap control and matched native/zero/full pair mechanics are qualified. Zero reproduces native history/model/reflections; passive full reproduces ordinary full. All arms share the existing plane-force correction. Seventeen added terms improve pair geometry, but all stop with lower-bound line-search errors before the cap. Not convergence or modified-residue acceptance. |
 
-Exact commands, source identities, failed attempts, validation and archived evidence
-remain in the existing ledger; private models, maps and diagnostic traces stay local.
+C400's same-fourteen-pair written-model comparison gives selected G:C plane mismatch
+27.30→6.30°, A:T 8.85→4.59° and pair-distance RMS 0.247→0.200 Å. The A:T contacts
+remain long. Final Rwork/Rfree are 0.2267/0.2613 for native/zero and 0.2271/0.2609
+for full. Final clashscores are 23.27 and 24.77; the old runner's 32.28 was initial,
+with a separate immutable amendment. Small Rfree/clashscore changes are context,
+not standalone rejection gates. Same-coordinate denominator changes explain scalar
+jumps, not the complete cause of stopping. Full-precision twelve-core-pair results
+remain distinct from the fourteen-pair rounded-PDB comparison.
 
-**Next bounded work, in order:**
+The A:PDU substituted scaffold is a mechanics control; its observations are not
+claimed to come from a PDU crystal. Original PDU:PDU/B:1 intent remains separate.
+C401's rounded published geometry has terminal single length 1.457987 Å, triple
+1.189433 Å, adjacent angles 176.401°/176.885°, and terminal carbon distance from the
+six-atom ring plane 0.094297 Å. These descriptive starting values are not acceptance.
 
-1. Reuse C397–C399 rather than repeating derivatives or iteration/weight sweeps.
-   Actual-state FFT score/force mismatch is isolated; direct calculation agrees
-   locally and progresses to the declared cap, but neither restart repairs geometry.
-   Native convergence and physical chemistry remain distinct. Do not infer lost
-   PDU restraints: C396 retains the captured C5A plane and local definitions.
-2. C400's explicit longer control and native/zero/full matrix are complete.
-   C401 now supplies genuine fresh automatic preparation. Use its exact REVIEW
-   checkpoint for the ordinary refinement descendant; preserve the original
-   observations, Free-R and end intent. Reuse existing owners.
-3. Close ordinary combined-descendant coverage when that route is needed, using the
-   existing process/checkpoint owners. No parallel recovery engine or repeated
-   copies of frozen inventories. Keep density fitting separately gated on explicit
-   map-generation/work-free/fill policy, not finite coefficient membership alone.
-4. Q06 still requires useful PDU/DF geometry after refinement. Then run the original
-   mixed scaffold with ATL alongside, the held-out modified-pair challenge and the
-   retained sugar/backbone programme. Keep Q15 explanation and final Q16 AutoPhase /
-   combined-source validation / merge review; no automatic merge or wider defaults.
+## Next work, in order
 
-## Completed foundations to reuse
+1. Finish C402's independent full gate (relocated installed checks pass), retain
+   C403's completed ordinary evidence and update the compact science checkout.
+2. Use the resulting actual-manager evidence to identify the remaining chemical
+   defect. Q06 needs useful PDU/DF geometry after refinement and whole-substituent
+   evidence, not merely successful execution or a readable CIF. Reuse existing
+   source-selected geometry/coverage and native observation tools before adding code.
+3. Close any needed combined ordinary descendant coverage through existing owners.
+   Keep wider counted protocols and density-fitting policy separately qualified;
+   finite map coefficients alone do not establish a valid density-fitting policy.
+4. Q07: original mixed scaffold with ATL alongside, then the held-out modified-pair
+   challenge. Retain L-DNA/FANA/L-FANA/L-FDNA/PNA/locked-sugar learning under Q08–Q14.
+   Q15 explains the result. Q16 ends with the AutoPhase compatibility audit,
+   combined-source/full/native gates and merge review. No automatic merge or defaults.
 
-| Work | Result and boundary |
-| --- | --- |
-| C381–C385 | Sealed preflight, original-intent continuation, checked input copies, refusal of missing ancestry and exact written-model proof. Reuse existing attempt/process/archive owners. |
-| C386/C389 | Explicit bounded counted control through ordinary AutoRefine, including newly supplied portable restraint files and checkpoint inheritance. Native results agree; no CLI/default activation. |
-| C387/C394 | Final native step-table reporting; the digit-suffix gap is closed. Pooled geometry is not covalent-only. |
-| C388 | Existing source-selected PDU triple observation coexists with counted forces. On/off controls agree within each provider arrangement; cross-arrangement native states differ despite identical rounded PDBs. Short-control Rwork/Rfree 0.4230/0.8360 is poor. |
-| C390/C391 | Pure W131 pair report plus explicit v7 actual-final-state capture. Same canonical control PDB/full atom state/15 counted evaluations as C386/C389; one separate descriptive energy call. Fourteen pairs, 107 native +17 added requested terms; covalent chemistry unassessed. |
+The [single maintained queue](cif-doctor-completion-queue.md) owns closure criteria.
+Q04/Q05 are complete for their recorded supported route; narrow integration gaps do
+not reopen all ownership foundations. Linden owns Willow/TopoStitch and Hazel owns
+Alder; coordinate before shared-source or native work. Do not duplicate their runs.
 
-C391 installed/relocated panel passes **305 tests +24 subtests**. Nine new integration
-regressions fail against C390; the historical-byte regression already passes. Moved
-cold reports agree; wrong PDB and v7→v6 loss refuse before allocation. All v3–v6
-worker bytes remain exact. Linden W133 independently verifies 303 Git/wheel/installed
-files, actual native/writer/force joins and physical report arithmetic; 77 current
-and 72 baseline files/timestamps stay unchanged. W133 source `1a1db576`. No new
-native fit in that audit. Earlier exact commands/results are retained in the
-[evidence ledger](cif-linked-native-registration-evidence.json), including
-`final_refined_pair_geometry_2026_11_18`; no historical evidence is relabelled.
+## Scientific boundaries to preserve
 
-**Storage and redundancy.** C391's added geometry archive is 15,492 bytes; complete
-matched run trees differ by 33,323 bytes, including other receipt/path differences.
-C396's verified local archive is 3,222,821 bytes for 9,344,431 raw bytes; all originals
-remain. C392's weight receipt is 17,984 bytes; its verified archive is 2,468,484 bytes for
-14,586,919 raw bytes, retaining successful and early failed roots. This is an evidence
-archive, not a portable native-command claim or 100-dataset capacity measurement.
-An audit of 3,965 test definitions finds seven exact-body groups, mostly distinct
-owners/parameters; no accidental imported-test collection. No tests removed without
-demonstrated redundancy. Current build copies still serve historical-reader/native
-qualification and are retained. Unrelated local material and peer work are untouched.
+- **Native ownership:** C381–C391 provide preflight admission, counted-intent
+  continuity, exact written-model proof and compact actual-final pair capture.
+  Existing v3–v7 emitted workers keep their bytes; explicit v8 is separately bound.
+  Missing optional improvement can retain a qualified parent. Unknown process state
+  never authorizes retry, deletion or in-place repair.
+- **PDU:** native planes and targets are present. C338 angles 175.4494°/174.4251°
+  retain REVIEW. Do not flatten the molecule, copy coordinates into targets or
+  strengthen restraints merely to force a pass. Site projections avoid incorrectly
+  treating an isolated reference's OP3 as missing from linked B:4.
+- **DF:** lab DF is 2-thio-dT/A1AAZ. Existing whole-base transport improves C1′–N1
+  construction to 1.49958 Å, but Hazel's matched refinement stretches it to 1.662440 Å
+  at native precision. Good construction is not successful refinement; preserve
+  curated sulfur/iodine protections and the separate metal experiment's authority.
+- **DY:** explicit packaged-source/backbone composition and ordinary construction
+  are connected through C366. The C4–N1T single bond joins two independently rotatable
+  rings; do not impose a common plane. PDU→DT→DY and the reverse preserve the shared
+  scaffold under the explicit deoxy rule. Broader sugar-family placement and DY
+  pairing semantics remain separate; do not invent NARestraints relationships.
+- **Phosphates:** original PDU:PDU B:1 is incoming symmetry continuation with
+  P/OP1/OP2 and no OP3, superseding the earlier free-OH answer. B:7 O3′ is a candidate
+  partner, not confirmed linkage. D:1 terminal protection is separate. Remove OP3
+  only with proven incoming bonding; no blanket removal or invented symmetry angles.
+- **ReadySet:** C323 traced the old 1.607 Å target to upstream RM1/GDIIS output after
+  nonconvergence; ReadySet retained the supplied dictionary. Prefer source-faithful,
+  independently checked repair over repeating the same generation for longer.
 
-The eight-file local science checkout (about 1.2 MB) is
-`ScienceCheckouts/Rowan/2026-11-18/review.html` under the sibling GitHub root. It shows
-fresh automatic PDU preparation, the matched pair-control effect and weight choices, with links to retained
-evidence rather than duplicated raw datasets. It links the existing Linden and
-Hazel checkouts, including independent continuation/full regression and the separate
-DF/metal stopping-event diagnosis and its separately labelled A85 normalization
-follow-up. Signed local continuity notes remain outside
-the product repo.
+## Evidence, storage and reporting
 
-Keep working-frame choice explicit; W115's MTZ/PDB cell precision difference does
-not justify widening tolerances. A launch marker is not proof of process death.
-Preserve failed/unknown attempts, original Free-R and terminal intent. B:1 symmetry
-continuation and D:1 terminal protection are separate scientific declarations.
+Exact commands, revisions, limits and hashes are in the existing
+[evidence ledger](cif-linked-native-registration-evidence.json). Current entries:
+`fresh_automatic_pdu_publication_2026_11_18` (C401)
+and `automatic_bond_publication_retention_2026_11_18` (C402), and
+`fresh_ordinary_pdu_refinement_child_2026_11_18` (C403). Historical worker,
+chemistry and construction entries remain evidence, not a second active queue.
+Models, reflections, logs and archives stay local; compact evidence alone is committed.
 
-## DY integration boundary
+The eight-file science checkout (about 1.2 MB) is
+`ScienceCheckouts/Rowan/2026-11-18/review.html` under the sibling GitHub root. Update it
+with completed effects, reusing original model links and the Linden/Hazel checkouts.
+Do not copy raw datasets to decorate reports. Private continuity and coordination
+notes stay outside the product repository.
 
-C354/C364 own package/backbone composition; C358 plans explicit source/parent
-mutations; C359 selects exact site dictionaries; C362 derives them from canonical
-input/end intent; C363/C365 bind derivation, original chemical source and actual
-prepared-model context. C366 now joins those parts in ordinary PostMR. Reuse them.
-Modified-input canonical seeds have separate C348/C349/C353 proof; forwarding that
-choice through this new ordinary route, automatic public selection and real DY
-pairing semantics still require explicit scope. A covalent control cannot invent
-NARestraints relationships or general modified-sugar support.
-
-**DF construction improves but refinement still stretches it.** C361's existing
-whole-base transport preserves the exact 11-atom scaffold and 838 other atom states,
-with C1′–N1 1.49958 Å rather than curated placement's 1.60172 Å. Hazel's matched five
-cycles retain all declared links/restraints but stretch it to 1.662440 Å at native
-precision (serialized 1.662146 Å). Alder `47e7b333` and C363's ledger bind that result.
-Do not adopt the endpoint or blindly replace curated sulfur/iodine protections.
-
-## Scientific findings and preserved evidence
-
-- **Modified → canonical → modified works explicitly.** C348/C349 demonstrate
-  PDU→DT→DY and DY→DT→PDU through ordinary Coot. All 11 shared scaffold coordinates
-  and unselected heavy coordinates remain exact; final chi differs by <0.02°.
-  C353 carries compact canonical evidence through ordinary lineage/request freezing.
-  Modified-sugar/cross-family placement is outside this deoxy rule.
-- **Keep the two DY rings independently rotatable.** DY is the retained triazole
-  nucleoside, with a direct C4–N1T single bond. C341/C351 test rotation/bending and
-  derivatives; public PIM is a held-out control. C350's graph-based reader correction
-  preserves a single inter-ring bridge. No common ring plane or arbitrary weight
-  increase follows. C346's five-cycle covalent-only DY substitution control preserves
-  source/targets, sugar hand and near-planar rings; it supplies no DY pairing rule
-  or modified-crystal diffraction validation.
-- **PDU refinement is still REVIEW.** C333 delivers the qualified 1.470 Å terminal
-  target through existing owners. C329 achieves 1.481829 Å, but angles
-  175.019°/173.937° and a 0.258 Å plane offset remain. C338's separate actual-manager
-  reporting control also retains bending (175.4494°/174.4251°). Preserve these
-  distinctions; do not rerun identical trials or strengthen restraints to force a pass.
-- **ReadySet provenance matters.** C323 traced the old 1.607 Å target to upstream
-  RM1/GDIIS output after reported nonconvergence; observed ReadySet retained the
-  supplied dictionary without builder calls. Prefer a demonstrably better native
-  source-faithful route when available, not longer identical runs or coordinate-to-target copying.
-- **Phosphate intent is explicit.** Original PDU:PDU B:1 is an incoming symmetry
-  continuation with P/OP1/OP2 and no OP3, superseding the earlier free-OH answer.
-  C295's B:7 O3′ image is a candidate, not confirmed linkage. D:1 terminal phosphate
-  is separately protected; C303's substitution scaffold has separately declared intent.
-  The sanitizer removes only OP3 with a proven incoming bond, not a whole phosphate
-  at a free end. No blanket OP3 deletion or unsupported symmetry-angle inference.
-- **Preserve native identity and historical readers.** C318/C319 synchronize final
-  ADPs from the same native owner. Frozen restoration/C331/C338 helpers, original
-  Free-R, native targets and historical receipts retain their contracts. A missing
-  optional improvement may retain a qualified parent; unknown process ownership
-  never authorizes retry or in-place repair.
-
-Exact controls, commands, hashes and limitations are in the
-[evidence ledger](cif-linked-native-registration-evidence.json). Start with
-`ordinary_frozen_construction_intake_2026_11_17`,
-`projected_construction_source_join_2026_11_17`,
-`composed_acquisition_sources_2026_11_17`,
-`construction_projection_lineage_2026_11_17`,
-`canonical_input_projection_2026_11_17`,
-`df_existing_whole_base_diagnostic_2026_11_17`,
-`construction_component_padding_2026_11_17`,
-`per_site_construction_dictionaries_2026_11_17`,
-`explicit_construction_planning_2026_11_17`,
-`packaged_dy_mixed_context_replay_2026_11_16`,
-`explicit_custom_source_selection_2026_11_16`,
-`canonical_construction_lineage_2026_11_16`,
-`compact_refinement_observation_2026_11_16` and
-`corrected_cif_refinement_survival_2026_11_15`. The full C356-era narrative remains
-[available at its exact Git revision](https://github.com/vecchioni-lab/NASolve/blob/162ffe1d2562eec2759f02546ccf8540317b378b/docs/development-handoff.md);
-[history index](history/README.md#november-16-cedar-handoff-consolidation) records its
-blob/checksum and offline retrieval. Historical next steps are not current instructions.
-
-## Validation and limits
-
-Earlier construction/selection checks (C355–C366) are retained in the exact
-ledger entries above. They qualify their original source/consumer contexts, not
-new runtime policies. Reuse those results unless a changed boundary requires a
-new control; do not repeat broad suites for documentation or unchanged sources.
-
-- Latest unfiltered Cedar run: **C386 / `d5c2fb7b`: 11,873 passed, 46 failed,
-  2 skipped, 281 subtests; 3266.71 s**. W132 resolves all 46 original failures
-  without a product fix or new skip: the exact failed-node rerun with host process
-  permissions gives 45 passed /1 failed (84.71 s); the remaining source-bundle
-  test passes with Git metadata from the byte-identical NARestraints
-  `a9264f9e` source (0.96 s). Original failed full run and diagnostic reruns remain
-  distinct. This is not an uninterrupted full pass or validation of later Cedar.
-  Evidence: ledger `full_c386_regression_resolution_2026_11_18`, Linden W132
-  `5c107fb9`; all 1,405 source files unchanged, owners stopped. Last uninterrupted
-  Cedar full pass remains C220 `583d30df` (9,178 +276 subtests). W112/C366's
-  separate temporary composition passed 12,138 +284 subtests /1 skipped; it is
-  not a branch merge or current-source validation. Final combined source needs
-  its own full/native/relocation checks.
-- Recorded native versions: **Phenix 2.2.1-6174** (dispatcher 2.2.1), **Coot 1.3.3**.
-  Package references and source/recipe qualification do not imply universal support.
-  Formal-charge readback remains unsupported where reported; Q06 geometry is open.
-- Q04/Q05 acceptance is the supported explicit route through **C285 / `d5996bc4`**.
-  Defaults, historical migration and 100-native-dataset capacity are not qualified.
-  Q07–Q14 retain combined controls, L-DNA/FANA/L-FANA/L-FDNA, PNA, locked sugars,
-  catalogue coverage, chemical-state distinctions and false alarms. Q15 reporting
-  and Q16 AutoPhase/full integration follow; no automatic merge.
-
-## Queue, compatibility and collaboration
-
-Cedar targets eventual reviewed integration with pine/main. Keep one Cedar line.
-Linden owns Pine/Willow; Hazel owns Alder/metal coordination. Signed coordination
-is authorized; their separate successes are not a combined Cedar qualification.
-The [shared guard contract](architecture.md#live-nonbonded-policy-guard-c331) remains
-explicit and unactivated by documentation. Read each branch's current handoff
-before touching shared interfaces; do not edit another agent's worktree. C368/W114
-qualify direct ownership; C386 adds the bounded explicit ordinary route, while
-broader refinement remains gated and C331 stays callback-free. Hazel owns the DF competing-force diagnostic.
-
-Keep scientific data, native logs, SDK snapshots, local inventories and runners
-outside Git. Use the ignored everyday `branch-artifacts/cedar/` for local receipts
-and `runners/` for generated scripts. Preserve failed runs, immutable attempts,
-checkpoint selections, old environments and unrelated untracked work. The C357
-local audit records the retained legacy worktree and large historical-run footprint;
-retiring scientific runs requires dependency/retention checks, not directory-name
-or age heuristics. Inspect before deletion; never blanket-clean the repository.
-
-Check history before redesigning a solved problem. Finish the active bounded task
-before diverting to a new idea unless explicitly redirected. Update this short
-handoff in place; detailed results belong in the existing ledger and work order
-in the existing queue. Sign peer notes **— Rowan**.
+The earlier audit of 3,965 test definitions found seven exact-body groups with
+mostly distinct owners/parameters, and no accidental imported-test collection.
+Do not delete tests merely because their bodies look similar. Retire only verified
+owned duplicates through the appropriate owner; unrelated local files and peer
+work remain untouched. Archive size does not measure peak temporary disk or memory.

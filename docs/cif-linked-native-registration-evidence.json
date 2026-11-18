@@ -115151,5 +115151,442 @@
       "total_bytes": 1167486,
       "links_checked": 42
     }
+  },
+  "automatic_bond_publication_retention_2026_11_18": {
+    "milestone": "C402",
+    "status": "FOCUSED_AND_EXISTING_OWNER_NATIVE_EVIDENCE_PASS_FULL_GATE_PENDING",
+    "author": "Rowan",
+    "source_commit": "23c1f411f29501da351effa77e20dda707819468",
+    "before": "Ordinary publication invokes supported retirement only for v3, leaving automatic-bond v4 working duplicates unpacked.",
+    "after": "Explicit v3/v4 allowlist delegates to existing archive/retirement owner after new publication; old/unknown policies and historical reads/publication unchanged.",
+    "changed_files": [
+      "src/nasolve/cif_ordinary_postmr.py",
+      "tests/test_cif_preparation_retention.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-human-overview.md"
+    ],
+    "schemas": "None; existing v3/v4 and retention records unchanged.",
+    "validation": {
+      "before": "One v4 policy-dispatch regression failed: archive owner was never called (1 failed, 22 deselected).",
+      "before_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:/private/tmp/willow-w132-full-regression/narestraints /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider tests/test_cif_preparation_retention.py -k 'new_publication_only and v4'",
+      "after_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:/private/tmp/willow-w132-full-regression/narestraints /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider tests/test_cif_preparation_retention.py tests/test_cif_attempt_retention.py tests/test_cif_automatic_bond_requests.py tests/test_cif_postmr_publication.py tests/test_postmr_runtime.py",
+      "result": "162 passed",
+      "seconds": 230.52,
+      "scope": "Focused storage, automatic bond request, ordinary publication and PostMR tests; not full regression",
+      "relocation": "Real owner tests cover v3/v4, complete and interrupted removal, moved request with original path absent, unchanged cold reads.",
+      "native_execution": false
+    },
+    "full_regression": {
+      "status": "RUNNING_OR_PENDING",
+      "owner": "Linden",
+      "candidate": "23c1f411f29501da351effa77e20dda707819468",
+      "last_full_candidate": "d8656b2212ec1777e3da5f1979ac2a766fc71563",
+      "last_full_result": "12008 passed, 2 existing native opt-in skips, 293 subtests"
+    },
+    "existing_native_preparation_compaction": {
+      "before": {
+        "files": 1048,
+        "bytes": 250794627
+      },
+      "after": {
+        "files": 245,
+        "bytes": 53055067
+      },
+      "removed_files": 807,
+      "changed_original_files": [],
+      "archive": {
+        "path": "dataset/AutoMR/run_001/PostMR/DictionaryEngine/request/retention/attempt-0001/evidence.zip",
+        "sha256": "7a37e86ecc14c4f9485b2d7b0c0ea7e74e8dd10b858a38ba8d94621613477800",
+        "bytes": 18458459
+      },
+      "seconds": 378.2290230829967,
+      "explicit_retirement": true,
+      "scientific_execution": false
+    },
+    "public_outputs": {
+      "dataset/AutoMR/run_001/PostMR/DictionaryEngine/request/attempts/attempt-0001/continuation/runtime/model/model.pdb": {
+        "sha256": "636223e4edb19caf32e6bf70799f20d008c8ae45a65cc83a727bf1a3d38203d3",
+        "bytes": 67792
+      },
+      "dataset/AutoMR/run_001/PostMR/DictionaryEngine/request/attempts/attempt-0001/continuation/runtime/parameters/000.phil": {
+        "sha256": "ff9ab0725ea676522498c291672841fc3aa65d65408303dae00fa6cf8cd39c35",
+        "bytes": 7034
+      },
+      "dataset/AutoMR/run_001/PostMR/DictionaryEngine/request/attempts/attempt-0001/continuation/runtime/parameters/001.phil": {
+        "sha256": "25705dc3c631b9050233a292e6a5438864b652bb58bb73e85525fa2832a353f6",
+        "bytes": 42
+      },
+      "dataset/AutoMR/run_001/PostMR/DictionaryEngine/request/attempts/attempt-0001/continuation/runtime/parameters/002.phil": {
+        "sha256": "adf95b32ae01b5758f2ef27fbea796d74a70f77b816ffda9eddf14610b400e21",
+        "bytes": 48549
+      },
+      "dataset/AutoMR/run_001/PostMR/DictionaryEngine/request/attempts/attempt-0001/continuation/runtime/parameters/003.phil": {
+        "sha256": "f3335ef45fe26e5916c8c25b4f83e350ac3ec05184d466225d340c9f1f122872",
+        "bytes": 145
+      },
+      "dataset/AutoMR/run_001/PostMR/DictionaryEngine/request/attempts/attempt-0001/continuation/runtime/parameters/004.phil": {
+        "sha256": "2b8d27f764f34a34b9b70b99affa6137e24d84129f2add139dc17bb82b939bee",
+        "bytes": 61
+      },
+      "dataset/AutoMR/run_001/PostMR/DictionaryEngine/request/attempts/attempt-0001/continuation/runtime/dictionaries/000.cif": {
+        "sha256": "e0a3342167cdc6a391cde5470de9b4b2cdb59acb89fa126cb8d2e14c5b32fe8b",
+        "bytes": 10181
+      },
+      "dataset/AutoMR/run_001/PostMR/DictionaryEngine/request/attempts/attempt-0001/continuation/runtime/dictionaries/001.cif": {
+        "sha256": "d0ac98cc93c4fb5aa5d89e17217e99c894b8aa4b80b27d66747a001520b5e713",
+        "bytes": 382
+      }
+    },
+    "cold_readback": "Exact result equals before-retirement value; ordinary registry remains initial postmr REVIEW/current. Reads do not change remaining bytes or timestamps.",
+    "validation_receipts": {
+      "plan.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c402-publication-retention/plan.json",
+        "sha256": "a96c64759f624c87ecd21877f6d3c031ef34175cc84a7811c8450feb83385458",
+        "bytes": 660
+      },
+      "execution.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c402-publication-retention/execution.json",
+        "sha256": "1dc7af74b0d7db05a75540b527885b4d28d88dc2b3fd1df30c9af6296fc1fff7",
+        "bytes": 183
+      },
+      "readback.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c402-publication-retention/readback.json",
+        "sha256": "aee6d44980bfce1de47287d5196a5d8db316674e6f4cfd333bb420295588282b",
+        "bytes": 2995
+      },
+      "focused-tests.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c402-publication-retention/focused-tests.json",
+        "sha256": "ebf0c0b9c13655286a0f63712be712135157a10926365c1596e3bfdfacc58326",
+        "bytes": 1108
+      }
+    },
+    "validation_command": "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c402_retire.py",
+    "compatibility": "No migration, scientific behavior/default/threshold or checkpoint change. Existing explicit retirement remains available for previously published successful requests.",
+    "generated_artifacts": "Compact measurements and hashes only; original models, observations, native archives/logs and working roots remain local.",
+    "limitations": [
+      "Actual C401 operation is explicit existing-owner retirement, not replayed new publication.",
+      "One completed preparation does not establish 100-native-dataset capacity.",
+      "C403 ordinary refinement and Q06 chemical survival remain distinct."
+    ]
+  },
+  "fresh_ordinary_pdu_refinement_child_2026_11_18": {
+    "milestone": "C403",
+    "status": "GENUINE_ORDINARY_CHILD_AND_COLD_READBACK_PASS_CHEMISTRY_REVIEW",
+    "author": "Rowan",
+    "source": "Existing full-qualified C400 installed runtime; exact304-resource manifest bound through C401 plan. C402 cleanup code is separate.",
+    "before": "C401 fresh ordinary preparation had no actual refinement child; corrected C338/C392 inputs and physics were already qualified diagnostically.",
+    "after": "Exact genuine postmr parent reaches ordinary five-cycle AutoRefine child, preserves current postmr, inherits corrected dictionaries/protection/data and reports actual-manager chemical REVIEW.",
+    "schemas": "None; no product runtime or scientific setting change.",
+    "protocol": {
+      "from_checkpoint": "postmr",
+      "expected_registry_sha256": "c75211177f62d346d551a696d30de3c9666868ced659bc051b9ac37a357287f6",
+      "recipe": "AutoRefine/default",
+      "macro_cycles": 5,
+      "processor_count": 1,
+      "use_experimental_phases": false,
+      "real_space_sites": true,
+      "adp_mode": "group",
+      "refine_occupancies": true,
+      "anomalous_mode": "refine",
+      "refine_coordinates": true,
+      "auto_select_success": false,
+      "correct_native_parallelity": true
+    },
+    "execution": {
+      "status": "COMPLETE",
+      "returncode": 0,
+      "stopped": true,
+      "seconds": 424.92191849999654,
+      "plan_sha256": "9abe03dae1615e48397a95975cbecc933fdbff40c345a1d90c995d8242a873b1"
+    },
+    "versions": {
+      "phenix": "2.2.1",
+      "root": "/Users/svecchio/Applications/phenix-2.2.1-6174",
+      "python": "3.12.14 (main, Aug 12 2026, 13:57:54) [Clang 21.0.0 (clang-2100.1.1.101)]"
+    },
+    "preflight_equivalence": {
+      "status": "EXACT_INPUTS_AND_PARAMETERS_EXCEPT_DECLARED_PATHS",
+      "request_sha256": "3f778e4e3e783fa06b288e19abba437a71d6876ad2627c62df75187110d71b0d",
+      "previous_request_sha256": "334e5a19558da27e285a01a3a2bc0d49c5d750fed4e215c64f18964fb16340e8",
+      "ordered_input_sha256": [
+        "40050be2ba0b3cf389314b3d4454098115645066a7966e1f7d23838f3e1dd40b",
+        "636223e4edb19caf32e6bf70799f20d008c8ae45a65cc83a727bf1a3d38203d3",
+        "ff9ab0725ea676522498c291672841fc3aa65d65408303dae00fa6cf8cd39c35",
+        "25705dc3c631b9050233a292e6a5438864b652bb58bb73e85525fa2832a353f6",
+        "adf95b32ae01b5758f2ef27fbea796d74a70f77b816ffda9eddf14610b400e21",
+        "f3335ef45fe26e5916c8c25b4f83e350ac3ec05184d466225d340c9f1f122872",
+        "ee81c148ff61bb63c693a716f29ef67ce337c629139332ef9fe12f82ae0a683b",
+        "e0a3342167cdc6a391cde5470de9b4b2cdb59acb89fa126cb8d2e14c5b32fe8b",
+        "d0ac98cc93c4fb5aa5d89e17217e99c894b8aa4b80b27d66747a001520b5e713",
+        "00ba41b63ecb397c3d9169c6c000810ebfa5b4a1742ebf2146fed616d0904fc2"
+      ],
+      "parameters_path_only_rebased": true,
+      "chemistry_projection_equal": true
+    },
+    "cold_comparison": {
+      "checkpoint": {
+        "id": "refine-001",
+        "parent": "postmr",
+        "status": "REVIEW",
+        "selected": "postmr"
+      },
+      "source_control_comparison": {
+        "preflight": {
+          "native_state_equal": true,
+          "selected_atoms_equal": true,
+          "effective_definitions_equal": true,
+          "selected_proxies_equal": true,
+          "kernel_statistics_equal": true
+        },
+        "refine": {
+          "native_state_equal": true,
+          "selected_atoms_equal": true,
+          "effective_definitions_equal": true,
+          "selected_proxies_equal": true,
+          "kernel_statistics_equal": true
+        }
+      },
+      "whole_model_inventory_equal_C338": true,
+      "reflection_comparison": {
+        "labels_equal": true,
+        "arrays_equal": true,
+        "rows": 3239
+      },
+      "maximum_PDB_rounding_A": 0.0004839446004254455,
+      "original_files_unchanged": 283,
+      "C338_files_unchanged": 57,
+      "seconds": 84.11223312500806
+    },
+    "geometry": {
+      "preflight": {
+        "coordinate_precision": "FULL_NATIVE",
+        "trigonal_source_selection": "EXPLICIT_SOURCE_GRAPH_AND_STATE; NO_COMPONENT_OR_ATOM_NAME_ALLOWLIST",
+        "trigonal": [
+          {
+            "centre": "C2",
+            "neighbors": [
+              "N1",
+              "N3",
+              "O2"
+            ],
+            "absolute_normalized_volume": 0.0034832503455279207,
+            "angle_sum_degrees": 359.99946253865767,
+            "maximum_bond_elevation_degrees": 0.23697500280230874,
+            "native_covering_plane_count": 1
+          },
+          {
+            "centre": "C4",
+            "neighbors": [
+              "C5",
+              "N3",
+              "O4"
+            ],
+            "absolute_normalized_volume": 0.0033518771156531117,
+            "angle_sum_degrees": 359.9994990270757,
+            "maximum_bond_elevation_degrees": 0.23395483372919382,
+            "native_covering_plane_count": 1
+          },
+          {
+            "centre": "C5",
+            "neighbors": [
+              "C4",
+              "C5A",
+              "C6"
+            ],
+            "absolute_normalized_volume": 0.0139715929034788,
+            "angle_sum_degrees": 359.9913737737465,
+            "maximum_bond_elevation_degrees": 0.9428001277857275,
+            "native_covering_plane_count": 1
+          }
+        ],
+        "terminal_single_A": 1.4579869683916953,
+        "triple_A": 1.18943263785723,
+        "triple_angles_degrees": [
+          176.40104309719158,
+          176.88499926052614
+        ],
+        "chi_degrees": -109.04357012327183,
+        "descriptive_named_ring_plane": {
+          "atoms": [
+            "N1",
+            "C2",
+            "N3",
+            "C4",
+            "C5",
+            "C6"
+          ],
+          "rms_A": 0.0009105830378339922,
+          "atom_offsets_A": {
+            "C5A": 0.016689945855866833,
+            "C5B": 0.009384948512653868,
+            "C5M": 0.094297075301846
+          }
+        }
+      },
+      "refine": {
+        "coordinate_precision": "FULL_NATIVE",
+        "trigonal_source_selection": "EXPLICIT_SOURCE_GRAPH_AND_STATE; NO_COMPONENT_OR_ATOM_NAME_ALLOWLIST",
+        "trigonal": [
+          {
+            "centre": "C2",
+            "neighbors": [
+              "N1",
+              "N3",
+              "O2"
+            ],
+            "absolute_normalized_volume": 0.011891287011269493,
+            "angle_sum_degrees": 359.993738031887,
+            "maximum_bond_elevation_degrees": 0.8019390401894748,
+            "native_covering_plane_count": 1
+          },
+          {
+            "centre": "C4",
+            "neighbors": [
+              "C5",
+              "N3",
+              "O4"
+            ],
+            "absolute_normalized_volume": 0.02043865260887711,
+            "angle_sum_degrees": 359.98145317744724,
+            "maximum_bond_elevation_degrees": 1.4048539686457955,
+            "native_covering_plane_count": 1
+          },
+          {
+            "centre": "C5",
+            "neighbors": [
+              "C4",
+              "C5A",
+              "C6"
+            ],
+            "absolute_normalized_volume": 0.02845817119251946,
+            "angle_sum_degrees": 359.96370569881634,
+            "maximum_bond_elevation_degrees": 2.0385579132384364,
+            "native_covering_plane_count": 1
+          }
+        ],
+        "terminal_single_A": 1.4995616265150704,
+        "triple_A": 1.2132259502811595,
+        "triple_angles_degrees": [
+          175.44943044712622,
+          174.4251375003005
+        ],
+        "chi_degrees": -112.58642839890976,
+        "descriptive_named_ring_plane": {
+          "atoms": [
+            "N1",
+            "C2",
+            "N3",
+            "C4",
+            "C5",
+            "C6"
+          ],
+          "rms_A": 0.007992089032186836,
+          "atom_offsets_A": {
+            "C5A": 0.012221336291262097,
+            "C5B": 0.07660270579133144,
+            "C5M": 0.17481209678297405
+          }
+        }
+      }
+    },
+    "target_screen": "PASS",
+    "coordinate_screen": "REVIEW",
+    "native_kernel_statistics": {
+      "energy_only_calls": 241,
+      "gradient_calls": 1721,
+      "maximum_proxy_count": 58,
+      "policy_id": "native-parallelity-kernel-adapter-v1",
+      "successful_calls": 1962
+    },
+    "original_preparation_files_unchanged": 243,
+    "legitimate_updated_paths": [
+      "dataset/AutoMR/run_001/AutoRefine/checkpoints.json",
+      "dataset/AutoMR/run_001/report.json"
+    ],
+    "scientific_acceptance": false,
+    "validation_commands": [
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c403_refine.py execute",
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c403_readback.py",
+      "/private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c403_archive.py"
+    ],
+    "receipts": {
+      "plan.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c403-ordinary-pdu-refinement/plan.json",
+        "sha256": "9abe03dae1615e48397a95975cbecc933fdbff40c345a1d90c995d8242a873b1",
+        "bytes": 5372
+      },
+      "execution.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c403-ordinary-pdu-refinement/execution.json",
+        "sha256": "f9594d3f163e7544e6655946055c84d478d39b1e89b670708ad1e794e56602d4",
+        "bytes": 183
+      },
+      "preflight-equivalence.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c403-ordinary-pdu-refinement/preflight-equivalence.json",
+        "sha256": "746ddd813494818b8b62af28b0c63127c3a564e2159ae75c8d84b474e385799e",
+        "bytes": 1083
+      },
+      "worker-result.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c403-ordinary-pdu-refinement/worker-result.json",
+        "sha256": "cae4384e693a62020615db12fc3989d309faac042c6a7aa341d2859be7cf634c",
+        "bytes": 15559
+      },
+      "readback.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c403-ordinary-pdu-refinement/readback.json",
+        "sha256": "f861b4b868862cd6b4562334201659713245e72974e8ffcf72773ee90263d69b",
+        "bytes": 23752
+      },
+      "archive.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c403-ordinary-pdu-refinement/archive.json",
+        "sha256": "82dbd5e2d54ba3332dda747adba44247854d18b91dca853139f6550609cd0c94",
+        "bytes": 675
+      }
+    },
+    "independent_review": {
+      "anchor": "local-branch-artifacts",
+      "relative_path": "Alder/coordination-c403-child-review-20261118.json",
+      "sha256": "e84bcfff87fb1802265b93b8af3d23a769e2262b1acb4828eb89f633b761e661",
+      "checks": 358,
+      "new_native_calls": 0
+    },
+    "archive": {
+      "status": "BYTE_VERIFIED_DELTA_ARCHIVE",
+      "archive": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c403-ordinary-pdu-child-2026-11-18.tar.gz",
+        "sha256": "3964f5ffe1de97e9d5b5c910650686eb6a4aaa8a025de42e5538fdb75b523003",
+        "bytes": 1282897
+      },
+      "parent_archive": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c401-fresh-preparation-2026-11-18.tar.gz",
+        "sha256": "19b2c8c96098d94e428df25dfc3ca34f23f0180077f4c5d6131f3fbac3cf9731",
+        "bytes": 38366530
+      },
+      "members": 65,
+      "raw_bytes": 9142242,
+      "original_files_unchanged": 65,
+      "originals_retained": true,
+      "scientific_acceptance": false,
+      "standalone_run": false
+    },
+    "compatibility": "Existing ordinary checkpoint and correction path only. No default, force, target, threshold, normalization or schema change.",
+    "generated_artifacts": "Only compact measurements/hashes committed. Native model/maps/logs and byte-verified1.28MB delta archive remain local; retained C401 parent archive is an explicit dependency, not duplicated.",
+    "remaining": [
+      "PDU whole-substituent and DF achieved geometry still REVIEW/open under Q06.",
+      "Exact ordinary integration does not establish converged or experimental PDU crystal refinement.",
+      "Existing C208 source trigonal geometry and C338 native observations can support an explicit final-manager reader; no new plane force or residue-name rule."
+    ],
+    "geometry_scope": "Compact descriptive geometry only; complete exact native plane membership/weights remain bound in the local readback receipt."
   }
 }
