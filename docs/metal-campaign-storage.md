@@ -70,7 +70,8 @@ creates a small view outside the immutable `Metal` tree. It first inventories
 the explicit complete trials, then uses the existing full FDP derivation/freeze
 replay owner. A second replay and final inventory reject observed source changes
 while assembling the view. No native program is executed. The command has no
-implicit trial discovery, current-checkpoint selection or original-run writes.
+implicit trial discovery or current-checkpoint selection, and does not change
+existing artifacts.
 
 The additive `metal-fdp-compact-projection` v1 report stores shared comparison
 bases and executable-input descriptors once, while retaining every attempt,
@@ -109,12 +110,18 @@ Measured old diagnostic samples, fully replayed without new refinement:
 | Ag4 tetrahedral trial | 1,044,486 B | 54,643 B | 1 (32,329 B) | 20,094 B for one four-site attempt |
 
 The remaining bytes are input descriptors and envelope/encoding overhead.
-These are actual canonical file/section sizes, not a claim of safe savings:
+Projection/section sizes use canonical JSON; source sizes are logical file bytes.
+These measurements are not a claim of safe savings:
 the original inputs/evidence are still required, upstream parents are excluded
 from the source column, and nothing was retired. The four-site record exceeds
 the earlier 1–8 KiB design target because complete environmental-B details remain
 inline. Future lossless shared-parent factoring must be measured and qualified;
 do not forecast the smaller target as achieved. No scientific endpoint is accepted.
+
+Qualification at `e002e2037048a4f5778898c7682174e96da5a01b` includes 6,432 tests and
+276 subtests, exact real-data readback through a relocated source-free installed
+package (192 unchanged resources), and separate fresh-process source/data
+relocation. The [handoff](development-handoff.md) owns commands, limits and receipts.
 
 This closes the **read-only projection substep** of A04. Compact publication,
 retained parent materialization, native regeneration, budgets and retirement

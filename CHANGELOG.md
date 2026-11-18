@@ -18,6 +18,9 @@ entries are reconstructed from repository history.
   cache, materialization or retirement authority; existing trial files stay intact.
 - Measure single-metal and four-site examples, including the larger-than-target
   environmental-B record, and record the remaining A04 integration boundary.
+- Qualify the frozen source with 6,432 tests and 276 subtests, installed
+  source-free real-data replay and source/data relocation; retain original science
+  and remove only verified owned test copies after completion.
 
 ### Close storage and map-sampling qualification
 

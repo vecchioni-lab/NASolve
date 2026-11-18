@@ -22,7 +22,7 @@ The additive report is `metal-fdp-compact-projection` v1. Existing native worker
 trial/scan schemas, comparison/reuse policies and old readers are unchanged;
 no migration is needed. Generated science and private receipts are excluded
 from Git. Source/result references remain explicitly anchored; output is a new
-file outside immutable runs. Full-reader parent traversal/native JSON expansion
+file outside the immutable `Metal` tree. Full-reader parent traversal/native JSON expansion
 is explicitly outside the new preflight/output budgets.
 
 **Regression and review.** The new first regression fails before implementation
@@ -52,11 +52,48 @@ claim. No Phenix/Coot calculation or deletion occurs. Exact anchored inputs,
 source hashes, sizes and receipts are local under
 `compact-projection-20261118-01/`; the storage guide gives the measured breakdown.
 
-Installed package qualification and the final pinned full suite are pending at
-this source checkpoint. Complete those before final delivery. The next A04 step
-still needs a coordinated integrated base and qualified native regeneration;
-this view does not replace that contract or turn an old diagnostic trial into
-an accepted f″ parent.
+**Final qualification.** Source pin `e002e2037048a4f5778898c7682174e96da5a01b` passes the
+complete unfiltered test directory: **6,432 tests and 276 subtests**
+(1504.87 s pytest; 1513.89 s owned wrapper). All 1,130 tracked
+files remain unchanged, the detached checkout stays clean and the owned process
+is stopped. Python 3.12 / pytest 9.2 use the exact clean NARestraints source pin
+`a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691`. The separate C404 installed
+`campaign_process` owner supervises the process only; pytest imports Alder source.
+Exact command, environment, hashes, XML and log are retained at the existing Alder
+anchor under `compact-full-suite-20261118-01/`:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/Alder/runners/A98_full_suite.py --checkout /private/tmp/alder-compact-full-source-20261118 --commit e002e2037048a4f5778898c7682174e96da5a01b --output /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/Alder/compact-full-suite-20261118-01 --dependency-source /private/tmp/willow-w132-full-regression/narestraints --process-owner /private/tmp/c404-installed-_w2bovo4/relocated
+```
+
+The runner sets `PYTHONPATH` to the pinned checkout's `src` and exact dependency,
+uses a 5,400 s bound and a private pytest basetemp. These command paths are local
+qualification provenance, not operational artifact references. Reproduction
+requires a fresh detached clone at the recorded commit and a new output directory.
+
+**Installed and relocated checks.** A source-free wheel installation replays the
+real FT_Hg/Ag4 projections byte-for-byte with subprocess calls forbidden, after
+removing its build source and moving the installation. All **192 packaged resources**
+match the source archive and remain unchanged. The real data mount stays in its
+original location in that installed check; the separate regression relocates
+source and data together and removes their original paths. Exact commands,
+wheel/hash and readback receipts are under `compact-projection-20261118-01/installed/`.
+No Phenix or Coot program is executed in this qualification.
+
+**Local checkout and workspace.** `ScienceCheckouts/Hazel/2026-11-18_compact/`
+contains the small HTML/JSON report, old Q/B/f″ values and measured section sizes,
+with direct link/hash/numeric checks; no browser-rendering pass is claimed.
+Only this suite's exact detached software checkout and pytest scratch were
+retired after process/source verification: **2,886,917,437 logical bytes**.
+All retained qualification evidence hashes remain unchanged; no scientific file
+was retired. The retirement plan/result and source manifest remain with the suite.
+
+This closes the read-only projection substep. Overall **A04 remains PARTIAL**;
+shared retained inputs, complete execution identity, native regeneration and
+crash-safe retirement still need the coordinated integrated storage base and
+their own qualification. A01 remains open and A02 gated. The old diagnostic
+samples are not accepted f″ parents. This final closure updates documentation
+only; it does not change the qualified runtime pin.
 
 ## A04 — read-only inventory and forecast, 2026-11-18 evening
 
