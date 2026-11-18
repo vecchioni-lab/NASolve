@@ -734,10 +734,10 @@ maps retain their labels, and changed observations/substituted maps refuse after
 relocation. Existing viewing permits a changed-cell model, so the adapter must
 report frame conflicts independently without changing legacy viewing behavior.
 
-A separate W144 R3 probe measures up to0.28σ variation between equivalent image
+A separate W144 R3 probe measures up to 0.28σ variation between equivalent image
 queries from eight-point interpolation; direct Fourier values agree. Composing
 the existing complete `ReferenceFrame` inverse mapping and shared sampler keeps
-16,416 source-frame comparisons consistent to6.75×10⁻¹⁴σ. Use declared source/image
+16,416 source-frame comparisons consistent to 6.75×10⁻¹⁴σ. Use declared source/image
 correspondence rather than treating tiny image-space score changes as physical
 support. This does not remove absolute interpolation error, prove an undeclared
 origin or define a new sampling/noise policy. The existing native/metal sampler

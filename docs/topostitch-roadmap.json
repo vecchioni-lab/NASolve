@@ -2744,7 +2744,7 @@
       "human_update": 144,
       "code_commit": "0a398d15ee465b12ed44b7e749221e54a8e343a9",
       "reference": "docs/topostitch-periodic.md#w144--bind-saved-density-to-the-inspected-frame",
-      "result": "Ordinary refine-002 and diagnostic full PDB bytes match; 8344x16 MTZ numeric entries/NaNs match. Inherited-map relocation and substitution/observation refusals pass. 16416 R3 image samples show up to 0.28 sigma interpolation variation; direct Fourier and existing complete source-frame sampling agree to numerical precision.",
+      "result": "Ordinary refine-002 and diagnostic full PDB bytes match; 8344x16 MTZ numeric entries/NaNs match. Inherited-map relocation and substitution/observation refusals pass. 16416 R3 image samples show up to 0.28 sigma interpolation variation; direct Fourier and existing complete source-frame sampling agree to numerical precision. Hazel independently passes 278 archive/frame/scalar checks without repeating native FFTs.",
       "limitation": "No maintained adapter, new coefficients, fitting, density threshold, force gradients, generalized origin proof or accepted repair. Existing viewing remains compatible. C406 full gate pending separately; local science excluded from Git.",
       "local_receipts": [
         {
@@ -2754,6 +2754,12 @@
           "size": 30207,
           "indexed_files": 22,
           "archive_members": 23
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/coordination-w144-frame-review-20261118.json",
+          "sha256": "65eb426404e6c490f18b99f14348468bfab4c60b5bcb79d13026d6923fee6b28",
+          "size": 2000
         }
       ]
     }

@@ -8164,15 +8164,15 @@ positions, labels, cell and space-group operations are identical. No basename
 search, fabricated checkpoint, new coefficients or native fit was used.
 
 A disposable derivative made through the existing manual-checkpoint owner moves
-only C102 P by0.25Å. The existing resolver retains the ancestor map with an
+only C102 P by 0.25 Å. The existing resolver retains the ancestor map with an
 explicit **not recalculated** label. Its model/map references resolve inside the
 relocated context after the old copy vanishes. Changed observations and altered
 map bytes refuse. A deliberately changed cell remains inspectable by the legacy
 viewer, while a separate header comparison identifies the conflict; this is
 why viewing compatibility and eligibility for automatic motion remain distinct.
-Matching headers alone is **not** origin/image proof. The original138ordinary
-files,172diagnostic files and307runtime source files remain unchanged. Only the
-owned140-file/17,858,738-byte test copy was retired; no real run was edited.
+Matching headers alone is **not** origin/image proof. The original 138 ordinary
+files, 172 diagnostic files and 307 runtime source files remain unchanged. Only the
+owned 140-file/17,858,738-byte test copy was retired; no real run was edited.
 
 ### Symmetry and interpolation
 
@@ -8199,15 +8199,15 @@ The follow-up composes existing `topostitch_transport.ReferenceFrame` and Alder'
 unchanged `sample_grid`, with checked map-group images and each complete
 **855-atom** model inventory. Reverse reindexing preserves the whole mapping.
 Bringing representatives back into their declared source query frame gives a
-maximum **6.75×10⁻¹⁴σ** difference across all16,416comparisons and a maximum
+maximum **6.75×10⁻¹⁴σ** difference across all 16,416 comparisons and a maximum
 coordinate roundtrip of **3.56×10⁻¹⁴Å**. Changed contexts and partial inventories
-refuse. The probe explicitly requests radius0.1Å/spacing0.5Å (one center offset);
+refuse. The probe explicitly requests radius 0.1 Å / spacing 0.5 Å (one center offset);
 legacy metal capture defaults remain unchanged. This establishes source-query
 consistency for this declared mapping, not exact continuous-map interpolation,
 automatic image selection, a generalized origin witness or density-force gradients.
 
-Complete read-only **Phenix2.2.1-6174** executions: corrected direct/FFT diagnostic
-**16.989s**; existing frame/sampler composition **17.595s**. All input hashes and
+Complete read-only **Phenix 2.2.1-6174** executions: corrected direct/FFT diagnostic
+**16.989 s**; existing frame/sampler composition **17.595 s**. All input hashes and
 qualified helper bytes remain unchanged; no fmodel, refinement, new coefficients,
 new acceptance threshold or runtime API/schema/default. Ordinary ML/test-reflection
 limitations from W140/W142 still apply. The initial cold audit also retained a
@@ -8226,9 +8226,16 @@ PYTHONDONTWRITEBYTECODE=1 <Phenix>/bin/phenix.python -B <NASolve>/branch-artifac
 ```
 
 At NASolve anchor, `branch-artifacts/willow/w144-map-frame-evidence-2026-11-18.zip`
-contains **22 indexed files +manifest**,30,207bytes, SHA256
+contains **22 indexed files + manifest**, 30,207 bytes, SHA256
 `34c7769433bc721b602020b3039d91bab4492dbcca9936ee8b2669de16471fa9`.
-Each member was byte/size verified. Raw models/maps are excluded. A one-file
+Each member was byte/size verified. Hazel independently passed **278 checks**
+of archive integrity, exact Gemmi operations, Cartesian conjugation and saved
+scalar arithmetic. This review did not repeat native FFTs or broaden the 24
+direct-Fourier comparisons into 16,416 direct evaluations. The receipt is at
+NASolve anchor `branch-artifacts/Alder/coordination-w144-frame-review-20261118.json`
+(2,000 bytes; SHA256
+`65eb426404e6c490f18b99f14348468bfab4c60b5bcb79d13026d6923fee6b28`).
+Raw models/maps are excluded. A one-file
 science checkout at GitHub anchor,
 `ScienceCheckouts/Linden/2026-11-18_map-frame/review.html`, links five local evidence
 files/views; all links resolve. Existing checkouts and the approved v3 inspector
@@ -8252,3 +8259,21 @@ in an isolated clean checkout, with exact NARestraints
 `a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691`, the same qualified environment as C404
 and a fresh owned `--basetemp`. No full PASS is claimed until completion. This
 is separate from W144's map/frame science and does not change sampling policy.
+
+Continuation uses NASolve anchor
+`branch-artifacts/willow/w144-c406-full-suite-2026-11-18/`:
+`plan.json` freezes source, dependency, argv and environment; `process.json` owns
+the process identity; `result.json` and `results.xml` must be checked after
+completion before claiming a pass or starting another full suite. The prepared
+`branch-artifacts/willow/runners/w144-close-c406.py` verifies stopped ownership
+and archives evidence before owned cleanup; `--archive-only` leaves scratch
+under an explicit retirement plan when time is short. Never retire active scratch.
+
+The exact C406 candidate also cold-replays the genuine W138 v8 child through
+existing execution/checkpoint/view owners: native-written model validation,
+8,344 ×16 map-value join and current **postmr** selection are preserved.
+All 138 ordinary, 172 diagnostic and 307 runtime source files remain unchanged;
+the 6.737 s check performs no FFT, native fit or child-process launch. This
+confirms old-map-owner continuity, separately from the new observation feature.
+The exact executed runner is retained as `runners/w144-c406-map-owner-compatibility.py`;
+the original W144 runner was restored byte-for-byte from its immutable archive.

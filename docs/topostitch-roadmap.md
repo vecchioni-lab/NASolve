@@ -1293,7 +1293,7 @@ Fixed-frame common/orthogonal 2D slices; 30 atoms and 32 native bonds from four 
 ### E_MAP_FRAME_COMPOSITION — cold_and_native_read_only_map_frame_composition
 
 [Evidence contract](topostitch-periodic.md#w144--bind-saved-density-to-the-inspected-frame) at [W144](https://github.com/vecchioni-lab/NASolve/commit/0a398d15ee465b12ed44b7e749221e54a8e343a9).
-Ordinary refine-002 and diagnostic full PDB bytes match; 8344x16 MTZ numeric entries/NaNs match. Inherited-map relocation and substitution/observation refusals pass. 16416 R3 image samples show up to 0.28 sigma interpolation variation; direct Fourier and existing complete source-frame sampling agree to numerical precision.
+Ordinary refine-002 and diagnostic full PDB bytes match; 8344x16 MTZ numeric entries/NaNs match. Inherited-map relocation and substitution/observation refusals pass. 16416 R3 image samples show up to 0.28 sigma interpolation variation; direct Fourier and existing complete source-frame sampling agree to numerical precision. Hazel independently passes 278 archive/frame/scalar checks without repeating native FFTs.
 **Limit:** No maintained adapter, new coefficients, fitting, density threshold, force gradients, generalized origin proof or accepted repair. Existing viewing remains compatible. C406 full gate pending separately; local science excluded from Git.
 
 ## Deferred extensions, not hidden blockers

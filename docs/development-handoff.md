@@ -78,6 +78,12 @@ not another work queue; do not repeat them because this handoff is shorter.
    correspondence into density sampling: raw image-space interpolation is not
    exactly symmetry-equivariant. Matching headers alone does not prove origin;
    the maintained adapter and broader frame policies remain unimplemented.
+   Hazel's C406/Alder temporary integration passes 166 focused tests and a
+   source-free installed replay. Before an active merge, reconcile the five
+   documentation/contract conflicts and preserve both Cedar replay-PDB and Alder
+   web-resource packaging globs; this is not yet a combined Willow qualification.
+   See NASolve anchor `branch-artifacts/Alder/integration-delta-20261118-01/review.json`
+   for exact pins, commands and limits. Do not repeat that completed delta.
    Then use matched B10 controls and geometry, packing and diffraction/density
    evidence before physical acceptance. Preserve original data/Free-R, unselected
    REVIEW and exact pair intent. Retain repulsion while exclusions are open;
@@ -148,9 +154,9 @@ PASS upgrades older diagnostic models to accepted structures.
 `ScienceCheckouts/Linden/2026-11-18_map-frame/review.html` (one file). The genuine
 ordinary refine-002 model/maps join the inspector's full diagnostic numerically;
 inherited maps remain labelled and the selected checkpoint stays postmr. Across
-16,416 R3-image samples, interpolation alone differs by up to0.28σ. Existing full
+16,416 R3-image samples, interpolation alone differs by up to 0.28σ. Existing full
 855-atom frame transport back to the source query reduces the image discrepancy
-to6.75×10⁻¹⁴σ; direct Fourier controls establish the numerical origin of the effect.
+to 6.75×10⁻¹⁴σ; direct Fourier controls establish the numerical origin of the effect.
 This is consistent sampling, not a new objective or accepted bend. The measured
 0.28σ is not a calibrated noise threshold. [Methods and scope](topostitch-periodic.md#w144--bind-saved-density-to-the-inspected-frame).
 
