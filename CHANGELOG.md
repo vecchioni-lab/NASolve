@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W144 — Bind saved density to the inspected frame
+
+- Verify the real ordinary checkpoint/diagnostic map join, inherited-map labels,
+  relocation and rejection of substituted bytes or changed observations.
+- Measure symmetry-image interpolation differences and compose existing complete
+  frame transport with the shared sampler to preserve source-query consistency.
+- Record explicit remaining generation/origin/calibration gates. Read-only local
+  science and documentation only; no runtime/schema/default or acceptance change.
+
 ### W143 — Make backbone density inspectable in 3D
 
 - Record the local, self-contained backbone view: real density surfaces, fixed

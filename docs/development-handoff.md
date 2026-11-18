@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-18**, through **W143**. **W140 adds backbone and saved-map evidence to W139's
+Updated **2026-11-18**, through **W144**. **W140 adds backbone and saved-map evidence to W139's
 matched sticky-end improvement.** GC plane mismatch falls 27.30→6.30° with
 localized movement; nearby sugar/phosphate bond and angle deviations barely
 change. All 38 existing backbone links were measured and 126 ordered sugar-volume
@@ -73,6 +73,11 @@ not another work queue; do not repeat them because this handoff is shorter.
    Output work-set membership alone does not prove work-only generation. Preserve
    ordinary ML versus metal MLHL protocols, inherited-map labels and own/common
    coordinates; no automatic threshold or relaxed recipe frame tolerance.
+   W144 verifies the existing owner composition on a real counted child, including
+   inherited maps and negative controls. Carry explicit complete source/image
+   correspondence into density sampling: raw image-space interpolation is not
+   exactly symmetry-equivariant. Matching headers alone does not prove origin;
+   the maintained adapter and broader frame policies remain unimplemented.
    Then use matched B10 controls and geometry, packing and diffraction/density
    evidence before physical acceptance. Preserve original data/Free-R, unselected
    REVIEW and exact pair intent. Retain repulsion while exclusions are open;
@@ -138,6 +143,16 @@ W118 numerical helpers retain their exact original scopes; no later software
 PASS upgrades older diagnostic models to accepted structures.
 
 ## Local science checkout
+
+**W144 map/frame science:** GitHub anchor,
+`ScienceCheckouts/Linden/2026-11-18_map-frame/review.html` (one file). The genuine
+ordinary refine-002 model/maps join the inspector's full diagnostic numerically;
+inherited maps remain labelled and the selected checkpoint stays postmr. Across
+16,416 R3-image samples, interpolation alone differs by up to0.28σ. Existing full
+855-atom frame transport back to the source query reduces the image discrepancy
+to6.75×10⁻¹⁴σ; direct Fourier controls establish the numerical origin of the effect.
+This is consistent sampling, not a new objective or accepted bend. The measured
+0.28σ is not a calibrated noise threshold. [Methods and scope](topostitch-periodic.md#w144--bind-saved-density-to-the-inspected-frame).
 
 **W143 rotatable backbone-density study:** NASolve anchor,
 `branch-artifacts/willow/w143-backbone-density-v3.html`. Slate is the user's

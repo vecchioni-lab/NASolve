@@ -376,7 +376,8 @@
         "W139 closes the matched native/core-only-zero/full matrix: exact zero/native output/history, passive full equivalence and common14-pair local benefit. Both line-search stops and repeated-coordinate normalization discontinuity remain separate limitations; no numerical policy is adopted.",
         "W140 reuses A72 periodic sampling on four existing ordinary ML maps at456backbone atoms, binding generation policy and own/common coordinates. All176Free-R indices are included: inspection-only, distinct from maintained metal MLHL capture; no threshold or density-guided motion.",
         "W141 qualifies Alder shared periodic-grid arithmetic in exact191-file relocated wheel and native bare imports; both reproduce3648W140own/common samples exactly. W142 closes exact Alder full6406+276 passes/no skips and421independent review checks; no new coefficient/data/phase policy or detector.",
-        "W142 cold owner audit separates artifact integrity, coefficient-generation evidence, reader/frame compatibility and permitted use. Existing checkpoints/views and shared sampler are the future adapter owners; no new reader, threshold or motion policy."
+        "W142 cold owner audit separates artifact integrity, coefficient-generation evidence, reader/frame compatibility and permitted use. Existing checkpoints/views and shared sampler are the future adapter owners; no new reader, threshold or motion policy.",
+        "W144 cold ordinary/diagnostic join and owned-copy inheritance/relocation controls pass. R3 image-space interpolation differs by up to 0.28 sigma; direct Fourier agrees. Existing complete 855-atom ReferenceFrame plus shared sampler preserves 16,416 source-frame comparisons within 6.75e-14 sigma. No new objective, policy or acceptance."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -385,7 +386,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Implement the W142 read-only saved-map inspection boundary after shared integration, reusing checkpoint/view resolution and W141 sampling. Preserve inherited-map and ML/MLHL distinctions; output Free-R exclusion alone is not work-only derivation proof. Explicitly bind reader/frame correspondence without relaxing recipe tolerances. Calibration and motion follow separately. Stable-objective design stays deferred; no repeated normalization/FFT/direct/restart matrix. Broader B10 controls, B09 and W122 activation remain open.",
+      "next_action": "Implement the W142 read-only saved-map boundary through existing checkpoint/view owners after shared integration. W144 qualifies actual-child resolution and complete source-frame sampling; preserve explicit correspondence instead of silently equating interpolated symmetry images. Generation evidence and origin/setting proof remain separate from hash/header checks. Calibration and motion follow separately; no repeated normalization/FFT/direct/restart matrix. B10 controls, B09 and W122 activation remain open.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -436,14 +437,15 @@
         "E_MATCHED_CANONICAL_LONG_CONTROL",
         "E_BACKBONE_SAVED_DENSITY",
         "E_SHARED_GRID_SAMPLER",
-        "E_SHARED_GATES_MAP_BOUNDARY"
+        "E_SHARED_GATES_MAP_BOUNDARY",
+        "E_MAP_FRAME_COMPOSITION"
       ],
       "last_audit": {
         "date": "2026-11-18",
-        "code_commit": "4bfffbca068cfe74cc926ff68fefca5ba5c83c3a",
-        "human_update": 142,
+        "code_commit": "0a398d15ee465b12ed44b7e749221e54a8e343a9",
+        "human_update": 144,
         "reviewer": "Linden",
-        "scope": "C402/C404/Alder exact-pin full qualification and cold map-source/frame audit. No scientific acceptance."
+        "scope": "Read-only real-checkpoint and explicit source-frame/sampler composition; no production adapter or scientific acceptance. Separate C406 full gate pending."
       }
     },
     {
@@ -2735,6 +2737,25 @@
           "size": 552
         }
       ]
+    },
+    "E_MAP_FRAME_COMPOSITION": {
+      "kind": "cold_and_native_read_only_map_frame_composition",
+      "date": "2026-11-18",
+      "human_update": 144,
+      "code_commit": "0a398d15ee465b12ed44b7e749221e54a8e343a9",
+      "reference": "docs/topostitch-periodic.md#w144--bind-saved-density-to-the-inspected-frame",
+      "result": "Ordinary refine-002 and diagnostic full PDB bytes match; 8344x16 MTZ numeric entries/NaNs match. Inherited-map relocation and substitution/observation refusals pass. 16416 R3 image samples show up to 0.28 sigma interpolation variation; direct Fourier and existing complete source-frame sampling agree to numerical precision.",
+      "limitation": "No maintained adapter, new coefficients, fitting, density threshold, force gradients, generalized origin proof or accepted repair. Existing viewing remains compatible. C406 full gate pending separately; local science excluded from Git.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w144-map-frame-evidence-2026-11-18.zip",
+          "sha256": "34c7769433bc721b602020b3039d91bab4492dbcca9936ee8b2669de16471fa9",
+          "size": 30207,
+          "indexed_files": 22,
+          "archive_members": 23
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -2896,8 +2917,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 143,
-    "next": 144,
+    "current": 144,
+    "next": 145,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -3565,6 +3586,12 @@
         "title": "Make backbone density inspectable in 3D",
         "state": "RECORDED",
         "code_commit": "081a532ce46a46ec67fbcd310e500e06ecd2ee8e"
+      },
+      {
+        "number": 144,
+        "title": "Bind saved density to the inspected frame",
+        "state": "RECORDED",
+        "code_commit": "0a398d15ee465b12ed44b7e749221e54a8e343a9"
       }
     ]
   },

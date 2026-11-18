@@ -22,11 +22,13 @@ current instructions; other branches retain their own status and validation pins
   3D backbone-density presentation study; its final contrast/contour revision
   is user-reviewed and chosen as NASolve's shared dynamic inspector direction;
   cross-stage integration remains planned.
-  The detector remains separate. Willow owns periodic helpers/cold reporting,
+  W144 binds an ordinary checkpoint to the diagnostic maps and qualifies
+  explicit source-frame sampling across R3 images. The detector remains separate.
+  Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W143;
-  the next substantial audit is W144. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W144;
+  the next substantial audit is W145. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

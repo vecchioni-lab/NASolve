@@ -8150,3 +8150,105 @@ Git. Existing scientific packets and their checksums are preserved. S07 remains
 **PARTIAL**: integrate through shared native map/checkpoint/view owners after the
 W142 inspection boundary is qualified; do not create another map reader/history
 or turn display controls into automatic acceptance.
+
+## W144 — Bind saved density to the inspected frame
+
+**2026-11-18.** This is a cold/native-read-only S06/S07 composition check of
+existing owners, not a new adapter, sampling policy or repaired structure. The
+C400 diagnostic has no ordinary report/registry and correctly refuses ordinary
+checkpoint resolution. The genuine W138 ordinary **refine-002** child resolves
+through Cedar `0a398d15` (qualified runtime `4bfffbca`), and its native-written
+model validates. The selected checkpoint remains **postmr**. Its PDB bytes match
+C400 full exactly; MTZ bytes differ, but all **8,344 ×16 numeric entries**, NaN
+positions, labels, cell and space-group operations are identical. No basename
+search, fabricated checkpoint, new coefficients or native fit was used.
+
+A disposable derivative made through the existing manual-checkpoint owner moves
+only C102 P by0.25Å. The existing resolver retains the ancestor map with an
+explicit **not recalculated** label. Its model/map references resolve inside the
+relocated context after the old copy vanishes. Changed observations and altered
+map bytes refuse. A deliberately changed cell remains inspectable by the legacy
+viewer, while a separate header comparison identifies the conflict; this is
+why viewing compatibility and eligibility for automatic motion remain distinct.
+Matching headers alone is **not** origin/image proof. The original138ordinary
+files,172diagnostic files and307runtime source files remain unchanged. Only the
+owned140-file/17,858,738-byte test copy was retired; no real run was edited.
+
+### Symmetry and interpolation
+
+Four existing maps ×456 backbone atoms ×9 R3 operations give **16,416** symmetry
+image comparisons. Native eight-point interpolation is periodic under integer
+translations but not exactly equivariant under hexagonal fractional-axis mixing:
+
+| Saved endpoint / map | Largest image difference (σ) | Largest operator RMS (σ) |
+| --- | ---: | ---: |
+| Native / ordinary | 0.244455 | 0.049094 |
+| Native / difference | 0.277354 | 0.067404 |
+| Full / ordinary | 0.244676 | 0.049290 |
+| Full / difference | 0.272330 | 0.067458 |
+
+Direct Fourier evaluation at the **six largest discrepancies per map** agrees
+across symmetry images to **2.13×10⁻¹⁴σ**; nearest-voxel direct/FFT controls also
+pass. This is a numerical interpolation effect, not a physical density change,
+a map-quality threshold or a reason to reject the inspector. The direct-sum
+method returns complex values; the first driver failed on `float(complex)`.
+The corrected driver requires negligible imaginary parts and retains real
+values. Both attempts and their stopped-process receipts remain.
+
+The follow-up composes existing `topostitch_transport.ReferenceFrame` and Alder's
+unchanged `sample_grid`, with checked map-group images and each complete
+**855-atom** model inventory. Reverse reindexing preserves the whole mapping.
+Bringing representatives back into their declared source query frame gives a
+maximum **6.75×10⁻¹⁴σ** difference across all16,416comparisons and a maximum
+coordinate roundtrip of **3.56×10⁻¹⁴Å**. Changed contexts and partial inventories
+refuse. The probe explicitly requests radius0.1Å/spacing0.5Å (one center offset);
+legacy metal capture defaults remain unchanged. This establishes source-query
+consistency for this declared mapping, not exact continuous-map interpolation,
+automatic image selection, a generalized origin witness or density-force gradients.
+
+Complete read-only **Phenix2.2.1-6174** executions: corrected direct/FFT diagnostic
+**16.989s**; existing frame/sampler composition **17.595s**. All input hashes and
+qualified helper bytes remain unchanged; no fmodel, refinement, new coefficients,
+new acceptance threshold or runtime API/schema/default. Ordinary ML/test-reflection
+limitations from W140/W142 still apply. The initial cold audit also retained a
+setup failure from an unsupported `artifact_reference(...,sha256=...)` argument;
+the corrected audit uses the existing path-only helper and adds measured hashes
+in its own receipt, without changing the owner.
+
+Controllers use explicit roots and retain exact argv in the local execution
+receipts. Commands follow these forms:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 <qualified-python> -B <NASolve>/branch-artifacts/willow/runners/w144-map-inspection-boundary.py --cedar <Cedar> --ordinary <W138-root> --diagnostic <C400-root> --nasolve <NASolve> --output <new-receipt>
+PYTHONDONTWRITEBYTECODE=1 <qualified-python> -B <NASolve>/branch-artifacts/willow/runners/w144-inherited-map-probe.py --cedar <Cedar> --ordinary <W138-root> --output <new-receipt>
+PYTHONDONTWRITEBYTECODE=1 <Phenix>/bin/phenix.python -B <NASolve>/branch-artifacts/willow/runners/w144-symmetry-map-probe.py --baseline <W140-saved-density> --science <C400-root> --output <new-receipt>
+PYTHONDONTWRITEBYTECODE=1 <Phenix>/bin/phenix.python -B <NASolve>/branch-artifacts/willow/runners/w144-source-frame-sampling.py --plan <checked-image-plan> --nasolve <NASolve> --science <C400-root> --transport <qualified-installed-package> --sampler <qualified-installed-Alder-package> --output <new-receipt>
+```
+
+At NASolve anchor, `branch-artifacts/willow/w144-map-frame-evidence-2026-11-18.zip`
+contains **22 indexed files +manifest**,30,207bytes, SHA256
+`34c7769433bc721b602020b3039d91bab4492dbcca9936ee8b2669de16471fa9`.
+Each member was byte/size verified. Raw models/maps are excluded. A one-file
+science checkout at GitHub anchor,
+`ScienceCheckouts/Linden/2026-11-18_map-frame/review.html`, links five local evidence
+files/views; all links resolve. Existing checkouts and the approved v3 inspector
+remain unchanged. The later browser error was opening its unfilled developer
+template; the template now identifies the finished file instead of attempting
+to decode its placeholder. Strict base64 validation of the finished v3 passed.
+
+The maintained adapter is still the next bounded implementation: reuse exact
+checkpoint/view resolution, report generation evidence separately, and carry
+explicit source/image correspondence into sampling. Keep uncertainty visible
+when correspondence is absent. General origin/setting changes, local density
+calibration, derivatives and automatic bending remain open. No new production
+code was added; documentation/roadmap/reference checks apply. Local derived
+science and receipts remain excluded from Git.
+
+### Shared C406 qualification
+
+Rowan's explicit declared-site observation candidate
+`589659201a15b4284e93e2c4dcfc47cdefbdcb64` is undergoing one unfiltered full suite
+in an isolated clean checkout, with exact NARestraints
+`a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691`, the same qualified environment as C404
+and a fresh owned `--basetemp`. No full PASS is claimed until completion. This
+is separate from W144's map/frame science and does not change sampling policy.
