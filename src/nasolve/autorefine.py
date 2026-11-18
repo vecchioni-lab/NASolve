@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from contextlib import nullcontext
 import json
 import math
 import os
@@ -319,7 +320,13 @@ def write_recipe_parameters(
     refine_coordinates: bool = True,
     xyz_wxc_scale: float = 0.5,
     anomalous_groups: Mapping[str, Mapping[str, object]] | None = None,
+    counted_protocol: str | None = None,
+    counted_crystal: Mapping[str, object] | None = None,
 ) -> tuple[str, ...]:
+    if counted_protocol is not None:
+        from .refinement_counted import AUTOREFINE_CONTROL_PROTOCOL
+        if counted_protocol != AUTOREFINE_CONTROL_PROTOCOL:
+            raise AutoRefineError('Unknown counted refinement protocol')
     if macro_cycles < 1:
         raise AutoRefineError("AutoRefine requires at least one macrocycle")
     if adp_mode not in {"group", "individual", "none"}:
@@ -406,11 +413,27 @@ def write_recipe_parameters(
         lines.extend(["}", ""])
     lines.extend([
         "refinement {",
+        *([
+            "  crystal_symmetry {",
+            "    unit_cell = " + ",".join(format(v, '.17g') for v in counted_crystal['cell_parameters']),
+            '    space_group = "' + counted_crystal['space_group'] + '"',
+            "  }",
+        ] if counted_crystal is not None else []),
         "  main {",
         f"    number_of_macro_cycles = {macro_cycles}",
-        '    target = "auto"',
+        '    target = "ml"' if counted_protocol is not None else '    target = "auto"',
         "    scattering_table = n_gaussian",
         f"    nproc = {processor_count}",
+        *([
+            "    max_number_of_iterations = 10",
+            "    random_seed = 1",
+            "    bulk_solvent_and_scale = False",
+            "    place_ions = False",
+            "    update_ss = off",
+            "    ias = False",
+            "    apply_overall_isotropic_scale_to_adp = False",
+            "    find_and_add_hydrogens = False",
+        ] if counted_protocol is not None else []),
         "  }",
         "  refine {",
         "    strategy = " + " ".join(f"*{strategy}" for strategy in strategies),
@@ -450,10 +473,21 @@ def write_recipe_parameters(
     lines.extend([
         "  }",
         "  target_weights {",
-        f"    optimize_xyz_weight = {refine_coordinates}",
+        f"    optimize_xyz_weight = {False if counted_protocol is not None else refine_coordinates}",
         f"    optimize_adp_weight = {adp_mode != 'none'}",
         f"    wxc_scale = {xyz_wxc_scale:g}",
+        *([
+            "    fix_wxc = 1.0",
+            "    wc = 1.0",
+            "    force_optimize_weights = False",
+            "    shake_sites = False",
+        ] if counted_protocol is not None else []),
         "  }",
+        *([
+            "  pdb_interpretation.sort_atoms = False",
+            "  pdb_interpretation.restraints_library.cdl = False",
+            "  pdb_interpretation.restraints_library.cdl_nucleotides.enable = False",
+        ] if counted_protocol is not None else []),
         "  output {",
         "    write_final_geo_file = True",
         "  }",
@@ -471,6 +505,8 @@ def build_refine_command(
     restraints: Sequence[Path],
     parameters: Path,
     plan: ReflectionPlan,
+    *,
+    counted_protocol: str | None = None,
 ) -> list[str]:
     command = [
         str(executable.expanduser().resolve()),
@@ -489,7 +525,7 @@ def build_refine_command(
         f"xray_data.r_free_flags.label={plan.free_r_label}",
         f"xray_data.r_free_flags.test_flag_value={plan.free_r_test_value}",
         "xray_data.r_free_flags.generate=False",
-        'main.target="auto"',
+        'main.target="ml"' if counted_protocol is not None else 'main.target="auto"',
         "ordered_solvent=False",
         "simulated_annealing=False",
         "output.prefix=refined",
@@ -1539,6 +1575,9 @@ def execute_autorefine(
     auto_select_success: bool = True,
     correct_native_parallelity: bool = False,
     phenix_python_executable: Path | None = None,
+    counted_protocol: str | None = None,
+    counted_pair_request: Mapping[str, Path] | None = None,
+    counted_frame: str | None = None,
     progress: Callable[[str, Path], None] | None = None,
 ) -> AutoRefineResult:
     """Run one quiet refinement round and append an immutable checkpoint.
@@ -1547,16 +1586,28 @@ def execute_autorefine(
     that path never initializes a missing registry. Ordinary callers retain the
     existing initialization behavior. Later saves still use the registry guard.
     """
-    from .refinement_parallelity import validate_runtime_choice, require_runtime_continuation
+    from .refinement_parallelity import validate_runtime_choice, require_runtime_continuation, V6_POLICY_ID
+    from .refinement_counted import validate_autorefine_control
     try:
-        validate_runtime_choice(correct_native_parallelity, phenix_python_executable)
+        validate_autorefine_control(counted_protocol, counted_pair_request,
+            enabled=correct_native_parallelity, macro_cycles=macro_cycles,
+            processor_count=processor_count, real_space_sites=real_space_sites,
+            adp_mode=adp_mode, refine_occupancies=refine_occupancies,
+            anomalous_mode=anomalous_mode, refine_coordinates=refine_coordinates)
+        validate_runtime_choice(correct_native_parallelity, phenix_python_executable,
+            **({'runtime_policy': V6_POLICY_ID} if counted_protocol is not None else {}))
     except ValueError as exc:
         raise AutoRefineError(str(exc)) from exc
-    xyz_wxc_scale = (
-        0.1
-        if recipe == "AutoRefine/geometry-conservative"
-        else 0.5
-    )
+    if counted_frame is not None and (counted_protocol is None or counted_frame != 'recipe'):
+        raise AutoRefineError('Counted working frame must explicitly select recipe or retain native choice')
+    counted_crystal = None
+    if counted_protocol is not None:
+        recipe = 'AutoRefine/' + counted_protocol
+    counted_pair_request = dict(counted_pair_request) if counted_pair_request is not None else None
+    counted_identity = None
+    xyz_wxc_scale = (1.0 if counted_protocol is not None else
+        0.1 if recipe == "AutoRefine/geometry-conservative" else 0.5)
+
     selector_policy = reflection_selector_policy(phenix_version)
     if expected_registry_sha256 is not None and (
         not isinstance(expected_registry_sha256, str)
@@ -1578,7 +1629,8 @@ def execute_autorefine(
         if parent.get("usable") is not True:
             raise AutoRefineError(f"Checkpoint {parent.get('id')} is not reusable")
         try:
-            require_runtime_continuation(registry, parent, correct_native_parallelity, run=run)
+            require_runtime_continuation(registry, parent, correct_native_parallelity, run=run,
+                **({'allow_counted': True} if counted_protocol is not None else {}))
         except ValueError as exc:
             raise AutoRefineError(str(exc)) from exc
         inherited = (
@@ -1595,6 +1647,8 @@ def execute_autorefine(
             chemistry_projections = prepare_chemistry_scope(run,registry,verified_preparations,parent)
         except (OSError,ValueError,RuntimeError) as exc:
             raise AutoRefineError(f'Checked chemistry scope is inconsistent: {exc}') from exc
+    if counted_protocol is not None and chemistry_projections:
+        raise AutoRefineError('Counted control does not yet support chemistry projections; preserve their scope')
     report = _run_report(run)
     try:
         terminal_phosphate_sites = requested_op3_sites(report)
@@ -1679,6 +1733,20 @@ def execute_autorefine(
                 "extra refinement restraint"
             )
 
+    if counted_protocol is not None:
+        if phase_file is not None:
+            raise AutoRefineError('Counted control does not yet support experimental phases; no phase input was dropped')
+        if resolved_extra_restraints or requested_terminal_protection is not None:
+            raise AutoRefineError('Counted control does not yet support new extra or terminal restraints')
+        if terminal_phosphate_sites and inherited_terminal_protection is None:
+            raise AutoRefineError('Counted control requires already recorded terminal-phosphate protection')
+        from .refinement_counted import validate_autorefine_intent
+        try:
+            counted_identity, declared_crystal = validate_autorefine_intent(run, registry, parent, counted_pair_request, model)
+            if counted_frame == 'recipe':
+                counted_crystal = declared_crystal
+        except (OSError, ValueError, RuntimeError, TypeError) as exc:
+            raise AutoRefineError(f'Counted original intent is inconsistent: {exc}') from exc
     validate_refined_model(model, report)
     plan = build_reflection_plan(
         report,
@@ -1787,6 +1855,8 @@ def execute_autorefine(
         refine_coordinates=refine_coordinates,
         xyz_wxc_scale=xyz_wxc_scale,
         anomalous_groups=anomalous_groups,
+        **({'counted_protocol': counted_protocol, 'counted_crystal': counted_crystal}
+           if counted_protocol is not None else {}),
     )
     from .refinement_inputs import prepare_refinement_inputs, validate_refinement_inputs
     execution_restraint_records = [*parent_restraint_records,
@@ -1802,7 +1872,11 @@ def execute_autorefine(
         if parallelity_request is not None:
             try:
                 from .refinement_parallelity import read_execution_request
-                read_execution_request(run, parallelity_request, checkpoint=checkpoint_id)
+                request = read_execution_request(run, parallelity_request, checkpoint=checkpoint_id)
+                if counted_identity is not None:
+                    from .refinement_counted import _original_identity
+                    if _original_identity(request) != counted_identity:
+                        raise ValueError('Counted original intent changed after its pre-allocation check')
             except (OSError, ValueError, RuntimeError) as exc:
                 raise AutoRefineError(f'Parallelity execution inputs changed: {exc}') from exc
         if refinement_input_reference is not None:
@@ -1818,6 +1892,7 @@ def execute_autorefine(
         execution_restraints,
         parameters,
         plan,
+        **({'counted_protocol': counted_protocol} if counted_protocol is not None else {}),
     )
     log_path = round_directory / "phenix.refine.log"
     preflight_log = round_directory / "phenix.refine.preflight.log"
@@ -1830,13 +1905,18 @@ def execute_autorefine(
                 inputs=[observations, model, *execution_restraints,
                         *([phase_file] if phase_file is not None else []), parameters],
                 command=command, python_executable=phenix_python_executable, macro_cycles=macro_cycles,
-                chemistry_projections=chemistry_projections)
+                chemistry_projections=None if counted_protocol is not None else chemistry_projections,
+                **({'runtime_policy': V6_POLICY_ID, 'counted_pair_request': counted_pair_request}
+                   if counted_protocol is not None else {}))
         except (OSError, ValueError, RuntimeError) as exc:
             raise AutoRefineError(f'Parallelity execution preparation failed: {exc}') from exc
+    if counted_protocol is not None:
+        require_refinement_inputs_unchanged()
     if progress is not None:
         progress(checkpoint_id, log_path)
     preflight_failed = False
     admission_refusal = None
+    counted_admission = None
     try:
         with preflight_log.open("w", encoding="utf-8") as preflight_handle:
             preflight = subprocess.run(
@@ -1871,7 +1951,12 @@ def execute_autorefine(
             if parallelity_request is not None:
                 from .refinement_parallelity import validate_preflight
                 try:
-                    validate_preflight(run, parallelity_request, checkpoint=checkpoint_id)
+                    if counted_protocol is not None:
+                        from .refinement_counted import seal_admission
+                        counted_admission = seal_admission(run, parallelity_request,
+                            checkpoint=checkpoint_id, preflight_returncode=0)
+                    else:
+                        validate_preflight(run, parallelity_request, checkpoint=checkpoint_id)
                 except (OSError, ValueError, RuntimeError) as exc:
                     admission_refusal = dict(stage='preflight_evidence',
                         error=dict(type=type(exc).__name__, message=str(exc)))
@@ -1881,16 +1966,30 @@ def execute_autorefine(
                     completed_returncode = None
             if admission_refusal is None:
                 try:
-                    with log_path.open("w", encoding="utf-8") as log_handle:
-                        completed = subprocess.run(
-                            command,
-                            cwd=round_directory,
-                            env=dict(environment) if environment is not None else None,
-                            text=True,
-                            stdout=log_handle,
-                            stderr=subprocess.STDOUT,
-                            check=False,
-                        )
+                    if counted_protocol is not None:
+                        from .refinement_counted import refinement_command
+                        command_view = refinement_command(run, parallelity_request, counted_admission,
+                            checkpoint=checkpoint_id, python_executable=phenix_python_executable)
+                    else:
+                        command_view = nullcontext(command)
+                    with command_view as actual_command:
+                        command = actual_command
+                        with log_path.open("w", encoding="utf-8") as log_handle:
+                            completed = subprocess.run(
+                                command,
+                                cwd=round_directory,
+                                env=dict(environment) if environment is not None else None,
+                                text=True,
+                                stdout=log_handle,
+                                stderr=subprocess.STDOUT,
+                                check=False,
+                            )
+                except (ValueError, RuntimeError) as exc:
+                    if counted_protocol is None:
+                        raise
+                    raise AutoRefineError(
+                        f'Counted refinement command/lifetime refused; preserve the attempt and '
+                        f'its launch evidence before considering a fresh attempt: {exc}') from exc
                 except OSError as exc:
                     log_path.write_text(
                         f"NASolve could not launch phenix.refine: {exc}\n", encoding="utf-8"
@@ -1907,7 +2006,8 @@ def execute_autorefine(
                 checkpoint=checkpoint_id,
                 preflight_returncode=completed_returncode if preflight_failed else 0,
                 refinement_returncode=None if preflight_failed else completed_returncode,
-                admission_refusal=admission_refusal)
+                admission_refusal=admission_refusal,
+                **({'counted_admission': counted_admission} if counted_admission is not None else {}))
         except (OSError, ValueError, RuntimeError) as exc:
             detail = ('; original preflight admission refusal: '
                       + admission_refusal['error']['type'] + ': '
@@ -2103,6 +2203,12 @@ def execute_autorefine(
         checkpoint_status = "REVIEW"
         usable = True
         exit_code = 0
+    elif counted_protocol is not None:
+        status = "AUTOREFINE_REVIEW"
+        message = "Explicit counted-coordinate control completed; inspect the model before selection"
+        checkpoint_status = "REVIEW"
+        usable = True
+        exit_code = 0
     elif numerical_success:
         status = "AUTOREFINE_READY"
         message = "Numerical refinement criteria passed; inspect the model and maps"
@@ -2165,8 +2271,12 @@ def execute_autorefine(
     }
     selected = auto_select_success and status == "AUTOREFINE_READY"
     try:
+        if counted_protocol is not None:
+            from .refinement_parallelity import validate_checkpoint_execution
+            validate_checkpoint_execution(run, checkpoint_payload,
+                dict(registry, checkpoints=[*registry['checkpoints'], checkpoint_payload]))
         append_checkpoint(run, registry, checkpoint_payload, select=selected)
-    except CheckpointError as exc:
+    except (CheckpointError, OSError, ValueError, RuntimeError) as exc:
         raise AutoRefineError(str(exc)) from exc
     round_payload = {
         "status": status,
@@ -2200,7 +2310,10 @@ def execute_autorefine(
             ],
         },
         "refinement": {
-            "target": "automatic",
+            "target": "ml" if counted_protocol is not None else "automatic",
+            **({"counted_protocol": counted_protocol, "random_seed": 1, "max_iterations": 10,
+                "working_frame": {"choice": counted_frame or "native", "crystal": counted_crystal}}
+               if counted_protocol is not None else {}),
             "strategies": list(strategies),
             "anomalous": plan.anomalous,
             "anomalous_selections": list(selections),
@@ -2213,7 +2326,8 @@ def execute_autorefine(
             "refine_occupancies": refine_occupancies,
             "refine_coordinates": refine_coordinates,
             "weights": {
-                "optimize_xyz": refine_coordinates,
+                "optimize_xyz": False if counted_protocol is not None else refine_coordinates,
+                **({"fix_wxc": 1.0, "wc": 1.0} if counted_protocol is not None else {}),
                 "optimize_adp": adp_mode != "none",
                 "wxc_scale": xyz_wxc_scale,
             },

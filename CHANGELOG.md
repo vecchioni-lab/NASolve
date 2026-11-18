@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Carry explicit pair forces through the ordinary refinement owner (C386)
+
+- Add the Python-only `counted-xyz-fixed-unit-v1` control to AutoRefine. Require
+  explicit one-cycle/one-process/XYZ-only settings and original pair recipe/source;
+  preserve the ordinary defaults. The existing owner seals actual preflight,
+  consumes its exact preparation and saves a usable result as unselected REVIEW.
+- Request v6 explicitly, preserve inherited original intent, and validate native
+  written-model identity before saving the checkpoint. A fresh request can take
+  a v5 ancestor forward without upgrading its old evidence. Unknown launch state
+  remains a preserved error, never a fabricated no-launch result.
+- Permit an explicit recipe-frame choice, recorded in the parameters/report.
+  Unsupported phases, chemistry projections and new extra/terminal protection
+  refuse before round allocation; existing inherited protection remains checked.
+  No native-helper, CLI, campaign, default-weight or scientific-acceptance change.
+
 ### Bind a counted checkpoint to the model Phenix actually wrote (C385)
 
 - Add explicit counted execution policy v6. Reuse the existing final-writer

@@ -34,10 +34,10 @@ def request_case(tmp_path, *, request_changes=None):
     return run,reference,preflight
 
 
-def observed_case(tmp_path, *, policy=execution.V5_POLICY_ID):
-    run,reference,command=request_case(tmp_path,request_changes={'runtime_policy':policy})
-    request=execution.read_execution_request(run,reference,checkpoint='refine-001')
-    root=run/execution._root('refine-001');phase=root/'preflight';phase.mkdir();(phase/'calls').mkdir()
+def observed_case(tmp_path, *, policy=execution.V5_POLICY_ID, execution_case=None, checkpoint='refine-001'):
+    run,reference,command=execution_case or request_case(tmp_path,request_changes={'runtime_policy':policy})
+    request=execution.read_execution_request(run,reference,checkpoint=checkpoint)
+    root=run/execution._root(checkpoint);phase=root/'preflight';phase.mkdir();(phase/'calls').mkdir()
     profile=json.loads((root/'code/_nasolve_refinement/data/parallelity-native-profile.json').read_text())
     result=dict(schema_version=1,policy_id='explicit-native-parallelity-refinement-v4',
         status='COMPLETE',arguments=command[5:],pid=123,parent_pid=122,
@@ -296,8 +296,8 @@ def registered_counted_case(tmp_path, *, full_model=False, policy=execution.V5_P
     if full_model:
         from nasolve.cif_native_monomers import FULL_MODEL_PHIL
         from nasolve.refinement_inputs import prepare_refinement_inputs
-        policy=run/'inputs/full-model.phil';policy.write_text(FULL_MODEL_PHIL)
-        restraint_refs=[_file_reference(policy,run)]
+        full_model_policy=run/'inputs/full-model.phil';full_model_policy.write_text(FULL_MODEL_PHIL)
+        restraint_refs=[_file_reference(full_model_policy,run)]
         paths,adaptation=prepare_refinement_inputs(run,restraint_refs,checkpoint='refine-001')
         request['inputs'][2:2]=[_file_reference(p,run) for p in paths]
         request['command'][3:3]=[str(p) for p in paths]

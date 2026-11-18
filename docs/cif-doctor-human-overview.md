@@ -1,14 +1,16 @@
 # CIF Doctor: human and manuscript overview
 
-**Current explanation, 2026-11-17.** CIF Doctor checks whether the model and
+**Current explanation, 2026-11-18.** CIF Doctor checks whether the model and
 chemical dictionaries preserve the intended molecule, whether Phenix can read
 the resulting restraints, and whether a proposed repair changes only what it
 should. It works around ReadySet and NARestraints; it does not replace them.
 
-The latest bounded work (C385) keeps the same intended pair restraints through
-successive explicit refinements and checks that a saved result is the exact model
-Phenix wrote. A canonical-DNA control demonstrates this bookkeeping without changing
-its refined model. Ordinary command integration and PDU/DF survival through refinement
+The latest bounded work (C386) carries the same intended pair restraints through
+NASolve's ordinary refinement owner, checks the exact model Phenix wrote before
+saving it, and leaves the result unselected for review. One canonical-DNA control
+produces exactly the same PDB as the earlier explicit control. This currently
+requires an explicitly chosen short coordinate-refinement protocol through Python;
+normal refinement settings are unchanged. Wider protocols and PDU/DF survival
 remain open; see the [current queue](cif-doctor-completion-queue.md#pipeline-position).
 
 Ordinary model construction now preserves supported modified-base orientation.

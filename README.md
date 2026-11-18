@@ -60,8 +60,12 @@ preserves pair/stack intent and compiler/native evidence through owned requests.
 The alternative [source-bound compiler intake](docs/cif-doctor.md#existing-source-bound-compiler-intake-c188)
 retains an existing C80 artifact without requiring a prior native capture or re-guessing pairs.
 Prepared intake can also [reuse an already frozen source selection](docs/cif-doctor.md#frozen-source-selection-at-prepared-intake-c189)
-without rediscovery. Actual
-refinement qualification is a separate gate. No source chemical state, terminal
+without rediscovery. The explicit
+[ordinary counted-coordinate control](docs/architecture.md#ordinary-counted-control-c386)
+can now carry an original pair recipe through AutoRefine's Python owner, retaining
+exact written-model evidence and leaving the result unselected for review.
+Broader protocols, CLI/campaign activation and actual modified-residue
+refinement qualification remain separate gates. No source chemical state, terminal
 phosphate or requested restraint may be changed merely to obtain a numerical pass.
 
 The catalogue programme includes every selected NARestraints ligand, including

@@ -112111,5 +112111,137 @@
       "audit_sha256": "3254d275bf5e5e7d1fc44ea88012a85a71909d477c8c3f2c748e377645e8c717",
       "native_rerun": false
     }
+  },
+  "ordinary_counted_control_2026_11_18": {
+    "milestone": "C386",
+    "signed": "Rowan",
+    "source_parent": "eeb4f3f9d818d71380188709dcede7ab32f0bc97",
+    "before": "Counted v6 required a manually composed executor/publication diagnostic; ordinary owner rejected counted ancestry and always generated automatic XYZ weights. Exact model validation occurred on cold read, not its new ordinary publication boundary.",
+    "after": "Explicit named fixed-unit XYZ protocol joins original intent, native admission, existing ordinary subprocess ownership and exact pre-publication model validation. Usable controls are unselected REVIEW; ordinary defaults stay exact.",
+    "changed_files": [
+      "src/nasolve/autorefine.py",
+      "src/nasolve/refinement_counted.py",
+      "src/nasolve/refinement_parallelity.py",
+      "tests/test_autorefine_counted.py",
+      "tests/test_refinement_counted.py",
+      "README.md",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/development-handoff.md",
+      "docs/README.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": "No new persistent execution schema or frozen helper; optional ordinary report fields document explicit protocol/frame. Existing v6/admission/refusal/readers reused.",
+    "prior_work": [
+      "C278 input namespace adapter",
+      "C377 native lifetime",
+      "C379 refusal envelope",
+      "C381 admission and process boundary",
+      "C382-C384 lineage",
+      "C385 exact writer proof"
+    ],
+    "validation": {
+      "regression_before": "New API regression fails with unexpected counted_protocol keyword after correcting a test-only shadowed v6 policy variable.",
+      "source_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider tests/test_autorefine.py tests/test_refinement_parallelity.py tests/test_refinement_counted.py tests/test_refinement_inputs.py tests/test_autorefine_counted.py --tb=short",
+      "source_result": "207 passed + 13 subtests in 72.41 s; subsequent five new boundary cases passed in 4.27 s.",
+      "installed_command": [
+        "/private/tmp/willow-w94-pivot/env/bin/python",
+        "-B",
+        "-c",
+        "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_autorefine_counted.py', 'tests/test_autorefine.py', 'tests/test_cif_refinement_output.py', 'tests/test_cif_refinement_runtime.py', 'tests/test_cif_refinement_sites.py', 'tests/test_refinement_counted.py', 'tests/test_refinement_parallelity.py', 'tests/test_refinement_inputs.py', 'tests/test_cif_counted_refinement.py', '--tb=short']))"
+      ],
+      "installed_result": "........................................................... [ 17%]\n........................................................................ [ 37%]\n........................................................................ [ 58%]\n........................................................................ [ 79%]\n......................................................................   [100%]\n345 passed, 13 subtests passed in 75.83s (0:01:15)\n",
+      "wheel_sha256": "cde2754b357f8262c64d2303dbdd02eca5f28bea1a7dd1db1bbb5b7c06541ec5",
+      "wheel_bytes": 1545766,
+      "package_sources_sha256": "caf252d58c75f86e5b3752f0cea6391dbd51e61cedfa1720cf3ff13968835acd",
+      "portability": "Temporary build source removed; install relocated before focused validation. Native run then relocated with original path absent; cold registry read preserves bytes and mtimes with execution/writes forbidden.",
+      "full_suite": "Not run by Rowan in this push; last full Cedar baseline remains C220. Linden separately preparing a pinned combined validation under his supplied contract."
+    },
+    "native": {
+      "version": "Phenix 2.2.1-6174 / Darwin arm64",
+      "execution": "Complete ordinary-owner preflight and one real coordinate cycle",
+      "run_anchor": "local C386 ordinary-counted retained control",
+      "run_id": "c386-ordinary-counted-wk_er491-relocated",
+      "plan_sha256": "84ccfaaebb0840de3aab52be79b79fa33b84ee1a4c4b56c127950f831723397a",
+      "seconds": 45.41289350000443,
+      "returncode": 0,
+      "phase_returncodes": [
+        0,
+        0
+      ],
+      "parent_process_identity_verified": true,
+      "all_processes_stopped": true,
+      "written_model": {
+        "model_state_sha256": "f4d01d2e62d67354ddc86ea28dc6f5592e6ac91071b4f9de10296ccc4644dbed",
+        "policy_id": "native-written-model-v1",
+        "sha256": "55d28cbd19bf01874a313ff9b10b2ed4209e9e0f9b23e738b189ed5eda1082eb",
+        "size": 143889
+      },
+      "exact_C385_PDB": true,
+      "added_terms": 17,
+      "successful_counted_calls": 15,
+      "r_work": 0.2251,
+      "r_free": 0.2609,
+      "input_label_adaptation": {
+        "policy": "diagnostic-column-label-only",
+        "original_sha256": "f57083bb6d6b74789ba77c0c448c678356f7e3a52805a7142e1b33f9055d86a7",
+        "staged_sha256": "7bb523e28f495712e8c8098a01c084b92ba9276a6cd29561b41e1961c0d9393f",
+        "old_labels": [
+          "H",
+          "K",
+          "L",
+          "Fobs",
+          "SIGFobs",
+          "FreeR_flag"
+        ],
+        "new_labels": [
+          "H",
+          "K",
+          "L",
+          "F",
+          "SIGF",
+          "FreeR_flag"
+        ],
+        "row_count": 3333,
+        "ordered_array_bytes_sha256": "4acc655aef270a54ea60f7a49187a84db371bc9542ba30a8a11803605967a8ea",
+        "ordered_arrays_bit_identical": true,
+        "missing_masks_equal": true,
+        "free_r_unchanged": true,
+        "cell": [
+          105.547,
+          105.547,
+          96.268,
+          90.0,
+          90.0,
+          120.0
+        ],
+        "space_group": "R 3:H"
+      },
+      "selected": "postmr",
+      "checkpoint_status": "REVIEW",
+      "scientific_acceptance": false
+    },
+    "compatibility": "Existing default PHIL and commands match C385 over 32 peer-checked combinations; historical helpers/readers unchanged. Explicit fresh v6 can preserve a v5 ancestor without reinterpreting old proof.",
+    "generated_artifacts": "Models, MTZ, native logs, installed packages, runners and full receipts remain local; only compact technical evidence/hashes committed.",
+    "limitations": [
+      "Python-only explicit control; no CLI/campaign/default activation",
+      "One cycle/process, fixed unit weights, seed1,10 iterations; no broader optimizer qualification",
+      "Unsupported experimental-phase consumption, chemistry projections, new extra/terminal sources refuse; inherited protection remains checked",
+      "Standalone durable attempt recovery remains separate; no retry from unknown process state",
+      "Canonical-DNA control is not PDU/DF survival or modified-crystal validation",
+      "Native versus additive provider geometry statistics need explicit study before automatic-weight expansion"
+    ],
+    "next": "Pinned full validation owned by Linden; provider-independent geometry-statistics comparison and remaining Q06 achieved-chemistry/combination gates.",
+    "independent_review": {
+      "signed": "Linden",
+      "milestone": "W128",
+      "scope": "299 package files; 32 exact default PHIL/command cases; 72 current and 64 historical files; cold read without launch/write; actual process, arrays, original intent and exact writer identity; no repeated native execution",
+      "audit_sha256": "157133b6857536c1b3197acaf243e5cbbfdc14289281ed89cc2051bad7aed19f",
+      "ordinary_compatibility_sha256": "0400bbb7083cda2e081b46fb9613600f5293a16a7c83fc8772215bb568fc0ce4",
+      "native_namespace_adaptation_required": false,
+      "geometry_rms_fields": "unavailable in ordinary parsed result, not zero"
+    }
   }
 }

@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-11-17**. Use the subsystem contract for actual behavior, the
+Updated **2026-11-18**. Use the subsystem contract for actual behavior, the
 [development handoff](development-handoff.md) for the current implementation and
 validation edge, and linked evidence for exact scientific claims. Historical
 milestone statements preserve their original scope; they are not a second queue.
@@ -14,8 +14,10 @@ milestone statements preserve their original scope; they are not a second queue.
   supported-route recovery, successful-working retention, repeated-failure and
   serial coordinator acceptance. One normal campaign reaches actual refinement
   and cold relocated inspection. Q06 still owns effective restraints/derivatives
-  and chemical survival, including PDU; one 5IU control does not qualify the whole
-  catalogue. Native 100-dataset capacity, default activation, historical migration
+  and chemical survival, including PDU. The explicit ordinary counted control
+  carries intended pair forces through one real coordinate cycle; broader protocols
+  and modified-residue survival remain open. One 5IU control does not qualify the
+  whole catalogue. Native 100-dataset capacity, default activation, historical migration
   and combined-source integration remain unqualified release limits. Use the
   [short handoff](development-handoff.md) for the active task,
   [human overview](cif-doctor-human-overview.md) for the explanation, and

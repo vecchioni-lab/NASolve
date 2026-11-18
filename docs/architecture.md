@@ -4578,9 +4578,8 @@ is package compatibility data, not an extra scientific run archive. v5 has its
 original narrower evidence: C382 independently verified its actual physical output,
 but old records cannot retrospectively claim a v6 writer observation.
 
-Ordinary activation remains gated on integration with the existing refinement
-owner and explicit protocol choice; durable admission and registered continuation
-are qualified only through the explicit counted APIs. Copied native-family reports remain
+C386 connects the explicit control below to the existing AutoRefine Python owner.
+CLI/campaign/default activation and broader protocols remain separately gated. Copied native-family reports remain
 distinct from complete added-term statistics. C369 qualifies wrapper
 recognition for direct calls only, not that wider integration. Historical v3
 runtime/output/monomer cleanup retains its original replacement semantics; C372's
@@ -4589,6 +4588,51 @@ when their decomposition omits them. Direct-call/relocated tests do not qualify
 those paths, arbitrary selection, a full optimizer, or chemical survival.
 Exact compact validation is recorded in the existing evidence ledger; the
 completion queue is the sole order for this remaining integration.
+
+
+### Ordinary counted control (C386)
+
+`execute_autorefine` accepts the named `counted_protocol="counted-xyz-fixed-unit-v1"`
+with `counted_pair_request={"recipe": original_recipe_path, "source_model": original_model_path}`.
+The caller must explicitly choose one macrocycle, one processor, coordinate-only
+refinement, no real-space step, no ADP/occupancy/anomalous-parameter refinement,
+and checked plane forces with the configured Phenix Python. The protocol records
+ML, fixed unit weights, seed 1, ten iterations and disabled changing phases.
+It is a bounded mechanics control, not a recommended refinement recipe. Without
+this choice, parameter and command bytes retain their existing behavior.
+
+`counted_frame="recipe"` explicitly writes the validated recipe crystal into the
+ordinary parameter file and report. The default `None` retains native frame
+selection; the existing native frame guard must still accept it. No model-cell
+preference, cell-tolerance widening or fixture constant is introduced. Original
+observations and Free-R remain authoritative. Consumed experimental phases,
+nonempty chemistry projections, new extra restraints and newly required terminal
+protection remain unsupported in this first route and refuse before a new round.
+Already inherited protection and all ordinary model/input checks remain active.
+
+The existing owner compares original recipe/source bytes with counted ancestry
+before allocation and rechecks frozen intent before native work. Every call makes
+an explicit fresh v6 request/admission; an old v5 record is never rewritten.
+Stopped successful preflight is sealed through `refinement_counted`; its temporary
+prepared view surrounds the same ordinary `subprocess.run` call. Children retain
+the enclosing campaign/controller process group. No new native executor or
+provider selection path is added. Standalone durable attempt recovery remains a
+separate integration gate; a launch marker alone proves no process is dead.
+
+Actual preflight refusal retains the existing zero/NOT_LAUNCHED failed-checkpoint
+contract. A command-context/lifetime refusal preserves partial state and a
+controlled error; it cannot assert that an existing launch never happened.
+Before publication, the existing full execution/checkpoint validator checks the
+proposed child, including exact native-written PDB bytes and input adaptations.
+Failed checks preserve the previous registry. Valid usable controls stay REVIEW
+and unselected, including when numerical criteria pass.
+
+A real installed/relocated ordinary-owner control preserves 17 added terms,
+completes all native writing, and produces the exact C385 PDB. Its diagnostic MTZ
+has explicitly relabelled F/SIGF columns with bit-identical ordered arrays and
+Free-R values; source bytes remain intact. This is canonical-DNA mechanics evidence,
+not a modified-crystal refinement or PDU/DF chemical-survival result. The existing
+evidence ledger records `ordinary_counted_control_2026_11_18`.
 
 ## Native nonbonded attribution (C127)
 

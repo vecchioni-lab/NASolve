@@ -17,6 +17,40 @@ INTENT_POLICY = 'saved-counted-pair-intent-v1'
 ADMISSION_POLICY = 'prepared-counted-admission-v1'
 OBSERVATION_POLICY = 'counted-phase-observation-v1'
 
+AUTOREFINE_CONTROL_PROTOCOL = 'counted-xyz-fixed-unit-v1'
+
+
+def validate_autorefine_control(protocol, pair_request, *, enabled, macro_cycles,
+        processor_count, real_space_sites, adp_mode, refine_occupancies,
+        anomalous_mode, refine_coordinates):
+    """Require a deliberately selected bounded control, never rewrite defaults."""
+    from collections.abc import Mapping
+    if protocol is None and pair_request is None:
+        return
+    _need(protocol == AUTOREFINE_CONTROL_PROTOCOL,
+          'Counted refinement requires the explicit counted-xyz-fixed-unit-v1 protocol')
+    _need(isinstance(pair_request, Mapping) and set(pair_request) == {'recipe', 'source_model'},
+          'Counted refinement requires an explicit original recipe/source request')
+    _need(enabled is True and type(macro_cycles) is int and macro_cycles == 1
+          and type(processor_count) is int and processor_count == 1
+          and real_space_sites is False and adp_mode == 'none'
+          and refine_occupancies is False and anomalous_mode == 'off'
+          and refine_coordinates is True,
+          'Counted control requires explicit one-cycle, one-process, XYZ-only choices; '
+          'ordinary settings will not be overridden')
+
+
+def validate_autorefine_intent(run, registry, parent, pair_request, current_model):
+    """Check original intent before allocating a round; return its byte identity."""
+    payload = prepare_intent(pair_request['recipe'], pair_request['source_model'], current_model)
+    identity = (_digest(json.loads(payload['original-recipe.json'])),
+        tuple(value for name in ('original-recipe.json', 'original-model.pdb')
+              for value in (hashlib.sha256(payload[name]).hexdigest(), len(payload[name]))))
+    inherited = _inherited_request(run, registry, parent, include_selected=True)
+    _need(inherited is None or identity == _original_identity(inherited),
+          'Counted request changes the inherited original pair intent')
+    return identity, json.loads(payload['current-recipe.json'])['crystal']
+
 
 def _need(value,message):
     if not value:raise ValueError(message)

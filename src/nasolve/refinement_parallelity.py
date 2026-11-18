@@ -291,19 +291,19 @@ def _preflight_arguments(request):
     return [*arguments,'refinement.dry_run=True']
 
 
-def validate_runtime_choice(enabled, python_executable):
+def validate_runtime_choice(enabled, python_executable, *, runtime_policy=None):
     """Validate the explicit choice before either owner allocates work."""
     if type(enabled) is not bool:
         raise ValueError('Native parallelity correction must be explicitly enabled or disabled')
     if enabled and (python_executable is None or not Path(python_executable).is_file()):
         raise ValueError('Explicit plane-force correction requires the configured phenix.python')
     if enabled:
-        try:_code()
+        try:_code() if runtime_policy is None else _code(runtime_policy)
         except OSError as exc:
             raise ValueError('Required qualified runtime source is unavailable: '+str(exc)) from exc
 
 
-def require_runtime_continuation(registry, selected, enabled, *, run=None):
+def require_runtime_continuation(registry, selected, enabled, *, run=None, allow_counted=False):
     ancestors=_checked_ancestors(registry,selected)
     if run is not None:
         # Ordinary owners have already validated the registry. Read only the
@@ -316,7 +316,7 @@ def require_runtime_continuation(registry, selected, enabled, *, run=None):
                 policy=record.get('policy_id')
                 _need(isinstance(policy,str) and policy in _SOURCES,'Unknown ancestor execution policy')
             except (OSError,ValueError,RuntimeError) as exc:raise ValueError(str(exc)) from exc
-            if policy in _COUNTED_POLICIES:
+            if policy in _COUNTED_POLICIES and not allow_counted:
                 raise ValueError(
                     'This checkpoint inherits counted pair restraints. Ordinary continuation '
                     'is not yet qualified; prepare a fresh explicit counted request preserving '

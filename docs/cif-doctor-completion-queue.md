@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current work order, 2026-11-17.** This is the one unfinished-work queue. The
+**Current work order, 2026-11-18.** This is the one unfinished-work queue. The
 [capability table](cif-doctor.md#current-capability-boundary) records demonstrated
 support; the [handoff](development-handoff.md) says where work stopped. Old notes
 record what was known then. They do not create a second set of instructions.
@@ -68,33 +68,38 @@ reject a previous model and altered copy even with valid replacement checksums.
 Installed focused282 tests pass. Historical v5 records are not upgraded or given
 proof they never captured; v6 continuation cannot drop its stronger proof.
 
-**Next bounded controller slice — use this safely in ordinary refinement.** Reuse
-`execute_autorefine`, its parameter writer, C278 input adapter and checkpoint owner.
-The interface audit identifies these concrete joins:
+**C386 complete — ordinary owner, explicit bounded control.** The named Python
+control uses existing AutoRefine parameters, input adaptation, processes and
+checkpoint publication. It explicitly requests fresh v6 admission, retains original
+intent, and validates exact native-written bytes before saving an unselected REVIEW
+child. Existing ordinary parameter/command bytes are unchanged across 32 independently
+compared settings. One complete installed native control preserves 17 added terms,
+produces the exact C385 PDB, and reads cold after relocation. Focused installed
+345 tests +13 subtests pass. The diagnostic MTZ label change is explicit; ordered
+observations/HKL/Free-R arrays are bit-identical, not byte-identical files.
 
-1. Request v6 and the qualified protocol explicitly; reject incompatible caller settings.
-   Continuing an old v5 parent retains v5 proof. A v5→v6 transition needs an explicit
-   fresh request/admission with the same original intent; do not relabel old evidence.
-   Ordinary five-cycle/automatic-weight defaults remain unchanged. Native resolved
-   preflight, not command spelling alone, decides admission; the current command's
-   `target=auto` must not override an explicitly qualified ML protocol.
-2. Preserve declared working crystal frame, Free-R, phases and phosphate intent.
-   Newly generated terminal protection is an additional restraint source; C383's
-   namespace-only adapter does not authorize it. Existing inherited protection
-   remains part of the exact source list. Nonempty chemistry projections still
-   require separate combined qualification; do not drop the existing chemistry report.
-3. Reuse campaign process ownership where present. Standalone currently calls
-   `subprocess.run` without durable child identity; it needs the existing owned
-   command primitive and explicit attempt/recovery contract, not another executor.
-   Never enter a second process group that escapes the enclosing campaign owner.
-4. Publish through the existing checkpoint owner with v6 written-model proof and
-   all input/admission receipts. Initial integration remains unselected REVIEW.
-   Do not confuse mechanically usable output with a scientifically accepted model.
+**Remaining ordinary-integration boundaries:**
 
-Ordinary AutoRefine/Doctor still refuse to lose counted intent. The next native
-control must cross that actual ordinary owner/publication boundary; repeating the
-manual C382 runner does not close it. Broader native scope has its own qualification
-and must not be inferred from repeated short cycles. Q06 achieved chemistry remains open.
+1. Wider actual protocols, automatic weights and CLI/campaign activation remain
+   unqualified. Keep the existing five/three-cycle defaults and original native
+   thresholds; do not repeatedly run short controls as a substitute.
+2. Consumed phases, nonempty chemistry projections and new extra/terminal restraints
+   need explicit combined qualification. Existing inherited protection is checked;
+   unsupported requests refuse before round allocation rather than losing meaning.
+3. Standalone durable attempt recovery needs the existing process/attempt authority.
+   Campaign/controller children retain the existing process group. Never introduce
+   an inner process group that escapes its owner or infer death from a launch marker.
+4. Before automatic weight selection, test whether geometry eligibility statistics
+   have the same scientific meaning for native versus additive pair providers.
+   Native pair bonds may enter pooled bond RMS while additive equivalents do not.
+   This is a hypothesis prompted by Alder's separate actual-weight audit, not a
+   proven counted-route defect or permission to change the scorer. Coordinate with
+   Linden/Hazel and reuse frozen inputs/attribution rather than another optimizer.
+
+Q06 achieved PDU/DF chemistry remains open. Ordinary AutoRefine/Doctor requests
+without explicit counted intent still refuse to lose that ancestry. Original
+v5 evidence retains its scope; C386's explicitly requested new v6 admission is
+not a retrospective upgrade. No branch merge or automatic scientific selection.
 
 Initial supported scope is one all-site XYZ cycle/process, fixed unit weights,
 1–10 iterations, no changing targets/NCS/neutron or chemistry-projection combination.
@@ -276,7 +281,7 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Complete for recorded alternatives, selected-model phasing, Coot, cold inspection and the ordinary five-cycle refinement handoff. Actual chemical survival/effective restraint behavior is Q06; no default activation or historical migration. |
-| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C385 add bounded pair-force continuity and exact native-written-model proof. Still connect that counted route to ordinary refinement and resolve achieved PDU/DF geometry plus held-out survival. Mechanics or a readable dictionary alone is insufficient. |
+| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C386 add bounded pair-force continuity, exact native-written-model proof and an explicit ordinary-owner control. Wider protocols and achieved PDU/DF geometry plus held-out survival remain open. Mechanics or a readable dictionary alone is insufficient. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |
