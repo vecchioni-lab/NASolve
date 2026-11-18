@@ -1,11 +1,11 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-18**. **W128 ordinary AutoRefine integration is audited.
-W129 confirms provider-dependent geometry summaries; full C386 regression is
-running with failures to diagnose.** This is Willow's
-handoff, not the project-wide status of Pine, Cedar or Alder. Willow's latest
-periodic/factory source is W118; counted execution/continuation is committed on
-Cedar through C386. These audits are not a whole-branch merge or supported release.
+Updated **2026-11-18**. **W130 audits chemical observation beside counted
+pair forces; W129 establishes provider-dependent native geometry summaries.**
+C386 full regression is still running with failures to diagnose. This is Willow's
+handoff, not project-wide status. Numerical Willow source remains W118; ordinary
+owner and chemistry integration belong to Cedar through C388. These audits are
+not a whole-branch merge or supported release.
 
 The backend can bind explicit periodic pair intent, apply the missing geometry
 terms during one qualified native refinement cycle, retain their original meaning
@@ -19,6 +19,7 @@ unqualified.** S04/S05/S06 and P01/P02 remain partial. The
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
+| W130 / C388 chemistry coexistence | Source projection inheritance and two matched observer off/on controls, including one additive term | Poor-R mechanics only; native ordinary chemistry-descendant test and broader protocols remain open |
 | W129 geometry summaries | Same complete intended forces/coordinates, but native angle RMS changes by 0.000616° across provider splits | Actual selector effects, semantic geometry reporting and qualified weighting policy |
 | W128 / C386 ordinary owner | Explicit bounded Python request reuses AutoRefine, preserves original intent/frame and validates the written model before publication | Broader scientific protocols, CLI/Doctor activation and repair efficacy |
 | W127 / C385 publication | Explicit v6 joins actual completed native writer bytes/state to the usable checkpoint; old payloads remain exact | Historical v5 has no retroactive output proof |
@@ -47,8 +48,9 @@ not another work queue; do not repeat them because this handoff is shorter.
 3. Keep the supported ordinary protocol explicit: one all-site XYZ cycle,
    fixed unit weights, ten iterations, one process and seed 1. `counted_frame="recipe"`
    is an explicit, recorded choice; do not generalize it into model-cell preference.
-   Broader weights/ADPs/scaling/phases, extra terminal sources and chemistry
-   projections need separate qualification through the existing owners.
+   Broader weights/ADPs/scaling/phases, extra terminal sources need separate qualification through existing owners.
+   C388 qualifies passive chemistry coexistence and focused ordinary forwarding;
+   it does not establish a successful repaired structure.
 4. Then use matched B10 controls and geometry, packing and diffraction/density
    evidence before physical acceptance. Preserve original data/Free-R, unselected
    REVIEW and exact pair intent. Retain repulsion while exclusions are open;
@@ -61,6 +63,12 @@ large-bend repair follow later. No CLI/default activation follows from these doc
 
 ## Validation and scientific interpretation
 
+- **W130 / C388:** 377 distinct installed passes +24 subtests across an initial
+  panel and 12 missing-fixture retries. Independent 299-source and relocated cold
+  audit; actual matched off/on native controls with zero/one additive term.
+  Full native state is exact within each pair; cross-provider equality is only
+  claimed for rounded PDB bytes. Poor R values exclude acceptance.
+  [Exact W130 evidence](topostitch-periodic.md#w130--keep-chemistry-observation-beside-counted-pair-forces).
 - **W129:** one passive Phenix 2.2.1-6174 process, 20.68s; complete target/forces
   agree while native default angle RMS changes 2.30831009→2.30892601° with no motion.
   Cold source/archive/variance and direct-angle audit passes; no optimizer, selector

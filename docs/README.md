@@ -11,15 +11,17 @@ current instructions; other branches retain their own status and validation pins
   Cedar C386's explicit counted-pair path through ordinary AutoRefine: fixed-unit
   one-cycle XYZ protocol, preserved original intent/frame, actual-writer checkpoint
   binding and unselected REVIEW. Willow's numerical library remains W118; the
-  shared controller changes belong to Cedar. Broader weighting, phases, chemistry,
+  shared controller changes belong to Cedar. Broader weighting, phases,
   exclusions and physical repair remain open. W122's user-facing sticky-end option
   is still planned. W129 measures a small provider-dependent native angle RMS at
   unchanged coordinates and equivalent complete forces. No actual weight decision was tested;
   semantic geometry classification and broader weighting remain separate gates.
+  W130 audits C388 passive chemistry coexistence and source-projection inheritance;
+  native controls remain mechanics evidence with poor R values.
   Earlier arithmetic, lifecycle and continuation evidence lives in the ledgers;
   do not repeat it merely because this current guide is shorter.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Next human update is W130;
+  [machine-readable source](topostitch-roadmap.json). Next human update is W131;
   do not restart completed probes merely because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

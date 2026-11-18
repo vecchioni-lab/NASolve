@@ -6840,3 +6840,64 @@ resolve those failures, coordinate semantic geometry readback with Cedar/Hazel,
 and qualify any automatic-weighting policy separately. Do not repeat this frozen
 comparison or manufacture an optimizer to avoid that decision. S06 stays partial;
 matched efficacy, density, broader protocols and W122 activation remain open.
+
+
+### W130 — Keep chemistry observation beside counted pair forces
+
+Independent review qualifies Cedar C388 `a67df6b7a70dad94d0f14e3cdabea5f8f5a9c21e`:
+existing site-scoped chemical observation can accompany the explicit v6 one-cycle
+counted protocol. The ordinary owner preserves validated source projections before
+round allocation, through forwarding and during descendant/cold-read validation.
+Dropping or replacing inherited projections refuses. V5 still excludes this
+combination; old C386 readers refuse it rather than silently ignoring chemistry.
+Frozen numerical/native worker bytes and ordinary defaults are unchanged. This
+requires the C388 reader; it is not a migration of old execution evidence.
+
+Two actual **Phenix 2.2.1-6174** matched controls each use the same modified starting
+model and explicit canonical **A:11 DT / B:5 DA** pair, with passive **PDU B:4**
+observation off/on. The full-native pair uses **10,998 native /0 additive** terms;
+the partial pair transfers exactly one parallelity declaration and uses
+**10,997 /1**, retaining all other declarations, bonds and exclusions. Each case
+finishes dry-run preflight and a complete bounded refinement cycle; all processes
+stop. Within each off/on pair, the written model, full native output state and
+15-call owner lifetime are exact. Across provider arrangements, rounded PDB bytes
+match but **full-precision state hashes differ**; do not conflate those claims.
+
+The scoped triple screen reads **1.158299 Å**, **176.621° /176.291°**. This is
+coexistence evidence, not a new PDU repair result or noncanonical pair support.
+Final **Rwork/Rfree 0.4230/0.8360**, bond RMS **0.116 Å**, angle RMS **4.368°** make
+this short fixed-unit mechanics control unsuitable for scientific acceptance.
+The native demonstrations use the low-level owner; ordinary forwarding and
+continuation have separate synthetic regression coverage. No ordinary native
+chemistry-descendant demonstration is claimed.
+
+Installed qualification: **365 passes +24 subtests**, initially **12 missing-fixture
+failures**, followed by those **12 passing** after supplying the exact existing
+public PDU/ATL test inputs; no product patch between attempts. That is 377 distinct
+passing tests across two invocations, not an uninterrupted clean panel. Independent
+review matches all **299 Git/wheel/installed source files**, verifies exact PHIL
+surgery, original inputs/projection and native readback, and leaves **125 /126**
+relocated files plus **57** historical C338 files unchanged. It launches no native
+process and makes no persistent evidence writes. Earlier C386 full regression is
+still running with failure markers; later C387/C388 are not included in that pin.
+
+Local audit command: `PYTHONDONTWRITEBYTECODE=1` with the existing controller Python
+runs `/private/tmp/willow-w130-chemistry-integration-review/audit.py`. Native roots
+are `/private/tmp/c388-counted-chemistry-lhckzfvp-relocated` and
+`/private/tmp/c388-counted-chemistry-partial-x8eiln6f-relocated`; original roots are
+absent. These absolute paths are historical/local evidence locations, not portable
+replay instructions. Audit SHA
+`d39ea5cc60e94aae170e264c5a3d31498b898594e95f38781348d410551811c5`;
+installed wheel SHA
+`84079e56aafdcd1e1aed9842bea58f527c102c53e71bb68aefe482713ac44023`.
+The everyday NASolve repository-anchored archive
+`branch-artifacts/willow/w130-chemistry-integration-review-2026-11-18.tar.gz`
+has SHA `ba05b2c2c979fbe05be4ab000d57005664f5263e809f010e9a29b742acdff815`,
+**5,096 bytes /2 indexed files**, independently expanded/verified. Raw science
+stays local. Willow changes here are documentation/evidence only.
+
+Next: finish full-suite diagnosis and add optional semantic pair-geometry
+readback outside the frozen runtime helper closure. Reuse complete recipe
+attribution and exact coverage; leave the native remainder unclassified until
+Cedar supplies chemical ownership. No blanket origin-ID filtering or weight
+policy change follows from this audit. S06 and W122 activation remain partial/planned.

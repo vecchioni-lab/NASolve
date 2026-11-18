@@ -442,7 +442,8 @@
         "W126 audits C382 registered same-intent continuation and C383 inherited input-adaptation proof: two complete unselected REVIEW descendants, exact parent-output and original-intent joins, focused installed and committed-source checks, relocated cold reads. Contact/plane readback improves partly but R stats worsen; no matched continuation efficacy claim. Follow-up final-writer/checkpoint substitution gap remains pending before ordinary-owner activation.",
         "W127 audits explicit v6 native-written-model checkpoint binding: completed original writer bytes/state are required; wrong checksum-valid model refuses. Actual cycle reproduces C382 exactly, current/historical payloads and relocated cold reads verify, old proof remains narrower. No scientific or ordinary-owner activation claim.",
         "W128 audits C386 explicit counted-pair execution through the existing ordinary AutoRefine owner, preserving original intent, declared frame and actual writer identity before publication. Installed/default/native/relocation controls pass; result remains unselected REVIEW and exactly reproduces C385, with no new efficacy claim.",
-        "W129 measures provider-dependent actual native geometry summaries at identical coordinates and complete intended forces: moving one angle/plane/parallelity changes pooled angle RMS by0.000616deg; standard-origin statistics remain exact. No selector decision or scientific benefit claimed."
+        "W129 measures provider-dependent actual native geometry summaries at identical coordinates and complete intended forces: moving one angle/plane/parallelity changes pooled angle RMS by0.000616deg; standard-origin statistics remain exact. No selector decision or scientific benefit claimed.",
+        "W130 independently audits C388 chemistry observer coexistence with counted pair forces, original projection inheritance and old-reader refusal; both native0-additive and1-additive matched controls retain exact within-pair output and owner state, without scientific acceptance."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -451,7 +452,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Finish and diagnose isolated unfiltered C386 full regression. W129 frozen provider-statistics comparison is complete; coordinate semantic geometry readback and any weighting policy with Cedar/Hazel, retaining legitimate covalent/terminal edits rather than excluding all origin4 terms. Actual selector decisions require separate evidence. Existing fixed-unit protocol remains unchanged; broaden phases/chemistry/exclusions only through explicit qualification and matched B10 controls. W122 stays planned; density/B09 later.",
+      "next_action": "Finish C386 full-suite diagnosis. Add optional semantic pair-geometry readback using existing attribution and coverage outside frozen runtime helpers; keep unmatched native terms unclassified and coordinate chemical ownership with Cedar. No automatic weight/default change. C388 passive chemistry coexistence is qualified within bounded scope; phases/extra-terminal sources and native ordinary chemistry continuation remain separate. Matched efficacy, density/B09 and W122 activation remain open.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -489,14 +490,15 @@
         "E_REGISTERED_COUNTED_CONTINUATION",
         "E_NATIVE_WRITTEN_MODEL_BINDING",
         "E_ORDINARY_COUNTED_OWNER",
-        "E_PROVIDER_GEOMETRY_SUMMARIES"
+        "E_PROVIDER_GEOMETRY_SUMMARIES",
+        "E_COUNTED_CHEMISTRY_COEXISTENCE"
       ],
       "last_audit": {
         "date": "2026-11-18",
-        "code_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05",
-        "human_update": 129,
+        "code_commit": "a67df6b7a70dad94d0f14e3cdabea5f8f5a9c21e",
+        "human_update": 130,
         "reviewer": "Linden",
-        "scope": "Passive native summary comparison with complete intended force equivalence and independent cold audit; no actual weight selection or physical acceptance."
+        "scope": "Independent source/package and relocated native coexistence audit; no new science acceptance or numeric patch."
       }
     },
     {
@@ -2498,6 +2500,23 @@
           "all_members_verified": true
         }
       ]
+    },
+    "E_COUNTED_CHEMISTRY_COEXISTENCE": {
+      "kind": "independent_counted_chemistry_integration_audit",
+      "code_commit": "a67df6b7a70dad94d0f14e3cdabea5f8f5a9c21e",
+      "human_update": 130,
+      "reference": "docs/topostitch-periodic.md#w130--keep-chemistry-observation-beside-counted-pair-forces",
+      "result": "299 Git/wheel/installed sources match;125+126 relocated and57 historical files unchanged. Two actual matched Phenix2.2.1-6174 observer off/on pairs with10998+0 and10997+1 terms preserve exact within-pair writer/native-state/lifetime. Source projection/PHIL derivative verified.377 distinct installed passes+24subtests after12 missing-fixture retries.",
+      "limitation": "Low-level native mechanics versus synthetic ordinary forwarding/continuation. Cross-provider full precision differs despite exact rounded PDB. Rwork/Rfree0.4230/0.8360, bond/angleRMS0.116A/4.368deg do not qualify scientific acceptance. Old C386 reader refuses new optional v6 chemistry combination; v5 remains excluded. C386 full suite separate and unfinished.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w130-chemistry-integration-review-2026-11-18.tar.gz",
+          "sha256": "ba05b2c2c979fbe05be4ab000d57005664f5263e809f010e9a29b742acdff815",
+          "size": 5096,
+          "indexed_files": 2
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -2659,8 +2678,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 129,
-    "next": 130,
+    "current": 130,
+    "next": 131,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -3244,6 +3263,12 @@
         "title": "Measure provider-dependent geometry summaries",
         "state": "RECORDED",
         "code_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05"
+      },
+      {
+        "number": 130,
+        "title": "Audit chemistry and counted-pair coexistence",
+        "state": "RECORDED",
+        "code_commit": "a67df6b7a70dad94d0f14e3cdabea5f8f5a9c21e"
       }
     ]
   },

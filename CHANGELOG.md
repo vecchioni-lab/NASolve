@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W130 — Audit chemistry and counted-pair coexistence
+
+- Record C388 projection inheritance, older-reader refusal and matched native
+  observer off/on controls with both zero and nonzero additive pair terms.
+- Preserve the poor crystallographic statistics and distinction between exact
+  within-pair state and only rounded PDB equality across provider arrangements.
+- Willow documentation/evidence only; no numerical/helper, CLI or selector change.
+
 ### W129 — Separate force equivalence from geometry-summary equivalence
 
 - Record a passive native comparison: equivalent complete intended forces at
