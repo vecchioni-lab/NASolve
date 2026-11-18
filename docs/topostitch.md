@@ -159,25 +159,23 @@ native scope must pass before the option is advertised. This plans an S05/S06
 application; it closes no repair, inference, stacking or covalent-closure gate.
 
 
-### Next bounded coordinate control (planned after W135)
+### Longer coordinate control and matched scientific gate
 
-**W137 review status:** detached candidate `d8656b22` on the Cedar code base
-implements the explicitly named 100-cap protocol and v8/cycle-v2 checks. The
-configured cap is exactly 100; actual convergence/errors may stop earlier.
-Focused/installed checks pass, with full/native gates pending. This candidate
-does not add passive per-evaluator history or qualify the matched scientific
-experiment below. Existing Willow runtime and old workers remain unchanged.
+**W138:** candidate `d8656b22` on the Cedar code base qualifies the explicit
+100-cap protocol through focused, installed, full-source and actual ordinary
+native checks. It preserves old workers/defaults and requires v8/cycle-v2 final
+writer/pair capture. The configured maximum is exactly 100; actual optimization
+may stop earlier. This is an implemented opt-in mechanics route, not recommended
+scientific weighting or a generally accepted repair.
 
-W135 closes the frozen C391 regression and pair/chemistry-observer coexistence;
-W134 closes one ordinary canonical descendant. The next question is whether a
-longer **single** coordinate-minimization lifetime gives useful additional motion.
-C329/C338's automatic-weight PDU runs and repeated short C382/W134 cycles do not
-answer it. Proposed scope is one cycle, **100-iteration cap**, one process, seed 1,
-fixed unit weights and all-site XYZ only. This is a predeclared mechanics control,
-not recommended scientific weighting or an implemented option.
+The same-start short/long comparison improves the selected GC plane angle
+17.78→6.29°, while Rfree stays .2609 and Rwork worsens .2251→.2271. It does not
+isolate restraint efficacy. Rowan owns the separate C400 matched matrix below,
+including passive actual stopping/count history; no duplicate implementation.
+See [W138 evidence](topostitch-periodic.md#w138--qualify-the-explicit-longer-coordinate-control).
 
 Use the existing controller, actual-preflight admission, counted owner and writer.
-A new explicit versioned scope must leave old v3–v7 worker bytes, cold readers and
+The new explicit versioned scope leaves old v3–v7 worker bytes, cold readers and
 the old 1–10-iteration guard unchanged. Preserve original pair intent and fresh
 parent rebinding; unsupported settings refuse instead of being overridden.
 Freeze identical source, core PHIL, observations, Free-R and unrelated restraints

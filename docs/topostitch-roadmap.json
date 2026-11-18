@@ -4,7 +4,7 @@
   "updated": "2026-11-18",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6",
+  "audited_code_commit": "4f7aeb84b8762b3bd4ebcc1741c6b1116443632a",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -333,7 +333,8 @@
         "W125 audits C381 durable explicit counted admission and same-phase native consumption: exact successful control, truthful refused/failure outcomes, immutable compact preparation, relocated cold reads,347 installed tests+13subtests and independent committed298-file/frozen24-file checks. Ordinary counted descendants refuse silent intent loss; positive registered continuation and physical repair remain open.",
         "W126 audits C382 registered same-intent continuation and C383 inherited input-adaptation proof: two complete unselected REVIEW descendants, exact parent-output and original-intent joins, focused installed and committed-source checks, relocated cold reads. Contact/plane readback improves partly but R stats worsen; no matched continuation efficacy claim. Follow-up final-writer/checkpoint substitution gap remains pending before ordinary-owner activation.",
         "W136 independently audits separate source-matched eligibility and fixed-normalization controls without another native run:mechanics pass but C396 R worsens and A85 remains non-converged. No private policy or scientific acceptance is promoted.",
-        "W137 independently audits same-state FFT/direct derivatives and ordinary-versus-standalone chemistry lineage. This is diagnostic evidence only; the detached explicit100-cap candidate has focused/installed checks with full/native gates pending."
+        "W137 independently audits same-state FFT/direct derivatives and ordinary-versus-standalone chemistry lineage. This is diagnostic evidence only; the detached explicit100-cap candidate has focused/installed checks with full/native gates pending.",
+        "W138 qualifies explicit v8 100-cap ordinary mechanics with full/installed/native gates and final state readback. Local GC flattening is visible but Rfree unchanged and Rwork/bond RMS worse; no accepted repair."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
@@ -399,14 +400,15 @@
         "E_DURABLE_COUNTED_ADMISSION",
         "E_REGISTERED_COUNTED_CONTINUATION",
         "E_SEPARATE_SCREENING_NORMALIZATION",
-        "E_ACTUAL_STATE_AND_LINEAGE"
+        "E_ACTUAL_STATE_AND_LINEAGE",
+        "E_LONGER_ORDINARY_CONTROL"
       ],
       "last_audit": {
         "date": "2026-11-18",
-        "code_commit": "8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6",
-        "human_update": 137,
+        "code_commit": "4f7aeb84b8762b3bd4ebcc1741c6b1116443632a",
+        "human_update": 138,
         "reviewer": "Linden",
-        "scope": "Actual-state arithmetic/provenance only; no accepted structural repair or production numerical policy."
+        "scope": "Explicit longer ordinary mechanics and same-start physical comparison; matched scientific matrix remains separate."
       }
     },
     {
@@ -456,7 +458,8 @@
         "W134 qualifies one actual ordinary C391 v7 descendant with inherited prepared NAR restraints, exact original intent/ancestry and final pair readback. Cold audit preserves138 descendant/77source/117historical files; exact C382 second endpoint/count owner. Pair geometry improves slightly, Rwork/Rfree and clashscore worsen; unselected REVIEW, no efficacy claim.",
         "W135 completes one unfiltered C391 regression:11983pass/292subtests/2existingnative-skips,1413tracked files unchanged and14dependency resources exact. Independent C393 cold audit verifies final-pair+chemistry-observer+one-added-term coexistence against exact C388 endpoint;75current/126historical files unchanged. Scientific acceptance remains open.",
         "W136 independently audits separate source-matched eligibility and fixed-normalization controls without another native run:mechanics pass but C396 R worsens and A85 remains non-converged. No private policy or scientific acceptance is promoted.",
-        "W137 independently audits same-state FFT/direct derivatives and ordinary-versus-standalone chemistry lineage. This is diagnostic evidence only; the detached explicit100-cap candidate has focused/installed checks with full/native gates pending."
+        "W137 independently audits same-state FFT/direct derivatives and ordinary-versus-standalone chemistry lineage. This is diagnostic evidence only; the detached explicit100-cap candidate has focused/installed checks with full/native gates pending.",
+        "W138 qualifies explicit v8 100-cap ordinary mechanics with full/installed/native gates and final state readback. Local GC flattening is visible but Rfree unchanged and Rwork/bond RMS worse; no accepted repair."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -465,7 +468,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Finish review/full gate of isolated100-cap v8 candidate d8656b22, then qualify ordinary scope/writer/capture mechanically. Separately freeze native-core/zero-addition/full-recipe siblings and passive actual stopping/count history before scientific comparison. C391 supplies12fully-native-covered corepairs for a truthful zero subset; do not override fullrecipe providers. C397/C398 do not authorize algorithm/normalization adoption. B10efficacy,density/B09,chemistrydescendants andW122activation remain open.",
+      "next_action": "Finish Rowan-owned C400 matched native/core-only-zero/full controls and passive actual stopping/history; independently check full observer passivity, native/zero identity, actual-final geometry and diffraction. W138 ordinary100-cap mechanics are complete, not a repeated work queue. Preserve unselected REVIEW; density/B09/B10 efficacy, chemistry descendants and W122activation remain open.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -511,14 +514,15 @@
         "E_ORDINARY_PAIR_CONTINUATION",
         "E_FULL_C391_AND_COEXISTENCE",
         "E_SEPARATE_SCREENING_NORMALIZATION",
-        "E_ACTUAL_STATE_AND_LINEAGE"
+        "E_ACTUAL_STATE_AND_LINEAGE",
+        "E_LONGER_ORDINARY_CONTROL"
       ],
       "last_audit": {
         "date": "2026-11-18",
-        "code_commit": "8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6",
-        "human_update": 137,
+        "code_commit": "4f7aeb84b8762b3bd4ebcc1741c6b1116443632a",
+        "human_update": 138,
         "reviewer": "Linden",
-        "scope": "Actual-state arithmetic/provenance only; no accepted structural repair or production numerical policy."
+        "scope": "Explicit longer ordinary mechanics and same-start physical comparison; matched scientific matrix remains separate."
       }
     },
     {
@@ -2669,6 +2673,26 @@
           "archive_members": 8
         }
       ]
+    },
+    "E_LONGER_ORDINARY_CONTROL": {
+      "kind": "longer_ordinary_control_qualification",
+      "date": "2026-11-18",
+      "human_update": 138,
+      "code_commit": "4f7aeb84b8762b3bd4ebcc1741c6b1116443632a",
+      "shared_candidate_commit": "d8656b2212ec1777e3da5f1979ac2a766fc71563",
+      "reference": "docs/topostitch-periodic.md#w138--qualify-the-explicit-longer-coordinate-control",
+      "result": "334 focused +35 final pin checks;334 relocated installed tests;12008 passed, 2 skipped, 293 subtests passed in 3581.07s (0:59:41). Actual Phenix2.2.1-6174 ordinary280.319s; original intent/writer/final capture verified, child unselected REVIEW. Same-start GC17.775729→6.287164deg, Rfree.2609 unchanged, Rwork.2251→.2271 worse.",
+      "limitation": "Mechanics only; both endpoints restrained. C400 matched native/core-only-zero/full and passive stopping history separately owned by Rowan. No convergence, density or whole-model repair acceptance. No default/CLI activation.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w138-long-control-mechanics-2026-11-18.tar.gz",
+          "sha256": "2c31fde0aaf2f9153e1771f1a3053e00e7d8253bf2b05e664e0a3583a2bd5f23",
+          "size": 398651,
+          "indexed_files": 57,
+          "archive_members": 58
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -2830,8 +2854,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 137,
-    "next": 138,
+    "current": 138,
+    "next": 139,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -3463,6 +3487,12 @@
         "title": "Audit actual-state derivatives and ordinary chemistry lineage",
         "state": "RECORDED",
         "code_commit": "8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6"
+      },
+      {
+        "number": 138,
+        "title": "Qualify the explicit longer coordinate control",
+        "state": "RECORDED",
+        "code_commit": "4f7aeb84b8762b3bd4ebcc1741c6b1116443632a"
       }
     ]
   },

@@ -7524,3 +7524,120 @@ historical roots and limitations are sealed locally at declared NASolve anchor
 No raw models/maps/data are committed. The archive is evidence, not a claim that
 the original native runs are portable. S04/S05/S06 and P01/P02 remain partial;
 density calibration, B10 efficacy and altered-arm B09 success remain open.
+
+
+### W138 — Qualify the explicit longer coordinate control
+
+**2026-11-18.** Candidate `d8656b2212ec1777e3da5f1979ac2a766fc71563`
+on Cedar `653587b9` passes focused, installed, full-source and actual ordinary
+native checks. Its opt-in `counted_protocol="counted-xyz-fixed-unit-100-v1"`
+requires `counted_pair_geometry=True`, one all-site XYZ cycle, fixed unit
+weights, process count 1 and seed 1. It uses explicit
+`round-local-counted-execution-v8` / `prepared-counted-refinement-cycle-v2`.
+The configured maximum is exactly 100; it is not a measured iteration count.
+Neither default activation nor scientific acceptance follows.
+
+**Before/after and compatibility.** The earlier ordinary counted scope allowed
+only the bounded ten-cap control. The new explicit route admits cap 100 and
+requires actual final writer/geometry capture; inherited v8 requests cannot
+silently downgrade. Unsupported cap/seed/missing-capture requests refuse.
+Old v3–v7 payload bytes, old scope/seed semantics, defaults, explicit paths and
+native algorithms remain unchanged. A frozen v7 helper resource preserves old
+worker hashes. No FFT/direct, normalization, force or weighting policy changes.
+The unchanged 18 Willow shared modules are not recopied into Cedar by this work;
+Rowan owns the single candidate integration after exact source matching.
+Published Cedar integration `4f7aeb84b8762b3bd4ebcc1741c6b1116443632a` retains the exact
+qualified source/tests/package configuration; an independent manifest check
+records that relationship rather than claiming a second full-suite execution.
+
+Changed candidate files: `autorefine.py`, `refinement_counted.py`,
+`refinement_parallelity.py`, `cif_counted_phase.py`, `cif_counted_refinement.py`,
+`data/refinement-runtime-v7-sources.json`, the focused counted-control tests and
+architecture/changelog documentation. New execution/scope identifiers are opt-in;
+existing runs need no migration and acquire no retrospective authority.
+
+**Validation.** Two initial regressions fail before implementation. The affected
+source suite passes 334 tests (72.36 s); 35 final pin/lifecycle checks pass (2.46 s).
+The relocated wheel passes the same 334 tests (77.04 s), dependency check and
+root/AutoRefine/PostMR helps, with 304 exact packaged resources. The build-source
+copy and old install directory are absent during installed checks. The retained
+first audit erroneously expected three historically unpackaged provenance JSONs;
+this was an audit correction, not a packaging change.
+
+The complete unfiltered pinned suite reports **12008 passed, 2 skipped, 293 subtests passed in 3581.07s (0:59:41)**.
+The owned process has stopped, tracked source hashes remain exact and Git is
+clean. Exact command uses `PYTHONDONTWRITEBYTECODE=1`,
+`PYTHONPATH=/private/tmp/nasolve-willow-long-control/src:/private/tmp/willow-w132-full-regression/narestraints`,
+and `/private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider
+-o addopts= --durations=20 --junitxml <declared-evidence-root>/results.xml tests`.
+NARestraints is pinned at `a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691`.
+The archive retains exact expanded commands, environment, XML/log and complete
+source manifest. This qualifies the candidate pin, not an unaudited later branch.
+
+**Actual native mechanics.** A complete **Phenix 2.2.1-6174** ordinary run takes
+280.319 s. The existing registered `postmr` remains selected; the fresh
+`refine-002` child is usable but unselected `REVIEW`. Both short and long controls
+start from the same existing diagnostic PostMR parent; this is not fresh MR or
+fresh ordinary chemical preparation. Original model/recipe intent, observations,
+Free-R/core inputs and existing rounds remain unchanged. The actual prepared
+PHIL/native command is checked before launch, allowing only the declared cap
+change and exact observation-path rebasing. Native scope, model writer and
+final measurements bind to the actual child.
+
+The run records 85 counted geometry calls, **not optimizer iterations**. Last
+native count is 11,308 plus 17 additions =11,325. Actual stopping/history is a
+separate matched-control gate. Cold review launches nothing and preserves all
+77 original and 138 long-root files plus 304 installed resources. Original full
+14-pair intent includes 107 native-covered and 17 additive requested terms;
+2,465 observed terms in four restraint families remain unclassified.
+
+| Same-start endpoint observation | Short cap 10 | Longer cap 100 |
+| --- | ---: | ---: |
+| Pair distance RMS (Å; 36 terms) | 0.220180 | 0.199943 |
+| Pair angle RMS (°; 60 terms) | 4.780349 | 3.083988 |
+| Pair plane-angle RMS (°; 14 pairs) | 8.893697 | 4.799671 |
+| Selected GC plane angle (°) | 17.775729 | 6.287164 |
+| Native log Rwork | 0.2251 | 0.2271 |
+| Native log Rfree | 0.2609 | 0.2609 |
+| Native pooled bond RMS (Å) | 0.025 | 0.029 |
+| Native pooled angle RMS (°) | 1.772 | 1.489 |
+| Native clashscore | 31.53 | 24.77 |
+
+Pair geometry is the full-precision actual final state. R values retain their
+reported four-decimal precision. Rounded written PDBs differ by 0.144008 Å RMS
+over 855 atoms, maximum 0.755434 Å at B:111 OP2, without superposition. Better
+pairing does not establish better diffraction: Rfree is unchanged, Rwork and
+pooled bond error worsen, and selected AT contacts remain strained. Both
+endpoints are restrained; this is not matched native/zero/full efficacy,
+proven convergence, accepted bending or backbone closure.
+
+**Visible science and next gate.** Five local files at GitHub workspace anchor
+`ScienceCheckouts/Linden/2026-11-18_long-control` provide a report, machine
+provenance, two display PDBs and ChimeraX script. The exact declared image
+`-x+y+2/3,-x+1/3,z+1/3` maps C to display-only X without lattice wrapping;
+original coordinates are unchanged. The viewer shows actual movement, four
+fitted base planes and five contact guides per model, without alignment or
+magnification. ChimeraX 1.12 headless checks pass (two 1,140-atom models);
+all five local links and checksums validate. No browser-layout check is claimed.
+Display derivatives omit ANISOU/connectivity and are not refinement inputs.
+
+Rowan owns the separately frozen C400 native/core-only-zero/full matrix and
+passive actual evaluator/stopping history. Do not duplicate that experiment or
+change the product candidate to add a private observer. Native/zero should
+reproduce one another; full versus core deliberately changes the objective.
+Density/packing, terminal and backbone chemistry, B10 efficacy, altered-arm B09
+and W122 user-facing activation remain open. No new covalent symmetry link is
+drawn and no Rfree-driven tuning is authorized.
+
+**Retained attempts and evidence.** The first harness never launches because
+an audit compared macOS `/var` versus `/private/var` spelling. A fresh second
+attempt stops in 3.04 s before native refinement because the comparison guard
+did not normalize its two declared observation CLI paths. A third fresh attempt
+fixes only that guard, validates their exact request identities and completes.
+All attempts remain; no run is overwritten or product workaround introduced.
+Local archive `branch-artifacts/willow/w138-long-control-mechanics-2026-11-18.tar.gz` has 57 indexed
+files plus manifest, 398,651 bytes, SHA-256
+`2c31fde0aaf2f9153e1771f1a3053e00e7d8253bf2b05e664e0a3583a2bd5f23`. It includes candidate patch, runner sources, failures,
+commands and receipts; raw PDB/map/MTZ data are deliberately excluded and remain
+at their original declared local anchors. The archive is evidence, not a claim
+of executable run portability. Human/agent docs are the only Willow changes.

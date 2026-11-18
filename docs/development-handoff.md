@@ -1,21 +1,19 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-18**. **W137 independently audits the actual-state numerical
-comparison:** raw geometry agrees in all 13 sampled directions; FFT diffraction
-and combined derivatives do not, while direct factors agree in all 13 at the same
-state. This is a stopped private diagnostic, not a completed or accepted repair.
-The chemistry-lineage audit separately distinguishes the qualified C327 correction
-from genuine C303 ordinary publication; neither can acquire the other's authority
-retroactively. Exact results and retained failures are in the periodic ledger.
+Updated **2026-11-18**. **W138 qualifies an explicit longer coordinate control**
+on Cedar candidate `d8656b22`: focused, relocated installed, full-source and
+actual ordinary native gates pass. The same-start longer run flattens the selected
+GC pair (17.78→6.29°), but Rfree stays .2609, Rwork worsens and pooled bond error
+increases. It is an unselected REVIEW result, not an accepted repair. The new
+[five-file science checkout](#local-science-checkout) makes that movement visible.
 
-The next longer-control candidate is isolated at `d8656b22` on Cedar's code base:
-configured cap 100, explicit v8 scope and mandatory final pair capture, preserving
-old payloads/defaults. Focused and relocated installation checks pass; its full
-suite is running and native qualification remains pending. No integration yet.
-The last full-qualified baseline remains C391 (11,983 tests +292 subtests, two
-existing native skips). W134's ordinary canonical continuation preserves intent
-and final reporting but worsens R factors and clashes. Willow numerical helpers
-remain W118, with W131 cold reporting; no broader repair release is qualified.
+Rowan integrated the qualified source into Cedar `4f7aeb84`
+and owns the separate C400 native/core-only-zero/full matrix with passive actual
+stopping/history. Do not duplicate it. The 100-cap
+protocol is explicit, uses v8/cycle-v2 and mandatory final capture; old worker
+payloads/defaults remain exact. Willow numerical helpers remain W118 with W131
+cold reporting. W137's actual-state/chemistry-lineage audits remain evidence;
+they authorize neither a production numerical policy change nor chemistry adoption.
 
 The backend can bind explicit periodic pair intent, apply the missing geometry
 terms during one qualified native refinement cycle, retain their original meaning
@@ -29,8 +27,9 @@ unqualified.** S04/S05/S06 and P01/P02 remain partial. The
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
-| W137 actual-state and lineage audits | Same-state FFT/direct derivative comparison and genuine ordinary/standalone chemistry provenance independently verified | No optimizer-causality or repair claim; longer candidate full/native gates pending |
-| W136 independent diagnostic audits | Actual source-matched eligibility and matched normalization arithmetic/choices verified; original inputs and failures retained | Neither intervention establishes convergence, general geometry classification or repair; canonical longer control remains planned |
+| W138 longer control | Explicit v8 ordinary mechanics, full/installed gates and actual final pair readback; visible GC flattening | Matched C400 efficacy/history and whole-model/density acceptance remain open |
+| W137 actual-state and lineage audits | Same-state FFT/direct derivative comparison and genuine ordinary/standalone chemistry provenance independently verified | No optimizer-causality or repair claim; longer mechanics subsequently qualified in W138 |
+| W136 independent diagnostic audits | Actual source-matched eligibility and matched normalization arithmetic/choices verified; original inputs and failures retained | Neither intervention establishes convergence, general geometry classification or repair; canonical longer mechanics subsequently qualified in W138 |
 | W135 integration gates | One full C391 run: 11,983 tests +292 subtests, 2 existing native skips; C393 observer coexistence exact | Later source revisions, ordinary chemistry descendants and scientific acceptance |
 | W134 / C391 ordinary descendant | Actual second ordinary cycle preserves ancestry, intent, inherited prepared NAR PHIL and final pair capture; exact earlier endpoint | Optional extra-restraint/chemistry descendants, broader protocols and efficacy |
 | W133 / C391 final pair readback | Actual final writer hierarchy/scattering/force-site joins, complete pair metrics, exact prior endpoint and counted lifetime | Broader protocols, semantic covalent/terminal classification and matched efficacy |
@@ -51,14 +50,13 @@ not another work queue; do not repeat them because this handoff is shorter.
 
 ## Next bounded work
 
-1. Finish review and the pinned full gate for detached longer-control candidate
-   `d8656b22`, then qualify actual ordinary v8 scope/writer/final measurements.
-   Keep that mechanics check separate from the predeclared native/zero/full
-   scientific matrix, which also needs passive actual stopping/count history.
-   Use the genuine native-covered core subset for zero addition; never suppress
-   provider terms from a full declared recipe. No repeat of completed C391 gates
-   without a changed source/scope. C397/C398 are a separate private diagnostic;
-   their result does not authorize a production FFT/direct or normalization change.
+1. Finish Rowan's C400 matched native/core-only-zero/full experiment and
+   independent cold read; check passive observer identity, actual termination,
+   source-bound geometry and diffraction before interpreting efficacy. The W138
+   ordinary longer-control mechanics gate is complete; do not repeat it without
+   changed source/scope. Cedar integration preserves the qualified source/tests
+   and package configuration. C397–C399 remain a separate closed private diagnostic;
+   no FFT/direct or normalization change follows.
 
 2. W133 closes the bounded final-state pair-capture seam. Keep native remainder
    unclassified until chemical ownership is explicit. Reuse Cedar's source-backed
@@ -70,8 +68,9 @@ not another work queue; do not repeat them because this handoff is shorter.
    fixed-weight canonical controls; it remains a separate gate before semantic
    weight selection. Predeclare longer-coordinate budgets and matched controls
    before widening the current ten-iteration scope.
-3. Keep the supported ordinary protocol explicit: one all-site XYZ cycle,
-   fixed unit weights, ten iterations, one process and seed 1. `counted_frame="recipe"`
+3. Keep ordinary protocols explicit: one all-site XYZ cycle, fixed unit weights,
+   one process and seed 1; existing ten-cap route or opt-in v8 exactly 100-cap
+   with mandatory final capture. Neither cap proves convergence. `counted_frame="recipe"`
    is an explicit, recorded choice; do not generalize it into model-cell preference.
    Broader weights/ADPs/scaling/phases, extra terminal sources need separate qualification through existing owners.
    C388 qualifies passive chemistry coexistence and focused ordinary forwarding;
@@ -87,6 +86,12 @@ then separately qualified plane-only mismatch hypotheses. Automatic inference an
 large-bend repair follow later. No CLI/default activation follows from these docs.
 
 ## Validation and scientific interpretation
+
+- **W138:** 334 focused and 334 relocated installed tests, final 35 pin checks,
+  complete pinned full source suite and a 280.319 s actual Phenix 2.2.1-6174
+  ordinary cycle pass. Original intent/inputs/writer/geometry and unselected
+  REVIEW lineage verify independently. [Exact commands, results, schemas,
+  retained failures and limitations](topostitch-periodic.md#w138--qualify-the-explicit-longer-coordinate-control).
 
 - **W137:** cold arithmetic reproduces C397 FFT and C398 direct observations,
   exact baseline/restored C398 vectors and unchanged source files. C303/C327
@@ -148,6 +153,16 @@ attribute all changes to the added terms or claim repair. Full-precision native
 and serialized-PDB measurements remain distinguished.
 
 ## Local science checkout
+
+**New W138 view:** GitHub workspace anchor,
+`ScienceCheckouts/Linden/2026-11-18_long-control/review.html`.
+Open its `open_inspection.py` in ChimeraX and toggle short/long parent models.
+Two display PDBs show the original coordinates plus the exact declared C→X image;
+four planes/five contacts per model make the GC flattening visible. These are
+same-start restrained controls with configured caps 10/100, not native/full
+siblings. The five-file packet passes headless ChimeraX 1.12 inventory and static
+link/checksum checks; no browser-layout validation or scientific approval.
+Morning and 17 November reports below are preserved historical comparisons.
 
 Use the shared **GitHub workspace** anchor, relative path
 `ScienceCheckouts/Linden/2026-11-18/review.html`. Two files (HTML plus evidence JSON)

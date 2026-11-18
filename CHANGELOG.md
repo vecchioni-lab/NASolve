@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W138 — Qualify the explicit longer coordinate control
+
+- Record the 100-cap v8 candidate's full, installed and actual ordinary native
+  qualification, preserving old payloads/defaults and failed setup evidence.
+- Add a local five-file scientific inspection handoff: improved pair geometry,
+  unchanged Rfree and worsened Rwork/bond RMS. Matched efficacy remains separate.
+  Willow changes are documentation only; Rowan owns shared runtime integration.
+
 ### W137 — Audit actual-state derivatives and chemistry lineage
 
 - Record independent FFT/direct derivative and original preparation-provenance
