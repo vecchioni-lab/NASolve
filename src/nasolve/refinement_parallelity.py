@@ -21,6 +21,7 @@ V5_POLICY_ID = 'round-local-counted-execution-v5'
 V6_POLICY_ID = 'round-local-counted-execution-v6'
 V7_POLICY_ID = 'round-local-counted-execution-v7'
 V8_POLICY_ID = 'round-local-counted-execution-v8'
+V9_POLICY_ID = 'round-local-declared-sites-execution-v9'
 _COUNTED_POLICIES = (V5_POLICY_ID, V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID)
 _WRITTEN_POLICIES = (V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID)
 _PAIR_GEOMETRY_POLICIES = (V7_POLICY_ID, V8_POLICY_ID)
@@ -59,12 +60,14 @@ _V7_SOURCE_DIGESTS = dict(_V6_SOURCE_DIGESTS, **{'cif_counted_refinement.py': 'f
 _V8_SOURCE_DIGESTS = dict(_V7_SOURCE_DIGESTS, **{'cif_counted_phase.py': '7aa1f76126fee30042909583e627f4c135292aaa9babee9de322818d3b4be206', 'cif_counted_refinement.py': '5ac9e9faff0b35f26455dc879977f441d093f9aebfb557efdc4192b214a460a0'})
 _SOURCES = {LEGACY_POLICY_ID:_SOURCE_DIGESTS, V2_POLICY_ID:_V2_SOURCE_DIGESTS,
             V3_POLICY_ID:_CURRENT_SOURCE_DIGESTS, V4_POLICY_ID:_V4_SOURCE_DIGESTS, V5_POLICY_ID:_V5_SOURCE_DIGESTS, V6_POLICY_ID:_V6_SOURCE_DIGESTS, V7_POLICY_ID:_V7_SOURCE_DIGESTS, V8_POLICY_ID:_V8_SOURCE_DIGESTS}
+_SOURCES[V9_POLICY_ID] = _CURRENT_SOURCE_DIGESTS
 _RUNTIME_POLICIES = {LEGACY_POLICY_ID:'explicit-native-parallelity-refinement-v1',
                      V2_POLICY_ID:'explicit-native-parallelity-refinement-v2',
                      V3_POLICY_ID:'explicit-native-parallelity-refinement-v3',
                      V4_POLICY_ID:'explicit-native-parallelity-refinement-v4',
                      V5_POLICY_ID:'explicit-native-parallelity-refinement-v4',
                      V6_POLICY_ID:'explicit-native-parallelity-refinement-v4', V7_POLICY_ID:'explicit-native-parallelity-refinement-v4', V8_POLICY_ID:'explicit-native-parallelity-refinement-v4'}
+_RUNTIME_POLICIES[V9_POLICY_ID] = _RUNTIME_POLICIES[V3_POLICY_ID]
 _V2_ENTRY = b'''from pathlib import Path
 import sys
 root=Path(__file__).resolve().parent
@@ -134,7 +137,8 @@ run_phase(root,request,phase,arguments,admission=admission,prepared_path=prepare
 '''
 
 _ENTRIES = {LEGACY_POLICY_ID:_V2_ENTRY, V2_POLICY_ID:_V2_ENTRY, V3_POLICY_ID:_ENTRY, V4_POLICY_ID:_ENTRY, V5_POLICY_ID:_COUNTED_ENTRY, V6_POLICY_ID:_COUNTED_ENTRY, V7_POLICY_ID:_COUNTED_ENTRY, V8_POLICY_ID:_COUNTED_ENTRY}
-_CHEMISTRY_POLICIES = (V3_POLICY_ID, V4_POLICY_ID, *_COUNTED_POLICIES)
+_ENTRIES[V9_POLICY_ID] = _ENTRY
+_CHEMISTRY_POLICIES = (V3_POLICY_ID, V4_POLICY_ID, V9_POLICY_ID, *_COUNTED_POLICIES)
 
 
 def _need(value, message='Invalid explicit parallelity execution evidence'):
@@ -154,10 +158,10 @@ def _root(checkpoint): return _directory(checkpoint)+'/parallelity_runtime'
 def _code(policy=None):
     """Freeze qualified bytes; default v3 remains exact after a helper upgrade."""
     policy=POLICY_ID if policy is None else policy
-    _need(isinstance(policy,str) and policy in (V3_POLICY_ID,V4_POLICY_ID,*_COUNTED_POLICIES),
+    _need(isinstance(policy,str) and policy in (V3_POLICY_ID,V4_POLICY_ID,V9_POLICY_ID,*_COUNTED_POLICIES),
           'Unsupported new native execution policy')
     package=Path(__file__).parent;frozen={}
-    if policy==V3_POLICY_ID:
+    if policy in (V3_POLICY_ID,V9_POLICY_ID):
         frozen=json.loads((package/'data/refinement-runtime-v3-sources.json').read_text())
         _need(type(frozen) is dict and set(frozen)=={
             'cif_refinement_runtime.py','cif_refinement_output.py','cif_refinement_sites.py'}
@@ -226,7 +230,7 @@ def read_execution_request(run, reference, *, checkpoint):
     if 'chemistry_projections' in record:
         from .refinement_chemistry import _projection_scope
         _need(bool(record['chemistry_projections']), 'Empty requested chemistry scope')
-        _projection_scope(run,record['chemistry_projections'])
+        _projection_scope(run,record['chemistry_projections'],require_triple=record['policy_id']!=V9_POLICY_ID)
     path_in(run,reference['relative_path'])
     for item in record['inputs']:_bound_path(item,'parallelity refinement input',run)
     for name,digest in _expected_code(record['policy_id']).items():
@@ -243,7 +247,7 @@ def prepare_execution(run, *, checkpoint, parent, inputs, command, python_execut
     """Freeze only the small qualified helper; retain all original input files."""
     from .checkpoints import _file_reference
     policy=POLICY_ID if runtime_policy is None else runtime_policy
-    _need(runtime_policy is None or (isinstance(policy,str) and policy in (V3_POLICY_ID,V4_POLICY_ID,*_COUNTED_POLICIES)),
+    _need(runtime_policy is None or (isinstance(policy,str) and policy in (V3_POLICY_ID,V4_POLICY_ID,V9_POLICY_ID,*_COUNTED_POLICIES)),
           'Unsupported new native execution policy')
     _need(isinstance(command,list) and len(command)>1)
     inputs=[Path(p).expanduser().resolve() for p in inputs]
@@ -251,7 +255,7 @@ def prepare_execution(run, *, checkpoint, parent, inputs, command, python_execut
           'Runtime input order differs from the native command')
     if chemistry_projections is not None:
         from .refinement_chemistry import _projection_scope
-        _projection_scope(run,chemistry_projections)
+        _projection_scope(run,chemistry_projections,require_triple=policy!=V9_POLICY_ID)
     payload=_code() if runtime_policy is None else _code(policy)
     intent_payload=None
     if policy in _COUNTED_POLICIES:
@@ -321,7 +325,7 @@ def validate_runtime_choice(enabled, python_executable, *, runtime_policy=None):
             raise ValueError('Required qualified runtime source is unavailable: '+str(exc)) from exc
 
 
-def require_runtime_continuation(registry, selected, enabled, *, run=None, allow_counted=False):
+def require_runtime_continuation(registry, selected, enabled, *, run=None, allow_counted=False, observe_declared_sites=False):
     ancestors=_checked_ancestors(registry,selected)
     if run is not None:
         # Ordinary owners have already validated the registry. Read only the
@@ -334,6 +338,9 @@ def require_runtime_continuation(registry, selected, enabled, *, run=None, allow
                 policy=record.get('policy_id')
                 _need(isinstance(policy,str) and policy in _SOURCES,'Unknown ancestor execution policy')
             except (OSError,ValueError,RuntimeError) as exc:raise ValueError(str(exc)) from exc
+            if policy == V9_POLICY_ID and not observe_declared_sites:
+                raise ValueError('This checkpoint retains declared-site chemistry observation; '
+                                 'continue explicitly with observe_declared_sites=True. No new round was started.')
             if policy in _COUNTED_POLICIES and not allow_counted:
                 raise ValueError(
                     'This checkpoint inherits counted pair restraints. Ordinary continuation '
@@ -629,7 +636,7 @@ def _selected_chemistry_observation(run, reference, *, checkpoint, parent, model
         return None
     result=_phase(run,_root(checkpoint),'refine',request['code'],request,require_complete=True)
     from .refinement_chemistry import _projection_scope
-    _,projections=_projection_scope(run,request['chemistry_projections'])
+    _,projections=_projection_scope(run,request['chemistry_projections'],require_triple=request['policy_id']!=V9_POLICY_ID)
     data=Path(model).read_bytes()
     if result['chemistry_observation']['status']=='OBSERVED':
         _need(result['chemistry_model']==dict(sha256=_digest(data),size=len(data)),
@@ -643,6 +650,27 @@ def read_execution_chemistry(run, reference, *, checkpoint, parent, model):
     if selected is None:return None
     from .refinement_chemistry import _observed_readback
     return _observed_readback(*selected)
+
+
+def read_execution_chemistry_sites(run, reference, *, checkpoint, parent, model):
+    """Read authenticated selected-site atoms and effective intra-site terms.
+
+    This preserves the capture's heavy-atom, same-site scope. It does not supply
+    missing hydrogen/cross-site/symmetry neighborhoods or approve the chemistry.
+    """
+    selected=_selected_chemistry_observation(run,reference,checkpoint=checkpoint,parent=parent,model=model)
+    if selected is None:return None
+    data,projections,observation=selected
+    record=read_record(_bound_path(reference,'selected chemistry execution',run))
+    request=read_execution_request(run,record['request'],checkpoint=checkpoint)
+    # The execution's sealed request was already validated above; recheck the
+    # exact source references rather than infer fresh source identity.
+    declared={row['site']:dict(component=row['component'],projection_sha256=row['projection']['sha256'])
+              for row in request['chemistry_projections']}
+    _need(set(declared)==set(projections), 'Selected chemistry scope changed during read')
+    return dict(schema_version=1,policy_id='refinement-declared-sites-observation-v1',
+        model_sha256=_digest(data),declared_sites=declared,
+        observation=observation,scientific_approval='NOT_RUN',automatic_adoption=False)
 
 
 def read_execution_trigonal_geometry(run, reference, *, checkpoint, parent, model):

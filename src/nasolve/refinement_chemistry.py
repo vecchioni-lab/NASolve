@@ -80,6 +80,8 @@ def _observed_readback(model_bytes, projections, observation):
             target_screen=('REVIEW' if any(r['target_screen']!='PASS' for r in screened) else 'PASS') if screened else 'UNASSESSED',
             coordinate_screen=('REVIEW' if any(r['coordinate_screen']!='PASS' for r in screened) else 'PASS') if screened else 'UNASSESSED',
             status=('REVIEW' if any(r['status']!='TRIPLE_SCREEN_PASS' for r in screened) else 'SCOPED_TRIPLE_SCREEN_PASS') if screened else 'UNASSESSED')
+        if not screened:
+            result['reason']='No explicit triple bonds occur in the declared site projections.'
     _need(all(_read(p)==data for p,data in snapshots.items()), 'Selected chemistry projection changed during read')
     return result
 
@@ -109,8 +111,8 @@ def _preparation_context(run, registry, verified, item):
     return acquired, node['id'], reference
 
 
-def _projection_scope(run, references):
-    """Resolve exact source-selected triple sites from frozen portable references."""
+def _projection_scope(run, references, *, require_triple=True):
+    """Resolve the explicitly admitted source scope from frozen references."""
     from .checkpoints import _ref_path
     from .cif_refinement_sites import validate_sites
     from .cif_linked_preparation import component_values
@@ -123,15 +125,20 @@ def _projection_scope(run, references):
         _need(isinstance(row['projection'],dict) and row['projection'].get('anchor') == 'run',
               'Selected projection must retain its declared run anchor')
         path = _ref_path(row['projection'],'selected chemistry projection',run)
-        _need('TRIPLE' in _graph(component_values(path,row['component']))[1].values(),
-              'Requested site has no explicit source triple bond')
+        if require_triple:
+            _need('TRIPLE' in _graph(component_values(path,row['component']))[1].values(),
+                  'Requested site has no explicit source triple bond')
+        else:
+            from .cif_stereochemistry_audit import _values
+            _graph(_values(path,row['component']))  # Full graph admission, not a component-name allowlist.
         projections[row['site']] = (path,row['component'])
     validate_sites(sites)
     return sites, projections
 
 
-def prepare_chemistry_scope(run, registry, verified, parent):
+def prepare_chemistry_scope(run, registry, verified, parent, *, include_nontriple=False):
     """Use the selected branch's existing source graphs; do not infer chemistry."""
+    _need(type(include_nontriple) is bool, 'Declared chemistry scope choice must be boolean')
     from .checkpoints import _file_reference
     from .cif_linked_preparation import component_values
     from .cif_stereochemistry_audit import _graph
@@ -145,9 +152,9 @@ def prepare_chemistry_scope(run, registry, verified, parent):
         reference = _file_reference(path,run)
         relative = Path(path).relative_to(acquired['bundle_directory']).as_posix()
         _need(reference['sha256'] == pins[relative]['sha256'], 'Declared site projection changed during read')
-        if 'TRIPLE' in _graph(component_values(path,code))[1].values():
+        if include_nontriple or 'TRIPLE' in _graph(component_values(path,code))[1].values():
             result.append(dict(site=site,component=code,projection=reference))
-    _projection_scope(run,result)
+    _projection_scope(run,result,require_triple=not include_nontriple)
     return result
 
 
@@ -197,7 +204,11 @@ def read_refinement_chemistry(run_directory, *, checkpoint, native_receipt=None)
     if result is None:
         result = _readback(inherited['model'], prepared['projections'], dictionaries, phils, native_receipt)
     else:
-        expected = prepare_chemistry_scope(run,registry,verified,item)
+        from .refinement_parallelity import read_execution_request, validate_execution, V9_POLICY_ID
+        record = validate_execution(run,execution,checkpoint=item['id'],parent=item['parent'],usable=True)
+        request = read_execution_request(run,record['request'],checkpoint=item['id'])
+        expected = prepare_chemistry_scope(run,registry,verified,item,
+            **({'include_nontriple':True} if request['policy_id']==V9_POLICY_ID else {}))
         _need(result['declared_sites'] == {row['site']:dict(component=row['component'],projection_sha256=row['projection']['sha256'])
               for row in expected}, 'Observed scope differs from checked preparation')
     _need(result['model_sha256'] == item['model']['sha256'].lower(), 'Final checkpoint model changed during read')

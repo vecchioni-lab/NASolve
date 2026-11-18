@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Observe declared modified sites without requiring a triple bond (C406)
+
+- Add explicit Python `execute_autorefine(observe_declared_sites=True)` for the
+  ordinary checked runtime. Select graph-valid projections from the exact checked
+  preparation, including non-triple residues; keep default triple-only scope.
+- A new v9 request policy reuses the exact frozen v3 native helper. The cold site
+  reader reports authenticated heavy atoms and effective intra-site terms without
+  approving chemistry. Descendants must explicitly retain the observation choice.
+- Historical requests/workers remain unchanged. Counted combinations, CLI/default
+  activation, hydrogen/cross-site completeness and general repair remain outside
+  this option; unavailable evidence and absent triple screens stay unassessed.
+
 ### Inspect actual refined trigonal geometry (C404)
 
 - Add an explicit read-only Python report of source-selected trigonal carbon
@@ -40,8 +52,9 @@ entries are reconstructed from repository history.
 - Preserve all v3–v7 worker bytes, old ten-iteration bounds, and defaults.
   Existing records need no migration; new v8 records require a supporting reader.
   No force, diffraction algorithm, normalization or scientific acceptance change.
-- Matched native/zero/full qualification remains pending; regression coverage
-  alone does not demonstrate more useful motion or an accepted repaired model.
+- C400 completes the matched native/zero/full mechanics qualification. Pair
+  geometry improves in the full arm, but all arms stop early; this does not
+  demonstrate convergence or an accepted repaired model.
 
 ### Read final geometry after numbered native stage labels (C394)
 

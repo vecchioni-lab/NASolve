@@ -1617,6 +1617,7 @@ def execute_autorefine(
     counted_pair_request: Mapping[str, Path] | None = None,
     counted_frame: str | None = None,
     counted_pair_geometry: bool = False,
+    observe_declared_sites: bool = False,
     progress: Callable[[str, Path], None] | None = None,
 ) -> AutoRefineResult:
     """Run one quiet refinement round and append an immutable checkpoint.
@@ -1625,10 +1626,13 @@ def execute_autorefine(
     that path never initializes a missing registry. Ordinary callers retain the
     existing initialization behavior. Later saves still use the registry guard.
     """
-    from .refinement_parallelity import validate_runtime_choice, require_runtime_continuation, V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID
+    from .refinement_parallelity import validate_runtime_choice, require_runtime_continuation, V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID, V9_POLICY_ID
     from .refinement_counted import LONG_CONTROL_PROTOCOL, control_iteration_cap
     if type(counted_pair_geometry) is not bool or (counted_pair_geometry and counted_protocol is None):
         raise AutoRefineError('Final pair geometry requires an explicit counted control')
+    if type(observe_declared_sites) is not bool or (observe_declared_sites and
+            (not correct_native_parallelity or counted_protocol is not None)):
+        raise AutoRefineError('Declared-site observation requires the explicit ordinary checked runtime')
     counted_policy = V7_POLICY_ID if counted_pair_geometry else V6_POLICY_ID
     if counted_protocol == LONG_CONTROL_PROTOCOL:
         if not counted_pair_geometry:
@@ -1642,7 +1646,8 @@ def execute_autorefine(
             adp_mode=adp_mode, refine_occupancies=refine_occupancies,
             anomalous_mode=anomalous_mode, refine_coordinates=refine_coordinates)
         validate_runtime_choice(correct_native_parallelity, phenix_python_executable,
-            **({'runtime_policy': counted_policy} if counted_protocol is not None else {}))
+            **({'runtime_policy': counted_policy} if counted_protocol is not None else
+               {'runtime_policy': V9_POLICY_ID} if observe_declared_sites else {}))
     except ValueError as exc:
         raise AutoRefineError(str(exc)) from exc
     if counted_frame is not None and (counted_protocol is None or counted_frame != 'recipe'):
@@ -1679,7 +1684,8 @@ def execute_autorefine(
             raise AutoRefineError(f"Checkpoint {parent.get('id')} is not reusable")
         try:
             require_runtime_continuation(registry, parent, correct_native_parallelity, run=run,
-                **({'allow_counted': True} if counted_protocol is not None else {}))
+                **({'allow_counted': True} if counted_protocol is not None else {}),
+                **({'observe_declared_sites':True} if observe_declared_sites else {}))
         except ValueError as exc:
             raise AutoRefineError(str(exc)) from exc
         inherited = (
@@ -1693,7 +1699,8 @@ def execute_autorefine(
     if correct_native_parallelity:
         from .refinement_chemistry import prepare_chemistry_scope
         try:
-            chemistry_projections = prepare_chemistry_scope(run,registry,verified_preparations,parent)
+            chemistry_projections = prepare_chemistry_scope(run,registry,verified_preparations,parent,
+                **({'include_nontriple':True} if observe_declared_sites else {}))
         except (OSError,ValueError,RuntimeError) as exc:
             raise AutoRefineError(f'Checked chemistry scope is inconsistent: {exc}') from exc
     report = _run_report(run)
@@ -1969,7 +1976,8 @@ def execute_autorefine(
                 command=command, python_executable=phenix_python_executable, macro_cycles=macro_cycles,
                 chemistry_projections=chemistry_projections,
                 **({'runtime_policy': counted_policy, 'counted_pair_request': counted_pair_request}
-                   if counted_protocol is not None else {}))
+                   if counted_protocol is not None else
+                   {'runtime_policy': V9_POLICY_ID} if observe_declared_sites else {}))
         except (OSError, ValueError, RuntimeError) as exc:
             raise AutoRefineError(f'Parallelity execution preparation failed: {exc}') from exc
     if counted_protocol is not None:

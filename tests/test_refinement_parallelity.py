@@ -11,14 +11,16 @@ from nasolve.checkpoints import read_registry,resolve_checkpoint,CheckpointError
 from nasolve.campaign_records import write_record
 
 
-def completed(tmp_path,monkeypatch,*,failure=None,changed=None,bad_preflight=False,chemistry=None):
+def completed(tmp_path,monkeypatch,*,failure=None,changed=None,bad_preflight=False,chemistry=None,declared_sites=False):
     run,policy,refine,dump=inputs(tmp_path);original=subprocess.run;commands=[]
     if chemistry is not None:
         from tests.test_cif_triple_bond_audit import fixture
         directory=run/'PostMR/projection';directory.mkdir()
         source,_=fixture(directory)
+        if declared_sites:
+            source.write_text(source.read_text().replace('TRIP','DOUB'))
         scope=[dict(site='A:1',component='Q17',projection=_file_reference(source,run))]
-        monkeypatch.setattr('nasolve.refinement_chemistry.prepare_chemistry_scope',lambda *args:scope)
+        monkeypatch.setattr('nasolve.refinement_chemistry.prepare_chemistry_scope',lambda *args,**kwargs:scope)
     def consume(command,*args,**kwargs):
         if len(command)>2 and str(command[2]).endswith('/parallelity_runtime/entry.py'):
             phase=command[3];commands.append(phase)
@@ -44,7 +46,7 @@ def completed(tmp_path,monkeypatch,*,failure=None,changed=None,bad_preflight=Fal
             if request['policy_id']!=LEGACY_POLICY_ID:
                 from tests.test_cif_refinement_runtime import output_row
                 result.update(output_binding_restored=True,output_synchronization=[] if phase=='preflight' else [output_row(2)])
-            if request['policy_id'] in ('round-local-parallelity-execution-v3','round-local-parallelity-execution-v4'):
+            if request['policy_id'] in ('round-local-parallelity-execution-v3','round-local-parallelity-execution-v4','round-local-declared-sites-execution-v9'):
                 result.update(chemistry_observation=None,chemistry_model=None,chemistry_binding_restored=True)
             if bad_preflight and phase=='preflight':result['status']='RUNNING'
             if failed:result['error']=dict(type='RuntimeError',message='native failed')
@@ -79,7 +81,8 @@ def completed(tmp_path,monkeypatch,*,failure=None,changed=None,bad_preflight=Fal
         return original(command,*args,**kwargs)
     monkeypatch.setattr(subprocess,'run',consume)
     result=execute_autorefine(run,refine,dump,phenix_version='2.2.1-6174',
-        correct_native_parallelity=True,phenix_python_executable=Path(sys.executable))
+        correct_native_parallelity=True,phenix_python_executable=Path(sys.executable),
+        **({'observe_declared_sites':True} if declared_sites else {}))
     _,registry=read_registry(run);child=resolve_checkpoint(registry,result.checkpoint_id)
     receipt=run/child['outputs']['parallelity_execution']['relative_path']
     return run,result,registry,child,receipt,commands

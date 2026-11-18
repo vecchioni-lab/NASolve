@@ -1,11 +1,12 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-18 evening, C404 qualified — Rowan**.
+Updated **2026-11-18 evening, C405 complete; C406 validation — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Runtime candidate **`4bfffbca`**
 passes the complete unfiltered suite: **12,032 tests, 293 subtests and two existing
 native opt-in skips**, in **3226.56 s**. All 1,416 tracked test-checkout files and
 exact NARestraints `a9264f9e` remain unchanged; the owned test process is stopped.
-Current source/tests/packaging match that pin; subsequent changes are documentation.
+That pin remains the last complete gate; C406 adds an explicit non-triple observation option
+and is undergoing focused/full/native qualification.
 Relocated installed checks and Hazel's independent cold review also pass. C402's
 prior separate full gate passed 12,016 tests with the same subtests/skips. Neither
 software pass changes the scientific REVIEW or closes Q06.
@@ -57,6 +58,29 @@ recomputes the three local measurements. C2/C4/C5 maximum bond elevations are
 not erase the outer propyne bending or close Q06. Existing native capture still
 selects declared triple-bond sites; C404 does not broaden it to all modified ligands.
 All reads leave the 283 native files unchanged and launch no scientific program.
+
+**C405 complete — separate local attachment shape from accumulated bending.**
+A cold comparison applies the qualified C404 reader to the retained C396 private
+control and C403 ordinary endpoint. Source connectivity selects the unique ring
+and attached triple chain. C5 local maximum elevation rises from 2.039° to 3.149°;
+the terminal carbon's ring-plane distance rises from 0.174812 to 0.365565 Å.
+Signed bond components account for the latter exactly. The native covering plane
+and member weights remain identical. This separates geometry, not causal forces;
+C396 is not a repair or an ordinary checkpoint. All 332 native files retain bytes
+and timestamps; no new Phenix job, production change or scientific acceptance.
+Hazel independently verifies 73 checks with a different plane fit and angle
+calculation. A smaller total bend at C5B coexists with a larger normal increment;
+do not summarize this as both individual bends worsening.
+
+**C406 in validation — record declared modified sites without a triple bond.**
+An explicit ordinary Python option uses graph-valid checked-preparation projections
+and a distinct v9 request, with byte-identical frozen v3 native code. Defaults and
+historical readers remain unchanged; descendants cannot silently drop this scope.
+The cold reader exposes captured heavy-atom intra-site terms. It neither infers
+missing hydrogen/cross-site evidence nor invents a non-triple acceptance screen.
+Focused regressions cover ordinary capture, source/identity drift, relocated reads,
+manual ancestry and unsupported combinations. Full and actual native checks are
+pending. Hazel owns the complementary retained DF source-to-effective audit.
 
 ## Reuse the existing science
 
