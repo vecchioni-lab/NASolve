@@ -40,7 +40,7 @@ def validate_autorefine_control(protocol, pair_request, *, enabled, macro_cycles
           'ordinary settings will not be overridden')
 
 
-def validate_autorefine_intent(run, registry, parent, pair_request, current_model, *, chemistry_projections=None):
+def validate_autorefine_intent(run, registry, parent, pair_request, current_model, *, chemistry_projections=None, runtime_policy=None):
     """Check original intent before allocating a round; return its byte identity."""
     payload = prepare_intent(pair_request['recipe'], pair_request['source_model'], current_model)
     identity = (_digest(json.loads(payload['original-recipe.json'])),
@@ -50,6 +50,8 @@ def validate_autorefine_intent(run, registry, parent, pair_request, current_mode
     _need(inherited is None or identity == _original_identity(inherited),
           'Counted request changes the inherited original pair intent')
     if inherited is not None:
+        from . import refinement_parallelity as execution
+        _require_policy_continuation(inherited, runtime_policy or execution.V6_POLICY_ID)
         _require_chemistry_continuation(inherited, chemistry_projections)
     return identity, json.loads(payload['current-recipe.json'])['crystal']
 
@@ -127,6 +129,14 @@ def _original_identity(request):
             tuple(intent[name][key] for name in ('original_recipe','original_model') for key in ('sha256','size')))
 
 
+def _require_policy_continuation(inherited, policy):
+    from . import refinement_parallelity as execution
+    _need(inherited['policy_id'] not in execution._WRITTEN_POLICIES or policy in execution._WRITTEN_POLICIES,
+          'Counted descendant lost its native written-model proof')
+    _need(inherited['policy_id'] != execution.V7_POLICY_ID or policy == execution.V7_POLICY_ID,
+          'Counted descendant lost its requested final pair geometry capture')
+
+
 def _inherited_request(run, registry, selected, *, include_selected):
     """Read pinned intent from validated ancestry without recursively reading a registry."""
     from .checkpoint_candidate import _lineage, CheckpointCandidateError
@@ -152,8 +162,7 @@ def _inherited_request(run, registry, selected, *, include_selected):
               'Counted continuation requires a completed ancestor')
         request=execution.read_execution_request(run,record['request'],checkpoint=identifier)
         if inherited is not None:
-            _need(inherited['policy_id'] != execution.V6_POLICY_ID or record['policy_id'] == execution.V6_POLICY_ID,
-                  'Counted ancestry lost its native written-model proof')
+            _require_policy_continuation(inherited,record['policy_id'])
             _need(_original_identity(inherited)==_original_identity(request),
                   'Counted ancestry changed its original pair intent')
         inherited=request
@@ -178,8 +187,7 @@ def validate_intent_lineage(run, registry, selected, request):
     from . import refinement_parallelity as execution
     inherited=_inherited_request(run,registry,selected,include_selected=False)
     if inherited is not None:
-        _need(inherited['policy_id'] != execution.V6_POLICY_ID or request['policy_id'] == execution.V6_POLICY_ID,
-              'Counted descendant lost its native written-model proof')
+        _require_policy_continuation(inherited,request['policy_id'])
         _need(_original_identity(inherited)==_original_identity(request),
               'Counted descendant changed its original pair intent')
         _require_chemistry_continuation(inherited, request.get('chemistry_projections'))

@@ -104,7 +104,9 @@ class PreparedCountedRefinement:
     a new instance. No successful inspection or exception allows in-place retry.
     """
     def __init__(self, *, expected_scope, factory_module, factory_sources, helper_sources,
-                 packet, model_bytes, expected_recipe_sha256, prepared, expected_prepared_sha256):
+                 packet, model_bytes, expected_recipe_sha256, prepared, expected_prepared_sha256, capture_pair_geometry=False):
+        counted._need(type(capture_pair_geometry) is bool, 'Require explicit geometry capture choice')
+        self._capture_pair_geometry=capture_pair_geometry;self._pair_geometry=None
         self._scope=counted._detached(expected_scope)
         self._options=dict(factory_module=factory_module,
             **counted._detached(dict(factory_sources=factory_sources,helper_sources=helper_sources,
@@ -158,6 +160,13 @@ class PreparedCountedRefinement:
                               'Native refinement did not complete the prepared scope')
                 self._verify(self._adapter)
                 counted._need(_writer(self._driver) is writer,'Native final writer binding changed')
+            if self._capture_pair_geometry:
+                from .cif_counted_geometry import capture_closed_pair_geometry
+                self._pair_geometry=capture_closed_pair_geometry(self._owner,
+                    prepared=self._options['prepared'],
+                    expected_prepared_sha256=self._options['expected_prepared_sha256'])
+                self._record['pair_geometry_capture']=dict(status='CAPTURED',
+                    record_sha256=counted._digest(self._pair_geometry))
             self._completed=True
             return refined
         except BaseException as exc:
@@ -183,3 +192,9 @@ class PreparedCountedRefinement:
 
     def statistics(self):
         return counted._detached(self._record)
+
+    def pair_geometry_capture(self):
+        counted._need(self._capture_pair_geometry and self._closed
+                      and self._record['status']=='COMPLETE' and self._pair_geometry is not None,
+                      'No completed requested pair geometry capture')
+        return counted._detached(self._pair_geometry)

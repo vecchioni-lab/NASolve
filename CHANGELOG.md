@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Retain pair measurements from the actual refined model (C391)
+
+- Add explicit `counted_pair_geometry=True` to the Python counted control. New
+  execution policy v7 measures after counted ownership closes, while the existing
+  native correction/writer context still owns the final model. Bind hierarchy,
+  scattering and exact written bytes; preserve the original provider selection.
+- Reuse the existing compact archive and pure pair reporter. Cold reads require
+  no Phenix execution. Diagnostic energy calls remain separate from refinement
+  evaluations; covalent geometry and scientific acceptance remain unassessed.
+- Preserve all v3–v6 worker bytes and ordinary defaults. New records require this
+  reader; v7 descendants cannot silently drop final-state evidence. Failed captures
+  retain partial outputs. No force, weight, threshold, CLI or selection change.
+
 ### Report intended pair geometry consistently across providers (C390 / W131)
 
 - Integrate Linden's optional read-only pair report, preserving the same physical

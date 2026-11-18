@@ -5001,5 +5001,43 @@ future integration work with Cedar; no CLI/Doctor activation follows.
 
 C390 imports the exact W131 source and tests. Existing C389 sealed preparation
 contains no measured attribution: it cannot be relabelled as final geometry or
-filled in from rounded PDB coordinates. Actual endpoint capture needs a separately
-qualified final-writer integration; no historical native command is replayed.
+filled in from rounded PDB coordinates. C391 below supplies separately qualified actual endpoint capture; no historical
+native command is replayed.
+
+
+### Final refined pair measurements (C391)
+
+**Purpose:** show the intended base-pair geometry in the model Phenix actually
+finished, without changing its refinement. The explicit Python counted control
+accepts `counted_pair_geometry=True`, selecting `round-local-counted-execution-v7`.
+The default stays v6 for counted controls and v3 for ordinary corrected refinement.
+All earlier worker payloads remain byte-identical; the new packaged
+`data/refinement-runtime-v6-sources.json` preserves the two superseded helper files.
+
+After the existing counted owner closes successfully, its same returned native
+model, scattering object, geometry manager and compiled recipe supply one measured
+observation. Verify native/helper bindings, unchanged atom state and exact final
+restraint inventory against sealed preparation. Replay the frozen provider choice;
+never select providers again. Reuse `describe_terms` for measurements. Its one
+energy-only correction call is diagnostic: counted optimizer statistics do not
+change. No second writer, force evaluator, subprocess or checkpoint owner is added.
+
+The controller binds both final hierarchy and scattering hashes to the completed
+writer and the exact written PDB checksum. It stores only the additional attribution,
+declarations and final-state proof, referencing the existing prepared inventory.
+`closed-counted-pair-observation-v1` capture and `saved-final-pair-geometry-v1`
+receipt use schema 1 and existing bounded content-addressed archive storage.
+`read_execution_pair_geometry` validates lineage/model bytes before reproducing the
+complete W131 report; ordinary checkpoint statistics retain only a small summary.
+A v7 descendant must explicitly retain v7. Older readers reject the new policy;
+old records cannot be upgraded by reconstructing native coordinates from a PDB.
+
+One actual Phenix 2.2.1-6174 control preserves the exact C386/C389 written model,
+full native atom state and all 15 counted evaluations. The final 14-pair report
+covers 107 native +17 added requested terms; 2,465 other terms remain unclassified
+within the four supported families only. The extra archive is 15,492 bytes.
+The relocated installed panel passes 305 tests +24 subtests; cold archive expansion,
+wrong-output refusal and pre-allocation loss-of-evidence refusal pass. The native
+control uses one XYZ cycle, fixed unit weights and ten iterations: these are
+qualification bounds, not recommended defaults. Pair metrics do not establish
+covalent chemistry, PDU/DF survival, good diffraction fit or scientific acceptance.

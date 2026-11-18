@@ -112876,5 +112876,200 @@
       "Covalent/terminal source ownership and actual automatic-weight qualification",
       "Historical missing attribution stays UNASSESSED; prepared geometry is not final evidence"
     ]
+  },
+  "full_c386_regression_resolution_2026_11_18": {
+    "milestone": "W132 independent C386 validation",
+    "signed": "Rowan; evidence by Linden",
+    "source_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05",
+    "evidence_commit": "5c107fb9171e330a6b3525f1519569c354f314f7",
+    "full": {
+      "passed": 11873,
+      "failed": 46,
+      "skipped": 2,
+      "subtests_passed": 281,
+      "seconds": 3266.71,
+      "source_files_unchanged": 1405
+    },
+    "reruns": [
+      {
+        "scope": "exact46 failed nodes with process permissions",
+        "passed": 45,
+        "failed": 1,
+        "seconds": 84.71
+      },
+      {
+        "scope": "one residual ATL source-bundle test with exact NAR Git checkout",
+        "passed": 1,
+        "seconds": 0.96
+      }
+    ],
+    "dependency": {
+      "commit": "a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691",
+      "installed_source_files_equal": 14
+    },
+    "commands": {
+      "full": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<snapshot>/src python scripts/run_tests.py full --junitxml results.xml",
+      "rerun": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<exact-C386>/src[:<exact-NAR>/src] python -B -m pytest -q -p no:cacheprovider -o addopts= --junitxml results.xml <exact saved failed node IDs>"
+    },
+    "local_archive": {
+      "checkout": "NASolve",
+      "relative_path": "branch-artifacts/willow/w132-full-suite-diagnosis-2026-11-18.tar.gz",
+      "sha256": "af9b70d88ae9853fb9a4bad3e1b7998003fb0dfbe08433c638ef7ef8752e8293",
+      "size": 476111,
+      "files": 26
+    },
+    "all_original_failures_resolved": true,
+    "production_changes": false,
+    "new_skips": false,
+    "owners_stopped": true,
+    "uninterrupted_full_pass": false,
+    "limits": [
+      "C386 only; later Cedar and final combined source not covered",
+      "Two original native opt-in skips remain",
+      "Local shared clones depend on original Git objects; no clone portability claim",
+      "Profile runner replaces PYTHONPATH; explicit dependency-source checks use equivalent direct pytest"
+    ]
+  },
+  "final_refined_pair_geometry_2026_11_18": {
+    "milestone": "C391",
+    "signed": "Rowan",
+    "source_parent": "08424377",
+    "before": "Only pure W131 report; existing preparation has no actual final measured attribution.",
+    "after": "Explicit v7 captures after counted owner closes; controller binds final hierarchy/scattering/written bytes and stores compact evidence. No force/weight/default change.",
+    "schemas": {
+      "runtime_policy": "round-local-counted-execution-v7",
+      "capture": "closed-counted-pair-observation-v1",
+      "saved": "saved-final-pair-geometry-v1"
+    },
+    "validation": {
+      "before": "9 final integration regressions fail against installed C390; historical-byte test passes.",
+      "source": "251 pass /1 malformed new test invocation fails; corrected required argument gives1pass. No source fix for that fixture.",
+      "source_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_final_pair_geometry_integration.py tests/test_cif_counted_geometry.py tests/test_refinement_pair_geometry.py tests/test_cif_counted_refinement.py tests/test_refinement_parallelity.py tests/test_refinement_counted.py tests/test_autorefine_counted.py --tb=short",
+      "installed_command": [
+        "/private/tmp/willow-w94-pivot/env/bin/python",
+        "-B",
+        "-c",
+        "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_final_pair_geometry_integration.py', 'tests/test_cif_counted_geometry.py', 'tests/test_refinement_pair_geometry.py', 'tests/test_cif_counted_refinement.py', 'tests/test_refinement_parallelity.py', 'tests/test_refinement_counted.py', 'tests/test_autorefine_counted.py', 'tests/test_autorefine.py', 'tests/test_refinement_inputs.py', '--tb=short']))"
+      ],
+      "installed_result": "305 passed, 24 subtests passed in 85.57s (0:01:25)",
+      "wheel_sha256": "1ace5cda8b6f53fdf3242ecd1e5c91be9c3d6f11b6b1f2e68406de26fb8dcb78",
+      "wheel_bytes": 1560708,
+      "source_copy_removed": true,
+      "original_install_absent": true,
+      "package_sources_sha256": "303487ffbc73aae83d73702b98e7beacc4043374354ea1416ac878dfaf3feb97"
+    },
+    "native": {
+      "plan_sha256": "0772d089b3766d133ec9e1372cc9600cd922589339a39adbb3d457bfcb8a5af9",
+      "seconds": 52.84389370899589,
+      "returncode": 0,
+      "all_processes_stopped": true,
+      "pair_geometry": {
+        "status": "OBSERVED",
+        "scope": "ACTUAL_FINAL_NATIVE_STATE",
+        "report_sha256": "4428aafc7303331a7ae2ed3151cdbfc5bc29c561408fe6e25a33bd4f2f8109e7",
+        "force_sites_sha256": "ff4437720b066131550aeb10eb30313aaf8173f7c7ce2b59733a7e42bf52963d",
+        "pair_geometry": {
+          "bond": {
+            "count": 36,
+            "rms_deviation_angstrom": 0.22018041804830463,
+            "max_abs_deviation_angstrom": 0.7064828213825911
+          },
+          "angle": {
+            "count": 60,
+            "rms_deviation_degrees": 4.780348583714026,
+            "max_abs_deviation_degrees": 21.894610608495256
+          },
+          "planarity": {
+            "count": 14,
+            "rms_of_plane_rms_angstrom": 0.1189946605419583,
+            "max_abs_of_plane_rms_angstrom": 0.19052753247700902
+          },
+          "parallelity": {
+            "count": 14,
+            "rms_native_delta_degrees": 8.893697142089998,
+            "max_abs_native_delta_degrees": 17.775728847006054
+          }
+        },
+        "pair_count": 14,
+        "native_requested_term_count": 107,
+        "additive_requested_term_count": 17,
+        "unclassified_observed_term_count": 2465,
+        "unclassified_scope": "bond,angle,planarity,parallelity only",
+        "covalent_geometry": "UNASSESSED",
+        "scientific_acceptance": false
+      },
+      "written_model": {
+        "model_state_sha256": "f4d01d2e62d67354ddc86ea28dc6f5592e6ac91071b4f9de10296ccc4644dbed",
+        "policy_id": "native-written-model-v1",
+        "sha256": "55d28cbd19bf01874a313ff9b10b2ed4209e9e0f9b23e738b189ed5eda1082eb",
+        "size": 143889
+      },
+      "geometry_archive_bytes": 15492,
+      "geometry_archive_sha256": "02528919cf4c00c9e053d4e0a9d9e087705a94af69c77e6014c8047f7753fc6b",
+      "exact_c386_written_model": true,
+      "exact_c386_native_state": true,
+      "exact_c386_counted_lifetime": true,
+      "wrong_written_model_refused": true,
+      "relocated_cold_read": true,
+      "bytes_and_mtimes_unchanged_on_read": true
+    },
+    "native_version": "Phenix2.2.1-6174 Darwin arm64; complete actual preflight+one XYZ cycle, not dry-only",
+    "compatibility": {
+      "status": "PASS",
+      "native_rerun": false,
+      "v7_to_v6_refused_before_round": true,
+      "v7_same_policy_intent_retained": true,
+      "old_reader": {
+        "refused": true,
+        "error": "Invalid explicit parallelity execution evidence"
+      },
+      "historical_reads": [
+        {
+          "source": "C386",
+          "unchanged_files": 65
+        },
+        {
+          "source": "C388",
+          "unchanged_files": 122
+        },
+        {
+          "source": "C389",
+          "unchanged_files": 65
+        }
+      ],
+      "original_bytes_mtimes_unchanged": true,
+      "diagnostic_kernel_before": {
+        "energy_only_calls": 16,
+        "gradient_calls": 36,
+        "maximum_proxy_count": 12,
+        "policy_id": "native-parallelity-kernel-adapter-v1",
+        "successful_calls": 52
+      },
+      "diagnostic_kernel_after": {
+        "energy_only_calls": 17,
+        "gradient_calls": 36,
+        "maximum_proxy_count": 14,
+        "policy_id": "native-parallelity-kernel-adapter-v1",
+        "successful_calls": 53
+      }
+    },
+    "archive": {
+      "archive": "c391-final-pair-geometry-2026-11-18.tar.gz",
+      "sha256": "11ab70c301833300b6e700626b786f160d5660f7090ddd1df4174fa75deaebd0",
+      "bytes": 1698441,
+      "raw_bytes": 9297988,
+      "verified_expanded_cold_read": true,
+      "original_root_preserved": true
+    },
+    "archive_anchor": "NASolve/branch-artifacts/cedar; local archival provenance, not runtime input",
+    "generated_artifacts": "Only compact measurements/hashes committed; all raw models/reflections/maps/logs/local runners excluded.",
+    "limits": [
+      "Explicit Python choice; no CLI/campaign/default activation",
+      "Counted scope remains1cycle/fixedunitweights/max10iterations; scientificacceptancefalse",
+      "Unclassifiednative terms onlyfour supportedfamilies, not all forces; covalentUNASSESSED",
+      "No PDU/DF efficacy or weightselector adoption",
+      "Older readers refusev7; old v3-v6 workerpayloads exact; oldrecords not migrated",
+      "Focused and native validation only at this point; independent audit/final fullsuite pending"
+    ]
   }
 }

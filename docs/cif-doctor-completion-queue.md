@@ -112,12 +112,16 @@ not Q06 chemical survival or a replacement for ordinary refinement settings.
    stability, full contribution counts and actual selection require separate proof.
    C390 integrates W131's exact optional cold report: full pair measurements stay
    identical across native/additive allocation; unmatched terms remain unclassified.
-   This is not an endpoint capture. Next capture actual final attribution through
-   the existing final-writer/owner, bind its full native state and exact written file,
-   and reuse compact archive storage. Existing C389 records lack attribution and
-   remain unassessed. Preserve v5/v6 helper bytes; a changed native capture requires
-   separate policy qualification. Do not add a second native replay/evaluator or
-   persist duplicate whole-model inventories per force call.
+   C391 adds separately qualified explicit v7 final-state capture through the same
+   closed owner and existing writer. Full hierarchy/scattering and written bytes
+   agree; the original provider choice is retained. The actual ordinary control
+   reproduces C386/C389 exactly, with 15 unchanged counted calls and one separate
+   descriptive energy call. Its additional archive is 15,492 bytes; relocated
+   installed checks pass 305 +24 subtests. C389 records still lack attribution and
+   remain unassessed. Old v3–v6 worker bytes are unchanged. Next connect exact
+   covalent/terminal ownership and actual weight-choice evidence before changing
+   scientific selection; reuse Hazel's passive observation and W131 rather than
+   adding another evaluator or repeatedly qualifying the same owner.
 
 
 Q06 achieved PDU/DF chemistry remains open. Ordinary AutoRefine/Doctor requests
@@ -133,7 +137,7 @@ weight searches/cycle counts. Native-family reports cannot claim the added resid
 are included when their decomposition omits them. Keep complete added-pair evidence
 separate and never synchronize stale hierarchy coordinates inside a force call.
 
-The 24-file worker remains distinct from the full installed library. No operational
+The v5/v6 24-file workers and explicit v7 25-file worker remain distinct from the full installed library. No operational
 sibling checkout, no new executor, no provider reselection during refinement. A
 launch marker blocks duplicate starts but is not process-liveness authority; failed
 or uncertain attempts stay immutable. Completed relocated evidence is readable;
@@ -1333,6 +1337,13 @@ argument omission in Refine Doctor (three tests + three subtests). That one-line
 compatibility fix passes 124 affected tests + 40 subtests; no full rerun, so C220
 remains the last completely green full baseline. Subsequent bounded Cedar passes
 use focused tests until a meaningful integration checkpoint.
+C386's later unfiltered run finishes with 11,873 passed /46 failed /2 skipped
+and 281 subtests (3266.71 s). W132 resolves all 46 on the exact source: host
+process permissions give 45 passes and one residual; exact byte-identical
+NARestraints Git-source metadata resolves the remaining source-bundle test.
+No product fix or new skip. Preserve failed full and diagnostic reruns separately;
+this does not establish an uninterrupted full pass or qualify later Cedar.
+See ledger `full_c386_regression_resolution_2026_11_18` and W132 `5c107fb9`.
 C169's interrupted run remains historical non-pass evidence. Final combined
 Cedar/pine/main source still needs its own integration regression and native checks.
 C220 also retires 89 audited old source-build copies and archives 1,353 older

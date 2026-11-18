@@ -1614,6 +1614,7 @@ def execute_autorefine(
     counted_protocol: str | None = None,
     counted_pair_request: Mapping[str, Path] | None = None,
     counted_frame: str | None = None,
+    counted_pair_geometry: bool = False,
     progress: Callable[[str, Path], None] | None = None,
 ) -> AutoRefineResult:
     """Run one quiet refinement round and append an immutable checkpoint.
@@ -1622,7 +1623,10 @@ def execute_autorefine(
     that path never initializes a missing registry. Ordinary callers retain the
     existing initialization behavior. Later saves still use the registry guard.
     """
-    from .refinement_parallelity import validate_runtime_choice, require_runtime_continuation, V6_POLICY_ID
+    from .refinement_parallelity import validate_runtime_choice, require_runtime_continuation, V6_POLICY_ID, V7_POLICY_ID
+    if type(counted_pair_geometry) is not bool or (counted_pair_geometry and counted_protocol is None):
+        raise AutoRefineError('Final pair geometry requires an explicit counted control')
+    counted_policy = V7_POLICY_ID if counted_pair_geometry else V6_POLICY_ID
     from .refinement_counted import validate_autorefine_control
     try:
         validate_autorefine_control(counted_protocol, counted_pair_request,
@@ -1631,7 +1635,7 @@ def execute_autorefine(
             adp_mode=adp_mode, refine_occupancies=refine_occupancies,
             anomalous_mode=anomalous_mode, refine_coordinates=refine_coordinates)
         validate_runtime_choice(correct_native_parallelity, phenix_python_executable,
-            **({'runtime_policy': V6_POLICY_ID} if counted_protocol is not None else {}))
+            **({'runtime_policy': counted_policy} if counted_protocol is not None else {}))
     except ValueError as exc:
         raise AutoRefineError(str(exc)) from exc
     if counted_frame is not None and (counted_protocol is None or counted_frame != 'recipe'):
@@ -1790,7 +1794,7 @@ def execute_autorefine(
             counted_projection_identity = _projection_identity(chemistry_projections)
             counted_identity, declared_crystal = validate_autorefine_intent(
                 run, registry, parent, counted_pair_request, model,
-                chemistry_projections=chemistry_projections)
+                chemistry_projections=chemistry_projections, runtime_policy=counted_policy)
             if counted_frame == 'recipe':
                 counted_crystal = declared_crystal
         except (OSError, ValueError, RuntimeError, TypeError) as exc:
@@ -1957,7 +1961,7 @@ def execute_autorefine(
                         *([phase_file] if phase_file is not None else []), parameters],
                 command=command, python_executable=phenix_python_executable, macro_cycles=macro_cycles,
                 chemistry_projections=chemistry_projections,
-                **({'runtime_policy': V6_POLICY_ID, 'counted_pair_request': counted_pair_request}
+                **({'runtime_policy': counted_policy, 'counted_pair_request': counted_pair_request}
                    if counted_protocol is not None else {}))
         except (OSError, ValueError, RuntimeError) as exc:
             raise AutoRefineError(f'Parallelity execution preparation failed: {exc}') from exc
@@ -2108,6 +2112,15 @@ def execute_autorefine(
         if chemistry is not None:
             statistics['chemical_geometry'] = chemistry
             chemistry_review = chemistry['status'] == 'REVIEW'
+    if counted_pair_geometry and parallelity_execution_reference is not None and completed_returncode==0 and output_model is not None:
+        from .refinement_parallelity import read_execution_pair_geometry
+        from .refinement_pair_geometry import summary
+        try:
+            pair_report=read_execution_pair_geometry(run,parallelity_execution_reference,
+                checkpoint=checkpoint_id,parent=parent['id'],model=output_model)
+            statistics['pair_geometry']=summary(pair_report)
+        except (OSError,ValueError,RuntimeError) as exc:
+            raise AutoRefineError(f'Final pair geometry evidence is inconsistent: {exc}') from exc
     statistics["anomalous_scatterers"] = anomalous_scatterer_diagnostics(
         log_text,
         output_model,

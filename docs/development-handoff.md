@@ -1,13 +1,34 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-18, C390 independent pair geometry integrated — Rowan**.
+Updated **2026-11-18, C391 actual final pair measurements — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current development window ends
 **14:55 UK / UTC**; shared laboratory report **17:00 UK**.
-Rowan uses focused tests; Linden owns one isolated full validation at the final
-source pin under his supplied contract. He also owns the passive provider-statistics
-comparison; Hazel owns the separate Alder weight-selection diagnostic.
+Rowan uses focused tests. Linden completed C386 full validation and exact-source
+failure triage (W132); a new full run waits for the final validated source pin.
+He also reviews final pair-state capture; Hazel owns the separate Alder
+weight-selection diagnostic.
 
 ## Current checkpoint and next bounded work
+
+**C391 complete — measure the pairs Phenix actually finished refining.** Explicit
+Python `counted_pair_geometry=True` uses new v7; older worker bytes/defaults stay
+exact. One native control from the relocated install finishes in 52.84 s with the
+same C386/C389 PDB, full atom state and 15 counted evaluations. One additional
+energy-only call measures final pair geometry; it is not an optimizer evaluation.
+The report covers 14 pairs /107 native +17 added requested terms. The extra compact
+archive is 15,492 bytes; covalent geometry remains unassessed. No new chemical
+acceptance, weight choice or automatic selection. Source checks give 251 passes,
+then one corrected test-fixture invocation passes; installed305 +24 subtests pass.
+Nine new regressions fail against C390; the historical-byte regression already passes.
+Moved/cold report is exact, wrong PDB refuses, v7→v6 loss refuses before a new round,
+and C386/C388/C389 historical files remain unchanged. Original failed outputs would
+remain immutable. Linden reviewed the proposal and exact historical payload bytes;
+his actual-run independent review and final-source full suite are next.
+
+Next: preserve exact covalent/terminal ownership alongside intended pair metrics
+and Hazel's passive actual weight-choice evidence. Do not adopt a selector or claim
+Q06 PDU/DF survival from this diagnostic. The 17:00 report must distinguish this
+validated observation from chemistry improvement and from the older full-suite pin.
 
 **C390 complete — measure intended pair geometry independently of its provider.**
 Linden W131's exact optional pure adapter is integrated from `ead86be9`. It joins
@@ -18,11 +39,10 @@ or evidence writes. All 299 older C389 package files and all frozen runtime poli
 remain unchanged. Pair distance/angle deviations and plane metrics stay separate
 from energy; 2465 unmatched native terms remain unclassified, never assumed covalent.
 
-Current C389 preparation has no measured attribution, so it cannot supply a final
-pair-geometry report. Next qualify actual endpoint capture through the existing
-final writer and compact archive owner, preserving old helper policies. Prepared
-state is not final state; PDB rounding cannot recreate native precision. No new
-native experiment duplicated W131, and no chemical/weight acceptance follows.
+Historical C389 preparation has no measured attribution and remains unassessed.
+C391 adds actual capture prospectively; it does not relabel earlier evidence.
+PDB rounding cannot recreate native precision. C390 did not duplicate W131 native
+experiments, and no chemical/weight acceptance follows.
 
 
 **C389 complete — keep newly supplied restraints through ordinary refinement.**
@@ -70,9 +90,9 @@ Linden W130 independently verifies all 299 Git/wheel/installed source files,
 launches or writes. Source is `a67df6b7a70dad94d0f14e3cdabea5f8f5a9c21e`.
 The two verified expanded archives total 5,160,655 bytes; originals remain local.
 
-Next: finish the pinned C386 full-suite triage,
-and define the provider-independent geometry/selection boundary before expanding
-ordinary protocols. Linden W129 is passive provider comparison; Hazel A63 is a
+Next: exact covalent/terminal classification and actual weight-choice evidence,
+before expanding ordinary protocols.
+C386 full-suite triage is resolved as documented below; do not repeat its diagnosis. Linden W129 is passive provider comparison; Hazel A63 is a
 separate actual weight-selection experiment with better local geometry but worse
 R factors. Preserve covalent/terminal edits when distinguishing pair restraints;
 origin IDs alone are insufficient. Do not adopt a new scorer from these controls.
@@ -240,13 +260,19 @@ ledger entries above. They qualify their original source/consumer contexts, not
 new runtime policies. Reuse those results unless a changed boundary requires a
 new control; do not repeat broad suites for documentation or unchanged sources.
 
-- Last full Cedar suite remains **C220 / `583d30df`: 9,178 tests + 276 subtests**.
-  It is not a full pass for current Cedar. Linden's temporary W112 `e005b0da` +
-  C366 `09303e80` SOURCE composition passes 12,138 tests /1 skipped /284 subtests
-  in 2982.99 s with the package-resource union and exact NARestraints metadata.
-  Eight documentation conflicts remain; no branch merge occurred. This newer
-  baseline supersedes the old C322 four-failure baseline within its exact scope;
-  it does not qualify later sources, current installed/native integration or HEAD.
+- Latest unfiltered Cedar run: **C386 / `d5c2fb7b`: 11,873 passed, 46 failed,
+  2 skipped, 281 subtests; 3266.71 s**. W132 resolves all 46 original failures
+  without a product fix or new skip: the exact failed-node rerun with host process
+  permissions gives 45 passed /1 failed (84.71 s); the remaining source-bundle
+  test passes with Git metadata from the byte-identical NARestraints
+  `a9264f9e` source (0.96 s). Original failed full run and diagnostic reruns remain
+  distinct. This is not an uninterrupted full pass or validation of later Cedar.
+  Evidence: ledger `full_c386_regression_resolution_2026_11_18`, Linden W132
+  `5c107fb9`; all 1,405 source files unchanged, owners stopped. Last uninterrupted
+  Cedar full pass remains C220 `583d30df` (9,178 +276 subtests). W112/C366's
+  separate temporary composition passed 12,138 +284 subtests /1 skipped; it is
+  not a branch merge or current-source validation. Final combined source needs
+  its own full/native/relocation checks.
 - Recorded native versions: **Phenix 2.2.1-6174** (dispatcher 2.2.1), **Coot 1.3.3**.
   Package references and source/recipe qualification do not imply universal support.
   Formal-charge readback remains unsupported where reported; Q06 geometry is open.

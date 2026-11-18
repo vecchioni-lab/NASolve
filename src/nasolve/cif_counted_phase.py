@@ -47,7 +47,7 @@ def run_phase(root, request, phase, arguments, *, admission=None, prepared_path=
     sites=[{k:row[k] for k in ('site','component')} for row in request.get('chemistry_projections',[])]
     folder=root/phase
     output_options = ({'capture_written_model': True}
-        if request['policy_id'] == 'round-local-counted-execution-v6' else {})
+        if request['policy_id'] in ('round-local-counted-execution-v6','round-local-counted-execution-v7') else {})
     if phase=='preflight':
         refined=runtime.run_compatible_refinement(arguments,evidence_directory=folder,chemistry_sites=sites,**output_options)
         # Successful native preflight and subsequent preparation refusal are
@@ -74,11 +74,15 @@ def run_phase(root, request, phase, arguments, *, admission=None, prepared_path=
     owner=lifetime.PreparedCountedRefinement(expected_scope=admission['scope'],
         factory_module=factory,factory_sources=factory_sources,helper_sources=helper_sources,
         packet=packet,model_bytes=model_bytes,expected_recipe_sha256=intent['current_recipe_sha256'],
-        prepared=prepared,expected_prepared_sha256=admission['prepared_sha256'])
+        prepared=prepared,expected_prepared_sha256=admission['prepared_sha256'],
+        capture_pair_geometry=request['policy_id']=='round-local-counted-execution-v7')
     primary=None
     try:
         with owner:
             runtime.run_compatible_refinement(arguments,evidence_directory=folder,chemistry_sites=sites,**output_options)
+        if request['policy_id']=='round-local-counted-execution-v7':
+            work=folder/'pair-geometry-work';work.mkdir()
+            _write(work/'capture.json',owner.pair_geometry_capture())
     except BaseException as exc:
         primary=exc
         raise

@@ -15,7 +15,8 @@ milestone statements preserve their original scope; they are not a second queue.
   serial coordinator acceptance. One normal campaign reaches actual refinement
   and cold relocated inspection. Q06 still owns effective restraints/derivatives
   and chemical survival, including PDU. The explicit ordinary counted control
-  carries intended pair forces through one real coordinate cycle; broader protocols
+  carries intended pair forces through one real coordinate cycle and can explicitly
+  retain measurements from the actual final model; broader protocols
   and modified-residue survival remain open. One 5IU control does not qualify the
   whole catalogue. Native 100-dataset capacity, default activation, historical migration
   and combined-source integration remain unqualified release limits. Use the
