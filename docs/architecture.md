@@ -4614,9 +4614,10 @@ this choice, parameter and command bytes retain their existing behavior.
 ordinary parameter file and report. The default `None` retains native frame
 selection; the existing native frame guard must still accept it. No model-cell
 preference, cell-tolerance widening or fixture constant is introduced. Original
-observations and Free-R remain authoritative. Consumed experimental phases,
-nonempty chemistry projections, new extra restraints and newly required terminal
-protection remain unsupported in this first route and refuse before a new round.
+observations and Free-R remain authoritative. Consumed experimental phases, new
+extra restraints and newly required terminal protection remain unsupported and
+refuse before a new round. C388 qualifies the existing optional chemistry
+observation for v6 as described below.
 Already inherited protection and all ordinary model/input checks remain active.
 
 The existing owner compares original recipe/source bytes with counted ancestry
@@ -4642,6 +4643,43 @@ has explicitly relabelled F/SIGF columns with bit-identical ordered arrays and
 Free-R values; source bytes remain intact. This is canonical-DNA mechanics evidence,
 not a modified-crystal refinement or PDU/DF chemical-survival result. The existing
 evidence ledger records `ordinary_counted_control_2026_11_18`.
+
+### Counted forces with existing chemical observation (C388)
+
+Explicit v6 accepts the existing nonempty `chemistry_projections` field and source
+screen; no worker bytes, observation schema, force callback or native version changes.
+Ordinary AutoRefine obtains these definitions from its already checked preparation.
+Both preflight and refinement retain the exact site/component scope. The existing
+writer combines full-precision intra-site observation with physical PDB identity.
+Unavailable optional observation remains UNASSESSED; a damaged record refuses.
+
+Original site/component/projection SHA-256 and size survive compatible continuation.
+AutoRefine checks them before round allocation and again against its frozen request;
+`prepare_continuation` forwards inherited scope; cold lineage validation rejects
+loss or substitution. Paths remain anchored and may relocate without changing intent.
+New observations may be introduced from a checked preparation where no counted
+ancestor declared them. Existing inherited scope cannot silently change.
+
+C386 and older readers explicitly reject v6 requests containing this field. New
+combined records therefore require C388 or later; old records remain unchanged and
+readable, and v5 still excludes this combination. This is an extension of an existing
+optional field with an unchanged native worker, not a reinterpretation of old proof.
+
+Matched actual Phenix controls use the preserved C338 PDU-containing model,
+dictionaries, PHIL and terminal protection. A fresh recipe declares only the existing
+canonical A:11/B:5 pair; PDU B:4 is observed, not falsely recast as canonical. A second
+matched pair transfers exactly one declared parallelity term from a diagnostic PHIL
+copy to the same additive recipe. All other declarations, bonds and exclusions stay
+unchanged. Counts are 10,998+0 and 10,997+1, with the same complete normalization.
+For each provider arrangement, observer on/off produces exact PDB/native output-state
+and counted-lifetime equality. All four written PDBs match; full-precision states
+across provider arrangements are not byte-identical. Relocated cold reads pass.
+
+The one-cycle, ten-iteration, fixed-unit control yields a scoped triple screen PASS,
+but Rwork/Rfree 0.4230/0.8360. It is neither an accepted structure nor a comparison
+with C338's ordinary five-cycle recipe. Original native targets, Free-R and chemical
+review thresholds are unchanged. Broader protocols and modified-pair image recipes
+retain their separate qualification boundaries.
 
 ## Native nonbonded attribution (C127)
 

@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-18, C386 qualified; C387 final geometry reporting — Rowan**.
+Updated **2026-11-18, C388 counted forces + chemical observation qualified — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current development window ends
 **14:55 UK / UTC**; shared laboratory report **17:00 UK**.
 Rowan uses focused tests; Linden owns one isolated full validation at the final
@@ -8,6 +8,36 @@ source pin under his supplied contract. He also owns the passive provider-statis
 comparison; Hazel owns the separate Alder weight-selection diagnostic.
 
 ## Current checkpoint and next bounded work
+
+**C388 complete; final independent audit/publication pending.** Existing actual
+PDU triple-bond observation now works alongside explicit v6 counted forces.
+Four native phases per matched pair (two preflights/two real cycles) finish and stop;
+observer on/off gives exact written PDB, full native output state and owner lifetime
+for both all-native and one-additive-term arrangements. The partial control removes
+only the declared A:11/B:5 parallelity block from a diagnostic PHIL copy; unchanged
+pair intent supplies it. Native+added counts 10,998+0 / 10,997+1 retain the same
+complete normalization. All four PDBs match; cross-provider native state hashes
+are not identical. PDU triple screen PASS is narrow: Rwork/Rfree 0.4230/0.8360 is
+poor. No structure adoption, target tuning or ordinary-weight recommendation.
+
+Native workers/schemas are unchanged. The existing v6 optional projection field
+now has qualified coexistence; v5/default scope stays unchanged. Original
+site/component/source bytes survive continuation and cold reads. Old C386 readers
+explicitly reject new combined artifacts, so they require C388 or later. Installed
+377 tests + 24 subtests pass across the initial panel and 12 fixture-only retries;
+missing public PDU/ATL test files were restored to the isolated test closure, not
+product code. Source panel had 187 passes and one test-fixture overwrite error,
+then the corrected test and three continuation cases passed. Six scope/lineage
+checks pass separately. Native controls are matched low-level owner controls;
+ordinary combined forwarding has focused coverage, not a new checked-PostMR native
+campaign. One harness input-order mistake stopped before native launch and remains.
+
+Next: independently audit/publish C388, finish the pinned C386 full-suite triage,
+and define the provider-independent geometry/selection boundary before expanding
+ordinary protocols. Linden W129 is passive provider comparison; Hazel A63 is a
+separate actual weight-selection experiment with better local geometry but worse
+R factors. Preserve covalent/terminal edits when distinguishing pair restraints;
+origin IDs alone are insufficient. Do not adopt a new scorer from these controls.
 
 **C387 complete — show the final geometry Phenix reports.** The ordinary reader
 now recognizes its final step-table row, retaining the old format and log order.
@@ -39,8 +69,8 @@ This is canonical-DNA mechanics, not PDU/DF or modified-data acceptance.
 
 Explicit `counted_frame="recipe"` records its validated crystal choice; absence
 retains native selection and the existing strict frame guard. Consumed phases,
-nonempty chemistry projections and new extra/terminal restraints remain refused
-before allocation. Existing inherited protection stays checked. A command-context
+new extra/terminal restraints remain refused before allocation. C388 adds the
+existing source-selected chemistry observation without changing its native worker. Existing inherited protection stays checked. A command-context
 refusal preserves the attempt/launch evidence without inventing NOT_LAUNCHED.
 Standalone durable recovery, broader protocols/automatic weights and CLI/campaign
 activation remain separate. No native helper changed. Source started at `eeb4f3f9`;
@@ -48,13 +78,8 @@ Linden independently verifies all 299 package files, unchanged default commands,
 72 current and 64 historical evidence files, exact array/model identity and cold
 readback. Published source is `d5c2fb7be944aae5e048903e1de495c67baa4b05`.
 
-Next bounded work after C386 publication: reassess provider-independent geometry
-statistics before any automatic-weight expansion, coordinated with Linden/Hazel.
-Alder's new passive real-data trace reproduces its original endpoint without the
-same-site count discontinuity seen in the prior zero-data control. Its pooled bond
-RMS audit may expose a distinct automatic-weight eligibility issue; exact evidence
-and a matched diagnostic are still Hazel-owned. Do not adopt a normalization,
-selector, chemical target or acceptance change from that hypothesis.
+Provider-independent geometry and automatic-weight boundaries remain next after
+the current coexistence checkpoint; their measured scope is recorded above.
 
 **Reuse completed foundations.** C381 seals actual preflight and preserves honest
 refusal; C382 carries original intent through registered descendants; C383 reuses

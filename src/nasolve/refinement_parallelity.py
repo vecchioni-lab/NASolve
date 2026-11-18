@@ -202,8 +202,9 @@ def read_execution_request(run, reference, *, checkpoint):
         _need(record.get('preflight_mode')=='native-model-zero-cycle-isolated-v1',
               'Current native execution requires isolated zero-cycle preflight')
     if counted:
-        _need('chemistry_projections' not in record and record.get('macro_cycles')==1,
-              'Initial counted scope excludes chemistry projections and multiple cycles')
+        _need(record.get('macro_cycles')==1 and
+              (record['policy_id']==V6_POLICY_ID or 'chemistry_projections' not in record),
+              'Counted scope requires one cycle; v5 excludes chemistry projections')
         from .refinement_counted import read_intent
         read_intent(run,root,record)
     if 'chemistry_projections' in record:
@@ -238,8 +239,9 @@ def prepare_execution(run, *, checkpoint, parent, inputs, command, python_execut
     payload=_code() if runtime_policy is None else _code(policy)
     intent_payload=None
     if policy in _COUNTED_POLICIES:
-        _need(type(macro_cycles) is int and macro_cycles==1 and chemistry_projections is None,
-              'Initial counted scope requires one cycle and no chemistry projections')
+        _need(type(macro_cycles) is int and macro_cycles==1 and
+              (policy==V6_POLICY_ID or chemistry_projections is None),
+              'Counted scope requires one cycle; v5 excludes chemistry projections')
         _need(isinstance(counted_pair_request,dict) and set(counted_pair_request)=={'recipe','source_model'}
               and len(inputs)>=2,'Require original pair recipe/source and current parent')
         from .refinement_counted import prepare_intent

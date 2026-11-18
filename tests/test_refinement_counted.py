@@ -551,3 +551,21 @@ def test_v6_counted_lineage_cannot_drop_written_model_proof(tmp_path):
     changed=dict(request,policy_id=execution.V5_POLICY_ID)
     with pytest.raises(ValueError,match='lost its native written-model proof'):
         saved.validate_intent_lineage(run,registry,child,changed)
+
+
+def test_v6_projection_scope_uses_unchanged_worker_and_v5_still_refuses(tmp_path):
+    from tests.test_cif_triple_bond_audit import fixture
+    run = tmp_path / 'run'; run.mkdir()
+    source, _ = fixture(run)
+    scope = [dict(site='A:1', component='Q17', projection=_file_reference(source, run))]
+    run, reference, _ = request_case(tmp_path, request_changes={
+        'runtime_policy': execution.V6_POLICY_ID, 'chemistry_projections': scope})
+    record = execution.read_execution_request(run, reference, checkpoint='refine-001')
+    assert record['chemistry_projections'] == scope
+    assert record['code'] == {key: _file_reference(run / execution._root('refine-001') / key, run)
+                             for key in execution._code(execution.V6_POLICY_ID)}
+    # V5 remains the old unsupported combination, even with a valid graph.
+    record['policy_id'] = execution.V5_POLICY_ID
+    path = run / reference['relative_path']; write_record(path, record, replace=True)
+    with pytest.raises(ValueError, match='chemistry'):
+        execution.read_execution_request(run, _file_reference(path, run), checkpoint='refine-001')

@@ -40,7 +40,7 @@ def validate_autorefine_control(protocol, pair_request, *, enabled, macro_cycles
           'ordinary settings will not be overridden')
 
 
-def validate_autorefine_intent(run, registry, parent, pair_request, current_model):
+def validate_autorefine_intent(run, registry, parent, pair_request, current_model, *, chemistry_projections=None):
     """Check original intent before allocating a round; return its byte identity."""
     payload = prepare_intent(pair_request['recipe'], pair_request['source_model'], current_model)
     identity = (_digest(json.loads(payload['original-recipe.json'])),
@@ -49,6 +49,8 @@ def validate_autorefine_intent(run, registry, parent, pair_request, current_mode
     inherited = _inherited_request(run, registry, parent, include_selected=True)
     _need(inherited is None or identity == _original_identity(inherited),
           'Counted request changes the inherited original pair intent')
+    if inherited is not None:
+        _require_chemistry_continuation(inherited, chemistry_projections)
     return identity, json.loads(payload['current-recipe.json'])['crystal']
 
 
@@ -158,6 +160,19 @@ def _inherited_request(run, registry, selected, *, include_selected):
     return inherited
 
 
+def _projection_identity(projections):
+    """Compare already validated site intent without binding it to old paths."""
+    return sorted((row['site'], row['component'], row['projection']['sha256'],
+                   row['projection']['size']) for row in projections or [])
+
+
+def _require_chemistry_continuation(inherited, projections):
+    original = inherited.get('chemistry_projections')
+    if original:
+        _need(_projection_identity(original) == _projection_identity(projections),
+              'Counted descendant lost or changed its inherited chemistry projections')
+
+
 def validate_intent_lineage(run, registry, selected, request):
     """Join original intent during existing checkpoint validation; no rebind or writes."""
     from . import refinement_parallelity as execution
@@ -167,6 +182,7 @@ def validate_intent_lineage(run, registry, selected, request):
               'Counted descendant lost its native written-model proof')
         _need(_original_identity(inherited)==_original_identity(request),
               'Counted descendant changed its original pair intent')
+        _require_chemistry_continuation(inherited, request.get('chemistry_projections'))
 
 
 def prepare_continuation(run_directory, *, checkpoint, parent, inputs, command,
@@ -206,6 +222,7 @@ def prepare_continuation(run_directory, *, checkpoint, parent, inputs, command,
     intent=request['counted_intent']
     return execution.prepare_execution(run,checkpoint=checkpoint,parent=parent,inputs=inputs,
         command=command,python_executable=python_executable,macro_cycles=macro_cycles,
+        chemistry_projections=request.get('chemistry_projections'),
         runtime_policy=request['policy_id'],counted_pair_request=dict(
             recipe=_bound_path(intent['original_recipe'],'original pair recipe',run),
             source_model=_bound_path(intent['original_model'],'original pair source',run)))

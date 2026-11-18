@@ -78,23 +78,38 @@ produces the exact C385 PDB, and reads cold after relocation. Focused installed
 345 tests +13 subtests pass. The diagnostic MTZ label change is explicit; ordered
 observations/HKL/Free-R arrays are bit-identical, not byte-identical files.
 
+**C388 complete — observe chemistry while counted pair forces operate.** The same
+v6 worker preserves source-selected triple-bond readback and exact writer proof.
+Matched native observer-on/off controls pass with zero and one added term; ordinary
+forwarding and inherited-scope preservation pass focused/installed checks. A prior
+reader refuses the new combination rather than ignoring it. PDU's short-control
+triple screen passes, but Rwork/Rfree 0.4230/0.8360 is poor: this is coexistence,
+not Q06 chemical survival or a replacement for ordinary refinement settings.
+
 **Remaining ordinary-integration boundaries:**
 
 1. Wider actual protocols, automatic weights and CLI/campaign activation remain
    unqualified. Keep the existing five/three-cycle defaults and original native
    thresholds; do not repeatedly run short controls as a substitute.
-2. Consumed phases, nonempty chemistry projections and new extra/terminal restraints
-   need explicit combined qualification. Existing inherited protection is checked;
+2. Consumed phases and new extra/terminal restraints need explicit combined
+   qualification. Existing inherited protection is checked;
    unsupported requests refuse before round allocation rather than losing meaning.
 3. Standalone durable attempt recovery needs the existing process/attempt authority.
    Campaign/controller children retain the existing process group. Never introduce
    an inner process group that escapes its owner or infer death from a launch marker.
-4. Before automatic weight selection, test whether geometry eligibility statistics
-   have the same scientific meaning for native versus additive pair providers.
-   Native pair bonds may enter pooled bond RMS while additive equivalents do not.
-   This is a hypothesis prompted by Alder's separate actual-weight audit, not a
-   proven counted-route defect or permission to change the scorer. Coordinate with
-   Linden/Hazel and reuse frozen inputs/attribution rather than another optimizer.
+4. Before automatic weight selection, preserve the scientific meaning of geometry
+   statistics across native and additive providers. Linden W129 measures a change
+   in pooled angle RMS (2.30831009° → 2.30892601°) despite equivalent complete energy
+   and gradients. That small frozen-state case proves no changed weight decision.
+   Hazel A63 separately demonstrates changed actual selection under a covalent-only
+   diagnostic: local DF/metal geometry improves, but diffraction agreement worsens.
+   Neither result authorizes a production selector or normalization change.
+   Use exact request/coverage membership to distinguish declared pairing terms,
+   covalent/terminal protection and unclassified edits. Origin 4 means “edits,” not
+   “noncovalent”: never blanket-exclude it. Reuse existing semantic owners; do not
+   build another force evaluator or repeat their completed diagnostics. Category
+   stability, full contribution counts and actual selection require separate proof.
+
 
 Q06 achieved PDU/DF chemistry remains open. Ordinary AutoRefine/Doctor requests
 without explicit counted intent still refuse to lose that ancestry. Original
@@ -102,7 +117,8 @@ v5 evidence retains its scope; C386's explicitly requested new v6 admission is
 not a retrospective upgrade. No branch merge or automatic scientific selection.
 
 Initial supported scope is one all-site XYZ cycle/process, fixed unit weights,
-1–10 iterations, no changing targets/NCS/neutron or chemistry-projection combination.
+1–10 iterations, no changing targets/NCS/neutron; v6 additionally supports the
+existing source-selected triple-bond observation.
 These are explicit qualification bounds, not scientific defaults. Preserve ordinary
 weight searches/cycle counts. Native-family reports cannot claim the added residuals
 are included when their decomposition omits them. Keep complete added-pair evidence
@@ -281,7 +297,7 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Complete for recorded alternatives, selected-model phasing, Coot, cold inspection and the ordinary five-cycle refinement handoff. Actual chemical survival/effective restraint behavior is Q06; no default activation or historical migration. |
-| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C386 add bounded pair-force continuity, exact native-written-model proof and an explicit ordinary-owner control. Wider protocols and achieved PDU/DF geometry plus held-out survival remain open. Mechanics or a readable dictionary alone is insufficient. |
+| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C388 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control and existing chemical observation. Wider protocols and achieved PDU/DF geometry plus held-out survival remain open. Mechanics or a readable dictionary alone is insufficient. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |

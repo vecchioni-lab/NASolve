@@ -112285,5 +112285,284 @@
       "No geometry-based acceptance or provider-independent statistics claim."
     ],
     "next": "Keep provider-statistics and actual weight-choice experiments separate; return to Q06 scientific qualification."
+  },
+  "counted_chemistry_observation_2026_11_18": {
+    "milestone": "C388",
+    "signed": "Rowan",
+    "source_parent": "2b2f52b1",
+    "before": "Explicit counted controls rejected existing chemistry projections even though the pinned v6 worker already forwarded/composed both observations.",
+    "after": "Qualified existing optional v6 projection field; ordinary and explicit continuation preserve source-site identity and cold lineage rejects loss/substitution. Native helpers and schemas unchanged.",
+    "prior_work": [
+      "C338 actual-manager triple observation",
+      "C385 written-file binding",
+      "C386 ordinary counted control",
+      "C387 native summary parser"
+    ],
+    "changed_files": [
+      "src/nasolve/autorefine.py",
+      "src/nasolve/refinement_counted.py",
+      "src/nasolve/refinement_parallelity.py",
+      "tests/test_autorefine_counted.py",
+      "tests/test_refinement_counted.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "validation": {
+      "before": "Three new tests fail at the old counted chemistry exclusions.",
+      "source": "187 passed/one test-fixture overwrite error in60.56s; corrected test plus3 new lineage cases4passed5.53s;6scope/lineage checks8.25s.",
+      "source_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider tests/test_autorefine_counted.py tests/test_refinement_counted.py tests/test_refinement_parallelity.py tests/test_refinement_chemistry.py --tb=short",
+      "installed": {
+        "status": "INSTALLED_RELOCATED_PASS_WITH_FIXED_TEST_INPUT_CLOSURE",
+        "candidate_package": "/private/tmp/c388-package-_86qdhe9/relocated/nasolve",
+        "wheel_path": "/private/tmp/c388-package-_86qdhe9/wheel/nasolve-0.1.0-py3-none-any.whl",
+        "wheel_sha256": "84079e56aafdcd1e1aed9842bea58f527c102c53e71bb68aefe482713ac44023",
+        "wheel_bytes": 1546511,
+        "source_copy_removed": true,
+        "original_install_path_absent": true,
+        "package_reference_bytes_match": true,
+        "package_sources_sha256": "eaa6c97646db6add47feeed2aceb00e271037b656ab5890cb05d6774645497af",
+        "first_result": "365 passed +24 subtests;12 fixture-closure errors (public PDU/ATL CIFs not copied)",
+        "completion_command": [
+          "/private/tmp/willow-w94-pivot/env/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "tests/test_refinement_chemistry.py::test_exact_captured_model_distinguishes_targets_and_achieved_coordinates[False]",
+          "tests/test_refinement_chemistry.py::test_exact_captured_model_distinguishes_targets_and_achieved_coordinates[True]",
+          "tests/test_refinement_chemistry.py::test_damaged_or_differently_bound_capture_is_never_missing_or_pass[model]",
+          "tests/test_refinement_chemistry.py::test_damaged_or_differently_bound_capture_is_never_missing_or_pass[worker]",
+          "tests/test_refinement_chemistry.py::test_damaged_or_differently_bound_capture_is_never_missing_or_pass[hash]",
+          "tests/test_refinement_chemistry.py::test_damaged_or_differently_bound_capture_is_never_missing_or_pass[dictionary]",
+          "tests/test_refinement_chemistry.py::test_damaged_or_differently_bound_capture_is_never_missing_or_pass[phil]",
+          "tests/test_refinement_chemistry.py::test_damaged_or_differently_bound_capture_is_never_missing_or_pass[coordinates]",
+          "tests/test_refinement_chemistry.py::test_damaged_or_differently_bound_capture_is_never_missing_or_pass[count]",
+          "tests/test_refinement_chemistry.py::test_damaged_or_differently_bound_capture_is_never_missing_or_pass[failed]",
+          "tests/test_refinement_chemistry.py::test_supplied_capture_reaches_public_report_with_exact_final_model",
+          "tests/test_refinement_chemistry.py::test_absent_triples_are_not_a_chemistry_pass",
+          "--tb=short"
+        ],
+        "completion_result": "............                                                             [100%]\n12 passed in 4.17s\n",
+        "test_log_sha256": "126d5e66d85a1ef982a2870c7c30bc04d31049f8efb66b24ffd54b3d8b2b75a2",
+        "completion_log_sha256": "0cc648be17655b9b7ef3f49d7b14a0f65591cc9905cc530c3dbf56a0c57102a5",
+        "no_product_change_for_fixture_completion": true
+      },
+      "qualified_source_files": 299,
+      "native": "Phenix2.2.1-6174 Darwin arm64;4 preflights and4 actual one-cycle refinements; no Coot/ReadySet rerun",
+      "full_suite": "Linden C386 full suite remains separate and running with failure markers; no result or cause claimed yet."
+    },
+    "native_controls": [
+      {
+        "run_id": "c388-counted-chemistry-lhckzfvp-relocated",
+        "plan_sha256": "13bb57927671c131bf2bb7883370e17f356fdc5d4e7aadd8ada30b84012152c6",
+        "audit_sha256": "647f061fd1d8199bf4f3188eca722ef849ec7ab6eb0dba3048e8f2a4d2f69033",
+        "provider_transfer": null,
+        "native_count": 10998,
+        "added_count": 0,
+        "complete_count": 10998,
+        "normalization": 9.092562284051645e-05,
+        "successful_calls": 15,
+        "exact_observer_on_off_written_model": true,
+        "exact_observer_on_off_output_state": true,
+        "exact_observer_on_off_lifetime": true,
+        "all_processes_stopped": true,
+        "phase_seconds": [
+          [
+            9.556949999998324,
+            41.139741249993676
+          ],
+          [
+            8.533215667004697,
+            39.42896575000486
+          ]
+        ],
+        "written_model": {
+          "model_state_sha256": "16f518132a699bc0eabe0772cc10c25559a0cb7571e67c3588b5d3ff02d0e6ce",
+          "policy_id": "native-written-model-v1",
+          "sha256": "509c84690abf97a633b33fc387d87741812e57d313635ff0d06c376c0b5ed25f",
+          "size": 78664
+        },
+        "triple_screen": "SCOPED_TRIPLE_SCREEN_PASS",
+        "triple_geometry": {
+          "atoms": [
+            "C5A",
+            "C5B"
+          ],
+          "declared_order": "TRIPLE",
+          "distance": {
+            "target": 1.174,
+            "esd": 0.02,
+            "observed": 1.1582993498661414,
+            "membership_count": 1
+          },
+          "angles": [
+            {
+              "atoms": [
+                "C5",
+                "C5A",
+                "C5B"
+              ],
+              "target": 180.0,
+              "esd": 3.0,
+              "observed": 176.6210548949364,
+              "membership_count": 1
+            },
+            {
+              "atoms": [
+                "C5M",
+                "C5B",
+                "C5A"
+              ],
+              "target": 180.0,
+              "esd": 3.0,
+              "observed": 176.2905431689901,
+              "membership_count": 1
+            }
+          ]
+        },
+        "r_work": 0.423,
+        "r_free": 0.836,
+        "relocated_cold_read": true,
+        "old_reader_rejection": true,
+        "raw_bytes": 15671230
+      },
+      {
+        "run_id": "c388-counted-chemistry-partial-x8eiln6f-relocated",
+        "plan_sha256": "cff2f0facf21d1a585e5e48ac8f87e717d99b3769984da688690ec852ffbee8a",
+        "audit_sha256": "27fd23d908669b651b9f478cbf578d4f1c39778ba95e002f0c5a26c78576416b",
+        "provider_transfer": {
+          "original_sha256": "ff9ab0725ea676522498c291672841fc3aa65d65408303dae00fa6cf8cd39c35",
+          "derived_sha256": "7bdeb538d41714cde023150fee908657414f0544f27193eab9001f718f2783f2",
+          "removed_kind": "parallelity",
+          "removed_fields": {
+            "action": "add",
+            "atom_selection_1": "chain A and resid 11 and (name C2 or name O2 or name N1 or name N3 or name C4 or name O4 or name C5 or name C7 or name C6)",
+            "atom_selection_2": "chain B and resid 5 and (name C2 or name N1 or name C6 or name N6 or name C5 or name C4 or name N3 or name N9 or name C8 or name N7)",
+            "sigma": "0.027",
+            "target_angle_deg": "0"
+          },
+          "other_declarations_identical": true,
+          "bonds_and_exclusions_unchanged": true,
+          "rationale": "Same declared pair recipe supplies the removed term additively; test passive chemistry observation with nonzero contribution."
+        },
+        "native_count": 10997,
+        "added_count": 1,
+        "complete_count": 10998,
+        "normalization": 9.092562284051645e-05,
+        "successful_calls": 15,
+        "exact_observer_on_off_written_model": true,
+        "exact_observer_on_off_output_state": true,
+        "exact_observer_on_off_lifetime": true,
+        "all_processes_stopped": true,
+        "phase_seconds": [
+          [
+            8.652366708993213,
+            52.13051495900436
+          ],
+          [
+            10.829700041998876,
+            42.705158209006186
+          ]
+        ],
+        "written_model": {
+          "model_state_sha256": "540f559bfb070e8af5a5abcaba1472c1559f5e518b3b81d0ebf374bbb16a517d",
+          "policy_id": "native-written-model-v1",
+          "sha256": "509c84690abf97a633b33fc387d87741812e57d313635ff0d06c376c0b5ed25f",
+          "size": 78664
+        },
+        "triple_screen": "SCOPED_TRIPLE_SCREEN_PASS",
+        "triple_geometry": {
+          "atoms": [
+            "C5A",
+            "C5B"
+          ],
+          "declared_order": "TRIPLE",
+          "distance": {
+            "target": 1.174,
+            "esd": 0.02,
+            "observed": 1.1582993498661414,
+            "membership_count": 1
+          },
+          "angles": [
+            {
+              "atoms": [
+                "C5",
+                "C5A",
+                "C5B"
+              ],
+              "target": 180.0,
+              "esd": 3.0,
+              "observed": 176.6210548949364,
+              "membership_count": 1
+            },
+            {
+              "atoms": [
+                "C5M",
+                "C5B",
+                "C5A"
+              ],
+              "target": 180.0,
+              "esd": 3.0,
+              "observed": 176.2905431689901,
+              "membership_count": 1
+            }
+          ]
+        },
+        "r_work": 0.423,
+        "r_free": 0.836,
+        "relocated_cold_read": true,
+        "old_reader_rejection": true,
+        "raw_bytes": 15691566
+      }
+    ],
+    "compatibility": "Old C386 reader explicitly rejects v6 projection requests; new combined artifacts require C388+. Existing v5/default exclusions and historical receipts unchanged. Optional field already existed, no new schema/helper/callback.",
+    "scientific_limits": [
+      "Existing PDU:A input; counted pair role is canonical A11:B5, not a new modified-pair image recipe.",
+      "Canonical pair source rebuilt from actual modified model, not rebound across a mutation.",
+      "One cycle/ten iterations/fixed unit weights with scale updates disabled; poor Rwork/Rfree. Not comparison against C338 ordinary five cycles or actual modified-crystal data.",
+      "Triple screen PASS is not whole-substituent, convergence or diffraction approval.",
+      "Exact observer on/off output state within each provider arrangement; cross-provider full-precision hashes differ although all PDB bytes match.",
+      "Ordinary forwarding is focused-tested; matched native cases use existing low-level execution/admission owners, not a new checked-preparation campaign."
+    ],
+    "generated_artifacts": "All raw PDB/MTZ/CIF/PHIL/logs/native roots/runners/package remain local; only compact receipts and synthetic regressions committed.",
+    "remaining": "Phases,new extra/terminal sources,broader protocols/weights,semantic geometry classification and actual PDU/DF survival remain separate."
+  },
+  "provider_statistics_boundary_2026_11_18": {
+    "signed": "Rowan, citing Linden W129 and Hazel A63",
+    "scope": "Queue evidence, no code or selector/normalization adoption",
+    "linden": {
+      "audit_sha256": "f58f156711c28810f25d83ad08da5b433217b35f8808e3914fb255b5b0077102",
+      "result_sha256": "9fb272796f99837f2a63bc4648521776eb3c6e415700b61ffc564a48a1e546ad",
+      "pooled_angle_rms_degrees": [
+        2.30831009,
+        2.30892601
+      ],
+      "complete_normalized_target": 0.6756064118611885,
+      "actual_weight_decision": "NOT_TESTED"
+    },
+    "hazel": {
+      "status": "Reported exact matched replay and changed covalent-metric choice; independent final receipt pending",
+      "first_difference": "Cycle2 weight15\u21922 after43 exact candidate states",
+      "df_attachment_angstrom": [
+        1.66244,
+        1.57776
+      ],
+      "r_work": [
+        0.285532,
+        0.329049
+      ],
+      "r_free": [
+        0.29088,
+        0.342103
+      ],
+      "adoption": false
+    },
+    "requirement": "Distinguish known pair terms through exact request/coverage membership, retain legitimate covalent/terminal edits, and mark unclassified edits. Origin4 is not a noncovalent category. Prove stable categories and complete forces/counts before automatic weights."
   }
 }

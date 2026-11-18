@@ -5,13 +5,15 @@ chemical dictionaries preserve the intended molecule, whether Phenix can read
 the resulting restraints, and whether a proposed repair changes only what it
 should. It works around ReadySet and NARestraints; it does not replace them.
 
-The latest bounded work (C386) carries the same intended pair restraints through
-NASolve's ordinary refinement owner, checks the exact model Phenix wrote before
-saving it, and leaves the result unselected for review. One canonical-DNA control
-produces exactly the same PDB as the earlier explicit control. This currently
-requires an explicitly chosen short coordinate-refinement protocol through Python;
-normal refinement settings are unchanged. Wider protocols and PDU/DF survival
-remain open; see the [current queue](cif-doctor-completion-queue.md#pipeline-position).
+The latest bounded work (C386–C388) carries intended pair restraints through the
+ordinary refinement owner and keeps the existing chemical check beside them.
+Turning that check on or off produces the same model in matched PDU-containing
+controls, including a restraint supplied through the added-pair route. The saved
+model is checked against what Phenix actually wrote. Final native bond/angle
+statistics are also read correctly. These are short, explicitly selected mechanics
+controls; poor diffraction agreement prevents a structure-quality claim. Normal
+settings are unchanged, and broader PDU/DF survival remains open. See the
+[current queue](cif-doctor-completion-queue.md#pipeline-position).
 
 Ordinary model construction now preserves supported modified-base orientation.
 The explicit checked-preparation route can use that construction and the supplied

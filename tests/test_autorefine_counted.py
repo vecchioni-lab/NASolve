@@ -62,7 +62,7 @@ def test_changed_original_pair_intent_refuses_before_new_round(tmp_path):
     assert read_registry(run)[1]['current'] == 'postmr'
 
 
-def completed_control(tmp_path, monkeypatch, *, failure=None, initial=False, ancestor_policy=execution.V6_POLICY_ID):
+def completed_control(tmp_path, monkeypatch, *, failure=None, initial=False, ancestor_policy=execution.V6_POLICY_ID, chemistry=None):
     """Synthetic native envelopes exercise owners, not chemical qualification."""
     import hashlib
     import subprocess
@@ -72,6 +72,28 @@ def completed_control(tmp_path, monkeypatch, *, failure=None, initial=False, anc
     run, refine, dump, options = case(tmp_path, policy=ancestor_policy)
     if initial:
         options['from_checkpoint'] = 'postmr'
+    if chemistry is not None:
+        from tests.test_cif_triple_bond_audit import fixture
+        directory = run / 'projection'; directory.mkdir()
+        source, _ = fixture(directory)
+        scope = [dict(site='A:1', component='Q17', projection=_file_reference(source, run))]
+        monkeypatch.setattr('nasolve.refinement_chemistry.prepare_chemistry_scope', lambda *args: scope)
+    def add_chemistry(result, model=None):
+        if chemistry is None:
+            return
+        from tests.test_cif_refinement_sites import capture, SITES
+        from nasolve.cif_refinement_sites import unavailable
+        observation, labels = capture()
+        if chemistry == 'unavailable':
+            observation = unavailable(SITES, 'Synthetic observer unavailable')
+        result.update(atom_labels=labels, chemistry_observation=observation,
+                      chemistry_model=None, chemistry_binding_restored=True)
+        if model is not None:
+            row = output_row(len(labels))
+            if chemistry != 'unavailable':
+                row['hierarchy_after_sha256'] = observation['model_state_sha256']
+                result['chemistry_model'] = {key: _file_reference(model, run)[key] for key in ('sha256', 'size')}
+            result['output_synchronization'] = [row]
     original = subprocess.run
     commands = []
     temporary_views = []
@@ -90,6 +112,10 @@ def completed_control(tmp_path, monkeypatch, *, failure=None, initial=False, anc
             assert not (root / 'admission.json').exists()
             observed_case(tmp_path, policy=execution.V6_POLICY_ID,
                           execution_case=(run, reference, command), checkpoint=checkpoint)
+            if chemistry is not None:
+                path = root / 'preflight/result.json'
+                value = json.loads(path.read_text()); add_chemistry(value)
+                path.write_text(json.dumps(value))
             if failure == 'refused':
                 (root / 'preflight/counted.json').write_text(json.dumps({
                     'policy_id': counted.OBSERVATION_POLICY, 'status': 'REFUSED',
@@ -113,6 +139,7 @@ def completed_control(tmp_path, monkeypatch, *, failure=None, initial=False, anc
         actual = original([str(refine), *request['command'][1:]], *args, **kwargs)
         assert actual.returncode == 0
         model = root.parent / 'refined_001.pdb'
+        add_chemistry(result, model)
         result['written_model'] = dict(policy_id='native-written-model-v1',
             sha256=hashlib.sha256(model.read_bytes()).hexdigest(), size=model.stat().st_size,
             model_state_sha256=result['output_synchronization'][0]['hierarchy_after_sha256'])
@@ -266,3 +293,66 @@ def test_current_experimental_phase_is_not_silently_omitted(tmp_path, monkeypatc
         with pytest.raises(AutoRefineError, match='experimental phases'):
             execute_autorefine(run, refine, dump, **options)
     assert not (run / 'AutoRefine/round_002').exists()
+
+
+@pytest.mark.parametrize('chemistry', ['bent', 'unavailable'])
+def test_counted_control_keeps_existing_actual_chemistry_report(tmp_path, monkeypatch, chemistry):
+    run, result, registry, child, commands = completed_control(tmp_path, monkeypatch, chemistry=chemistry)
+    assert commands == ['preflight', 'refine']
+    assert result.status == 'AUTOREFINE_REVIEW' and registry['current'] == 'postmr'
+    report = result.statistics['chemical_geometry']
+    assert report['status'] == ('REVIEW' if chemistry == 'bent' else 'UNASSESSED')
+    assert report['automatic_adoption'] is False
+    record = execution.validate_execution(run, child['outputs']['parallelity_execution'],
+        checkpoint=child['id'], parent=child['parent'], usable=True)
+    request = execution.read_execution_request(run, record['request'], checkpoint=child['id'])
+    assert request['chemistry_projections'][0]['site'] == 'A:1'
+    assert request['policy_id'] == execution.V6_POLICY_ID
+    before = {p.relative_to(run): (p.read_bytes(), p.stat().st_mtime_ns) for p in run.rglob('*') if p.is_file()}
+    moved = run.with_name('relocated'); run.rename(moved)
+    with patch('subprocess.Popen', side_effect=AssertionError('cold read')):
+        assert read_registry(moved)[1]['current'] == 'postmr'
+        cold = execution.read_execution_chemistry(moved, child['outputs']['parallelity_execution'],
+            checkpoint=child['id'], parent=child['parent'], model=moved / child['model']['relative_path'])
+    assert cold == report
+    assert all((moved/p).read_bytes() == data and (moved/p).stat().st_mtime_ns == mtime
+               for p, (data, mtime) in before.items())
+
+
+@pytest.mark.parametrize('defect', [None, 'drop', 'replace'])
+def test_counted_descendant_preserves_original_chemistry_scope(tmp_path, monkeypatch, defect):
+    from copy import deepcopy
+    from nasolve.checkpoints import inherited_paths
+    run, result, registry, child, _ = completed_control(tmp_path, monkeypatch, chemistry='bent')
+    paths = inherited_paths(child, run)
+    folder = run / 'AutoRefine/round_003'; folder.mkdir()
+    params = folder / 'autorefine.params'; params.write_text('synthetic one-cycle protocol')
+    inputs = [paths['observations'], paths['model'], *paths['restraints'], params]
+    reference, _, _ = counted.prepare_continuation(run, checkpoint='refine-003', parent=child['id'],
+        inputs=inputs, command=['phenix.refine', *map(str, inputs), 'output.prefix=refined'],
+        python_executable=sys.executable, macro_cycles=1)
+    request = execution.read_execution_request(run, reference, checkpoint='refine-003')
+    assert request['chemistry_projections'][0]['site'] == 'A:1'
+    proposed = dict(child, id='refine-003', parent=child['id'], outputs={})
+    lineage = dict(registry, checkpoints=[*registry['checkpoints'], proposed])
+    altered = deepcopy(request)
+    if defect == 'drop':
+        altered.pop('chemistry_projections')
+    elif defect == 'replace':
+        source = run / request['chemistry_projections'][0]['projection']['relative_path']
+        replacement = run / 'different-source.cif'; replacement.write_bytes(source.read_bytes() + b'\n# same graph, different source\n')
+        from nasolve.checkpoints import _file_reference
+        altered['chemistry_projections'][0]['projection'] = _file_reference(replacement, run)
+    if defect is None:
+        counted.validate_intent_lineage(run, lineage, proposed, altered)
+    else:
+        with pytest.raises(ValueError, match='inherited chemistry'):
+            counted.validate_intent_lineage(run, lineage, proposed, altered)
+        # The ordinary pre-allocation guard rejects the same loss independently
+        # of a future publication; original recipe/model remain valid.
+        packet = request['counted_intent']
+        original = {key: run / packet[name]['relative_path'] for key, name in
+                    [('recipe', 'original_recipe'), ('source_model', 'original_model')]}
+        with pytest.raises(ValueError, match='inherited chemistry'):
+            counted.validate_autorefine_intent(run, registry, child, original, paths['model'],
+                chemistry_projections=altered.get('chemistry_projections'))

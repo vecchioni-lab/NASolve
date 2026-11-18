@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Keep chemical readback alongside counted pair forces (C388)
+
+- Explicit v6 counted controls can retain the existing source-selected triple-bond
+  observation through actual refinement. The unchanged native worker combines
+  that observation with its exact written-model check; default and v5 scope stay
+  unchanged. Older readers reject this newly supported combination explicitly.
+- Preserve site/component/source-byte identity through ordinary pre-allocation,
+  frozen-input checks, explicit continuation and cold checkpoint lineage. A later
+  counted child cannot silently drop or substitute inherited chemistry projections.
+- Actual matched PDU-containing controls show no output change when observation
+  is enabled, including one nonzero added plane-parallel term. This qualifies
+  coexistence only: the short fixed-weight control has poor diffraction agreement,
+  and broader PDU/DF survival remains open. No targets or weights were tuned.
+
 ### Read final geometry from Phenix step summaries (C387)
 
 - AutoRefine now reads bond/angle RMS deviations from the explicit final `end`

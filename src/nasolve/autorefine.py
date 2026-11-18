@@ -1641,6 +1641,7 @@ def execute_autorefine(
         recipe = 'AutoRefine/' + counted_protocol
     counted_pair_request = dict(counted_pair_request) if counted_pair_request is not None else None
     counted_identity = None
+    counted_projection_identity = None
     xyz_wxc_scale = (1.0 if counted_protocol is not None else
         0.1 if recipe == "AutoRefine/geometry-conservative" else 0.5)
 
@@ -1683,8 +1684,6 @@ def execute_autorefine(
             chemistry_projections = prepare_chemistry_scope(run,registry,verified_preparations,parent)
         except (OSError,ValueError,RuntimeError) as exc:
             raise AutoRefineError(f'Checked chemistry scope is inconsistent: {exc}') from exc
-    if counted_protocol is not None and chemistry_projections:
-        raise AutoRefineError('Counted control does not yet support chemistry projections; preserve their scope')
     report = _run_report(run)
     try:
         terminal_phosphate_sites = requested_op3_sites(report)
@@ -1778,7 +1777,13 @@ def execute_autorefine(
             raise AutoRefineError('Counted control requires already recorded terminal-phosphate protection')
         from .refinement_counted import validate_autorefine_intent
         try:
-            counted_identity, declared_crystal = validate_autorefine_intent(run, registry, parent, counted_pair_request, model)
+            from .refinement_chemistry import _projection_scope
+            from .refinement_counted import _projection_identity
+            _projection_scope(run, chemistry_projections)
+            counted_projection_identity = _projection_identity(chemistry_projections)
+            counted_identity, declared_crystal = validate_autorefine_intent(
+                run, registry, parent, counted_pair_request, model,
+                chemistry_projections=chemistry_projections)
             if counted_frame == 'recipe':
                 counted_crystal = declared_crystal
         except (OSError, ValueError, RuntimeError, TypeError) as exc:
@@ -1910,7 +1915,9 @@ def execute_autorefine(
                 from .refinement_parallelity import read_execution_request
                 request = read_execution_request(run, parallelity_request, checkpoint=checkpoint_id)
                 if counted_identity is not None:
-                    from .refinement_counted import _original_identity
+                    from .refinement_counted import _original_identity, _projection_identity
+                    if _projection_identity(request.get('chemistry_projections')) != counted_projection_identity:
+                        raise ValueError('Counted chemistry scope changed after its pre-allocation check')
                     if _original_identity(request) != counted_identity:
                         raise ValueError('Counted original intent changed after its pre-allocation check')
             except (OSError, ValueError, RuntimeError) as exc:
@@ -1941,7 +1948,7 @@ def execute_autorefine(
                 inputs=[observations, model, *execution_restraints,
                         *([phase_file] if phase_file is not None else []), parameters],
                 command=command, python_executable=phenix_python_executable, macro_cycles=macro_cycles,
-                chemistry_projections=None if counted_protocol is not None else chemistry_projections,
+                chemistry_projections=chemistry_projections,
                 **({'runtime_policy': V6_POLICY_ID, 'counted_pair_request': counted_pair_request}
                    if counted_protocol is not None else {}))
         except (OSError, ValueError, RuntimeError) as exc:
