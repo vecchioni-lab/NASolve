@@ -113865,5 +113865,213 @@
       "actual_trials": 48,
       "scope": "Actual reporting-model/simple identity-image source assignments; no covalent classifier or force-site equivalence claim."
     }
+  },
+  "pair_excluded_eligibility_control_2026_11_18": {
+    "milestone": "C396",
+    "signed": "Rowan",
+    "product_parent": "089506c2",
+    "runtime_source": "8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6",
+    "before": "C395 proves exact actual-trial source membership but changes no decisions; all C392/C395 searches use pooled-geometry R-free fallback.",
+    "after": "One private diagnostic omits only 51 declared pair distances and 84 pair angles from native eligibility means; six protected terminal angles and every unknown native term remain. Forces, normalization, thresholds, fallback and tie handling are unchanged. Choices and final trajectory change; result remains REVIEW.",
+    "native_version": "Phenix 2.2.1-6174 Darwin arm64; complete five-cycle one-process execution, not dry-run",
+    "status": "COMPLETE_INTERVENTION_REVIEW",
+    "elapsed_seconds": 256.409377916003,
+    "scientific_acceptance": false,
+    "native_plan_sha256": "b8ab8a6a38d8f59370b18e5bd8a4d88e4c9b6322a2abb9ec66840502232638ea",
+    "native_audit_sha256": "7ce267a035c03dc6574317bb6995f41434a4c365ccfaf599b291ed68f6de8a91",
+    "cold_review_sha256": "a33ebf73ebd579d1b94edfeaba98364777169c659462a1a164f7cfa0b609ce4d",
+    "independent_review_sha256": "1d04f09ba8935905a8aa128680113839aebf52638d72de616d2863f87a19645c",
+    "actual_trials": 40,
+    "inventories": [
+      {
+        "sha256": "0bee9402fc16f172bcb4eb27d0226247dfbfcc2953f9cc0f94b5698703c8c318",
+        "atom_count": 855,
+        "terms": 2559,
+        "matched_requests": 141,
+        "groups": [
+          {
+            "kind": "angle",
+            "group": "declared_pair_edits",
+            "count": 84
+          },
+          {
+            "kind": "angle",
+            "group": "protected_terminal_angles",
+            "count": 6
+          },
+          {
+            "kind": "angle",
+            "group": "unclassified",
+            "count": 1462
+          },
+          {
+            "kind": "bond",
+            "group": "declared_pair_edits",
+            "count": 51
+          },
+          {
+            "kind": "bond",
+            "group": "unclassified",
+            "count": 956
+          }
+        ]
+      }
+    ],
+    "physical_delta_reconstruction_max_error": 2.8421709430404007e-13,
+    "capture": {
+      "size": 1979916,
+      "sha256": "4f5d68bca9776f44ce1d3049a0d038c63660896b6d3010868e53ca64302eeedb"
+    },
+    "decisions": [
+      {
+        "cycle": 1,
+        "mode": "SINGLE_TRIAL",
+        "trials": 1,
+        "eligible": null,
+        "weight": 78.6525392376674
+      },
+      {
+        "cycle": 2,
+        "mode": "NATIVE_CRITERIA",
+        "trials": 15,
+        "eligible": 15,
+        "weight": 0.5
+      },
+      {
+        "cycle": 3,
+        "mode": "SINGLE_TRIAL",
+        "trials": 1,
+        "eligible": null,
+        "weight": 0.5565933270890269
+      },
+      {
+        "cycle": 4,
+        "mode": "NATIVE_CRITERIA",
+        "trials": 9,
+        "eligible": 9,
+        "weight": 0.08525493689286727
+      },
+      {
+        "cycle": 5,
+        "mode": "NATIVE_CRITERIA",
+        "trials": 14,
+        "eligible": 10,
+        "weight": 1.0
+      }
+    ],
+    "preflight_equivalent_fields": [
+      "atom_labels",
+      "chemistry_model",
+      "chemistry_observation",
+      "output_synchronization",
+      "parallelity_parameters",
+      "parent_kernel_statistics"
+    ],
+    "historical_files_unchanged": 57,
+    "baseline_files_unchanged": 48,
+    "independent_checks": [
+      "141 unique source matches, 135 excluded pair terms and six retained terminal angles",
+      "All 40 actual trial deviations, pooled and retained RMS, native eligibility/fallback/tie decisions independently reconstructed",
+      "3239 output HKL rows and original Free-R values exact",
+      "49 current and 48 baseline files with timestamps unchanged; subprocess disabled"
+    ],
+    "results": {
+      "Rwork": [
+        0.2125,
+        0.2277
+      ],
+      "Rfree": [
+        0.2265,
+        0.2444
+      ],
+      "triple_length_angstrom": [
+        1.2132259502811595,
+        1.1791050741813665
+      ],
+      "linear_angles_degrees": [
+        [
+          175.44943044712602,
+          174.4251375003005
+        ],
+        [
+          174.89428276924536,
+          176.92311164963849
+        ]
+      ],
+      "final_native_pooled_geometry": {
+        "bond_rms_angstrom": 0.083,
+        "angle_rms_degrees": 1.972
+      },
+      "chemical_status": "REVIEW"
+    },
+    "descriptive_geometry": {
+      "coordinate_scope": "Saved full native precision at B:4; six explicitly named PDU ring atoms, not a general plane classifier",
+      "results": {
+        "baseline": {
+          "native_result_sha256": "730b8d73f894d4c973efec0dd3a1a9ea02d0288b64d5dc19691de7df60054545",
+          "native_model_state_sha256": "29c60042461b70a457f964d79c851a47444e42646da6fd3147f5b6f9d99edfa6",
+          "ring_plane_rms_angstrom": 0.007992089032186836,
+          "attachment_elevation_degrees": 0.8224091567165276,
+          "terminal_carbon_plane_offset_angstrom": 0.17481209678297405,
+          "terminal_single_bond_angstrom": 1.4995616265150704,
+          "chi_degrees": -112.58642839890976,
+          "captured_chirality_signs_preserved": true,
+          "captured_chirality_count": 3
+        },
+        "intervention": {
+          "native_result_sha256": "3c1fe1510d61d261683c98172535e7cec5a78927b073dfa7532eaab165bd936e",
+          "native_model_state_sha256": "9e5adbbd3af8b776275fefa538297c312649f1e792f09e0959654e2c281865f2",
+          "ring_plane_rms_angstrom": 0.008658071354372575,
+          "attachment_elevation_degrees": 1.3440570864609358,
+          "terminal_carbon_plane_offset_angstrom": 0.3655647524793477,
+          "terminal_single_bond_angstrom": 1.465315500727901,
+          "chi_degrees": -112.70482275982812,
+          "captured_chirality_signs_preserved": true,
+          "captured_chirality_count": 3
+        }
+      },
+      "limits": [
+        "No extra energy evaluation, refinement, coordinate movement or chemical acceptance.",
+        "Least-squares ring-plane distances and attachment elevations are descriptive; no new threshold.",
+        "Native chirality signs refer only to captured intra-site proxies.",
+        "No symmetry packing or selected-trial stopping attribution."
+      ]
+    },
+    "descriptive_geometry_sha256": "3757e74923ad242a26f1ca31bc03c14fdc2c1abd04e5eb2cc708b872a22672e7",
+    "archive": {
+      "anchor": "cedar-local-artifacts",
+      "relative_path": "c396-pair-eligibility-control-2026-11-18.tar.gz",
+      "size": 3222821,
+      "sha256": "4870afe51224183b9ace52445534b273bd66d096a57bf89d4454c563f0d91270"
+    },
+    "raw_bytes": 9344431,
+    "all_native_processes_stopped": true,
+    "validation_commands": [
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c396_pair_eligibility_control.py",
+      "PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python -B branch-artifacts/cedar/runners/c396_pair_eligibility_review.py",
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c396_descriptive_geometry.py",
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c396_archive.py"
+    ],
+    "limits": [
+      "Private diagnostic only; no production source/default/schema/selector change or migration. No new unit/full-suite run for evidence-only update.",
+      "Retained means are not covalent-only: unknown native contributions remain. Final printed geometry is ordinary pooled geometry, distinct from intervention eligibility.",
+      "One current angle still exceeds unchanged five-degree bend screen; terminal plane offset and final diffraction agreement worsen. No chemical repair or automatic adoption.",
+      "Actual reporting-object membership is not full force-site correspondence; observer entry-binding authentication and per-trial optimizer stopping attribution remain unassessed.",
+      "Raw scientific coordinates/reflections/logs and diagnostic helpers remain local; byte-verified archive is evidence, not portable execution or 100-dataset capacity qualification."
+    ],
+    "next": "Do not repeat this eligibility sweep. Reuse existing fixed-evaluator directional/category/repeat/additivity checks when designing a source-bound actual combined-target diagnostic. Bind data and geometry target/gradient, denominator, inventory and cache history separately; no live-manager refresh for observation. A longer counted-control qualification remains distinct.",
+    "related_peer_evidence": {
+      "Willow_review_commit": "61af9ff0",
+      "Alder_A85_docs_commit": "47e04616b00765caa4d70138255907d8830f1085",
+      "A85_review_sha256": "f8d749da733cfbaaf6fe7aff9eec6d63e2884ecba5ce5b20b2e8f24338f4d7fa",
+      "scope": "Separate one-cycle fixed-normalization diagnostic; not part of C396 or a qualified production remedy."
+    },
+    "documentation_validation": {
+      "changed_existing_documents": 4,
+      "markdown_links_checked": 102,
+      "local_helper_syntax_checked": 7,
+      "diff_check": "PASS",
+      "runtime_changes": false
+    }
   }
 }

@@ -137,8 +137,9 @@ Cold final-GEO readback matches 51 supplied inter-residue distances, 84 pair ang
 and six terminal-protection angles to frozen source selections at printed numerical
 precision. The 51 distances contribute 98.22% of final pooled bond delta². Keep the
 terminal angles distinct; unmatched rows remain unattributed. Final-state evidence
-cannot be backfilled into weight trials. Next qualify exact per-trial semantic
-membership before selection changes. A predeclared longer fixed-weight control is
+cannot be backfilled into weight trials. C395 supplies exact actual-trial membership;
+C396 separately tests the narrow pair-excluded screening rule below without adopting
+it. A predeclared longer fixed-weight control is
 a separate qualification and need not wait for a universal classifier.
 
 **C393 / W134 — actual measurement coexistence and continuation.** C393 adds
@@ -167,15 +168,28 @@ C392; no extra manager energy or neighbor-cache evaluation. Scope is heavy-atom
 identity-image reporting, not a production classifier or W131 force-state extension.
 The source-matched pair distances dominate pooled bond delta². Arithmetic excluding
 only declared pairing leaves 47/47 bond and 43/47 angle trial summaries below existing
-criteria, retaining terminal and unknown contributions. A prospective matched private
-eligibility experiment can test that narrow rule; neither this arithmetic nor C395
-adopts it. No origin-wide exclusion, force/normalization change or PDU repair claim.
+criteria, retaining terminal and unknown contributions. C396 tests that narrow rule
+in one separately labelled private control: 40 actual trials, with cycles 1/3 single
+and searches 2/4/5 using 15/9/10 eligible choices. The original input/Free-R and
+preflight match; Linden independently reconstructs all source membership, physical
+metrics and decisions. Triple length improves 1.213226→1.179105 Å, but one angle
+still exceeds the five-degree bend screen; terminal out-of-plane offset worsens
+0.17481→0.36556 Å and final Rwork/Rfree worsen .2125/.2265→.2277/.2444. Sugar signs
+and chi are retained. No selector, normalization or scientific-threshold adoption.
+Do not repeat the completed screen intervention or call retained terms covalent-only.
 
 **Reuse before broader trials.** Hazel A63 already binds the copied reporting model
 used for native bond/angle summaries; do not rediscover that identity seam. A79's
 actual selected-call replay reproduces model/maps and exposes two same-coordinate
-normalization jumps. Three selected rounding failures remain unexplained. Preserve
-those actual evaluator counts in longer controls; no normalization fix is qualified.
+normalization jumps. Three selected rounding failures remain unexplained. A85's
+separate private
+fixed-denominator control removes lower-bound failures but retains rounding/limit
+stops; R values improve slightly while DF attachment/metal angle worsen. Next reuse
+C23–26 fixed-evaluator/category/repeat/additivity checks and C91 torsion conditioning
+for a precisely bound actual combined-target investigation. Their earlier fixed,
+geometry-only qualification does not transfer to the live data-plus-geometry state.
+Bind raw targets/gradients, denominator, active inventory and cache history without
+an extra live-manager refresh. No normalization fix or general convergence is qualified.
 Longer counted scope needs a new explicit version, matched starts and source-bound
 control matrix, not widening historical 1–10-step semantics. A universal chemical
 classifier need not block every predeclared experiment, but unknown terms remain
@@ -371,7 +385,7 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Complete for recorded alternatives, selected-model phasing, Coot, cold inspection and the ordinary five-cycle refinement handoff. Actual chemical survival/effective restraint behavior is Q06; no default activation or historical migration. |
-| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C391 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control, chemical observation and actual final pair measurements. C392 records real PDU weight fallback; C393/W134 qualify combined observation and ordinary canonical continuation without claiming chemical repair. Wider protocols and achieved PDU/DF geometry plus held-out survival remain open. Mechanics or a readable dictionary alone is insufficient. |
+| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C391 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control, chemical observation and actual final pair measurements. C392/C395 record real PDU weight fallback and actual source membership; C396 changes screening privately but does not repair the model; C393/W134 qualify combined observation and ordinary canonical continuation without claiming chemical repair. Wider protocols and achieved PDU/DF geometry plus held-out survival remain open. Mechanics or a readable dictionary alone is insufficient. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |

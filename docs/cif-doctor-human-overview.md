@@ -23,10 +23,15 @@ and protected terminal angles contribute. The PDU bend still requires review.
 A later passive control now follows those exact source matches through all 48
 actual trial reporting states. The six protected terminal angles remain separate;
 unassigned terms are not called covalent. The same native choices and final model
-are reproduced. This supports a future test of purpose-aware eligibility, not a
-new weight selector or a claim that the remaining PDU distortion is repaired.
-No weights, thresholds or automatic selections were changed. The log reader now
-keeps numbered native stages such as `realsrl2` so final summaries are not lost.
+are reproduced. A separate private experiment then excludes only those declared
+pair terms from eligibility, retaining protected terminal and unclassified terms.
+The choices change and PDU's triple length improves, but one angle remains bent,
+the terminal carbon moves farther out of the ring plane, and Rwork/Rfree worsen.
+The sugar hand and base orientation remain intact. This is useful diagnostic
+separation, not an adopted weight selector or repaired structure. Complete forces,
+normalization and numerical criteria stay unchanged; ordinary settings are untouched.
+The log reader now keeps numbered native stages such as `realsrl2` so final
+summaries are not lost.
 
 These are explicit, source-qualified controls, not new normal settings or universal
 modified-residue support. New restraint files retain their identity through the

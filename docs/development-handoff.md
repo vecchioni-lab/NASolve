@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-18, C395 actual trial-source observation — Rowan**.
+Updated **2026-11-18, C396 private pair-eligibility diagnostic — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Last complete unfiltered baseline:
 **C391 `8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6`**, exact NARestraints `a9264f9e`:
 **11,983 passed, 2 existing native opt-in skips, 292 subtests passed** in 3196.08 s.
@@ -9,89 +9,53 @@ C394's later log-only change has focused validation; it is not part of that full
 
 ## Current checkpoint and next bounded work
 
-**C392 complete — observe what Phenix actually chooses for PDU.** This is private
-diagnostic evidence and a documentation update; no runtime/default/selector change.
-Two complete five-cycle Phenix 2.2.1-6174 runs preserve C338's original model,
-dictionaries, restraints, terminal protection, observations and Free-R flags. The
-only difference is Hazel's passive weight observer at Alder `b992e44f`. Exact PDB,
-full native atom state, all 1,962 correction calls, statistics and every reflection
-array match. The native endpoint also reproduces C338. All four owned native phases
-stopped; total control 587.15 s. Historical 57 files and timestamps remain unchanged.
+**C396 complete — changing the geometry screen does not yet repair PDU.**
+A private five-cycle control excludes only source-matched declared pairing from
+Phenix's eligibility means: 51 distances and 84 angles. Six protected terminal
+angles and every unclassified native contribution remain. Complete forces,
+normalization, native thresholds, fallback and ties are unchanged. This is
+“eligibility without declared pairing,” not a covalent-only classifier.
 
-The receipt records 48 trials: cycle 1 is a singleton; cycles 2–5 all use native
-R-free fallback because no trial passes the combined criteria. All 47 searched
-trials fail the pooled bond criterion. All fail the angle criterion in cycles 2–4;
-seven of fourteen pass it in cycle 5. All satisfy the R-gap and R-free-window tests.
-Final Rwork/Rfree are 0.2125/0.2265, but PDU still requires review: triple length
-1.213226 Å, angles 175.4494°/174.4251°. This is actual selection evidence, not proof
-of the cause of bending or permission to change weights.
+The 40 actual trials retain the same 2,559-term /855-heavy-atom inventory. Cycles
+1/3 are singletons; searches 2/4/5 have 15/9/10 eligible choices. All six recorded preflight
+comparison fields match C395; Linden independently reproduces source assignments, physical
+arithmetic and every decision, with original observations and Free-R preserved.
+Both native phases stopped; complete control 256.41 s. No automatic adoption.
 
-Saved final GEO text independently matches 51 supplied inter-residue N/O distances,
-84 supplied pair angles and six separate terminal-protection angles to frozen input
-selections. Those 51 distances account for 98.22% of the final pooled bond delta²
-at printed precision. Unmatched native rows remain unattributed. Do not blanket-
-exclude edit origins, call the complement covalent, or backfill final membership
-into earlier trial states. Existing parsers were reused; no native geometry call.
-Observer entry-callable authentication and selected-trial endpoint attribution
-remain unassessed. Raw models/maps/logs stay local; no scientific adoption.
+PDU's triple length improves from 1.213226 to 1.179105 Å (target 1.174), but angles
+change from 175.4494°/174.4251° to 174.8943°/176.9231°: one still exceeds the unchanged
+five-degree bend screen. Terminal single length improves 1.49956→1.46532 Å (target
+1.470), while terminal carbon distance from the fitted six-atom ring plane worsens
+0.17481→0.36556 Å. Chi stays −112.59°→−112.70° and all three captured sugar chirality
+signs are preserved. These are descriptive full-native-coordinate measurements,
+not a new acceptance threshold. Final Rwork/Rfree worsen 0.2125/0.2265→0.2277/0.2444.
+The final ordinary pooled geometry is 0.083 Å/1.972°, separate from eligibility means.
+Q06 remains open; no production selector, normalization or scientific criterion changed.
 
-**C393 complete — keep chemical and pair checks together.** Actual final-pair
-capture coexists with the existing PDU triple observer and one supplied parallelity
-term. Exact C388 control model, full native state, common counted lifetime, chemistry
-and reflection arrays remain unchanged; one extra energy-only measurement is
-descriptive. Both native phases stopped. The original comparison failure is retained:
-it compared the new capture field against a record that predated that field. Separate
-cold analysis and Linden W135 independently validate all common fields and the new
-capture, without repeating refinement. Poor Rwork/Rfree 0.4230/0.8360 and canonical
-pair-distance/angle RMS 0.9547 Å/37.019° prevent scientific acceptance. PDU B:4's
-narrow triple check and the canonical A:11/B:5 pair are different observations.
+**Reuse the completed evidence, rather than repeat it:**
 
-**W134 complete — keep measurements through the next ordinary refinement.**
-The second canonical cycle inherits the prepared NAR restraints and final-pair
-capture, preserves the selected PostMR model and reproduces C382's second model.
-Pair distance/angle RMS improve modestly (0.22018→0.21602 Å; 4.78035→4.72702°),
-but Rwork/Rfree rise from 0.2251/0.2609 to 0.2253/0.2611. Remains unselected REVIEW.
-This parent has no optional extra-restraint files or chemistry projection; their
-combined ordinary-descendant qualification is not implied by C393's lower-level test.
+| Evidence | What it establishes |
+| --- | --- |
+| C392 / C395 | Original PDU five-cycle behavior and passive observation reproduce exact model, native state, reflection arrays and 1,962 correction calls. All original searches fall back; exact actual trial membership explains that supplied pairing dominates pooled unweighted bond delta², not necessarily energy. |
+| C393 / W134 | Chemical/pair observation coexistence and an ordinary canonical second refinement work within their distinct scopes. Modest pair improvements do not establish chemical or diffraction improvement. Combined ordinary chemistry-descendant coverage is still separate. |
+| C394 | Actual numbered `1_realsrl2` stage no longer hides final log geometry. Only log parsing changed; 64 affected tests +31 subtests and 148 smoke tests +6 subtests pass. Native worker bytes remain exact. |
+| C396 | Narrow eligibility intervention changes actual choices, improves some local lengths, but worsens other geometry and diffraction agreement. Independent cold review passes; scientific result remains REVIEW. |
+| Hazel A79 / A85 | A79 finds two same-coordinate normalization jumps. A85's private fixed-denominator intervention removes nine lower-bound line-search errors but leaves rounding/iteration-limit stops; slightly improved R values coexist with worse DF attachment/metal angle. No production remedy or converged model. |
 
-**C394 complete — show the final native geometry after numbered stage labels.**
-The actual `1_realsrl2` label no longer interrupts the recognized final step table.
-Existing final-only, finite and complete-row checks remain. Saved C392 text now
-reports 0.078 Å/2.744°; historical result files and native execution are unchanged.
-The strengthened existing regression fails before the one-token change. Exact
-focused results/commands are in the evidence ledger; no extra full or native run.
-Linden independently checks both actual C392 logs: only these two parsed fields
-change, all other statistics agree, and every v3–v7 worker payload remains exact.
-
-**C395 complete — inspect source membership in each actual weight trial.**
-One passive five-cycle control observes the existing returned reporting energy
-object, without refreshing the live neighbor cache or changing a selection. All 48
-trial choices, final model/full native state, reflection arrays and 1,962 correction
-calls match C392 exactly. Each actual inventory uniquely matches 51 declared pair
-distances, 84 pair angles and six protected terminal angles. The remaining 956 bond
-and 1,462 angle terms stay unclassified. Independent coordinate arithmetic agrees
-within 3.7e-13; the 2,365,870-byte compressed trace stores one stable inventory.
-The first observer setup failed on an absent energy-object unit cell; it is retained
-stopped, and the fresh control records that absence separately from the model cell.
-
-Known pair distances contribute 98.225–99.843% of pooled bond delta² over the 47
-searched trials. Arithmetic excluding only those declared pair terms, while retaining
-protected terminal and all unclassified terms, puts 47 bond /43 angle summaries below
-the existing criteria. This is not an adopted selector or a covalent-only metric.
-PDU still requires review. Scope is heavy-atom identity-image bond/angle reporting,
-not W131 full force-site evidence, symmetry classification or a production callback.
+Exact commands, source identities, failed attempts, validation and archived evidence
+remain in the existing ledger; private models, maps and diagnostic traces stay local.
 
 **Next bounded work, in order:**
 
-1. Reuse C395's actual source matches when designing semantic eligibility. A bounded
-   private control could exclude only explicitly declared pairing from the native
-   eligibility metrics while retaining terminal protection and every unknown native
-   contribution. Name that scope precisely; it is not a universal covalent classifier.
-   Keep native thresholds, complete forces and normalization unchanged. Require
-   exact matched inputs, actual native decisions and chemical/diffraction review
-   before any maintained selector or automatic use. C395 itself changes no choices.
-   Reuse A63's copied-reporting-model guard and the returned `from_restraints` object;
-   do not call `geometry_statistics` or live `pair_proxies` again for observation.
+1. Diagnose the remaining numerical failure before another broad weight/budget sweep.
+   Coordinate with Hazel; reuse `cif_gradient_audit.audit_gradients`, the fixed
+   evaluator/order-safe correction, mixed-gradient source binding/replay and C91's
+   torsion conditioning controls. Those qualify sampled fixed geometry derivatives,
+   not the present live data-plus-geometry objective. An actual-state bridge must
+   bind coordinates, raw target/gradient, data term, normalization, active inventory
+   and cache history; do not refresh the live manager just to observe it. Preserve
+   local chemical geometry and diffraction outcomes separately. Neither C396 nor
+   A85 licenses a new selector, normalized objective or longer-run cure.
 2. Qualify a longer fixed-weight coordinate control only with predeclared scope and
    matched native-core / zero-added / complete-recipe starts. Preserve old 1–10-step
    policies; do not widen them in place. Reuse actual target/count observations:
@@ -113,7 +77,7 @@ not W131 full force-site evidence, symmetry classification or a production callb
 | --- | --- |
 | C381–C385 | Sealed preflight, original-intent continuation, checked input copies, refusal of missing ancestry and exact written-model proof. Reuse existing attempt/process/archive owners. |
 | C386/C389 | Explicit bounded counted control through ordinary AutoRefine, including newly supplied portable restraint files and checkpoint inheritance. Native results agree; no CLI/default activation. |
-| C387 | Final native step-table reporting; the newly observed digit-suffix gap is queued above. Pooled geometry is not covalent-only. |
+| C387/C394 | Final native step-table reporting; the digit-suffix gap is closed. Pooled geometry is not covalent-only. |
 | C388 | Existing source-selected PDU triple observation coexists with counted forces. On/off controls agree within each provider arrangement; cross-arrangement native states differ despite identical rounded PDBs. Short-control Rwork/Rfree 0.4230/0.8360 is poor. |
 | C390/C391 | Pure W131 pair report plus explicit v7 actual-final-state capture. Same canonical control PDB/full atom state/15 counted evaluations as C386/C389; one separate descriptive energy call. Fourteen pairs, 107 native +17 added requested terms; covalent chemistry unassessed. |
 
@@ -129,7 +93,8 @@ native fit in that audit. Earlier exact commands/results are retained in the
 
 **Storage and redundancy.** C391's added geometry archive is 15,492 bytes; complete
 matched run trees differ by 33,323 bytes, including other receipt/path differences.
-C392's weight receipt is 17,984 bytes; its verified archive is 2,468,484 bytes for
+C396's verified local archive is 3,222,821 bytes for 9,344,431 raw bytes; all originals
+remain. C392's weight receipt is 17,984 bytes; its verified archive is 2,468,484 bytes for
 14,586,919 raw bytes, retaining successful and early failed roots. This is an evidence
 archive, not a portable native-command claim or 100-dataset capacity measurement.
 An audit of 3,965 test definitions finds seven exact-body groups, mostly distinct
@@ -137,12 +102,13 @@ owners/parameters; no accidental imported-test collection. No tests removed with
 demonstrated redundancy. Current build copies still serve historical-reader/native
 qualification and are retained. Unrelated local material and peer work are untouched.
 
-The five-file local science checkout is
+The six-file local science checkout (under 1 MB) is
 `ScienceCheckouts/Rowan/2026-11-18/review.html` under the sibling GitHub root. It shows
 PDU geometry, actual pair measurements and weight choices, with links to retained
 evidence rather than duplicated raw datasets. It links the existing Linden and
 Hazel checkouts, including independent continuation/full regression and the separate
-DF/metal stopping-event diagnosis. Signed local continuity notes remain outside
+DF/metal stopping-event diagnosis and its separately labelled A85 normalization
+follow-up. Signed local continuity notes remain outside
 the product repo.
 
 Keep working-frame choice explicit; W115's MTZ/PDB cell precision difference does
