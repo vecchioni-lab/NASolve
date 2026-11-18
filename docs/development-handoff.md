@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-18, C393 combined observation / C394 final-log reporting — Rowan**.
+Updated **2026-11-18, C395 actual trial-source observation — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Last complete unfiltered baseline:
 **C391 `8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6`**, exact NARestraints `a9264f9e`:
 **11,983 passed, 2 existing native opt-in skips, 292 subtests passed** in 3196.08 s.
@@ -63,14 +63,35 @@ focused results/commands are in the evidence ledger; no extra full or native run
 Linden independently checks both actual C392 logs: only these two parsed fields
 change, all other statistics agree, and every v3–v7 worker payload remains exact.
 
+**C395 complete — inspect source membership in each actual weight trial.**
+One passive five-cycle control observes the existing returned reporting energy
+object, without refreshing the live neighbor cache or changing a selection. All 48
+trial choices, final model/full native state, reflection arrays and 1,962 correction
+calls match C392 exactly. Each actual inventory uniquely matches 51 declared pair
+distances, 84 pair angles and six protected terminal angles. The remaining 956 bond
+and 1,462 angle terms stay unclassified. Independent coordinate arithmetic agrees
+within 3.7e-13; the 2,365,870-byte compressed trace stores one stable inventory.
+The first observer setup failed on an absent energy-object unit cell; it is retained
+stopped, and the fresh control records that absence separately from the model cell.
+
+Known pair distances contribute 98.225–99.843% of pooled bond delta² over the 47
+searched trials. Arithmetic excluding only those declared pair terms, while retaining
+protected terminal and all unclassified terms, puts 47 bond /43 angle summaries below
+the existing criteria. This is not an adopted selector or a covalent-only metric.
+PDU still requires review. Scope is heavy-atom identity-image bond/angle reporting,
+not W131 full force-site evidence, symmetry classification or a production callback.
+
 **Next bounded work, in order:**
 
-1. Measure actual trial chemistry separately from intended pairing before changing
-   automatic weight selection. Reuse C392's observation and exact source matches,
-   existing topology/terminal owners and W131/C391 pair geometry. Hazel A63 already
-   handles Phenix's copied reporting model: bind its actual atom keys/coordinates,
-   not a different live-model object. Unknown terms remain unclassified; neither
-   origin IDs nor the complement of known pairs establish covalent chemistry.
+1. Reuse C395's actual source matches when designing semantic eligibility. A bounded
+   private control could exclude only explicitly declared pairing from the native
+   eligibility metrics while retaining terminal protection and every unknown native
+   contribution. Name that scope precisely; it is not a universal covalent classifier.
+   Keep native thresholds, complete forces and normalization unchanged. Require
+   exact matched inputs, actual native decisions and chemical/diffraction review
+   before any maintained selector or automatic use. C395 itself changes no choices.
+   Reuse A63's copied-reporting-model guard and the returned `from_restraints` object;
+   do not call `geometry_statistics` or live `pair_proxies` again for observation.
 2. Qualify a longer fixed-weight coordinate control only with predeclared scope and
    matched native-core / zero-added / complete-recipe starts. Preserve old 1–10-step
    policies; do not widen them in place. Reuse actual target/count observations:

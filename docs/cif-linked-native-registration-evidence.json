@@ -113731,5 +113731,139 @@
       "no_native_execution": true,
       "source_logs_unchanged": true
     }
+  },
+  "actual_trial_source_membership_2026_11_18": {
+    "milestone": "C395",
+    "signed": "Rowan",
+    "runtime_source": "8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6",
+    "product_parent": "5ccda59a585a0bb93da4554e61f50e7aacbce64b",
+    "before": "C392 final GEO source matches cannot establish earlier trial membership; A63 captured copied-model scalar metrics and replayed frozen preflight definitions.",
+    "after": "Private passive capture observes the actual returned trial-reporting energy object and its current proxies at every trial; one stable inventory deduplicated across48trials.",
+    "native_version": "Phenix2.2.1-6174 Darwin arm64; complete original C338 five-cycle refinement, not dry-run",
+    "native_plan_sha256": "86358070aab35958df70c4a4480390e0dca6052d9a624f21ec3b33a4c0fe14c4",
+    "native_audit_sha256": "8197a12ac95d3ce2fb5c856a07656a21f35a99e5e95b1606a8436001e93299fb",
+    "cold_review_sha256": "74775c2abca8bd43c33c9357ec36d03cb7f7a948ac41a76608398257369b5f0e",
+    "capture_sha256": "eb3538717dbd145e6387136e8eea3401ea93b92cbfe8ff13211629fc358fe6da",
+    "capture_bytes": 2365870,
+    "elapsed_seconds": 282.92281387500407,
+    "matched": {
+      "exact_model": true,
+      "exact_native_state": true,
+      "exact_kernel_calls": true,
+      "exact_statistics": true,
+      "weight_receipt_exact": true,
+      "map_array_checks": [
+        {
+          "file": "refined_001.mtz",
+          "labels": [
+            "H",
+            "K",
+            "L",
+            "I-obs",
+            "SIGI-obs",
+            "R-free-flags",
+            "F-obs-filtered",
+            "SIGF-obs-filtered",
+            "F-model",
+            "PHIF-model",
+            "2FOFCWT",
+            "PH2FOFCWT",
+            "2FOFCWT_no_fill",
+            "PH2FOFCWT_no_fill",
+            "FOFCWT",
+            "PHFOFCWT"
+          ],
+          "rows": 3239,
+          "arrays_equal": true
+        }
+      ],
+      "historical_files_unchanged": 57,
+      "baseline_files_unchanged": 65
+    },
+    "all_native_processes_stopped": true,
+    "inventories": [
+      {
+        "sha256": "0bee9402fc16f172bcb4eb27d0226247dfbfcc2953f9cc0f94b5698703c8c318",
+        "atom_count": 855,
+        "terms": 2559,
+        "matched_requests": 141,
+        "groups": [
+          {
+            "kind": "angle",
+            "group": "declared_pair_edits",
+            "count": 84
+          },
+          {
+            "kind": "angle",
+            "group": "protected_terminal_angles",
+            "count": 6
+          },
+          {
+            "kind": "angle",
+            "group": "unclassified",
+            "count": 1462
+          },
+          {
+            "kind": "bond",
+            "group": "declared_pair_edits",
+            "count": 51
+          },
+          {
+            "kind": "bond",
+            "group": "unclassified",
+            "count": 956
+          }
+        ]
+      }
+    ],
+    "matching": "Complete atom labels, reversal-equivalent bond/angle order, exact source targets/weights within 1e-12; each request matches exactly one native term. Duplicate or ambiguous source/native matches refuse.",
+    "ambiguous_matches": 0,
+    "physical_delta_reconstruction_max_error": 3.694822225952521e-13,
+    "installed_sources_verified": 303,
+    "counterfactual_arithmetic": {
+      "scope": "Arithmetic only, not a qualified selector: retain terminal protection and every unclassified native term; remove only exact source-matched declared pairing.",
+      "searched_trials": 47,
+      "bond_below_existing_criterion": 47,
+      "angle_below_existing_criterion": 43,
+      "fraction_pair_bond_sum_squares_range": [
+        0.9822497936618568,
+        0.9984258181984188
+      ],
+      "native_choices_changed": false
+    },
+    "archive": {
+      "anchor": "cedar-local-artifacts",
+      "relative_path": "c395-actual-trial-observation-2026-11-18.tar.gz",
+      "size": 4245651,
+      "sha256": "58d7b17235d04311ae31722b80b0da608e4cf463c9835134bd5326e9ca87bbd4"
+    },
+    "raw_bytes": 14291255,
+    "prior_failed_attempt": "First observer assumed reporting-energy unit cell was populated; actual None is retained separately from reporting-model cell. Both processes stopped, all outputs retained, fresh attempt only.",
+    "validation_commands": [
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c395_trial_metric_control.py",
+      "PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python -B branch-artifacts/cedar/runners/c395_trial_metric_review.py",
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c395_archive.py"
+    ],
+    "limits": [
+      "Heavy atoms and identity-image simple bonds/angles only; exact reporting model, not W131 complete force-site evidence.",
+      "141 source requests are matched in actual trial inventories; this does not classify the remaining native terms as covalent.",
+      "Roles come from frozen input declarations; no origin-ID shortcut, source-library approval or production selector follows.",
+      "Original numerical selection, native targets/forces and all observed outcomes remain unchanged.",
+      "No PDU/DF repair or broader chemistry/periodic trial support is established.",
+      "No public runtime/source/schema/default change; no focused or full-suite rerun needed for private diagnostic evidence.",
+      "No new manager energies_sites or live pair_proxies call; per-proxy physical deviations are descriptive calculations, not extra force applications.",
+      "Frozen source roles are declarations, not universal chemical authority. Counterfactual eligibility is not adopted.",
+      "Raw scientific data and trial coordinates remain local; compact archive is evidence, not a portable native-command claim."
+    ],
+    "independent_review": {
+      "signed": "Linden",
+      "status": "PASS",
+      "receipt_sha256": "004accc05f46d6d3dfac408178f42b6f4995137c8cb82b9f8291dcaad025c0e1",
+      "physical_angle_method": "atan2, independent of Rowan acos reconstruction",
+      "maximum_delta_error": 2.28e-13,
+      "unique_source_matches": 141,
+      "actual_trials": 48,
+      "scope": "Actual reporting-model/simple identity-image source assignments; no covalent classifier or force-site equivalence claim."
+    }
   }
 }

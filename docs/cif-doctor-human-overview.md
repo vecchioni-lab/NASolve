@@ -20,6 +20,11 @@ All four searches use its existing R-free fallback because no trial passes the
 combined pooled-geometry criteria. A separate source match shows why those pooled
 numbers cannot simply be called covalent geometry: supplied inter-residue distances
 and protected terminal angles contribute. The PDU bend still requires review.
+A later passive control now follows those exact source matches through all 48
+actual trial reporting states. The six protected terminal angles remain separate;
+unassigned terms are not called covalent. The same native choices and final model
+are reproduced. This supports a future test of purpose-aware eligibility, not a
+new weight selector or a claim that the remaining PDU distortion is repaired.
 No weights, thresholds or automatic selections were changed. The log reader now
 keeps numbered native stages such as `realsrl2` so final summaries are not lost.
 

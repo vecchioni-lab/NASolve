@@ -158,6 +158,19 @@ fails before the one-token reader fix; 64 affected tests +31 subtests and
 148 smoke tests +6 subtests pass. Existing
 saved reports remain unchanged. No native rerun, scientific threshold or worker change.
 
+**C395 — actual per-trial source matches now observed privately.** One stable
+2,559-term bond/angle inventory is captured at all 48 actual reporting states.
+Each state uniquely matches 51 declared pair distances, 84 pair angles and six
+protected terminal angles; 956 other bonds and 1,462 angles remain unclassified.
+All native decisions, model/state, reflection arrays and correction calls match
+C392; no extra manager energy or neighbor-cache evaluation. Scope is heavy-atom
+identity-image reporting, not a production classifier or W131 force-state extension.
+The source-matched pair distances dominate pooled bond delta². Arithmetic excluding
+only declared pairing leaves 47/47 bond and 43/47 angle trial summaries below existing
+criteria, retaining terminal and unknown contributions. A prospective matched private
+eligibility experiment can test that narrow rule; neither this arithmetic nor C395
+adopts it. No origin-wide exclusion, force/normalization change or PDU repair claim.
+
 **Reuse before broader trials.** Hazel A63 already binds the copied reporting model
 used for native bond/angle summaries; do not rediscover that identity seam. A79's
 actual selected-call replay reproduces model/maps and exposes two same-coordinate
