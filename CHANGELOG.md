@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W141 — Qualify shared periodic grid sampling
+
+- Independently qualify Alder's extracted sampler against every saved W140 map
+  sample in relocated package and native bare-import modes, preserving exact
+  arithmetic, old policies and receipt compatibility.
+- Record the shared-owner integration boundary and a reproducible scientific
+  figure. No Willow runtime dependency, detector, threshold, new coefficients,
+  refinement policy or checkpoint selection is added; full Alder coverage is pending.
+
 ### W140 — Audit backbone response and saved density
 
 - Measure existing native sugar/phosphate/glycosidic supports around the matched

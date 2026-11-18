@@ -16,11 +16,12 @@ current instructions; other branches retain their own status and validation pins
   ordinary ML maps include test reflections; no automatic density policy follows.
   Small R/clash changes are context, while line-search stops remain a separate
   numerical limitation. General repair and W122 user-facing activation remain open.
-  Willow owns periodic helpers/cold reporting; Cedar owns execution; Alder owns
-  the maintained metal map boundary. The ledgers retain exact pins and failures.
+  W141 independently qualifies Alder's shared grid sampler in a relocated wheel;
+  the detector remains separate. Willow owns periodic helpers/cold reporting,
+  Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W140;
-  the next substantial audit is W141. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W141;
+  the next substantial audit is W142. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

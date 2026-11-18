@@ -7870,3 +7870,72 @@ CLI/defaults and migration requirements are unchanged. Documentation checks
 regenerate the human roadmap, validate its machine source and check diff/link
 consistency; no new full suite is needed for this documentation-only update.
 The separately running exact C402 full qualification is not a W140 science PASS.
+
+
+## W141 — Qualify the shared periodic grid sampler
+
+**2026-11-18.** Hazel's Alder `9c4c3b050fedd42f6be1fd6f26aa03873709bd76`
+extracts `sphere_offsets(radius_A, spacing_A)` and
+`sample_grid(grid, unit_cell, xyz, *, radius_A, spacing_A)` inside the existing
+stdlib-only `nasolve.metal.map_diagnostics` owner. Its ordinary and anomalous
+capture callers reuse that arithmetic. No new module/import path, coefficient
+reader, phase/Free-R policy, map normalization, artifact schema, force or threshold
+is introduced. `_offsets()` preserves the existing 1.5 Å/0.5 Å neighborhood and
+order; finite inputs and the 100,000-candidate enumeration bound are explicit.
+Own/common positions remain caller choices, not interchangeable observations.
+
+Linden reviewed the two source adapters and analytic/nonorthogonal/bare-import
+regressions with no blocking finding. Hazel records the pre-change missing-API
+failure and **82 focused passes** (5.27 s). His single exact Alder full regression
+is pending at this audit; the separate C402/C404 shared Cedar gates do not qualify
+Alder by implication. Willow does not yet import unmerged Alder or contain a
+parallel sampler. The next S06 adapter must bind saved-map generation/provenance
+and eligibility through existing owners before any calibrated backbone detector.
+
+### Independent installed and native read-only replay
+
+The exact Git archive builds a wheel without dependency downloads. All **191**
+packaged files match source bytes. The three historical unpackaged ligand
+provenance JSON files retain their prior packaging status. The temporary build
+source is removed and installation moved before `nasolve metal --help` and native
+checks; all imported helper bytes come from that relocated wheel.
+
+Under **Phenix 2.2.1-6174**, two complete read-only saved-coefficient FFT/sampling
+executions test normal package imports and the bare sibling-module import used
+by native workers. Each reproduces **3,648** W140 samples exactly: four maps ×456
+atoms ×own/common positions, maximum numerical difference **0**. Four whole-cell
+translation checks pass in each mode. Bare mode loads no `nasolve` package.
+Legacy ordinary/anomalous requests and offset order match their exact pre-change
+fingerprints. All 191 installed files and seven original model/map/parameter
+references remain unchanged. Owned wall times are 3.030/2.019 s; both processes
+are stopped. These are not new refinements, fmodel evaluations or coefficient
+generation, nor a repeat of the full native metal capture lifecycle.
+
+Exact controller command from the NASolve anchor (existing Python environment is
+historical provenance, not a committed operational requirement):
+
+```text
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w141-install-sampler.py --commit 9c4c3b050fedd42f6be1fd6f26aa03873709bd76
+```
+
+The controller records wheel/source hashes, exact package/bare native commands,
+process ownership and immutable before/after checks. The byte-verified archive
+`branch-artifacts/willow/w141-shared-sampler-2026-11-18.tar.gz` contains 18 indexed
+files plus manifest, 30,767 bytes, SHA256
+`710b729a0ac6d039bb131dae25c0e0a5c23c532075606bfde7d2e874f0856315`.
+Installed root `/private/tmp/w141-sampler-install-gx057s8e/relocated` is local
+qualification provenance. No raw science or software environment is committed.
+Old map receipts remain readable; no migration or public CLI change is required.
+Ordinary ML inspection and metal MLHL capture remain different protocols, and
+W140's test-inclusive maps are not upgraded into a work-only search objective.
+
+### Scientific figure supplement
+
+W140's existing measurements now have a three-panel PNG and editable SVG at the
+NASolve artifact anchor, `branch-artifacts/willow/w140-science.{png,svg}`.
+`w140-science.json` retains exact source hashes/data, rendering settings and output
+checksums; `runners/w140-science-figure.py` reproduces them using Matplotlib 3.11.1,
+Agg, DejaVu Sans, 12.5×4.6 inches and 170-dpi PNG. The PNG was visually inspected.
+This adds no scientific measurements and leaves the three-file ChimeraX packet
+unchanged. Geometry improvement, backbone movement and persistent phosphate
+Fo–Fc are shown separately; the figure does not infer motion from a map value.

@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-18**. **W140 adds backbone and saved-map evidence to W139's
+Updated **2026-11-18**, through **W141**. **W140 adds backbone and saved-map evidence to W139's
 matched sticky-end improvement.** GC plane mismatch falls 27.30→6.30° with
 localized movement; nearby sugar/phosphate bond and angle deviations barely
 change. All 38 existing backbone links were measured and 126 ordered sugar-volume
@@ -66,8 +66,9 @@ not another work queue; do not repeat them because this handoff is shorter.
    Broader weights/ADPs/scaling/phases, extra terminal sources need separate qualification through existing owners.
    C388 qualifies passive chemistry coexistence and focused ordinary forwarding;
    it does not establish a successful repaired structure.
-4. Reuse W140's read-only backbone/map evidence to specify the shared saved-map
-   boundary before implementing calibrated S06 detection. Keep ordinary ML
+4. W141 qualifies Alder's shared sampling primitive against every W140 sample.
+   After branch integration, reuse it for an explicit saved-map provenance/
+   eligibility adapter before implementing calibrated S06 detection. Keep ordinary ML
    inspection separate from Alder's maintained MLHL capture. Freeze generation
    policy, own/common positions and work/free treatment; no automatic threshold.
    Then use matched B10 controls and geometry, packing and diffraction/density
@@ -106,6 +107,11 @@ large-bend repair follow later. No CLI/default activation follows from these doc
   sampling. All 176 Free-R indices occur in these ordinary ML coefficients;
   this is inspection, not independent validation or a work-only search objective.
   [Exact commands, failed setup attempts and limits](topostitch-periodic.md#w140--audit-backbone-response-and-saved-density).
+- **W141 shared sampler:** exact Alder `9c4c3b05` wheel, 191 resources unchanged,
+  source-absent relocated CLI and Phenix package/bare imports pass. Each import
+  mode exactly reproduces 3,648 own/common samples; no new native fit or coefficients.
+  Hazel owns the pending complete Alder suite. This is not yet a Willow runtime
+  dependency or calibrated detector. [Evidence](topostitch-periodic.md#w141--qualify-the-shared-periodic-grid-sampler).
 - **C402 shared qualification in progress:** installed relocation passes through
   a documented 143+19 test join after supplying missing data-only test fixtures;
   all 304 installed resources match. The single pinned unfiltered full run remains
@@ -131,6 +137,11 @@ four planes/five contacts and six highlighted atoms each; ten packet references
 and links pass. No browser-layout validation is claimed. Display PDBs remain
 unsuitable for refinement/deposition. Small R/clash changes are context;
 numerical stopping and scientific quality are assessed separately.
+
+A compact PNG/editable SVG supplement at the NASolve anchor,
+`branch-artifacts/willow/w140-science.{png,svg}`, shows plane alignment, backbone
+movement and phosphate difference density. `w140-science.json` records source
+hashes/data and rendering settings for reproduction; the PNG was visually checked.
 
 W139's matched view remains at
 `ScienceCheckouts/Linden/2026-11-18_matched-sticky-ends/review.html`.

@@ -679,6 +679,15 @@ It does not uniquely prescribe motion, occupancy or ADP changes. The inherited
 1.5 Å sphere is a probe, not calibrated phosphate support. No detector, motion
 policy or threshold is enabled. [Measurements and checks](topostitch-periodic.md#w140--audit-backbone-response-and-saved-density).
 
+**W141 shared implementation:** Alder now exposes bounded periodic grid sampling
+through its existing `nasolve.metal.map_diagnostics` module. Both existing metal
+capture adapters reuse it without changing policy or standalone worker imports.
+Independent relocated-wheel replay reproduces all W140 own/common samples exactly
+in both import modes. This is a sampling primitive, not a general map reader or
+backbone detector. Do not introduce a Willow dependency on unmerged Alder;
+reuse this owner after integration, with the ordinary ML source/policy adapter
+still explicit. [Qualification and limits](topostitch-periodic.md#w141--qualify-the-shared-periodic-grid-sampler).
+
 Small Rwork/Rfree and clashscore fluctuations are descriptive context, not
 standalone rejection thresholds. Judge local physical improvement, global fit,
 uncertainty and numerical stopping separately; do not convert an optimizer error
