@@ -8,7 +8,8 @@ record what was known then. They do not create a second set of instructions.
 **At a glance:** Q04/Q05 preparation, recovery and handoff are complete for the
 recorded explicit route. C402–C404 close the later cleanup gap, demonstrate a
 fresh ordinary PDU refinement child, and add source-selected final trigonal
-measurements. Full qualification of the final candidate is pending. Q06 remains
+measurements. Final candidate `4bfffbca` passes 12,032 tests and 293 subtests,
+with two existing native opt-in skips. Q06 remains
 open because delivery and measurement do not establish satisfactory PDU/DF shape
 under refinement. Next use the existing whole-substituent evidence to define the
 remaining scientific decision; do not repeat delivery, derivative or weight sweeps.
@@ -237,7 +238,7 @@ A universal chemical classifier need not block every predeclared experiment, but
 unknown and improved scalar scores do not establish repaired chemistry.
 
 
-**Ordinary-publication storage gap closed in C402 (full qualification pending).**
+**Ordinary-publication storage gap closed and full-qualified in C402.**
 New v3/v4 publications now call the existing archive/retirement owner; older and
 unknown layouts, historical publication and cold reads retain their contracts.
 The v4 regression fails before the change; 162 focused checks pass, including
@@ -248,10 +249,11 @@ model/PHIL/CIF paths, bytes and timestamps remain exact. Archived result and ord
 registry cold reads pass. This is separate explicit retirement of a historical
 publication; automatic new-publication integration is covered by the regressions.
 No new storage owner, schema, chemistry rule or 100-native-dataset capacity claim.
-C402 source is `23c1f411`; Linden owns its one pinned installed/full gate. C403 has
+C402 `23c1f411` passes the pinned full gate: 12,016 tests, 293 subtests and two
+existing native opt-in skips; all 1,415 tracked files stay unchanged. C403 has
 completed the exact C401 parent’s new unselected ordinary refinement child.
 
-**C404 explicit trigonal report complete (final full qualification pending).**
+**C404 explicit trigonal report complete and full-qualified.**
 C206's local trigonal requirement now composes C208's source selector/measurement
 with C338's actual-manager observation through the existing validation path.
 The cold reader separates achieved shape, captured plane membership and positive
@@ -262,7 +264,8 @@ reports and v3–v8 workers remain exact. C2/C4/C5 maximum bond elevations are
 0.802°/1.405°/2.039°, with native planes present; the outer propyne still bends.
 Capture remains limited to existing declared triple sites, not all modified ligands.
 No new native run is needed for this reporting seam. Code is frozen at `4bfffbca`
-while Linden finishes serial C402/final-C404 full gates. Do not rerun the established
+after the final full gate: 12,032 tests and 293 subtests pass, with two existing
+native opt-in skips. Do not rerun the established
 ordinary delivery, source-selection or derivative baselines to rediscover them.
 
 **Scientific stopping boundary:** C403 uses substituted-scaffold observations, not
@@ -299,6 +302,14 @@ by a separate zero-data fixed-denominator control that reaches an iteration limi
 with whole-frame drift. Retain that mechanism evidence under Q06; no scientific
 acceptance, default/count policy or data-weight choice follows. Nonzero-data work
 requires coordination with Hazel. Preserve Q13's separate phosphate-state question.
+
+**Saved-density integration stays with the existing owners.** Willow W142's cold
+source audit shows that excluding Free-R rows from output coefficients does not
+prove upstream map-weight estimation was work-only. Native written-model binding
+also does not establish coefficient-generation provenance. Its reader-dependent
+cell precision finding does not authorize looser frame tolerances. Reuse the Alder
+sampler and existing checkpoint/map owners; current views are inspection evidence,
+not automatic density-driven movement. Exact audit is bound to the C400 ledger.
 
 **Storage and speed stay measured.** C373/W117's exact transform shortcut preserves
 all checks; W120 observes 37.03 s versus historical 83.21 s for one complete phase, not

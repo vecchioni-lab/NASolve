@@ -1,13 +1,14 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-18 evening, C404 — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. Code frozen for qualification at
-**`4bfffbca`**: C402 publication cleanup plus C404 explicit native trigonal readback.
-Focused/relocated installed checks and independent cold review pass. Linden owns
-serial full gates: C402 `23c1f411`, then the final C404 candidate; neither is yet
-reported complete. The previous full-qualified source/tests/packaging match
-`d8656b22`: **12,008 passed, 2 existing native opt-in skips, 293 subtests** in
-3581.07 s with NARestraints `a9264f9e`. Do not apply that pass to changed code.
+Updated **2026-11-18 evening, C404 qualified — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. Runtime candidate **`4bfffbca`**
+passes the complete unfiltered suite: **12,032 tests, 293 subtests and two existing
+native opt-in skips**, in **3226.56 s**. All 1,416 tracked test-checkout files and
+exact NARestraints `a9264f9e` remain unchanged; the owned test process is stopped.
+Current source/tests/packaging match that pin; subsequent changes are documentation.
+Relocated installed checks and Hazel's independent cold review also pass. C402's
+prior separate full gate passed 12,016 tests with the same subtests/skips. Neither
+software pass changes the scientific REVIEW or closes Q06.
 
 ## Current checkpoint
 
@@ -84,8 +85,8 @@ six-atom ring plane 0.094297 Å. These descriptive starting values are not accep
 
 ## Next work, in order
 
-1. Finish Linden's serial C402 and final C404 full gates, then publish the compact
-   handoff and science checkout. Code is frozen meanwhile; no repeated native matrix.
+1. C402–C404 are now qualified and ready for the Cedar checkpoint. Preserve the
+   completed ordinary control and source-selected readout; no repeated native matrix.
 2. Use the resulting actual-manager evidence to identify the remaining chemical
    defect. Q06 needs useful PDU/DF geometry after refinement and whole-substituent
    evidence, not merely successful execution or a readable CIF. Reuse existing
@@ -147,7 +148,9 @@ The ten-file science checkout (about 1.45 MB) is
 with completed effects, reusing original model links and the Linden/Hazel checkouts.
 C404 retires 487 verified duplicate software/test files (5.27 MB), retaining the
 installed package, wheel, logs, XML and reproduction instructions. No scientific
-files are removed. Do not copy raw datasets to decorate reports. Private continuity and coordination
+files are removed. Linden also retires 246,214 verified disposable full-test files
+(4.48 GB logical), retaining a byte-verified 252 KB qualification archive, installed
+packages and all scientific inputs. Do not copy raw datasets to decorate reports. Private continuity and coordination
 notes stay outside the product repository.
 
 The earlier audit of 3,965 test definitions found seven exact-body groups with

@@ -114893,7 +114893,20 @@
       "Independent scalar readback does not recompute all gradient vectors.",
       "Same-coordinate count jumps account for scalar changes, not the complete cause of early stopping."
     ],
-    "next": "Genuine fresh corrected-PDU preparation and ordinary refinement descendant; achieved PDU/DF chemistry, then mixed/held-out challenges. No duplicate derivatives/weight sweeps."
+    "next": "Genuine fresh corrected-PDU preparation and ordinary refinement descendant; achieved PDU/DF chemistry, then mixed/held-out challenges. No duplicate derivatives/weight sweeps.",
+    "saved_map_owner_dependency": {
+      "owner": "Linden, Willow W142; shared saved-map sampler implemented on Alder",
+      "receipt": {
+        "anchor": "local-branch-artifacts",
+        "relative_path": "willow/w142-map-owner-audit-2026-11-18.json",
+        "sha256": "1ca991a889162a02fba60a518064e5b254c265194de75d9bcd5ab7edde4eebbb",
+        "bytes": 9451
+      },
+      "scope": "Read-only installed Phenix2.2.1-6174 source and saved-frame audit;9source files and7science inputs unchanged. No native execution.",
+      "finding": "Output exclusion of Free-R indices is not proof that earlier map-weight estimation was work-only. Written-model binding does not prove map-generation provenance.",
+      "frame_boundary": "Gemmi PDB/MTZ cells agree; saved CCTBX cells differ by float32 representation. No recipe frame tolerance change.",
+      "limits": "Static source-path evidence, not a dynamic trace of historical generation; existing maps remain inspection-only, no automatic motion eligibility."
+    }
   },
   "fresh_automatic_pdu_publication_2026_11_18": {
     "milestone": "C401",
@@ -115154,7 +115167,7 @@
   },
   "automatic_bond_publication_retention_2026_11_18": {
     "milestone": "C402",
-    "status": "FOCUSED_AND_EXISTING_OWNER_NATIVE_EVIDENCE_PASS_FULL_GATE_PENDING",
+    "status": "FOCUSED_INSTALLED_FULL_AND_ACTUAL_STORAGE_PASS",
     "author": "Rowan",
     "source_commit": "23c1f411f29501da351effa77e20dda707819468",
     "before": "Ordinary publication invokes supported retirement only for v3, leaving automatic-bond v4 working duplicates unpacked.",
@@ -115178,11 +115191,76 @@
       "native_execution": false
     },
     "full_regression": {
-      "status": "RUNNING_OR_PENDING",
+      "status": "PASS",
       "owner": "Linden",
       "candidate": "23c1f411f29501da351effa77e20dda707819468",
-      "last_full_candidate": "d8656b2212ec1777e3da5f1979ac2a766fc71563",
-      "last_full_result": "12008 passed, 2 existing native opt-in skips, 293 subtests"
+      "passed": 12016,
+      "subtests_passed": 293,
+      "skipped": 2,
+      "pytest_seconds": 3275.43,
+      "owned_seconds": 3279.8872282920056,
+      "scope": "Complete unfiltered tracked test directory",
+      "command": [
+        "/private/tmp/willow-w94-pivot/env/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "--durations=20",
+        "--junitxml",
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/willow/w140-c402-full-suite-2026-11-18/results.xml",
+        "tests"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "/private/tmp/nasolve-willow-c402/src:/private/tmp/willow-w132-full-regression/narestraints",
+        "PYTEST_ADDOPTS": ""
+      },
+      "dependency_commit": "a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691",
+      "tracked_files_unchanged": 1415,
+      "git_clean": true,
+      "process_stopped": true,
+      "skipped_modules": [
+        "tests.test_cif_counted_contribution_native",
+        "tests.test_cif_live_nonbonded_policy_native"
+      ],
+      "scientific_acceptance": false,
+      "receipts": {
+        "plan.json": {
+          "anchor": "local-branch-artifacts",
+          "relative_path": "willow/w140-c402-full-suite-2026-11-18/plan.json",
+          "sha256": "aa1826fbf4a0dc76b9a52df9c2bb185cf6c1e16e03a30ec50d049ba1442b1660",
+          "bytes": 1260
+        },
+        "result.json": {
+          "anchor": "local-branch-artifacts",
+          "relative_path": "willow/w140-c402-full-suite-2026-11-18/result.json",
+          "sha256": "5d72cbc2e94f325a88c66b5fe9b1c1eb9c0963c847593cb11e8742116c73aa05",
+          "bytes": 7328
+        },
+        "source-manifest.json": {
+          "anchor": "local-branch-artifacts",
+          "relative_path": "willow/w140-c402-full-suite-2026-11-18/source-manifest.json",
+          "sha256": "ac7c1fdbb2915a92bcbdc3dccc184b7f78bf143bf3af3d11028a0fae22c5ae28",
+          "bytes": 223608
+        },
+        "results.xml": {
+          "anchor": "local-branch-artifacts",
+          "relative_path": "willow/w140-c402-full-suite-2026-11-18/results.xml",
+          "sha256": "f1119751b0abced91d34ca6e0d7cb5f35c26008a63e08d1223be20f0b686fbc2",
+          "bytes": 1805199
+        },
+        "process.json": {
+          "anchor": "local-branch-artifacts",
+          "relative_path": "willow/w140-c402-full-suite-2026-11-18/process.json",
+          "sha256": "6f27062301a7ba886969a50399f39f0dbdfce17584727b4f8aae3e404c4e2cff",
+          "bytes": 277
+        }
+      }
     },
     "existing_native_preparation_compaction": {
       "before": {
@@ -115272,7 +115350,26 @@
       "Actual C401 operation is explicit existing-owner retirement, not replayed new publication.",
       "One completed preparation does not establish 100-native-dataset capacity.",
       "C403 ordinary refinement and Q06 chemical survival remain distinct."
-    ]
+    ],
+    "installed_qualification": {
+      "status": "REVIEWED_PASS",
+      "owner": "Linden",
+      "result": "143 initial passes plus19 affected passes after adding two exact test-relative packaged data fixtures. Initial19 failures remain recorded; no product fix, source Python fallback or new native execution.",
+      "resources_unchanged": 304,
+      "build_source_and_old_install_absent": true,
+      "receipt": {
+        "anchor": "local-branch-artifacts",
+        "relative_path": "willow/w140-c402-install-reviewed-2026-11-18.json",
+        "sha256": "8fd684686372d706ae234ceda6cf2a7bd8d78282ca24921fb1819cd90c08624d",
+        "bytes": 3540
+      },
+      "original_receipt": {
+        "anchor": "local-branch-artifacts",
+        "relative_path": "willow/w140-c402-install-2026-11-18.json",
+        "sha256": "6338381cfc84eac6bf426f001e5ca3d2de8d001a9722551f88a8dfc445fdda3d",
+        "bytes": 37817
+      }
+    }
   },
   "fresh_ordinary_pdu_refinement_child_2026_11_18": {
     "milestone": "C403",
@@ -115591,7 +115688,7 @@
   },
   "native_trigonal_geometry_readback_2026_11_18": {
     "milestone": "C404",
-    "status": "SOURCE_INSTALLED_INDEPENDENT_COLD_PASS_FULL_PENDING",
+    "status": "SOURCE_INSTALLED_INDEPENDENT_COLD_AND_FULL_PASS",
     "author": "Rowan",
     "candidate": "4bfffbca068cfe74cc926ff68fefca5ba5c83c3a",
     "before": "Existing cold ordinary chemistry reader reported source-selected triple geometry only; C206 local trigonal requirement and C208 measurements were not composed with the C338 actual-manager observation.",
@@ -115713,10 +115810,130 @@
         }
       },
       "full_regression": {
-        "status": "PENDING_SERIAL_AFTER_C402",
+        "status": "PASS",
         "owner": "Linden",
         "candidate": "4bfffbca068cfe74cc926ff68fefca5ba5c83c3a",
-        "narestraints": "a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691"
+        "passed": 12032,
+        "subtests_passed": 293,
+        "skipped": 2,
+        "pytest_seconds": 3226.56,
+        "owned_seconds": 3233.083321124999,
+        "scope": "Complete unfiltered tracked test directory",
+        "command": [
+          "/private/tmp/willow-w94-pivot/env/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "--durations=20",
+          "--junitxml",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/willow/w142-c404-full-suite-2026-11-18/results.xml",
+          "tests",
+          "--basetemp",
+          "/private/tmp/willow-c404-pytest-owned-2026-11-18"
+        ],
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/private/tmp/nasolve-willow-c404/src:/private/tmp/willow-w132-full-regression/narestraints",
+          "PYTEST_ADDOPTS": ""
+        },
+        "dependency_commit": "a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691",
+        "tracked_test_checkout_files_unchanged": 1416,
+        "git_clean": true,
+        "process_stopped": true,
+        "skips": [
+          {
+            "module": "tests.test_cif_counted_contribution_native",
+            "reason": "('/private/tmp/nasolve-willow-c404/tests/test_cif_counted_contribution_native.py', 10, 'Skipped: Explicit native counted-owner control required')"
+          },
+          {
+            "module": "tests.test_cif_live_nonbonded_policy_native",
+            "reason": "('/private/tmp/nasolve-willow-c404/tests/test_cif_live_nonbonded_policy_native.py', 12, 'Skipped: Opt-in pinned Phenix API qualification')"
+          }
+        ],
+        "scientific_acceptance": false,
+        "receipts": {
+          "plan.json": {
+            "anchor": "local-branch-artifacts",
+            "relative_path": "willow/w142-c404-full-suite-2026-11-18/plan.json",
+            "sha256": "6fb22104d8f068efba028fc3200ea7d62e72961b16a4748dd6505199b7e76d8a",
+            "bytes": 1504
+          },
+          "result.json": {
+            "anchor": "local-branch-artifacts",
+            "relative_path": "willow/w142-c404-full-suite-2026-11-18/result.json",
+            "sha256": "604588f8ddce45f70863b59b36d24bb004550a01c2df25f431944486f36c457b",
+            "bytes": 7327
+          },
+          "source-manifest.json": {
+            "anchor": "local-branch-artifacts",
+            "relative_path": "willow/w142-c404-full-suite-2026-11-18/source-manifest.json",
+            "sha256": "8ca5b3dc7630ad1c9b72788941b73bccb9103bed670091902aa60c897fd5a8ff",
+            "bytes": 223763
+          },
+          "results.xml": {
+            "anchor": "local-branch-artifacts",
+            "relative_path": "willow/w142-c404-full-suite-2026-11-18/results.xml",
+            "sha256": "5454c929a0140a2702e4069b9e25fe3c553c06ed40a74b53e59200e87696727a",
+            "bytes": 1807614
+          },
+          "process.json": {
+            "anchor": "local-branch-artifacts",
+            "relative_path": "willow/w142-c404-full-suite-2026-11-18/process.json",
+            "sha256": "b8215ac5b4911228d64991cde1cae7947776e2a42abc82a98113e31a8d0e1b39",
+            "bytes": 277
+          }
+        },
+        "independent_gate_check": {
+          "anchor": "local-branch-artifacts",
+          "relative_path": "willow/w142-c404-independent-check-2026-11-18.json",
+          "sha256": "cf79c48c26c044d1507e8b0e89858325677cf0e684882f4914a7db0aaaf6fe54",
+          "bytes": 737
+        },
+        "qualification_archive": {
+          "anchor": "local-branch-artifacts",
+          "relative_path": "willow/w142-c404-qualification-2026-11-18.tar.gz",
+          "sha256": "61fadd3da2efad8e46215b649ba680df7a6a0b135d630f4d7884a9f23b3165b9",
+          "bytes": 252388,
+          "indexed_files": 10,
+          "all_members_verified_against_local_sources": true,
+          "scientific_inputs_included": false
+        },
+        "archive_checker_first_attempt": {
+          "receipt": {
+            "anchor": "local-branch-artifacts",
+            "relative_path": "willow/w142-c404-close-attempt01.json",
+            "sha256": "eb7863c9425fcc3f907a17429af9b48c4b1c38510fb75037476501a2416aa112",
+            "bytes": 312
+          },
+          "meaning": "Checker stopped before mutation because collection-skip module identity is JUnit name rather than classname; exact-name/message correction changes no test expectation."
+        },
+        "disposable_qualification_retirement": {
+          "status": "OWNED_SOFTWARE_AND_TEST_COPIES_RETIRED",
+          "plan_sha256": "492e5027f486d4e8674c6ac97efbc4a783f7c369a5e04e61ae57e56ed46f5cca",
+          "seconds": 242.15833849999763,
+          "files": 246214,
+          "logical_bytes": 4476703649,
+          "scientific_inputs_removed": false,
+          "installed_packages_removed": false,
+          "shared_dependency_preserved": true,
+          "receipt": {
+            "anchor": "local-branch-artifacts",
+            "relative_path": "willow/w142-c404-retirement-2026-11-18.json",
+            "sha256": "034a7a6619389d8a8395769d8d43251e545d98709576d432e697ee0b14ec3bc5",
+            "bytes": 341
+          },
+          "plan": {
+            "anchor": "local-branch-artifacts",
+            "relative_path": "willow/w142-c404-retirement-plan-2026-11-18.json",
+            "sha256": "492e5027f486d4e8674c6ac97efbc4a783f7c369a5e04e61ae57e56ed46f5cca",
+            "bytes": 890
+          }
+        }
       }
     },
     "actual_geometry": {
