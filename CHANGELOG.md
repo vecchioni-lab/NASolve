@@ -17,6 +17,31 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W143 — Make backbone density inspectable in 3D
+
+- Record the local, self-contained backbone view: real density surfaces, fixed
+  frame/camera, independent model/map selection, true-scale movement and solid
+  depth-tested atoms. Preserve Hazel's complementary residue/metal view.
+- Add a local Paper/Slate graphics study with soft lighting, genuine difference
+  contour choices and optional distance fading. These controls affect display,
+  not map values, noise classification or scientific acceptance.
+- The user confirmed v1 rotation and reviewed v2. The revised view defaults to
+  Slate, offers stronger Paper contours, independent map contour levels through
+  6σ (difference default 3.5σ), and a contrast control; 16 offline contracts pass.
+  Final visual review remains open. No maintained runtime/schema/install changes;
+  derived scientific payloads remain local and excluded from Git.
+
+### W142 — Close shared qualification and map the density boundary
+
+- Close C402 and Alder full-suite evidence at their exact pins; retain corrected
+  installed-fixture failures and independent sampler checks. Final C404 completes
+  with 12,032 tests +293 subtests passing and two expected native opt-in skips.
+- Record existing map/checkpoint owners, missing coefficient-generation evidence
+  and reader-specific frame representation. Plan one shared read-only adapter;
+  no duplicate reader, density detector or numerical-policy change is added.
+- Archive receipts and retire only proven-owned software/test scratch. Scientific
+  data stay local; runtime schemas, CLI defaults and migration are unchanged.
+
 ### W141 — Qualify shared periodic grid sampling
 
 - Independently qualify Alder's extracted sampler against every saved W140 map
@@ -24,7 +49,7 @@ entries are reconstructed from repository history.
   arithmetic, old policies and receipt compatibility.
 - Record the shared-owner integration boundary and a reproducible scientific
   figure. No Willow runtime dependency, detector, threshold, new coefficients,
-  refinement policy or checkpoint selection is added; full Alder coverage is pending.
+  refinement policy or checkpoint selection is added; W142 closes full Alder coverage.
 
 ### W140 — Audit backbone response and saved density
 

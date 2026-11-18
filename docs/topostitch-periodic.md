@@ -7886,9 +7886,9 @@ Own/common positions remain caller choices, not interchangeable observations.
 
 Linden reviewed the two source adapters and analytic/nonorthogonal/bare-import
 regressions with no blocking finding. Hazel records the pre-change missing-API
-failure and **82 focused passes** (5.27 s). His single exact Alder full regression
-is pending at this audit; the separate C402/C404 shared Cedar gates do not qualify
-Alder by implication. Willow does not yet import unmerged Alder or contain a
+failure and **82 focused passes** (5.27 s). Its exact full regression was pending
+at the initial audit; W142 closes it at the same code pin. The separate C402/C404
+shared Cedar gates do not qualify Alder by implication. Willow does not yet import unmerged Alder or contain a
 parallel sampler. The next S06 adapter must bind saved-map generation/provenance
 and eligibility through existing owners before any calibrated backbone detector.
 
@@ -7939,3 +7939,210 @@ Agg, DejaVu Sans, 12.5×4.6 inches and 170-dpi PNG. The PNG was visually inspect
 This adds no scientific measurements and leaves the three-file ChimeraX packet
 unchanged. Geometry improvement, backbone movement and persistent phosphate
 Fo–Fc are shown separately; the figure does not infer motion from a map value.
+
+## W142 — Close shared qualification and map the density boundary
+
+**2026-11-18.** This update closes software evidence and specifies the next S06
+inspection boundary. It adds no coordinates, map coefficients, native fit,
+numerical policy, runtime API/schema, CLI option or accepted repair. Rowan retains
+Cedar ownership; Hazel owns the shared sampler and Alder delivery. The existing
+W139/W140 scientific results and limitations remain unchanged.
+
+### Exact shared gates
+
+- **C402 `23c1f411f29501da351effa77e20dda707819468`:** complete unfiltered suite,
+  **12,016 passes +293 subtest passes**, two existing native opt-in skips, zero
+  failures/errors; pytest **3,275.43 s**, owned controller **3,279.887 s**.
+  All **1,415** tracked files remain unchanged, Git/dependency status is clean,
+  and the owned process stopped. Skips are the separately qualified native
+  counted-contribution and pinned nonbonded-policy controls; no new skip/filter.
+- **C402 installed:** source-absent relocated installation, all **304** resources
+  match. The first 162-test run gave 143 passes and 19 failures from absent
+  repository-relative data fixtures. Supplying only the two exact 5W6W restraint
+  data files gives **19/19 passes**; this is a **143+19 joined proof**, not a
+  claimed uninterrupted 162-pass execution. Original failure and corrected
+  import/fixture receipts remain. No source-code fallback was introduced.
+- **Alder `9c4c3b050fedd42f6be1fd6f26aa03873709bd76`:** **6,406 passes +276
+  subtest passes**, no skips/failures/errors; pytest **1,390.83 s**, controller
+  **1,399.501 s**. All **1,128** tracked files unchanged, clean Git and process
+  stopped. Linden checked the result, source manifest and XML (6,682 entries).
+  Hazel's separate **421-check** review of W141 passes. Alder delivery
+  `a88b902a2a87da06454b1e2b99c89b7f915f97ba` changes docs after that code pin.
+- **C404 `4bfffbca068cfe74cc926ff68fefca5ba5c83c3a`:** final frozen unfiltered
+  suite completes with **12,032 passes +293 subtest passes**, two existing native
+  opt-in collection skips, no failures/errors. Pytest **3,226.56 s**, controller
+  **3,233.083 s**; all **1,416** tracked files unchanged, clean source/dependency,
+  stopped process. The independent XML/source audit passes. Its first archival
+  checker stopped before mutation because it expected collection-skip modules in
+  JUnit `classname`; they are in `name`, with an empty class. The corrected checker
+  requires the exact two names and collection-skip messages; expectations did not
+  change. This gate does not cover Hazel's subsequent A04 edits.
+
+Exact full-suite command shape, run by the retained owned controllers:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<clean-checkout>/src:<exact-NARestraints-checkout> PYTEST_ADDOPTS= <python> -B -m pytest -q -p no:cacheprovider -o addopts= --durations=20 --junitxml <receipt-root>/results.xml tests
+```
+
+The NARestraints checkout is exact `a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691`.
+C404 adds only an explicit fresh `--basetemp <owned-scratch>`; no test scope or
+filter changes. Plans retain exact argv, environment, interpreter/dependencies,
+source hashes, process identity and timeout. C402 installed controllers are
+`runners/w140-c402-install.py` and `runners/w140-c402-install-review.py` under the
+NASolve `branch-artifacts/willow` anchor. Their receipts retain exact invocation
+and initial/corrected results. These software suites are not new Phenix refinements.
+
+### Map-source and frame audit
+
+The [existing design contract](topostitch.md#saved-map-inspection-boundary-w142-design-not-implemented)
+now maps responsibilities to checkpoint/run-context/view, native-written-model
+and shared grid-sampling owners. It separates artifact integrity, generation
+evidence, coordinate correspondence and permitted scientific use. Ordinary ML
+and maintained metal MLHL remain distinct; legacy inspection is not disabled.
+
+The cold audit binds **nine source files** at C404/Alder pins and installed
+**Phenix 2.2.1-6174**, with **seven unchanged scientific inputs**. Installed map
+construction calculates weights/combined coefficients before excluding Free-R
+rows; the map helper's alpha/beta estimator selects true-flag observations when
+present. Therefore output work-set membership alone cannot qualify a work-only
+search procedure. This is static source-path evidence, not a dynamic trace of
+historical generation. No new coefficients, FFT, fmodel or native execution occurs.
+
+Both C400 endpoints have identical Gemmi PDB/MTZ cells, while saved CCTBX values
+differ by at most **2.93×10⁻⁶ Å** and agree at float32 precision. The original audit
+incorrectly expected Gemmi to expose this difference and failed before output;
+its runner/failure note remain. The corrected receipt records reader-specific
+representation. No recipe-frame tolerance or symmetry image changes follow.
+
+Controller command (all roots supplied explicitly; these are local audit anchors):
+
+```text
+PYTHONDONTWRITEBYTECODE=1 <qualified-python> -B branch-artifacts/willow/runners/w142-map-owner-audit.py --cedar <C404-checkout> --alder <Alder-checkout> --phenix <Phenix-site-packages> --c400 <C400-run-root> --nasolve <NASolve-anchor> --output <new-receipt>
+```
+
+The adapter, backbone calibration and automatic-motion policy remain unimplemented.
+S06 remains **PARTIAL**. Distinct future regressions cover substituted references,
+inherited-map meaning, unproven frames and relocation; do not repeat W141 arithmetic
+or the completed native/normalization matrices.
+
+### Retention, compatibility and handoff
+
+All paths below use the NASolve anchor, `branch-artifacts/willow/`:
+
+| Retained evidence | Bytes / SHA256 |
+| --- | --- |
+| `w142-c402-qualification-2026-11-18.tar.gz` — 12 indexed files + manifest | 269,982 / `93d844de3a4fd590f0998ed8c493d279a143c6c9737d3b44ba38739ec5956fdd` |
+| `w140-c402-installed-evidence-2026-11-18.zip` — 16 indexed files + manifest | 1,561,924 / `374f325e797f39909561789a52064b81b2efc8150c98f1c14d8a38fbd1cb094f` |
+| `w142-map-owner-audit-2026-11-18.tar.gz` — four indexed files + manifest | 5,740 / `9b88f787427e53df0175aa41fc1bd274dfabb0b9562dc267947a38671d7b42a2` |
+| `w142-c404-qualification-2026-11-18.tar.gz` — ten indexed files + manifest | 252,388 / `61fadd3da2efad8e46215b649ba680df7a6a0b135d630f4d7884a9f23b3165b9` |
+
+After archive member/hash verification, clean source checks and stopped-process
+proof, only C402's owned checkout and proven-owned test scratch were retired:
+**246,159 regular files, 4,477,814,236 logical bytes**. Symlinks were not followed;
+scientific runs, shared dependency/environment and qualified installed packages
+remain. The retirement plan/result retain inode and process ownership evidence.
+C404's separately recorded disposable checkout/test scratch was then retired:
+**246,214 regular files, 4,476,703,649 logical bytes**, 242.158 s; its two roots
+are gone and shared dependencies, installed packages and science remain.
+Hazel separately retired only Alder-owned source/test copies. No cleanup operated
+on another agent's live workspace or generated scientific evidence. Rowan's
+published Cedar `0a398d15ee465b12ed44b7e749221e54a8e343a9` has the same qualified
+runtime/tests/packaging/README; later documentation does not imply a new suite.
+
+Willow changes are confined to the existing design, periodic ledger, current
+handoff, documentation index, roadmap JSON/generated Markdown and changelog.
+Roadmap generation/check and diff/link checks validate this docs-only update;
+the exact software gates above retain their separate source scopes. No schema
+migration or default behavior changes. Raw structures/maps, test scratch,
+qualification environments and all local audit payloads are excluded from Git.
+
+## W143 — Make backbone density inspectable in 3D
+
+**2026-11-18.** S07 presentation work requested by the scientist; no fitting,
+new coefficients, automatic correction or maintained runtime/schema changes.
+Hazel's chemistry-oriented 2D contour view remains preferred for residues/metals.
+Backbone review needs a continuous rotatable path in one fixed crystal frame.
+The [presentation contract](topostitch.md#density-presentation-local-chemistry-and-continuous-backbones-w143)
+records that distinction and future shared-owner integration.
+
+### Before, after and human feedback
+
+W140's ChimeraX packet highlighted phosphates without map surfaces. The local
+W142 common-plane/orthogonal section figure now uses identical crops/frame for
+native and full endpoints, actual-point values and signed out-of-plane offsets.
+All 24 sampled values match W140 and seven input references remain unchanged.
+The PNG was visually checked; the first crowded-label draft is retained in its
+verified archive. Matplotlib 3.11.1/Agg produced PNG and editable SVG.
+
+W143 adds a self-contained 3D HTML view of C101–C103: **30 sugar/phosphate atoms,
+32 recorded native bonds**, depth-tested solid geometry and real density-surface
+section bands/silhouettes. Rotation, zoom, atom inspection, fixed-frame independent
+model/map switching, optional faint shell and density-only front clipping support
+inspection without exaggerating movement or fabricating contours. The user
+confirmed v1 rotates and looks nice. After v2 lighting/theme polish, the user
+preferred Slate, liked the residual fade and requested stronger contrast/control.
+
+Final **v3** defaults to Slate and difference **±3.5σ**. The quiet contour-target
+dropdown selects signed difference or ordinary density, remembering each level.
+Both extend to **6σ**, in 0.5σ steps; ordinary defaults +1σ, minimum1σ, difference
+minimum1.5σ. Paper has stronger pen contrast and Slate stronger red/green hues.
+View options contains an independent contrast control. Optional signed-density
+fading follows displayed-atom distance (full opacity through1.5Å, smoothly reduced
+to15% from3.5Å, interpolated at mesh vertices). It leaves map values, meshes and
+ordinary density untouched; it is emphasis, not a noise classification. The
+buffer cache is bounded to three map/level combinations. No animation loop is
+needed while idle. Final v3 visual review remains open.
+
+### Validation and retained limits
+
+- Complete **Phenix 2.2.1-6174 display-only execution**, not a refinement/dry-run:
+  existing coefficient FFTs plus CCTBX/scitbx surface triangulation. V3 completes
+  in **14.552 s** and stops; no new coefficient generation or native fit.
+- Four saved maps, 0.5Å local sampling on43×23×25 sites, periodic interpolation,
+  separate whole-cell sigma scaling. **62 meshes** include legitimately empty
+  high-level surfaces. **6,277** interpolation checks pass, maximum error
+  **3.55×10⁻¹⁵** before display rounding; **120** actual atom samples match W140.
+  All **seven** scientific input references and **30** prior v2 meshes match
+  exactly. Ordinary ML/test-reflection inclusion limitations remain explicit.
+- **16 offline DOM/render-command contracts pass**, exercising all21level choices,
+  independent remembered contour values, model/map/camera separation, clipping,
+  focus/contrast controls, bounded buffers and unchanged data. The updated
+  checker fails against v2's old default and passes v3. This is a mock WebGL
+  harness: no real shader compilation, GPU or browser-layout PASS is claimed.
+- Browser URL policy refused local-file automation. No alternate browser route
+  was attempted. Human v1/v2 feedback is separate from automated checks; final
+  v3 appearance is not inferred from the earlier review.
+
+Commands recorded in the local execution receipts:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 <Phenix-2.2.1-6174>/bin/phenix.python -B <NASolve>/branch-artifacts/willow/runners/w143-density-scene.py
+```
+
+The offline Node module exports `check(html_path, receipt_path)` in
+`runners/w143-view-contract-check.mjs`; it was imported/executed in the available
+Node runtime with no browser/network. Atlas/render source, exact executed argv,
+process/exit receipt, final contract/integrity results and prior-version failure
+are archived together, with per-member size/SHA verification. Local renderer
+revisions remain in their respective archives, not a new production map reader.
+
+All following paths use the **NASolve** anchor `branch-artifacts/willow/`:
+
+| Artifact | Size / SHA256 |
+| --- | --- |
+| `w143-backbone-density-v3.html` — current self-contained viewer | `4949cdb869118a86aa75e9143ee18541bbe64151162421e85097780e860958aa` |
+| `w143-density-prototype-v3.zip` — 11 indexed files + manifest | 1,717,737 bytes / `09d4ac28e848c1c2378bb96803713aa7aac1014d9ff1c37cced6d13ee9dc4e2c` |
+| `w143-density-prototype-v2.zip` — reviewed previous graphics study | 1,008,044 bytes / `114c5d554dc1cf9e84c143c7d906be8ab6af164b1233911efbe61a4a6cd18842` |
+| `w143-density-prototype-v1.zip` — user-confirmed initial interaction | 278,166 bytes / `837d91ac3392aae5a1965c92c36c578875d164576dd89e32eace37bb3224beb5` |
+| `w142-density-sections-v2.{png,svg,json}` — fixed-frame orthogonal supplement | PNG `daad8079a67077d803e56482af5e13104025669151b591c20077d3090cbd9789` |
+
+Committed changes are the existing design/handoff, periodic ledger, docs index,
+changelog and roadmap JSON/generated Markdown. Documentation generation/check
+and diff/link/reference checks apply; C404's full suite is separately scoped to
+its software pin and does not test this local prototype. No package/install,
+CLI/default, runtime schema or migration change. HTML contains derived science;
+all display payloads, coordinates/maps and local receipts remain excluded from
+Git. Existing scientific packets and their checksums are preserved. S07 remains
+**PARTIAL**: integrate through shared native map/checkpoint/view owners after the
+W142 inspection boundary is qualified; do not create another map reader/history
+or turn display controls into automatic acceptance.

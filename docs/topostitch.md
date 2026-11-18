@@ -688,6 +688,55 @@ backbone detector. Do not introduce a Willow dependency on unmerged Alder;
 reuse this owner after integration, with the ordinary ML source/policy adapter
 still explicit. [Qualification and limits](topostitch-periodic.md#w141--qualify-the-shared-periodic-grid-sampler).
 
+### Saved-map inspection boundary (W142 design; not implemented)
+
+The next small S06 implementation is a read-only adapter over existing owners,
+after the shared branch integration. It must not add another checkpoint registry,
+map finder, sampling engine or native writer wrapper. The cold audit covers Cedar
+`4bfffbca` and Alder `9c4c3b05`; it changes no runtime policy.
+
+| Responsibility | Existing owner / missing proof |
+| --- | --- |
+| Model, observations, map bytes and ancestry | AutoRefine output references, checkpoint validation and `run_context` anchored resolution already own these. `coot_view.resolve_view_profile` exposes stage-appropriate views; its inherited-map checks retain the ancestor and unchanged observations. Reuse or extract that shared resolution boundary rather than infer paths from basenames. |
+| Actual refined model | `refinement_parallelity.validate_checkpoint_execution` joins frozen inputs, native result and written-model bytes. This proves the model output, not the derivation of its map coefficients. |
+| Coefficient generation | Bind exact labels, target/phase context, missing-data filling, filtering, isotropization/sharpening and work/free treatment to the producer. A saved resolved EFF is useful descriptive evidence; ordinary output hashes and the input `autorefine.params` do not by themselves witness every resolved native map option. Missing producer evidence stays explicit for legacy inspection. |
+| Coordinates and frame | Record the map-producing model separately from the inspected descendant and common-reference model. Require exact atom/image correspondence, cell/space-group setting and origin evidence. Reader representation differences need an explicit bridge; never broaden the compiled pair-recipe tolerance or silently regenerate symmetry images. |
+| Grid measurements | Reuse Alder's qualified `sample_grid` after integration. Caller-owned radius, spacing, normalization and own/common positions remain recorded. Metal radii and sigma values are not backbone calibration. |
+
+Keep **artifact integrity**, **generation evidence**, **frame compatibility** and
+**permitted scientific use** separate. An inherited or partly documented map can
+remain useful to a crystallographer without being called a newly calculated map
+for the child, an independent validation map or an automatic-motion objective.
+The existing viewer must retain its current compatibility; this design adds no
+new refusal to that viewer and no retroactive authority to old runs.
+
+The installed Phenix **2.2.1-6174** source makes the work/free distinction concrete:
+`mmtbx.map_tools.electron_density_map.map_coefficients` builds the map helper and
+combined coefficients before `exclude_free_r_reflections` masks rows.
+`f_model.manager.map_calculation_helper` passes Free-R flags to
+`maxlik.alpha_beta_est_manager`, which selects true-flag observations when they
+exist. Thus an output with no test rows does not establish that its upstream
+weights avoided test amplitudes. This is a source-path audit, not a dynamic trace
+of historical map generation. Preserve ordinary inspection maps; qualify the
+whole declared generation procedure before claiming a work-only search objective.
+Do not equate such an objective with independent validation of model phases.
+
+The C400 frame example is also reader-specific: Gemmi reports identical PDB/MTZ
+cells; the saved CCTBX readings differ by at most **2.93×10⁻⁶ Å** and agree at
+float32 precision. The first audit incorrectly expected Gemmi to expose that
+difference and failed; the corrected receipt retains both readers and the failed
+assumption. This is not evidence for a universal cell tolerance. Cropped maps,
+changed origins and Pine image/ASU transformations need their own explicit mapping.
+
+The first implementation should only report validated source/ancestor identity,
+generation evidence or its absence, frame correspondence and descriptive samples.
+Its distinct regressions should cover substituted bytes/labels, inherited maps,
+unproven frames and relocation through declared anchors. Existing W141 arithmetic
+tests need not be duplicated. Healthy/noisy/displaced calibration, sustained
+backbone-patch detection and any motion policy follow separately. No new native
+fit, coefficient generation, threshold, force or selection is scheduled here.
+
+
 Small Rwork/Rfree and clashscore fluctuations are descriptive context, not
 standalone rejection thresholds. Judge local physical improvement, global fit,
 uncertainty and numerical stopping separately; do not convert an optimizer error
@@ -864,6 +913,63 @@ selected compatible scope. Distinguish rejecting an intended connection from
 rejecting one attempted geometry. Show provisional/unreviewed status plainly;
 keep low-level provenance available on expansion rather than in the main flow.
 No renderer or GUI implementation is selected here.
+
+### Density presentation: local chemistry and continuous backbones (W143)
+
+The scientist prefers Hazel's restrained contour presentation for individual
+residues and metal sites. Preserve that view: chemically oriented molecular
+drawings, thin ordinary/signed-difference contours and explicit out-of-plane
+offsets make those local questions legible. An endpoint-following chemical plane
+is not a shared spatial slice; its limitation must stay visible.
+
+Backbones need a complementary **rotatable continuous 3D path**. Keep actual
+sugar/phosphate atoms and native bonds solid and depth-tested. Show genuine
+isodensity contours as sparse section bands and surface silhouettes, with an
+optional faint shell. The architectural/pencil-like feel comes from restrained
+colour, line weight and opacity, never random jitter, invented lines or a
+smoothed/fabricated density signal. A density-only front cutaway can expose the
+chain without drawing an occluded atom falsely on top of a nearer solid object.
+
+Keep the camera, crystal frame and crop fixed when switching source and candidate
+models. Permit a map to stay fixed while comparing coordinates, with that
+reference-map choice explicit; a matched-map view answers a different question.
+Report true-scale displacement. Do not invent movement to make a small effect
+visible, or present a graphical interpolation as a refined intermediate model.
+Both contour levels and clipping are display choices, not detection thresholds.
+
+The local W143 prototype uses the existing C400 maps, 30 sugar/phosphate atoms and
+32 recorded native bonds in C101–C103. CCTBX produces the real display surfaces;
+no fitting or new coefficients are involved. Its compact self-contained view
+offers rotation, fixed-frame model/map switching, contour-sketch/soft-shell modes
+and density-only clipping. The user confirmed that v1 rotates and looks nice.
+The user reviewed v2, preferred Slate, liked the off-atom residual fade and
+requested stronger contours. The final v3 study defaults to Slate, increases
+Paper's pen contrast and strengthens red/green on Slate. Soft directional model
+lighting stays subtle. A small contour-target dropdown chooses difference density
+(both signs together) or ordinary 2mFo−DFc, remembering independent levels. The
+slider offers 0.5σ steps through 6σ: difference starts at ±3.5σ (minimum 1.5σ),
+ordinary starts at +1σ (minimum 1σ). A quiet contrast control under View options
+scales contour opacity without changing levels, surfaces or coordinates.
+An optional fade preserves full signed-contour opacity within 1.5 Å of displayed
+atoms, reducing smoothly to 15% beyond 3.5 Å. Vertex distances are interpolated
+across triangles and follow the displayed model. No surface is deleted and no
+feature is classified as noise; turn the fade off to inspect the full crop.
+Lowering σ reveals more residual density, so contour sensitivity and spatial
+emphasis remain separate controls. The GPU-buffer cache is bounded to three
+contour/map choices; no continual animation is needed.
+
+Source/mesh checks and 16 offline control contracts pass, including all 21
+ordinary/difference level choices, independent remembered values and contrast.
+The latter use mock WebGL and do not establish shader compilation, GPU appearance
+or browser layout. Final v3 visual review remains open. Browser URL policy blocked automated
+local-file inspection; no alternative route was attempted.
+
+This is S07 presentation exploration, not a deployed GUI/schema or a replacement
+for Hazel's residue/metal view. If useful, share the native map-display boundary
+with Alder and the existing TopoStitch viewer rather than promote a parallel map
+reader, mesh pipeline or checkpoint history. Campaign desk should focus the same
+declared chain window/image and expose original, proposed and refined states
+without changing scientific selection. No automatic backbone correction follows.
 
 ## Proposed records, not deployed schemas
 

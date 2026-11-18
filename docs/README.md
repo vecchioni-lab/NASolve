@@ -17,11 +17,15 @@ current instructions; other branches retain their own status and validation pins
   Small R/clash changes are context, while line-search stops remain a separate
   numerical limitation. General repair and W122 user-facing activation remain open.
   W141 independently qualifies Alder's shared grid sampler in a relocated wheel;
-  the detector remains separate. Willow owns periodic helpers/cold reporting,
+  its full Alder regression is now complete. W142 closes C402/C404 qualification
+  and records the next read-only map-source/frame boundary. W143 adds a local
+  3D backbone-density presentation study; its final contrast/contour revision
+  awaits visual review.
+  The detector remains separate. Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W141;
-  the next substantial audit is W142. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W143;
+  the next substantial audit is W144. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

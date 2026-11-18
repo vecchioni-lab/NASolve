@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-18**, through **W141**. **W140 adds backbone and saved-map evidence to W139's
+Updated **2026-11-18**, through **W143**. **W140 adds backbone and saved-map evidence to W139's
 matched sticky-end improvement.** GC plane mismatch falls 27.30→6.30° with
 localized movement; nearby sugar/phosphate bond and angle deviations barely
 change. All 38 existing backbone links were measured and 126 ordered sugar-volume
@@ -67,10 +67,12 @@ not another work queue; do not repeat them because this handoff is shorter.
    C388 qualifies passive chemistry coexistence and focused ordinary forwarding;
    it does not establish a successful repaired structure.
 4. W141 qualifies Alder's shared sampling primitive against every W140 sample.
-   After branch integration, reuse it for an explicit saved-map provenance/
-   eligibility adapter before implementing calibrated S06 detection. Keep ordinary ML
-   inspection separate from Alder's maintained MLHL capture. Freeze generation
-   policy, own/common positions and work/free treatment; no automatic threshold.
+   After branch integration, implement the [W142 saved-map inspection boundary](topostitch.md#saved-map-inspection-boundary-w142-design-not-implemented)
+   through existing checkpoint/view and map owners. Report artifact integrity,
+   generation evidence, frame compatibility and permitted scientific use separately.
+   Output work-set membership alone does not prove work-only generation. Preserve
+   ordinary ML versus metal MLHL protocols, inherited-map labels and own/common
+   coordinates; no automatic threshold or relaxed recipe frame tolerance.
    Then use matched B10 controls and geometry, packing and diffraction/density
    evidence before physical acceptance. Preserve original data/Free-R, unselected
    REVIEW and exact pair intent. Retain repulsion while exclusions are open;
@@ -110,12 +112,24 @@ large-bend repair follow later. No CLI/default activation follows from these doc
 - **W141 shared sampler:** exact Alder `9c4c3b05` wheel, 191 resources unchanged,
   source-absent relocated CLI and Phenix package/bare imports pass. Each import
   mode exactly reproduces 3,648 own/common samples; no new native fit or coefficients.
-  Hazel owns the pending complete Alder suite. This is not yet a Willow runtime
-  dependency or calibrated detector. [Evidence](topostitch-periodic.md#w141--qualify-the-shared-periodic-grid-sampler).
-- **C402 shared qualification in progress:** installed relocation passes through
-  a documented 143+19 test join after supplying missing data-only test fixtures;
-  all 304 installed resources match. The single pinned unfiltered full run remains
-  pending. This is not yet a new complete-suite PASS; Rowan owns the cleanup patch.
+  Alder's exact full suite now passes **6,406 tests +276 subtests**, zero skips;
+  Hazel's independent 421-check replay review also passes. This is not yet a Willow
+  runtime dependency or calibrated detector. [Evidence](topostitch-periodic.md#w141--qualify-the-shared-periodic-grid-sampler).
+- **C402 shared qualification complete:** exact `23c1f411` full suite passes
+  **12,016 tests +293 subtests**, two existing native opt-in skips. Installed
+  relocation passes a documented 143+19 test join after supplying missing data-only
+  fixtures; all 304 resources match. The initial failure remains archived. After
+  verification, 4.48 GB of owned source/test scratch was retired; science and
+  installed packages remain. This is software qualification, not repaired geometry.
+- **C404 final shared regression complete:** exact `4bfffbca` passes **12,032
+  tests +293 subtests**, two existing native opt-in skips, in 3,226.56 s. All
+  1,416 tracked files remain unchanged; source/dependency status is clean and
+  the process stopped. The verified archive retains the exact command and XML.
+  This qualifies that source pin, not later Alder changes or the local viewer.
+- **W142 map-owner audit:** nine source files and seven scientific inputs remain
+  unchanged. The existing owners and missing generation/frame evidence are now
+  mapped explicitly; this is design and cold source inspection, not a new adapter.
+  [Commands, archives and limits](topostitch-periodic.md#w142--close-shared-qualification-and-map-the-density-boundary).
 
 Earlier tests, failed attempts and qualification pins remain in the existing
 [periodic/native ledger](topostitch-periodic.md) and Git history (the full W138
@@ -124,6 +138,25 @@ W118 numerical helpers retain their exact original scopes; no later software
 PASS upgrades older diagnostic models to accepted structures.
 
 ## Local science checkout
+
+**W143 rotatable backbone-density study:** NASolve anchor,
+`branch-artifacts/willow/w143-backbone-density-v3.html`. Slate is the user's
+preferred default; Paper has stronger contours. Subtle model lighting, a map-target
+contour slider (difference default 3.5σ, ordinary 1σ; both through 6σ), contrast
+control and optional off-atom fading make saved surfaces easier to inspect.
+Model/map controls remain independent; all movement is true scale. Thirty atoms,
+32 native bonds and four saved maps retain their original data. The seven inputs
+and all 30 prior contours are unchanged; 6,277 mesh interpolation checks and
+16 offline control contracts pass. These are not actual GPU/browser tests:
+the user confirmed v1 rotation and reviewed v2's themes/dropoff; final v3 visual
+review remains open. Browser local-file automation was blocked;
+no alternate route was attempted. [Design and limits](topostitch.md#density-presentation-local-chemistry-and-continuous-backbones-w143).
+
+The companion `branch-artifacts/willow/w142-density-sections-v2.{png,svg}` uses
+common fixed planes/crops for the two endpoints, including an orthogonal cut and
+signed atom offsets. This makes depth/projection limits explicit. Hazel's local
+residue/metal depiction remains a complementary view, not something to replace.
+Neither display adds coefficients, fitting, detection thresholds or accepted repair.
 
 **Current W140 backbone/density view:** GitHub workspace anchor,
 `ScienceCheckouts/Linden/2026-11-18_backbone-density/review.html`.

@@ -4,7 +4,7 @@
   "updated": "2026-11-18",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "4f7aeb84b8762b3bd4ebcc1741c6b1116443632a",
+  "audited_code_commit": "4bfffbca068cfe74cc926ff68fefca5ba5c83c3a",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -370,12 +370,13 @@
         "W34 public-reference and supplied-data MR controls retain exact observations/Free-R and show local geometry/diffraction tradeoffs; these are not repaired-MR success cases.",
         "Actual pair/native coverage, provider complement, hierarchy/scattering state and counted ownership are qualified through existing compiler and Cedar lifecycle owners. Default/native/zero equality, failure retention, relocated installed proof and original writer lineage are separate checks.",
         "W129/W131/W133 expose provider-dependent pooled summaries while retaining complete physical pair metrics and actual final-state observations; unclassified native remainder is not a semantic weighting policy.",
-        "W132/W135/W138 complete unfiltered shared regressions at their exact pins; installed compositions and native executions retain separate evidence. C402 has a new single pinned full gate in progress, not yet a PASS.",
+        "W132/W135/W138 complete unfiltered shared regressions at their exact pins; installed compositions and native executions retain separate evidence. W142 closes C402 at12016+293 passes/two native opt-in skips; final C404 completes at 12032+293 passes/two existing native opt-in skips.",
         "W136/W137 retain ordinary-versus-standalone chemical lineage and FFT/direct/fixed-normalization boundaries. No private policy, derivative/restart matrix or chemical adoption is promoted.",
         "W138/Cedar4f7aeb84 qualifies the explicit v8 100-cap ordinary coordinate route with complete source/installed/native gates. The earlier short route retains its original scope; neither cap proves convergence.",
         "W139 closes the matched native/core-only-zero/full matrix: exact zero/native output/history, passive full equivalence and common14-pair local benefit. Both line-search stops and repeated-coordinate normalization discontinuity remain separate limitations; no numerical policy is adopted.",
         "W140 reuses A72 periodic sampling on four existing ordinary ML maps at456backbone atoms, binding generation policy and own/common coordinates. All176Free-R indices are included: inspection-only, distinct from maintained metal MLHL capture; no threshold or density-guided motion.",
-        "W141 qualifies Alder shared periodic-grid arithmetic in exact191-file relocated wheel and native bare imports; both reproduce3648W140own/common samples exactly. Full Alder suite pending; no new coefficient/data/phase policy or detector."
+        "W141 qualifies Alder shared periodic-grid arithmetic in exact191-file relocated wheel and native bare imports; both reproduce3648W140own/common samples exactly. W142 closes exact Alder full6406+276 passes/no skips and421independent review checks; no new coefficient/data/phase policy or detector.",
+        "W142 cold owner audit separates artifact integrity, coefficient-generation evidence, reader/frame compatibility and permitted use. Existing checkpoints/views and shared sampler are the future adapter owners; no new reader, threshold or motion policy."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -384,7 +385,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Reuse W141 qualified Alder sampler after integration; keep ordinary ML saved-map provenance/eligibility adapter separate from MLHL capture. Bind exact generation policy, own/common positions and work/free treatment before calibration. No duplicate reader, universal threshold or automatic motion. Stable-objective design stays deferred under the shared queue; no repeated normalization/FFT/direct/restart matrix. Broader B10 controls, B09 and W122 activation remain open.",
+      "next_action": "Implement the W142 read-only saved-map inspection boundary after shared integration, reusing checkpoint/view resolution and W141 sampling. Preserve inherited-map and ML/MLHL distinctions; output Free-R exclusion alone is not work-only derivation proof. Explicitly bind reader/frame correspondence without relaxing recipe tolerances. Calibration and motion follow separately. Stable-objective design stays deferred; no repeated normalization/FFT/direct/restart matrix. Broader B10 controls, B09 and W122 activation remain open.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -434,14 +435,15 @@
         "E_LONGER_ORDINARY_CONTROL",
         "E_MATCHED_CANONICAL_LONG_CONTROL",
         "E_BACKBONE_SAVED_DENSITY",
-        "E_SHARED_GRID_SAMPLER"
+        "E_SHARED_GRID_SAMPLER",
+        "E_SHARED_GATES_MAP_BOUNDARY"
       ],
       "last_audit": {
         "date": "2026-11-18",
-        "code_commit": "9c4c3b050fedd42f6be1fd6f26aa03873709bd76",
-        "human_update": 141,
+        "code_commit": "4bfffbca068cfe74cc926ff68fefca5ba5c83c3a",
+        "human_update": 142,
         "reviewer": "Linden",
-        "scope": "Shared sampler source review and independent relocated installed/native replay; full Alder suite separately pending; no scientific acceptance."
+        "scope": "C402/C404/Alder exact-pin full qualification and cold map-source/frame audit. No scientific acceptance."
       }
     },
     {
@@ -456,26 +458,28 @@
       "delivered": [
         "Standalone inspect/fit/preview commands exist; ordinary checkpoint/campaign publication and GUI actions are not integrated.",
         "Verified standalone source/candidate/mate viewer exists with rotation, point inspection, contact distances and explicit unrefined/unreviewed state; it does not publish an ordinary trial.",
-        "W139/W140 local science checkouts reuse exact native/full coordinates, explicit mate, planes/contacts and phosphate highlights. Headless ChimeraX1.12 and10reference/link checks pass; no map surfaces or browser-layout validation."
+        "W139/W140 local science checkouts reuse exact native/full coordinates, explicit mate, planes/contacts and phosphate highlights. Headless ChimeraX1.12 and10reference/link checks pass; no map surfaces or browser-layout validation.",
+        "W143 local 3D backbone-density prototype retains genuine contours and fixed-frame model/map comparison. User confirms v1 rotation and reviews v2 appearance/dropoff. Final v3 defaults to Slate, strengthens Paper/red/green contrast and remembers independent map contour levels through 6 sigma. Seven inputs and 30 prior surfaces are unchanged; 6,277 mesh checks and 16 offline contracts pass. Final visual review pending."
       ],
       "acceptance": [
         "Create immutable children with exact model/CIF/PHIL inputs, preserve current selection, and reuse existing Coot/model-tree paths; viewing never selects or approves.",
         "Show actual before/after coordinates, moved/fixed sites, mates, geometry and matched refinement deltas. Test stale evidence, interruption, relocation and explicit keep/reject/use decisions.",
         "For final B09 review, show source, proposed and refined geotest coordinates with the intended periodic mates and per-member pass/review/failure evidence."
       ],
-      "next_action": "Finish human browser validation, then reuse this display component when a qualified ordinary trial can connect to existing checkpoint/review owners; do not invent a second history system.",
+      "next_action": "Finish final v3 human review. When the shared map boundary and ordinary trial are qualified, reuse existing native display/checkpoint owners; preserve Hazel residue/metal views and avoid a parallel map reader or history system. Display controls never select a trial or classify noise.",
       "evidence": [
         "E_SOFTWARE",
         "E_VIEW",
         "E_BLUNT_ASYM_PLAN",
-        "E_BACKBONE_SAVED_DENSITY"
+        "E_BACKBONE_SAVED_DENSITY",
+        "E_BACKBONE_DENSITY_PRESENTATION"
       ],
       "last_audit": {
         "date": "2026-11-18",
         "reviewer": "Linden",
-        "code_commit": "4f7aeb84b8762b3bd4ebcc1741c6b1116443632a",
-        "human_update": 140,
-        "scope": "W140 read-only backbone/saved-map evidence and consolidated current queue; detailed historical evidence retained; no runtime/scientific acceptance change."
+        "code_commit": "081a532ce46a46ec67fbcd310e500e06ecd2ee8e",
+        "human_update": 143,
+        "scope": "Local display study: v1/v2 user feedback recorded; v3 offline/data checks pass, final visual review open. No runtime or scientific acceptance change."
       }
     },
     {
@@ -2660,7 +2664,7 @@
       "code_commit": "9c4c3b050fedd42f6be1fd6f26aa03873709bd76",
       "reference": "docs/topostitch-periodic.md#w141--qualify-the-shared-periodic-grid-sampler",
       "result": "Alder focused82PASS and independent source review. Exact191-file relocated wheel; CLI/package/bare imports pass. Both Phenix2.2.1-6174 read-only modes reproduce3648own/common samples exactly, four periodic checks each; original7source refs and191installed files unchanged.",
-      "limitation": "Full Alder suite pending at audit. No new fitting, coefficient generation, metal full-capture repetition, map-reader/provenance adapter, density threshold or scientific acceptance. Willow does not import unmerged Alder.",
+      "limitation": "Full Alder suite was pending at W141; W142 closes it at the same exact source pin. No new fitting, coefficient generation, metal full-capture repetition, map-reader/provenance adapter, density threshold or scientific acceptance. Willow does not import unmerged Alder.",
       "local_receipts": [
         {
           "anchor": "NASolve",
@@ -2669,6 +2673,60 @@
           "size": 30767,
           "indexed_files": 18,
           "archive_members": 19
+        }
+      ]
+    },
+    "E_SHARED_GATES_MAP_BOUNDARY": {
+      "kind": "shared_regression_and_cold_map_owner_audit",
+      "date": "2026-11-18",
+      "human_update": 142,
+      "code_commit": "4bfffbca068cfe74cc926ff68fefca5ba5c83c3a",
+      "reference": "docs/topostitch-periodic.md#w142--close-shared-qualification-and-map-the-density-boundary",
+      "result": "C402 full12016+293 passes/two native opt-in skips; installed143+19 joined pass/304resources. Alder full6406+276 passes/no skips,421independent sampler checks. Nine map-owner source files and seven science inputs unchanged; two model/map frames agree at reader-specific precision. Final C404 full 12032+293 passes/two existing native opt-in skips, 1416 tracked files unchanged; clean source/dependency and stopped process.",
+      "limitation": "No new runtime source/schema/default, coefficient generation, native fit, detector, calibration, scientific acceptance or work-only search objective. Raw science excluded from Git.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w142-map-owner-audit-2026-11-18.tar.gz",
+          "sha256": "9b88f787427e53df0175aa41fc1bd274dfabb0b9562dc267947a38671d7b42a2",
+          "size": 5740,
+          "indexed_files": 4,
+          "archive_members": 5
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w142-c402-qualification-2026-11-18.tar.gz",
+          "sha256": "93d844de3a4fd590f0998ed8c493d279a143c6c9737d3b44ba38739ec5956fdd",
+          "size": 269982,
+          "indexed_files": 12,
+          "archive_members": 13
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w142-c404-qualification-2026-11-18.tar.gz",
+          "sha256": "61fadd3da2efad8e46215b649ba680df7a6a0b135d630f4d7884a9f23b3165b9",
+          "size": 252388,
+          "indexed_files": 10,
+          "archive_members": 11
+        }
+      ]
+    },
+    "E_BACKBONE_DENSITY_PRESENTATION": {
+      "kind": "local_scientific_display_study",
+      "date": "2026-11-18",
+      "human_update": 143,
+      "code_commit": "081a532ce46a46ec67fbcd310e500e06ecd2ee8e",
+      "reference": "docs/topostitch-periodic.md#w143--make-backbone-density-inspectable-in-3d",
+      "result": "Fixed-frame common/orthogonal 2D slices; 30 atoms and 32 native bonds from four saved C400 maps. User confirms v1 rotation and reviews v2 themes/dropoff. V3: 62 genuine contour meshes, 6,277 interpolation checks, 120 atom samples match W140, seven inputs and 30 prior meshes unchanged; 16 offline rendering/control checks pass.",
+      "limitation": "No GPU/shader/browser visual qualification for v3. Display-only FFT/triangulation, no fitting or new coefficients. Off-atom fade and contour levels are presentation settings, not noise classification. Prototype and scientific payloads stay local; no deployed GUI/schema or accepted repair.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w143-density-prototype-v3.zip",
+          "sha256": "09d4ac28e848c1c2378bb96803713aa7aac1014d9ff1c37cced6d13ee9dc4e2c",
+          "size": 1717737,
+          "indexed_files": 11,
+          "archive_members": 12
         }
       ]
     }
@@ -2832,8 +2890,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 141,
-    "next": 142,
+    "current": 143,
+    "next": 144,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -3489,6 +3547,18 @@
         "title": "Qualify the shared periodic grid sampler",
         "state": "RECORDED",
         "code_commit": "9c4c3b050fedd42f6be1fd6f26aa03873709bd76"
+      },
+      {
+        "number": 142,
+        "title": "Close shared qualification and map the density boundary",
+        "state": "RECORDED",
+        "code_commit": "4bfffbca068cfe74cc926ff68fefca5ba5c83c3a"
+      },
+      {
+        "number": 143,
+        "title": "Make backbone density inspectable in 3D",
+        "state": "RECORDED",
+        "code_commit": "081a532ce46a46ec67fbcd310e500e06ecd2ee8e"
       }
     ]
   },
