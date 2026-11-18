@@ -23,7 +23,8 @@ not scientific replay or qualification. See the [storage guide](metal-campaign-s
 Focused regressions cover missing/changed/rehashed inventory, symlinks, budgets,
 concurrent mutation, exact dedup arithmetic, explicit forecast assumptions,
 output protection and fresh-process relocation after the original path is gone.
-No native execution or full suite is required for this isolated read-only surface.
+No native execution is needed for this read-only surface. The final full suite
+below also covers A04, following the latest supplied repository contract.
 Regression before implementation: the first storage test failed with the missing
 module. After implementation and bounded-read hardening, the focused command is:
 
@@ -90,11 +91,54 @@ Before implementation, the new regression fails because `sample_grid` is absent
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q tests/test_metal_map_sampling.py tests/test_metal_maps.py tests/test_metal_anomalous_maps.py --tb=short -p no:cacheprovider
 ```
 
-Linden's independent source review found no blocking issue. Installed saved-map
-replay and the final pinned Alder full suite are pending at this source checkpoint;
-the latter satisfies the latest supplied repository contract and also covers A04.
-No new refinement or coefficient generation is requested. See the
-[shared sampling contract](metal-anomalous-doctor.md#shared-bounded-sampling-of-saved-map-grids).
+Linden's independent source review found no blocking issue. The installed
+Phenix **2.2.1-6174** replay is now complete in both package and bare-module
+import modes after removing the build source and relocating the installation.
+Each mode reproduces **3,648** comparisons (four saved maps, 456 atoms, own/common
+positions), with maximum numerical difference **zero**, plus four periodic-cell
+checks. All 191 packaged files match the pinned source and remain unchanged.
+Legacy map/anomalous request and offset fingerprints match exactly. These are
+complete read-only FFT/sampling executions, not dry runs; no refinement or new
+coefficient generation is performed. The C400 ordinary ML maps include Free-R
+reflections and remain inspection-only. Sharing interpolation does not grant
+metal MLHL eligibility or scientific acceptance.
+
+Hazel's independent cold review checks 421 bindings against exact Git blobs,
+installed resources, wheel/logs, baseline, explicitly anchored coefficients and
+stopped execution receipts without duplicating the native replay. Private
+receipts: Willow `w141-sampler-installed-plan-2026-11-18.json`, package/bare
+results and installed receipt; Alder `coordination-w141-sampler-review-20261118.json`.
+See the [shared sampling contract](metal-anomalous-doctor.md#shared-bounded-sampling-of-saved-map-grids).
+
+**Final full regression.** Source pin `9c4c3b050fedd42f6be1fd6f26aa03873709bd76` passes the complete
+unfiltered tracked test directory: **6406 passed, 276 subtests passed in 1390.83s (0:23:10)**. The owned process
+is stopped and all 1,128 tracked source files remain unchanged. JUnit records
+6682 cases, 0 failures, 0 errors and
+0 skips. The real detached checkout includes Git metadata and
+declared documentation/resources; NARestraints is pinned at
+`a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691`.
+
+Exact local command (recorded environment uses `PYTHONDONTWRITEBYTECODE=1`,
+`PYTHONPATH=<pinned-checkout>/src:<pinned-NARestraints>`, plugin autoload disabled,
+and one thread for OMP/OpenBLAS/MKL):
+
+```sh
+/private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider -o addopts= --durations=20 --basetemp /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/Alder/final-suite-20261118-01/pytest-temp --junitxml /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/Alder/final-suite-20261118-01/results.xml tests
+```
+
+The private A98 wrapper bounds execution to 5,400 seconds and uses the qualified
+C404 process owner only to supervise pytest. Test imports use the Alder source;
+no Cedar runtime module was copied into Alder. Complete command, interpreter,
+dependency/source manifests, process receipt, stdout and JUnit remain under
+`final-suite-20261118-01/`. The final handoff update is documentation-only.
+No existing schema, capture policy, retention permission or scientific gate
+changes through qualification; no migration is required. Generated science,
+private review receipts and software qualification copies remain outside Git.
+After recording the completed run, the exact owned source clone and pytest
+temporary directory were retired: **2,879,148,721 logical bytes**, 87,917 regular
+files and 1,242 unfollowed symlinks. All retained receipts/logs/manifests stayed
+unchanged; no scientific payload was removed. Exact scope and reproduction
+instructions are in `final-suite-20261118-01/retirement-result.json`.
 
 ## Integration and independent chemistry review, 2026-11-18 evening
 
@@ -158,9 +202,21 @@ The triple target screen passes and coordinate screen remains `REVIEW`.
 Optimizer convergence is not established by this cold review. A01 remains partial,
 A02 gated; no accepted FT_Hg endpoint or new f″ calculation follows.
 Exact private receipt: `coordination-c403-child-review-20261118.json`.
-The source review of C404's separate actual-state trigonal descriptor is retained
-in `coordination-c404-source-review-20261118.json`; its installed replay and wider
-capture qualifications remain separately owned by Cedar.
+C404's source-selected actual-state trigonal descriptor also passes an
+independent installed cold audit: 648 checks bind 304 resources, 185 installed
+tests, legacy worker maps and native source/proxy records. Independent Cartesian
+determinant/atan2 calculations reproduce maximum local elevations at C2/C4/C5 of
+0.801939°/1.404854°/2.038558°. Local trigonal geometry, plane membership/weights,
+and terminal-group displacement remain different observations. The reader covers
+already captured declared sites; it does not expand native capture or qualify
+FT_Hg. Receipts: `coordination-c404-source-review-20261118.json` and
+`coordination-c404-installed-review-20261118.json`.
+
+Coordination found no previously agreed universal PDU flatness/convergence release
+threshold in the reviewed metal history. Preserve the existing `REVIEW`, but do
+not reinterpret repeated optimization of a non-PDU scaffold as experimental
+qualification. PP_Hg's two-metal slip case and FT_Hg's stretched attachment remain
+separate open questions. No new intervention is scheduled through this review.
 
 **Checkout.** `ScienceCheckouts/Hazel/2026-11-18_storage/review.html` and
 `summary.json` total 9,040 bytes. Four links, three source hashes and two forecast
@@ -169,6 +225,13 @@ no alternate browser/egress route was used and no rendered visual check is claim
 The checkout links existing evidence rather than copying models/maps. The approved
 map style and reproducible manuscript-export settings are retained in the
 [checkout policy](collaboration.md#lightweight-science-checkouts).
+
+The small final checkout at
+`ScienceCheckouts/Hazel/2026-11-18_evening/review.html` links the earlier FT_Hg
+figures, storage scenario and prepared/refined PDU panels. Its `summary.json`
+records exact source hashes and values. It copies no scientific payload and
+keeps prior checkouts intact. Values/links are validated directly; browser
+rendering remains unverified under the local-file preview restriction.
 
 ## A01 — matched real-data normalization intervention, 2026-11-18
 

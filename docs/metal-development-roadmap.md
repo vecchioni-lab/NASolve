@@ -73,6 +73,12 @@ check is neither an active merge nor its release qualification. Compact storage
 must reuse the integrated Cedar owners. See the handoff for failed setup checks,
 reruns and exact scope; no scientific gate closes through this rehearsal.
 
+The separate final Alder source gate now passes the complete tracked suite;
+installed/relocated native map sampling also reproduces the saved values exactly.
+These qualify the read-only inventory and shared sampling implementation, not
+the receiving branch, compact retirement or A01/A02 science. See the handoff for
+the exact source pin, counts, commands and remaining integration boundaries.
+
 ## Post-merge milestones
 
 | Milestone | Current evidence | Post-merge completion gate | Dependencies |

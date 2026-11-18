@@ -8,6 +8,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Close storage and map-sampling qualification
+
+- Record the exact pinned full regression, installed/relocated Phenix sampling
+  agreement, independent chemistry readback and compact local science checkout.
+- Preserve the open FT_Hg geometry/f″ gates and explicit PDU scaffold limits;
+  qualification changes no capture policy, artifact schema or retention authority.
+
 ### Share bounded periodic map sampling
 
 - Reuse one explicit radius/spacing sampler for ordinary and anomalous map
