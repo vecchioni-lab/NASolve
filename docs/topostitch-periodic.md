@@ -7286,7 +7286,8 @@ and exact locations are in
 After verifying all 1,405 tracked files against its source manifest and sealed
 W132 evidence, the obsolete **72 MB C386 software clone** was retired. Source
 repositories, installed packages, native runs, data, failures and test receipts
-were retained; C391 and the reusable exact NARestraints source clone remain.
+were retained; the reusable exact NARestraints source clone remains. The C391
+software clone was subsequently verified and retired at W136 closeout below.
 The separate retirement receipt is
 `NASolve/branch-artifacts/willow/w132-c386-clone-retirement-2026-11-18.json`, SHA
 `29c9e9e0e152d04985419e6b54fea04dad68e5ea501ce1d0a63104e0eb38d045`.
@@ -7413,3 +7414,26 @@ separate longer canonical native-core/zero-addition/full-recipe control. Standal
 bending remains unnormalized; native refinement's count history must be observed
 without extra energy/cache queries. Physical geometry, healthy/wrong-contact B10
 controls, density calibration, general bending and Pine recuts remain open.
+
+
+W136 closeout also confirms all **18 shared TopoStitch modules** are byte-identical
+between Willow and current Cedar. Cedar's only source/test changes after the
+frozen C391 full suite are the separately reviewed C394 log parser/regression;
+this is not a whole-branch merge or a claim that later source had another full run.
+All three working branches were clean at the recorded check. The completed C391
+software-test clone was also retired after all **1,413** tracked hashes, clean Git,
+stopped suite and archived evidence verified, releasing **72.4 MB**. The exact Git
+commit, original repositories, native installed package, all scientific runs and
+failed attempts remain. Retirement receipt SHA
+`a9aae36d0e5d9ac8895aea0c9b25a3f46c51d63731df31f052f0b3860b3d581e`.
+
+Static closeout verifies **12 Linden /25 Rowan /12 Hazel** local report links.
+The selected scientific PNGs were visually inspected; the PDU displacement plot
+now explicitly labels its expanded vertical scale. Rowan's six-file consolidated
+report links the unchanged two-file Linden report and Hazel's separate four-file
+normalization report. There is no browser-layout claim or duplicated raw model/map.
+The combined source/report receipt is
+`NASolve/branch-artifacts/willow/source-report-closeout-2026-11-18.json`, SHA
+`1a930e499bcb4d778c8b3a4da9a764a8d6356c7a4168584423ea68b694de9bd9`;
+the static link receipt SHA is
+`450c2fe81ea55e93bfcbeac99ba410ac9d4398270c70adb038ec6f063b830610`.

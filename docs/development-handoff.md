@@ -150,6 +150,10 @@ results. The report links Hazel's existing metal figures and the preserved
 or figure copies were needed. Static content/data/link/checksum checks pass;
 no browser-layout review is claimed. Rowan owns the shared **17:00 UK** lab-report
 handoff. See the [lightweight checkout policy](collaboration.md#lightweight-science-checkouts).
+The final consolidated page is `ScienceCheckouts/Rowan/2026-11-18/review.html`;
+it also links `ScienceCheckouts/Hazel/2026-11-18_FT-Hg_normalization/review.html`.
+Final static checks cover 49 local links across the three reports; selected PNGs
+were visually reviewed, with explicit expanded-scale labeling where needed.
 
 The 17 November five-file view remains the earlier matched small-motion control:
 source and restrained display PDBs, fitted base planes and distance monitors,
