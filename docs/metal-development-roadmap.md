@@ -41,6 +41,11 @@ replay demonstrates a normalization-dependent target change at identical
 coordinates, with unchanged data terms and geometry identical within rounding. A repair is
 not yet qualified; this does not close A01. These are distinct from the earlier
 pooled-selector experiment; failed unselected trials remain explicit.
+A subsequent bounded one-cycle real-data intervention fixes only the returned
+geometry contribution at the common initial denominator, with an exact replayed
+baseline and unchanged diffraction/raw restraint contributions. Its completed
+results and remaining scientific limits are recorded first in the handoff.
+No normalization policy or f″ parent is adopted.
 Production changes are limited to compact passive weight-selection reporting;
 no selector policy, chemical repair or accepted f″ parent follows.
 The [handoff](development-handoff.md) records prior attempts, exact validation,

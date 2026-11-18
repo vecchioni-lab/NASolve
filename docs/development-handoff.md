@@ -6,6 +6,127 @@ current milestone: **A01 — ligand geometry and open XYZ/B**. Start with the
 The older Cedar/metal pause narrative is retained in
 [history](history/metal-foundation-pause-2026-11-16.md), not current instructions.
 
+## A01 — matched real-data normalization intervention, 2026-11-18
+
+**A01 remains partial; A02 remains gated.** This bounded follow-up tests the
+normalization mechanism demonstrated below. It supersedes the earlier
+next-action boundary, not the preserved controls or their scientific limits.
+Both runs restart from identical inputs with one macrocycle and a 400-step XYZ
+allowance. Private exact-inventory covalent eligibility, all source/NA/metal
+restraints, MLHL phases, Free-R flags and open group B remain unchanged.
+
+**Before/after.** The baseline returns the native dynamically normalized
+geometry objective. The intervention changes only the geometry contribution
+returned to the XYZ minimizer: divide raw geometry target and gradient by the
+minimizer's initial count, 11,170. Every minimizer has that same entry count.
+The diffraction target/gradient and all native raw terms and dynamic neighbor
+lists are retained. The native monitor and selector geometry summaries still
+use native normalization; they must not be relabeled as the controlled objective.
+The selector receipt's unchanged-target scope string is selector-local; the
+combined intervention deliberately changes the optimizer return.
+
+| One-cycle control | Final Rwork / Rfree | DF C1′–N1 (Å) | Hg–N3 (Å) | Donor-vertex angle (°) | Selected native stop |
+| --- | --- | --- | --- | --- | --- |
+| Native normalization | 0.29757 / 0.31488 | 1.60278 | 2.09213 / 2.08922 | 12.063 | NOT_CONVERGED_ERROR (262 steps) |
+| Fixed geometry denominator | 0.29686 / 0.31265 | 1.61591 | 2.07837 / 2.07563 | 12.986 | NOT_CONVERGED_ERROR (266 steps) |
+
+The dynamic baseline exactly reproduces all first-cycle A71 trial coordinates,
+metrics, selection and stopping. It records 4,598 actual evaluator
+returns; native reported function-evaluation totals are 4,306.
+These are different counters, not an unexplained missing-event claim. Its
+9 repeated-coordinate/count-change events have unchanged data
+and raw geometry equal within rounding. The fixed run's corresponding event
+count is 0: none was observed, so a maximum jump is
+not applicable rather than a measured zero. The first observed intervention occurs at evaluator
+return 27 with identical state/raw/data contributions; subsequent
+trajectories are allowed to differ. See `comparison-v2.json` for exact arithmetic,
+all stopping types and source hashes. Neither a stopped minimizer nor a completed
+native job supplies scientific acceptance.
+
+The intervention removes the nine lower-bound failures, but sixteen rounding
+failures remain and five trials reach the 400-step limit. Both searches select
+weight 2. The selected fixed-denominator trial still ends with a rounding error;
+its local attachment and donor-vertex angle worsen despite the small R improvement.
+The initial comparison used zero as an empty-event maximum; the retained v2
+comparison uses null. This is a reporting correction, with no new native run.
+
+The read-only repeat audit additionally finds 16 exact-coordinate repeats in the
+fixed run with identical returned target and full-gradient hash. The selected
+pre-ADP trial state matches actual returns 2777/2779 exactly (baseline 1736/1742).
+This establishes repeat determinism and attribution to that trial, not finite-
+difference derivative accuracy or the final post-ADP objective. The latter stays
+explicitly separate. See `repeat-determinism.json` and `A87_repeat_review.py`.
+
+Protected reflection/phase/Q/scattering state, exported XYZ/B synchronization,
+source proxy inventory and local chirality checks pass. Exact input bytes/HKL/
+Free-R/HL identity does not imply equal final scaled-amplitude hashes: the final
+Fobs and sigma arrays differ by one common factor 1.0012296868232102, which the
+existing uniform-scale reader validates. No observation or flag assignment
+changes. Environmental B is a preview only and is not applied. Q=1 and f″=0 remain fixed initial values;
+no anomalous refinement, Coot launch or accepted parent follows. These one-cycle
+endpoints must not be ranked as finished alternatives to the five-cycle models.
+The held-out human model remains excluded from construction and refinement.
+
+**Validation and provenance.** Phenix **2.2.1-6174**, two successful dry preflights
+and two complete native executions, with exact input/preflight matching.
+The private arithmetic/receipt tests pass **21 tests** (2.90 s), including
+corrupted-coordinate, mask, count, target, gradient and provenance rejection:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=branch-artifacts/Alder/runners .venv/bin/python -B -m pytest -q -p no:cacheprovider branch-artifacts/Alder/runners/test_A85_math.py branch-artifacts/Alder/runners/test_A85_review.py
+```
+
+For each `dynamic-v1` and `fixed-v1`, the exact audit commands from the everyday
+NASolve checkout are:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/Alder/runners/A85_review.py VARIANT
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/Alder/runners/A85_state_audit.py VARIANT
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/Alder/runners/A85_local_geometry.py VARIANT
+```
+
+All pass. Linden independently cold-audited the pair without new native calls,
+using the existing reflection-scale reader and preserving source files/mtimes.
+Its receipt is under the everyday repository anchor at
+`branch-artifacts/willow/a85-pair-cold-review-2026-11-18.json`.
+The independent pair audit is `A86_compare_v2.py`; publication is checked
+by `A86_publish_check.py`. The malformed initial launcher failed before creating
+a native process; its source and `launcher-correction.json` are retained, and the
+actual v2 launcher hash is recorded in each execution receipt. No failed run is
+silently replaced. No full suite is needed for this documentation/private-control
+follow-up; the earlier 128 focused public-reader tests remain the source checkpoint.
+
+Private evidence uses the existing `Alder` artifact anchor:
+`ft-hg-normalization-pair-20261118-01/`, helpers `runners/A85_*`,
+`A86_*` and `A87_*`. The new local checkout is
+`ScienceCheckouts/Hazel/2026-11-18_FT-Hg_normalization/review.html`:
+four files, 263,372 bytes, 24 source hashes and
+12 verified local links. Two figures were visually checked.
+Models/maps are linked rather than copied; the previous sealed checkout remains
+unchanged. Raw crystallographic data and one-off traces remain local and excluded
+from Git. This is a local validation, not a portability or retention-policy claim.
+
+**Compatibility and next boundary.** Only this handoff, the roadmap and changelog
+change in source; no public schema, reader migration, production normalization,
+selector policy or automatic pruning changes. Coordinate with Rowan on a
+source-qualified normalization policy before any general implementation. Preserve
+Linden's distinction between candidate neighbor-list counts and nonzero-force
+contacts; the aggregate evidence does not identify changed proxy members.
+The trial-report semantic ownership seam remains separate. Assess the matched
+scientific trade-off and remaining stopping errors before choosing a longer
+control; do not repeat the earlier phase/weight/iteration matrix or enter A02
+from a lower R value alone. The next narrow diagnostic is scoped in
+`next-a01-gradient-bridge.json`: reuse Cedar `089506c2`'s fixed-gradient,
+mixed-gradient and parallelity/torsion methodology, but first bind an isolated
+copy to actual fixed-run trial 7 / return 2779. The existing code qualifies
+unnormalized geometry, not a live reciprocal-space combined objective. A fresh
+`fixed_signature`/`pair_proxies` call can refresh the live cache and must not be
+used as passive capture. Require exact state/objective reproduction before
+interpreting directional differences; preserve data/geometry/combined scopes,
+predeclare appropriate scaled tolerances and stop on a mismatch. This bridge is
+scoped, not implemented or executed. Shared 17:00 reporting remains with the
+existing schedule.
+
 ## A01 — real-data evaluator and weight-selection audit, 2026-11-18
 
 **A01 remains partial; A02 remains gated.** A passive original-profile FT_Hg

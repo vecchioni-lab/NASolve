@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Document the bounded real-data normalization control
+
+- Record the matched one-cycle geometry-denominator intervention, exact baseline,
+  actual stopping and protected-state audits in the A01 handoff and roadmap.
+- Add a separate small local visual comparison while preserving the earlier
+  checkout. No production refinement, public schema, acceptance or pruning policy
+  changes; raw generated science remains excluded from Git.
+
 ### Retain compact native XYZ weight-selection evidence
 
 - Capture actual native trial metrics, masks, fallback and chosen weight without
