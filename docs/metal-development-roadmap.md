@@ -31,8 +31,14 @@ proxy audit instead exposes pooled pair/covalent bond metrics forcing automatic
 weight selection into its Rfree fallback. A matched private covalent-eligibility
 control improves local DF/Hg geometry but worsens Rwork/Rfree; forcing all five
 searches does not rescue the fit. All 105 calls in that forced-search control
-reach their 25-step caps. A larger allowance under this same private policy is
-the next bounded control, distinct from the earlier pooled-selector experiment.
+reach their 25-step caps. A matched 100-step allowance recovers Rwork/Rfree to
+0.29624/0.29234 with improved Hg geometry, but all five chosen fits still hit
+the limit and the attachment remains long. A 400-step allowance improves local
+geometry but worsens Rwork/Rfree to 0.31129/0.30495; all 97 trials, including
+all five chosen fits, return line-search errors. Saved maps retain strong
+negative Hg residuals before environmental-B preparation. One passive matched
+replay is recording the chosen trials to test the actual failure mechanism. These are distinct from the earlier
+pooled-selector experiment; failed unselected trials remain explicit.
 Production changes are limited to compact passive weight-selection reporting;
 no selector policy, chemical repair or accepted f″ parent follows.
 The [handoff](development-handoff.md) records prior attempts, exact validation,

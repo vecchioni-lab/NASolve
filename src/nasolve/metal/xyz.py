@@ -230,7 +230,13 @@ def audit_result(plan, model, native, final_model):
                 fdp_quantitation_ready=False,environmental_b_applied=False)
     if 'weight_selection' in native:
         from .weight_selection import summarize as summarize_weights
-        result['weight_selection'] = summarize_weights(native['weight_selection'])
+        weights = summarize_weights(native['weight_selection'])
+        decisions = weights['decisions']
+        if [d['cycle'] for d in decisions] != list(range(1, plan['policy']['cycles'] + 1)):
+            raise RecipeError('XYZ weight selection differs from requested cycles')
+        if not plan['policy']['optimize_xyz_weight'] and any(d['trial_count'] != 1 for d in decisions):
+            raise RecipeError('Unexpected XYZ weight search in fixed-weight protocol')
+        result['weight_selection'] = weights
     if 'optimizer_stopping' in native:
         from .optimizer_stopping import summarize as summarize_stopping
         required = {'XYZ'}

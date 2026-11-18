@@ -39,6 +39,8 @@ All forces, targets, normalization and native thresholds remain unchanged.
 | Pooled native selection | 0.28553 / 0.29088 | 1.66244 | 2.03603 / 2.04308 | 27.159 |
 | Private covalent eligibility | 0.32905 / 0.34210 | 1.57776 | 2.10798 / 2.10467 | 6.238 |
 | Same, force every search | 0.32982 / 0.34116 | 1.63172 | 2.11614 / 2.10805 | 13.214 |
+| Same, 100-step allowance | 0.29624 / 0.29234 | 1.59090 | 2.10641 / 2.09700 | 6.388 |
+| Same, 400-step allowance | 0.31129 / 0.30495 | 1.54763 | 2.10090 / 2.09620 | 2.516 |
 
 The pooled replay preserves exact scientific fields/PDB and both map arrays.
 The first 43 trial fits across cycles 1–2 are identical before the eligibility
@@ -46,8 +48,42 @@ control changes the cycle-2 choice from weight 15 to 2. Local improvement comes
 with worse global fit; neither endpoint is accepted. Forcing all five searches
 changes cycle 3 from a skipped default weight to 0.75, without rescuing the fit.
 All 105 forced-search XYZ calls reach their 25-step limits. A separate 100-step
-allowance under this same private policy is underway; it is distinct from the
-previous pooled-selector 100-step experiment. Do not launch another broad matrix.
+allowance under this same private policy recovers the Rwork target in 1,286.12 s.
+Its 101 trials include 89 limit stops and 12 rounding-related native line-search
+errors; all five **chosen**
+trials reach the 100-step cap and none is one of those errors. DF base B is
+184.6315 Å², DT base B 227.9044 Å², Hg B 174.4863 Å²; Q=1 and f″=0 remain fixed.
+The attachment still deviates from its target and no f″ parent is accepted.
+This is distinct from the previous pooled-selector 100-step experiment.
+
+The private 400-step allowance comparison completed in 2,008.52 s after a
+separate successful dry preflight, changing only the allowance. Local geometry
+improves but Rwork/Rfree worsens relative to 100 steps. All 97 XYZ trials report
+line-search errors: 16 lower-bound `stpmin` and 81 rounding failures. All five
+chosen trials also fail (two lower-bound, three rounding), at 262, 321, 217, 247
+and 20 iterations. Completion is not convergence. All source/reflection/phase,
+fixed-Q/scattering, export and three local chirality-sign checks pass; this does
+not supply scientific acceptance. The 100-versus-400 endpoints differ by 0.4044 Å
+RMS across all atoms in the shared crystal frame. These are independent restarts,
+not successive states of one minimizer.
+
+The saved-map comparison now covers five controls, ten coefficient arrays and
+41 local atoms. Its first four numeric records reproduce the earlier comparison
+exactly. At Hg, mFo−DFc is −6.502σ for 100 steps and −6.926σ for 400 steps before
+environmental-B preparation, with Q=1/f″=0 fixed. These are model-assisted,
+per-map whole-cell-sigma values, not calibrated electron counts or independent
+occupancy evidence. Own-site/common-frame samples remain distinct. The first
+sampler's self-reported version was blank and is preserved; a separate source-
+hash crossreference records its qualified build provenance. The configured
+five-control sampler explicitly reports Phenix 2.2.1-6174.
+
+Because the longer allowance newly exposes actual real-data line-search errors,
+one passive exact-setting replay is running under a 70-minute cap, recording
+only the five previously chosen trial sequences. It changes no target, force,
+selection or scientific setting and performs no extra live energy evaluation.
+It must preserve exact endpoint, trial decisions and complex map arrays before
+its normalization trace can be interpreted. No repair or new parameter matrix
+is authorized by that observation alone.
 
 New production work is limited to passive reporting. `weight_selection.py` reads
 existing native scorer arrays/masks; `_xyz_native.py` records the bounded receipt
@@ -60,8 +96,12 @@ actual choices in all five cycles. The [subsystem contract](metal-anomalous-doct
 records schema and compatibility limits: legacy trials remain readable, new
 additive schema-1 receipts need this reader, and no migration/pruning occurs.
 
-Validation so far: **125 focused tests passed** with
+Validation so far: **128 focused tests passed** with
 `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_metal_weight_selection.py tests/test_metal_optimizer_stopping.py tests/test_metal_xyz.py tests/test_metal_xyz_order.py tests/test_metal_xyz_weights.py tests/test_metal_xyz_iterations.py`.
+Three receipt-scope regressions failed before the reader fix and pass afterward: wrong
+cycle, missing cycle and an unexpected search in the fixed-weight public protocol.
+Re-auditing the saved complete three-cycle native result passes without another
+native fit; observer and worker source hashes are unchanged.
 The relocation test moves the temporary source/data tree and verifies it after
 the original path is absent. It also rejects a resealed false selection summary.
 The private selector audit has 10 passing negative/positive tests; no full suite
@@ -79,8 +119,16 @@ Private evidence uses the `Alder` artifact anchor:
   and state/geometry audits; helpers `A65_*`.
 - `weight-receipt-20261118-01/`: frozen public worker, fixed/optimized unchanged-
   behavior qualifications and document checks; helpers `A66_*`.
-- `ft-hg-iteration-selection-20261118-01/`: bounded iteration control, pending;
-  helpers `A67_*`. No scientific conclusion until completion and audit.
+- `ft-hg-iteration-selection-20261118-01/iterations100-v1/review.json`: completed
+  100-step control, state/geometry and only-changed-setting audits; helpers `A67_*`.
+- `ft-hg-budget400-20261118-01/`: completed allowance control; `A71_*` audits,
+  `comparison.json` and `endpoint-comparison.json` join all five controls.
+- `ft-hg-selected-evaluator-20261118-01/`: pending passive 400-step replay;
+  helpers `A79_*`, five predeclared chosen trials only.
+- `ft-hg-map-selection-20261118-01/` and `ft-hg-map-budget400-20261118-01/`:
+  read-only coefficient sampling and matched four-panel figures; helpers `A72_*`,
+  `A74_*`, and `A75_map_version.py`. Draft report remains private until final
+  source/visual checks and publication in the shared ScienceCheckouts folder.
 
 Native version is **Phenix 2.2.1-6174**. Original passive replay was a complete
 402.74 s execution after dry preflight; forced search completed in 531.74 s.
@@ -91,6 +139,23 @@ attempts remain local and excluded from Git. The evaluator trace is a one-off
 11.85 MB diagnostic, not a per-trial campaign record. A01 remains open; A02 has
 not advanced. Rowan owns shared refinement changes; Linden owns semantic pair
 geometry diagnostics. The shared 17:00 science report is scheduled by Rowan.
+
+
+The registered human FT_Hg endpoint remains a held-out reference. A read-only
+scope audit finds 858 ANISOU records among 859 atoms and a C1′–N1 distance of
+1.35239 Å; its base B means are 97.2422/128.8633 Å² and Hg B is 132.01 Å².
+The tensor shapes differ across atoms, but their refinement history is unknown.
+Its header R values are not a matched benchmark for this isotropic protocol.
+No human coordinates enter construction or fitting. See the private
+`weight-receipt-20261118-01/reference-scope.json` with registered source checksum.
+
+Willow's new `topostitch_pair_geometry.review_pair_geometry` at `ead86be9`
+requires complete canonical pair attribution and genuine v2 dual force-state
+observation. Current A01 evidence is v1 and its declaration covers three metal
+terms only. Do not relabel/backfill it or treat unmatched origins as chemistry.
+A fresh complete canonical-pair capture is a later shared integration seam;
+Rowan/Linden retain ownership. The compact seam record is local beside the
+native receipt qualification. This does not change A01's scientific status.
 
 ## Scientific checkout, 2026-11-17
 

@@ -209,6 +209,19 @@ Each schema-1 `metal-xyz-trial` uses protocol `metal-phased-xyz-v1` and retains:
 - Fixed-Q/scattering audits, XYZ/B changes, crystal symmetry, serialized endpoint
   agreement, native version/source fingerprints and process logs.
 
+New workers also retain compact native optimizer-stopping and weight-selection
+receipts. These explain whether a fit reached a limit and how the native scorer
+chose a trial, without re-evaluating forces or saving every trial model. The
+fixed-weight public protocol requires one single-trial decision for each declared
+macrocycle; mismatched cycles or unexpected searches are rejected. The observer was
+separately qualified against an optimized private profile. A bypass does not
+establish acceptable geometry, and native Rfree fallback remains visible.
+Trial-selection R factors are distinct from the final post-ADP/scaling values.
+Legacy bundles remain readable without inferred history; new receipts need the
+updated reader. See the [selection methods and limits](metal-anomalous-doctor.md#native-xyz-weight-selection-evidence)
+and [current validation](development-handoff.md). The workflow above and its
+scientific gates are unchanged.
+
 Native Phenix may sort atom records during model interpretation. The XYZ audit
 requires a bijection over complete atom keys for native and serialized output,
 remaps the expected scattering-group indices through that bijection, and checks

@@ -17,6 +17,9 @@ entries are reconstructed from repository history.
   single-trial bypass explicit; no eligibility, refinement, acceptance or pruning
   policy changes. Legacy trials remain readable; additive schema-1 receipts need
   the updated reader, with no migration of existing runs.
+- Bind public XYZ selection histories to the declared macrocycles and fixed-weight
+  protocol. Reject mismatched cycles, missing decisions and unexpected searches;
+  saved qualified native results and legacy results without receipts remain valid.
 
 ### Record live metal-refinement and selector diagnostics
 
@@ -24,6 +27,9 @@ entries are reconstructed from repository history.
   normalization failure; iteration limits and unproven causality remain explicit.
 - Record how pooled pair/covalent bond metrics force native automatic weight
   selection into its Rfree fallback, with exact saved proxy arithmetic and limits.
+- Compare forced-search and 100/400-step controls, keeping selected versus
+  unselected optimizer failures, matched local maps, B/Q/f″ and held-out human
+  reference limitations explicit. Longer allowance is not monotonic improvement.
 - The scientific controls change no production refinement policy or pruning;
   generated scientific evidence remains local. The separate passive receipt
   addition is described above.

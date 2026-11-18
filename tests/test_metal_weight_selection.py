@@ -42,10 +42,11 @@ def harness(*, bonds=(.08,.07), angles=(1.,1.), rf=(.3,.32), r_free_only=False):
     return module,context
 
 
-def capture(**kwargs):
+def capture(cycles=1, **kwargs):
     m,o=harness(**kwargs);plain=m.run_all(1)
     bindings=(m.run_all.__init__,m.xyz_refinement_scorer.finalize,m.xyz_refinement_scorer._select)
-    with o:observed=m.run_all(1)
+    with o:
+        for cycle in range(1,cycles+1):observed=m.run_all(cycle)
     assert bindings==(m.run_all.__init__,m.xyz_refinement_scorer.finalize,m.xyz_refinement_scorer._select)
     assert vars(plain.scorer)==vars(observed.scorer)
     return o.receipt()
@@ -126,13 +127,13 @@ def test_nested_observer_rejected_without_displacing_owner():
     assert summarize(o.receipt())['trial_count']==2
 
 
-def test_xyz_audit_legacy_unchanged_and_new_fallback_visible(tmp_path):
+def test_xyz_audit_legacy_unchanged_and_new_single_trial_visible(tmp_path):
     from tests.test_metal_xyz import prepared,evidence
     xyz,c,h,raw,plan,ref=prepared(tmp_path);native=evidence(plan,raw)
     old=xyz.audit_result(plan,raw,native,raw)
-    native['weight_selection']=capture()
+    native['weight_selection']=capture(cycles=plan['policy']['cycles'],bonds=(.08,),angles=(8.,),rf=(.3,))
     new=xyz.audit_result(plan,raw,native,raw)
-    assert new['weight_selection']['decisions'][0]['mode']=='RFREE_FALLBACK'
+    assert new['weight_selection']['decisions'][0]['mode']=='SINGLE_TRIAL'
     assert new['fdp_quantitation_ready']is False
     new.pop('weight_selection');assert new==old
 
@@ -156,7 +157,7 @@ def test_receipt_relocates_without_original_and_false_summary_rejected(tmp_path,
     from nasolve.metal.recipe import digest,RecipeError
     old=tmp_path/'original';xyz,c,h,ref,n=fake_execution(old,monkeypatch);fake=xyz._native
     def enriched(directory,native,timeout):
-        e=fake(directory,native,timeout);receipt=capture()
+        e=fake(directory,native,timeout);receipt=capture(cycles=3,bonds=(.08,),angles=(8.,),rf=(.3,))
         e['weight_selection']=receipt
         (directory/'native-result.json.gz').write_bytes(gzip.compress(json.dumps(e).encode()))
         (directory/'weight-selection.json').write_text(json.dumps(receipt))
@@ -174,3 +175,18 @@ def test_receipt_relocates_without_original_and_false_summary_rejected(tmp_path,
     manifest=json.loads((directory/'manifest.json').read_text());manifest['files']['result.json']=_reference(p,run)
     manifest.pop('trial_id');manifest['trial_id']=digest(manifest);(directory/'manifest.json').write_text(json.dumps(manifest))
     with pytest.raises(RecipeError,match='XYZ audit changed'):xyz.verify_xyz(run,'Metal/xyz_001')
+
+
+@pytest.mark.parametrize('mismatch',['cycle','missing_cycle','unexpected_search'])
+def test_xyz_rejects_selection_history_outside_requested_protocol(tmp_path,mismatch):
+    from tests.test_metal_xyz import prepared,evidence
+    from nasolve.metal.recipe import RecipeError
+    xyz,c,h,raw,plan,ref=prepared(tmp_path);native=evidence(plan,raw)
+    cycles=plan['policy']['cycles'];kwargs=dict(bonds=(.08,),angles=(8.,),rf=(.3,))
+    if mismatch=='missing_cycle':cycles-=1
+    if mismatch=='unexpected_search':kwargs={}
+    receipt=capture(cycles=cycles,**kwargs)
+    if mismatch=='cycle':receipt['decisions'][-1]['cycle']+=1
+    native['weight_selection']=receipt
+    with pytest.raises(RecipeError,match='weight'):
+        xyz.audit_result(plan,raw,native,raw)

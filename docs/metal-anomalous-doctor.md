@@ -53,7 +53,10 @@ chosen coordinate fingerprint. It does not evaluate geometry, alter forces,
 change eligibility metrics or select a checkpoint. No trial model is copied.
 
 The offline audit independently replays the native scalar rules and checks the
-sidecar against the payload. `RFREE_FALLBACK` means the first native eligibility
+sidecar against the payload. The public XYZ reader also requires one decision
+for each declared macrocycle and rejects multi-trial searches under its fixed-
+weight policy. A self-consistent receipt from a different protocol is insufficient.
+`RFREE_FALLBACK` means the first native eligibility
 mask was empty; `SINGLE_TRIAL` means no search was performed and does not imply
 that geometry criteria passed. `NATIVE_CRITERIA` records selection under those
 rules, not scientific acceptance. Native bond/angle summaries can include both
