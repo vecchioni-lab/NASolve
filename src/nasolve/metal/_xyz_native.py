@@ -70,7 +70,7 @@ def native_source_hashes():
                                 ('xray_kernel',cctbx_xray_ext),('lbfgs_kernel',scitbx_lbfgs_ext)]}
 
 
-def _run_observed(call, observer, receipt_path):
+def _run_observed(call, observer, receipt_path, label="Optimizer stopping"):
     """Keep the primary native error if writing its diagnostic also fails."""
     def save():
         receipt_path.write_text(canonical(observer.receipt())+'\n')
@@ -81,7 +81,7 @@ def _run_observed(call, observer, receipt_path):
         try:
             save()
         except BaseException as secondary:
-            note = 'Optimizer stopping receipt could not be saved: '+repr(secondary)
+            note = label+' receipt could not be saved: '+repr(secondary)
             try:
                 primary.add_note(note)
             except Exception:
@@ -183,13 +183,18 @@ def run(filename):
 
     from optimizer_stopping import observe
     observer = observe()
-    _run_observed(lambda: run_program(program_class=AuditedProgram,parser_class=PhenixRefineParser,
-        custom_process_arguments=custom_process_arguments,unused_phil_raises_sorry=False,args=request['args']),
+    from weight_selection import observe as observe_weights
+    weights = observe_weights()
+    native_call = lambda: run_program(program_class=AuditedProgram,parser_class=PhenixRefineParser,
+        custom_process_arguments=custom_process_arguments,unused_phil_raises_sorry=False,args=request['args'])
+    _run_observed(lambda: _run_observed(native_call, weights,
+        Path('weight-selection.json'), label='Weight selection'),
         observer, Path('optimizer-stopping.json'))
     stopping = observer.receipt()
     path = Path('native-result.json.gz')
     result = json.loads(gzip.decompress(path.read_bytes()))
     result['optimizer_stopping'] = stopping
+    result['weight_selection'] = weights.receipt()
     path.write_bytes(gzip.compress(canonical(result).encode(),mtime=0))
 
 

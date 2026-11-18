@@ -228,6 +228,9 @@ def audit_result(plan, model, native, final_model):
                 native_version=native['native_version'],scientific_acceptance='NOT_ASSESSED',
                 automatic_checkpoint_selection=False,convergence='NOT_INDEPENDENTLY_ASSESSED',
                 fdp_quantitation_ready=False,environmental_b_applied=False)
+    if 'weight_selection' in native:
+        from .weight_selection import summarize as summarize_weights
+        result['weight_selection'] = summarize_weights(native['weight_selection'])
     if 'optimizer_stopping' in native:
         from .optimizer_stopping import summarize as summarize_stopping
         required = {'XYZ'}
@@ -346,6 +349,8 @@ def run_xyz(run,hypothesis,*,native,phases,phase_labels,cycles=3,free_r_test_val
         result=audit_result(plan,model,evidence,(directory/'final.pdb').read_bytes())
         from .optimizer_stopping import verify_file as verify_stopping_file
         verify_stopping_file(evidence,directory)
+        from .weight_selection import verify_file as verify_weight_file
+        verify_weight_file(evidence,directory)
         if 'map_diagnostics' in evidence:
             from .map_diagnostics import verify_files
             verify_files(evidence['map_diagnostics'],directory)
@@ -406,6 +411,8 @@ def verify_xyz(run,directory):
         result=audit_result(plan,model,evidence,(directory/'final.pdb').read_bytes())
         from .optimizer_stopping import verify_file as verify_stopping_file
         verify_stopping_file(evidence,directory)
+        from .weight_selection import verify_file as verify_weight_file
+        verify_weight_file(evidence,directory)
         if 'map_diagnostics' in evidence:
             from .map_diagnostics import verify_files
             verify_files(evidence['map_diagnostics'],directory)

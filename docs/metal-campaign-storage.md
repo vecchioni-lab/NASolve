@@ -1,6 +1,6 @@
 # Metal campaign storage and recovery plan
 
-Status: **design scoped, implementation pending**; 17 November 2026.
+Status: **design scoped, implementation pending**; 18 November 2026.
 The [post-merge development roadmap](metal-development-roadmap.md) places this
 work at **A04**, after single-dataset ligand/open-refinement qualification and
 before large f″ campaigns. It is a feature milestone after merge, not a
@@ -78,6 +78,15 @@ exit zero is not a substitute. This observation adds no pruning authority. The
 full geometry nodes and their inputs remain protected. Separate saved-array scale
 controls create no new coordinate runs or maps; they are diagnostics, not frozen
 f″ storage qualification or evidence that a large campaign is bounded.
+
+A01's passive weight-selection receipt adds 1,990 bytes for a three-cycle
+fixed-weight qualification, or 26,680 bytes for 84 internal XYZ weight trials
+across five cycles. It retains scalar metrics, actual masks/fallback and coordinate
+fingerprints, without a model per trial. These are measured geometry-diagnostic
+records, not a frozen f″ footprint guarantee. The separate 11.85 MB evaluator
+trace was a one-off causal diagnostic and is not a routine campaign requirement.
+No existing geometry or native output becomes eligible for deletion through this
+reporting change.
 
 Keep enough compact results to plot and compare without rerunning: per-site Q,
 fitted/expected f″ and ratios, per-element/group signed sums and cancellation,

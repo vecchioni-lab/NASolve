@@ -1,7 +1,7 @@
 # Metal hypotheses and anomalous-scattering diagnostics
 
 Status: **refined-endpoint and recipe-geometry frozen diagnostics, cluster atom-equivalent reports, grouped cross-geometry reviews, matched comparisons, bounded occupancy sweeps, human reference snapshots, offline workbench navigation and a local read-only viewer implemented**.
-Implementation updated 2026-10-30. Explicit bounded occupancy sweeps are implemented; automatic search and scientific decision qualification remain planned.
+Implementation updated 2026-11-18. Explicit bounded occupancy sweeps are implemented; automatic search and scientific decision qualification remain planned.
 Solution-space search, decision logic and scientific GUI editing remain planned. Local map previews, Coot inspection and browser-only oxidation-state drafts are implemented. This contract
 defines a bounded diagnostic workflow for metal identity, site count, occupancy
 and cluster hypotheses. It complements the [restraint builder](metal-restraint-builder.md)
@@ -42,6 +42,37 @@ for frozen comparisons. The present environmental-B policy remains based on the
 qualified open-refined coordinating bases, excluding sugar/backbone, with provenance
 and explicit overrides. Dataset-specific wavelength/reference values are always
 read from the actual inputs; historical examples do not supply hidden constants.
+
+## Native XYZ weight-selection evidence
+
+New XYZ workers also retain `metal-xyz-weight-selection-v1` in
+`weight-selection.json` and the native payload. It observes the existing scorer
+arrays and selection masks: trial Rwork/Rfree, native bond/angle metrics, native
+weight and its separate `wx_scale`, criteria, surviving indices, fallback and
+chosen coordinate fingerprint. It does not evaluate geometry, alter forces,
+change eligibility metrics or select a checkpoint. No trial model is copied.
+
+The offline audit independently replays the native scalar rules and checks the
+sidecar against the payload. `RFREE_FALLBACK` means the first native eligibility
+mask was empty; `SINGLE_TRIAL` means no search was performed and does not imply
+that geometry criteria passed. `NATIVE_CRITERIA` records selection under those
+rules, not scientific acceptance. Native bond/angle summaries can include both
+covalent and edited pair restraints; the receipt makes no covalent-only claim.
+Generic restraint origin IDs are not sufficient to define a production chemical
+classification.
+
+Trial R factors are sampled at the native XYZ scoring stage. They are distinct
+from the final post-ADP/scaling R values in the existing result. Selected trial
+fingerprints identify a native choice, not its contribution to every subsequent
+operation or independent endpoint convergence. The stopping receipt remains
+separate. Capture is bounded to 4,096 trial rows and 256 decisions, with scoped
+bindings restored on exit and primary native exceptions preserved. On-disk source
+fingerprints are provenance, not authentication of existing runtime wrappers.
+
+Legacy trials remain readable with no inferred selection history. Additive
+receipts require the updated reader; schema-1 manifests, refinement settings,
+scientific gates and retention policy are unchanged. The
+[handoff](development-handoff.md) records native equivalence and focused checks.
 
 ## Implemented native-trial map and Coot inspection
 

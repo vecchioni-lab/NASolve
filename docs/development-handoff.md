@@ -1,10 +1,96 @@
 # NASolve development handoff — current state
 
-Metal integration updated **2026-11-17**. Active metal branch: **Alder**;
+Metal integration updated **2026-11-18**. Active metal branch: **Alder**;
 current milestone: **A01 — ligand geometry and open XYZ/B**. Start with the
 [post-merge roadmap](metal-development-roadmap.md) and the A01 evidence below.
 The older Cedar/metal pause narrative is retained in
 [history](history/metal-foundation-pause-2026-11-16.md), not current instructions.
+
+## A01 — real-data evaluator and weight-selection audit, 2026-11-18
+
+**A01 remains partial; A02 remains gated.** A passive original-profile FT_Hg
+replay preserves automatic XYZ weighting, open group B, all source/NA/metal
+restraints, MLHL phases and the original Free-R flags. Its preflight and final
+scientific fields and PDB bytes exactly match the prior control; both complex
+map arrays also match exactly. MTZ container bytes are not asserted identical.
+
+The actual evaluator trace contains 2,343 returns across 84 native XYZ calls.
+Every call reaches the 25-iteration allowance; none reports a line-search error.
+There are 21 normalization-count transitions, but no repeated identical XYZ with
+changed count in this run. Yesterday's geometry-only failure is **not established
+as the cause of this open-fit result**. No normalization change follows.
+
+A separate read-only source/log and native-proxy audit explains a weight-selection
+fallback. The four actual automatic searches reject every candidate under their
+0.015 Å pooled bond-RMS criterion; the native selector falls back to minimum
+Rfree. Cycle 4 has one candidate and bypasses selection. At the final endpoint,
+958 covalent bonds have RMS deviation 0.012788 Å, 49 ordinary pair bonds have
+0.374626 Å, and two Hg bonds have 0.060545 Å. Pair terms contribute 97.67% of the
+pooled squared bond deviation. Covalent angle RMS remains 2.2816° and local
+DF/Hg geometry remains poor: this is a selector explanation, not chemical approval.
+
+The matched private selector comparison is complete. In this exact inventory,
+origin-0 bonds/angles are covalent and the edited terms are inter-residue pair/
+metal terms; generic origin IDs are **not** a production semantic classifier.
+All forces, targets, normalization and native thresholds remain unchanged.
+
+| Control | Rwork / Rfree | DF C1′–N1 (Å) | Hg–N3 distances (Å) | Donor-vertex angle (°) |
+| --- | --- | --- | --- | --- |
+| Pooled native selection | 0.28553 / 0.29088 | 1.66244 | 2.03603 / 2.04308 | 27.159 |
+| Private covalent eligibility | 0.32905 / 0.34210 | 1.57776 | 2.10798 / 2.10467 | 6.238 |
+| Same, force every search | 0.32982 / 0.34116 | 1.63172 | 2.11614 / 2.10805 | 13.214 |
+
+The pooled replay preserves exact scientific fields/PDB and both map arrays.
+The first 43 trial fits across cycles 1–2 are identical before the eligibility
+control changes the cycle-2 choice from weight 15 to 2. Local improvement comes
+with worse global fit; neither endpoint is accepted. Forcing all five searches
+changes cycle 3 from a skipped default weight to 0.75, without rescuing the fit.
+All 105 forced-search XYZ calls reach their 25-step limits. A separate 100-step
+allowance under this same private policy is underway; it is distinct from the
+previous pooled-selector 100-step experiment. Do not launch another broad matrix.
+
+New production work is limited to passive reporting. `weight_selection.py` reads
+existing native scorer arrays/masks; `_xyz_native.py` records the bounded receipt
+and `xyz.py` verifies it offline. No extra geometry/target call or covalent filter
+is installed. Scalar selection evidence stays separate from final post-ADP/scale
+R factors and from scientific acceptance. The fixed-weight native qualification
+is exact, including maps; its receipt is 1,990 bytes. Optimized-search qualification also preserves exact model/scientific state and
+both complex map arrays: 84 trial rows occupy 26,680 bytes and reproduce the
+actual choices in all five cycles. The [subsystem contract](metal-anomalous-doctor.md#native-xyz-weight-selection-evidence)
+records schema and compatibility limits: legacy trials remain readable, new
+additive schema-1 receipts need this reader, and no migration/pruning occurs.
+
+Validation so far: **125 focused tests passed** with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_metal_weight_selection.py tests/test_metal_optimizer_stopping.py tests/test_metal_xyz.py tests/test_metal_xyz_order.py tests/test_metal_xyz_weights.py tests/test_metal_xyz_iterations.py`.
+The relocation test moves the temporary source/data tree and verifies it after
+the original path is absent. It also rejects a resealed false selection summary.
+The private selector audit has 10 passing negative/positive tests; no full suite
+was run for this isolated metal change under the standing focused-test policy.
+
+Private evidence uses the `Alder` artifact anchor:
+
+- `ft-hg-live-evaluator-20261118-01/`: `review.json`, `map-replay.json` and
+  `weight-selection-review.json`; helpers `runners/A61_*` and `A62_weight_review.py`.
+- `ft-hg-weight-selection-20261118-01/comparison.json`: matched private controls,
+  actual masks and first divergence; helpers `A63_*` and `A64_compare_selectors.py`.
+  The initial pooled-v1 worker failed on a diagnostic identity assumption before
+  scientific selection; it is retained. Corrected v2 checks exact copied geometry.
+- `ft-hg-forced-search-20261118-01/forced-v1/review.json`: actual five-cycle search
+  and state/geometry audits; helpers `A65_*`.
+- `weight-receipt-20261118-01/`: frozen public worker, fixed/optimized unchanged-
+  behavior qualifications and document checks; helpers `A66_*`.
+- `ft-hg-iteration-selection-20261118-01/`: bounded iteration control, pending;
+  helpers `A67_*`. No scientific conclusion until completion and audit.
+
+Native version is **Phenix 2.2.1-6174**. Original passive replay was a complete
+402.74 s execution after dry preflight; forced search completed in 531.74 s.
+Passive public-worker qualification completed in 25.88 s (fixed weights) and
+444.75 s (optimized profile), with exact native model/map comparisons.
+No Coot or anomalous fit was run. Generated inputs, models, maps, traces and failed
+attempts remain local and excluded from Git. The evaluator trace is a one-off
+11.85 MB diagnostic, not a per-trial campaign record. A01 remains open; A02 has
+not advanced. Rowan owns shared refinement changes; Linden owns semantic pair
+geometry diagnostics. The shared 17:00 science report is scheduled by Rowan.
 
 ## Scientific checkout, 2026-11-17
 

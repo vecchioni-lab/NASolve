@@ -1,6 +1,6 @@
 # Post-merge metal-coordination roadmap
 
-Updated **17 November 2026**. Working branch **Alder**. The feature milestones
+Updated **18 November 2026**. Working branch **Alder**. The feature milestones
 below are numbered **A01–A08** and are explicitly **post-merge work**. They are
 not prerequisites for merging the current experimental implementation.
 Historical implementation receipts A37–A40 retain their existing labels and
@@ -25,8 +25,16 @@ error. Exact passive evaluator capture now shows identical XYZ/raw residual with
 different normalization denominators after a neighbor-list change. A private
 constant-denominator control retains every dynamic proxy, improves local geometry
 and gets past the earlier line-search failure, but reaches its 1,000-step cap.
-Next coordinate real-data weighting/normalization semantics before open XYZ/B.
-No production policy change, chemical repair or accepted f″ parent follows.
+The subsequent original-profile real-data replay is exact and all 84 XYZ calls
+reach their iteration limits, without reproducing the same-site failure. A saved
+proxy audit instead exposes pooled pair/covalent bond metrics forcing automatic
+weight selection into its Rfree fallback. A matched private covalent-eligibility
+control improves local DF/Hg geometry but worsens Rwork/Rfree; forcing all five
+searches does not rescue the fit. All 105 calls in that forced-search control
+reach their 25-step caps. A larger allowance under this same private policy is
+the next bounded control, distinct from the earlier pooled-selector experiment.
+Production changes are limited to compact passive weight-selection reporting;
+no selector policy, chemical repair or accepted f″ parent follows.
 The [handoff](development-handoff.md) records prior attempts, exact validation,
 private evidence and compatibility limits. Consult it before scheduling new tests.
 

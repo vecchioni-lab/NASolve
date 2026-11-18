@@ -8,6 +8,27 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Retain compact native XYZ weight-selection evidence
+
+- Capture actual native trial metrics, masks, fallback and chosen weight without
+  additional geometry/target evaluations or retained trial models. Audit the
+  selection arithmetic and matching native/sidecar evidence offline.
+- Keep native mixed-scope geometry metrics, trial-versus-final R factors and
+  single-trial bypass explicit; no eligibility, refinement, acceptance or pruning
+  policy changes. Legacy trials remain readable; additive schema-1 receipts need
+  the updated reader, with no migration of existing runs.
+
+### Record live metal-refinement and selector diagnostics
+
+- Separate the exact real-data evaluator replay from the earlier geometry-only
+  normalization failure; iteration limits and unproven causality remain explicit.
+- Record how pooled pair/covalent bond metrics force native automatic weight
+  selection into its Rfree fallback, with exact saved proxy arithmetic and limits.
+- The scientific controls change no production refinement policy or pruning;
+  generated scientific evidence remains local. The separate passive receipt
+  addition is described above.
+
+
 ### Keep lightweight scientific checkout records
 
 - Document small visual/table checkouts after substantial scientific work,
