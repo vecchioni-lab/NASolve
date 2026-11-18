@@ -52,6 +52,13 @@ def configure(subparsers):
     storage.add_argument('--trial', type=Path, action='append', required=True)
     storage.add_argument('--max-bytes', type=int, default=1024**3, help='total sample byte budget (default: 1 GiB)')
     storage.add_argument('--forecast', type=Path, help='JSON with explicit campaign counts and byte allowances')
+    project_records = actions.add_parser('project-fdp-records', help='compact view of fully verified frozen trials; no cleanup or cache reuse')
+    project_records.add_argument('--trial', type=Path, action='append', required=True)
+    verify_records = actions.add_parser('verify-fdp-records', help='replay a compact view against all original trial and parent evidence')
+    verify_records.add_argument('--projection', type=Path, required=True)
+    for parser in (project_records, verify_records):
+        parser.add_argument('--max-bytes', type=int, default=1024**3, help='trial payload preflight budget; excludes parent replay')
+        parser.add_argument('--max-projection-bytes', type=int, default=16*1024**2, help='compact JSON byte budget (default: 16 MiB)')
     verify_fdp = actions.add_parser('verify-fdp', help='verify saved fdp inputs and freeze audit without a native run')
     compare_fdp = actions.add_parser('compare-fdp', help='compare audited fdp endpoints without native execution')
     verify_comparison = actions.add_parser('verify-fdp-comparison', help='replay a saved fdp comparison offline')
@@ -82,7 +89,7 @@ def configure(subparsers):
     scan.add_argument('--job-budget', type=int, required=True)
     scan.add_argument('--resume', type=Path)
     scan_verify.add_argument('--scan', type=Path, required=True)
-    for parser in (storage, count, count_verify, count_compare, count_compare_verify, scan_plan, scan, scan_verify, inspect, preview, build, verify, geometry, verify_geometry, fdp, verify_fdp, compare_fdp, verify_comparison, compare_ref, verify_ref):
+    for parser in (project_records, verify_records, storage, count, count_verify, count_compare, count_compare_verify, scan_plan, scan, scan_verify, inspect, preview, build, verify, geometry, verify_geometry, fdp, verify_fdp, compare_fdp, verify_comparison, compare_ref, verify_ref):
         parser.add_argument('run', type=Path, help='explicit NASolve run directory')
         if parser in (inspect, preview, build):
             parser.add_argument('--checkpoint', default='postmr', help='exact checkpoint/bookmark (default: postmr)')
@@ -142,6 +149,8 @@ def execute(args):
             raise RecipeError('Outputs must be distinct new files')
         if args.metal_action == 'inspect-fdp-storage':
             return _fdp_storage(args)
+        if args.metal_action in {'project-fdp-records', 'verify-fdp-records'}:
+            return _fdp_records(args)
         if args.metal_action == 'import-restraints':
             return _import_restraints(args)
         if args.metal_action in {'capture-workbench', 'inspect-workbench', 'serve-workbench'}:
@@ -642,4 +651,30 @@ def _fdp_storage(args):
         print('Trial payload integrity only; parents excluded; no scientific replay or cleanup.')
         if report['forecast']:
             print(f"Current-layout scenario peak: {report['forecast']['scenario_peak_bytes']:,} bytes; not a guaranteed bound or disk reservation.")
+    return 0
+
+
+def _fdp_records(args):
+    from .compact import project_trials, verify_projection, read_projection, encode
+    if args.output:
+        if not args.output.parent.is_dir():
+            raise RecipeError('Output parent directory must already exist')
+        if args.output.resolve().is_relative_to(args.run.expanduser().resolve() / 'Metal'):
+            raise RecipeError('Projection must be outside the immutable Metal tree')
+    options = dict(max_bytes=args.max_bytes, max_projection_bytes=args.max_projection_bytes)
+    if args.metal_action == 'project-fdp-records':
+        report = project_trials(args.run, args.trial, **options)
+    else:
+        report = verify_projection(args.run, read_projection(args.projection,
+                                   max_projection_bytes=args.max_projection_bytes), **options)
+    serialized = encode(report)
+    if args.output:
+        with args.output.open('xb') as handle:
+            handle.write(serialized)
+    if args.json:
+        print(serialized.decode('utf-8'), end='')
+    else:
+        print(f"Frozen f″ projection: {len(report['records'])} attempts; {len(report['bases'])} shared experiment bases; {len(report['requests'])} input descriptors")
+        print(f"Projection: {len(serialized):,} bytes; source trial payload: {report['source_trial_bytes']:,} bytes (parents excluded)")
+        print('Full original source replay; no retirement or reuse authority. Original parents and native evidence remain required.')
     return 0

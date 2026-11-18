@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Project compact frozen-trial records without retiring evidence
+
+- Add explicit read-only `metal project-fdp-records` and `verify-fdp-records`
+  commands, sharing comparison bases/input descriptors while retaining complete
+  result summaries and distinct attempts in an additive version-1 projection.
+- Require full original source replay, portable references and bounded trial
+  preflight/output. Preserve unqualified science status and prohibit inferred
+  cache, materialization or retirement authority; existing trial files stay intact.
+- Measure single-metal and four-site examples, including the larger-than-target
+  environmental-B record, and record the remaining A04 integration boundary.
+
 ### Close storage and map-sampling qualification
 
 - Record the exact pinned full regression, installed/relocated Phenix sampling

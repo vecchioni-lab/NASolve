@@ -1,6 +1,6 @@
 # Metal campaign storage and recovery plan
 
-Status: **read-only inventory and scenario estimator implemented; compact storage/retirement pending**; 18 November 2026.
+Status: **read-only inventory, scenario estimator and compact projection implemented; compact retention/regeneration pending**; 18 November 2026.
 The [post-merge development roadmap](metal-development-roadmap.md) places this
 work at **A04**, after single-dataset ligand/open-refinement qualification and
 before large f″ campaigns. It is a feature milestone after merge, not a
@@ -62,6 +62,63 @@ including **965,109 bytes** of repeated content. Its largest trial is 848,299
 bytes: 20,000 such trials alone would consume **16,965,980,000 bytes**, before all
 other allowances. This different sample does not replace the larger earlier
 examples below. No files were retired and no accepted scientific solution follows.
+
+## Implemented second step: lossless result projection
+
+`nasolve metal project-fdp-records RUN --trial Metal/fdp_001 --trial Metal/fdp_002 --output projection.json`
+creates a small view outside the immutable `Metal` tree. It first inventories
+the explicit complete trials, then uses the existing full FDP derivation/freeze
+replay owner. A second replay and final inventory reject observed source changes
+while assembling the view. No native program is executed. The command has no
+implicit trial discovery, current-checkpoint selection or original-run writes.
+
+The additive `metal-fdp-compact-projection` v1 report stores shared comparison
+bases and executable-input descriptors once, while retaining every attempt,
+complete unrounded result summary, occupancy vector and anchored source manifest.
+Repeated identical inputs may share a descriptor, but their attempts/results are
+never collapsed. Different geometries/experiments keep distinct bases. Input
+fingerprints include complete executable input hashes, plan/settings, all model
+state through the input model bytes, and the existing recorded native identity.
+They describe saved inputs, **not complete environment identity or cache eligibility**.
+Existing scan reuse and scientific comparison policies are unchanged.
+
+`nasolve metal verify-fdp-records RUN --projection projection.json` reconstructs
+the view from the original complete trial/parent evidence. A recomputed digest
+cannot authorize edited numbers, accepted status, cleanup, missing evidence or
+expanded scope. Source manifests go through the numbered-trial and 1 MiB manifest
+preflight before source reads. Run/dataset/repository references use existing
+resolvers; absolute operational references are refused. The file uses canonical
+UTF-8 JSON plus a final newline, with exact section byte counts and a whole-report
+digest. Display rounding is not stored. The projection is not a new run manifest,
+standalone scientific proof, input store, native regeneration recipe or pruning
+permission. Its full original result objects include optional diagnostics and
+environmental-B provenance; derived count/comparison reports remain separate.
+
+There are at most 128 explicit trials. `--max-bytes` defaults to a 1 GiB **trial
+payload preflight** limit and `--max-projection-bytes` to a 16 MiB serialized view
+limit. These do not bound the legacy full reader's parent traversal or native
+JSON expansion, and do not reserve disk space. Caller limits can restrict
+verification; the saved file cannot enlarge them. This is an offline bounded
+sample/output view, not the future resource-bounded campaign executor.
+
+Measured old diagnostic samples, fully replayed without new refinement:
+
+| Sample | Original trial payload | Projection | Shared bases | Complete point-record section |
+| --- | ---: | ---: | ---: | ---: |
+| Three FT_Hg trials | 2,478,875 B | 25,884 B | 1 (14,490 B) | 6,598 B for three attempts |
+| Ag4 tetrahedral trial | 1,044,486 B | 54,643 B | 1 (32,329 B) | 20,094 B for one four-site attempt |
+
+The remaining bytes are input descriptors and envelope/encoding overhead.
+These are actual canonical file/section sizes, not a claim of safe savings:
+the original inputs/evidence are still required, upstream parents are excluded
+from the source column, and nothing was retired. The four-site record exceeds
+the earlier 1–8 KiB design target because complete environmental-B details remain
+inline. Future lossless shared-parent factoring must be measured and qualified;
+do not forecast the smaller target as achieved. No scientific endpoint is accepted.
+
+This closes the **read-only projection substep** of A04. Compact publication,
+retained parent materialization, native regeneration, budgets and retirement
+still require the coordinated integrated storage owners and their own gates.
 
 ## Governing decision
 
@@ -256,9 +313,10 @@ parents; compact f″ rows do not make upstream refinement archives free.
    shared/unique bytes and forecast explicit workloads. Read-only sample inventory
    is implemented; native peak scratch measurement remains pending and must be
    supplied as an explicit scenario allowance for now.
-2. **Versioned compact frozen records:** shared immutable parent store, complete
-   request fingerprints, compact results and declared audit levels; lossless
-   input materialization. Existing schema-1 runs remain untouched and verifiable.
+2. **Versioned compact frozen records:** the read-only result projection and
+   full-source replay are implemented. Shared retained parents, complete execution
+   identity, durable compact publication and lossless native input materialization
+   remain pending. Existing schema-1 runs stay untouched and verifiable.
 3. **Bounded executor:** run one cheap f″ child in owned scratch, audit, commit
    and reread the result, then retire only newly declared disposable payload.
    First native control is a qualified single-Hg branch, then mixed Au/Ag/cluster.

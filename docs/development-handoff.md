@@ -6,6 +6,58 @@ current milestone: **A01 — ligand geometry and open XYZ/B**. Start with the
 The older Cedar/metal pause narrative is retained in
 [history](history/metal-foundation-pause-2026-11-16.md), not current instructions.
 
+## A04 — compact projection substep, 2026-11-18 late session
+
+**Before/after.** Verified frozen trials previously required repeating the full
+comparison basis in downstream ad hoc summaries. `metal project-fdp-records`
+now creates an explicit read-only shared-basis view with every complete original
+result and attempt retained. `verify-fdp-records` requires full original
+derivation/freeze replay; the projection never authenticates its omitted evidence.
+It does not implement compact retention, input materialization, native execution,
+cache reuse or retirement. A01 remains open and A02 gated.
+
+**Changed files/schema.** New `src/nasolve/metal/compact.py`, focused
+`tests/test_metal_compact.py`, CLI wiring, storage guide, roadmap and changelog.
+The additive report is `metal-fdp-compact-projection` v1. Existing native workers,
+trial/scan schemas, comparison/reuse policies and old readers are unchanged;
+no migration is needed. Generated science and private receipts are excluded
+from Git. Source/result references remain explicitly anchored; output is a new
+file outside immutable runs. Full-reader parent traversal/native JSON expansion
+is explicitly outside the new preflight/output budgets.
+
+**Regression and review.** The new first regression fails before implementation
+with the missing module (1 failure, 0.41 s). Initial affected-owner checks pass
+164 tests and 14 subtests (43.85 s). Rowan's independent review finds an early
+manifest-read ordering issue: two new regressions fail before the fix (0.69 s).
+The corrected reader lets bounded numbered-trial inventory run first; Rowan's
+independent ordering probe confirms the fix, with no second blocking finding.
+All 26 projection regressions then pass (8.30 s); an added deeply nested JSON
+case also passes in its focused check (1 test, 1.26 s). Coverage includes exact
+results, duplicate attempts, changed fit settings, rehashed forged summaries,
+frozen-state damage despite valid payload hashes, missing/mutated parent/native
+evidence, caller limits, CLI output protection and a fresh-process relocation
+of source/data after the original paths disappear, with native execution forbidden.
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q tests/test_metal_compact.py tests/test_metal_storage.py tests/test_metal_fdp.py tests/test_metal_fdp_compare.py tests/test_metal_fdp_scan.py tests/test_cli.py -p no:cacheprovider --tb=short
+```
+
+**Actual saved data.** Full projection and verification of three explicitly named
+older FT_Hg trials pass in 6.61 s: 25,884 B instead of 2,478,875 B of original
+trial payload, while all original evidence remains indispensable. The four-site
+Ag4 trial passes in 2.71 s: 54,643 B versus 1,044,486 B. Its full point-record
+section is 20,094 B, above the earlier design target because environmental-B
+provenance stays intact. This is a format measurement, not a savings/acceptance
+claim. No Phenix/Coot calculation or deletion occurs. Exact anchored inputs,
+source hashes, sizes and receipts are local under
+`compact-projection-20261118-01/`; the storage guide gives the measured breakdown.
+
+Installed package qualification and the final pinned full suite are pending at
+this source checkpoint. Complete those before final delivery. The next A04 step
+still needs a coordinated integrated base and qualified native regeneration;
+this view does not replace that contract or turn an old diagnostic trial into
+an accepted f″ parent.
+
 ## A04 — read-only inventory and forecast, 2026-11-18 evening
 
 **Before/after.** Storage estimates previously lived in private one-off scripts.
