@@ -42,8 +42,14 @@ continues and no finished model is produced. A separate same-state direct-calcul
 comparison now agrees in all 13 directions for chemistry, diffraction and their
 combined score, without changing the other state. This is numerical agreement,
 not chemical repair. An earlier direct refinement changed adaptive weight choices
-and did not demonstrate a repair. A matched short restart now keeps those weights
-fixed and tests whether resetting the optimizer alone explains any progress.
+and did not demonstrate a repair. Matched restarts now keep those weights fixed:
+FFT stops again with a rounding error after 41 iterations; direct reaches the
+100-iteration limit. Neither meets the convergence test. Both lower their own
+score, but the sugar–base bond remains too long and the metal angle remains strained.
+This distinguishes a numerical obstacle from the remaining chemistry problem;
+it does not justify adopting direct calculation or increasing the iteration limit
+as a general cure. Next qualify ordinary delivery and a matched three-way comparison:
+native restraints alone, Cedar with nothing missing to add, and the complete recipe.
 
 These are explicit, source-qualified controls, not new normal settings or universal
 modified-residue support. New restraint files retain their identity through the

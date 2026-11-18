@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-18, C398 matched actual-state numerical check — Rowan**.
+Updated **2026-11-18, C399 matched native restart readback — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Last complete unfiltered baseline:
 **C391 `8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6`**, exact NARestraints `a9264f9e`:
 **11,983 passed, 2 existing native opt-in skips, 292 subtests passed** in 3196.08 s.
@@ -31,18 +31,32 @@ replay 333.43 s; all owned processes stopped. The first accuracy-snapshot refusa
 (omitted Phenix `taam_verbose=0`) stopped before any switch/probe and remains preserved.
 Direct and FFT scores are distinct objectives; this is not a repaired structure.
 
-**Active follow-up — C399 matched fresh-history restarts (Rowan).**
-Two separate serial replays reach the same FFT-derived state. Restart native L-BFGS
-with identical fresh history, fixed absolute weights/core/scales/mask/nonXYZ and
-11170 denominator; only FFT versus direct differs. Configured 100-iteration/native
-300-call limits retain native stopping, with separate hard 300-evaluation/180-second
-limits preserving partial failures. Score the actual returned parameters in a
-separately labelled post-stop call; native error recovery may return its own best-seen
-vector. No external best-model selection or original-optimizer continuation.
-Each owned process is bounded to 900 seconds. Linden separately owns the reviewed
-longer canonical-control candidate on a detached checkout; no shared Cedar code edit
-or integration is implied. Corrected PDU publication needs genuine fresh preparation
-lineage: C327 diagnostics cannot silently inherit C303 checkpoint authority.
+**C399 complete — consistent forces do not yet rescue the chemistry.**
+Separate native FFT/direct restarts reproduce the same actual state, then reset
+history with the same fixed likelihood/scales/mask/nonXYZ/weights and 11170 denominator.
+FFT stops with a rounding error after 41 iterations (64 actual evaluator calls,
+native nfun 44); direct reaches the 100-iteration cap (106 calls). Neither meets
+the convergence criterion. FFT returns its own native best-seen vector; direct
+returns its terminal vector. Explicit post-stop scoring and cold coordinate/gradient
+readback pass; the original optimizer never resumes. Both owned processes stopped.
+
+The sugar–base bond changes 1.616→1.603/1.607 Å (FFT/direct; target 1.499), while
+the donor-vertex metal angle changes 12.986→12.152/11.894° (target 0). Strain remains.
+Both lower their own objective. Fixed-scale pre-ADP Rwork worsens slightly in both;
+Rfree worsens slightly for FFT and improves slightly for direct. Do not rank the
+two raw objectives or call this a complete refinement/chemical repair. Source
+evidence remains unchanged; independent cold review and local byte archive are bound
+in the ledger. This closes the bounded diagnostic, not Q06 or A01.
+
+**Active follow-up — qualify ordinary longer control, then its matched matrix.**
+Linden owns the detached v8 candidate `d8656b22`, installed/native checks and one
+pinned full gate. Rowan's source review finds no blocker and all v3–v7 worker maps
+remain exact. No integration before those gates. Rowan owns preparation of the
+native / genuinely zero-added / full-recipe control with passive actual-return
+history; first prove observation preserves the ordinary full-case endpoint.
+No extra evaluator, selector, normalization change or production default is implied.
+Corrected PDU publication remains separate: C327 diagnostics cannot silently inherit
+C303 checkpoint authority. Use genuine fresh preparation lineage.
 
 **C396 complete — changing the geometry screen does not yet repair PDU.**
 A private five-cycle control excludes only source-matched declared pairing from
@@ -82,26 +96,17 @@ remain in the existing ledger; private models, maps and diagnostic traces stay l
 
 **Next bounded work, in order:**
 
-1. Diagnose the remaining numerical failure before another broad weight/budget sweep.
-   Coordinate with Hazel; reuse `cif_gradient_audit.audit_gradients`, the fixed
-   evaluator/order-safe correction, mixed-gradient source binding/replay and C91's
-   torsion conditioning controls. Those qualify sampled fixed geometry derivatives,
-   not the present live data-plus-geometry objective. An actual-state bridge must
-   bind coordinates, raw target/gradient, data term, normalization, active inventory
-   and cache history; do not refresh the live manager just to observe it. Preserve
-   local chemical geometry and diffraction outcomes separately. Neither C396 nor
-   A85 licenses a new selector, normalized objective or longer-run cure.
-   Reuse the already completed PDU C309 geometry and C314 data opening-direction
-   analyses; C316–C319 closed final native ADP/writer synchronization. Do not
-   mistake a cold PDB reconstruction for the optimizer's actual scattering state.
-   C396 preserves every captured local PDU proxy/definition, including C5A plane
-   completion; the observed bend is not evidence that those restraints disappeared.
-2. Qualify a longer fixed-weight coordinate control only with predeclared scope and
-   matched native-core / zero-added / complete-recipe starts. Preserve old 1–10-step
-   policies; do not widen them in place. Reuse actual target/count observations:
-   Hazel A79 reproduces selected trial models/maps and finds two same-coordinate
-   normalization jumps, but three other selected stopping failures are unexplained.
-   More iterations alone are not a repair; no normalization or selector fix is adopted.
+1. Reuse C397–C399 rather than repeating derivatives or iteration/weight sweeps.
+   Actual-state FFT score/force mismatch is isolated; direct calculation agrees
+   locally and progresses to the declared cap, but neither restart repairs geometry.
+   Native convergence and physical chemistry remain distinct. Do not infer lost
+   PDU restraints: C396 retains the captured C5A plane and local definitions.
+2. Finish the explicit longer-control software/native gates, then the matched
+   native-core / zero-added / full-recipe matrix with bound starting states,
+   actual evaluator counts/targets and stopped processes. Preserve old 1–10-step
+   policy bytes. The zero recipe uses the twelve native-covered core pairs;
+   no empty recipe or forced provider choice. The complete recipe adds seventeen
+   terms at the two selected ends. More iterations alone are not a repair.
 3. Close ordinary combined-descendant coverage when that route is needed, using the
    existing process/checkpoint owners. No parallel recovery engine or repeated
    copies of frozen inventories. Keep density fitting separately gated on explicit
@@ -142,7 +147,7 @@ owners/parameters; no accidental imported-test collection. No tests removed with
 demonstrated redundancy. Current build copies still serve historical-reader/native
 qualification and are retained. Unrelated local material and peer work are untouched.
 
-The six-file local science checkout (under 1 MB) is
+The seven-file local science checkout (under 1 MB) is
 `ScienceCheckouts/Rowan/2026-11-18/review.html` under the sibling GitHub root. It shows
 PDU geometry, actual pair measurements and weight choices, with links to retained
 evidence rather than duplicated raw datasets. It links the existing Linden and

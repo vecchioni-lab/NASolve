@@ -190,9 +190,16 @@ full prefix/state reproduced, 13/13 geometry directions agree, 0/13 FFT data/com
 One inventory and the observed cache remain unchanged across 106 probes. Negative
 gradient steps still lower the score, so stopping causality remains unproven.
 C398's separately bound direct-factor comparison now agrees in all 13 directions
-for all three components; the original optimizer never resumes. C399 tests one
-matched FFT/direct fresh-history restart with fixed actual state and weights,
-recording each own score, stopping reason and physical geometry separately.
+for all three components; the original optimizer never resumes. C399's matched
+fresh-history restart is complete: FFT stops with rounding after 41 iterations,
+direct reaches the 100-iteration cap; neither converges or repairs the strained
+sugar–base/metal geometry. Native returned vectors and separate post-stop scoring
+read back exactly. Both lower their own objective; their raw scores are not ranked.
+Stop this diagnostic branch here. Finish the explicit longer-control software/native
+gates, then qualify passive history and matched native/zero-added/full-recipe controls.
+The twelve core pairs provide a genuine native-covered zero case; two selected end
+pairs supply seventeen additional terms. Corrected PDU still needs genuine ordinary
+preparation ancestry, not a retrospective checkpoint for C327 diagnostics.
 Do not repeat this baseline or confuse A43's post-weight-selection direct evidence
 with this actual state. No normalization fix or general convergence is qualified.
 Longer counted scope needs a new explicit version, matched starts and source-bound

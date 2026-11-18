@@ -114379,5 +114379,219 @@
       "Raw inputs/models/reflections/logs/helpers stay local; archive is byte proof, not portable execution."
     ],
     "next": "One matched fresh-history FFT/direct bounded restart at this same state; preserve native stopping, actual returned parameter vector and each objective separately. Ordinary corrected-chemistry publication and longer canonical control remain distinct."
+  },
+  "matched_actual_state_restarts_2026_11_18": {
+    "milestone": "C399",
+    "author": "Rowan",
+    "source_commit": "a40ae9ff95ef2ce3426ee3fa0ae8243506f85b0a",
+    "status": "COLD_PAIRED_READBACK_PASS",
+    "before": "C398 establishes sampled direct-factor agreement at one actual FFT-derived state; no optimizer restart.",
+    "after": "Matched fresh native L-BFGS histories distinguish rounding stop from cap stop; neither closes chemical survival.",
+    "native": {
+      "version": "Phenix 2.2.1-6174",
+      "execution": "ACTUAL_REPLAY_AND_BOUNDED_NATIVE_RESTARTS",
+      "seconds": 831.0697442090022,
+      "all_owned_processes_stopped": true,
+      "native_refinement_complete": false
+    },
+    "cases": {
+      "fft": {
+        "stop": {
+          "error": "lbfgs error: Line search failed: Rounding errors prevent further progress. There may not be a step which satisfies the sufficient decrease and curvature conditions. Tolerances may be too small.",
+          "is_unusual_error": false,
+          "iterations": 41,
+          "native_function_evaluations": 44,
+          "optimizer_evaluator_calls": 64,
+          "reason": "native_error",
+          "returned_parameters_sha256": "32beadb91a90a908d0e3222b0c59ff5c9ade4df7198e70773edf3e14a3a52d44",
+          "returned_state_policy": "Native best-seen x_min recovery",
+          "traditional_criterion_at_returned_state": false
+        },
+        "own_objective_change": -0.004182673884619348,
+        "initial_geometry": {
+          "attachment_angstrom": 1.6159113569712351,
+          "donor_vertex_angle_degrees": 12.986265465692373,
+          "metal_distances_angstrom": [
+            2.078369828737052,
+            2.075625926028124
+          ]
+        },
+        "final_geometry": {
+          "attachment_angstrom": 1.6025967131195795,
+          "donor_vertex_angle_degrees": 12.152269166597817,
+          "metal_distances_angstrom": [
+            2.084054013512721,
+            2.0760073985702787
+          ]
+        },
+        "initial_fixed_scale_R": {
+          "r_free": 0.33701385718197735,
+          "r_work": 0.32462950412763875
+        },
+        "final_fixed_scale_R": {
+          "r_free": 0.33728398352549405,
+          "r_work": 0.3250679831884333
+        },
+        "actual_call_counts": [
+          11143
+        ],
+        "actual_inventory_hash_count": 1,
+        "diagnostic_evaluations": 66,
+        "returned_parameter_binding": "PASS",
+        "end_state_nonxyz_core_scale_mask_weights": "UNCHANGED",
+        "native_recovery_target_difference": {
+          "combined": 0.0,
+          "data": 0.0,
+          "raw_geometry": 0.0
+        },
+        "evidence": {
+          "plan.json": {
+            "sha256": "15fe36f37bc5859e1070288a7743bd442203169e2321ccc2ba848edfc8c4734d",
+            "bytes": 6101
+          },
+          "refinement/restart-start.json.gz": {
+            "sha256": "2eabb4c7634b25cee82fa39edc80d7515ad34d813e2bdfdc58821371e2e2b1a5",
+            "bytes": 600201
+          },
+          "refinement/restart-result.json.gz": {
+            "sha256": "ff514c7a9e9eea415aa49390dfaa1c1ff232adce286ed53acd0eb0be358332bc",
+            "bytes": 812527
+          },
+          "refinement/diagnostic-status.json": {
+            "sha256": "f06f45ca60eebb5acc507bca0a9b161c4fc0e4c23ff478189ea7364a00d022c0",
+            "bytes": 1671
+          }
+        }
+      },
+      "direct": {
+        "stop": {
+          "error": null,
+          "is_unusual_error": null,
+          "iterations": 100,
+          "native_function_evaluations": 106,
+          "optimizer_evaluator_calls": 106,
+          "reason": "iteration_cap",
+          "returned_parameters_sha256": "5356892d5cb7159a4ba400953c2a96ca1191e55945b85c02e3d81961cf565e16",
+          "returned_state_policy": "Native terminal parameters",
+          "traditional_criterion_at_returned_state": false
+        },
+        "own_objective_change": -0.012439039316909373,
+        "initial_geometry": {
+          "attachment_angstrom": 1.6159113569712351,
+          "donor_vertex_angle_degrees": 12.986265465692373,
+          "metal_distances_angstrom": [
+            2.078369828737052,
+            2.075625926028124
+          ]
+        },
+        "final_geometry": {
+          "attachment_angstrom": 1.6067772400073348,
+          "donor_vertex_angle_degrees": 11.894428500349802,
+          "metal_distances_angstrom": [
+            2.0830816042999762,
+            2.074294597356952
+          ]
+        },
+        "initial_fixed_scale_R": {
+          "r_free": 0.33702079058629075,
+          "r_work": 0.32468050792707803
+        },
+        "final_fixed_scale_R": {
+          "r_free": 0.33689576358535145,
+          "r_work": 0.3248648594796843
+        },
+        "actual_call_counts": [
+          11143
+        ],
+        "actual_inventory_hash_count": 1,
+        "diagnostic_evaluations": 108,
+        "returned_parameter_binding": "PASS",
+        "end_state_nonxyz_core_scale_mask_weights": "UNCHANGED",
+        "native_recovery_target_difference": null,
+        "evidence": {
+          "plan.json": {
+            "sha256": "134be4d018006c29f5073bfd23254f47772e07ab0e734ca479060574c7784993",
+            "bytes": 6104
+          },
+          "refinement/restart-start.json.gz": {
+            "sha256": "238294b97fb3d53d7e3b2a34d16b0a5cf13d38ae2ea1e497f2830d32eba1c477",
+            "bytes": 600241
+          },
+          "refinement/restart-result.json.gz": {
+            "sha256": "3a1041da612d7a7019123f92a2b65a8253acc9e411766f38aa2f69a092ba5688",
+            "bytes": 826095
+          },
+          "refinement/diagnostic-status.json": {
+            "sha256": "3535824d0f9ffe2abfa3f2799c51d52e6bcdd71cf22b8a47e1514746ace5ad7a",
+            "bytes": 1481
+          }
+        }
+      }
+    },
+    "common_scope": "Matched native history reset at the same FFT-derived actual state; each score judged within its own algorithm. No whole-pipeline performance, chemistry repair or production adoption.",
+    "independent_review": {
+      "author": "Hazel",
+      "status": "PASS",
+      "checks": 215,
+      "native_evaluations": 0,
+      "anchor": "NASolve-private-artifacts",
+      "relative_path": "Alder/coordination-c399-cold-review-20261118.json",
+      "sha256": "71ee5214fd6a72c6c32010930e656f793cb13589778df3ad8947784869a8128b"
+    },
+    "unchanged_source_files": {
+      "A85": 67,
+      "C397": 34,
+      "C398": 38
+    },
+    "evidence": {
+      "plan.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c399-matched-restarts/plan.json",
+        "sha256": "4f39aff26621ac68514c0d4b308f2b68a5bc6c6caf4e7651d542660c27f3dbbd",
+        "bytes": 661
+      },
+      "execution.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c399-matched-restarts/execution.json",
+        "sha256": "29f7e3e86cc6a2d7d2c52ce610875e78b1d3163910712db4937b7bb1a8b69496",
+        "bytes": 5602
+      },
+      "readback.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c399-matched-restarts/readback.json",
+        "sha256": "7b2b36fa377e4b72102aa6badd7ac362e4962bc3f27a54ff2df664ce7321dac3",
+        "bytes": 5474
+      }
+    },
+    "archive": {
+      "anchor": "cedar-local-artifacts",
+      "relative_path": "c399-actual-state-2026-11-18.tar.gz",
+      "size": 14414636,
+      "sha256": "ee8e8648e4b0e03785e4cde2858215c29a5b87f162900f1fb8a5dc67bb3d0b65"
+    },
+    "raw_archived_bytes": 16676517,
+    "validation_commands": [
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c399_execute.py",
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c399_readback.py",
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c399_archive.py"
+    ],
+    "changed_files": [
+      "docs/development-handoff.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas_changed": [],
+    "compatibility": "No product runtime/default/schema change or migration. Separate candidate full suite remains Linden-owned.",
+    "generated_artifacts": "Compact measurements and hashes only; raw models/reflections/logs/trace vectors/helpers and archive stay local.",
+    "scientific_acceptance": false,
+    "limitations": [
+      "Per-call state/hash preservation is producer evidence; full baseline/returned vectors and scalar arithmetic are cold-readable.",
+      "Nonbonded neighbour inventories may change during real movement; cache restoration is not claimed.",
+      "A native error may return its own best-seen vector; no external model choice is made.",
+      "Frozen FFT-derived likelihood context, not an unbiased complete-pipeline algorithm comparison.",
+      "Fixed-scale pre-ADP R values are not final refined-model R values."
+    ],
+    "next": "End derivative/restart diagnostics for now; finish ordinary longer-control gate and matched passive native/zero/full matrix, then genuine corrected-PDU preparation ancestry and achieved chemical survival."
   }
 }
