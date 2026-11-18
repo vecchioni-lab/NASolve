@@ -22,6 +22,8 @@ keeps it without changing selection. C386 and C388 readers reopen the relocated
 result without launches/writes. Verified archive 1,637,436 bytes; original retained.
 New terminal-protection records/automatic seeds and consumed phases remain refused.
 No helper/schema/default/weight change, no new chemical efficacy claim.
+Source `36b54a4c77d92c600ed2ae2a12821a092892eb17`; Linden reviewed the
+production diff without a blocker (source review only, not another native audit).
 
 
 **C388 complete; independent audit passed.** Existing actual
@@ -135,10 +137,12 @@ A62/A63 investigate pooled geometry criteria; no changed normalization, selector
 or target is adopted. DF phosphate protonation remains Q13, not a diagnosed cause.
 
 Science checkouts follow [the shared policy](collaboration.md#small-science-checkouts).
-The prior three-file report is `ScienceCheckouts/Rowan/2026-11-17/review.html`
-under the sibling GitHub root (197,552 bytes). Its improved geometry and slightly
-worse R factors remain displayed together. The 17:00 report will link the new
-ordinary-owner evidence and peer diagnostics without copying raw datasets.
+The current three-file report is `ScienceCheckouts/Rowan/2026-11-18/review.html`
+under the sibling GitHub root (197,752 bytes). Its PDU drawing, native triple-bond
+numbers and poor R factors are shown together; model/projection/archive links are
+checked. It distinguishes exact observer-pair state from rounded cross-provider
+PDB agreement. The 17:00 update will add the final peer/test status without copying
+raw datasets. The prior November 17 report remains intact.
 
 ## DY integration boundary
 

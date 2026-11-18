@@ -112731,6 +112731,12 @@
       "New explicit terminal protection and automatic terminal generation remain refused",
       "Consumed phases,broader weights/protocols,CLI/campaign activation and standalone recovery remain separate",
       "Explicit source delivery is not automatic chemical approval of arbitrary restraints"
-    ]
+    ],
+    "source_commit": "36b54a4c77d92c600ed2ae2a12821a092892eb17",
+    "independent_source_review": {
+      "signed": "Linden",
+      "result": "No blocker",
+      "scope": "Production diff only; not independent replay or native evidence audit."
+    }
   }
 }
