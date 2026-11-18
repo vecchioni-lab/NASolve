@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-18, C386 ordinary counted control qualified — Rowan**.
+Updated **2026-11-18, C386 qualified; C387 final geometry reporting — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current development window ends
 **14:55 UK / UTC**; shared laboratory report **17:00 UK**.
 Rowan uses focused tests; Linden owns one isolated full validation at the final
@@ -8,6 +8,15 @@ source pin under his supplied contract. He also owns the passive provider-statis
 comparison; Hazel owns the separate Alder weight-selection diagnostic.
 
 ## Current checkpoint and next bounded work
+
+**C387 complete — show the final geometry Phenix reports.** The ordinary reader
+now recognizes its final step-table row, retaining the old format and log order.
+Actual C386 log replay changes missing values to bond RMS 0.025 Å / angle RMS
+1.772°; Rwork/Rfree stay 0.2251/0.2609. These are pooled native summaries, not
+covalent-only or complete added-pair measurements. No native rerun or force,
+weight, selection or historical-record change. Focused AutoRefine/counting/Doctor
+checks pass 73 tests + 24 subtests in 26.84 s. Linden's separate full suite is pinned
+to C386 `d5c2fb7b`; it does not cover this later reporting change.
 
 **C386 complete; independent review passed.** The Python-only named
 `counted-xyz-fixed-unit-v1` control now uses ordinary AutoRefine's input checks,
@@ -37,7 +46,7 @@ Standalone durable recovery, broader protocols/automatic weights and CLI/campaig
 activation remain separate. No native helper changed. Source started at `eeb4f3f9`;
 Linden independently verifies all 299 package files, unchanged default commands,
 72 current and 64 historical evidence files, exact array/model identity and cold
-readback. Final source pin follows this documentation pass.
+readback. Published source is `d5c2fb7be944aae5e048903e1de495c67baa4b05`.
 
 Next bounded work after C386 publication: reassess provider-independent geometry
 statistics before any automatic-weight expansion, coordinated with Linden/Hazel.

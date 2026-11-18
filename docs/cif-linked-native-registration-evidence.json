@@ -112157,7 +112157,7 @@
       "wheel_bytes": 1545766,
       "package_sources_sha256": "caf252d58c75f86e5b3752f0cea6391dbd51e61cedfa1720cf3ff13968835acd",
       "portability": "Temporary build source removed; install relocated before focused validation. Native run then relocated with original path absent; cold registry read preserves bytes and mtimes with execution/writes forbidden.",
-      "full_suite": "Not run by Rowan in this push; last full Cedar baseline remains C220. Linden separately preparing a pinned combined validation under his supplied contract."
+      "full_suite": "Linden owns an unfiltered full Cedar suite pinned to d5c2fb7be944aae5e048903e1de495c67baa4b05, including its integrated Willow numerical library; pending. Not an all-branch merge or full pass for subsequent changes."
     },
     "native": {
       "version": "Phenix 2.2.1-6174 / Darwin arm64",
@@ -112242,6 +112242,48 @@
       "ordinary_compatibility_sha256": "0400bbb7083cda2e081b46fb9613600f5293a16a7c83fc8772215bb568fc0ce4",
       "native_namespace_adaptation_required": false,
       "geometry_rms_fields": "unavailable in ordinary parsed result, not zero"
-    }
+    },
+    "source_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05"
+  },
+  "native_final_geometry_reporting_2026_11_18": {
+    "milestone": "C387",
+    "signed": "Rowan",
+    "source_parent": "d5c2fb7be944aae5e048903e1de495c67baa4b05",
+    "prior_work": "Existing AutoRefine parser and CLI consume bond_rmsd/angle_rmsd; no final step-table parser found in source/history. C386 and Linden W128 independently expose null values despite a native end row.",
+    "before": "Only legacy bonds=\u2026 angles=\u2026 was recognized; actual Phenix 2.2.1 step table yielded null geometry.",
+    "after": "Read explicit end row under known ordered columns, require finite nonnegative geometry and preserve log order across formats. No initial/candidate substitution.",
+    "changed_files": [
+      "src/nasolve/autorefine.py",
+      "tests/test_autorefine.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": "No new fields; existing nullable native geometry fields populated when recognized.",
+    "validation": {
+      "regression_before": "One test and two ordering subtests fail against C386: null or obsolete legacy values.",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider tests/test_autorefine.py tests/test_autorefine_counted.py tests/test_refine_doctor.py --tb=short",
+      "result": "73 passed + 24 subtests in 26.84 s",
+      "read_only_native_log_replay": {
+        "version": "Phenix 2.2.1-6174",
+        "log_sha256": "7c72463a9bf7bce41584ca1f5dd684984b42dc975520c2933be6684886bf5e39",
+        "original_run_id": "c386-ordinary-counted-wk_er491-relocated",
+        "bond_rmsd": 0.025,
+        "angle_rmsd": 1.772,
+        "r_work": 0.2251,
+        "r_free": 0.2609,
+        "native_rerun": false
+      },
+      "full_suite": "Not repeated. Linden separately owns C386 full suite; this later parser change is focused-tested only."
+    },
+    "compatibility": "Legacy behavior/order retained; no force, weighting, R-factor, selection or acceptance changes. Prior saved reports untouched.",
+    "generated_artifacts": "No native run or committed scientific data. Synthetic compact table cases only.",
+    "limitations": [
+      "Native pooled summaries are not covalent-only and do not include omitted additive terms.",
+      "Unsupported table layouts remain unavailable.",
+      "No geometry-based acceptance or provider-independent statistics claim."
+    ],
+    "next": "Keep provider-statistics and actual weight-choice experiments separate; return to Q06 scientific qualification."
   }
 }

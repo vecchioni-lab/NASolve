@@ -1639,6 +1639,15 @@ distinct from the HL-bearing `refinement_data` input.
 
 ## AutoRefine contract
 
+Final geometry reporting accepts the legacy `bonds=… angles=…` summary and the
+recognized Phenix step table's explicit `end` row (C387). It preserves log order,
+requires the known column layout and finite nonnegative geometry, and does not
+substitute initial geometry, a candidate weight row or an unfinished step table.
+The numbers remain native pooled RMS deviations in Å/degrees; they are not
+covalent-only statistics and do not include omitted additive-provider terms.
+Existing R-factor parsing and acceptance/selection rules are unchanged. Historical
+reports remain immutable; replaying a log does not silently rewrite its checkpoint.
+
 AutoRefine separates immutable scientific inputs from evolving coordinates.
 Each round inherits an improved model from one selected parent checkpoint, but
 always retains the original STARANISO observations and original Free-R array.

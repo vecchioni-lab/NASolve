@@ -1154,6 +1154,43 @@ def _validate_terminal_geometry_protection(
     return record
 
 
+def _reported_geometry(log_text: str) -> tuple[float | None, float | None]:
+    """Read native summaries, not initial-only blocks or weight-search candidates."""
+    observations = [
+        (match.start(), (float(match[1]), float(match[2])))
+        for match in _BONDS_ANGLES.finditer(log_text)
+    ]
+    header = "stage r-work r-free bonds angles b_min b_max b_ave n_water shift".split()
+    in_table = False
+    offset = 0
+    for line in log_text.splitlines(keepends=True):
+        position = offset
+        offset += len(line)
+        if line.split() == header:
+            in_table = True
+            continue
+        if not in_table:
+            continue
+        stage, separator, fields = line.strip().partition(":")
+        if not separator or not re.fullmatch(r"(?:[0-9]+(?:_[a-z_]+)?|end)", stage.strip()):
+            in_table = False
+            continue
+        values = fields.split()
+        if stage.strip() != "end":
+            continue
+        in_table = False
+        if len(values) != len(header) - 1:
+            continue
+        try:
+            numbers = [float(value) for value in values]
+        except ValueError:
+            continue
+        bond, angle = numbers[2:4]
+        if all(math.isfinite(value) for value in numbers) and bond >= 0 and angle >= 0:
+            observations.append((position, (bond, angle)))
+    return max(observations, key=lambda item: item[0])[1] if observations else (None, None)
+
+
 def parse_refinement_statistics(log_text: str, model_text: str = "") -> dict[str, object]:
     pairs = [(float(a), float(b)) for a, b in _R_PAIR.findall(log_text)]
     # Logs repeat some summaries; preserve changes while collapsing immediate duplicates.
@@ -1162,11 +1199,10 @@ def parse_refinement_statistics(log_text: str, model_text: str = "") -> dict[str
         if series and series[-1]["r_work"] == work and series[-1]["r_free"] == free:
             continue
         series.append({"index": len(series), "r_work": work, "r_free": free})
-    geometry = [(float(a), float(b)) for a, b in _BONDS_ANGLES.findall(log_text)]
     clash_values = [float(value) for value in _CLASHSCORE.findall(log_text + "\n" + model_text)]
     final = series[-1] if series else None
     initial = series[0] if series else None
-    final_geometry = geometry[-1] if geometry else (None, None)
+    final_geometry = _reported_geometry(log_text)
     diagnostics: list[str] = []
     for line in log_text.splitlines():
         stripped = line.strip()

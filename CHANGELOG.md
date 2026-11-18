@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Read final geometry from Phenix step summaries (C387)
+
+- AutoRefine now reads bond/angle RMS deviations from the explicit final `end`
+  row of the recognized native step table, alongside the existing legacy format.
+  Initial-only blocks and weight-search candidates do not stand in for final
+  geometry; incomplete, malformed or nonfinite new-format results remain absent.
+- Preserve log order when formats coexist. These are Phenix's pooled native
+  summary values, not covalent-only statistics or complete additive-pair evidence.
+  No force, weight, acceptance, checkpoint selection or historical record changes.
+
 ### Carry explicit pair forces through the ordinary refinement owner (C386)
 
 - Add the Python-only `counted-xyz-fixed-unit-v1` control to AutoRefine. Require
