@@ -160,6 +160,16 @@ selector policy with Cedar/Hazel; do not repeat the passive comparison or add a
 new optimizer.
 
 
+The next classification seam should combine Cedar's source-backed component/link
+provenance, declared canonical-pair coverage and Alder's existing
+`nasolve.metal.native_terms.describe_native_terms` adapter. The latter declares
+explicit metal distances/angles against exact atom identities and targets; it is
+not a general covalent classifier and currently requires identity images.
+Hazel confirms the origin-0 eligibility filter used in private FT_Hg experiments
+has no maintained general implementation or broader qualification. Do not adopt
+it as a default, or label every term left after pair/metal matching as covalent.
+Unknown and conflicting ownership remain unclassified until source-backed.
+
 W131 adds the optional **cold pair-geometry report** outside the frozen refinement
 helper closure. The caller first obtains existing `NativePairRecipe.describe_terms`
 at exact force coordinates, `describe_compiled_pair_terms`, a v2
@@ -196,16 +206,17 @@ saved records or frozen v5/v6 helper bytes. It is not part of the native worker
 closure. Independent covalent/terminal ownership and density evidence remain
 future integration work with Cedar; no CLI/Doctor activation follows.
 
-Final-state capture is a separate qualification gate. The existing native writer
-runs while the counted contribution owner is active; the callback-free observer
-must not bypass that owner. The proposed read is after the counted owner closes,
-using the same returned model, exact force sites and frozen provider selection,
-with hierarchy **and** scattering digests joined to the completed writer. Never
-reinterpret a rounded PDB or treat a preflight summary as final geometry. Complete
-recipe attribution also calls the outer parallelity observer; those descriptive
-calls must remain distinct from optimizer/count-owner activity. New native helper
-behavior needs its own qualified policy while old v5/v6 bytes stay frozen. This
-paragraph is a planning boundary, not an implemented capture route.
+W133 independently qualifies Cedar C391's explicit v7 final-state capture with
+`execute_autorefine(..., counted_pair_geometry=True)` inside the existing bounded
+counted protocol. The writer runs while counted forces are active; observation
+occurs after that owner closes, using the same returned model and frozen provider
+selection. Hierarchy **and** scattering digests join the full-precision force-site
+attribution to the completed writer and exact PDB bytes. One descriptive energy-only
+kernel call is counted separately from optimizer activity. Old v3/v4/v5/v6 workers
+remain exact. A v7 descendant cannot silently drop its requested report; unsupported
+broader protocols still refuse. The cold controller reuses the compact evidence
+archive owner. This is an explicit Python API, not W122 CLI/Doctor activation or
+an accepted repair. See the [W133 audit](topostitch-periodic.md#w133--bind-complete-pair-measurements-to-the-actual-final-writer).
 
 C381–C385 now qualify explicit saved admission, registered same-intent
 continuation, existing C278 PHIL namespace copies and v6 native-written-model

@@ -1,13 +1,14 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-18**. **W131 adds provider-independent descriptive pair
-geometry; W130 audits chemistry observation beside counted pair forces.**
-The complete Willow suite passes. W132 resolves all 46 failures from the broader
-frozen C386 run through exact-source environment/prerequisite reruns; the original
-failed full attempt remains retained, and a final integration full run is pending. This is Willow's handoff, not project-wide
-status. W131 is an optional reporting adapter; numerical/runtime helpers remain
-W118. Shared controller changes belong to Cedar. These are not a whole-branch
-merge or supported repair release.
+Updated **2026-11-18**. **W133 independently qualifies Cedar C391's actual-final
+pair geometry report.** It reproduces the earlier refined PDB/full native state
+and 15 counted evaluations exactly, with a separately recorded descriptive read.
+The complete Willow suite passes; the final unfiltered C391 integration suite is
+running on a frozen detached clone. W132 retains the failed earlier full attempt
+and resolves every failure through exact-source prerequisites, not code changes.
+This is Willow's handoff, not project-wide status. Willow numerical/runtime helpers
+remain W118; Cedar owns the new explicit v7 controller/capture. Neither this work
+nor passing tests establishes a whole-branch merge or supported repair release.
 
 The backend can bind explicit periodic pair intent, apply the missing geometry
 terms during one qualified native refinement cycle, retain their original meaning
@@ -21,7 +22,8 @@ unqualified.** S04/S05/S06 and P01/P02 remain partial. The
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
-| W131 semantic pair readback | Complete physical pair measurements independent of provider, exact force-site join, native remainder explicit | Covalent/terminal classification, Cedar report integration and weighting policy |
+| W133 / C391 final pair readback | Actual final writer hierarchy/scattering/force-site joins, complete pair metrics, exact prior endpoint and counted lifetime | Broader protocols, semantic covalent/terminal classification and matched efficacy |
+| W131 semantic pair readback | Complete physical pair measurements independent of provider; native remainder explicit | Weighting policy and whole-model acceptance |
 | W130 / C388 chemistry coexistence | Source projection inheritance and two matched observer off/on controls, including one additive term | Poor-R mechanics only; native ordinary chemistry-descendant test and broader protocols remain open |
 | W129 geometry summaries | Same complete intended forces/coordinates, but native angle RMS changes by 0.000616° across provider splits | Actual selector effects, semantic geometry reporting and qualified weighting policy |
 | W128 / C386 ordinary owner | Explicit bounded Python request reuses AutoRefine, preserves original intent/frame and validates the written model before publication | Broader scientific protocols, CLI/Doctor activation and repair efficacy |
@@ -38,16 +40,16 @@ not another work queue; do not repeat them because this handoff is shorter.
 
 ## Next bounded work
 
-1. C386 full-run triage is complete (W132): process permissions and Git source
-   prerequisites resolve all 46 failures without code changes. Retain the failed
-   full attempt and distinguish the focused reruns from a clean full pass. Coordinate
-   one next unfiltered run on the final validated Cedar integration pin, with the
-   exact NARestraints source dependency declared; do not repeat obsolete gates.
-2. W131's optional cold reader is integrated in Cedar C390 with focused/installed
-   checks. Final-state capture still needs qualified actual-writer evidence; leave native
-   remainder unclassified until chemical ownership is explicit. Do not classify
-   covalent/terminal edits solely by origin IDs. W129's summary-dependence probe is
-   complete; Hazel separately owns actual selector tradeoffs. No new weight policy.
+1. Finish the one unfiltered full suite on C391
+   `8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6` with explicit exact NARestraints Git
+   source and process permissions. Runtime/test source is frozen during this run.
+   C386 failure triage is complete; do not repeat its obsolete diagnostic gates.
+2. W133 closes the bounded final-state pair-capture seam. Keep native remainder
+   unclassified until chemical ownership is explicit. Reuse Cedar's source-backed
+   component/link provenance, canonical pair coverage and Alder's explicit metal
+   declarations; never classify covalent/terminal edits solely by origin IDs.
+   Hazel's private origin-0 selector is not a maintained general classifier.
+   W129's summary-dependence probe is complete; no new weight policy follows.
 3. Keep the supported ordinary protocol explicit: one all-site XYZ cycle,
    fixed unit weights, ten iterations, one process and seed 1. `counted_frame="recipe"`
    is an explicit, recorded choice; do not generalize it into model-cell preference.
@@ -65,6 +67,11 @@ then separately qualified plane-only mismatch hypotheses. Automatic inference an
 large-bend repair follow later. No CLI/default activation follows from these docs.
 
 ## Validation and scientific interpretation
+
+- **W133 / C391:** 303 committed/wheel/installed files exact, 77 current /72 baseline
+  files unchanged on cold replay; actual 52.84s Phenix 2.2.1-6174 control retains
+  exact old PDB/native state and 15 counted calls. Peer installed 305 +24 subtests;
+  full integration running, not yet a pass. [Exact W133 evidence](topostitch-periodic.md#w133--bind-complete-pair-measurements-to-the-actual-final-writer).
 
 - **W132 / C386:** failed full 11,873 pass /46 fail /2 skip /281 subtests;
   exact same-source reruns 45 pass /1 fail, then 1 pass after supplying the exact

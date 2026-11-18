@@ -23,11 +23,13 @@ current instructions; other branches retain their own status and validation pins
   unclassified, and no weight policy changes. Complete Willow tests pass; broader
   C386 testing remains separate. W132 resolves all original C386 failures through
   exact-source environment/prerequisite reruns; the failed full attempt is retained,
-  and the next uninterrupted integration full run is still pending.
+  and the uninterrupted C391 integration full run is now running. W133 independently
+  verifies its actual-final pair report against writer state, unchanged prior endpoint
+  and counted lifetime; the descriptive kernel call is recorded separately.
   Earlier arithmetic, lifecycle and continuation evidence lives in the ledgers;
   do not repeat it merely because this current guide is shorter.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Next human update is W133;
+  [machine-readable source](topostitch-roadmap.json). Next human update is W134;
   do not restart completed probes merely because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

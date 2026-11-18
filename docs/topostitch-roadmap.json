@@ -4,7 +4,7 @@
   "updated": "2026-11-18",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05",
+  "audited_code_commit": "8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -445,7 +445,8 @@
         "W129 measures provider-dependent actual native geometry summaries at identical coordinates and complete intended forces: moving one angle/plane/parallelity changes pooled angle RMS by0.000616deg; standard-origin statistics remain exact. No selector decision or scientific benefit claimed.",
         "W130 independently audits C388 chemistry observer coexistence with counted pair forces, original projection inheritance and old-reader refusal; both native0-additive and1-additive matched controls retain exact within-pair output and owner state, without scientific acceptance.",
         "W131 optional cold pair-geometry reader joins existing full recipe attribution and v2 force-state/coverage records; complete physical pair metrics are provider independent and native remainder stays unclassified. Full/installed/native reporting qualification passes with frozen runtime helpers unchanged.",
-        "W132 completes unfiltered C386 regression and exact-source failure triage: all46 failures resolve with process permissions/Git source prerequisites, no product fix or new skip; failed full and diagnostic reruns remain distinct. W131 reporter is separately integrated as exact files in Cedar C390."
+        "W132 completes unfiltered C386 regression and exact-source failure triage: all46 failures resolve with process permissions/Git source prerequisites, no product fix or new skip; failed full and diagnostic reruns remain distinct. W131 reporter is separately integrated as exact files in Cedar C390.",
+        "W133 independently qualifies C391 actual-final pair capture after counted ownership closes: exact writer hierarchy/scattering/force-site joins, complete14-pair metrics, unchanged old endpoint/count lifetime and separately attributed energy-only read. Old runtime payloads remain exact; scientific acceptance remains open."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -454,7 +455,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Coordinate one final unfiltered suite on the final validated Cedar integration pin with explicit exact NAR source prerequisites; C386 failure triage is complete and must not be repeated. Qualify actual final-state pair attribution through the existing writer/closed counted-owner seam, retaining old runtime bytes and unclassified remainder. No phase/terminal/weight/inference activation from reporting. Matched efficacy, density/B09 and W122 activation remain open.",
+      "next_action": "Finish the one unfiltered full suite on frozen C3918ccec55b with exact NAR source prerequisites; do not repeat C386 failure triage or final-state capture probes. Then qualify semantic covalent/terminal ownership through existing source and explicit pair/metal declarations, and matched B10 efficacy before broader protocol or W122 activation. Density/B09 remain later gates; no origin-only classifier or private selector adoption.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -495,14 +496,15 @@
         "E_PROVIDER_GEOMETRY_SUMMARIES",
         "E_COUNTED_CHEMISTRY_COEXISTENCE",
         "E_SEMANTIC_PAIR_GEOMETRY",
-        "E_FULL_SUITE_PREREQUISITES"
+        "E_FULL_SUITE_PREREQUISITES",
+        "E_FINAL_PAIR_GEOMETRY"
       ],
       "last_audit": {
         "date": "2026-11-18",
-        "code_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05",
-        "human_update": 132,
+        "code_commit": "8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6",
+        "human_update": 133,
         "reviewer": "Linden",
-        "scope": "Completed full regression and same-source environment/prerequisite reproduction; no production change, latest full-pass or science acceptance claim."
+        "scope": "Independent installed/source/native cold audit of explicit final pair report; no new force protocol or scientific acceptance."
       }
     },
     {
@@ -2555,6 +2557,24 @@
           "indexed_files": 26
         }
       ]
+    },
+    "E_FINAL_PAIR_GEOMETRY": {
+      "date": "2026-11-18",
+      "code_commit": "8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6",
+      "human_update": 133,
+      "reference": "docs/topostitch-periodic.md#w133--bind-complete-pair-measurements-to-the-actual-final-writer",
+      "result": "303Git/wheel/installed files exact; actual52.84sPhenix2.2.1-6174 reproduces C386/C389 PDB/full native state and15counted calls. Cold reader and independent saved-measurement aggregation pass;77current/72baseline files unchanged. Complete14pairs,107native+17added;2465four-family remainder unclassified. One separate energy-only kernel call52to53;36gradient calls unchanged. Peer305installed+24subtests; complete suite running.",
+      "limitation": "One explicit fixed-unit XYZcycle/10iterations/oneprocess only; no new structural or R benefit, no whole-model/covalent/packing/density acceptance, no CLI/Doctor activation. W131 passive original coordinates differ from actual starting model; no cross-table before/after claim. Raw science excluded from Git.",
+      "kind": "independent_actual_final_pair_geometry_audit",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w133-final-pair-geometry-review-2026-11-18.tar.gz",
+          "sha256": "3a690080004974c907f491c9dc64a1a43e6dbd68562400a20103ecc01757ce0d",
+          "size": 28560,
+          "indexed_files": 9
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -2716,8 +2736,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 132,
-    "next": 133,
+    "current": 133,
+    "next": 134,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -3319,6 +3339,12 @@
         "title": "Resolve full-suite environment and source prerequisites",
         "state": "RECORDED",
         "code_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05"
+      },
+      {
+        "number": 133,
+        "title": "Bind complete pair measurements to the actual final writer",
+        "state": "RECORDED",
+        "code_commit": "8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6"
       }
     ]
   },

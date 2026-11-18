@@ -7041,3 +7041,75 @@ The next full run is deferred to the final validated integration pin, avoiding a
 second hour-long gate on an intermediate revision. Final-state capture remains a
 separate qualification; old preflight/metal-only records cannot be relabeled to
 satisfy W131's complete canonical-pair/v2 force-state contract.
+
+
+### W133 — Bind complete pair measurements to the actual final writer
+
+Cedar C391, `8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6`, adds explicit
+`counted_pair_geometry=True` to the bounded Python AutoRefine request. New v7
+captures the complete intended pair recipe **after the counted owner closes**,
+using the same returned native model and frozen providers. It verifies unchanged
+native inventory and joins exact force sites, hierarchy and scattering to the
+completed writer. The controller seals one compact capture and reuses W131's
+cold reader. Preflight values and rounded PDB reinterpretation are not final-state
+measurements. Old v3/v4/v5/v6 workers remain byte-identical; no ordinary default,
+CLI, force target, weight or provider-selection change.
+
+One **complete ordinary Phenix 2.2.1-6174 execution, 52.84s**, reproduces C386/C389's
+written PDB and full native state exactly. The counted owner retains **15 calls**.
+The separate descriptive read adds **one energy-only kernel call**: total 52→53,
+energy-only 16→17, gradient calls remain 36. Its maximum observed parallelity
+container grows from 12 to 14 because the report measures the complete recipe;
+that is not an extra optimizer evaluation or a force change.
+
+| Actual final pair metric | Count | RMS |
+| --- | ---: | ---: |
+| Pair-distance target deviation | 36 | 0.220180 Å |
+| Pair-angle target deviation | 60 | 4.780349° |
+| Per-plane RMS-distance summary | 14 planes | 0.118995 Å |
+| Native parallelity delta | 14 | 8.893697° |
+
+Coverage is **107 native +17 additive** requested terms across 14 pairs; **2,465**
+other terms in the four observed families stay unclassified. Covalent geometry,
+dihedrals/chirality, packing and density acceptance remain separate. The final
+pair report is not a whole-model quality score. W131's passive original reference
+and this control's actual starting coordinates differ, so these tables are **not**
+a before/after improvement comparison. The matched control outcome is exact old
+endpoint identity, with Rwork/Rfree **0.2251/0.2609** and an unselected **REVIEW**
+checkpoint; no new structural or diffraction improvement is claimed.
+
+Linden independently verifies all **303 Git/wheel/installed package files**, cold
+report replay with process launches and record writes blocked, wrong-written-PDB
+refusal, the actual state joins and exact prior counted owner. Independent
+aggregation reproduces the saved native physical summaries. All **77 current /72
+C386 baseline files and mtimes** remain unchanged. Rowan separately qualifies
+**305 installed tests +24 subtests**, historical cold reads, v7→v6 refusal before
+round allocation/process launch and preserved v7 continuation intent. The complete
+unfiltered suite is now running on a separate detached C391 clone with W132's
+exact NARestraints source prerequisites; it is not yet a completed full pass.
+
+Independent command: `PYTHONDONTWRITEBYTECODE=1 python audit.py --commit
+8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6`, using the existing controller environment
+and host process-inspection permission. No new native run is launched by the audit.
+Wheel SHA `1ace5cda8b6f53fdf3242ecd1e5c91be9c3d6f11b6b1f2e68406de26fb8dcb78`;
+PDB SHA `55d28cbd19bf01874a313ff9b10b2ed4209e9e0f9b23e738b189ed5eda1082eb`;
+report SHA `4428aafc7303331a7ae2ed3151cdbfc5bc29c561408fe6e25a33bd4f2f8109e7`.
+Capture archive is **15,492 bytes**, SHA
+`02528919cf4c00c9e053d4e0a9d9e087705a94af69c77e6014c8047f7753fc6b`.
+
+The relocated native root is `/private/tmp/c391-final-pair-geometry-nf7n7jjf-relocated`;
+its original location is absent. These paths are local provenance, not operational
+replay instructions. W133 auditor and receipts are retained in the verified local
+archive `NASolve/branch-artifacts/willow/w133-final-pair-geometry-review-2026-11-18.tar.gz`,
+SHA `3a690080004974c907f491c9dc64a1a43e6dbd68562400a20103ecc01757ce0d`,
+**28,560 bytes /9 indexed files**. Audit SHA
+`169a5952398bde0794ffcc008b302e0b6cbf1f5b05e383ee2e1b5a01b3b89193`.
+Raw science stays local and is excluded from Git.
+
+This closes the bounded actual-final pair-readback gap, not S06's scientific
+acceptance. Broader refinement protocols, semantic covalent/terminal ownership,
+matched B10 efficacy, calibrated B06 density and W122 user-facing activation remain
+open. Reuse Cedar's source graphs and Alder's explicit metal declarations when
+classifying chemistry; its private origin-0 selector experiment is not a general
+classifier. Existing map provenance/periodic sampling is a reuse candidate, not a
+phosphate-density threshold or a new density implementation.

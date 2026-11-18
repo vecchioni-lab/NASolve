@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W133 — Audit actual final-state pair geometry
+
+- Independently verify Cedar C391's explicit v7 capture and cold readback against
+  actual completed writer state, exact old endpoint and unchanged counted lifetime.
+- Record the separate descriptive kernel call, preserved old worker payloads,
+  relocated installed/native evidence and ongoing complete regression scope.
+- Willow documentation/evidence only; no force, CLI or scientific acceptance change.
+
 ### W132 — Record complete regression and resolve test prerequisites
 
 - Preserve the failed C386 full run and exact same-source diagnostic reruns:
