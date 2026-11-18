@@ -63,9 +63,45 @@ def fit_context(r_work, r_free):
                 note='Numerical conditions only; geometry, maps, Rfree gap and anomalous evidence still require review')
 
 
+def sphere_offsets(radius_A, spacing_A):
+    """Deterministic Cartesian offsets; bound the enclosing enumeration first."""
+    radius = _number(radius_A)
+    spacing = _number(spacing_A)
+    if radius <= 0 or spacing <= 0:
+        raise ValueError('Map sampling radius and spacing must be positive')
+    ratio = radius / spacing
+    if not math.isfinite(ratio):
+        raise ValueError('Map sampling exceeds bounded work')
+    extent = math.ceil(ratio)
+    if (2 * extent + 1) ** 3 > 100000:
+        raise ValueError('Map sampling exceeds 100000 candidate offsets')
+    return [(i*spacing, j*spacing, k*spacing)
+            for i,j,k in itertools.product(range(-extent, extent+1), repeat=3)
+            if i*i+j*j+k*k <= ratio*ratio]
+
+
 def _offsets():
-    return [(i*.5, j*.5, k*.5) for i,j,k in itertools.product(range(-3,4), repeat=3)
-            if i*i+j*j+k*k <= 9]
+    # Preserve the legacy capture policy and exact offset order.
+    return sphere_offsets(1.5, .5)
+
+
+def sample_grid(grid, unit_cell, xyz, *, radius_A, spacing_A):
+    """Sample an already sigma-normalized periodic grid, without changing it.
+
+    Callers own coefficient/phase/Free-R eligibility, normalization and provenance.
+    This helper only fractionalizes Cartesian positions and interpolates the
+    supplied grid. Own and common-position samples are separate caller choices.
+    """
+    if not isinstance(xyz, (list, tuple)) or len(xyz) != 3:
+        raise ValueError('Map sampling requires three finite Cartesian coordinates')
+    pos = tuple(_number(value) for value in xyz)
+    offsets = sphere_offsets(radius_A, spacing_A)
+    values = [_number(float(grid.eight_point_interpolation(unit_cell.fractionalize(
+        tuple(pos[i] + delta[i] for i in range(3)))))) for delta in offsets]
+    center = _number(float(grid.eight_point_interpolation(unit_cell.fractionalize(pos))))
+    return dict(center_sigma=center, sphere_min_sigma=min(values),
+                sphere_max_sigma=max(values), sphere_mean_sigma=math.fsum(values)/len(values),
+                samples=len(values))
 
 
 def summarize(evidence, native, sites, wavelength_A=None):
@@ -176,11 +212,9 @@ def capture(fmodel, native, sites, policy, wavelength_A):
         samples=[]
         for site in sites:
             atom=atoms[_canonical(site['key'])];pos=atom['xyz']
-            values=[float(grid.eight_point_interpolation(uc.fractionalize(tuple(pos[i]+delta[i] for i in range(3))))) for delta in _offsets()]
-            samples.append(dict(node_id=site['node_id'],key=atom['key'],xyz=pos,
-                center_sigma=float(grid.eight_point_interpolation(uc.fractionalize(pos))),
-                sphere_min_sigma=min(values),sphere_max_sigma=max(values),
-                sphere_mean_sigma=math.fsum(values)/len(values),samples=len(values)))
+            sampled=sample_grid(grid,uc,pos,radius_A=policy['sphere_radius_A'],
+                                spacing_A=policy['sample_spacing_A'])
+            samples.append(dict(node_id=site['node_id'],key=atom['key'],xyz=pos,**sampled))
         raw=path.read_bytes()
         rows.append(dict(type=typ,filename=filename,label=label,sha256=hashlib.sha256(raw).hexdigest(),size=len(raw),
             column_labels=restored[0].info().labels,

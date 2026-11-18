@@ -4,7 +4,6 @@ No native dependencies are imported during offline audit. This verifies saved
 provenance and bytes; it does not independently repeat a Fourier calculation.
 """
 import hashlib
-import math
 from pathlib import Path
 if __package__:
     from . import map_diagnostics as common
@@ -135,10 +134,11 @@ def capture(fmodel,native,groups,policy,wavelength_A):
     for g in groups:
         if not g['refine_fdp']:continue
         a=native['atoms'][g['indices'][0]];pos=a['xyz']
-        values=[float(grid.eight_point_interpolation(uc.fractionalize(tuple(pos[i]+delta[i] for i in range(3))))) for delta in common._offsets()]
-        samples.append(dict(node_id=g['id'],key=a['key'],xyz=pos,samples=len(values),
-            center_sigma=float(grid.eight_point_interpolation(uc.fractionalize(pos))),
-            sphere_min_sigma=min(values),sphere_max_sigma=max(values),sphere_mean_sigma=math.fsum(values)/len(values)))
+        sampled=common.sample_grid(grid,uc,pos,radius_A=policy['sphere_radius_A'],
+                                   spacing_A=policy['sample_spacing_A'])
+        samples.append(dict(node_id=g['id'],key=a['key'],xyz=pos,samples=sampled['samples'],
+            center_sigma=sampled['center_sigma'],sphere_min_sigma=sampled['sphere_min_sigma'],
+            sphere_max_sigma=sampled['sphere_max_sigma'],sphere_mean_sigma=sampled['sphere_mean_sigma']))
     raw=path.read_bytes()
     e=dict(protocol=PROTOCOL,policy=request(),endpoint_sha256=endpoint_digest(native),
         active_state_before=before,active_state_after=common._active_state(fmodel),

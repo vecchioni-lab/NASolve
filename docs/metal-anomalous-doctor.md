@@ -379,6 +379,31 @@ XYZ repeat and native MTZ readback confirm the new 0.97935-Angstrom headers
 without changing the refined endpoint or PHIL. This metadata correction does
 not recalculate any earlier f-double-prime result.
 
+## Shared bounded sampling of saved map grids
+
+`metal.map_diagnostics.sample_grid(grid, unit_cell, xyz, radius_A=...,
+spacing_A=...)` samples an already whole-cell sigma-normalized periodic grid.
+It returns the existing center/minimum/maximum/mean sigma values and sample count.
+`sphere_offsets(radius_A, spacing_A)` owns the deterministic Cartesian sphere;
+`_offsets()` retains the legacy 1.5 Å radius / 0.5 Å spacing / 123-point sequence.
+Finite positive parameters and coordinates are required, and the enclosing
+candidate cube is limited to 100,000 offsets before allocation or grid work.
+This bounds the helper, not an entire campaign or a crystallographic FFT.
+
+Both existing ordinary XYZ and frozen-fdp anomalous captures use this helper.
+Their phase/data eligibility, Free-R handling, coefficient generation, normalization,
+labels, filenames, capture defaults and evidence schemas remain unchanged. The
+helper belongs to the existing standalone-compatible module: direct Phenix worker
+imports do not acquire a new package dependency. New capture implementation hashes
+change truthfully with the source; old saved evidence remains readable.
+
+The caller chooses and records own-endpoint versus common-position coordinates.
+The helper does not load a coefficient file, choose a map, normalize/refit an
+Fmodel, infer phase authority or evaluate scientific acceptance. Ordinary ML
+saved maps may use this arithmetic only through their own explicit provenance
+and Free-R inclusion checks; this does not broaden the MLHL-only XYZ capture gate.
+It supplies no automatic ranking, atom count, occupancy inference or contour rule.
+
 ## Implemented completed-state XYZ map capture
 
 Use the API-only `capture_maps=True` argument to `nasolve.metal.xyz.run_xyz`

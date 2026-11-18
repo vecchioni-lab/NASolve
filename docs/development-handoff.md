@@ -73,6 +73,29 @@ prune schema-1 trials. Qualify native regeneration only after a suitable A01/A02
 parent exists. GUI work and experimental-input reconstruction remain separate
 post-merge milestones A05–A07.
 
+## A01/A06 inspection support — shared map sampling, 2026-11-18
+
+The duplicate ordinary/anomalous map interpolation now calls one bounded helper
+in the existing `metal.map_diagnostics` module. This preserves Phenix's bare-module
+imports and all capture phase/Free-R/coefficient policies. The legacy offset and
+request fingerprints are fixed by regression tests; no evidence schema changes.
+New source hashes are recorded normally. This is inspection infrastructure, not
+an A01 geometry repair or an A02 quantitation qualification.
+
+Before implementation, the new regression fails because `sample_grid` is absent
+(1 failed, 0.05 s). After implementation, the focused command passes **82 tests**
+(5.27 s), covering the sampler plus ordinary and anomalous map readers:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q tests/test_metal_map_sampling.py tests/test_metal_maps.py tests/test_metal_anomalous_maps.py --tb=short -p no:cacheprovider
+```
+
+Linden's independent source review found no blocking issue. Installed saved-map
+replay and the final pinned Alder full suite are pending at this source checkpoint;
+the latter satisfies the latest supplied repository contract and also covers A04.
+No new refinement or coefficient generation is requested. See the
+[shared sampling contract](metal-anomalous-doctor.md#shared-bounded-sampling-of-saved-map-grids).
+
 ## Integration and independent chemistry review, 2026-11-18 evening
 
 **A04 package prerequisite.** A read-only rehearsal combines pinned Cedar

@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Share bounded periodic map sampling
+
+- Reuse one explicit radius/spacing sampler for ordinary and anomalous map
+  captures, with finite inputs and bounded candidate enumeration. Keep the
+  exact legacy sampling neighborhood and standalone native import support.
+- Preserve phase/Free-R/coefficient policies, defaults, evidence schemas and
+  legacy readers. The helper adds no map selection or scientific acceptance.
+
 ### Record integration rehearsal and reproducible scientific figures
 
 - Document the pinned Cedar/Alder package rehearsal, affected-test outcomes,
