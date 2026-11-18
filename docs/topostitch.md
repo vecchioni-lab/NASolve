@@ -478,6 +478,17 @@ across the model and occupancy/ADP alternatives. Freeze calibration separately
 from later evaluation; do not use held-out Rfree to tune detection thresholds.
 Initially flag for review only, with no automatic deletion or displacement.
 
+**Existing map owner to reuse (18 November):** Hazel's maintained
+`nasolve.metal.map_diagnostics` and saved-coefficient audit provide a starting
+point for exact map/source hashes, coefficient labels, cell/symmetry and work-set
+membership, whole-cell sigma scaling, and periodic sampling. The private A72
+comparison checks own-endpoint and common-reference positions separately;
+these answer different questions and neither is independent of model phases.
+Reuse that provenance/sampling boundary through a shared interface rather than
+adding another map reader. Its Hg radii, sigma values and occupancy/scattering
+assumptions are not phosphate calibration. The backbone detector and motion
+policy remain unimplemented; this note does not advance B06 or S06.
+
 The later search must vary **where curvature sits**, not only the end transform:
 seed a bend using local density support, then consider bounded localized,
 distributed, distally shifted or staged curvature profiles. A sharper bend may
