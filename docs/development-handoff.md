@@ -50,6 +50,10 @@ not another work queue; do not repeat them because this handoff is shorter.
    declarations; never classify covalent/terminal edits solely by origin IDs.
    Hazel's private origin-0 selector is not a maintained general classifier.
    W129's summary-dependence probe is complete; no new weight policy follows.
+   A universal covalent classifier is not a prerequisite for explicitly labelled
+   fixed-weight canonical controls; it remains a separate gate before semantic
+   weight selection. Predeclare longer-coordinate budgets and matched controls
+   before widening the current ten-iteration scope.
 3. Keep the supported ordinary protocol explicit: one all-site XYZ cycle,
    fixed unit weights, ten iterations, one process and seed 1. `counted_frame="recipe"`
    is an explicit, recorded choice; do not generalize it into model-cell preference.

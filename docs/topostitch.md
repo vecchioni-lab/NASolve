@@ -130,6 +130,13 @@ Report before/after pair distances/angles/plane measures, collateral changes,
 maps and Rwork/Rfree where available. Restraint-satisfied geometry alone does not
 validate the chosen pairing, and no Rfree improvement is promised.
 
+Do not promote W37's first-guessed 5W6W AT/GC fixture to a healthy sticky-end
+control. It was an identity-image numerical probe, not a reviewed end assignment;
+a selected angle reached 175.96° and the declared large-step derivative gate stayed
+REVIEW. Retain that result and review exact sequence/image/contact identity before
+choosing B10 inputs. This does not diagnose the deposited structure or authorize
+loosening the earlier derivative threshold.
+
 The review UI should show which contacts/images and restraint families were
 requested, which actually ran, and the result or refusal. Retain the request
 through fresh checked parent rebinding and manual/Doctor ancestry. Off-path
