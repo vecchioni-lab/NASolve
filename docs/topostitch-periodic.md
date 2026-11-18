@@ -6901,3 +6901,89 @@ readback outside the frozen runtime helper closure. Reuse complete recipe
 attribution and exact coverage; leave the native remainder unclassified until
 Cedar supplies chemical ownership. No blanket origin-ID filtering or weight
 policy change follows from this audit. S06 and W122 activation remain partial/planned.
+
+
+### W131 — Report complete pair geometry across force providers
+
+Optional pure Python `topostitch_pair_geometry.review_pair_geometry` joins four
+existing caller-authenticated records: full recipe attribution, compiled term
+declarations, v2 native force-state observation and frozen provider selection.
+It checks the frozen input digest, source/recipe/atom identities, compiled binding,
+actual force-coordinate digest, complete coverage and measured term targets.
+It reuses existing validators; it does not evaluate native forces or launch tools.
+The new module sits outside the frozen native helper closure, whose nine relevant
+numerical/observation sources remain byte-identical to C388. No new runtime policy,
+CLI, ordinary default, selection rule or operational schema migration is introduced.
+The new schema-1 `topostitch-covered-pair-geometry` report is descriptive only;
+see the [API contract](topostitch.md).
+
+Physical summaries cover the full declared recipe independently of provider:
+unweighted pair-distance and angle deviations, RMS of per-plane RMS distances
+(not pooled per-atom RMS), and native parallelity delta RMS. Energy is retained
+separately. Exact unmatched native IDs/families/origins remain **UNCLASSIFIED**;
+`covalent_geometry=UNASSESSED`. No blanket origin-0/origin-4 chemistry assignment
+or future weight policy is implied.
+
+**One passive Phenix 2.2.1-6174 check, 15.13s**, uses the retained W110 input
+already verified in W129. It evaluates full recipe attribution once at actual
+force coordinates, then joins complete and partial native observations. Moving
+one angle, plane and parallelity term changes native/additive coverage
+**107+17→104+20**. The following complete intended-pair measurements stay exact:
+
+| Quantity | Count | RMS |
+| --- | ---: | ---: |
+| Pair-distance target deviation | 36 | 0.234286 Å |
+| Pair-angle target deviation | 60 | 4.856396° |
+| Per-plane RMS-distance summary | 14 planes | 0.127707 Å |
+| Native parallelity delta | 14 | 9.823554° |
+
+Pair energy stays **564.9181277185738** under its existing unnormalized sum.
+**2,465** other supported native terms remain unclassified in each observation;
+their ordinal IDs are local to each inventory and must not be treated as stable
+cross-provider atom identities. Coordinates/policy stay fixed; native proxy objects
+and temporary kernel binding are restored. No optimizer, selector, new PDB or
+scientific acceptance. These imperfect pair measurements are diagnostic outcomes,
+not thresholds or a new improvement claim.
+
+Source pin **`ead86be9f70280cb7c76e2df9416aadbea301463`**. Validation uses
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` and the existing controller interpreter:
+`python -B -m pytest -q -p no:cacheprovider tests/test_topostitch_pair_geometry.py
+ tests/test_topostitch_recipe.py tests/test_topostitch_pair_coverage.py
+ tests/test_topostitch_native_coverage.py` gives **203 passes**. The 17 new
+regressions first failed before the module existed. Unfiltered `python -B -m pytest
+-q -p no:cacheprovider` gives **2,050 passes +229 subtests, 105.61s** after an
+initial sandbox run gave **2,045 passes +229 subtests /5 explicit `/bin/ps`
+permission failures**. Both attempts are retained; no product code changed.
+
+Clean wheel install relocated after removing its build/source copy and original
+install path: **203 installed passes**, six entry-point helps and dependency check.
+All **92** tracked source/data files match the exact source commit; **89** are
+packaged. Three pre-existing ligand provenance notes are source-only. Verification
+initially expected those notes in the wheel and omitted two existing test-helper
+imports; the retained harness failures were corrected using the complete tracked
+test closure, without a product change. Wheel SHA
+`3a0d74cd237bcd6ea32185bc5a5ae413dfce5a1f532d9db343933806a85355bd`, **470,760 bytes**.
+
+The native probe combines installed C388
+`a67df6b7a70dad94d0f14e3cdabea5f8f5a9c21e` with only the installed new diagnostic
+module via a declared package search path; no copied or replaced frozen helper.
+It verifies **305 software /5 scientific input hashes**. Plan SHA
+`94ede7748740540977763757643a71526655070b62f5e30d443e5275695ce03e`;
+result SHA `07c787a9d1ab7fe06a93af6acf8acdb1a6cc98f893139bf6d8351056a43dea62`.
+Cold audit reproduces both reports with native launches blocked, independently
+recomputes bond/angle RMS from measurements, and preserves saved files. Audit SHA
+`87d62b9ba2e5a94d04ec02473f8388719c35b6bf5f11b8e3c3f2ebc7facb0a46`.
+
+Local runner/audit/package receipt: `/private/tmp/willow-w131-pair-geometry/`.
+Historical native launch: controller Python `run-probe.py plan.json native`,
+300s cap, one numerical thread, existing process ownership and verified shutdown.
+The repository-anchored local archive is
+`NASolve/branch-artifacts/willow/w131-pair-geometry-2026-11-18.tar.gz`, SHA
+`0bd0f0ba3316e8edec5bd11ecd3874fedf6e1c6a45807a2e666e3ea0d4adcb4b`,
+**271,845 bytes /28 indexed files**, verified after expansion. This is forensic
+local evidence, not a portable replayable campaign. Raw science is not committed.
+
+Next: Cedar integration of this pure reporting seam, explicit ownership of
+covalent/terminal/metal terms and full C386 failure diagnosis. W129's native summary
+comparison need not be repeated. Automatic weighting, density, matched efficacy
+and W122 user-facing activation remain separate gates; S06 remains partial.

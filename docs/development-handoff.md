@@ -1,11 +1,12 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-18**. **W130 audits chemical observation beside counted
-pair forces; W129 establishes provider-dependent native geometry summaries.**
-C386 full regression is still running with failures to diagnose. This is Willow's
-handoff, not project-wide status. Numerical Willow source remains W118; ordinary
-owner and chemistry integration belong to Cedar through C388. These audits are
-not a whole-branch merge or supported release.
+Updated **2026-11-18**. **W131 adds provider-independent descriptive pair
+geometry; W130 audits chemistry observation beside counted pair forces.**
+The complete Willow suite passes; the much broader frozen Cedar C386 suite is
+still running with failures to diagnose. This is Willow's handoff, not project-wide
+status. W131 is an optional reporting adapter; numerical/runtime helpers remain
+W118. Shared controller changes belong to Cedar. These are not a whole-branch
+merge or supported repair release.
 
 The backend can bind explicit periodic pair intent, apply the missing geometry
 terms during one qualified native refinement cycle, retain their original meaning
@@ -19,6 +20,7 @@ unqualified.** S04/S05/S06 and P01/P02 remain partial. The
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
+| W131 semantic pair readback | Complete physical pair measurements independent of provider, exact force-site join, native remainder explicit | Covalent/terminal classification, Cedar report integration and weighting policy |
 | W130 / C388 chemistry coexistence | Source projection inheritance and two matched observer off/on controls, including one additive term | Poor-R mechanics only; native ordinary chemistry-descendant test and broader protocols remain open |
 | W129 geometry summaries | Same complete intended forces/coordinates, but native angle RMS changes by 0.000616° across provider splits | Actual selector effects, semantic geometry reporting and qualified weighting policy |
 | W128 / C386 ordinary owner | Explicit bounded Python request reuses AutoRefine, preserves original intent/frame and validates the written model before publication | Broader scientific protocols, CLI/Doctor activation and repair efficacy |
@@ -39,12 +41,11 @@ not another work queue; do not repeat them because this handoff is shorter.
    observed) on frozen C386
    `d5c2fb7be944aae5e048903e1de495c67baa4b05`; record scope, result and any
    subsequent focused changes separately. This is not a whole-branch merge.
-2. W129's passive full/partial comparison is complete: do not repeat it. Coordinate
-   semantic geometry readback with Cedar/Hazel before qualifying automatic weights.
-   Native summaries depend on provider placement even with equivalent complete
-   forces; no changed actual weight choice is established by W129. Preserve
-   legitimate covalent/terminal edits sharing the native edits origin. Hazel's
-   separate selector experiment owns actual weighting decisions and tradeoffs.
+2. W131's optional cold reader is implemented and installed/native-qualified.
+   Integrate the existing attribution/observation records with Cedar; leave native
+   remainder unclassified until chemical ownership is explicit. Do not classify
+   covalent/terminal edits solely by origin IDs. W129's summary-dependence probe is
+   complete; Hazel separately owns actual selector tradeoffs. No new weight policy.
 3. Keep the supported ordinary protocol explicit: one all-site XYZ cycle,
    fixed unit weights, ten iterations, one process and seed 1. `counted_frame="recipe"`
    is an explicit, recorded choice; do not generalize it into model-cell preference.
@@ -63,6 +64,12 @@ large-bend repair follow later. No CLI/default activation follows from these doc
 
 ## Validation and scientific interpretation
 
+- **W131 / `ead86be9`:** 203 focused/installed; complete Willow 2,050 tests +229
+  subtests after five sandbox process-inspection failures were preserved and the
+  full suite repeated with permission. Six installed command helps, dependency
+  check, exact committed-source match. One 15.13s passive Phenix 2.2.1-6174
+  report comparison and cold arithmetic audit; no fit or selector change.
+  [Exact W131 evidence](topostitch-periodic.md#w131--report-complete-pair-geometry-across-force-providers).
 - **W130 / C388:** 377 distinct installed passes +24 subtests across an initial
   panel and 12 missing-fixture retries. Independent 299-source and relocated cold
   audit; actual matched off/on native controls with zero/one additive term.

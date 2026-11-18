@@ -18,10 +18,14 @@ current instructions; other branches retain their own status and validation pins
   semantic geometry classification and broader weighting remain separate gates.
   W130 audits C388 passive chemistry coexistence and source-projection inheritance;
   native controls remain mechanics evidence with poor R values.
+  W131 adds a cold descriptive pair-geometry reader with unchanged frozen numerical
+  helpers: complete pair metrics are provider independent, native remainder stays
+  unclassified, and no weight policy changes. Complete Willow tests pass; broader
+  C386 testing remains separate.
   Earlier arithmetic, lifecycle and continuation evidence lives in the ledgers;
   do not repeat it merely because this current guide is shorter.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Next human update is W131;
+  [machine-readable source](topostitch-roadmap.json). Next human update is W132;
   do not restart completed probes merely because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed
