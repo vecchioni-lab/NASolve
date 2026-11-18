@@ -7,6 +7,10 @@ native opt-in skips**, in **3226.56 s**. All 1,416 tracked test-checkout files a
 exact NARestraints `a9264f9e` remain unchanged; the owned test process is stopped.
 That pin remains the last complete gate; C406 adds an explicit non-triple observation option
 and passes focused, installed and matched native checks; its full gate is running.
+At 22:54 UTC the sole owned suite is still active with no final result; do not
+start another suite or retire its active files. Linden retains exact process and
+continuation records under the existing W144 C406 full-suite evidence root.
+Verification and optional owned scratch cleanup follow only after known completion.
 Relocated installed checks and Hazel's independent cold review also pass. C402's
 prior separate full gate passed 12,016 tests with the same subtests/skips. Neither
 software pass changes the scientific REVIEW or closes Q06.

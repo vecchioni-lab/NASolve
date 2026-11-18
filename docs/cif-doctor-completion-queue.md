@@ -8,8 +8,11 @@ record what was known then. They do not create a second set of instructions.
 **At a glance:** Q04/Q05 preparation, recovery and handoff are complete for the
 recorded explicit route. C402–C404 close the later cleanup gap, demonstrate a
 fresh ordinary PDU refinement child, and add source-selected final trigonal
-measurements. Final candidate `4bfffbca` passes 12,032 tests and 293 subtests,
-with two existing native opt-in skips. Q06 remains
+measurements. C405 separates accumulated substituent bending from local shape;
+C406 extends explicit observation to graph-bound non-triple modified sites and
+passes source, installed and matched native checks. Its full gate is running at
+`58965920`; the last completed full pin `4bfffbca` passes 12,032 tests and 293
+subtests, with two existing native opt-in skips. Q06 remains
 open because delivery and measurement do not establish satisfactory PDU/DF shape
 under refinement. Next use the existing whole-substituent evidence to define the
 remaining scientific decision; do not repeat delivery, derivative or weight sweeps.
@@ -276,8 +279,8 @@ separate these geometric effects; they do not attribute forces. Both results
 retain REVIEW; the completed plane and weights are identical. Do not repeat the
 eligibility intervention or describe both individual bends as worsening.
 
-The next bounded tool step is explicit non-triple site observation through the
-same refinement owner (C406), not another PDU optimizer or bespoke DF target.
+C406 implements explicit non-triple site observation through the same refinement
+owner, without another optimizer or a bespoke DF target.
 Source/installed checks pass at `58965920`; matched actual one-cycle DF observation
 off/on preserves identical PDB/state/correction counts. Relocated cold read and
 old-reader refusal pass. The full gate is running; the 1.930 Å attachment in this
@@ -494,7 +497,7 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Complete for recorded alternatives, selected-model phasing, Coot, cold inspection and the ordinary five-cycle refinement handoff. Actual chemical survival/effective restraint behavior is Q06; no default activation or historical migration. |
-| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C391 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control, chemical observation and actual final pair measurements. C392/C395 record real PDU weight fallback and actual source membership; C396 changes screening privately but does not repair the model; C393/W134 qualify combined observation and ordinary canonical continuation without claiming chemical repair. C400 qualifies an explicit longer control and matched native/zero/full pair mechanics; all arms stop early and chemical acceptance remains open. Wider protocols and achieved PDU/DF geometry plus held-out survival remain open. Mechanics or a readable dictionary alone is insufficient. |
+| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C391 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control, chemical observation and actual final pair measurements. C392/C395 record real PDU weight fallback and actual source membership; C396 changes screening privately but does not repair the model; C393/W134 qualify combined observation and ordinary canonical continuation without claiming chemical repair. C400 qualifies an explicit longer control and matched native/zero/full pair mechanics; all arms stop early and chemical acceptance remains open. C403–C406 qualify fresh ordinary PDU delivery and source-selected actual local geometry, with explicit broader observation; these do not repair the residual strain. Wider protocols and achieved PDU/DF geometry plus held-out survival remain open. Mechanics or a readable dictionary alone is insufficient. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |
