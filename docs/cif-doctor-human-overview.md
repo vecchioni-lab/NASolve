@@ -5,7 +5,7 @@ chemical dictionaries preserve the intended molecule, whether Phenix can read
 the resulting restraints, and whether a proposed repair changes only what it
 should. It works around ReadySet and NARestraints; it does not replace them.
 
-The explicit short-refinement route now measures intended base-pair distances,
+The explicit bounded-refinement route now measures intended base-pair distances,
 directional angles, planes and parallelism in the actual final native model,
 including declared crystallographic images. It checks that those measurements
 belong to the model Phenix wrote and reuses the original restraint inventory in a
@@ -57,7 +57,9 @@ contacts remain long. All three stop early with line-search errors. Rwork and fi
 clashscore are worse with the complete recipe, despite a slightly lower Rfree.
 This demonstrates delivery and a physical effect, not convergence or PDU/DF repair.
 The explicit longer control has passed its full software gate and is integrated;
-next carry corrected PDU through genuine preparation and assess its refined geometry.
+fresh automatic PDU preparation now reaches a genuine review checkpoint and
+reproduces the earlier corrected model/restraints. The missing next proof is its
+ordinary refinement descendant and achieved geometry, not another manual PDU fix.
 
 These are explicit, source-qualified controls, not new normal settings or universal
 modified-residue support. New restraint files retain their identity through the

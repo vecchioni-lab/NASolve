@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-18, C400 matched pair controls and longer-control integration — Rowan**.
+Updated **2026-11-18, C401 fresh automatic PDU preparation — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Integrated code **`4f7aeb84`**
 is source/test/packaging-identical to full-tested candidate **`d8656b22`**:
 **12,008 passed, 2 existing native opt-in skips, 293 subtests passed** in 3581.07 s,
@@ -40,13 +40,24 @@ a byte-verified local archive preserve both attempts. Final clashscore comes fro
 PDB REMARKs: the original runner's log-only value 32.28 is INITIAL and remains
 unchanged, with a separate hash-bound correction. No runtime parser fix is needed.
 
-**Next — publish corrected PDU through genuine preparation, then test survival.**
-C327's corrected definitions have no ordinary checkpoint authority. Do not replace
-C303's old CIFs or manufacture historical ancestry. Reuse genuine fresh AutoMR /
-PostMR preparation with the explicit bond-target request, then its unselected
-refinement descendant. Determine whether fresh construction reproduces the intended
-chemistry before spending another refinement run. Q06 still requires useful PDU/DF
-geometry after Phenix and broader protocol qualification.
+**C401 complete — corrected PDU now has genuine ordinary preparation ancestry.**
+A fresh A:PDU mechanics scaffold passes AutoMR/Phaser, Coot/NARestraints, new source
+and plane-support generation, automatic source/library bond discovery, qualification,
+ReadySet and initial REVIEW publication. No retained C327 snapshot/support was supplied.
+The published model, five ordered PHIL files and corrected PDU dictionary exactly
+reproduce C327's earlier diagnostic inputs. The discovered terminal C5B–C5M single
+bond is 1.470 Å; the distinct C5A≡C5B target remains 1.174 Å. Source-selected C5
+plane coverage is present. This closes fresh preparation/publication, not a new
+shape improvement or refinement survival. The substituted scaffold's observations
+are not claimed to come from a PDU crystal. Original PDU:PDU/B:1 intent stays separate.
+
+**Next — carry that exact review result into ordinary refinement.** Preserve its
+real ancestry, full restraints, D:1 protection and original Free-R. Do not recreate
+C303/C327 history or repeat old weight/derivative diagnoses. Existing C338 physics
+remains relevant because the newly prepared chemical inputs reproduce the older
+control. Inspect the exact delivered native chemistry and resulting geometry;
+Q06 useful PDU/DF chemistry and broader protocols remain open. The v4 automatic
+working-copy cleanup holdover is recorded in the single queue; runtime is unchanged.
 
 **C397–C399 diagnostic branch is complete.** Actual-state FFT score/force checks
 fail the sampled agreement test while direct calculation agrees; matched fresh
@@ -98,9 +109,9 @@ remain in the existing ledger; private models, maps and diagnostic traces stay l
    Native convergence and physical chemistry remain distinct. Do not infer lost
    PDU restraints: C396 retains the captured C5A plane and local definitions.
 2. C400's explicit longer control and native/zero/full matrix are complete.
-   Carry corrected PDU through genuine new preparation; verify requested chemistry,
-   full restraints and checkpoint lineage before its ordinary refinement. Reuse
-   the existing owners; no retrospective authority for diagnostic copies.
+   C401 now supplies genuine fresh automatic preparation. Use its exact REVIEW
+   checkpoint for the ordinary refinement descendant; preserve the original
+   observations, Free-R and end intent. Reuse existing owners.
 3. Close ordinary combined-descendant coverage when that route is needed, using the
    existing process/checkpoint owners. No parallel recovery engine or repeated
    copies of frozen inventories. Keep density fitting separately gated on explicit
@@ -141,9 +152,9 @@ owners/parameters; no accidental imported-test collection. No tests removed with
 demonstrated redundancy. Current build copies still serve historical-reader/native
 qualification and are retained. Unrelated local material and peer work are untouched.
 
-The eight-file local science checkout (about 1.1 MB) is
+The eight-file local science checkout (about 1.2 MB) is
 `ScienceCheckouts/Rowan/2026-11-18/review.html` under the sibling GitHub root. It shows
-the matched pair-control effect, PDU geometry and weight choices, with links to retained
+fresh automatic PDU preparation, the matched pair-control effect and weight choices, with links to retained
 evidence rather than duplicated raw datasets. It links the existing Linden and
 Hazel checkouts, including independent continuation/full regression and the separate
 DF/metal stopping-event diagnosis and its separately labelled A85 normalization

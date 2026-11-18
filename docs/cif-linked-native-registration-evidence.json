@@ -114894,5 +114894,262 @@
       "Same-coordinate count jumps account for scalar changes, not the complete cause of early stopping."
     ],
     "next": "Genuine fresh corrected-PDU preparation and ordinary refinement descendant; achieved PDU/DF chemistry, then mixed/held-out challenges. No duplicate derivatives/weight sweeps."
+  },
+  "fresh_automatic_pdu_publication_2026_11_18": {
+    "milestone": "C401",
+    "author": "Rowan",
+    "source_commit": "a6dbd5c9ac619f23c9cce7d4fa3a006e72c61cfc",
+    "runtime_code_commit": "4f7aeb84b8762b3bd4ebcc1741c6b1116443632a",
+    "status": "FRESH_AUTOMATIC_PREPARATION_PUBLICATION_COLD_PASS",
+    "scientific_acceptance": false,
+    "before": "Corrected C327/C333 diagnostic inputs had no ordinary publication ancestry; automatic discovery from prior qualified snapshots did not prove new generation/publication.",
+    "after": "Fresh ordinary construction, automatic plane/bond repair, checked ReadySet and initial REVIEW checkpoint reproduce the corrected diagnostic chemical input.",
+    "native": {
+      "Phenix": "2.2.1-6174",
+      "Coot": "1.3.3 revision-count0",
+      "execution": "ACTUAL_PREPARATION_COMPLETE_NO_REFINEMENT",
+      "seconds": 928.0209583750111,
+      "all_recorded_processes_stopped": true,
+      "source_files_unchanged": 5
+    },
+    "chemistry": {
+      "terminal_single": {
+        "atoms": [
+          "C5M",
+          "C5B"
+        ],
+        "comp_id": "PDU",
+        "type": "single",
+        "value_dist": "1.47",
+        "value_dist_esd": "0.020"
+      },
+      "distinct_triple": {
+        "atoms": [
+          "C5B",
+          "C5A"
+        ],
+        "comp_id": "PDU",
+        "type": "triple",
+        "value_dist": "1.174",
+        "value_dist_esd": "0.020"
+      },
+      "published_model_sha256": "636223e4edb19caf32e6bf70799f20d008c8ae45a65cc83a727bf1a3d38203d3",
+      "ordered_phil_sha256": [
+        "ff9ab0725ea676522498c291672841fc3aa65d65408303dae00fa6cf8cd39c35",
+        "25705dc3c631b9050233a292e6a5438864b652bb58bb73e85525fa2832a353f6",
+        "adf95b32ae01b5758f2ef27fbea796d74a70f77b816ffda9eddf14610b400e21",
+        "f3335ef45fe26e5916c8c25b4f83e350ac3ec05184d466225d340c9f1f122872",
+        "2b8d27f764f34a34b9b70b99affa6137e24d84129f2add139dc17bb82b939bee"
+      ],
+      "dictionary_sha256": [
+        "e0a3342167cdc6a391cde5470de9b4b2cdb59acb89fa126cb8d2e14c5b32fe8b",
+        "d0ac98cc93c4fb5aa5d89e17217e99c894b8aa4b80b27d66747a001520b5e713"
+      ],
+      "selected": "readyset_checked_model",
+      "checkpoint": {
+        "id": "postmr",
+        "status": "REVIEW",
+        "current": "postmr"
+      },
+      "published_geometry": {
+        "chi_atoms": [
+          "O4'",
+          "C1'",
+          "N1",
+          "C2"
+        ],
+        "chi_degrees": -109.04357012327164,
+        "triples": [
+          {
+            "atoms": [
+              "C5A",
+              "C5B"
+            ],
+            "length_A": 1.189432637857226,
+            "angles": [
+              {
+                "atoms": [
+                  "C5",
+                  "C5A",
+                  "C5B"
+                ],
+                "degrees": 176.40104309719146
+              },
+              {
+                "atoms": [
+                  "C5M",
+                  "C5B",
+                  "C5A"
+                ],
+                "degrees": 176.88499926052626
+              }
+            ]
+          }
+        ],
+        "terminal_single_A": 1.4579869683916937,
+        "descriptive_ring_plane": {
+          "atoms": [
+            "N1",
+            "C2",
+            "N3",
+            "C4",
+            "C5",
+            "C6"
+          ],
+          "terminal_offset_A": 0.09429707530185394,
+          "rms_A": 0.0009105830378355971
+        },
+        "declared_chirality_measurements": [
+          {
+            "center": "C4'",
+            "ordered_neighbors": [
+              "C3'",
+              "C5'",
+              "O4'"
+            ],
+            "volume": -2.407182246000002,
+            "declared_sign": "negativ"
+          },
+          {
+            "center": "C3'",
+            "ordered_neighbors": [
+              "O3'",
+              "C2'",
+              "C4'"
+            ],
+            "volume": -2.7281183260000006,
+            "declared_sign": "negativ"
+          },
+          {
+            "center": "C1'",
+            "ordered_neighbors": [
+              "O4'",
+              "N1",
+              "C2'"
+            ],
+            "volume": -2.5826020009999944,
+            "declared_sign": "negativ"
+          }
+        ],
+        "parent_chi_difference_deg": 0.006111854170910647
+      },
+      "selected_plane_centres": [
+        "C2",
+        "C4",
+        "C5"
+      ]
+    },
+    "evidence": {
+      "plan.json": {
+        "anchor": "C401-native-root",
+        "relative_path": "plan.json",
+        "sha256": "e35a25735128a4adc07301d5b72bd2183413cb09d74eafb0ebf3e55b4fc701c3",
+        "bytes": 50198
+      },
+      "execution.json": {
+        "anchor": "C401-native-root",
+        "relative_path": "execution.json",
+        "sha256": "5e7de2ea54d5282cacda407fe9e3c14b322b76bb13f27cbaab009ad814f4069d",
+        "bytes": 238
+      },
+      "published-result.json": {
+        "anchor": "C401-native-root",
+        "relative_path": "published-result.json",
+        "sha256": "1374fd52115daba49c2988f77cc3d90a2f98a8173965046274dea59406852e73",
+        "bytes": 3023
+      },
+      "source-check.json": {
+        "anchor": "C401-native-root",
+        "relative_path": "source-check.json",
+        "sha256": "a344b81ddcd45bb29b2c5ed37771d663056ccfb0ec62caaf4e3b51471d4d7acc",
+        "bytes": 20
+      },
+      "readback.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c401-fresh-pdu-preparation-02/readback.json",
+        "sha256": "1c71296ad6e08432a8c220c6daac69b958ce6ba9c0a3c370290bbb7d2e3f9358",
+        "bytes": 68359
+      },
+      "versions.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c401-fresh-pdu-preparation-02/versions.json",
+        "sha256": "cb6fd6ae48d202d889b8fc87c55b10ff609a84e8102787328597142f75ce5912",
+        "bytes": 466
+      },
+      "storage-followup.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c401-fresh-pdu-preparation-02/storage-followup.json",
+        "sha256": "8e39732ab4a26c61557809d6b7a4d6b38ad4d45a49c363512e30cab44f2e559d",
+        "bytes": 1386
+      },
+      "w138-cedar-integration-review-2026-11-18.json": {
+        "anchor": "local-branch-artifacts",
+        "relative_path": "willow/w138-cedar-integration-review-2026-11-18.json",
+        "sha256": "b25e40d1fe67bd84f6fd76417a4739bb4b94b98c292d824c5de5d5e0fb802a64",
+        "bytes": 663
+      }
+    },
+    "unchanged_cold_files": 1048,
+    "cold_seconds": 143.05367816600483,
+    "validation_commands": [
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c401_execute_02.py",
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c401_readback.py",
+      "/opt/homebrew/bin/coot --version",
+      "git diff --check",
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c401_archive.py"
+    ],
+    "failed_setup": "First isolated launch refused missing explicit installed MR_frames before run allocation/Phaser. Root and exact failure retained; corrected launch used a fresh root and declared approved frame directory/sequence hash.",
+    "compatibility": "No runtime/default/schema change. Uses existing explicit automatic plane/bond Python route and publication owner. C400 full gate remains the last full-tested source.",
+    "generated_artifacts": "Only compact metrics/hashes committed; models, reflections, logs, traces, native roots and archives remain local.",
+    "remaining": [
+      "Ordinary corrected-PDU refinement descendant and actual chemical survival.",
+      "v4 automatic publication skips supported working-copy retirement; narrow follow-up recorded, no active code change.",
+      "No refined structure, original PDU:PDU symmetry-end resolution, mixed scaffold or broad ligand acceptance."
+    ],
+    "archive": {
+      "anchor": "cedar-local-artifacts",
+      "relative_path": "c401-fresh-preparation-2026-11-18.tar.gz",
+      "bytes": 38366530,
+      "sha256": "19b2c8c96098d94e428df25dfc3ca34f23f0180077f4c5d6131f3fbac3cf9731"
+    },
+    "raw_archived_bytes": 258419441,
+    "anchors": {
+      "C401-native-root": {
+        "archive": {
+          "anchor": "cedar-local-artifacts",
+          "relative_path": "c401-fresh-preparation-2026-11-18.tar.gz",
+          "bytes": 38366530,
+          "sha256": "19b2c8c96098d94e428df25dfc3ca34f23f0180077f4c5d6131f3fbac3cf9731"
+        },
+        "archive_prefix": "fresh-preparation",
+        "local_root_historical_provenance": "/private/var/folders/48/tyw5h90d2qgct97z37rncmsr0000gp/T/c401-fresh-pdu-_3fkqa2n"
+      }
+    },
+    "independent_review": {
+      "anchor": "local-branch-artifacts",
+      "relative_path": "Alder/coordination-c401-preparation-review-20261118.json",
+      "sha256": "b7badb227505048b670f821380afa9903a400b2614ae83979016d6a1318eb8a6",
+      "checks": 57,
+      "method": "Direct saved-record/digest/input/resource and coordinate checks; no native calls or duplicate complete-request replay."
+    },
+    "reader_correction": "First cold analysis read the ordinary registry/construction/exact result, then incorrectly expected explicit bond_targets. The automatic result correctly uses its hash-bound bond_discovery reference. Corrected cold reader passes; native preparation was not repeated.",
+    "storage_observation": {
+      "native_root_files": 1048,
+      "native_root_bytes": 250794627,
+      "attempt_files": 862,
+      "attempt_bytes": 235869488,
+      "artifact_policy": "cif-complete-request-partitioned-artifacts-v4",
+      "automatic_retention_invoked": false,
+      "manual_retirement_performed": false,
+      "reason": "Leave completed scientific evidence unchanged at cutoff; use existing verified retirement owner in the narrow queued publication cleanup follow-up."
+    },
+    "science_checkout": {
+      "anchor": "cedar-local-artifacts",
+      "relative_path": "c401-fresh-pdu-preparation-02/science-checkout.json",
+      "sha256": "209a1cef7fb48ddf6368e7a0959ad9e745d12726101fd43dcecc914924301c30",
+      "files": 8,
+      "total_bytes": 1167486,
+      "links_checked": 42
+    }
   }
 }

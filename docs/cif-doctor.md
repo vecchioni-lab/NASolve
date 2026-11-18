@@ -287,6 +287,9 @@ same final model/CIF as the prior explicit route; native derivative/ReadySet and
 archived relocation checks pass. Focused validation: 658 passes, plus 52 from a
 fresh wheel; no full suite. Exact scope and commands are in the maintained handoff
 and `automatic_preparation_bond_discovery_2026_11_16` evidence entry.
+C401 subsequently completes fresh ordinary source/plane generation, automatic bond
+discovery, ReadySet and initial REVIEW publication, reproducing the earlier corrected
+PDU model/restraints. Its ordinary refinement survival remains a separate gate.
 
 ### Declared linked-site geometry readback (C334)
 

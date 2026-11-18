@@ -28,7 +28,7 @@ C366 now forwards those exact choices before Coot in ordinary PostMR; actual mix
 construction and cold request readback pass. Return to Q06 achieved geometry and
 the shared counted-contribution owner boundary. C357 retention findings remain local.
 
-**Q06 active boundary — preserve intended pair forces through repeated refinement.**
+**Q06 active boundary — carry corrected chemistry through ordinary refinement.**
 C368–C378 qualify the direct owner, working frame, prepared providers, single native
 cycle/writer and frozen source set. C379 preserves honest preflight refusal; C380
 packages the unchanged maintained W118 library. Reuse these completed boundaries.
@@ -139,8 +139,8 @@ precision. The 51 distances contribute 98.22% of final pooled bond delta². Keep
 terminal angles distinct; unmatched rows remain unattributed. Final-state evidence
 cannot be backfilled into weight trials. C395 supplies exact actual-trial membership;
 C396 separately tests the narrow pair-excluded screening rule below without adopting
-it. A predeclared longer fixed-weight control is
-a separate qualification and need not wait for a universal classifier.
+it. C400 separately qualifies the explicit longer fixed-weight control and its
+matched canonical matrix; it does not require or supply a universal classifier.
 
 **C393 / W134 — actual measurement coexistence and continuation.** C393 adds
 final pair capture beside the PDU chemical observer and one supplied parallelity
@@ -208,13 +208,29 @@ the 100 cap. Same-coordinate scalar jumps are denominator-driven, not proof of t
 whole stopping cause. Neither convergence nor modified-residue survival is accepted.
 C400's log-only initial clashscore is superseded descriptively by its separate
 final-PDB amendment; immutable execution evidence is not rewritten.
-Corrected PDU now needs genuine ordinary preparation ancestry, not a retrospective
-checkpoint for C327 diagnostics. Verify new construction and exact restraints first.
+C401 now supplies genuine fresh ordinary preparation: AutoMR/Phaser, Coot/NAR,
+new source/plane generation, automatic bond discovery, checked ReadySet and initial
+REVIEW publication all complete. Model, ordered PHIL and corrected PDU dictionary
+reproduce C327's earlier diagnostic inputs without borrowing its checkpoint authority.
+The ordinary refinement descendant is next; this is not new shape improvement,
+modified-crystal validation or Q06 survival acceptance.
 Do not repeat these baselines or confuse A43's post-weight-selection direct evidence
 with the actual C397 state. Historical 1–10-step policy bytes remain unchanged.
 A universal chemical classifier need not block every predeclared experiment, but unknown terms remain
 unknown and improved scalar scores do not establish repaired chemistry.
 
+
+**Ordinary-publication storage holdover (source-confirmed during C401).**
+Automatic bond discovery selects the existing v4 artifact policy, but
+`_retire_new_preparation` currently invokes automatic cleanup only for v3.
+The existing archive/retirement owner already supports v4; C333 separately proved
+manual retirement and moved readback. After the active preparation checkpoint,
+admit only the explicit v3/v4 publication cases through that owner. Keep older /
+unknown layouts, historical publication and cold reads unchanged. Cover v4 reaching
+the owner, v3 behavior, failed/uncertain retention, cleanup-error exact-result checks
+and archived relocation. Measure actual working/public bytes before and after;
+this is a small integration gap, not a new storage system or a chemistry repair.
+No runtime change is made during the live C401 attempt.
 
 Q06 achieved PDU/DF chemistry remains open. Ordinary AutoRefine/Doctor requests
 without explicit counted intent still refuse to lose that ancestry. Original
