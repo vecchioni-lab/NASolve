@@ -1,19 +1,15 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-18 evening, C405 complete; C406 full gate running — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. Runtime candidate **`4bfffbca`**
-passes the complete unfiltered suite: **12,032 tests, 293 subtests and two existing
-native opt-in skips**, in **3226.56 s**. All 1,416 tracked test-checkout files and
-exact NARestraints `a9264f9e` remain unchanged; the owned test process is stopped.
-That pin remains the last complete gate; C406 adds an explicit non-triple observation option
-and passes focused, installed and matched native checks; its full gate is running.
-At 22:54 UTC the sole owned suite is still active with no final result; do not
-start another suite or retire its active files. Linden retains exact process and
-continuation records under the existing W144 C406 full-suite evidence root.
-Verification and optional owned scratch cleanup follow only after known completion.
-Relocated installed checks and Hazel's independent cold review also pass. C402's
-prior separate full gate passed 12,016 tests with the same subtests/skips. Neither
-software pass changes the scientific REVIEW or closes Q06.
+Updated **2026-11-18 evening, C405/C406 qualified — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. Runtime **`58965920`** passes
+**12,043 tests and 293 subtests**, with two existing native opt-in skips, in
+**3104.30 s**. All 1,417 tracked test-checkout files and exact NARestraints
+`a9264f9e` remain unchanged; the test process group is absent. The verified
+254 KB qualification archive retains exact results, commands and source bindings.
+Disposable test-copy cleanup remains pending at cutoff (4.48 GB logical); retain
+its recorded owner/plan and do not touch scientific inputs or installed packages.
+Focused, relocated installed, matched native and independent checks also pass.
+Software qualification does not change the scientific REVIEW or close Q06.
 
 ## Current checkpoint
 
@@ -42,7 +38,7 @@ Hazel independently verifies 73 checks with a different plane fit and angle
 calculation. A smaller total bend at C5B coexists with a larger normal increment;
 do not summarize this as both individual bends worsening.
 
-**C406 in validation — record declared modified sites without a triple bond.**
+**C406 qualified — record declared modified sites without a triple bond.**
 An explicit ordinary Python option uses graph-valid checked-preparation projections
 and a distinct v9 request, with byte-identical frozen v3 native code. Defaults and
 historical readers remain unchanged; descendants cannot silently drop this scope.
@@ -56,8 +52,7 @@ atoms, 21 bonds, 30 angles, three chirality terms and one plane. All 66 files re
 unchanged after relocation with the old path absent; the old reader refuses v9.
 Hazel independently verifies 700 bindings without native calls.
 The 1.930 Å attachment remains unaccepted: this is capture qualification, not a
-repair, five-cycle survival or a new ordinary DF preparation. Full regression is
-running on exact `58965920`; no source/test changes follow that pin. Hazel owns the complementary retained DF source-to-effective audit. Her pinned
+repair, five-cycle survival or a new ordinary DF preparation. Full regression passes on exact `58965920`; no source/test changes follow that pin. Hazel owns the complementary retained DF source-to-effective audit. Her pinned
 Cedar/Alder temporary integration passes 166 focused tests and installed cold
 readback with its source export absent. Only the package-resource union was
 resolved there; five documentation/contract conflicts still require review before
@@ -90,9 +85,9 @@ six-atom ring plane 0.094297 Å. These descriptive starting values are not accep
 
 ## Next work, in order
 
-1. Finish the pinned C406 full gate and compact handoff. C405 cold decomposition
-   and C406 installed/native observation checks are complete. Preserve the earlier
-   qualified ordinary control; no repeated native matrix.
+1. Complete only the recorded owned test-copy retirement after the verified C406
+   archive; the full gate, compact handoff and scientific controls are complete.
+   Do not rerun the suite or native matrix.
 2. Use the resulting actual-manager evidence to identify the remaining chemical
    defect. Q06 needs useful PDU/DF geometry after refinement and whole-substituent
    evidence, not merely successful execution or a readable CIF. Reuse existing

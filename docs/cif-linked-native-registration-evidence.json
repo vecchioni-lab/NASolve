@@ -116181,7 +116181,7 @@
     "milestone": "C406",
     "date": "2026-11-18",
     "signed": "Rowan",
-    "status": "SOURCE_INSTALLED_NATIVE_PASS_FULL_RUNNING",
+    "status": "SOURCE_INSTALLED_NATIVE_FULL_PASS",
     "source_commit": "589659201a15b4284e93e2c4dcfc47cdefbdcb64",
     "before": "Ordinary checked chemistry scope required a source TRIPLE bond, although the existing native observer already supports arbitrary explicitly selected sites.",
     "after": "Explicit ordinary Python observe_declared_sites=True selects all graph-valid checked-preparation projections. Distinct v9 request preserves exact frozen v3 native payload; default triple scope and every historical worker stay unchanged. Cold site reader returns authenticated atoms/intra-site effective terms; ancestors cannot silently drop the scope.",
@@ -116285,12 +116285,66 @@
       ]
     },
     "full": {
-      "status": "RUNNING",
+      "status": "PASS",
       "owner": "Linden",
       "source_commit": "589659201a15b4284e93e2c4dcfc47cdefbdcb64",
+      "passed": 12043,
+      "subtests": 293,
+      "skips": [
+        {
+          "classname": "",
+          "name": "tests.test_cif_counted_contribution_native",
+          "reason": {
+            "message": "collection skipped"
+          }
+        },
+        {
+          "classname": "",
+          "name": "tests.test_cif_live_nonbonded_policy_native",
+          "reason": {
+            "message": "collection skipped"
+          }
+        }
+      ],
+      "pytest_seconds": 3104.3,
+      "tracked_files_unchanged": 1417,
+      "dependency_commit": "a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691",
+      "process_group_absent": true,
+      "command": [
+        "/private/tmp/willow-w94-pivot/env/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "--durations=20",
+        "--junitxml",
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/willow/w144-c406-full-suite-2026-11-18/results.xml",
+        "tests",
+        "--basetemp",
+        "/private/tmp/willow-c406-pytest-owned-2026-11-18"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "/private/tmp/nasolve-willow-c406/src:/private/tmp/willow-w132-full-regression/narestraints",
+        "PYTEST_ADDOPTS": ""
+      },
       "evidence_anchor": "NASolve-local-artifacts",
       "evidence_path": "willow/w144-c406-full-suite-2026-11-18",
-      "last_completed_source": "4bfffbca068cfe74cc926ff68fefca5ba5c83c3a"
+      "independent_receipt_sha256": "23d45bbbfbdbcd662a51c7e36851eb347e2e1bf0160502dbe8bbb794b61b2618",
+      "qualification_archive": {
+        "anchor": "NASolve",
+        "relative_path": "branch-artifacts/willow/w144-c406-qualification-2026-11-18.tar.gz",
+        "sha256": "738138a9569d76d58b4ae4df905c37fe52d11c9a47e2a25752a0dabb773031b7",
+        "size": 254249,
+        "indexed_files": 13
+      },
+      "cleanup": "PENDING; verified owned test copies only, deferred at evening cutoff",
+      "owned_scratch_logical_bytes": 4477519863,
+      "scientific_acceptance": false
     },
     "limits": [
       "Explicit ordinary Python option only; counted controls/CLI/default activation remain separate.",

@@ -10,9 +10,8 @@ recorded explicit route. C402–C404 close the later cleanup gap, demonstrate a
 fresh ordinary PDU refinement child, and add source-selected final trigonal
 measurements. C405 separates accumulated substituent bending from local shape;
 C406 extends explicit observation to graph-bound non-triple modified sites and
-passes source, installed and matched native checks. Its full gate is running at
-`58965920`; the last completed full pin `4bfffbca` passes 12,032 tests and 293
-subtests, with two existing native opt-in skips. Q06 remains
+passes source, installed, matched native and full checks at `58965920`: 12,043
+tests and 293 subtests, with two existing native opt-in skips. Q06 remains
 open because delivery and measurement do not establish satisfactory PDU/DF shape
 under refinement. Next use the existing whole-substituent evidence to define the
 remaining scientific decision; do not repeat delivery, derivative or weight sweeps.
@@ -271,7 +270,7 @@ after the final full gate: 12,032 tests and 293 subtests pass, with two existing
 native opt-in skips. Do not rerun the established
 ordinary delivery, source-selection or derivative baselines to rediscover them.
 
-**C405 complete; C406 qualification in progress.** The retained private PDU
+**C405/C406 qualified within their recorded scope.** The retained private PDU
 control has a larger local C5 elevation (2.039→3.149°) and greater accumulated
 ring-normal displacement (0.174812→0.365565 Å), despite improved bond lengths.
 A graph-selected chain/ring and independently reviewed signed decomposition
@@ -283,7 +282,7 @@ C406 implements explicit non-triple site observation through the same refinement
 owner, without another optimizer or a bespoke DF target.
 Source/installed checks pass at `58965920`; matched actual one-cycle DF observation
 off/on preserves identical PDB/state/correction counts. Relocated cold read and
-old-reader refusal pass. The full gate is running; the 1.930 Å attachment in this
+old-reader refusal pass. The full gate passes; the 1.930 Å attachment in this
 short control remains unaccepted and is not a five-cycle comparison. Hazel's independent retained DF audit finds all surviving
 heavy bond/angle targets and the plane correctly delivered in both saved controls.
 No missing local term or new target repair is established. First use source-bound
