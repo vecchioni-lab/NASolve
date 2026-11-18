@@ -110,6 +110,13 @@ the [periodic ledger](topostitch-periodic.md). Earlier W112/C366 full tests and
 W118's complete numerical/native qualification retain their original source pins.
 No native run or old test is repeated merely because this handoff is shorter.
 
+Later Cedar C394 (`5ccda59a`) fixes the log reader's digit-bearing stage labels.
+Its focused regression/smoke tests and independent old/new actual-log readback
+pass; worker payloads remain exact. This reporting-only follow-up does not change
+the C391 full-suite pin. [Closeout notes](topostitch-periodic.md#w135-closeout-follow-ups)
+also retain the nonbonded candidate-count source distinction and verified retirement
+of the obsolete C386 software clone; no scientific runs were deleted.
+
 The matched W116/W123 control shows maximum extra motion about **0.034 Å** and
 modest selected-pair improvement, with no Rfree benefit. Subsequent C382 descendants
 reduce PDB G·C plane mismatch **18.69→17.77→16.77°**, but logged Rfree worsens

@@ -7253,3 +7253,40 @@ source manifest, exact prerequisite receipt, cold auditors, failed audit setup,
 legacy/map/selected-contact readbacks and a clearly planning-only next-control
 record. Raw models/reflections/native trace arrays remain local and excluded from
 Git. No API, schema, compatibility/default or migration change in this update.
+
+
+#### W135 closeout follow-ups
+
+Cedar C394 `5ccda59a585a0bb93da4554e61f50e7aacbce64b` subsequently fixes only
+native log-stage suffix digits (`1_realsrl2`). Independent current-source versus
+installed-C391 cold parsing of both retained C392 logs and the frozen table
+changes only missing bond/angle summaries to **0.078 Å /2.744°**. All other parsed
+fields, source bytes/mtimes and v3/v4/v5/v6/v7 worker payloads remain exact.
+Rowan's strengthened regression fails before; 64 affected tests +31 subtests and
+148 smoke tests +6 subtests pass. No new wheel or native execution was needed for
+this parser-only change. C391's full-suite pin remains distinct. Local review:
+`NASolve/branch-artifacts/willow/c394-reporting-review-2026-11-18.json`, SHA
+`38fc45f5c607bc72fef9b18ffca1c7b4d839c587924bf0885bdb5071ef8fcda9`.
+
+Read-only bundled-source inspection clarifies the normalization count: the
+nonbonded contribution is `simple.size()+asu.size()`, including potentially
+zero-energy neighbor candidates; it is not a count of nonzero forces. The
+standard prolsq residual/gradient vanish beyond their repulsive support, but the
+proxy still counts. Pair lists are buffered and cached relative to construction
+coordinates, supporting a history-dependent candidate-count mechanism. This does
+not identify the individual proxy changes in A79. A57/A58 already established the
+geometry-only same-site nonbonded count change and a separate fixed-denominator
+control; reuse that evidence. Counting only currently active contacts would also
+create a coordinate-dependent denominator and is not an automatic fix. No library,
+cache, evaluator or production normalization was changed. Versioned source hashes
+and exact locations are in
+`NASolve/branch-artifacts/willow/nonbonded-count-source-review-2026-11-18.json`, SHA
+`0f3763a950d9e2a240c5013579ef087ec94dd3aa16b6e9956845bf63b194eec7`.
+
+After verifying all 1,405 tracked files against its source manifest and sealed
+W132 evidence, the obsolete **72 MB C386 software clone** was retired. Source
+repositories, installed packages, native runs, data, failures and test receipts
+were retained; C391 and the reusable exact NARestraints source clone remain.
+The separate retirement receipt is
+`NASolve/branch-artifacts/willow/w132-c386-clone-retirement-2026-11-18.json`, SHA
+`29c9e9e0e152d04985419e6b54fea04dad68e5ea501ce1d0a63104e0eb38d045`.

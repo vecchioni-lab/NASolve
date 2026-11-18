@@ -189,6 +189,14 @@ permission to freeze a denominator, replace normalization or tune against Rfree.
 Any such numerical policy needs separate derivative, neighbor-update and
 native/zero/full qualification. A larger cap alone is not a repair.
 
+The native denominator counts included nonbonded candidate proxies, including
+potentially zero-energy ones; it is not an active-force count. Buffered cached
+lists can depend on their construction history. This source observation supports
+a mechanism, not a per-member diagnosis of the recorded events. A57/A58 already
+cover a geometry-only same-site count change and fixed-denominator control;
+do not recreate them. Counting only active contacts would introduce another
+coordinate-dependent denominator, not remove the need for qualification.
+
 Compare pair, retained-core, backbone/sugar, stacking and periodic packing geometry
 with matched diffraction statistics, preserving failed/ambiguous REVIEW outcomes.
 A universal covalent classifier is not a prerequisite for this explicitly labelled
