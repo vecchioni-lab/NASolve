@@ -214,6 +214,27 @@ selection. B10 healthy/displaced/wrong-contact controls, density calibration and
 CLI/Doctor activation follow their own milestones. The archived planning-only
 record in W135 grants no execution authority and changes no current protocol.
 
+### Longer-control implementation review map (planning only)
+
+The existing owners contain several independent ten-iteration/proof checks.
+Changing one numeric constant is insufficient. Keep the next patch bounded to
+these existing interfaces, with no alternate executor or general policy framework:
+
+| Existing owner | Required review for the new explicit scope |
+| --- | --- |
+| `refinement_counted.validate_autorefine_control` and AutoRefine parameter/report writers | Protocol admission, emitted native cap and recorded cap must agree; old protocol/default strings and values stay exact. |
+| `cif_counted_refinement.refinement_scope` | Inspect both actual preflight and actual driver parameters; preserve unit weights, XYZ-only strategy, one cycle/process and all other exclusions. |
+| `refinement_counted._scope`, `_observation` and saved admission readers | Accept only the new explicitly identified scope; preserve old <=10 validation and fresh prepared-versus-actual equality. |
+| `refinement_parallelity._code`, source digests and phase dispatch | Freeze affected old worker bytes before adding a new policy; preserve every historical payload and reader refusal. |
+| `cif_counted_phase`, completed-phase readers and `_require_policy_continuation` | Review every exact-v7 check: a newer policy must not silently skip final pair capture/publication or lose native written-model proof. Preserve original intent and chemistry inheritance. |
+
+Require regressions for old-protocol refusal of >10, unsupported new combinations,
+stale prepared scopes, and descendants that lose required proof/capture. Keep the
+existing wrong-writer, namespace, relocation and installed-package checks; do not
+rebuild those mechanisms. A newer policy name is not evidence of a stronger
+capability. The initial longer test remains the predeclared matched native-core,
+zero-addition and full-recipe experiment above, with actual stopping/count history.
+
 ## Ordinary-owner integration boundary (W126; planning)
 
 **W128 implementation status:** Cedar C386 now satisfies the initial owner join
