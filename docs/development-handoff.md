@@ -9,7 +9,7 @@ comparison; Hazel owns the separate Alder weight-selection diagnostic.
 
 ## Current checkpoint and next bounded work
 
-**C388 complete; final independent audit/publication pending.** Existing actual
+**C388 complete; independent audit passed.** Existing actual
 PDU triple-bond observation now works alongside explicit v6 counted forces.
 Four native phases per matched pair (two preflights/two real cycles) finish and stop;
 observer on/off gives exact written PDB, full native output state and owner lifetime
@@ -32,7 +32,12 @@ checks pass separately. Native controls are matched low-level owner controls;
 ordinary combined forwarding has focused coverage, not a new checked-PostMR native
 campaign. One harness input-order mistake stopped before native launch and remains.
 
-Next: independently audit/publish C388, finish the pinned C386 full-suite triage,
+Linden W130 independently verifies all 299 Git/wheel/installed source files,
+125 + 126 relocated files and 57 historical input files unchanged, without native
+launches or writes. Source is `a67df6b7a70dad94d0f14e3cdabea5f8f5a9c21e`.
+The two verified expanded archives total 5,160,655 bytes; originals remain local.
+
+Next: finish the pinned C386 full-suite triage,
 and define the provider-independent geometry/selection boundary before expanding
 ordinary protocols. Linden W129 is passive provider comparison; Hazel A63 is a
 separate actual weight-selection experiment with better local geometry but worse

@@ -112531,7 +112531,44 @@
       "Ordinary forwarding is focused-tested; matched native cases use existing low-level execution/admission owners, not a new checked-preparation campaign."
     ],
     "generated_artifacts": "All raw PDB/MTZ/CIF/PHIL/logs/native roots/runners/package remain local; only compact receipts and synthetic regressions committed.",
-    "remaining": "Phases,new extra/terminal sources,broader protocols/weights,semantic geometry classification and actual PDU/DF survival remain separate."
+    "remaining": "Phases,new extra/terminal sources,broader protocols/weights,semantic geometry classification and actual PDU/DF survival remain separate.",
+    "source_commit": "a67df6b7a70dad94d0f14e3cdabea5f8f5a9c21e",
+    "independent_review": {
+      "status": "PASS",
+      "source_commit": "a67df6b7a70dad94d0f14e3cdabea5f8f5a9c21e",
+      "git_wheel_installed_source_matches": 299,
+      "historical_unchanged_files": 57,
+      "cold_no_launch": true,
+      "within_pair_exact_state": true,
+      "cross_provider_exact_pdb": true,
+      "cross_provider_exact_native_state": false,
+      "native_rerun": false,
+      "signed": "Linden",
+      "milestone": "W130",
+      "receipt_sha256": "d39ea5cc60e94aae170e264c5a3d31498b898594e95f38781348d410551811c5",
+      "relocated_files": [
+        125,
+        126
+      ]
+    },
+    "retained_local_archives": [
+      {
+        "archive": "c388-counted-chemistry-2026-11-18.tar.gz",
+        "sha256": "3857cba349b3f8faec83a9fbd6bb05d5bd7507c9e13c1e3e5a2f92c0a66e0e9d",
+        "bytes": 2579207,
+        "raw_bytes": 15671458,
+        "verified_expanded_cold_read": true,
+        "original_root_preserved": true
+      },
+      {
+        "archive": "c388-counted-chemistry-partial-2026-11-18.tar.gz",
+        "sha256": "6f110ff9e4e67385753202d0db34c3a158039c5824c74adf369511da04b8291c",
+        "bytes": 2581448,
+        "raw_bytes": 15691794,
+        "verified_expanded_cold_read": true,
+        "original_root_preserved": true
+      }
+    ]
   },
   "provider_statistics_boundary_2026_11_18": {
     "signed": "Rowan, citing Linden W129 and Hazel A63",
