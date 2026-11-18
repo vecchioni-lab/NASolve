@@ -13536,6 +13536,32 @@ in ledger `retained_phosphate_observed_names_2026_11_13`.
 
 ## Reading chemistry after refinement (C336–C338)
 
+### Explicit actual-final trigonal shape (C404)
+
+`refinement_parallelity.read_execution_trigonal_geometry(run, reference,
+checkpoint=..., parent=..., model=...)` reads a separate descriptive report from
+sealed selected-site observations. It uses the same execution/source/model checks
+as `read_execution_chemistry`; the historical triple report remains unchanged.
+C208's source rule selects explicit neutral three-heavy-neighbor carbon centres,
+and the existing Cartesian geometry calculation measures full native coordinates.
+Captured intra-site plane membership, positive weights on the selected local atoms
+and achieved geometry are separate fields. Shared plane rows are stored once;
+`native_planes` contains only captured planes referenced by selected centres,
+not every plane in the observed site.
+
+This can expose a bent centre despite a present plane, or a flat centre without a
+captured local plane. Neither finding establishes native energy, missing alternative
+restraints or chemical acceptance. Zero weights, missing local atoms and degenerate
+geometry remain explicit. Charged/chiral/aromatic-only or otherwise unsupported
+source chemistry stays unassessed. No residue/atom-name repair rule is added.
+Current workers capture only their explicitly selected chemistry sites (presently
+source-declared triple sites); the reader does not enlarge that scope, launch a
+native calculation, infer a symmetry image, alter checkpoints or strengthen planes.
+This Python-only descriptor is not a new ordinary CLI/default behavior.
+
+
+### Existing triple report and ordinary integration (C336–C338)
+
 `nasolve.refinement_chemistry.read_refinement_chemistry(run_directory,
 checkpoint="refine-003", native_receipt=receipt_path)` is an explicit read-only
 Python report. It follows that checkpoint's preparation ancestry and checks a

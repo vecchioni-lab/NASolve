@@ -621,20 +621,41 @@ def validate_checkpoint_execution(run, item, registry):
         return record
 
 
-def read_execution_chemistry(run, reference, *, checkpoint, parent, model):
-    """Read sealed actual-manager evidence without launching or adopting anything."""
+def _selected_chemistry_observation(run, reference, *, checkpoint, parent, model):
+    """Use one existing validation path for explicit selected-site readers."""
     record=validate_execution(run,reference,checkpoint=checkpoint,parent=parent,usable=True)
     request=read_execution_request(run,record['request'],checkpoint=checkpoint)
     if request['policy_id'] not in _CHEMISTRY_POLICIES or not request.get('chemistry_projections'):
         return None
     result=_phase(run,_root(checkpoint),'refine',request['code'],request,require_complete=True)
-    from .refinement_chemistry import _projection_scope, _observed_readback
+    from .refinement_chemistry import _projection_scope
     _,projections=_projection_scope(run,request['chemistry_projections'])
     data=Path(model).read_bytes()
     if result['chemistry_observation']['status']=='OBSERVED':
         _need(result['chemistry_model']==dict(sha256=_digest(data),size=len(data)),
               'Observed native output differs from the checkpoint model')
-    return _observed_readback(data,projections,result['chemistry_observation'])
+    return data,projections,result['chemistry_observation']
+
+
+def read_execution_chemistry(run, reference, *, checkpoint, parent, model):
+    """Read the historical triple report through its unchanged sealed evidence."""
+    selected=_selected_chemistry_observation(run,reference,checkpoint=checkpoint,parent=parent,model=model)
+    if selected is None:return None
+    from .refinement_chemistry import _observed_readback
+    return _observed_readback(*selected)
+
+
+def read_execution_trigonal_geometry(run, reference, *, checkpoint, parent, model):
+    """Explicit source-selected shape/plane report; no native run or adoption.
+
+    Existing workers capture only their declared chemistry sites. This reader
+    neither enlarges that scope nor changes historical triple reports.
+    """
+    selected=_selected_chemistry_observation(run,reference,checkpoint=checkpoint,parent=parent,model=model)
+    if selected is None:return None
+    data,projections,observation=selected
+    from .cif_plane_geometry import _observed_trigonal_geometry
+    return dict(_observed_trigonal_geometry(projections,observation),model_sha256=_digest(data))
 
 
 def read_execution_pair_geometry(run,reference,*,checkpoint,parent,model):

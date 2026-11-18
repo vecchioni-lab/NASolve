@@ -238,6 +238,15 @@ adapters. A fresh campaign reaches checked ReadySet preparation through that rou
 the original chemical source still decides what molecule is intended. Ordinary command defaults and
 broader whole-model chemistry coverage remain separate; this does not certify a structure.
 
+An explicit final-state reader can now describe local trigonal carbon shape using
+Phenix's saved full-precision coordinates and the existing source-chemistry rules.
+It shows whether a local plane was actually present, whether its local atoms had
+positive weights, and how far the centre moved out of plane. Those are separate
+observations: a listed plane is not proof of flat geometry. This reuses the saved
+refinement evidence without rerunning Phenix or changing restraints. It is limited
+to already captured sites and supported source chemistry; it does not approve a
+whole ligand or add a new automatic acceptance threshold.
+
 The PDU investigation illustrates the distinction: correct connectivity and a
 straight propyne do not guarantee the desired glycosidic orientation or coplanarity
 with the base. Source connectivity and native geometry guide the repairs, rather

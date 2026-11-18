@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Inspect actual refined trigonal geometry (C404)
+
+- Add an explicit read-only Python report of source-selected trigonal carbon
+  shape and captured intra-site planes from Phenix's authenticated final state.
+  Reuse the existing chemistry selector and geometry calculations; report plane
+  presence, positive member weights and achieved shape separately.
+- Reuse the same model/source/execution checks as the existing triple report,
+  whose output remains unchanged. Missing or unsupported captured scope stays
+  unassessed; no new capture, force, threshold, selection or default is introduced.
+- This report covers only already captured sites. It does not qualify every
+  modified residue, infer symmetry planes or approve chemical survival.
+
 ### Archive working copies after automatic bond preparation (C402)
 
 - Let newly published v4 preparations use the same bounded archive and cleanup
