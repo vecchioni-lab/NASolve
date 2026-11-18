@@ -14,22 +14,29 @@ from . import cif_refinement_runtime as runtime
 from . import cif_refinement_output as output
 
 POLICY_ID = 'prepared-counted-refinement-cycle-v1'
+LONG_POLICY_ID = 'prepared-counted-refinement-cycle-v2'
 
 
-def refinement_scope(refined):
+def refinement_scope(refined, *, scope_policy=POLICY_ID):
     """Read actual parameters for the initially qualified one-cycle protocol.
 
-    Unit fixed weights, one process, all-site coordinates, at most ten iterations
-    and no changing targets/identity are deliberate qualification bounds, not
-    recommended scientific defaults. Read both a returned preflight and the fresh
-    actual driver objects; CLI strings alone cannot establish this scope.
+    The unchanged v1 scope admits a configured cap of 1–10. Explicit v2 uses a
+    configured cap of exactly 100 and seed 1; convergence/error may stop earlier.
+    Unit fixed weights, one process, all-site coordinates and no changing targets
+    remain deliberate control bounds, not recommended scientific defaults. Read
+    both returned preflight and fresh actual driver objects; CLI strings alone
+    cannot establish this scope.
     """
     need=counted._need
+    need(scope_policy in (POLICY_ID,LONG_POLICY_ID), 'Unknown counted refinement scope')
+    longer=scope_policy==LONG_POLICY_ID
     try:
         p=refined.params; m=p.main; w=p.target_weights
         need(type(m.number_of_macro_cycles) is int and m.number_of_macro_cycles==1
-             and type(m.max_number_of_iterations) is int and 1<=m.max_number_of_iterations<=10
-             and type(m.nproc) is int and m.nproc==1 and type(m.random_seed) is int,
+             and type(m.max_number_of_iterations) is int
+             and (m.max_number_of_iterations==100 if longer else 1<=m.max_number_of_iterations<=10)
+             and type(m.nproc) is int and m.nproc==1 and type(m.random_seed) is int
+             and (not longer or m.random_seed==1),
              'Unqualified counted cycle/process/iteration controls')
         need(all(type(v) in (int,float) and v==1. for v in (w.fix_wxc,w.wc)),
              'Require qualified fixed unit counted weights')
@@ -48,7 +55,7 @@ def refinement_scope(refined):
         need(refined.model.ncs_constraints_present() is False
              and refined.fmodels.fmodel_neutron() is None and refined.neutron_refinement is False,
              'NCS or neutron refinement is outside counted scope')
-        return dict(policy_id=POLICY_ID,cycles=m.number_of_macro_cycles,
+        return dict(policy_id=scope_policy,cycles=m.number_of_macro_cycles,
             iterations=m.max_number_of_iterations,nproc=m.nproc,seed=m.random_seed,
             fix_wxc=float(w.fix_wxc),wc=float(w.wc),strategy=['individual_sites'],
             individual=['all'],target=m.target,scattering_table=m.scattering_table,place_ions=None)
@@ -104,8 +111,13 @@ class PreparedCountedRefinement:
     a new instance. No successful inspection or exception allows in-place retry.
     """
     def __init__(self, *, expected_scope, factory_module, factory_sources, helper_sources,
-                 packet, model_bytes, expected_recipe_sha256, prepared, expected_prepared_sha256, capture_pair_geometry=False):
+                 packet, model_bytes, expected_recipe_sha256, prepared, expected_prepared_sha256, capture_pair_geometry=False,
+                 scope_policy=POLICY_ID):
         counted._need(type(capture_pair_geometry) is bool, 'Require explicit geometry capture choice')
+        counted._need(scope_policy in (POLICY_ID,LONG_POLICY_ID), 'Unknown counted refinement scope')
+        counted._need(scope_policy!=LONG_POLICY_ID or capture_pair_geometry,
+                      'Longer counted scope requires final pair geometry capture')
+        self._scope_policy=scope_policy
         self._capture_pair_geometry=capture_pair_geometry;self._pair_geometry=None
         self._scope=counted._detached(expected_scope)
         self._options=dict(factory_module=factory_module,
@@ -113,7 +125,7 @@ class PreparedCountedRefinement:
                 packet=packet,expected_recipe_sha256=expected_recipe_sha256,
                 prepared=prepared,expected_prepared_sha256=expected_prepared_sha256)),
             model_bytes=bytes(model_bytes))
-        self._record=dict(policy_id=POLICY_ID,status='NEW',driver_entries=0,
+        self._record=dict(policy_id=scope_policy,status='NEW',driver_entries=0,
             binding_restored=True,owner=None,runtime_authority=False,scientific_acceptance=False)
         self._driver=None;self._original=None;self._owner=None;self._adapter=self._run
         self._completed=False;self._closed=False
@@ -147,7 +159,7 @@ class PreparedCountedRefinement:
                 and bound.arguments.get('call_back_handler') is None,
                 'Require actual refinement without caller callbacks')
             objects=bound.arguments['refinement_objects'];model=objects.model
-            scope=refinement_scope(objects)
+            scope=refinement_scope(objects,scope_policy=self._scope_policy)
             counted._need(counted._digest(scope)==counted._digest(self._scope),
                           'Actual refinement scope differs from prepared scope')
             writer=_writer(self._driver)
@@ -156,7 +168,7 @@ class PreparedCountedRefinement:
                 refined=self._original(*args,**kwargs)
                 counted._need(refined.model is model and objects.model is model,
                               'Native refinement replaced the prepared model')
-                counted._need(refinement_scope(refined)==scope and refined.macro_cycle==scope['cycles'],
+                counted._need(refinement_scope(refined,scope_policy=self._scope_policy)==scope and refined.macro_cycle==scope['cycles'],
                               'Native refinement did not complete the prepared scope')
                 self._verify(self._adapter)
                 counted._need(_writer(self._driver) is writer,'Native final writer binding changed')

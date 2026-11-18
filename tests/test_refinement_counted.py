@@ -47,7 +47,7 @@ def observed_case(tmp_path, *, policy=execution.V5_POLICY_ID, execution_case=Non
             successful_calls=0,gradient_calls=0,energy_only_calls=0,maximum_proxy_count=0),
         output_binding_restored=True,output_synchronization=[],chemistry_observation=None,
         chemistry_model=None,chemistry_binding_restored=True)
-    if policy==execution.V6_POLICY_ID:result['written_model']=None
+    if policy in execution._WRITTEN_POLICIES:result['written_model']=None
     (phase/'result.json').write_text(json.dumps(result))
     # This unit fixture stands in for the source-qualified native observer. It is
     # not scientific evidence and cannot qualify a real model for C375 ownership.
@@ -62,6 +62,8 @@ def observed_case(tmp_path, *, policy=execution.V5_POLICY_ID, execution_case=Non
             seed=1,fix_wxc=1.,wc=1.,strategy=['individual_sites'],individual=['all'],target='ml',
             scattering_table='n_gaussian',place_ions=None),
         prepared_sha256=saved._digest(prepared),recipe_sha256=request['counted_intent']['current_recipe_sha256'])
+    if policy==execution.V8_POLICY_ID:
+        observation['scope'].update(policy_id='prepared-counted-refinement-cycle-v2',iterations=100)
     (phase/'counted.json').write_text(json.dumps(observation))
     return run,reference,root,prepared
 

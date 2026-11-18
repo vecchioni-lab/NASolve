@@ -324,9 +324,11 @@ def write_recipe_parameters(
     counted_crystal: Mapping[str, object] | None = None,
 ) -> tuple[str, ...]:
     if counted_protocol is not None:
-        from .refinement_counted import AUTOREFINE_CONTROL_PROTOCOL
-        if counted_protocol != AUTOREFINE_CONTROL_PROTOCOL:
-            raise AutoRefineError('Unknown counted refinement protocol')
+        from .refinement_counted import control_iteration_cap
+        try:
+            counted_cap = control_iteration_cap(counted_protocol)
+        except ValueError as exc:
+            raise AutoRefineError(str(exc)) from exc
     if macro_cycles < 1:
         raise AutoRefineError("AutoRefine requires at least one macrocycle")
     if adp_mode not in {"group", "individual", "none"}:
@@ -425,7 +427,7 @@ def write_recipe_parameters(
         "    scattering_table = n_gaussian",
         f"    nproc = {processor_count}",
         *([
-            "    max_number_of_iterations = 10",
+            f"    max_number_of_iterations = {counted_cap}",
             "    random_seed = 1",
             "    bulk_solvent_and_scale = False",
             "    place_ions = False",
@@ -1623,10 +1625,15 @@ def execute_autorefine(
     that path never initializes a missing registry. Ordinary callers retain the
     existing initialization behavior. Later saves still use the registry guard.
     """
-    from .refinement_parallelity import validate_runtime_choice, require_runtime_continuation, V6_POLICY_ID, V7_POLICY_ID
+    from .refinement_parallelity import validate_runtime_choice, require_runtime_continuation, V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID
+    from .refinement_counted import LONG_CONTROL_PROTOCOL, control_iteration_cap
     if type(counted_pair_geometry) is not bool or (counted_pair_geometry and counted_protocol is None):
         raise AutoRefineError('Final pair geometry requires an explicit counted control')
     counted_policy = V7_POLICY_ID if counted_pair_geometry else V6_POLICY_ID
+    if counted_protocol == LONG_CONTROL_PROTOCOL:
+        if not counted_pair_geometry:
+            raise AutoRefineError('Longer counted control requires final pair geometry capture')
+        counted_policy = V8_POLICY_ID
     from .refinement_counted import validate_autorefine_control
     try:
         validate_autorefine_control(counted_protocol, counted_pair_request,
@@ -2375,7 +2382,7 @@ def execute_autorefine(
         },
         "refinement": {
             "target": "ml" if counted_protocol is not None else "automatic",
-            **({"counted_protocol": counted_protocol, "random_seed": 1, "max_iterations": 10,
+            **({"counted_protocol": counted_protocol, "random_seed": 1, "max_iterations": control_iteration_cap(counted_protocol),
                 "working_frame": {"choice": counted_frame or "native", "crystal": counted_crystal}}
                if counted_protocol is not None else {}),
             "strategies": list(strategies),

@@ -5029,7 +5029,7 @@ declarations and final-state proof, referencing the existing prepared inventory.
 receipt use schema 1 and existing bounded content-addressed archive storage.
 `read_execution_pair_geometry` validates lineage/model bytes before reproducing the
 complete W131 report; ordinary checkpoint statistics retain only a small summary.
-A v7 descendant must explicitly retain v7. Older readers reject the new policy;
+A v7 descendant must explicitly retain final capture (v7 or explicit v8 below). Older readers reject the new policy;
 old records cannot be upgraded by reconstructing native coordinates from a PDB.
 
 One actual Phenix 2.2.1-6174 control preserves the exact C386/C389 written model,
@@ -5041,3 +5041,40 @@ wrong-output refusal and pre-allocation loss-of-evidence refusal pass. The nativ
 control uses one XYZ cycle, fixed unit weights and ten iterations: these are
 qualification bounds, not recommended defaults. Pair metrics do not establish
 covalent chemistry, PDU/DF survival, good diffraction fit or scientific acceptance.
+
+### Longer fixed-weight coordinate control (Willow review candidate)
+
+**Purpose:** test whether one longer coordinate-minimization lifetime permits
+useful additional duplex motion. Repeated short refinements and automatic weight
+searches answer different questions. This is an explicit Python control, not a
+new default, CLI option, or recommended scientific refinement recipe.
+
+`execute_autorefine(..., counted_protocol="counted-xyz-fixed-unit-100-v1",
+counted_pair_geometry=True)` retains all existing explicit counted choices and
+original pair/source inputs. The configured `max_number_of_iterations` is exactly
+100, with one XYZ-only macrocycle, one process, seed 1 and fixed unit weights.
+It is a **maximum**: native convergence, line-search errors and other stopping
+rules remain unchanged and can stop before 100 iterations. No diffraction
+algorithm, geometry normalization, force, weight-search policy or acceptance
+threshold changes. Actual preflight and actual driver parameters must both match
+the sealed preparation. A substituted cap of 99 is not this declared experiment.
+
+The existing round-local owner selects `round-local-counted-execution-v8` and
+`prepared-counted-refinement-cycle-v2`. The same final writer/capture checks,
+compact evidence, anchored references, checksum checks and immutable unselected
+REVIEW checkpoint apply. A v8 descendant must retain v8; it cannot silently drop
+the longer scope or final pair measurement. No historical checkpoint is migrated.
+`data/refinement-runtime-v7-sources.json` freezes the two superseded helper sources;
+all v3–v7 payload bytes and old v1 1–10 bounds/seed semantics remain unchanged.
+New records require a reader supporting v8. The default ordinary/counted routes
+remain v3/v6, or v7 when final measurement is explicitly requested with the old
+ten-iteration protocol.
+
+**Methods and remaining gate:** qualify the control with identical source, data,
+Free-R, inherited restraints and core settings for native-only, zero-addition and
+full-pair siblings. Native/zero equality checks the contribution machinery; the
+full-pair case has a different physical objective. Record actual stopping and
+evaluation/count history, then compare pair, backbone, packing and diffraction
+evidence. Code/regression qualification is not native or structural acceptance.
+The candidate has not yet completed that matched native experiment; larger bends,
+automatic stitching and density-based selection remain separate roadmap gates.

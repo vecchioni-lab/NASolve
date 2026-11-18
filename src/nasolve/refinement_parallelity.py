@@ -20,8 +20,10 @@ V4_POLICY_ID = 'round-local-parallelity-execution-v4'
 V5_POLICY_ID = 'round-local-counted-execution-v5'
 V6_POLICY_ID = 'round-local-counted-execution-v6'
 V7_POLICY_ID = 'round-local-counted-execution-v7'
-_COUNTED_POLICIES = (V5_POLICY_ID, V6_POLICY_ID, V7_POLICY_ID)
-_WRITTEN_POLICIES = (V6_POLICY_ID, V7_POLICY_ID)
+V8_POLICY_ID = 'round-local-counted-execution-v8'
+_COUNTED_POLICIES = (V5_POLICY_ID, V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID)
+_WRITTEN_POLICIES = (V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID)
+_PAIR_GEOMETRY_POLICIES = (V7_POLICY_ID, V8_POLICY_ID)
 POLICY_ID = V3_POLICY_ID  # Ordinary requests keep their existing default.
 ADMISSION_REFUSAL_POLICY_ID = 'preflight-admission-refusal-v1'
 # Filled from the qualified C297 checkpoint; historical readers keep these exact
@@ -54,14 +56,15 @@ _V5_SOURCE_DIGESTS = {'cif_counted_contribution.py': '7322edee9e78a027bbd47c0043
  'topostitch_transport.py': '8a641d8f067b594e8ea446156b0252583a0d6178c967148a6b86214f9f8cfbfc'}
 _V6_SOURCE_DIGESTS = dict(_V5_SOURCE_DIGESTS, **{'cif_refinement_runtime.py': 'fba731d7d2a21301c1c11a84a6a0b515307e73665f2367e42bd2defa25eb1fc1', 'cif_refinement_output.py': 'f006c30fc139f5c52f328607025509d1dca7591ac9ab85c55ceaa3884bf258f2', 'cif_counted_phase.py': 'f9dcb633c6d3c274cb6f5176b603fb6834bb3ce240d138b3fcb86f2134e21cf9'})
 _V7_SOURCE_DIGESTS = dict(_V6_SOURCE_DIGESTS, **{'cif_counted_refinement.py': 'f29753cfc5ef2383fd2dc85ade1444d85e9600e138776815afc1bf0f2ec055fc', 'cif_counted_phase.py': 'fe5fb0a90b6ac994da19b05195074ab069b611aa0f7e58f775cb59a3715b686b', 'cif_counted_geometry.py': 'ea0086acb6dfba48e1c7afecbf8fd38fc7f1c548f4cf031e2d4d1d10efaaa3c2'})
+_V8_SOURCE_DIGESTS = dict(_V7_SOURCE_DIGESTS, **{'cif_counted_phase.py': '7aa1f76126fee30042909583e627f4c135292aaa9babee9de322818d3b4be206', 'cif_counted_refinement.py': '5ac9e9faff0b35f26455dc879977f441d093f9aebfb557efdc4192b214a460a0'})
 _SOURCES = {LEGACY_POLICY_ID:_SOURCE_DIGESTS, V2_POLICY_ID:_V2_SOURCE_DIGESTS,
-            V3_POLICY_ID:_CURRENT_SOURCE_DIGESTS, V4_POLICY_ID:_V4_SOURCE_DIGESTS, V5_POLICY_ID:_V5_SOURCE_DIGESTS, V6_POLICY_ID:_V6_SOURCE_DIGESTS, V7_POLICY_ID:_V7_SOURCE_DIGESTS}
+            V3_POLICY_ID:_CURRENT_SOURCE_DIGESTS, V4_POLICY_ID:_V4_SOURCE_DIGESTS, V5_POLICY_ID:_V5_SOURCE_DIGESTS, V6_POLICY_ID:_V6_SOURCE_DIGESTS, V7_POLICY_ID:_V7_SOURCE_DIGESTS, V8_POLICY_ID:_V8_SOURCE_DIGESTS}
 _RUNTIME_POLICIES = {LEGACY_POLICY_ID:'explicit-native-parallelity-refinement-v1',
                      V2_POLICY_ID:'explicit-native-parallelity-refinement-v2',
                      V3_POLICY_ID:'explicit-native-parallelity-refinement-v3',
                      V4_POLICY_ID:'explicit-native-parallelity-refinement-v4',
                      V5_POLICY_ID:'explicit-native-parallelity-refinement-v4',
-                     V6_POLICY_ID:'explicit-native-parallelity-refinement-v4', V7_POLICY_ID:'explicit-native-parallelity-refinement-v4'}
+                     V6_POLICY_ID:'explicit-native-parallelity-refinement-v4', V7_POLICY_ID:'explicit-native-parallelity-refinement-v4', V8_POLICY_ID:'explicit-native-parallelity-refinement-v4'}
 _V2_ENTRY = b'''from pathlib import Path
 import sys
 root=Path(__file__).resolve().parent
@@ -130,7 +133,7 @@ from _nasolve_refinement.cif_counted_phase import run_phase
 run_phase(root,request,phase,arguments,admission=admission,prepared_path=prepared_path)
 '''
 
-_ENTRIES = {LEGACY_POLICY_ID:_V2_ENTRY, V2_POLICY_ID:_V2_ENTRY, V3_POLICY_ID:_ENTRY, V4_POLICY_ID:_ENTRY, V5_POLICY_ID:_COUNTED_ENTRY, V6_POLICY_ID:_COUNTED_ENTRY, V7_POLICY_ID:_COUNTED_ENTRY}
+_ENTRIES = {LEGACY_POLICY_ID:_V2_ENTRY, V2_POLICY_ID:_V2_ENTRY, V3_POLICY_ID:_ENTRY, V4_POLICY_ID:_ENTRY, V5_POLICY_ID:_COUNTED_ENTRY, V6_POLICY_ID:_COUNTED_ENTRY, V7_POLICY_ID:_COUNTED_ENTRY, V8_POLICY_ID:_COUNTED_ENTRY}
 _CHEMISTRY_POLICIES = (V3_POLICY_ID, V4_POLICY_ID, *_COUNTED_POLICIES)
 
 
@@ -171,6 +174,11 @@ def _code(policy=None):
         _need(isinstance(legacy,dict) and set(legacy)=={'cif_counted_phase.py','cif_counted_refinement.py'}
               and all(isinstance(value,str) for value in legacy.values()), 'Invalid frozen v6 helper source set')
         frozen.update(legacy if policy==V6_POLICY_ID else {'cif_counted_refinement.py':legacy['cif_counted_refinement.py']})
+    if policy==V7_POLICY_ID:
+        legacy=json.loads((package/'data/refinement-runtime-v7-sources.json').read_text())
+        _need(isinstance(legacy,dict) and set(legacy)=={'cif_counted_phase.py','cif_counted_refinement.py'}
+              and all(isinstance(value,str) for value in legacy.values()), 'Invalid frozen v7 helper source set')
+        frozen.update(legacy)
     expected=_SOURCES[policy]
     values={name:frozen[name].encode('utf-8') if name in frozen else (package/name).read_bytes()
             for name in expected}
@@ -426,13 +434,15 @@ def _phase(run, root, phase, code, request, *, require_complete):
               'compiled_binding_sha256','provider_selection_sha256','recipe_sha256','scope_sha256'}
               and counted['policy_id']=='counted-phase-observation-v1','Missing counted phase outcome')
         lifetime=counted['lifetime'];owner=lifetime.get('owner') if isinstance(lifetime,dict) else None
-        _need(isinstance(lifetime,dict) and lifetime.get('policy_id')=='prepared-counted-refinement-cycle-v1'
+        scope_policy=('prepared-counted-refinement-cycle-v2' if request['policy_id']==V8_POLICY_ID
+                      else 'prepared-counted-refinement-cycle-v1')
+        _need(isinstance(lifetime,dict) and lifetime.get('policy_id')==scope_policy
               and lifetime.get('status')=='COMPLETE' and lifetime.get('binding_restored') is True
               and type(lifetime.get('driver_entries')) is int and lifetime['driver_entries']==1
               and isinstance(owner,dict) and owner.get('closed') is True and owner.get('poisoned') is False
               and type(owner.get('successful_calls')) is int and owner['successful_calls']>0,
               'Counted refinement did not complete its admitted lifetime')
-        if request['policy_id']==V7_POLICY_ID:
+        if request['policy_id'] in _PAIR_GEOMETRY_POLICIES:
             from .refinement_pair_geometry import read_pair_geometry
             read_pair_geometry(run,root,request)
     return result
@@ -494,7 +504,7 @@ def finish_execution(run, reference, *, checkpoint, preflight_returncode, refine
         from .refinement_counted import read_outcome_binding
         read_outcome_binding(run,root,request,admission,launch,complete=refinement_returncode==0)
     else:_need(counted_admission is None,'Unrequested counted admission')
-    if request['policy_id']==V7_POLICY_ID and refinement_returncode==0:
+    if request['policy_id'] in _PAIR_GEOMETRY_POLICIES and refinement_returncode==0:
         from .refinement_pair_geometry import seal_pair_geometry
         seal_pair_geometry(run,root,request,admission)
     phases=[]
@@ -629,7 +639,7 @@ def read_execution_chemistry(run, reference, *, checkpoint, parent, model):
 
 def read_execution_pair_geometry(run,reference,*,checkpoint,parent,model):
     record=validate_execution(run,reference,checkpoint=checkpoint,parent=parent,usable=True)
-    if record['policy_id']!=V7_POLICY_ID:return None
+    if record['policy_id'] not in _PAIR_GEOMETRY_POLICIES:return None
     request=read_execution_request(run,record['request'],checkpoint=checkpoint)
     root=_root(checkpoint);native=json.loads(path_in(run,root+'/refine/result.json').read_text())
     data=Path(model).read_bytes();written=native['written_model']

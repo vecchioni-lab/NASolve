@@ -18,6 +18,14 @@ ADMISSION_POLICY = 'prepared-counted-admission-v1'
 OBSERVATION_POLICY = 'counted-phase-observation-v1'
 
 AUTOREFINE_CONTROL_PROTOCOL = 'counted-xyz-fixed-unit-v1'
+LONG_CONTROL_PROTOCOL = 'counted-xyz-fixed-unit-100-v1'
+
+
+def control_iteration_cap(protocol):
+    """An explicit maximum, never a promise of that many native iterations."""
+    _need(isinstance(protocol,str) and protocol in (AUTOREFINE_CONTROL_PROTOCOL, LONG_CONTROL_PROTOCOL),
+          'Unknown counted refinement protocol')
+    return 100 if protocol == LONG_CONTROL_PROTOCOL else 10
 
 
 def validate_autorefine_control(protocol, pair_request, *, enabled, macro_cycles,
@@ -27,8 +35,7 @@ def validate_autorefine_control(protocol, pair_request, *, enabled, macro_cycles
     from collections.abc import Mapping
     if protocol is None and pair_request is None:
         return
-    _need(protocol == AUTOREFINE_CONTROL_PROTOCOL,
-          'Counted refinement requires the explicit counted-xyz-fixed-unit-v1 protocol')
+    control_iteration_cap(protocol)
     _need(isinstance(pair_request, Mapping) and set(pair_request) == {'recipe', 'source_model'},
           'Counted refinement requires an explicit original recipe/source request')
     _need(enabled is True and type(macro_cycles) is int and macro_cycles == 1
@@ -133,8 +140,10 @@ def _require_policy_continuation(inherited, policy):
     from . import refinement_parallelity as execution
     _need(inherited['policy_id'] not in execution._WRITTEN_POLICIES or policy in execution._WRITTEN_POLICIES,
           'Counted descendant lost its native written-model proof')
-    _need(inherited['policy_id'] != execution.V7_POLICY_ID or policy == execution.V7_POLICY_ID,
+    _need(inherited['policy_id'] not in execution._PAIR_GEOMETRY_POLICIES or policy in execution._PAIR_GEOMETRY_POLICIES,
           'Counted descendant lost its requested final pair geometry capture')
+    _need(inherited['policy_id'] != execution.V8_POLICY_ID or policy == execution.V8_POLICY_ID,
+          'Counted descendant lost its explicit longer-control scope')
 
 
 def _inherited_request(run, registry, selected, *, include_selected):
@@ -260,15 +269,18 @@ def _prepared(value, expected, request):
           'Prepared provider inventory digest differs')
 
 
-def _scope(value):
-    # Saved representation of C377's qualified scope, not a new native protocol.
+def _scope(value, *, runtime_policy=None):
+    # Bind the saved scope to its explicitly selected execution policy.
+    longer = runtime_policy == 'round-local-counted-execution-v8'
+    scope_policy = 'prepared-counted-refinement-cycle-v2' if longer else 'prepared-counted-refinement-cycle-v1'
     _need(isinstance(value,dict) and set(value)=={'policy_id','cycles','iterations','nproc','seed',
           'fix_wxc','wc','strategy','individual','target','scattering_table','place_ions'}
-          and value['policy_id']=='prepared-counted-refinement-cycle-v1'
+          and value['policy_id']==scope_policy
           and type(value['cycles']) is int and value['cycles']==1
           and type(value['nproc']) is int and value['nproc']==1
-          and type(value['iterations']) is int and 1<=value['iterations']<=10
-          and type(value['seed']) is int
+          and type(value['iterations']) is int
+          and (value['iterations']==100 if longer else 1<=value['iterations']<=10)
+          and type(value['seed']) is int and (not longer or value['seed']==1)
           and all(type(value[k]) in (int,float) and value[k]==1. for k in ('fix_wxc','wc'))
           and value['strategy']==['individual_sites'] and value['individual']==['all']
           and value['target']=='ml' and value['scattering_table']=='n_gaussian'
@@ -286,10 +298,9 @@ def _observation(run, root, request):
         raise ValueError('Counted preparation refused: '+error['type']+': '+error['message'])
     _need(set(value)=={'policy_id','status','scope','prepared_sha256','recipe_sha256'}
           and value['status']=='PREPARED' and isinstance(value['scope'],dict)
-          and value['scope'].get('policy_id')=='prepared-counted-refinement-cycle-v1'
           and value['recipe_sha256']==request['counted_intent']['current_recipe_sha256'],
           'Invalid counted prepared observation')
-    _scope(value['scope'])
+    _scope(value['scope'], runtime_policy=request['policy_id'])
     return value
 
 

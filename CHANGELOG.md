@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Explicit longer coordinate control (Willow review candidate)
+
+- Add Python-only `counted-xyz-fixed-unit-100-v1` with a configured cap of 100,
+  mandatory final pair measurements, fixed unit weights and the existing
+  one-cycle/all-site XYZ constraints. Native stopping may occur earlier.
+- Bind fresh v8 worker/admission/driver evidence to explicit cycle-v2 scope;
+  preserve written-model proof, pair intent, final capture and review lineage.
+- Preserve all v3–v7 worker bytes, old ten-iteration bounds, and defaults.
+  Existing records need no migration; new v8 records require a supporting reader.
+  No force, diffraction algorithm, normalization or scientific acceptance change.
+- Matched native/zero/full qualification remains pending; regression coverage
+  alone does not demonstrate more useful motion or an accepted repaired model.
+
 ### Read final geometry after numbered native stage labels (C394)
 
 - Keep reading a recognized Phenix step table through stage names such as

@@ -62,7 +62,7 @@ def test_changed_original_pair_intent_refuses_before_new_round(tmp_path):
     assert read_registry(run)[1]['current'] == 'postmr'
 
 
-def completed_control(tmp_path, monkeypatch, *, failure=None, initial=False, ancestor_policy=execution.V6_POLICY_ID, chemistry=None, extra=False):
+def completed_control(tmp_path, monkeypatch, *, failure=None, initial=False, ancestor_policy=execution.V6_POLICY_ID, chemistry=None, extra=False, longer=False):
     """Synthetic native envelopes exercise owners, not chemical qualification."""
     import hashlib
     import subprocess
@@ -70,6 +70,9 @@ def completed_control(tmp_path, monkeypatch, *, failure=None, initial=False, anc
     from tests.test_cif_refinement_runtime import output_row
     from nasolve.checkpoints import _file_reference
     run, refine, dump, options = case(tmp_path, policy=ancestor_policy)
+    selected_policy = execution.V8_POLICY_ID if longer else execution.V6_POLICY_ID
+    if longer:
+        options.update(counted_protocol=counted.LONG_CONTROL_PROTOCOL,counted_pair_geometry=True)
     if initial:
         options['from_checkpoint'] = 'postmr'
     if extra:
@@ -109,13 +112,13 @@ def completed_control(tmp_path, monkeypatch, *, failure=None, initial=False, anc
         assert not kwargs.get('start_new_session') and 'preexec_fn' not in kwargs
         root = Path(command[2]).parent
         request = json.loads((root / 'request.json').read_text())
-        assert request['policy_id'] == execution.V6_POLICY_ID
+        assert request['policy_id'] == selected_policy
         reference = _file_reference(root / 'request.json', run)
         checkpoint = request['checkpoint']
         phase = command[3]; commands.append(phase)
         if phase == 'preflight':
             assert not (root / 'admission.json').exists()
-            observed_case(tmp_path, policy=execution.V6_POLICY_ID,
+            observed_case(tmp_path, policy=selected_policy,
                           execution_case=(run, reference, command), checkpoint=checkpoint)
             if chemistry is not None:
                 path = root / 'preflight/result.json'
@@ -160,7 +163,7 @@ def completed_control(tmp_path, monkeypatch, *, failure=None, initial=False, anc
             provider_selection_sha256=admission['provider_selection_sha256'],
             scope_sha256=counted._digest(admission['scope']),
             recipe_sha256=request['counted_intent']['current_recipe_sha256'],
-            lifetime=dict(policy_id='prepared-counted-refinement-cycle-v1',
+            lifetime=dict(policy_id=admission['scope']['policy_id'],
                 status='FAILED' if failure == 'refine' else 'COMPLETE', binding_restored=True,
                 driver_entries=1, owner=dict(closed=True, poisoned=failure == 'refine', successful_calls=1)))
         (folder / 'counted.json').write_text(json.dumps(outcome))
