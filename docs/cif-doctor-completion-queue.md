@@ -5,6 +5,19 @@
 support; the [handoff](development-handoff.md) says where work stopped. Old notes
 record what was known then. They do not create a second set of instructions.
 
+**At a glance:** Q04/Q05 preparation, recovery and handoff are complete for the
+recorded explicit route. C402–C404 close the later cleanup gap, demonstrate a
+fresh ordinary PDU refinement child, and add source-selected final trigonal
+measurements. Full qualification of the final candidate is pending. Q06 remains
+open because delivery and measurement do not establish satisfactory PDU/DF shape
+under refinement. Next use the existing whole-substituent evidence to define the
+remaining scientific decision; do not repeat delivery, derivative or weight sweeps.
+The original mixed scaffold/ATL and unfamiliar-ligand challenge remain Q07, followed
+by retained chemistry boundaries Q08–Q14 and reporting/integration Q15/Q16.
+
+The records below retain the scope and limitations behind that work order; a
+historical “next” is not a new active task when a later completion is recorded.
+
 C359 one-request mixed-end construction and C360 component-padding proof are
 complete. C361's bounded DF diagnostic also passes construction: existing whole-base
 transport preserves the good sugar–base bond and exact scaffold/neighbours, using
@@ -118,10 +131,11 @@ not Q06 chemical survival or a replacement for ordinary refinement settings.
    reproduces C386/C389 exactly, with 15 unchanged counted calls and one separate
    descriptive energy call. Its additional archive is 15,492 bytes; relocated
    installed checks pass 305 +24 subtests. C389 records still lack attribution and
-   remain unassessed. Old v3–v6 worker bytes are unchanged. Next connect exact
-   covalent/terminal ownership and actual weight-choice evidence before changing
-   scientific selection; reuse Hazel's passive observation and W131 rather than
-   adding another evaluator or repeatedly qualifying the same owner.
+   remain unassessed. Old v3–v6 worker bytes are unchanged. C395 below completes
+   bounded actual-trial source matching and C396 tests the narrow screening
+   intervention; neither authorizes a production selector. Broader exact ownership
+   remains separate. Reuse those observations and W131, without adding another
+   evaluator or repeatedly qualifying the same owner.
 
 
 **C392 — actual PDU weight choices observed, not changed.** A matched private
@@ -237,12 +251,27 @@ No new storage owner, schema, chemistry rule or 100-native-dataset capacity clai
 C402 source is `23c1f411`; Linden owns its one pinned installed/full gate. C403 has
 completed the exact C401 parent’s new unselected ordinary refinement child.
 
-**Next bounded report:** C206 calls for local trigonal/exocyclic geometry as well
-as triple-axis survival. Reuse C208's source selector/Cartesian measurement and
-C338's compact actual-manager atoms/planes in an explicit cold reader. Preserve
-historical report/worker contracts, report unsupported scope honestly and add no
-new force, flattening rule or acceptance threshold. The C403 saved observation
-provides actual evidence; no new native run is required for this reporting seam.
+**C404 explicit trigonal report complete (final full qualification pending).**
+C206's local trigonal requirement now composes C208's source selector/measurement
+with C338's actual-manager observation through the existing validation path.
+The cold reader separates achieved shape, captured plane membership and positive
+local weights; no force, flattening rule, residue-name gate or acceptance threshold.
+The moved installation passes 185 focused checks with 304 resources exact; Hazel
+independently checks 648 bindings and recomputes the geometry. Existing triple
+reports and v3–v8 workers remain exact. C2/C4/C5 maximum bond elevations are
+0.802°/1.405°/2.039°, with native planes present; the outer propyne still bends.
+Capture remains limited to existing declared triple sites, not all modified ligands.
+No new native run is needed for this reporting seam. Code is frozen at `4bfffbca`
+while Linden finishes serial C402/final-C404 full gates. Do not rerun the established
+ordinary delivery, source-selection or derivative baselines to rediscover them.
+
+**Scientific stopping boundary:** C403 uses substituted-scaffold observations, not
+a PDU crystal. Keep its existing REVIEW screen and whole-substituent measurements,
+but do not treat repeated flattening or optimizer convergence as an agreed universal
+release criterion. No such broader numerical boundary was found in the reviewed
+Cedar/Alder history. DF's stretched attachment remains a separate concern. A future
+release must state whether it provides bounded, honest preparation/inspection or
+qualified automatic refinement support; neither claim is supplied by the other.
 
 Q06 achieved PDU/DF chemistry remains open. Ordinary AutoRefine/Doctor requests
 without explicit counted intent still refuse to lose that ancestry. Original
@@ -355,10 +384,11 @@ Exact controls and commands live in the existing evidence ledger:
 `serial_campaign_resource_acceptance_2026_11_14`,
 `campaign_stage_integrity_scope_2026_11_14`,
 `owner_inspection_numerical_reuse_2026_11_14`, and
-`q04_q05_supported_scope_2026_11_14`. Last complete full baseline is C391/8ccec55b
-(11,983 passed, 2 existing
-native opt-in skips, 292 subtests); later C394 has focused checks. Final combined
-integration still needs its own full regression.
+`q04_q05_supported_scope_2026_11_14`. C391/8ccec55b's historical full result is
+11,983 passed, 2 existing native opt-in skips and 292 subtests. Current qualified
+source and pending candidates are recorded once in the maintained handoff; this
+historical result is not their qualification. Final combined integration still
+needs its own full regression.
 
 Q06 still owns effective native membership, known parallelity-gradient behavior,
 scientific targets and achieved geometry. Simon's reported PDU distortion after
@@ -1213,25 +1243,13 @@ reference enters explicit backbone contexts rather than inventing phosphate
 chemistry or activating a DY-name workaround. Retain junction survival as a
 refinement check; no additional plane or altered angle weights now.
 
-C338's bounded Q06 reporting connection is complete. Continue this DY qualification
-without waiting for an entire ChemDraw importer. The existing future-reference contract and C59–C70 source/alias ownership,
-C133–C139 linked-context machinery and C326–C333 preparation owners are the
-prior work to reuse. A broad arbitrary-drawing builder remains separate.
-
-1. Qualify the named source graph/stereo and generate numerical restraints through
-   the existing bounded native route. Audit both rings and the C4–N1T junction;
-   keep legitimate inter-ring rotation. Do not merge ring planes or erase a
-   justified torsional energy merely because the connecting bond is single.
-2. Qualify linked and explicitly requested terminal states, sugar hand, hydrogen/
-   charge transitions and phosphate handling. Exercise native membership and
-   derivatives using existing readers. Keep unsupported chemistry visible.
-3. Validate ordinary Coot/PostMR mutation to **DY**, whole connected-base placement,
-   chi, unaffected neighbors and reusable packaged lookup. Register DY through
-   existing curated/sequence and NARestraints interfaces after these gates pass;
-   no residue-name repair script or dependency on this Mac's preview folder.
-4. Verify actual ReadySet and Phenix refinement survival plus a sound related
-   rotating-ring control. NAR pairing/stacking needs explicit chemical roles;
-   no Watson–Crick partner or metal coordination is implied by the definition.
+The earlier four-step DY plan is now represented by the completed-boundary table
+above: source/representation, linked/terminal preparation, explicit ordinary
+construction and the bounded covalent-only control all have recorded evidence.
+Do not repeat them while awaiting a broader ChemDraw importer. The remaining
+ordinary automatic selection, modified-input seed forwarding, NAR chemical roles
+and advertised refinement-survival claims retain their own gates. Source/alias,
+linked-context, preparation and process owners remain shared with other ligands.
 
 Use this as a custom-source addition to Q07/Q12/Q14, not a replacement for the
 existing mixed scaffold or held-out catalogue challenge. Close the task when an
@@ -1452,13 +1470,14 @@ full suite on the final combined source, relevant ordinary/native controls and
 relocation with original paths unavailable. Exercise macOS/Linux process/path
 assumptions for supported environments; record any untested platform explicitly.
 
-The current complete unfiltered baseline is **C391 `8ccec55b`**: **11,983 passed,
-2 existing native opt-in skips, 292 subtests passed**, 3196.08 s. W135 independently
-seals 1,413 unchanged tracked files, exact NARestraints `a9264f9e` and stopped
-process ownership. C394's subsequent log-only fix has focused validation, not a new
-full pass. Commands, skipped-test reasons and hashes are in ledger
+Current qualified source and pending full candidates are recorded once in the
+maintained [handoff](development-handoff.md); qualification follows the exact
+source, not a branch name. Historical C391 `8ccec55b` passed 11,983 tests with two
+existing native opt-in skips and 292 subtests in 3196.08 s. W135 independently
+sealed 1,413 unchanged tracked files, exact NARestraints `a9264f9e` and stopped
+process ownership. Commands, skipped-test reasons and hashes remain in ledger
 `full_c391_regression_2026_11_18`. Older C220 green and C222 partial results retain
-their original evidence; they no longer define the current baseline.
+their original evidence; neither defines the current baseline.
 C386's later unfiltered run finishes with 11,873 passed /46 failed /2 skipped
 and 281 subtests (3266.71 s). W132 resolves all 46 on the exact source: host
 process permissions give 45 passes and one residual; exact byte-identical

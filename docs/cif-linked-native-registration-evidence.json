@@ -115585,8 +115585,211 @@
     "remaining": [
       "PDU whole-substituent and DF achieved geometry still REVIEW/open under Q06.",
       "Exact ordinary integration does not establish converged or experimental PDU crystal refinement.",
-      "Existing C208 source trigonal geometry and C338 native observations can support an explicit final-manager reader; no new plane force or residue-name rule."
+      "C404 now composes the existing source selector and captured observation into an explicit final-manager trigonal reader; this adds no force or threshold and does not repair the remaining geometry."
     ],
     "geometry_scope": "Compact descriptive geometry only; complete exact native plane membership/weights remain bound in the local readback receipt."
+  },
+  "native_trigonal_geometry_readback_2026_11_18": {
+    "milestone": "C404",
+    "status": "SOURCE_INSTALLED_INDEPENDENT_COLD_PASS_FULL_PENDING",
+    "author": "Rowan",
+    "candidate": "4bfffbca068cfe74cc926ff68fefca5ba5c83c3a",
+    "before": "Existing cold ordinary chemistry reader reported source-selected triple geometry only; C206 local trigonal requirement and C208 measurements were not composed with the C338 actual-manager observation.",
+    "after": "Explicit read_execution_trigonal_geometry reuses the same selected-observation validation, existing source-graph selector and Cartesian measurement. Local shape, captured plane membership and positive local weights are separate, descriptive results.",
+    "changed_files": [
+      "src/nasolve/cif_plane_geometry.py",
+      "src/nasolve/refinement_parallelity.py",
+      "tests/test_refinement_trigonal_geometry.py",
+      "CHANGELOG.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md"
+    ],
+    "schemas": {
+      "new_explicit_report": "cif-source-trigonal-native-geometry-v1",
+      "schema_version": 1,
+      "historical_reports_requests_workers": "UNCHANGED"
+    },
+    "selection": "Neutral carbon with exactly three heavy neighbors and explicit double/single/single source connectivity; no component/atom-name allowlist.",
+    "validation": {
+      "fail_before": "Two renamed-chemistry regression cases fail with missing reader before implementation.",
+      "focused_source": "156 passed in the initial five-file panel; subsequent 41-pass new-reader/long-control panel includes overlap. Do not sum as distinct tests.",
+      "installed": {
+        "passed": 185,
+        "pytest_seconds": 29.3,
+        "files": 6,
+        "resources": 304,
+        "wheel_sha256": "9f16c6925a74a37e4acb28c5d1224047bb06d7ff97b43350060e07e16c95a7d2",
+        "build_source_and_original_install_absent": true,
+        "python_source_fallback": false,
+        "test_relative_fixtures": "Two exact packaged 5W6W files only; no Python source fallback."
+      },
+      "installed_environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTEST_ADDOPTS": "",
+        "PYTHONPATH": "<relocated-installed-package>:/private/tmp/willow-w132-full-regression/narestraints:<isolated-qualification-root>"
+      },
+      "commands": [
+        [
+          "/private/tmp/willow-w94-pivot/env/bin/python",
+          "-B",
+          "-m",
+          "pip",
+          "wheel",
+          "--no-deps",
+          "--no-build-isolation",
+          "--no-cache-dir",
+          "--wheel-dir",
+          "/private/tmp/c404-installed-_w2bovo4/wheel",
+          "/private/tmp/c404-installed-_w2bovo4/build-source"
+        ],
+        [
+          "/private/tmp/willow-w94-pivot/env/bin/python",
+          "-B",
+          "-m",
+          "pip",
+          "install",
+          "--no-deps",
+          "--no-compile",
+          "--target",
+          "/private/tmp/c404-installed-_w2bovo4/installed",
+          "/private/tmp/c404-installed-_w2bovo4/wheel/nasolve-0.1.0-py3-none-any.whl"
+        ],
+        [
+          "/private/tmp/willow-w94-pivot/env/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-p",
+          "qualification_plugin",
+          "--junitxml",
+          "/private/tmp/c404-installed-_w2bovo4/tests.xml",
+          "tests/test_refinement_trigonal_geometry.py",
+          "tests/test_cif_plane_geometry.py",
+          "tests/test_refinement_chemistry.py",
+          "tests/test_refinement_parallelity.py",
+          "tests/test_cif_refinement_sites.py",
+          "tests/test_counted_long_control.py"
+        ],
+        [
+          "/private/tmp/willow-w94-pivot/env/bin/python",
+          "-B",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c404_readback.py",
+          "/private/tmp/c404-installed-_w2bovo4/relocated",
+          "installed-readback"
+        ]
+      ],
+      "cold_readback": {
+        "actual_C403_report_equal_source": true,
+        "old_triple_report_exact": true,
+        "unchanged_native_files": 283,
+        "installed_seconds": 0.4992589580069762,
+        "new_native_calls": 0
+      },
+      "historical_worker_maps": {
+        "policies": "v3-v8",
+        "file_counts": [
+          8,
+          8,
+          24,
+          24,
+          25,
+          25
+        ],
+        "exact_old_installed_bytes": true,
+        "mapping_sha256": "4a0cd49cb38f4a87fd74e31254e8c89a2ce8cc99d0f29488f10e726ba856f64b"
+      },
+      "independent_review": {
+        "reviewer": "Hazel",
+        "checks": 648,
+        "method": "Independent NumPy determinant and atan2 cross/dot calculation, plus installed resources/receipts/native-plane membership; no refinement or coefficient generation.",
+        "receipt": {
+          "anchor": "local-branch-artifacts",
+          "relative_path": "Alder/coordination-c404-installed-review-20261118.json",
+          "sha256": "57f98cf2bfba9c96f04fe04477b9445b29f1f250f05263a02d41fcbfa991fefb",
+          "bytes": 64787
+        }
+      },
+      "full_regression": {
+        "status": "PENDING_SERIAL_AFTER_C402",
+        "owner": "Linden",
+        "candidate": "4bfffbca068cfe74cc926ff68fefca5ba5c83c3a",
+        "narestraints": "a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691"
+      }
+    },
+    "actual_geometry": {
+      "coordinate_precision": "FULL_NATIVE",
+      "centres": [
+        {
+          "centre": "C2",
+          "maximum_bond_elevation_degrees": 0.8019390401894748,
+          "native_covering_planes": 1,
+          "positive_local_covering_planes": 1
+        },
+        {
+          "centre": "C4",
+          "maximum_bond_elevation_degrees": 1.404853968645796,
+          "native_covering_planes": 1,
+          "positive_local_covering_planes": 1
+        },
+        {
+          "centre": "C5",
+          "maximum_bond_elevation_degrees": 2.0385579132384355,
+          "native_covering_planes": 1,
+          "positive_local_covering_planes": 1
+        }
+      ],
+      "comparison": "Same C403 observations already recorded above; no new refinement or improved geometry claim."
+    },
+    "receipts": {
+      "installed-check.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c404-trigonal-readback/installed-check.json",
+        "sha256": "f27a2d010778adf0667a2362f52741ae5c33d1ad4db60730f06b243ac21bc0de",
+        "bytes": 36127
+      },
+      "installed-readback.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c404-trigonal-readback/installed-readback.json",
+        "sha256": "30e9bc48a1dfed1d60702936fa52755e58cf33a21da406f3de3c5c8b8ee3ac96",
+        "bytes": 25630
+      },
+      "source-readback.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c404-trigonal-readback/source-readback.json",
+        "sha256": "15c1f09d926555339a44ef1f6039e471ad5809189f1b2051558ac0c60ef7e8d0",
+        "bytes": 25649
+      },
+      "historical-workers.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c404-trigonal-readback/historical-workers.json",
+        "sha256": "2773275a5ab5404ac8dc04f74109b62001d643f70cea062a2a7e56227b605735",
+        "bytes": 651
+      },
+      "software-copy-retirement.json": {
+        "anchor": "cedar-local-artifacts",
+        "relative_path": "c404-trigonal-readback/software-copy-retirement.json",
+        "sha256": "af7c256c919e27b012cc87c8252e3ae71e7c38ba152f20606e731cd51a3550af",
+        "bytes": 22601
+      }
+    },
+    "retired_software_copies": {
+      "files": 487,
+      "bytes": 5266292,
+      "installed_resources_unchanged": 304,
+      "scientific_files_removed": 0,
+      "retained": "Wheel, relocated installation, XML, command logs, import audit, exact commit and reproduction recipe."
+    },
+    "compatibility": "Opt-in cold report only; existing triple report, capture scope, workers, chemistry, forces, thresholds, checkpoint selection and defaults unchanged. No migration.",
+    "generated_artifacts": "Only compact metrics/hashes committed. Scientific models/maps/logs, installed qualification and the ten-file 1.45MB science checkout stay local.",
+    "limits": [
+      "Existing native capture currently selects declared triple-bond sites; this reader does not expand capture to all modified residues.",
+      "Native residuals are not evaluated; positive plane weights do not establish flatness, adequate strength or scientific acceptance.",
+      "Unsupported source states and missing/degenerate coordinates remain explicit, not inferred planar.",
+      "Q06 achieved PDU/DF geometry and held-out survival remain open."
+    ],
+    "scientific_acceptance": false
   }
 }

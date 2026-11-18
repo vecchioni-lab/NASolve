@@ -1,12 +1,13 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-18 evening, C402 / C403 — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. Runtime candidate **`23c1f411`**
-adds only the narrow publication cleanup fix described below. Its 162 focused checks
-pass; Linden owns independent review and one pinned installed/full qualification.
-The last full-qualified runtime is `4f7aeb84`, identical in source/tests/packaging to
+Updated **2026-11-18 evening, C404 — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. Code frozen for qualification at
+**`4bfffbca`**: C402 publication cleanup plus C404 explicit native trigonal readback.
+Focused/relocated installed checks and independent cold review pass. Linden owns
+serial full gates: C402 `23c1f411`, then the final C404 candidate; neither is yet
+reported complete. The previous full-qualified source/tests/packaging match
 `d8656b22`: **12,008 passed, 2 existing native opt-in skips, 293 subtests** in
-3581.07 s with NARestraints `a9264f9e`. Do not describe that as a full pass of C402.
+3581.07 s with NARestraints `a9264f9e`. Do not apply that pass to changed code.
 
 ## Current checkpoint
 
@@ -41,14 +42,20 @@ calls. All 243 original surviving preparation files stay unchanged; only the ord
 registry/root report are appropriately updated. A byte-verified 1.28 MB delta archive
 records the new child and depends explicitly on the retained C401 parent archive.
 
-**Next bounded code: actual-final trigonal geometry, using existing evidence.**
-C206 requires local trigonal/exocyclic geometry alongside triple-axis reporting.
-C208 already selects supported centres from source connectivity; its Cartesian
-measurements exist in `cif_plane_geometry`. C338 already captures selected-site
-heavy coordinates and native plane membership at full precision. Ordinary chemical
-readback currently reports only triples. Compose these existing parts into a new
-explicit read-only report, preserving old reports/worker bytes and unsupported scope.
-No plane strengthening, coordinate editing, new acceptance threshold or PDU-name rule.
+**C404 complete — measure local flatness where Phenix actually refined.**
+The explicit cold reader composes C208 source-graph selection/measurement with
+C338's saved full-precision atoms and planes. It reuses the existing validation
+path and distinguishes local shape, native plane membership and positive local
+weights. There is no residue-name allowlist, new force or acceptance threshold.
+Old triple reports and all six historical worker maps remain exact.
+
+The moved installation passes **185 focused checks**, with all 304 resources exact
+and its build sources absent. Hazel independently verifies 648 bindings and
+recomputes the three local measurements. C2/C4/C5 maximum bond elevations are
+0.802°/1.405°/2.039°; each retains a positively weighted covering plane. This does
+not erase the outer propyne bending or close Q06. Existing native capture still
+selects declared triple-bond sites; C404 does not broaden it to all modified ligands.
+All reads leave the 283 native files unchanged and launch no scientific program.
 
 ## Reuse the existing science
 
@@ -77,8 +84,8 @@ six-atom ring plane 0.094297 Å. These descriptive starting values are not accep
 
 ## Next work, in order
 
-1. Finish C402's independent full gate (relocated installed checks pass), retain
-   C403's completed ordinary evidence and update the compact science checkout.
+1. Finish Linden's serial C402 and final C404 full gates, then publish the compact
+   handoff and science checkout. Code is frozen meanwhile; no repeated native matrix.
 2. Use the resulting actual-manager evidence to identify the remaining chemical
    defect. Q06 needs useful PDU/DF geometry after refinement and whole-substituent
    evidence, not merely successful execution or a readable CIF. Reuse existing
@@ -128,16 +135,19 @@ Alder; coordinate before shared-source or native work. Do not duplicate their ru
 
 Exact commands, revisions, limits and hashes are in the existing
 [evidence ledger](cif-linked-native-registration-evidence.json). Current entries:
-`fresh_automatic_pdu_publication_2026_11_18` (C401)
-and `automatic_bond_publication_retention_2026_11_18` (C402), and
-`fresh_ordinary_pdu_refinement_child_2026_11_18` (C403). Historical worker,
+`fresh_automatic_pdu_publication_2026_11_18` (C401),
+`automatic_bond_publication_retention_2026_11_18` (C402),
+`fresh_ordinary_pdu_refinement_child_2026_11_18` (C403), and
+`native_trigonal_geometry_readback_2026_11_18` (C404). Historical worker,
 chemistry and construction entries remain evidence, not a second active queue.
 Models, reflections, logs and archives stay local; compact evidence alone is committed.
 
-The eight-file science checkout (about 1.2 MB) is
+The ten-file science checkout (about 1.45 MB) is
 `ScienceCheckouts/Rowan/2026-11-18/review.html` under the sibling GitHub root. Update it
 with completed effects, reusing original model links and the Linden/Hazel checkouts.
-Do not copy raw datasets to decorate reports. Private continuity and coordination
+C404 retires 487 verified duplicate software/test files (5.27 MB), retaining the
+installed package, wheel, logs, XML and reproduction instructions. No scientific
+files are removed. Do not copy raw datasets to decorate reports. Private continuity and coordination
 notes stay outside the product repository.
 
 The earlier audit of 3,965 test definitions found seven exact-body groups with
