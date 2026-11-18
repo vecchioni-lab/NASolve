@@ -48,6 +48,10 @@ def configure(subparsers):
     geometry = actions.add_parser('geometry', help='prepare bounded metal-only coordinates against explicit recipe targets')
     verify_geometry = actions.add_parser('verify-geometry', help='replay a saved geometry trial without native execution')
     fdp = actions.add_parser('fdp', help='run one audited frozen-coordinate fixed-occupancy f-double-prime trial')
+    storage = actions.add_parser('inspect-fdp-storage', help='measure explicit completed trials without scientific replay or cleanup')
+    storage.add_argument('--trial', type=Path, action='append', required=True)
+    storage.add_argument('--max-bytes', type=int, default=1024**3, help='total sample byte budget (default: 1 GiB)')
+    storage.add_argument('--forecast', type=Path, help='JSON with explicit campaign counts and byte allowances')
     verify_fdp = actions.add_parser('verify-fdp', help='verify saved fdp inputs and freeze audit without a native run')
     compare_fdp = actions.add_parser('compare-fdp', help='compare audited fdp endpoints without native execution')
     verify_comparison = actions.add_parser('verify-fdp-comparison', help='replay a saved fdp comparison offline')
@@ -78,7 +82,7 @@ def configure(subparsers):
     scan.add_argument('--job-budget', type=int, required=True)
     scan.add_argument('--resume', type=Path)
     scan_verify.add_argument('--scan', type=Path, required=True)
-    for parser in (count, count_verify, count_compare, count_compare_verify, scan_plan, scan, scan_verify, inspect, preview, build, verify, geometry, verify_geometry, fdp, verify_fdp, compare_fdp, verify_comparison, compare_ref, verify_ref):
+    for parser in (storage, count, count_verify, count_compare, count_compare_verify, scan_plan, scan, scan_verify, inspect, preview, build, verify, geometry, verify_geometry, fdp, verify_fdp, compare_fdp, verify_comparison, compare_ref, verify_ref):
         parser.add_argument('run', type=Path, help='explicit NASolve run directory')
         if parser in (inspect, preview, build):
             parser.add_argument('--checkpoint', default='postmr', help='exact checkpoint/bookmark (default: postmr)')
@@ -136,6 +140,8 @@ def execute(args):
         outputs = [p for p in (args.output, getattr(args, 'export', None)) if p is not None]
         if len({p.resolve() for p in outputs}) != len(outputs) or any(p.exists() or p.is_symlink() for p in outputs):
             raise RecipeError('Outputs must be distinct new files')
+        if args.metal_action == 'inspect-fdp-storage':
+            return _fdp_storage(args)
         if args.metal_action == 'import-restraints':
             return _import_restraints(args)
         if args.metal_action in {'capture-workbench', 'inspect-workbench', 'serve-workbench'}:
@@ -611,4 +617,29 @@ def _fdp_count_comparison(args):
         compared = sum(p['status']=='COMPARED' for p in report['profiles'])
         print(f'{compared} matched one-variable profiles; full Q vectors, per-site values and controls: {path}')
         print('Coefficient diagnostics only; no integer count, convergence claim or checkpoint selection.')
+    return 0
+
+
+def _fdp_storage(args):
+    from .storage import inspect_storage
+    if args.output:
+        if not args.output.parent.is_dir():
+            raise RecipeError('Output parent directory must already exist')
+        # An inventory must never add a file to an immutable trial directory.
+        if args.output.resolve().is_relative_to(args.run.expanduser().resolve() / 'Metal'):
+            raise RecipeError('Storage report must be outside the immutable Metal tree')
+    report = inspect_storage(args.run, args.trial, max_bytes=args.max_bytes,
+                             forecast=_json(args.forecast) if args.forecast else None)
+    serialized = json.dumps(report, indent=2, allow_nan=False) + '\n'
+    if args.output:
+        with args.output.open('x') as handle:
+            handle.write(serialized)
+    if args.json:
+        print(serialized, end='')
+    else:
+        print(f"Frozen f″ storage: {len(report['samples'])} explicit trials; {report['logical_bytes']:,} logical bytes")
+        print(f"Repeated content: {report['repeated_content_bytes']:,} bytes; not an estimate of safe deletion")
+        print('Trial payload integrity only; parents excluded; no scientific replay or cleanup.')
+        if report['forecast']:
+            print(f"Current-layout scenario peak: {report['forecast']['scenario_peak_bytes']:,} bytes; not a guaranteed bound or disk reservation.")
     return 0

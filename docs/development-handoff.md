@@ -6,6 +6,73 @@ current milestone: **A01 — ligand geometry and open XYZ/B**. Start with the
 The older Cedar/metal pause narrative is retained in
 [history](history/metal-foundation-pause-2026-11-16.md), not current instructions.
 
+## A04 — read-only inventory and forecast, 2026-11-18 evening
+
+**Before/after.** Storage estimates previously lived in private one-off scripts.
+`metal inspect-fdp-storage` now inventories explicit completed frozen trials
+through their existing manifests, checks payload hashes within a byte budget,
+and optionally projects the current layout with explicit campaign/parent/scratch/
+reserve allowances. It never launches native tools, traverses parents, writes
+inside the Metal tree or retires a file. The additive report schema is
+`metal-fdp-storage-inventory` v1; existing trial schemas/readers remain unchanged.
+Repeated bytes do not imply permission to delete. This is storage integrity,
+not scientific replay or qualification. See the [storage guide](metal-campaign-storage.md).
+
+**Changed source:** `src/nasolve/metal/storage.py`, `src/nasolve/metal/cli.py`,
+`tests/test_metal_storage.py`, this handoff, roadmap, storage guide and changelog.
+Focused regressions cover missing/changed/rehashed inventory, symlinks, budgets,
+concurrent mutation, exact dedup arithmetic, explicit forecast assumptions,
+output protection and fresh-process relocation after the original path is gone.
+No native execution or full suite is required for this isolated read-only surface.
+Regression before implementation: the first storage test failed with the missing
+module. After implementation and bounded-read hardening, the focused command is:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q tests/test_metal_storage.py tests/test_metal_fdp.py tests/test_metal_fdp_scan.py tests/test_cli.py --tb=short -p no:cacheprovider
+```
+
+This uses the existing local development interpreter; no new environment or
+native process is created. Final result: 115 tests and 14 subtests passed.
+`git diff --check` passes. The 16 storage regressions include relocation in a
+fresh interpreter after both the temporary source checkout and run have moved
+and the original location is gone. The strengthened relocation case separately
+passes (1 test, 0.87 s). Linden independently reviewed the bounded paths, integrity
+checks, report output protection and forecast scope with no blocking finding.
+
+The private A04 sample lives under the existing Alder artifact anchor at
+`a04-inventory-20261118-01/`: three older FT_Hg diagnostic trials total 2,478,875
+logical bytes, 1,513,766 unique-content bytes and 965,109 repeated-content bytes.
+Parent payload is explicitly excluded. Generated trial data and local reports
+remain outside Git. No migration or existing-run mutation is needed.
+
+**Current coordination and scientific boundary.** A01 remains partial and A02
+gated. Independent cold reviews closed the C400 native/zero/full diagnostic
+matrix without another native run: full pair restraints improve local plane
+alignment, but native stopping errors remain. Small R/clash differences are
+contextual, not automatic rejection rules. C401 freshly publishes the ordinary
+PDU construction result with automatic bond/plane discovery, preserving the
+source triple-bond and terminal targets. This reproduces earlier prepared
+bytes; it is an integration result, not a new geometry improvement or an open-fit
+qualification. Rowan owns its supported v4 retention fix/compaction and any
+unselected refinement child; Linden owns independent retention qualification
+and TopoStitch. Hazel owns the frozen-trial inventory. No competing retention
+owner or normalization implementation is introduced.
+
+The exact private cold-review receipts remain under the Alder artifact anchor:
+`coordination-c400-union-review-20261118-v2.json` (82 checks),
+`coordination-c400-final-statistics-review-20261118.json` (13 checks) and
+`coordination-c401-preparation-review-20261118.json` (57 checks). The last receipt
+describes the pre-retirement C401 state; supported later compaction must record
+its transition rather than claiming that the complete old root is unchanged.
+
+**Next:** review the versioned compact request/result and lossless parent
+materialization contract against Cedar's existing retention ownership. Alder
+predates those modules: agree an integrated base before implementing the adapter;
+do not copy the archive owners into a separate metal implementation. Do not
+prune schema-1 trials. Qualify native regeneration only after a suitable A01/A02
+parent exists. GUI work and experimental-input reconstruction remain separate
+post-merge milestones A05–A07.
+
 ## A01 — matched real-data normalization intervention, 2026-11-18
 
 **A01 remains partial; A02 remains gated.** This bounded follow-up tests the

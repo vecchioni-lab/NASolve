@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Measure frozen anomalous-trial storage without changing runs
+
+- Add `metal inspect-fdp-storage` for explicit, bounded manifest/file integrity
+  inventory, exact repeated-content accounting and optional current-layout
+  campaign forecasts with explicit protected/scratch/reserve allowances.
+- Keep scientific replay, physical allocation, disk reservations and retirement
+  authority explicitly separate. Existing trial schemas and files stay unchanged;
+  the additive portable inventory report is version 1 and requires no migration.
+- Record the A04 implementation boundary and independently reviewed A01/PDU
+  coordination evidence; generated science and local reports remain excluded.
+
 ### Document the bounded real-data normalization control
 
 - Record the matched one-cycle geometry-denominator intervention, exact baseline,

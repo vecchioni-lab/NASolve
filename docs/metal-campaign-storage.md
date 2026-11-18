@@ -1,11 +1,67 @@
 # Metal campaign storage and recovery plan
 
-Status: **design scoped, implementation pending**; 18 November 2026.
+Status: **read-only inventory and scenario estimator implemented; compact storage/retirement pending**; 18 November 2026.
 The [post-merge development roadmap](metal-development-roadmap.md) places this
 work at **A04**, after single-dataset ligand/open-refinement qualification and
 before large f″ campaigns. It is a feature milestone after merge, not a
 prerequisite for merging the current experimental implementation.
 This document does not enable cleanup or change an existing immutable run.
+
+## Implemented first step: explicit frozen-trial inventory
+
+`nasolve metal inspect-fdp-storage RUN --trial Metal/fdp_001 --trial Metal/fdp_002 --json`
+checks the complete manifest envelope and hashes each declared regular file.
+It reports logical bytes, unique content bytes, repeated content bytes, named
+producer roles and explicit parent references. Every trial must be named; it
+neither discovers inputs nor traverses parent trees. The default total sample
+budget is 1 GiB, with at most 256 trials, 256 files per trial and a 1 MiB manifest.
+`--max-bytes` sets an explicit sample budget. No Phenix/Coot process runs.
+
+This is **payload integrity, not scientific replay**. Use `verify-fdp` for the
+full scientific audit. Identical content is not necessarily safe to retire:
+all existing manifest promises still apply. Unknown declared native outputs stay
+visible as `other_declared_payload`; filename extensions never authorize cleanup.
+Counts are logical bytes, not measured physical allocation on compressed,
+cloned or hard-linked filesystems. Failed/incomplete trials are refused rather
+than silently omitted. Output goes to a new explicit `--output` file outside the
+immutable `Metal` tree; input files and manifests remain untouched.
+
+The additive report schema is `metal-fdp-storage-inventory`, version 1. Its
+run-anchored file references/checksums and report digest survive relocation.
+Parent references are recorded **but their payload is neither counted nor
+verified**. The report explicitly denies scientific replay and retirement
+permission. This does not replace a run/retention manifest or change its schema.
+
+For a scenario, supply `--forecast FORECAST.json` with all seven integers:
+
+```json
+{
+  "datasets": 200,
+  "trials_per_dataset": 100,
+  "protected_bytes_per_dataset": 104857600,
+  "concurrent_jobs": 4,
+  "scratch_bytes_per_job": 67108864,
+  "compaction_overlap_bytes": 536870912,
+  "reserve_bytes": 5368709120
+}
+```
+
+These example allowances are assumptions, **not measured upstream or scratch
+usage**. The forecast multiplies the largest sampled current-layout trial by the
+requested point count, then adds protected storage, concurrent scratch,
+compaction overlap and reserve. It deliberately makes no compact-layout savings
+claim, guaranteed upper bound, scheduling decision or actual disk reservation.
+A larger reflection set, extra maps, failures or protected nodes can exceed the
+scenario; provide allowances for them and calibrate representative samples.
+Shared/unique content within the measured sample is exact; forecast reuse across
+different datasets is never assumed. Measuring peak native scratch and campaign
+budget enforcement remain later executor work.
+
+A read-only three-trial FT_Hg sample on 18 November contains **2,478,875 bytes**,
+including **965,109 bytes** of repeated content. Its largest trial is 848,299
+bytes: 20,000 such trials alone would consume **16,965,980,000 bytes**, before all
+other allowances. This different sample does not replace the larger earlier
+examples below. No files were retired and no accepted scientific solution follows.
 
 ## Governing decision
 
@@ -44,6 +100,11 @@ collection are deferred until ownership, export and reference lifetimes are
 qualified. Reuse campaign locking, process ownership and storage primitives;
 add a metal task-profile adapter rather than a competing general archive system.
 Current Cedar retirement rules stay unchanged, including their failure retention.
+The current Alder source snapshot predates these owners. Before implementing
+compact publication/materialization or retirement, establish a coordinated
+integration base containing the qualified Cedar implementation. Do not copy its
+modules into a parallel metal-owned archive system. The read-only inventory has
+no such dependency and does not invoke archive or retention APIs.
 
 ## What survives
 
@@ -192,7 +253,9 @@ parents; compact f″ rows do not make upstream refinement archives free.
 ## Safe implementation order and acceptance
 
 1. **Inventory and estimator:** classify actual files through manifests, measure
-   shared/unique bytes and peak scratch, forecast 200-dataset workloads. Read-only.
+   shared/unique bytes and forecast explicit workloads. Read-only sample inventory
+   is implemented; native peak scratch measurement remains pending and must be
+   supplied as an explicit scenario allowance for now.
 2. **Versioned compact frozen records:** shared immutable parent store, complete
    request fingerprints, compact results and declared audit levels; lossless
    input materialization. Existing schema-1 runs remain untouched and verifiable.
