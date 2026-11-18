@@ -24,6 +24,17 @@ execution retains compact optimizer-stopping evidence: a completed job cannot
 silently stand for a converged minimizer. Independent convergence and scientific
 acceptance remain unassessed. A02 has not advanced.
 
+A later saved-evidence audit confirms exact source/effective/native transfer of
+all surviving local heavy-atom bond/angle/plane terms in two FT_Hg controls.
+Their achieved geometry remains strained; this closes a transfer check, not A01.
+Shared non-triple declared-site capture now has a matched one-cycle native
+no-change check and independent cold readback; it is not an Alder integration or
+accepted geometry. Next: bind that shared owner to checked ordinary preparation
+and qualify continuation on the agreed merged base. Avoid repeating the completed
+private weight/iteration controls without new evidence.
+Construction remains chemistry/connectivity driven: PDU and DF are qualification
+examples, with related and unchanged-good cases needed before general repair claims.
+
 Latest controls separate the final B transfer from the R deterioration and show
 that the longer geometry-only preparation returns after a native line-search
 error. Exact passive evaluator capture now shows identical XYZ/raw residual with

@@ -6,6 +6,97 @@ current milestone: **A01 — ligand geometry and open XYZ/B**. Start with the
 The older Cedar/metal pause narrative is retained in
 [history](history/metal-foundation-pause-2026-11-16.md), not current instructions.
 
+## A01 — source-to-effective/native term transfer, 2026-11-18 late review
+
+**Generalization requirement.** Construction and repair follow source chemistry,
+connectivity and declared context. PDU is a qualification example, not a component
+name that selects a special repair. Related supported chemistries, unchanged good
+cases and unsupported/ambiguous contexts must be covered before claiming general
+construction. Label independence alone is not chemical generalization.
+
+**New bounded evidence.** A cold audit of the retained pooled and private
+covalent-eligibility FT_Hg controls binds original input dictionaries/modifications,
+previous endpoint receipts and full-native observations. In both controls, all
+**20 surviving local heavy atoms, 21 bonds, 30 angles and the one 10-heavy-atom
+plane** agree with the declared source scope, targets, uncertainties and plane
+weights. The source has 37 bonds including covalent bonds to H; the effective
+monomer has 34. The three removed bonds touch HO3′/HOP3/OP3, exactly the explicitly
+deleted context atoms. The two native restraint inventories are identical.
+This rules out missing/altered local bond and angle targets in these controls;
+it does not prove their chemical ideals or full surrounding interactions correct.
+
+The attachment is selected as the largest nominal bond outlier without a named
+atom rule: **1.66243991 Å (4.30105 nominal σ)** in the pooled endpoint and
+**1.57775796 Å (2.07258 nominal σ)** in the private control, against the unchanged
+**1.499 ± 0.038 Å** target. These are old independently restarted controls, not
+new fits or successive accepted stages. Rwork/Rfree remain 0.28553/0.29088 and
+0.32905/0.34210 respectively. The control's local improvement accompanies a worse
+diffraction fit; neither endpoint is accepted. No f″ trial is performed.
+
+The existing installed C404 graph-selected reader consumes the saved non-triple
+DF observations and selects C2/C4/C5 without a component-specific branch. Native
+plane membership and actual local elevations remain separate. The private audit
+passes **1,703 checks**, rejects **seven** in-memory corruptions, and two complete
+atom/residue/site relabellings preserve all **51** numerical bond/angle rows.
+Relabelling is a mechanism check, not another chemical test specimen.
+
+**Scope and next step.** This is private saved-evidence readback, not ordinary
+checkpoint admission or a constructor change. H atoms, cross-site/link/symmetry
+interactions and deferred native families remain unassessed by this local audit.
+The shared boundary is explicit graph-bound non-triple site capture through
+the existing ordinary owner, preserving old policies and continuation scope.
+C406 at `589659201a15b4284e93e2c4dcfc47cdefbdcb64` passes a separate 24-check
+independent request/payload/ancestry review and a **700-check cold native review**.
+Cedar's matched Phenix **2.2.1-6174** executions each performed dry preflight and
+one real refinement cycle. Default v3 and explicit v9 capture produce the same
+complete PDB bytes, output synchronization and kernel statistics. The observed
+arm captures 20 of 859 atoms, 21 bonds, 30 angles and one plane, with other local
+native families reported separately. All 66 retained native files and 304
+installed resources remain unchanged during our readback, which launches no
+native process. The original run root is absent; this qualifies relocated reading,
+not portable native re-execution. Both arms start from the original FT_Hg input,
+not either five-cycle endpoint above; their 1.92975 Å attachment remains a
+nonaccepted one-cycle diagnostic. The only parameter-file adaptation is rebasing
+two declared data-manager paths, with the same anomalous amplitude labels,
+FreeR_flag and phase labels. No intensity substitution is made.
+
+Cedar owns its installed/native/full qualification; its full source suite was
+still running at this handoff. This is a direct existing-owner execution check,
+not a newly admitted ordinary DF preparation or an Alder runtime integration.
+Refine Doctor currently refuses the v9 continuation until explicit forwarding is
+qualified. An empty preparation scope makes no observed-chemistry claim. The next
+bounded integration step is to bring this shared recorder into the agreed merged
+base, bind it to checked ordinary preparation and qualify continuation before
+using it to assess another supported construction case. Avoid a second private
+capture implementation or repeating the existing weight/iteration sweeps.
+**A01 remains partial; A02 remains gated.** No new target, sigma, acceptance
+threshold or residue-specific constructor patch is justified here.
+
+**Reproduction and local report.** The original evidence remains untouched under
+the existing Alder anchor. The executed commands from the everyday checkout were:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/Alder/runners/A109_df_source_native_audit.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/Alder/runners/A110_df_label_invariance.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/Alder/runners/A115_c406_native_review.py
+```
+
+The retained outputs are immutable; a replay must use a fresh owned output
+location rather than rerun these publishers over the original paths.
+`df-source-native-audit-20261118-01/` retains the audit, label controls, exact
+ordered native input contract and checkout validation. The private runner/output
+schemas introduce no product API or migration. The independent native readback
+is retained in `coordination-c406-native-review-20261118.json`; its first local
+harness incorrectly expected two provenance-only JSON files among staged native
+inputs and was corrected against the ten-input contract. All twelve original
+files remain hash-checked. This was a reviewer harness correction, not a product
+failure. The unchanged historical native producer was Phenix **2.2.1-6174**;
+our audits launch no Phenix/Coot calculation.
+`ScienceCheckouts/Hazel/2026-11-18_FT-Hg_terms/review.html` and `summary.json` total
+12,410 bytes, with eight checked links and direct source/hash/value checks; no
+browser-rendering verification is claimed. Generated science stays excluded from
+Git. This documentation-only update needs no repeated scientific suite.
+
 ## A04 — compact projection substep, 2026-11-18 late session
 
 **Before/after.** Verified frozen trials previously required repeating the full

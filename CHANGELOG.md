@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Audit generalized ligand restraint delivery
+
+- Record exact source/effective/native local bond, angle and plane transfer in
+  retained FT_Hg controls, independent label-invariance/corruption checks and a
+  compact scientific checkout. Preserve the unresolved A01 geometry gate.
+- Make the chemistry/connectivity-based constructor requirement explicit: PDU
+  and related residues qualify a general mechanism, not residue-specific repairs.
+  This documentation update changes no runtime or native scientific policy.
+
 ### Project compact frozen-trial records without retiring evidence
 
 - Add explicit read-only `metal project-fdp-records` and `verify-fdp-records`
