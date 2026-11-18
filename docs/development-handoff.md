@@ -1,63 +1,29 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-18 evening, C405 complete; C406 validation — Rowan**.
+Updated **2026-11-18 evening, C405 complete; C406 full gate running — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Runtime candidate **`4bfffbca`**
 passes the complete unfiltered suite: **12,032 tests, 293 subtests and two existing
 native opt-in skips**, in **3226.56 s**. All 1,416 tracked test-checkout files and
 exact NARestraints `a9264f9e` remain unchanged; the owned test process is stopped.
 That pin remains the last complete gate; C406 adds an explicit non-triple observation option
-and is undergoing focused/full/native qualification.
+and passes focused, installed and matched native checks; its full gate is running.
 Relocated installed checks and Hazel's independent cold review also pass. C402's
 prior separate full gate passed 12,016 tests with the same subtests/skips. Neither
 software pass changes the scientific REVIEW or closes Q06.
 
 ## Current checkpoint
 
-**C402 — archive successful preparation without losing its usable result.**
-New v3/v4 ordinary publications now share the existing retirement owner. Previously,
-automatic bond preparation used v4 and skipped this cleanup. The v4 regression fails
-before the fix; focused coverage includes old/unknown layouts, optional cleanup
-errors, broken exact-result detection, real interrupted deletion and moved readback.
-Historical publication and inspection do not trigger cleanup. No new schema,
-chemistry rule, executor or storage owner.
+**Already qualified C402–C404; reuse, do not repeat.**
 
-Separately, explicit existing-owner retirement of completed C401 reduces its whole
-root from **250,794,627 to 53,055,067 bytes**, 1,048 to 245 files. All eight public
-model/PHIL/CIF paths, bytes and timestamps remain unchanged. Exact archived result
-and ordinary registry cold reads pass; the retirement worker stopped. This is one
-real preparation, not a 100-dataset capacity claim. The earlier C401/Hazel inventory
-is pre-retirement evidence; the transition is recorded, not hidden.
+| Milestone | Established behavior and retained limit |
+| --- | --- |
+| C402 | Automatic bond preparation now uses the existing archive/retirement owner. Actual C401 shrinks from 250.79 MB to 53.06 MB with all eight public model/PHIL/CIF files unchanged; interrupted retirement and relocated reads are covered. This is one preparation, not a 100-dataset capacity claim. |
+| C403 | Fresh C401 preparation has a genuine unselected five-cycle ordinary child. Original observations/Free-R, all restraints and D:1 protection survive; actual native state, model inventory and all 3,239 reflection rows reproduce C338. Rwork/Rfree 0.2125/0.2265 and triple angles 175.4494°/174.4251° retain REVIEW. A verified 1.28 MB child archive explicitly depends on its retained parent. |
+| C404 | The cold reader composes existing source-selected trigonal measurement with authenticated final coordinates. C2/C4/C5 maximum bond elevations are 0.802°/1.405°/2.039° with positively weighted native planes present. The installed package passes 185 focused checks; historical workers/triple reports stay exact. This measures shape, not repair or wider capture. |
 
-**C403 complete — the fresh PDU preparation reaches ordinary refinement.**
-The genuine C401 `postmr` REVIEW parent now has an unselected `refine-001` child.
-Five cycles preserve original observations/Free-R, all ordered restraints and D:1
-protection, with no experimental phases. Actual inputs/settings match C338 except
-paths. Both phases reproduce its native state, selected atoms/definitions/proxies
-and correction calls; final whole-model atom inventory and all 3,239 reflection rows
-also match. Rwork/Rfree are 0.2125/0.2265. Triple angles remain 175.4494°/174.4251°,
-so the existing coordinate screen remains REVIEW. This closes ordinary integration,
-not the remaining chemical-survival gate. No repeated native experiment is needed.
-
-The worker stopped after 424.92 s; cold readback leaves 283 current and 57 C338 files
-unchanged. Hazel independently verifies 358 bindings/measurements without native
-calls. All 243 original surviving preparation files stay unchanged; only the ordinary
-registry/root report are appropriately updated. A byte-verified 1.28 MB delta archive
-records the new child and depends explicitly on the retained C401 parent archive.
-
-**C404 complete — measure local flatness where Phenix actually refined.**
-The explicit cold reader composes C208 source-graph selection/measurement with
-C338's saved full-precision atoms and planes. It reuses the existing validation
-path and distinguishes local shape, native plane membership and positive local
-weights. There is no residue-name allowlist, new force or acceptance threshold.
-Old triple reports and all six historical worker maps remain exact.
-
-The moved installation passes **185 focused checks**, with all 304 resources exact
-and its build sources absent. Hazel independently verifies 648 bindings and
-recomputes the three local measurements. C2/C4/C5 maximum bond elevations are
-0.802°/1.405°/2.039°; each retains a positively weighted covering plane. This does
-not erase the outer propyne bending or close Q06. Existing native capture still
-selects declared triple-bond sites; C404 does not broaden it to all modified ligands.
-All reads leave the 283 native files unchanged and launch no scientific program.
+Exact source, native, relocation and independent review receipts remain in the
+existing evidence ledger. C403's 283 current and 57 comparison files remain
+unchanged during cold readback; C404 reuses that same saved native result.
 
 **C405 complete — separate local attachment shape from accumulated bending.**
 A cold comparison applies the qualified C404 reader to the retained C396 private
@@ -87,7 +53,11 @@ unchanged after relocation with the old path absent; the old reader refuses v9.
 Hazel independently verifies 700 bindings without native calls.
 The 1.930 Å attachment remains unaccepted: this is capture qualification, not a
 repair, five-cycle survival or a new ordinary DF preparation. Full regression is
-running on exact `58965920`; no source/test changes follow that pin. Hazel owns the complementary retained DF source-to-effective audit.
+running on exact `58965920`; no source/test changes follow that pin. Hazel owns the complementary retained DF source-to-effective audit. Her pinned
+Cedar/Alder temporary integration passes 166 focused tests and installed cold
+readback with its source export absent. Only the package-resource union was
+resolved there; five documentation/contract conflicts still require review before
+any active merge. Both active branches remain unchanged by that rehearsal.
 
 ## Reuse the existing science
 
@@ -171,22 +141,31 @@ Exact commands, revisions, limits and hashes are in the existing
 `fresh_automatic_pdu_publication_2026_11_18` (C401),
 `automatic_bond_publication_retention_2026_11_18` (C402),
 `fresh_ordinary_pdu_refinement_child_2026_11_18` (C403), and
-`native_trigonal_geometry_readback_2026_11_18` (C404). Historical worker,
+`native_trigonal_geometry_readback_2026_11_18` (C404),
+`pdu_substituent_geometry_decomposition_2026_11_18` (C405), and
+`declared_site_native_observation_2026_11_18` (C406). Historical worker,
 chemistry and construction entries remain evidence, not a second active queue.
 Models, reflections, logs and archives stay local; compact evidence alone is committed.
 
-The ten-file science checkout (about 1.45 MB) is
+The twelve-file science checkout (about 1.68 MB) is
 `ScienceCheckouts/Rowan/2026-11-18/review.html` under the sibling GitHub root. Update it
 with completed effects, reusing original model links and the Linden/Hazel checkouts.
 C404 retires 487 verified duplicate software/test files (5.27 MB), retaining the
 installed package, wheel, logs, XML and reproduction instructions. No scientific
-files are removed. Linden also retires 246,214 verified disposable full-test files
+files are removed. C406 separately retires 488 verified software/test files
+(5.27 MB), keeping its installed package and native evidence. Hazel closes her
+70.92 MB temporary integration export without removing scientific payloads.
+A byte-verified 930 KB local archive preserves both C406 native attempts (91 files);
+originals remain unchanged. It preserves evidence, not portable native re-execution.
+Linden also retires 246,214 verified disposable C404 full-test files
 (4.48 GB logical), retaining a byte-verified 252 KB qualification archive, installed
 packages and all scientific inputs. Do not copy raw datasets to decorate reports. Private continuity and coordination
 notes stay outside the product repository.
 
 The earlier audit of 3,965 test definitions found seven exact-body groups with
 mostly distinct owners/parameters, and no accidental imported-test collection.
-Do not delete tests merely because their bodies look similar. Retire only verified
+A bounded C406 static check of 470 top-level test files also finds no shadowed
+test names or directly imported test functions; it does not prove every case is
+necessary. Do not delete tests merely because their bodies look similar. Retire only verified
 owned duplicates through the appropriate owner; unrelated local files and peer
 work remain untouched. Archive size does not measure peak temporary disk or memory.

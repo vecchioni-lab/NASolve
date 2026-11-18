@@ -116315,6 +116315,95 @@
       "anchor": "NASolve-local-artifacts",
       "relative_path": "Alder/coordination-c406-native-review-20261118.json",
       "sha256": "cb4b42dfa41b885e1a5c003a3d0cebb611a8cfe12d004d99e09c54979e0ebf41"
+    },
+    "temporary_alder_integration": {
+      "status": "FOCUSED_INSTALLED_DELTA_PASS",
+      "source_commits": {
+        "cedar": "589659201a15b4284e93e2c4dcfc47cdefbdcb64",
+        "alder": "040b7aaf345ef26fb8a20e289306fb5bb40d41cf"
+      },
+      "tests": 166,
+      "seconds": 41.37995808299456,
+      "installed_cold_readback": {
+        "status": "PASS",
+        "samples": [
+          {
+            "sample": "ft-hg",
+            "projection_id": "23facfcfb71322fde2ff916a444da929fbb7938d48146cd06baaf0ff52aed16a",
+            "records": 3
+          },
+          {
+            "sample": "ag4",
+            "projection_id": "2f80dd23c499929558725eb3de3e6d0d64386ef09f48972723b015e08b39886f",
+            "records": 1
+          }
+        ],
+        "declared_sites": {
+          "A:12": {
+            "component": "DF",
+            "projection_sha256": "c632ad07eed7feed22132021bed28a047d9441b5f762451e09d5f960a6e763cc"
+          }
+        },
+        "native_calls": 0,
+        "source_fallback": false
+      },
+      "source_files_unchanged": 951,
+      "resolved_in_temporary_export_only": "Union Cedar replay PDB and Alder web resource globs in pyproject.toml; five documentation/contract conflicts remain",
+      "conflicts": [
+        "AGENTS.md",
+        "CHANGELOG.md",
+        "docs/README.md",
+        "docs/collaboration.md",
+        "docs/development-handoff.md",
+        "pyproject.toml"
+      ],
+      "retired_logical_bytes": 70924511,
+      "active_merge": false,
+      "full_suite_run": false,
+      "native_calls": 0,
+      "anchor": "NASolve-local-artifacts",
+      "relative_path": "Alder/integration-delta-20261118-01/review.json",
+      "sha256": "9567a4c1570eea8ee583b9ead08313d9f60001520141c4e55088f07d614aae06",
+      "limitations": [
+        "Disposable reference merge, not Pine qualification or an active merge.",
+        "Five documentation conflicts remain unresolved; only package resource union resolved.",
+        "Saved trial data still mounted at original explicit anchors; separate native evidence was already relocated.",
+        "No regeneration, deletion permission, or accepted geometry follows."
+      ]
+    },
+    "historical_v8_map_owner_compatibility": {
+      "status": "PASS",
+      "source_commit": "589659201a15b4284e93e2c4dcfc47cdefbdcb64",
+      "checkpoint": "refine-002",
+      "selection_unchanged": "postmr",
+      "model_bytes_identical": true,
+      "map_numeric_arrays_identical": true,
+      "map_file_bytes_identical": false,
+      "native_calls": 0,
+      "anchor": "NASolve-local-artifacts",
+      "relative_path": "willow/w144-c406-map-owner-compatibility.json",
+      "sha256": "a6b9e51b5afe4dfff4526820ecb39d23799583852bcbf600a502c524589f9fbe",
+      "limit": "Existing cold inspection only; no coefficient-generation or coordinate-frame authority inferred."
+    },
+    "local_native_preservation": {
+      "status": "BYTE_VERIFIED_LOCAL_ARCHIVE",
+      "archive": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "cedar/c406-declared-site-observation/native-attempts.tar.gz",
+        "size": 930490,
+        "sha256": "3dd128df766f86beeaba43661c1b30ff8a8c9d06fc8963005414bf8f01e5bf8d"
+      },
+      "files": 91,
+      "logical_bytes": 4747773,
+      "all_original_bytes_and_mtimes_unchanged": true,
+      "originals_removed": false,
+      "scientific_acceptance": false,
+      "native_execution": false,
+      "limitations": [
+        "Local archive only, not committed or uploaded.",
+        "Native re-execution depends on the declared source inputs, installation and historical path adaptation; archive validation proves stored bytes, not a portable executable workflow."
+      ],
+      "receipt_sha256": "651bba419e6789d8a5527a297c4e622929d75be881c86bc2dd4854ffb2036aed"
     }
   }
 }
