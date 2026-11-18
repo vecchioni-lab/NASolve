@@ -137,6 +137,20 @@ REVIEW. Retain that result and review exact sequence/image/contact identity befo
 choosing B10 inputs. This does not diagnose the deposited structure or authorize
 loosening the earlier derivative threshold.
 
+A read-only inventory of the declared local W catalogue also distinguishes its
+actual search-model variants from `seq_base.txt`. The `C_G.pdb` variant differs
+at A:12/A:13/B:3/B:4; `5W6W_noPO4.pdb` differs at A:13/B:3 under the explicit
+legacy strand map. Their D:1 terminal phosphate inventories differ as well.
+These may be intended catalogue choices, not defects or mutation instructions.
+Do not treat a filename, a family template or a missing/present terminal atom as
+proof of healthy sequence, pairing or free-end chemistry. Bind actual identities,
+terminal intent and reviewed operators before B10. The existing sequence-family
+comparison owner supplied the inventory; no coordinates, connections or targets
+were edited. Local NASolve-anchored receipt:
+`branch-artifacts/willow/b10-catalog-inventory-2026-11-18.json`, SHA
+`f37eae630c894b709ac32d41a0c0ff4d863320d11ef30e09c7fea4fbeb15ddcf`.
+It is preparation evidence, not a qualified contact or a new diffraction run.
+
 The review UI should show which contacts/images and restraint families were
 requested, which actually ran, and the result or refusal. Retain the request
 through fresh checked parent rebinding and manual/Doctor ancestry. Off-path

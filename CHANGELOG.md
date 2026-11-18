@@ -23,6 +23,8 @@ entries are reconstructed from repository history.
   opt-in skips), exact dependency/source audit and C393 observer coexistence.
 - Keep poorer pair/diffraction geometry distinct from local chemistry screens;
   queue the bounded longer-control and normalization-observation requirements.
+- Record actual W-catalogue sequence/terminal inventory for B10 preparation;
+  retain intentional-variant uncertainty and require explicit contact review.
 - Condense the handoff while preserving detailed ledger evidence. Documentation
   only; no new runtime scope, default, schema or scientific acceptance.
 
