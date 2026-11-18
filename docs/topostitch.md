@@ -224,11 +224,12 @@ selection. B10 healthy/displaced/wrong-contact controls, density calibration and
 CLI/Doctor activation follow their own milestones. The archived planning-only
 record in W135 grants no execution authority and changes no current protocol.
 
-### Longer-control implementation review map (planning only)
+<a id="longer-control-implementation-review-map-planning-only"></a>
+### Longer-control implementation review map (completed in W138)
 
-The existing owners contain several independent ten-iteration/proof checks.
-Changing one numeric constant is insufficient. Keep the next patch bounded to
-these existing interfaces, with no alternate executor or general policy framework:
+W138 implemented this bounded review across the existing admission, scope,
+worker and writer owners. This table records the completed extension and the
+invariants future changes must preserve; it is not another pending patch:
 
 | Existing owner | Required review for the new explicit scope |
 | --- | --- |
@@ -238,12 +239,69 @@ these existing interfaces, with no alternate executor or general policy framewor
 | `refinement_parallelity._code`, source digests and phase dispatch | Freeze affected old worker bytes before adding a new policy; preserve every historical payload and reader refusal. |
 | `cif_counted_phase`, completed-phase readers and `_require_policy_continuation` | Review every exact-v7 check: a newer policy must not silently skip final pair capture/publication or lose native written-model proof. Preserve original intent and chemistry inheritance. |
 
-Require regressions for old-protocol refusal of >10, unsupported new combinations,
-stale prepared scopes, and descendants that lose required proof/capture. Keep the
-existing wrong-writer, namespace, relocation and installed-package checks; do not
-rebuild those mechanisms. A newer policy name is not evidence of a stronger
-capability. The initial longer test remains the predeclared matched native-core,
-zero-addition and full-recipe experiment above, with actual stopping/count history.
+W138 regressions cover old-protocol refusal of >10, unsupported combinations,
+stale scopes and descendants losing proof/capture; existing wrong-writer,
+namespace, relocation and installed-package checks remain in place. W139 completes
+the native/core-only-zero/full comparison with actual stopping/count history.
+These are completed gates, not another experiment queue; a newer policy name
+alone never establishes a stronger scientific capability.
+
+### Stable-objective invariants (deferred design; unimplemented)
+
+This is an S06 design note, not a newly scheduled experiment or numerical policy.
+Rowan's shared Cedar execution queue remains authoritative; its current fresh
+corrected-PDU preparation/publication gate is separate and owned by Rowan.
+Willow does not start another canonical matrix automatically or edit that chemistry.
+
+**Use the evidence already obtained.** A85 applied fixed normalization to both
+returned geometry values and gradients in the actual FT_Hg minimizer. Its
+fixed-denominator trace showed no same-coordinate count-change events, but
+stopping and chemistry were not rescued. Candidate counts remained dynamic;
+this is not a measured zero discontinuity at matched cache transitions. C397–C399
+separate FFT score/force disagreement from normalization: direct derivatives
+agree at one saved state, yet the reset direct optimization still caps without
+chemical repair. C400 independently establishes a canonical count-driven scalar
+discontinuity; it does not establish that this is the sole cause of `stpmin()`.
+Do not repeat these observations as new discoveries.
+
+**Remaining canonical question:** can an explicitly scoped policy give the same
+combined objective and gradient at the same complete scientific state across
+real neighbor-cache rebuilds, while preserving complete pair semantics and the
+ordinary execution/reporting contract? C400 observes the existing policy; A85
+does not qualify this composed canonical/ordinary protocol. Before a new run,
+state which part of this question remains unanswered and what result would
+falsify the proposed policy. No fixed denominator value is selected here.
+
+The required invariants are:
+
+- Bind coordinates, non-XYZ state, observations/Free-R, scales, likelihood core,
+  absolute weights, policy and active physical term definitions. Same bound state
+  must produce consistent objective and gradient within predeclared justified
+  tolerances. A coordinate hash alone is insufficient.
+- Keep repeatability and derivative correctness separate: equal values/gradients
+  on repeated state/cache paths do not prove the gradient differentiates the
+  objective. Require qualified derivative-consistency evidence for the actual
+  composed objective; reuse prior evidence only where its applicability is shown.
+- Preserve every intended physical force, including repulsion and pair terms.
+  Cached candidate-list membership may change when mathematically inactive terms
+  enter or leave; do not require list-byte identity or equate candidate counts
+  with active forces, covalent chemistry or a topology change.
+- Normalize the objective and its gradient consistently. Specify initial weight
+  meaning and any rescaling explicitly; never choose a denominator or weights
+  by looking for a better Rfree. Keep the raw and normalized contributions
+  separately inspectable through existing passive observations.
+- Audit every affected consumer: evaluator, native monitoring, weight selection,
+  output summaries and saved/replayed scope. A private evaluator-only correction
+  does not qualify a whole-pipeline policy. Preserve old worker bytes and refuse
+  unsupported compositions rather than silently changing existing runs.
+- If a candidate survives those checks and the shared queue authorizes execution,
+  predeclare one bounded canonical comparison with native/zero identity and full
+  intent, actual stopping, original data/Free-R and independent geometry review.
+  Stop on failure; do not launch a sweep or retry until Rfree looks favorable.
+  Numerical consistency, physical benefit and scientific acceptance are separate.
+
+Density calibration, explicit sticky-end activation and larger bending remain
+later gates. This note adds no runtime behavior, test harness or active native job.
 
 ## Ordinary-owner integration boundary (W126; planning)
 

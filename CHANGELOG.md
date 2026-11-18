@@ -24,7 +24,8 @@ entries are reconstructed from repository history.
   clashes worsen, and both optimizations stop with line-search errors.
 - Preserve the refused zero fixture and final-PDB statistics amendment; link the
   compact matched ChimeraX checkout. Documentation only; no numerical-policy,
-  schema, migration or default changes.
+  schema, migration or default changes. Keep the stable-objective sketch deferred
+  under the shared execution queue, and retire only the qualified software scratch.
 
 ### W138 — Qualify the explicit longer coordinate control
 

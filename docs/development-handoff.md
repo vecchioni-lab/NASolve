@@ -40,13 +40,16 @@ not another work queue; do not repeat them because this handoff is shorter.
 
 ## Next bounded work
 
-1. Define the next stable-objective qualification using the exact recorded
+1. Keep the [stable-objective invariant sketch](topostitch.md#stable-objective-invariants-deferred-design-unimplemented)
+   deferred under S06, using the exact recorded
    C400 same-coordinate normalization jump and prior C397–C399/A85 evidence.
    Coordinate with Rowan/Hazel; do not repeat the completed matched control or
    equivalent derivative/restart/iteration sweeps. Declare the invariant and
    matched test before changing numerical policy; retain all physical forces,
    repulsion, original data/Free-R and unselected REVIEW. No further native work
-   is scheduled in the 18 November window.
+   is scheduled in the 18 November window. Rowan's shared execution queue owns
+   timing; its fresh corrected-PDU preparation/publication gate is separate.
+   This sketch does not queue a new matrix or numerical-policy patch.
 
 2. W133 closes the bounded final-state pair-capture seam. Keep native remainder
    unclassified until chemical ownership is explicit. Reuse Cedar's source-backed
@@ -83,7 +86,8 @@ large-bend repair follow later. No CLI/default activation follows from these doc
   checks pass. All 304 packaged resources match; installed checks run after the
   build-source copy and old install path are gone. Published Cedar `4f7aeb84`
   matches all 792 source/test/package/CI files exactly; no second full-suite run
-  is claimed. [Commands, schemas, compatibility and retained attempts](topostitch-periodic.md#w138--qualify-the-explicit-longer-coordinate-control).
+  is claimed. The clean qualification worktree has been retired after archival;
+  installed resources and all scientific runs remain. [Commands, schemas, compatibility and retained attempts](topostitch-periodic.md#w138--qualify-the-explicit-longer-coordinate-control).
 - **W138 actual ordinary execution:** complete Phenix **2.2.1-6174** cycle,
   280.319 s; original intent, actual writer/final geometry and unselected REVIEW
   lineage verify independently. This uses the existing diagnostic PostMR parent,
