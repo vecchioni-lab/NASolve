@@ -666,6 +666,24 @@ adding another map reader. Its Hg radii, sigma values and occupancy/scattering
 assumptions are not phosphate calibration. The backbone detector and motion
 policy remain unimplemented; this note does not advance B06 or S06.
 
+**W140 read-only step:** the saved C400 native/full ordinary ML outputs now have
+exact coefficient/model/parameter binding and four periodic map samples at 456
+sugar/phosphate atoms each. This reuses A72's unchanged sampler; no second
+production map reader was added. Alder's maintained capture is still MLHL-only,
+so a future shared adapter must explicitly distinguish ordinary ML from that
+protocol. Labels, fill/isotropization/sharpening, test membership and own/common
+positions are recorded. All 176 test indices are included; these are inspection
+maps, not a work-only search target. C102's persistent negative phosphate feature
+coexists with improved base planes and nearly unchanged backbone deviations.
+It does not uniquely prescribe motion, occupancy or ADP changes. The inherited
+1.5 Å sphere is a probe, not calibrated phosphate support. No detector, motion
+policy or threshold is enabled. [Measurements and checks](topostitch-periodic.md#w140--audit-backbone-response-and-saved-density).
+
+Small Rwork/Rfree and clashscore fluctuations are descriptive context, not
+standalone rejection thresholds. Judge local physical improvement, global fit,
+uncertainty and numerical stopping separately; do not convert an optimizer error
+into an assertion that every resulting coordinate is physically wrong.
+
 Before using density as a search objective, bind its generation policy as well
 as its bytes: work/free reflection treatment, missing-data filling, filtering,
 isotropization and sharpening. Ordinary display-map columns need not be work-only;

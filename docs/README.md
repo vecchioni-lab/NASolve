@@ -7,30 +7,20 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Willow queue:** [Development handoff](development-handoff.md). W128–W134
-  qualify the explicit bounded ordinary counted-pair path, actual final-writer
-  geometry readback and one canonical continuation. W131 adds provider-independent
-  descriptive pair metrics; unmatched native terms remain unclassified.
-  W135 closes the frozen C391 full regression (11,983 tests +292 subtests, two
-  existing native opt-in skips) and independently audits low-level pair/chemistry
-  observer coexistence. This does not qualify later revisions, ordinary chemistry
-  descendants or general repair. W136 audits separate source-matched eligibility
-  and normalization controls: the former worsens R factors; the latter remains
-  non-converged. W137 independently checks same-state FFT/direct derivatives
-  and the ordinary chemistry provenance boundary. Neither private numerical
-  intervention is adopted. W138 qualifies the explicit longer-control candidate with focused,
-  installed, full-source and actual ordinary native checks. Pairing improves but
-  Rfree does not; the new five-file coordinate view is linked in the handoff.
-  W139's matched native/zero/full control now demonstrates local pair
-  improvement, but both optimizations stop by line-search error and final
-  Rwork/clashes worsen. Recorded normalization discontinuity is the next numerical
-  qualification boundary. Density qualification
-  and W122 user-facing sticky-end activation remain planned.
-  Willow owns periodic/numerical helpers and cold reporting; Cedar owns shared
-  ordinary execution. Earlier evidence and failures remain in the ledgers.
+- **Willow queue:** [Development handoff](development-handoff.md). W128–W138
+  qualify explicit bounded ordinary counted-pair execution, compatible registered
+  continuation and actual final-writer pair readback, including the opt-in 100-cap
+  route. W139's completed matched native/zero/full control demonstrates local
+  pair improvement. W140 adds existing-backbone support checks and signed saved-map
+  samples: the C102 phosphate feature persists despite better pairing. These
+  ordinary ML maps include test reflections; no automatic density policy follows.
+  Small R/clash changes are context, while line-search stops remain a separate
+  numerical limitation. General repair and W122 user-facing activation remain open.
+  Willow owns periodic helpers/cold reporting; Cedar owns execution; Alder owns
+  the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W139;
-  the next substantial audit is W140. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W140;
+  the next substantial audit is W141. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

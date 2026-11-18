@@ -7741,3 +7741,132 @@ it must preserve physical forces/repulsion, original inputs and independent
 diffraction/geometry review. Broad normalization changes, automatic sticky-end
 enforcement, density calibration, geotest B09 and wider B10 efficacy remain open.
 No more native sweeps are scheduled for this work window.
+
+## W140 — Audit backbone response and saved density
+
+**2026-11-18; read-only scientific review, not another refinement.** W139's
+matched C400 native/full outputs and native definition archive are reused.
+The actual scientific execution remains Phenix **2.2.1-6174**, published Cedar
+`4f7aeb84b8762b3bd4ebcc1741c6b1116443632a`; this audit adds no forces, coordinates,
+map coefficients, covalent connection, checkpoint selection or runtime schema.
+The W34 public 8D93 STARANISO amplitude cohort is retained: 3,333 observations,
+176 original free indices, 2.9608 Å. W115's explicit working-cell declaration and
+W118-compatible derived-model lineage remain; this is not a fresh deposited-model
+refinement or proof that the deposited structure requires stitching.
+
+### Backbone support and independent checks
+
+The common actual native definition digest is
+`123ae22218806e4fd0dbea967b82f1a763d39f6e9238963e97717ef9b25e50ff`.
+Explicit canonical residue/atom identities select 494 sugar/phosphate bonds,
+42 glycosidic bonds and 732 sugar/phosphate angles. This is a descriptive support
+set, not a general covalent classifier or semantic weight selector. Existing
+native O3′–P records define 38 links; residue-number adjacency does not invent
+links. All selected supports use identity images; none is silently omitted.
+
+The one-recorded-link neighborhood around A101/A102/C101/C102 adds A103/C103:
+
+| Measurement | Native-only | Full pair terms |
+| --- | ---: | ---: |
+| Nearby sugar/phosphate bond RMS deviation, 66 terms / Å | 0.005764 | 0.005993 |
+| Nearby sugar/phosphate angle RMS deviation, 100 terms / ° | 2.748014 | 2.765356 |
+| Nearby glycosidic bond RMS deviation, 6 terms / Å | 0.006021 | 0.005000 |
+| Elsewhere sugar/phosphate bond RMS deviation, 428 terms / Å | 0.004146 | 0.004126 |
+| Elsewhere sugar/phosphate angle RMS deviation, 632 terms / ° | 1.808002 | 1.821663 |
+
+The four end residues have sugar/phosphate RMS movement 0.080–0.113 Å and base
+RMS movement 0.190–0.341 Å. A103/C103 backbone RMS movement is about 0.023/0.025 Å.
+Existing nearby O3′–P distances remain 1.608–1.617 Å. All 126 ordered sugar
+signed-volume signs survive source/native/full. These are comparative signs,
+not absolute stereochemical or complete sugar-pucker assignments.
+C103 OP2–P–O5′ is already 96.054° in the source, then 94.575°/93.803° against
+108° native target. The full endpoint changes the native-control value by about
+−0.77°; it does not create the pre-existing feature.
+
+Independent parsing of actual native geometry reports verifies **3,804**
+source/native/full bond/angle measurements with fixed PDB/report serialization
+allowances (0.002 Å, 0.12°). Actual maximum discrepancy is 0.001285 Å/0.077949°.
+A separate cross-product/atan2 calculation verifies **342 torsions**, maximum
+2.84e−14°. All 172 C400 files and 304 installed resources remain unchanged.
+The old installed Cedar package lacks the Willow preview module; the reader
+explicitly adds the pinned Willow namespace only for existing angle/torsion
+helpers and records all loaded source hashes. This is not a newly qualified
+combined installed package. Setup failures before completed measurements are
+retained in the receipt; no native fit or scientific input was changed.
+
+### Saved coefficients and interpretation
+
+A complete **read-only Phenix FFT/sampling execution**, not a dry-run or
+refinement, reuses Hazel's unchanged `Alder/runners/A72_maps.py` periodic sampler.
+The ordinary ML maps are explicitly distinct from the maintained metal MLHL
+capture protocol. Exact PDB/MTZ/effective-parameter hashes and previous reflection
+array metadata bind both endpoints. The native typed master reads the saved
+PHIL; no fmodel, new structure factors or new coefficients are calculated.
+
+- Columns: `2FOFCWT_no_fill,PH2FOFCWT_no_fill` and `FOFCWT,PHFOFCWT`.
+- Each has 3,333 finite complex coefficients, including all **176 test indices**.
+  Saved policy is unfilled, isotropized, unsharpened, `exclude_free_r_reflections=False`.
+- Four maps ×456 canonical sugar/phosphate atoms retain signed samples at each
+  endpoint's own coordinates and the common original source coordinates.
+- Whole-cell sigma scaling, FFT resolution factor 0.25, 144×144×135 grid;
+  periodic whole-lattice translation agrees within 1.23e−13.
+- The inherited 1.5 Å sphere/0.5 Å spacing (123 probes) is an uncalibrated sampling
+  neighborhood, not a phosphate mask, patch classifier or motion prescription.
+
+C102 P Fo–Fc is −6.641→−6.677 sigma at own positions and −6.597→−6.591 at the
+common source position. OP2 is −6.158→−6.241 at own positions. Its ordinary
+2mFo−DFc support remains weak (P 0.976→0.957; OP2 −0.072→−0.095 sigma).
+Occupancies are 1; P/OP1/OP2 B factors remain 214.15/180.49/193.25 Å² in these
+coordinate-only trials. The persistent feature does not distinguish coordinate,
+occupancy/ADP, processing or other model error. Per-map sigma differences are
+not absolute density/electron changes, and model-assisted maps including free
+indices are not independent validation or a work-only search target.
+
+Small Rwork/Rfree/clashscore changes are **context, not rejection thresholds**.
+Local pair benefit, backbone response, density evidence and numerical stopping
+are separate observations. The next S06 step is to specify the shared ordinary
+ML/saved-map provenance/sampling boundary with Alder, then calibrate descriptive
+backbone features against healthy/noisy/displaced controls. No automatic density
+threshold, coordinate change or new numerical-policy matrix follows.
+
+### Commands, retained evidence and inspection
+
+Run from the NASolve artifact anchor with the qualified Python 3.12 interpreter
+`/private/tmp/willow-w94-pivot/env/bin/python` (historical environment provenance):
+
+```text
+PYTHONDONTWRITEBYTECODE=1 <python> -B branch-artifacts/willow/runners/w140-backbone-review.py
+PYTHONDONTWRITEBYTECODE=1 <python> -B branch-artifacts/willow/runners/w140-backbone-verify.py
+PYTHONDONTWRITEBYTECODE=1 <python> -B branch-artifacts/willow/runners/w140-saved-density.py
+```
+
+The density controller owns the exact Phenix bundled-Python command and stopped
+process receipt. Attempt 01 failed before sampling because untyped PHIL extraction
+returns tokens and loses repeated scopes; its runner/log/process records remain
+in `w140-saved-density-attempt01.zip`. Attempt 02 uses the native typed master and
+completes. The installed native profile is 2.2.1-6174; its optional version API
+returns `(None,None)`, so executable/module hashes provide additional provenance.
+No complete native refinement is attributed to these read-only checks.
+
+A separate ChimeraX **1.12** headless execution of
+`branch-artifacts/willow/runners/w140-viewer-check.py` passes two 1,140-atom
+models, four child planes/five contact guides and six highlighted atoms each.
+The first process could not acquire the normal application cache lock in the
+sandbox; the authorized retry succeeds. Ten local packet references/links and
+unchanged input hashes pass. Browser-layout validation is not claimed.
+
+The three-file local science view is at the GitHub workspace anchor,
+`ScienceCheckouts/Linden/2026-11-18_backbone-density/`. It reuses the W139 script
+and prior coordinate files through checked relative references; no PDB/map copies
+are added. No map surfaces are displayed. Keep sibling folders together.
+
+The byte-verified local archive at the NASolve anchor,
+`branch-artifacts/willow/w140-backbone-density-2026-11-18.tar.gz`, contains 18
+indexed receipts/runners plus manifest, 406,684 bytes, SHA256
+`1b8e1bc307c4d1d0d5d64b798e26a55c695c45d07503c3a879236cfb45104a8b`.
+Detailed measurements and failed setup attempts remain local. Raw scientific
+payloads are deliberately excluded from Git. Runtime APIs, artifact schemas,
+CLI/defaults and migration requirements are unchanged. Documentation checks
+regenerate the human roadmap, validate its machine source and check diff/link
+consistency; no new full suite is needed for this documentation-only update.
+The separately running exact C402 full qualification is not a W140 science PASS.

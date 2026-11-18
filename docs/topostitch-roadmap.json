@@ -217,30 +217,18 @@
       ],
       "goal": "Move a usable duplex toward the chosen connection while preserving local residue geometry and fixed boundaries.",
       "delivered": [
-        "Explicit tapered previews and one-window six-parameter fitting work; ANISOU, anchors, source bytes, budgets and rounded-output limits are tested.",
-        "Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed.",
-        "Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy.",
-        "W85 local diagnostic pulls existing native/pair/tether gradients through the existing six-parameter tapered motion; finite differences and forced-rebuilt contact energy agree at five declared small controls. No optimizer, candidate or physical acceptance.",
-        "W86 exposes immutable bounded TaperedMotion and an optional six-parameter view of the existing native objective; independent regressions, full/install checks and complete native derivative/cache replay pass. No optimizer, writer or scientific acceptance is enabled.",
-        "W87 matched installed six-variable trials both fail rounding; exact accepted-point derivative audits and common full-recipe observations are retained without promotion. Coarse pair preservation and modest aggregate improvements do not establish chemical or diffraction acceptance.",
-        "W88 compiles numerical motion from an exactly pinned/replayed saved preview and its registration, with complete atom order, fixed context and source-byte guard. Full and installed/relocated software checks pass; no physical-search acceptance is inferred.",
-        "W89 directly observes a numerical-resolution limitation at the W87 coarse points; retains FAILED and distinguishes six-variable stationarity from substantial remaining atomic gradients.",
-        "W90 adds explicit diagnostic initialization to the existing atomic trial and checks remaining evaluation budget, with unchanged source/tether, derivatives and stopping/failure policy. Full/installed validation passes; native benefit is being compared in W91.",
-        "W91 qualifies execution of the explicit diagnostic-start interface through matched native trials and endpoint observations, preserving both failures. This small coarse seed reaches the same rounded atomic point as cold cleanup and gives no demonstrated benefit; local improvements and remaining packing/torsion reviews stay separate.",
-        "W94 adds checked explicit pivot rotation through the existing Cartesian image owner and preview tensor path. Off-origin cycles/inverses and software/install regressions pass; no axis inference or three-orientation campaign runner.",
-        "W96 qualifies an explicit direct shared-policy consumer with frozen baseline, hidden-mutation rejection and legitimate native rebuilds. Full/install and bounded source/native composition checks pass; no worker/default activation or scientific acceptance.",
-        "W97 carries the C331 guard/profile through explicit captured diagnostics, preserves fresh baseline/provenance and verifies success evidence. Source and installed/relocated read-only public-DNA controls agree exactly; no scientific acceptance or default activation.",
-        "W98 qualifies explicit captured starts and installed guarded paired-step trials/endpoint observations. Matched 25/300-iteration controls pass full/rounded derivatives but retain NOT_CONVERGED_LIMIT; original-source tether bias, contact/packing trade-offs and interrupted full-window evidence remain explicit. No full-window or density repair claim.",
-        "W99 completes matched installed full-window controls and common native observers: all numerical/binding checks pass, but both remain iteration-limited and reference-biased. Selected/core pair improvements coexist with individual packing/torsion regressions and rounding sensitivity; no scientific gate closes.",
-        "W100 removes the pristine-reference tether from displaced workers. All three full-window controls and common observers pass numerical/binding checks but remain iteration-limited. Pair forces improve both selected and four movable core pairs; without them pair targets worsen despite lower native energy. Affected bond/angle screens and chiral signs pass, while healthy drift and individual packing/torsion tradeoffs prevent physical acceptance.",
-        "W136 independently audits separate source-matched eligibility and fixed-normalization controls without another native run:mechanics pass but C396 R worsens and A85 remains non-converged. No private policy or scientific acceptance is promoted."
+        "Checked tapered six-parameter previews/fitting preserve declared anchors, atom order, ANISOU, budgets and rounded-output limits; saved previews and explicit pivot rotations reuse exact Cartesian image ownership.",
+        "W85–W91 qualify derivative pullback, captured diagnostic starts and immutable motion compilation. Matched small coarse seeds give no demonstrated benefit over atomic cleanup; rounding/precision failures are retained.",
+        "W96–W100 qualify guarded full-window source-driven atomic controls. Three displaced controls pass numerical/binding checks but stop at iteration limits; selected/core pair gains coexist with individual geometry/packing tradeoffs. No accepted repair.",
+        "W138/Cedar4f7aeb84 qualifies the explicit v8 100-cap ordinary coordinate route with complete source/installed/native gates. The earlier short route retains its original scope; neither cap proves convergence.",
+        "W139 closes the matched native/core-only-zero/full matrix: exact zero/native output/history, passive full equivalence and common14-pair local benefit. Both line-search stops and repeated-coordinate normalization discontinuity remain separate limitations; no numerical policy is adopted."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "Reuse the bounded ordinary pair/refinement ownership qualified through C391; do not repeat W100 tether or closed integration controls. Qualify the separately versioned longer canonical scope in S06, then compare predeclared candidate/no-repair siblings with matched data/FreeR and geometry/packing/density evidence. Preserve unnormalized standalone bending versus normalized native-refinement boundaries; neither C396 nor A85 is a repair policy.",
+      "next_action": "W138/W139 longer and matched controls are complete; do not repeat them. Reuse existing pair/refinement and source-driven motion owners. Before broadening physical repair, declare healthy/displaced/wrong-contact controls and stable numerical invariants, preserve all physical forces and original data/FreeR, and use W140 backbone evidence plus calibrated density review. General seam closure and scientific acceptance remain open.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -267,10 +255,10 @@
       ],
       "last_audit": {
         "date": "2026-11-18",
-        "code_commit": "8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6",
-        "human_update": 136,
+        "code_commit": "4f7aeb84b8762b3bd4ebcc1741c6b1116443632a",
+        "human_update": 140,
         "reviewer": "Linden",
-        "scope": "Bounded ordinary-owner qualification is already closed; source-bounded screening and normalization diagnostic outcomes audited. Broader canonical protocols and physical repair remain open."
+        "scope": "W140 read-only backbone/saved-map evidence and consolidated current queue; detailed historical evidence retained; no runtime/scientific acceptance change."
       }
     },
     {
@@ -283,66 +271,21 @@
       ],
       "goal": "Turn a plausible placement into a chemically usable candidate before refinement is trusted.",
       "delivered": [
-        "Three public 8D93 native interpretations preserve atom/proxy membership. The fitted candidate still adds one severe captured angle deviation.",
-        "Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed.",
-        "Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy.",
-        "Local native exact-image bond/angle values and gradients qualified for the declared diagnostic; matched fixed-base backbone relaxations pass endpoint/capture checks and resolve three source angle outliers, with iteration-limit caveats.",
-        "Synthetic and public probes identify unsupported raw native plane gradients; Cartesian image pullback with Cedar existing parallelity correction passes the declared derivative controls.",
-        "A shared checked Cartesian image/gradient core now drives the viewer and native probe, retaining repeated ASU contributions and failed raw native controls.",
-        "Local masked native controls bind explicit movement scopes, check every movable Cartesian derivative and compare cleanup versus chosen contacts, with and without existing core-pair terms; native readback remains REVIEW.",
-        "Complete emitted NARestraints recipes pass local masked derivative/readback checks. Native bond edits demonstrably change exclusions/LINK bookkeeping. Broader bend plus fixed-base cleanup removes its added scalar outlier but worsens other periodic contacts; no candidate is promoted.",
-        "A thin read-only packing comparator now authenticates/replays Cedar directed native captures, matches relative symmetry transforms and retains per-contact regressions/multiplicity; native capture lifecycle remains owned by Cedar.",
-        "Native added-term arithmetic passes a bounded probe, but selection/rebuild drops the callback and normalization/enablement need explicit policy; no supported production adapter is claimed.",
-        "W37 provides a reusable complete canonical pair recipe packet and native additive evaluator, with exact atom/image binding and explicit Cedar correction; independent derivative review outcomes remain visible.",
-        "W38 adds explicit bounded coordinate masks and a direct native/pair/tether evaluator using Cedar owners; source and perturbed full-coordinate checks pass for two movement scopes and an independent 7R96 mask, with no optimization or scientific acceptance.",
-        "W39 reuses Cedar capture authentication and trusted native reconstruction, matching all initial observed inventories/ASU pairs before masked evaluation; three native controls reproduce W38 and no optimizer or complete exclusion-policy proof is claimed.",
-        "W40 binds full-precision points and exact serialized PDB bytes to the explicit mask, then reuses Cedar native mechanics/selected-environment and existing packing review. Explicit Cartesian ANISOU preservation and local collateral regressions remain visible; no optimization or scientific acceptance.",
-        "W41 composes a bounded native optimizer with complete initial/full-precision/serialized derivative gates and a matched cleanup control. Five native trials and fresh rounded readback pass the declared numerical checks; all remain iteration-capped with individual packing regressions and no acceptance.",
-        "W42 extracts one installed captured-job API, preserving the CLI/native results and reusing Cedar observation/process owners. Installed/relocated and temporary same-package compatibility checks pass; uncertain process ownership escapes with retained evidence. No branch merge or scientific acceptance.",
-        "W43 adds explicit full-precision/rounded fixed-manager ASU endpoint observations through existing Cedar capture/review owners. Five controls agree with independent rounded native target/gradient readback; changed neighbor entries contribute zero in these cases. Binary displacement rounding, per-contact changes and failed evidence remain explicit; no physical acceptance.",
-        "W44 attributes every native pair term, verifies complete container sums and retains selected/core changes for all five endpoints. Cleanup exposes individually worsening pairs; compact JSON preserves old review tables. No objective or acceptance change.",
-        "W45 uses existing APIs for a matched core-only control against the paired trial. Complete derivative/endpoint/fresh-readback checks pass; intended-contact benefit is separated from core preservation, with capped outcomes and packing regressions retained.",
-        "W46 composes Cedar native torsion/plane kernels into endpoint observations with explicit live-policy, single-proxy and full-family target/gradient checks. Six controls retain individual regressions and unchanged fixed terms; no chemical acceptance or ordinary refinement route is added.",
-        "W51 predeclared500-iteration paired/core-only controls reproduce the old200-iteration traces, then retain native rounding line-search failures; no candidate or endpoint qualification follows.",
-        "W53 fresh native contexts reproduce both W51 last accepted points exactly and pass unchanged complete612-variable derivatives. Predeclared directional probes show score quantization and local steepest-direction quadratic decreases below one score ULP; this supports a precision limit, not convergence or acceptance.",
-        "W54 separately audits only callback-confirmed last accepted points after optimizer errors. Both native W51 trajectories/errors reproduce exactly; full/rounded612-variable diagnostics pass and original FAILED/no-adoption status remains. Source drift, absent accepted steps, budget shortage and partial diagnostic failure remain explicit.",
-        "W61 reuses existing read-only native endpoint observation for both W54 failed accepted points under a common complete recipe. Source/full/rounded cases reproduce; scalar and selected/core-pair improvements coexist with individual packing/torsion/plane regressions. Both original optimizer failures persist; no candidate, new threshold or acceptance.",
-        "W85 local diagnostic pulls existing native/pair/tether gradients through the existing six-parameter tapered motion; finite differences and forced-rebuilt contact energy agree at five declared small controls. No optimizer, candidate or physical acceptance.",
-        "W86 exposes immutable bounded TaperedMotion and an optional six-parameter view of the existing native objective; independent regressions, full/install checks and complete native derivative/cache replay pass. No optimizer, writer or scientific acceptance is enabled.",
-        "W87 matched installed six-variable trials both fail rounding; exact accepted-point derivative audits and common full-recipe observations are retained without promotion. Coarse pair preservation and modest aggregate improvements do not establish chemical or diffraction acceptance.",
-        "W88 compiles numerical motion from an exactly pinned/replayed saved preview and its registration, with complete atom order, fixed context and source-byte guard. Full and installed/relocated software checks pass; no physical-search acceptance is inferred.",
-        "W90 adds explicit diagnostic initialization to the existing atomic trial and checks remaining evaluation budget, with unchanged source/tether, derivatives and stopping/failure policy. Full/installed validation passes; native benefit is being compared in W91.",
-        "W91 qualifies execution of the explicit diagnostic-start interface through matched native trials and endpoint observations, preserving both failures. This small coarse seed reaches the same rounded atomic point as cold cleanup and gives no demonstrated benefit; local improvements and remaining packing/torsion reviews stay separate.",
-        "W96 qualifies an explicit direct shared-policy consumer with frozen baseline, hidden-mutation rejection and legitimate native rebuilds. Full/install and bounded source/native composition checks pass; no worker/default activation or scientific acceptance.",
-        "W97 carries the C331 guard/profile through explicit captured diagnostics, preserves fresh baseline/provenance and verifies success evidence. Source and installed/relocated read-only public-DNA controls agree exactly; no scientific acceptance or default activation.",
-        "W98 qualifies explicit captured starts and installed guarded paired-step trials/endpoint observations. Matched 25/300-iteration controls pass full/rounded derivatives but retain NOT_CONVERGED_LIMIT; original-source tether bias, contact/packing trade-offs and interrupted full-window evidence remain explicit. No full-window or density repair claim.",
-        "W99 completes matched installed full-window controls and common native observers: all numerical/binding checks pass, but both remain iteration-limited and reference-biased. Selected/core pair improvements coexist with individual packing/torsion regressions and rounding sensitivity; no scientific gate closes.",
-        "W100 removes the pristine-reference tether from displaced workers. All three full-window controls and common observers pass numerical/binding checks but remain iteration-limited. Pair forces improve both selected and four movable core pairs; without them pair targets worsen despite lower native energy. Affected bond/angle screens and chiral signs pass, while healthy drift and individual packing/torsion tradeoffs prevent physical acceptance.",
-        "W112 optionally binds both hierarchy and scattering state through existing Cedar readers; exact roundtrip and default-observer preservation controls pass. Active admission and ordinary lifecycle remain separate.",
-        "W113 supplies the fresh frozen numerical contribution factory and explicit supported count by reusing existing compiler/coverage/evaluation. W114 qualifies direct native ownership/lifetime at exact C368 pins; ordinary runtime integration remains open.",
-        "W115 qualifies the installed C371 read-only assembly on actual ordinary zero-cycle preflight. Ordered855 atoms,3333 observations and176 original Free-R selections are preserved;124 requested terms split107native/17missing. Initial default-MTZ cell precision mismatch remains refused; explicit working-frame control matches source. No forces, optimization or repair acceptance.",
-        "W116 completes three ordinary1cycle/10iteration refinements after independent actual preflights. Native-only and zero-addition full endpoint/statistics/score are exact;17 additional full-recipe terms participate through16checked model calls and final writer. Original3333 observations/176 Free-R and ADP/occupancy preserved; no diffraction benefit or repair adoption. Frozen C371/v3 diagnostic only, production admission and broader scopes remain open.",
-        "W117 removes redundant arithmetic only for equal validated full images, retaining exact distinct-image lattice arithmetic and all checks. Complete source/installed checks pass; C373 actual native old/new targets,gradients,counts,normalization and initial selection are exact with retained mutation refusals. Direct checked call4.62s to1.57s; no whole-refinement speed or repair-benefit claim.",
-        "W118 preserves frozen pair chemistry/images while explicitly rebinding compatible parent bytes, with full/install and saved/native compiler equivalence checks. It grants no lineage, admission or continuation authority. Separate C374 joined-package qualification passes at W117/C373 pins; no actual merge or W118 package-join claim.",
-        "W119 qualifies stronger C375 prepared-state consumption at genuine non-dry driver.run after separate actual preflight, using W118 compatible-parent binding. One checked call preserves data/state and counts current native 11392 +17; exact sealed normalization/bonded/pair/dual state passes. Intentional FAILED/BoundaryObserved stops before optimizer, with no final model or usable checkpoint.",
-        "W120 replays the original W116 full-recipe cycle at W118/C375 pins with stronger sealed prepared-state ownership through final writing. Full endpoint, physical records, optimizer trace, R statistics and counted owner results are exact; current 37.03s versus historical 83.21s is one observed phase comparison. No new repair benefit or maintained production activation.",
-        "C377 supplies the maintained bounded driver lifetime and separately qualified complete native cycle. W121 verifies the current W118/C377 joined installed namespace with 556 focused tests, six CLI entry points, exact 306 source/resource bytes and removed-source relocation. Durable controller integration, actual branch merge and scientific acceptance remain open; native and installed-composition evidence are distinct. C378 separately qualifies an isolated 21-file native code bundle and final-MTZ failure cleanup; these do not establish portable campaign or production admission.",
-        "W122 records the user-facing explicit sticky-end enforcement plan and its validation order; no new runtime capability or scientific evidence is claimed.",
-        "W123 reuses existing native pair attribution on exact saved W116 ordinary endpoints: all 124 terms/14 pairs, exact native/zero control and modest targeted geometry improvement. Residual short/long contacts and no Rfree benefit remain; retain two slight core increases and separate rounding/source-state limits. No new refinement or scientific gate closure.",
-        "W124 audits C379 truthful refused-admission records and C380 package-owned exact W118 library integration. 887 relocated installed tests+13subtests and independent296-file/committed-source verification close package ownership, not positive counted admission, continuation, native/full-suite or scientific gates. Maintain Willow periodic-source/Cedar execution ownership without divergent vendor copies.",
-        "W125 audits C381 durable explicit counted admission and same-phase native consumption: exact successful control, truthful refused/failure outcomes, immutable compact preparation, relocated cold reads,347 installed tests+13subtests and independent committed298-file/frozen24-file checks. Ordinary counted descendants refuse silent intent loss; positive registered continuation and physical repair remain open.",
-        "W126 audits C382 registered same-intent continuation and C383 inherited input-adaptation proof: two complete unselected REVIEW descendants, exact parent-output and original-intent joins, focused installed and committed-source checks, relocated cold reads. Contact/plane readback improves partly but R stats worsen; no matched continuation efficacy claim. Follow-up final-writer/checkpoint substitution gap remains pending before ordinary-owner activation.",
-        "W136 independently audits separate source-matched eligibility and fixed-normalization controls without another native run:mechanics pass but C396 R worsens and A85 remains non-converged. No private policy or scientific acceptance is promoted.",
-        "W137 independently audits same-state FFT/direct derivatives and ordinary-versus-standalone chemistry lineage. This is diagnostic evidence only; the detached explicit100-cap candidate has focused/installed checks with full/native gates pending at that audit; W138 subsequently qualifies those gates.",
-        "W138 qualifies explicit v8 100-cap ordinary mechanics with full/installed/native gates and final state readback. Local GC flattening is visible but Rfree unchanged and Rwork/bond RMS worse; no accepted repair.",
-        "W139 matched native/core-only-zero/full control: exact zero/native history and outputs, passive full equivalence, same14-pair local benefit; both stop stpmin and overall repair remains unaccepted. Final-PDB statistics provenance and repeated-coordinate normalization jump retained."
+        "Canonical recipe/image/gradient, masked native/pair/tether composition and captured-job owners are qualified for explicit movement scopes. Exact source binding, full/rounded derivative checks, native geometry/packing observers and failed endpoint evidence remain available.",
+        "W51–W61 and W85–W100 establish numerical-resolution, coarse/atomic and source-tether boundaries. Matched failures are preserved; repeat closed controls only for a declared new question.",
+        "W104–W118 bind requested canonical terms to exact actual native coverage, evaluate only missing forces and explicitly rebind compatible parent bytes without changing original chemistry/images. Covalent/terminal ownership is not inferred from origin IDs.",
+        "Cedar integration through W125–W134 owns durable admission, actual prepared state, registered same-intent continuation, original writer identity and final pair capture. Historical payloads retain narrower proof. Ordinary chemistry observation can coexist; broad chemistry repair remains separate.",
+        "W138/Cedar4f7aeb84 qualifies the explicit v8 100-cap ordinary coordinate route with complete source/installed/native gates. The earlier short route retains its original scope; neither cap proves convergence.",
+        "W139 closes the matched native/core-only-zero/full matrix: exact zero/native output/history, passive full equivalence and common14-pair local benefit. Both line-search stops and repeated-coordinate normalization discontinuity remain separate limitations; no numerical policy is adopted.",
+        "W140 measures1268 recorded native sugar/phosphate/glycosidic supports,38existingO3P links and126preserved ordered sugar signs. Independent3804printed-geometry+342torsion checks pass; local backbone deviations remain similar while end bases move. No complete pucker/packing/closure acceptance.",
+        "W122 explicit sticky-end enforcement is planning-only. General seam closure, mismatch/blunt qualification, larger bending and density-supported repair remain open."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Reuse the bounded ordinary pair/refinement ownership qualified through C391; do not repeat W100 tether or closed integration controls. Qualify the separately versioned longer canonical scope in S06, then compare predeclared candidate/no-repair siblings with matched data/FreeR and geometry/packing/density evidence. Preserve unnormalized standalone bending versus normalized native-refinement boundaries; neither C396 nor A85 is a repair policy.",
+      "next_action": "W138/W139 longer and matched controls are complete; do not repeat them. Reuse existing pair/refinement and source-driven motion owners. Before broadening physical repair, declare healthy/displaced/wrong-contact controls and stable numerical invariants, preserve all physical forces and original data/FreeR, and use W140 backbone evidence plus calibrated density review. General seam closure and scientific acceptance remain open.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -403,14 +346,15 @@
         "E_SEPARATE_SCREENING_NORMALIZATION",
         "E_ACTUAL_STATE_AND_LINEAGE",
         "E_LONGER_ORDINARY_CONTROL",
-        "E_MATCHED_CANONICAL_LONG_CONTROL"
+        "E_MATCHED_CANONICAL_LONG_CONTROL",
+        "E_BACKBONE_SAVED_DENSITY"
       ],
       "last_audit": {
         "date": "2026-11-18",
         "code_commit": "4f7aeb84b8762b3bd4ebcc1741c6b1116443632a",
-        "human_update": 139,
-        "reviewer": "Linden with Rowan/Hazel independent controls",
-        "scope": "Matched canonical local physical effect and actual stopping; no general repair or numerical policy adoption."
+        "human_update": 140,
+        "reviewer": "Linden",
+        "scope": "W140 read-only backbone/saved-map evidence and consolidated current queue; detailed historical evidence retained; no runtime/scientific acceptance change."
       }
     },
     {
@@ -423,46 +367,14 @@
       ],
       "goal": "Compare repaired and unmodified models fairly, then determine where data support curvature and strand-specific motion.",
       "delivered": [
-        "Three matched public-reference coordinate-only refinements now preserve deposited observations/Free-R and measure contact, geometry and diffraction tradeoffs; no repaired-MR success or meaningful extra Rfree benefit of bending is claimed.",
-        "Supplied-data input checks and five local native MR placement controls completed, including forward and reverse-shape candidates; no repair/refinement comparison yet.",
-        "W101 native pair-only composition passes20/20 directions in each raw/global-Cedar-corrected context for two source models, with exact baseline target/gradient equality. No double-correction fix is needed; actual refinement attachment, normalization/exclusion accounting and lifecycle remain unqualified.",
-        "W102 passes complete pair/native objective arithmetic through actual mmtbx model energy entry before and after explicit all-atom selection/rebinding. Native normalization and zero-callback invariance are checked; automatic lifecycle, complete term/exclusion accounting and diffraction integration remain open.",
-        "W103 observes complete exact-image pair supports, native shell exclusions and directed repulsion in actual initialized/selected/reinterpreted managers. Ordinary core PHIL reveals107 terms that a full callback would duplicate and117 removed directed nonbonded rows; integration must bind complete intended coverage and exclusions rather than append all terms. Local diagnostic only.",
-        "W104 adds the reusable declared-coverage checker: exact source/crystal/exclusion and inventory bindings, explicit native/additive providers, score parameters, rational images and duplicate/missing/stale refusal. Installed replay covers the W103 native controls; authenticated actual-manager production and activation lifecycle remain open.",
-        "W105 exports exact requested-term declarations from the existing compiled NativePairRecipe, checking original binding, actual proxy parameters and Cartesian/image roles without changing the compiler/workers. Installed native observation passes; complete actual-manager producer and activation remain open.",
-        "W106 observes the actual callback-free native manager through the existing C331 policy owner, exactly binds supported term images and origins, and composes W104/W105 coverage for native core plus explicit missing terms. Native/installed controls pass including an evidence-driven rational-denominator fix; active-force/lifecycle integration remains open.",
-        "W107 composes107ordinary nativecore terms with17explicitmissing periodicterms using existing compiler andcoverage APIs. Actual model entry andexplicit select-all rebinding pass completeenergy/force/normalization andderivativecontrols. Term-level providerselection,activecallback guarding,exclusionapproval andordinary refinementlifecycle remainopen.",
-        "W108 selects native/additive providers term by term from frozen complete declarations, including partially covered individual pairs; exact-image/parameter matching and duplicate/conflict/stale refusals reuse the existing coverage owner. Native source and installed controls pass; force evaluation and lifecycle remain separate.",
-        "W109 evaluates exact frozen selected terms through the existing complete compiler and shared kernels, rechecking live proxies and bindings even for an empty subset. Installed/full tests and native complement/derivative controls pass; no callback or ordinary refinement activation.",
-        "W110 proves actual model-level normalization depends on provider placement even when raw force coverage is identical. Six full/partial/select-all cases retain the effect and source/exclusion evidence. Active-guard owner contract is reviewed but unimplemented; provider-independent production weighting is an explicit gate.",
-        "W111 local native energies_add contribution restores provider-independent normalized actual-model targets/forces for complete and partial canonical pairs, with select-all and derivative controls. C331 deliberately refuses the local method facade. Exact restoration requires original hierarchy and fractional scattering coordinates; no production adapter is installed.",
-        "W112 optionally binds both hierarchy and scattering state through existing Cedar readers; exact roundtrip and default-observer preservation controls pass. Active admission and ordinary lifecycle remain separate.",
-        "W113 supplies the fresh frozen numerical contribution factory and explicit supported count by reusing existing compiler/coverage/evaluation. W114 qualifies direct native ownership/lifetime at exact C368 pins; ordinary runtime integration remains open.",
-        "W115 qualifies the installed C371 read-only assembly on actual ordinary zero-cycle preflight. Ordered855 atoms,3333 observations and176 original Free-R selections are preserved;124 requested terms split107native/17missing. Initial default-MTZ cell precision mismatch remains refused; explicit working-frame control matches source. No forces, optimization or repair acceptance.",
-        "W116 completes three ordinary1cycle/10iteration refinements after independent actual preflights. Native-only and zero-addition full endpoint/statistics/score are exact;17 additional full-recipe terms participate through16checked model calls and final writer. Original3333 observations/176 Free-R and ADP/occupancy preserved; no diffraction benefit or repair adoption. Frozen C371/v3 diagnostic only, production admission and broader scopes remain open.",
-        "W117 removes redundant arithmetic only for equal validated full images, retaining exact distinct-image lattice arithmetic and all checks. Complete source/installed checks pass; C373 actual native old/new targets,gradients,counts,normalization and initial selection are exact with retained mutation refusals. Direct checked call4.62s to1.57s; no whole-refinement speed or repair-benefit claim.",
-        "W118 preserves frozen pair chemistry/images while explicitly rebinding compatible parent bytes, with full/install and saved/native compiler equivalence checks. It grants no lineage, admission or continuation authority. Separate C374 joined-package qualification passes at W117/C373 pins; no actual merge or W118 package-join claim.",
-        "W119 qualifies stronger C375 prepared-state consumption at genuine non-dry driver.run after separate actual preflight, using W118 compatible-parent binding. One checked call preserves data/state and counts current native 11392 +17; exact sealed normalization/bonded/pair/dual state passes. Intentional FAILED/BoundaryObserved stops before optimizer, with no final model or usable checkpoint.",
-        "W120 replays the original W116 full-recipe cycle at W118/C375 pins with stronger sealed prepared-state ownership through final writing. Full endpoint, physical records, optimizer trace, R statistics and counted owner results are exact; current 37.03s versus historical 83.21s is one observed phase comparison. No new repair benefit or maintained production activation.",
-        "C377 supplies the maintained bounded driver lifetime and separately qualified complete native cycle. W121 verifies the current W118/C377 joined installed namespace with 556 focused tests, six CLI entry points, exact 306 source/resource bytes and removed-source relocation. Durable controller integration, actual branch merge and scientific acceptance remain open; native and installed-composition evidence are distinct. C378 separately qualifies an isolated 21-file native code bundle and final-MTZ failure cleanup; these do not establish portable campaign or production admission.",
-        "W122 records the user-facing explicit sticky-end enforcement plan and its validation order; no new runtime capability or scientific evidence is claimed.",
-        "W123 reuses existing native pair attribution on exact saved W116 ordinary endpoints: all 124 terms/14 pairs, exact native/zero control and modest targeted geometry improvement. Residual short/long contacts and no Rfree benefit remain; retain two slight core increases and separate rounding/source-state limits. No new refinement or scientific gate closure.",
-        "W124 audits C379 truthful refused-admission records and C380 package-owned exact W118 library integration. 887 relocated installed tests+13subtests and independent296-file/committed-source verification close package ownership, not positive counted admission, continuation, native/full-suite or scientific gates. Maintain Willow periodic-source/Cedar execution ownership without divergent vendor copies.",
-        "W125 audits C381 durable explicit counted admission and same-phase native consumption: exact successful control, truthful refused/failure outcomes, immutable compact preparation, relocated cold reads,347 installed tests+13subtests and independent committed298-file/frozen24-file checks. Ordinary counted descendants refuse silent intent loss; positive registered continuation and physical repair remain open.",
-        "W126 audits C382 registered same-intent continuation and C383 inherited input-adaptation proof: two complete unselected REVIEW descendants, exact parent-output and original-intent joins, focused installed and committed-source checks, relocated cold reads. Contact/plane readback improves partly but R stats worsen; no matched continuation efficacy claim. Follow-up final-writer/checkpoint substitution gap remains pending before ordinary-owner activation.",
-        "W127 audits explicit v6 native-written-model checkpoint binding: completed original writer bytes/state are required; wrong checksum-valid model refuses. Actual cycle reproduces C382 exactly, current/historical payloads and relocated cold reads verify, old proof remains narrower. No scientific or ordinary-owner activation claim.",
-        "W128 audits C386 explicit counted-pair execution through the existing ordinary AutoRefine owner, preserving original intent, declared frame and actual writer identity before publication. Installed/default/native/relocation controls pass; result remains unselected REVIEW and exactly reproduces C385, with no new efficacy claim.",
-        "W129 measures provider-dependent actual native geometry summaries at identical coordinates and complete intended forces: moving one angle/plane/parallelity changes pooled angle RMS by0.000616deg; standard-origin statistics remain exact. No selector decision or scientific benefit claimed.",
-        "W130 independently audits C388 chemistry observer coexistence with counted pair forces, original projection inheritance and old-reader refusal; both native0-additive and1-additive matched controls retain exact within-pair output and owner state, without scientific acceptance.",
-        "W131 optional cold pair-geometry reader joins existing full recipe attribution and v2 force-state/coverage records; complete physical pair metrics are provider independent and native remainder stays unclassified. Full/installed/native reporting qualification passes with frozen runtime helpers unchanged.",
-        "W132 completes unfiltered C386 regression and exact-source failure triage: all46 failures resolve with process permissions/Git source prerequisites, no product fix or new skip; failed full and diagnostic reruns remain distinct. W131 reporter is separately integrated as exact files in Cedar C390.",
-        "W133 independently qualifies C391 actual-final pair capture after counted ownership closes: exact writer hierarchy/scattering/force-site joins, complete14-pair metrics, unchanged old endpoint/count lifetime and separately attributed energy-only read. Old runtime payloads remain exact; scientific acceptance remains open.",
-        "W134 qualifies one actual ordinary C391 v7 descendant with inherited prepared NAR restraints, exact original intent/ancestry and final pair readback. Cold audit preserves138 descendant/77source/117historical files; exact C382 second endpoint/count owner. Pair geometry improves slightly, Rwork/Rfree and clashscore worsen; unselected REVIEW, no efficacy claim.",
-        "W135 completes one unfiltered C391 regression:11983pass/292subtests/2existingnative-skips,1413tracked files unchanged and14dependency resources exact. Independent C393 cold audit verifies final-pair+chemistry-observer+one-added-term coexistence against exact C388 endpoint;75current/126historical files unchanged. Scientific acceptance remains open.",
-        "W136 independently audits separate source-matched eligibility and fixed-normalization controls without another native run:mechanics pass but C396 R worsens and A85 remains non-converged. No private policy or scientific acceptance is promoted.",
-        "W137 independently audits same-state FFT/direct derivatives and ordinary-versus-standalone chemistry lineage. This is diagnostic evidence only; the detached explicit100-cap candidate has focused/installed checks with full/native gates pending at that audit; W138 subsequently qualifies those gates.",
-        "W138 qualifies explicit v8 100-cap ordinary mechanics with full/installed/native gates and final state readback. Local GC flattening is visible but Rfree unchanged and Rwork/bond RMS worse; no accepted repair.",
-        "W139 matched native/core-only-zero/full control: exact zero/native history and outputs, passive full equivalence, same14-pair local benefit; both stop stpmin and overall repair remains unaccepted. Final-PDB statistics provenance and repeated-coordinate normalization jump retained."
+        "W34 public-reference and supplied-data MR controls retain exact observations/Free-R and show local geometry/diffraction tradeoffs; these are not repaired-MR success cases.",
+        "Actual pair/native coverage, provider complement, hierarchy/scattering state and counted ownership are qualified through existing compiler and Cedar lifecycle owners. Default/native/zero equality, failure retention, relocated installed proof and original writer lineage are separate checks.",
+        "W129/W131/W133 expose provider-dependent pooled summaries while retaining complete physical pair metrics and actual final-state observations; unclassified native remainder is not a semantic weighting policy.",
+        "W132/W135/W138 complete unfiltered shared regressions at their exact pins; installed compositions and native executions retain separate evidence. C402 has a new single pinned full gate in progress, not yet a PASS.",
+        "W136/W137 retain ordinary-versus-standalone chemical lineage and FFT/direct/fixed-normalization boundaries. No private policy, derivative/restart matrix or chemical adoption is promoted.",
+        "W138/Cedar4f7aeb84 qualifies the explicit v8 100-cap ordinary coordinate route with complete source/installed/native gates. The earlier short route retains its original scope; neither cap proves convergence.",
+        "W139 closes the matched native/core-only-zero/full matrix: exact zero/native output/history, passive full equivalence and common14-pair local benefit. Both line-search stops and repeated-coordinate normalization discontinuity remain separate limitations; no numerical policy is adopted.",
+        "W140 reuses A72 periodic sampling on four existing ordinary ML maps at456backbone atoms, binding generation policy and own/common coordinates. All176Free-R indices are included: inspection-only, distinct from maintained metal MLHL capture; no threshold or density-guided motion."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -471,7 +383,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Deferred design only: use the stable-objective invariant sketch in docs/topostitch.md and C400/A85/C397–C399 evidence. Bind full scientific state and consistent F/G across caches; preserve all physical terms and audit all normalization consumers. Rowan shared execution queue owns timing; its fresh corrected-PDU publication gate is separate. No new matrix/policy patch is automatically scheduled. W138/W139 controls are complete; density/B09/widerB10,chemistrydescendants,W122activation and scientific acceptance remain open.",
+      "next_action": "First specify the shared saved-map provenance/sampling interface with Alder: ordinary ML versus MLHL, exact generation policy, own/common positions and explicit work/free treatment. W140 is read-only evidence, not calibrated detection or a search target. Keep stable-objective design deferred under the shared execution queue; no repeated normalization/FFT/direct/restart matrix. Broader B10 controls, B09 final gate and W122 activation remain open.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -519,14 +431,15 @@
         "E_SEPARATE_SCREENING_NORMALIZATION",
         "E_ACTUAL_STATE_AND_LINEAGE",
         "E_LONGER_ORDINARY_CONTROL",
-        "E_MATCHED_CANONICAL_LONG_CONTROL"
+        "E_MATCHED_CANONICAL_LONG_CONTROL",
+        "E_BACKBONE_SAVED_DENSITY"
       ],
       "last_audit": {
         "date": "2026-11-18",
         "code_commit": "4f7aeb84b8762b3bd4ebcc1741c6b1116443632a",
-        "human_update": 139,
-        "reviewer": "Linden with Rowan/Hazel independent controls",
-        "scope": "Matched canonical local physical effect and actual stopping; no general repair or numerical policy adoption."
+        "human_update": 140,
+        "reviewer": "Linden",
+        "scope": "W140 read-only backbone/saved-map evidence and consolidated current queue; detailed historical evidence retained; no runtime/scientific acceptance change."
       }
     },
     {
@@ -540,7 +453,8 @@
       "goal": "Let a scientist see what was proposed, built, refined and reviewed through the existing NASolve/Pine workflow.",
       "delivered": [
         "Standalone inspect/fit/preview commands exist; ordinary checkpoint/campaign publication and GUI actions are not integrated.",
-        "Verified standalone source/candidate/mate viewer exists with rotation, point inspection, contact distances and explicit unrefined/unreviewed state; it does not publish an ordinary trial."
+        "Verified standalone source/candidate/mate viewer exists with rotation, point inspection, contact distances and explicit unrefined/unreviewed state; it does not publish an ordinary trial.",
+        "W139/W140 local science checkouts reuse exact native/full coordinates, explicit mate, planes/contacts and phosphate highlights. Headless ChimeraX1.12 and10reference/link checks pass; no map surfaces or browser-layout validation."
       ],
       "acceptance": [
         "Create immutable children with exact model/CIF/PHIL inputs, preserve current selection, and reuse existing Coot/model-tree paths; viewing never selects or approves.",
@@ -551,14 +465,15 @@
       "evidence": [
         "E_SOFTWARE",
         "E_VIEW",
-        "E_BLUNT_ASYM_PLAN"
+        "E_BLUNT_ASYM_PLAN",
+        "E_BACKBONE_SAVED_DENSITY"
       ],
       "last_audit": {
-        "date": "2026-11-16",
+        "date": "2026-11-18",
         "reviewer": "Linden",
-        "code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
-        "human_update": 93,
-        "scope": "Planning acceptance extended for blunt/asymmetric controls; prior delivered runtime scope and open scientific gates unchanged. No new native solve."
+        "code_commit": "4f7aeb84b8762b3bd4ebcc1741c6b1116443632a",
+        "human_update": 140,
+        "scope": "W140 read-only backbone/saved-map evidence and consolidated current queue; detailed historical evidence retained; no runtime/scientific acceptance change."
       }
     },
     {
@@ -2716,6 +2631,25 @@
           "archive_members": 14
         }
       ]
+    },
+    "E_BACKBONE_SAVED_DENSITY": {
+      "kind": "read_only_backbone_and_saved_map_inspection",
+      "date": "2026-11-18",
+      "human_update": 140,
+      "code_commit": "4f7aeb84b8762b3bd4ebcc1741c6b1116443632a",
+      "reference": "docs/topostitch-periodic.md#w140--audit-backbone-response-and-saved-density",
+      "result": "1268native supports; independent3804printed-geometry/342torsion checks PASS;38existinglinks/126sugarsigns preserved. Near bondRMS .005764→.005993A; angleRMS2.748→2.765deg. Four saved ordinaryML maps×456atoms preserve signed own/common samples; C102P Fo-Fc -6.641→-6.677sigma persists. Headless ChimeraX viewer and10packet references pass.",
+      "limitation": "No new fit, map coefficients, covalent connection, native weight policy or selected checkpoint. All176testindices included; model-assisted map phases and per-map sigma prevent independent validation claims. Sphere is uncalibrated; no displacement diagnosis, threshold, pucker/packing/whole-model acceptance.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w140-backbone-density-2026-11-18.tar.gz",
+          "sha256": "1b8e1bc307c4d1d0d5d64b798e26a55c695c45d07503c3a879236cfb45104a8b",
+          "size": 406684,
+          "indexed_files": 18,
+          "archive_members": 19
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -2877,8 +2811,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 139,
-    "next": 140,
+    "current": 140,
+    "next": 141,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -3520,6 +3454,12 @@
       {
         "number": 139,
         "title": "Measure matched sticky-end benefit without claiming repair",
+        "state": "RECORDED",
+        "code_commit": "4f7aeb84b8762b3bd4ebcc1741c6b1116443632a"
+      },
+      {
+        "number": 140,
+        "title": "Audit backbone response and saved density",
         "state": "RECORDED",
         "code_commit": "4f7aeb84b8762b3bd4ebcc1741c6b1116443632a"
       }

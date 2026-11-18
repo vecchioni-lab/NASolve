@@ -1,19 +1,18 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-18**. **W139 demonstrates bounded local sticky-end benefit**
-against matched native-only and zero-addition controls. Their coordinates/history
-match exactly; adding the pair restraints reduces GC plane mismatch 27.30→6.30°.
-Rfree improves slightly against that control (.2613→.2609), but stays worse than
-the initial .2599; Rwork and final clashscore worsen. Both optimizations stop by
-line-search error. **This is useful local movement, not an accepted repair.**
+Updated **2026-11-18**. **W140 adds backbone and saved-map evidence to W139's
+matched sticky-end improvement.** GC plane mismatch falls 27.30→6.30° with
+localized movement; nearby sugar/phosphate bond and angle deviations barely
+change. All 38 existing backbone links were measured and 126 ordered sugar-volume
+signs survive. A C102 phosphate negative-difference feature persists in both maps.
+This is useful local improvement, not yet general density-supported repair.
 
-W138's explicit 100-cap ordinary mechanics pass full, focused, relocated installed
-and actual native gates, integrated by Rowan into Cedar `4f7aeb84`
-with exact qualified source/tests/package configuration. C400's passive observer
-and native/zero/full comparison are complete; do not rerun them. The next numerical
-boundary is the recorded normalization discontinuity at identical coordinates,
-before larger physical motions. Willow helpers remain W118 with W131 cold reporting.
-The [current four-file science view](#local-science-checkout) shows the matched effect.
+Rfree changes .2613→.2609 and final clashscore 23.27→24.77 are context, **not
+rejection thresholds**. Both numerical line-search stops remain a separate
+limitation. W138's explicit 100-cap ordinary mechanics are qualified and integrated
+in Cedar `4f7aeb84`; the C400 matched matrix is complete. Do not rerun it.
+The [current three-file inspection](#local-science-checkout) reuses the preceding
+models and plane/contact guides, highlighting the phosphates under review.
 
 The backend can bind explicit periodic pair intent, apply the missing geometry
 terms during one qualified native refinement cycle, retain their original meaning
@@ -27,7 +26,7 @@ unqualified.** S04/S05/S06 and P01/P02 remain partial. The
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
-| W139 matched canonical control | Native/zero identity, passive full observer and common14-pair local improvement | Both stop stpmin; worse Rwork/final clashes, no whole-model acceptance |
+| W139/W140 matched canonical control | Native/zero identity, local pair benefit, recorded backbone supports and saved-map sampling | Numerical stops; density calibration, broader controls and whole-model acceptance |
 | W138 ordinary longer control | Explicit v8 100-cap route, actual final writer/pair capture; full/installed/native gates pass | Broader protocols, semantic weighting and CLI/Doctor activation |
 | W125–W134 shared execution/readback | Original pair intent, fresh admission, actual output proof and compatible registered continuation | Ordinary modified-chemistry descendants, unclassified native remainder and broader efficacy |
 | W137 chemistry/numerical audit | Source-bound ordinary versus standalone preparation; same-state FFT/direct arithmetic | No retroactive chemical adoption or production numerical-policy change |
@@ -46,9 +45,8 @@ not another work queue; do not repeat them because this handoff is shorter.
    Coordinate with Rowan/Hazel; do not repeat the completed matched control or
    equivalent derivative/restart/iteration sweeps. Declare the invariant and
    matched test before changing numerical policy; retain all physical forces,
-   repulsion, original data/Free-R and unselected REVIEW. No further native work
-   is scheduled in the 18 November window. Rowan's shared execution queue owns
-   timing; its fresh corrected-PDU preparation/publication gate is separate.
+   repulsion, original data/Free-R and unselected REVIEW. Rowan's shared execution
+   queue owns timing; chemistry preparation/publication remains his scope.
    This sketch does not queue a new matrix or numerical-policy patch.
 
 2. W133 closes the bounded final-state pair-capture seam. Keep native remainder
@@ -68,7 +66,11 @@ not another work queue; do not repeat them because this handoff is shorter.
    Broader weights/ADPs/scaling/phases, extra terminal sources need separate qualification through existing owners.
    C388 qualifies passive chemistry coexistence and focused ordinary forwarding;
    it does not establish a successful repaired structure.
-4. Then use matched B10 controls and geometry, packing and diffraction/density
+4. Reuse W140's read-only backbone/map evidence to specify the shared saved-map
+   boundary before implementing calibrated S06 detection. Keep ordinary ML
+   inspection separate from Alder's maintained MLHL capture. Freeze generation
+   policy, own/common positions and work/free treatment; no automatic threshold.
+   Then use matched B10 controls and geometry, packing and diffraction/density
    evidence before physical acceptance. Preserve original data/Free-R, unselected
    REVIEW and exact pair intent. Retain repulsion while exclusions are open;
    never activate an isolated symmetry phosphate bond.
@@ -98,6 +100,17 @@ large-bend repair follow later. No CLI/default activation follows from these doc
   A separate model-bound amendment distinguishes initial log clashscore from
   final PDB values. [Results, stopping evidence and limitations](topostitch-periodic.md#w139--measure-matched-sticky-end-benefit-without-claiming-repair).
 
+- **W140 read-only audit:** 1,268 native sugar/phosphate/glycosidic supports;
+  independent 3,804 printed-geometry and 342 torsion comparisons pass. Four saved
+  maps retain exact source/labels/generation policy, 456 atoms each and periodic
+  sampling. All 176 Free-R indices occur in these ordinary ML coefficients;
+  this is inspection, not independent validation or a work-only search objective.
+  [Exact commands, failed setup attempts and limits](topostitch-periodic.md#w140--audit-backbone-response-and-saved-density).
+- **C402 shared qualification in progress:** installed relocation passes through
+  a documented 143+19 test join after supplying missing data-only test fixtures;
+  all 304 installed resources match. The single pinned unfiltered full run remains
+  pending. This is not yet a new complete-suite PASS; Rowan owns the cleanup patch.
+
 Earlier tests, failed attempts and qualification pins remain in the existing
 [periodic/native ledger](topostitch-periodic.md) and Git history (the full W138
 handoff is `c33db066`). They are not a queue to repeat. W131 cold reporting and
@@ -106,16 +119,23 @@ PASS upgrades older diagnostic models to accepted structures.
 
 ## Local science checkout
 
-**Current W139 matched view:** GitHub workspace anchor,
+**Current W140 backbone/density view:** GitHub workspace anchor,
+`ScienceCheckouts/Linden/2026-11-18_backbone-density/review.html`.
+Open `open_inspection.py` for the same native/full toggle, exact symmetry mate,
+base planes and contact guides; magenta marks C102/C103 image phosphates. It loads
+no map surfaces and invents no density threshold. Three new files reuse the
+checksummed W139 viewer and existing coordinate files; keep the Linden folder
+together. The table retains own-endpoint and common-source map samples plus
+occupancy/B context. Headless ChimeraX 1.12 validates two 1,140-atom models,
+four planes/five contacts and six highlighted atoms each; ten packet references
+and links pass. No browser-layout validation is claimed. Display PDBs remain
+unsuitable for refinement/deposition. Small R/clash changes are context;
+numerical stopping and scientific quality are assessed separately.
+
+W139's matched view remains at
 `ScienceCheckouts/Linden/2026-11-18_matched-sticky-ends/review.html`.
-Open `open_inspection.py` to toggle native-only versus full pair restraints.
-Four new files reuse the preceding full display PDB through a checksum-bound
-relative reference; keep the Linden folder together. GC plane mismatch changes
-27.30→6.30° without alignment or magnification. The report includes adverse
-Rwork/clashes and actual stopping. Headless ChimeraX 1.12 validates two 1,140-atom
-models, four child planes and five contacts each; five local links/checksums pass.
-No browser-layout validation is claimed. Display PDBs omit ANISOU/connectivity
-and must not be used as refinement or deposition inputs.
+Its earlier wording about adverse small R/clash changes is historical; the
+calibration above is current and introduces no numerical acceptance threshold.
 
 Earlier, preserved views at the same anchor:
 `ScienceCheckouts/Linden/2026-11-18_long-control/review.html` compares same-start
@@ -123,8 +143,8 @@ restrained caps 10/100; `ScienceCheckouts/Linden/2026-11-18/review.html` is the
 morning readback summary; `ScienceCheckouts/Linden/2026-11-17/review.html` shows
 the earlier short matched effect. They answer different questions.
 
-Rowan owns the shared 17:00 UK report and its existing one-time reminder; do not
-duplicate it. His local report links this matched view and Hazel's metal work.
+Rowan owns the shared lab report; coordinate its links instead of duplicating
+reports or reminders. The current user-authorized work window ends at 23:00 UK.
 Follow the [lightweight checkout policy](collaboration.md#lightweight-science-checkouts).
 All scientific payloads and reports remain local; documentation pushes do not
 authorize raw-data publication.
@@ -139,8 +159,10 @@ authorize raw-data publication.
   small coarse polish; do not restart it without a different justified question.
 - **Diffraction and density:** W34 found no meaningful held-out benefit from
   bend-plus-cleanup (Rfree .2276 versus .2274 for cleanup), with worse bond/angle
-  RMSDs. S06 requires exact model/map/data binding and matched refinement before
-  calibrated sustained negative-backbone-density detection. Noise, resolution,
+  RMSDs. W140 adds exact saved-map sampling and identifies a persistent C102
+  phosphate difference feature; it does not identify its cause. S06 still needs
+  healthy/noisy/displaced calibration before sustained negative-backbone-density
+  detection. Noise, resolution,
   occupancy and ADPs matter. Keep straight→bent, bent→straight and changed,
   nonuniform or distal curvature as general cases; 4T28/8SJW interpretation remains
   unverified. No density-aware repair is implemented by W107.

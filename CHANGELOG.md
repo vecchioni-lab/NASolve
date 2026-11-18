@@ -17,6 +17,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W140 — Audit backbone response and saved density
+
+- Measure existing native sugar/phosphate/glycosidic supports around the matched
+  sticky-end improvement, independently checking printed geometry and torsions.
+- Bind and sample saved ordinary ML maps without new refinement; retain signed
+  own/common-position evidence, Free-R inclusion and occupancy/ADP alternatives.
+- Reuse the ChimeraX comparison with phosphate highlights. Consolidate duplicated
+  roadmap delivery history and remove completed work from the next-action queue.
+  Small R/clash changes are context, not automatic rejection thresholds.
+- Documentation/local inspection only: no runtime, schema, CLI, numerical policy,
+  automatic density threshold or scientific checkpoint selection change.
+
 ### W139 — Measure matched sticky-end benefit
 
 - Record exact native/zero identity, passive full-control equivalence and common
