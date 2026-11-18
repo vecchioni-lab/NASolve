@@ -607,6 +607,32 @@ inspection steps. Campaign integration and diagnostic-driven restraint/data alte
 remain planned in `campaigns.md`; immediate implementation state is tracked in
 `development-handoff.md`.
 
+## Shared in-app model/density inspector
+
+**User-approved visual direction, general integration planned (W143).** Reuse
+Linden's rotatable backbone-density inspector across NASolve, including MR,
+PostMR, AutoSol, refinement/Doctor comparisons, Pine topology proposals and
+campaign review. Scientists should be able to inspect a model and its available
+maps dynamically in the application without opening Coot. The user reviewed the
+W143 Slate/contour/dropoff design and explicitly requested this wider role.
+
+Use one reusable display component and the existing stage/checkpoint view
+resolver, source/frame checks and native map owners. Carry the declared model,
+map source, inherited-map status, symmetry image and camera/frame into the view.
+With no qualified map, show the model and explain map availability. Compare
+original, proposed and refined states at true scale, with explicit fixed-map or
+matched-map selection. Preserve Hazel's complementary local residue/metal views.
+Keep controls quiet: rotation, atom inspection, selectable contour target,
+independent contour levels, contrast and optional off-atom residual fading.
+
+Viewing or changing display settings never selects a checkpoint, edits atoms,
+classifies density as noise or grants scientific approval. Existing coordinate
+editing/refinement owners keep those responsibilities. The local prototype and
+human visual approval do not establish a deployed cross-stage viewer; integration
+and source/frame/relocation checks remain on S07's queue. See the
+[display contract](topostitch.md#density-presentation-local-chemistry-and-continuous-backbones-w143)
+and [GUI integration](gui.md#shared-dynamic-modeldensity-inspector).
+
 ## Stage-aware Coot views
 
 `nasolve show` resolves the active workspace; an explicit run remains supported.

@@ -103,6 +103,25 @@ external coordinate editor. The planned metal-restraint builder is an explicit
 optional small-window exception, sharing its backend and state with the docked
 workspace rather than creating a second application.
 
+## Shared dynamic model/density inspector
+
+The user-approved W143 inspector is the intended common 3D inspection experience
+throughout NASolve. Place it in the central workspace for a selected stage,
+checkpoint, proposed edit or campaign comparison; routine visual review should
+not require launching Coot. Reuse the same component across MR/PostMR/AutoSol,
+refinement/Doctor, Pine/TopoStitch and campaign views. Support the continuous
+backbone rendering alongside Hazel's residue/metal view, choosing the depiction
+that suits the scientific question. Preserve the quiet Slate-first design,
+true-scale model motion, real contours, map-target/contrast controls and optional
+residual distance fade.
+
+This is an approved integration direction, not a claim of deployed GUI support.
+Resolve all models/maps through the existing owners and expose source/inherited
+map meaning. Display changes are reversible preferences; scientific selection
+and review decisions remain explicit backend operations. The
+[shared architecture contract](architecture.md#shared-in-app-modeldensity-inspector)
+defines the ownership and validation boundary.
+
 ## Metal-coordination recipe workspace
 
 The planned [metal-restraint builder](metal-restraint-builder.md) may toggle as a

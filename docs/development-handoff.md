@@ -148,8 +148,10 @@ Model/map controls remain independent; all movement is true scale. Thirty atoms,
 32 native bonds and four saved maps retain their original data. The seven inputs
 and all 30 prior contours are unchanged; 6,277 mesh interpolation checks and
 16 offline control contracts pass. These are not actual GPU/browser tests:
-the user confirmed v1 rotation and reviewed v2's themes/dropoff; final v3 visual
-review remains open. Browser local-file automation was blocked;
+the user confirmed v1 rotation, reviewed v2 themes/dropoff and approved v3's
+appearance. They explicitly selected this as the shared NASolve dynamic inspector
+for use throughout the workflow without opening Coot. General stage integration
+remains planned; see the [shared architecture contract](architecture.md#shared-in-app-modeldensity-inspector). Browser local-file automation was blocked;
 no alternate route was attempted. [Design and limits](topostitch.md#density-presentation-local-chemistry-and-continuous-backbones-w143).
 
 The companion `branch-artifacts/willow/w142-density-sections-v2.{png,svg}` uses

@@ -20,7 +20,8 @@ current instructions; other branches retain their own status and validation pins
   its full Alder regression is now complete. W142 closes C402/C404 qualification
   and records the next read-only map-source/frame boundary. W143 adds a local
   3D backbone-density presentation study; its final contrast/contour revision
-  awaits visual review.
+  is user-reviewed and chosen as NASolve's shared dynamic inspector direction;
+  cross-stage integration remains planned.
   The detector remains separate. Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
@@ -63,7 +64,7 @@ demonstration goals with explicit evidence gates, not completed-result claims.
 | Other-family model selection and proposed providers | [Campaign model roadmap](campaign-model-roadmap.md), [model compatibility facts](model-compatibility-facts.md) |
 | Operational Scout and eventual ASU/Topo surgery | [Construct registration](construct-registration.md), [registration intent](construct-registration-intent.json), [Scout/Topo live checks](construct-registration-live-checks.md) |
 | TopoStitch recut and connection repair | [Audited completion roadmap](topostitch-roadmap.md), [design contract](topostitch.md), [development intent](topostitch-intent.json) — [candidate screen](topostitch-backend.md) and [coordinate adapter](topostitch-coordinates.md), [periodic inspector, saved proposals and read-only representative views](topostitch-periodic.md) and [explicit bend previews and offline comparison](topostitch-preview.md); campaign inference, scheme transfer and repair remain planned |
-| Future GUI | [GUI contract](gui.md), [GUI live checks](gui-live-checks.md) |
+| Future GUI and shared dynamic inspection | [GUI contract](gui.md), [shared 3D inspector](architecture.md#shared-in-app-modeldensity-inspector), [GUI live checks](gui-live-checks.md) |
 | Metal-coordination design and intent (check Alder for implementation) | [Metal restraint builder](metal-restraint-builder.md), [development intent](metal-restraint-builder-intent.json) — branch-local design reference |
 
 Implementation-intent JSON is **not** runtime registration authority. Check each subsystem’s audited status and owning branch before treating a design

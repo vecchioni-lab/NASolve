@@ -221,7 +221,7 @@ Compare repaired and unmodified models fairly, then determine where data support
 
 Let a scientist see what was proposed, built, refined and reviewed through the existing NASolve/Pine workflow.
 
-**Delivered:** Standalone inspect/fit/preview commands exist; ordinary checkpoint/campaign publication and GUI actions are not integrated. Verified standalone source/candidate/mate viewer exists with rotation, point inspection, contact distances and explicit unrefined/unreviewed state; it does not publish an ordinary trial. W139/W140 local science checkouts reuse exact native/full coordinates, explicit mate, planes/contacts and phosphate highlights. Headless ChimeraX1.12 and10reference/link checks pass; no map surfaces or browser-layout validation. W143 local 3D backbone-density prototype retains genuine contours and fixed-frame model/map comparison. User confirms v1 rotation and reviews v2 appearance/dropoff. Final v3 defaults to Slate, strengthens Paper/red/green contrast and remembers independent map contour levels through 6 sigma. Seven inputs and 30 prior surfaces are unchanged; 6,277 mesh checks and 16 offline contracts pass. Final visual review pending.
+**Delivered:** Standalone inspect/fit/preview commands exist; ordinary checkpoint/campaign publication and GUI actions are not integrated. Verified standalone source/candidate/mate viewer exists with rotation, point inspection, contact distances and explicit unrefined/unreviewed state; it does not publish an ordinary trial. W139/W140 local science checkouts reuse exact native/full coordinates, explicit mate, planes/contacts and phosphate highlights. Headless ChimeraX1.12 and10reference/link checks pass; no map surfaces or browser-layout validation. W143 local 3D backbone-density prototype retains genuine contours and fixed-frame model/map comparison. User confirms v1 rotation and reviews v2 appearance/dropoff. Final v3 defaults to Slate, strengthens Paper/red/green contrast and remembers independent map contour levels through 6 sigma. Seven inputs and 30 prior surfaces are unchanged; 6,277 mesh checks and 16 offline contracts pass. User then approved v3 appearance and requested shared dynamic inspection throughout NASolve without opening Coot; main docs record the direction.
 
 **Closure audit:**
 
@@ -229,9 +229,9 @@ Let a scientist see what was proposed, built, refined and reviewed through the e
 - Show actual before/after coordinates, moved/fixed sites, mates, geometry and matched refinement deltas. Test stale evidence, interruption, relocation and explicit keep/reject/use decisions.
 - For final B09 review, show source, proposed and refined geotest coordinates with the intended periodic mates and per-member pass/review/failure evidence.
 
-**Next action:** Finish final v3 human review. When the shared map boundary and ordinary trial are qualified, reuse existing native display/checkpoint owners; preserve Hazel residue/metal views and avoid a parallel map reader or history system. Display controls never select a trial or classify noise.
+**Next action:** Integrate the approved inspector across stage/checkpoint, Doctor, Pine and campaign review after shared map/frame and ordinary trial boundaries are qualified. Reuse existing native map/display/checkpoint owners and retain Hazel residue/metal views. Show map availability explicitly; do not create a parallel reader/history or make display settings scientific authority.
 **Evidence:** [E_SOFTWARE](#e_software), [E_VIEW](#e_view), [E_BLUNT_ASYM_PLAN](#e_blunt_asym_plan), [E_BACKBONE_SAVED_DENSITY](#e_backbone_saved_density), [E_BACKBONE_DENSITY_PRESENTATION](#e_backbone_density_presentation).
-**Last audit:** 2026-11-18, Linden, [W143](https://github.com/vecchioni-lab/NASolve/commit/081a532ce46a46ec67fbcd310e500e06ecd2ee8e); Local display study: v1/v2 user feedback recorded; v3 offline/data checks pass, final visual review open. No runtime or scientific acceptance change..
+**Last audit:** 2026-11-18, Linden, [W143](https://github.com/vecchioni-lab/NASolve/commit/081a532ce46a46ec67fbcd310e500e06ecd2ee8e); Local display study: v1/v2 feedback and explicit v3 human visual approval recorded; v3 offline/data checks pass. Shared cross-stage inspector direction approved, integration still planned; no runtime or scientific acceptance change..
 
 <a id="s08"></a>
 ### S08 — Run bounded opt-in campaigns and transfer schemes
@@ -1286,8 +1286,8 @@ C402 full12016+293 passes/two native opt-in skips; installed143+19 joined pass/3
 ### E_BACKBONE_DENSITY_PRESENTATION — local_scientific_display_study
 
 [Evidence contract](topostitch-periodic.md#w143--make-backbone-density-inspectable-in-3d) at [W143](https://github.com/vecchioni-lab/NASolve/commit/081a532ce46a46ec67fbcd310e500e06ecd2ee8e).
-Fixed-frame common/orthogonal 2D slices; 30 atoms and 32 native bonds from four saved C400 maps. User confirms v1 rotation and reviews v2 themes/dropoff. V3: 62 genuine contour meshes, 6,277 interpolation checks, 120 atom samples match W140, seven inputs and 30 prior meshes unchanged; 16 offline rendering/control checks pass.
-**Limit:** No GPU/shader/browser visual qualification for v3. Display-only FFT/triangulation, no fitting or new coefficients. Off-atom fade and contour levels are presentation settings, not noise classification. Prototype and scientific payloads stay local; no deployed GUI/schema or accepted repair.
+Fixed-frame common/orthogonal 2D slices; 30 atoms and 32 native bonds from four saved C400 maps. User confirms v1 rotation and reviews v2 themes/dropoff. V3: 62 genuine contour meshes, 6,277 interpolation checks, 120 atom samples match W140, seven inputs and 30 prior meshes unchanged; 16 offline rendering/control checks pass. User subsequently approved v3 appearance and requested reuse throughout NASolve.
+**Limit:** Human v3 visual approval recorded; no automated GPU/shader/browser qualification or general stage integration. Display-only FFT/triangulation, no fitting or new coefficients. Off-atom fade and contour levels are presentation settings, not noise classification. Prototype and scientific payloads stay local; no deployed GUI/schema or accepted repair.
 
 ## Deferred extensions, not hidden blockers
 

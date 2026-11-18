@@ -961,13 +961,18 @@ contour/map choices; no continual animation is needed.
 Source/mesh checks and 16 offline control contracts pass, including all 21
 ordinary/difference level choices, independent remembered values and contrast.
 The latter use mock WebGL and do not establish shader compilation, GPU appearance
-or browser layout. Final v3 visual review remains open. Browser URL policy blocked automated
+or browser layout. The user subsequently approved v3's appearance and explicitly
+requested reuse as the shared NASolve inspector throughout the workflow, without
+opening Coot for routine inspection. This human visual approval is recorded
+separately from automated coverage; broad stage integration is still planned. Browser URL policy blocked automated
 local-file inspection; no alternative route was attempted.
 
-This is S07 presentation exploration, not a deployed GUI/schema or a replacement
-for Hazel's residue/metal view. If useful, share the native map-display boundary
-with Alder and the existing TopoStitch viewer rather than promote a parallel map
-reader, mesh pipeline or checkpoint history. Campaign desk should focus the same
+This is S07's approved shared-inspector direction, with a local prototype rather
+than a deployed general GUI/schema. Preserve Hazel's residue/metal view. Share
+the native map-display boundary with Alder and the existing TopoStitch viewer;
+reuse the component across MR/PostMR/AutoSol, refinement/Doctor, Pine proposals
+and campaign comparisons through the [shared architecture contract](architecture.md#shared-in-app-modeldensity-inspector).
+Do not promote a parallel map reader, mesh pipeline or checkpoint history. Campaign desk should focus the same
 declared chain window/image and expose original, proposed and refined states
 without changing scientific selection. No automatic backbone correction follows.
 

@@ -28,7 +28,9 @@ entries are reconstructed from repository history.
 - The user confirmed v1 rotation and reviewed v2. The revised view defaults to
   Slate, offers stronger Paper contours, independent map contour levels through
   6σ (difference default 3.5σ), and a contrast control; 16 offline contracts pass.
-  Final visual review remains open. No maintained runtime/schema/install changes;
+  The user approved v3 and selected it as the shared NASolve dynamic inspector
+  direction across stages/campaign review; main architecture, user and GUI docs
+  record the planned reuse. No maintained runtime/schema/install changes;
   derived scientific payloads remain local and excluded from Git.
 
 ### W142 — Close shared qualification and map the density boundary

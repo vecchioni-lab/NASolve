@@ -1187,6 +1187,18 @@ pipeline retains common validation, provenance, non-overwrite behavior, and
 external-tool isolation. Numerical acceptance and model/map inspection remain
 separate outcomes.
 
+## Shared interactive inspection — approved direction
+
+NASolve's user-reviewed W143 prototype is the visual direction for a shared
+**in-app 3D model/density inspector**, available throughout MR, PostMR, AutoSol,
+refinement, Doctor and campaign review as integration proceeds. It supports
+interactive inspection without launching Coot: rotate the model, compare actual
+coordinates in a fixed frame, inspect density and tune contours/contrast with
+minimal controls. Hazel's residue/metal views remain complementary. The current
+prototype is local; general stage/checkpoint integration is planned. See the
+[shared inspector contract](docs/architecture.md#shared-in-app-modeldensity-inspector)
+and [GUI placement](docs/gui.md#shared-dynamic-modeldensity-inspector).
+
 ## Experimental TopoStitch inspection and previews
 
 TopoStitch's read-only backend can inspect explicitly assigned canonical DNA

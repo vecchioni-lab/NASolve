@@ -8091,7 +8091,10 @@ fading follows displayed-atom distance (full opacity through1.5Å, smoothly redu
 to15% from3.5Å, interpolated at mesh vertices). It leaves map values, meshes and
 ordinary density untouched; it is emphasis, not a noise classification. The
 buffer cache is bounded to three map/level combinations. No animation loop is
-needed while idle. Final v3 visual review remains open.
+needed while idle. The user subsequently approved v3's appearance, calling it a
+"beautiful inspector tool", and explicitly requested reuse throughout NASolve
+without opening Coot for routine inspection. The main user/architecture/GUI docs
+now record that shared direction; general stage integration remains planned.
 
 ### Validation and retained limits
 
@@ -8110,8 +8113,8 @@ needed while idle. Final v3 visual review remains open.
   checker fails against v2's old default and passes v3. This is a mock WebGL
   harness: no real shader compilation, GPU or browser-layout PASS is claimed.
 - Browser URL policy refused local-file automation. No alternate browser route
-  was attempted. Human v1/v2 feedback is separate from automated checks; final
-  v3 appearance is not inferred from the earlier review.
+  was attempted. Human v1/v2 feedback and the later explicit v3 visual approval
+  are separate from automated checks; no GPU automation PASS is inferred.
 
 Commands recorded in the local execution receipts:
 
@@ -8136,8 +8139,9 @@ All following paths use the **NASolve** anchor `branch-artifacts/willow/`:
 | `w143-density-prototype-v1.zip` — user-confirmed initial interaction | 278,166 bytes / `837d91ac3392aae5a1965c92c36c578875d164576dd89e32eace37bb3224beb5` |
 | `w142-density-sections-v2.{png,svg,json}` — fixed-frame orthogonal supplement | PNG `daad8079a67077d803e56482af5e13104025669151b591c20077d3090cbd9789` |
 
-Committed changes are the existing design/handoff, periodic ledger, docs index,
-changelog and roadmap JSON/generated Markdown. Documentation generation/check
+Committed changes are the existing main README, architecture/GUI contracts,
+design/handoff, periodic ledger, docs index, changelog and roadmap JSON/generated
+Markdown. Documentation generation/check
 and diff/link/reference checks apply; C404's full suite is separately scoped to
 its software pin and does not test this local prototype. No package/install,
 CLI/default, runtime schema or migration change. HTML contains derived science;
