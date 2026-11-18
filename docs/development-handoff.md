@@ -1,10 +1,10 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-17**. **W127 native-written-model publication is audited.
-Ordinary AutoRefine ownership is next.** This is Willow's
+Updated **2026-11-18**. **W128 ordinary AutoRefine integration is audited.
+Full C386 regression is running; provider-statistics qualification is next.** This is Willow's
 handoff, not the project-wide status of Pine, Cedar or Alder. Willow's latest
 periodic/factory source is W118; counted execution/continuation is committed on
-Cedar through C385. These audits are not a whole-branch merge or supported release.
+Cedar through C386. These audits are not a whole-branch merge or supported release.
 
 The backend can bind explicit periodic pair intent, apply the missing geometry
 terms during one qualified native refinement cycle, retain their original meaning
@@ -18,8 +18,9 @@ unqualified.** S04/S05/S06 and P01/P02 remain partial. The
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
-| W127 / C385 publication | Explicit v6 joins actual completed native writer bytes/state to the usable checkpoint; old payloads remain exact | Ordinary owner activation; historical v5 has no retroactive output proof |
-| W126 / C382–C384 continuation | Validated registered parent, preserved original intent, fresh rebind/preflight/admission; existing C278 namespace-only restraint copies | Ordinary AutoRefine/Doctor execution and broader protocol/chemistry |
+| W128 / C386 ordinary owner | Explicit bounded Python request reuses AutoRefine, preserves original intent/frame and validates the written model before publication | Broader scientific protocols, CLI/Doctor activation and repair efficacy |
+| W127 / C385 publication | Explicit v6 joins actual completed native writer bytes/state to the usable checkpoint; old payloads remain exact | Historical v5 has no retroactive output proof |
+| W126 / C382–C384 continuation | Validated registered parent, preserved original intent, fresh rebind/preflight/admission; existing C278 namespace-only restraint copies | Actual ordinary descendant demonstration, Doctor execution and broader protocol/chemistry |
 | W125 / C381 admission | Durable original/current request, exact prepared state, immutable admission, complete native cycle and truthful failure outcomes | No ordinary CLI activation or scientific acceptance |
 | W123 / W126 scientific readback | Modest local contact/plane improvement in saved endpoints; later descendants flatten further | Residual defects, worsening R stats, unqualified backbone/packing/density; descendants have no matched efficacy control |
 | W118 same-frame recipe rebind | Coordinates/B/ANISOU may change with exact identity, chemistry and frame invariants | No renamed/reordered atoms, changed occupancy/chemistry or frame migration |
@@ -31,28 +32,22 @@ not another work queue; do not repeat them because this handoff is shorter.
 
 ## Next bounded work
 
-1. Join the qualified counted path to the **existing AutoRefine owner** with an
-   explicit supported protocol, input proofs and normal checkpoint publication.
-   Follow the [W126 integration contract](topostitch.md#ordinary-owner-integration-boundary-w126-planning).
-   Rowan owns shared execution; Linden owns periodic geometry/factory semantics.
-   C385 now closes final-writer/checkpoint binding for explicit v6. New ordinary
-   rounds promising that proof must request v6; the continuation helper preserves
-   inherited v5/v6 policy. A v5→v6 transition requires a fresh explicit request
-   and admission retaining original intent; it does not upgrade the old evidence.
-   C278 PHIL namespace adaptation is now consumed; terminal-source additions and
-   chemistry projections remain distinct gates. C291 is whole-base transport.
-2. Preserve one declared working frame and original data/Free-R. Do not turn the
-   diagnostic PDB-cell override into a campaign default or loosen exact compiled
-   bindings to hide precision differences. W118 is a same-frame rebind, not a
-   crystallographic setting conversion.
-3. Keep the first owner-level counted result unselected REVIEW. The qualified
-   native protocol is deliberately narrow: one all-site coordinate cycle,
-   1–10 iterations, one process and fixed unit weights, with target-changing
-   phases disabled. Ordinary automatic weights/ADPs/scaling are not qualified by
-   relabelling this diagnostic. Reuse existing owners; no new optimizer.
-4. After that join, qualify broader native scope and periodic exclusions
-   deliberately, then matched candidate/no-repair controls with geometry, packing
-   and diffraction/density evidence. Retain repulsion while exclusions are open;
+1. Finish the unfiltered full Cedar suite on frozen C386
+   `d5c2fb7be944aae5e048903e1de495c67baa4b05`; record scope, result and any
+   subsequent focused changes separately. This is not a whole-branch merge.
+2. Make one passive comparison of actual geometry statistics under equivalent
+   native/additive provider splits, using the existing W110/W111 full/partial
+   constructions. Preserve coordinates and intended forces; no optimizer or
+   weight sweep. Hazel's pooled NA-pair/covalent statistics motivate this gate,
+   but do not prove provider-dependent selection or a better refinement policy.
+3. Keep the supported ordinary protocol explicit: one all-site XYZ cycle,
+   fixed unit weights, ten iterations, one process and seed 1. `counted_frame="recipe"`
+   is an explicit, recorded choice; do not generalize it into model-cell preference.
+   Broader weights/ADPs/scaling/phases, extra terminal sources and chemistry
+   projections need separate qualification through the existing owners.
+4. Then use matched B10 controls and geometry, packing and diffraction/density
+   evidence before physical acceptance. Preserve original data/Free-R, unselected
+   REVIEW and exact pair intent. Retain repulsion while exclusions are open;
    never activate an isolated symmetry phosphate bond.
 
 **W122 remains planning-only:** the first intended user-facing application is
@@ -62,6 +57,12 @@ large-bend repair follow later. No CLI/default activation follows from these doc
 
 ## Validation and scientific interpretation
 
+- **W128 / C386:** 345 relocated installed tests +13 subtests; independent
+  299-file committed-source equality and 32 exact ordinary PHIL/command comparisons.
+  One complete Phenix 2.2.1-6174 ordinary-owner control reproduces the C385 PDB;
+  original numerical observations/Free-R survive label-only staging. Cold reads
+  preserve 72 current /64 historical files; unselected REVIEW and exact writer
+  binding pass. [Exact W128 evidence](topostitch-periodic.md#w128--carry-explicit-pair-restraints-through-ordinary-autorefine).
 - **W127 / C385:** 197 focused source /282 relocated installed tests; independent
   299-file committed-source equality and immutable cold reads of 64 current /117
   historical files. One complete native cycle reproduces C382 model bytes, output
@@ -83,9 +84,10 @@ large-bend repair follow later. No CLI/default activation follows from these doc
   [Source validation](topostitch-periodic.md#w118--rebind-frozen-pair-intent-to-a-compatible-child).
 
 The **12,138-test /284-subtest W112/C366 source-only** full suite and later W121
-joined-package checks remain historical, not current C385 full-suite results.
-Current peer panels are focused; no duplicate native/full-suite run was launched
-by Linden for these audits. Integration/merge qualification remains separate.
+joined-package checks remain historical, not current C386 full-suite results.
+Those peer panels were focused; Linden did not duplicate their native runs.
+The new unfiltered C386 source suite is currently running in an isolated tracked
+snapshot. No current full pass or whole-branch merge qualification is yet claimed.
 
 The matched W116/W123 control shows maximum extra motion about **0.034 Å** and
 modest selected-pair improvement, with no Rfree benefit. Subsequent C382 descendants

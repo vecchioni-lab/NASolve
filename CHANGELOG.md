@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W128 — Audit ordinary counted-pair refinement
+
+- Record Cedar C386's explicit bounded Python API through ordinary AutoRefine,
+  original intent/frame preservation, pre-publication written-model proof and
+  unselected REVIEW; existing ordinary settings remain byte-identical.
+- Independently verify the installed/committed package, actual native control,
+  label-only reflection staging and relocated cold reads. Full Cedar regression
+  runs separately; no new structural improvement or user-facing option is claimed.
+- Queue provider-independent geometry-statistic qualification before automatic
+  weights. This Willow change is docs/evidence only; scientific artifacts stay local.
+
 ### W127 — Audit native-written-model checkpoint binding
 
 - Record Cedar C385 explicit v6 output provenance: actual final-writer bytes/state

@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "kind": "topostitch-development-roadmap",
-  "updated": "2026-11-17",
+  "updated": "2026-11-18",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "99da97d210d7c428fb4b07eee96e77c871de8adc",
+  "audited_code_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -440,7 +440,8 @@
         "W124 audits C379 truthful refused-admission records and C380 package-owned exact W118 library integration. 887 relocated installed tests+13subtests and independent296-file/committed-source verification close package ownership, not positive counted admission, continuation, native/full-suite or scientific gates. Maintain Willow periodic-source/Cedar execution ownership without divergent vendor copies.",
         "W125 audits C381 durable explicit counted admission and same-phase native consumption: exact successful control, truthful refused/failure outcomes, immutable compact preparation, relocated cold reads,347 installed tests+13subtests and independent committed298-file/frozen24-file checks. Ordinary counted descendants refuse silent intent loss; positive registered continuation and physical repair remain open.",
         "W126 audits C382 registered same-intent continuation and C383 inherited input-adaptation proof: two complete unselected REVIEW descendants, exact parent-output and original-intent joins, focused installed and committed-source checks, relocated cold reads. Contact/plane readback improves partly but R stats worsen; no matched continuation efficacy claim. Follow-up final-writer/checkpoint substitution gap remains pending before ordinary-owner activation.",
-        "W127 audits explicit v6 native-written-model checkpoint binding: completed original writer bytes/state are required; wrong checksum-valid model refuses. Actual cycle reproduces C382 exactly, current/historical payloads and relocated cold reads verify, old proof remains narrower. No scientific or ordinary-owner activation claim."
+        "W127 audits explicit v6 native-written-model checkpoint binding: completed original writer bytes/state are required; wrong checksum-valid model refuses. Actual cycle reproduces C382 exactly, current/historical payloads and relocated cold reads verify, old proof remains narrower. No scientific or ordinary-owner activation claim.",
+        "W128 audits C386 explicit counted-pair execution through the existing ordinary AutoRefine owner, preserving original intent, declared frame and actual writer identity before publication. Installed/default/native/relocation controls pass; result remains unselected REVIEW and exactly reproduces C385, with no new efficacy claim."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -449,7 +450,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Join explicit v6 counted execution to existing AutoRefine ownership under an explicitly supported actual native protocol; C385 closes native-written-model publication binding. Preserve original intent, selected parent, C278 copied-input proof, declared frame, existing process ownership and unselected REVIEW. The continuation helper preserves inherited v5/v6; any v5-to-v6 transition needs a fresh explicit request/admission and does not upgrade historical proof. Handle terminal-source additions/chemistry separately, avoid silently narrowing ordinary defaults or introducing a second executor. Reuse unchanged lifecycle evidence, qualify changed owner boundaries, then matched B10 controls. W122 remains planned; broader phases, exclusions, density and B09 remain open.",
+      "next_action": "Finish isolated unfiltered C386 full regression. Then compare actual native geometry statistics under equivalent native/additive provider splits at frozen coordinates before expanding automatic weights; objective/gradient normalization alone is insufficient. Reuse W110/W111 constructions and existing owners, no new optimizer or sweep. Keep explicit fixed-unit one-cycle protocol, original intent/frame/data/Free-R and unselected REVIEW. Broader phases, chemistry/terminal additions, periodic exclusions and matched B10 efficacy remain separate; W122 stays planned, density/B09 later.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -485,14 +486,15 @@
         "E_PACKAGE_OWNED_INTEGRATION",
         "E_DURABLE_COUNTED_ADMISSION",
         "E_REGISTERED_COUNTED_CONTINUATION",
-        "E_NATIVE_WRITTEN_MODEL_BINDING"
+        "E_NATIVE_WRITTEN_MODEL_BINDING",
+        "E_ORDINARY_COUNTED_OWNER"
       ],
       "last_audit": {
-        "date": "2026-11-17",
-        "code_commit": "99da97d210d7c428fb4b07eee96e77c871de8adc",
-        "human_update": 127,
+        "date": "2026-11-18",
+        "code_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05",
+        "human_update": 128,
         "reviewer": "Linden",
-        "scope": "Independent committed/installed/native-output audit of C385; closes final-writer-to-checkpoint binding for explicit v6. Old v5 meaning, ordinary-owner boundary and physical acceptance remain separate."
+        "scope": "Independent installed/default/native/relocation audit of the bounded ordinary owner; full Cedar suite running separately. No physical or user-facing gate closure."
       }
     },
     {
@@ -2445,6 +2447,31 @@
           "all_members_verified": true
         }
       ]
+    },
+    "E_ORDINARY_COUNTED_OWNER": {
+      "kind": "ordinary_counted_owner_independent_audit",
+      "code_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05",
+      "human_update": 128,
+      "reference": "docs/topostitch-periodic.md#w128--carry-explicit-pair-restraints-through-ordinary-autorefine",
+      "result": "C386 explicit named bounded protocol joins existing AutoRefine input/process/publication ownership, preserves original intent and records frame choice. Actual Phenix 2.2.1-6174 ordinary cycle reproduces C385 PDB exactly,15 calls11392+17=11409,unselected REVIEW. Independent299-file committed/install equality,32 unchanged ordinary parameter/command cases,72 current/64 historical immutable cold reads and exact label-only data/Free-R adaptation pass. Peer345 installed+13 subtests.",
+      "limitation": "Python API only, one XYZ cycle/process, fixed unit weights/seed1/10 iterations. No broad weighting/phases/chemistry/terminal-source qualification, CLI/Doctor activation, repair benefit or whole-branch merge. C386 full source suite is RUNNING separately; no full pass yet. Native fixture needs no C278 namespace copy; test coverage is separate. Geometry RMS parser fields unavailable, not zero. Actual native control starts from a fresh diagnostic PostMR import; ordinary counted-parent continuation has synthetic coverage, not a new native descendant run.",
+      "runtime_pins": {
+        "cedar_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05",
+        "upstream_willow_commit": "c08f337024f8901c583c0988f652e9a1c3156a49",
+        "wheel_sha256": "cde2754b357f8262c64d2303dbdd02eca5f28bea1a7dd1db1bbb5b7c06541ec5",
+        "execution_policy": "round-local-counted-execution-v6",
+        "native_plan_sha256": "84ccfaaebb0840de3aab52be79b79fa33b84ee1a4c4b56c127950f831723397a"
+      },
+      "local_receipts": [
+        {
+          "repository_anchor": "everyday NASolve checkout",
+          "relative_path": "branch-artifacts/willow/w128-ordinary-owner-review-2026-11-18.tar.gz",
+          "sha256": "71f639e64fe0c4b0136f827303181282fac581a14d4de6832bc5f296c40a5549",
+          "bytes": 11646,
+          "indexed_files": 9,
+          "all_members_verified": true
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -2606,8 +2633,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 127,
-    "next": 128,
+    "current": 128,
+    "next": 129,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -3179,6 +3206,12 @@
         "title": "Bind the published checkpoint to the native-written model",
         "state": "RECORDED",
         "code_commit": "99da97d210d7c428fb4b07eee96e77c871de8adc"
+      },
+      {
+        "number": 128,
+        "title": "Carry explicit pair restraints through ordinary AutoRefine",
+        "state": "RECORDED",
+        "code_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05"
       }
     ]
   },

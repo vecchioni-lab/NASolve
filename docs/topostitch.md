@@ -139,10 +139,25 @@ application; it closes no repair, inference, stacking or covalent-closure gate.
 
 ## Ordinary-owner integration boundary (W126; planning)
 
+**W128 implementation status:** Cedar C386 now satisfies the initial owner join
+under the explicit Python-only `counted-xyz-fixed-unit-v1` protocol. It preserves
+original intent, optional declared recipe frame, existing input/process owners
+and final-writer proof before publishing an unselected REVIEW. Ordinary settings
+remain unchanged; unsupported chemistry, new terminal sources and phases refuse.
+See the [audited result](topostitch-periodic.md#w128--carry-explicit-pair-restraints-through-ordinary-autorefine).
+The original contract below remains the boundary for broader qualification;
+it is not a claim that the user-facing W122 option or Doctor integration is ready.
+
+Before automatic weights, compare the actual geometry statistics used to select
+them across equivalent native/additive provider splits. Provider-independent
+objective normalization alone cannot establish provider-independent selection.
+Keep covalent, NA-pair and metal geometry distinct in scientific readback. Start
+with frozen-state comparisons using existing owners, not a new optimizer.
+
 C381–C385 now qualify explicit saved admission, registered same-intent
 continuation, existing C278 PHIL namespace copies and v6 native-written-model
-binding. They do not activate the
-ordinary AutoRefine/Doctor route. Keep that next join bounded:
+binding. At W126/W127 they did not activate the ordinary AutoRefine/Doctor
+route. The join was specified as follows; C386 closes only its bounded initial scope:
 
 1. **Factory identity:** W118 accepts coordinate/B/ANISOU changes within the
    unchanged atom identities/order, occupancy, chemistry, internal chain breaks

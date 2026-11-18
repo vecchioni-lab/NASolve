@@ -6681,3 +6681,87 @@ excluded from Git. This is forensic evidence, not a portable/resumable campaign.
 Willow changes are documentation/evidence only. S05/S06 remain partial. W122's
 explicit sticky-end feature remains planned; next join the qualified path to the
 existing ordinary refinement owner, without silently narrowing its defaults.
+
+
+### W128 — Carry explicit pair restraints through ordinary AutoRefine
+
+Cedar **C386 `d5c2fb7be944aae5e048903e1de495c67baa4b05`** joins the qualified
+counted-pair machinery to the existing AutoRefine owner. Previously counted
+ancestry was refused by that route; the positive cycle required a manually
+composed diagnostic. The Python API now accepts an explicit original recipe and
+source model with `counted_protocol="counted-xyz-fixed-unit-v1"`. Caller options
+must request one cycle/process, XYZ only, no ADPs/occupancy or anomalous refinement.
+The named protocol fixes unit weights, seed 1 and ten iterations. Unsupported
+experimental-phase consumption, chemistry projections and new extra/terminal
+restraints refuse before round allocation; inherited protection stays checked.
+This is a bounded control, not a recommended scientific default or a CLI feature.
+
+Methods: reuse the ordinary parameter writer, C278 input adapter, stopped-preflight
+seal, existing subprocess ownership and checkpoint publisher. Preserve original
+pair intent and validate the actual written-model proof **before** appending a
+usable checkpoint. A fresh v6 request may retain a v5 ancestor's exact original
+intent, without upgrading its old evidence. Successful controls remain unselected
+REVIEW even when the ordinary numerical thresholds pass. Context-entry refusals
+preserve existing launch evidence and do not invent a no-launch outcome.
+
+`counted_frame="recipe"` explicitly chooses the already validated recipe crystal;
+the ordinary parameter file and report record it. Leaving the option unset retains
+native frame choice. No fixture-specific cell, changed compiled tolerance or
+campaign-wide PDB-over-MTZ rule is introduced. Ordinary parameter/command bytes
+match C385 exactly across **32** existing combinations of selector version,
+mean/anomalous data, phase use and strategy.
+
+**Actual Phenix 2.2.1-6174:** one ordinary controller completes native dry-run
+preflight and real refinement, both exit 0, in **45.41 seconds total**. Both native
+children belong to that controller; all processes stopped. Its **15** counted
+calls preserve **11,392 native +17 added =11,409** terms. The complete written PDB
+is exactly C385's `55d28cbd19bf01874a313ff9b10b2ed4209e9e0f9b23e738b189ed5eda1082eb`
+(143,889 bytes). The result remains usable, unselected REVIEW with `postmr`
+selected. This first ordinary control starts from a fresh diagnostic PostMR import; ordinary
+counted-parent continuation has synthetic coverage, not a new native descendant
+run here. This closes the initial owner handoff, not a new bending or diffraction result:
+logged Rwork/Rfree are again **.2245/.2599 → .2251/.2609**.
+
+The diagnostic stages a **label-only** copy, `Fobs/SIGFobs → F/SIGF`, to use the
+existing ordinary reflection menu. Original and staged MTZ bytes differ; all
+ordered HKL/data/sigma/Free-R array bytes, column types, missing masks, cell and
+group agree. There are **3,333 observations /176 Free-R selections**. Original
+SHA `f57083bb6d6b74789ba77c0c448c678356f7e3a52805a7142e1b33f9055d86a7`;
+staged SHA `7bb523e28f495712e8c8098a01c084b92ba9276a6cd29561b41e1961c0d9393f`.
+This fixture needs no C278 namespace copy; that adaptation is separately covered
+by focused tests and earlier evidence. Parsed bond/angle RMS fields in C386 are
+unavailable for this log format, not zero; a reporting follow-up belongs to Cedar.
+
+**Validation:** peer source panel **207 tests +13 subtests**, followed by **five**
+new boundary cases; relocated installed panel **345 +13** in **75.83s**. Exact
+commands are in Cedar's committed ledger key `ordinary_counted_control_2026_11_18`.
+Independent review verifies all **299 committed/installed files**, wheel
+`cde2754b357f8262c64d2303dbdd02eca5f28bea1a7dd1db1bbb5b7c06541ec5`, actual
+request/admission/output identity, the label adaptation, and immutable cold reads
+of **72 current /64 historical files**. A checksum-valid previous model is refused
+without changing a registry. Old source/install/run locations are absent; historical
+absolute command paths remain provenance, not permission to replay a relocated run.
+
+An unfiltered full **Cedar** suite is running separately from a tracked snapshot
+of C386. It includes Cedar's integrated Willow numerical library, not a whole-branch
+Willow/Pine/Cedar merge. No full pass is claimed until its result is recorded.
+
+Independent historical commands use `/private/tmp/willow-w94-pivot/env/bin/python`
+with `PYTHONDONTWRITEBYTECODE=1`: `audit.py` and `ordinary-compatibility.py` in
+`/private/tmp/willow-w128-autorefine-review`; the latter records baseline
+`eeb4f3f9` and the relocated package explicitly. The local review archive, anchored
+at the **everyday NASolve checkout**, is
+`branch-artifacts/willow/w128-ordinary-owner-review-2026-11-18.tar.gz`, SHA
+`71f639e64fe0c4b0136f827303181282fac581a14d4de6832bc5f296c40a5549`, **11,646
+bytes /9 indexed files**, all verified. It excludes the still-running full suite.
+Raw scientific runs, scripts and installed packages remain local, outside Git.
+
+Willow changes are documentation/evidence only. S06 remains partial and W122's
+user-facing sticky-end option stays planned. Before broadening automatic weights,
+compare **selection statistics** across equivalent native/additive provider splits,
+not only energies/gradients. Hazel's saved metal evidence shows soft NA-pair terms
+can dominate pooled bond RMS. Whether changing provider ownership changes the
+selector is a separate, initially untested hypothesis: first compare actual native
+statistics at frozen coordinates with existing full/partial recipes, without an
+optimizer or weight sweep. Broader phases, exclusions, density-aware repair and
+matched independent-structure efficacy remain open.
