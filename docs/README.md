@@ -7,30 +7,23 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Willow queue:** [Development handoff](development-handoff.md). W128 audits
-  Cedar C386's explicit counted-pair path through ordinary AutoRefine: fixed-unit
-  one-cycle XYZ protocol, preserved original intent/frame, actual-writer checkpoint
-  binding and unselected REVIEW. Willow's numerical library remains W118; the
-  shared controller changes belong to Cedar. Broader weighting, phases,
-  exclusions and physical repair remain open. W122's user-facing sticky-end option
-  is still planned. W129 measures a small provider-dependent native angle RMS at
-  unchanged coordinates and equivalent complete forces. No actual weight decision was tested;
-  semantic geometry classification and broader weighting remain separate gates.
-  W130 audits C388 passive chemistry coexistence and source-projection inheritance;
-  native controls remain mechanics evidence with poor R values.
-  W131 adds a cold descriptive pair-geometry reader with unchanged frozen numerical
-  helpers: complete pair metrics are provider independent, native remainder stays
-  unclassified, and no weight policy changes. Complete Willow tests pass; broader
-  C386 testing remains separate. W132 resolves all original C386 failures through
-  exact-source environment/prerequisite reruns; the failed full attempt is retained,
-  and the uninterrupted C391 integration full run is now running. W133 independently
-  verifies its actual-final pair report against writer state, unchanged prior endpoint
-  and counted lifetime; the descriptive kernel call is recorded separately.
-  Earlier arithmetic, lifecycle and continuation evidence lives in the ledgers;
-  do not repeat it merely because this current guide is shorter.
+- **Willow queue:** [Development handoff](development-handoff.md). W128–W134
+  qualify the explicit bounded ordinary counted-pair path, actual final-writer
+  geometry readback and one canonical continuation. W131 adds provider-independent
+  descriptive pair metrics; unmatched native terms remain unclassified.
+  W135 closes the frozen C391 full regression (11,983 tests +292 subtests, two
+  existing native opt-in skips) and independently audits low-level pair/chemistry
+  observer coexistence. This does not qualify later revisions, ordinary chemistry
+  descendants or general repair. W136 audits separate source-matched eligibility
+  and normalization controls: the former worsens R factors; the latter remains
+  non-converged. Neither private policy is adopted. The longer canonical control,
+  density qualification and W122 user-facing sticky-end option remain planned.
+  Willow owns periodic/numerical helpers and cold reporting; Cedar owns shared
+  ordinary execution. Earlier evidence and failures remain in the ledgers.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Next human update is W134;
-  do not restart completed probes merely because a handoff is shorter.
+  [machine-readable source](topostitch-roadmap.json). Current human update is W136;
+  the next substantial audit is W137. Do not restart completed probes merely
+  because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed
   attempts, compatibility pins and limits; they are not duplicate action queues.
