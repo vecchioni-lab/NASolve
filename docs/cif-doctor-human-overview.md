@@ -33,6 +33,15 @@ normalization and numerical criteria stay unchanged; ordinary settings are untou
 The log reader now keeps numbered native stages such as `realsrl2` so final
 summaries are not lost.
 
+A later diagnostic now reproduces the actual DF/metal optimization state before
+checking tiny coordinate changes. The chemical restraint forces agree in all 13
+sampled directions; the FFT diffraction and combined scores agree in none under
+the declared checks. Yet moves against the reported combined gradient still lower
+the score, so this does not establish why optimization stopped. No optimization
+continues and no finished model is produced. A separate same-state direct-calculation
+comparison is being tested; an earlier direct refinement changed the adaptive
+weight choices and did not demonstrate a repair.
+
 These are explicit, source-qualified controls, not new normal settings or universal
 modified-residue support. New restraint files retain their identity through the
 saved checkpoint; incomplete ancestry refuses rather than silently losing intent.

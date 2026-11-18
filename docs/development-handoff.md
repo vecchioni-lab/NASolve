@@ -9,6 +9,28 @@ C394's later log-only change has focused validation; it is not part of that full
 
 ## Current checkpoint and next bounded work
 
+**C397 complete — actual failure-state derivative check (Rowan).**
+Exact A85 fixed-normalization prefix through global evaluator-return index 2779
+(XYZ instance 7, not native nfun) reproduces full state/gradients. At this state,
+106 probes in 13 directions keep one active restraint inventory and observed cache.
+Raw geometry agrees in all 13 sampled directions; FFT data/combined agree in none.
+All four negative combined-gradient steps still lower the objective, so this does
+not establish the cause of the line-search failure. Independent cold arithmetic
+passes; repeat full-gradient reproduction is a producer assertion. Dedicated native
+replay intentionally stops (340.05 s); no optimizer continuation or finished model.
+The earlier A43 probe was post-weight-selection, a different stage. Its direct
+control and unqualified changed adaptive-weight refinement remain historical limits.
+
+**Active follow-up — C398 same-state direct-factor comparison (Rowan).**
+One fresh replay reproduces the same FFT state, then changes only the diffraction
+calculation algorithm. Keep the actual likelihood core, observations/Free-R/HL,
+scattering, scale/mask, absolute weights, fixed denominator and geometry/cache.
+Use the same 13 FFT-derived directions; their names do not imply direct steepest
+descent. One FFT repeat plus 106 direct evaluations, 300-second probe bound and
+1,200-second owned-process bound. No optimizer resumes. Linden independently
+reviews; Hazel's sealed source cohort remains unchanged. Ordinary corrected-chemistry
+checkpoint publication and longer matched controls remain separate boundaries.
+
 **C396 complete — changing the geometry screen does not yet repair PDU.**
 A private five-cycle control excludes only source-matched declared pairing from
 Phenix's eligibility means: 51 distances and 84 angles. Six protected terminal

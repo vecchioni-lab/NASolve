@@ -114096,5 +114096,183 @@
       ],
       "receipt_sha256": "4b656b2de965bb338ac5d8c2cccdad62f159c024ccac7a2984c15e1b8087e5e5"
     }
+  },
+  "actual_failure_state_derivatives_2026_11_18": {
+    "milestone": "C397",
+    "kind": "private-actual-failure-state-derivative-diagnostic",
+    "source_commit": "653587b9",
+    "status": "DIAGNOSTIC_COMPLETE_SCIENTIFIC_REVIEW",
+    "before": "A43 established a post-weight-selection FFT limitation; A85 fixed normalization retained rounding failures. Neither sampled this actual minimizer callback state.",
+    "after": "Exact A85 prefix and full baseline gradients reproduce. Raw geometry agrees in13/13 sampled directions; FFT data/combined0/13. Negative combined-gradient moves still decrease total score at all four steps; failure causality not established.",
+    "native": {
+      "version": "Phenix 2.2.1-6174",
+      "execution": "ACTUAL_DEDICATED_REPLAY_INTENTIONALLY_STOPPED",
+      "seconds": 340.0494739590067,
+      "probe_seconds": 20.844473500008462,
+      "stopped": true,
+      "global_evaluator_return_index": 2779,
+      "instance": 7,
+      "native_nfun": "Distinct counter;2779 is not native nfun",
+      "diagnostic_evaluations": 106,
+      "native_refinement_complete": false
+    },
+    "scope": {
+      "directions": 13,
+      "steps_angstrom": [
+        0.001,
+        0.0001,
+        1e-05,
+        1e-06
+      ],
+      "normalization_denominator": 11170,
+      "active_restraints": 11143,
+      "inventory_states": 1,
+      "observed_cache_unchanged": true,
+      "original_files_unchanged": 67,
+      "optimizer_continuation": false
+    },
+    "components": {
+      "data": {
+        "agreeing_directions": 0,
+        "total_directions": 13,
+        "sampled_agreement": false,
+        "failed_directions": [
+          "full_gradient",
+          "alternating_global",
+          "atom_224_axis_0",
+          "atom_224_axis_1",
+          "atom_224_axis_2",
+          "atom_234_axis_0",
+          "atom_234_axis_1",
+          "atom_234_axis_2",
+          "atom_858_axis_0",
+          "atom_858_axis_1",
+          "atom_858_axis_2",
+          "data_gradient",
+          "raw_geometry_gradient"
+        ],
+        "maximum_absolute_error": 0.3229781058140228
+      },
+      "raw_geometry": {
+        "agreeing_directions": 13,
+        "total_directions": 13,
+        "sampled_agreement": true,
+        "failed_directions": [],
+        "maximum_absolute_error": 0.0005442712130676597
+      },
+      "combined": {
+        "agreeing_directions": 0,
+        "total_directions": 13,
+        "sampled_agreement": false,
+        "failed_directions": [
+          "full_gradient",
+          "alternating_global",
+          "atom_224_axis_0",
+          "atom_224_axis_1",
+          "atom_224_axis_2",
+          "atom_234_axis_0",
+          "atom_234_axis_1",
+          "atom_234_axis_2",
+          "atom_858_axis_0",
+          "atom_858_axis_1",
+          "atom_858_axis_2",
+          "data_gradient",
+          "raw_geometry_gradient"
+        ],
+        "maximum_absolute_error": 0.3229781060073123
+      }
+    },
+    "gradient_context": {
+      "data_norm": 0.031456706522536314,
+      "normalized_geometry_norm": 0.0489133974807066,
+      "combined_norm": 0.03721731407175398,
+      "data_geometry_cosine": -0.6489164770108267,
+      "negative_combined_gradient_steps": [
+        {
+          "step": 0.001,
+          "predicted_first_order_change": -3.721731407175398e-05,
+          "actual_change": -4.0664586933303326e-05,
+          "observed_decrease": true
+        },
+        {
+          "step": 0.0001,
+          "predicted_first_order_change": -3.721731407175398e-06,
+          "actual_change": -4.2728235776223755e-06,
+          "observed_decrease": true
+        },
+        {
+          "step": 1e-05,
+          "predicted_first_order_change": -3.721731407175398e-07,
+          "actual_change": -3.685125236074782e-07,
+          "observed_decrease": true
+        },
+        {
+          "step": 1e-06,
+          "predicted_first_order_change": -3.7217314071753977e-08,
+          "actual_change": -3.745359933304826e-08,
+          "observed_decrease": true
+        }
+      ]
+    },
+    "evidence": {
+      "plan.json": {
+        "sha256": "f2147c524dc1e235e57d717230086e3e410ecddf0745d46aef92c64636715969",
+        "bytes": 4160
+      },
+      "execution.json": {
+        "sha256": "f6f9495ca6fb0bfe6c2fd320af0d41919e4ac52781306ba99b39cf57472c9aaa",
+        "bytes": 2480
+      },
+      "refinement/diagnostic-status.json": {
+        "sha256": "8d5c8b8249a00011aa5d6571a8e2d4213a17c3e3923ca0325b4c419228baec8b",
+        "bytes": 1470
+      },
+      "refinement/takeover-state.json.gz": {
+        "sha256": "6334281abfdc538ae43c86e79f5621b06b4ce23de40f3339b2dcad65e99d99a2",
+        "bytes": 307636
+      },
+      "refinement/derivative-samples.json.gz": {
+        "sha256": "a20425cecbab73cae0fe1172c627d1b8bba5baec79ba9dcfcf3dfcf43dfdf146",
+        "bytes": 227961
+      },
+      "refinement/normalization-trace.json.gz": {
+        "sha256": "526d9d59e3aac4423393cc9ebe226a9915e95cd2f4800e823d2792de7ba0780f",
+        "bytes": 1955895
+      }
+    },
+    "local_readback": {
+      "anchor": "NASolve-private-artifacts",
+      "relative_path": "cedar/c397-actual-state-derivatives/readback.json",
+      "sha256": "825265cbfd833838f9b5eee74e28cf2f230953486b95a416bbf55128dd7187b4"
+    },
+    "independent_review": {
+      "author": "Linden",
+      "anchor": "NASolve-private-artifacts",
+      "relative_path": "willow/c397-actual-state-review-2026-11-18.json",
+      "sha256": "28a3e071597aa77d42f60e6beb80476766088d6ea2f3b6dd03ef75369305bf75"
+    },
+    "archive": {
+      "anchor": "cedar-local-artifacts",
+      "relative_path": "c397-actual-state-2026-11-18.tar.gz",
+      "size": 5117675,
+      "sha256": "86bb3d931a4144541f1e51516016bc2028429d5b2bed6460613664681f04f72e"
+    },
+    "raw_archived_bytes": 6140852,
+    "validation_commands": [
+      "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider -o addopts= branch-artifacts/cedar/runners/test_c397_probe_math.py",
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c397_execute.py",
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c397_readback.py",
+      "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c397_archive.py c397 c397-actual-state-derivatives"
+    ],
+    "focused_validation": "12 private arithmetic/serialization checks pass; no product code change or full-suite rerun.",
+    "compatibility": "No product schema/default/native worker change; no migration.",
+    "limits": [
+      "One exact callback and sampled directions; not optimizer convergence or chemical survival.",
+      "Only baseline full gradients retained; original/restored full-gradient repeat remains producer assertion. Scalar repeats and directional arithmetic are independently reproduced.",
+      "C398 direct-factor comparison is separate; prior A43 direct refinement changed adaptive weights/path and did not establish repair.",
+      "Raw models/reflections/logs and helpers remain local. Archive verifies bytes, not portable execution or campaign capacity."
+    ],
+    "preparation_review": "Nested-mapping fingerprint defect caught and corrected before launch; earlier frozen candidate retained unlaunched.",
+    "next": "Same-state direct-factor comparison with actual core/scales/mask/scattering/weights preserved; no broad weight/budget sweep or production adoption."
   }
 }

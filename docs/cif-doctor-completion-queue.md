@@ -184,12 +184,14 @@ actual selected-call replay reproduces model/maps and exposes two same-coordinat
 normalization jumps. Three selected rounding failures remain unexplained. A85's
 separate private
 fixed-denominator control removes lower-bound failures but retains rounding/limit
-stops; R values improve slightly while DF attachment/metal angle worsen. Next reuse
-C23–26 fixed-evaluator/category/repeat/additivity checks and C91 torsion conditioning
-for a precisely bound actual combined-target investigation. Their earlier fixed,
-geometry-only qualification does not transfer to the live data-plus-geometry state.
-Bind raw targets/gradients, denominator, active inventory and cache history without
-an extra live-manager refresh. No normalization fix or general convergence is qualified.
+stops; R values improve slightly while DF attachment/metal angle worsen. C397 now
+reuses the earlier fixed-evaluator checks at exact actual return 2779/instance 7:
+full prefix/state reproduced, 13/13 geometry directions agree, 0/13 FFT data/combined.
+One inventory and the observed cache remain unchanged across 106 probes. Negative
+gradient steps still lower the score, so stopping causality remains unproven.
+C398's separately bound direct-factor comparison is next; no optimizer resumes.
+Do not repeat this baseline or confuse A43's post-weight-selection direct evidence
+with this actual state. No normalization fix or general convergence is qualified.
 Longer counted scope needs a new explicit version, matched starts and source-bound
 control matrix, not widening historical 1–10-step semantics. A universal chemical
 classifier need not block every predeclared experiment, but unknown terms remain
