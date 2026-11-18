@@ -357,11 +357,11 @@ def _retire_new_preparation(request_directory, attempt_number):
     from .campaign_records import read_record
     from .campaigns import CampaignError
     from .cif_attempt_retention import ARTIFACT_POLICY, retire_attempt_working_files
-    from .cif_complete_request import read_dictionary_request_result
+    from .cif_complete_request import CAPTURE_ARTIFACT_POLICY, read_dictionary_request_result
     try:
         request = read_record(request_directory/'request.json')
-        if request['configuration'].get('artifact_policy') != ARTIFACT_POLICY:
-            return None  # Older layouts retain their original storage contract.
+        if request['configuration'].get('artifact_policy') not in {ARTIFACT_POLICY, CAPTURE_ARTIFACT_POLICY}:
+            return None  # Other layouts retain their original storage contract.
         retire_attempt_working_files(request_directory, attempt_number)
     except (OSError, ValueError, CampaignError) as exc:
         exact = read_dictionary_request_result(request_directory, attempt_number)

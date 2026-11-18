@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Archive working copies after automatic bond preparation (C402)
+
+- Let newly published v4 preparations use the same bounded archive and cleanup
+  owner as v3. Automatic bond discovery no longer leaves all successful working
+  copies beside the published model and restraints.
+- Preserve older and unknown layouts, historical publication, read-only inspection,
+  failed or uncertain work, and public model/restraint paths. Interrupted cleanup
+  remains recoverable; cleanup errors cannot hide an unreadable scientific result.
+- No chemistry, schema, refinement setting or checkpoint selection changes.
+
 ### Explicit longer coordinate control (Willow review candidate)
 
 - Add Python-only `counted-xyz-fixed-unit-100-v1` with a configured cap of 100,

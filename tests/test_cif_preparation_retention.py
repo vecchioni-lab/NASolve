@@ -30,13 +30,14 @@ def test_new_checked_result_is_published_before_retirement_and_keeps_exact_choic
     assert len(calls) == 2 and reads == [1]
 
 
+@pytest.mark.parametrize('policy', ['cif-complete-request-partitioned-artifacts-v3', 'cif-complete-request-partitioned-artifacts-v4'])
 @pytest.mark.parametrize('failure', [OSError('disk unavailable'), ValueError('failed native work'), CampaignProcessError('request busy')])
-def test_optional_storage_error_keeps_published_preparation_without_native_retry(tmp_path, monkeypatch, failure):
+def test_optional_storage_error_keeps_published_preparation_without_native_retry(tmp_path, monkeypatch, failure, policy):
     from nasolve import cif_attempt_retention as storage
     from nasolve.campaign_records import write_record
     run, ready, sdk, exact, calls, reads = ready_case(tmp_path, monkeypatch)
     request = run/'PostMR/DictionaryEngine/request/request.json'
-    value = read_record(request); value['configuration']['artifact_policy'] = storage.ARTIFACT_POLICY
+    value = read_record(request); value['configuration']['artifact_policy'] = policy
     write_record(request, value, replace=True)
     def retire(*args): raise failure
     monkeypatch.setattr(storage, 'retire_attempt_working_files', retire)
@@ -79,12 +80,13 @@ def test_interrupt_is_not_swallowed_after_publication(tmp_path, monkeypatch):
     assert len(calls) == 2
 
 
-def test_cleanup_error_cannot_hide_a_broken_exact_result(tmp_path, monkeypatch):
+@pytest.mark.parametrize('policy', ['cif-complete-request-partitioned-artifacts-v3', 'cif-complete-request-partitioned-artifacts-v4'])
+def test_cleanup_error_cannot_hide_a_broken_exact_result(tmp_path, monkeypatch, policy):
     from nasolve import cif_attempt_retention as storage
     from nasolve.campaign_records import write_record
     run, ready, sdk, exact, calls, reads = ready_case(tmp_path, monkeypatch)
     request = run/'PostMR/DictionaryEngine/request/request.json'
-    value = read_record(request); value['configuration']['artifact_policy'] = storage.ARTIFACT_POLICY
+    value = read_record(request); value['configuration']['artifact_policy'] = policy
     write_record(request, value, replace=True)
     changed = []
     def read(*args):
@@ -106,11 +108,13 @@ from tests.test_cif_attempt_retention import completed
 from tests.test_cif_repair_attempt import inventory
 
 
+@pytest.mark.parametrize('policy', ['cif-complete-request-partitioned-artifacts-v3', 'cif-complete-request-partitioned-artifacts-v4'])
 @pytest.mark.parametrize('interrupted', [False, True])
-def test_real_owner_cleanup_or_partial_cleanup_stays_readable_and_relocates(joined, monkeypatch, tmp_path, interrupted):
+def test_real_owner_cleanup_or_partial_cleanup_stays_readable_and_relocates(joined, monkeypatch, tmp_path, interrupted, policy):
     from nasolve import cif_attempt_retention as storage
     from nasolve.cif_ordinary_postmr import _retire_new_preparation
     from nasolve.campaign_records import artifact, verify_artifact
+    joined[1]['artifact_policy'] = policy
     complete, root, attempt = completed(joined)
     before = complete.read_dictionary_request_result(root, 1)
     if interrupted:
@@ -172,9 +176,10 @@ def test_campaign_records_archive_not_disposable_working_paths(tmp_path, monkeyp
     'cif-complete-request-partitioned-artifacts-v1',
     'cif-complete-request-partitioned-artifacts-v2',
     'cif-complete-request-partitioned-artifacts-v3',
+    'cif-complete-request-partitioned-artifacts-v4',
+    'unknown-layout',
 ])
 def test_new_publication_only_automatically_retires_current_storage_layout(tmp_path, monkeypatch, policy):
-    from nasolve.cif_complete_attempt_archive import ARTIFACT_POLICY
     from nasolve.cif_ordinary_postmr import _retire_new_preparation
     from nasolve.campaign_records import write_record
     from tests.test_cif_postmr_publication import snapshot
@@ -185,6 +190,8 @@ def test_new_publication_only_automatically_retires_current_storage_layout(tmp_p
     monkeypatch.setattr('nasolve.cif_attempt_retention.retire_attempt_working_files',
                         lambda directory, number: calls.append((directory, number)))
     note = _retire_new_preparation(root, 2)
-    assert calls == ([(root, 2)] if policy == ARTIFACT_POLICY else [])
-    assert (note is not None) is (policy == ARTIFACT_POLICY)
+    expected = policy in {'cif-complete-request-partitioned-artifacts-v3',
+                          'cif-complete-request-partitioned-artifacts-v4'}
+    assert calls == ([(root, 2)] if expected else [])
+    assert (note is not None) is expected
     assert snapshot(root) == before

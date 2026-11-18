@@ -161,8 +161,10 @@ join the existing source, derivative and verified-fallback checks. This still do
 not establish that a correction survives refinement.
 The explicit engine route now carries a chosen correction through the whole
 preparation request and actual ReadySet, with the PDU target and named heavy-atom
-coordinates preserved. Successful working files can be archived by the existing
-retention procedure and the result reopened after moving it. An initial control
+coordinates preserved. Successful working files are archived through the existing retention procedure
+after new ordinary publication, including automatic bond preparation; public
+models and restraints stay available. Explicit retirement remains available for
+older completed requests, and archived results can be reopened after moving them. An initial control
 also exposed excessive combined working evidence; a new explicit accounting
 policy separates native captures from their analysis while retaining the shared
 archive-expansion limit. The failed first request stays preserved. Normal model

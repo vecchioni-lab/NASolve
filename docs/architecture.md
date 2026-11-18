@@ -186,7 +186,11 @@ forward explicit graph-selected bond choices through the existing prepared and
 complete request owners, including ReadySet continuation and archive/retirement.
 The explicit v4 artifact policy adds one bounded native-capture group to v3;
 per-group/member and shared physical archive limits remain fixed. V3 stays default,
-and failed historical requests are not reinterpreted or resealed. C328 forwards
+and failed historical requests are not reinterpreted or resealed. Newly published
+v3/v4 ordinary preparations use the existing bounded archive/retirement owner;
+public models and restraints retain their paths. Historical publication and reads
+do not initiate cleanup, and older or unknown policies retain their storage contract.
+C328 forwards
 explicit pairs from ordinary preparation and the checked PostMR Python API into
 that same owner, choosing v4 only for fresh requests with those pairs. Shared
 syntax validation precedes tool setup; actual frozen source connectivity still
