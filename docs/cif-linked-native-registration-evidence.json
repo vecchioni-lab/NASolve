@@ -112738,5 +112738,143 @@
       "result": "No blocker",
       "scope": "Production diff only; not independent replay or native evidence audit."
     }
+  },
+  "covered_pair_geometry_integration_2026_11_18": {
+    "milestone": "C390",
+    "signed": "Rowan",
+    "source_parent": "691b8a669ec733c43576eada662bd2d07105356e",
+    "upstream_commit": "ead86be9f70280cb7c76e2df9416aadbea301463",
+    "before": "Cedar lacks optional W131 report; native pooled statistics can depend on provider allocation.",
+    "after": "Exact pure adapter joins authenticated attribution,declarations,dual native observation and frozen coverage. Complete pair metrics stay provider-independent; unmatched native terms unclassified.",
+    "changed_files": [
+      "src/nasolve/topostitch_pair_geometry.py",
+      "tests/test_topostitch_pair_geometry.py",
+      "CHANGELOG.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "validation": {
+      "before": "Provider-transfer regression fails with missing module.",
+      "source_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider tests/test_topostitch_pair_geometry.py tests/test_topostitch_recipe.py tests/test_topostitch_pair_coverage.py tests/test_topostitch_native_coverage.py tests/test_refinement_parallelity.py --tb=short",
+      "source_result": "283 passed in24.10s",
+      "installed_result": "........................................................................ [ 25%]\n........................................................................ [ 50%]\n........................................................................ [ 76%]\n...................................................................      [100%]\n283 passed in 24.48s",
+      "installed_command": [
+        "/private/tmp/willow-w94-pivot/env/bin/python",
+        "-B",
+        "-c",
+        "import nasolve,sys,pytest; from pathlib import Path; assert Path(nasolve.__file__).resolve().is_relative_to(Path(sys.path[1]).resolve()); raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider', 'tests/test_topostitch_pair_geometry.py', 'tests/test_topostitch_recipe.py', 'tests/test_topostitch_pair_coverage.py', 'tests/test_topostitch_native_coverage.py', 'tests/test_refinement_parallelity.py', '--tb=short']))"
+      ],
+      "wheel_sha256": "2200e55774410217e00619a86b81ed622953969965fbad54922969a7ed54ffab",
+      "wheel_bytes": 1549794,
+      "source_copy_removed": true,
+      "original_install_absent": true,
+      "cold_review": {
+        "status": "PASS",
+        "source_Willow": "ead86be9f70280cb7c76e2df9416aadbea301463",
+        "adapter_sha256": "d6b66448cbee5336277e385bb0fa7bd9cb3192d0f2a79b081505a73a6d0594f1",
+        "existing_C389_package_sources_unchanged": 299,
+        "runtime_policy_file_counts": {
+          "round-local-parallelity-execution-v3": 8,
+          "round-local-parallelity-execution-v4": 8,
+          "round-local-counted-execution-v5": 24,
+          "round-local-counted-execution-v6": 24
+        },
+        "source_audit_sha256": "87d62b9ba2e5a94d04ec02473f8388719c35b6bf5f11b8e3c3f2ebc7facb0a46",
+        "native_files_unchanged": 8,
+        "native_rerun": false,
+        "exact_saved_reports": true,
+        "independent_physical_arithmetic": true,
+        "cases": [
+          {
+            "case": "complete_core",
+            "inputs_sha256": "b7f7c6219721d384875f4e98de2bbef6b0de69a6932454efb604e11a431667a1",
+            "report_sha256": "2337a8aa18c8584779dcffc743b39e4297351a631c08d000c40fc59403d6c108",
+            "force_sites_sha256": "d55e73be8d6ea5a322cbdcf858d1aa419592b9172e7a2d2bf495b2a8162adc43",
+            "geometry": {
+              "bond": {
+                "count": 36,
+                "rms_deviation_angstrom": 0.23428608911722595,
+                "max_abs_deviation_angstrom": 0.7579624598941277
+              },
+              "angle": {
+                "count": 60,
+                "rms_deviation_degrees": 4.856395648458775,
+                "max_abs_deviation_degrees": 22.64963984018148
+              },
+              "planarity": {
+                "count": 14,
+                "rms_of_plane_rms_angstrom": 0.1277068791750571,
+                "max_abs_of_plane_rms_angstrom": 0.2040088294820949
+              },
+              "parallelity": {
+                "count": 14,
+                "rms_native_delta_degrees": 9.823553760507206,
+                "max_abs_native_delta_degrees": 19.478794402867806
+              }
+            },
+            "unclassified_native_count": 2465
+          },
+          {
+            "case": "partial_pair",
+            "inputs_sha256": "f95bf9397dba1ef4b6c3d09ad7a323b344285780af5783a99316fb558b8e8f02",
+            "report_sha256": "9fbe0a46b603c0047ce3a31548cd8256f8efbfad2997b362d977233fcee05bda",
+            "force_sites_sha256": "d55e73be8d6ea5a322cbdcf858d1aa419592b9172e7a2d2bf495b2a8162adc43",
+            "geometry": {
+              "bond": {
+                "count": 36,
+                "rms_deviation_angstrom": 0.23428608911722595,
+                "max_abs_deviation_angstrom": 0.7579624598941277
+              },
+              "angle": {
+                "count": 60,
+                "rms_deviation_degrees": 4.856395648458775,
+                "max_abs_deviation_degrees": 22.64963984018148
+              },
+              "planarity": {
+                "count": 14,
+                "rms_of_plane_rms_angstrom": 0.1277068791750571,
+                "max_abs_of_plane_rms_angstrom": 0.2040088294820949
+              },
+              "parallelity": {
+                "count": 14,
+                "rms_native_delta_degrees": 9.823553760507206,
+                "max_abs_native_delta_degrees": 19.478794402867806
+              }
+            },
+            "unclassified_native_count": 2465
+          }
+        ],
+        "scientific_acceptance": false,
+        "limitations": [
+          "Actual source is Linden W131 passive native preparation, not C389 final refinement geometry",
+          "C389 sealed preparation lacks attribution; it remains unassessed for this report",
+          "No final-writer capture, native selector, covalent classification or runtime activation added"
+        ]
+      },
+      "cold_review_sha256": "eebbbed972c837f208aa17cf53671ee03756c7b5b838c51482cd18cf2b8ef01a"
+    },
+    "native_evidence": {
+      "owner": "Linden W131",
+      "version": "Phenix2.2.1-6174",
+      "execution": "15.13s passive actual native observation; no fit or selector",
+      "archive": {
+        "anchor": "NASolve",
+        "path": "branch-artifacts/willow/w131-pair-geometry-2026-11-18.tar.gz",
+        "sha256": "0bd0f0ba3316e8edec5bd11ecd3874fedf6e1c6a45807a2e666e3ea0d4adcb4b",
+        "size": 271845,
+        "indexed_files": 28
+      },
+      "scope": "Complete/partial coverage107+17 vs104+20, identical full pair geometry at same actual force coordinates;2465 unmatched native terms."
+    },
+    "compatibility": "New optional descriptive schema1 only. All299 existing C389 package files unchanged; v3/v4/v5/v6 helper maps validate. No migration/runtime activation/CLI/selector change.",
+    "generated_artifacts": "Peer native records and compact archive remain local; no copied scientific dataset or new native experiment.",
+    "remaining": [
+      "Actual final native attribution tied to final writer/file/state under separately qualified policy",
+      "Compact storage with existing archive owner; no duplicate full inventory per force call",
+      "Covalent/terminal source ownership and actual automatic-weight qualification",
+      "Historical missing attribution stays UNASSESSED; prepared geometry is not final evidence"
+    ]
   }
 }

@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Report intended pair geometry consistently across providers (C390 / W131)
+
+- Integrate Linden's optional read-only pair report, preserving the same physical
+  measurements when Phenix and NASolve split the intended terms differently.
+  Source/recipe/atom identity, actual force coordinates and coverage must agree.
+- Keep unweighted physical deviations separate from energy. Unmatched native
+  restraints remain unclassified, including edits; this report does not infer
+  covalent chemistry, choose weights or change refinement. Existing records with
+  no measured attribution remain unassessed. Native helpers and defaults are unchanged.
+
 ### Preserve newly supplied restraints in counted AutoRefine (C389)
 
 - Explicit counted controls can accept additional restraint files through the

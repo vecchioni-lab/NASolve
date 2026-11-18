@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-18, C389 explicit restraint handoff qualified — Rowan**.
+Updated **2026-11-18, C390 independent pair geometry integrated — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current development window ends
 **14:55 UK / UTC**; shared laboratory report **17:00 UK**.
 Rowan uses focused tests; Linden owns one isolated full validation at the final
@@ -8,6 +8,22 @@ source pin under his supplied contract. He also owns the passive provider-statis
 comparison; Hazel owns the separate Alder weight-selection diagnostic.
 
 ## Current checkpoint and next bounded work
+
+**C390 complete — measure intended pair geometry independently of its provider.**
+Linden W131's exact optional pure adapter is integrated from `ead86be9`. It joins
+existing authenticated native measurements/declarations/coverage; no force or
+selector change. Source and installed/relocated panels pass 283 tests (24.10 /
+24.48 s). Cold replay reproduces both actual W131 reports exactly without launches
+or evidence writes. All 299 older C389 package files and all frozen runtime policies
+remain unchanged. Pair distance/angle deviations and plane metrics stay separate
+from energy; 2465 unmatched native terms remain unclassified, never assumed covalent.
+
+Current C389 preparation has no measured attribution, so it cannot supply a final
+pair-geometry report. Next qualify actual endpoint capture through the existing
+final writer and compact archive owner, preserving old helper policies. Prepared
+state is not final state; PDB rounding cannot recreate native precision. No new
+native experiment duplicated W131, and no chemical/weight acceptance follows.
+
 
 **C389 complete — keep newly supplied restraints through ordinary refinement.**
 Explicit counted controls now accept declared portable extra sources through the

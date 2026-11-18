@@ -4961,3 +4961,45 @@ restraints. Actual native preflight, coverage, fixed protocol and policy guards
 still apply. New semantic terminal-protection records, automatic terminal seed
 creation and consumed phases are not included. Existing inherited terminal
 protection remains checked. No native helper or artifact schema changes.
+
+
+### Covered pair geometry (W131, integrated in Cedar C390)
+
+W131 adds the optional **cold pair-geometry report** outside the frozen refinement
+helper closure. The caller first obtains existing `NativePairRecipe.describe_terms`
+at exact force coordinates, `describe_compiled_pair_terms`, a v2
+`observe_native_pair_terms` record, and the already frozen provider selection:
+
+```python
+from nasolve.topostitch_pair_geometry import review_pair_geometry
+from nasolve.topostitch_recipe import recipe_digest
+
+records = [attribution, compiled_declarations, native_observation, provider_selection]
+frozen_digest = recipe_digest(records)  # freeze at the trusted observation boundary
+report = review_pair_geometry(*records, expected_inputs_sha256=frozen_digest)
+```
+
+The caller authenticates the original observations. Recomputing a checksum after
+changing evidence does not authenticate it. The reader checks source/recipe/atom
+identity, compiled binding, exact force-site digest, complete coverage and measured
+targets. It imports no native engine and writes no files. Complete pair measurements
+are independent of which provider supplies each term. Output kind
+`topostitch-covered-pair-geometry`, schema 1, is descriptive only:
+
+- `pair_geometry` and per-pair `pairs` keep unweighted distance/angle deviations
+  separate from `pair_energy` and its existing normalization.
+- Plane RMS is RMS of per-plane RMS distances, **not** pooled per-atom RMS;
+  parallelity uses the native delta in degrees. No acceptance cutoffs are supplied.
+- `coverage` retains exact requested/provider/observed IDs. The
+  `unclassified_native_terms` preserve native IDs/families/origins;
+  `covalent_geometry` remains `UNASSESSED`. Origins 0/4 do not classify chemistry.
+
+This report does not change ordinary refinement, automatic weights, existing
+saved records or frozen v5/v6 helper bytes. It is not part of the native worker
+closure. Independent covalent/terminal ownership and density evidence remain
+future integration work with Cedar; no CLI/Doctor activation follows.
+
+C390 imports the exact W131 source and tests. Existing C389 sealed preparation
+contains no measured attribution: it cannot be relabelled as final geometry or
+filled in from rounded PDB coordinates. Actual endpoint capture needs a separately
+qualified final-writer integration; no historical native command is replayed.

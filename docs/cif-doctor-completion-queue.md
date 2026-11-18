@@ -110,6 +110,14 @@ not Q06 chemical survival or a replacement for ordinary refinement settings.
    “noncovalent”: never blanket-exclude it. Reuse existing semantic owners; do not
    build another force evaluator or repeat their completed diagnostics. Category
    stability, full contribution counts and actual selection require separate proof.
+   C390 integrates W131's exact optional cold report: full pair measurements stay
+   identical across native/additive allocation; unmatched terms remain unclassified.
+   This is not an endpoint capture. Next capture actual final attribution through
+   the existing final-writer/owner, bind its full native state and exact written file,
+   and reuse compact archive storage. Existing C389 records lack attribution and
+   remain unassessed. Preserve v5/v6 helper bytes; a changed native capture requires
+   separate policy qualification. Do not add a second native replay/evaluator or
+   persist duplicate whole-model inventories per force call.
 
 
 Q06 achieved PDU/DF chemistry remains open. Ordinary AutoRefine/Doctor requests
