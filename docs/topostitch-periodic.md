@@ -7175,3 +7175,81 @@ child pair report SHA `6192d58189e8680a78bbb45645e11a59a000cf090fb5b1fca774f90bf
 The complete native root is `/private/tmp/willow-v7-descendant-m20lo6hl-relocated`;
 absolute paths are historical local provenance, not portable operational references.
 Coordinates/reflections stay local and are excluded from Git.
+
+
+### W135 — Close the full integration regression and observer coexistence
+
+The **single unfiltered C391 full suite passes: 11,983 tests, 292 subtests and
+2 existing native opt-in skips**, in **3,196.08s** pytest /3,200.09s owned wall.
+The frozen source is `8ccec55b862898667e1bfb9fbb3f2cb45fee3fd6`. All **1,413
+tracked files** remain byte-identical, Git is clean and the owned process is
+stopped. The exact NARestraints Git source is
+`a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691`; its 14 installed library/resource
+files match before and after, and its checkout remains clean. No production fix,
+new skip, filtered test selection or changed source was used to obtain this pass.
+The two collection skips are the existing explicit counted-owner native control
+and pinned live-nonbonded-policy native qualification. Separate installed and
+actual-native controls retain their own scope. This supersedes the pending
+full-suite state, not W132's preserved failed earlier run or later revisions.
+
+The exact recorded invocation is the existing controller interpreter with
+`PYTHONDONTWRITEBYTECODE=1`, empty `PYTEST_ADDOPTS`, and
+`PYTHONPATH=<C391 checkout>/src:<exact NARestraints checkout>`:
+`python -B -m pytest -q -p no:cacheprovider -o addopts= --durations=20
+--junitxml <output>/results.xml tests`. The existing owned-command runner caps
+execution at 5,400s. `audit_full_suite.py` independently rechecks source/dependency
+identity, process stop and XML/log counts after completion. Audit SHA
+`9951b655ce205f16003013a3a6917aaf1f43e8ae88176ac51f67256af57d9830`.
+The shared local clones depend on their repositories' Git objects; this is not
+portable campaign qualification or permission to merge entire branches.
+
+**C393 coexistence, unchanged C391 source:** Rowan ran one actual Phenix
+2.2.1-6174 preflight (12.61s) and complete refinement (42.78s), combining v7 final
+pair capture, the existing PDU B:4 chemistry observer and one added A:11/B:5
+parallelity. Linden independently cold-replays the installed readers with process
+launch/record writes blocked and verifies exact prior C388 partial-control PDB,
+full native state, chemistry report, common counted lifetime and every MTZ array.
+All **75 current /126 historical files and mtimes** and 303 installed package
+sources remain unchanged. The one extra lifetime field is the new authenticated
+pair capture; the original comparator's failure on that expected addition remains
+recorded, with no native rerun. Linden's first auditor also correctly refused an
+incorrect ordinary-parent assumption; the successful read uses the declared
+low-level `c338-starting-model` parent. No registry ancestry is invented.
+
+The extra descriptive kernel call changes total **52→53**, energy-only **16→17**,
+with **36 gradient calls unchanged**. Pair coverage is **5 native +1 added**;
+2,656 other four-family terms remain unclassified. The local PDU triple screen
+passes, while the distinct canonical A:11/B:5 pair has distance RMS **0.954701 Å**
+and directional-angle RMS **37.019027°**; Rwork/Rfree remain **0.4230/0.8360**.
+These are simultaneous descriptive scopes, not a repaired structure or ordinary
+chemistry-descendant qualification. The independent C393 audit SHA is
+`61f29022b289333fadc76c34417b9546e513efe5281fe8f485a938769a448631`.
+
+**Follow-up is bounded, not another repeated short control.** A planned new
+explicit 100-iteration single-cycle fixed-unit scope must preserve old worker
+bytes and the old 1–10-iteration guard. Freeze native-core /zero-addition /full
+recipe siblings and the same data/Free-R before looking at outcomes; reuse W123
+full-recipe readback at exact saved coordinates. A larger budget is not a promise
+of convergence or improved Rfree. Hazel's A79/A84 private metal replay observes
+identical-coordinate denominator jumps in two selected line-search failures; that
+is a reason to retain actual count/raw/normalized objective observations in the
+future canonical experiment, not to assume the same failure or freeze counts.
+The other three selected rounding failures remain unexplained. No normalization
+repair, weight policy, longer protocol or new canonical run is implemented here.
+
+Additional saved checks: actual installed C386/C391 v3/v4/v5/v6 worker payloads
+remain exact (8/8/24/24 files). Metadata-only inspection of the ordinary C391 MTZ
+finds 3,157 work +176 test-index finite coefficients in unfilled maps; the filled
+2mFo-DFc column additionally includes 5,011 non-observed indices. Membership alone
+does not establish coefficient derivation. No FFT, fmodel, map alteration,
+threshold or density-guided motion was performed; explicit generation/Free-R
+policy remains a later B06 gate.
+
+Verified local archive under the **NASolve repository anchor**:
+`branch-artifacts/willow/w135-full-regression-and-coexistence-2026-11-18.tar.gz`,
+SHA `e23a140a794267be35d657387db1752e3a61b9ad2192dd9bc075cfda8176f357`,
+**269,662 bytes /24 indexed files**. It retains the complete suite plan/log/XML,
+source manifest, exact prerequisite receipt, cold auditors, failed audit setup,
+legacy/map/selected-contact readbacks and a clearly planning-only next-control
+record. Raw models/reflections/native trace arrays remain local and excluded from
+Git. No API, schema, compatibility/default or migration change in this update.

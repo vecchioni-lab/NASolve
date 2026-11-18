@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W135 — Close frozen integration regression
+
+- Record the clean C391 full run (11,983 tests +292 subtests, two existing native
+  opt-in skips), exact dependency/source audit and C393 observer coexistence.
+- Keep poorer pair/diffraction geometry distinct from local chemistry screens;
+  queue the bounded longer-control and normalization-observation requirements.
+- Condense the handoff while preserving detailed ledger evidence. Documentation
+  only; no new runtime scope, default, schema or scientific acceptance.
+
 ### W134 — Qualify ordinary continuation and retain density boundaries
 
 - Record the actual C391 ordinary descendant, immutable ancestry, exact earlier

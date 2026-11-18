@@ -144,6 +144,45 @@ compatibility, installability, cold read/relocation, failure retention and match
 native scope must pass before the option is advertised. This plans an S05/S06
 application; it closes no repair, inference, stacking or covalent-closure gate.
 
+
+### Next bounded coordinate control (planned after W135)
+
+W135 closes the frozen C391 regression and pair/chemistry-observer coexistence;
+W134 closes one ordinary canonical descendant. The next question is whether a
+longer **single** coordinate-minimization lifetime gives useful additional motion.
+C329/C338's automatic-weight PDU runs and repeated short C382/W134 cycles do not
+answer it. Proposed scope is one cycle, **100-iteration cap**, one process, seed 1,
+fixed unit weights and all-site XYZ only. This is a predeclared mechanics control,
+not recommended scientific weighting or an implemented option.
+
+Use the existing controller, actual-preflight admission, counted owner and writer.
+A new explicit versioned scope must leave old v3–v7 worker bytes, cold readers and
+the old 1–10-iteration guard unchanged. Preserve original pair intent and fresh
+parent rebinding; unsupported settings refuse instead of being overridden.
+Freeze identical source, core PHIL, observations, Free-R and unrelated restraints
+for three siblings: native core with no counted owner, the same core with zero
+addition, and the full declared pair recipe. Native/zero equality is an identity
+control; full versus core is a different physical objective. Retain exact endpoint
+coordinates once through the existing observation seam so W123's complete-recipe
+readback can compare the same measurements; a digest cannot reconstruct them.
+
+Record actual iterations/evaluations and termination, not only completed cycles.
+Reuse qualified passive observations of raw geometry, term counts/normalization,
+data terms and gradients where compatible. Hazel's A79/A84 metal replay exposes
+two identical-coordinate denominator jumps at line-search lower-bound failures;
+other rounding failures remain unexplained. This is not canonical evidence or
+permission to freeze a denominator, replace normalization or tune against Rfree.
+Any such numerical policy needs separate derivative, neighbor-update and
+native/zero/full qualification. A larger cap alone is not a repair.
+
+Compare pair, retained-core, backbone/sugar, stacking and periodic packing geometry
+with matched diffraction statistics, preserving failed/ambiguous REVIEW outcomes.
+A universal covalent classifier is not a prerequisite for this explicitly labelled
+fixed-weight control; it remains a gate before semantic geometry-driven weight
+selection. B10 healthy/displaced/wrong-contact controls, density calibration and
+CLI/Doctor activation follow their own milestones. The archived planning-only
+record in W135 grants no execution authority and changes no current protocol.
+
 ## Ordinary-owner integration boundary (W126; planning)
 
 **W128 implementation status:** Cedar C386 now satisfies the initial owner join
