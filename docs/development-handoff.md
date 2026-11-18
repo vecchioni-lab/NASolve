@@ -73,6 +73,80 @@ prune schema-1 trials. Qualify native regeneration only after a suitable A01/A02
 parent exists. GUI work and experimental-input reconstruction remain separate
 post-merge milestones A05–A07.
 
+## Integration and independent chemistry review, 2026-11-18 evening
+
+**A04 package prerequisite.** A read-only rehearsal combines pinned Cedar
+`23c1f411f29501da351effa77e20dda707819468` with Alder
+`a4735b8e717313ba5b0a2759c47468b5789f0154` in a temporary source copy. Pine remains
+the proposed eventual integration destination; this Cedar reference rehearsal is
+not a merge or Pine qualification. There are six textual conflicts: `AGENTS.md`,
+`CHANGELOG.md`, `docs/README.md`, `docs/collaboration.md`,
+`docs/development-handoff.md` and `pyproject.toml`. Shared Python merges textually.
+The temporary package resolution retains both Cedar replay data and metal viewer
+resources. The five documentation/contract conflicts remain editorial work.
+
+The focused command in that temporary source copy was:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q tests/test_metal*.py tests/test_autosol_phase_labels.py tests/test_cli.py --tb=short -p no:cacheprovider
+```
+
+Initial result: **729 passed, 14 subtests passed, 26 setup failures** (128.94 s).
+The small source export had omitted the intent document, accounting for 25
+failures; after adding the declared docs fixture, `tests/test_metal_workflow_intent.py`
+passes all 25 (0.06 s). The remaining localhost-binding test passes separately
+outside the network sandbox (2.08 s). Thus all **755 distinct focused tests** pass;
+the first failure log is preserved. No full suite or native run was performed.
+A local wheel built without dependency downloads contains the four viewer assets,
+Cedar replay model and all three storage-owner modules. After moving the temporary
+source and installation and removing their original locations, the installed CLI
+and read-only inventory reproduce the exact saved sample. This installation check
+uses the same explicit external sample; the separate unit regression moves source
+and trial data together. No broader run portability claim follows.
+
+Private evidence under the Alder anchor:
+`integration-rehearsal-20261118-01/review.json`, the original test log, corrected
+fixture-test log, resolved package metadata and reproduction instructions. After
+qualification, **66,219,364 logical bytes** of reconstructable temporary
+source/build/install copies were removed. No scientific payload, active checkout,
+branch or existing run was deleted or changed.
+
+**C403 ordinary PDU child.** The reviewed C401 preparation advances through the
+ordinary five-cycle refinement path, retaining its exact parent and leaving
+`postmr` selected. The unselected child remains `REVIEW`. The saved native input
+matches C338's ordered observations/model/restraints/terminal protection exactly;
+parameters differ only by the declared observation path. Reciprocal/real-space
+XYZ, group ADP and occupancy refinement are active; experimental phases are off
+and `FreeR_flag` is retained. Phenix **2.2.1-6174**, complete execution by Cedar;
+Hazel's independent cold review makes zero native calls and passes **358 checks**.
+
+| Saved ordinary child | Measured value | Declared target |
+| --- | --- | --- |
+| Rwork / Rfree | 0.2125 / 0.2265 | Context, not a standalone chemistry verdict |
+| PDU C5A–C5B | 1.213226 Å | 1.174 ± 0.020 Å |
+| PDU C5B–C5M | 1.499562 Å | 1.470 ± 0.020 Å |
+| C5–C5A–C5B / C5M–C5B–C5A | 175.449430° / 174.425138° | 180 ± 3° |
+
+All 243 original surviving files retain bytes/mtimes; only the run report and
+checkpoint registry change as expected. This reproduces the earlier numerical
+endpoint through genuine preparation ancestry, not a new repair. It is a scaffold
+substitution control using non-PDU observations, not a solved PDU dataset.
+The triple target screen passes and coordinate screen remains `REVIEW`.
+Optimizer convergence is not established by this cold review. A01 remains partial,
+A02 gated; no accepted FT_Hg endpoint or new f″ calculation follows.
+Exact private receipt: `coordination-c403-child-review-20261118.json`.
+The source review of C404's separate actual-state trigonal descriptor is retained
+in `coordination-c404-source-review-20261118.json`; its installed replay and wider
+capture qualifications remain separately owned by Cedar.
+
+**Checkout.** `ScienceCheckouts/Hazel/2026-11-18_storage/review.html` and
+`summary.json` total 9,040 bytes. Four links, three source hashes and two forecast
+rows pass direct checks. Browser preview refused the local-file URL protocol;
+no alternate browser/egress route was used and no rendered visual check is claimed.
+The checkout links existing evidence rather than copying models/maps. The approved
+map style and reproducible manuscript-export settings are retained in the
+[checkout policy](collaboration.md#lightweight-science-checkouts).
+
 ## A01 — matched real-data normalization intervention, 2026-11-18
 
 **A01 remains partial; A02 remains gated.** This bounded follow-up tests the

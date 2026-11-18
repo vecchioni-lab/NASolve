@@ -65,6 +65,14 @@ usable. The post-merge feature qualifications below do not become merge blockers
 by being listed here. Merge readiness and a scientifically complete supported
 release are different decisions.
 
+A pinned 18 November Cedar/Alder rehearsal passes the 755 distinct affected
+metal/CLI/phase tests and an installed/relocated package check. Only the temporary
+package-resource conflict was resolved; five documentation/contract conflicts
+remain. Pine is still the proposed eventual destination, and this reference-base
+check is neither an active merge nor its release qualification. Compact storage
+must reuse the integrated Cedar owners. See the handoff for failed setup checks,
+reruns and exact scope; no scientific gate closes through this rehearsal.
+
 ## Post-merge milestones
 
 | Milestone | Current evidence | Post-merge completion gate | Dependencies |

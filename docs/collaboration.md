@@ -68,6 +68,14 @@ publishing a report in the shared folder. Small HTML/Markdown, images or tables
 are suitable; use the PDF skill when PDF is useful, and inspect its rendered
 pages. A PDF or polished layout is not required for every checkout.
 
+Scientific checkout figures may later become manuscript figures. Preserve the
+plotting/rendering source, exact map/model hashes, atom selections, camera or
+section plane, contour levels, normalization, units and color settings. Keep
+labels and captions editable and support high-resolution export without changing
+the underlying evidence. Retain the established clean map presentation, explicit
+model-assisted-map limits and science-only captions; visual polish does not imply
+scientific acceptance.
+
 ## Diagnostic evidence and student workflow
 
 CIF Doctor diagnostic review receipts are developer-facing evidence. They do

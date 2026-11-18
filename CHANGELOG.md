@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record integration rehearsal and reproducible scientific figures
+
+- Document the pinned Cedar/Alder package rehearsal, affected-test outcomes,
+  independent ordinary-child chemistry review and remaining integration limits.
+- Preserve rendering settings and source provenance for scientific checkout
+  figures intended for later manuscript use. This documentation changes no
+  refinement, acceptance, artifact schema or retention policy.
+
 ### Measure frozen anomalous-trial storage without changing runs
 
 - Add `metal inspect-fdp-storage` for explicit, bounded manifest/file integrity
