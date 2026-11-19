@@ -8462,3 +8462,94 @@ coefficient generation. The shared worker's extraction needs exact-version
 saved-coefficient parity and must preserve old caches. No second launcher or
 reader, inferred origin proof or default density threshold. S06/S07 remain
 **PARTIAL**, and combined integration remains a separate gate.
+
+
+## W147 — Share exact native coefficient selection and descriptive headers
+
+**2026-11-19; source `5319a870b92d82adbba2c817c3bdc1073aaae402`.**
+The native preview previously selected its complex array inline. A dependency-free
+`map_coefficients` helper now exposes that exact ordered-list label match and
+exactly-one-match refusal, returning the original object. Its second function
+reports selected-array labels, cell, space-group/Hall symbol/operators and
+reflection count as `map-coefficient-header` schema 1. The count describes the
+selected native array, not every raw MTZ row. It performs no I/O, data-value
+inspection, FFT, sampling, coefficient generation or fitting. Reader observations
+stay separate from generation and model/frame proof, both explicitly unassessed.
+
+The Willow patch adds that module, nine regressions, architecture and changelog;
+no existing run/CLI schema or numerical policy changes. A separate candidate patch
+for Alder's existing preview worker reuses the selector, preserves its sampling
+and contour code, and adds the executed helper-source hash. **The worker patch
+is not applied to the frozen combined candidate or active Alder branch.**
+
+### Exact validation and review
+
+- Missing-module baseline fails; **15 focused cases** (nine new plus W146's six)
+  pass in 0.92 s. Exact, reversed, partial, case-changed, noncomplex, duplicate
+  and absent selections are covered without first-match fallback or value reads.
+- **2,070 complete Willow tests +234 subtests**, zero skips, pass in **133.92 s**;
+  controller 134.868 s. All **724 tracked files** remain unchanged; source/dependency
+  clean, owned process stopped. A relocated source-free wheel passes **129 tests
+  +53 subtests** in 16.64 s, CLI/import checks and **91 installed file hashes**.
+  Wheel SHA256 `11c0173441630045ea755f7609faedbb8308764da8b14d0207c61f7b199eaac3`.
+- Complete **Phenix 2.2.1-6174** source and installed/bare-native checks read four
+  authenticated W140 arrays (two MTZs). Each has 3,333 selected coefficients,
+  exact labels and nine R3:H operators. The same native objects, values and indices
+  remain unchanged; 16 missing/reordered/ambiguous controls refuse. Source and
+  relocated-install executions take 2.496 s and 1.251 s, stopped; no FFT in these
+  descriptor checks. The installed build source and original path are gone.
+- The first worker adaptation and original worker independently generate exactly
+  the same four-map/six-layer/**19,054-segment** preview, including numerical
+  coordinates and metadata apart from implementation hashes. Both complete in
+  about 1.24 s. This is a saved-coefficient FFT/contour replay, not new map
+  coefficients, refinement, actual browser/GPU qualification or scientific acceptance.
+- Hazel's review catches a helper-identity weakness: `importlib` can execute stale
+  bytecode while a later file read reports a source hash. Version 2 captures the
+  source bytes once, compiles/executes those exact bytes and hashes the same buffer.
+  Two regression cases verify a real timestamp-matching stale-bytecode fixture and
+  a source change after read; both pass (0.09 s), while the prior adapter baseline
+  fails. Version 2 again reproduces the archived original preview exactly in
+  **2.330 s**, stopped, with both original MTZs unchanged. Cached old results are
+  not rewritten. This fixes the new helper identity, not all historical worker
+  provenance. Hazel accepted the corrected bounded patch/test review, separately
+  from these execution results. Final candidate worker SHA256:
+  `d270c9ac72b499d7e50f114870e06897c4e7848c1b077311f8ebd1605173b54b`;
+  helper SHA256 `0f43f741e50e4c67de9faae4da2de1f4894e5829b11a9788918c13b9236a197e`.
+
+Commands use Python 3.12.14 / pytest 9.2.0 and pinned NARestraints
+`a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691`; exact argv, native interpreter and
+execution records remain local. This is complete execution, not a dry-run.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <qualified-python> -B -m pytest -q -p no:cacheprovider tests/test_map_coefficients.py tests/test_model_inspection.py --junitxml=<receipt.xml>
+PYTHONDONTWRITEBYTECODE=1 <qualified-python> -B <NASolve>/branch-artifacts/willow/runners/w145-full-suite.py --checkout <pinned-Willow-copy> --commit 5319a870b92d82adbba2c817c3bdc1073aaae402 --process-owner <qualified-Cedar> --output <new-receipts> --dependency-source <pinned-NARestraints> --basetemp <fresh-owned-scratch>
+PYTHONDONTWRITEBYTECODE=1 <qualified-python> -B <NASolve>/branch-artifacts/willow/runners/w147-install-coefficients.py
+<phenix.python> <NASolve>/branch-artifacts/willow/runners/w147-native-coefficient-review.py --helper <exact-source-or-relocated-helper> --baseline <W140-receipt> --science <declared-C400-root> --output <new-receipt>
+PYTHONDONTWRITEBYTECODE=1 <qualified-python> -B <NASolve>/branch-artifacts/willow/runners/w147-preview-v2.py
+```
+
+Local NASolve-anchor archives, each checked member by member:
+
+- `branch-artifacts/willow/w147-inspection-qualification-2026-11-19.zip`:
+  **54 indexed files + manifest**, 854,471 bytes, SHA256
+  `e0d35cb2a4a8e610ef3e60a7435da2d19b96a49ee14aee8d9b8879a157d9c829`.
+- `branch-artifacts/willow/w147-worker-v2-qualification.zip`:
+  **14 indexed files + manifest**, 144,695 bytes, SHA256
+  `faf36b13303d78ad073a770d1522c17c1dcbc62e28be93bbe29dcbb30da80206`.
+
+They preserve commands/XML, wheel/source patches, native headers and exact preview
+outputs; no raw source MTZ/PDB files are added. Generated scientific evidence stays
+local and out of Git. Eight owned software/adaptation/test roots are retired after
+verification: **4,726 regular files / 93,593,803 logical bytes**, including disposable
+copies of the retained original maps. Shared dependencies, scientific sources and
+other agents' packages remain. The worker-v2 patch and regression test candidate
+are retained separately for integration. Both S06 and S07 remain **PARTIAL**.
+
+Next: qualify the shared integration before applying the worker adapter or joining
+W146 snapshots to the native descriptor. Keep producer/frame interpretation and
+calibrated density separate. In parallel, audit a bounded matching-diffraction
+backbone recovery control: reuse W100's already declared displaced start and
+C408's source-bound generation approach, rather than another bend generator or
+repeat of W74/W75 representation tests. C408 remains a private chemistry-specific
+prototype with fixed labels and a three-chirality fixture assumption, not a general
+simulator. No new recovery result or density threshold follows from this plan.

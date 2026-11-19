@@ -756,6 +756,12 @@ artifacts in a measured snapshot, rechecks them and retains generation/frame
 evidence as unassessed. Its standalone full/installed and external-consumer checks
 pass; it is not part of the frozen combined W145 integration candidate.
 
+W147 exposes the native preview's exact complex-array selector and descriptive
+headers through a shared dependency-free helper. Source/installed native checks
+and saved-preview parity pass. The separate worker adapter hashes captured helper
+source bytes rather than a later file read; it awaits integration. Header equality
+still does not prove a common origin or coefficient-generation procedure.
+
 The further inspection projection should only report validated source/ancestor identity,
 generation evidence or its absence, frame correspondence and descriptive samples.
 Its distinct regressions should cover substituted bytes/labels, inherited maps,

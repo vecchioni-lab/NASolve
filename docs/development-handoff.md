@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-19**, through **W146**. **W140 adds backbone and saved-map evidence to W139's
+Updated **2026-11-19**, through **W147**. **W140 adds backbone and saved-map evidence to W139's
 matched sticky-end improvement.** GC plane mismatch falls 27.30→6.30° with
 localized movement; nearby sugar/phosphate bond and angle deviations barely
 change. All 38 existing backbone links were measured and 126 ordered sugar-volume
@@ -83,6 +83,9 @@ not another work queue; do not repeat them because this handoff is shorter.
    inspection projection is now delivered separately in W146 with full/installed
    qualification; generation/frame assessment remains unimplemented;
    never equate the associated checkpoint model with proven generating XYZ/ADPs.
+   W147 now supplies exact native coefficient selection and descriptive headers;
+   its worker adaptation is separately qualified and awaiting integration, with
+   no new reader, launcher, FFT policy or inferred origin proof.
    Hazel's C406/Alder temporary integration passes 166 focused tests and a
    source-free installed replay. Before an active merge, reconcile the five
    documentation/contract conflicts and preserve both Cedar replay-PDB and Alder
@@ -158,6 +161,11 @@ large-bend repair follow later. No CLI/default activation follows from these doc
   W138 outputs; W146 remains outside that frozen combined gate. Six regression
   cases, sandbox failures and scratch retirement are retained in the
   [W146 ledger](topostitch-periodic.md#w146--bind-a-read-only-model-and-map-inspection-snapshot).
+- **W147 coefficient selection/header API:** **2,070 full tests +234 subtests**,
+  **129 relocated installed tests +53 subtests**, native source/installed reads
+  and exact 19,054-segment preview parity pass. The separate worker adapter now
+  hashes the exact helper bytes it executes; two stale/change controls pass.
+  It remains outside the frozen combined gate. [Exact qualification and limits](topostitch-periodic.md#w147--share-exact-native-coefficient-selection-and-descriptive-headers).
 - **W142 map-owner audit:** nine source files and seven scientific inputs remain
   unchanged. The existing owners and missing generation/frame evidence are now
   mapped explicitly; this is design and cold source inspection, not a new adapter.
