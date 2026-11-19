@@ -8,6 +8,27 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record protected-parent recovery feasibility
+
+- Document bounded recovery of two legacy PostMR/metal-parent evidence sets
+  through existing archive and installed readers, plus exact native reproduction
+  of two historical frozen-f″ result records.
+- Preserve modern checked-ancestry, software-identity and safe-retirement gates.
+  No new archive schema, runtime interface, cleanup behavior or scientific
+  acceptance follows from these local diagnostic rehearsals.
+- Record the checked-parent dependency census and the planned bounded validation
+  session; endpoint inputs alone do not retain complete preparation ancestry.
+
+### Record matched donor-state geometry research
+
+- Record a matched neutral/deprotonated DF–Hg–DT comparison with common initial
+  model, data, planes and Hg terms, plus independent final-state readback.
+  Attachment/planarity respond partially; remaining geometry strain keeps A01
+  open and A02 gated. No routine donor-state workflow is adopted.
+- Retain local model/map inspection evidence and the existing terminal-context,
+  native-charge and convergence limitations. This documentation update changes
+  no numerical policy, runtime interface or artifact schema.
+
 ### Transport exact frozen-f″ inputs through shared archives
 
 - Add explicit Python packing and temporary-view APIs for fully replayed frozen

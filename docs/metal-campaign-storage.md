@@ -169,6 +169,83 @@ retains its 16 MiB cap. Upstream scientific replay still traverses original
 parents and native JSON; these are not total I/O, memory, peak disk or campaign
 reservation guarantees. No original scientific run is modified by this adapter.
 
+## Bounded protected-parent and regeneration rehearsal
+
+A 19 November rehearsal extends the earlier input-only archive to the existing
+metal-parent readers. Two old diagnostic cases cover a deterministic recipe
+geometry and a native XYZ endpoint. Their exact hypotheses, root inputs and
+native geometry evidence are retained once. Adding unchanged legacy PostMR
+reports permits the ordinary `read_registry`, `resolve_checkpoint` and
+`inherited_paths` readers to recover both roots too.
+
+The final archive contains **55 logical files / 4,730,256 bytes** in
+**782,402 bytes**. It reuses the unchanged shared archive owner and its bounds.
+Cold replay uses the previously qualified relocated installation, after owned
+staging removal, with file access to the original science/source trees denied.
+Both ordinary roots and metal parents replay exactly. Five missing/changed
+metal-dependency checks and two changed root-reflection checks refuse. No source
+run is altered or retired. These are legacy roots, not a qualification of modern
+checked-preparation ancestry; their original host paths remain provenance and
+are resolved through the existing preserved dataset/run layout.
+
+Two subsequent native reproductions use exact recovered executable inputs and
+the explicitly reviewed original worker from trusted Git, whose hash matches
+the saved trial. The five recorded native source/kernel hashes also match.
+Phenix **2.2.1-6174** completes the Hg request in **7.83 s** and the four-Ag request
+in **17.15 s**. Both complete unrounded result records match exactly, and frozen
+XYZ/Q/ADPs are unchanged. The prior poor-fit and negative-f″ results are reproduced,
+not relabelled as good solutions. Each reproduction is a new local research
+attempt, with owned/stopped process identity and its original attempt link.
+
+This closes a **two-case recovery feasibility check**, not A04. There is no new
+production archive schema, executor, automatic reuse or pruning permission.
+Complete software/environment identity and modern checked-root ancestry remain
+unqualified. The ordinary parent stays protected as a root, rather than being
+silently omitted or copied per point. Keep the recovered-source qualification
+nodes; qualify the future lean incremental profile separately. The original
+input-archive adapter and historical readers are unchanged.
+
+Exact local receipts under the Alder artifact anchor:
+`parent-retention-20261119-02/` (metal-parent replay),
+`parent-retention-20261119-03/` (legacy root plus parent replay), and
+`fdp-regeneration-20261119-01/` (two native reproductions). The preserved first
+staging attempt was refused for an unresolved temporary-directory alias; it
+published no archive. No unchanged test suite was repeated for these uses of
+existing owners.
+
+## Modern checked-parent dependency boundary
+
+Cedar C414 traces the actual C412 checked-preparation lineage through
+`read_registry`, `resolve_checkpoint(refine-003)` and `inherited_paths`.
+The returned model, observations and eight restraint/protection inputs are only
+ten files. The registry read also opens **290 distinct dataset files totalling
+51,430,704 logical bytes**, validating preparation and all three refinement rounds.
+Temporary verification leaves zero files. This is an observed dependency lower
+bound, not a complete archive manifest: stat/directory/system accesses are not
+exhaustively traced, and no metal verifier or root-free relocation was exercised.
+
+That single instrumented registry read takes **88.48 s**, with 1,774 temporary
+write-open events and 81,328 temporary read-open events. Open counts are not
+bytes transferred or campaign performance estimates. They identify a design
+boundary: repeating full ancestry expansion per short frozen-f″ point may cost
+more than its native fit. Reuse the retained parent, not only the ten returned
+operational inputs, and do not copy or wrap the complete root per point.
+
+The next bounded executor design should verify a protected parent once into an
+owned immutable view, pin its complete evidence/software identities, and validate
+each exact trial request and freeze result against that view. The view has a
+bounded lifetime and resource allowance; changed inputs, identity or software
+invalidate reuse. A mutable original path or cached “passed” boolean is not a
+substitute. Existing readers remain authoritative until this session boundary,
+its change/refusal behavior and recovery are qualified. No validation cache or
+relaxed reader is implemented by this plan.
+
+Census: `cedar/c414-checked-root-dependencies/classified-census.json` under
+`branch-artifacts`, SHA-256
+`4391f0d2a20f5f24b004e59f235156cd6f167fc40dfca21086165a2f412627de`.
+C401's protected parent and C403's nonstandalone child delta already exist; reuse
+their owners and evidence. This census creates no archive and authorizes no pruning.
+
 ## Governing decision
 
 Retention follows the operation, not a generic per-attempt archive policy.

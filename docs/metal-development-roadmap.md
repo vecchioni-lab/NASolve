@@ -20,6 +20,13 @@ complete retained-parent publication remains next, followed by qualified native
 regeneration before any retirement. A small
 19 November rehearsal recovers four requests from a 251,197-byte archive;
 it does not yet retain complete parents or qualify native regeneration.
+A later bounded rehearsal recovers both legacy PostMR roots and metal parents
+from 782,402 bytes, then exactly reproduces two historical frozen-f″ result
+records. This is recovery feasibility, not a new production retention contract;
+modern checked ancestry, complete software identity and pruning remain open. The shared
+modern-root dependency census now identifies the larger checked-parent boundary;
+retain and validate it once per bounded trial session rather than per point.
+That session contract is planned, not implemented.
 Source-preserving construction, explicit restraint coverage and actual-state
 B export have mechanical evidence. Matched geometry, phase, iteration, map and
 scale controls leave the FT_Hg open-fit geometry gate unresolved. New native XYZ
@@ -32,13 +39,16 @@ all surviving local heavy-atom bond/angle/plane terms in two FT_Hg controls.
 Their achieved geometry remains strained; this closes a transfer check, not A01.
 Shared non-triple declared-site capture now has a matched one-cycle native
 no-change check and independent cold readback; it is not an Alder integration or
-accepted geometry. Next: bind that shared owner to checked ordinary preparation
-and qualify continuation on the agreed merged base. Avoid repeating the completed
+accepted geometry. C412 now supplies checked-parent ordinary continuation evidence; consume that
+qualified boundary on the agreed merged base without treating it as a metal
+endpoint or root-free archive proof. Refine Doctor forwarding remains separate. Avoid repeating the completed
 private weight/iteration controls without new evidence.
 The investigator confirmed the Hg-bound donor-state hypothesis, with both N3
 hydrogens replaced, but later on 19 November deferred routine donor-state
-integration until after NASolve is built. One matched neutral/deprotonated
-DF–Hg–DT research comparison is approved for a later session. Shared Q13 owns
+integration until after NASolve is built. The approved matched neutral/deprotonated
+DF–Hg–DT research comparison is complete: the DF attachment shortens but remains
+long, with essentially unchanged R values and remaining sulfur strain. The
+[handoff](metal-development-handoff.md) records the pair and independent review. Shared Q13 owns
 any generalized state qualification needed for that comparison; adopting C409
 is not an immediate A01 gate or a prerequisite for otherwise qualified FT_Hg
 work. Existing geometry and evidence standards still apply. The separate
@@ -160,8 +170,9 @@ flowchart LR
 
 ## Deferred donor-state research and post-build feature
 
-The approved later research step is one matched neutral/deprotonated DF–Hg–DT
-comparison, not routine donor-state integration. Preserve the approved plane
+The approved matched neutral/deprotonated DF–Hg–DT research comparison has
+completed without closing A01. It is not routine donor-state integration. Preserve
+the approved plane
 policy and Hg restraint terms, qualify the compared sources and site/link
 contexts, and disclose generation differences that confound attributing the
 heavy-atom response to H loss. A model without H3 coordinates does not by itself
@@ -172,8 +183,8 @@ Routine donor-state selection, generation and workflow integration are explicitl
 post-build work, outside the current A01–A08 completion gates. The broader A03
 recipe intent does not pull this deferred feature back into the immediate queue.
 A01 remains partial and A02 remains gated on a qualified open XYZ/B endpoint;
-no chemistry, geometry or scientific acceptance requirement is waived. This scope
-update schedules no jobs, tests or implementation in the current session.
+no chemistry, geometry or scientific acceptance requirement is waived. No further
+donor-state jobs or routine implementation are queued by this result.
 
 ## A05: a working GUI session, not only visual polish
 
