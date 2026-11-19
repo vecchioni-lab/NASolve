@@ -633,6 +633,32 @@ and source/frame/relocation checks remain on S07's queue. See the
 [display contract](topostitch.md#density-presentation-local-chemistry-and-continuous-backbones-w143)
 and [GUI integration](gui.md#shared-dynamic-modeldensity-inspector).
 
+The first packaged presentation slice is `density_inspection_html(scene,
+*, title, subtitle, source_note, frame_note, model_labels=...)` in
+`nasolve.density_inspection`; `write_density_inspection` writes a new file
+exclusively after validation. It reuses W143’s offline WebGL presentation and
+the package resource `data/density-inspection.html`. No network or native
+process is used. This is an installed two-state renderer, not yet a stage/CLI
+adapter or a proof of the supplied scene’s scientific provenance.
+
+The existing `local-backbone-density-display` schema-1 scene uses `native` and
+`full` as two legacy storage slots; they do not imply refinement policies or
+quality. Human labels are supplied separately. Each atom has a unique key,
+label, element and two XYZ triples; explicit bond indices and precomputed
+triangle meshes remain unchanged. Movement is measured from the supplied
+coordinates, without alignment or magnification. A map slot is either explicitly
+unavailable or includes all 31 saved contour choices (ordinary 1–6σ and signed
+difference 1.5–6σ, step 0.5). Empty meshes at an available level are distinct from
+an unavailable map. Optional signed samples require the corresponding saved
+map. Atom, mesh and JSON bounds reject oversized or malformed scenes before I/O.
+
+Source/frame notes are escaped plain text from the calling workflow. The renderer
+does not authenticate them, resolve references, infer chemical connectivity or
+label a model/map pair scientifically matched just because their UI slots agree.
+W146 snapshots, W147 coefficient descriptions, producer/frame assessment and the
+existing native mesh owner must be joined separately before general cross-stage
+operation. Old graph/cut viewers, W143 pages and current commands remain unchanged.
+
 ## Stage-aware Coot views
 
 `nasolve show` resolves the active workspace; an explicit run remains supported.

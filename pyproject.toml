@@ -39,6 +39,7 @@ nasolve = [
   "data/restraints/*.txt",
   "data/*.json",
   "data/topostitch-view.html",
+  "data/density-inspection.html",
 ]
 
 [tool.pytest.ini_options]

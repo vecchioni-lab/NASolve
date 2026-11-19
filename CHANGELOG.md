@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W149 — Package the shared density inspection renderer
+
+- Extract the approved offline two-state display into an installed HTML resource
+  and a bounded Python rendering API. Preserve lighting, Paper/Slate themes,
+  independent map/model selection, contour controls and residual fading.
+- Accept caller-supplied labels and explicit source/frame notes; display missing
+  maps as unavailable. Validate display geometry before creating an output and
+  refuse overwriting an existing file. No native reader, map generation, fitting,
+  source authentication, checkpoint selection or CLI activation is added.
+
 ### W148 — Qualify one matching-data backbone recovery control
 
 - Record the frozen canonical displacement, matching synthetic diffraction, native
