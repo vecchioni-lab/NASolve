@@ -237,6 +237,43 @@ identity; the original version API field is empty and remains an explicit limit.
 These are synthetic, commonly normalized complex differences, not experimental
 Fo–Fc attribution or detector calibration. Receipt: `coordination-w155-review-20261119.json`.
 
+The later isolated shared-reader rehearsal combines baseline `fb4f93d7` with
+only the eight source/test files from C413 `1a4094fd` and C415 `a1620839`.
+Alder's active scientific source remains unchanged. Two Doctor regression probes
+fail on the baseline before the new option exists. On the private candidate,
+**2,761 tests plus 70 subtests pass in two bounded parts**: 2,101 tests/50 subtests
+before a graceful time-bound interruption, then only the 660 unfinished tests/20
+subtests. All 1,505 candidate files remain exact. This is complete coverage of the
+selected 80-file workflow/direct-consumer scope, not an uninterrupted profile run
+or a full-suite pass. The earlier restricted-environment attempt retains its
+eight process-inspection/termination failures and partial results; corrected
+process permissions precede the successful checks. No scientific refinement runs.
+
+The relocated installed candidate has **346 exact package files**. With original
+build/install/development-source paths unavailable, it reproduces two existing
+FT_Hg plane reports, recovers four old frozen-f″ requests and verifies all 35
+referenced input files. Invalid Doctor observation intent refuses before work
+allocation. The original geometry evidence is deliberately available; old f″ run
+paths are denied. This qualifies those installed interfaces, not a self-contained
+scientific archive, accepted geometry or general deployment. The explicit pinned
+NARestraints dependency remains available. No new combined full gate or active
+runtime integration is claimed; later Cedar fixes are outside these source pins.
+
+Exact source patches, manifests, commands/environments, failed/partial results,
+XML, split coverage, wheel and installed probe are retained under the Alder
+artifact anchor `shared-readers-integration-20261119-01/`. Runners A157–A164
+record the preparation, bounded execution, cold review and owned-scratch seal.
+All recorded rehearsal processes stopped; only its owned private workspace was
+retired (1,115,855,482 logical bytes), preserving 29 evidence/package files and
+all original scientific runs. The small `mechanics.html`/`mechanics.json`
+addendum beside the evening checkout records this result without changing the
+original science report.
+Reuse this evidence before scheduling another unchanged check. W153's separate
+saved-stage review verifies 84 native rows and keeps initial scaling, XYZ steps
+and final scaling distinct; the endpoint missing-work observation does not prove
+stagewise reflection identity. Its two `coordination-w153-stage*` receipts remain
+local, with no new fit, convergence claim or change to metal acceptance criteria.
+
 Only documentation changes in Alder this session. Relevant document/link and
 whitespace checks suffice; existing source tests and the root handoff's last
 integration evidence remain unchanged. All generated science, reports, private
@@ -249,9 +286,11 @@ migration, production scientific-policy change or existing-run cleanup occurs.
    execution and reviewed test-only correction under the agreed focused cadence.
    The root handoff preserves exact limits; no fresh full-green result is claimed.
    Do not repeat unchanged controls merely to relabel the original full failure.
-2. Consume the shared source-bound final-site geometry report when qualified,
-   preserving scalar-versus-native-energy distinctions, global atom identities,
-   missing evidence and unassessed science. Do not build a second calculator.
+2. Reuse the isolated C413/C415 source and installed consumer rehearsal when
+   qualifying the next shared integration. Preserve scalar-versus-native-energy
+   distinctions, global atom identities, missing evidence and unassessed science.
+   Later peer fixes need their own source-bound review; do not build a second
+   geometry calculator or repeat unchanged completed cases.
 3. Reuse C412's checked-parent ordinary continuation evidence for the next A01
    consumer qualification; continue unresolved open XYZ/B geometry work under
    the existing evidence standards. C415 now qualifies shared Refine Doctor

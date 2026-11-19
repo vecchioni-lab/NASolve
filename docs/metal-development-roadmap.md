@@ -55,6 +55,12 @@ is not an immediate A01 gate or a prerequisite for otherwise qualified FT_Hg
 work. Existing geometry and evidence standards still apply. The separate
 C408 matching-data PDU control demonstrates bounded perturbed recovery; it
 does not qualify experimental accuracy or FT_Hg and need not be repeated.
+A private C413/C415 consumer rehearsal now passes the selected 2,761 tests and
+70 subtests in two bounded parts, followed by a relocated installed read of both
+saved geometry reports and four compact f″ requests. This is interface evidence;
+active source adoption, the next combined integration gate and A01 scientific
+acceptance remain separate. Reuse its exact receipts rather than repeating the
+same checks or adding a second geometry calculator.
 Construction remains chemistry/connectivity driven: PDU and DF are qualification
 examples, with related and unchanged-good cases needed before general repair claims.
 

@@ -8,6 +8,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record isolated shared-reader consumer qualification
+
+- Document bounded focused and relocated installed checks of the existing shared
+  geometry/Doctor interfaces alongside compact metal inputs. Preserve restricted
+  failures, the split execution, source pins and outstanding integration/science
+  limits. Active runtime and artifact schemas are unchanged.
+
 ### Plan post-development hydration and counterion support
 
 - Add deferred milestone A09 for metal water shells, counterions such as Mg and
