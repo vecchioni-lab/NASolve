@@ -12,10 +12,8 @@ rechecking the archive and preserving scientific inputs, installations and share
 Focused, relocated installed, matched native and independent checks also pass.
 Software qualification does not change the scientific REVIEW or close Q06.
 
-## Current bounded work — C409, 19 November
+## C409 handoff, 19 November
 
-Simon extended development by one hour (through approximately 14:37 UK), with
-focused checks unless a substantial cross-cutting change warrants a full suite.
 Prior-work review found C114 neutral amide deletion, existing source composition,
 explicit generator charge transfer and the bound neutral DF/DT parents. None
 represents the newly confirmed N3 proton loss. Reuse those graph/source/generation
@@ -34,8 +32,7 @@ same covalent proxies between seeds. All processes are stopped. Native monomer
 formal charge remains unexposed; partial charge is not a substitute. No optimizer
 convergence, Hg-linked acceptance or experimental refinement is claimed. Cold
 replay leaves 145 files unchanged; a verified 750 KB local archive retains their
-8.47 MB logical payload. Originals remain available. Next bind the two declared
-sites/aliases and backbone context, then inspect actual Hg-linked definitions.
+8.47 MB logical payload. Originals remain available.
 
 Hazel independently rederived both isolated results without new native calls;
 parent-to-declared stereo labels are exact, while candidate source-relative hands
@@ -44,8 +41,10 @@ compatibility map verifies both selected heavy-atom inventories and existing
 backbone-port chemistry. No sulfur rename is needed. Eight other DT sites must
 remain unchanged; four donor selectors need exact rebinding. Pair/stack selections
 remain atom-based. Recorded neighboring distances do not supply link intent.
-Hazel owns the next site application; neither agent starts duplicate generation
-or refinement. The existing donor-state ledger binds this map and peer review.
+The existing donor-state ledger binds this map and peer review. Simon approved
+one matched neutral/deprotonated refinement for a later session. When it resumes,
+Hazel covers the metal sites and Rowan supports the dictionary preparation.
+Integration into the routine metal workflow is deferred until after NASolve is built.
 
 Hazel delivered the preceding frozen integration to Alder at `f989111e` using
 the complete run plus reviewed fixture-only focused correction, under Simon's
@@ -180,20 +179,12 @@ six-atom ring plane 0.094297 Å. These descriptive starting values are not accep
 
 ## Next work, in order
 
-1. C409 isolated donor-state qualification is complete. Next bind the declared
-   sites and actual linked native state before refinement. Preserve the
-   original failed full and focused fixture correction supporting Alder delivery;
-   no new complete suite is requested for this isolated source operation.
-   C406 scratch retirement is complete; no repeated native matrix is needed.
-2. Use the recorded actual-manager and matching-data evidence to resolve the
-   remaining experimental-chemistry question. Q06 needs useful PDU/DF geometry after refinement and whole-substituent
-   evidence, not merely successful execution or a readable CIF. Reuse existing
-   source-selected geometry/coverage and native observation tools before adding code.
-   Q13 also retains the newly explicit DF/Hg donor-state question: the saved DF
-   dictionary has N3–H3, while the metal recipe coordinates N3 and the model omits
-   H3. Simon confirms Hg replaces both N3 hydrogens. Qualify the separate declared
-   metal-bound state with Hazel, preserving neutral source provenance; this is
-   not a diagnosed cause of the attachment strain.
+1. The [DF–Hg–DT comparison](cif-doctor-completion-queue.md#df-hg-dt-comparison)
+   is queued for a later research session. The effect on either bound site after
+   refinement remains unmeasured.
+2. Q06 still needs evidence that PDU and DF retain acceptable geometry after
+   refinement. Reuse the existing whole-substituent, source-selected geometry
+   and native observations. Q13 also retains its separate phosphate-state question.
 3. Close any needed combined ordinary descendant coverage through existing owners.
    Keep wider counted protocols and density-fitting policy separately qualified;
    finite map coefficients alone do not establish a valid density-fitting policy.

@@ -1409,53 +1409,28 @@ NAR package version identifies that workbook.
 
 ### Q13 — Close chemical-state and attachment-policy gaps
 
-**DF/Hg donor-state holdover (19 November):** Hazel and Rowan confirmed that the
-retained A109 DF dictionary describes neutral NH1 N3 with an explicit N3–H3
-single bond (1.018 ± 0.029 Å). The bound metal recipe coordinates N3, while the
-coordinate model contains no H3. Missing hydrogen coordinates do not establish
-experimental protonation or charge. The recorded modifications change terminal
-link atoms, not N3/H3. Simon explicitly confirmed on 19 November: **Hg replaces
-both N3 hydrogens** in the intended DF–Hg–DT bridge. Preserve the neutral source
-as provenance and qualify a separate declared metal-bound state, including the
-DT donor, exact hydrogen/charge bookkeeping and effective native readback. Reuse Alder's existing
-state-aware coordination design; no DF-only repair, automatic deprotonation or
-causal attribution for sugar–base strain follows. This is a prerequisite for the
-affected Q06 experimental case, not a new native sweep or a reopened ownership task.
-Exact DF dictionary SHA-256: `c632ad07eed7feed22132021bed28a047d9441b5f762451e09d5f960a6e763cc`;
-the existing A109 input contract binds its local provenance.
-The reusable-path audit is `declared_metal_donor_state_2026_11_19` in the existing
-evidence ledger. The installed site-modification API exposes partial charge, not
-formal charge; the current standard Td source likewise lacks explicit formal
-charges. Do not substitute either for complete source-state authority. Reuse the
-existing explicit generator charge-control and isolated/linked qualification
-owners once the declared derivative is fully specified. The existing acquisition
-owner now freezes complete neutral parents from curated DF and installed CCD DT
-(36 atoms with explicit formal charges each; three files, 19,415 bytes). This
-chemical source is distinct from numerical Td. All 36 DF formal charges match
-the retained A109 dictionary; no state was changed or native refinement started.
-Ordinary explicit-source selection deliberately cannot override curated DF. Keep
-that guard: a declared chemical-state derivative needs its own scoped authority,
-not a weakened global source preference or a hidden numerical repair.
+<a id="df-hg-dt-comparison"></a>
 
-**C409 closes the isolated source-state step.** An explicitly requested,
-graph-selected imide operation creates a separately named anion, preserving the
-neutral parent, remote phosphate chemistry and source coordinate seeds. Both
-DF-derived and DT-derived controls keep H3 absent and preserve declared N3 charge
-−1 through native generation. The existing two-seed isolated qualifier passes
-both, with all three sugar configurations preserved and identical covalent
-restraints between seeds. Native monomer formal charge remains unavailable;
-partial charge does not substitute for it. No optimizer-convergence or linked
-metal/refinement claim follows. Reuse these candidates and receipts; do not
-regenerate them without a changed hypothesis. Next bind the two declared model
-sites and their component aliases/backbone contexts, preserve other residues and
-restraints, then capture the actual Hg-linked native definitions before refinement.
-The existing donor-state ledger entry owns exact evidence and test commands.
-Hazel’s independent cold review passes. The subsequent read-only site map verifies
-current A109 names/elements and backbone-port chemistry, with eight other DT sites
-to preserve and four exact donor selectors to rebind. No atom-name repair is
-needed. Recover explicit link intent before applying the derivatives; geometric
-adjacency is not that authority. Hazel owns application and linked/native checks;
-Rowan supports the existing Cedar preparation path. No duplicate generation.
+**DF–Hg–DT donor-state evidence (C409).** The intended Hg bridge replaces the
+N3 hydrogen on DF at A:12 and DT at B:4. The earlier refinement used two explicit
+Hg–N3 restraints and had no H3 coordinate at either site. Both separately named
+deprotonated sources passed isolated Phenix dictionary checks. Generation preserved
+the declared N3 formal charge of −1 and the three source-relative sugar
+configurations. Ordinary source selection retains the neutral parents. The
+native monomer reader exposes partial charge only. The existing
+ledger entry `declared_metal_donor_state_2026_11_19` binds the neutral parents,
+native checks, independent review and site map.
+
+**Matched refinement queued for a later session.** Compare neutral and
+deprotonated definitions at those two sites in the same Hg-containing scaffold.
+Regeneration changed heavy-atom targets, restraint widths and plane membership,
+so prepare both arms with the same dictionary-generation settings and the same
+ring-plane treatment. Use identical starting heavy-atom coordinates, Hg and
+pair/stack restraints, backbone and phosphate states, diffraction data, Free-R
+assignments and refinement settings. Preserve the eight other DT residues.
+Check which restraints Phenix applied in each arm, then compare the two Hg–N3
+distances, ring planarity and the DF C1′–N1 sugar–base bond. The paired refinement
+has yet to run. Its result will inform the post-build decision below.
 
 **C374 DF source-state confirmation:** exact original, numerical, plane-added and
 refinement dictionaries retain OP2 charge0/HOP2 and a single P–OP2 bond. Its
@@ -1637,6 +1612,10 @@ separately from naming. An on-disk/schema rename is optional later work.
   planes/parallelity gradients and large helix motion need their own design and
   native validation. Never turn complementary overhangs into an undeclared
   covalent pseudolink. Not a CIF Doctor release blocker.
+- **Routine metal donor-state handling after NASolve is built.** Revisit whether
+  to integrate site-specific donor definitions into normal metal preparation and
+  refinement. Use the [DF–Hg–DT comparison](#df-hg-dt-comparison) to judge the
+  benefit. The current build and Cedar merge can proceed independently of this feature.
 - **Metal-pair GUI and unusual coordination:** coordinate through the existing
   metal-builder/NAR contracts and preserve the other branch's work. Do not infer
   metal valence or repurpose ordinary organic repair rules without authority.

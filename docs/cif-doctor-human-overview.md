@@ -39,9 +39,10 @@ For the explicitly confirmed DF–Hg–DT chemistry, Doctor can now derive a
 separate imide anion source by removing the declared N–H proton and recording its
 formal charge change. It recognizes the oxygen/sulfur-containing local chemistry,
 not the DF name. Both recorded derivatives pass isolated Phenix dictionary checks
-without changing the neutral parents or phosphate state. Applying them only at the
-intended metal-binding sites and demonstrating survival during refinement remain
-next; missing hydrogen coordinates alone never authorize a state change.
+without changing the neutral parents or phosphate state. A later
+[matched refinement](cif-doctor-completion-queue.md#df-hg-dt-comparison) will
+test whether this choice affects the bound bases or the mercury contacts.
+Routine metal-workflow integration is deferred until after NASolve is built.
 
 These are explicit, source-qualified controls, not new normal settings or universal
 modified-residue support. New restraint files retain their identity through the

@@ -116941,11 +116941,11 @@
   },
   "declared_metal_donor_state_2026_11_19": {
     "kind": "declared-metal-donor-state-path-audit",
-    "status": "ISOLATED_DERIVATIVES_QUALIFIED_SITE_APPLICATION_PENDING",
+    "status": "ISOLATED_DERIVATIVES_QUALIFIED_MATCHED_REFINEMENT_QUEUED",
     "author": "Rowan",
     "date": "2026-11-19",
     "source_commit": "452b7c4551cf2819cda0bfa85cdaf674010f7899",
-    "milestone": "Q13 prerequisite for affected Q06 experimental case",
+    "milestone": "Q13 donor-state research comparison relevant to the affected Q06 case",
     "user_authority": {
       "speaker": "Simon",
       "channel": "Rowan chat",
@@ -116962,9 +116962,8 @@
       "neutral_parent_definitions_retained": true
     },
     "next_bounded_work": [
-      "Hazel owns the next site-specific application. Recover declared link context, then apply only at A:12/B:4 through existing linked preparation and preserve the eight other DT sites, original backbone/phosphate state and metal/pair/stack restraint semantics.",
-      "Capture actual linked native definitions, selected atom inventory and complete affected terms before a fresh bounded refinement. Keep unknown native formal-charge fields explicitly unassessed.",
-      "Only then compare refinement survival with the retained original. No claim that this state gap caused glycosidic strain."
+      "When research resumes, run one matched neutral/deprotonated comparison at the two declared donor sites using the recorded link context and site map.",
+      "Check the effective restraints in each arm and compare both Hg\u2013N3 distances, ring planarity and the DF C1\u2032\u2013N1 bond after refinement."
     ],
     "receipt": {
       "anchor": "NASolve-local-artifacts",
@@ -117207,7 +117206,17 @@
       "native_calls": 0,
       "model_changes": 0,
       "full_suite": "NOT_RUN_BY_REQUEST",
-      "owner_next": "Hazel: site application and linked/native qualification; Rowan: Cedar source/preparation support"
+      "owner_next": "For the later comparison, Hazel covers metal-site binding and Rowan supports Cedar dictionary preparation."
+    },
+    "development_decision": {
+      "matched_refinement": "QUEUED_FOR_LATER_NOT_RUN",
+      "routine_metal_workflow_integration": "DEFERRED_UNTIL_AFTER_NASOLVE_IS_BUILT",
+      "current_build_requires_routine_integration": false,
+      "plan": {
+        "anchor": "repository",
+        "relative_path": "docs/cif-doctor-completion-queue.md",
+        "section_id": "df-hg-dt-comparison"
+      }
     }
   }
 }
