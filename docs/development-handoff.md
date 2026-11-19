@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-19**, through **W148**. **W140 adds backbone and saved-map evidence to W139's
+Updated **2026-11-19**, through **W149**. **W140 adds backbone and saved-map evidence to W139's
 matched sticky-end improvement.** GC plane mismatch falls 27.30→6.30° with
 localized movement; nearby sugar/phosphate bond and angle deviations barely
 change. All 38 existing backbone links were measured and 126 ordered sugar-volume
@@ -32,6 +32,7 @@ calibration and convergence. [Evidence and limits](topostitch-periodic.md#w148--
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
+| W149 reusable inspector | Installed prepared-scene renderer; full/source-free installation, exact saved-data replay and bounded peer review | Stage adapter, source/frame proof, browser/GPU qualification and campaign actions |
 | W148 matching-data recovery | Frozen canonical displacement recovers; independent cold/native geometry checks and actual-coordinate checkout | Healthy source-link intent, independent controls, experimental/noisy data and general repair |
 | W139/W140 matched canonical control | Native/zero identity, local pair benefit, recorded backbone supports and saved-map sampling | Numerical stops; density calibration, broader controls and whole-model acceptance |
 | W138 ordinary longer control | Explicit v8 100-cap route, actual final writer/pair capture; full/installed/native gates pass | Broader protocols, semantic weighting and CLI/Doctor activation |
@@ -93,12 +94,15 @@ not another work queue; do not repeat them because this handoff is shorter.
    W147 now supplies exact native coefficient selection and descriptive headers;
    its worker adaptation is separately qualified and awaiting integration, with
    no new reader, launcher, FFT policy or inferred origin proof.
-   Hazel's C406/Alder temporary integration passes 166 focused tests and a
-   source-free installed replay. Before an active merge, reconcile the five
-   documentation/contract conflicts and preserve both Cedar replay-PDB and Alder
-   web-resource packaging globs; this is not yet a combined Willow qualification.
-   See NASolve anchor `branch-artifacts/Alder/integration-delta-20261118-01/review.json`
-   for exact pins, commands and limits. Do not repeat that completed delta.
+   W149 now packages the approved renderer, with bounded scenes and explicit
+   missing-map presentation; full/installed and exact saved-science checks pass.
+   It accepts prepared scenes, not a run directory. A stage adapter remains next.
+   Hazel's combined runtime `1acc7892` completed its full execution with one
+   fixture-related failure, 12,845 passes, two skips and 298 subtests. The
+   test-only correction passes 35 focused cases; delivery must preserve that
+   distinction, not claim a fresh full-green. W146/W147/W149 remain follow-on
+   patches outside this runtime. Check Hazel's current delivery pin before any
+   integration; do not repeat the closed full run merely for this docs audit.
    Then use matched B10 controls and geometry, packing and diffraction/density
    evidence before physical acceptance. Preserve original data/Free-R, unselected
    REVIEW and exact pair intent. Retain repulsion while exclusions are open;
@@ -191,6 +195,12 @@ W118 numerical helpers retain their exact original scopes; no later software
 PASS upgrades older diagnostic models to accepted structures.
 
 ## Local science checkout
+
+**W149 reusable inspector:** GitHub workspace anchor,
+`ScienceCheckouts/Linden/2026-11-19_inspector/review.html`. Four files contain
+experimental saved density, the actual W148 start/recovery view and hashes.
+Both use the installed renderer; the recovery view explicitly has no map.
+[Qualification and limits](topostitch-periodic.md#w149--package-the-reusable-offline-density-inspector).
 
 **W148 matching-data recovery:** GitHub workspace anchor,
 `ScienceCheckouts/Linden/2026-11-19_matching-backbone/review.html`. Nine files:

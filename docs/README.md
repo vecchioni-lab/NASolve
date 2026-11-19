@@ -35,11 +35,14 @@ current instructions; other branches retain their own status and validation pins
   0.917→0.029 Å selected-region RMS, with native geometry and independent review.
   Its local four-model checkout separates recovery from imperfect source geometry;
   experimental repair and density calibration remain open.
+  W149 packages the shared offline renderer and displays both saved density and
+  W148's actual recovery through the same installed API. Source/full/installed
+  gates pass; stage integration, frame proof and browser/GPU review remain separate.
   Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W148;
-  the next substantial audit is W149. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W149;
+  the next substantial audit is W150. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

@@ -8681,3 +8681,87 @@ shared inspector integration, then predeclare independent healthy/no-op and
 forward/reverse bend controls with verified sequence/link intent. Keep imperfect
 source-link diagnosis separate; do not silently repair or remove it in this
 matched experiment. Numerical-policy changes and W122 activation remain deferred.
+
+## W149 — Package the reusable offline density inspector
+
+**2026-11-19; S07 remains PARTIAL.** Source
+`04b6402a274f27b84da298d23ce5c0db58776438` extracts the approved W143 presentation
+into `nasolve.density_inspection` and an installed HTML resource. Previously the
+view required a local developer template. A caller can now render a prepared,
+bounded two-state scene with explicit labels and source/frame notes from an
+installed package. Missing maps remain unavailable. Display controls retain
+Slate/Paper, lighting, independent model/map selection, independent contour levels
+through 6σ, contrast, cutaway and distance-based residual fading.
+
+**Boundary:** the existing local scene kind/version remains
+`local-backbone-density-display`/1; `native` and `full` are legacy presentation
+slots, not quality or scientific-policy labels. Existing CLI, checkpoints and
+native readers are unchanged. This API does not generate maps, find inputs,
+authenticate a producer, establish frame equivalence, fit coordinates or adopt a
+trial. Calls copy and validate the scene, escape human text, embed compressed
+JSON and refuse output overwrite. A 40 Å camera radius covers both atom states
+and all mesh vertices; bounded centers/crops, counts and exact contour-band loop
+work prevent clipping or unbounded display work. The 0.25 Å crop allowance is a
+legacy half-voxel display allowance, never a crystallographic frame tolerance.
+See the [API contract](architecture.md#shared-in-app-modeldensity-inspector).
+
+**Validation and failures retained:** initial source `b8b4678` passed 2087 tests
++234 subtests and 154 installed +53. Rowan then identified missing camera-envelope
+and generated-band-work bounds. Four added regressions fail on that source;
+corrected `04b6402a` passes all 29 focused renderer/graph tests. The initial absent
+module baseline also fails as expected. Corrected qualification:
+
+- Full Willow: **2091 tests +234 subtests**, no skips, 126.57 s pytest elapsed.
+  `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:<pinned-NARestraints> python -B -m pytest
+  -q -p no:cacheprovider -o addopts= --durations=20 --junitxml <receipt> tests
+  --basetemp <owned-external-scratch>` in an exact clean checkout. NARestraints
+  `a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691`; all tracked bytes remain unchanged.
+- Build: `python -B -m pip wheel --no-deps --no-build-isolation --wheel-dir
+  <wheels> <source>` then `pip install --no-deps --no-compile --target <installed>
+  <wheel>`. Move installation, delete source and original installation, import
+  public APIs, run `python -B -m nasolve show --help`, then pytest over
+  `test_density_inspection`, `test_topostitch_view`, `test_map_coefficients`,
+  `test_model_inspection`, `test_coot_view`, `test_coot_anomalous`,
+  `test_coot_runtime`, `test_doctor_inspection`, `test_checkpoints` and
+  `test_autorefine`: **158 +53 subtests** in 19.78 s. All 93 package files remain
+  unchanged. Python 3.12.14, pytest 9.2.0. Exact argv/environment in receipts.
+- Wheel SHA256:
+  `74e64bac3bd269f2dc56bcc5d2445a53bcde28d26dbe11742f8acc5ce52f2ec4`.
+  Three inherited ligand provenance sidecars remain outside existing packaging;
+  this patch does not change that prior limitation.
+- Source/installed HTML bytes agree exactly. All original W143 scene fields,
+  30 atoms, 32 bonds, 62 meshes, 61,500 vertices, 117,814 triangles and shader
+  sources remain exact. A generic non-phosphate/no-map fixture also renders.
+- The same installed API displays W148's actual 204 moved atoms and 228 existing
+  internal covalent bonds, without maps, alignment or invented links. Sixteen
+  offline control contracts pass on each of the three scenes. These are mocked
+  DOM/WebGL command checks, **not browser layout, shader/GPU or visual acceptance**.
+- Rowan's bounded static recheck finds both issues and wording addressed. No new
+  Phenix/Coot execution or map calculation occurs in W149. W148's separate native
+  recovery evidence is unchanged.
+
+**Local review:** GitHub workspace anchor
+`ScienceCheckouts/Linden/2026-11-19_inspector/review.html`; four files including
+both self-contained views and a checksum manifest. The recovery view links the
+prior four-model science report. This is not a new campaign selection.
+
+**Preservation:** NASolve anchor
+`branch-artifacts/willow/w149-inspection-qualification-2026-11-19.zip`, 90 indexed
+files +manifest, 5,594,024 bytes, SHA256
+`d32c50554542e4c12c32af92ee573103589948f030a34620b46e2cd9cd3ebae9`.
+Every member verified; includes initial/final failures and passes, both wheels,
+source patch, runners, views and peer reviews. Historical paths are provenance;
+the archive is not a portable executable campaign. After process/inode and archive
+checks, only four owned test/install roots were retired (9,418 files,
+168,624,027 bytes); science, shared dependencies and peer work remain. A sandbox
+process-list permission failure preceded the unchanged successful cleanup.
+
+**Next:** qualify shared receiving-owner integration before the stage adapter.
+W146/W147/W149 and the worker-v2 adaptation remain outside the frozen combined
+runtime `1acc7892`. Its separate full run recorded one fixture-related failure,
+12,845 passes, two skips and 298 subtests; the test-only amendment has 35 focused
+passes. Hazel owns the documented delivery decision; do not label that evidence
+a fresh full-suite pass. Reuse existing selection, map and frame owners for a
+small read-only scene adapter; ordinary repair publication and density-guided
+movement remain separate gates. No new model/frame or noise threshold follows
+from a working renderer.
