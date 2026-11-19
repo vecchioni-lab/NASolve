@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Transport exact frozen-f″ inputs through shared archives
+
+- Add explicit Python packing and temporary-view APIs for fully replayed frozen
+  trials. Retain complete compact records and exact executable inputs/plans,
+  sharing duplicate requests without discarding repeated attempts.
+- Reuse the existing archive decoder, object store and temporary accounting.
+  Check expected archive/projection identities, exact members and tighter caller
+  limits before cold expansion; preserve existing shared limits.
+- This is input transport only: no execution, complete parent retention, native
+  regeneration, pruning permission or scientific acceptance. Existing run
+  schemas, CLI behavior, source data and native workers remain unchanged.
+
 
 ### Read final modified-site bond, angle and handedness deviations (C407)
 

@@ -1,6 +1,6 @@
 # Metal campaign storage and recovery plan
 
-Status: **read-only inventory, scenario estimator and compact projection implemented; compact retention/regeneration pending**; 19 November 2026.
+Status: **inventory, compact projection and exact input transport implemented; complete retention/regeneration pending**; 19 November 2026.
 The [post-merge development roadmap](metal-development-roadmap.md) places this
 work at **A04**, after single-dataset ligand/open-refinement qualification and
 before large f″ campaigns. It is a feature milestone after merge, not a
@@ -123,9 +123,49 @@ Qualification at `e002e2037048a4f5778898c7682174e96da5a01b` includes 6,432 tests
 package (192 unchanged resources), and separate fresh-process source/data
 relocation. The [handoff](metal-development-handoff.md) owns commands, limits and receipts.
 
-This closes the **read-only projection substep** of A04. Compact publication,
-retained parent materialization, native regeneration, budgets and retirement
-still require the coordinated integrated storage owners and their own gates.
+This closes the **read-only projection substep** of A04. Complete retained-parent
+publication, native regeneration, campaign budgets and retirement retain their
+own gates. The bounded input-transport substep below now reuses the integrated
+storage owner; it does not replace those remaining qualifications.
+
+## Implemented third step: exact input archive transport
+
+The explicit Python API `nasolve.metal.input_archive.pack_fdp_inputs(run, trials,
+output)` fully replays each named original trial using the existing compact-view
+owner. It then copies the exact recorded executable inputs and complete plans,
+retains the full compact projection (including every attempt and result), and
+replays the source again before publication. Equal input identities share one
+request directory; repeated attempts remain separate records. No input is found
+by basename or inferred from nearby folders. Output must be fresh and outside
+the source run, and existing files are never replaced.
+
+Packing delegates to Cedar's unchanged checksum-indexed archive owner. The
+returned `metal-fdp-input-archive` v1 receipt binds both archive SHA-256 and
+projection identity. `expanded_fdp_inputs(archive, archive_sha256,
+projection_id=...)` checks those expected identities, projection consistency and
+the complete recorded input inventory before yielding a temporary read view.
+The view contains `projection.json` and `requests/<input_id>/<original_name>`;
+its paths expire on context exit. Captured plans remain data. No execution,
+checkpoint selection or original-source lookup occurs during cold expansion.
+
+This is **exact input transport**, not standalone scientific validation. The
+original trial and parent evidence are required during packing. The archive
+does not retain their complete transitive proof, full software/environment
+identity or all native outputs. It therefore grants no reuse, execution or
+retirement authority. A successful cold expansion after original test data are
+removed establishes byte recovery only; actual Phenix regeneration and safe
+scientific-output retirement remain unqualified. There is no new CLI/GUI action.
+
+The existing shared limits remain: at most 1,024 logical files, 32 MiB per file
+and 128 MiB total logical input contents, including the compact projection.
+Existing compressed/object/temporary-view limits also apply. An explicit
+`max_input_bytes` can lower the logical allowance; it cannot enlarge it, and
+cold expansion checks it before allocating temporary files. Split a larger
+selection explicitly rather than raising shared limits. `max_trial_bytes`
+defaults to the existing 1 GiB trial-payload preflight, and compact metadata
+retains its 16 MiB cap. Upstream scientific replay still traverses original
+parents and native JSON; these are not total I/O, memory, peak disk or campaign
+reservation guarantees. No original scientific run is modified by this adapter.
 
 ## Governing decision
 
