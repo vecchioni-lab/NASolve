@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W146 — Pin the files in a read-only inspection snapshot
+
+- Add `model_inspection.inspect_model_map` over the existing view and anchored
+  reference owners. It measures selected model/map/support file hashes and sizes,
+  carries W145 ancestry, and rechecks selection and artifacts before returning.
+- Preserve explicit external paths with an honest reference-scope label. Keep
+  generation/frame evidence unassessed; a newly measured legacy hash does not
+  retroactively authenticate a producer. No writes, launches, selection or map
+  calculation; existing run/checkpoint schemas and CLI behavior are unchanged.
+
 ### W145 — Expose the selected map's stage and checkpoint ancestry
 
 - Add optional, keyword-only `ViewProfile.map_origin` with the selected map's

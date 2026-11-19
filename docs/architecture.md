@@ -676,6 +676,25 @@ coordinate-frame equivalence. A stricter future inspection projection must bind
 those facts independently and retain unknown evidence. No checkpoint/launch JSON
 schema or display behavior changes in W145.
 
+`model_inspection.inspect_model_map(run, **selection)` is a read-only consumer
+of that resolver. It forwards selection options unchanged and returns a
+`model-map-inspection` schema-1 projection: selected view identity, map origin,
+and measured references for the model, primary map, extra models, dictionaries
+and anomalous-map candidates. This adds no run or checkpoint schema. Both the
+selected profile and measured files are rechecked before return; a concurrent
+selection/artifact change fails instead of mixing them.
+
+All snapshot hashes are labelled **measured at inspection**, even when the
+resolver also checked an earlier producer-supplied checksum. The projection does
+not infer that earlier evidence from a newly computed hash. Generation and frame
+evidence remain `not_assessed`; map candidates are not proof of usable columns.
+References reuse checkpoint/run-context logic. Explicit external files remain
+usable and yield `contains_external_paths`, not an anchored-relocation claim.
+The function writes nothing, launches no tools and never selects a checkpoint.
+It is neither a filesystem lock nor an approval record: a later renderer/action
+must revalidate file references again. A broader producer/frame interpretation
+and cross-stage rendering remain separate work.
+
 Every view retains ordinary `--auto` map loading and adds a run-local Python
 startup script. In Coot, `valid_labels` checks the exact `ANOM`/`PHANOM` pair.
 The script uses `make_and_draw_map` with no weights and the difference-map flag,
