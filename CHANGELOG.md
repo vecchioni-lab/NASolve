@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Declare an imide proton-loss source without changing its parent (C409)
+
+- Add an explicit Python source operation for neutral N(H/D) between two
+  C(=O/S) groups. Match chemical connectivity, not residue or atom names; require
+  declared intent and a distinct output identity. Return new source bytes and
+  provenance without editing a model, writing files or adopting the derivative.
+- Remove only the chosen H/D, declare the localized N formal charge change,
+  preserve remote chemistry and parent coordinate seeds, and omit stale neutral
+  descriptors. Reject ambiguous charges, unsupported reactive state and numerical
+  dictionary inputs. Reuse existing source validation, pruning and serialization.
+- The existing generator and two-seed isolated qualifier accept the recorded
+  DF/DT derivatives. This does not qualify Hg links, native formal-charge readback,
+  optimizer convergence or refinement survival. Ordinary defaults, existing
+  records, curated definitions and native workers are unchanged; no migration.
+
 ### Read final modified-site bond, angle and handedness deviations (C407)
 
 - Add an explicit cold Python report for the scalar geometry already captured

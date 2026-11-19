@@ -1437,6 +1437,20 @@ Ordinary explicit-source selection deliberately cannot override curated DF. Keep
 that guard: a declared chemical-state derivative needs its own scoped authority,
 not a weakened global source preference or a hidden numerical repair.
 
+**C409 closes the isolated source-state step.** An explicitly requested,
+graph-selected imide operation creates a separately named anion, preserving the
+neutral parent, remote phosphate chemistry and source coordinate seeds. Both
+DF-derived and DT-derived controls keep H3 absent and preserve declared N3 charge
+−1 through native generation. The existing two-seed isolated qualifier passes
+both, with all three sugar configurations preserved and identical covalent
+restraints between seeds. Native monomer formal charge remains unavailable;
+partial charge does not substitute for it. No optimizer-convergence or linked
+metal/refinement claim follows. Reuse these candidates and receipts; do not
+regenerate them without a changed hypothesis. Next bind the two declared model
+sites and their component aliases/backbone contexts, preserve other residues and
+restraints, then capture the actual Hg-linked native definitions before refinement.
+The existing donor-state ledger entry owns exact evidence and test commands.
+
 **C374 DF source-state confirmation:** exact original, numerical, plane-added and
 refinement dictionaries retain OP2 charge0/HOP2 and a single P–OP2 bond. Its
 1.571 Å target (sigma0.022), versus OP1's1.473 Å (sigma0.012), is source-derived.

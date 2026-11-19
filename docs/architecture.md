@@ -5097,3 +5097,35 @@ evaluation/count history, then compare pair, backbone, packing and diffraction
 evidence. Code/regression qualification is not native or structural acceptance.
 The candidate has not yet completed that matched native experiment; larger bends,
 automatic stitching and density-based selection remain separate roadmap gates.
+
+## Explicit imide proton-loss sources (C409)
+
+`cif_declared_proton_loss.derive_imide_anion_source(source, code, *, component,
+donor, hydrogen, operation)` requires the explicit
+`cif-declared-imide-proton-loss-v1` operation. It returns new CIF bytes and a
+schema-1 report, without writing, registering or selecting them. The caller owns
+scientific intent, preservation of the parent and eventual site/metal binding.
+The output identity must differ from the parent. This source-only interface is
+not ordinary PostMR activation or permission to override curated sources.
+
+Existing graph, single-component and formal-charge checks bind one neutral
+N(H/D) joined by single bonds to two neutral C(=O/S) groups. Their local valence,
+nonaromatic representation and lack of stereogenic declarations must be explicit.
+The selected proton/deuteron leaves with formal charge +1; the localized donor
+representation changes from 0 to −1. All other atom and bond rows are retained,
+including phosphate state and coordinates. Coordinates remain parent seeds,
+and retained stereochemical labels are not a new absolute CIP assignment.
+No partial charge, native atom type, numerical target, metal bond or pH is inferred.
+Stale formula weights, neutral descriptors and release metadata are omitted;
+formula/count/total charge are rebuilt from the declared atom inventory.
+
+This represents an explicit chemical choice. It does not predict which sites
+should deprotonate. The conventional thymine N3–Hg–N3 interpretation is supported
+by [primary NMR evidence](https://pubmed.ncbi.nlm.nih.gov/17150810/); a thio-imide
+source operation does not by itself validate its metal-complex geometry.
+Existing generation-input, charge-transfer and isolated qualification owners
+consume the derived source unchanged. The recorded DF/DT controls preserve all
+35 formal charges and source-relative sugar configurations and pass both isolated
+coordinate seeds. Phenix's monomer API still omits formal charge, so that native
+field remains unassessed even though the source and generated CIF declare it.
+Linked site aliases, actual Hg coordination and refinement require separate gates.

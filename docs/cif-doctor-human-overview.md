@@ -35,6 +35,14 @@ recovery under matching atomic amplitudes, not experimental accuracy, exact reco
 of the generating coordinates or complete Q06 support. The simulation assumptions
 and independent checks are retained in the existing evidence ledger.
 
+For the explicitly confirmed DF–Hg–DT chemistry, Doctor can now derive a
+separate imide anion source by removing the declared N–H proton and recording its
+formal charge change. It recognizes the oxygen/sulfur-containing local chemistry,
+not the DF name. Both recorded derivatives pass isolated Phenix dictionary checks
+without changing the neutral parents or phosphate state. Applying them only at the
+intended metal-binding sites and demonstrating survival during refinement remain
+next; missing hydrogen coordinates alone never authorize a state change.
+
 These are explicit, source-qualified controls, not new normal settings or universal
 modified-residue support. New restraint files retain their identity through the
 saved checkpoint; incomplete ancestry refuses rather than silently losing intent.

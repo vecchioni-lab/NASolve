@@ -117026,6 +117026,160 @@
       "bytes": 19415,
       "native_calls": 0,
       "chemical_state_changed": false
+    },
+    "isolated_derivative_qualification": {
+      "milestone": "C409",
+      "status": "DECLARED_SOURCES_AND_ISOLATED_NATIVE_USABILITY_QUALIFIED",
+      "base_commit": "673d56fa458b40af84985f538cfb1e656cbc319e",
+      "source_hashes": {
+        "src/nasolve/cif_declared_proton_loss.py": "2fdc4ae053ada4fcd68468606cab8eff7dbf723ff7e7ec3741aa4384e23030f9",
+        "tests/test_cif_declared_proton_loss.py": "f6444219ee1f93c8c351f1fba7f86edb887de04a17aa6e399431232f5edfd457",
+        "src/nasolve/cif_generation_attempt.py": "b2112838575944aadfff5ee1abfdc18c78b12de64b5edcd4935d3f02ec37320b",
+        "src/nasolve/cif_source_candidate.py": "34e7e00c055c1b9920ef33e8677805fae792b73fe8c9f2c9c3710a49aa9f8dee",
+        "src/nasolve/cif_declared_charge_control.py": "b8ce1d57bb88959376bbc4cd33c88e0dfdda724fc36e1c2b6e5063c03e2c376c",
+        "src/nasolve/cif_generation_input.py": "ecc4ac73eb5b23e91cd90dae25ca38c79f55b30638e20006d6e9aba769ad9bbd"
+      },
+      "receipt": {
+        "anchor": "NASolve-local-artifacts",
+        "path": "cedar/c409-declared-donor-state/readback.json",
+        "sha256": "3e16a33bc9e607a4863cfcb2e8ae793e0aee13691541ed9a24af50555029406e"
+      },
+      "native_version": "Phenix 2.2.1-6174 (dispatcher 2.2.1)",
+      "execution": "Two complete isolated generation attempts and four fixed-coordinate native qualification captures; no refinement.",
+      "cases": [
+        {
+          "parent": "DF",
+          "component": "QF1",
+          "source_atom_count": 36,
+          "derived_atom_count": 35,
+          "formal_charge_delta": -1,
+          "derived_total_formal_charge": -1.0,
+          "hydrogen_absent_in_source_candidate_and_native": true,
+          "source_candidate_graph_and_formal_charges_exact": true,
+          "donor_numerical_type": "N",
+          "donor_dictionary_formal_charge": "-1",
+          "donor_native_definition": {
+            "atom_id": "N3",
+            "charge": null,
+            "partial_charge": -0.45,
+            "type_energy": "N",
+            "type_symbol": "N"
+          },
+          "native_formal_charge": "UNASSESSED_API_NOT_EXPOSED",
+          "preserved_sugar_configurations": 3,
+          "generation_status": "CANDIDATE_REVIEW",
+          "optimizer_stopping": "NOT_REPORTED",
+          "convergence_claimed": false,
+          "qualification_status": "ISOLATED_NATIVE_USABILITY_PASS",
+          "same_covalent_proxies": true,
+          "native_checks_per_seed": 21,
+          "native_proxy_counts": {
+            "angle": 63,
+            "bond_asu": 0,
+            "bond_simple": 36,
+            "chirality": 3,
+            "const_dihedral": 6,
+            "dihedral": 46,
+            "parallelity": 0,
+            "planarity": 2
+          },
+          "inputs": {
+            "parent": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+            "declared": "a869d28e79961caa3d09a1598a81546715a1ebc33d4eef95a2d1ec0a3dd6b907",
+            "candidate": "dad53e1e9dfe7087aef861d411bcaea99a4352537ffa5f14825769295422d059"
+          },
+          "qualification": {
+            "anchor": "control_directory",
+            "path": "qualification/QF1/qualification_execution.json",
+            "sha256": "1ee63db4df3fa8fd1c5ca5a578c28cfe0a9c74da92af9cd928b020cd1483101b"
+          }
+        },
+        {
+          "parent": "DT",
+          "component": "QT1",
+          "source_atom_count": 36,
+          "derived_atom_count": 35,
+          "formal_charge_delta": -1,
+          "derived_total_formal_charge": -1.0,
+          "hydrogen_absent_in_source_candidate_and_native": true,
+          "source_candidate_graph_and_formal_charges_exact": true,
+          "donor_numerical_type": "N",
+          "donor_dictionary_formal_charge": "-1",
+          "donor_native_definition": {
+            "atom_id": "N3",
+            "charge": null,
+            "partial_charge": -0.533,
+            "type_energy": "N",
+            "type_symbol": "N"
+          },
+          "native_formal_charge": "UNASSESSED_API_NOT_EXPOSED",
+          "preserved_sugar_configurations": 3,
+          "generation_status": "CANDIDATE_REVIEW",
+          "optimizer_stopping": "NOT_REPORTED",
+          "convergence_claimed": false,
+          "qualification_status": "ISOLATED_NATIVE_USABILITY_PASS",
+          "same_covalent_proxies": true,
+          "native_checks_per_seed": 21,
+          "native_proxy_counts": {
+            "angle": 63,
+            "bond_asu": 0,
+            "bond_simple": 36,
+            "chirality": 3,
+            "const_dihedral": 6,
+            "dihedral": 46,
+            "parallelity": 0,
+            "planarity": 2
+          },
+          "inputs": {
+            "parent": "47a7972b4707d3d2b4bd01ab4916b90bbfa659867d612f58a3a79665cce5e9d7",
+            "declared": "0fb01e42a67087b6e9f0e9ef3040ac04ebfdd023667794551ee334fd28822d98",
+            "candidate": "c61dc3afeaa655ed991bf19ce66d71c75220a47fbe71c4e32cdee2dae25f40c7"
+          },
+          "qualification": {
+            "anchor": "control_directory",
+            "path": "qualification/QT1/qualification_execution.json",
+            "sha256": "2a337424d51fdbeb490753345f6e5325022ba4e4b1be491151d4b0fc3ed13d99"
+          }
+        }
+      ],
+      "focused_validation": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_declared_proton_loss.py tests/test_cif_reference_composition.py tests/test_cif_declared_charge_control.py tests/test_cif_generation_input.py --junitxml=/private/tmp/rowan-c409-source/focused.xml",
+        "passed": 94,
+        "seconds": 5.98,
+        "new_cases": 27,
+        "full_suite": "NOT_RUN_BY_REQUEST",
+        "before": "Two core tests failed: missing new module.",
+        "xml_sha256": "42c326eda93a0d6cc11424d7e24253beb10936986f2096089ec278649ddf73e5"
+      },
+      "archive": {
+        "anchor": "NASolve-local-artifacts",
+        "path": "cedar/c409-declared-donor-state/native-evidence.tar.gz",
+        "sha256": "d797f1ecb696843b20590f8788b855d7fbf24cbf3b8d0f81fad414aacbe5fc27",
+        "size": 749617,
+        "verified_files": 145,
+        "originals_retained": true
+      },
+      "limits": [
+        "A localized imide anion representation, not a computed Hg-complex charge distribution.",
+        "Native monomer API exposes partial charge but not formal charge; these are not interchangeable.",
+        "Native usability and retained source handedness are not optimizer convergence, independent CIP or experimental refinement acceptance.",
+        "Site-specific aliases/backbone preparation and actual Hg-linked-state readback remain next; no original model or source dictionary was replaced."
+      ],
+      "peer_source_review": "Hazel: no blocking finding in bounded static review; no repeated tests/native execution.",
+      "compatibility": "Additive explicit source-only Python API. No existing workers, defaults, source definitions or artifact migrations changed.",
+      "artifacts": "Only source/tests/docs/compact hashes committed. Generated CIFs, PDBs, native logs and archive remain local.",
+      "relocated_validation": {
+        "status": "RELOCATED_FOCUSED_PASS",
+        "passed": 27,
+        "source_fallback": false,
+        "module": "nasolve/cif_declared_proton_loss.py",
+        "old_path_absent": true,
+        "unchanged_files": 310,
+        "xml_sha256": "b28335d95b2dcce33a0f951ee9330fd73a5c80a7d50565adaf56dde10433da5a",
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/private/tmp/c409-relocated-vxnvmrn1/relocated /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_declared_proton_loss.py --junitxml=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/c409-declared-donor-state/focused/relocated.xml",
+        "scope": "Relocated package-copy check, not wheel installation or full regression",
+        "final_test_sha256": "83afd0f7e93d6fd2a12b8c3622f8d2f0ff2cca6cb5e113a3a089e08a93d17ae7"
+      }
     }
   }
 }
