@@ -692,8 +692,9 @@ still explicit. [Qualification and limits](topostitch-periodic.md#w141--qualify-
 
 ### Saved-map inspection boundary (W142 design; W145 selection identity delivered)
 
-The remaining S06 implementation is a read-only inspection projection over existing owners,
-after the shared branch integration. It must not add another checkpoint registry,
+W146 delivers the first read-only inspection projection over existing owners.
+Producer/frame interpretation and cross-stage rendering remain after shared
+integration. It must not add another checkpoint registry,
 map finder, sampling engine or native writer wrapper. The cold audit covers Cedar
 `4bfffbca` and Alder `9c4c3b05`; it changes no runtime policy.
 
@@ -750,10 +751,12 @@ map stage, associated refinement checkpoint and ordered consuming checkpoints.
 It reuses existing resolution and keeps legacy Coot behavior unchanged, including
 maps whose ancestor model is absent. Standalone full/installed gates pass; the
 Cedar adaptation is focused-qualified and awaits the combined gate. This is map
-navigation provenance, not proof of generating XYZ/ADPs. The remaining projection
-should bind displayed artifacts and report generation/frame evidence separately.
+navigation provenance, not proof of generating XYZ/ADPs. W146 now binds displayed
+artifacts in a measured snapshot, rechecks them and retains generation/frame
+evidence as unassessed. Its standalone full/installed and external-consumer checks
+pass; it is not part of the frozen combined W145 integration candidate.
 
-The inspection projection should only report validated source/ancestor identity,
+The further inspection projection should only report validated source/ancestor identity,
 generation evidence or its absence, frame correspondence and descriptive samples.
 Its distinct regressions should cover substituted bytes/labels, inherited maps,
 unproven frames and relocation through declared anchors. Existing W141 arithmetic

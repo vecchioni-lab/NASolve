@@ -8385,3 +8385,80 @@ combined qualification: bind exact displayed artifacts, keep associated model,
 actual coefficient-generation model and comparison frame distinct, and retain
 unknown evidence. Do not repeat the closed sampler/Fourier/normalization probes.
 S06/S07 remain **PARTIAL**; no automatic bending or accepted repair follows.
+
+
+## W146 — Bind a read-only model and map inspection snapshot
+
+**2026-11-19; source `c3f52e2945f23ca77eb0c728a1353763a39c1a45`.**
+`model_inspection.inspect_model_map` now projects the existing view into JSON:
+selected model/map/support references, their measured hashes/sizes, and W145 map
+ancestry. Previously consumers had to assemble this themselves. It re-resolves
+the selection and checks the measured references before return, refusing changes
+rather than mixing states. Explicit external paths stay usable and visibly
+host-bound; anchored snapshots survive relocation with the original path gone.
+
+This is new `model-map-inspection` schema 1, with no existing run/checkpoint/CLI
+migration. Hashes are explicitly measured at inspection; they do not authenticate
+historical producer XYZ/ADPs. Generation and frame evidence stay `not_assessed`.
+Anomalous-map candidates do not prove usable columns. It writes nothing, launches
+nothing, selects no checkpoint and does not lock the filesystem. Later consumers
+must revalidate at their action boundary. Changed files: the new module and its
+six regression cases, architecture, changelog and the current status documents.
+
+### Qualification
+
+- The absent-module baseline fails before the patch. **61 focused tests +31
+  subtests** pass in 5.63 s. Cases cover exact bytes/read-only behavior, inherited
+  maps without ancestor models, full relocation, explicit external maps,
+  mid-read selection/model changes and existing declared-checksum refusal.
+- **2,061 complete Willow tests +234 subtests**, zero skips, pass in **98.42 s**;
+  controller 100.074 s, all **722 source files unchanged**, source/dependency clean,
+  owned process stopped. The first full run retains **five sandbox-permission
+  failures** in process listing/signalling and 2,056 passes; the unchanged rerun
+  has those OS permissions. No product patch hides those failures.
+- A source-free relocated wheel passes **120 tests +53 subtests** in 17.15 s,
+  CLI/import checks and all **90 installed file hashes**. Build source and old
+  install paths are absent. Wheel SHA256:
+  `0c005d8d6d736a9e802213d871135fdde46caabc52b19944f583aaa353a41d11`.
+  Existing unshipped ligand provenance sidecars remain unchanged.
+- Hazel reviewed this bounded consumer and found no blocking issue; this is
+  review evidence, not another executed test suite. An external load of this exact
+  consumer over Hazel's unchanged installed candidate
+  `1acc7892d2bc19d5572d46f430b27515a7ea6301` also passes on genuine W138 refine-001/002.
+  All **344 installed files and 130 run files** remain unchanged; refine-002
+  model/map hashes match W144. The current PostMR still refuses its missing
+  Phaser MTZ through the existing owner; current selection stays PostMR.
+  W145's direct installed origin read passes separately on the same two outputs.
+  **W146 is not included in that frozen combined package or full-suite gate.**
+
+Exact command forms; retained receipts contain the complete argv/environment:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <qualified-python> -B -m pytest -q -p no:cacheprovider tests/test_model_inspection.py tests/test_coot_view.py tests/test_coot_anomalous.py tests/test_doctor_inspection.py --junitxml=<receipt.xml>
+PYTHONDONTWRITEBYTECODE=1 <qualified-python> -B <NASolve>/branch-artifacts/willow/runners/w145-full-suite.py --checkout <pinned-Willow-copy> --commit c3f52e2945f23ca77eb0c728a1353763a39c1a45 --process-owner <qualified-Cedar> --output <new-receipts> --dependency-source <pinned-NARestraints> --basetemp <fresh-owned-scratch>
+PYTHONDONTWRITEBYTECODE=1 <qualified-python> -B <NASolve>/branch-artifacts/willow/runners/w146-install-inspection.py
+PYTHONDONTWRITEBYTECODE=1 <qualified-python> -B <NASolve>/branch-artifacts/willow/runners/w146-real-inspection.py
+```
+
+Python 3.12.14 / pytest 9.2.0; NARestraints remains
+`a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691`. Tests use synthetic executables;
+the cold compatibility read blocks launches. No Phenix/Coot execution, FFT,
+new coefficients, detector or scientific acceptance is claimed.
+
+At NASolve anchor, `branch-artifacts/willow/w146-inspection-qualification-2026-11-19.zip`
+retains **42 indexed files + manifest**, **663,234 bytes**, SHA256
+`639ada1b3104e6b328925642b22685a28ffe72780fcdd68b121202a88e329190`.
+It includes the wheel, source patch, runners, failures, commands/XML/manifests
+and the two genuine-run read receipts; raw crystallographic payloads are excluded.
+Every archive member and both XML totals were independently checked. After archive
+and stopped-owner verification, four owned software/test roots were retired:
+**8,438 regular files / 109,624,452 logical bytes**. Scientific runs, shared
+libraries and Hazel's package remain under their owners. The retirement receipt
+is `branch-artifacts/willow/w146-retirement.json`; no generated evidence is in Git.
+
+Next: reuse the existing native coefficient selection/description boundary for
+explicit labels and descriptive headers, separately from FFT, sampling and
+coefficient generation. The shared worker's extraction needs exact-version
+saved-coefficient parity and must preserve old caches. No second launcher or
+reader, inferred origin proof or default density threshold. S06/S07 remain
+**PARTIAL**, and combined integration remains a separate gate.

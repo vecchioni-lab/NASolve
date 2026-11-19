@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-19**, through **W145**. **W140 adds backbone and saved-map evidence to W139's
+Updated **2026-11-19**, through **W146**. **W140 adds backbone and saved-map evidence to W139's
 matched sticky-end improvement.** GC plane mismatch falls 27.30→6.30° with
 localized movement; nearby sugar/phosphate bond and angle deviations barely
 change. All 38 existing backbone links were measured and 126 ordered sugar-volume
@@ -79,8 +79,9 @@ not another work queue; do not repeat them because this handoff is shorter.
    exactly symmetry-equivariant. Matching headers alone does not prove origin;
    W145 now exposes map stage/checkpoint/consuming ancestry directly in the existing
    view profile. Its standalone full and relocated installation pass, and the
-   focused Cedar adaptation is with Hazel for the combined gate. The richer
-   inspection projection and generation/frame evidence remain unimplemented;
+   focused Cedar adaptation is with Hazel for the combined gate. The measured
+   inspection projection is now delivered separately in W146 with full/installed
+   qualification; generation/frame assessment remains unimplemented;
    never equate the associated checkpoint model with proven generating XYZ/ADPs.
    Hazel's C406/Alder temporary integration passes 166 focused tests and a
    source-free installed replay. Before an active merge, reconcile the five
@@ -150,6 +151,13 @@ large-bend repair follow later. No CLI/default activation follows from these doc
   Legacy viewing remains compatible; no coefficient-generation/frame authority
   follows. Hazel's combined gate is pending. [API, commands, retained failures and
   archive](topostitch-periodic.md#w145--expose-map-selection-ancestry-through-the-shared-view-owner).
+- **W146 measured inspection snapshot:** **2,061 full tests +234 subtests** and
+  **120 relocated installed tests +53 subtests** pass. Exact artifact references,
+  ancestry and unknown generation/frame evidence now have a shared JSON surface.
+  External-consumer compatibility with Hazel's installed build passes on the real
+  W138 outputs; W146 remains outside that frozen combined gate. Six regression
+  cases, sandbox failures and scratch retirement are retained in the
+  [W146 ledger](topostitch-periodic.md#w146--bind-a-read-only-model-and-map-inspection-snapshot).
 - **W142 map-owner audit:** nine source files and seven scientific inputs remain
   unchanged. The existing owners and missing generation/frame evidence are now
   mapped explicitly; this is design and cold source inspection, not a new adapter.

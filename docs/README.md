@@ -25,12 +25,14 @@ current instructions; other branches retain their own status and validation pins
   W144 binds an ordinary checkpoint to the diagnostic maps and qualifies
   explicit source-frame sampling across R3 images. W145 adds structured map
   selection ancestry through the existing view resolver; standalone full/installed
-  gates pass, combined qualification remains pending. The detector remains separate.
+  gates pass, combined qualification remains pending. W146 adds the read-only
+  measured inspection snapshot, with full/relocated installed and real-data owner
+  compatibility checks. Producer/frame assessment and the detector remain separate.
   Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W145;
-  the next substantial audit is W146. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W146;
+  the next substantial audit is W147. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

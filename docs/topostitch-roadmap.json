@@ -4,7 +4,7 @@
   "updated": "2026-11-19",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "efbb0336e8cd9380fc12145e0ba4e26d7e54fbab",
+  "audited_code_commit": "c3f52e2945f23ca77eb0c728a1353763a39c1a45",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -378,7 +378,8 @@
         "W141 qualifies Alder shared periodic-grid arithmetic in exact191-file relocated wheel and native bare imports; both reproduce3648W140own/common samples exactly. W142 closes exact Alder full6406+276 passes/no skips and421independent review checks; no new coefficient/data/phase policy or detector.",
         "W142 cold owner audit separates artifact integrity, coefficient-generation evidence, reader/frame compatibility and permitted use. Existing checkpoints/views and shared sampler are the future adapter owners; no new reader, threshold or motion policy.",
         "W144 cold ordinary/diagnostic join and owned-copy inheritance/relocation controls pass. R3 image-space interpolation differs by up to 0.28 sigma; direct Fourier agrees. Existing complete 855-atom ReferenceFrame plus shared sampler preserves 16,416 source-frame comparisons within 6.75e-14 sigma. No new objective, policy or acceptance.",
-        "W145 exposes structured map stage/checkpoint/consuming ancestry through existing view resolution; standalone full/installed and focused Cedar adaptation pass. Legacy viewing stays compatible; producer coordinates, generation policy and frame equivalence remain unproven."
+        "W145 exposes structured map stage/checkpoint/consuming ancestry through existing view resolution; standalone full/installed and focused Cedar adaptation pass. Legacy viewing stays compatible; producer coordinates, generation policy and frame equivalence remain unproven.",
+        "W146 adds a read-only measured inspection snapshot over existing view/reference owners; 2061 full+234 subtests and 120 relocated installed+53 subtests pass. Genuine W138 compatibility over the installed combined owner preserves all inputs. Producer/frame evidence stays unassessed; W146 remains outside the frozen combined gate."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -387,7 +388,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "After combined qualification, build the read-only inspection projection using W145 source identity and existing artifact owners. Bind displayed artifacts and keep associated checkpoint model, coefficient-producing model and comparison frame distinct. W144 complete source-frame sampling remains qualified; generation evidence/origin proof and calibration/motion remain separate. No repeated normalization/FFT/direct/restart matrix; B10, B09 and W122 remain open.",
+      "next_action": "Reuse the existing native coefficient selection/description boundary for exact labels and descriptive headers, separately from FFT/sampling/generation. Keep W146 separate from the frozen W145 combined gate. Preserve caches and qualify any worker extraction at the exact Phenix version; no new reader or launcher. Generation/frame proof, calibrated density, B10/B09 and W122 remain separate gates; do not repeat closed numerical controls.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -441,14 +442,15 @@
         "E_SHARED_GATES_MAP_BOUNDARY",
         "E_MAP_FRAME_COMPOSITION",
         "E_SHARED_C406_COMPATIBILITY",
-        "E_MAP_SELECTION_ORIGIN"
+        "E_MAP_SELECTION_ORIGIN",
+        "E_INSPECTION_SNAPSHOT"
       ],
       "last_audit": {
         "date": "2026-11-19",
-        "code_commit": "efbb0336e8cd9380fc12145e0ba4e26d7e54fbab",
-        "human_update": 145,
+        "code_commit": "c3f52e2945f23ca77eb0c728a1353763a39c1a45",
+        "human_update": 146,
         "reviewer": "Linden",
-        "scope": "Additive map-selection API and standalone qualification; combined gate pending, no map-generation/frame authority or scientific closure."
+        "scope": "Read-only inspection snapshot and qualification only; generation/frame proof, scientific acceptance and broader rendering remain open."
       }
     },
     {
@@ -465,7 +467,8 @@
         "Verified standalone source/candidate/mate viewer exists with rotation, point inspection, contact distances and explicit unrefined/unreviewed state; it does not publish an ordinary trial.",
         "W139/W140 local science checkouts reuse exact native/full coordinates, explicit mate, planes/contacts and phosphate highlights. Headless ChimeraX1.12 and10reference/link checks pass; no map surfaces or browser-layout validation.",
         "W143 local 3D backbone-density prototype retains genuine contours and fixed-frame model/map comparison. User confirms v1 rotation and reviews v2 appearance/dropoff. Final v3 defaults to Slate, strengthens Paper/red/green contrast and remembers independent map contour levels through 6 sigma. Seven inputs and 30 prior surfaces are unchanged; 6,277 mesh checks and 16 offline contracts pass. User then approved v3 appearance and requested shared dynamic inspection throughout NASolve without opening Coot; main docs record the direction.",
-        "W145 exposes structured map stage/checkpoint/consuming ancestry through existing view resolution; standalone full/installed and focused Cedar adaptation pass. Legacy viewing stays compatible; producer coordinates, generation policy and frame equivalence remain unproven."
+        "W145 exposes structured map stage/checkpoint/consuming ancestry through existing view resolution; standalone full/installed and focused Cedar adaptation pass. Legacy viewing stays compatible; producer coordinates, generation policy and frame equivalence remain unproven.",
+        "W146 adds a read-only measured inspection snapshot over existing view/reference owners; 2061 full+234 subtests and 120 relocated installed+53 subtests pass. Genuine W138 compatibility over the installed combined owner preserves all inputs. Producer/frame evidence stays unassessed; W146 remains outside the frozen combined gate."
       ],
       "acceptance": [
         "Create immutable children with exact model/CIF/PHIL inputs, preserve current selection, and reuse existing Coot/model-tree paths; viewing never selects or approves.",
@@ -479,14 +482,15 @@
         "E_BLUNT_ASYM_PLAN",
         "E_BACKBONE_SAVED_DENSITY",
         "E_BACKBONE_DENSITY_PRESENTATION",
-        "E_MAP_SELECTION_ORIGIN"
+        "E_MAP_SELECTION_ORIGIN",
+        "E_INSPECTION_SNAPSHOT"
       ],
       "last_audit": {
         "date": "2026-11-19",
-        "code_commit": "efbb0336e8cd9380fc12145e0ba4e26d7e54fbab",
-        "human_update": 145,
+        "code_commit": "c3f52e2945f23ca77eb0c728a1353763a39c1a45",
+        "human_update": 146,
         "reviewer": "Linden",
-        "scope": "Additive map-selection API and standalone qualification; combined gate pending, no map-generation/frame authority or scientific closure."
+        "scope": "Read-only inspection snapshot and qualification only; generation/frame proof, scientific acceptance and broader rendering remain open."
       }
     },
     {
@@ -2811,6 +2815,43 @@
           "archive_members": 43
         }
       ]
+    },
+    "E_INSPECTION_SNAPSHOT": {
+      "kind": "read_only_measured_inspection_projection",
+      "date": "2026-11-19",
+      "human_update": 146,
+      "code_commit": "c3f52e2945f23ca77eb0c728a1353763a39c1a45",
+      "reference": "docs/topostitch-periodic.md#w146--bind-a-read-only-model-and-map-inspection-snapshot",
+      "result": "W146 adds a read-only measured inspection snapshot over existing view/reference owners; 2061 full+234 subtests and 120 relocated installed+53 subtests pass. Genuine W138 compatibility over the installed combined owner preserves all inputs. Producer/frame evidence stays unassessed; W146 remains outside the frozen combined gate.",
+      "limitation": "Freshly measured hashes are not producer evidence. No map parsing, generation, native fit, checkpoint selection or new frame/motion authority. Initial sandbox failures retained; combined integration separate; all owned qualification scratch retired after archival.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "sha256": "639ada1b3104e6b328925642b22685a28ffe72780fcdd68b121202a88e329190",
+          "size": 663234,
+          "indexed_files": 42,
+          "archive_members": 43,
+          "path": "branch-artifacts/willow/w146-inspection-qualification-2026-11-19.zip"
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w145-real-map-origin.json",
+          "sha256": "6bbc5d31c7fda73d39d48c7d49147e849a95cdc9efd8bbd9635e9133ce551ccd",
+          "size": 2293
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w146-real-inspection.json",
+          "sha256": "39a35e25cb05363e5700d4f4b3d14ca594a6854e5e5ca91d5654636329cc6242",
+          "size": 4071
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w146-retirement.json",
+          "sha256": "5f6bb3afd5331b0fcb5de6ef788abb0f0665512d3e2506fd251d23389acb9383",
+          "size": 257
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -2972,8 +3013,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 145,
-    "next": 146,
+    "current": 146,
+    "next": 147,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -3653,6 +3694,12 @@
         "title": "Expose map selection ancestry through the shared view owner",
         "state": "RECORDED",
         "code_commit": "efbb0336e8cd9380fc12145e0ba4e26d7e54fbab"
+      },
+      {
+        "number": 146,
+        "title": "Bind a read-only model and map inspection snapshot",
+        "state": "RECORDED",
+        "code_commit": "c3f52e2945f23ca77eb0c728a1353763a39c1a45"
       }
     ]
   },
