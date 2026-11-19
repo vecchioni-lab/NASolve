@@ -313,6 +313,12 @@ def _preflight_arguments(request):
     return [*arguments,'refinement.dry_run=True']
 
 
+def validate_declared_site_choice(requested, *, checked, counted_protocol=None):
+    """Admit all-declared-site observation only on the checked ordinary route."""
+    if type(requested) is not bool or (requested and (not checked or counted_protocol is not None)):
+        raise ValueError("Declared-site observation requires the explicit ordinary checked runtime")
+
+
 def validate_runtime_choice(enabled, python_executable, *, runtime_policy=None):
     """Validate the explicit choice before either owner allocates work."""
     if type(enabled) is not bool:

@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-19, C410–C413 refinement and geometry checks — Rowan**.
+Updated **2026-11-19, C410–C415 refinement and geometry checks — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**; C409 source checkpoint **`452b7c45`**; C407/C408 runtime **`f83562b0`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -37,6 +37,19 @@ five-cycle refinements retained the contacts and heavy-atom plane memberships.
 The DF attachment shortened, but a different bond moved farther from its target.
 Changing the generated donor state also changed target values and uncertainties.
 Keep routine metal-workflow adoption deferred until after NASolve is built.
+
+C415 now carries the explicit observation request into ordinary Python Refine
+Doctor trials. One real one-cycle Phenix ML-group child from the same C403
+parent retained the prepared PDU, all eight inputs and the measured Free set.
+The alkyne angles improved while its terminal carbon moved slightly farther
+from the actual ten-atom plane. Doctor recommended inspection and preserved
+the original selection. Eighty focused tests and ten subtests passed. The
+Q06 whole-shape decision remains open.
+
+C414 traced the actual modern parent reader for Hazel. It opened 290 distinct
+dataset files during registry validation, though the child inherits just ten
+operational inputs. Temporary verification files were released. A04 needs
+its own metal-parent verifier before making a retention or pruning claim.
 
 ## C409 handoff, 19 November
 

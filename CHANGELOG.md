@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Keep declared modified-site observations in Refine Doctor trials (C415)
+
+- An explicit Python Refine Doctor call can now ask each ordinary checked trial
+  to observe the modified sites declared by its preparation. Each trial retains
+  its own parent model, source definitions and final native observation.
+- The Doctor report records the request even if the Free-R audit stops the trial.
+  Executed evidence remains on the individual checkpoint. Existing calls and
+  reports retain their defaults, including rejection of unsupported counted ancestry.
+
 ### Measure the shape of a refined base and its linear substituents (C413)
 
 - The explicit Python reader reports each captured local plane on the exact

@@ -113593,7 +113593,25 @@
       "native": "Phenix 2.2.1-6174, two ordinary one-cycle continuations",
       "inputs": "All eight original restraint/protection inputs, observations and Free-R assignments preserved.",
       "observation": "All six requested pair terms already supplied. Both children usable and unselected. Triple screen passes while the whole-arm plane departure grows.",
-      "limits": "Fixed-unit mechanics only. Additional nonzero terms in this combined ordinary route and density-fitting policy remain separate."
+      "limits": "Fixed-unit mechanics only. Additional nonzero terms in this combined ordinary route and density-fitting policy remain separate.",
+      "dependency_census": {
+        "milestone": "C414",
+        "actual_consumer": [
+          "read_registry",
+          "resolve_checkpoint",
+          "inherited_paths"
+        ],
+        "local_distinct_existing_files_with_open_events": 290,
+        "returned_inherited_files": 10,
+        "returned_roles": {
+          "model": 1,
+          "observations": 1,
+          "restraint_or_protection": 8,
+          "phases": 0
+        },
+        "temporary_verification_files_remaining": 0,
+        "limits": "One dynamic file-open census. It excludes stat-only dependencies and does not qualify archive pruning, a metal parent verifier, relocation, or campaign cost."
+      }
     }
   },
   "full_c391_regression_2026_11_18": {
@@ -116480,6 +116498,29 @@
         "Native re-execution depends on the declared source inputs, installation and historical path adaptation; archive validation proves stored bytes, not a portable executable workflow."
       ],
       "receipt_sha256": "651bba419e6789d8a5527a297c4e622929d75be881c86bc2dd4854ffb2036aed"
+    },
+    "ordinary_doctor_forwarding": {
+      "milestone": "C415",
+      "status": "EXPLICIT_ORDINARY_PYTHON_HANDOFF_QUALIFIED",
+      "options": [
+        "correct_native_parallelity=True",
+        "observe_declared_sites=True"
+      ],
+      "optional_report_field": "observe_declared_sites_requested",
+      "native_policy": "round-local-declared-sites-execution-v9",
+      "before": "Doctor could not request broader prepared-site observation or continue a child that required it.",
+      "after": "Explicit ordinary Doctor trials retain graph-bound preparation scope through their existing AutoRefine owner. Omission on that ancestry and counted descendants refuse. Free-R, source choice and original selection remain authoritative.",
+      "native_validation": "Phenix 2.2.1-6174. One complete one-cycle ML-group trial, one processor, on a verified clone of the modern checked PDU root. Initial pilot asserted the full build string in the short tool-version field and stopped before a native trial. The corrected controller verified release and installation root separately.",
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_refinement_declared_sites.py tests/test_refine_doctor.py tests/test_doctor_triage.py tests/test_autorefine_counted.py tests/test_cli_parallelity.py",
+      "focused_results": {
+        "passed": 80,
+        "subtests_passed": 10,
+        "full_regression": "NOT_RUN"
+      },
+      "limits": [
+        "Python opt-in only. This does not add CLI or campaign exposure, modify counted protocols or authorize scientific adoption.",
+        "Shared Doctor flag-group versus measured-observation eligibility issue remains separately queued."
+      ]
     }
   },
   "selected_actual_scalar_geometry_2026_11_19": {

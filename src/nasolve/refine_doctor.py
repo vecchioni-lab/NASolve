@@ -520,17 +520,26 @@ def execute_refine_doctor(
     max_trials: int = 5,
     correct_native_parallelity: bool = False,
     phenix_python_executable: Path | None = None,
+    observe_declared_sites: bool = False,
     progress: Callable[[str, str, Path], None] | None = None,
 ) -> RefineDoctorResult:
     """Audit and run a finite set of sibling refinements without selecting one."""
-    from .refinement_parallelity import validate_runtime_choice, require_runtime_continuation
+    from .refinement_parallelity import (
+        V9_POLICY_ID, require_runtime_continuation, validate_declared_site_choice, validate_runtime_choice,
+    )
     try:
-        validate_runtime_choice(correct_native_parallelity, phenix_python_executable)
+        validate_declared_site_choice(observe_declared_sites, checked=correct_native_parallelity)
+        validate_runtime_choice(correct_native_parallelity, phenix_python_executable,
+                                runtime_policy=V9_POLICY_ID if observe_declared_sites else None)
     except ValueError as exc:
         raise RefineDoctorError(str(exc)) from exc
     runtime_options = (dict(correct_native_parallelity=True,
                             phenix_python_executable=phenix_python_executable)
                        if correct_native_parallelity else {})
+    report_options = {"checked_plane_forces": True} if correct_native_parallelity else {}
+    if observe_declared_sites:
+        runtime_options["observe_declared_sites"] = True
+        report_options["observe_declared_sites_requested"] = True
     if isinstance(max_trials, bool) or not isinstance(max_trials, int) or not 1 <= max_trials <= 10:
         raise RefineDoctorError("Doctor max_trials must be an integer from 1 to 10")
     if isinstance(macro_cycles, bool) or not isinstance(macro_cycles, int) or not 1 <= macro_cycles <= 10:
@@ -545,7 +554,8 @@ def execute_refine_doctor(
         if source.get("usable") is not True:
             raise RefineDoctorError(f"Checkpoint {source.get('id')} is not reusable")
         try:
-            require_runtime_continuation(registry, source, correct_native_parallelity, run=run)
+            require_runtime_continuation(registry, source, correct_native_parallelity, run=run,
+                                         observe_declared_sites=observe_declared_sites)
         except ValueError as exc:
             raise RefineDoctorError(str(exc)) from exc
         inherited = inherited_paths(source, run)
@@ -598,7 +608,7 @@ def execute_refine_doctor(
             "phenix_version": selector_policy.phenix_version,
             "reflection_selector_mode": selector_policy.mode,
             "source_checkpoint": source_id,
-            **({"checked_plane_forces": True} if correct_native_parallelity else {}),
+            **report_options,
             "current_checkpoint_preserved": True,
             "audit": {**audit.details, "status": audit.status, "warnings": list(audit.warnings)},
             "benchmark": [],
@@ -843,7 +853,7 @@ def execute_refine_doctor(
         "phenix_version": selector_policy.phenix_version,
         "reflection_selector_mode": selector_policy.mode,
         "source_checkpoint": source_id,
-        **({"checked_plane_forces": True} if correct_native_parallelity else {}),
+        **report_options,
         "current_checkpoint_preserved": current_preserved,
         "audit": {**audit.details, "status": audit.status, "warnings": list(audit.warnings)},
         "benchmark": benchmark,

@@ -1626,13 +1626,13 @@ def execute_autorefine(
     that path never initializes a missing registry. Ordinary callers retain the
     existing initialization behavior. Later saves still use the registry guard.
     """
-    from .refinement_parallelity import validate_runtime_choice, require_runtime_continuation, V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID, V9_POLICY_ID
+    from .refinement_parallelity import (
+        V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID, V9_POLICY_ID, require_runtime_continuation,
+        validate_declared_site_choice, validate_runtime_choice,
+    )
     from .refinement_counted import LONG_CONTROL_PROTOCOL, control_iteration_cap
     if type(counted_pair_geometry) is not bool or (counted_pair_geometry and counted_protocol is None):
         raise AutoRefineError('Final pair geometry requires an explicit counted control')
-    if type(observe_declared_sites) is not bool or (observe_declared_sites and
-            (not correct_native_parallelity or counted_protocol is not None)):
-        raise AutoRefineError('Declared-site observation requires the explicit ordinary checked runtime')
     counted_policy = V7_POLICY_ID if counted_pair_geometry else V6_POLICY_ID
     if counted_protocol == LONG_CONTROL_PROTOCOL:
         if not counted_pair_geometry:
@@ -1640,6 +1640,8 @@ def execute_autorefine(
         counted_policy = V8_POLICY_ID
     from .refinement_counted import validate_autorefine_control
     try:
+        validate_declared_site_choice(observe_declared_sites, checked=correct_native_parallelity,
+                                      counted_protocol=counted_protocol)
         validate_autorefine_control(counted_protocol, counted_pair_request,
             enabled=correct_native_parallelity, macro_cycles=macro_cycles,
             processor_count=processor_count, real_space_sites=real_space_sites,

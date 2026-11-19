@@ -107,3 +107,87 @@ def test_unavailable_nontriple_observation_never_invents_native_terms(tmp_path,m
     assert report['observation']['status']=='UNASSESSED'
     assert 'atoms'not in report['observation']and 'geometry'not in report['observation']
     assert report['scientific_approval']=='NOT_RUN'
+
+
+def test_doctor_forwards_declared_site_observation_from_the_exact_source(tmp_path, monkeypatch):
+    from nasolve import refine_doctor as doctor
+    from nasolve.checkpoints import read_registry, resolve_checkpoint, select_checkpoint
+    from tests.test_autorefine import make_refine
+    from tests.test_refinement_parallelity import completed
+
+    run, _, _, parent, _, calls = completed(tmp_path, monkeypatch, chemistry="bent", declared_sites=True)
+    select_checkpoint(run, "postmr")
+    tools = tmp_path / "tools"
+    refine = make_refine(tools, final_work=.40, final_free=.48)
+    audit = doctor.FreeRAudit("VALID", True, {}, (), tmp_path / "audit.log")
+    monkeypatch.setattr(doctor, "audit_free_r_flags", lambda *args: audit)
+    trials = [doctor.RefineDoctorTrial("RefineDoctor/ML-group", False),
+              doctor.RefineDoctorTrial("RefineDoctor/ML-coordinates-only", False, adp_mode="none")]
+    result = doctor.execute_refine_doctor(
+        run, refine, tools / "phenix.mtz.dump", phenix_version="2.2.1-6174",
+        from_checkpoint=parent["id"], macro_cycles=5, trial_recipes=trials, max_trials=2,
+        correct_native_parallelity=True, phenix_python_executable=Path(sys.executable),
+        observe_declared_sites=True,
+    )
+    assert result.current_checkpoint_preserved
+    assert json.loads(result.report_path.read_text())["observe_declared_sites_requested"] is True
+    assert calls == ["preflight", "refine"] * 3
+    _, updated = read_registry(run)
+    assert updated["current"] == "postmr" and len(result.trials) == 2
+    parent_request = runtime.read_execution_request(
+        run, json.loads((run/parent["outputs"]["parallelity_execution"]["relative_path"]).read_bytes())["request"],
+        checkpoint=parent["id"],
+    )
+    for published in result.trials:
+        child = resolve_checkpoint(updated, published.checkpoint_id)
+        assert child["parent"] == parent["id"]
+        sealed = child["outputs"]["parallelity_execution"]
+        record = runtime.validate_execution(run, sealed, checkpoint=child["id"], parent=parent["id"], usable=True)
+        request = runtime.read_execution_request(run, record["request"], checkpoint=child["id"])
+        assert request["policy_id"] == runtime.V9_POLICY_ID
+        assert request["inputs"][1]["sha256"] == parent["model"]["sha256"]
+        assert request["chemistry_projections"] == parent_request["chemistry_projections"]
+        report = runtime.read_execution_plane_geometry(run, sealed, checkpoint=child["id"], parent=parent["id"],
+                                                      model=published.model_path)
+        assert report["declared_sites"]["A:1"]["component"] == "Q17"
+
+
+@pytest.mark.parametrize("value,enabled", [(True,False),(1,True)])
+def test_doctor_refuses_invalid_observation_choice_before_allocating_work(tmp_path, value, enabled):
+    from nasolve.refine_doctor import execute_refine_doctor, RefineDoctorError
+    with pytest.raises(RefineDoctorError, match="Declared-site observation"):
+        execute_refine_doctor(tmp_path/"absent", tmp_path/"refine", tmp_path/"dump",
+            phenix_version="2.2.1-6174", observe_declared_sites=value,
+            correct_native_parallelity=enabled, phenix_python_executable=Path(sys.executable))
+    assert not list(tmp_path.iterdir())
+
+
+def test_doctor_observation_does_not_override_counted_ancestry(tmp_path, monkeypatch):
+    from tests.test_autorefine_counted import case
+    from nasolve.refine_doctor import execute_refine_doctor, RefineDoctorError
+    run, refine, dump, options = case(tmp_path)
+    with patch("subprocess.Popen", side_effect=AssertionError("Unadmitted Doctor trial started")):
+        with pytest.raises(RefineDoctorError, match="inherits counted pair restraints"):
+            execute_refine_doctor(run, refine, dump, from_checkpoint=options["from_checkpoint"],
+                phenix_version="2.2.1-6174", correct_native_parallelity=True,
+                phenix_python_executable=Path(sys.executable), observe_declared_sites=True)
+    assert not (run/"RefineDoctor").exists() and not (run/"AutoRefine/round_002").exists()
+
+
+def test_doctor_cannot_silently_drop_observation_and_invalid_free_r_cannot_start_a_trial(tmp_path, monkeypatch):
+    from nasolve import refine_doctor as doctor
+    from tests.test_refinement_parallelity import completed
+    run, _, _, parent, _, calls = completed(tmp_path, monkeypatch, chemistry="bent", declared_sites=True)
+    options = dict(phenix_version="2.2.1-6174", correct_native_parallelity=True,
+                   from_checkpoint=parent["id"], phenix_python_executable=Path(sys.executable))
+    flags = doctor.FreeRAudit("INVALID", False, {}, (), tmp_path/"audit.log")
+    monkeypatch.setattr(doctor,"audit_free_r_flags",lambda *a: flags)
+    with pytest.raises(doctor.RefineDoctorError, match="declared-site chemistry"):
+        doctor.execute_refine_doctor(run, tmp_path/"tools/phenix.refine", tmp_path/"tools/phenix.mtz.dump", **options)
+    assert not (run/"RefineDoctor").exists()
+    result = doctor.execute_refine_doctor(run,tmp_path/"tools/phenix.refine",tmp_path/"tools/phenix.mtz.dump",
+        observe_declared_sites=True, **options)
+    payload = json.loads(result.report_path.read_text())
+    assert result.trials == () and result.status == "REFINE_DOCTOR_FLAG_REPAIR_REQUIRED"
+    assert payload["observe_declared_sites_requested"] and payload["automatic_selection"] is False
+    assert calls == ["preflight","refine"]

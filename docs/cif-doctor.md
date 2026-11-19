@@ -13549,8 +13549,8 @@ reuses the byte-identical frozen v3 native helper. Historical requests and the
 ordinary triple-only default are unchanged. The existing process, preflight,
 phase, written-model and checkpoint owners remain responsible for execution.
 Ancestors, including manual imports, retain the observation requirement: dropping
-it refuses before a new round. Counted combinations and Refine Doctor forwarding
-are not qualified; Refine Doctor currently refuses such descendants explicitly.
+it refuses before a new round. C415 extends explicit forwarding to ordinary
+Python Refine Doctor trials. Counted combinations remain separately qualified.
 
 `refinement_parallelity.read_execution_chemistry_sites(run, reference,
 checkpoint=..., parent=..., model=...)` reads the sealed selected-site observation
@@ -13569,6 +13569,23 @@ does not itself provide a non-triple chemical acceptance screen.
 Qualification is recorded under `declared_site_native_observation_2026_11_18`
 in the existing evidence ledger; source/installed tests are distinct from actual
 native execution and the full regression gate.
+
+### Keep seeing the modified base in Refine Doctor trials (C415)
+
+Pass `observe_declared_sites=True` and `correct_native_parallelity=True` to
+`execute_refine_doctor` with the configured Phenix Python executable. The
+existing registered AutoRefine owner resolves each trial’s named parent and
+its prepared definitions. The ordinary Free-R audit still runs before any
+trial. The optional Doctor field `observe_declared_sites_requested` records
+intent. An actual observation belongs to that child’s sealed execution.
+
+In a one-cycle Phenix 2.2.1-6174 ML-group trial, the original checked PDU model
+supplied all eight inherited restraint/protection inputs. All measured intensities,
+sigmas and original Free-R assignments survived. The child reached the narrow
+alkyne screen and remained available for inspection. Its whole substituent
+moved slightly farther from the captured plane. This verifies the Python
+handoff. Scientific suitability still requires inspection. Counted protocols,
+CLI flags and campaign defaults retain their existing behavior.
 
 ### Measure the achieved plane of a refined base (C413)
 

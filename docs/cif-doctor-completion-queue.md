@@ -19,6 +19,8 @@ tests PDU with and without matching simulated scattering from its two outer atom
 C412 demonstrates registered continuation from a checked root and exposes a passing
 angle screen alongside worsening whole-arm displacement. C413 now measures the
 actual captured local plane and separately locates its implied linear atoms.
+C415 now carries that site observation into ordinary Python Refine Doctor
+trials. A real one-cycle child preserved the input data and chemistry scope.
 The original mixed scaffold/ATL and unfamiliar-ligand challenge remain Q07, followed
 by retained chemistry boundaries Q08–Q14 and reporting/integration Q15/Q16.
 
@@ -292,7 +294,8 @@ heavy bond/angle targets and the plane correctly delivered in both saved control
 No missing local term or new target repair is established. First use source-bound
 actual neighborhoods to distinguish achieved geometry from delivery; keep H,
 cross-site, symmetry and wider chemical-state questions explicit. Ordinary V9
-observation is separate from Refine Doctor/counting forwarding and automatic repair.
+observation is now forwarded by the explicit ordinary Doctor route (C415).
+Counted forwarding and automatic chemical repair remain separate.
 
 **C407 active:** reuse C15 scalar measurements on C406's sealed actual-final
 site observations. Keep source identities, global indices, selected/whole counts
@@ -335,6 +338,24 @@ were already present. These narrow angle checks pass even as the terminal carbon
 moves farther from the captured base plane. The on-demand C413 plane report now
 measures plane members and linearly related atoms separately. An angle improvement
 alone does not establish chemical survival. No new scientific acceptance cutoff.
+
+**C415 ordinary Doctor handoff complete.** Two fixture trials preserve the
+same named source while a different checkpoint stays selected. A real one-cycle
+ML-group trial from C403 then preserved the declared PDU site, phosphate
+protection and all original measured intensities/sigmas and flags. The narrow
+angles improved and the whole-arm plane departure increased slightly. Doctor
+recommended inspection. No counted request, automatic selection or new chemical
+acceptance threshold was introduced.
+
+**Shared Doctor observation-count follow-up.** A flag may exist for an HKL
+without a measured intensity. The legacy individual-ADP eligibility ratio uses
+the independent flag-group count as its observation count. For this dataset the
+two ratios fall on opposite sides of the existing three-per-atom rule. Resolution
+separately excludes that recipe here. Preserve the original Free-R assignment
+and inconsistency checks. Qualify a separate count from the chosen observation
+array for merged and anomalous data, including missing measurements, before
+using it for recipe eligibility. This shared issue does not affect the explicit
+ML-group test or Hazel’s matched metal trials.
 
 **Scientific stopping boundary:** C403 uses substituted-scaffold observations, not
 a PDU crystal. Keep its existing REVIEW screen and whole-substituent measurements,
@@ -542,7 +563,7 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Complete for recorded alternatives, selected-model phasing, Coot, cold inspection and the ordinary five-cycle refinement handoff. Actual chemical survival/effective restraint behavior is Q06; no default activation or historical migration. |
-| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C391 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control, chemical observation and actual final pair measurements. C392/C395 record real PDU weight fallback and actual source membership; C396 changes screening privately but does not repair the model; C393/W134 qualify combined observation and ordinary canonical continuation without claiming chemical repair. C400 qualifies an explicit longer control and matched native/zero/full pair mechanics; all arms stop early and chemical acceptance remains open. C403–C407 qualify fresh ordinary PDU delivery and source-selected actual local geometry, broader explicit observation and shared scalar readout; these do not repair the residual strain. Wider protocols and achieved PDU/DF geometry plus held-out survival remain open. Mechanics or a readable dictionary alone is insufficient. |
+| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C391 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control, chemical observation and actual final pair measurements. C392/C395 record real PDU weight fallback and actual source membership; C396 changes screening privately but does not repair the model; C393/W134 qualify combined observation and ordinary canonical continuation without claiming chemical repair. C400 qualifies an explicit longer control and matched native/zero/full pair mechanics; all arms stop early and chemical acceptance remains open. C403–C415 qualify ordinary PDU delivery, plane and scalar measurements, and an explicit ordinary Doctor handoff. The matched bond correction improves its target while a whole-arm bend can remain. Wider protocols and achieved PDU/DF geometry plus held-out survival remain open. Mechanics or a readable dictionary alone is insufficient. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |
