@@ -688,9 +688,11 @@ backbone detector. Do not introduce a Willow dependency on unmerged Alder;
 reuse this owner after integration, with the ordinary ML source/policy adapter
 still explicit. [Qualification and limits](topostitch-periodic.md#w141--qualify-the-shared-periodic-grid-sampler).
 
-### Saved-map inspection boundary (W142 design; not implemented)
+<a id="saved-map-inspection-boundary-w142-design-not-implemented"></a>
 
-The next small S06 implementation is a read-only adapter over existing owners,
+### Saved-map inspection boundary (W142 design; W145 selection identity delivered)
+
+The remaining S06 implementation is a read-only inspection projection over existing owners,
 after the shared branch integration. It must not add another checkpoint registry,
 map finder, sampling engine or native writer wrapper. The cold audit covers Cedar
 `4bfffbca` and Alder `9c4c3b05`; it changes no runtime policy.
@@ -743,7 +745,15 @@ support. This does not remove absolute interpolation error, prove an undeclared
 origin or define a new sampling/noise policy. The existing native/metal sampler
 and its defaults are unchanged.
 
-The first implementation should only report validated source/ancestor identity,
+W145 delivers the first selection-identity slice through `ViewProfile.map_origin`:
+map stage, associated refinement checkpoint and ordered consuming checkpoints.
+It reuses existing resolution and keeps legacy Coot behavior unchanged, including
+maps whose ancestor model is absent. Standalone full/installed gates pass; the
+Cedar adaptation is focused-qualified and awaits the combined gate. This is map
+navigation provenance, not proof of generating XYZ/ADPs. The remaining projection
+should bind displayed artifacts and report generation/frame evidence separately.
+
+The inspection projection should only report validated source/ancestor identity,
 generation evidence or its absence, frame correspondence and descriptive samples.
 Its distinct regressions should cover substituted bytes/labels, inherited maps,
 unproven frames and relocation through declared anchors. Existing W141 arithmetic

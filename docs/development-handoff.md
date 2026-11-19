@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-18**, through **W144**. **W140 adds backbone and saved-map evidence to W139's
+Updated **2026-11-19**, through **W145**. **W140 adds backbone and saved-map evidence to W139's
 matched sticky-end improvement.** GC plane mismatch falls 27.30→6.30° with
 localized movement; nearby sugar/phosphate bond and angle deviations barely
 change. All 38 existing backbone links were measured and 126 ordered sugar-volume
@@ -67,7 +67,7 @@ not another work queue; do not repeat them because this handoff is shorter.
    C388 qualifies passive chemistry coexistence and focused ordinary forwarding;
    it does not establish a successful repaired structure.
 4. W141 qualifies Alder's shared sampling primitive against every W140 sample.
-   After branch integration, implement the [W142 saved-map inspection boundary](topostitch.md#saved-map-inspection-boundary-w142-design-not-implemented)
+   After branch integration, implement the [W142 saved-map inspection boundary](topostitch.md#saved-map-inspection-boundary-w142-design-w145-selection-identity-delivered)
    through existing checkpoint/view and map owners. Report artifact integrity,
    generation evidence, frame compatibility and permitted scientific use separately.
    Output work-set membership alone does not prove work-only generation. Preserve
@@ -77,7 +77,11 @@ not another work queue; do not repeat them because this handoff is shorter.
    inherited maps and negative controls. Carry explicit complete source/image
    correspondence into density sampling: raw image-space interpolation is not
    exactly symmetry-equivariant. Matching headers alone does not prove origin;
-   the maintained adapter and broader frame policies remain unimplemented.
+   W145 now exposes map stage/checkpoint/consuming ancestry directly in the existing
+   view profile. Its standalone full and relocated installation pass, and the
+   focused Cedar adaptation is with Hazel for the combined gate. The richer
+   inspection projection and generation/frame evidence remain unimplemented;
+   never equate the associated checkpoint model with proven generating XYZ/ADPs.
    Hazel's C406/Alder temporary integration passes 166 focused tests and a
    source-free installed replay. Before an active merge, reconcile the five
    documentation/contract conflicts and preserve both Cedar replay-PDB and Alder
@@ -137,10 +141,15 @@ large-bend repair follow later. No CLI/default activation follows from these doc
   All 1,417 tracked files remain unchanged; source/dependency status is clean
   and the process stopped. The verified archive retains commands/XML and the
   separate old-v8 map-owner compatibility check. Owned source/test scratch is
-  retained under the explicit retirement plan; cleanup is pending. Scientific
-  runs and installed packages remain. This source gate does
+  retired after rechecking the saved plan on 2026-11-19. Scientific runs and
+  installed packages remain. This source gate does
   not qualify an active branch merge or scientifically accept a model.
   [Exact gate, archive and scope](topostitch-periodic.md#shared-c406-qualification).
+- **W145 map-source identity:** standalone Willow **2,055 tests +234 subtests**,
+  focused/relocated installed **114 +53**, and Cedar adaptation **182 +31** pass.
+  Legacy viewing remains compatible; no coefficient-generation/frame authority
+  follows. Hazel's combined gate is pending. [API, commands, retained failures and
+  archive](topostitch-periodic.md#w145--expose-map-selection-ancestry-through-the-shared-view-owner).
 - **W142 map-owner audit:** nine source files and seven scientific inputs remain
   unchanged. The existing owners and missing generation/frame evidence are now
   mapped explicitly; this is design and cold source inspection, not a new adapter.
@@ -215,7 +224,9 @@ morning readback summary; `ScienceCheckouts/Linden/2026-11-17/review.html` shows
 the earlier short matched effect. They answer different questions.
 
 Rowan owns the shared lab report; coordinate its links instead of duplicating
-reports or reminders. The current user-authorized work window ends at 23:00 UK.
+reports or reminders. The 2026-11-19 work window ends at **14:30 UK**, with an afternoon interruption
+and the shared lab report planned for **23:00 UK**; do not infer unattended
+resumption from the report time.
 Follow the [lightweight checkout policy](collaboration.md#lightweight-science-checkouts).
 All scientific payloads and reports remain local; documentation pushes do not
 authorize raw-data publication.

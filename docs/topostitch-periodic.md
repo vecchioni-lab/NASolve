@@ -7994,7 +7994,7 @@ and initial/corrected results. These software suites are not new Phenix refineme
 
 ### Map-source and frame audit
 
-The [existing design contract](topostitch.md#saved-map-inspection-boundary-w142-design-not-implemented)
+The [existing design contract](topostitch.md#saved-map-inspection-boundary-w142-design-w145-selection-identity-delivered)
 now maps responsibilities to checkpoint/run-context/view, native-written-model
 and shared grid-sampling owners. It separates artifact integrity, generation
 evidence, coordinate correspondence and permitted scientific use. Ordinary ML
@@ -8275,7 +8275,12 @@ NASolve anchor `branch-artifacts/willow/w144-c406-qualification-2026-11-18.tar.g
 **13 indexed files + manifest**, 254,249 bytes, SHA256
 `738138a9569d76d58b4ae4df905c37fe52d11c9a47e2a25752a0dabb773031b7`. Every indexed member was independently checked.
 
-Owned detached source and test scratch are stopped and retained under `branch-artifacts/willow/w144-c406-retirement-plan-2026-11-18.json` at NASolve anchor. Cleanup is explicitly pending after the evening cutoff; the verified archive is complete. Recheck the recorded inode/device and absent process group before retiring those two roots.
+On 2026-11-19, the deferred retirement reverified the stopped process group,
+source identity, recorded inode/device and all 13 archived members, then removed
+only the two planned software/test roots: **246,332 regular files /
+4,477,519,863 logical bytes**, 50.941 s. The completion receipt is
+`branch-artifacts/willow/w144-c406-retirement-2026-11-18.json` at NASolve anchor.
+No scientific run, qualified installation or shared dependency was removed.
 
 Scientific inputs/runs, qualified installed packages and shared dependencies
 remain.
@@ -8285,9 +8290,8 @@ and actual native observation checks retain their own scope and evidence.
 The source-gate records remain at NASolve anchor
 `branch-artifacts/willow/w144-c406-full-suite-2026-11-18/`.
 The archived closure ran with `--archive-only` and is not an idempotent cleanup
-command: do not rerun it against already-created receipts. The only remaining
-operation is ownership-checked retirement of the two stopped roots in the saved
-plan. Do not repeat the full suite or remove scientific/installed artifacts.
+command: do not rerun it against already-created receipts. The subsequent ownership-checked retirement is complete. Do not repeat the
+full suite or remove scientific/installed artifacts.
 
 The exact C406 candidate also cold-replays the genuine W138 v8 child through
 existing execution/checkpoint/view owners: native-written model validation,
@@ -8297,3 +8301,87 @@ the 6.737 s check performs no FFT, native fit or child-process launch. This
 confirms old-map-owner continuity, separately from the new observation feature.
 The exact executed runner is retained as `runners/w144-c406-map-owner-compatibility.py`;
 the original W144 runner was restored byte-for-byte from its immutable archive.
+
+
+## W145 — Expose map selection ancestry through the shared view owner
+
+**2026-11-19; additive backend API.** Previously, a `ViewProfile` identified the
+inspected model's checkpoint but described map ancestry only in its human label.
+It now carries optional, keyword-only `map_origin`: immutable
+`MapOrigin(stage, checkpoint_id, inherited_through)`. The existing stage choice
+and observation-compatible ancestry traversal construct this value directly.
+For manual-002 → manual-001 → refine-001, the inspected ID stays manual-002;
+the map owner is refine-001 and the route is `(manual-002, manual-001)`.
+PostMR consumes a Phaser/AutoSol stage map without inventing a producing checkpoint.
+
+Existing positional construction, file selection, labels, errors and Coot launch
+behavior are unchanged. An available legacy map can still be viewed when its
+ancestor model is gone. This is **selection identity**, not authenticated producer
+XYZ/ADPs, coefficient-generation policy, frame equivalence or permission to move
+coordinates. No map parsing, FFT, native fit, GUI launch, saved-schema migration,
+checkpoint selection or detector is added. The architecture records the API;
+the wider inspection projection remains partial.
+
+### Validation and compatibility
+
+- Source is Willow `efbb0336e8cd9380fc12145e0ba4e26d7e54fbab`; runtime source equals
+  preceding `51af3423`, with a follow-up placing new cases before `unittest.main`.
+  Five new cases cover direct/stage selection, requested versus current,
+  multi-hop inheritance, PostMR's consumer role and old positional construction.
+  The baseline fails on the absent field. The first focused run finds a test-only
+  macOS path-alias comparison; resolving the expected temporary root fixes it.
+  Both attempts remain. The direct unittest entry point runs all **36 cases**.
+- **114 focused tests +53 subtests** pass in 9.97 s. **2,055 complete Willow
+  tests +234 subtests** pass in 105.06 s, zero skips, 720 tracked files unchanged,
+  source/dependency clean and process stopped. XML totals and hashes are independently
+  checked. This is the smaller standalone Willow source, not Cedar's 12,043-test
+  source gate or the forthcoming combined integration gate.
+- A wheel built from the exact pin passes **114 installed tests +53 subtests**,
+  CLI/import checks and all **89 installed file** hashes after its build-source
+  and old installation paths vanish. The three pre-existing ligand provenance
+  JSON sidecars remain outside this branch's wheel; no packaging policy changes.
+  The tests import the relocated package, with explicit pinned NARestraints.
+- The first full-suite controller setup stops before any test process: old Willow
+  lacks the newer `run_owned_command` helper. The corrected external controller
+  uses Cedar's qualified process owner while the **test process** imports only the
+  pinned Willow source and NARestraints. Both setup records are preserved; no
+  second test execution is claimed for the failed setup.
+- Exact Cedar adaptation: base `86bdbb41ceef0693ea75c2bda385dae9c1358c44`, local
+  commit `ae0929364c6994cb9bab643fe4df32f436e82f8b`, **182 focused tests +31 subtests**
+  in 15.95 s; seven new Cedar assertions fail before. It preserves the positional
+  `preparation_attempt` slot, preparation alternatives and explicit attempts.
+  AutoSol's saved validation-model checkpoint remains separate from the stage-map
+  origin; it is not relabelled as the coefficient-producing model. Hazel reviewed
+  and applied all five exact file hashes to the isolated integration candidate.
+  **Its combined full/installed gate is still pending**, with no active branch merge.
+
+Exact source/installed command forms (full argv/environment are retained locally):
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <qualified-python> -B -m pytest -q -p no:cacheprovider tests/test_coot_view.py tests/test_coot_anomalous.py tests/test_coot_runtime.py tests/test_doctor_inspection.py tests/test_checkpoints.py tests/test_autorefine.py --junitxml=<receipt.xml>
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <qualified-python> -B -m tests.test_coot_view
+PYTHONDONTWRITEBYTECODE=1 <qualified-python> -B <NASolve>/branch-artifacts/willow/runners/w145-full-suite.py --checkout <pinned-Willow-copy> --commit efbb0336e8cd9380fc12145e0ba4e26d7e54fbab --process-owner <qualified-Cedar> --output <new-receipts> --dependency-source <pinned-NARestraints> --basetemp <fresh-owned-scratch>
+PYTHONDONTWRITEBYTECODE=1 <qualified-python> -B <NASolve>/branch-artifacts/willow/runners/w145-install-view.py
+```
+
+NARestraints remains `a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691`;
+Python 3.12.14 / pytest 9.2.0. Tests use synthetic inputs/executables, not a live
+Phenix/Coot execution. The installed command sets `PYTHONPATH` to the relocated
+package and that exact dependency, with source export absent.
+
+At NASolve anchor, `branch-artifacts/willow/w145-map-origin-qualification-2026-11-19.zip`
+retains **42 indexed files + manifest**, 620,699 bytes, SHA256
+`dea71ae25f3d49b940c077eb7ad89ff0838571dd8e09c81fda730e4e505e209b`.
+Every member was checked. It includes exact patches, the Cedar adaptation bundle,
+wheel, logs/XML, initial failures and source/installed manifests; no scientific
+payloads. The original W144 archive and all scientific packets are unchanged.
+After archival and stopped-owner checks, four owned software/test roots were
+retired: **6,079 regular files / 156,785,031 logical bytes**. The wheel and patch
+bundle remain archived; shared dependencies and all original scientific data remain.
+Receipt: `branch-artifacts/willow/w145-owned-retirement.json` at NASolve anchor.
+
+Next is the shared inspection projection using this source identity, after the
+combined qualification: bind exact displayed artifacts, keep associated model,
+actual coefficient-generation model and comparison frame distinct, and retain
+unknown evidence. Do not repeat the closed sampler/Fourier/normalization probes.
+S06/S07 remain **PARTIAL**; no automatic bending or accepted repair follows.

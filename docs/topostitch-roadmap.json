@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "kind": "topostitch-development-roadmap",
-  "updated": "2026-11-18",
+  "updated": "2026-11-19",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "4bfffbca068cfe74cc926ff68fefca5ba5c83c3a",
+  "audited_code_commit": "efbb0336e8cd9380fc12145e0ba4e26d7e54fbab",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -377,7 +377,8 @@
         "W140 reuses A72 periodic sampling on four existing ordinary ML maps at456backbone atoms, binding generation policy and own/common coordinates. All176Free-R indices are included: inspection-only, distinct from maintained metal MLHL capture; no threshold or density-guided motion.",
         "W141 qualifies Alder shared periodic-grid arithmetic in exact191-file relocated wheel and native bare imports; both reproduce3648W140own/common samples exactly. W142 closes exact Alder full6406+276 passes/no skips and421independent review checks; no new coefficient/data/phase policy or detector.",
         "W142 cold owner audit separates artifact integrity, coefficient-generation evidence, reader/frame compatibility and permitted use. Existing checkpoints/views and shared sampler are the future adapter owners; no new reader, threshold or motion policy.",
-        "W144 cold ordinary/diagnostic join and owned-copy inheritance/relocation controls pass. R3 image-space interpolation differs by up to 0.28 sigma; direct Fourier agrees. Existing complete 855-atom ReferenceFrame plus shared sampler preserves 16,416 source-frame comparisons within 6.75e-14 sigma. No new objective, policy or acceptance."
+        "W144 cold ordinary/diagnostic join and owned-copy inheritance/relocation controls pass. R3 image-space interpolation differs by up to 0.28 sigma; direct Fourier agrees. Existing complete 855-atom ReferenceFrame plus shared sampler preserves 16,416 source-frame comparisons within 6.75e-14 sigma. No new objective, policy or acceptance.",
+        "W145 exposes structured map stage/checkpoint/consuming ancestry through existing view resolution; standalone full/installed and focused Cedar adaptation pass. Legacy viewing stays compatible; producer coordinates, generation policy and frame equivalence remain unproven."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -386,7 +387,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Implement the W142 read-only saved-map boundary through existing checkpoint/view owners after shared integration. W144 qualifies actual-child resolution and complete source-frame sampling; preserve explicit correspondence instead of silently equating interpolated symmetry images. Generation evidence and origin/setting proof remain separate from hash/header checks. Calibration and motion follow separately; no repeated normalization/FFT/direct/restart matrix. B10 controls, B09 and W122 activation remain open.",
+      "next_action": "After combined qualification, build the read-only inspection projection using W145 source identity and existing artifact owners. Bind displayed artifacts and keep associated checkpoint model, coefficient-producing model and comparison frame distinct. W144 complete source-frame sampling remains qualified; generation evidence/origin proof and calibration/motion remain separate. No repeated normalization/FFT/direct/restart matrix; B10, B09 and W122 remain open.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -439,14 +440,15 @@
         "E_SHARED_GRID_SAMPLER",
         "E_SHARED_GATES_MAP_BOUNDARY",
         "E_MAP_FRAME_COMPOSITION",
-        "E_SHARED_C406_COMPATIBILITY"
+        "E_SHARED_C406_COMPATIBILITY",
+        "E_MAP_SELECTION_ORIGIN"
       ],
       "last_audit": {
-        "date": "2026-11-18",
-        "code_commit": "0a398d15ee465b12ed44b7e749221e54a8e343a9",
-        "human_update": 144,
+        "date": "2026-11-19",
+        "code_commit": "efbb0336e8cd9380fc12145e0ba4e26d7e54fbab",
+        "human_update": 145,
         "reviewer": "Linden",
-        "scope": "Read-only real-checkpoint and explicit source-frame/sampler composition; no production adapter or scientific acceptance. Separate C406 full source gate and old-v8 compatibility pass; no combined branch or scientific acceptance."
+        "scope": "Additive map-selection API and standalone qualification; combined gate pending, no map-generation/frame authority or scientific closure."
       }
     },
     {
@@ -462,7 +464,8 @@
         "Standalone inspect/fit/preview commands exist; ordinary checkpoint/campaign publication and GUI actions are not integrated.",
         "Verified standalone source/candidate/mate viewer exists with rotation, point inspection, contact distances and explicit unrefined/unreviewed state; it does not publish an ordinary trial.",
         "W139/W140 local science checkouts reuse exact native/full coordinates, explicit mate, planes/contacts and phosphate highlights. Headless ChimeraX1.12 and10reference/link checks pass; no map surfaces or browser-layout validation.",
-        "W143 local 3D backbone-density prototype retains genuine contours and fixed-frame model/map comparison. User confirms v1 rotation and reviews v2 appearance/dropoff. Final v3 defaults to Slate, strengthens Paper/red/green contrast and remembers independent map contour levels through 6 sigma. Seven inputs and 30 prior surfaces are unchanged; 6,277 mesh checks and 16 offline contracts pass. User then approved v3 appearance and requested shared dynamic inspection throughout NASolve without opening Coot; main docs record the direction."
+        "W143 local 3D backbone-density prototype retains genuine contours and fixed-frame model/map comparison. User confirms v1 rotation and reviews v2 appearance/dropoff. Final v3 defaults to Slate, strengthens Paper/red/green contrast and remembers independent map contour levels through 6 sigma. Seven inputs and 30 prior surfaces are unchanged; 6,277 mesh checks and 16 offline contracts pass. User then approved v3 appearance and requested shared dynamic inspection throughout NASolve without opening Coot; main docs record the direction.",
+        "W145 exposes structured map stage/checkpoint/consuming ancestry through existing view resolution; standalone full/installed and focused Cedar adaptation pass. Legacy viewing stays compatible; producer coordinates, generation policy and frame equivalence remain unproven."
       ],
       "acceptance": [
         "Create immutable children with exact model/CIF/PHIL inputs, preserve current selection, and reuse existing Coot/model-tree paths; viewing never selects or approves.",
@@ -475,14 +478,15 @@
         "E_VIEW",
         "E_BLUNT_ASYM_PLAN",
         "E_BACKBONE_SAVED_DENSITY",
-        "E_BACKBONE_DENSITY_PRESENTATION"
+        "E_BACKBONE_DENSITY_PRESENTATION",
+        "E_MAP_SELECTION_ORIGIN"
       ],
       "last_audit": {
-        "date": "2026-11-18",
+        "date": "2026-11-19",
+        "code_commit": "efbb0336e8cd9380fc12145e0ba4e26d7e54fbab",
+        "human_update": 145,
         "reviewer": "Linden",
-        "code_commit": "081a532ce46a46ec67fbcd310e500e06ecd2ee8e",
-        "human_update": 143,
-        "scope": "Local display study: v1/v2 feedback and explicit v3 human visual approval recorded; v3 offline/data checks pass. Shared cross-stage inspector direction approved, integration still planned; no runtime or scientific acceptance change."
+        "scope": "Additive map-selection API and standalone qualification; combined gate pending, no map-generation/frame authority or scientific closure."
       }
     },
     {
@@ -2770,7 +2774,7 @@
       "human_update": 144,
       "code_commit": "589659201a15b4284e93e2c4dcfc47cdefbdcb64",
       "reference": "docs/topostitch-periodic.md#shared-c406-qualification",
-      "result": "12043 tests +293 subtests pass; two expected native opt-in collection skips; 3104.30s. All 1417 tracked files unchanged, source/dependency clean and process stopped. Cold genuine W138 v8 checkpoint/native output/map join remains compatible. Archive verified; owned source/test scratch stopped and retained with cleanup pending.",
+      "result": "12043 tests +293 subtests pass; two expected native opt-in collection skips; 3104.30s. All 1417 tracked files unchanged, source/dependency clean and process stopped. Cold genuine W138 v8 checkpoint/native output/map join remains compatible. Archive verified; owned source/test scratch retired on 2026-11-19 after archive/ownership rechecks.",
       "limitation": "Frozen Cedar source qualification and old-map continuity only. Separate installed/native and Alder integration evidence retain their scope. No active Willow/Alder merge, new sampling policy, browser qualification or scientific acceptance. Scientific payloads excluded from Git.",
       "local_receipts": [
         {
@@ -2780,6 +2784,31 @@
           "size": 254249,
           "indexed_files": 13,
           "archive_members": 14
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w144-c406-retirement-2026-11-18.json",
+          "sha256": "f91d3df68283961070310ab0d34d2de9e855c6f971d042d322143d8b7f3baad3",
+          "size": 515
+        }
+      ]
+    },
+    "E_MAP_SELECTION_ORIGIN": {
+      "kind": "additive_view_map_selection_identity",
+      "date": "2026-11-19",
+      "human_update": 145,
+      "code_commit": "efbb0336e8cd9380fc12145e0ba4e26d7e54fbab",
+      "reference": "docs/topostitch-periodic.md#w145--expose-map-selection-ancestry-through-the-shared-view-owner",
+      "result": "MapOrigin exposes selected map stage/checkpoint and ordered consumers without parsing labels or requiring ancestor-model reads. Five new cases fail before; 114 focused+53 subtests, 2055 full+234 subtests and 114 relocated installed+53 subtests pass. 720 tracked source files and 89 installed files unchanged. Cedar adaptation passes 182+31 and preserves preparation/saved AutoSol contracts.",
+      "limitation": "Navigation provenance only, not producing XYZ/ADPs, coefficient-generation policy or frame equivalence. No GUI launch, FFT, native fit, detector, schema migration or scientific acceptance. Combined Alder/Cedar gate pending; no active merge. Initial setup/test failures preserved and owned qualification scratch retired.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w145-map-origin-qualification-2026-11-19.zip",
+          "sha256": "dea71ae25f3d49b940c077eb7ad89ff0838571dd8e09c81fda730e4e505e209b",
+          "size": 620699,
+          "indexed_files": 42,
+          "archive_members": 43
         }
       ]
     }
@@ -2943,8 +2972,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 144,
-    "next": 145,
+    "current": 145,
+    "next": 146,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -3618,6 +3647,12 @@
         "title": "Bind saved density to the inspected frame",
         "state": "RECORDED",
         "code_commit": "0a398d15ee465b12ed44b7e749221e54a8e343a9"
+      },
+      {
+        "number": 145,
+        "title": "Expose map selection ancestry through the shared view owner",
+        "state": "RECORDED",
+        "code_commit": "efbb0336e8cd9380fc12145e0ba4e26d7e54fbab"
       }
     ]
   },

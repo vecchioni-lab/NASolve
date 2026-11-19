@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-11-18** for **`willow`**. Start with the
+Updated **2026-11-19** for **`willow`**. Start with the
 [current development handoff](development-handoff.md) for the proven edge,
 remaining gates and next bounded task. Historical handoffs are evidence, not
 current instructions; other branches retain their own status and validation pins.
@@ -23,12 +23,14 @@ current instructions; other branches retain their own status and validation pins
   is user-reviewed and chosen as NASolve's shared dynamic inspector direction;
   cross-stage integration remains planned.
   W144 binds an ordinary checkpoint to the diagnostic maps and qualifies
-  explicit source-frame sampling across R3 images. The detector remains separate.
+  explicit source-frame sampling across R3 images. W145 adds structured map
+  selection ancestry through the existing view resolver; standalone full/installed
+  gates pass, combined qualification remains pending. The detector remains separate.
   Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W144;
-  the next substantial audit is W145. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W145;
+  the next substantial audit is W146. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed
