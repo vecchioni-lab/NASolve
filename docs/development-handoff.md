@@ -20,15 +20,20 @@ covalent restraints at 1.470 Å. The refined distance was 1.460 Å. The terminal
 carbon moved from 0.712 to 0.130 Å from the six-atom ring plane. PostMR remains
 selected and the new child is `refine-001`. C418's separately prepared one-cycle
 continuation moved the terminal atom farther out despite straighter alkyne angles.
-Keep both observations. This is a substituted-scaffold test. Q06 next needs the
-ordinary nonmetal DF:A comparison with its existing geometry-only reference.
+Keep both observations. This is a substituted-scaffold test. The ordinary
+planner accepts one DT→DF change at A:19 opposite the existing D:4 adenine
+on the C:G host. This localizes the next nonmetal DF:A refinement
+without waiting for construction of the full mixed scaffold.
 
 **Q07.** The ordinary planner recognized all 13 mutations for the nine-pair
 scaffold and stopped at A:11 ATL. A canonical DT sugar has opposite C3′ and C4′
 hands. Reuse the demonstrated source-bound placement and linked seed, define the
 D:1 phosphate state on the chosen host, then qualify all nine pairs in one
-ordinary refinement. The [completion queue](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run)
-records the positive and negative controls. C422 ran no native process.
+ordinary refinement. On the existing mixed model the current W-frame recipe
+already emits all 201 historical terms plus ten shared pair planes. Eight
+focused frame-template tests pass. C422 used the saved model and ran no native
+process. The [completion queue](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run)
+records the positive and negative controls.
 
 ## Which parts of the molecule stayed in shape?
 

@@ -57281,7 +57281,26 @@
           "relative_path": "c422-q07-readiness/prior-linked-controls.json",
           "sha256": "18b5fe3aca284c9ac571cd228fe8a02f3182efd20842339a54c6499a1ae8f844"
         }
-      ]
+      ],
+      "current_frame": {
+        "scope": "Ordinary W-frame recipe and current NARestraints on the recorded mixed model. No new model or native refinement.",
+        "common": {
+          "bond": 53,
+          "angle": 90,
+          "parallelity": 58
+        },
+        "total_common": 201,
+        "additional_joint_pair_planes": 10,
+        "named_pairs": 9,
+        "canonical_flank": "A:13/B:3",
+        "frame_tests_passed": 8,
+        "receipt": {
+          "anchor": "local_cedar_evidence",
+          "relative_path": "c422-q07-readiness/existing-w-frame-policy.json",
+          "sha256": "ee3a7ed4154c88a20975d12a0b26d1e616f297fdb3194157a46092b31ab11d53"
+        },
+        "nonmetal_DF_next": "Existing C:G host, only A:19 DT to DF/A1AAZ, partner D:4 DA. The ordinary input reader and mutation planner accept it. Current frame covers the pair. Native construction, linked state and diffraction survival remain to test."
+      }
     }
   },
   "captured_linear_attribution_2026_10_31": {

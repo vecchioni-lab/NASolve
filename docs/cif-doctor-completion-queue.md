@@ -11,8 +11,11 @@ from the source chemistry and delivers that correction through five ordinary
 Phenix cycles. The existing PDU controls explain why a corrected bond and straight
 alkyne angles alone cannot approve the entire appendage. The wider PDU/DF geometry
 decision is still open. Next examine the nonmetal DF:A control under ordinary
-refinement, using its recorded sugar attachment and thione geometry as the baseline.
-The matched mercury experiment is complete and its routine integration is deferred.
+refinement. On the existing C:G host, one A:19 DT→DF mutation pairs with the
+unchanged D:4 adenine. The ordinary planner accepts this single change. Read the
+sugar attachment, thione, ring and both pair contacts after refinement, using
+the existing geometry-only reference to interpret them. The matched mercury
+experiment is complete and its routine integration is deferred.
 
 Q07 has one archived geometry-only model with all nine pairs. C422 located the
 first obstacle to rebuilding that mixture through ordinary NASolve at A:11, where
@@ -1305,7 +1308,13 @@ current host. The actual catalogue and ordinary input reader resolve all 13
 changes. Without ATL, the other 12 plan normally. Neither planning check builds a
 model or establishes pair restraints.
 
-1. Freeze the full pair and stacking recipe and the ends on the chosen host.
+1. Reuse the existing W-frame restraints. On the archived model, current
+   NARestraints and the ordinary W-frame preparation regenerate all 201 earlier
+   requests with the same atoms, targets, weights and multiplicity. They also
+   request one shared plane for each of the nine named pairs and the canonical
+   A:13/B:3 flank. Appending the old restraints would duplicate the originals.
+   This check compiled the requests in Python. Phenix still needs to read and
+   apply them on a freshly built mixed model. Preserve the ends on that model.
    The archived mixed D:1 has O5′ alone among the phosphate-end atoms. The
    proposed G:5PC fixture explicitly allows OP3 at its phosphorylated D:1.
    Both fixtures have O5′ without P at B:1. The separate symmetry-linked PDU:PDU
