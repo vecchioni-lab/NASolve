@@ -702,8 +702,6 @@ class CootViewTests(unittest.TestCase):
             self.assertEqual(list(outside.iterdir()), [])
 
 
-if __name__ == "__main__":
-    unittest.main()
 
 
 class MapOriginTests(unittest.TestCase):
@@ -781,3 +779,7 @@ class MapOriginTests(unittest.TestCase):
         from nasolve.coot_view import ViewProfile
         profile = ViewProfile("automr", Path("model"), Path("map"), (), (), "source", "map source", None, ())
         self.assertIsNone(profile.map_origin)
+
+
+if __name__ == "__main__":
+    unittest.main()
