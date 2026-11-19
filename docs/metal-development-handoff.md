@@ -48,15 +48,53 @@ Exact native producer: **Phenix 2.2.1-6174**. Those native executions belong to
 the retained controls; cold readback/projection/integration launches no new
 Phenix or Coot job. All diagnostic values retain their actual source context.
 
+## New readbacks and declared donor state
+
+C407's shared final-site scalar report reproduces 112 existing PDU/DF rows;
+installed readback is exact. No second coordinate calculator or changed numerical
+worker is introduced. The saved one-cycle DF fit retains C1′–N1 = 1.92975 Å
+against 1.499 ± 0.038 Å, C2–N1 = 1.67415 Å against 1.396 ± 0.030 Å,
+and C2–S1 = 1.74920 Å against 1.638 ± 0.026 Å. These are descriptive local
+observations, not native energies, new fits or a later stage of the five-cycle
+controls. Missing hydrogen/link/symmetry context remains explicit.
+
+The source DF dictionary includes neutral NH1 at N3 and an N3–H3 bond; the
+A:12 DF/B:4 DT model has no H3 coordinates. Its recorded modification changes
+terminal atoms, not this donor state. The investigator confirmed that Hg replaces
+both N3 hydrogens. Shared chemistry Q13 owns explicit site-scoped state derivation
+and native qualification, preserving neutral sources and unrelated residues.
+Intent does not establish new numerical targets, formal-charge readback or the
+cause of the observed strain. No donor-state candidate is implemented here.
+Evidence and confirmed intent are in the integration anchor's
+`coordination-state-question.json` and `coordination-state-authority.json`.
+
+Cedar C408 separately supplies a matching-data PDU positive control. With
+noise-free atomic amplitudes and the original restraints, the perturbed terminal
+ring-plane offset falls 0.500205→0.088035 Å; the reference relaxes
+0.094297→0.088595 Å. Independent cold review passes 70 checks and preserves
+all 96 files. Eight separate scalar/count checks reproduce the two endpoints'
+0.023303 Å selected-atom RMSD after background alignment. Both endpoints move
+from the generator and R values rise, so this is bounded recovery, not exact
+truth or experimental PDU/FT_Hg qualification. Reuse this completed control.
+Receipts: `coordination-c408-native-review-20261119.json` and
+`coordination-c408-endpoint-review-20261119.json` under the Alder artifact anchor.
+
+A04's private four-request input archive is 251,197 bytes and reconstructs
+all 36 declared files exactly after staging removal. Complete parent/audit and
+environment identity, native regeneration and retirement remain open; see the
+[storage contract](metal-campaign-storage.md). Original runs remain untouched.
+
 ## Next work, in order
 
-1. Complete the coordinated integrated-base review, full regression and installed
-   gate recorded in the root handoff. Reuse the existing 755-test and 166-test
-   rehearsals as prior evidence, not a substitute for the changed combined gate.
+1. Complete the corrected full gate in the next sufficiently long work window.
+   The installed and independent delivery checks pass; the original full run
+   has one fixture failure and the correction passes both layouts. Delivery is
+   held, as recorded in the root handoff. No replacement full run is active.
 2. Consume the shared source-bound final-site geometry report when qualified,
    preserving scalar-versus-native-energy distinctions, global atom identities,
    missing evidence and unassessed science. Do not build a second calculator.
-3. Qualify the needed ordinary preparation/descendant path before another
+3. Qualify the declared Hg-bound donor state through shared Q13, then any
+   missing ordinary preparation/descendant path before another
    structural candidate. Refine Doctor declared-site forwarding remains a
    separately qualified boundary. No repeated weight/derivative sweep is queued.
 4. Advance A04 through shared protected inputs and durable compact publication,
@@ -110,5 +148,7 @@ a fresh owned destination. No raw models/maps/native output are committed.
 The latest geometry checkout is
 `ScienceCheckouts/Hazel/2026-11-18_FT-Hg_terms/review.html` beside the repositories;
 the compact-record checkout is `ScienceCheckouts/Hazel/2026-11-18_compact/review.html`.
-Both remain intact. Prepare a small new report from today's qualified evidence
-for the evening lab checkout; do not rerun science merely to decorate it.
+Both remain intact. Today's two-file afternoon checkout is at
+`ScienceCheckouts/Hazel/2026-11-19_integration/review.html`. It retains the failed
+integration gate explicitly beside measured geometry and storage results; it
+provides the evidence trail for the evening report without new native work.

@@ -1,77 +1,39 @@
 # CIF Doctor: human and manuscript overview
 
-**Current explanation, 2026-11-18.** CIF Doctor checks whether the model and
-chemical dictionaries preserve the intended molecule, whether Phenix can read
-the resulting restraints, and whether a proposed repair changes only what it
+**Current explanation, 2026-11-19.** CIF Doctor checks whether the model and
+chemical dictionaries preserve the intended molecule, whether Phenix receives
+the intended restraints, and whether a proposed repair changes only what it
 should. It works around ReadySet and NARestraints; it does not replace them.
 
-The explicit bounded-refinement route now measures intended base-pair distances,
-directional angles, planes and parallelism in the actual final native model,
-including declared crystallographic images. It checks that those measurements
-belong to the model Phenix wrote and reuses the original restraint inventory in a
-compact saved record. The next ordinary refinement can inherit this report without
-changing the selected checkpoint. Turning observation on leaves matched models
-and reflection arrays unchanged; a separate PDU-containing control keeps the local
-chemical check beside pair measurements. None of these controls establishes a
-repaired structure: local chemistry, pairing and diffraction agreement are distinct.
+The explicit route connects checked construction and dictionary repair to ordinary
+refinement. It preserves the chosen model, phosphate intent, original observations
+and Free-R assignments. Interrupted or unsuccessful improvements keep their evidence
+and may retain an independently qualified starting model. No implicit acceptance
+or new normal refinement settings follow from those engineering checks.
 
-A matched five-cycle PDU experiment also records Phenix's actual weight choices.
-All four searches use its existing R-free fallback because no trial passes the
-combined pooled-geometry criteria. A separate source match shows why those pooled
-numbers cannot simply be called covalent geometry: supplied inter-residue distances
-and protected terminal angles contribute. The PDU bend still requires review.
-A later passive control now follows those exact source matches through all 48
-actual trial reporting states. The six protected terminal angles remain separate;
-unassigned terms are not called covalent. The same native choices and final model
-are reproduced. A separate private experiment then excludes only those declared
-pair terms from eligibility, retaining protected terminal and unclassified terms.
-The choices change and PDU's triple length improves, but one angle remains bent,
-the terminal carbon moves farther out of the ring plane, and Rwork/Rfree worsen.
-The sugar hand and base orientation remain intact. This is useful diagnostic
-separation, not an adopted weight selector or repaired structure. Complete forces,
-normalization and numerical criteria stay unchanged; ordinary settings are untouched.
-A cold follow-up separates local attachment shape from bending accumulated along
-the substituent. The same source-selected ring and connected chain are measured
-in each saved model. Shorter bonds can coexist with greater terminal displacement;
-no missing plane or changed plane weight explains the comparison. This is a
-geometric account, not proof of the responsible forces or a new acceptance rule.
+The final-model readers expose intended pairing and declared local chemistry from
+what Phenix actually used. Source-bound distances, angles, relative chirality signs,
+trigonal attachment shape and whole-substituent measurements stay distinct from
+complete chemical acceptance. The same scalar calculation now serves captured
+non-triple modified sites without a DF/PDU-name rule. A source changed during a
+read refuses; historical reports keep their original meaning.
 
-An explicit Python option now records other declared modified sites, including
-those without a triple bond, through the same refinement owner. The old default
-is unchanged. It records what Phenix used and what shape resulted; it does not
-repair or approve DF merely because its atoms are now visible. Current validation
-and remaining scope are in the maintained queue.
+The ordinary PDU control receives the corrected targets and plane but still bends
+under substituted-scaffold diffraction. The recorded weight, normalization and
+restart experiments do not establish a general repair; they should not be repeated
+without a new hypothesis. DF's stretched sugar–base attachment remains unresolved.
+Fresh ordinary preparation and its five-cycle refinement child are already qualified
+as delivery controls; they are not missing tasks.
 
-The log reader now keeps numbered native stages such as `realsrl2` so final
-summaries are not lost.
-
-A later diagnostic now reproduces the actual DF/metal optimization state before
-checking tiny coordinate changes. The chemical restraint forces agree in all 13
-sampled directions; the FFT diffraction and combined scores agree in none under
-the declared checks. Yet moves against the reported combined gradient still lower
-the score, so this does not establish why optimization stopped. No optimization
-continues and no finished model is produced. A separate same-state direct-calculation
-comparison now agrees in all 13 directions for chemistry, diffraction and their
-combined score, without changing the other state. This is numerical agreement,
-not chemical repair. An earlier direct refinement changed adaptive weight choices
-and did not demonstrate a repair. Matched restarts now keep those weights fixed:
-FFT stops again with a rounding error after 41 iterations; direct reaches the
-100-iteration limit. Neither meets the convergence test. Both lower their own
-score, but the sugar–base bond remains too long and the metal angle remains strained.
-This distinguishes a numerical obstacle from the remaining chemistry problem;
-it does not justify adopting direct calculation or increasing the iteration limit
-as a general cure. A matched three-way comparison is now complete: the native
-restraint set, Cedar with nothing missing to add, and the complete recipe. All use
-the same existing plane-force correction. The zero-addition case reproduces native
-history, model and reflection arrays exactly. Adding seventeen pair terms improves
-selected G:C and A:T plane mismatches from 27.30→6.30° and 8.85→4.59°; the A:T
-contacts remain long. All three stop early with line-search errors. Rwork and final
-clashscore are worse with the complete recipe, despite a slightly lower Rfree.
-This demonstrates delivery and a physical effect, not convergence or PDU/DF repair.
-The explicit longer control has passed its full software gate and is integrated;
-fresh automatic PDU preparation now reaches a genuine review checkpoint and
-reproduces the earlier corrected model/restraints. The missing next proof is its
-ordinary refinement descendant and achieved geometry, not another manual PDU fix.
+A separate idealized positive control generates diffraction from the PDU molecule
+itself and uses an independently displaced starting copy. Its terminal carbon
+returns from 0.500 to 0.088 Å from the ring plane; the unperturbed reference ends
+at 0.089 Å. Both pass the existing narrow triple-bond screen with the same supplied
+restraints. Their PDU atoms finish 0.023 Å apart after aligning the surrounding
+model. The reference also relaxes and R factors rise. This demonstrates bounded
+recovery under matching atomic amplitudes, not experimental accuracy, exact recovery
+of the generating coordinates or complete Q06 support. The simulation assumptions
+and independent checks are retained in the existing evidence ledger.
 
 These are explicit, source-qualified controls, not new normal settings or universal
 modified-residue support. New restraint files retain their identity through the

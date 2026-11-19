@@ -39,10 +39,10 @@ milestone statements preserve their original scope; they are not a second queue.
 - **Campaign orchestration:** the [full-auto checkpoint](full-auto-patch-handoff.md)
   preserves completed GeoTest execution evidence; orchestration success does not
   settle its scientific reviews. [Campaign contracts](campaigns.md) define runtime.
-- **Integration:** work continues on cedar, with pine as the proposed integration
-  target. A provisional merge can ship bounded, explicit functionality before the
-  whole catalogue programme is complete, but needs its own integration review.
-  No document update authorizes a merge or promotes diagnostic chemistry.
+- **Integration:** the proposed shared development base targets Alder. Installed
+  checks pass; the corrected full gate and delivery remain pending after one
+  location-dependent fixture failure. Pine remains a later receiving branch.
+  The [root handoff](development-handoff.md) records the exact current boundary.
 - **Future inputs:** ChemDraw-derived chemical references/restraint bundles remain
   planned. Exact packaged chemical references and explicit DNA source composition
   are implemented; explicit ordinary DY target/per-site construction is connected. Automatic

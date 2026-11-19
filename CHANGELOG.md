@@ -39,6 +39,11 @@ entries are reconstructed from repository history.
 
 ### Integrate shared chemistry and storage with metal workflows
 
+- Record the held full gate and test-only external-scope fixture correction;
+  targeted passes do not substitute for complete integration qualification.
+- Record exact input-packing feasibility through the shared storage owner;
+  complete-parent, native regeneration and retirement gates remain open.
+
 - Combine the existing qualified shared runtime/storage owners and metal tools
   on one development base, retaining both replay and viewer package resources.
 - Preserve scoped chemistry/metal handoffs with one root integration queue;

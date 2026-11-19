@@ -5,44 +5,58 @@ Pine checkout and the separate Cedar/Willow branches are unchanged. This candida
 combines the existing metal feature with the qualified shared chemistry, native
 observation and storage owners; it introduces no new scientific policy.
 
-## Current bounded work
+## Afternoon checkpoint — delivery held
 
-Prepare and qualify Cedar `86bdbb41` (runtime `58965920`) with Alder `6dc98e28`
-(metal runtime `e002e203`). Prior isolated rehearsals passed 755 and then 166
-focused tests plus installed readback, but left five editorial conflicts and
-did not establish an integrated development base. This candidate resolves those
-contracts explicitly and retains both package-resource sets. Shared Python
-merged textually; no numerical worker or scientific threshold is hand-edited.
-The reviewed W145 map-origin adaptation (`ae092936`, from Willow `51af3423`)
-is included exactly, preserving preparation and saved AutoSol semantics. Its
-metadata describes map selection/ancestry, not generating XYZ/ADPs or frame proof.
-Cedar C407 `f83562b0` is included exactly: it reuses existing bond/angle/ordered-
-volume calculations for sealed final-site observations and rechecks source hashes
-after descriptive reads. A regression reproduced and now refuses a source change
-between validation and measurement. No native worker or numerical formula changes.
+The integrated candidate `1acc7892d2bc19d5572d46f430b27515a7ea6301` combines
+Alder `6dc98e28`, Cedar `f83562b0` and the exact W145 adaptation `ae092936`.
+The full unfiltered run completed with **1 failed, 12,845 passed, 2 skipped,
+298 subtests passed in 4582.29 seconds**. All 1,501 tracked files stayed exact,
+the checkout stayed clean and the test process stopped. Preserve this failed
+gate; it is not a combined full PASS.
 
-Ordered acceptance:
+The sole failure is the extra-restraint case of
+`test_unsupported_scientific_scope_is_not_dropped`: its supposedly external file
+was inside the repository when pytest scratch was located there. The real
+resolver correctly accepted that portable reference. Test-only amendment
+`834b6b94b3c34d973bfc18142bb9934ed413421c` declares a fixture-local repository
+boundary and asserts that the negative input has an absolute reference. The
+complete counted-autorefine module passes in both layouts: **35 tests in 48.77 s**
+inside a repository and **35 in 26.58 s** outside. Both processes stopped;
+source files stayed exact. Runtime behavior and scientific policy are unchanged.
 
-1. Review conflict resolutions and both subsystem contracts, preserve original
-   inputs and immutable evidence, and check documentation navigation.
-2. Run the affected integration tests and the complete unfiltered suite at a
-   frozen source revision; do not inherit either branch's previous full pass.
-3. Qualify the installed package, both resource sets, historical metal records
-   and declared-site native readback with source fallback forbidden.
-4. Publish only the qualified code/documentation integration to Alder. Preserve
-   exact results and retire only owned disposable test/build copies.
+**Next gate:** run the complete corrected suite once in a sufficiently long
+work window, then finish delivery to Alder. No replacement full run is active,
+and no native refinement is running for this integration. The active Alder
+checkout remains at `6dc98e28`; Pine is untouched. The candidate and exact local
+resume/bundle references are retained under the established Alder artifact anchor,
+`integration-20261119-01/plan.json`. Do not merge a failed gate or describe the
+focused fixture proof as a fresh full-suite pass.
 
-At this frozen-candidate checkpoint the editorial and source reviews are complete.
-The ordinary/metal CLI boundary passes 21 tests and 14 subtests. The new full and
-installed gates are next; no combined pass is claimed until their receipts exist. The last separate full gates are Alder
-`e002e203` (6,432 tests + 276 subtests) and Cedar `58965920` (12,043 tests + 293
-subtests, two expected native opt-in skips). The owning local validation plan is
-under the existing Alder artifact anchor, `integration-20261119-01/plan.json`.
-No active native job is started by this integration. The full-test controller
-records its exact command, timeout, PID/process identity and progress under
-`integration-20261119-01/full-suite/` in the local Alder artifact anchor. That is
-the owned validation output, not a scientific run. Do not start a duplicate full
-suite or remove it while active. Final outcomes will be recorded before delivery.
+Installed qualification passes for all **344 packaged files**, with the build
+source and old installation removed. Old compact FT_Hg/Ag4 records, C406/C407
+raw/scalar readbacks and ViewProfile positional compatibility remain exact.
+W145 real map-origin reads preserve all 130 source-run files. W145 records map
+selection ancestry, not the coordinates that generated a map. The independent
+delivery audit passes 402 checks; its documentation-index finding is corrected
+here. Willow's later W146 inspection and W147 coefficient-reader/worker patch
+remain separately qualified follow-ons, outside this candidate. Reuse them.
+
+Exact full commands, log, XML, source manifest and result remain in `full-suite/`;
+the two correction commands/results are in `fixture-correction/`; package
+commands and probes are in `installed/`, all beneath the integration anchor.
+Tests use `PYTHONDONTWRITEBYTECODE=1`, `PYTHONPATH=src` plus the explicit clean
+NARestraints `a9264f9e` source, Python 3.12.14 and pytest 9.2.0. The two skipped
+tests require explicit native opt-in. The source/installed gates do not execute
+a new scientific Phenix refinement. These records remain distinct from separate
+historical Alder and Cedar full passes.
+
+Today's scientific readback and small storage rehearsal are in the
+[metal handoff](metal-development-handoff.md). A01 remains partial, A02 gated,
+and A04 partial. The two-file afternoon checkout is
+`ScienceCheckouts/Hazel/2026-11-19_integration/review.html` beside the repositories.
+It preserves the failed gate alongside useful positive/negative science evidence.
+Only owned test scratch may be retired after retaining diagnostic evidence;
+scientific inputs, outputs, shared installations and parent checkpoints remain.
 
 ## Scientific scope and owners
 

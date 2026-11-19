@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current work order, 2026-11-18.** This is the one unfinished-work queue. The
+**Current work order, 2026-11-19.** This is the one unfinished-work queue. The
 [capability table](cif-doctor.md#current-capability-boundary) records demonstrated
 support; the [handoff](development-handoff.md) says where work stopped. Old notes
 record what was known then. They do not create a second set of instructions.
@@ -292,10 +292,26 @@ observation is separate from Refine Doctor/counting forwarding and automatic rep
 
 **C407 active:** reuse C15 scalar measurements on C406's sealed actual-final
 site observations. Keep source identities, global indices, selected/whole counts
-and unassessed conventions explicit. Focused/legacy/cold checks pass; installed,
-independent and combined-source qualification remain. This connects an existing
+and unassessed conventions explicit. Source/legacy/cold and relocated installed
+checks pass (168 source tests;
+261 installed tests; 112 actual scalar rows; 349 native files unchanged).
+Hazel accepts the final source/installed review; the frozen combined-source full
+gate remains. This connects an existing
 calculation to the ordinary evidence owner; it is not another optimizer or a new
 scientific diagnosis. Preserve the separate whole-substituent gate.
+
+**C408 bounded matching-data positive control complete.** A separately perturbed
+PDU construction is tested against noise-free amplitudes generated from the same
+molecule, retaining the original reflection indices/Free-R assignments, all eight
+restraint/dictionary/protection files and five-cycle settings. Its terminal carbon
+returns from 0.500205 to 0.088035 Å from the ring plane; the unperturbed reference
+finishes at 0.088595 Å. Both pass the existing narrow triple screen. The reference
+also relaxes and R factors rise, so this is conditional recovery evidence, not exact
+truth recovery, experimental accuracy or a new acceptance rule. Generation omits
+solvent/overall scale while refinement retains its normal treatment. Hazel verifies
+70 independent cold checks; all 96 native files remain unchanged. No product source
+change, repeated weight/derivative sweep or Q06 closure. Reuse this completed
+positive control when separating consumer capability from donor-data stress.
 
 **Scientific stopping boundary:** C403 uses substituted-scaffold observations, not
 a PDU crystal. Keep its existing REVIEW screen and whole-substituent measurements,
@@ -503,7 +519,7 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Complete for recorded alternatives, selected-model phasing, Coot, cold inspection and the ordinary five-cycle refinement handoff. Actual chemical survival/effective restraint behavior is Q06; no default activation or historical migration. |
-| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C391 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control, chemical observation and actual final pair measurements. C392/C395 record real PDU weight fallback and actual source membership; C396 changes screening privately but does not repair the model; C393/W134 qualify combined observation and ordinary canonical continuation without claiming chemical repair. C400 qualifies an explicit longer control and matched native/zero/full pair mechanics; all arms stop early and chemical acceptance remains open. C403–C406 qualify fresh ordinary PDU delivery and source-selected actual local geometry, with explicit broader observation; these do not repair the residual strain. Wider protocols and achieved PDU/DF geometry plus held-out survival remain open. Mechanics or a readable dictionary alone is insufficient. |
+| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C391 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control, chemical observation and actual final pair measurements. C392/C395 record real PDU weight fallback and actual source membership; C396 changes screening privately but does not repair the model; C393/W134 qualify combined observation and ordinary canonical continuation without claiming chemical repair. C400 qualifies an explicit longer control and matched native/zero/full pair mechanics; all arms stop early and chemical acceptance remains open. C403–C407 qualify fresh ordinary PDU delivery and source-selected actual local geometry, broader explicit observation and shared scalar readout; these do not repair the residual strain. Wider protocols and achieved PDU/DF geometry plus held-out survival remain open. Mechanics or a readable dictionary alone is insufficient. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |
@@ -522,7 +538,8 @@ membership/weights. No chi flip occurs. However, propyne angles become 174.65° 
 173.45° against 180° ±3° targets, crossing the existing 5° coordinate review
 screen; terminal methyl distance from the descriptive existing plane fit grows
 from 0.112 to 0.261 Å. Targets pass the current screen; achieved geometry remains
-REVIEW. C206's unqualified 1.607 Å terminal bond target remains an explicit gap.
+REVIEW. At C304, C206's 1.607 Å terminal bond target was still unqualified;
+C320–C333 subsequently resolve the source-typed target delivery, not the remaining bend.
 Do not claim Q06 closure, silently strengthen restraints or blame dropped planes.
 Related **G:5PC now completes the ordinary campaign** and moved archive-backed
 readback (C305). Its triple angles improve 172.37°/176.97°→177.38°/178.14°;
@@ -673,10 +690,13 @@ refinement survival above as the next work, not another owner rewrite.
 
 ### The next small steps
 
-1. **Qualify actual refinement chemistry (Q06):** inspect the full effective
-   restraint set, native derivatives and achieved geometry, including Simon's
-   PDU survival case. Reuse recorded construction, selected bundles and numerical
-   owners; do not rebuild completed Q04/Q05 machinery.
+1. **Qualify actual refinement chemistry (Q06):** finish the current combined
+   software gate, then resolve the remaining PDU/DF achieved-geometry question.
+   Reuse the delivered targets, native derivative checks and actual-final reports
+   already qualified above. Simon's exact downstream before/after files remain
+   unidentified; do not equate a reconstructed mechanics control with that case.
+   A new intervention needs a distinct supported hypothesis, not another unchanged
+   weight, iteration or derivative sweep. Do not rebuild completed Q04/Q05 machinery.
 2. **Prove transfer and combinations (Q07–Q14):** combined and unfamiliar-ligand
    controls, retained sugar/backbone learning, catalogue/state coverage and false
    alarm checks remain explicit. A 5IU control does not qualify PDU or L-FANA.
@@ -686,16 +706,19 @@ refinement survival above as the next work, not another owner rewrite.
 
 C219 already executed the ordinary Coot/NAR-derived request through generation,
 repair and ReadySet, and reread the selected result with the original paths and
-SDK unavailable. Reuse that evidence. Its PDU C5 still lacks an explicit complete
-plane: near-planar coordinates alone do not prove the restraint is adequate.
+SDK unavailable. That historical result lacked a complete PDU C5 plane. The later
+C244 acquisition and C401/C403 ordinary control supply the plane; C404/C405
+measure its effective membership and remaining shape. Do not reopen the old
+delivery gap or confuse near-planar coordinates with complete chemical survival.
 C207–C216 supply the general mutation/plane checks and PDU/5PC controls; combining
 the plane checks into ordinary repair now works for explicitly supplied owned
 support, including the complete request/ReadySet at C242. C244 adds explicit
 automatic acquisition; C245 adds prepare-run and result notes; C246 adds explicit
 checked PostMR/campaign forwarding; C247 carries publication/status notes. C249 selected-plane reporting, C248 sibling recovery and C258/C260 working-file
 retirement/caller integration are complete within their recorded scopes. The
-supported recovery and rollout limits are listed above. DP's ambiguous correspondence,
-source-H questions and PDU numerical targets remain visible limits.
+supported recovery and rollout limits are listed above. DP's ambiguous correspondence
+and source-H questions remain distinct from the corrected PDU target and its
+still-open refinement-survival question.
 
 These are work packages, not a prediction of session or commit count. Preserve
 numbered attempts and all partial outputs; new attempts require proof that old
@@ -1382,6 +1405,34 @@ unsupported. Name the workbook hash/version rather than assuming the installed
 NAR package version identifies that workbook.
 
 ### Q13 — Close chemical-state and attachment-policy gaps
+
+**DF/Hg donor-state holdover (19 November):** Hazel and Rowan confirmed that the
+retained A109 DF dictionary describes neutral NH1 N3 with an explicit N3–H3
+single bond (1.018 ± 0.029 Å). The bound metal recipe coordinates N3, while the
+coordinate model contains no H3. Missing hydrogen coordinates do not establish
+experimental protonation or charge. The recorded modifications change terminal
+link atoms, not N3/H3. Simon explicitly confirmed on 19 November: **Hg replaces
+both N3 hydrogens** in the intended DF–Hg–DT bridge. Preserve the neutral source
+as provenance and qualify a separate declared metal-bound state, including the
+DT donor, exact hydrogen/charge bookkeeping and effective native readback. Reuse Alder's existing
+state-aware coordination design; no DF-only repair, automatic deprotonation or
+causal attribution for sugar–base strain follows. This is a prerequisite for the
+affected Q06 experimental case, not a new native sweep or a reopened ownership task.
+Exact DF dictionary SHA-256: `c632ad07eed7feed22132021bed28a047d9441b5f762451e09d5f960a6e763cc`;
+the existing A109 input contract binds its local provenance.
+The reusable-path audit is `declared_metal_donor_state_2026_11_19` in the existing
+evidence ledger. The installed site-modification API exposes partial charge, not
+formal charge; the current standard Td source likewise lacks explicit formal
+charges. Do not substitute either for complete source-state authority. Reuse the
+existing explicit generator charge-control and isolated/linked qualification
+owners once the declared derivative is fully specified. The existing acquisition
+owner now freezes complete neutral parents from curated DF and installed CCD DT
+(36 atoms with explicit formal charges each; three files, 19,415 bytes). This
+chemical source is distinct from numerical Td. All 36 DF formal charges match
+the retained A109 dictionary; no state was changed or native refinement started.
+Ordinary explicit-source selection deliberately cannot override curated DF. Keep
+that guard: a declared chemical-state derivative needs its own scoped authority,
+not a weakened global source preference or a hidden numerical repair.
 
 **C374 DF source-state confirmation:** exact original, numerical, plane-added and
 refinement dictionaries retain OP2 charge0/HOP2 and a single P–OP2 bond. Its

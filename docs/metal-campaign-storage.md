@@ -1,6 +1,6 @@
 # Metal campaign storage and recovery plan
 
-Status: **read-only inventory, scenario estimator and compact projection implemented; compact retention/regeneration pending**; 18 November 2026.
+Status: **read-only inventory, scenario estimator and compact projection implemented; compact retention/regeneration pending**; 19 November 2026.
 The [post-merge development roadmap](metal-development-roadmap.md) places this
 work at **A04**, after single-dataset ligand/open-refinement qualification and
 before large f″ campaigns. It is a feature milestone after merge, not a
@@ -164,11 +164,26 @@ collection are deferred until ownership, export and reference lifetimes are
 qualified. Reuse campaign locking, process ownership and storage primitives;
 add a metal task-profile adapter rather than a competing general archive system.
 Current Cedar retirement rules stay unchanged, including their failure retention.
-The current Alder source snapshot predates these owners. Before implementing
-compact publication/materialization or retirement, establish a coordinated
-integration base containing the qualified Cedar implementation. Do not copy its
-modules into a parallel metal-owned archive system. The read-only inventory has
-no such dependency and does not invoke archive or retention APIs.
+The held Cedar→Alder candidate contains these owners and passes installed
+readback. Its corrected full integration gate remains pending; the active Alder
+snapshot still predates the owners. Reuse them once that gate passes rather than
+copying modules into a parallel metal-owned archive system. The complete-attempt
+retention contract does not automatically qualify a frozen-f″ retention profile.
+
+A private installed-package rehearsal uses unchanged `pack_runtime_evidence`
+and `expanded_runtime_evidence` for exact declared inputs/plans from three FT_Hg
+requests and one Ag4 request. Its 36 files contain 1,274,177 logical bytes
+(23 unique objects, 767,728 bytes); the verified archive is 251,197 bytes.
+After owned staging removal, every file and the private layout reconstructs
+exactly. Original trials and installed files remain unchanged, temporary expansion
+is removed and no native program runs.
+
+This is small-sample feasibility, not a product schema, complete parent retention
+or deletion authority. Transitive parent/audit evidence and full software/environment
+identity are not yet retained. Native regeneration, independent replay after
+source retirement, campaign capacity and safe pruning remain unqualified. Receipts
+and the preserved first harness correction live under the local Alder artifact
+anchor at `input-pack-rehearsal-20261119-01/` and `input-pack-rehearsal-20261119-02/`.
 
 ## What survives
 

@@ -116467,5 +116467,470 @@
       ],
       "receipt_sha256": "651bba419e6789d8a5527a297c4e622929d75be881c86bc2dd4854ffb2036aed"
     }
+  },
+  "selected_actual_scalar_geometry_2026_11_19": {
+    "milestone": "C407",
+    "date": "2026-11-19",
+    "status": "FOCUSED_INSTALLED_COLD_PASS_COMBINED_GATE_RUNNING",
+    "source_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
+    "behavior_before": "Raw selected actual-final heavy-atom observations available; scalar measurements require a whole inventory. Three descriptive readers could miss source mutation between initial validation and initial report snapshot.",
+    "behavior_after": "Reuse the C15 calculator for authenticated selected observations, preserving sparse global indices and selected/whole counts. Scalar, trigonal and triple readers repeat the existing sealed-request source check after reporting.",
+    "schema": {
+      "policy_id": "refinement-declared-site-scalar-geometry-v1",
+      "schema_version": 1,
+      "execution_request_changed": false,
+      "native_worker_changed": false
+    },
+    "changed_source": [
+      "src/nasolve/cif_captured_geometry.py",
+      "src/nasolve/refinement_chemistry.py",
+      "src/nasolve/refinement_parallelity.py"
+    ],
+    "regression": {
+      "file": "tests/test_refinement_scalar_geometry.py",
+      "cases": 17,
+      "initial_missing_reader_failure": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "cedar/c407-scalar-readback/fail-before.log",
+        "sha256": "66f5c3561ab43252d2c07c7e5d7f32db5184615df500a0746d2c485a5ea609f4"
+      },
+      "post_owner_source_change_before": {
+        "failed": 3,
+        "passed": 1,
+        "receipt": {
+          "anchor": "NASolve-local-artifacts",
+          "relative_path": "cedar/c407-scalar-readback/source-race-before.log",
+          "sha256": "ff78e33aeb2150e5f8f537a37d28dae5e9ecd15e6c245eafab68d4d9e0d72503"
+        }
+      },
+      "focused_tests": 168,
+      "focused_seconds": 30.59,
+      "focused_xml": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "cedar/c407-scalar-readback/focused-final.xml",
+        "sha256": "7d3e41722778c320234c9c4483d9010dee4f6b3df211e65055376c5db9aa6180"
+      },
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider tests/test_refinement_scalar_geometry.py tests/test_cif_captured_geometry.py tests/test_cif_geometry_review_probe.py tests/test_refinement_trigonal_geometry.py tests/test_refinement_declared_sites.py tests/test_refinement_chemistry.py tests/test_refinement_parallelity.py --tb=short --junitxml=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/c407-scalar-readback/focused-final.xml"
+    },
+    "legacy": {
+      "exact_cases": 11,
+      "receipt": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "cedar/c407-scalar-readback/legacy-replay.json",
+        "sha256": "20c0a9cd5042fe8cef3559a7164fada90989fe9e858796e57d569c7b3987b8dd"
+      },
+      "historical_triple_and_raw_reports_exact": true,
+      "historical_worker_maps_exact": true
+    },
+    "installed": {
+      "tests": 261,
+      "seconds": 66.03,
+      "source_resources": 304,
+      "original_build_and_install_absent": true,
+      "python_source_fallback": false,
+      "wheel_sha256": "631b36088674e53484340aff83619d9a507676bdf843b11e89c9f7dfef42e909",
+      "receipt": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "cedar/c407-scalar-readback/install-attempt02/installed-check.json",
+        "sha256": "45e0f64885c9ed6028504c1be95d706eae75695f336919781ba23420db84064a"
+      },
+      "commands": [
+        {
+          "command": "/private/tmp/willow-w94-pivot/env/bin/python -B -m pip wheel --no-deps --no-build-isolation --no-cache-dir --wheel-dir /private/tmp/c407-installed-0dagf3zu/wheel /private/tmp/c407-installed-0dagf3zu/build-source",
+          "returncode": 0,
+          "seconds": 3.664922249998199,
+          "log_sha256": "018ce75ed2282fd40b22c18cf7e1c048e396437e625b7a125c708960f0548ab3"
+        },
+        {
+          "command": "/private/tmp/willow-w94-pivot/env/bin/python -B -m pip install --no-deps --no-compile --target /private/tmp/c407-installed-0dagf3zu/installed /private/tmp/c407-installed-0dagf3zu/wheel/nasolve-0.1.0-py3-none-any.whl",
+          "returncode": 0,
+          "seconds": 0.7280805840127869,
+          "log_sha256": "af6f381e3ddf0eba189e9aedce87ae76051cd83d9cc5191debfc3f826a902352"
+        },
+        {
+          "command": "/private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider -p qualification_plugin --junitxml /private/tmp/c407-installed-0dagf3zu/tests.xml tests/test_refinement_scalar_geometry.py tests/test_cif_captured_geometry.py tests/test_refinement_declared_sites.py tests/test_autorefine_counted.py tests/test_refinement_trigonal_geometry.py tests/test_cif_plane_geometry.py tests/test_refinement_chemistry.py tests/test_refinement_parallelity.py tests/test_cif_refinement_sites.py tests/test_counted_long_control.py",
+          "returncode": 0,
+          "seconds": 66.29014883299533,
+          "log_sha256": "0d6f77429d587ae31efa93cda408f7f7dd89f9923396866898a379012a2a9a5e"
+        },
+        {
+          "command": "/private/tmp/willow-w94-pivot/env/bin/python -B /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c407_readback.py /private/tmp/c407-installed-0dagf3zu/relocated installed-readback",
+          "returncode": 0,
+          "seconds": 0.950735790989711,
+          "log_sha256": "8e71d4a6ac91b505f66b7f5ec7752244b6bcc00c31aef8b29b4293a8966db60c"
+        }
+      ],
+      "preserved_harness_failure": {
+        "receipt": {
+          "anchor": "NASolve-local-artifacts",
+          "relative_path": "cedar/c407-scalar-readback/installed-check.json",
+          "sha256": "50d6ec575c96d33426ebbca11091f3f6ab47a040e69adc61229eabb81800c3cd"
+        },
+        "tests_passed": 261,
+        "fixture_failures": 8,
+        "reason": "Source-only C15 shuttle tests require repository scripts/MR frames omitted by the installed harness. They pass in the source-focused gate; installed attempt02 tests installed-package behavior without these repository-only fixtures. No product change."
+      }
+    },
+    "cold_replay": {
+      "receipt": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "cedar/c407-scalar-readback/source-final.json",
+        "sha256": "b7a0fc726509afe91cbd697c8b9bd5faa5724e160882b6df092ece08467dfc6c"
+      },
+      "installed_receipt": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "cedar/c407-scalar-readback/installed-readback.json",
+        "sha256": "531a6d5e9f86f59c060a76d2507fb9deeee93921d4bea8dff5fcf3b7e15859ad"
+      },
+      "measurements_independently_recomputed": 112,
+      "unchanged_native_files": 349,
+      "new_native_calls": 0,
+      "checks": {
+        "C403-PDU": {
+          "measurements_checked": 58,
+          "unchanged_native_files": 283,
+          "model_sha256": "2d8dd526db59be3754d7d775ffb202ed971f01f8fca9d03c4f0c8bdfb240b8ad",
+          "selected_atoms": 22,
+          "whole_atoms": 855,
+          "captured_counts": {
+            "angle": 32,
+            "bond_asu": 0,
+            "bond_simple": 23,
+            "chirality": 3,
+            "const_dihedral": 8,
+            "dihedral": 24,
+            "parallelity": 0,
+            "planarity": 1
+          },
+          "relative_hand_conflicts": 0
+        },
+        "C406-DF": {
+          "measurements_checked": 54,
+          "unchanged_native_files": 66,
+          "model_sha256": "b7e0ce038a282c5a9382655964c9b450f4e6ae971995d4755972fc0bbf50f430",
+          "selected_atoms": 20,
+          "whole_atoms": 859,
+          "captured_counts": {
+            "angle": 30,
+            "bond_asu": 0,
+            "bond_simple": 21,
+            "chirality": 3,
+            "const_dihedral": 8,
+            "dihedral": 24,
+            "parallelity": 0,
+            "planarity": 1
+          },
+          "relative_hand_conflicts": 0
+        }
+      }
+    },
+    "chemistry_interpretation": {
+      "DF": "Known coupled N1 strain remains: one-cycle C1prime-N1 1.9297499569 A against 1.499 A. This is not a new diagnosis, a five-cycle comparison or a repair.",
+      "PDU": "Scalar deviations alone do not erase the existing whole-substituent bending/REVIEW.",
+      "relative_proxy_sign_conflicts": 0,
+      "independent_absolute_stereochemistry": "UNASSESSED",
+      "scientific_approval": "NOT_RUN"
+    },
+    "compatibility": "Explicit read-only Python report; no CLI/default, native weights/targets, historical report schema or checkpoint selection changes. No migration.",
+    "qualification": {
+      "last_standalone_full": "589659201a15b4284e93e2c4dcfc47cdefbdcb64",
+      "combined_candidate": "1acc7892d2bc19d5572d46f430b27515a7ea6301",
+      "combined_status": "RUNNING_NOT_PASS",
+      "independent_review": "HAZEL_ACCEPTED_FINAL_SOURCE_AND_SOURCE_FREE_INSTALLED_READBACK"
+    },
+    "generated_artifacts": "Only compact measurements, bindings and validation results in this ledger; raw models/reflections/native logs remain local.",
+    "limitations": [
+      "Descriptive ranking, not native residual/energy or calibrated acceptance.",
+      "Intra-site captured heavy atoms only; no hydrogen, cross-site or complete symmetry coverage inferred.",
+      "Dihedrals, ASU bonds, planes, parallelities, pucker and absolute stereochemistry retain their separate owners/qualification.",
+      "Existing C403 five-cycle PDU and C406 one-cycle DF are different controls, not a matched chemistry comparison.",
+      "No new Phenix or Coot run. Saved native evidence used Phenix 2.2.1-6174; source/installed cold checks are not refinement execution."
+    ],
+    "test_copy_retirement": {
+      "receipts": [
+        {
+          "anchor": "NASolve-local-artifacts",
+          "relative_path": "cedar/c407-scalar-readback/install-attempt02/software-copy-retirement.json",
+          "sha256": "89e0d51d63f9f74fe353b3f398b8dd38562127b2bce3571d45b1cfd3b091ffb7",
+          "files_removed": 489,
+          "bytes_removed": 5284801
+        },
+        {
+          "anchor": "NASolve-local-artifacts",
+          "relative_path": "cedar/c407-scalar-readback/attempt01-software-copy-retirement.json",
+          "sha256": "30e6c98fa23a0ddf531f8ad891f21b2002bbdf48b5a93efdd4d6e633d41d7f52",
+          "files_removed": 489,
+          "bytes_removed": 5284801
+        }
+      ],
+      "scientific_files_removed": 0,
+      "installed_packages_wheels_logs_xml_imports_preserved": true,
+      "reconstruction": "Pinned Git test archive, exact wheel fixtures and saved qualification hook. No shared pytest scratch or unrelated local files removed."
+    }
+  },
+  "matching_atomic_data_recovery_2026_11_19": {
+    "milestone": "C408",
+    "date": "2026-11-19",
+    "status": "BOUNDED_MATCHING_ATOMIC_DATA_RECOVERY_OBSERVED",
+    "source_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
+    "production_change": false,
+    "prior_work": [
+      "C206 fixed-backbone geometry control already restores source-supported planarity.",
+      "C403 ordinary PDU control uses substituted-scaffold observations; C405 separates local attachment from accumulated bend.",
+      "C252 synthetic observation path and C62/C63 donor-data mechanics are not matching modified-chemistry diffraction controls.",
+      "C397\u2013C400 derivative, weight and restart controls remain closed; no repeated sweep.",
+      "Willow W74/W75 already generated synthetic atomic reflections for ASU/stock-consumer invariance; C408 adds separately perturbed-coordinate recovery, not new Fcalc arithmetic."
+    ],
+    "question": "Does the same checked native consumer recover a separately perturbed modified site under amplitudes generated from its actual constructed molecule?",
+    "method": {
+      "source": "Exact C401 PDU construction and C403 ordered complete inputs, with source hashes verified before and after.",
+      "native": "Phenix 2.2.1-6174; actual zero-cycle preflight and five refinement cycles for each of two predeclared starts; one processor;284.28seconds total.",
+      "cases": [
+        "reference",
+        "perturbed"
+      ],
+      "generator": {
+        "scattering_table": "n_gaussian",
+        "algorithm": "direct",
+        "noise": "none",
+        "synthetic_sigmas": "0.02*F; weighting convention, not measured uncertainty",
+        "original_observed_indices": 2273,
+        "original_free_r_entries": 3236,
+        "observed_test_reflections": 127,
+        "resolution_angstrom": 4.016874717573234,
+        "anomalous": "Non-anomalous; fp=fdp=0",
+        "bulk_solvent": "None in generation",
+        "overall_anisotropic_scale": "None in generation; original individual ADPs retained",
+        "phases": "No experimental phase/HL input or donor amplitudes",
+        "refinement_scaling": "Existing automatic solvent/scaling settings retained; not exact full-Fmodel matching"
+      },
+      "perturbation": {
+        "seed": 20261119,
+        "per_axis_sigma_angstrom": 0.08,
+        "explicit_atom_identities": 22,
+        "initial_selected_rms_displacement_angstrom": 0.13894063480494082,
+        "source_proxy_chirality_signs_preserved": 3,
+        "all_non_coordinate_columns_preserved": true
+      }
+    },
+    "results": {
+      "reference": {
+        "initial_terminal_ring_plane_offset_angstrom": 0.09429707530184689,
+        "final_terminal_ring_plane_offset_angstrom": 0.08859501823948751,
+        "initial_selected_rmsd_after_background_fit_angstrom": 1.8429337400230082e-14,
+        "final_selected_rmsd_after_background_fit_angstrom": 0.09339931342598204,
+        "final_axis_deflections_degrees": [
+          1.059110025598323,
+          2.7140533593922695
+        ],
+        "final_local_C5_max_elevation_degrees": 0.10543123560481732,
+        "triple_screen": "SCOPED_TRIPLE_SCREEN_PASS",
+        "relative_chirality_conflicts": 0,
+        "initial_r_work": 0.0072,
+        "initial_r_free": 0.0093,
+        "final_r_work": 0.0204,
+        "final_r_free": 0.0282,
+        "model_sha256": "94fce924584c805b49b4e6ef3dbc579063dd48fa44d02b149190a752e57944de"
+      },
+      "perturbed": {
+        "initial_terminal_ring_plane_offset_angstrom": 0.5002047301633779,
+        "final_terminal_ring_plane_offset_angstrom": 0.0880347571356524,
+        "initial_selected_rmsd_after_background_fit_angstrom": 0.13894063480493868,
+        "final_selected_rmsd_after_background_fit_angstrom": 0.0864985270361517,
+        "final_axis_deflections_degrees": [
+          1.1492915767049172,
+          2.1820496766909674
+        ],
+        "final_local_C5_max_elevation_degrees": 0.11623308690147438,
+        "triple_screen": "SCOPED_TRIPLE_SCREEN_PASS",
+        "relative_chirality_conflicts": 0,
+        "initial_r_work": 0.0153,
+        "initial_r_free": 0.0142,
+        "final_r_work": 0.0215,
+        "final_r_free": 0.0286,
+        "model_sha256": "77c1f17441f9e6e16bf9081e3485912242a726dee68f20744d52049184c54e44"
+      }
+    },
+    "scope": {
+      "exact_original_restraint_dictionary_protection_files": 8,
+      "full_atom_labels_unchanged": 855,
+      "native_parallelity_groups_exact": 58,
+      "native_planarity_count": 45,
+      "heavy_intra_site_proxy_definitions_unchanged": true,
+      "all_free_r_values_retained": true,
+      "original_input_files_unchanged": 13,
+      "native_files_unchanged": 96,
+      "all_owned_process_groups_absent": true
+    },
+    "validation": {
+      "readback": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "cedar/c408-matching-data/readback.json",
+        "sha256": "b75e2c50fa9aef37429265c376aa17e94019bebc739910a6932d755c2092e0cf"
+      },
+      "scope": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "cedar/c408-matching-data/scope-check.json",
+        "sha256": "95f10522017f719ab3b5b86901b53289969f21957b9f32f460af0c50400e4fa7"
+      },
+      "independent_review": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "Alder/coordination-c408-native-review-20261119.json",
+        "sha256": "803ffab211ff11dbdbdf10c6253b200d1b7bb98df47ac9d1293e556df0c517ec"
+      },
+      "independent_checks": 70,
+      "native_calls_during_cold_review": 0,
+      "commands": [
+        "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c408_control.py",
+        "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c408_readback.py",
+        "PYTHONDONTWRITEBYTECODE=1 python3 -B branch-artifacts/cedar/runners/c408_scope_check.py",
+        "PYTHONDONTWRITEBYTECODE=1 python3 -B branch-artifacts/cedar/runners/c408_archive.py"
+      ],
+      "new_unit_or_full_suite": false,
+      "reason": "Private scientific control and documentation only; production source/tests remain f83562b0. Combined software gate remains separately attributed."
+    },
+    "preservation": {
+      "archive": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "cedar/c408-matching-data/native-evidence.tar.gz",
+        "size": 2421310,
+        "sha256": "4dd1c3aea2ebb72f8edb721d2296803f7c0ac09db34284ec177d90b28094483c"
+      },
+      "manifest": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "cedar/c408-matching-data/archive.json",
+        "sha256": "f667f9907c515d83ebe481c1455c1c7f2689333070bd6b452346020447973665"
+      },
+      "files": 96,
+      "logical_bytes": 14953426,
+      "originals_removed": false
+    },
+    "interpretation": "The perturbed appendage returns toward the reference geometry and both endpoints pass the existing narrow triple screen. The unperturbed reference also relaxes and its R factors rise; this is not exact generating-model recovery or experimental validation.",
+    "limitations": [
+      "Idealized noise-free atomic amplitudes with declared synthetic sigmas at donor4.017A sampling; original Free-R membership retained. No experimental-diffraction accuracy claim.",
+      "Generation omits solvent/overall anisotropic scale while native automatic scaling/solvent remains; do not call this an exact full-Fmodel zero-residual control.",
+      "Generating model is a known construction, not a restraint-minimized experimental truth. Reference-start relaxation is measured separately from perturbed-start recovery.",
+      "Initial/final scalar and substituent geometry use full native observations; coordinate RMSD uses rounded PDBs and a descriptive background rigid fit.",
+      "No new numerical threshold, native force/target/weight change, ordinary registry publication or Q06 closure.",
+      "No observed molecular improvement is inferred from R factors alone; log termination and numerical convergence remain distinct.",
+      "Five macrocycles have 21 logged R-summary entries; do not relabel every log entry as a cycle.",
+      "Whole family counts and captured parallelity identities are checked; unrecorded endpoint families remain outside the proof.",
+      "No general simulator API, ordinary registry publication, new numerical threshold or Q06 closure. No data-only causal attribution for the C403 stress result.",
+      "Raw models, synthetic/donor reflections, native logs and private drivers remain local; only compact measures/hashes in Git.",
+      "Private generator fixes IMEAN/SIGIMEAN and FreeR_flag plus three captured chirality proxies. Wider reuse must bind labels and coverage explicitly; no general simulator API is qualified."
+    ],
+    "endpoint_comparison": {
+      "predeclared": true,
+      "receipt": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "cedar/c408-matching-data/endpoint-comparison.json",
+        "sha256": "79aacc92f05a3e5e635f982745b2daf969e5f833a426686e91273f7c1ed58a64"
+      },
+      "perturbed_start_to_relaxed_reference_rmsd_angstrom": 0.1527311280499693,
+      "perturbed_endpoint_to_relaxed_reference_rmsd_angstrom": 0.023302573701627135,
+      "background_atoms": 833,
+      "coordinate_precision": "Rounded PDB; descriptive background rigid fit",
+      "original_generating_model_replaced": false,
+      "independent_review": {
+        "reviewer": "Hazel",
+        "status": "INDEPENDENT_ENDPOINT_COMPARISON_PASS",
+        "scalar_checks": 8,
+        "native_files_unchanged": 96,
+        "receipt": {
+          "anchor": "NASolve-local-artifacts",
+          "relative_path": "Alder/coordination-c408-endpoint-review-20261119.json",
+          "sha256": "e3efd9d89c55f78490bfb8dab1e205de88d43853e7740ce727e8d2df7fecae1d"
+        }
+      }
+    }
+  },
+  "declared_metal_donor_state_2026_11_19": {
+    "kind": "declared-metal-donor-state-path-audit",
+    "status": "INTENT_CONFIRMED_IMPLEMENTATION_AND_NATIVE_STATE_UNQUALIFIED",
+    "author": "Rowan",
+    "date": "2026-11-19",
+    "source_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
+    "milestone": "Q13 prerequisite for affected Q06 experimental case",
+    "user_authority": {
+      "speaker": "Simon",
+      "channel": "Rowan chat",
+      "date": "2026-11-19",
+      "exact_answer": "Yes\u2014Hg replaces both N3 hydrogens."
+    },
+    "scope": {
+      "donors": [
+        "A:12 DF N3",
+        "B:4 DT N3"
+      ],
+      "metal": "M:1 HG",
+      "preserve_unrelated_components": true,
+      "neutral_parent_definitions_retained": true
+    },
+    "next_bounded_work": [
+      "Neutral parent source selection is bound through the existing owner for both components. Next specify and bind the explicit derivative; installed numerical partial-charge fields remain separate from complete source formal-charge authority.",
+      "Represent the declared N-H replacement with complete H/charge/valence bookkeeping and unchanged remote topology/configuration. Retain parent bytes and explicit metal-link/site/alias context; no residue-name repair switch.",
+      "Qualify a separately generated state candidate through the existing source/charge/native-usability owners. Do not invent donor energy types or new numerical targets from the current distorted coordinates.",
+      "Apply only at the two declared donor sites through a qualified native mechanism; prove unrelated DF/DT instances and original backbone/phosphate operations unchanged.",
+      "Capture actual linked native definitions, selected atom inventory and complete affected terms before a fresh bounded refinement. Keep unknown native formal-charge fields explicitly unassessed.",
+      "Only then compare refinement survival with the retained original. No claim that this state gap caused glycosidic strain."
+    ],
+    "receipt": {
+      "anchor": "NASolve-local-artifacts",
+      "relative_path": "cedar/coordination-state-path-audit-20261119.json",
+      "sha256": "0df65d536ceb64b7931e6cefbe60657b499303c2fe53a30c1bba86844cd5483d"
+    },
+    "prior_evidence": {
+      "anchor": "NASolve-local-artifacts",
+      "relative_path": "Alder/integration-20261119-01/coordination-state-question.json",
+      "sha256": "5066b2e5f4c5de481e9813ee32444fb1196ed0f2149550e86597c24c33d0d30e",
+      "size": 2075
+    },
+    "native_boundaries": {
+      "version": "2.2.1-6174",
+      "formal_charge_field_in_chem_mod_atom": false,
+      "partial_charge_is_not_formal_charge": true,
+      "dt_current_effective_id": "Td",
+      "dt_N3_type": "NR16",
+      "dt_H3_type": "HNR6",
+      "dt_source_has_explicit_formal_charge_column": false,
+      "dt_historical_effective_model_binding": "NOT_REQUALIFIED",
+      "refinement_calls": 0,
+      "isolated_library_reads": 1
+    },
+    "limits": [
+      "Current DT library read is not retrospective binding of A109 effective DT state.",
+      "No qualified generic metal-bound donor-state path found; neutral backbone operations are deliberate narrower policies.",
+      "No production/chemistry edits, new targets, native refinement or causal attribution."
+    ],
+    "neutral_source_binding": {
+      "status": "NEUTRAL_SOURCE_SELECTION_BOUND",
+      "receipt": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "cedar/coordination-neutral-source-audit-20261119.json",
+        "sha256": "7afb430da84708097aca62859977727a8c55a750704a4f38063669cd7e5f19da"
+      },
+      "policy": "cif-acquisition-source-selection-v1",
+      "components": {
+        "DF": {
+          "authority": "CURATED",
+          "kind": "curated",
+          "atoms": 36,
+          "formal_charge_count": 36,
+          "total_formal_charge": 0
+        },
+        "DT": {
+          "authority": "NATIVE",
+          "kind": "installed-phenix-ccd",
+          "atoms": 36,
+          "formal_charge_count": 36,
+          "total_formal_charge": 0
+        }
+      },
+      "retained_DF_formal_charges_exact": true,
+      "files": 3,
+      "bytes": 19415,
+      "native_calls": 0,
+      "chemical_state_changed": false
+    }
   }
 }

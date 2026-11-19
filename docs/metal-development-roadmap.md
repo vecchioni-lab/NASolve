@@ -16,7 +16,9 @@ gate. Update milestone status, evidence, limitations and next action together.
 A04 measures saved trials while A01 remains unresolved; it does not bypass A02
 or authorize large fan-out. The read-only projection substep now retains complete results with shared
 experiment metadata. Durable compact publication/materialization remains next,
-followed by qualified native regeneration before any retirement.
+followed by qualified native regeneration before any retirement. A small
+19 November rehearsal recovers four requests from a 251,197-byte archive;
+it does not yet retain complete parents or qualify native regeneration.
 Source-preserving construction, explicit restraint coverage and actual-state
 B export have mechanical evidence. Matched geometry, phase, iteration, map and
 scale controls leave the FT_Hg open-fit geometry gate unresolved. New native XYZ
@@ -32,6 +34,11 @@ no-change check and independent cold readback; it is not an Alder integration or
 accepted geometry. Next: bind that shared owner to checked ordinary preparation
 and qualify continuation on the agreed merged base. Avoid repeating the completed
 private weight/iteration controls without new evidence.
+The next distinct chemistry question is the explicitly confirmed Hg-bound
+donor state, with both N3 hydrogens replaced. Shared Q13 owns generalized,
+site-scoped state qualification before another FT_Hg variant. The separate
+C408 matching-data PDU control demonstrates bounded perturbed recovery; it
+does not qualify experimental accuracy or FT_Hg and need not be repeated.
 Construction remains chemistry/connectivity driven: PDU and DF are qualification
 examples, with related and unchanged-good cases needed before general repair claims.
 
@@ -69,8 +76,11 @@ private evidence and compatibility limits. Consult it before scheduling new test
 
 ## Merge checkpoint
 
-A Cedar→Alder integration candidate now resolves the prior editorial/package
-conflicts and is undergoing its own full and installed qualification. The
+A Cedar→Alder integration candidate resolves the editorial/package conflicts.
+Installed and independent delivery checks pass. Its full run finishes with one
+location-dependent test-fixture failure; the test-only correction passes the
+whole counted-autorefine module in both scratch layouts. A new complete gate
+and delivery are pending; the active Alder checkout remains unchanged. The
 [root integration handoff](development-handoff.md) owns that gate. It is not
 a Pine/release merge and closes no scientific milestone.
 
@@ -82,7 +92,8 @@ usable. The post-merge feature qualifications below do not become merge blockers
 by being listed here. Merge readiness and a scientifically complete supported
 release are different decisions.
 
-A pinned 18 November Cedar/Alder rehearsal passes the 755 distinct affected
+Historical pre-integration evidence (not the current conflict state):
+a pinned 18 November Cedar/Alder rehearsal passes the 755 distinct affected
 metal/CLI/phase tests and an installed/relocated package check. Only the temporary
 package-resource conflict was resolved; five documentation/contract conflicts
 remain. Pine is still the proposed eventual destination, and this reference-base
