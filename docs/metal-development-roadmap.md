@@ -96,6 +96,41 @@ no selector policy, chemical repair or accepted f″ parent follows.
 The [handoff](metal-development-handoff.md) records prior attempts, exact validation,
 private evidence and compatibility limits. Consult it before scheduling new tests.
 
+## Immediate bridge from A01 to quantitative trials
+
+The 19 November audit closes the old C397–C399 derivative/restart queue by
+reusing its completed evidence. New cold projections favour infinitesimal
+attachment shortening in that historical direct-factor objective; they do not
+establish a useful finite move or qualify the current donor-state fits. The
+[scoped next experiment](metal-development-handoff.md#a01-evidence-audit-and-next-finite-move-experiment)
+records exact-state prerequisites, a single finite profile and stop conditions.
+
+1. **A01:** capture and reproduce a current objective state, then ask whether a
+   graph-defined rigid-base contraction remains favourable over finite motion.
+   Use a positive result to scope one ordinary structural refinement child;
+   use a reversal to inspect the opposing terms. Neither outcome authorizes a
+   new default algorithm, target or protonation assignment.
+2. **A01 → A02:** qualify an open XYZ/B endpoint through local chemistry,
+   coordination, Rwork/Rfree, stopping evidence and maps. Derive environmental
+   metal B from the actual refined donors/base-only atoms, report disagreement
+   between bases, and then freeze XYZ/all ADPs/f′ for declared fixed-Q f″ trials.
+   First demonstrate a small Hg occupancy-response set before widening the grid.
+3. **A04, before fan-out:** retain the complete protected modern parent once per
+   bounded session; check each trial's exact inputs and frozen state. Extend the
+   existing legacy recovery proof to modern ancestry/software identity before
+   any production retirement. Keep structural parents; regenerate cheap frozen
+   increments from verified inputs and compact statistics under a disk budget.
+4. **A02/A03 → A07:** apply the same mechanics to mixed Au/Ag, then cluster totals
+   and anomalous-background controls. Preserve element identities, occupancies,
+   cancellation and ambiguity. Withhold human endpoints from construction and
+   search; compare against them only after the candidate record is frozen.
+   Representative data then support the dedicated A05 GUI discussion and A06
+   campaign integration. A09 hydration remains deferred after the main build.
+
+These are bounded bridges to the existing milestones, not additional milestone
+numbers or a promise that one profile resolves A01. Reuse recorded controls and
+stop when the next hypothesis requires different evidence.
+
 ## Merge checkpoint
 
 Cedar→Alder integration resolves the editorial/package conflicts. Installed and

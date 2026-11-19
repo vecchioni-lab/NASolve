@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Reconcile the A01 experiment queue and scope a finite-move diagnostic
+
+- Reuse completed exact-state derivative/restart evidence instead of repeating
+  an older scoped plan. Record a new cold directional projection and its strict
+  historical-state limits, plus the current-state capture and finite-profile
+  experiment needed next. Clarify the bridge to controlled f″ trials, protected
+  modern parents and reconstruction checks. Runtime and schemas are unchanged.
+
 ### Record isolated shared-reader consumer qualification
 
 - Document bounded focused and relocated installed checks of the existing shared
