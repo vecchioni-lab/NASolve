@@ -13576,7 +13576,9 @@ native execution and the full regression gate.
 checkpoint=..., parent=..., model=...)` describes already captured simple-bond
 lengths, central angles and ordered chirality volumes. The existing execution
 reader binds the exact final model, request, native observation and source
-projections. C15's scalar calculation is reused; its historical whole-inventory
+projections, then rechecks the sealed source references after measurement. The
+scalar, trigonal and triple readers now refuse a source changed in that interval;
+unchanged reports retain their meaning. C15's scalar calculation is reused; its historical whole-inventory
 output stays exact. Source component, atom names and elements must agree with the
 observed site. This is a cold Python read, not a new native interpretation.
 

@@ -140,3 +140,22 @@ def test_owner_does_not_invent_missing_capture(tmp_path, monkeypatch, chemistry)
         checkpoint=child['id'], parent=child['parent'], model=result.model_path)
     if chemistry is None: assert report is None
     else: assert report['status']=='UNASSESSED' and report['atom_count'] is None
+
+
+@pytest.mark.parametrize('reader', ['read_execution_scalar_geometry', 'read_execution_trigonal_geometry',
+                                    'read_execution_chemistry', 'read_execution_chemistry_sites'])
+def test_projection_change_between_owner_validation_and_report_is_refused(tmp_path, monkeypatch, reader):
+    from tests.test_refinement_parallelity import completed
+    from nasolve import refinement_parallelity as owner
+    from nasolve.checkpoints import CheckpointError
+    run, result, _, child, _, _ = completed(tmp_path, monkeypatch, chemistry='bent', declared_sites=True)
+    original = owner._selected_chemistry_observation
+    def change_after_validation(*args, **kwargs):
+        selected = original(*args, **kwargs)
+        source = next(iter(selected[1].values()))[0]
+        source.write_text(source.read_text() + '# changed after owner validation\n')
+        return selected
+    monkeypatch.setattr(owner, '_selected_chemistry_observation', change_after_validation)
+    with pytest.raises((CheckpointError, ValueError)):
+        getattr(owner, reader)(run, child['outputs']['parallelity_execution'],
+            checkpoint=child['id'], parent=child['parent'], model=result.model_path)

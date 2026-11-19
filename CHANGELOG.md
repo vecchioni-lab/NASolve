@@ -17,6 +17,9 @@ entries are reconstructed from repository history.
 - Report recorded targets, achieved values, relative chirality signs and nominal
   deviations without approving chemistry or evaluating native energies. Missing
   conventions, unavailable observations and deferred terms remain explicit.
+- Recheck the sealed source references after scalar, trigonal and triple reports.
+  A source changed between initial validation and measurement now refuses instead
+  of being reported under mismatched native provenance. Unchanged reports stay exact.
 - Historical whole-inventory and triple reports, native workers, scientific
   thresholds and ordinary defaults stay unchanged. No new refinement or repair
   runs during inspection; no record migration is required.

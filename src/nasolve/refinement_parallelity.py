@@ -644,12 +644,23 @@ def _selected_chemistry_observation(run, reference, *, checkpoint, parent, model
     return data,projections,result['chemistry_observation']
 
 
+def _declared_chemistry_sources(run, reference, *, checkpoint):
+    """Recheck the sealed request and its source hashes at report completion."""
+    record = read_record(_bound_path(reference, 'selected chemistry execution', run))
+    request = read_execution_request(run, record['request'], checkpoint=checkpoint)
+    return {row['site']: dict(component=row['component'], projection_sha256=row['projection']['sha256'])
+            for row in request['chemistry_projections']}
+
+
 def read_execution_chemistry(run, reference, *, checkpoint, parent, model):
     """Read the historical triple report through its unchanged sealed evidence."""
     selected=_selected_chemistry_observation(run,reference,checkpoint=checkpoint,parent=parent,model=model)
     if selected is None:return None
     from .refinement_chemistry import _observed_readback
-    return _observed_readback(*selected)
+    result = _observed_readback(*selected)
+    _need(result['declared_sites'] == _declared_chemistry_sources(run, reference, checkpoint=checkpoint),
+          'Chemistry report sources differ from the sealed request')
+    return result
 
 
 def read_execution_chemistry_sites(run, reference, *, checkpoint, parent, model):
@@ -661,12 +672,7 @@ def read_execution_chemistry_sites(run, reference, *, checkpoint, parent, model)
     selected=_selected_chemistry_observation(run,reference,checkpoint=checkpoint,parent=parent,model=model)
     if selected is None:return None
     data,projections,observation=selected
-    record=read_record(_bound_path(reference,'selected chemistry execution',run))
-    request=read_execution_request(run,record['request'],checkpoint=checkpoint)
-    # The execution's sealed request was already validated above; recheck the
-    # exact source references rather than infer fresh source identity.
-    declared={row['site']:dict(component=row['component'],projection_sha256=row['projection']['sha256'])
-              for row in request['chemistry_projections']}
+    declared = _declared_chemistry_sources(run, reference, checkpoint=checkpoint)
     _need(set(declared)==set(projections), 'Selected chemistry scope changed during read')
     return dict(schema_version=1,policy_id='refinement-declared-sites-observation-v1',
         model_sha256=_digest(data),declared_sites=declared,
@@ -685,7 +691,10 @@ def read_execution_scalar_geometry(run, reference, *, checkpoint, parent, model)
         return None
     data, projections, observation = selected
     from .refinement_chemistry import _observed_scalar_geometry
-    return dict(_observed_scalar_geometry(projections, observation), model_sha256=_digest(data))
+    result = dict(_observed_scalar_geometry(projections, observation), model_sha256=_digest(data))
+    _need(result['declared_sites'] == _declared_chemistry_sources(run, reference, checkpoint=checkpoint),
+          'Scalar report sources differ from the sealed request')
+    return result
 
 
 def read_execution_trigonal_geometry(run, reference, *, checkpoint, parent, model):
@@ -698,7 +707,10 @@ def read_execution_trigonal_geometry(run, reference, *, checkpoint, parent, mode
     if selected is None:return None
     data,projections,observation=selected
     from .cif_plane_geometry import _observed_trigonal_geometry
-    return dict(_observed_trigonal_geometry(projections,observation),model_sha256=_digest(data))
+    result = dict(_observed_trigonal_geometry(projections,observation),model_sha256=_digest(data))
+    _need(result['declared_sites'] == _declared_chemistry_sources(run, reference, checkpoint=checkpoint),
+          'Trigonal report sources differ from the sealed request')
+    return result
 
 
 def read_execution_pair_geometry(run,reference,*,checkpoint,parent,model):

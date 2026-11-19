@@ -21,10 +21,14 @@ Keep global indices, selected versus whole-model counts, source identities,
 unavailable conventions and descriptive-only status explicit. Preserve historical
 reports/workers and all acceptance/default choices. No new native sweep is planned.
 
-Current checks: the exact-owner regression fails before the change; 164 focused
+Current checks: the exact-owner regression fails before the change; 168 focused
 tests pass; 11 historical report/error cases are exactly unchanged. Cold replay
 checks 112 scalar measurements across existing C403/C406 endpoints, leaving all
-349 native files unchanged. All historical workers remain exact. Installed checks,
+349 native files unchanged. All historical workers remain exact. Hazel
+identified and the regression reproduced a source-change gap between owner
+validation and reporting in scalar, trigonal and triple reads. They now reuse the
+raw-site reader's existing final sealed-request check; all four readers refuse
+the perturbation. No new validator or changed native worker. Installed checks,
 independent review and a single combined integration full gate are next. The last
 standalone Cedar full gate remains `58965920`; do not relabel a combined gate.
 Linden owns deferred C406 scratch retirement and W145 map provenance; Hazel owns
