@@ -25,7 +25,7 @@ milestone statements preserve their original scope; they are not a second queue.
   retain measurements from the actual final model; broader protocols
   and modified-residue survival remain open. One 5IU control does not qualify the
   whole catalogue. Native 100-dataset capacity, default activation, historical migration
-  and combined-source integration remain unqualified release limits. Use the
+  and receiving-branch release qualification remain open limits. Use the
   [short handoff](development-handoff.md) for the active task,
   [human overview](cif-doctor-human-overview.md) for the explanation, and
   [capability table](cif-doctor.md#current-capability-boundary) for exact support.
@@ -39,10 +39,10 @@ milestone statements preserve their original scope; they are not a second queue.
 - **Campaign orchestration:** the [full-auto checkpoint](full-auto-patch-handoff.md)
   preserves completed GeoTest execution evidence; orchestration success does not
   settle its scientific reviews. [Campaign contracts](campaigns.md) define runtime.
-- **Integration:** the proposed shared development base targets Alder. Installed
-  checks pass; the corrected full gate and delivery remain pending after one
-  location-dependent fixture failure. Pine remains a later receiving branch.
-  The [root handoff](development-handoff.md) records the exact current boundary.
+- **Integration:** the shared development base targets Alder, qualified by the
+  complete runtime test execution, reviewed test-only fixture repair and focused
+  checks. The original full failure stays explicit; this is not a fresh all-green
+  full run. Pine remains a later receiving branch. See the [root handoff](development-handoff.md).
 - **Future inputs:** ChemDraw-derived chemical references/restraint bundles remain
   planned. Exact packaged chemical references and explicit DNA source composition
   are implemented; explicit ordinary DY target/per-site construction is connected. Automatic

@@ -76,11 +76,11 @@ private evidence and compatibility limits. Consult it before scheduling new test
 
 ## Merge checkpoint
 
-A Cedar→Alder integration candidate resolves the editorial/package conflicts.
-Installed and independent delivery checks pass. Its full run finishes with one
-location-dependent test-fixture failure; the test-only correction passes the
-whole counted-autorefine module in both scratch layouts. A new complete gate
-and delivery are pending; the active Alder checkout remains unchanged. The
+Cedar→Alder integration resolves the editorial/package conflicts. Installed and
+independent delivery checks pass. Its full runtime execution had one test-fixture
+failure; the reviewed test-only correction passes the complete affected module
+in both scratch layouts. Under the clarified focused cadence, that aggregate
+evidence qualifies development integration without a fresh all-green full claim. The
 [root integration handoff](development-handoff.md) owns that gate. It is not
 a Pine/release merge and closes no scientific milestone.
 

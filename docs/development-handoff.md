@@ -5,7 +5,7 @@ Pine checkout and the separate Cedar/Willow branches are unchanged. This candida
 combines the existing metal feature with the qualified shared chemistry, native
 observation and storage owners; it introduces no new scientific policy.
 
-## Afternoon checkpoint — delivery held
+## Qualified integration checkpoint — test-only amendment
 
 The integrated candidate `1acc7892d2bc19d5572d46f430b27515a7ea6301` combines
 Alder `6dc98e28`, Cedar `f83562b0` and the exact W145 adaptation `ae092936`.
@@ -24,13 +24,22 @@ complete counted-autorefine module passes in both layouts: **35 tests in 48.77 s
 inside a repository and **35 in 26.58 s** outside. Both processes stopped;
 source files stayed exact. Runtime behavior and scientific policy are unchanged.
 
-**Next gate:** run the complete corrected suite once in a sufficiently long
-work window, then finish delivery to Alder. No replacement full run is active,
-and no native refinement is running for this integration. The active Alder
-checkout remains at `6dc98e28`; Pine is untouched. The candidate and exact local
-resume/bundle references are retained under the established Alder artifact anchor,
-`integration-20261119-01/plan.json`. Do not merge a failed gate or describe the
-focused fixture proof as a fresh full-suite pass.
+The project cadence was clarified after this afternoon checkpoint: complete
+suites for substantial cross-cutting changes, focused checks for bounded fixes.
+The cross-cutting runtime already completed its full execution; the follow-up is
+only the reviewed fixture correction and documentation. Both subsystem reviewers
+accept qualification on the **completed full execution plus focused test-only
+amendment**. Runtime, native workers and all package resources remain byte-exact.
+This is an explicit development integration decision, **not a fresh all-green
+full-suite result**. Preserve the original failed full and both focused receipts.
+There is no reason to repeat unchanged scientific/native controls for this fix.
+
+Delivery targets Alder only; Pine and scientific acceptance remain unchanged.
+The current decision/delivery records are `qualification-decision.json` and
+`delivery.json` under the established Alder artifact anchor
+`integration-20261119-01/`. The earlier `plan.json`, held checkpoint bundle and
+afternoon report retain their evidence-time state; they do not supersede this
+decision. No replacement full suite or scientific refinement is active.
 
 Installed qualification passes for all **344 packaged files**, with the build
 source and old installation removed. Old compact FT_Hg/Ag4 records, C406/C407
@@ -52,9 +61,10 @@ historical Alder and Cedar full passes.
 
 Today's scientific readback and small storage rehearsal are in the
 [metal handoff](metal-development-handoff.md). A01 remains partial, A02 gated,
-and A04 partial. The two-file afternoon checkout is
-`ScienceCheckouts/Hazel/2026-11-19_integration/review.html` beside the repositories.
-It preserves the failed gate alongside useful positive/negative science evidence.
+and A04 partial. The afternoon checkout at
+`ScienceCheckouts/Hazel/2026-11-19_integration/review.html` beside the repositories
+preserves the held stage and scientific tables. Its adjacent `delivery.html`
+records the subsequent qualification decision, without rewriting that evidence.
 Only owned test scratch may be retired after retaining diagnostic evidence;
 scientific inputs, outputs, shared installations and parent checkpoints remain.
 

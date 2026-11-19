@@ -86,10 +86,10 @@ environment identity, native regeneration and retirement remain open; see the
 
 ## Next work, in order
 
-1. Complete the corrected full gate in the next sufficiently long work window.
-   The installed and independent delivery checks pass; the original full run
-   has one fixture failure and the correction passes both layouts. Delivery is
-   held, as recorded in the root handoff. No replacement full run is active.
+1. Reuse the integrated development base qualified by the complete runtime
+   execution and reviewed test-only correction under the agreed focused cadence.
+   The root handoff preserves exact limits; no fresh full-green result is claimed.
+   Do not repeat unchanged controls merely to relabel the original full failure.
 2. Consume the shared source-bound final-site geometry report when qualified,
    preserving scalar-versus-native-energy distinctions, global atom identities,
    missing evidence and unassessed science. Do not build a second calculator.

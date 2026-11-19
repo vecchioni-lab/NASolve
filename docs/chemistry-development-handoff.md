@@ -1,9 +1,9 @@
 # Chemistry development handoff — scoped evidence
 
 The [root integration handoff](development-handoff.md) owns the combined
-gate, which finished with one location-dependent fixture failure. The
-test-only correction passes both scratch layouts; a new full run and
-delivery remain pending. This scoped copy comes from Cedar `45ad9f65`;
+qualification: complete runtime test execution plus the reviewed test-only
+fixture correction and focused checks, without claiming a fresh all-green full.
+This scoped copy comes from Cedar `45ad9f65`;
 its standalone branch statements retain their evidence-time meaning.
 
 Updated **2026-11-19, C407 qualified locally and C408 recovery observed — Rowan**.
@@ -41,9 +41,9 @@ The relocated installation passes 261 tests with 304 packaged files exact; its
 actual saved reports match source readback. Eight source-only shuttle checks remain
 in the 168-test source gate. The omitted-fixture first installed attempt is
 preserved separately. Hazel accepts the final source review and source-free
-installed readback. The combined gate at `1acc7892` finished with one fixture failure;
-the corrected fixture passes both layouts. A new full gate is pending;
-see the [root handoff](development-handoff.md). The last standalone Cedar full gate remains `58965920`; do not relabel a combined gate.
+installed readback. The combined run at `1acc7892` finished with one fixture failure.
+The reviewed test-only correction passes both layouts; the subsequently agreed
+aggregate development qualification is recorded in the [root handoff](development-handoff.md). The last standalone Cedar full gate remains `58965920`; do not relabel a combined gate.
 Linden completed C406 scratch retirement and owns W145 map provenance; Hazel owns
 Cedar/Alder integration review. No overlapping branch or owner changes.
 

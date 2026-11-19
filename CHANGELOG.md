@@ -39,8 +39,9 @@ entries are reconstructed from repository history.
 
 ### Integrate shared chemistry and storage with metal workflows
 
-- Record the held full gate and test-only external-scope fixture correction;
-  targeted passes do not substitute for complete integration qualification.
+- Qualify the integration using its completed full runtime execution and
+  reviewed test-only external-scope fixture correction with focused checks.
+  Preserve the original failed full result; no fresh all-green full is claimed.
 - Record exact input-packing feasibility through the shared storage owner;
   complete-parent, native regeneration and retirement gates remain open.
 

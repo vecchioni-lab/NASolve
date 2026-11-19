@@ -164,10 +164,10 @@ collection are deferred until ownership, export and reference lifetimes are
 qualified. Reuse campaign locking, process ownership and storage primitives;
 add a metal task-profile adapter rather than a competing general archive system.
 Current Cedar retirement rules stay unchanged, including their failure retention.
-The held Cedar→Alder candidate contains these owners and passes installed
-readback. Its corrected full integration gate remains pending; the active Alder
-snapshot still predates the owners. Reuse them once that gate passes rather than
-copying modules into a parallel metal-owned archive system. The complete-attempt
+The integrated Cedar→Alder base contains these owners and passes installed
+readback. The root handoff records its completed full runtime execution plus
+reviewed test-only correction and focused qualification. Reuse these owners
+rather than copying modules into a parallel metal-owned archive system. The complete-attempt
 retention contract does not automatically qualify a frozen-f″ retention profile.
 
 A private installed-package rehearsal uses unchanged `pack_runtime_evidence`
