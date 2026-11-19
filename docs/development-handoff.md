@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
 Updated **2026-11-19, C409 isolated donor-state qualification complete — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**; last committed checkpoint **`673d56fa`**; C407/C408 runtime **`f83562b0`**.
+Active branch **cedar**, worktree **NASolve-c96**; C409 source checkpoint **`452b7c45`**; C407/C408 runtime **`f83562b0`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
 **3104.30 s**. All 1,417 tracked test-checkout files and exact NARestraints
@@ -36,6 +36,16 @@ convergence, Hg-linked acceptance or experimental refinement is claimed. Cold
 replay leaves 145 files unchanged; a verified 750 KB local archive retains their
 8.47 MB logical payload. Originals remain available. Next bind the two declared
 sites/aliases and backbone context, then inspect actual Hg-linked definitions.
+
+Hazel independently rederived both isolated results without new native calls;
+parent-to-declared stereo labels are exact, while candidate source-relative hands
+are preserved without claiming new absolute CIP labels. Rowan’s read-only A109
+compatibility map verifies both selected heavy-atom inventories and existing
+backbone-port chemistry. No sulfur rename is needed. Eight other DT sites must
+remain unchanged; four donor selectors need exact rebinding. Pair/stack selections
+remain atom-based. Recorded neighboring distances do not supply link intent.
+Hazel owns the next site application; neither agent starts duplicate generation
+or refinement. The existing donor-state ledger binds this map and peer review.
 
 Hazel delivered the preceding frozen integration to Alder at `f989111e` using
 the complete run plus reviewed fixture-only focused correction, under Simon's

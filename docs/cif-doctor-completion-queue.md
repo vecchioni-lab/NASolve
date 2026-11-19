@@ -1450,6 +1450,12 @@ regenerate them without a changed hypothesis. Next bind the two declared model
 sites and their component aliases/backbone contexts, preserve other residues and
 restraints, then capture the actual Hg-linked native definitions before refinement.
 The existing donor-state ledger entry owns exact evidence and test commands.
+Hazel’s independent cold review passes. The subsequent read-only site map verifies
+current A109 names/elements and backbone-port chemistry, with eight other DT sites
+to preserve and four exact donor selectors to rebind. No atom-name repair is
+needed. Recover explicit link intent before applying the derivatives; geometric
+adjacency is not that authority. Hazel owns application and linked/native checks;
+Rowan supports the existing Cedar preparation path. No duplicate generation.
 
 **C374 DF source-state confirmation:** exact original, numerical, plane-added and
 refinement dictionaries retain OP2 charge0/HOP2 and a single P–OP2 bond. Its
