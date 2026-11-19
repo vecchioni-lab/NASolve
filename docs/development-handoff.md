@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-19, C409 isolated donor-state qualification complete — Rowan**.
+Updated **2026-11-19, C410–C413 refinement and geometry checks — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**; C409 source checkpoint **`452b7c45`**; C407/C408 runtime **`f83562b0`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -11,6 +11,32 @@ Linden completed the recorded 4.48 GB owned test-copy retirement on 19 November,
 rechecking the archive and preserving scientific inputs, installations and shared NAR.
 Focused, relocated installed, matched native and independent checks also pass.
 Software qualification does not change the scientific REVIEW or close Q06.
+
+## Which parts of the molecule stayed in shape?
+
+The corrected PDU terminal bond is reproducibly closer to its 1.470 Å library target
+after refinement. The historical matched pair also works on 5PC. Distortion can
+still occur elsewhere. With matching simulated diffraction, a bent PDU straightens.
+When only its two outer carbons cease contributing to those simulated observations,
+the same model and restraints leave the arm bent (C411). The collaborator’s original
+refinement is unavailable. Simon chose the controlled test to evaluate the patch.
+
+C412 starts at the actual C401 checked preparation, continues C403’s ordinary
+refinement for two further single-cycle children and retains the original selection,
+eight inputs, phosphate protection and Free-R assignments. All six requested
+pair terms were already supplied. Both new children pass the narrow alkyne screen,
+yet the terminal carbon moves farther from the ten-atom plane Phenix restrained.
+The new C413 cold reader exposes that distinction for any captured linear target.
+Nine recorded planes in seven saved models agree with installed cctbx Cartesian
+arithmetic. The same 55 focused tests pass from source and from a relocated wheel.
+This checkpoint has focused qualification only. The two new fixed-unit rounds remain
+unselected. Q06 still owns the scientific decision about refinement survival.
+
+C410 completes the matched DF–Hg–DT research comparison with Hazel. Both actual
+five-cycle refinements retained the contacts and heavy-atom plane memberships.
+The DF attachment shortened, but a different bond moved farther from its target.
+Changing the generated donor state also changed target values and uncertainties.
+Keep routine metal-workflow adoption deferred until after NASolve is built.
 
 ## C409 handoff, 19 November
 
@@ -41,10 +67,8 @@ compatibility map verifies both selected heavy-atom inventories and existing
 backbone-port chemistry. No sulfur rename is needed. Eight other DT sites must
 remain unchanged; four donor selectors need exact rebinding. Pair/stack selections
 remain atom-based. Recorded neighboring distances do not supply link intent.
-The existing donor-state ledger binds this map and peer review. Simon approved
-one matched neutral/deprotonated refinement for a later session. When it resumes,
-Hazel covers the metal sites and Rowan supports the dictionary preparation.
-Integration into the routine metal workflow is deferred until after NASolve is built.
+The donor-state ledger binds this map, isolated qualification and the subsequent
+C410 comparison. Ordinary metal preparation continues to use its original definition.
 
 Hazel delivered the preceding frozen integration to Alder at `f989111e` using
 the complete run plus reviewed fixture-only focused correction, under Simon's
@@ -179,15 +203,16 @@ six-atom ring plane 0.094297 Å. These descriptive starting values are not accep
 
 ## Next work, in order
 
-1. The [DF–Hg–DT comparison](cif-doctor-completion-queue.md#df-hg-dt-comparison)
-   is queued for a later research session. The effect on either bound site after
-   refinement remains unmeasured.
-2. Q06 still needs evidence that PDU and DF retain acceptable geometry after
-   refinement. Reuse the existing whole-substituent, source-selected geometry
-   and native observations. Q13 also retains its separate phosphate-state question.
-3. Close any needed combined ordinary descendant coverage through existing owners.
-   Keep wider counted protocols and density-fitting policy separately qualified;
-   finite map coefficients alone do not establish a valid density-fitting policy.
+1. Q06 still needs a defensible scope for post-refinement PDU and DF geometry.
+   Reuse the matched bond-target controls and the measured whole substituent. The
+   synthetic recovery and omitted-scattering controls are complete. Repeating them
+   or locating the original collaborator files is unnecessary for this checkpoint.
+2. The [DF–Hg–DT comparison](cif-doctor-completion-queue.md#df-hg-dt-comparison)
+   is complete as a research test. Its mixed outcome and Q13’s distinct phosphate
+   question remain visible. Routine donor-state integration is a post-build decision.
+3. Ordinary continuation from a checked root is demonstrated with the counted pair
+   fully supplied. Wider protocols, additional force terms in that combined route
+   and validated density fitting each need their own evidence before being advertised.
 4. Q07: original mixed scaffold with ATL alongside, then the held-out modified-pair
    challenge. Retain L-DNA/FANA/L-FANA/L-FDNA/PNA/locked-sugar learning under Q08–Q14.
    Q15 explains the result. Q16 ends with the AutoPhase compatibility audit,

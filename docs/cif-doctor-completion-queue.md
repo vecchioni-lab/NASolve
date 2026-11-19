@@ -14,7 +14,11 @@ passes source, installed, matched native and full checks at `58965920`: 12,043
 tests and 293 subtests, with two existing native opt-in skips. Q06 remains
 open because delivery and measurement do not establish satisfactory PDU/DF shape
 under refinement. Next use the existing whole-substituent evidence to define the
-remaining scientific decision; do not repeat delivery, derivative or weight sweeps.
+remaining scientific decision. C410 completes the two-arm metal comparison. C411
+tests PDU with and without matching simulated scattering from its two outer atoms.
+C412 demonstrates registered continuation from a checked root and exposes a passing
+angle screen alongside worsening whole-arm displacement. C413 now measures the
+actual captured local plane and separately locates its implied linear atoms.
 The original mixed scaffold/ATL and unfamiliar-ligand challenge remain Q07, followed
 by retained chemistry boundaries Q08–Q14 and reporting/integration Q15/Q16.
 
@@ -316,6 +320,22 @@ solvent/overall scale while refinement retains its normal treatment. Hazel verif
 change, repeated weight/derivative sweep or Q06 closure. Reuse this completed
 positive control when separating consumer capability from donor-data stress.
 
+**C411–C413 completed PDU checks.** The same perturbed starting molecule recovers
+both nearly straight angles with matching simulated amplitudes. Omitting the
+scattering from its outer two carbons alone leaves both atoms present in the
+refinement model, with the same 180° targets, measured reflection set, flags and
+fixed uncertainties. The achieved angles then bend to about 150° and 110°. This
+is a controlled data-sensitivity test. It cannot diagnose the collaborator’s run.
+The earlier matched target correction on both PDU and held-out 5PC remains the
+before/after test of that numerical patch.
+
+Two real, ordinary one-cycle continuations of C403 preserved C401’s checked root,
+the counted pair recipe, protection and Free-R set. All six requested contacts
+were already present. These narrow angle checks pass even as the terminal carbon
+moves farther from the captured base plane. The on-demand C413 plane report now
+measures plane members and linearly related atoms separately. An angle improvement
+alone does not establish chemical survival. No new scientific acceptance cutoff.
+
 **Scientific stopping boundary:** C403 uses substituted-scaffold observations, not
 a PDU crystal. Keep its existing REVIEW screen and whole-substituent measurements,
 but do not treat repeated flattening or optimizer convergence as an agreed universal
@@ -450,9 +470,9 @@ historical result is not their qualification. Final combined integration still
 needs its own full regression.
 
 Q06 still owns effective native membership, known parallelity-gradient behavior,
-scientific targets and achieved geometry. Simon's reported PDU distortion after
-collaborator refinement is explicitly queued there; a flat built substituent or
-successful ReadySet result is insufficient. Keep ordinary bond edits distinct
+scientific targets and achieved geometry. Simon’s report of distorted PDU prompted the matched controls above.
+The original collaborator files are parked by agreement. The evidence for Q06
+comes from refining the prepared molecule and measuring its final geometry. Keep ordinary bond edits distinct
 from additive contact energy over an unchanged native manager: Linden's reported
 Willow evidence shows changed exclusions from symmetry distance edits. Willow
 W38/W39 are context, not a combined Cedar validation or a phosphodiester-link grant.
@@ -1192,9 +1212,9 @@ native-consumer defects and ordinary data-driven movement. Use source connectivi
 and geometry rules, with PDU and a held-out related substituent as controls—not a
 PDU-name repair switch. Chemical survival across the advertised supported
 chemistry remains unproven until these checks pass; completed explicit consumer mechanics alone do not
-establish that result. Retrieve the
-collaborator's exact pair of files when needed; do not reconstruct its provenance
-from memory or search unrelated datasets.
+establish that result. On 19 November Simon chose to test the patch with the
+retained matched controls. The original collaborator refinement remains undiagnosed
+and is not a closure prerequisite.
 
 ### Q07 — One mixed-scaffold ordinary acceptance run
 
@@ -1421,16 +1441,15 @@ native monomer reader exposes partial charge only. The existing
 ledger entry `declared_metal_donor_state_2026_11_19` binds the neutral parents,
 native checks, independent review and site map.
 
-**Matched refinement queued for a later session.** Compare neutral and
-deprotonated definitions at those two sites in the same Hg-containing scaffold.
-Regeneration changed heavy-atom targets, restraint widths and plane membership,
-so prepare both arms with the same dictionary-generation settings and the same
-ring-plane treatment. Use identical starting heavy-atom coordinates, Hg and
-pair/stack restraints, backbone and phosphate states, diffraction data, Free-R
-assignments and refinement settings. Preserve the eight other DT residues.
-Check which restraints Phenix applied in each arm, then compare the two Hg–N3
-distances, ring planarity and the DF C1′–N1 sugar–base bond. The paired refinement
-has yet to run. Its result will inform the post-build decision below.
+**C410 matched refinement complete.** Hazel ran both five-cycle Phenix refinements
+from identical heavy-atom coordinates and reflections. Rowan prepared matched
+neutral controls using the generator settings of the deprotonated derivatives.
+Both states kept the two Hg contacts, the same weighted base-plane memberships and
+the original backbone links. DF's sugar–base distance and ring flatness improved,
+while its thiocarbonyl bond moved farther from its own target. Heavy-atom targets
+and their uncertainties both changed. The outcome cannot be attributed solely
+to removing H or to changing formal charge. The cases remain unselected research
+controls. Explicit metal donor-state integration remains a post-build decision.
 
 **C374 DF source-state confirmation:** exact original, numerical, plane-added and
 refinement dictionaries retain OP2 charge0/HOP2 and a single P–OP2 bond. Its

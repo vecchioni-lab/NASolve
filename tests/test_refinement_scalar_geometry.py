@@ -143,7 +143,8 @@ def test_owner_does_not_invent_missing_capture(tmp_path, monkeypatch, chemistry)
 
 
 @pytest.mark.parametrize('reader', ['read_execution_scalar_geometry', 'read_execution_trigonal_geometry',
-                                    'read_execution_chemistry', 'read_execution_chemistry_sites'])
+                                    'read_execution_chemistry', 'read_execution_chemistry_sites',
+                                    'read_execution_plane_geometry'])
 def test_projection_change_between_owner_validation_and_report_is_refused(tmp_path, monkeypatch, reader):
     from tests.test_refinement_parallelity import completed
     from nasolve import refinement_parallelity as owner

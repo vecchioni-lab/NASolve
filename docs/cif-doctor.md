@@ -13570,6 +13570,38 @@ Qualification is recorded under `declared_site_native_observation_2026_11_18`
 in the existing evidence ledger; source/installed tests are distinct from actual
 native execution and the full regression gate.
 
+### Measure the achieved plane of a refined base (C413)
+
+A ring and its substituent can move differently. Use
+`refinement_parallelity.read_execution_plane_geometry(run, reference,
+checkpoint=..., parent=..., model=...)` on the sealed execution for the
+checkpoint of interest. This optional report reads the exact final model and
+the existing full-precision, intra-residue heavy-atom observations. It checks
+the declared source and atom identities through the same owners as the scalar
+reader. An older execution without a declared capture returns no report.
+
+The fit minimizes squared Cartesian distances using each positive native member
+weight. Each listed member gets an absolute perpendicular distance in Å. The
+summary is the ordinary RMS of the positive-weight members' distances. Zero-weight
+members receive individual distances without affecting the fit or its summary.
+Fewer than three effective positions or an ambiguous plane normal leave distances
+unassessed. A declared site with no captured plane is listed. Mixed coverage
+or a mix of measurable and ambiguous planes yields a partial result.
+
+When a captured positive-weight angle has an exact 180° target and any two of
+its atoms have distinct known positions in the fitted group or its linear
+continuation, the report measures the third against the original plane. The
+witness preserves the original ordered angle, supporting atom indices, target,
+weight and achieved angle. Each extra atom is listed once using the first
+grounded witness. It has no effect on the fit. A freely rotatable appendage
+cannot acquire a plane constraint merely by being bonded to the ring.
+
+All distances use the literal Cartesian coordinates in the capture. The native
+plane and angle symmetry operators were not recorded. Interpreting the result as a
+restraint departure therefore requires a common crystal image. Native residuals,
+cross-symmetry planes, chemical approval and automatic adoption remain unassessed.
+This diagnostic creates no file and does not alter a force, checkpoint or threshold.
+
 ### Explicit actual-final scalar geometry (C407)
 
 `refinement_parallelity.read_execution_scalar_geometry(run, reference,

@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Measure the shape of a refined base and its linear substituents (C413)
+
+- The explicit Python reader reports each captured local plane on the exact
+  checkpoint model. It measures additional atoms implied by active 180° targets
+  against that same plane. This makes whole-arm movement visible even when the
+  alkyne angle screen passes.
+- Positive-weight members define the fit. Missing planes, ambiguous fits and
+  unavailable symmetry information remain explicit. This read-only report uses
+  existing checkpoint records and adds no refinement force or selection rule.
+  Existing installations and checkpoints require no migration.
+
 ### Declare an imide proton-loss source without changing its parent (C409)
 
 - Add an explicit Python source operation for neutral N(H/D) between two

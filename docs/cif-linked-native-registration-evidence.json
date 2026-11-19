@@ -113580,7 +113580,21 @@
       "size": 17421,
       "sha256": "41f68a5293e644b8f01250c259b3d015b9e73a73130aeebb3ff7141b5b187e58"
     },
-    "limits": "Ordinary prepared-restraint inheritance only; no optional extra-restraint files or chemical projection. No scientific adoption."
+    "limits": "Ordinary prepared-restraint inheritance only; no optional extra-restraint files or chemical projection. No scientific adoption.",
+    "combined_checked_root": {
+      "milestone": "C412",
+      "status": "COMPLETE_ZERO_ADDED_ROUTE",
+      "ancestry": [
+        "checked postmr",
+        "refine-001",
+        "refine-002",
+        "refine-003"
+      ],
+      "native": "Phenix 2.2.1-6174, two ordinary one-cycle continuations",
+      "inputs": "All eight original restraint/protection inputs, observations and Free-R assignments preserved.",
+      "observation": "All six requested pair terms already supplied. Both children usable and unselected. Triple screen passes while the whole-arm plane departure grows.",
+      "limits": "Fixed-unit mechanics only. Additional nonzero terms in this combined ordinary route and density-fitting policy remain separate."
+    }
   },
   "full_c391_regression_2026_11_18": {
     "milestone": "C391 full / W135 audit",
@@ -116937,11 +116951,20 @@
           "sha256": "e3efd9d89c55f78490bfb8dab1e205de88d43853e7740ce727e8d2df7fecae1d"
         }
       }
+    },
+    "omitted_scattering_control": {
+      "milestone": "C411",
+      "status": "COMPLETE",
+      "native": "Phenix 2.2.1-6174, one additional five-cycle refinement",
+      "same_control": "Perturbed C408 start, same fixed sigmas, measured reflections, Free-R assignments and original restraints.",
+      "only_change": "Two outer carbons omitted from simulated scattering. Both retained in the refinement model.",
+      "outcome": "Both angles deteriorate despite both native linear targets. Conditional recovery is not experimental validation.",
+      "prior_patch_effect": "Six registered C308 model fingerprints rechecked across PDU and 5PC. No new native calls for that comparison."
     }
   },
   "declared_metal_donor_state_2026_11_19": {
     "kind": "declared-metal-donor-state-path-audit",
-    "status": "ISOLATED_DERIVATIVES_QUALIFIED_MATCHED_REFINEMENT_QUEUED",
+    "status": "ISOLATED_AND_MATCHED_RESEARCH_CHECKS_COMPLETE",
     "author": "Rowan",
     "date": "2026-11-19",
     "source_commit": "452b7c4551cf2819cda0bfa85cdaf674010f7899",
@@ -116962,8 +116985,7 @@
       "neutral_parent_definitions_retained": true
     },
     "next_bounded_work": [
-      "When research resumes, run one matched neutral/deprotonated comparison at the two declared donor sites using the recorded link context and site map.",
-      "Check the effective restraints in each arm and compare both Hg\u2013N3 distances, ring planarity and the DF C1\u2032\u2013N1 bond after refinement."
+      "Revisit routine donor-state integration after NASolve is built. Preserve the independent DF phosphate-state question."
     ],
     "receipt": {
       "anchor": "NASolve-local-artifacts",
@@ -117209,14 +117231,38 @@
       "owner_next": "For the later comparison, Hazel covers metal-site binding and Rowan supports Cedar dictionary preparation."
     },
     "development_decision": {
-      "matched_refinement": "QUEUED_FOR_LATER_NOT_RUN",
+      "matched_refinement": "COMPLETED_TWO_MATCHED_FIVE_CYCLE_ARMS_UNSELECTED",
       "routine_metal_workflow_integration": "DEFERRED_UNTIL_AFTER_NASOLVE_IS_BUILT",
       "current_build_requires_routine_integration": false,
       "plan": {
         "anchor": "repository",
         "relative_path": "docs/cif-doctor-completion-queue.md",
         "section_id": "df-hg-dt-comparison"
-      }
+      },
+      "outcome": "Same coordinates, observations and Free-R authority. Both Hg contacts and plane membership retained. DF attachment improved and thiocarbonyl departure worsened. Generated heavy-atom targets and widths both changed."
     }
+  },
+  "selected_actual_plane_geometry_2026_11_19": {
+    "milestone": "C413",
+    "status": "SOURCE_AND_RELOCATED_WHEEL_QUALIFIED",
+    "policy": "refinement-declared-site-plane-departures-v1",
+    "input": "Existing immutable selected-site final native observation, exact checkpoint model and declared source identities.",
+    "output": "On-demand Cartesian measurements. No change to persisted checkpoint schemas, native workers, defaults or acceptance.",
+    "source_module_sha256": "55f94dd6579466a95e68f13bde7377d2b5ab4ed0c2c009a37787f87eaf17d97c",
+    "validation": {
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_refinement_plane_departures.py tests/test_refinement_scalar_geometry.py tests/test_refinement_trigonal_geometry.py",
+      "source_passed": 55,
+      "relocated_wheel_passed": 55,
+      "cold_models": 7,
+      "captured_planes": 9,
+      "source_and_install_reports_identical": true,
+      "native_arithmetic": "Installed Phenix 2.2.1-6174 cctbx Cartesian plane deltas, RMS for positive-only cases, unequal and zero-weight control. No new refinement for C413.",
+      "full_regression": "NOT_RUN_FOR_THIS_CHANGE"
+    },
+    "limits": [
+      "Selected intra-residue heavy atoms. Individual native plane/angle symmetry operators unavailable.",
+      "A linear witness locates an extra atom against the frozen plane. No restraint creation or assumption that the achieved structure is flat.",
+      "C412 angle-screen and global substituent outcome can diverge. Q06 remains open."
+    ]
   }
 }

@@ -713,6 +713,24 @@ def read_execution_trigonal_geometry(run, reference, *, checkpoint, parent, mode
     return result
 
 
+def read_execution_plane_geometry(run, reference, *, checkpoint, parent, model):
+    """Measure recorded local planes and their linear continuations on the exact model."""
+    selected = _selected_chemistry_observation(run, reference, checkpoint=checkpoint, parent=parent, model=model)
+    if selected is None:
+        return None
+    from .refinement_plane_departures import describe_planes
+    model_bytes, projections, observation = selected
+    if observation["status"] == "OBSERVED":
+        from .refinement_chemistry import _source_checked_atoms
+        _source_checked_atoms(projections, observation)
+    report = describe_planes(observation)
+    declared = _declared_chemistry_sources(run, reference, checkpoint=checkpoint)
+    expected = [dict(site=site, component=source["component"]) for site, source in sorted(declared.items())]
+    _need(set(projections) == set(declared) and observation["sites"] == expected,
+          "Plane report sites differ from the sealed request")
+    return dict(report, model_sha256=_digest(model_bytes), declared_sites=declared)
+
+
 def read_execution_pair_geometry(run,reference,*,checkpoint,parent,model):
     record=validate_execution(run,reference,checkpoint=checkpoint,parent=parent,usable=True)
     if record['policy_id'] not in _PAIR_GEOMETRY_POLICIES:return None
