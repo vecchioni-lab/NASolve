@@ -41,11 +41,15 @@ current instructions; other branches retain their own status and validation pins
   W150 qualifies a temporary shared-base composition for receiving-owner review;
   W151 confirms deposited sequence continuity across B107/B111 while preserving
   the reference geometry/lineage caveat. Neither closes general repair.
+  W152 adds independent opposite-direction/no-op synthetic recovery; W153's real
+  diffraction counterpart records reference drift and a geometry/density tradeoff,
+  including adaptive work filtering. W154 labels map sources independently from
+  coordinate states. These do not close general repair or stage integration.
   Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W152;
-  the next substantial audit is W153. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W154;
+  the next substantial audit is W155. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

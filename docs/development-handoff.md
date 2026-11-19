@@ -1,45 +1,38 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-19**, through **W152**. **W140 adds backbone and saved-map evidence to W139's
-matched sticky-end improvement.** GC plane mismatch falls 27.30→6.30° with
-localized movement; nearby sugar/phosphate bond and angle deviations barely
-change. All 38 existing backbone links were measured and 126 ordered sugar-volume
-signs survive. A C102 phosphate negative-difference feature persists in both maps.
-This is useful local improvement, not yet general density-supported repair.
+Updated **2026-11-19**, through **W154**. **W152 closes the independent
+opposite-displacement/no-op subgate under idealized matching data.** Deposited
+5W6W starts recover from 0.764 Å RMS to 0.052/0.047 Å, with a 0.014 Å no-op.
+This complements W148's 8D93-derived control; both remain bounded evidence.
 
-Rfree changes .2613→.2609 and final clashscore 23.27→24.77 are context, **not
-rejection thresholds**. Both numerical line-search stops remain a separate
-limitation. W138's explicit 100-cap ordinary mechanics are qualified and integrated
-in Cedar `4f7aeb84`; the C400 matched matrix is complete. Do not rerun it.
-The [current three-file inspection](#local-science-checkout) reuses the preceding
-models and plane/contact guides, highlighting the phosphates under review.
+**W153 adds real diffraction and a mixed result.** Displaced endpoints approach
+the separately relaxed control, but that control itself moves 0.522 Å in the
+selected region. Geometry and plane parallelism become more ideal while its
+Rfree rises from about .241 to .260; strong B2 phosphate negative density remains.
+The positive arm adaptively rejects one work reflection. Raw observations/Free
+stay intact, and cold common-HKL endpoint scoring is complete, but the trajectories
+are not a fixed-work-set comparison. No winner, weight retuning or repair is
+accepted. [Methods and evidence](topostitch-periodic.md#w153--separate-experimental-backbone-recovery-from-geometry-driven-relaxation).
 
-The backend can bind explicit periodic pair intent, apply the missing geometry
-terms during one qualified native refinement cycle, retain their original meaning
-across compatible registered descendants and refuse unsupported or unproven
-continuations. **General sticky-end repair and ordinary recut refinement remain
-unqualified.** S04/S05/S06 and P01/P02 remain partial. The
-[machine roadmap](topostitch-roadmap.json) is the status authority; its
-[human view](topostitch-roadmap.md) is generated from it.
+W154 lets the installed inspector name density sources independently of the
+coordinate states. Complete source and relocated-install checks pass; the two
+new experimental views use that distinction. Shared receiving-owner adoption,
+source/frame proof and browser/GPU qualification remain separate.
 
-**W148 adds an idealized backbone recovery control:** the exact W100 displacement
-returns from 0.917 to 0.029 Å RMS under matching synthetic diffraction. Local
-bond errors recover and sugar signs survive; an existing outside-region source
-link distortion remains. This is separate from experimental repair, density-noise
-calibration and convergence. [Evidence and limits](topostitch-periodic.md#w148--recover-a-known-backbone-displacement-with-matching-diffraction).
-
-**W152 closes the independent opposite-displacement/no-op subgate:** deposited
-5W6W signed starts recover from 0.764 Å RMS to 0.052/0.047 Å under matching
-synthetic diffraction; the unperturbed control moves 0.014 Å. Rowan independently
-reproduced coordinates, local geometry and identities. The 20 pair-plane and 38
-adjacent stacking groups retain explicit source/boundary residuals. This is not
-experimental or general junction repair. [Evidence](topostitch-periodic.md#w152--recover-opposite-backbone-displacements-in-an-independent-deposited-model).
+The backend can bind periodic pair intent, retain qualified native terms across
+compatible descendants and refuse unsupported continuation. **General sticky-end
+repair and faithful recut refinement remain unqualified.** S04/S05/S06 and
+P01/P02 stay partial. The [machine roadmap](topostitch-roadmap.json) owns status;
+its [human view](topostitch-roadmap.md) is generated. Older W139/W140 sticky-end
+benefit and the completed C400 numerical matrix remain valid in their exact
+scopes; they are not a queue to repeat.
 
 ## Current development edge
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
-| W149 reusable inspector | Installed prepared-scene renderer; full/source-free installation, exact saved-data replay and bounded peer review | Stage adapter, source/frame proof, browser/GPU qualification and campaign actions |
+| W149/W154 reusable inspector | Installed prepared-scene renderer; full/source-free installation, exact saved-data replay and bounded peer review | Stage adapter, source/frame proof, browser/GPU qualification and campaign actions |
+| W153 experimental control | Exact original observations/Free and output/map audit; relaxed-reference and common-HKL endpoint comparison | Mixed geometry/diffraction outcome; adaptive work filtering, occupancy/ADP and model-phase ambiguity |
 | W148/W152 matching-data recovery | Two source models, opposite signed starts and matched no-op; independently audited local geometry | Reciprocal target shapes, larger/nonuniform bends, experimental/noisy data and general repair |
 | W139/W140 matched canonical control | Native/zero identity, local pair benefit, recorded backbone supports and saved-map sampling | Numerical stops; density calibration, broader controls and whole-model acceptance |
 | W138 ordinary longer control | Explicit v8 100-cap route, actual final writer/pair capture; full/installed/native gates pass | Broader protocols, semantic weighting and CLI/Doctor activation |
@@ -103,7 +96,9 @@ not another work queue; do not repeat them because this handoff is shorter.
    no new reader, launcher, FFT policy or inferred origin proof.
    W149 now packages the approved renderer, with bounded scenes and explicit
    missing-map presentation; full/installed and exact saved-science checks pass.
-   It accepts prepared scenes, not a run directory. A stage adapter remains next.
+   W154 adds independent map-source labels, with2092full+234subtests and
+   159source-free-installed+53subtests. It still accepts prepared scenes, not a
+   run directory. A stage adapter waits for the receiving-owner integration.
    Hazel's combined runtime `1acc7892` completed its full execution with one
    fixture-related failure, 12,845 passes, two skips and 298 subtests. The
    test-only correction passes 35 focused cases; delivery must preserve that
@@ -119,16 +114,16 @@ not another work queue; do not repeat them because this handoff is shorter.
    REVIEW and exact pair intent. Retain repulsion while exclusions are open;
    never activate an isolated symmetry phosphate bond.
 
-W148 now closes the bounded W100 matching-data recovery question. Do not repeat
-it or W74/W75 invariance probes. Before extending physical repair, predeclare
-independent healthy/no-op and forward/reverse bend controls with verified
-sequence/link intent; the source B107→B111 distortion remains a separate diagnostic.
-W151 resolves one interpretation: deposited B107/B111 are adjacent polymer
-positions despite their numbering jump. Their distorted angles remain real;
-retain the link and the existing W115 preview-source caveat. A no-op control
-needs an audited local region, not a claim of perfect whole-model geometry.
-[Sequence evidence](topostitch-periodic.md#w151--separate-deposited-sequence-continuity-from-reference-geometry).
-Keep receiving-owner adoption of W150 separate from new scientific controls.
+W148/W152 recovery and W153's experimental comparison are now recorded; do not
+repeat them or the W74/W75 invariance probes. Next density attribution must
+separate displacement from occupancy/ADP/scattering alternatives before proposing
+motion. Hazel's global-scale/ADP and own/common-coordinate sampling controls are
+useful precedents, not a qualified local causal matrix. A future fixed-work-set
+trajectory needs predeclared filtering; W153's common-HKL endpoint rescore already
+answers its narrow arithmetic question without another native run. Larger,
+reciprocal and nonuniform shapes, junction-aware window expansion and B09 remain
+open. W151's B107/B111 sequence adjacency and source-angle caveat still hold.
+W150 adoption is deferred and separate; W154 is a follow-on presentation patch.
 
 **W122 remains planning-only:** the first intended user-facing application is
 [explicit canonical sticky-end enforcement](topostitch.md#explicit-sticky-end-enforcement-during-refinement-planned-w122),
@@ -211,6 +206,20 @@ W118 numerical helpers retain their exact original scopes; no later software
 PASS upgrades older diagnostic models to accepted structures.
 
 ## Local science checkout
+
+**Current W153 experimental comparison:** GitHub workspace anchor,
+`ScienceCheckouts/Linden/2026-11-19_experimental-backbone/review.html`. Two
+33-atom/35-bond rotatable density views, six actual PDBs, ChimeraX loader and
+manifest show the geometry/density tradeoff. Model switching keeps the selected
+map fixed; map labels separately identify relaxed control and endpoint.
+Seventeen mocked controls pass per view and six-model headless loading verifies
+coordinates/visibility. These are not browser/GPU qualification or accepted repair.
+
+**W152 independent synthetic control:** same anchor,
+`ScienceCheckouts/Linden/2026-11-19_opposite-bends/review.html`. Two coordinate-only
+views and the six-model loader separate signed recovery from no-op relaxation.
+Both checkouts preserve actual coordinates without alignment/magnification.
+
 
 **W149 reusable inspector:** GitHub workspace anchor,
 `ScienceCheckouts/Linden/2026-11-19_inspector/review.html`. Four files contain

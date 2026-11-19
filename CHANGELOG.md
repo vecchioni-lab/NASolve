@@ -17,7 +17,12 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
-### Independent model and density-source labels
+### W153–W154 — Experimental control and independent density-source labels
+
+- Record the mixed deposited-5W6W result, native adaptive filtering, common-HKL
+  endpoint arithmetic and saved density inspection. Preserve original observations,
+  Free membership and failed diagnostics; no new acceptance/weight policy or
+  scientific payload is committed.
 
 - Allow the offline inspector to name its two density sources independently of
   the two coordinate states, so a fixed control map is not labelled as if it came

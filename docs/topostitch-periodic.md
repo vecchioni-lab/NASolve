@@ -8964,3 +8964,176 @@ straight/curved target recovery, larger bending, automatic window expansion,
 physical seam closure or experimental/noisy-density qualification. Next inspect
 whether the deposited diffraction supports a bounded matched experimental
 control, preserving original observations/flags and the relaxed-reference arm.
+
+## W153 — Separate experimental backbone recovery from geometry-driven relaxation
+
+**2026-11-19; ordinary experimental control, mixed outcome.** Reuse W152's
+unchanged reference and signed starts against [deposited 5W6W structure factors](https://files.rcsb.org/download/5w6w-sf.cif),
+retrieved 2026-11-19, 651,299 bytes, SHA256
+`d5a0d2190fb21a6e0b1ebbac917da8f189ceff1af2c1d14c36886d8e0bc1c4dd`.
+Of 7,562 source rows, 5,137 have positive finite F/SIGF: 4,630 work and all
+507 original Free observations (`test_flag_value=1`). The other 2,425 rows
+have missing F/SIGF (2,410 status `x`, 15 status `o`); preserve their identities
+and reasons. No flags are created, extended or reclassified; deposited map
+coefficients are not used as observed amplitudes. The conversion is checked at
+MTZ float32 precision. Deposited PDB/CIF cell fields match exactly; native
+120°→120.00000000000001° arithmetic fits the existing 1e−10 frame bound. The
+first converter's overly strict binary-equality refusal is retained, not hidden.
+
+The same three arms use five cycles, 100-cap XYZ optimization, seed 1, one core,
+fixed unit coordinate/geometry weights, fixed B/occupancy and unchanged explicit
+pair/stack restraints. **Bulk-solvent/scaling is enabled in every arm**, an
+explicit difference from W152. No coordinates, restraints or weights are tuned
+after seeing Rfree. All 859 XYZ coordinates are active; the input-only anchors
+are not native fixed sites. Installed Cedar C407 and Phenix **2.2.1-6174** remain
+unchanged. Preflight completes before fitting; three refinements take 246.72 s
+combined. All seven successful native process groups stop.
+
+| Start | Final selected RMS to deposited model (Å) | Final RMS to relaxed reference (Å) | Local bond RMS (Å) | Local angle RMS (°) | Common-HKL Rwork / Rfree |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Reference | 0.52152 | 0 | 0.00357 | 1.201 | .239242 / .259995 |
+| Positive | 0.52131 | 0.21485 | 0.00361 | 1.205 | .239916 / .257888 |
+| Negative | 0.49506 | 0.14566 | 0.00353 | 1.243 | .238709 / .261100 |
+
+The initial reference after native scale fitting gives Rwork/Rfree .2238/.2413,
+close to the deposited values. Geometry improves while the reference moves and
+its Rfree rises by about .019. This is a tradeoff under the frozen protocol,
+not an accepted repair or proof of a universally appropriate weight policy.
+Twenty pair-plane angles have RMS 11.226° initially, about 3.38–3.54° afterward;
+38 adjacent-stack angles change from RMS 9.193° to 4.13–4.27°. These measured
+changes do not prove that flattening every base pair/step is physically right.
+All 38 covalent backbone links and 126 ordered sugar signs survive; all 2,569
+bond/angle target/sigma/weight definitions match across six states. Local
+geometry covers the same 232 bonds and 363 angles as W152.
+
+**Adaptive filtering is explicit.** Raw input/output F/SIGF and all original
+Free membership remain exact in all arms. Native outlier rejection removes work
+reflection **(5,18,−1), F=434.87, SIGF=5.33** only in the positive arm. Thus the
+trajectories do **not** share identical effective work sets. The strict initial
+saved-map audit correctly refused that equality; retain its log and original
+worker. The amended read-only audit records the excluded row and exact remaining
+values, rather than calling it a matched-data PASS. Rowan independently confirms
+source/raw-output membership, the native log's 5,137→5,136 transition and the
+coordinate comparisons.
+
+Following that review, reuse saved final `F-model` amplitudes and their fixed
+scales to reconstruct each native R value, then evaluate the **common 4,629 work
+and all 507 Free indices**. The table gives this cold common-HKL arithmetic;
+no additional refinement, coefficient generation or scale optimization occurs.
+The common-set values hardly change the interpretation. Positive-arm F-model is
+unavailable at its rejected work row; no value is invented. This does not qualify
+a fixed-work-set trajectory or provide a reason to choose a winner from the
+small final Rfree differences.
+
+**Saved density:** all six selected unfilled ordinary ML coefficient arrays are
+bound to exact model, MTZ and effective parameters. Each includes the 507 Free
+indices; positive has 5,136 coefficients, the other arms 5,137. Reuse W147's exact
+coefficient selector and Hazel's unchanged A72 periodic sampler. At 459
+sugar/phosphate sites per map, compare own endpoint and fixed deposited positions;
+lattice-translation checks agree within 2.63e−13σ. B2 P remains about −8.09,
+−8.31 and −8.35σ at its three endpoints. B2 P's occupancy=1 and B=90.39 Å²
+remain fixed. Strong negative density on an atom is still not a unique motion
+instruction: occupancy/ADP, scattering, model or phase errors remain alternatives.
+Separate whole-cell sigma scaling and model-assisted phases prohibit absolute
+cross-map electron-count or independent-validation claims. The inherited
+123-point/1.5 Å sampling sphere is not a calibrated backbone noise detector.
+
+The small human checkout is at GitHub workspace anchor
+`ScienceCheckouts/Linden/2026-11-19_experimental-backbone/review.html`. It contains
+two B2–4 density/movement views, six actual PDBs, ChimeraX loader and manifest.
+B2–4 was chosen after fitting because its phosphate has the most negative
+selected-phosphorus sample in every arm; this is disclosed inspection selection,
+not a fitting or acceptance rule. Each view has 33 atoms/35 native covalent bonds,
+a shared 0.5 Å grid and 62 verified contour meshes. Model labels name the displaced
+start/endpoint; map labels separately name relaxed-control/endpoint coefficients.
+Default model switching keeps the control map stationary. No alignment or
+magnification. ChimeraX **1.12** headless checks exact six-model coordinates,
+205 selected atoms per model and identity placements. Seventeen offline mocked
+render/control checks pass per view; no browser/GPU qualification is claimed.
+
+**Exact validation commands:** with `PYTHONDONTWRITEBYTECODE=1`, the shared
+Python 3.12 runs `runners/w153-prepare.py`, `w153-control.py`,
+`w153-readback.py`, `w153-control.py --refine`, `w153-readback.py --final`,
+`w153-execution-review.py`, `w153-density.py`, `w153-common-r.py` and
+`w153-parallelity-scope.py`. The controller captures native conversion/refinement;
+the density controller captures a read-only Phenix worker. Phenix's bundled Python
+runs `-B runners/w153-scene.py`; shared Python runs `w153-checkout.py` through the
+qualified W154 installation. ChimeraX runs `--nogui --exit --script
+runners/w153-viewer-check.py`. Exact arguments, dependencies and retained failed
+attempts are in the receipts. No Willow scientific runtime/schema or default
+refinement policy changes; the separate W154 presentation patch is below.
+
+Archive: NASolve anchor
+`branch-artifacts/willow/w153-experimental-backbone-evidence-2026-11-19.zip`,
+187 indexed files +manifest, 12,809,610 bytes, SHA256
+`efdeadf5a96084752d0ab24bdd5f1e7f4108359234439201af5d55c47efb3d52`.
+All member hashes verify. Native roots, failures and human checkouts remain local;
+none of the generated scientific payload is committed. Archive paths and checksums
+support integrity, not portable native continuation.
+
+**Decision:** close the bounded ordinary experimental comparison and source-to-map
+readback question; retain the mixed scientific outcome and adaptive-work-set
+limitation. S04/S05/S06 stay PARTIAL. No new refinement matrix is queued merely
+to erase one rejected row. A future fixed-work-set trajectory must predeclare
+that policy. Next density work must distinguish displacement from occupancy/ADP
+and phase/scattering errors before proposing motion. Hazel's existing matched
+scale/ADP control and own/common-coordinate map sampling are useful precedents,
+not a qualified local causal matrix. See Alder's current owner and its
+`docs/history/metal-development-handoff-2026-11-18.md` evidence sections; history
+is evidence, not an active instruction. Larger/reciprocal shapes, junction-aware
+window expansion, physical closure and the B09 geotest demonstration remain open.
+
+## W154 — Name map sources independently of coordinate states
+
+**2026-11-19; isolated presentation patch.** The previous renderer reused model
+labels for density sources. A fixed control map could therefore be named as if
+it came from the displaced model. Optional `map_labels` now independently names
+the two map slots in the dropdown and stationary-map status. Omission retains
+the existing model-label default. Bounded escaped text, one-pass replacement and
+validation-before-write remain enforced. No geometry, mesh, shader, sampling,
+source authentication, checkpoint selection or native refinement policy changes.
+The input scene stays schema 1; rendered presentation metadata adds
+`display_map_labels`. Existing API calls and saved scenes need no migration.
+
+Code **`71dda01aecc616a8bc8f94506567ef3a3218842a`** changes
+`src/nasolve/density_inspection.py`, `src/nasolve/data/density-inspection.html`,
+`tests/test_density_inspection.py`, `docs/architecture.md` and `CHANGELOG.md`.
+The meaningful new regression fails on the old API with the unexpected
+`map_labels` argument, then passes for independent/default/escaped labels,
+unchanged scientific data and invalid-label refusal before file creation.
+
+**Validation:** `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <Python3.12> -B -m
+pytest -q -p no:cacheprovider tests/test_density_inspection.py
+tests/test_topostitch_roadmap.py` passes **30**. One complete pinned-source run
+passes **2,092 tests +234 subtests**, 101.77 s pytest time, unchanged tracked files
+and a stopped process. The full command uses the existing `w149-full-suite.py`
+controller, `-o addopts= --durations=20 --junitxml ... tests --basetemp ...`,
+with explicit pinned NARestraints source. Initial setup selected Willow's older
+process API and stopped before any tests; the recorded second setup reuses the
+maintained Cedar process owner exactly as prior W149 qualification. No failed
+suite is represented as a pass.
+
+A `pip wheel --no-deps --no-build-isolation` build and `pip install --no-deps
+--no-compile --target ...` installation pass. After relocating the package and
+removing both build source and old installation, the existing ten affected owner
+modules pass **159 tests +53 subtests**; import and `nasolve show --help` pass.
+All 93 installed package files remain exact. Wheel SHA256
+`89b75e66f749e7956a383ee0ee93a66440db5b9d402195345d8d4735ca8971f6`.
+Source/installed rendering of the unchanged W143 science gives identical HTML;
+all original scene fields and shader source remain exact. Seventeen mocked
+WebGL/control checks verify independent map labels survive model switching;
+W153's two real scenes pass the same contracts. Hazel independently reviews the
+source/template and both published scientific payloads, without duplicating
+these tests. Browser/GPU rendering and stage integration remain separate gates.
+
+Archive: NASolve anchor
+`branch-artifacts/willow/w154-density-labels-qualification-2026-11-19.zip`,
+46 indexed files +manifest, 2,437,749 bytes, SHA256
+`7e8416ce8abc0230589cf3e5365d86e2986001440e08d851c4700c204a7b8318`.
+Hazel's detailed review is separately bound at
+`branch-artifacts/Alder/coordination-w154-review-20261119.json`.
+After archive/hash, inode and stopped-process checks, only two owned scratch
+roots are retired: **3,956 files /29,020,618 bytes**. Scientific runs, checkouts,
+shared Python/NARestraints and C407 installation remain. W150's receiving-owner
+candidate remains frozen and deferred; this patch is not silently folded into
+its earlier compatibility receipt or adopted into Alder/Cedar.
