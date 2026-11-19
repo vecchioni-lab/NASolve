@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W158 — Plan discriminating recovery and density controls
+
+- Specify the next matched protocol comparison and separate model-assisted
+  density panel, preserving ordinary parent/restraint ownership, effective data
+  membership and post-recovery interpretation. Close duplicate experiment queues.
+- Planning/docs only; no execution, runtime/schema/default, migration or install
+  change. Existing scientific evidence stays local and milestone status is unchanged.
+
 ### W157 — Read recovery histories by native stage
 
 - Bind saved scaling/coordinate stages, iteration budgets and effective counts

@@ -297,7 +297,7 @@
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Retain W153 mixed geometry/diffraction outcome, existing links and explicit pair/stack residuals. Qualify physical geometry/packing and source-backed target semantics before general seam closure; do not fix a geometry score by deleting real topology. Native shared numerical/chemistry policy stays with Cedar; no new weight sweep follows from this control.",
+      "next_action": "Retain W153 mixed geometry/diffraction outcome, existing links and explicit pair/stack residuals. Qualify physical geometry/packing and source-backed target semantics before general seam closure; do not fix a geometry score by deleting real topology. Native shared numerical/chemistry policy stays with Cedar; no new weight sweep follows from this control. W158 first qualifies an ordinary common parent/protocol and actual pair/stack readback for one same-source undeformed comparison; never remove counted ancestry to bypass admission.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -363,14 +363,15 @@
         "E_MATCHING_BACKBONE_RECOVERY",
         "E_REFERENCE_SEQUENCE_ADJACENCY",
         "E_INDEPENDENT_OPPOSITE_RECOVERY",
-        "E_EXPERIMENTAL_BACKBONE_TRADEOFF"
+        "E_EXPERIMENTAL_BACKBONE_TRADEOFF",
+        "E_DISCRIMINATING_RECOVERY_PLAN"
       ],
       "last_audit": {
         "date": "2026-11-19",
         "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
-        "human_update": 153,
-        "reviewer": "Linden; coordinated cold review by Rowan/Hazel",
-        "scope": "Separate experimental backbone recovery from geometry-driven relaxation; bounded delivery only, broader milestone remains partial"
+        "human_update": 158,
+        "reviewer": "Linden; ordinary ownership clarified with Rowan",
+        "scope": "Next-experiment planning only; completed controls retained and milestone remains partial"
       }
     },
     {
@@ -413,7 +414,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "W155 supplies read-only displacement/Q/B counterexamples; preserve them before detector work. Next attribution must address model-assisted phases, observed-amplitude/noise uncertainty and geometry context with scientist calibration; no red/green or one-atom sign rule. W153 common-HKL endpoint arithmetic is complete, not fixed-work-set trajectory qualification. Predeclare effective-data policy for future fits; no new native matrix or weight sweep is queued. W150 adoption and B09/B10 remain separate/open. W156 requires a predeclared recovery window before evaluating future deformations; initial Rfree alone cannot screen them out. W157 supplies stage-labelled saved histories; future recovery displays must preserve scaling/XYZ distinctions and must not relabel log-match indices as macrocycles.",
+      "next_action": "W155 supplies read-only displacement/Q/B counterexamples; preserve them before detector work. Next attribution must address model-assisted phases, observed-amplitude/noise uncertainty and geometry context with scientist calibration; no red/green or one-atom sign rule. W153 common-HKL endpoint arithmetic is complete, not fixed-work-set trajectory qualification. Predeclare effective-data policy for future fits; no new native matrix or weight sweep is queued. W150 adoption and B09/B10 remain separate/open. W156 requires a predeclared recovery window before evaluating future deformations; initial Rfree alone cannot screen them out. W157 supplies stage-labelled saved histories; future recovery displays must preserve scaling/XYZ distinctions and must not relabel log-match indices as macrocycles. W158 specifies the next bounded protocol comparison and an independent model-assisted zero/displacement/B panel in the design contract; no native execution tonight, no repeat of completed C397-C400 or W153 arithmetic.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -476,14 +477,15 @@
         "E_EXPERIMENTAL_BACKBONE_TRADEOFF",
         "E_DENSITY_SCATTERING_COUNTEREXAMPLES",
         "E_POST_DEFORMATION_RECOVERY_PLAN",
-        "E_NATIVE_RECOVERY_STAGE_HISTORY"
+        "E_NATIVE_RECOVERY_STAGE_HISTORY",
+        "E_DISCRIMINATING_RECOVERY_PLAN"
       ],
       "last_audit": {
         "date": "2026-11-19",
         "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
-        "human_update": 157,
-        "reviewer": "Linden; independent cold stage/display review by Hazel",
-        "scope": "Saved native stage evidence only; post-recovery review criteria and PARTIAL status retained"
+        "human_update": 158,
+        "reviewer": "Linden; ordinary ownership clarified with Rowan",
+        "scope": "Next-experiment planning only; completed controls retained and milestone remains partial"
       }
     },
     {
@@ -3332,6 +3334,33 @@
           "size": 1021
         }
       ]
+    },
+    "E_DISCRIMINATING_RECOVERY_PLAN": {
+      "kind": "bounded_next_experiment_plan",
+      "date": "2026-11-19",
+      "human_update": 158,
+      "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
+      "reference": "docs/topostitch.md#next-discriminating-experiments-w158-planning",
+      "result": "Audit completed controls and specify one undeformed fixed-unit versus ordinary recovery protocol comparison, followed conditionally by the existing opposite starts. Separately plan a three-case model-assisted density counterexample panel through the maintained map owner. Rowan confirms ordinary execution and parent/ancestry constraints; C403/W134 are precedents, not a same-source comparator.",
+      "limitation": "Planning only; no new run, runtime authority, schema change or scientific closure. Ordinary parent/restraint/protocol qualification and explicit effective-reflection policy remain execution prerequisites. Model-assisted noiseless controls are not experimental/noise calibration or a detector.",
+      "planned_experiments": [
+        {
+          "id": "recovery_protocol_baseline",
+          "status": "PLANNED_REQUIRES_OWNER_QUALIFICATION",
+          "owner": "Cedar execute_autorefine; Willow comparison and geometry audit",
+          "question": "Is W153 reference drift specific to the fixed-unit XYZ protocol?",
+          "comparison": "Same undeformed source and intended restraints; one frozen ordinary recipe versus matched fixed-unit control. Reuse an old control only with verified complete identity.",
+          "next_decision": "If defensible, use the same frozen recipe on opposite starts; if unresolved, inspect named protocol/scattering changes before a new bend matrix."
+        },
+        {
+          "id": "model_assisted_map_counterexamples",
+          "status": "PLANNED_REQUIRES_MAP_PROTOCOL_BINDING",
+          "owner": "Maintained native map boundary; Willow backbone interpretation",
+          "question": "How do zero, displacement and B-mismatch controls appear under one declared model-assisted map protocol?",
+          "comparison": "Same truth amplitudes and atom inventory, declared model states, phases/scales and own/common positions; no noise initially.",
+          "next_decision": "Retain ambiguity and false positives; qualify noisy controls and scientist calibration separately before a detector."
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -3493,8 +3522,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 157,
-    "next": 158,
+    "current": 158,
+    "next": 159,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -4244,6 +4273,12 @@
       {
         "number": 157,
         "title": "Separate scaling and coordinate recovery in saved histories",
+        "state": "RECORDED",
+        "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a"
+      },
+      {
+        "number": 158,
+        "title": "Plan discriminating recovery and density controls",
         "state": "RECORDED",
         "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a"
       }

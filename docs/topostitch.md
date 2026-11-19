@@ -947,6 +947,70 @@ exact effective restraints and symmetry behavior for the actual Phenix/Coot
 versions. Unsupported enforcement leaves a candidate for review, not a claimed
 automatic repair. No native tool execution is claimed by this design.
 
+### Next discriminating experiments (W158 planning)
+
+The next scientific question is whether W153's experimental reference drift is
+specific to its fixed-unit XYZ recovery protocol. This is not evidence that a
+larger bend is impossible. Keep the completed W148/W152 controls, W153 common-HKL
+rescore, W157 stage audit and C397–C400 derivative/restart work closed; none needs
+repeating merely to establish the next baseline.
+
+**First: one matched, undeformed protocol comparison (S05/S06).** Start from the
+same deposited 5W6W coordinates and scattering state used in W153, with the same
+original observations/Free flags, intended pair/stack definitions and phase
+policy. Compare the recorded fixed-unit protocol with one prospectively frozen
+ordinary recovery recipe, through Cedar's existing `execute_autorefine` owner.
+Rowan identifies C403's five-cycle, one-process route and W134's canonical
+continuation as precedents, not a qualified same-source comparator. Choose the
+mean/anomalous mode from the actual data; do not copy a metal recipe's mode.
+
+Before execution, qualify the ordinary parent and actual restraint readback.
+Never strip counted ancestry to bypass admission: use a legitimate common upstream
+state or a qualified handoff. Record every protocol difference, including real-space
+steps, weights, group ADPs, eligible occupancies and scale updates. Audit whether
+any native weight selection consults Free reflections and disclose that use;
+do not treat reused Free data as an independent selection test. A multi-option
+ordinary recipe is a **protocol contrast**, not a pure weight or ADP experiment.
+Freeze exact native/version/source pins, five-cycle budget and any bounded
+continuation rule before reading new results. Reuse W153's saved control only
+if complete input and protocol identity permits the comparison; otherwise one
+matched control is required, with the changed context explained.
+
+Retain exact effective reflection membership, not just totals. Prefer an explicitly
+qualified common fixed-work policy for a trajectory comparison; if native filtering
+remains adaptive, label that limitation and compare endpoint common-HKL arithmetic
+separately. Report stage-labelled scaling/XYZ histories, actual iteration stops,
+geometry and pair/stack residuals, molecular content, fixed-frame motion and own-map
+versus fixed-control-map views. Use W156's post-recovery review. If the reference
+still drifts with unresolved map support, inspect the named changed terms and
+scattering context before adding another displacement matrix. If the ordinary
+baseline is defensible, extend that frozen recipe to the existing opposite starts
+with a matched control; this qualifies recovery under that recipe, not general
+sticky-end repair. A capped/failed/unsettled trial is a legitimate outcome.
+
+**Second, independently bounded: model-assisted density counterexamples (S06).**
+Reuse W155's zero, prescribed displacement and B-mismatch hypotheses and exact atom
+inventory as a proposed first three-case panel. Through the maintained native map
+owner, freeze one common truth-derived amplitude set and separately declared model
+states, X-ray scattering, scale/phase policy, resolution, coefficient membership,
+mask and sampling positions. The zero case means no intentional model error;
+model-assisted coefficients need not give an algebraically zero difference map.
+Test the map-generation interface before creating a new panel. This extends the noiseless known-phase counterexamples to a declared
+model-assisted map protocol; it is not a phase-only intervention or experimental
+calibration. Keep model-dependent phases and per-map sigma visible, with fixed-map
+cross-sampling distinguished from own-model sampling. Preserve zero/false-positive
+outcomes. No fitted detector threshold, coordinate proposal, or inference that
+W153's B2 feature has a particular cause follows. Noisy controls and scientist
+calibration come afterward; do not add a new map reader.
+
+These are plans, with no new native execution tonight. The protocol comparison is
+the next recovery experiment; the map panel can proceed independently once its
+owner is qualified and does not block geometry-only benchmarks. Reciprocal target
+shapes, larger/nonuniform bends and junction-limited window expansion remain the
+existing S04 queue. W150 receiving integration, B09 geotest and B10 explicit sticky
+activation remain separately open. No acceptance threshold, chemistry, production
+policy or runtime schema changes here.
+
 ## Campaign-local memory and transfer
 
 Campaign memory is useful even with an excellent finder: it retains design

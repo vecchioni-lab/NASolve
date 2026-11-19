@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-19**, through **W157**. **W152 closes the independent
+Updated **2026-11-19**, through **W158**. **W152 closes the independent
 opposite-displacement/no-op subgate under idealized matching data.** Deposited
 5W6W starts recover from 0.764 Å RMS to 0.052/0.047 Å, with a 0.014 Å no-op.
 This complements W148's 8D93-derived control; both remain bounded evidence.
@@ -72,6 +72,14 @@ Exact numerical results, failures and pins are in the
 not another work queue; do not repeat them because this handoff is shorter.
 
 ## Next bounded work
+
+**W158 next experiment:** [one matched undeformed protocol comparison](topostitch.md#next-discriminating-experiments-w158-planning),
+then conditionally the existing opposite starts. Cedar owns the ordinary
+parent/protocol and actual restraint readback; preserve counted ancestry, original
+data/Free and explicit effective filtering. C403/W134 are precedents, not a
+same-source qualification. A separate three-case model-assisted density panel
+tests ambiguity without a new reader or detector. These are plans; no new native
+run tonight and no milestone closure.
 
 1. Keep the [stable-objective invariant sketch](topostitch.md#stable-objective-invariants-deferred-design-unimplemented)
    deferred under S06, using the exact recorded
@@ -158,6 +166,15 @@ then separately qualified plane-only mismatch hypotheses. Automatic inference an
 large-bend repair follow later. No CLI/default activation follows from these docs.
 
 ## Validation and scientific interpretation
+
+- **W158 planning audit:** existing design, handoff, documentation index, changelog
+  and machine/generated roadmaps updated; runtime code and schemas unchanged.
+  `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider tests/test_topostitch_roadmap.py`
+  returns **8 passed**. `python scripts/audit_topostitch_roadmap.py --check` and
+  `git diff --check` pass. No new native execution, full suite or installed check
+  is needed for this documentation-only slice; W154 retains the last code gates.
+  Generated scientific inputs/results are excluded from Git, existing readers
+  need no migration, and the planned comparisons remain unexecuted.
 
 - **W138 source qualification:** candidate `d8656b22` passes **12,008 tests +293
   subtests**, two existing native opt-in skips (3,581.07 s), with all 1,415 tracked
