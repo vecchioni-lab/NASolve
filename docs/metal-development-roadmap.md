@@ -35,9 +35,13 @@ no-change check and independent cold readback; it is not an Alder integration or
 accepted geometry. Next: bind that shared owner to checked ordinary preparation
 and qualify continuation on the agreed merged base. Avoid repeating the completed
 private weight/iteration controls without new evidence.
-The next distinct chemistry question is the explicitly confirmed Hg-bound
-donor state, with both N3 hydrogens replaced. Shared Q13 owns generalized,
-site-scoped state qualification before another FT_Hg variant. The separate
+The investigator confirmed the Hg-bound donor-state hypothesis, with both N3
+hydrogens replaced, but later on 19 November deferred routine donor-state
+integration until after NASolve is built. One matched neutral/deprotonated
+DF–Hg–DT research comparison is approved for a later session. Shared Q13 owns
+any generalized state qualification needed for that comparison; adopting C409
+is not an immediate A01 gate or a prerequisite for otherwise qualified FT_Hg
+work. Existing geometry and evidence standards still apply. The separate
 C408 matching-data PDU control demonstrates bounded perturbed recovery; it
 does not qualify experimental accuracy or FT_Hg and need not be repeated.
 Construction remains chemistry/connectivity driven: PDU and DF are qualification
@@ -153,6 +157,23 @@ flowchart LR
     F --> G[A07 Experimental-input reconstruction]
     G --> H[A08 Supported feature release]
 ```
+
+## Deferred donor-state research and post-build feature
+
+The approved later research step is one matched neutral/deprotonated DF–Hg–DT
+comparison, not routine donor-state integration. Preserve the approved plane
+policy and Hg restraint terms, qualify the compared sources and site/link
+contexts, and disclose generation differences that confound attributing the
+heavy-atom response to H loss. A model without H3 coordinates does not by itself
+resolve the dictionary's chemical state. Reuse C409's isolated qualification and
+site map rather than repeating them; they do not qualify a linked refinement.
+
+Routine donor-state selection, generation and workflow integration are explicitly
+post-build work, outside the current A01–A08 completion gates. The broader A03
+recipe intent does not pull this deferred feature back into the immediate queue.
+A01 remains partial and A02 remains gated on a qualified open XYZ/B endpoint;
+no chemistry, geometry or scientific acceptance requirement is waived. This scope
+update schedules no jobs, tests or implementation in the current session.
 
 ## A05: a working GUI session, not only visual polish
 

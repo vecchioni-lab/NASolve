@@ -21,8 +21,14 @@ Independent cold readback preserves all 145 files and confirms the exact H3-only
 removal/N3 formal-charge delta with all other graph/charge state retained. Native
 formal charge is not exposed by the API, and absolute CIP remains unassigned;
 source-relative sugar handedness is preserved. This source change is not yet
-adopted here. Site-specific aliases, polymer links and terminal/phosphate context
-must pass the shared linked preparation path before another FT_Hg open fit.
+adopted here. The investigator's later 19 November scope decision defers routine
+donor-state integration until after NASolve is built. It is not an immediate
+A01 gate or a prerequisite for another otherwise qualified FT_Hg open fit.
+One matched neutral/deprotonated DF–Hg–DT research comparison is approved for a
+later session; no job is queued by this documentation update. If that comparison
+uses the derived sources, their site-specific aliases, polymer links and
+terminal/phosphate context must first pass the shared linked preparation path.
+Existing A01 geometry and evidence standards remain unchanged.
 The retained C409 `site-compatibility.json` maps the exact A109 input: selected
 A:12/B:4 atoms already match the derived sources by name, with OP3 as the sole
 extra source heavy atom. Preserve eight unrelated DT sites and all Hg targets.
@@ -81,8 +87,16 @@ A:12 DF/B:4 DT model has no H3 coordinates. Its recorded modification changes
 terminal atoms, not this donor state. The investigator confirmed that Hg replaces
 both N3 hydrogens. Shared chemistry Q13 owns explicit site-scoped state derivation
 and native qualification, preserving neutral sources and unrelated residues.
-Intent does not establish new numerical targets, formal-charge readback or the
-cause of the observed strain. No donor-state candidate is implemented here.
+Routine integration is deferred until after NASolve is built; the later matched
+research comparison is separate from product implementation and A01 completion.
+Absent H3 coordinates do not establish equivalent heavy-atom restraint chemistry.
+The delivered neutral and regenerated definitions differ in local bonds, angles
+and plane membership, so those differences cannot all be attributed to H loss.
+Preserve the approved plane policy and Hg terms in the matched comparison, record
+remaining generation differences, and judge the local heavy-atom response without
+assuming a repair. Intent does not establish new numerical targets, formal-charge
+readback or the cause of the observed strain. No donor-state candidate is
+implemented here.
 Evidence and confirmed intent are in the integration anchor's
 `coordination-state-question.json` and `coordination-state-authority.json`.
 
@@ -126,11 +140,13 @@ blocking issue. The focused validation is not a new whole-repository full pass.
 2. Consume the shared source-bound final-site geometry report when qualified,
    preserving scalar-versus-native-energy distinctions, global atom identities,
    missing evidence and unassessed science. Do not build a second calculator.
-3. Reuse C409's declared isolated sources; qualify their site-specific binding,
-   polymer/terminal context and linked native interpretation, then any
-   missing ordinary preparation/descendant path before another
-   structural candidate. Refine Doctor declared-site forwarding remains a
-   separately qualified boundary. No repeated weight/derivative sweep is queued.
+3. Continue A01's ordinary preparation/descendant qualification and unresolved
+   open XYZ/B geometry work under the existing evidence standards. Refine Doctor
+   declared-site forwarding remains a separately qualified boundary. Routine
+   donor-state integration is deferred until after NASolve is built; C409 site
+   application is not the immediate gate. Preserve its read-only compatibility
+   map for the approved later matched neutral/deprotonated research comparison.
+   No repeated weight/derivative sweep or donor-state job is queued now.
 4. Advance A04 from input transport to complete protected parent/audit retention,
    then native regeneration before retirement. Keep important nodes protected;
    geometry-moving work retains the stronger shared retention discipline.
