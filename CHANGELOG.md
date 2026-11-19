@@ -8,6 +8,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record shared Doctor observation qualification
+
+- Record the separately qualified explicit Doctor observation handoff and its
+  independent native readback, retaining scientific acceptance and integration
+  limits. Track the distinct measured-observation counting issue with its shared
+  owner. This documentation follow-up changes no Alder runtime or schema.
+
 ### Record protected-parent recovery feasibility
 
 - Document bounded recovery of two legacy PostMR/metal-parent evidence sets

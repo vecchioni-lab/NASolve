@@ -203,6 +203,25 @@ fitted plane. Exact FT_Hg model bindings reproduce the common-plane RMS values
 recorded ten members, including C1′, and differ from ring-only fits. Symmetry
 context and native residuals remain unassessed. No Alder runtime adoption follows.
 Receipt: `coordination-c413-review-20261119.json` under the Alder artifact anchor.
+C415 `a1620839` then qualifies explicit Python Refine Doctor forwarding of that
+ordinary declared-site observation, preserving defaults and counted-ancestry refusals.
+Its 80 focused tests plus 10 subtests pass. One bounded native standard group-B
+trial preserves the selected PostMR root, named parent and measured inputs;
+independent sealed-trial/plane readback preserves all 302 dataset files. Lower
+Rfree accompanies a slightly worse terminal plane departure, so recommendation
+is not geometry acceptance. These are substituted-scaffold PDU mechanics, not
+experimental PDU/FT_Hg validation. The first setup attempt stopped before native
+work because its version-string assertion expected a build suffix; it is retained.
+Receipts: `coordination-c415-static-review-20261119.json` and
+`coordination-c415-native-review-20261119.json`. No Alder runtime adoption or
+separate installed/full-suite claim follows from this peer review.
+
+The native Doctor check also identifies a separate counting issue: its ADP
+eligibility ratio uses assigned flag groups rather than measured observations.
+Rowan owns that correction. Existing metal XYZ/f″ adapters use the audit for flag
+validity and do not consume that ratio; tonight's explicit group-B/f″ requests
+are unaffected. Preserve the valid historical flag statistics and introduce an
+explicitly measured-data count through its own qualification.
 C414 supplies the modern-root dependency census for the existing C412 lineage;
 its ten returned endpoint inputs omit most preparation/ancestry evidence.
 The [storage contract](metal-campaign-storage.md#modern-checked-parent-dependency-boundary)
@@ -235,8 +254,9 @@ migration, production scientific-policy change or existing-run cleanup occurs.
    missing evidence and unassessed science. Do not build a second calculator.
 3. Reuse C412's checked-parent ordinary continuation evidence for the next A01
    consumer qualification; continue unresolved open XYZ/B geometry work under
-   the existing evidence standards. Refine Doctor
-   declared-site forwarding remains a separately qualified boundary. Routine
+   the existing evidence standards. C415 now qualifies shared Refine Doctor
+   declared-site forwarding; consume that patch when integrating the shared
+   runtime rather than implementing it again. Routine
    donor-state integration is deferred until after NASolve is built; C409 site
    application is not the immediate gate. Preserve its read-only compatibility
    map and the completed matched neutral/deprotonated research comparison.
