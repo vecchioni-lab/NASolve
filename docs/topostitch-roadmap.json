@@ -401,7 +401,8 @@
         "W150 exact shared-base composition passes192 focused+37 subtests and the same source-free installed profile.348 package files, genuine two-checkpoint reads, saved W143 HTML and19054 native preview segments remain exact. Candidate bundle is ready for receiving-owner review; no active merge or new full-pass claim.",
         "W152 independent deposited5W6W opposite displacements recover from0.7641A RMS to0.05152/0.04653A; relaxed-reference drift0.01436A. Local232 bonds/363 angles,38 links,126 sugar signs and2569 common targets independently audited. Identical58 parallelity groups retain explicit source/boundary residuals; idealized matching data only.",
         "W153 deposited5W6W experimental comparison preserves5137 raw observations/507originalFree, but positive native filtering drops one work reflection. Endpoints approach relaxed control0.21485/0.14566A; reference itself moves0.52152A and Rfree rises~0.019. Geometry improves, strong B2P negative density remains. Common4629work/507Free endpoint arithmetic reuses saved F-model without refit; mixed outcome, not accepted repair.",
-        "W155 prescribed complex-F contrasts at identical7554HKLs/3.06A show negative modeledP from displacement, Q excess and B mismatch separately, with zero control. Only3scatterers vary; full/group additivity≤4.82e-12 and direct/FFT≤1.18e-14. Hazel cold review passes with explicit missing original version-API capture. Common reference normalization is not ML difference-map sigma; no detector or experimental attribution."
+        "W155 prescribed complex-F contrasts at identical7554HKLs/3.06A show negative modeledP from displacement, Q excess and B mismatch separately, with zero control. Only3scatterers vary; full/group additivity≤4.82e-12 and direct/FFT≤1.18e-14. Hazel cold review passes with explicit missing original version-API capture. Common reference normalization is not ML difference-map sigma; no detector or experimental attribution.",
+        "W157 reads84 archived native stages,15 minimizer records and18 scaling counts with independent Hazel review. Initial unscaled Rfree0.3207/0.3437/0.3376 becomes0.2413/0.2637/0.2624 at first bulk/scaling before XYZ; final0.2600/0.2579/0.2611. Reference hits100iterations in all5cycles. Existing report gains a verified inline stage plot; no new refinement."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -412,7 +413,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "W155 supplies read-only displacement/Q/B counterexamples; preserve them before detector work. Next attribution must address model-assisted phases, observed-amplitude/noise uncertainty and geometry context with scientist calibration; no red/green or one-atom sign rule. W153 common-HKL endpoint arithmetic is complete, not fixed-work-set trajectory qualification. Predeclare effective-data policy for future fits; no new native matrix or weight sweep is queued. W150 adoption and B09/B10 remain separate/open. W156 requires a predeclared recovery window before evaluating future deformations; initial Rfree alone cannot screen them out.",
+      "next_action": "W155 supplies read-only displacement/Q/B counterexamples; preserve them before detector work. Next attribution must address model-assisted phases, observed-amplitude/noise uncertainty and geometry context with scientist calibration; no red/green or one-atom sign rule. W153 common-HKL endpoint arithmetic is complete, not fixed-work-set trajectory qualification. Predeclare effective-data policy for future fits; no new native matrix or weight sweep is queued. W150 adoption and B09/B10 remain separate/open. W156 requires a predeclared recovery window before evaluating future deformations; initial Rfree alone cannot screen them out. W157 supplies stage-labelled saved histories; future recovery displays must preserve scaling/XYZ distinctions and must not relabel log-match indices as macrocycles.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -474,14 +475,15 @@
         "E_INDEPENDENT_OPPOSITE_RECOVERY",
         "E_EXPERIMENTAL_BACKBONE_TRADEOFF",
         "E_DENSITY_SCATTERING_COUNTEREXAMPLES",
-        "E_POST_DEFORMATION_RECOVERY_PLAN"
+        "E_POST_DEFORMATION_RECOVERY_PLAN",
+        "E_NATIVE_RECOVERY_STAGE_HISTORY"
       ],
       "last_audit": {
         "date": "2026-11-19",
         "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
-        "human_update": 156,
-        "reviewer": "Linden; explicit user clarification",
-        "scope": "Post-deformation recovery and explicit structural-intent review planning; runtime and scientific milestone status unchanged"
+        "human_update": 157,
+        "reviewer": "Linden; independent cold stage/display review by Hazel",
+        "scope": "Saved native stage evidence only; post-recovery review criteria and PARTIAL status retained"
       }
     },
     {
@@ -3289,6 +3291,47 @@
       "reference": "docs/topostitch.md#post-deformation-recovery-window-w156-planning",
       "result": "User clarified that poor initial/early-cycle Rfree after deformation can recover with restraint-driven refinement. Separate parent, raw deformation, optional smoothing and post-Phenix trajectory; assess after a predeclared matched recovery window, without requiring monotonic early Rfree. Explicit required connectivity drives the search. User-declared post-recovery0.30 project gate does not require improved R statistics: worsened final Rfree even below0.30 requires maps; values above0.30 trigger named junction/connection/register/bulge/sequence/orientation/phosphate review with other causes retained.",
       "limitation": "Planning only. No runtime thresholds, schema, native run, automatic continuation or convergence claim. Budget exhaustion while still settling is unresolved, not proof of irrecoverability; no parameter search or repeated extension solely to improve held-out Rfree. Gate is planning, not a unique diagnosis, automatic approval or permission to rewrite sequence/topology."
+    },
+    "E_NATIVE_RECOVERY_STAGE_HISTORY": {
+      "kind": "archived_native_recovery_history",
+      "date": "2026-11-19",
+      "human_update": 157,
+      "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
+      "reference": "docs/topostitch-periodic.md#w157--separate-scaling-and-coordinate-recovery-in-saved-histories",
+      "result": "W157 reads84 archived native stages,15 minimizer records and18 scaling counts with independent Hazel review. Initial unscaled Rfree0.3207/0.3437/0.3376 becomes0.2413/0.2637/0.2624 at first bulk/scaling before XYZ; final0.2600/0.2579/0.2611. Reference hits100iterations in all5cycles. Existing report gains a verified inline stage plot; no new refinement.",
+      "limitation": "No convergence or recovery acceptance. Stage totals do not identify per-stage HKL/Free membership; endpoint work exclusion remains separately audited. Native log-hit order is not a macrocycle trajectory. Original display wording and corrected identical numeric data are preserved. No production parser, source schema or runtime change.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w153-experimental-backbone/stage-history.json",
+          "sha256": "5662023405d0c82b6b839b8ca2cf7aff2ccf278c25eb656bea742ce4af9db69e",
+          "size": 25839
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w153-experimental-backbone/stage-history-display-review.json",
+          "sha256": "8ae89433a62c4486c01524d6456ddf2e95cfdc9a0ff498dd186c4b8fad9a3243",
+          "size": 1004
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w153-experimental-backbone/cold-history-archive.json",
+          "sha256": "45e4b9179fc267420d94e79ccb81baa13ce29b332bbb65b0258cc1d6d8bfad2d",
+          "size": 445
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/coordination-w153-stage-review-20261119.json",
+          "sha256": "fa7f8595f4b21083a1e1054fcf9b277b01c9d8882d96362f7567d67412a94b77",
+          "size": 3355
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/coordination-w153-stage-amendment-20261119.json",
+          "sha256": "775acff9c848355a94894d2b0f4ad3d2bd5d7ecd67ddb66c7166269cec1927d5",
+          "size": 1021
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -3450,8 +3493,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 156,
-    "next": 157,
+    "current": 157,
+    "next": 158,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -4195,6 +4238,12 @@
       {
         "number": 156,
         "title": "Allow restraint-driven recovery before judging a deformation",
+        "state": "RECORDED",
+        "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a"
+      },
+      {
+        "number": 157,
+        "title": "Separate scaling and coordinate recovery in saved histories",
         "state": "RECORDED",
         "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a"
       }

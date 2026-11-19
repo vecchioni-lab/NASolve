@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W157 — Read recovery histories by native stage
+
+- Bind saved scaling/coordinate stages, iteration budgets and effective counts
+  to the existing experimental report. Preserve the distinction between stage
+  totals and independently audited endpoint reflection membership.
+- Saved-data analysis/docs only; no new refinement, parser/schema/default or
+  installation change. No raw scientific artifacts committed.
+
 ### W156 — Distinguish initial deformation from refinement recovery
 
 - Carry explicit structural intent and the user's post-recovery 0.30 review gate

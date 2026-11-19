@@ -2868,7 +2868,7 @@ pins, original failures and subsequent receipts remain local under W81 evidence.
 Test subprocesses may deliberately exercise source fixtures; do not claim every
 child imports the installed wheel. No complete combined rerun was performed.
 
-A separate complete Phenix2.2.1-6174 synthetic diagnostic uses the installed wheel:
+A separate complete Phenix 2.2.1-6174 synthetic diagnostic uses the installed wheel:
 six atoms in triclinic P1, P43, R3:H and P212121, each in identity/reverse order.
 All eight cases preserve direct wk1995 Fcalc (maximum error5.01e-13) and tensor
 round trips (maximum5.00e-16 square Angstrom). Omitted tensor rotation fails for
@@ -2939,7 +2939,7 @@ image bijection and W80 tensor transport remain the algebraic basis. This bounde
 native diagnostic tests the additional native special-position/occupancy behavior
 without merging labels or treating coordinate coincidence as chemical identity.
 
-The installed W82 wheel is exercised under **Phenix2.2.1-6174**, using only five
+The installed W82 wheel is exercised under **Phenix 2.2.1-6174**, using only five
 synthetic scatterers per case in C2, R3:H and P4. Two separately labelled carbon
 scatterers share a special-position orbit with occupancies0.25 and0.35; context
 also includes isotropic/anisotropic general-position atoms, a partial occupancy
@@ -3051,7 +3051,7 @@ bytes are a different model and were not substituted. Runtime comes from W84's
 installed virtual tree `b61a58636501a86b6aef4d969d5baf9f74eb9ce5`.
 
 Validation is a **complete native diagnostic, not a dry run or refinement**, using
-**Phenix2.2.1-6174** through Cedar's owned process runner with a 600-second ceiling.
+**Phenix 2.2.1-6174** through Cedar's owned process runner with a 600-second ceiling.
 The parent returned 0, all frozen inputs remained unchanged and the native window
 was released. Local evidence contains exact commands and paths in the scripts,
 plan/source hashes, capture, worker, execution receipt and logs. Commands use
@@ -5415,7 +5415,7 @@ native execution use the final source. **293 installed checks**, six CLI helps,
 pip check, lean import and Python3.10 syntax pass. AST comparison proves all prior
 public classes/functions in this module unchanged; captured-worker bytes also match.
 
-Eight complete **Phenix2.2.1-6174** cases pass in **87.59s** on two retained sources:
+Eight complete **Phenix 2.2.1-6174** cases pass in **87.59s** on two retained sources:
 full-core, partially covered individual pair, select-all, and core-only packets
 prepared through the existing recipe API with zero additions. Supported counts are
 17/20/20/0 respectively. All sixteen energy-only/gradient outputs exactly match the
@@ -8661,7 +8661,7 @@ and source run remain local, deliberately excluded from Git.
 PYTHONDONTWRITEBYTECODE=1 <Python3.12.14> <NASolve>/branch-artifacts/willow/runners/w148-control.py
 PYTHONDONTWRITEBYTECODE=1 <Python3.12.14> <NASolve>/branch-artifacts/willow/runners/w148-readback.py
 PYTHONDONTWRITEBYTECODE=1 <Python3.12.14> <NASolve>/branch-artifacts/willow/runners/w148-geometry.py
-PYTHONDONTWRITEBYTECODE=1 <Matplotlib3.11.2-python> <NASolve>/branch-artifacts/willow/runners/w148-checkout.py
+PYTHONDONTWRITEBYTECODE=1 <Matplotlib 3.11.2-python> <NASolve>/branch-artifacts/willow/runners/w148-checkout.py
 <ChimeraX1.12> --nogui --exit --script <NASolve>/branch-artifacts/willow/runners/w148-viewer-check.py
 PYTHONDONTWRITEBYTECODE=1 <python> <NASolve>/branch-artifacts/willow/runners/w148-archive.py
 ```
@@ -9249,3 +9249,62 @@ ADP interactions, noisy healthy controls and geometry/packing context still need
 qualification with the scientist. Do not promote nearby green/red patterns,
 a single atom's sign or this reference normalization into a bending instruction.
 S06 remains PARTIAL; no further native matrix is queued from this result alone.
+
+## W157 — Separate scaling and coordinate recovery in saved histories
+
+**2026-11-19; saved-data audit only.** Following W156, extract the native
+step-by-step tables from the three W153 logs already pinned in the immutable
+archive. No original files or runtime code changed, and no refinement ran.
+The small experimental checkout now contains an inline scientific SVG showing
+Rwork/Rfree after the first scaling step, with scale and XYZ points distinct.
+
+| State | Reference Rfree | Positive Rfree | Negative Rfree |
+| --- | --- | --- | --- |
+| Before initial bulk-solvent/scaling | .3207 | .3437 | .3376 |
+| First scaled state, before XYZ | .2413 | .2637 | .2624 |
+| Final after five cycles and final scaling | .2600 | .2579 | .2611 |
+
+The first large drop does not establish coordinate recovery. Positive/negative
+starts recover some penalty relative to their own scaled starts, while the
+unperturbed control changes too. Reference minimizations use 100 / 100 / 100 / 100 / 100
+iterations; positive 100 / 100 / 36 / 100 / 44; negative 100 / 100 / 42 / 100 / 100.
+Neither hitting the cap nor stopping below it establishes convergence. The
+fixed-budget endpoints retain the W156 map-review interpretation.
+
+The positive effective total is 5,137 at first scaling and 5,136 from second
+scaling onward. **Those counts do not identify stagewise HKL/Free membership.**
+The separate original endpoint audit identifies missing work(5,18,-1) and
+unchanged 507 Free. Initial figure wording conflated those facts; its original
+receipt/recipe/figure/report are preserved in
+`branch-artifacts/willow/w153-experimental-backbone/stage-history-display-attempt01.zip`.
+The corrected version retains all 84 stage rows and plotted order exactly.
+Hazel independently checked the archive/member/worker/figure hashes, 84 numeric
+rows, 15 iteration records, 18 scale counts and endpoint agreement, then reviewed
+the wording amendment. Final PNG inspected without clipping; no browser/GPU
+qualification follows from this static figure.
+
+The existing `parse_refinement_statistics.cycle_series` is log-match order, not
+native stage identity: trailing repeated Start summaries can appear in that
+list. The local report uses the labelled native table instead. Rowan is informed;
+no shared parser patch or backward-compatibility change is made here. A future
+recovery display must use qualified stage identities and distinguish final
+scaling from coordinate motion. These curves supply no intermediate XYZ snapshots.
+
+**Validation:** with `PYTHONDONTWRITEBYTECODE=1` and
+`MPLCONFIGDIR=/private/tmp/willow-science-mpl`, the existing Matplotlib 3.11.2
+environment runs `-B branch-artifacts/willow/runners/w153-stage-history.py`.
+The worker verifies the original archive, source members, five macrocycles,
+start/final summaries, retained execution values and six scaling blocks per arm.
+The corrected run reproduces all numeric cases from the preserved first version.
+Native version remains the original Phenix 2.2.1-6174; this audit launches none.
+Roadmap `--write`/`--check`, focused eight roadmap tests and `git diff --check`
+pass. No full suite or installation repeat: production code is unchanged from
+qualified W154. The receiving-owner/shared native gates remain separate.
+
+The 12-file indexed supplement (+manifest), 341,194 bytes, is at NASolve anchor
+`branch-artifacts/willow/w153-cold-history-supplement-2026-11-19.zip`, SHA256
+`5355f21a40ecaaa3e4a0c4ee4f7ad9a58777b5a439e64abe1427b9fc56787f31`.
+It binds the motion audit, final history/figures, original display correction,
+peer reviews and updated human report/manifest without duplicating native data.
+Original W153 archive and all scientific runs remain unchanged. All science is
+local; this is integrity evidence, not portable execution or accepted repair.

@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-19**, through **W156**. **W152 closes the independent
+Updated **2026-11-19**, through **W157**. **W152 closes the independent
 opposite-displacement/no-op subgate under idealized matching data.** Deposited
 5W6W starts recover from 0.764 Å RMS to 0.052/0.047 Å, with a 0.014 Å no-op.
 This complements W148's 8D93-derived control; both remain bounded evidence.
@@ -15,6 +15,12 @@ are not a fixed-work-set comparison. No winner, weight retuning or repair is
 accepted. A cold decomposition confirms mostly internal motion (0.507→0.504 Å
 all-atom RMS after removing a common rigid motion); broad covalent and plane
 changes do not identify one causal restraint family. [Methods and evidence](topostitch-periodic.md#w153--separate-experimental-backbone-recovery-from-geometry-driven-relaxation).
+
+W157 adds the saved stage histories to that report: scaling is separate from
+XYZ recovery, and the reference reaches the 100-iteration cap in all five cycles.
+Hazel reviewed 84 native rows plus the corrected count-versus-membership wording.
+No native rerun or production history-parser change; these are budgeted endpoints,
+not settled-state proof. [Stage audit](topostitch-periodic.md#w157--separate-scaling-and-coordinate-recovery-in-saved-histories).
 
 W154 lets the installed inspector name density sources independently of the
 coordinate states. Complete source and relocated-install checks pass; the two
