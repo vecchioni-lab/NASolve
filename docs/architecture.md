@@ -651,6 +651,13 @@ unavailable or includes all 31 saved contour choices (ordinary 1–6σ and signe
 difference 1.5–6σ, step 0.5). Empty meshes at an available level are distinct from
 an unavailable map. Optional signed samples require the corresponding saved
 map. Atom, mesh and JSON bounds reject oversized or malformed scenes before I/O.
+Both coordinate states and all mesh vertices must fit a 40 Å radius about the
+shared center (at most 10,000 Å absolute center coordinates), leaving a margin
+inside the unchanged ±50 Å depth clip even for the largest 0.23 Å drawn atom.
+Declared extents are at most 80 Å per axis and must enclose the geometry, with a
+0.25 Å display-crop allowance for the legacy half-voxel box rounding. This is
+not a crystallographic frame tolerance. The actual 1.1 Å band-plane loop is
+preflighted and capped at one million total iterations across all saved meshes.
 
 Source/frame notes are escaped plain text from the calling workflow. The renderer
 does not authenticate them, resolve references, infer chemical connectivity or

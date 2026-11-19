@@ -102,3 +102,23 @@ def test_missing_installed_template_does_not_leave_empty_output(tmp_path, monkey
     out = tmp_path/'view.html'
     with pytest.raises(FileNotFoundError):write_density_inspection(scene(), out, **NOTES)
     assert not out.exists()
+
+
+@pytest.mark.parametrize('case', ['huge_integer', 'depth', 'crop', 'generated_bands'])
+def test_display_envelope_and_generated_work_are_bounded(tmp_path, case):
+    data = scene()
+    if case == 'huge_integer':
+        data['atoms'][0]['native'][0] = 10**400
+    elif case == 'depth':
+        data['extent'] = [120, 120, 120]
+        data['atoms'][0]['native'] = [0, 0, 60]
+    elif case == 'crop':
+        data['extent'] = [.1, .1, .1]
+    else:
+        data['extent'] = [80, 80, 80]
+        data['layers']['native'] = meshes()
+        data['layers']['native'][0]['vertices'] = [-35, 0, 0, 35, 0, 0, 0, 1, 0]
+        data['layers']['native'][0]['triangles'] = [0, 1, 2] * 20_000
+    out = tmp_path/'over-budget.html'
+    with pytest.raises(ValueError):write_density_inspection(data, out, **NOTES)
+    assert not out.exists()

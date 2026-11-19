@@ -30,11 +30,21 @@ def _require(condition, message):
 
 
 def _finite(value):
-    return type(value) in (int, float) and math.isfinite(value) and abs(value) <= 1e8
+    return type(value) in (int, float) and abs(value) <= 1e8 and math.isfinite(value)
 
 
 def _vector(value):
     return isinstance(value, list) and len(value) == 3 and all(_finite(x) for x in value)
+
+
+def _inside_window(point, center, extent):
+    # The unchanged shader clips at ±50 Å. A 40 Å point radius leaves at least
+    # 9.77 Å for its largest drawn atom (0.23 Å); bonds have radius 0.075 Å.
+    # The quarter-Å crop margin preserves W143's half-voxel box rounding only;
+    # it is not a crystallographic frame/origin tolerance.
+    return math.dist(point, center) <= 40 and all(
+        abs(x - c) <= span / 2 + .25 for x, c, span in zip(point, center, extent)
+    )
 
 
 def _text(value, name, limit=8000):
@@ -54,8 +64,9 @@ def _display_scene(scene):
     _require(isinstance(data, dict) and data.get('kind') == 'local-backbone-density-display'
              and type(data.get('schema_version')) is int and data['schema_version'] == 1,
              'Unsupported density display scene')
-    _require(_vector(data.get('center')), 'Display center must be three finite coordinates')
-    _require(_vector(data.get('extent')) and all(.1 <= x <= 1e6 for x in data['extent']),
+    _require(_vector(data.get('center')) and all(abs(x) <= 10_000 for x in data['center']),
+             'Display center must be finite and within the 10,000 Å coordinate bound')
+    _require(_vector(data.get('extent')) and all(.1 <= x <= 80 for x in data['extent']),
              'Display extent must be positive and bounded')
     atoms = data.get('atoms')
     _require(isinstance(atoms, list) and 1 <= len(atoms) <= 500,
@@ -71,6 +82,8 @@ def _display_scene(scene):
         identities.add(identity)
         _require(all(_vector(atom.get(state)) for state in _STATES),
                  'Each atom requires both finite coordinate states')
+        _require(all(_inside_window(atom[state], data['center'], data['extent']) for state in _STATES),
+                 'Atom exceeds the local display window')
         # Report actual supplied-coordinate movement, never a caller's stale value.
         atom['movement_A'] = math.dist(atom['native'], atom['full'])
     bonds = data.get('bonds')
@@ -89,7 +102,7 @@ def _display_scene(scene):
     layers = data.get('layers')
     _require(isinstance(layers, dict) and set(layers) == set(_STATES),
              'Both display map slots must be explicit')
-    total_vertices = total_triangles = 0
+    total_vertices = total_triangles = band_planes = 0
     for state in _STATES:
         meshes = layers[state]
         _require(isinstance(meshes, list) and len(meshes) in (0, 31),
@@ -104,10 +117,17 @@ def _display_scene(scene):
             vertices, triangles = mesh.get('vertices'), mesh.get('triangles')
             _require(isinstance(vertices, list) and len(vertices) % 3 == 0 and
                      all(_finite(v) for v in vertices), 'Invalid contour vertices')
+            _require(all(_inside_window(vertices[i:i+3], data['center'], data['extent'])
+                         for i in range(0, len(vertices), 3)), 'Contour exceeds the local display window')
             count = len(vertices) // 3
             _require(isinstance(triangles, list) and len(triangles) % 3 == 0 and
                      all(type(i) is int and 0 <= i < count for i in triangles),
                      'Invalid contour triangle indices')
+            # Match makeLayer's ceil(min(x)/1.1)..floor(max(x)/1.1) loop.
+            for i in range(0, len(triangles), 3):
+                xs = [vertices[3 * index] for index in triangles[i:i+3]]
+                band_planes += max(0, math.floor(max(xs) / 1.1) - math.ceil(min(xs) / 1.1) + 1)
+                _require(band_planes <= 1_000_000, 'Generated contour-band work budget exceeded')
             total_vertices += count
             total_triangles += len(triangles) // 3
         _require(not meshes or choices == _LEVELS, 'Incomplete saved contour choices')

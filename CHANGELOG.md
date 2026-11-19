@@ -24,7 +24,8 @@ entries are reconstructed from repository history.
   independent map/model selection, contour controls and residual fading.
 - Accept caller-supplied labels and explicit source/frame notes; display missing
   maps as unavailable. Validate display geometry before creating an output and
-  refuse overwriting an existing file. No native reader, map generation, fitting,
+  refuse overwriting an existing file. Bound both the local camera envelope and
+  generated contour-band work, including mesh geometry. No native reader, map generation, fitting,
   source authentication, checkpoint selection or CLI activation is added.
 
 ### W148 — Qualify one matching-data backbone recovery control
