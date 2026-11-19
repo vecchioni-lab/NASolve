@@ -56463,6 +56463,30 @@
     "remote_verified": true
   },
   "declared_linear_torsion_bundle_2026_10_31": {
+    "readback_2026_11_19": {
+      "milestone": "C416",
+      "scope": "Rechecked C149 geometry only",
+      "sites": 42,
+      "atoms": 865,
+      "original_pairs": 8,
+      "additional_pair": "ATL:A",
+      "exact_custom_restraints": 201,
+      "native_execution_repeated": false,
+      "ordinary_mixed_refinement": "OPEN_Q07",
+      "dictionary_scope": "Historic PDU attachment target and local plane membership differ from current ordinary preparation.",
+      "receipts": [
+        {
+          "anchor": "local_cedar_evidence",
+          "relative_path": "c416-mixed-scaffold-cold-review/review.json",
+          "sha256": "3645733a124ef55fe7579d6446557316060e768b750ee93a9eedb3c04dc41240"
+        },
+        {
+          "anchor": "local_cedar_evidence",
+          "relative_path": "c416-mixed-scaffold-cold-review/scope-crosscheck.json",
+          "sha256": "8afdb23b06056e90ab01c79049f492bb4d924fc72bbae4c3797b27e95237d2e0"
+        }
+      ]
+    },
     "status": "PUBLISHED_FOCUSED_VALIDATED",
     "author": "Rowan \u00b7 Codex desktop",
     "branch": "cedar",
@@ -117284,6 +117308,33 @@
     }
   },
   "selected_actual_plane_geometry_2026_11_19": {
+    "readback_2026_11_19": {
+      "milestone": "C417",
+      "scope": "Final geometry tables of four distinct ordinary endpoints",
+      "endpoint_count": 4,
+      "pdu_local_plane_members": 10,
+      "requested_shared_planes_per_endpoint": 3,
+      "requested_two_plane_restraints_per_endpoint": 58,
+      "member_identities_widths_and_multiplicities_matched": true,
+      "printed_local_plane_delta_rms_residual_matched": true,
+      "pdu_in_pair_and_both_adjacent_stacks": true,
+      "outer_carbons_in_these_planes": false,
+      "symmetry_context": "UNASSESSED",
+      "new_native_calls": 0,
+      "scientific_acceptance": "OPEN_Q06",
+      "receipts": [
+        {
+          "anchor": "local_cedar_evidence",
+          "relative_path": "c417-printed-planes/review.json",
+          "sha256": "99617d08b3ffe961fde39128dadfb2469c4c32bae0b7545e4870e4f58843becd"
+        },
+        {
+          "anchor": "local_cedar_evidence",
+          "relative_path": "c417-printed-planes/pair-stack-membership.json",
+          "sha256": "e6e54ad1f46c487d49f7df5afe88558c25d22ed41cbd1435610add0e917cc5c2"
+        }
+      ]
+    },
     "milestone": "C413",
     "status": "SOURCE_AND_RELOCATED_WHEEL_QUALIFIED",
     "policy": "refinement-declared-site-plane-departures-v1",

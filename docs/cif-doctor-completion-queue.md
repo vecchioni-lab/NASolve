@@ -347,6 +347,18 @@ angles improved and the whole-arm plane departure increased slightly. Doctor
 recommended inspection. No counted request, automatic selection or new chemical
 acceptance threshold was introduced.
 
+**C417 checked what Phenix actually kept in each plane.** Its final geometry
+tables at four distinct ordinary endpoints independently confirm all ten PDU
+covalent plane members, their deviations and the aggregate plane statistics at
+printed precision. All three requested shared planes and all 58 two-plane
+restraints retain the specified atoms and widths, including multiplicities.
+At B:4 the pair with A:12 and stacks with B:3 and B:5 include the first alkyne
+carbon. The outer two carbons belong to none of these planes. The existing
+base selections suffice to measure the relative orientation of these bases.
+The separate Cedar readout shows how far the outer arm departs from the local
+base plane. This case gives no reason to expand the NARestraints stacking
+selections. Symmetry operations remain unassessed. No new refinement was run.
+
 **Shared Doctor observation-count follow-up.** A flag may exist for an HKL
 without a measured intensity. The legacy individual-ADP eligibility ratio uses
 the independent flag-group count as its observation count. For this dataset the
@@ -563,8 +575,8 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Complete for recorded alternatives, selected-model phasing, Coot, cold inspection and the ordinary five-cycle refinement handoff. Actual chemical survival/effective restraint behavior is Q06; no default activation or historical migration. |
-| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C391 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control, chemical observation and actual final pair measurements. C392/C395 record real PDU weight fallback and actual source membership; C396 changes screening privately but does not repair the model; C393/W134 qualify combined observation and ordinary canonical continuation without claiming chemical repair. C400 qualifies an explicit longer control and matched native/zero/full pair mechanics; all arms stop early and chemical acceptance remains open. C403–C415 qualify ordinary PDU delivery, plane and scalar measurements, and an explicit ordinary Doctor handoff. The matched bond correction improves its target while a whole-arm bend can remain. Wider protocols and achieved PDU/DF geometry plus held-out survival remain open. Mechanics or a readable dictionary alone is insufficient. |
-| **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
+| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C391 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control, chemical observation and actual final pair measurements. C392/C395 record real PDU weight fallback and actual source membership; C396 changes screening privately but does not repair the model; C393/W134 qualify combined observation and ordinary canonical continuation without claiming chemical repair. C400 qualifies an explicit longer control and matched native/zero/full pair mechanics; all arms stop early and chemical acceptance remains open. C403–C417 qualify ordinary PDU delivery, plane and scalar measurements, the explicit Doctor handoff, and agreement with the planes printed by Phenix. The matched bond correction improves its target while a whole-arm bend can remain. Wider protocols and achieved PDU/DF geometry plus held-out survival remain open. Mechanics or a readable dictionary alone is insufficient. |
+| **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | The combined geometry-only scaffold exists. Complete ordinary dictionary acquisition and diffraction refinement of that scaffold, followed by the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |
 | **Q10 — handle PNA as PNA** | Respect its backbone and attachments instead of pretending it has a DNA phosphate. | Validate connected construction, native restraints and numerical behavior. |
@@ -1246,6 +1258,14 @@ Use explicit recorded identities (DF is the laboratory alias for A1AAZ), broken
 PDU and source-changing DF inputs, and the same generalized recovery rules.
 C146–C150 establish connected ATL, exact 201 custom restraints, repaired PDU/5PC
 numerics and endpoint mechanics; they do not close ordinary adoption/refinement.
+C416 reconfirmed all nine site pairs on one 42-site model and all 201 native
+custom restraints by atom identities, targets, weights, origin and multiplicity.
+No diffraction data entered that geometry-only calculation, which reached its
+iteration budget. Its older PDU attachment target and plane membership differ
+from the current ordinary dictionary. Retain the mixed recipe and this prior
+evidence when qualifying Q07 with current sources. The nonmetal DF:A endpoint
+also provides a separate geometry control. Several conditions differ from the
+DF–Hg–DT refinement, so the two endpoints cannot isolate the role of mercury.
 
 Done when an ordinary invocation acquires or repairs the necessary dictionaries,
 qualifies the selected state and produces inspectable refinement artifacts with

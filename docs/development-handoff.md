@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-19, C410–C415 refinement and geometry checks — Rowan**.
+Updated **2026-11-19, C410–C417 refinement and geometry checks — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**; C409 source checkpoint **`452b7c45`**; C407/C408 runtime **`f83562b0`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -50,6 +50,16 @@ C414 traced the actual modern parent reader for Hazel. It opened 290 distinct
 dataset files during registry validation, though the child inherits just ten
 operational inputs. Temporary verification files were released. A04 needs
 its own metal-parent verifier before making a retention or pruning claim.
+
+C416 confirmed all eight original pairs plus ATL:A on the saved mixed scaffold,
+including all 201 intended restraints. That geometry-only run supplies the Q07
+starting recipe. Ordinary diffraction refinement of the mixture is still open.
+C417 checked the final geometry files written by Phenix in four ordinary runs.
+The local PDU plane, the shared base-pair plane and the two neighbouring stacking
+restraints all include the first alkyne carbon. The outer two carbons are absent
+from those plane selections. Their shape can therefore move even when Phenix
+retains the requested stacking restraints. All three shared planes and 58 two-plane requests matched at each
+endpoint. These historical readbacks required no new native calls.
 
 ## C409 handoff, 19 November
 

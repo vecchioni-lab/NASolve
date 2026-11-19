@@ -5437,8 +5437,10 @@ No component-name whitelist selects the omission: the source triple bond, linear
 angle targets and complete native definition/proxy membership must justify it.
 
 The mixed eight-pair scaffold already includes K:X, D:T, Z:P, B:S, PDU:A and DF:A
-(DF is the reviewed A1AAZ alias), plus 5PC:G and 5CM:Q. **ATL alongside those pairs
-has not yet been validated on that scaffold.** Its declared bridged sugar is
+(DF is the reviewed A1AAZ alias), plus 5PC:G and 5CM:Q. At this stage ATL was still a separate control. C146–C150 subsequently placed
+ATL:A alongside all eight pairs and tested their combined geometry. C416 checked
+all 201 applied restraints against that saved scaffold. Ordinary diffraction
+refinement of the combined scaffold remains in Q07. ATL’s declared bridged sugar is
 RNA-linking, so the older DNA fragment constructor is not a valid adapter.
 Preserve the bridge and use an independently qualified whole-residue/link route;
 do not relabel ATL or discard its extra sugar atoms to pass a DNA-only gate.
