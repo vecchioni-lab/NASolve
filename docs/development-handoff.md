@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-19**, through **W147**. **W140 adds backbone and saved-map evidence to W139's
+Updated **2026-11-19**, through **W148**. **W140 adds backbone and saved-map evidence to W139's
 matched sticky-end improvement.** GC plane mismatch falls 27.30→6.30° with
 localized movement; nearby sugar/phosphate bond and angle deviations barely
 change. All 38 existing backbone links were measured and 126 ordered sugar-volume
@@ -22,10 +22,17 @@ unqualified.** S04/S05/S06 and P01/P02 remain partial. The
 [machine roadmap](topostitch-roadmap.json) is the status authority; its
 [human view](topostitch-roadmap.md) is generated from it.
 
+**W148 adds an idealized backbone recovery control:** the exact W100 displacement
+returns from 0.917 to 0.029 Å RMS under matching synthetic diffraction. Local
+bond errors recover and sugar signs survive; an existing outside-region source
+link distortion remains. This is separate from experimental repair, density-noise
+calibration and convergence. [Evidence and limits](topostitch-periodic.md#w148--recover-a-known-backbone-displacement-with-matching-diffraction).
+
 ## Current development edge
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
+| W148 matching-data recovery | Frozen canonical displacement recovers; independent cold/native geometry checks and actual-coordinate checkout | Healthy source-link intent, independent controls, experimental/noisy data and general repair |
 | W139/W140 matched canonical control | Native/zero identity, local pair benefit, recorded backbone supports and saved-map sampling | Numerical stops; density calibration, broader controls and whole-model acceptance |
 | W138 ordinary longer control | Explicit v8 100-cap route, actual final writer/pair capture; full/installed/native gates pass | Broader protocols, semantic weighting and CLI/Doctor activation |
 | W125–W134 shared execution/readback | Original pair intent, fresh admission, actual output proof and compatible registered continuation | Ordinary modified-chemistry descendants, unclassified native remainder and broader efficacy |
@@ -96,6 +103,12 @@ not another work queue; do not repeat them because this handoff is shorter.
    evidence before physical acceptance. Preserve original data/Free-R, unselected
    REVIEW and exact pair intent. Retain repulsion while exclusions are open;
    never activate an isolated symmetry phosphate bond.
+
+W148 now closes the bounded W100 matching-data recovery question. Do not repeat
+it or W74/W75 invariance probes. Before extending physical repair, predeclare
+independent healthy/no-op and forward/reverse bend controls with verified
+sequence/link intent; the source B107→B111 distortion remains a separate diagnostic.
+Keep the frozen shared integration unchanged and W146/W147 as follow-on patches.
 
 **W122 remains planning-only:** the first intended user-facing application is
 [explicit canonical sticky-end enforcement](topostitch.md#explicit-sticky-end-enforcement-during-refinement-planned-w122),
@@ -178,6 +191,16 @@ W118 numerical helpers retain their exact original scopes; no later software
 PASS upgrades older diagnostic models to accepted structures.
 
 ## Local science checkout
+
+**W148 matching-data recovery:** GitHub workspace anchor,
+`ScienceCheckouts/Linden/2026-11-19_matching-backbone/review.html`. Nine files:
+four actual PDBs, ChimeraX loader, PNG/SVG figure, report and checksum manifest.
+Selected-region RMS error 0.917→0.029 Å; local bond RMS deviation 0.039→0.011 Å.
+The reference is not geometrically perfect. Separate ChimeraX 1.12 headless loading
+checks four 855-atom models, 204 visible atoms each and identity scene transforms;
+the figure is visually checked, browser/GPU rendering is not. No coordinate
+alignment, magnification, new bond, accepted repair or campaign selection.
+[Exact control and archive](topostitch-periodic.md#w148--recover-a-known-backbone-displacement-with-matching-diffraction).
 
 **W144 map/frame science:** GitHub anchor,
 `ScienceCheckouts/Linden/2026-11-18_map-frame/review.html` (one file). The genuine

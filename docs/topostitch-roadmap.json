@@ -4,7 +4,7 @@
   "updated": "2026-11-19",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "5319a870b92d82adbba2c817c3bdc1073aaae402",
+  "audited_code_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -221,14 +221,15 @@
         "W85–W91 qualify derivative pullback, captured diagnostic starts and immutable motion compilation. Matched small coarse seeds give no demonstrated benefit over atomic cleanup; rounding/precision failures are retained.",
         "W96–W100 qualify guarded full-window source-driven atomic controls. Three displaced controls pass numerical/binding checks but stop at iteration limits; selected/core pair gains coexist with individual geometry/packing tradeoffs. No accepted repair.",
         "W138/Cedar4f7aeb84 qualifies the explicit v8 100-cap ordinary coordinate route with complete source/installed/native gates. The earlier short route retains its original scope; neither cap proves convergence.",
-        "W139 closes the matched native/core-only-zero/full matrix: exact zero/native output/history, passive full equivalence and common14-pair local benefit. Both line-search stops and repeated-coordinate normalization discontinuity remain separate limitations; no numerical policy is adopted."
+        "W139 closes the matched native/core-only-zero/full matrix: exact zero/native output/history, passive full equivalence and common14-pair local benefit. Both line-search stops and repeated-coordinate normalization discontinuity remain separate limitations; no numerical policy is adopted.",
+        "W148 reuses the exact W100 +5-degree canonical displacement with matching noiseless diffraction and fixed native refinement. Selected 204-atom RMS error falls 0.917427 to 0.029167 Å; endpoint-to-endpoint RMS is 0.026449 Å. Local covalent bonds recover, 126 sugar-volume signs survive, and Rowan independently reproduces the controls. Existing reference-link distortion remains explicit."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "W138/W139 longer and matched controls are complete; do not repeat them. Reuse existing pair/refinement and source-driven motion owners. Before broadening physical repair, declare healthy/displaced/wrong-contact controls and stable numerical invariants, preserve all physical forces and original data/FreeR, and use W140 backbone evidence plus calibrated density review. General seam closure and scientific acceptance remain open.",
+      "next_action": "W148 closes one bounded matching-data recovery control; do not repeat W100/W74/W75/W139 or this same pair. Before broadening, predeclare independent healthy/no-op and forward/reverse bend controls with exact sequence/link intent. Preserve imperfect-reference geometry evidence and distinguish recovery from health. General seam closure, packing, experimental evidence and scientific acceptance remain open.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -251,14 +252,15 @@
         "E_FULL_WINDOW_NATIVE_CONTROL",
         "E_C338_INSTALLED_COMPOSITION",
         "E_SOURCE_DISPLACED_NATIVE",
-        "E_SEPARATE_SCREENING_NORMALIZATION"
+        "E_SEPARATE_SCREENING_NORMALIZATION",
+        "E_MATCHING_BACKBONE_RECOVERY"
       ],
       "last_audit": {
-        "date": "2026-11-18",
-        "code_commit": "4f7aeb84b8762b3bd4ebcc1741c6b1116443632a",
-        "human_update": 140,
-        "reviewer": "Linden",
-        "scope": "W140 read-only backbone/saved-map evidence and consolidated current queue; detailed historical evidence retained; no runtime/scientific acceptance change."
+        "date": "2026-11-19",
+        "code_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
+        "human_update": 148,
+        "reviewer": "Linden; independent cold review by Rowan",
+        "scope": "One matching-data canonical recovery control with native geometry and inspection; no experimental/whole-model closure or runtime change"
       }
     },
     {
@@ -278,14 +280,15 @@
         "W138/Cedar4f7aeb84 qualifies the explicit v8 100-cap ordinary coordinate route with complete source/installed/native gates. The earlier short route retains its original scope; neither cap proves convergence.",
         "W139 closes the matched native/core-only-zero/full matrix: exact zero/native output/history, passive full equivalence and common14-pair local benefit. Both line-search stops and repeated-coordinate normalization discontinuity remain separate limitations; no numerical policy is adopted.",
         "W140 measures1268 recorded native sugar/phosphate/glycosidic supports,38existingO3P links and126preserved ordered sugar signs. Independent3804printed-geometry+342torsion checks pass; local backbone deviations remain similar while end bases move. No complete pucker/packing/closure acceptance.",
-        "W122 explicit sticky-end enforcement is planning-only. General seam closure, mismatch/blunt qualification, larger bending and density-supported repair remain open."
+        "W122 explicit sticky-end enforcement is planning-only. General seam closure, mismatch/blunt qualification, larger bending and density-supported repair remain open.",
+        "W148 reuses the exact W100 +5-degree canonical displacement with matching noiseless diffraction and fixed native refinement. Selected 204-atom RMS error falls 0.917427 to 0.029167 Å; endpoint-to-endpoint RMS is 0.026449 Å. Local covalent bonds recover, 126 sugar-volume signs survive, and Rowan independently reproduces the controls. Existing reference-link distortion remains explicit."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "W138/W139 longer and matched controls are complete; do not repeat them. Reuse existing pair/refinement and source-driven motion owners. Before broadening physical repair, declare healthy/displaced/wrong-contact controls and stable numerical invariants, preserve all physical forces and original data/FreeR, and use W140 backbone evidence plus calibrated density review. General seam closure and scientific acceptance remain open.",
+      "next_action": "W148 closes one bounded matching-data recovery control; do not repeat W100/W74/W75/W139 or this same pair. Before broadening, predeclare independent healthy/no-op and forward/reverse bend controls with exact sequence/link intent. Preserve imperfect-reference geometry evidence and distinguish recovery from health. General seam closure, packing, experimental evidence and scientific acceptance remain open.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -347,14 +350,15 @@
         "E_ACTUAL_STATE_AND_LINEAGE",
         "E_LONGER_ORDINARY_CONTROL",
         "E_MATCHED_CANONICAL_LONG_CONTROL",
-        "E_BACKBONE_SAVED_DENSITY"
+        "E_BACKBONE_SAVED_DENSITY",
+        "E_MATCHING_BACKBONE_RECOVERY"
       ],
       "last_audit": {
-        "date": "2026-11-18",
-        "code_commit": "4f7aeb84b8762b3bd4ebcc1741c6b1116443632a",
-        "human_update": 140,
-        "reviewer": "Linden",
-        "scope": "W140 read-only backbone/saved-map evidence and consolidated current queue; detailed historical evidence retained; no runtime/scientific acceptance change."
+        "date": "2026-11-19",
+        "code_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
+        "human_update": 148,
+        "reviewer": "Linden; independent cold review by Rowan",
+        "scope": "One matching-data canonical recovery control with native geometry and inspection; no experimental/whole-model closure or runtime change"
       }
     },
     {
@@ -380,7 +384,8 @@
         "W144 cold ordinary/diagnostic join and owned-copy inheritance/relocation controls pass. R3 image-space interpolation differs by up to 0.28 sigma; direct Fourier agrees. Existing complete 855-atom ReferenceFrame plus shared sampler preserves 16,416 source-frame comparisons within 6.75e-14 sigma. No new objective, policy or acceptance.",
         "W145 exposes structured map stage/checkpoint/consuming ancestry through existing view resolution; standalone full/installed and focused Cedar adaptation pass. Legacy viewing stays compatible; producer coordinates, generation policy and frame equivalence remain unproven.",
         "W146 adds a read-only measured inspection snapshot over existing view/reference owners; 2061 full+234 subtests and 120 relocated installed+53 subtests pass. Genuine W138 compatibility over the installed combined owner preserves all inputs. Producer/frame evidence stays unassessed; W146 remains outside the frozen combined gate.",
-        "W147 extracts exact native complex-array selection and descriptive headers:2070 full+234 subtests,129 relocated installed+53 subtests, source/installed native reads and exact19054-segment preview parity. Worker-v2 candidate binds executed helper bytes and passes2stale/change controls; it remains outside frozen combined integration."
+        "W147 extracts exact native complex-array selection and descriptive headers:2070 full+234 subtests,129 relocated installed+53 subtests, source/installed native reads and exact19054-segment preview parity. Worker-v2 candidate binds executed helper bytes and passes2stale/change controls; it remains outside frozen combined integration.",
+        "W148 reuses the exact W100 +5-degree canonical displacement with matching noiseless diffraction and fixed native refinement. Selected 204-atom RMS error falls 0.917427 to 0.029167 Å; endpoint-to-endpoint RMS is 0.026449 Å. Local covalent bonds recover, 126 sugar-volume signs survive, and Rowan independently reproduces the controls. Existing reference-link distortion remains explicit."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -389,7 +394,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Finish frozen shared qualification before integrating W146/W147 and worker-v2. Keep source/frame interpretation, calibrated density and B10/B09 separate. Audit a bounded matched-data reference/displaced backbone control using existing W100 starts and C408 generation logic; do not treat the private fixed-label/three-chirality chemistry prototype as a generic simulator or repeat W74/W75 invariance probes. No new numerical policy, automatic density action or W122 activation.",
+      "next_action": "Finish Hazel's frozen combined qualification before integrating W146/W147 and worker-v2. W148 matching-data recovery is complete in its idealized scope; preserve the source B107-to-B111 link distortion and do not extrapolate a density threshold. Independent geometry/sequence controls, source/frame interpretation, B10/B09 and experimental recovery remain separate. No new numerical policy or W122 activation.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -445,14 +450,15 @@
         "E_SHARED_C406_COMPATIBILITY",
         "E_MAP_SELECTION_ORIGIN",
         "E_INSPECTION_SNAPSHOT",
-        "E_COEFFICIENT_SELECTION_HEADERS"
+        "E_COEFFICIENT_SELECTION_HEADERS",
+        "E_MATCHING_BACKBONE_RECOVERY"
       ],
       "last_audit": {
         "date": "2026-11-19",
-        "code_commit": "5319a870b92d82adbba2c817c3bdc1073aaae402",
-        "human_update": 147,
-        "reviewer": "Linden",
-        "scope": "Read-only native selector/header API and isolated preview adaptation; no generation/frame authority, scientific closure or active integration."
+        "code_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
+        "human_update": 148,
+        "reviewer": "Linden; independent cold review by Rowan",
+        "scope": "One matching-data canonical recovery control with native geometry and inspection; no experimental/whole-model closure or runtime change"
       }
     },
     {
@@ -471,7 +477,8 @@
         "W143 local 3D backbone-density prototype retains genuine contours and fixed-frame model/map comparison. User confirms v1 rotation and reviews v2 appearance/dropoff. Final v3 defaults to Slate, strengthens Paper/red/green contrast and remembers independent map contour levels through 6 sigma. Seven inputs and 30 prior surfaces are unchanged; 6,277 mesh checks and 16 offline contracts pass. User then approved v3 appearance and requested shared dynamic inspection throughout NASolve without opening Coot; main docs record the direction.",
         "W145 exposes structured map stage/checkpoint/consuming ancestry through existing view resolution; standalone full/installed and focused Cedar adaptation pass. Legacy viewing stays compatible; producer coordinates, generation policy and frame equivalence remain unproven.",
         "W146 adds a read-only measured inspection snapshot over existing view/reference owners; 2061 full+234 subtests and 120 relocated installed+53 subtests pass. Genuine W138 compatibility over the installed combined owner preserves all inputs. Producer/frame evidence stays unassessed; W146 remains outside the frozen combined gate.",
-        "W147 extracts exact native complex-array selection and descriptive headers:2070 full+234 subtests,129 relocated installed+53 subtests, source/installed native reads and exact19054-segment preview parity. Worker-v2 candidate binds executed helper bytes and passes2stale/change controls; it remains outside frozen combined integration."
+        "W147 extracts exact native complex-array selection and descriptive headers:2070 full+234 subtests,129 relocated installed+53 subtests, source/installed native reads and exact19054-segment preview parity. Worker-v2 candidate binds executed helper bytes and passes2stale/change controls; it remains outside frozen combined integration.",
+        "W148 adds a verified four-model actual-coordinate ChimeraX checkout and visually checked scientific figure for the idealized recovery control; no alignment or scientific acceptance."
       ],
       "acceptance": [
         "Create immutable children with exact model/CIF/PHIL inputs, preserve current selection, and reuse existing Coot/model-tree paths; viewing never selects or approves.",
@@ -487,14 +494,15 @@
         "E_BACKBONE_DENSITY_PRESENTATION",
         "E_MAP_SELECTION_ORIGIN",
         "E_INSPECTION_SNAPSHOT",
-        "E_COEFFICIENT_SELECTION_HEADERS"
+        "E_COEFFICIENT_SELECTION_HEADERS",
+        "E_MATCHING_BACKBONE_RECOVERY"
       ],
       "last_audit": {
         "date": "2026-11-19",
-        "code_commit": "5319a870b92d82adbba2c817c3bdc1073aaae402",
-        "human_update": 147,
-        "reviewer": "Linden",
-        "scope": "Read-only native selector/header API and isolated preview adaptation; no generation/frame authority, scientific closure or active integration."
+        "code_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
+        "human_update": 148,
+        "reviewer": "Linden; independent cold review by Rowan",
+        "scope": "One matching-data canonical recovery control with native geometry and inspection; no experimental/whole-model closure or runtime change"
       }
     },
     {
@@ -2883,6 +2891,49 @@
           "path": "branch-artifacts/willow/w147-worker-v2-qualification.zip"
         }
       ]
+    },
+    "E_MATCHING_BACKBONE_RECOVERY": {
+      "kind": "idealized_matching_diffraction_backbone_recovery",
+      "date": "2026-11-19",
+      "human_update": 148,
+      "code_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
+      "reference": "docs/topostitch-periodic.md#w148--recover-a-known-backbone-displacement-with-matching-diffraction",
+      "result": "W148 reuses the exact W100 +5-degree canonical displacement with matching noiseless diffraction and fixed native refinement. Selected 204-atom RMS error falls 0.917427 to 0.029167 Å; endpoint-to-endpoint RMS is 0.026449 Å. Local covalent bonds recover, 126 sugar-volume signs survive, and Rowan independently reproduces the controls. Existing reference-link distortion remains explicit.",
+      "limitation": "One idealized fixed-budget positive control, not experimental repair, density-noise calibration, new seam chemistry or a healthy whole-model qualification. No independent alignment, no fixed context during refinement, no convergence claim, no native-policy or runtime change. Raw science local; archival integrity is not portable executable lineage.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w148-matching-backbone-evidence-2026-11-19.zip",
+          "sha256": "99bf9d6e150e0510519adc9b929d15cc1d3954eba2449625ea4a7e2eb5b83e25",
+          "size": 3442322,
+          "indexed_files": 102,
+          "archive_members": 103
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w148-matching-backbone/readback.json",
+          "sha256": "ed8581f9c92301ff77e5c4f8252484b8f20b88aa1dde4d08cb786550162b3ebc",
+          "size": 778164
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w148-matching-backbone/geometry.json",
+          "sha256": "2d8d639dac84c14f99ee78f46210ac9cd95d8dd6b4d3ee29187bce24ac45d842",
+          "size": 4034141
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w148-matching-backbone/viewer-check.json",
+          "sha256": "c0f2b4bc8dee111a4d1e084f557549829c239a76ac5290f37beb44a22d246d04",
+          "size": 2156
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/cedar/coordination-w148-review-20261119.json",
+          "sha256": "a748fe88aa0407b1894306b5492d653260113c12552a7d1c55928a25c846e78c",
+          "size": 3633
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -3044,8 +3095,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 147,
-    "next": 148,
+    "current": 148,
+    "next": 149,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -3737,6 +3788,12 @@
         "title": "Share exact native coefficient selection and descriptive headers",
         "state": "RECORDED",
         "code_commit": "5319a870b92d82adbba2c817c3bdc1073aaae402"
+      },
+      {
+        "number": 148,
+        "title": "Recover a known backbone displacement with matching diffraction",
+        "state": "RECORDED",
+        "code_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad"
       }
     ]
   },

@@ -8553,3 +8553,131 @@ C408's source-bound generation approach, rather than another bend generator or
 repeat of W74/W75 representation tests. C408 remains a private chemistry-specific
 prototype with fixed labels and a three-chirality fixture assumption, not a general
 simulator. No new recovery result or density threshold follows from this plan.
+
+
+## W148 — Recover a known backbone displacement with matching diffraction
+
+**2026-11-19; installed Cedar source `f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad`.**
+This private control asks whether the existing native coordinate route recovers
+an already frozen backbone perturbation when diffraction matches the reference.
+It reuses W100's exact reference and +5° tapered displacement (A101–106/C111–114),
+not a new bend generator. W100 was geometry/packing-only; W74/W75 tested
+representation/scattering invariance rather than recovery. C408 supplied the
+source-bound generation approach, not a general simulator or copied chemistry.
+
+### Frozen comparison and complete execution
+
+The two original PDBs have the same 855 canonical atoms. Exactly 204 XYZ records
+change; all other bytes, occupancies and Cartesian ANISOU remain identical.
+W138's prepared coordinates differ from this generating reference by up to
+0.294579 Å: the plan explicitly distinguishes them. W138 supplies the bound
+observations/Free-R template, ordinary native restraint file and settings;
+fresh preflight interprets each actual W100 start. No truth-coordinate tether,
+reference-model target, additional counted pair term or new chemical link is added.
+
+Direct `n_gaussian` structure factors from the reference generate noiseless
+amplitudes on the original 3,333 HKLs, preserving every Free-R flag (176 test).
+`SIGF=0.02*F` is a declared weighting convention, not measured uncertainty.
+No original amplitudes, experimental phases, bulk solvent or anomalous scattering
+enter this control. The R3:H PDB/MTZ cells agree under the explicitly checked
+float32 storage roundtrip, with exact symmetry operators; this is not a relaxed
+general frame/origin tolerance. Resolution limit: 2.960807 Å.
+
+Both arms use the same ordinary native restraints and 12 native parallelity groups,
+five macrocycles, configured 100-iteration cap, fixed unit weights/scaling policy,
+seed 1 and one process. All 855 XYZ refine; ADPs and occupancies do not. The other
+651 atoms are unchanged only in the input perturbation, not fixed during refinement.
+The existing Cedar preparation/phase/finalization owner validates both arms.
+**Phenix 2.2.1-6174 completes all five native processes in 119.624 s**, all stopped;
+eight original files, current checkpoint selection and all 304 installed files
+remain unchanged. No live campaign is created or selected. No detailed optimizer
+convergence proof was captured; five macrocycles and the absence of a stop message
+do not provide one. The shared log parser's recap rows are not optimizer history.
+
+Frozen plan SHA256:
+`0f81297ead940b3f03a666c80900a349ece774818f0434970bceb937043d1826`.
+Synthetic MTZ SHA256:
+`8f5ce430b917935e95aa4ac33af8aff64de69963315f7a933b08c8ac12d4ea88`.
+
+### Measured result and independent review
+
+| Measurement | Displaced start | Recovered endpoint | Separately refined reference |
+| --- | ---: | ---: | ---: |
+| Selected 204-atom RMS error to generator (Å) | 0.917427 | 0.029167 | 0.011665 |
+| Selected maximum error to generator (Å) | 1.768020 | 0.120312 | 0.029816 |
+| Local 230 covalent bond RMS deviation (Å) | 0.039434 | 0.010913 | 0.012321 |
+| Local 356 covalent angle RMS deviation (°) | 1.726343 | 1.671916 | 1.554269 |
+| Final Rwork / Rfree | — | 0.0025 / 0.0029 | 0.0022 / 0.0017 |
+
+All comparisons use the same crystal frame without rigid alignment. The two
+refined endpoints differ by **0.026449 Å RMS** over the selected atoms. Remaining
+context moves 0.032390 Å RMS (maximum 0.235741 Å) from the generator. All 126
+ordered sugar-volume signs, 855 identities, occupancies and ANISOU are preserved.
+Rwork/Rfree begin at 0.0983/0.1160 for the displaced model and 0.0045/0.0028 for the
+reference. Near-zero final values concern idealized matching data, not experimental
+validation. The pooled native log bond RMS is 0.027 Å for both; it must not be
+conflated with the explicitly covalent-only table above.
+
+Cold native geometry readback reuses W140's fixed-column method: **2,506 bond/angle
+rows per model**, including 956 covalent bonds, 1,467 covalent angles and 83
+user-supplied terms. Targets, weights and identities match across four tables;
+independent Cartesian calculations agree within the predeclared printed/PDB
+rounding bounds (0.002 Å / 0.12°). All 38 native O3′–P links are retained.
+The generating model already has distorted B107→B111 phosphate angles outside
+the moved region, also recorded in its original REMARK 500. One deviation is
+46.61° initially and 37.07° at the recovered endpoint. Returning to this reference
+does not establish healthy whole-model geometry or validate that link's intent.
+
+Rowan's independent cold review passes **65 grouped checks**, reproducing 160
+coordinate summary scalars, 504 ordered sugar volumes and 168 attachment distances
+with separate fixed-column/stdlib arithmetic. Gemmi verifies HKLs/flags/sigma
+convention; the input/restraint/settings changes and four-phase native inventory
+match exactly. All 78 experiment files remain unchanged. No native rerun or
+structure-factor recomputation is claimed by this review.
+
+### Inspection, retention and exact commands
+
+At the GitHub workspace anchor, the nine-file local checkout
+`ScienceCheckouts/Linden/2026-11-19_matching-backbone/` contains `review.html`,
+four actual PDBs, `open_inspection.py`, PNG/SVG figure and a checksum manifest.
+The figure was visually checked. A separate **ChimeraX 1.12** headless execution
+verifies four 855-atom models, 204 displayed atoms each, original coordinates and
+identity scene transforms. The first launch failed on its sandboxed cache lock;
+the unchanged permitted rerun passes. This is not a rendered browser/GPU check.
+Gray/reference and salmon/start initially show; turquoise/recovered and
+gold/refined-reference are available in Model Panel. No alignment or magnification.
+
+The exact local runners, commands, source/installed manifest, native requests,
+results, geometry, independent review and checkout are archived at NASolve anchor
+`branch-artifacts/willow/w148-matching-backbone-evidence-2026-11-19.zip`:
+**102 indexed files + manifest**, **3,442,322 bytes**, SHA256
+`99bf9d6e150e0510519adc9b929d15cc1d3954eba2449625ea4a7e2eb5b83e25`.
+Every archive member was read back and checked; five native process groups are
+absent. Historical requests retain their original provenance paths: this archive
+is verifiable cold evidence, **not a portable executable campaign**. Raw science
+and source run remain local, deliberately excluded from Git.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 <Python3.12.14> <NASolve>/branch-artifacts/willow/runners/w148-control.py
+PYTHONDONTWRITEBYTECODE=1 <Python3.12.14> <NASolve>/branch-artifacts/willow/runners/w148-readback.py
+PYTHONDONTWRITEBYTECODE=1 <Python3.12.14> <NASolve>/branch-artifacts/willow/runners/w148-geometry.py
+PYTHONDONTWRITEBYTECODE=1 <Matplotlib3.11.2-python> <NASolve>/branch-artifacts/willow/runners/w148-checkout.py
+<ChimeraX1.12> --nogui --exit --script <NASolve>/branch-artifacts/willow/runners/w148-viewer-check.py
+PYTHONDONTWRITEBYTECODE=1 <python> <NASolve>/branch-artifacts/willow/runners/w148-archive.py
+```
+
+Native argv/process records are in `experiment/audit.json`; the controller and
+generator are frozen in that same prefix. Cold receipt references resolve through
+the declared `experiment` anchor; archive names preserve it. This was complete
+execution, not a dry-run. No maintained runtime, schema, CLI or installation
+behavior changed; documentation-only validation uses the roadmap audit and its
+eight focused tests. A new full software suite would duplicate unchanged code;
+Hazel owns the separate frozen combined gate.
+
+**Scope:** this closes one idealized positive-control question, not S04/S05/S06,
+B09/B10, experimental repair or automatic sticky-end enforcement. No detector,
+density-noise calibration or chemical acceptance follows. Next qualify the
+shared inspector integration, then predeclare independent healthy/no-op and
+forward/reverse bend controls with verified sequence/link intent. Keep imperfect
+source-link diagnosis separate; do not silently repair or remove it in this
+matched experiment. Numerical-policy changes and W122 activation remain deferred.

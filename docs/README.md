@@ -31,11 +31,15 @@ current instructions; other branches retain their own status and validation pins
   descriptive headers with source/installed and saved-preview parity; the worker
   adapter remains separate from frozen integration. Producer/frame assessment
   and the detector remain separate.
+  W148 completes one idealized matching-diffraction backbone recovery control:
+  0.917→0.029 Å selected-region RMS, with native geometry and independent review.
+  Its local four-model checkout separates recovery from imperfect source geometry;
+  experimental repair and density calibration remain open.
   Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W147;
-  the next substantial audit is W148. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W148;
+  the next substantial audit is W149. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

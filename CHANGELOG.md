@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W148 — Qualify one matching-data backbone recovery control
+
+- Record the frozen canonical displacement, matching synthetic diffraction, native
+  recovery, local geometry and independent review, with explicit imperfect-source
+  and idealized-data limits. Preserve the four-model local inspection and archive.
+- Update human/machine milestones without closing general repair or density
+  calibration. Documentation and private scientific evidence only; no runtime,
+  schema, CLI, installation or default-policy change.
+
 ### W147 — Share exact native coefficient selection and descriptive headers
 
 - Extract the existing exact complex-array label selector for shared inspection;
