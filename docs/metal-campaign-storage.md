@@ -160,9 +160,11 @@ The existing shared limits remain: at most 1,024 logical files, 32 MiB per file
 and 128 MiB total logical input contents, including the compact projection.
 Existing compressed/object/temporary-view limits also apply. An explicit
 `max_input_bytes` can lower the logical allowance; it cannot enlarge it, and
-cold expansion checks it before allocating temporary files. Split a larger
-selection explicitly rather than raising shared limits. `max_trial_bytes`
-defaults to the existing 1 GiB trial-payload preflight, and compact metadata
+cold expansion checks it before allocating temporary files. It is not a smaller
+decoder RAM allowance: decompression happens under the shared decoder's separate
+bounds before that temporary-filesystem check. Split a larger selection explicitly
+rather than raising shared limits. `max_trial_bytes` defaults to the existing
+1 GiB trial-payload preflight, and compact metadata
 retains its 16 MiB cap. Upstream scientific replay still traverses original
 parents and native JSON; these are not total I/O, memory, peak disk or campaign
 reservation guarantees. No original scientific run is modified by this adapter.

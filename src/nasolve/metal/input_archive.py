@@ -142,7 +142,8 @@ def expanded_fdp_inputs(archive, archive_sha256, *, projection_id,
             raise RecipeError('Input archive payload differs from recorded requests')
         return index,objects,total
     # Keep the same bounded decoder/temporary owner, checking the tighter caller
-    # allowance and recorded file identities before any expansion is allocated.
+    # allowance and recorded identities before temporary filesystem expansion.
+    # Decoded objects in RAM retain the shared decoder's separate byte limits.
     with archive_owner._working_evidence(archive,archive_sha256,decoder=decode) as view:
         root=view/'evidence'
         projection=compact.read_projection(root/'projection.json')

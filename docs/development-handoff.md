@@ -1,7 +1,7 @@
-# NASolve development handoff — integrated candidate
+# NASolve development handoff — integrated development base
 
 Updated **19 November 2026**. Active integration target: **Alder**. The everyday
-Pine checkout and the separate Cedar/Willow branches are unchanged. This candidate
+Pine and the separate Cedar/Willow branches are not changed by this integration. This base
 combines the existing metal feature with the qualified shared chemistry, native
 observation and storage owners; it introduces no new scientific policy.
 
@@ -70,11 +70,24 @@ scientific inputs, outputs, shared installations and parent checkpoints remain.
 
 ## Scientific scope and owners
 
+The bounded A04 follow-on `26b0f41c02abb44317f8579e12b6b8782d572e68` adds
+only the input-transport adapter, its tests and documentation. Existing runtime
+owners/native workers remain unchanged. Its **86 focused tests pass in 51.35 s**;
+all tracked files remain exact and the process stops. Source/data relocation is
+covered. The source-free relocated installation has **345 exact packaged files**
+and reproduces saved FT_Hg/Ag4 inputs plus complete compact records. Original
+scientific runs stay unchanged, no native job runs, and temporary views close.
+Exact plans/commands/results are under the local Alder artifact anchor at
+`input-archive-20261119-01/focused/` and `input-archive-20261119-01/installed/`.
+Focused cadence applies to this additive adapter; no new full-suite pass is claimed.
+The last complete shared-runtime execution remains the explicitly recorded
+`1acc7892` run and its test-only amendment above.
+
 | Scope | Current boundary | Maintained handoff/queue |
 | --- | --- | --- |
 | Metal geometry | **A01 partial**: FT_Hg source terms reach the native manager, but open XYZ/B geometry is unresolved; A02 stays gated | [Metal handoff](metal-development-handoff.md), [A01–A08 roadmap](metal-development-roadmap.md) |
 | Modified-residue construction/refinement | **Q06 open**: PDU/DF geometry survival remains unaccepted; C406 records declared local terms without changing the fit | [Chemistry handoff](chemistry-development-handoff.md), [completion queue](cif-doctor-completion-queue.md) |
-| Lean metal storage | **A04 partial**: inventory and compact read-only projection exist; shared publication/regeneration/retirement remain next | [Storage contract](metal-campaign-storage.md) |
+| Lean metal storage | **A04 partial**: inventory, compact records and exact input transport exist; complete parents, native regeneration and retirement remain next | [Storage contract](metal-campaign-storage.md) |
 | Maps/campaign interaction | Willow retains its separate owner and qualification; no new map-generation or density-fitting policy enters here | [GUI contract](gui.md), [architecture](architecture.md) |
 
 The two subsystem handoffs preserve their evidence-time branch statements and
@@ -97,5 +110,5 @@ schema boundaries; integration itself introduces no new artifact schema.
 Refine Doctor's declared-site continuation remains a separately qualified gap.
 Receiving Pine, a release merge, scientific acceptance and completion of A01–A08
 are separate decisions. The next A01 consumer step is ordinary preparation and
-continuation qualification; A04 can then reuse the integrated storage owners
-without a parallel archive implementation.
+continuation qualification. A04 now reuses the integrated archive owner for input
+transport; complete-parent retention and actual regeneration still precede pruning.

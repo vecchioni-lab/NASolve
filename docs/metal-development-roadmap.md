@@ -12,7 +12,7 @@ own scientific contracts. A mechanism passing tests does not close its scientifi
 gate. Update milestone status, evidence, limitations and next action together.
 
 **Scientific milestone: A01 — ligand geometry and open XYZ/B foundation.**
-**Parallel engineering step: A04 — inventory, forecast and compact result projection.**
+**Parallel engineering step: A04 — compact records and exact input transport.**
 A04 measures saved trials while A01 remains unresolved; it does not bypass A02
 or authorize large fan-out. The read-only projection substep now retains complete results with shared
 experiment metadata. Exact input transport now uses the shared archive owner;
