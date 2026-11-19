@@ -8,6 +8,12 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Identify the exact Refine Doctor source (C420)
+
+- Refine Doctor now names the source checkpoint that meets its numerical gate,
+  including when another checkpoint remains selected. Its incomplete-input
+  diagnostic also identifies the requested source.
+
 ### Keep declared modified-site observations in Refine Doctor trials (C415)
 
 - An explicit Python Refine Doctor call can now ask each ordinary checked trial

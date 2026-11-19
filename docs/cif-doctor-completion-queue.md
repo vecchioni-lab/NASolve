@@ -21,7 +21,11 @@ angle screen alongside worsening whole-arm displacement. C413 now measures the
 actual captured local plane and separately locates its implied linear atoms.
 C415 now carries that site observation into ordinary Python Refine Doctor
 trials. A real one-cycle child preserved the input data and chemistry scope.
-The original mixed scaffold/ATL and unfamiliar-ligand challenge remain Q07, followed
+C416 verified that the original eight pairs and separate ATL:A already share one
+geometry-only scaffold. C417 verified the printed base-pair and stacking terms.
+C418 tests the inherited correction on 5PC and C419 separately supplies a fresh
+ordinary 5PC preparation with no manual target. The current mixed diffraction
+run and unfamiliar-ligand challenge remain Q07, followed
 by retained chemistry boundaries Q08–Q14 and reporting/integration Q15/Q16.
 
 The records below retain the scope and limitations behind that work order; a
@@ -305,8 +309,10 @@ checks pass (168 source tests;
 Hazel accepts the final source/installed review. The combined full run finishes
 12,845 passed/one location-dependent fixture failure/two skipped/298 subtests.
 The fixture-only correction passes 35 counted tests in each scratch layout and
-43 counted/path tests on Cedar. Runtime is unchanged; a fresh corrected full gate
-is still pending and integration delivery remains held. This connects an existing
+43 counted/path tests on Cedar. Runtime was unchanged. Alder subsequently
+delivered the combined work at `f989111e` under the recorded full-run and
+focused fixture amendment. The corrected combination has no fresh green full
+suite at that checkpoint. This connects an existing
 calculation to the ordinary evidence owner; it is not another optimizer or a new
 scientific diagnosis. Preserve the separate whole-substituent gate.
 
@@ -358,6 +364,24 @@ base selections suffice to measure the relative orientation of these bases.
 The separate Cedar readout shows how far the outer arm departs from the local
 base plane. This case gives no reason to expand the NARestraints stacking
 selections. Symmetry operations remain unassessed. No new refinement was run.
+
+**C418 tests a related modified base in ordinary Doctor.** A new 5PC child
+retained the matched historical parent’s explicit terminal-bond correction,
+original Free-R data, phosphate protection and all 58 two-plane restraints.
+The terminal bond moved closer to target while the terminal carbon moved
+farther from the six-atom ring plane. Three sugar stereocentres kept their
+handedness. The earlier four- and ten-processor siblings wrote identical
+coordinates. The ten-processor matched parent is `refine-003` and the
+selection remained `refine-001`. C420 fixes the recommendation that incorrectly
+called the explicitly requested source the selected checkpoint.
+
+**C419 closes fresh target delivery on G:5PC.** Starting with the original
+five fixture files, the ordinary route built the pair, discovered the terminal
+single bond using its source connectivity and library atom types, and handed
+ReadySet’s checked model and matched dictionary to a PostMR review checkpoint.
+The target changed from 1.364 to 1.470 Å and the original 0.027 Å uncertainty
+was retained. This fresh run received no manual chemistry override. Its initial
+publication is construction evidence. A child refinement tests survival separately.
 
 **Shared Doctor observation-count follow-up.** A flag may exist for an HKL
 without a measured intensity. The legacy individual-ADP eligibility ratio uses
@@ -1262,7 +1286,12 @@ C416 reconfirmed all nine site pairs on one 42-site model and all 201 native
 custom restraints by atom identities, targets, weights, origin and multiplicity.
 No diffraction data entered that geometry-only calculation, which reached its
 iteration budget. Its older PDU attachment target and plane membership differ
-from the current ordinary dictionary. Retain the mixed recipe and this prior
+from the current ordinary dictionary. Both numerical dictionaries already
+contained their respective sugar–base targets before Phenix applied them.
+Their heavy-atom connectivity agrees, while the bond orders for P–OP1, P–OP2
+and P–OP3 differ between the isolated definitions. The newer dictionary also
+has two additional phosphate hydrogens. Read the linked model and declared
+end intent before assigning a phosphate state. Retain the mixed recipe and this prior
 evidence when qualifying Q07 with current sources. The nonmetal DF:A endpoint
 also provides a separate geometry control. Several conditions differ from the
 DF–Hg–DT refinement, so the two endpoints cannot isolate the role of mercury.

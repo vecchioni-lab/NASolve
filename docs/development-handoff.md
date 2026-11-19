@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-19, C410–C417 refinement and geometry checks — Rowan**.
+Updated **2026-11-19, C410–C420 refinement and geometry checks — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**; C409 source checkpoint **`452b7c45`**; C407/C408 runtime **`f83562b0`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -60,6 +60,20 @@ restraints all include the first alkyne carbon. The outer two carbons are absent
 from those plane selections. Their shape can therefore move even when Phenix
 retains the requested stacking restraints. All three shared planes and 58 two-plane requests matched at each
 endpoint. These historical readbacks required no new native calls.
+
+C418 checks 5PC on the same ordinary Doctor route. Its corrected terminal
+bond ends at 1.478 Å, while the outer carbon moves from 0.043 to 0.157 Å
+from the six-atom ring plane. The existing angle screen passes. This one-cycle
+child inherited the historical explicit override. The ten-processor parent
+is `refine-003`; an older four-processor sibling wrote the same coordinates.
+C420 now names the checkpoint Doctor evaluated when another remains selected.
+
+C419 then started again from the five G:5PC fixture inputs. Ordinary Coot and
+NARestraints construction, automatic source-based correction and ReadySet
+publication completed without a manual target. The published 5PC dictionary
+sets C8–C9 to 1.470 Å with its original 0.027 Å width. PostMR is selected for
+review. C420 passed 22 focused tests and 10 subtests across the Doctor and
+triage modules. No full suite ran on the evening changes.
 
 ## C409 handoff, 19 November
 

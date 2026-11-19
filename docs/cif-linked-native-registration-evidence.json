@@ -101817,6 +101817,31 @@
     ]
   },
   "automatic_preparation_bond_discovery_2026_11_16": {
+    "held_out_5pc_2026_11_19": {
+      "milestone": "C419",
+      "component": "5PC",
+      "scope": "Actual ordinary Coot/NAR preparation, automatic typed-bond discovery and ReadySet publication without a supplied override.",
+      "checkpoint": "postmr",
+      "phenix_build": "2.2.1-6174",
+      "coot": "1.3.3 revision-count 0",
+      "NAR": "a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691",
+      "retired_working_files": 812,
+      "retired_working_bytes": 216909995,
+      "raw_diffraction_or_models_in_commit": false,
+      "new_refinement_at_this_stage": false,
+      "receipts": [
+        {
+          "anchor": "local_cedar_evidence",
+          "relative_path": "c419-fresh-5pc/cold-review.json",
+          "sha256": "e7d3d4e2838387a1954f92cc89bdeb0fd960f6de4aad6ed7172a24cec18c38d5"
+        },
+        {
+          "anchor": "local_cedar_evidence",
+          "relative_path": "c420-source-checkpoint-wording/validation.json",
+          "sha256": "811999cb6a5b4358ed9a3c3d64aab52abe57ba78cb22b175b06ae2dfccd2d94b"
+        }
+      ]
+    },
     "milestone": "C333",
     "status": "EXPLICIT_AUTOMATIC_DISCOVERY_COMPLETE_REQUEST_READYSET_RELOCATION_PASS",
     "author": "Rowan",
@@ -117308,6 +117333,40 @@
     }
   },
   "selected_actual_plane_geometry_2026_11_19": {
+    "related_5pc_continuation_2026_11_19": {
+      "milestone": "C418/C420",
+      "held_out_component": "5PC",
+      "matched_historical_parent": "refine-003",
+      "earlier_same_coordinate_bytes": "refine-002",
+      "selected": "refine-001",
+      "child": "refine-004",
+      "actual_phenix": "2.2.1-6174",
+      "real_cycles": 1,
+      "processors": 1,
+      "manual_historical_target_inherited": true,
+      "restraint_inputs": 9,
+      "matched_two_plane_restraints": 58,
+      "sugar_signs_preserved": 3,
+      "claim": "One ordinary Doctor continuation. A closer terminal bond coexists with a larger terminal departure from the ring plane.",
+      "wording_fix": "The Doctor recommendation now names the requested source independently of the selected checkpoint.",
+      "refs": [
+        {
+          "anchor": "local_cedar_evidence",
+          "relative_path": "c418-heldout-doctor/cold-review.json",
+          "sha256": "55c524bb743bac292d6656700d11a4f05ee1c0a085e2c7604143ff73f90ecfea"
+        },
+        {
+          "anchor": "local_cedar_evidence",
+          "relative_path": "c418-heldout-doctor/historical-parent.json",
+          "sha256": "7b2b35a536c4f11d89a97050ab9643a0b3bf4ffec319bff97ccabe40ef4fa80f"
+        },
+        {
+          "anchor": "local_cedar_evidence",
+          "relative_path": "c416-mixed-scaffold-cold-review/input-to-native.json",
+          "sha256": "fe1a6dd7b5745fe77dfd0f89222f0e7621a17be36270bb6f17e017e14240660f"
+        }
+      ]
+    },
     "readback_2026_11_19": {
       "milestone": "C417",
       "scope": "Final geometry tables of four distinct ordinary endpoints",

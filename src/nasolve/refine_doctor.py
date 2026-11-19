@@ -462,7 +462,7 @@ def _recommend(
         return (
             "REFINE_DOCTOR_GOOD_ENOUGH",
             source_checkpoint,
-            "The selected checkpoint already meets the numerical gate; no replacement is needed",
+            f"Source checkpoint {source_checkpoint} meets the numerical gate. Inspect its model and maps.",
             0,
         )
     successes = [candidate for candidate in candidates[1:] if candidate.get("strict_success")]
@@ -567,7 +567,7 @@ def execute_refine_doctor(
     observations = inherited.get("observations")
     model = inherited.get("model")
     if not isinstance(observations, Path) or not isinstance(model, Path):
-        raise RefineDoctorError("Selected checkpoint has incomplete crystallographic inputs")
+        raise RefineDoctorError(f"Source checkpoint {source['id']} has incomplete crystallographic inputs")
     try:
         report = json.loads((run / "report.json").read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
