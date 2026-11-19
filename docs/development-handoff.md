@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-19, C410–C420 refinement and geometry checks — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**; C409 source checkpoint **`452b7c45`**; C407/C408 runtime **`f83562b0`**.
+Updated **2026-11-19, C410–C422 refinement and mixed-scaffold checks — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**; C420 source **`c50b96c7`**. The C421 native runner began at **`f1d0aedd`** and its AutoRefine and geometry sources are unchanged at C420.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
 **3104.30 s**. All 1,417 tracked test-checkout files and exact NARestraints
@@ -11,6 +11,24 @@ Linden completed the recorded 4.48 GB owned test-copy retirement on 19 November,
 rechecking the archive and preserving scientific inputs, installations and shared NAR.
 Focused, relocated installed, matched native and independent checks also pass.
 Software qualification does not change the scientific REVIEW or close Q06.
+
+## Where to resume
+
+**Q06.** Fresh G:5PC completed both construction and ordinary five-cycle Phenix
+refinement. Its automatically corrected C8–C9 target survived in the native
+covalent restraints at 1.470 Å. The refined distance was 1.460 Å. The terminal
+carbon moved from 0.712 to 0.130 Å from the six-atom ring plane. PostMR remains
+selected and the new child is `refine-001`. C418's separately prepared one-cycle
+continuation moved the terminal atom farther out despite straighter alkyne angles.
+Keep both observations. This is a substituted-scaffold test. Q06 next needs the
+ordinary nonmetal DF:A comparison with its existing geometry-only reference.
+
+**Q07.** The ordinary planner recognized all 13 mutations for the nine-pair
+scaffold and stopped at A:11 ATL. A canonical DT sugar has opposite C3′ and C4′
+hands. Reuse the demonstrated source-bound placement and linked seed, define the
+D:1 phosphate state on the chosen host, then qualify all nine pairs in one
+ordinary refinement. The [completion queue](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run)
+records the positive and negative controls. C422 ran no native process.
 
 ## Which parts of the molecule stayed in shape?
 

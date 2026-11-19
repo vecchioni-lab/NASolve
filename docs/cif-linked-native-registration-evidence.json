@@ -57257,7 +57257,32 @@
     "implementation_commit": "2321939e7445840acaa8b5358d3c722840e2fd01",
     "focused_tested_commit": "2321939e7445840acaa8b5358d3c722840e2fd01",
     "published_branch": "cedar",
-    "remote_verified": true
+    "remote_verified": true,
+    "ordinary_planning_2026_11_19": {
+      "milestone": "C422",
+      "author": "Rowan",
+      "status": "MIXED_RECIPE_INPUTS_RESOLVE_ORDINARY_CONSTRUCTION_BLOCK_IDENTIFIED",
+      "actual_native_execution": false,
+      "sites": 42,
+      "recorded_pairs": 9,
+      "accepted_catalogue_changes": 13,
+      "ordinary_actions_without_ATL": 12,
+      "first_refusal": "A:11 DT to ATL, incompatible canonical construction sugar",
+      "declared_ends": "Current host explicitly allows OP3 at D:1. Archived mixed D:1 lacks P. Both recorded B:1 sites lack P.",
+      "historical_controls": "C143/C145/C146/C149 verified by file digest. Existing two native links/eight angles and geometry-only measurements can be reused.",
+      "receipts": [
+        {
+          "anchor": "local_cedar_evidence",
+          "relative_path": "c422-q07-readiness/review.json",
+          "sha256": "aa2f5de3e062f57bdacf2ef437f6a66fdeca1f986518e8ebaac2f510955ae536"
+        },
+        {
+          "anchor": "local_cedar_evidence",
+          "relative_path": "c422-q07-readiness/prior-linked-controls.json",
+          "sha256": "18b5fe3aca284c9ac571cd228fe8a02f3182efd20842339a54c6499a1ae8f844"
+        }
+      ]
+    }
   },
   "captured_linear_attribution_2026_10_31": {
     "status": "PUBLISHED_FOCUSED_VALIDATED",
@@ -101840,7 +101865,53 @@
           "relative_path": "c420-source-checkpoint-wording/validation.json",
           "sha256": "811999cb6a5b4358ed9a3c3d64aab52abe57ba78cb22b175b06ae2dfccd2d94b"
         }
-      ]
+      ],
+      "ordinary_child": {
+        "milestone": "C421",
+        "author": "Rowan",
+        "source_at_launch": "f1d0aedd",
+        "current_code": "c50b96c7",
+        "actual_execution": true,
+        "phenix_build": "2.2.1-6174",
+        "cycles": 5,
+        "processors": 1,
+        "selected": "postmr",
+        "child": "refine-001",
+        "native_terminal_target_A": 1.47,
+        "width_A": 0.027,
+        "achieved_native_A": 1.4604386600241737,
+        "six_ring_offset_A": [
+          0.7119230810380631,
+          0.12966448655891316
+        ],
+        "matched_two_plane_restraints": 58,
+        "sugar_hands": 3,
+        "measured_reflections": 2273,
+        "measured_free": 127,
+        "retained_prepared_inputs": 7,
+        "added_protection_inputs": 1,
+        "manual_override": false,
+        "cold_files_unchanged": 268,
+        "new_native_bytes": 8491217,
+        "scope": "Related 5PC source-to-native delivery demonstrated on a substituted scaffold. Broader PDU/DF acceptance remains open.",
+        "receipts": [
+          {
+            "anchor": "local_cedar_evidence",
+            "relative_path": "c419-fresh-5pc/matched-preparation.json",
+            "sha256": "d1d6698a72343888730cd2a183dc658fdf7e1f70e4980dbbda316ff7c031a971"
+          },
+          {
+            "anchor": "local_cedar_evidence",
+            "relative_path": "c421-fresh-5pc-child/plan.json",
+            "sha256": "1f2a2d838ca24d87eb9a0e7aadb2d485b302bedbd16aadd2cb3dc1ff3fbe896c"
+          },
+          {
+            "anchor": "local_cedar_evidence",
+            "relative_path": "c421-fresh-5pc-child/cold-review.json",
+            "sha256": "9fb2d75cf10a20dc7884e1c648696332048c0350dd59ef6154913186c2fb1bbb"
+          }
+        ]
+      }
     },
     "milestone": "C333",
     "status": "EXPLICIT_AUTOMATIC_DISCOVERY_COMPLETE_REQUEST_READYSET_RELOCATION_PASS",
