@@ -35,8 +35,17 @@ The relocated installation passes 261 tests with 304 packaged files exact; its
 actual saved reports match source readback. Eight source-only shuttle checks remain
 in the 168-test source gate. The omitted-fixture first installed attempt is
 preserved separately. Hazel accepts the final source review and source-free
-installed readback. The single combined integration gate at `1acc7892` is running;
-it is not yet a PASS. The last standalone Cedar full gate remains `58965920`; do not relabel a combined gate.
+installed readback. The combined full gate at `1acc7892` finished with **12,845
+passed, one failed, two skipped and 298 subtests passed** in 4582.29 s. Its one
+failure assumed a sibling temporary PHIL was unanchored, although the test scratch
+was inside a repository. Runtime behavior was correct. The test now declares its
+own repository boundary and asserts the outside input is absolute. The complete
+counted-refinement module passes both inside and outside a checkout (35 tests each);
+Cedar's counted/path checks pass 43 tests. The first local verification driver
+omitted its scratch parent and is preserved separately from the successful fresh
+attempt. This is a focused correction, **not a fresh green full suite**. Integration
+delivery is held; the corrected combined candidate is `834b6b94`. Runtime remains
+exact `f83562b0`; the last standalone Cedar full gate remains `58965920`.
 Linden completed C406 scratch retirement and owns W145 map provenance; Hazel owns
 Cedar/Alder integration review. No overlapping branch or owner changes.
 
@@ -131,7 +140,8 @@ six-atom ring plane 0.094297 Å. These descriptive starting values are not accep
 
 ## Next work, in order
 
-1. Finish the coordinated combined gate; C407 independent review is accepted.
+1. Finish the coordinated combined gate with a fresh complete run at the next
+   development window; the fixture-only correction and C407 review are accepted.
    C406 scratch retirement is complete; no repeated native matrix is needed.
 2. Use the recorded actual-manager and matching-data evidence to resolve the
    remaining experimental-chemistry question. Q06 needs useful PDU/DF geometry after refinement and whole-substituent

@@ -116471,7 +116471,7 @@
   "selected_actual_scalar_geometry_2026_11_19": {
     "milestone": "C407",
     "date": "2026-11-19",
-    "status": "FOCUSED_INSTALLED_COLD_PASS_COMBINED_GATE_RUNNING",
+    "status": "FOCUSED_INSTALLED_COLD_PASS_COMBINED_FIXTURE_CORRECTED_NEW_FULL_PENDING",
     "source_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
     "behavior_before": "Raw selected actual-final heavy-atom observations available; scalar measurements require a whole inventory. Three descriptive readers could miss source mutation between initial validation and initial report snapshot.",
     "behavior_after": "Reuse the C15 calculator for authenticated selected observations, preserving sparse global indices and selected/whole counts. Scalar, trigonal and triple readers repeat the existing sealed-request source check after reporting.",
@@ -116635,8 +116635,103 @@
     "qualification": {
       "last_standalone_full": "589659201a15b4284e93e2c4dcfc47cdefbdcb64",
       "combined_candidate": "1acc7892d2bc19d5572d46f430b27515a7ea6301",
-      "combined_status": "RUNNING_NOT_PASS",
-      "independent_review": "HAZEL_ACCEPTED_FINAL_SOURCE_AND_SOURCE_FREE_INSTALLED_READBACK"
+      "combined_status": "FAILED_FULL_PRESERVED_FIXTURE_CORRECTION_FOCUSED_PASS_NEW_FULL_PENDING",
+      "independent_review": "HAZEL_ACCEPTED_FINAL_SOURCE_AND_SOURCE_FREE_INSTALLED_READBACK",
+      "combined_fixture_followup": {
+        "status": "FAILED_FULL_PRESERVED_FIXTURE_CORRECTION_FOCUSED_PASS_NEW_FULL_PENDING",
+        "original_candidate": "1acc7892d2bc19d5572d46f430b27515a7ea6301",
+        "corrected_combined_candidate": "834b6b94b3c34d973bfc18142bb9934ed413421c",
+        "full": {
+          "passed": 12845,
+          "failed": 1,
+          "skipped": 2,
+          "subtests_passed": 298,
+          "pytest_seconds": 4582.29,
+          "process_stopped": true,
+          "source_changes": [],
+          "result": {
+            "anchor": "NASolve-local-artifacts",
+            "relative_path": "Alder/integration-20261119-01/full-suite/result.json",
+            "sha256": "047129bfb4fca3f77142d07a04179f15a4c9210cd89c6b49f597230377ef63d3"
+          },
+          "plan": {
+            "anchor": "NASolve-local-artifacts",
+            "relative_path": "Alder/integration-20261119-01/full-suite/plan.json",
+            "sha256": "d6c6e48180303665d1a793a9477b1913f90e1dd2693c75d8e4445446754c52bb"
+          },
+          "xml": {
+            "anchor": "NASolve-local-artifacts",
+            "relative_path": "Alder/integration-20261119-01/full-suite/results.xml",
+            "sha256": "97ec05e87c0310dc8c545ac364f374f6a0fdc1aa414303c0f7904b5547519638"
+          }
+        },
+        "failure": {
+          "test": "tests/test_autorefine_counted.py::test_unsupported_scientific_scope_is_not_dropped[extra]",
+          "reason": "Sibling extra PHIL was inside the enclosing repository under repository-contained basetemp, so it correctly received a portable repository anchor.",
+          "runtime_changed": false,
+          "correction": "Declare the fixture-local repository boundary and assert the sibling input is absolute before checking early rejection.",
+          "changed_test": "tests/test_autorefine_counted.py",
+          "test_sha256": "020e5c5e7b7fa3b40ab2c32da92f59a6152acf9b98af6edbdeeeacf80a587180"
+        },
+        "focused": {
+          "combined_inside": {
+            "passed": 35,
+            "seconds": 48.77
+          },
+          "combined_outside": {
+            "passed": 35,
+            "seconds": 26.58
+          },
+          "combined_result": {
+            "anchor": "NASolve-local-artifacts",
+            "relative_path": "Alder/integration-20261119-01/fixture-correction/result.json",
+            "sha256": "21970fdd4a1f1eb209f47c1011e1732140f97f319399df96b71a64738a7ed570"
+          },
+          "combined_plan": {
+            "anchor": "NASolve-local-artifacts",
+            "relative_path": "Alder/integration-20261119-01/fixture-correction/plan.json",
+            "sha256": "7a8e3d59cf0ecbce894cf35568331f2968a333de04a1c7ad4c7c044bea89134d"
+          },
+          "cedar": {
+            "passed": 43,
+            "seconds": 52.14,
+            "result": {
+              "anchor": "NASolve-local-artifacts",
+              "relative_path": "cedar/c407-fixture-location-check/attempt02/result.json",
+              "sha256": "947a1664f14cfc8878656511a9d0ea70894288d2ed1544b522a3f066204dcda6"
+            },
+            "plan": {
+              "anchor": "NASolve-local-artifacts",
+              "relative_path": "cedar/c407-fixture-location-check/attempt02/plan.json",
+              "sha256": "24acbd2b989a4f5ef6b792b3cb6253a7841ca4a2a6198b387e805bf15ce6a705"
+            },
+            "xml": {
+              "anchor": "NASolve-local-artifacts",
+              "relative_path": "cedar/c407-fixture-location-check/attempt02/results.xml",
+              "sha256": "6e9861768563b5ed282d8f7fcebffa232d92e8f6140ac534a62c968136091bf6"
+            }
+          }
+        },
+        "local_driver_first_attempt": {
+          "passed": 8,
+          "setup_errors": 35,
+          "reason": "Driver omitted the parent directory required by pytest --basetemp; no scientific test body or native refinement ran.",
+          "xml": {
+            "anchor": "NASolve-local-artifacts",
+            "relative_path": "cedar/c407-fixture-location-check/results.xml",
+            "sha256": "0e32e8bfa27d62b230f94c6712d432ac2efcd14e2bf2caa21ab17876f0baa00c"
+          },
+          "fresh_retry_directory": "attempt02"
+        },
+        "fresh_revised_full_suite": "NOT_RUN",
+        "active_integration_delivery": "HELD",
+        "scientific_acceptance": false
+      },
+      "fixture_followup_receipt": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "cedar/c407-fixture-location-check/qualification.json",
+        "sha256": "6a4382e6f614f2cdf65ee6074e01bb1738ac8f5593dbf416df3ee3315f2a18d7"
+      }
     },
     "generated_artifacts": "Only compact measurements, bindings and validation results in this ledger; raw models/reflections/native logs remain local.",
     "limitations": [

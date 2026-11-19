@@ -295,8 +295,11 @@ site observations. Keep source identities, global indices, selected/whole counts
 and unassessed conventions explicit. Source/legacy/cold and relocated installed
 checks pass (168 source tests;
 261 installed tests; 112 actual scalar rows; 349 native files unchanged).
-Hazel accepts the final source/installed review; the frozen combined-source full
-gate remains. This connects an existing
+Hazel accepts the final source/installed review. The combined full run finishes
+12,845 passed/one location-dependent fixture failure/two skipped/298 subtests.
+The fixture-only correction passes 35 counted tests in each scratch layout and
+43 counted/path tests on Cedar. Runtime is unchanged; a fresh corrected full gate
+is still pending and integration delivery remains held. This connects an existing
 calculation to the ordinary evidence owner; it is not another optimizer or a new
 scientific diagnosis. Preserve the separate whole-substituent gate.
 
