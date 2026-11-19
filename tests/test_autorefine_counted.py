@@ -235,7 +235,13 @@ def test_unsupported_scientific_scope_is_not_dropped(tmp_path, monkeypatch, scop
         monkeypatch.setattr('nasolve.refinement_chemistry.prepare_chemistry_scope',
                             lambda *args: [{'site': 'A:1', 'component': 'Q17'}])
     elif scope == 'extra':
-        p = tmp_path.parent / (tmp_path.name + '-external.phil'); p.write_text('geometry_restraints {}\n')
+        from nasolve.autorefine import _file_reference
+        # Declare a fixture-local repository even when pytest runs inside a checkout.
+        (tmp_path / 'pyproject.toml').write_text('[project]\nname = "fixture"\n')
+        (tmp_path / 'MR_frames').mkdir()
+        p = tmp_path.parent / (tmp_path.name + '-external.phil')
+        p.write_text('geometry_restraints {}\n')
+        assert _file_reference(p, run)['anchor'] == 'absolute'
         options['extra_restraints'] = [p]
     else:
         monkeypatch.setattr('nasolve.autorefine.requested_op3_sites', lambda report: ('A:1',))
