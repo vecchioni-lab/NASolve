@@ -29,7 +29,8 @@ A separate idealized positive control generates diffraction from the PDU molecul
 itself and uses an independently displaced starting copy. Its terminal carbon
 returns from 0.500 to 0.088 Å from the ring plane; the unperturbed reference ends
 at 0.089 Å. Both pass the existing narrow triple-bond screen with the same supplied
-restraints. The reference also relaxes and R factors rise. This demonstrates bounded
+restraints. Their PDU atoms finish 0.023 Å apart after aligning the surrounding
+model. The reference also relaxes and R factors rise. This demonstrates bounded
 recovery under matching atomic amplitudes, not experimental accuracy, exact recovery
 of the generating coordinates or complete Q06 support. The simulation assumptions
 and independent checks are retained in the existing evidence ledger.

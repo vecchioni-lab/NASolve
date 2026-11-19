@@ -116678,7 +116678,8 @@
       "C206 fixed-backbone geometry control already restores source-supported planarity.",
       "C403 ordinary PDU control uses substituted-scaffold observations; C405 separates local attachment from accumulated bend.",
       "C252 synthetic observation path and C62/C63 donor-data mechanics are not matching modified-chemistry diffraction controls.",
-      "C397\u2013C400 derivative, weight and restart controls remain closed; no repeated sweep."
+      "C397\u2013C400 derivative, weight and restart controls remain closed; no repeated sweep.",
+      "Willow W74/W75 already generated synthetic atomic reflections for ASU/stock-consumer invariance; C408 adds separately perturbed-coordinate recovery, not new Fcalc arithmetic."
     ],
     "question": "Does the same checked native consumer recover a separately perturbed modified site under amplitudes generated from its actual constructed molecule?",
     "method": {
@@ -116812,10 +116813,35 @@
       "Initial/final scalar and substituent geometry use full native observations; coordinate RMSD uses rounded PDBs and a descriptive background rigid fit.",
       "No new numerical threshold, native force/target/weight change, ordinary registry publication or Q06 closure.",
       "No observed molecular improvement is inferred from R factors alone; log termination and numerical convergence remain distinct.",
-      "Five macrocycles have21 logged R-summary entries; do not relabel every log entry as a cycle.",
+      "Five macrocycles have 21 logged R-summary entries; do not relabel every log entry as a cycle.",
       "Whole family counts and captured parallelity identities are checked; unrecorded endpoint families remain outside the proof.",
       "No general simulator API, ordinary registry publication, new numerical threshold or Q06 closure. No data-only causal attribution for the C403 stress result.",
-      "Raw models, synthetic/donor reflections, native logs and private drivers remain local; only compact measures/hashes in Git."
-    ]
+      "Raw models, synthetic/donor reflections, native logs and private drivers remain local; only compact measures/hashes in Git.",
+      "Private generator fixes IMEAN/SIGIMEAN and FreeR_flag plus three captured chirality proxies. Wider reuse must bind labels and coverage explicitly; no general simulator API is qualified."
+    ],
+    "endpoint_comparison": {
+      "predeclared": true,
+      "receipt": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "cedar/c408-matching-data/endpoint-comparison.json",
+        "sha256": "79aacc92f05a3e5e635f982745b2daf969e5f833a426686e91273f7c1ed58a64"
+      },
+      "perturbed_start_to_relaxed_reference_rmsd_angstrom": 0.1527311280499693,
+      "perturbed_endpoint_to_relaxed_reference_rmsd_angstrom": 0.023302573701627135,
+      "background_atoms": 833,
+      "coordinate_precision": "Rounded PDB; descriptive background rigid fit",
+      "original_generating_model_replaced": false,
+      "independent_review": {
+        "reviewer": "Hazel",
+        "status": "INDEPENDENT_ENDPOINT_COMPARISON_PASS",
+        "scalar_checks": 8,
+        "native_files_unchanged": 96,
+        "receipt": {
+          "anchor": "NASolve-local-artifacts",
+          "relative_path": "Alder/coordination-c408-endpoint-review-20261119.json",
+          "sha256": "e3efd9d89c55f78490bfb8dab1e205de88d43853e7740ce727e8d2df7fecae1d"
+        }
+      }
+    }
   }
 }

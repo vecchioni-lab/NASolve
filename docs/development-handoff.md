@@ -46,9 +46,12 @@ C401 molecule, the independently perturbed PDU terminal offset falls 0.500→0.0
 the reference finishes at 0.089 Å. Both narrow triple screens pass, the captured
 sugar signs remain consistent and all supplied restraints/protection are retained.
 Reference and perturbed endpoints still move 0.093/0.086 Å from the generator after
-background alignment, and their R factors rise. This idealized, low-resolution
+background alignment, and their R factors rise. The two refined PDU endpoints
+differ by 0.0233 Å after background alignment (the displaced start differed by
+0.1527 Å from the relaxed reference). This idealized, low-resolution
 control establishes bounded recovery rather than experimental accuracy or Q06
-closure. Hazel's 70-check independent review passes. Native processes are stopped;
+closure. Hazel's 70-check independent review and separate eight-check endpoint
+comparison pass. Native processes are stopped;
 a verified 2.42 MB local archive retains all 96 files. No repeated native work is
 needed. See `matching_atomic_data_recovery_2026_11_19` in the existing ledger and
 `ScienceCheckouts/Rowan/2026-11-19/review.html` in the sibling workspace.
