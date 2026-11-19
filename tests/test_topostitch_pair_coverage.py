@@ -1,0 +1,552 @@
+"""A complete callback must not duplicate ordinary native pair restraints."""
+from copy import deepcopy
+
+import pytest
+
+from nasolve.topostitch_recipe import recipe_digest
+
+
+def atom(label, translation=('0', '0', '0')):
+    return dict(atom=label, rotation=[1,0,0,0,1,0,0,0,1], translation=list(translation))
+
+
+def term(name, kind, offset=''):
+    labels=[offset+x for x in ('a','b','c','d','e','f')]
+    count={'bond':2,'angle':3,'planarity':3,'parallelity':3}[kind]
+    parameters={
+        'bond':dict(ideal=2.8,weight=25.,slack=0.,limit=-1.,top_out=False),
+        'angle':dict(ideal=116.2,weight=.1,slack=0.),
+        'planarity':dict(weights=[10.,20.,30.]),
+        'parallelity':dict(ideal=0.,weight=100.,slack=0.,limit=1.,top_out=False),
+    }[kind]
+    return dict(term_id=name,kind=kind,atoms=[atom(x) for x in labels[:count]],
+        other_atoms=[atom(x) for x in labels[3:]] if kind=='parallelity' else [],parameters=parameters)
+
+
+def inputs():
+    kinds=('bond','angle','planarity','parallelity')
+    requested=[term('core-'+k,k) for k in kinds]+[term('selected-'+k,k,'s') for k in kinds]
+    native=deepcopy(requested[:4]);additive=deepcopy(requested[4:])
+    for row in native:row['term_id']='native:'+row['term_id']
+    for row in additive:row['term_id']='add:'+row['term_id']
+    current=dict(source_model_sha256='a'*64,recipe_sha256='b'*64,atom_labels=list('abcdef')+['s'+x for x in 'abcdef'],crystal_sha256='c'*64,native_exclusion_policy_sha256='d'*64)
+    return requested,native,additive,current
+
+
+def frozen(requested,native,additive,current):
+    return dict(context=deepcopy(current),requested_sha256=recipe_digest(requested),
+        native_sha256=recipe_digest(native),additive_sha256=recipe_digest(additive),
+        native_requested_ids=[r['term_id'] for r in requested if r['term_id'].startswith('core-')])
+
+
+def review(values, plan=None):
+    from nasolve.topostitch_pair_coverage import review_pair_coverage
+    r,n,a,c=values
+    return review_pair_coverage(r,n,a,frozen=frozen(r,n,a,c) if plan is None else plan,current_context=c)
+
+
+def test_existing_core_and_explicit_additions_cover_once_without_mutation():
+    values=inputs();before=deepcopy(values);result=review(values)
+    assert values==before
+    assert result['native_requested_term_count']==4 and result['additive_requested_term_count']==4
+    assert [r['requested_id'] for r in result['coverage']]==[r['term_id'] for r in values[0]]
+    assert [r['provider'] for r in result['coverage']]==['native']*4+['additive']*4
+    assert result['declared_coverage_complete'] is True
+    assert not result['runtime_authority'] and not result['scientific_acceptance']
+    assert result['native_exclusion_policy_sha256']=='d'*64
+
+
+def test_full_callback_on_ordinary_core_refuses_even_with_current_hashes():
+    r,n,a,c=inputs();a+=deepcopy(n)
+    with pytest.raises(ValueError,match='Duplicate'):
+        review((r,n,a,c))
+
+
+@pytest.mark.parametrize('source',['native','additive'])
+def test_missing_term_is_not_filled_or_reassigned(source):
+    r,n,a,c=inputs();(n if source=='native' else a).pop()
+    with pytest.raises(ValueError,match='Missing'):
+        review((r,n,a,c))
+
+
+@pytest.mark.parametrize('source',['native','additive'])
+def test_repeated_occurrences_are_not_deduplicated(source):
+    r,n,a,c=inputs();rows=n if source=='native' else a;duplicate=deepcopy(rows[0]);duplicate['term_id']+='-duplicate';rows.append(duplicate)
+    with pytest.raises(ValueError,match='Duplicate'):
+        review((r,n,a,c))
+
+
+def test_unrequested_addition_and_provider_swap_refuse():
+    r,n,a,c=inputs();extra=term('extra','bond','s');extra['atoms'][1]=atom('sf');a.append(extra)
+    with pytest.raises(ValueError,match='Unrequested'):review((r,n,a,c))
+    r,n,a,c=inputs();a.append(n.pop())
+    with pytest.raises(ValueError,match='provider'):review((r,n,a,c))
+
+
+@pytest.mark.parametrize('kind,field,value',[('bond','ideal',2.9),('bond','limit',1.),('bond','top_out',True),('angle','slack',.1),('angle','weight',.2),('parallelity','limit',2.),('parallelity','ideal',1.)])
+def test_target_and_mode_differences_are_not_presence_matches(kind,field,value):
+    values=inputs();next(t for t in values[1] if t['kind']==kind)['parameters'][field]=value
+    with pytest.raises(ValueError,match='parameters'):review(values)
+
+
+def test_plane_weights_follow_atoms_when_reordered():
+    values=inputs();plane=next(t for t in values[1] if t['kind']=='planarity')
+    plane['atoms'].reverse();plane['parameters']['weights'].reverse();assert review(values)['declared_coverage_complete']
+    plane['parameters']['weights'].reverse()
+    with pytest.raises(ValueError,match='parameters'):review(values)
+
+
+def test_common_rotation_translation_and_family_permutations_match():
+    values=inputs()
+    for row in values[1]+values[2]:
+        for site in row['atoms']+row['other_atoms']:
+            site.update(rotation=[0,-1,0,1,0,0,0,0,1],translation=['1','2','3'])
+        if row['kind'] in ('bond','angle'):row['atoms'].reverse()
+        elif row['kind']=='parallelity':row['atoms'],row['other_atoms']=row['other_atoms'],row['atoms']
+    assert review(values)['declared_coverage_complete']
+
+
+def test_lattice_translation_is_not_wrapped_or_inferred():
+    values=inputs();values[2][0]['atoms'][1]['translation'][0]='1'
+    with pytest.raises(ValueError,match='Unrequested|Missing'):review(values)
+
+
+@pytest.mark.parametrize('change',['context','native_bytes','additive_bytes','request_bytes','provider_list'])
+def test_stale_frozen_binding_refuses(change):
+    values=inputs();r,n,a,c=values;plan=frozen(*values)
+    if change=='context':c['native_exclusion_policy_sha256']='e'*64
+    elif change=='native_bytes':n[0]['parameters']['weight']=26.
+    elif change=='additive_bytes':a[0]['parameters']['weight']=26.
+    elif change=='request_bytes':r[0]['parameters']['weight']=26.
+    else:plan['native_requested_ids'].append('not-requested')
+    with pytest.raises(ValueError):review(values,plan)
+
+
+@pytest.mark.parametrize('change',['bool','nonfinite','unknown_field','bad_label','bad_rotation','bad_fraction','duplicate_atom','duplicate_id','unknown_kind','zero_digest'])
+def test_malformed_term_or_binding_refuses(change):
+    r,n,a,c=inputs()
+    if change=='bool':a[0]['parameters']['weight']=True
+    elif change=='nonfinite':a[0]['parameters']['weight']=float('nan')
+    elif change=='unknown_field':a[0]['parameters']['hidden_policy']=1
+    elif change=='bad_label':a[0]['atoms'][0]['atom']='unknown'
+    elif change=='bad_rotation':a[0]['atoms'][0]['rotation'][0]=-1
+    elif change=='bad_fraction':a[0]['atoms'][0]['translation'][0]='2/6'
+    elif change=='duplicate_atom':a[0]['atoms'][1]=deepcopy(a[0]['atoms'][0])
+    elif change=='duplicate_id':a[1]['term_id']=a[0]['term_id']
+    elif change=='unknown_kind':a[0]['kind']='torsion'
+    else:c['recipe_sha256']=''
+    with pytest.raises(ValueError):review((r,n,a,c))
+
+
+def test_tiny_weights_are_not_equal_by_absolute_tolerance():
+    values=inputs();values[0][0]['parameters']['weight']=1e-20;values[1][0]['parameters']['weight']=1e-16
+    with pytest.raises(ValueError,match='parameters'):review(values)
+
+
+def test_floating_reciprocal_weight_roundoff_is_supported():
+    values=inputs();values[1][0]['parameters']['weight']=1/.2**2
+    assert review(values)['declared_coverage_complete']
+
+
+def test_noncommuting_periodic_images_match_under_common_motion_and_reversal():
+    values=inputs();requested=values[0][4];addition=values[2][0]
+    quarter=[0,-1,0,1,0,0,0,0,1];half=[-1,0,0,0,-1,0,0,0,1]
+    requested['atoms'][1].update(rotation=quarter,translation=['0','0','1/4'])
+    addition['atoms'][0].update(rotation=quarter,translation=['1','2','3'])
+    addition['atoms'][1].update(rotation=half,translation=['1','2','13/4'])
+    addition['atoms'].reverse()
+    assert review(values)['declared_coverage_complete']
+
+
+def compiled_fixture(monkeypatch):
+    from types import SimpleNamespace as NS
+    from nasolve.topostitch_native_recipe import NativePairRecipe
+    from nasolve import topostitch_pair_coverage as coverage
+    identities=[dict(atom_name=x) for x in 'abcdef']
+    packet=dict(source_model_sha256='a'*64,atom_count=6,atom_identities=identities,
+        crystal=dict(cell_parameters=[10.,10.,10.,90.,90.,90.],space_group='P 1'),
+        pairs=[dict(pair_id='p',purpose='core',target_operator_xyz='x,y,z',
+                    role_indices=dict(L=[0,1,2],R=[3,4,5]),
+                    expected_counts=dict(bond=1,angle=1,planarity=1,parallelity=1))])
+    definitions=[dict(kind=k,pair_id='p',purpose='core',sigma=.2,i_seqs=ids,**extra)
+        for k,ids,extra in [('bond',[0,3],dict(ideal=2.8)),
+            ('angle',[0,1,3],dict(ideal=116.2)),('planarity',list(range(6)),{}),
+            ('parallelity',[0,1,2],dict(ideal=0.,j_seqs=[3,4,5]))]]
+    refs=[dict(asu_index=i,rotation=[[1.,0.,0.],[0.,1.,0.],[0.,0.,1.]],translation=[0.,0.,0.]) for i in range(6)]
+    recipe=NativePairRecipe.__new__(NativePairRecipe)
+    recipe._identities=identities;recipe._count=6;recipe._terms=definitions
+    recipe._refs=tuple((v['asu_index'],NS(rotation=v['rotation'],translation=v['translation'])) for v in refs)
+    recipe._report=dict(schema_version=1,kind='topostitch-native-pair-binding',source_model_sha256='a'*64,
+        recipe_sha256=recipe_digest(packet),atom_count=6,terms=definitions,references=refs)
+    recipe._bonds=[NS(i_seqs=[0,3],distance_ideal=2.8,weight=1/.2**2,slack=0.,limit=-1.,top_out=False,rt_mx_ji=None)]
+    recipe._angles=[NS(i_seqs=[0,1,3],angle_ideal=116.2,weight=1/.2**2,slack=0.,sym_ops=None)]
+    recipe._planes=[NS(i_seqs=list(range(6)),weights=[1/.2**2]*6,sym_ops=None)]
+    recipe._parallel=[NS(i_seqs=[0,1,2],j_seqs=[3,4,5],target_angle_deg=0.,weight=1/.2**2,slack=0.,limit=1.,top_out=False,sym_ops=None)]
+    def image(text, cell):
+        assert text=='x,y,z'
+        return dict(rotation=[1,0,0,0,1,0,0,0,1],translation=['0','0','0']),refs[0]['rotation'],refs[0]['translation']
+    monkeypatch.setattr(coverage,'_compiled_fractional_image',image,raising=False)
+    return recipe,packet
+
+
+def export(recipe,packet):
+    from nasolve.topostitch_pair_coverage import describe_compiled_pair_terms
+    return describe_compiled_pair_terms(recipe,packet,expected_binding_sha256=recipe_digest(recipe.binding_report()))
+
+
+def test_compiled_export_preserves_old_binding_and_returns_detached_terms(monkeypatch):
+    recipe,packet=compiled_fixture(monkeypatch);before=deepcopy([recipe.binding_report(),packet]);result=export(recipe,packet)
+    assert result['recipe_sha256']==recipe_digest(packet)
+    assert result['compiled_binding_sha256']==recipe_digest(before[0])
+    assert [r['term_id'] for r in result['terms']]==['p:0','p:1','p:2','p:3']
+    assert [r['kind'] for r in result['terms']]==['bond','angle','planarity','parallelity']
+    assert result['terms'][0]['parameters']['limit']==-1.
+    assert result['terms'][3]['parameters']['limit']==1.
+    assert [recipe.binding_report(),packet]==before
+    result['terms'][0]['parameters']['weight']=999.
+    assert export(recipe,packet)['terms'][0]['parameters']['weight']!=999.
+    assert not result['runtime_authority']
+
+
+@pytest.mark.parametrize('change',['missing_proxy','extra_proxy','proxy_indices','proxy_weight','proxy_mode','proxy_image','virtual_reference','packet','purpose','identity'])
+def test_compiled_export_refuses_drift_in_live_proxy_or_bound_packet(monkeypatch,change):
+    recipe,packet=compiled_fixture(monkeypatch)
+    if change=='missing_proxy':recipe._angles=[]
+    elif change=='extra_proxy':recipe._bonds.append(recipe._bonds[0])
+    elif change=='proxy_indices':recipe._bonds[0].i_seqs=[1,3]
+    elif change=='proxy_weight':recipe._bonds[0].weight=26.
+    elif change=='proxy_mode':recipe._parallel[0].limit=2.
+    elif change=='proxy_image':recipe._angles[0].sym_ops=['x+1,y,z']
+    elif change=='virtual_reference':recipe._refs[0][1].translation=[1.,0.,0.]
+    elif change=='packet':packet['pairs'][0]['purpose']='selected'
+    elif change=='purpose':recipe._terms[0]['purpose']='selected'
+    else:recipe._identities=[dict(atom_name='wrong')]+recipe._identities[1:]
+    with pytest.raises(ValueError):export(recipe,packet)
+
+
+def test_compiled_export_requires_original_binding_digest(monkeypatch):
+    from nasolve.topostitch_pair_coverage import describe_compiled_pair_terms
+    recipe,packet=compiled_fixture(monkeypatch)
+    with pytest.raises(ValueError,match='binding'):
+        describe_compiled_pair_terms(recipe,packet,expected_binding_sha256='0'*64)
+
+
+# Provider selection must work within a pair, independently of purpose/ID names.
+def select_inputs(requested, native, current, binding=None):
+    from nasolve.topostitch_pair_coverage import select_pair_providers
+    if binding is None:
+        binding = dict(context=deepcopy(current), requested_sha256=recipe_digest(requested),
+                       native_sha256=recipe_digest(native))
+    return select_pair_providers(requested, native, frozen=binding, current_context=current)
+
+
+def test_select_providers_within_each_pair_and_replay_without_mutation():
+    r, _, _, c = inputs()
+    native = deepcopy([r[i] for i in (6, 0, 5, 3)])
+    for i, row in enumerate(native):
+        row['term_id'] = 'unrelated-native-name-' + str(i)
+    before = deepcopy([r, native, c])
+    result = select_inputs(r, native, c)
+    assert result['frozen']['native_requested_ids'] == [r[i]['term_id'] for i in (0, 3, 5, 6)]
+    assert result['additive'] == [r[i] for i in (1, 2, 4, 7)]
+    assert result['review'] == review((r, native, result['additive'], c), result['frozen'])
+    assert not result['review']['runtime_authority']
+    assert not result['review']['scientific_acceptance']
+    assert [r, native, c] == before
+    result['additive'][0]['parameters']['weight'] = 999.
+    result['frozen']['context']['atom_labels'][0] = 'changed'
+    assert [r, native, c] == before
+
+
+@pytest.mark.parametrize('all_native', [False, True])
+def test_select_all_native_or_all_additive(all_native):
+    r, _, _, c = inputs()
+    result = select_inputs(r, deepcopy(r) if all_native else [], c)
+    assert result['additive'] == ([] if all_native else r)
+    assert result['review']['native_requested_term_count'] == (8 if all_native else 0)
+
+
+def test_select_preserves_unrequested_native_terms_and_exact_periodic_offsets():
+    r, n, _, c = inputs()
+    r = [deepcopy(r[0])]
+    r[0]['atoms'][1]['translation'][0] = '1'
+    # The identity contact and the translated contact are different restraints.
+    result = select_inputs(r, n, c)
+    assert result['additive'] == r
+    assert result['review']['observed_native_term_count'] == len(n)
+    assert result['frozen']['native_sha256'] == recipe_digest(n)
+
+
+def test_select_equivalent_images_and_weighted_plane_order():
+    r, n, _, c = inputs()
+    for row in n:
+        for site in row['atoms'] + row['other_atoms']:
+            site.update(rotation=[0,-1,0,1,0,0,0,0,1], translation=['1','2','3'])
+        if row['kind'] in ('bond', 'angle'):
+            row['atoms'].reverse()
+        if row['kind'] == 'planarity':
+            row['atoms'].reverse(); row['parameters']['weights'].reverse()
+        if row['kind'] == 'parallelity':
+            row['atoms'], row['other_atoms'] = row['other_atoms'], row['atoms']
+    result = select_inputs(r, n, c)
+    assert result['frozen']['native_requested_ids'] == [row['term_id'] for row in r[:4]]
+
+
+@pytest.mark.parametrize('change', ['native_duplicate', 'requested_duplicate', 'conflicting_target',
+                                   'conflicting_plane_weights', 'empty_requested'])
+def test_select_refuses_ambiguous_or_conflicting_inventory(change):
+    r, n, _, c = inputs()
+    if change == 'native_duplicate':
+        duplicate = deepcopy(n[0]); duplicate['term_id'] += ':again'; n.append(duplicate)
+    elif change == 'requested_duplicate':
+        duplicate = deepcopy(r[0]); duplicate['term_id'] += ':again'; r.append(duplicate)
+    elif change == 'conflicting_target':
+        n[0]['parameters']['ideal'] += .1
+    elif change == 'conflicting_plane_weights':
+        n[2]['parameters']['weights'].reverse()
+    else:
+        r = []
+    with pytest.raises(ValueError):
+        select_inputs(r, n, c)
+
+
+@pytest.mark.parametrize('change', ['native', 'requested', 'context', 'binding_extra', 'binding_missing'])
+def test_select_requires_frozen_inputs_before_matching(change):
+    r, n, _, c = inputs()
+    binding = dict(context=deepcopy(c), requested_sha256=recipe_digest(r), native_sha256=recipe_digest(n))
+    if change == 'native': n.pop()
+    elif change == 'requested': r.pop()
+    elif change == 'context': c['native_exclusion_policy_sha256'] = 'e'*64
+    elif change == 'binding_extra': binding['native_requested_ids'] = []
+    else: del binding['native_sha256']
+    with pytest.raises(ValueError):
+        select_inputs(r, n, c, binding)
+
+
+def test_selected_binding_refuses_retargeting_or_reassignment_on_replay():
+    r, n, _, c = inputs()
+    selected = select_inputs(r, n, c)
+    changed = deepcopy(selected['additive']); changed[0]['parameters']['ideal'] += .1
+    with pytest.raises(ValueError, match='digest'):
+        review((r, n, changed, c), selected['frozen'])
+    n.pop()
+    with pytest.raises(ValueError, match='digest'):
+        review((r, n, selected['additive'], c), selected['frozen'])
+
+
+@pytest.mark.parametrize('indices', [[], [0, 1, 2, 3], [1, 3]])
+def test_selected_recipe_uses_exact_frozen_subset_without_mutating_compiler(monkeypatch, indices):
+    recipe, packet = compiled_fixture(monkeypatch)
+    declaration = export(recipe, packet)
+    selected = [declaration['terms'][i] for i in indices]
+    before = deepcopy([recipe.binding_report(), packet, selected])
+    containers = (recipe._bonds, recipe._angles, recipe._planes, recipe._parallel)
+    called = []
+    def evaluate(points, *, atom_identities, compute_gradients, proxies):
+        called.append(proxies)
+        assert points == [(1., 2., 3.)]*6
+        assert atom_identities == recipe._identities and compute_gradients is False
+        return dict(target=float(sum(len(p) for p in proxies)), gradients=None)
+    monkeypatch.setattr(recipe, '_evaluate_proxies', evaluate, raising=False)
+    result = recipe.evaluate_terms([(1., 2., 3.)]*6, atom_identities=recipe._identities,
+        packet=packet, expected_binding_sha256=declaration['compiled_binding_sha256'],
+        selected_terms=selected, expected_terms_sha256=recipe_digest(selected), compute_gradients=False)
+    assert result['target'] == len(indices)
+    assert len(called) == 1
+    assert [[id(p) for p in group] for group in called[0]] == [
+        [id(p) for p in group] if i in indices else [] for i, group in enumerate(containers)]
+    assert (recipe._bonds, recipe._angles, recipe._planes, recipe._parallel) == containers
+    assert [recipe.binding_report(), packet, selected] == before
+
+
+@pytest.mark.parametrize('change', ['duplicate', 'reorder', 'unknown', 'parameters', 'image',
+                                   'live_proxy', 'packet', 'binding', 'selected_digest'])
+def test_selected_recipe_refuses_drift_before_kernel(monkeypatch, change):
+    recipe, packet = compiled_fixture(monkeypatch); declaration = export(recipe, packet)
+    selected = deepcopy(declaration['terms'][:2]); binding = declaration['compiled_binding_sha256']
+    old_digest = recipe_digest(selected)
+    if change == 'duplicate': selected.append(deepcopy(selected[0]))
+    elif change == 'reorder': selected.reverse()
+    elif change == 'unknown': selected[0]['term_id'] = 'other'
+    elif change == 'parameters': selected[0]['parameters']['ideal'] += .1
+    elif change == 'image': selected[0]['atoms'][0]['translation'][0] = '1'
+    elif change == 'live_proxy': recipe._bonds[0].distance_ideal += .1
+    elif change == 'packet': packet['pairs'][0]['purpose'] = 'selected'
+    elif change == 'binding': binding = '0'*64
+    else: selected.pop()
+    def forbidden(*args, **kwargs):
+        pytest.fail('Kernel evaluated unqualified selected terms')
+    monkeypatch.setattr(recipe, '_evaluate_proxies', forbidden, raising=False)
+    with pytest.raises(ValueError):
+        recipe.evaluate_terms([(1.,2.,3.)]*6, atom_identities=recipe._identities,
+            packet=packet, expected_binding_sha256=binding, selected_terms=selected,
+            expected_terms_sha256=old_digest if change=='selected_digest' else recipe_digest(selected))
+
+
+def contribution_fixture(monkeypatch, native_indices=(0,2)):
+    from hashlib import sha256
+    from nasolve import topostitch_native_recipe as module
+    recipe, packet=compiled_fixture(monkeypatch);data=b'constructor-source'
+    packet['source_model_sha256']=sha256(data).hexdigest()
+    recipe._report.update(source_model_sha256=packet['source_model_sha256'],recipe_sha256=recipe_digest(packet))
+    declaration=export(recipe,packet);requested=declaration['terms']
+    native=[deepcopy(requested[i]) for i in native_indices]
+    context=dict(source_model_sha256=packet['source_model_sha256'],recipe_sha256=recipe_digest(packet),
+        atom_labels=declaration['atom_labels'],crystal_sha256='c'*64,native_exclusion_policy_sha256='d'*64)
+    selection=select_inputs(requested,native,context)
+    constructed=[];calls=[]
+    def initialize(self,p,m,*,expected_recipe_sha256,correction):
+        assert p==packet and m==data and expected_recipe_sha256==recipe_digest(packet)
+        self.__dict__.update(deepcopy(recipe.__dict__));constructed.append(self)
+    monkeypatch.setattr(module.NativePairRecipe,'__init__',initialize)
+    def evaluate(self,points,*,atom_identities,compute_gradients,proxies):
+        assert atom_identities==self._identities;calls.append(1)
+        count=sum(len(v) for v in proxies)
+        return dict(target=float(count),components={},gradients=[(float(count),0.,0.)]*6 if compute_gradients else None,
+                    normalization=module.POLICY['normalization'])
+    monkeypatch.setattr(module.NativePairRecipe,'_evaluate_proxies',evaluate)
+    kwargs=dict(expected_recipe_sha256=recipe_digest(packet),expected_binding_sha256=declaration['compiled_binding_sha256'],
+        provider_selection=selection,expected_provider_selection_sha256=recipe_digest(selection),
+        native_terms=native,current_context=context,correction=object())
+    return module,packet,data,kwargs,constructed,calls
+
+
+@pytest.mark.parametrize('native_indices',[(),(0,2),(0,1,2,3)])
+def test_contribution_factory_reuses_exact_selection_and_detaches_inputs(monkeypatch,native_indices):
+    module,packet,data,kwargs,constructed,calls=contribution_fixture(monkeypatch,native_indices)
+    original=deepcopy([packet,kwargs['provider_selection'],kwargs['native_terms'],kwargs['current_context']])
+    contribution=module.NativePairContribution(packet,data,**kwargs)
+    assert len(constructed)==1 and not calls
+    report=contribution.binding_report();assert report['supported_count']==4-len(native_indices)
+    assert report['count_policy']=='canonical-pair-one-per-proxy-v1'
+    assert report['provider_selection']==kwargs['provider_selection']
+    report['provider_selection']['additive'].clear()
+    assert contribution.revalidate(kwargs['native_terms'],current_context=kwargs['current_context'])==kwargs['provider_selection']['review']
+    points=[(1.,2.,3.)]*6
+    for mode in (False,True):
+        actual=contribution.evaluate(points,atom_identities=packet['atom_identities'],compute_gradients=mode)
+        assert actual['supported_count']==actual['target']==4-len(native_indices)
+        assert actual['count_policy']=='canonical-pair-one-per-proxy-v1'
+        assert actual['provider_selection_sha256']==kwargs['expected_provider_selection_sha256']
+        assert (actual['gradients'] is None)==(not mode)
+    assert [packet,kwargs['provider_selection'],kwargs['native_terms'],kwargs['current_context']]==original
+    packet['atom_identities'][0]['atom_name']='caller-edited';kwargs['provider_selection']['additive'].clear()
+    assert contribution.evaluate(points,atom_identities=original[0]['atom_identities'])['supported_count']==4-len(native_indices)
+
+
+@pytest.mark.parametrize('change',['selection_digest','selection_review','compiled_binding','packet_digest','source_context','native_terms','current_context'])
+def test_contribution_factory_refuses_changed_frozen_inputs(monkeypatch,change):
+    module,packet,data,kwargs,constructed,calls=contribution_fixture(monkeypatch)
+    if change=='selection_digest':kwargs['expected_provider_selection_sha256']='0'*64
+    elif change=='selection_review':
+        kwargs['provider_selection']['review']['declared_coverage_complete']=False
+        kwargs['expected_provider_selection_sha256']=recipe_digest(kwargs['provider_selection'])
+    elif change=='compiled_binding':kwargs['expected_binding_sha256']='0'*64
+    elif change=='packet_digest':kwargs['expected_recipe_sha256']='0'*64
+    elif change=='source_context':
+        kwargs['provider_selection']['frozen']['context']['source_model_sha256']='f'*64
+        kwargs['expected_provider_selection_sha256']=recipe_digest(kwargs['provider_selection'])
+    elif change=='native_terms':kwargs['native_terms'].pop()
+    else:kwargs['current_context']['native_exclusion_policy_sha256']='0'*64
+    with pytest.raises(ValueError):module.NativePairContribution(packet,data,**kwargs)
+    assert not calls
+
+
+@pytest.mark.parametrize('native_indices',[(0,2),(0,1,2,3)])
+def test_contribution_revalidates_live_definitions_and_current_coverage(monkeypatch,native_indices):
+    module,packet,data,kwargs,constructed,calls=contribution_fixture(monkeypatch,native_indices)
+    contribution=module.NativePairContribution(packet,data,**kwargs)
+    changed=deepcopy(kwargs['native_terms']);changed.pop()
+    with pytest.raises(ValueError):contribution.revalidate(changed,current_context=kwargs['current_context'])
+    constructed[0]._bonds[0].distance_ideal+=.1
+    with pytest.raises(ValueError):contribution.evaluate([(1.,2.,3.)]*6,atom_identities=packet['atom_identities'])
+    with pytest.raises(ValueError):contribution.binding_report()
+    assert not calls
+
+
+@pytest.mark.parametrize('invalid',['bool_mode','identity','nan_target','nan_gradient','short_gradient','energy_only_gradient','normalization'])
+def test_contribution_refuses_invalid_mode_identity_or_evaluator_result(monkeypatch,invalid):
+    module,packet,data,kwargs,constructed,calls=contribution_fixture(monkeypatch)
+    contribution=module.NativePairContribution(packet,data,**kwargs)
+    mode=False if invalid=='energy_only_gradient' else True
+    identities=deepcopy(packet['atom_identities'])
+    if invalid=='bool_mode':mode=1
+    elif invalid=='identity':identities.reverse()
+    else:
+        original=constructed[0]._evaluate_proxies
+        def altered(*args,**kw):
+            value=original(*args,**kw)
+            if invalid=='nan_target':value['target']=float('nan')
+            elif invalid=='nan_gradient':value['gradients'][0]=(float('inf'),0.,0.)
+            elif invalid=='short_gradient':value['gradients'].pop()
+            elif invalid=='energy_only_gradient':value['gradients']=[]
+            else:value['normalization']='normalized'
+            return value
+        monkeypatch.setattr(constructed[0],'_evaluate_proxies',altered)
+    with pytest.raises(ValueError):contribution.evaluate([(1.,2.,3.)]*6,atom_identities=identities,compute_gradients=mode)
+
+
+@pytest.mark.parametrize('rotation,translation', [
+    ([1,0,0,0,1,0,0,0,1], ['0','0','0']),
+    ([0,-1,0,1,0,0,0,0,1], ['7','-2','13/4']),
+    ([0,-1,0,1,-1,0,0,0,1], ['4/3','-5/6','7/12']),
+])
+def test_common_validated_images_cancel_without_matrix_products(monkeypatch, rotation, translation):
+    # A common image cancels for every supported family, including screw/centering
+    # and unwrapped lattice shifts. Repeating a matrix product per plane anchor
+    # caused the measured native-inventory bottleneck; count work, not wall time.
+    from nasolve import topostitch_pair_coverage as coverage
+    from nasolve.topostitch_packing import _relative
+    values=inputs()
+    for rows in values[:3]:
+        for row in rows:
+            for site in row['atoms']+row['other_atoms']:
+                site.update(rotation=list(rotation), translation=list(translation))
+    expected=review(values);before=deepcopy(values);products=[]
+    def measured(first, second):
+        products.append((first,second))
+        return _relative(first,second)
+    monkeypatch.setattr(coverage,'_relative',measured)
+    assert review(values)==expected and values==before
+    assert products==[]
+
+
+def test_mixed_images_keep_exact_relative_arithmetic_and_lattice_shift(monkeypatch):
+    from fractions import Fraction
+    from nasolve import topostitch_pair_coverage as coverage
+    from nasolve.topostitch_packing import _relative
+    a=atom('a', ('0','0','1/4'));a['rotation']=[0,-1,0,1,0,0,0,0,1]
+    b=atom('b', ('1','2','13/4'));b['rotation']=[-1,0,0,0,-1,0,0,0,1]
+    sites=[coverage._site(row, {'a','b'}) for row in (a,b)]
+    anchor=sites[0][1];expected=tuple((label,*_relative(anchor,op)) for label,op in sites)
+    products=[]
+    def measured(first, second):
+        products.append((first,second))
+        return _relative(first,second)
+    monkeypatch.setattr(coverage,'_relative',measured)
+    assert coverage._relative_sites(sites,anchor)==expected
+    assert products==[(anchor,sites[1][1])]
+    assert expected[1][2]==(Fraction(2),Fraction(-1),Fraction(3))
+
+
+@pytest.mark.parametrize('change', ['improper','denominator','noncanonical','input_budget'])
+def test_common_images_still_require_complete_validation(change):
+    values=inputs()
+    for rows in values[:3]:
+        for row in rows:
+            for site in row['atoms']+row['other_atoms']:
+                if change=='improper':site['rotation'][0]=-1
+                elif change=='denominator':site['translation'][0]='1/5'
+                elif change=='noncanonical':site['translation'][0]='2/6'
+                else:site['translation'][0]='1000001'
+    with pytest.raises(ValueError):review(values)
+
+
+def test_distinct_valid_images_still_enforce_relative_arithmetic_budget():
+    values=inputs()
+    for rows in values[:3]:
+        for row in rows:
+            for index,site in enumerate(row['atoms']+row['other_atoms']):
+                site['translation'][0]='1000000' if index else '-1000000'
+    with pytest.raises(ValueError, match='Relative image exceeds'):
+        review(values)

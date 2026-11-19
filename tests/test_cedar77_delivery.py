@@ -1,19 +1,10 @@
 """C77 preserves the C76 native pass and failed builder guard as immutable data."""
 from hashlib import sha256
 import json
-from types import SimpleNamespace
 import pytest
 from tests.test_cedar65_delivery import template
 
 
-@pytest.mark.parametrize('action,delivery,valid',[
-    ('postmr_cached_model_only','76_Cedar',True),('postmr_cached_model_only','77_Cedar',False),
-    ('postmr_readyset_consumption_only','76_Cedar',False),('saved_native_usability_only','76_Cedar',False)])
-def test_c76_return_has_one_explicit_retry_scope(action,delivery,valid):
-    m=template();args=SimpleNamespace(**{action:True})
-    if valid:m._check_constructor_input_mode(args,delivery)
-    else:
-        with pytest.raises(ValueError):m._check_constructor_input_mode(args,delivery)
 
 
 @pytest.mark.parametrize('defect',['none','build','delivery','action','status','parent','payloads','readyset_calls','native_calls',

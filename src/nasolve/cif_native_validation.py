@@ -408,6 +408,43 @@ def _check_native_report(report: dict, dictionary_count: int) -> None:
             raise ValueError("Native worker did not record its geometry manager inventory")
 
 
+def _run_native_command(command, *, cwd, log_path, environment, timeout_seconds, process_runner=None, on_started=None):
+    """Run one adapter command; uncertain owned cleanup must escape scientific catches."""
+    if process_runner is not None:
+        from .campaign_process import CampaignProcessError
+        try:
+            if on_started is not None:
+                on_started()
+            return process_runner(command, cwd=cwd, log_path=log_path,
+                                  environment=environment, timeout_seconds=timeout_seconds)
+        except subprocess.TimeoutExpired as exc:
+            if getattr(exc, "native_not_launched", False) is True:
+                raise CampaignProcessError("Native allowance expired before process launch", stopped_verified=True) from exc
+            if getattr(exc, "stopped_verified", False) is not True:
+                raise CampaignProcessError("Native process timeout has unverified cleanup") from exc
+            raise
+        except (KeyboardInterrupt, SystemExit):
+            raise
+        except Exception as exc:
+            if isinstance(exc, CampaignProcessError):
+                raise
+            raise CampaignProcessError("Owned native execution failed; preserve process evidence") from exc
+    with log_path.open("xb") as log:
+        process = subprocess.Popen(command, cwd=cwd, env=dict(environment), stdin=subprocess.DEVNULL,
+            stdout=log, stderr=subprocess.STDOUT, start_new_session=os.name == "posix")
+        try:
+            if on_started is not None:
+                on_started()
+            return process.wait(timeout=timeout_seconds)
+        except subprocess.TimeoutExpired as exc:
+            _stop(process)
+            exc.returncode = process.returncode
+            raise
+        except BaseException:
+            _stop(process)
+            raise
+
+
 def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_parent: Path,
                           executable: Path, *, environment: Mapping[str, str],
                           phenix_version: str, timeout_seconds: float = 600,
@@ -416,24 +453,54 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
                           inventory_detail: str = "basic",
                           policy_inventory: bool = False,
                           installed_library_only: bool = False,
-                          energy_inventory: bool = False) -> dict:
+                          energy_inventory: bool = False,
+                          atom_name_mapping: bool = False,
+                          nonbonded_inventory: bool = False,
+                          nonbonded_policy: str | None = None,
+                          full_monomer_inventory: bool = False,
+                          gradient_indices: Sequence[int] | None = None,
+                          _process_runner=None) -> dict:
     """Freeze explicit inputs and record native reader/manager evidence.
 
     ``executable`` is the selected installation's phenix.python. Optional PHIL
     namespace adaptation is performed by its native parser, with every active
     definition's path/value tokens checked and all unused definitions rejected.
     Successful execution remains REVIEW, never chemistry or linkage approval.
+    Full monomer inventory requires linked detail and explicit native PHIL
+    use_ncs_to_build_restraints=False; the worker checks but never sets it.
     """
     if phil_namespace_policy not in PHIL_NAMESPACE_POLICIES:
         raise ValueError("Unsupported native PHIL namespace policy")
     if inventory_detail not in {"basic", "linked"}:
         raise ValueError("Unsupported native inventory detail")
+    if type(full_monomer_inventory) is not bool:
+        raise ValueError("Full monomer inventory must be an explicit boolean")
+    if full_monomer_inventory and inventory_detail != "linked":
+        raise ValueError("Full monomer inventory requires linked native evidence")
     if type(policy_inventory) is not bool:
         raise ValueError("Policy inventory must be an explicit boolean")
     if type(installed_library_only) is not bool:
         raise ValueError("Installed-library selection must be an explicit boolean")
     if type(energy_inventory) is not bool:
         raise ValueError("Native energy inventory must be an explicit boolean")
+    if type(nonbonded_inventory) is not bool:
+        raise ValueError("Native nonbonded inventory must be an explicit boolean")
+    if nonbonded_inventory and (inventory_detail != "linked" or not energy_inventory or atom_name_mapping):
+        raise ValueError("Nonbonded inventory requires linked energy evidence without atom mapping")
+    if nonbonded_policy is not None:
+        from .cif_native_asu import validate_policy as validate_nonbonded_policy
+        validate_nonbonded_policy(nonbonded_policy, enabled=nonbonded_inventory)
+    if type(atom_name_mapping) is not bool:
+        raise ValueError("Native atom name mapping must be an explicit boolean")
+    if atom_name_mapping:
+        from .cif_native_atom_mapping import validate_mapping_composition
+        validate_mapping_composition(linked=inventory_detail == "linked", energy=energy_inventory,
+            full=full_monomer_inventory, policy=policy_inventory, nonbonded=nonbonded_inventory,
+            gradients=gradient_indices is not None)
+    if gradient_indices is not None:
+        from .cif_native_gradients import validate_gradient_request
+        validate_gradient_request(gradient_indices, linked=inventory_detail == "linked", energy=energy_inventory,
+            policy=policy_inventory, mapping=atom_name_mapping, nonbonded=nonbonded_inventory)
     if not phenix_version or not str(phenix_version).strip():
         raise ValueError("An explicit Phenix version is required")
     if not isfinite(float(timeout_seconds)) or timeout_seconds <= 0:
@@ -481,6 +548,29 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
         spec["energy_inventory"] = True
         (work / "native_spec.json").write_text(json.dumps(spec, indent=2) + "\n")
         worker = native_energy_worker(worker)
+    if nonbonded_inventory:
+        from .cif_native_nonbonded import native_nonbonded_worker
+        spec["nonbonded_inventory"] = True
+        (work / "native_spec.json").write_text(json.dumps(spec, indent=2) + "\n")
+        if nonbonded_policy is not None:
+            spec["nonbonded_policy"] = nonbonded_policy
+            (work / "native_spec.json").write_text(json.dumps(spec, indent=2) + "\n")
+        worker = native_nonbonded_worker(worker, policy=nonbonded_policy)
+    if atom_name_mapping:
+        from .cif_native_atom_mapping import native_mapping_worker
+        spec["atom_name_mapping"] = True
+        (work / "native_spec.json").write_text(json.dumps(spec, indent=2) + "\n")
+        worker = native_mapping_worker(worker)
+    if gradient_indices is not None:
+        from .cif_native_gradients import native_gradient_worker
+        spec["gradient_indices"] = list(gradient_indices)
+        (work / "native_spec.json").write_text(json.dumps(spec, indent=2) + "\n")
+        worker = native_gradient_worker(worker)
+    if full_monomer_inventory:
+        from .cif_native_monomers import native_monomer_worker, POLICY_ID as monomer_policy
+        spec["full_monomer_inventory"] = True
+        (work / "native_spec.json").write_text(json.dumps(spec, indent=2) + "\n")
+        worker = native_monomer_worker(worker)
     (work / "native_worker.py").write_text(worker, encoding="utf-8")
     command = [str(executable), "native_worker.py", "native_spec.json"]
     clock = time.monotonic()
@@ -494,37 +584,49 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
         "dictionary_source_policy": "INSTALLED_LIBRARY_ONLY" if installed_library_only else "EXPLICIT_DICTIONARIES",
         "execution": {"status": "NOT_RUN", "started_at": datetime.now(timezone.utc).isoformat(),
                       "timeout_seconds": timeout_seconds}}
+    if full_monomer_inventory:
+        receipt["full_monomer_inventory_policy"] = monomer_policy
+    if atom_name_mapping:
+        from .cif_native_atom_mapping import POLICY_ID as mapping_policy
+        receipt["atom_name_mapping_policy"] = mapping_policy
     try:
         receipt["executable_sha256"] = _sha(executable.read_bytes())
-        with (work / "native.log").open("xb") as log:
-            process = subprocess.Popen(command, cwd=work, env=dict(environment), stdin=subprocess.DEVNULL,
-                stdout=log, stderr=subprocess.STDOUT, start_new_session=os.name == "posix")
-            try:
-                code = process.wait(timeout=timeout_seconds)
-            except subprocess.TimeoutExpired:
-                _stop(process)
-                receipt["execution"].update(status="TIMED_OUT", returncode=process.returncode)
-                receipt["error"] = "Owned native interpreter process group exceeded the requested timeout"
-            except BaseException:
-                _stop(process)
-                raise
+        try:
+            code = _run_native_command(command, cwd=work, log_path=work/"native.log", environment=environment,
+                                       timeout_seconds=timeout_seconds, process_runner=_process_runner)
+        except subprocess.TimeoutExpired as exc:
+            receipt["execution"].update(status="TIMED_OUT", returncode=exc.returncode)
+            receipt["error"] = "Owned native interpreter process group exceeded the requested timeout"
+        else:
+            receipt["execution"].update(status="COMPLETED" if code == 0 else "FAILED", returncode=code)
+            report_path = work / "native_validation.json"
+            if not report_path.is_file() or report_path.is_symlink():
+                receipt["error"] = "Native worker did not produce the exact regular native_validation.json"
             else:
-                receipt["execution"].update(status="COMPLETED" if code == 0 else "FAILED", returncode=code)
-                report_path = work / "native_validation.json"
-                if not report_path.is_file() or report_path.is_symlink():
-                    receipt["error"] = "Native worker did not produce the exact regular native_validation.json"
+                native = json.loads(report_path.read_text())
+                _check_native_report(native, len(dictionaries))
+                if inventory_detail == "linked" and native.get("status") == "REVIEW" and native.get("inventory_detail") != "linked":
+                    raise ValueError("Native worker omitted requested linked inventory details")
+                if atom_name_mapping and native.get("status") == "REVIEW" and native.get("atom_name_mapping_policy") != mapping_policy:
+                    raise ValueError("Native worker omitted requested atom mapping inventory")
+                if full_monomer_inventory and native.get("status") == "REVIEW":
+                    from .cif_native_monomers import review_full_monomers
+                    review_full_monomers(native)
+                if nonbonded_inventory and native.get("status") == "REVIEW":
+                    from .cif_native_nonbonded import review_native_nonbonded
+                    review_native_nonbonded(native)
+                if gradient_indices is not None and native.get("status") == "REVIEW":
+                    from .cif_native_gradients import review_native_gradients
+                    if native.get("gradient_inventory", {}).get("selected_indices") != list(gradient_indices):
+                        raise ValueError("Native worker omitted requested derivative probes")
+                    review_native_gradients(native)
+                receipt["native_validation"] = native
+                if native.get("status") == "REVIEW" and code == 0:
+                    receipt["status"] = "REVIEW"
+                elif native.get("status") == "UNSUPPORTED":
+                    receipt["status"] = "UNSUPPORTED"
                 else:
-                    native = json.loads(report_path.read_text())
-                    _check_native_report(native, len(dictionaries))
-                    if inventory_detail == "linked" and native.get("status") == "REVIEW" and native.get("inventory_detail") != "linked":
-                        raise ValueError("Native worker omitted requested linked inventory details")
-                    receipt["native_validation"] = native
-                    if native.get("status") == "REVIEW" and code == 0:
-                        receipt["status"] = "REVIEW"
-                    elif native.get("status") == "UNSUPPORTED":
-                        receipt["status"] = "UNSUPPORTED"
-                    else:
-                        receipt["error"] = native.get("error", "Native worker failed or returned an unsupported result state")
+                    receipt["error"] = native.get("error", "Native worker failed or returned an unsupported result state")
     except (OSError, ValueError) as exc:
         receipt["error"] = type(exc).__name__ + ": " + str(exc)
         receipt["execution"]["status"] = "FAILED"

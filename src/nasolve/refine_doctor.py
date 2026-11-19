@@ -518,9 +518,19 @@ def execute_refine_doctor(
     processor_count: int | None = None,
     trial_recipes: Sequence[RefineDoctorTrial] | None = None,
     max_trials: int = 5,
+    correct_native_parallelity: bool = False,
+    phenix_python_executable: Path | None = None,
     progress: Callable[[str, str, Path], None] | None = None,
 ) -> RefineDoctorResult:
     """Audit and run a finite set of sibling refinements without selecting one."""
+    from .refinement_parallelity import validate_runtime_choice, require_runtime_continuation
+    try:
+        validate_runtime_choice(correct_native_parallelity, phenix_python_executable)
+    except ValueError as exc:
+        raise RefineDoctorError(str(exc)) from exc
+    runtime_options = (dict(correct_native_parallelity=True,
+                            phenix_python_executable=phenix_python_executable)
+                       if correct_native_parallelity else {})
     if isinstance(max_trials, bool) or not isinstance(max_trials, int) or not 1 <= max_trials <= 10:
         raise RefineDoctorError("Doctor max_trials must be an integer from 1 to 10")
     if isinstance(macro_cycles, bool) or not isinstance(macro_cycles, int) or not 1 <= macro_cycles <= 10:
@@ -534,6 +544,10 @@ def execute_refine_doctor(
         source = resolve_checkpoint(registry, from_checkpoint)
         if source.get("usable") is not True:
             raise RefineDoctorError(f"Checkpoint {source.get('id')} is not reusable")
+        try:
+            require_runtime_continuation(registry, source, correct_native_parallelity, run=run)
+        except ValueError as exc:
+            raise RefineDoctorError(str(exc)) from exc
         inherited = inherited_paths(source, run)
     except CheckpointError as exc:
         raise RefineDoctorError(str(exc)) from exc
@@ -559,7 +573,8 @@ def execute_refine_doctor(
         )
     except AutoRefineError as exc:
         raise RefineDoctorError(str(exc)) from exc
-    phenix_python = refine_executable.expanduser().resolve().parent / "phenix.python"
+    phenix_python = (phenix_python_executable if correct_native_parallelity else
+                     refine_executable.expanduser().resolve().parent / "phenix.python")
     audit = audit_free_r_flags(
         observations,
         plan.free_r_label,
@@ -583,6 +598,7 @@ def execute_refine_doctor(
             "phenix_version": selector_policy.phenix_version,
             "reflection_selector_mode": selector_policy.mode,
             "source_checkpoint": source_id,
+            **({"checked_plane_forces": True} if correct_native_parallelity else {}),
             "current_checkpoint_preserved": True,
             "audit": {**audit.details, "status": audit.status, "warnings": list(audit.warnings)},
             "benchmark": [],
@@ -766,6 +782,7 @@ def execute_refine_doctor(
                 ),
                 auto_select_success=False,
                 progress=trial_progress,
+                **runtime_options,
             )
         except AutoRefineError as exc:
             record.update(state="failed", reason=str(exc))
@@ -826,6 +843,7 @@ def execute_refine_doctor(
         "phenix_version": selector_policy.phenix_version,
         "reflection_selector_mode": selector_policy.mode,
         "source_checkpoint": source_id,
+        **({"checked_plane_forces": True} if correct_native_parallelity else {}),
         "current_checkpoint_preserved": current_preserved,
         "audit": {**audit.details, "status": audit.status, "warnings": list(audit.warnings)},
         "benchmark": benchmark,

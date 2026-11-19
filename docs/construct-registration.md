@@ -14,7 +14,7 @@ later validation can distinguish a code regression from an intentional policy
 revision.
 
 Current development order belongs to the
-[handoff](development-handoff.md#roadmap-after-the-combined-geometry-test): the
+[handoff](https://github.com/vecchioni-lab/NASolve/blob/654328105f193f25011fe927dc1db860cb82bca0/docs/development-handoff.md#roadmap-after-the-combined-geometry-test): the
 combined geometry trial precedes the planned SMILES-assisted CIF audit, which
 precedes operational Scout / Topo work. Preserve the post-Pine blind AlphaFold
 baseline before operational Scout. This contract defines registration behavior;
@@ -1078,7 +1078,7 @@ local arm ends and triangle connections still need assembly-aware repair. Two su
 views show local model/density discrepancies; their exact member, checkpoint
 and residue selection were not supplied. They motivate this feature but do not
 establish which atoms should connect or whether a new covalent link is intended.
-The [handoff](development-handoff.md#optional-geotest-side-trial) owns the
+The [handoff](https://github.com/vecchioni-lab/NASolve/blob/654328105f193f25011fe927dc1db860cb82bca0/docs/development-handoff.md#optional-geotest-side-trial) owns the
 native results and attachment provenance.
 
 The user requests this geometry checker and guided stitcher as a module of the
@@ -1128,6 +1128,17 @@ closed GeoTest campaign or existing integration gates. Both reuse provenance
 and native geometry diagnostics. Existing Scout
 remains backend-only and its guided whole-chain selection helper does not yet
 perform splitting, joining, symmetry materialization or this repair.
+
+C111 adds a small L-3GBI sticky-end diagnostic: a symmetry-related G:C pair
+passes existing NAR geometry thresholds; its complementary A:T neighbor is
+present but too tilted for automatic selection. This supports a separate
+soft H-bond association experiment, not covalent chain continuation. The
+[full-model recipe evidence](full-model-restraints.md#l-3gbi-evidence) records
+the native interface limits. A future stitcher must distinguish intended
+partners from proximity, preserve whole-domain geometry during large motions,
+and evaluate periodic clashes and maps before accepting a child. Bond addition
+must be audited for changes to native nonbonded exclusions; a plausible visual
+closure or ordinary plane restraint is insufficient evidence.
 
 ### Materialization, Coot repair and Phenix enforcement
 

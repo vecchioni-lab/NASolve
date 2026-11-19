@@ -11,6 +11,30 @@ The standard-library generator is the editable layout source. From the checkout:
 python3 docs/figures/build_cif_doctor_overview.py
 ```
 
+The current scope note includes declared chemistry, exact restraint consumption
+and complete native identities, plus composed components and C140's lossless
+atom serialization before the strict final ReadySet/native check with verified
+fallback. C141 exports that selection through public assessment with its exact
++restraints, source replay and diagnostic-only scope. It retains ReadySet and NARestraints ownership
+and does not alter production NCS refinement.
+It adds no automatic adoption arrow; the companion contract retains unsupported
+formal-charge readback, source-state and integration limits.
+
+C154's companion caption explains the verified absent-parallelity derivative
+context within the existing numerical box. The diagram and ownership/adoption
+arrows are unchanged; no new optimizer or refinement claim is made.
+
+C159's caption distinguishes explicit exact-source retained acquisition from
+ordinary automatic recovery. Old recipe/producer evidence survives current native
+qualification; the C153 preparation/graph plan replays unchanged. Diagram arrows
+remain unchanged because ordinary adoption and whole-acquisition ownership are
+still open.
+
+C160's caption connects the explicit prepared-bundle native repair sequence
+to the existing qualified-selection box. The figure keeps its ordinary adoption
+boundary: phase limits and diagnostic progress do not claim complete acquisition
+ownership, automatic recovery or scientific phosphate-state qualification.
+
 Edit its labels/layout and regenerate both source-controlled files together.
 For one-off manuscript edits in a vector editor, save a separate derivative and
 record the source commit; coordinate changes in the figure do not establish a
@@ -320,3 +344,136 @@ See the [ordinary cache contract](../cif-doctor.md#persistent-local-reuse-of-qua
 The existing native diagnostic branch covers isolated source binding. Local
 saved-data/inspect-only evidence is distinct from fresh Mac qualification;
 no production-adoption arrow or numerical mechanics change is added.
+
+C162 adds an optional cooperative elapsed allowance within the explicit prepared
+repair executor. It does not add an ordinary adoption/recovery arrow; source,
+chemistry, native and selection gates in the figure retain their existing meaning.
+
+C163 adds durable process evidence around the same explicit prepared native
+branch. Its completion seals mean stopped jobs, not chemistry approval. No new
+ordinary adoption/retry arrow is claimed; request recovery remains pending.
+
+C164 wraps that prepared branch in a frozen request and finite immutable attempts.
+The lock/recovery boundary adds execution ownership, not a new chemical approval
+or ordinary-adoption arrow. Complete acquisition coordination remains pending.
+
+C165 shares that process backend with the two isolated qualification jobs. Its
+records prove execution ownership, not usable chemistry or ordinary adoption.
+The scientific callback/total acquisition budget remain pending; no new diagram
+arrow or blanket modified-ligand support is implied.
+
+C166 implements the existing two-seed isolated qualification box as a maintained
+owned callback with a cooperative allowance and portable scientific readback.
+Its output feeds the existing qualified store. Whole-acquisition orchestration
+and ordinary-adoption arrows remain pending; no chemical scope expansion is drawn.
+
+C167 connects explicit component cache lookup, shared generation and maintained
+qualification under one owned request/allowance. Source discovery and multi-component
+prepared-repair coordination remain unclosed arrows; ordinary adoption is unchanged.
+The real fresh-generation 5PC failure is preserved evidence, not a support claim.
+
+C168 supplies the frozen ordinary source-selection input to component acquisition.
+The box preserves source authority and bytes; it does not assert numerical/native
+usability. Complete multi-component coordination remains an unfinished connection.
+
+C169 connects exact completed acquisitions and frozen source/model/site context to
+the existing preparation and repair boxes. Real PDU/5PC composition passes. The
+outer request/deadline and ordinary-adoption connections remain unfinished; the
+copied histories are evidence, not separate operational retry scopes.
+
+C170 connects parent identity and a shrinking allowance to the acquisition and
+prepared-repair child boxes. Their frozen limits and recovery checks remain.
+The enclosing source/model/site coordinator and ordinary-adoption boxes are still
+open; a supplied parent claim alone does not validate that complete request.
+
+C171 supplies the explicit frozen owner around acquisition, preparation and
+repair. Persistent component histories and a shared allowance cross those boxes;
+readback verifies reciprocal child ownership. The existing scientific flow and
+ordinary-adoption boundary are unchanged. Saved PDU/5PC interruption/recovery and
+relocation support this ownership claim, not new chemistry or refinement support.
+C172 also takes a no-repair original through source/native and derivative checks
+before publication. Passing and timed-out controls distinguish usable originals
+from preserved but unqualified inputs; neither permits ordinary adoption. The
+existing selection/publication boxes are reused, with no second repair engine.
+
+C173 qualifies the existing failure-to-original edge with exact stopped native
+ownership and independent original proof. A generic exception does not traverse
+that edge. Failed work is preserved, and the selector/publisher remain shared.
+
+C174 lets a single selected component traverse the existing complete-request boxes;
+there is no extra singleton lane. Source/site and full-model native qualification
+remain mandatory, and the ordinary ReadySet/adoption boundary remains separate.
+
+
+C175 supplies the prepared-model/site-context input to the existing request box
+using frozen intent and the ordinary phosphate audit. It does not change chemical/
+native qualification or close the NAR/modifier ownership and adoption arrows.
+Its initial bridge excludes supplementary PHIL; required NAR must not be omitted.
+
+
+C176 extends the same prepared-model input with exact ordered explicit PHIL and
+composer-only modifier ownership. It closes that input-binding boundary, while
+ordinary source/cache entry, adoption and actual refinement remain open arrows.
+Native request realization is still independently checked; no diagram flow changes.
+
+
+C177 supplies ordinary source selection and derived context to the existing owned
+request box, with real fresh/hit/stale/repair/failure controls. It changes no owner
+or selection arrows. Ordinary invocation, ReadySet/checkpoint adoption and actual
+refinement remain open; the selected native profile is still explicit.
+
+C178 extends the same ReadySet box to singleton inputs. Actual consumption passes;
+failed exact native metadata readback takes the existing verified-fallback arrow.
+No new scientific acceptance, adoption or refinement arrow is implied.
+
+C179 repairs metadata serialization on the existing combination→ReadySet→native
+path. Fresh singleton endpoint qualification now takes the checked-endpoint arrow;
+legacy rejected evidence keeps its original fallback arrow. No adoption is added.
+
+C180 extends the existing metadata-preservation contract to component filtering.
+Selection precedence and pipeline arrows are unchanged; this does not add an
+ordinary-adoption or refinement claim.
+
+C181 validates the explicit selected-runtime→ReadySet→native→public-bundle segment,
+including exact repaired-parent fallback and the existing C140 serialization path.
+No whole-chain process owner, automatic adapter choice, ordinary checkpoint or
+refinement arrow is claimed.
+
+C182 supplies selected-installation configuration to the explicit engine; it does
+not add a scientific-approval, ordinary-adoption or refinement arrow.
+
+C183 owns the explicit selected-runtime continuation and its optional lossless
+serialization check. Existing-request recovery, ordinary adoption and refinement
+arrows remain open; no figure should label the automatic engine complete.
+
+C184 joins the owned continuation to the existing explicit complete request and
+fresh recovery. The ordinary caller/checkpoint and actual refinement arrows remain
+open; this does not complete automatic-engine or catalogue coverage.
+
+
+C186 extends the existing explicit-input boundary to NAR plane selections and
+their exact atom weights. The diagram's native-validation stage remains separate;
+C187 now binds literal pair/stack inputs and their original native/compiler evidence
+at the existing outer-request boundary. Ordinary adoption and actual refinement
+remain open. The methods distinguish PDB record indices from native manager ordering;
+no pipeline arrow or family-support claim changes. C188 adds the existing
+source-bound C80 artifact as an explicit alternative at that same input boundary;
+it preserves source/relationship evidence without a prior native capture. It does
+not enable ordinary adoption or replace frozen literal intent with a new guess.
+C189 lets that same prepared entry retain an existing frozen source selection.
+The construction/producer and ordinary-adoption arrows remain open; no second
+source selector or recovery stage is added. C190 uses the existing selector to
+require grouped atom-name alternatives at new context-bound intake/execution;
+historical reads stay exact. The native proof and ordinary-adoption boundaries
+remain separate, with no new stage or chemistry claim. C191 binds the public
+full-model control but stops at isolated native qualification; the downstream
+full-model/adoption arrows therefore remain unqualified by that control.
+C192 labels a failed native seed separately from lost ownership and points to its
+receipt. Rejection, stage boundaries and scientific claims are unchanged.
+
+C195/C196 freeze consumed ordinary construction dictionaries and bind their
+non-qualifying producer record through the existing request boundary. C197 adds
+source-bound literal translation at that same boundary, preserving declared intent
+without inventing a native capture. Final native proof stays downstream. No new
+owner, automatic-adoption arrow, refinement or chemistry-family claim is implied;
+the editable overview's stage structure remains unchanged.

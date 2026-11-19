@@ -13,7 +13,13 @@ in this repository.
    current instructions. Consult the relevant recorded decisions and validation
    evidence before inferring intent; follow the [branch and worktree lifecycle](docs/collaboration.md#branch-and-worktree-lifecycle)
    to keep one active development line and retire completed work promptly.
-3. Identify whether the change affects crystallographic behavior,
+3. Before tackling a problem in a long-running or context-consolidated project,
+   check the relevant documentation history, evidence ledger and Git for earlier
+   solutions, failed attempts and unresolved decisions. Record what already
+   exists and what gap remains before redesigning or rerunning it. Verify prior
+   evidence against its original source/consumer/context; history is evidence,
+   not current instructions. Follow [prior-work review](docs/collaboration.md#prior-work-before-new-diagnosis).
+4. Identify whether the change affects crystallographic behavior,
    compatibility, artifact schemas, portability, or reproducibility.
 
 ## Implementation rules
@@ -47,19 +53,38 @@ in this repository.
   Keep implemented capability distinct from planned work; see
   [documentation roles](docs/collaboration.md#documentation-roles).
 
+## Working language
+
+- Explain work in laboratory terms first: model construction, chemical identity,
+  restraints, Coot/ReadySet/Phenix behavior, evidence and remaining limitations.
+  Assume scientific literacy, not programming vocabulary. Keep precise code/API
+  details in supporting sections. Follow [working language](docs/collaboration.md#working-language).
+- Keep the current handoff short and update the existing queue in place. Refer
+  to immutable history for superseded milestones rather than copying diaries.
+
+## Continuity when new ideas arrive
+
+- Finish the active bounded checkpoint before diverting to a new idea unless
+  Simon explicitly asks to stop or switch. When an idea would change active
+  scope, state the tradeoff and ask whether to finish the current checkpoint
+  and queue it or intentionally switch; do not silently leave work dangling.
+- Record new ideas in the relevant maintained job queue with acceptance scope
+  and dependencies. An explicit switch still needs an interruption handoff,
+  preserved partial outputs and the state/ownership of any active processes.
+  Follow [new ideas and active work](docs/collaboration.md#new-ideas-and-active-work).
+  This policy applies across NASolve, not only Cedar or CIF Doctor.
+
 ## Required validation
 
-- Match validation to the affected behavior. Documentation-only updates need
-  relevant contract, link or formatting checks; they do not require the complete
-  suite or a new test for every prose edit.
-- For functional or schema changes, add meaningful regression coverage that
-  fails before the change and passes afterward. Run focused tests for the feature
-  and its affected shared dependencies with
-  `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`.
-- Use the complete suite when broad integration or shared-behavior risk warrants
-  it, or when explicitly requested. An isolated feature change does not require
-  all unrelated subsystem tests. Expand testing when failures or unresolved
-  concerns justify it; record the chosen scope and any remaining gaps.
+- Documentation-only changes require relevant document/link checks, not another
+  unchanged scientific suite. For functional or schema changes, add meaningful
+  regression coverage that fails before the change and passes afterward.
+- During development, run the affected tests and the relevant focused profile
+  with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`. A focused pass is not a full pass.
+  Run the unfiltered full suite before branch integration/release, and for
+  cross-cutting runtime, schema/provenance, dependency or test-selection changes.
+  Record scope, command, result and the last full-tested revision. Follow the
+  [testing cadence](docs/collaboration.md#testing-cadence-and-development-profiles).
 - For external-tool changes, record the exact Phenix/Coot version and whether
   the check was a dry-run or a complete execution.
 - For portability changes, test from a relocated temporary checkout after the

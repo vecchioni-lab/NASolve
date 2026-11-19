@@ -12,15 +12,12 @@ from pathlib import Path
 import re
 from typing import Sequence
 
-from Bio.PDB.mmcifio import MMCIFIO
-
 from .cif_doctor import assess_dictionaries
 from .cif_generation import inspect_component_generation
-from .ligand_profiles import _blocks, _emit
+from .ligand_profiles import _blocks, _emit, _emit_component_list, COMPONENT_LIST_POLICY
 
 LINKED_PREPARATION_POLICY = 'cif-source-preserving-linked-sites-v1'
 MODIFICATION_BLOCK_POLICY = 'cif-native-modification-blocks-v1'
-COMPONENT_LIST_POLICY = 'cif-native-component-list-loop-v1'
 _ATOM = '_chem_comp_atom.'
 _BOND = '_chem_comp_bond.'
 _MISSING = {'', '.', '?'}
@@ -106,6 +103,48 @@ def _model_inventory(model: Path) -> dict:
     return residues
 
 
+def _construction_inventory(model, source, code, contexts, targets):
+    """View only canonical scaffold atoms when projecting a future component.
+
+    This does not rename/write a model or assess canonical base geometry. The
+    real constructed model must later pass ordinary site/native qualification.
+    """
+    from collections.abc import Mapping
+    from .postmr_restoration import source_graph_fragment, _atom_records
+    if (not isinstance(targets, Mapping) or not targets
+            or set(targets) != {c['site'] for c in contexts}
+            or any(not isinstance(v,str) or v not in {'DA','DC','DG','DT'} for v in targets.values())):
+        raise ValueError('Construction projections require exact canonical input identities for every context')
+    inventory = _model_inventory(model)
+    if any(row['code'] == code for row in inventory.values()):
+        raise ValueError('Construction projection requires canonical inputs, not an already constructed target')
+    graph = source_graph_fragment(source, code)
+    lines = model.read_text().splitlines(keepends=True)
+    proof = []
+    for site, before in targets.items():
+        _selection(site, code)
+        if site not in inventory or inventory[site]['code'] != before:
+            raise ValueError('Canonical construction input identity differs at ' + site)
+        chain, resid = site.split(':')
+        atoms = _atom_records([line for line in lines if line[:6] in {'ATOM  ','HETATM'}
+            and (line[21:22].strip() or '_') == chain and line[22:26].strip() == resid], before)
+        protected = (set(graph['sugar_atoms']) | {'P','OP1','OP2','OP3'}) & atoms.keys()
+        if (not protected <= set(graph['scaffold_atoms'])
+                or not set(graph['sugar_atoms']) <= protected
+                or any(atoms[n]['element'] != graph['elements'][n] for n in protected)
+                or any("'" in n and n not in graph['sugar_atoms'] for n in atoms)
+                or any(n != atoms[n]['line'][12:16].strip() for n in atoms)):
+            raise ValueError('Unsupported canonical sugar/backbone inventory at ' + site)
+        inventory[site] = {'code': code, 'atoms': protected}
+        proof.append(dict(site=site, before=before, after=code,
+            protected_atoms=sorted(protected)))
+    return inventory, dict(policy_id='cif-canonical-construction-context-v1',
+        scope='PRECONSTRUCTION_ONLY', targets=sorted(proof,key=lambda r:r['site']),
+        model_sha256=sha256(model.read_bytes()).hexdigest(),
+        source_sha256=sha256(source.read_bytes()).hexdigest(),
+        canonical_base_geometry='NOT_ASSESSED', constructed_model='NOT_CREATED')
+
+
 def _selection(site: str, code: str) -> str:
     if not re.fullmatch(r'[A-Za-z0-9_]:-?[0-9]+',site) or not re.fullmatch(r'[A-Za-z0-9]{1,3}',code):
         raise ValueError('Unsupported explicit PDB selector')
@@ -117,13 +156,7 @@ def _render(values: dict, code: str) -> str:
     metadata={key:column for key,column in values.items() if key.startswith('_chem_comp.')}
     if not metadata or any(len(column)!=1 for column in metadata.values()):
         raise ValueError('Require one exact component metadata row')
-    # MMCIFIO normally collapses a one-row loop to scalars. The native
-    # comp_list reader only visits category loops through iterrows, so retain
-    # the list layout and reuse its CIF quoting for every unchanged value.
-    writer=MMCIFIO()
-    list_block=('data_comp_list\n#\nloop_\n'+'\n'.join(metadata)+'\n'
-                +'\n'.join(writer._format_mmcif_col(column[0],0)
-                             for column in metadata.values())+'\n#\n')
+    list_block = _emit_component_list(metadata)
     definition={'data_':'comp_'+code,**{key:column for key,column in values.items()
                                       if key!='data_' and not key.startswith('_chem_comp.')}}
     return list_block+'\n'+_emit(definition)
@@ -131,13 +164,21 @@ def _render(values: dict, code: str) -> str:
 
 def prepare_linked_component(source: Path, numerical: Path, model: Path,
                              contexts: Sequence[dict], output_directory: Path, *, code: str,
-                             native_qualification: dict | None = None) -> dict:
+                             native_qualification: dict | None = None,
+                             bond_representation_policy: str | None = None,
+                             phosphate_atom_policy: str | None = None,
+                             construction_targets: dict[str, str] | None = None) -> dict:
     """Prepare a DNA base dictionary, site modifiers and projected assessments.
 
     Links and end states are explicit caller evidence, never guessed from a
     residue code, adjacency, or spatial contact. Source-state loss must first be
     resolved by independent whole-component generation. OP2 protonation is
     preserved. Outgoing O3' uses the previously reviewed native OC2 type.
+    Optional construction_targets maps every selected site to its actual canonical
+    input code. Only its verified sugar/phosphate inventory enters projection;
+    the input is never relabelled or treated as an already constructed residue.
+    This explicit mode requires isolated qualification and later actual-model
+    site/native checks, and does not assess the canonical base geometry.
     """
     paths=[Path(source),Path(numerical),Path(model)]
     payloads=[p.read_bytes() for p in paths]
@@ -148,7 +189,13 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
     source_values=component_values(paths[0],code)
     type_tokens=source_values.get('_chem_comp.type', [])
     qualified=native_qualification is not None
-    if qualified:
+    binding=None
+    if bond_representation_policy is not None:
+        from .cif_preparation_qualification import bind_preparation_qualification
+        binding=bind_preparation_qualification(paths[0],paths[1],code,native_qualification,
+            bond_representation_policy=bond_representation_policy)
+        q=native_qualification;fresh=binding['candidate_reassessment']
+    elif qualified:
         from .cif_candidate_usability import reassess_complete_candidate,POLICY_ID
         q=native_qualification;fresh=reassess_complete_candidate(paths[0],paths[1],code)
         if (q.get('policy_id')!=POLICY_ID or q.get('native_usable') is not True
@@ -158,27 +205,58 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
                 or q.get('source_assessment',{}).get('finished_stereo',{}).get('source_sha256')!=sha256(payloads[0]).hexdigest()
                 or fresh['candidate_status']!='CANDIDATE_REVIEW'):
             raise ValueError('Require bound independently usable source-preserving candidate evidence')
+    if qualified:
         # The explicit isolated bridge also accepts a legacy monomer DNA group.
         # Existing unqualified callers keep their stricter type-only contract.
         if not type_tokens:
             from .cif_source_classification import _source_declarations
             _source_declarations(paths[0],code)
-    if (len(type_tokens)!=1 or type_tokens[0].upper()!='DNA LINKING') and not (qualified and not type_tokens):
+    if binding is not None and type_tokens:
+        # Missing type was already validated through the qualified legacy DNA
+        # declaration above; an explicit type must still agree with the group.
+        # CCD declares L-DNA linking separately. Native group DNA selects the
+        # polymer machinery; the bound source graph/configuration owns its hand.
+        group=source_values.get('_chem_comp.group',[])
+        if (len(type_tokens)!=1 or type_tokens[0].strip().upper() not in {'DNA LINKING','L-DNA LINKING'}
+                or len(group)>1 or (group and group[0].strip().upper() not in {'DNA','','.','?'})):
+            raise ValueError('Require explicit consistent source DNA or L-DNA LINKING metadata')
+    elif (len(type_tokens)!=1 or type_tokens[0].upper()!='DNA LINKING') and not (qualified and not type_tokens):
         raise ValueError('Require explicit source DNA LINKING metadata')
-    inspection=inspect_component_generation(paths[0],paths[1],code)
+    options={} if bond_representation_policy is None else {'bond_representation_policy':bond_representation_policy}
+    inspection=inspect_component_generation(paths[0],paths[1],code,**options)
     if inspection['status']!='CANDIDATE_REVIEW' and not qualified:
         raise ValueError('Require a source-preserving complete numerical candidate: '+', '.join(inspection['rejection_reasons']))
     values=component_values(paths[1],code)
     original_group=values.get('_chem_comp.group')
     values['_chem_comp.group']=['DNA']
     atoms=atom_rows(values)
-    required={'P','OP1','OP2',"O5'","C5'","C3'","O3'"}
-    if not required<=atoms.keys() or 'O3P' in atoms:
+    aliases = {'OP1':'OP1', 'OP2':'OP2', 'OP3':'OP3'}
+    if phosphate_atom_policy is not None:
+        from .cif_phosphate_names import POLICY_ID, phosphate_names
+        if phosphate_atom_policy != POLICY_ID or not qualified:
+            raise ValueError('Source-named phosphate preparation requires explicit policy and isolated qualification')
+        aliases = phosphate_names(values)
+        if phosphate_names(source_values) != aliases:
+            raise ValueError('Source and numerical phosphate names differ')
+        if not contexts or any(not c.get('incoming_site') for c in contexts):
+            raise ValueError('Source-named phosphate adapter currently requires internal linked sites')
+        from .cif_preparation_qualification import qualify_native_backbone_ports
+        for context in contexts:
+            qualify_native_backbone_ports(values, context, phosphate_names=aliases)
+    p1,p2,p3 = (aliases[n] for n in ('OP1','OP2','OP3'))
+    required={'P',p1,p2,"O5'","C5'","C3'","O3'"}
+    if not required<=atoms.keys() or (phosphate_atom_policy is None and 'O3P' in atoms):
         raise ValueError('Unsupported standard-phosphodiester atom convention')
     bonds={frozenset((a,b)) for a,b in zip(values[_BOND+'atom_id_1'],values[_BOND+'atom_id_2'])}
-    if not all(frozenset(pair) in bonds for pair in [('P','OP1'),('P','OP2'),('P',"O5'"),("O3'","C3'")]):
+    if not all(frozenset(pair) in bonds for pair in [('P',p1),('P',p2),('P',"O5'"),("O3'","C3'")]):
         raise ValueError('Selected graph does not support standard phosphodiester chemistry')
-    model_sites=_model_inventory(paths[2])
+    construction = None
+    if construction_targets is not None:
+        if not qualified or phosphate_atom_policy is not None:
+            raise ValueError('Construction projections require isolated qualification and standard phosphate names')
+        model_sites, construction = _construction_inventory(paths[2], paths[0], code, contexts, construction_targets)
+    else:
+        model_sites=_model_inventory(paths[2])
     if not contexts: raise ValueError('Require explicit site contexts')
     if {context['site'] for context in contexts}!={site for site,row in model_sites.items() if row['code']==code}:
         raise ValueError('Require declared contexts for every model site sharing the component code')
@@ -199,27 +277,35 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
             if endpoint and (endpoint==site or endpoint not in model_sites or atom not in model_sites[endpoint]['atoms']):
                 raise ValueError('Declared link endpoint absent or self-linked: '+site)
         coordinate_atoms=model_sites[site]['atoms']
-        phosphate={'P','OP1','OP2','OP3'}
-        if 'O3P' in coordinate_atoms: raise ValueError('Unrequested coordinate O3P')
+        phosphate={'P',p1,p2,p3}
+        if phosphate_atom_policy is None and 'O3P' in coordinate_atoms: raise ValueError('Unrequested coordinate O3P')
         if five=='free_OH':
             if coordinate_atoms & phosphate: raise ValueError('Free 5prime OH contains a phosphate: '+site)
         elif five=='phosphate':
             if not phosphate<=coordinate_atoms: raise ValueError('Requested terminal phosphate is incomplete: '+site)
-        elif not {'P','OP1','OP2'}<=coordinate_atoms or 'OP3' in coordinate_atoms:
+        elif not {'P',p1,p2}<=coordinate_atoms or {p3,'OP3','O3P'} & coordinate_atoms:
             raise ValueError('Internal coordinate phosphate is incomplete or contains OP3: '+site)
+        port_qualification=None
+        if binding is not None:
+            from .cif_preparation_qualification import qualify_native_backbone_ports
+            port_qualification=qualify_native_backbone_ports(values,context,phosphate_names=aliases if phosphate_atom_policy is not None else None)
         removed=set()
         if incoming:
-            if 'OP3' in atoms:
-                heavy_neighbors={next(iter(pair-{'OP3'})) for pair in bonds if 'OP3' in pair
-                                 and atoms[next(iter(pair-{'OP3'}))]['type_symbol'].upper() not in {'H','D'}}
+            if p3 in atoms:
+                heavy_neighbors={next(iter(pair-{p3})) for pair in bonds if p3 in pair
+                                 and atoms[next(iter(pair-{p3}))]['type_symbol'].upper() not in {'H','D'}}
                 if heavy_neighbors!={'P'}: raise ValueError('OP3 has unsupported heavy-atom adjacency')
-                removed.add('OP3');removed.update(hydrogen_neighbors(values,'OP3'))
+                removed.add(p3);removed.update(hydrogen_neighbors(values,p3))
         elif five=='free_OH':
             removed.update(phosphate & atoms.keys())
             for name in phosphate: removed.update(hydrogen_neighbors(values,name))
         if outgoing: removed.update(hydrogen_neighbors(values,"O3'"))
         derivative=_prune(values,removed,outgoing=bool(outgoing))
         actual=atom_rows(derivative)
+        configuration_projection=None
+        if binding is not None:
+            from .cif_preparation_qualification import project_source_configurations
+            configuration_projection=project_source_configurations(binding,values,derivative)
         if coordinate_atoms-actual.keys(): raise ValueError('Preparation would remove an existing coordinate atom: '+site)
         mod_id='NASL'+sha256((code+'|'+site+'|'+json.dumps(context,sort_keys=True)).encode()).hexdigest()[:10]
         for atom in sorted(removed): mod_rows.append([mod_id,'delete',atom,'.','.','.','.'])
@@ -232,10 +318,13 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
               'deleted_atoms':sorted(removed),'expected_atoms':sorted(actual),
               'expected_energy_types':{name:row.get('type_energy') for name,row in actual.items()},
               'expected_formal_charges':{name:row.get('charge',row.get('pdbx_formal_charge')) for name,row in actual.items()},
-              'retained_op2_hydrogens':hydrogen_neighbors(derivative,'OP2'),
+              'retained_op2_hydrogens':hydrogen_neighbors(derivative,p2),
               'expected_hydrogen_attachments':{name:sorted(next(iter(pair-{name})) for pair in bonds
                   if name in pair and not pair & removed) for name,row in actual.items()
                   if row['type_symbol'].upper() in {'H','D'}}}
+        if configuration_projection is not None:
+            plan['source_configuration_projection']=configuration_projection
+            plan['source_port_qualification']=port_qualification
         plans.append(plan);projected.append((site,derivative))
     if any(p.read_bytes()!=data for p,data in zip(paths,payloads)):
         raise ValueError('Input changed during preparation')
@@ -262,7 +351,8 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
         if assessment['status']=='INVALID': raise ValueError('Projected linked dictionary is invalid: '+site)
         assessments.append({'site':site,'assessment':assessment})
     receipt={'schema_version':1,'audit_kind':'cif_linked_site_preparation',
-             'policy_id':'cif-source-preserving-linked-sites-v2' if qualified else LINKED_PREPARATION_POLICY,'status':'PREPARED_REVIEW','component':code,
+             'policy_id':('cif-source-preserving-linked-sites-v3' if binding is not None else
+                          'cif-source-preserving-linked-sites-v2' if qualified else LINKED_PREPARATION_POLICY),'status':'PREPARED_REVIEW','component':code,
              'modification_block_policy':MODIFICATION_BLOCK_POLICY,
              'component_list_policy':COMPONENT_LIST_POLICY,
              'inputs':[{'name':p.name,'sha256':sha256(data).hexdigest(),'size':len(data)} for p,data in zip(paths,payloads)],
@@ -276,6 +366,15 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
         receipt['isolated_native_qualification']={'policy_id':q['policy_id'],'candidate_sha256':q['candidate_sha256'],
             'source_sha256':sha256(payloads[0]).hexdigest(),'scope':q['scope'],'checks':q['checks']}
         receipt['candidate_reassessment']=fresh
+    if binding is not None:
+        receipt['preparation_qualification']=binding
+    if phosphate_atom_policy is not None:
+        receipt['phosphate_atom_policy']=phosphate_atom_policy
+        receipt['phosphate_names']=aliases
+    if construction is not None:
+        receipt['linked_preparation_policy'] = receipt['policy_id']
+        receipt['policy_id'] = 'cif-source-preserving-construction-sites-v1'
+        receipt['construction_context'] = construction
     if not receipt['source_preserved']: raise ValueError('Input changed while publishing preparation')
     (output/'preparation_receipt.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
     return receipt

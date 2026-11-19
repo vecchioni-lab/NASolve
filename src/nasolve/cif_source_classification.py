@@ -34,7 +34,7 @@ def _same_rows(a,b):
     return {k:v for k,v in a.items() if k not in allowed}=={k:v for k,v in b.items() if k not in allowed}
 
 
-def prepare_source_dna_metadata(source,numerical,code,output_directory):
+def prepare_source_dna_metadata(source,numerical,code,output_directory, *, bond_representation_policy=None):
     """Translate explicit DNA group/type declarations; never infer from atoms."""
     source,numerical=Path(source),Path(numerical);before=source.read_bytes(),numerical.read_bytes()
     out=Path(output_directory)
@@ -43,7 +43,8 @@ def prepare_source_dna_metadata(source,numerical,code,output_directory):
     if any(out.resolve()==p.resolve() or p.parent.resolve() in out.resolve().parents for p in [source,numerical]):
         raise ValueError('Output must be separate from preserved input directories')
     declarations=_source_declarations(source,code);values=component_values(numerical,code)
-    assessment=reassess_complete_candidate(source,numerical,code)
+    options={} if bond_representation_policy is None else {'bond_representation_policy':bond_representation_policy}
+    assessment=reassess_complete_candidate(source,numerical,code,**options)
     if assessment['candidate_status']!='CANDIDATE_REVIEW':raise ValueError('Require a source-preserving complete candidate')
     after=deepcopy(values);after.update({'_chem_comp.group':['DNA'],'_chem_comp.type':['DNA LINKING']})
     changes=[{'field':k,'before':values.get(k),'after':after[k]} for k in sorted(_FIELDS) if values.get(k)!=after[k]]
@@ -57,18 +58,19 @@ def prepare_source_dna_metadata(source,numerical,code,output_directory):
         'source_sha256':sha256(before[0]).hexdigest(),'base_candidate_sha256':sha256(before[1]).hexdigest(),
         'source_declarations':declarations,'metadata_changes':changes,'numerical_and_chemical_rows_preserved':True,
         'candidate':{'anchor':'candidate_directory','path':'candidate.cif','sha256':sha256(payload).hexdigest(),'size':len(payload)},
-        'source_assessment':assessment,'native_equivalence':'NOT_RUN','linked_context':'NOT_RUN',
+        **options,'source_assessment':assessment,'native_equivalence':'NOT_RUN','linked_context':'NOT_RUN',
         'automatic_adoption':False,'requires_cif_review':False}
     with (out/'metadata_receipt.json').open('x') as f:json.dump(receipt,f,indent=2);f.write('\n')
     return receipt
 
 
-def qualify_source_dna_metadata(source,base,prepared,model,code,original,native):
+def qualify_source_dna_metadata(source,base,prepared,model,code,original,native, *, bond_representation_policy=None):
     """Require the source-declared header and identical isolated mechanics."""
     _source_declarations(source,code)
-    baseline=qualify_candidate_native(source,base,model,code,original)
+    options={} if bond_representation_policy is None else {'bond_representation_policy':bond_representation_policy}
+    baseline=qualify_candidate_native(source,base,model,code,original,**options)
     if not baseline['native_usable']:raise ValueError('Require an independently usable saved baseline')
-    candidate=qualify_candidate_native(source,prepared,model,code,native)
+    candidate=qualify_candidate_native(source,prepared,model,code,native,**options)
     values=component_values(prepared,code);checks={
         'header_only_definition_change':_same_rows(component_values(base,code),values),
         'source_classification_header':values.get('_chem_comp.group')==['DNA'] and values.get('_chem_comp.type')==['DNA LINKING'],
@@ -87,7 +89,7 @@ def qualify_source_dna_metadata(source,base,prepared,model,code,original,native)
         same=(a.keys()==b.keys() and _close(original['energy_inventory']['snapshots'][0]['target'],native['energy_inventory']['snapshots'][0]['target'])
             and all(_close(x,y) for name in a for x,y in zip(a[name],b[name])))
     checks['same_full_target_and_named_gradient']=same
-    return {'schema_version':1,'policy_id':POLICY_ID,'component':code,'checks':checks,
+    return {'schema_version':1,'policy_id':POLICY_ID,'component':code,**options,'checks':checks,
         'status':'SOURCE_DNA_METADATA_NATIVE_PASS' if all(checks.values()) else 'REVIEW','native_equivalent':all(checks.values()),
         'baseline_qualification':baseline,'candidate_qualification':candidate,'linked_context':'NOT_RUN',
         'nonbonded_pair_identity_equivalence':'NOT_ASSESSED','automatic_adoption':False,'requires_cif_review':False}

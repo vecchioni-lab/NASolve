@@ -121,7 +121,7 @@ do not forecast the smaller target as achieved. No scientific endpoint is accept
 Qualification at `e002e2037048a4f5778898c7682174e96da5a01b` includes 6,432 tests and
 276 subtests, exact real-data readback through a relocated source-free installed
 package (192 unchanged resources), and separate fresh-process source/data
-relocation. The [handoff](development-handoff.md) owns commands, limits and receipts.
+relocation. The [handoff](metal-development-handoff.md) owns commands, limits and receipts.
 
 This closes the **read-only projection substep** of A04. Compact publication,
 retained parent materialization, native regeneration, budgets and retirement

@@ -9,16 +9,27 @@ import pytest
 
 
 def pinned_runtime():
-    """The six protected C60 modules are unchanged; no Git history is needed."""
+    """Read exact C60 sources, including the historical native-capture fixture."""
     from nasolve.cif_scaffold_return import C60_SOURCE_SHA256
     repository = Path(__file__).parents[1]
-    return {name: (repository / name).read_bytes() for name in C60_SOURCE_SHA256}
+    historical = repository / 'tests/fixtures/c60_runtime/cif_native_validation.py.txt'
+    return {name: (historical if name == 'src/nasolve/cif_native_validation.py'
+                   else repository / name).read_bytes() for name in C60_SOURCE_SHA256}
 
 
 def test_saved_return_requires_exact_public_runtime_sources():
     from nasolve.cif_scaffold_return import _runtime_sources
     sources = pinned_runtime()
     assert _runtime_sources(sources)
+
+
+def test_saved_c60_rejects_current_native_capture_api_as_historical_source():
+    from nasolve.cif_scaffold_return import _runtime_sources
+    sources = pinned_runtime()
+    name = 'src/nasolve/cif_native_validation.py'
+    sources[name] = (Path(__file__).parents[1] / name).read_bytes()
+    with pytest.raises(ValueError, match='Saved C60 runtime source differs'):
+        _runtime_sources(sources)
 
 
 @pytest.mark.parametrize('defect', ['missing_source', 'changed_source', 'wrong_type'])

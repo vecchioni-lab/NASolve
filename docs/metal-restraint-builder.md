@@ -50,7 +50,7 @@ activation or scientific acceptance. Existing bundles need no migration.
 A bounded diagnostic uses the existing native-policy owner and shared inventory
 observer/comparator to check these declarations before and after refinement.
 Exact term coverage does not establish correct chemistry, force equivalence,
-convergence or an acceptable model. See the [current handoff](development-handoff.md)
+convergence or an acceptable model. See the [current handoff](metal-development-handoff.md)
 for pinned dependency versions, negative controls and remaining integration work.
 
 ## Integration objectives and milestones
@@ -331,7 +331,7 @@ The complete source-bound recipe then supplies explicit proposed restraint
 edits. Native controls test one Hg and two mixed Au/Ag assignments, including
 reversed species at the same positions, under Phenix 2.2.1-6174. They establish
 input consumption and exact selections/weights, not chemical targets or fitted
-geometry. The [current handoff](development-handoff.md) records commands,
+geometry. The [current handoff](metal-development-handoff.md) records commands,
 receipts and validation counts. Whole-model geometry optimization, native qualification of
 general recipes, checkpoint adoption and f-double-prime fits remain separate.
 
@@ -404,7 +404,7 @@ controls deliberately displace numerical seed positions while retaining the
 seed-derived targets. Native interpretation and parser dry-runs test the
 prepared files separately. These targets are numerical controls, not a chemical
 recommendation. Exact test counts, software versions and local evidence are in
-the [current handoff](development-handoff.md#parallel-metal-workflow).
+the [current handoff](history/metal-development-handoff-2026-11-18.md#parallel-metal-workflow).
 Cedar's qualified whole-model geometry and derivative gates remain unchanged.
 
 ## Implemented authoring core
@@ -523,7 +523,7 @@ bind canonical JSON inputs. Synthetic controls cover 0–3 metal graphs, mixed
 species, a nonplanar six-site cluster, renamed donors, exact alternate/model/site
 identity, ambiguity, draft/edit round-trips and source-removed relocation replay.
 These tests establish software behavior, not native chemical or diffraction
-qualification. See the [current validation handoff](development-handoff.md#parallel-metal-workflow).
+qualification. See the [current validation handoff](history/metal-development-handoff-2026-11-18.md#parallel-metal-workflow).
 
 ## Purpose and interaction
 
@@ -796,6 +796,6 @@ occupancy or experimental support. Future application reports should expose
 those facts without silently converting a geometric hypothesis into evidence.
 
 See [GUI contract](gui.md), [GUI live checks](gui-live-checks.md), and the
-[development handoff](development-handoff.md) for the current development order.
+[development handoff](metal-development-handoff.md) for the current development order.
 GUI and native scientific execution remain separate later scopes; this adds no gate to the
 combined geometry trial or Cedar/Pine close-out.

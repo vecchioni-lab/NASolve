@@ -60,6 +60,26 @@ native restraints; it must not assume that a hydrogen-free coordinate model has
 an unprotonated dictionary. Exact evidence and remaining checks are in the
 [native ledger](native-modified-pair-live-validation.md).
 
+## Declared symmetry continuation — planned shared contract
+
+A chain boundary in the asymmetric unit need not be a chemical terminus. Pine
+will carry editable declared connections, including exact atom identities,
+symmetry operations and lattice shifts, separately from current coordinate
+support and refinement capability. TopoStitch previews those connections; Cedar
+checks the chemistry and whether native restraints actually enforce it. Reslicing
+or an edit must preserve previous choices and explicitly remap endpoints/images
+or mark them unresolved. Missing local neighbors must not silently change intent.
+
+For the W/PDU control, Simon clarified B:1 as an intended symmetry-linked internal
+phosphate (P/OP1/OP2, no OP3), superseding an earlier free-OH reply. Its nearest
+observed O3′ image remains outside the current bond-distance guard. This does not
+authorize atom deletion, OP3 completion, or automatic link assignment. D:1's
+separately declared complete terminal phosphate is a different chemical state.
+Do not activate a lone symmetry bond while its surrounding phosphate angles and
+nonbonded exclusions remain unqualified; angle-policy research is deferred.
+Current generic symmetry-link interpretation/enforcement is not qualified; see
+[Q06](cif-doctor-completion-queue.md#q06--qualify-the-actual-refinement-consumer).
+
 ## Building a requested 5'-terminal phosphate
 
 When a site is explicitly declared as a 5'-terminal phosphate, PostMR runs an

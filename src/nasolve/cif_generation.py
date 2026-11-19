@@ -21,6 +21,7 @@ from typing import Mapping
 
 from .cif_doctor import assess_dictionaries, compare_dictionaries, _bridges, _number, _ORDERS
 from .ligand_profiles import _blocks
+from .cif_purine_representation import validate_policy, assess_bond_representation, OXO_POLICY_ID, FIVE_RING_POLICY_ID, CYCLE_LOCAL_POLICY_ID
 
 POLICY_ID = "cif-independent-elbow-candidate-v4"
 BOND_REPRESENTATION_POLICY = "cif-source-declared-six-member-aromatic-v1"
@@ -209,13 +210,15 @@ def _supported_plane_review(finding: dict) -> bool:
             and isfinite(determinant))
 
 
-def inspect_component_generation(source: Path, generated: Path | None, code: str) -> dict:
+def inspect_component_generation(source: Path, generated: Path | None, code: str, *,
+                                 bond_representation_policy: str | None = None) -> dict:
     """Inventory general numerical defects and same-ID chemical differences.
 
     Full source/candidate assessments are retained; the requested component
     determines rejection. Other components in a ReadySet bundle remain visible.
     A numerically valid candidate still requires chemical and native review.
     """
+    validate_policy(bond_representation_policy)
     source = Path(source)
     before = assess_dictionaries([source], stage="source")
     after = assess_dictionaries([Path(generated)], stage="effective") if generated is not None else None
@@ -226,6 +229,11 @@ def inspect_component_generation(source: Path, generated: Path | None, code: str
     representation = (_bond_representation(left[0], right[0]) if len(left) == len(right) == 1 else
                       {"policy_id": BOND_REPRESENTATION_POLICY, "status": "NOT_RUN",
                        "connectivity_unchanged": None, "equivalent_rings": [], "unresolved_bonds": []})
+    if bond_representation_policy is not None:
+        if len(left) == len(right) == 1:
+            representation = assess_bond_representation(left[0], right[0], representation, bond_representation_policy)
+        else:
+            representation.update(policy_id=bond_representation_policy, equivalent_fused_systems=[])
     reasons = []
     if len(left) != 1:
         reasons.append("source-component-missing-or-ambiguous")
@@ -266,7 +274,7 @@ def inspect_component_generation(source: Path, generated: Path | None, code: str
     if after:
         issues.extend(_numerical_issues(after, code, "generated"))
     return {"schema_version": 1, "audit_kind": "cif_component_generation_inspection",
-            "policy_id": POLICY_ID, "component_id": code,
+            "policy_id": POLICY_ID if bond_representation_policy is None else "cif-independent-elbow-candidate-v5", "component_id": code,
             "status": "REJECTED" if reasons else "CANDIDATE_REVIEW" if after else "SOURCE_REVIEW",
             "rejection_reasons": reasons,
             "source_assessment": before, "generated_assessment": after,
@@ -276,7 +284,15 @@ def inspect_component_generation(source: Path, generated: Path | None, code: str
             "limitations": ["Numerical completeness does not certify chemistry, native proxies or achieved geometry.",
                             "Only complete finite positive-semidefinite Gram findings can remain soft plane reviews.",
                             "Well-formed unresolved torsion relationships remain review evidence pending native interpretation; no term is removed or adopted.",
-                            "Only complete source-declared isolated neutral C/N six-member alternating rings can change to aromatic bond types; other order changes remain rejected.",
+                            ("Only complete source-declared isolated neutral C/N six-member alternating rings can change to aromatic bond types; other order changes remain rejected."
+                             if bond_representation_policy is None else
+                             "The explicit neutral 6-oxo purine policy permits only its complete declared aromatic five-ring; the carbonyl, adjoining ring and source state remain fixed."
+                             if bond_representation_policy == OXO_POLICY_ID else
+                             "The explicit neutral five-membered C/N policy additionally permits complete declared rings with one pyrrolic nitrogen, unchanged source H/charges and single bridge substituents; fused rings and other order changes remain rejected."
+                             if bond_representation_policy == FIVE_RING_POLICY_ID else
+                             "The explicit cycle-local policy permits only the same isolated neutral five/six C/N rings; a flagged single bridge between independently qualified rings stays single, and source declarations remain intact."
+                             if bond_representation_policy == CYCLE_LOCAL_POLICY_ID else
+                             "The explicit neutral purine policy additionally permits the bounded fused 5/6 graph with unchanged single-bridge substituents; exocyclic multiple bonds and other order changes remain rejected."),
                             "Charge representation and newly supplied stereochemistry remain explicit review evidence."]}
 
 
@@ -413,7 +429,7 @@ def _help_option_definitions(help_text: str) -> dict[str, bool | None]:
 
 def _generator_capabilities(executable: Path, work: Path,
                             environment: Mapping[str, str], timeout_seconds: float,
-                            phenix_version: str) -> dict:
+                            phenix_version: str, *, command_runner=None) -> dict:
     timeout = min(float(timeout_seconds), 20.0)
     command = [str(executable), "--help"]
     clock = time.monotonic()
@@ -423,37 +439,42 @@ def _generator_capabilities(executable: Path, work: Path,
                "definition_parser": "exact-installed-help-option-definitions-v1"}
     try:
         receipt["executable_sha256"] = _sha(executable.read_bytes())
-        with (work / "elbow_help.log").open("xb") as log:
-            process = subprocess.Popen(command, cwd=work, env=dict(environment),
-                stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT,
-                start_new_session=os.name == "posix")
-            try:
-                receipt["returncode"] = process.wait(timeout=timeout)
-            except subprocess.TimeoutExpired:
-                _terminate_owned_group(process)
-                receipt.update(reason="help-timeout", returncode=process.returncode)
-            except BaseException:
-                _terminate_owned_group(process)
-                raise
+        try:
+            if command_runner is not None:
+                receipt["returncode"] = command_runner(command, timeout)
             else:
-                if receipt["returncode"] != 0:
-                    receipt["reason"] = "help-nonzero-exit"
-                else:
-                    definitions = _help_option_definitions((work / "elbow_help.log").read_text(encoding="utf-8", errors="replace"))
-                    receipt["supported_option_definitions"] = definitions
-                    missing = []
-                    for semantic, aliases in _OPTION_ALIASES.items():
-                        expected_value = semantic != "opt"
-                        selected = next((option for option in aliases if definitions.get(option) is expected_value), None)
-                        if selected is None:
-                            missing.append(semantic)
-                        else:
-                            receipt["selected_aliases"][semantic] = selected
-                    receipt["unsupported_semantics"] = missing
-                    if missing:
-                        receipt["reason"] = "required-option-semantics-unavailable"
+                with (work / "elbow_help.log").open("xb") as log:
+                    process = subprocess.Popen(command, cwd=work, env=dict(environment),
+                        stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT,
+                        start_new_session=os.name == "posix")
+                    try:
+                        receipt["returncode"] = process.wait(timeout=timeout)
+                    except BaseException as exc:
+                        _terminate_owned_group(process)
+                        if isinstance(exc, subprocess.TimeoutExpired):
+                            exc.returncode = process.returncode
+                        raise
+        except subprocess.TimeoutExpired as exc:
+            receipt.update(reason="help-timeout", returncode=getattr(exc, "returncode", None))
+        else:
+            if receipt["returncode"] != 0:
+                receipt["reason"] = "help-nonzero-exit"
+            else:
+                definitions = _help_option_definitions((work / "elbow_help.log").read_text(encoding="utf-8", errors="replace"))
+                receipt["supported_option_definitions"] = definitions
+                missing = []
+                for semantic, aliases in _OPTION_ALIASES.items():
+                    expected_value = semantic != "opt"
+                    selected = next((option for option in aliases if definitions.get(option) is expected_value), None)
+                    if selected is None:
+                        missing.append(semantic)
                     else:
-                        receipt["status"] = "SUPPORTED"
+                        receipt["selected_aliases"][semantic] = selected
+                receipt["unsupported_semantics"] = missing
+                if missing:
+                    receipt["reason"] = "required-option-semantics-unavailable"
+                else:
+                    receipt["status"] = "SUPPORTED"
         if _sha(executable.read_bytes()) != receipt["executable_sha256"]:
             receipt.update(status="UNSUPPORTED_GENERATOR", reason="executable-changed-during-help")
     except OSError as exc:

@@ -51,6 +51,8 @@ def _entries(store, source, code, authority, notes):
                         or req['recipe'].get('source_metadata_policy') != 'cif-source-declared-dna-metadata-v1'
                         or req['generator'].get('name') != 'Phenix eLBOW'):
                     notes.append('A saved repair uses a different recipe/backend; ordinary preparation is retained.'); continue
+                if 'bond_representation_policy' in req['recipe']:
+                    notes.append('An explicit representation policy needs qualified current-site support before automatic PostMR reuse.'); continue
                 fresh = make_dictionary_request(source,code,**{k:req[k] for k in ['source_authority','recipe','generator']})
                 _need(fresh == req, 'Saved request no longer binds the selected chemistry')
                 entry = _read_entry(child,child.name,fresh)

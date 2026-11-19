@@ -1,0 +1,21 @@
+{
+  "profile_id": "phenix-2.2.1-6174-darwin-arm64-nonbonded-v1",
+  "system": "Darwin",
+  "machine": "arm64",
+  "distribution_attestation": false,
+  "scope": "Additional counted outer/model source bindings; requires the unchanged complete nonbonded profile",
+  "modules": {
+    "mmtbx.restraints": {
+      "size": 13063,
+      "sha256": "6da98bb07effda0952773e825cb2d07214dbe5ba2e7b2b64d6760c72dca5d167"
+    },
+    "scitbx.restraints": {
+      "size": 1813,
+      "sha256": "5cdd5303277554f4c78708879ac861be3ec8a812fe090b7815efac4aaec66e26"
+    },
+    "mmtbx.model.model": {
+      "size": 194489,
+      "sha256": "e35c7cdffa57ee3a6dac73c0dbdc46f382faf69780ba7a71c16aa6d58aa359ee"
+    }
+  }
+}

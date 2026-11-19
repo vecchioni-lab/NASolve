@@ -1,26 +1,24 @@
 # CIF and effective-restraint audit methods
 
-**Status: scientific method and extension blueprint, updated 2026-10-11.** The
-first offline read-only assessment slice and explicit reviewed preparation are
-implemented; [the runtime contract](cif-doctor.md) names the commands, checks and
-limits. PostMR records report-only receipts before mutations, before ReadySet
-and after effective-dictionary selection. Native proxy validation, mapped SMILES,
-general generation and checkpoint adoption remain separate future stages.
-These audits add no new gate to the current trial. [The handoff](development-handoff.md) owns scheduling;
-[the component contract](modified-component-preparation.md) owns chemical intent
-and source precedence; [the native ledger](native-modified-pair-live-validation.md)
-owns exact trial receipts, versions, hashes and historical outcomes.
+**Scientific methods blueprint, originally 2026-10-11; current-scope clarification
+2026-10-31.** The rule catalogue below retains its design scope. Implemented
+capabilities now include source-preserving generation/preparation, exact native
+proxy and monomer inventories, explicit selected bundles, derivative/geometry
+diagnostics and bounded graph-selected repair attribution. The
+[runtime contract](cif-doctor.md) identifies the exact supported APIs and limits;
+they are not all connected into ordinary automatic PostMR recovery/adoption.
+Ordinary PostMR assessment hooks remain report-only. Mapped external chemical
+inputs and general checkpoint adoption are separate unfinished stages.
 
-The [machine-readable implementation map](cif-restraint-doctor-implementation.json)
-captures scientific evidence, exact pipeline hooks, repair/receipt policies,
-lightweight execution and regression controls for the next contributor. It
-contains no personality handoff. Its snapshot references preserve provenance;
-this document and the linked contracts retain authority over current behavior.
-The implemented integration wraps ReadySet with source/runtime screening and
-assessment of the selected effective dictionary files before PostMR readiness.
-Native interpretation remains a separate planned check. Existing-checkpoint
-assessment is read-only; future accepted preparation/coordinate adoption creates
-an immutable child.
+The [completion queue](cif-doctor-completion-queue.md) owns remaining priorities;
+the [handoff](development-handoff.md) owns the active checkpoint. The
+[component contract](modified-component-preparation.md) owns chemical intent and
+source precedence, and the [CIF Doctor evidence ledger](cif-linked-native-registration-evidence.json)
+records exact native outcomes. The [implementation map](cif-restraint-doctor-implementation.json)
+retains the original scientific design alongside dated progress records; an old
+planned/pending statement is not current scheduling authority. Existing-checkpoint
+assessment remains read-only; accepted preparation/coordinate adoption must
+create an immutable child. No scientific gate is relaxed by this clarification.
 
 ## Purpose and boundaries
 

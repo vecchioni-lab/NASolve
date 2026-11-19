@@ -15,6 +15,7 @@ dependencies = [
 
 [project.optional-dependencies]
 test = ["pytest>=8"]
+topology = ["gemmi>=0.7.5,<0.8"]
 
 [project.scripts]
 nasolve = "nasolve.cli:main"
@@ -27,6 +28,8 @@ nasolve = [
   "data/presets/*.toml",
   "data/sequence_references/*.json",
   "data/ligands/*.cif",
+  "data/chemical_references/*.cif",
+  "data/chemical_references/*.json",
   "data/restraints/*.phil",
   "data/restraints/*.eff",
   "data/restraints/*.txt",
@@ -34,6 +37,7 @@ nasolve = [
   "metal/web/*.html",
   "metal/web/*.css",
   "metal/web/*.mjs",
+  "data/replay/*.pdb",
 ]
 
 [tool.pytest.ini_options]

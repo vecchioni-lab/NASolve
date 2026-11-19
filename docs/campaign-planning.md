@@ -438,3 +438,50 @@ compatible and need no regeneration. Durable execution progress is stored
 separately from the immutable plan. Recipe-authorized provisional Doctor
 selection is available in full auto; explicit approval, reporting PDFs and
 deposition remain later work.
+
+
+## Opt-in checked model preparation (Cedar C225)
+
+A schema-2 project preset can request the same checked preparation used by
+`nasolve postmr --checked-preparation`:
+
+```toml
+schema_version = 2
+id = "checked-preparation"
+version = "1"
+
+[postmr]
+checked_preparation = true
+```
+
+Planning freezes this boolean with the recipe. Omission retains legacy PostMR;
+older recipes and their fingerprints are unchanged. Schema 1 refuses the new
+field. Older stage implementations refuse this expanded PostMR policy.
+
+For bounded missing-plane support (C246), add `automatic_plane_support = true`
+to that same `[postmr]` table. It requires `checked_preparation = true` and a real
+boolean in schema 2. The choice is frozen before execution; omission leaves old
+policies and hashes unchanged. Explicit false is retained in the campaign policy
+but does not enable support in the preparation request. Older readers reject the
+new optional field. Continuation uses the saved request; it cannot change this
+choice or repeat construction. Generated support alone does not establish final
+plane adoption or diffraction-refinement success.
+
+The campaign reuses the existing constructor, bounded request owner and publisher.
+It records the exact model/restraints, genuine preparation receipt and actual
+ReadySet outcome. A checked fallback remains a REVIEW checkpoint available for
+trial refinement; it does not establish successful diffraction refinement.
+Unqualified preparation stops its dependent stage, preserving the failed attempt.
+
+C247 carries verified generation notes into the PostMR stage receipt and subsequent
+text/JSON campaign status. These describe generated support or excluded failed
+output without changing the scientific continuation gate. Status reads do not
+rewrite old receipts; absent notes on historical stages remain absent evidence.
+
+Completed receipts use ordinary campaign continuation. An interrupted stage without
+a completed receipt stays awaiting inspection; explicit campaign retry starts a
+fresh numbered run only after prior processes are known stopped. The standalone
+exact preparation continuation/publication commands can recover the preserved run,
+but do not retrospectively complete its campaign job. No new in-place retry or
+adoption of manually recovered work is enabled. Later preparation children, broader
+plane-recovery coverage and complete-restraint refinement remain open.

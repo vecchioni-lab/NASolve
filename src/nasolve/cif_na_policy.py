@@ -53,23 +53,65 @@ def _site_selection(text):
     return m[2],m[3]
 
 
-def _resolve(text,atoms):
+def _resolve(text,atoms,*,require_scoped_names=False):
+    if text.count('(') != text.count(')'):
+        raise ValueError('Unbalanced generated atom selection')
     m=re.fullmatch(r'(.*?)\s+and\s+(\(?name\s+[A-Za-z0-9_]+(?:\s+or\s+name\s+[A-Za-z0-9_]+)*\)?)',text)
     if not m:raise ValueError('Unsupported generated atom selection')
     site=_site_selection(m[1]);names=re.findall(r'name\s+([A-Za-z0-9_]+)',m[2])
+    if require_scoped_names and len(names)>1 and not (m[2].startswith('(') and m[2].endswith(')')):
+        raise ValueError('Require parenthesized atom-name alternatives')
     selected=[a for a in atoms if (a['identity']['chain_id'].strip(),a['identity']['resseq'].strip())==site and a['atom_id'] in names]
     if len(selected)!=len(set(names)):raise ValueError('Generated selection has missing or ambiguous atoms')
     return selected
 
 
-def _requests(text,atoms):
+def _resolve_plane(text,atoms):
+    """Resolve a literal site selection or disjoint parenthesized site union.
+
+    NAR emits one union plane spanning both bases. Resolve each bounded term
+    through the existing selector, then retain atom-record order as the native
+    selection does. This is not a general boolean selection evaluator.
+    """
+    if not text.startswith('('):
+        return _resolve(text,atoms,require_scoped_names=True)
+    remaining=text;selected=[]
+    while remaining:
+        if not remaining.startswith('('):raise ValueError('Require parenthesized plane union terms')
+        depth=0;end=None
+        for i,char in enumerate(remaining):
+            if char=='(':depth+=1
+            elif char==')':depth-=1
+            if depth==0:
+                end=i;break
+        if end is None:raise ValueError('Unbalanced plane union selection')
+        selected.extend(_resolve(remaining[1:end].strip(),atoms,require_scoped_names=True))
+        remaining=remaining[end+1:].strip()
+        if remaining:
+            if not remaining.startswith('or '):raise ValueError('Unsupported plane union operator')
+            remaining=remaining[3:].strip()
+            if not remaining:raise ValueError('Incomplete plane union selection')
+    indices=[a['i_seq'] for a in selected]
+    if len(indices)!=len(set(indices)):raise ValueError('Overlapping plane union terms')
+    wanted=set(indices)
+    return [a for a in atoms if a['i_seq'] in wanted]
+
+
+def _requests(text,atoms,*,require_scoped_names=False):
     nodes,_=_parse(text);result=[]
     for n in nodes:
         kind=_path(n).removeprefix('geometry_restraints.edits.')
-        if kind not in {'bond','angle','parallelity'}:continue
-        f=n['fields'];size=3 if kind=='angle' else 2
+        if kind not in {'bond','angle','planarity','parallelity'}:continue
+        f=n['fields']
+        if kind=='planarity':
+            endpoints=_resolve_plane(f['atom_selection'],atoms)
+            result.append({'kind':kind,'action':'add','selections':[f['atom_selection']],
+                'i_seqs':[a['i_seq'] for a in endpoints],'atoms':[a['label'] for a in endpoints],
+                'weights':[1./float(f['sigma'])**2]*len(endpoints)})
+            continue
+        size=3 if kind=='angle' else 2
         expressions=[f['atom_selection_'+str(i+1)] for i in range(size)]
-        selected=[_resolve(s,atoms) for s in expressions]
+        selected=[_resolve(s,atoms,require_scoped_names=require_scoped_names) for s in expressions]
         if kind!='parallelity' and any(len(s)!=1 for s in selected):raise ValueError('Expected single atom endpoints')
         if kind=='parallelity' and any(len(s)<3 for s in selected):raise ValueError('Insufficient mapped plane atoms')
         endpoints=selected[0] if kind=='parallelity' else [s[0] for s in selected]
@@ -89,45 +131,15 @@ def _signature(kind,row,*,values=True):
     elif kind=='angle':key=(kind,min(atoms,atoms[::-1]));fields=('angle_ideal','weight')
     elif kind=='parallelity':
         key=(kind,tuple(sorted((tuple(sorted(atoms)),tuple(sorted(row['j_atoms']))))));fields=('target_angle_deg','weight')
+    elif kind=='planarity':
+        return (kind,tuple(sorted(zip(atoms,row['weights'])))) if values else (kind,tuple(sorted(atoms)))
     else:raise ValueError('Unsupported generated request kind')
     return key+tuple(row[f] for f in fields) if values else key
 
 
-def compile_na_policy(model: Path, phils: list[Path], captured: dict, output: Path) -> dict:
-    """Write separate derived inputs, preserving every non-SS input line.
-
-    The source bundle's explicit edits are retained. Only previously declared
-    generic pairs/stacks are compiled; the guesser is not rerun on moved sites.
-    Unsupported declarations stop before any output is written.
-    """
-    from Bio.PDB import PDBParser
-    from restraints.builder import pair_residue_from_pdb
-    from restraints.phenix import generate_pair_restraints
-    from restraints.recipe_library import recipe_for
-    from restraints.residue_library import load_residue_records
-    from restraints.stacking import _manual_parallelity
-    model,output=Path(model),Path(output)
-    if output.exists() or output.is_symlink():raise FileExistsError('Policy output already exists')
-    atoms=captured['atoms']
-    if [a['i_seq'] for a in atoms]!=list(range(len(atoms))):raise ValueError('Native atom indices are not a bijection')
-    if any(a['identity'].get('altloc','').strip() or a['identity'].get('icode','').strip() for a in atoms):
-        raise ValueError('Alternate/insertion contexts need a separate reviewed compiler')
-    if len({a['identity']['model_id'] for a in atoms})!=1:raise ValueError('Require one native model')
-    structure=PDBParser(QUIET=True).get_structure('policy',str(model))
-    if len(list(structure.get_models()))!=1:raise ValueError('Require one PDB model')
-    residues={};observed=set()
-    for chain in structure[0]:
-        for residue in chain:
-            if residue.id[2].strip():raise ValueError('Insertion-code context requires review')
-            key=(chain.id,str(residue.id[1]))
-            if key in residues:raise ValueError('Ambiguous PDB site')
-            residues[key]=residue
-            for atom in residue:
-                if atom.is_disordered():raise ValueError('Alternate PDB atoms require review')
-                observed.add((*key,residue.resname.strip(),atom.name))
-    expected={(a['identity']['chain_id'].strip(),a['identity']['resseq'].strip(),a['identity']['resname'].strip(),a['atom_id']) for a in atoms}
-    if len(expected)!=len(atoms) or expected!=observed:raise ValueError('PDB/native atom identity mismatch')
-    records=load_residue_records();blocks=[];relationships=[];retained=[];sources=[];seen=set()
+def _literal_declarations(phils):
+    """Parse existing bounded declarations; retain all non-SS lines in order."""
+    declarations=[];retained=[];sources=[];seen=set()
     for number,path in enumerate(phils):
         raw=Path(path).read_bytes();nodes,lines=_parse(raw.decode('utf-8'));ranges=[]
         for n in nodes:
@@ -147,17 +159,8 @@ def compile_na_policy(model: Path, phils: list[Path], captured: dict, output: Pa
                     key=(kind,tuple(sorted(sites)))
                     if sites[0]==sites[1] or key in seen:raise ValueError('Duplicate or self relationship')
                     seen.add(key)
-                    try:pair=[pair_residue_from_pdb(records,residues[s]) for s in sites]
-                    except (KeyError,ValueError) as exc:raise ValueError('Unmapped declared site') from exc
-                    if kind=='base_pair':
-                        recipe=recipe_for(pair[0].base_class,pair[1].base_class)
-                        if recipe is None or recipe.name!={'19':'GC','20':'AT'}.get(f['saenger_class']):
-                            raise ValueError('Declared class does not match the configured NARestraints recipe')
-                        block=generate_pair_restraints(*pair,planes=False);recipe_name=recipe.name
-                    else:block=_manual_parallelity(*pair);recipe_name='mapped-base-class-stacking'
-                    blocks.append(block);relationships.append({'kind':kind,'sites':[':'.join(s) for s in sites],
-                        'recipe':recipe_name,'source_input':number,'source_scope':_path(declaration),
-                        'source_values':deepcopy(f),'provenance':'FROZEN_EXPLICIT_DECLARATION_COMPILED_BY_NARESTRAINTS'})
+                    declarations.append(dict(kind=kind,sites=sites,source_input=number,
+                        source_scope=_path(declaration),source_values=deepcopy(f)))
         # Flat controls or unexpected SS descendants must not escape trimming.
         for n in nodes:
             if SS in _path(n) and not any(start<=n['start']<end for start,end in ranges):raise ValueError('Unsupported flat SS scope')
@@ -166,10 +169,32 @@ def compile_na_policy(model: Path, phils: list[Path], captured: dict, output: Pa
         keep=[line for i,line in enumerate(lines) if not any(start<=i<end for start,end in ranges)]
         retained.append(''.join(keep));sources.append({'input_index':number,'sha256':sha256(raw).hexdigest(),
             'removed_ss_scopes':len(ranges),'retained_sha256':sha256(retained[-1].encode()).hexdigest()})
-    if not relationships:raise ValueError('No explicit relationships to compile')
+    if not declarations:raise ValueError('No explicit relationships to compile')
+    return declarations,retained,sources
+
+
+def _emit_na_policy(parsed, atoms, site_mapping, old):
+    """Shared NAR emission; identity basis is supplied by its validated caller."""
+    from restraints.phenix import generate_pair_restraints
+    from restraints.recipe_library import recipe_for
+    from restraints.stacking import _manual_parallelity
+    declarations,retained,sources=parsed;blocks=[];relationships=[]
+    for declaration in declarations:
+        kind=declaration['kind'];sites=declaration['sites'];f=declaration['source_values']
+        try:pair=[site_mapping(site) for site in sites]
+        except (KeyError,ValueError) as exc:raise ValueError('Unmapped declared site') from exc
+        if kind=='base_pair':
+            recipe=recipe_for(pair[0].base_class,pair[1].base_class)
+            if recipe is None or recipe.name!={'19':'GC','20':'AT'}.get(f['saenger_class']):
+                raise ValueError('Declared class does not match the configured NARestraints recipe')
+            block=generate_pair_restraints(*pair,planes=False);recipe_name=recipe.name
+        else:block=_manual_parallelity(*pair);recipe_name='mapped-base-class-stacking'
+        blocks.append(block);relationships.append({'kind':kind,'sites':[':'.join(site) for site in sites],
+            'recipe':recipe_name,'source_input':declaration['source_input'],
+            'source_scope':declaration['source_scope'],'source_values':deepcopy(f),
+            'provenance':'FROZEN_EXPLICIT_DECLARATION_COMPILED_BY_NARESTRAINTS'})
     text='refinement {\n pdb_interpretation.secondary_structure {\n enabled = False\n }\n geometry_restraints.edits {\n'+'\n\n'.join(blocks)+'\n }\n}\n'
     requests=_requests(text,atoms)
-    old=captured['geometry']['custom_proxy_requests']
     edges=[_signature(r['kind'],r,values=False) for r in requests]
     preserved={_signature(r['kind'],r,values=False) for r in old if r['kind'] in {'bond','angle','parallelity'}}
     if len(edges)!=len(set(edges)) or set(edges)&preserved:raise ValueError('Compiled relationships overlap preserved or generated edits')
@@ -178,14 +203,77 @@ def compile_na_policy(model: Path, phils: list[Path], captured: dict, output: Pa
         'relationships':relationships,'pair_count':sum(r['kind']=='base_pair' for r in relationships),
         'stack_count':sum(r['kind']=='stacking_pair' for r in relationships),'sources':sources,
         'compiled_requests':requests,'request_counts':dict(sorted(Counter(r['kind'] for r in requests).items())),
-        'compiled_phil':'explicit_na_policy.phil','retained_phils':[f'retained_{i:03d}.phil' for i in range(len(phils))],
+        'compiled_phil':'explicit_na_policy.phil','retained_phils':[f'retained_{i:03d}.phil' for i in range(len(retained))],
         'objective':'NEW_EXPLICIT_NARESTRAINTS_OBJECTIVE_NOT_A_CONTINUATION_OF_OLD_ENERGY',
         'limitations':['Frozen explicit edits are retained, not regenerated or chemically requalified.',
             'Saenger 19/20 declarations and unambiguous mapped stacks only; unsupported intent requires review.',
             'No new pairing guess, coordinate edit, minimization, refinement or adoption.']}
+    files={name:data.encode('utf-8') for name,data in zip(result['retained_phils'],retained)}
+    files[result['compiled_phil']]=text.encode('utf-8')
+    return result,files
+
+
+def _compile_na_policy_payload(model: Path, phils: list[Path], captured: dict):
+    """Derive separate inputs without writing, preserving every non-SS input line.
+
+    The source bundle's explicit edits are retained. Only previously declared
+    generic pairs/stacks are compiled; the guesser is not rerun on moved sites.
+    Unsupported declarations stop before any output is written.
+    """
+    from Bio.PDB import PDBParser
+    from restraints.builder import pair_residue_from_pdb
+    from restraints.residue_library import load_residue_records
+    model=Path(model)
+    atoms=captured['atoms']
+    if [a['i_seq'] for a in atoms]!=list(range(len(atoms))):raise ValueError('Native atom indices are not a bijection')
+    if any(a['identity'].get('altloc','').strip() or a['identity'].get('icode','').strip() for a in atoms):
+        raise ValueError('Alternate/insertion contexts need a separate reviewed compiler')
+    if len({a['identity']['model_id'] for a in atoms})!=1:raise ValueError('Require one native model')
+    structure=PDBParser(QUIET=True).get_structure('policy',str(model))
+    if len(list(structure.get_models()))!=1:raise ValueError('Require one PDB model')
+    residues={};observed=set()
+    for chain in structure[0]:
+        for residue in chain:
+            if residue.id[2].strip():raise ValueError('Insertion-code context requires review')
+            key=(chain.id,str(residue.id[1]))
+            if key in residues:raise ValueError('Ambiguous PDB site')
+            residues[key]=residue
+            for atom in residue:
+                if atom.is_disordered():raise ValueError('Alternate PDB atoms require review')
+                observed.add((*key,residue.resname.strip(),atom.name))
+    expected={(a['identity']['chain_id'].strip(),a['identity']['resseq'].strip(),a['identity']['resname'].strip(),a['atom_id']) for a in atoms}
+    if len(expected)!=len(atoms) or expected!=observed:raise ValueError('PDB/native atom identity mismatch')
+    records=load_residue_records()
+    return _emit_na_policy(_literal_declarations(phils),atoms,
+        lambda site:pair_residue_from_pdb(records,residues[site]),captured['geometry']['custom_proxy_requests'])
+
+
+def _compile_source_na_policy_payload(model, phils, sources):
+    """Compile from PDB/source roles, without inventing native capture indices."""
+    from .cif_explicit_na_policy import _model, _source_roles, _regular
+    raw,atoms,residues,codes,by_key,_ = _model(model)
+    parsed=_literal_declarations(phils)
+    sites={':'.join(site) for row in parsed[0] for site in row['sites']}
+    mappings,roles,source_data,corrections=_source_roles(residues,codes,by_key,sites,sources)
+    # Retained explicit edits are resolved by the existing bounded grammar.
+    # They are PDB-bound requests, never a fabricated native observation.
+    retained=[request for text in parsed[1] for request in _requests(text,atoms,require_scoped_names=True)]
+    report,files=_emit_na_policy(parsed,atoms,lambda site:mappings[':'.join(site)],retained)
+    report.update(policy_id='narestraints-source-bound-literal-membership-v1',
+        index_basis='PDB_RECORD_ORDER; NOT_NATIVE_CAPTURE_INDICES',site_roles=roles,
+        record_corrections=corrections)
+    if _regular(model).read_bytes()!=raw or any(_regular(sources[c]).read_bytes()!=data for c,data in source_data.items()):
+        raise ValueError('Source literal input changed during compilation')
+    return report,files,source_data
+
+
+def compile_na_policy(model: Path, phils: list[Path], captured: dict, output: Path) -> dict:
+    """Write the existing deterministic compiler payload to a fresh directory."""
+    output=Path(output)
+    if output.exists() or output.is_symlink():raise FileExistsError('Policy output already exists')
+    result,files=_compile_na_policy_payload(model,phils,captured)
     output.mkdir(parents=True)
-    for name,data in zip(result['retained_phils'],retained): (output/name).write_text(data)
-    (output/result['compiled_phil']).write_text(text)
+    for name,data in files.items(): (output/name).write_bytes(data)
     return result
 
 

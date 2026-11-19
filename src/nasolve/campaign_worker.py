@@ -9,10 +9,10 @@ from pathlib import Path
 
 from .campaign_process import current_process_identity, exclusive_lock
 from .campaign_records import (
-    artifact, now, path_in, read_job, run_path, verify_dependencies, write_record,
+    artifact, now, path_in, read_job, read_record, run_path, verify_dependencies, write_record,
 )
 from .campaign_stages import execute_stage
-from .campaigns import CampaignError, campaign_status
+from .campaigns import CampaignError, _stage_plan
 
 
 def execute_job(job_path: Path) -> int:
@@ -20,7 +20,7 @@ def execute_job(job_path: Path) -> int:
     if len(job_path.parents) < 7:
         raise CampaignError("Invalid internal campaign job path")
     root = job_path.parents[6].resolve()
-    plan = campaign_status(root)
+    plan = _stage_plan(root, read_record(job_path).get("dataset"))
     job = read_job(root, job_path, plan)
     directory = job_path.parent
     dataset = next(item for item in plan["datasets"] if item["id"] == job["dataset"])
@@ -48,7 +48,7 @@ def execute_job(job_path: Path) -> int:
                 phenix_root=job.get("phenix_root"), on_run_allocated=allocated,
             )
             # Freeze receipts only after all scientific writes have completed.
-            checked = campaign_status(root)
+            checked = _stage_plan(root, job["dataset"])
             current = next(item for item in checked["datasets"] if item["id"] == dataset["id"])
             if checked["fingerprint"] != plan["fingerprint"] or checked["integrity_issues"] or current["integrity"] != "OK":
                 raise CampaignError("Frozen inputs changed while the scientific stage was running")

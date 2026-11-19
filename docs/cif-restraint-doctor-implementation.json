@@ -5,7 +5,7 @@
   "created_utc": "2026-10-11T14:16:46.555890+00:00",
   "status": "DESIGN_AND_KNOWLEDGE_HANDOFF_NOT_NEW_RUNTIME_IMPLEMENTATION",
   "runtime_progress": {
-    "updated_date": "2026-10-24",
+    "updated_date": "2026-11-10",
     "contract": "docs/cif-doctor.md",
     "implemented_initial_slice": [
       "Deterministic offline source/effective dictionary assessment with exact atom IDs and explicit unassessed layers",
@@ -26,12 +26,13 @@
     "native_candidate_evidence": "docs/elbow-source-retention-evidence.json",
     "source_state_control": "Required valued --pH=low selects the installed generator's exact-input-chemistry mode; it does not assert experimental pH or correct crystal protonation. Chemistry comparison remains mandatory and no automatic adoption is implemented.",
     "not_implemented": [
-      "Installed consumer-parser or effective native-proxy certification",
-      "Mapped descriptor validation and independent chemical authority",
-      "Qualified automatic numerical recovery or candidate/checkpoint adoption",
-      "Geometry/connectivity repair and guided sticky-end stitching"
+      "General automatic recovery on ordinary cache misses and end-to-end qualified candidate/checkpoint adoption",
+      "Complete catalogue-wide native construction, linked chemistry and ordinary-refinement qualification",
+      "Independent absolute CIP and experimental protonation/tautomer authority",
+      "Ordinary general whole-modified-sugar mutation; symmetry-aware sticky-end stitching",
+      "Solution-PDF integration and ChemDraw-derived chemical input"
     ],
-    "snapshot_policy": "The design and historical evidence below remain a knowledge snapshot. The runtime contract and current source own implemented behavior.",
+    "snapshot_policy": "Original design and dated progress records preserve their evidence-time scope. Current source/runtime contract own capability, the completion queue owns priorities and the handoff owns active work.",
     "cedar_05_return": {
       "delivery_prefix": "05_Cedar",
       "archive_name": "05_Cedar_dy4qx3qg_cif_native_review.zip",
@@ -26195,7 +26196,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "mixed_runtime_bundle_handoff_2026_10_25",
+    "current_diagnostic_record": "captured_absent_parallelity_2026_10_31",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -26816,6 +26817,1701 @@
         "tests/test_mixed_runtime_probe.py"
       ],
       "follow_up": "Return C95 ordinary-bundle handoff; preserve original stopping/source-state notes. Full diffraction-run integration and scientific qualification remain separate; no duplicate native or derivative audit is needed for unchanged inputs."
+    },
+    "linked_pdu_omission_inventory_2026_10_27": {
+      "status": "IMPLEMENTED_INVENTORY_GATE; COMPLETE_NATIVE_MAC_VALIDATION_PASS",
+      "module": "src/nasolve/cif_linked_linear_torsion.py",
+      "contract": "docs/cif-doctor.md#linked-pdu-omission-inventory-c104",
+      "removed_definition_rows": 6,
+      "removed_active_dihedrals": 3,
+      "all_other_inventory_categories": "EXACT",
+      "energy_gradient_qualification": "NOT_RUN",
+      "derivative_qualification": "NOT_RUN",
+      "automatic_adoption": false,
+      "caller_requirement": "Authenticate native captures and exact ordered inputs with maintained readers before comparison."
+    },
+    "narestraints_catalogue_census_2026_10_27": {
+      "status": "IMPLEMENTED_CENSUS_FULL_REGRESSION_AND_RELOCATION_PASS",
+      "contract": "docs/cif-doctor.md#catalogue-coverage-census-c105",
+      "milestones": "docs/development-handoff.md#generalizer-milestones-and-interruption-boundary",
+      "scope": "Every selected NAR catalogue ligand is a generalizer target; ATL and alternative backbones included.",
+      "implemented": "Explicit workbook/CCD census, exact row/source provenance, duplicate conflicts, graph/name checks and exact-label groups.",
+      "not_inferred": [
+        "chemical correctness",
+        "linkage profile",
+        "native support",
+        "recipe compilation",
+        "automatic repair"
+      ],
+      "pdu_next_boundary": "C104 inventory passes; fixed-coordinate energy/gradient attribution and derivatives remain open.",
+      "tested_implementation_commit": "972a822244ad269067f76c2d2ed2f1746aa3196b"
+    },
+    "source_attachment_profiles": {
+      "delivery": "C106",
+      "status": "IMPLEMENTED_READ_ONLY_TOPOLOGY_PORT_EVIDENCE",
+      "policy": "cif-source-attachment-topology-v1",
+      "schema_version": 1,
+      "api": "nasolve.cif_attachment_profiles.inspect_attachment_profile",
+      "command": "nasolve cif-doctor profile SOURCE --code CODE --workbook FILE [--json]",
+      "contract": "docs/cif-doctor.md#source-attachment-topology-and-ports-c106",
+      "validation_scope": "37 selected sources; 26 unique matches, 10 no match, one conflicting NAR record group; exact cold replay.",
+      "not_implemented_here": [
+        "Site/end-state and permitted-delta planning",
+        "Additional topology profiles",
+        "Native qualification",
+        "Automatic repair or adoption"
+      ],
+      "automatic_adoption": false,
+      "tested_implementation_commit": "402c68cc0c5b79b8fcda8f3972265025cec0543e",
+      "validation": "Full suite and 84 focused tests pass; 37 exact cold API/CLI replays preserve all inputs."
+    },
+    "explicit_attachment_sites": {
+      "delivery": "C107",
+      "status": "IMPLEMENTED_FULL_REGRESSION_AND_COLD_REPLAY_PASS",
+      "policy": "cif-explicit-attachment-site-v1",
+      "schema_version": 1,
+      "api": "nasolve.cif_attachment_sites.inspect_attachment_site",
+      "command": "nasolve cif-doctor site-plan SOURCE --code CODE --workbook FILE --model PDB --context JSON [--candidate CIF] [--json]",
+      "contract": "docs/cif-doctor.md#explicit-single-site-source-projections-c107",
+      "validation_scope": "12 predeclared synthetic contexts over six frozen sources; ten exact source projections and two unresolved PNA link states; exact cold API/CLI replay.",
+      "not_implemented_here": [
+        "Native typing and both-endpoint linkage qualification",
+        "PNA link protonation policy",
+        "Free-OH reconstruction",
+        "Richer model identities",
+        "Automatic preparation/adoption"
+      ],
+      "automatic_adoption": false,
+      "validation": "5902 passed, 276 subtests passed in 947.36s (0:15:47); 119 focused tests and twelve cold API/CLI contexts pass.",
+      "tested_implementation_commit": "363f200d4ba9fec3ac2eb90792bc443ef3aff907"
+    },
+    "reciprocal_attachment_links": {
+      "delivery": "C108",
+      "status": "IMPLEMENTED_FULL_REGRESSION_AND_COLD_REPLAY_PASS",
+      "policy": "cif-reciprocal-source-links-v1",
+      "schema_version": 1,
+      "api": "nasolve.cif_attachment_links.inspect_attachment_links",
+      "command": "nasolve cif-doctor link-plan MANIFEST [--json]",
+      "contract": "docs/cif-doctor.md#reciprocal-source-link-contracts-c108",
+      "validation_scope": "Six predeclared source pairs and two rejection variants; five sugar projections match, PNA operations remain unresolved; exact cold API/CLI replay.",
+      "not_implemented_here": [
+        "Native atom types, effective definitions and exact linkage qualification",
+        "PNA protonation/amide and free-OH state operations",
+        "Complete linked chemical descriptors",
+        "Automatic preparation/adoption"
+      ],
+      "automatic_adoption": false,
+      "validation": "5940 passed, 276 subtests passed in 915.04s (0:15:15); 176 focused tests and eight cold API/CLI cases pass.",
+      "tested_implementation_commit": "e2c86b8a1c71bd60f6d12d4bed424c4f2a256057"
+    },
+    "native_attachment_link_audit": {
+      "delivery": "C109",
+      "status": "IMPLEMENTED_NATIVE_CONTROLS_COLD_REPLAY_AND_FULL_REGRESSION_PASS",
+      "policy": "cif-source-native-link-audit-v1",
+      "schema_version": 1,
+      "api": "nasolve.cif_attachment_native.inspect_native_attachment_links",
+      "command": "nasolve cif-doctor link-native MANIFEST --native-receipt FILE [--json]",
+      "contract": "docs/cif-doctor.md#native-attachment-link-audit-c109",
+      "validation_scope": "Three fresh installed-library DNA/ATL controls; three adversarial controls; six exact cold API/CLI outcomes. DNA link matches with source-definition review; both ATL controls fail explicitly.",
+      "not_implemented_here": [
+        "Native alias reconciliation or protonation changes",
+        "Numerical ATL dictionary generation/qualification",
+        "Native energy-type or numerical-target authority",
+        "Automatic preparation/adoption"
+      ],
+      "automatic_adoption": false,
+      "validation": "5989 passed, 276 subtests passed in 931.90s (0:15:31); 183 focused tests and six cold API/CLI cases pass. Three native interpretations, no native retry.",
+      "tested_implementation_commit": "7907eca49db0803b4c694bc58ffb5aff8024d88a"
+    },
+    "full_model_narestraints_recipe": {
+      "evidence_record": "l_dna_full_model_recipe_2026_10_28",
+      "status": "LIVE_MR_POSTMR_NATIVE_MEMBERSHIP_AND_FULL_REGRESSION_PASS",
+      "input_card": "restraint_scope = all",
+      "ordinary_postmr": "PASS",
+      "chemical_state_qualification": "OPEN",
+      "periodic_pair_coverage": "OPEN",
+      "coordinate_refinement": "NOT_RUN",
+      "validation": "6012 passed, 276 subtests passed in 933.15s (0:15:33); 151 focused tests + 34 subtests; cold relocated checkout replay PASS.",
+      "tested_implementation_commit": "799ecc60a31f5b6264b40a4f6d6dc967a43da645",
+      "publication": "Published and remote-verified on origin/cedar."
+    },
+    "native_atom_name_mapping": {
+      "delivery": "C112",
+      "status": "NATIVE_BINDINGS_COLD_REPLAY_AND_FULL_REGRESSION_PASS",
+      "policy": "cif-native-observed-atom-name-mapping-v1",
+      "capture_api": "nasolve.cif_native_validation.inspect_native_bundle(..., inventory_detail=\"linked\", atom_name_mapping=True)",
+      "reader_api": "nasolve.cif_attachment_native.inspect_native_attachment_links",
+      "command": "nasolve cif-doctor link-native MANIFEST --native-receipt FILE [--json]",
+      "limitations": [
+        "Observed aliases grant no chemical authority or automatic adoption.",
+        "Unmodelled hydrogen names and protonation require separate explicit source-preserving policy.",
+        "Native formal-charge readback remains unavailable; partial charge is not substituted.",
+        "ATL numerical dictionary recovery and qualification remain open.",
+        "L-DNA phosphate chemical-state changes remain open; zero aliases do not qualify chemistry.",
+        "PDU energy/gradient and derivative qualification remains open.",
+        "Sticky-end stitching is parked; no Pine/main merge."
+      ],
+      "next_step": "Qualify explicit chemical-state and unmodelled-name handling across source-bound held-out components, then recover/qualify numerical candidates through existing immutable-attempt machinery.",
+      "contract": "docs/cif-doctor.md#observed-native-atom-name-mappings-c112",
+      "automatic_adoption": false,
+      "validation": "6051 passed, 276 subtests passed in 952.76s (0:15:52); 254 focused tests and five cold replay cases pass.",
+      "tested_implementation_commit": "251d7cb31a3a6787bb24d3adfae69c1e79749efd"
+    },
+    "bound_hydrogen_inventory": {
+      "delivery": "C113",
+      "status": "BOUND_HYDROGEN_INVENTORIES_COLD_REPLAY_AND_FULL_REGRESSION_PASS",
+      "policy": "cif-native-bound-hydrogen-inventory-v1",
+      "api": "nasolve.cif_native_hydrogens.compare_hydrogen_inventory",
+      "command": "nasolve cif-doctor link-native MANIFEST --native-receipt FILE [--json]",
+      "report_field": "mapped_definitions[SITE].hydrogen_inventory",
+      "compatibility": "Additive schema-1 reader fields. C112 capture/worker bytes, legacy default reports, source pins, run/checkpoint schemas and preparation unchanged. No migration.",
+      "limitations": [
+        "Equal counts do not establish individual H-name identity, formal charge, protonation, stereochemistry or numerical equivalence.",
+        "Observed name binding and single-parent H adjacency are required; no native aliases or chemical operations are inferred.",
+        "Literal/mapped definition outcomes and unavailable formal-charge readback remain independent.",
+        "ATL numerical recovery, L-DNA chemical-state qualification and PDU energy/gradient/derivative gates remain open.",
+        "Sticky-end stitching remains parked; no automatic adoption or Pine/main merge."
+      ],
+      "next_step": "Establish explicit source- and site-authorized chemical-state operations across held-out components; use this inventory to verify permitted deltas before bounded numerical recovery and qualification.",
+      "contract": "docs/cif-doctor.md#bound-hydrogen-inventories-c113",
+      "automatic_adoption": false,
+      "validation": "6077 passed, 276 subtests passed in 933.58s (0:15:33); 258 focused tests and five cold replay cases pass.",
+      "tested_implementation_commit": "8cf70b6f571c4c853eb4387cd0faf452d32fb756"
+    },
+    "neutral_pna_amide_operations": {
+      "status": "FOCUSED_TRANSFER_COLD_AND_FULL_REGRESSION_PASS",
+      "policy": "neutral-pna-amide-v1",
+      "contract": "docs/cif-doctor.md#explicit-neutral-pna-amide-operations-c114",
+      "report_policies": [
+        "cif-explicit-attachment-site-v2",
+        "cif-reciprocal-source-links-v2"
+      ],
+      "compatibility": "Opt-in schema-1 context extension; v1 contexts and reports unchanged. Older readers reject new fields. No run/checkpoint or preparation migration.",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#neutral_pna_amide_operations_2026_10_28",
+      "limitations": [
+        "No implicit deprotonation or charge conversion; charged reacting amines remain unresolved.",
+        "Native PNA numerical definitions, targets, polymer linkage and final stereochemistry need separate qualification.",
+        "ATL/L-DNA/PDU gates remain open; sticky-end stitching is parked; no automatic adoption or integration merge."
+      ],
+      "next_step": "Qualify source-preserving numerical candidates against these permitted deltas, then exact native definitions/links; retain separate charged-state authority.",
+      "automatic_adoption": false,
+      "validation": "6111 passed, 276 subtests passed in 965.99s (0:16:05); 264 focused tests and 22 cold API/CLI controls pass.",
+      "tested_implementation_commit": "65bf1a49877f9bf768e9b38e3a5b1892fbcdcf46"
+    },
+    "pna_candidate_diagnostics": {
+      "delivery": "C115",
+      "status": "FOCUSED_COLD_AND_FULL_REGRESSION_PASS_NATIVE_BOUNDARIES_RECORDED",
+      "policy": "cif-source-candidate-diagnostic-v1",
+      "api": "nasolve.cif_source_candidate.candidate_generation_diagnostic(report)",
+      "contract": "docs/cif-doctor.md#candidate-generation-diagnostics-and-pna-controls-c115",
+      "schema": "Optional diagnostic in source-native complete-candidate schema 1; mixed-recovery reader checks it when present and accepts legacy omission. Existing inspection, worker, run/checkpoint and chemistry schemas/policies unchanged; no migration.",
+      "isolated_40C": "TWO_NATIVE_CONTROLS_PASS_WITH_NOTES",
+      "40A_APN": "PURINE_REPRESENTATION_UNRESOLVED",
+      "linked_PNA": "NOT_QUALIFIED",
+      "next_step": "Qualify source-declared fused purine representation and test the 40A ZMatrix2Internal/OrderAnglesOnZMatrix extra-edge path with source graph invariance; generate final-state linked PNA numerics under C114 separately.",
+      "validation": "6133 passed, 276 subtests passed in 939.33s (0:15:39); 290 focused tests; five generation and two native cold replays.",
+      "tested_implementation_commit": "ce0485e1b59fed87bfa0188ed4385978092ac240"
+    },
+    "connected_atom_order": {
+      "status": "PUBLISHED_VALIDATED",
+      "api": "nasolve.cif_connected_atom_order.prepare_connected_atom_order(source, code, output)",
+      "policy": "cif-connected-heavy-atom-order-v1",
+      "evidence_key": "connected_atom_order_2026_10_28",
+      "scope": "Explicit source-table ordering only; default workers and chemistry unchanged.",
+      "next": "Qualify source-declared fused purine representation with exact atom/H/charge/stereo constraints; then final-environment linked PNA generation under C114 operations.",
+      "validation": "6154 passed, 276 subtests passed in 957.15s (0:15:57); 166 focused tests; three preparations, six generation outcomes and two native qualifications replay cold.",
+      "implementation_commit": "1171dc3d4e1eb80f3dbfc723cf317dcc883862fe"
+    },
+    "neutral_purine_representation": {
+      "status": "PUBLISHED_VALIDATED",
+      "policy": "cif-source-declared-neutral-purine-aromatic-v1",
+      "evidence_key": "neutral_purine_representation_2026_10_28",
+      "scope": "Explicit isolated assessment/native qualification of preserved candidates; ordinary generation unchanged.",
+      "next": "Thread the explicit policy through a separately versioned source-reader/generation route with exact stage invariants; then generate and qualify numerical restraints in the C114-authorized linked PNA chemical environment. Never prune isolated numerics into a linked dictionary.",
+      "validation": "6190 passed, 276 subtests passed in 929.50s (0:15:29); 216 focused tests; six complete native checks and six cold native replays.",
+      "implementation_commit": "dcda5ac2fa85b01da61945947eda8b83110b7c40"
+    },
+    "purine_source_generation": {
+      "status": "PUBLISHED_VALIDATED",
+      "policy": "cif-source-native-complete-candidate-v2",
+      "evidence_key": "purine_source_generation_2026_10_28",
+      "scope": "Explicit generation derives permission from the maintained C117 source classifier, verifies exact reader/class-conversion/finished inventories, and preserves native aromatic orders. Three fresh isolated candidates pass independent native qualification.",
+      "next": "Design an explicit adapter from the C119 whole linked graph to native construction with reversible site/atom mapping, exact H/charge/stereo checks and no isolated numerical reuse; generate and qualify linked amide restraints before ordinary integration.",
+      "validation": "6253 passed, 276 subtests passed in 966.55s (0:16:06); 480 focused tests; complete C118 native controls and C118/C119 cold replay.",
+      "implementation_commit": "8511d60da30d04a038051d6a89f405b9441ef68d"
+    },
+    "pna_source_network": {
+      "status": "PUBLISHED_VALIDATED",
+      "policy": "cif-explicit-pna-source-network-v1",
+      "evidence_key": "pna_source_network_2026_10_28",
+      "scope": "Prepare one connected, site-qualified PNA source graph from fresh C114 checks, freeze only declared authorities, and recompute the network during standalone replay. No geometry or numerical restraints are assigned.",
+      "next": "Design an explicit adapter from the C119 whole linked graph to native construction with reversible site/atom mapping, exact H/charge/stereo checks and no isolated numerical reuse; generate and qualify linked amide restraints before ordinary integration.",
+      "validation": "6253 passed, 276 subtests passed in 966.55s (0:16:06); 480 focused tests; complete C118 native controls and C118/C119 cold replay.",
+      "implementation_commit": "8511d60da30d04a038051d6a89f405b9441ef68d"
+    },
+    "fana_source_candidate": {
+      "status": "PUBLISHED_VALIDATED",
+      "policy": "cif-source-declared-fana-v1",
+      "evidence_key": "fana_source_candidate_2026_10_29",
+      "scope": "Explicit read-only FANA source/candidate API and CLI compose existing graph/NAR/numerical/chemistry checks with a bounded source-declared family rule and four-centre preservation gate.",
+      "next": "Qualify GFL/carbonyl-purine representation separately; build whole modified-sugar construction and linked FANA numerical qualification. Preserve C119 PNA native adapter priority for later; ATL/L-DNA/PDU remain open.",
+      "validation": "6288 passed, 276 subtests passed in 992.92s (0:16:32); 196 focused pass; seven native generation attempts, eight native interpretations and 391-file cold replay.",
+      "implementation_commit": "3e08078fc27b8e7bbf6f5005bd35040246cf9fa9"
+    },
+    "oxo_purine_representation": {
+      "status": "PUBLISHED_VALIDATED",
+      "policy": "cif-source-declared-neutral-6-oxo-purine-aromatic-v1",
+      "evidence_key": "oxo_purine_representation_2026_10_29",
+      "scope": "A separately selected graph/valence whitelist permits only the complete declared five-ring conversion, preserves carbonyl/spectator chemistry and threads that explicit policy through generation, assessment, FANA CLI and read-only replay.",
+      "next": "Build whole modified-sugar/L-FANA model controls and linked PNA native construction; separately address DG standard-name hydrogen mapping. Independent CIP, native charge readback and ATL/L-DNA/PDU integration remain open.",
+      "validation": "6330 passed, 276 subtests passed in 990.98s (0:16:30); 308 focused pass; five generation attempts, six qualified native interpretations, two retained failures and 357-file cold replay.",
+      "implementation_commit": "e05b8e8c14f09b97a512e90698c2536bc9a70298"
+    },
+    "fana_enantiomer_source": {
+      "status": "PUBLISHED_VALIDATED",
+      "policy": "cif-explicit-fana-enantiomer-source-v1",
+      "evidence_key": "fana_enantiomer_source_2026_10_29",
+      "scope": "A read-only explicit-intent API checks complete graph/H/charges, inverted four-centre declarations and every supplied standard coordinate family before independent target-native qualification.",
+      "next": "Use an explicitly checked target source for whole-sugar model replacements with unaffected-site controls and explicit NAR binding; qualify final linked chemistry. Other L-FANA bases, independent CIP, PNA/DG/ATL/L-DNA/PDU remain separate.",
+      "validation": "6365 passed, 276 subtests passed in 927.84s (0:15:27); 139 focused pass; one generation, two native qualifications and 222-file cold replay.",
+      "implementation_commit": "c2ee674493a1912573ca4105a553588f80430c18"
+    },
+    "fana_component_binding": {
+      "status": "PUBLISHED_VALIDATED",
+      "policy_id": "cif-local-fana-enantiomer-component-v1",
+      "implementation_commit": "2a4efec192e8b672280d1843dca7e443749cc5f8",
+      "evidence_key": "fana_component_binding_2026_10_29",
+      "behavior": "Explicit immutable enantiomer source and NAR record package with fresh consumer namespace checks; no installed registration, global reservation or model insertion.",
+      "validation": "6400 passed, 276 subtests passed in 964.74s (0:16:04); 175 focused; actual NAR compiler, one generation/two qualifications and 224-file cold replay pass."
+    },
+    "fana_whole_residue_placement": {
+      "status": "PUBLISHED_VALIDATED",
+      "policy_id": "cif-rigid-whole-fana-linked-control-v1",
+      "evidence_key": "fana_whole_residue_placement_2026_10_29",
+      "behavior": "Separate immutable proper-rigid placement and offline rederivation; source-named explicit internal phosphate projection, all four sugar hands and unchanged flanks. Junctions measured, not accepted.",
+      "next": "Source-named junction-angle coverage plus bounded geometry adjustment; bond presence alone is insufficient.",
+      "validation": "6440 passed, 276 subtests passed in 999.68s (0:16:39); 172 focused; four native interpretations and 280-file cold replay, including missing-angle probe.",
+      "implementation_commit": "89e7a084e800dd18320e10b67ba51400b74a51cc"
+    },
+    "fana_junction_angles": {
+      "status": "PUBLISHED_VALIDATED",
+      "policy_id": "cif-source-bound-fana-junction-angles-v1",
+      "evidence_key": "fana_junction_angles_2026_10_29",
+      "behavior": "Compile only missing source-named incoming angles from exact frozen native template and already bonded C124 control; replay and exact native delta qualification.",
+      "validation": "6482 passed, 276 subtests passed in 1015.43s (0:16:55); 198 focused; three fresh native interpretations and 283-file cold replay pass.",
+      "next": "Bounded geometry adjustment and qualified linked chemistry; ordinary mutation remains separate.",
+      "implementation_commit": "c865ed65c4104d10b95e81fc81ffac74c097cb94"
+    },
+    "fana_bridge_seed": {
+      "status": "PUBLISHED_VALIDATED_WITH_C127",
+      "policy_ids": [
+        "cif-fana-torsion-bridge-seed-v1",
+        "cif-source-bound-fana-seed-junction-angles-v1"
+      ],
+      "evidence_key": "fana_bridge_seed_2026_10_29",
+      "behavior": "Bounded torsion-only phosphate-arm fit with a virtual leaving-oxygen direction; both native links and complete incoming/outgoing phosphate coverage, preserving source geometry and exact flanks.",
+      "validation": "221 C126 focused; combined C126/C127 full suite: 6528 passed, 276 subtests passed in 1028.87s (0:17:08); original native/cold controls preserved.",
+      "next": "Reuse the existing C109 exact source-link audit for FANA construction, distinguish NAR hydrogen-bond restraints, and enforce declared inter-residue topology before score comparison; then address steric placement and complete junction angles.",
+      "implementation_commit": "45419432508aa4bc9b7184ce9a408936ca2119b5"
+    },
+    "native_nonbonded_attribution": {
+      "status": "PUBLISHED_VALIDATED",
+      "policy_id": "cif-native-nonbonded-attribution-v1",
+      "evidence_key": "native_nonbonded_attribution_2026_10_29",
+      "behavior": "Explicit fixed-coordinate capture with actual energy-object membership, pair/container/manager proof and read-only per-residue attribution.",
+      "validation": "6528 passed, 276 subtests passed in 1028.87s (0:17:08); 194 focused; two actual Phenix interpretations; 375-file cold replay.",
+      "next": "Reuse the existing C109 exact source-link audit for FANA construction, distinguish NAR hydrogen-bond restraints, and enforce declared inter-residue topology before score comparison; then address steric placement and complete junction angles.",
+      "implementation_commit": "d4ed67dec2ea71cbb6116081f496a90ab41fa407"
+    },
+    "fana_topology_gate": {
+      "status": "PUBLISHED_VALIDATED",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "fana_topology_gate_2026_10_29",
+      "policies": [
+        "cif-declared-native-topology-v1",
+        "cif-source-bound-fana-topology-v1"
+      ],
+      "behavior": "Explicit source-bound topology report/strict prerequisite reuse existing capture and source binders; separately account for exact frozen NARestraints pairing bonds.",
+      "validation": "6571 passed, 276 subtests passed in 990.57s (0:16:30); 190 focused; two preserved native captures; 247-file cold replay.",
+      "compatibility": "Additive Python APIs/report policies; legacy packages and default worker bytes unchanged; no CLI/run/checkpoint migration.",
+      "limitations": [
+        "Topology only, not bond-order/target or geometry qualification.",
+        "Frozen NAR declaration agreement, not fresh recipe-generation proof.",
+        "C110 flank state and OP3 differences remain; source chemistry unchanged.",
+        "Production orchestration, geometry repair and adoption remain separate."
+      ],
+      "next": "Bounded geometry repair under exact declared topology and source/stereo preservation; native re-interpretation must pass the gate again. Any native optimizer requires fresh derivative qualification for this manager; old PDU/DF gradient proofs cannot transfer.",
+      "implementation_commit": "bd986d8bac024f359f7771340f0c9b6c81f52c02"
+    },
+    "fana_native_derivatives": {
+      "status": "PUBLISHED_VALIDATED",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "fana_native_derivatives_2026_10_29",
+      "policies": [
+        "cif-native-fixed-gradient-inventory-v1"
+      ],
+      "behavior": "Opt-in fixed native capture records bounded raw derivatives and read-only replay recomputes them under exact manager/request/source binding.",
+      "validation": "6630 passed, 276 subtests passed in 1026.93s (0:17:06); 274 focused; actual Phenix capture; 266-file cold replay.",
+      "compatibility": "Additive optional Python keyword/object and reviewer; legacy/default worker bytes unchanged. No CLI/run/checkpoint migration, installed library edit or optimization.",
+      "limitations": [
+        "Sampled local derivatives only, not every component, convergence, geometry acceptance or source chemistry.",
+        "No parallelity terms, special positions or nonidentity symmetry.",
+        "Manager and both declared backbone links unchanged; A:2/A:3 crowding and outgoing angle remain.",
+        "C110 flank H/charge/order/OP3 differences and central chemical/numerical qualification remain separate."
+      ],
+      "next": "Bounded central-residue geometry candidate with fixed flanks and source/stereo preservation; re-interpret and recheck exact topology and mechanics before any acceptance.",
+      "implementation_commit": "7f83ed2f14e171ede16e525142f85ce596d6b6b8"
+    },
+    "fana_selected_geometry": {
+      "status": "PUBLISHED_VALIDATED",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "fana_selected_geometry_2026_10_30",
+      "policies": [
+        "cif-selected-native-geometry-v1",
+        "cif-source-bound-fana-selected-geometry-v1"
+      ],
+      "behavior": "A bounded separate selected-coordinate trial and read-only source/native endpoint review preserve fixed flanks, full environment, topology and source sugar hands.",
+      "validation": "6714 passed, 276 subtests passed in 973.15s (0:16:13); 279 combined focused; completed C130 Phenix and C131 saved replay; 293/294-file cold checks.",
+      "compatibility": "Additive optional Python APIs and schema-1 diagnostic artifacts. Existing workers/kernels and exact seed binder unchanged. No CLI, run/checkpoint migration, installed-library modification or ordinary PostMR activation.",
+      "limitations": [
+        "NOT_CONVERGED_LIMIT at 200 iterations/210 optimizer calls; 214 recorded full-objective evaluations. No geometry acceptance or adoption.",
+        "No nonzero parallelity terms, special positions or nonidentity symmetry in this first ordinary path.",
+        "Source-relative four-centre preservation is not independent absolute CIP or chemical/numerical target qualification.",
+        "Residual clashes/outgoing-angle deviations and frozen-flank strain remain; C110 H/charge/order/OP3 differences stay open.",
+        "No implicit phosphate removal, OP3 addition, source repair, diffraction refinement or workbook change."
+      ],
+      "next": "Explain residual strain and frozen-flank contributions before a bounded convergence/acceptance trial; retain separate source chemistry and topology authority.",
+      "implementation_commit": "dd05bf53c561be1a82d9ec3c5ea57fb6d2b034fa"
+    },
+    "selected_environment": {
+      "status": "PUBLISHED_VALIDATED",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "selected_environment_2026_10_30",
+      "policy": "cif-selected-environment-review-v1",
+      "behavior": "Read-only scope partition of scalar geometry and verified native repulsion, plus selected/held gradient norms, with original gates and stopping retained.",
+      "validation": "6714 passed, 276 subtests passed in 973.15s (0:16:13); 279 combined focused; completed C130 Phenix and C131 saved replay; 293/294-file cold checks.",
+      "compatibility": "New optional Python reader and schema-1 report; no native worker, numerical kernel, coordinate, CLI, checkpoint or production-default changes.",
+      "limitations": [
+        "Selection dependency is not proof that a feasible or chemically valid repair exists.",
+        "Covalent scalar deviations are descriptive; unknown and deferred categories remain visible.",
+        "Only captured native nonbonded residuals are partitioned; no complete objective floor is inferred.",
+        "Full gradients on held atoms are not the selected optimizer convergence gradient.",
+        "Receipt authenticity, fixed mechanics, topology and source chemistry require separate binding.",
+        "Metrics are from the fresh serialized native endpoint, not full-precision optimizer stopping.",
+        "Original limit stopping, source-state/target qualification, boundary angle and pair clashes remain open."
+      ],
+      "next": "Investigate source-authorized flank target/protonation repair and a bounded convergence/serialization trial without using score improvement as chemical authority.",
+      "implementation_commit": "dd05bf53c561be1a82d9ec3c5ea57fb6d2b034fa"
+    },
+    "fixed_coordinate_dictionary_controls": {
+      "status": "PUBLISHED_VALIDATED",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "fixed_coordinate_dictionary_controls_2026_10_30",
+      "policy": "cif-native-fixed-coordinate-target-comparison-v1",
+      "behavior": "Read-only exact-context comparison separates source/native target and weight changes from unchanged geometry, preserving chemical-state limits.",
+      "validation": "6744 passed, 276 subtests passed in 997.42s (0:16:37); 212 focused; complete native control; exact real and 327-file cold replay.",
+      "compatibility": "New optional Python reader and schema-1 report. No native worker, numerical kernel, model coordinate, CLI, run/checkpoint migration or production-default change.",
+      "limitations": [
+        "Source graph, H/D, formal charge and linked-state permission require independent qualification.",
+        "Missing heavy atoms, including OP3, are observations, never instructions to add atoms.",
+        "Changed targets/weights can change deviations without changing geometry.",
+        "All captured proxy parameter changes are retained; deferred categories have no scalar/residual comparison.",
+        "Target-only and weight-only nominal controls are descriptive, not native energies or chemical proposals.",
+        "Nonbonded mechanics are not compared by this report.",
+        "Ordered endpoint matching does not infer equivalent permutations or chemical aliases.",
+        "Old and new full native targets are different objectives, never optimizer improvement.",
+        "Both links match but linked phosphate/O3-prime state remains unqualified.",
+        "Original C130 NOT_CONVERGED_LIMIT remains unchanged."
+      ],
+      "next": "Explicitly bridge representation-qualified source candidates into linked/terminal preparation, qualify exact flank projections, then re-audit derivatives before any fresh geometry trial.",
+      "implementation_commit": "533e0d81aad919c8b2ca373858a816dd86c2ed0a"
+    },
+    "current_support_contract": "docs/cif-doctor.md#current-capability-boundary",
+    "source_bound_site_preparation": {
+      "status": "PUBLISHED_VALIDATED",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "source_bound_site_preparation_2026_10_30",
+      "policies": [
+        "cif-source-bound-preparation-qualification-v1",
+        "cif-source-preserving-linked-sites-v3",
+        "cif-native-five-prime-hydroxyl-v2"
+      ],
+      "behavior": "Explicit whole-source qualification binds complete native checks, graph/H/charge and every declared centre; DNA/L-DNA site projections preserve each retained centre or refuse unsupported substitutions. The conventional native adapter also requires source element/bond/state proof and shares the existing neutral-hydroxyl predicate with generic source operations.",
+      "validation": "6804 passed, 276 subtests passed in 1026.17s (0:17:06); 404 focused; complete native and derivative controls; exact 289-file cold replay.",
+      "compatibility": "Opt-in Python paths only. Existing default/v2 linked and legacy terminal v1 behavior preserved. No CLI, run/checkpoint, installed-library or ordinary PostMR migration.",
+      "limitations": [
+        "Source-relative signed geometry is not an absolute CIP assignment.",
+        "Synthetic D/L deoxy/arabino-fluoro/ribo-fluoro transfers do not establish a live L-FDNA route.",
+        "Native preparation still requires conventional backbone names and explicit DNA/L-DNA type; generic source-port integration remains open.",
+        "Native formal-charge readback and experimental phosphate protonation remain unresolved; source HOP2 is retained.",
+        "C130 original iteration-limit stopping and residual fixed-flank geometry remain; no optimization/adoption.",
+        "Fresh derivative evidence samples six atoms with identity-only symmetry and no parallelity, not exhaustive consumer qualification.",
+        "A provisional integration checkpoint is separate from all-catalogue generalizer completion.",
+        "New native bridge accepts neutral reacting hydroxyl ports; charged or substituted reacting ports require separate operation authority. Retained OP2 charge/H is not normalized."
+      ],
+      "next": "Source-state policy and generic native attachment adapters, ordinary recovery/adoption integration, independent PDU numerical audit, and bounded cedar-to-pine integration review.",
+      "implementation_commit": "283cece10a8dcf59f990cd99b73eb7210d547ace"
+    },
+    "explicit_dictionary_representation_policy": {
+      "status": "PUBLISHED_VALIDATED",
+      "after": "Supported explicit recipe policy binds v3 source/native evidence throughout immutable storage, source requalification and relocation; automatic PostMR excludes opt-in entries.",
+      "schemas": {
+        "store": "schema 1 / cif-qualified-dictionary-store-v1 unchanged",
+        "recipe": "optional supported bond_representation_policy string; omitted for legacy",
+        "qualification": "existing isolated v3 for explicit policy; default v2 retained"
+      },
+      "compatibility": "Legacy serialized entry replay keeps exact identity; no migration. Old readers do not understand explicit v3 entries. Unknown future summaries excluded.",
+      "limitations": [
+        "Isolated scope only; no automatic PostMR promotion or candidate/model adoption.",
+        "No experimental phosphate protonation inference, OP3 addition or change to fixed stereo authority.",
+        "Recorded native consumer evidence is inherited, not a fresh installation check.",
+        "Synthetic complete inventories exercise orchestration; C133 real capture replay adds no new native execution.",
+        "No CLI/checkpoint/NARestraints/workbook change."
+      ],
+      "next": "Bind stored policy and numerical bytes to exact current-site preparation/effective native evidence before automatic consumer use; preserve fallback until that contract passes.",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "explicit_dictionary_representation_policy_2026_10_30",
+      "validation": "6838 passed, 276 subtests passed in 1045.13s (0:17:25)",
+      "implementation_commit": "d4c0e57e5c66b18279c5ab4e733fb2d212d801b0",
+      "published_branch": "cedar",
+      "remote_verified": true
+    },
+    "stored_dictionary_current_sites": {
+      "status": "PUBLISHED_VALIDATED",
+      "after": "A fresh opt-in site bundle freezes the stored policy, model, declared contexts/resources and ordered inputs; readback rederives files and binds complete native captures. Existing diagnostic continuation is exposed separately from REVIEW/PASS and adoption.",
+      "schemas": {
+        "new_site_receipt": "schema 1 / cif-stored-dictionary-sites-v1 / dictionary_site_directory anchor",
+        "unchanged": "dictionary store schema/policy, default v2 and explicit v3 isolated evidence, CLI and run/checkpoint formats"
+      },
+      "compatibility": "Additive Python APIs; no migration or rewrite of earlier entries/runs. Legacy v2 and opt-in v3 snapshots both work with complete consumer identity. Existing ordinary PostMR fallback remains.",
+      "limitations": [
+        "One stored component per explicit preparation; all its model sites must be declared. Multi-component composition and ordinary PostMR selection/adoption remain separate integration work.",
+        "The reused native qualifier still rejects every coordinate OP3/O3P, including explicitly retained terminal phosphate, and requires non-empty custom-restraint evidence. Such preparations can replay but cannot obtain native PASS or diagnostic continuation through this adapter yet. These inherited conservative gates need distinct context-aware installed controls; do not remove terminal phosphate to appease a gate or invent pair/stack restraints to fill an empty request.",
+        "Native adapter requires conventional phosphodiester names and explicit DNA/L-DNA metadata; generic PNA/ATL ports, symmetry links and alternative chemical operations remain open.",
+        "Formal-charge readback remains unsupported at two sites. Existing diagnostic-only continuation can proceed with notes when every other check passes; this is not PASS or adoption.",
+        "Explicit source phosphate protonation/H and terminal-resource targets are preserved, not inferred from experimental pH or energy. Energy-library data identity is not exhausted by API fingerprints.",
+        "Synthetic D/L deoxy/arabino-fluoro/ribo-fluoro transfer is not live L-FDNA construction/refinement qualification. All source-relative centres are checked; no absolute CIP claim.",
+        "No CLI activation, checkpoint, installed Phenix/Coot/library change, NARestraints workbook change, model optimization, refinement, scientific approval or merge.",
+        "Full regression intentionally deferred by Simon for this pass. Last full-tested implementation remains C135 d4c0e57e5c66b18279c5ab4e733fb2d212d801b0: 6838 passed, 276 subtests."
+      ],
+      "next": "Qualify the inherited terminal-phosphate and intentionally empty custom-restraint cases with focused installed controls before claiming general end-state support. Then compose multiple frozen component/site preparations under one exact ordered model/CIF/PHIL/native contract, retaining per-component policy and existing collision checks. Independent per-component verdicts cannot qualify a combined capture. Keep ordinary fallback, source-state/generic-port/PDU and adoption gates explicit.",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "stored_dictionary_current_sites_2026_10_30",
+      "validation": "1014 passed, 36 subtests passed in 63.30s (0:01:03); 131 additional shared-helper tests; fresh native, 14 negative controls and 59-file guarded cold replay.",
+      "implementation_commit": "646d3834abfa53e8e1ec8140a7ec634f7e353724",
+      "published_branch": "cedar",
+      "remote_verified": true
+    },
+    "explicit_native_site_context": {
+      "status": "PUBLISHED_VALIDATED",
+      "after": "Frozen opt-in context qualifies declared terminal phosphate and explicit required/absent custom restraints with exact one-to-one native realization; existing source/identity/geometry gates stay mandatory.",
+      "schemas": {
+        "new_site_receipt": "schema 1 / cif-stored-dictionary-sites-v2 when native_context supplied; same dictionary_site_directory anchor",
+        "native_context": "cif-explicit-site-native-context-v1, custom_restraints required or absent",
+        "native_definition_report": "cif-native-terminal-bundle-checks-v2 when context supplied",
+        "unchanged": "Legacy v1/default reports, dictionary store, CLI, run/checkpoint and maintained native capture schemas"
+      },
+      "compatibility": "Optional Python keywords; no migration or in-place rewrite. New context requires current reader. Exact C136 v1 report replay is unchanged; unknown/missing/downgraded context refused.",
+      "limitations": [
+        "Explicit Python opt-in only; ordinary PostMR automatic selection/adoption and global multiple-component orchestration remain separate gates. User-facing CIF inspection is not the product goal.",
+        "Native formal-charge readback remains unavailable. Overall REVIEW is preserved; only the existing separate diagnostic continuation with notes is permitted when every other check passes.",
+        "Identical-chain copying can leave native monomer capture without complete literal identities; that preserved attempt is blocked, not qualified by the successful same-chain fixture.",
+        "NARestraints and frozen recipe/policy own intended pairing and stacking. Faithful native consumption does not establish correct pair choice, target chemistry, geometric convergence or refinement success.",
+        "Maintained capture does not exhaustively record nondefault bond slack/limit/top-out mechanics. Exact captured targets/weights are not full potential or derivative qualification.",
+        "Conventional phosphodiester atom names and explicit DNA/L-DNA source metadata remain required. Generic PNA/ATL ports, symmetry stitching and live L-FDNA construction are not established by these controls.",
+        "Source phosphate H/charge and all source-relative stereocentres remain authoritative; no experimental protonation inference, absolute CIP claim, OP3 addition or source renormalization.",
+        "No ReadySet replacement or execution, Coot execution, geometry optimization, diffraction refinement, workbook modification, new branch or merge."
+      ],
+      "next": "Qualify an opt-in native-capture compatibility fix for identical-chain copying using actual native atom/residue identities, preserving legacy captures; do not guess missing labels or relax identity checks. Then compose multiple stored components under one exact ordered model/CIF/PHIL contract and route qualified cases into existing preparation/ReadySet integration. Keep source-state, generic-port, PDU numerics, scientific acceptance and automatic adoption separate.",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "explicit_native_site_context_2026_10_30",
+      "validation": "6972 passed, 276 subtests passed in 1054.37s (0:17:34); focused 1063 passed, 36 subtests passed in 69.57s (0:01:09); three intended native controls, ten negatives and 142-file guarded cold replay.",
+      "implementation_commit": "8858e1fc4115bcfe22fd3be7f6d746e1ceb471d2",
+      "full_tested_commit": "8858e1fc4115bcfe22fd3be7f6d746e1ceb471d2",
+      "published_branch": "cedar",
+      "remote_verified": true
+    },
+    "full_native_monomer_inventory": {
+      "status": "PUBLISHED_VALIDATED",
+      "after": "Explicit full-model interpretation captures every actual residue mapping, bound to the frozen parameter, maintained worker and independently recomputed identity proof; source and chemistry checks remain unchanged.",
+      "schemas": {
+        "native_context": "cif-explicit-site-native-context-v2 with monomer_inventory=full_model and explicit custom_restraints",
+        "site_receipt": "schema 1 / cif-stored-dictionary-sites-v3; dictionary_site_directory anchor; generated prepared/native_interpretation.phil is final input",
+        "native_capture": "optional full_monomer_inventory=True request, receipt policy and schema-1 cif-native-full-monomer-inventory-v1 proof; maintained worker augmentation only",
+        "unchanged": "Base worker bytes, legacy site/context policies and saved reports; store, CLI, run/checkpoint and production refinement schemas"
+      },
+      "compatibility": "Opt-in only; no migration. New policies require the updated reader. Eight current/legacy reports replay exactly, including the original incomplete copied-chain blocked attempt.",
+      "limitations": [
+        "Explicit internal Python opt-in only. General multiple-component orchestration, ordinary recovery/adoption/checkpoints and solution-PDF integration remain separate.",
+        "Full-model interpretation may cost more on large repeated assemblies. No installed Phenix code or production NCS refinement setting is changed; unchanged proxy evidence is scoped to these four controls.",
+        "Formal-charge readback remains unavailable; overall REVIEW is retained with diagnostic-only continuation when all other checks pass. Experimental protonation and absolute CIP are not inferred.",
+        "All source-projection, phosphate/end-state, native type/energy, custom-restraint and model identity gates remain mandatory. Complete monomer identities alone do not qualify chemistry.",
+        "Same-chain/two-chain terminal soft edits are synthetic consumption controls, not a newly qualified NARestraints pairing recipe or demonstrated geometry improvement.",
+        "Legacy blocked captures remain blocked. Full-model evidence requires a fresh immutable capture; no copied master identities, migration or in-place repair.",
+        "No ReadySet replacement/execution, Coot execution, optimization, diffraction refinement, generic PNA/ATL construction or live L-FDNA proof. Existing nondefault restraint-potential and PDU numerical limits remain."
+      ],
+      "next": "Compose multiple stored components under one exact ordered model/CIF/PHIL contract: preserve per-component source/consumer ownership, refuse duplicate codes or modification-ID conflicts, and verify all affected and unaffected sites in one full native capture. Then integrate the qualified route with existing preparation/ReadySet and usable fallback, rechecking the final effective bundle under its actual declared consumer policy; keep scientific state choice, generic ports and adoption separate.",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "full_native_monomer_inventory_2026_10_30",
+      "validation": "7012 passed, 276 subtests passed in 1063.37s (0:17:43); focused 1103 passed, 36 subtests passed in 71.30s (0:01:11); four native pairs, explicit refusal and 392-file cold replay.",
+      "implementation_commit": "87894cbf6d079af966ee30be9bbcb7a02c67db86",
+      "full_tested_commit": "87894cbf6d079af966ee30be9bbcb7a02c67db86",
+      "published_branch": "cedar",
+      "remote_verified": true
+    },
+    "qualified_component_bundle": {
+      "status": "PUBLISHED_VALIDATED",
+      "after": "Compose explicit qualified entries under one immutable model/consumer/context, retain source-owned phosphate names through qualified internal-site operations, and independently recheck the actual ReadySet endpoint; preserve a checked diagnostic start when optional endpoint evidence fails.",
+      "schemas": {
+        "bundle": "schema 1 / cif-stored-dictionary-bundle-v1; dictionary_bundle_directory anchor; unique component/site/modifier ownership; sorted components and ordered common/native PHILs",
+        "site": "opt-in schema 1 / cif-stored-dictionary-sites-v4; explicit cif-source-phosphate-aliases-v1 internal-site policy",
+        "roundtrip": "schema 1 / cif-stored-bundle-readyset-roundtrip-v1; final effective native binding with diagnostic-only fallback",
+        "unchanged": "Legacy site policies/worker bytes, ordinary ReadySet, store/CLI/run/checkpoint/production refinement schemas"
+      },
+      "compatibility": "Opt-in only; new contracts require the updated reader. No in-place migration or renaming. Five historical site cases replay byte-exact results, including the old blocked copied-chain attempt.",
+      "limitations": [
+        "Internal opt-in diagnostic APIs only; no ordinary PostMR/CLI/checkpoint/default change or automatic adoption.",
+        "Formal-charge readback is unavailable at all three sites. Source H/charge/protonation is preserved, not experimentally chosen; continuation is diagnostic only.",
+        "The source-name policy currently covers internal incoming phosphate sites only. Aliased terminal-phosphate/free-five-prime-OH operations, generic PNA/ATL native ports and unsupported names refuse.",
+        "The first ReadySet output changes atom/proxy ordering while preserving named heavy coordinates and effective definitions. Strict comparison retains the verified fallback. Stable-order success does not prove arbitrary order equivalence.",
+        "Fixed-geometry numerical equality is a measured diagnostic, not a full potential/derivative proof, convergence or scientific acceptance. No new tolerance or proxy canonicalization is introduced.",
+        "The mixed control has two explicit source-named junction angle edits; it is not new complete base-pair/stack, arbitrary-ligand, L-FDNA, diffraction or geometry-optimization evidence.",
+        "NARestraints remains the pairing/stacking authority and ReadySet the ordinary preparation consumer. Existing protected terminal phosphates, immutable attempts, copied-chain refusals and chemical/source gates remain.",
+        "Full-model interpretation/repeated readback may cost more for large bundles; two to sixteen selected components are supported by the contract, with installed scientific evidence scoped to this two-component three-site control."
+      ],
+      "next": "Reconcile ReadySet atom ordering under an explicit identity/native contract without relaxing signed chirality, torsion, symmetry, origin or numerical checks. Preserve the verified starting diagnostic until that proof passes. Then connect this opt-in bundle route to ordinary continuation/adoption with representative held-out cases; generic PNA/ATL ports, PDU changed-objective numerics and catalogue-wide coverage remain separate.",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "qualified_component_bundle_2026_10_31",
+      "validation": "7062 passed, 276 subtests passed in 1107.68s (0:18:27); focused 1153 passed, 36 subtests passed in 111.10s (0:01:51); two final native/ReadySet controls; seven cold replays plus ten negatives.",
+      "implementation_commit": "61d878edda9c8a7a0e0f3c3700ef1fd2f7dd540c",
+      "full_tested_commit": "61d878edda9c8a7a0e0f3c3700ef1fd2f7dd540c",
+      "published_branch": "cedar",
+      "remote_verified": true
+    },
+    "readyset_atom_serialization": {
+      "status": "PUBLISHED_VALIDATED",
+      "after": "An explicit fresh lossless heavy-PDB serialization restores checked ordering/serials/padding only after exact scientific-field and boundary comparison. Fresh native checks use actual effective ReadySet dictionaries; missing or damaged improvement evidence retains verified fallback.",
+      "schemas": {
+        "serialization": "schema 1 / cif-readyset-heavy-pdb-order-v1; readyset_atom_order_directory anchor; frozen reference/raw/output plus exact reconstruction",
+        "roundtrip": "schema 1 / cif-stored-bundle-readyset-roundtrip-v2 only with explicit atom_order_directory; binds serialization receipt and actual final model/dictionary/native capture",
+        "unchanged": "Default bundle roundtrip v1, site/store/native capture policies, CLI, run/checkpoint and ordinary refinement"
+      },
+      "compatibility": "Optional internal Python API only. Omitted keyword preserves exact legacy reports and decisions. No migration or historical rewriting; the strict proxy comparator is unchanged.",
+      "limitations": [
+        "Single-model ASCII heavy PDB only; ANISOU, CONECT, LINK, MODEL/ENDMDL and unknown records refuse. Scientific columns compare exactly; no coordinate/occupancy/B/element/charge or residue-boundary change is repaired.",
+        "No general signed-proxy permutation equivalence is claimed. Both controls retain exact existing endpoint checks, signed targets, origins/symmetry and captured energies/gradients; full nondefault restraint-potential coverage remains separate.",
+        "New Phenix native interpretations use frozen actual C139 ReadySet executions. No new ReadySet, Coot, generation, coordinate optimization or diffraction refinement runs in C140.",
+        "Formal-charge readback remains unavailable at three sites. Source phosphate chemistry/protonation and all stereocentres remain authoritative; no OP3 addition or experimental-state inference.",
+        "Ordinary PostMR adoption/checkpoint integration, general cache-miss recovery, held-out family release, PNA/ATL adapters and PDU changed-objective numerics remain open."
+      ],
+      "next": "Connect the qualified component/ReadySet endpoint and verified fallback to ordinary continuation/adoption with held-out controls and exact selected-artifact provenance. Keep chemistry/state authority and unavailable evidence explicit; broader PDB support is separately qualified when concrete cases require it.",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "readyset_atom_serialization_2026_10_31",
+      "validation": "7093 passed, 276 subtests passed in 1096.04s (0:18:16); focused 1184 passed, 36 subtests passed in 124.92s (0:02:04); two actual native interpretations, four exact current/legacy cold replays and eleven negative controls.",
+      "implementation_commit": "b8635ce443183e7cbac31dc6b79a43cb7edc27b7",
+      "full_tested_commit": "b8635ce443183e7cbac31dc6b79a43cb7edc27b7",
+      "published_branch": "cedar",
+      "remote_verified": true
+    },
+    "component_runtime_handoff": {
+      "status": "PUBLISHED_VALIDATED",
+      "after": "An immutable export replays maintained source/native evidence before public assessment exposes the selected model and exact ordered restraints. Failed optional improvements keep the verified start with its own resources; damaged saved exports refuse. Public summaries retain diagnostic scope and unavailable evidence.",
+      "schemas": {
+        "runtime": "schema 1 / cif-qualified-component-runtime-bundle-v1; existing runtime_bundle anchor, runtime_bundle.json and exact selected model/ordered CIF/PHIL resources plus bounded frozen evidence",
+        "selection": "Source replay via existing component/native/ReadySet inspector; all three selected enums retained, diagnostic-only scope and unavailable evidence explicit",
+        "unchanged": "Legacy single/mixed runtime bundles, scientific/native capture policies, CLI syntax, ordinary PostMR defaults and run/checkpoint schemas"
+      },
+      "compatibility": "Opt-in Python producer consumed by the existing public assess --bundle command. Legacy single/mixed readers pass unchanged. No migration or historical rewrite; no automatic production/checkpoint adoption.",
+      "limitations": [
+        "Read-only public integration only. Ordinary PostMR orchestration and selected-artifact/checkpoint provenance still need representative and held-out route validation before integration.",
+        "Diagnostic-only qualification: formal-charge readback remains unavailable at three sites; source chemical state stays authoritative. Public assessment retains REVIEW/UNSUPPORTED findings and exit code 2 rather than silently declaring full acceptance.",
+        "No new ReadySet, Coot, coordinate optimization, diffraction refinement, chemical generation or library modification. Three complete fresh native interpretations use already frozen C139/C140 source evidence.",
+        "Frozen source snapshots are bounded to 1024 files, 32 MiB per file and 128 MiB total. Existing single-model heavy-PDB atom-order restrictions remain; broader formats need independent qualification.",
+        "General cache-miss recovery, PNA/ATL numerical/native adapters, broader linked L-FANA/L-FDNA coverage, PDU changed-objective numerics and catalogue-wide release remain open."
+      ],
+      "next": "Connect the public selected-bundle seam to ordinary PostMR orchestration with exact selected-artifact provenance and usable fallback; exercise representative and held-out ordinary routes, failures/interruption and reporting before a bounded Cedar-to-pine integration review. Keep production adoption gated on appropriate evidence.",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "component_runtime_handoff_2026_10_31",
+      "validation": "7119 passed, 276 subtests passed in 1105.20s (0:18:25); focused 1281 passed, 36 subtests passed in 108.16s (0:01:48); three actual native interpretations, four cold public CLI cases and seven rehashed corruption controls.",
+      "implementation_commit": "a9ec988d562155f44399503c58e2579d3459785f",
+      "full_tested_commit": "a9ec988d562155f44399503c58e2579d3459785f",
+      "published_branch": "cedar",
+      "remote_verified": true
+    },
+    "linked_torsion_energy_and_atl": {
+      "status": "PUBLISHED_VALIDATED",
+      "after": "A reusable fixed-point numerical reader binds exact removed proxy identities/coordinates and repeated single/container evaluations to the full energy/gradient delta. Fresh PDU captures and sampled derivatives pass with repaired DF and all unrelated restraints preserved. An independent ATL candidate preserves its bridge, four sugar hands, hydrogen/charge state and passes isolated native usability at source/generated coordinates.",
+      "schemas": {
+        "new": "schema 1 / cif-linked-linear-torsion-energy-v1, a pure numerical report with caller-owned native capture provenance",
+        "unchanged": "All prior candidate/native/gradient, public bundle, CLI, run/checkpoint and source chemistry schemas"
+      },
+      "compatibility": "Additive opt-in Python qualifier. No migration, historical rewrite, ordinary PostMR default or selection/adoption change.",
+      "limitations": [
+        "The new API attributes fixed-coordinate numerical deltas only. Its caller authenticates native execution/capture provenance; a saved success flag is not authentication.",
+        "PDU initial derivatives pass using the maintained NASolve-local order-safe evaluator. No new whole-model optimization, endpoint geometry qualification or diffraction refinement ran; plain Phenix refinement is not certified by this result.",
+        "ATL has source-preserving isolated native usability at two coordinate sets, not linked construction or combined-scaffold qualification. Its generation stopping is NOT_REPORTED; no convergence claim is made.",
+        "The requested eight-pair-plus-ATL scaffold remains NOT_CONSTRUCTED. Existing DNA-only fragment construction correctly refuses ATL RNA-linking metadata; preserve its bridge and qualify a whole-residue/link adapter.",
+        "No ordinary PostMR automatic adoption/checkpoint integration, experimental protonation assignment, absolute CIP assignment, installed-library changes or catalogue-wide release. PNA and broader L-FANA/L-FDNA learning/coverage remain in the engine roadmap."
+      ],
+      "next": "Build a source-preserving whole-residue/link adapter for ATL using its qualified candidate and existing graph/stereochemical lessons, then test it alongside the existing eight mixed-scaffold pairs. Separately run a new bounded PDU geometry trial on the newly derivative-qualified objective. Continue ordinary PostMR selected-bundle orchestration with usable fallback; no merge is implied.",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "linked_torsion_energy_and_atl_2026_10_31",
+      "validation": "7143 passed, 276 subtests passed in 1110.25s (0:18:30); focused 1362 passed, 36 subtests passed in 116.55s (0:01:56); PDU exact attribution/fresh derivatives; ATL isolated native usability at two coordinate sets; cold actual replay and seven negative controls.",
+      "implementation_commit": "84de27d7399bf1b024cc1902bdf22bb5aad2e9e6",
+      "full_tested_commit": "84de27d7399bf1b024cc1902bdf22bb5aad2e9e6",
+      "published_branch": "cedar",
+      "remote_verified": true
+    },
+    "whole_furanose_and_atl_links": {
+      "status": "PUBLISHED_VALIDATED",
+      "after": "An additive compatible-host whole-furanose adapter binds source/host graph roles independently, transports all retained atoms rigidly, preserves every declared source hand and reuses neutral source-port projection. Actual ATL passes an artificial compatible-host control and is correctly refused on a D-DNA host. With its qualified candidate, both native directional links are observed, while reaction-state definition mismatches remain visible.",
+      "schemas": {
+        "new": "schema 1 / cif-rigid-whole-furanose-linked-control-v1; frozen exact input/output checksum inventory plus recomputed placement/chemical projection",
+        "unchanged": "Existing FANA, attachment, native capture, CLI, runtime bundle, run/checkpoint and source chemistry schemas"
+      },
+      "compatibility": "Additive opt-in Python diagnostic. No migrations or ordinary defaults; old FANA/L-FANA controls and fixed eight-pair fixture contracts remain unchanged.",
+      "limitations": [
+        "The rigid adapter requires compatible shared-role host hands. ATL alpha-LNA-T disagrees with the D-DNA host at C3/C4; this source chemistry is not altered and the requested combined scaffold remains NOT_CONSTRUCTED.",
+        "The actual positive placement is an explicitly artificial three-ATL frame. It demonstrates source/geometry transport and replay, not a physical oligonucleotide, valid junction geometry or native linkage.",
+        "Directional Phenix interpretations recognize both O3prime-P links but effective ATL definitions retain OXT/HXT or alcohol HA. DA alias/protonation differences and unavailable native formal-charge readback remain. Observed bonds/energy types do not qualify linked chemistry or numerical derivatives.",
+        "Two neutral internal furanose port deletions only. Other terminal states, symmetry links, PNA chemistry, unsupported PDB records, atom identity ambiguity, different-host-hand construction and experimental protonation need separate explicit adapters.",
+        "No ordinary PostMR integration, native dictionary generation, clash/geometry acceptance, source relabeling, installed-library change, checkpoint adoption, Coot, ReadySet or diffraction refinement. Existing FANA/L-FANA/PNA and PDU/DF proofs remain intact."
+      ],
+      "next": "Implement a graph-bound native reaction-state adapter that removes only explicitly authorized OXT/HXT or alcohol H, binds endpoint typing and qualifies the resulting definitions/angles. Design a separate explicit different-backbone construction for alpha-LNA-T that preserves its source hands, then place ATL alongside the eight existing pairs without changing those sites. PDU still needs a fresh changed-objective bounded geometry/endpoint trial; ordinary selected-bundle PostMR orchestration remains later.",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "whole_furanose_and_atl_links_2026_10_31",
+      "validation": "7175 passed, 276 subtests passed in 1109.86s (0:18:29); focused 1434 passed, 36 subtests passed in 130.81s (0:02:10); actual compatible-host placement, exact stereochemical refusal, two native link observations and cold replay/negative controls.",
+      "implementation_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "published_branch": "cedar",
+      "remote_verified": true
+    },
+    "graph_furanose_reaction_states": {
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
+      "after": "An additive graph-bound furanose adapter reuses explicit neutral source-port authority, preserves complete candidate chemistry/configuration, supplies independent site modifiers and graph-selected outgoing OC2 typing, and copies missing source classification without accepting contradictory relabeling. Exact native text and projections replay offline.",
+      "schemas": {
+        "new": "schema 1 / cif-graph-furanose-native-reaction-v1; exact frozen input/output inventory plus rederived projections/modifier blocks/selectors",
+        "energy_policy": "cif-neutral-furanose-outgoing-oxygen-oc2-v1",
+        "unchanged": "Existing source graph/site, FANA/L-FANA/PNA, native capture, CLI, runtime bundle and checkpoint schemas"
+      },
+      "compatibility": "Additive explicit Python diagnostic; no migration, ordinary defaults, source/installed-library edit, checkpoint selection or new branch.",
+      "limitations": [
+        "Opt-in preparation/replay only. This adapter reassesses complete source-preserving numerics but does not claim an isolated or linked native usability pass, generate a replacement dictionary, edit model coordinates or activate ordinary PostMR/ReadySet adoption.",
+        "Neutral source/linked ports on uniquely matched unbridged/2O4C-bridged furanoses only. PNA, charged reacting ports, free-OH reconstruction, symmetry, partner chemistry and unsupported PDB identity require separate authority. Unknown outgoing native types refuse; no residue-name whitelist or blanket OP3 deletion.",
+        "Actual ATL definitions match in both directional controls and three independently modified sites, but canonical DA source/name/protonation differences and unavailable native formal-charge readback remain. Partial charge never substitutes for formal charge.",
+        "Native junction angles/torsions are observed conventional targets. Finite repeated energy/gradients are not derivative or achieved-geometry qualification. The artificial translated trimer is not a physical oligonucleotide or diffraction result.",
+        "ATL alpha-LNA-T still differs from the intended D-DNA host at C3/C4. The source is not inverted/relabelled, and the eight-pair-plus-ATL scaffold remains NOT_CONSTRUCTED. PDU changed-objective geometry and ordinary multi-component adoption remain independent gates."
+      ],
+      "next": "Design an explicit different-backbone placement/junction control preserving all alpha-LNA-T source hands and the eight existing mixed-pair sites, using the now-correct source-bound site modifiers. Qualify complete linked active mechanics and sampled derivatives/geometry before claiming ATL support. Separately run the new PDU changed-objective bounded geometry/endpoint trial, then ordinary selected-bundle PostMR orchestration with usable fallback.",
+      "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "graph_furanose_reaction_states_2026_10_31",
+      "validation": "1474 passed, 36 subtests passed in 132.92s (0:02:12); three final native controls and cold replay pass; no full run this push.",
+      "implementation_commit": "fcb99a6fe88d77892b0c58871393d7e131c1ccba",
+      "focused_tested_commit": "fcb99a6fe88d77892b0c58871393d7e131c1ccba",
+      "published_branch": "cedar",
+      "remote_verified": true
+    },
+    "base_anchored_mixed_atl": {
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
+      "after": "Separate explicitly selected graph/NAR-bound base placement preserves target source geometry/hands and every bystander while recording host differences. Mixed ATL construction now exists for review; source-projected definitions and regenerated NAR policy match, with the incoming junction still absent.",
+      "schemas": {
+        "new": "schema 1 / cif-base-anchored-whole-furanose-control-v1; selection includes explicit base_frame_roles; exact frozen input/output inventory plus rederived report and model",
+        "unchanged": "Compatible-host placement v1, source attachment/reaction, FANA/L-FANA/PNA, NAR compiler, native captures, CLI and checkpoint schemas"
+      },
+      "compatibility": "Additive explicit Python API; old compatible-host behavior and archived capsule replay pass. No migration, defaults, installed-library/source edit, adopted coordinate change, new branch or merge.",
+      "limitations": [
+        "Explicit Python diagnostic only; new placement policy does not grant base chemical equivalence, compile NAR policy automatically, optimize, choose chemistry, or activate ordinary PostMR/ReadySet/refinement.",
+        "Unique unbridged/2O4C-bridged furanose source and host profiles, three explicitly mapped bonded heavy base anchors with matching elements/orders, complete source-preserving target numerics, heavy-only unambiguous PDB and two explicit neutral identity-symmetry ports are required. PNA, charged ports, symmetry and arbitrary model mutation remain separate.",
+        "The actual combined scaffold is constructed for review, but incoming O3-P at 4.098 A has no native link. Outgoing 1.514 A link and four cross-link angles exist. No source inversion, RNA-to-DNA relabeling or bridge removal; formal-charge readback and linked numerical/geometry qualification remain open.",
+        "Finite repeated energy/gradients are not sampled derivative, torsion, clash, protonation, achieved geometry or diffraction qualification. The native dictionary reflects intended linked chemistry even when the intended incoming link is absent, so this is not an adoptable connected model.",
+        "The preserved stale-DT-policy capture silently loses ATL C5M from three planes. The final diagnostic invokes existing NAR compilation for one pair/two stacks and matches all 201 requests/proxies; general automatic mutation-policy orchestration is not added.",
+        "The curated-DZ line-oriented bond reader cannot consume the token-per-line projected dictionary used in the first preflight. Successful source-role validation uses maintained curated DZ; all C98 active numerical dictionaries are retained. A separate parser regression/fix is required.",
+        "The 27-start arm-rotor exploration is not a global minimum or native geometry result and writes no model. Its separate fixed-C5 reachability bound proves the three arm rotors cannot attain 1.607 A in this fixed base/ring pose. Generalized bounded body/junction placement and qualification remain next. PDU changed-objective geometry and other family/adoption gates are unchanged."
+      ],
+      "next": "Generalize the existing FANA source-preserving connected-seed search to graph-bound bridged/unbridged furanoses with bounded whole-body/junction motion and explicit base/pair objectives; retain every declared source hand, recompile actual NAR selectors, then require both native links/all angles and sampled numerical/geometry qualification. Separately replace the curated bond reader's line-based loop assumption with a proper CIF loop reader. Preserve the old fixed-base and stale-policy counterexamples.",
+      "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "base_anchored_mixed_atl_2026_10_31",
+      "validation": "1492 passed, 36 subtests passed in 136.96s (0:02:16); three native controls and strengthened cold replay pass; no full suite.",
+      "implementation_commit": "df0fb2c918dc4bb5571a80bfcc2ced22312546cc",
+      "focused_tested_commit": "df0fb2c918dc4bb5571a80bfcc2ced22312546cc",
+      "published_branch": "cedar",
+      "remote_verified": true
+    },
+    "graph_bound_connected_furanose_seed": {
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
+      "after": "Graph-bound acyclic-arm/body construction with an explicit base-motion bound produces a connected mixed ATL seed, preserves source geometry/hands and bystanders, and retains exact native definitions and NAR policy. Remaining junction/pair strain withholds geometry qualification and adoption.",
+      "schemas": {
+        "new": "schema 1 / cif-graph-furanose-bounded-bridge-seed-v1; frozen parent placement, explicit endpoint_weight and max_base_displacement, deterministic report/model and exact receipt inventory",
+        "unchanged": "Existing FANA/base-anchored/compatible-host placement, reaction/NAR compiler/native capture/CLI/checkpoint schemas"
+      },
+      "compatibility": "Additive explicit Python API. Existing FANA fitter is reused without modification; old placement/reaction/FANA tests pass. No migration, default, installed-library or adopted-coordinate change. No new branch or merge.",
+      "limitations": [
+        "Additive explicit Python construction diagnostic only. Ordinary automatic recovery/adoption, CLI, checkpoint schemas and ReadySet remain unchanged.",
+        "Consumes only a validated base-anchored placement: unique unbridged/2O4C-bridged furanose source/host profiles, graph-bound NAR base anchors, complete source-preserving target numerics, heavy-only unambiguous PDB and two declared neutral identity-symmetry ports. PNA/charged/symmetry operations are separate.",
+        "Three acyclic arm rotors and a proper whole-body fit preserve internal source geometry/hands. Explicit endpoint weight is 1..1000; maximum heavy-base displacement is >0..5 A. The sampled minimum is refused if it exceeds that bound, without claiming all feasible alternatives were searched or a global minimum.",
+        "The construction objective uses host/base/port anchors, not native energy or a replacement for NAR pair/stack policy. Source leaving oxygen is only a virtual fit point. Parent and seed, source classification and retained phosphate protonation remain explicit.",
+        "Both ATL native links and eight junction angles now exist, but outgoing separation is 1.743 A against 1.607 A and an O4-N6 contact is 2.277 A against its 2.8 A NAR target. Worst covalent junction-angle discrepancy is 31.85 degrees. No achieved geometry/optimization, clash, diffraction or sampled-derivative qualification is claimed.",
+        "Finite repeated energy/gradients do not certify derivatives. The simple native-gradient API excludes parallelity; use/adapt the mixed parallelity-aware route retaining all current requests and its corrected-evaluator scope, rather than dropping policy or claiming ordinary Phenix refinement.",
+        "All 42 active definitions and all custom proxy fields match C145. This preserves its exact numerical bundle and does not combine or certify later PDU objectives. Curated-DZ token-per-line CIF parsing, changed-objective PDU geometry, broader linked L-FANA/L-FDNA/PNA and production orchestration remain separate open work.",
+        "Seed replay recomputes floating-point fitting and records NumPy version; relocation is demonstrated under the tested numerical runtime, not promised byte equivalence across arbitrary numerical-library versions."
+      ],
+      "next": "Bind the connected mixed ATL seed into the existing complete-policy numerical qualification route, retaining all 201 custom restraints and source definitions; then run a bounded fixed-objective geometry trial and fresh endpoint audit. Preserve C145/C146 controls, signed chemistry and protonation. Independently fix the curated bond reader token-per-line CIF loop handling and continue PDU changed-objective and other-family milestones.",
+      "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "graph_bound_connected_furanose_seed_2026_10_31",
+      "validation": "1515 passed, 36 subtests passed in 153.89s (0:02:33); one complete native interpretation and cold replay pass; no full suite.",
+      "implementation_commit": "337676e09f476d5fda1de8b2273f5e618f5f22ef",
+      "focused_tested_commit": "337676e09f476d5fda1de8b2273f5e618f5f22ef",
+      "published_branch": "cedar",
+      "remote_verified": true
+    },
+    "captured_mixed_gradient_qualification": {
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
+      "after": "An authenticated-capture adapter reuses unchanged complete-policy numerical cores, freezes exact ordered inputs/namespace/source pins and replays saved numbers without an SDK. The full ATL scaffold and an independent 10C numerical control pass without component-code branches; numerical qualification remains distinct from chemistry, geometry and adoption.",
+      "schemas": {
+        "new": "schema 1 / cif-captured-mixed-fixed-gradient-v1; frozen authenticated capture, exact preparation/job inventory and complete sampled numerical qualification",
+        "unchanged": "Existing mixed/recovered/native numerical cores, FANA/whole-furanose/source/reaction/preparation, CLI, cache and checkpoint schemas"
+      },
+      "compatibility": "Additive Python API and chemistry test-profile entry. Existing numerical cores and older readers remain byte-identical; no migration/default/installed-library or adopted-coordinate change. Existing cedar only.",
+      "limitations": [
+        "Additive fixed-coordinate Python numerical diagnostic. No optimizer, public CLI/default, cache selection, ordinary automatic recovery/adoption, checkpoint migration or ReadySet replacement.",
+        "Captures must authenticate exact literal model/native identity, repeated finite energy, linked inventory and complete explicit policy; secondary-structure generation is disabled and competing automatic pair/stack origins are refused. Only the base policy/energy capture is accepted; augmented inventory modes need a separate adapter.",
+        "One process; timeout 1..600 seconds; maximum 2000 energy calls, 5000 plane evaluation pairs and 1..64 parallelity proxies. Special-position derivatives remain refused. Six atoms are selected by existing absolute bond/angle outlier order, alongside global/family and complete plane probes. Sampled agreement is not a proof at arbitrary coordinates.",
+        "Existing qualified order-safe parallelity correction and all numerical cores stay unchanged. Native energy and complete static policy remain exact; this does not certify unmodified Phenix parallelity gradients or ordinary refinement.",
+        "Generic numerical capture proves preserved explicit policy, not NARestraints authorship or source chemistry. Separate compiler/source/native evidence remains required; no chemical approval or adoption is inferred from derivative success.",
+        "ATL remains the C146 connected seed with its original fixed numerical bundle: outgoing separation 1.743 A and O4-N6 pair contact 2.277 A remain unqualified geometry. Later changed-objective PDU work is not silently substituted.",
+        "10C source matches the graph-defined 2O4C methylene bridge and retains four declared hands. Both isolated source/generated coordinate controls pass. Source classification is RNA LINKING but its generated isolated candidate is non-polymer; linked reaction/classification, full scaffold construction and ordinary refinement remain open. The two-copy plane test is not physical stacking.",
+        "9V9 is catalogue context only, not newly qualified. Other L-FANA/L-FDNA/PNA and charged/symmetry chemistry milestones remain separate; prior source/hand/protonation learning is unchanged.",
+        "First numerical capsules preserve a preliminary overly specific policy-authority label. Final -02 capsules use CAPTURED_EXPLICIT_POLICY, pass fresh native checks and final cold replay. An owned focused run was stopped before this provenance correction; final frozen run is separate and complete. No earlier attempt was overwritten or deleted."
+      ],
+      "next": "Use the now-qualified connected ATL manager for a bounded fixed-objective geometry trial retaining every native definition and all 201 custom restraints. Recheck full source hands, phosphate/H state, bystanders, manager/policy identity, both junctions, pair/stack geometry and fresh endpoint evidence. In parallel milestone planning, linked 10C should use the existing source/reaction/placement gates, not the isolated numerical pass as a shortcut. Keep curated-DZ token-per-line parsing, PDU changed-objective and other-family work explicit.",
+      "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "captured_mixed_gradient_qualification_2026_10_31",
+      "validation": "1552 passed, 36 subtests passed in 159.61s (0:02:39); 272 affected tests, two final complete native derivative jobs and cold replay pass; no full suite.",
+      "implementation_commit": "63fc354b830d1544f06f58c9e878baf3a88960a4",
+      "focused_tested_commit": "63fc354b830d1544f06f58c9e878baf3a88960a4",
+      "published_branch": "cedar",
+      "remote_verified": true
+    },
+    "captured_fixed_geometry_trial": {
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
+      "after": "A bounded captured-proof adapter freezes the exact complete objective and reuses unchanged optimizer/numerical/serialization gates. The actual ATL trial is withheld after endpoint derivative/line-search failures; a separate generic diagnostic and declared-graph screen identify near-linear PDU and 5PC torsions without a residue-code exception.",
+      "schemas": {
+        "new": "schema 1 / cif-captured-fixed-geometry-trial-v1; self-contained qualified gradient/capture, exact preparation/job/optional readback inventory, mechanics-only decision",
+        "unchanged": "C147 proof, existing mixed/recovered geometry and numerical workers, CLI/cache/checkpoint schemas"
+      },
+      "compatibility": "Additive explicit Python API and chemistry profile. No default, installed-library, adopted-coordinate or migration change. Existing cedar only; older numerical/geometry/torsion/native sources byte-identical.",
+      "limitations": [
+        "Additive explicit Python geometry diagnostic; no ordinary automatic recovery/adoption, public CLI/default, cache/checkpoint migration or ReadySet replacement.",
+        "All captured coordinates may move in a separate trial. Immutable input evidence, complete identities and exact restraint definitions remain bound; there is no frozen-bystander-coordinate claim.",
+        "Qualified C147 capture required. Exact original dictionary/PHIL order, namespace, consumer pins, complete explicit policy and unchanged numerical workers. Existing special-position and base-capture eligibility limits remain.",
+        "1..1000 iterations; 1..600-second geometry deadline, 20*iterations native optimizer calls, then at most one additional native readback for min(deadline,60) seconds. Native criterion and all derivative tolerances unchanged. Stopping and mechanics are separate.",
+        "Even a mechanics pass selects INPUT_MODEL_UNCHANGED. Input usability is NOT_ESTABLISHED_BY_NUMERICAL_CAPTURE; chemistry/scientific qualification remains NOT_ASSESSED. A failed endpoint cannot silently certify the input.",
+        "Generic captured policy preserves its content without proving NARestraints authorship. Source chemistry/compiler evidence and achieved bond/pair/stack/clash geometry remain separate gates.",
+        "Actual ATL trial remains REVIEW after line-search and full/rounded dihedral derivative failures. No coordinate candidate, fresh endpoint native readback or adoption. Lower target and source-hand preservation do not qualify geometry.",
+        "Separate selected-torsion fixed-coordinate replay supports conditioning, not a native bug. Finer sampled agreement does not relax the original failed gate. PDU and 5PC satisfy the declared-linear source-graph screen; no objective or source dictionary changed in this push.",
+        "10C remains isolated/source/two-copy qualified only, without a linked-polymer/geometry claim. Broader L-FANA/L-FDNA/PNA, curated-DZ token-per-line parsing, unavailable formal-charge readbacks, symmetry and production orchestration remain explicit roadmap items.",
+        "First live attempt was preserved after the reader omitted legitimate copied C++ source files from its allowed inventory. The fix validates their hashes; a failing corruption regression demonstrates it. A fresh final native attempt reproduces the scientific rejection. First cold harness refused macOS temp-path symlink alias; a fresh resolved-path cold attempt passes. Earlier diagnostic-helper field-name failure/log retained. No attempt was repaired in place."
+      ],
+      "next": "Compose source-graph-selected declared-linear torsion candidates for the affected complete scaffold into a new explicit objective, reusing C142 exact omission/energy-attribution gates. Cover PDU and 5PC without name branches; preserve every other dictionary/PHIL/policy and independent source-hand/H/phosphate evidence. Qualify fresh native mechanics and complete derivatives first, then call the captured geometry adapter in a new attempt. If still blocked, retain the input and diagnose rather than weakening gates. Linked 10C and broader chemistry/production milestones stay separate.",
+      "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "captured_fixed_geometry_trial_2026_10_31",
+      "validation": "1586 passed, 36 subtests passed in 199.26s (0:03:19); 173 affected tests and cold rejection/diagnostic replay pass; actual endpoint remains REVIEW; no full suite.",
+      "implementation_commit": "b1738400ec3e204e93c8a45efa6e5ecbf395d4a0",
+      "focused_tested_commit": "b1738400ec3e204e93c8a45efa6e5ecbf395d4a0",
+      "published_branch": "cedar",
+      "remote_verified": true
+    },
+    "declared_linear_torsion_bundle": {
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
+      "after": "A reusable graph-screened bundle freezes every complete omission and intermediate state. Consecutive exact native inventory/energy attribution and authenticated consumer bindings qualify the 5PC/PDU changes. Fresh complete derivatives and full/rounded/native endpoint mechanics pass; the iteration-limited coordinate candidate remains unconverged and unadopted.",
+      "schemas": {
+        "new": "schema 1 / cif-declared-linear-torsion-bundle-v1; frozen inputs, complete scan, deterministic step candidates, before/after ordered bundles and separate qualification results",
+        "unchanged": "Existing single-component omission/inventory/energy gates, C147 gradients, C148 geometry, native captures, CLI/cache/checkpoints"
+      },
+      "compatibility": "Additive Python APIs and chemistry test-profile entry. No migration, production default, installed-library or adopted-model change. Existing cedar only; 14 maintained numerical/native cores remain byte-identical.",
+      "limitations": [
+        "Explicit additive Python diagnostic only. No ordinary automatic repair/adoption, CLI/default, cache/checkpoint migration, installed-library edit or ReadySet replacement.",
+        "Only modeled components with one explicit dictionary provider are graph-screened. Installed-library-only components are recorded unassessed. Up to 64 dictionaries, 128 modeled codes and 32 deterministic repair steps. Unsupported or ambiguous declared-linear chemistry refuses before output reservation.",
+        "The unchanged rule requires declared C-C/C-N triples, explicit 180-degree positive-ESD targets and complete unique consecutive torsion paths; geometry, residue codes and family labels do not authorize omission. No inference of missing source chemistry, protonation, stereochemistry or general linear chemistry.",
+        "All other parsed fields and unrelated data blocks remain exact; affected blocks can be reformatted. Every intermediate bundle is preserved, including multiple components within a file. All modeled occurrences must match complete planned native removals, not only diagnostic-selected proxies.",
+        "The pure numerical chain gate requires caller-authenticated native execution. The captured wrapper authenticates every ordered native stage/model/PHIL/namespace/consumer; single-proxy kernel execution remains caller-attested. This live run records the maintained core, source pins and completed process, then replays numerical attribution offline.",
+        "Changed-objective derivatives and full/rounded endpoint mechanics pass in the inherited corrected-parallelity scope. This does not qualify ordinary unmodified Phenix gradients/refinement. No cross-objective score is treated as unchanged progress.",
+        "The 1000-iteration trial reaches 1043 calls with no error but does not converge. All source-handed ATL triples and native chirality checks survive; remaining CGY/DX pair strain, pucker/clash geometry, absolute CIP and scientific acceptance are not closed. Input usability remains NOT_ESTABLISHED_BY_NUMERICAL_CAPTURE and automatic adoption stays false.",
+        "Dictionary source preservation and numerical repair are distinct from independently qualified chemical authority and usable candidate selection. Connect those existing gates before ordinary continuation; never treat a mechanics pass as source approval or a failed trial as proof the input is usable.",
+        "Linked 10C remains beyond its isolated/two-copy checks. Broader L-FANA/L-FDNA/PNA, curated-DZ token-per-line parsing, native formal-charge limits, symmetry and ordinary orchestration/release remain explicit milestones. Generalizer table and next-work prose were reconciled through C149.",
+        "All raw scientific inputs/native/test artifacts and procedural scripts remain local. Early development test-literal/shared-fixture issues were corrected before final validation; prior scientific/native attempts and original inputs were preserved. No full suite this bounded pass."
+      ],
+      "next": "Compose the graph-selected repair/attribution report with existing source-qualified candidate/preparation and public selected-bundle evidence. Establish dictionary usability and a verified fallback independently of the unconverged coordinate trial before automatic continuation. Diagnose remaining whole-model pair geometry from exact NAR/source evidence without weakening restraints. Preserve separate held-out linked 10C, broader chemistry, parser repair and ordinary workflow milestones; a merge still needs full regression/integration review.",
+      "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "declared_linear_torsion_bundle_2026_10_31",
+      "validation": "1624 passed, 36 subtests passed in 210.06s (0:03:30); 156 affected tests; staged native attribution, full/rounded derivatives and endpoint mechanics pass; cold replay passes; endpoint unconverged and unadopted; no full suite.",
+      "implementation_commit": "2321939e7445840acaa8b5358d3c722840e2fd01",
+      "focused_tested_commit": "2321939e7445840acaa8b5358d3c722840e2fd01",
+      "published_branch": "cedar",
+      "remote_verified": true
+    },
+    "captured_linear_attribution": {
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
+      "after": "A maintained bounded fresh native job freezes the complete repair bundle/stages, derives exact removed-proxy inputs, pins worker/core/consumer/sources and replays all raw references offline. The six-proxy live result is unchanged. Prepared/failed jobs cannot claim a numerical pass; unknown capture files refuse before reservation and launch failures require a diagnostic.",
+      "schemas": {
+        "new": "schema 1 / cif-captured-linear-torsion-attribution-v1",
+        "unchanged": "C149 plans/gates, native captures and numerical cores, selected runtime schemas, CLI/cache/checkpoints"
+      },
+      "compatibility": "Additive Python APIs and chemistry-profile test entry. No production/default change or migration. Sixteen existing numerical/native/selection modules and 17 static resources remain byte-identical.",
+      "limitations": [
+        "Explicit additive diagnostic, no ordinary orchestration, automatic adoption, cache/checkpoint migration, new chemical-state inference, or installed-library edits.",
+        "The outer maintained-job receipt authenticates local execution provenance and replays complete numerical attribution. The embedded unchanged pure-gate result still states its caller-owned execution boundary; consumers must validate the outer receipt, not relabel the nested result. This is not cryptographic remote attestation.",
+        "Only the existing C147 linked energy/policy capture contract is accepted. The source-qualified component runtime requires additional full-model monomer evidence, which this adapter currently refuses. Integrate through an explicit richer capture-policy bridge; never discard fields or infer whole-model readiness from isolated qualification.",
+        "All C149 source-chemistry, derivative, geometry and scientific limits persist. This pass makes no new convergence, pucker/clash, protonation, absolute-CIP or ordinary-Phenix-refinement claim. Its input coordinates are unchanged and C149 remains an unconverged, unadopted diagnostic endpoint.",
+        "Native captures pin their three recorded energy sources. The fresh kernel additionally records before/after hashes for its restraint module, flex module and compiled extension; these are local job provenance, not a retroactive compiled-extension hash for an old capture.",
+        "Capture trees and the combined input snapshots are bounded, with at most 128 removed proxies and one native process (1–300 seconds). Failure or interruption leaves owned partial output; callers need a fresh attempt and must not execute saved workers. Full campaign ownership/recovery orchestration remains separate.",
+        "No new model, dictionary chemistry, NAR membership, ReadySet, native manager capture, Coot or refinement process. All raw/native/test evidence and helpers stay local. Only source/tests/current technical docs and anchored hash references publish.",
+        "No full suite this bounded pass; last full-tested commit remains 809abd44df8885ac14f1a02a67a13338209a8707. Full regression and representative ordinary-route integration remain required before merge."
+      ],
+      "next": "Bind repaired dictionaries and maintained attribution to exact independently source-qualified component/preparation and selected-bundle evidence. First reconcile C147 plain energy/policy captures with the component path's full-model monomer contract explicitly; preserve all extra metadata and source ownership. Establish dictionary usability and a verified fallback independently of C149's unconverged coordinate trial. Keep linked 10C, curated-DZ token-per-line parsing, broader L-FANA/L-FDNA/PNA, native charge limits and ordinary orchestration visible.",
+      "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "captured_linear_attribution_2026_10_31",
+      "validation": "1662 passed, 36 subtests passed in 296.17s (0:04:56); 220 passed in 34.55s; fresh native attribution and hardened cold replay pass; no full suite.",
+      "implementation_commit": "9bec89f721f69333bbe2d963c7df077d5a0d1ed8",
+      "focused_tested_commit": "9bec89f721f69333bbe2d963c7df077d5a0d1ed8",
+      "published_branch": "cedar",
+      "remote_verified": true
+    },
+    "completion_queue": "docs/cif-doctor-completion-queue.md",
+    "full_native_capture_bridge": {
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
+      "after": "Accept only the existing authenticated full-monomer contract, preserve the explicit native copying policy and maintained worker, and require complete equal identity proofs in fresh derivative/geometry jobs and endpoint capture. Maintained attribution inherits the validated full input path. Legacy capsules retain their prior meaning.",
+      "schemas": {
+        "new": "None",
+        "additive": "Existing cif-native-full-monomer-inventory-v1 is now accepted and retained by existing schema-1 captured numerical adapters; full-mode preparation includes full_monomer_inventory_policy.",
+        "unchanged": "Numerical cores, native capture schemas, source/preparation/selection policies, CLI/defaults, caches and checkpoints"
+      },
+      "compatibility": "No migration or default behavior change. Existing C149 derivatives/geometry and C150 attribution replay with bytes/timestamps unchanged. Full-policy captures refuse missing or downgraded evidence.",
+      "limitations": [
+        "Q01 closes authenticated native identity/capture compatibility, not independent chemical source authority. Q03 must compose the exact repaired candidates, source-qualified preparation and selected bundle before declaring a usable candidate/fallback.",
+        "Five geometry iterations are a downstream evidence-transfer control, not a convergence campaign. The iteration-limited endpoint is unadopted; input usability, chemical and scientific qualification remain unestablished by this capsule.",
+        "No ordinary PostMR orchestration, ReadySet execution, Coot, diffraction refinement, checkpoint/cache migration, new chemical inference, NAR policy change or installed-library edit occurs.",
+        "Local corrected-evaluator mechanics do not qualify ordinary Phenix refinement. Q06 remains open, as do native charge readback, residual pair strain, connected PNA, post-flank L-FANA/L-FDNA and linked 10C coverage.",
+        "Old capture/adapter schemas retain their meaning; full-mode preparation adds the existing monomer policy and requires its full proof. Legacy evidence is not retroactively promoted. No captured code is executed during readback.",
+        "An initial helper preflight refused an output nested beneath its PHIL input directory before any native process or native output reservation. The preserved failure was followed by a fresh correctly anchored input/output layout; no partial native attempt was repaired.",
+        "No full suite in this bounded development push. Last full-tested revision remains C143; full regression and representative ordinary-route integration remain required before merge."
+      ],
+      "next": "Q03: bind graph-selected repaired dictionaries and maintained attribution to independently source-qualified component/preparation and C141 selected-bundle evidence; establish a usable candidate or separately verified fallback without implicitly adopting an unconverged coordinate trial. Q02 curated CIF loop parsing remains a small independent early fix; keep all other completion-queue jobs visible.",
+      "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "full_native_capture_bridge_2026_10_31",
+      "validation": "1686 passed, 36 subtests passed in 264.65s (0:04:24); 313 passed in 97.22s (0:01:37); 7 complete native jobs and relocated replay pass; no full suite.",
+      "implementation_commit": "edec9a53c157418a82696a3f8cda35f8af478fad",
+      "focused_tested_commit": "edec9a53c157418a82696a3f8cda35f8af478fad",
+      "published_branch": "cedar",
+      "remote_verified": true
+    },
+    "source_bound_repaired_bundle_decision": {
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
+      "after": "A bounded read-only adapter replays source/site preparation, exact ordered repair ownership, all full-native stage identities and the exact original/repaired derivative captures. Existing selection policy chooses one complete bundle or no usable result; a path resolver exposes the unchanged prepared model and ordered CIF/PHIL only after repeating the checks.",
+      "schemas": {
+        "new": "schema 1 / cif-source-bound-repaired-bundle-selection-v1 inspection result",
+        "unchanged": "All prior saved capture, source/preparation, numerical and runtime-publication schemas; CLI/defaults, caches and checkpoints"
+      },
+      "compatibility": "Additive explicit Python APIs, no existing caller/default or migration change. No immutable runtime publication is introduced. Historical C139/C151 evidence retains its original scope and replays offline.",
+      "limitations": [
+        "Q03 is not complete. Positive new selection tests use explicitly synthetic upstream source/native verifiers; actual C139 source and C151 attribution/derivative capsules replay independently, and their mismatched join correctly refuses. A positive matching source/preparation/repair native demonstration remains required.",
+        "Current PDU/5PC base dictionaries and exact retained C98 sources differ in phosphate H/charge state. The linear torsion repair leaves these pre-existing differences unchanged. This is a source/state authority boundary, not a pH inference, a recommendation to add H, or proof that either chemical state is wrong.",
+        "The read-only adapter returns an unchanged prepared model and complete ordered dictionary/PHIL selection. It does not freeze a C141 runtime publication, change ordinary PostMR, adopt a checkpoint or rank/adopt a geometry endpoint. Downstream ownership must freeze/revalidate returned paths before execution.",
+        "Existing source-relative stereo limitations and the diagnostic-only unavailable-native-formal-charge exception remain explicit. No new chemical operation, native force field, NAR restraint policy, representation permission, repair threshold or installed-library change occurs.",
+        "Failed/prepared/absent derivative evidence cannot establish usability. A fallback needs its own exact passing derivative capture. Malformed or mismatched evidence raises rather than being swallowed as a routine failed improvement.",
+        "No new Phenix, ReadySet, Coot, optimizer or diffraction-refinement execution. The replayed Phenix captures were produced under 2.2.1-6174; this pass is offline verification, not a fresh native run or a dry-run claim.",
+        "No full regression this bounded development pass. Last full-tested remains C143; full regression and representative ordinary-route integration remain required before branch integration."
+      ],
+      "next": "Continue Q03: establish explicit authoritative phosphate source/site state and matching preparation for the repaired PDU/5PC example, using existing or separately qualified graph/state operations. Do not silently add H, change OP2/OP3 charge, infer pH or replace source authority with a numerical dictionary. Then run one positive matching source/preparation/full-native repair/derivative join and freeze the selected result through C141. Q13 owns broader state-policy coverage; Q02 remains an independent early parser fix.",
+      "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "source_bound_repaired_bundle_decision_2026_10_31",
+      "validation": "1719 passed, 36 subtests passed in 242.81s (0:04:02); 335 passed in 79.97s (0:01:19); cold native replay and mismatched-join refusal pass. No new native execution or full suite.",
+      "implementation_commit": "a7c8f6fb9029598ce85aadbdc582f038eed9170d",
+      "focused_tested_commit": "a7c8f6fb9029598ce85aadbdc582f038eed9170d",
+      "published_branch": "cedar",
+      "remote_verified": true
+    },
+    "source_faithful_repaired_runtime_publication": {
+      "status": "PUBLISHED_FULL_VALIDATED",
+      "after": "An additive public runtime policy freezes complete repaired/fallback selection plus source/site/native/derivative evidence. Exact-source saved PDU/5PC candidates pass fresh qualification, twelve graph-selected omissions, matching full-native attribution and derivatives; public API/CLI replay after relocation with original evidence/SDK/cache unavailable.",
+      "schemas": {
+        "new": "schema 1 / cif-qualified-repaired-component-runtime-bundle-v1",
+        "unchanged": "Existing ReadySet component/runtime policies, source chemistry and numerical workers; no CLI argument or checkpoint/cache migration"
+      },
+      "compatibility": "Additive explicit publication function; old C141 runtime replays unchanged. New policy requires an updated public reader; older readers refuse it. No automatic default, adoption or installed-library change.",
+      "limitations": [
+        "Separate complete-monomer numerical control: two residues/77 atoms, one NAR parallelity request, no physical pairing/polymer or 42-residue mixed-scaffold claim.",
+        "The old C151 base-state difference is not retroactively approved; experimental/linked protonation and explicit operation authority remain Q13/Q07.",
+        "Ordinary cache-miss recovery, durable retries and automatic PostMR/checkpoint adoption remain Q04/Q05; ordinary Phenix refinement consumer remains Q06.",
+        "Existing derivative protocol requires parallelity and excludes optional nonbonded-inventory captures; failed preflights stay preserved and coverage is queued under Q04.",
+        "Native formal-charge availability and absolute CIP remain distinct from exact source charge/configuration preservation."
+      ],
+      "next": "Start Q04 with a bounded ordinary-acquisition recovery checkpoint: consult exact-source/current-consumer stored numerics first, inspect for supported graph faults, compose source-faithful repair and native/derivative qualification, retain only an independently usable fallback, and preserve durable attempts/process ownership. Current-site, zero-parallelity and optional capture contexts need their own qualification; Q13/Q07 retain mixed-scaffold phosphate-state authority.",
+      "previous_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "source_faithful_repaired_runtime_2026_10_31",
+      "validation": {
+        "before": "22 failed in 3.33s before implementation",
+        "new_and_existing_runtime": "48 passed in 4.77s",
+        "affected": "282 passed in 166.18s (0:02:46)",
+        "focused": "1741 passed, 36 subtests passed in 719.13s (0:11:59)",
+        "full": "7482 passed, 276 subtests passed in 2211.96s (0:36:51)",
+        "source_files": 588,
+        "source_changes_during_validation": []
+      },
+      "implementation_commit": "962737c2cb1a956d785fc430393cf65ef2e2f40b",
+      "full_tested_commit": "962737c2cb1a956d785fc430393cf65ef2e2f40b"
+    },
+    "captured_absent_parallelity": {
+      "status": "PUBLISHED_FULL_VALIDATED",
+      "after": "Authenticated zero-proxy captures use the unchanged eight-family audit with explicit NOT_APPLICABLE plane-order proof, zero-family and raw-native-gradient identity guards. Source-bound repaired selection/publication succeeds without invented restraints.",
+      "schemas": {
+        "new_embedded": [
+          "schema 1 / cif-captured-zero-parallelity-gradient-v1",
+          "cif-native-parallelity-absent-v1"
+        ],
+        "unchanged": "Outer captured-gradient and repaired-runtime envelopes, all legacy numerical core bytes and nonzero-plane workers, source/store/checkpoint formats"
+      },
+      "compatibility": "No new CLI flag or migration. Older readers refuse the new embedded policy/worker. Existing C141 and nonzero-plane C153 publications replay unchanged. Legacy geometry trial refuses zero-context proof before allocating a job.",
+      "limitations": [
+        "Two complete source-state monomers, not a physical pair/polymer or the mixed 42-residue scaffold. Q13/Q07 retain its phosphate-state authority.",
+        "No new dictionary generation, ReadySet, Coot, optimization, diffraction refinement or automatic adoption.",
+        "Zero-context geometry, optional nonbonded capture composition, durable cache-first acquisition and ordinary PostMR/refinement consumer qualification remain open.",
+        "An absent family qualifies no nonzero plane derivative/correction. Numerical consistency establishes neither chemical intent nor global convergence."
+      ],
+      "next": "Q04: bounded exact-source/current-consumer candidate acquisition with durable attempt ownership; consult stored numerics first, preserve failed outputs, and qualify the actual current bundle. No in-place retry or fabricated restraint context.",
+      "previous_full_tested_commit": "962737c2cb1a956d785fc430393cf65ef2e2f40b",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "captured_absent_parallelity_2026_10_31",
+      "validation": {
+        "new_cases": 20,
+        "failing_before": "Two supported-namespace positive controls fail under the original preflight; two additional raw-gradient/count adversaries fail before the C129 safeguard.",
+        "captured_final": "57 passed in 15.65s",
+        "results": {
+          "affected": "231 passed in 80.84s (0:01:20)",
+          "focused": "1088 passed, 10 subtests passed in 150.11s (0:02:30)",
+          "full": "7502 passed, 276 subtests passed in 1250.74s (0:20:50)"
+        },
+        "source_files": 589,
+        "scope": "Final frozen sources only; earlier test attempts and partial full run are preserved separately."
+      },
+      "implementation_commit": "ea7f74c7c5f7e0df03972975650b27ae28eef94a",
+      "full_tested_commit": "ea7f74c7c5f7e0df03972975650b27ae28eef94a",
+      "published_branch": "cedar",
+      "remote_verified": true
+    },
+    "dictionary_destination_preflight": {
+      "status": "PUBLISHED_FULL_VALIDATED",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#dictionary_destination_preflight_2026_11_02",
+      "contract": "docs/cif-doctor.md#persistent-local-reuse-of-qualified-repairs",
+      "scope": "Read-only shared-resolver destination preflight before cache/adapters, with final recheck; not durable attempt management.",
+      "completion_queue": "Q04 remains open",
+      "schema_changes": false,
+      "new_native_execution": false,
+      "full_validation_revision": "28a6c1b22be70f8480dbd6e755e601a1ef774353"
+    },
+    "source_generation_ownership": {
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#source_generation_ownership_2026_11_02",
+      "contract": "docs/cif-doctor.md#durable-source-generation-process-evidence-c156",
+      "scope": "Both invocations use campaign-owned cleanup, immutable prelaunch/identity/stopped records, read-only conservative inspection and a shared generation budget. Partial outputs and all chemistry/qualification gates remain intact.",
+      "completion_queue": "Q04 remains open for logical acquisition/retry/orchestration",
+      "schema_changes": "Additive process evidence only",
+      "new_native_execution": true,
+      "full_regression": "NOT_RUN_BY_EXPLICIT_USER_REQUEST; full integration gate remains pending",
+      "last_full_tested_commit": "28a6c1b22be70f8480dbd6e755e601a1ef774353",
+      "focused_validation_revision": "36aab06e81414e70c8f1cd9ea5654860b6228324"
+    },
+    "source_generation_attempts": {
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#source_generation_attempts_2026_11_02",
+      "contract": "docs/cif-doctor.md#durable-source-generation-requests-and-attempts-c157",
+      "scope": "Explicit generation request ownership, immutable finite attempts and conservative recovery; no full acquisition orchestration or adoption.",
+      "completion_queue": "Q04 remains open for cache-first acquisition composition and other adapters",
+      "schema_changes": "Additive generation request/attempt evidence",
+      "new_native_execution": true,
+      "full_regression": "NOT_RUN_BY_EXPLICIT_USER_REQUEST",
+      "last_full_tested_commit": "28a6c1b22be70f8480dbd6e755e601a1ef774353",
+      "focused_validation_revision": "9407d508a548ab9e883fb208f37c47fe19ddb266"
+    },
+    "cache_first_generation": {
+      "milestone": "C158",
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
+      "contract": "docs/cif-doctor.md#cache-first-owned-source-generation-c158",
+      "evidence_key": "cache_first_generation_2026_11_02",
+      "queue": "Q04",
+      "ordinary_adoption": false,
+      "new_native_execution": true,
+      "summary": "Explicit cache-first acquisition maps exact source/recipe/producer and caller-verified consumer; misses perform one owned generation attempt, complete chemical reassessment and independent native qualification; stale evidence requalifies saved copies first.",
+      "remaining": [
+        "Independently qualified fallback and cross-recipe/older-entry candidate compatibility",
+        "Graph-selected repair composition",
+        "Source discovery and qualification adapter ownership",
+        "Whole-acquisition identity/coordination and total budget",
+        "Ordinary adoption/checkpoints and actual refinement consumer qualification"
+      ],
+      "full_regression": "NOT_RUN_BY_EXPLICIT_USER_REQUEST",
+      "focused_validation_revision": "e7f202410f33016a031afe6093a0c3ec857ec082"
+    },
+    "retained_acquisition": {
+      "milestone": "C159",
+      "status": "PUBLISHED_TARGETED_VALIDATED",
+      "queue": "Q04",
+      "contract": "docs/cif-doctor.md#exact-source-retained-acquisition-fallback-c159",
+      "evidence_key": "retained_acquisition_2026_11_02",
+      "summary": "Explicit retained_snapshot on a generation-recipe miss uses validated older-recipe numerics or requalifies stale evidence, preserving source authority, representation permission, original producer/recipe and stopping diagnostics; no new generation is spent.",
+      "ordinary_adoption": false,
+      "new_native_execution": true,
+      "remaining": [
+        "Compose existing source/site-qualified graph repair and whole-bundle native/derivative selection with acquisition.",
+        "Deterministic multiple-candidate failure selection; explicit retained route currently runs on generation-recipe MISS only.",
+        "Source discovery, qualification process ownership, whole-acquisition durable identity/coordination and total budget.",
+        "Ordinary adoption/checkpoints (Q05), actual refinement consumer (Q06), experimental phosphate state (Q13), full integration gate."
+      ],
+      "validation_scope": "TARGETED_ONLY; NO PROFILE OR FULL SUITE",
+      "implementation_revision": "9e1ca0507c35a455a0bf0cea5a4af2259d6152a4"
+    },
+    "prepared_repair_execution": {
+      "milestone": "C160",
+      "status": "PUBLISHED_FULL_VALIDATED",
+      "queue": "Q04 remains open",
+      "contract": "docs/cif-doctor.md#maintained-prepared-bundle-repair-execution-c160",
+      "evidence_key": "prepared_repair_execution_2026_11_02",
+      "summary": "A maintained explicit executor freezes and verifies prepared acquisitions, runs graph/native/source/original and repaired derivative/attribution stages, then uses existing whole-bundle selection and independent runtime publication.",
+      "remaining": [
+        "Whole-acquisition durable identity, source/qualification process ownership and cleanup/recovery plus total budget.",
+        "Deterministic qualified continuation for early native-stage failure and no-repair candidates; these currently stop/non-select.",
+        "Automatic discovery, ordinary checkpoint adoption Q05, actual refinement consumer Q06 and experimental phosphate-state authority Q13."
+      ],
+      "ordinary_adoption": false,
+      "new_native_execution": true,
+      "full_regression": "7740 passed, 276 subtests passed in 1804.39s (0:30:04)",
+      "full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1"
+    },
+    "curated_cif_loops": {
+      "milestone": "C161",
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
+      "queue": "Q02 COMPLETE",
+      "contract": "docs/cif-doctor.md#curated-cif-loop-parsing-c161",
+      "evidence_key": "curated_cif_loops_2026_11_02",
+      "summary": "Both readers use existing CIF1 block and lexical parsing; exact identifiers, component consistency, row completeness and finite preferred coordinates are checked without rewriting source data.",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "implementation_revision": "f0b125b0acd7c91e3fa8bc68417727d79ff25734"
+    },
+    "prepared_repair_budget": {
+      "milestone": "C162",
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
+      "queue": "Q04 remains open",
+      "contract": "docs/cif-doctor.md#shared-prepared-repair-allowance-c162",
+      "evidence_key": "prepared_repair_budget_2026_11_02",
+      "summary": "An optional monotonic allowance spans prepared-repair preflight and execution. Workers receive at most whole seconds remaining. Expiry refuses later work and completion, preserves partial output and grants no retry/fallback authority.",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "Cooperative boundary checks; local Python, adapter preparation, file writes and cleanup are not forcibly interrupted.",
+        "Late publication may leave a preserved independently readable artifact but the executor returns no success or completed report.",
+        "Whole-acquisition source discovery/qualification ownership, durable request/recovery, a complete acquisition budget and ordinary adoption remain Q04/Q05.",
+        "Q06 actual refinement and Q13 experimental phosphate state remain separate."
+      ],
+      "implementation_revision": "cf3a6cc374708749b52323732a0ca8ca9a972895"
+    },
+    "prepared_repair_process": {
+      "milestone": "C163",
+      "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
+      "queue": "Q04 remains open",
+      "contract": "docs/cif-doctor.md#prepared-repair-process-evidence-c163",
+      "evidence_key": "prepared_repair_process_2026_11_03",
+      "summary": "Campaign-owned native jobs save immutable intent, child identity and verified-stop evidence bound to one frozen prepared bundle. Conservative read-only inspection distinguishes coordinator and worker activity; it never authorizes retry.",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "One prepared output only: no persistent logical request lock, numbered fresh attempts or retry authorization yet.",
+        "Source discovery/qualification and complete acquisition budget remain Q04; early native failures/no-repair fallback continuation remains open.",
+        "POSIX native/process controls executed on this Mac; Linux-specific execution not rerun.",
+        "Scientific PDU/5PC evidence remains separated-monomer diagnostic scope; no ReadySet, Coot, model optimization or diffraction refinement.",
+        "Q05 ordinary adoption, Q06 refinement consumer and Q13 chemical-state authority remain open."
+      ],
+      "implementation_revision": "c13515d28033e337723a89be252f39b5c291c602"
+    },
+    "prepared_repair_attempts": {
+      "milestone": "C164",
+      "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
+      "queue": "Q04 remains open; explicit prepared-request recovery sub-gate complete",
+      "contract": "docs/cif-doctor.md#prepared-repair-requests-and-immutable-attempts-c164",
+      "evidence_key": "prepared_repair_attempts_2026_11_03",
+      "summary": "An explicit wrapper freezes exact prepared input bytes and execution limits, holds a persistent campaign lock, reserves one fresh numbered attempt/UUID per call, and binds its child execution to the request/attempt. Unknown activity/publication blocks retry; every prior output remains intact.",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "One logical prepared request per shared directory; different directories do not coordinate each other.",
+        "Each call performs one explicit attempt; no automatic retry loop or in-place resume/reseal.",
+        "Unknown publication or an existing execution without ownership evidence remains blocked rather than retroactively repaired.",
+        "Total timeout applies per prepared execution, not request initialization or complete acquisition. Local work/cleanup remain cooperative.",
+        "Source discovery, independent component qualification and acquisition-wide ownership/budget/continuation remain Q04; Q05/Q06/Q13 stay separate.",
+        "Actual native/process controls ran on macOS, not a fresh Linux validation. Scientific scope remains separated PDU/5PC diagnostic, not mixed-scaffold chemistry or refinement."
+      ],
+      "implementation_revision": "6576852f435af6787a2d1d0c3a7cb3581bcdb0b8"
+    },
+    "candidate_qualification_process": {
+      "milestone": "C165",
+      "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
+      "queue": "Q04 ownership primitive complete; qualification callback/budget and acquisition coordination next",
+      "contract": "docs/cif-doctor.md#isolated-qualification-process-evidence-c165",
+      "evidence_key": "candidate_qualification_process_2026_11_03",
+      "summary": "Shared private process scope preserves repair schemas and adds distinct two-phase qualification owner/reader.",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "Ownership primitive only; full independent scientific callback remains caller-owned",
+        "No qualification total budget, complete acquisition lock/recovery or automatic retry",
+        "No connected-polymer, ReadySet, Coot, optimization or refinement execution",
+        "No fresh Linux execution or full regression",
+        "No merge authorization"
+      ],
+      "implementation_revision": "4e0e61204b2541191bf217830b309e2f6caeec33"
+    },
+    "candidate_qualification_execution": {
+      "milestone": "C166",
+      "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
+      "queue": "Q04 qualification adapter/allowance/readback complete; acquisition request/recovery next",
+      "contract": "docs/cif-doctor.md#maintained-two-seed-qualification-c166",
+      "evidence_key": "candidate_qualification_execution_2026_11_04",
+      "summary": "Maintained owned executor/callback shares a cooperative allowance and supplies strict portable scientific readback.",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "Explicit isolated qualification only; no linked/ordinary adoption or refinement support expansion",
+        "Final atomic publication/cleanup cooperative; recorded elapsed is pre-publication",
+        "Whole-acquisition request, discovery, total budget, retry/recovery and broader fallback still open",
+        "No new Linux execution or full suite; no merge authorization"
+      ],
+      "implementation_revision": "1717c6af269c9842d7f937a022c108b77c65c6dd"
+    },
+    "component_acquisition_request": {
+      "milestone": "C167",
+      "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
+      "queue": "Q04 explicit component request complete; discovery/multi-component preparation and whole-request coordination next",
+      "contract": "docs/cif-doctor.md#explicit-component-acquisition-requests-c167",
+      "evidence_key": "component_acquisition_request_2026_11_08",
+      "summary": "Explicit component request freezes inputs/limits, owns immutable attempts and children, shares one generation allowance and elapsed budget, and replays exact successful results.",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "Explicit single-component acquisition only; no discovery/multi-component repair orchestration or ordinary adoption",
+        "Local work/final sealing/publication/cleanup cooperative; no hard wall-clock deadline",
+        "Actual fresh 5PC generation yielded no retained candidate; failure preservation validated, not fresh-generation usability",
+        "Exact cache hit consumes one outer attempt; actual producer hashes pinned only when generation first needed",
+        "Independent fallback for early capture failures/no-repair candidates still open",
+        "No new Linux execution or full suite; no merge authorization"
+      ],
+      "implementation_revision": "014e93366321ef965665dcfb9e48bf07ed1e2918"
+    },
+    "acquisition_source_selection": {
+      "milestone": "C168",
+      "status": "PUBLISHED_FOCUSED_AND_SOURCE_REPLAY_VALIDATED",
+      "queue": "Q04 source snapshot complete; full multi-component request coordination next",
+      "contract": "docs/cif-doctor.md#frozen-acquisition-source-selection-c168",
+      "evidence_key": "acquisition_source_selection_2026_11_08",
+      "summary": "Explicit frozen source set reuses ordinary precedence, detects selection changes and supplies portable exact source/authority for later acquisition.",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "Source selection only; no numerical/native usability verdict",
+        "Caller must retain snapshot; complete multi-component request, deadline and preparation coordination remain open",
+        "Reader uses current source validators but performs no live source or NARestraints registry lookup",
+        "Fresh output only; partial files preserved, no recovery authorization",
+        "No full suite, Linux execution, native jobs, ordinary adoption or merge authorization"
+      ],
+      "implementation_revision": "a088a9d4ff5f4f527c8cabde486a65ccc61e4fae"
+    },
+    "acquired_bundle_preparation": {
+      "milestone": "C169",
+      "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED_FULL_DEFERRED",
+      "queue": "Q04 exact acquired preparation complete; complete outer request identity/budget next",
+      "contract": "docs/cif-doctor.md#exact-acquired-components-into-modelsite-preparation-c169",
+      "evidence_key": "acquired_bundle_preparation_2026_11_08",
+      "summary": "Maintained explicit bridge binds exact attempts and selected source/authority/consumer to existing model/site preparation and portable replay.",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "full_summary": "Interrupted at 68%; complete run deferred by Simon; no full-suite pass claimed",
+      "limitations": [
+        "Full regression interrupted and deferred by user; C160 remains the last completed full-tested revision",
+        "Explicit preparation/composition only; complete outer request identity/deadline and ordinary adoption remain open",
+        "Model/site context is frozen after acquired attempts; outer orchestration must bind it before launching children",
+        "Copied complete acquisition histories incur storage/tree bounds and must not be retried as independent requests",
+        "Existing derivation scratch cleanup unchanged; artifact inputs and completed bundle preserved",
+        "No Linux execution, new chemistry support, ordinary diffraction refinement or merge authorization"
+      ],
+      "implementation_revision": "a80f7d9bdc158127c7e1f6f72fe7be5bb05f65d1"
+    },
+    "outer_child_context": {
+      "milestone": "C170",
+      "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
+      "queue": "Q04 child parent/budget hooks complete; frozen outer request/coordinator next",
+      "contract": "docs/cif-doctor.md#enclosing-attempt-context-for-child-requests-c170",
+      "evidence_key": "outer_child_context_2026_11_09",
+      "summary": "Optional detached parent claims and non-renewable remaining allowances cross acquisition/qualification/prepared repair without changing frozen child limits.",
+      "implementation_revision": "81bf58b01f2777ae4c2d35fb6a3b076e2859a866",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "full_regression": "NOT_RUN_USER_REQUEST",
+      "limitations": [
+        "Full regression not run at user request; C160 remains last completed baseline",
+        "Parent identity is a supplied child claim; complete frozen outer intent and reciprocal coordinator validation remain next",
+        "Shared deadlines are cooperative at boundaries; running children retain their launch timeout and cleanup is not preempted",
+        "No new chemistry, ordinary PostMR adoption, diffraction refinement, Linux-native validation or merge authorization"
+      ]
+    },
+    "complete_dictionary_request": {
+      "milestone": "C171",
+      "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
+      "queue": "Q04 complete explicit ownership closed; broader qualified-original fallback next",
+      "contract": "docs/cif-doctor.md#complete-frozen-dictionary-requests-c171",
+      "evidence_key": "complete_dictionary_request_2026_11_09",
+      "summary": "Explicit immutable outer attempts own persistent component requests, exact preparation and repair with reciprocal ownership, shared allowance and conservative readback/recovery.",
+      "implementation_revision": "86463d627c233a2bc54927ca0d118982f8ac1fea",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "full_regression": "NOT_RUN_USER_REQUEST",
+      "limitations": [
+        "Full regression not run at user request; C160 remains last completed baseline",
+        "Broader early-failure/no-graph-repair proven-original fallback and ordinary adoption remain open",
+        "Shared allowance is cooperative; final atomic publication and cleanup are not preempted",
+        "Existing frozen artifact caps apply; maximum-size multi-component throughput unmeasured",
+        "No new chemistry, mixed-scaffold, ordinary refinement, Linux-native or Python 3.10 execution claim",
+        "Pre-existing direct exception-note calls in C164/C167 need Python-floor audit in Q16",
+        "Complete composition currently requires 2–16 selected component types; validate the single-modified-component route before ordinary adoption."
+      ]
+    },
+    "independent_original_qualification": {
+      "milestone": "C172",
+      "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
+      "queue": "Q04 no-graph original sub-gate closed; early optional-capture fallback next",
+      "contract": "docs/cif-doctor.md#independently-qualified-originals-and-no-repair-requests-c172",
+      "evidence_key": "independent_original_qualification_2026_11_09",
+      "summary": "Independent source/native/derivative-qualified originals publish through the shared runtime publisher; new complete requests freeze and enable no-repair qualification while old requests retain recorded behavior.",
+      "implementation_revision": "c886c84fb42f1fcd57490e2a0638e03dc366a702",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "full_regression": "NOT_RUN_USER_REQUEST",
+      "limitations": [
+        "No full suite; C160 remains last completed baseline",
+        "Early optional-capture failures still raise; classify trustworthy negative records before fallback",
+        "Complete composition remains 2–16 selected types; single-component route needed before ordinary adoption",
+        "No new chemistry, mixed-scaffold, ordinary refinement, Linux-native or Python 3.10 execution claim",
+        "Shared allowance remains cooperative and existing artifact caps remain in force"
+      ]
+    },
+    "owned_native_failure_fallback": {
+      "milestone": "C173",
+      "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
+      "queue": "Q04 classified optional-native fallback closed in demonstrated scope; singleton composition next",
+      "contract": "docs/cif-doctor.md#classified-optional-native-failures-and-original-fallback-c173",
+      "evidence_key": "owned_native_failure_fallback_2026_11_09",
+      "summary": "An explicit frozen policy classifies exact stopped optional-native negatives, rechecks the consumer and independently qualifies the original; only proven originals publish, with failed work preserved and no retry/budget renewal.",
+      "implementation_revision": "3e2955dbac047e779b47c6ad89e73feeccdfa646",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "full_regression": "NOT_RUN_USER_REQUEST",
+      "limitations": [
+        "No full suite; C160 remains last completed baseline",
+        "Classification only covers exact optional native timeout or complete valid worker refusal; generic/unknown/corrupt/initial failures still raise",
+        "Failed job binds dispatcher only; complete current-consumer check and independent original API proof remain mandatory",
+        "Complete composition remains 2–16 selected types; singleton route needed before ordinary adoption",
+        "Completed refusal/unsupported classification has synthetic controls; real native controls use timeouts",
+        "No new family, mixed-scaffold, ordinary refinement, Linux-native or Python 3.10 execution claim",
+        "Cooperative budgets and existing artifact caps remain"
+      ]
+    },
+    "single_component_complete_request": {
+      "milestone": "C174",
+      "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
+      "queue": "Q04 singleton boundary closed in demonstrated scope; ordinary entry-point recovery next",
+      "contract": "docs/cif-doctor.md#one-selected-component-through-the-complete-request-c174",
+      "evidence_key": "single_component_complete_request_2026_11_09",
+      "summary": "One to sixteen selected types traverse the same complete request, preserving all declared sites and exact source/attempt ownership; actual singleton original/repair routes qualify.",
+      "implementation_revision": "cfdb54c5f2f0ab72b0cb6c6decf144dba50aed88",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "full_regression": "NOT_RUN_USER_REQUEST",
+      "limitations": [
+        "Ordinary source/cache entry-point integration remains Q04; ReadySet/checkpoint adoption Q05 and actual refinement consumer Q06",
+        "Separate cif_postmr_readyset adapter retains 2–16 minimum",
+        "Native singleton controls are isolated; linked two-site coverage is synthetic",
+        "No new family, chemical state, Linux-native or ordinary refinement claim",
+        "Existing artifact and cooperative time bounds remain",
+        "No full suite; C160 remains last completed full baseline"
+      ]
+    },
+    "prepared_model_context": {
+      "status": "IMPLEMENTED_FOCUSED_NATIVE_COLD_VALIDATED",
+      "milestone": "C175",
+      "evidence_key": "prepared_model_context_2026_11_10",
+      "scope": "Canonical prepared-model context without supplementary PHIL; ordinary integration open",
+      "implementation_revision": "b595c6fc5bf4cc64300056e248c57850ba8a956b"
+    },
+    "ordered_restraint_context": {
+      "status": "IMPLEMENTED_FOCUSED_NATIVE_COLD_VALIDATED",
+      "milestone": "C176",
+      "evidence_key": "ordered_restraint_context_2026_11_10",
+      "scope": "Exact ordered explicit PHIL and one composer modifier owner; ordinary integration open",
+      "implementation_revision": "3802599adc1b89a7b1da98cc95f72894161c5918"
+    },
+    "postmr_request_entry": {
+      "status": "IMPLEMENTED_FOCUSED_NATIVE_COLD_VALIDATED",
+      "milestone": "C177",
+      "evidence_key": "postmr_request_entry_2026_11_10",
+      "scope": "Ordinary-source prepared-model intake; caller profile and default adoption remain open",
+      "implementation_revision": "7599ad9289d52effd9518ec3e84ef90889de4c5e"
+    },
+    "single_readyset_bundle": {
+      "status": "SINGLETON_CONSUMPTION_AND_FALLBACK_VALIDATED; FINAL_ENDPOINT_OPEN",
+      "milestone": "C178",
+      "evidence_key": "single_readyset_bundle_2026_11_10",
+      "scope": "Singleton consumption and exact fallback; combined metadata/ordinary adoption remain open",
+      "implementation_revision": "e21c0a3ed817469280688a0e60b6a6bd462d0ec2"
+    },
+    "combined_component_metadata": {
+      "status": "COMBINED_METADATA_AND_SINGLETON_FINAL_ENDPOINT_VALIDATED",
+      "milestone": "C179",
+      "evidence_key": "combined_component_metadata_2026_11_10",
+      "scope": "Shared native list writer and explicit legacy replay; strict singleton endpoint qualifies",
+      "implementation_revision": "9a1527ad4f286a3e09024d062fe04db80141d137"
+    },
+    "filtered_component_metadata": {
+      "status": "PARTIAL_FILTER_METADATA_NATIVE_AND_COLD_VALIDATED",
+      "milestone": "C180",
+      "evidence_key": "filtered_component_metadata_2026_11_10",
+      "scope": "Both partial-filter directions retain native metadata and existing precedence",
+      "implementation_revision": "d87a18f1b442325ddb0c4279cbb30c6cb5492f31"
+    },
+    "selected_runtime_readyset": {
+      "status": "SELECTED_RUNTIME_READYSET_NATIVE_AND_COLD_VALIDATED",
+      "milestone": "C181",
+      "evidence_key": "selected_runtime_readyset_2026_11_10",
+      "scope": "Qualified selected original/repaired runtime through existing ReadySet/native checks and public publication; exact parent fallback",
+      "implementation_revision": "9591e4aa8f960683f119cca93a522afc9b551671"
+    },
+    "current_phenix_configuration": {
+      "status": "IMPLEMENTED_EXPLICIT_API",
+      "evidence_key": "current_phenix_configuration_2026_11_10",
+      "scope": "READ_ONLY_SELECTED_INSTALLATION_CONFIGURATION; NO_NEW_OWNER_OR_DEFAULT_ADOPTION",
+      "remaining": [
+        "Durable whole-continuation ownership",
+        "Ordinary caller and immutable checkpoint adoption",
+        "Actual refinement consumer Q06",
+        "Mixed/held-out and chemical-state controls Q07/Q13"
+      ],
+      "implementation_revision": "7efacdc2bef4f667e36252f135bb23b95c993d71"
+    },
+    "owned_runtime_continuation": {
+      "status": "IMPLEMENTED_EXPLICIT_CHILD_EXECUTION",
+      "evidence_key": "owned_runtime_continuation_2026_11_10",
+      "scope": "ONE_OWNED_SELECTED_RUNTIME_CONTINUATION; EXISTING_OUTER_RECOVERY_AND_DEFAULT_ADOPTION_SEPARATE",
+      "remaining": [
+        "Bind continuation to existing complete-request recovery owner",
+        "Ordinary caller and immutable checkpoint adoption",
+        "Actual refinement consumer Q06",
+        "Mixed/held-out and chemical-state controls Q07/Q13"
+      ],
+      "implementation_revision": "3f7b1d7d7eb9be3a3a2d90872669d7224cc3fcf9"
+    },
+    "complete_runtime_continuation": {
+      "status": "IMPLEMENTED_OPT_IN_COMPLETE_CHAIN",
+      "evidence_key": "complete_runtime_continuation_2026_11_10",
+      "scope": "EXISTING_COMPLETE_REQUEST_OWNS_CONTINUATION_AND_RECOVERY; ORDINARY_CALLER_AND_CHECKPOINT_ADOPTION_SEPARATE",
+      "remaining": [
+        "Ordinary prepared/newly-mutated caller integration",
+        "Immutable checkpoint adoption",
+        "Actual refinement consumer Q06",
+        "Mixed/held-out and chemical-state controls Q07/Q13"
+      ],
+      "implementation_revision": "b1d179d3147632211281ba4887839d6b64260960"
+    },
+    "primary_failure_reporting": {
+      "status": "IMPLEMENTED_DIAGNOSTIC_FAILURE_PRESERVATION",
+      "evidence_key": "primary_failure_reporting_2026_11_10",
+      "scope": "C171_NOTE_COMPATIBILITY_FOLLOWUP_ONLY",
+      "remaining": [
+        "Required planarity intake and faithful ordinary PHIL binding Q04",
+        "Ordinary caller and checkpoint adoption Q04/Q05",
+        "Actual refinement Q06",
+        "Mixed/held-out and chemical-state controls Q07/Q13",
+        "Full integration/platform/Python 3.10 qualification Q16"
+      ],
+      "implementation_revision": "199797ce4018f2b07f2824b6d8361dc81a889a19"
+    },
+    "planarity_intake": {
+      "status": "IMPLEMENTED_FOCUSED_NATIVE_COLD_VALIDATED",
+      "milestone": "C186",
+      "evidence_key": "planarity_intake_2026_11_10",
+      "scope": "Exact supplied NAR planes and atom weights; literal pair/stack intake and ordinary adoption open",
+      "implementation_revision": "f3d855922de6e742a7bd13650cece7f9fc5aca07"
+    },
+    "literal_input_provenance": {
+      "status": "IMPLEMENTED_VALIDATED",
+      "policy": "cif-literal-na-inputs-v1",
+      "entry": "prepare_literal_na_inputs / initialize_postmr_dictionary_request(literal_na_inputs=...)",
+      "reader": "read_literal_na_inputs / read_dictionary_request_result",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#literal_input_provenance_2026_11_10",
+      "limitations": [
+        "Completed native identity capture remains a prerequisite; source-interpretation failures need owned bootstrap or existing source-bound C80 route",
+        "Ordinary PostMR must preserve pre-construction source/producer lineage and a single site-modifier owner",
+        "Whole-request provenance does not yet accompany standalone selected-runtime export/checkpoint adoption",
+        "Q05 adoption, Q06 actual refinement, Q07 mixed/held-out, Q13 state and Q16 integration remain open"
+      ],
+      "implementation_revision": "41a7f464c26ef5bd9083aebb243316433bed5889"
+    },
+    "explicit_compiler_intake": {
+      "status": "IMPLEMENTED_VALIDATED",
+      "entry": "initialize_postmr_dictionary_request(explicit_na_policy=...)",
+      "reader": "read_dictionary_request_result / read_explicit_na_policy",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#explicit_compiler_intake_2026_11_10",
+      "limitations": [
+        "Ordinary caller must preserve pre-Coot source/producer identity and use only the composer for site modifications",
+        "Original literal mode still needs a completed native capture; source-bound mode must not silently replace its relationships/planes",
+        "New owner execution is synthetic transport, not a new complete native chemistry control",
+        "Standalone runtime/checkpoint lineage Q05, actual refinement Q06, mixed/held-out Q07 and release Q16 remain open"
+      ],
+      "implementation_revision": "4dbd4ae72cb5f742563036383647564133e6c597"
+    },
+    "frozen_source_intake": {
+      "status": "IMPLEMENTED_VALIDATED",
+      "entry": "initialize_postmr_dictionary_request(frozen_sources=...)",
+      "reader": "read_acquisition_sources / read_dictionary_request_result",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#frozen_source_intake_2026_11_10",
+      "limitations": [
+        "Bind actual pre-Coot source/producer evidence at the ordinary construction boundary",
+        "Connect ordinary caller with one composer modifier owner",
+        "Literal bootstrap and selected runtime/checkpoint lineage Q05 remain open",
+        "Actual refinement Q06, mixed/held-out Q07, unresolved state Q13 and integration Q16 remain open"
+      ],
+      "implementation_revision": "d35b3c4fbac3697b70d27040d96aa3bf6b4ef36f"
+    },
+    "scoped_restraint_intake": {
+      "status": "IMPLEMENTED_VALIDATED",
+      "entry": "derive_restraint_context / initialize_dictionary_request / execute_dictionary_request_attempt",
+      "reader": "validate_restraint_context (historical read-only default)",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#scoped_restraint_intake_2026_11_10",
+      "limitations": [
+        "Connect ordinary caller and actual construction source/producer identity with one modifier owner (Q04)",
+        "Preserve original compiler/source lineage in immutable selected checkpoints (Q05)",
+        "Actual refinement Q06, mixed/held-out Q07, state Q13 and full integration Q16 remain open"
+      ],
+      "implementation_revision": "9cb055e93c886654029adc217c49a7939bf954db"
+    },
+    "full_model_source_owner_control": {
+      "status": "INPUT_BINDING_VALIDATED; ISOLATED_NATIVE_QUALIFICATION_REFUSED",
+      "validation_revision": "ae21f355f50ca5c1ed1ea7482e5755c8a4bbfd47",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#full_model_source_owner_2026_11_10",
+      "limitations": [
+        "Distinguish verified failed native qualification from ownership/deadline mismatch in the exception and point to exact evidence",
+        "Q04 ordinary caller/source construction joins and full-model success remain open",
+        "Q05 adoption, Q06 refinement, Q07 mixed/held-out and Q13 source/native states remain separate"
+      ]
+    },
+    "native_qualification_diagnostics": {
+      "status": "IMPLEMENTED_VALIDATED",
+      "entry": "cif_candidate_qualification_execution._derive",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#native_qualification_diagnostics_2026_11_10",
+      "limitations": [
+        "Surface existing C115 source-generation diagnostic at the no-retained-candidate boundary",
+        "Q04 ordinary caller, construction producer and one modifier owner",
+        "Q05 checkpoint lineage, Q06 refinement and Q07 mixed/held-out acceptance remain open"
+      ],
+      "implementation_revision": "697dc0ecf963117aeadba16024562cf9d70f3ce4"
+    },
+    "generation_failure_diagnostics": {
+      "status": "IMPLEMENTED_VALIDATED",
+      "entry": "cif_generation_acquisition.resolve_generated_dictionary",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#generation_failure_diagnostics_2026_11_10",
+      "limitations": [
+        "Q04 ordinary caller, construction producer and one modifier owner",
+        "Q05 exact selected bundle/checkpoint lineage",
+        "Q06 actual refinement and Q07 mixed/held-out acceptance; source-H/native mapper issue remains Q13"
+      ],
+      "implementation_revision": "250b029ac0d00d416fe568d7b09b5f7df53dbe86"
+    },
+    "native_hydrogen_mapping_diagnostic": {
+      "status": "DIAGNOSTIC_CLOSED_PRODUCTION_GATE_OPEN",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#native_hydrogen_mapping_diagnostic_2026_11_10",
+      "limitations": [
+        "Q13 exact source-component binding and terminal-modifier ownership before any mapper policy",
+        "Versioned mapper/source/extension consumer and cache/replay identity if a production policy is justified",
+        "Q04 ordinary caller, actual construction/source join and exclusive modifier owner",
+        "Q05 selected immutable checkpoint adoption; Q06 actual refinement; Q07 mixed and held-out controls"
+      ]
+    },
+    "frozen_construction_sources": {
+      "status": "IMPLEMENTED_VALIDATED",
+      "entry": "postmr.prepare_postmr -> construct_postmr_model",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#frozen_construction_sources_2026_11_10",
+      "limitations": [
+        "Q04 bind consumed construction source/producer evidence to C189 complete request and one modifier owner",
+        "Q05 selected immutable checkpoint adoption; Q06 actual refinement; Q07 mixed and held-out controls",
+        "C194/Q13 native atom mapping, source-component binding and terminal conflicts remain separate"
+      ],
+      "implementation_revision": "2c4864069ff42a5589c7f589a8063ccecc9064b4"
+    },
+    "ordinary_construction_lineage": {
+      "status": "IMPLEMENTED_VALIDATED",
+      "policy": "postmr-construction-lineage-v1",
+      "entry": "postmr.prepare_postmr / initialize_postmr_dictionary_request(construction_inputs=run)",
+      "reader": "read_postmr_construction / read_dictionary_request_result",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#ordinary_construction_lineage_2026_11_11",
+      "limitations": [
+        "Q04 ordinary invocation, faithful literal intake and one modifier owner",
+        "Q05 exact selected artifact/lineage export into immutable checkpoints",
+        "Q06 actual refinement; Q07 combined and held-out controls; C194/Q13 native chemical-state blockers"
+      ],
+      "implementation_revision": "96abd9a0848a74fb39ec68a689c74ee20155851e"
+    },
+    "source_literal_intake": {
+      "status": "IMPLEMENTED_VALIDATED",
+      "policy": "cif-source-literal-na-inputs-v1",
+      "entry": "prepare_source_literal_na_inputs / initialize_postmr_dictionary_request(literal_na_inputs=...)",
+      "reader": "read_literal_na_inputs / read_dictionary_request_result",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#source_literal_intake_2026_11_11",
+      "limitations": [
+        "Q04 ordinary invocation and single site-modifier ownership",
+        "Q05 exact selected artifact/producer/compiler export into immutable checkpoints",
+        "Q06 refinement; Q07 combined and held-out controls; C194/Q13 native chemistry failures"
+      ],
+      "implementation_revision": "9257f4e87e82045cd36322b843052c3d6c30fd92"
+    },
+    "complete_model_repair_scope": {
+      "status": "IMPLEMENTED_VALIDATED; OUTER_PUBLICATION_LIMIT_OPEN",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#complete_model_repair_scope_2026_11_11",
+      "limitations": [
+        "Outer request evidence 152960714 bytes exceeds old 128 MiB envelope: STOPPED_UNFINISHED, no completed outer result; fix composed publication under versioned bounded partitions.",
+        "Q04 ordinary invocation and single modifier ownership; Q05 selected checkpoint adoption; Q06 refinement and Q07 combined/held-out controls.",
+        "C194/Q13 native source chemistry failures remain separate."
+      ],
+      "implementation_revision": "b45bd6457ce5e0a090e417706b4ea760ee50df91"
+    },
+    "composed_request_publication": {
+      "status": "IMPLEMENTED_VALIDATED",
+      "policy": "cif-complete-request-partitioned-artifacts-v1",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#composed_request_publication_2026_11_11",
+      "limitations": [
+        "Actual connected ReadySet continuation capacity/selection is not established by this repair-only request; C183 child keeps its existing whole-tree cap.",
+        "Q04 ordinary invocation and single modifier ownership; Q05 exact selected checkpoint export.",
+        "Q06 actual refinement; Q07 combined/held-out controls; C194/Q13 chemistry failures."
+      ],
+      "implementation_revision": "b516738aa59f5beffe2f41c631a9c427bfe94189"
+    },
+    "composed_continuation_publication": {
+      "status": "IMPLEMENTED_VALIDATED; ASU_CONTINUATION_GATE_OPEN",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#composed_continuation_publication_2026_11_11",
+      "limitations": [
+        "Q04 whole-crystal continuation needs symmetry-aware nonbonded evidence and bounded whole-model pair-call design; ReadySet did not run.",
+        "Q04 ordinary invocation/single modifier owner and Q05 selected checkpoint export.",
+        "Q06 refinement, Q07 combined/held-out controls, C194/Q13 source chemistry gaps."
+      ],
+      "implementation_revision": "afd61682ddc800f17d3134bcbb6536fdd8eda55d"
+    },
+    "native_asu_proof_investigation": {
+      "status": "VALIDATED_LOCAL_RESEARCH_ONLY; PRODUCTION_ASU_GATE_OPEN",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#native_asu_proof_investigation_2026_11_11",
+      "next": "Compact versioned maintained capture/reviewer with exact worker/spec/receipt binding, explicit resource bounds and legacy/cold controls; then owned continuation."
+    },
+    "compact_native_asu_capture": {
+      "status": "IMPLEMENTED_VALIDATED_EXPLICIT_DIAGNOSTIC; CONTINUATION_INTEGRATION_OPEN",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#compact_native_asu_capture_2026_11_11",
+      "next": "Freeze ASU mode in continuation and enclosing request, preserving old configuration; fresh actual connected ReadySet control.",
+      "implementation_revision": "fa23d9336eb8d86669336d649f497bd1d32e640c"
+    },
+    "owned_asu_continuation": {
+      "status": "IMPLEMENTED_VALIDATED_CONNECTED_CONTROL; ORDINARY_INVOCATION_OPEN",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#owned_asu_continuation_2026_11_11",
+      "next": "Ordinary invocation with one composer/modifier owner, then exact selected checkpoint export; reuse existing complete request.",
+      "implementation_revision": "8b012965b7bdc97dba22d4047b78d355d73a5d98"
+    },
+    "ordinary_literal_source_assembly": {
+      "status": "IMPLEMENTED_VALIDATED; ORDINARY_INVOCATION_OPEN",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#ordinary_literal_source_assembly_2026_11_11",
+      "next": "Join existing ordinary PostMR caller to the complete request before legacy modification/ReadySet; preserve one owner and durable resume.",
+      "implementation_revision": "430d3598782b8ce1a29d22ce0682adeeeb4b8099"
+    },
+    "single_exact_result_replay": {
+      "status": "IMPLEMENTED_VALIDATED; ORDINARY_INVOCATION_OPEN",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#single_exact_result_replay_2026_11_11",
+      "next": "Join ordinary PostMR to existing complete request; truthful fallback reporting and exact selected checkpoint lineage remain Q04/Q05.",
+      "implementation_revision": "fa1f942c291ec2967bed549ca41cc60e71c8f9ef"
+    },
+    "mutation_plane_geometry": {
+      "status": "DIAGNOSTIC_VALIDATED; PRODUCTION_INTEGRATION_OPEN",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#pdu_construction_plane_geometry_2026_11_11",
+      "next": "Use existing Q04/Q05 and Q06/Q07 boundaries; do not equate source/native numerical qualification with appropriate conformation or achieved geometry."
+    },
+    "native_parent_conformation": {
+      "status": "IMPLEMENTED_BOUNDED_ORDINARY_CONSTRUCTION",
+      "contract": "docs/cif-doctor.md#graph-supported-native-parent-conformation-c207",
+      "evidence": "native_parent_conformation_2026_11_11",
+      "scope": "Source-graph selected parent chi; native PDU/5PC positive, DP mismatch refusal. No plane repair, broader backbone or refinement claim."
+    },
+    "trigonal_plane_coverage": {
+      "status": "IMPLEMENTED_EXPLICIT_READ_ONLY_API",
+      "contract": "docs/cif-doctor.md#source-selected-trigonal-plane-coverage-c208",
+      "evidence": "trigonal_plane_coverage_2026_11_11",
+      "scope": "Neutral explicit three-heavy-neighbor carbon coverage; alternatives retained, unsupported chemistry unassessed. No repair/adoption."
+    },
+    "trigonal_plane_candidates": {
+      "status": "IMPLEMENTED_EXPLICIT_CANDIDATE_API",
+      "contract": "docs/cif-doctor.md#source-supported-plane-completion-candidates-c209",
+      "evidence": "trigonal_plane_candidates_2026_11_11",
+      "scope": "Exact existing-plane additions; PDU native geometry/membership, 5PC candidate transfer. Native support provenance, complete qualification and ordinary adoption remain separate."
+    },
+    "construction_identity_serials": {
+      "status": "IMPLEMENTED_ORDINARY_CONTEXT",
+      "contract": "docs/cif-doctor.md#identity-authorized-construction-serials-c210",
+      "evidence": "construction_identity_serials_2026_11_11",
+      "scope": "Identity-only serial context; existing phosphate and transport proofs, explicit terminal-intent audit. No general PDB cleaning or refinement claim."
+    },
+    "native_plane_completion_inventory": {
+      "status": "IMPLEMENTED_EXPLICIT_INVENTORY_GATE",
+      "contract": "docs/cif-doctor.md#exact-linked-native-plane-additions-c211",
+      "evidence": "native_plane_completion_inventory_2026_11_11",
+      "scope": "Source-rebuilt exact native plane additions; linked PDU/5PC controls. Native authentication, energy/derivatives, geometry and adoption separate."
+    },
+    "owned_multiple_plane_generation": {
+      "status": "IMPLEMENTED_EXISTING_GENERATOR_OWNER_OPTION",
+      "contract": "docs/cif-doctor.md#owned-native-multiple-plane-generation-c212",
+      "evidence": "owned_multiple_plane_generation_2026_11_11",
+      "scope": "Explicit installed multiple-plane choice with existing native source, request and cache ownership. C213 now binds selected owned support into plane candidates; automatic adoption remains separate."
+    },
+    "owned_plane_support_replay": {
+      "status": "IMPLEMENTED_SELECTED_OWNED_SUPPORT_ADAPTER",
+      "contract": "docs/cif-doctor.md#owned-generation-support-for-plane-completion-c213",
+      "evidence": "owned_plane_support_replay_2026_11_11",
+      "scope": "Shared complete-generation replay and exact selected immutable attempt binding into existing plane-only candidates. C214 binds native captures; mechanics, achieved geometry and ordinary adoption remain separate."
+    },
+    "owned_plane_capture_binding": {
+      "status": "IMPLEMENTED_EXACT_NATIVE_CAPTURE_ADAPTER",
+      "contract": "docs/cif-doctor.md#owned-plane-native-capture-qualification-c214",
+      "evidence": "owned_plane_capture_binding_2026_11_11",
+      "scope": "Read-only exact input/captured-consumer binding. C215 adds fixed-point attribution and separate derivative controls; achieved geometry and ordinary adoption remain open."
+    },
+    "fixed_coordinate_plane_mechanics": {
+      "status": "IMPLEMENTED_PURE_ATTRIBUTION_WITH_NATIVE_CONTROLS",
+      "contract": "docs/cif-doctor.md#complete-plane-energy-and-derivative-controls-c215",
+      "evidence": "fixed_coordinate_plane_mechanics_2026_11_11",
+      "scope": "Complete old/new group attribution and separate derivative controls pass for PDU/5PC; C216 adds descriptive model geometry and bounded 5PC native transfer, without automatic adoption."
+    },
+    "source_selected_model_geometry": {
+      "status": "IMPLEMENTED_READ_ONLY_MODEL_AUDIT",
+      "contract": "docs/cif-doctor.md#source-selected-model-trigonal-geometry-c216",
+      "evidence": "source_selected_model_geometry_2026_11_11",
+      "scope": "Shared graph/state selector, all supported modeled centers, explicit degeneracy/missing scope. PDU/5PC replay and bounded native 5PC transfer; no universal geometry pass or adoption."
+    },
+    "selected_postmr_runtime": {
+      "status": "IMPLEMENTED_ORDINARY_CALLER_FORWARDING",
+      "contract": "docs/cif-doctor.md#selected-phenix-runtime-through-ordinary-postmr-c217",
+      "evidence": "selected_postmr_runtime_2026_11_11",
+      "scope": "Retain selected installation in CLI/campaign preparation and existing cache consumer binding; ordinary owned request invocation/adoption still open."
+    },
+    "ordinary_postmr_request_entry": {
+      "status": "IMPLEMENTED_EXPLICIT_ORDINARY_ENTRY_WITH_NATIVE_EXECUTION_CONTROL",
+      "contract": "docs/cif-doctor.md#ordinary-preparation-into-the-existing-request-c218",
+      "evidence": "ordinary_postmr_request_entry_2026_11_11",
+      "scope": "Shared ordinary Coot/NAR intake followed by existing owner validated through fresh generation, linked repair, ReadySet and cold exact selection. Default invocation/reporting, plane composition and adoption remain open.",
+      "execution_evidence": "ordinary_postmr_request_execution_2026_11_11"
     }
   },
   "audience": [
@@ -27309,8 +29005,8 @@
       "cache_invalidation": "Any changed source, graph mapping, site/link/symmetry context, parameter/weight, tool/energy library, coordinate/cell or policy invalidates the affected layer. Cached unsupported/failed results stay clearly typed; fresh tool availability changes capability identity.",
       "replay": "No host-absolute path as sole operational reference; hashes and declared run/dataset/repository anchors permit relocated replay. No input lookup by basename. Cache may optimize calculations but must not replace the run-local immutable receipt.",
       "qualified_dictionary_store": {
-        "status": "IMPLEMENTED_SHARED_COMPONENT_STORE_AND_RESOLVER; ORDINARY_ORCHESTRATION_PENDING",
-        "recorded_date": "2026-10-22",
+        "status": "IMPLEMENTED_DEFAULT_ORDINARY_REUSE_AND_OPT_IN_STORED_SITE_NATIVE_BINDING",
+        "recorded_date": "2026-10-30",
         "behavior": "Automatically persist usable repaired numerical dictionaries locally and reuse them before regeneration or optimization for later matching structures.",
         "identity": "Semantic source/state/authority/recipe/backend-family lookup; immutable entry additionally binds candidate bytes, complete producer and consumer versions, qualification and stopping notes.",
         "provenance": "Retain original producer versions and fingerprints after consumer requalification; never attribute old numerical bytes to an upgraded builder. Usable nonconverged results remain reusable.",
@@ -27329,7 +29025,8 @@
           "src/nasolve/cif_dictionary_store.py",
           "src/nasolve/cif_dictionary_reuse.py"
         ],
-        "delivery": "66_Cedar --local-dictionary-reuse-only; MAC_TRANSPORT_PENDING"
+        "delivery": "Historical C66 evidence retained; current contracts in cif-doctor.md and C135 evidence.",
+        "explicit_representation": "C135 binds recipe/v3 isolated storage. C136–C139 compose exact source/native/ReadySet evidence with usable fallback. C140 provides lossless atom serialization before strict endpoint checks. C141 exports the exact model/ordered restraints and frozen evidence through public assessment; ordinary orchestration/adoption remains separate."
       },
       "component_key_scope": "Full immutable entry identity includes producer and consumer versions; the semantic base-numerics lookup uses source/state/authority/recipe/backend family. Consumer/native-policy/combined-tool upgrades retain saved numerics for affected-layer requalification before generation."
     },
@@ -29359,7 +31056,25 @@
     "contract": "docs/cif-doctor.md#automatic-continuation-and-student-facing-decisions",
     "requires_student_cif_review": false,
     "supersedes": "Earlier human-review/adoption design language applies to retained developer evidence, not mandatory student CIF approval. Hard unusability and final structural validation remain distinct.",
-    "implementation_boundary": "Pure selection policy and PostMR summary implemented; recovery/adoption/PDF integration planned.",
-    "qualified_dictionary_reuse": "IMPLEMENTED_SHARED_STORE_AND_RESOLVER; source/state-bound reusable numerics and frozen run copies; ordinary automatic acquisition/adoption still pending."
+    "implementation_boundary": "Pure selection policy, PostMR assessment and explicit checked preparation/result/continuation commands implemented (C220); default PostMR/campaign adoption, complete-plane composition, actual refinement qualification and solution-PDF integration remain open.",
+    "qualified_dictionary_reuse": "IMPLEMENTED_SHARED_STORE_AND_ORDINARY_NARROW_RECIPE_REUSE; explicit representation-policy/current-site bundles are qualified diagnostics, with general cache-miss recovery and ordinary adoption still pending.",
+    "background_engine_intent": "Internal recipes/model/source contracts drive automatic chemistry handling around ReadySet and NARestraints. Users should not author or review CIFs routinely; unresolved scientific choices are distinct from repairable technical failures.",
+    "retained_design_principles": "docs/cif-doctor.md#design-principles-retained-from-the-early-cedar-work",
+    "completion_queue": "docs/cif-doctor-completion-queue.md",
+    "checked_preparation": {
+      "contract": "docs/cif-doctor.md#checked-preparation-and-honest-recovery-c220",
+      "implementation": "src/nasolve/cif_ordinary_postmr.py",
+      "commands": [
+        "cif-doctor prepare-run",
+        "cif-doctor preparation-status",
+        "cif-doctor prepared-result",
+        "cif-doctor continue-preparation"
+      ],
+      "execution_owner": "src/nasolve/cif_complete_request.py",
+      "artifact_schema_change": false,
+      "default_workflow_adoption": false,
+      "refinement_qualified": false,
+      "evidence_record": "checked_preparation_handoff_2026_11_12"
+    }
   }
 }

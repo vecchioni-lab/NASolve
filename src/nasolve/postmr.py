@@ -12,7 +12,7 @@ from dataclasses import asdict, dataclass, replace
 from datetime import datetime, timezone
 from math import dist, isfinite, sqrt
 from pathlib import Path
-from typing import Callable, Mapping
+from typing import Callable, Mapping, TypeVar
 
 from .curated_ligands import (
     CURATED_LIGANDS,
@@ -44,6 +44,7 @@ from .ligand_profiles import (
     frozen_reference, validate_model_phosphate_policy, write_linked_profile,
 )
 from .run_context import artifact_reference, resolve_artifact_path
+from .phenix_runtime import PhenixInstallation
 from .sequence_reference import SequenceReferenceError
 from .sequence_syntax import SequenceSyntaxError, sequence_residue_codes
 from .sequence_family import (
@@ -67,14 +68,21 @@ class MutationAction:
 
 @dataclass(frozen=True)
 class PostMRResult:
+    """A usable preparation; checked results expose their receipt and actual status.
+
+    readyset_log is optional because the checked route retains the native logs
+    through its immutable request, not a synthetic legacy log at the run root.
+    """
     status: str
     message: str
     run_directory: Path
     postmr_directory: Path
     report_path: Path
     model_path: Path
-    readyset_log: Path
+    readyset_log: Path | None
     restraint_paths: tuple[Path, ...]
+    readyset_status: str | None = None
+    preparation_notes: tuple[str, ...] = ()
 
 
 _COOT_BASES = frozenset({"DA", "DC", "DG", "DT", "A", "C", "G", "U"})
@@ -340,9 +348,62 @@ def _target_sites(
     return targets
 
 
+def _explicit_construction_sources(choices, targets, *, mirrored=False):
+    """Validate source/temporary-parent choices without registering chemical roles."""
+    if choices is None:
+        return {}
+    from .cif_dictionary_sites import _read
+    from .cif_linked_preparation import component_values
+    from .cif_stereochemistry_audit import _stereo
+    from .postmr_conformation import parent_conformation_plan
+
+    if not isinstance(choices, Mapping) or not 1 <= len(choices) <= 16:
+        raise PostMRPreparationError("Require one to sixteen explicit construction sources")
+    if mirrored:
+        raise PostMRPreparationError("Explicit construction sources need a reviewed mirrored route")
+    selected = {}
+    requested = set(targets.values())
+    for code, choice in choices.items():
+        if (not isinstance(code, str) or re.fullmatch(r"[A-Z0-9]{1,3}", code) is None
+                or code not in requested
+                or code in CURATED_LIGANDS or code in _COOT_BASES
+                or code in _MIRRORED_CANONICAL_CODES.values()):
+            raise PostMRPreparationError("Explicit construction source must name a requested non-curated modified target")
+        if not isinstance(choice, (tuple, list)) or len(choice) != 2:
+            raise PostMRPreparationError("Construction choice requires (source dictionary, canonical parent)")
+        dictionary, parent = choice
+        if not isinstance(dictionary, (str, os.PathLike)) or not isinstance(parent, str):
+            raise PostMRPreparationError("Invalid construction source path or parent")
+        path = Path(dictionary).absolute()
+        try:
+            original = _read(path)
+            validate_ligand_dictionary(code, path)
+            stereo = _stereo(component_values(path, code))
+            if tuple(stereo.get(n) for n in ("C1'", "C3'", "C4'")) != ('R', 'S', 'R'):
+                raise ValueError("Require explicitly declared beta-D-deoxy source stereochemistry")
+            plan = parent_conformation_plan(path, code, parent)
+            if plan['status'] != 'MATCH_PARENT_CHI':
+                raise ValueError(plan['reason'])
+            if _read(path) != original:
+                raise ValueError("Construction source changed during validation")
+        except (OSError, UnicodeError, ValueError, KeyError) as exc:
+            raise PostMRPreparationError(f"Explicit construction target {code} failed: {exc}") from exc
+        selected[code] = (parent, path, original)
+    return selected
+
+
 def build_mutation_plan(
     report: Mapping[str, object], model: Path, *, run_directory: Path | None = None,
+    construction_sources: Mapping[str, tuple[Path, str]] | None = None,
 ) -> tuple[MutationAction, ...]:
+    """Plan ordinary mutations, optionally using exact explicit source/parent choices.
+
+    Non-curated choices bypass catalogue lookup only for their named targets.
+    Existing source DNA graph and chi-frame rules check the temporary parent;
+    explicit D-deoxy stereochemistry is required. This is construction planning,
+    not native dictionary qualification, target registration or base-pair intent.
+    Frozen source-selection paths may be supplied without their original source.
+    """
     actions: list[MutationAction] = []
     raw_targets = _target_sites(report, model, run_directory=run_directory)
     try:
@@ -357,6 +418,8 @@ def build_mutation_plan(
             and (component_target_changes(raw_targets) or any(
                 residue_name(model, site) in PREFERRED_COMPONENTS for site in targets))):
         raise PostMRPreparationError("Preferred-component conversion of mirrored models needs a reviewed L-sugar route")
+    explicit = _explicit_construction_sources(construction_sources, targets,
+        mirrored=isinstance(inputs, Mapping) and inputs.get("mirror") is True)
     for site, target in targets.items():
         if len(target) > 3:
             raise PostMRPreparationError(
@@ -382,6 +445,9 @@ def build_mutation_plan(
             )
         elif target in _COOT_BASES:
             method = "coot-mutate-base"
+        elif target in explicit:
+            method = "coot-parent-overlap"
+            parent_code = explicit[target][0]
         else:
             try:
                 ligand = ligand_definition(target)
@@ -406,6 +472,13 @@ def build_mutation_plan(
                 deposition_code=deposition_code,
             )
         )
+    if explicit:
+        from .cif_dictionary_sites import _read
+        try:
+            if any(_read(path) != data for _, path, data in explicit.values()):
+                raise ValueError("Construction source changed during mutation planning")
+        except (OSError, ValueError) as exc:
+            raise PostMRPreparationError(str(exc)) from exc
     return tuple(actions)
 
 
@@ -415,10 +488,18 @@ def _coot_script(
     actions: tuple[MutationAction, ...],
     dictionary_paths: Mapping[str, Path],
     parent_models: Mapping[str, Path],
+    *,
+    conformation_plans: Mapping[str, dict] | None = None,
+    verify_mutation_identity: bool = False,
+    site_dictionary_paths: Mapping[str, Path] | None = None,
 ) -> str:
+    # Default options preserve exact historical script generation for replay.
+    from .postmr_conformation import native_helpers, native_match_lines, native_overlap_check_lines
     lines = [
         "import coot",
     ]
+    if conformation_plans and any(p["status"] == "MATCH_PARENT_CHI" for p in conformation_plans.values()):
+        lines.extend(native_helpers())
     for code, dictionary in dictionary_paths.items():
         lines.extend([
             f"dictionary_status = coot.read_cif_dictionary({json.dumps(str(dictionary))})",
@@ -431,6 +512,15 @@ def _coot_script(
         "if imol < 0:",
         "    raise RuntimeError('Coot could not read the PostMR model')",
     ])
+    def identity_lines(site, chain, residue, expected):
+        if not verify_mutation_identity:
+            return []
+        return [
+            f"result_name = coot.residue_name(imol, {chain!r}, {residue}, '')",
+            f"print('NASOLVE_MUTATION_IDENTITY', {site!r}, {expected!r}, result_name)",
+            f"if result_name != {expected!r}:",
+            f"    raise RuntimeError('Coot did not produce {expected} at {site}')",
+        ]
     for action in actions:
         chain, resid = _site_parts(action.site)
         try:
@@ -449,6 +539,7 @@ def _coot_script(
                 "if status != 1:",
                 f"    raise RuntimeError('Coot mutation failed at {action.site}')",
             ])
+            lines.extend(identity_lines(action.site, chain, residue_number, action.after))
             continue
         if action.method != "coot-parent-overlap" or action.parent_code is None:
             raise PostMRPreparationError(
@@ -464,12 +555,28 @@ def _coot_script(
                 "if status != 1:",
                 f"    raise RuntimeError('Coot parent mutation failed at {action.site}')",
             ])
+            lines.extend(identity_lines(action.site, chain, residue_number, action.parent_code))
+        if site_dictionary_paths is not None:
+            # Coot dictionaries are global by component code. Reload even a
+            # fallback so an earlier site's end state cannot leak into this one.
+            dictionary = site_dictionary_paths.get(action.site, dictionary_paths[action.after])
+            lines.extend([
+                f"dictionary_status = coot.read_cif_dictionary({json.dumps(str(dictionary))})",
+                f"print('NASOLVE_SITE_DICTIONARY', {action.site!r}, {action.after!r}, dictionary_status)",
+                "if not dictionary_status:",
+                f"    raise RuntimeError('Coot could not load the dictionary for {action.site}')",
+            ])
         lines.extend([
             f"coot.write_pdb_file(imol, {json.dumps(str(parent_models[action.site]))})",
             f"ligand_imol = coot.get_monomer_from_dictionary({action.after!r}, 0)",
             f"print('NASOLVE_MONOMER', {action.after!r}, ligand_imol)",
             "if ligand_imol < 0:",
             f"    raise RuntimeError('Coot could not build {action.after} from its dictionary')",
+        ])
+        plan = conformation_plans.get(action.site) if conformation_plans is not None else None
+        if plan is not None:
+            lines.extend(native_match_lines(plan, action.site, chain, residue_number))
+        lines.extend([
             (
                 "overlap_status = coot.overlap_ligands_py("
                 f"ligand_imol, imol, {chain!r}, {residue_number})"
@@ -477,6 +584,10 @@ def _coot_script(
             f"print('NASOLVE_OVERLAP', {action.site!r}, overlap_status)",
             "if not overlap_status:",
             f"    raise RuntimeError('Coot overlap failed at {action.site}')",
+        ])
+        if plan is not None:
+            lines.extend(native_overlap_check_lines(plan, action.site))
+        lines.extend([
             (
                 "replacement_imol = coot.add_ligand_delete_residue_copy_molecule("
                 f"ligand_imol, 'A', 1, imol, {chain!r}, {residue_number})"
@@ -511,11 +622,16 @@ def _run_coot(
     parent_models: Mapping[str, Path],
     *,
     timeout_seconds: float | None = None,
+    site_dictionary_paths: Mapping[str, Path] | None = None,
 ) -> tuple[Path, Path]:
     if timeout_seconds is not None and (isinstance(timeout_seconds, bool) or not isfinite(timeout_seconds) or timeout_seconds <= 0):
         raise PostMRPreparationError("Coot timeout must be finite and positive")
     script = coot_directory / "mutate.py"
     log = coot_directory / "coot.log"
+    from .postmr_conformation import parent_conformation_plan
+    plans = {action.site: parent_conformation_plan((site_dictionary_paths or {}).get(action.site, dictionary_paths[action.after]),
+        action.after, action.parent_code) for action in actions
+        if action.method == "coot-parent-overlap"}
     backups = coot_directory / "backups"
     backups.mkdir()
     script.write_text(
@@ -525,6 +641,9 @@ def _run_coot(
             actions,
             dictionary_paths,
             parent_models,
+            conformation_plans=plans,
+            verify_mutation_identity=True,
+            site_dictionary_paths=site_dictionary_paths,
         ),
         encoding="utf-8",
     )
@@ -676,6 +795,7 @@ def _restore_shared_parent_coordinates(
     actions: tuple[MutationAction, ...],
     parent_models: Mapping[str, Path],
     dictionary_paths: Mapping[str, Path] | None = None,
+    *, site_dictionary_paths: Mapping[str, Path] | None = None,
 ) -> dict[str, object]:
     """Restore supported DNA scaffolds without copying partial same-name bases.
 
@@ -721,7 +841,8 @@ def _restore_shared_parent_coordinates(
             parent_records = [line for line in _coordinate_records(Path(parent_models[action.site]))
                 if (identity := _record_identity(line)) is not None and identity[:2] == (chain,resid)]
             replacements, item = restore_graph_site([records[i] for i in indices], parent_records,
-                dictionary_paths[action.after], action.after, action.parent_code)
+                (site_dictionary_paths or {}).get(action.site, dictionary_paths[action.after]),
+                action.after, action.parent_code)
         except (OSError, ValueError, KeyError, PostMRPreparationError) as exc:
             item = {"policy_id": POLICY_ID, "component": action.after,
                 "status": "RAW_SITE_RETAINED", "count": 0, "atoms": [],
@@ -1692,6 +1813,66 @@ def _cif_doctor_receipt(
     }
 
 
+def _construction_site_dictionaries(actions, dictionaries, choices, passthrough_sites=()):
+    """Check an explicit site mapping; numerical/context qualification is upstream."""
+    from .cif_dictionary_sites import _read
+    from .postmr_conformation import parent_conformation_plan
+    if not isinstance(choices, Mapping) or not choices:
+        raise PostMRPreparationError("Require a nonempty site dictionary mapping")
+    by_site = {a.site: a for a in actions}
+    selected = {}
+    try:
+        snapshots = {Path(p).absolute(): _read(p) for p in dictionaries.values()}
+        for site, value in choices.items():
+            action = by_site.get(site)
+            if (action is None or action.method != 'coot-parent-overlap'
+                    or action.after in CURATED_LIGANDS or site in passthrough_sites):
+                raise ValueError("Site dictionaries require selected non-curated overlap sites")
+            path = Path(value).absolute()
+            data = _read(path)
+            if path in snapshots and snapshots[path] != data:
+                raise ValueError("Site dictionary changed during validation")
+            snapshots[path] = data
+            validate_ligand_dictionary(action.after, path)
+            plan = parent_conformation_plan(path, action.after, action.parent_code)
+            if plan['status'] != 'MATCH_PARENT_CHI':
+                raise ValueError(plan['reason'])
+            if _read(path) != data:
+                raise ValueError("Site dictionary changed during validation")
+            selected[site] = path
+        if any(_read(path) != data for path, data in snapshots.items()):
+            raise ValueError("Site dictionary changed during validation")
+    except (OSError, ValueError, TypeError, KeyError) as exc:
+        raise PostMRPreparationError(f"Invalid site dictionary choice: {exc}") from exc
+    return selected, snapshots
+
+
+def _check_constructed_site_dictionaries(model, actions, dictionaries, choices, snapshots):
+    """Check the actual Coot atoms; a global same-code cache is not authority."""
+    from .cif_dictionary_sites import _read
+    from .cif_construction_provenance import _pdb_inventory
+    from .cif_linked_preparation import atom_rows, component_values
+    try:
+        if any(_read(p) != data for p, data in snapshots.items()):
+            raise ValueError("Construction dictionary changed during Coot execution")
+        inventory = _pdb_inventory(model)
+        for action in actions:
+            if action.method != 'coot-parent-overlap':
+                continue
+            dictionary = choices.get(action.site, dictionaries[action.after])
+            atoms = atom_rows(component_values(dictionary, action.after))
+            expected = {name: row['type_symbol'].upper() for name, row in atoms.items()
+                        if row['type_symbol'].upper() not in {'H', 'D'}}
+            selected = [(key, row) for key, row in inventory.items()
+                        if key[0]+':'+key[1]+key[2] == action.site]
+            actual = {key[-1]: row['element'] for key, row in selected}
+            if (actual != expected or len(actual) != len(selected)
+                    or any(key[3] or row['code'] != action.after for key, row in selected)):
+                raise ValueError("Coot atom inventory differs from the selected dictionary at " + action.site)
+    except (OSError, ValueError, KeyError) as exc:
+        raise PostMRPreparationError(str(exc)) from exc
+
+
 def construct_postmr_model(
     input_model: Path,
     actions: tuple[MutationAction, ...],
@@ -1705,6 +1886,8 @@ def construct_postmr_model(
     timeout_seconds: float | None = None,
     allow_op3_sites: tuple[str, ...] = (),
     passthrough_sites: tuple[str, ...] = (),
+    canonical_seed_dictionaries: Mapping[str, tuple[Path, Path]] | None = None,
+    site_dictionary_paths: Mapping[str, Path] | None = None,
 ) -> dict[str, object]:
     """Run the ordinary PostMR Coot construction stage without MR/MTZ state.
 
@@ -1712,7 +1895,14 @@ def construct_postmr_model(
     snapshots. Existing phosphate policy proves only selected internal OP3
     context deletion before intact-base transport. It does not run NARestraints, ReadySet,
     optimization, or claim a completed PostMR run. The optional external-process
-    budget leaves default production invocation behavior unchanged.
+    budget leaves default production invocation behavior unchanged. Explicit
+    canonical_seed_dictionaries maps a site to (incoming source, canonical template).
+    It prepares a frozen canonical seed before this same Coot stage; ordinary
+    context/restoration still uses the original model and declared actions.
+    Optional site_dictionary_paths selects exact dictionaries per overlap site;
+    Coot reloads them before each monomer and actual heavy-atom inventories must
+    agree. The same choices feed context/restoration and are returned for lineage.
+    Their upstream source/end-state/numerical qualification remains separate.
     """
     input_model, output_model = Path(input_model), Path(output_model)
     reference_model = Path(reference_model) if reference_model is not None else input_model
@@ -1724,6 +1914,21 @@ def construct_postmr_model(
     coot_actions = tuple(a for a in actions if a.method in {"coot-mutate-base", "coot-parent-overlap"})
     if len({a.site for a in coot_actions}) != len(coot_actions):
         raise PostMRPreparationError("Duplicate Coot construction sites")
+    site_options, site_snapshots = {}, {}
+    if site_dictionary_paths is not None:
+        site_dictionary_paths, site_snapshots = _construction_site_dictionaries(
+            coot_actions, dictionary_paths, site_dictionary_paths, passthrough_sites)
+        site_options = {"site_dictionary_paths": site_dictionary_paths}
+        inputs.extend(site_dictionary_paths.values())
+        if output_model.resolve() in {p.resolve() for p in inputs}:
+            raise PostMRPreparationError("Construction output must be separate from site dictionaries")
+    seed_plan = None
+    if canonical_seed_dictionaries is not None:
+        from .postmr_canonical_input import canonical_input_plan
+        seed_plan = canonical_input_plan(coot_actions, canonical_seed_dictionaries, passthrough_sites)
+        inputs.extend(p for _, source, template in seed_plan for p in (source, template))
+        if output_model.resolve() in {p.resolve() for p in inputs}:
+            raise PostMRPreparationError("Construction output must be separate from seed dictionaries")
     output_model.parent.mkdir(parents=True, exist_ok=True)
     if not coot_actions:
         with output_model.open("xb") as handle:
@@ -1750,18 +1955,32 @@ def construct_postmr_model(
             raise PostMRPreparationError("Construction intermediates must be separate from every input")
     coot_dictionaries = {a.after: Path(dictionary_paths[a.after]) for a in overlap_actions}
     coot_directory.mkdir(parents=True, exist_ok=True)
-    _, coot_log = _run_coot(input_model, raw_model, coot_actions, coot_executable,
+    native_input, native_actions, seeded = input_model, coot_actions, None
+    if seed_plan is not None:
+        from .postmr_canonical_input import prepare_canonical_parent_input
+        seeded = prepare_canonical_parent_input(input_model, seed_plan, coot_directory / "canonical_seeds")
+        native_input = seeded["model"]
+        selected = {a.site for a, _, _ in seed_plan}
+        native_actions = tuple(replace(a, before=a.parent_code) if a.site in selected else a
+                               for a in coot_actions)
+    _, coot_log = _run_coot(native_input, raw_model, native_actions, coot_executable,
         coot_directory, environment, coot_dictionaries, parent_models,
-        **({"timeout_seconds": timeout_seconds} if timeout_seconds is not None else {}))
-    from .postmr_context import prepare_construction_context
-    context = prepare_construction_context(raw_model, reference_model, overlap_actions,
+        **({"timeout_seconds": timeout_seconds} if timeout_seconds is not None else {}), **site_options)
+    if site_dictionary_paths is not None:
+        _check_constructed_site_dictionaries(raw_model, coot_actions, dictionary_paths,
+            site_dictionary_paths, site_snapshots)
+    from .postmr_context import (COMPONENT_PADDING_POLICY_ID, CANONICAL_SERIAL_POLICY_ID,
+                                 prepare_construction_context)
+    context = prepare_construction_context(raw_model, reference_model, coot_actions,
         dictionary_paths, parent_models, output_model.with_name(output_model.stem + "_context.pdb"),
-        allow_op3_sites=allow_op3_sites, passthrough_sites=passthrough_sites)
+        allow_op3_sites=allow_op3_sites, passthrough_sites=passthrough_sites,
+        serial_identity_policy=COMPONENT_PADDING_POLICY_ID,
+        canonical_serial_policy=CANONICAL_SERIAL_POLICY_ID, **site_options)
     restoration_input = context["model"]
     restoration_actions = tuple(a for a in overlap_actions if a.site not in passthrough_sites)
     if restoration_actions:
         restoration = _restore_shared_parent_coordinates(restoration_input, geometry_model,
-            restoration_actions, parent_models, dictionary_paths)
+            restoration_actions, parent_models, dictionary_paths, **site_options)
     else:
         shutil.copyfile(restoration_input, geometry_model)
         restoration = {}
@@ -1794,7 +2013,7 @@ def construct_postmr_model(
             rollback_geometry = output_model.with_name(output_model.stem + "_context_rollback_geometry.pdb")
             if restoration_actions:
                 restoration = _restore_shared_parent_coordinates(raw_model, rollback_geometry,
-                    restoration_actions, parent_models, dictionary_paths)
+                    restoration_actions, parent_models, dictionary_paths, **site_options)
             else:
                 shutil.copyfile(raw_model, rollback_geometry)
                 restoration = {}
@@ -1820,30 +2039,177 @@ def construct_postmr_model(
                 restoration_input_sha256=file_sha256(raw_model),
                 attempted_geometry_sha256=file_sha256(attempted_geometry),
                 notes=["The new context changes were discarded after final phosphate revalidation failed; established ordinary restoration was retained."])
+            if "canonical_serial_scope" in context["receipt"]:
+                context["receipt"]["attempted_canonical_serial_scope"] = context["receipt"].pop("canonical_serial_scope")
         else:
             context["receipt"]["final_sanitizer_recheck"] = final_check
-    return {"model": output_model, "raw_model": raw_model, "geometry_model": geometry_model,
+    result = {"model": output_model, "raw_model": raw_model, "geometry_model": geometry_model,
             "parent_models": parent_models, "coot_log": coot_log,
             "coordinate_restoration": restoration, "restoration_input": restoration_input,
             "context_receipt": context["receipt"], "context_shadow": context["shadow"],
             "context_sanitized_shadow": context["sanitized_shadow"], "context_rechecked_model": rechecked}
+
+    if seeded is not None:
+        result["canonical_parent_input"] = seeded
+    if site_dictionary_paths is not None:
+        from .cif_dictionary_sites import _read
+        if any(_read(p) != data for p, data in site_snapshots.items()):
+            raise PostMRPreparationError("Construction dictionary changed before return")
+        result["site_dictionary_paths"] = site_dictionary_paths
+    return result
+
+
+@dataclass(frozen=True)
+class _PreparedDictionaryInputs:
+    """Live ordinary-stage boundary, never a separate artifact or process owner."""
+    run_directory: Path
+    run_report: dict
+    model_path: Path
+    components: tuple[str, ...]
+    supplementary_phils: tuple[Path, ...]
+
+
+_PostMRReturn = TypeVar("_PostMRReturn")
+
+
+def _selected_postmr_environment(ready_set_executable, phenix_installation, environment):
+    """Validate the supplied installation without rediscovery or filesystem writes."""
+    if phenix_installation is not None:
+        try:
+            selected_ready = Path(phenix_installation.executables["phenix.ready_set"]).expanduser().resolve(strict=True)
+            if selected_ready != Path(ready_set_executable).expanduser().resolve(strict=True):
+                raise ValueError("ReadySet dispatcher differs")
+            selected_environment = dict(phenix_installation.environment)
+            if environment is not None and dict(environment) != selected_environment:
+                raise ValueError("Execution environment differs")
+        except (OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
+            raise PostMRPreparationError(f"PostMR selected Phenix configuration is inconsistent: {exc}") from exc
+        environment = selected_environment
+    return environment
 
 
 def prepare_postmr(
     run_directory: Path,
     ready_set_executable: Path,
     *,
+    phenix_installation: PhenixInstallation | None = None,
+    checked_preparation: bool = False,
+    automatic_plane_support: bool = False,
+    bond_targets: dict | None = None,
+    automatic_bond_targets: bool = False,
+    dictionary_input_policy: str | None = None,
     coot_executable: Path | None = None,
     environment: Mapping[str, str] | None = None,
     allow_mr_review: bool = False,
     modified_pairs_only: bool = False,
+    restraint_scope: str | None = None,
     allow_unreviewed_backbone: bool = False,
     data_root: Path | None = None,
     narestraints_builder: Callable[[Path, Path, Path], object] | None = None,
     modified_pair_builder: Callable[[Path, Path, Path, Path], object] | None = None,
 ) -> PostMRResult:
-    """Prepare a completed Phaser solution without modifying the MR outputs."""
+    """Prepare a Phaser solution through the established or explicit checked route.
+
+    Checked preparation uses the existing immutable request and publishes one
+    review checkpoint. Partial work must continue through its saved owner, never
+    by repeating this constructor. The default and explicit-path API stay intact.
+    Explicit bond_targets requires the checked route and names source-neighborhood
+    atom pairs, not target lengths. The selected native library supplies any
+    supported reference; qualification and independently checked fallback remain.
+    Alternatively automatic_bond_targets requests source/library-selected proposals
+    through that same owner. Both choices require the checked route and cannot mix.
+    """
+    if type(checked_preparation) is not bool:
+        raise PostMRPreparationError('checked_preparation must be a boolean')
+    if type(automatic_plane_support) is not bool:
+        raise PostMRPreparationError('automatic_plane_support must be a boolean')
+    if automatic_plane_support and not checked_preparation:
+        raise PostMRPreparationError('automatic_plane_support requires checked_preparation')
+    from .cif_prepared_bond_discovery import bond_discovery_fields
+    try:
+        bond_discovery_fields(automatic_bond_targets,bond_targets)
+    except ValueError as exc:
+        raise PostMRPreparationError(str(exc)) from exc
+    if automatic_bond_targets and not checked_preparation:
+        raise PostMRPreparationError('automatic_bond_targets requires checked_preparation')
+    if bond_targets is not None:
+        if not checked_preparation:
+            raise PostMRPreparationError('bond_targets requires checked_preparation')
+        from .cif_prepared_repair_execution import _bond_target_declarations
+        try:
+            bond_targets = _bond_target_declarations(bond_targets)
+        except ValueError as exc:
+            raise PostMRPreparationError(str(exc)) from exc
+    from .cif_generation_input import ordinary_generation_options
+    try:
+        generation_options = ordinary_generation_options(dictionary_input_policy)
+    except ValueError as exc:
+        raise PostMRPreparationError(str(exc)) from exc
+    if generation_options and not checked_preparation:
+        raise PostMRPreparationError('dictionary_input_policy requires checked_preparation')
+    options = dict(coot_executable=coot_executable, allow_mr_review=allow_mr_review,
+        modified_pairs_only=modified_pairs_only, restraint_scope=restraint_scope,
+        allow_unreviewed_backbone=allow_unreviewed_backbone, data_root=data_root,
+        narestraints_builder=narestraints_builder, modified_pair_builder=modified_pair_builder)
+    if checked_preparation:
+        if phenix_installation is None:
+            raise PostMRPreparationError('Checked preparation requires a selected Phenix installation')
+        _selected_postmr_environment(ready_set_executable, phenix_installation, environment)
+        from .cif_ordinary_postmr import prepare_published_postmr
+        from .campaigns import CampaignError
+        from .checkpoints import CheckpointError
+        try:
+            return prepare_published_postmr(run_directory, phenix_installation,
+                **({"automatic_plane_support": True} if automatic_plane_support else {}),
+                **({"bond_targets": bond_targets} if bond_targets is not None else {}),
+                **({"automatic_bond_targets": True} if automatic_bond_targets else {}),
+                **({"generation_options": generation_options} if generation_options else {}), **options)
+        except (OSError, ValueError, CampaignError, CheckpointError) as exc:
+            raise PostMRPreparationError(f'Checked preparation could not complete: {exc}') from exc
+    return _prepare_postmr(run_directory, ready_set_executable,
+        phenix_installation=phenix_installation, environment=environment, **options)
+
+
+def _prepare_postmr(
+    run_directory: Path,
+    ready_set_executable: Path,
+    *,
+    phenix_installation: PhenixInstallation | None = None,
+    coot_executable: Path | None = None,
+    environment: Mapping[str, str] | None = None,
+    allow_mr_review: bool = False,
+    modified_pairs_only: bool = False,
+    restraint_scope: str | None = None,
+    allow_unreviewed_backbone: bool = False,
+    data_root: Path | None = None,
+    narestraints_builder: Callable[[Path, Path, Path], object] | None = None,
+    modified_pair_builder: Callable[[Path, Path, Path, Path], object] | None = None,
+    _dictionary_handler: Callable[[_PreparedDictionaryInputs], _PostMRReturn] | None = None,
+    _construction_inputs: dict | None = None,
+) -> PostMRResult | _PostMRReturn:
+    """Prepare a completed Phaser solution without modifying the MR outputs.
+
+    CLI/campaign callers retain their selected Phenix installation. Explicit-path
+    callers remain supported without one. When supplied, its ReadySet dispatcher
+    and environment must agree before any preparation output is created; the
+    existing cache adapter consumes that same installation without rediscovery.
+    This does not enable the separate owned repair/adoption engine.
+    """
+    if _construction_inputs is not None and _dictionary_handler is None:
+        raise PostMRPreparationError("Explicit projected construction requires the owned dictionary request")
+    environment = _selected_postmr_environment(ready_set_executable, phenix_installation, environment)
     run, report = _read_report(run_directory)
+    from .automr_input import validate_restraint_scope, AutoMRInputError
+    plan = report.get("post_mr_plan", {})
+    try:
+        recorded_scope = validate_restraint_scope(plan.get("restraint_scope"))
+        selected_scope = validate_restraint_scope(restraint_scope) or recorded_scope
+    except (AutoMRInputError, AttributeError) as exc:
+        raise PostMRPreparationError(f"Invalid restraint scope: {exc}") from exc
+    if selected_scope == "all" and modified_pairs_only:
+        raise PostMRPreparationError("Full-model restraint_scope conflicts with --modified-pairs-only")
+    if selected_scope == "all" and plan.get("restraint_geometry_override") is not None:
+        raise PostMRPreparationError("Full-model restraint_scope cannot discard a frame-specific force override")
     mr_status = report.get("status")
     if mr_status == "MR_REVIEW" and not allow_mr_review:
         raise PostMRPreparationError(
@@ -1877,9 +2243,14 @@ def prepare_postmr(
     except SequenceReferenceError as exc:
         raise PostMRPreparationError(str(exc)) from exc
     # Validate opt-in frozen targets and mutation routes before creating PostMR.
+    explicit_planning = {}
+    if _construction_inputs is not None:
+        explicit_planning['construction_sources'] = {
+            code: (_construction_inputs['selection']['sources'][code]['source'], row['parent'])
+            for code, row in _construction_inputs['choices'].items()}
     family_actions = (
-        build_mutation_plan(report, source_model, run_directory=run)
-        if family is not None else None
+        build_mutation_plan(report, source_model, run_directory=run, **explicit_planning)
+        if family is not None or _construction_inputs is not None else None
     )
     postmr = run / "PostMR"
     try:
@@ -1905,23 +2276,43 @@ def prepare_postmr(
         action.after for action in actions
         if action.method in {"coot-parent-overlap", "component-normalization"}
     })
-    ligand_specs = {code: ligand_definition(code) for code in target_ligand_codes}
+    staged = None
+    if _construction_inputs is not None:
+        replacements = {action.site: action.after for action in actions}
+        resulting_codes = {
+            replacements.get(f"{identity[0]}:{identity[1]}", identity[2])
+            for line in _coordinate_records(original)
+            if (identity := _record_identity(line)) is not None
+        }
+        required_sources = (resulting_codes & set(CURATED_LIGANDS)) | (resulting_codes & set(target_ligand_codes))
+        if set(_construction_inputs['selection']['sources']) != required_sources:
+            raise PostMRPreparationError("Frozen source selection differs from planned prepared components")
+        from .cif_ordinary_postmr import _stage_construction_inputs
+        staged = _stage_construction_inputs(_construction_inputs, run)
+    explicit_codes = set(_construction_inputs['choices']) if _construction_inputs is not None else set()
+    ligand_specs = {code: ligand_definition(code) for code in target_ligand_codes if code not in explicit_codes}
     ligand_sources: dict[str, Path] = {}
     initial_dictionary_hashes: dict[str, str] = {}
     for code in target_ligand_codes:
         try:
-            dictionary = ligand_dictionary(
-                code, data_root, ready_set_executable=ready_set_executable
-            ).resolve()
+            if staged is not None:
+                if code not in staged['sources']:
+                    raise ValueError("Construction target lacks its frozen source: " + code)
+                dictionary = staged['dictionaries'].get(code, staged['sources'][code]['source'])
+            else:
+                dictionary = ligand_dictionary(
+                    code, data_root, ready_set_executable=ready_set_executable
+                ).resolve()
             validate_ligand_dictionary(code, dictionary)
         except (KeyError, FileNotFoundError, ValueError) as exc:
             raise PostMRPreparationError(str(exc)) from exc
         ligand_sources[code] = dictionary
         initial_dictionary_hashes[code] = file_sha256(dictionary)
 
-    # These audit-only copies retain the exact target definitions inspected
-    # before mutation. Coot still uses the original verified inputs and the
-    # existing post-Coot source freeze/hash check remains authoritative.
+    # Construction and restoration consume the same verified bytes recorded by
+    # the mutation audit. Keep the original paths for source-change/provenance
+    # checks at the existing post-construction dictionary boundary.
+    construction_sources: dict[str, Path] = {}
     mutation_doctor: dict[str, object] | None = None
     if ligand_sources:
         mutation_snapshots = coot_dir / "source_dictionaries"
@@ -1935,6 +2326,7 @@ def prepare_postmr(
                 raise PostMRPreparationError(
                     f"Dictionary changed while screening mutation {code}"
                 )
+            construction_sources[code] = snapshot
             mutation_inputs.append(snapshot)
         mutation_assessment = _cif_doctor_assessment(
             mutation_inputs, run, stage="postmr-mutation-source",
@@ -1976,12 +2368,22 @@ def prepare_postmr(
             "output": frozen_reference(coot_input, run),
         }
 
+    from .postmr_lineage import begin_postmr_construction, finish_postmr_construction, RECORD_PATH
+    from .campaigns import CampaignError
+    try:
+        construction_start = begin_postmr_construction(run, coot_input, original,
+            construction_sources, actions, allow_op3_sites=allowed_op3,
+            passthrough_sites=passthrough_sites,
+            **({k:staged[k] for k in ('site_dictionary_paths','construction_projections')} if staged is not None else {}))
+    except (OSError, ValueError, CampaignError) as exc:
+        raise PostMRPreparationError(f"Construction dictionary/model lineage failed: {exc}") from exc
     after_coot = model_dir / "after_coot.pdb"
     construction = construct_postmr_model(
-        coot_input, actions, ligand_sources, after_coot,
+        coot_input, actions, construction_sources, after_coot,
         coot_executable=coot_executable, environment=environment,
         coot_directory=coot_dir, reference_model=original,
         allow_op3_sites=allowed_op3, passthrough_sites=passthrough_sites,
+        **({'site_dictionary_paths':staged['site_dictionary_paths']} if staged is not None else {}),
     )
     coot_actions = tuple(a for a in actions if a.method in {"coot-mutate-base", "coot-parent-overlap"})
     coot_log = construction["coot_log"]
@@ -2010,6 +2412,11 @@ def prepare_postmr(
                 f"Prepared model does not contain {action.after} at {action.site}"
             )
 
+    try:
+        finish_postmr_construction(run, construction_start, prepared, construction)
+    except (OSError, ValueError, CampaignError) as exc:
+        raise PostMRPreparationError(f"Construction dictionary/model lineage failed: {exc}") from exc
+
     restraint_paths: list[Path] = []
     narestraints_report: dict[str, object] = {
         "mode": "none",
@@ -2029,7 +2436,23 @@ def prepare_postmr(
     compatibility_codes = {
         code: ligand.narestraints_label for code, ligand in CURATED_LIGANDS.items()
     }
-    if modified_pairs_only:
+    if selected_scope == "all":
+        from .full_model_restraints import prepare_full_model_restraints
+        full_root = restraints_dir / "full_model"
+        try:
+            narestraints_report = prepare_full_model_restraints(
+                prepared, full_root, data_root=data_root,
+                ready_set_executable=ready_set_executable,
+            )
+        except (ValueError, OSError, KeyError) as exc:
+            raise PostMRPreparationError(f"Full-model NARestraints preparation failed: {exc}") from exc
+        narestraints = full_root / narestraints_report["restraint_file"]
+        narestraints_report["restraint_file"] = frozen_reference(narestraints, run)
+        narestraints_report["compiler_receipt"] = frozen_reference(
+            full_root / narestraints_report["compiler_receipt"], run)
+        narestraints_report["scope_source"] = "explicit-postmr-override" if restraint_scope is not None else "frozen-input-card"
+        restraint_paths.append(narestraints)
+    elif modified_pairs_only:
         _rewrite_codes(prepared, compatibility, compatibility_codes)
         pair_file = restraints_dir / "guessed_modified_pairs.txt"
         narestraints = restraints_dir / "narestraints_modified_pairs.phil"
@@ -2199,6 +2622,10 @@ def prepare_postmr(
         (residue_codes & set(CURATED_LIGANDS))
         | (residue_codes & set(ligand_sources))
     )
+    if _dictionary_handler is not None:
+        return _dictionary_handler(_PreparedDictionaryInputs(
+            run, report, prepared, tuple(ligand_codes), tuple(restraint_paths)))
+
     copied_cifs: list[Path] = []
     dictionary_input_audit: list[dict] = []
     dictionary_source_provenance: dict[str, dict[str, object]] = {}
@@ -2208,6 +2635,7 @@ def prepare_postmr(
         reuse_report = prepare_postmr_dictionaries(
             ligand_codes, ready_set_executable, reuse_directory,
             data_root=data_root, environment=environment,
+            installation=phenix_installation,
         )
         reused_dictionaries = read_postmr_dictionaries(reuse_directory)
     except (OSError, ValueError, KeyError) as exc:
@@ -2227,10 +2655,18 @@ def prepare_postmr(
         source_directory.mkdir(exist_ok=True)
         source_snapshot = source_directory / f"{code}.cif"
         source_sha = file_sha256(source)
-        if code in initial_dictionary_hashes and source_sha != initial_dictionary_hashes[code]:
-            raise PostMRPreparationError(
-                f"Source dictionary for {code} changed since Coot mutation"
-            )
+        if code in initial_dictionary_hashes:
+            try:
+                preserved = (source_sha == initial_dictionary_hashes[code]
+                    and file_sha256(construction_sources[code]) == initial_dictionary_hashes[code])
+            except OSError as exc:
+                raise PostMRPreparationError(
+                    f"Frozen construction dictionary for {code} is unreadable: {exc}"
+                ) from exc
+            if not preserved:
+                raise PostMRPreparationError(
+                    f"Source dictionary for {code} changed since Coot mutation"
+                )
         dictionary_source_provenance[code] = {
             "origin": str(source),
             "sha256": source_sha,
@@ -2398,6 +2834,7 @@ def prepare_postmr(
         "input_model": str(source_model),
         "input_sha256": file_sha256(source_model),
         "mutation_actions": [asdict(action) for action in actions],
+        "construction_lineage": frozen_reference(run / RECORD_PATH, run),
         "coot": {
             "ran": construction["raw_model"] is not None,
             "executable": str(coot_executable) if coot_executable else None,

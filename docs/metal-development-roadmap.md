@@ -1,12 +1,12 @@
 # Post-merge metal-coordination roadmap
 
-Updated **18 November 2026**. Working branch **Alder**. The feature milestones
+Updated **19 November 2026**. Working branch **Alder**. The feature milestones
 below are numbered **A01–A08** and are explicitly **post-merge work**. They are
 not prerequisites for merging the current experimental implementation.
 Historical implementation receipts A37–A40 retain their existing labels and
 scientific limits; they are evidence references, not this milestone sequence.
 
-The [handoff](development-handoff.md) owns exact validation and pending work;
+The [handoff](metal-development-handoff.md) owns exact validation and pending work;
 the [anomalous workflow](metal-anomalous-doctor.md) and [restraint design](metal-restraint-builder.md)
 own scientific contracts. A mechanism passing tests does not close its scientific
 gate. Update milestone status, evidence, limitations and next action together.
@@ -64,10 +64,15 @@ results and remaining scientific limits are recorded first in the handoff.
 No normalization policy or f″ parent is adopted.
 Production changes are limited to compact passive weight-selection reporting;
 no selector policy, chemical repair or accepted f″ parent follows.
-The [handoff](development-handoff.md) records prior attempts, exact validation,
+The [handoff](metal-development-handoff.md) records prior attempts, exact validation,
 private evidence and compatibility limits. Consult it before scheduling new tests.
 
 ## Merge checkpoint
+
+A Cedar→Alder integration candidate now resolves the prior editorial/package
+conflicts and is undergoing its own full and installed qualification. The
+[root integration handoff](development-handoff.md) owns that gate. It is not
+a Pine/release merge and closes no scientific milestone.
 
 Merging is the integration checkpoint: agree the destination with the project
 owners, reconcile shared interfaces and conflicts, validate the affected
@@ -245,7 +250,7 @@ single-wavelength release or for the earlier integration merge.
 A40 resumed as preparatory A01 work. Source-preserving linked DF, explicit
 NARestraints and actual-state B export have native evidence. Matched open XYZ/B
 comparisons and a source-supported missing-plane derivative are recorded in the
-[current handoff](development-handoff.md). Supported mechanics checks pass;
+[current handoff](metal-development-handoff.md). Supported mechanics checks pass;
 formal-charge readback remains unsupported and scientific geometry/fit review
 remains open. No new f″ fit or checkpoint adoption is implied.
 

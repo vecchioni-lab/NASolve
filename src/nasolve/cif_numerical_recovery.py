@@ -146,9 +146,9 @@ def plan_numerical_recovery(native, dictionaries, *, components=None):
 def prepare_graph_generation_source(source, code, output):
     """Remove numerical parameters; preserve declarations and explicit seed origin.
 
-    Curated atom x/y/z may seed naming/initial geometry when complete ideal
-    coordinates are absent. They are not asserted to be independent ideal
-    coordinates, and no experimental model is read or used for targets.
+    Declared atom x/y/z or CCD model_Cartn coordinates may seed naming/initial
+    geometry when ideal coordinates are absent. They are not asserted to be
+    independent ideal coordinates; no external structure supplies targets.
     """
     source, output = Path(source).resolve(strict=True), Path(output).absolute()
     _need(re.fullmatch(r'[A-Za-z0-9]{1,3}', code), 'Unsupported component identifier')
@@ -164,10 +164,15 @@ def prepare_graph_generation_source(source, code, output):
     atom = '_chem_comp_atom.';bond = '_chem_comp_bond.';chir = '_chem_comp_chir.'
     count = len(values[atom+'atom_id'])
     ideal = [atom+'pdbx_model_cartn_'+a+'_ideal' for a in 'xyz'];declared = [atom+a for a in 'xyz']
+    model = [atom+'model_cartn_'+a for a in 'xyz']
     if any(k in values for k in ideal):
         keys = ideal;origin = 'SOURCE_IDEAL_COORDINATES'
-    else:
+    elif any(k in values for k in declared):
+        # Preserve all historically accepted seed bytes and precedence. A partial
+        # preferred family still refuses rather than borrowing another axis.
         keys = declared;origin = 'SOURCE_DECLARED_COORDINATES_NOT_INDEPENDENT_IDEAL'
+    else:
+        keys = model;origin = 'SOURCE_MODEL_COORDINATES_NOT_INDEPENDENT_IDEAL'
     _need(all(k in values and len(values[k]) == count for k in keys), 'Require one complete declared coordinate family')
     for i in range(count):
         for k in keys:

@@ -5,6 +5,22 @@ are not current instructions: branch names, commands, test counts, paths and
 next steps may be obsolete. Start with the [current handoff](../development-handoff.md),
 then the relevant contract from the [documentation map](../README.md).
 
+## November 16 Cedar handoff consolidation
+
+C357 replaced the accumulated 587-line current handoff with a concise current
+boundary. The original remains exactly in Git; the scientific evidence ledger
+and historical run directories were not rewritten or pruned.
+
+- [Exact C356 handoff](https://github.com/vecchioni-lab/NASolve/blob/162ffe1d2562eec2759f02546ccf8540317b378b/docs/development-handoff.md)
+- Source commit: `162ffe1d2562eec2759f02546ccf8540317b378b`.
+- Git blob: `77eeff3b6b17319e3c2d97de2ac33744761bb007`.
+- SHA-256: `40f484f0383d6e804378f92e6921001ef06ad01b4e22022ef43ccc0367986e3e`.
+- Offline retrieval: `git show 162ffe1d2562eec2759f02546ccf8540317b378b:docs/development-handoff.md`.
+
+Use that revision for the full C329–C356 chronology, failed controls and historical
+next-step wording. The current handoff/queue govern new work. Referencing the
+existing immutable Git object avoids another duplicate narrative in the checkout.
+
 ## October 10 reconciliation — exact backups
 
 Source: `a7edddf2059df06c41c015c4cf4a40f318878e2a` (Cedar).
@@ -89,3 +105,5 @@ a specific question rather than automatically loading all of them.
 Use history to explain current behavior, not to override the current contract
 or erase a later user decision. Archived validation does not grant new chemistry,
 Scout authority, donor eligibility, or permission to overwrite an old attempt.
+
+- [Metal development evidence through 18 November 2026](metal-development-handoff-2026-11-18.md): preserved pre-integration validation diary; current priorities live in the metal handoff and A01–A08 roadmap.

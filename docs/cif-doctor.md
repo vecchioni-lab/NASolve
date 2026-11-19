@@ -7,49 +7,7738 @@
 
 <a id="current-capability-boundary-c99"></a>
 
-## Current capability boundary (C100)
+<a id="current-capability-boundary-c100"></a>
 
-C95 now passes on macOS with Python 3.12.14 from commit
-`3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
-the relocated 863-atom endpoint, 23 dictionaries and 12 parameter files, with
-all five saved selection gates intact and zero new native calls. The receipt
-is `MIXED_RUNTIME_HANDOFF_PASS`; the diagnostic still returns `REVIEW`/exit 2.
-The [evidence ledger](cif-linked-native-registration-evidence.json) records the
-exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95`.
+<a id="current-capability-boundary-c101"></a>
 
-| Question | Established result | Remaining boundary |
+<a id="current-capability-boundary-c102"></a>
+
+<a id="current-capability-boundary-c103"></a>
+
+<a id="current-capability-boundary-c104"></a>
+
+<a id="current-capability-boundary-c105"></a>
+
+<a id="current-capability-boundary-c106"></a>
+
+<a id="current-capability-boundary-c107"></a>
+
+<a id="current-capability-boundary-c108"></a>
+
+<a id="current-capability-boundary-c109"></a>
+
+<a id="current-capability-boundary-c112"></a>
+
+<a id="current-capability-boundary-c113"></a>
+
+<a id="current-capability-boundary-c114"></a>
+
+<a id="current-capability-boundary-c115"></a>
+
+<a id="current-capability-boundary-c117"></a>
+
+<a id="current-capability-boundary-c118"></a>
+
+<a id="current-capability-boundary-c119"></a>
+
+<a id="current-capability-boundary-c120"></a>
+
+<a id="current-capability-boundary-c121"></a>
+
+<a id="current-capability-boundary-c122"></a>
+
+<a id="current-capability-boundary-c123"></a>
+
+<a id="current-capability-boundary-c124"></a>
+
+<a id="current-capability-boundary-c125"></a>
+
+<a id="current-capability-boundary-c126"></a>
+
+<a id="current-capability-boundary-c127"></a>
+
+<a id="current-capability-boundary-c128"></a>
+
+<a id="current-capability-boundary-c129"></a>
+
+<a id="current-capability-boundary-c130"></a>
+
+<a id="current-capability-boundary-c131"></a>
+
+<a id="current-capability-boundary-c132"></a>
+<a id="current-capability-boundary"></a>
+
+<a id="current-capability-boundary-c133"></a>
+
+<a id="current-capability-boundary-c136"></a>
+
+<a id="current-capability-boundary-c137"></a>
+
+<a id="current-capability-boundary-c138"></a>
+
+<a id="current-capability-boundary-c139"></a>
+
+<a id="current-capability-boundary-c140"></a>
+
+<a id="current-capability-boundary-c142"></a>
+
+<a id="current-capability-boundary-c143"></a>
+
+<a id="current-capability-boundary-c145"></a>
+
+<a id="current-capability-boundary-c146"></a>
+
+<a id="current-capability-boundary-c147"></a>
+
+<a id="current-capability-boundary-c148"></a>
+
+<a id="current-capability-boundary-c149"></a>
+
+<a id="current-capability-boundary-c150"></a>
+
+<a id="current-capability-boundary-c151"></a>
+
+<a id="current-capability-boundary-c152"></a>
+
+<a id="current-capability-boundary-c158"></a>
+
+<a id="current-capability-boundary-c174"></a>
+
+<a id="current-capability-boundary-c175"></a>
+
+<a id="current-capability-boundary-c176"></a>
+
+<a id="current-capability-boundary-c177"></a>
+
+<a id="current-capability-boundary-c178"></a>
+
+<a id="current-capability-boundary-c179"></a>
+
+<a id="current-capability-boundary-c180"></a>
+
+<a id="current-capability-boundary-c181"></a>
+
+<a id="current-capability-boundary-c182"></a>
+
+<a id="current-capability-boundary-c183"></a>
+
+<a id="current-capability-boundary-c184"></a>
+
+<a id="current-capability-boundary-c186"></a>
+
+<a id="current-capability-boundary-c187"></a>
+
+<a id="current-capability-boundary-c188"></a>
+
+<a id="current-capability-boundary-c189"></a>
+
+<a id="current-capability-boundary-c190"></a>
+
+<a id="current-capability-boundary-c203"></a>
+
+<a id="current-capability-boundary-c204"></a>
+
+<a id="current-capability-boundary-c220"></a>
+
+<a id="current-capability-boundary-c251"></a>
+
+<a id="current-capability-boundary-c258"></a>
+
+## Current capability boundary
+
+The tool is useful now for assessment, qualified local reuse and explicit
+scientific diagnostics. It is not yet a universal automatic ligand repair and
+model-building pipeline. This table is the current support summary; the dated
+sections below retain exact methods, failures and evidence-time next steps.
+
+| Chemistry or workflow | Demonstrated capability | Remaining boundary |
 | --- | --- | --- |
-| Can the selected mixed bundle be consumed? | Exact ordered resources and saved evidence replay through ordinary assessment after relocation. | This does not adopt a production checkpoint or execute a diffraction run. |
-| Is the original C95 endpoint numerically usable? | Saved derivative, serialization, fixed-mechanics and objective gates pass; original nonconvergence remains visible. | The proof uses the explicit NASolve-local corrected gradient evaluator. It does not establish the behavior of ordinary Phenix refinement. |
-| Is source chemistry cleared? | Source findings remain bound to the saved context, including unresolved DF aromatic-sugar and delocalized-phosphate findings. | Numerical usability cannot settle those findings. Reconcile source intent before automatic production adoption; demonstrated chemical corruption still excludes a candidate. |
-| Can the preserved DF source be recovered? | C98 passes fresh isolated and current 863-atom linked/native checks for the exact C18 candidate; C99 passes fresh sampled derivatives for that repaired manager. | C100 tests bounded geometry but retains the verified recovered start because endpoint derivatives fail qualification. The C95 bundle is not overwritten or reclassified. |
-| Does this validate the designed modified structure? | The synthetic mixed fixture establishes construction and restraint mechanics. | Donor reflections do not validate the hypothetical modified identities; independent scientific qualification remains unassessed. |
-| Is ATL part of this result? | Independent pinned public graph, four-centre and NAR source/compiler controls exist. | No qualified numerical ATL dictionary or fresh native/Coot ATL construction is established. Keep it separate from the eight-pair bundle. |
+| Ordinary supported DNA/modified bases | Connected-base construction, source audits and qualified cached dictionaries feed ordinary PostMR. The full-model L-DNA recipe has an ordinary native-membership control. | A recipe/membership pass is not complete refinement or scientific validation. Explicit v3 policies now survive isolated storage, source requalification and opt-in current-site preparation/native binding. Checked preparation and cache-miss recovery have an explicit PostMR/campaign route (C219–C225); C251 adds explicit later alternatives. C270–C272 qualify chosen-model phasing and inspection; default enablement and real refinement qualification remain separate. |
+| Catalogue and source chemistry | All 618 rows / 599 codes of the pinned NAR workbook are inventoried; graph-defined ports and exact atom/H/charge/stereo comparisons are reusable. | Catalogue coverage is not native support. Source intent, missing mappings and unqualified families remain explicit. |
+| FANA | Source-defined arabino/ribo distinction; isolated A/C/T/U candidates and explicit-policy GFL controls pass native checks. | This does not automatically insert any FANA into an arbitrary model. Whole-sugar construction is a separate operation. |
+| L-FANA | One explicitly derived L-FANA-C identity has native component, NAR-binding, three-site placement, exact topology, sampled derivative and bounded geometry evidence. C133 qualifies source-projected L-DNA flank definitions around it. | The geometry trial remains at its iteration limit. Phosphate state, formal-charge readback and ordinary whole-model mutation remain open; L-FANA A/G/T/U are not all established by the C control. |
+| Other fluorinated D/L sugars, including future L-FDNA | The new source-bound guard tests all declared centres, graph/element/H/charge identity and retained-neighbour projections. Renamed deoxy, arabino-fluoro and ribo-fluoro controls exercise transfer through both the source guard and stored three-site preparation. | Synthetic transfer checks are not a live L-FDNA build/refinement proof. No residue-code whitelist grants support or relabels ribo as FANA. |
+| Linked/end-state DNA and L-DNA | Explicit v3 qualification reaches linked/terminal preparation. C133 retains both native links, removes missing-heavy OP3 expectations and preserves all source sugar centres. C136 connects frozen storage to exact preparation/native binding. C137 qualifies explicit terminal-phosphate and custom-restraint context; C138 adds full-model interpretation with complete native residue identities, including copied-chain controls. | Formal-charge readback remains unsupported. Source phosphate H is retained, not chosen by pH. Explicit DNA/L-DNA metadata remain required; C139 adds a source-bound internal phosphate-name adapter, while aliased terminal operations remain unqualified; incomplete native identities still block qualification; the opt-in full-model route requires a fresh capture and complete identity proof. |
+| PNA | Selected C/A/G components have isolated native evidence; neutral amide operations and ten connected source networks are reproducible. | Four reactive charged-amine cases remain unresolved. Connected graphs have no qualified PNA native construction, linked numerics or ordinary refinement route. |
+| LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. C147 adds source/native qualification and a two-copy numerical control for 10C, without connected-polymer qualification. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
+| ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. C142 source-preserving generation passes isolated native usability at source and generated coordinates, with the same covalent proxies. | C143 adds a graph-bound compatible-host whole-residue adapter. Actual ATL-to-DNA placement refuses shared-role C3′/C4′ hand disagreement. C144 source-graph site modifiers now remove the declared reacting atoms and match all effective ATL numerical rows in two directional controls and a three-ATL control. Source classification and nonreacting phosphate H remain unchanged; canonical flank chemistry and unavailable formal-charge readback remain separate. C145 explicitly places ATL through its base alongside the original eight pairs, preserving their atoms. C146 adds a source-preserving bounded arm/body seed: both native links and eight junction angles now exist, while all 201 custom requests/proxies and numerical definitions match. C147 passes complete-policy sampled derivatives for this fixed connected seed. C148 adds a bounded whole-model geometry adapter; the trial improves the outgoing bond but fails endpoint dihedral checks and line search. Source hands survive; pair geometry and adoption remain unqualified. C149 scans the complete explicit bundle and qualifies graph-selected 5PC/PDU omissions, fresh complete derivatives and bounded geometry mechanics. Source hands survive and ATL links/pair contacts improve; the 1000-iteration endpoint remains unconverged and unadopted. |
+| Source-supported trigonal plane completion | C207/C210 correct supported ordinary mutation orientation/context. C208–C215 select missing coverage from source connectivity, prepare narrow owned-support candidates, bind native captures and attribute complete-plane mechanics with separate derivatives. C216 measures all supported modeled centers; PDU and 5PC bounded native controls improve local shape while preserving fixed context. C226 adds maintained owned-capture/whole-plane numerical execution and cold replay. C227 selects and publishes an ordered source-bound linear/plane result with full ordinary NAR context and derivatives. | C234–C237 integrate explicit owned support through the same repair request, including real selection and stopped-native fallback. C242 carries that exact supplied support through a complete request and actual ReadySet. C244 adds explicitly enabled graph-selected support acquisition; C245 exposes it through prepare-run and result notes. C246 forwards the choice through checked PostMR and schema-2 campaigns; C247 exposes publication/status notes; C249 separately reports explicit selected-CIF coverage. Q04/Q05 recovery, storage and chosen-input handoff are accepted for the recorded explicit route (C285). Effective native plane forces and chemical survival remain Q06. No universal flattening rule. Unsupported chemistry, symmetry images, DP mapping, numerical targets and complete-restraint refinement remain open. |
+| DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. C142 establishes exact PDU omission/energy attribution. C149 composes graph-selected 5PC/PDU repairs across the mixed ATL scaffold, authenticates each native stage and passes complete derivatives plus full/rounded/native endpoint mechanics. | C150 adds a maintained bounded native reference job and offline attribution replay; its exact six-proxy result matches C149. The C149 coordinate trial remains iteration-limited and unadopted with residual pair strain. Its NASolve-local corrected evaluator does not qualify ordinary Phenix refinement; source-qualified selection and scientific acceptance remain separate. |
+| Full native capture bridge | C151 carries the existing complete 42-residue/865-atom identity proof through maintained repair attribution, sampled derivatives, geometry preparation and fresh endpoint readback. Legacy and relocated capsules replay; missing/copied/downgraded identities refuse. | This is native identity and numerical compatibility, not independent source-chemical qualification. C153 closes diagnostic source/repair composition in a separate matching control; the older mixed scaffold’s phosphate-state authority and ordinary integration remain Q13/Q07. |
+| Source-bound repaired-bundle decision/publication | C152 binds source/site preparation to exact native repair and derivatives. C153 freezes the selected model/CIF/PHIL and proof through the public reader. A matching two-component PDU/5PC control selects repaired dictionaries and replays after relocation. | Separate diagnostic capability. The control has two complete monomers and a NAR numerical parallelity request; it is not the 42-residue mixed scaffold or an experimental protonation choice. Ordinary adoption/refinement stay separate. |
+| Absent native parallelity | C154 qualifies all eight derivative families in an authenticated zero-parallelity context and composes source-bound repaired selection/publication. The original PDU/5PC control passes 1,359 evaluations with no custom requests. | Plane-order evidence is explicitly not applicable. This does not qualify zero-context geometry, ordinary refinement or a missing requested restraint. |
+| Cache-first complete dictionary engine | C155–C174 compose frozen ordinary source selection, exact-source cache/retained reuse or owned generation, independent qualification, site preparation, graph repair and immutable diagnostic publication. One to sixteen selected types share durable parent/child ownership and bounded attempts. No-repair originals and classified optional-native failures use independent original proof. Real singleton and multi-component controls replay cold. C175/C176 derive model/PHIL proofs; C186 extends exact intake to required NAR planes; C187 binds original literal pair/stack input and compiler/native provenance; C197 adds source-bound literal translation through the same compiler without a prior capture, preserving explicit intent and requiring later native qualification; C188 alternatively retains the existing source-bound C80 artifact without requiring a prior capture; C177 joins them to ordinary source selection and the existing request, with fresh/hit/stale/repair/failure controls; C189 also consumes an already frozen selection without rediscovery. C204 assembles literal source graphs through that frozen selection and ordinary precedence, sharing the existing compiler. C184 includes selected ReadySet/native continuation under that same request and recovery owner; C242 freezes explicit completed plane support and carries its repaired result through that continuation. | The checked route remains opt-in. C223–C225 connect initial checkpoint publication, ordinary PostMR and explicit campaigns; C231 validates compact request publication. C244 adds explicit automatic plane-support acquisition by that same owner; C245 connects prepared/ordinary intake and prepare-run. C246 adds direct PostMR/campaign forwarding; C247 adds publication/status notes; C249 reports scoped explicit selected-CIF coverage; C251 adds explicit later alternatives; C252 validates native two-attempt publication and relocated downstream inputs. C253 connects selected-model site validation and checked phase/map reading; C270 completes actual preparation/AutoSol; C271 and saved-result readback preserve exact view identity after later selection and relocation. C272 loads the final model/dictionary/map in native Coot. Current native evidence must qualify each source/site/consumer context. C240/C243 distinguish owned execution failure and fully replayed source-chemical rejection without admitting those outputs; other incomplete builds still refuse. This is not universal chemistry support or ordinary refinement qualification. |
+| Native symmetry pair attribution | C202 explicitly captures and replays complete simple and directed ASU pairs, including self-images, with compact receipts and bounded native work. The connected PDU control and old/new cold replay pass. | Diagnostic arithmetic only. C203 freezes this mode in fresh owned continuation; old absent settings keep C127. No chemical, covalent-symmetry optimizer or refinement approval. |
+| Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; C183 owns one complete continuation execution with bounded C140 scheduling. C184 binds that child to the existing complete request with fresh recovery and bounded evidence partitions. C203 qualifies the connected crystal through the frozen ASU mode. C223–C225 connect explicit initial checkpoint adoption and ordinary/campaign entry; C231 checks compact request handoff. C251 adds explicit later alternatives; C270–C272 qualify the selected-model phasing/inspection control. Default activation and broader native/refinement acceptance remain open. No actual refinement claim. |
+| Current installation configuration | C182 derives consumer and generation arguments from the explicitly selected packaged Phenix installation using maintained source lists and existing validators. Fresh generation/repair, current cache reuse and cold request/runtime replay pass. | Read-only configuration, not observed import or scientific qualification. Explicit dialect/representation intent remains required; C183 owns the continuation child. C184 integrates the continuation with the existing request. Explicit ordinary/campaign entry and initial checkpoint adoption now exist (C223–C225); C251 adds explicit later alternatives. Default activation and broader native/refinement coverage stay open; C270–C272 qualify the chosen-model phasing/inspection control. |
+| Checked preparation and interrupted work | C220 commands run the ordinary construction/NAR-derived request, report the checked ReadySet result or verified retained starting model, read one exact attempt and continue saved preparation in a fresh attempt. C219 native evidence rereads through this interface after relocation, with no SDK or new execution. C222 opens a named checked preparation or verified fallback in Coot against the original MR map. C223 explicitly saves that exact choice as an initial REVIEW checkpoint for ordinary inspection and trial refinement, with interrupted-save recovery and later proof checks. C224 composes execution and publication through `postmr --checked-preparation`; C225 freezes that opt-in in schema-2 campaigns. | Explicit choices only. C251 saves later alternatives without changing the root/current selection; Coot and refinement use their exact inputs. Q04/Q05 supported-route acceptance includes chosen-model phasing/inspection and ordinary five-cycle campaign refinement (C285). Default activation and broader chemical survival remain separate Q06/release gates. C249 reports scoped explicit selected-CIF coverage. C247 exposes verified generation notes through publication/status. C246 exposes explicit support acquisition through checked PostMR and schema-2 campaigns. C245 exposes the choice through prepare-run and reports generation outcomes. Unqualified preparation offers no model; uncertain process state blocks continuation. |
+| Archived working evidence | C258 explicitly retires only successful, qualified working duplicates after durable archive/intent publication. Ordinary exact reads, interrupted removal/resume and stable public paths pass on copied native evidence: 33.7 MB instead of 181.6 MB. | Failed/active work stays unpacked. C260 connects new ordinary/campaign preparation; C402 admits explicit v3/v4 layouts through that same owner, including automatic bond preparation. Older/unknown layouts and read-only or historical publication do not initiate cleanup. C280–C284 accept the recorded serial/recovery envelope, including 100 synthetic datasets; 100 native-dataset capacity remains unqualified. Historical unarchived campaigns are not migrated and old readers refuse new storage receipts. |
+| Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Existing owned acquisition handles ordinary checked-route misses; interrupted work needs an explicit fresh attempt after known-stopped evidence. Initial checked adoption exists. Explicit automatic plane support and later alternatives are implemented. Default activation, solution-PDF reporting and per-family release coverage remain integration milestones; chosen-model phasing has the bounded C270–C272 acceptance. |
 
-C96 prints the existing solution summary in ordinary text-mode assessment.
-For mixed bundles, JSON also adds `solution_report.qualification_scope`:
-`source_chemistry=NOT_CLEARED_BY_ENDPOINT_QUALIFICATION`,
-`gradient_evaluator=NASOLVE_LOCAL_CORRECTED_FIXED_OBJECTIVE`, and
-`ordinary_refinement=NOT_QUALIFIED`. These describe the saved proof's scope;
-they do not change assessment status, automatic selection, stopping evidence,
-restraint policy, source findings or the no-student-CIF-approval contract.
-Manifest schema 1 and both runtime-bundle policies remain unchanged; old bundles
-need no migration. Scientific qualification remains `NOT_ASSESSED`.
 
-The next integration step must specify how ordinary execution preserves the
-qualified evaluator or separately qualifies its actual consumer, and how source
-chemistry findings are resolved without conflating them with optimizer stopping.
-Reuse the C43-C46 propynyl-torsion evidence for unchanged isolated controls;
-repeat native or derivative checks only for a changed manager, consumer or
-specific unresolved question. Full-run validation precedes Cedar integration
-through Pine into main. This report change does not authorize a merge.
+### Installed historical construction replay (C325)
 
-C96 validation passes 5528 passed, 276 subtests passed in 766.84s (0:12:46), 215 focused tests (seven subtests)
-and real C95 public CLI readback with all 38 bundle files unchanged and zero
-SDK/process attempts. New text/JSON regressions fail on C95 and pass on C96.
-Test fixtures canonicalize owned macOS paths and allow fake-backend startup
-before checking optimizer descendant cleanup. Production guards and limits
-remain unchanged.
+C62/C63 cold replay loads its exact public canonical frame from dedicated package
+resources when no explicit historical runtime bytes are supplied. The original
+source/size/hash checks and reports are unchanged. Built-wheel installation,
+relocation and source-checkout removal pass for both routes; changed resource bytes
+refuse. This is historical evidence replay, not new construction/refinement or
+shipping the ordinary MR frame catalogue.
+
+### Native reference authority and ordered target repairs (C323–C324)
+
+`capture_energy_library` records one actual lookup by the selected Phenix
+monomer-library resolver, checks its implementation and bounds the resource before
+parsing. It freezes the resource and verifies that the native parsed tables agree
+with the saved CIF. `read_energy_library` requires no SDK or saved-code execution.
+`qualify_bond_attribution_reference` requires the same complete consumer as both
+native captures and exact replay of source-selected library rows. This is numerical
+provenance, not source chemical approval or validation of restraint strengths.
+
+`prepare_repair_chain` accepts explicit bond attributions and one shared library
+capture after any existing torsion/plane stages. Exact dictionary order, unchanged
+model/PHIL/consumer context and the changed component slot must join at every step.
+Bond-containing chains use `cif-ordered-source-repair-chain-v2`; historical calls
+retain exact v1 bytes. The existing bundle selector still owns source identity,
+whole-model native identity, final derivatives and independently verified fallback.
+Public runtime/ReadySet-parent reads carry that same choice after relocation.
+C326 adds explicit prepared executor/request delivery below; automatic selection
+and automatic/default integration remain separate; C327/C328 extend delivery below.
+
+Native selected-library binding and both real PDU/5PC bond-only chain reads pass
+after moving code/evidence with originals/SDK blocked. Multi-stage public selection
+and fallback use synthetic native fixtures. Successful duplicate proof copies are
+removed; compact results retain verifiable reproduction references. See the current
+handoff and evidence ledger for exact commands, source pins and limits.
+
+### Source-aware bond-target discovery (C332)
+
+`cif_energy_library.discover_bond_targets(source, dictionary, component,
+library_directory, consumer=...)` now proposes pairs automatically from the
+existing source-linear query and the exact captured native numerical library.
+It shares C323's complete reference qualification with the explicit reference
+reader; no second source-typing scheme or table authority is introduced.
+
+The read-only schema-1 `cif-selected-library-bond-discovery-v1` report binds source,
+dictionary, reference and captured-library evidence. Each queried bond is marked
+`DIFFERENT_SUPPORTED_TARGET`, `MATCHES_REFERENCE`, `UNSUPPORTED_REFERENCE` or
+`NUCLEAR_TARGET_REQUIRES_QUALIFICATION`. Only differing supported targets without
+separate nuclear-distance columns enter `bond_targets`; matching values are
+compared exactly, without assigning a new acceptance threshold. All other rows
+remain visible. Empty selection means no candidate under this scope, not a pass.
+
+Support remains the source-declared neutral sp-carbon/sp3-carbon single-bond
+neighborhood beside a triple bond, with agreeing dictionary energy types and
+unique exact library rows. Coordinates and residue-name rules are not used.
+Source/dictionary inputs are bounded to 1 MiB each and choices to 64; excess
+choices refuse rather than truncate. Changed evidence, another consumer or
+malformed source/parameters refuse. No files or ESDs change and no program runs.
+
+Nonempty choices can feed the existing explicit candidate/repair route, which
+must still qualify the source, native changes, derivatives and selected bundle.
+The report is not a saved repair authorization. C333 below connects explicit
+fresh-request intent to this discovery through the existing repair and recovery
+owners. Ordinary defaults, old requests and Q06 achieved geometry are unchanged. Existing PDU/5PC evidence reproduces the previously
+selected bonds and no further proposal after their target correction, with all
+182 files/timestamps preserved and no new native jobs. Exact evidence is in the
+maintained ledger under `source_aware_bond_discovery_2026_11_16`.
+
+### Automatic bond discovery in fresh preparation (C333)
+
+The checked `prepare_postmr(..., checked_preparation=True,
+automatic_bond_targets=True)` Python route and ordinary/prepared request
+constructors now freeze explicit discovery intent. `False`/omitted preserves the
+old configuration and behavior. It cannot be combined with explicit `bond_targets`.
+There is no new CLI/campaign switch or default activation. Direct complete-request
+callers must select `CAPTURE_ARTIFACT_POLICY`; ordinary constructors select that
+existing v4 policy for this choice. No storage limit is enlarged.
+
+Source/site qualification and the original derivative checks still precede repair.
+The existing source query screens every supplied component; an empty linear
+neighborhood adds no library job. After any existing linear/plane stages, one
+owned library lookup serves every eligible component. C332 then proposes all
+supported differing targets. Matching, unsupported and separate nuclear-distance
+cases remain visible; no proposed pair is not a chemistry pass. Each proposal
+uses the exact post-stage dictionary, with distinct source-owned component slots.
+No new atom typing, numerical threshold, uncertainty change or coordinate target
+is introduced.
+
+New request configurations and execution reports carry
+`bond_discovery_policy=cif-prepared-source-bond-discovery-v1`. An attempt's
+`bond_discovery.json` (schema 1) binds complete ordered dictionaries, source-query
+fingerprints, the captured library receipt, all proposals and selected pairs.
+New automatic bond stages reference that exact decision; explicit stages retain
+their previous shape. Offline readers reconstruct the decision from captured
+bytes, verify preceding dictionary stages and reject missing/replaced decisions,
+changed choices, another consumer or detached library evidence. They neither run
+programs nor write new decisions. Unsupported/failed attempts remain preserved.
+A fresh retry retains request intent and gets its own immutable attempt and
+library evidence only after existing ownership checks; it never edits an older
+proposal. Continuation has no discovery override.
+
+Candidates use the existing target-only writer, native bond attribution, whole-
+bundle derivative/selection and ReadySet route. A known stopped lookup failure
+can retain the independently qualified original only under the existing explicit
+optional-failure policy. Contradictory proof, changed inputs, unknown ownership or
+interruption never become a successful fallback. Source rejection stops before
+lookup. This adapter adds no executor, native worker, retention owner or chemistry
+approval. Installed PDU execution discovers the same correction and returns the
+same final model/CIF as the prior explicit route; native derivative/ReadySet and
+archived relocation checks pass. Focused validation: 658 passes, plus 52 from a
+fresh wheel; no full suite. Exact scope and commands are in the maintained handoff
+and `automatic_preparation_bond_discovery_2026_11_16` evidence entry.
+C401 subsequently completes fresh ordinary source/plane generation, automatic bond
+discovery, ReadySet and initial REVIEW publication, reproducing the earlier corrected
+PDU model/restraints. Its ordinary refinement survival remains a separate gate.
+
+### Declared linked-site geometry readback (C334)
+
+The existing construction reader `_triple_readback` already accepts a declared
+site projection and isolates that exact native site. C334 reuses it against C329's
+authenticated prepared/refined captures and C326's frozen B:4 projection. All 22
+native heavy atoms match the linked declaration, so only the isolated-versus-linked
+inventory warning disappears. Existing targets remain screened PASS; the final
+terminal-side angle remains 173.9366° and coordinates remain REVIEW. No source,
+model, phosphate policy, target/ESD, screen or historical report changes.
+
+This is a read-only scope correction, not new runtime/report integration or
+whole-substituent acceptance. Ordinary reporting must still bind the selected
+runtime/projection to its actual final model/native evidence. Exact replay and
+input hashes: `declared_linked_site_geometry_readback_2026_11_16` in the ledger.
+
+### Explicit prepared target execution (C326)
+
+The existing prepared executor and immutable request accept `bond_targets`, a
+bounded mapping from source-owned component codes to atom pairs in the existing
+linear-neighborhood query. This selects candidates, not chemical acceptance. One
+selected native library serves the request; target-only changes preserve ESDs and
+join the existing torsion/plane chain, attribution, complete derivative checks,
+whole-bundle selection and compact publication. No residue-name dispatch is used.
+
+Unsupported or matching targets retain the independently checked route. A stopped
+library lookup failure requires the existing explicit optional-failure policy;
+corrupt evidence, uncertain process ownership and interruptions are not chemistry
+fallbacks. Retry uses a new immutable attempt with unchanged frozen choices.
+Calls omitting the option retain prior behavior; no old request is migrated.
+
+The actual PDU prepared control selects the 1.470 Å target with unchanged model,
+ordered PHIL and 0.020 Å ESD. Original/final full derivatives and plane/bond
+attribution pass. Moved request/runtime/ReadySet-parent reads pass SDK-free with
+originals blocked. This qualifies preparation and publication, not refinement survival or automatic
+discovery. C327 carries the explicit choice through the complete request, actual
+ReadySet and existing archive/retirement; retained standalone evidence stays diagnostic.
+
+### Complete target delivery and bounded native capture storage (C327)
+
+`initialize_dictionary_request(..., bond_targets=...)` freezes the same
+source-graph choices used by prepared execution. Every read rederives them from
+the frozen sources; child configuration must match exactly. Continuation and
+retirement keep their existing owners. Missing/changed choices cannot silently
+become a different request, and a retry always uses a fresh immutable attempt.
+
+The first full PDU control passed repair/ReadySet but could not seal because v3
+counted raw native captures and derived repair evidence in one 128 MiB group.
+An explicit `cif-complete-request-partitioned-artifacts-v4` additionally bounds
+`repair/attempts/attempt-0001/execution/native/` separately, with exact directory
+matching. **V3 remains the default.** V4 adds one bounded logical working group;
+per-group 128 MiB/1,024-file limits, 32 MiB members and the shared 128 MiB physical
+archive-expansion limit stay fixed. Readers never reinterpret old failed requests.
+Large or numerous repairs can still exceed these bounds and must remain preserved.
+
+A fresh PDU request under v4 completes real ReadySet, retains the corrected 1.470 Å
+target with unchanged 0.020 Å uncertainty and named heavy coordinates, and passes
+existing successful-working retirement followed by moved cold readback. The first
+failed request remains unchanged. These checks establish complete explicit engine
+delivery, not ordinary entry/default activation or refinement survival. Exact
+commands, source pins, retained sizes and native stopping evidence are in the ledger.
+
+### Explicit choices at normal preparation entry (C328)
+
+The Python `prepare_postmr(..., checked_preparation=True, bond_targets=...)` route
+and both ordinary request initializers now accept the existing bounded mapping
+from component codes to source-neighborhood atom pairs. The same declaration
+validator snapshots/canonicalizes pairs before tool setup. Prepared entry also
+refuses undeclared components before freezing sources. Full source connectivity
+is still checked by the complete request; syntactic validity is not chemical
+approval, and callers cannot provide numerical lengths through this option.
+
+A fresh request with explicit pairs uses C327's v4 capture accounting. Omitting
+the option retains v3 and the prior configuration shape. Existing continuation
+reads the frozen choice and accepts no replacement; changed intent requires a
+fresh run/request. No new executor, recovery path, CLI flag or campaign schema.
+
+Focused controls cover normal construction forwarding, public publication,
+fresh/frozen source equivalence, malformed/unsupported choices, source-free moved
+readback and the existing immutable continuation/retirement checks. The transport
+fixtures are synthetic, not native chemical validation. C327's actual archived
+request configuration also rereads unchanged with the extracted validator.
+C328 does not rerun Coot/Phenix or claim corrected-CIF refinement survival.
+
+C329 separately executes five native refinement cycles from the exact C327
+runtime under the unchanged C319 recipe and observations/Free-R, replacing the
+old dictionary plus bond-edit PHIL with the corrected CIF. Actual printed targets,
+all 45 planes/58 parallels and prepared/final parameter inventories agree; final
+PDB/mmCIF reproduce saved scattering. The terminal bond reaches 1.481829 Å at
+normal component origin 0. PDU still bends to 175.019°/173.937° and its terminal
+carbon remains 0.258 Å from the descriptive base plane: achieved geometry stays
+REVIEW. No ordinary checkpoint, source mutation, default or strength change.
+
+The isolated-reference triple screen also reports an OP3 inventory difference
+against linked B:4. Its active native definition has no missing/unexpected heavy
+atoms and uses the pre-existing explicit site modifier. Preserve that reference-
+scope distinction; it does not authorize adding OP3 or changing terminal intent.
+The exact C319 written atom records and C308 native geometry are reproduced,
+apart from the recorded edit-versus-component restraint origin. Prior force work
+need not be repeated. Exact control and limitations are in the existing ledger.
+
+### Replayable bond-target evidence (C322)
+
+`audit_captured_bond_attribution` now freezes the exact source, supplied numerical
+reference and before/after native captures, then runs one bounded owned job.
+`read_captured_bond_attribution` rebuilds the claims without Phenix or executing
+saved workers. Preparation-only, numerical failure, stopped timeout and uncertain
+interruption retain their distinct meanings; evidence never grants selection.
+
+The implementation shares the existing plane-attribution execution/readback
+lifecycle. Historical plane workers, policy and report format remain unchanged.
+Both PDU and 5PC pass complete native attribution on Phenix 2.2.1-6174, then pass
+fresh cold readback after moving the evidence and blocking original-input/SDK
+access. All 88 original files remain unchanged. The two unpacked proof trees
+occupy 60.8 MB total; this is bounded diagnostic evidence, not a new ordinary
+retention policy or a claim of 100-dataset capacity. Inventory references avoid
+embedding an additional copy of each complete inventory inside job specifications.
+
+C323/C324 add selected-library reference authority and ordered repair-chain
+composition. C326 supplies explicit prepared execution and its complete derivative
+proof; C327 adds complete-request/ReadySet delivery and C328 adds ordinary Python
+entry. Automatic/default activation and chemical survival remain separate. No
+automatic target adoption follows from this proof.
+
+### Native energy of corrected bond targets (C321)
+
+After the exact dictionary-delivery gate, `qualify_linked_linear_bond_energy`
+requires repeated native single/container evaluations of every changed bond to
+explain the complete fixed-coordinate energy and force difference. It retains
+actual slack, limit and top-out settings and checks all unaffected residuals and
+counts. Native kernel provenance remains the caller's responsibility; this does
+not qualify an external reference or turn a fixed-point check into convergence.
+The gate reuses existing numerical tolerances and never moves model atoms.
+
+Exact PDU and 5PC before/after manager rebuilds pass: target differences of
+−55.15143 and −11.10162 native units are completely accounted for, with gradient
+difference errors below 6e−14. Their bond potential options are unchanged.
+A synthetic native softened-potential control also passes central finite
+differences. C322 supplies durable attribution/readback. Reference authority and ordinary
+selection integration remain open; raw observations stay in the local test archive.
+
+### Exact dictionary bond-target delivery (C320)
+
+`qualify_linked_linear_bond_candidate` reconstructs the exact explicitly selected
+candidate and checks every modeled occurrence against complete monomer mappings.
+Only the selected distances may change in effective definitions and both native
+bond inventories. Strengths, normal component origin, atom labels, coordinates,
+planes, parallelities, links and all other recorded fields must remain unchanged.
+The captured wrapper reuses the maintained reader and repair-chain context to
+bind the exact ordered dictionary slot, model, PHIL and consumer. It never runs
+saved code. Source chemical authority, supplied reference quality, energy/force
+attribution and ordinary adoption remain separate gates. No new threshold is set.
+
+PDU and 5PC's existing native captures pass this maintained check without any
+native repeat; their supplied energy references also reproduce from the exact
+saved library table. This proves delivery of the recorded target-only candidates,
+not automatic repaired-CIF selection or whole-ligand survival. See the
+[current queue](cif-doctor-completion-queue.md#pipeline-position).
+
+### Checked refinement output state (C318)
+
+The explicit `autorefine --checked-plane-forces` route uses the ordinary
+AutoRefine executor and numbered checkpoints. Its qualified native helper keeps
+the complete requested plane forces and, in new v2 requests, synchronizes final
+ADPs with the actual refined scattering state immediately before Phenix exports
+its results. It does not infer corrections from a log, modify old models or
+change restraint targets. Non-ADP disagreement and changed scattering/geometry
+refuse completion; failed work stays preserved through existing owners.
+
+New request/receipt policy `round-local-parallelity-execution-v2` binds exact
+helper bytes and requires isolated zero-cycle setup. Native result policy
+`explicit-native-parallelity-refinement-v2` records one completed
+`native-refinement-output-state-v1` observation for actual refinement and none
+for preflight. The final writer and parallelity bindings must both be restored.
+Compact hashes/counts retain the observation; no per-atom duplicate data store
+is added. V1 requests keep exact historical source validation and cold readback;
+older NASolve readers refuse v2 instead of silently treating it as v1.
+
+C318 focused checks cover native-state invariants, output failures, weakened
+proof refusal and v1/v2 relocation. C319 completes five native refinement cycles
+and independently recalculates scattering from both written formats: PDB/mmCIF
+agree with the saved result within serialized precision, without any later B-factor
+correction. Earlier models and selected checkpoints remain unchanged. This is
+qualified on Phenix 2.2.1-6174, Darwin arm64; other builds remain unqualified.
+Joint neutron synchronization and mismatches beyond stale ADPs are not qualified.
+Successful output synchronization does not close Q06 chemical survival or approve
+PDU’s remaining bend. The [completion queue](cif-doctor-completion-queue.md#pipeline-position)
+owns those separate gates.
+
+Source state and numerical usability are independent. Missing OP3 never means
+“add OP3”; a retained true terminal phosphate is protected. Lower scores under
+different dictionaries are not optimizer progress. Neither `REVIEW` nor
+nonconvergence alone means a chemically invalid candidate, and a native pass
+cannot authorize changing protonation, connectivity or hand.
+
+A provisional **cedar → pine** checkpoint can expose the implemented assessment,
+reuse and explicit diagnostic tools without claiming complete catalogue support.
+C220 passes 9,178 tests + 276 subtests and relocated exact readback. Before merging: review the actual
+integration diff, exercise representative ordinary routes against pine, and state
+the bounded feature contract. The larger generalizer programme remains separate. No merge
+is performed or authorized by this document. Exact evidence is in the
+[ledger](cif-linked-native-registration-evidence.json); priorities are in the
+[completion queue](cif-doctor-completion-queue.md). The
+[generalizer milestones](https://github.com/vecchioni-lab/NASolve/blob/654328105f193f25011fe927dc1db860cb82bca0/docs/development-handoff.md#generalizer-milestones-and-interruption-boundary)
+remain the programme-level coverage summary, not a second ordered backlog.
+
+### Design principles retained from the early Cedar work
+
+The original blueprint (`ef83f1b3741f8de2ad074114183ec243ab9b3d2a`), initial
+runtime (`8c181c5d47cd987318c48568f13d93ef6bdfbb87`) and C00–C50 evidence below
+establish the same product boundary as the current engine:
+
+- ReadySet prepares inputs; CIF Doctor checks the exact effective result and
+  attempts bounded, source-preserving recovery. NARestraints owns intended
+  pairing/stacking membership, including contacts a distance heuristic misses.
+- Source identity, connectivity/H/charge/stereo, numerical definitions, native
+  consumption, geometry and diffraction are separate evidence layers. Missing
+  evidence is not chemical damage; successful execution is not scientific approval.
+- Keep a usable result when a later improvement fails. A failed Doctor repair or
+  optional ReadySet improvement must not halt unrelated NASolve work. Continue the
+  affected step with an independently checked model and its matching restraints
+  where available, recording the limitation. If none is trustworthy, preserve the
+  evidence, reports and recovery options and stop only the dependent scientific
+  step. Preserve failed attempts and make a fresh one; never repair history,
+  silently discard required restraints or lower a gate to obtain a pass.
+- Targets come from declared chemistry and qualified dictionaries, not distorted
+  experimental coordinates. Native temporary stereo conventions are not proof
+  that the final molecule inverted. Compare source-relative centres explicitly.
+- Preserve chemically justified terminal phosphate; missing internal OP3 is not
+  permission to add it. Do not silently change protonation to satisfy a generator.
+- Compare geometry under a fixed declared objective. Changed dictionaries need
+  fresh native/numerical checks; a lower score under another objective is not
+  optimization progress. Local derivative corrections require direct evidence.
+
+These principles guide automatic integration. They do not require users to
+author CIFs, choose implementation flags or adjudicate routine technical faults.
+Ask only when scientific intent remains unresolved after available evidence and
+qualified usable fallbacks have been considered. Early receipts retain their
+original scope; current APIs and the support matrix own present capability.
+
+### Cache-first owned source generation (C158)
+
+`cif_generation_acquisition.resolve_generated_dictionary` composes the existing
+qualified store and C157 attempt owner. It accepts an explicit selected source,
+authority, caller-verified current-consumer identity, native generation controls,
+shared request directory, fresh qualification directory and run snapshot path.
+It does not discover or independently verify a consumer installation: the caller
+must supply that identity and a native qualification adapter appropriate to it.
+
+`generation_dictionary_options` defines the new
+`cif-source-preserving-generation-recipe-v1` recipe: reader dialect, optimization
+step budget and optional supported bond-representation policy. The complete
+source/authority and recipe enter the existing store key. Producer family is
+`phenix.elbow.source-preserving`; native source pins and version record original
+production. Incidental capture paths are excluded. A producer upgrade can reuse
+qualified bytes or requalify them for a new consumer. Timeout/attempt allowances
+do not change chemical cache identity, but cannot be relaxed in an existing
+generation request. This deliberately distinct recipe does not relabel older
+entries; existing resolvers still consume them. The C159 retained-snapshot route below supports an explicitly supplied
+older recipe under exact-source and representation checks; broad automatic
+discovery and graph-repair composition remain Q04.
+
+Destination checks precede lookup and callbacks. Snapshot, qualification,
+generation request and store scopes are separate, and none may contain or sit
+inside the selected installation. A current hit freezes the existing dictionary
+without reading installed builder files, invoking adapters or creating a
+qualification/request directory. Stale consumer evidence requalifies saved
+numerics first, preserving their original producer and stopping notes. Failure
+does not fall through to generation. Without a qualifier, MISS or
+REQUALIFICATION_REQUIRED returns without acquisition.
+
+On a miss, one call performs at most one C157 attempt in the supplied shared
+scope. A retained regular candidate must match its sealed receipt and pass the
+existing complete-candidate chemical reassessment; an exit/status label is not
+a chemical verdict. The independent native adapter receives disposable source,
+candidate and consumer copies plus a fresh native output path. It returns the
+existing complete isolated usability record. Input mutations refuse, and the
+store independently validates source, native and explicit-policy evidence before
+publication. Generation evidence is rechecked after qualification. All failed
+copies and partial outputs remain for diagnosis; repeating a miss uses a fresh
+qualification folder and consumes a fresh generation attempt. Unknown/live
+generation ownership or exhausted allowance still blocks through C157.
+
+There is no new snapshot schema. Optional `generation_acquisition` provenance
+under `cif-source-generation-acquisition-v1` retains the exact store request,
+consumer, UUIDs and request/attempt/completion/receipt digests. Those digests are
+historical provenance, not an operational dependency on the old request path or
+proof of scientific usability. Original stopping, execution, diagnostic and error
+records are retained too. Unknown convergence remains null; only explicitly
+reported nonconvergence/iteration-limit stopping maps to false. The absence of a
+convergence claim never establishes nonconvergence or a new acceptance gate. Frozen dictionaries continue to use the existing
+independent source/native checks after relocation.
+
+C159 adds exact-source retained fallback as described below. This explicit
+composition does not apply graph-selected repairs, coordinate the complete qualification lifecycle,
+own source discovery or impose a total acquisition deadline. Native execution
+inside the qualifier remains the adapter's responsibility. Separate request
+directories are separate generation scopes. No ordinary PostMR call is switched,
+and no linked-site/model/refinement or experimental phosphate-state qualification
+is inferred. Q04 remains open; Q05/Q06 own adoption and refinement.
+
+Actual Phenix **2.2.1-6174** (dispatcher **2.2.1**) controls generate 5PC, pass
+21 isolated checks at both source/generated coordinates, reuse without execution,
+and requalify for an explicitly changed consumer descriptor without regeneration.
+That descriptor change is a same-installation control, not a Phenix upgrade.
+A deliberate eight-second PDU timeout retains its attempt and publishes no usable
+snapshot. Cold replay reads three snapshots and both sealed requests, then
+reuses the relocated store with historical science/SDK reads and execution denied.
+Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
+[technical ledger](cif-linked-native-registration-evidence.json).
+
+### Preserve primary failures during diagnostic reporting (C185)
+
+Acquisition, candidate qualification, prepared repair, complete requests and
+selected-runtime continuation preserve the original exception when ownership
+completion cannot be sealed. A shared best-effort note helper handles missing
+Python 3.10 note support, disabled or failing note hooks, and ordinary note lookup
+or formatting errors. Where supported, the secondary diagnostic remains attached
+to the primary exception. A new interruption during reporting still propagates.
+The mixed construction fixture uses the same helper and retains its existing
+`fixture_reporting_error` detail.
+
+Prepared repair also preserves the original failure if writing the diagnostic
+failure-progress event fails. Budget failures keep their timeout type and
+`BUDGET_EXHAUSTED` label; other failures keep the `EXCEPTION` label when the event
+can be written. Both use the same finalization path. Failure reporting does not
+grant a successful result, manufacture a completion seal, or authorize recovery;
+existing process/attempt readers continue to decide from actual retained evidence.
+No artifact schema, scientific gate, fallback, retry policy or successful output
+changes. Missing notes require no migration or raised Python version floor.
+
+Fault-injection regressions exercise the real request/ownership paths with
+synthetic scientific transports. They preserve exception identity, original input
+and partial-output bytes, budget classification and blocked ownership. The new
+tests also pass from a relocated checkout with its original copy and historical
+source/SDK paths unavailable. Host validation uses Python 3.12.14; absent-note
+simulation does not establish an actual Python 3.10 environment or full platform
+qualification. This closes the specific C171/Q16 diagnostic-masking follow-up;
+the release integration/full-suite/platform gate remains open.
+
+### Complete-request continuation and recovery (C184)
+
+The existing complete-request and prepared-PostMR initializers accept an optional
+`continuation_options` mapping with `readyset_timeout_seconds` and boolean
+`restore_serialization`. The initializer freezes these settings and the C183
+execution/process policies in schema-1 `configuration.continuation`; it executes
+nothing. Omission preserves old request/result semantics. Present-field requests
+need C184 readers; older readers refuse them rather than silently skipping work.
+No global default, persistent retry owner or generation scope is added.
+
+After the existing repair child returns a qualified runtime, that same outer
+attempt runs one C183 execution at `attempts/attempt-NNNN/continuation`. Exact
+selected input bytes, parent attempt digests/UUID and coordinator identity must
+match. Native and total limits come from the existing request; ReadySet settings
+remain frozen. The original shared remaining allowance includes continuation,
+final scientific readback and publication. A qualified parent survives a verified
+optional endpoint failure. A no-usable repair starts no continuation and records
+`result.continuation = null`; otherwise the result points to the exact child and
+readback returns its selected public runtime while retaining the repair proof.
+
+The enclosing completion binds the continuation's header/seal digests and all
+artifacts. A present directory without an ownership header or an uncertain worker
+publication remains unknown and blocks another attempt. Known-inactive interrupted
+work permits only a fresh numbered outer attempt under the existing lock and
+finite attempt count. Previous repair/continuation outputs are never resumed or
+resealed; persistent component and generation histories still prevent budget resets.
+A completed child does not make an interrupted outer request successful.
+
+The new `cif-complete-continuation-artifacts-v1` policy inventories two bounded
+partitions: original outer evidence including its completion, and the continuation
+subtree. Each retains the existing 1,024-file/128-MiB limit, with 32 MiB per file.
+The shared safe-tree reader permits their combined envelope only for this mode,
+then checks each partition separately. Legacy requests, public runtime bundles and
+standalone children retain their original caps. This avoids deleting required proof
+or refusing a valid two-component union merely because nested history is preserved.
+Maximum-size catalogue throughput remains unproven.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 validates a 5PC original endpoint and
+the PDU/5PC repaired endpoint with the original ordered NAR restraint intent. Both
+pass all 28 endpoint checks. Deliberate interruption after a completed repaired
+continuation leaves a raised outer attempt; a fresh second attempt succeeds while
+every prior outer/component artifact remains unchanged. The successful recovery
+contains 1,257 complete-attempt files within the two independent partitions.
+A separate actual 0.1-second
+ReadySet timeout keeps the qualified repaired parent. These are retained-source
+controls with generation forbidden, not a new generation or diffraction-refinement
+claim. Complete new requests and a legacy request replay cold without the SDK or
+historical paths. ReadySet uses selected Phenix Python/observer transport; literal
+shell dispatch is not run. Ordinary caller/checkpoint adoption remains Q04/Q05.
+
+### Owned selected-runtime continuation (C183)
+
+`execute_runtime_continuation(manifest, phenix, output, ...)` executes one fresh
+C181 continuation with the shared campaign process protocol. It freezes the exact
+qualified original/repaired parent and bounded settings, owns each native/ReadySet
+worker, reuses the maintained observer and strict native comparator, and publishes
+the existing public runtime policy. A known-stopped optional failure preserves that
+same qualified parent. Unknown cleanup, interruption, damaged proof or changed
+consumer/input raises while retaining every partial output. An output directory is
+never reused, and this execution grants no retry or checkpoint adoption authority.
+
+The phase chain is baseline native capture, ReadySet, raw endpoint native capture
+and, only when indicated, one C140 lossless serialization followed by a separate
+native capture. C140 must preserve all scientific PDB columns; unchanged serialization
+does not trigger another capture. Unsupported explicit-H restoration retains the
+qualified parent. No chemical repair, target change, hydrogen removal or relaxed
+native comparison is introduced by this continuation.
+
+New local evidence policies are `cif-runtime-continuation-process-v1` and
+`cif-selected-runtime-continuation-execution-v1`. `read_runtime_continuation()`
+reconstructs the exact permitted phase chain, input/command/worker bindings, C140
+choice and public selection; it validates the stopped completion seal and complete
+artifact inventory without the SDK or historical paths. Relative references use
+`continuation_directory`; host commands are provenance only. Existing public
+runtime policies, ordinary observer calls and previous process scopes are unchanged.
+Older readers cannot consume this new execution record; older artifacts need no
+migration. Recursive continuation parents remain unsupported.
+
+One cooperative allowance includes preflight, worker calls, final replay, publication
+and inventory. A parent may supply its remaining allowance and attempt identity.
+Expiry during final inventory/result writing leaves a raised execution rather than
+a successful seal; unknown process cleanup cannot be converted to a safe fallback.
+Local CPU work, cleanup and atomic sealing are not a hard wall-clock deadline.
+This is a child execution, not another persistent recovery owner. Attaching it to
+the existing complete request remains the next Q04/Q05 boundary.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 controls qualify the original endpoint,
+select a losslessly restored repaired endpoint with all 28 native checks, and retain
+the exact repaired explicit-H parent when restoration is unsupported. Separate
+ReadySet and baseline timeouts stop their workers and preserve the parent. The
+ReadySet transport uses selected Phenix Python and the maintained observer; the
+literal shell dispatcher is not run. All five executions and public results replay
+cold after relocation. No generation, Coot or diffraction refinement is performed;
+ordinary invocation and immutable checkpoint adoption remain open.
+
+### Current selected-Phenix configuration (C182)
+
+`configure_dictionary_engine(installation, expected_dialect=...)` derives the
+existing consumer and source-preserving generation arguments from an explicitly
+selected `PhenixInstallation`. It uses the maintained eight API, three energy and
+four producer source lists, hashes the three selected dispatchers, and rechecks
+the files/configuration before returning. Exactly one supported packaged
+`lib/python*/site-packages` or `lib64/python*/site-packages` scope is required;
+missing, ambiguous, escaping or changed files refuse. Internal library aliases
+are deduplicated. This is bounded software discovery within the selected SDK,
+not a search for crystallographic inputs or a different installation.
+
+The returned `PhenixDictionaryConfiguration` supplies `consumer`, `generation`
+and `ready_set_executable` directly to the C177 initializer and existing complete
+request executor. The dialect remains an explicit source-reader assertion;
+representation permission and bounded controls use the existing validators.
+The helper runs no subprocess, changes no files and qualifies no chemistry.
+Native execution must still bind the actual consumed implementation and inputs.
+Energy-library data files are not captured by these static source fingerprints.
+
+The execution environment is copied for live calls, omitted from the result's
+representation and never frozen by the request initializer. This value is not an
+artifact format; callers must not serialize it wholesale. Existing requests retain
+their frozen recipe, producer, consumer and attempt allowance. Old explicit
+configurations and cache-only readers remain supported. An older consumer
+descriptor that differs from this one still requires the existing requalification;
+matching selected files alone does not silently rewrite its identity.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 settings, derived without historical
+configuration, drive a fresh 5PC generation, independent native qualification and
+repair. A second request reuses the resulting cache without generation. Both select
+qualified repaired runtimes; fresh configuration cannot reset either exhausted
+request. Both requests and public runtimes replay after relocation with the original
+copy absent and SDK/historical paths/execution denied. Synthetic alternate Python
+minor/lib64 layouts are tested; this is not a Linux-native qualification claim.
+No ReadySet, Coot, diffraction refinement, new request policy or default PostMR
+switch is added. Whole-continuation ownership and ordinary adoption remain Q04/Q05.
+
+### ReadySet continuation of the selected runtime (C181)
+
+The new `cif_runtime_readyset` adapter starts from an independently qualified
+original or repaired public runtime. It supplies the selected component dictionary
+bytes to the existing per-component ReadySet observer and preserves the selected
+model, modifier order and complete ordered PHIL inputs. It never reconstructs a
+repair from the earlier preparation. The existing observer checker is shared with
+the preparation-based path; its eight checks and the strict 28-check native
+comparator retain their meaning.
+
+`audit_runtime_readyset_consumption` performs one bounded diagnostic observation.
+`runtime_readyset_endpoint_inputs` rechecks the frozen observer evidence before
+returning exact final native inputs. `inspect_runtime_readyset` requires a fresh
+baseline bound to the selected parent and a full final native capture. It rechecks
+optional evidence after comparison. Missing/failed optional evidence selects
+`verified_parent_runtime`; a damaged/unqualified parent raises. Canonical output
+overlap is rejected before execution. No new recovery owner is introduced.
+
+`prepare_runtime_readyset_bundle` uses the existing bounded atomic publisher with
+policy `cif-qualified-selected-runtime-readyset-bundle-v1`. The parent proof and
+optional ReadySet/native/serialization evidence are frozen under fixed bundle
+anchors, then rederived by the public reader. Only original/repaired parent policies
+are accepted, before recursive resolution; arbitrary nested continuations refuse.
+The parent choice, unavailable native checks, and exact selected model/CIF/PHIL
+resources survive fallback. Older policies remain unchanged. New publications need
+a reader that understands this additive policy; there is no in-place migration.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 controls independently qualify fresh
+heavy-only 5PC and PDU/5PC requests before ReadySet. The original singleton passes
+all eight consumption and 28 endpoint checks. The repaired pair's raw endpoint
+preserves definitions, proxies and numerical request fields but changes atom-name
+display padding; the unchanged strict request comparison retains the parent.
+The existing C140 lossless serialization adapter restores the exact reference
+bytes, and a fresh native capture then passes all 28 checks. The raw negative
+evidence remains negative; no comparator or NAR target is relaxed.
+
+ReadySet runs its selected literal entrypoint and ordinary arguments through the
+maintained Phenix-Python observer. The literal ReadySet shell dispatcher is not
+executed, and native internal operations are not exhaustively instrumented.
+
+An already-qualified explicit-H repaired parent remains selected when the existing
+ReadySet heavy-control path changes its native inventory. Missing evidence, an
+actual 0.1-second ReadySet timeout and a fresh pre-repair baseline also retain the
+exact repaired parent; the latter fails exact baseline binding. These controls do
+not authorize stripping a user's model or changing source phosphate H/charge.
+Eleven new public selections and two historical accepted/rejected controls replay
+from a relocated checkout without original paths, SDK access or execution.
+
+This is an explicit diagnostic continuation API. Ordinary caller configuration,
+durable ownership across the whole continuation, default PostMR orchestration,
+checkpoint adoption and actual refinement remain Q04/Q05/Q06. The C140 adapter is
+explicit here; choosing and scheduling it automatically is not implemented.
+
+### Native metadata in filtered supplements (C180)
+
+When `effective_restraints` excludes overridden components from generated output,
+or superseded components from a mixed input, a retained singleton `_chem_comp`
+list now uses the shared C09/C179 loop serializer. Declared block names, metadata
+values and missing fields are preserved. Explicit parameterized-input precedence,
+construction-only deferral to ReadySet, phosphate modifiers and numerical values
+are unchanged. Unfiltered blocks keep their original representation; this is not
+an inference or repair of missing source classification.
+
+An actual Phenix 2.2.1-6174 / dispatcher 2.2.1 control isolates the serialization:
+the old filtered list loses native group DNA, failing only exact effective-site
+definitions; the new list preserves DNA and passes all 28 checks with identical
+energy/gradient snapshots. The control uses one existing qualified 5PC dictionary
+and a renamed synthetic copy removed before native interpretation. It does not
+establish support for that synthetic code, new chemistry or ordinary refinement.
+
+No schema or migration changes. Frozen supplements remain checksum-bound artifacts;
+historical mixed-native readers resolve them rather than rewriting them. Successful
+cached ReadySet checks already require the exact single supplied effective CIF,
+not a newly filtered supplement. Cold old/new runtime and native-control replay
+retain their original verdicts without historical paths or SDK access. Selected
+original/repaired runtime continuation and immutable adoption remain Q04/Q05.
+
+### Native component metadata during combination (C179)
+
+`combine_dictionary_inputs` now reuses the C09 native component-list loop
+serializer. A single `_chem_comp` row stays a loop so Phenix's `convert_list_block`
+actually reads its declared group and other metadata. No group is inferred from
+the component code, atoms or interpreted classification. Metadata values, quoting,
+missing values and all chemical definition blocks are preserved; multi-component
+combined bytes and existing linked-preparation bytes remain unchanged.
+
+New schema-1 component bundles record `component_list_policy =
+cif-native-component-list-loop-v1`. Readback reconstructs that layout exactly.
+An absent field selects the historical scalar singleton writer; it never upgrades
+old evidence silently. Unknown/null policies and relabeling singleton bytes fail.
+New bundles require the updated reader; existing bundles need no migration.
+`component_list_policy=None` explicitly reproduces legacy combination and can be
+passed to the ReadySet bundle observer when deliberately consuming old inputs.
+
+The actual Phenix 2.2.1-6174 / dispatcher 2.2.1 single-5PC control now passes all
+eight consumption checks and all 28 strict native endpoint checks. Native group
+is DNA before and after, and the captured energy/gradient snapshots are exactly
+equal. The public runtime selects `readyset_checked_model`; a missing endpoint
+still retains `verified_prepared_model`. The independent atom-order serializer
+continues to reject a changed TER boundary; it is unnecessary for this directly
+qualified endpoint. Formal-charge readback remains unavailable, not fabricated.
+
+Cold new/old replay preserves the C178 negative endpoint as a fallback and the
+C177 generation/repair outcomes. New serialization cannot retroactively qualify
+an old result. This closes the combined singleton metadata defect, not ordinary
+PostMR adoption or the Q06 refinement consumer. Supplement filtering is another
+metadata writer and must be audited under Q05 without changing historical evidence.
+
+### Single-component ReadySet consumption (C178)
+
+The separate `audit_readyset_bundle_consumption` accepts one to sixteen selected
+components, matching the existing composition/request boundary. Every component
+still needs exact source and parameter coverage, model coverage, per-file argument
+ownership and the same eight observed consumption checks. One code can own several
+declared sites; singleton does not mean one residue. No receipt schema changes.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 consumes an independently requalified
+5PC heavy-coordinate diagnostic control. All eight consumption checks pass, but
+strict endpoint qualification retains the verified prepared model: the combined
+singleton dictionary serializes `_chem_comp` metadata as scalars and Phenix reads
+its DNA group as null. All chemical definition tables match; 27 of 28 endpoint
+checks pass. The exact effective-definition gate correctly refuses the endpoint.
+ReadySet also adds a trailing TER; the existing C140 serializer correctly refuses
+to remove a changed boundary. Neither gate is relaxed.
+
+The raw and missing-endpoint public runtimes preserve the original model and
+ordered dictionary/PHIL selection and replay cold with no historical path/SDK
+access. This proves consumption and safe fallback, **not a positive final endpoint
+or ordinary adoption**. C09 already solved the scalar metadata problem for linked
+preparation; reuse that loop policy at combination while preserving old receipts.
+Ordinary orchestration/checkpoints and actual refinement remain Q04/Q05/Q06.
+
+### Prepared-PostMR request entry (C177)
+
+`cif_postmr_request.initialize_postmr_dictionary_request(model, report, components,
+source_output, output, *, consumer, ready_set_executable, supplementary_phils,
+data_root=None, frozen_sources=None, **execution_limits)` connects ordinary source selection to the
+existing complete request. Components supply code/generation settings and optional
+retained snapshot, terminal resource or source-named phosphate policy. Model/site
+and exact ordered PHIL proofs are derived through C175/C176, not supplied as manual
+overrides. An explicit empty PHIL sequence declares absent custom restraints;
+required unsupported inputs must be converted faithfully, never omitted.
+
+The initializer checks intent and fresh disjoint destinations, freezes the complete
+source set with the existing curated/local/configured-CCD precedence (or consumes
+an explicit existing selection under C189 below), then calls
+`initialize_dictionary_request`. It executes no native job and creates no second
+owner or schema. A published request resumes through
+`execute_dictionary_request_attempt(output, phenix, store, generation=...)` at
+the same path. Source selection is not repeated during execution or replay.
+Partial initialization and failed attempts remain intact. Overlapping input, cache
+or installation paths remain forbidden at their existing ownership boundaries.
+
+Independent original qualification and the established classified optional-failure
+policy remain enabled; this entry exposes bounded execution limits, not switches
+to disable those gates. Full-model native inventory is mandatory. The older
+`prepare_postmr_dictionaries` cache helper retains its reuse-only semantics and
+representation-policy exclusions. There is no second cache scan or recovery loop.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 controls exercise fresh 5PC generation,
+exact cache reuse, stale qualification, retained PDU/5PC repair, stopped optional
+native failure with a proven-original fallback, no usable original and a stopped
+generation failure. Fresh generated 5PC numerics need graph-selected repair before
+the chosen diagnostic runtime qualifies. Every control preserves model coordinates;
+the mixed retained control preserves both ordered PHIL files. Staleness uses an
+explicit descriptor change on the same SDK, not an actual version-upgrade claim.
+Short explicit caps deliberately test actual worker/cleanup paths; failures are not
+fabricated reports. Cold new/legacy replay denies original paths, SDK and execution.
+
+Requests use existing C175/C176 proof fields and remain readable by the appropriate
+existing readers; there is no migration. The caller still supplies selected native
+consumer and producer recipe/pins. This is an **opt-in prepared-model entry**, not
+an enabled `prepare_postmr` default. Ordinary orchestration must preserve pre-Coot
+source/producer lineage and NAR compiler provenance, pass the selected runtime
+through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
+refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
+
+### Execute the ordinary-prepared request through the existing owner (C219)
+
+C219 executes the exact original request produced by C218. It does not copy a
+request for execution, reconstruct Coot/NAR, use a retained candidate, or add an
+owner. A fresh local store exercises source-preserving generation and native
+component qualification, connected preparation, linear-torsion repair, full native
+attribution/derivative checks, then owned ASU-aware ReadySet continuation.
+Live settings are reconstructed from the same selected SDK configuration and must
+match frozen intent before the existing executor can reserve attempt 1.
+
+Actual **Phenix 2.2.1-6174 / dispatcher 2.2.1** completes this bounded execution and
+selects `readyset_checked_model`; baseline, ReadySet and endpoint phases complete.
+The outer request and child work are sealed stopped. All 76 pre-existing preparation
+files retain bytes/mtimes, including the original MR report. No checkpoint or
+ordinary status is promoted. Coot is not repeated; C218's complete 1.3.3 construction
+is the frozen input. Exact selected readback succeeds from a relocated checkout
+after original copy removal with historical paths, SDK and execution denied;
+1495 copied source/evidence files are unchanged.
+
+The selected-model source-graph audit still reports missing explicit plane coverage
+at PDU/A:9/C5. This is not a claim that alternative restraints are absent or that a
+universal geometry threshold failed.
+The owned repair composer still dispatches linear-torsion repair only. C208–C216
+plane construction, provenance, mechanics and geometry checks are available but
+still need composition into that owner before automatic plane-repair claims.
+No numerical target calibration, diffraction refinement, default CLI activation
+or Q05 adoption is established by this control.
+
+No source code changed and C218's **231 tests + 14 subtests** remain the focused
+baseline; no redundant rerun or full suite. Exact commands and local evidence:
+`ordinary_postmr_request_execution_2026_11_11`.
+
+### Ordinary preparation into the existing request (C218)
+
+`cif_ordinary_postmr.initialize_ordinary_postmr_request` accepts an ordinary run,
+selected Phenix installation and explicit source-reader dialect. It shares the
+existing Coot/construction/phosphate/NAR preparation path, then stops before the
+legacy dictionary cache, site modifiers and ReadySet. Existing source selection,
+literal-input compilation and complete-request initialization freeze the prepared
+model, construction lineage and exact ordered restraint intent. No second owner,
+compiler or artifact schema is introduced.
+
+The result exposes the request directory and live generation settings for the
+existing `execute_dictionary_request_attempt`; environment values are not serialized
+or included in the result representation. Resume a published request through that
+owner rather than rerunning preparation. An interrupted pre-request PostMR remains
+preserved and refuses in-place reinitialization. This API does not execute or adopt
+a result, create a checkpoint, or mark the run refinement-ready. Default CLI/campaign
+behavior remains unchanged. Q04 execution/reporting and Q05 exact adoption stay open.
+
+Four fail-before regressions and **231 focused tests + 14 subtests** cover entry,
+legacy exclusion, failure preservation and existing callers. An actual complete
+**Coot 1.3.3 (revision-count 0)** construction plus NAR generation produces a fresh
+PDU request with 38 links and 51 bond/84 angle/58 parallelity/4 plane declarations.
+**Phenix 2.2.1-6174 / dispatcher 2.2.1** is used for configuration only: no generation,
+interpretation, ReadySet or refinement. The request replays exactly from a relocated
+checkout with original copy paths removed and original run/catalogue/SDK/process
+access denied; 26 files preserve bytes/mtimes. No full suite or scientific usability
+claim. Exact commands and local evidence: `ordinary_postmr_request_entry_2026_11_11`.
+
+### Selected Phenix runtime through ordinary PostMR (C217)
+
+CLI and campaign now pass their already selected `PhenixInstallation` into
+`prepare_postmr(..., phenix_installation=...)`. Before preparation writes, the
+explicit ReadySet path must resolve to the selected dispatcher, and a separately
+supplied environment must match. A private environment copy is used. The existing
+ordinary cache adapter receives the same installation, so it can verify cached
+consumer evidence without rediscovering an SDK from ReadySet's path.
+
+Explicit-path callers may omit the new keyword and retain historical behavior.
+No generation capability, known-version requirement or new discovery mechanism
+is imposed on that ordinary route; the existing cache qualification still owns
+its consumer checks and honest fallback. Environment contents are not persisted.
+No artifact schema/migration, chemistry change, owned-request invocation or
+automatic selection is introduced. C178/C182's existing configuration factory
+remains the source of future owned-request consumer/generation arguments.
+
+Three fail-before controls establish the missing API/caller forwarding. The
+affected PostMR, CLI, campaign, cache and configuration tests pass: **149 tests +
+14 subtests**. They include complete synthetic ordinary preparation, legacy direct
+paths, early dispatcher/environment conflicts, cache forwarding and both callers.
+Actual **Phenix 2.2.1-6174 / dispatcher 2.2.1** passes a read-only configuration/
+consumer check and pre-I/O PostMR handoff. This is a **dry-run**, not Coot, ReadySet,
+generation or refinement execution. No full suite. Exact commands/references:
+`selected_postmr_runtime_2026_11_11`.
+
+Q04 still needs ordinary one-owner invocation and durable resume; Q05 still owns
+the exact selected bundle/checkpoint handoff and truthful parent-fallback reporting.
+
+### Source-selected model trigonal geometry (C216)
+
+`review_trigonal_model_geometry(source, dictionary, component, model)` measures
+every modeled occurrence of C208's source-selected neutral three-heavy-neighbor
+carbon rule. It reuses that chemical selector and the strict supported PDB reader;
+there is no component/atom-name dispatch or second hybridization classifier.
+Source/dictionary graph, charge and stereo scope stay unchanged. Accepted residue
+number spellings are normalized consistently. Input bytes are rechecked at return.
+
+The schema-1 `cif-source-trigonal-model-geometry-v1` report keeps local coverage
+beside actual normalized volume, all three neighbor angles and bond elevations
+relative to the other two neighbors. Missing local atoms remain unavailable;
+coincident or near-collinear vectors are degenerate. The dimensionless 1e-6 rank
+guard is the existing numerical guard, not a chemical tolerance. A flat-looking
+collapsed group is never promoted by its zero volume. Unsupported source centers
+remain listed, and even a complete plane definition can accompany bent coordinates.
+These are literal same-residue Cartesian measurements, not a symmetry-image fit,
+native residual, global ring-plane fit or scientific acceptance threshold.
+
+114 distinct focused cases pass (112 shared/focused, 16 final affected-module,
+one added analytic control). Fail-before cases establish the missing API and an
+accepted zero-padded-residue lookup discrepancy, now corrected. Renamed/non-PDU,
+missing/degenerate/charged/chiral/saturated, identity/element, input-change,
+relocation and analytical rotation/reflection controls are covered.
+
+Actual **Phenix 2.2.1-6174 / dispatcher 2.2.1** bounded 5PC minimization reuses the
+C209 command/settings and source-selected whole-base partition: 22 atoms variable,
+840 fixed. No dictionary generation or new optimizer. C5–C7 elevation falls from
+4.97/5.00 degrees to 0.44/0.33 degrees; other assessed carbonyl/amino centers also
+flatten. Finite-weight restraints do not promise exactly zero displacement.
+Fresh native readback preserves every proxy detail/count, monomer mapping and atom
+identity. A first readback layout was refused before launch by the existing input/
+output separation guard; the completed minimization was retained and only readback
+ran in a fresh valid folder. The original PDU geometry is measured through the same
+audit without rerunning its completed minimization.
+
+Cold relocated checkout/evidence replay reproduces all four PDU/5PC before/after
+reports and 5PC native readback with old paths/SDK/execution forbidden; 24 copied
+and all 600 original files preserve bytes/mtimes. No Coot, diffraction refinement,
+full suite, automatic adoption or old schema migration. Exact commands and evidence:
+`source_selected_model_geometry_2026_11_11`. Native completion and better local
+shape do not qualify source numerical targets, full NAR refinement, packing or
+ordinary Q04/Q05 selection. Keep those remaining gates in the existing queue.
+
+### Ask for plane support through checked preparation (C245)
+
+```sh
+nasolve cif-doctor prepare-run RUN --automatic-plane-support
+nasolve cif-doctor prepared-result RUN --attempt 1
+```
+
+Prepared and ordinary intake accept strict boolean `automatic_plane_support` and
+forward true into C244's existing frozen complete-request policy. Invalid values
+refuse before source freezing or tool configuration. Absent/false requests keep
+exactly the previous settings. Initialization does not itself generate support.
+`continue-preparation` reconstructs the primary recipe and uses the saved outer
+choice; it accepts no new support flag and does not repeat construction.
+
+The ordinary reader projects generation outcomes from its one existing full
+proof read. It names components and initially screened centres, distinguishes
+source-checked support, no need within the supported graph screen, and classified
+failure. Generated support is not proof of final plane adoption; neither a missing
+plane nor a completed generator chooses a usable model. Existing independent
+qualification and the exact selected model/dictionary/PHIL order remain authoritative.
+The notes are display-only. Saved publication messages are intentionally unchanged:
+C223 reconstructs those messages when validating old checkpoint receipts.
+
+This adds no request schema, chemical rule, worker, time/storage allowance, default
+activation or new publication authority. C246 adds direct PostMR/campaign
+forwarding; C247 carries the notes through publication/status without changing old
+publication meaning. Effective native plane adoption and later preparation children
+remain explicit follow-up work. Focused tests and read-only projection of C244's
+actual Phenix success/timeout evidence are recorded in
+`ordinary_plane_support_entry_2026_11_13`; no new native run or full suite.
+
+### Request the same support from PostMR or campaigns (C246)
+
+```sh
+nasolve postmr RUN --checked-preparation --automatic-plane-support
+```
+
+This invokes the same C244 owner through C245 intake. The option requires checked
+preparation; an invalid combination refuses before tool discovery or configuration
+writes. The Python API requires a real boolean. Omission/false keeps the previous
+request intent and never enables support on the legacy route.
+
+Schema-2 campaign presets can set `[postmr] automatic_plane_support = true`
+alongside `checked_preparation = true`. Planning freezes the choice, including
+explicit false, without inserting it into older policies or changing their hashes.
+Older readers reject this new optional field; old recipes need no migration.
+The existing publication/recovery rules still apply. Classified optional failure
+can use only an independently qualified fallback, never a second unchecked run.
+Exact-result notes describe generation; C247 carries them through ordinary publication
+and campaign status. C249 now reports scoped explicit selected-CIF coverage separately. No scientific rule, native command,
+request/checkpoint schema, default or time/storage allowance changes.
+
+### Preserve honest notes when saving and using the preparation (C247)
+
+Checked PostMR, `cif-doctor publish-preparation`, and campaign status now report
+verified generation outcomes, including qualified results retained after optional
+plane-generation failure. The publisher returns notes from its existing exact
+proof read; ordinary callers do not run that expensive validation a second time.
+The original receipt-only publication API remains available.
+
+Preparation/checkpoint messages, hashes and historical receipts are unchanged.
+New campaign PostMR receipts may contain `preparation_notes` (a list of nonempty
+strings); readers validate that optional field and retain it through subsequent
+stages in text/JSON status. Old receipts need no migration; older readers can omit
+these display notes. Notes do not change continuation gates, selection or warning
+classification. Read-only status leaves saved bytes/timestamps unchanged.
+
+These notes establish neither final plane adoption nor refinement success. An
+older/requested-without-generation result says that no automatic-generation
+outcome is recorded, rather than claiming that support is unavailable globally.
+Malformed proof still refuses; no cached verdict, fallback authority or new native
+execution is introduced by formatting. Failed/interrupted publication keeps its
+existing exact-attempt recovery and REVIEW meaning.
+
+### Save a later preparation as an explicit alternative (C251)
+
+```sh
+nasolve cif-doctor publish-preparation RUN --attempt 2 --as-alternative
+nasolve show RUN --checkpoint prepare-002
+```
+
+The first command saves an exact later attempt of the same ordinary request as
+an **unselected REVIEW alternative**. It does not rerun construction or execute native
+programs, replace the original PostMR model/receipt, or change the current selection.
+The alternative starts from the request's frozen construction. It does not claim
+to have been built from the currently selected refined coordinates. It must have
+an independently qualified model and matching restraints; failed/unknown proof
+cannot be published. Initial-only publication keeps its existing command.
+
+**Method and storage.** Reuse the complete request reader, construction/intent
+checks and ordinary publication payload. A checksummed
+`PostMR/Preparations/attempt-NNNN.json` receipt binds the initial receipt and the
+later exact result. Checkpoint schema 4 adds `prepare-NNN`, kind `preparation`,
+parent `postmr` and relation `SAME_FROZEN_CONSTRUCTION`. The parent is a workflow
+origin, not coordinate ancestry. The exact model, original observations and ordered
+restraints are independently bound. Root plus named alternatives share one full
+history replay; no persistent cache or extra science copy is created. Retained
+results remain bounded by the existing outer-attempt allowance.
+
+**Recovery and consumers.** Publish the immutable receipt before appending the
+checkpoint, then use C250's locked comparison against the registry originally read.
+A conflict preserves completed work and the receipt. Repeating the same command
+validates that receipt and appends only the missing exact entry, retaining any
+intervening selection/bookmark. An already published entry is a read-only repeat.
+Normal Coot and refinement readers validate the complete binding. Coot uses the
+recorded ancestor map and labels it as not recalculated for the alternative.
+Manual/refined descendants preserve the alternative's restraint prefix. No
+coordinate move or missing/changed file is excused by the new checkpoint kind.
+
+**Compatibility and remaining scope.** Initial-only schema 3 and legacy schema
+1/2 keep their meanings; old readers reject schema 4. Explicit alternative
+publication introduces schema 4; C253 checked AutoSol adds schema 5. The original report/receipt/root stay
+fixed. Checked reflection reads now use their already-recorded observation anchor
+and checksum, including after a dataset rename; invalid references cannot fall
+back to historical paths. AutoSol deliberately phases with the original Phaser
+model. C253 connects its site validation to the chosen prepared/manual/refined
+model, as described below. Campaign retries still create fresh runs; this
+command does not rewrite frozen campaign stage receipts or invent continuation.
+
+Focused synthetic transport/consumer tests cover interrupted saves, stale-writer
+reconciliation, rehashed binding defects, exact refinement inputs and relocation
+with the original dataset absent. They do not demonstrate new native chemical
+support or diffraction-refinement success. Exact commands and the saved-native
+reader compatibility check belong to the C251 evidence-ledger entry.
+
+C252 adds **actual Phenix 2.2.1-6174 / dispatcher 2.2.1 execution** from the
+unchanged frozen C218 construction. A new request freezes two attempts at creation;
+old one-attempt requests are not extended. A deliberately timed-out optional plane
+generator retains qualified ReadySet output and honest missing-C5 notes. A fresh
+attempt obtains support, passes repair/ReadySet and publishes the later alternative,
+whose selected CIF explicitly covers screened C2/C4/C5. The first attempt's 467
+files and initial choice remain unchanged. After relocation with old/cache/SDK
+reads and subprocess execution forbidden, Coot and AutoRefine input resolution
+agree on the model; refinement receives all five PHIL files and both CIFs, while
+Coot loads the component dictionary. All 1,190 run files survive cold reads unchanged.
+A manual child made from the unchanged later model retains its restraints and
+explicit selection when that preparation is published again. A second whole-run
+move resolves that selected manual child with its historical source path absent;
+all saved bytes/timestamps are unchanged. No new Coot edit,
+MTZ interpretation or diffraction refinement is claimed; observation/map paths are
+synthetic fixtures. Full results: `native_preparation_alternatives_2026_11_13`.
+
+
+### Full-model interpretation policy at the refinement consumer (C278)
+
+C138's generated `pdb_interpretation.use_ncs_to_build_restraints=False` guard
+retains complete monomer identities. The geometry interpreter reads that bare
+namespace; `phenix.refine` rejected it in C278's real campaign dry-run. C05 already
+supports stripping a refinement wrapper for native interpretation. Changing the
+historical generator or dropping its guard would invalidate or alter the evidence.
+
+AutoRefine therefore wraps only the exact known generated policy in a fresh
+round-local `refinement { ... }` file, at the same ordered argument position.
+All other input files pass through unchanged. Original preparation/worker bytes,
+checkpoint restraint lineage and scientific settings remain unchanged. This is an
+input-language conversion, not chemical repair or a general PHIL normalizer.
+
+`AutoRefine/round_NNN/refinement_inputs.json` is an additive schema-1 receipt with
+policy `refinement-full-model-namespace-v1`. Its source/copy references, byte sizes,
+checksums, ordered positions, numbered-round location and exact derived content
+are checked before/after execution and by ordinary checkpoint reads. The existing
+checkpoint output-reference map stores its hash; the optional report input list
+states which execution copies Phenix received. Reads are run-relative and do not
+launch tools. Unknown/changed/rehash-tampered evidence refuses; partial output stays.
+No historical migration or new checkpoint schema is required. Older readers do
+not verify this optional evidence, and older refinement code still cannot consume
+the bare policy; do not advertise old-version continuation compatibility.
+
+The native C278 failure occurred during `--dry_run`, before refinement cycles.
+The final adapter passes a fresh normal campaign through complete AutoSol and
+five real refinement cycles (Phenix 2.2.1-6174), then exact selected-endpoint reads
+after relocation without old/source/SDK access or native launches. Original seven
+inputs, the protected D:1 phosphate and original Free-R authority survive. The
+effective refinement parameters retain the full-model flag as False. The one
+76-byte copy and 765-byte receipt avoid another dictionary/preparation copy.
+Focused tests and relocated-checkout checks cover the integrity boundaries;
+exact commands, measurements and remaining scientific limits are in
+`refinement_policy_namespace_2026_11_14` in the evidence ledger. The later PDU
+post-refinement geometry control remains Q06, independently of language acceptance.
+
+### First campaign refinement after checked preparation (C277)
+
+Checked publication creates `AutoRefine/checkpoints.json` before any refinement.
+The previous blanket refusal of an existing AutoRefine directory therefore blocked
+that normal handoff. Campaign admission now allows only the initial checked
+`postmr` registry and its optional lock, with no previous refinement history,
+other files or later choices. It passes the record digest to AutoRefine's existing
+read-only scientific validator; a changed or missing registry refuses without
+initialization/native work. The existing guarded save protects later changes.
+Default standalone initialization, attempt allocation, native arguments, chemistry,
+phosphate and Free-R rules are unchanged. No migration or new artifact schema.
+
+Focused tests execute the real campaign stage and AutoRefine engine with stub
+executables, checking all ordered PHIL/CIF inputs and untouched preparation files.
+These prove the handoff and refusal behavior, not native refinement mechanics.
+Exact checks: `campaign_first_refinement_2026_11_14` in the evidence ledger.
+
+### Source-preserving dictionary input in ordinary commands (C276)
+
+The successful C270 control passed C263/C264 source-input options directly to the
+Python preparation API. C276 makes that exact combination available to the normal
+callers through the explicit versioned choice `source-preserving-v1`:
+
+```sh
+nasolve postmr RUN --checked-preparation --automatic-plane-support --dictionary-input-policy source-preserving-v1
+nasolve cif-doctor prepare-run RUN --dictionary-input-policy source-preserving-v1
+```
+
+A schema-2 campaign can freeze it without adding commands or paths:
+
+```toml
+[postmr]
+checked_preparation = true
+automatic_plane_support = true
+dictionary_input_policy = "source-preserving-v1"
+```
+
+The existing generation-input module maps this choice to
+`cif-source-reader-preparation-v1` and
+`cif-source-declared-neutral-purine-aromatic-v1`. The existing owner freezes their
+complete source/recipe/producer identity, including cache identity and optional
+plane support. This does not choose protonation, change the original source or
+expand the neutral-purine whitelist. Independent chemistry/native checks remain.
+Old defaults and absent policy bytes stay unchanged. Older campaign readers reject
+the additional optional key; new request schemas are unchanged. A saved request
+continues with its frozen options, never a replacement command-line recipe.
+
+A fresh native campaign using the normal coordinator/stage worker now exercises
+preflight, Phaser, Coot/NAR, generation/repair/ReadySet, publication and automatic
+working-file retirement on the declared C270-derived A:5IU/free-end fixture with
+protected D:1 phosphate. It uses ordinary execution limits, an isolated local
+configuration/store and real copied observations. Cold moved campaign receipts
+and the selected view remain valid without old/source/cache/SDK reads or new native
+work. This is preparation acceptance, not donor-chemistry or diffraction-refinement
+acceptance. Exact counts, commands and versions:
+`ordinary_source_recipe_callers_2026_11_14` in the evidence ledger.
+
+### Finish a sealed AutoSol result save (C274)
+
+C275 connects the same operation to an explicitly requested ordinary
+`nasolve autosol RUN`: inspect for the new receipt before Phenix discovery, then
+complete/revalidate it through C274. State that no native work was repeated. Only
+an absent receipt returns to the former launch/refusal path; invalid saved evidence
+never does. The execution API and campaign stage remain unchanged, and the explicit
+completion-only option still requires a receipt. No new schema or migration.
+145 focused tests + 16 subtests pass. The ordinary CLI reads the moved real C274
+result with SDK/old/source access and subprocesses forbidden, in 57.41 s; all 392
+files retain bytes/timestamps. No new native run or pending-native control is
+claimed for this small caller change. Exact evidence: `autosol_cli_completion_2026_11_14`.
+
+`nasolve autosol RUN --complete-publication` finishes an exact completed stage
+save without native discovery, execution or checkpoint reselection. New checked
+launches first write `AutoSol/execution.json` with policy
+`autosol-inherited-process-observation-v1`: launch UUID, existing coordinator and
+inherited process group, frozen site-reference and historical command. This
+observes the existing group; it creates no child owner and never sends signals.
+After writing the immutable result, `AutoSol/publication.json` with policy
+`autosol-result-publication-v1` binds that launch, run-anchored/checksummed execution
+and result, and exact previous/intended run-report hashes. No models are copied.
+
+Pending completion requires both coordinator and complete recorded group known
+stopped on this host. Existing preparation, observation, model/site and phase/map
+checks qualify the saved result. The existing kernel lock and guarded report
+writer preserve competing/newer work. Only the run report changes; later choices
+and bookmarks remain intact. Already exact publication revalidates read-only.
+Old receipt-less runs remain readable; no historical identity is invented.
+
+A fresh complete Phenix 2.2.1-6174 AutoSol run on a copied/revalidated C270 fixture
+reaches AUTOSOL_READY, 1.449 Å and HLAM/HLBM/HLCM/HLDM. A deliberate exception after
+sealing preserves the completed native result. After its owned group stops and
+the copy moves, completion succeeds without old/source/SDK reads or native
+launches. Saved comparison is manual-001; later current choice stays postmr.
+390 existing files retain bytes/timestamps; only report.json changes and the
+persistent publication lock appears. Repetition is read-only. All 394 original
+source files remain unchanged. No new MR/Coot/ReadySet or diffraction refinement.
+
+The copied fixture explicitly resets only its own old AutoSol state before the
+fresh native control; this is not production migration or in-place retry. The
+61.6 MB complete local control remains excluded from Git. Exact commands, hashes,
+negative tests and moved-checkout validation are in
+`autosol_saved_publication_2026_11_14` in the evidence ledger.
+
+Limits remain explicit: this completes sealed saves, not a crash before sealing,
+incomplete native work, a shared/foreign/unknown active group, or a missing campaign
+stage receipt. Existing campaign supervision remains unchanged. No default
+checked-preparation activation or standalone native-attempt isolation is added.
+
+### Explicit native plane-force composition (C291–C294)
+
+`cif_parallelity_kernel.ParallelityKernel(gr, flex)` is an explicitly invoked
+callable for the native keyword Cartesian interface. It does not install itself
+or add an ordinary refinement option. A caller must own the native process,
+authenticate its capabilities/sources and restore any temporary function binding.
+
+**Methods.** Capture the original native kernel before any caller binding, evaluate
+its unchanged score into a private force array, and reuse the established
+`native-parallelity-both-first-planes-v1` correction. Add the checked result to the
+caller's existing forces only after all checks pass. This preserves earlier
+bond/angle contributions and native normalization. It refuses aliased coordinate/
+force storage, incomplete/nonfinite buffers and unsupported unit-cell/symmetry
+planes. Energy-only calls retain the score; empty plane sets are no-ops.
+Process-local counters describe successful calls, not process ownership.
+Historical correction and native worker bytes stay unchanged.
+
+C291's process-local prototype passes all 20 ordinary startup force probes with
+unchanged target/contacts/normalization; raw fails 17. C292 runs the actual ordinary
+Phenix program for one cycle in each arm: adapted endpoint passes 20/20, raw fails
+18/20. C293/C294 use the maintained callable for the original five-cycle recipe,
+including original strategies/weights/nproc and all 45 planes/58 parallelities.
+The endpoint passes 20/20; 25 process receipts include native fork workers.
+Indexed Free-R values remain identical (4,530 observations, 250 test). These use
+**Phenix 2.2.1-6174 / dispatcher 2.2.1**, exact consumed-source fingerprints and no
+installed-file edits. They are native refinement controls, not structure approval.
+
+C293 preserves a failed post-refinement diagnostic: exact normalized target
+comparison after `model.select(all atoms)` was invalid. C294 records why: rebuilding
+the manager changes contacts 8,041 → 8,060 and total terms 11,321 → 11,340. Before
+normalization, scores are identical and maximum force difference is 5.7×10⁻¹⁴.
+Each manager's own normalized force probe passes; no optimization scale changes.
+C294 completes/stops successfully. C293's completed refinement and later failed
+assertion remain separate, preserved outcomes.
+
+Nineteen regressions fail before the API; 62 focused tests pass. Nineteen also pass
+from a relocated minimal source copy with its temporary original absent. Seven
+saved native reports replay without native execution and with 275 local files
+unchanged. This is report arithmetic, not whole-run portability. Original 410 run
+files and 64 earlier capture files stay fixed. No science/logs/runners are committed.
+
+**Pipeline boundary.** This qualifies a bounded mechanism, not automatic ordinary
+NASolve execution, every native build/platform, or PDU chemical survival. Ordinary
+execution must bind the capability/policy through existing immutable attempts and
+checkpoints before it is advertised as supported. Include complete consumed native
+parameters and symmetry/process scope: the historical static signature alone does
+not cover every optional field. Evidence: `explicit_parallelity_kernel_compatibility_2026_11_14`.
+
+### Current ordinary PDU-pair construction observation (C290)
+
+The current builder preserves parent conformation in the original accepted-MR
+PDU A:12/B:4 control: chi differs by 0.027° and 0.006° from its canonical parent,
+whereas the old construction had both near +53°. The old and current literal
+dictionaries differ (their parsed atom/bond graph agrees); changes in bond lengths
+are therefore not a controlled attribution to one repair. The C5 substituent elevations
+are 1.114°/1.016° before dictionary repair; source CCD plane coverage is still
+missing. These are descriptive coordinates, not refined geometry or target approval.
+
+**Methods.** Copy only the declared original MR/data inputs to a fresh local fork,
+retain the exact MR/model/reflection hashes and PDU/D:1-terminal intent, and call
+the current ordinary checked preparation with source-preserving input and automatic
+plane support. Coot 1.3.3 revision-count 0 completes construction and NAR generation.
+Intake then refuses B:1's P/OP1/OP2 without OP3 or a verified incoming O3′–P link.
+C188/C189/C270 already document this raw-W ambiguity; their explicitly free-end
+software fixture does not authorize changing this scientific control's intent.
+NAR reports no T:T recipe and does not invent PDU:PDU hydrogen bonds.
+
+The stopped attempt preserves all partial outputs. No dictionary repair, ReadySet,
+checkpoint publication or refinement is claimed. Readback authenticates construction
+lineage, uses the maintained trigonal selector and Phenix 2.2.1-6174 native torsion
+kernel as an angle reader, and leaves all 19 source inputs and 72 attempt files
+unchanged. Terminal intent must be supplied before a fresh dependent attempt.
+Evidence: `current_pdu_pair_construction_2026_11_14` in the existing ledger.
+
+### Probe the complete ordinary refinement objective (C289)
+
+`cif_objective_probe.probe_objective(evaluate, points, selected_indices)` samples
+one complete score/force callback without switching restraint families or changing
+normalization. It uses the existing four central-difference steps (10⁻³–10⁻⁶ Å),
+absolute/relative tolerances (10⁻⁴ each), full-gradient/global directions and up to
+six atoms' Cartesian directions. Two adjacent passing step sizes are required;
+the final baseline must repeat. Calls are bounded (default 256, maximum 512).
+
+Schema-1 `cif-whole-objective-probe-v1` retains finite native observations and
+bounded JSON context metadata. `review_objective_probe(record)` recalculates the
+arithmetic without native execution. Changed context is reported separately from
+force agreement. Missing context is not an unchanged-context claim. The calling
+owner must still authenticate inputs, native processes, exact restraint identities
+and tool versions; mathematical replay alone does not do that. No optimizer,
+chemical acceptance, automatic correction or runtime refinement gate is added.
+Historical workers and numerical cores remain unchanged.
+
+C288 used the installed ordinary Phenix program's explicit dry-run route on the
+same authenticated C279 inputs. Its family-isolation audit rebuilt contacts and
+changed normalization, so cross-audit normalized targets were not comparable.
+C289 avoids that diagnostic side effect: all 8,004 contacts, 11,284 total terms,
+normalization 1/11,284, pair-list update count and exact static restraints remain
+unchanged. **Phenix 2.2.1-6174 / dispatcher 2.2.1** raw full-objective forces fail
+17/20 sampled directions. The existing diagnostic parallelity correction passes
+20/20, with the identical target 1.1401030244830264. Each arm uses 162 evaluations.
+The actual initialized consumer retains all 45 planes and 58 parallelities.
+
+This qualifies the observed defect at ordinary refinement startup, with zero
+macro-cycles; it does not qualify a corrected runtime route or diagnose Simon's
+reported PDU distortion. Installed files, original model/restraints and Free-R
+choices are unchanged. Q06 must retain this consumer limitation while checking a
+supported remedy and separate PDU chemical survival. The local control retains
+about 5.7 MB; all processes stopped. Thirty focused tests and moved-copy cold
+arithmetic replay pass. Exact inputs, sources, results and exclusions are in
+`whole_ordinary_objective_probe_2026_11_14` in the evidence ledger.
+
+### Observe actual printed refinement parallelities (C287)
+
+`cif_printed_parallelity.read_printed_parallelity(path)` reads an explicit saved
+GEO file; `parse_printed_parallelity(text)` supplies the pure parser. Supported
+input uses pipe section headings, fixed PDB-label columns and the printed
+residual/delta(deg)/sigma table. Blank lines separate groups without ending the
+section. Each group's first row identifies both columns; longer first or second
+planes retain their own atoms. Declared group counts must match complete parsed
+groups. Missing sections report NOT_RECORDED, not zero native restraints.
+
+The schema-1 `cif-printed-parallelity-observation-v1` observation retains literal
+labels, origin text, line positions, printed number tokens/values and source hash.
+Changed input, malformed counts/labels/numerics or unsupported layout refuses.
+It never reconstructs a restraint, supplies an exact weight/target, edits the model
+or declares scientific PASS. This is a diagnostic reader, not an ordinary runtime
+acceptance gate; printed precision remains separate from exact native evidence.
+
+C286 rereads C279's authenticated prepared/refined models with their exact validated
+refinement input set using **Phenix 2.2.1-6174 / dispatcher 2.2.1**. Both fresh native
+interpretations preserve 45 plane and 58 parallelity inventories. All 45 final
+printed planes agree in membership and rounded weights. The installed GEO parser
+returned only 1/58 parallelities and moved a longer second-plane tail into the first.
+Its proxy reconstruction is not used; this is a readback defect, not evidence that
+Phenix lost 57 restraints during refinement. No SDK file was changed.
+
+C287's reader agrees with all 58 ordered native plane memberships before and after
+refinement, including 54 unequal-plane groups. All 64 native-control files and 410
+original run files preserve bytes/timestamps; no native rerun. Nineteen focused
+regressions include both unequal-plane directions, multiple origins, malformed
+and changed input, absent versus explicit zero and relocated read-only files.
+The first native read exposed an unsupported nonbonded interactions heading; its
+new regression fails before the boundary fix and passes afterward. Exact receipts:
+`ordinary_refinement_effective_plane_observations_2026_11_14` and
+`printed_parallelity_readback_2026_11_14` in the evidence ledger.
+
+Q06 still needs ordinary-consumer derivatives, exact targets/weights and achieved
+chemical geometry. The diagnostic corrected evaluator, reconstructed manager and
+printed table do not qualify original Phenix refinement forces or PDU survival.
+
+### Avoid repeated numerical work during exact inspection (C273)
+
+The exact complete-request reader owns one short-lived numerical reuse scope.
+C284 also enters that same scope for the shared read-only history inspection, so
+status and archive-eligibility checks receive the same reuse without broadening it
+to native execution or archive mutation.
+Each captured-gradient reader still authenticates its complete file inventory,
+worker/native sources, input bindings, manager and saved qualification. Only the
+pure numerical calculation may reuse a verdict when the validator and every JSON
+input byte agree. List/type/dictionary-order distinctions are retained. Changed
+inputs recalculate; exceptions never enter the scope. Returned verdicts are copies.
+
+At most sixteen verdicts of at most 64 KiB serialized size are retained; full
+capacity falls back to ordinary validation. The scope expires on successful or
+failed inspection. Nothing is written and no scientific schema, pinned native
+worker or threshold changes. Reads outside a scope behave as before. This is not
+permission to trust a path, saved PASS label or checksum instead of its evidence.
+
+Two fresh guarded processes reading saved C270 take 103.72 s without reuse and
+59.04 s with it; numerical reconstruction falls from fourteen calls to two, with
+identical view/model/map/dictionaries and unchanged 389 run files. Python peak is
+716.6 MB versus 635.8 MB in this pair. These are single-fixture observations, not a
+concurrency or 100-dataset guarantee. Exact validation and negative controls are
+in `inspection_local_numerical_reuse_2026_11_13` in the evidence ledger.
+
+C284's four fresh-process reads use saved C282 evidence with historical/source/
+cache/SDK access forbidden. Both status and archive eligibility return identical
+complete result hashes before/after the change; all 327 files retain bytes and
+timestamps. Numerical replay falls from 28 calls to 2 for each entrance. Observed
+status time: 219.48 → 107.02 s;
+archive eligibility: 205.91 → 96.75 s.
+This is a single sequential comparison, not a guaranteed runtime or capacity bound.
+170 focused request/retention/numerical tests pass. Exact command and limits:
+`owner_inspection_numerical_reuse_2026_11_14` in the evidence ledger. No native rerun.
+
+### Compare heavy-atom sites with the chosen model (C253)
+
+C271 also exposes that saved checkpoint in the AutoSol `ViewProfile` and Coot
+launch record. The model was already correctly resolved; its ID was omitted.
+Checked views use `CootGUI/autosol/<checkpoint>/`, with the existing safe-component
+validation, while legacy AutoSol views retain their original layout. Selecting
+another checkpoint later changes neither this inspection's model nor its identity.
+Focused tests include the actual launch record and relocated code/run inputs.
+C270 saved native readback passes after a later selection and relocation, with
+original/cache/SDK access and native launches forbidden: manual-001 remains the
+AutoSol comparison while postmr is current, and all 389 run files are unchanged.
+C272 then runs Coot 1.3.3 headlessly on copies of the exact resolved display inputs:
+one dictionary, the comparison and heavy-atom models, and an FWT/PHWT map loaded
+by ordinary `--auto`. This is native file consumption, not refinement or effective
+plane qualification. Exact commands and limits are in the evidence ledger.
+
+
+**Purpose and behavior.** AutoSol must phase from the original Phaser MR model,
+but compare its resulting heavy-atom sites with the model the user actually chose.
+Checked runs now rescan that exact checkpoint, including a later preparation or
+manual/refined descendant. Its atom coordinates and unit cell supply the existing
+symmetry-aware comparison. The initial preparation stays unchanged. Existing
+supported elements/space groups and 4 Å acceptance / 8 Å review gates are unchanged.
+
+**Method.** Reuse checkpoint selection/lineage, the existing nucleotide-heavy-atom
+scanner and AutoSol matcher. Before native launch, seal
+`AutoSol/site-reference.json`: chosen checkpoint/model, original Phaser model,
+candidate coordinates, unit cell, distance controls and the pre-AutoSol report
+identity. All operational model references carry run anchors and checksums. The
+existing guarded registry save binds that receipt and advances only this checked
+run to schema 5. A competing preflight edit prevents launch. A later selection
+change is preserved and does not change the historical comparison.
+
+New checked AutoSol results are immutable records with anchored heavy-atom and
+refinement-data references. Phase/map consumers validate the reference and result,
+rescan the bound model, and repeat the small site comparison against the saved
+heavy-atom output. This does not repeat the expensive preparation history; that
+remains the caller's existing single read. Explicit `show --stage autosol` displays
+the saved comparison model/dictionaries and separate heavy-atom sites. Ordinary
+checkpoint inspection still follows the explicit/current choice.
+
+**Failure, compatibility and evidence.** Qualified native failure records the
+same reference and retains MR continuation. Changed input evidence or a changed
+run report cannot authorize phases or overwrite newer work; completed native
+outputs remain available. An interrupted result publication is not automatically
+adopted and never authorizes a native retry in place. Earlier schemas/results keep
+their meaning; older readers reject schema 5, and later alternative publication
+preserves it. This saves a small receipt, not another model or evidence archive.
+
+Focused executable-stub tests separate original and chosen iodine coordinates by
+19 Å, exercise review/warning limits, later alternatives, selection changes,
+rehash-resistant contradictions, immutable result conflicts and relocation with
+the original dataset absent. These test orchestration and scientific comparison;
+they are not an actual Phenix AutoSol run or diffraction-refinement qualification.
+The existing C252 native preparation is also the compatibility control; exact
+commands/results are in `selected_autosol_reference_2026_11_13` in the evidence ledger.
+
+C255 additionally reuses Alder's already reviewed phase-label correction: save a
+complete exact HL quartet, in the existing AutoRefine preference order, rather
+than the anomalous observation quartet. Mixed/incomplete coefficient families
+refuse. The two functions and regression file match Alder `5561bfb`; C253's other
+AutoSol functions stay unchanged. Actual Phenix 2.2.1-6174 MTZ inspection confirms
+HLAM/HLBM/HLCM/HLDM in the documented completed DiU result. Its historical report
+stored intensity labels and is preserved unchanged. This checks label discovery,
+not a new AutoSol/refinement execution or the pending selected-model native gate.
+AutoPhase naming remains final Q16 work; the machine-readable audit records the
+completed Cedar correctness reconciliation separately.
+
+### Preserve newer checkpoint edits (C250)
+
+A checked checkpoint save now holds the existing nonblocking kernel lock while
+comparing the on-disk sealed identity to the identity originally read by that
+caller. If another edit has advanced the registry, the old save refuses without
+replacing newer checkpoints, selection or bookmarks. Successful saves refresh
+the live caller's identity, allowing intentional consecutive edits. The lock file
+is a small persistent inode, never a scientific output or runtime verdict cache.
+
+This addresses a demonstrated lost-update risk before later preparation
+publication. It changes no chemistry, saved schema or historical receipt. Existing
+legacy schema 1/2 writing retains its behavior. If a scientific run finishes but
+its metadata save conflicts, preserve its outputs and reconcile against the newly
+read registry; the conflict is not permission to rerun or delete earlier work.
+
+### Report the planes in the exact selected dictionaries (C249)
+
+Generation success and selected-restraint coverage answer different questions.
+The ordinary checked reader now uses C208's existing source-graph screen on the
+exact selected dictionaries after its single complete proof read. Component source
+snapshots and ordered dictionary hashes come from that verified result. Inputs
+are checked again afterward; changed evidence cannot become a harmless note.
+The same notes reach explicit publication, checked PostMR and campaign status
+through C247, without changing saved publication messages or selection authority.
+
+One explicit selected definition per component is required. Missing, ambiguous,
+unreadable or unsupported definitions remain unassessed; the screen does not
+infer native dictionary precedence or substitute installed-library definitions.
+It reports supported centres with explicit planes and centres missing them.
+The rule stays graph-selected, not residue-selected. Native modifications,
+alternative restraints, achieved geometry and diffraction refinement are outside
+this descriptive screen. Absent historical generation records keep their meaning.
+
+Read-only replay of the two C244 Phenix 2.2.1-6174 controls reports C2/C4/C5
+coverage in the selected successful PDU dictionary and C5 missing in the timeout
+control. All 698/506 files keep their bytes and timestamps. This is actual retained
+native evidence through the ordinary reader with a location-only adapter, not
+fresh construction, publication or refinement. The ledger records focused tests,
+input/runner hashes and the exact scope; no scientific files enter Git.
+
+### Obtain missing plane support inside the complete request (C244)
+
+`initialize_dictionary_request(..., automatic_plane_support=True)` freezes
+`configuration.plane_generation_policy = cif-complete-owned-plane-generation-v1`.
+It is exclusive with C242's supplied `plane_support`; absent/false keeps the old
+request contract. This is an explicit API choice, not a new CLI/default setting.
+
+After ordinary acquisition/preparation, the existing source-connectivity screen
+checks the exact acquired dictionaries before site edits. Types with missing
+supported trigonal coverage get one fresh `generate_source_candidate_attempt`
+under `attempt/plane-generations/CODE`, with `multiple_planes=True`. It binds the
+frozen source, producer, recipe, outer parent and remaining time. Each outer retry
+has new child history; it never repairs an earlier attempt or changes frozen outer
+inputs. Components with no missing coverage create no generation child. Existing
+aggregate storage limits and chemical/geometry qualification remain unchanged.
+
+The owner checks stopped child identity before repair and on readback. Successful
+support goes through the same narrow plane candidate, linear/plane composition,
+independent qualification and ReadySet used by C242. C240/C243 classified failures
+supply no dictionary: only the explicit fallback policy plus independent repair/
+original qualification can continue. No usable qualification means no runtime.
+Partial reservation or unknown ownership blocks retry; malformed proof is never
+a chemical failure verdict. The exact result repeats the graph screen and owned
+proofs in `plane_generation`; dropping the choice, changing the child recipe or
+substituting an owner refuses without altering evidence.
+
+The screen currently requires exact source/dictionary graph correspondence.
+Other allowed representations need an explicit assessment path; arbitrary errors
+are not permission to skip checks. Native prelaunch/incomplete-build outcomes
+outside C240/C243 remain refused. Ordinary callers do not yet freeze/forward this
+option; later preparation children and actual refinement remain separate gates.
+No residue-name switch, new worker, stacking selection or phosphate rule is added.
+
+The 237 affected tests pass. Two complete Phenix 2.2.1-6174 / dispatcher 2.2.1
+controls use the ordinary PDU/NAR inputs without supplied plane support. The first
+obtains support, selects combined repair and ReadySet, retains explicit C5 coverage
+and all five ordered NAR files. The second deliberately times out only the optional
+candidate subprocess at 0.25 s: partial output stays unusable, independently checked
+linear repair and ReadySet continue, and C5's missing coverage remains explicit.
+Both exact results replay after source/request relocation with old inputs, SDK,
+cache and process calls forbidden; all request bytes/mtimes remain unchanged.
+Success retains 181.6 MB in 698 files; final ReadySet publication 5.8 MB. Cold read expands at most 81.4 MB temporary evidence and peaks at 570.6 MB resident memory.
+The stopped-generator control retains 134.8 MB; its cold read expands 69.7 MB and peaks at 493.5 MB resident memory.
+Temporary expansions are removed. This is preparation, not diffraction refinement;
+no new Coot run or full suite. Exact commands, controls and limitations:
+`automatic_plane_support_acquisition_2026_11_13` in the evidence ledger.
+
+### Recognize a completed chemical rejection without using its output (C243)
+
+`inspect_owned_plane_generation_failure` also recognizes a normally completed
+multiple-plane build whose retained candidate is `REJECTED` by the existing
+source assessment. `read_rejected_multiple_plane_candidate` shares the full
+completed-build reader: source/spec/worker identity, native handoff, output
+inventory, exact graph/charge/stereochemistry assessment and diagnostic are
+recomputed. Both owned phases must complete with integer zero return codes;
+the candidate phase must have its process identity. A receipt field selects the
+replay path, not the verdict. Altered or incomplete evidence still refuses.
+
+The derived `cif-owned-plane-generation-rejection-v1` proof records
+`failure_kind=REJECTED_CANDIDATE`, `candidate_qualification=SOURCE_REJECTED` and
+the rechecked diagnostic. It grants neither support, native usability, fallback
+nor retry. Nonzero failures keep their existing v1 proof unchanged. No native
+worker, stored request format, chemical criterion or old scientific output changes.
+This is deliberately narrower than every zero-exit failure: caught builder
+exceptions, failed native handoff, capability/prelaunch errors and missing
+candidates are not reclassified merely because a process stopped.
+
+Synthetic subprocess controls change candidate charge, element or bond order;
+all are rejected without becoming support. Rehashed contradictions, incorrect
+owner/phase records and malformed receipt routing refuse. The 249 affected
+plane/representation/generation/acquisition tests pass, then 90 plane-generation
+cases pass after adding two malformed-routing controls; these sets overlap.
+A temporary relocated source/request control rereads the synthetic rejection
+alongside the original C215 success and C240 timeout, with old paths/SDK/processes
+blocked. All 73 files keep bytes/mtimes; 49 original native files are untouched.
+The temporary 1.42 MB request copies are removed. The saved C240 negative proof
+is exactly unchanged. This is read-only replay of Phenix 2.2.1-6174 / dispatcher
+2.2.1 evidence, not a new Phenix rejection experiment. No full suite, Coot or
+refinement. Commands and scope: `completed_plane_generation_rejection_2026_11_13`
+in the evidence ledger. The complete owner still must consume these classified
+outcomes when automatic support acquisition is connected.
+
+### Reuse completed plane support through the complete request (C242)
+
+`initialize_dictionary_request(..., plane_support={code: {"request_directory":
+path, "attempt_number": number}})` accepts the existing exact completed-support
+contract. The same source-owned validator is shared before and after site
+preparation. It checks source/recipe/attempt/worker identity, known-stopped owners,
+unchanged bytes and aggregate bounds. The request freezes that evidence under
+`inputs/plane-support`; execution and cold reading use only this declared copy.
+The existing repair child must retain the same configuration, and passes its
+selected result into the existing ReadySet continuation. Support belongs to
+repair, not the preceding site-preparation input set. No separate owner, generator,
+CLI, latest lookup or residue-specific branch is introduced.
+
+The optional configuration field reuses `cif-prepared-owned-plane-support-v1`.
+Old absent-field requests retain their meaning; new requests require a reader
+that understands this field. Changes to source, evidence or parent/child choice
+refuse even after an outer record is resealed. All existing time/storage limits,
+immutable attempts and fallback qualification rules remain. This supplies the
+complete-request **reuse path**, not automatic acquisition of missing support.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 runs the C218 ordinary PDU/NAR inputs
+with exact cached dictionaries and completed C215 plane support. It selects the
+repaired bundle, then the ReadySet-checked model, preserving explicit C5 plane
+coverage and all five ordered PHIL files. Generation and Coot are not repeated;
+no diffraction refinement is run. Whole retained request: 181.6 MB; final
+ReadySet publication: 5.8 MB. This is a different, larger boundary than
+C238's 134.4 MB standalone repair. No working output was silently retired.
+
+The stopped request is moved, not copied. Relocated source reads it with old
+request/source/support/cache/SDK paths and process calls blocked; all
+698 files retain bytes/mtimes. Peak temporary evidence is 81.4 MB;
+reader peak resident memory is 645.1 MB. Temporary views are removed. These
+figures do not qualify 100 concurrent readers or campaign-scale retention.
+The 210 focused request/support/recovery tests pass; no full suite. Exact commands,
+source pins and native/cold receipts: `complete_request_plane_support_2026_11_12`
+in the evidence ledger. Automatic missing-support acquisition remains Q04;
+later preparation children remain Q05 and real refinement remains Q06.
+
+### Recognize failed owned plane generation without using its output (C240–C241)
+
+`inspect_owned_plane_generation_failure(source, code, request_directory,
+attempt_number)` derives a read-only `cif-owned-plane-generation-failure-v1` proof.
+It shares the existing owned source/request/attempt binding and the source
+representation reader's exact source, ideal seed, worker, native pins, capability
+and complete specification checks. The selected candidate process must have
+launched, stopped, and recorded matching FAILED/TIMED_OUT status and nonzero integer
+return code. Its command, producer, recipe, actual grant and owner must agree;
+the capability phase must have completed normally. No historical command runs.
+
+A failed worker may leave an incomplete CIF or malformed partial JSON. These
+bytes remain inventoried but are not parsed as successful chemistry or admitted
+as support. The successful-support reader keeps all earlier completed-build,
+source-handoff and plane checks. The negative proof authorizes neither fallback
+nor retry; an independently qualified parent and the enclosing owner remain
+required. Missing/unsealed/unknown ownership and changed inputs still fail.
+This currently covers a launched failed candidate job, not a capability-stage
+failure, prelaunch error or zero-exit unqualified build.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 generation receives a deliberately
+0.25-second candidate-phase allowance within its 180-second request ceiling.
+The process stops with -15; failure classification passes and support admission
+refuses. The 282,027-byte / 22-file request is moved and reread from relocated
+source with old paths, SDK and process calls blocked. Bytes/mtimes remain exact.
+No fallback publication, Coot or diffraction refinement is claimed. Exact commands
+and pins: `owned_plane_generation_failure_2026_11_12` in the evidence ledger.
+
+C241 corrects acquisition's existing child identity check to retain the already
+supported `multiple_planes=True` recipe field. Previously it omitted that field,
+so a valid generated child could prevent the acquisition call from sealing.
+Synthetic transport regression covers generation, subsequent cache reuse and cold
+read after the original source/store/SDK disappear; adding or dropping the flag
+still refuses. No new recipe option, native chemistry permission, stored format or
+in-place resealing. Automatic support acquisition through the complete request
+is still the next Q04 seam, not a completed feature.
+
+### Compact plane-job inventories and early aggregate bounds (C238–C239)
+
+The plane attribution API accepts `compact_inventory=True`. Compact prepared
+repair selects it through the existing frozen `compact_evidence` setting. The
+job spec records an exact `captured_plane_attribution_directory` reference to
+`inputs/before/native_validation.json` and the corresponding after file. The
+maintained worker checks path, size and SHA-256, then compares the rebuilt **full**
+native inventory to that same expected data. No numerical/provenance gate is
+removed. Old embedded-inventory jobs retain their exact worker and replay; old
+strict readers reject the new optional true-only control. No saved artifact is
+rewritten. Rehashed altered references, inputs or worker still fail replay.
+
+A fresh actual Phenix 2.2.1-6174 / dispatcher 2.2.1 request selects the same repaired
+model, two CIFs and five ordered PHILs, all byte-identical to C237. Whole-request
+storage is 134,380,996 bytes, including 4,497,790 bytes for final publication;
+previously 139,443,071 / 4,888,882 bytes. All eight native phases stop. Cold relocated
+reading preserves all 471 files and removes its temporary view (53,341,567 bytes).
+Peak read memory is 569,262,080 bytes; this single control is not a campaign limit.
+No generation/Coot/refinement or full suite is repeated. See
+`compact_plane_inventory_2026_11_12` for exact commands, pins and local references.
+
+Support intake also enforces its combined file/byte allowance after each incoming
+component instead of collecting every tree before refusing an oversized group.
+Two fail-before regressions prove that later components are not read once the
+aggregate is too large. Existing per-tree/combined limits remain unchanged.
+
+### Owned planes inside prepared repair (C234–C237)
+
+The existing prepared-repair API and immutable request accept optional
+`plane_support={code: {request_directory: PATH, attempt_number: N}}`. Each entry
+must belong to the prepared source component and an exact completed generation.
+The request freezes all support bytes, directory layout and selected attempt;
+active/unknown generation work, swapped support, overlap and changed source are
+refused. One to sixteen types share existing bounds and process ownership.
+No generator, residue-name switch or new retry protocol is introduced.
+
+After the original native/derivative checks and any linear repair, source-graph
+plane completion runs in deterministic component order. Existing ring planes and
+ordinary ordered NAR restraints remain. Each candidate plan is written before its
+native job; whole-plane attribution and separate final derivatives feed the same
+source-preserving selector. An unsupported/no-op completion may retain an already
+qualified route. A known stopped optional native failure can retain only the
+independently qualified original. Failure inspection rebuilds the narrow candidate
+from frozen owned support without running Phenix. Contradictory evidence and
+unknown ownership still block; a timeout alone is never a usability verdict.
+
+The C207 full-model plan exposed an older failure-reader assumption that only
+selected modified types could occur. Failure reading now accepts either the exact
+full-model scope or the historical selected-only scope. This gives no new chemical
+approval to canonical/library bystanders. Combined proof assembly is temporary;
+publication freezes it before cleanup. Original and failed worker output remains.
+No historical run is modified or retired.
+
+Two actual Phenix 2.2.1-6174 / dispatcher 2.2.1 controls use the ordinary C231 PDU/NAR
+bundle and exact completed C215 plane support. Success selects the repaired bundle,
+retains all five PHIL inputs and supplies explicit C5 plane coverage. A deliberate
+one-second plane-native limit stops the worker and selects the checked original,
+truthfully retaining its missing C5 plane. Fresh success output falls from
+195,939,137 to 139,443,071 bytes by avoiding a 56.5 MB assembly duplicate; final
+publication is 4,888,882 bytes. The timeout request is 77,416,352 bytes, including
+its 2,362,890-byte final result. These are distinct fresh controls, not file cleanup.
+
+Both stopped requests are moved, not copied, and read from relocated source with
+old request/source/support paths, SDK and process calls forbidden. All 471/310 files
+preserve bytes/mtimes; scoped runtime views disappear. No new Coot, generation or
+diffraction refinement, and no full suite. Exact commands, source pins and anchored
+local evidence: `owned_prepared_plane_repair_2026_11_12` in the evidence ledger.
+
+Compatibility: new optional `plane_support` configuration/execution fields use
+`cif-prepared-owned-plane-support-v1`; candidate stage records use
+`cif-prepared-plane-stage-v1`. Old absent fields retain earlier behavior. Old strict
+readers refuse the new mode; no existing request is upgraded. The complete outer
+request does not yet obtain/freeze plane support automatically. Its working-output
+limit and campaign disk/memory qualification must be satisfied before that claim.
+
+### Bounded-memory evidence inventories (C233)
+
+Complete-request and ReadySet continuation owners formerly materialized every
+file's bytes to calculate the existing size/SHA-256 inventory. They now share
+the unchanged bounded member traversal and retain only those metadata records.
+Public payload-copy readers still receive complete bytes. Path/symlink checks,
+per-file limits, independently bounded partitions, completion reservations and
+before/after mutation checks remain. No cache, saved schema, chemical gate or
+retention permission changes.
+
+Four regressions covering legacy/current complete and continuation inventories
+fail before the change: a 16 MiB payload was retained at once. All four now produce
+the exact inventory below an 8 MiB traced-allocation ceiling. The 193 focused
+continuation, component-runtime and compact-storage cases pass; additional outer
+request boundary/mutation checks are recorded in the ledger. The same real C231
+request is read from separate relocated before/after source copies, with original
+inputs/cache/SDK/processes forbidden and no scientific output copies. Both reads
+return the identical complete-result hash; all 484 files preserve bytes/mtimes and
+all 15 temporary views disappear. Maximum resident memory falls from 598,654,976
+to 562,069,504 bytes. Physical temporary evidence remains 69,727,392 bytes. Observed
+read times are 86.86 and 88.34 s, not a controlled speed benchmark. These whole-read
+measurements are distinct from the small synthetic allocation test.
+
+This reduces one source of waste, not every source of memory use. The 134.5 MB
+working request remains intact; safe retirement and 100-dataset resource validation
+are still open. No new native work or full suite. Ledger:
+bounded_request_inventory_memory_2026_11_12.
+
+### Complete compact preparation and checkpoint handoff (C231)
+
+A fresh complete request at C230/0eb6f1a reuses the exact C218 ordinary construction,
+source selection and NAR inputs through the public initializer. Its configuration
+matches the old request except for compact evidence. The exact C219 dictionary
+cache hits; no Coot reconstruction or candidate generation is repeated. Actual
+Phenix 2.2.1-6174 / dispatcher 2.2.1 repair, baseline, ReadySet and endpoint checks
+complete, selecting the repaired dictionary bundle and checked ReadySet model.
+Every native owner is stopped. This exercises existing automatic linear repair;
+it does not yet invoke general plane repair automatically.
+
+The entire request retains 134,538,521 bytes in 484 files; its repair publication
+is 3,736,513 bytes and final ReadySet publication 5,114,426 bytes. Final-publication
+size alone therefore understates campaign storage. The qualified cache adds
+224,702 bytes. The complete execution/read peaks at 637,452,288 resident bytes.
+A source-relocated cold read with old inputs/cache/SDK/processes forbidden preserves
+all 484 files and removes all 15 temporary views (69,727,392 peak physical bytes).
+The new control is moved for relocation rather than making a scientific duplicate.
+
+The same real compact request then passes initial checkpoint publication and the
+ordinary registry, inspection resolver and refinement-input validation after another
+move. All 489 files in the relocated run retain bytes/mtimes. Both consumers receive
+the exact checked model, two dictionaries and five ordered PHIL inputs. Observation
+and map files in this plumbing control are explicitly synthetic path fixtures:
+no native MTZ interpretation, Coot launch or diffraction refinement is claimed.
+The local artifact-location record names the final anchored request location.
+No schema migration, full suite or old-run cleanup. Ledger:
+complete_compact_request_2026_11_12.
+
+### Owned plane generation with a shorter remaining allowance (C232)
+
+C170 keeps a request maximum immutable while an enclosing owner can grant less
+remaining time. C213's plane-support reader incorrectly required equality between
+that maximum and the actual native receipt. It now accepts a positive actual grant
+at or below the maximum, binds both phase contexts to that exact grant and refuses
+jobs exceeding it. Request digests, source/recipe/producer identities, stopped
+ownership and commands remain checked. There is no new allowance or generation
+owner, and old saved formats remain unchanged.
+
+The shorter-grant regression fails before the change. All 110 focused generation,
+owned-attribution and native-plane cases pass, including rehashed request and phase
+context tampering. Existing focused profiles now include current plane/storage
+modules; six selector tests pass. A complete Phenix 2.2.1-6174 / 2.2.1 generation
+uses a 300 s frozen maximum and 180 s grant, with 120 optimization steps. The owned
+support read and cold relocated read pass; 27 files remain unchanged with original
+source, SDK and execution forbidden. The native optimizer reports no convergence;
+its candidate remains CANDIDATE_REVIEW. This verifies ownership/budget binding, not
+chemical adoption, force qualification or refinement. No full suite. Ledger:
+clamped_plane_generation_2026_11_12.
+
+### One qualified parent view during ReadySet publication (C230)
+
+Following C205/C223's scoped-reuse approach, one ReadySet publication read now
+qualifies its parent once instead of three times on success or twice on fallback.
+A shared private comparator consumes that qualified view; the enclosing context
+rechecks the whole parent after comparison and final input extraction. Observer,
+native capture and optional input checks remain. The public inspection API uses
+the same comparator. No cross-call cache, saved schema, chemistry change or new
+owner is introduced.
+
+Four counted-read regressions fail before this change and pass afterward, covering
+legacy/compact evidence and success/fallback. The 36-case ReadySet module passes;
+two post-comparison parent-mutation controls and two owned compact-continuation
+controls also pass. The same actual C228 parent/continuation read from relocated
+source produces an identical complete result hash. All 126 files remain unchanged;
+original paths/SDK/process execution are forbidden. Across the full read, parent
+qualification calls fall from seven to five and temporary views from 18 to 15.
+Observed continuation read time is 118.66 s before and 86.85 s after; filesystem
+cache and other activity were not controlled, so this is not a general benchmark.
+
+Peak temporary physical evidence remains 86,509,423 bytes. The updated Python
+process reports 683,999,232 bytes maximum resident memory (macOS time -l), a
+separate budget from disk expansion. Campaign qualification must bound memory
+and concurrent readers/jobs as well as retained disk. No new Phenix/Coot/ReadySet
+execution or full suite. Ledger: single_readyset_parent_view_2026_11_12.
+
+### Compact evidence in ordinary preparation (C229)
+
+New complete dictionary requests default to compact_evidence=True. Ordinary
+checked PostMR and its explicit campaign route inherit that choice without a
+new user-facing switch. The request freezes the true-only field and forwards it
+through existing repair/continuation owners; readers verify child configuration,
+execution reports and actual published storage. Fresh retries cannot change it.
+
+Saved requests without the field retain unpacked evidence and their old meaning.
+An explicit false choice preserves that behavior for low-level compatibility.
+Older readers reject unfamiliar frozen configuration rather than silently dropping
+the choice. No existing run is migrated, no new owner is introduced and no chemistry
+threshold changes. The checked route itself remains explicit; this does not enable
+it for all ordinary PostMR runs.
+
+Nine new binding/recovery checks pass. Affected checks passed 326 cases with four
+synthetic ordinary-entry fixture failures; after recording the new storage choice
+in those fixtures, all 117 ordinary-entry/complete-continuation cases pass. Existing
+historical ownership fixtures explicitly retain their old storage mode. C228's
+complete native compact continuation and cold relocation remain the scientific
+storage evidence; C229 adds request integration, not a new native/refinement claim.
+Exact commands and compatibility: ledger compact_request_storage_2026_11_12.
+
+### Retain exact evidence without redundant successful working files (C258)
+
+The storage policy preserves model/CIF/PHIL files and the proof of their selection
+while compressing repeated successful working evidence. It reuses the existing
+complete-attempt owner and scientific validation. It never changes chemical intent,
+selects another checkpoint, launches a native job or retries an old attempt.
+
+Two explicit APIs live in `cif_attempt_retention`:
+
+| Operation | Contract |
+| --- | --- |
+| `prepare_attempt_archive(request, attempt_number)` | Validate complete history, archive one returned current-v2 attempt, replay the same owner from the archive and check all returned paths before publishing its immutable storage binding. Never delete a source file. |
+| `retire_attempt_working_files(request, attempt_number)` | Under the existing request lock, require an independently qualified public runtime and successful, stopped native phases. Publish durable archive and retirement intent before removing only checksum-matching working duplicates. Repeating resumes an interruption; it never reruns chemistry. |
+
+Failed optional native work, unsuccessful plane generation, unqualified results,
+active/uncertain owners and unrelated attempts stay unpacked. Shared request inputs
+and acquisition history are not retired. An unavailable storage operation does not
+supply a new scientific verdict or permission for unchecked fallback. These APIs
+remain explicit for historical requests. C260 invokes retirement automatically only
+for a newly executed ordinary checked result, after publication and before campaign
+artifact capture. An optional storage error returns a preparation note only after
+an exact reread confirms that the result is still independently usable. Scientific
+or publication failures and interrupts propagate; no native retry is attempted.
+
+For new checked campaigns, the file collector uses the existing archive transport
+checks and excludes only archived working duplicates. It retains the durable
+archive, its binding and public/original files. This permits later explicit completion
+of partial removal without invalidating the captured campaign artifacts. An unbound
+archive grants no exclusions. Historical publication, alternatives and inspection do
+not run retirement. Do not retire files already named by an older unarchived campaign
+receipt: that old artifact contract requires a separate migration, not silent deletion.
+
+**Stable paths and proof.** Original `attempt.json`, `result.json`, `finished.json`
+and complete public roots remain: `preparation/bundle`, the repair runtime,
+`continuation/runtime`, and `continuation/inputs/runtime`. Ordinary history and
+exact-result reads reconstruct the original logical attempt, replay the existing
+owner/chemistry checks, and rebase only retained returned paths. Every remaining
+physical file must match its sealed inventory; all public files must exist. Exact
+reads still recheck selected owners, and all historical attempts still validate.
+Changed public evidence is never silently repaired from an archive.
+
+`retention/attempt-NNNN/archive.json` uses schema 1 / policy
+`cif-complete-attempt-retention-v1`, binding original request/attempt hashes,
+finished-file checksum and archive checksum/size. Separate schema-1
+`retire-intent.json` and `retired.json` use
+`cif-complete-attempt-working-retirement-v1`; intent binds that storage receipt,
+and completion binds intent plus exact retired counts/bytes. Original scientific
+records remain byte-identical. Older readers reject the new storage records;
+untouched/legacy requests retain their old reading behavior. Only existing v2
+owner partitions support this explicit storage operation.
+
+A complete unpublished archive is verified and synced before recovery publishes a
+binding. A partial archive is preserved/refused and does not change ordinary reads.
+Archive/owner changes stop cleanup; each file is checked immediately before removal.
+Directory removals are flushed before completion. Interruptions before, during or
+after removal remain readable through the durable archive and can resume explicitly.
+No completion is published for changed intent or incomplete retirement.
+
+**Bounds and methods.** One root-only working view shares the unchanged **128 MiB
+physical expansion allowance** with at most two runtime-proof layers. Existing v2
+logical partition limits remain separate; hard-link reuse is optional and copies
+are charged. The deterministic complete-attempt archive binds the original finished
+checksum and sealed logical inventory before exposing paths. It replaces no owner
+or chemical validator. Temporary views and accounting unwind on exit.
+
+**Acceptance.** A fresh copy of actual C244 preparation was compacted by the product
+operation, deliberately interrupted after **17** removals, successfully read in
+that partial state, then resumed and read again. **604 duplicates / 163,424,933 B**
+were retired; whole-request storage is **33,661,526 B / 98 files**, versus
+**181,566,343 B / 698 files**. The same model, five PHILs/two CIFs and **51** persistent
+paths remain. Original-request reads/native execution were forbidden, all original
+bytes/timestamps are unchanged, and the test copy is removed. Peak expanded archive
+bytes are **87,440,990**, Python resident peak **752,664,576 B**; the complete
+interruption/read/resume/read probe takes **527.33 s**. This replays prior Phenix
+**2.2.1-6174 / dispatcher 2.2.1** evidence; it is not a new native run or refinement.
+
+Final archive-flush and completion-intent guards have additional focused failure
+controls and a moved-checkout/moved-request positive control. Exact test commands,
+source revisions and validation sequence are in `working_attempt_retirement_2026_11_13`
+in the [ledger](cif-linked-native-registration-evidence.json). C260 connects the new
+ordinary/campaign caller; representative campaign disk/memory acceptance remains
+Q04 work. These figures
+do not justify 100 simultaneous readers or general catalogue/refinement support.
+
+C260's ordinary/campaign replay repeats the actual copied evidence with cleanup
+interrupted after 17 removals. The ordinary caller verifies and retains the result;
+all 97 recorded campaign artifacts still validate after relocation and explicit
+cleanup completion. Whole request remains 33,661,526 B; expanded archive peak is
+87,440,990 B and Python resident peak 756,350,976 B. The multi-read recovery probe
+takes 517.56 s, without native execution. All 698 originals are unchanged and the
+temporary copy is removed. 100 identical requests would retain about 3.37 GB of
+this preparation evidence; that is an arithmetic estimate, excluding other dataset/
+refinement outputs and not a measurement of 100 heterogeneous datasets. Exact
+commands and focused/relocation results: `ordinary_campaign_retention_2026_11_13`.
+
+### Keep ordinary reads and public paths stable with archives (C257)
+
+C257 introduced the archive binding and ordinary-reader integration described above.
+Its copied native control manually removed test-copy duplicates; C258 validates the
+product removal/recovery operation. Exact C257 evidence remains in ledger entry
+`ordinary_attempt_archive_2026_11_13` and commit `ecafc98`.
+
+### Reconstruct a complete sealed attempt (C256)
+
+`cif_complete_attempt_archive` supplies the partitioned
+`cif-complete-attempt-working-archive-v1` transport. The original seal's inventory,
+original finished-file checksum and unchanged per-partition/physical limits remain
+mandatory; callers replay the existing owner. Earlier runtime archive bytes remain
+unchanged. Exact standalone/native evidence: `complete_attempt_archive_2026_11_13`
+and commit `ebc9ccf`; ordinary integration and retirement are described above.
+
+### Reconstruct working evidence within one bounded read (C254)
+
+`cif_runtime_evidence.expanded_working_evidence` adds the sole outer working scope
+without consuming another runtime layer or raising the shared physical allowance.
+Nested outer scopes refuse; temporary hard links/copies share the existing budget
+and cleanup. Exact continuation evidence: `bounded_working_view_2026_11_13` and
+commit `39c5ae0`. The integrated storage contract above preserves these bounds.
+
+### Compact exact runtime evidence (C228)
+
+The four component-runtime publishers accept explicit compact_evidence=True.
+This changes storage, not scientific policy: schema 2 carries an evidence_storage
+reference to a deterministic ZIP. Exact logical paths map to SHA-256-addressed
+objects, storing identical bytes once. The C95 bounded archive verifier checks
+member inventory, CRCs, sizes and checksums; additional checks reject logical path
+aliases, extra objects and invalid directory structure. Schema-1 layouts remain
+readable and low-level API defaults retain their previous representation. Older
+readers refuse schema 2 rather than applying a weaker legacy interpretation.
+
+Public model/CIF/PHIL files remain direct files. The same source/native/numerical
+checks reconstruct evidence only in temporary read scopes. Each view is limited
+to 128 MiB logical data, with a shared 128 MiB physical temporary allowance and at
+most two nested runtime views (continuation and prepared parent). C254 adds one
+explicit root-only working reconstruction under the same physical allowance.
+Identical temporary
+objects share hard links; when unavailable, each physical copy consumes the same
+allowance. Cleanup runs on normal and exceptional exits. Stored code is never run.
+Only the publisher's own unpublished staging copy is discarded after compression;
+original attempts and previous publications are not changed.
+
+The exact C227 PDU/NAR parent shrinks from **100,729,871 bytes / 300 files** to
+**4,888,989 bytes / 10 files**, preserving public inputs and all scientific checks.
+Actual Phenix **2.2.1-6174 / 2.2.1** executes the selected baseline, ReadySet and
+endpoint: the checked ReadySet result is selected, serialization repair is
+unnecessary, and all owners stop. The complete continuation occupies **43,127,812
+bytes / 116 files**; its public result is **6,191,165 bytes**. This is complete
+execution, not a dry run; no diffraction refinement or new Coot run is claimed.
+
+A first continuation completed its workers but refused publication because nested
+logical copies were overcounted as physical temporary bytes. Those outputs remain.
+A fresh attempt passes after sharing identical temporary objects, without raising
+the limit. Cold relocated source/result readback passes with old paths, SDK and
+process probes forbidden: 126 files unchanged, 18 temporary views removed and
+**86,509,423 bytes** peak temporary physical evidence. The final depth guard is
+covered by focused regression and this cold check.
+
+"Frozen proof" means exact inputs, tool/policy identities and check evidence needed
+to verify or reproduce the decision; it does not mean keeping every copy forever.
+C258 supplies explicit interruption-safe, known-stopped working-file retirement;
+automatic caller integration and 100-dataset disk/peak-memory readiness remain open. Exact
+commands, pins and outcomes: ledger compact_runtime_evidence_2026_11_12.
+No full suite was run.
+
+### Ordered source-qualified repairs (C227)
+
+`prepare_repair_chain` freezes an optional existing linear attribution followed by
+one or more owned plane attributions. Each transition must preserve the exact
+model, ordered PHIL and consumer, start from the preceding ordered dictionaries,
+and change only its declared dictionary slot. Each component has at most one
+plane operation. This is evidence composition, not another executor or selector.
+The existing source-bound selector binds every component to its prepared owner,
+every plane source to that owner's source bytes, and both sides of every step to
+complete native identities. Source qualification, final derivatives, independently
+qualified original fallback and whole-bundle selection retain their existing gates.
+
+Distinct additive policies identify the chain, composed selection and composed
+runtime. Old linear-only artifacts retain their meaning. The public runtime API
+and ReadySet parent reader accept the result. Readback replays maintained checks,
+never saved code, and requires neither original paths nor a live SDK.
+
+The actual Phenix **2.2.1-6174 / 2.2.1** control reuses C219's ordinary construction
+and exact C215 owned generation support. The PDU source bytes agree. After the
+existing linear repair, the graph rule adds C5A to plan-1 at the supported 0.02 Å
+ESD. The 851-atom model, two dictionaries/five PHIL inputs and all 58 NAR parallelity
+restraints remain bound. Whole-plane force-delta error is 1.05e-13 and complete
+mixed derivatives pass. The selected dictionary contains both repairs. A relocated
+checkout reads all 300 published files unchanged, with original inputs, SDK and
+process access forbidden. No Coot, new ReadySet, geometry optimization, diffraction
+refinement, full suite or automatic owner integration is claimed.
+
+The uncompressed diagnostic publication is 100,729,871 bytes; only 100 of its 300
+files have distinct content. This is not an acceptable campaign storage target.
+Keep existing evidence intact while replacing future redundant storage with
+bounded, compact reproducible evidence; measure the whole ordinary attempt, not
+just its final bundle. Exact validation and known limits are in ledger key
+`composed_source_repair_2026_11_12`.
+
+### Maintained whole-plane numerical evidence (C226)
+
+`audit_captured_plane_attribution` freezes an explicit owned generation attempt and
+exact before/after native captures. One bounded job uses maintained interpreter
+code to rebuild both unchanged models, verifies their complete inventories and
+regenerated canonical/effective PHIL bytes, observes plane symmetry/special-position
+scope, and evaluates every complete old/new plane twice. The existing C215 gate
+must account for the full energy/force change; evaluating only new members cannot
+pass. The caller supplies the existing repair process runner, retaining its owner
+and interruption rules. `phenix=None` prepares without execution.
+
+`read_captured_plane_attribution` rederives owned support, exact input/capture
+binding, maintained job bytes, installed source identities and numerical results
+without opening the original SDK or running saved code. A fresh output is required;
+failed/interrupted work is preserved. The new
+`cif-captured-owned-plane-attribution-v1` receipt is additive. Old readers/workers
+retain their meanings. This supplies an evidence adapter, not a new repair owner.
+
+114 focused tests pass. Fresh **Phenix 2.2.1-6174 / dispatcher 2.2.1** PDU/5PC
+controls run two owned jobs/four full fixed-manager rebuilds. Each changes two
+component planes; force-delta errors are 2.46e-14 and 2.53e-13. Cold replay from a
+relocated checkout reproduces both receipts with 141 files unchanged and original
+paths/SDK/processes denied. The first native check exposed undeclared regenerated
+PHIL outputs; exact captured-byte checks fix the accounting, with a fresh attempt.
+No chemical thresholds changed. These controls have no parallelity or special
+positions; broader NAR refinement is not established. Derivative/geometry gates
+remain separate. Compose this evidence into existing source-bound selection and
+ordinary repair before claiming Q04 closure. Exact commands and retained failures:
+ledger key `maintained_plane_attribution_2026_11_12`.
+
+### Complete-plane energy and derivative controls (C215)
+
+`qualify_linked_plane_energy` adds a pure fixed-coordinate numerical gate after
+C211's exact source-supported inventory check. It compares each complete old/new
+plane, preserving indices, labels, weights, origin and exact captured coordinates.
+Repeated individual and accumulated native kernel targets/gradients must agree.
+The full native target and gradient difference must equal the sum of new groups
+minus old groups, with every other residual contribution and proxy count unchanged.
+Adding an atom changes the fitted plane and forces on old members; evaluating
+only the added atom is insufficient. No component-code or atom-name switch is used.
+
+The schema-1 `cif-linked-plane-completion-energy-v1` report separates numerical
+checks from derivative, achieved-geometry and adoption claims. Supplied captures
+and kernel observations require caller authentication, as in C104; this pure API
+is not a new owned execution reader. Unknown proxy fields or nonidentity symmetry
+refuse. `native_plane_evaluator` uses the installed whole-plane individual and
+container interfaces, without replacing native mechanics.
+
+80 focused tests pass after an API fail-before regression. Four fresh complete
+**Phenix 2.2.1-6174 / dispatcher 2.2.1** native rebuilds reproduce C214's inventories
+exactly. Actual plane symmetry and absence of special positions are checked before
+whole-group evaluation, and installed module/header/binary identities are recorded.
+Both PDU and 5PC pass all attribution checks; full-gradient delta error norms are
+2.46e-14 and 2.53e-13 respectively. These are fixed-point accounting checks, not
+chemical quality scores. Separately, the existing maintained captured-gradient
+audit passes all four original/candidate controls at unchanged coordinates. These
+controls have zero parallelity and reuse C154's absence adapter; they do not extend
+parallelity or symmetry-image qualification.
+
+Cold replay from relocated source/evidence copies reproduces capture binding,
+numeric reports and maintained derivative receipts with original copy paths gone
+and old capsules/SDK/process access forbidden. A first cold harness compared the
+outer receipt to its nested qualification and failed; the fresh corrected harness
+passes without chemistry/code relaxation. All copied files and the 600 original
+experiment files preserve bytes/mtimes. No Coot, optimization, refinement, SDK edits
+or full suite. No old schema migration or automatic invocation/adoption. Exact
+commands and local references: `fixed_coordinate_plane_mechanics_2026_11_11`.
+
+Next qualify achieved geometry with existing bounded native machinery, then connect
+ordinary Q04/Q05 invocation/adoption. Complete NAR refinement, held-out controls,
+DP correspondence, PDU numeric-target calibration and broader chemistry remain open.
+
+### Owned plane native capture qualification (C214)
+
+`qualify_owned_plane_captures` connects C213 owned support to C211's exact native
+plane delta using the existing maintained capture reader. Callers provide the
+source, component, request and explicit attempt, exact candidate/model, two native
+receipts, the complete ordered original dictionary list, a zero-based replacement
+slot and ordered PHIL inputs. Only that slot changes. The existing input binder
+checks consumed bytes/order; the native atom reader checks literal model identity,
+coordinates and occupancy. Captured geometry coordinates must agree too.
+
+Both captures must be completed, use linked policy inventories, and agree in
+captured producer, request options and namespace/authority. Worker/spec/output/
+embedded-report integrity is checked by the existing capture reader, not a new
+parser. C211 rebuilds the plane candidate and permits only its complete planned
+native changes. Owned support and all capture/input bytes are rechecked afterward.
+The read-only schema-1 `cif-owned-plane-capture-qualification-v1` report retains
+separate support, capture and inventory scopes. It runs no native program and
+does not establish current-installation usability, mechanics or scientific approval.
+
+151 focused tests pass, including altered workers/payloads/producers, wrong model,
+dictionary/PHIL order, wrong slot/attempt, bystanders, mid-read changes and relocation.
+The saved C211 PDU/5PC captures qualify through the new API. Four fresh complete
+**Phenix 2.2.1-6174 / dispatcher 2.2.1** interpretations then add fixed-coordinate
+energy inventories. Every earlier inventory field remains exact; repeated targets
+and gradients are finite. Coordinates are unchanged; adding a constraint can raise
+the target, and that difference is not evidence of worse or better chemistry.
+These captures provide input for later attribution/derivative checks, not those
+checks themselves. No optimization, Coot, diffraction refinement or full suite.
+
+The complete owned/native qualification also replays exactly from relocated
+checkout/evidence copies after both original copy paths are removed, with old
+capsule/SDK/process access forbidden. All 105 copied files and 600 original files
+retain bytes/mtimes. Existing workers, pure inventory API and previous artifacts
+are unchanged; no migration, new owner or automatic selection. Exact evidence:
+`owned_plane_capture_binding_2026_11_11`. Next: attribute the plane-only fixed-point
+energy/gradient difference, check derivatives, then achieved geometry; ordinary
+Q04/Q05 invocation/adoption and full NAR/held-out closure remain open.
+
+### Owned generation support for plane completion (C213)
+
+`read_multiple_plane_candidate` reuses the existing versioned generation reader
+to replay a completed multiple-plane receipt without the old SDK. It verifies
+source/seed, maintained worker, pinned API snapshots, native help/arguments and
+specification; recomputes charge/native handoff, candidate graph/charges/named
+stereochemistry and stopping evidence; and checks the complete file inventory
+again before returning. Baseline source orders remain exact; explicitly declared
+representation policies retain their own existing stage checks. Missing, changed,
+failed or rejected evidence refuses. Historical representation-only replay keeps
+its broader failure-reading scope; no old worker or receipt is rewritten.
+
+`read_owned_plane_support(source, code, request_directory, attempt_number)` adds
+the existing immutable request/attempt authority. The attempt number is required:
+an earlier sealed attempt remains selectable after a later one exists. Source
+bytes, component, recipe, source pins, version, command provenance and completed
+phase ownership must agree. Saved commands and native source snapshots are never
+executed. Absolute installation strings are compared only as historical provenance;
+operational artifacts resolve through declared relative request anchors. Checksums
+detect corruption and contradiction, not hostile forgery.
+
+`prepare_owned_trigonal_plane_candidate` then calls the unchanged C209 operation,
+adding only its graph-selected source-supported missing plane rows. It rechecks
+the selected evidence after preparation and preserves any failed partial output.
+The new wrapper reports `cif-owned-trigonal-plane-completion-v1`; the support proof
+uses `cif-owned-multiple-plane-support-v1`. Underlying C209/C211 report scopes stay
+unchanged. This is completed generator support, not convergence, native mechanics,
+achieved geometry, wholesale dictionary adoption or an automatic PostMR route.
+Fresh multiple-plane generation assesses the frozen `source.cif` identity, so an
+original source filename cannot become an operational replay dependency.
+
+246 distinct focused cases pass, including historical representation controls,
+changed/rehashed evidence, mid-read changes, explicit earlier-attempt selection,
+partial-output retention and cold readback. From a relocated temporary checkout
+and relocated saved requests, with both original copy paths removed and original
+capsule/SDK access and process probing/launch denied, actual C212 PDU/5PC builds
+replay and rebuild byte-identical C209 candidates. C211 exact native inventory
+checks pass again against their saved identical contexts; all 63 copied evidence
+files retain bytes/mtimes. PDU retains reported nonconvergence; 5PC convergence
+remains unreported. No native build/interpretation or geometry run was repeated.
+Source evidence came from complete **Phenix 2.2.1-6174 / dispatcher 2.2.1** builds.
+
+Native capture authentication, plane energy/derivatives, 5PC achieved geometry,
+ordinary invocation/selection and complete-restraint refinement remain open in
+the existing queue. Exact commands/local references:
+`owned_plane_support_replay_2026_11_11`. No Coot/full suite; last full C160.
+
+### Owned native multiple-plane generation (C212)
+
+The existing `generate_source_candidate` and `generate_source_candidate_attempt`
+APIs now accept explicit `multiple_planes=True`. The installed help must define
+a no-value multiple-plane flag; unsupported capability refuses before candidate
+launch. The unchanged prepared-object native builder, source/charge handoff,
+bounded optimization and immutable process owner execute the request. This is
+complete native generation, not a dry-run writer or replacement chemistry engine.
+
+The selected flag appears in native arguments; the new
+`cif-source-native-multiple-plane-candidate-v1` receipt and phase context identify
+the choice. The existing request binds it in its frozen recipe and refuses phase
+records that omit that authority. The acquisition recipe/cache key includes the
+choice. Default/explicit false preserves old serialized identities and behavior;
+nonboolean values refuse before reservation. An existing request cannot change
+its plane choice in place. No additional owner, retry loop or installed SDK patch
+is introduced, and no old candidate is promoted by this option alone.
+
+208 affected tests and three targeted ownership/relocation checks pass (210 distinct
+logical cases). Actual **Phenix 2.2.1-6174 / dispatcher 2.2.1** completes PDU and
+5PC source-object generation under the existing durable owner, with 120 optimization
+steps and 180 seconds allowed per attempt. PDU reports nonconvergence; 5PC does not
+report convergence. Both retain source state/formal charges and finished named
+source stereochemistry. Completion is recorded separately from convergence.
+
+Their generated plane membership supports byte-identical C209 plane-only candidates:
+PDU C5A and 5PC C7 are added to the existing merged plane, with every other original
+restraint term retained. The full generated dictionaries are not adopted. Exact
+C211 model/dictionary/PHIL native inventories are requalified against these newly
+rebuilt candidates, so native interpretation need not be repeated. This is reuse
+of identical candidate/context evidence, not transfer to a new model or consumer.
+
+Both sealed request copies also read after their old copy anchors are removed,
+with original capsule/SDK access and process probing/launch disabled; 55 files
+retain bytes/mtimes. That establishes request ownership/recipe readback, not a
+new chemical qualification. C209/C211 remain explicit candidate/inventory APIs;
+the adapter binding owned generation into them, energy/derivative/achieved geometry
+and ordinary automatic selection remain open. Exact local evidence and commands:
+`owned_multiple_plane_generation_2026_11_11`. No Coot, refinement or full suite;
+last full C160.
+
+### Exact linked native plane additions (C211)
+
+`qualify_linked_plane_candidate(before, after, source, dictionary, support,
+component, candidate)` reconstructs the complete C209 candidate and requires
+byte-exact agreement before checking native inventories. It follows C104's
+existing inventory-delta boundary, without introducing another execution owner.
+
+Exactly one component provider, unique modeled residue/atom identities and the
+original effective plane definitions are required. Every modeled occurrence must
+contain each added atom and at least three existing active plane members. The
+original native proxy must uniquely match those members, labels, weights and
+component origin. Only planned definition rows and proxy members/weights may be
+added. Symmetric plane arrays are canonicalized by their index/label/weight
+association for comparison; other ordering and all other inventory fields,
+including unknown future categories, remain exact. Inputs are not modified.
+
+The result is an inventory gate, not an execution receipt. Callers must separately
+authenticate both captures against the same ordered model/PHIL/consumer and exact
+dictionary replacement, and bind support-generation provenance. Energy, derivative,
+achieved geometry and scientific approval remain unassessed; no adoption follows.
+Unchanged existing H rows and unmodeled original H members are not new hydrogen
+geometry evidence. Missing added atoms or altered effective linked planes refuse.
+
+103 focused tests pass after three initial failures, with renamed/long synthetic
+codes, a same-named bystander, every modeled occurrence, plane permutations,
+source/candidate rebuilding, removed-original-path relocation and adversarial
+weight/link/NAR/metadata/API changes. Actual **Phenix 2.2.1-6174 / dispatcher 2.2.1**
+interprets original and candidate dictionaries against identical PDU and 5PC
+linked models/PHIL. All four complete native executions finish. For each component,
+two modeled planes acquire exactly one member each; every other native field
+matches. PDU uses C210's ordinary constructed model; 5PC uses the preserved C207
+ordinary model. Neither model moves and no optimization/refinement is run.
+
+This extends 5PC from candidate-only evidence to exact linked native inventory
+evidence; achieved geometry and its source ideal amino-hydrogen issue remain open.
+No Coot or full suite rerun; last full C160. Exact commands and local artifacts:
+`native_plane_completion_inventory_2026_11_11`. Q04/Q05 invocation and Q06/Q07
+geometry/refinement gates remain the same queue, with no new scheduler or policy
+that silently promotes this pass into automatic selection.
+
+### Identity-authorized construction serials (C210)
+
+Fresh ordinary construction can now recover Coot-wide serial renumbering when
+raw atom collisions coexist with changed unselected serials. The explicit
+`postmr-input-identity-serial-context-v1` policy requires unique immutable input
+atom identities/serials and exact unselected nonserial fields, including XYZ,
+occupancy, B factor, element and charge. Only trailing line padding is ignored
+when comparing Coot to the input; every output nonserial byte remains raw.
+
+C360 adds explicit `postmr-input-identity-component-padding-v1` for the narrow
+case where the same ASCII alphanumeric component name changes alignment within
+PDB columns18–20. Fresh construction enables this capability; byte-exact cases
+still produce the exact old authority. A changed-padding proof records its exact
+atom count, preserved component names and preserved other nonserial fields, without
+claiming byte-identical original component fields. The independent audit reconstructs
+the permitted difference and rejects forged counts/policies or any other changed
+field. Raw output name padding is retained, not rewritten. Historical policy behavior
+is unchanged; old readers refuse the new nested authority. No migration is needed.
+
+A real Coot1.3.3 DY control demonstrates the old refusal and new independent proof
+on the same raw output. The unchanged sanitizer proves only the internal A:12 OP3
+removal; Phenix2.2.1-6174 readback passes67 checks/one unsupported charge readback.
+281 focused and281 installed/relocated tests pass. This corrects formatting authority,
+not chemical intent: a separately examined DF control still refuses a declared D:1
+phosphate absent from its raw Phaser input. Its recorded terminal-phosphate producer
+must supply the proper construction boundary. Evidence:
+`construction_component_padding_2026_11_17`.
+
+No CONECT, ANISOU, SIGATM, SIGUIJ or explicit MODEL/ENDMDL records are accepted by
+this rule. Valid TER serials are reserved and their records remain exact. New atom
+serials follow raw record order, skipping those reserved numbers. All deltas are
+recorded by full atom identity. The independent audit reconstructs this authority
+and order from actual files instead of trusting the receipt. A different numbering,
+forged receipt, changed unselected field or ambiguous reference is refused.
+
+This is part of the existing transactional phosphate context, not a general PDB
+cleaner: graph/transport preflight, discarded parent-scaffold proof, exact internal
+OP3 deletion and final sanitizer remain required. Failure retains the complete raw
+context and preserves attempted evidence. Existing selected-only CONECT authority
+and default historical C62/C63 replay are unchanged; fresh ordinary construction
+explicitly requests the new policy. The audit reports serial changes honestly,
+separating preserved nonserial fields from preserved complete records.
+
+The complete construction audit now also accepts caller-declared terminal and
+passthrough intent, binds it to the context receipt and forwards it to the final
+phosphate audit. Receipt contents alone cannot authorize a terminal exception.
+Defaults retain the no-exception contract. Native validation exposed that omission
+at protected D:1; the correction changes no phosphate chemistry or threshold.
+
+Actual Coot **1.3.3 revision-count 0, embedded Python 3.14.6** constructs PDU at
+A:12/B:4 through the ordinary function. Its raw result exactly equals C206's
+matched control; its final model exactly equals C206's manually recovered model.
+818 unselected atom identities are bound, 617 serial fields repaired, and only
+the two proved internal OP3 atoms removed. Whole-base transport and the final
+phosphate check pass; D:1 OP3 is preserved. The first native attempt's construction
+succeeded but the audit exposed missing terminal intent; readback uses that saved
+attempt without repeating Coot. All failed evidence remains local.
+
+Fail-before controls and **257 focused tests plus 10 subtests** cover generalized
+ZZZ chemistry, metadata/serial-reference/TER negatives, forged independent proof,
+final rollback, terminal-intent binding, original-path removal, ordinary callers
+and historical replay. No full suite; last full C160. No Phenix, ReadySet, NAR or
+diffraction/refinement execution is claimed. C209 plane candidates still require
+authenticated generation and native qualification before automatic selection.
+See evidence `construction_identity_serials_2026_11_11`.
+
+### Source-supported plane-completion candidates (C209)
+
+`prepare_trigonal_plane_candidate(source, dictionary, corroborating_dictionary,
+code, output)` extends existing plane groups in a fresh separate CIF. It reuses
+C208's source/state graph selection. One unambiguous partial original plane and
+a supplied covering plane with agreeing ESDs are required. The shared source ideal
+anchors must be noncollinear; the original heavy plane members and added atom
+must be compatible with the supplied ESDs. This is a conservative template gate,
+not a new chemical threshold or target derived from coordinates.
+
+Only the missing atom row is appended, copying the supplied ESD text. Every old
+plane row and all other parsed categories remain exact; unmodified blocks retain
+their bytes. No ring plane is replaced, dictionary installed or model moved.
+Ambiguous, unsupported and unresolved centres remain explicit. Source/input
+changes refuse completion and preserve any already-written partial output.
+Unknown extra plane columns are not invented. The report remains CANDIDATE_REVIEW;
+a supplied dictionary alone does not authenticate a native generator or approve
+chemistry. Existing H/D plane rows remain exact and their source ideal coordinates
+are explicitly unassessed by this heavy-atom rule.
+
+The generalized operation independently chooses PDU C5A and 5PC C7; no component
+or atom-name switches occur. PDU's resulting component values exactly match
+C206's successful control while preserving the original multi-block layout.
+Fresh Phenix 2.2.1-6174 / dispatcher 2.2.1 geometry minimization and native readback
+reproduce the prior atoms/geometry exactly: 22 base atoms are selected, 840 others
+fixed, completed planes and four polymer links retained, protected D:1 OP3 intact.
+Both C5 angle sums are essentially 360 degrees and attachment tilts below 0.057
+degrees. This is fixed-backbone geometry, not diffraction/refinement qualification.
+
+For 5PC, actual native default/multiple-plane writer **dry-runs** expose the same
+missing coverage. Initial template checking incorrectly included two already
+restrained source amino hydrogens, each about 0.72 Å out of the heavy-atom plane.
+Scoping that gate to heavy atoms permits the C7 candidate; all existing H rows
+remain exact and their coordinates remain unassessed. No 5PC candidate-native or
+geometry approval is claimed. 156 focused tests pass, including renamed/long
+codes, carbonyl chemistry, collinear/nonplanar/chiral/ambiguous refusals, exact
+preservation, partial completion and changing inputs. No full suite; last full C160.
+
+See evidence `trigonal_plane_candidates_2026_11_11`. Native-provenance binding,
+equivalent-restraint strength, broader source/consumer qualification and ordinary
+engine selection remain open under the existing Q04–Q16 queue. No third owner
+or competing repair pipeline is introduced by this explicit candidate operation.
+
+### Source-selected trigonal plane coverage (C208)
+
+`audit_trigonal_plane_coverage(source, dictionary, code)` is a read-only API for
+explicit neutral carbon centres with three heavy neighbours and one double plus
+two single bonds. Exact source/dictionary atom, bond and charge graphs must agree.
+Declared chiral centres, unknown/charged states, tetrahedral centres and other
+bond representations remain explicitly unassessed. Component and atom names do
+not select the rule. This is a bounded connectivity screen, not a universal
+hybridization model: it does not establish that strained/pyramidal chemistry
+should be flattened, nor infer planarity for every ring or modified sugar.
+
+For each selected centre, the report records complete and partial explicit plane
+membership, supplied ESDs, relevant angle/torsion terms and descriptive coordinate
+volume. `EXPLICIT_PLANE_MISSING` means exactly that; alternative restraints can
+still constrain geometry. `SCOPED_EXPLICIT_COVERAGE_PASS` is only membership
+coverage, not calibrated strength, native interpretation, achieved geometry or
+chemical approval. Coordinates do not select centres or become target values.
+Malformed plane rows and changing inputs refuse assessment. Inputs are unchanged.
+
+The C206 PDU before/after controls have three eligible centres; only C5 lacks
+coverage before completion, and none afterward. All three existing weak C5 torsions
+remain visible. Renamed components/atoms, a carbonyl control and public PDU/ATL
+sugar exclusions pass. 199 distinct focused cases pass (198 affected plus the
+additional ATL case); no native tool or full suite was rerun. Exact evidence is
+`trigonal_plane_coverage_2026_11_11` in the existing ledger.
+
+This new explicit policy leaves historical graph-numerics-v2 and its replay
+unchanged. It does not rewrite dictionaries, generate candidates or alter ordinary
+selection. Source/native-supported completion, equivalent-restraint assessment,
+achieved geometry and ordinary engine integration remain Q06/Q07 work.
+
+### Graph-supported native parent conformation (C207)
+
+Fresh ordinary modified-base construction now asks native Coot to match the
+parent conformation before monomer overlap, then measures the named glycosidic
+torsion both before and after overlap. A failed, missing or nonfinite measurement
+refuses construction. Native boolean failure is not an angle of zero. Circular
+angle comparison accepts equivalent values across the -180/180 boundary; the
+0.1-degree tolerance checks matching accuracy, not crystallographic acceptance.
+
+The existing explicit, unbridged DNA source-graph partition selects eligible
+sites. The attachment must share the canonical parent N-glycosidic atom frame;
+component names do not select the rule. Source bytes are checked through planning.
+Unknown backbones/frames retain explicit UNASSESSED legacy behavior. Direct
+canonical mutation and exact historical script generation are unchanged.
+
+Actual Coot 1.3.3 revision 0 passes PDU and 5PC at both selected sites, within
+0.034 degrees after PDB serialization; PDU raw output exactly matches C206's
+diagnostic control. A DP control exposes ambiguous native graph correspondence:
+the matcher exchanges purine ring roles and the measured chi differs by about
+179 degrees. The new guard refuses it before overlap/replacement. This is a
+documented native limitation, not a successful DP repair. A separate explicit
+torsion-setter probe aborts because the dictionary lacks Coot's internal atom
+tree; that operation is not in production and its failed output is preserved.
+
+The 174 affected tests include renamed-component transfer, wrapped/zero values,
+invalid readbacks, unsuccessful matching, overlap damage, unsupported graphs,
+source change and historical replay. No full regression or Phenix run was made.
+No dictionary, phosphate, source-state, checkpoint or acceptance schema changes.
+Existing PDU serial/context refusal, missing plane coverage, broader construction
+and diffraction refinement remain open. Native matching alone does not certify
+source-relative stereochemistry or achieved chemical geometry. See evidence key
+`native_parent_conformation_2026_11_11` and the maintained Q04/Q06/Q07 queue.
+
+### Mutation orientation and exocyclic plane coverage (C206)
+
+A source-preserving dictionary and repeatable native derivatives do not by
+themselves establish appropriate mutation conformation or achieved geometry.
+The PDU:PDU construction checkpoint separates three observations:
+
+1. Ordinary Coot parent mutation retains the parent anti chi. Building a target
+   monomer and rigidly overlapping it then imports the target dictionary's syn
+   conformation. Whole-base restoration intentionally preserves that raw
+   conformation; it is not a chi repair or geometry optimizer.
+2. The retained source-faithful PDU dictionary declares a triple bond, linear-axis
+   angles and approximately 120-degree angles at C5, but omits C5A from the ring
+   plane. The actual native manager retains that omission and weak 30-degree
+   nondegenerate torsions. A linear propynyl chain can therefore tilt out of the
+   ring plane. An audit of triple-axis lengths/angles alone misses this defect.
+3. Correcting chi alone does not fix those restraints. Native geometry
+   minimization still tilts one attachment by 21.66 degrees under local packing
+   forces, with the ring and backbone fixed.
+
+**Methods and controls.** Current unchanged construction reproduces the historical
+raw output exactly. A diagnostic call to Coot's native `match_ligand_torsions`
+before rigid overlap retains the two parent chi values (-150.12/-108.95 degrees);
+direct nonstandard `mutate_base` refuses. The known serial/context refusal remains.
+A separate serial-only derivative followed by existing context, whole-base and
+phosphate guards succeeds without modifying the original experiment. This is not
+a new ordinary serialization policy.
+
+Fresh eLBOW generation preserves source declarations but does not supply the
+missing plane membership. The 180-step attempt reports nonconvergence; the fresh
+600-step allowance stops at 205 iterations with reported gradient RMS/max
+0.0218/0.1000. Neither normal termination nor CANDIDATE_REVIEW establishes
+chemical accuracy. Native `--multiple_planes --dry_run` supplies a local plane
+containing the substituent but also changes other numerical targets. An isolated
+plane-category transfer keeps every other original category exact; replacing the
+merged ring plane with local planes, however, permits ring bending.
+
+The final diagnostic **retains the original merged ring plane and adds only its
+missing C5A row**, with the native-generated 0.02 Å ESD. The explicit source graph
+has a carbon centre bonded to three carbon neighbours by one double and two
+single bonds; its neighbours and native local plane support this particular
+completion. All original rows, targets, chemical declarations and source state
+remain. Overlap of plane atom sets alone is not a general production repair rule:
+other chemistry, ambiguous hybridization or collinear shared atoms need separate
+proof. No component-specific production rule or coordinate hand-edit is added.
+
+Actual Phenix geometry minimization moves only the two complete base fragments.
+The **840 other atoms stay exactly fixed**; all six source-relative sugar
+configurations and four native polymer links survive, with no cross-residue
+base bonds. Native readback confirms the completed planes and triple terms.
+Final chi is -129.65/-108.32 degrees, C5 attachment tilt 0.008/0.057 degrees,
+three-angle sums essentially 360 degrees and triple-axis angles above 179.95
+degrees. Every measured substituent atom lies within 0.003 Å of its ring plane.
+The covalent-only positive control is separately labelled and unadopted.
+
+**Boundary.** This is a local construction/geometry proof, not ordinary automatic
+repair, NAR pair/stack qualification, density fitting, Hg construction, Free-R
+validation or refinement acceptance. The other numerical targets remain
+unqualified by this experiment, including the retained 1.607 Å C5B–C5M target.
+Coot's installed alternate dictionary encodes a saturated substituent and is not
+a source-faithful fallback simply because its component ID matches.
+
+Phenix 2.2.1-6174 / dispatcher 2.2.1 and Coot 1.3.3 revision-count 0 actually run;
+the multiple-plane writer alone uses explicit dry-run mode. All 600 original
+experiment files and 570 source/test files retain their initial hashes; original
+experiment mtimes also match. No source/test/API/schema changes or migration;
+no pytest or full suite is needed for this diagnostic-only checkpoint.
+Raw models, CIFs, PHIL, data, logs and runners remain local. Exact commands and
+references are under `pdu_construction_plane_geometry_2026_11_11`.
+
+The existing Q04/Q05 newly-mutated path now explicitly needs conformation-aware
+construction and truthful serial/context handling before adoption. Q06/Q07 must
+measure achieved trigonal/exocyclic geometry as well as native membership and
+linear axes. Q08 retains the remaining numerical/packing question. Existing
+ownership/recovery proof remains valid; no second engine or queue is required.
+
+### One selected-result replay per read (C205)
+
+`read_dictionary_request_result` previously reconstructed every returned attempt
+through inspection, then reconstructed the selected attempt again. It now retains
+that one selected result within the shared inspection call. Every other completed
+historical attempt still validates; public advisory inspection is unchanged.
+There is no cross-call cache. Execution/sealing and nested readers are unchanged;
+this removes one redundant outer `_result` call, not all repeated work everywhere.
+
+Before returning, the reader freshly checks child ownership/bindings, the complete
+selected artifact inventory, reconstructed root request, and the original raw
+request/completion bytes. It refuses changes observed after scientific replay.
+This follows C95's separation of numerical replay from final integrity checks;
+it adds no lock, retry authority, chemical permission, schema or migration. A new
+read always validates again. These advisory checks do not claim an atomic filesystem
+snapshot against arbitrary concurrent writes after the final check.
+
+The duplicate-call regression fails before the change: reading attempt 1 from two
+completed attempts reconstructs `[1, 2, 1]`; afterward it reconstructs `[1, 2]`.
+The affected request/continuation modules pass **142 cases**, including repeated
+reads, invalid unselected history, and six changes injected after replay (result,
+completion seal, root request, input model, child seal and unexpected artifact).
+
+Cold old/new reads use the exact same relocated C203 connected request and produce
+the **same complete result fingerprint**, selecting `readyset_checked_model`.
+Selected outer reconstruction falls from two calls to one. Observed time is
+**257.91 s → 123.53 s**; the old phase overlaps focused tests and the filesystem cache warms,
+so this is a local observation, not a controlled speed benchmark. C200 still
+selects its verified parent; C184 original/recovery still select their checked and
+ordered-checked ReadySet models. **5884 copied files** retain bytes/mtimes,
+original copies are absent, and historical checkout/live-test/SDK access and
+external execution are denied. No Phenix, Coot or ReadySet process runs.
+
+Exact commands, results and references are recorded under
+`single_exact_result_replay_2026_11_11`. No full/profile suite rerun. Q04 ordinary
+invocation and Q05 exact checkpoint publication remain open; the scientific
+qualification boundary and legacy artifact meaning are unchanged.
+
+### Ordinary source assembly for literal intake (C204)
+
+`prepare_postmr_literal_inputs(model, supplementary_phils, frozen_sources,
+output, *, data_root=None, ready_set_executable=None)` removes manual source-map
+assembly from the prepared-PostMR inlet. It uses the existing literal parser to
+identify only the explicitly declared pair/stack sites and the existing PDB
+reader to identify their component codes. Every already frozen component source
+wins without rediscovery. Additional required codes use ordinary curated/local/
+configured-CCD precedence. Frozen components outside those declarations remain
+bound to the actual model and later request; they are not gratuitously added to
+the literal compiler's exact source set.
+
+The existing C197 compiler performs all source-role checks and emits the unchanged
+`cif-source-literal-na-inputs-v1` artifact. Original ordered PHIL, planes/edits and
+explicit relationships remain intact. The assembler rechecks model/PHIL bytes,
+frozen source identity and live source choice/bytes before and after publication.
+Missing, changed or ambiguous inputs refuse; partial output stays immutable and
+a retry needs a fresh destination. No new parser, compiler, artifact schema,
+recovery owner, native identity, chemistry permission or qualification is added.
+Explicit source-map APIs remain supported; old artifacts need no migration.
+
+On the exact C198 ordinary construction used by C203, all **11 literal artifact
+files** and the **entire initialized request configuration** match C203 exactly.
+The four literal source graphs are DA/DC/DG/DT; the selected PDU component remains
+separately frozen for request preparation. All 16 pairs, 36 stacks and 197 requests
+(including four planes) survive. This is an intake-only control: selected Phenix
+2.2.1-6174 / dispatcher 2.2.1 setup/version discovery runs, then process creation
+is blocked throughout assembly and request initialization. No acquisition attempt,
+new native interpretation, ReadySet, Coot, refinement or adoption runs. C203's
+existing native evidence is unchanged; byte equality does not claim a fresh run.
+
+The missing-API regression fails before implementation. **65 PostMR intake tests**
+and **23 source-literal cases** pass. Cold replay runs the 15 new assembly cases
+and reads both the actual literal artifact and unexecuted request from a relocated
+checkout: **637 copied files remain unchanged**, original copies are absent, and
+historical paths, SDK access and execution are denied. Commands and references
+are in `ordinary_literal_source_assembly_2026_11_11`. No full/profile suite rerun.
+
+**Boundary:** this replaces the local control runner's manual input selection,
+not the ordinary invocation itself. Q04 still must enter the existing request
+before legacy site modification/ReadySet, with one modifier owner and durable
+resume semantics. Q05 must publish the exact selected bundle and lineage into an
+immutable checkpoint. Required native and chemical-state gates remain unchanged.
+
+### Frozen ASU policy in owned continuation (C203)
+
+Fresh `execute_runtime_continuation` calls now freeze C202's maintained
+`cif-native-nonbonded-asu-attribution-v1` in `configuration.nonbonded_policy`.
+Every baseline, endpoint and optional serialization-restored native phase must
+request exactly that policy. The existing stopped-job/input/worker/spec join
+checks the field before accepting either a successful or failed observation.
+No new process owner, retry loop, compiler or scientific selector is introduced.
+
+New minimal enclosing `continuation_options` freeze the same value as
+`native_nonbonded_policy`. Fully frozen historical options lacking that field
+retain the C127 mode, even when executed by new code: the enclosing caller passes
+`None` explicitly rather than inheriting the new Python default. Direct callers
+can likewise request `nonbonded_policy=None`. Absent legacy fields stay absent;
+explicit null/unknown recorded policies refuse. Child artifact policy remains
+independent. C200 partition limits, original/fallback qualification, frozen
+allowances and unknown-owner blocking are unchanged. New records require C203
+readers; old records need no migration or resealing.
+
+The fresh actual **Phenix 2.2.1-6174 / dispatcher 2.2.1** connected control reuses
+C198's exact ordinary Coot/NAR construction and retained PDU candidate. It freezes
+38 backbone links, 16 literal pairs, 36 stacks and 197 explicit requests, including
+four planes. No earlier native capture supplies the new literal intake. Baseline
+and ReadySet execute successfully; the complete owned request selects
+**`readyset_checked_model`**, retaining the exactly checked ReadySet model.
+All outer/child processes are stopped. The request has a 1,200 s shared allowance
+and 120 s native/ReadySet phase limits; source code, construction inputs and the
+C200 request retain their bytes/timestamps. Coot was not rerun. This is diagnostic
+continuation, not ordinary automatic invocation, checkpoint adoption or diffraction
+refinement; no chemical threshold or Free-R behavior changes.
+
+Fresh new-policy interpretation of both old C127 simple-pair inputs preserves
+326/411 pairs and residuals 973.948149885052 / 6127.599344909726. The new default is
+therefore exercised with both crystal-image and identity-only controls.
+A fail-before default-policy regression, invalid-policy and exact-spec downgrade
+controls, continuation ownership/recovery and enclosing callers pass:
+**252 distinct focused cases**. No full/profile suite was run.
+
+Cold whole-request replay checks the new connected request, C200's old
+ASU-refused parent fallback, and C184's original/ordered-recovery selections from
+a relocated checkout with original copies absent. Historical checkout/input/SDK
+reads and external execution are denied; **5652 files retain bytes and
+timestamps**. Old requests keep their exact native policy and outcome. Commands,
+source hashes, exact phases and local evidence references are recorded under
+`owned_asu_continuation_2026_11_11` in the evidence ledger. Raw science, native logs and local runners remain
+outside Git.
+
+**Next:** integrate ordinary invocation at the existing prepared-model boundary,
+with the qualified composer as sole modifier owner. Then carry the exact selected
+model/CIF/PHIL and producer/compiler lineage into a new immutable checkpoint (Q05).
+Q06 real refinement, Q07 combined/held-out chemistry and C194/Q13 chemical-state
+questions remain open. This result does not qualify the whole catalogue.
+
+### Compact maintained ASU pair capture (C202)
+
+`inspect_native_bundle(..., inventory_detail="linked", energy_inventory=True,
+nonbonded_inventory=True,
+nonbonded_policy="cif-native-nonbonded-asu-attribution-v1")` requests the maintained
+symmetry-aware diagnostic established by C201. Omitting `nonbonded_policy` retains
+the exact C127 worker and identity-only 5,000-call contract. Invalid/incompatible
+policies refuse before allocating output. Basic default interpretation does not
+import the optional ASU dependency chain.
+
+The new schema-1 inventory records one complete ordered pair table with explicit
+columns, native cell and exact image mappings. Simple and directed ASU rows retain
+their native order, multiplicity and self-images. Each of two fresh fixed native
+evaluations independently observes that table and its mappings; their canonical
+digests bind both snapshots to the shared table. Both complete native kernel
+arrays remain recorded. Opposite raw endpoint gradients are checked before only
+the first is stored, avoiding redundant signs and mapped coordinates. No rows,
+zero contributions or second observations are discarded. The mode permits at
+most **9,999 pairs and 20,000 pair/container calls**; it refuses an oversized
+complete snapshot before evaluating pair kernels. Existing receipt and public
+artifact size limits are unchanged.
+
+The read-only reviewer derives Cartesian mappings from the captured cell and
+fractional operations, checks isometries and inverse/adjoint rotations, and
+recomputes every prolsq residual and raw derivative. It then applies C201's native
+directed convention: nonzero-image ASU energies carry half weight, while first-
+endpoint gradients are full and second-endpoint accumulation occurs only for
+zero images. Pair sums must reproduce both native containers and the complete
+fixed-manager energy/gradient evidence. Reports retain raw and weighted residuals,
+image indices and source-site buckets; these buckets are not counts of unique
+physical contacts. Coordinates and chemical definitions stay fixed.
+
+The existing receipt reader reconstructs the exact maintained worker from the
+requested policy, verifies the frozen input/output hashes and report/spec joins,
+and runs the new arithmetic review before returning a successful ASU capture.
+Unknown/null/downgraded policies, altered workers and unrequested ASU evidence
+refuse. Legacy captured code is never executed. New records need C202 readers;
+old C127 records keep their meaning and require no migration.
+
+Actual Phenix **2.2.1-6174 / dispatcher 2.2.1** interpretation of the exact frozen
+C200 connected control passes with **851 atoms, 7,696 pairs, 369 ASU rows and four
+self-image rows**. It uses **15,394 pair/container calls** and returns the same
+native residual, **2210.486056504427**. Report/receipt sizes are **7,190,358 /
+7,886,148 bytes**, below the unchanged 16 MiB receipt cap. Exact legacy worker
+bytes remain identical to the C200 invocation. No Coot, ReadySet, coordinate
+optimization, diffraction refinement or checkpoint adoption ran.
+
+Fail-before controls cover the missing ASU implementation and an eager optional
+import discovered during review. Focused numerical, receipt-binding, malformed
+input, budget and caller tests pass. Cold replay preserves both C127 FANA captures
+and the new connected capture, with original copies absent and historical source,
+checkout/SDK reads and external execution denied: **647 files unchanged**.
+The final import-only adjustment is checked by nine targeted cold cases and all
+three real receipts, without repeating the larger caller suite. Exact test
+commands/results and artifact hashes are in the evidence ledger under
+`compact_native_asu_capture_2026_11_11`. No full/profile regression was run.
+
+**Boundary:** this is an explicit diagnostic API. Ordinary owned continuation
+still requests C127 and therefore still refuses this crystal before ReadySet.
+The next Q04 step must freeze the new mode in continuation and enclosing request
+configuration, preserve historical settings and run a fresh actual connected
+ReadySet control. Native exclusions and mappings are observations, not independent
+chemical authority; no symmetry-aware covalent optimizer or refinement acceptance
+is established. Q05/Q06 and the broader chemistry gates remain separate.
+
+### Symmetry-aware nonbonded proof investigation (C201)
+
+The C200 connected continuation reaches C127's deliberately identity-only pair
+guard before ReadySet. A bounded local research probe now explains the native
+ASU convention on the exact frozen connected PDU inputs. **Production capture,
+continuation and acceptance policies remain unchanged.** This is complete
+diagnostic evidence, not an installed ASU implementation or a refinement result.
+
+Installed Phenix **2.2.1-6174 / dispatcher 2.2.1** CCTBX `nonbonded.h`, its Python
+bindings and ASU cache/mapping sources were checked and hashed, together with the
+loaded geometry/crystal extension binaries. Native simple pairs use both endpoint
+gradients. An ASU row maps `(i,0)` and `(j,j_sym)` into the ASU frame. Its energy
+has weight one when `j_sym=0`, otherwise one half. Its gradient always adds the
+full first-endpoint derivative transformed by `r_inv_cart(i,0)`; it adds the
+second endpoint only for `j_sym=0`. Complete directed-image multiplicity supplies
+the other contributions. Do not collapse these rows into unordered atom pairs,
+drop self-images or half-weight both endpoint gradients.
+
+Two fresh native executions used current energy/full-monomer worker factories
+plus an explicitly local research extension; no captured old worker was executed.
+The stronger control has **851 atoms, 7,327 simple rows and 369 ASU rows** in
+`R 3 :H`, including 190 nonzero-image rows and four self-image rows. All raw
+pair energies/gradients, symmetry coordinate transforms, cached/uncached native
+container sums and full-manager repeats agree. Pure replay reconstructs the
+nonbonded residual **2210.4860565044264**; Cartesian mapping error is at most
+2.68e-14 Å and gradient-vector difference at most 1.49e-12.
+
+The model has six positive nonzero-image rows; 42 central-difference checks cover
+seven atoms at steps 1e-4 and 1e-5 Å, with maximum discrepancy 4.38e-6. Its four
+self-image rows have zero contribution. A **separate synthetic kernel container**
+activates those four rows by changing only its own radii: six derivative checks
+pass (maximum discrepancy 2.18e-7). The real manager, model, dictionaries and
+coordinates remain unchanged. These numerical tolerances validate arithmetic;
+they are not crystallographic acceptance thresholds.
+
+The incorrect all-full energy convention differs by **1.6330960738532667**;
+incorrectly halving directed gradients differs by **10.39818894532434** in vector
+norm. Ten altered-evidence controls are refused. CCTBX's existing bulk residual
+and distance APIs agree with every captured row in native order, providing a
+possible future efficiency route; this does not silently replace the per-pair
+proof. The stronger probe used **15,505 pair/container/bulk calls** under its
+explicit local 20,000 bound, plus two manager evaluations. C127's production
+5,000-call bound is untouched.
+
+Cold replay passes from a relocated tree with the original copy absent, original
+data/checkout/SDK reads and external execution denied: **26 copied files** and
+25 source files retain bytes and timestamps. No pytest/profile/full-suite rerun
+was needed: all 569 guarded source/test files are unchanged. The first setup
+attempt lacked Biopython and launched no native worker; it is preserved. All
+native workers are stopped. No Coot, ReadySet, optimization, diffraction
+refinement or checkpoint adoption ran. Raw inputs, logs, runners and captured
+science remain local; exact commands, hashes and controls are in the evidence
+ledger under `native_asu_proof_investigation_2026_11_11`.
+
+**Remaining engineering gate:** introduce a versioned maintained capture/reviewer
+and exact spec/worker/receipt binding, preserving v1. Retain complete ordered
+simple/ASU/self-image membership and independently replay mapped coordinates,
+raw kernels and directed accumulation. Explicitly bound rows/calls and serialized
+evidence. The deliberately redundant research report is **17,079,362 bytes**,
+already beyond the existing 16 MiB receipt limit before wrapping; do not raise
+that limit merely to copy the prototype. A compact lossless proof and reader
+tamper/legacy/cold controls are needed, then an explicitly frozen continuation
+policy and fresh actual ReadySet control. Keep Q04 ordinary invocation, Q05
+selected checkpoint export and Q06 real refinement as separate acceptance gates.
+
+### Composed continuation publication and exact completion bounds (C200)
+
+New continuation executions freeze cif-continuation-partitioned-artifacts-v1.
+The existing safe-tree reader separately bounds working evidence (including frozen
+parent input) and runtime/. The complete request freezes that child policy and
+defaults to cif-complete-request-partitioned-artifacts-v2, distinguishing its own
+working evidence, repair runtime, continuation working evidence and continuation
+runtime. Exact directory prefixes use the longest match; unrelated names and
+aliases cannot borrow another partition's capacity. Each retains 1,024 files/
+128 MiB, with 32 MiB members. Public runtime bounds are unchanged.
+
+The shared atomic-record size calculation includes its digest and newline. The
+existing process owner permits a prepublication reservation check, used here to
+ensure the final seal fits the working partition and shared time allowance.
+Insufficient completion space records failure, never unreadable success.
+Default behavior of other owners is unchanged.
+
+Absent child policy retains C183's flat tree; absent outer policy retains legacy
+C184 behavior, and C199 outer v1 retains its original flat continuation partition.
+Explicit legacy settings remain available. Readers do not upgrade old
+configurations or reseal prior attempts. New records require C200 readers;
+no migration or new retry authority is introduced.
+
+Actual Phenix 2.2.1-6174 on C199's connected PDU frame refuses the baseline's
+nonbonded proof: C127 supports identity-only simple pairs, while this crystal has
+ASU contacts. **ReadySet does not run.** The existing selector retains the qualified
+parent. Before this change its 149,529,394-byte continuation could not publish;
+a fresh complete request now finishes with verified_parent_runtime, retaining
+literal restraints, producer lineage and exact parent qualification.
+The baseline refusal remains explicit and unchanged. This is successful fallback
+publication, not successful whole-crystal ReadySet or diffraction refinement.
+
+Old C184 original/recovery requests, C199 v1 repair and the new whole request
+replay after relocation with original copies absent, no historical/SDK reads and
+no external execution. The old oversized failed child still refuses; all copied
+bytes/mtimes remain fixed. Evidence: composed_continuation_publication_2026_11_11.
+
+Next Q04 science gate: explicit symmetry-aware nonbonded evidence and a bounded
+whole-model pair-call design. The existing 5,000-kernel budget also needs review
+at frame scale; it was not independently reached after the ASU refusal.
+Do not omit ASU contacts, change native exclusions or loosen chemistry/acceptance
+to pass this test. Ordinary invocation, selected checkpoints and Q06/Q07 remain open.
+
+### Bounded composed request publication (C199)
+
+New complete requests freeze `configuration.artifact_policy` as
+`cif-complete-request-partitioned-artifacts-v1` in schema 1. Their outer inventory
+separates the exact `repair/attempts/attempt-0001/execution/runtime/` subtree from
+working evidence, plus C184's existing `continuation/` partition when declared.
+Each partition retains 1,024 files and 128 MiB, and every member retains 32 MiB.
+The existing safe-tree reader rejects unsafe or alias paths and independently
+enforces each partition; unused capacity cannot compensate for another excess.
+Completion is reserved within working evidence before atomic publication.
+
+C199 introduced this default; C200 now defaults to v2 while retaining v1 readback.
+Explicit `artifact_policy=None`
+retains legacy inventory semantics. Old absent-field records replay unchanged,
+and old readers reject the new field. No prior stopped attempt is resealed.
+Public runtime and standalone continuation limits are unchanged. Thus actual
+connected ReadySet continuation capacity remains a separate validation target.
+
+A fresh Phenix 2.2.1-6174 request using C198's verified retained candidate now
+returns `QUALIFIED_DIAGNOSTIC_RUNTIME` with `repaired_prepared_bundle`. Working
+evidence is 88,447,656 bytes, published runtime 64,512,659 bytes, and completion
+119,566 bytes; each applicable limit holds. Repair steps, inputs and final CIF
+identities match C198. Earlier failure evidence and construction/literal inputs
+stay unchanged. Completed old/new requests replay after relocation with original
+copies absent, historical paths/SDK reads denied and no external execution.
+No ReadySet, refinement, checkpoint adoption or default PostMR invocation ran.
+Evidence: `composed_request_publication_2026_11_11`.
+
+### Complete modeled inventory in repair planning (C198)
+
+The prepared-repair coordinator now supplies the existing planner with every
+modeled component, rather than only acquired dictionary owners. This matches
+C149/C150 attribution's complete native inventory. Components supplied only by
+the installed library remain `NO_EXPLICIT_DICTIONARY`; no new repair authority,
+chemistry whitelist, numerical threshold or source-state change is introduced.
+
+Actual ordinary Coot construction and NARestraints output on the public W-frame
+(PDU at A:9, 38 backbone links, 197 explicit requests including four planes) pass
+the existing source-bound inlet. Phenix 2.2.1-6174 qualifies the repaired child
+runtime, with exact attribution and original/repaired derivative checks. The
+repair steps and dictionary bytes match those from the earlier refused attempt.
+This fixes a model-scope mismatch, not a chemical or attribution exception.
+
+The outer request remains **STOPPED_UNFINISHED**: its 517 files total 152,960,714
+bytes, exceeding the original 128 MiB inventory envelope. Its result reader
+correctly refuses completion. Both failed attempts and all partial evidence are
+preserved; the separately qualified child runtime replays after relocation.
+Versioned composed-evidence bounds are the next Q04 task. No default invocation,
+ReadySet/checkpoint adoption or refinement support is claimed. No schema change
+or migration. Evidence: `complete_model_repair_scope_2026_11_11`.
+
+### Source-bound literal intake without prior native capture (C197)
+
+`prepare_source_literal_na_inputs(model, phils, sources, output)` freezes explicit
+Saenger 19/20 pair and mapped-stack declarations without first interpreting the
+dictionary in Phenix. It shares C21's parser/emitter and C80's actual-PDB/source-graph
+NAR role checks. It preserves every ordered original PHIL, retained edit and plane;
+it neither re-guesses relationships from coordinates nor changes NAR targets.
+Source coverage must exactly match the declared pair/stack component codes, with
+readable graphs and mapped atom/element agreement. Invalid numerical rows may
+remain preserved: this input translation does not qualify their usability.
+
+The schema-1 artifact uses `cif-source-literal-na-inputs-v1`, with nested
+`narestraints-source-bound-literal-membership-v1` and explicit
+`PDB_RECORD_ORDER; NOT_NATIVE_CAPTURE_INDICES`. It contains original model/PHIL,
+source graphs, compiler/workbook pins and compiled files, but no fabricated native
+receipt or capture directory. `read_literal_na_inputs` reconstructs both this mode
+and the unchanged C187 native-capture mode. Exact operational paths, complete tree,
+source bytes and implementation pins are checked; changed/relabelled evidence
+refuses. The original native mode retains its original policy and meaning.
+
+The existing prepared/complete request accepts either literal artifact and binds
+its own validated policy, exact model, ordered compiled PHIL and overlapping
+selected acquisition source bytes. C196 construction evidence can accompany it
+under the same outer owner. Fresh recovery preserves previous attempts and carries
+both provenance records; no child invents another compiler, modifier or scheduler.
+New source-mode records require a C197 reader; old records need no migration.
+
+Actual Phenix **2.2.1-6174 / dispatcher 2.2.1** compiles the public W-frame's
+17 literal pairs and 38 stacks to exactly the C187 output bytes, then realizes all
+201 requests (52 bonds, 88 angles, 58 parallelities, three planes). Separate
+isolated PDU/5PC original and repaired request controls pass the existing native
+selection path with retained plane/stack input and no prior capture used during
+compilation. Those are diagnostic monomers, not a physical pair, mixed scaffold,
+new ordinary invocation or refinement evidence. Native workers are stopped.
+
+Legacy/new tests, actual requests and both public literal artifacts replay after
+relocation with original copies absent, historical checkout/data/SDK reads denied,
+and no external execution during artifact readback. Exact bytes/mtimes remain.
+Evidence: `source_literal_intake_2026_11_11`.
+
+Q04 still needs ordinary invocation with one site-modifier owner. Q05 must export
+selected model/CIF/PHIL and compiler/producer lineage into immutable checkpoints.
+Source-chemical permission, full native qualification, Q06 refinement, Q07 mixed
+and held-out controls, and C194/Q13 chemistry failures remain separate gates.
+
+### Ordinary construction lineage and request binding (C196)
+
+Ordinary `prepare_postmr` now seals `PostMR/Coot/construction.json` before
+restraint generation or ReadySet. The checksummed schema-1 record binds the
+consumed input/reference models and C195 dictionary snapshots to the returned
+and prepared models, mutation actions and explicit OP3/backbone controls.
+Raw Coot output, script and log are referenced when present; absent evidence stays
+absent. The completed PostMR report exposes a run-anchored `construction_lineage`
+reference. Failed downstream preparation retains the construction record.
+
+`read_postmr_construction` validates declared roles, bytes, controls and before/after
+residue identities through the existing ordinary model parser. It reads only the
+declared files, rejects symlink/traversal or changed evidence, and never executes
+a saved script or searches for missing inputs. The record is producer provenance,
+not a replay of every intermediate transformation, authentication against hostile
+rewriting, geometric qualification or proof of successful Phenix interpretation.
+Its prepared model is the **pre-ReadySet** model, not the final ReadySet model.
+
+Both existing request initializers accept optional `construction_inputs=<run>`.
+The exact prepared model and terminal/backbone intent must agree; each consumed
+dictionary also selected for acquisition must have identical bytes. Unselected
+construction dictionaries remain provenance, not qualified acquisition choices.
+Only the declared closure is frozen under `inputs/construction`; unrelated run
+material is never copied. The existing owner, source-change check, recovery and
+result reader carry the optional reference. Children consume the already-bound
+model/PHIL; construction evidence is owned once at the outer request.
+
+The additive record uses `postmr-construction-lineage-v1`. Requests carrying its
+optional reference require a C196 reader; absent-mode requests/results preserve
+their exact meaning. Old runs without this producer record cannot acquire the
+claim retrospectively. No migration, chemistry/threshold change, new retry loop,
+default automatic repair or checkpoint selection is introduced. Historical
+absolute paths inside the saved script remain historical text, never operational
+relocation references.
+
+Validation includes ordinary preparation and downstream failure, changed/relabelled
+evidence, model/source/intent mismatch, concurrent input change, immutable recovery
+and cold relocation. A real headless Coot **1.3.3 (revision-count 0), Python 3.14.6,
+Darwin arm64 GTK4** run constructs public 5W6W A:9 -> PDU through ordinary PostMR
+and seals the record. The saved script independently declares the exact recorded
+input model/dictionary. This uses the established explicit free-5'-OH fixture
+preparation, preserves original inputs, and stops before downstream preparation.
+No Phenix, refinement or scientific qualification is claimed. Both the run and
+test checkout replay after relocation; the latter denies original checkout/SDK
+reads. Evidence: `ordinary_construction_lineage_2026_11_11`.
+
+Q04 still needs ordinary request invocation and faithful literal-input intake,
+with the qualified composer as the single site-modifier owner. Q05 must export
+the exact selected artifacts and original compiler/producer lineage into immutable
+checkpoints. Q06/Q07 and the C194/Q13 native chemistry blockers remain separate.
+
+### Frozen dictionary inputs for ordinary construction (C195)
+
+Ordinary PostMR already copied and verified target dictionaries before Coot, but
+those copies were audit-only: Coot, context preparation and restoration read the
+original external paths. A source could change temporarily during construction
+and return to its initial bytes before the existing final hash check. The saved
+mutation assessment then described different bytes from those consumed.
+
+The ordinary caller now passes its existing verified
+`PostMR/Coot/source_dictionaries` copies to `construct_postmr_model`. The shared
+stage carries those same paths through Coot, context preparation and restoration.
+Source selection, normalization validation, stable-case bytes and all chemical
+rules remain unchanged. At the existing post-construction source boundary, verify
+both the original source and the consumed snapshot against the initial hash.
+An unreadable/changed snapshot or persistently changed original stops before
+ReadySet and preserves partial output. No new selector, cache, hash-check stage,
+retry owner or modifier producer is added.
+
+Four controlled ordinary-workflow regressions cover a temporary original change,
+changed and missing snapshots, and the existing persistent-original-change guard.
+The first test also resolves the saved mutation input by its run anchor/checksum
+after the original data is removed and the run moves. A separate relocated
+checkout executes all four cases with its original copy absent and original
+checkout/SDK reads denied; all 593 copied checkout files retain bytes/mtimes.
+The relocated checkout and generated run paths include spaces. Coot is a Python
+substitute and ReadySet a copying fixture in the orchestration tests. Separately,
+two actual headless Coot **1.3.3 (revision-count 0), embedded Python 3.14.6, Darwin
+arm64 GTK4** processes load identical public PDU bytes from original-style and
+frozen snapshot paths. Both return 41 with unchanged input hashes; each is bounded
+by 45 seconds and verified stopped. These are dictionary-load checks, not native
+construction, Phenix execution, refinement or chemical qualification.
+
+Only the ordinary caller's input paths and source-integrity check change. Existing
+run-relative mutation assessment fields and schemas remain; no migration is
+needed. Earlier audit-only copies do not become retroactive proof of consumption.
+Historical generated Coot scripts retain their original invocation paths and are
+not claimed to be executable after relocation. Explicit input paths remain
+supported. The final request must still bind this construction evidence to C189's
+frozen acquisition sources and preserve one modifier owner (Q04), then export exact
+selected artifacts and lineage into immutable checkpoints (Q05). Native chemistry
+qualification and C194's separate Q13 blockers remain unchanged. Evidence:
+`frozen_construction_sources_2026_11_10`.
+
+### Native hydrogen mapping and component ownership diagnostic (C194)
+
+C121's DG and C191's DA failures share an installed RNA/DNA name-mapper assertion.
+C194 isolates that software boundary without treating it as evidence of incorrect
+source protonation. C111 already recorded DA source/effective-name differences;
+C194 connects the later isolated refusal to that boundary and reuses C112's
+observer. The selected Phenix 2.2.1-6174 / dispatcher 2.2.1 recognizes
+HOP2 but omits it from `iotbx.pdb`'s reference-to-monomer translation table. Its
+uncovered-name branch asserts HOP3. HOP3 itself already maps normally; the unknown
+name control remains unknown. Eight standard residue-name parser controls are
+parser checks only, not eight constructed or modified-residue qualifications.
+
+**Methods and results.** Four separate fresh two-seed experiments reuse exact
+saved source/candidate inputs. Each uses the existing process owner, a 300-second
+total allowance and 120-second native limits. A process-local HOP2→HOP2 entry
+leaves every other translation unchanged. The experimental worker composes the
+existing atom-binding observer with the existing energy observations; the public
+API continues to disallow that combination and the ordinary capture authenticator
+rejects every experimental worker. No qualified report, cache entry, selected
+runtime or checkpoint is published.
+
+| Exact control | Observed result at both seeds | Interpretation |
+| --- | --- | --- |
+| C191 DA, identity translation only | The assertion clears, then HOP2 is unexpected and lacks a nonbonded energy type. Loaded component DA retains HOP2; the effective component is Ad with `3*END`/`p5*END` and no HOP2. | A parser correction alone cannot establish exact supplied-component consumption. |
+| Same DA, plus Phenix's existing `apply_cif_restraints` for the exact frozen CIF at A:1 | Strict native interpretation refuses conflicting O3′–HO3′ bond restraints with terminal modifiers. Effective-monomer readback is not reached. | Explicit file selection also needs coherent terminal-modifier ownership; do not disable strict conflict handling. |
+| Independently qualified C166 5PC | Both phosphate H atoms are expected; all 21 conditional checks pass; both covalent proxy signatures match the exact saved baseline. | No observed regression in this isolated control; the experimental worker is still unqualified. |
+| Independently qualified C172 PDU | Same bounded result as 5PC, with exact PDU baseline proxies. | This does not close broken-PDU, mixed-scaffold, source-state or ordinary-workflow gates. |
+
+The DA follow-up changes only the experimental native parameter selection. It
+records the added PHIL and effective parameters, checks all other PHIL definitions
+unchanged and uses a native-relative input reference. No source/model/candidate
+atoms, names, charges, bonds or coordinates are edited. Installed files and
+maintained workers remain unchanged.
+No new generation, ReadySet, Coot, optimization or refinement occurs. The old C121/
+C191 failures remain intact. Earlier harness attempts also remain: the unsupported
+combined API request stopped before native launch; a mistaken HOP3 parser-control
+expectation stopped two workers; and exact consumer comparison was corrected to
+preserve historical descriptive fields after checking all implementation pins.
+Each resumed experiment uses a fresh directory after the previous owner stops.
+
+Cold replay verifies all four arms from separate relocated trees with the original
+copy absent, old paths/SDK/execution denied, and **271 / 275 / 308 / 308 files**
+unchanged for DA / explicit-DA / 5PC / PDU respectively. Genuine positive baseline
+qualifications replay separately from the refused experimental workers. The final
+replay runner and worker are frozen. C193's **1,999 tests + 45 subtests** remain the
+latest focused workflow pass; all 640 source/test/script hashes are unchanged.
+No unchanged-suite rerun or full regression is claimed.
+
+**Next gate, not an enabled exception.** Q13 must bind exact native component
+selection and terminal operations to the intended source state, prove full atom/
+charge/stereochemical and numerical agreement at both seeds and current sites,
+and include unaffected and held-out controls before any production exception.
+Any mapper compatibility policy must include the observed `iotbx.pdb` source and
+`iotbx_pdb_ext` binary identities in its versioned consumer/cache/replay contract;
+C194 records those additional pins but does not retrofit old qualification claims.
+Keep C152's distinct source-H/charge transition separate. Q04's ordinary caller,
+construction/source join and exclusive modifier owner remain open. Evidence:
+`native_hydrogen_mapping_diagnostic_2026_11_10`. Raw scientific and installed-source
+snapshots stay local; only methods and hash references ship.
+
+### Surface existing generation diagnosis at acquisition failure (C193)
+
+When owned generation returns no retained candidate, acquisition now names the
+component and exact receipt and exposes the existing C115 diagnostic's recorded
+stage and reason. The previous generic message obscured a known source-handoff
+failure and suggested recovery without checking the remaining attempt allowance.
+A diagnostic grants neither a candidate nor permission to retry.
+
+**Methods.** Keep the stopped-attempt, request, receipt and exact-source checks
+first. At the unchanged missing-candidate rejection, recompute
+`candidate_generation_diagnostic` from the bound receipt instead of trusting its
+optional stored summary or adding another classifier. If projection or formatting
+fails, C185's best-effort note helper preserves the primary `ValueError` and exact
+receipt; a new interruption still propagates. Candidate presence is decided by
+the original predicate. Successful/retained-candidate paths, stored schemas,
+native workers, chemistry, execution limits and recovery authority are unchanged.
+Only error text changes; historical artifacts need no migration.
+
+C191's actual default DA request now reports `SOURCE_HANDOFF` and `bond_orders`
+before construction. This is read-only transport replay of its exact stopped
+result, not another generation or qualification attempt. Both actual source and
+request evidence retain bytes/mtimes, remain exhausted, and produce no cache,
+snapshot, qualification or runtime. Relocation uses the same error path with the
+original copy absent and historical paths/SDK/execution denied. The underlying
+native evidence remains Phenix 2.2.1-6174 / dispatcher 2.2.1 from C191.
+
+The static redundancy audit found no shadowed definitions or imported collectable
+tests. C134's same three text-identical test pairs still use distinct readers and
+fixtures and are retained. This is an AST/profile audit, not full pytest collection
+or proof that all semantic duplication is absent. Evidence:
+`generation_failure_diagnostics_2026_11_10`.
+
+### Identify failed native qualification separately from ownership (C192)
+
+Isolated two-seed qualification now reports a known worker failure as a native
+qualification failure, naming the source/candidate seed, recorded worker status,
+return code and exact retained receipt. Wrong capture ownership or an excessive
+recorded deadline remains a separate ownership/deadline error, checked first.
+
+**Methods.** Factor the existing combined predicate into two checks in the same
+shared execution/readback derivation. Accepted states are identical: exact owner
+and deadline plus successful worker completion remain mandatory before native
+capture authentication and scientific usability checks. Both seeds still run;
+exceptions remain `ValueError`, failed work stays preserved, and C185's primary
+exception/seal-note behavior remains unchanged. No worker, timeout, schema,
+retry, chemistry or successful report changes. Error text changes for callers
+that compared the previous generic wording; stored artifacts need no migration.
+
+C191's actual stopped `HOP2!="HOP3"` failure previously produced "Native ownership/
+completion differs". Read-only replay now identifies the failed source-seed
+execution and its current receipt path. It grants no native usability or recovery
+permission. No Phenix is rerun for this diagnostic change; the evidence remains
+actual Phenix 2.2.1-6174 / dispatcher 2.2.1 from C191. Synthetic owned-process
+regressions cover failures at either seed and deliberately wrong ownership.
+Relocated C166 5PC/C172 PDU successes and both C191 negative requests retain their
+exact outcomes with old paths/SDK/execution denied and all bytes/mtimes fixed.
+Evidence: `native_qualification_diagnostics_2026_11_10`.
+
+### Full-model request intake and isolated native refusal (C191)
+
+A public C80 fixture control binds eight canonical DA sites, 38 audited backbone
+links and the existing 193 explicit requests (19 pairs/38 stacks) under one owned
+request. It reuses the declared free-5'-OH preparation, C80 source-bound compiler,
+C189 frozen-source intake and current Phenix configuration. This is a canonical
+workflow control, not the held-out modified-ligand challenge or an ordinary default.
+
+**Methods and outcomes.** The default exact-order generation contract stops before
+construction at `SOURCE_HANDOFF/bond_orders`; its receipt distinguishes that cause
+from the generic charge-handoff exception. The C117/C118 source classifier then
+confirms that the exact source qualifies for the already supported neutral purine
+policy: one complete ten-edge system, selected by graph and declarations. A
+separate explicit-policy request consumes the same frozen model/source/compiler,
+with no relationship re-guessing or change to the exhausted first request.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 generates a retained `CANDIDATE_REVIEW`
+DA dictionary under the existing policy. Both independent isolated interpretations
+then fail at the installed `HOP2!="HOP3"` atom-name mapper assertion. C121 already
+records this failure class for DG. This is not permission to delete or rename
+source hydrogens, alter protonation, or relax native acceptance. The full-model
+preparation/repair/native stages are never reached and no runtime is published.
+Both outer requests, generation and qualification workers are verified stopped;
+all original input and first-request bytes/mtimes are preserved.
+
+Cold replay retains both negative outcomes, the candidate/representation proof and
+the 193-request binding with original copy absent, historical source/SDK reads and
+execution denied. An initial local cold harness used an incorrect folder spelling;
+it is preserved, and the fresh successful control follows the declared compiler
+reference. Product sources, schemas and scientific validators are unchanged.
+The previous C190 focused baseline remains 1987 tests/45 subtests; no unchanged
+suite is rerun. Native generation is complete execution, not a dry-run; convergence,
+ReadySet/Coot, full-model optimization, diffraction refinement and adoption are not
+claimed. Evidence: `full_model_source_owner_2026_11_10`.
+
+C192 closes the misleading qualification wording above without changing either
+rejection predicate; C185's primary-failure note handling remains shared. The
+upstream no-candidate boundary now surfaces its existing C115 generation
+diagnostic and receipt through C193. Q04 caller/producer joins, Q05 checkpoint adoption, Q06
+actual refinement and the Q07 modified/held-out control remain open.
+
+### Scoped atom selections at new restraint intake (C190)
+
+New explicit restraint contexts and context-bound complete requests require
+parentheses around atom-name alternatives. For example, use
+`chain A and resid 2 and (name N1 or name C2 or name N3)`.
+Without grouping, native boolean precedence can select C2/N3 atoms outside A:2,
+while the historical bounded context reader attributed every name to that site.
+
+**Methods.** Thread the existing C186 strict selector through the shared context
+derivation. Both new request initialization and fresh execution validate it before
+creating a destination, lock or attempt. C187 literal compilation uses the same
+guard, replacing its duplicate parallelity loop. No boolean evaluator, automatic
+PHIL rewrite or new scientific target is introduced. Existing context-free
+native-only APIs are outside this PDB-endpoint binding contract.
+
+Read-only validation reconstructs historical v1/v2 records exactly, including
+previously accepted ungrouped selections. Such a record remains evidence; it
+cannot launch a new context-bound attempt. Correct an input only after establishing
+its intended atom scope, then create a fresh request; never rewrite the original.
+Grouped records keep identical bytes/meaning and no schema or migration changes.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 on the packaged W frame reproduces the
+problem: context records three atoms per parallelity plane while native selection
+chooses 85 per plane. Grouped controls select three in both before and after the
+fix. Named identities also agree after validating the complete native atom and
+coordinate inventory; PDB and native indices are never equated. The native proxy
+realizes the actual native selection in both cases; that alone does not prove it matches the context reader's intended scope. This is a
+selection-semantics check, not chemical qualification, geometry optimization or
+refinement. Cold historical requests/results and both compiler modes replay with
+original copy absent and historical paths, SDK access and execution denied.
+Evidence: `scoped_restraint_intake_2026_11_10`.
+
+### Frozen source selection at prepared intake (C189)
+
+`initialize_postmr_dictionary_request(..., frozen_sources=selection)` can consume
+an existing ordinary source-selection artifact. Set `source_output`,
+`ready_set_executable` and `data_root` to `None` in this mode; competing discovery
+settings refuse. The complete selected component set must agree. The artifact's
+exact source bytes, authority and historical provenance are retained unchanged.
+
+**Methods.** Reuse C167's `read_acquisition_sources` and C171's frozen input owner;
+do not introduce a second source format, cache search or producer. The existing
+model/PHIL/compiler proofs and current native qualification remain mandatory.
+Only the request is a new destination, disjoint from the frozen input and other
+protected trees. Source discovery is not invoked. Existing fresh-discovery calls
+keep their semantics, and equivalent inputs produce identical owned configurations.
+The stored request/result schemas are unchanged; no migration is needed.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 requalifies the retained isolated
+PDU/5PC original and repaired controls through this entry, with frozen literal
+stack/plane provenance. Sources are not rediscovered and generation is blocked.
+The original qualifies with zero repair steps; the repaired selection takes the
+existing two graph-selected steps. Both preserve model/source bytes and stop all
+owned children. Cold new/old requests, both compiler modes and absent/v1/v2 contexts
+replay with original copy absent and historical source/SDK paths and execution denied.
+
+This preserves the source handoff; it does not prove that Coot built a model from
+those sources. Ordinary orchestration must still bind actual construction/producer
+evidence, choose one modifier owner and carry the selected runtime into immutable
+checkpoints (Q04/Q05). No new chemistry, recipe, threshold, ordinary default,
+ReadySet/Coot execution or diffraction refinement is introduced.
+Evidence: `frozen_source_intake_2026_11_10`.
+
+### Existing source-bound compiler intake (C188)
+
+The complete and prepared-PostMR request APIs now accept optional
+`explicit_na_policy`, referring to an existing C80 compiler artifact. The artifact
+freezes the model, source component graphs, selected pair/stack relationships,
+NAR implementation/workbook hashes, compiled PHIL and any nonactive orientation
+controls. This route needs no prior native capture. It does not run a new pairing
+guess or replace declared literal relationships with coordinate-selected ones.
+
+**Methods.** Reuse `read_explicit_na_policy` to reconstruct the maintained compiler
+outputs, then bind the exact model and active compiled PHIL to C175/C176 contexts
+and the existing complete-request owner. For component codes shared with numerical
+acquisition, compiler source bytes must equal the selected acquisition source;
+repaired numerical candidates cannot replace source authority. Diagnostic
+orientation controls are preserved as evidence and never added to active PHIL.
+`literal_na_inputs` and `explicit_na_policy` are mutually exclusive. Both modes
+share input/result binding, outer-only evidence ownership and existing recovery.
+
+The optional anchored `explicit_na_policy` reference appears in complete request
+configuration and attempt results. New-mode readers require C188; old literal and
+absent modes retain their meaning without migration. The prepared entry takes
+**compiled** PHIL in this mode, while the literal mode still takes **original**
+ordered inputs. Readback validates the same frozen artifact without source
+rediscovery, execution or historical paths. Whole-request portability does not yet
+export this original-intent lineage with a standalone runtime/checkpoint (Q05).
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 realizes all 193 requests from C187's
+preserved full-model compiler artifact: 19 coordinate-selected pairs, 38 stacks,
+50 bonds, 86 angles and 57 parallelities. These remain distinct from the literal
+control's 20 frozen pair intents, 201 requests and three retained planes. C80's
+existing no-plane full-model policy is unchanged; it is not a fallback for required
+literal planes. Native request selections/actions/targets and exact active proxy
+membership pass. This is interpretation, not refinement or new chemistry support.
+A separate read-only whole-request context preflight correctly refuses the same
+public model at terminal B:1: no OP3 and no verified incoming O3-prime/P link.
+No atom was added, no terminal intent was invented and no owned request was run
+for this raw model. C189's prior-work audit reuses C80's existing explicitly
+free-five-prime fixture preparation in a separate copy: the same context now
+passes with 38 backbone links. That fixture-specific declared preparation already
+exists; the raw-frame refusal is not evidence that it needs another chemical fix.
+Neither generic phosphate deletion permission nor native qualification of the
+changed model follows. Old compiler artifacts remain bound to their exact model.
+
+Synthetic repair transport tests the new owned-request execution/recovery path;
+it is not a physical-pair control. Relocated new requests plus prior actual
+literal original/repaired, v1/v2 and absent-context/ReadySet requests replay with
+historical checkout/source/SDK paths and execution denied. The original path is
+absent and all retained bytes/mtimes stay fixed. Ordinary orchestration, pre-Coot
+source/producer joins, exclusive modifier ownership and selected checkpoint
+adoption remain Q04/Q05. Evidence: `explicit_compiler_intake_2026_11_10`.
+
+### Original literal-input provenance (C187)
+
+`prepare_literal_na_inputs(model, native_receipt, output)` freezes the original
+ordered PHIL, complete preserved native capture, exact model, compiled restraints
+and NARestraints implementation/workbook hashes in a fresh input artifact.
+`read_literal_na_inputs` reconstructs every compiled byte without writing,
+executing a worker or following historical paths. `resolve_literal_na_inputs`
+returns only the model and ordered compiled PHIL proven by that reconstruction.
+
+**Methods.** Separate C21's deterministic compiler payload from its writer and
+reuse C80 implementation pins, the maintained native-capture reader and C176/C186
+restraint context. Literal Saenger 19/20 pairs and mapped stacks retain their
+NARestraints recipes. Existing explicit edits and planes survive unchanged;
+unsupported settings, competing site modifiers and ambiguous ungrouped atom-name
+alternatives refuse. Native capture indices remain distinct from the context's
+PDB record positions. Compilation declares a new explicit NAR objective; it does
+not claim continuation of the old native secondary-structure energy.
+
+The optional `literal_na_inputs` keyword binds this artifact to the existing
+complete request. Its exact model, compiled input order/bytes and restraint proof
+must agree with the owned inputs. The prepared-PostMR entry instead receives the
+**original** ordered PHIL and verifies it before selecting the compiled inputs;
+a concurrent original-input edit during source selection refuses publication.
+Original compiler evidence is owned once by the outer request. Preparation
+consumes the compiled PHIL; result records explicitly reference the outer evidence
+and result readback resolves it. A complete request carries that provenance after
+relocation; exporting a standalone selected runtime does not yet export this
+original-intent lineage. Q05 owns that ordinary adoption/export connection.
+
+Schema 1 / `cif-literal-na-inputs-v1` is additive, with an optional anchored
+configuration/result reference. New-mode requests need C187 readers. Absent-mode
+requests and v1/v2 restraint contexts retain their exact semantics; no migration,
+new retry owner, chemistry rule, threshold or ordinary default is introduced.
+Bounds and composer-only modification ownership remain unchanged.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 reproduces the public W-frame's 17 literal pairs,
+38 stacks, retained central-pair edits and all 201 explicit requests, including three retained planes, with
+compiled bytes identical to C186. Separate isolated PDU/5PC original and repaired
+requests carry one literal stack and its retained plane through complete native
+and derivative qualification. These are not physical PDU:5PC pairing evidence.
+New requests/artifacts and old v1/v2/absent modes replay cold with old checkout,
+source runs, SDK paths and execution denied. No ReadySet, Coot, coordinate
+optimization or diffraction refinement ran for this checkpoint.
+
+This explicit bridge requires a completed native identity capture first. Source
+CIFs that cannot yet be interpreted need a separately owned acquisition/preparation
+route before that prerequisite; do not invent native indices from PDB positions.
+Ordinary orchestration, one modifier owner, pre-construction source/producer
+lineage and selected checkpoint adoption remain Q04/Q05. Existing full-model
+source-bound C80 compilation is another established route, not a reason to write
+a new relationship compiler. Its existing coordinate-guess mode selects 19 pairs/38
+stacks on this public frame, versus the 20 frozen declarations retained above.
+It must not silently replace declared intent. No native execution was needed for
+that separate readiness audit. Evidence: `literal_input_provenance_2026_11_10`.
+
+### Exact planarity intake (C186)
+
+The existing `derive_restraint_context` also accepts explicit `planarity` edits
+with `action=add`, one `atom_selection` and a finite positive `sigma`. A selection
+may name one site or a disjoint union of parenthesized site terms, as emitted by
+NARestraints. Atom-name alternatives within a term must be grouped. Unscoped
+boolean alternatives, missing/ambiguous atoms, fewer than three atoms, overlapping
+terms, unsupported fields and duplicate plane membership refuse. The reader
+retains every input byte and declaration; it never removes required planes.
+
+**Methods.** Reuse the bounded C21 selector/request machinery and C137 native
+signature validator. Bind exact model identities and a weight of `1/sigma²` to
+each plane atom. The context uses PDB record order, explicitly not native indices.
+Native realization separately checks named membership and associated weights;
+Phenix may reorder atoms internally. Plane order has no independent authority.
+All source chemical-state, terminal-phosphate and native-mechanics gates remain.
+
+Plane-bearing records use schema 1 / `cif-owned-explicit-restraints-v2` and require
+C186 readers. Inputs without planes reproduce v1 records exactly; old artifacts
+are not rewritten or promoted. The existing complete request, modifier owner,
+limits and read-only replay paths carry the new proof without another owner.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 controls retain all three unchanged
+19-atom planes from the public W frame with exact named weights. Separate isolated
+PDU/5PC original and repaired requests retain ordered parallelity plus planarity
+through native and derivative qualification. New v2, old v1 and absent-context
+requests replay after relocation with historical paths/SDK/execution denied.
+These controls do not claim a physical PDU:5PC pair, new chemistry support,
+ReadySet execution for C186, optimization or diffraction refinement.
+
+Required literal pair/stack compilation and ordinary PostMR/checkpoint adoption
+remain Q04/Q05. The original ordinary PHIL still cannot be passed directly while
+it asks native secondary structure to create relationships. Keep that intent and
+reuse the C21/C80 compiler routes; do not disable or discard it to fit the reader.
+
+The existing C21 compiler was also exercised on the full public W input: 17 literal
+pairs and 38 stacks produce 201 exact native requests (52 bonds, 88 angles, 58
+parallelities and three retained planes). All existing membership checks pass.
+This audit uses actual captured native identities and the previously documented
+new explicit NAR objective; it establishes compiler reuse, not ordinary adoption.
+C187 subsequently supplies the explicit original-input/compiler/native provenance
+bridge above; ordinary orchestration remains open.
+
+### Ordered explicit restraint context (C176)
+
+`cif_restraint_context.derive_restraint_context(model, supplementary_phils)` binds
+one to 64 ordered inputs to the exact prepared model. It reads the bounded
+line-oriented bond/angle/parallelity grammar emitted by the maintained explicit
+NARestraints compiler. Targets and sigmas come from the supplied PHIL; this API
+does not infer NAR authorship, recompile from a different workbook or adjust values.
+The proof records exact bytes/order, every resolved request and PDB-record atom
+identities. Those record indices are explicitly **not native capture indices**.
+
+The dictionary composer is the sole downstream site-modifier owner. Incoming
+`apply_cif_modification` commands, includes/substitution, unsupported scopes or
+fields/actions, native secondary-structure guessing, unresolved selectors,
+nonfinite/invalid targets or weights and duplicate geometric endpoints refuse.
+An explicit `enabled=False` native secondary-structure control is required.
+Separate orientation-control files stay separate; combining duplicate requests
+does not silently deduplicate them. No supplied byte is stripped or rewritten.
+Replacing an existing legacy modifier needs captured ownership evidence under
+the existing scaffold-candidate contract; recognizing its name is insufficient.
+
+Pass the record as `initialize_dictionary_request(..., model_context=model_proof,
+restraint_context=restraint_proof, supplementary_phils=ordered_inputs)` with
+`native_context.custom_restraints='required'`. Every inspection/execution/result
+read reconstructs it from the frozen model and ordered PHIL before work. Optional
+`configuration.restraint_context` has schema 1 and policy
+`cif-owned-explicit-restraints-v1`. Present-field requests need C176 readers;
+absence preserves legacy explicit requests and C175's no-supplementary mode.
+Full native realization remains an independent gate: a declaration alone never
+grants usability. The shared selector now also rejects unmatched parentheses.
+
+Focused regressions include the maintained compiler's complete mixed-policy
+output, exact order/targets, one modifier per site, pre-attempt tamper rejection,
+legacy semantics and relocation. Actual Phenix 2.2.1-6174 / dispatcher 2.2.1
+original and repaired PDU/5PC controls retain C171's exact NAR parallelity alongside
+a second ordered control input. Both qualify, preserve inputs and stop all child
+phases. New and C171–C175 requests replay cold without original paths or SDK.
+These are isolated diagnostic controls, not a physical base pair, new chemistry
+coverage, ordinary PostMR adoption, ReadySet or diffraction refinement. The
+C177 prepared-model entry connects ordinary source selection to the same owner;
+ordinary orchestration and final adoption remain Q04/Q05/Q06.
+
+### Prepared-model context bridge (C175)
+
+`cif_model_context.derive_prepared_model_context(model, report, components)` is a
+read-only bridge from a prepared PDB and frozen ordinary `post_mr_plan` to the
+explicit complete request. It returns every occurrence of each selected component,
+all audited model backbone links, per-site end states, the model hash, minimal
+phosphate/backbone intent and the existing phosphate audit. Coordinates,
+dictionaries and the source report are unchanged. This is **not source-chemistry
+qualification** and does not approve an experimental phosphate state.
+
+The compiler reuses `requested_op3_sites`, `requested_backbone_policy`,
+`audit_phosphates` and the existing unbranched-link validator. An incoming O3′–P
+link must pass the established phosphate geometry audit. A free 5′-OH site's
+outgoing link comes from its partner's verified incoming link. Numbering,
+sequence adjacency and NAR pairing/stacking cannot create covalent links.
+Unexplained nearby O3′/P contacts across chain/TER boundaries or within a residue
+refuse using the existing phosphate distance bound. No threshold changes.
+
+Terminal OP3 still needs explicit frozen consent. Unrequested OP3, contradictory
+recipe/PostMR intent, incomplete endpoints, ambiguous contacts, cycles, aliases,
+alternate conformations, insertion codes and MODEL records refuse. This initial
+adapter requires canonical standard backbone names. Nonstandard/PNA/phosphorothioate
+contexts remain targets needing qualified adapters, not permanently excluded
+chemistry. All phosphorus sites are audited, including unselected components;
+an unrelated inorganic phosphate can therefore require a broader adapter.
+
+Supply the returned `contexts[code]` for each component, `expected_links` for the
+request, and the entire record as `initialize_dictionary_request(...,
+model_context=record)`. Every inspection/execution/result read reconstructs it
+from the copied model and frozen intent, checking exact source-code/site/link
+coverage before work. Schema-1 policy `cif-prepared-model-context-v1` is stored as
+optional `configuration.model_context`. Present-field requests require C175
+readers; absence retains legacy explicit-declaration semantics without rewriting.
+
+Without the C176 restraint context, this bridge requires
+`custom_restraints='absent'` and no supplementary PHIL. The
+[C176 extension](#ordered-explicit-restraint-context-c176) binds supported explicit
+inputs and leaves the composer as the only site-modifier owner. **Never drop
+requested NAR restraints to fit either adapter.** Other legacy explicit requests
+retain their prior ordered PHIL contract.
+There is no ordinary PostMR default change, new acquisition/process owner,
+source classification, stereo approval or ReadySet/checkpoint adoption.
+
+Focused synthetic tests cover linked chains, free 5′-OH, all selected sites,
+whole-model links, consent, cross-boundary ambiguity, rehashed tampering,
+immutable attempt lineage and relocation. Actual Phenix 2.2.1-6174 / dispatcher
+2.2.1 controls derive new isolated 5PC/PDU contexts and select independently
+qualified original/repaired runtimes. Model/source bytes and prior evidence are
+unchanged. These are diagnostic executions, not generation, ReadySet, Coot,
+diffraction refinement or native linked-polymer proof. New and C171–C174 requests
+replay cold with the original copy absent and historical paths/SDK/execution
+denied. The full suite is deferred; the handoff/ledger records exact results.
+
+### One selected component through the complete request (C174)
+
+The existing dictionary composer, exact-acquisition preparer and complete request
+now accept **one to sixteen selected component types**. A single code can own
+multiple explicitly declared model sites. This uses the same ordered dictionaries,
+site modifiers, full-model context, source ownership and native/derivative gates;
+there is no dummy second ligand or alternate singleton engine.
+
+Every selected source must still have one exact successful acquisition, all its
+model sites must be declared, and shared links/PHIL must match the frozen intent.
+Duplicate codes, missing site/source coverage, empty requests and counts above
+sixteen still refuse. Whole-model qualification remains mandatory, including
+unaffected sites; an isolated acquisition never grants whole-model readiness.
+The existing bounds on files, bytes, work and attempts remain in force.
+
+Schema versions, policy IDs and artifact layouts are unchanged. The accepted
+cardinality expands from 2–16 to 1–16; new singleton artifacts require C174 readers.
+Existing multi-component artifacts replay without rewriting. C172 no-repair and
+C173 optional-failure mode defaults and historical absence semantics are unchanged.
+The separate opt-in `cif_postmr_readyset` round-trip adapter still requires 2–16
+components; this change does not qualify that adapter for singleton use or enable
+ordinary PostMR recovery/adoption.
+
+Three regressions failed at the old lower bounds. Synthetic linked two-site tests
+now prove one code retains every site/modifier and exact attempt lineage, with
+unchanged-byte cold replay. The obsolete minimum-two rejection was removed;
+empty/oversized controls retain the actual limits. Existing missing-source/site,
+duplicate, interrupted, stale-consumer and altered-proof tests remain applicable.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 controls select a retained, independently
+requalified clean 5PC original and a repaired PDU dictionary, respectively. These
+are newly declared isolated one-residue contexts, extracted without coordinate
+changes from the saved C171 diagnostic; they explicitly request no custom
+restraints. C171's two-component parallelity is not silently dropped from any
+existing request. Full native identity and the C154 zero-parallelity derivative
+gate still apply. Model and source chemistry remain unchanged, including the
+explicitly declared terminal phosphate. The 5PC input retains the C172 clean-control
+producer; it is not relabelled as new eLBOW output. Native linked-polymer singleton,
+ordinary refinement and new ligand-family claims are not established here.
+
+The existing Q04 engine now covers this singleton boundary. Ordinary entry-point
+recovery is next; Q05 still owns ReadySet continuation/checkpoint adoption, Q06
+actual refinement-consumer qualification, and Q07/Q13 broader scaffolds/states.
+See the [current Q04 acceptance table](cif-doctor-completion-queue.md#q04--bounded-automatic-recovery-and-durable-attempts)
+for remaining work rather than historical milestone-time next steps.
+
+### Classified optional-native failures and original fallback (C173)
+
+New complete requests freeze `optional_failure_policy=
+"cif-owned-native-failure-original-v1"`. Prepared execution/request APIs keep the
+standalone default `None`; historical configurations without the field preserve
+that behavior. A changed or unknown policy refuses. The mode is carried through
+and checked against child configuration and execution reports, including exact
+failure-proof replay. New policy-bearing requests require C173 readers; no
+historical record is rewritten.
+
+The policy applies only to optional native repair stages `native-001` onward,
+after baseline/prepared source checks and the original derivative attempt. It
+permits two classes of negative evidence: an actual stopped timeout, or a complete
+failed/unsupported maintained-worker report. It does not catch arbitrary
+exceptions, initial capture failures, interruptions, malformed reports, changed
+inputs or uncertain cleanup. Remaining attribution/derivative negatives continue
+through their existing readers and selection gate.
+
+`cif_prepared_repair_failure.inspect_prepared_native_failure(directory, phase)`
+reads one exact phase. It shares the existing bounded native artifact/spec/worker
+reader, ordered-input binding, source-qualified repair-plan binding and process
+owner inspection. The receipt must agree with a launched, verified-stopped job
+on command, return state/code, deadline and declared working directory. All owned
+phases must be stopped. The exact model, ordered dictionaries and PHIL must match
+that graph step; hashes, inventory, maintained worker and frozen source ownership
+are checked. No historical executable path is opened or run.
+
+A timeout's partial report is opaque preserved data, never a native usability
+proof. The ordinary scientific capture reader still rejects timeouts. A reported
+native failure needs a consistent complete report, a nonempty error and unchanged
+read-only/no-approval claims. Malformed report objects raise `ValueError`, rather
+than an attribute error. The failure review is schema 1,
+`cif-prepared-native-failure-review-v1`, with `repair_directory` references. It
+explicitly grants no retry, fallback or scientific qualification by itself.
+Failed jobs bind the dispatcher only; they cannot supply missing API/energy
+fingerprints. Execution rechecks the current consumer before evaluating fallback.
+
+After a classified failure, later repair/attribution work stops. The existing C172
+selector independently replays the original's source/site/native/derivative proof.
+Only a passing original can publish `verified_prepared_bundle`; a valid negative
+original produces `NO_USABLE_BUNDLE`. Source corruption still raises. The runtime
+uses the unchanged C172 original policy, while the execution/request preserves the
+failed job and its bound review. No candidate files are mixed, no native retry
+occurs, and no allowance is renewed. The existing publication and final-budget
+checks still apply.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 controls use the saved PDU/5PC source
+context. A harness shortens one optional native adapter deadline to 50 ms without
+changing its maintained worker, inputs or ownership; its actual job records that
+smaller allowance. Timeouts at stages 001 and 002 both retain their partial outputs
+and select byte-identical qualified original model/dictionaries. If the original
+derivative attempt also times out, no runtime is published. A one-second control
+completed successfully and selected the repaired bundle; it is preserved as a
+normal-path control, not reported as a timeout. Cold replay covers these outcomes
+plus C172 and C171 requests with historical paths and execution denied.
+
+This closes the demonstrated classified optional-native fallback sub-gate. It
+adds no ordinary checkpoint adoption, scientific approval or new chemistry.
+C174 closes the single-selected-component composition boundary above. Ordinary
+integration (Q04/Q05), actual refinement-consumer proof (Q06), the mixed/held-out
+scaffolds (Q07) and chemical-state cases (Q13) remain separate.
+
+### Independently qualified originals and no-repair requests (C172)
+
+`cif_dictionary_bundle_repair.inspect_dictionary_bundle_original()` checks an
+unchanged prepared model, ordered dictionaries and PHIL without requiring a
+repair plan or attribution. It reuses the existing source/site/native gate,
+full-monomer capture and derivative readers, and component-choice policy. The
+original needs its own exact passing derivative proof. Preserved files, an empty
+graph-repair plan, or missing proof never establish usability. Valid negative
+proof yields `NO_USABLE_BUNDLE`; malformed or contradictory evidence raises.
+The corresponding `original_dictionary_bundle_inputs()` returns only the exact
+verified model/dictionary/PHIL set. No coordinate ranking or optimization occurs.
+
+`cif_component_runtime.prepare_original_component_runtime_bundle()` freezes that
+selection through the existing bounded, immutable publisher. The new schema-1
+`cif-qualified-prepared-component-runtime-bundle-v1` carries the source review
+`cif-source-bound-prepared-bundle-selection-v1`. Evidence contains the prepared
+bundle, baseline capture, prepared capture and original derivative job. There is
+no invented attribution or repaired derivative. Public runtime resolution and
+`nasolve cif-doctor assess --bundle` replay the same proof after relocation.
+The prepared-capture reference uses the `prepared_capture_directory` anchor;
+all operational references remain relative with verified hashes.
+
+New complete requests enable `qualify_no_repair=True` by default and freeze that
+mode before any children. With no graph repair, execution captures baseline and
+prepared inputs, applies the existing source gate, and evaluates the original
+fixed-coordinate derivatives. A pass publishes `verified_prepared_bundle`; a
+negative source or derivative result remains unqualified. Existing repair plans
+follow the unchanged repair/attribution selection path. All work uses the same
+process owner, phase limits, outer allowance and immutable-attempt machinery.
+Expiry withholds success even if a partial publication already exists.
+
+Compatibility is explicit: standalone prepared execution and request APIs default
+to false. Historical frozen configurations without the field retain their old
+no-op result (`NO_SUPPORTED_GRAPH_REPAIR; BUNDLE_USABILITY_NOT_ASSESSED`). Only true
+is serialized; non-boolean values and changed modes refuse. Complete requests
+bind their child's frozen mode, and child readers check any execution report's
+mode against its request. New mode-enabled requests and the original-only runtime
+policy require C172 readers; old artifacts are not migrated or rewritten.
+
+The actual Phenix 2.2.1-6174 / dispatcher 2.2.1 control requalifies the exact
+C171 repaired PDU/5PC numerical dictionaries on both isolated seeds and uses them
+as declared clean validation inputs. Their complete request has zero repair steps
+and exactly three native phases: baseline, prepared and original derivatives.
+It publishes the unchanged original model/dictionaries. A separate one-second
+derivative control times out with verified stopped ownership, returns
+`NO_USABLE_BUNDLE`, preserves evidence and publishes no runtime. Saved C171
+original evidence also qualifies without attribution. Cold replay covers both
+new outcomes, the standalone original publication and the legacy repaired request.
+
+C172 closes the no-graph original sub-gate. C173 adds the explicit classified
+optional-native policy above; an absent policy keeps the earlier raising behavior.
+`FAILED` alone never establishes safe fallback because it can include malformed
+reports or changed inputs. Classification, known-stop evidence and independent
+original proof remain distinct gates. C174 adds single-component composition. Ordinary adoption, chemical-state extensions
+and actual refinement-consumer qualification remain queued. No phosphate/OP3,
+sugar/stereo, NARestraints ownership or scientific threshold changes are made.
+
+### Complete frozen dictionary requests (C171)
+
+`cif_complete_request.initialize_dictionary_request()` freezes an explicit
+C168 source selection, model, complete selected-component site declarations,
+consumer/native context, ordered shared PHIL, optional retained snapshots and
+terminal resources before any child work. Each component supplies the existing
+generation recipe/pins and relative dispatcher/attempt limits. The initializer
+accepts one to sixteen selected component types (since C174) and checks their exact model-site
+coverage. Existing scientific preparation/qualification remains downstream and
+unchanged. Interrupted initialization leaves an unsealed, blocked directory;
+completion is published last, and the same destination is never repaired in place.
+
+`execute_dictionary_request_attempt()` performs one explicitly requested attempt.
+The caller supplies the current Phenix installation, cache and per-code generation
+runtime bindings; they must match the frozen consumer/recipe/pins and remain
+outside the request. SDK roots and environments are not saved operational paths.
+One persistent lock serializes callers. Each reservation gets a new number, UUID,
+request digest and coordinator identity before any acquisition starts.
+
+The new schema-1 `cif-complete-dictionary-request-v1` uses this layout:
+
+```text
+request.json                    # complete frozen intent; dictionary_request_directory anchor
+inputs/                         # sources, model, optional snapshots/resources, ordered PHIL
+request.lock
+acquisitions/CODE/               # persistent operational C167 request across outer attempts
+attempts/attempt-0001/
+  attempt.json
+  preparation/                  # C169 exact-attempt composition; copies are evidence only
+  repair/                       # C164 request, one attempt for these exact prepared bytes
+  result.json
+  finished.json
+```
+
+Component requests live outside numbered outer attempts. Their source/consumer/
+recipe, configured limits and generation request persist across retries; a new
+outer attempt cannot reset the generation allowance. C169 uses exact successful
+child attempts, then C164 consumes the resulting prepared bundle. Each child must
+name an actual outer intent and the same coordinator, not merely a well-shaped
+parent claim. Readers cross-check the reciprocal digests/UUIDs, all operational
+component histories, exact preparation inputs and repair configuration. They
+reuse existing scientific readers and bind the selected result and full outer
+artifact inventory. Additional/missing/changed evidence refuses.
+
+`inspect_dictionary_request()` is read-only and advisory: it does not lock,
+signal, rewrite history or authorize retry. The writer rechecks under its lock.
+A fresh attempt requires prior outer and child ownership to be known stopped;
+unknown initial publication, missing ownership and blocked shared generation
+remain blocked. A known-dead unsealed outer attempt may be followed, but is never
+resealed. One to five outer attempts are allowed; no automatic retry loop or
+source scanning is added. All callers for one logical request must share its
+request directory. Recorded digests detect corruption, not hostile rewriting.
+
+One cooperative monotonic allowance spans preflight, acquisitions, preparation,
+repair, scientific readback and final inventory checks. Each child retains its
+own configured bounds and receives the remaining outer allowance. Expiry before
+success publication withholds outer success even when valid lower-level output
+already exists. Atomic final writes and cleanup remain cooperative; this is not
+a hard wall-clock kill or restartable deadline. A fresh explicit attempt receives
+its own configured allowance while the finite attempt counts remain persistent.
+
+`read_dictionary_request_result(directory, attempt_number)` requires an exact
+successfully returned outer attempt and replays the selected evidence without the
+old source paths, cache or SDK. RETURNED means the operation returned, not that a
+usable bundle exists. Existing no-graph-repair, source-unqualified and no-usable-
+bundle statuses remain explicit negative/non-selection results. Only the existing
+`QUALIFIED_DIAGNOSTIC_RUNTIME` status resolves a qualified runtime. Automatic
+adoption remains false. This API does not enable ordinary PostMR recovery, change
+chemistry or add a new CLI.
+
+Validation covers frozen input changes, overlaps, consumer/recipe mismatch,
+concurrent writers, unknown/live/dead owners, interrupted publication, shared
+generation exhaustion, parent/coordinator mismatches, exact readback, preserved
+partials, expiry during final sealing and completion-record capacity. Actual Phenix 2.2.1-6174 / dispatcher
+2.2.1 executes the saved PDU/5PC separated-monomer control: outer attempt 1 expires
+after the PDU source seed; attempt 2 retains those partials, completes all seven
+repair phases and selects the repaired diagnostic bundle. Model/CIF/PHIL bytes
+match C169. Cold replay rejects historical paths and native execution. This is
+not the mixed scaffold, new ligand-family qualification or diffraction refinement.
+Publication reserves the completion record within the existing 1,024-file,
+128-MiB total and 32-MiB per-file caps before success. Maximum-size multi-component throughput
+has not been demonstrated. Full regression remains deferred to the integration gate.
+
+### Enclosing attempt context for child requests (C170)
+
+The explicit C167 acquisition and C164 prepared-repair wrappers accept private
+`_parent_attempt_identity` and `_remaining_seconds` composition hooks. The parent
+claim uses the existing request digest, attempt digest and attempt UUID shape.
+It is validated and detached before callbacks, then recorded as optional
+`parent_attempt` in the immutable child intent. Readers reject malformed present
+claims; legacy intents without the field retain their existing behavior. The
+child's own digest/UUID still binds its native descendants and stopped receipt.
+This is a supplied identity claim, not independent validation of an enclosing
+request: the future outer coordinator must check that reciprocal binding.
+
+Parent identity varies per attempt; exact source/consumer/recipe, configured
+limits and the child's finite attempt allowance remain frozen in its persistent
+request. A smaller remaining allowance must not be supplied by changing those
+frozen limits or creating a fresh generation scope. Existing lock, unknown/live
+owner refusal and fresh numbered recovery checks are unchanged.
+
+The shared private `OuterAllowance` helper clamps to the earliest observed
+monotonic deadline. Callback time consumes allowance, and a later constant or
+larger callback result cannot extend an observed deadline. Invalid/nonfinite or
+boolean results refuse; exhaustion stops at the next cooperative boundary.
+Acquisition passes the same allowance through generation and both qualification
+seeds. Prepared repair passes it through preflight, each native phase and final
+success checks. Worker limits never round fractional seconds up. Recorded elapsed
+seconds still measure the local call, not configured time minus a smaller parent
+allowance. Existing standalone execution-clock semantics and local limits remain.
+
+Python work, final record writes and child cleanup remain cooperative. Already
+published lower-level scientific evidence can survive a late enclosing failure;
+it does not make that enclosing attempt successful. Readers neither invoke the
+callback nor signal/lock anything. Callback/deadline values are not restartable
+ownership evidence. No full source/model/site request or automatic retry loop is
+introduced, and ordinary PostMR/adoption remains unchanged.
+
+Validation includes malformed/mutated parent claims, distinct parents across
+fresh attempts, fixed request limits, cache reuse, shrinking/non-renewable
+allowances, no work after expiry, late-result retention and legacy behavior.
+A manual validation driver using Phenix 2.2.1-6174 / dispatcher 2.2.1 expires PDU
+after its first native seed, verifies stopped ownership, then succeeds freshly;
+PDU/5PC cache reuse, C169 preparation and all seven prepared-repair phases pass
+with one shared parent allowance. Prepared scientific inputs match C169 exactly.
+Cold relocation preserves parent bindings and partial evidence without historical
+SDK/source access or execution. This validates the hooks, not a production outer
+coordinator, new chemistry or ordinary diffraction refinement. Full regression
+was not run at Simon's request; the last completed full baseline remains C160.
+
+### Exact acquired components into model/site preparation (C169)
+
+`cif_acquisition_preparation.prepare_acquired_dictionary_bundle(source_selection,
+components, model, output, *, consumer, expected_links, native_context,
+supplementary_phils=())` joins C168 source selection and exact completed C167
+attempts to the existing C139 bundle preparer. Each component declares its code,
+request directory, exact attempt number and site contexts, plus optional terminal
+resource and source-phosphate naming policy. One to sixteen unique components (since C174)
+must cover the complete selected source set. No latest-attempt inference occurs.
+
+Before output, the selected attempt must be successfully sealed and its exact
+source bytes, source authority, component and consumer must match the declared
+source/model context. Existing readers establish scientific evidence; this API
+does not introduce another chemistry validator. Original recipes, producer,
+representation permission, terminal intent and phosphate policy remain intact.
+The model, ordered shared PHIL, source selection, acquisition histories and any
+explicit terminal resources are frozen together. Empty historical directories
+are retained. Original inputs are rechecked before copying and after preparation.
+
+Schema 1 `cif-acquired-bundle-preparation-v1` uses the
+`acquisition_preparation_directory` anchor. `preparation_intent.json` binds exact
+inputs, directory membership and site/native controls. Completion in
+`acquisition_preparation.json` binds the exact request/attempt digests and UUIDs,
+entry identities, prepared bundle and complete output inventory. Interrupted
+enclosing output and any completed bundle remain; a fresh output is required.
+The existing preparer's disposable derivation scratch keeps its existing cleanup
+behavior. No native process is started by this stage.
+
+`read_acquired_dictionary_bundle(output)` replays the copied exact-attempt evidence
+and source/site preparation, compares the prepared snapshots/model/PHIL/resources
+with their frozen inputs, and rejects substituted attempts or approval claims.
+Historical source/SDK locations and captured-code execution are unnecessary.
+Readers do not change the artifact; existing derivation readers may use temporary
+scratch elsewhere. Returned `bundle_directory` feeds the unchanged C164 prepared
+repair request API. Copied acquisition requests are readback evidence only and
+must not be used to reset or retry the original generation allowance.
+
+The complete histories are copied, with existing bounded tree limits (1,024 files,
+128 MiB total, 32 MiB per file) applying when each evidence tree is read. There is
+no history pruning or new whole-request coordinator/deadline. The stage freezes
+model/site intent after component acquisition; a complete outer request must bind
+that intent before starting its children. Ordinary PostMR/adoption stays unchanged.
+
+Validation: 24 new regressions and affected/focused checks. Full regression was
+interrupted and then deferred by Simon; no complete pass is claimed. A real
+PDU attempt 2 / 5PC attempt 1 control produces byte-identical scientific inputs to
+C159 and completes all seven Phenix prepared-repair phases, selecting the repaired
+diagnostic bundle. Phenix 2.2.1-6174 / dispatcher 2.2.1, actual execution, not a
+dry-run. Relocated preparation and repaired runtime replay with original copies
+absent and historical paths/execution denied. These are the established separated-
+monomer controls, not the mixed scaffold or new ordinary refinement qualification.
+No generation, ReadySet, Coot, diffraction refinement or SDK modification occurred.
+
+### Frozen acquisition source selection (C168)
+
+`cif_acquisition_sources.freeze_acquisition_sources(codes, output, *, data_root=None,
+ready_set_executable=None, explicit_sources=None)` freezes one to sixteen explicit unique PDB component
+codes before numerical acquisition. It reuses the ordinary selector and source
+validator: reviewed curated definitions retain precedence, verified local sources
+precede the configured Phenix CCD, and missing curated resources never silently
+fall back. It introduces no new search paths, aliases or chemical inference.
+
+The complete batch is selected and validated before creating output. Every chosen
+path, authority/kind and byte string is rechecked before copying and completion,
+so a changed earlier source or newly appearing higher-precedence file fails the
+batch. A fresh destination is required; exclusive directory/file creation and
+durable writes preserve partial output on interruption. A failed copy is never
+resumed or overwritten in place. The completion record is written last.
+
+Schema 1 `cif-acquisition-source-selection-v1` stores sorted component identities,
+authority/kind, exact checksummed `sources/CODE.cif` references anchored to
+`source_selection_directory`, and original paths marked `PROVENANCE_ONLY`.
+`read_acquisition_sources(output)` validates the exact file/field inventory,
+authority/kind and current source validator, rejects extra approval claims and
+wrong boolean types, and rechecks bytes after validation. It performs no source
+rediscovery, live NARestraints registry lookup, SDK access, subprocess or write.
+Captured source choice is input provenance, not proof of numerical usability.
+
+C355 optionally accepts a nonempty code-to-file mapping for a subset of requested
+non-curated components. The caller's mapping is captured at entry; selected files
+bypass registry lookup and discovery, but retain exact component/file validation
+and all batch rechecks. Explicit curated overrides refuse, including an identical
+file; other codes still use ordinary precedence. No aliases or registration follow.
+The distinct schema-1 policy `cif-acquisition-explicit-sources-v1` records sorted
+`explicit_components` and marks those rows `EXPLICIT`/`explicit-file`. The cold
+reader requires that exact correspondence and rejects extra success claims.
+Historical/default reports remain byte-identical. Older software refuses the new
+opt-in policy; no historical migration is needed.
+
+Existing component acquisition and complete-request intake use this reader as-is.
+Tests cover cache reuse, mixed selection, partial work, and relocated requests with
+original sources removed. A packaged DY control reuses C342's exact qualified
+snapshot without an SDK/native job. Composition proof is still separate caller
+evidence: source selection binds bytes, not their chemical derivation.160 focused
+and160 installed/relocated checks pass; no full suite or fresh native qualification.
+See `explicit_custom_source_selection_2026_11_16` for commands and retained limits.
+
+The reader supplies `source` and `source_authority` directly to C167 component
+acquisition. Tests remove the original local source tree, consume a retained
+qualified snapshot, then reuse the resulting cache without discovery or native
+execution. Current consumer/recipe/representation gates remain C167's responsibility.
+The caller must retain and re-read this source snapshot for a retry; automatic
+multi-component orchestration is not yet wired to it. This stage owns no native
+process, shared deadline or recovery loop and grants no retry/adoption authority.
+
+Validation: 32 new cases, affected tests and the focused workflow profile; actual
+ordinary selection of DF/PDU/5PC/ATL with unchanged parent bytes/mtimes; relocated
+replay with the original copy absent and historical paths, discovery and execution
+denied (222 files unchanged). The configured library is Phenix 2.2.1-6174,
+dispatcher 2.2.1 as recorded in C167; no version command or native job was run in
+C168. No full suite, chemical-support expansion or ordinary runtime change.
+
+### Explicit component acquisition requests (C167)
+
+`cif_acquisition_attempt.acquire_dictionary_attempt(source, code, store_root,
+request_directory, ..., generation, consumer, phenix=None, retained_snapshot=None)`
+owns one explicit cache-first component acquisition. The source is already declared.
+It composes C158/C159 cache/retained semantics, the C157 shared generation request
+and C166 maintained two-seed qualification. Chemistry, representation permission,
+native usability, original recipe/producer and store selection remain unchanged.
+This is a new explicit API; ordinary PostMR acquisition is not redirected to it.
+
+Schema 1 `cif-component-acquisition-request-v1` freezes exact source bytes, declared
+source authority/recipe/generator identity, current consumer, optional exact retained
+snapshot and limits. Operational references are anchored to `request_directory` or
+`attempt_directory`. A persistent lock serializes callers sharing the request path.
+Each explicit call reserves a fresh numbered attempt with its own UUID/coordinator;
+previous partial output is never repaired. Even a cache hit consumes one outer
+attempt, but does not discover or launch the SDK. The cache path is an explicit
+per-call binding; changing cache contents is expected, not an input mutation.
+
+One nested generation request retains its own frozen producer and finite allowance
+across all outer attempts. Outer retries cannot reset it. Declared relative
+dispatcher paths are frozen in the outer request; actual dispatcher hashes are
+frozen by C157 when generation is first needed, not by cache lookup. An optional
+`parent_attempt` binding in C157 attempt intent links that child to its owning
+outer attempt without changing standalone request semantics or cache formats.
+The prospective next child number is only an observation: a pre-reservation
+failure must not adopt a later attempt's child occupying that slot. Readback uses
+the durable parent digest/UUID and rejects foreign children.
+
+The monotonic allowance starts before preflight and is shared across cache lookup,
+generation and qualification. Native jobs receive the remaining allowance; checks
+withhold late results even if a valid cache entry or snapshot was already published.
+Partial outputs remain intact. Defaults are 90s per qualification job, 600s total,
+and two outer attempts; integer ranges are 1–600s, 1–3600s and 1–5 respectively.
+Generation retains its separately frozen phase/attempt limits. Local work, final
+sealing/publication and cleanup are cooperative, not a hard wall-clock deadline;
+the recorded elapsed value precedes final sealing. No automatic retry loop exists.
+
+`inspect_acquisition_request(directory)` is read-only and never grants retry
+authority. The writer rechecks under its lock. An unsealed attempt is recoverable
+only after its coordinator is known inactive and its owned children are stopped
+or absent; unknown identities/publication gaps block. The coordinator is observed
+before children. Closed attempts bind child records and full output inventories.
+`read_acquisition_result(directory, attempt_number)` requires one exact successful
+sealed attempt, checks its frozen inputs/store snapshot and replays fresh native
+qualification and generation provenance when present. Failed attempts cannot
+become successful merely because they left a snapshot. Replay needs neither the
+old source/cache/SDK nor execution of captured code.
+
+Validation: 30 new regressions, 321 affected tests + 19 subtests, and 1,198 focused
+workflow tests + 45 subtests pass. Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 PDU
+interruption leaves a stopped immutable first attempt; fresh PDU and 5PC qualify
+both coordinate seeds and later cache hits run no native adapter. Original recipes
+and producers survive. A separate actual fresh-generation 5PC control produces no
+retained candidate and fails acquisition honestly, preserving its stopped child
+and all evidence; this is not a successful generated-chemistry result. Cold replay
+validates all three requests, four usable results and two failed attempts with
+original copies absent, historical paths/execution denied and 393 files unchanged.
+No full suite, ReadySet, Coot or diffraction refinement was run. Evidence is macOS.
+
+Remaining Q04: source-discovery ownership, multi-component preparation and prepared
+repair under a complete shared request/allowance, then independent fallback for
+early capture failures and no-repair candidates. This component request does not
+authorize ordinary adoption, linked chemistry, refinement or retries from inspection.
+
+### Maintained two-seed qualification (C166)
+
+`cif_candidate_qualification_execution.execute_candidate_qualification(source,
+candidate, code, consumer, phenix, output, ...)` now implements the existing
+C158/C159 isolated qualification protocol. It preserves exact source/candidate
+bytes, verifies the configured current consumer, and rejects a source-chemistry
+contradiction before launching. Both coordinate models are derived by the same
+serializer as the historical control writer. The candidate dictionary is tested
+at source and candidate coordinates under the fixed isolated PHIL. Each capture
+must pass the existing chemical/native usability checks, exact input/consumer
+binding and maintained-worker readback; both covalent proxy signatures must agree.
+No residue-code whitelist or alternative chemical validator is introduced.
+
+`make_candidate_qualifier(phenix, code, ...)` returns the four-argument callback
+accepted by `resolve_generated_dictionary`. Creating it does not discover or run
+the SDK. A qualifying call returns the existing source-seed qualification unchanged
+only after both controls pass. Existing cache/store schemas and recipe/producer
+provenance remain authoritative; a cache hit does not call the adapter.
+
+The fresh output freezes source/candidate, models, PHIL and protocol/consumer under
+`inputs`, with C165 ownership records outside native capture inventories. Schema 1
+`cif-two-seed-qualification-execution-v1` publishes `qualification_execution.json`
+only after successful checks and verified process cleanup. All operational refs
+use `qualification_directory` anchors with hashes. The report binds its input
+protocol, both captures, both scientific qualifications, ownership header/seal,
+file inventory and elapsed allowance. Unknown extra report fields are rejected.
+
+`read_candidate_qualification(output)` is non-mutating and independent of the SDK.
+It regenerates model bytes in memory, verifies exact inventories and process/input/
+consumer bindings, replays both scientific checks and compares the proxy signatures.
+Captured code and saved argv are never executed. A report alone cannot replace
+missing/contradictory native proof. Partial work has no usable report; its C165
+process state remains separately inspectable without retry permission.
+
+Defaults are 90 seconds per native job and 180 seconds total; explicit integer
+limits are 1–600 and 1–3600 seconds respectively. The monotonic total starts before
+preflight; each job gets at most the whole seconds remaining. Boundary checks
+refuse late preflight, preparation, capture, derivation and pre-publication work.
+Cleanup and final atomic publication are cooperative, not a hard wall-clock kill;
+the recorded elapsed value is measured before final publication. Exceptions retain
+all partial output and preserve the original error if sealing also fails. Repeated
+calls require fresh output. This does not own a whole acquisition request, source
+discovery, retries, linked chemistry, ordinary adoption or diffraction refinement.
+
+Validation: 40 new cases; 373 affected tests; focused workflow and real Phenix
+2.2.1-6174 / dispatcher 2.2.1 qualification/cache controls. PDU and 5PC pass both
+coordinate seeds; exact earlier model bytes, original recipes and producer
+provenance survive. A real two-second PDU control passes in 1.794s; a one-second
+allowance refuses before launch. Cold replay validates three completed two-seed
+qualifications, two cache snapshots and the withheld control with originals and
+execution denied; 340 files retain bytes/mtimes. Synthetic owned-worker timeout
+and interruption tests cover cleanup. No full suite, generation, ReadySet, Coot,
+optimization or refinement execution; macOS evidence does not establish Linux or
+connected-polymer qualification.
+
+### Isolated qualification process evidence (C165)
+
+`cif_candidate_qualification.CandidateQualificationProcesses(root)` owns the two
+native jobs in the existing source-seed/candidate-seed qualification protocol.
+Prepare all explicit inputs under `root/inputs` first, including dictionaries,
+models, consumer/policy records and PHIL. The owner freezes their exact file
+inventory, creates `ownership/qualification.json`, and supplies
+`runner("native-000")` / `runner("native-001")` to the native adapter; use capture
+parents `root/native/000` and `root/native/001`. Each phase may run once. Call
+`finish("RETURNED")` or `finish("RAISED")` after execution; it seals only known
+stopped phases. Preserve the original error if secondary sealing fails.
+
+`inspect_candidate_qualification_processes(root)` is read-only. Its schema-1
+`cif-candidate-qualification-process-v1` records use `qualification_directory`
+anchors, an `inputs` reference and `input_files` checksums, with invocation/seal
+bindings named `qualification_sha256`. Optional parent attempt binding follows
+the existing request/attempt digest-and-UUID contract. Unknown publication or
+cleanup stays unknown; observed inactivity never grants retry authority. Saved
+argv is provenance only. The shared implementation preserves C163 repair policy,
+field names, anchors and C164 attempt bindings without migration.
+
+This layer records execution, not scientific completion: even a sealed owner with
+zero or one job is not qualified chemistry. Callers still must run both seeds,
+apply `qualify_candidate_native` independently and require identical covalent
+proxy signatures. The full callback remains caller-owned; its maintained adapter,
+shared cooperative allowance and complete acquisition request/recovery are the
+next Q04 step. No ordinary adoption or automatic retry is enabled. Native limits
+remain per job (greater than zero, at most 600 seconds); there is no total budget
+in this low-level owner. POSIX campaign cleanup is required.
+
+Validation: 15 new cases; 314 affected tests; 1,128 workflow tests + 45 subtests.
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 passes four isolated PDU/5PC jobs,
+both coordinate seeds and matching covalent proxies. Cold relocation reads new
+ownership/scientific captures plus old C163/C164 records with originals and
+execution denied; 1,211 copied files retain bytes/mtimes. No full suite, ReadySet,
+Coot, generation, optimization or diffraction refinement was run. This is macOS
+execution evidence, not a new Linux or connected-polymer qualification.
+
+### Prepared-repair requests and immutable attempts (C164)
+
+`cif_repair_attempt.execute_prepared_dictionary_repair_attempt(bundle, phenix,
+request_directory, ...)` performs one explicit fresh prepared execution under a
+logical request. The request freezes every prepared input byte and relative name,
+execution/process policies, phase limits, a per-execution total allowance and a
+finite maximum of one to five attempts (default two). Phase defaults remain
+120/90/300 seconds for native capture/attribution/derivatives; the request API
+requires an integer total allowance from 1 to 3600 seconds (default 600).
+Preflight and request copying precede that execution allowance. Local work and
+cleanup stay cooperative; no complete acquisition wall-clock limit is claimed.
+
+A persistent, nonblocking campaign lock serializes callers using the same request
+directory. Every call reserves a new `attempts/attempt-0001/` (then 0002, etc.)
+and a fresh UUID. Intent binds the request digest, coordinator and exact relative
+execution directory. C163's execution header additionally binds the parent request
+and attempt digests/UUID. Copied ownership evidence from another attempt cannot
+prove inactivity. Attempt completion binds the execution ownership seal and any
+execution-report bytes; it does not assert scientific usability.
+
+`inspect_prepared_repair_request(directory)` reads frozen checksums and ownership
+without creating locks or changing files. Its `AVAILABLE`, `BLOCKED` or `EXHAUSTED`
+value is advisory, with `retry_authorized=false` in every result. The modifying API
+rechecks under the lock. A sealed attempt can be closed while its caller remains
+alive; an unsealed attempt requires the outer coordinator and inner execution's
+workers to be demonstrably stopped. Inspect the coordinator before its final
+output snapshot. Missing intent, unknown identity/publication or an existing
+execution directory without ownership evidence blocks further attempts. A known
+failure before any execution directory exists can be sealed by its live owner;
+read-only recovery still requires the coordinator gone. No reader signals a PID.
+
+Every reservation consumes the frozen allowance, including failures. Original
+output is never resumed, resealed or overwritten. Changed inputs/limits cannot
+reuse the request identity; a copied byte-identical input at a new declared path
+can. Separate request directories remain separate coordination scopes. Pins and
+source preservation are rechecked before/after execution. Errors retain partial
+work; a secondary sealing failure is attached to the original exception.
+
+New schema 1 / `cif-prepared-repair-request-v1` comprises `request.json`,
+`inputs/bundle/`, the persistent `request.lock` and numbered attempt records.
+C163 headers gain an optional `attempt_owner`; older one-shot records retain their
+meaning and require no migration. One-shot prepared execution, scientific/native
+schemas, source chemistry and selection gates remain unchanged. This is an
+explicit prepared execution API, not ordinary PostMR adoption or full acquisition
+recovery. Discovery, component qualification, acquisition-wide ownership/budget
+and broader qualified fallback continuation remain Q04.
+
+### Prepared-repair process evidence (C163)
+
+The explicit prepared repair executor now owns each native capture, captured
+derivative and attribution process through the campaign process runner. Before
+launch it saves an immutable invocation UUID, execution-header digest, relative
+working/log paths, deadline and coordinator identity. Child process identity is
+published immediately after spawn; a completion record requires verified group
+cleanup. SIGTERM, interruption, timeout and identity-publication failures share
+the existing campaign cleanup contract. A hard-kill publication gap stays unknown.
+Commands are provenance only and environment variables are never saved.
+
+`cif_repair_process.inspect_prepared_repair_processes(directory)` is read-only.
+It validates frozen bundle bytes, execution/phase bindings and any completion
+seals without launching saved commands, changing records or taking locks.
+A sealed execution is stopped even if its hosting Python process remains alive.
+An unsealed execution requires both its coordinator and every recorded worker to
+be demonstrably inactive. Observe coordinator inactivity before enumerating final
+worker records, so a last reservation cannot be missed during coordinator exit.
+Foreign, missing or unverifiable identities remain unknown; legacy output without
+ownership records is `NOT_RECORDED`. No state authorizes a retry.
+
+New diagnostic schema 1 / `cif-prepared-repair-process-v1` lives under
+`ownership/`, outside the unchanged scientific adapter inventories. The header
+binds the frozen bundle and execution UUID; phase completions bind job/child
+records, and the outer seal binds every phase completion. The existing diagnostic
+`repair_execution.json` gains an anchored `process_evidence` header reference.
+Completion means process cleanup, not chemical usability or scientific success.
+Unverifiable cleanup escapes the adapters rather than becoming a negative
+scientific review. If sealing fails during another error, preserve that original
+error and attach the sealing failure as a diagnostic note.
+
+Prepared execution now requires campaign-supported POSIX process ownership
+(macOS/Linux); existing standalone adapter defaults remain available. This owns
+one fresh prepared output, not a logical acquisition request: persistent request
+locking, immutable numbered fresh attempts, recovery authorization, discovery/
+qualification ownership and a complete acquisition budget remain Q04. No in-place
+resume, automatic retry, chemistry change, public artifact migration, ordinary
+adoption or refinement is introduced. The C162 allowance remains cooperative.
+
+### Shared prepared-repair allowance (C162)
+
+`execute_prepared_dictionary_repair(..., total_timeout_seconds=N)` optionally
+shares one monotonic allowance across preflight, preparation, native capture,
+source/derivative/attribution checks, selection and publication. `N` must be an
+integer from 1 to 3600; booleans/floats refuse before output. Omitting it preserves
+C160's per-phase execution behavior. Each native call receives the smaller of
+its configured phase limit and the whole seconds remaining. Less than one second
+cannot be rounded up into permission to launch another worker.
+
+Budget checks at execution boundaries and against the exact elapsed value in the
+completion record raise `PreparedRepairBudgetExceeded` on exhaustion. Source and
+receipt integrity checks remain independent. Exhaustion never becomes chemical
+usability, a fallback selection, recovery permission or an in-place retry. Every
+partial output remains intact. An overrun while publishing may leave an independently
+readable runtime artifact, but the executor returns no success and writes no
+completed `repair_execution.json`; the diagnostic progress log records the stop.
+
+This is a **cooperative prepared-repair allowance**, not a hard wall-clock limit:
+local Python work, native-adapter preparation, filesystem operations and process
+cleanup are not forcibly interrupted. A worker's own phase timeout and the next
+boundary check limit subsequent work. The final small record write is also
+cooperative. Whole-acquisition source discovery/qualification ownership, durable
+request/recovery and total scheduling remain Q04. No native worker, chemistry
+criterion, provenance validator or public runtime policy is replaced.
+
+Diagnostic schema 1 gains `total_timeout_seconds` (integer or null) and the checked
+`elapsed_seconds`; `total_deadline` is `NOT_CONFIGURED` or
+`COOPERATIVE_PREPARED_REPAIR_BUDGET`. Historical C160 reports remain unchanged.
+The diagnostic record is not a public runtime authority or process journal.
+No existing artifact migration or ordinary workflow adoption is introduced.
+
+Twenty new controls cover phase sharing, expiry before reservation, subsecond
+refusal, late local/publication results, the final completion-clock boundary,
+corruption and no-op/default compatibility. Actual Phenix controls use the same
+C159 PDU/5PC separated-monomer bundle as C160. A generous shared allowance retains
+the qualified repair; a five-second control preserves partial native/derivative
+evidence and returns no selected runtime. Exact execution times, commands and
+source hashes are in `prepared_repair_budget_2026_11_02` and the handoff.
+
+### Curated CIF loop parsing (C161)
+
+The curated bond reader and `dictionary_ideal_bond_length` use the existing
+`ligand_profiles._blocks` CIF1 parser and lexical duplicate-tag checks. Physical
+rows, comments and blank lines cannot change atom pairs or coordinate selection.
+Exact atom identifiers, including unquoted/quoted primes, remain distinct.
+One unambiguous requested category and consistent declared component identity
+are required. Component-list metadata in a separate block remains supported;
+minimal legacy tables without component declarations remain readable. Multiple
+candidate tables are refused rather than silently merged or selected.
+
+Incomplete columns, repeated fields, conflicting component IDs, missing/self bond
+identifiers and duplicate atom identities refuse. Distances retain the existing
+preference for complete `pdbx_model_Cartn_*_ideal` coordinates over `x/y/z`;
+invalid or nonfinite preferred values do not silently fall back to other values.
+Source files, chemical fields, topology requirements and numerical targets are
+never rewritten. No dependency, artifact schema, CLI or migration changes.
+
+Q02 closes with 42 regression cases, all ten packaged curated ligands under two
+alternative layouts, ordinary PostMR using fixture ReadySet, and read-only replay
+of C145's exact projected DZ source. The old readers raise `No closing quotation`;
+the new readers validate all 35 bonds and the 1.5099778144 Å C1′–C1 distance.
+Historical source bytes/timestamps remain unchanged. No Phenix/Coot execution,
+new geometry qualification or ordinary repair adoption is inferred. Exact focused
+commands/results are in the handoff and `curated_cif_loops_2026_11_02` ledger entry.
+
+### Maintained prepared-bundle repair execution (C160)
+
+`cif_prepared_repair_execution.execute_prepared_dictionary_repair(bundle, phenix,
+output, ...)` is an explicit coordinator for the existing prepared bundle. The
+bundle may contain C158/C159 acquisition snapshots; source authority, site and
+terminal context, ordered supplementary PHIL and native consumer remain bound by
+`prepare_dictionary_bundle`. This API does not discover sources or edit a model.
+
+Before creating output, it validates the bundle, rejects output/source/SDK
+overlap and verifies the installed Phenix consumer against the recorded pins.
+It freezes the source bundle, then uses the existing declared-linear graph
+planner. No supported graph repair returns a truthful non-selection, without
+native execution or a whole-bundle usability claim. Existing outputs refuse;
+the function never resumes or retries them.
+
+For a repair plan, execution follows the existing scientific contracts:
+
+1. Capture baseline and prepared inputs with full native monomer identities,
+   ordered dictionaries, exact PHIL, policy and energy inventories.
+2. Apply the existing source/site preparation gate. A negative result stops
+   before numerical improvement and grants no continuation.
+3. Independently qualify the prepared starting bundle's derivatives.
+4. Capture every graph-repair stage, then run maintained native attribution
+   and independent derivatives for the final repaired bundle.
+5. Recompute C152's whole-bundle decision and publish through C153. Prefer a
+   qualified repair; retain the original only with its own passing qualification.
+   If neither is usable, publish no runtime. Never combine independently selected
+   component endpoints into an unchecked new bundle or rank changed restraints
+   by lower energy.
+
+Valid negative numerical records remain selectable evidence about an unsuccessful
+alternative. Contradictory/malformed evidence, adapter exceptions or changed
+source/plan/native receipt bytes raise and preserve partial work. They are not
+silently converted into a failed improvement or permission to continue. An early
+native-stage failure currently stops without runtime publication, even if some
+earlier work passed; broader recovery belongs to Q04.
+
+Defaults are 120 seconds per native capture, 90 seconds for attribution and
+300 seconds per derivative job. Capture/derivative limits accept integers 1–600;
+attribution accepts 1–300. These remain **phase limits**; C162 adds an optional
+[shared cooperative allowance](#shared-prepared-repair-allowance-c162), not a hard
+wall-clock deadline. Underlying adapters own child cleanup. The new append-only
+`progress.jsonl` and schema-1 `repair_execution.json` under
+`cif-prepared-bundle-repair-execution-v1` are diagnostic execution records, not
+durable process identities or authorization to retry. Incomplete output requires
+independent ownership/recovery handling; no new job may infer inactivity from it.
+
+A completed report carries exact relative receipt/plan/runtime references and
+the independent source/selection reports. The authoritative selected artifact
+is the unchanged public runtime bundle; use its existing reader to revalidate
+source/site, full identities, attribution, derivatives and model/CIF/PHIL choice.
+It remains readable after the execution directory and historical paths are gone.
+No new public runtime policy, existing schema migration, ordinary PostMR call,
+ReadySet/Coot execution or diffraction refinement is introduced. Scientific
+phosphate-state authority and Q05/Q06/Q13 remain separate.
+
+Actual Phenix **2.2.1-6174**, dispatcher **2.2.1**, executes the C159 PDU/5PC
+prepared control through the maintained function. Both original and repaired
+derivatives pass. Normal attribution selects the repair; a deliberate one-second
+attribution timeout retains the failed record and selects the independently
+qualified original. Both public bundles cold-replay after relocation, with 903
+files unchanged and historical code/science/SDK access and execution denied.
+This is a separated-monomer numerical control, not a physical pair, polymer,
+experimental phosphate-state decision or diffraction refinement.
+
+Validation and exact native/full-suite results are recorded under
+`prepared_repair_execution_2026_11_02` in the
+[technical ledger](cif-linked-native-registration-evidence.json).
+
+### Exact-source retained acquisition fallback (C159)
+
+The optional `retained_snapshot` argument to `resolve_generated_dictionary`
+provides an explicit older numerical candidate on a generation-recipe **MISS**.
+Current hits and stale entries under the generation recipe retain their existing
+precedence; an unused fallback path is not read. There is no directory scan,
+basename search, automatic retry or catch-all exception-to-success path.
+
+The existing snapshot reader independently validates retained source, numerical
+bytes, recipe, native evidence and stopping provenance. A request rebuilt from
+the current selected source and authority must equal the complete original
+request; even changed source comments/bytes refuse. The original and requested
+explicit bond-representation permissions must match. This is not the more
+permissive C68 source projection, and it never changes a protonation/phosphate
+state, adds OP3 or substitutes a source on the basis of component name alone.
+
+The existing resolver first consults the **original recipe's** cache. If needed,
+it imports the explicit snapshot using its original recipe and generator.
+Complete current consumer/policy evidence may be reused. Otherwise the existing
+native adapter qualifies disposable source/candidate/consumer copies; all input
+and retained-snapshot bytes are checked afterward. Missing qualification returns
+`REQUALIFICATION_REQUIRED` without writes. Invalid or failed evidence refuses
+without generation and retains partial qualification output. Snapshot, store,
+qualification and generation scopes cannot overlap the retained snapshot.
+
+Publication keeps the actual selected recipe/producer in the manifest and
+preserves original convergence, stopping, diagnostics and notes. It does not
+credit the newly requested builder for old numerics or publish those bytes under
+the generation recipe's key. Existing snapshot readers resolve the independently
+frozen output without the previous snapshot, cache, SDK or generation directory.
+All schemas remain unchanged. A current fallback may be reused even when a
+previous generation allowance is exhausted; it creates no new generation
+attempt and leaves the failed request's bytes/timestamps unchanged.
+
+Actual Phenix **2.2.1-6174**, dispatcher **2.2.1**, requalifies the recorded C153
+PDU and 5PC candidates at both source and saved-candidate coordinates: four
+isolated executions, each passing all 21 checks, with matching covalent proxy
+signatures. The consumer descriptor change is a same-installation control, not
+a software upgrade. Verified current reuse and subsequent cache hits prohibit
+native execution. Cold imports/hits pass after relocating an owned checkout and
+removing its original path, with historical science/SDK reads and subprocesses
+denied. C158's failed PDU attempt and all parent evidence remain unchanged.
+A no-execution compatibility replay feeds the new snapshots through C153 site
+preparation and reproduces its model, ordered CIF/PHIL bytes and full graph plan
+exactly. This does not inherit whole-bundle native/derivative qualification.
+Exact commands and hashes are in `retained_acquisition_2026_11_02` in the
+[technical ledger](cif-linked-native-registration-evidence.json).
+
+This closes the explicit retained-candidate bridge, not Q04 as a whole. Graph-
+selected repair composition, acquisition-wide ownership/budget and source
+discovery remain open. No ordinary caller changes, linked-site/model adoption,
+experimental phosphate-state qualification or diffraction refinement occurs.
+
+### Durable source-generation requests and attempts (C157)
+
+`cif_generation_attempt.generate_source_candidate_attempt` wraps the existing
+source-preserving generator with one explicit logical request. Callers supply
+the selected installation/dispatchers, freshly pinned API/source evidence,
+declared source/component, recipe and request directory. The request freezes
+source bytes, component, dialect, representation policy, optimization steps,
+per-attempt timeout, producer version, installation-relative dispatcher/source
+hashes and an allowance of **one to five attempts** (default two). Snapshot
+locations and caller-absolute paths do not define chemical/request identity.
+Environment contents are not serialized. Pins are checked before reservation
+and after generation; this is not a snapshot of the entire installed SDK.
+
+Schema 1 / `cif-source-generation-request-v1` persists `request.json` and
+`inputs/source.cif`. A persistent `request.lock` is never unlinked. Under that
+nonblocking lock, each explicit call reserves `attempts/attempt-0001/` (then
+0002, etc.) and publishes an immutable attempt UUID, request digest, coordinator
+identity and relative output reference before generation. Every reservation,
+including a failed or empty attempt, consumes the frozen allowance. Each attempt
+has its own `generation/` directory, containing the unchanged scientific receipt
+and C156 phase records. Every phase binds the parent request digest, attempt
+digest and attempt UUID; a stopped record from an earlier same-source attempt
+cannot stand in for the current worker. The return value carries the original generation result
+and a `request_directory`-anchored reference to that directory. This API is a
+building block for Q04; legacy one-shot callers keep their original output layout.
+
+`inspect_source_generation_request` never creates a lock, edits evidence, replays
+commands or signals a saved PID. It validates request/source, consecutive attempts,
+coordinator/phase ownership, completion bindings and receipt hashes. `AVAILABLE`
+is advisory: the modifying API rechecks all attempts while holding the lock.
+`retry_authorized` is always false on inspection. `BLOCKED` includes live workers,
+live coordinators and unknown publication gaps. `EXHAUSTED` is a stopped request
+with no remaining reservations. Whole-attempt activity includes surviving workers;
+`coordinator_activity` separately describes an unsealed coordinator observation.
+
+A sealed attempt proves this generation call returned or raised after its known
+workers stopped, even if the hosting caller remains alive. Without that seal,
+**both** coordinator inactivity and inactivity of every recorded worker group
+are required for a fresh attempt. A stopped phase alone is insufficient. Missing
+prelaunch/worker ownership stays unknown, even after coordinator death. Recovery
+never fills in the old completion record. Unexpected files, symlinks, changed
+source/policy/native pins and mismatched records refuse. Request destinations
+normalize dot segments before containment checks, preventing an alias from
+placing request files inside the selected installation. Checksums detect accidental
+corruption, not hostile rewriting of all evidence. All callers coordinating one
+logical request must use the same directory; separate directories are separate
+requests, not a global source-deduplication service.
+
+Coordinator checks do not assume PID equals process-group ID. Local PID absence,
+a changed known boot or a changed comparable start marker can prove the saved
+coordinator gone. Permission failures, foreign hosts and incomparable markers
+remain uncertain. `ps` markers use UTC and C locale, with a distinct representation
+tag; old locale-dependent markers cannot authorize recovery through a mismatch.
+Worker groups retain their existing conservative checks and live-handle cleanup.
+Completion records are observed before their dependencies, so a completion
+published mid-read cannot be paired with an earlier worker observation.
+Sealed requests replay offline after relocation without OS process probes.
+
+The allowance bounds the number of explicit native generation attempts, each
+with the C156 shared help/build timeout; preparation/publication and bounded
+cleanup add elapsed time. There is no automatic loop, overall acquisition wall-
+clock deadline, cache selection, source-discovery ownership, requalification or
+adoption here. Process completion does not establish convergence, chemical
+correctness, a usable fallback or refinement readiness. Q04 still owns composition
+with cache-first resolution and other native adapters; Q05 owns ordinary adoption.
+No CLI/dependency/cache/checkpoint migration or scientific acceptance change.
+
+Validation and exact local evidence are recorded under
+`source_generation_attempts_2026_11_02` in the
+[technical ledger](cif-linked-native-registration-evidence.json). Full regression
+remains a separate integration gate; this checkpoint uses focused validation.
+
+### Durable source-generation process evidence (C156)
+
+`generate_source_candidate` now delegates both the installed help probe and its
+native builder to the campaign-owned command runner. Each invocation reserves
+`execution/capabilities/` or `execution/candidate/` inside the already fresh
+candidate directory. Atomic checksummed schema-1 records under
+`cif-source-generation-process-v1` persist a UUID, source/component context and
+command provenance **before launch**, then the owned child identity, then a
+completion record only after the group is verifiably stopped. Logs retain their
+existing filenames; the candidate receipt's normal inventory includes the new
+records. Saved commands and absolute executable paths are provenance, never
+instructions to replay or locate scientific inputs.
+
+`inspect_generation_process(candidate_directory, phase)` reads this evidence
+without creating files or repairing history. It reports `NOT_RECORDED` for old
+outputs, `UNKNOWN` for incomplete publication or unidentifiable activity, `LIVE`
+for a live recorded group, `STOPPED_UNFINISHED` for a dead group without a sealed
+completion, and `STOPPED` for validated completion evidence. Unfinished local
+records may require operating-system liveness probes; sealed records replay
+offline without the original SDK or paths. A copied foreign live identity stays
+unknown. This checksummed evidence detects corruption, not hostile rewriting.
+
+The shared live-handle implementation defers interruption during spawn, handles
+SIGTERM/Ctrl-C and stops its owned process group on timeout or callback failure.
+It never signals a saved identity. A hard kill before identity publication remains
+unknown; missing output does not imply that the worker stopped. Every log/phase
+is created exclusively and prior partial output is preserved. Help and builder
+share one configured execution budget; bounded termination grace and filesystem
+publication can add elapsed time. Execution requires POSIX process-group support.
+
+**Boundary:** activity describes one invocation, not its whole acquisition
+coordinator. `retry_authorized` is always false. The logical acquisition identity,
+cross-output lock, dead-coordinator proof and fresh-attempt sequencing are now
+provided for explicit generation requests by C157 above. Cache-first fallback
+orchestration and ownership of the complete acquisition remain Q04. Source probing and other native diagnostic
+adapters have not all adopted this journal. No source-state choice, chemical
+repair, native-usability verdict, numerical threshold or automatic adoption is
+introduced. Old scientific captures remain unchanged and read as lacking this
+new process evidence; no cache/checkpoint migration or CLI change is required.
+
+Actual Phenix **2.2.1-6174** (dispatcher **2.2.1**) controls use the exact frozen
+C153 sources: 5PC produces a reviewable candidate within 120 seconds, while PDU
+is deliberately stopped at an eight-second execution budget. Both help/build
+groups have sealed stopped records and preserve source bytes. These are complete
+process-behavior executions, not dry-runs or new native-usability/refinement
+qualification. Synthetic controls also exercise interruption, hard-kill gaps,
+overlap, failed publication, unknown descendants and relocated inspection.
+See evidence key `source_generation_ownership_2026_11_02` in the
+[technical ledger](cif-linked-native-registration-evidence.json).
+
+### Captured derivatives with absent parallelity (C154)
+
+`audit_captured_mixed_gradients` now chooses its derivative policy from the
+actual authenticated native inventory. Nonzero parallelity retains the exact
+historical worker and numerical cores. Zero proxies use the separate embedded
+schema-1 `cif-captured-zero-parallelity-gradient-v1` policy. Its
+`cif-native-parallelity-absent-v1` plane record states `NOT_APPLICABLE`, with zero
+plane comparisons; this is not qualification of the native plane derivative or
+of the NASolve plane correction.
+
+C129 already provides an identity-only empty-family derivative capture through
+`inspect_native_bundle(gradient_indices=...)`. This adapter reuses the same
+finite-difference audit and saved-number replay, while connecting authenticated
+full-monomer captures to C152/C153 source-bound repaired selection/publication.
+It also retains C129's raw target/vector/proxy-count identity guard: without a
+plane contribution, the full baseline must match the raw native snapshot.
+C129's historical worker, schema and scope are unchanged.
+
+The zero path requires an empty parallelity detail list, integer zero inventory
+and energy counts, zero captured parallelity residual, and no declared custom
+parallelity request. A request with missing proxies is refused. The fresh native
+manager, source pins, exact coordinates, full monomer identities and fixed
+restraint policy must still reproduce. All eight families retain the unchanged
+finite-difference steps, tolerances, selected-atom probes and repeat checks.
+The all-family and parallelity evaluations must keep zero parallelity counts;
+every parallelity-only target and gradient must remain zero. Saved replay
+recalculates the audit and absence proof without executing frozen code or tools.
+No residue-name switch, dummy proxy, altered restraint or relaxed threshold is used.
+
+**Actual evidence.** Phenix 2.2.1-6174 (dispatcher 2.2.1) completes one fresh job on
+C153's preserved two-monomer, 77-atom PDU/5PC control before the separate NAR
+parallelity experiment. All 1,359 derivative evaluations pass at six sampled
+atoms with zero custom requests and zero parallelity proxies. The previously
+attributed twelve graph-selected torsion omissions, source H/charge, three sugar
+centres/component and legitimate terminal OP3 remain unchanged. Exact source,
+preparation and repair proofs select the complete repaired bundle for the C153
+public runtime format. Public API/JSON CLI replay agree after relocation; older
+C141 and nonzero-plane C153 publications retain their original proof.
+
+This closes Q04's demonstrated zero-parallelity derivative prerequisite. It does
+not close bounded acquisition/recovery, optional nonbonded-inventory captures,
+zero-context geometry trials or ordinary Phenix refinement. The legacy geometry
+adapter refuses this new derivative policy before reserving a job; endpoint
+qualification needs a separate implementation. The control is not a physical
+pair, linked polymer, mixed-scaffold phosphate-state choice or automatic adoption.
+No new generation, ReadySet, Coot, optimization or diffraction refinement runs.
+No checkpoint/cache migration or legacy-evidence rewrite is required. Older
+readers refuse the new worker/policy; upgraded readers still replay old capsules.
+
+### Source-faithful repaired runtime publication (C153)
+
+`cif_component_runtime.prepare_repaired_component_runtime_bundle(bundle,
+baseline_receipt, attribution_directory, output, *,
+repaired_gradient_directory=None, original_gradient_directory=None)` freezes one
+complete source-bound choice from the C152 decision adapter. It copies the exact
+preparation, baseline capture, maintained repair chain and supplied derivative
+capsules into a fresh bounded evidence tree. The unchanged model, ordered CIFs
+and PHIL are published together only after replay. A retained original needs its
+own passing derivative evidence; missing or failed proof never becomes usability.
+
+Schema 1 / `cif-qualified-repaired-component-runtime-bundle-v1` has a distinct
+policy identifier. Existing ReadySet publication retains its original policy,
+manifest semantics and selection path. The public `resolve_runtime_bundle` and
+`nasolve cif-doctor assess --bundle PATH --json` recognize both. Readers derive
+selection from the frozen evidence, compare all selected bytes/order and reject
+changed or rehashed resources, substituted sources, incomplete proof, extra roots
+and path escapes. They run no native tools or captured programs. No migration,
+new CLI argument, automatic cache acquisition or checkpoint adoption is needed.
+
+**Native evidence.** Exact C98 source hashes identify previously qualified PDU
+and 5PC entries in the local dictionary store. Both independently requalify at
+source and generated seed coordinates. Source phosphate H/charge and all three
+sugar configurations per component are preserved before and after graph-selected
+repair. In a separate 77-atom/two-monomer control with declared complete terminal
+phosphates, the source/preparation gate, full native identity, maintained repair
+attribution and fresh sampled derivatives agree. Six undefined torsions per
+component are omitted (12 total); hydrogen-dependent rows account for the larger
+count than the six omissions in the older hydrogen-free mixed scaffold. Every
+other definition and the one explicit NARestraints parallelity request remain
+unchanged. The separated monomers and that numerical request make no physical
+stacking, base-pair or polymer claim. The repaired bundle is selected and exported;
+API and JSON CLI replay agree after the owned publication is renamed away, with
+original evidence, cache, SDK access and process execution denied.
+
+Phenix 2.2.1-6174 (dispatcher 2.2.1) executes these controls. A fresh PDU builder
+attempt reaches its 300-second limit without a candidate; its partial output is
+preserved. A fresh 5PC build also passes four isolated native checks, before and
+after graph repair at source and generated coordinates. That output is retained
+but is not the selected cached candidate. Reuse avoids
+another PDU retry. At C153 the standalone derivative protocol required at least
+one parallelity proxy and excludes the optional nonbonded-inventory capture
+extension; the earlier control/preflight attempts remain recorded. Supporting
+those additional contexts is Q04 qualification coverage (C154 closes the zero-parallelity derivative case), not permission to insert
+restraints into experimental models or weaken the numerical test.
+
+This closes Q03's diagnostic source/repair/publication composition. It does not
+resolve the intended linked-scaffold phosphate state: the old C151 numerical
+bases still differ from the retained sources, and are not retroactively approved.
+Q13 owns explicit state/operation authority; Q07 owns the ordinary mixed scaffold.
+Q04 next connects bounded recovery and usable fallback to ordinary acquisition.
+No ReadySet, Coot, diffraction refinement or model adoption runs in this control.
+
+### Source-bound repaired-bundle decision (C152)
+
+`inspect_dictionary_bundle_repair(bundle, baseline_receipt, attribution_directory,
+repaired_gradient_directory=..., original_gradient_directory=...)` is a read-only
+composition gate. The maintained component-bundle reader replays independent
+stored source qualification and site projection. The existing whole-model native
+checker binds its preparation baseline and prepared result. The maintained repair
+reader replays the complete graph-selected omission chain and native attribution.
+Every repaired component must own that exact original dictionary; model bytes,
+ordered dictionaries, PHIL, consumer and complete residue identities must bind
+through every stage. Extra stages or a legacy identity downgrade refuse.
+
+Derivative evidence is independently read and must contain the exact final repair
+capture, or the exact prepared original capture for a fallback. Missing/prepared/
+failed derivatives are unqualified alternatives, not permission to continue.
+Malformed or mismatched evidence raises. The existing component selection policy
+prefers the repaired bundle only after all gates pass; otherwise a separately
+verified original can remain. Every component must select the same bundle, so
+no unchecked mixture of alternatives is assembled. Targets under different
+objectives and geometry convergence are not ranking inputs. Source-relative
+stereochemistry retains the existing policy's explicit limitations.
+
+`repaired_dictionary_bundle_inputs(...)` repeats the checks and returns the
+unchanged prepared model, complete ordered CIF/PHIL paths and review together;
+it refuses when neither bundle is usable. A downstream owner still must freeze
+and revalidate these inputs before execution. Schema 1 /
+`cif-source-bound-repaired-bundle-selection-v1` is an additive inspection result,
+not a new immutable runtime publication. No native tools, ReadySet, optimization,
+C141 publication, checkpoint adoption or diffraction refinement run in this API.
+The existing unavailable-native-charge exception remains diagnostic only; this
+adapter does not infer protonation or absolute CIP.
+
+**Evidence boundary:** synthetic upstream-verifier regressions cover successful
+repair, verified fallback, no usable result, changed sources, wrong owners/order,
+missing/copied monomers, mismatched derivatives, relocation and concurrent source
+changes. Actual C139 source-qualified preparation and C151 repair/derivative
+capsules replay after relocation with original/SDK access and execution denied.
+Combining those different models/dictionaries correctly refuses. This is not a
+positive native demonstration of a matching repaired/source-qualified bundle.
+
+A direct reassessment of the exact retained C98 PDU/5PC source files against C151
+base dictionaries reconfirms a chemical-state difference: HOP2/HOP3 are present
+in those sources and absent from the numerical bases, while OP2/OP3 charges are
+0 versus -1. The torsion repair preserves that pre-existing state. Source-relative
+configuration is preserved, but neither numerical success nor a disappearing
+internal leaving group authorizes the separate OP2 protonation change. This does
+not prove either source state is chemically wrong or recommend adding hydrogens.
+Q03 next needs explicit source/site-state authority and a matching qualified
+preparation, then a positive native join and C141 publication. Q13 retains the
+broader chemical-state policy work; ordinary adoption stays Q05.
+C153 subsequently closes the diagnostic source/repair/publication composition
+with exact-source cached candidates in a separate complete-monomer control; it
+does not authorize the C151 mixed-scaffold state transition.
+
+### Full native capture bridge (C151)
+
+The captured derivative, maintained linear-attribution and geometry adapters now
+accept the existing `cif-native-full-monomer-inventory-v1` contract. An explicit
+`full_monomer_inventory=True` request must already have an authenticated native
+receipt, maintained monomer worker, complete atom/residue mapping and explicit
+`use_ncs_to_build_restraints=False` PHIL. The adapter neither invents missing
+copied-chain identities nor silently changes that native parameter.
+
+Derivative and geometry preparation compose the existing full-monomer worker
+around the unchanged native-energy worker, retain its policy in preparation,
+and hash the resulting worker/specification. Fresh numerical jobs must reproduce
+the captured full identity proof. Geometry endpoint readback requests the same
+full policy and verifies exact residue identities alongside its existing model,
+ordered CIF/PHIL, source-pin and native-definition gates. A valid legacy endpoint
+cannot substitute for a full-policy endpoint. The attribution adapter reuses this
+validated input path; its unchanged staged gates still prove each planned removal
+and the complete energy/gradient difference.
+
+Existing schema-1 capture/derivative/geometry/attribution policies retain their
+meaning. Full mode adds the already defined monomer policy to preparation and
+requires its existing native proof; no default, checkpoint or cache migration is
+introduced. Old plain captures remain valid under their old scope. Offline readers
+rederive worker/specification and identity checks without executing saved code or
+opening historical installation paths. Renamed-away originals, proof removal,
+rehashed wrong identities, copied-chain policy and endpoint downgrades are covered.
+
+Seven complete native processes under Phenix 2.2.1-6174 capture the three repair
+stages, rerun maintained attribution and derivatives, run a five-iteration geometry
+transfer control and capture its endpoint. All three 865-atom/42-residue captures
+retain exactly the corresponding C150 coordinates, native definitions, energy and
+201 custom restraints. Six removed-proxy references reproduce C150 exactly;
+target delta remains 15.11250671668131. Derivative and geometry mechanics checks
+pass, with all 42 endpoint identities retained. Five iterations do not establish
+convergence; `INPUT_MODEL_UNCHANGED` remains selected and its usability is not
+established by this numerical capsule. No ReadySet, Coot or diffraction refinement
+is run. Independent source chemistry, usable fallback and selected-bundle binding
+remain [Q03](cif-doctor-completion-queue.md#q03--qualify-repaired-dictionaries-and-select-a-usable-bundle).
+This closes Q01 compatibility, not chemical permission or ordinary adoption.
+
+### Maintained captured linear-torsion attribution (C150)
+
+`audit_captured_linear_attribution(bundle, native_receipts, phenix, output)`
+closes the caller-owned kernel-execution boundary of the C149 captured gate. It
+freezes the exact immutable repair bundle and every consecutive native receipt,
+then runs one maintained native worker. Passing `phenix=None` prepares evidence
+without execution and cannot produce a numerical pass. A new output directory is
+mandatory; failed, timed-out and partially written attempts are never resumed or
+overwritten. Timeouts are explicit integers from 1 to 300 seconds (90 by default).
+The worker is limited to 128 removed proxies and evaluates each twice through the
+existing maintained single/accumulated dihedral evaluator.
+
+Before output reservation, each native capture must contain exactly its recorded
+files; unrelated local material is never absorbed. Before execution, exact
+graph-selected inventory deltas must qualify at every stage. Model coordinates, ordered dictionary bytes, PHIL bytes, namespace,
+dictionary authority, Phenix version/executable and native energy-source pins
+must agree. No stage is skipped and no proxy is selected from a geometry score.
+The report freezes maintained worker/core bytes, a derived per-proxy specification,
+source hashes before/after execution, the completed process outcome and repeated
+raw references. The existing complete energy/gradient gate independently requires
+those values to explain the entire native change, including terms, counts and the
+scattered whole-model gradient. Unknown/unrelated inventory changes still refuse.
+
+`read_captured_linear_attribution(directory)` reconstructs the specification and
+checks the maintained code, frozen inputs, exact types and artifact inventory,
+then rederives numerical qualification. It neither imports a captured worker nor
+opens historical SDK paths. Rehashing a modified worker, source pin, numerical
+reference or claimed qualification does not make it valid. Additional files and
+empty directories cannot be hidden in a refreshed manifest. A relocated original
+can be gone; every operational artifact uses the declared
+`captured_linear_attribution_directory` anchor with size/hash checks.
+
+Schema 1 / `cif-captured-linear-torsion-attribution-v1` reports
+`CAPTURED_LINEAR_ATTRIBUTION_PASS` only for a completed maintained job whose
+complete attribution replays. The outer `kernel_execution_authentication` field
+then records `MAINTAINED_FRESH_NATIVE_JOB`; the embedded unchanged pure-gate result
+retains its caller-responsibility marker because it does not authenticate a job
+on its own. Prepared or failed jobs remain `PREPARED_ONLY`/`REVIEW` with no qualified
+kernel claim. This is provenance and numerical consistency within the local
+receipt model, not cryptographic remote attestation.
+
+**Actual control:** one complete fresh Phenix 2.2.1-6174 kernel process (dispatcher
+2.2.1) consumes the frozen C149 original/intermediate/final captures. All six
+active references, three each for graph-selected 5PC and PDU, exactly reproduce
+the prior values. The total target change remains 15.11250671668131. The 865-atom
+model, all dictionaries except the already recorded torsion omissions, phosphate/H
+states and all custom pair/stack requests are unchanged. No new ReadySet, native
+manager capture, geometry optimization, Coot or diffraction refinement runs.
+Cold replay succeeds with historical-run/SDK reads and process execution denied.
+
+This additive Python diagnostic does not establish source-chemical authority,
+derivative correctness, input-model usability, convergence or scientific approval.
+C149's coordinate endpoint is still unconverged and unadopted. The next integration
+gate remains composition with source-qualified component/preparation and selected-
+bundle evidence, including a genuinely qualified fallback. One concrete seam is
+capture policy: this adapter inherits C147's linked energy/policy capture contract;
+the component-runtime path requires additional full-model monomer evidence.
+At C150 those extended captures were rejected rather than silently stripped or
+treated as equivalent. C151 explicitly validates and retains that richer contract
+through numerical jobs and endpoint readback; source-qualified selection remains Q03. Existing pure gates,
+native schemas, CLI/defaults, cache entries and checkpoints require no migration.
+See `captured_linear_attribution_2026_10_31` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
+
+### Declared-linear repair across an ordered bundle (C149)
+
+`prepare_linear_torsion_bundle(dictionaries, modeled_components, output)` makes
+an immutable explicit candidate bundle. It scans every modeled component with an
+explicit dictionary provider, using declared elements, bond orders and linear
+angle targets. It never selects by a laboratory code, family label, current angle
+or optimizer score. Components supplied only by the installed library are recorded
+as `NO_EXPLICIT_DICTIONARY`, not rewritten or declared clean. Ordinary graphs
+without a declared triple are recorded without edits. Unsupported triple chemistry,
+ambiguous providers, duplicate graph identities or incomplete linear declarations
+refuse before the requested output is reserved.
+
+The existing single-component rule requires a declared C–C or C–N triple,
+unambiguous neighboring connectivity and an explicit 180-degree angle with a
+positive finite ESD. A removable torsion must contain that declared-linear
+three-atom segment and be a unique consecutive graph path with supported numerical
+parameters. Torsions elsewhere remain untouched. A valid triple with no matching
+torsion produces no change. All other parsed fields, including charges, hydrogen
+attachments, stereochemistry, bond/angle targets and unknown categories, remain
+exact; unrelated data blocks retain their original text. Affected blocks may be
+reformatted by the existing renderer. This does not infer or repair protonation.
+
+Order is deterministic: original dictionary position, then component code within
+that dictionary. The code is a stable identity/order key, never a chemistry
+allowlist. Each step freezes its exact source, candidate, omitted rows and complete
+before/after ordered bundle. Multiple components in one file are handled by
+consecutive candidates, so a later step retains earlier verified omissions.
+Bounds are 1–64 explicit dictionaries, 1–128 modeled codes and at most 32 repair steps.
+Schema 1 `cif-declared-linear-torsion-bundle-v1` owns these snapshots;
+`read_linear_torsion_bundle(directory)` rebuilds every candidate and the entire
+plan from frozen inputs, checks exact types and inventories, and rejects rehashed
+extra files/directories. Original paths and an installed SDK are unnecessary.
+The plan remains `CANDIDATE_REVIEW` or `NO_CANDIDATE`; later qualifications are
+separate records and never rewrite it into an adopted result.
+
+`qualify_linear_torsion_bundle(directory, inventories, references)` requires
+one more native inventory than repair steps and a complete repeated single-proxy
+reference set for every consecutive transition. It reuses the unchanged C141/C142
+exact linked-inventory and fixed-coordinate energy gates. Every modeled occurrence
+of the selected component must lose exactly the complete planned definition/proxy
+set; all other inventory fields, including future unknown fields and custom
+pair/stack restraints, must compare exactly. The full energy terms, counts and
+scattered gradient delta must equal the omitted proxies' repeated native values.
+Skipping an intermediate state or changing an unrelated category refuses the chain.
+This pure gate does not authenticate external execution by itself.
+
+`qualify_captured_linear_torsion_bundle(directory, native_receipts, references)`
+adds that native-consumption boundary. It authenticates every native receipt and
+requires the exact planned dictionary bytes/order, identical model and PHIL bytes,
+consumer version/executable, namespace and dictionary authority throughout.
+Its stage references use declared numbered anchors corresponding to the supplied
+receipt directories, with sizes/checksums. The raw kernel execution that generated
+single-proxy references remains the caller's responsibility; the numerical gate
+checks their complete repeated values against the authenticated native deltas.
+The live runner records its maintained conditioning core, source pins, deadline
+and execution, and cold replay checks that evidence without running captured code.
+Neither API launches Phenix, changes a model or claims source-chemical approval.
+
+**Mixed-scaffold validation.** The 17 modeled codes have 13 explicit providers;
+DA/DC/DG/DT remain installed-library context. Only 5PC and PDU have declared triples
+in those explicit graphs. The planner removes six complete dictionary torsion rows
+from each; three per component are active in the hydrogen-free model. Fresh
+original/intermediate/final native captures show only those six active proxy
+removals, with all other captured definitions and all 201 custom requests intact.
+The total fixed-coordinate target change is 15.1125067167, exactly attributable to
+the removed proxies; full gradient errors are about 1.2e-14 and 9.1e-13 for the two
+steps. Inactive H-dependent rows are retained in the omission evidence rather
+than mistaken for missing native proxies. No atom or protonation change occurs.
+
+The final changed objective passes C147 complete-policy sampled derivatives with
+all 58 parallelity proxies retained, using the inherited corrected-parallelity
+evaluator. This does not qualify unmodified Phenix gradients or ordinary
+diffraction refinement. It then passes C148 bounded geometry checks at full
+precision and PDB precision. A fresh endpoint native readback preserves all exact
+changed definitions and custom policy and matches the rounded target. The trial
+uses 1000 iterations/1043 optimizer calls with no error but **does not meet the
+native convergence criterion**. Within this fixed changed objective, target
+5966.4021 falls to 2791.7798 (2794.5197 rounded); this is not an unqualified
+cross-objective comparison to C148's original target.
+
+ATL's incoming/outgoing links become 1.6060/1.6101 Å, with all eight junction
+angles still defined. Its O4–N6 contact improves from 2.2767 to 2.6919 Å, while
+N3–N1 moves from 2.7413 to 3.0088 Å. All seven source-handed triples across four
+ATL centres remain consistent, and captured native chirality has no sign conflicts.
+The fixed phosphate/H state survives and no virtual OP3 is written. These are
+specific descriptive observations, not absolute CIP, sugar-pucker, full clash or
+scientific qualification. The complete scaffold retains substantial pair strain,
+including a roughly 4.957 Å CGY–DX contact against a 2.8 Å target. The endpoint is
+therefore a **mechanics-pass, unconverged diagnostic candidate**; the selected
+model remains the unchanged input and automatic adoption is false.
+
+All live native calls used Phenix 2.2.1-6174, dispatcher 2.2.1. No ReadySet, Coot,
+diffraction refinement, installed-library modification, production/default change
+or checkpoint migration was run. This explicit repair/qualification layer is an
+engine building block for faithful ReadySet integration, not a replacement for
+ReadySet or an ordinary automatic-repair claim. Source/chemical authorization,
+achieved geometry and scientific acceptance remain separate from numerical proof.
+See `declared_linear_torsion_bundle_2026_10_31` in the
+[evidence ledger](cif-linked-native-registration-evidence.json) for exact commands,
+focused validation, relocation checks and anchored local evidence.
+
+### Bounded geometry from a qualified captured manager (C148)
+
+`trial_captured_geometry(gradient_directory, phenix, output,
+max_iterations=1000, timeout_seconds=600)` consumes a complete passing C147
+capsule. It freezes the exact proof and native capture and reuses the maintained
+fixed-objective geometry worker, corrected parallelity evaluator, native optimizer,
+serialization and endpoint gates. Eligibility comes from authenticated numerical
+and manager evidence, without a component-code or historical-recovery branch.
+`phenix=None` prepares a separate attempt without native execution.
+
+The separate candidate permits **all captured coordinates to move**. The original
+model and evidence remain immutable; all atom identities, numerical definitions,
+ordered dictionary/PHIL inputs, namespace, explicit custom restraints and installed
+source pins stay fixed. This is not a restrained selection with frozen bystanders.
+The API accepts 1–1000 iterations and a 1–600-second geometry deadline, with at
+most 20 times the iteration bound in optimizer calls. A derivative-qualified
+endpoint alone permits serialization and one additional native readback, bounded
+by the smaller of the requested deadline and 60 seconds. Thus two native process
+calls are the maximum. The existing 1e-5 native convergence criterion and sampled
+derivative tolerances are unchanged. Stopping/convergence is reported separately
+from mechanics; exhausting a budget is not renamed convergence.
+
+Schema 1 `cif-captured-fixed-geometry-trial-v1` binds the exact C147 report digest,
+owned capture/proof, preparation, job and optional endpoint/readback files.
+The unchanged worker's legacy archive-digest field carries that report digest;
+it is not a claim that this capsule came from a historical archive.
+`read_captured_geometry_trial(directory)` reauthenticates the nested capture and
+initial numerical proof, rederives preparation, and checks endpoint eligibility,
+serialization and fresh native mechanics where qualification reached those gates.
+It refuses altered maintained workers, namespace, copied numerical sources,
+rehashed extra files/directories and inconsistent decisions. It never launches an
+SDK process. Failed endpoints remain REVIEW; recording their evidence is not a
+complete derivative qualification. The extra torsion diagnosis below replays its
+own saved numerical samples separately.
+
+A mechanics pass requires exact serialization, unchanged manager/policy and native
+identities, full-precision and rounded derivative checks, nonworsening fixed target
+and a fresh rounded native target match. Even then, the decision remains
+`INPUT_MODEL_UNCHANGED`: source chemistry, achieved geometry and adoption need
+separate evidence. In particular, the generic API cannot declare the input itself
+usable merely because a trial failed. Its input usability is
+`NOT_ESTABLISHED_BY_NUMERICAL_CAPTURE`; chemistry and scientific qualification
+remain `NOT_ASSESSED`. It preserves `CAPTURED_EXPLICIT_POLICY` without asserting
+NARestraints authorship. Launch failures/timeouts preserve their own attempt, and
+retries need a fresh output. Existing CLI/default/cache/checkpoint schemas and
+older workers/readers are unchanged; no migration or automatic repair is added.
+
+**Complete native trial, Phenix 2.2.1-6174 (dispatcher 2.2.1).** The connected
+865-atom, 42-site ATL scaffold retains its 26 dictionaries, 15 PHIL files,
+201 custom requests and 58 parallelity proxies. The 1000-iteration/300-second
+attempt stops after 29 iterations and 56 calls with a rounding-error line-search
+failure. The fixed target falls from 5981.5146 to 4522.1545 (4568.0871 after PDB
+rounding), but both endpoint forms fail the dihedral and total derivative families.
+Bond, angle, chirality, nonbonded, planarity and parallelity samples pass. The
+adapter therefore writes **no coordinate candidate**, performs no endpoint native
+readback and makes no adoption. Lower energy is not an escape from this gate.
+
+A separate descriptive audit of saved coordinates finds all seven source-handed
+triples at ATL's four declared centres consistent, including the four-heavy-neighbor
+C4′ centre, and no captured native chirality sign conflicts. All eight junction
+angle definitions remain. Incoming/outgoing distances change from 1.6104/1.7435 Å
+to 1.6069/1.6195 Å, while the short O4–N6 contact remains about 2.276 Å. This does
+not establish acceptable pair, stacking, ring, clash or overall geometry. All 865
+atoms move in full precision; preservation refers to original files and definitions,
+not immobile bystanders. Frozen phosphate/H/charge inputs remain unchanged and no
+virtual OP3 atom is materialized; no new protonation or absolute-CIP claim follows.
+
+**Diagnosis, not repair.** The unchanged torsion selector chooses six near-linear
+proxies and two disjoint gradient controls by geometry and gradient evidence.
+The six near-linear proxies belong to PDU D:5 and 5PC A:4; the smallest sine is
+about 0.000203. A separate complete fixed-coordinate native diagnostic reproduces
+the saved initial/full/rounded dihedral families and selected-versus-complement
+group attribution. Coarse samples fail but sampled finer steps agree. This supports
+poor conditioning, not a demonstrated native derivative bug or requalified endpoint.
+Both selected source dictionaries explicitly declare a carbon–carbon triple bond
+and its 180-degree neighboring angles, satisfying the existing read-only
+`_linear_triples` chemistry screen. No source or torsion row is changed here.
+The next step is to compose independently qualified graph-based candidates into a
+fresh complete objective, prove exact allowed changes/energy attribution, recheck
+all derivatives, then retry geometry in a new attempt. Never omit torsions merely
+because coordinates happen to be nearly linear, loosen a tolerance, or switch on
+a PDU/ATL name test.
+
+Focused chemistry/workflow validation passes **1586 tests + 36 subtests**; 173
+closely affected tests pass separately. No full suite, ReadySet, Coot, diffraction
+refinement or adoption was run. The raw scientific/native artifacts remain local.
+Exact commands, versions, hashes, preserved attempts and cold relocation results
+are recorded under `captured_fixed_geometry_trial_2026_10_31` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
+
+### Generic captured-manager derivative qualification (C147)
+
+`audit_captured_mixed_gradients(native_receipt, phenix, output,
+timeout_seconds=...)` accepts a preserved, authenticated native bundle capture.
+It does not require an ATL residue, a named chemistry family, or C98 recovery
+ancestry. Eligibility comes from the literal model/native identity, repeated
+finite energy evidence, supported complete explicit restraint policy and bounded
+parallelity inventory. `phenix=None` prepares without launching a process.
+
+The adapter freezes the validated capture, ordered dictionaries and PHIL files,
+including the recorded PHIL namespace and installed-library authority. It stages
+maintained workers and reuses the unchanged mixed-gradient, gradient-audit and
+parallelity-correction cores; captured executable text is never trusted for
+execution. A fresh native bootstrap must reproduce the exact manager, coordinates,
+restraint policy and pinned numerical sources. Up to six probe atoms come from the
+largest absolute nominal bond/angle deviations, with the existing first-atoms
+fallback only when no measured endpoints are available. Global and family directions and every active parallelity proxy remain
+included. Nothing is removed to make the derivative check pass.
+
+Schema 1 `cif-captured-mixed-fixed-gradient-v1` owns the separate capture, preparation,
+job and qualification inventory. Bounds are one native process, 1–600 seconds,
+2000 energy evaluations and 5000 plane-evaluation pairs, with 1–64 parallelity
+proxies. The original base linked policy/energy capture remains supported. The
+full-model adapter also preserves explicit identity evidence; C269 additionally
+carries C268's authenticated full-model atom-name observations into the same native
+manager reconstruction. Separate gradient/nonbonded augmentation of the capture
+remains unsupported. No mathematical worker or manager-equality check is relaxed.
+The inherited fixed-policy gate requires secondary-structure generation disabled
+and no competing automatic pair/stack origins. Special positions are refused by
+the numerical worker. Existing numerical eligibility and source-pinning limits
+remain in force; this is not a general crystallographic optimizer.
+
+`read_captured_mixed_gradients(directory)` authenticates the frozen capture,
+rederives preparation from maintained sources, and recomputes the full finite-
+difference and plane-order audit from recorded numbers. It validates all output
+files and directories, rejecting rehashed additions, duplicate JSON keys,
+changed workers/policies/source pins, fabricated qualification and incomplete
+attempts. It requires neither the original capture nor an installed SDK and never
+launches a process or edits the evidence. Launch failures and timeouts preserve a
+fresh attempt; retries must use another directory. The generic audit establishes
+**preservation of captured explicit policy**, not its author or chemical validity.
+NARestraints compiler/role evidence and source/native chemical qualification remain
+separate requirements. Existing capsule readers, CLI, defaults and checkpoint
+schemas remain unchanged; there is no migration or automatic adoption.
+
+**Connected ATL evidence.** The C146 865-atom, 42-site scaffold passes all sampled
+families with **1367 energy evaluations** and **3328 plane-evaluation pairs**.
+All **58** parallelity proxies, **201** custom requests, 26 ordered dictionaries,
+15 PHIL inputs, source pins and the complete manager remain exact. The six selected
+atoms include the stretched ATL–DZ outgoing junction and another scaffold outlier:
+selection follows numerical evidence, not residue labels. Native energy and model
+coordinates remain unchanged. This validates the declared corrected-evaluator
+scope; it does not certify unmodified Phenix parallelity gradients or refinement.
+The outgoing 1.743 Å bond and 2.277 Å pair contact still need a separately bounded
+geometry trial and fresh source/hand/policy/endpoint checks.
+
+**Independent related-component control.** The frozen NAR catalogue identifies
+**10C**, an alpha-L-lyxofuranosyl cytosine, and also lists related **9V9** (not tested
+here). 10C matches the same graph-defined 2O4C methylene-bridged furanose profile.
+Source-preserving generation retains all 36 atoms, 38 bonds, charges, H attachments,
+four declared centres (including C4′ with four heavy neighbors). The frozen source
+remains RNA LINKING; the generated isolated numerical candidate is non-polymer,
+so linked classification/reaction preparation remains a separate gate.
+Source-coordinate and generated-coordinate native checks both pass
+with the same covalent proxy signature. Two isolated generated 10C copies, translated
+20 Å apart, then pass the same capture API with one explicitly generated NAR
+parallelity restraint: **1359 energy evaluations**, **364 plane-evaluation pairs**.
+That is a numerical transfer control, not a physical stacking arrangement or a
+connected 10C polymer. Its source phosphate and H state are retained; no OP3/O3P
+rule or laboratory-code whitelist was added to the engine.
+
+All native executions used Phenix **2.2.1-6174**, dispatcher **2.2.1**. No ReadySet,
+Coot, diffraction refinement, geometry optimization or adoption was run. Cold
+replay of both complete capsules succeeds after the owned original disappears,
+with original/historical/SDK reads and external execution denied; all 168 frozen
+files retain bytes/timestamps and ten corrupted controls are refused. Exact
+commands, counts, scope and hashes are recorded under
+`captured_mixed_gradient_qualification_2026_10_31` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
+
+### Graph-bound connected furanose construction seed (C146)
+
+`prepare_furanose_bridge_seed(placement, output, endpoint_weight=...,
+max_base_displacement=...)` consumes an exact base-anchored placement capsule and
+writes a fresh diagnostic seed. The graph binds three acyclic single-bond rotors:
+ring-C4→exocyclic-C5, C5→O5 and O5→phosphate. Each cut must separate the phosphate
+and the explicitly declared leaving oxygen from the protected base and ring.
+No residue-code exception, sugar-hand inversion, ring deformation or phosphate
+protonation choice is introduced. The older FANA-specific API remains unchanged.
+
+The existing 27-start bounded torsion search supplies a proper whole-body fit.
+Its targets are the three declared NAR base-frame positions, host P and O3
+positions, and the incoming partner oxygen. That partner replaces the source
+leaving oxygen as a virtual fit point; the leaving atom is never emitted. The
+last three targets share the explicit endpoint weight (1–1000). The maximum
+movement of **every heavy base atom**, measured from the parent placement after
+PDB rounding, must stay within the explicit limit (greater than zero, at most
+5 Å). This is a post-search refusal gate: if the lowest-score sampled fit exceeds
+the limit, the writer refuses; it does not claim no feasible alternative exists.
+There is no global-minimum or native-energy claim. Pair/stack targets remain
+NARestraints' responsibility and are not replaced by this construction objective.
+
+All retained internal bond lengths/angles and every source-declared hand are
+checked, including all heavy-neighbor triples at four-neighbor centres. PDB
+rounding has a 0.002 Å bond-length tolerance; angle roundoff is reported. Only the
+selected site's coordinates change. All identities, element inventory and
+bystander records remain exact. Schema 1
+`cif-graph-furanose-bounded-bridge-seed-v1` freezes the parent placement, two search
+parameters, model, full-precision result, diagnostics and checksummed receipt.
+`read_furanose_bridge_seed` rederives everything offline, rejects extra files or
+directories, and never repairs an incomplete attempt. Existing placement and FANA
+capsules remain unchanged. No public CLI, default, migration or adoption changes.
+
+**Mixed-scaffold evidence.** With endpoint weight 1000 and a 2 Å base limit, ATL
+A:11 retains its bridge, four source centres/seven hand checks, RNA classification
+and nonreacting HO2P. Maximum base displacement is **1.315 Å**. The incoming gap
+changes **4.098→1.610 Å**; the outgoing separation changes **1.514→1.743 Å**. One
+complete Phenix **2.2.1-6174**, dispatcher **2.2.1**, interpretation now contains
+both 1.607 Å-target backbone bonds and all **eight** cross-link angles. All six
+projected numerical categories, all 42 site definitions, eight unaffected proxy
+categories and every bystander atom match the preceding control. Recompiling the
+changed pair/two stacks against the seed gives identical NAR policy text; all
+**201** requested and instantiated custom restraints still match exactly.
+Repeated fixed-coordinate energy/gradient evaluations are finite.
+
+**Limit of this result.** The outgoing bond remains stretched and ATL O4–DA N6
+shortens **2.536→2.277 Å**; N3–N1 changes **2.851→2.741 Å**. These observations
+prevent describing the seed as achieved or qualified geometry. Numerical finite
+difference checks, clashes and a fixed-objective geometry trial remain separate.
+Do not use the simple native-gradient capture by dropping parallelity: this
+scaffold needs the existing mixed/parallelity-aware numerical route, with exact
+current inputs and its declared corrected-evaluator scope. No ReadySet, Coot,
+diffraction refinement or automatic adoption is claimed. This is a reusable
+construction operation feeding those later gates, not ordinary automatic repair.
+Cold replay rederives seed, preparation and compiler, reauthenticates old/new
+native captures, preserves 158 files and rejects eight corrupted controls with
+original paths and SDK/execution unavailable. Exact evidence:
+`graph_bound_connected_furanose_seed_2026_10_31` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
+
+### Base-anchored whole-furanose placement and mixed ATL test (C145)
+
+`prepare_base_anchored_furanose_control(source, numerical, host_source, workbook,
+frame, output, code=..., context=..., base_frame_roles=[...])` is an explicit Python
+diagnostic for different-backbone substitution. It shares the source/port and
+immutable-output checks of the compatible-host adapter, whose behavior is unchanged.
+The caller supplies three distinct NARestraints base roles, not guessed atom names.
+Each host/target mapping is resolved independently. The first anchor must be the
+source glycosidic base atom; the other two must be bonded heavy neighbors. All
+anchors must remain in the separated base fragment after cutting the glycosidic
+edge, and corresponding elements/bond orders must match. This local geometric
+contract does not assert complete base chemical equivalence.
+
+A proper orthonormal three-point transform transports the complete target
+numerical geometry. Host sugar hand differences are recorded rather than used as
+an incompatibility veto on this explicitly chosen path. All target source centres
+remain mandatory, including every heavy-neighbor triple at four-neighbor centres.
+Rounding may change internal distances by at most 0.002 Å. Only the declared
+neutral incoming leaving oxygen/H and outgoing alcohol H are removed; other
+protonation, source classification and the bridged ring remain intact. Every
+bystander record is preserved. The result records anchor residuals and both
+junction distances; it performs no clash assessment or geometry optimization.
+
+Schema 1 `cif-base-anchored-whole-furanose-control-v1` adds `base_frame_roles` to
+its own frozen selection. `read_base_anchored_furanose_control` rederives chemistry,
+report and model offline and refuses incomplete, extra, forged or mismatched-policy
+capsules. Existing compatible-host capsules remain readable with their original
+policy. No public CLI, production default, checkpoint migration or adoption changes.
+
+**Mixed-scaffold evidence.** ATL replaces background DT at A:11, paired with DA
+B:5; the original eight requested pairs remain in the same 42-site scaffold. All
+bystander atoms are unchanged. ATL retains its bridge, four source sugar centres
+(seven heavy-neighbor hand checks), RNA classification and nonreacting HO2P.
+Base-anchor residuals are 0.000/0.045/0.029 Å. The incoming O3′–P distance is 4.098 Å;
+the outgoing distance is 1.514 Å. Three complete Phenix **2.2.1-6174**, dispatcher
+**2.2.1**, interpretations comprise the preserved baseline, stale-policy
+counterexample and corrected-policy control. The final effective ATL definition
+matches all six projected numerical categories, unselected definitions and all
+eight unaffected proxy categories are preserved, and repeated energy/gradients
+are finite. Only the outgoing backbone bond and its four cross-link angles exist.
+Formal-charge readback, sampled derivatives, clashes and achieved geometry remain
+unqualified. No diffraction refinement, ReadySet or Coot run is claimed.
+
+**Policy integration lesson.** An unchanged DT selector still names C7, whereas
+ATL's corresponding NAR role maps to C5M. Native interpretation succeeds while
+silently omitting that atom from three parallelity planes. Recompile the changed
+pair and both adjacent stacks through the existing source/actual-bound
+NARestraints compiler; preserve every other policy line. The final control matches
+all **201** requested and instantiated custom restraints. This is separate
+compiler composition in the diagnostic, not automatic policy regeneration by the
+placement API. Generic successful parsing is insufficient evidence of membership.
+A preliminary attempt also exposed the line-oriented curated-DZ bond reader's
+inability to consume a token-per-line projected CIF. The preserved successful
+control uses the maintained curated DZ source for role validation while retaining
+all original active numerical dictionaries. The parser issue is closed by [C161](#curated-cif-loop-parsing-c161); the original C145 evidence remains unchanged.
+
+A bounded 27-start, 3,315-evaluation phosphate-arm feasibility calculation writes
+no model. It preserves the base/sugar core and internal bonds/angles but reaches
+only a 2.261 Å incoming separation for its host-P/virtual-leaving-O objective;
+no global minimum is claimed. Independently, the triangle inequality gives a
+**1.826 Å lower bound** when C5′ stays fixed and C5′–P radius stays constant. Those
+three arm rotors alone therefore cannot attain the observed 1.607 Å native target.
+The next seed design needs bounded body/junction movement with explicit base/pair
+objectives, followed by source-hand, native-membership and numerical/geometry
+qualification. It must not force a short bond into the unchanged rigid placement.
+Exact evidence: `base_anchored_mixed_atl_2026_10_31` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
+
+### Graph-bound native furanose reaction preparation (C144)
+
+`prepare_furanose_reaction_control(source, numerical, workbook, model, output,
+code=..., contexts=[...])` is an additive Python diagnostic. It accepts the
+existing unique unbridged or 2′-O–4′-C methylene furanose graph profiles and requires
+one explicit attachment-site context for **every model site sharing the code**.
+Each phosphate/alcohol port retains its source state or declares an identity-
+symmetry link. Different terminal and internal sites receive distinct modifiers;
+no global component edit silently chooses one state for all occurrences.
+
+The complete numerical candidate must preserve source graph, elements, hydrogen,
+formal charge and every declared stereocentre. The existing attachment-site
+reader owns neutral leaving-group authority and exact model inventory checks.
+A linked incoming phosphate deletes only its explicitly chosen single-bonded
+terminal oxygen and attached hydrogen; an outgoing alcohol deletes only its
+hydrogen. Other phosphate protonation, bridge atoms and retained stereocentre
+neighbours are unchanged. Source atom names identify records, never the reaction
+rule: OP3, OXT and renamed equivalents receive the same graph-based checks.
+PNA, charged reacting ports, free-OH reconstruction and symmetry links remain
+outside this adapter.
+
+**Native method.** Source-projected numerical rows retain all remaining targets,
+ESDs, orders, planes and signed chirality. The source-qualified outgoing neutral
+C–O–H port requires OH1 input typing and becomes OC2 after its explicit O–P
+substitution, under `cif-neutral-furanose-outgoing-oxygen-oc2-v1`. This borrows the
+outgoing-oxygen convention of Phenix's NA-STAND modifier; it does not borrow that
+modifier's blanket phosphate-hydrogen deletions. No experimental protonation is
+inferred. The numerical dictionary's group remains unchanged. If its polymer
+classification is absent, `_chem_comp.type` is copied from the source and recorded;
+a conflicting label is refused. This is integration metadata, not a chemical
+conversion or an isolated/linked native usability certificate.
+
+Schema 1 `cif-graph-furanose-native-reaction-v1` freezes source, numerical CIF,
+workbook, model, explicit contexts and selection. It emits a base dictionary,
+one CIF block per site modifier, exact PHIL selectors and a projection report.
+`read_furanose_reaction_control` recomputes all outputs offline. Missing, extra,
+symlinked or rehashed forged output refuses. Interrupted attempts remain intact;
+retry requires a fresh directory. There is no new CLI, migration, coordinate
+change, ordinary ReadySet/PostMR default or automatic adoption.
+
+**Evidence and boundary.** Phenix **2.2.1-6174** (dispatcher **2.2.1**) completed
+three interpretations. DA→ATL removes OXT/HXT; ATL→DA removes HA and assigns OC2
+to O3′. All effective projected numerical categories match. The existing bond and
+all four graph-required cross-link angles are present; unselected DA definitions
+and unaffected proxies remain unchanged. An explicitly artificial translated
+three-ATL model also matches distinct first/internal/last states and both links.
+All four source sugar centres and nonreacting phosphate H survive. Each capture
+has finite repeated fixed-coordinate energy/gradients. These are complete native
+interpretations, not geometry optimization, derivative tests or diffraction runs.
+Generic native junction targets are observed conventions, not ATL-specific
+geometrical validation. Native formal-charge readback remains unsupported; DA
+source/name/protonation differences remain reviewable. The incompatible D-DNA
+host and combined eight-pair-plus-ATL construction are still open. Earlier C143
+failures and all preliminary attempts are retained. Exact evidence:
+`graph_furanose_reaction_states_2026_10_31` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
+
+### Whole-furanose placement and ATL compatibility boundary (C143)
+
+`prepare_whole_furanose_control(source, numerical, host_source, workbook, frame,
+output, code=..., context=...)` is an opt-in Python diagnostic. It supports the
+existing unique unbridged and 2′-O–4′-C methylene furanose graph profiles. Component
+names and DNA/RNA labels do not select eligibility. Host and target roles are
+resolved independently; differently named atoms do not require alias rewriting.
+PNA chemistry is outside this furanose adapter and retains its separate port rules.
+
+The caller supplies one explicit internal site and two distinct identity-symmetry
+partners using the existing attachment-site context. Both ports must be linked;
+a terminal single-bonded phosphate oxygen is explicitly selected, with neutral
+source hydroxyl hydrogens at both reacting ports. The existing attachment-site
+reader independently validates the exact deletion projection. No OP3/OXT spelling
+chooses chemistry. Retained charges, bridge atoms and source stereocentres remain
+bound to the complete source-preserving numerical candidate.
+
+**Methods.** A proper rigid transform maps the candidate's graph-selected C1′,
+ring oxygen and C2′ frame to the host frame. Compatibility checks compare named
+shared-role volumes at C1′, C3′ and C4′, independently of CIP-priority labels.
+All source-declared stereocentres—whether given by atom R/S labels or fixed
+CIF chirality restraints—must already be preserved in the numerical candidate. After 0.001 Å PDB rounding, every heavy-neighbour triple at those
+centres retains its sign, including all four triples for a four-heavy-neighbour
+centre. All retained internal pair distances change by at most 0.002 Å. These
+bounds check rigid transport/rounding, not experimental geometry. Every bystander
+record is copied unchanged; the separate target has occupancy 1 and B factor 20.
+Junction distances are reported without accepting them. Unsupported PDB records,
+including stale sequence/connectivity references, require explicit reconciliation.
+
+Schema 1 `cif-rigid-whole-furanose-linked-control-v1` freezes five input files,
+selection/context, derived model/report and their checksums in a fresh directory.
+The reader recomputes all chemistry and placement; rehashing a changed model or
+success flag cannot authorize it. Existing or interrupted attempts are preserved.
+There is no CLI, default mutation path, native dictionary preparation, geometry
+optimization, clash acceptance, partner-chemistry qualification or automatic
+adoption in this adapter. Prior FANA/L-FANA controls are unchanged.
+
+**Actual ATL evidence.** The C142 candidate remains source-preserving at all four
+sugar centres. A clearly artificial three-ATL frame with compatible host hands
+passes this adapter, preserving all bridge atoms and seven heavy-volume checks.
+It is a placement control, not a physical oligonucleotide or linked-support proof.
+The requested mixed-scaffold extension is explicitly bound to background pair
+A:11/B:5 (DT:A), leaving the original eight requested pairs intact in the intended
+plan. The adapter refuses before writing a replacement: ATL source/candidate and
+the verified DNA host have opposite shared-role volumes at C3′ and C4′, while
+C1′ agrees. Both the public DT ideal source and actual host coordinates reproduce
+that disagreement. The pinned NARestraints workbook names ATL **alpha-LNA-T**;
+its broad Sugar Type is LNA, which does not authorize a D-DNA scaffold substitution.
+This is **not evidence that the CCD entry is wrong**, nor an
+excuse to invert the candidate, relabel it DNA, or discard its bridge. A future
+explicit different-backbone construction/junction workflow must preserve the
+chosen source chemistry. The combined scaffold remains **NOT_CONSTRUCTED**.
+
+The preserved C143 baseline comprises two complete synthetic directional controls with Phenix **2.2.1-6174** (dispatcher
+**2.2.1**) now recognize DA→ATL and ATL→DA O3′–P bonds with target 1.607 Å and
+weight 6944.444444444444. The new candidate avoids the older installed-library
+unknown-energy-type failures, but this is not linked numerical qualification.
+The incoming ATL effective definition retains OXT/HXT that the declared source
+projection removes; the outgoing definition retains the alcohol hydrogen HA.
+DA also retains its previously recorded alias/protonation mismatches, and native
+formal-charge readback remains unavailable. Both definition checks correctly stay
+in REVIEW. No optimization, ReadySet, Coot or diffraction refinement ran.
+Exact tests, receipts and source hashes are under
+`whole_furanose_and_atl_links_2026_10_31` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
+
+### Linked omission numerics and retained chemistry learning (C142)
+
+Actual Phenix 2.2.1-6174 returns pass the new gate on the source-repaired
+863-atom mixed scaffold. Three omitted proxies explain the complete target
+change (14.171267057206); the unexplained gradient norm is 9.10e-13. All other
+native inventory categories, residual terms and counts remain unchanged.
+The separate maintained derivative worker passes 1367 energy evaluations and
+3328 plane-order comparisons, including controls. This uses the already qualified
+NASolve-local order-safe evaluator; it does not certify ordinary Phenix refinement.
+
+ATL also has a new positive isolated control: source-preserving generation keeps
+all four declared stereocentres, hydrogens, charges and its sugar bridge. Both
+source-seed and generated-coordinate native checks pass all 21 checks with the
+same covalent proxies. Generation does not report convergence. This clears a
+numerical-dictionary prerequisite, not the still-open whole-scaffold/link gate.
+Exact artifacts and versions are in the
+[C142 evidence](cif-linked-native-registration-evidence.json).
+
+`qualify_linked_torsion_energy` first replays the complete declaration-based
+linked torsion inventory gate. It then binds two single-proxy/container
+evaluations to the exact removed proxies and their original coordinates, scatters
+their gradients through literal native atom indices, and requires the full energy
+and gradient differences to match. All unrelated residual terms and counts must
+remain unchanged. Native source identities, finite values, repetitions and term
+sums are checked independently. Unknown snapshot fields refuse.
+
+The schema-1 `cif-linked-linear-torsion-energy-v1` report is fixed-point numerical
+attribution only. The caller authenticates native captures and input provenance;
+this pure reader never launches a native tool, executes captured code or selects
+a model. Derivatives require a fresh check on the changed objective. Convergence,
+geometry, diffraction refinement and automatic adoption remain separate gates.
+No component-name whitelist selects the omission: the source triple bond, linear
+angle targets and complete native definition/proxy membership must justify it.
+
+The mixed eight-pair scaffold already includes K:X, D:T, Z:P, B:S, PDU:A and DF:A
+(DF is the reviewed A1AAZ alias), plus 5PC:G and 5CM:Q. **ATL alongside those pairs
+has not yet been validated on that scaffold.** Its declared bridged sugar is
+RNA-linking, so the older DNA fragment constructor is not a valid adapter.
+Preserve the bridge and use an independently qualified whole-residue/link route;
+do not relabel ATL or discard its extra sugar atoms to pass a DNA-only gate.
+
+The L-FANA and PNA work is part of the general engine's chemistry knowledge:
+graph-matched attachment profiles; source atom, hydrogen and charge preservation;
+retained stereocentres under construction and serialization; explicit reciprocal
+link context; and narrow, source-bound bond-representation policies. PNA amide
+ports do not acquire phosphate logic. Changed names or labels do not grant a
+chemical transformation. ReadySet output must satisfy the same current source,
+site and native checks as a generated candidate. Evidence-backed exceptions are
+allowed, but need an exact applicability predicate, independent source/chemical
+authority and regression controls outside the motivating residue.
+
+Aster's Cedar28 illustrated guide remains historical context until the planned
+Cedar completion update. Its source/native/numerical/geometry distinction still
+governs the newer cache, construction and public bundle integration.
+
+### Selected component runtime handoff (C141)
+
+`prepare_component_runtime_bundle(bundle, baseline_receipt, candidate_receipt,
+readyset_directory, output, *, endpoint_receipt=None, atom_order_directory=None)`
+freezes the qualified selection for the existing public reader. Preparation runs
+no external process. The fresh destination contains the selected model, ordered
+dictionaries and PHIL files together, plus complete bounded source evidence.
+`nasolve cif-doctor assess --bundle PATH --json` consumes it using the existing
+runtime-bundle API and assessment rules. No separate CLI dialect is introduced.
+
+The schema-1 `cif-qualified-component-runtime-bundle-v1` policy uses the existing
+`runtime_bundle` anchor/layout. Explicit source receipt references resolve only
+inside declared evidence roots; readers never search by basename or execute
+captured programs. Every read replays the maintained component/native/ReadySet
+inspector and requires the selected resource bytes, order and full inventory to
+match. Inventories are bounded to 1024 files, 32 MiB per file and 128 MiB total;
+symlinks and nonregular files refuse. Source evidence is rechecked before fresh
+publication; the manifest and all bytes are rechecked after public assessment.
+Historical native absolute paths remain provenance only. Error text referring
+to the current evidence root uses its declared bundle anchor, so an absent
+optional attempt remains replayable after relocation.
+
+The selection is `verified_prepared_model`, `readyset_checked_model` or
+`readyset_ordered_checked_model`. A failed or missing optional improvement keeps
+the verified starting model **and its own ordered restraints**. An unusable start
+refuses publication. Once exported, damaged evidence refuses readback; it cannot
+silently rewrite an immutable selection into a different fallback.
+
+The public summary retains `SEPARATE_DIAGNOSTIC_PHASE_ONLY`, unavailable native
+checks, `automatic_adoption=false` and `checkpoint_adoption=NOT_RUN`. The existing
+assessment exit code still reflects dictionary findings; valid diagnostic bundles
+can return 2. A usable diagnostic bundle is not proof of experimental chemical
+state, successful refinement or readiness for production adoption. Source charge,
+phosphate and stereochemical authority is unchanged; NARestraints still owns
+pairing/stacking and ReadySet still owns ordinary preparation.
+
+The installed controls cover the starting fallback, stable ReadySet selection,
+order-restored selection and absent ReadySet. Three fresh complete Phenix
+2.2.1-6174 interpretations (dispatcher 2.2.1) preserve all 28 strict endpoint
+checks and exact captured energy/gradient values. No new ReadySet, Coot,
+optimization or diffraction refinement was run. Original-path/SDK-blocked cold
+replay and rehashed corruption controls are recorded under
+`component_runtime_handoff_2026_10_31` in the [evidence ledger](cif-linked-native-registration-evidence.json).
+
+This is the public read-only consumption seam. Ordinary PostMR orchestration,
+explicit selected-artifact provenance, checkpoints and representative/held-out
+workflow validation remain the next integration gate. The new producer API is
+opt-in; legacy single/mixed public bundles retain their existing policies.
+
+### Lossless ReadySet atom serialization (C140)
+
+ReadySet can reorder and repad atom records while leaving their scientific fields
+unchanged. The strict comparator still treats signed restraint endpoint order as
+meaningful. `prepare_readyset_atom_order(reference, candidate, output)` provides
+a separate, explicit serialization step instead of weakening that comparison.
+It requires identical named heavy atoms, record types, alternate locations,
+coordinates, occupancy, B factors, segment identifiers, elements and formal charge.
+Scientific columns compare exactly, without a numerical tolerance. Residue order,
+TER boundaries and supported header metadata must also agree. Only atom order,
+decimal serials, atom-name padding and TER/END formatting can differ. After that
+proof, the reference serialization is the exact lossless output.
+
+The fresh schema-1 `cif-readyset-heavy-pdb-order-v1` receipt freezes reference,
+raw ReadySet and serialized PDB bytes under `readyset_atom_order_directory` with
+sizes/checksums. `read_readyset_atom_order()` reconstructs both the output and
+receipt from frozen inputs; rehashing changed scientific columns cannot pass.
+Neither input is modified. The bounded format is ASCII heavy PDB with one
+implicit model. ANISOU, CONECT, LINK, MODEL/ENDMDL wrappers and unrecognized
+records refuse. Supported
+CRYST1/SCALE/ORIGX/TITLE/REMARK headers must match. Broader format handling is
+separate work, and a refusal retains the existing usable fallback.
+
+Pass `atom_order_directory=...` explicitly to `readyset_endpoint_inputs()` and
+`inspect_dictionary_bundle_readyset()`. The directory must bind to the exact
+prepared and actual ReadySet models. The returned serialized model is interpreted
+afresh with the actual effective ReadySet dictionary and unchanged modifiers/PHILs.
+Only all 28 strict final checks can select `readyset_ordered_checked_model` for
+separate diagnostics. Bundle roundtrip v2 records the extra receipt checksum;
+omitting the option retains v1 bytes and decisions. Preparation alone, a missing
+capture or a stale/corrupt improvement never replaces the verified start.
+
+Two complete Phenix 2.2.1-6174 interpretations (dispatcher 2.2.1) qualify the
+frozen C139 reordered and stable controls. Captured energies and gradients match
+the verified starts exactly; no new ReadySet, Coot, optimization or refinement
+was executed. This is a serialization and consumption proof, not general signed
+proxy permutation equivalence or scientific acceptance. Formal-charge limitations
+and ordinary adoption remain separate. Exact tests and cold replay are recorded
+under `readyset_atom_serialization_2026_10_31` in the [evidence ledger](cif-linked-native-registration-evidence.json).
+
+### Qualified component bundles and final ReadySet readback (C139)
+
+`prepare_dictionary_bundle()` composes one to sixteen explicit qualified
+snapshots (since C174). Each entry supplies its site contexts and, where required, the existing
+terminal resource or source-named phosphate policy. Every selected component site
+must be declared. All entries share one frozen model, exact captured consumer,
+complete declared links and full-model native context. Component codes are sorted;
+active modifier dictionaries follow their owning component. Common PHIL files
+retain caller order, then site modifications, then the explicit full-model policy.
+Empty modifier placeholders remain archived evidence and are not registered.
+
+The schema-1 `cif-stored-dictionary-bundle-v1` receipt uses the
+`dictionary_bundle_directory` anchor. Child preparations retain their source,
+qualification, consumer and chemical-policy bindings. Readback reconstructs
+ownership and generated files, including combined source/numerical dictionaries;
+duplicate codes, conflicting site/modifier owners, extra files, altered policy
+or rehashed generated bytes cannot acquire readiness. It performs no native call.
+`inspect_dictionary_bundle_native()` binds two actual ordered captures and checks
+all affected and unaffected sites together. An isolated component pass is never
+inherited as a whole-model pass.
+
+The explicit `cif-source-phosphate-aliases-v1` option selects a narrow internal
+phosphodiester adapter. Each OP1/O1P, OP2/O2P and OP3/O3P role must resolve to one
+source-owned P-bound oxygen, with identical source/candidate names and qualified
+element, graph, charge and neutral reacting-port state. Names are not rewritten.
+Only the declared leaving oxygen and its source-bound hydrogens are removed;
+nonreacting phosphate protonation and sugar/base stereochemistry are preserved.
+Ambiguous aliases, substituted/bridged/charged reacting ports and aliased terminal
+operations refuse. Stored-site v4 records the explicit policy; omitted options
+preserve earlier policies and bytes. This extends the reviewed C125 source-name
+principle to preparation; it does not infer phosphate chemistry for PNA/ATL.
+
+The separate `cif_postmr_readyset` round-trip adapter retains its two-component
+minimum. Use the existing `audit_readyset_bundle_consumption()` with the returned separate
+component dictionaries. `readyset_endpoint_inputs()` then replays the maintained
+observer, ordered invocation, frozen source snapshots, raw actions/process trace,
+effective-dictionary selection and heavy-coordinate checks. It returns the actual
+ReadySet model, effective dictionary, active modifiers and exact shared PHILs for
+a fresh full native capture. `inspect_dictionary_bundle_readyset()` applies the
+schema-1 `cif-stored-bundle-readyset-roundtrip-v1` contract: complete native site
+definitions, both links, explicit requests, all eight ordered proxy families and
+fixed-energy evidence must pass before selecting the endpoint as a diagnostic.
+Missing or failed endpoint evidence retains the verified prepared model. A damaged
+starting contract refuses; no readiness is invented from a saved PASS field.
+
+Two installed Phenix **2.2.1-6174** controls use independently stored L-DNA `0DG`
+and source-derived L-FANA-C `AAJ`. Each starts with 53 passing definition checks,
+three unsupported formal-charge readbacks and 55 passing active-native checks.
+ReadySet completes all eight consumption checks in both. In the first, it reorders
+AAJ atoms without changing named heavy coordinates or effective definitions;
+the deliberately strict ordered-proxy comparator rejects that endpoint and keeps
+the verified start. A fresh independently qualified control using the resulting
+stable input order passes all 28 final native roundtrip checks. The first attempt
+is preserved, not repaired. Future order reconciliation needs an explicit proof,
+especially for signed chirality/torsion permutations; this patch relaxes no gate.
+
+Final controls comprise six complete native interpretations and two complete
+ordinary ReadySet calls, with matching exploratory attempts retained separately.
+No Coot, generation, optimization or diffraction refinement is run. Native charge
+availability still limits continuation to a separate diagnostic phase; neither
+model is automatically adopted. Seven current/legacy cases reproduce exactly from
+relocated source with original paths, the SDK and subprocesses denied. Ten
+negative controls exercise fallback/refusal; all 540 copied evidence files keep
+their bytes, sizes and timestamps. Older blocked attempts remain blocked.
+
+New policies require this reader; existing saved policies require no migration.
+There is no new ordinary PostMR/CLI/checkpoint behavior. Production adoption,
+experimental state choice, broader backbone adapters and catalogue-wide support
+remain separate. Exact commands, hashes and results are in
+`qualified_component_bundle_2026_10_31` in the
+[native evidence ledger](cif-linked-native-registration-evidence.json).
+
+### Complete native monomer identities (C138)
+
+Phenix's restraint-copying optimization can interpret only an NCS master, restore
+the complete atom hierarchy and copy its restraints, while leaving the captured
+monomer mappings incomplete. C137 preserved and blocked one such two-chain
+attempt. C138 uses the existing native full-model interpretation option rather
+than filling the missing identities by analogy.
+
+For the explicit stored-site API, use this internal context:
+
+```python
+native_context = {
+    "policy_id": "cif-explicit-site-native-context-v2",
+    "custom_restraints": "required",  # or explicitly "absent"
+    "monomer_inventory": "full_model",
+}
+```
+
+`prepare_dictionary_sites()` freezes schema-1 `cif-stored-dictionary-sites-v3`
+and creates `prepared/native_interpretation.phil`, containing
+`pdb_interpretation.use_ncs_to_build_restraints = False`. Readback rederives its
+exact bytes. It is the final PHIL input for both before/after captures, after
+user policy and site modifications. Choosing this context explicitly selects
+full-model interpretation even if an earlier PHIL requested copying.
+`read_dictionary_sites()` returns `native_options={"full_monomer_inventory": True}`;
+pass these options and its exact ordered inputs to `inspect_native_bundle()`.
+Linked inventory remains required. Stored-site qualification retains its existing
+native policy and fixed-energy checks; these controls additionally capture and
+independently replay nonbonded evidence.
+
+The maintained worker checks the effective native parameter before interpretation;
+it never changes that parameter itself. A missing/true/automatic value refuses
+the request and preserves the failed attempt. After interpretation it records
+`cif-native-full-monomer-inventory-v1`: all six literal residue identity fields,
+atom/residue/mapping counts and the explicit parameter value. Every represented
+residue must have exactly one matching native monomer mapping. Missing, duplicate,
+extra, inconsistent or unsupported identities fail closed. Readback reconstructs
+the worker and proof, binding them to the request/receipt and captured atoms.
+The existing model, source projection, custom restraint and phosphate checks
+remain mandatory; this proof does not establish chemical correctness by itself.
+
+Four complete Phenix **2.2.1-6174** before/after controls preserve the exact
+captured atoms and all eight restraint families relative to their corresponding
+C137 captures: copied two-chain terminal sites,
+same-chain terminal sites, an isolated terminal phosphate without custom edits,
+and the linked L-DNA/L-FANA case with required edits. The formerly blocked
+two-chain case now has two literal mappings. Fixed energy/gradient snapshots
+and complete recorded nonbonded inventories also match exactly in all eight
+phase comparisons. An actual missing-policy request
+is refused before interpretation. These are complete native executions, not
+dry-runs; no refinement, optimization, ReadySet or Coot execution is claimed.
+The soft terminal edit fixtures establish consumption, not a new pair recipe.
+
+The new context is opt-in. Legacy worker bytes and v1/v2 stored-site reports
+remain unchanged; eight current/legacy cases replay exactly from relocated
+source without original paths or the SDK, retaining the old blocked result.
+New policies require the updated reader, with no migration or rewriting.
+Interpreting every residue may cost more on large repeated assemblies; no
+production refinement/NCS setting is changed. Formal-charge readback remains
+unavailable and preserves REVIEW with diagnostic-only continuation where allowed.
+General multiple-component orchestration and ordinary adoption remain separate.
+Future integration must validate the final effective ReadySet bundle under its
+actual declared consumer policy; a standalone native pass is not inherited
+automatically by a later preparation or refinement.
+
+### Catalogue coverage census (C105)
+
+The generalizer targets **every ligand in the selected NARestraints catalogue**,
+including ATL, PNA and other backbone families. The [milestones](https://github.com/vecchioni-lab/NASolve/blob/654328105f193f25011fe927dc1db860cb82bca0/docs/development-handoff.md#generalizer-milestones-and-interruption-boundary)
+separate catalogue inspection, chemical/site profiles, bounded recovery, native
+qualification, ordinary integration and release coverage. Returning unsupported
+for an entire family is a recorded gap, not completion of that programme.
+
+```bash
+nasolve cif-doctor catalogue --workbook /path/to/Ligands.xlsx \
+  --ccd-root /path/to/chemical_components --json
+```
+
+Both paths are explicit. The command reads only the chosen workbook and exact
+`{first_character_lower}/data_{exact_code}.cif` resources. It performs no discovery,
+network request, native execution, generation, mutation or output-file write.
+JSON goes to stdout; omit `--json` for a short summary. Exit **2** means a completed
+review census, **1** means an input/integrity failure. Source names of up to five
+uppercase alphanumeric characters remain exact, including long deposition IDs;
+unsafe/unhandled codes remain visible without becoming paths.
+
+`cif_catalogue.audit_catalogue` uses the active NAR loader and binds every returned
+record to its physical sheet/row. It reuses the shared operational-record resolver
+and ordinary CIF Doctor source assessment. Descriptive aliases collapse only
+when all operational roles/context agree. Conflicts retain each value and its
+location; no spelling normalization or choice between incompatible records runs.
+The NAR `/` absent-role marker remains in the raw signature but is excluded from
+missing-name counts. This follows NAR's validator/mirroring convention; it neither
+adds a missing atom nor proves a pair/stack recipe can compile.
+
+Schema **1**, policy `cif-narestraints-catalogue-census-v1`, binds the workbook,
+loader and available source bytes. Operational references use explicit
+`workbook_directory` and `ccd_directory` anchors; no host-absolute source path is
+required. Repeating the audit with relocated inputs must reproduce the report.
+All rows and codes remain represented, including missing resources, malformed
+sources, ambiguous mappings and empty role records. A changed input aborts the
+census rather than reporting a coherent snapshot. Source status means availability
+in **this CCD root**, not availability in all curated/recovered NASolve resources.
+
+The report inventories declared component type, formal-charge metadata, stereo
+markers, phosphorus neighborhoods and literal OP3 presence. It lists bonds from
+mapped base atoms to other heavy atoms without deciding which is a sugar/backbone
+attachment: substituents also cross that boundary. Blank phosphate metadata does
+not mean phosphate absence; ATL's captured phosphate uses `OXT`, not literal
+`OP3`. No generic terminal-atom deletion follows from either name. Sugar-label
+coverage uses exact workbook strings, not inferred chemical families; conflicting
+records can place one code in more than one label group.
+
+The pinned local NAR workbook (SHA-256
+`afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5`)
+has **618 records / 599 codes**. Its selected Phenix 2.2.1-6174 CCD source tree
+provides **596** exact graph-assessed sources; `DB`, `DE`, `DF` are absent from that
+particular tree. This does not invalidate existing curated/recovered definitions.
+There are 580 unique records, eight equivalent alias groups and eleven conflicting
+groups. Among unambiguous source-backed records, 577 have the mapped names present,
+five name absent atoms (`1DP`, `8YN`, `A1AAZ`, `DX`, `US3`), and three have no
+mapped base roles (`2PR`, `5PY`, `MTU`). Fourteen code-level name checks remain
+unassessed because of missing sources or conflicting records. Fifty-four codes
+retain explicit `/` markers without false missing-atom claims. The workbook has
+494 blank phosphate cells. These are findings against the selected source bytes,
+not assertions that any molecule is chemically wrong.
+The census compares raw workbook mappings with the exact CCD codes. Existing
+reviewed preparation aliases (including `A1AAZ` → `DF`) and process-local NAR
+corrections remain separate evidence to reuse before proposing a new repair.
+For example, source `1DP` declares an N1-deaza component and contains `C1` where
+its workbook record asks for `N1`; correcting a name alone would not establish
+the intended donor/acceptor role. Generalization must reconcile source topology
+and NAR chemical roles together.
+
+The local pinned workbook is explicitly selected; it must not be described as
+the released v1.1.3 workbook merely because that is NASolve's dependency pin.
+The complete read-only execution and cold relocation preserve all 597 captured
+input files with zero SDK processes. Exact commands/hashes and test results live
+in `narestraints_catalogue_census_2026_10_27` in the [evidence ledger](cif-linked-native-registration-evidence.json).
+No native-support count is inferred. `native_qualification=NOT_ASSESSED` means
+this census did not perform qualification, not that earlier specific proofs
+ceased to exist. The current PDU inventory proof and open energy/derivative
+boundary remain unchanged. Existing manifests/receipts need no migration.
+
+### Source attachment topology and ports (C106)
+
+```bash
+nasolve cif-doctor profile /path/to/source.cif --code ATL \
+  --workbook /path/to/Ligands.xlsx --json
+```
+
+This read-only command binds an explicit source dictionary to an unambiguous
+operational NAR record. Text output summarizes the topology and source-state
+ports; JSON includes the complete evidence. Exit **2** means a completed review,
+including a match; exit **1** means input/integrity failure. It writes no output
+file and performs no discovery, native execution, generation or model editing.
+No existing source-preparation path or ordinary runtime selection calls it yet.
+
+The schema-1 report uses policy `cif-source-attachment-topology-v1`. Explicit
+`source_directory` and `workbook_directory` references carry relative filenames,
+SHA-256 and size. The active NAR loader is hashed; workbook rows, operational
+signature, source-assessor findings and search limits remain inspectable.
+Inputs are checked unchanged before a report is returned. Cold relocation must
+reproduce the report exactly without the original input directory or SDK tree.
+
+The initial profiles describe three **core topologies**, not full chemical
+families or approved linkage recipes:
+
+| Identifier | Required graph | Reported ports |
+| --- | --- | --- |
+| `unbridged-furanose-phosphate-v1` | Five-member C/O sugar ring, one source-declared base attachment, C–O–P side chain and terminal ring alcohol; phosphate has three other terminal O neighbors with double/single/single orders. | Phosphate P and alcohol O |
+| `two-o-four-c-methylene-furanose-phosphate-v1` | The same required core plus a C–O bridge from the four-position carbon to the two-position carbon. | Phosphate P and alcohol O |
+| `uncapped-aminoethylglycine-pna-core-v1` | Base–methylene–carbonyl–N connection; N branches to a glycine carboxyl group and two-carbon primary-amine arm. One extra branch at the amine-bearing carbon is allowed and reported. | Primary amine N and carboxyl C |
+
+Selection is an injective, induced heavy-atom graph match against element,
+normalized declared bond order and heavy-neighbor constraints. The NAR record
+supplies mapped base membership; the matched attachment is separately compared
+with the loader's declared glycosidic atom. Codes, atom spellings, sugar labels
+and CCD type strings do not choose profiles. Renaming all atoms preserves the
+binding structure; changing a declared bond order or required neighborhood can
+prevent a match. Hydrogen/deuterium remain source-state evidence rather than
+heavy-graph matching nodes. No absolute stereochemistry is inferred.
+
+Search is bounded at 128 heavy atoms, 20,000 candidate visits per profile and
+64 embeddings per profile. A unique match is selected only after **all** profile
+searches complete. A limit, multiple embeddings, absent/incompatible records,
+missing mapped atoms or failed source assessment cannot select a profile. Every
+unmatched case remains explicit. External branches are listed but not chemically
+classified. The first PNA pattern requires a primary terminal amine: a secondary
+N-methyl amine is outside that pattern, not proven chemically unusable.
+
+Port evidence retains actual atom IDs, formal-charge declarations, source H/D,
+neighbor bond orders and stereo declarations. Each neighbor also records its
+source H/D inventory, so phosphate O–H remains visible even though P has no H. Full source stereo markers are
+also reported. `terminal_state_selection` and `leaving_atoms` remain
+`NOT_ASSIGNED`; `site_context` is `NOT_ASSESSED`; `permitted_delta` is
+`NOT_ASSIGNED`. All reports remain `REVIEW`, with no transformations or automatic
+adoption. In particular, equivalent terminal phosphate oxygens are not assigned
+to an OP2/OP3 role by graph symmetry. Neither literal `OP3` nor ATL's `OXT`
+justifies deletion without an explicit site operation and its source authority.
+A protonated primary amine is not silently deprotonated to make an amide.
+
+The pinned C105 sources supplied **37 cases**: all 12 LNA-labelled, 14 PNA-labelled
+and five L-DNA-labelled codes, plus PDU, 5PC and four canonical DNA sources.
+PDU/ATL/APN were named development examples; 34 additional cases test transfer.
+This is an exploratory screen, not a blinded hold-out cohort: some source
+declarations were inspected during design. **26 match**:
+11 unbridged, seven O/C-bridged and eight PNA cores. Ten remain `NO_MATCH` and
+A66 remains unassessed because its NAR records conflict. All 37 reports replay
+exactly through both API and public CLI after relocation. All 597 C105 input
+files and all 38 copied C106 files retain bytes and timestamps; no native process
+runs. The [evidence ledger](cif-linked-native-registration-evidence.json) record
+`source_attachment_profiles_2026_10_27` owns the exact commands and hashes.
+
+These gaps are chemically informative. LKC has no source phosphate; ULF, UMX,
+URX and UVX have a different carbon bridge; C66/T66 have lysine-derived backbones;
+CP1/TP1 have N-methyl termini. GNP is labelled PNA in this selected workbook,
+but its source declares a guanylate polyphosphate analogue with phosphorus atoms
+and a ribose ring. The label therefore cannot establish peptide-backbone
+chemistry. These are findings against the captured workbook/source pair, not
+automatic corrections or a judgment about intended experimental identity.
+APN records a +1 terminal N with three hydrogens; 40A records a neutral N with
+two. Both fit the core while keeping their different states unchanged.
+
+This completes the topology/port-evidence slice of G2. It does **not** complete
+site/end-state selection, permitted chemical deltas, pair/stack compilation,
+native linkage/energy qualification, general coverage or PDU's separate numerical
+gate. Existing runtime manifests, checkpoints and chemistry remain unchanged;
+no migration or dependency change is needed.
+
+### Explicit single-site source projections (C107)
+
+```bash
+nasolve cif-doctor site-plan /path/to/source.cif --code PDU \
+  --workbook /path/to/Ligands.xlsx --model /path/to/model.pdb \
+  --context /path/to/context.json --candidate /path/to/projected-source.cif --json
+```
+
+This developer-facing, read-only command binds the C106 evidence to **one
+explicit model site**. It neither writes a candidate nor changes ordinary
+preparation. `--candidate` is optional. Exit **2** means a completed review,
+including a projection mismatch or unresolved operation; exit **1** means an
+input, selector, model-inventory or integrity failure. All reports remain
+`REVIEW`; `automatic_adoption` is false.
+
+The context is schema 1. Every port of the matched profile must have an explicit
+state; unknown fields and duplicate JSON keys are rejected. For example:
+
+```json
+{
+  "schema_version": 1,
+  "site": "A:2",
+  "ports": {
+    "phosphate": {
+      "state": "linked",
+      "leaving_atom": "OP3",
+      "partner": {"site": "A:1", "component": "DA", "atom_id": "O3'"},
+      "symmetry_operation": "x,y,z"
+    },
+    "alcohol": {"state": "source"}
+  }
+}
+```
+
+`source` retains the actual source state, including terminal phosphate oxygens,
+H/D and charge declarations. It does not mean that this is the biologically
+correct protonation state. `linked` requires an exact partner site/component/
+atom and explicitly declared identity symmetry. Partner atoms must have the
+expected element (O for phosphate, P for alcohol, C for amine, N for carboxyl).
+This binds intended adjacency; **partner chemistry remains unassessed**. No
+sequence/distance search, PDB LINK/CONECT record or missing-atom heuristic chooses
+a link. Other sites sharing the code are listed, not silently covered.
+
+For the two matched furanose cores, a phosphate linkage requires an explicitly
+chosen terminal O with P as its sole heavy neighbor and a source single bond.
+The chosen O must be neutral with exactly one explicitly attached neutral H/D;
+the H/D must be singly bonded only to that O. Its O and H/D become the proposed
+deletions. A linked alcohol similarly loses only its explicit neutral H/D.
+A missing H declaration or changed/unknown reactive charge leaves the whole
+plan unresolved. Equivalent phosphate oxygens are never assigned by spelling:
+OP3, ATL OXT, or a renamed source atom must pass the same graph and model checks.
+The other phosphate oxygen and its H/D remain protected.
+
+The selected PDB site must contain **all and only** the projected heavy atoms,
+with matching elements. Coordinate H/D may be absent; any present coordinate
+atom must be retained by the projection. A would-be deleted coordinate atom,
+missing retained heavy atom or unrecognized addition fails explicitly. The
+initial selector supports canonical `chain:integer` PDB addresses (`_` means a
+blank chain). MODEL records, alternate conformers, insertion codes, literal
+underscore chains, repeated noncontiguous/TER-separated sites and coordinates
+after END are rejected. mmCIF, symmetry and richer identity support remain open.
+
+A resolved plan reports `PROPOSED` and `permitted_source_projection`; unresolved
+plans provide no partial permitted delta. PNA linkage stays unresolved for both
+APN (+1, three N–H) and 40A (neutral, two N–H): neither is silently neutralized.
+Phosphate `free_OH` reconstruction also stays unresolved because its new
+hydrogen state needs authority. Source-state retention is available for all
+three matched cores. This is a bounded operation policy, not a per-code list.
+
+The optional candidate check compares **all selected source-table columns and
+retained rows**, ignoring only row order. Permitted changes are deletion of rows
+referencing removed atoms and updates to existing atom-count metadata. Extra
+components, unbound blocks, charge/stereo/bond/H changes, new numeric typing or
+other added fields give `MISMATCH`. `MATCH` proves this source-table projection
+only. Source formula/descriptors and coordinate columns are preserved rather
+than recomputed; this diagnostic projection is not a complete chemical identity
+for the linked product. Declared external bonds are recorded intent, not bonds
+validated by this comparison. Native OC2 typing, numerical-restraint generation, final stereo and
+both-endpoint/native linkage qualification remain separate gates. The existing
+DNA preparation contract and its native checks are unchanged.
+
+Schema-1 reports use policy `cif-explicit-attachment-site-v1`. Every explicit
+input has its own directory anchor, relative filename, SHA-256 and size. The
+nested C106 profile retains source/workbook/loader evidence. Bytes are checked
+again before returning. Twelve predeclared synthetic contexts over frozen
+PDU/ATL/DA/LCC/APN/40A sources pass exact API and CLI replay in a fresh process
+after both source snapshot and inputs move and the original owned paths vanish.
+Six source-state projections match, four furanose deletion projections match,
+and two PNA linkage states stay unresolved. These are exploratory operation
+checks, not blinded experiments or native/scientific support claims. No Phenix
+or Coot executes. The [evidence ledger](cif-linked-native-registration-evidence.json)
+record `explicit_attachment_sites_2026_10_27` owns commands, hashes and results.
+
+### Reciprocal source-link contracts (C108)
+
+```bash
+nasolve cif-doctor link-plan /path/to/links.json --json
+```
+
+C108 composes **fresh C107 inspections** for an explicitly selected set of sites.
+It verifies that each declared partner atom is the complementary graph-bound
+port of its own source, and that the partner declares the same bond in reverse.
+An oxygen element alone cannot establish that the partner is the appropriate
+alcohol oxygen. Neither residue numbering, spatial proximity nor an unselected
+model atom supplies a missing declaration.
+
+The schema-1 manifest contains `schema_version`, `model`, `workbook` and `sites`.
+Each site entry has `component`, `source`, `context` and optional `candidate`.
+The context is the existing C107 JSON document; its site identity is not repeated
+in the manifest. Every file reference uses the same structure:
+
+```json
+{
+  "anchor": "manifest_directory",
+  "path": "inputs/source.cif",
+  "sha256": "<actual 64 lowercase hexadecimal digits>",
+  "size": 12345
+}
+```
+
+The displayed digest/size are placeholders for actual file evidence. Paths must
+be relative to the manifest directory, with no parent traversal, absolute path,
+backslash, colon, empty/dot component or symlink at any level. All referenced
+files must exist and match their recorded bytes/size. Unknown fields, duplicate
+JSON keys, duplicate selected sites and conflicting source hashes for one
+component code are rejected. Byte-identical source copies may share an authority;
+different same-code sources require explicit consolidation before this check.
+The initial limits are 256 selected sites, 4 MiB of manifest and 128 MiB of total
+unique input bytes. At least two sites and one declared reciprocal link are
+required.
+
+One model and one explicit NAR workbook bind the entire inspection. The new
+layer rechecks every site's returned input hashes against the manifest and checks
+all input bytes again before returning. It accepts no cached site-report file as
+proof. Source profiles, terminal states and optional candidate comparisons use
+the existing C106/C107 paths rather than a weaker network-specific substitute.
+
+The declared site set must be **closed under its links**: every named partner
+must also be selected. Every port has one explicit state/partner, so a second
+site cannot claim an already committed port without a contradictory reverse
+declaration. Reciprocal pairs become one reported edge, ordered by chemical
+role. The current complementary pairs are alcohol–phosphate and carboxyl–amine.
+Graph-bound atom IDs, including renamed ports, are retained. Three-site chains
+compose the middle site's two operations without duplicating edges. Unselected
+model sites are listed and remain outside this scope; the check does not prove
+that the declared set describes all experimental connectivity.
+
+The report policy is `cif-reciprocal-source-links-v1`, schema 1. `binding_status`
+means `BOUND` only when every source port binds and every declared link is
+reciprocal. This is source binding, not native or full chemical qualification.
+`plan_status` is `PROPOSED` only when all site operations resolve and no supplied
+candidate mismatches. Otherwise `permitted_source_projections` is null: a valid
+site cannot conceal another site's unresolved operation or mismatching candidate.
+
+Candidate coverage is separately `NOT_REQUESTED`, `PARTIAL_MATCH`, `MATCH`,
+`MISMATCH` or `NOT_ASSESSED`. Partial matches never stand for complete candidate
+coverage. Even complete matches prove source-table projections only. Parent
+formula/descriptors, final linked chemical identity, numerical restraints and
+native atom types keep the C107 boundary. PNA ports can bind while their
+protonation/amide operations remain unresolved. The existing canonical outgoing
+OC2 loader requires captured DNA authority; this command does not copy that type
+to ATL or PNA or alter any preparation path.
+
+All reports remain `REVIEW`, with no transformations or automatic adoption.
+Exit **2** is completed review, including unresolved operations or candidate
+mismatch; exit **1** is invalid input, inconsistent declarations or integrity
+failure. The command writes nothing and executes no native tools. Existing
+explicit-path commands and all runtime/checkpoint schemas remain unchanged.
+
+Six predeclared synthetic pair controls use frozen DA–DT, DA–PDU, DA–ATL,
+ATL–DA, DA–LCC and APN–40A sources. Five sugar source networks/projections pass;
+the PNA ports bind while both operation plans remain unresolved. Wrong-O5prime
+and nonreciprocal variants are rejected. All eight API/CLI outcomes replay
+exactly in a new process after relocating source code and inputs, with the
+original owned paths absent and historical/SDK reads and subprocesses blocked.
+These are exploratory source-contract checks, not blinded or experimental/native
+linkage proof. The [evidence ledger](cif-linked-native-registration-evidence.json)
+record `reciprocal_attachment_links_2026_10_27` owns hashes and validation results.
+
+### Native attachment-link audit (C109)
+
+```bash
+nasolve cif-doctor link-native /path/to/links.json \
+  --native-receipt /path/to/capture/native_receipt.json --json
+```
+
+`inspect_native_attachment_links(manifest, native_receipt)` reruns the C108
+source inspection and reads an existing capture as data. It launches no program,
+changes no dictionary/model and grants no typing or adoption authority. The
+capture must come from the maintained **base** `inspect_native_bundle` worker
+or its explicit [C112 name-mapping extension](#observed-native-atom-name-mappings-c112),
+with `inventory_detail="linked"`. Augmented energy workers and unrelated historic
+worker versions are outside this reader contract. Both explicitly loaded
+dictionaries and explicit installed-library-only captures are representable.
+
+The reader validates all recorded input/output paths, hashes and sizes, the exact
+model bytes, input roles, requested and consumed dictionary/PHIL order, worker bytes, native spec and
+embedded/external report agreement. References stay under the receipt directory;
+absolute paths, parent traversal and symlinks are rejected. Captured historical
+source/executable paths are never followed. A receipt is limited to 16 MiB and
+the capture uses the C108 128 MiB aggregate input limit. All evidence bytes are
+checked again before return. This verifies the integrity of the supplied capture;
+it is not cryptographic proof that an attacker could not fabricate and rehash one.
+
+A completed capture with a failed/unsupported native result is a valid diagnostic
+outcome: it retains the error and returns `NOT_ASSESSED` for links/definitions.
+Incomplete execution or inconsistent evidence is an input error. No failed
+interpretation can turn into an empty successful bond inventory.
+
+For a successful interpretation, every native atom must map uniquely to the exact
+model site/component/atom and element. Native ordering may differ; index and label
+references must remain internally consistent. Occupancies remain exact. Captured
+atom and manager coordinates allow only **1e-9 Å absolute roundoff**, with zero
+relative tolerance, to accommodate native floating-point coordinate conversion.
+This is far below the PDB 0.001 Å grid and is not a chemical acceptance threshold;
+a 1e-7 Å movement is explicitly rejected by regression.
+
+`link_status=MATCH` means precisely the declared inter-site bonds occur once,
+using the literal graph-bound endpoints from C108. All inter-site bonds touching
+a selected site are included, so wrong-oxygen, duplicate, extra and out-of-scope
+connections cannot hide behind aggregate counts. Symmetry bonds touching those
+sites prevent a match. Bonds wholly outside the selected scope are not qualified.
+Targets and weights must be finite and positive; their actual values and origin
+IDs are reported, **not approved**. Simple/ASU proxy lists, detailed lists and
+counts must agree. No literal O3prime/P-name heuristic determines membership.
+
+`definition_status` compares exact source atom names/elements and retained bond
+adjacency against each selected effective native definition, plus available
+formal charges and model-mapping completeness. It is not equality of every
+numerical restraint, bond-order, stereochemical or descriptor field. Missing/extra
+names, element changes and adjacency differences remain visible. No alias is
+silently normalized. A missing charge field is `UNSUPPORTED`, a conflicting value
+is `CONTRADICTION`, and partial charge never substitutes for formal charge.
+Structural `MATCH` with unavailable charges is consequently still overall
+`REVIEW`. Native group/classification and energy types are observations only;
+`energy_type_authority` remains `NOT_QUALIFIED`.
+
+The additive report is schema 1, policy `cif-source-native-link-audit-v1`. Overall
+status remains `REVIEW`, automatic adoption is false and native qualification is
+`NOT_ASSESSED`. Exit **2** means completed inspection, including a preserved native
+failure; exit **1** means invalid or inconsistent evidence. The text command
+shows captured execution, link/definition outcomes and unavailable charge sites.
+Runtime preparation, native capture schemas, checkpoints and dependencies are
+unchanged; no migration or source rewrite occurs.
+
+**Fresh controls and limits.** Three installed-library interpretations used the
+Phenix 2.2.1-6174 installation (dispatcher reports `2.2.1`). Frozen CCD ideal
+coordinates were translated to place the declared endpoints 1.607 Å apart.
+These synthetic pairs test representation, not experimental geometry, pucker or
+numerical quality. No optimizer, Coot, ReadySet or refinement ran.
+
+DA–DT produced the exact O3prime–P bond, target 1.607 Å and weight
+6944.444444444444; its endpoint types were recorded as OC2 and P. Source/native
+definitions still require review. DA's source has OP3/HOP2 where the effective
+native names include O3T and omit HOP2. DT's source C7/H71/H72/H73 names differ
+from native C5M/H5M1/H5M2/H5M3, and source HO3prime/HOP2 are absent from the effective
+definition. This is a definition comparison: it does **not** claim that the
+coordinate model lost terminal phosphate atoms. Formal-charge readback is
+unavailable. Native naming and chemical-state reconciliation need distinct,
+explicit policies before these differences can be accepted.
+
+DA–ATL and ATL–DA both failed with unknown native nonbonded energy types (22 and
+23 atoms respectively), so no ATL link qualification was obtained. This diagnoses
+the installed-library path; it does not establish that a source-preserving
+numerical ATL dictionary cannot work. Generate and qualify such a candidate
+through the existing bounded recovery machinery before attempting transfer.
+
+The three real captures plus wrong-endpoint, moved-coordinate and corrupted-log
+controls replay exactly through API and CLI in a fresh process after relocating
+source code and inputs. Original owned paths are gone and historical/SDK reads
+and subprocesses are blocked. All original capture/source bytes and timestamps
+remain preserved. Commands, hashes and results belong to
+`native_attachment_link_audit_2026_10_28` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
+
+### Observed native atom-name mappings (C112)
+
+The diagnostic Python API `inspect_native_bundle(..., inventory_detail="linked",
+atom_name_mapping=True)` requests an explicit mapping capture. It records the
+actual Phenix monomer object's `atom_names_mappings`, final expected/unexpected
+bindings, duplicate bindings and active model indices. Intermediate
+`mon_lib_names` observations are preserved when available; they never override
+the final expected-atom binding. Missing native API fields are `UNSUPPORTED`.
+This option cannot be combined with the unqualified energy-worker extension.
+
+The existing `link-native` command reads either the exact maintained base worker
+or this exact extension. Request, receipt and report must agree on policy
+`cif-native-observed-atom-name-mapping-v1`. Every site and active atom must map
+back to the bound model's component, index and literal atom name; expected names
+must exist in the effective dictionary with the same element. Duplicate,
+contradictory, missing or collapsing bindings cannot reconcile a difference.
+Native index reordering remains supported through the existing identity check.
+
+The original `definitions` and `definition_status` remain literal. A requested
+capture adds `atom_name_mapping`, `mapped_definitions` and
+`mapped_definition_status`. Only observed model-to-definition aliases translate
+source atom names for the second atom/element, retained-adjacency and available
+formal-charge comparison. `source_atoms_without_model_binding` exposes the
+remaining source atoms. **Unmodelled hydrogen names and protonation are never
+inferred.** Missing mapping APIs withhold the mapped comparison; failed native
+interpretations remain explicit failures. Overall `REVIEW`, unavailable formal
+charges, numerical qualification limits and no automatic adoption still apply.
+
+Four complete fixed-coordinate Phenix **2.2.1-6174** interpretations exercised
+this extension. DA–DT records OP3→O3T and C7→C5M and keeps the exact declared
+link, but its mapped source comparison still reports hydrogen/adjacency
+differences. The unmodelled H71/H72/H73→H5M1/H5M2/H5M3 relationship is not guessed.
+Both ATL directions retain their installed-library energy-type failures.
+The preserved ordinary L-DNA bundle binds all 855 atoms at 42 sites with **zero
+aliases**; C110's phosphate chemical-state differences are not explained away
+as naming. These are transferable diagnostic controls, not structure-specific
+repairs or a claim that L-3GBI is solved. No optimizer, ReadySet, Phaser, Coot or
+refinement runs in C112.
+
+The historical base worker is byte-for-byte unchanged. New capture/report
+schema-1 fields are additive; older readers reject the new worker rather than
+partially interpreting it. Existing default captures and run/checkpoint schemas
+require no migration. All four fresh outcomes and a real legacy capture replay
+exactly in a relocated checkout with original paths and native execution blocked.
+Commands, hashes and validation are in `native_atom_name_mapping_2026_10_28`
+in the [evidence ledger](cif-linked-native-registration-evidence.json).
+
+### Bound hydrogen inventories (C113)
+
+For a C112 mapped source comparison, `link-native` now adds
+`mapped_definitions[SITE].hydrogen_inventory`, policy
+`cif-native-bound-hydrogen-inventory-v1`. This read-only layer compares the
+retained source projection and the effective native dictionary. It uses the
+existing indexed atom bindings; it performs no new native execution.
+
+Every heavy atom in both definitions must have an observed binding with the
+same element. Each H, D or T atom must have exactly one heavy-atom parent in
+an unambiguous bond inventory. Missing bond data, unbound heavy atoms,
+duplicate/self/unknown-endpoint bonds, orphan hydrogens or multiple/H-only
+parents produce `UNSUPPORTED` and `inventory_status=NOT_ASSESSED`. Unresolved
+source projections/model mappings are also not assessed. They cannot look like
+an empty, matching inventory.
+
+Recorded groups expose the source/native parent names, raw hydrogen labels and
+isotope counts. `inventory_status` separates count/isotope differences and
+changed attachments of identically named (or explicitly mapped) hydrogens;
+`name_status` separately records label differences. Two H labels swapped
+between parents remain visible even if each parent still has the same count.
+The labels of unmodelled hydrogens are not mapped or guessed. An already
+observed model-bound H alias may participate, retaining its C112 provenance.
+
+**Equal counts do not establish chemical equivalence.** They do not settle
+formal charge, protonation, individual hydrogen identity, stereochemistry or
+bond-order/numerical authority. Literal and mapped definition results remain
+unchanged by this new inventory; overall `REVIEW`, charge limitations and no
+automatic adoption remain. Text output reports recorded/unavailable inventories,
+attachment/count differences and equal-count label differences separately. Text
+totals summarize whole site inventories; individual parent groups remain in JSON.
+
+Replay of the preserved Phenix 2.2.1-6174 DNA capture records three methyl H
+atoms on both C7/C5M, under H71/H72/H73 versus H5M1/H5M2/H5M3 labels. It separately
+reports missing HOP2 at both selected sites and missing HO3′ at DT's O3′.
+The exact declared link still matches; source/mapped definitions still require
+review. These are source-versus-effective-definition observations, not claims
+of coordinate deletion or permission to change protonation. Both failed ATL
+captures stay failed. The legacy base capture keeps its original output; the
+L-DNA mapping-only control remains outside this hydrogen comparison because
+no corresponding source projection was supplied.
+
+Five saved controls replay exactly from relocated code/inputs with original
+paths and native execution blocked; the four source-link controls agree through
+API and JSON CLI. No new Phenix, ReadySet, Coot, Phaser, optimizer or refinement
+execution occurs. New report fields are additive within schema 1; worker,
+run/checkpoint schemas and default legacy reports require no migration. See
+`bound_hydrogen_inventory_2026_10_28` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
+
+<a id="next-attachment-profile-milestone-g2-planned"></a>
+
+### Explicit purine generation handoff (C118)
+
+`generate_source_candidate` accepts the same keyword-only
+`bond_representation_policy="cif-source-declared-neutral-purine-aromatic-v1"`
+used by C117 assessment. Omitting the option preserves the existing worker,
+policy, specification and default behavior. The option selects schema-1 policy
+`cif-source-native-complete-candidate-v2` and a maintained extended worker.
+
+The host derives a `cif-source-native-representation-contract-v1` contract from
+the source classifier. The native reader may retain the complete authorized
+aromatic ring representation, while atom/element/isotope identities, connectivity,
+source coordinates and other bond orders must agree. Declared-charge control
+operates on that verified representation. Native class conversion must preserve
+the entire controlled snapshot, including its stereo markers; the finished
+inventory must preserve source chemistry and finite coordinates. This does not
+rewrite native aromatic orders into localized bonds.
+
+Independent candidate chemistry, formal-charge, source-relative stereo,
+numerical and native checks remain required. A native exception or timeout does
+not erase written output; unavailable final-stage evidence is recorded explicitly.
+Stage contradictions reject retained candidates. Convergence and independent
+absolute CIP are not inferred from successful generation or finite energies.
+
+`cif_source_representation.read_representation_candidate(directory)` is the
+standalone read-only validator for this new policy. It binds the frozen source,
+maintained worker, four installed-source captures, exact capability flags and
+bounded specification. It recomputes charge/stage evidence, actual candidate
+assessment, stopping and diagnostics. Original installation strings are historical
+provenance only; replay uses local declared paths and hashes. Captured code is
+not executed, and serialized native objects are not loaded. The legacy mixed
+recovery reader is unchanged and does not accept this new generation policy.
+
+Phenix **2.2.1-6174** (dispatcher **2.2.1**) completed fresh 40A/APN/40C
+180-step generation attempts, with a 300-second deadline per attempt, and six
+independent isolated interpretations bounded to 60 seconds each. All 21 native
+checks pass at source and generated coordinates; fixed covalent proxies agree.
+40A retains source-relative handedness; APN has no fixed center in these controls.
+Native formal-charge readback remains unsupported, separately from exact CIF
+charge retention. These are complete executions, not dry-runs. An initial 40A
+attempt is preserved after exposing a source-basename replay mismatch; corrected
+fresh attempts use the frozen source identity. No original receipt is rewritten.
+
+### Whole-residue FANA placement control (C124)
+
+`prepare_fana_linked_control(package, numerical, frame, output, context=...)`
+creates a separate three-residue diagnostic. It freezes a verified C123 package,
+a complete source-preserving numerical candidate and an explicit heavy-atom DNA
+frame at A:1–3. The selected A:2 residue is replaced as a whole; the ordinary
+PostMR/Coot parent-sugar restoration remains unchanged. This API does not edit
+an experimental model or activate a production mutation route.
+
+The context must explicitly declare A:1→A:2→A:3, both selected-site ports linked,
+identity symmetry, and the exact source-named phosphate leaving oxygen. That
+oxygen must have P as its sole heavy neighbour, a single P–O bond, neutral
+charge and exactly one neutral singly attached H/D. The outgoing O3′ must also
+have its source-defined neutral H/D. The planned linked projection removes only
+that leaving O/H and outgoing H; the heavy model omits coordinate hydrogens,
+while the supplied source and complete dictionary retain their original bytes.
+Other phosphate oxygens and their hydrogens are protected. Spelling does not
+choose chemistry: the real component uses O1P/O2P/O3P, which are retained as
+source names. Terminal phosphates, free-OH reconstruction and other contexts
+are outside this initial control, rather than inferred from missing atoms.
+
+Conventional sugar/backbone atom names are required, with their roles checked
+against the package's graph binding. Host glycosidic atom names come from its
+frozen NARestraints workbook; for example, 0DA binds N9A, not an assumed N9.
+The host and candidate must agree at the three heavy sugar centres shared with
+DNA. All four candidate FANA centres must preserve source-relative handedness.
+An orthonormal C1′/O4′/C2′ frame supplies a proper rotation and translation for
+the entire selected component. No sugar/backbone coordinates are copied back
+from DNA. All retained heavy-atom pair distances must survive PDB rounding to
+0.002 Å; this is a serialization check, not a refinement acceptance threshold.
+All four heavy sugar volumes are checked again after serialization. New
+selected-site HETATM records use occupancy 1 and B=20 for this synthetic control;
+flanking records remain unchanged. Both O3′–P distances are reported without a geometry
+acceptance claim, and clashes, optimization and independent absolute CIP remain
+unassessed.
+
+Schema-1 policy `cif-rigid-whole-fana-linked-control-v1` stores `component/`,
+`numerical.cif`, `frame.pdb`, `context.json`, `model.pdb`, `placement.json` and
+last-written `receipt.json`. Existing output and source-overlapping/symlinked
+output locations are refused; interrupted partial output is preserved.
+`read_fana_linked_control` checks the exact file set and hashes, rederives the
+component, source/candidate checks and placement, and compares the complete model
+and report. Rehashed altered coordinates or a fabricated success flag cannot
+replace fresh derivation. Namespace occupancy remains the package's historical
+observation; production consumers still need C123's current binding check.
+
+The real AAJ L-FANA-C control replaces A:2 in an NARestraints 1.1.3 mirror of
+A:1–3 from the tracked 5W6W A_T frame. It preserves all four FANA hands and the
+flanks, but junction distances change from 1.6135/1.6248 Å to 3.9828/2.5461 Å.
+It therefore reports `PLACED_FOR_LINK_REVIEW`, never a usable linked model.
+This replaces 0DA with L-FANA-C in a separate control. The gaps describe this
+particular candidate conformer and rigid fit; they do not demonstrate an intrinsic
+incompatibility of FANA with a phosphodiester backbone. A later bounded adjustment
+may change allowed torsions/pucker while preserving source chemistry and hands.
+
+Phenix 2.2.1-6174 (dispatcher 2.2.1) completed four bounded interpretations
+(60 seconds each), with no Coot, generation, optimization or diffraction
+refinement. The installed-only L-DNA reference fails on 62 unknown energy types,
+consistent with C110. Two separate reads reuse C110's frozen diagnostic L-DNA
+numerics for the flanks; their known source-state differences remain unqualified.
+A local source-named modifier diagnostic applies the existing explicit DNA
+operations to AAJ, sets its group to DNA and outgoing O3′ type to OC2, without
+changing numerical targets. This runner is not a generalized preparation API.
+The reference has both intended native links; the candidate has only A:2→A:3.
+All six projected-definition categories, five heavy-proxy categories and eight
+unaffected flank-proxy categories match. Both flanks still report missing OP3
+under those diagnostic definitions. Neither successful interpretation nor the
+remaining outgoing bond establishes complete linked chemistry or good geometry.
+
+A separate translation-only diagnostic returns AAJ's P to the reference position
+without changing its internal geometry, flank coordinates or dictionaries. The
+incoming bond then appears, while the outgoing bond disappears at 3.8810 Å.
+This isolates a coordinate-dependent bond-detection boundary. However, only four
+of six tetrahedral phosphate angles appear: the incoming A:1 O3′–A:2 P–O1P and
+O3′–P–O2P angles are absent. Source-named junction angle coverage is therefore a
+separate consumer issue, now addressed for the bounded bonded control by C125 below. Do not infer complete linkage from a bond
+proxy alone, rename source atoms implicitly, or authorize this translation as a
+repair. The original placement remains unchanged.
+
+Cold replay rederives placement and verifies all three successful diagnostic captures
+against exact inputs, specifications, maintained worker bytes and output hashes.
+All 280 files remain unchanged after the owned original is removed by relocation;
+original science/SDK reads and subprocess execution are blocked. The original missing
+incoming link and the translation control's two missing angles remain visible. Exact commands and evidence are in
+[evidence](cif-linked-native-registration-evidence.json), key
+`fana_whole_residue_placement_2026_10_29`. Raw models, dictionaries, workbook,
+namespace, native captures, logs and runners remain local.
+
+C125 below establishes exact source-named incoming angle mechanics. Next: bounded
+junction adjustment that preserves the intended FANA sugar and source chemical
+state, followed by both-link native checks with qualified flank/terminal definitions. Do not force a long bond into refinement or restore
+the DNA sugar to conceal the mismatch. Ordinary mutation, other L-FANA bases,
+C119 PNA, DG naming and ATL/L-DNA/PDU remain separate; sticky-end stitching stays
+parked.
+
+
+### Source-bound qualified site preparation (C133)
+
+`bind_preparation_qualification(source, candidate, code, qualification,
+bond_representation_policy=...)` freshly reassesses exact source/candidate bytes
+under an explicit supported representation policy. It requires the complete v3
+isolated-native contract: the exact 21 named true checks, component/scope/status,
+source/candidate hashes, source-relative configuration and representation evidence.
+Missing, extra or integer-valued checks, altered summaries and policy relabelling
+fail closed. Filenames remain provenance; semantic evidence and exact hashes bind
+relocated copies. Caller-supplied qualification is an evidence contract, not an
+independent authentication of a Phenix execution; the native receipt validator
+must attest the capture separately.
+
+Every fixed or R/S-declared source centre must have an assessable, preserved
+four-neighbour configuration. The source determines the number and identities:
+three deoxy centres and four fluorinated-sugar centres use the same rule. Element,
+H/D, formal charge and graph comparisons remain mandatory. This does not assign
+absolute CIP or infer missing stereochemistry. No residue code, workbook sugar
+label or atom-name pattern defines eligibility. A source-preserved ribo-fluoro
+candidate can pass this generic guard without being called FANA.
+
+`prepare_linked_component(..., native_qualification=..., bond_representation_policy=...)`
+and `prepare_terminal_component(...)` propagate that explicit evidence. The new
+path accepts consistent source `DNA LINKING` or `L-DNA LINKING` declarations;
+these are separate [CCD type values](https://mmcif.rcsb.org/dictionaries/mmcif_pdbx_v40.dic/Items/_chem_comp.type.html).
+Native group DNA selects existing polymer machinery and never authorizes a hand
+change. Other or contradictory polymer metadata is refused. Native preparation
+still has the conventional backbone-name contract; the generic source-port API
+is not yet a universal native adapter.
+
+Conventional names also need an element/bond/state proof: P/O/C identities,
+phosphate/bridging-oxygen neighbours and the required single bonds are checked.
+Source O3′ must be a neutral single-H/D hydroxyl; an incoming OP3 deletion needs
+the same neutral hydroxyl state and a single P–O bond. The exact existing C107
+neutral-port predicate is shared, so the generic source and new native paths do
+not invent different protonation rules. Additional heavy neighbours, charged
+reacting oxygens, double-bonded outgoing oxygen or sulfur/fluorine masquerading
+under ordinary oxygen names require a separate operation. They are refused before
+output creation. Nonreacting phosphate oxygen charge/H is retained unchanged.
+Nine adverse cases fail before this gate and pass afterward; valid deuterium is
+accepted. Previous default/v2 native calls retain their existing contract.
+
+A projected group may remove its own declared centre only as part of the explicit
+chemical deletion. Every retained source centre must keep its original neighbours.
+A link substitution that removes one of those neighbours is refused before output
+creation: it needs separate linked-configuration authority, rather than silently
+losing the centre's signed restraint. Declared terminal phosphates remain protected;
+internal OP3 plus attached H/D and outgoing hydroxyl H/D are removed only under
+the existing explicit contexts. OP2 protonation is retained. Free 5′-OH preparation
+uses the separately captured installed fragment; its new H formal charge remains
+unassessed. Neither model coordinates nor installed resources are changed.
+
+New schema-1 policies are `cif-source-bound-preparation-qualification-v1`,
+`cif-source-preserving-linked-sites-v3` and `cif-native-five-prime-hydroxyl-v2`.
+Receipts add the bound source evidence and per-site retained/removed-centre and source-port records.
+Calls without the new policy retain the previous default/v2 linked behavior;
+legacy terminal calls retain v1. There is no CLI, run/checkpoint migration or
+ordinary PostMR activation. All outputs remain separate review candidates.
+
+**Completed native control.** C121's exact source-preserving 0DG candidate is
+requalified from its frozen isolated capture, then projected at the unchanged
+61-atom C130 L-FANA-C endpoint. A:1 is explicitly free 5′-OH/outgoing-linked;
+A:3 is incoming-linked/free 3′-OH. Complete Phenix 2.2.1-6174 execution (dispatcher
+2.2.1; resource capture bounded at 120 s, interpretation and derivative captures
+at 180 s each) gives **42 PASS / two UNSUPPORTED formal-charge readbacks**.
+All three residues have complete heavy-atom mappings, both declared bonds match,
+all central definitions and unaffected proxies remain exact, and the outgoing
+O3′ hydrogen findings disappear. A:1 has no phosphate definition and gains the
+native HO5′ fragment; A:3 loses OP3/HOP3 and retains HOP2 and terminal HO3′.
+Hydrogens remain dictionary expectations, not newly inserted model coordinates.
+
+All active proxy parameters and fixed energy/gradient snapshots equal the C132
+control. The change repairs explicit definitions, not coordinates or numerical
+strain. A fresh exact-manager derivative capture passes all sampled directions
+at six selected flank/central atoms in 1,359 evaluations. This is an identity-only,
+no-parallelity sample, not an exhaustive derivative or chemical proof. The original
+C130 iteration-limit result, two fixed-flank bond deviations, source protonation
+and unsupported native formal-charge readback remain visible. No optimizer,
+refinement, Coot invocation or automatic adoption occurs.
+
+Validation: **404 focused tests**, including 60 new cases, pass. Fail-before and
+projection-guard-disabled controls are preserved. The complete report replays in
+a cold relocated checkout with its owned original absent and historical/SDK/process
+access blocked; **289 files retain exact bytes, sizes and mtimes**. Full regression passes: **6804 passed, 276 subtests passed in 1026.17s (0:17:06)**.
+All 499 source/test hashes remain unchanged and match focused/cold validation;
+494 previously published source/test files remain unchanged. Exact commands, failures, native
+versions and anchored local hashes are in evidence key
+`source_bound_site_preparation_2026_10_30` in the existing ledger. Raw models,
+CIFs, installed-resource captures, logs and runners remain local and excluded from Git.
+
+### Fixed-coordinate dictionary controls (C132)
+
+`review_native_target_comparison(before, after, model_payload, changed_sites,
+expected_links)` compares complete detailed native inventories under an explicit
+site change declaration. Both managers must reproduce the exact supplied model
+and declared cross-site bonds, including any separately frozen NARestraints soft
+bond authority. Atom identities/order/coordinates/occupancies, installed API
+sources, native policy, parameter consumers, PHIL adaptations and custom proxy
+requests must agree. Every model site must have one exact literal monomer mapping.
+Definitions outside the declared sites must be identical. All captured proxy
+categories/counts are required, and ordered named endpoints plus every recorded
+parameter must agree for proxies wholly outside those sites. Incomplete or
+ambiguous evidence refuses comparison; a lost link cannot masquerade as relief.
+
+`inspect_native_target_comparison(...)` binds that report to two existing native
+receipts and exact model bytes through the maintained capture validator. It checks
+worker/spec/output integrity, native version/API/executable context, dictionary
+source policy and ordered input roles. Only dictionary files may differ; each
+substitution is recorded by input index, checksum and size. At least one explicit
+substitution is required. Frozen artifacts are rechecked after reading. Relative
+operational references remain under the existing native-directory anchors; no
+original host path, basename search, SDK or process launch is needed for replay.
+
+Scalar bond/angle/chirality rows are matched by ordered structured atom identities
+and origin. No nearest-neighbour matching, endpoint permutation or inferred alias
+is used. Duplicate keys refuse comparison; unmatched rows remain explicit
+additions/removals. Matched observations must be identical. Targets and weights
+are shown separately, along with sign-convention changes. For ranked rows with
+unchanged conventions, two descriptive controls hold either the original weight
+or original target fixed. They reuse `(observed - target) * sqrt(weight)`; they
+are neither native energies nor chemical proposals. Unsupported, unweighted or
+convention-changing rows receive no such control. Complete named parameter
+changes are retained for every captured proxy family. ASU, dihedral, constant
+dihedral, plane and parallelity scalar/residual calculations remain deferred;
+nonbonded mechanics are outside this comparator's scope.
+
+The schema-1 policy is `cif-native-fixed-coordinate-target-comparison-v1`.
+Full before/after monomer mappings preserve formal-charge readback, partial
+charges, hydrogen inventories, modifications and missing heavy atoms separately.
+Missing OP3 never instructs the software to add OP3. Exact topology and a lower
+score do not authorize protonation changes, terminal projection or adoption.
+Source graph/stereo and the chemical permission for a linked-state operation
+remain independent gates. There is no new CLI or ordinary PostMR activation.
+
+**Completed source/native control.** At the exact serialized C130 L-FANA-C
+endpoint, only the first explicit dictionary was replaced: the C110 diagnostic
+0DG flank definitions were exchanged for C121's exact isolated source-preserving
+0DG candidate. The central AAJ dictionary, link dictionary, three PHIL files and
+all 61 coordinates were unchanged. C130's complete endpoint checks were replayed
+first; the candidate was freshly reassessed against the frozen CCD source under
+the explicit neutral 6-oxo purine representation policy. A complete Phenix
+2.2.1-6174 interpretation (dispatcher 2.2.1, 180 s bound) retained both declared
+links, all central definitions and central-only proxies. No optimization,
+refinement, Coot execution, coordinate editing or dictionary adoption occurred.
+
+| Flank bond | Old input target / sigma (Å) | Source-preserving candidate target / sigma (Å) |
+| --- | --- | --- |
+| C3′–C2′ | 1.220 / 0.020 | 1.534 / 0.036 |
+| C4′–O4′ | 1.270 / 0.020 | 1.401 / 0.030 |
+
+These values already occur in the respective input CIFs and are reproduced in
+both native flank definitions. The short targets were not introduced by C130
+optimization or by this native interpretation. At identical coordinates, flank
+bond nominal counts with absolute value >=3 are **23** under the old definition,
+**5** with only new targets, **18** with only new weights, and **2** with both.
+All 68 bonds have exact ordered matches; no bond is gained or removed. These
+counts are descriptive rankings, not crystallographic acceptance thresholds.
+The two remaining rows are A:3 C3′–O3′ (1.487913 Å observed, 1.384 Å target,
+nominal +3.8486) and P–OP2 (1.485785 Å observed, 1.571 Å target, nominal -3.7050).
+Angle counts >=3 increase from 2 to 4; no captured chirality sign conflicts occur.
+
+The full native targets are 1713.8031 and 367.5938, but these are different
+objectives at the same coordinates. The selected gradient norm increases from
+14.3913 to 18.8346 while the held norm falls from 5243.9005 to 1353.2747.
+A previous optimizer endpoint does not inherit convergence under changed
+mechanics. These independently replayed C131 metrics are evidence context,
+not outputs claimed to be decomposed by the new comparator.
+
+**Chemical limits.** The original source and C121 candidate have 37 atoms,
+14 hydrogens and total formal charge zero, retaining HOP2/HOP3 and localized
+P=OP1/P–OP2/P–OP3 orders. The old C110 dictionary has 35 atoms, 12 hydrogens,
+charge -2 and delocalized phosphate orders. Isolated source preservation does
+not select a polymer phosphate state. Both native controls still report missing
+OP3 at A:1/A:3, and the outgoing A:1 definition retains HO3′ with oxygen type OH1.
+The candidate also leaves HOP2/HOP3 in the missing-H inventory. These observations
+identify the next explicit source/terminal/link projection gate; they do not
+license atom deletion, protonation normalization or adding a third oxygen.
+
+Validation: **212 focused tests pass**, including 30 new C132 cases. A recorded
+regression fails before implementation. Tampered artifacts, changed PHIL/context,
+coordinates/topology, duplicate identities/proxies, outside-site changes,
+unrankable rows and mutation during reading are covered. Real report replay
+passes, and a cold relocated replay reproduces the entire report while preserving
+327 hashes/sizes/mtimes after the owned original disappears. Original scientific
+paths, the original checkout, Phenix SDK and subprocess execution are blocked,
+with no attempted access. Full regression passes: **6744 passed, 276 subtests passed in 997.42s (0:16:37)**.
+All 497 source/test hashes remain unchanged and match the focused run; all 495
+previously published source/test files are unchanged. Exact commands/results and local hashes are in evidence key
+`fixed_coordinate_dictionary_controls_2026_10_30` in the existing ledger.
+Raw sources, models, candidates, native outputs and runners remain local.
+
+The qualification/representation refusal observed in C132 is addressed by the
+[explicit C133 bridge](#source-bound-qualified-site-preparation-c133). That result
+adds exact projected definitions and fresh sampled derivatives; it does not
+retroactively adopt the C132 dictionary or close protonation and geometry review.
+C130's original stopping record remains unchanged.
+
+### Selected environment review (C131)
+
+`review_selected_environment(native, moving_indices)` reuses captured Cartesian
+geometry and the complete native pair arithmetic replay, then assigns each
+reported bond, angle, chirality or nonbonded pair to exactly one dependency group:
+`selected_only` (every endpoint selected), `boundary` (selected and fixed endpoints)
+or `fixed_only` (no selected endpoint). Selection must be an explicit, distinct,
+nonempty proper subset. Identity, coordinate, native function, actual pair
+membership, repeated energy/gradient and raw residual checks remain mandatory.
+Nothing is inferred by a distance-based neighbour search.
+
+Every scalar row remains visible, including unsupported, degenerate and unweighted
+measurements. Nominal deviations, existing descriptive counts at 3 and 5, sign
+conflicts and worst rows are summarized per group. Deferred ASU bonds, dihedrals,
+constant dihedrals, planarity and parallelity retain their existing unassessed
+status and counts. These scalar comparisons are not native covalent energies;
+C131 does not square or sum them into an objective estimate or acceptance gate.
+Native nonbonded residuals are separately summed by dependency using all captured
+pairs, including zero rows, and the complete sum must reproduce the validated
+native nonbonded target. This is not a decomposition of the complete objective.
+
+The full native gradient is projected onto selected and held coordinates. The
+report records both norms, their squared partition and the complete norm, checking
+the latter against the saved vector. A force on a held atom is not the gradient
+seen by a selected-coordinate optimizer. Neither a small selected norm nor a
+large held norm declares convergence; the original stopping reason remains
+separate. Similarly, a selected/boundary dependency means only that movement can
+affect its geometry, not that a feasible or chemically valid repair exists.
+
+`inspect_fana_environment(...)` first invokes the complete C130 source-bound
+endpoint reviewer, then binds the same candidate bytes and pair receipt to this
+report. The output carries the existing checks, artifact bindings and stopping
+classification; failed checks cannot become geometry acceptance. The schema-1
+policy is `cif-selected-environment-review-v1`. Readers do not write files or
+launch processes. There is no CLI, checkpoint migration, native worker change,
+optimization, installed-library edit or ordinary PostMR activation.
+
+**Saved L-FANA-C endpoint:** all 23 bond nominal deviations >=3 (14 >=5) involve
+fixed atoms only; zero selected-only or boundary bonds meet those descriptive
+thresholds. One boundary angle and one fixed-only angle remain >=3; no reported
+chirality row meets that threshold. Native nonbonded residuals partition into
+4.8222 selected-only (82 pairs), 16.1829 boundary (201 pairs), and 18.6762 fixed-only
+(142 pairs), summing to 39.6813. There are respectively 6, 11 and 15 positive pairs.
+Fixed-only pair terms cannot be repaired by moving the central residue while its
+neighbours and manager remain unchanged. This does not establish a total objective
+floor or approve the source definitions/targets of those fixed neighbours.
+
+The fresh serialized native endpoint has full-gradient norm 5243.9202, with
+selected norm 14.3913 and held norm 5243.9005. These values describe the rounded
+PDB coordinates, not the optimizer's full-precision stopping vector. Serialization
+sensitivity and the original `NOT_CONVERGED_LIMIT` stay visible; the result is
+REVIEW, with geometry acceptance and automatic adoption false. Existing source
+H/charge/order/OP3 issues, a remaining boundary-angle deviation, pair clashes and
+absolute chemistry qualification remain separate.
+
+Validation: 279 combined focused tests pass, including 18 new C131 cases and 66
+C130 cases. Raw pair/vector corruption, bad selections, unmeasurable geometry,
+changed bindings and attempted relabelling of failed endpoint gates are covered.
+Actual saved Phenix 2.2.1-6174 evidence replays without new native execution.
+Cold replay reproduces the entire report and preserves 294 hashes/sizes/mtimes
+after the owned original disappears, with old paths, SDK and process creation
+blocked. Full regression passes on the combined implementation: **6714 passed, 276 subtests passed in 973.15s (0:16:13)**. C130's first
+suite attempt was deliberately interrupted at the user's request, preserved
+unchanged, and replaced by this fresh combined run. See evidence key
+`selected_environment_2026_10_30` in the existing ledger for commands/results.
+Raw scientific inputs, native artifacts and runners remain local.
+
+Next: use the explicit fixed/boundary findings to investigate source-authorized
+flank target/protonation repair and a bounded convergence/serialization trial.
+Do not release the flanks or loosen source chemistry merely to lower a score.
+
+### Selected native FANA geometry (C130)
+
+`run_selected_geometry(...)` creates a separate diagnostic candidate from a
+validated C129 native capture. The explicit ordered selection must be a nonempty
+proper subset of unique atom indices. `SelectedCoordinates` packs only those
+Cartesian coordinates for native L-BFGS; it reconstructs every unselected point
+from the original full-precision input and projects the full native gradient back
+onto the same selection. All energy evaluations retain the complete environment,
+including cross-boundary covalent and nonbonded interactions. This is an opt-in
+Python API, with no ordinary PostMR, CLI or checkpoint activation.
+
+The starting receipt, inputs, exact maintained worker and raw numerical evidence
+must validate before allocation. The starting sampled derivatives must pass.
+The trial freezes those artifacts, then builds a fresh ordinary energy manager
+from the same explicit model/dictionaries/PHIL. Its manager digest, complete
+energy/gradient/count inventory, static constraints and numerical source hashes
+must match the qualified start. Reusing a manager immediately after finite-
+difference probes can change its cached neighbour list; the ordinary bootstrap
+avoids importing that state, without weakening the initial equality check.
+The existing seed binder, derivative audit and legacy workers are unchanged.
+
+The default bounds are 200 optimizer iterations, 2,000 recorded full-objective
+evaluations and 180 seconds. API ceilings are 500 iterations, 5,000 evaluations
+and 3,600 seconds. The native optimizer call limit reserves four bookkeeping
+evaluations: initial, final, repeated final and rounded endpoint. Every evaluated
+selected vector, full target/gradient/term/count snapshot, accepted-step trace,
+stop reason, native convergence flag and numerical/optimizer source fingerprint
+is retained. Separate derivative checks have the existing 2,000-evaluation bound;
+rounded pair capture records two actual evaluations and a 5,000 pair-kernel-call
+ceiling. Those diagnostic calls are separate from the optimizer evaluation count.
+Timeout handling owns and stops the launched process group. Failed or incomplete
+attempts retain their outputs; only a validated complete result writes a separate
+candidate. Each invocation allocates a fresh attempt.
+
+The schema-1 policy `cif-selected-native-geometry-v1` binds the specification,
+result, trace, helpers, source copy, bootstrap and output hashes. Full-precision
+endpoint evidence is explicitly labelled as evaluation under the fixed manager,
+not fresh chemical interpretation. `read_selected_geometry(...)` checks the
+maintained worker/helper bytes, frozen input equality, result/spec schemas,
+selection, vectors, budgets, stopping evidence, source hashes, repeated numerical
+evidence, exact candidate serialization and complete file inventory. It replays
+sampled derivatives and nonbonded arithmetic without running native code or
+writing files. Saved pass flags alone do not suffice. The reader verifies saved
+mechanics evidence; it does not independently re-execute or certify the optimizer.
+
+`run_fana_selected_geometry(...)` additionally requires the existing source-bound
+bridge and exact native topology gate and derives the entire central-residue
+selection. `inspect_fana_selected_geometry(...)` binds a completed trial to that
+source and two fresh candidate captures: derivatives and pair attribution.
+Both captures must consume the exact candidate bytes and same nonmodel inputs
+and agree on the native manager and energy inventory. The established mechanics
+review requires unchanged identities, complete site definitions, covalent proxies,
+custom requests, interpreter and fixed policy. The topology gate requires both
+source-declared links with no extra native inter-residue bond. The schema-1 report
+policy is `cif-source-bound-fana-selected-geometry-v1`.
+
+All four source-defined sugar centres must retain their ordered heavy-neighbour
+volume signs at both full precision and serialized native readback; missing,
+degenerate or inverted centres cannot pass. This is source-relative preservation,
+not an independent CIP assignment or chemical target qualification. Optimizer
+flanks are exactly unchanged and fixed PDB records remain byte-for-byte intact.
+Fresh native coordinate conversion uses the existing 1e-9 Å capture tolerance;
+the actual maximum fixed-coordinate difference was 1.42e-14 Å. No OP3 is added,
+no terminal phosphate is implicitly removed, and no source protonation or restraint
+ownership is changed.
+
+**Actual L-FANA-C control, Phenix 2.2.1-6174 (dispatcher 2.2.1):** the maintained
+trial and two fresh endpoint captures completed under 180-second bounds, not
+dry-runs. Only the 20 central A:2 atoms move in the 61-atom environment. The full
+native objective falls from 8590.7321 to 1713.7928 (serialized: 1713.8031); the
+nonbonded residual falls from 6127.5993 to 39.6310 (serialized: 39.6813). The
+outgoing C3′–O3′–P angle improves from 86.3904° to 118.5826° against its 119.7°
+target; the O3′–P distance improves from 1.68270 Å to 1.60755 Å against 1.607 Å.
+Both backbone links, mechanics and sugar hands pass. Full-precision and fresh
+serialized derivative audits each pass 1,359 sampled evaluations. There is no
+nonzero parallelity term in this ordinary native objective.
+
+Fixed and fresh rounded endpoint neighbour counts differ: 404 versus 425. The
+maintained pair-cache proof verifies that all 32 added and 11 removed pairs have
+exactly zero residual and gradient; common pair contributions, nonbonded sums and
+gradients agree. All other full target/gradient/term/count values also agree.
+Count differences are permitted only with that explicit numerical proof.
+
+The optimizer stops at 200 iterations and 210 native optimizer calls, with 214
+recorded full-objective evaluations: `NOT_CONVERGED_LIMIT`. No optimizer error
+occurred. The candidate remains REVIEW, with geometry acceptance and automatic
+adoption false. Residual clashes remain; the strongest recorded endpoint pair is
+central C1′ against downstream OP2, at 2.7225 Å (0.5375 Å native overlap).
+Some outgoing angles worsen, and frozen-flank geometry outliers remain. Source
+chemistry, H/charge/order/OP3 differences and numerical target authority are still
+separate open gates; lowering the objective cannot resolve them.
+
+Validation: 248 focused tests pass, including 66 new synthetic regressions.
+These cover selection, source hands, byte-preserving serialization, malformed or
+rebound numerical evidence, rehashed package changes, missing outputs and owned
+process failures/timeouts. Cold replay preserves 293 hashes/sizes/mtimes after the
+owned original disappears, with old paths, SDK and process creation blocked.
+The combined C130/C131 full regression passes: **6714 passed, 276 subtests passed in 973.15s (0:16:13)**. Exact commands, artifacts and preserved intermediate
+failures are recorded in `cif-linked-native-registration-evidence.json`, key
+`fana_selected_geometry_2026_10_30`. Raw models, dictionaries, native captures,
+logs and runners stay local. Next: explain the residual strain and frozen-flank
+contribution, then define a bounded convergence/acceptance trial without loosening
+chemical or topology authority. Whole-model mutation and integration remain separate.
+
+### Fixed native derivative capture (C129)
+
+`inspect_native_bundle(..., gradient_indices=[...])` adds a bounded, explicit
+fixed-coordinate diagnostic. The caller supplies one to six distinct integer
+atom indices from the interpreted model; the native worker checks their bounds.
+It requires linked, energy and policy inventories, with native secondary
+structure disabled and no competing native secondary-structure origins. This
+first ordinary-objective path rejects parallelity terms, special positions and
+nonidentity covalent/nonbonded symmetry. It cannot be combined with atom mapping
+or pair attribution in the same capture. Separate preserved captures remain
+available. Omitting the option preserves historical worker bytes and behavior.
+
+The worker embeds maintained helpers in an isolated namespace and reuses
+`audit_gradients`, without changing its numerical tolerances or optimizer code.
+Eight controls cover the complete objective, bond, angle, dihedral, chirality,
+planarity, parallelity and nonbonded families. Here parallelity is explicitly an
+empty control; success does not qualify nonzero native parallelity derivatives.
+Directions include the full gradient, a global alternating direction, Cartesian
+axes of the selected atoms and each nonzero family gradient. Central differences
+use 1e-3, 1e-4, 1e-5 and 1e-6 Å; each direction needs two adjacent consistent
+steps under the existing absolute/relative tolerances of 1e-4. Target/gradient
+additivity, baseline repeats, the captured full snapshot and a small negative
+full-gradient profile are recorded. The derivative audit has a 2,000-call ceiling,
+in addition to the existing two fixed energy snapshots. It never updates the
+model or runs an optimizer.
+
+The optional schema-1 `gradient_inventory` has policy
+`cif-native-fixed-gradient-inventory-v1`. It retains every directional raw target,
+proxy count, repeated baseline vector and computed comparison. Coordinates and
+static constraint signatures must remain unchanged; numerical source hashes
+(flags, energies, manager, compiled geometry extension and flex adapter) are
+captured before/after, with agreement to the fixed-energy source fingerprints.
+The manager digest binds atoms, mappings/effective definitions, complete geometry,
+installed APIs and restraint policy. Historical paths are provenance only.
+
+`review_native_gradients(native)` reads without SDK access, subprocesses or
+writes. It validates the fixed policy, coordinates, manager digest, source
+fingerprints, full energy/gradient/count snapshot, exact probes and call budget,
+then reuses the existing raw-number replay to recompute directions, finite
+differences, flags, additivity and repetitions. Saved pass labels are insufficient.
+A valid numerical disagreement returns REVIEW with the raw evidence retained;
+malformed evidence or a different manager raises an error. The existing C109
+capture reader additionally binds the explicit request, exact maintained worker
+and all input/output hashes. Callers must use that receipt validation as well as
+the numerical reviewer; raw in-memory evidence alone does not attest execution
+or the provenance of source chemistry. No CLI or run/checkpoint migration.
+
+**Actual FANA evidence:** an exploratory probe and a fresh production capture
+both pass all eight sampled families in 1,359 evaluations. The production capture
+uses the exact C128 connected bridge with the same 61 atoms, manager and fixed
+energy inventory; both declared backbone links remain present. The six explicit
+probes were selected by the existing raw bond/angle outlier selector, without a
+component allowlist. Phenix 2.2.1-6174 (dispatcher 2.2.1) ran to completion under a
+180-second bound; this was not a dry-run. No Coot, geometry optimization,
+diffraction refinement or adoption occurred. The A:2/A:3 crowding, outgoing-angle
+strain and C110 flank H/charge/order/OP3 differences remain unresolved.
+
+Validation: 274 focused tests pass, including 59 new regression cases. Wrong
+analytic gradients remain REVIEW, while false flags, changed coordinates/sources,
+relabelled probes, invalid counts/budgets and unsupported worker states refuse.
+Cold replay verifies the fresh and prior captures with 266 hashes/sizes/mtimes
+unchanged after the owned original disappears, with old paths, SDK and process
+creation blocked. Full regression passes: **6630 passed, 276 subtests passed in 1026.93s (0:17:06)**; exact commands/results and local
+artifact hashes are in `cif-linked-native-registration-evidence.json`, key
+`fana_native_derivatives_2026_10_29`. Raw models, dictionaries and native logs stay
+local. Next: a separately bounded central-residue geometry candidate, preserving
+flanks, source graph/protonation and sugar hands, followed by exact native topology
+and mechanics checks. Sampled derivative agreement is a prerequisite, not proof
+of every gradient component, convergence or chemically acceptable geometry.
+
+### Declared FANA topology gate (C128)
+
+`inspect_fana_topology(control, model, native_receipt, *, bridge_seed=None,
+na_policy=None, na_phil=None)` reads a C124 placement and a preserved native
+capture. C109 validates every input/output checksum, exact maintained worker,
+model identity/coordinates/occupancy and proxy inventory. The existing placement
+reader and junction source binder rederive the central source projection,
+including explicit leaving-atom authority, H/charge retention and four sugar
+hands. The model must be the intact translated central residue with exact flanks,
+or the exact separately verified C126 bridge seed. Context explicitly declares
+A:1 O3′ → A:2 P and A:2 O3′ → A:3 P; connectivity is never guessed by distance.
+
+The shared `review_native_topology` layer reuses C109's atom/proxy extractor and
+compares multisets of exact site, component and atom endpoints. Every native
+inter-residue bond is accounted for, including unexpected base–base links,
+duplicates and unclaimed edits/H-bond origins. Missing/extra links return REVIEW;
+ASU/nonidentity relationships cannot match. Malformed or inconsistent evidence
+raises an error. Positive targets/weights are required, but membership agreement
+does not qualify their chemical values or bond orders. Source chemistry, native
+numerics and achieved geometry remain separate gates.
+
+Optional NARestraints inputs are **explicit frozen declarations**: JSON returned
+by the maintained explicit-membership compiler and its compiled PHIL. They are
+read without rerunning the pairing guesser, installed recipes or optimization.
+Parsed requests must equal the policy, occur exactly once in native custom
+requests, and connect N/O atoms in a declared base pair. Each exempted bond must
+have a unique exact native counterpart, matching endpoints, target, weight and
+the captured edit-origin registry, with native secondary structure disabled.
+An exemption cannot overlap a declared covalent link. Other edit/H-bond origins
+remain chemical candidates in the comparison. Bonds separated as soft terms
+remain visible in `soft_restraints`; this is not permission to ignore arbitrary
+edits or to claim newly qualified pairing chemistry. The declaration's supplied
+NARestraints attribution is not cryptographic proof of its author; the reader
+checks frozen intent/native agreement, not fresh recipe provenance. Full
+angle/plane/parallelity mechanics still use their existing separate validators.
+
+`require_fana_topology(...)` reuses the same report and raises unless exact
+connectivity matches. New construction/score-comparison orchestration must use
+this prerequisite; the current diagnostic API does not retrofit production
+PostMR or silently strengthen old angle-package claims. Old C125/C126 packages
+continue to replay under their original policies. New schema-1 report policies
+are `cif-declared-native-topology-v1` and `cif-source-bound-fana-topology-v1`.
+Reports bind model, placement receipt, native receipt and optional seed/NAR
+inputs by SHA-256/size. Readers use explicit paths and capture-relative anchors,
+never historical host paths. There is no CLI/run/checkpoint migration.
+
+**Preserved native evidence:** the C127 translated model fails exact membership:
+A:2 O3′ → A:3 P is missing and C6(A:2)–O6(A:3) is extra. The C126 bridge model
+passes both declared links with no additional cross-site bonds. Its crowding,
+outgoing-angle strain, central protonation/numerics and C110 flank chemistry
+remain unqualified. No model is moved, selected or adopted. These are read-only
+replays of two completed Phenix 2.2.1-6174 captures (dispatcher 2.2.1), not new
+Phenix/Coot executions or dry-runs. Scores are not compared or accepted here.
+
+Validation: 190 focused tests pass, including 43 new cases and an initial
+32-case fail-before run. The real controls replay after cold relocation with old
+paths, Phenix SDK and process creation blocked (247 files unchanged). Full regression passes: **6571 passed, 276 subtests passed in 990.57s (0:16:30)**;
+exact commands, outcomes and hashes are maintained in
+`cif-linked-native-registration-evidence.json`, key
+`fana_topology_gate_2026_10_29`. Raw science, compiled declarations and native
+captures remain local. Next: a bounded source/stereo-preserving geometry repair
+against the declared connected topology, keeping every previous candidate and
+rechecking links after native re-interpretation.
+
+### Native nonbonded pair attribution (C127)
+
+`inspect_native_bundle(..., inventory_detail="linked", energy_inventory=True,
+nonbonded_inventory=True)` adds an explicit fixed-coordinate diagnostic to the
+existing native reader. `nonbonded_inventory` defaults to false; legacy base and
+energy-worker bytes remain unchanged. It requires linked energy evidence and
+does not combine with the separate atom-name-mapping mode. No CLI default,
+production mutation, installed library or run/checkpoint schema changes.
+
+The worker reuses `native_cache_evaluator`, which inspects the pair list on the
+actual native energy object, rather than rebuilding neighbours for inspection.
+Two additional all-family evaluations each capture every identity-symmetry
+simple pair, its native van der Waals distance, residual and gradient, the actual
+repulsion parameters and the native container sum/gradient. A shared hard budget
+allows at most 5000 pair/container kernel calls; model coordinates remain fixed.
+The first version supports positive finite `prolsq_repulsion_function`
+parameters and identity-only simple pairs. ASU/nonidentity pairs, other functions
+or unavailable APIs fail the explicit capture; they are never silently omitted.
+Native errors, partial outputs and original inputs remain preserved.
+
+Schema-1 `cif-native-nonbonded-attribution-v1` lives in the optional
+`native_validation.nonbonded_inventory` object, with two snapshots, policy,
+normalization/symmetry convention and evaluation/kernel accounting. The native
+spec freezes the requested flag. `review_native_nonbonded(native)` binds the
+complete atom ordering and coordinates through the existing captured-geometry
+validator and requires repeatable native energy evidence. It reuses the pair
+sum/gradient proof, checks exact membership and function agreement, and verifies
+both captured full-manager targets/gradients against the energy inventory.
+
+Offline replay also recomputes each captured prolsq residual and gradient from
+coordinates and parameters, including the native zero-distance gradient
+convention. The expression is `c_rep * max(0, (k_rep*d_vdw)^irexp - d^irexp)^rexp`.
+This is replay of an observed native convention, not a new force field or
+independent chemical authority. Coincident pairs are reported explicitly.
+Receipt/input/worker/spec/output hashes still require separate execution
+attestation, as in the real and cold controls; a JSON object alone is not proof
+that Phenix ran. The read-only review never executes captured code.
+
+The report retains every pair, including zero contributions, and provides
+distance, native van der Waals distance, overlap, residual, gradient norm,
+within/between-residue classification, per-site-pair totals and the twenty
+largest contributions. Its status remains `REVIEW`. No clashscore, calibrated
+threshold, symmetry interpretation, source-chemistry approval, automatic
+adoption or complete geometry qualification is inferred.
+
+Two complete Phenix 2.2.1-6174 interpretations (dispatcher 2.2.1), each bounded
+to 60 seconds, reproduce the preserved C125 translated and C126 bridge models.
+Each retains its prior atoms, definitions, covalent inventory and energy/gradient.
+The new captures contain respectively 326/411 pairs, 41/69 positive residuals,
+and 654/824 pair/container kernel calls. Both use the observed native function
+parameters `c_rep=100`, `k_rep=1`, `irexp=1`, `rexp=4`, with normalization off.
+
+For the bridge seed, A:2/A:3 contributes 6075.7193 of the 6127.5993 total
+nonbonded residual. N4(A:2)–O6(A:3) is 1.3372 Å and N4(A:2)–C6(A:3) is
+1.4495 Å. The broader captured-geometry review also records outgoing
+C3′–O3′–P at 86.3904° against 119.7°. Thus both recognized backbone links
+and complete P-centred angle coverage do not establish a usable whole junction.
+
+The translated control's lower total, 973.9481, is not a fixed-objective
+comparison: it has the incoming backbone link, lacks the outgoing one, and
+contains C6(A:2)–O6(A:3) at native target 1.374 Å with origin 10. The frozen
+installed origin catalogue identifies 10 as `Misc. bond`, created from atom type
+and distance. The bridge instead has the two intended backbone links. Different
+covalent topology changes native exclusions, so these totals cannot rank the
+two candidates under one common objective. Earlier C125 incoming-angle mechanics
+remain valid within their stated scope; no C125 whole-linkage claim is added.
+
+The next gate reuses the existing C109 exact source-link audit for FANA
+construction: exact declared inter-residue covalent topology, distinguished
+from intentional NARestraints hydrogen-bond restraints. Then evaluate bounded
+steric and complete junction-angle repair while preserving the source graph,
+four sugar hands and flanks. Retained protonation, inherited C110 flank
+H/charge/order differences and missing OP3 remain open. No optimizer, Coot,
+dictionary generation or diffraction refinement runs in C127.
+
+23 new regressions fail before implementation; 194 focused tests and a 375-file
+cold replay pass. The replay validates new and prior captures, rederives all pair
+reports and the source-bound C126 control with original paths, SDK and processes
+blocked. The combined full suite passes: **6528 passed, 276 subtests passed in 1028.87s (0:17:08)**. Exact commands and final status
+are in [the evidence ledger](cif-linked-native-registration-evidence.json), key
+`native_nonbonded_attribution_2026_10_29`. Raw science and native evidence stay local.
+
+### Source-preserving FANA bridge seed (C126)
+
+`prepare_fana_bridge_seed(placement, output, *, endpoint_weight=1000.)` prepares
+a separate construction seed from an exact verified C124 three-site package.
+It changes the central residue's pose and three phosphate-arm torsions while
+preserving the numerical source's internal heavy bond lengths/angles, sugar/base
+geometry and all four sugar hands. It retains every flanking PDB record and all
+non-coordinate central fields. Source atom names, H/D, charge, stereochemical
+declarations and dictionary bytes remain authoritative. This is an additive
+Python diagnostic API; ordinary model mutation, PostMR and CLI behavior do not
+change, and no existing run/checkpoint schema migrates.
+
+The only axes are C4′–C5′, C5′–O5′ and O5′–P. Each must be a source single bond
+whose graph cut disconnects the phosphate arm without cutting a ring. The
+moving side must contain P and the explicitly declared leaving oxygen, and
+exclude the sugar/base anchor ring and O3′. The full heavy source coordinates
+include that leaving oxygen during fitting. Its virtual target is A:1 O3′,
+the incoming replacement oxygen. The virtual atom is never written into the
+linked model; all O/H removal remains bound to C124's explicit source operation.
+O1P/O2P are not aligned to host OP1/OP2 merely by atom name.
+
+For each torsion trial, a weighted proper least-squares rigid transform fits
+P, O5′, C5′, C4′, O4′, C1′, C2′, C3′, O3′ to the corresponding central frame
+atoms and the virtual leaving oxygen to A:1 O3′. P, O3′ and the virtual target
+receive the explicit endpoint weight (finite numeric 1–1000, default 1000);
+the other anchors have weight 1. These are construction-score weights, not
+physical restraint weights or acceptance thresholds. The existing NumPy
+dependency supplies SVD, with determinant +1 enforced; singular fits refuse.
+
+Search uses 27 starts from {−120°, 0°, 120°}³, coordinate steps of 60°, 20°,
+5°, 1° and 0.25°, and at most eight sweeps per step. It evaluates at most 6508
+fits, records every start's endpoint and selects the lowest weighted mean-square
+score. It does not claim a global minimum, a physical energy minimum or native
+convergence. Full-precision coordinates, source-relative four-centre volumes,
+internal bond/angle differences, PDB-rounding differences and both junction
+distances are recorded. Tight internal invariance and serialization checks are
+implementation checks, not new crystallographic acceptance criteria.
+
+Schema-1 `cif-fana-torsion-bridge-seed-v1` freezes `placement/`, `config.json`,
+`model.pdb`, `seed.json` and a last-written `receipt.json`. Existing or overlapping
+outputs and symlinks are refused. `read_fana_bridge_seed` checks the exact file
+set/hashes and repeats source validation, the full bounded fit and exact output
+comparison. It never runs a native tool. The report records NumPy's version;
+exact floating readback is proven on the recorded runtime, not across arbitrary
+NumPy/BLAS versions. All prior and partial attempts remain intact.
+
+`prepare_fana_junction_angles(..., bridge_seed=seed)` adds schema-1 policy
+`cif-source-bound-fana-seed-junction-angles-v1`. It freezes `bridge_seed/`, verifies
+its exact placement and model bytes and uses the same source/native/template
+validation as C125. Both native backbone links must exist; the outgoing bond
+and all four outgoing link angles must match the frozen template, with exactly
+four P neighbours and all six outgoing phosphate angles. Only the missing
+incoming angles are emitted. Readback and native qualification repeat these
+checks. The default translation-only C125 policy and old packages still replay;
+there is no generic coordinate override or weaker validation path.
+
+The AAJ L-FANA-C control uses Python 3.12.14, NumPy 2.5.3, NARestraints 1.1.3
+and two complete Phenix 2.2.1-6174 interpretations (dispatcher 2.2.1), each
+bounded to 60 seconds. Incoming/outgoing P–O distances change from
+3.9828/2.5461 Å to 1.6293/1.6827 Å in the written model. Both links are recognized
+at the unchanged native 1.607 Å target. The supplement gives six angles at each
+phosphate, with the two formerly missing angles measuring 100.9384°/113.9119°
+against 108° targets (C125's translated model gave 37.7140°/86.5097°).
+All 17 exact native delta checks, six source definition categories, five
+internal-heavy categories and eight unchanged flank categories pass.
+
+This establishes a better-connected construction seed and native mechanics.
+It does not qualify residual strain, nonbonded clashes, retained source
+protonation, the inherited numerical targets, or the C110 diagnostic flank
+definitions with known H/charge/order differences and missing OP3. Pair/stack
+optimization, density fitting, Coot, dictionary generation, native optimization
+and diffraction refinement were not run. Automatic adoption stays disabled.
+Next: inspect the complete seed's native geometry/nonbonded evidence and resolve
+the linked source/terminal chemistry before production integration.
+
+Validation: 221 focused tests pass; cold replay rederives the fit and native
+evidence with 301 files unchanged after relocation, while original paths, SDK
+and subprocess access are blocked. The preserved real C125 package also passes
+all 17 checks with the new code. **The deferred C126 full regression is complete with C127**; see the combined
+full-suite result above. C126 source/tests were unchanged. Exact commands,
+versioned evidence and local references are in
+[the evidence ledger](cif-linked-native-registration-evidence.json), key
+`fana_bridge_seed_2026_10_29`. Raw scientific files and runners stay local.
+
+### Source-bound FANA junction angles (C125)
+
+`prepare_fana_junction_angles(placement, model, native, link_template, output)`
+compiles a separate PHIL supplement for the incoming A:1→A:2 junction of a
+verified C124 control. Inputs are its immutable placement directory, the exact
+PDB model, a completed detailed native-inventory JSON, and the explicitly
+supplied `data_link_rna3p` template CIF. The native capture must match the model;
+the model may be unchanged or a uniform translation of the intact central
+residue with every other PDB byte retained. Rotations, deformations, arbitrary
+models and symmetry links require a separate extension. C126 below adds an
+optional verified `bridge_seed` package; the default C125 path remains unchanged.
+This angle API does not create bonds or move coordinates.
+
+The adapter revalidates the complete source/enantiomer package and numerical
+candidate, derives C124's explicitly authorized O/H projection, and compares
+all six effective native definition categories. It requires the incoming native
+bond at the template target/weight, exactly four declared P neighbours, complete
+internal phosphate angles, and the existing O3′–P–O5′ and C3′–O3′–P template
+angles. Each OP1/OP2 template role binds independently to exactly one present
+source name (OP1 or O1P; OP2 or O2P), checked against the projected P–O graph.
+No source atom or hydrogen is renamed or deleted by this adapter.
+
+Only absent incoming O3′–P–nonbridging-O angles are emitted, with the frozen
+source-template targets and sigmas. Already matching angles produce no duplicate;
+conflicting/duplicate proxies, ambiguous names, inconsistent captures, missing
+bonds and unrepresentable numerical weights refuse preparation. Pending explicit
+requests that failed to materialize are also refused. Templates must have the
+exact supported one-bond/four-angle topology and block identity. The installed
+file's surprising `rna2p` bond/angle row identifiers are retained as provenance;
+its `link_rna3p` block and literal topology select this rule.
+
+In Phenix 2.2.1-6174, `get_lib_link` selects the RNA/DNA `rna3p` template.
+`add_angle_proxies` tries converting all three atom names to the old convention,
+then all three to the new convention. For prime sugar names alongside source
+O1P/O2P, neither complete conversion succeeds. The frozen active template has
+108° targets and 3° sigmas for the two missing rows. The separate supplement
+therefore changes endpoint resolution, not those numerical values or the
+installed Phenix code. Its chemical suitability for the retained source
+protonation state is not established by this mechanics check.
+
+Schema-1 policy `cif-source-bound-fana-junction-angles-v1` freezes `placement/`,
+`model.pdb`, `native.json`, `link.cif`, `angles.phil`, `junction.json`, and a
+last-written `receipt.json`. Inputs and incomplete attempts remain intact.
+`read_fana_junction_angles` checks the exact file set and hashes and recomputes
+all source bindings and emitted text. The native JSON is input evidence rather
+than an execution attestation; callers must separately validate its capture
+receipt, frozen inputs, worker and output hashes. The real/cold controls do so.
+No operational lookup uses historical absolute provenance paths.
+
+`qualify_fana_junction_angles(directory, after)` rederives the package and checks
+a separately captured native result. It requires identical model atoms,
+effective definitions and policy, exactly one added native edit per request,
+all eight other captured covalent proxy categories unchanged after removing
+those additions, preserved existing explicit requests and all six P-centred
+angles. It returns `JUNCTION_ANGLE_MECHANICS_PASS` only for that exact change.
+This is not whole-manager/nonbonded, chemical, clash or achieved-geometry
+qualification, and never enables automatic adoption.
+
+The real AAJ L-FANA-C control completes three fresh Phenix interpretations:
+translated baseline (four angles), supplemented same model (six), and original
+gapped placement (refused before supplement output). All 17 native delta checks
+pass; input dictionaries and model bytes remain unchanged. The two observed
+angles are still 37.7140° and 86.5097° against 108° targets; mechanical coverage
+does not accept this distorted translation-only geometry. This uses the same
+C110 diagnostic L-DNA flanks, whose H/charge/order differences and missing OP3
+remain unqualified. No Coot, dictionary generation, optimization or diffraction
+refinement runs. Exact commands, cold replay and test results are in
+[evidence](cif-linked-native-registration-evidence.json), key
+`fana_junction_angles_2026_10_29`. Raw science, native captures and runners remain
+local. The next construction step is bounded junction adjustment preserving
+source chemistry and all four sugar hands, followed by both-link and qualified
+flank/terminal checks. Ordinary mutation and sticky-end stitching stay separate.
+
+
+### Local FANA component identity and NARestraints binding (C123)
+
+`prepare_fana_enantiomer_component` freezes an explicitly supplied parent,
+verified enantiomer target and original workbook into a fresh component package.
+The caller supplies the target code, CCD root and occupied run codes; this is
+not a code allocator. The target must fit the three-character PDB field and be
+absent from the supplied workbook, declared CCD filenames and caller codes.
+Filename and consumer-record occupancy is case-folded independently of the host
+filesystem; invalid definitions, directories and dangling leaf symlinks still
+occupy their filenames. CCD directory symlinks are refused before traversal. The directory must expose a nonempty CCD filename namespace. This
+checks that declared namespace only; it is not a global PDB registration or an
+atomic reservation against another concurrent producer.
+
+The package reuses C122's complete source relation. The selected target must
+contain only its bound component blocks. A derived NARestraints record retains
+all base atom roles, glycosidic attachment, base class, phosphate context,
+function and source sheet. Its component identity and explicit D/L-FANA sugar
+label change; inherited abbreviation, notes, references and entry counts are
+cleared rather than asserted for a new molecule. The original row and complete
+source/workbook bytes remain evidence. This is an explicit local record overlay,
+not an edit to the installed workbook, a new workbook row, or a global loader patch.
+
+Schema-1 policy `cif-local-fana-enantiomer-component-v1` uses a fixed package:
+`inputs/parent.cif`, `inputs/target.cif`, `inputs/Ligands.xlsx`, `namespace.json`,
+`binding.json`, and a completion `receipt.json` written last. Existing output
+is refused and partial output is retained. The reader checks the exact file
+set, symlinks, duplicate JSON fields, checksums and receipt identity, then
+recomputes the complete source relation and NAR record. A stored pass or an
+updated hash on a changed record is insufficient. `read_fana_enantiomer_component`
+replays historical evidence without the original CCD or source paths;
+`bind_fana_enantiomer_records` additionally checks the supplied current CCD,
+consumer records and reserved codes, returning a deep-copied local overlay.
+Consumers must provide their whole occupied namespace and pass the resulting
+records explicitly; iterator inputs are materialized once so collision checking
+cannot consume and discard existing records. No lock, future availability, ordinary CLI integration,
+model mutation or automatic adoption is implied. Source replay binds the actual
+NAR loader/version evidence; changed dependencies require requalification.
+
+The real L-FANA-C control uses local code AAJ after checking 50,671 distinct installed
+CCD codes observed from filenames and the explicit workbook. ZLF and initial QF0–QF3 proposals are
+occupied and refused; those preflights execute no native generation. AAJ is a
+local alias only, never a deposition-code claim. The actual NARestraints 1.1.3
+compiler maps the new record to cytosine and compiles its GC pair and both stack
+orders with unchanged base roles. These synthetic partner controls establish
+compiler consumption, not experimentally observed pairing or native pair proxies.
+Phenix 2.2.1-6174 (dispatcher 2.2.1) then completes one 180-step/300-second
+isolated generation and two 60-second native interpretations. Both coordinate
+cases pass all 21 native checks with identical fixed covalent proxies. These
+are complete executions; no Coot, diffraction refinement or convergence claim.
+
+Cold replay rederives the package, NAR compiler control, candidate assessment
+and both native qualifications with 224 files unchanged. The owned original is
+absent, original/SDK access and subprocess execution are blocked. Namespace
+availability remains historical in that replay; generation-receipt semantic
+replay is not claimed. Exact commands, hashes and regression results are in
+[evidence](cif-linked-native-registration-evidence.json), key
+`fana_component_binding_2026_10_29`. Raw scientific inputs, original workbook,
+source capture and generated/native outputs remain local.
+
+Next is whole modified-sugar placement into an L-DNA scaffold using this explicit
+source and local NAR binding. Ordinary Coot parent-sugar restoration would erase
+the intended FANA change and is unchanged. Selected-site phosphate/link state,
+unaltered surrounding residues, placement geometry and linked native qualification
+still require their own construction path. No OP3 deletion or chemical-state
+normalization is authorized by component registration.
+
+### Explicit FANA enantiomer source check (C122)
+
+`inspect_fana_enantiomer(source, source_code, target, target_code,
+workbook=…, intent="whole-component-enantiomer")` checks a separately supplied
+mirror reference without writing files or running native software. The target
+must have a distinct explicit code. Schema-1 reports use policy
+`cif-explicit-fana-enantiomer-source-v1`, anchored references and input hashes.
+A successful `ENANTIOMER_SOURCE_PASS` establishes the bounded source relation;
+it neither registers the target in NARestraints nor inserts it into a model.
+There is no new CLI or implicit source-generation route.
+
+The parent must first pass the existing FANA source gate and its NAR base binding.
+The target retains exact atom identities/elements/isotopes, connectivity, bond
+orders, formal charges and aromatic/bond-stereo annotations. Complete integer
+charges are required. Exactly the four graph-bound sugar centres must carry
+R/S declarations in the parent, with N elsewhere; all four declarations must
+reverse and every other marker remain unchanged. Extra or unknown declared
+stereochemistry needs another adapter. Names and component codes do not select
+stereochemistry; the parent NAR record binds the retained base roles only.
+
+Each supplied standard coordinate family—CCD ideal, CCD model and plain
+Cartesian—must be complete, finite and present on both sides. Every atom-pair
+distance must agree within 1e-6 Å, and all four ordered neighbour triples at each
+sugar centre must reverse signed volume above the existing 1e-6 Å³ degeneracy
+boundary. This checks the complete rigid mirror, allowing proper rotations and
+translations. It does not accept a local epimer, unchanged labels, reflected
+coordinates alone or a second coordinate family left unreflected. Overflowed
+computed distances/volumes cannot pass or leak nonfinite numbers into the report.
+The source is bounded to 512 atoms. These are source-relation checks, not refined
+geometry tolerances or independent absolute CIP assignment.
+
+Numerical dictionaries, signed restraint tables and target descriptor/identifier
+tables in the selected component definition are outside this source-only gate.
+This API inspects the selected component; it does not certify unrelated blocks. Existing chiral restraint signs or
+stereochemical SMILES cannot be copied through without their own verification.
+Target names and other descriptive metadata are not chemical authority. The
+checker does not modify a source or workbook, infer a phosphate state, remove
+OP3/H, normalize charge or approve linked geometry. An optimized candidate is
+assessed separately against the explicit target source; it need not preserve
+all reference distances after optimization.
+
+The local control reflects frozen CFL into a distinct temporary code, ZLF.
+ZLF also exists in the installed CCD: this control uses it only as an isolated,
+explicit-dictionary alias, never as a global chemical identity. Exact native
+inventories qualify the supplied target definition; code-based lookup or NAR
+registration would require collision-aware identity handling first.
+It retains the complete atom/bond tables, changes component identity and source
+R/S declarations, reflects z in both coordinate families, and omits inherited
+parent descriptors/identifiers. The explicit derivation and original bytes remain
+local. Both families pass 16 ordered volume reversals each and exact pair-distance
+preservation. This is an explicitly derived beta-L-FANA-C control, not a new CCD
+entry or a claim that the workbook's OFC label defines L-FANA.
+
+Phenix 2.2.1-6174 (dispatcher 2.2.1) completed one native generation with a
+180-step/300-second bound and two isolated interpretations bounded to 60 seconds
+each. Both source and generated coordinate controls pass all 21 native checks,
+with equal fixed covalent proxies. An initial source/output nesting preflight
+was refused before generation; its files and the source probe are retained.
+These are complete executions, not dry-runs. No Coot, refinement, optimizer
+convergence or whole-model insertion is claimed.
+
+Cold replay recomputes the enantiomer source result, complete candidate assessment
+and both native qualifications from a relocated checkout with original paths,
+SDK access and subprocess execution blocked. The default generation receipt's
+bytes are preserved; semantic generation-receipt replay is not claimed here.
+Exact commands, software versions, hashes and regression results are recorded in
+[evidence](cif-linked-native-registration-evidence.json), key
+`fana_enantiomer_source_2026_10_29`.
+
+Next: use a checked target source for selected whole-sugar replacements in an
+L-DNA scaffold, preserve unaffected residues and explicit site/link chemistry,
+and qualify the resulting linked native model. The new code still needs explicit
+NAR registration/binding in that workflow. Other L-FANA bases, independent CIP,
+C119 linked PNA construction, DG name mapping and ATL/L-DNA/PDU boundaries remain
+open. Sticky-end stitching stays deferred.
+
+### Neutral 6-oxo purine source representation (C121)
+
+`cif-source-declared-neutral-6-oxo-purine-aromatic-v1` is a separate explicit
+representation policy. Pass it as `bond_representation_policy` to generation,
+complete-candidate inspection/qualification or `inspect_fana`; the FANA CLI
+accepts it through `--bond-representation-policy`. Default comparison and C117's
+whole-purine policy retain their previous behavior. Choosing this policy permits
+only a proven source representation; it never grants automatic adoption.
+
+The classifier expands a proposed aromatic conversion through non-bridge cyclic
+edges and requires the exact fused 5/6 purine graph: nine neutral C/N atoms,
+ten ring edges, a C/C fusion and the bounded N/C patterns. The five-ring must
+have two source double bonds, including the shared edge, and one neutral
+pyrrolic nitrogen. All five converted bonds need explicit source aromatic Y
+flags. The shared fusion bond is one of those five allowed changes. The adjoining
+ring must retain all nonshared source single/double orders, its lactam nitrogen
+and one terminal neutral 6-carbonyl oxygen. Other exocyclic multiple
+bonds, extra fusions, contradictory aromatic/stereo declarations, incomplete
+valence, changed H/isotope/charge inventories and partial conversions cannot
+use the rule. Atom names and ligand codes are not classifiers. Single-bond
+substituents may differ between source components but must be preserved within
+each source/candidate pair; no tautomer or protonation normalization occurs.
+
+The host derives an exact five-edge native permission from that source graph.
+The existing opt-in worker checks reader, charge handoff, class conversion and
+finished inventory without editing native bond orders. Standalone replay now
+validates the recorded explicit policy and recomputes its contract and complete
+candidate assessment. Rebinding a receipt to another policy is rejected.
+Schema-1 envelopes, C118's parameterized generation/contract policy IDs and both
+worker texts are unchanged; the new representation ID distinguishes the new
+permission. No old receipt, numbered run or checkpoint requires migration.
+
+Five complete Phenix 2.2.1-6174 generation attempts, dispatcher 2.2.1, used
+180 steps and 300 s per attempt. GFL, DG and 0DG generate source-preserving
+candidates directly. 40G's initial construction fails with an 8.90 Å bond;
+a fresh C116 connected atom-row-order attempt passes. The original failed
+attempt remains intact. No chemistry, source coordinates or installed code was
+changed to obtain that result. GFL additionally passes the FANA gate, including
+all four source-relative sugar hands. Together with C120, A/C/G/T/U FANA now
+have isolated candidate/native controls; this is not a model-building claim.
+
+Eight isolated interpretations used 60 s each. GFL, 0DG and the fresh 40G
+candidate pass all 21 checks at both source and generated coordinates, with
+matching fixed covalent proxies. DG fails both interpretations at the installed
+RNA/DNA atom-name mapper's `HOP2!="HOP3"` assertion. Its candidate preserves both
+source hydrogens; deleting or renaming them is not an authorized workaround.
+No DG native-usability claim is made. Charged FMG/7BG and whole-purine A5L do not
+qualify for this new rule; FDG's unchanged source receives an empty aromatic
+permission, not 8-oxo normalization. A5L remains supported by its earlier policy.
+
+Generation and native checks are complete executions, not dry-runs. There was no
+Coot session, refinement or convergence claim. Cold replay reproduces all five
+generation receipts, four complete candidate assessments, six native
+qualifications and both DG failures from a relocated checkout, with original
+paths/SDK access and subprocess execution blocked. See the compact
+[evidence ledger](cif-linked-native-registration-evidence.json), key
+`oxo_purine_representation_2026_10_29`, for exact commands, hashes and validation.
+Raw CIF/PDB/workbook/native captures, logs, candidates and failed attempts stay
+under the explicit local live-test anchor.
+
+Remaining work includes linked PNA construction/numerics, whole modified-sugar
+model building and the proposed L-DNA scaffold with explicit L-FANA replacements.
+C122 adds one explicitly derived L-FANA-C native control; whole-model validation
+remains open and OFC is not an L-FANA target. DG's
+standard-name consumer boundary, independent CIP, formal-charge native readback
+and ATL/L-DNA/PDU integration remain separate. NAR owns pairing/stacking, and
+sticky-end stitching remains deferred.
+
+### FANA source and candidate preservation (C120)
+
+`nasolve cif-doctor fana SOURCE --code CODE --workbook Ligands.xlsx --json`
+reads an explicit source and NARestraints record. Add `--candidate CANDIDATE.cif`
+to assess a complete numerical candidate. `inspect_fana(source, code, workbook=…,
+candidate=…)` is the corresponding Python API. All successful inspections return
+CLI exit 2 because family/preservation evidence does not grant native usability;
+I/O or invalid-argument errors return 1. Neither form starts native software or
+writes a file. Reports use schema 1, policy `cif-source-declared-fana-v1`, anchored
+source/workbook/candidate references and verified unchanged input bytes.
+
+The existing unique unbridged-furanose/phosphate topology and NAR base attachment
+must agree first. The new gate requires a single neutral terminal F attached by
+one single bond to the graph-bound C2′, an N-glycoside, a neutral sugar core and
+explicit terminal H/D inventories. In graph-bound C1′/C2′/C3′/C4′ order, source
+R/S declarations R/S/R/R identify beta-D-FANA and S/R/S/S identify beta-L-FANA.
+This is a bounded declaration check, **not independent absolute CIP perception**.
+Names, component codes and workbook sugar labels cannot select the family.
+Missing/other declarations and out-of-scope local chemistry remain `REVIEW`.
+Base charges are not normalized; matching a sugar does not approve the base.
+
+With a candidate, the existing complete-candidate assessor checks the full source
+atom/H/charge/bond inventory, numerical tables and fixed chirality terms. All four
+sugar centres must also preserve source-relative tetrahedral handedness; absent
+or degenerate coordinate evidence cannot pass this gate. The optional
+`--bond-representation-policy cif-source-declared-neutral-purine-aromatic-v1`
+selects the already bounded C117 policy explicitly. Default comparison remains
+exact. No pucker is imposed, phosphate O or proton removed, linked numerical
+term inferred, or parent-DNA coordinate scaffold substituted.
+
+Frozen installed CCD controls cover all ten FANA-labelled catalogue codes:
+A5L, TAF, UF2, GFL, CFL, 7BG, FDG, FMG, 1FC and XFC. All declare beta-D-FANA
+under this rule. AF2 and CFZ declare the D-ribo pattern; OFC declares the L-ribo
+pattern despite the workbook abbreviation “L-FANA-C”. The checker excludes all
+three without editing the catalogue or choosing a replacement structure. C120 L-FANA recognition has synthetic coverage; C122 above adds an explicit
+enantiomer source relation and one isolated native L-FANA-C control.
+
+Seven fresh complete Phenix 2.2.1-6174 generation attempts (dispatcher 2.2.1,
+180 optimization steps/300 s per attempt) retain all outputs. CFL and UF2 produce
+source-preserving candidates directly. TAF and A5L initially fail native
+construction; fresh attempts using C116's whole-row source atom ordering pass.
+A5L additionally uses the explicit C117/C118 neutral-purine policy. GFL stops
+before construction because native reader bond orders disagree with the source;
+its carbonyl purine lies outside that policy. The observed differences are five
+localized-to-aromatic orders around the fused five-membered ring; connectivity
+and the carbonyl-bearing six-membered ring remain unchanged. This identifies a
+representation boundary, not invalid FANA sugar chemistry. No forced localization
+is applied.
+
+Four accepted candidates pass eight independent isolated interpretations at both
+source and generated coordinates, 60 s per interpretation. Each passes all 21
+native checks and retains the same fixed covalent proxies across coordinate sets.
+These are complete executions, not dry-runs; Coot/refinement were not run.
+Thirteen source inspections, four candidate inspections and eight native
+qualifications replay from a relocated checkout with original/SDK access and
+process execution blocked, preserving 391 files. Source inputs retain bytes,
+sizes and timestamps. Exact receipts, commands and hashes are in
+[evidence](cif-linked-native-registration-evidence.json), key
+`fana_source_candidate_2026_10_29`.
+
+This establishes explicit Doctor source/candidate support, not ordinary end-to-end
+FANA model construction. C121 closes the bounded GFL/carbonyl-purine handoff
+above. The remaining boundaries are full modified-sugar mutation, explicit
+site/link states and linked numerical qualification. NAR continues to own
+pairing/stacking. Formal-charge native
+readback, independent absolute CIP and optimization convergence remain separate;
+no new automatic adoption, run/checkpoint schema or migration is introduced.
+A planned L-FANA model control starts from an L-DNA scaffold and replaces selected
+residues with explicitly specified L-FANA targets. It must verify the complete
+sugar/fluorine inventory and four-centre handedness before linked native checks;
+the retained L-DNA sites provide unaffected controls. OFC is not a surrogate
+L-FANA target merely because of its catalogue abbreviation. This test is planned,
+not executed or qualified by the isolated D-FANA evidence above.
+C119's linked PNA work and the ATL/L-DNA/PDU boundaries remain open.
+
+### Explicit PNA source network packages (C119)
+
+```python
+from nasolve.cif_pna_source_network import (
+    prepare_pna_source_network, read_pna_source_network,
+)
+
+receipt = prepare_pna_source_network("inputs/links.json", "fresh-network")
+verified = read_pna_source_network("fresh-network")
+```
+
+The input is the existing C108 manifest with C114 explicit neutral PNA operations.
+Fresh source/site/link inspection must propose the entire network. Every selected
+site must match the supported PNA profile; both ends of every amide must carry
+explicit reciprocal authority and exact leaving choices. Optional candidate
+projections, when supplied, must match. Charged reacting amines remain unresolved;
+untouched charged termini retain their exact source state. Existing explicit-PDB
+selector and identity-symmetry limits apply. Exactly one connected network is
+required; disconnected assemblies need separate packages.
+
+The new policy `cif-explicit-pna-source-network-v1` writes:
+
+- `inputs/`: byte-exact copies of only the manifest and its declared inputs.
+- `link-report.json`: the fresh, reproducible source operation report.
+- `source-network.json`: retained atoms keyed by site plus atom ID, source
+  elements/isotopes, formal charges and source stereo declarations; retained
+  source bond orders/flags and explicit new SINGLE amide bonds.
+- `preparation-receipt.json`: schema-1 completion marker with relative input
+  references, file inventory, hashes and the explicit `PREPARED_REVIEW` scope.
+
+The graph has **no assigned coordinates, native energy types, numerical targets
+or final stereochemistry**. Source stereo declarations and frozen parent
+formula/descriptors remain provenance. Independent source coordinate frames
+cannot be combined into a plausible polymer merely by writing a CIF. In
+particular, pruning isolated numerical tables would not produce qualified linked
+amide restraints. This package gives a future whole-network generator a bound
+chemical input, not a refinement dictionary.
+
+The output must be fresh and separate from preserved inputs. A partial write
+remains available for diagnosis and requires a fresh destination on retry.
+The completion receipt is written last. Replay verifies the exact file inventory
+and hashes, re-inspects frozen source/site/link inputs, then recomputes the graph
+and report. Rebinding a checksum alone cannot authorize altered chemistry.
+Relocation needs no original checkout, SDK or process execution.
+
+Ten frozen C114 networks prepare and replay; four reacting charged-amine cases
+remain blocked. These controls include mixed/repeated components, a trimer and
+charged unreacted termini. No Phenix, Coot, optimizer or refinement ran for C119.
+Both additions are explicit Python APIs: no new CLI, automatic orchestration,
+run/checkpoint migration or adoption. Linked native construction, final CIP and
+numerical qualification are the next separate gates; sticky-end stitching stays
+parked. See the [evidence ledger](cif-linked-native-registration-evidence.json),
+keys `purine_source_generation_2026_10_28` and `pna_source_network_2026_10_28`.
+
+### Explicit neutral purine representation (C117)
+
+Three Python assessment APIs accept the keyword-only option
+`bond_representation_policy="cif-source-declared-neutral-purine-aromatic-v1"`:
+`inspect_component_generation`, `reassess_complete_candidate` and
+`qualify_candidate_native`. Omit it for the existing behavior. Unknown policy
+values raise `ValueError`; they cannot silently select a broader interpretation.
+This option assesses an existing candidate; it does not generate or edit one.
+
+The policy extends the established isolated-six-ring comparison with one bounded
+graph-selected family. A complete fused five/six-ring purine must contain nine
+atoms and ten bonds, share a carbon–carbon fusion edge, and have the corresponding
+N–C–N and N–C–N–C outer paths (either orientation). All ten source bonds must be
+explicitly aromatic while retaining a valid localized four-double-bond form.
+The candidate must replace all ten with aromatic types. Ring atoms must be
+neutral: each carbon has valence four; each nitrogen valence three; exactly one
+five-ring nitrogen is pyrrolic. Atom/residue names do not select the family.
+
+Whole-component atom/element/isotope identities, connectivity, hydrogen
+attachments and complete explicit formal charges must agree. Conflicting charge
+aliases are rejected. Every bond leaving the fused graph must be an unchanged
+single bridge; exocyclic multiple bonds, extra fusions, partial conversion and
+generic delocalized types remain unsupported. Carbonyl purines therefore need
+a separate reviewed extension. A charged remote terminus is permitted only when
+its declared state is retained exactly. Ring stereochemical assignments are
+excluded; independent source-relative/fixed chirality and numerical checks remain.
+
+This is a declared-representation contract, not general aromaticity perception
+or a tautomer/protonation choice. The [wwPDB aromatic flag](https://pdbml.wwpdb.org/dictionaries/mmcif_pdbx_v5_next.dic/Items/_chem_comp_bond.pdbx_aromatic_flag.html)
+is separate from localized bond order. The [documented RDKit models](https://www.rdkit.org/docs/RDKit_Book.html#aromaticity)
+illustrate why fused systems and exocyclic double bonds need explicit treatment;
+NASolve neither invokes RDKit here nor claims to reproduce its perception model.
+
+The schema-1 inspection uses policy `cif-independent-elbow-candidate-v5` and
+records `bond_representation.equivalent_fused_systems`, including exact edges,
+cycles and the source pyrrolic nitrogen. Extended usability reports use
+`cif-isolated-candidate-native-usability-v3`. Raw chemical differences remain.
+Default report shapes/policy IDs and native worker bytes are unchanged, allowing
+historical replay; this option needs no run/checkpoint migration. There is no
+new CLI flag or ordinary recovery/adoption integration.
+
+C117 reassesses the **preserved C116 diagnostic candidates**, without rewriting
+their generation receipts. Both **40A** and **APN** move from representation
+rejection to candidate review under this option. Six fresh, complete
+**Phenix 2.2.1-6174** interpretations (dispatcher **2.2.1**, each bounded to
+60 seconds) pass all 21 existing native checks for 40A/APN and the unchanged
+40C control at source and generated coordinates. Each pair has identical fixed
+covalent proxies and finite repeated fixed-coordinate energies/gradients.
+40A retains source-relative handedness; APN has no fixed stereocenter in this
+control. Native formal-charge readback availability is recorded separately from
+exact CIF charge retention. No new generator or optimization was run in C117.
+
+These results establish isolated candidate usability. They do not qualify
+linked amide numerics, absolute CIP, convergence, ordinary refinement or all
+purine derivatives. The maintained source-reader/generation path still needs a
+separately versioned integration with exact stage invariants. Linked numerical
+generation must then use the C114-authorized final chemical environment; pruning
+isolated numerical tables is insufficient. Exact tests, native receipts, cold
+replay and remaining limits are recorded under
+`neutral_purine_representation_2026_10_28` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
+
+### Explicit connected atom ordering (C116)
+
+`nasolve.cif_connected_atom_order.prepare_connected_atom_order(source, code,
+output)` writes a fresh, separate single-component input. This explicit Python
+API belongs after source-dialect preparation and before native generation; it
+is not wired into ordinary generation or automatic retry. It traverses the
+declared connected heavy-atom graph breadth-first, starting at the lexical
+minimum atom ID and sorting each neighbour list. Terminal H/D/T follow in
+lexical ID order. Names break ordering ties, not chemical priorities.
+
+The adapter permutes **complete atom rows**. Coordinates, charge, isotope,
+stereo, unknown fields and original atom ordinals stay with their named atom;
+all other parsed tables remain exact. A legacy `comp_list` block stays byte
+identical, preserving its reader route. Source bytes are never changed.
+Duplicate/invalid identities or edges, conflicting bond/charge declarations,
+disconnected heavy graphs, nonterminal H/D/T and unreviewed extra blocks stop before output.
+An already ordered source is copied byte-for-byte; outputs cannot be overwritten.
+The schema-1 return under `cif-connected-heavy-atom-order-v1` records both hashes,
+the input/output atom orders and unchanged chemical declarations. No new CLI,
+worker, run/checkpoint schema or migration is involved.
+
+In Phenix **2.2.1-6174** (dispatcher **2.2.1**), C116's line trace observes
+`ZMatrix2Internal` append a chemical bond for the non-source C–N1 coordinate
+reference at line 1521. That reference already exists at `ConstructZMatrix`
+return. With the new order, the separate source-order-restoration diagnostic
+finishes 40A with all 39 atoms and 40 source edges, no added edge, preserved
+formal charges and source-relative handedness. Its ten purine order differences
+still fail the existing representation policy. APN likewise retains its source
+atoms, connectivity and charges but remains rejected for that representation.
+These local diagnostic workers do not authorize restoring orders in production.
+A fresh maintained-worker 40A attempt still stops before construction at the
+same bond-order gate, even with the ordered input.
+
+The ordered **40C** maintained candidate passes all 21 isolated native checks
+at source-seed and generated coordinates, with matching fixed covalent proxies.
+This is complete execution, not a dry-run: six bounded generation attempts,
+two isolated interpretations and one source probe. Each generation allows
+180 steps/300 seconds; each interpretation allows 60 seconds. Native optimization
+is not claimed deterministic or converged. Neither linked PNA numerical targets,
+absolute CIP nor automatic adoption follows from these controls.
+
+Ordering is a bounded workaround, **not a guarantee of native graph invariance**.
+Every candidate still needs source identity and native qualification. The next
+step is a separately reviewed fused-purine representation contract, followed by
+numerical generation in the C114-authorized linked chemical environment.
+Exact commands, failed-development evidence and portability checks are recorded
+under `connected_atom_order_2026_10_28` in the
+[evidence ledger](cif-linked-native-registration-evidence.json). Raw data and
+native artifacts remain local.
+
+### Candidate-generation diagnostics and PNA controls (C115)
+
+Complete source-native generation now includes `diagnostic`, a read-only
+projection of the existing decision and evidence under
+`cif-source-candidate-diagnostic-v1`. It names the blocking stage, failed
+handoff checks, actual changed identity fields, native exception and retained
+candidate state. Missing worker results leave builder-start evidence unknown,
+rather than asserting it never started. A bond-order failure is no longer hidden behind a generic
+charge-handoff exception or confused with hydrogen loss. A written candidate
+can remain reviewable after a native exception or timeout; exit status alone
+neither deletes it nor establishes usability.
+
+`nasolve.cif_source_candidate.candidate_generation_diagnostic(report)` also
+summarizes historical in-memory receipts without modifying them. It is a
+diagnostic projection, **not a capture authenticator or scientific qualifier**.
+The maintained mixed-recovery reader recomputes the field when present;
+historical receipts without it retain their existing validation path. The
+schema-1 field is additive. Existing generation decisions, inspection schemas,
+worker bytes, thresholds, charge/aromatic policies and run/checkpoint records
+are unchanged. No new CLI or automatic recovery path is introduced.
+
+C115 tested three frozen source components using Phenix **2.2.1-6174**
+(dispatcher discovery reports **2.2.1**), with complete execution rather than
+a dry-run. Each builder was bounded to 180 steps/300 seconds; isolated native
+interpretations were bounded to 60 seconds. No experimental model or diffraction
+data was used. Cases were declared before execution, not blinded.
+
+| Control | Observed result | Scope and next gate |
+| --- | --- | --- |
+| 40C, maintained complete builder | A 37-atom/37-bond candidate preserves source atoms, orders, explicit formal charges and source-relative handedness. All 21 isolated native checks pass in both source-seed and generated coordinates; fixed covalent proxies agree. | Isolated component usability with notes; convergence is not established. No linked amide targets, final product CIP, refinement or adoption claim. |
+| 40A and APN, maintained builder | The native CCD reader replaces ten explicitly localized purine orders with 1.5. Exact graph preconditions stop the handoff before construction. Source charges already agree, including APN's +1 terminus. | Unsupported representation at the reader boundary, not demonstrated protonation failure. |
+| 40A, separate local source-order diagnostic | Restoring the declared orders only in a fresh parsed object permits construction, then serialization fails on an extra N1–C bond of 8.917 Å. No CIF candidate is written; partial outputs remain. | Diagnostic runner only; the spurious bond's origin needs a separate trace. No installed or production code is patched. |
+| APN, same separate diagnostic | A complete candidate is written and rejected for unsupported fused purine aromatic orders. Atoms, hydrogen attachments and explicit formal charges remain intact. | No general fused-ring equivalence has been asserted. This local diagnostic is not a production recovery. |
+
+A third local diagnostic observes the extra C–N1 edge first at return from
+`RemoveNonBondAngles`, called inside `ZMatrix2Internal` through
+`OrderAnglesOnZMatrix` during optimization initialization. This narrows the
+next trace to native internal-coordinate setup; the observation does not
+independently identify the exact mutation instruction or qualify a repair.
+The repeated attempt ends with the same serialization failure and stays intact.
+
+All five generation outcomes and the two 40C native qualifications replay from
+an owned relocated copy with original input, checkout and SDK reads blocked,
+without native execution or loading captured code/pickles. One replay-runner
+field-name error was preserved, then corrected in a fresh process; production
+source was unchanged. Raw sources, models, dictionaries, logs and runners stay
+local. The [evidence ledger](cif-linked-native-registration-evidence.json), key
+`pna_candidate_diagnostics_2026_10_28`, records exact validation and file hashes.
+
+The next chemical gates are separate: qualify the declared fused-ring
+representation and trace the 40A extra bond; then generate numerical restraints
+in the intended linked PNA environment under the C114 operation. Pruning an
+isolated amine dictionary does not establish the resulting amide's atom types
+or targets. Charged reaction-state authority, ATL/L-DNA/PDU work and ordinary
+workflow integration remain open. Sticky-end stitching stays parked.
+
+### Explicit neutral PNA amide operations (C114)
+
+The same read-only `site-plan` and `link-plan` commands now accept one explicit
+chemical-state operation for the matched uncapped aminoethylglycine PNA core:
+`neutral-pna-amide-v1`. This is a **source-table projection policy**, not a
+synthesis mechanism, experimental protonation assignment or native dictionary.
+The neutral amine and carboxylic-acid source declarations are the authority for
+the local deletion rule; the context supplies the intended bond and leaving
+identities. PNA's polyamide backbone is established independently of phosphate
+chemistry; the [40A CCD record](https://www.rcsb.org/ligand/40A) records the
+corresponding neutral amino/carboxylic-acid monomer. Runtime evidence uses the
+frozen, hashed CCD files, not a live web lookup or a component-code allowlist.
+
+At each linked PNA port, add `operation` and `leaving_atom` to the existing
+schema-1 context. For example, at the receiving amine of a 40C site:
+
+```json
+{
+  "schema_version": 1,
+  "site": "A:2",
+  "ports": {
+    "amine": {
+      "state": "linked",
+      "operation": "neutral-pna-amide-v1",
+      "leaving_atom": "H",
+      "partner": {"site": "A:1", "component": "40A", "atom_id": "C"},
+      "symmetry_operation": "x,y,z"
+    },
+    "carboxyl": {"state": "source"}
+  }
+}
+```
+
+The partner's carboxyl context must declare the same operation, its exact
+source hydroxyl oxygen (OXT in these frozen sources), and the reciprocal
+40C A:2 N endpoint. Names in this example are not defaults.
+
+- The amine N must have explicit zero formal charge, exactly one source carbon
+  neighbor and two singly attached neutral H/D. Delete only the specifically
+  selected H/D; retain the other one. No individual hydrogen is chosen by order,
+  distance, a native alias or a missing coordinate.
+- The carboxyl C, carbonyl O and selected hydroxyl O must have explicit zero
+  formal charges. The source core must declare the C=O and C–OH bonds; carbonyl
+  O has only C as neighbor, hydroxyl O has C and one neutral single-bonded H/D,
+  and C has only its declared backbone C and the two O neighbors. Delete that
+  hydroxyl O and its H/D; retain C=O.
+- Preserve all other source rows, charges and stereo declarations. Reacting
+  ports and deleted atoms with declared R/S require separate authority. No
+  charge conversion, additional H loss, invented H or numerical typing is allowed.
+  Final product CIP assignment and amide geometry remain unqualified.
+
+A charged NH3+ reaction site, unknown charge, incomplete hydrogen state or
+contradictory candidate withholds the complete network proposal. A charged
+**unreacted** amine can remain unchanged while the other end of that component
+participates: the policy applies locally, not as a blanket neutralization rule.
+Missing operation declarations preserve the earlier unresolved PNA behavior.
+Unsupported operations, extra fields and invalid leaving identities are input
+errors. All existing model inventory, source hash, reciprocal partner and
+candidate-coverage checks still apply; no coordinate is edited or bond inferred.
+
+Opt-in reports use `cif-explicit-attachment-site-v2` and
+`cif-reciprocal-source-links-v2`, retaining report schema 1. A fully proposed
+site adds `permitted_source_projection.chemical_state_operations`, listing each
+policy, port, retained port atom and exact deleted atoms, with empty addition
+and formal-charge-change lists. There is no partial permitted projection for
+an unresolved site/network. Legacy contexts keep their v1 policy IDs and exact
+reports; older readers reject the new context fields. Existing run/checkpoint
+schemas and ordinary preparation need no migration.
+
+Fourteen synthetic intended-link controls over frozen 40A/40C/40G/40T/APN/CPN/
+TPN/OPN sources test a homodimer, four base transfers, a three-site chain and
+both orientations of four charged-terminal pairs. **Ten projections match**;
+the four attempts to react a charged amine remain unresolved. These controls
+are declared before execution, but are not blinded or native experiments.
+The other direction retains the charged terminal N and its three H unchanged.
+Eight original C108 cases, including two expected errors, retain exact reports.
+All 22 cases replay through API and JSON CLI after owned source/inputs move and
+the original path is absent; original capsule/SDK reads and subprocesses are
+blocked. The 38 C106 input files retain bytes and timestamps. No Phenix or Coot
+executes. Full validation and retained runner attempts are recorded under
+`neutral_pna_amide_operations_2026_10_28` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
+
+This advances G2's explicit operation/delta gate. It does not supply native PNA
+energy types, amide bond/angle/plane targets, polymer perception or refinement
+proof. Those require source-preserving numerical generation and exact native
+qualification before recovery/adoption. Charged reaction-state operations,
+free-OH reconstruction and the ATL/L-DNA/PDU gates remain open.
+
+### Remaining attachment-profile milestone (G2)
+
+
+Use separate authorities for four questions: the source graph declares the
+component's atoms/connectivity/stereo; NARestraints declares base-pair/stack
+roles; a reviewed linkage profile specifies permissible attachment/terminal
+operations; the actual site context states which connections and ends exist.
+A workbook sugar label alone must not answer any of the latter three questions.
+
+C106 binds source cores; C107 adds single-site source projections; C108 requires
+reciprocal source-bound ports and complete declared-link scope. C109 compares
+literal endpoints with preserved native captures. C112 captures and checks actual
+model-bound native aliases; C113 separates bound hydrogen counts/attachments
+from label differences. C114 adds explicit neutral PNA amide source operations
+with exact permitted deltas and retained charged termini. Next, establish the
+remaining protonation and unmodelled-name policies using independent DNA and
+transfer controls, and qualify source-preserving numerical PNA candidates.
+Keep missing formal-charge readback distinct from contradictions. Generate and
+qualify a source-preserving numerical ATL candidate before repeating native
+transfer; installed-library failure is not a blanket ATL exclusion. Numerical
+types, complete effective definitions and proxies still need qualification.
+Then extend terminal reconstruction and the still-unsupported charged PNA reaction states. Preserve original
+and candidate definitions separately and test every newly permitted delta. Conflicting
+profile matches stay unresolved instead of choosing the first matching name.
+No universal phosphorus field or unconditional OP3 deletion is required of an
+alternative backbone. Literal terminal oxygen names can differ, as ATL shows.
+
+C107 uses predeclared PDU/ATL and DA/LCC source-projection controls plus APN/40A
+state boundaries; these synthetic cases do not establish native operations.
+Continue with independent operation-level controls and held-out components
+from the census to test transfer. These are validation families, not a per-code allowlist.
+Base-role repairs must preserve donor/acceptor intent as well as atom identity;
+reuse existing reviewed aliases/corrections where applicable. Do not resolve a
+carbon-for-nitrogen substitution by treating the two atoms as chemically equal.
+The acceptance gate is a reproducible source/profile/site explanation and a
+permitted-delta check. Native link/energy/derivative qualification and automatic
+adoption belong to later gates and cannot be claimed from profile matching.
 
 ### Current source-declaration inventory (C97)
 
@@ -92,6 +7781,325 @@ assessment with all 38 bundle files unchanged and zero SDK/process attempts.
 The expected `REVIEW`/exit 2 and all five saved selection gates remain intact.
 The existing evidence ledger records commands, frozen hashes, the exact current
 source summary and a preserved C18 DF recovery candidate for subsequent qualification.
+
+### Linked PDU omission inventory (C104)
+
+`qualify_linked_linear_torsion_candidate(before, after, source, component,
+candidate)` adds a deliberately narrow diagnostic inventory gate. It rebuilds
+C44's complete graph/declaration-based plan in temporary scratch space and
+requires the exact candidate bytes. It reuses C103's declaration checks for
+every planned row in the native dictionary and every modeled occurrence:
+explicit triple bonds, declared 180° angles and unchanged target/ESD/period.
+Coordinates and sampled C103 rows do not select the omissions.
+
+The qualifier binds atoms through full literal residue identities, verifies
+active proxy membership and parameters, and subtracts only planned torsion
+rows/proxies from a copy of the original inventory. Every remaining native
+category compares exactly, including dictionary readback, site modifications,
+charges, atom coordinates, links, all other proxies, NARestraints policy,
+parameter adaptation and installed API sources. Unknown categories also compare;
+JSON types are significant. `energy_inventory` is explicitly outside this gate.
+Callers must validate native execution and ordered input provenance with the
+maintained capture reader before supplying inventories; this utility alone does
+not authenticate a native process or provide a new standalone bundle reader.
+
+The complete Phenix **2.2.1-6174** local test uses the unchanged C98 recovered
+863-atom starting model, 24 dictionaries and 13 PHIL files, after replaying the
+C103/C102/C101/C100/C99/C98 lineage. Two fresh native interpretations complete.
+The original reproduces C98 exactly. The candidate removes **six PDU definition
+rows and three active dihedral proxies** at D:5 (610 → 607 total dihedrals).
+All 21 inventory categories pass, including the 5PC bystander, phosphate/linkage
+state and NAR terms. Both native captures record energies, but their differences
+and derivatives have not yet been qualified.
+
+The schema-1 result uses `cif-linked-linear-torsion-inventory-v1`, remains
+`REVIEW`, and exposes `inventory_checks_pass` separately from explicit
+`NOT_RUN` energy, derivative and scientific gates. No CLI/runtime schema,
+threshold, dependency, historical worker, checkpoint or migration changes.
+No optimizer, ReadySet, Coot or model edit runs; automatic adoption is false.
+The selected model remains `verified_recovered_model`; C100 stays unqualified.
+
+Local replay preserves 126 relocated evidence files and timestamps after the
+original temporary location is removed, with historical live/SDK reads and
+processes blocked. Four altered bystander/phosphate/NAR/coordinate cases fail.
+All 497 C98–C103 parent files retain bytes and timestamps. Exact commands and
+results are recorded in `linked_pdu_omission_inventory_2026_10_27` in the
+[evidence ledger](cif-linked-native-registration-evidence.json). Generated
+models, dictionaries, native observations and logs remain local.
+
+**Next:** bind this candidate to fixed-coordinate energy/gradient attribution
+and fresh derivative checks at the relevant saved coordinates. Preserve the
+original objective and endpoint evidence. Only afterward consider a separate
+bounded geometry attempt; inventory agreement does not select a candidate. The
+historical isolated `cif_linear_torsion_impact` worker rejects parallelity
+managers; the linked follow-up must retain the current mixed-model corrected
+evaluator and NAR stacking terms rather than disable them to reuse that worker.
+
+### Independent recovered-torsion precision (C103)
+
+`cif_recovered_precision.audit_recovered_precision(resolution_directory,
+torsion_directory, geometry_directory, gradient_directory, recovery_directory,
+output)` consumes the validated C102/C101/C100/C99/C98 lineage without launching
+Phenix. `read_recovered_precision(directory, resolution_directory=...,
+torsion_directory=..., geometry_directory=..., gradient_directory=...,
+recovery_directory=...)` recomputes the complete mathematical result and its
+declaration comparisons. Both preserve the selected model and every earlier
+failure. A fresh output is required; no candidate dictionary or coordinate model
+is written.
+
+The additive schema-1 receipt is `recovered_precision_audit.json`, policy
+`cif-recovered-independent-torsion-precision-v1`, with `precision_result.json`
+under `recovered_precision_directory`. C102's receipt has the independent parent
+anchor `recovered_resolution_directory`; all earlier anchors keep their meaning.
+References bind relative paths, SHA-256 and byte counts. Readback verifies the
+complete two-file output inventory and type-sensitive reconstructed JSON.
+No historical worker, CLI/runtime schema, dependency or migration changes.
+
+Methods: express the positive-period energy directly through normalized plane
+normals as **9600 × weight / n² × (1 − cos(n × (model − ideal)))**. Compute the
+cosine through integer complex powers, and obtain Cartesian derivatives by
+forward automatic differentiation. This avoids the native `acos` and copied
+native gradient formula. Standard-library `Decimal.from_float` preserves the
+exact binary input coordinates and parameters; private 60- and 90-digit contexts
+use a Machin-identity pi and convergent trigonometric series. This is the
+mathematical function, not an emulation of native floating-point operation order.
+The supported native header SHA is explicitly pinned to the inspected C101
+implementation; unfamiliar implementations refuse comparison.
+
+At both atom orders, compare the two precisions and use independent central
+differences along all 12 Cartesian axes at decimal steps **1e-24 and 1e-26 Å**.
+Precision/reversal comparisons use 1e-30 absolute/relative bounds; decimal
+differences use 1e-20. Each comparison uses the maximum of its absolute and
+relative allowances, matching the established strict comparison rule.
+These are separate mathematical controls, not changes to
+the native derivative thresholds or a retry of C102's binary64 step grid.
+Compare saved single/container gradients using the existing strict 1e-8
+absolute/1e-10 relative comparison. Separately move each original coordinate one
+binary64 step in either direction and re-evaluate at 90 digits, retaining the
+exact hex values and displacement. Those 24 artificial perturbations describe
+input sensitivity; they are not proposed coordinate edits.
+
+The complete saved-data execution takes **66.15 seconds**, including parent
+replay, with **zero new native calls**. The saved observations come from
+Phenix **2.2.1-6174**; this computation uses Python **3.12.14** and libmpdec
+**4.0.1**. Coot, generation and optimization are not run. All 21
+supported proxy/case rows pass precision stability, both-order agreement and
+all **504 Cartesian direction/order checks**, each at both decimal steps.
+The three alternate-ideal DZ cases remain explicitly unassessed. Positive
+periods 1–12 with ordinary, non-symmetry functions are supported; nonpositive
+periods, alternate ideals and nondefault function parameters are not covered.
+
+Energy and gradient use the existing restraint-target units.
+
+| PDU D:5 central torsion evidence | Initial | Full-precision endpoint | PDB-rounded endpoint |
+| --- | ---: | ---: | ---: |
+| Independent torsion energy | 13.58468 | 6.137577e-8 | 20.77499 |
+| Independent gradient norm | 14,401.584 | 7,064.755 | 5,800.844 |
+| Minimum defining-plane sine | 0.001287 | 2.946479e-7 | 0.001034 |
+| Maximum gradient-component change after one coordinate ULP | 2.62955e-8 | 0.227086 | 3.51943e-8 |
+
+Only the full-precision PDU C5–C5A–C5B–C5M row fails the strict native/reference
+gradient comparison: maximum differences are **2.236935e-4 forward** and
+**2.697555e-4 reversed**, for both single and container kernels. The high-precision
+orders agree. The native/reference differences are small compared with the
+roughly 7,065 gradient norm. A small residual therefore coexists with a large, highly sensitive
+gradient in the independent mathematical reference. This supports numerical
+sensitivity near collinearity; it does not establish a native coding defect,
+explain every old failed sample, or prove useful optimization conditioning.
+
+Read-only declaration checks reuse the existing C44 triple/180° prerequisites
+and compare current dictionary rows with the exact native effective definition
+and proxy parameters. All three selected PDU rows and three 5PC control rows
+match. The two sugar-control rows are not selected by those declarations.
+No coordinates or component-name allowlist select a row. These are **individual
+row matches**, not a complete candidate plan, a native omission comparison,
+chemical-state approval or authority to modify the original dictionary.
+
+**Next boundary:** prepare a separate PDU candidate using the existing complete
+declaration-based omission policy, then check the original/candidate managers
+in the current linked model. Derive the exact omitted rows/proxies from that
+plan and require every other definition/proxy, phosphate state and NARestraints
+target to remain unchanged, including 5PC as a bystander. Fixed-coordinate
+energy/gradient delta and fresh derivative checks must precede another optimizer.
+C100 stays unqualified and `verified_recovered_model` remains selected. No runtime
+activation, ordinary refinement or scientific approval follows from C103.
+Exact commands and evidence hashes are in
+`recovered_torsion_precision_2026_10_26`.
+
+Validation: **5772 passed, 276 subtests passed in 1034.42s (0:17:14)**; **49 focused regressions** pass. Cold relocated replay preserves all 497 parent/audit files and timestamps, retains the selected start and rejects four rebound forgeries with zero processes. Compilation, whitespace, 198 document links and rendered-figure inspection pass.
+
+### Recovered-endpoint resolution (C102)
+
+`cif_recovered_resolution.audit_recovered_resolution(torsion_directory,
+geometry_directory, gradient_directory, recovery_directory, phenix, output,
+timeout_seconds=120)` binds the completed C101 diagnostic and its exact
+C100/C99/C98 lineage to the unchanged C93 resolution-window worker. It replays
+parent evidence, validates the saved optimizer/precondition metadata and derives
+the unresolved direction plan before creating a fresh output directory.
+`phenix=None` prepares only. `read_recovered_resolution(directory,
+torsion_directory=..., geometry_directory=..., gradient_directory=...,
+recovery_directory=...)` regenerates preparation and replays observations without
+an SDK, captured-code execution or changes to the saved evidence.
+
+The new schema-1 receipt is `recovered_resolution_audit.json`, policy
+`cif-recovered-fixed-resolution-diagnostic-v1`. Parent anchors retain their C98,
+C99 and C100 meanings; C101 receipts/results use `recovered_torsion_directory`.
+The owned report uses `mixed_endpoint_window_directory`, with the legacy native
+preparation's `mixed_torsion_directory` rooted in the same new attempt. References
+carry SHA-256 and byte counts. Historical reports/workers, runtime manifests and
+CLI behavior remain unchanged; no migration is required.
+
+Methods: keep the canonical failed local direction/order rows and original
+whole-objective/dihedral directions, while retaining every original passing
+sampled direction. At fixed coordinates evaluate the existing uniform grid
+**1e-7, 3e-8, 1e-8, 3e-9, 1e-9, 3e-10, 1e-10 Å**, with unchanged 1e-4
+absolute/relative derivative tolerances. Two adjacent samples must agree and
+pass representable-displacement, midpoint-symmetry, displacement-uncertainty and
+target-ULP screens. The latter two each use at most 10% of the comparison bound;
+they do not bound all internal kernel error. Repeat all eight family snapshots
+at all three coordinate representations. Recompute fresh single/container
+atom-order comparisons from sampled local baselines using the existing 1e-8
+absolute/1e-10 relative comparison. If only one order is sampled, say so rather
+than infer a reversal pass. Prior failed prerequisites remain explicit.
+
+One native call is allowed, bounded by 2,000 evaluations, 120 direction rows
+and a configurable 1–600-second worker deadline. This adapter is diagnostic:
+even a positive sampled result cannot select an endpoint, serialize a candidate,
+launch native endpoint reread or change the copied C100 coordinate decision.
+`RECOVERED_RESOLUTION_AUDIT_COMPLETE` means reproducible diagnostic completion;
+the separate `qualification` and summary retain numerical failures and their
+scope. Optimization, restraint changes and endpoint requalification stay `NOT_RUN`.
+
+The complete Mac execution on **Phenix 2.2.1-6174** (dispatcher 2.2.1) completes
+one native job in **8.843132 seconds**, using **540 evaluations**. It revisits
+22 local direction/order rows and 10 broader rows, retaining 326 previously
+passing directions out of the 336 original endpoint directions. All **24 repeated family snapshots** match the
+saved evidence. Local repeats and single/container comparisons pass.
+
+| Rechecked evidence | Result |
+| --- | --- |
+| Full-precision local torsion directions | 2/22 pass: the local-gradient direction in each order, at 1e-9, 3e-10 and 1e-10 Å. Twenty rows still lack two adjacent resolved passing samples. |
+| Full-precision total/dihedral directions | 0/6 pass. Some samples meet the numerical error bound but fail displacement-uncertainty resolution. |
+| PDB-rounded total/dihedral directions | 4/4 pass. Unresolved smallest steps remain in the record. |
+| Fresh PDU atom-order reversal | REVIEW: maximum gradient-component difference 4.606198899637093e-5, exactly reproducing C101. |
+
+For example, the full-precision total-gradient sample at 1e-10 Å has derivative
+error 0.208619 within a 0.690874 bound, but displacement uncertainty 0.136163
+exceeds its 0.0690874 allowance. Arithmetic proximity alone is insufficient.
+The full-precision alternating-global samples at 1e-9 and 3e-10 Å likewise meet
+the derivative bound but fail displacement resolution. The two retained
+atom-order prerequisites and the full-precision group-sample prerequisite also
+remain false. The overall derivative result is `REVIEW`; C100 stays unqualified
+and `verified_recovered_model` remains selected with `CONTINUE_WITH_NOTES`.
+
+A separate read of the exact captured native definition confirms C5A–C5B is
+`triple` (target 1.203 Å), both defining flank angles target 180° (ESD 3°), and
+PDU D:5 C5–C5A–C5B–C5M still carries torsion `Var_34`, target -11.22° (ESD 30°,
+period 1). This is a saved-definition observation with zero native calls or
+candidate changes. It connects the present finding to the declaration-based
+C43–C46 investigation; near-collinear achieved coordinates alone remain
+insufficient authority to remove a restraint.
+
+**Next boundary:** independently check the same four-atom function in both
+orders at higher arithmetic precision, preserving exact binary input values,
+and reconcile these current declarations with the prior linear-axis candidate
+policy. Smaller finite-difference steps alone are not a demonstrated solution.
+Any candidate omission requires separate source-declaration authority and fresh
+current-manager comparisons preserving all other terms, phosphate chemistry and
+NARestraints targets. No definition edit, optimization, adoption, ordinary
+refinement or scientific approval follows from C102. The independent metal GUI
+is unaffected. Exact commands/hashes are in evidence-ledger entry
+`recovered_resolution_diagnostic_2026_10_26`.
+
+Validation: **5723 passed, 276 subtests passed in 1006.53s (0:16:46)**; **43 focused regressions** pass. Cold relocated replay preserves all 495 parent/audit files and timestamps, retains the selected start and rejects four rebound forgeries with zero processes. Compilation, whitespace, 195 document links and rendered-figure inspection pass.
+
+### Recovered-endpoint torsions (C101)
+
+`cif_recovered_torsion.audit_recovered_torsions(geometry_directory,
+gradient_directory, recovery_directory, phenix, output, timeout_seconds=120)`
+replays the C100 geometry receipt and its C99/C98 lineage before preparing a
+fresh diagnostic. It requires a completed geometry worker with saved finite
+endpoint coordinates, not an endpoint pass. `phenix=None` prepares only.
+`read_recovered_torsions(directory, geometry_directory=...,
+gradient_directory=..., recovery_directory=...)` regenerates preparation and
+replays every numerical observation without launching an SDK or captured code.
+These are diagnostic Python APIs; CLI and ordinary runtime selection are unchanged.
+
+The adapter reuses the established C91 selector and worker unchanged. Selection
+uses native geometry and atomic gradients, with no component allowlist: up to
+six near-collinear positive-weight ordinary torsions and two disjoint controls.
+At initial, full-precision and PDB-rounded coordinates, it tests each selected
+torsion in both atom orders using single-restraint and container kernels.
+Separate full, selected and remainder groups check attribution against the
+native torsion family and exact saved baselines. Central-difference steps remain
+1e-3 through 1e-9 Å by decades, with unchanged 1e-4 absolute/relative tolerances
+and two adjacent passing samples. Every coarse failure remains in the record.
+There is one native call, at most 10,000 local paired-kernel evaluations and 600
+group calls; the worker deadline is configurable from 1 to 600 seconds. There
+is no model optimization, restraint change or endpoint requalification.
+
+The additive schema-1 receipt is `recovered_torsion_audit.json`, policy
+`cif-recovered-mixed-fixed-torsion-v1`. C98 resources retain the
+`mixed_source_recovery_directory` anchor; C99 reports/results retain
+`recovered_gradient_directory`; C100 inputs use `recovered_geometry_directory`;
+the owned job uses `mixed_torsion_directory`. All references carry byte counts
+and SHA-256. The old archive field remains the exact C94 capsule verified by
+C98; independently bound current reports establish the repaired objective.
+The reader verifies every output, regenerates the maintained recipe, recomputes
+selection and numerical replay, and preserves C100's exact coordinate decision.
+Historical workers/reports and runtime manifests need no migration.
+
+The complete Mac execution on **Phenix 2.2.1-6174** (dispatcher 2.2.1) completes
+one native job in **5.393327 seconds**, with **9,504 local paired-kernel evaluations
+and 528 group calls**. All observed values are finite. All three cases pass
+repeat, single/container, selected-sum, selected-plus-remainder,
+full/native-family and exact saved-family controls. Atom-order reversal passes
+23 of 24 proxy/case comparisons; the same full-precision PDU torsion fails its
+strict reversal comparison. There are no positive constant torsions requiring
+an unsupported-family exception.
+
+| Saved coordinates | Local directions | Group directions | Interpretation |
+| --- | --- | --- | --- |
+| Initial | 224/224 pass; 2 require finer samples | 12/12 pass | The initial sampled evidence reproduces. |
+| Full precision | 202/224 pass; 22 remain under review | 5/12 pass; all four remainder directions pass | The remaining local failures are one PDU torsion in both orders. |
+| PDB rounded | 224/224 pass; 8 require finer samples | 12/12 pass; 4 require finer samples | Rounded torsion evidence agrees without selecting the endpoint. |
+
+All 22 remaining local failures belong to PDU D:5 **C5–C5A–C5B–C5M**, native
+proxy 587: eleven directions per atom order. Its minimum plane-normal sine is
+**2.946479419326827e-7**, compared with 0.0012865368366159256 initially and
+0.0010338991217958512 after rounding. The other five near-collinear selections
+and two controls pass all sampled local derivatives. At full precision the
+selected group retains four reviews, the complete group three, and the remainder
+none. The same torsion's reversed target differs by about 1.18e-15, but its
+largest gradient-component difference is **4.606198899637093e-5** against a
+local gradient norm of 7064.7553790623715. This exceeds the unchanged reversal
+comparison (1e-8 absolute, 1e-10 relative). Both individual/container kernels
+reproduce that discrepancy, and within-order repeats agree. Retain it as an
+independent finding: finite-difference sampling alone does not explain away
+order sensitivity. These observations localize a numerical conditioning
+question; they do not prove a native derivative defect or justify deleting a
+chemically intended restraint.
+
+`RECOVERED_MIXED_TORSION_AUDIT_COMPLETE` means the diagnostic and replay
+completed, **not** that derivatives or endpoint usability pass. The copied
+C100 decision still selects `verified_recovered_model`, with the endpoint
+unqualified and `CONTINUE_WITH_NOTES`. All 38 C95, 213 C98, 68 C99 and 76 C100
+files retain their bytes and timestamps. No new model, runtime activation,
+checkpoint, ordinary refinement or scientific approval is produced. The
+NARestraints workbook, terminal-phosphate policy and metal GUI remain unchanged.
+
+**Next boundary:** a bounded resolution-aware audit of this exact saved
+full-precision endpoint, using the established representability, midpoint,
+target-resolution and adjacent-sample controls with unchanged tolerances. It
+must cover the retained local failures, the stricter atom-order reversal
+finding and the broader total/dihedral endpoint directions; rounded agreement
+alone cannot qualify the full-precision endpoint.
+Do not inherit C91–C93's old-objective qualification or rerun optimization merely
+to escape this finding. Source chemistry and any eventual policy change require
+separate evidence. Exact commands and hashes are in evidence-ledger entry
+`recovered_mixed_torsions_2026_10_26`.
+
+Validation: **5680 passed, 276 subtests passed in 927.68s (0:15:27)**; **39 focused regressions** pass. Cold relocated replay preserves all 425 parent/audit files and timestamps, retains the selected start and rejects three rebound forgeries with zero processes. Compilation, whitespace, 192 document links and rendered-figure inspection pass.
 
 ### Recovered-objective geometry (C100)
 
@@ -279,11 +8287,19 @@ C98 validation: **5562 passed, 276 subtests passed in 770.65s (0:12:50)**, 154 f
 
 ### Future chemical-reference input
 
+C335 packages the first manually interpreted custom reference, **DY**, as
+`data/chemical_references/DY.cif` plus `DY.json`. It records the retained triazole
+free nucleoside, named chemistry, sugar stereo and computed preview. It does not
+implement ChemDraw import, numerical qualification or ordinary DY mutation.
+The [DY queue](cif-doctor-completion-queue.md#dy--packaged-retained-triazole-reference-and-mutation-support)
+owns promotion; the [reference layout](architecture.md#future-chemical-references-and-restraints)
+keeps chemical definitions separate from operational dictionaries.
+
 Future CIF Doctor work must accept an explicit chemical reference associated
 with a component and produce a source-bound, qualified restraints bundle from
 it. A ChemDraw document or an explicitly exported chemical interchange form
 (for example a structure file or stereochemically explicit SMILES) is a future
-input candidate; no format or importer is implemented or selected here.
+input candidate; no general drawing/export importer is implemented here.
 Preserve the original bytes/hash, conversion tool/version/options, atom mapping,
 connectivity, bond order, hydrogens, formal charge and declared stereochemistry.
 Record unsupported or lossy information rather than inventing it. Linkage and
@@ -368,6 +8384,14 @@ C66 explicitly exercises this API with the qualified DP/PDU/5PC candidates.
 It does not silently enable production repair/adoption or make students save,
 select or inspect CIF tables.
 
+C155 rejects structurally invalid snapshot destinations before lookup or any
+acquisition/requalification adapter: existing output, symlinked (including dangling)
+ancestors and non-directory ancestors refuse. The read-only preflight creates
+no directories on a miss and is repeated at snapshot freezing. It is not an
+attempt reservation, a writability/disk-space guarantee or complete filesystem
+race protection. Durable ownership and retry handling remain Q04. The existing
+store/snapshot policy and chemistry/consumer gates are unchanged.
+
 The semantic lookup binds exact source bytes and authority, original atom names,
 declared elements/orders/formal charges/explicit hydrogens/stereochemistry, the
 numerical recipe and generator family. Component code alone is insufficient.
@@ -410,6 +8434,251 @@ overrides this path; the C66 diagnostic also accepts `--dictionary-store PATH`.
 No new dependency, daemon, network upload or student configuration is required.
 Ordinary PostMR now records reuse and preserved limitations in its solution
 summary. PDF rendering and full effective-bundle qualification remain separate.
+
+C134 adds complete synthetic integration coverage from qualified publication
+through real store selection, source/consumer checks, ordinary PostMR and frozen
+readback after relocation and removal of the test-owned cache/installation.
+Changed source or consumer and corrupted entries retain ordinary preparation;
+original nonconvergence notes survive successful reuse. Cache APIs are not replaced
+by fixtures. This exercises the existing default isolated v2 qualification path;
+the captured native inventory, installation discovery, NAR output and copying
+ReadySet remain explicit test fixtures. This expands orchestration coverage
+without certifying additional chemistry or enabling automatic recovery.
+See evidence key `development_validation_and_postmr_workflow_2026_10_30` and the
+[development testing contract](collaboration.md#testing-cadence-and-development-profiles).
+
+### Explicit representation policies in stored numerics
+
+C135 carries both already-supported neutral purine representation policies
+through isolated dictionary publication, exact reuse, consumer requalification,
+source projection and frozen readback. Callers put the supported policy string
+in `recipe["bond_representation_policy"]`; absence retains legacy behavior.
+A present null, empty or unknown value is rejected. The full recipe already
+participates in the immutable request key, so differently declared permissions
+cannot share a lookup identity. No residue code grants eligibility.
+
+Publication and every entry read invoke the C133 source-bound qualification
+checker. It recomputes the source/candidate assessment, requires all 21 exact
+native checks and preserved source-declared configurations, and compares the
+recorded bond representation against the requested policy. Relabelling v2 as v3,
+using the other supported policy, or supplying stale source evidence cannot
+authorize publication. Known legacy stale qualifications may request a fresh
+qualification; arbitrary future version strings are excluded.
+
+The request/entry schema and store policy remain version 1; legacy recipes omit
+the new optional field and retain their exact serialization. The native summary
+for explicit policies remains isolated usability v3. Old numerics keep their
+original producer and stopping notes when a new consumer qualifies the same
+bytes. Source projection only establishes a candidate relationship and still
+requires fresh source-bound native evidence. Existing entries/runs are never
+migrated in place. Older readers do not understand the new opt-in qualification.
+
+This is reusable **isolated** evidence. Automatic PostMR explicitly excludes
+these entries with a current-site-support note and retains ordinary source
+preparation. The lower-level resolver remains available to explicit callers;
+it does not certify linked geometry, choose phosphate H/charge, add OP3, or adopt
+a model. The existing default v2 PostMR route remains unchanged.
+
+Validation covers both policies using synthetic complete native inventories,
+negative source/recipe/qualification controls, consumer upgrades and relocation.
+The captured C133 0DG Phenix 2.2.1-6174 evidence also passes publication/reuse and
+cold readback; an entry produced by the actual pre-C135 store keeps its identity.
+The owned original checkout, source and cache paths are removed before cold
+readback, with subprocesses forbidden. This is replay of a completed native
+capture, not a fresh Phenix/Coot execution or new chemistry qualification.
+Exact commands/results are in evidence key
+`explicit_dictionary_representation_policy_2026_10_30` in the
+[existing ledger](cif-linked-native-registration-evidence.json).
+
+### Stored dictionaries at explicit current sites (C136)
+
+`nasolve.cif_dictionary_sites` connects a frozen qualified dictionary to an exact
+model and declared linked/end-state contexts. This is an opt-in Python contract;
+ordinary PostMR continues its existing fallback for explicit-policy entries.
+No cache search, dictionary regeneration, coordinate editing or native process
+runs inside these APIs.
+
+`prepare_dictionary_sites(snapshot, model, contexts, output, *, consumer,
+expected_links, terminal_resource=None, supplementary_dictionaries=(),
+supplementary_phils=())` requires a fresh output directory. The consumer must
+exactly match the stored isolated qualification and include the Phenix version,
+dispatcher checksum, eight interpreter API pins and three energy API pins.
+An upgraded consumer needs upstream requalification. The stored recipe owns the
+representation policy; the caller cannot override it for a new model. Default
+v2 and explicit v3 snapshots are supported without changing their serialization.
+
+Every site sharing the selected component code needs a context. `expected_links`
+is the complete, ordered declaration of model backbone pairs, including unchanged
+supplementary components. Selected incoming/outgoing contexts must agree exactly;
+missing, duplicate, reversed and branched declarations are refused. No geometric
+or basename search supplies a missing link. The existing native adapter still
+requires conventional P/O3'/O5' names and explicit DNA/L-DNA source metadata.
+Other source-defined backbone families need their own qualified adapter.
+
+Declared free 5'-OH sites require a captured terminal-resource receipt. Its
+declared files are frozen and verified, and its version, dispatcher and shared
+monomer-reader fingerprint must match the dictionary consumer. The existing
+terminal checker retains the installed fragment's numerical targets without
+substituting partial charge for formal charge. Other site mixtures use the linked
+preparer. Source phosphate H/charge and all retained configurations remain bound
+to the original source; an unexplained missing OP3 does not authorize adding it.
+
+The new `site_receipt.json` has schema 1 and policy
+`cif-stored-dictionary-sites-v1`. Artifact references use
+`dictionary_site_directory`, relative paths, SHA-256 and sizes. Only the six
+snapshot files, model, declared terminal-resource artifacts, ordered supplementary
+inputs and derived preparation are included. Publication validates the staged
+bundle before renaming it into the fresh destination. Input snapshots, caches,
+completed runs and their modification times are unchanged.
+
+`read_dictionary_sites(output)` validates the inventory and repeats preparation
+from those frozen authorities in a temporary directory. It compares generated
+CIF/PHIL/projection bytes exactly and uses the existing narrow eigensystem-roundoff
+rule only for duplicated derived receipt measurements. Rehashing an altered
+projection, inventing a PASS or adding an unrequested file cannot make it replay.
+The returned `before_dictionaries`, `after_dictionaries`, `before_phils`,
+`after_phils` and `model` paths define the exact native input order. The before
+vector uses the saved isolated dictionary; the after vector uses the prepared
+base and modification CIFs, then appends the site-selection PHIL after the
+unchanged supplementary PHIL inputs.
+
+`inspect_dictionary_site_native(output, baseline_receipt, candidate_receipt)`
+reads complete maintained-worker captures. It binds both to those exact vectors,
+the same model/occupancies and the saved consumer pins, then invokes the existing
+terminal/projection checker. Additional checks cover selected active bonds,
+angles, torsions, planes and fixed chirality; literal coordinate/source elements
+and the O/P elements of both native linkage partners; modifier IDs; complete proxy
+inventories; finite repeated energies; declared incoming-phosphate coverage;
+and every unchanged cross-site proxy, including both parallelity planes. The
+pre-repair capture may report a missing heavy atom only when that exact atom is
+in the selected preparation's deletion plan. No unexplained baseline deficit is
+waived, and the prepared capture must have no missing heavy atoms.
+
+The v1 stored-site policy retains its original narrower native qualifier: it rejects
+all coordinate OP3/O3P, including a deliberately retained terminal phosphate, and
+requires non-empty custom-restraint evidence. Therefore a valid preparation with
+either a terminal-phosphate OP3 or no requested custom restraints remains REVIEW
+and blocks diagnostic continuation. These are inherited conservative gates,
+not evidence that the declared chemistry is invalid. Do not delete a legitimate
+terminal phosphate or invent pair/stack restraints to satisfy them. Context-aware
+installed controls are required before broadening these gates. The current fresh
+native demonstration covers the C133 free-5'-OH/internal arrangement. The opt-in
+C137 context below provides the separately validated broader route.
+
+The result retains separate `qualification` and `native_checks` evidence.
+`STORED_SITE_NATIVE_MECHANICS_PASS` requires every check to pass; unsupported
+formal-charge readbacks keep the overall result `REVIEW`. A separate
+`diagnostic_continuation` decision reuses `mechanics_can_continue`: both check
+layers must be present and passing, except for the existing unavailable-charge
+readback category with no contradiction. This can return `CONTINUE_WITH_NOTES`
+for a separate diagnostic phase; it does not turn REVIEW into PASS, choose
+protonation, authorize automatic PostMR selection or adopt a model. This is
+captured implementation binding, not a fresh installation certification. A caller doing
+new native work must separately verify the configured installation. Energy-library
+data fingerprints, experimental protonation, generic attachment ports, symmetry
+links and scientific geometry remain separate boundaries. Complete dictionary
+retention is not automatic candidate adoption.
+
+Validation uses synthetic positive/negative contracts and six D/L deoxy,
+arabino-fluoro and ribo-fluoro transfer cases with changed component labels.
+These retain all declared centres, coordinates, fixed chiral rows and retained
+OP2 H through three-site preparation; they do not establish a live L-FDNA route.
+The saved C133 0DG isolated evidence is independently reproduced (21 checks),
+then carried through storage, preparation and cold relocation with native
+execution forbidden. A fresh complete Phenix 2.2.1-6174 interpretation reproduces
+42 passing definition checks, two unsupported charge readbacks and 45 passing
+additional native checks. No refinement, Coot, optimization or adoption runs.
+See `stored_dictionary_current_sites_2026_10_30` in the
+[existing evidence ledger](cif-linked-native-registration-evidence.json) for
+exact commands, focused tests and failure controls. The full suite is explicitly
+deferred for this pass; the last full-tested implementation is C135 `d4c0e57`.
+
+
+### Explicit native end-state and restraint context (C137)
+
+CIF Doctor checks faithful consumption around ReadySet and NARestraints. It does
+not replace ReadySet, choose pair geometry, recompile a different restraint
+policy, or change a source chemical state to make interpretation pass. These
+contracts are internal engine inputs supplied from recipes, source chemistry and
+model state; they are not a new requirement for users to inspect or author CIFs.
+Ordinary automatic integration is still a separate gate, with unresolved
+scientific choices distinguished from repairable technical failures.
+
+The optional `native_context` argument to `prepare_dictionary_sites` freezes an
+explicit audit contract with the exact model, contexts and ordered CIF/PHIL
+inputs:
+
+```python
+native_context = {
+    "policy_id": "cif-explicit-site-native-context-v1",
+    "custom_restraints": "required",
+}
+```
+
+Omitting it preserves the C136 v1 preparation and native result. Supplying it
+selects `cif-stored-dictionary-sites-v2`; both use schema 1 and the same relative
+artifact anchors. Readback requires the complete known context and replays the
+existing preparation. New bundles require the updated reader; no old artifact
+is migrated or reinterpreted as v2 in place. The native definition report uses
+`cif-native-terminal-bundle-checks-v2` and records the context explicitly.
+
+Terminal-phosphate permission comes from the frozen preparation's declared
+`five_prime_state = phosphate`, never from atom names alone. Each allowed OP3
+must belong to that exact selected component/site with no incoming link. The
+native coordinates and definition must retain P, OP1, OP2, OP3 and O5' with their
+expected elements; P must have precisely those four oxygen neighbours and OP3
+must have no other heavy-atom attachment. Existing projected definition checks
+remain mandatory. Active native phosphate coverage requires all four bonds and
+six angles, alongside the existing target/weight and source-configuration checks.
+An internal or undeclared OP3, an O3P alias, missing terminal atom or conflicting
+link cannot pass. Retained phosphate hydrogens and formal-charge evidence remain
+source-bound; this does not select protonation from experimental pH.
+
+`custom_restraints = required` is the appropriate mode for a workflow expecting
+pair/stack or other explicit geometry edits. Before and after captures must
+contain the same nonempty requests and each request must have exactly one native
+realization. The checks bind labels to native indices, both parallelity planes,
+actions, selections, targets, weights and edit origins; they also reject extra
+edit proxies. Numeric targets are compared without rounding away small changes.
+Only the supported additive edit forms are qualified; symmetry, deletion actions,
+parallelity slack/top-out and unsupported conventions remain review boundaries.
+The existing disabled competing-secondary-structure policy stays mandatory.
+This uses the maintained capture inventory: nondefault bond slack/limit/top-out
+functions are not exhaustively recorded here. Exact captured targets and weights
+are not proof of every possible restraint potential; such mechanics still need
+the separate qualified manager/derivative path before optimization or adoption.
+
+`custom_restraints = absent` is an explicit diagnostic declaration requiring
+both zero requests and zero native edit proxies. It is not a fallback when an
+expected base-pair restraint is missing. Neither mode invents restraints or
+decides which base pairs should exist: NARestraints and the frozen recipe remain
+the authority for that intent, with separate policy/membership gates. The
+consumer checks establish faithful native realization of the supplied intent,
+not scientific approval of the intended pair or achieved geometry.
+
+Installed Phenix 2.2.1-6174 controls cover the existing C133 linked/free-OH
+arrangement, an isolated source-preserved terminal phosphate without custom
+restraints, and a synthetic two-site terminal-phosphate control containing a soft
+bond, planarity and parallelity request. All available definition/active checks
+pass, with unsupported formal-charge readback retaining REVIEW and permitting
+only separate diagnostics with notes. The synthetic soft control tests
+consumption; it is not a new NARestraints pair recipe or a refinement result.
+
+Two earlier fixture attempts remain preserved: Phenix rejected an excessive
+20 A test bond; a separate two-identical-chain attempt exposed incomplete captured
+monomer identities after native chain copying. No distance threshold or identity
+guard was relaxed. The latter still blocks qualification and needs a separate
+native-capture compatibility fix. The successful same-chain two-site control
+does not establish copied-chain support.
+
+The complete C136 v1 result replays unchanged. Three new controls replay from a
+relocated checkout with original paths and SDK reads forbidden, preserving all
+142 frozen files. Ten corrupted native/context controls are refused or block
+continuation. Exact commands, regression scope and immutable attempt evidence
+are recorded as `explicit_native_site_context_2026_10_30` in the
+[existing ledger](cif-linked-native-registration-evidence.json). Ordinary automatic
+selection/adoption, multi-component composition and production refinement remain
+separate integration gates.
 
 The explicit `--local-dictionary-reuse-only` diagnostic accepts exact C65 and
 preserves every parent payload. For each component it tests persistence,
@@ -2018,6 +10287,92 @@ dictionary/native triple reports preserve torsion and seed-bending findings.
 No captured Python or new native process is executed.
 Native guessing stays disabled. Native energy resource files are not inventoried;
 current linked/model qualification and production PostMR adoption remain open.
+
+### Ordinary curated-source acceptance gap (C259)
+
+A fresh real-observation control passes Phaser and Coot construction, then stops
+before checked publication or AutoSol: curated 1AP supplies source-declared x/y/z,
+while the ordinary source-native generator requires CCD ideal coordinates. The
+older numerical-recovery adapter explicitly supports that distinction, but is not
+yet connected to ordinary acquisition. This is an integration limit, not permission
+to relabel coordinates as ideal, infer targets from a fitted model, or replace
+curated chemical state. Its exact evidence is
+`native_selected_autosol_control_2026_11_13` in the ledger. All failed outputs are
+preserved; native chosen-model AutoSol acceptance remains open.
+
+### Source-declared input controls (C261)
+
+Existing target-free graph and reader adapters now produce isolated qualified
+1AP and 5IU candidates against their exact original curated sources. This is a
+native diagnostic, not ordinary acquisition or refinement support. Source x/y/z
+remain explicitly distinguished from independently declared ideal coordinates.
+
+For 1AP, the existing explicit neutral-purine representation permission and
+preserved monomer-reader dialect avoid previously documented reader failures.
+The installed eLBOW monomer path then changes the first terminal P–O bond to
+double even when another P=O is already declared. Cedar rejects that candidate.
+A fresh control permutes complete bond-table rows so the already-declared P=O
+is encountered first; all chemical fields and coordinates remain identical.
+The resulting candidate passes the unchanged original-source isolated checks.
+This does not authorize choosing a phosphate resonance form, changing H/charge,
+removing OP3, repairing a generated bond after optimization, or weakening a gate.
+
+See `declared_source_generation_controls_2026_11_13` in the evidence ledger for
+all stopped negative controls, source/native hashes, limits and exact outcomes.
+The remaining integration must retain original source/authority, derived-reader
+identity and recipe through the existing owner, cache and qualification paths.
+Native chosen-model AutoSol acceptance remains open.
+
+C262 adds `prepare_elbow_phosphate_bond_order(source, code, output)` to the
+existing input-adapter module. It accepts one explicit monomer component and
+permutes entire bond rows within the terminal-oxygen positions of each affected
+phosphorus. Require four declared neighbours, exactly one terminal P=O and three
+single incident bonds. Inapplicable sites stay unchanged; ambiguous affected
+sites refuse before output. All other tables, bond-field values and source bytes
+survive. No-op input is byte-identical. The receipt records exact original/output
+hashes and named ordering, not chemical approval. Its fresh 1AP control passes
+original-source isolated qualification; renamed synthetic graphs, two phosphates,
+unsupported cases and source-removed relocation pass focused tests. The adapter
+is explicit, with no ordinary routing or historical receipt change. The raw
+generation verdict remains REJECTED: its finished native object aromatizes only
+the six-membered purine ring, outside the complete fused-system contract, and
+legacy inspection records omission of an unsigned phosphate `both` term. The
+separately written candidate passes the existing original-source reassessment
+and isolated native qualification. This established distinction between generation
+and candidate usability is retained; no earlier verdict or guard is weakened.
+
+### Original-source ownership across reader preparation (C263)
+
+Set `source_input_policy="cif-source-reader-preparation-v1"` in the explicit
+Phenix dictionary configuration or ordinary `generation_options` to compose the
+existing C30 graph export, C37 source-reader adapter and C262 monomer bond ordering.
+The default remains the historical route. This choice is independent of an explicit
+bond-representation permission; it does not infer an aromatic or phosphate state.
+
+The existing generation request retains `inputs/source.cif` as the original.
+It also freezes four small `inputs/prepared/` files: the target-free graph, reader
+input, final consumer input and preparation record. The latter distinguishes source
+x/y/z from independent ideal coordinates. `configuration.source_preparation` binds
+exact derived-file digests and actual reader dialect; the recipe binds the policy.
+Readers rederive the projection in disposable temporary space and require exact
+bytes, including after relocation. Original evidence is never rewritten. Native
+phase records and receipts refer to the actual consumer file; acquisition/cache
+identity and independent qualification still refer to the original source.
+
+Ordinary resume reconstructs the frozen choice. Owned plane generation preserves
+both source identities while its public source reference remains the original.
+Successful, rejected and failed native evidence retain their distinct checks.
+Cache hits need neither projection nor the old SDK. An explicit retry still uses a
+new numbered attempt and requires stopped ownership; there is no new executor.
+Existing recipes/receipts are unchanged. Older readers reject the additional input
+folder, so prepared-input requests require the current reader; no migration occurs.
+
+Fresh Phenix 2.2.1-6174 acquisitions of original curated 1AP and 5IU pass isolated
+qualification and relocated cold read with original/cache/SDK reads and native
+launch forbidden. 1AP's raw generation rejection remains recorded as described
+above; the separately written candidate qualifies independently. These are not
+linked-model, ReadySet, AutoSol or diffraction-refinement results. Exact focused,
+native and relocation evidence: `original_source_owned_acquisition_2026_11_13`.
 
 ## Generated numerical defects and explicit candidates
 
@@ -4038,6 +12393,249 @@ Phenix. The larger scientific design remains in
 For a plain-language explanation, methods paragraph and editable publication
 figure, read [the human/manuscript overview](cif-doctor-human-overview.md).
 
+### Verify all checkpoint restraints before inspection (C221)
+
+Coot inspection now resolves and checks every recorded checkpoint restraint before
+choosing which component dictionaries to display. Missing/changed pair or stacking
+PHIL files and damaged modification-only CIFs stop inspection; they can no longer
+be silently skipped because Coot does not load them for display. Dictionary order
+and repeated entries remain unchanged, and an explicit checkpoint remains distinct
+from the newest result. The existing path/checksum reader owns verification.
+
+Malformed non-list restraint values and malformed entries are refused. Legacy
+omitted/null lists retain their existing empty-list meaning; schema-1 references
+without a checksum do not acquire retrospective checksum verification. No saved
+schema, chemical targets, checkpoint selection or refinement execution changes.
+
+Validation: nine genuine fail-before cases; 124 affected tests + 56 subtests and
+139 smoke tests + 6 subtests pass. A relocated synthetic run resolves the exact
+older checkpoint after the original directory is removed, with bytes/timestamps
+unchanged. No Coot/Phenix process or native chemistry test ran. Full regression
+was not repeated for this local view-reader fix; C220/583d30d remains the last full
+baseline. Exact evidence: `checkpoint_view_restraint_integrity_2026_11_12`.
+
+
+## Checked preparation and honest recovery (C220)
+
+The explicit checked-preparation commands use ordinary Coot construction and
+NARestraints inputs, then the existing dictionary/ReadySet checks. They report
+which exact model was retained, together with its ordered dictionaries and
+base-pair/geometry restraints. They do not yet change default `postmr`, campaigns,
+refinement checkpoints or the selected run result.
+
+```sh
+nasolve cif-doctor prepare-run /path/to/AutoMR/run_001
+nasolve cif-doctor preparation-status /path/to/AutoMR/run_001
+nasolve cif-doctor prepared-result /path/to/AutoMR/run_001 --attempt 1
+```
+
+`prepare-run` requires a fresh PostMR directory and a supported modified-component
+request. It uses the selected Phenix/Coot installation and normal local dictionary
+cache; explicit `--store`, global `--phenix-root` and `--coot` remain available.
+Scientific permissions (`--allow-mr-review`, `--restraint-scope all`,
+`--modified-pairs-only`, `--allow-unreviewed-backbone`) retain their existing meaning.
+The route preserves the original MR report; it does not mark the run ready for
+ordinary refinement. Models without supported modified-component inputs still
+use the established `postmr` route; no unsupported chemistry is silently bypassed.
+
+If a request was saved but execution was interrupted, first read its status.
+Continue from the recorded work with the exact last attempt number:
+
+```sh
+nasolve cif-doctor continue-preparation /path/to/AutoMR/run_001 --after-attempt 1
+```
+
+Use `--after-attempt 0` only when the request has no attempts yet. Continuation
+starts one fresh numbered attempt; it never repeats Coot/NAR preparation, edits
+an old attempt, or starts while an earlier process may still be alive. The
+previous-attempt number is checked inside the existing execution lock. A changed
+number, unknown process state, exhausted allowance or changed source/tool evidence
+refuses further work. A completed result should be read with `prepared-result`,
+not executed again. A failure before the request was saved is preserved and cannot
+be resumed by reconstructing it in place.
+
+The report distinguishes a checked ReadySet result from an independently checked
+starting model retained after an optional failure. The retained model is the one
+checked immediately before ReadySet; its restraints include any earlier qualified
+repairs. It reports actual ReadySet
+execution separately; no fictitious success/log is supplied. Missing or changed
+qualification evidence is an error, not permission to use a fallback. Unqualified
+preparation returns no model/dictionaries/restraints. Read commands require no
+installed SDK and do not alter attempts, run reports or checkpoint selection.
+
+### Inspect one checked preparation (C222)
+
+```sh
+nasolve show /path/to/AutoMR/run_001 --preparation-attempt 1
+```
+
+This uses the existing exact result reader once, including its complete chemical,
+construction, compiler and ordered model/CIF/PHIL checks. A retained checked model
+is a normal outcome: the view states that it was retained and reports the actual
+ReadySet status. It never follows a newer attempt or the current refinement
+checkpoint instead. The original Phaser map is labelled **not recalculated** for
+this preparation; an available map is required. Read-only profile resolution
+leaves all files unchanged. Launch writes only its ordinary Coot scratch outputs,
+separately for each preparation attempt.
+
+Coot receives the selected model and ordered full-component dictionaries;
+modification-only CIFs and pair/stack PHIL are checked but are not loaded as Coot
+restraints. This is diagnostic inspection, not a new refinement checkpoint or a
+claim that Coot applies all NARestraints terms. Invalid evidence returns an explicit
+error and the exact saved-result command; it never substitutes unchecked files.
+`prepared-result` prints a shell-quoted inspection hint conditional on its MR map
+being available, without repeating the expensive evidence replay.
+
+Validation uses all retained-result choices, newer selected checkpoint controls,
+unchanged-file checks, damaged evidence/maps and an intercepted Coot launcher.
+The real C219 PDU preparation is also replayed from a relocated checkout with
+historical paths, SDK access and execution denied. That chemistry control has no
+diffraction map: its map-path fixture is synthetic, so it does not establish map
+interpretation in Coot. No fresh Phenix/Coot scientific execution is claimed.
+The full run exposed an older Refine Doctor caller that lacked the newly optional
+view argument (three tests and three subtests). Its absent-option default is now
+restored; 124 affected tests + 40 subtests pass. The other 9,210 tests and 273
+subtests passed in that full run. No second full run was performed; C220 remains
+the last entirely green full baseline. Exact validation is in
+`exact_preparation_view_2026_11_12` in the evidence ledger.
+
+### Save a checked preparation for normal use (C223)
+
+```sh
+nasolve cif-doctor publish-preparation /path/to/AutoMR/run_001 --attempt 1
+nasolve show /path/to/AutoMR/run_001 --checkpoint postmr
+```
+
+**Purpose and behavior:** carry the checked model and its exact matching restraints
+into ordinary NASolve commands, including an independently checked fallback after
+an optional ReadySet failure. The initial checkpoint is **REVIEW**, available for
+trial refinement. `POSTMR_READY` means those preparation inputs are available;
+it does not mean diffraction refinement succeeded. The actual ReadySet outcome
+remains visible. Missing trustworthy evidence prevents this handoff while leaving
+all saved work available for diagnosis and recovery.
+
+**Method:** reuse the existing complete-request reader once, rather than introduce
+a second chemical validator. Bind the chosen attempt, construction/compiler proof,
+model, ordered PHIL/CIF files, original observations and chemical intent to a sealed
+PostMR receipt and initial registry. New adoption verifies the current mutation
+request against recorded construction; later reads preserve that recorded intent
+instead of rebuilding an old mutation plan through newer planning policy.
+Record anomalous-site metadata through existing scanners without inventing a
+ReadySet log or normalization history. Ordinary checkpoint/refinement, Coot and
+AutoSol readers verify that same proof. New manual/refined coordinates may differ,
+but descendants retain the inherited ordered restraint prefix. A compact
+`checked_model_topology` carries the already-recorded identities and phosphate
+connections. The existing prepared-model context audit checks later manual/refined
+models against those same links, allowing coordinate movement without losing
+connectivity. No residue-name switch or altered angle/distance threshold is used.
+Display filtering
+still omits modification-only CIFs from Coot, after checking the complete bundle.
+
+**Recovery:** the existing request lock owns publication. Save the immutable
+`PostMR/report.json` and initial registry before atomically updating the run report.
+Repeat the same command and exact attempt after interruption. It finishes that
+choice without running Coot/Phenix, never selects a newer attempt, and never
+reselects the root after later work. Conflicting partial files or changed input
+intent are preserved and refused. Only initial adoption is supported; an existing
+preparation or legacy registry is not converted or replaced.
+
+**Compatibility:** these runs use checkpoint schema 3 and a checksummed registry;
+older NASolve readers refuse it. Legacy schema 1/2 reads/writes retain their meaning.
+Later ordinary checkpoint writes preserve schema 3 and its preparation binding.
+Malformed inherited restraint entries are now rejected for all schemas; absent,
+null or intentionally empty legacy lists retain their old meaning.
+
+**Evidence and limits:** focused tests exercise fallbacks, interrupted publication,
+changed evidence, later selection, ordinary refinement with test executables and
+relocation. Saved real C219 PDU proof is replayed separately without native tools.
+That chemistry control uses explicitly synthetic observation/map path fixtures;
+it does not validate MTZ interpretation or diffraction refinement. Q05 still owns
+automatic ordinary/campaign entry and later preparation-child adoption. Q04 owns
+general plane-repair composition; Q06 owns real complete-restraint refinement.
+The exact proof replay is intentionally reused, but is still costly on the large
+saved PDU example. No new cache, owner or parallel chemistry engine was added.
+Exact commands, results and local evidence hashes are recorded under
+`checked_preparation_publication_2026_11_12` in the evidence ledger.
+
+### Ordinary PostMR with checked preparation (C224)
+
+```sh
+nasolve postmr /path/to/AutoMR/run_001 --checked-preparation
+```
+
+**Purpose:** make the checked preparation usable through the normal PostMR command
+without manually chaining construction, request execution and publication.
+Coot/NARestraints construction runs once; the existing request owner executes one
+bounded attempt; the C223 publisher validates the exact selected result and saves
+its REVIEW checkpoint. A failed optional improvement may retain an independently
+checked model and its complete matching restraints. With no trustworthy result,
+the dependent preparation stops and preserves all evidence; it never starts an
+unchecked legacy retry.
+
+**Method and evidence:** both preparation entry points share the constructor and
+executor. The ordinary checked path obtains the completed attempt number without
+an extra diagnostic replay, then uses the existing publisher's proof read once.
+The selected Phenix dispatcher/environment check is shared with the default path.
+Focused tests cover checked ReadySet and retained outcomes, exact ordered inputs,
+installation mismatches, unchanged legacy/campaign callers, and finishing an
+interrupted publication without repeating construction. These are interface and
+recovery checks with test executables; no fresh native chemistry or diffraction
+refinement is claimed. C219/C223's native-source and relocation evidence is reused.
+
+**Recovery:** if interrupted, read `cif-doctor preparation-status RUN`. Continue
+an incomplete saved request through `continue-preparation RUN --after-attempt N`
+only when its existing owner permits it. Publish a completed result through
+`publish-preparation RUN --attempt N`. Those commands require the actual saved
+attempt number; do not guess the newest files or call `postmr` again on a partial
+directory. A failure before request creation remains preserved for diagnosis.
+
+**Compatibility and limits:** the flag is explicit; default PostMR and campaign
+preparation remain unchanged. The Python API accepts `checked_preparation=True`
+with a selected `PhenixInstallation`; legacy explicit executable-path callers
+remain supported. Checked `PostMRResult` values have `readyset_log=None` and the
+actual `readyset_status`; the report points to the immutable preparation receipt,
+which binds the original request and its native logs. An absent legacy log does
+not mean ReadySet was never attempted. No saved schema changes beyond C223.
+C225 adds explicit campaign mode/receipt integration: a schema-2 preset may set
+`postmr.checked_preparation = true`. The frozen choice uses this same caller and
+publisher; actual ReadySet status and the genuine receipt enter ordinary campaign
+artifact checks. Omitted fields preserve old recipe fingerprints and behavior.
+Interruption retains campaign inspection/fresh-run retry; standalone recovery does
+not synthesize a missing campaign stage receipt. Focused caller, relocation and
+failure tests use controlled scientific seams, not new Phenix/Coot execution.
+See [the recipe](campaign-planning.md#opt-in-checked-model-preparation-cedar-c225).
+Later preparation children remain Q05; general plane repair and real complete-restraint
+refinement remain Q04/Q06.
+
+### Preparation implementation and limits
+
+Implementation: `prepare_checked_postmr`, `continue_checked_postmr` and
+`read_ordinary_postmr_result` in `cif_ordinary_postmr.py` share the existing exact
+request reader/executor. `CheckedPostMRResult` is a live return value, not a new
+saved schema. Optional `after_attempt` on `execute_dictionary_request_attempt`
+adds a locked stale-request check; existing direct callers and old records retain
+their behavior. Source/consumer checks and immutable ownership remain unchanged.
+
+**Limits:** these are source-preservation and diagnostic restraint-mechanics
+checks, not successful diffraction refinement. C244–C246 connect explicitly requested
+source-supported plane generation through this route; C247 reports its outcomes.
+C249 reports explicit selected-CIF coverage; effective native adoption and broader recovery qualification remain open. C223 carries the exact chosen model/CIF/PHIL set into an explicitly requested
+initial review checkpoint; C224 composes this through explicit ordinary PostMR.
+C225 adds explicit frozen campaign entry. Q05 still owns later preparation children; Q06 must
+validate actual refinement with all NARestraints terms and Free-R handling intact.
+C219's native PDU result is reused for C220's read-only/relocation check; no new
+chemical-support or native-generation claim follows from interface tests.
+
+C220 validation: 26 new API/owner/CLI cases fail before implementation;
+213 focused tests and **9,178 full-suite tests + 276 subtests** pass.
+The relocated exact result replays once with 1,495 files unchanged and original
+paths/SDK/execution denied. Real selected-Phenix configuration matches the frozen
+recipe and limits; execution was intercepted for that configuration-only check.
+Phenix **2.2.1-6174 / dispatcher 2.2.1** and Coot **1.3.3 revision-count 0**
+scientific execution evidence is reused from C218/C219. No fresh refinement.
+Exact commands, local artifact hashes and cleanup inventory are recorded in
+`checked_preparation_handoff_2026_11_12` in the existing evidence ledger.
+
 ## Commands
 
 Assess explicit dictionaries, optionally against a PDB atom inventory:
@@ -4084,8 +12682,10 @@ in an effective refinement dictionary they need review.
 
 New PostMR executions produce three JSON receipts under `PostMR/Restraints`:
 
-- `cif_doctor_mutation.json` when mutation dictionaries are required: exact target construction dictionaries before
-  coordinate normalization or Coot mutation, with audit-only source snapshots.
+- `cif_doctor_mutation.json` when mutation dictionaries are required: exact target
+  dictionaries before coordinate normalization or Coot mutation. From C195, the
+  verified snapshots also feed Coot, context preparation and restoration; earlier
+  snapshots were audit-only.
 - `cif_doctor_source.json`: frozen source definitions and a separate assessment
   of runtime inputs immediately before ReadySet.
 - `cif_doctor_effective.json`: the actual selected effective bundle and final
@@ -4565,6 +13165,18 @@ base internal geometry and attachment hand within PDB rounding; parent base
 names supply no partial coordinate map. Canonical base-mutation backbones and
 explicit curated substitution/ring placements retain their documented behavior.
 
+C361 identifies a remaining curated-placement risk with a source-qualified DF
+control: copying the temporary DT parent's base also copies its stretched C1′–N1
+bond (1.60172 Å), whereas the existing whole-base transform preserves the raw
+bond near 1.49958 Å and all 11 scaffold coordinates. Source-declared DNA metadata
+passes isolated native equivalence, and the independent construction/phosphate
+checks pass with 838 other atoms unchanged. This separate candidate does not
+change production curated behavior. Linked/refinement survival and a general
+selection rule remain open; historical sulfur/iodine placement can correct bad raw
+substituents and must not be discarded blindly. Exact evidence:
+`df_existing_whole_base_diagnostic_2026_11_17`.
+
+
 Unsupported, bridged or ambiguous graph/context cases retain their entire raw
 Coot site with nonfatal notes. This includes the independent ATL control;
 unsupported transport is not an invitation to force a standard DNA sugar into
@@ -4818,3 +13430,786 @@ adapters, effective native proxy receipts and new-checkpoint adoption remain
 follow-up work. Geometry/connectivity assessment and guided sticky-end stitching
 remain part of the Doctor roadmap, using declared routing and Scout/Topo
 primitives while preserving true nicks, terminal intent and frozen Free-R flags.
+
+
+## Retaining the qualified legacy DNA declaration (C264)
+
+The fresh original-source DiU control passes Phaser, Coot and isolated 1AP/5IU
+acquisition with C263, then exposes a header inconsistency in linked preparation.
+The curated 1AP source explicitly declares monomer `group DNA` and omits `type`.
+C58 already accepts that declaration with isolated qualification. The later explicit
+representation bridge inadvertently required a CCD DNA/L-DNA type after validating
+that legacy declaration. Restrict the typed-header check to sources with a type;
+reuse the existing strict legacy declaration check when type is absent. Chemical
+identity, source configuration, qualification binding and all linked projections
+are unchanged. Unknown or conflicting declarations still refuse before output.
+
+This is not a 1AP exception. Renamed synthetic source controls exercise legacy
+DNA groups, missing/unknown/RNA/L-DNA groups, unchanged original files, and the
+stricter unqualified path. Existing typed DNA/L-DNA tests remain in the affected
+profile. C264 native work stopped before ReadySet/AutoSol; fresh acceptance remains
+required. Exact evidence: `qualified_legacy_dna_bridge_2026_11_13` in the ledger.
+
+
+## Preserving declared background terminal phosphate (C266)
+
+An explicit A:5IU software fixture on real DiU observations reaches source-native
+qualification with generated 5IU plane support. The sole new blocking finding is
+`declared-terminal-coordinate-phosphates`: the protected D:1
+phosphate is in unchanged canonical DNA, outside the replaced dictionary sites.
+The old native check only obtains terminal declarations from replacement plans.
+The model and frozen ordinary intent already agree that D:1 must retain OP3.
+Native formal-charge readback remains explicitly unsupported with no contradictions;
+the existing separate continuation rule for that unavailable field is unchanged.
+Deleting that protected group or pretending the source 1AP port is neutral would
+be incorrect; the independent C265 charged-source refusal remains unchanged.
+
+Native context `cif-explicit-site-native-context-v3` adds ordered unique
+`retained_terminal_phosphates` entries (site, component, outgoing_site). Ordinary
+intake derives them from audited frozen `allow_op3_sites` minus replaced sites;
+complete-request reads rederive and compare them. The existing native phosphate
+check admits those explicitly named background sites only when their complete
+baseline/candidate definitions are identical, their coordinate identities and
+four-oxygen phosphate graph agree, and there is no incoming link. Existing whole
+model, unselected-definition/proxy and NAR checks remain mandatory. The list never
+infers phosphate permission from coordinates and never applies a new modifier.
+
+Older context v1/v2 and requests without background terminal phosphates remain
+unchanged. The new permission requires a current reader; rejected historical work
+is preserved and needs a fresh request/attempt, not rewritten intent. Focused
+native-context/ordinary-entry/qualification checks: 155 pass; four additional
+request binding/tamper/relocation checks pass. Actual end-to-end retry remains
+separate. See ledger `retained_terminal_phosphate_context_2026_11_13`.
+
+
+## Full-model energy and observed atom names together (C268)
+
+C267 retains the background terminal declaration but the literal phosphate check
+still refuses the native definition: installed Phenix p5*END binds model OP3 to
+native O3T. This is the observed naming distinction already captured in C112;
+it is not evidence that OP3 should be deleted or guessed to be another oxygen.
+
+C268 composes the unchanged C112 mapping helper with the existing full-model and
+fixed-energy capture, requiring explicit policy inventory and excluding derivative
+or nonbonded augmentation. Exact maintained-worker reconstruction, receipt/policy
+binding and full identity replay remain required. Stopped timeout evidence may
+preserve a partial combined capture but cannot qualify it. Historical worker
+variants are unchanged; old readers reject the new combination.
+
+A complete Phenix 2.2.1-6174 execution on C267's exact baseline inputs records
+853 atoms/nine aliases, including D:1 OP3→O3T. Before/after energies, gradients,
+geometry, restraint policy, full identities and definitions are exactly identical.
+Relocation and readback launch no native work. The first driver incorrectly treated
+the energy-check dictionary as a list after native completion; its stopped failure
+is preserved, and a separate corrected read-only assessment verifies the existing
+capture without rerunning it. 129 focused capture/identity/mapping/timeout tests
+pass. This qualifies capture composition, not terminal adoption or AutoSol.
+See ledger `native_energy_atom_mapping_2026_11_13`; next reuse the exact recorded
+bindings in a new terminal-context policy, preserving the literal v3 meaning.
+
+
+## Using observed names without changing phosphate chemistry (C269)
+
+New ordinary checked requests with explicitly retained background termini use
+`cif-explicit-site-native-context-v4`. This preserves the v3 declaration shape and
+all existing chemical/linkage checks, but reads each coordinate-to-dictionary name
+from C112's actual native observation. Both complete captures must bind every
+reported atom/site; the retained site must have identical complete name bindings
+and identical complete chemical definitions before and after preparation. The
+four oxygen neighbors, coordinate elements, terminal permission and outgoing link
+must still agree. Synthetic alternate names verify this is not an OP3/O3T whitelist.
+No coordinate is renamed, phosphate deleted, proton inferred or charge changed.
+
+Frozen context selects the native observation options for the existing owned
+capture and failure reader. Numerical reconstruction and whole-plane attribution
+reuse the unchanged name-observation helper; their exact native-manager equality,
+energy/derivative checks and mathematical workers remain intact. Geometry endpoint
+readback retains and checks the same names. This is observation composition, not
+permission to combine the separate native derivative/nonbonded augmentation modes.
+
+Complete-request reads rederive v4 from frozen model intent. Old v3 reads explicitly
+rederive v3 and retain the literal-name refusal; v1/v2 are unchanged. New context
+and composed numerical jobs need a current reader. No old attempt is rewritten,
+no CLI default changes, and a capture alone still cannot authorize chemical use.
+Focused/relocation results and the subsequent live acceptance control are recorded
+in ledger `retained_phosphate_observed_names_2026_11_13`.
+
+## Reading chemistry after refinement (C336–C338)
+
+### Explicit declared-site observation beyond triple bonds (C406)
+
+The ordinary Python owner accepts `observe_declared_sites=True` together with
+`correct_native_parallelity=True`. It selects every graph-valid site projection
+from the exact checked preparation. Selection depends on supplied chemistry and
+site identity, not PDU/DF names or a triple-bond requirement. Without a checked
+preparation there is no declared scope and no invented chemical evidence.
+
+A distinct `round-local-declared-sites-execution-v9` request binds the choice but
+reuses the byte-identical frozen v3 native helper. Historical requests and the
+ordinary triple-only default are unchanged. The existing process, preflight,
+phase, written-model and checkpoint owners remain responsible for execution.
+Ancestors, including manual imports, retain the observation requirement: dropping
+it refuses before a new round. Counted combinations and Refine Doctor forwarding
+are not qualified; Refine Doctor currently refuses such descendants explicitly.
+
+`refinement_parallelity.read_execution_chemistry_sites(run, reference,
+checkpoint=..., parent=..., model=...)` reads the sealed selected-site observation
+and source bindings without running Phenix. It preserves actual heavy atoms,
+source/effective-definition context, full-precision coordinates and captured
+intra-site terms. Missing observations remain unassessed. Hydrogen, cross-site
+and complete symmetry neighborhoods are not supplied. Existing triple screening
+still assesses only triples; an observed non-triple site is not a chemistry pass.
+The C404 local-carbon reader can consume this wider explicitly captured scope,
+while its own chemical selector remains unchanged. No force, target, uncertainty,
+constructor, scientific acceptance or CLI/default activation changes. Existing
+ordinary checkpoint-selection rules remain unchanged; use
+`auto_select_success=False` for an inspection-only refinement. Broader capture
+does not itself provide a non-triple chemical acceptance screen.
+
+Qualification is recorded under `declared_site_native_observation_2026_11_18`
+in the existing evidence ledger; source/installed tests are distinct from actual
+native execution and the full regression gate.
+
+### Explicit actual-final scalar geometry (C407)
+
+`refinement_parallelity.read_execution_scalar_geometry(run, reference,
+checkpoint=..., parent=..., model=...)` describes already captured simple-bond
+lengths, central angles and ordered chirality volumes. The existing execution
+reader binds the exact final model, request, native observation and source
+projections, then rechecks the sealed source references after measurement. The
+scalar, trigonal and triple readers now refuse a source changed in that interval;
+unchanged reports retain their meaning. C15's scalar calculation is reused; its historical whole-inventory
+output stays exact. Source component, atom names and elements must agree with the
+observed site. This is a cold Python read, not a new native interpretation.
+
+The report keeps sparse global native atom indices. `atom_count` and
+`captured_proxy_counts` describe the selected heavy-atom intra-site capture;
+`full_atom_count` and `full_proxy_counts` retain the whole manager's recorded
+counts. Neither establishes complete residue coverage. Explicit modifications
+may remove source H/OP3 atoms; absence is not evidence of a missing restraint or
+permission to restore an atom. No observed scope returns no report; an unavailable
+observation or no captured scalar terms stays `UNASSESSED`.
+
+Nominal deviation remains `(observed - target) * sqrt(weight)` under the existing
+C15 conventions. Counts at three/five and atom-name sugar annotations are aids,
+not acceptance thresholds or chemical classification. Relative ordered-volume
+signs do not establish absolute stereochemistry. Missing, zero and negative weights,
+unsupported symmetry/conventions and degenerate geometry retain their existing
+statuses. Dihedrals, ASU bonds, planes, parallelities, pucker and native residuals
+remain separately qualified. In particular, small local scalar deviations do not
+erase PDU's observed whole-substituent bending. No target, force, selection or
+scientific acceptance rule changes.
+
+### Explicit actual-final trigonal shape (C404)
+
+`refinement_parallelity.read_execution_trigonal_geometry(run, reference,
+checkpoint=..., parent=..., model=...)` reads a separate descriptive report from
+sealed selected-site observations. It uses the same execution/source/model checks
+as `read_execution_chemistry`; the historical triple report remains unchanged.
+C208's source rule selects explicit neutral three-heavy-neighbor carbon centres,
+and the existing Cartesian geometry calculation measures full native coordinates.
+Captured intra-site plane membership, positive weights on the selected local atoms
+and achieved geometry are separate fields. Shared plane rows are stored once;
+`native_planes` contains only captured planes referenced by selected centres,
+not every plane in the observed site.
+
+This can expose a bent centre despite a present plane, or a flat centre without a
+captured local plane. Neither finding establishes native energy, missing alternative
+restraints or chemical acceptance. Zero weights, missing local atoms and degenerate
+geometry remain explicit. Charged/chiral/aromatic-only or otherwise unsupported
+source chemistry stays unassessed. No residue/atom-name repair rule is added.
+Workers capture only explicitly selected chemistry sites. The ordinary default
+selects source-declared triples; C406 separately admits all bound declared sites.
+The reader itself does not enlarge capture scope, launch a
+native calculation, infer a symmetry image, alter checkpoints or strengthen planes.
+This Python-only descriptor is not a new ordinary CLI/default behavior.
+
+
+### Existing triple report and ordinary integration (C336–C338)
+
+`nasolve.refinement_chemistry.read_refinement_chemistry(run_directory,
+checkpoint="refine-003", native_receipt=receipt_path)` is an explicit read-only
+Python report. It follows that checkpoint's preparation ancestry and checks a
+preserved native interpretation of its final PDB against the exact ordered
+restraints. Omitting `native_receipt` uses the round's validated v3 actual-manager
+observation when available, otherwise reports missing evidence honestly. It never
+runs Phenix or guesses a receipt location. A supplied corrupt or mismatched
+receipt raises instead of becoming an empty pass.
+
+The source graph selects triple bonds, independently of residue names. The
+existing site projection supplies the intended linked/terminal atom inventory,
+and the existing triple screen reports targets separately from observed lengths
+and angles. `SCOPED_TRIPLE_SCREEN_PASS` is only that screen; other chemistry,
+whole-substituent planarity, derivatives and diffraction acceptance are not
+qualified. Separate reinterpretation does **not** prove which manager the
+refinement job used. C338 adds automatic collection during the already explicit
+checked-plane-force route. Source projections choose sites independently of code
+names. The observer returns original Phenix summaries untouched, verifies their
+identity in the final model and records only selected heavy atoms and intra-site
+restraint terms. Cross-site chemistry is outside this screen. Full-precision native
+coordinates are bound to the export-state digest and written-model bytes, with PDB
+rounding explicitly distinguished.
+
+The existing runtime receipt stores `chemistry_observation`, `chemistry_model`
+and `chemistry_binding_restored`; its request optionally carries anchored,
+checksummed `chemistry_projections`. New helper/runtime policy v3 preserves frozen
+v1/v2 readers and introduces no checkpoint-registry schema migration. Successful
+observation is not scientific approval. Normal AutoRefine statistics and checkpoint
+metrics expose `chemical_geometry`; a real REVIEW keeps a usable result, returns
+exit code zero and prevents automatic selection. Optional observation failure is
+recorded as UNASSESSED and does not by itself invalidate refinement. Damaged saved
+evidence still refuses; it is not reclassified as an optional missing observation.
+No new executor, separate capture job, CLI default or historical-file change.
+Whole-substituent planarity and held-out refinement survival remain Q06.
+
+
+### Standard CCD model-coordinate seeds (C339)
+
+The existing graph-generation adapter now accepts a complete finite
+`_chem_comp_atom.model_Cartn_x/y/z` family when neither ideal nor plain `x/y/z`
+fields are supplied. This closes the generic format gap exposed by the packaged
+DY preview. It preserves exact graph, charges, atom labels, stereo and original
+source bytes. The prepared receipt explicitly records
+`SOURCE_MODEL_COORDINATES_NOT_INDEPENDENT_IDEAL`; emitted ideal-field spelling is
+an installed-reader interface, not a new claim of independent ideal geometry.
+No experimental structure or map supplies restraint targets.
+
+Historical accepted inputs retain their old ideal-then-plain precedence and
+identical seed bytes. A partial preferred family is never repaired by mixing
+axes or silently taking a different family. The first bounded DY native attempt
+therefore reaches the existing chemical handoff and stops on exactly five
+localized-to-aromatic triazole bonds. No candidate, ReadySet, linkage or refinement
+approval follows from this format fix. The next explicit representation rule must
+use source-declared ring connectivity, charge, H and valence, retaining C4–N1T as
+a single inter-ring bridge and keeping old aromatic policies unchanged.
+
+
+### Explicit isolated neutral five-membered C/N representation (C340)
+
+The optional `cif-source-declared-neutral-five-membered-cn-aromatic-v1` policy
+recognizes a complete declared five-ring conversion to aromatic native orders.
+It requires source aromatic bond flags, two nonadjacent localized double bonds,
+exactly one neutral pyrrolic nitrogen with three single neighbors, complete C/N
+valence, unchanged H/isotopes/charges, and unchanged single bridge substituents.
+Charged/fused/incompletely converted rings, changed connectivity and outside order
+changes remain rejected. No residue-name rule, tautomer prediction or native
+bond-order rewriting is involved. Existing six-ring and purine policies are fixed.
+
+Use the existing explicit dictionary-configuration API; no CLI default or
+source-preserving recipe mapping changes. The existing generation worker,
+immutable acquisition owner, two-seed native qualification and cold reader all
+consume the same declared representation contract. The source CIF remains intact.
+
+DY now yields an isolated numerical dictionary that passes exact native term
+membership and fixed-coordinate repeat checks in Phenix 2.2.1-6174. No plane spans
+off-axis atoms from both rings, and C4–N1T remains single. Four inter-ring constant
+torsion records have zero ESD and zero native weight; their presence must not be
+reported as a torsional restoring force. The C4 junction has an explicit plane;
+the pyrrolic N1T junction has three angle targets summing to 360 degrees but no
+plane covering all three neighbors. That is a response-test question, not grounds
+to flatten both rings or retune their angles. Source chemistry, numerical
+usability, achieved geometry and scientific approval remain separate. Native
+formal-charge readback is unsupported and absolute CIP assignment was not run.
+Linked mutation, ReadySet/Coot and actual refinement survival remain open.
+
+
+### Rotating-ring and nitrogen-junction response control (C341)
+
+A fixed-manager experiment with the unmodified C340 DY dictionary distinguishes
+allowed ring spin from junction bending. Source-declared graph/valence selects
+the pyrrolic nitrogen, its single bridge and the complete attached ring fragment.
+Rigid rotations by ±30/90 degrees preserve all covalent family targets; only
+nonbonded contacts change. Tilting that same rigid fragment at the nitrogen keeps
+its internal distances and the bridge length but changes the external angles.
+At +5/10/20 degrees, the native angle target rises by approximately
+0.00652/0.10587/1.64511. Sampled finite differences agree at the original,
+30-degree spin and 10-degree bend, with static restraints unchanged. These are
+native target units, not kcal/mol or a calibrated torsional energy profile.
+
+The existing angles provide a restoring response. Missing explicit junction
+plane membership alone therefore does not justify adding a plane or changing
+weights. Adequacy under linked-model forces and actual refinement remains open.
+No plane/target/model/source edits or optimizer were used. Exact evidence and the
+preserved initial local harness failure are recorded under
+`dy_junction_response_2026_11_16`; this is not a new production policy.
+
+
+### Explicit two-source nucleotide composition (C342)
+
+A free nucleoside reference does not authorize inventing its phosphate state.
+`compose_dna_source` therefore requires a second, explicitly chosen DNA source.
+It keeps that source's complete sugar/phosphate and replaces only its connected
+base with the complete reference base. Both sources retain their own H/D, charge,
+bond and aromatic declarations. Matching beta-deoxy hand, conventional unbridged
+sugar connectivity, a neutral N-glycosidic attachment and compatible source-relative
+configuration are required. Carbon glycosides, bridged/modified sugars, additional
+stereocentres and E/Z declarations are outside this first rule. No pH or tautomer
+is selected. Output bond-stereo fields are omitted only because the rule forbids
+E/Z claims; it does not manufacture a missing declaration for old native policies.
+
+The pure API returns CIF bytes plus source hashes, atom origins, source-relative
+configuration checks and constructed-coordinate provenance. It writes nothing,
+launches nothing, imports no drawing, activates no alias and supplies no numerical
+restraints. It uses the existing PostMR rigid-frame helper without modifying its
+fingerprinted source, and C116 connected whole-row atom ordering. A new source's
+model coordinates are explicitly non-independent seeds, not ideal validation.
+Source OP3/HOP3 describe a leaving-group cap; existing site context owns removal
+before any actual linked model. Explicit OP2 protonation is preserved, not inferred.
+
+An exact public CCD DT source from Phenix 2.2.1-6174 (CCD revision 2024-09-27)
+provides the bounded test scaffold. The first lexical-order native attempt exposed
+the already known eLBOW Z-matrix artifact: it invented C3T–C1′ at 7.72 Å and stopped.
+The failed attempt is preserved. Reusing C116 ordering changes no declarations;
+a fresh attempt then passes all 21 existing isolated native checks. Source and
+candidate hashes plus the complete commands are in
+`explicit_reference_composition_2026_11_16`. Native charge readback remains
+unsupported; absolute CIP assignment is not run. Linked/terminal contexts,
+ReadySet/Coot, whole-base mutation and refinement survival remain open.
+
+
+### Explicit representation through DNA metadata and internal construction (C343)
+
+`prepare_source_dna_metadata` and `qualify_source_dna_metadata` accept optional
+`bond_representation_policy`, using the existing classifier/native checker.
+Only explicit callers record that field. Historical defaults and all chemical
+and numerical rows stay unchanged. This connects C57's metadata route to already
+supported representation rules; it adds no chemical exception or inferred state.
+
+Actual Coot 1.3.3 and Phenix 2.2.1-6174 construct internal DY at A:12 of an explicit
+A:11–13 test fragment. Source-owned header conversion preserves isolated covalent
+proxies, full target and named gradients. Ordinary parent-chi matching, whole-base
+transport and internal OP3 context checks succeed. Both backbone links, all
+projected definitions, selected active terms, unchanged cross-site proxies and
+phosphate tetrahedral coverage pass: 67 PASS, one UNSUPPORTED formal-charge
+readback. Existing diagnostic continuation is permitted; scientific approval is
+not implied. A:11 is the deliberately created free end of this test fragment,
+not a change to the original scaffold's chemical intent; free-end DY remains open.
+
+A first local harness used an invalid PHIL adapter name after successful Coot
+construction. It is preserved; all jobs were dead before the successful fresh
+attempt. Cold relocation reproduces the exact linked result and metadata bytes
+without native execution. Exact commands/hashes and scope are in
+`explicit_metadata_linked_dy_2026_11_16`. ReadySet, refinement survival and ordinary
+DY alias activation remain separate. No additional plane or weight is justified.
+
+
+### Explicit free-end DY preparation and construction (C344)
+
+The existing terminal-resource and site-preparation APIs support DY at an explicit
+free 5′-OH/outgoing-linked end. A fresh installed 5*END resource capture provides
+the native O5′/HO5′ fragment; no protonation is guessed and the new H formal charge
+stays unassessed. The initial two-residue control has 65 PASS / one unavailable
+formal-charge readback. Its exact projected dictionary then drives ordinary Coot
+construction at a free end of the canonical three-residue fragment. Complete base
+transport and parent chi succeed; no P/OP1/OP2/OP3 appear at that end. The actual
+Coot model passes 66 native checks with the same one charge-readback limitation.
+Phenix 2.2.1-6174 / dispatcher 2.2.1; Coot 1.3.3; complete executions, no refinement.
+
+This clarifies the construction boundary: the phosphate sanitizer only removes
+OP3 after proving an incoming bond; it does not remove an entire phosphate to
+create a free hydroxyl. Supply the declared end-state dictionary before Coot
+construction. This control selects it explicitly; ordinary automatic per-site
+selection and a global DY mutation alias are not yet enabled. Existing internal
+and terminal phosphate guards remain intact, including symmetry distinctions.
+
+Both saved native results replay after relocation without execution, preserving
+119 original files/timestamps. First local harness failed by treating the returned
+projection `(path, code)` as a path after successful qualification; preserved and
+verified stopped before the successful fresh attempt. Evidence:
+`explicit_free_end_dy_2026_11_16`. Next: combined free-end/internal DY through
+ReadySet, then refinement survival and source-owned ordinary selection.
+
+
+### Mixed DY end states through observed ReadySet (C345)
+
+Ordinary Coot adds internal DY beside an existing explicitly prepared free-OH DY.
+Existing bundle preparation qualifies both contexts together: 87 PASS, with two
+unsupported formal-charge readbacks. Observed ReadySet passes all eight consumption
+checks, preserves heavy coordinates and exact numerical restraints, and makes no
+observed builder/template calls. Exact endpoint native checks pass; the existing
+decision selects `readyset_checked_model` for diagnostic continuation only.
+
+Complete execution uses Coot1.3.3 and Phenix2.2.1-6174. Cold relocation reproduces
+the exact result without executing native tools, preserving all 136 original files
+and timestamps. No runtime, schema, source or default changes; no migration.
+Models/CIFs/logs remain local. This does not establish diffraction-refinement
+survival, infer DY pairing or enable automatic source/end-state selection.
+Evidence: `mixed_dy_end_states_readyset_2026_11_16`.
+
+
+### DY in actual covalent-only diffraction refinement (C346)
+
+An explicit diagnostic reuses C303's declared canonical MR scaffold, constructs
+A:12 DA/B:4 DY, and qualifies its full-model bundle and observed ReadySet endpoint.
+It preserves observations/Free-R, five-cycle strategy, one-process execution and
+D:1 terminal protection; no NAR pair/stack restraints or DY pairing are imposed.
+This is separate from the original symmetry-linked B:1 case. Source-pinned,
+unchanged C338 runtime code observes DY through its explicit `chemistry_sites`
+API, retaining the actual original monomer definitions, exact internal targets,
+full native coordinates and final writer binding. No production checkpoint or
+existing triple-screen approval is claimed.
+
+Phenix2.2.1-6174 completes five cycles; Coot1.3.3 constructs the input. DY native
+definitions and internal targets remain identical. Final ring RMS plane deviations
+are 0.02070/0.002515 Å, C4–N1T is 1.377807 Å against 1.377 Å, chi changes 10.95°,
+and all three sugar signs remain. N1T's C4 elevation improves 8.39°→2.84°; ring
+rotation remains allowed. These are descriptive measurements, not new thresholds,
+experimental DY validation or Q06 closure. Cold relocated readback verifies the
+same ReadySet result, namespace adaptation, frozen helper, actual manager and
+written model with execution forbidden. All168 source files/timestamps survive.
+
+The first stopped attempt exposed unsupported PDU→DT parent conversion in Coot:
+its success code was insufficient and the existing chi gate stopped output.
+The second was a harness mistake placing refinement-only terminal changes into
+custom-addition qualification. Both failed roots remain intact; the successful
+fresh control follows existing stage separation. Next: actual canonical identity
+checking and generalized modified-parent-modified coverage. No source/schema/
+default edits or migration; only compact evidence is committed. See
+`dy_actual_refinement_survival_2026_11_16`.
+
+
+### Verify actual canonical identity after Coot mutation (C347)
+
+The ordinary executor now asks Coot for the actual residue name after each
+canonical mutation, including temporary parents used for modification placement.
+An unchanged/wrong/missing identity stops before parent snapshot, monomer creation
+or final output, independently of chi matching and source-graph coverage. This
+addresses a native PDU→DT false-success return observed in C346. It does not
+reconstruct unsupported input or relabel atoms to force acceptance.
+
+An optional script-generation switch defaults off so historical generated bytes
+remain exact; current execution enables it. Original files and partial logs remain.
+Eleven failing-before regressions,109 focused tests,109 installed/relocated tests,
+three exact historical-script comparisons and actual Coot1.3.3 negative/positive
+controls pass. No chemistry, weights, alias or artifact-schema change; no migration
+or full-suite claim. See `coot_canonical_identity_2026_11_16`.
+
+
+### Source-bound canonical parents for modified input (C348)
+
+`canonical_parent_seed(model, site, source_dictionary, source_component,
+canonical_dictionary, canonical_component)` returns model bytes and compact
+provenance without writing inputs. Explicit unbridged DNA graphs, a shared
+N-glycosidic frame and three matching nondegenerate sugar signs gate placement.
+A proper rotation places the entire canonical base in the incoming base frame;
+sugar/phosphate/anchor coordinates stay exact, unrelated records stay intact,
+and existing chi/serialization bounds apply. No end state is inferred or phosphate
+added/removed. Bare TER records are retained; selected labelled TER follows identity.
+Ambiguous models, partial coordinate families, unknown atoms and incompatible hand
+refuse. Relative hand is not absolute CIP assignment or dictionary qualification.
+
+Actual Coot1.3.3 completes PDU→DT→DY and DY→DT→PDU with exact11-atom scaffolds and
+final chi within0.02° of input.142 focused/installed-relocated tests pass. A prior
+generic Coot torsion matcher missed by5.18899°; its unchanged guard and failed attempt
+remain. This API is opt-in construction only, with no ordinary caller/alias activation,
+Phenix rerun, target change or historical migration. See
+`source_bound_canonical_roundtrip_2026_11_16` for exact commands and limitations.
+
+
+### Explicit canonical input in ordinary construction (C349)
+
+`construct_postmr_model(..., canonical_seed_dictionaries={site: (source, template)})`
+uses the existing Coot stage. Each explicit overlap site must have a distinct
+incoming identity, canonical DNA parent and no passthrough conflict. Inputs freeze
+under `Coot/canonical_seeds`; the original model and actions remain authority for
+context/restoration, while only the native action's incoming identity follows the
+seed. No current production/CLI caller opts in automatically.
+
+`read_canonical_parent_input(directory)` verifies the local-anchor schema-1 receipt,
+source bytes and every pure construction proof, then compares the reconstructed final
+model. It writes nothing and launches nothing. Shared dictionaries are deduplicated
+by content; only initial/final model files persist regardless of the number of
+mutations. Intermediate models are immutable in-memory bytes. A failed native call
+retains this completed input evidence; the same output cannot be retried in place.
+
+Both native Coot1.3.3 PDU/DY round trips pass through this route. Existing context
+proves the internal OP3 deletions, retaining all original11 scaffold coordinates.
+160 focused/installed checks plus83 existing-caller checks and exact relocated native
+seed replay pass. No Phenix/full-suite rerun, numerical change, alias, default or
+historical migration. Source/template selection and chemical qualification remain
+separate caller responsibilities. Exact evidence: `ordinary_explicit_canonical_input_2026_11_16`.
+
+
+### Cycle-local reader flags for independent rings (C350)
+
+`cif-source-declared-cycle-local-neutral-cn-aromatic-v1` reuses the existing
+neutral five/six-member C/N classifier. A flagged graph bridge is excluded from
+aromatic conversion only when explicitly SINGLE, unstereogenic and joining two
+disjoint qualified rings. Conflicting flags, charged/incomplete rings and flagged
+hydrogen/side-chain edges refuse. Only the new contract adds `retained_single_bridges`.
+
+`source_input_files(..., policy='cif-source-reader-cycle-local-flags-v1')` separately
+projects Y→N in the reader copy, records exact fields/hashes and preserves native
+CIF tag case and all other parsed values. Graph/stereo agree with original source;
+original bytes stay exact. Existing generation recipe/reader carry the choice.
+The unchanged native worker still rejects bridge aromatization, partial conversion
+and chemical changes. Qualification compares against the original source.
+
+Public PIM supplies15 regressions plus complete generation/native qualification:
+all21 isolated checks pass; cold relocation preserves106 files/timestamps. Formal
+charge readback remains unavailable. No mutation, numerical weighting, automatic
+selection or experimental validation is implied. Exact commands, source identity,
+failures and installed replay: `cycle_local_public_ring_control_2026_11_16`.
+
+
+### Independent ring-junction response (C351)
+
+Reuse the C341 fixed-native method with the C350 public PIM capture. Select both
+bridge endpoints and each moving component from the qualified graph. The frozen
+native manager, parameters, coordinates and source identities must match before
+each control. Full-precision in-memory spins (±30/90°) and junction bends
+(±1/5/10/20°) preserve internal pair distances, bridge length and fixed atoms.
+
+Both junctions give covalent spin invariance <5.6e-14; nonbonded contacts change.
+Plane/angle bending response and all sampled family derivatives agree in1829
+evaluations per end. Four constant bridge terms have weight0 and no active bridge
+torsion exists. Initial plane target13.2264 is already strained, so neither
+monotonic response from that point nor ideal geometry is claimed. No optimizer,
+refinement, new plane, weight or acceptance change. Exact compact evidence:
+`heldout_pim_junction_response_2026_11_16`; original native files remain local.
+
+
+### Read an exhausted prelaunch generation allowance (C352)
+
+The existing representation reader accepts the exact adapter error `Generation
+budget exhausted before candidate launch` only after full source, worker, native
+specification, capability and output-inventory validation. It requires a matching
+completed capability process, no candidate phase/log/result/output, no chemical
+validation or convergence claim, and a finite elapsed allowance consistent with
+the writer's six-decimal clock. The original FAILED/TIMED_OUT negative receipt
+and diagnostic are returned unchanged. Optional attempt ownership remains validated
+by the process reader and bound by the outer owner; this read grants no retry.
+
+Writers/native workers and schema are unchanged. Multiple-plane success, rejection
+and launched-failure readers still refuse this unlaunched case. Deterministic
+clock controls reproduce the prior bug; direct and request-owned captures replay
+after relocation and removal of original inputs/SDK with native execution forbidden.
+Contradictory or re-signed foreign evidence refuses. No chemistry or scientific
+acceptance change; exact validation: `unlaunched_generation_failure_readback_2026_11_16`.
+
+
+### Canonical-parent evidence in ordinary lineage (C353)
+
+`finish_postmr_construction` recognizes an explicit returned `canonical_parent_input`
+and uses `read_canonical_parent_input` to reconstruct its pure proof. The seed's
+initial bytes must equal the recorded construction input; ordered selected actions
+must match original actions and exclude passthrough sites. The returned producer
+object must equal saved evidence. New records use schema1 policy
+`postmr-canonical-construction-lineage-v1` with a run-anchored checksum reference
+to the canonical-input record. A new producer cannot silently omit an existing
+canonical-seed folder. Historical readers retain their unrelated-folder semantics.
+
+The lineage reader includes only declared seed receipt, initial/final models and
+source/template files. Complete-request initialization and cold validation bind
+the actual validated lineage policy and preserve that closure. No extra owner,
+chemical classifier, native execution or per-mutation model copies are introduced.
+Existing schema1/default records are unchanged; older software will refuse the
+new opt-in policy. No migration or automatic source/alias activation occurs.
+
+Both archived C349 Coot1.3.3 round trips replay exactly under relocation without
+new native work. Complete-request intake and missing/re-signed contradictory proofs
+are covered by focused regressions. Exact commands/results and retained-artifact
+scope: `canonical_construction_lineage_2026_11_16`.
+
+
+### Exact packaged chemical-reference intake (C354)
+
+`read_packaged_reference(code)` returns immutable definition bytes, parsed original
+metadata and checksum/size references under `nasolve:data/chemical_references`.
+Only an exact1–3-character uppercase laboratory code is accepted; metadata identity,
+schema, kind, same-code resource path, hash and parsed component must agree.
+Sources/metadata are rechecked after reading. This is package integrity, not native
+usability; metadata qualification claims do not activate mutation or aliases.
+
+`compose_packaged_dna_source(backbone_source, backbone_code, reference_code,
+component=...)` uses the existing explicit `compose_dna_source` unchanged. Resource
+paths remain inside their extraction context; returned bytes/proof bind package
+manifest/source hashes and the original composition proof. Caller-selected backbone,
+hand and chemical state remain explicit. No search, default, generation, graph
+special case or process owner is added. Existing linked/terminal/native checks follow.
+
+Package and ZIP controls produce identical source/proof; DY exactly matches the
+saved C342 source and its isolated native evidence.70 focused/installed checks
+pass; no new science run/full suite. Evidence: `packaged_reference_intake_2026_11_16`.
+
+
+### Explicit construction-target planning (C358)
+
+`build_mutation_plan(report, model, construction_sources={code: (source, parent)})`
+uses explicit files for one to sixteen requested non-curated modified targets.
+Existing `source_graph_fragment`/`parent_conformation_plan` check an unbranched
+DNA sugar and the parent's N-glycosidic chi frame; source C1′/C3′/C4′ must declare
+R/S/R. RNA, mirrored/modified sugars and ambiguous stereo require their separate
+reviewed routes. This narrow D-deoxy rule is not a universal CIP-to-sugar classifier.
+Regular non-symlink files, exact component identity and unchanged bytes are required.
+Frozen C355 source paths work after original sources disappear. The existing
+`MutationAction` shape is unchanged; no deposition code or pairing role is invented.
+
+Omission preserves catalogue behavior. Explicit curated/canonical overrides refuse;
+unselected targets still follow their existing registry route. Planning writes no
+artifact and launches no tool. Source choice must still be frozen and bound by the
+existing construction/request owners; this API alone grants no numerical qualification,
+phosphate choice, automatic CLI activation or completed construction.143 focused and
+143 installed/relocated checks pass. Evidence: `explicit_construction_planning_2026_11_17`.
+
+
+### Per-site Coot dictionaries and ordinary lineage (C359)
+
+`construct_postmr_model(..., site_dictionary_paths={site: path})` accepts a nonempty
+explicit mapping for non-curated, non-passthrough overlap sites with the supported
+DNA graph/parent frame. Caller-supplied dictionary qualification/end-state intent
+remain separate. Each overlap reloads its selected or fallback dictionary immediately
+before monomer creation; context and restoration consume that same choice. Exact
+heavy-atom names/elements, component identity and unchanged dictionary bytes are
+checked before context changes. Native failures/partial output remain preserved.
+Defaults keep historical script generation and returned shape.
+
+`begin_postmr_construction(..., site_dictionary_paths=...)` captures exact run-local
+`PostMR/Coot/site_dictionaries/NNN.cif` references (sorted site order). Finishing
+requires the returned choices to equal that captured inventory. Schema1 policy
+`postmr-site-dictionary-construction-lineage-v1` adds `site_dictionaries` to the
+existing record, optionally alongside canonical-seed proof. Readback rechecks the
+same constructor rule and includes only declared files. Complete requests preserve
+that closure without another owner. Old software refuses this opt-in policy;
+historical records remain unchanged and need no migration. New writers refuse a
+reserved site-dictionary folder whose choice metadata was omitted.
+
+One Coot1.3.3 request builds free-OH A:11 and internal A:12 DY in both orders; atom
+coordinates are order-independent, scaffold/neighbours exact and chi differences
+<0.014degrees. Actual-model Phenix2.2.1-6174 readback passes87 checks with two
+unsupported formal-charge readbacks. This reuses C345 projections, not automatic
+preconstruction projection from canonical input, ReadySet repetition or refinement.
+266 installed/relocated tests pass. Commands and scope:
+`per_site_construction_dictionaries_2026_11_17`.
+
+### Canonical-input construction dictionaries (C362)
+
+`prepare_dictionary_sites(..., construction_targets={site: canonical_code})`
+uses the existing frozen isolated qualification, explicit links/end states and
+installed terminal resource to prepare the dictionaries Coot needs before mutation.
+Every selected input identity must match DA/DC/DG/DT. Existing source-graph checks
+require the supported unbridged DNA scaffold, complete actual sugar, matching
+scaffold elements and explicit phosphate inventory. Canonical base geometry is
+not assessed or copied into the target definition. No coordinates are fabricated,
+relabelled, deleted or optimized.
+
+The shared linked/terminal preparers receive this explicit scope; their chemical
+projection, numerical targets, charge/configuration guards and hydroxyl resource
+remain the same. `cif-stored-construction-dictionaries-v1` stores the original model
+and target identities in the existing site artifact. Its read-only reader rederives
+every projection after relocation and returns `canonical_model` and `projections`,
+not native-ready before/after arguments. Native inspection explicitly refuses this
+preconstruction scope until a real constructed model has fresh ordinary preparation.
+Supplementary/native contexts and nonstandard phosphate-name adapters are excluded
+from this bounded mode. Existing ordinary policies/bytes and historical reads remain
+unchanged; old readers refuse the new explicit policy. No migration is required.
+
+The new low-level policies are `cif-source-preserving-construction-sites-v1` and
+`cif-native-construction-five-prime-hydroxyl-v1`, carrying the independently
+recomputed `cif-canonical-construction-context-v1` proof. These are construction
+choices, not final chemistry or refinement approval. The proof still needs binding
+to C359 ordinary lineage and ordinary intake; no new source/process owner is added.
+
+A fresh Coot 1.3.3 request builds free-OH/internal DY from projections derived from
+the original DT/DA model. Those CIFs exactly match the previously qualified
+actual-model projections. All 8/11 scaffold coordinates and neighbours remain;
+chi differences are below 0.014 degrees. Fresh Phenix 2.2.1-6174 readback gives
+87 PASS and two unsupported formal-charge observations. 28 new focused tests and
+238 installed/relocated affected tests pass. Exact commands/receipts and limits:
+`canonical_input_projection_2026_11_17` in the evidence ledger.
+
+### Construction projection lineage (C363/C365)
+
+`begin_postmr_construction(..., construction_projections={code: directory})`
+accepts existing C362 artifacts under `PostMR/Coot/construction_projections/CODE`.
+The same construction owner checks their canonical input bytes, complete component
+mutation sites, before/after identities, phosphate/passthrough intent and exact
+selected site CIFs. Every explicit site choice needs its derivation when this mode
+is requested. No projection algorithm, source selection or process owner is copied.
+
+The new `postmr-projected-dictionary-construction-lineage-v1` record carries anchored
+receipt references and the existing reader returns their exact declared file closure.
+Sealing rechecks the captured choices and rejects omitted evidence in the reserved
+folder. Old records retain their historical interpretation. The complete-request
+owner freezes that closure and checks selected components' projected end states and
+whole-model links against the existing actual prepared-model context. A hash match
+alone cannot substitute for that chemical join. C365 returns `projection_sources`
+from the same validated snapshot: each source path and source authority must match
+selected acquisition. The numerical construction dictionary and every consumed
+site projection retain their independent exact checks. This fixes the old assumption
+that chemical source and numerical Coot dictionary must be the same file. Components
+without a projection retain C196's original equality check; no new stored schema.
+Previously accepted projected requests that substitute a numerical file for a
+*different* qualified chemical source now refuse rather than acquiring false source
+claims. The current ordinary source reader always supplies explicit authority.
+Cold relocation tests remove all
+original paths and prohibit native execution. New records require a current reader;
+no old artifact migration or changed native chemistry follows.
+
+A fresh Coot 1.3.3 mixed-end DY construction yields exactly the C362 model/CIF bytes,
+so its prior Phenix 2.2.1-6174 evidence is replayed read-only (87 PASS/two unsupported
+charge observations), without another interpreter run. The final actual-model
+context join also passes. The complete retained construction closure is 29 files /
+2,328,761 bytes; raw native diagnostic inventories remain local, outside that closure.
+22 new focused tests and 119 final installed/relocated tests pass; an earlier broader
+213-test compatibility pass preceded the final context guard. Exact evidence:
+`construction_projection_lineage_2026_11_17`. C365's real C363 construction plus C364
+source passes ordinary prepared-request intake and cold relocation, retaining 46
+files / 2,772,164 bytes with no new native execution. Exact commands/results and
+compatibility limits: `projected_construction_source_join_2026_11_17`. C364 retains
+source composition; C366 forwards those choices through ordinary PostMR before Coot.
+
+### Retained two-source chemical composition (C364)
+
+`freeze_acquisition_sources(..., composition_inputs={code: {
+"backbone": (path, component), "reference": (path, component)}})` optionally binds
+composition for a nonempty subset of explicitly selected non-curated sources. The
+existing `compose_dna_source` must reproduce each selected CIF byte-for-byte. The
+same source-selection directory retains two original input CIFs per component and
+the complete derivation in `source_selection.json`; no new owner or chemistry rule.
+The optional policy is `cif-acquisition-composed-sources-v1`. Source authority/kind
+remain `EXPLICIT`/`explicit-file`, and numerical/scientific qualification stays unset.
+
+Readback checks exact anchored references and closed inventories, then rederives
+both output and proof. Source roles, declared components, charges/stereochemistry,
+atom origins and constructed coordinates remain the compositor's authority. Input
+changes across validation/copy/readback refuse. Historical absolute paths are only
+provenance; package lookup and original sources are not needed after relocation.
+Package descriptive metadata is not retained as qualification or inferred from a
+matching definition. Complete requests already retain this exact declared source tree.
+
+Omission preserves old ordinary and explicit policies/bytes. No migration occurs;
+older readers refuse composed records. The exact C342 DY source and existing saved
+qualification replay without native execution. Four closure files occupy 29,583 bytes.
+Focused/installed validation, compatibility and retained evidence are recorded in
+`composed_acquisition_sources_2026_11_17`. C365 joins the chemical source to the
+qualified projection snapshot, distinct from its numerical Coot dictionary. Normal
+PostMR forwarding, automatic activation and refinement acceptance remain separate.
+
+
+### Explicit ordinary construction intake (C366)
+
+`initialize_ordinary_postmr_request(..., frozen_sources=selection,
+construction_choices={code: (projection_directory, canonical_parent)})` uses the
+existing source and canonical-input projection readers before Coot. It binds
+original chemical bytes/authority and selected consumer, then stages only checked
+closures in the existing run-local source/projection roles. Planning consumes the
+chemical source; Coot loads qualified numerical dictionaries and reloads each
+site's exact projection. Existing lineage checks original model/actions, complete
+site choices and phosphate intent; complete intake checks actual ends and links.
+
+The frozen component inventory must exactly match the planned prepared components.
+No catalogue entry or NAR pairing role is fabricated. Explicit `multiple_planes`
+passes through the existing generation configuration; absent options keep old
+behavior. Failed partial preparation is preserved and cannot be retried in place.
+No stored schema, chemistry classifier, process owner or automatic CLI activation.
+
+One actual ordinary Coot 1.3.3 mixed-end DY invocation reproduces the accepted
+model/CIF bytes, permitting exact prior Phenix 2.2.1-6174 capture replay (87 PASS,
+two unsupported formal-charge observations). Both end states and all scaffold/
+unselected atom states survive. The 46-file, 2,775,245-byte complete request reads
+cold after relocation; 149 original files/timestamps are unchanged. 190 affected
+checks pass in source and relocated installation. This is prepared-input evidence,
+not fresh ReadySet, diffraction refinement or a DY pair-pattern qualification.
+Exact commands, failed diagnostic attempt and compact receipts are in
+`ordinary_frozen_construction_intake_2026_11_17` in the existing ledger.

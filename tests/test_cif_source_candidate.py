@@ -63,9 +63,24 @@ def test_finished_coordinate_handedness_uses_named_source_centres_and_keeps_unkn
     assert not q['requires_cif_review'] and (s.read_bytes(),c.read_bytes())==before
 
 
-@pytest.mark.parametrize('mode',['correct','exception_after_output','exception_before_output','charge_change','missing_charge','bad_pin','bad_reference','timeout'])
-def test_owned_complete_builder_keeps_output_even_without_convergence_or_success_exit(tmp_path,mode):
+@pytest.mark.parametrize('request_owned', [False, True])
+@pytest.mark.parametrize('mode',['correct','exception_after_output','exception_before_output','charge_change','missing_charge','bad_pin','bad_reference','timeout','help_timeout','budget_exhausted','multiple_planes','missing_planes_option'])
+def test_owned_complete_builder_keeps_output_even_without_convergence_or_success_exit(tmp_path,monkeypatch,mode,request_owned):
     from nasolve.cif_source_candidate import generate_source_candidate
+
+    from nasolve.cif_generation_attempt import generate_source_candidate_attempt
+    def request_generate(root, python, selected, api, source, code, out, **kwargs):
+        # The legacy fixture used only a library locator. Owned requests require
+        # actual pinned API bytes, as supplied by fresh native source capture.
+        api = [dict(row) for row in api]
+        for row in api:
+            path = root/row['path']; path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text('# SYNTHETIC API LOCATOR\n')
+            row.update(sha256=sha256(path.read_bytes()).hexdigest(), size=path.stat().st_size)
+        wrapped = generate_source_candidate_attempt(root, python, selected, api, source, code, out, **kwargs)
+        return wrapped['generation']
+    if request_owned:
+        generate_source_candidate = request_generate
     root,python,site,proof,api=installation(tmp_path,'correct')
     reader=site/'elbow/chemistry/any_chemical_format_reader.py'
     reader.write_text(reader.read_text().replace("['constructor_worker.py']","['source_candidate_worker.py']").replace(' return [m]',' m[1].charge=-1;m.charge=-1\n return [m]'))
@@ -103,16 +118,63 @@ def post_process(molecule,options):
     names=['elbow/chemistry/any_chemical_format_reader.py','elbow/chemistry/MoleculeClass.py','elbow/chemistry/SimpleMoleculeClass.py','elbow/command_line/builder.py']
     pins=[{'anchor':'phenix_installation','path':(p:=site/name).relative_to(root).as_posix(),'sha256':sha256(p.read_bytes()).hexdigest(),'size':p.stat().st_size} for name in names]
     if mode=='bad_pin':pins[0]['sha256']='a'*64
-    elbow=program(tmp_path,help_text=HELP+'  --opt_steps=COUNT  Step count\n')
+    elbow=program(tmp_path,help_text=HELP+'  --opt_steps=COUNT  Step count\n'+('  --multiple_planes  Local planes\n' if mode=='multiple_planes' else ''),
+        help_body='import time;time.sleep(4)' if mode=='help_timeout' else None)
     # The helper dispatcher lives outside this fake installation; copy it into
     # the selected installation so containment is exercised too.
     selected=root/'bin/phenix.elbow';selected.write_bytes(elbow.read_bytes());selected.chmod(0o755)
     out=tmp_path/'generation';kwargs=dict(environment={**os.environ,'PYTHONPATH':str(site),'CANDIDATE_FIXTURE':str(fixture)},
-        expected_dialect='CHEMICAL_COMPONENTS_CIF',prior_sources=pins,phenix_version='2.2.1-FAKE',single_block_steps=12,timeout_seconds=0.5 if mode=='timeout' else 10)
+        expected_dialect='CHEMICAL_COMPONENTS_CIF',prior_sources=pins,phenix_version='2.2.1-FAKE',single_block_steps=12,timeout_seconds=0.5 if mode in {'timeout','help_timeout'} else 10)
+    if mode in {'multiple_planes','missing_planes_option'}:kwargs['multiple_planes']=True
     if mode in {'bad_pin','bad_reference'}:
         with pytest.raises(ValueError):generate_source_candidate(root,python,selected,api,source,'Q17',out,**kwargs)
-        assert not out.exists();return
+        if request_owned and mode=='bad_reference':
+            from nasolve.cif_generation_attempt import inspect_source_generation_request
+            assert inspect_source_generation_request(out)['attempts'][0]['state']=='STOPPED'
+        else:assert not out.exists()
+        return
+    if mode=='budget_exhausted':
+        from types import SimpleNamespace
+        ticks=iter([0,11,11])
+        monkeypatch.setattr('nasolve.cif_source_candidate.time',SimpleNamespace(monotonic=lambda:next(ticks)))
     r=generate_source_candidate(root,python,selected,api,source,'Q17',out,**kwargs)
+    if request_owned:out=out/'attempts/attempt-0001/generation'
+    if mode=='missing_planes_option':
+        from nasolve.cif_generation_process import inspect_generation_process
+        assert r['status']=='FAILED' and r['candidate'] is None
+        assert 'multiple-plane' in r['error']
+        assert inspect_generation_process(out,'capabilities')['state']=='STOPPED'
+        assert inspect_generation_process(out,'candidate')['state']=='NOT_RECORDED'
+        return
+    if mode=='multiple_planes':
+        assert '--multiple_planes' in r['arguments']
+        assert r['multiple_planes'] is True
+        assert r['policy_id']=='cif-source-native-multiple-plane-candidate-v1'
+        from nasolve.cif_generation_process import inspect_generation_process
+        for phase in ('capabilities','candidate'):
+            context=inspect_generation_process(out,phase)['job']['context']
+            assert context['multiple_planes'] is True
+            assert context['candidate_policy_id']==r['policy_id']
+        if request_owned:
+            from nasolve.cif_generation_attempt import inspect_source_generation_request
+            state=inspect_source_generation_request(out.parents[2])
+            assert state['request']['configuration']['recipe']['multiple_planes'] is True
+    # Even a timeout must leave immutable prelaunch/owner/stopped evidence.
+    from nasolve.cif_generation_process import inspect_generation_process
+    for phase in (('capabilities',) if mode in {'help_timeout','budget_exhausted'} else ('capabilities', 'candidate')):
+        state = inspect_generation_process(out, phase)
+        assert state['state'] == 'STOPPED'
+        assert state['activity'] is False and not state['retry_authorized']
+        assert state['job']['context']['source_sha256'] == sha256(source.read_bytes()).hexdigest()
+    if mode in {'help_timeout','budget_exhausted'}:
+        assert inspect_generation_process(out,'candidate')['state']=='NOT_RECORDED'
+        assert r['candidate'] is None and r['status']=='FAILED'
+        assert r['execution']['status']==('NOT_RUN' if mode=='help_timeout' else 'TIMED_OUT')
+        if mode=='help_timeout':assert r['generator_capabilities']['reason']=='help-timeout'
+        return
+    assert inspect_generation_process(out,'candidate')['job']['timeout_seconds'] < kwargs['timeout_seconds']
+    from nasolve.cif_source_candidate import candidate_generation_diagnostic
+    assert r['diagnostic']==candidate_generation_diagnostic(r)
     assert r['source_preserved'] and r['native_proxy_validation']=='NOT_RUN' and not r['automatic_adoption'] and not r['requires_cif_review']
     if mode=='timeout':assert r['execution']['status']=='TIMED_OUT' and r['candidate'] is None
     elif mode=='exception_before_output':assert r['candidate'] is None and r['result']['builder']['status']=='EXCEPTION'

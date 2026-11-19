@@ -2,7 +2,9 @@
 
 A discarded parent-scaffold shadow lets the existing phosphate sanitizer prove
 an internal OP3 deletion. Only that exact deletion and independently authorized
-selected-atom serial repairs are transferred to original raw Coot records. Base
+selected-atom serial repairs are transferred to original raw Coot records. A new
+explicit policy also handles global renumbering with exact nonserial input identity
+and no serial references; historical default behavior stays unchanged. Base
 coordinates, dictionaries, charge states and native target mechanics stay fixed.
 """
 from __future__ import annotations
@@ -17,6 +19,9 @@ from .postmr_restoration import canonical_name, restore_graph_site, source_graph
 
 POLICY_ID = 'postmr-source-graph-internal-phosphate-context-v1'
 CURATED_CONTEXT_POLICY_ID = 'postmr-source-graph-curated-phosphate-context-v1'
+IDENTITY_SERIAL_POLICY_ID = 'postmr-input-identity-serial-context-v1'
+COMPONENT_PADDING_POLICY_ID = 'postmr-input-identity-component-padding-v1'
+CANONICAL_SERIAL_POLICY_ID = 'postmr-declared-canonical-serial-context-v1'
 _COORDINATE = {'ATOM  ', 'HETATM'}
 _ASSOCIATED = {'ANISOU', 'SIGATM', 'SIGUIJ'}
 
@@ -55,7 +60,83 @@ def _conect(lines):
     return result
 
 
-def _serial_context(raw_lines, reference_lines, raw_inventory, reference_inventory, selected):
+def _identity_serial_context(raw_lines, reference_lines, raw_inventory, reference_inventory, selected, *, component_padding=False):
+    """Repair serials only when immutable nonserial input identity is sufficient.
+
+    No serial-referencing or explicit-model records are supported by this rule.
+    Raw coordinates/metadata and TER records remain exact. Atom serials follow
+    raw record order, skipping TER numbers, including atoms later proved removable.
+    """
+    forbidden = {'CONECT', 'ANISOU', 'SIGATM', 'SIGUIJ', 'MODEL', 'ENDMDL'}
+    if any(line[:6].strip() in forbidden for line in raw_lines + reference_lines):
+        raise ValueError('Identity serial repair cannot reinterpret serial references or explicit models')
+    def serial(line):
+        value = int(line[6:11])
+        if not 1 <= value <= 99999:
+            raise ValueError('Identity serial repair requires decimal PDB serials in range')
+        return value
+    reserved = []
+    for lines in (reference_lines, raw_lines):
+        atoms = [line for line in lines if line[:6] in _COORDINATE]
+        numbers = [serial(line) for line in atoms]
+        ters = [serial(line) for line in lines if line[:6].strip() == 'TER']
+        if len(ters) != len(set(ters)):
+            raise ValueError('Identity serial repair requires unique TER serials')
+        if lines is reference_lines and len(numbers) != len(set(numbers)):
+            raise ValueError('Identity serial repair requires unique immutable input serials')
+        if len({_key(line) for line in atoms}) != len(atoms):
+            raise ValueError('Identity serial repair requires unique atom identities')
+        if lines is raw_lines:
+            reserved = sorted(ters)
+    unselected = {key: row for key, row in raw_inventory.items()
+                  if key[0]+':'+key[1]+key[2] not in selected}
+    original = {key: row for key, row in reference_inventory.items()
+                if key[0]+':'+key[1]+key[2] not in selected}
+    if unselected != original:
+        raise ValueError('Identity serial repair requires unchanged unselected atoms and coordinates')
+    raw_records = {_key(line): line for line in raw_lines if line[:6] in _COORDINATE}
+    padding_differences = 0
+    for line in reference_lines:
+        if line[:6] in _COORDINATE and _key(line) in original:
+            other = raw_records[_key(line)]
+            if (line[:6]+line[11:]).rstrip() != (other[:6]+other[11:]).rstrip():
+                # PDB component-field alignment is formatting, not a new name.
+                # Every other nonserial field still compares byte-for-byte.
+                name = line[17:20].strip()
+                if (not component_padding or not name.isascii() or not name.isalnum()
+                        or name != other[17:20].strip()
+                        or (line[:6]+line[11:17]+name+line[20:]).rstrip()
+                        != (other[:6]+other[11:17]+name+other[20:]).rstrip()):
+                    raise ValueError('Identity serial repair requires exact unselected nonserial fields')
+                padding_differences += 1
+    rendered = []; repairs = []; fresh = 0; reserved_set = set(reserved)
+    for line in raw_lines:
+        if line[:6] in _COORDINATE:
+            fresh += 1
+            while fresh in reserved_set:
+                fresh += 1
+            if fresh > 99999:
+                raise ValueError('Identity serial repair exceeds PDB field width')
+            replacement = f'{fresh:5d}'
+            if line[6:11] != replacement:
+                repairs.append({**_identity(line), 'old_serial': serial(line), 'new_serial': fresh})
+                line = line[:6]+replacement+line[11:]
+        rendered.append(line)
+    authority = {'status': 'INPUT_IDENTITY_AUTHORITY_PASS',
+        'policy_id': IDENTITY_SERIAL_POLICY_ID,
+        'order': 'RAW_COORDINATE_RECORD_ORDER_SKIP_TER', 'reserved_ter_serials': reserved,
+        'unselected_atom_count': len(unselected), 'unselected_nonserial_fields_preserved': True,
+        'serial_reference_records': 'ABSENT'}
+    if padding_differences:
+        authority.pop('unselected_nonserial_fields_preserved')
+        authority.update(policy_id=COMPONENT_PADDING_POLICY_ID,
+            component_padding_difference_count=padding_differences,
+            unselected_component_names_preserved=True,
+            unselected_other_nonserial_fields_preserved=True)
+    return rendered, repairs, authority
+
+
+def _serial_context(raw_lines, reference_lines, raw_inventory, reference_inventory, selected, identity_policy=None):
     """Normalize selected serial collisions only through immutable input authority."""
     atoms = [l for l in raw_lines if l[:6] in _COORDINATE]
     serials = [int(l[6:11]) for l in atoms]
@@ -65,6 +146,13 @@ def _serial_context(raw_lines, reference_lines, raw_inventory, reference_invento
     original = {int(l[6:11]): l for l in reference_atoms}
     if len(original) != len(reference_atoms):
         raise ValueError('Serial repair requires unique immutable input atom serials')
+    raw_records = {_key(line): line for line in atoms}
+    renumbered = any(_site(line) not in selected and _key(line) in raw_records
+                     and raw_records[_key(line)][6:11] != line[6:11] for line in reference_atoms)
+    if identity_policy in {IDENTITY_SERIAL_POLICY_ID, COMPONENT_PADDING_POLICY_ID} and renumbered:
+        return _identity_serial_context(raw_lines, reference_lines, raw_inventory,
+                                        reference_inventory, selected,
+                                        component_padding=identity_policy == COMPONENT_PADDING_POLICY_ID)
     raw_rows, input_rows = _conect(raw_lines),_conect(reference_lines)
     if raw_rows != input_rows:
         raise ValueError('Serial repair requires exactly inherited original CONECT rows')
@@ -101,9 +189,39 @@ def _serial_context(raw_lines, reference_lines, raw_inventory, reference_invento
         'all_endpoints_unselected_and_unchanged': True}
 
 
+def canonical_serial_scope(actions, raw_inventory, reference_inventory, passthrough_sites):
+    """Bind ordinary Coot mutations to input/output identity, for serials only.
+
+    This declares no graph, coordinate transport or phosphate-removal authority.
+    Reuse the builder's canonical target vocabulary; never infer a mutation from
+    a residue name or a changed model alone.
+    """
+    from .postmr import _COOT_BASES
+
+    if len({a.site for a in actions}) != len(actions):
+        raise ValueError('Canonical serial scope requires unique declared mutation sites')
+    mutations = []
+    for action in actions:
+        if action.method != 'coot-mutate-base':
+            continue
+        if (action.site in passthrough_sites or action.after not in _COOT_BASES
+                or action.before == action.after):
+            raise ValueError('Canonical serial scope lacks an eligible declared mutation')
+        before = {row['code'] for key,row in reference_inventory.items()
+                  if key[0]+':'+key[1]+key[2] == action.site}
+        after = {row['code'] for key,row in raw_inventory.items()
+                 if key[0]+':'+key[1]+key[2] == action.site}
+        if before != {action.before} or after != {action.after}:
+            raise ValueError('Canonical serial scope differs from actual input/output component identity')
+        mutations.append({'site': action.site, 'before': action.before, 'after': action.after})
+    return {'policy_id': CANONICAL_SERIAL_POLICY_ID, 'scope': 'SERIAL_FIELDS_ONLY',
+            'mutations': sorted(mutations, key=lambda row: row['site'])}
+
+
 def prepare_construction_context(raw_model, reference_model, actions, dictionary_paths,
                                  parent_models, output_model, *, allow_op3_sites=(),
-                                 passthrough_sites=()):
+                                 passthrough_sites=(), serial_identity_policy=None,
+                                 canonical_serial_policy=None, site_dictionary_paths=None):
     """Prepare a separate context input or retain the entire immutable raw model.
 
     Source-graph and proper-transport preflight must succeed before any proposed
@@ -114,6 +232,10 @@ def prepare_construction_context(raw_model, reference_model, actions, dictionary
     as other sites. Frozen passthrough sites remain excluded. The ordinary final
     model must still pass the same sanitizer.
     """
+    if serial_identity_policy not in (None, IDENTITY_SERIAL_POLICY_ID, COMPONENT_PADDING_POLICY_ID):
+        raise ValueError('Unknown construction serial identity policy')
+    if canonical_serial_policy not in (None, CANONICAL_SERIAL_POLICY_ID):
+        raise ValueError('Unknown construction canonical serial policy')
     raw_model,reference_model,output_model = map(Path,(raw_model,reference_model,output_model))
     allow_op3_sites = validate_op3_sites(allow_op3_sites)
     passthrough_sites = validate_op3_sites(passthrough_sites)
@@ -123,7 +245,8 @@ def prepare_construction_context(raw_model, reference_model, actions, dictionary
     sanitized = output_model.with_name(output_model.stem+'_shadow_sanitized.pdb')
     for p in (output_model,shadow,sanitized):
         if p.exists() or p.is_symlink(): raise FileExistsError(p)
-    inputs = {raw_model,reference_model,*map(Path,dictionary_paths.values()),*map(Path,parent_models.values())}
+    inputs = {raw_model,reference_model,*map(Path,dictionary_paths.values()),*map(Path,parent_models.values()),
+              *map(Path,(site_dictionary_paths or {}).values())}
     if any(p.resolve() in {x.resolve() for x in inputs} for p in (output_model,shadow,sanitized)):
         raise ValueError('Context outputs must be separate from every immutable input')
     snapshots = {p:p.read_bytes() for p in inputs if p.is_file()}
@@ -148,7 +271,8 @@ def prepare_construction_context(raw_model, reference_model, actions, dictionary
                 report['skipped_sites'].append({'site':action.site,'reason':'Explicit curated placement is unchanged.'})
             continue
         try:
-            graph = source_graph_fragment(dictionary_paths[action.after],action.after)
+            dictionary = (site_dictionary_paths or {}).get(action.site, dictionary_paths[action.after])
+            graph = source_graph_fragment(dictionary,action.after)
             selected = [l for l in raw_lines if l[:6] in _COORDINATE and _site(l)==action.site]
             parent_lines = [l for l in _rows(parent_models[action.site]) if l[:6] in _COORDINATE and _site(l)==action.site]
             raw_names = {canonical_name(l[12:16].strip()) for l in selected}
@@ -158,7 +282,7 @@ def prepare_construction_context(raw_model, reference_model, actions, dictionary
             if missing and missing != {'OP3'}:
                 raise ValueError('Unmatched backbone atoms need a separate context rule')
             pruned = [l for l in selected if not(missing and canonical_name(l[12:16].strip())=='OP3')]
-            restore_graph_site(pruned,parent_lines,dictionary_paths[action.after],action.after,action.parent_code)
+            restore_graph_site(pruned,parent_lines,dictionary,action.after,action.parent_code)
             graphs[action.site] = graph; parent_lines_by_site[action.site] = parent_lines
             if missing:
                 candidates[action.site] = next(l for l in selected if canonical_name(l[12:16].strip())=='OP3')
@@ -193,8 +317,14 @@ def prepare_construction_context(raw_model, reference_model, actions, dictionary
                        if action.method == 'coot-parent-overlap' and action.site not in passthrough_sites
                        and (ligand := CURATED_LIGANDS.get(action.after)) is not None
                        and (ligand.atom_substitutions or ligand.ring_substituents)}
-            selected = set(graphs) | curated
-            normalized,repairs,authority = _serial_context(raw_lines,_rows(reference_model),raw_inventory,reference_inventory,selected)
+            canonical_scope = None
+            canonical = set()
+            if canonical_serial_policy == CANONICAL_SERIAL_POLICY_ID:
+                canonical_scope = canonical_serial_scope(actions, raw_inventory,
+                    reference_inventory, passthrough_sites)
+                canonical = {row['site'] for row in canonical_scope['mutations']}
+            selected = set(graphs) | curated | canonical
+            normalized,repairs,authority = _serial_context(raw_lines,_rows(reference_model),raw_inventory,reference_inventory,selected,serial_identity_policy)
             # The shadow receives only exact eligible scaffold parent coordinates.
             # Its base geometry is intentionally ignored and never propagated.
             targets = {}
@@ -231,6 +361,8 @@ def prepare_construction_context(raw_model, reference_model, actions, dictionary
                 shadow_sha256=sha256(shadow.read_bytes()).hexdigest(),
                 sanitized_shadow_sha256=sha256(sanitized.read_bytes()).hexdigest(),
                 notes=['Internal OP3 removal was proved with the existing phosphate policy; original raw base coordinates were retained for rigid transport.'])
+            if canonical and repairs:
+                report['canonical_serial_scope'] = canonical_scope
             if curated - set(graphs) and repairs:
                 report['serial_scope_extension'] = {
                     'sites': sorted(curated - set(graphs)),

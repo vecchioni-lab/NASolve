@@ -110,3 +110,48 @@ def test_native_qualification_cannot_invent_dna_authority_for_another_source(tmp
     from nasolve.cif_linked_preparation import component_values
     s,c,m,n=classification_case(tmp_path,'rna');v=component_values(c,'Q17');v['_chem_comp.group']=['DNA'];v['_chem_comp.type']=['DNA LINKING'];p=write(tmp_path/'unjustified.cif',v)
     with pytest.raises(ValueError):qualify_source_dna_metadata(s,c,p,m,'Q17',n,n)
+
+
+@pytest.mark.parametrize('defect',[None,'partial_ring','charge','source_type','unknown_policy'])
+def test_explicit_representation_reaches_metadata_without_weakening_source(tmp_path,defect):
+    from math import cos,sin
+    from tests.test_cif_five_ring_representation import pair,POLICY,A,B
+    from nasolve.cif_source_classification import prepare_source_dna_metadata
+    from nasolve.cif_linked_preparation import component_values
+    v,g=pair();v['_chem_comp.type']=['DNA LINKING'];g['_chem_comp.group']=['non-polymer']
+    for d in (v,g):
+        for axis,fn in [('x',cos),('y',sin),('z',lambda x:0.)]:
+            d[A+axis]=[str(fn(i*1.2)*(1 if i<5 else 2)) for i in range(len(d[A+'atom_id']))]
+    if defect=='partial_ring':g[B+'type'][0]='single'
+    if defect=='charge':g[A+'charge'][-1]='1'
+    if defect=='source_type':v['_chem_comp.type']=['NON-POLYMER']
+    inputs=tmp_path/'inputs';inputs.mkdir()
+    source=write(inputs/'source.cif',v);candidate=write(inputs/'candidate.cif',g)
+    before=source.read_bytes(),candidate.read_bytes();out=tmp_path/'metadata'
+    options={'bond_representation_policy':'invented' if defect=='unknown_policy' else POLICY}
+    if defect:
+        with pytest.raises(ValueError):prepare_source_dna_metadata(source,candidate,'Q17',out,**options)
+        assert not out.exists()
+    else:
+        with pytest.raises(ValueError):prepare_source_dna_metadata(source,candidate,'Q17',out)
+        r=prepare_source_dna_metadata(source,candidate,'Q17',out,**options)
+        assert r['bond_representation_policy']==POLICY and r['source_assessment']['candidate_status']=='CANDIDATE_REVIEW'
+        assert r['native_equivalence']=='NOT_RUN'
+        a=component_values(candidate,'Q17');b=component_values(out/'candidate.cif','Q17')
+        assert {k:x for k,x in a.items() if k not in {'data_','_chem_comp.group','_chem_comp.type'}}=={k:x for k,x in b.items() if k not in {'data_','_chem_comp.group','_chem_comp.type'}}
+    assert before==(source.read_bytes(),candidate.read_bytes())
+
+
+@pytest.mark.parametrize('policy',['cif-source-declared-neutral-purine-aromatic-v1',
+    'cif-source-declared-neutral-6-oxo-purine-aromatic-v1','cif-source-declared-neutral-five-membered-cn-aromatic-v1'])
+def test_header_native_equivalence_uses_the_same_explicit_representation(tmp_path,policy):
+    from nasolve.cif_source_classification import prepare_source_dna_metadata,qualify_source_dna_metadata
+    s,c,m,base=classification_case(tmp_path);out=tmp_path/'prepared'
+    options={'bond_representation_policy':policy}
+    r=prepare_source_dna_metadata(s,c,'Q17',out,**options);p=out/r['candidate']['path']
+    native=deepcopy(base);native['monomer_mappings']['rows'][0]['metadata']['group']='DNA'
+    q=qualify_source_dna_metadata(s,c,p,m,'Q17',base,native,**options)
+    assert q['native_equivalent'] and q['bond_representation_policy']==policy
+    assert q['baseline_qualification']['policy_id']=='cif-isolated-candidate-native-usability-v3'
+    assert q['candidate_qualification']['policy_id']=='cif-isolated-candidate-native-usability-v3'
+    assert q['linked_context']=='NOT_RUN' and not q['automatic_adoption']

@@ -3,12 +3,28 @@
 NASolve separates machine-local convenience state from reviewable
 crystallographic artifacts.
 
+## Working language
+
+Assume scientific literacy, without assuming Python or software-engineering
+vocabulary. Lead updates, plans and user-facing help with the lab outcome:
+what Coot builds, what ReadySet supplies, which model/restraints Phenix receives,
+what was checked, and what still needs work. Explain a technical term when it is
+needed; put implementation names, schemas and exact commands in supporting detail.
+Use the same language for the maintained roadmap. Keep precise scientific limits:
+"Phenix can read these restraints" does not mean "this model refined correctly."
+
+Keep one current queue and a short current handoff. Replace superseded status
+instead of adding another milestone diary. Link immutable Git history or the
+existing evidence ledger for older results; do not duplicate those records.
+
 ## Documentation roles
 
 The root `README.md` is the human-facing operating guide. `architecture.md` and
 the active subsystem documents define durable behavior.
-`development-handoff.md` records the current implementation/validation edge and
-immediate next work. Superseded integration notes, validation diaries and old
+`development-handoff.md` records the current integration/validation edge and
+immediate next work, linking the scoped metal and chemistry handoffs. Each
+subsystem handoff owns its implementation/scientific boundary; the root owns
+shared-base qualification and delivery. Superseded integration notes, validation diaries and old
 handoffs live under `history/`; they are retained for debugging and provenance
 but are not implementation instructions.
 
@@ -36,6 +52,8 @@ Distinguish deployed capability, diagnostic demonstrations and future designs.
 Use professional, attributable manuscript language and exact software versions;
 private collaboration/personality notes stay outside repository documentation.
 The [CIF Doctor overview](cif-doctor-human-overview.md) is the first example.
+
+<a id="small-science-checkouts"></a>
 
 ## Lightweight science checkouts
 
@@ -75,6 +93,174 @@ labels and captions editable and support high-resolution export without changing
 the underlying evidence. Retain the established clean map presentation, explicit
 model-assisted-map limits and science-only captions; visual polish does not imply
 scientific acceptance.
+
+## Prior work before new diagnosis
+
+For a long-running or context-consolidated project, check for previous work on
+the problem before designing a solution, writing a replacement or starting a
+costly experiment. This applies across NASolve, especially Cedar/CIF Doctor,
+where scientific decisions may survive mainly in recorded evidence rather than
+in the current chat or the operator's recollection.
+
+Start with the current handoff, subsystem contract and maintained queue. Search
+relevant milestone notes, evidence-ledger entries, linked historical documents
+and Git for the same failure, chemical operation or consumer boundary. A targeted
+review is sufficient; do not reread the entire project or inspect unrelated
+unpublished datasets for each small change. Before implementation, state in the
+active handoff which prior solution or failed approach was found, what its
+validation actually established, and which present gap still needs work. If no
+relevant record is found, record that search boundary instead of assuming the
+problem is new.
+
+Reuse an earlier result only after checking its source identity, chemical state,
+policy, tool/consumer, model/site context and evidence availability as relevant.
+Preserve stopping notes and negative outcomes. Explain when changed inputs or
+missing evidence require a fresh attempt. Historical proposals are not current
+instructions, and an old pass does not qualify a different context. Do not make
+Simon reconstruct prior technical work that the repository already records.
+
+## Scientific evidence storage
+
+Design for campaigns containing at least 100 datasets on a laptop. Save the model,
+restraints, authoritative inputs and compact evidence needed to justify/reproduce
+an accepted result. Avoid repeated bulky native inventories and worker outputs;
+prefer content deduplication and compression without weakening checks. Record
+whole-request persistent and peak temporary size in representative integration
+validation. A generous artifact ceiling is not a storage target. Preserve exact
+policy/tool/input identities so optional expensive diagnostics can be reproduced.
+A checksum identifies bytes; it cannot recreate them. Retain authoritative inputs
+or an explicit verifiable available source, plus the recipe and necessary outcomes.
+"Frozen proof" means fixed, recheckable evidence, not indefinite duplicate storage.
+Measure process memory separately from temporary disk; archive size alone does not
+bound either. The current campaign runner is sequential; future concurrency must
+respect those budgets. Reuse completed control data for read-only checks, and
+prefer relocating a newly owned validation result to duplicating large trees.
+Changes to retention must preserve immutable run lineage and known-stopped recovery.
+Do not delete old scientific outputs or partial work as an incidental code cleanup.
+
+## Independent native development jobs
+
+Separate Phenix CLI jobs may run concurrently with isolated working/output
+folders and independent process records. Keep their authoritative inputs and
+selected installation unchanged; never share a writable job directory or stop
+another agent's process. Coordinate CPU/RAM, disk and deadlines, and prefer one
+expensive evidence reader at a time. A globally exclusive Phenix lock is not
+required. This development practice does not change the serial campaign contract
+or permit retry while an earlier owner is still alive or uncertain.
+
+## Continual handoff during active work
+
+At the start of a substantive push, record the current scope, ordered acceptance
+milestones, last tested/pushed commit and immediate next action in the maintained
+development handoff. Update that same boundary when implementation becomes
+reviewable, validation starts or finishes, and publication completes. Record any
+active job and its owned output location while it runs; preserve partial evidence
+and distinguish implementation complete, tests passing and published.
+
+An interruption must leave enough information to resume from files and Git
+without reconstructing intent from chat. Keep scientific evidence and exact
+validation commands in the existing evidence ledger, and keep local absolute
+paths out of portable operational references. Do not accumulate chat transcripts
+or a second competing status document. Open scientific gates remain visible
+when priorities change; diagnostic progress never silently closes them.
+
+## New ideas and active work
+
+Apply this policy across NASolve. When Simon introduces an idea that would divert
+an active task, identify the current bounded checkpoint, explain what would be
+left unfinished, and ask whether to finish that checkpoint and queue the idea or
+to switch deliberately. Push back on accidental scope changes rather than
+silently abandoning implementation, validation or publication. Continue useful
+already-authorized work that does not depend on the answer; a pending question
+is not permission to start the diversion.
+
+An explicit request to stop, switch or reprioritize takes precedence. Honor it
+and record a concise interruption handoff: completed work, dirty files, remaining
+acceptance checks, exact evidence and every active process/owned output. Preserve
+partial attempts and make the next safe action clear. Never hide a live process
+or label unfinished work complete merely to clear the queue.
+
+Record queued ideas in the relevant subsystem's maintained queue, with scope,
+dependencies and an observable completion criterion. If an idea fits the current
+acceptance boundary without displacing work, incorporate it normally and update
+the handoff; do not ask a ritual confirmation for every suggestion. CIF Doctor
+uses the [completion queue](cif-doctor-completion-queue.md). The handoff owns the
+active checkpoint; the queue owns remaining priorities; scientific contracts
+and evidence own what is actually supported. Keep internal conversation separate
+from durable public product decisions.
+
+## Testing cadence and development profiles
+
+Use focused tests while developing a bounded change. Run its new regression,
+tests for directly affected callers and shared helpers, then the relevant
+profile below. These profiles are reviewable starting points, not automatic
+change-impact analysis: a passing chemistry profile cannot cover an unrelated
+numerical worker, campaign executor or CLI change. Add those tests explicitly.
+A documentation-only change needs appropriate document/link checks, not another
+unchanged scientific regression.
+
+From the checkout, with its test-enabled Python:
+
+```bash
+.venv/bin/python scripts/run_tests.py smoke
+.venv/bin/python scripts/run_tests.py chemistry
+.venv/bin/python scripts/run_tests.py workflow
+.venv/bin/python scripts/run_tests.py chemistry workflow
+.venv/bin/python scripts/run_tests.py delivery
+.venv/bin/python scripts/run_tests.py full
+```
+
+| Profile | Purpose |
+| --- | --- |
+| `smoke` | Short checks of source qualification, usable selection, ordinary reuse, checkpoint/path integrity and the test runner itself. |
+| `chemistry` | Source graphs/stereochemistry, FANA/enantiomers, attachment operations, linked/end-state preparation, topology and phosphate protections. |
+| `workflow` | Qualified storage through ordinary PostMR, source reuse, checkpoints, full-model recipes and campaign coordination. |
+| `delivery` | Historical numbered deliveries and probe/shuttle contracts, retained for compatibility and replay. |
+| `full` | The entire tests directory, including new files absent from every development profile. |
+
+**C134 audit baseline (2026-10-30, Python 3.12.14 / pytest 9.1.1):**
+6,804 cases in 302 files were all collected under tests, not datasets/environments.
+Exactly five imported campaign methods were accidentally recollected; fixing the
+module import retains their original tests. Ten new regressions give 6,809 cases
+in 304 files. All 853 numbered-delivery cases remain. Three text-identical test
+pairs use different template readers/fixtures and are intentionally retained;
+there are no remaining duplicate collected identities or shadowed test definitions.
+
+Measured focused runs: smoke 139 tests + 6 subtests in 25.95s; chemistry 608 + 10
+in 22.93s; workflow 292 + 26 in 30.41s. Full: 6809 passed, 276 subtests passed in 1018.99s (0:16:58).
+These are one-machine observations, not performance thresholds. The delivery
+profile selects 1,560 cases across 86 files; it is covered by the full run rather
+than separately timed. The largest full-run case-time contributors were
+`test_cif_recovered_resolution.py`, `test_cif_recovered_torsion.py`, `test_cif_mixed_endpoint.py`.
+Exact scope, source hashes and per-file timings are recorded under evidence key
+`development_validation_and_postmr_workflow_2026_10_30` in the
+[CIF Doctor ledger](cif-linked-native-registration-evidence.json). Future cases
+need not preserve these counts; full selection always discovers the complete directory.
+
+Use `--list` to inspect exact file selection without importing tests, or
+`--collect-only` to inspect pytest cases. Profiles can be combined without
+repeating files; `full` must be used alone. The runner locates its own checkout,
+uses the invoking Python, sets `PYTHONDONTWRITEBYTECODE=1` and checkout `src` on
+`PYTHONPATH`, and clears inherited pytest addopts so an old `-k`/last-failed option
+cannot silently narrow a named suite. It returns pytest's exit status. Missing
+profile files are errors. Existing plain `python -m pytest` remains unfiltered.
+For individual tests or custom filtering, use pytest directly with the documented
+environment rather than calling that result a named full pass.
+
+Run **full regression before merging a branch or releasing**, and when changes
+cross shared runtime boundaries, change schemas/provenance, alter dependencies,
+or change test discovery/selection. A new external-tool or scientific workflow
+also needs its appropriate native evidence; pytest cannot replace that evidence.
+A green full baseline may be carried through several focused development commits,
+but is invalidated as a merge gate by subsequent source/test/configuration changes.
+Rerun the full gate on the final combined state before integration.
+
+Record each handoff's exact scope, command, result, revision and remaining full
+or native gates. Do not describe a focused branch push as fully validated. For
+one-time timing analysis, append `--junitxml /new/local/path/results.xml`; existing
+output is refused. Keep machine timings and generated reports outside Git and
+scientific runs. Do not shorten timeout/process-ownership tests or discard
+historical replay tests merely to make a faster development loop.
 
 ## Diagnostic evidence and student workflow
 

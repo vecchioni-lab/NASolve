@@ -183,6 +183,22 @@ future feature.
 
 ## State, integrity and portability
 
+At each stage boundary, the controller and worker freshly verify that dataset's
+inputs, completed dependencies and all shared recipe resources. The entire frozen
+plan structure and fingerprint still validate. Entry, exit and explicit status
+perform full collection audits; retries keep their existing full-plan checks.
+Unrelated dataset files are not repeatedly hashed while another dataset runs.
+Changed waiting inputs block that dataset before launch; changed completed
+results are reported at the final full audit. No file checksum is trusted across
+calls, and no partial stage view is saved as a campaign plan or full status.
+
+C283's same 100-dataset synthetic fixture retains 50 prepared/50 failed datasets,
+306 stages including two explicit fresh-run retries, and relocated readback. Its
+initial file-hash reads fall from 651,504 to 13,104. This measures coordinator
+bookkeeping, not native chemistry throughput or a disk/RAM capacity guarantee.
+Exact comparison: `campaign_stage_integrity_scope_2026_11_14` in the CIF evidence
+ledger. Existing native C279/C282 controls retain their original code qualification.
+
 The frozen `NASolveCampaign/plan.json` is unchanged. Execution stores a separate
 schema-1 summary at `NASolveCampaign/execution/state.json`, tied to the plan
 fingerprint. Per-dataset attempts and stage job/result records live beneath

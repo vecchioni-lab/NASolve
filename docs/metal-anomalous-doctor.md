@@ -31,7 +31,7 @@ uncertainty and any non-criterion stops for triage, without automatic rejection,
 retry or checkpoint selection. Group-ADP and other native optimizers are not
 silently claimed as covered. Legacy trials without receipts remain readable and
 unassessed. Settings, freeze policies and existing schema-1 manifests are unchanged;
-new evidence requires the updated reader. See the current [handoff](development-handoff.md)
+new evidence requires the updated reader. See the current [handoff](metal-development-handoff.md)
 for focused tests, native equivalence and remaining scientific limits.
 
 The staged scientific contract also keeps **post-quantitation validation** distinct
@@ -75,7 +75,7 @@ fingerprints are provenance, not authentication of existing runtime wrappers.
 Legacy trials remain readable with no inferred selection history. Additive
 receipts require the updated reader; schema-1 manifests, refinement settings,
 scientific gates and retention policy are unchanged. The
-[handoff](development-handoff.md) records native equivalence and focused checks.
+[handoff](metal-development-handoff.md) records native equivalence and focused checks.
 
 ## Implemented native-trial map and Coot inspection
 
@@ -223,7 +223,7 @@ donor-only B changes the tested response only slightly. A four-Ag hypothesis
 retains mixed-sign f-double-prime and a large Rfree gap with both B policies.
 These observations support retaining alternatives for review; they do not
 establish a new metal, an accepted cluster count or a universal B policy. See
-the [current validation receipt](development-handoff.md#grouped-candidate-reviews-and-geometryb-comparisons-2026-10-30).
+the [current validation receipt](history/metal-development-handoff-2026-11-18.md#grouped-candidate-reviews-and-geometryb-comparisons-2026-10-30).
 
 ## Implemented matched cluster response comparisons
 
@@ -304,7 +304,7 @@ verified four-Ag fits exercise the signed diagnostics and different-B rejection.
 These validate accounting and provenance, not the underlying models, ligand
 chemistry, optimum Q, convergence or cluster atom count. The known low-B legacy
 fixtures remain conditional controls. No new native refinement or Coot execution
-is part of this pass. See the [validation handoff](development-handoff.md#matched-cluster-response-comparisons-2026-11-16).
+is part of this pass. See the [validation handoff](history/metal-development-handoff-2026-11-18.md#matched-cluster-response-comparisons-2026-11-16).
 
 ## Implemented frozen-fdp anomalous map capture
 
@@ -512,7 +512,7 @@ This option does not adopt the separate group-B/optimized-weight diagnostic
 profile as the production XYZ profile. The current XYZ API retains its existing
 individual-isotropic-ADP and weight policy. Private FT_Hg objective/iteration
 experiments are A01 qualification evidence, with exact scope and native execution
-status in the [handoff](development-handoff.md). Scientific geometry acceptance
+status in the [handoff](metal-development-handoff.md). Scientific geometry acceptance
 continues to precede anomalous quantitation.
 
 ## Implemented explicit XYZ weight controls
@@ -703,7 +703,7 @@ The discovered proxy also completed the path; its response did not support an
 automatic count expansion. The tetrahedron was an explicit prior-driven test.
 The Ag6 dataset produced four spatially separate AutoSol hits, retained together
 as an unrefined hypothesis; native six-site refinement remains pending.
-See the [current handoff](development-handoff.md#shared-cluster-environments-and-native-discovery-2026-10-29)
+See the [current handoff](history/metal-development-handoff-2026-11-18.md#shared-cluster-environments-and-native-discovery-2026-10-29)
 for exact commands, versions, artifact locations and remaining gates.
 
 ## Implemented environmental metal B preparation
@@ -1007,7 +1007,7 @@ controls open without native processes, preserving their input files. Browser
 automation was blocked by the host's administrator policy for local URLs, so no
 automated rendered-layout or browser-interaction pass is claimed. The initial
 manual review supplied screenshots; this revision awaits manual review. See the [current
-handoff](development-handoff.md#recipe-import-and-compact-review-2026-10-28) for commands
+handoff](history/metal-development-handoff-2026-11-18.md#recipe-import-and-compact-review-2026-10-28) for commands
 and receipts. These generated controls remain scientifically unqualified;
 viewing them does not resolve geometry, identity, occupancy or model quality.
 
@@ -1135,7 +1135,7 @@ flowchart LR
 and unassigned sites, pending points, parent changes, wrong geometry, source
 corruption, CLI behavior and fresh-interpreter replay after source removal and
 relocation. Read-only controls also open the existing single-Hg and mixed-Au/Ag
-results together. See the [current handoff](development-handoff.md#offline-workbench-controller-2026-10-28)
+results together. See the [current handoff](history/metal-development-handoff-2026-11-18.md#offline-workbench-controller-2026-10-28)
 for exact validation and local receipts. A snapshot describes evidence verified
 at opening; reopen before relying on current source availability. This is not a
 cache hit, independent scientific qualification, automatic solution decision,
@@ -1221,7 +1221,7 @@ offline pass. These are numerical workflow controls, not qualified human
 endpoints. Native anisotropic qualification, optimizer stopping/conditioning,
 geometry/identity/count decisions, automatic recentering, conditional occupancy
 refinement, general caching, pruning and GUI attachment remain separate work.
-See the [validation handoff](development-handoff.md#bounded-occupancy-sweeps-2026-10-28).
+See the [validation handoff](history/metal-development-handoff-2026-11-18.md#bounded-occupancy-sweeps-2026-10-28).
 
 **Methods.** NASolve derives a deterministic occupancy product from a fully
 audited seed experiment, retaining the full experimental basis. Bounded passes
@@ -1256,7 +1256,7 @@ native replay localizes a final fit/B shift to the coupled scale update, without
 identified stages and the actual exported endpoint. Retained source-phosphate
 state remains a separate chemistry question. These observations do not change
 the implemented public workflow, its figure or native defaults, and do not
-qualify an f″ parent. See the [current handoff](development-handoff.md) for
+qualify an f″ parent. See the [current handoff](metal-development-handoff.md) for
 matched controls, source provenance, validation and remaining gates.
 
 ## Implemented human reference snapshots
@@ -1353,7 +1353,7 @@ generated geometry controls. The additional unmapped Ag in FF_AuAg stays visible
 PDU is deferred. No Phenix or Coot process was run for this feature; human
 anisotropic snapshots do not extend native f-double-prime qualification. Exact
 validation commands and local evidence are in the
-[handoff](development-handoff.md#human-reference-snapshots-and-comparison-2026-10-28).
+[handoff](history/metal-development-handoff-2026-11-18.md#human-reference-snapshots-and-comparison-2026-10-28).
 
 **Methods.** NASolve parses a source-preserved PDB snapshot, verifies candidate
 lineage and applies declared exact atom correspondences. The existing geometry
@@ -1452,7 +1452,7 @@ Initial start/cycle and occupancy controls now accompany the comparison layer
 below. Conditioning, optimizer stopping/gradient qualification, weak/correlated-site
 controls, scientific ranking, adaptive scan orchestration, general caching and GUI integration
 remain follow-up work.
-See the current [validation handoff](development-handoff.md#metal-frozen-f-double-prime-diagnostic-2026-10-28)
+See the current [validation handoff](history/metal-development-handoff-2026-11-18.md#metal-frozen-f-double-prime-diagnostic-2026-10-28)
 for exact commands, results and retained failed attempts.
 
 **Methods.** From a verified recipe-prepared model, NASolve constructs an
@@ -1531,7 +1531,7 @@ show reduced start dependence. These are conditional results on generated
 numerical geometries, with all original freeze audits passing. Endpoint agreement
 does not establish global convergence, identifiable occupancy or correct metal
 chemistry. The comparator never chooses a winning structure or a next q value.
-See the [current comparison handoff](development-handoff.md#metal-endpoint-comparison-and-sensitivity-controls-2026-10-28)
+See the [current comparison handoff](history/metal-development-handoff-2026-11-18.md#metal-endpoint-comparison-and-sensitivity-controls-2026-10-28)
 for exact control inventory and validation commands.
 
 **Methods.** NASolve revalidates each explicit frozen-fit artifact, requires a

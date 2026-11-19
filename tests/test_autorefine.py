@@ -1406,6 +1406,61 @@ class AutoRefineTests(unittest.TestCase):
         self.assertEqual(stats["bond_rmsd"], 0.009)
         self.assertEqual(stats["diagnostics"], ["WARNING geometry needs inspection"])
 
+    def test_statistics_parser_reads_completed_native_step_table(self):
+        # Phenix 2.2.1 prints candidate criteria and initial geometry too; neither
+        # supplies the final geometry. The explicit end row does.
+        log = (
+            "Initial model statistics (before refinement)\n"
+            "  Bond : 0.041 0.226 987 Z=0.540\n"
+            "  Angle : 2.105 35.405 1519 Z=1.085\n"
+            "Weight selection criteria:\nBond RMSD: 0.0150\nAngle RMSD: 2.0000\n"
+            " work free delta bonds angl\n"
+            " 0.22 0.26 0.04 0.011 1.1 31.5 0.0 0.0 0 1.0\n"
+            " stage r-work r-free bonds angles b_min b_max b_ave n_water shift\n"
+            " 0 : 0.2245 0.2599 0.041 2.105 80.6 214.1 119.0 0 0.000\n"
+            " 1_xyzrec: 0.2251 0.2609 0.025 1.772 80.6 214.1 119.0 0 0.016\n"
+            " 1_realsrl2: 0.2251 0.2609 0.025 1.772 80.6 214.1 119.0 0 0.016\n"
+            " end: 0.2251 0.2609 0.025 1.772 80.6 214.1 119.0 0 0.016\n"
+            "--------------------\n"
+        )
+        stats = parse_refinement_statistics(log)
+        self.assertEqual((stats["bond_rmsd"], stats["angle_rmsd"]), (0.025, 1.772))
+        self.assertEqual(stats["cycle_series"], [])
+        self.assertIsNone(stats["r_work"])
+
+    def test_statistics_geometry_requires_known_complete_table(self):
+        header = "stage r-work r-free bonds angles b_min b_max b_ave n_water shift\n"
+        row = "end: 0.22 0.26 0.025 1.772 80.6 214.1 119.0 0 0.016\n"
+        cases = {
+            "no header": row,
+            "wrong columns": header.replace("bonds angles", "angles bonds") + row,
+            "no end": header + row.replace("end:", "1_xyzrec:"),
+            "interrupted table": header + "native run failed\n" + row,
+            "malformed stage": header + row.replace("end:", "1_realsrl2!:") + row,
+            "short row": header + "end: 0.22 0.26 0.025 1.772\n",
+            "missing geometry": header + row.replace("0.025", "None"),
+            "nonfinite geometry": header + row.replace("1.772", "nan"),
+            "negative geometry": header + row.replace("0.025", "-0.025"),
+        }
+        for label, text in cases.items():
+            with self.subTest(label=label):
+                stats = parse_refinement_statistics(text)
+                self.assertIsNone(stats["bond_rmsd"])
+                self.assertIsNone(stats["angle_rmsd"])
+
+    def test_statistics_geometry_preserves_log_order_across_formats(self):
+        legacy = "Final: bonds=0.009 angles=1.2\n"
+        table = (
+            "stage r-work r-free bonds angles b_min b_max b_ave n_water shift\n"
+            "end: 0.22 0.26 0.025 1.772 80.6 214.1 119.0 0 0.016\n"
+        )
+        for log, expected in ((legacy + table, (0.025, 1.772)),
+                              (table + legacy, (0.009, 1.2)),
+                              (table + table.replace("1.772", "1.600"), (0.025, 1.6))):
+            with self.subTest(expected=expected):
+                stats = parse_refinement_statistics(log)
+                self.assertEqual((stats["bond_rmsd"], stats["angle_rmsd"]), expected)
+
     def test_missing_free_r_is_rejected_without_generation(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

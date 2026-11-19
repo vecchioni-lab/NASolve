@@ -219,7 +219,7 @@ establish acceptable geometry, and native Rfree fallback remains visible.
 Trial-selection R factors are distinct from the final post-ADP/scaling values.
 Legacy bundles remain readable without inferred history; new receipts need the
 updated reader. See the [selection methods and limits](metal-anomalous-doctor.md#native-xyz-weight-selection-evidence)
-and [current validation](development-handoff.md). The workflow above and its
+and [current validation](metal-development-handoff.md). The workflow above and its
 scientific gates are unchanged.
 
 Native Phenix may sort atom records during model interpretation. The XYZ audit
