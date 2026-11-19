@@ -673,6 +673,21 @@ def read_execution_chemistry_sites(run, reference, *, checkpoint, parent, model)
         observation=observation,scientific_approval='NOT_RUN',automatic_adoption=False)
 
 
+def read_execution_scalar_geometry(run, reference, *, checkpoint, parent, model):
+    """Describe bonds, angles and ordered volumes from authenticated final sites.
+
+    Reuse C15 scalar arithmetic; selected heavy-atom evidence does not become a
+    whole-model inventory, native energy or scientific acceptance gate.
+    """
+    selected = _selected_chemistry_observation(run, reference,
+        checkpoint=checkpoint, parent=parent, model=model)
+    if selected is None:
+        return None
+    data, projections, observation = selected
+    from .refinement_chemistry import _observed_scalar_geometry
+    return dict(_observed_scalar_geometry(projections, observation), model_sha256=_digest(data))
+
+
 def read_execution_trigonal_geometry(run, reference, *, checkpoint, parent, model):
     """Explicit source-selected shape/plane report; no native run or adoption.
 

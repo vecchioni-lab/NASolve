@@ -4438,3 +4438,10 @@ atoms stay unchanged. Hazel's matched five-cycle refinement preserves the declar
 links and restraints but stretches the bond again to 1.66244 Å. This is a useful
 construction correction, not a solved refinement. A general production rule must
 also preserve the protection supplied by older sulfur and iodine placement rules.
+
+The explicit final-geometry reader now uses the existing bond, angle and relative
+handedness measurements on authenticated refinement observations, including
+non-triple modified sites when their capture was requested. It reports what Phenix
+actually used and the shape achieved, keeping partial coverage and unsupported
+conventions visible. It neither proposes stronger targets nor treats a descriptive
+outlier count as a chemical acceptance gate; whole-substituent shape still matters.

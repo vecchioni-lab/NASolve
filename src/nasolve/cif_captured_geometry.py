@@ -56,27 +56,13 @@ def _observed(kind, points):
     return _dot(a, cross)
 
 
-def review_captured_geometry(native: dict) -> dict:
-    """Report distances, angles and ordered volumes, never scientific PASS.
+def _geometry_measurements(atoms, coords, details, counts):
+    """Shared scalar arithmetic keyed by actual atom indices; caller binds scope.
 
-    ``nominal_deviation`` is (observed - target) * sqrt(recorded weight),
-    using abs(ordered volume) only when the recorded both_signs flag is true.
-    It is a ranking aid, not a native energy or a calibrated acceptance test.
-    All rows and deferred categories remain visible, including zero weights.
+    Whole inventories supply contiguous indices; selected refinement captures keep
+    their sparse global indices. This helper grants neither capture authority nor
+    source/chemical acceptance.
     """
-    if (native.get('schema_version') != 1 or native.get('policy_id') != 'cif-native-bundle-inventory-v1'
-            or native.get('inventory_detail') != 'linked' or native.get('status') != 'REVIEW'):
-        raise ValueError('Require a completed detailed native inventory')
-    geometry = native['geometry']; atoms = native['atoms']
-    if geometry.get('status') != 'RECORDED' or native.get('atom_count') != len(atoms):
-        raise ValueError('Incomplete captured geometry inventory')
-    coords = [_point(p) for p in geometry['sites_cart_exact']]
-    if len(coords) != len(atoms) or len({a['label'] for a in atoms}) != len(atoms):
-        raise ValueError('Captured atom identities and geometry sites disagree')
-    for i, atom in enumerate(atoms):
-        if type(atom['i_seq']) is not int or atom['i_seq'] != i or max(abs(x-y) for x, y in zip(_point(atom['xyz']), coords[i])) > 1e-9:
-            raise ValueError('Captured atom ordering or coordinates differ from manager sites')
-    details, counts = geometry['proxy_details'], geometry['proxy_counts']
     measurements = {}; summaries = {}
     for kind, (size, target_field, unit) in _KINDS.items():
         proxies = details.get(kind)
@@ -85,7 +71,7 @@ def review_captured_geometry(native: dict) -> dict:
         rows = []
         for index, proxy in enumerate(proxies):
             indices = proxy['i_seqs']
-            if (len(indices) != size or any(type(i) is not int or not 0 <= i < len(atoms) for i in indices)
+            if (len(indices) != size or any(type(i) is not int or i not in atoms for i in indices)
                     or proxy['atoms'] != [atoms[i]['label'] for i in indices]):
                 raise ValueError('Captured proxy endpoint identity mismatch: ' + kind)
             row = {'proxy_index': index, 'i_seqs': list(indices), 'atoms': list(proxy['atoms']),
@@ -151,6 +137,32 @@ def review_captured_geometry(native: dict) -> dict:
             raise ValueError('Captured deferred proxy detail/count mismatch: ' + kind)
         deferred[kind] = {'count': count, 'status': 'UNASSESSED',
                           'reason': 'Requires separate native convention and geometry qualification'}
+    return measurements, summaries, deferred
+
+
+def review_captured_geometry(native: dict) -> dict:
+    """Report distances, angles and ordered volumes, never scientific PASS.
+
+    ``nominal_deviation`` is (observed - target) * sqrt(recorded weight),
+    using abs(ordered volume) only when the recorded both_signs flag is true.
+    It is a ranking aid, not a native energy or a calibrated acceptance test.
+    All rows and deferred categories remain visible, including zero weights.
+    """
+    if (native.get('schema_version') != 1 or native.get('policy_id') != 'cif-native-bundle-inventory-v1'
+            or native.get('inventory_detail') != 'linked' or native.get('status') != 'REVIEW'):
+        raise ValueError('Require a completed detailed native inventory')
+    geometry = native['geometry']; atoms = native['atoms']
+    if geometry.get('status') != 'RECORDED' or native.get('atom_count') != len(atoms):
+        raise ValueError('Incomplete captured geometry inventory')
+    coords = [_point(p) for p in geometry['sites_cart_exact']]
+    if len(coords) != len(atoms) or len({a['label'] for a in atoms}) != len(atoms):
+        raise ValueError('Captured atom identities and geometry sites disagree')
+    for i, atom in enumerate(atoms):
+        if type(atom['i_seq']) is not int or atom['i_seq'] != i or max(abs(x-y) for x, y in zip(_point(atom['xyz']), coords[i])) > 1e-9:
+            raise ValueError('Captured atom ordering or coordinates differ from manager sites')
+    measurements, summaries, deferred = _geometry_measurements(
+        {atom['i_seq']: atom for atom in atoms}, dict(enumerate(coords)),
+        geometry['proxy_details'], geometry['proxy_counts'])
     return {'schema_version': 1, 'audit_kind': 'cif_captured_cartesian_geometry_review',
             'policy_id': CAPTURED_GEOMETRY_POLICY, 'status': 'REVIEW', 'analysis_completed': True,
             'atom_count': len(atoms), 'measurements': measurements, 'summary': summaries,

@@ -6,10 +6,29 @@ Active branch **cedar**, worktree **NASolve-c96**. Runtime **`58965920`** passes
 **3104.30 s**. All 1,417 tracked test-checkout files and exact NARestraints
 `a9264f9e` remain unchanged; the test process group is absent. The verified
 254 KB qualification archive retains exact results, commands and source bindings.
-Disposable test-copy cleanup remains pending at cutoff (4.48 GB logical); retain
-its recorded owner/plan and do not touch scientific inputs or installed packages.
+Linden completed the recorded 4.48 GB owned test-copy retirement on 19 November,
+rechecking the archive and preserving scientific inputs, installations and shared NAR.
 Focused, relocated installed, matched native and independent checks also pass.
 Software qualification does not change the scientific REVIEW or close Q06.
+
+## Active bounded step — C407, 19 November
+
+Through 14:30 UK, connect the existing C15 scalar geometry calculation to C406's
+validated final-site observations. Prior-work review found no missing DF heavy
+term and no justified new numerical target; C15 already owns bond/angle/ordered-
+volume measurement. Reuse it rather than writing another chemical calculator.
+Keep global indices, selected versus whole-model counts, source identities,
+unavailable conventions and descriptive-only status explicit. Preserve historical
+reports/workers and all acceptance/default choices. No new native sweep is planned.
+
+Current checks: the exact-owner regression fails before the change; 164 focused
+tests pass; 11 historical report/error cases are exactly unchanged. Cold replay
+checks 112 scalar measurements across existing C403/C406 endpoints, leaving all
+349 native files unchanged. All historical workers remain exact. Installed checks,
+independent review and a single combined integration full gate are next. The last
+standalone Cedar full gate remains `58965920`; do not relabel a combined gate.
+Linden owns deferred C406 scratch retirement and W145 map provenance; Hazel owns
+Cedar/Alder integration review. No overlapping branch or owner changes.
 
 ## Current checkpoint
 
@@ -85,9 +104,8 @@ six-atom ring plane 0.094297 Å. These descriptive starting values are not accep
 
 ## Next work, in order
 
-1. Complete only the recorded owned test-copy retirement after the verified C406
-   archive; the full gate, compact handoff and scientific controls are complete.
-   Do not rerun the suite or native matrix.
+1. Finish C407 installed/independent review and the coordinated combined gate.
+   C406 scratch retirement is complete; no repeated native matrix is needed.
 2. Use the resulting actual-manager evidence to identify the remaining chemical
    defect. Q06 needs useful PDU/DF geometry after refinement and whole-substituent
    evidence, not merely successful execution or a readable CIF. Reuse existing

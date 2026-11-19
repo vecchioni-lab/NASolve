@@ -86,6 +86,69 @@ def _observed_readback(model_bytes, projections, observation):
     return result
 
 
+def _observed_scalar_geometry(projections, observation):
+    """Apply C15 measurements to an already authenticated selected observation.
+
+    The execution owner validates the request, final model and native capture.
+    Source identity is checked here; missing source atoms are not inferred to be
+    missing restraints, because explicit site modifications may remove them.
+    """
+    from .cif_captured_geometry import _geometry_measurements, _point
+    from .cif_stereochemistry_audit import _values, _graph
+    from .cif_linked_qualification import _site
+    expected = [dict(site=site, component=code) for site, (_, code) in sorted(projections.items())]
+    _need(observation['sites'] == expected, 'Observed scalar site/component scope differs')
+    snapshots = {Path(path): _read(Path(path)) for path, _ in projections.values()}
+    result = dict(schema_version=1, policy_id='refinement-declared-site-scalar-geometry-v1',
+        status='UNASSESSED', reason=observation.get('reason'), analysis_completed=False,
+        declared_sites={site: dict(component=code, projection_sha256=sha256(snapshots[Path(path)]).hexdigest())
+                        for site, (path, code) in sorted(projections.items())},
+        measurements={}, summary={}, deferred_proxy_kinds={},
+        atom_count=None, full_atom_count=None, captured_proxy_counts=None, full_proxy_counts=None,
+        native_scope=observation.get('scope'), coordinate_precision=observation.get('coordinate_precision'),
+        model_state_sha256=observation.get('model_state_sha256'),
+        native_execution='NOT_RUN', native_residuals='UNASSESSED',
+        absolute_stereochemistry='UNASSESSED', sugar_pucker='UNASSESSED',
+        complete_geometry_qualification='NOT_RUN', scientific_approval='NOT_RUN', automatic_adoption=False,
+        limitations=[
+            'Already captured intra-site heavy atoms only; no missing H/cross-site/symmetry neighborhood is inferred.',
+            'Global atom indices and selected/whole-model counts remain distinct; selected counts do not establish complete residue coverage.',
+            'Source/effective definitions may differ through explicit modifications; absent source atoms do not prove missing restraints.',
+            'Scalar deviations use C15 Cartesian conventions, not native energies, calibrated acceptance or a new repair rule.',
+            'Nominal counts at three/five and atom-name sugar annotations are descriptive aids only.',
+            'Ordered-volume signs are relative to the recorded proxy, not independent absolute stereochemistry.',
+            'Dihedrals, ASU bonds, planes, parallelities, pucker and complete chemical acceptance remain separate.'])
+    try:
+        if observation['status'] == 'UNASSESSED':
+            return result
+        _need(observation['status'] == 'OBSERVED', 'Require an observed native state')
+        sources = {}; atoms = {}; identities = set()
+        for atom in observation['atoms']:
+            site = _site(atom); name = atom['atom_id']; index = atom['i_seq']
+            _need(site in projections and type(index) is int and index >= 0 and index not in atoms
+                  and (site, name) not in identities, 'Ambiguous observed scalar atom identity')
+            path, code = projections[site]; key = (Path(path), code)
+            if key not in sources:
+                sources[key] = _graph(_values(path, code))[0]
+            _need(atom['identity']['resname'].strip() == code and name in sources[key]
+                  and atom['element'] == sources[key][name], 'Observed scalar atom differs from source')
+            atoms[index] = atom; identities.add((site, name))
+        coords = {index: _point(atom['xyz']) for index, atom in atoms.items()}
+        details = observation['geometry']['proxy_details']
+        counts = {kind: len(rows) for kind, rows in details.items()}
+        measurements, summary, deferred = _geometry_measurements(atoms, coords, details, counts)
+        measured = any(measurements.values())
+        result.update(status='REVIEW' if measured else 'UNASSESSED',
+            reason=None if measured else 'No captured simple-bond, angle or chirality terms.', analysis_completed=True,
+            measurements=measurements, summary=summary, deferred_proxy_kinds=deferred,
+            atom_count=len(atoms), full_atom_count=observation['full_atom_count'],
+            captured_proxy_counts=counts, full_proxy_counts=dict(observation['geometry']['full_proxy_counts']))
+        return result
+    finally:
+        _need(all(_read(path) == data for path, data in snapshots.items()),
+              'Scalar source projection changed during read')
+
+
 def _preparation_context(run, registry, verified, item):
     """Resolve only this branch's already validated preparation, without replay."""
     from .checkpoints import _ref_path

@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Read final modified-site bond, angle and handedness deviations (C407)
+
+- Add an explicit cold Python report for the scalar geometry already captured
+  during refinement. Reuse the existing Cartesian calculations and execution/
+  source/model checks; preserve global atom indices and separate selected-site
+  from whole-model counts.
+- Report recorded targets, achieved values, relative chirality signs and nominal
+  deviations without approving chemistry or evaluating native energies. Missing
+  conventions, unavailable observations and deferred terms remain explicit.
+- Historical whole-inventory and triple reports, native workers, scientific
+  thresholds and ordinary defaults stay unchanged. No new refinement or repair
+  runs during inspection; no record migration is required.
+
 ### Observe declared modified sites without requiring a triple bond (C406)
 
 - Add explicit Python `execute_autorefine(observe_declared_sites=True)` for the

@@ -116342,9 +116342,17 @@
         "size": 254249,
         "indexed_files": 13
       },
-      "cleanup": "PENDING; verified owned test copies only, deferred at evening cutoff",
+      "cleanup": "COMPLETE 2026-11-19; exact stopped owned test copies retired by Linden",
       "owned_scratch_logical_bytes": 4477519863,
-      "scientific_acceptance": false
+      "scientific_acceptance": false,
+      "retirement": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "willow/w144-c406-retirement-2026-11-18.json",
+        "sha256": "f91d3df68283961070310ab0d34d2de9e855c6f971d042d322143d8b7f3baad3",
+        "files": 246332,
+        "logical_bytes": 4477519863,
+        "scientific_inputs_removed": false
+      }
     },
     "limits": [
       "Explicit ordinary Python option only; counted controls/CLI/default activation remain separate.",

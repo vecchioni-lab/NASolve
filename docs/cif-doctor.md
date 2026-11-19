@@ -13570,6 +13570,34 @@ Qualification is recorded under `declared_site_native_observation_2026_11_18`
 in the existing evidence ledger; source/installed tests are distinct from actual
 native execution and the full regression gate.
 
+### Explicit actual-final scalar geometry (C407)
+
+`refinement_parallelity.read_execution_scalar_geometry(run, reference,
+checkpoint=..., parent=..., model=...)` describes already captured simple-bond
+lengths, central angles and ordered chirality volumes. The existing execution
+reader binds the exact final model, request, native observation and source
+projections. C15's scalar calculation is reused; its historical whole-inventory
+output stays exact. Source component, atom names and elements must agree with the
+observed site. This is a cold Python read, not a new native interpretation.
+
+The report keeps sparse global native atom indices. `atom_count` and
+`captured_proxy_counts` describe the selected heavy-atom intra-site capture;
+`full_atom_count` and `full_proxy_counts` retain the whole manager's recorded
+counts. Neither establishes complete residue coverage. Explicit modifications
+may remove source H/OP3 atoms; absence is not evidence of a missing restraint or
+permission to restore an atom. No observed scope returns no report; an unavailable
+observation or no captured scalar terms stays `UNASSESSED`.
+
+Nominal deviation remains `(observed - target) * sqrt(weight)` under the existing
+C15 conventions. Counts at three/five and atom-name sugar annotations are aids,
+not acceptance thresholds or chemical classification. Relative ordered-volume
+signs do not establish absolute stereochemistry. Missing, zero and negative weights,
+unsupported symmetry/conventions and degenerate geometry retain their existing
+statuses. Dihedrals, ASU bonds, planes, parallelities, pucker and native residuals
+remain separately qualified. In particular, small local scalar deviations do not
+erase PDU's observed whole-substituent bending. No target, force, selection or
+scientific acceptance rule changes.
+
 ### Explicit actual-final trigonal shape (C404)
 
 `refinement_parallelity.read_execution_trigonal_geometry(run, reference,

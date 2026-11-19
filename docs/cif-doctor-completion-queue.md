@@ -290,6 +290,13 @@ actual neighborhoods to distinguish achieved geometry from delivery; keep H,
 cross-site, symmetry and wider chemical-state questions explicit. Ordinary V9
 observation is separate from Refine Doctor/counting forwarding and automatic repair.
 
+**C407 active:** reuse C15 scalar measurements on C406's sealed actual-final
+site observations. Keep source identities, global indices, selected/whole counts
+and unassessed conventions explicit. Focused/legacy/cold checks pass; installed,
+independent and combined-source qualification remain. This connects an existing
+calculation to the ordinary evidence owner; it is not another optimizer or a new
+scientific diagnosis. Preserve the separate whole-substituent gate.
+
 **Scientific stopping boundary:** C403 uses substituted-scaffold observations, not
 a PDU crystal. Keep its existing REVIEW screen and whole-substituent measurements,
 but do not treat repeated flattening or optimizer convergence as an agreed universal

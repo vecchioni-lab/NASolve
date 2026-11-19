@@ -11,6 +11,12 @@ observations, not missing H/cross-site/symmetry context or scientific acceptance
 Counted controls and Refine Doctor do not yet forward this option. See the
 [declared-site observation contract](cif-doctor.md#explicit-declared-site-observation-beyond-triple-bonds-c406).
 
+The explicit final scalar reader composes the same sealed observation with the
+existing captured Cartesian measurement code. Sparse native indices and selected/
+whole-model counts remain distinct; source identities are checked without inferring
+missing atoms or chemical acceptance. No native worker, saved capture or default
+changes. See [actual-final scalar geometry](cif-doctor.md#explicit-actual-final-scalar-geometry-c407).
+
 Ordinary Coot construction verifies actual canonical residue identity after each
 native mutation, before writing a parent snapshot or constructing its replacement.
 Native success codes do not establish chemical identity. Historical script
