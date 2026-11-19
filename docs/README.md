@@ -45,11 +45,13 @@ current instructions; other branches retain their own status and validation pins
   diffraction counterpart records reference drift and a geometry/density tradeoff,
   including adaptive work filtering. W154 labels map sources independently from
   coordinate states. These do not close general repair or stage integration.
+  W155 records prescribed displacement/Q/B density counterexamples, with its
+  original version-capture limitation; experimental attribution remains open.
   Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W154;
-  the next substantial audit is W155. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W155;
+  the next substantial audit is W156. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

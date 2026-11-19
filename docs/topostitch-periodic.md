@@ -9137,3 +9137,91 @@ roots are retired: **3,956 files /29,020,618 bytes**. Scientific runs, checkouts
 shared Python/NARestraints and C407 installation remain. W150's receiving-owner
 candidate remains frozen and deferred; this patch is not silently folded into
 its earlier compatibility receipt or adopted into Alder/Cedar.
+
+## W155 — Record density counterexamples before proposing backbone motion
+
+**2026-11-19; prescribed scattering diagnostic only.** W153 leaves a strong
+negative phosphate feature despite improved geometry. Before introducing a
+red-density motion rule, check an explicit counterexample set. Hazel confirms
+that her existing global-scale/ADP invariance and own/common-coordinate sampling
+controls do not already supply this local contrast. No additional refinement,
+experimental attribution or detector implementation is undertaken.
+
+The unchanged deposited 5W6W source from W152 supplies 859 scatterers. Only
+**B2 P, OP1 and OP2** vary; the other 856 scatterers retain exact fractional sites,
+occupancy, isotropic/anisotropic displacement fields, types and anomalous terms.
+Use the same 7,554 nonanomalous HKLs through 3.06 Å, the same 144×144×125 grid
+and `n_gaussian` direct structure factors. The zero control subtracts identical
+complex coefficients. Three separate prescribed comparisons use:
+
+| Error | Prescribed true/model distinction | Exact value at modeled P |
+| --- | --- | ---: |
+| Displacement | Original truth; model group translated +0.75 Å along Cartesian x | −1.454744 |
+| Occupancy | True group Q=0.5; model retains Q=1 at the same sites | −2.802522 |
+| ADP | True group B increases by 40 Å²; model retains source B at the same sites | −1.685074 |
+
+These are **complex `F_true − F_model`**, with their prescribed phases, divided
+by one common reference Fcalc-map sigma. They are **not amplitude differences,
+experimental mFo−DFc maps or ordinary Fo−Fc sigma units**. No noise, scales,
+coordinates or occupancies are fitted. F000 is omitted; electron-count integrals
+are unavailable and finite-resolution/zero-order effects can produce ripples.
+The deliberately shifted phosphate group is a strained diagnostic scattering
+model, not a chemically acceptable repair proposal.
+
+All three errors produce a negative modeled-P feature. The ADP case also has a
+broader positive feature without translation. Within the displaced group, OP1
+is **positive (+0.2511)** while P is negative: not every atom in a misplaced group
+must have the same residual sign. This demonstrates ambiguity, not a general
+shape classifier, identification of W153's cause or proof of a motion vector.
+No calibration threshold or automatic action follows.
+
+**Checks:** the zero coefficients/map are exactly zero. Full-model contrasts
+match the three-atom-only contribution within **4.82e−12** structure-factor units;
+nearest-voxel direct Fourier and FFT values agree within **1.18e−14** common
+reference units. Native arrays have identical ordered HKLs; serialized arrays
+retain 7,554 unique reflections and no F000. Q and B change independently.
+Reported numerical metrics use full-precision arrays; serialized MTZ amplitudes
+and phases have float32 precision. Source PDB and immutable result remain exact.
+Hazel independently checks source/plan/worker/result/MTZ hashes, Cartesian motion,
+Q/B deltas, HKLs and zero control, and reviews the retained arithmetic evidence;
+she does not rerun the coefficient calculation.
+
+**Runtime-provenance limit:** the direct launcher is the selected
+`phenix-2.2.1-6174/bin/phenix.python`, but the original version API returned an
+empty string. Preserve that original field and result hash
+`7a6b1e1e485b9dfffbbeed89b4fd248faf9457e83a1518a2e07e65cad0b39fce`.
+A separate identity-only launch using `installation_from_candidate`'s environment
+identifies the installation as **Phenix 2.2.1-6174** and records interpreter/module
+hashes. It is not a retroactive capture of the original process version/environment
+or complete loaded-module inventory. No science calculation is repeated to hide
+this gap; future native diagnostics should capture SDK environment/version at
+launch. This contrast is not an installed native-policy qualification.
+
+Commands: `PYTHONDONTWRITEBYTECODE=1 <shared Python3.12> -B
+runners/w155-scattering.py` captures the predeclared ≤180 s native worker (actual
+**2.05 s**, stopped); `w155-runtime-identity.py` captures the separate identity
+probe, also stopped, with zero new scattering calculations/refinements.
+`w155-checkout.py` uses the existing Matplotlib environment for a PNG/SVG report.
+The final figure is visually inspected after correcting title/footer overlap;
+scientific data do not change. No new source tests, installation or unchanged full
+suite are needed for this private diagnostic/docs update. Roadmap checks reuse
+the existing eight focused cases and generated-view/reference audit.
+
+Human checkout: GitHub workspace anchor
+`ScienceCheckouts/Linden/2026-11-19_density-ambiguity/review.html` (four files).
+The three common-scale slices and line profiles explicitly label prescribed/model
+sites and the non-ML normalization. The archived package includes the source,
+frozen plan, native coefficients/result, peer review, provenance supplement,
+figure and final report. NASolve anchor
+`branch-artifacts/willow/w155-density-counterexamples-2026-11-19.zip` contains
+24 indexed files +manifest, 1,014,541 bytes, SHA256
+`addacfb60c7befbc46b834761f2aacab9ffe7989b6f3da7bf47efadeb6655c86`.
+All hashes verify. Science remains local, excluded from Git; archive integrity is
+not portable native execution. No runtime/schema/CLI/compatibility migration.
+
+**Next:** retain these prescribed errors as required counterexamples before any
+motion detector. Model-assisted phases, observed-amplitude uncertainty, occupancy/
+ADP interactions, noisy healthy controls and geometry/packing context still need
+qualification with the scientist. Do not promote nearby green/red patterns,
+a single atom's sign or this reference normalization into a bending instruction.
+S06 remains PARTIAL; no further native matrix is queued from this result alone.

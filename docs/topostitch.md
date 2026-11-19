@@ -655,6 +655,18 @@ across the model and occupancy/ADP alternatives. Freeze calibration separately
 from later evaluation; do not use held-out Rfree to tune detection thresholds.
 Initially flag for review only, with no automatic deletion or displacement.
 
+**W153/W155 qualification boundary:** the experimental comparison now demonstrates
+why the matched no-op and scattering state matter: geometry can improve while
+the reference moves and phosphate residuals persist. W155's prescribed
+complex-F controls give negative modeled-P features from coordinate, occupancy
+and B errors separately; nearby positive density and every atom sharing one sign
+are not reliable general rules. Those known-phase, noiseless contrasts are not
+ML-map or detector calibration. Keep them as counterexamples before adding a
+motion trigger. Future comparisons must also declare effective work filtering:
+W153 preserved raw data/Free but native filtering changed one arm's work set.
+[Experimental evidence](topostitch-periodic.md#w153--separate-experimental-backbone-recovery-from-geometry-driven-relaxation)
+and [counterexamples with provenance limits](topostitch-periodic.md#w155--record-density-counterexamples-before-proposing-backbone-motion).
+
 **Existing map owner to reuse (18 November):** Hazel's maintained
 `nasolve.metal.map_diagnostics` and saved-coefficient audit provide a starting
 point for exact map/source hashes, coefficient labels, cell/symmetry and work-set

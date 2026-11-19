@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-19**, through **W154**. **W152 closes the independent
+Updated **2026-11-19**, through **W155**. **W152 closes the independent
 opposite-displacement/no-op subgate under idealized matching data.** Deposited
 5W6W starts recover from 0.764 Å RMS to 0.052/0.047 Å, with a 0.014 Å no-op.
 This complements W148's 8D93-derived control; both remain bounded evidence.
@@ -18,6 +18,13 @@ W154 lets the installed inspector name density sources independently of the
 coordinate states. Complete source and relocated-install checks pass; the two
 new experimental views use that distinction. Shared receiving-owner adoption,
 source/frame proof and browser/GPU qualification remain separate.
+
+**W155 supplies explicit density counterexamples:** a prescribed coordinate error,
+occupancy excess and B mismatch each yield negative modeled-P density; the B case
+also gives nearby positive density without motion. These exact known-phase
+contrasts are not ML maps, a detector or an explanation of W153. The original
+version API returned no value; a separate installation identity is documented
+without rewriting that run. [Evidence and limits](topostitch-periodic.md#w155--record-density-counterexamples-before-proposing-backbone-motion).
 
 The backend can bind periodic pair intent, retain qualified native terms across
 compatible descendants and refuse unsupported continuation. **General sticky-end
@@ -118,7 +125,8 @@ W148/W152 recovery and W153's experimental comparison are now recorded; do not
 repeat them or the W74/W75 invariance probes. Next density attribution must
 separate displacement from occupancy/ADP/scattering alternatives before proposing
 motion. Hazel's global-scale/ADP and own/common-coordinate sampling controls are
-useful precedents, not a qualified local causal matrix. A future fixed-work-set
+useful precedents; W155 adds prescribed known-phase local counterexamples,
+not a noisy/model-assisted attribution qualification. A future fixed-work-set
 trajectory needs predeclared filtering; W153's common-HKL endpoint rescore already
 answers its narrow arithmetic question without another native run. Larger,
 reciprocal and nonuniform shapes, junction-aware window expansion and B09 remain
@@ -206,6 +214,13 @@ W118 numerical helpers retain their exact original scopes; no later software
 PASS upgrades older diagnostic models to accepted structures.
 
 ## Local science checkout
+
+**W155 density ambiguity:** GitHub workspace anchor,
+`ScienceCheckouts/Linden/2026-11-19_density-ambiguity/review.html`. Four files
+contain the visually checked common-scale figure, vector export, short report
+and hashes. It illustrates three prescribed causes of negative modeled-P density;
+it does not identify the experimental cause or calibrate a threshold.
+
 
 **Current W153 experimental comparison:** GitHub workspace anchor,
 `ScienceCheckouts/Linden/2026-11-19_experimental-backbone/review.html`. Two

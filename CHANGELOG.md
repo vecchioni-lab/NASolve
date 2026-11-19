@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W155 — Preserve density-attribution counterexamples
+
+- Record prescribed coordinate, occupancy and B-factor scattering errors that
+  each produce negative modeled-phosphorus density, without fitting or claiming
+  experimental attribution. Preserve the original missing version-API capture
+  and separate identity supplement explicitly.
+- Update the density gate and small local science report; no detector, runtime,
+  schema, installation or acceptance-policy changes, and no raw science committed.
+
 ### W153–W154 — Experimental control and independent density-source labels
 
 - Record the mixed deposited-5W6W result, native adaptive filtering, common-HKL
