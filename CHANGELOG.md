@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W147 — Share exact native coefficient selection and descriptive headers
+
+- Extract the existing exact complex-array label selector for shared inspection;
+  retain missing/duplicate refusals and return the original native array.
+- Describe explicit labels, cell and space-group/operator headers separately from
+  generation policy and model/frame proof. No file finder, new reader, launcher,
+  FFT, fitting or numerical-policy change is added by these helpers.
+
 ### W146 — Pin the files in a read-only inspection snapshot
 
 - Add `model_inspection.inspect_model_map` over the existing view and anchored

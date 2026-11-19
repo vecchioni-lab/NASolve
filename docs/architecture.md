@@ -695,6 +695,17 @@ It is neither a filesystem lock nor an approval record: a later renderer/action
 must revalidate file references again. A broader producer/frame interpretation
 and cross-stage rendering remain separate work.
 
+`map_coefficients.select_complex_array(arrays, labels)` reuses the native map
+preview's exact ordered-list label match and exactly-one-complex-array refusal.
+It returns the original array; the existing iotbx caller retains file reading.
+`describe_complex_array(array)` records labels, cell, symmetry operators and
+reflection count as a schema-1 `map-coefficient-header` description. Neither
+helper examines coefficient values, performs FFT/sampling or infers generation
+policy or model/frame correspondence. Callers bind bytes and reader version,
+and revalidate before use. The dependency-free module supports native bare
+Python as well as package imports; worker extraction must record its helper hash
+and preserve cached old results and numerical paths.
+
 Every view retains ordinary `--auto` map loading and adds a run-local Python
 startup script. In Coot, `valid_labels` checks the exact `ANOM`/`PHANOM` pair.
 The script uses `make_and_draw_map` with no weights and the difference-map flag,
