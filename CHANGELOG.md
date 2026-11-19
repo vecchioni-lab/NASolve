@@ -19,6 +19,10 @@ entries are reconstructed from repository history.
 
 ### W155 — Preserve density-attribution counterexamples
 
+- Record future correlation/omit-map qualifications from the installed Phenix
+  source and official documentation; explicitly distinguish X-ray scattering,
+  frame/ADP handling and solvent omission from causal or bias-free evidence.
+
 - Record prescribed coordinate, occupancy and B-factor scattering errors that
   each produce negative modeled-phosphorus density, without fitting or claiming
   experimental attribution. Preserve the original missing version-API capture

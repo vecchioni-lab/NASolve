@@ -667,6 +667,24 @@ W153 preserved raw data/Free but native filtering changed one arm's work set.
 [Experimental evidence](topostitch-periodic.md#w153--separate-experimental-backbone-recovery-from-geometry-driven-relaxation)
 and [counterexamples with provenance limits](topostitch-periodic.md#w155--record-density-counterexamples-before-proposing-backbone-motion).
 
+**Next assay preparation, not implementation:** use an existing local map/model
+correlation only as an additional observation, with explicit X-ray scattering,
+resolution, masking radius, occupancy/ADP treatment and frame handling. Installed
+Phenix **2.2.1-6174** `mmtbx.maps.map_model_cc.master_params_str` defaults to
+`electron`; `run()` passes the selected table into the scattering registry.
+Do not inherit that default for these X-ray data. Its `map_correlations` owner
+also offers model/map offsets and B-zeroing; keep them off unless a separately
+recorded comparison explicitly requires them. [Phenix's correlation documentation](https://phenix-online.org/download/documentation/phenix/prerelease/reference/map_correlations.html)
+describes those modes. Native execution and backbone calibration remain open.
+
+An omit calculation is a distinct phase/solvent experiment, not an automatic
+cure for model bias. [Phenix's polder documentation](https://phenix-online.org/version_docs/dev-3297/reference/polder.html)
+separates bulk-solvent exclusion from de-biasing and discourages single-atom
+omissions. Any future selected-region omission needs frozen region/mask,
+work/free generation and scale/phase policies through the existing native owner;
+do not repurpose W155's three-scatterer contrast as a qualified omit protocol.
+No correlation threshold, omit-map run or new search is queued by this note.
+
 **Existing map owner to reuse (18 November):** Hazel's maintained
 `nasolve.metal.map_diagnostics` and saved-coefficient audit provide a starting
 point for exact map/source hashes, coefficient labels, cell/symmetry and work-set
