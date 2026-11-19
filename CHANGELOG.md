@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Plan post-development hydration and counterion support
+
+- Add deferred milestone A09 for metal water shells, counterions such as Mg and
+  explicit editable coordination spheres, eligible below 3 Å or by user flag.
+  Distinguish intact CoHex ligands from hydration waters; preserve full geometry
+  lineage when shells change. Include a deferred sub-2 Å water-placement inspector
+  with bounded recipe comparisons, numerical map/geometry ranking and explicit
+  ambiguity/calibration limits. No current runtime behavior or release gate changes.
+
 ### Record shared Doctor observation qualification
 
 - Record the separately qualified explicit Doctor observation handoff and its

@@ -8,7 +8,7 @@ milestone statements preserve their original scope; they are not a second queue.
 ## Current subsystem navigation
 
 - [Integration handoff](development-handoff.md): active base, qualification and delivery.
-- [Metal handoff](metal-development-handoff.md) and [A01–A08 roadmap](metal-development-roadmap.md): metal science and feature milestones.
+- [Metal handoff](metal-development-handoff.md) and [A01–A09 roadmap](metal-development-roadmap.md): metal science and feature milestones.
 - [Chemistry handoff](chemistry-development-handoff.md) and [completion queue](cif-doctor-completion-queue.md): shared construction/native chemistry.
 
 ## What's current?

@@ -1,7 +1,8 @@
 # Post-merge metal-coordination roadmap
 
 Updated **19 November 2026**. Working branch **Alder**. The feature milestones
-below are numbered **A01–A08** and are explicitly **post-merge work**. They are
+below are numbered **A01–A09** and are explicitly **post-merge work**. A09 is
+further deferred until after the main build and core A01–A08 work. These are
 not prerequisites for merging the current experimental implementation.
 Historical implementation receipts A37–A40 retain their existing labels and
 scientific limits; they are evidence references, not this milestone sequence.
@@ -281,6 +282,76 @@ not just separately passing components.
 MAD, wider chemistry/oxidation-state coverage and additional search heuristics
 remain later extensions. They are not hidden conditions for the initial
 single-wavelength release or for the earlier integration merge.
+
+## A09 — Post-development hydration shells and counterion coordination
+
+**DEFERRED — after the main NASolve build and A01–A08 core feature work.**
+This is not a current development priority, merge condition or initial-release
+requirement. Recorded investigator intent: 19 November 2026.
+
+Enable this mode when the reported resolution is **better than 3 Å**
+(`d_min < 3.0 Å`) **or the user explicitly flags it**, including at lower
+resolution. The trigger permits investigation; it does not establish that a
+particular shell or ion is supported by the data.
+
+Support water shells around metals and searches for candidate counterions such
+as Mg. Represent the **coordination sphere explicitly**: metal identity/state,
+coordination number and geometry, each ligand's chemical identity and donor atom,
+water versus direct macromolecular coordination, and incomplete or alternative
+shells. These choices must be GUI-editable and persist in recipes rather than
+being inferred solely from a generic metal atom. Include six-coordinate Mg
+hypotheses and intact CoHex complexes, without forcing every site to have six
+resolved waters. CoHex's six ammine ligands are chemically distinct from a water
+shell; retain that distinction in dictionaries and generated restraints
+([RCSB CCD NCO](https://www.rcsb.org/ligand/NCO)).
+
+Reuse the source-backed ligand/ion knowledge, editable distance/angle restraints,
+expanded site view, map inspection and bounded XYZ/B refinement. Compare
+supported complete, partial and absent shells and alternative ion assignments;
+record unresolved coordination instead of filling every proposed position.
+Qualify representative water-shell, Mg and CoHex cases, including negative or
+ambiguous controls, before offering automatic adoption. Anomalous evidence may
+contribute where informative; it must not be the only way to assess a counterion.
+
+### A09 follow-on — water-placement inspector and recipe comparison
+
+Prioritize a dedicated inspector for **sub-2 Å** data, with explicit user access
+for borderline or noisier cases (including the motivating approximately 2 Å
+CoHex environment). This is part of deferred A09, not an extra current milestone.
+The recipe window should propose and compare placements in candidate density
+features, exposing water/ligand distances, clashes, coordination geometry,
+occupancy/B behavior and the matching model/map view. Distinguish surrounding
+waters from the chemically defined ligands of an intact complex.
+
+Use bounded batches analogous to the f″ search interface, but with declared
+structural refinement: compare empty, partial and alternative placements, then
+rank candidate models using recorded local density fit and residual density,
+geometry and refinement stability. Preserve close or conflicting candidates for
+review rather than forcing a winner from a noisy score. The purpose is to reduce
+dependence on unaided visual intuition while keeping the numerical evidence
+inspectable. A proposed water is not accepted solely because it fills a peak.
+
+Before comparing scores, pin observations/Free-R flags, starting parent, restraint
+and refinement policies, map coefficients/scattering policy, local masks and
+normalization. Keep initial and post-refinement evidence distinct, and show when
+map changes or an unsettled fit prevent a fair comparison. Treat model-assisted
+map agreement as supporting evidence, not independent validation; define and
+qualify score calibration and acceptance thresholds using representative known,
+absent-water and ambiguous cases before automatic selection. No particular score
+or numerical threshold is settled by this design request.
+
+Retain the important starting/selected geometry nodes, compact per-candidate
+measurements and exact reconstruction inputs. Apply task-specific A04 storage
+rules to intermediate models/maps, with size assessment before any retirement;
+water movement is not the frozen-coordinate cheap f″ case. Tie this inspector to
+the later A05 GUI co-design and shared chemistry/map owners, rather than creating
+an independent water dictionary or refinement executor now.
+
+Adding or moving waters/ligands changes the structural model and creates a new
+protected geometry parent under A04. It is not an expendable frozen-f″ parameter
+point. Only subsequent trials that satisfy the existing freeze contract use the
+lean incremental retention profile. No shell search, water placement, new GUI
+control or native run is implemented by this planning entry.
 
 ## Existing implementation evidence (historical checkpoint IDs)
 

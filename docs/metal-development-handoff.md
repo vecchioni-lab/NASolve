@@ -268,6 +268,21 @@ migration, production scientific-policy change or existing-run cleanup occurs.
 5. Return to A02 only with a qualified open XYZ/B endpoint. Keep A05 GUI co-design
    and A07 reconstruction from experimental inputs explicit on the roadmap.
 
+## Deferred post-development request
+
+[A09 — hydration shells and counterion coordination](metal-development-roadmap.md#a09--post-development-hydration-shells-and-counterion-coordination)
+records the 19 November request: investigate metal water shells and counterions
+such as Mg when resolution is better than 3 Å or the user explicitly enables it.
+Explicit, editable coordination spheres distinguish water ligands, other donors
+and CoHex ammines. This remains after the main build; it changes no current
+priority, scientific gate or runtime behavior. Structural shell changes retain
+full geometry-parent protection before later frozen-f″ trials.
+The same deferred milestone includes a sub-2 Å water-placement inspector (also
+explicitly accessible for approximately 2 Å/noisy cases): bounded recipe batches,
+numerical local map/geometry comparison, compact ranked alternatives and
+uncertainty-aware review. Map movement, unsettled fits and model-assisted evidence
+must remain visible; score calibration and automatic selection are future work.
+
 ## Scientific contracts that must survive
 
 - Open XYZ/group-B refinement precedes environmental metal-B preparation. Use
