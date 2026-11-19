@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W156 — Distinguish initial deformation from refinement recovery
+
+- Record the user-requested recovery window: early poor Rfree alone must not
+  reject a deformation. Preserve raw, smoothed and post-Phenix trajectories,
+  matched budgets and unresolved outcomes without Rfree-driven retuning.
+- Planning and milestone criteria only; no runtime/schema/default changes,
+  new refinement, migration or scientific acceptance.
+
 ### W155 — Preserve density-attribution counterexamples
 
 - Record future correlation/omit-map qualifications from the installed Phenix

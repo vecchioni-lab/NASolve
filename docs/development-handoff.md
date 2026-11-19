@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-19**, through **W155**. **W152 closes the independent
+Updated **2026-11-19**, through **W156**. **W152 closes the independent
 opposite-displacement/no-op subgate under idealized matching data.** Deposited
 5W6W starts recover from 0.764 Å RMS to 0.052/0.047 Å, with a 0.014 Å no-op.
 This complements W148's 8D93-derived control; both remain bounded evidence.
@@ -35,6 +35,12 @@ P01/P02 stay partial. The [machine roadmap](topostitch-roadmap.json) owns status
 its [human view](topostitch-roadmap.md) is generated. Older W139/W140 sticky-end
 benefit and the completed C400 numerical matrix remain valid in their exact
 scopes; they are not a queue to repeat.
+
+**W156 planning clarification:** poor initial/early-cycle Rfree after deformation
+is not a rejection gate. Allow a declared, matched restraint-driven recovery
+window and distinguish raw, smoothed and post-Phenix states. W153 has not proved
+convergence or irrecoverability; an unsettled budget remains inconclusive.
+[Recovery contract](topostitch.md#post-deformation-recovery-window-w156-planning).
 
 ## Current development edge
 

@@ -47,11 +47,13 @@ current instructions; other branches retain their own status and validation pins
   coordinate states. These do not close general repair or stage integration.
   W155 records prescribed displacement/Q/B density counterexamples, with its
   original version-capture limitation; experimental attribution remains open.
+  W156 records a recovery window before judging post-deformation Rfree;
+  this is planning, with no new native run or acceptance implementation.
   Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W155;
-  the next substantial audit is W156. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W156;
+  the next substantial audit is W157. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

@@ -860,6 +860,32 @@ measurable expectation, not a guaranteed outcome or permission to search until
 Rfree falls. Favor coherent improvements; a geometry-only improvement with
 worse diffraction agreement remains a visible tradeoff for review.
 
+### Post-deformation recovery window (W156 planning)
+
+A raw deformation can initially give poor Rwork/Rfree because the backbone,
+local contacts and scattering model have not relaxed. **Do not reject a proposed
+placement solely for its initial or early-cycle Rfree.** This is the user's
+19 November crystallographic clarification, not a promise that every placement
+will recover. Optional NASolve smoothing may reduce that initial penalty; it
+does not replace restraint-driven Phenix recovery or final evidence.
+
+Keep four states distinct: the parent, raw deformation, optional locally smoothed
+proposal and post-Phenix recovery checkpoints. Before evaluation, declare the
+restraint protocol, staged cycle/iteration budget and continuation/stopping rules
+for candidate and matched no-repair control. Allow non-monotonic early Rfree;
+report the trajectory and endpoint rather than selecting the lowest cycle.
+Judge recovered contacts, geometry, density and R statistics after the declared
+recovery window, not from the raw proposal. Numerical/chemical failure remains
+separate from a temporary R penalty.
+
+If the budget ends while the model is still settling, record **recovery unresolved
+within budget**, not irrecoverable placement or convergence. Any further bounded
+continuation retains the parent and all prior attempts; do not tune parameters
+or keep extending solely until the same Free-R set looks favorable. W153's fixed
+five-cycle result is a mixed post-budget observation, not a test of initial-Rfree
+rejection or proof that later recovery is impossible. This is a planning gate;
+no current refinement thresholds, runtime schema or automatic continuation change.
+
 Freeze the parent and preserve a no-repair control. Compare repaired-plus-refined
 and unmodified-plus-equivalently-refined siblings using the same original
 observations, Free-R flags, phase policy, cycle/strategy budget and unrelated
