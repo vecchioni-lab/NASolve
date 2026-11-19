@@ -38,11 +38,14 @@ current instructions; other branches retain their own status and validation pins
   W149 packages the shared offline renderer and displays both saved density and
   W148's actual recovery through the same installed API. Source/full/installed
   gates pass; stage integration, frame proof and browser/GPU review remain separate.
+  W150 qualifies a temporary shared-base composition for receiving-owner review;
+  W151 confirms deposited sequence continuity across B107/B111 while preserving
+  the reference geometry/lineage caveat. Neither closes general repair.
   Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W149;
-  the next substantial audit is W150. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W151;
+  the next substantial audit is W152. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

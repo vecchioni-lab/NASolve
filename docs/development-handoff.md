@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-19**, through **W149**. **W140 adds backbone and saved-map evidence to W139's
+Updated **2026-11-19**, through **W151**. **W140 adds backbone and saved-map evidence to W139's
 matched sticky-end improvement.** GC plane mismatch falls 27.30→6.30° with
 localized movement; nearby sugar/phosphate bond and angle deviations barely
 change. All 38 existing backbone links were measured and 126 ordered sugar-volume
@@ -103,6 +103,10 @@ not another work queue; do not repeat them because this handoff is shorter.
    distinction, not claim a fresh full-green. W146/W147/W149 remain follow-on
    patches outside this runtime. Check Hazel's current delivery pin before any
    integration; do not repeat the closed full run merely for this docs audit.
+   W150 now qualifies the exact temporary receiving composition: 192 focused
+   and installed tests +37 subtests, real saved-run reads and exact native preview
+   replay. The bundle is with Hazel; active adoption remains her decision. No
+   fresh full suite or new native refinement is claimed.
    Then use matched B10 controls and geometry, packing and diffraction/density
    evidence before physical acceptance. Preserve original data/Free-R, unselected
    REVIEW and exact pair intent. Retain repulsion while exclusions are open;
@@ -112,7 +116,12 @@ W148 now closes the bounded W100 matching-data recovery question. Do not repeat
 it or W74/W75 invariance probes. Before extending physical repair, predeclare
 independent healthy/no-op and forward/reverse bend controls with verified
 sequence/link intent; the source B107→B111 distortion remains a separate diagnostic.
-Keep the frozen shared integration unchanged and W146/W147 as follow-on patches.
+W151 resolves one interpretation: deposited B107/B111 are adjacent polymer
+positions despite their numbering jump. Their distorted angles remain real;
+retain the link and the existing W115 preview-source caveat. A no-op control
+needs an audited local region, not a claim of perfect whole-model geometry.
+[Sequence evidence](topostitch-periodic.md#w151--separate-deposited-sequence-continuity-from-reference-geometry).
+Keep receiving-owner adoption of W150 separate from new scientific controls.
 
 **W122 remains planning-only:** the first intended user-facing application is
 [explicit canonical sticky-end enforcement](topostitch.md#explicit-sticky-end-enforcement-during-refinement-planned-w122),

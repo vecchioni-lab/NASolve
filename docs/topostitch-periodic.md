@@ -8765,3 +8765,112 @@ a fresh full-suite pass. Reuse existing selection, map and frame owners for a
 small read-only scene adapter; ordinary repair publication and density-guided
 movement remain separate gates. No new model/frame or noise threshold follows
 from a working renderer.
+
+## W150 — Qualify the inspection follow-on against shared Alder
+
+**2026-11-19; temporary candidate, no active-branch merge.** Delivered Alder
+`f989111e31a18687625995a5264c25cc38a67db6` incorporates the reviewed test-only
+amendment to its completed full execution. W150 composes the already qualified
+W146/W147/W149 helpers/resource and W147 worker-v2 against that exact base.
+Candidate `e89adc319fbd10e466efe5ed1856d6c29868c261` is preserved in a local Git
+bundle/patch, not a published development branch. Existing selection, native map,
+checkpoint and sampling owners are reused. Of 1,501 prior tracked files, 1,497
+are byte-exact; changes are the previously qualified worker adaptation, one
+additive package-resource pattern and two scoped documents. Eight files are
+added: three helpers, the renderer resource and four existing test modules.
+No new scientific behavior, generation policy or inference is introduced.
+
+**Focused qualification:** `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:<pinned-NAR>
+python -B -m pytest -q -p no:cacheprovider -o addopts= --junitxml <receipt>
+<explicit modules> --basetemp <owned external scratch>` passes **192 tests
++37 subtests** in 28.07 s. Modules cover model inspection, coefficient selection,
+renderer, worker helper identity, metal inspection/sampling, checkpoint integrity,
+Coot views/runtime/anomalous maps, Doctor inspection, checkpoints and counted
+AutoRefine. All 1,509 tracked files remain exact. The source-free relocated wheel
+passes the same **192 +37** in 26.35 s, API imports and `nasolve show --help`;
+all **348 packaged files** stay exact. Wheel SHA256
+`fa80d1261fe04a63a300365c0b5dd76218ac2f9ad8a51b905fdc97c1085613f4`.
+Build uses `pip wheel --no-deps --no-build-isolation` and install uses
+`pip install --no-deps --no-compile --target`; source and original installation
+are absent before installed tests. Exact argv/environment and source/package
+manifests are archived. The three inherited provenance-sidecar exclusions remain.
+This is focused development qualification, **not a new combined full-suite pass**.
+The base's original full failure and test-only correction remain explicit.
+
+Actual W138 two-checkpoint inspection equals the prior W146 snapshots and leaves
+all 130 run files unchanged. An initial runner used the experiment parent rather
+than the archived declared `/run` child; it refused before output, and the
+corrected runner retains that failed attempt. The installed renderer produces
+byte-identical W143 HTML and exact scientific fields. One complete installed
+**Phenix 2.2.1-6174** saved-coefficient FFT/contour replay reproduces all **19,054
+segments/six layers** from the archived original worker in 1.99 s. It does not
+refine or generate coefficients. Both unique MTZ inputs and all package files
+remain unchanged; the owned process is stopped. No new browser/GPU claim.
+
+**Delivery and cleanup:** NASolve anchor
+`branch-artifacts/willow/w150-inspection-integration/candidate.bundle` and
+`candidate.patch` retain the exact candidate for the receiving owner. Archive
+`branch-artifacts/willow/w150-inspection-integration-2026-11-19.zip` contains
+49 indexed members +manifest, 3,628,492 bytes, SHA256
+`1a6bad0f4356a49bf10053200c35a6b3edcbd9407839bcacf04c1f7f1c78f17b`.
+Every member verifies. After stopped-process, inode and archive checks, one owned
+scratch root was retired: 7,173 files/63,298,755 bytes. Source bundle, wheels,
+evidence, scientific inputs and peer work remain. Historical paths do not make
+this a portable executable campaign. Hazel owns any receiving-branch adoption;
+no stage adapter, CLI activation, new coordinate fit or scientific acceptance.
+
+## W151 — Separate deposited sequence continuity from reference geometry
+
+**2026-11-19; cold evidence only.** Before broadening the W148 positive control,
+check the B107→B111 reference-link interpretation against the
+[public deposited 8D93 mmCIF](https://files.rcsb.org/download/8D93.cif), retrieved
+2026-11-19 (237,027 bytes, SHA256
+`9f67eb6a7193d1ff06b68105e4ba8a066f4b02bef55787fc096404a99fa1d7bb`).
+The [entry](https://www.rcsb.org/structure/8D93) declares the seven-nucleotide
+B strand **ACACCGT**. Polymer sequence positions 3 and 4 map to the actual atom
+records labelled B107 and B111. This numbering jump is **not three absent
+residues**. The scheme's `auth_seq_num` and `pdb_seq_num` differ here; bind
+`label_asym_id`/`label_seq_id` to actual `atom_site` identity instead of swapping
+number namespaces or sorting numbers into a chemical interpretation.
+
+The deposited O3′(B107)–P(B111) distance is **1.605707 Å**. Its O3′–P angles to
+O5′, OP1 and OP2 are **77.7349°, 79.6844° and 154.6068°**. The W148 generating
+reference retains essentially the same distortion; original PDB REMARK 500 also
+reports it. Sequence-supported adjacency and unhealthy local angles are separate
+facts. Do not delete the link, fill three invented residues or call the whole
+reference healthy solely from numbering/coordinates.
+
+This audit also preserves W115's existing lineage finding: W148's generating
+reference is the earlier unvalidated small bend preview, not pristine deposited
+coordinates. All 855 identities match the current mmCIF; maximum raw positional
+difference is 0.178558 Å, RMS 0.048102 Å. Higher mmCIF coordinate precision causes
+small raw differences throughout; 204 atoms differ by more than 0.001 Å. That
+reporting threshold is not a frame-tolerance change. W148 remains a valid recovery
+of its declared generating reference, not a new healthy-source qualification.
+
+**Validation:** `PYTHONDONTWRITEBYTECODE=1 <Python3.12> -B
+runners/w151-reference-audit.py` uses Gemmi 0.7.5, exact source hashes, full atom
+identity matching, deposited entity/polymer/atom-table joins and independent
+Cartesian distance/angle arithmetic. The first runner correctly refused a
+comparison of undecoded quoted CIF names with PDB names; Gemmi string decoding
+fixes the runner without weakening identity checks. Both source files remain
+exact. No native execution, runtime/schema change, inference activation, new
+model or scientific acceptance. Existing TopoStitch discovery already refuses
+to infer a break from a chain boundary, number gap or missing atom; this is a
+real example supporting that boundary, not a new implementation.
+
+Local archive: NASolve anchor
+`branch-artifacts/willow/w151-reference-audit-2026-11-19.zip`, eight indexed files
++manifest, 78,027 bytes, SHA256
+`2a036d2e6212406310f31eeba92467e218da2c4e533a8e49a2b28ad9ebb3dea2`.
+It preserves public input, failed/corrected runner, audit and interpretation;
+W148's existing archive owns the reference PDB. No raw scientific file is committed.
+
+**Next scientific gate:** predeclare an independent canonical bend/unbend or
+changed-direction control and its matched no-op, with sequence/image/link intent
+and local geometry audited before fitting. A no-op reference need not be a
+perfect whole molecule, but its monitored local region and inherited defects
+must be explicit. Keep the B107→B111 distortion visible as context; never remove
+real topology to improve a geometry score. Retain fixed data/Free-R, original
+attempts, junction limits and matched endpoint comparisons. Experimental/noisy
+density support, general closure and the B09 geotest demonstration remain open.

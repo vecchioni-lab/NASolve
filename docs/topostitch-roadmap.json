@@ -222,14 +222,15 @@
         "W96–W100 qualify guarded full-window source-driven atomic controls. Three displaced controls pass numerical/binding checks but stop at iteration limits; selected/core pair gains coexist with individual geometry/packing tradeoffs. No accepted repair.",
         "W138/Cedar4f7aeb84 qualifies the explicit v8 100-cap ordinary coordinate route with complete source/installed/native gates. The earlier short route retains its original scope; neither cap proves convergence.",
         "W139 closes the matched native/core-only-zero/full matrix: exact zero/native output/history, passive full equivalence and common14-pair local benefit. Both line-search stops and repeated-coordinate normalization discontinuity remain separate limitations; no numerical policy is adopted.",
-        "W148 reuses the exact W100 +5-degree canonical displacement with matching noiseless diffraction and fixed native refinement. Selected 204-atom RMS error falls 0.917427 to 0.029167 Å; endpoint-to-endpoint RMS is 0.026449 Å. Local covalent bonds recover, 126 sugar-volume signs survive, and Rowan independently reproduces the controls. Existing reference-link distortion remains explicit."
+        "W148 reuses the exact W100 +5-degree canonical displacement with matching noiseless diffraction and fixed native refinement. Selected 204-atom RMS error falls 0.917427 to 0.029167 Å; endpoint-to-endpoint RMS is 0.026449 Å. Local covalent bonds recover, 126 sugar-volume signs survive, and Rowan independently reproduces the controls. Existing reference-link distortion remains explicit.",
+        "W151 deposited 8D93 polymer positions3/4 map to PDB B107/B111: the numbering jump is not three missing residues. The existing phosphate-angle distortion is already deposited. W115 unvalidated-preview lineage remains explicit; recovery is distinct from a healthy-reference qualification."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "W148 closes one bounded matching-data recovery control; do not repeat W100/W74/W75/W139 or this same pair. Before broadening, predeclare independent healthy/no-op and forward/reverse bend controls with exact sequence/link intent. Preserve imperfect-reference geometry evidence and distinguish recovery from health. General seam closure, packing, experimental evidence and scientific acceptance remain open.",
+      "next_action": "Predeclare independent local no-op and forward/reverse or changed-direction controls with exact sequence/image/link intent and explicit inherited defects. W151 confirms B107/B111 adjacency despite numbering; do not manufacture a gap or equate topology with healthy angles. W148 is completed, not a queue to repeat. General seam closure, packing, experimental evidence and acceptance remain open.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -253,14 +254,15 @@
         "E_C338_INSTALLED_COMPOSITION",
         "E_SOURCE_DISPLACED_NATIVE",
         "E_SEPARATE_SCREENING_NORMALIZATION",
-        "E_MATCHING_BACKBONE_RECOVERY"
+        "E_MATCHING_BACKBONE_RECOVERY",
+        "E_REFERENCE_SEQUENCE_ADJACENCY"
       ],
       "last_audit": {
         "date": "2026-11-19",
-        "code_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
-        "human_update": 148,
-        "reviewer": "Linden; independent cold review by Rowan",
-        "scope": "One matching-data canonical recovery control with native geometry and inspection; no experimental/whole-model closure or runtime change"
+        "code_commit": "04b6402a274f27b84da298d23ce5c0db58776438",
+        "human_update": 151,
+        "reviewer": "Linden; coordinated with receiving owners",
+        "scope": "Separate deposited sequence continuity from reference geometry; no scientific closure"
       }
     },
     {
@@ -281,14 +283,15 @@
         "W139 closes the matched native/core-only-zero/full matrix: exact zero/native output/history, passive full equivalence and common14-pair local benefit. Both line-search stops and repeated-coordinate normalization discontinuity remain separate limitations; no numerical policy is adopted.",
         "W140 measures1268 recorded native sugar/phosphate/glycosidic supports,38existingO3P links and126preserved ordered sugar signs. Independent3804printed-geometry+342torsion checks pass; local backbone deviations remain similar while end bases move. No complete pucker/packing/closure acceptance.",
         "W122 explicit sticky-end enforcement is planning-only. General seam closure, mismatch/blunt qualification, larger bending and density-supported repair remain open.",
-        "W148 reuses the exact W100 +5-degree canonical displacement with matching noiseless diffraction and fixed native refinement. Selected 204-atom RMS error falls 0.917427 to 0.029167 Å; endpoint-to-endpoint RMS is 0.026449 Å. Local covalent bonds recover, 126 sugar-volume signs survive, and Rowan independently reproduces the controls. Existing reference-link distortion remains explicit."
+        "W148 reuses the exact W100 +5-degree canonical displacement with matching noiseless diffraction and fixed native refinement. Selected 204-atom RMS error falls 0.917427 to 0.029167 Å; endpoint-to-endpoint RMS is 0.026449 Å. Local covalent bonds recover, 126 sugar-volume signs survive, and Rowan independently reproduces the controls. Existing reference-link distortion remains explicit.",
+        "W151 deposited 8D93 polymer positions3/4 map to PDB B107/B111: the numbering jump is not three missing residues. The existing phosphate-angle distortion is already deposited. W115 unvalidated-preview lineage remains explicit; recovery is distinct from a healthy-reference qualification."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "W148 closes one bounded matching-data recovery control; do not repeat W100/W74/W75/W139 or this same pair. Before broadening, predeclare independent healthy/no-op and forward/reverse bend controls with exact sequence/link intent. Preserve imperfect-reference geometry evidence and distinguish recovery from health. General seam closure, packing, experimental evidence and scientific acceptance remain open.",
+      "next_action": "Predeclare independent local no-op and forward/reverse or changed-direction controls with exact sequence/image/link intent and explicit inherited defects. W151 confirms B107/B111 adjacency despite numbering; do not manufacture a gap or equate topology with healthy angles. W148 is completed, not a queue to repeat. General seam closure, packing, experimental evidence and acceptance remain open.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -351,14 +354,15 @@
         "E_LONGER_ORDINARY_CONTROL",
         "E_MATCHED_CANONICAL_LONG_CONTROL",
         "E_BACKBONE_SAVED_DENSITY",
-        "E_MATCHING_BACKBONE_RECOVERY"
+        "E_MATCHING_BACKBONE_RECOVERY",
+        "E_REFERENCE_SEQUENCE_ADJACENCY"
       ],
       "last_audit": {
         "date": "2026-11-19",
-        "code_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
-        "human_update": 148,
-        "reviewer": "Linden; independent cold review by Rowan",
-        "scope": "One matching-data canonical recovery control with native geometry and inspection; no experimental/whole-model closure or runtime change"
+        "code_commit": "04b6402a274f27b84da298d23ce5c0db58776438",
+        "human_update": 151,
+        "reviewer": "Linden; coordinated with receiving owners",
+        "scope": "Separate deposited sequence continuity from reference geometry; no scientific closure"
       }
     },
     {
@@ -385,7 +389,8 @@
         "W145 exposes structured map stage/checkpoint/consuming ancestry through existing view resolution; standalone full/installed and focused Cedar adaptation pass. Legacy viewing stays compatible; producer coordinates, generation policy and frame equivalence remain unproven.",
         "W146 adds a read-only measured inspection snapshot over existing view/reference owners; 2061 full+234 subtests and 120 relocated installed+53 subtests pass. Genuine W138 compatibility over the installed combined owner preserves all inputs. Producer/frame evidence stays unassessed; W146 remains outside the frozen combined gate.",
         "W147 extracts exact native complex-array selection and descriptive headers:2070 full+234 subtests,129 relocated installed+53 subtests, source/installed native reads and exact19054-segment preview parity. Worker-v2 candidate binds executed helper bytes and passes2stale/change controls; it remains outside frozen combined integration.",
-        "W148 reuses the exact W100 +5-degree canonical displacement with matching noiseless diffraction and fixed native refinement. Selected 204-atom RMS error falls 0.917427 to 0.029167 Å; endpoint-to-endpoint RMS is 0.026449 Å. Local covalent bonds recover, 126 sugar-volume signs survive, and Rowan independently reproduces the controls. Existing reference-link distortion remains explicit."
+        "W148 reuses the exact W100 +5-degree canonical displacement with matching noiseless diffraction and fixed native refinement. Selected 204-atom RMS error falls 0.917427 to 0.029167 Å; endpoint-to-endpoint RMS is 0.026449 Å. Local covalent bonds recover, 126 sugar-volume signs survive, and Rowan independently reproduces the controls. Existing reference-link distortion remains explicit.",
+        "W150 exact shared-base composition passes192 focused+37 subtests and the same source-free installed profile.348 package files, genuine two-checkpoint reads, saved W143 HTML and19054 native preview segments remain exact. Candidate bundle is ready for receiving-owner review; no active merge or new full-pass claim."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -394,7 +399,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Record Hazel's shared delivery decision with original full failure and focused test-only amendment explicit; do not claim a fresh full-green. Qualify follow-on W146/W147/W149 and worker-v2 separately. W148 matching-data recovery is complete in its idealized scope; preserve the source B107-to-B111 link distortion and do not extrapolate a density threshold. Independent geometry/sequence controls, source/frame interpretation, B10/B09 and experimental recovery remain separate. No new numerical policy or W122 activation.",
+      "next_action": "W150 temporary receiving composition is focused/installed/native-preview qualified and delivered to Hazel as a bundle; check the actual receiving decision before stage work. W148 recovery and W151 sequence audit are bounded controls. Predeclare independent local no-op/forward/reverse bending evidence without deleting real links; experimental density interpretation, B10/B09 and general recovery remain open.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -451,14 +456,15 @@
         "E_MAP_SELECTION_ORIGIN",
         "E_INSPECTION_SNAPSHOT",
         "E_COEFFICIENT_SELECTION_HEADERS",
-        "E_MATCHING_BACKBONE_RECOVERY"
+        "E_MATCHING_BACKBONE_RECOVERY",
+        "E_SHARED_INSPECTION_COMPOSITION"
       ],
       "last_audit": {
         "date": "2026-11-19",
-        "code_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
-        "human_update": 148,
-        "reviewer": "Linden; independent cold review by Rowan",
-        "scope": "One matching-data canonical recovery control with native geometry and inspection; no experimental/whole-model closure or runtime change"
+        "code_commit": "04b6402a274f27b84da298d23ce5c0db58776438",
+        "human_update": 150,
+        "reviewer": "Linden; coordinated with receiving owners",
+        "scope": "Qualify the inspection follow-on against shared Alder; no scientific closure"
       }
     },
     {
@@ -479,7 +485,8 @@
         "W146 adds a read-only measured inspection snapshot over existing view/reference owners; 2061 full+234 subtests and 120 relocated installed+53 subtests pass. Genuine W138 compatibility over the installed combined owner preserves all inputs. Producer/frame evidence stays unassessed; W146 remains outside the frozen combined gate.",
         "W147 extracts exact native complex-array selection and descriptive headers:2070 full+234 subtests,129 relocated installed+53 subtests, source/installed native reads and exact19054-segment preview parity. Worker-v2 candidate binds executed helper bytes and passes2stale/change controls; it remains outside frozen combined integration.",
         "W148 adds a verified four-model actual-coordinate ChimeraX checkout and visually checked scientific figure for the idealized recovery control; no alignment or scientific acceptance.",
-        "W149 packages the approved two-state offline inspector with bounded display geometry, explicit missing maps and caller-supplied source/frame notes. Final full Willow2091+234 subtests and source-free installed158+53 pass. Original W143 science/shaders and source/installed output match exactly; the same renderer displays actual W148 recovery coordinates. Rowan verifies corrected camera/work bounds; browser/GPU review remains separate."
+        "W149 packages the approved two-state offline inspector with bounded display geometry, explicit missing maps and caller-supplied source/frame notes. Final full Willow2091+234 subtests and source-free installed158+53 pass. Original W143 science/shaders and source/installed output match exactly; the same renderer displays actual W148 recovery coordinates. Rowan verifies corrected camera/work bounds; browser/GPU review remains separate.",
+        "W150 exact shared-base composition passes192 focused+37 subtests and the same source-free installed profile.348 package files, genuine two-checkpoint reads, saved W143 HTML and19054 native preview segments remain exact. Candidate bundle is ready for receiving-owner review; no active merge or new full-pass claim."
       ],
       "acceptance": [
         "Create immutable children with exact model/CIF/PHIL inputs, preserve current selection, and reuse existing Coot/model-tree paths; viewing never selects or approves.",
@@ -497,14 +504,15 @@
         "E_INSPECTION_SNAPSHOT",
         "E_COEFFICIENT_SELECTION_HEADERS",
         "E_MATCHING_BACKBONE_RECOVERY",
-        "E_PACKAGED_DENSITY_INSPECTOR"
+        "E_PACKAGED_DENSITY_INSPECTOR",
+        "E_SHARED_INSPECTION_COMPOSITION"
       ],
       "last_audit": {
         "date": "2026-11-19",
         "code_commit": "04b6402a274f27b84da298d23ce5c0db58776438",
-        "human_update": 149,
-        "reviewer": "Linden; bounded static review by Rowan",
-        "scope": "Installed prepared-scene renderer and exact saved-science replay; no stage adapter or scientific acceptance"
+        "human_update": 150,
+        "reviewer": "Linden; coordinated with receiving owners",
+        "scope": "Qualify the inspection follow-on against shared Alder; no scientific closure"
       }
     },
     {
@@ -2977,6 +2985,76 @@
           "size": 1578
         }
       ]
+    },
+    "E_SHARED_INSPECTION_COMPOSITION": {
+      "kind": "receiving_owner_compatibility",
+      "date": "2026-11-19",
+      "human_update": 150,
+      "code_commit": "04b6402a274f27b84da298d23ce5c0db58776438",
+      "reference": "docs/topostitch-periodic.md#w150--qualify-the-inspection-follow-on-against-shared-alder",
+      "result": "W150 exact shared-base composition passes192 focused+37 subtests and the same source-free installed profile.348 package files, genuine two-checkpoint reads, saved W143 HTML and19054 native preview segments remain exact. Candidate bundle is ready for receiving-owner review; no active merge or new full-pass claim.",
+      "limitation": "No new runtime on active branches, stage adapter, inference, refinement or scientific acceptance. Focused/installed composition is not a new combined full pass; deposited adjacency is not geometry health.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w150-inspection-integration/archive.json",
+          "sha256": "a273f2462c36f45f1ad5d3c47e35e2615937c2b965897a5d91fa0e4e878c76a1",
+          "size": 392
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w150-inspection-integration/result.json",
+          "sha256": "ca4f815e1b7cb97c61e6fdc839ecb10f2674ba8e6c0390cd0c2b76d437518556",
+          "size": 6458
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w150-inspection-integration/native-preview.json",
+          "sha256": "f29167c3f8e3e3a2ee70cf32e293fc553e157732bbc04401dfd00dc4f2d772cb",
+          "size": 1220
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w150-inspection-integration/real-selection.json",
+          "sha256": "7a6a355806788ef91602406d3de412c532923590387209f829c263d587550582",
+          "size": 3392
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w150-inspection-integration/retirement.json",
+          "sha256": "bd69bf2e416df29ffa1b9c4d321e8d8a737f6ab7ea63ec019ac6ace1b0fc1faa",
+          "size": 362
+        }
+      ]
+    },
+    "E_REFERENCE_SEQUENCE_ADJACENCY": {
+      "kind": "deposited_sequence_reference_audit",
+      "date": "2026-11-19",
+      "human_update": 151,
+      "code_commit": "04b6402a274f27b84da298d23ce5c0db58776438",
+      "reference": "docs/topostitch-periodic.md#w151--separate-deposited-sequence-continuity-from-reference-geometry",
+      "result": "W151 deposited 8D93 polymer positions3/4 map to PDB B107/B111: the numbering jump is not three missing residues. The existing phosphate-angle distortion is already deposited. W115 unvalidated-preview lineage remains explicit; recovery is distinct from a healthy-reference qualification.",
+      "limitation": "No new runtime on active branches, stage adapter, inference, refinement or scientific acceptance. Focused/installed composition is not a new combined full pass; deposited adjacency is not geometry health.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w151-backbone-reference-audit/archive.json",
+          "sha256": "7cf291168bfb8fe2d80464853c3013040a7746cdafd9a7c3103a0e42303d49cd",
+          "size": 348
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w151-backbone-reference-audit/audit.json",
+          "sha256": "87ae9a9eab0f9023a482eedb7caffbcb7d8314939b88e2bd73dd633f179baa91",
+          "size": 5523
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w151-backbone-reference-audit/interpretation.json",
+          "sha256": "452fb2b136cb9db857087f545a30bfe92228451f7c7824c7d72e4bee44cc577a",
+          "size": 838
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -3138,8 +3216,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 149,
-    "next": 150,
+    "current": 151,
+    "next": 152,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -3841,6 +3919,18 @@
       {
         "number": 149,
         "title": "Package the reusable offline density inspector",
+        "state": "RECORDED",
+        "code_commit": "04b6402a274f27b84da298d23ce5c0db58776438"
+      },
+      {
+        "number": 150,
+        "title": "Qualify the inspection follow-on against shared Alder",
+        "state": "RECORDED",
+        "code_commit": "04b6402a274f27b84da298d23ce5c0db58776438"
+      },
+      {
+        "number": 151,
+        "title": "Separate deposited sequence continuity from reference geometry",
         "state": "RECORDED",
         "code_commit": "04b6402a274f27b84da298d23ce5c0db58776438"
       }

@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W150–W151 — Qualify shared inspection and reference interpretation
+
+- Preserve the temporary receiving-owner composition, focused/source-free install
+  and exact saved-science/native-preview evidence without claiming active adoption
+  or a fresh combined full-suite pass.
+- Bind the 8D93 B107/B111 numbering jump to deposited polymer adjacency, keeping
+  reference deformation and existing phosphate-angle defects explicit. Update
+  the next independent local no-op/bending gate; no runtime or scientific policy
+  changes on the active Willow branch and no raw scientific payload committed.
+
 ### W149 — Package the shared density inspection renderer
 
 - Extract the approved offline two-state display into an installed HTML resource
