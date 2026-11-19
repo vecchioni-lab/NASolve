@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "topostitch-development-intent",
-  "date": "2026-11-17",
+  "date": "2026-11-19",
   "status": "BOUNDED_PLACEMENT_PROPOSALS_IMPLEMENTED",
   "runtime_authority": false,
   "contract": "docs/topostitch.md",
@@ -77,14 +77,56 @@
     "future": "explicit coordinated hinge capability"
   },
   "evaluation": {
-    "expected_correct_repair": "better intended contacts and generally lower Rwork and Rfree",
+    "expected_correct_repair": "realize explicitly required contacts while preserving sequence, connectivity and content; lower Rwork/Rfree is desirable but not mandatory after recovery",
     "matched_no_repair_refinement_control": true,
     "original_observations_and_free_r": true,
     "finite_predeclared_trial_set": true,
     "tune_repeatedly_against_rfree": false,
     "forced_contacts_are_independent_evidence": false,
     "tiny_r_changes_prove_improvement": false,
-    "numerical_thresholds": "pending benchmarks"
+    "numerical_thresholds": "user-declared post-recovery project review gate 0.30; meaningful deltas and calibration remain benchmark-dependent",
+    "post_deformation_recovery": {
+      "status": "PLANNED_NOT_RUNTIME_AUTHORITY",
+      "reject_on_initial_rfree_alone": false,
+      "states": [
+        "parent",
+        "raw_deformation",
+        "optional_smoothing",
+        "post_phenix_recovery"
+      ],
+      "predeclared_matched_recovery_window": true,
+      "nonmonotonic_early_rfree_allowed": true,
+      "unsettled_budget_outcome": "recovery_unresolved_within_budget"
+    },
+    "post_recovery_review": {
+      "status": "PLANNED_NOT_RUNTIME_AUTHORITY",
+      "known_connectivity_requires_explicit_scientist_or_construct_source": true,
+      "r_work_fit_gate_max": 0.3,
+      "r_work_above_review_threshold": 0.3,
+      "r_free_above_review_threshold": 0.3,
+      "worse_final_rfree_requires_map_review_even_below_threshold": true,
+      "comparisons": [
+        "starting_model",
+        "matched_refined_no_repair_control"
+      ],
+      "numerical_gate_alone_approves": false,
+      "preserve": [
+        "sequence",
+        "connectivity",
+        "molecular_content",
+        "defensible_geometry"
+      ],
+      "structural_differential": [
+        "junctions",
+        "connections_and_pairing_register",
+        "bulges",
+        "sequence_assignment",
+        "triangle_orientation",
+        "phosphate_completeness_and_placement"
+      ],
+      "alternative_causes_remain_visible": true,
+      "automatic_topology_or_sequence_rewrite": false
+    }
   },
   "scheme_transfer": {
     "scope": "explicitly related campaign members under frozen permission",
@@ -699,11 +741,11 @@
       "schema_version": 1,
       "kind": "topostitch-representative-comparison-view",
       "cli": "nasolve-topostitch-view --compare (repeatable)",
-      "input_scope": "2\u20138 explicit packets from one exact source and registered graph; no inferred alternatives",
+      "input_scope": "2–8 explicit packets from one exact source and registered graph; no inferred alternatives",
       "display_point_budget": 50000,
       "camera": "Shared across cuts; rotation/pan/zoom/mode/toggles retained",
       "stale_selection": "Atom/edge inspection cleared on cut switch; warnings, ownership and native seams refreshed",
-      "local_identifiers": "Cut 1, Cut 2, \u2026 in explicit input order; exact hashes retain proposal identity",
+      "local_identifiers": "Cut 1, Cut 2, … in explicit input order; exact hashes retain proposal identity",
       "legacy_scenes_unchanged": true,
       "selection_applied": false,
       "graphical_review_recorded": false,

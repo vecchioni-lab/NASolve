@@ -854,11 +854,13 @@ independent proof that an inferred connection is correct.
 
 ## Evaluation: contacts and diffraction must both be considered
 
-The user's central prediction is that a correct repair should generally improve
-both **Rwork and Rfree**, as well as the intended contacts. Treat this as a
-measurable expectation, not a guaranteed outcome or permission to search until
-Rfree falls. Favor coherent improvements; a geometry-only improvement with
-worse diffraction agreement remains a visible tradeoff for review.
+When the scientist explicitly declares that ends must meet, that intended
+sequence/connectivity drives the repair search. Preserve its source and distinguish
+it from inferred partners, registers or symmetry images. Better Rwork/Rfree is a
+useful expectation, not a necessary monotonic outcome: a structurally faithful
+connection can be acceptable despite some worsening after recovery. The user's
+project gate is 0.30, applied to named post-recovery statistics with structural
+and map review; it is not standalone proof of a correct or complete model.
 
 ### Post-deformation recovery window (W156 planning)
 
@@ -885,6 +887,27 @@ or keep extending solely until the same Free-R set looks favorable. W153's fixed
 five-cycle result is a mixed post-budget observation, not a test of initial-Rfree
 rejection or proof that later recovery is impossible. This is a planning gate;
 no current refinement thresholds, runtime schema or automatic continuation change.
+
+**Post-recovery review (W156 user clarification):**
+
+- Rwork at or below 0.30 can meet the stated project fit gate when required
+  sequence, connectivity, molecular content and defensible geometry survive.
+  A lower residual cannot compensate for deleted atoms or lost structural intent.
+- Worse final Rfree triggers careful map review even when it remains below 0.30.
+  Compare both the starting model and the matched refined no-repair control;
+  expose actual movement against a fixed map and each model's own maps. Meeting
+  a numerical gate does not silently approve the candidate.
+- Rwork or Rfree above 0.30 after recovery triggers explicit structural diagnosis:
+  missing/misplaced junctions or connections, wrong register, bulges, sequence
+  assignment, triangle orientation and phosphate completeness/placement. Carry
+  the finding into a bounded alternative bend or structural hypothesis, not
+  repeated identical cycles. Sequence/topology revisions remain explicit proposals
+  checked against construct intent; do not silently change the intended molecule.
+- Keep non-structural explanations in the diagnostic differential. The
+  [Phenix refinement FAQ](https://phenix-online.org/documentation/faqs/refine.html)
+  notes that high R values can persist with effects such as twinning or
+  translational NCS. The project threshold routes review; it cannot uniquely
+  identify a missing feature. No runtime gate is changed by this planning note.
 
 Freeze the parent and preserve a no-repair control. Compare repaired-plus-refined
 and unmodified-plus-equivalently-refined siblings using the same original

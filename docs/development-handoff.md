@@ -38,8 +38,13 @@ scopes; they are not a queue to repeat.
 
 **W156 planning clarification:** poor initial/early-cycle Rfree after deformation
 is not a rejection gate. Allow a declared, matched restraint-driven recovery
-window and distinguish raw, smoothed and post-Phenix states. W153 has not proved
-convergence or irrecoverability; an unsettled budget remains inconclusive.
+window and distinguish raw, smoothed and post-Phenix states. Explicit known
+connectivity drives the search; improved R values are not mandatory. After recovery,
+worse Rfree requires map review even below the user's 0.30 project gate; above-gate
+Rwork/Rfree triggers junction/connection/register/bulge/sequence/orientation/phosphate
+diagnosis with other causes retained. Preserve molecular content and construct
+intent. W153 has not proved convergence or irrecoverability; an unsettled budget
+remains inconclusive.
 [Recovery contract](topostitch.md#post-deformation-recovery-window-w156-planning).
 
 ## Current development edge

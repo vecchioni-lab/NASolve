@@ -19,6 +19,10 @@ entries are reconstructed from repository history.
 
 ### W156 — Distinguish initial deformation from refinement recovery
 
+- Carry explicit structural intent and the user's post-recovery 0.30 review gate
+  into human/machine planning: worse final Rfree needs map review even below the
+  gate; higher values trigger named structural checks with other causes retained.
+
 - Record the user-requested recovery window: early poor Rfree alone must not
   reject a deformation. Preserve raw, smoothed and post-Phenix trajectories,
   matched budgets and unresolved outcomes without Rfree-driven retuning.
