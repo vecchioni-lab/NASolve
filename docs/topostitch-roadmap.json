@@ -3120,7 +3120,7 @@
       "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
       "reference": "docs/topostitch-periodic.md#w153--separate-experimental-backbone-recovery-from-geometry-driven-relaxation",
       "result": "W153 deposited5W6W experimental comparison preserves5137 raw observations/507originalFree, but positive native filtering drops one work reflection. Endpoints approach relaxed control0.21485/0.14566A; reference itself moves0.52152A and Rfree rises~0.019. Geometry improves, strong B2P negative density remains. Common4629work/507Free endpoint arithmetic reuses saved F-model without refit; mixed outcome, not accepted repair.",
-      "limitation": "Not fixed-work-set trajectories, noise calibration or scientific repair. Maps include test reflections/model phases; fixed B/occupancy leave scattering/ADP alternatives. No weight retuning or accepted winner.",
+      "limitation": "Not fixed-work-set trajectories, noise calibration or scientific repair. Maps include test reflections/model phases; fixed B/occupancy leave scattering/ADP alternatives. No weight retuning or accepted winner. Cold saved-coordinate decomposition leaves0.50357A all-atom RMS after diagnostic proper rigid fitting; no aligned XYZ exported. Broad covalent/plane RMS reductions are associations, not identification of the causal restraint family.",
       "local_receipts": [
         {
           "anchor": "NASolve",
@@ -3175,6 +3175,12 @@
           "path": "branch-artifacts/cedar/coordination-w153-observations-20261119.json",
           "sha256": "1341404037bf53317c383d6a41d7d0895368315158b150bdfa22b127f1d1b24d",
           "size": 2327
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w153-experimental-backbone/motion-association.json",
+          "sha256": "f63b3e2249181fc7610b8f31866ed3edcb70a80fa09b01f557f3c7f09e274915",
+          "size": 4297
         }
       ]
     },

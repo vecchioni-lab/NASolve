@@ -28,6 +28,10 @@ entries are reconstructed from repository history.
 
 ### W153–W154 — Experimental control and independent density-source labels
 
+- Retain a cold movement/geometry supplement: reference drift is predominantly
+  internal, with broad geometry changes rather than causal attribution to one
+  restraint family. No aligned coordinates, new fit or runtime change.
+
 - Record the mixed deposited-5W6W result, native adaptive filtering, common-HKL
   endpoint arithmetic and saved density inspection. Preserve original observations,
   Free membership and failed diagnostics; no new acceptance/weight policy or

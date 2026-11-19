@@ -9083,6 +9083,30 @@ not a qualified local causal matrix. See Alder's current owner and its
 is evidence, not an active instruction. Larger/reciprocal shapes, junction-aware
 window expansion, physical closure and the B09 geotest demonstration remain open.
 
+**Cold movement/geometry supplement (same W153 scope):**
+`branch-artifacts/willow/w153-experimental-backbone/motion-association.json`
+binds the existing coordinate/plane receipts and all six original model hashes.
+Run with `/private/tmp/willow-w94-pivot/env/bin/python -B
+branch-artifacts/willow/runners/w153-motion-association.py` from the NASolve anchor.
+The script verifies two analytic rigid-motion controls and preserves all inputs;
+there are no native calls or new refinements. Reference all-859-atom RMS is
+0.50749 Å, 0.50467 Å after removing common translation and 0.50357 Å after a
+proper rigid least-squares decomposition. The movement is predominantly internal.
+This decomposition exports no aligned coordinates and changes neither the
+crystallographic/map frame nor existing scores/views.
+
+No-op RMS decreases occur across families: 20 pair-plane angles 11.226→3.383°,
+38 adjacent-stack angles 9.193→4.130°, 960 covalent bonds 0.01810→0.00346 Å,
+and 1,474 covalent angles 1.657→1.147°. These within-family reductions cannot
+compare force/energy across families or identify pair flattening as the causal
+driver. The supplementary receipt is outside the immutable archive above.
+Rowan confirms prior Cedar protocols do not supply a matched causal contrast on
+these exact inputs. If that question becomes necessary, prospectively compare an
+ordinary production protocol with the fixed-unit arm, preserving the declared
+pairs, starting model and source observations and reporting effective/common
+sets. Coordinate protocol ownership first; do not treat changed protocols as a
+pure weight intervention or start an Rfree-driven search. No new matrix is queued.
+
 ## W154 — Name map sources independently of coordinate states
 
 **2026-11-19; isolated presentation patch.** The previous renderer reused model

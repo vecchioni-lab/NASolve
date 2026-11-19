@@ -1364,7 +1364,7 @@ W152 independent deposited5W6W opposite displacements recover from0.7641A RMS to
 
 [Evidence contract](topostitch-periodic.md#w153--separate-experimental-backbone-recovery-from-geometry-driven-relaxation) at [W153](https://github.com/vecchioni-lab/NASolve/commit/71dda01aecc616a8bc8f94506567ef3a3218842a).
 W153 deposited5W6W experimental comparison preserves5137 raw observations/507originalFree, but positive native filtering drops one work reflection. Endpoints approach relaxed control0.21485/0.14566A; reference itself moves0.52152A and Rfree rises~0.019. Geometry improves, strong B2P negative density remains. Common4629work/507Free endpoint arithmetic reuses saved F-model without refit; mixed outcome, not accepted repair.
-**Limit:** Not fixed-work-set trajectories, noise calibration or scientific repair. Maps include test reflections/model phases; fixed B/occupancy leave scattering/ADP alternatives. No weight retuning or accepted winner.
+**Limit:** Not fixed-work-set trajectories, noise calibration or scientific repair. Maps include test reflections/model phases; fixed B/occupancy leave scattering/ADP alternatives. No weight retuning or accepted winner. Cold saved-coordinate decomposition leaves0.50357A all-atom RMS after diagnostic proper rigid fitting; no aligned XYZ exported. Broad covalent/plane RMS reductions are associations, not identification of the causal restraint family.
 
 <a id="e_independent_map_labels"></a>
 ### E_INDEPENDENT_MAP_LABELS — independent_density_source_presentation

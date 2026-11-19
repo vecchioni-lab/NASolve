@@ -12,7 +12,9 @@ Rfree rises from about .241 to .260; strong B2 phosphate negative density remain
 The positive arm adaptively rejects one work reflection. Raw observations/Free
 stay intact, and cold common-HKL endpoint scoring is complete, but the trajectories
 are not a fixed-work-set comparison. No winner, weight retuning or repair is
-accepted. [Methods and evidence](topostitch-periodic.md#w153--separate-experimental-backbone-recovery-from-geometry-driven-relaxation).
+accepted. A cold decomposition confirms mostly internal motion (0.507→0.504 Å
+all-atom RMS after removing a common rigid motion); broad covalent and plane
+changes do not identify one causal restraint family. [Methods and evidence](topostitch-periodic.md#w153--separate-experimental-backbone-recovery-from-geometry-driven-relaxation).
 
 W154 lets the installed inspector name density sources independently of the
 coordinate states. Complete source and relocated-install checks pass; the two
