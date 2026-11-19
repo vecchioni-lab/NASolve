@@ -116843,5 +116843,94 @@
         }
       }
     }
+  },
+  "declared_metal_donor_state_2026_11_19": {
+    "kind": "declared-metal-donor-state-path-audit",
+    "status": "INTENT_CONFIRMED_IMPLEMENTATION_AND_NATIVE_STATE_UNQUALIFIED",
+    "author": "Rowan",
+    "date": "2026-11-19",
+    "source_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
+    "milestone": "Q13 prerequisite for affected Q06 experimental case",
+    "user_authority": {
+      "speaker": "Simon",
+      "channel": "Rowan chat",
+      "date": "2026-11-19",
+      "exact_answer": "Yes\u2014Hg replaces both N3 hydrogens."
+    },
+    "scope": {
+      "donors": [
+        "A:12 DF N3",
+        "B:4 DT N3"
+      ],
+      "metal": "M:1 HG",
+      "preserve_unrelated_components": true,
+      "neutral_parent_definitions_retained": true
+    },
+    "next_bounded_work": [
+      "Neutral parent source selection is bound through the existing owner for both components. Next specify and bind the explicit derivative; installed numerical partial-charge fields remain separate from complete source formal-charge authority.",
+      "Represent the declared N-H replacement with complete H/charge/valence bookkeeping and unchanged remote topology/configuration. Retain parent bytes and explicit metal-link/site/alias context; no residue-name repair switch.",
+      "Qualify a separately generated state candidate through the existing source/charge/native-usability owners. Do not invent donor energy types or new numerical targets from the current distorted coordinates.",
+      "Apply only at the two declared donor sites through a qualified native mechanism; prove unrelated DF/DT instances and original backbone/phosphate operations unchanged.",
+      "Capture actual linked native definitions, selected atom inventory and complete affected terms before a fresh bounded refinement. Keep unknown native formal-charge fields explicitly unassessed.",
+      "Only then compare refinement survival with the retained original. No claim that this state gap caused glycosidic strain."
+    ],
+    "receipt": {
+      "anchor": "NASolve-local-artifacts",
+      "relative_path": "cedar/coordination-state-path-audit-20261119.json",
+      "sha256": "0df65d536ceb64b7931e6cefbe60657b499303c2fe53a30c1bba86844cd5483d"
+    },
+    "prior_evidence": {
+      "anchor": "NASolve-local-artifacts",
+      "relative_path": "Alder/integration-20261119-01/coordination-state-question.json",
+      "sha256": "5066b2e5f4c5de481e9813ee32444fb1196ed0f2149550e86597c24c33d0d30e",
+      "size": 2075
+    },
+    "native_boundaries": {
+      "version": "2.2.1-6174",
+      "formal_charge_field_in_chem_mod_atom": false,
+      "partial_charge_is_not_formal_charge": true,
+      "dt_current_effective_id": "Td",
+      "dt_N3_type": "NR16",
+      "dt_H3_type": "HNR6",
+      "dt_source_has_explicit_formal_charge_column": false,
+      "dt_historical_effective_model_binding": "NOT_REQUALIFIED",
+      "refinement_calls": 0,
+      "isolated_library_reads": 1
+    },
+    "limits": [
+      "Current DT library read is not retrospective binding of A109 effective DT state.",
+      "No qualified generic metal-bound donor-state path found; neutral backbone operations are deliberate narrower policies.",
+      "No production/chemistry edits, new targets, native refinement or causal attribution."
+    ],
+    "neutral_source_binding": {
+      "status": "NEUTRAL_SOURCE_SELECTION_BOUND",
+      "receipt": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "cedar/coordination-neutral-source-audit-20261119.json",
+        "sha256": "7afb430da84708097aca62859977727a8c55a750704a4f38063669cd7e5f19da"
+      },
+      "policy": "cif-acquisition-source-selection-v1",
+      "components": {
+        "DF": {
+          "authority": "CURATED",
+          "kind": "curated",
+          "atoms": 36,
+          "formal_charge_count": 36,
+          "total_formal_charge": 0
+        },
+        "DT": {
+          "authority": "NATIVE",
+          "kind": "installed-phenix-ccd",
+          "atoms": 36,
+          "formal_charge_count": 36,
+          "total_formal_charge": 0
+        }
+      },
+      "retained_DF_formal_charges_exact": true,
+      "files": 3,
+      "bytes": 19415,
+      "native_calls": 0,
+      "chemical_state_changed": false
+    }
   }
 }

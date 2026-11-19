@@ -1406,6 +1406,34 @@ NAR package version identifies that workbook.
 
 ### Q13 — Close chemical-state and attachment-policy gaps
 
+**DF/Hg donor-state holdover (19 November):** Hazel and Rowan confirmed that the
+retained A109 DF dictionary describes neutral NH1 N3 with an explicit N3–H3
+single bond (1.018 ± 0.029 Å). The bound metal recipe coordinates N3, while the
+coordinate model contains no H3. Missing hydrogen coordinates do not establish
+experimental protonation or charge. The recorded modifications change terminal
+link atoms, not N3/H3. Simon explicitly confirmed on 19 November: **Hg replaces
+both N3 hydrogens** in the intended DF–Hg–DT bridge. Preserve the neutral source
+as provenance and qualify a separate declared metal-bound state, including the
+DT donor, exact hydrogen/charge bookkeeping and effective native readback. Reuse Alder's existing
+state-aware coordination design; no DF-only repair, automatic deprotonation or
+causal attribution for sugar–base strain follows. This is a prerequisite for the
+affected Q06 experimental case, not a new native sweep or a reopened ownership task.
+Exact DF dictionary SHA-256: `c632ad07eed7feed22132021bed28a047d9441b5f762451e09d5f960a6e763cc`;
+the existing A109 input contract binds its local provenance.
+The reusable-path audit is `declared_metal_donor_state_2026_11_19` in the existing
+evidence ledger. The installed site-modification API exposes partial charge, not
+formal charge; the current standard Td source likewise lacks explicit formal
+charges. Do not substitute either for complete source-state authority. Reuse the
+existing explicit generator charge-control and isolated/linked qualification
+owners once the declared derivative is fully specified. The existing acquisition
+owner now freezes complete neutral parents from curated DF and installed CCD DT
+(36 atoms with explicit formal charges each; three files, 19,415 bytes). This
+chemical source is distinct from numerical Td. All 36 DF formal charges match
+the retained A109 dictionary; no state was changed or native refinement started.
+Ordinary explicit-source selection deliberately cannot override curated DF. Keep
+that guard: a declared chemical-state derivative needs its own scoped authority,
+not a weakened global source preference or a hidden numerical repair.
+
 **C374 DF source-state confirmation:** exact original, numerical, plane-added and
 refinement dictionaries retain OP2 charge0/HOP2 and a single P–OP2 bond. Its
 1.571 Å target (sigma0.022), versus OP1's1.473 Å (sigma0.012), is source-derived.

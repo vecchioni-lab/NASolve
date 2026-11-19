@@ -137,6 +137,11 @@ six-atom ring plane 0.094297 Å. These descriptive starting values are not accep
    remaining experimental-chemistry question. Q06 needs useful PDU/DF geometry after refinement and whole-substituent
    evidence, not merely successful execution or a readable CIF. Reuse existing
    source-selected geometry/coverage and native observation tools before adding code.
+   Q13 also retains the newly explicit DF/Hg donor-state question: the saved DF
+   dictionary has N3–H3, while the metal recipe coordinates N3 and the model omits
+   H3. Simon confirms Hg replaces both N3 hydrogens. Qualify the separate declared
+   metal-bound state with Hazel, preserving neutral source provenance; this is
+   not a diagnosed cause of the attachment strain.
 3. Close any needed combined ordinary descendant coverage through existing owners.
    Keep wider counted protocols and density-fitting policy separately qualified;
    finite map coefficients alone do not establish a valid density-fitting policy.
