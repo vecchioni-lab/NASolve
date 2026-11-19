@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W152 — Qualify independent opposite-direction backbone recovery
+
+- Record deposited 5W6W opposite displacements and matched no-op refinement,
+  independent coordinate/geometry review and the exact stacking scope. Close the
+  bounded idealized-data subgate while retaining experimental/general-repair limits.
+- Preserve a small local actual-coordinate inspection and indexed native evidence;
+  no runtime, schema, compatibility or migration changes, and no raw data committed.
+
 ### W150–W151 — Qualify shared inspection and reference interpretation
 
 - Preserve the temporary receiving-owner composition, focused/source-free install

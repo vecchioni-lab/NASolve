@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-19**, through **W151**. **W140 adds backbone and saved-map evidence to W139's
+Updated **2026-11-19**, through **W152**. **W140 adds backbone and saved-map evidence to W139's
 matched sticky-end improvement.** GC plane mismatch falls 27.30→6.30° with
 localized movement; nearby sugar/phosphate bond and angle deviations barely
 change. All 38 existing backbone links were measured and 126 ordered sugar-volume
@@ -28,12 +28,19 @@ bond errors recover and sugar signs survive; an existing outside-region source
 link distortion remains. This is separate from experimental repair, density-noise
 calibration and convergence. [Evidence and limits](topostitch-periodic.md#w148--recover-a-known-backbone-displacement-with-matching-diffraction).
 
+**W152 closes the independent opposite-displacement/no-op subgate:** deposited
+5W6W signed starts recover from 0.764 Å RMS to 0.052/0.047 Å under matching
+synthetic diffraction; the unperturbed control moves 0.014 Å. Rowan independently
+reproduced coordinates, local geometry and identities. The 20 pair-plane and 38
+adjacent stacking groups retain explicit source/boundary residuals. This is not
+experimental or general junction repair. [Evidence](topostitch-periodic.md#w152--recover-opposite-backbone-displacements-in-an-independent-deposited-model).
+
 ## Current development edge
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
 | W149 reusable inspector | Installed prepared-scene renderer; full/source-free installation, exact saved-data replay and bounded peer review | Stage adapter, source/frame proof, browser/GPU qualification and campaign actions |
-| W148 matching-data recovery | Frozen canonical displacement recovers; independent cold/native geometry checks and actual-coordinate checkout | Healthy source-link intent, independent controls, experimental/noisy data and general repair |
+| W148/W152 matching-data recovery | Two source models, opposite signed starts and matched no-op; independently audited local geometry | Reciprocal target shapes, larger/nonuniform bends, experimental/noisy data and general repair |
 | W139/W140 matched canonical control | Native/zero identity, local pair benefit, recorded backbone supports and saved-map sampling | Numerical stops; density calibration, broader controls and whole-model acceptance |
 | W138 ordinary longer control | Explicit v8 100-cap route, actual final writer/pair capture; full/installed/native gates pass | Broader protocols, semantic weighting and CLI/Doctor activation |
 | W125–W134 shared execution/readback | Original pair intent, fresh admission, actual output proof and compatible registered continuation | Ordinary modified-chemistry descendants, unclassified native remainder and broader efficacy |

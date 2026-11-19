@@ -8874,3 +8874,93 @@ must be explicit. Keep the B107→B111 distortion visible as context; never remo
 real topology to improve a geometry score. Retain fixed data/Free-R, original
 attempts, junction limits and matched endpoint comparisons. Experimental/noisy
 density support, general closure and the B09 geotest demonstration remain open.
+
+## W152 — Recover opposite backbone displacements in an independent deposited model
+
+**2026-11-19; completed canonical matched-data control.** W148's generating
+reference is now complemented by deposited 5W6W, not another descendant of the
+8D93 preview. Public [5W6W coordinates](https://files.rcsb.org/download/5W6W.pdb)
+were retrieved 2026-11-19 (99,225 bytes; SHA256
+`f33754cc170ab8167e8085cb848f4ef0b6bd0f545c81db6163a650a41f503e71`).
+All 859 atoms/42 canonical residues, cell, occupancy and B values are preserved.
+The explicit register is A2–8/C14–8, A9–15/B7–1 and A16–21/D7–2. Twenty
+canonical pair recipes are declared; no inferred sticky connection or symmetry
+covalent bond is added. The input window has fixed end pairs A9/B7 and A15/B1;
+205 atoms in the five interior pairs receive equal opposite tapered rotations
+(up to ±5°) through the existing preview rotation/render functions.
+
+One frozen synthetic amplitude set is calculated from the deposited source at
+3.06 Å: 7,554 reflections, 389 deterministic synthetic test flags, no added
+measurement noise. These are not experimental observations or original Free-R
+flags. All three starts use the same data, restraints, five macrocycles,
+100-iteration cap, seed 1, one process, fixed unit weights, fixed occupancy/B,
+no generating-coordinate tether and all 859 XYZ coordinates active. Thus the
+654 context atoms are not frozen during refinement. Phenix **2.2.1-6174** runs
+through the unchanged installed Cedar C407 owner
+`f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad`; NARestraints source is
+`a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691`.
+
+| Start | Initial selected RMS to generator (Å) | Final RMS to generator (Å) | Final RMS to relaxed control (Å) | Local covalent bond RMS (Å) | Local angle RMS (°) |
+| --- | ---: | ---: | ---: | --- | --- |
+| Deposited reference | 0 | 0.01436 | 0 | 0.01742 → 0.01785 | 1.833 → 1.896 |
+| Positive displacement | 0.76410 | 0.05152 | 0.04505 | 0.06226 → 0.01105 | 3.661 → 2.004 |
+| Negative displacement | 0.76411 | 0.04653 | 0.03978 | 0.06665 → 0.01143 | 3.636 → 2.010 |
+
+Local geometry covers 232 covalent bonds and 363 angles touching the selected
+atoms. All 126 ordered sugar-volume signs and 38 native backbone links survive;
+all 2,569 bond/angle target, sigma and weight definitions match across six states.
+The pooled native bond RMS includes user terms and must not be presented as pure
+covalent geometry. Final Rwork/Rfree are .0062/.0067, .0121/.0141 and .0114/.0132;
+these small values reflect idealized matching data, not experimental success.
+Fixed-budget completion does not establish optimizer convergence.
+
+**Stacking scope:** the identical native recipe contains 20 pair-plane and 38
+same-chain adjacent stacking groups, not merely twenty restraint terms. It
+includes A8–9 and A15–16 outside the moved interior. Independent unsigned SVD
+plane angles at those boundaries are initially 8.174°/7.003°, 8.051°/6.862° in
+the relaxed control and approximately 7.2°/6.35° after displaced recovery. The
+largest initial plane mismatch is 23.369°. Existing source defects remain;
+this does not qualify whole-model stacking health, junction intent or flexibility.
+No restraint was removed or retuned after seeing the outcome.
+
+**Validation and ownership:** source/hash/preflight checks preceded fitting.
+Exact commands were `PYTHONDONTWRITEBYTECODE=1 <shared Python3.12> -B
+runners/w152-prepare.py`, `runners/w152-control.py`,
+`runners/w152-readback.py`, `runners/w152-control.py --refine`,
+`runners/w152-readback.py --final`, `runners/w152-execution-review.py` and
+`runners/w152-parallelity-scope.py` (same Python/environment prefix throughout).
+The generator is a captured Phenix job. Seven native process groups stopped;
+preflight took 22.33 s and refinement phases 177.15 s combined. Independent
+Rowan cold review reproduced both signed inputs to PDB rounding, coordinate and
+geometry results, target identities, links, sugar signs and data/flag counts.
+The cold execution audit preserves 113 source/result files and 304 installed
+package files. No runtime code or schema changed; the existing W149 complete
+source/installed qualification is not rerun for private diagnostics and docs.
+
+The local human packet is at ScienceCheckouts anchor
+`Linden/2026-11-19_opposite-bends/review.html`: two existing-renderer comparisons,
+six actual PDBs and one ChimeraX loader. ChimeraX **1.12** headless verification
+opens all six models with exact coordinates, identity placements and 205 selected
+atoms each. This is not browser/GPU review. No alignment or exaggerated movement.
+
+Evidence archive: NASolve anchor
+`branch-artifacts/willow/w152-independent-backbone-evidence-2026-11-19.zip`,
+145 indexed files +manifest, 5,489,262 bytes, SHA256
+`c9887ace11aae6bffe77cd5aaba602741c2e652a05db0e346e6f31c06ac76753`.
+Member hashes verify. Original science remains; generated data, native logs,
+models, maps and local runners are excluded from Git. Historical native paths
+are provenance, not a portable executable-campaign claim. No compatibility or
+migration change.
+Documentation validation: `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src
+<shared Python3.12> -B -m pytest -q -p no:cacheprovider
+tests/test_topostitch_roadmap.py` passes all eight cases;
+`scripts/audit_topostitch_roadmap.py --write` and `--check`, plus
+`git diff --check`, pass. The initial unittest invocation collected zero pytest
+functions and is not counted as validation. No unchanged full suite rerun.
+
+**Milestone decision:** close this independent-model, opposite-displacement,
+matched-no-op subgate. S04/S05/S06 remain PARTIAL. This is not reciprocal
+straight/curved target recovery, larger bending, automatic window expansion,
+physical seam closure or experimental/noisy-density qualification. Next inspect
+whether the deposited diffraction supports a bounded matched experimental
+control, preserving original observations/flags and the relaxed-reference arm.
