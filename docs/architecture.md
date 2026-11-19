@@ -634,7 +634,7 @@ and source/frame/relocation checks remain on S07's queue. See the
 and [GUI integration](gui.md#shared-dynamic-modeldensity-inspector).
 
 The first packaged presentation slice is `density_inspection_html(scene,
-*, title, subtitle, source_note, frame_note, model_labels=...)` in
+*, title, subtitle, source_note, frame_note, model_labels=..., map_labels=None)` in
 `nasolve.density_inspection`; `write_density_inspection` writes a new file
 exclusively after validation. It reuses W143’s offline WebGL presentation and
 the package resource `data/density-inspection.html`. No network or native
@@ -643,7 +643,11 @@ adapter or a proof of the supplied scene’s scientific provenance.
 
 The existing `local-backbone-density-display` schema-1 scene uses `native` and
 `full` as two legacy storage slots; they do not imply refinement policies or
-quality. Human labels are supplied separately. Each atom has a unique key,
+quality. Human model and map-source labels are supplied separately. Optional
+`map_labels` can name a fixed relaxed-control map while the coordinate labels
+describe a displaced start and refined endpoint. Omission preserves the existing
+model-label default. These labels are presentation, not producer/frame proof;
+map selection remains independent of model selection. Each atom has a unique key,
 label, element and two XYZ triples; explicit bond indices and precomputed
 triangle meshes remain unchanged. Movement is measured from the supplied
 coordinates, without alignment or magnification. A map slot is either explicitly

@@ -122,3 +122,27 @@ def test_display_envelope_and_generated_work_are_bounded(tmp_path, case):
     out = tmp_path/'over-budget.html'
     with pytest.raises(ValueError):write_density_inspection(data, out, **NOTES)
     assert not out.exists()
+
+
+def test_map_labels_can_name_a_fixed_control_independently_of_coordinates(tmp_path):
+    data = scene(); data['layers']['native'] = meshes()
+    before = copy.deepcopy(data)
+    page = density_inspection_html(data, **NOTES, model_labels=('Displaced', 'Recovered'),
+                                  map_labels=('Relaxed control', 'Unavailable'))
+    displayed = unpack(page)
+    assert displayed['display_labels'] == dict(native='Displaced', full='Recovered')
+    assert displayed['display_map_labels'] == dict(native='Relaxed control', full='Unavailable')
+    assert re.search(r'<button id="native"[^>]*>Displaced</button>', page)
+    assert '<option value="native">Relaxed control</option>' in page
+    assert displayed['layers'] == before['layers'] and displayed['atoms'][0]['native'] == before['atoms'][0]['native']
+    assert data == before
+    default = unpack(density_inspection_html(data, **NOTES, model_labels=('One', 'Two')))
+    assert default['display_map_labels'] == default['display_labels']
+    attack = '</option><script>bad()</script> __TITLE__ &'
+    escaped = density_inspection_html(data, **NOTES, map_labels=(attack, 'Other'))
+    assert '</option><script>bad()' not in escaped
+    assert unpack(escaped)['display_map_labels']['native'] == attack
+    for invalid in (('Only one',), ('', 'Other'), 'AB', (3, 'Other')):
+        target = tmp_path/'invalid.html'
+        with pytest.raises(ValueError):write_density_inspection(data, target, **NOTES, map_labels=invalid)
+        assert not target.exists()

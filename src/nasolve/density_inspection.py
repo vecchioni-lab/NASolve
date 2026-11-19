@@ -146,12 +146,14 @@ def _display_scene(scene):
 
 
 def density_inspection_html(scene, *, title, subtitle, source_note, frame_note,
-                            model_labels=('Reference', 'Comparison')):
+                            model_labels=('Reference', 'Comparison'), map_labels=None):
     """Render supplied two-state display data as a self-contained offline page.
 
     Notes are escaped plain text supplied by the calling workflow, not evidence
     authenticated by this renderer. Empty map slots remain explicitly unavailable.
-    Numeric meshes and coordinates are preserved; movement is measured directly
+    Map labels may name density sources independently of the coordinate states;
+    omitted map labels preserve the model-label default. Labels do not certify
+    map provenance or correspondence. Numeric meshes and coordinates are preserved; movement is measured directly
     from the supplied coordinates. No alignment or scientific acceptance occurs.
     """
     data = _display_scene(scene)
@@ -162,12 +164,20 @@ def density_inspection_html(scene, *, title, subtitle, source_note, frame_note,
              'Supply two model labels')
     labels = dict(zip(_STATES, [_text(v, 'Model label', 120) for v in model_labels]))
     data['display_labels'] = labels
+    if map_labels is None:
+        map_labels = model_labels
+    _require(isinstance(map_labels, (list, tuple)) and len(map_labels) == 2,
+             'Supply two map labels')
+    density_labels = dict(zip(_STATES, [_text(v, 'Map label', 120) for v in map_labels]))
+    data['display_map_labels'] = density_labels
     payload = json.dumps(data, allow_nan=False, separators=(',', ':')).encode('utf-8')
     replacements = {
         '__PACKED_SCENE__': base64.b64encode(gzip.compress(payload, mtime=0)).decode('ascii'),
         '__TITLE__': html.escape(title), '__SUBTITLE__': html.escape(subtitle),
         '__SOURCE_NOTE__': html.escape(source_note), '__FRAME_NOTE__': html.escape(frame_note),
         '__NATIVE_LABEL__': html.escape(labels['native']), '__FULL_LABEL__': html.escape(labels['full']),
+        '__NATIVE_MAP_LABEL__': html.escape(density_labels['native']),
+        '__FULL_MAP_LABEL__': html.escape(density_labels['full']),
     }
     template = files('nasolve').joinpath('data/density-inspection.html').read_text(encoding='utf-8')
     _require(all(token in template for token in replacements), 'Incomplete installed density template')

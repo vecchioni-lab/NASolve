@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Independent model and density-source labels
+
+- Allow the offline inspector to name its two density sources independently of
+  the two coordinate states, so a fixed control map is not labelled as if it came
+  from a displaced model. Existing calls retain their model-label defaults.
+- No coordinate, map, sampling, provenance or checkpoint policy changes; the
+  optional presentation argument needs no existing scene migration.
+
 ### W152 — Qualify independent opposite-direction backbone recovery
 
 - Record deposited 5W6W opposite displacements and matched no-op refinement,
