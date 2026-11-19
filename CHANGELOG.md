@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W145 — Expose the selected map's stage and checkpoint ancestry
+
+- Add optional, keyword-only `ViewProfile.map_origin` with the selected map's
+  stage, associated refinement checkpoint and ordered consuming checkpoints.
+  The existing resolver carries this identity without parsing display labels.
+- Preserve Coot paths, labels, checksum/observation refusals and positional API
+  compatibility, including legacy maps whose ancestor model is unavailable.
+  This is selection provenance, not proof of generating XYZ/ADPs, coefficient
+  policy or frame equivalence. No map generation, schema migration or GUI launch.
+
 ### W144 — Bind saved density to the inspected frame
 
 - Close the separate C406 source gate: 12,043 tests +293 subtests pass, with

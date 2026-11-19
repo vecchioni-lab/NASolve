@@ -658,6 +658,24 @@ phase data are never substituted for a density map. Declared sources and their
 checksums take precedence; ambiguity, corruption, or a missing declared map is
 an error. Legacy AutoSol runs retain bounded discovery within their own stage.
 
+The shared `resolve_view_profile` backend also returns `map_origin`: an immutable
+`MapOrigin(stage, checkpoint_id, inherited_through)` describing the existing
+selection route. The map's refinement checkpoint is separate from the inspected
+model's `checkpoint_id`. For example, manual-002 → manual-001 → refine-001 has
+origin `autorefine`, owner `refine-001`, and consuming checkpoints
+`("manual-002", "manual-001")`. A PostMR checkpoint consuming Phaser or AutoSol
+maps appears in the route; it is not labelled as their producing checkpoint.
+Standalone stage views have no invented checkpoint ID. The keyword-only field
+defaults to `None` for previously constructed profiles.
+
+This metadata reuses the same map selection, ancestry, observation and checksum
+checks. It does not resolve an additional ancestor model or strengthen existing
+Coot admission. It identifies where the view obtained the map, **not** the exact
+XYZ/ADPs that generated its coefficients, coefficient-generation policy, or
+coordinate-frame equivalence. A stricter future inspection projection must bind
+those facts independently and retain unknown evidence. No checkpoint/launch JSON
+schema or display behavior changes in W145.
+
 Every view retains ordinary `--auto` map loading and adds a run-local Python
 startup script. In Coot, `valid_labels` checks the exact `ANOM`/`PHANOM` pair.
 The script uses `make_and_draw_map` with no weights and the difference-map flag,

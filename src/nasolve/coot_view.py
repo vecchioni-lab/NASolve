@@ -6,7 +6,7 @@ import json
 import os
 import re
 import subprocess
-from dataclasses import dataclass
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Callable, Mapping
 
@@ -24,6 +24,22 @@ _CHECKPOINT_COMPONENT = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,127}")
 
 
 @dataclass(frozen=True)
+class MapOrigin:
+    """Selection provenance from the view resolver, not coefficient-generation proof.
+
+    ``stage`` owns the selected map. ``checkpoint_id`` names its refinement
+    checkpoint when one exists. ``inherited_through`` lists consuming checkpoints
+    in order from the inspected model toward the map owner, excluding the owner.
+    No producer coordinates, generation policy or coordinate-frame equivalence
+    are established by this navigation identity.
+    """
+
+    stage: str
+    checkpoint_id: str | None = None
+    inherited_through: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
 class ViewProfile:
     stage: str
     model_path: Path
@@ -34,6 +50,7 @@ class ViewProfile:
     map_source: str
     checkpoint_id: str | None = None
     anomalous_map_paths: tuple[Path, ...] = ()
+    map_origin: MapOrigin | None = field(default=None, kw_only=True)
 
 
 @dataclass(frozen=True)
@@ -243,7 +260,8 @@ def _phaser_profile(run: Path, report: Mapping[str, object]) -> ViewProfile:
     )
     map_path = _phaser_map(run, report)
     return ViewProfile(
-        "automr", model, map_path, (), (), "Phaser solution", "Phaser MR map"
+        "automr", model, map_path, (), (), "Phaser solution", "Phaser MR map",
+        map_origin=MapOrigin("automr"),
     )
 
 
@@ -265,22 +283,22 @@ def _accepted_autosol(report: Mapping[str, object]) -> bool:
     )
 
 
-def _postmr_map(run: Path, report: Mapping[str, object]) -> tuple[Path, str]:
+def _postmr_map(run: Path, report: Mapping[str, object]) -> tuple[Path, str, MapOrigin]:
     if _accepted_autosol(report):
         density_map = _autosol_map(run, report, allow_missing=True)
         if density_map is not None:
-            return density_map, "accepted AutoSol density-modified map"
+            return density_map, "accepted AutoSol density-modified map", MapOrigin("autosol")
         reason = "accepted AutoSol has no density-modified map"
     elif isinstance(report.get("autosol"), Mapping):
         reason = "AutoSol phases are not accepted"
     else:
         reason = "no AutoSol result"
-    return _phaser_map(run, report), f"Phaser MR map ({reason})"
+    return _phaser_map(run, report), f"Phaser MR map ({reason})", MapOrigin("automr")
 
 
 def _postmr_profile(run: Path, report: Mapping[str, object]) -> ViewProfile:
     model = _prepared_model(run, report)
-    map_path, map_source = _postmr_map(run, report)
+    map_path, map_source, origin = _postmr_map(run, report)
     return ViewProfile(
         "postmr",
         model,
@@ -289,6 +307,7 @@ def _postmr_profile(run: Path, report: Mapping[str, object]) -> ViewProfile:
         _postmr_dictionaries(run, report),
         "PostMR ReadySet prepared model",
         map_source,
+        map_origin=origin,
     )
 
 
@@ -360,6 +379,7 @@ def _autosol_profile(run: Path, report: Mapping[str, object]) -> ViewProfile:
         _postmr_dictionaries(run, report),
         f"PostMR ReadySet prepared model with separate AutoSol HA sites ({status})",
         f"AutoSol density-modified map ({acceptance}; {status})",
+        map_origin=MapOrigin("autosol"),
     )
 
 
@@ -450,7 +470,7 @@ def _checkpoint_map(
     run: Path, report: Mapping[str, object], checkpoint: Mapping[str, object],
     checkpoints: Mapping[str, Mapping[str, object]], schema_version: int,
     visited: frozenset[str] = frozenset(),
-) -> tuple[Path, str, tuple[Path, ...]]:
+) -> tuple[Path, str, tuple[Path, ...], MapOrigin]:
     identifier = str(checkpoint["id"])
     if identifier in visited:
         raise CootViewError("Checkpoint map lineage contains a cycle")
@@ -461,10 +481,11 @@ def _checkpoint_map(
             map_path,
             f"refinement checkpoint {identifier}",
             _refinement_anomalous_maps(run, checkpoint, schema_version, map_path),
+            MapOrigin("autorefine", checkpoint_id=identifier),
         )
     if kind == "postmr":
-        map_path, map_source = _postmr_map(run, report)
-        return map_path, map_source, (map_path,)
+        map_path, map_source, origin = _postmr_map(run, report)
+        return map_path, map_source, (map_path,), replace(origin, inherited_through=(identifier,))
     if kind != "manual":
         raise CootViewError(f"Checkpoint {identifier} has unsupported kind: {kind}")
     parent_id = checkpoint.get("parent")
@@ -472,13 +493,14 @@ def _checkpoint_map(
     if parent is None:
         raise CootViewError(f"Manual checkpoint {identifier} has no recorded map ancestor")
     _same_observations(run, checkpoint, parent, schema_version)
-    map_path, map_source, anomalous_paths = _checkpoint_map(
+    map_path, map_source, anomalous_paths, origin = _checkpoint_map(
         run, report, parent, checkpoints, schema_version, visited | {identifier}
     )
     return (
         map_path,
         f"inherited {map_source} (not recalculated for manual model)",
         anomalous_paths,
+        replace(origin, inherited_through=(identifier, *origin.inherited_through)),
     )
 
 
@@ -512,7 +534,7 @@ def _autorefine_profile(
     if schema_version == 2:
         _require_checkpoint_checksum(model_ref, "model")
     model = _reported_file(model_ref, "checkpoint model", run)
-    map_path, map_source, anomalous_paths = _checkpoint_map(
+    map_path, map_source, anomalous_paths, origin = _checkpoint_map(
         run, report, checkpoint, checkpoints, schema_version
     )
     selection = "requested" if checkpoint_id is not None else "current"
@@ -527,6 +549,7 @@ def _autorefine_profile(
         map_source,
         current,
         anomalous_paths,
+        map_origin=origin,
     )
 
 
@@ -748,6 +771,7 @@ __all__ = [
     "CootViewError",
     "CootViewResult",
     "ViewProfile",
+    "MapOrigin",
     "find_last_run",
     "launch_coot_view",
     "resolve_run",

@@ -704,3 +704,80 @@ class CootViewTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class MapOriginTests(unittest.TestCase):
+    def test_map_origin_names_selected_stage_without_claiming_a_producer_model(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run = make_view_run(Path(directory))
+            for stage, expected in (("automr", "automr"), ("autosol", "autosol"), ("postmr", "autosol")):
+                with self.subTest(stage=stage):
+                    origin = resolve_view_profile(run, stage=stage).map_origin
+                    self.assertEqual(origin.stage, expected)
+                    self.assertIsNone(origin.checkpoint_id)
+                    self.assertEqual(origin.inherited_through, ())
+            report_path = run / "report.json"
+            report = json.loads(report_path.read_text())
+            report["autosol"]["use_for_refinement"] = False
+            report_path.write_text(json.dumps(report))
+            self.assertEqual(resolve_view_profile(run, stage="postmr").map_origin.stage, "automr")
+
+    def test_refinement_origin_follows_requested_checkpoint_not_current(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run = make_view_run(Path(directory))
+            add_review_checkpoint(run)
+            for identifier in ("refine-001", "refine-002"):
+                with self.subTest(identifier=identifier):
+                    profile = resolve_view_profile(run, checkpoint=identifier)
+                    self.assertEqual(profile.map_origin.stage, "autorefine")
+                    self.assertEqual(profile.map_origin.checkpoint_id, identifier)
+                    self.assertEqual(profile.map_origin.inherited_through, ())
+            registry = json.loads((run / "AutoRefine" / "checkpoints.json").read_text())
+            self.assertEqual(registry["current"], "refine-001")
+
+    def test_multihop_map_origin_survives_relocation_without_requiring_ancestor_model(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            run = make_view_run(root / "original")
+            add_manual_checkpoint(run)
+            registry_path = run / "AutoRefine" / "checkpoints.json"
+            registry = json.loads(registry_path.read_text())
+            second = dict(registry["checkpoints"][-1], id="manual-002", parent="manual-001")
+            registry["checkpoints"].append(second)
+            registry_path.write_text(json.dumps(registry))
+            # A usable legacy map may outlive its associated model. The new
+            # navigation metadata must not add a model-generation proof claim.
+            Path(registry["checkpoints"][0]["model"]["path"]).unlink()
+            moved = root / "relocated"
+            (root / "original").rename(moved)
+            run = moved / "dataset" / "AutoMR" / "run_001"
+            before = {str(p.relative_to(moved)): p.read_bytes() for p in moved.rglob("*") if p.is_file()}
+            profile = resolve_view_profile(run, checkpoint="manual-002")
+            self.assertEqual(profile.map_origin.stage, "autorefine")
+            self.assertEqual(profile.map_origin.checkpoint_id, "refine-001")
+            self.assertEqual(profile.map_origin.inherited_through, ("manual-002", "manual-001"))
+            self.assertEqual(profile.checkpoint_id, "manual-002")
+            self.assertTrue(profile.map_path.is_relative_to(moved.resolve()))
+            self.assertIn("not recalculated", profile.map_source)
+            self.assertEqual(before, {str(p.relative_to(moved)): p.read_bytes() for p in moved.rglob("*") if p.is_file()})
+            self.assertFalse((root / "original").exists())
+
+    def test_postmr_checkpoint_is_a_stage_map_consumer_not_the_map_owner(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run = make_view_run(Path(directory))
+            add_manual_checkpoint(run)
+            registry_path = run / "AutoRefine" / "checkpoints.json"
+            registry = json.loads(registry_path.read_text())
+            parent = registry["checkpoints"][0]
+            parent.update(id="postmr", kind="postmr")
+            registry["checkpoints"][-1]["parent"] = "postmr"
+            registry_path.write_text(json.dumps(registry))
+            profile = resolve_view_profile(run)
+            self.assertEqual(profile.map_origin.stage, "autosol")
+            self.assertIsNone(profile.map_origin.checkpoint_id)
+            self.assertEqual(profile.map_origin.inherited_through, ("manual-001", "postmr"))
+
+    def test_old_positional_view_profile_constructor_still_has_no_origin_claim(self):
+        from nasolve.coot_view import ViewProfile
+        profile = ViewProfile("automr", Path("model"), Path("map"), (), (), "source", "map source", None, ())
+        self.assertIsNone(profile.map_origin)
