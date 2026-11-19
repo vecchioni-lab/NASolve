@@ -116667,5 +116667,155 @@
       "installed_packages_wheels_logs_xml_imports_preserved": true,
       "reconstruction": "Pinned Git test archive, exact wheel fixtures and saved qualification hook. No shared pytest scratch or unrelated local files removed."
     }
+  },
+  "matching_atomic_data_recovery_2026_11_19": {
+    "milestone": "C408",
+    "date": "2026-11-19",
+    "status": "BOUNDED_MATCHING_ATOMIC_DATA_RECOVERY_OBSERVED",
+    "source_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
+    "production_change": false,
+    "prior_work": [
+      "C206 fixed-backbone geometry control already restores source-supported planarity.",
+      "C403 ordinary PDU control uses substituted-scaffold observations; C405 separates local attachment from accumulated bend.",
+      "C252 synthetic observation path and C62/C63 donor-data mechanics are not matching modified-chemistry diffraction controls.",
+      "C397\u2013C400 derivative, weight and restart controls remain closed; no repeated sweep."
+    ],
+    "question": "Does the same checked native consumer recover a separately perturbed modified site under amplitudes generated from its actual constructed molecule?",
+    "method": {
+      "source": "Exact C401 PDU construction and C403 ordered complete inputs, with source hashes verified before and after.",
+      "native": "Phenix 2.2.1-6174; actual zero-cycle preflight and five refinement cycles for each of two predeclared starts; one processor;284.28seconds total.",
+      "cases": [
+        "reference",
+        "perturbed"
+      ],
+      "generator": {
+        "scattering_table": "n_gaussian",
+        "algorithm": "direct",
+        "noise": "none",
+        "synthetic_sigmas": "0.02*F; weighting convention, not measured uncertainty",
+        "original_observed_indices": 2273,
+        "original_free_r_entries": 3236,
+        "observed_test_reflections": 127,
+        "resolution_angstrom": 4.016874717573234,
+        "anomalous": "Non-anomalous; fp=fdp=0",
+        "bulk_solvent": "None in generation",
+        "overall_anisotropic_scale": "None in generation; original individual ADPs retained",
+        "phases": "No experimental phase/HL input or donor amplitudes",
+        "refinement_scaling": "Existing automatic solvent/scaling settings retained; not exact full-Fmodel matching"
+      },
+      "perturbation": {
+        "seed": 20261119,
+        "per_axis_sigma_angstrom": 0.08,
+        "explicit_atom_identities": 22,
+        "initial_selected_rms_displacement_angstrom": 0.13894063480494082,
+        "source_proxy_chirality_signs_preserved": 3,
+        "all_non_coordinate_columns_preserved": true
+      }
+    },
+    "results": {
+      "reference": {
+        "initial_terminal_ring_plane_offset_angstrom": 0.09429707530184689,
+        "final_terminal_ring_plane_offset_angstrom": 0.08859501823948751,
+        "initial_selected_rmsd_after_background_fit_angstrom": 1.8429337400230082e-14,
+        "final_selected_rmsd_after_background_fit_angstrom": 0.09339931342598204,
+        "final_axis_deflections_degrees": [
+          1.059110025598323,
+          2.7140533593922695
+        ],
+        "final_local_C5_max_elevation_degrees": 0.10543123560481732,
+        "triple_screen": "SCOPED_TRIPLE_SCREEN_PASS",
+        "relative_chirality_conflicts": 0,
+        "initial_r_work": 0.0072,
+        "initial_r_free": 0.0093,
+        "final_r_work": 0.0204,
+        "final_r_free": 0.0282,
+        "model_sha256": "94fce924584c805b49b4e6ef3dbc579063dd48fa44d02b149190a752e57944de"
+      },
+      "perturbed": {
+        "initial_terminal_ring_plane_offset_angstrom": 0.5002047301633779,
+        "final_terminal_ring_plane_offset_angstrom": 0.0880347571356524,
+        "initial_selected_rmsd_after_background_fit_angstrom": 0.13894063480493868,
+        "final_selected_rmsd_after_background_fit_angstrom": 0.0864985270361517,
+        "final_axis_deflections_degrees": [
+          1.1492915767049172,
+          2.1820496766909674
+        ],
+        "final_local_C5_max_elevation_degrees": 0.11623308690147438,
+        "triple_screen": "SCOPED_TRIPLE_SCREEN_PASS",
+        "relative_chirality_conflicts": 0,
+        "initial_r_work": 0.0153,
+        "initial_r_free": 0.0142,
+        "final_r_work": 0.0215,
+        "final_r_free": 0.0286,
+        "model_sha256": "77c1f17441f9e6e16bf9081e3485912242a726dee68f20744d52049184c54e44"
+      }
+    },
+    "scope": {
+      "exact_original_restraint_dictionary_protection_files": 8,
+      "full_atom_labels_unchanged": 855,
+      "native_parallelity_groups_exact": 58,
+      "native_planarity_count": 45,
+      "heavy_intra_site_proxy_definitions_unchanged": true,
+      "all_free_r_values_retained": true,
+      "original_input_files_unchanged": 13,
+      "native_files_unchanged": 96,
+      "all_owned_process_groups_absent": true
+    },
+    "validation": {
+      "readback": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "cedar/c408-matching-data/readback.json",
+        "sha256": "b75e2c50fa9aef37429265c376aa17e94019bebc739910a6932d755c2092e0cf"
+      },
+      "scope": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "cedar/c408-matching-data/scope-check.json",
+        "sha256": "95f10522017f719ab3b5b86901b53289969f21957b9f32f460af0c50400e4fa7"
+      },
+      "independent_review": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "Alder/coordination-c408-native-review-20261119.json",
+        "sha256": "803ffab211ff11dbdbdf10c6253b200d1b7bb98df47ac9d1293e556df0c517ec"
+      },
+      "independent_checks": 70,
+      "native_calls_during_cold_review": 0,
+      "commands": [
+        "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c408_control.py",
+        "PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/cedar/runners/c408_readback.py",
+        "PYTHONDONTWRITEBYTECODE=1 python3 -B branch-artifacts/cedar/runners/c408_scope_check.py",
+        "PYTHONDONTWRITEBYTECODE=1 python3 -B branch-artifacts/cedar/runners/c408_archive.py"
+      ],
+      "new_unit_or_full_suite": false,
+      "reason": "Private scientific control and documentation only; production source/tests remain f83562b0. Combined software gate remains separately attributed."
+    },
+    "preservation": {
+      "archive": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "cedar/c408-matching-data/native-evidence.tar.gz",
+        "size": 2421310,
+        "sha256": "4dd1c3aea2ebb72f8edb721d2296803f7c0ac09db34284ec177d90b28094483c"
+      },
+      "manifest": {
+        "anchor": "NASolve-local-artifacts",
+        "relative_path": "cedar/c408-matching-data/archive.json",
+        "sha256": "f667f9907c515d83ebe481c1455c1c7f2689333070bd6b452346020447973665"
+      },
+      "files": 96,
+      "logical_bytes": 14953426,
+      "originals_removed": false
+    },
+    "interpretation": "The perturbed appendage returns toward the reference geometry and both endpoints pass the existing narrow triple screen. The unperturbed reference also relaxes and its R factors rise; this is not exact generating-model recovery or experimental validation.",
+    "limitations": [
+      "Idealized noise-free atomic amplitudes with declared synthetic sigmas at donor4.017A sampling; original Free-R membership retained. No experimental-diffraction accuracy claim.",
+      "Generation omits solvent/overall anisotropic scale while native automatic scaling/solvent remains; do not call this an exact full-Fmodel zero-residual control.",
+      "Generating model is a known construction, not a restraint-minimized experimental truth. Reference-start relaxation is measured separately from perturbed-start recovery.",
+      "Initial/final scalar and substituent geometry use full native observations; coordinate RMSD uses rounded PDBs and a descriptive background rigid fit.",
+      "No new numerical threshold, native force/target/weight change, ordinary registry publication or Q06 closure.",
+      "No observed molecular improvement is inferred from R factors alone; log termination and numerical convergence remain distinct.",
+      "Five macrocycles have21 logged R-summary entries; do not relabel every log entry as a cycle.",
+      "Whole family counts and captured parallelity identities are checked; unrecorded endpoint families remain outside the proof.",
+      "No general simulator API, ordinary registry publication, new numerical threshold or Q06 closure. No data-only causal attribution for the C403 stress result.",
+      "Raw models, synthetic/donor reflections, native logs and private drivers remain local; only compact measures/hashes in Git."
+    ]
   }
 }

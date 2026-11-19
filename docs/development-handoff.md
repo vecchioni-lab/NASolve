@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-19, C407 source/installed checks complete — Rowan**.
+Updated **2026-11-19, C407 qualified locally and C408 recovery observed — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**; current source **`f83562b0`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -12,10 +12,10 @@ rechecking the archive and preserving scientific inputs, installations and share
 Focused, relocated installed, matched native and independent checks also pass.
 Software qualification does not change the scientific REVIEW or close Q06.
 
-## Active bounded step — C407, 19 November
+## Current bounded work — C407/C408, 19 November
 
-Through 14:30 UK, connect the existing C15 scalar geometry calculation to C406's
-validated final-site observations. Prior-work review found no missing DF heavy
+Through 14:30 UK. C407 connects the existing C15 scalar geometry calculation to
+C406's validated final-site observations. Prior-work review found no missing DF heavy
 term and no justified new numerical target; C15 already owns bond/angle/ordered-
 volume measurement. Reuse it rather than writing another chemical calculator.
 Keep global indices, selected versus whole-model counts, source identities,
@@ -39,6 +39,19 @@ installed readback. The single combined integration gate at `1acc7892` is runnin
 it is not yet a PASS. The last standalone Cedar full gate remains `58965920`; do not relabel a combined gate.
 Linden completed C406 scratch retirement and owns W145 map provenance; Hazel owns
 Cedar/Alder integration review. No overlapping branch or owner changes.
+
+**C408 complete — matching-data recovery control, no new repair.** Both five-cycle
+arms finish through the existing native owner. With amplitudes generated from the
+C401 molecule, the independently perturbed PDU terminal offset falls 0.500→0.088 Å;
+the reference finishes at 0.089 Å. Both narrow triple screens pass, the captured
+sugar signs remain consistent and all supplied restraints/protection are retained.
+Reference and perturbed endpoints still move 0.093/0.086 Å from the generator after
+background alignment, and their R factors rise. This idealized, low-resolution
+control establishes bounded recovery rather than experimental accuracy or Q06
+closure. Hazel's 70-check independent review passes. Native processes are stopped;
+a verified 2.42 MB local archive retains all 96 files. No repeated native work is
+needed. See `matching_atomic_data_recovery_2026_11_19` in the existing ledger and
+`ScienceCheckouts/Rowan/2026-11-19/review.html` in the sibling workspace.
 
 ## Current checkpoint
 
@@ -117,8 +130,8 @@ six-atom ring plane 0.094297 Å. These descriptive starting values are not accep
 
 1. Finish the coordinated combined gate; C407 independent review is accepted.
    C406 scratch retirement is complete; no repeated native matrix is needed.
-2. Use the resulting actual-manager evidence to identify the remaining chemical
-   defect. Q06 needs useful PDU/DF geometry after refinement and whole-substituent
+2. Use the recorded actual-manager and matching-data evidence to resolve the
+   remaining experimental-chemistry question. Q06 needs useful PDU/DF geometry after refinement and whole-substituent
    evidence, not merely successful execution or a readable CIF. Reuse existing
    source-selected geometry/coverage and native observation tools before adding code.
 3. Close any needed combined ordinary descendant coverage through existing owners.

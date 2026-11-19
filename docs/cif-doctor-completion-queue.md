@@ -300,6 +300,19 @@ gate remains. This connects an existing
 calculation to the ordinary evidence owner; it is not another optimizer or a new
 scientific diagnosis. Preserve the separate whole-substituent gate.
 
+**C408 bounded matching-data positive control complete.** A separately perturbed
+PDU construction is tested against noise-free amplitudes generated from the same
+molecule, retaining the original reflection indices/Free-R assignments, all eight
+restraint/dictionary/protection files and five-cycle settings. Its terminal carbon
+returns from 0.500205 to 0.088035 Å from the ring plane; the unperturbed reference
+finishes at 0.088595 Å. Both pass the existing narrow triple screen. The reference
+also relaxes and R factors rise, so this is conditional recovery evidence, not exact
+truth recovery, experimental accuracy or a new acceptance rule. Generation omits
+solvent/overall scale while refinement retains its normal treatment. Hazel verifies
+70 independent cold checks; all 96 native files remain unchanged. No product source
+change, repeated weight/derivative sweep or Q06 closure. Reuse this completed
+positive control when separating consumer capability from donor-data stress.
+
 **Scientific stopping boundary:** C403 uses substituted-scaffold observations, not
 a PDU crystal. Keep its existing REVIEW screen and whole-substituent measurements,
 but do not treat repeated flattening or optimizer convergence as an agreed universal
