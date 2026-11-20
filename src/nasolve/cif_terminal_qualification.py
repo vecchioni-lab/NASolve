@@ -20,6 +20,15 @@ _CATEGORIES={
 }
 _NUMERIC={'partial_charge','value_dist','value_dist_esd','value_dist_neutron','value_angle','value_angle_esd','period','dist_esd'}
 PROXY_COMPARISON_POLICY = 'cif-native-named-proxy-comparison-v1'
+CUSTOM_REQUEST_POLICY = 'cif-native-ordered-named-custom-requests-v1'
+
+
+def custom_request_policy_fields(policy):
+    """Absent opt-in preserves historical comparison and serialized fields."""
+    if policy is None: return {}
+    if type(policy) is not str or policy != CUSTOM_REQUEST_POLICY:
+        raise ValueError('Unsupported explicit request comparison policy')
+    return dict(explicit_request_policy=policy)
 
 
 def _value(key,value):
@@ -76,14 +85,8 @@ def definition_projection_checks(native: dict, projections: Mapping[str,tuple[Pa
     return checks
 
 
-def _proxy_subset(native,changed,kind):
-    """Compare ordered named endpoints and every parameter, not display labels.
-
-    Strip only padding in structured identity fields. Bind each proxy label to
-    its own manager index before replacing it with that atom's identity; do not
-    parse labels, infer aliases, reorder endpoints or round numerical values.
-    Duplicate indices/names and incomplete identities cannot become a match.
-    """
+def _native_atom_identities(native):
+    """Existing structured identities shared by named-proxy comparisons."""
     atoms={}; identities={}; seen=set()
     fields=('model_id','chain_id','resseq','icode','resname','altloc')
     for atom in native['atoms']:
@@ -100,18 +103,36 @@ def _proxy_subset(native,changed,kind):
         if element is not None and (not isinstance(element,str) or not element.strip()):
             raise ValueError('Invalid native element')
         atoms[index]=atom; identities[index]=key+(element.strip() if element is not None else None,); seen.add(key)
+    return atoms, identities
+
+
+def _bound_proxy_endpoints(row, atoms, identities):
+    """Bind both ordered endpoint lists to their own capture's atom labels."""
+    named={}; indices=[]
+    if ('j_seqs' in row)!=('j_atoms' in row):raise ValueError('Incomplete native second-plane endpoints')
+    for endpoint,labels in [('i_seqs','atoms'),*([('j_seqs','j_atoms')] if 'j_seqs' in row else [])]:
+        ids=row[endpoint]
+        if (not isinstance(ids,list) or not ids or any(type(i) is not int or i not in atoms for i in ids)
+                or row[labels]!=[atoms[i]['label'] for i in ids]):
+            raise ValueError('Native proxy labels do not bind to exact atom indices')
+        indices.extend(ids); named[labels]=[identities[i] for i in ids]
+    return indices, named
+
+
+def _proxy_subset(native,changed,kind):
+    """Compare ordered named endpoints and every parameter, not display labels.
+
+    Strip only padding in structured identity fields. Bind each proxy label to
+    its own manager index before replacing it with that atom's identity; do not
+    parse labels, infer aliases, reorder endpoints or round numerical values.
+    Duplicate indices/names and incomplete identities cannot become a match.
+    """
+    atoms, identities = _native_atom_identities(native)
     rows=native['geometry']['proxy_details'][kind]
     if not isinstance(rows,list):raise ValueError('Native proxy detail unavailable: '+kind)
     selected=[]
     for row in rows:
-        named={}; indices=[]
-        if ('j_seqs' in row)!=('j_atoms' in row):raise ValueError('Incomplete native second-plane endpoints')
-        for endpoint,labels in [('i_seqs','atoms'),*([('j_seqs','j_atoms')] if 'j_seqs' in row else [])]:
-            ids=row[endpoint]
-            if (not isinstance(ids,list) or not ids or any(type(i) is not int or i not in atoms for i in ids)
-                    or row[labels]!=[atoms[i]['label'] for i in ids]):
-                raise ValueError('Native proxy labels do not bind to exact atom indices')
-            indices.extend(ids); named[labels]=[identities[i] for i in ids]
+        indices, named = _bound_proxy_endpoints(row, atoms, identities)
         if all(_site(atoms[i]) not in changed for i in indices):
             parameters={k:v for k,v in row.items() if k not in {'i_seqs','j_seqs','atoms','j_atoms'}}
             selected.append(json.dumps({**parameters,**named},sort_keys=True,allow_nan=False))
@@ -119,6 +140,64 @@ def _proxy_subset(native,changed,kind):
 
 
 def _angle(value):return _number(float(value)%360)
+
+
+def _request_display_label(atom):
+    """Normalize only the verified four-column name in the native PDB label."""
+    label=atom['label'];field=atom.get('atom_name_field')
+    # Other native display formats remain opaque and must match raw bytes.
+    if (field is None or len(label)!=21 or not label.startswith('pdb="')
+            or not label.endswith('"') or label.count('"')!=2
+            or '\n' in label or '\r' in label):
+        return None
+    if (not isinstance(field,str) or len(field)!=4 or field!=label[5:9]
+            or field.strip()!=atom['atom_id']):
+        raise ValueError('Native atom-name field contradicts its display or identity')
+    return label[:5]+atom['atom_id'].ljust(4)+label[9:]
+
+
+def ordered_custom_requests_match(before,after):
+    """Permit only verified atom-name padding; preserve all other display text."""
+    left,right=_ordered_named_custom_requests(before),_ordered_named_custom_requests(after)
+    return len(left)==len(right) and all(
+        a==b and len(x)==len(y) and all(
+            raw_a==raw_b or (name_a is not None and name_b is not None and name_a==name_b)
+            for (raw_a,name_a),(raw_b,name_b) in zip(x,y))
+        for (a,x),(b,y) in zip(left,right))
+
+
+def _ordered_named_custom_requests(native):
+    """Compare exact ordered requests after same-capture label/index binding.
+
+    Unlike native proxy multisets, request indices and list order stay exact.
+    All selections/parameters survive; labels retain separate raw/field evidence.
+    This helper neither qualifies capture provenance nor selects a model.
+    """
+    from .cif_native_context import _bound_request_signature as validate_request
+    atoms, identities = _native_atom_identities(native)
+    if any(not a['label'].strip() or not isinstance(a.get('element'),str)
+           or not a['element'].strip() for a in atoms.values()):
+        raise ValueError('Missing explicit-request atom label or element')
+    rows = native['geometry']['custom_proxy_requests']
+    if not isinstance(rows,list): raise ValueError('Missing explicit request inventory')
+    result = []
+    for row in rows:
+        _, named = _bound_proxy_endpoints(row, atoms, identities)
+        kind = row['kind']
+        count = {'bond':2, 'angle':3, 'dihedral':4, 'planarity':1, 'parallelity':2}.get(kind)
+        selections = row['selections']
+        if (count is None or not isinstance(selections,list) or len(selections)!=count
+                or any(not isinstance(s,str) or not s.strip() for s in selections)
+                or not isinstance(row['action'],str) or not row['action'].strip()
+                or ('j_seqs' in row) != (kind=='parallelity')):
+            raise ValueError('Incomplete explicit request or selections')
+        # Existing shape, target, weight, and both-plane membership validator.
+        # Its unordered signature is deliberately not used for comparison.
+        validate_request(kind, row)
+        ids=[*row['i_seqs'],*row.get('j_seqs',[])]
+        displays=[(atoms[i]['label'],_request_display_label(atoms[i])) for i in ids]
+        result.append((json.dumps({**row,**named},sort_keys=True,allow_nan=False),displays))
+    return result
 
 
 def declared_outgoing_hydrogen_checks(native,expected_links):

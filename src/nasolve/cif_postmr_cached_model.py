@@ -8,9 +8,11 @@ from .cif_fixed_geometry import _fixed_policy
 from .cif_fragment_restoration import _model
 from .cif_linked_qualification import native_backbone_links
 from .cif_terminal_qualification import _proxy_subset, PROXY_COMPARISON_POLICY
+from .cif_terminal_qualification import custom_request_policy_fields, ordered_custom_requests_match
 
 LEGACY_POLICY_ID='cif-postmr-cached-model-readback-v1'
 POLICY_ID='cif-postmr-cached-model-readback-v2'
+NAMED_REQUEST_POLICY_ID='cif-postmr-cached-model-readback-v3'
 
 
 def cached_preparation_replays(recorded,recomputed,path=()):
@@ -38,7 +40,7 @@ def cached_preparation_replays(recorded,recomputed,path=()):
     return _preparation_replays(recorded,recomputed,path)
 
 
-def qualify_cached_model_roundtrip(before,after,before_model,after_model):
+def qualify_cached_model_roundtrip(before,after,before_model,after_model,*,explicit_request_policy=None):
     """Compare every fixed named restraint, definition and backbone link.
 
     Both coordinate files must contain the same named heavy sites. Only native
@@ -48,6 +50,7 @@ def qualify_cached_model_roundtrip(before,after,before_model,after_model):
     rank scientific geometry. Pairing/stacking is never guessed or added here.
     """
     from .cif_postmr_readyset import _atoms
+    policy_fields=custom_request_policy_fields(explicit_request_policy)
     checks={}
     try:
         checks['unchanged_named_heavy_coordinates']=_atoms(Path(before_model))==_atoms(Path(after_model))
@@ -77,7 +80,8 @@ def qualify_cached_model_roundtrip(before,after,before_model,after_model):
             return {r['site']:r for r in rows}
         checks['exact_effective_site_definitions']=definitions(before)==definitions(after)
         checks['all_backbone_links_exact']=native_backbone_links(before)==native_backbone_links(after)
-        checks['exact_explicit_requests']=before['geometry']['custom_proxy_requests']==after['geometry']['custom_proxy_requests']
+        checks['exact_explicit_requests']=(ordered_custom_requests_match(before,after)
+            if policy_fields else before['geometry']['custom_proxy_requests']==after['geometry']['custom_proxy_requests'])
         checks['same_native_policy']=before['restraint_policy']==after['restraint_policy']
         for kind in sorted(NATIVE_KINDS):
             checks['exact_named_proxies:'+kind]=_proxy_subset(before,set(),kind)==_proxy_subset(after,set(),kind)
@@ -86,7 +90,8 @@ def qualify_cached_model_roundtrip(before,after,before_model,after_model):
         checks['complete_roundtrip_evidence']=False
         error=type(exc).__name__+': '+str(exc)
     else:error=None
-    return {'schema_version':1,'policy_id':POLICY_ID,'status':'CACHED_MODEL_NATIVE_ROUNDTRIP_PASS'
+    return {'schema_version':1,'policy_id':NAMED_REQUEST_POLICY_ID if policy_fields else POLICY_ID,
+        **policy_fields,'status':'CACHED_MODEL_NATIVE_ROUNDTRIP_PASS'
         if checks and all(v is True for v in checks.values()) else 'REVIEW',
         'mechanics_checks_pass':bool(checks) and all(v is True for v in checks.values()),'checks':checks,'error':error,
         'proxy_comparison':PROXY_COMPARISON_POLICY,'scientific_qualification':'NOT_ASSESSED',

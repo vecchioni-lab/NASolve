@@ -326,16 +326,18 @@ def prepare_original_component_runtime_bundle(bundle, baseline_receipt, candidat
 
 
 def prepare_runtime_readyset_bundle(manifest, baseline_receipt, readyset_directory, output,
-        *, endpoint_receipt=None, atom_order_directory=None, compact_evidence=False):
+        *, endpoint_receipt=None, atom_order_directory=None, compact_evidence=False, explicit_request_policy=None):
     """Freeze selected-parent proof and an optional exact ReadySet continuation.
 
     Reuse the public source freezer; no recovery owner or checkpoint is created.
     A failed optional improvement preserves the complete qualified parent runtime.
     """
     from .cif_runtime_readyset import _parent
+    from .cif_terminal_qualification import custom_request_policy_fields
+    policy_fields = custom_request_policy_fields(explicit_request_policy)
     parent = _parent(manifest); output = Path(output).absolute()
     controls = dict(runtime='evidence/runtime', readyset_directory='evidence/readyset',
-        baseline_receipt=None, endpoint_receipt=None, atom_order_directory=None)
+        baseline_receipt=None, endpoint_receipt=None, atom_order_directory=None, **policy_fields)
     roots = {'runtime':parent['manifest_path'].parent,
              'readyset':Path(readyset_directory) if readyset_directory is not None else None}
     for field,folder,supplied in [('baseline_receipt','baseline',baseline_receipt),

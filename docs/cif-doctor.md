@@ -816,6 +816,52 @@ durable ownership across the whole continuation, default PostMR orchestration,
 checkpoint adoption and actual refinement remain Q04/Q05/Q06. The C140 adapter is
 explicit here; choosing and scheduling it automatically is not implemented.
 
+#### Opt-in comparison of explicit named requests
+
+The Python selected-runtime continuation and complete-request APIs can explicitly
+freeze `explicit_request_policy = "cif-native-ordered-named-custom-requests-v1"`.
+For a complete request, supply it inside `continuation_options` alongside
+`readyset_timeout_seconds` and `restore_serialization`. For
+`execute_runtime_continuation`, `inspect_runtime_readyset`, or
+`prepare_runtime_readyset_bundle`, supply the keyword directly. Absence retains
+the historical comparison exactly; this does not enable a new CLI default.
+
+`ordered_custom_requests_match` reuses the terminal qualifier's structured atom
+identity and exact same-capture label/index binding, plus the existing native
+custom-restraint shape/target validator. Each display label must first equal
+its own captured atom label. Structured identities, including elements, remain
+part of the comparison. Only a recognized 21-character native `pdb="…"` label
+with a four-character `atom_name_field` equal to `label[5:9]` and whose trimmed
+name exactly matches `atom_id` can ignore padding in that field. Every other
+prefix/suffix character remains exact. Other display formats or missing optional
+name-field evidence require identical raw labels. Contradictory supplied fields
+refuse. Both parallelity planes are validated; missing/duplicate identities,
+malformed memberships or unsupported requests refuse. No whole-label whitespace
+stripping, relabeling or atom alias is used. The atom index is built once per
+capture; already-bound rows reuse the unchanged shape/parameter validator, while
+legacy signature callers retain their original binding path.
+
+Unlike the older unordered native-proxy multiset comparison, explicit requests
+retain their exact request order, endpoint order, native indices, selection
+strings, action, numerical targets/weights, symmetry fields, all other fields
+and multiplicity. Renumbering or changing any of these cannot be excused as a
+label change. Coordinates, definitions, policy, native sources, energy checks
+and every other existing ReadySet gate remain independently required.
+
+The opt-in roundtrip records `cif-postmr-cached-model-readback-v3`; its selected
+review records `cif-selected-runtime-readyset-roundtrip-v2`. The explicit policy
+is frozen in the existing continuation configuration and public source selection;
+reopening reconstructs it and verifies that publication used the same choice.
+The complete-request owner forwards and binds the same option to its child.
+Older readers reject the new control, rather than treating it as a v2 selection.
+Historical v2 records and their parent-fallback decisions are never rewritten or
+reclassified. Standalone earlier bundle/cached-model APIs keep their old default.
+
+This addresses display-only differences in a captured restraint inventory. It
+neither changes native forces/normalization (see C293/C294), runs an optimizer,
+proves chemical suitability, nor authorizes checkpoint adoption. A new execution
+still needs its own complete native evidence and independent parent proof.
+
 ### Native metadata in filtered supplements (C180)
 
 When `effective_restraints` excludes overridden components from generated output,

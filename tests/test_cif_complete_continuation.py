@@ -48,7 +48,7 @@ def joined(case,monkeypatch):
         assert 0<k['_remaining_seconds']()<=args['total_timeout_seconds']
         state['calls'].append(dict(output=out,identity=deepcopy(k['_attempt_identity']),settings={n:v for n,v in k.items() if not n.startswith('_')}))
         out.mkdir();shutil.copytree(parent,out/'inputs/runtime')
-        config=continuation._configuration(dict(native=k['native_timeout_seconds'],readyset=k['readyset_timeout_seconds'],total=k['total_timeout_seconds']),k['restore_serialization'],artifact_policy=k.get('artifact_policy'),nonbonded_policy=k.get('nonbonded_policy'))
+        config=continuation._configuration(dict(native=k['native_timeout_seconds'],readyset=k['readyset_timeout_seconds'],total=k['total_timeout_seconds']),k['restore_serialization'],artifact_policy=k.get('artifact_policy'),nonbonded_policy=k.get('nonbonded_policy'),**continuation.custom_request_policy_fields(k.get('explicit_request_policy')))
         (out/'inputs/configuration.json').write_text(json.dumps(config))
         if state['fault']=='pre-header':raise KeyboardInterrupt('partial continuation header publication')
         owner=RuntimeContinuationProcesses(out,attempt_identity=k['_attempt_identity'])

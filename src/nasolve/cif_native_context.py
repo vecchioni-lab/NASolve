@@ -159,6 +159,11 @@ def _signature(native,kind,row):
         raise ValueError('Unsupported explicit restraint kind')
     wrapped={**native,'geometry':{'proxy_details':{kind:[row]}}}
     _proxy_subset(wrapped,set(),kind)  # Bind every label and both planes to actual indices.
+    return _bound_request_signature(kind,row)
+
+
+def _bound_request_signature(kind,row):
+    """Validate shape/parameters only after complete native endpoint binding."""
     ids=row['i_seqs'];atoms=tuple(row['atoms'])
     count={'bond':2,'angle':3,'dihedral':4}.get(kind)
     if len(ids)!=len(set(ids)) or (count is not None and len(ids)!=count):

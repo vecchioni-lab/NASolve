@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Recognizing atom-name spacing after ReadySet
+
+- A new dictionary request can opt into comparing the exact atoms behind
+  each restraint. ReadySet may change the four-column spacing of a PDB atom
+  name. Cedar verifies that spacing against the native atom table and still
+  requires every atom index, selection, symmetry operator, restraint target,
+  plane and request order to agree. The saved choice travels with the result.
+  Earlier requests continue to use their recorded comparison.
+
 ### Installed ligand source records
 
 - The Python package now ships the source records for its 5CM, DP and DZ
