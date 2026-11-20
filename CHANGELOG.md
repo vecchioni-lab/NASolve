@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W169 — Reuse existing coordinate-only admission checks
+
+- Verify the current endpoint and recipe owners on the real displaced input and
+  deliberately changed B/Q, protected coordinates, identities/order and frame.
+  Source and existing installed readbacks agree; no duplicate guard is added.
+- Correct the next integration step and preserve the full-precision/prospective
+  binding limit. Documentation/local diagnostics only; generic rebinding,
+  product code, runtime schemas/defaults and installation behavior are unchanged.
+
 ### W168 — Retain parent chemistry through child diffraction and recovery
 
 - Record the actual native interpretation order, two qualified dry-runs and one

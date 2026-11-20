@@ -9884,3 +9884,81 @@ suite or redundant installation repeat. S04/S05/S06 remain **PARTIAL**. No furth
 native fit is queued. W167 cluster accommodation remains planned with Alder and
 Cedar; Q15 owns shared regional helical measurements, and single-Hg evidence is
 not widening qualification.
+
+
+## W169 — Reuse the existing coordinate-only admission guard
+
+**Question.** Before adding a fixed-B/Q admission helper for W168, inspect the
+existing owners. W40's `topostitch_endpoint.audit_masked_endpoint` already protects
+every non-XYZ byte, fixed coordinates, ordered identity, mask, movement bound and
+exact PDB serialization. `topostitch_recipe.rebind_pair_recipe` separately binds
+source/candidate bytes and frozen canonical pair intent; it deliberately permits
+ADP and coordinate changes. Their responsibilities must stay distinct. This
+corrects the proposed implementation queue: compose these owners, not another
+fixed-B/Q checker.
+
+**Cold real-input controls.** Exact W168 parent/negative-child bytes, the original
+W163 205-atom mask and seven declared window pairs supply the control. The
+original input files remain unchanged. Both the displaced child and no-op pass
+the endpoint owner; the measured saved displacement is 4.78857150 Å. A fresh
+seven-pair recipe is generated through the existing owner solely to exercise
+binding; it is not substituted for W168's executed native restraint definitions.
+
+| Deliberate child change | Coordinate-only endpoint audit | Generic recipe rebinder |
+| --- | --- | --- |
+| Selected or fixed atom B, +1 Å² | Refuses | Allows, as designed |
+| Selected or fixed atom occupancy, 0.5 | Refuses | Refuses |
+| Protected atom coordinate, +0.01 Å | Refuses | Allows, as designed |
+| Chain label or atom order | Refuses | Refuses |
+| Changed cell parameter | Refuses | Refuses |
+
+All **eight altered children** are refused by the stricter owner. Hash-bound
+recipe rebinding also refuses changed original parent bytes. The source audit
+passes **27 checks**, and the already installed C407 package passes **29**, including
+exact equality of scientific readback and frozen recipe. All five consumed
+Willow owner modules are byte-identical between source and that installed pin.
+No runtime hook, file/model mutation, native process or refinement is invoked.
+No new production function or regression test is needed for already implemented
+behavior; existing endpoint tests cover B/Q, tensors, masks and serialization,
+and W168's 24 existing recipe-rebind cases remain valid.
+
+**Scope of the evidence.** Points are read from the saved three-decimal PDB,
+not the original unrounded proposal. The explicit 5 Å bound is a posthoc cold-
+check input for this known 4.7886 Å displacement; it is not a new general motion
+policy or proof of prospective W168 admission. Passing byte preservation does
+not validate physical B/tensor quality, source chemical correctness or site
+symmetry. The strict byte route can refuse harmless header/layout differences;
+this is intentional, not general model equivalence. Native preparation's OP3
+array reorder remains a later exact-identity mapping step.
+
+**Validation and artifacts.** From the main NASolve workspace:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w169-admission.py source
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w169-admission.py installed
+```
+
+These completed commands write immutable local receipts, not a queued repeat.
+Source/installed/recipe evidence is at the NASolve anchor
+`branch-artifacts/willow/w169-parent-admission/`. Its archive
+`branch-artifacts/willow/w169-parent-admission-evidence-2026-11-20.zip`
+contains four indexed files, 19,389 bytes, SHA256
+`58b24327b1775f10bdf16cd2303238529a40d46a7c8b94b6ad3028dbe6923f1b`.
+Per-file hash/size validation passes; the already sealed W168/W163 archives bind
+its inputs, avoiding another copy of the native runs. It is not a portable or
+resumable checkpoint. Raw evidence remains local.
+
+The eight focused roadmap tests, generated roadmap `--write`/`--check`, local
+receipt hashes and `git diff --check` validate the documentation update. The
+installed check reuses the frozen C407 package; it is not a new wheel installation.
+No product code, API/schema/default, dependency, migration or installation change;
+no full suite or redundant native run. S04/S05/S06 remain **PARTIAL**.
+
+**Next gate.** The shared caller must authenticate the original full-precision
+proposal, prospective mask/bound and source/current-parent/candidate lineage,
+then use the existing byte auditor and recipe owner before native preparation.
+Complete source topology/exclusions/policies, fresh child diffraction, scoped
+callback lifetime, actual output proof and ordinary checkpoint ancestry remain
+supported-integration work. Keep the W168 private hook gated. W164's B2/A13 saved-
+map review remains a separate science step; no new fit or cluster-width claim
+follows this input audit.

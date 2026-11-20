@@ -1,12 +1,20 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-20**, through **W168**. A private native diagnostic now retains
+Updated **2026-11-20**, through **W169**. W168’s private native diagnostic now retains
 known parent chemistry at the ordinary 3 Å interpretation cutoff while diffraction
 and refinement use the displaced child. One five-cycle run recovers **2.288 →
 0.271 Å RMS**, keeping all 38 backbone links, atom identities and checked sugar
 signs. Local covalent geometry is **0.00795 Å / 1.966° RMS**, with a largest angle
 deviation of **10.54°**; low Rfree .0589 does not imply complete repair.
 [W168 methods, lifecycle and limits](topostitch-periodic.md#w168--retain-parent-chemistry-through-child-diffraction-and-recovery).
+
+**W169 admission check:** the required strict coordinate-only guard already exists
+in `topostitch_endpoint.audit_masked_endpoint`. Real W168 input and no-op controls
+pass; eight B/Q, protected-coordinate, identity/order and cell alterations refuse.
+Source/installed readbacks match exactly (27/29 checks). The generic recipe
+rebinder remains unchanged. No duplicate guard or product patch is needed;
+original full-precision proposal binding and supported lifecycle integration
+remain open. [Scope](topostitch-periodic.md#w169--reuse-the-existing-coordinate-only-admission-guard).
 
 The earlier matched five-plus-five-cycle signed controls reach **0.253/0.040 Å**;
 the positive arm still has B2/A13 local distortion despite Rfree .0259. That
@@ -123,8 +131,12 @@ breaks, B/Q, crystal frame and supported site/image state. Refuse renaming,
 reordering, recuts, additions/losses or special positions in this first narrow
 route; broader registered mappings remain separate. Native preparation reordering
 is handled by a checked full-identity bijection, not by accepting reordered input.
-The existing recipe rebinder allows ADP changes, so add the explicit fixed-B/Q
-policy at the owning admission boundary rather than changing generic rebinding.
+The generic recipe rebinder allows ADP changes. Compose it with the existing
+`audit_masked_endpoint` to enforce the stricter fixed-B/Q and movement policy;
+W169 confirms this on the saved real inputs, so do not add a duplicate helper.
+The supported caller must also authenticate original full-precision points and
+the prospectively declared mask/bound. W169's saved-coordinate cold check does
+not retroactively establish that original proposal provenance.
 
 Inspect W164's remaining B2/A13 distortion against source-bound maps before another
 fit. W162 remains limited; no repeated C395–C400 matrix or relaxed tolerance.
