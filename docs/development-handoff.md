@@ -1,5 +1,11 @@
 # NASolve development handoff — Willow
 
+**W185, independent matched-input review:** C403/C475's real frozen requests
+match except one seven-atom B:4 PDU plane and declared path relocation. Ten checks
+cover 41 frozen files, the original parent, diffraction, settings, runtime code
+and unchanged B:1 free-OH/D:1 complete-end fixture. No native execution or child
+outcome is claimed by this review. [Exact scope](topostitch-periodic.md#w185--check-independent-pdu-trial-input-equivalence).
+
 **W184, saved sibling-coordinate check:** Cedar’s two soft propynyl planes produce
 small surrounding shifts: nearby sugar/backbone RMS **0.00515 Å**, compared with
 **0.00561 Å** at distant controls. The two tips move **0.05187/0.02914 Å**; their

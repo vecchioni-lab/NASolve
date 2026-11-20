@@ -10870,3 +10870,36 @@ the separate parse; `report.txt` is the compact science summary. Reproduce with
 `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<willow>/src <python> -B inspect_shifts.py --nasolve <NASolve> --output <fresh-output>`
 using Python 3.12 and the existing NAR/Gemmi environment. Scientific files remain
 local. No installed code/schema change or full-suite rerun is required.
+
+
+## W185 — Check independent PDU trial input equivalence
+
+Read-only comparison of C403 `refine-001` and C475 `refine-002` uses the exact
+run declared in C475 `plan.json` and both maintained `read_execution_request`
+results. **Ten checks pass over 41 frozen files**, unchanged across the review.
+The historical request matches its saved C403 hash. Both requests retain the
+same original `postmr` record/model, measured data, five cycles, v3 runtime policy,
+chemistry projection, runtime code and scientific command/options. The four
+restored dataset inputs independently match their declared checksums.
+
+The sole added input is the declared seven-atom B:4 PDU plane, sigma 0.10 Å.
+Every other ordered input is byte-identical, except the exact dataset path in
+`autorefine.params`; command differences are that plane and declared dataset/round
+paths only. Terminal-phosphate protection is identical. The original B:1 O5′
+without P/OP and D:1 P/OP1/OP2/OP3 fixture is preserved, and `postmr` remains
+selected. This historical free-OH control does not replace later symmetry-linked
+PDU:PDU intent. No input is found by basename, and history is not edited.
+
+The bounded literal compiler rejects the extra `resname` selector. The reviewer
+therefore uses the existing structural PHIL parser, exact equality to the declared
+selection and explicit seven-atom membership, without changing that grammar or
+claiming compiler admission. Actual Phenix plane membership and child geometry
+remain Rowan's readback. This review runs no native command, verifies no child
+outcome and grants no scientific acceptance; it compares frozen inputs rather
+than claiming every process/environment condition identical.
+
+Reproducer and checksummed input references are local at
+`NASolve:branch-artifacts/willow/w185-independent-pdu-inputs/inspect_inputs.py`
+and `result.json`. Exact invocation:
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<cedar>/src <python> -B inspect_inputs.py --nasolve <NASolve> --output <fresh-result.json>`.
+No product/schema/default change, installation or full-suite rerun is involved.

@@ -17,6 +17,12 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W185 — Record independent matched-input review
+
+- Verify the two saved PDU trial requests differ only by the declared plane and
+  paths; retain the historical terminal fixture and separate native outcome review.
+- Documentation/local read-only diagnostics; no code, schema or default changes.
+
 ### W184 — Compare surrounding DNA between completed plane trials
 
 - Record the matched sibling coordinate shifts with explicit nearby/distant groups,

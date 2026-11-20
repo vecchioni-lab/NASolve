@@ -513,7 +513,8 @@
         "W179 completes one maintained Phenix2.2.1-6174 original-literal fixed capture (1.71s;859atoms/42fullmonomers). Full literal artifact producer refuses captured flat interpreter controls. An explicit diagnostic literal/plane input partition reproduces W172 C21 PHIL and all213 W176 requests;15 binding/compiler checks and14 native mechanics checks pass,38links+51softMATCH. All settings remain bound; no native policy relabelling, supported artifact publication, ordinary ancestry, fit or motion admission.",
         "W180: Cedar integrates typed capture roles and four reviewed reader controls with unchanged compilation of 213 terms. 30 new/310 focused/89 relocated installed candidate checks pass; Rowan reports 219 integration checks. Ordinary execution remains refused.",
         "W181: Cedar integrates the opt-in atom-identity-bound PDB padding comparison. 247 focused source and247 relocated installed checks pass; saved C464/C467 replays preserve legacy outcomes. Rowan separately reports fresh13-component C471 publication and cold relocation selecting actual ReadySet output.",
-        "W182: Three saved-W180 probes plus30 existing typed tests pass (33 total). Public PostMR intake refuses before acquisition/request/process; exact compiled restraint context reproduces; controls cannot enter its grammar; existing synthetic dispatch freezes all4 ordered PHIL files and deliberately returns97 without native execution."
+        "W182: Three saved-W180 probes plus30 existing typed tests pass (33 total). Public PostMR intake refuses before acquisition/request/process; exact compiled restraint context reproduces; controls cannot enter its grammar; existing synthetic dispatch freezes all4 ordered PHIL files and deliberately returns97 without native execution.",
+        "W185 authenticates both real C403/C475 requests:10 checks over41 frozen files pass. Original postmr/model, diffraction, five-cycle settings, v3 runtime/code, projection and terminal fixture agree; only one seven-atom B:4 PDU plane at0.10 A and declared paths differ. Four restored dataset hashes and unchanged selection verify; no native run or child-outcome claim."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -611,14 +612,15 @@
         "E_ORIGINAL_LITERAL_NATIVE_PRODUCER",
         "E_TYPED_NATIVE_READER_CONTROLS",
         "E_READYSET_NAMED_REQUEST_COMPARISON",
-        "E_ORDINARY_CONTROL_OWNER_BOUNDARY"
+        "E_ORDINARY_CONTROL_OWNER_BOUNDARY",
+        "E_INDEPENDENT_PDU_MATCHED_INPUTS"
       ],
       "last_audit": {
         "date": "2026-11-20",
-        "code_commit": "999a42ef24d1567a5c16c5e5e4bb6835ddb4f6be",
-        "human_update": 182,
-        "reviewer": "Linden; shared Cedar integration reported by Rowan",
-        "scope": "Typed producer and named-request integration recorded;33 control-boundary checks, no ordinary motion or scientific closure"
+        "human_update": 185,
+        "code_commit": "856aeb0d152a80bc3462722e44c6357dbd103b43",
+        "reviewer": "Linden; independent frozen-request review for Rowan",
+        "scope": "Matched scientific input comparison only; native outcome and motion gates unchanged"
       }
     },
     {
@@ -4507,6 +4509,23 @@
           "size": 323
         }
       ]
+    },
+    "E_INDEPENDENT_PDU_MATCHED_INPUTS": {
+      "kind": "independent_matched_native_trial_input_review",
+      "date": "2026-11-20",
+      "human_update": 185,
+      "code_commit": "856aeb0d152a80bc3462722e44c6357dbd103b43",
+      "reference": "docs/topostitch-periodic.md#w185--check-independent-pdu-trial-input-equivalence",
+      "result": "W185 authenticates both real C403/C475 requests:10 checks over41 frozen files pass. Original postmr/model, diffraction, five-cycle settings, v3 runtime/code, projection and terminal fixture agree; only one seven-atom B:4 PDU plane at0.10 A and declared paths differ. Four restored dataset hashes and unchanged selection verify; no native run or child-outcome claim.",
+      "limitation": "Frozen-input equivalence only, not complete environment or child-output/scientific qualification. Resname selector is inspected against exact design using structural parser, not admitted by bounded literal compiler. Historical free-OH fixture remains distinct from later symmetry intent.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w185-independent-pdu-inputs/result.json",
+          "sha256": "a179f54cc5ac327f4815b600d3d9d983c6c4a96bfe3c6c75d6698863e8b8c987",
+          "size": 3485
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -4668,8 +4687,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 184,
-    "next": 185,
+    "current": 185,
+    "next": 186,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -5583,6 +5602,12 @@
         "title": "Measure surrounding DNA shifts between completed plane trials",
         "state": "RECORDED",
         "code_commit": "3510a5aeb1a37b0f7e66dd98b579c1ad933d8272"
+      },
+      {
+        "number": 185,
+        "title": "Check independent PDU trial input equivalence",
+        "state": "RECORDED",
+        "code_commit": "856aeb0d152a80bc3462722e44c6357dbd103b43"
       }
     ]
   },
