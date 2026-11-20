@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W165 — Plan the default backbone-fit check
+
+- Record the user-confirmed high-Rfree/difference-density review trigger and
+  default-on check intent, keeping detection, permission to try a bend and
+  adoption separate. Route calibration through S06, inspection through S07 and
+  bounded campaign use through S08.
+- Planning only: no operational threshold, runtime flag, automatic displacement,
+  schema/default implementation or scientific acceptance change.
+
 ### W162–W164 — Record larger backbone recovery and its boundaries
 
 - Preserve the bounded actual-state capture/profile result, including its

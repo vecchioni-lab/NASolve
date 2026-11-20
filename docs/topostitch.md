@@ -655,6 +655,45 @@ across the model and occupancy/ADP alternatives. Freeze calibration separately
 from later evaluation; do not use held-out Rfree to tune detection thresholds.
 Initially flag for review only, with no automatic deletion or displacement.
 
+### Planned default backbone-fit check (W165)
+
+**User direction after viewing the 11:20 larger-bend checkout:** make a backbone
+fit check enabled by default, while keeping repair execution and adoption separate.
+This is a pipeline decision, not a currently installed switch. The planned human
+label is **Check backbone fit**; no CLI spelling or runtime schema is finalized.
+
+Run the read-only check after the first usable refinement and at explicitly
+refreshed checkpoints, once model/map provenance and frame correspondence are
+qualified. Its trigger combines the named project **high-Rfree review criterion**
+with either **coherent negative difference density at actual phosphate/backbone
+atoms** or **significant coherent positive density near a plausible backbone path**.
+Record extent, affected atoms/residues, ordinary density support and the evidence
+for an alternative placement. Do not adopt a universal numeric cutoff here or
+reuse the inspector's 3.5σ display setting as a detector threshold. Resolution,
+map processing, local noise and model-wide repeated testing require calibration.
+
+Detection first distinguishes a plausible displacement from ADP/occupancy errors,
+missing atoms/alternate conformations, wrong sequence/register or junction/
+connectivity issues. Green density alone need not mean an existing duplex should
+bend; a red phosphate alone is not a displacement instruction. Ambiguous cases
+produce an explanation and review flag, not a forced structural hypothesis.
+
+When supported, propose a bounded bend/recovery trial through the existing
+TopoStitch and refinement owners. Execute only with explicit approval or an
+already-authorized automatic campaign policy. Preserve the parent and all
+outcomes, keep the original data/Free and declared chemistry, and compare with
+an equivalently refined unchanged control. Allow the declared restraint-driven
+recovery window before judging initial R statistics. Geometry, maps, molecular
+content and known topology govern review alongside the statistics; adoption or
+checkpoint replacement remains a separate recorded decision.
+
+W163–W164 justify this as useful development direction, not a qualified automatic
+repair: the positive synthetic endpoint has low Rfree but retains a local
+phosphate-angle distortion. W155/W160 density ambiguity and noisy calibration
+remain prerequisites. Put the detector in **S06**, its evidence/proposal UI in
+**S07**, and bounded campaign execution/review in **S08**. Keep default detection,
+permission to try a candidate and acceptance of a result distinct.
+
 **W153/W155 qualification boundary:** the experimental comparison now demonstrates
 why the matched no-op and scattering state matter: geometry can improve while
 the reference moves and phosphate residuals persist. W155's prescribed

@@ -1,12 +1,18 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-20**, through **W164**. Larger prescribed backbone
+Updated **2026-11-20**, through **W165**. Larger prescribed backbone
 displacements now recover under a declared matching-data control. Starting at
 2.288 Å RMS (up to 4.79 Å movement), the two directions reach **0.253/0.040 Å**
 after matched five-plus-five-cycle recovery; the no-op remains **0.014 Å**.
 All checked links, atom identities and sugar signs survive. The positive arm
 still has B2/A13 local distortion despite Rfree .0259, so it is not accepted.
 [W163–W164 methods and limits](topostitch-periodic.md#w163--retain-known-backbone-links-before-larger-displacement-recovery).
+
+**W165 pipeline addition:** plan a default-on read-only backbone-fit check for
+high Rfree with coherent red phosphate/backbone or positive backbone difference
+density. Detection, permissioned trial and adoption remain separate; noisy
+calibration and alternative explanations precede an operational trigger. No
+runtime switch or automatic repair is implemented. [Contract](topostitch.md#planned-default-backbone-fit-check-w165).
 
 **New preparation boundary:** the first larger input loses a 3.836 Å declared
 O3′–P link and four angles under native 3 Å interpretation. That attempt is held.

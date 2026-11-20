@@ -423,7 +423,8 @@
         "W161 cold review covers42residues,459backbone atoms at3states in4held maps (5508samples),41P versus38existingO3-P links, and unchanged4bond/angle families. A10C5-prime moves2.543A into higher ordinary density in both held sources; D2OP1 moves2.520A into lower density. All76printed weight trials fail the.015A first bond screen, requiring native fallback; final51pair distances contribute99.11% of pooled squared bond deviations, not energy/force. Reuses C395/C396 diagnosis; one posthoc A9-11 viewer added. No refinement or selector change.",
         "W162: Passive LS/ML observation reproduces all859 final atom records, both saved MTZ arrays and printed trials. Replay matches73returned states and the selected cycle5 weight7 frame. Geometry/combined local derivatives pass; data-only checks miss their prospective bound, so no finite profile runs. Both direct and FFT target/gradient restorations are exact. 194passive and120profile cold checks pass. Private diagnostic, not ordinary PostMR ancestry, a complete generic state serializer or accepted motion. Historical dihedral limit/top_out/slack are omitted; no complete six-family state claim. No tolerance retuning or new numerical-policy sweep follows.",
         "W163: Signed15degree tapered starts move205atoms2.288A RMS, up to4.79A. Default3A interpretation drops one3.836A O3P bond and4angles; that first attempt is held without fitting. Matched private4A interpretation retains38links,58complete planes, captured proxy definitions and fixed nonbonded exclusions. Five-cycle recovery reaches.758/.279A RMS; unchanged reference reproduces W152 atoms/maps exactly. Known canonical same-ASU links and noiseless matching diffraction only; no production cutoff change, automatic bond inference or symmetry-seam qualification. Original inherited torsion inventory is incomplete and explicitly qualified.",
-        "W164: One matched further5cycle restart reaches.25257/.03972A RMS from the generator; no-op remains.01436A. Final Rwork/Rfree .0211/.0259 and.0086/.0100. All859atoms,38links,126sugar signs and7554raw/effective endpoint F/SIGF/Free tuples survive. Positive B2O3-prime remains1.41A away and a local angle deviates31.32degrees. Nine reconstructed managers have identical explicit443torsion/62plane policies through the existing live owner. 601cold checks;51offline view checks and6-model ChimeraX1.12 headless load pass. Five plus five cycles with a rounded-PDB restart, not uninterrupted10cycles or convergence proof. Low R values do not accept the positive distortion. Noiseless synthetic data and one target shape; reconstructed manager policy does not retroactively fill omitted optimizer fields. Browser/GPU/human review and broad repair remain open."
+        "W164: One matched further5cycle restart reaches.25257/.03972A RMS from the generator; no-op remains.01436A. Final Rwork/Rfree .0211/.0259 and.0086/.0100. All859atoms,38links,126sugar signs and7554raw/effective endpoint F/SIGF/Free tuples survive. Positive B2O3-prime remains1.41A away and a local angle deviates31.32degrees. Nine reconstructed managers have identical explicit443torsion/62plane policies through the existing live owner. 601cold checks;51offline view checks and6-model ChimeraX1.12 headless load pass. Five plus five cycles with a rounded-PDB restart, not uninterrupted10cycles or convergence proof. Low R values do not accept the positive distortion. Noiseless synthetic data and one target shape; reconstructed manager policy does not retroactively fill omitted optimizer fields. Browser/GPU/human review and broad repair remain open.",
+        "W165 plans an enabled-by-default read-only backbone-fit check after usable refinement: high Rfree plus coherent atom-associated negative phosphate density or significant coherent positive backbone density. Separate detection, permissioned bounded trial and adoption; matched recovery/control and geometry/map/content review remain required. Planning only: no detector, operational thresholds, CLI flag, automatic displacement or checkpoint replacement. Density ambiguity/noise calibration and source/frame binding remain gates; W164 synthetic recovery is not experimental acceptance."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -434,7 +435,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "W162 closes the bounded passive/replay study with a data-only derivative limit: do not retune its tolerance, repeat C397-C400 or turn it into a universal repair prerequisite. W163-W164 show larger recovery and a remaining positive-arm local distortion. Next qualify a parent-derived canonical same-ASU topology retention contract through existing preparation/execution owners: retain declared links and their geometry/exclusions, refuse added/lost context, and never adopt a global4A rule. Inspect the remaining B2/A13 geometry with source-bound maps before another fit; no automatic continuation until Rfree looks good. Noisy density calibration, reciprocal/nonuniform target shapes, W150, B09/B10 and ordinary ancestry remain separate open gates.",
+      "next_action": "W162 closes the bounded passive/replay study with a data-only derivative limit: do not retune its tolerance, repeat C397-C400 or turn it into a universal repair prerequisite. W163-W164 show larger recovery and a remaining positive-arm local distortion. Next qualify a parent-derived canonical same-ASU topology retention contract through existing preparation/execution owners: retain declared links and their geometry/exclusions, refuse added/lost context, and never adopt a global4A rule. Inspect the remaining B2/A13 geometry with source-bound maps before another fit; no automatic continuation until Rfree looks good. Noisy density calibration, reciprocal/nonuniform target shapes, W150, B09/B10 and ordinary ancestry remain separate open gates. W165 default-check planning stays in its pipeline position: qualify source-bound noisy density detection before operational triggers; expose read-only findings before permissioned trials and separate adoption.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -504,14 +505,15 @@
         "E_SAVED_RECOVERY_CONTEXT",
         "E_CURRENT_BACKBONE_STATE",
         "E_LARGER_DECLARED_LINKS",
-        "E_LARGER_RECOVERY_WINDOW"
+        "E_LARGER_RECOVERY_WINDOW",
+        "E_DEFAULT_BACKBONE_CHECK_PLAN"
       ],
       "last_audit": {
         "date": "2026-11-20",
         "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
-        "human_update": 164,
-        "reviewer": "Linden; owner/scope coordination with Rowan and Hazel",
-        "scope": "Bounded native capture, larger synthetic recovery and saved-data audit; S04/S05/S06 remain partial"
+        "human_update": 165,
+        "reviewer": "Linden; user-confirmed detection/trial/adoption distinction",
+        "scope": "Pipeline intent only; no implementation or milestone closure"
       }
     },
     {
@@ -534,14 +536,15 @@
         "W148 adds a verified four-model actual-coordinate ChimeraX checkout and visually checked scientific figure for the idealized recovery control; no alignment or scientific acceptance.",
         "W149 packages the approved two-state offline inspector with bounded display geometry, explicit missing maps and caller-supplied source/frame notes. Final full Willow2091+234 subtests and source-free installed158+53 pass. Original W143 science/shaders and source/installed output match exactly; the same renderer displays actual W148 recovery coordinates. Rowan verifies corrected camera/work bounds; browser/GPU review remains separate.",
         "W150 exact shared-base composition passes192 focused+37 subtests and the same source-free installed profile.348 package files, genuine two-checkpoint reads, saved W143 HTML and19054 native preview segments remain exact. Candidate bundle is ready for receiving-owner review; no active merge or new full-pass claim.",
-        "W154 optional map_labels separates density provenance text from coordinate-state names while preserving defaults and science.30focused,2092full+234subtests,159relocatedinstalled+53subtests;93package files unchanged; exact saved-scene/source-installed HTML and17mock controls. Hazel reviews source and published payloads. Two owned scratch roots retired after archived verification:3956files/29020618bytes."
+        "W154 optional map_labels separates density provenance text from coordinate-state names while preserving defaults and science.30focused,2092full+234subtests,159relocatedinstalled+53subtests;93package files unchanged; exact saved-scene/source-installed HTML and17mock controls. Hazel reviews source and published payloads. Two owned scratch roots retired after archived verification:3956files/29020618bytes.",
+        "W165 plans an enabled-by-default read-only backbone-fit check after usable refinement: high Rfree plus coherent atom-associated negative phosphate density or significant coherent positive backbone density. Separate detection, permissioned bounded trial and adoption; matched recovery/control and geometry/map/content review remain required. Planning only: no detector, operational thresholds, CLI flag, automatic displacement or checkpoint replacement. Density ambiguity/noise calibration and source/frame binding remain gates; W164 synthetic recovery is not experimental acceptance."
       ],
       "acceptance": [
         "Create immutable children with exact model/CIF/PHIL inputs, preserve current selection, and reuse existing Coot/model-tree paths; viewing never selects or approves.",
         "Show actual before/after coordinates, moved/fixed sites, mates, geometry and matched refinement deltas. Test stale evidence, interruption, relocation and explicit keep/reject/use decisions.",
         "For final B09 review, show source, proposed and refined geotest coordinates with the intended periodic mates and per-member pass/review/failure evidence."
       ],
-      "next_action": "After shared receiving-owner qualification, compose W146 selection and W147 coefficient/header evidence with the W149 renderer through existing map/frame owners. Show missing/stale/unassessed evidence explicitly. Do not build another reader/history or treat display settings as scientific authority. Stage/campaign/Pine actions and ordinary repair publication remain separate; preserve Hazel residue/metal views.",
+      "next_action": "After shared receiving-owner qualification, compose W146 selection and W147 coefficient/header evidence with the W149 renderer through existing map/frame owners. Show missing/stale/unassessed evidence explicitly. Do not build another reader/history or treat display settings as scientific authority. Stage/campaign/Pine actions and ordinary repair publication remain separate; preserve Hazel residue/metal views. W165 default-check planning stays in its pipeline position: qualify source-bound noisy density detection before operational triggers; expose read-only findings before permissioned trials and separate adoption.",
       "evidence": [
         "E_SOFTWARE",
         "E_VIEW",
@@ -554,14 +557,15 @@
         "E_MATCHING_BACKBONE_RECOVERY",
         "E_PACKAGED_DENSITY_INSPECTOR",
         "E_SHARED_INSPECTION_COMPOSITION",
-        "E_INDEPENDENT_MAP_LABELS"
+        "E_INDEPENDENT_MAP_LABELS",
+        "E_DEFAULT_BACKBONE_CHECK_PLAN"
       ],
       "last_audit": {
-        "date": "2026-11-19",
+        "date": "2026-11-20",
         "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
-        "human_update": 154,
-        "reviewer": "Linden; coordinated cold review by Rowan/Hazel",
-        "scope": "Name map sources independently of coordinate states; bounded delivery only, broader milestone remains partial"
+        "human_update": 165,
+        "reviewer": "Linden; user-confirmed detection/trial/adoption distinction",
+        "scope": "Pipeline intent only; no implementation or milestone closure"
       }
     },
     {
@@ -574,22 +578,25 @@
         "S07"
       ],
       "goal": "Avoid repetitive prompts while keeping inferred/borrowed connections tentative and reviewable.",
-      "delivered": [],
+      "delivered": [
+        "W165 plans an enabled-by-default read-only backbone-fit check after usable refinement: high Rfree plus coherent atom-associated negative phosphate density or significant coherent positive backbone density. Separate detection, permissioned bounded trial and adoption; matched recovery/control and geometry/map/content review remain required. Planning only: no detector, operational thresholds, CLI flag, automatic displacement or checkpoint replacement. Density ambiguity/noise calibration and source/frame binding remain gates; W164 synthetic recovery is not experimental acceptance."
+      ],
       "acceptance": [
         "Freeze campaign authorization once; re-resolve logical schemes in each member, preserve donor ancestry and negative evidence, honor vetoes and bound retries/resources.",
         "Use the existing Campaign Doctor and Campaign desk; verify mixed success/failure, deterministic resume and held-out families before claiming unattended support. No automatic global recipe promotion.",
         "Optional asymmetric-triangle check preserves three distinct sequence-labelled physical placements, detects duplicates and bounds multi-copy branching; GUI/export retains all matched outcomes."
       ],
-      "next_action": "Reuse the qualified standalone engine and campaign owners; enable broad inference only after member-level evidence is reliable.",
+      "next_action": "Reuse the qualified standalone engine and campaign owners; enable broad inference only after member-level evidence is reliable. W165 default-check planning stays in its pipeline position: qualify source-bound noisy density detection before operational triggers; expose read-only findings before permissioned trials and separate adoption.",
       "evidence": [
-        "E_BLUNT_ASYM_PLAN"
+        "E_BLUNT_ASYM_PLAN",
+        "E_DEFAULT_BACKBONE_CHECK_PLAN"
       ],
       "last_audit": {
-        "date": "2026-11-16",
-        "reviewer": "Linden",
-        "code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
-        "human_update": 93,
-        "scope": "Planning acceptance extended for blunt/asymmetric controls; prior delivered runtime scope and open scientific gates unchanged. No new native solve."
+        "date": "2026-11-20",
+        "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
+        "human_update": 165,
+        "reviewer": "Linden; user-confirmed detection/trial/adoption distinction",
+        "scope": "Pipeline intent only; no implementation or milestone closure"
       }
     },
     {
@@ -3723,6 +3730,15 @@
           "size": 2245
         }
       ]
+    },
+    "E_DEFAULT_BACKBONE_CHECK_PLAN": {
+      "kind": "planned_default_backbone_fit_check",
+      "date": "2026-11-20",
+      "human_update": 165,
+      "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
+      "reference": "docs/topostitch.md#planned-default-backbone-fit-check-w165",
+      "result": "W165 plans an enabled-by-default read-only backbone-fit check after usable refinement: high Rfree plus coherent atom-associated negative phosphate density or significant coherent positive backbone density. Separate detection, permissioned bounded trial and adoption; matched recovery/control and geometry/map/content review remain required.",
+      "limitation": "Planning only: no detector, operational thresholds, CLI flag, automatic displacement or checkpoint replacement. Density ambiguity/noise calibration and source/frame binding remain gates; W164 synthetic recovery is not experimental acceptance."
     }
   },
   "benchmarks": [
@@ -3884,8 +3900,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 164,
-    "next": 165,
+    "current": 165,
+    "next": 166,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -4677,6 +4693,12 @@
       {
         "number": 164,
         "title": "Measure a matched recovery continuation and its remaining local distortion",
+        "state": "RECORDED",
+        "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a"
+      },
+      {
+        "number": 165,
+        "title": "Plan a default backbone-fit check with separate repair review",
         "state": "RECORDED",
         "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a"
       }
