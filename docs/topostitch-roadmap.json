@@ -218,21 +218,23 @@
       "goal": "Move a usable duplex toward the chosen connection while preserving local residue geometry and fixed boundaries.",
       "delivered": [
         "Checked tapered six-parameter previews/fitting preserve declared anchors, atom order, ANISOU, budgets and rounded-output limits; saved previews and explicit pivot rotations reuse exact Cartesian image ownership.",
-        "W85–W91 qualify derivative pullback, captured diagnostic starts and immutable motion compilation. Matched small coarse seeds give no demonstrated benefit over atomic cleanup; rounding/precision failures are retained.",
-        "W96–W100 qualify guarded full-window source-driven atomic controls. Three displaced controls pass numerical/binding checks but stop at iteration limits; selected/core pair gains coexist with individual geometry/packing tradeoffs. No accepted repair.",
+        "W85\u2013W91 qualify derivative pullback, captured diagnostic starts and immutable motion compilation. Matched small coarse seeds give no demonstrated benefit over atomic cleanup; rounding/precision failures are retained.",
+        "W96\u2013W100 qualify guarded full-window source-driven atomic controls. Three displaced controls pass numerical/binding checks but stop at iteration limits; selected/core pair gains coexist with individual geometry/packing tradeoffs. No accepted repair.",
         "W138/Cedar4f7aeb84 qualifies the explicit v8 100-cap ordinary coordinate route with complete source/installed/native gates. The earlier short route retains its original scope; neither cap proves convergence.",
         "W139 closes the matched native/core-only-zero/full matrix: exact zero/native output/history, passive full equivalence and common14-pair local benefit. Both line-search stops and repeated-coordinate normalization discontinuity remain separate limitations; no numerical policy is adopted.",
-        "W148 reuses the exact W100 +5-degree canonical displacement with matching noiseless diffraction and fixed native refinement. Selected 204-atom RMS error falls 0.917427 to 0.029167 Å; endpoint-to-endpoint RMS is 0.026449 Å. Local covalent bonds recover, 126 sugar-volume signs survive, and Rowan independently reproduces the controls. Existing reference-link distortion remains explicit.",
+        "W148 reuses the exact W100 +5-degree canonical displacement with matching noiseless diffraction and fixed native refinement. Selected 204-atom RMS error falls 0.917427 to 0.029167 \u00c5; endpoint-to-endpoint RMS is 0.026449 \u00c5. Local covalent bonds recover, 126 sugar-volume signs survive, and Rowan independently reproduces the controls. Existing reference-link distortion remains explicit.",
         "W151 deposited 8D93 polymer positions3/4 map to PDB B107/B111: the numbering jump is not three missing residues. The existing phosphate-angle distortion is already deposited. W115 unvalidated-preview lineage remains explicit; recovery is distinct from a healthy-reference qualification.",
         "W152 independent deposited5W6W opposite displacements recover from0.7641A RMS to0.05152/0.04653A; relaxed-reference drift0.01436A. Local232 bonds/363 angles,38 links,126 sugar signs and2569 common targets independently audited. Identical58 parallelity groups retain explicit source/boundary residuals; idealized matching data only.",
-        "W153 deposited5W6W experimental comparison preserves5137 raw observations/507originalFree, but positive native filtering drops one work reflection. Endpoints approach relaxed control0.21485/0.14566A; reference itself moves0.52152A and Rfree rises~0.019. Geometry improves, strong B2P negative density remains. Common4629work/507Free endpoint arithmetic reuses saved F-model without refit; mixed outcome, not accepted repair."
+        "W153 deposited5W6W experimental comparison preserves5137 raw observations/507originalFree, but positive native filtering drops one work reflection. Endpoints approach relaxed control0.21485/0.14566A; reference itself moves0.52152A and Rfree rises~0.019. Geometry improves, strong B2P negative density remains. Common4629work/507Free endpoint arithmetic reuses saved F-model without refit; mixed outcome, not accepted repair.",
+        "W163: Signed15degree tapered starts move205atoms2.288A RMS, up to4.79A. Default3A interpretation drops one3.836A O3P bond and4angles; that first attempt is held without fitting. Matched private4A interpretation retains38links,58complete planes, captured proxy definitions and fixed nonbonded exclusions. Five-cycle recovery reaches.758/.279A RMS; unchanged reference reproduces W152 atoms/maps exactly. Known canonical same-ASU links and noiseless matching diffraction only; no production cutoff change, automatic bond inference or symmetry-seam qualification. Original inherited torsion inventory is incomplete and explicitly qualified.",
+        "W164: One matched further5cycle restart reaches.25257/.03972A RMS from the generator; no-op remains.01436A. Final Rwork/Rfree .0211/.0259 and.0086/.0100. All859atoms,38links,126sugar signs and7554raw/effective endpoint F/SIGF/Free tuples survive. Positive B2O3-prime remains1.41A away and a local angle deviates31.32degrees. Nine reconstructed managers have identical explicit443torsion/62plane policies through the existing live owner. 601cold checks;51offline view checks and6-model ChimeraX1.12 headless load pass. Five plus five cycles with a rounded-PDB restart, not uninterrupted10cycles or convergence proof. Low R values do not accept the positive distortion. Noiseless synthetic data and one target shape; reconstructed manager policy does not retroactively fill omitted optimizer fields. Browser/GPU/human review and broad repair remain open."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "W148/W152 synthetic and W153 experimental comparisons are complete within scope; do not repeat. Keep reciprocal target shapes, larger/nonuniform curvature, twist/rise/backbone breathing and whole-pair window expansion separate. Before further native fitting, account for W153 reference drift and inherited pair/stack targets; source closeness and ideal geometry alone are not acceptance.",
+      "next_action": "W162 closes the bounded passive/replay study with a data-only derivative limit: do not retune its tolerance, repeat C397-C400 or turn it into a universal repair prerequisite. W163-W164 show larger recovery and a remaining positive-arm local distortion. Next qualify a parent-derived canonical same-ASU topology retention contract through existing preparation/execution owners: retain declared links and their geometry/exclusions, refuse added/lost context, and never adopt a global4A rule. Inspect the remaining B2/A13 geometry with source-bound maps before another fit; no automatic continuation until Rfree looks good. Noisy density calibration, reciprocal/nonuniform target shapes, W150, B09/B10 and ordinary ancestry remain separate open gates.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -259,14 +261,16 @@
         "E_MATCHING_BACKBONE_RECOVERY",
         "E_REFERENCE_SEQUENCE_ADJACENCY",
         "E_INDEPENDENT_OPPOSITE_RECOVERY",
-        "E_EXPERIMENTAL_BACKBONE_TRADEOFF"
+        "E_EXPERIMENTAL_BACKBONE_TRADEOFF",
+        "E_LARGER_DECLARED_LINKS",
+        "E_LARGER_RECOVERY_WINDOW"
       ],
       "last_audit": {
-        "date": "2026-11-19",
+        "date": "2026-11-20",
         "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
-        "human_update": 153,
-        "reviewer": "Linden; coordinated cold review by Rowan/Hazel",
-        "scope": "Separate experimental backbone recovery from geometry-driven relaxation; bounded delivery only, broader milestone remains partial"
+        "human_update": 164,
+        "reviewer": "Linden; owner/scope coordination with Rowan and Hazel",
+        "scope": "Bounded native capture, larger synthetic recovery and saved-data audit; S04/S05/S06 remain partial"
       }
     },
     {
@@ -280,26 +284,29 @@
       "goal": "Turn a plausible placement into a chemically usable candidate before refinement is trusted.",
       "delivered": [
         "Canonical recipe/image/gradient, masked native/pair/tether composition and captured-job owners are qualified for explicit movement scopes. Exact source binding, full/rounded derivative checks, native geometry/packing observers and failed endpoint evidence remain available.",
-        "W51–W61 and W85–W100 establish numerical-resolution, coarse/atomic and source-tether boundaries. Matched failures are preserved; repeat closed controls only for a declared new question.",
-        "W104–W118 bind requested canonical terms to exact actual native coverage, evaluate only missing forces and explicitly rebind compatible parent bytes without changing original chemistry/images. Covalent/terminal ownership is not inferred from origin IDs.",
-        "Cedar integration through W125–W134 owns durable admission, actual prepared state, registered same-intent continuation, original writer identity and final pair capture. Historical payloads retain narrower proof. Ordinary chemistry observation can coexist; broad chemistry repair remains separate.",
+        "W51\u2013W61 and W85\u2013W100 establish numerical-resolution, coarse/atomic and source-tether boundaries. Matched failures are preserved; repeat closed controls only for a declared new question.",
+        "W104\u2013W118 bind requested canonical terms to exact actual native coverage, evaluate only missing forces and explicitly rebind compatible parent bytes without changing original chemistry/images. Covalent/terminal ownership is not inferred from origin IDs.",
+        "Cedar integration through W125\u2013W134 owns durable admission, actual prepared state, registered same-intent continuation, original writer identity and final pair capture. Historical payloads retain narrower proof. Ordinary chemistry observation can coexist; broad chemistry repair remains separate.",
         "W138/Cedar4f7aeb84 qualifies the explicit v8 100-cap ordinary coordinate route with complete source/installed/native gates. The earlier short route retains its original scope; neither cap proves convergence.",
         "W139 closes the matched native/core-only-zero/full matrix: exact zero/native output/history, passive full equivalence and common14-pair local benefit. Both line-search stops and repeated-coordinate normalization discontinuity remain separate limitations; no numerical policy is adopted.",
         "W140 measures1268 recorded native sugar/phosphate/glycosidic supports,38existingO3P links and126preserved ordered sugar signs. Independent3804printed-geometry+342torsion checks pass; local backbone deviations remain similar while end bases move. No complete pucker/packing/closure acceptance.",
         "W122 explicit sticky-end enforcement is planning-only. General seam closure, mismatch/blunt qualification, larger bending and density-supported repair remain open.",
-        "W148 reuses the exact W100 +5-degree canonical displacement with matching noiseless diffraction and fixed native refinement. Selected 204-atom RMS error falls 0.917427 to 0.029167 Å; endpoint-to-endpoint RMS is 0.026449 Å. Local covalent bonds recover, 126 sugar-volume signs survive, and Rowan independently reproduces the controls. Existing reference-link distortion remains explicit.",
+        "W148 reuses the exact W100 +5-degree canonical displacement with matching noiseless diffraction and fixed native refinement. Selected 204-atom RMS error falls 0.917427 to 0.029167 \u00c5; endpoint-to-endpoint RMS is 0.026449 \u00c5. Local covalent bonds recover, 126 sugar-volume signs survive, and Rowan independently reproduces the controls. Existing reference-link distortion remains explicit.",
         "W151 deposited 8D93 polymer positions3/4 map to PDB B107/B111: the numbering jump is not three missing residues. The existing phosphate-angle distortion is already deposited. W115 unvalidated-preview lineage remains explicit; recovery is distinct from a healthy-reference qualification.",
         "W152 independent deposited5W6W opposite displacements recover from0.7641A RMS to0.05152/0.04653A; relaxed-reference drift0.01436A. Local232 bonds/363 angles,38 links,126 sugar signs and2569 common targets independently audited. Identical58 parallelity groups retain explicit source/boundary residuals; idealized matching data only.",
         "W153 deposited5W6W experimental comparison preserves5137 raw observations/507originalFree, but positive native filtering drops one work reflection. Endpoints approach relaxed control0.21485/0.14566A; reference itself moves0.52152A and Rfree rises~0.019. Geometry improves, strong B2P negative density remains. Common4629work/507Free endpoint arithmetic reuses saved F-model without refit; mixed outcome, not accepted repair.",
-        "W159 completes one five-cycle ordinary-recipe diagnostic on the same undeformed5W6W source. Exact859atoms,2569initial bond/angle definitions,58pair/stack groups and5137effective observations/507originalFree survive;38links and126sugar signs remain. Selected drift0.591A versus0.522A; common Rwork/Rfree0.2264/0.2677 versus0.2392/0.2600. B2P B90.39→112.52 while own residual remains−8.38σ versus−8.09σ. This does not resolve the reference baseline; no opposite-start matrix or accepted repair.",
-        "W161 cold review covers42residues,459backbone atoms at3states in4held maps (5508samples),41P versus38existingO3-P links, and unchanged4bond/angle families. A10C5-prime moves2.543A into higher ordinary density in both held sources; D2OP1 moves2.520A into lower density. All76printed weight trials fail the.015A first bond screen, requiring native fallback; final51pair distances contribute99.11% of pooled squared bond deviations, not energy/force. Reuses C395/C396 diagnosis; one posthoc A9-11 viewer added. No refinement or selector change."
+        "W159 completes one five-cycle ordinary-recipe diagnostic on the same undeformed5W6W source. Exact859atoms,2569initial bond/angle definitions,58pair/stack groups and5137effective observations/507originalFree survive;38links and126sugar signs remain. Selected drift0.591A versus0.522A; common Rwork/Rfree0.2264/0.2677 versus0.2392/0.2600. B2P B90.39\u2192112.52 while own residual remains\u22128.38\u03c3 versus\u22128.09\u03c3. This does not resolve the reference baseline; no opposite-start matrix or accepted repair.",
+        "W161 cold review covers42residues,459backbone atoms at3states in4held maps (5508samples),41P versus38existingO3-P links, and unchanged4bond/angle families. A10C5-prime moves2.543A into higher ordinary density in both held sources; D2OP1 moves2.520A into lower density. All76printed weight trials fail the.015A first bond screen, requiring native fallback; final51pair distances contribute99.11% of pooled squared bond deviations, not energy/force. Reuses C395/C396 diagnosis; one posthoc A9-11 viewer added. No refinement or selector change.",
+        "W162: Passive LS/ML observation reproduces all859 final atom records, both saved MTZ arrays and printed trials. Replay matches73returned states and the selected cycle5 weight7 frame. Geometry/combined local derivatives pass; data-only checks miss their prospective bound, so no finite profile runs. Both direct and FFT target/gradient restorations are exact. 194passive and120profile cold checks pass. Private diagnostic, not ordinary PostMR ancestry, a complete generic state serializer or accepted motion. Historical dihedral limit/top_out/slack are omitted; no complete six-family state claim. No tolerance retuning or new numerical-policy sweep follows.",
+        "W163: Signed15degree tapered starts move205atoms2.288A RMS, up to4.79A. Default3A interpretation drops one3.836A O3P bond and4angles; that first attempt is held without fitting. Matched private4A interpretation retains38links,58complete planes, captured proxy definitions and fixed nonbonded exclusions. Five-cycle recovery reaches.758/.279A RMS; unchanged reference reproduces W152 atoms/maps exactly. Known canonical same-ASU links and noiseless matching diffraction only; no production cutoff change, automatic bond inference or symmetry-seam qualification. Original inherited torsion inventory is incomplete and explicitly qualified.",
+        "W164: One matched further5cycle restart reaches.25257/.03972A RMS from the generator; no-op remains.01436A. Final Rwork/Rfree .0211/.0259 and.0086/.0100. All859atoms,38links,126sugar signs and7554raw/effective endpoint F/SIGF/Free tuples survive. Positive B2O3-prime remains1.41A away and a local angle deviates31.32degrees. Nine reconstructed managers have identical explicit443torsion/62plane policies through the existing live owner. 601cold checks;51offline view checks and6-model ChimeraX1.12 headless load pass. Five plus five cycles with a rounded-PDB restart, not uninterrupted10cycles or convergence proof. Low R values do not accept the positive distortion. Noiseless synthetic data and one target shape; reconstructed manager policy does not retroactively fill omitted optimizer fields. Browser/GPU/human review and broad repair remain open."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "W161 completes the saved-family/local-context audit: preserve its mixed observations and C395/C396 screening qualification; do not repeat that selector experiment. Before a new backbone-mode profile, qualify the actual selected-XYZ state, likelihood/masks/scales, explicit parallelity parameters/limits, full restraint inventory and restoration using the existing shared capture precedent. Saved final_f_model arrays are not the earlier selected objective. W160 noisy/uncertain-density calibration is separate. No ordinary ancestry bypass, geometry-force deletion, lowest-Rfree selection or acceptance; W150 and B09/B10 remain open. Bound the mechanism study to one declared passive baseline and selected-state replay; do not turn it into a universal repair prerequisite or require perfect no-op maps/monotonic Rfree. W156 matched-recovery and map review remain the acceptance framework.",
+      "next_action": "W162 closes the bounded passive/replay study with a data-only derivative limit: do not retune its tolerance, repeat C397-C400 or turn it into a universal repair prerequisite. W163-W164 show larger recovery and a remaining positive-arm local distortion. Next qualify a parent-derived canonical same-ASU topology retention contract through existing preparation/execution owners: retain declared links and their geometry/exclusions, refuse added/lost context, and never adopt a global4A rule. Inspect the remaining B2/A13 geometry with source-bound maps before another fit; no automatic continuation until Rfree looks good. Noisy density calibration, reciprocal/nonuniform target shapes, W150, B09/B10 and ordinary ancestry remain separate open gates.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -368,14 +375,17 @@
         "E_EXPERIMENTAL_BACKBONE_TRADEOFF",
         "E_DISCRIMINATING_RECOVERY_PLAN",
         "E_ORDINARY_RECOVERY_DIAGNOSTIC",
-        "E_SAVED_RECOVERY_CONTEXT"
+        "E_SAVED_RECOVERY_CONTEXT",
+        "E_CURRENT_BACKBONE_STATE",
+        "E_LARGER_DECLARED_LINKS",
+        "E_LARGER_RECOVERY_WINDOW"
       ],
       "last_audit": {
         "date": "2026-11-20",
         "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
-        "human_update": 161,
-        "reviewer": "Linden; source/history and owner coordination with Rowan/Hazel",
-        "scope": "Cold local-map/geometry/screening review; no global milestone closure"
+        "human_update": 164,
+        "reviewer": "Linden; owner/scope coordination with Rowan and Hazel",
+        "scope": "Bounded native capture, larger synthetic recovery and saved-data audit; S04/S05/S06 remain partial"
       }
     },
     {
@@ -402,15 +412,18 @@
         "W145 exposes structured map stage/checkpoint/consuming ancestry through existing view resolution; standalone full/installed and focused Cedar adaptation pass. Legacy viewing stays compatible; producer coordinates, generation policy and frame equivalence remain unproven.",
         "W146 adds a read-only measured inspection snapshot over existing view/reference owners; 2061 full+234 subtests and 120 relocated installed+53 subtests pass. Genuine W138 compatibility over the installed combined owner preserves all inputs. Producer/frame evidence stays unassessed; W146 remains outside the frozen combined gate.",
         "W147 extracts exact native complex-array selection and descriptive headers:2070 full+234 subtests,129 relocated installed+53 subtests, source/installed native reads and exact19054-segment preview parity. Worker-v2 candidate binds executed helper bytes and passes2stale/change controls; it remains outside frozen combined integration.",
-        "W148 reuses the exact W100 +5-degree canonical displacement with matching noiseless diffraction and fixed native refinement. Selected 204-atom RMS error falls 0.917427 to 0.029167 Å; endpoint-to-endpoint RMS is 0.026449 Å. Local covalent bonds recover, 126 sugar-volume signs survive, and Rowan independently reproduces the controls. Existing reference-link distortion remains explicit.",
+        "W148 reuses the exact W100 +5-degree canonical displacement with matching noiseless diffraction and fixed native refinement. Selected 204-atom RMS error falls 0.917427 to 0.029167 \u00c5; endpoint-to-endpoint RMS is 0.026449 \u00c5. Local covalent bonds recover, 126 sugar-volume signs survive, and Rowan independently reproduces the controls. Existing reference-link distortion remains explicit.",
         "W150 exact shared-base composition passes192 focused+37 subtests and the same source-free installed profile.348 package files, genuine two-checkpoint reads, saved W143 HTML and19054 native preview segments remain exact. Candidate bundle is ready for receiving-owner review; no active merge or new full-pass claim.",
         "W152 independent deposited5W6W opposite displacements recover from0.7641A RMS to0.05152/0.04653A; relaxed-reference drift0.01436A. Local232 bonds/363 angles,38 links,126 sugar signs and2569 common targets independently audited. Identical58 parallelity groups retain explicit source/boundary residuals; idealized matching data only.",
         "W153 deposited5W6W experimental comparison preserves5137 raw observations/507originalFree, but positive native filtering drops one work reflection. Endpoints approach relaxed control0.21485/0.14566A; reference itself moves0.52152A and Rfree rises~0.019. Geometry improves, strong B2P negative density remains. Common4629work/507Free endpoint arithmetic reuses saved F-model without refit; mixed outcome, not accepted repair.",
-        "W155 prescribed complex-F contrasts at identical7554HKLs/3.06A show negative modeledP from displacement, Q excess and B mismatch separately, with zero control. Only3scatterers vary; full/group additivity≤4.82e-12 and direct/FFT≤1.18e-14. Hazel cold review passes with explicit missing original version-API capture. Common reference normalization is not ML difference-map sigma; no detector or experimental attribution.",
+        "W155 prescribed complex-F contrasts at identical7554HKLs/3.06A show negative modeledP from displacement, Q excess and B mismatch separately, with zero control. Only3scatterers vary; full/group additivity\u22644.82e-12 and direct/FFT\u22641.18e-14. Hazel cold review passes with explicit missing original version-API capture. Common reference normalization is not ML difference-map sigma; no detector or experimental attribution.",
         "W157 reads84 archived native stages,15 minimizer records and18 scaling counts with independent Hazel review. Initial unscaled Rfree0.3207/0.3437/0.3376 becomes0.2413/0.2637/0.2624 at first bulk/scaling before XYZ; final0.2600/0.2579/0.2611. Reference hits100iterations in all5cycles. Existing report gains a verified inline stage plot; no new refinement.",
-        "W159 completes one five-cycle ordinary-recipe diagnostic on the same undeformed5W6W source. Exact859atoms,2569initial bond/angle definitions,58pair/stack groups and5137effective observations/507originalFree survive;38links and126sugar signs remain. Selected drift0.591A versus0.522A; common Rwork/Rfree0.2264/0.2677 versus0.2392/0.2600. B2P B90.39→112.52 while own residual remains−8.38σ versus−8.09σ. This does not resolve the reference baseline; no opposite-start matrix or accepted repair.",
-        "W160 closes the planned noiseless model-assisted three-case panel: one higher-B truth, 7554 common HKLs, 389 synthetic Free and 859 unchanged atom identities. Known position and B errors both give negative modeled-P density. Common truth-map samples are −3.11e−15/−0.804/−1.524 for zero/position/B; zero own-map normalization gives −1.624σ from numerical-scale residuals. Native formula/readback/direct-FFT checks and Hazel80-check cold review pass. No refinement, scale fitting, detector or experimental attribution.",
-        "W161 cold review covers42residues,459backbone atoms at3states in4held maps (5508samples),41P versus38existingO3-P links, and unchanged4bond/angle families. A10C5-prime moves2.543A into higher ordinary density in both held sources; D2OP1 moves2.520A into lower density. All76printed weight trials fail the.015A first bond screen, requiring native fallback; final51pair distances contribute99.11% of pooled squared bond deviations, not energy/force. Reuses C395/C396 diagnosis; one posthoc A9-11 viewer added. No refinement or selector change."
+        "W159 completes one five-cycle ordinary-recipe diagnostic on the same undeformed5W6W source. Exact859atoms,2569initial bond/angle definitions,58pair/stack groups and5137effective observations/507originalFree survive;38links and126sugar signs remain. Selected drift0.591A versus0.522A; common Rwork/Rfree0.2264/0.2677 versus0.2392/0.2600. B2P B90.39\u2192112.52 while own residual remains\u22128.38\u03c3 versus\u22128.09\u03c3. This does not resolve the reference baseline; no opposite-start matrix or accepted repair.",
+        "W160 closes the planned noiseless model-assisted three-case panel: one higher-B truth, 7554 common HKLs, 389 synthetic Free and 859 unchanged atom identities. Known position and B errors both give negative modeled-P density. Common truth-map samples are \u22123.11e\u221215/\u22120.804/\u22121.524 for zero/position/B; zero own-map normalization gives \u22121.624\u03c3 from numerical-scale residuals. Native formula/readback/direct-FFT checks and Hazel80-check cold review pass. No refinement, scale fitting, detector or experimental attribution.",
+        "W161 cold review covers42residues,459backbone atoms at3states in4held maps (5508samples),41P versus38existingO3-P links, and unchanged4bond/angle families. A10C5-prime moves2.543A into higher ordinary density in both held sources; D2OP1 moves2.520A into lower density. All76printed weight trials fail the.015A first bond screen, requiring native fallback; final51pair distances contribute99.11% of pooled squared bond deviations, not energy/force. Reuses C395/C396 diagnosis; one posthoc A9-11 viewer added. No refinement or selector change.",
+        "W162: Passive LS/ML observation reproduces all859 final atom records, both saved MTZ arrays and printed trials. Replay matches73returned states and the selected cycle5 weight7 frame. Geometry/combined local derivatives pass; data-only checks miss their prospective bound, so no finite profile runs. Both direct and FFT target/gradient restorations are exact. 194passive and120profile cold checks pass. Private diagnostic, not ordinary PostMR ancestry, a complete generic state serializer or accepted motion. Historical dihedral limit/top_out/slack are omitted; no complete six-family state claim. No tolerance retuning or new numerical-policy sweep follows.",
+        "W163: Signed15degree tapered starts move205atoms2.288A RMS, up to4.79A. Default3A interpretation drops one3.836A O3P bond and4angles; that first attempt is held without fitting. Matched private4A interpretation retains38links,58complete planes, captured proxy definitions and fixed nonbonded exclusions. Five-cycle recovery reaches.758/.279A RMS; unchanged reference reproduces W152 atoms/maps exactly. Known canonical same-ASU links and noiseless matching diffraction only; no production cutoff change, automatic bond inference or symmetry-seam qualification. Original inherited torsion inventory is incomplete and explicitly qualified.",
+        "W164: One matched further5cycle restart reaches.25257/.03972A RMS from the generator; no-op remains.01436A. Final Rwork/Rfree .0211/.0259 and.0086/.0100. All859atoms,38links,126sugar signs and7554raw/effective endpoint F/SIGF/Free tuples survive. Positive B2O3-prime remains1.41A away and a local angle deviates31.32degrees. Nine reconstructed managers have identical explicit443torsion/62plane policies through the existing live owner. 601cold checks;51offline view checks and6-model ChimeraX1.12 headless load pass. Five plus five cycles with a rounded-PDB restart, not uninterrupted10cycles or convergence proof. Low R values do not accept the positive distortion. Noiseless synthetic data and one target shape; reconstructed manager policy does not retroactively fill omitted optimizer fields. Browser/GPU/human review and broad repair remain open."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -421,7 +434,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "W161 completes the saved-family/local-context audit: preserve its mixed observations and C395/C396 screening qualification; do not repeat that selector experiment. Before a new backbone-mode profile, qualify the actual selected-XYZ state, likelihood/masks/scales, explicit parallelity parameters/limits, full restraint inventory and restoration using the existing shared capture precedent. Saved final_f_model arrays are not the earlier selected objective. W160 noisy/uncertain-density calibration is separate. No ordinary ancestry bypass, geometry-force deletion, lowest-Rfree selection or acceptance; W150 and B09/B10 remain open. Bound the mechanism study to one declared passive baseline and selected-state replay; do not turn it into a universal repair prerequisite or require perfect no-op maps/monotonic Rfree. W156 matched-recovery and map review remain the acceptance framework.",
+      "next_action": "W162 closes the bounded passive/replay study with a data-only derivative limit: do not retune its tolerance, repeat C397-C400 or turn it into a universal repair prerequisite. W163-W164 show larger recovery and a remaining positive-arm local distortion. Next qualify a parent-derived canonical same-ASU topology retention contract through existing preparation/execution owners: retain declared links and their geometry/exclusions, refuse added/lost context, and never adopt a global4A rule. Inspect the remaining B2/A13 geometry with source-bound maps before another fit; no automatic continuation until Rfree looks good. Noisy density calibration, reciprocal/nonuniform target shapes, W150, B09/B10 and ordinary ancestry remain separate open gates.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -488,14 +501,17 @@
         "E_DISCRIMINATING_RECOVERY_PLAN",
         "E_ORDINARY_RECOVERY_DIAGNOSTIC",
         "E_MODEL_ASSISTED_DENSITY_CONTROLS",
-        "E_SAVED_RECOVERY_CONTEXT"
+        "E_SAVED_RECOVERY_CONTEXT",
+        "E_CURRENT_BACKBONE_STATE",
+        "E_LARGER_DECLARED_LINKS",
+        "E_LARGER_RECOVERY_WINDOW"
       ],
       "last_audit": {
         "date": "2026-11-20",
         "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
-        "human_update": 161,
-        "reviewer": "Linden; source/history and owner coordination with Rowan/Hazel",
-        "scope": "Cold local-map/geometry/screening review; no global milestone closure"
+        "human_update": 164,
+        "reviewer": "Linden; owner/scope coordination with Rowan and Hazel",
+        "scope": "Bounded native capture, larger synthetic recovery and saved-data audit; S04/S05/S06 remain partial"
       }
     },
     {
@@ -631,7 +647,7 @@
         "W59 computes node images from an explicit selected forest and fixed anchors using existing path/relabel owners; full winding and unselected vertices remain. Two public alternatives compose with existing packets/view/scattering. No automatic alternatives or human selection.",
         "W60 persists explicit chosen edges/anchors in the existing source-bound packet and recomputes derivation on load; viewer exposes that proposal intent. Old direct-image packets/scenes retain exact behavior; no human acceptance or editing UI.",
         "W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change.",
-        "W64 compares 2–8 explicit same-source/graph packets in the existing viewer with a shared camera and local Cut numbers; switching refreshes seam/provenance details and clears stale inspection. Exact old scenes remain; no model selection/approval or rendered review claimed.",
+        "W64 compares 2\u20138 explicit same-source/graph packets in the existing viewer with a shared camera and local Cut numbers; switching refreshes seam/provenance details and clears stale inspection. Exact old scenes remain; no model selection/approval or rendered review claimed.",
         "W65 adds a source-bound preference download/readback for prefer-cut, keep-original or needs-revision. Fresh comparison replay rejects stale choices; scene remains unchanged and no authenticated approval/model selection is claimed. Browser/download validation still open.",
         "W66 projects declared directed backbone continuation, representation/chemical/unknown boundaries and existing phosphate inventory from replayed packets. Unresolved partners retain P/OP1/OP2 intent; OP3 conflicts are scoped to continuation, with terminal phosphate consent separate. Exact route-image transport, optional view and preference context are read-only; no new edge or native enforcement.",
         "W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement.",
@@ -1055,7 +1071,7 @@
       "code_commit": "6ff9eb874bc3f07cd64231f52cf21e3485f657ec",
       "human_update": 51,
       "reference": "docs/topostitch-preview.md#w51--native-convergence-ceiling-control",
-      "result": "Two complete Phenix 2.2.1-6174 executions retain FAILED line-search rounding outcomes at358/351 accepted steps. Initial derivative gates pass and both old200-iteration traces reproduce exactly. Source/input bytes preserved. Last accepted coordinate changes beyond200 are below0.000105 Å, but no post-exception endpoint derivative gate or candidate emission occurs.",
+      "result": "Two complete Phenix 2.2.1-6174 executions retain FAILED line-search rounding outcomes at358/351 accepted steps. Initial derivative gates pass and both old200-iteration traces reproduce exactly. Source/input bytes preserved. Last accepted coordinate changes beyond200 are below0.000105 \u00c5, but no post-exception endpoint derivative gate or candidate emission occurs.",
       "limitation": "Negative evidence only; no convergence, scientific acceptance, stopping tolerance relaxation, ordinary refinement or Cedar change. Runtime code remains W50, whose full/installed validation applies; roadmap/doc checks pass. Generated runs/traces stay local."
     },
     "E_REGISTERED_RELABEL_PREVIEW": {
@@ -1287,7 +1303,7 @@
       "code_commit": "cc9fe96d456f9c3fbbf819e9afe7541f03aec361",
       "human_update": 80,
       "reference": "docs/topostitch-periodic.md#w80--bind-cartesian-displacement-tensors-to-the-coordinate-frame",
-      "result": "Shared Cartesian R U R^T and complete ReferenceFrame forward/inverse tensor transport retain labels/context/full permutation; existing preview ANISOU writer reuses rotation.13 fail-before regressions; focused184; full1769 +229; installed/relocated668. Installed Phenix2.2.1-6174:855 tensors,2cuts×3orders,1008 Fcalc values maxerror4.43e-11; independent native fractional tensor comparison and omitted-rotation negative control pass.",
+      "result": "Shared Cartesian R U R^T and complete ReferenceFrame forward/inverse tensor transport retain labels/context/full permutation; existing preview ANISOU writer reuses rotation.13 fail-before regressions; focused184; full1769 +229; installed/relocated668. Installed Phenix2.2.1-6174:855 tensors,2cuts\u00d73orders,1008 Fcalc values maxerror4.43e-11; independent native fractional tensor comparison and omitted-rotation negative control pass.",
       "limitation": "Arithmetic and complete in-memory diagnostic only; caller owns fractional conversion, ADP presence/flags and physical validation. No new writer/schema, ADP optimization, experimental data, model materialization or ordinary recut refinement. Scientific evidence local; P03/P04 remain partial."
     },
     "E_COMBINED_FULL_AUDIT": {
@@ -1343,7 +1359,7 @@
       "code_commit": "82ac2b3f695fe81bdb09b4347d2f6e6b0adfd782",
       "human_update": 87,
       "reference": "docs/topostitch-periodic.md#w87--compare-matched-six-variable-placements-without-promoting-failures",
-      "result": "Phenix2.2.1-6174 paired/core-only trials both FAILED rounding after11/10 accepted steps; exact callback replay and full/rounded Cartesian derivative checks pass. Common14-recipe observers complete: selected-pair target -7.122/-5.318, nonbonded1077.722→1055.746/1059.585, retained pairs invariant, motions .0538/.0444 Angstrom. Individual packing/AT component regressions retained with severity, not count-based rejection.",
+      "result": "Phenix2.2.1-6174 paired/core-only trials both FAILED rounding after11/10 accepted steps; exact callback replay and full/rounded Cartesian derivative checks pass. Common14-recipe observers complete: selected-pair target -7.122/-5.318, nonbonded1077.722\u21921055.746/1059.585, retained pairs invariant, motions .0538/.0444 Angstrom. Individual packing/AT component regressions retained with severity, not count-based rejection.",
       "limitation": "No success endpoint, candidate, refinement, scientific acceptance, runtime/schema changes or new full-suite run. Host/native arithmetic mismatch preserved and resolved through exact same-interpreter replay; the live-policy guard remains open, separate from CedarQ06 refinement chemistry. Geometry-only observations do not close S04/S05."
     },
     "E_SAVED_BEND_MOTION": {
@@ -1375,7 +1391,7 @@
       "code_commit": "5965d8588984c6991f587bdaec049639264d03e4",
       "human_update": 91,
       "reference": "docs/topostitch-periodic.md#w91--compare-cold-and-explicitly-coarse-seeded-atomic-cleanup",
-      "result": "Two complete Phenix2.2.1-6174 trials use installedW90 and pinnedC325 owners. Cold/seeded FAILED rounding at358/363 accepted steps,390/401 optimizercalls; both failed-point full/rounded derivatives pass. Common-recipe observers complete. Max endpoint difference2.65e-7 Angstrom; all855 rounded triplets identical; no demonstrated seed benefit. Active bond/angle nominal>=3 counts9/14→0, boundary angle1→0; packing severity retained.",
+      "result": "Two complete Phenix2.2.1-6174 trials use installedW90 and pinnedC325 owners. Cold/seeded FAILED rounding at358/363 accepted steps,390/401 optimizercalls; both failed-point full/rounded derivatives pass. Common-recipe observers complete. Max endpoint difference2.65e-7 Angstrom; all855 rounded triplets identical; no demonstrated seed benefit. Active bond/angle nominal>=3 counts9/14\u21920, boundary angle1\u21920; packing severity retained.",
       "limitation": "No parent failure promotion, numerical/scientific acceptance, model/checkpoint/refinement or default change. One small coarse polish is not large-shape qualification. Live-policy mutation guard is distinct from CedarQ06 chemistry survival. Evidence-only update; W90 software checks retained."
     },
     "E_LIVE_NONBONDED_CONTRACT": {
@@ -1773,8 +1789,8 @@
       "code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4",
       "human_update": 101,
       "reference": "docs/topostitch-periodic.md#w101--pair-kernel-composition-before-ordinary-refinement",
-      "result": "Two exact W100 source recipes × raw/global-Cedar-corrected kernel contexts:4 cases each20/20 directions,162 evaluations and unchanged context/repeat. Baseline targets/gradients exactly equal; existing subtraction/replacement is idempotent here, so no fix needed. Complete owned Phenix2.2.1-6174 execution,18.04s,600s cap; native profile verified; original binding restored; inputs/software fixed.",
-      "limitation": "Pair arithmetic only, not ordinary manager attachment/rebuild, combined normalization/exclusions, native full refinement or scientific acceptance. Retain initial Python3.12→3.11 NumPy ABI launcher failure; V2 package-only import isolation and old-process absence check do not change numerical policy. No runtime/schema change.",
+      "result": "Two exact W100 source recipes \u00d7 raw/global-Cedar-corrected kernel contexts:4 cases each20/20 directions,162 evaluations and unchanged context/repeat. Baseline targets/gradients exactly equal; existing subtraction/replacement is idempotent here, so no fix needed. Complete owned Phenix2.2.1-6174 execution,18.04s,600s cap; native profile verified; original binding restored; inputs/software fixed.",
+      "limitation": "Pair arithmetic only, not ordinary manager attachment/rebuild, combined normalization/exclusions, native full refinement or scientific acceptance. Retain initial Python3.12\u21923.11 NumPy ABI launcher failure; V2 package-only import isolation and old-process absence check do not change numerical policy. No runtime/schema change.",
       "owner_commit": "c4e5ddb8530358c524feb473f3c4ffe77c64b6ac",
       "local_forensic_archive": {
         "repository_anchor": "everyday NASolve checkout",
@@ -1792,7 +1808,7 @@
       "code_commit": "7faff1a1247e78de1c48adb4ca620a93307660f4",
       "human_update": 102,
       "reference": "docs/topostitch-periodic.md#w102--complete-pair-arithmetic-through-actual-model-entry",
-      "result": "Two sources × original/select-all actual model managers × native-only/pair-active objectives: eight cases each20/20 directions and162 evaluations, unchanged context and baseline repeat. Zero-valued callback leaves target/all gradients exact. Pair residual/forces share native normalization without increasing count; counts11389healthy/11263displaced. Twelve unsupported-setting controls reject. Complete owned Phenix2.2.1-6174 execution168.92s under900s cap; bindings restored and inputs/software fixed.",
+      "result": "Two sources \u00d7 original/select-all actual model managers \u00d7 native-only/pair-active objectives: eight cases each20/20 directions and162 evaluations, unchanged context and baseline repeat. Zero-valued callback leaves target/all gradients exact. Pair residual/forces share native normalization without increasing count; counts11389healthy/11263displaced. Twelve unsupported-setting controls reject. Complete owned Phenix2.2.1-6174 execution168.92s under900s cap; bindings restored and inputs/software fixed.",
       "limitation": "Explicit checked per-call binding, not automatic manager reconstruction/selection interception or ordinary refinement. C331 snapshots are idle callback-free/default energy-only observations, not qualification of internal shared buffers/custom callback. Static fingerprint does not independently inventory every angle/plane symmetry field. No exclusion changes, diffraction/optimizer/final writer/adoption or runtime/schema change.",
       "owner_commit": "c4e5ddb8530358c524feb473f3c4ffe77c64b6ac",
       "local_forensic_archive": {
@@ -2017,7 +2033,7 @@
       "code_commit": "fb6475ff5b2e52e47278f32a41b0348e2d4d578b",
       "human_update": 114,
       "reference": "docs/topostitch-periodic.md#w114--qualify-the-shared-counted-owner-lifetime",
-      "result": "Complete Phenix 2.2.1-6174 diagnostic: 8 cases, 16 fresh owners/compilers, 28 actual-model calls, 302.62s. Zero additions reproduce native exactly; scattering-only movement preserves stale hierarchy and binds force sites; exact fractional/state restoration, select-all rebinding and fresh restart pass. Provider switch17→20 preserves complete counts11396/11270; maximum target difference4.44e-16 and gradient difference1.39e-17. Exact source/input pins and clean closure independently audited. Rowan separately reports155 focused/155 relocated-installed/32 native owner controls.",
+      "result": "Complete Phenix 2.2.1-6174 diagnostic: 8 cases, 16 fresh owners/compilers, 28 actual-model calls, 302.62s. Zero additions reproduce native exactly; scattering-only movement preserves stale hierarchy and binds force sites; exact fractional/state restoration, select-all rebinding and fresh restart pass. Provider switch17\u219220 preserves complete counts11396/11270; maximum target difference4.44e-16 and gradient difference1.39e-17. Exact source/input pins and clean closure independently audited. Rowan separately reports155 focused/155 relocated-installed/32 native owner controls.",
       "limitation": "Direct cross-branch calls only, no ordinary runtime/optimizer/refinement, exclusion change, new derivative panel or accepted repair. C368 candidate source/wheel is pinned independently of Willow; W114 changes docs only. Native usage wrapper and selected-copy report/weight/final-writer consumers still require qualification.",
       "runtime_pins": {
         "willow_code_commit": "3f5806106bdb233e648ad3c8442d878998c846da",
@@ -2083,7 +2099,7 @@
       "human_update": 115,
       "reference": "docs/topostitch-periodic.md#w115--observe-the-actual-prepared-model",
       "result": "Four complete Phenix2.2.1-6174 zero-cycle preflights: first inspection refuses source/native cell mismatch, second records full observation while refusing selection, third explicit-frame control passes, fourth installed C371 reader exactly reproduces independent records.855 ordered atoms and anisotropic scatterers,3333 reflections/176 original Free-R selections unchanged;2572 native supported-family proxies,124 requested terms=107native+17missing. Each native preflight2energy-only calls/0gradient calls. Saved readers and independent audit pass; all processes stopped.",
-      "limitation": "Diagnostic returned-model entry reuses current runtime API; not the normal command-line entry, durable admission, owner activation, coordinate optimization or accepted repair. Default MTZ cell differs by2.93e-6Å; unchanged1e-10 frame gate refuses. Explicit source-cell control matches2.84e-14, not a production default. Current healthy geometry input is prior0.17855Å bend preview, not original deposited model. No new Willow API/schema/install or full-suite repeat.",
+      "limitation": "Diagnostic returned-model entry reuses current runtime API; not the normal command-line entry, durable admission, owner activation, coordinate optimization or accepted repair. Default MTZ cell differs by2.93e-6\u00c5; unchanged1e-10 frame gate refuses. Explicit source-cell control matches2.84e-14, not a production default. Current healthy geometry input is prior0.17855\u00c5 bend preview, not original deposited model. No new Willow API/schema/install or full-suite repeat.",
       "runtime_pins": {
         "willow_code_commit": "3f5806106bdb233e648ad3c8442d878998c846da",
         "cedar_c371_wheel_sha256": "6d87257cb9a02fabe8b0efecb1a37b17ef8e7a5489d18da344688b8f34ed6119",
@@ -2112,7 +2128,7 @@
       "code_commit": "eb98c6f1ab4fa9dbce97d9133642a97545d1528d",
       "human_update": 116,
       "reference": "docs/topostitch-periodic.md#w116--qualify-one-bounded-ordinary-refinement-cycle",
-      "result": "Phenix2.2.1-6174:3actual1cycle coordinate refinements plus3zero-cycle preflights. Actual fixedwx=wx_scale=wc=1,10iterations/12functions,nproc1,seed2679941. Native-only versus zero owner full states/statistics/geometry scores EXACT. Full17-added recipe gives distinct max0.033571Å/RMS0.002797Å endpoint. Both owners16successful calls, same model through final writer, checked identities before cleanup/restored; original3333data/176FreeR and non-coordinate scattering preserved. finish/validate_execution and independent audit pass. All processes stopped.",
+      "result": "Phenix2.2.1-6174:3actual1cycle coordinate refinements plus3zero-cycle preflights. Actual fixedwx=wx_scale=wc=1,10iterations/12functions,nproc1,seed2679941. Native-only versus zero owner full states/statistics/geometry scores EXACT. Full17-added recipe gives distinct max0.033571\u00c5/RMS0.002797\u00c5 endpoint. Both owners16successful calls, same model through final writer, checked identities before cleanup/restored; original3333data/176FreeR and non-coordinate scattering preserved. finish/validate_execution and independent audit pass. All processes stopped.",
       "limitation": "Diagnostic module-level driver.run/optimizer observer with immutable preflight records; no production admission/schema/default or branch merge. Full recipe changes requested chemistry; Rfree .25991557 versus core .25989801, both worse than preflight .25919212. No repair/diffraction benefit/adoption. Native-family reports omit additions. Standalone Cedar lacks existing Willow W35 PDB RMSD fallback; both readouts retained. Historical v3 competing-hook recovery not tested. Native refine12.10s, zero78.14s, full83.21s;6.46x overhead needs measured optimization, not fewer checks.",
       "runtime_pins": {
         "willow_code_commit": "3f5806106bdb233e648ad3c8442d878998c846da",
@@ -2497,7 +2513,7 @@
       "code_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05",
       "human_update": 129,
       "reference": "docs/topostitch-periodic.md#w129--measure-provider-dependent-geometry-summaries",
-      "result": "One20.68s Phenix2.2.1-6174 passive full/partial comparison preserves coordinates, force sites and complete normalized score0.6756064118611885; target/gradient errors9.09e-13/4.55e-13. Native default angle RMS2.30831009→2.30892601deg(count1519→1518) while origin0 statistics remain identical. Independent304-software/5-input audit, pooled variance and direct removed-angle reconstruction pass; native proxies/kernel restored.",
+      "result": "One20.68s Phenix2.2.1-6174 passive full/partial comparison preserves coordinates, force sites and complete normalized score0.6756064118611885; target/gradient errors9.09e-13/4.55e-13. Native default angle RMS2.30831009\u21922.30892601deg(count1519\u21921518) while origin0 statistics remain identical. Independent304-software/5-input audit, pooled variance and direct removed-angle reconstruction pass; native proxies/kernel restored.",
       "limitation": "One retained reference, not accepted healthy geometry. No optimization, weight search, actual selector-decision change, new active runtime or repair benefit. Origin4 is edits, not blanket noncovalent classification. Initial optional-niceness setup refused before native launch and remains preserved. Production source/policies unchanged; C386 full regression separate and still running with failures pending traces.",
       "runtime_pins": {
         "cedar_commit": "d5c2fb7be944aae5e048903e1de495c67baa4b05",
@@ -2672,7 +2688,7 @@
       "code_commit": "4f7aeb84b8762b3bd4ebcc1741c6b1116443632a",
       "shared_candidate_commit": "d8656b2212ec1777e3da5f1979ac2a766fc71563",
       "reference": "docs/topostitch-periodic.md#w138--qualify-the-explicit-longer-coordinate-control",
-      "result": "334 focused +35 final pin checks;334 relocated installed tests;12008 passed, 2 skipped, 293 subtests passed in 3581.07s (0:59:41). Actual Phenix2.2.1-6174 ordinary280.319s; original intent/writer/final capture verified, child unselected REVIEW. Same-start GC17.775729→6.287164deg, Rfree.2609 unchanged, Rwork.2251→.2271 worse.",
+      "result": "334 focused +35 final pin checks;334 relocated installed tests;12008 passed, 2 skipped, 293 subtests passed in 3581.07s (0:59:41). Actual Phenix2.2.1-6174 ordinary280.319s; original intent/writer/final capture verified, child unselected REVIEW. Same-start GC17.775729\u21926.287164deg, Rfree.2609 unchanged, Rwork.2251\u2192.2271 worse.",
       "limitation": "Mechanics only; both endpoints restrained. C400 matched native/core-only-zero/full and passive stopping history separately owned by Rowan. No convergence, density or whole-model repair acceptance. No default/CLI activation.",
       "local_receipts": [
         {
@@ -2691,7 +2707,7 @@
       "human_update": 139,
       "code_commit": "4f7aeb84b8762b3bd4ebcc1741c6b1116443632a",
       "reference": "docs/topostitch-periodic.md#w139--measure-matched-sticky-end-benefit-without-claiming-repair",
-      "result": "Hazel82-checkunion PASS; native/zero exact history/model/MTZ and full W138 passive equivalence. Common14 rounded-PDB pairs: GC27.298448→6.298366deg, pairdistanceRMS.247180→.200020A. Final Rfree.2613→.2609, Rwork.2267→.2271 worse, finalPDBclash23.27→24.77 worse. Both stpmin at75/73iterations,86/82actualreturns; same-coordinate count-driven scalarjump independently reproduced.",
+      "result": "Hazel82-checkunion PASS; native/zero exact history/model/MTZ and full W138 passive equivalence. Common14 rounded-PDB pairs: GC27.298448\u21926.298366deg, pairdistanceRMS.247180\u2192.200020A. Final Rfree.2613\u2192.2609, Rwork.2267\u2192.2271 worse, finalPDBclash23.27\u219224.77 worse. Both stpmin at75/73iterations,86/82actualreturns; same-coordinate count-driven scalarjump independently reproduced.",
       "limitation": "Bounded local effect only; no convergence/overall repair/density/backbone acceptance. Initial zero refused stale effective library; corrected fresh compiler-built zero retained full/native. Log-only initialclash32.28 superseded only for finalstatistics by explicit model-bound amendment. No numerical-policy adoption.",
       "local_receipts": [
         {
@@ -2710,7 +2726,7 @@
       "human_update": 140,
       "code_commit": "4f7aeb84b8762b3bd4ebcc1741c6b1116443632a",
       "reference": "docs/topostitch-periodic.md#w140--audit-backbone-response-and-saved-density",
-      "result": "1268native supports; independent3804printed-geometry/342torsion checks PASS;38existinglinks/126sugarsigns preserved. Near bondRMS .005764→.005993A; angleRMS2.748→2.765deg. Four saved ordinaryML maps×456atoms preserve signed own/common samples; C102P Fo-Fc -6.641→-6.677sigma persists. Headless ChimeraX viewer and10packet references pass.",
+      "result": "1268native supports; independent3804printed-geometry/342torsion checks PASS;38existinglinks/126sugarsigns preserved. Near bondRMS .005764\u2192.005993A; angleRMS2.748\u21922.765deg. Four saved ordinaryML maps\u00d7456atoms preserve signed own/common samples; C102P Fo-Fc -6.641\u2192-6.677sigma persists. Headless ChimeraX viewer and10packet references pass.",
       "limitation": "No new fit, map coefficients, covalent connection, native weight policy or selected checkpoint. All176testindices included; model-assisted map phases and per-map sigma prevent independent validation claims. Sphere is uncalibrated; no displacement diagnosis, threshold, pucker/packing/whole-model acceptance.",
       "local_receipts": [
         {
@@ -2941,7 +2957,7 @@
       "human_update": 148,
       "code_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
       "reference": "docs/topostitch-periodic.md#w148--recover-a-known-backbone-displacement-with-matching-diffraction",
-      "result": "W148 reuses the exact W100 +5-degree canonical displacement with matching noiseless diffraction and fixed native refinement. Selected 204-atom RMS error falls 0.917427 to 0.029167 Å; endpoint-to-endpoint RMS is 0.026449 Å. Local covalent bonds recover, 126 sugar-volume signs survive, and Rowan independently reproduces the controls. Existing reference-link distortion remains explicit.",
+      "result": "W148 reuses the exact W100 +5-degree canonical displacement with matching noiseless diffraction and fixed native refinement. Selected 204-atom RMS error falls 0.917427 to 0.029167 \u00c5; endpoint-to-endpoint RMS is 0.026449 \u00c5. Local covalent bonds recover, 126 sugar-volume signs survive, and Rowan independently reproduces the controls. Existing reference-link distortion remains explicit.",
       "limitation": "One idealized fixed-budget positive control, not experimental repair, density-noise calibration, new seam chemistry or a healthy whole-model qualification. No independent alignment, no fixed context during refinement, no convergence claim, no native-policy or runtime change. Raw science local; archival integrity is not portable executable lineage.",
       "local_receipts": [
         {
@@ -3248,7 +3264,7 @@
       "human_update": 155,
       "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
       "reference": "docs/topostitch-periodic.md#w155--record-density-counterexamples-before-proposing-backbone-motion",
-      "result": "W155 prescribed complex-F contrasts at identical7554HKLs/3.06A show negative modeledP from displacement, Q excess and B mismatch separately, with zero control. Only3scatterers vary; full/group additivity≤4.82e-12 and direct/FFT≤1.18e-14. Hazel cold review passes with explicit missing original version-API capture. Common reference normalization is not ML difference-map sigma; no detector or experimental attribution.",
+      "result": "W155 prescribed complex-F contrasts at identical7554HKLs/3.06A show negative modeledP from displacement, Q excess and B mismatch separately, with zero control. Only3scatterers vary; full/group additivity\u22644.82e-12 and direct/FFT\u22641.18e-14. Hazel cold review passes with explicit missing original version-API capture. Common reference normalization is not ML difference-map sigma; no detector or experimental attribution.",
       "limitation": "Known-phase noiseless complex differences, not measured/model-assisted ML maps or calibrated local attribution. Original native version API empty; separate installation identity does not retroactively capture that execution. No refinement, automatic motion, runtime/schema changes or accepted repair.",
       "local_receipts": [
         {
@@ -3381,7 +3397,7 @@
       "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
       "installed_native_owner_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
       "reference": "docs/topostitch-periodic.md#w159--compare-ordinary-recovery-with-the-fixed-unit-baseline",
-      "result": "W159 completes one five-cycle ordinary-recipe diagnostic on the same undeformed5W6W source. Exact859atoms,2569initial bond/angle definitions,58pair/stack groups and5137effective observations/507originalFree survive;38links and126sugar signs remain. Selected drift0.591A versus0.522A; common Rwork/Rfree0.2264/0.2677 versus0.2392/0.2600. B2P B90.39→112.52 while own residual remains−8.38σ versus−8.09σ. This does not resolve the reference baseline; no opposite-start matrix or accepted repair.",
+      "result": "W159 completes one five-cycle ordinary-recipe diagnostic on the same undeformed5W6W source. Exact859atoms,2569initial bond/angle definitions,58pair/stack groups and5137effective observations/507originalFree survive;38links and126sugar signs remain. Selected drift0.591A versus0.522A; common Rwork/Rfree0.2264/0.2677 versus0.2392/0.2600. B2P B90.39\u2192112.52 while own residual remains\u22128.38\u03c3 versus\u22128.09\u03c3. This does not resolve the reference baseline; no opposite-start matrix or accepted repair.",
       "limitation": "Direct shared recipe/native owner, not complete ordinary PostMR lineage. Several policies change together; XYZ weight selection consults Free. Four selected-weight XYZ counts hit100, final90; stopping reasons/internal trial totals not qualified. No detector, causal attribution, runtime/schema change, general repair or scientific closure.",
       "local_receipts": [
         {
@@ -3458,7 +3474,7 @@
       "human_update": 160,
       "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
       "reference": "docs/topostitch-periodic.md#w160--retain-ambiguity-and-normalization-context-in-model-assisted-maps",
-      "result": "W160 closes the planned noiseless model-assisted three-case panel: one higher-B truth, 7554 common HKLs, 389 synthetic Free and 859 unchanged atom identities. Known position and B errors both give negative modeled-P density. Common truth-map samples are −3.11e−15/−0.804/−1.524 for zero/position/B; zero own-map normalization gives −1.624σ from numerical-scale residuals. Native formula/readback/direct-FFT checks and Hazel80-check cold review pass. No refinement, scale fitting, detector or experimental attribution.",
+      "result": "W160 closes the planned noiseless model-assisted three-case panel: one higher-B truth, 7554 common HKLs, 389 synthetic Free and 859 unchanged atom identities. Known position and B errors both give negative modeled-P density. Common truth-map samples are \u22123.11e\u221215/\u22120.804/\u22121.524 for zero/position/B; zero own-map normalization gives \u22121.624\u03c3 from numerical-scale residuals. Native formula/readback/direct-FFT checks and Hazel80-check cold review pass. No refinement, scale fitting, detector or experimental attribution.",
       "limitation": "Noiseless synthetic amplitudes and fixed unit scales/zero solvent. Native model phases and ML weights both change; synthetic Free participates in map weights and maps. Common truth normalization is available only because truth is known, not an experimental policy. No threshold, classifier, motion proposal or runtime/schema change.",
       "local_receipts": [
         {
@@ -3549,6 +3565,162 @@
           "path": "branch-artifacts/willow/w161-recovery-context/weight-screen-review.json",
           "sha256": "4bf872777a2f1ac4adb5df280e6f6402fd0a4a3c6a456050687176b6ae19ca33",
           "size": 39808
+        }
+      ]
+    },
+    "E_CURRENT_BACKBONE_STATE": {
+      "kind": "e_current_backbone_state",
+      "date": "2026-11-20",
+      "human_update": 162,
+      "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
+      "native_execution_code_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
+      "reference": "docs/topostitch-periodic.md#w162--bind-the-selected-backbone-state-and-retain-the-derivative-limit",
+      "result": "Passive LS/ML observation reproduces all859 final atom records, both saved MTZ arrays and printed trials. Replay matches73returned states and the selected cycle5 weight7 frame. Geometry/combined local derivatives pass; data-only checks miss their prospective bound, so no finite profile runs. Both direct and FFT target/gradient restorations are exact. 194passive and120profile cold checks pass.",
+      "limitation": "Private diagnostic, not ordinary PostMR ancestry, a complete generic state serializer or accepted motion. Historical dihedral limit/top_out/slack are omitted; no complete six-family state claim. No tolerance retuning or new numerical-policy sweep follows.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w162-current-backbone-attempt02/archive.json",
+          "sha256": "2f4ba339ae3c4a2cb63e65e651b3483401220f6c3e2248c0714adaa3a1932289",
+          "size": 338
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w162-current-backbone-attempt02/passive-review.json",
+          "sha256": "4bd0dec977071fa5255b2cfc40894ae9e9bd8768d8cd6064a7733e743ef3bea9",
+          "size": 18131
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w162-current-backbone-attempt02/profile-review.json",
+          "sha256": "906bc8e03d4e2d049e149848220c7492b2a449e38c5096cb39eec24a79b9dc91",
+          "size": 14288
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w162-current-backbone-attempt02/capture-scope-qualification.json",
+          "sha256": "4da3dacfcd9f3939d8117e2e6fd7dace224113aeb5d0ff1e8c1b6323dda176b8",
+          "size": 933
+        }
+      ]
+    },
+    "E_LARGER_DECLARED_LINKS": {
+      "kind": "e_larger_declared_links",
+      "date": "2026-11-20",
+      "human_update": 163,
+      "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
+      "native_execution_code_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
+      "reference": "docs/topostitch-periodic.md#w163--retain-known-backbone-links-before-larger-displacement-recovery",
+      "result": "Signed15degree tapered starts move205atoms2.288A RMS, up to4.79A. Default3A interpretation drops one3.836A O3P bond and4angles; that first attempt is held without fitting. Matched private4A interpretation retains38links,58complete planes, captured proxy definitions and fixed nonbonded exclusions. Five-cycle recovery reaches.758/.279A RMS; unchanged reference reproduces W152 atoms/maps exactly.",
+      "limitation": "Known canonical same-ASU links and noiseless matching diffraction only; no production cutoff change, automatic bond inference or symmetry-seam qualification. Original inherited torsion inventory is incomplete and explicitly qualified.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w163-link-envelope/preparation.json",
+          "sha256": "14ebae1b0616e6763d7792e0d8c8a9aa57e53a1ebb388b4bb828b5636033ab69",
+          "size": 152
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w163-link-envelope/context-review.json",
+          "sha256": "cb5c38ce636718b96f18fbfb2f866836f3bea798bb70eb56b1a1d18a1fa4767d",
+          "size": 3787
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w163-link-envelope/final-review.json",
+          "sha256": "20b3aef640bd00abcbb5d38004a9f3fb41fb15f69c205dfee88403f7b68617ce",
+          "size": 854151
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w163-link-envelope/final-context-review.json",
+          "sha256": "a8c103e9adb496a78fc073f7b39c6f34a1f1dbbf5c440235368192c4c6d9739e",
+          "size": 3123
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w163-link-envelope/execution-review.json",
+          "sha256": "431b1bc9bda77ec1c216c792a69637576b4dfedd7f5216714027afe024cf367e",
+          "size": 7623
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w163-link-envelope/capture-scope-qualification.json",
+          "sha256": "4da3dacfcd9f3939d8117e2e6fd7dace224113aeb5d0ff1e8c1b6323dda176b8",
+          "size": 933
+        }
+      ]
+    },
+    "E_LARGER_RECOVERY_WINDOW": {
+      "kind": "e_larger_recovery_window",
+      "date": "2026-11-20",
+      "human_update": 164,
+      "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
+      "native_execution_code_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
+      "reference": "docs/topostitch-periodic.md#w164--measure-a-matched-recovery-window-and-retain-local-distortion",
+      "result": "One matched further5cycle restart reaches.25257/.03972A RMS from the generator; no-op remains.01436A. Final Rwork/Rfree .0211/.0259 and.0086/.0100. All859atoms,38links,126sugar signs and7554raw/effective endpoint F/SIGF/Free tuples survive. Positive B2O3-prime remains1.41A away and a local angle deviates31.32degrees. Nine reconstructed managers have identical explicit443torsion/62plane policies through the existing live owner. 601cold checks;51offline view checks and6-model ChimeraX1.12 headless load pass.",
+      "limitation": "Five plus five cycles with a rounded-PDB restart, not uninterrupted10cycles or convergence proof. Low R values do not accept the positive distortion. Noiseless synthetic data and one target shape; reconstructed manager policy does not retroactively fill omitted optimizer fields. Browser/GPU/human review and broad repair remain open.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w164-larger-bend-continuation/archive.json",
+          "sha256": "6da598640c1d5ffe9f502af9fadcd6c2f1a6fc7c3820bf3ea21e82cf0696cc53",
+          "size": 339
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w164-larger-bend-continuation/preparation.json",
+          "sha256": "0bc3c417b12195917e058c01ee97265f1ed1a0f80e35b44a7e4a8f8a0cbd95fd",
+          "size": 157
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w164-larger-bend-continuation/execution-review.json",
+          "sha256": "ff799446dbbdd733f522a98457e751b1f05877e349933353c840b0d605c1f50d",
+          "size": 7490
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w164-larger-bend-continuation/science-review.json",
+          "sha256": "4cee302f4f465d6571cf915537be4791a4fc42d98b65319b3924ea8e8953790e",
+          "size": 111806
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w164-larger-bend-continuation/capture-scope-qualification.json",
+          "sha256": "4da3dacfcd9f3939d8117e2e6fd7dace224113aeb5d0ff1e8c1b6323dda176b8",
+          "size": 933
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w164-larger-bend-continuation/viewer-check.json",
+          "sha256": "4c758c853d22318f3745f03f7e6cc02009452ebc54c08db15d5c368d5c2d1678",
+          "size": 2639
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w164-larger-bend-continuation/viewer-execution.json",
+          "sha256": "b2baf875d638aa0df133627f466577d23e9ffa9d24f5f58d2002e8a88dfba204",
+          "size": 723
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w164-larger-bend-continuation/positive-html-review.json",
+          "sha256": "716eea1e78fc1b1c4405ff06c952e0e63a149f1694db939795771cd8ee584daa",
+          "size": 2245
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w164-larger-bend-continuation/negative-html-review.json",
+          "sha256": "666ce1486c4fc38dc5321843e40e8060022e94295ea4f5e96705ecc318f8178b",
+          "size": 2245
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w164-larger-bend-continuation/remaining-distortion-html-review.json",
+          "sha256": "6c38bcf2fde50280ae91863eb874e148f26a5d77a917f1fa7155076f6bd1435d",
+          "size": 2245
         }
       ]
     }
@@ -3707,13 +3879,13 @@
     "Periodic fit guard 84cb847 consumes the existing selected-image audit. Tighter native controls establish a contact/strain tradeoff, not scientific closure; preserve the original failed angle result.",
     "Schema-2 extended backbone patch 6fc4898 preserves schema-1 replay; S04/S05 remain partial pending native image-aware closure and matched refinement.",
     "Post-transform image guard a3e4978 catches source-clear candidates that collide after fitting. Native bond/angle derivative and fixed-base relaxation diagnostics narrow S05 uncertainty without creating another Cedar engine or closing scientific gates.",
-    "Native plane probe 7255bfd reuses Cedar correction and records raw failures. A plausible energy is not derivative qualification; do not repeat C23–C27 diagnosis or create another plane-correction implementation."
+    "Native plane probe 7255bfd reuses Cedar correction and records raw failures. A plausible energy is not derivative qualification; do not repeat C23\u2013C27 diagnosis or create another plane-correction implementation."
   ],
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 161,
-    "next": 162,
+    "current": 164,
+    "next": 165,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -4487,6 +4659,24 @@
       {
         "number": 161,
         "title": "Locate mixed local recovery and qualify the native screening fallback",
+        "state": "RECORDED",
+        "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a"
+      },
+      {
+        "number": 162,
+        "title": "Bind the selected backbone objective and retain the derivative limit",
+        "state": "RECORDED",
+        "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a"
+      },
+      {
+        "number": 163,
+        "title": "Retain declared backbone links during a larger displacement",
+        "state": "RECORDED",
+        "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a"
+      },
+      {
+        "number": 164,
+        "title": "Measure a matched recovery continuation and its remaining local distortion",
         "state": "RECORDED",
         "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a"
       }

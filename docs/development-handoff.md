@@ -1,40 +1,39 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-20**, through **W161**. **W152 closes the independent
-opposite-displacement/no-op subgate under idealized matching data.** Deposited
-5W6W starts recover from 0.764 Å RMS to 0.052/0.047 Å, with a 0.014 Å no-op.
-This complements W148's 8D93-derived control; both remain bounded evidence.
+Updated **2026-11-20**, through **W164**. Larger prescribed backbone
+displacements now recover under a declared matching-data control. Starting at
+2.288 Å RMS (up to 4.79 Å movement), the two directions reach **0.253/0.040 Å**
+after matched five-plus-five-cycle recovery; the no-op remains **0.014 Å**.
+All checked links, atom identities and sugar signs survive. The positive arm
+still has B2/A13 local distortion despite Rfree .0259, so it is not accepted.
+[W163–W164 methods and limits](topostitch-periodic.md#w163--retain-known-backbone-links-before-larger-displacement-recovery).
 
-**W153 adds real diffraction and a mixed result.** Displaced endpoints approach
-the separately relaxed control, but that control itself moves 0.522 Å in the
-selected region. Geometry and plane parallelism become more ideal while its
-Rfree rises from about .241 to .260; strong B2 phosphate negative density remains.
-The positive arm adaptively rejects one work reflection. Raw observations/Free
-stay intact, and cold common-HKL endpoint scoring is complete, but the trajectories
-are not a fixed-work-set comparison. No winner, weight retuning or repair is
-accepted. A cold decomposition confirms mostly internal motion (0.507→0.504 Å
-all-atom RMS after removing a common rigid motion); broad covalent and plane
-changes do not identify one causal restraint family. [Methods and evidence](topostitch-periodic.md#w153--separate-experimental-backbone-recovery-from-geometry-driven-relaxation).
+**New preparation boundary:** the first larger input loses a 3.836 Å declared
+O3′–P link and four angles under native 3 Å interpretation. That attempt is held.
+A private matched 4 Å envelope preserves source links, angles and exclusions;
+it is not a production bonding rule or symmetry-seam solution. Next integrate
+parent-derived topology retention through existing owners, with exact refusals
+for new/lost context rather than distance-only chemistry.
 
-W157 adds the saved stage histories to that report: scaling is separate from
-XYZ recovery, and the reference reaches the 100-iteration cap in all five cycles.
-Hazel reviewed 84 native rows plus the corrected count-versus-membership wording.
-No native rerun or production history-parser change; these are budgeted endpoints,
-not settled-state proof. [Stage audit](topostitch-periodic.md#w157--separate-scaling-and-coordinate-recovery-in-saved-histories).
+**W162 closes the bounded actual-state study as limited.** Passive LS/ML capture
+reproduces W159 outputs, then the selected-state replay matches its 73-state
+prefix and restores direct/FFT targets and gradients exactly. Geometry/combined
+directional checks pass; data-only checks miss their prospective bound, so no
+finite scan or optimization follows. The inherited inventory omits three torsion
+modifiers; nine W164 reconstructed-manager checks supplement saved-state evidence
+without retroactively filling those historical fields. No repeated numerical
+sweep or relaxed tolerance is queued. [Exact evidence](topostitch-periodic.md#w162--bind-the-selected-backbone-state-and-retain-the-derivative-limit).
 
-**W159 tests the ordinary recovery recipe on that same undeformed source.**
-Selected drift is 0.591 Å, common Rwork/Rfree .2264/.2677 and B2 P negative density
-persists despite its changed B factor. All atoms and checked topology survive;
-the reference baseline remains unresolved. The recipe changes several policies
-together and consults Free during weight selection. It is a shared-owner diagnostic,
-not qualified ordinary PostMR lineage. [Exact scope and evidence](topostitch-periodic.md#w159--compare-ordinary-recovery-with-the-fixed-unit-baseline).
+The earlier **W153/W159 experimental baseline remains mixed**: ordinary recovery
+moves the selected region .591 Å, common Rwork/Rfree .2264/.2677, and B2 phosphate
+negative density persists. W161 localizes contrasting map changes and reuses the
+known C395/C396 screening-fallback diagnosis. New synthetic recovery does not
+explain that baseline, qualify ordinary PostMR ancestry or reopen selector tuning.
 
-**W161 completes the saved local-context review:** A10 C5′ and D2 OP1 show
-contrasting density changes despite similarly large motions. All 76 printed
-ordinary weight candidates fail the initial pooled bond screen, reconnecting this
-baseline to the already-completed C395/C396 diagnosis. This is not a selector fix.
-The existing recovery packet gains a posthoc A9–11 view; no new refinement.
-[Context and screening evidence](topostitch-periodic.md#w161--locate-mixed-local-recovery-and-reuse-the-known-screening-diagnosis).
+Latest small lab packet, GitHub workspace anchor:
+`ScienceCheckouts/Linden/2026-11-20_larger-bend-recovery/review.html`.
+Standard-Python `open_report.py`, a six-model ChimeraX loader and three unchanged-
+renderer views are ready; checks and graphical limits are in the linked ledger.
 
 W154 lets the installed inspector name density sources independently of the
 coordinate states. Complete source and relocated-install checks pass; the two
@@ -74,7 +73,7 @@ remains inconclusive.
 | --- | --- | --- |
 | W149/W154 reusable inspector | Installed prepared-scene renderer; full/source-free installation, exact saved-data replay and bounded peer review | Stage adapter, source/frame proof, browser/GPU qualification and campaign actions |
 | W153 experimental control | Exact original observations/Free and output/map audit; relaxed-reference and common-HKL endpoint comparison | Mixed geometry/diffraction outcome; adaptive work filtering, occupancy/ADP and model-phase ambiguity |
-| W148/W152 matching-data recovery | Two source models, opposite signed starts and matched no-op; independently audited local geometry | Reciprocal target shapes, larger/nonuniform bends, experimental/noisy data and general repair |
+| W148/W152/W163/W164 matching-data recovery | Two source models; larger signed starts, matched recovery and retained declared links; remaining local distortion explicit | Reciprocal/nonuniform target shapes, supported topology retention, experimental/noisy data and general repair |
 | W139/W140 matched canonical control | Native/zero identity, local pair benefit, recorded backbone supports and saved-map sampling | Numerical stops; density calibration, broader controls and whole-model acceptance |
 | W138 ordinary longer control | Explicit v8 100-cap route, actual final writer/pair capture; full/installed/native gates pass | Broader protocols, semantic weighting and CLI/Doctor activation |
 | W125–W134 shared execution/readback | Original pair intent, fresh admission, actual output proof and compatible registered continuation | Ordinary modified-chemistry descendants, unclassified native remainder and broader efficacy |
@@ -88,18 +87,18 @@ not another work queue; do not repeat them because this handoff is shorter.
 
 ## Next bounded work
 
-**Next bounded question:** [qualify an actual-state capture before a backbone-mode
-profile](topostitch.md#next-capture-qualification-after-w159w161-planning-only).
-W161 completes the saved-family/local-context audit, and W160 completes the
-noiseless map panel; do not repeat either or the C395/C396 selector experiment.
-Reuse the shared private capture precedent, bind the backbone's actual parallelity
-and full objective, and keep later final-map state distinct from selected XYZ.
-No new fit is admitted by this note. Bound that mechanism study to a declared
-passive baseline and selected-state replay; it is not a universal prerequisite
-for every topology-driven trial or an invitation to perfect the no-op control.
-W156's matched-recovery/map review remains the acceptance framework. Noise/
-uncertainty and scientist calibration are separate; ordinary lineage and broader
-repair remain open.
+**Next bounded question:** preserve declared canonical same-ASU topology across
+deformation and native preparation through the shared owners. W163's private
+4 Å envelope demonstrates the issue; it is not the production solution. Bind
+parent identity, links, associated geometry and exclusions, refuse unexplained
+additions/losses, and keep symmetry seams separate. Inspect the remaining W164
+B2/A13 distortion against source-bound maps before another fit. W162's bounded
+capture/profile is recorded as limited; do not repeat it or C395–C400, tune its
+tolerances after seeing results, or require a perfect no-op before useful repair.
+W156 matched recovery and map review remain the scientific framework. Noisy
+density calibration, reciprocal target shapes, B09/B10 and ordinary lineage remain
+separate gates. The user's 2D phosphate-density illustration preference is recorded
+in the collaboration guide, alongside the 3D inspector.
 
 1. Keep the [stable-objective invariant sketch](topostitch.md#stable-objective-invariants-deferred-design-unimplemented)
    deferred under S06, using the exact recorded

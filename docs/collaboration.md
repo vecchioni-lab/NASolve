@@ -65,6 +65,36 @@ publishing a report in the shared folder. Small HTML/Markdown, images or tables
 are suitable; use the PDF skill when PDF is useful, and inspect its rendered
 pages. A PDF or polished layout is not required for every checkout.
 
+### Visual inspection preference
+
+For every newly generated ChimeraX script, use the user's shared defaults:
+**grey background, silhouettes enabled, soft lighting, and thin nucleic-acid
+ring fills**. Apply these explicitly
+so the result does not depend on the viewer's previous session settings:
+
+```python
+from chimerax.core.commands import run
+run(session, "set bgColor gray")
+run(session, "graphics silhouettes true")
+run(session, "lighting soft")
+run(session, "style nucleic ringFill thin")
+```
+
+Apply the nucleic style after loading the models. A different ring-fill style is
+allowed when it serves a clear scientific or readability purpose; state that reason.
+Colors, other representations, framing and remaining presentation choices are task-specific.
+Use these defaults for new or deliberately refreshed scripts; preserve immutable
+historical evidence. The ChimeraX command for the requested soft graphics preset
+is `lighting soft`. Rowan, Hazel and Linden share this presentation convention.
+
+Use focused 2D density illustrations alongside the 3D inspector when they make
+the scientific change clearer. The user particularly values a clean red/green
+density slice with a phosphate's before/after positions. Keep the map stationary
+when comparing positions, label source, units and normalization, and distinguish
+model-assisted density from independent truth. Use restrained color and useful
+depth cues rather than decoration. Show residual distortion and ambiguous results
+as clearly as recovery; choose 2D for a local interaction and 3D for backbone motion.
+
 ## Command available from any directory
 
 The tracked launcher can be linked into an existing `PATH` directory. From the

@@ -9519,3 +9519,175 @@ roadmap `--write`/`--check` and `git diff --check` cover docs-only publication.
 No runtime/schema/install change or migration, full-suite rerun or scientific
 acceptance; raw artifacts stay local. Cedar construction/orientation work and
 Hazel's private objective profiles remain separately owned and unmerged.
+
+
+## W162 — Bind the selected backbone state and retain the derivative limit
+
+One passive repetition of the exact W159 ordinary recipe qualifies a private
+LS/ML reader without changing the target schedule. All 859 final atom records,
+both saved reflection/map MTZ arrays and printed trials match W159 exactly.
+The new capture records 76 returned XYZ states (16/17/14/14/15 by cycle), including
+actual selected trial identity. W159 did not record those internals, so final
+neutrality is not a retrospective whole-trajectory proof. The new passive trace
+is the reference for its separate replay. The selected last-cycle frame is
+sequence 73, weight 7, before later refresh/ADP, with 11,115 counted terms.
+It returns after 90 iterations with a recorded rounding-error line-search message;
+the shared stopping classifier reports `unreported`, not convergence.
+
+The dedicated replay matches the complete 73-state captured prefix and selected
+snapshot. One prospectively fixed paired A9–15/B7–1 tapered rotation protects both
+endpoint pairs and all context; 205 atoms move. The exact maintained TaperedMotion
+pullback is checked independently using fixed-axis Rodrigues tangents. Nine native
+evaluations include repeat, ±10⁻⁵/±10⁻⁴ rad derivative checks and restoration.
+Geometry and combined derivatives pass. Data-only slopes differ by 4.52–5.45×10⁻⁶
+per radian against a predeclared bound about 1.41×10⁻⁶, so the finite ±degree
+scan is **not run**. No tolerance is relaxed after seeing this result.
+
+Both sampled numerical data slopes and weighted-geometry slopes favor the same
+local direction in this one mode; this does not establish finite benefit or
+identify the source of W159's drift. Direct and original FFT targets and complete
+gradients restore with zero recorded error, and captured inventory membership
+stays fixed. The diagnostic stops deliberately; it never resumes optimization
+or becomes a completed refinement child. **194 passive and 120 profile cold
+checks** pass as evidence-readback checks, not derivative/scientific acceptance.
+
+**Capture scope correction.** The inherited C397 inventory omits dihedral
+`limit`, `top_out` and `slack`. Actual parallelity fields, including limit, are
+explicitly collected, but this is not a complete six-family state claim. The
+maintained `topostitch_native_terms.checked_proxy_rows` already checks the missing
+live policies; no supported-reader bug or new product fix is implied. The LS/ML
+reader records directly consumed core values, not all Miller-array metadata.
+Original frozen helpers and failed setup attempts remain preserved. W164's
+separate reconstruction checks cannot fill historical callback fields.
+
+This bounded mechanism study is closed as limited. Do not repeat it or the
+C395–C400 work simply to make the control perfect. Future supported capture must
+bind all required live policies through existing owners, while ordinary
+topology-driven recovery can proceed under its own explicit contract.
+
+Main NASolve anchor: `branch-artifacts/willow/w162-current-backbone-attempt02/`.
+Archive `branch-artifacts/willow/w162-current-backbone-evidence-2026-11-20.zip`,
+142 files, SHA256 `7c5bb2803747e78d3ddfbe4e38c27f059d81fbefd4fc7dadbd976eec7581a66d`.
+Entry points under `branch-artifacts/willow/runners/`: `w162-capture.py`
+(`plan`, `preflight`, `review-preflight`, `passive`), `w162-passive-review.py`,
+`w162-replay.py` (`plan`, `run`), `w162-profile-review.py`, `w162-archive.py`.
+Controllers use `PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B`;
+native jobs bind Phenix **2.2.1-6174**, seed 1/nproc 1 and owned 2,100 s limits.
+One complete passive refinement and one intentionally stopped replay; no ordinary
+PostMR ancestry, generic capture API, numerical-policy change or acceptance.
+
+## W163 — Retain known backbone links before larger displacement recovery
+
+The W152 5W6W control is extended from prescribed ±5° to **±15°** tapered
+rigid-residue rotations under the same canonical paired window and generating
+synthetic diffraction. These are motion parameters, not a measured total helix
+bend. Selected 205-atom starting RMS is **2.288 Å**, with maximum motion **4.79 Å**;
+both endpoint pairs and all other atoms stay fixed in the input displacement.
+All 859 coordinates may subsequently refine.
+
+The first negative start exposes a preparation boundary: its B2 O3′–B3 P distance
+is **3.835877 Å**. Native `pdb_interpretation.link_distance_cutoff=3` drops that
+declared bond and four flank angles (C3′–O3′–P and O3′–P–O5′/OP1/OP2). Its
+2,569-term bond/angle inventory falls to 2,564. The first two-start attempt is
+held after preflight; **no refinement runs on that changed topology**.
+
+A fresh private matched **4 Å interpretation envelope** retains the existing
+canonical links through the native library, including their angles and exclusion
+shells. This is not an explicit bond-only edit, global default, chemical inference
+or symmetry-seam solution. A default-reference dry-run and widened-reference
+dry-run have identical captured context. Both deformed inputs retain all 38
+source links, 58 complete plane definitions, captured bonded parameters and all
+fixed nonbonded assignments/potential/search/symmetry/exclusions. Coordinate-
+dependent neighbor membership legitimately changes. The original torsion-policy
+omission is explicitly qualified as described under W162.
+
+Fresh unchanged/positive/negative siblings receive five cycles, 100-iteration
+cap, seed 1/nproc 1, fixed unit weights, fixed B/Q and identical noiseless 3.06 Å
+data/Free/restraints through frozen C407 code `f83562b0`. No scale refinement or
+generating-coordinate tether. The widened unchanged control reproduces W152
+atom records and map arrays exactly. Selected RMS becomes **0.01436/0.75845/
+0.27904 Å**. Positive/negative local covalent bond RMS improves from
+0.143/0.205 to **0.00787/0.00782 Å**; local angle RMS becomes **2.010/1.953°**.
+All 126 checked ordered sugar signs and 38 links survive. Native scores continue
+improving through the fixed budget; this is partial recovery, not convergence.
+
+Main anchors: `branch-artifacts/willow/w163-larger-bends/` preserves the held
+default-envelope attempt; `branch-artifacts/willow/w163-link-envelope/` holds
+the admitted matched experiment. Exact entry points: `w163-larger-bends.py`,
+`w163-link-envelope.py` (`plan`, `preflight`, `refine`),
+`w163-context-review.py` and `w163-linked-readback.py` (preflight and `--final`),
+`w163-execution-review.py`. Same controller Python as W162; actual native
+**Phenix 2.2.1-6174** preflights and three complete refinements. Context capture
+adds one explicitly recorded post-program energy-only observation, not an
+optimizer-frame measurement. No scientific-data publication or runtime change.
+
+## W164 — Measure a matched recovery window and retain local distortion
+
+Before seeing another outcome, freeze one additional five-cycle recovery window
+for **all three** W163 siblings, with unchanged data, weights, restraints and
+iteration cap. Each starts from its own saved rounded PDB. This is five plus five
+cycles with a restart, not one uninterrupted ten-cycle trajectory or ordinary
+PostMR lineage. All outcomes remain, without choosing a lowest-Rfree intermediate.
+
+| Condition | Initial RMS to generator / Å | After five cycles / Å | After continuation / Å | Final Rwork / Rfree |
+| --- | ---: | ---: | ---: | --- |
+| Unchanged reference | 0 | .01436 | .01436 | .0062 / .0067 |
+| Positive displacement | 2.28803 | .75845 | .25257 | .0211 / .0259 |
+| Negative displacement | 2.28799 | .27904 | .03972 | .0086 / .0100 |
+
+These are unaligned crystal-frame distances over the same 205 atoms. The
+additional unchanged-control movement is only .00020 Å RMS. All 859 atom
+identities, B/Q, 38 declared links and 126 checked sugar signs remain. The six
+endpoints preserve all **7,554 original raw and effective F/σF/Free tuples**;
+unrecorded intermediate effective-HKL trajectories are not inferred from that.
+
+**Low Rfree does not finish the geometry job.** Positive B2 O3′ remains **1.412 Å**
+from the generator and C2′ **1.178 Å** away. The B2 O3′–B3 P–OP2 angle is about
+76.71° versus a 108° target (**31.32° deviation**); A13 C5′–C4′–C3′ also remains
+distorted. Positive local bond/angle RMS is .01418 Å/3.717°, versus negative
+.01441 Å/2.024°. Sugar-volume sign preservation is not complete pucker validation.
+The evidence supports strong recovery in both directions and a remaining local
+positive-arm distortion, not automatic acceptance or a new round of weight tuning.
+
+**Supplementary policy check.** Nine fresh saved-coordinate native dry-runs
+(three starts, five-cycle endpoints and continued endpoints) call the exact
+existing `checked_proxy_rows` owner. All 443 dihedrals have the same explicit
+`limit=-1`, `top_out=False`, `slack=0` and identity images, alongside identical
+62 planarity definitions and unchanged declared geometry/exclusion context.
+These reconstructed-manager observations supplement interpretation evidence;
+they do not retrospectively capture omitted historical optimizer fields.
+No fitting occurs during these nine checks. The combined cold audit passes
+**601 checks**, including the exact endpoint diffraction tuples.
+
+**Human inspection.** GitHub workspace anchor:
+`ScienceCheckouts/Linden/2026-11-20_larger-bend-recovery/review.html`.
+`open_report.py` uses standard Python and can verify all files with `--check`.
+`open_inspection.py` opens six models in ChimeraX; three offline HTML comparisons
+use W154's unchanged renderer, real coordinates and original native covalent bonds.
+All 51 offline control/buffer checks and the separate **ChimeraX 1.12** headless
+859-atom/205-visible-atom inventory pass. No real GPU/browser visual pass is claimed.
+ChimeraX infers display bonds (961 for its relaxed control versus 960 native
+covalent bonds); scientific linkage assertions use the native graph.
+
+Main NASolve anchor: `branch-artifacts/willow/w164-larger-bend-continuation/`.
+The joint W163/W164 631-file integrity archive is
+`branch-artifacts/willow/w163-w164-larger-bend-evidence-2026-11-20.zip`, SHA256
+`1ae264840a69398147d8317241845c5d968a84292970abc8d6dc3761a8bbd54b`.
+Entry points: `w164-continuation.py` (`plan`, `preflight`, `refine`),
+`w164-context-review.py` / `w164-readback.py` (preflight and `--final`),
+`w164-execution-review.py`, `w164-live-policy.py` (`plan`, `run`),
+`w164-science-review.py`, `w164-checkout.py`, `w164-viewer-check.py`,
+`w164-archive.py`. The immutable local derivation receipts bind reused readers
+and the extracted unchanged live-policy function. Same controller/native versions
+as W163; three complete additional refinements and nine dry-runs. Archives are
+integrity records, **not portable/resumable checkpoints**; raw science stays local.
+
+W162–W164 change documentation and local diagnostics only: no installed source,
+runtime schema, default, compatibility or migration change. Validation for the
+tracked update: `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q
+tests/test_topostitch_roadmap.py`, roadmap `--write` / `--check`, local evidence
+checksum checks and `git diff --check`. No full suite by the user's instruction;
+no installation repeat is needed for unchanged product code. S04/S05/S06 remain
+partial. Next inspect local distortion and qualify parent-derived topology
+retention through shared owners; do not turn the private 4 Å example into a
+production heuristic or rerun completed objective sweeps.

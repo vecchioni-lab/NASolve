@@ -17,6 +17,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W162–W164 — Record larger backbone recovery and its boundaries
+
+- Preserve the bounded actual-state capture/profile result, including its
+  data-only derivative limit and historical torsion-field omission. No numerical
+  policy change or repeated optimization sweep follows.
+- Record larger signed backbone recovery, a held missing-link preparation,
+  a matched continuation and remaining local distortion despite low synthetic
+  Rfree. Add a small local Python/ChimeraX inspection packet and define the next
+  parent-derived topology retention contract through existing owners.
+- Update human/machine milestone evidence and inspection preferences, including
+  grey-background, silhouette-on, soft-lighting and thin nucleic-ring defaults
+  for future ChimeraX scripts. Product
+  code, runtime schemas, defaults and installation behavior are unchanged;
+  raw science stays local and no global repair milestone is closed.
+
 ### W161 — Resolve local recovery context before another fit
 
 - Audit saved residue/geometry/map changes and the native weight-screen fallback,

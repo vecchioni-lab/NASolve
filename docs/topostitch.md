@@ -1026,66 +1026,65 @@ existing S04 queue. W150 receiving integration, B09 geotest and B10 explicit sti
 activation remain separately open. No acceptance threshold, chemistry, production
 policy or runtime schema changes here.
 
-### Next capture qualification after W159–W161 (planning only)
+<a id="next-capture-qualification-after-w159w161-planning-only"></a>
+### Actual-state capture boundary after W162
 
-The saved-family/map audit is complete; do not repeat it or C395/C396 merely to
-rediscover screening fallback. A candidate next question is whether one declared
-local backbone motion improves the **actual held objective**, rather than a
-reconstructed approximation or one map sample. Admission precedes the profile:
+The bounded passive/replay experiment is now recorded in
+[W162](topostitch-periodic.md#w162--bind-the-selected-backbone-state-and-retain-the-derivative-limit).
+It qualifies consumed LS/ML core values, actual selected-trial attribution,
+explicit plane parameters and exact captured-prefix/output neutrality within
+its private scope. Direct geometry/combined directional checks pass, but data-only
+checks miss the prospective bound. The finite scan is withheld; both direct and
+original FFT targets/gradients restore exactly. No new optimization or tolerance
+change is authorized by that evidence.
 
-- Declare the exact parent and its scope. A private deposited-source diagnostic
-  must not masquerade as ordinary PostMR ancestry. Preserve atom/sequence/image
-  intent and original observations/Free; do not manufacture a workflow root.
-- Reuse Hazel's private passive-capture/replay precedent and the existing Cedar
-  state/inventory owner. Capture after native shifts are applied and consumed,
-  before core/mask refresh and later ADP/scaling; match actual selected-weight
-  identity and the full passive trajectory before takeover. Saved final F-model
-  arrays alone do not reconstruct that earlier selected-XYZ objective.
-  Target-family coverage must be explicit: W159 used `ls_wunit_k1` for the
-  first two cycles and `ml` for the last three. C397's current private state
-  reader assumes ML core fields. It cannot simply be applied to every W159
-  return. Either qualify both families or narrow full-state capture to the
-  declared ML stage while independently proving full trajectory/output neutrality.
-  The native LS owner has its own weights and scale policy; do not replace it
-  with an ML snapshot or change the recipe to make the observer fit.
-- Bind all active likelihood, mask/scale and geometry state, **including actual
-  parallelity parameters and limits**, callbacks, normalization and full retained
-  forces. The current private metal precedent does not qualify these for a
-  backbone parent or establish a general per-proxy replay API. Refuse if they
-  cannot be bound; no partial target passed off as the original objective.
-  The existing C407 `cif_parallelity_kernel.parallelity_parameters` collector
-  already records ordered memberships, weight/target/slack/**limit**, top-out,
-  origin and symmetry fields, refusing incomplete or unsupported interfaces.
-  Reuse it on the actual captured proxy object. Its runtime caller records
-  complete parameter inventories at native calls, but deduplicated observations
-  alone do not identify an individual selected optimizer frame. These Cedar
-  owners are not yet integrated into Willow; this note creates no new API.
-- Only after admission, freeze one existing `TaperedMotion` window and a small
-  signed amplitude/call budget, with protected junctions/anchors and exact-image
-  correspondence. Validate its directional derivative and center restoration;
-  retain all sampled outcomes, not the lowest Rfree. This profile would guide a
-  later matched recovery experiment, not itself approve a bend or alter weights.
+Historical C397-derived dihedral observations omit limit/top-out/slack. Future
+capture must use the existing live-policy owner rather than assume defaults from
+descriptive rows. W164's nine reconstructed saved managers establish their own
+explicit default policies, not the missing historical callback values. Native
+likelihood/core, masks/scales, normalization, callbacks and full retained forces
+must remain bound for any new supported profile. Saved final F-model arrays are
+still distinct from an earlier selected-XYZ objective.
 
-Keep this a bounded mechanism question, not a new universal repair gate. The
-next capture study should predeclare one passive baseline and one selected-state
-replay; a failed admission returns a specific missing capability to its owner,
-not an open-ended protocol/weight sweep. A verified profile is still followed by
-a matched recovery comparison. Experimental no-op motion is measured control
-behavior, not by itself a requirement to recover the deposited coordinates exactly.
-Neither a perfect control map nor monotonically lower Rfree is a prerequisite
-for every topology-driven trial. The existing W156 review still requires retained
-content/intent, qualified geometry, a matched recovery window and close map review
-when final Rfree worsens. W159's lineage and scientific limitations remain real;
-this clarification does not accept its endpoint or reopen the paused displacement
-matrix without a prospectively justified experiment.
+Keep this a closed bounded mechanism study, not a universal repair prerequisite.
+No repeated C395–C400 control, derivative sweep or protocol search is queued.
+Ordinary ancestry, density noise/normalization and complete scientific acceptance
+remain separate. W156's matched recovery window and map review govern physical
+repair, without demanding a perfect no-op or monotonic Rfree.
 
-Track noise/uncertainty and experimental normalization separately from this
-geometry/objective question; W160's known truth scale is not a campaign policy.
-Pine must retain declared scattering-state provenance across construction,
-mutation, recuts and bending. Rowan's current mixed-fixture B-transfer observation
-is Cedar-owned and still being traced; it does not explain W159 retroactively.
-No constructor, observer, target policy, automatic detector or public API is
-implemented by this planning note.
+### Preserve declared topology through deformation (W163–W164; next integration)
+
+The larger canonical control exposes a concrete boundary: native preparation
+can interpret a stretched known O3′–P link as absent, also dropping its flank
+angles. A private matched 4 Å envelope retains the native source context and
+allows recovery. **Do not turn that value into a production default or infer
+chemical connectivity from distance alone.**
+
+The next supported contract should reuse existing registration, native coverage,
+preparation and execution owners:
+
+- Bind the explicit source model/construct mapping and declared canonical
+  same-ASU links before deformation. Unknown links, true nicks, sequence changes,
+  missing atoms and symmetry-image seams are different scopes.
+- Carry complete native link context, including flank angles, applicable
+  torsions and nonbonded exclusions/type/function policy. A bond-only edit is
+  insufficient. Existing live-policy readers must check fields absent from
+  older descriptive captures.
+- Reinterpret a new candidate only under an explicit prospective policy, then
+  compare intended graph and supported geometry definitions with the source.
+  Refuse added/lost links or unexplained context changes. Coordinate-dependent
+  nonbonded neighbor membership may change; graph exclusions must not silently
+  follow a lost link.
+- Preserve parent/child identity and raw observations/Free. Keep the native
+  prepare/refine boundary inspectable and do not invent ordinary checkpoint
+  ancestry for a private direct diagnostic.
+- Assess atomic geometry and density after a matched recovery budget. W164's
+  positive arm has low synthetic Rfree but a 31.32° local phosphate-angle error;
+  checked chirality signs and R statistics alone cannot approve it.
+
+This is an integration specification, not a new installed feature. Reciprocal
+curved/straight target shapes, nonuniform bending, larger experimental cases,
+B09 geotest, B10 sticky enforcement and symmetry-phosphate chemistry remain open.
 
 ## Campaign-local memory and transfer
 

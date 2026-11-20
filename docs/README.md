@@ -57,12 +57,14 @@ current instructions; other branches retain their own status and validation pins
   counterexample panel is completed by W160, including near-zero normalization
   ambiguity. No noisy/experimental detector is qualified.
   W161 localizes mixed recovery and binds the known native-screening fallback;
-  the next profile requires actual-state admission, not another selector trial.
+  W162 records the bounded actual-state profile limit without another selector trial.
+  W163–W164 add larger matched synthetic recovery, declared-link retention and
+  an explicit remaining local distortion despite low Rfree.
   Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W161;
-  the next substantial audit is W162. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W164;
+  the next substantial audit is W165. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed
