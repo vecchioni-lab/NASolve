@@ -152,7 +152,7 @@ Reduce manual end declarations while retaining true nicks, protected junctions, 
 
 Identify which duplex ends should meet and in which image/register, with a no-connection alternative.
 
-**Delivered:** Exact nearby images and factorized one-partner alternatives exist; no physical/global assignment is approved. Periodic fitting now returns IMAGE_IDENTITY_REVIEW_REQUIRED with zero solver calls for selected-coordinate coincidences or occupancy uncertainty; no connection is automatically selected. W47 binds exact forward/reciprocal incidence to fresh selected source/transformed atom audits. Periodic fitting requires one partner in that scope; screw/centering/translation and ambiguity controls pass. Complete molecular/global identity remains open.
+**Delivered:** Exact nearby images and factorized one-partner alternatives exist; no physical/global assignment is approved. Periodic fitting now returns IMAGE_IDENTITY_REVIEW_REQUIRED with zero solver calls for selected-coordinate coincidences or occupancy uncertainty; no connection is automatically selected. W47 binds exact forward/reciprocal incidence to fresh selected source/transformed atom audits. Periodic fitting requires one partner in that scope; screw/centering/translation and ambiguity controls pass. Complete molecular/global identity remains open. W177 records newly explicit investigator intent for FT B7 O3-prime to B1 P symmetry continuation. The current directed target-P operator is coordinate-derived -x+y,-x,z, reciprocal to the P-fixed view; C/D crossover remains tentative. No geometry, native angle/exclusion or molecular assignment qualification; D1 terminal intent is unchanged.
 
 **Closure audit:**
 
@@ -160,8 +160,8 @@ Identify which duplex ends should meet and in which image/register, with a no-co
 - Standalone use binds a concrete choice; opt-in inference freezes its scope and alternatives without creating undeclared covalent links.
 
 **Next action:** Close one explicit canonical periodic pairing before broad automatic scheme selection.
-**Evidence:** [E_SOFTWARE](#e_software), [E_IMAGE_AUDIT](#e_image_audit), [E_SINGLE_EDGE_CAPACITY](#e_single_edge_capacity).
-**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/c887c65ea966b3a7107a1220289fde646587e875); Exact one-edge incidence conditional on selected present-atom coordinate audit; no global/molecular identity or connection approval.
+**Evidence:** [E_SOFTWARE](#e_software), [E_IMAGE_AUDIT](#e_image_audit), [E_SINGLE_EDGE_CAPACITY](#e_single_edge_capacity), [E_FT_USER_CONTINUATION_INTENT](#e_ft_user_continuation_intent).
+**Last audit:** 2026-11-20, Linden; explicit investigator clarification relayed and source-bound by Hazel, [W177](https://github.com/vecchioni-lab/NASolve/commit/a725c575f2f8f6979108526d79e474ce9d63deec); One declared periodic continuation; S03 remains PARTIAL, C/D unresolved and no native enforcement.
 
 <a id="s04"></a>
 ### S04 — Place an intact duplex by bounded bending or straightening
@@ -1535,6 +1535,13 @@ W176 completes one maintained Phenix2.2.1-6174 fixed-coordinate capture:859 atom
 [Evidence contract](topostitch-periodic.md#w177--read-existing-ordinary-preparation-authority-without-admitting-motion) at [W177](https://github.com/vecchioni-lab/NASolve/commit/a725c575f2f8f6979108526d79e474ce9d63deec).
 W177 adds a read-only exact-parent preparation-availability adapter, consuming Cedar authenticated registry/publication results once.20 cases (18 fail-before),179 focused+6 subtests and the same relocated installed suite pass;95 packaged modules,6 helps/pip check. Real C412 owner read preserves14 inputs and reports model/restraint/source-literal fields available, native-index policy absent; source and selected prepared model hashes differ explicitly. No native call, descendant/motion admission or chemical approval.
 **Limit:** Exact prepared-root reporting only; standalone Willow needs an explicitly trusted Cedar reader. No schema2 motion broadening, descendant join, source-to-native compiler conversion, chemical acceptance or native execution.
+
+<a id="e_ft_user_continuation_intent"></a>
+### E_FT_USER_CONTINUATION_INTENT — cross_owner_investigator_connectivity_intent
+
+[Evidence contract](topostitch.md#preserve-chemistry-before-a-bend-w175-integration-contract) at [W177](https://github.com/vecchioni-lab/NASolve/commit/a725c575f2f8f6979108526d79e474ce9d63deec).
+W177 records newly explicit investigator intent for FT B7 O3-prime to B1 P symmetry continuation. The current directed target-P operator is coordinate-derived -x+y,-x,z, reciprocal to the P-fixed view; C/D crossover remains tentative. No geometry, native angle/exclusion or molecular assignment qualification; D1 terminal intent is unchanged.
+**Limit:** Independent intent for one continuation only; no executable recipe, source slicing provenance, complete expected topology or native symmetry-bond acceptance.
 
 ## Deferred extensions, not hidden blockers
 

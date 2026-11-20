@@ -188,7 +188,8 @@
       "delivered": [
         "Exact nearby images and factorized one-partner alternatives exist; no physical/global assignment is approved.",
         "Periodic fitting now returns IMAGE_IDENTITY_REVIEW_REQUIRED with zero solver calls for selected-coordinate coincidences or occupancy uncertainty; no connection is automatically selected.",
-        "W47 binds exact forward/reciprocal incidence to fresh selected source/transformed atom audits. Periodic fitting requires one partner in that scope; screw/centering/translation and ambiguity controls pass. Complete molecular/global identity remains open."
+        "W47 binds exact forward/reciprocal incidence to fresh selected source/transformed atom audits. Periodic fitting requires one partner in that scope; screw/centering/translation and ambiguity controls pass. Complete molecular/global identity remains open.",
+        "W177 records newly explicit investigator intent for FT B7 O3-prime to B1 P symmetry continuation. The current directed target-P operator is coordinate-derived -x+y,-x,z, reciprocal to the P-fixed view; C/D crossover remains tentative. No geometry, native angle/exclusion or molecular assignment qualification; D1 terminal intent is unchanged."
       ],
       "acceptance": [
         "A selected edge has verified physical image identity, sequence/register/orientation and capacity; wrong, ambiguous, self-orbit and impossible cases stay distinct.",
@@ -198,13 +199,15 @@
       "evidence": [
         "E_SOFTWARE",
         "E_IMAGE_AUDIT",
-        "E_SINGLE_EDGE_CAPACITY"
+        "E_SINGLE_EDGE_CAPACITY",
+        "E_FT_USER_CONTINUATION_INTENT"
       ],
       "last_audit": {
-        "date": "2026-11-14",
-        "reviewer": "Linden",
-        "code_commit": "c887c65ea966b3a7107a1220289fde646587e875",
-        "scope": "Exact one-edge incidence conditional on selected present-atom coordinate audit; no global/molecular identity or connection approval"
+        "date": "2026-11-20",
+        "human_update": 177,
+        "code_commit": "a725c575f2f8f6979108526d79e474ce9d63deec",
+        "reviewer": "Linden; explicit investigator clarification relayed and source-bound by Hazel",
+        "scope": "One declared periodic continuation; S03 remains PARTIAL, C/D unresolved and no native enforcement"
       }
     },
     {
@@ -4293,6 +4296,23 @@
           "path": "branch-artifacts/willow/w177-preparation-reader/install-result.json",
           "sha256": "e892cc1bf93a051d339dafee95a3f823780b1e87b7ff8673ffc289d5ba77ed97",
           "size": 6993
+        }
+      ]
+    },
+    "E_FT_USER_CONTINUATION_INTENT": {
+      "kind": "cross_owner_investigator_connectivity_intent",
+      "date": "2026-11-20",
+      "human_update": 177,
+      "code_commit": "a725c575f2f8f6979108526d79e474ce9d63deec",
+      "reference": "docs/topostitch.md#preserve-chemistry-before-a-bend-w175-integration-contract",
+      "result": "W177 records newly explicit investigator intent for FT B7 O3-prime to B1 P symmetry continuation. The current directed target-P operator is coordinate-derived -x+y,-x,z, reciprocal to the P-fixed view; C/D crossover remains tentative. No geometry, native angle/exclusion or molecular assignment qualification; D1 terminal intent is unchanged.",
+      "limitation": "Independent intent for one continuation only; no executable recipe, source slicing provenance, complete expected topology or native symmetry-bond acceptance.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/ft-symmetry-contacts-20261120-03/user-connection-intent.json",
+          "sha256": "d61c28d32877b2b94dddfbe013386e32f6fd86e041127df5d2a248bacd4189e2",
+          "size": 4586
         }
       ]
     }
