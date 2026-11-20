@@ -1,6 +1,6 @@
 # Metal development handoff — current state
 
-Updated **19 November 2026**. Active feature branch: **Alder**. The
+Updated **20 November 2026**. Active feature branch: **Alder**. The
 [root integration handoff](development-handoff.md) owns the current combined
 source, full validation and delivery. The [A01–A09 roadmap](metal-development-roadmap.md)
 owns feature completion. The earlier chronological diary is preserved as
@@ -8,6 +8,15 @@ owns feature completion. The earlier chronological diary is preserved as
 not a second queue.
 
 ## Current scientific and engineering boundary
+
+**Morning session, 20 November:** the selected-state capture and two bounded
+FT_Hg motion profiles are complete. The modest coupled movement is ready for
+a matched continuation test; no new refined model or f″ parent exists yet.
+Fractional-degree changes are descriptive, not rejection criteria. All owned
+native processes are stopped. The [current-state profiles](#a01-current-state-profiles)
+record the evidence, limitations and next geometry-aware gate. The compact local
+checkout is `ScienceCheckouts/Hazel/2026-11-20_current-state-profile/review.html`
+beside the repositories.
 
 **Evening session, 19 November:** the approved matched neutral/deprotonated
 DF–Hg–DT research comparison is complete and independently read back. Two
@@ -22,8 +31,9 @@ Both jobs stopped and sealed; no f″ fit or checkpoint selection followed.
 The whole-model context checker still refuses unrelated terminal B:1. The local
 comparison preserves that state and uses the existing selected-site phosphate
 and linked-preparation owners. Formal-charge readback is unavailable, and the
-unchanged V9 executor does not record individual optimizer stop reasons; five
-completed macrocycles do not prove convergence. Routine donor-state integration
+original V9 execution did not record individual optimizer stop reasons. The new
+neutral passive replay records them below; the anion fit is not retrospectively
+qualified, and completed macrocycles do not prove convergence. Routine donor-state integration
 remains deferred until after the build. Do not repeat this pair without a new
 question. Local evidence: `ft-hg-donor-comparison-20261119-01/` under the Alder
 artifact anchor; independent endpoint review is
@@ -104,94 +114,104 @@ Exact native producer: **Phenix 2.2.1-6174**. Those native executions belong to
 the retained controls; cold readback/projection/integration launches no new
 Phenix or Coot job. All diagnostic values retain their actual source context.
 
-## A01 evidence audit and next finite-move experiment
+## A01 current-state profiles
 
-The late **19 November** audit reconnects already completed Cedar C397–C399
-work that the older local `next-a01-gradient-bridge.json` still describes as
-scoped. That historical plan is preserved, but its derivative/restart queue is
-closed. C397 reproduced the exact A85 fixed-normalization XYZ callback at
-return 2779, before ADP refinement: geometry derivatives agreed with finite
-differences in 13 sampled directions, while FFT data/combined derivatives did
-not. C398's direct-factor diagnostic agreed for all three components in the
-same 13 directions. C399's fresh-history restarts still stopped with an FFT
-rounding error or direct iteration cap; neither repaired the attachment.
-These are completed diagnostics, not authority to adopt direct factors or the
-private normalization policy. The independent Alder C399 review already passed
-215 checks; do not repeat it. Exact source records remain in the shared Cedar
-registration ledger and the local C397–C399 archives.
+The completed 19 November C397–C399/A166 history remains evidence, not a queue
+to rerun. Its historical fixed-normalization state is not the current neutral
+fit. The new work closes the **current objective-state capture and finite-profile
+gap**, while leaving A01 geometry partial and A02 gated.
 
-A new **cold projection**, using the retained full C397/C398 gradients, asks
-whether shortening the attachment is initially uphill or downhill at that
-historical state. Positive displacement means a shorter C1′–N1 bond. Values
-below are derivatives of the weighted objective per Å of bond shortening:
+A passive five-cycle **Phenix 2.2.1-6174** run reproduces the neutral source
+PDB bytes and every output MTZ array exactly. All **105 reciprocal XYZ trials**
+report their native **25-iteration cap**. The chosen final-cycle state is return
+105, before core/mask refresh and the last group-ADP update. The selected search
+parameter is 15.234577; it is not the actual geometry multiplier, which is **1**.
+The native normalization denominator is **11,222**. This observes stopping; it
+does not prove the cap causes the distorted geometry.
 
-| Direct-factor direction | Data | Geometry | Combined |
-| --- | ---: | ---: | ---: |
-| Move C1′ and N1 equally toward each other | +0.000727452 | −0.001117854 | −0.000390402 |
-| Translate the connected nine-heavy-atom base toward C1′ | +0.014921958 | −0.017962439 | −0.003040480 |
+Two separate diagnostic replays reproduce the full returned-state prefix and
+selected source state, then retain the actual likelihood core, observations,
+Free-R, phases, scales, masks, ADPs, scattering and restraints. Only the profile
+uses direct factors. Each new direction passes central differences at ±0.0001
+and ±0.001 (Å for contraction, radians for rotation). The profiles retain the
+same 11,222 term memberships/captured parameters and restore their own targets
+and gradients exactly. No optimizer resumes after a probe.
 
-Data opposes both movements, geometry favours them, and their combined first
-derivative favours shortening. The attachment is **1.615911357 Å** in this
-snapshot. These are slopes, not finite improvements or evidence about the new
-neutral/deprotonated endpoints. The direction norms differ: compare signs, not
-their magnitudes as competing search performance. The base is selected from
-the declared source bond graph after cutting the attachment, not by a repair
-rule keyed to the residue name. Rigid translation preserves its internal
-geometry but changes Hg, pair, stacking and other context contacts; the existing
-plane including C1′ is also not an internal-base invariant.
+| Motion | Attachment (Å) | Change in combined target |
+| --- | ---: | ---: |
+| 0.02 Å contraction | 1.632534 | −0.000169979 |
+| 0.05 Å contraction | 1.602534 | +0.000126095 |
+| 0.10 Å contraction | 1.552534 | +0.002096913 |
+| 3° reorientation + 0.05 Å contraction | 1.602534 | −0.000358296 |
+| 3° reorientation + 0.10 Å contraction | 1.552534 | +0.001687939 |
 
-The local `a01-gap-audit-20261119-01/projection.json` records **45 passed checks**:
-archive/member hashes, exact cross-archive state identity, full weighted gradient
-closure, graph selection and coordinate invariance. The 0.02/0.05/0.10 Å
-coordinate constructions check that invariance only; their objectives were not
-evaluated. No new Phenix/Coot process or complete refinement ran. The retained
-native producer was **Phenix 2.2.1-6174**; the cold reader used Python 3.12.14
-and Gemmi 0.7.5. Reproduction command, with a fresh output directory:
+Lower target is favourable only in this diagnostic objective. The starting
+attachment is 1.652534 Å against a 1.499 Å target. Straight contraction leaves
+the four glycosidic angles unchanged. The retained gradient suggests a small
+rigid N1-pivot reorientation, which was tested at predeclared 1°/3° and two
+coupled points. It lowers the target at some points. C1′–N1–C2 changes
+132.32 → 132.63°, against a 121.76° restraint target: **effectively unchanged
+for scientific review, not a failure criterion**. The larger existing offset
+is context to inspect with overall base shape, coordination and maps, not an
+automatic veto. Small angle/distance differences must not be mistaken for
+experimental precision. Rigid motion preserves existing internal base geometry;
+it is not a chi flip or ideal-base reconstruction. The coupled point remains
+a reasonable test candidate, not an accepted refined structure.
 
-```sh
-PYTHONDONTWRITEBYTECODE=1 "$ALDER_REVIEW_PYTHON" branch-artifacts/Alder/runners/A166_a01_gap_audit.py --repo "$NASOLVE_CHECKOUT" --output "$NEW_LOCAL_REVIEW_DIR"
-```
+The exact input DF/DT base means are **20.00/47.9056 Å²**, selected pre-final-ADP
+means **34.3675/87.2376 Å²**, and final written means **30.32/85.6756 Å²**.
+Hg B is **72.95 → 64.4891 → 63.37 Å²** across those stages. Means exclude sugar
+and backbone. Hg **Q=1, f″=0 and f′ fixed** are settings, not fitted anomalous
+results. No environmental metal-B assignment has run. These stage comparisons
+alone do not establish why fitted B values are low; reuse the earlier
+B/scaling controls before making a causal claim.
 
-**Next experiment, scoped but not executed:** one finite attachment-contraction
-profile in a captured current-protocol objective state. C413/C415 final-site
-records provide atom identities and geometry, not the complete data target,
-likelihood core, scales, masks and gradients. A written PDB is insufficient.
-Reuse the C397/C398 actual-owner capture precedent; first reproduce the chosen
-baseline with identical observations, Free-R, phases, scattering, B/Q/f′/f″,
-weights and declared source/metal terms. Capture the selected XYZ stage before
-ADP changes and retain its relation to the full open fit. If that state cannot
-be reproduced, stop at the capture gap without interpreting a substitute.
+Validation: **299 passive + 339 contraction + 161 rotation cold checks**, plus
+**12 directional finite-difference checks** and **25 cold projection/scalar
+checks**. The native profiles use 11/12 evaluations in 2.511/2.946 seconds after
+takeover; reaching the selected state requires the separate bounded replay.
+The first replay stopped before probes on an identity tuple/list comparison;
+the representation-only correction and altered-identity/order refusals remain
+recorded. A later overly strict cross-profile gradient equality check is also
+preserved: zero-angle pivot arithmetic changes last bits (raw-gradient maximum
+1.70×10⁻¹²; targets identical). The existing 10⁻¹⁰ restoration tolerance passes,
+with four corruptions refused. No native rerun was needed for that cold fix.
 
-For the diagnostic only, record the direct-factor objective as distinct from
-FFT. First qualify the new rigid-base direction by central differences at
-±0.0001 and ±0.001 Å against its own direct gradient. Then evaluate 0.02, 0.05
-and 0.10 Å shortening and restore the baseline. Retain raw geometry, weighted
-data/geometry/total, actual term inventory and cache observations for every
-point. Freeze non-coordinate context; do not refresh the likelihood or masks
-mid-profile. Record expected Fcalc changes. A changed nonbonded inventory is a
-boundary to report, not a reason to hide terms or force an unchanged cache.
-Stop the first profile there and reassess its smooth range. Bound one process,
-at most 12 profile evaluations and 180 seconds after takeover, with a separately
-declared replay timeout and powerdown margin. No optimizer resumes in this
-diagnostic. The historical C398 state is an available qualification fixture,
-not a substitute for current-state scientific evidence.
+Evidence is under `a01-current-profile-20261120-01/` at the Alder artifact anchor:
+`passive/`, the preserved failed `replay/`, `replay-identity-fix/`, `rotation/`,
+`directional-anatomy.json` and the final publication/validation receipts.
+Exact native commands/owned processes are in each `execution.json`; cold
+commands use `A172_review_current_profile.py passive`,
+`A176_review_identity_retry.py replay`, `A180_directional_anatomy.py` and
+`A184b_review_rotation_profile.py`, with `PYTHONDONTWRITEBYTECODE=1` and the
+declared Alder source/Python. The original strict A184 failure is retained.
+No full suite, new map generation for the report or Coot session is claimed.
 
-- **Finite improvement survives:** scope one structural child using the same
-  declared chemistry/recipe and ordinary open XYZ/B policy. Record whether the
-  gain survives refinement and assess the whole local geometry, Rwork/Rfree,
-  stopping evidence and maps. A profile point alone is not an accepted model.
-- **Only infinitesimal improvement, reversal, or a contact boundary:** inspect
-  the contributing terms and affected contacts before choosing a new recipe or
-  structural degree of freedom. Do not infer protonation or tighten targets
-  from this result alone.
-- **Derivative/state inconsistency:** return the bounded reproduction to the
-  shared native owner. Do not launch another weight/iteration matrix.
+**Next:** run the prepared **unshifted versus 3°/0.05 Å coupled continuation**
+when a new bounded native window is available. Both inputs start from the same
+completed written neutral endpoint and fitted B values, with identical data,
+Free-R, phases, chemistry and restraints. Preparation passes **199 checks**,
+including all 165 ordered chirality signs; only the nine declared base coordinate
+records change. Files and hashes are in `continuation-inputs/plan.json`. PDB
+rounding is measured, not interpreted as scientific uncertainty. No native
+request or new refinement has been launched.
 
-This is a plan, not a new optimizer, constructor or acceptance policy. A01
-remains partial and A02 gated. Generated vectors, archives and the compact
-science checkout stay local; runtime, schemas and migration requirements are
-unchanged. The local checkout adds `a01-next.html` beside the existing reports,
-without replacing the earlier model/map comparisons.
+Use the same five additional macrocycles and ordinary open XYZ/group-B policy
+for both arms. Judge broad chemical/coordination plausibility, whole-base shape,
+map support, Rwork/Rfree and stopping behavior together. Restraint targets guide
+refinement; they are not exact experimental measurements or hard universal
+acceptance cutoffs. Tiny deviations do not reject a candidate. A lower target
+alone also does not establish a usable solution. Keep human review and ambiguity
+explicit. This controlled mechanism study is not a universal prerequisite for
+other topology-driven repairs. No repeated weight, iteration or donor-state
+matrix is queued; the whole-model terminal-context limitation remains open.
+
+The capture seam is a private **ML/MLHL** precedent, not an LS-general supported
+API. Future consumers need their own parent/stage qualification. Reuse the
+existing `parallelity_parameters` collector on the actual frame to include
+`limit`; the retained C397 inventory alone is insufficient to reconstruct all
+native energies. Per-atom gradient projections and shared scalar geometry are
+not per-restraint energies. Runtime, public schemas and migration remain unchanged.
 
 ## New readbacks and declared donor state
 
@@ -388,9 +408,10 @@ migration, production scientific-policy change or existing-run cleanup occurs.
    donor-state integration is deferred until after NASolve is built; C409 site
    application is not the immediate gate. Preserve its read-only compatibility
    map and the completed matched neutral/deprotonated research comparison.
-   Reuse the completed C397–C399 derivative/restart evidence. The next distinct
-   A01 question is the [finite contraction profile](#a01-evidence-audit-and-next-finite-move-experiment),
-   with current objective-state capture as a prerequisite; no broad weight,
+   Reuse the completed [current-state profiles](#a01-current-state-profiles).
+   Run the prepared modest coupled movement against an unshifted continuation
+   in the next bounded window. Review overall geometry, coordination, maps and
+   refinement behavior; fractional deviations are not vetoes. No broad weight,
    derivative, iteration or donor-state matrix is queued.
 4. Advance A04 from input transport to complete protected parent/audit retention,
    qualify modern checked ancestry/software identity beyond the successful legacy

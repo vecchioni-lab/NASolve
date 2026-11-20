@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record current-state metal geometry diagnostics
+
+- Record exact neutral FT_Hg source-fit reproduction, actual selected XYZ-state
+  capture and bounded contraction/reorientation profiles. Prepare a modest
+  coupled movement and matched unshifted continuation inputs; retain A01 partial
+  and A02 gated pending broader scientific review.
+- Separate input, selected-stage and final B values, native stopping limits,
+  failed diagnostic checks and corrected readback. Clarify that fractional
+  geometric deviations are descriptive, not hard rejection criteria; judge
+  broad geometry, coordination, maps and refinement evidence together. Public runtime, schemas,
+  scientific defaults and migration requirements are unchanged.
+
 ### Reconcile the A01 experiment queue and scope a finite-move diagnostic
 
 - Reuse completed exact-state derivative/restart evidence instead of repeating

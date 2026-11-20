@@ -98,18 +98,19 @@ private evidence and compatibility limits. Consult it before scheduling new test
 
 ## Immediate bridge from A01 to quantitative trials
 
-The 19 November audit closes the old C397–C399 derivative/restart queue by
-reusing its completed evidence. New cold projections favour infinitesimal
-attachment shortening in that historical direct-factor objective; they do not
-establish a useful finite move or qualify the current donor-state fits. The
-[scoped next experiment](metal-development-handoff.md#a01-evidence-audit-and-next-finite-move-experiment)
-records exact-state prerequisites, a single finite profile and stop conditions.
+The 20 November [current-state profiles](metal-development-handoff.md#a01-current-state-profiles)
+close the exact-state capture/finite-motion experiment. The neutral source fit
+reproduces exactly; contraction gains reverse, while modest reorientation can
+lower the target with essentially unchanged attachment angles. These are
+completed diagnostics, not accepted models. Small fractional deviations are
+descriptive; broad geometry and combined scientific evidence guide review.
 
-1. **A01:** capture and reproduce a current objective state, then ask whether a
-   graph-defined rigid-base contraction remains favourable over finite motion.
-   Use a positive result to scope one ordinary structural refinement child;
-   use a reversal to inspect the opposing terms. Neither outcome authorizes a
-   new default algorithm, target or protonation assignment.
+1. **A01:** run the prepared unshifted and 3°/0.05 Å coupled inputs with the same
+   additional ordinary XYZ/group-B cycles. Preserve source chemistry and sugar
+   stereochemistry. Assess overall base shape, coordination, map support, R
+   statistics and stopping behavior together, without exact-target vetoes. The
+   matched restart distinguishes extra-cycle benefit from the proposed movement.
+   This does not adopt a new default algorithm, target or protonation state.
 2. **A01 → A02:** qualify an open XYZ/B endpoint through local chemistry,
    coordination, Rwork/Rfree, stopping evidence and maps. Derive environmental
    metal B from the actual refined donors/base-only atoms, report disagreement
