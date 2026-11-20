@@ -19,6 +19,9 @@ entries are reconstructed from repository history.
 
 ### Record independent FT symmetry and checkpoint input gaps
 
+- Record subsequent investigator confirmation of the FT B:7→B:1 symmetry
+  continuation; keep C/D correspondence provisional and distinguish directed
+  operator realization from chemical intent and native enforcement.
 - Bind the current FT source declarations to their frozen sequence, selected
   model, pairing, phosphate and coordination inputs. Preserve unresolved B:1/C:8
   symmetry chemistry and the 19 pair planes instead of inventing a whole recipe.

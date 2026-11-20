@@ -119,6 +119,11 @@ tests and relocated installed Hg/Ag₄ readback; schemas/defaults and scientific
 acceptance remain unchanged. See the metal handoff and storage contract for
 the exact historical-evidence boundary. No full suite or native fit ran.
 
+A later investigator clarification confirms the FT B:7 O3′→B:1 P symmetry
+continuation. Exact C/D crossover correspondence remains provisional, and D:1
+remains terminal. The metal handoff distinguishes this new chemical intent from
+coordinate-derived operators and the still-unqualified native symmetry policy.
+
 The independent FT declaration audit preserves all nine current input pins and
 identifies B:1/C:8 cross-symmetry connection intent and an ordinary selected
 checkpoint as missing admission inputs. It preserves phosphates and all 19 pair

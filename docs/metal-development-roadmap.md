@@ -13,18 +13,19 @@ own scientific contracts. A mechanism passing tests does not close its scientifi
 gate. Update milestone status, evidence, limitations and next action together.
 
 The latest independent FT source audit leaves two precise input boundaries:
-B:1 and C:8 need explicit connection/chemistry review before whole-model
-qualification, and the private endpoint needs a legitimate ordinary checkpoint
+B:1 now has an investigator-declared B:7→B:1 symmetry continuation; its exact
+operator realization/native enforcement and the provisional C/D crossover still
+need qualification. The private endpoint needs a legitimate ordinary checkpoint
 before W173 intake. The existing modified/metal movement restriction remains.
 Preserve all phosphates, the 19 supplied pair planes and the separate generic
 sequence versus selected-model distinction; see the current handoff. No native
 recipe/fit was produced from those incomplete declarations.
 
 A01's source-bound symmetry review now gives explicit B:1–B:7 and C:8–D:7
-contact hypotheses (3.100/3.027 Å in the current parent), with no selected link.
-The existing non-FT synthetic continuation reader preserves declared, unknown
-and chemical-boundary states. Independent FT connectivity and slicing provenance
-are still missing; these diagnostics do not open A02.
+contact hypotheses (3.100/3.027 Å in the current parent). The investigator then
+confirmed B:7→B:1 connectivity; exact D:7→C:8 remains provisional. The existing
+non-FT synthetic continuation reader preserves declared, unknown and chemical
+boundaries. Whole-model enforcement/slicing provenance remain open; A02 is gated.
 
 A04 now exposes pinned historical result inspection through the normal CLI
 (`metal inspect-recorded-fdp`), with 53 focused tests and exact relocated installed

@@ -92,6 +92,19 @@ campaign orchestration or retirement. See the
 
 ### Independent FT declarations and remaining symmetry input
 
+**Investigator clarification received after this audit:** B:7 O3′ → B:1 P is
+an explicitly declared symmetry continuation forming the triangle's central
+strand. This supersedes the earlier absence of B:1 chemical intent below.
+C/D were described tentatively as the crossover strand; the exact D:7 → C:8
+assignment remains provisional. D:1 retains its terminal-phosphate declaration.
+The coordinate-derived operators have not become user-specified geometry or
+native qualification. In the current pinned model, `-y,x-y,z` places B:7 O3′
+relative to identity B:1 P; the directed B:7 O3′ → B:1 P edge therefore uses
+the **inverse** target image `-x+y,-x,z`. Retain that direction explicitly.
+Local authority: `ft-symmetry-contacts-20261120-03/user-connection-intent.json`;
+the earlier audit/contact records remain historical evidence, not overwritten.
+No executable recipe, recut packet, model change or accepted parent follows.
+
 A source-only audit of the actual `d69966…` parent preserves all nine input pins
 and passes **90 checks** without a native call or model edit. The frozen 5W6W
 recipe/report explicitly permits terminal OP3 only at **D:1**. The maintained
