@@ -27,8 +27,10 @@ records. This is recovery feasibility, not a new production retention contract;
 modern checked ancestry is now recovered in a separate bounded diagnostic proof.
 That proof preserves all 392 source files, uses 35.7 MB of compressed parts and
 passes 876 cold checks with source reads denied. The explicit parent-layout
-adapter is now implemented with focused and installed recovery qualification. Complete software identity, scientific session lifecycle
-and pruning remain open. The full registry walk belongs
+adapter is now implemented with focused and installed recovery qualification. A private cold execution cross-binding now ties one saved historical Hg result
+to its exact parent, executable inputs, worker/native pins and observed runtime
+profile (213 assertions / 11 refusals, no new native job). Complete software
+identity, scientific session lifecycle and pruning remain open. The full registry walk belongs
 to parent intake, not the current frozen-trial verification path; avoid a redundant
 per-point validation cache. The [storage contract](metal-campaign-storage.md#modern-parent-recovery-proof)
 owns the measured scope, prototype refusals and next production boundaries.

@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record cold metal execution cross-binding
+
+- Document one saved historical Hg execution recovered with its exact parent,
+  inputs and recorded software identity, including changed-identity refusals.
+  Preserve incomplete environment coverage and the poor-fit scientific status.
+- Reuse existing archive/scientific readers; product code, public schemas,
+  defaults and migration do not change. This proof grants no pruning or reuse.
+
 ### Record the current-parent motion-admission boundary
 
 - Distinguish the old FT_Hg capture from the later refined XYZ/B state and retain

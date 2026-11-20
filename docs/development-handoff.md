@@ -96,6 +96,14 @@ A09 remains deferred until after the main A01–A08 build.
 
 ## Scientific scope and owners
 
+The parallel A04 recorded-execution proof now cross-binds a saved historical Hg
+result, its exact legacy parent and inputs, and its recorded worker/native/resource
+identity after relocation. The private read passes 213 assertions and 11 refusals
+without a new native call. Complete environment identity, scientific acceptance,
+reuse and pruning remain unqualified; see the
+[storage contract](metal-campaign-storage.md#recorded-execution-and-parent-cross-binding).
+This follow-on changes documentation only and does not repeat runtime tests.
+
 The bounded A01 coordination-topology follow-on adds an exact metal declaration
 adapter and optional shared-checker input. Ordinary schema-1 calls stay unchanged;
 explicit typed calls return schema 2. **309 focused tests** and **269 saved-data

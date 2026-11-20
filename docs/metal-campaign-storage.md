@@ -412,6 +412,51 @@ are stopped; input bytes and original numerical results are unchanged. No shared
 runtime/default, native worker or artifact schema was changed for this private
 measurement; no unchanged full/focused suite was repeated.
 
+### Recorded execution and parent cross-binding
+
+A separate read-only diagnostic now composes the existing parent/input readers
+with one saved completed historical Hg execution. The externally pinned bundle
+contains the unchanged shared parent/input archives, original trial and Free-R
+audit, trusted historical worker bytes, execution receipt, actual-fit software
+profile and full numerical/native result. Captured programs and commands remain
+data; none is executed. It contains **14 files / 2,308,435 logical B**, compressed
+to **1,265,221 B**. This deliberately includes the existing two-parent archive
+unchanged; only the Hg execution is cross-bound here. Production should share
+parents and profiles, not copy this diagnostic bundle into each trial.
+
+The cold reader uses the previously qualified relocated installed package, with
+its build source and original installation absent. Original science, source and
+Phenix reads are denied. After moving the new bundle, the reader closes each
+archive transport scope before opening the next. Existing owners recover the
+legacy PostMR checkpoint and exact geometry parent, reproduce all nine executable
+input files from that parent, and re-audit the frozen XYZ/Q/B/f′ state and complete
+result. The historical Hg result remains f″=29 e, Q=0.60, B=25 Å² and
+Rwork/Rfree=0.39707/0.42373: a poor-fit recovery fixture, not an accepted solution.
+
+**213 assertions and 11 refusal controls pass in 1.26 s**, with zero new native
+calls. Changed parent, worker, native version/kernel, input identity, numerical
+result, failed/unfrozen execution, falsely complete environment, injected
+retirement permission and a resealed replacement identity are refused. The
+cross-binding assertions belong to this private composition; the scientific and
+archive reads use maintained owners. This is not an installed reuse validator or
+production artifact schema. All temporary views are removed and retained bytes
+stay unchanged. Recorded process completion is historical evidence, not a fresh
+live process check. Complete environment identity remains false, including the
+390 unreadable OS images; no exact-reuse, execution or retirement authority follows.
+
+Receipts under the Alder artifact anchor:
+`execution-binding-20261120-02/packing.json` and
+`execution-binding-20261120-02/cold-review-03.json`. Bundle SHA-256:
+`928570068967ed00630ae2f6973a723d40e252cfce06501a334917a7f3e55f42`.
+Binding identity:
+`18667e9dae58c1aeb6749a6e870ae17d9bb221bc037273aabefd784b8c06175e`.
+The first staging-path refusal and two private cold-harness failures remain
+recorded: an active outer archive scope, then a relative cleanup-event path
+misclassified under the original working directory. Canonical staging, separate
+reader lifetimes and an isolated working directory fix the harness; no owner
+guard was weakened. No full suite or native replay was repeated. Exact commands
+and source hashes are in the adjacent validation record.
+
 ## Governing decision
 
 Retention follows the operation, not a generic per-attempt archive policy.

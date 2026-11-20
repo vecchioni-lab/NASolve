@@ -811,6 +811,19 @@ copy large binaries/fingerprints per point. The
 owns exact sizes, versions, limits and the poor-fit fixture's scientific scope.
 No production software collector or new scientific endpoint is adopted.
 
+**A04 recorded execution cross-binding, 20 November:** the existing archive,
+parent and frozen-state owners now compose in a private cold read of one saved
+historical Hg execution. All nine input files rederive from the exact relocated
+legacy parent, and the complete result matches its compact record and observed
+software profile. **213 assertions / 11 refusals** pass in **1.26 s**, without
+native execution; the bundle is **1,265,221 B**. This is a completed engineering
+proof, not scientific acceptance, a modern-parent execution proof or an installed
+reuse/retirement lifecycle. The 390 unavailable OS images remain unqualified.
+Use the [storage contract](metal-campaign-storage.md#recorded-execution-and-parent-cross-binding)
+for identities, failures, scope and exact evidence. Sources, schemas and defaults
+are unchanged; only documentation is committed. Local generated evidence and
+private runners stay excluded. No unchanged runtime tests or full suite reran.
+
 ## Next work, in order
 
 1. Reuse the integrated development base qualified by the complete runtime
@@ -848,7 +861,10 @@ No production software collector or new scientific endpoint is adopted.
    execution identity and compact child audit/regeneration lifecycle before any
    retirement. Keep important nodes protected; geometry-moving work retains the
    stronger shared retention discipline. Reuse the completed legacy/modern cold
-   recovery and exact historical reproductions instead of repeating them.
+   recovery, exact historical reproductions and the completed recorded-execution
+   cross-binding instead of repeating them. Distinguish historical evidence
+   validity, a separately identified new computation and exact reproduction
+   when defining the next supported execution contract.
 5. Return to A02 only with a qualified open XYZ/B endpoint. Keep A05 GUI co-design
    and A07 reconstruction from experimental inputs explicit on the roadmap.
 
