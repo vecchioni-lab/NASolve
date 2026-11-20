@@ -8,6 +8,12 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Installed ligand source records
+
+- The Python package now ships the source records for its 5CM, DP and DZ
+  dictionaries. Each record identifies the original Git object and the
+  checksum of the supplied CIF.
+
 ### Captured reader controls in literal restraint evidence
 
 - A separate typed native-input artifact freezes explicit ordered PHIL roles and
