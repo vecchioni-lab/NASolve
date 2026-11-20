@@ -9384,3 +9384,73 @@ coordinate inventory. No production source/schema changed: existing readers need
 no migration, raw scientific artifacts stay out of Git, and no full suite or
 installation repeat is claimed. Documentation uses the focused 8-test roadmap
 check, roadmap `--write`/`--check` and `git diff --check`.
+
+## W160 — Retain ambiguity and normalization context in model-assisted maps
+
+**Bounded result.** W158's three-case noiseless model-assisted panel is complete.
+One synthetic truth supplies all 7,554 amplitudes at 3.06 Å. Its B2 P/OP1/OP2
+have deposited B +40 Å²; all other atom/scattering fields remain exact. Compare
+that correct model, the same model with those three sites shifted +0.75 Å in X,
+and the deposited lower-B group at the correct sites. Each has all 859 atoms.
+Known position and B errors both give negative modeled-P difference density:
+−0.804 and −1.524 in a common truth-map normalization. This supports retaining
+alternative explanations, not classifying the experimental W153/W159 feature.
+
+**The zero control matters.** Its common-scale sample is −3.11×10⁻¹⁵; difference-
+map raw σ / truth-map raw σ is 1.916×10⁻¹⁵. Normalizing that numerical-scale
+residual by its own σ nevertheless reports −1.624σ. The result is retained, not
+forced to zero. Own-map samples −28.09/−65.56σ in the two error cases are also
+idealized noiseless values, not experimental significance. A known truth-map
+denominator is available here because this is synthetic; it does not establish
+an operational normalization policy or threshold for measured campaigns.
+
+**Native method and ownership.** Hazel confirmed that her maintained metal
+capture wrapper is site/result-specific; no general generator should be invented
+or that wrapper stretched. This panel uses native
+`mmtbx.f_model.manager.map_coefficients` and the existing W147 exact coefficient
+reader. Phenix **2.2.1-6174** is captured in the native process, with 11 Python/
+extension source hashes. One complete native calculation took about 10.7 s;
+there are no coordinate, B, occupancy or scale refinement calls. Unit isotropic/
+anisotropic scales and zero solvent contributions are explicit; accidental
+`update_all_scales` calls are guarded. No new product code or defaults result.
+
+The same deterministic W152 hash rule supplies 389 synthetic Free flags. The
+native alpha/beta/FOM estimate uses these flags, and both unfilled ML maps include
+all reflections. Model phases and likelihood weights change together: this is
+not a phase-only intervention or independent validation. Nominal σF=0.02F is a
+field, not sampled noise or a calibrated experimental uncertainty model.
+
+**Checks and view.** All model states, observation/flag tuples, unit scales and
+Fmodel arrays stay unchanged during map generation. A separate expression for
+the declared centric/acentric ML coefficient formula agrees within 5.31×10⁻¹²;
+direct Fourier/FFT voxel values agree within 5.16×10⁻¹⁴. Six complex arrays pass
+exact-label/HKL and float32 readback checks. Hazel's independent **80-check** cold
+review binds input hashes, reconstructs all synthetic flag identities and checks
+normalization arithmetic without another native call. It reviews, rather than
+independently recalculates, the producer's in-memory/formula assertions.
+
+The visually checked six-panel common-scale figure, vector export, report and
+manifest are at GitHub workspace anchor
+`ScienceCheckouts/Linden/2026-11-20_model-assisted-density/review.html`.
+No graphical/browser capability is implied beyond reviewing that generated PNG.
+The shifted group is a prescribed potentially strained scattering error, not a
+proposed chemical repair. Noise, uncertain observations/model phases, local
+geometric context and scientist calibration remain prerequisites for a detector.
+
+**Evidence and reproducibility.** Main NASolve anchor:
+`branch-artifacts/willow/w160-model-assisted-density/` holds plan, native result,
+execution, figure and archive receipts. The 22-file local archive
+`w160-model-assisted-density-evidence-2026-11-20.zip` has SHA256
+`fea85c6aff4a5bf95a14b4909ce081b13fe721629ac2eee86ac869a354986886`.
+Hazel's cold receipt is
+`branch-artifacts/Alder/a01-current-profile-20261120-01/w160-cold-review.json`.
+This is an integrity archive, not a portable executable checkpoint. Raw science
+is excluded from Git.
+
+Exact runner entry: `PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w160-model-assisted.py`;
+it binds the SDK environment and owned 240 s native worker. `w160-figure.py` runs
+through the same native Python environment; `w160-archive.py` verifies all members.
+No production source/schema/compatibility change or installation migration;
+documentation uses the eight focused roadmap tests, roadmap `--write`/`--check`
+and `git diff --check`. No full-suite/install repeat or scientific acceptance is
+claimed. Do not rerun W155/W160 just to reestablish the ambiguity they now record.

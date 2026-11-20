@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W160 — Qualify bounded model-assisted density controls
+
+- Complete the noiseless correct-model/position/B panel through the native map
+  owner, retaining common-scale ambiguity and numerical amplification by a
+  near-zero map's own σ. Independent cold readback and a compact figure pass.
+- Update milestone scope and next work without a detector, motion inference,
+  runtime/schema change or raw-data publication; noisy calibration remains open.
+
 ### W159 — Audit ordinary recovery against the experimental baseline
 
 - Record one complete same-source ordinary-recipe diagnostic: retained molecular

@@ -298,7 +298,7 @@
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "W159 leaves the undeformed recovery baseline unresolved. Inspect named objective/weight/ADP and map-supported local geometry before another opposite-bend matrix; no repeated weight search or lowest-Rfree choice. Preserve W152/W153/W157 controls. Continue W158 independent model-assisted zero/displacement/B panel through the native map owner, with exact phases/scales/membership and noise calibration still separate. Ordinary PostMR ancestry, broader repair, W150 integration and B09/B10 remain open.",
+      "next_action": "W159 leaves the undeformed recovery baseline unresolved. Inspect saved named objective/weight/ADP and map-supported local geometry before another opposite-bend matrix; no repeated weight search or lowest-Rfree choice. Preserve W152/W153/W157 controls. W160 completes the independent noiseless model-assisted panel; its remaining noise calibration is separate. Ordinary PostMR ancestry, broader repair, W150 integration and B09/B10 remain open.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -406,7 +406,8 @@
         "W153 deposited5W6W experimental comparison preserves5137 raw observations/507originalFree, but positive native filtering drops one work reflection. Endpoints approach relaxed control0.21485/0.14566A; reference itself moves0.52152A and Rfree rises~0.019. Geometry improves, strong B2P negative density remains. Common4629work/507Free endpoint arithmetic reuses saved F-model without refit; mixed outcome, not accepted repair.",
         "W155 prescribed complex-F contrasts at identical7554HKLs/3.06A show negative modeledP from displacement, Q excess and B mismatch separately, with zero control. Only3scatterers vary; full/group additivity≤4.82e-12 and direct/FFT≤1.18e-14. Hazel cold review passes with explicit missing original version-API capture. Common reference normalization is not ML difference-map sigma; no detector or experimental attribution.",
         "W157 reads84 archived native stages,15 minimizer records and18 scaling counts with independent Hazel review. Initial unscaled Rfree0.3207/0.3437/0.3376 becomes0.2413/0.2637/0.2624 at first bulk/scaling before XYZ; final0.2600/0.2579/0.2611. Reference hits100iterations in all5cycles. Existing report gains a verified inline stage plot; no new refinement.",
-        "W159 completes one five-cycle ordinary-recipe diagnostic on the same undeformed5W6W source. Exact859atoms,2569initial bond/angle definitions,58pair/stack groups and5137effective observations/507originalFree survive;38links and126sugar signs remain. Selected drift0.591A versus0.522A; common Rwork/Rfree0.2264/0.2677 versus0.2392/0.2600. B2P B90.39→112.52 while own residual remains−8.38σ versus−8.09σ. This does not resolve the reference baseline; no opposite-start matrix or accepted repair."
+        "W159 completes one five-cycle ordinary-recipe diagnostic on the same undeformed5W6W source. Exact859atoms,2569initial bond/angle definitions,58pair/stack groups and5137effective observations/507originalFree survive;38links and126sugar signs remain. Selected drift0.591A versus0.522A; common Rwork/Rfree0.2264/0.2677 versus0.2392/0.2600. B2P B90.39→112.52 while own residual remains−8.38σ versus−8.09σ. This does not resolve the reference baseline; no opposite-start matrix or accepted repair.",
+        "W160 closes the planned noiseless model-assisted three-case panel: one higher-B truth, 7554 common HKLs, 389 synthetic Free and 859 unchanged atom identities. Known position and B errors both give negative modeled-P density. Common truth-map samples are −3.11e−15/−0.804/−1.524 for zero/position/B; zero own-map normalization gives −1.624σ from numerical-scale residuals. Native formula/readback/direct-FFT checks and Hazel80-check cold review pass. No refinement, scale fitting, detector or experimental attribution."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -417,7 +418,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "W159 leaves the undeformed recovery baseline unresolved. Inspect named objective/weight/ADP and map-supported local geometry before another opposite-bend matrix; no repeated weight search or lowest-Rfree choice. Preserve W152/W153/W157 controls. Continue W158 independent model-assisted zero/displacement/B panel through the native map owner, with exact phases/scales/membership and noise calibration still separate. Ordinary PostMR ancestry, broader repair, W150 integration and B09/B10 remain open.",
+      "next_action": "W159 leaves the experimental recovery baseline unresolved; inspect saved named restraint families and local map context before any new fit. W160 completes W158 noiseless model-assisted controls; do not repeat W155/W160 merely to show ambiguity. Next density qualification needs declared uncertainty/noise controls, realistic normalization evidence and scientist calibration before any detector or motion inference. No new weight search, ordinary ancestry bypass or acceptance. W150 integration and B09/B10 remain separate.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -482,14 +483,15 @@
         "E_POST_DEFORMATION_RECOVERY_PLAN",
         "E_NATIVE_RECOVERY_STAGE_HISTORY",
         "E_DISCRIMINATING_RECOVERY_PLAN",
-        "E_ORDINARY_RECOVERY_DIAGNOSTIC"
+        "E_ORDINARY_RECOVERY_DIAGNOSTIC",
+        "E_MODEL_ASSISTED_DENSITY_CONTROLS"
       ],
       "last_audit": {
         "date": "2026-11-20",
         "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
-        "human_update": 159,
-        "reviewer": "Linden; owner/interpretation coordination with Rowan and map-owner coordination with Hazel",
-        "scope": "One complete ordinary-recipe diagnostic and exact saved geometry/data/maps; ordinary checkpoint qualification remains open"
+        "human_update": 160,
+        "reviewer": "Linden; independent 80-check cold record/MTZ review by Hazel",
+        "scope": "Noiseless model-assisted zero/position/B panel only; S06 remains partial"
       }
     },
     {
@@ -3359,11 +3361,12 @@
         },
         {
           "id": "model_assisted_map_counterexamples",
-          "status": "PLANNED_REQUIRES_MAP_PROTOCOL_BINDING",
+          "status": "BOUNDED_NOISELESS_PANEL_COMPLETE",
           "owner": "Maintained native map boundary; Willow backbone interpretation",
           "question": "How do zero, displacement and B-mismatch controls appear under one declared model-assisted map protocol?",
           "comparison": "Same truth amplitudes and atom inventory, declared model states, phases/scales and own/common positions; no noise initially.",
-          "next_decision": "Retain ambiguity and false positives; qualify noisy controls and scientist calibration separately before a detector."
+          "next_decision": "Retain zero normalization and position/B ambiguity; qualify uncertainty/noise and experimental normalization separately. Do not classify the W159 phosphate or implement a detector from this panel.",
+          "evidence": "E_MODEL_ASSISTED_DENSITY_CONTROLS"
         }
       ]
     },
@@ -3444,6 +3447,53 @@
           "size": 722
         }
       ]
+    },
+    "E_MODEL_ASSISTED_DENSITY_CONTROLS": {
+      "kind": "model_assisted_synthetic_map_counterexamples",
+      "date": "2026-11-20",
+      "human_update": 160,
+      "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
+      "reference": "docs/topostitch-periodic.md#w160--retain-ambiguity-and-normalization-context-in-model-assisted-maps",
+      "result": "W160 closes the planned noiseless model-assisted three-case panel: one higher-B truth, 7554 common HKLs, 389 synthetic Free and 859 unchanged atom identities. Known position and B errors both give negative modeled-P density. Common truth-map samples are −3.11e−15/−0.804/−1.524 for zero/position/B; zero own-map normalization gives −1.624σ from numerical-scale residuals. Native formula/readback/direct-FFT checks and Hazel80-check cold review pass. No refinement, scale fitting, detector or experimental attribution.",
+      "limitation": "Noiseless synthetic amplitudes and fixed unit scales/zero solvent. Native model phases and ML weights both change; synthetic Free participates in map weights and maps. Common truth normalization is available only because truth is known, not an experimental policy. No threshold, classifier, motion proposal or runtime/schema change.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w160-model-assisted-density/archive.json",
+          "sha256": "0d1780ef8cdd585105efbebf455ddb54e7c56343b55a1a891f7a8233c7b0868d",
+          "size": 376
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w160-model-assisted-density/plan.json",
+          "sha256": "d25cf0512f1c9f8430ecc1bcfb81053362be1c2e031287bd08f78e03f9a58a0a",
+          "size": 2012
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w160-model-assisted-density/result.json",
+          "sha256": "2e7c45eec83aa66f4f647d2e6a81992f7e1ee456ef3abdb14c63a85210b623ee",
+          "size": 1436280
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w160-model-assisted-density/execution.json",
+          "sha256": "3c6eb07d06bd5f0103ff738c16fe9a08df0999a87ab65749cf41b5df4816101b",
+          "size": 695
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w160-model-assisted-density/figure-review.json",
+          "sha256": "0cd428c45f460457cdaf9232e598fcaeffebabb05398606aa540010292376c9d",
+          "size": 533
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/a01-current-profile-20261120-01/w160-cold-review.json",
+          "sha256": "f1a07b020ea8f0a02f33db7bbb3c627fad4b7d8942926d6cf7e01268caccac3e",
+          "size": 5400
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -3510,7 +3560,7 @@
         "S04",
         "S06"
       ],
-      "remaining": "After qualified geometric placement and matched refinement, add a read-only model/map-bound detector of sustained negative difference-density patches along sugar-phosphate backbones. Calibrate with Simon against healthy/noisy and displaced controls across resolution, occupancy/ADP and map-processing conditions before proposing motion. Then consider nonuniform/strand-specific density-guided fitting; a red voxel or universal sigma cutoff is not a displacement instruction. Also qualify bend center/width and localized, distributed or distal curvature variants using support before and after refinement. Construct 4T28/PDB 8SJW at 7.64 A is a user-proposed localized B:11 bend control; entry identity verified, residue/density interpretation pending. Predeclare search budgets and retain all attempts; avoid repeated Rfree-guided tuning. Reuse Hazel's maintained nasolve.metal.map_diagnostics and saved-coefficient provenance/periodic-sampling checks through a shared owner; keep own-endpoint versus common-reference sampling distinct. Hg sigma/radius and occupancy/scattering assumptions are not phosphate calibration; no new map reader or density decision implementation is authorized by this reuse note. Before density-guided search, bind coefficient generation including work/free selection, missing-data fill, filtering/isotropization/sharpening. Ordinary display maps are not implicitly work-only; exact coefficient membership does not alone establish use of observed amplitudes. W153 adds an experimental counterexample to geometry-only acceptance: no-op/reference drift, more ideal planes and persistent B2P negative density with fixed B/occupancy. Preserve original raw observations/Free and explicitly record adaptive effective-work filtering. Common endpoint R arithmetic does not retroactively equalize trajectories. W155 now records prescribed known-phase displacement/Q/B scattering counterexamples, not an experimental/model-assisted/noisy attribution matrix. Its original version-API capture is unavailable and explicitly retained. Hazel's matched global-scale and own/common-position controls remain separate precedents."
+      "remaining": "After qualified geometric placement and matched refinement, add a read-only model/map-bound detector of sustained negative difference-density patches along sugar-phosphate backbones. Calibrate with Simon against healthy/noisy and displaced controls across resolution, occupancy/ADP and map-processing conditions before proposing motion. Then consider nonuniform/strand-specific density-guided fitting; a red voxel or universal sigma cutoff is not a displacement instruction. Also qualify bend center/width and localized, distributed or distal curvature variants using support before and after refinement. Construct 4T28/PDB 8SJW at 7.64 A is a user-proposed localized B:11 bend control; entry identity verified, residue/density interpretation pending. Predeclare search budgets and retain all attempts; avoid repeated Rfree-guided tuning. Reuse Hazel's maintained nasolve.metal.map_diagnostics and saved-coefficient provenance/periodic-sampling checks through a shared owner; keep own-endpoint versus common-reference sampling distinct. Hg sigma/radius and occupancy/scattering assumptions are not phosphate calibration; no new map reader or density decision implementation is authorized by this reuse note. Before density-guided search, bind coefficient generation including work/free selection, missing-data fill, filtering/isotropization/sharpening. Ordinary display maps are not implicitly work-only; exact coefficient membership does not alone establish use of observed amplitudes. W153 adds an experimental counterexample to geometry-only acceptance: no-op/reference drift, more ideal planes and persistent B2P negative density with fixed B/occupancy. Preserve original raw observations/Free and explicitly record adaptive effective-work filtering. Common endpoint R arithmetic does not retroactively equalize trajectories. W155 now records prescribed known-phase displacement/Q/B scattering counterexamples, not an experimental/model-assisted/noisy attribution matrix. Its original version-API capture is unavailable and explicitly retained. Hazel's matched global-scale and own/common-position controls remain separate precedents. W160 adds the declared noiseless model-assisted zero/position/B panel and near-zero normalization caveat; noisy/experimental attribution and detector calibration remain open."
     },
     {
       "id": "B07",
@@ -3605,8 +3655,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 159,
-    "next": 160,
+    "current": 160,
+    "next": 161,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -4368,6 +4418,12 @@
       {
         "number": 159,
         "title": "Compare ordinary recovery with the fixed-unit experimental baseline",
+        "state": "RECORDED",
+        "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a"
+      },
+      {
+        "number": 160,
+        "title": "Qualify model-assisted density counterexamples and the near-zero control",
         "state": "RECORDED",
         "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a"
       }

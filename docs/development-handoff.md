@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-20**, through **W159**. **W152 closes the independent
+Updated **2026-11-20**, through **W160**. **W152 closes the independent
 opposite-displacement/no-op subgate under idealized matching data.** Deposited
 5W6W starts recover from 0.764 Å RMS to 0.052/0.047 Å, with a 0.014 Å no-op.
 This complements W148's 8D93-derived control; both remain bounded evidence.
@@ -34,12 +34,13 @@ coordinate states. Complete source and relocated-install checks pass; the two
 new experimental views use that distinction. Shared receiving-owner adoption,
 source/frame proof and browser/GPU qualification remain separate.
 
-**W155 supplies explicit density counterexamples:** a prescribed coordinate error,
-occupancy excess and B mismatch each yield negative modeled-P density; the B case
-also gives nearby positive density without motion. These exact known-phase
-contrasts are not ML maps, a detector or an explanation of W153. The original
-version API returned no value; a separate installation identity is documented
-without rewriting that run. [Evidence and limits](topostitch-periodic.md#w155--record-density-counterexamples-before-proposing-backbone-motion).
+**W155/W160 preserve density ambiguity:** W155's known-phase counterexamples
+are now complemented by one common-amplitude, native model-assisted zero/position/B
+panel. Both known errors give negative modeled-P density. The correct model's
+near-zero numerical residual can still exceed one own-map σ; common synthetic
+truth normalization is not an experimental policy. Hazel's 80-check cold readback
+passes. No noisy calibration, classifier or cause for W153/W159 is established.
+[W160 methods and limits](topostitch-periodic.md#w160--retain-ambiguity-and-normalization-context-in-model-assisted-maps).
 
 The backend can bind periodic pair intent, retain qualified native terms across
 compatible descendants and refuse unsupported continuation. **General sticky-end
@@ -80,13 +81,13 @@ not another work queue; do not repeat them because this handoff is shorter.
 
 ## Next bounded work
 
-**W159 decision:** pause opposite-start expansion while the undeformed baseline
-still has unresolved map/geometry support. Inspect named objective/weight/ADP
-changes; do not add an Rfree-driven matrix. The independent [W158 model-assisted
-density panel](topostitch.md#next-discriminating-experiments-w158-planning) remains
-the next bounded density experiment. Reuse native map generation and W147 readback,
-with common truth amplitudes and explicit phase/mask/scale/Free policies. Ordinary
-checkpoint qualification still needs legitimate ancestry; no fabricated parent.
+**W159/W160 decision:** pause opposite-start expansion while the experimental
+reference baseline has unresolved map/geometry support. Inspect saved named
+restraint families and local map context before a new fit; avoid an Rfree-driven
+matrix. W158's noiseless model-assisted panel is now complete, so do not repeat
+it merely to show ambiguity. Next density qualification requires declared noise/
+uncertainty controls, realistic normalization evidence and scientist calibration.
+Ordinary checkpoint qualification still needs legitimate ancestry.
 
 1. Keep the [stable-objective invariant sketch](topostitch.md#stable-objective-invariants-deferred-design-unimplemented)
    deferred under S06, using the exact recorded
@@ -160,7 +161,8 @@ repeat them or the W74/W75 invariance probes. Next density attribution must
 separate displacement from occupancy/ADP/scattering alternatives before proposing
 motion. Hazel's global-scale/ADP and own/common-coordinate sampling controls are
 useful precedents; W155 adds prescribed known-phase local counterexamples,
-not a noisy/model-assisted attribution qualification. A future fixed-work-set
+now extended by W160 to a noiseless model-assisted panel, still not a noisy or
+experimental attribution qualification. A future fixed-work-set
 trajectory needs predeclared filtering; W153's common-HKL endpoint rescore already
 answers its narrow arithmetic question without another native run. Larger,
 reciprocal and nonuniform shapes, junction-aware window expansion and B09 remain
@@ -173,6 +175,12 @@ then separately qualified plane-only mismatch hypotheses. Automatic inference an
 large-bend repair follow later. No CLI/default activation follows from these docs.
 
 ## Validation and scientific interpretation
+
+- **W160:** one complete native model-assisted calculation (Phenix 2.2.1-6174),
+  exact coefficient/identity/state checks, 80 independent cold readback checks
+  and visual figure review pass. Eight focused roadmap tests and consistency/
+  diff checks cover docs-only publication. No runtime/schema/install change,
+  native refinement, full-suite repeat or automatic attribution.
 
 - **W159:** one complete Phenix 2.2.1-6174 run; exact native geometry, raw-data/Free,
   saved-map and process-stop checks pass. 17 offline inspector checks and actual
@@ -264,6 +272,11 @@ W118 numerical helpers retain their exact original scopes; no later software
 PASS upgrades older diagnostic models to accepted structures.
 
 ## Local science checkout
+
+**W160 model-assisted controls:** GitHub workspace anchor,
+`ScienceCheckouts/Linden/2026-11-20_model-assisted-density/review.html`.
+Four files show common-scale ordinary/difference maps for correct, displaced and
+B-mismatched models. The correct-model normalization caveat remains explicit.
 
 **W159 recovery comparison:** GitHub workspace anchor,
 `ScienceCheckouts/Linden/2026-11-20_recovery-protocol/review.html`.

@@ -54,12 +54,13 @@ current instructions; other branches retain their own status and validation pins
   W159 completes the ordinary-recipe baseline diagnostic without resolving drift
   or phosphate density; complete ordinary lineage and repair remain open.
   W158 records the original comparison plan; its separate model-assisted density
-  counterexample panel remains planned.
+  counterexample panel is completed by W160, including near-zero normalization
+  ambiguity. No noisy/experimental detector is qualified.
   Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W159;
-  the next substantial audit is W160. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W160;
+  the next substantial audit is W161. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

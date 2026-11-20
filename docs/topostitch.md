@@ -955,7 +955,13 @@ Because the deposited diagnostic has no legitimate ordinary PostMR root, the
 existing recipe/command and native execution owners were used directly, with
 Rowan's ownership review. No ancestry was fabricated. Complete ordinary checkpoint
 qualification remains open. [Results and exact limits](topostitch-periodic.md#w159--compare-ordinary-recovery-with-the-fixed-unit-baseline).
-The independent model-assisted density panel below remains planned.
+
+**W160 completes the independent noiseless model-assisted panel below.** Known
+position and B errors both give negative modeled-P density, while own-map σ can
+amplify a numerical-scale zero-control residual. Common truth normalization is
+synthetic evidence, not an experimental display or acceptance policy. Noise and
+scientist calibration remain open; no detector follows.
+[W160 evidence](topostitch-periodic.md#w160--retain-ambiguity-and-normalization-context-in-model-assisted-maps).
 
 The next scientific question is whether W153's experimental reference drift is
 specific to its fixed-unit XYZ recovery protocol. This is not evidence that a
@@ -1013,9 +1019,9 @@ calibration come afterward; do not add a new map reader.
 
 The W158 text records the pre-execution plan; W159 above supplies its diagnostic
 result and owner limitation. The protocol comparison is no longer an unexecuted
-recovery task; the map panel can proceed independently once its
-owner is qualified and does not block geometry-only benchmarks. Reciprocal target
-shapes, larger/nonuniform bends and junction-limited window expansion remain the
+recovery task; W160 completes the bounded noiseless map panel independently.
+Its remaining noise/uncertainty qualification does not block geometry-only
+benchmarks. Reciprocal target shapes, larger/nonuniform bends and junction-limited window expansion remain the
 existing S04 queue. W150 receiving integration, B09 geotest and B10 explicit sticky
 activation remain separately open. No acceptance threshold, chemistry, production
 policy or runtime schema changes here.
