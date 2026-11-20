@@ -629,7 +629,7 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 | **Q12 — know the catalogue's actual coverage** | Account for every NARestraints ligand entry. | Turn the 599-code/618-row census into supported, repairable or specifically unresolved cases. A family example does not prove every member. |
 | **Q13 — preserve chemical identity** | Keep hydrogens, charge, phosphates and attachment changes chemically justified. | Resolve ambiguous source states explicitly; a prettier geometry cannot authorize different chemistry. |
 | **Q14 — make sure Doctor catches real errors** | Test broken examples and sound examples that should be left alone. | Retain reproducible challenge inputs and false-alarm controls, with unavailable historical inputs stated honestly. |
-| **Q15 — tell the scientist what happened** | Explain what was repaired or retained, what remains uncertain and exactly what to inspect. | Refresh the ordinary result report and user PDF after the behavior is integrated. |
+| **Q15 — tell the scientist what happened** | Explain what was repaired or retained, what remains uncertain and exactly what to inspect. | Refresh the ordinary result report and user PDF. Deliver the shared [regional helix analysis](#regional-helix-analysis-for-publication) before NASolve completion. |
 | **Q16 — finish the branch cleanly** | Finish with the AutoPhase naming/compatibility change, then check Cedar as part of NASolve and review integration into pine/main. | Preserve Phenix AutoSol calls and old runs; follow the [machine-readable rename audit](autophase-rename-plan.json), then full regression, representative native/relocation/platform checks, honest release scope and reviewed artifact cleanup. No automatic merge is authorized. |
 
 **Historical PDU survival baseline (C304; later C329/C338 evidence below):** explicit fresh attempt 2 now completes under the
@@ -1704,7 +1704,42 @@ internal deliberation to the private notes repository. Do not copy live-run data
 or chat transcripts into the public project. This is the documentation cleanup
 already noted after C133, not permission to delete historical evidence.
 
+#### Regional helix analysis for publication
+
+**Open under Q15. Required before NASolve completion.** One offline analysis
+should let a scientist measure a declared region in a model and compare the
+same region across checkpoints. Willow needs it around a bend or an opening.
+Alder needs it around a rotated cluster. Cedar supplies the chemical identity
+and ring mapping at modified sites. The [machine-readable milestones](helical-geometry-plan.json)
+hold the acceptance checks, publication benchmarks and current discrepancies.
+
+1. **Identify the pairs.** Carry the two strands, residue and crystal-image
+   identities, atom choices and region through each comparison.
+2. **Measure twist and width.** Report signed **simple** twist per base-pair step.
+   Preserve the P–P diameter across each pair and both phosphate-to-axis radii
+   at each step in separate columns. A half-diameter is a derived half-span.
+   Give the specific reason for an unavailable measurement.
+3. **Export the evidence.** Show the steps flanking a modification, the weighted
+   regional mean and bp/turn. Export individual rows, checkpoint differences,
+   units, weights, coverage and model/method provenance. Qualify the same reader
+   on deposited structures and on a genuine before/after bend. A report can
+   accompany a solve without running another refinement or selecting a model.
+
+The mmDNA benchmark uses Table S15 for simple twist and Table S17 for P–P
+diameter. On 7SDF the first calculation gave 34.57° across the two flanking
+steps (published 34.58°) and a P–P diameter of 18.19 Å (published 18.2 Å).
+On 7SDG the local twist differed by 1.72°. Keep this comparison open.
+On the curved 1TC3 duplex, both local phosphate radii reproduced the 3DNA
+manual’s printed values across all 18 steps. The PNAS model’s 1 nm cylinder
+radius is an input to its topology calculation. It supplies no experimental
+radius target. [mmDNA](https://doi.org/10.1002/adma.202210938) ·
+[Tertiary chirality](https://doi.org/10.1073/pnas.2321992121) ·
+[Web 3DNA](https://doi.org/10.1093/nar/gkz394) ·
+[3DNA radius benchmark](https://web.x3dna.org/public/3dna_old/doc/x3dna_v1.5.pdf)
+
 ### Q16 — Final integration, portability and retained-artifact closure
+
+For NASolve completion, verify the [Q15 helix analysis](#regional-helix-analysis-for-publication) and publication export on the integrated build.
 
 The specific C171 diagnostic-masking follow-up is resolved in
 [C185](cif-doctor.md#preserve-primary-failures-during-diagnostic-reporting-c185):

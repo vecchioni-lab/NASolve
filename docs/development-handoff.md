@@ -319,7 +319,8 @@ six-atom ring plane 0.094297 Å. These descriptive starting values are not accep
    and validated density fitting each need their own evidence before being advertised.
 4. Q07: original mixed scaffold with ATL alongside, then the held-out modified-pair
    challenge. Retain L-DNA/FANA/L-FANA/L-FDNA/PNA/locked-sugar learning under Q08–Q14.
-   Q15 explains the result. Q16 ends with the AutoPhase compatibility audit,
+   Q15 explains the result and owns the [regional twist and radius milestones](cif-doctor-completion-queue.md#regional-helix-analysis-for-publication)
+   shared with Willow and Alder. Q16 ends with the AutoPhase compatibility audit,
    combined-source/full/native gates and merge review. No automatic merge or defaults.
 
 The [single maintained queue](cif-doctor-completion-queue.md) owns closure criteria.
