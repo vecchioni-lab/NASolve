@@ -1444,12 +1444,24 @@ ordinary PostMR before Coot, then into the complete request. No duplicate owner.
 
 | Established boundary | Evidence |
 | --- | --- |
-| Source identity, independently rotatable rings and held-out bridge | C339–C342/C350–C351; exact source/representation and native derivative controls. |
-| Free-OH/internal construction, ReadySet and covalent-only survival | C343–C346; 87 native checks/two unavailable charge readbacks for mixed ends. No DY pair claim. |
+| Source identity and response to rotation about the single C4–N1T bond | C339–C342/C350–C351 established the original dictionary’s behavior. C456 tests the chemical preference for near coplanarity. |
+| Free-OH/internal construction and ReadySet | C343–C346 established delivery. C456 identified an unintended A:12–B:4 covalent bond in the historical C346 refinement and repeated it with this link excluded. |
 | Modified → canonical → modified and retained seed evidence | C347–C349/C353; PDU↔DY via DT with preserved scaffold/chi. |
 | Packaged lookup, source composition and acquisition | C354–C356/C364; exact original inputs and existing native evidence retained. |
 | Explicit planning, per-site selection and derivation lineage | C358–C359/C362–C365; source and numerical CIF roles independently checked. |
 | Ordinary pre-Coot integration | C366; 190 focused and installed checks; exact mixed-end Coot model, cold complete request, preserved prior controls. |
+
+**Ring geometry and chemical links before wider DY use (C456).** Check the
+source-declared triazolyl–pyrimidinone and determine whether Phenix actually
+restrains twist between its rings. Test the soft eleven-atom plane at a second
+site or against experimental DY evidence before selecting its weight by default.
+Measure the ring angle and the signed torsion independently so a half-turn
+cannot silently exchange the presented nitrogen edge. Reuse the complete
+declared-link check before interpreting refinement. When a bond lacks chemical
+authority, qualify a pair-specific recovery that preserves phosphodiesters,
+intentional crosslinks, metals and declared base-pair restraints. The
+[matched experiments](cif-doctor.md#dy-ring-orientation-and-unrequested-interbase-bond-c456)
+include negative chemical controls and a ReadySet readback.
 
 Remaining: deliberate automatic public selection/CLI integration, modified-input
 canonical-seed forwarding through the ordinary route, and chemically specified

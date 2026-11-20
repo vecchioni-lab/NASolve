@@ -118657,5 +118657,138 @@
         "generated_scientific_inputs_committed": false
       }
     }
+  },
+  "dy_ring_junction_planarity_2026_11_20": {
+    "owner": "Rowan / Cedar C456",
+    "source_commit": "d1860f5c62b896b5489319a06c585316ed53a248",
+    "parent": {
+      "anchor": "NASolve-live-tests",
+      "path": "346_Cedar_DY-covalent-refinement-ljkqwcjn"
+    },
+    "public_analogue_doi": "10.1007/BF01195698",
+    "public_analogue_interplane_degrees": "3.1(2)",
+    "native_build": "2.2.1-6174",
+    "native_scope": "DY B:4, same 4.02 A host data, A:12 DA; zero added pairing/stacking restraints; a substituted-host mechanics experiment",
+    "rings": [
+      [
+        "N1",
+        "C2",
+        "N3",
+        "C4",
+        "C5",
+        "C6"
+      ],
+      [
+        "N1T",
+        "N2T",
+        "C3T",
+        "N4T",
+        "C5T"
+      ]
+    ],
+    "preexisting_terms": "Four zero-weight cross-axis torsions, no active cross-axis torsion or common plane spanning off-axis atoms of both rings.",
+    "prior_control": "An unintended N6(A:12 DA)–C5T(B:4 DY) covalent contact was already present in C346 at 1.430 A, sigma 0.010 A. Original controls have different automatically linked endpoints across starting poses.",
+    "source_link_check": "C109/C128 review_native_topology recovered the unexpected extra bond on the C346 capture. The pair-specific exclusion gave MATCH with exactly 38 intended phosphodiesters.",
+    "candidate": "Add one plane, sigma 0.10 A for all eleven ring atoms. Bond orders and other dictionary targets preserved. Experimental local candidate.",
+    "readyset": "READYSET_CACHED_INPUT_PASS",
+    "readyset_dictionary_sha256": "52d2d1d346d3880912f52d8c1c482520089b2e04c00238046bb1494eaeb0cbf3",
+    "matched_final_interplane_degrees": {
+      "flipped": [
+        13.49,
+        8.345
+      ],
+      "minus60": [
+        54.751,
+        11.844
+      ],
+      "original": [
+        10.635,
+        3.937
+      ],
+      "plus60": [
+        55.406,
+        5.0
+      ]
+    },
+    "column_order": [
+      "original dictionary",
+      "trial shared plane"
+    ],
+    "torsion": [
+      "N3",
+      "C4",
+      "N1T",
+      "N2T"
+    ],
+    "half_turn_result": "After five cycles the shared-plane trial was 8.345 degrees from coplanar and the signed quartet was +3.11 degrees. The as-built trial finished at +176.61 degrees.",
+    "source_graph_controls": {
+      "positive": [
+        "packaged neutral DY",
+        "composed phosphorylated DY",
+        "fully relabelled and reordered DY"
+      ],
+      "excluded": [
+        "public PIM",
+        "triazolyl_aniline",
+        "5_methyl_analogue",
+        "natural_uridine"
+      ]
+    },
+    "validation": {
+      "preflights": 22,
+      "five_cycle_refinements": 22,
+      "matched_no_interbase_bond_arms": 8,
+      "phenix_build": "2.2.1-6174",
+      "actual_readyset_entries": 1,
+      "measured_intensities_and_sigmas": 2273,
+      "free_r_assignments": 3236,
+      "ordinary_bond_targets_compared": 958,
+      "test_context": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src",
+      "commands": [
+        "$PY -B -m pytest -q -p no:cacheprovider tests/test_packaged_dy_reference.py tests/test_cif_plane_coverage.py tests/test_refinement_plane_departures.py",
+        "$PY -B -m pytest -q -p no:cacheprovider tests/test_cif_topology_gate.py tests/test_cif_native_target_comparison.py"
+      ],
+      "focused_pass_counts": [
+        64,
+        73
+      ],
+      "full_suite": "NOT_RUN",
+      "replay_commands": "REPLAY.txt in the local runner archive"
+    },
+    "next": [
+      "Reuse the declared-topology audit at ordinary handoff and after interpretation; distinguish authorized metal, pairing, covalent and symmetry contacts.",
+      "Check both the ring angle and which triazole edge is presented, separately.",
+      "Qualify the choice of plane weight and the orientation of an uncertain starting ring on independent relevant chemistry or DY experimental data.",
+      "Keep first-class source evidence, target detection, ReadySet retention and native readback before automatic adoption."
+    ],
+    "retained_local_files": {
+      "junction-summary.json": {
+        "anchor": "branch-artifacts/cedar",
+        "path": "c456-dy-ring-junction/junction-summary.json",
+        "sha256": "269641dbcf1d604aa163edd4af4d9e38d2d37c427935d0bc1555eeae3b62c708",
+        "bytes": 24211
+      },
+      "DY-ring-tilt.png": {
+        "anchor": "branch-artifacts/cedar",
+        "path": "c456-dy-ring-junction/DY-ring-tilt.png",
+        "sha256": "8cc25cbcf4377fcd68a249f7ea86c09de65117f25b8e0251844ba76fcdbfe9b9",
+        "bytes": 115152
+      },
+      "DY-junction-trial.cif": {
+        "anchor": "branch-artifacts/cedar",
+        "path": "c456-dy-ring-junction/DY-junction-trial.cif",
+        "sha256": "52d2d1d346d3880912f52d8c1c482520089b2e04c00238046bb1494eaeb0cbf3",
+        "bytes": 11410
+      },
+      "replay": {
+        "anchor": "branch-artifacts/cedar",
+        "path": "runners/456_Cedar_DY_ring_junction_replay.zip",
+        "sha256": "8d55342cfa2728bfa1b79c2a7869d58ecd44525a57a14945d02976a3367f425a",
+        "bytes": 20666
+      }
+    },
+    "raw_model_or_diffraction_in_git": false,
+    "runtime_changes": false,
+    "scientific_scope": "Substituted-host mechanics, reference-supported near planarity, provisional weight and separate rotamer assignment."
   }
 }

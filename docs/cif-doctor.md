@@ -13926,6 +13926,48 @@ default edits or migration; only compact evidence is committed. See
 `dy_actual_refinement_survival_2026_11_16`.
 
 
+### DY ring orientation and unrequested interbase bond (C456)
+
+The same triazolyl–pyrimidinone base on a protected ribose has a crystallographic
+interplane angle of **3.1(2)°**. Its measurement supports a near-planar preference
+for DY. The standard uncertainty describes that crystal measurement. A different
+N-linked triazole, 4-(triazol-1-yl)aniline, has a reported angle of 34.57(7)°.
+Chemical identity matters when transferring this restraint.
+[Smykalla et al.](https://doi.org/10.1007/BF01195698)
+[Triazolylaniline structure](https://doi.org/10.1107/S1600536810052025)
+
+The C346 dictionary gave all four torsions across C4–N1T zero native weight.
+The packaged preview had a 0.49° ring angle. C346 went from 6.90° to 9.39° in
+five cycles. Its full geometry file also contains an unrequested 1.430 Å bond
+from A:12 adenine N6 to B:4 DY C5T. The same automatic linking attached N6 to
+N4T or N2T in other starting orientations. The existing declared-topology
+audit recovered the extra bond directly from the saved C346 capture.
+
+On the 4.02 Å substituted host, one pair-specific Phenix exclusion suppressed
+automatic linking between A:12 and B:4. All 38 declared O3′–P links and the
+targets of all 958 ordinary covalent bonds were verified. One trial dictionary
+adds a plane through the six pyrimidine and five triazole heavy atoms with a
+0.10 Å standard deviation per atom. ReadySet retained its exact bytes. Each
+entry below is the unsigned angle between the two separately fitted ring
+planes from the final native coordinates after five Phenix cycles.
+
+| Starting orientation | Before refinement | Existing dictionary | Trial shared plane |
+| --- | ---: | ---: | ---: |
+| As built | 6.9° | 10.6° | 3.9° |
+| +60° about C4–N1T | 60.8° | 55.4° | 5.0° |
+| −60° about C4–N1T | 59.6° | 54.8° | 11.8° |
+| Half-turn | 7.8° | 13.5° | 8.3° |
+
+The half-turn left N3–C4–N1T–N2T at +3.1° in the plane trial. The original
+orientation finished at +176.6°. Those two flat arrangements expose different
+nitrogen edges. A relaxed isolated MMFF94s scan favored the orientation near
+180°. Pairing and metal-binding intent require separate evidence. The source
+graph pilot recognized fully renamed DY and excluded the nonmatching PIM,
+triazolylaniline, 5-methyl and uridine controls. Automatic restraint selection
+and the transferable plane weight remain open. The evidence record
+`dy_ring_junction_planarity_2026_11_20` includes all comparison arms and the
+replay recipe. These were tests with substituted host reflections.
+
 ### Verify actual canonical identity after Coot mutation (C347)
 
 The ordinary executor now asks Coot for the actual residue name after each

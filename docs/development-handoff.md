@@ -14,6 +14,14 @@ Software qualification does not change the scientific REVIEW or close Q06.
 
 ## Where to resume
 
+**DY ring geometry, C456.** The triazole favors the plane of the pyrimidine.
+A soft shared plane recovered both twisted starts in five Phenix cycles.
+The original scaffold also had an unintended covalent bond between the bases.
+The existing topology check identified it. Carry that check into ordinary
+refinement and track which edge of the triazole faces adenine. The [DY queue
+entry](cif-doctor-completion-queue.md#dy--packaged-retained-triazole-reference-and-mutation-support)
+records the separate chemistry milestone.
+
 **Q07, 20 November.** Ordinary Coot and ReadySet now prepare 1AP:T and S6G:C
 on the same substituted host. The plane screen follows the verified source chemistry.
 All four screened 1AP carbons were already covered. Five Phenix cycles retained
