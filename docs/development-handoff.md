@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-20, C423 nonmetal refinement and mixed-scaffold construction — Rowan**.
+Updated **2026-11-20, C427 fresh nine-pair construction and native restraint check — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**; C420 source **`c50b96c7`**. The C421 native runner began at **`f1d0aedd`** and its AutoRefine and geometry sources are unchanged at C420.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -23,14 +23,25 @@ survived. PostMR remains selected. This substituted-host test scopes nonmetal
 DF:A. The separate Hg experiment has different inputs. The compact evidence
 key is `nonmetal_df_ordinary_refinement_2026_11_20`.
 
-**Q07, current construction check.** On the fresh MR scaffold all twelve
-other target dictionaries resolve. Actual Coot stops at B:4 DP even when ATL
-is left out. C207 anticipated this finding. Its graph matcher measures a base
-rotation about 179° from the named parent angle. C207's direct torsion setter
-also failed on a missing Coot atom tree. Keep the refusal and its partial files.
-Investigate a rigid rotation of the source-defined base around its single
-sugar attachment and check the named angle and the shape before insertion.
-The separate A:11 locked-sugar requirement remains.
+**Q07, C424–C427.** Ordinary Coot construction now makes twelve substitutions
+on the fresh scaffold. Its matcher turned the DP base by 179° and IMC by 41°.
+A source-defined rotation on the isolated monomer restored the parent base
+orientation to within 0.05° in both finished residues. Thirty other sites
+kept their coordinates. DZ and CGY have a different sugar–base attachment
+and remain outside this named-angle check. A relocated wheel reproduced both
+native Coot models byte for byte.
+
+A separate source-bound placement installed the locked ATL at A:11 while
+keeping four sugar stereocentres and the other 41 sites. Phenix read all 869
+atoms and applied 211 requested restraints on the fresh nine-pair model,
+including ten shared planes. It supplied the two backbone bonds and all
+eight flanking angles. The incoming and outgoing links start at 1.595 and
+1.839 Å against 1.607 Å. The outgoing C3′–O3′–P angle starts at 141.55°
+against 119.7°. ATL starts at B=20 Å² while its host atoms span 166–320 Å².
+The native check used the historical 26-dictionary panel and a freshly
+rederived ATL reaction. Ordinary acquisition of the full mixture, host-aware
+starting displacement and diffraction refinement remain open. The compact
+evidence key is `fresh_mixed_construction_and_native_interpretation_2026_11_20`.
 
 **Q06.** Fresh G:5PC completed both construction and ordinary five-cycle Phenix
 refinement. Its automatically corrected C8–C9 target survived in the native
@@ -40,15 +51,8 @@ selected and the new child is `refine-001`. C418's separately prepared one-cycle
 continuation moved the terminal atom farther out despite straighter alkyne angles.
 Keep both observations. This is a substituted-scaffold test. C423 now supplies the corresponding nonmetal DF:A refinement.
 
-**Q07.** The ordinary planner recognized all 13 mutations for the nine-pair
-scaffold and stopped at A:11 ATL. A canonical DT sugar has opposite C3′ and C4′
-hands. Reuse the demonstrated source-bound placement and linked seed, define the
-D:1 phosphate state on the chosen host, then qualify all nine pairs in one
-ordinary refinement. On the existing mixed model the current W-frame recipe
-already emits all 201 historical terms plus ten shared pair planes. Eight
-focused frame-template tests pass. C422 used the saved model and ran no native
-process. The [completion queue](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run)
-records the positive and negative controls.
+The [Q07 experiment order](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run)
+keeps the known mixture ahead of the unfamiliar catalogue challenge.
 
 ## Which parts of the molecule stayed in shape?
 

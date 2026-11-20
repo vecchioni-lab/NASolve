@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve the base orientation when Coot matches the wrong ring atoms
+
+- Ordinary DNA mutation can recover a mismatched glycosidic angle. It rotates
+  the complete connected base about the single sugar attachment, checks each
+  atom and measures the named angle again before and after Coot overlaps it.
+  An unsupported or unsuccessful recovery still stops before replacement.
+  This resolves the observed DP and IMC construction failures on the mixed
+  scaffold. Existing checkpoints and chemical dictionaries require no migration.
+- Explicit whole-sugar placement now preserves the three crystal-axis SCALE
+  records written by Coot, allowing a freshly built scaffold to enter the
+  existing locked-sugar placement and backbone checks.
+
 ### Identify the exact Refine Doctor source (C420)
 
 - Refine Doctor now names the source checkpoint that meets its numerical gate,

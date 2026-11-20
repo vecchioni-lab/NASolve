@@ -16,10 +16,14 @@ angles survive. Q06 has this nonmetal control; the broader PDU whole-arm and
 DF scope decision remains open. The matched mercury experiment is complete
 and its routine integration is deferred.
 
-Q07 has one archived geometry-only model with all nine pairs. C422 identified
-the locked ATL sugar at A:11 during planning. On a fresh host with ATL held
-aside, actual Coot also refuses the previously documented C207 DP χ mismatch
-at B:4 before it can construct the other sites.
+Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
+after correcting the orientation of DP and IMC from their source graphs.
+A separate placement retained all four ATL sugar centres. Phenix applied
+all 211 current W-frame terms and both backbone links around ATL. The outgoing
+link starts long, the seed uses diagnostic displacement values and the
+chemical panel still uses historical dictionaries. The next step is to carry
+defensible starting displacement and the current chemical choices into ordinary
+construction before mixed diffraction refinement.
 The [Q07 experiment order](#q07--one-mixed-scaffold-ordinary-acceptance-run)
 preserves the earlier linked-sugar work. The unfamiliar-residue challenge follows
 the known mixture. Q08–Q14 cover remaining chemistry, then Q15/Q16 reporting
@@ -607,7 +611,7 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Complete for recorded alternatives, selected-model phasing, Coot, cold inspection and the ordinary five-cycle refinement handoff. Actual chemical survival/effective restraint behavior is Q06; no default activation or historical migration. |
 | **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C391 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control, chemical observation and actual final pair measurements. C392/C395 record real PDU weight fallback and actual source membership; C396 changes screening privately but does not repair the model; C393/W134 qualify combined observation and ordinary canonical continuation without claiming chemical repair. C400 qualifies an explicit longer control and matched native/zero/full pair mechanics; all arms stop early and chemical acceptance remains open. C403–C417 qualify ordinary PDU delivery, plane and scalar measurements, the explicit Doctor handoff, and agreement with the planes printed by Phenix. The matched bond correction improves its target while a whole-arm bend can remain. C419/C421 qualify fresh 5PC acquisition through five-cycle refinement. Wider protocols and achieved PDU/DF geometry remain open. Mechanics or a readable dictionary alone is insufficient. |
-| **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | C416 verified the nine-pair geometry-only scaffold. C422 identifies ordinary ATL placement as the first construction gap. Complete ordinary dictionary acquisition and diffraction refinement of that scaffold, followed by the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
+| **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | C427 verifies all 211 applied restraints and both ATL flank links on the fresh nine-pair seed. Complete ordinary locked-sugar placement, starting displacement, current dictionary acquisition and diffraction refinement, followed by the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |
 | **Q10 — handle PNA as PNA** | Respect its backbone and attachments instead of pretending it has a DNA phosphate. | Validate connected construction, native restraints and numerical behavior. |
@@ -1313,8 +1317,8 @@ model or establishes pair restraints.
    requests with the same atoms, targets, weights and multiplicity. They also
    request one shared plane for each of the nine named pairs and the canonical
    A:13/B:3 flank. Appending the old restraints would duplicate the originals.
-   This check compiled the requests in Python. Phenix still needs to read and
-   apply them on a freshly built mixed model. Preserve the ends on that model.
+   C427 subsequently confirmed every request against the native restraints on
+   a fresh mixed model, including each plane member and weight. Preserve the ends on that model.
    The archived mixed D:1 has O5′ alone among the phosphate-end atoms. The
    proposed G:5PC fixture explicitly allows OP3 at its phosphorylated D:1.
    Both fixtures have O5′ without P at B:1. The separate symmetry-linked PDU:PDU
@@ -1327,6 +1331,14 @@ model or establishes pair restraints.
    selections against the constructed model. C149 already measured the two
    junctions at 1.606 and 1.610 Å after geometry-only optimization. It exhausted
    its iteration budget and kept the input selected.
+   C425 recovers the measured DP and IMC orientation errors in ordinary Coot.
+   C426/C427 built all nine pairs through explicit locked-sugar placement.
+   The fresh native manager received both backbone bonds (1.607 Å targets) and
+   all eight chemical angles. The outgoing bond and angle begin at 1.839 Å and
+   141.55° (119.7° target). The seed assigns B=20 Å² on a 166–320 Å² host
+   site. Establish how to carry host displacement through mutation and handle
+   the initial strain before ordinary mixed refinement. Keep the seed itself
+   as an immutable construction control.
 3. Once this can be prepared ordinarily, run one new mixed diffraction lineage.
    Verify source identity, native pair/stack membership, unchanged flags and
    achieved local geometry at PDU, 5PC, DF and ATL. Exercise cache reuse and

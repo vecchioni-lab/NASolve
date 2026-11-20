@@ -500,6 +500,9 @@ def _coot_script(
     ]
     if conformation_plans and any(p["status"] == "MATCH_PARENT_CHI" for p in conformation_plans.values()):
         lines.extend(native_helpers())
+        if any("named_rotation" in p for p in conformation_plans.values()):
+            from .postmr_named_rotation import native_rotation_helpers
+            lines.extend(native_rotation_helpers())
     for code, dictionary in dictionary_paths.items():
         lines.extend([
             f"dictionary_status = coot.read_cif_dictionary({json.dumps(str(dictionary))})",
@@ -630,7 +633,7 @@ def _run_coot(
     log = coot_directory / "coot.log"
     from .postmr_conformation import parent_conformation_plan
     plans = {action.site: parent_conformation_plan((site_dictionary_paths or {}).get(action.site, dictionary_paths[action.after]),
-        action.after, action.parent_code) for action in actions
+        action.after, action.parent_code, recover_named_chi=True) for action in actions
         if action.method == "coot-parent-overlap"}
     backups = coot_directory / "backups"
     backups.mkdir()

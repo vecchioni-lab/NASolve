@@ -117612,5 +117612,178 @@
       "C149 used geometry alone. C410 changed the metal, partner and other conditions. Neither comparison isolates a mercury effect.",
       "Historical triple-only score is unassessed for DF. Source-linked scalar measurements directly measure this residue. No automatic scientific acceptance, default policy change or full regression."
     ]
+  },
+  "fresh_mixed_construction_and_native_interpretation_2026_11_20": {
+    "owner": "Rowan",
+    "milestone": "Q07",
+    "prior": "7cf16c45",
+    "native": "Coot 1.3.3 revision 0 and Phenix 2.2.1-6174",
+    "nar_commit": "a9264f9e",
+    "before": "The ordinary 12-site control stopped at DG to DP during native matching. The direct native torsion setter had already failed on this case at C207. Historical scaffold placement rejected SCALE records.",
+    "ordinary_construction": {
+      "substitutions": 12,
+      "atoms": 867,
+      "bystanders": 30,
+      "named_chi_checked": 10,
+      "unassessed": {
+        "A:12": {
+          "component": "DZ",
+          "reason": "Source lacks the shared canonical N-glycosidic chi frame"
+        },
+        "A:20": {
+          "component": "CGY",
+          "reason": "Source lacks the shared canonical N-glycosidic chi frame"
+        }
+      },
+      "corrections": {
+        "B:4": {
+          "component": "DP",
+          "initial_mismatch_deg": 179.13064,
+          "written_chi_error_deg": 0.04795
+        },
+        "C:10": {
+          "component": "IMC",
+          "initial_mismatch_deg": 41.14311,
+          "written_chi_error_deg": 0.01711
+        }
+      },
+      "constructed_sha256": "8351f6c8c37ee73103723dfb67726c08187fb824d8ce102f417250dc2accc4be",
+      "installed_wheel_matches": true
+    },
+    "explicit_locked_construction": {
+      "site": "A:11",
+      "centres": [
+        "C1'",
+        "C2'",
+        "C3'",
+        "C4'"
+      ],
+      "bystander_sites": 41,
+      "seed_coordinates_sha256": "d189062511f643a8d238bcc7ce73698fd2fa0efe67d5e49e70d65cf2fc41e085",
+      "site_count": 42,
+      "atom_count": 869,
+      "incoming_and_outgoing_A": [
+        1.59528,
+        1.83949
+      ],
+      "host_B_range": [
+        166.17,
+        320.41
+      ],
+      "seed_B": 20.0,
+      "seed_occ": 1.0
+    },
+    "native_readback": {
+      "execution": "COMPLETED",
+      "native_status": "REVIEW",
+      "scientific_approval": "NOT_RUN",
+      "model_sha256": "d189062511f643a8d238bcc7ce73698fd2fa0efe67d5e49e70d65cf2fc41e085",
+      "receipt_sha256": "e4e97683ef4dd98c496fb57ecd0d99dbbd63e0702790e46066eca8953e3453ad",
+      "counts": {
+        "angle": 90,
+        "bond": 53,
+        "parallelity": 58,
+        "planarity": 10
+      },
+      "exact_applied": 211,
+      "all_nine_pairs": true,
+      "canonical_flank_plane": true,
+      "backbone_bond_targets_A": [
+        1.607,
+        1.607
+      ],
+      "junction_angle_count": 8,
+      "outgoing_C3_O3_P_deg": [
+        141.54767,
+        119.7
+      ],
+      "outgoing_angle_width_deg": 1.2,
+      "ATL_missing_or_extra_heavy_atoms": 0,
+      "D1_end": "P,OP1,OP2,OP3",
+      "B1_end": "free O5prime",
+      "historical_dictionaries": 26,
+      "fresh_ATL_reaction_files": 3,
+      "retained_site_instructions": 13
+    },
+    "qualification": {
+      "source_command_prefix": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:<pinned-NARestraints> python -B -m pytest -q -p no:cacheprovider",
+      "source_modules_216": [
+        "test_postmr_conformation",
+        "test_postmr",
+        "test_postmr_restoration",
+        "test_postmr_canonical_seed",
+        "test_cif_mixed_pair_fixture",
+        "test_cif_construction_return",
+        "test_cif_base_rotation_audit"
+      ],
+      "source_modules_74": [
+        "test_cif_whole_furanose",
+        "test_cif_base_anchored_furanose",
+        "test_cif_furanose_bridge"
+      ],
+      "moved_wheel_tests": 47,
+      "wheel": "e3a373068ee40b6d8b8dc7eb418936e1147164606c1769c0234e30b1d2f85b00",
+      "moved_wheel_rerun": "Twelve-site native Coot raw and constructed models byte-identical. C146 and fresh C426 seed packages replay under their recorded NumPy versions 2.5.3 and 2.5.5. Using 2.5.5 for C146 reproduces the identical model but strict verification declines the changed version.",
+      "full_regression": "Not run in this pass."
+    },
+    "retained": {
+      "c424-mixed-construction/plan.json": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "cbfe669f37aaaa0db78eb79dfcc8696d5bd0083af541cc1fa3cd6d7f5028a6bb",
+        "size": 781
+      },
+      "c425-named-chi/ordinary/sources.json": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "009141b47cd8cb44664679492c833ebfa21471ebe563c496336cf9cafac0d2cd",
+        "size": 4054
+      },
+      "c425-named-chi/ordinary/cold-review.json": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "db0908928ec774c61f068e6f5dcfd465565711ba6522feb8f881f60161b067ab",
+        "size": 3745
+      },
+      "c425-named-chi/installed-002/summary.json": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "d947a7a2391d724a22a398e5e62e3284abd80c36588bafd0b05029601a0881d9",
+        "size": 1504
+      },
+      "c426-fresh-locked-site/attempt-002/review.json": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "52606b9a4062f05dbd69d1e878ec967f5811b135b5ca330e79a0b6910898f92a",
+        "size": 2246
+      },
+      "c426-fresh-locked-site/attempt-002/policy-and-angles.json": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "f9ec18d4e937c33120b8816c47418ca688e9308571f028457d4c157428ad4ac1",
+        "size": 4180
+      },
+      "c427-fresh-mixed-interpretation/inputs.json": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "70f7e6b54feccde576221838c0f55e6ffd12cd22b13dc71b426cf554111b2a3d",
+        "size": 3621
+      },
+      "c427-fresh-mixed-interpretation/cold-review.json": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "7a832b1d0658c3bde9589c922f63efa0b59a3988f3183ba82d62647a8ae8aa60",
+        "size": 5080
+      },
+      "runners/c427_cold.py": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "49f17958f9b431168c581cfe90491c869c5b17611706f2319c6eaf76deac76c0",
+        "size": 7494
+      },
+      "runners/c425_installed.py": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "4c638cfbaf8bafe126bb83cb7acb0e92cbd5c24759b8b78069317ae3259702f3",
+        "size": 7262
+      }
+    },
+    "compatibility": "No checkpoint, chemical library or migration changes. Historical conformation plans without named recovery retain their native script. Connector, alternate-conformer and incomplete-coordinate refusals remain in place.",
+    "recovery": "Native C427 exited zero and preserved its complete receipt. The local wrapper failed after native completion because it treated an anchored path as a string. Independent readback of the exact original receipt verified all inputs, native atoms and restraints without a second native run.",
+    "limits": [
+      "Q07 remains open. The explicit locked-sugar seed is strained at the outgoing link and assigns B=20 to all placed atoms on a high-B host. Current ordinary dictionary acquisition and mixed diffraction have not been established.",
+      "Historical chemical numerics include an older PDU attachment; C427 is a consumer/geometry check only. The separate neutral DF:A control completed five ordinary cycles.",
+      "Raw models, diffraction, native receipts, test outputs and private runners stay local."
+    ]
   }
 }

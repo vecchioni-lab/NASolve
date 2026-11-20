@@ -166,3 +166,18 @@ def test_fixed_chiral_source_centres_without_rs_labels_are_preserved(tmp_path):
     write(paths[0],v);write(paths[1],v)
     q=run(paths,c)
     assert {r['center'] for r in q['retained_hands']}=={'C1','C2','C3','C4'}
+
+
+def test_placement_retains_crystal_scale_in_the_original_coordinate_frame(tmp_path):
+    paths, context, _ = setup(tmp_path)
+    # A conventional nonorthogonal frame; the site replacement leaves its axes fixed.
+    header = (
+        "CRYST1  100.000  100.000   80.000  90.00  90.00 120.00 P 1           1\n"
+        "SCALE1      0.010000  0.005774  0.000000        0.00000\n"
+        "SCALE2      0.000000  0.011547  0.000000        0.00000\n"
+        "SCALE3      0.000000  0.000000  0.012500        0.00000\n"
+    ).encode("ascii")
+    paths[4].write_bytes(header + paths[4].read_bytes())
+    result = run(paths, context)
+    assert result["bystander_records_preserved"]
+    assert (paths[-1] / "model.pdb").read_bytes().startswith(header)

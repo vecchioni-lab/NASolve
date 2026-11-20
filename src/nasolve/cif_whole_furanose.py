@@ -131,7 +131,9 @@ def _derive(root, *, base_anchored=False):
     if partners[0][0] == partners[1][0] or removed & centers:
         raise ValueError('Require distinct flanks and retained stereocentres')
     lines = payload.decode('utf-8').splitlines(keepends=True)
-    if any(l[:6].strip() not in {'ATOM', 'HETATM', 'REMARK', 'CRYST1', 'TER', 'END', ''} for l in lines):
+    # Replacement stays in the host Cartesian frame. Crystal axes pass through verbatim.
+    allowed = {'ATOM', 'HETATM', 'REMARK', 'CRYST1', 'SCALE1', 'SCALE2', 'SCALE3', 'TER', 'END', ''}
+    if any(line[:6].strip() not in allowed for line in lines):
         raise ValueError('Unsupported frame records require reconciliation')
     inventory = _pdb_inventory(root/'frame.pdb'); chain, resid = selected.split(':')
     center = {k[-1]: a['xyz'] for k, a in inventory.items() if k[:2] == (chain, resid)}

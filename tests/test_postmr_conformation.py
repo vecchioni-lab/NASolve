@@ -265,3 +265,84 @@ def test_parent_identity_check_applies_when_graph_conformation_is_unassessed(tmp
         _run_coot(*args)
     assert not fake.matches and not fake.overlap_chi and not args[1].exists()
     assert "Coot did not produce DT" in (args[4] / "coot.log").read_text()
+
+
+@pytest.mark.parametrize("code", ["DP", "Q17"])
+def test_named_source_fragment_recovers_failed_chi_without_changing_sugar(tmp_path, monkeypatch, code):
+    from math import dist
+    from nasolve.postmr_restoration import source_graph_fragment
+    from nasolve.postmr_canonical_seed import _chi
+    fake, args, xyz = named_monomer_case(tmp_path, monkeypatch, code)
+    before = {n: tuple(p) for n,p in xyz.items()}
+    graph = source_graph_fragment(args[6][code], code)
+    _run_coot(*args)
+    assert len(fake.edited) == 1 and fake.overlap_chi == [pytest.approx(fake.expected)]
+    assert _chi(xyz, ["O4'", "C1'", "N9", "C4"]) == pytest.approx(fake.expected)
+    assert all(tuple(xyz[n]) == before[n] for n in graph["scaffold_atoms"])
+    attached = ["C1'", *graph["fragment_atoms"]]
+    assert all(dist(xyz[n],xyz[m]) == pytest.approx(dist(before[n],before[m]), abs=1e-8)
+               for n in attached for m in attached)
+    assert set(fake.edited[0]).isdisjoint(graph["scaffold_atoms"])
+    assert "H8" in fake.edited[0] and "N9" not in fake.edited[0]
+    assert "NASOLVE_NAMED_CHI_RECOVERY" in (args[4] / "coot.log").read_text()
+
+
+def named_monomer_case(tmp_path, monkeypatch, code):
+    from nasolve.cif_stereochemistry_audit import _values, _graph, _coordinates
+    from nasolve.postmr_canonical_seed import _chi
+    fake, args = case(tmp_path, monkeypatch, code=code)
+    source = args[6][code]
+    template = Path(__file__).parents[1] / "src/nasolve/data/ligands/DP.cif"
+    source.write_text(template.read_text().replace("DP", code))
+    v = _values(source, code)
+    elements = _graph(v)[0]
+    _, xyz = _coordinates(v, source=False)
+    names = ["O4'", "C1'", "N9", "C4"]
+    fake.expected = (_chi(xyz,names) + 179.1 + 180) % 360 - 180
+    action = MutationAction("B:4", "DG", code, "coot-parent-overlap", "DG")
+    args = (*args[:2], (action,), *args[3:7], {"B:4": args[4] / "parent.pdb"})
+    fake.get_torsion_py = lambda imol, *specs: fake.expected if imol == 0 else _chi(xyz,[s[3].strip() for s in specs])
+    fake.residue_info_py = lambda *a: [[[n,""],[1.0,20.0,e,""],list(xyz[n]),i]
+                                       for i,(n,e) in enumerate(elements.items())]
+    fake.edited = []
+    def edit(rows):
+        fake.edited.append({row[4].strip() for row in rows})
+        for imol,chain,resid,icode,atom,alt,axis,value in rows:
+            assert (imol,chain,resid,icode,alt) == (1,"A",1,"","")
+            xyz[atom.strip()]["xyz".index(axis)] = value
+        return 0  # Actual Coot 1.3.3 reports 0 on a successful coordinate edit.
+    fake.set_atom_attributes_py = edit
+    def overlap(*a):
+        fake.overlap_chi.append(_chi(xyz,names))
+        return True
+    fake.overlap_ligands_py = overlap
+    return fake, args, xyz
+
+
+@pytest.mark.parametrize("defect", ["extra", "missing-heavy", "wrong-element", "alternate", "duplicate", "silent-incomplete-write", "moved-sugar"])
+def test_named_chi_recovery_refuses_incomplete_or_ambiguous_monomer(tmp_path, monkeypatch, defect):
+    fake,args,xyz = named_monomer_case(tmp_path,monkeypatch,"DP")
+    read,write = fake.residue_info_py,fake.set_atom_attributes_py
+    def reader(*a):
+        rows=read(*a)
+        if defect=="extra":rows.append([["XX",""],[1.,20.,"C",""],[0.,0.,0.],-1])
+        elif defect=="duplicate":rows.append(rows[-1])
+        elif defect=="missing-heavy":rows=[r for r in rows if r[0][0]!="O6"]
+        elif defect=="wrong-element":rows[0][1][2]="X"
+        elif defect=="alternate":rows[0][0][1]="B"
+        return rows
+    def writer(rows):
+        if defect=="silent-incomplete-write":return 1
+        status=write(rows)
+        if defect=="moved-sugar":xyz["O4'"][0]+=0.02
+        return status
+    fake.residue_info_py, fake.set_atom_attributes_py = reader, writer
+    with pytest.raises(PostMRPreparationError):
+        _run_coot(*args)
+    expected_reason = {
+        "missing-heavy": "missing source heavy atoms",
+        "silent-incomplete-write": "did not realize the named rigid rotation",
+        "moved-sugar": "moved a protected atom",
+    }.get(defect, "differs from the source atoms")
+    assert expected_reason in (args[4] / "coot.log").read_text()
+    assert not fake.overlap_chi and not args[1].exists()

@@ -19,7 +19,9 @@ _PARENT_ROLES = {
 }
 
 
-def parent_conformation_plan(dictionary: Path, component: str, parent_code: str) -> dict:
+def parent_conformation_plan(
+    dictionary: Path, component: str, parent_code: str, *, recover_named_chi: bool = False,
+) -> dict:
     """Select a shared canonical chi frame without guessing modified backbones."""
     result = {"policy_id": POLICY_ID, "status": "UNASSESSED", "component": component}
     before = None
@@ -29,7 +31,7 @@ def parent_conformation_plan(dictionary: Path, component: str, parent_code: str)
         before = Path(dictionary).read_bytes()
         graph = source_graph_fragment(dictionary, component)
         values = component_values(dictionary, component)
-        elements, _, _, neighbors = _graph(values)
+        elements, bonds, _, neighbors = _graph(values)
         anchor, first, second = _PARENT_ROLES[parent_code]
         if (graph["attachment_atom"] != anchor or elements.get(anchor) != "N"
                 or any(elements.get(n) != "C" for n in (first, second))
@@ -47,6 +49,11 @@ def parent_conformation_plan(dictionary: Path, component: str, parent_code: str)
                   source_sha256=graph["source_sha256"],
                   atoms=["O4'", "C1'", anchor, first],
                   match_tolerance_degrees=MATCH_TOLERANCE_DEGREES)
+    if recover_named_chi:
+        from .postmr_named_rotation import named_rotation_scope
+        scope = named_rotation_scope(graph, elements, bonds, neighbors)
+        if scope is not None:
+            result["named_rotation"] = scope
     return result
 
 
@@ -75,8 +82,16 @@ def native_helpers() -> list[str]:
 def native_match_lines(plan: dict, site: str, chain: str, residue: int) -> list[str]:
     if plan["status"] != "MATCH_PARENT_CHI":
         return [f"print('NASOLVE_PARENT_CHI_UNASSESSED', {site!r}, {plan['reason']!r})"]
+    recorded_plan = {key: value for key, value in plan.items() if key != "named_rotation"}
+    recovery = []
+    if "named_rotation" in plan:
+        recovery = [
+            "matched_chi = nasolve_chi(ligand_imol, 'A', 1, chi_atoms)",
+            f"if abs((matched_chi - parent_chi + 180.0) % 360.0 - 180.0) > {plan['match_tolerance_degrees']!r}:",
+            f"    nasolve_recover_named_chi(coot, ligand_imol, parent_chi, matched_chi, chi_atoms, {plan['named_rotation']!r}, {site!r})",
+        ]
     return [
-        f"print('NASOLVE_PARENT_CHI_PLAN', {site!r}, {plan!r})",
+        f"print('NASOLVE_PARENT_CHI_PLAN', {site!r}, {recorded_plan!r})",
         "chi_matcher = getattr(coot, 'match_ligand_torsions', None)",
         "if not callable(chi_matcher):",
         "    raise RuntimeError('Coot lacks native parent-conformation matching')",
@@ -85,6 +100,7 @@ def native_match_lines(plan: dict, site: str, chain: str, residue: int) -> list[
         "initial_chi = nasolve_chi(ligand_imol, 'A', 1, chi_atoms)",
         f"print('NASOLVE_INITIAL_CHI', {site!r}, parent_chi, initial_chi)",
         f"chi_matcher(ligand_imol, imol, {chain!r}, {residue})",
+        *recovery,
         f"nasolve_check_chi(ligand_imol, parent_chi, chi_atoms, {site!r}, 'matched', {plan['match_tolerance_degrees']!r})",
     ]
 
