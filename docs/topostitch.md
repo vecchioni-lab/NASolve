@@ -1041,6 +1041,13 @@ reconstructed approximation or one map sample. Admission precedes the profile:
   before core/mask refresh and later ADP/scaling; match actual selected-weight
   identity and the full passive trajectory before takeover. Saved final F-model
   arrays alone do not reconstruct that earlier selected-XYZ objective.
+  Target-family coverage must be explicit: W159 used `ls_wunit_k1` for the
+  first two cycles and `ml` for the last three. C397's current private state
+  reader assumes ML core fields. It cannot simply be applied to every W159
+  return. Either qualify both families or narrow full-state capture to the
+  declared ML stage while independently proving full trajectory/output neutrality.
+  The native LS owner has its own weights and scale policy; do not replace it
+  with an ML snapshot or change the recipe to make the observer fit.
 - Bind all active likelihood, mask/scale and geometry state, **including actual
   parallelity parameters and limits**, callbacks, normalization and full retained
   forces. The current private metal precedent does not qualify these for a

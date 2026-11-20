@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "topostitch-development-roadmap",
-  "updated": "2026-11-19",
+  "updated": "2026-11-20",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
   "audited_code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",

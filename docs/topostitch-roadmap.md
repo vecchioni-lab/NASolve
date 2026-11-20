@@ -1,6 +1,6 @@
 # TopoStitch and Pine completion roadmap
 
-**Current audited work queue: 2026-11-19.** Generated from
+**Current audited work queue: 2026-11-20.** Generated from
 [the machine-readable ledger](topostitch-roadmap.json); edit that ledger and run
 `python scripts/audit_topostitch_roadmap.py --write`, then `--check`.
 This is one queue with two linked tracks, not two competing implementations.
