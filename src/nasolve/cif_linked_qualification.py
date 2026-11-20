@@ -77,9 +77,18 @@ def site_definition_checks(linked: dict, preparations: list[dict]) -> list[dict]
             expected_atoms=set(expected['expected_atoms'])
             check('effective-site-atoms:'+site,set(atoms)==expected_atoms,
                   missing=sorted(expected_atoms-set(atoms)),extra=sorted(set(atoms)-expected_atoms))
-            check('effective-site-polymer-group:'+site,metadata.get('group')=='DNA',
-                  expected='DNA',observed=metadata.get('group'),
-                  native_classification=metadata.get('classification',{'status':'NOT_RECORDED'}))
+            observed_class = metadata.get('classification',{'status':'NOT_RECORDED'})
+            group = expected.get('expected_native_group','DNA')
+            matches = metadata.get('group') == group
+            classification = {}
+            if 'expected_native_group' in expected or 'expected_native_classification' in expected:
+                source_class = expected.get('expected_native_classification')
+                matches = (matches and 'expected_native_group' in expected
+                           and group in ('DNA','RNA','non-polymer') and source_class in ('DNA','RNA')
+                           and observed_class == {'status':'RECORDED','value':source_class})
+                classification['expected_native_classification'] = source_class
+            check('effective-site-polymer-group:'+site,matches,expected=group,observed=metadata.get('group'),
+                  native_classification=observed_class,**classification)
             check('effective-site-energy-types:'+site,all(atoms.get(name,{}).get('type_energy')==energy
                   for name,energy in expected['expected_energy_types'].items()))
             formal_unavailable=[];formal_contradictions=[]

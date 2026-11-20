@@ -112,8 +112,9 @@ def prepare_dictionary_bundle(components, model, output, *, consumer, expected_l
         native_context, supplementary_phils=()):
     """Publish a fresh composition; no native execution or automatic adoption.
 
-    One to sixteen components each supply a snapshot/contexts/optional terminal_resource
-    mapping. Every site of each selected code must be declared. Shared PHILs keep
+    Each component supplies a snapshot and its site contexts. Optional site inputs
+    include a terminal resource or an explicit graph-bound furanose reaction.
+    Every site of each selected code must be declared. Shared PHILs keep
     their caller order; component dictionaries are ordered by code, with active
     modifiers adjacent and the full-model interpretation policy last.
     """
@@ -126,7 +127,8 @@ def prepare_dictionary_bundle(components, model, output, *, consumer, expected_l
     selected = {}
     for item in components:
         _need(isinstance(item, dict) and {'snapshot', 'contexts'} <= item.keys()
-            and item.keys() <= {'snapshot', 'contexts', 'terminal_resource', 'phosphate_atom_policy'}, 'Unknown component request')
+            and item.keys() <= {'snapshot', 'contexts', 'terminal_resource', 'phosphate_atom_policy',
+                                'furanose_reaction'}, 'Unknown component request')
         snapshot = Path(item['snapshot']).absolute()
         _need(snapshot != output and snapshot not in output.parents, 'Cannot publish inside a snapshot')
         saved = resolve_dictionary_snapshot(snapshot); code = saved['manifest']['request']['component']
@@ -146,7 +148,7 @@ def prepare_dictionary_bundle(components, model, output, *, consumer, expected_l
             prepare_dictionary_sites(item['snapshot'], root/'inputs/model.pdb', item['contexts'],
                 root/'components'/code, consumer=consumer, expected_links=expected_links,
                 native_context=native_context, terminal_resource=item.get('terminal_resource'),
-                phosphate_atom_policy=item.get('phosphate_atom_policy'))
+                phosphate_atom_policy=item.get('phosphate_atom_policy'), furanose_reaction=item.get('furanose_reaction'))
         children, owners = _children(root, controls)
         _derive(root, children, root/'prepared', component_list_policy=controls['component_list_policy'])
         report = _report(root, controls, children, owners)

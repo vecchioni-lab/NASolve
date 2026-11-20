@@ -19,6 +19,7 @@ POLICY_ID = 'cif-stored-dictionary-sites-v1'
 CONTEXT_POLICY_ID = 'cif-stored-dictionary-sites-v2'
 FULL_MODEL_POLICY_ID = 'cif-stored-dictionary-sites-v3'
 SOURCE_NAMES_POLICY_ID = 'cif-stored-dictionary-sites-v4'
+FURANOSE_POLICY_ID = 'cif-stored-internal-furanose-sites-v1'
 CONSTRUCTION_POLICY_ID = 'cif-stored-construction-dictionaries-v1'
 ANCHOR = 'dictionary_site_directory'
 _SNAPSHOT_FILES = ('resolution.json', 'entry/manifest.json', 'entry/source.cif',
@@ -135,7 +136,19 @@ def _derive(root, controls, destination):
             'Source-named preparation requires explicit current policy and full native context')
         _need(not terminal, 'Source-named terminal recipe is not qualified')
         options['phosphate_atom_policy']=controls['phosphate_atom_policy']
-    if terminal:
+    if 'furanose_reaction' in controls:
+        from .cif_furanose_reaction import prepare_internal_furanose_sites
+        reaction = controls['furanose_reaction']
+        _need(isinstance(reaction,dict) and set(reaction)=={'workbook','contexts'}
+            and reaction['workbook']=='inputs/furanose/Ligands.xlsx'
+            and controls.get('native_context',{}).get('monomer_inventory')=='full_model'
+            and policy is not None and not terminal
+            and 'phosphate_atom_policy' not in controls and 'construction_targets' not in controls,
+            'Stored graph reaction requires qualified numerics and a full internal native context')
+        preparation=prepare_internal_furanose_sites(saved['source'],saved['dictionary'],
+            root/reaction['workbook'],model,destination,code=manifest['request']['component'],
+            contexts=contexts,reaction_contexts=reaction['contexts'],bond_representation_policy=policy)
+    elif terminal:
         _need(_safe(resource) and resource.startswith('resources/'), 'Unsafe terminal resource reference')
         _resource(root/resource,consumer)
         preparation=prepare_terminal_component(saved['source'],saved['dictionary'],model,
@@ -152,6 +165,7 @@ def _report(root, controls, saved, links, policy):
     site_policy=CONTEXT_POLICY_ID if 'native_context' in controls else POLICY_ID
     if controls.get('native_context',{}).get('monomer_inventory')=='full_model':site_policy=FULL_MODEL_POLICY_ID
     if 'phosphate_atom_policy' in controls:site_policy=SOURCE_NAMES_POLICY_ID
+    if 'furanose_reaction' in controls:site_policy=FURANOSE_POLICY_ID
     if 'construction_targets' in controls:site_policy=CONSTRUCTION_POLICY_ID
     return {'schema_version':1,'policy_id':site_policy,'status':'PREPARED_REVIEW',
         'entry_id':saved['entry_id'],'request_key':saved['manifest']['request_key'],
@@ -185,7 +199,7 @@ def _inputs(root, controls):
 
 def prepare_dictionary_sites(snapshot, model, contexts, output, *, consumer, expected_links,
         terminal_resource=None, supplementary_dictionaries=(), supplementary_phils=(), native_context=None, phosphate_atom_policy=None,
-        construction_targets=None):
+        construction_targets=None, furanose_reaction=None):
     """Freeze only explicit inputs and publish a fresh, replayable preparation.
 
     Consumer must equal the saved isolated qualification. Changed installations
@@ -204,6 +218,10 @@ def prepare_dictionary_sites(snapshot, model, contexts, output, *, consumer, exp
     coordinates. Readback exposes canonical_model/projections, not native-ready
     model/dictionary arguments. Supplementary/native contexts are unavailable in
     this mode; actual construction needs fresh ordinary site qualification.
+
+    An optional furanose_reaction supplies a workbook and explicit graph port
+    contexts for already placed internal residues. Its partners must agree with
+    the declared backbone and all native validation still applies.
     """
     output=Path(output).absolute()
     if output.exists() or output.is_symlink():raise FileExistsError(output)
@@ -229,6 +247,12 @@ def prepare_dictionary_sites(snapshot, model, contexts, output, *, consumer, exp
         root=Path(temporary)/'bundle';root.mkdir(mode=0o700)
         for name in _SNAPSHOT_FILES:freeze(Path(snapshot)/name,root/'snapshot'/name)
         freeze(model,root/'inputs/model.pdb')
+        if furanose_reaction is not None:
+            _need(isinstance(furanose_reaction,dict) and set(furanose_reaction)=={'workbook','contexts'},
+                'Require a graph-reaction workbook and explicit port contexts')
+            name='inputs/furanose/Ligands.xlsx'
+            freeze(furanose_reaction['workbook'],root/name)
+            controls['furanose_reaction']={'workbook':name,'contexts':furanose_reaction['contexts']}
         if terminal_resource is not None:
             resource=Path(terminal_resource);record=_resource(resource,consumer)
             controls['terminal_resource']='resources/'+resource.name
@@ -258,20 +282,25 @@ def read_dictionary_sites(output):
     """Read frozen inputs and rederive every generated file; never mutate the bundle."""
     root=Path(output).absolute();report=_json(_read(root/'site_receipt.json'))
     _need(type(report.get('schema_version')) is int and report['schema_version']==1
-        and report.get('policy_id') in {POLICY_ID,CONTEXT_POLICY_ID,FULL_MODEL_POLICY_ID,SOURCE_NAMES_POLICY_ID,CONSTRUCTION_POLICY_ID}, 'Unknown site preparation schema/policy')
+        and report.get('policy_id') in {POLICY_ID,CONTEXT_POLICY_ID,FULL_MODEL_POLICY_ID,SOURCE_NAMES_POLICY_ID,
+            CONSTRUCTION_POLICY_ID,FURANOSE_POLICY_ID}, 'Unknown site preparation schema/policy')
     _need(report.get('files')==_files(root), 'Site artifact inventory or checksum differs')
     controls={k:report[k] for k in ('consumer','contexts','expected_links','terminal_resource',
         'supplementary_dictionaries','supplementary_phils')}
-    if report['policy_id'] in {CONTEXT_POLICY_ID,FULL_MODEL_POLICY_ID,SOURCE_NAMES_POLICY_ID}:
+    if report['policy_id'] in {CONTEXT_POLICY_ID,FULL_MODEL_POLICY_ID,SOURCE_NAMES_POLICY_ID,FURANOSE_POLICY_ID}:
         _need('native_context' in report, 'Missing frozen native context')
         controls['native_context']=report['native_context']
     if 'phosphate_atom_policy' in report:
         controls['phosphate_atom_policy']=report['phosphate_atom_policy']
+    if report['policy_id']==FURANOSE_POLICY_ID:
+        _need('furanose_reaction' in report, 'Missing frozen furanose reaction')
+        controls['furanose_reaction']=report['furanose_reaction']
     if report['policy_id']==CONSTRUCTION_POLICY_ID:
         _need('construction_targets' in report, 'Missing canonical construction identities')
         controls['construction_targets']=report['construction_targets']
     inputs=_inputs(root,controls)
     allowed={'snapshot/'+name for name in _SNAPSHOT_FILES}|{'inputs/model.pdb'}
+    if 'furanose_reaction' in controls:allowed.add('inputs/furanose/Ligands.xlsx')
     allowed.update(controls['supplementary_dictionaries']);allowed.update(controls['supplementary_phils'])
     resource=controls['terminal_resource']
     if resource is not None:
