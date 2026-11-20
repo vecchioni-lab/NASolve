@@ -10072,3 +10072,30 @@ accepted and its causal/remedial question remains open. Continue supported
 request/chemistry/execution integration, with noisy density calibration and
 cluster opening as separate later gates; do not repeat this sampling or launch
 an identical fit as a substitute for a distinct hypothesis.
+
+
+**Same-update request-owner review.** Before extending W168 admission, source
+review identifies the existing W88 `load_bend_motion` and captured-job endpoint/
+3N-start owners. The former pins the registered terminal preview and rebuilds
+unrounded points under the original bound; its source digest is authenticated by
+that loader, unlike a bare caller-constructed `TaperedMotion`. Existing controls
+cover changed input/receipt, mutation during reading, renamed registration,
+relocation after original removal, and a sub-PDB-precision bound violation.
+Captured-job unit controls cover mask/count/bounds and frozen forwarding through
+a mocked runner. Current parent/request binding into the retained-chemistry
+ordinary lifecycle remains unimplemented; this is not a native integration test.
+The W163 interior taper is outside the terminal-preview request scope, and
+retrospective reconstruction cannot create prospective authority for an old run.
+ANISOU-rotating preview output also requires an explicit compatible admission
+policy; the strict coordinate-only audit cannot silently allow those byte changes.
+
+At source commit `94dc8a7a6d5d24dad557bcac9e8fff3a5619cbeb`:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider tests/test_topostitch_preview.py tests/test_topostitch_captured_job.py -k 'saved_motion or explicit_trial_start or explicit_start'
+```
+
+**24 passed, 56 deselected**. No new tests, product code, runtime schema,
+installation, native calculation, refinement or science files. This clarifies
+the same W170 queue without claiming another scientific milestone or repeating
+already-qualified arithmetic. Existing full/install evidence remains historical.

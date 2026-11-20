@@ -148,6 +148,26 @@ The supported caller must also authenticate original full-precision points and
 the prospectively declared mask/bound. W169's saved-coordinate cold check does
 not retroactively establish that original proposal provenance.
 
+The existing `topostitch_preview.load_bend_motion` already binds a registered
+terminal preview to its expected receipt hash, original source, registration,
+window, mask, pivot, weights and trial bound. It reconstructs unrounded points
+and rejects a bound violation that PDB rounding would hide. Reuse that loader
+for its supported preview scope, then pass its full-precision points to the
+endpoint auditor; a bare `TaperedMotion.source_model_sha256` is caller-supplied
+metadata, not independent authentication. The lower-level captured-job owner
+already accepts checksummed endpoint points or an explicitly opted-in frozen
+3N start. Neither diagnostic path is the ordinary retained-parent workflow.
+
+The next integration must pin the original request before dispatch and verify
+that its source still matches the exact current parent. Keep native interpretation
+reordering separate from input identity/order. The W163 interior taper is not a
+registered terminal preview, and replaying its historical parameters now cannot
+establish a prospective request for the old run. Preserve the first route's
+canonical/full-occupancy and tensor restrictions; a preview that rotates ANISOU
+cannot silently enter an audit requiring unchanged non-XYZ bytes. This owner
+review adds no helper or experiment; 24 existing focused unit cases pass
+(56 deselected), including saved-motion relocation and mocked job forwarding.
+
 W170 completes the descriptive W164 B2/A13 saved-map review. The distorted model
 remains unaccepted; no causal force diagnosis or corrective fit is implied. Do
 not repeat this sampling or run an identical continuation just because Rfree is
