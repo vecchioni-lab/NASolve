@@ -31,15 +31,9 @@ def _hand(a, b):
             and min(abs(a), abs(b)) > VOLUME_EPSILON and (a > 0) == (b > 0))
 
 
-def _base_frame_bindings(profile, values, frame_roles):
-    """Bind explicit NAR roles to the base side of the source glycosidic edge."""
-    mapping = profile['operational_signature']['atom_roles']
-    elements, bonds, _, neighbors = _graph(values)
-    roles = profile['bindings']; base, sugar = roles['base'], roles['anomeric']
-    names = [mapping.get(role) for role in frame_roles]
-    if (len(set(names)) != 3 or names[0] != base
-            or any(elements.get(n) in {None, 'H', 'D'} for n in names)):
-        raise ValueError('Require distinct heavy NAR base anchors, glycosidic atom first')
+def base_fragment_atoms(roles, neighbors):
+    """Find the complete base-side fragment after cutting its one glycosidic edge."""
+    base, sugar = roles['base'], roles['anomeric']
     fragment = set(); pending = [base]
     while pending:
         atom = pending.pop()
@@ -47,7 +41,21 @@ def _base_frame_bindings(profile, values, frame_roles):
         fragment.add(atom)
         pending.extend(n for n in neighbors[atom]
             if {atom, n} != {base, sugar} and n not in fragment)
-    if sugar in fragment or not set(names) <= fragment:
+    if sugar in fragment:
+        raise ValueError('Base must separate from the source sugar at its declared edge')
+    return fragment
+
+
+def _base_frame_bindings(profile, values, frame_roles):
+    """Bind explicit NAR roles to the base side of the source glycosidic edge."""
+    mapping = profile['operational_signature']['atom_roles']
+    elements, bonds, _, neighbors = _graph(values)
+    roles = profile['bindings']; base = roles['base']
+    names = [mapping.get(role) for role in frame_roles]
+    if (len(set(names)) != 3 or names[0] != base
+            or any(elements.get(n) in {None, 'H', 'D'} for n in names)):
+        raise ValueError('Require distinct heavy NAR base anchors, glycosidic atom first')
+    if not set(names) <= base_fragment_atoms(roles,neighbors):
         raise ValueError('Frame anchors must lie on the separated source base fragment')
     edges = [bonds.get(tuple(sorted((base, n)))) for n in names[1:]]
     if any(edge is None for edge in edges):

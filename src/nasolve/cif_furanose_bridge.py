@@ -19,14 +19,17 @@ from .cif_fana_bridge import _moving_group, _search
 from .cif_fana_component import _digest, _load, _save
 from .cif_fana_junction import _path
 from .cif_stereochemistry_audit import _values, _graph, _coordinates, _volume
-from .cif_whole_furanose import read_base_anchored_furanose_control, _hand
+from .cif_whole_furanose import base_fragment_atoms, read_base_anchored_furanose_control, _hand
+from .cif_base_displacement import POLICY_ID as BASE_B_POLICY, inherit_base_displacement
 
 POLICY_ID = 'cif-graph-furanose-bounded-bridge-seed-v1'
+BASE_B_SEED_POLICY = 'cif-graph-furanose-bounded-bridge-seed-v2'
 _FILES = {'config.json', 'model.pdb', 'seed.json'}
 
 
 def _seed(control, config):
-    if set(config) != {'endpoint_weight', 'max_base_displacement'}:
+    if (set(config)-{'base_b_policy'} != {'endpoint_weight', 'max_base_displacement'}
+            or ('base_b_policy' in config and config['base_b_policy'] != BASE_B_POLICY)):
         raise ValueError('Require explicit endpoint weight and base displacement limit')
     for key, maximum in [('endpoint_weight', 1000), ('max_base_displacement', 5)]:
         value = config[key]
@@ -44,16 +47,7 @@ def _seed(control, config):
     heavy = sorted(n for n, e in elements.items() if e not in {'H', 'D'})
     if set(heavy)-retained != {leaving}:
         raise ValueError('Require exactly one declared virtual heavy leaving atom')
-    base = set(); pending = [roles['base']]
-    while pending:
-        n = pending.pop()
-        if n in base:continue
-        base.add(n)
-        pending.extend(k for k in graph[n]
-            if {n, k} != {roles['base'], roles['anomeric']} and k not in base)
-    if roles['anomeric'] in base:
-        raise ValueError('Base must separate from the source sugar at its declared edge')
-    base &= retained
+    base = base_fragment_atoms(roles,graph) & retained
     protected = base | {roles[r] for r in ('anomeric', 'ring_o', 'ring_c2', 'ring_c3', 'ring_c4', 'three_o')}
     index = {n:i for i,n in enumerate(heavy)}; xyz = np.array([coordinates[n] for n in heavy], dtype=float)
     axes = []; groups = []
@@ -65,7 +59,9 @@ def _seed(control, config):
         groups.append({'axis_roles':[left, right], 'axis_atoms':[a, b], 'moving_source_atoms':sorted(group)})
     frame = _pdb_inventory(control/'frame.pdb'); prior = _pdb_inventory(control/'model.pdb')
     anchors = [*placement['target_frame_atoms'], roles['phosphate'], roles['three_o'], leaving]
-    host = inspect_attachment_profile(control/'host.cif', _model((control/'frame.pdb').read_bytes())[selected]['component'], workbook=control/'Ligands.xlsx')['bindings']
+    host_code = _model((control/'frame.pdb').read_bytes())[selected]['component']
+    host_profile = inspect_attachment_profile(control/'host.cif', host_code, workbook=control/'Ligands.xlsx')
+    host = host_profile['bindings']
     host_anchors = [*placement['host_frame_atoms'], host['phosphate'], host['three_o']]
     target = [frame[(chain, resid, '', '', n)]['xyz'] for n in host_anchors]
     partner = context['ports']['phosphate']['partner']; pc, pr = partner['site'].split(':')
@@ -117,7 +113,7 @@ def _seed(control, config):
         junctions.append({'target_atom':n, 'partner_atom':p['site']+':'+p['atom_id'],
             'before':math.dist(prior[(chain, resid, '', '', n)]['xyz'], other),
             'full_precision':math.dist(fitted[n], other), 'pdb_rounded':math.dist(rounded[n], other)})
-    return {'schema_version':1, 'policy_id':POLICY_ID, 'status':'FURANOSE_BRIDGE_SEED_REVIEW',
+    report = {'schema_version':1, 'policy_id':POLICY_ID, 'status':'FURANOSE_BRIDGE_SEED_REVIEW',
         'component':code, 'site':selected, 'config':config, 'source_profile':profile['matched_profile'],
         'virtual_leaving_atom':leaving, 'virtual_atom_written':False,
         'virtual_partner_error':math.dist(fitted[leaving], target[-1]),
@@ -130,16 +126,26 @@ def _seed(control, config):
             'rounded_max_angle_error_degrees':max(final_angles), 'bystander_records_exact':True},
         'numpy_version':np.__version__, 'native_linkage':'NOT_ASSESSED', 'NAR_policy':'REQUIRES_CURRENT_MODEL_BINDING',
         'chemical_qualification':'NOT_ESTABLISHED', 'clashes':'NOT_ASSESSED',
-        'automatic_adoption':False, 'diffraction_refinement':'NOT_RUN'}, model
+        'automatic_adoption':False, 'diffraction_refinement':'NOT_RUN'}
+    if 'base_b_policy' in config:
+        report['policy_id'] = BASE_B_SEED_POLICY
+        model, report['base_displacement'] = inherit_base_displacement(host_profile,profile,
+            _values(control/'host.cif',host_code),_values(control/'source.cif',code),
+            (control/'frame.pdb').read_text(),model,selected)
+    return report, model
 
 
-def prepare_furanose_bridge_seed(placement, output, *, endpoint_weight, max_base_displacement):
+def prepare_furanose_bridge_seed(placement, output, *, endpoint_weight, max_base_displacement,
+                                 inherit_equivalent_base_b=False):
     """Freeze a fresh bounded seed, retaining the original placement and chemistry."""
     control = _path(placement, directory=True); out = Path(output).expanduser().absolute()
     if out.exists() or out.is_symlink():raise FileExistsError(out)
     if any(p.is_symlink() for p in out.parents) or out.is_relative_to(control) or control.is_relative_to(out):
         raise ValueError('Seed output must be separate from its preserved source')
     config = {'endpoint_weight':endpoint_weight, 'max_base_displacement':max_base_displacement}
+    if type(inherit_equivalent_base_b) is not bool:
+        raise ValueError('Require a boolean choice for equivalent-base starting displacement')
+    if inherit_equivalent_base_b: config['base_b_policy'] = BASE_B_POLICY
     before = {p:p.read_bytes() for p in control.rglob('*') if p.is_file()}
     report, model = _seed(control, config)
     if any(p.read_bytes()!=data for p,data in before.items()):raise ValueError('Seed authority changed during preflight')
@@ -150,7 +156,7 @@ def prepare_furanose_bridge_seed(placement, output, *, endpoint_weight, max_base
     with (out/'model.pdb').open('x') as stream:stream.write(model)
     _save(out/'seed.json', report)
     files = {p.relative_to(out).as_posix():_digest(p) for p in out.rglob('*') if p.is_file()}
-    _save(out/'receipt.json', {'schema_version':1, 'policy_id':POLICY_ID, 'files':files})
+    _save(out/'receipt.json', {'schema_version':1, 'policy_id':report['policy_id'], 'files':files})
     return read_furanose_bridge_seed(out)
 
 
@@ -167,10 +173,11 @@ def read_furanose_bridge_seed(directory):
         raise ValueError('Unexpected or missing seed package file')
     r = _load(root/'receipt.json')
     if (set(r) != {'schema_version', 'policy_id', 'files'} or type(r['schema_version']) is not int
-            or r['schema_version']!=1 or r['policy_id']!=POLICY_ID or set(r['files'])!=expected-{'receipt.json'}
+            or r['schema_version']!=1 or r['policy_id'] not in (POLICY_ID,BASE_B_SEED_POLICY) or set(r['files'])!=expected-{'receipt.json'}
             or any(_digest(root/name)!=value for name,value in r['files'].items())):
         raise ValueError('Invalid seed receipt or checksum')
     report, model = _seed(root/'placement', _load(root/'config.json'))
-    if report!=_load(root/'seed.json') or model.encode()!=(root/'model.pdb').read_bytes() or any(p.read_bytes()!=b for p,b in before.items()):
+    if (r['policy_id']!=report['policy_id'] or report!=_load(root/'seed.json')
+            or model.encode()!=(root/'model.pdb').read_bytes() or any(p.read_bytes()!=b for p,b in before.items())):
         raise ValueError('Stored seed differs from fresh derivation')
     return report

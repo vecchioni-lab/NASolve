@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Starting B factors for a matched base
+
+- An optional whole-sugar construction seed can borrow individual isotropic B
+  factors from the host base. The NARestraints atom roles, complete separated
+  base graph, isotopes, charges, hydrogen attachments and occupancies must agree.
+  A missing or conflicting donor keeps the previous starting values and records
+  the reason. Sugar and phosphate atoms retain their own seed values.
+
 ### Internal sugars in stored dictionary bundles
 
 - A component can supply its catalogue workbook and the two reacting sugar
