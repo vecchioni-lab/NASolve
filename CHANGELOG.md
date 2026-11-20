@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record the selective metal-angle comparison
+
+- Close the bounded native comparison of donor-vertex and metal-centred angular
+  hypotheses, preserving their different stiffness, matched inputs and verified
+  delivery. The bridge moves, but local geometry and overall fit do not support
+  accepting the new endpoint; A01 remains partial and A02 gated.
+- Add a compact local map/table checkout and update the next coupled-pose scope.
+  Runtime, schemas, defaults and migration are unchanged; generated science,
+  reports and private diagnostics remain excluded from Git.
+
 ### Record native metal-bridge objective evidence
 
 - Separate phased-likelihood, metal-recipe and surrounding-geometry contributions

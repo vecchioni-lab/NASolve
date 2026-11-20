@@ -68,14 +68,16 @@ records the subsequent qualification decision, without rewriting that evidence.
 Only owned test scratch may be retired after retaining diagnostic evidence;
 scientific inputs, outputs, shared installations and parent checkpoints remain.
 
-The 20 November A01 diagnostics and matched ordinary continuations are complete
-and stopped. Additional XYZ/group-B cycles improve final R values and raise B,
-but a small starting movement has no established advantage and local geometry/
-coordination still needs review. A01 remains partial, A02 gated. No new runtime,
-accepted model or f″ parent follows. The metal handoff owns exact results;
+The 20 November A01 diagnostics, matched ordinary continuations and explicit
+local angular alternative are complete and stopped. The stronger metal-centred
+term opens the Hg bridge, but leaves a short Hg–O4 contact and stretched base
+attachment, with worse R values than the unchanged continuation. Native delivery
+and cold readback pass; no scientific endpoint, default recipe or f″ parent is
+accepted. A01 remains partial, A02 gated. The metal handoff owns exact results;
 the latest compact checkout is
-`ScienceCheckouts/Hazel/2026-11-20_matched-continuation/review.html`, with an
-adjacent standard-Python opener. A04's separate modern-parent recovery proof
+`ScienceCheckouts/Hazel/2026-11-20_local-angle/review.html`, with a standard-Python
+opener, editable map figure and provenance. A04's separate modern-parent recovery
+proof
 now passes 876 cold checks and 16 synthetic refusals with no native calls or
 source changes. The subsequent additive parent-layout adapter passes 96 focused tests and an
 installed 876-check recovery with all 346 package files exact. Only the new
@@ -126,8 +128,9 @@ data uploaded. New capabilities retain their existing explicit policies and
 schema boundaries; integration itself introduces no new artifact schema.
 Refine Doctor's declared-site continuation remains a separately qualified gap.
 Receiving Pine, a release merge, scientific acceptance and completion of A01–A08
-are separate decisions. The matched A01 continuation and subsequent donor-span/current-state objective
-reviews are complete; the metal handoff owns the remaining local coordination
-question and the withheld numerical profile. No repeated unchanged controls are
-queued. A04 has explicit parent transport; scientific session/software identity
+are separate decisions. The matched A01 continuation, donor-span/current-state
+objective reviews and explicit angular alternative are complete. The metal
+handoff owns the next linked base/metal pose scope and the withheld numerical
+profile. No repeated unchanged controls are queued. A04 has explicit parent
+transport; scientific session/software identity
 and the compact child lifecycle still precede pruning.

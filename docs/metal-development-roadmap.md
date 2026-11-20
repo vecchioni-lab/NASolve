@@ -124,8 +124,20 @@ descriptive; broad geometry and combined scientific evidence guide review.
    likelihood opposes tested Hg-only straightening while recipe and nonbonded
    geometry favour it; finite Hg movements worsen the combined target. The
    base-opening finite profile is withheld after one predeclared numerical check
-   misses tolerance. Do not repeat or loosen that check. Scope an explicit local
-   coordination alternative before another fit; no new f″ parent is accepted.
+   misses tolerance. Do not repeat or loosen that check. The explicit local
+   coordination alternative is now complete: replacing the donor-vertex 0° term
+   with a stronger metal-centred 180° term opens the bridge to 154.5°, but leaves
+   a 1.686 Å Hg–O4 contact and 1.642 Å DF attachment, with Rwork/Rfree
+   0.3057/0.3338 versus 0.2802/0.2902 in the unchanged continuation. Native delivery
+   and 263 cold checks pass; this is an unselected result, not an adopted recipe.
+   B/scaling differ, so the reduced negative Hg map signal is not independent
+   occupancy evidence. Close this angle subgoal. Next scope a bounded linked
+   base/metal pose proposal through existing owners, preserving covalent geometry
+   and polymer links; no new mover or f″ parent is yet qualified. The coordinated
+   reuse audit finds rigid fragment/pair arithmetic and an exact byte/mask guard,
+   but no qualified modified-donor/metal move with both junctions closed. Extend
+   the shared admission/chemistry boundary deliberately; do not duplicate a B/Q
+   guard or treat canonical displacement evidence as metal qualification.
 2. **A01 → A02:** qualify an open XYZ/B endpoint through local chemistry,
    coordination, Rwork/Rfree, stopping evidence and maps. Derive environmental
    metal B from the actual refined donors/base-only atoms, report disagreement
