@@ -68,14 +68,16 @@ records the subsequent qualification decision, without rewriting that evidence.
 Only owned test scratch may be retired after retaining diagnostic evidence;
 scientific inputs, outputs, shared installations and parent checkpoints remain.
 
-The 20 November A01 diagnostics are complete and stopped: exact source-fit
-reproduction, selected-state capture and two bounded motion profiles. Modest
-target gains define a candidate for matched continuation; tiny angle changes
-are not rejection criteria. The metal handoff owns
-those results and the next geometry-aware gate; no new runtime, accepted model
-or f″ parent follows. The compact checkout is
-`ScienceCheckouts/Hazel/2026-11-20_current-state-profile/review.html` beside the
-repositories. A09 remains deferred until after the main A01–A08 build.
+The 20 November A01 diagnostics and matched ordinary continuations are complete
+and stopped. Additional XYZ/group-B cycles improve final R values and raise B,
+but a small starting movement has no established advantage and local geometry/
+coordination still needs review. A01 remains partial, A02 gated. No new runtime,
+accepted model or f″ parent follows. The metal handoff owns exact results;
+the latest compact checkout is
+`ScienceCheckouts/Hazel/2026-11-20_matched-continuation/review.html`, with an
+adjacent standard-Python opener. Next bounded engineering scope is A04's
+protected-parent session; no new shared session or retirement owner exists yet.
+A09 remains deferred until after the main A01–A08 build.
 
 ## Scientific scope and owners
 

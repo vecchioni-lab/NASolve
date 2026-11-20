@@ -105,12 +105,13 @@ lower the target with essentially unchanged attachment angles. These are
 completed diagnostics, not accepted models. Small fractional deviations are
 descriptive; broad geometry and combined scientific evidence guide review.
 
-1. **A01:** run the prepared unshifted and 3°/0.05 Å coupled inputs with the same
-   additional ordinary XYZ/group-B cycles. Preserve source chemistry and sugar
-   stereochemistry. Assess overall base shape, coordination, map support, R
-   statistics and stopping behavior together, without exact-target vetoes. The
-   matched restart distinguishes extra-cycle benefit from the proposed movement.
-   This does not adopt a new default algorithm, target or protonation state.
+1. **A01:** the matched small-movement continuation is complete. Both arms
+   improve final Rwork/Rfree to about 0.28/0.29, but reach essentially identical
+   DF attachment lengths and retain bent Hg coordination/negative difference
+   density. No preferred endpoint or new f″ parent is selected. Close this
+   subgoal; reuse the recorded delivery/derivative/weight controls rather than
+   repeating them. Further native work needs a distinct structural hypothesis
+   and broad scientific review, not another tiny coordinate variation.
 2. **A01 → A02:** qualify an open XYZ/B endpoint through local chemistry,
    coordination, Rwork/Rfree, stopping evidence and maps. Derive environmental
    metal B from the actual refined donors/base-only atoms, report disagreement

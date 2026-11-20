@@ -9,7 +9,21 @@ not a second queue.
 
 ## Current scientific and engineering boundary
 
-**Morning session, 20 November:** the selected-state capture and two bounded
+**Day session, 20 November:** the matched ordinary continuations are complete
+and stopped. Five additional XYZ/real-space XYZ/group-B cycles improve final
+Rwork/Rfree to **0.2802/0.2902** (unchanged restart) and **0.2820/0.2910**
+(3°/0.05 Å coupled input). DF attachment lengths are essentially identical,
+**1.622942/1.622245 Å**; the initial movement has no established advantage.
+Final fitted B values rise substantially, with an explicit final scale update.
+The known bent Hg coordination and negative difference density remain review
+issues. No accepted endpoint or new f″ result follows. See
+[matched continuation](#a01-matched-ordinary-continuation) below. The latest compact
+checkout is `ScienceCheckouts/Hazel/2026-11-20_matched-continuation/review.html`;
+its adjacent `open_report.py` opens it with standard Python, without native work.
+Next engineering step: A04 protected-parent session, separately from geometry
+acceptance. Rowan confirms no newer shared session owner exists.
+
+**Early session, 20 November:** the selected-state capture and two bounded
 FT_Hg motion profiles are complete. The modest coupled movement is ready for
 a matched continuation test; no new refined model or f″ parent exists yet.
 Fractional-degree changes are descriptive, not rejection criteria. All owned
@@ -114,6 +128,65 @@ Exact native producer: **Phenix 2.2.1-6174**. Those native executions belong to
 the retained controls; cold readback/projection/integration launches no new
 Phenix or Coot job. All diagnostic values retain their actual source context.
 
+## A01 matched ordinary continuation
+
+Two complete **Phenix 2.2.1-6174** executions use the existing V9 owner and
+unchanged native code, five additional macrocycles each, one process, seed 42,
+original Free-R/MLHL phases, all declared chemistry/NA/metal restraints and
+open XYZ/group B. Q/f′/f″ remain fixed; f″=0 is not a fitted result. Only nine
+graph-selected starting coordinates differ. Source inputs and previous runs
+remain unchanged; both endpoints are unselected. No production refactor or
+schema change was made.
+
+| Endpoint | Rwork / Rfree | DF C1′–N1 (Å) | DF / DT base B (Å²) | Hg B (Å²) | N3–Hg–N3 (°) |
+| --- | --- | ---: | --- | ---: | ---: |
+| Parent | 0.3082 / 0.3384 | 1.652534 | 30.32 / 85.68 | 63.37 | 117.89 |
+| Unchanged restart | 0.2802 / 0.2902 | 1.622942 | 100.22 / 161.18 | 141.34 | 117.24 |
+| Coupled input restart | 0.2820 / 0.2910 | 1.622245 | 84.78 / 146.39 | 123.43 | 119.14 |
+
+Base means exclude sugar/backbone. The native final scale stage transfers
+**43.10/51.92 Å²** to atoms in the two arms. Before final scaling, unchanged-arm
+Rwork/Rfree are **0.3021/0.3261**. Report final B/R with that stage explicitly;
+the result does not diagnose Cedar's current replacement-B behavior.
+
+Both continuations flatten the DF base but retain the attachment/coordination
+issue. Hg difference density changes from **−2.56 σ** in the parent to
+**−5.55/−5.27 σ**, using each endpoint's unfilled model-assisted coefficients,
+whole-cell sigma normalization and Q=1. The maps include Free-R reflections;
+they are inspection evidence, not an independent occupancy/count measurement.
+Do not choose between the arms on tiny differences. The known recipe is a
+donor-vertex zero-angle term, not a metal-centered angle. Earlier native delivery,
+finite-difference and stronger-geometry controls already exist; no missing-term
+bug or reason to repeat those controls was established. Explicit current pair
+edits do not add an A:12/B:4 hydrogen-bond restraint.
+
+Validation: **205 cold checks** reproduce maintained native geometry readbacks,
+target inventories, atom/Q identity, source hashes and stopping summaries; all
+selected chirality signs remain. The maintained stopping module's **26 tests
+pass in 4.90 s** (one sandbox pytest-cache warning). The full suite was not run.
+The native observer records **75/92 XYZ calls**: **73/84** reach the iteration
+cap and **2/8** have unreported reasons. This includes weight-search trials;
+selected-endpoint convergence and group-ADP stopping are not inferred.
+Execution times including preflight are **373.39/422.62 s**; both owned groups
+are verified stopped. Rendering reads saved coefficients only; no new native
+refinement or Coot launch occurs during report generation.
+
+Evidence: `a01-continuation-20261120-01/` under the Alder artifact anchor,
+including per-arm `execution.json`, `science-comparison.json`,
+`recipe-history-review.json`, map settings, focused-test and publication receipts.
+Exact native commands and process identities are in those execution records.
+Cold review command uses `A194_review_continuation.py` with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<Alder>/src` and Python 3.12.14;
+`A195_continuation_maps.py` uses the recorded Phenix Python. Generated models,
+maps, scripts and reports stay local, excluded from Git. Existing artifact
+schemas/defaults remain unchanged; no migration or cleanup is authorized.
+
+**Decision:** close the small-movement continuation subgoal. A01 remains partial
+and A02 gated on broad geometry/coordination review. Do not start another tiny
+starting-coordinate search or unchanged cycle series. The next bounded
+engineering bridge is A04's once-per-session protected modern parent, retaining
+complete evidence while avoiding full ancestry expansion for every cheap trial.
+
 ## A01 current-state profiles
 
 The completed 19 November C397–C399/A166 history remains evidence, not a queue
@@ -187,24 +260,12 @@ commands use `A172_review_current_profile.py passive`,
 declared Alder source/Python. The original strict A184 failure is retained.
 No full suite, new map generation for the report or Coot session is claimed.
 
-**Next:** run the prepared **unshifted versus 3°/0.05 Å coupled continuation**
-when a new bounded native window is available. Both inputs start from the same
-completed written neutral endpoint and fitted B values, with identical data,
-Free-R, phases, chemistry and restraints. Preparation passes **199 checks**,
-including all 165 ordered chirality signs; only the nine declared base coordinate
-records change. Files and hashes are in `continuation-inputs/plan.json`. PDB
-rounding is measured, not interpreted as scientific uncertainty. No native
-request or new refinement has been launched.
-
-Use the same five additional macrocycles and ordinary open XYZ/group-B policy
-for both arms. Judge broad chemical/coordination plausibility, whole-base shape,
-map support, Rwork/Rfree and stopping behavior together. Restraint targets guide
-refinement; they are not exact experimental measurements or hard universal
-acceptance cutoffs. Tiny deviations do not reject a candidate. A lower target
-alone also does not establish a usable solution. Keep human review and ambiguity
-explicit. This controlled mechanism study is not a universal prerequisite for
-other topology-driven repairs. No repeated weight, iteration or donor-state
-matrix is queued; the whole-model terminal-context limitation remains open.
+The staged comparison has now executed as described below. Its 199 input
+checks remain evidence of preparation; the later execution receipts own the
+completed state. Do not repeat the passive/profile experiments or small-movement
+comparison without a new question. No wider weight/iteration/donor-state matrix
+is queued. The private capture boundary remains distinct from scientific
+acceptance or a general prerequisite for other chemistry repairs.
 
 The capture seam is a private **ML/MLHL** precedent, not an LS-general supported
 API. Future consumers need their own parent/stage qualification. Reuse the

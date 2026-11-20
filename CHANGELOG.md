@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record matched metal geometry continuation
+
+- Close the bounded unchanged-versus-shifted FT_Hg restart experiment, recording
+  improved final R/B values, final scaling, persistent coordination/map concerns
+  and no selected scientific endpoint. Keep A01 partial and A02 gated.
+- Publish a small local map/table checkout with a Python opener; retain exact
+  provenance and focused validation. Public runtime, schemas, default policies
+  and migration requirements remain unchanged.
+
 ### Record current-state metal geometry diagnostics
 
 - Record exact neutral FT_Hg source-fit reproduction, actual selected XYZ-state
