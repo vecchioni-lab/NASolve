@@ -11,7 +11,7 @@ import re
 import tempfile
 
 from .cif_attachment_profiles import inspect_attachment_profile
-from .cif_attachment_sites import _model, _object, _projection_values, inspect_attachment_site
+from .cif_attachment_sites import _model, _object, _projection_values, _site, inspect_attachment_site
 from .cif_candidate_usability import reassess_complete_candidate
 from .cif_fana_component import _digest, _load, _save
 from .cif_linked_preparation import _prune, _render, _selection, atom_rows
@@ -130,17 +130,55 @@ def derive_furanose_reaction(source_path, numerical_path, workbook, model_path, 
     return report, artifacts
 
 
+def internal_furanose_contexts(contexts, reaction_contexts):
+    """Check the two explicit bond declarations before any numerical work."""
+    if (not isinstance(contexts,list) or not isinstance(reaction_contexts,list)
+            or not 1 <= len(reaction_contexts) <= 256):
+        raise ValueError('Require explicit internal furanose contexts')
+    sites = {}
+    for declaration in contexts:
+        _object(declaration, ('site','five_prime_state','three_prime_state','incoming_site','outgoing_site'),
+                ('symmetry_operation','experimental_passthrough'))
+        sites[_site(declaration['site'])] = declaration
+    for context in reaction_contexts:
+        _object(context, ('schema_version','site','ports'))
+        _site(context['site'])
+        if type(context['schema_version']) is not int or context['schema_version'] != 1:
+            raise ValueError('Unrecognized graph reaction context')
+    if (len(sites) != len(contexts) or len(sites) != len(reaction_contexts)
+            or sites.keys() != {c['site'] for c in reaction_contexts}):
+        raise ValueError('Stored sites and graph reaction sites differ')
+    for context in reaction_contexts:
+        declaration = sites[context['site']]
+        if (declaration['five_prime_state'] != 'linked' or declaration['three_prime_state'] != 'linked'
+                or declaration.get('symmetry_operation') not in (None,'x,y,z')
+                or declaration.get('experimental_passthrough',False) is not False):
+            raise ValueError('Stored graph reaction requires two declared same-ASU phosphodiester links')
+        ports = context['ports']
+        _object(ports, ('phosphate','alcohol'))
+        for name, partner, atom in [('phosphate',declaration['incoming_site'],"O3'"),
+                                    ('alcohol',declaration['outgoing_site'],'P')]:
+            port = ports[name]
+            _object(port, ('state','partner','symmetry_operation') + (('leaving_atom',) if name=='phosphate' else ()))
+            _object(port['partner'], ('component','site','atom_id'))
+            if (port['state'] != 'linked' or port['symmetry_operation'] != 'x,y,z'
+                    or _site(port['partner']['site']) != partner
+                    or port['partner']['atom_id'] != atom):
+                raise ValueError('Reaction partner disagrees with the complete backbone declaration')
+            if name=='phosphate' and not (isinstance(port['leaving_atom'],str) and port['leaving_atom'].strip()):
+                raise ValueError('A phosphate reaction requires an explicit leaving atom')
+    return sites
+
+
 def prepare_internal_furanose_sites(source, numerical, workbook, model, output, *, code,
                                     contexts, reaction_contexts, bond_representation_policy):
     """Join the declared port substitution to the exact whole-model phosphodiester links."""
     from .cif_phosphate_names import phosphate_names
     from .cif_terminal_qualification import projection_site_plan
 
+    sites = internal_furanose_contexts(contexts,reaction_contexts)
     reaction, artifacts = derive_furanose_reaction(source, numerical, workbook, model, code,
         reaction_contexts, bond_representation_policy=bond_representation_policy)
-    sites = {c['site']: c for c in contexts}
-    if len(sites) != len(contexts) or sites.keys() != {p['site'] for p in reaction['sites']}:
-        raise ValueError('Stored sites and graph reaction sites differ')
     roles = reaction['roles']
     if (roles['phosphate'], roles['five_o'], roles['three_o']) != ('P', "O5'", "O3'"):
         raise ValueError('Stored native backbone requires conventional phosphorus and linkage oxygen names')
@@ -150,19 +188,6 @@ def prepare_internal_furanose_sites(source, numerical, workbook, model, output, 
     plans = []
     for plan in reaction['sites']:
         site = plan['site']; declaration = sites[site]
-        _object(declaration, ('site','five_prime_state','three_prime_state','incoming_site','outgoing_site'),
-                ('symmetry_operation','experimental_passthrough'))
-        if (declaration['five_prime_state'] != 'linked' or declaration['three_prime_state'] != 'linked'
-                or declaration.get('symmetry_operation') not in (None,'x,y,z')
-                or declaration.get('experimental_passthrough',False) is not False):
-            raise ValueError('Stored graph reaction requires two declared same-ASU phosphodiester links')
-        ports = plan['context']['ports']
-        for name, partner, atom in [('phosphate',declaration['incoming_site'],"O3'"),
-                                    ('alcohol',declaration['outgoing_site'],'P')]:
-            port = ports[name]
-            if (port['state'] != 'linked' or port['partner']['site'] != partner
-                    or port['partner']['atom_id'] != atom):
-                raise ValueError('Reaction partner disagrees with the complete backbone declaration')
         definition = plan['projected_definition']
         phosphate_names(definition, leaving_required=False)
         groups = definition.get('_chem_comp.group', [])

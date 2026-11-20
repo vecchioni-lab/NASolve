@@ -17,7 +17,10 @@ from . import cif_acquisition_attempt as acquisition
 from . import cif_component_runtime as frozen_tree
 from . import cif_repair_attempt as repair
 from .cif_prepared_repair_execution import _source_plane_support_snapshot, _source_bond_target_choices, BOND_TARGET_POLICY
-from .cif_acquisition_preparation import _capture, _freeze, _terminal, prepare_acquired_dictionary_bundle, read_acquired_dictionary_bundle
+from .cif_acquisition_preparation import (
+    _capture, _freeze, _freeze_furanose, _furanose_inputs, _terminal,
+    prepare_acquired_dictionary_bundle, read_acquired_dictionary_bundle,
+)
 from .cif_acquisition_sources import read_acquisition_sources
 from .cif_component_runtime import _tree
 from .cif_dictionary_bundle import _context
@@ -258,7 +261,8 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
     model_sites = _model_inventory(inputs/'model.pdb'); all_contexts = []; components = {}
     for code in codes:
         site = controls['sites'][code]
-        _need(isinstance(site,dict) and set(site) == {'contexts','generation','retained','terminal_resource','phosphate_atom_policy'},
+        _need(isinstance(site,dict) and set(site)-{'furanose_reaction'} ==
+              {'contexts','generation','retained','terminal_resource','phosphate_atom_policy'},
               'Unexpected complete component declaration')
         contexts = site['contexts']
         _need(isinstance(contexts,list) and contexts and all(isinstance(c,dict) and isinstance(c.get('site'),str) for c in contexts)
@@ -266,11 +270,15 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
               and {c['site'] for c in contexts} == {s for s,r in model_sites.items() if r['code'] == code},
               'Require each selected model site exactly once')
         all_contexts.extend(contexts)
+        _furanose_inputs(inputs,site,allowed)
         _need(site['retained'] in (None, f'retained/{code}'), 'Invalid retained reference')
         retained = inputs/site['retained'] if site['retained'] is not None else None
         if retained is not None: allowed.update(f'retained/{code}/'+n for n in _tree(retained))
         generation = site['generation']
         _need(isinstance(generation,dict) and set(generation) == {'options','binding'}, 'Invalid generation declaration')
+        if 'furanose_reaction' in site:
+            _need(recipe_representation_policy(generation['options']['recipe']) is not None,
+                  'Stored furanose chemistry requires an explicit isolated qualification policy')
         choice = selected['sources'][code]
         components[code] = _component_config(choice['source'],code,choice['source_authority'],controls['consumer'],generation,retained,limits,maximum)
         resource = site['terminal_resource']
@@ -360,7 +368,9 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     """Freeze all declared inputs before children exist. Require a fresh destination.
 
     One to sixteen component types declare code, contexts and generation settings, with optional
-    retained_snapshot, terminal_resource and phosphate_atom_policy. Runtime SDK
+    retained_snapshot, terminal_resource, phosphate_atom_policy or a graph-bound
+    furanose_reaction. Its workbook and exact site ports follow the same attempt
+    through acquired and stored dictionary preparation. Runtime SDK
     roots/environment are not saved as operational paths; execution supplies and
     revalidates them against the frozen recipe/pins/relative dispatchers. New
     requests independently qualify a no-repair original by default; historical
@@ -431,7 +441,8 @@ def initialize_dictionary_request(source_selection, components, model, output, *
         compiler_refs[kind] = dict(anchor=ANCHOR,path='inputs/'+folder,policy_id=compiled['report']['policy_id'])
     for item in components:
         _need(isinstance(item,dict) and {'code','contexts','generation'} <= item.keys()
-            and item.keys() <= {'code','contexts','generation','retained_snapshot','terminal_resource','phosphate_atom_policy'},
+            and item.keys() <= {'code','contexts','generation','retained_snapshot','terminal_resource',
+                                'phosphate_atom_policy','furanose_reaction'},
             'Unexpected component declaration')
         code = item['code']; _need(code in codes and code not in sites, 'Duplicate or unselected component')
         generation = item['generation']; retained = item.get('retained_snapshot'); resource = item.get('terminal_resource')
@@ -443,7 +454,8 @@ def initialize_dictionary_request(source_selection, components, model, output, *
             originals.update({resource.parent/n:b for n,b in data.items()})
         sites[code] = dict(contexts=item['contexts'],generation=dict(options=generation_dictionary_options(generation),
             binding=acquisition._generation_binding(generation)),retained=None if retained is None else f'retained/{code}',
-            terminal_resource=relative,phosphate_atom_policy=item.get('phosphate_atom_policy'))
+            terminal_resource=relative,phosphate_atom_policy=item.get('phosphate_atom_policy'),
+            **_freeze_furanose(item,files,originals))
     controls = _json(_bytes(dict(sites=sites,consumer=consumer,expected_links=expected_links,native_context=native_context,
         supplementary_phils=[f'phils/{i:03}.phil' for i in range(len(supplementary_phils))])))
     limits = dict(native_timeout_seconds=native_timeout_seconds,component_timeout_seconds=component_timeout_seconds,
@@ -693,7 +705,9 @@ def _result(root, attempt, intent, config, children, bindings):
     selection = {code:bindings[code]['number'] for code in config['components']}
     pc = read_record(attempt/'preparation/preparation_intent.json')['controls']
     sites = {code:dict(attempt_number=selection[code],contexts=site['contexts'],phosphate_atom_policy=site['phosphate_atom_policy'],
-        terminal_resource=None if site['terminal_resource'] is None else 'inputs/'+site['terminal_resource']) for code,site in controls['sites'].items()}
+        terminal_resource=None if site['terminal_resource'] is None else 'inputs/'+site['terminal_resource'],
+        **({'furanose_reaction':site['furanose_reaction']} if 'furanose_reaction' in site else {}))
+        for code,site in controls['sites'].items()}
     expected = dict(components=sorted(selection),sites=sites,consumer=controls['consumer'],expected_links=controls['expected_links'],
         native_context=controls['native_context'],supplementary_phils=['inputs/'+n for n in controls['supplementary_phils']])
     _need(_same(pc,expected), 'Prepared controls differ from complete frozen intent')
@@ -937,6 +951,7 @@ def execute_dictionary_request_attempt(directory, phenix, store_root, *, generat
                     max_attempts=config['max_attempts'],_parent_attempt_identity=parent,_remaining_seconds=remaining)
                 components.append(dict(code=code,request_directory=root/'acquisitions'/code,attempt_number=child['attempt_number'],
                     contexts=site['contexts'],phosphate_atom_policy=site['phosphate_atom_policy'],
+                    **_furanose_inputs(root/'inputs',site),
                     **({'terminal_resource':root/'inputs'/site['terminal_resource']} if site['terminal_resource'] is not None else {})))
             remaining()
             prepare_acquired_dictionary_bundle(root/'inputs/sources',components,root/'inputs/model.pdb',attempt/'preparation',

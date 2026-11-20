@@ -25,7 +25,9 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     """Freeze ordinary sources and derived contexts for one existing request.
 
     Components specify code/generation and optional retained_snapshot,
-    terminal_resource or phosphate_atom_policy. Site/link declarations are
+    terminal_resource, phosphate_atom_policy or an explicit furanose_reaction.
+    The latter's port declarations must agree with the derived site links.
+    Site/link declarations are
     derived, never supplied as overrides. supplementary_phils is an explicit
     ordered sequence; an empty sequence declares absent custom restraints.
     Required but unsupported inputs must be converted faithfully, never omitted.
@@ -74,7 +76,7 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     for item in components:
         _need(isinstance(item, dict) and {'code', 'generation'} <= item.keys()
               and item.keys() <= {'code', 'generation', 'retained_snapshot',
-                                  'terminal_resource', 'phosphate_atom_policy'},
+                                  'terminal_resource', 'phosphate_atom_policy', 'furanose_reaction'},
               'Unsupported PostMR component settings or manual context override')
         generation_dictionary_options(item['generation'])
         _generation_binding(item['generation'])

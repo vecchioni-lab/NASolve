@@ -3,8 +3,10 @@
 This explicit preparation stage performs no native work or automatic retry. Its
 copied request records are readback evidence, not new operational requests.
 """
+from hashlib import sha256
 import os
 from pathlib import Path
+import re
 
 from .campaign_records import _sync_directory, path_in, read_record, write_record
 from .cif_acquisition_attempt import read_acquisition_result
@@ -47,6 +49,42 @@ def _terminal(path, consumer):
     return files
 
 
+def _freeze_furanose(item, files, originals):
+    """Share the exact catalogue workbook across explicitly declared components."""
+    from .cif_furanose_reaction import internal_furanose_contexts
+    reaction = item.get('furanose_reaction')
+    if reaction is None:
+        return {}
+    _need(isinstance(reaction,dict) and set(reaction)=={'contexts','workbook'}
+          and item.get('terminal_resource') is None and item.get('phosphate_atom_policy') is None,
+          'Require one explicit internal furanose chemistry declaration')
+    internal_furanose_contexts(item['contexts'],reaction['contexts'])
+    path = Path(reaction['workbook']); data = _read(path)
+    _need(originals.setdefault(path,data)==data, 'Shared furanose workbook changed during freezing')
+    name = 'furanose/'+sha256(data).hexdigest()+'.xlsx'
+    files[name] = data
+    return {'furanose_reaction':{'workbook':name,'contexts':reaction['contexts']}}
+
+
+def _furanose_inputs(inputs, site, allowed=None):
+    """Reopen the pinned workbook under the current input root and join both declared ports."""
+    if 'furanose_reaction' not in site:
+        return {}
+    from .cif_furanose_reaction import internal_furanose_contexts
+    reaction = site['furanose_reaction']
+    _need(isinstance(reaction,dict) and set(reaction)=={'contexts','workbook'}
+          and site.get('terminal_resource') is None and site.get('phosphate_atom_policy') is None,
+          'Unexpected frozen furanose declaration')
+    name = reaction['workbook']
+    _need(isinstance(name,str) and re.fullmatch(r'furanose/[0-9a-f]{64}\.xlsx',name),
+          'Invalid frozen furanose workbook reference')
+    path = inputs/name
+    _need(sha256(_read(path)).hexdigest()==path.stem, 'Frozen furanose workbook differs')
+    internal_furanose_contexts(site['contexts'],reaction['contexts'])
+    if allowed is not None: allowed.add(name)
+    return {'furanose_reaction':{'workbook':path,'contexts':reaction['contexts']}}
+
+
 def _bindings(root, controls):
     _need(set(controls) == {'components','sites','consumer','expected_links','native_context','supplementary_phils'},
         'Unexpected acquired preparation controls')
@@ -56,7 +94,10 @@ def _bindings(root, controls):
         and isinstance(controls['sites'], dict) and set(controls['sites']) == set(codes),
         'Acquisition/source component coverage differs')
     _consumer(controls['consumer']); _context(controls['native_context'])
-    _members(root/'inputs', {'model.pdb'}, {'sources','acquisitions','resources','phils'})
+    folders = {'sources','acquisitions','resources','phils'}
+    if any(isinstance(s,dict) and 'furanose_reaction' in s for s in controls['sites'].values()):
+        folders.add('furanose')
+    _members(root/'inputs', {'model.pdb'}, folders)
     _members(root/'inputs/acquisitions', set(), set(codes))
     names = controls['supplementary_phils']
     _need(isinstance(names, list) and names == [f'inputs/phils/{i:03}.phil' for i in range(len(names))],
@@ -66,7 +107,8 @@ def _bindings(root, controls):
     items = []; bindings = {}
     for code in codes:
         site = controls['sites'][code]
-        _need(isinstance(site, dict) and set(site) == {'attempt_number','contexts','terminal_resource','phosphate_atom_policy'},
+        _need(isinstance(site, dict) and set(site)-{'furanose_reaction'} ==
+              {'attempt_number','contexts','terminal_resource','phosphate_atom_policy'},
             'Unexpected component preparation controls')
         request = root/'inputs/acquisitions'/code
         number = site['attempt_number']; saved = read_acquisition_result(request, number)
@@ -81,7 +123,7 @@ def _bindings(root, controls):
             attempt_number=number, attempt_sha256=intent['record_sha256'], attempt_id=intent['attempt_id'],
             entry_id=saved['entry_id'], request_directory=dict(anchor=ANCHOR,path=f'inputs/acquisitions/{code}'))
         item = dict(snapshot=saved['source'].parent.parent, contexts=site['contexts'],
-            phosphate_atom_policy=site['phosphate_atom_policy'])
+            phosphate_atom_policy=site['phosphate_atom_policy'], **_furanose_inputs(root/'inputs',site,allowed))
         resource = site['terminal_resource']
         if resource is not None:
             _need(_safe(resource) and resource.startswith(f'inputs/resources/{code}/'), 'Invalid terminal resource reference')
@@ -115,6 +157,13 @@ def _report(root, intent):
         if site['terminal_resource'] is not None:
             _need(_tree(child_root/'resources') == _terminal(item['terminal_resource'],controls['consumer']),
                 'Prepared terminal resource differs')
+        reaction = child['report'].get('furanose_reaction')
+        _need(('furanose_reaction' in site)==(reaction is not None), 'Prepared sugar chemistry owner differs')
+        if reaction is not None:
+            declared = item['furanose_reaction']
+            _need(_bytes(reaction['contexts'])==_bytes(declared['contexts'])
+                  and _read(child_root/reaction['workbook'])==_read(declared['workbook']),
+                  'Prepared sugar reaction differs from the acquired declaration')
     _need([_read(root/name) for name in controls['supplementary_phils']]
         == [_read(root/'bundle'/name) for name in r['supplementary_phils']], 'Prepared shared PHIL bytes differ')
     files, directories = _capture(root); files.pop('acquisition_preparation.json',None)
@@ -162,7 +211,8 @@ def prepare_acquired_dictionary_bundle(source_selection, components, model, outp
     trees = {'sources':source_selection}; sites = {}; resources = {}; originals = {Path(model):_read(model)}
     for item in components:
         _need(isinstance(item,dict) and {'code','request_directory','attempt_number','contexts'} <= item.keys()
-            and item.keys() <= {'code','request_directory','attempt_number','contexts','terminal_resource','phosphate_atom_policy'},
+            and item.keys() <= {'code','request_directory','attempt_number','contexts','terminal_resource',
+                                'phosphate_atom_policy','furanose_reaction'},
             'Unknown acquired component request')
         code = item['code']; _need(code in codes and code not in sites, 'Duplicate or unselected acquisition component')
         request = _root(item['request_directory']); saved = read_acquisition_result(request,item['attempt_number'])
@@ -177,7 +227,7 @@ def prepare_acquired_dictionary_bundle(source_selection, components, model, outp
             resources.update({f'resources/{code}/'+name:data for name,data in files.items()})
             originals.update({resource.parent/name:data for name,data in files.items()})
         sites[code] = dict(attempt_number=item['attempt_number'], contexts=item['contexts'], terminal_resource=relative,
-            phosphate_atom_policy=item.get('phosphate_atom_policy'))
+            phosphate_atom_policy=item.get('phosphate_atom_policy'), **_freeze_furanose(item,resources,originals))
     _need(set(sites) == set(codes), 'Complete selected-source coverage is required')
     controls = _json(_bytes(dict(components=codes, sites=sites, consumer=consumer, expected_links=expected_links,
         native_context=native_context, supplementary_phils=[f'inputs/phils/{i:03}.phil' for i in range(len(supplementary_phils))])))

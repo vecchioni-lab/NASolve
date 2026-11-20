@@ -14,6 +14,8 @@ entries are reconstructed from repository history.
   ports when preparing a model with stored dictionaries. Cedar checks each
   partner against the declared backbone, preserves the source stereocentres and
   compares both the numerical group and the source polymer class with Phenix.
+  The complete PostMR dictionary request freezes one copy of each distinct
+  workbook and carries the site reaction through acquisition and recovery.
   The model must already contain the selected residue.
 
 ### Reopen large mixtures after ReadySet
