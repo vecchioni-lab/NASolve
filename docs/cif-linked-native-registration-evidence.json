@@ -117785,5 +117785,205 @@
       "Historical chemical numerics include an older PDU attachment; C427 is a consumer/geometry check only. The separate neutral DF:A control completed five ordinary cycles.",
       "Raw models, diffraction, native receipts, test outputs and private runners stay local."
     ]
+  },
+  "host_displacement_and_mixed_ordinary_dictionary_transfer_2026_11_20": {
+    "owner": "Rowan",
+    "cedar_product_source": "9e8f294399afd54f7f388fa52ff01a98332b44a8",
+    "qualification": "Focused observations, completed native comparison and whole-model interpretation. No full regression in this pass.",
+    "software": {
+      "phenix": "Phenix 2.2.1-6174",
+      "coot": "1.3.3 revision 0",
+      "narestraints": "a9264f9e"
+    },
+    "starting_displacement": {
+      "selected_sites": 12,
+      "shared_scaffold_coordinates_exact": 132,
+      "those_retaining_host_B": 22,
+      "those_at_new_B20": 110,
+      "uniform_base_donor_sites": [
+        "A:12",
+        "B:4"
+      ],
+      "other_generic_nonuniform_sites": 8
+    },
+    "calculated_scattering": {
+      "work_indices": 2146,
+      "measured_free_excluded": 127,
+      "changed_scatterers": 22,
+      "rms_amplitude_change_over_starting_rms": 0.10259013894717942
+    },
+    "five_cycle_5PC": {
+      "order": [
+        "Coot B=20",
+        "host-derived starting B"
+      ],
+      "site": "B:4",
+      "target_A": 1.47,
+      "terminal_bond_A": [
+        1.46044,
+        1.47159
+      ],
+      "terminal_offset_from_six_ring_A": [
+        0.12966,
+        0.14013
+      ],
+      "r_work": [
+        0.2048,
+        0.2037
+      ],
+      "r_free": [
+        0.2314,
+        0.2148
+      ],
+      "selected_checkpoint": "postmr",
+      "held_out_measured_reflections": 127,
+      "measured_intensities": 2273,
+      "only_difference": "22 starting isotropic B factors. Coordinates, occupancies, observed intensities, flags, options, definitions and restraints matched."
+    },
+    "mixed_interpretation": {
+      "model_sha256": "d189062511f643a8d238bcc7ce73698fd2fa0efe67d5e49e70d65cf2fc41e085",
+      "native_receipt_sha256": "69b8e368f5495e2f66fb51af28500a0f287f351e580aa01f02f7c4a1a4b18846",
+      "returncode": 0,
+      "native_status": "REVIEW",
+      "atoms": 869,
+      "sites": 42,
+      "current_components": {
+        "5PC": {
+          "site": "A:4",
+          "selected_targets_A": {
+            "C1'/N1": {
+              "historical": 1.473,
+              "current": 1.435
+            },
+            "C8/C9": {
+              "historical": 1.527,
+              "current": 1.47
+            }
+          },
+          "active_bonds_matching_ordinary": 23
+        },
+        "PDU": {
+          "site": "D:5",
+          "selected_targets_A": {
+            "C1'/N1": {
+              "historical": 1.345,
+              "current": 1.466
+            },
+            "C5B/C5M": {
+              "historical": 1.541,
+              "current": 1.47
+            }
+          },
+          "active_bonds_matching_ordinary": 23
+        },
+        "DF": {
+          "site": "A:19",
+          "selected_targets_A": {
+            "C1'/N1": {
+              "historical": 1.499,
+              "current": 1.499
+            },
+            "C2/S1": {
+              "historical": 1.638,
+              "current": 1.638
+            }
+          },
+          "active_bonds_matching_ordinary": 21
+        }
+      },
+      "additional_local_terms_matching_ordinary": {
+        "angle": 94,
+        "chirality": 9,
+        "const_dihedral": 24,
+        "dihedral": 72,
+        "planarity": 3
+      },
+      "frame_restraints": 211,
+      "backbone_links": 38,
+      "ATL_flanks": {
+        "bond": 2,
+        "angle": 8
+      },
+      "other_historical_definitions": 10
+    },
+    "commands": {
+      "native_work": "Local runners/c429_control.py (five-cycle Phenix refinement) and runners/c430_current_panel.py (Phenix native interpretation). Exact parent and source manifests are retained privately.",
+      "readback": "runners/c429_read.py, runners/c430_cold.py and runners/c430_local_shape.py inspected the original outputs. The 5PC completion field and historical PDU atom names were corrected in the local readers.",
+      "full_source_intake": "runners/c431_mixed_intake.py initializes the request on the constructed model and verifies it with inspect_dictionary_request, without starting a native attempt."
+    },
+    "scope": "Single substituted-host 5PC control and three current dictionaries on the mixed scaffold. The mixed model has not undergone diffraction refinement. The tested guanine base had uniform B; a nonuniform host needs separate evidence. No default, schema or historical run changed.",
+    "references": {
+      "c428-scattering-inheritance/source-donors.json": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "b3c3f415acfae55633290b72c3b5570ba4e739b1d2f3476b679a894fd9d5c96e"
+      },
+      "c428-scattering-inheritance/forward.json": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "cdb57c7e118230d483eb02b657041e2cd279b8f9532933b003a8fdea7c260e94"
+      },
+      "c429-5pc-starting-displacement/cold-review.json": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "76f6904bb684f5f54d4f9de7e1ddf990f30b5e6bf6b38a7d8ca089f3a08c76ba"
+      },
+      "c430-current-mixed-panel/attempt-002/plan.json": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "71b12b1c3db7e7b5e1f853f417408d635b9fda3ddfdbf51299a3f07f53df31fa"
+      },
+      "c430-current-mixed-panel/attempt-002/review.json": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "b420b66a2cc774112952eb1098c4979b6c36d3ce2227a8c8c6ffa11626e1222a"
+      },
+      "c430-current-mixed-panel/attempt-002/local-shape.json": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "c49193a2fd0c56882b67836e3a790c74ace7e9ecf97d53cc008cbf91021405c0"
+      },
+      "runners/c428_source_donors.py": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "0973ea23fb283b3978e2f74cc8e93d6a92aef9946ddba2c540ab1d5920798b99"
+      },
+      "runners/c428_forward.py": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "3fe49aba9453dda18cae5532136ff5c65354bac04f1a5780779da576a5117f0a"
+      },
+      "runners/c429_control.py": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "515bd6469f908cd08a5241e1fca322a937b94ec2db845d6cf2d42898cace6fa3"
+      },
+      "runners/c429_read.py": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "93234e5d47b28c91f5dbcb654c7b61c0ffc09461c4c8d7ca5671b7c09785466d"
+      },
+      "runners/c430_current_panel.py": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "a4612ba553888d504ce601661674959eade8e2b9e93c95ad5ec196c1608402d9"
+      },
+      "runners/c430_cold.py": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "826782e2b3fe005862c31458b770a3b90e8e5fedf78bdebbecd81c096281117e"
+      },
+      "runners/c430_local_shape.py": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "4616bb0b209f5e723ddac13e29d43b8d211fe21731eb6ad865afd9beba52b19b"
+      },
+      "c431-mixed-source-intake/review.json": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "e0b51912974b74ca5b0b53282b2f310f8e839951ef9ad8045427c11e6ff88bd4"
+      },
+      "runners/c431_mixed_intake.py": {
+        "anchor": "local_cedar_evidence",
+        "sha256": "8c42d558d58642a6b3186fa2d00c58bb7762bdeefc2fc63389b514d0d7dd1d00"
+      }
+    },
+    "mixed_source_request": {
+      "status": "FULL_13_COMPONENT_REQUEST_FROZEN_AND_COLD_READ",
+      "model_sha256": "d189062511f643a8d238bcc7ce73698fd2fa0efe67d5e49e70d65cf2fc41e085",
+      "request_sha256": "0ef014996e6c9a64d091fcb86a2abcce179425beca615c38e355739b38390589",
+      "components": 13,
+      "explicit_backbone_links": 38,
+      "frame_terms": 211,
+      "attempts": 0,
+      "local_size_bytes": 896707,
+      "scope": "One ordinary-source request was initialized on the separately constructed model and verified by the read-only request inspector. Native qualification of the full chemical set is pending."
+    }
   }
 }

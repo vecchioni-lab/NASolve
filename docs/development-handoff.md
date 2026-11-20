@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-20, C427 fresh nine-pair construction and native restraint check — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**; C420 source **`c50b96c7`**. The C421 native runner began at **`f1d0aedd`** and its AutoRefine and geometry sources are unchanged at C420.
+Updated **2026-11-20, C431 nine-pair dictionary intake and matched starting B-factor control — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. Current construction code is **`9e8f2943`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
 **3104.30 s**. All 1,417 tracked test-checkout files and exact NARestraints
@@ -38,10 +38,29 @@ including ten shared planes. It supplied the two backbone bonds and all
 eight flanking angles. The incoming and outgoing links start at 1.595 and
 1.839 Å against 1.607 Å. The outgoing C3′–O3′–P angle starts at 141.55°
 against 119.7°. ATL starts at B=20 Å² while its host atoms span 166–320 Å².
-The native check used the historical 26-dictionary panel and a freshly
-rederived ATL reaction. Ordinary acquisition of the full mixture, host-aware
-starting displacement and diffraction refinement remain open. The compact
-evidence key is `fresh_mixed_construction_and_native_interpretation_2026_11_20`.
+C430 transferred the current ordinary PDU, 5PC and DF definitions onto the
+same 869 atoms, generating the linked-site modifications for their actual
+positions. Phenix reproduced all 67 local bond targets, 94 angles, nine
+chirality restraints, 96 torsions and three local planes from the individual
+runs. The 38 backbone links and 211 frame restraints also survived. Ten
+other component definitions in this native test are still historical.
+C431 froze and independently reopened one pending dictionary request with
+all thirteen current sources, all 38 links and all 211 frame terms. The
+request uses the separately constructed nine-pair seed. Generation,
+qualification of the full set and mixed diffraction refinement remain open.
+
+**C428–C429, starting B factors.** Of 132 sugar and phosphate atoms that
+kept their host coordinates through twelve mutations, 110 acquired B=20 Å².
+On a separate 5PC site the starting guanine base had one recorded B value.
+Changing only 22 starting B values to their host-supported values changed
+the RMS calculated amplitude by 10.26% of the original RMS amplitude across
+2,146 work reflections. Five ordinary Phenix cycles gave the 5PC terminal
+bond at 1.460 Å from the Coot start and 1.472 Å from the host-derived start
+(target 1.470 Å). The terminal carbon lay 0.130 and 0.140 Å from the ring
+plane. PostMR remains selected. Carry forward B values where the original
+atom identity is established. A defensible rule for newly added atoms on a
+nonuniform host remains open. Compact evidence is under
+`host_displacement_and_mixed_ordinary_dictionary_transfer_2026_11_20`.
 
 **Q06.** Fresh G:5PC completed both construction and ordinary five-cycle Phenix
 refinement. Its automatically corrected C8–C9 target survived in the native
