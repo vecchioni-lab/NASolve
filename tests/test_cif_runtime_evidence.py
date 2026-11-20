@@ -301,3 +301,47 @@ def test_subtree_reader_authenticates_files_outside_the_selected_directory(tmp_p
     with pytest.raises(ValueError):
         with storage.expanded_runtime_evidence(archive, sha256(archive.read_bytes()).hexdigest(), subtree='a'):
             pytest.fail('Changed unselected object was accepted')
+
+
+def test_compact_parent_repair_leaf_fits_after_compressed_carrier_closes(tmp_path, monkeypatch):
+    from random import Random
+    from nasolve import cif_component_runtime as runtime, cif_runtime_evidence as storage
+    from nasolve.cif_runtime_bundle import resolve_runtime_bundle
+    from tests.test_cif_runtime_readyset import observed, native_wiring
+
+    publish = runtime.prepare_repaired_component_runtime_bundle
+
+    def compact_parent(*args, **options):
+        # Incompressible captured output gives the embedded parent a measurable cost.
+        (args[1].parent / 'capture.log').write_bytes(Random(18).randbytes(140000))
+        return publish(*args, **options, compact_evidence=True)
+
+    monkeypatch.setattr(runtime,'prepare_repaired_component_runtime_bundle',compact_parent)
+    parent, _, readyset, _, inputs = observed(tmp_path,monkeypatch,single=True)
+    baseline, endpoint = native_wiring(tmp_path,monkeypatch,parent,inputs,accepted=True)
+    output = tmp_path / 'complete'
+    published = runtime.prepare_runtime_readyset_bundle(parent,baseline,readyset,output,
+        endpoint_receipt=endpoint,compact_evidence=True)
+    packed = (parent / storage.ARCHIVE).read_bytes()
+    _, inner, _ = storage._decode(packed,sha256(packed).hexdigest())
+    stage = tmp_path / 'repair-stage'
+    stage.mkdir()
+    (stage / 'native.json').write_bytes(b'leaf measurement\n' * 20000)
+    archive = tmp_path / 'stage.zip'
+    leaf = storage.pack_runtime_evidence(stage,archive)
+    limit = sum(len(v) for v in inner.values()) + leaf['unique_bytes'] + 1000
+    monkeypatch.setattr(storage,'MAX_ACTIVE_BYTES',limit)
+    original = runtime._selection
+    measured = []
+
+    def with_repair_leaf(root, controls, *, policy_id):
+        if policy_id == runtime.REPAIRED_POLICY_ID:
+            with storage.expanded_repair_stage(archive,leaf['archive_sha256']) as view:
+                assert (view / 'evidence/native.json').read_bytes() == (stage / 'native.json').read_bytes()
+                measured.append(storage._ACTIVE_BYTES.get())
+        return original(root,controls,policy_id=policy_id)
+
+    monkeypatch.setattr(runtime,'_selection',with_repair_leaf)
+    assert resolve_runtime_bundle(output)['manifest'] == published
+    assert len(measured) == 1 and max(measured) <= limit
+    assert storage._ACTIVE_BYTES.get() == 0 and storage._ACTIVE_DEPTH.get() == 0

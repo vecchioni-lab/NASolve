@@ -225,7 +225,7 @@ def _resources(root, inputs, *, write=False):
         _need(bool(paths), 'Missing selected resources')
         for i,source in enumerate(paths):
             target=root/folder/('model.pdb' if key=='model' else f'{i:03d}{suffix}')
-            data=_read(source)
+            data=source if isinstance(source,bytes) else _read(source)
             if write:target.parent.mkdir(exist_ok=True);target.write_bytes(data)
             _need(_read(target)==data, 'Runtime resource differs from verified selection')
             ref=_reference(target,root)
@@ -417,17 +417,21 @@ def _runtime_selection(root, value):
             yield _selection(evidence, value['source_selection'], policy_id=value['policy_id'])
 
 
+def _check_runtime_selection(root, value, selection):
+    review, decision, inputs, unavailable = selection
+    resources = _resources(root,inputs)
+    expected = _manifest(root,value['source_selection'],review,decision,resources,unavailable,
+                         policy_id=value['policy_id'],compact_evidence='evidence_storage' in value)
+    _need(_json_bytes(value)==_json_bytes(expected), 'Runtime selection or evidence does not replay')
+
+
 def resolve_component_runtime_bundle(path, value=None):
     """Replay selected source/native evidence before exposing any runtime paths."""
     path=Path(path);value=_load_json(path) if value is None else value;root=path.parent
     try:
         verify_component_runtime_resources(path,value)
         with _runtime_selection(root, value) as selection:
-            review,decision,inputs,unavailable=selection
-            resources=_resources(root,inputs)
-        expected=_manifest(root,value['source_selection'],review,decision,resources,unavailable,policy_id=value['policy_id'],
-                           compact_evidence='evidence_storage' in value)
-        _need(_json_bytes(value)==_json_bytes(expected), 'Runtime selection or evidence does not replay')
+            _check_runtime_selection(root,value,selection)
         return _checked_resource_paths(path, value)
     except (KeyError,TypeError,IndexError,OSError) as exc:
         raise ValueError('Incomplete or changed component runtime bundle') from exc

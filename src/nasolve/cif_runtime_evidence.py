@@ -176,10 +176,19 @@ def _working_evidence(archive, digest, *, decoder):
 @contextmanager
 def _expanded_evidence(archive, digest, *, runtime_layer, decoder=_decode, subtree=None):
     """One decoder/expander and accounting path for both explicitly owned scopes."""
-    archive=Path(archive).absolute()
-    _need(archive.is_file() and not any(p.is_symlink() for p in (archive,*archive.parents))
-          and archive.stat().st_size<=MAX_ARCHIVE_BYTES, 'Unsafe or oversized evidence archive')
-    data=_read(archive);index,objects,total=decoder(data,digest)
+    # A compact parent can be taken directly from its authenticated enclosing
+    # archive. Its compressed carrier need not occupy temporary disk throughout
+    # the scientific replay. The same decoder and limits apply to every member.
+    if isinstance(archive,bytes):
+        _need(runtime_layer and decoder is _decode and len(archive)<=MAX_ARCHIVE_BYTES,
+              'Unsafe or oversized in-memory runtime archive')
+        data=archive
+    else:
+        archive=Path(archive).absolute()
+        _need(archive.is_file() and not any(p.is_symlink() for p in (archive,*archive.parents))
+              and archive.stat().st_size<=MAX_ARCHIVE_BYTES, 'Unsafe or oversized evidence archive')
+        data=_read(archive)
+    index,objects,total=decoder(data,digest)
     if subtree is not None:
         _need(isinstance(subtree, str) and _strict(subtree) and '/' not in subtree
               and subtree in index['directories'], 'Missing or unsafe runtime evidence subtree')

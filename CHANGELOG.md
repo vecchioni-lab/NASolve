@@ -8,6 +8,12 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Reopening large checked preparations
+
+- When verifying a compact ReadySet result, NASolve now releases the enclosing
+  temporary files before reading a parent's individual repair proofs. The same
+  archive checks and shared disk limit apply. Existing bundles retain their format.
+
 ### Starting B factors for a matched base
 
 - An optional whole-sugar construction seed can borrow individual isotropic B

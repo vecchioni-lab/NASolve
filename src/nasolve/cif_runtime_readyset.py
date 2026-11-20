@@ -20,14 +20,20 @@ from .ligand_profiles import combine_dictionary_inputs
 POLICY_ID = 'cif-selected-runtime-readyset-roundtrip-v1'
 
 
-def _parent(manifest):
+def _parent_manifest(manifest):
     path = Path(manifest).absolute()
     if path.is_dir(): path = path/MANIFEST_FILE
     _need(not any(p.is_symlink() for p in (path, *path.parents)), 'Unsafe parent runtime')
     # Check before recursive resolution. This continuation accepts one qualified
     # request result, not an arbitrarily nested chain of ReadySet publications.
-    _need(_load_json(path).get('policy_id') in (ORIGINAL_POLICY_ID, REPAIRED_POLICY_ID, COMPOSED_REPAIRED_POLICY_ID),
+    value = _load_json(path)
+    _need(value.get('policy_id') in (ORIGINAL_POLICY_ID, REPAIRED_POLICY_ID, COMPOSED_REPAIRED_POLICY_ID),
           'Require a qualified original or repaired parent runtime')
+    return path, value
+
+
+def _parent(manifest):
+    path, _ = _parent_manifest(manifest)
     return resolve_runtime_bundle(path)
 
 
@@ -151,13 +157,39 @@ def selected_runtime_readyset_publication(root, controls):
     return _readyset_publication(root, controls, _selected_view)
 
 
+def _replay_packed_parent(root, value):
+    """Release the outer archive's disk view before opening any inner repair stages."""
+    from .cif_component_runtime import _check_runtime_selection, _selection, verify_component_runtime_resources
+    from .cif_runtime_evidence import ARCHIVE, expanded_runtime_evidence
+    with component_runtime_evidence(root, value, subtree='runtime') as view:
+        path, manifest = _parent_manifest(view/'evidence/runtime')
+        if 'evidence_storage' not in manifest:
+            return _parent(path)['manifest']
+        verify_component_runtime_resources(path,manifest)
+        packed = _read(path.parent/ARCHIVE)
+        digest = manifest['evidence_storage']['archive']['sha256']
+
+    with expanded_runtime_evidence(packed,digest) as evidence:
+        review,decision,inputs,unavailable = _selection(evidence,manifest['source_selection'],
+                                                       policy_id=manifest['policy_id'])
+        # Only the selected public model, dictionaries and parameters are needed
+        # to bind this scientific decision after the nested paths expire.
+        selected = dict(model=_read(inputs['model']),
+                        dictionaries=[_read(p) for p in inputs['dictionaries']],
+                        phils=[_read(p) for p in inputs['phils']])
+
+    with component_runtime_evidence(root,value,subtree='runtime') as view:
+        runtime = view/'evidence/runtime'
+        verify_component_runtime_resources(runtime/MANIFEST_FILE,manifest)
+        _check_runtime_selection(runtime,manifest,(review,decision,selected,unavailable))
+    return manifest
+
+
 @contextmanager
 def _compact_readyset_selection(root, value):
     """Qualify the parent first, then compare the exact same parent to ReadySet."""
     from .cif_component_runtime import _checked_resource_paths
-
-    with component_runtime_evidence(root, value, subtree='runtime') as view:
-        parent_manifest = _parent(view/'evidence/runtime')['manifest']
+    parent_manifest = _replay_packed_parent(root,value)
 
     def same_parent(runtime):
         # Verify the entire parent manifest and every public resource against
