@@ -1,6 +1,6 @@
 # TopoStitch: periodic DNA connections, recutting and repair
 
-Current scope, **2026-11-18**: explicit placement proposals and source-bound
+Current scope, **2026-11-20**: explicit placement proposals and source-bound
 ASU-cut inspection are implemented on `willow`. Automatic sticky-end repair,
 new-ASU materialization and campaign integration remain future work. The
 [audited roadmap](topostitch-roadmap.md) owns milestones and evidence; the full
@@ -661,7 +661,7 @@ The user clarified the nanocluster architecture with Hazel: first place and
 rotate an intact cluster, then, if needed, open or close the surrounding DNA
 through bounded coupled motions and restrained recovery. This is a distinct
 planned motion, not a result established by the signed-bend controls or W166.
-It belongs after parent-derived geometry and pre-fmodel execution integration;
+It belongs after supported parent-derived chemistry/child-diffraction integration;
 it does not replace the current bending/map-review queue.
 
 **Shared ownership.** Alder owns donor-defined Ag–Ag network hypotheses, cluster
@@ -674,6 +674,13 @@ Willow owns the bounded DNA proposal and its local frames/windows. Cedar owns
 source chemical definitions and native geometry/exclusion validation. Use one
 explicit parent/candidate atom mapping and declared topology across the three;
 do not introduce another chemistry dictionary, launcher or refinement lifecycle.
+Cedar Q15 owns the planned shared offline regional twist/width report
+(`84257082ee9c15ce76ff809d06c0cd4f3ac1c0a2`, `docs/helical-geometry-plan.json`).
+Willow will consume that qualified owner for matched regions; it will not build
+another helical-analysis engine. Keep paired-P distance and each strand's
+P-to-local-axis radius separate from C1′ spans and donor/cluster measurements.
+Hazel reconfirmed W167 as the current architecture; the later single-Hg objective
+diagnostic is not cluster or width-change qualification.
 
 **Motion and chemistry.** Rigid cluster placement preserves internal cluster
 geometry during that proposal. Later internal flexibility is a separate declared
@@ -696,9 +703,11 @@ room. Retain atom identities, chemistry, nicks, declared source covalent links,
 flank angles, applicable torsions/chirality and nonbonded exclusions. Any change
 to pair/register or coordination intent must be explicit; canonical pairing
 restraints apply only where that pairing remains the declared hypothesis.
-W166's exact-identity mapping and parent context checks are reusable prerequisites,
-not proof for a metal-containing or width-changing model. Symmetry covalent seams
-remain outside this qualification.
+W166's exact-identity mapping and W168's private native lifecycle are reusable
+prerequisites, not proof for a metal-containing or width-changing model. W168
+observes child diffraction being constructed before parent-only chemical
+interpretation; the earlier pre-fmodel wording does not describe that entry.
+Symmetry covalent seams remain outside this qualification.
 
 **Measurements and comparison.** Record source, proposed and recovered states:
 

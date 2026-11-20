@@ -9762,3 +9762,125 @@ generated roadmap check, evidence checksum review and `git diff --check`; no
 full suite or redundant install check for unchanged product code. S04/S05/S06
 remain partial. Inspect W164's remaining B2/A13 distortion in its saved maps next;
 do not repeat this transport comparison or tune another refinement loop by Rfree.
+
+
+## W168 — Retain parent chemistry through child diffraction and recovery
+
+**Question and native order.** W166 qualified returned-manager geometry only.
+W168 asks whether the actual native entry can retain those source links while
+using the displaced child for diffraction and a bounded fit. Source inspection
+in **Phenix 2.2.1-6174** establishes that `Program.validate` constructs its
+initial `DataManager.get_fmodel` before `preprocess.finalize_model -> model.process`.
+`model.process(sort_atoms=False)` reloads `_model_input`; an earlier coordinate
+setter alone is therefore insufficient. This supersedes the proposed pre-fmodel
+ordering for this exact entry, without rewriting the W166 historical result.
+
+A private process-local wrapper supplies the hash-bound intact parent only to
+`process_pdb_files` during the single chemistry-interpretation call, then restores
+the child by unique full atom identity before preprocessing continues. The
+initial fmodel always represents the child and is unchanged during interpretation.
+All wrappers restore on exit. No installed/native source or production API changes.
+The frozen C407 execution owner is `f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad`.
+
+**Predeclared comparison.** Two dry-runs compare default-3 Å parent interpretation
+against ordinary child interpretation under W163's private 4 Å control. They pass
+**102 cold checks**: initial, pre-interpretation and returned `Fcalc`, `Fmodel`
+and masks match exactly; all **7,554 original observation/sigma/Free tuples,
+including 389 Free reflections**, survive. The 38 source O3′–P links include the
+3.83587656 Å B2 O3′–B3 P and four flank angles. Six-family static definitions,
+58 complete parallelity terms, 443 torsion/62 plane policies and fixed exclusions,
+nonbonded types/functions/search remain equal. Raw geometry target/gradient
+maximum errors are 7.28e-11 / 1.36e-9, within the predeclared componentwise bound.
+Native OP3 array reordering is mapped explicitly; input order remains strict.
+
+**One complete native execution.** Passing preflight admitted exactly one
+five-cycle replay of W163's negative start: all 859 sites refine, fixed B/Q,
+original noiseless synthetic data, fixed unit weights, seed1, one process,
+100-iteration cap. The run completes and the process stops; **39 final cold checks
+pass**. Exact initial/admitted preparation snapshots agree, and final source
+geometry, complete live policies, 38 backbone links, all 126 ordered sugar signs,
+atom identities/B/Q and raw/effective reflection tuples survive.
+
+| Observation | W168 retained parent | Existing W163 private 4 Å control |
+| --- | --- | --- |
+| Selected 205-atom RMS to generator | 2.287991 → 0.271141 Å | 2.287991 → 0.279044 Å |
+| Final Rwork / Rfree | .0467 / .0589 | .0475 / .0602 |
+| Local covalent bond RMS, 232 terms | .007954 Å | .007816 Å |
+| Local covalent angle RMS, 363 terms | 1.965877° | 1.952718° |
+| Largest local angle deviation | 10.54° | 10.33° |
+
+The two endpoints differ **.008788 Å RMS** over all 859 atoms (maximum .075 Å).
+PDB records and output MTZ arrays are **not** identical. The tiny coordinate/R
+improvement and tiny local geometry cost are observations, not evidence that
+this path is superior or converged. Native aggregate summary .083 Å / 2.744°
+is reported separately from the local covalent subset. Low synthetic R values
+cannot accept an experimental repair; W164's other arm still has B2/A13 distortion.
+
+Actual minimizer iterations are **100,100,100,100,49**, with 103,106,105,105,51
+function evaluations. The initial final-reader regex missed native wording and
+left `reported_iterations` empty; its original receipt is retained. A separate
+`stopping-review.json` uses the existing W163 reader pattern and binds the exact
+log. Generic statistics `cycle_series` also repeats initial/final summaries and
+must not be treated as the macrocycle count. A preflight progress snapshot was
+reconstructed from retained phase rows and verified against its already-frozen
+SHA256 before sealing as `preflight-execution.json`; the historical review is
+unchanged.
+
+**Visible checkout and validation.** GitHub workspace anchor:
+`ScienceCheckouts/Linden/2026-11-20_retained-backbone-recovery/review.html`.
+Four small PDBs and two views show actual start/recovered/generator/control
+coordinates and the local angle cost. The maintained renderer is unchanged;
+34 offline JavaScript/control checks pass. A separate **ChimeraX 1.12 headless**
+load validates four models, 859 atoms each, the 205-atom display mask and unchanged
+crystal coordinates. Grey background, silhouettes, soft light and thin nucleic
+rings are applied. The first sandbox startup stopped before script loading at a
+toolshed-cache permission; the authorized retry passes, with both logs retained.
+This is not rendered browser/GPU qualification. Viewer-inferred display bonds
+are not the native chemical authority.
+
+Main NASolve anchor: `branch-artifacts/willow/w168-parent-preparation/`.
+Commands, run from that anchor's repository, use the existing local Python:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w168-prepare.py plan
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w168-prepare.py preflight
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w168-review.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w168-prepare.py refine
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w168-final-review.py
+```
+
+These commands describe the completed immutable experiment, not an instruction
+to rerun it. The reader/source/receipt hashes and full native command arrays are
+retained. Archive `branch-artifacts/willow/w168-parent-preparation-evidence-2026-11-20.zip`
+has **112 indexed files / 9,100,709 bytes**, SHA256
+`19c917b1f121b72f4c76bdf8c269071e122066615b800f21767d37a16764eb53`.
+Every archived file's size/hash validates; prior-control evidence is linked to
+its existing archive. This is an integrity bundle, not a portable/resumable
+checkpoint. No crystallographic inputs or outputs are committed or uploaded.
+
+**Next supported boundary, not implementation.** Reuse
+`topostitch_recipe.rebind_pair_recipe` and its existing identity/frame/chemistry
+negative controls. Require immutable current-parent/candidate bindings and retain
+the strict initial ordered-identity scope: refuse renamed/reordered/missing/added
+atoms, chemical changes, internal chain breaks, recuts and changed frame.
+Keep supported canonical/alternate/site-symmetry scope explicit. Native array
+reordering after preparation remains an exact identity-map problem. The generic
+recipe owner deliberately permits ADP changes, whereas this W168 protocol is
+fixed-B/Q; its new admission must enforce that stricter policy without silently
+changing the generic owner. Existing registration is the owner for a later
+broader logical mapping. Complete native source topology/policies, fresh child
+diffraction, callback lifetime, output proof and ordinary checkpoint ancestry
+still need shared API qualification. No production hook is enabled.
+
+Changed tracked scope is existing guides, intent, handoff, roadmap/generated view
+and changelog. The focused command
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider tests/test_topostitch_roadmap.py tests/test_topostitch_recipe.py -k 'roadmap or rebind'`
+passes **32 tests** (eight roadmap, 24 existing rebind cases; 29 unrelated cases
+deselected). These qualify the existing recipe predicates, not the private W168
+wrapper as a production hook. `python scripts/audit_topostitch_roadmap.py --write`
+and `--check`, JSON/evidence bindings and `git diff --check` pass.
+No code/schema/default/migration or install behavior changes; no full
+suite or redundant installation repeat. S04/S05/S06 remain **PARTIAL**. No further
+native fit is queued. W167 cluster accommodation remains planned with Alder and
+Cedar; Q15 owns shared regional helical measurements, and single-Hg evidence is
+not widening qualification.

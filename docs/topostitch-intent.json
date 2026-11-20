@@ -1108,11 +1108,11 @@
       "qualified": false,
       "human_update": 167,
       "reference": "docs/topostitch.md#cluster-accommodation-bounded-helix-opening-and-closing-w167-planned",
-      "stage": "S04 bounded motion after parent-derived geometry/pre-fmodel integration; S05 chemical validation; S06 matched recovery, coordinated with Alder A03/A07",
+      "stage": "S04 bounded motion after supported parent-derived chemistry/child-diffraction integration; S05 chemical validation; S06 matched recovery, coordinated with Alder A03/A07",
       "owners": {
         "Alder": "Donor-defined metal networks, rigid cluster placement, coordination/oxidation hypotheses and assessment protocol",
         "Willow": "Bounded local-frame DNA opening/closing proposals and neighboring-step readback",
-        "Cedar": "Source base/sugar/phosphate chemistry, native link/angle/torsion/chirality and exclusion validation"
+        "Cedar": "Source base/sugar/phosphate chemistry, native link/angle/torsion/chirality and exclusion validation; Q15 shared offline regional helical measurements"
       },
       "metal_contract": "docs/metal-restraint-builder.md#cluster-extension-and-chemical-declarations",
       "sequence": [
@@ -1158,13 +1158,30 @@
       ],
       "controls": "Matched no-opening and predeclared bounded opening/closing alternatives; distinguish cluster pose from DNA response; retain ambiguous/failed results",
       "count_inference": "Cluster-summed f-double-prime supports count hypotheses, not a uniquely determined atom count",
-      "current_evidence": "Canonical signed bends and W166 geometry-only parent transport; Hazel FT_Hg single-bridge observations are local and descriptive. No cluster opening/closing experiment.",
+      "current_evidence": "Canonical signed bends, W166 geometry-only transport and W168 private parent-chemistry/child-diffraction recovery; none qualifies cluster widening. Hazel reconfirmed W167 architecture. FT_Hg/A01 single-bridge observations remain separate descriptive/objective evidence.",
       "coordination_provenance": {
         "owner_branch": "Alder",
         "commit": "928aa8e69835789ac48f4567b65560f710469c32",
         "document": "docs/metal-restraint-builder.md",
         "section": "Cluster placement and coupled DNA accommodation (20 November intent)",
         "combined_runtime_qualified": false
+      },
+      "regional_analysis_owner": {
+        "branch": "Cedar",
+        "commit": "84257082ee9c15ce76ff809d06c0cd4f3ac1c0a2",
+        "document": "docs/helical-geometry-plan.json",
+        "milestone": "Q15 report; Q16 integration",
+        "implemented_in_willow": false,
+        "measurements": [
+          "Signed simple step twist under declared pair/frame method",
+          "Paired-phosphate distance",
+          "Each strand phosphate-to-local-axis radius"
+        ],
+        "not_equivalent_to": [
+          "C1-prime span",
+          "Donor spacing",
+          "Cluster clearance"
+        ]
       }
     }
   },

@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W168 — Retain parent chemistry through child diffraction and recovery
+
+- Record the actual native interpretation order, two qualified dry-runs and one
+  five-cycle synthetic recovery with retained source links at the ordinary cutoff.
+  Report remaining local angle strain and the small, non-identical control delta.
+- Add a local four-model inspection packet; update existing human/machine
+  milestones and the strict admission plan. Confirm cluster architecture with
+  Hazel and route regional helix measurements to Cedar's shared Q15 owner.
+- Diagnostics and documentation only: no installed hook, schema/default,
+  migration or accepted experimental repair; generated science stays local.
+
 ### W167 — Align planned cluster placement and DNA accommodation
 
 - Record Alder/Willow/Cedar ownership for intact-cluster rigid-body placement,

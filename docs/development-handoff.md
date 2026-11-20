@@ -1,19 +1,26 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-20**, through **W167**. Larger prescribed backbone
-displacements now recover under a declared matching-data control. Starting at
-2.288 Å RMS (up to 4.79 Å movement), the two directions reach **0.253/0.040 Å**
-after matched five-plus-five-cycle recovery; the no-op remains **0.014 Å**.
-All checked links, atom identities and sugar signs survive. The positive arm
-still has B2/A13 local distortion despite Rfree .0259, so it is not accepted.
-[W163–W164 methods and limits](topostitch-periodic.md#w163--retain-known-backbone-links-before-larger-displacement-recovery).
+Updated **2026-11-20**, through **W168**. A private native diagnostic now retains
+known parent chemistry at the ordinary 3 Å interpretation cutoff while diffraction
+and refinement use the displaced child. One five-cycle run recovers **2.288 →
+0.271 Å RMS**, keeping all 38 backbone links, atom identities and checked sugar
+signs. Local covalent geometry is **0.00795 Å / 1.966° RMS**, with a largest angle
+deviation of **10.54°**; low Rfree .0589 does not imply complete repair.
+[W168 methods, lifecycle and limits](topostitch-periodic.md#w168--retain-parent-chemistry-through-child-diffraction-and-recovery).
+
+The earlier matched five-plus-five-cycle signed controls reach **0.253/0.040 Å**;
+the positive arm still has B2/A13 local distortion despite Rfree .0259. That
+finding remains open, and no extra fit is queued.
+[W163–W164 methods](topostitch-periodic.md#w163--retain-known-backbone-links-before-larger-displacement-recovery).
 
 **W167 coordination:** the user/Hazel cluster clarification is now a planned
 shared contract: intact-cluster pose first, bounded coupled DNA opening/closing
 when needed, then Alder's restrained recovery and frozen f″/Q assessment.
 Willow owns DNA motion; Cedar retains chemical geometry/exclusions. No blanket
 linear-bridge target, radial atom scaling or new width qualification follows.
-This stays after the current pre-fmodel retention gate; no new fit is queued.
+This stays after supported ordinary retention/execution integration. Hazel reconfirmed
+that W167 captures the latest architecture; no cluster fit is queued. Cedar Q15 owns
+the shared offline regional twist, paired-P span and strand-to-axis radius report.
 [Motion, measurements and ownership](topostitch.md#cluster-accommodation-bounded-helix-opening-and-closing-w167-planned).
 
 **W165 pipeline addition:** plan a default-on read-only backbone-fit check for
@@ -22,17 +29,16 @@ density. Detection, permissioned trial and adoption remain separate; noisy
 calibration and alternative explanations precede an operational trigger. No
 runtime switch or automatic repair is implemented. [Contract](topostitch.md#planned-default-backbone-fit-check-w165).
 
-**New preparation boundary:** the first larger input loses a 3.836 Å declared
-O3′–P link and four angles under native 3 Å interpretation. That attempt is held.
-A private matched 4 Å envelope preserves source links, angles and exclusions;
-it is not a production bonding rule or symmetry-seam solution. **W166 now passes
-the geometry-only parent-manager transport seam** at the default 3 Å cutoff:
-38 links, four angles around the stretched bond, complete native definitions and
-fixed exclusions survive, with matching independent control forces and exact
-return to the parent. Native terminal OP3 reordering requires exact atom-identity
-mapping. Next integrate before diffraction-model preparation through shared
-owners; no fmodel transport, optimizer run or installed repair API is qualified.
-[W166 methods and retained setup refusals](topostitch-periodic.md#w166--carry-known-parent-geometry-without-a-global-cutoff-change).
+**Native preparation boundary:** W163 first lost a 3.836 Å O3′–P link and
+four angles at the native 3 Å cutoff. W166 retained them in a returned parent
+geometry manager. W168 now observes the actual entry order: native diffraction
+is built from the child **before** geometry interpretation. A scoped wrapper
+uses the intact parent only during interpretation, then restores child sites by
+unique identity before preparation continues. Initial diffraction arrays match
+the independent control exactly; complete source geometry/exclusions survive the
+fit. This is a private diagnostic, not an installed hook or ordinary checkpoint.
+Native OP3 reordering still requires exact identity mapping.
+[W166 retained setup refusals](topostitch-periodic.md#w166--carry-known-parent-geometry-without-a-global-cutoff-change).
 
 **W162 closes the bounded actual-state study as limited.** Passive LS/ML capture
 reproduces W159 outputs, then the selected-state replay matches its 73-state
@@ -50,9 +56,11 @@ known C395/C396 screening-fallback diagnosis. New synthetic recovery does not
 explain that baseline, qualify ordinary PostMR ancestry or reopen selector tuning.
 
 Latest small lab packet, GitHub workspace anchor:
-`ScienceCheckouts/Linden/2026-11-20_larger-bend-recovery/review.html`.
-Standard-Python `open_report.py`, a six-model ChimeraX loader and three unchanged-
-renderer views are ready; checks and graphical limits are in the linked ledger.
+`ScienceCheckouts/Linden/2026-11-20_retained-backbone-recovery/review.html`.
+Standard-Python `open_report.py`, four PDBs, a ChimeraX loader and two unchanged-
+renderer views show recovery and remaining distortion. The earlier six-model
+`2026-11-20_larger-bend-recovery` packet remains available. Checks and graphical
+limits are in the linked ledger.
 
 W154 lets the installed inspector name density sources independently of the
 coordinate states. Complete source and relocated-install checks pass; the two
@@ -92,7 +100,7 @@ remains inconclusive.
 | --- | --- | --- |
 | W149/W154 reusable inspector | Installed prepared-scene renderer; full/source-free installation, exact saved-data replay and bounded peer review | Stage adapter, source/frame proof, browser/GPU qualification and campaign actions |
 | W153 experimental control | Exact original observations/Free and output/map audit; relaxed-reference and common-HKL endpoint comparison | Mixed geometry/diffraction outcome; adaptive work filtering, occupancy/ADP and model-phase ambiguity |
-| W148/W152/W163/W164 matching-data recovery | Two source models; larger signed starts, matched recovery and retained declared links; remaining local distortion explicit | Reciprocal/nonuniform target shapes, supported topology retention, experimental/noisy data and general repair |
+| W148/W152/W163/W164/W168 matching-data recovery | Larger signed starts, matched recovery and private parent-chemistry/child-diffraction execution; residual angle costs explicit | Supported ordinary retention/admission, reciprocal/nonuniform targets, experimental/noisy data and general repair |
 | W139/W140 matched canonical control | Native/zero identity, local pair benefit, recorded backbone supports and saved-map sampling | Numerical stops; density calibration, broader controls and whole-model acceptance |
 | W138 ordinary longer control | Explicit v8 100-cap route, actual final writer/pair capture; full/installed/native gates pass | Broader protocols, semantic weighting and CLI/Doctor activation |
 | W125–W134 shared execution/readback | Original pair intent, fresh admission, actual output proof and compatible registered continuation | Ordinary modified-chemistry descendants, unclassified native remainder and broader efficacy |
@@ -106,20 +114,26 @@ not another work queue; do not repeat them because this handoff is shorter.
 
 ## Next bounded work
 
-**Next bounded question:** carry W166's qualified geometry-only parent-manager
-seam into the pre-fmodel preparation/execution boundary, with explicit parent and
-candidate identities. Do not repeat the completed energy comparison or assume
-that moving a returned dry-run model updates diffraction state. Native atom-order
-mapping, unchanged chemistry/ADPs/occupancy, frame/site symmetry and observations
-need explicit binding. Retain links, associated geometry and exclusions; refuse
-unexplained additions/losses and keep symmetry seams separate. Inspect the remaining W164
-B2/A13 distortion against source-bound maps before another fit. W162's bounded
-capture/profile is recorded as limited; do not repeat it or C395–C400, tune its
-tolerances after seeing results, or require a perfect no-op before useful repair.
-W156 matched recovery and map review remain the scientific framework. Noisy
-density calibration, reciprocal target shapes, B09/B10 and ordinary lineage remain
-separate gates. The user's 2D phosphate-density illustration preference is recorded
-in the collaboration guide, alongside the 3D inspector.
+**Next bounded question:** expose parent-derived chemistry through a supported
+strict XYZ-only admission and replay boundary, reusing the existing recipe,
+registration, Cedar and execution owners. W168 answers the private lifecycle
+question; do not repeat its fit or W166. Require exact source/current-parent and
+candidate bytes, ordered atom identities, unchanged chemistry/content and internal
+breaks, B/Q, crystal frame and supported site/image state. Refuse renaming,
+reordering, recuts, additions/losses or special positions in this first narrow
+route; broader registered mappings remain separate. Native preparation reordering
+is handled by a checked full-identity bijection, not by accepting reordered input.
+The existing recipe rebinder allows ADP changes, so add the explicit fixed-B/Q
+policy at the owning admission boundary rather than changing generic rebinding.
+
+Inspect W164's remaining B2/A13 distortion against source-bound maps before another
+fit. W162 remains limited; no repeated C395–C400 matrix or relaxed tolerance.
+W156 matched recovery/map review governs scientific acceptance. W167 cluster
+opening/closing is still planned after supported retention/execution, coordinated
+with Alder A03/A07 and Cedar Q15; reuse Cedar's regional measurement owner.
+Noisy density calibration, reciprocal targets, B09/B10 and ordinary lineage remain
+separate gates. The user's 2D phosphate-density and ChimeraX style preferences
+remain in the collaboration guide.
 
 1. Keep the [stable-objective invariant sketch](topostitch.md#stable-objective-invariants-deferred-design-unimplemented)
    deferred under S06, using the exact recorded

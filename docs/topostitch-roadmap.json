@@ -229,14 +229,15 @@
         "W163: Signed15degree tapered starts move205atoms2.288A RMS, up to4.79A. Default3A interpretation drops one3.836A O3P bond and4angles; that first attempt is held without fitting. Matched private4A interpretation retains38links,58complete planes, captured proxy definitions and fixed nonbonded exclusions. Five-cycle recovery reaches.758/.279A RMS; unchanged reference reproduces W152 atoms/maps exactly. Known canonical same-ASU links and noiseless matching diffraction only; no production cutoff change, automatic bond inference or symmetry-seam qualification. Original inherited torsion inventory is incomplete and explicitly qualified.",
         "W164: One matched further5cycle restart reaches.25257/.03972A RMS from the generator; no-op remains.01436A. Final Rwork/Rfree .0211/.0259 and.0086/.0100. All859atoms,38links,126sugar signs and7554raw/effective endpoint F/SIGF/Free tuples survive. Positive B2O3-prime remains1.41A away and a local angle deviates31.32degrees. Nine reconstructed managers have identical explicit443torsion/62plane policies through the existing live owner. 601cold checks;51offline view checks and6-model ChimeraX1.12 headless load pass. Five plus five cycles with a rounded-PDB restart, not uninterrupted10cycles or convergence proof. Low R values do not accept the positive distortion. Noiseless synthetic data and one target shape; reconstructed manager policy does not retroactively fill omitted optimizer fields. Browser/GPU/human review and broad repair remain open.",
         "W166 retains 38 known same-ASU backbone links, the 3.8359 A bond and four flank angles using the default-cutoff parent manager with identity-mapped displaced sites. Complete geometry/planes/torsion policies and fixed exclusions agree with independent 4 A controls; raw energy/gradient comparisons pass and parent restoration is exact. Three qualified dry-runs, seven energy calls, 77 cold checks; no refinement. Geometry-only returned-manager scope, not pre-fmodel integration, optimizer execution, automatic topology or accepted repair. Five setup refusals are preserved; native OP3 reordering requires exact atom mapping. No production source/schema/default change.",
-        "W167 records user/Hazel/Rowan coordination: intact cluster rigid pose, then bounded coupled DNA opening/closing when needed, source chemical geometry/exclusions, neighboring-step/donor/width measurements and Alder A03/A07 recovery/assessment. Bridge linearity, cluster shape/local coordination/oxidation and count hypotheses remain distinct. Planning only. No dedicated width mode, cluster experiment, new target/default or combined-runtime qualification; W166 signed-bend geometry transport and FT_Hg descriptive evidence cannot qualify cluster accommodation."
+        "W167 records user/Hazel/Rowan coordination: intact cluster rigid pose, then bounded coupled DNA opening/closing when needed, source chemical geometry/exclusions, neighboring-step/donor/width measurements and Alder A03/A07 recovery/assessment. Bridge linearity, cluster shape/local coordination/oxidation and count hypotheses remain distinct. Planning only. No dedicated width mode, cluster experiment, new target/default or combined-runtime qualification; W166 signed-bend geometry transport and FT_Hg descriptive evidence cannot qualify cluster accommodation.",
+        "W168 carries parent-derived same-ASU chemistry through child-native diffraction preparation at the default 3 A cutoff. Two dry-runs pass 102 checks with exact initial Fcalc/Fmodel/masks and 7554 original tuples/389 Free; 38 links, the stretched bond/four angles and complete fixed geometry/policies remain. One admitted five-cycle native fit passes 39 cold checks and improves selected RMS 2.287991 to 0.271141 A (prior 4 A control 0.279044);RW/RF .0467/.0589. Local covalent RMS .007954 A/1.965877 deg, largest angle deviation 10.54 deg; all 126 sugar signs remain. Endpoints differ .008788 A RMS, not exact replay. One canonical signed synthetic control, private process-local wrappers, not an installed/ordinary workflow, new link inference, modified chemistry, cluster widening, symmetry-seam qualification or accepted repair. Native diffraction is constructed before chemical interpretation, so the former pre-fmodel description is superseded for this entry. Complete source topology and input-admission/execution integration remain separate gates; no further fit queued."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "W166 closes the geometry-only parent-manager transport comparison. Next inspect W164 B2/A13 distortion against saved source-bound maps and define the shared pre-fmodel execution seam with exact parent/candidate atom mapping, unchanged chemistry/ADPs/occupancy, frame/site symmetry, geometry/exclusions and fresh diffraction state. Do not repeat W166 or infer that a moved returned model updates fmodel. W162 stays limited; no C397-C400 rerun, global4A policy or Rfree-driven continuation. Noisy density calibration, reciprocal/nonuniform targets, ordinary ancestry and B09/B10 remain separate. W167 cluster/DNA opening remains a coordinated planned follow-on after this retention/execution gate, with Alder A03/A07 and Cedar; no immediate new fit.",
+      "next_action": "W168 closes the private parent-chemistry/child-diffraction lifecycle diagnostic with one five-cycle replay. Next qualify a supported strict XYZ-only parent/candidate admission and replay through existing recipe, registration, Cedar and execution owners; reject changed identity/order, chemistry/content, internal breaks, frame or unsupported image/site-symmetry changes rather than guess. Existing recipe rebinding permits ADP changes, so it cannot alone admit the fixed-B/Q W168 route. Preserve native post-interpretation identity mapping and fresh child diffraction. Inspect W164 B2/A13 residual distortion against saved maps before another fit. No W166/W168 repeat, global 4 A rule or Rfree-driven continuation. W167 cluster opening stays planned with Alder A03/A07 and Cedar Q15; noisy calibration, reciprocal targets, ordinary ancestry and B09/B10 remain separate.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -267,14 +268,15 @@
         "E_LARGER_DECLARED_LINKS",
         "E_LARGER_RECOVERY_WINDOW",
         "E_PARENT_GEOMETRY_TRANSPORT",
-        "E_CLUSTER_ACCOMMODATION_PLAN"
+        "E_CLUSTER_ACCOMMODATION_PLAN",
+        "E_PARENT_PREPARATION_RECOVERY"
       ],
       "last_audit": {
         "date": "2026-11-20",
-        "code_commit": "f772132ae0e2933a5157fd61c2601f124f7e3d79",
-        "human_update": 167,
-        "reviewer": "Linden; user clarification coordinated with Hazel and Rowan",
-        "scope": "Shared architecture/planning only; no milestone closure or new native execution"
+        "code_commit": "da8794d779a04e9601a480f3eb8de3aee91bd0ae",
+        "human_update": 168,
+        "reviewer": "Linden; shared scope coordinated with Rowan and Hazel",
+        "scope": "Private two-dry-run and one-five-cycle native diagnostic; no product or general repair qualification"
       }
     },
     {
@@ -305,14 +307,15 @@
         "W163: Signed15degree tapered starts move205atoms2.288A RMS, up to4.79A. Default3A interpretation drops one3.836A O3P bond and4angles; that first attempt is held without fitting. Matched private4A interpretation retains38links,58complete planes, captured proxy definitions and fixed nonbonded exclusions. Five-cycle recovery reaches.758/.279A RMS; unchanged reference reproduces W152 atoms/maps exactly. Known canonical same-ASU links and noiseless matching diffraction only; no production cutoff change, automatic bond inference or symmetry-seam qualification. Original inherited torsion inventory is incomplete and explicitly qualified.",
         "W164: One matched further5cycle restart reaches.25257/.03972A RMS from the generator; no-op remains.01436A. Final Rwork/Rfree .0211/.0259 and.0086/.0100. All859atoms,38links,126sugar signs and7554raw/effective endpoint F/SIGF/Free tuples survive. Positive B2O3-prime remains1.41A away and a local angle deviates31.32degrees. Nine reconstructed managers have identical explicit443torsion/62plane policies through the existing live owner. 601cold checks;51offline view checks and6-model ChimeraX1.12 headless load pass. Five plus five cycles with a rounded-PDB restart, not uninterrupted10cycles or convergence proof. Low R values do not accept the positive distortion. Noiseless synthetic data and one target shape; reconstructed manager policy does not retroactively fill omitted optimizer fields. Browser/GPU/human review and broad repair remain open.",
         "W166 retains 38 known same-ASU backbone links, the 3.8359 A bond and four flank angles using the default-cutoff parent manager with identity-mapped displaced sites. Complete geometry/planes/torsion policies and fixed exclusions agree with independent 4 A controls; raw energy/gradient comparisons pass and parent restoration is exact. Three qualified dry-runs, seven energy calls, 77 cold checks; no refinement. Geometry-only returned-manager scope, not pre-fmodel integration, optimizer execution, automatic topology or accepted repair. Five setup refusals are preserved; native OP3 reordering requires exact atom mapping. No production source/schema/default change.",
-        "W167 records user/Hazel/Rowan coordination: intact cluster rigid pose, then bounded coupled DNA opening/closing when needed, source chemical geometry/exclusions, neighboring-step/donor/width measurements and Alder A03/A07 recovery/assessment. Bridge linearity, cluster shape/local coordination/oxidation and count hypotheses remain distinct. Planning only. No dedicated width mode, cluster experiment, new target/default or combined-runtime qualification; W166 signed-bend geometry transport and FT_Hg descriptive evidence cannot qualify cluster accommodation."
+        "W167 records user/Hazel/Rowan coordination: intact cluster rigid pose, then bounded coupled DNA opening/closing when needed, source chemical geometry/exclusions, neighboring-step/donor/width measurements and Alder A03/A07 recovery/assessment. Bridge linearity, cluster shape/local coordination/oxidation and count hypotheses remain distinct. Planning only. No dedicated width mode, cluster experiment, new target/default or combined-runtime qualification; W166 signed-bend geometry transport and FT_Hg descriptive evidence cannot qualify cluster accommodation.",
+        "W168 carries parent-derived same-ASU chemistry through child-native diffraction preparation at the default 3 A cutoff. Two dry-runs pass 102 checks with exact initial Fcalc/Fmodel/masks and 7554 original tuples/389 Free; 38 links, the stretched bond/four angles and complete fixed geometry/policies remain. One admitted five-cycle native fit passes 39 cold checks and improves selected RMS 2.287991 to 0.271141 A (prior 4 A control 0.279044);RW/RF .0467/.0589. Local covalent RMS .007954 A/1.965877 deg, largest angle deviation 10.54 deg; all 126 sugar signs remain. Endpoints differ .008788 A RMS, not exact replay. One canonical signed synthetic control, private process-local wrappers, not an installed/ordinary workflow, new link inference, modified chemistry, cluster widening, symmetry-seam qualification or accepted repair. Native diffraction is constructed before chemical interpretation, so the former pre-fmodel description is superseded for this entry. Complete source topology and input-admission/execution integration remain separate gates; no further fit queued."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "W166 closes the geometry-only parent-manager transport comparison. Next inspect W164 B2/A13 distortion against saved source-bound maps and define the shared pre-fmodel execution seam with exact parent/candidate atom mapping, unchanged chemistry/ADPs/occupancy, frame/site symmetry, geometry/exclusions and fresh diffraction state. Do not repeat W166 or infer that a moved returned model updates fmodel. W162 stays limited; no C397-C400 rerun, global4A policy or Rfree-driven continuation. Noisy density calibration, reciprocal/nonuniform targets, ordinary ancestry and B09/B10 remain separate. W167 cluster/DNA opening remains a coordinated planned follow-on after this retention/execution gate, with Alder A03/A07 and Cedar; no immediate new fit.",
+      "next_action": "W168 closes the private parent-chemistry/child-diffraction lifecycle diagnostic with one five-cycle replay. Next qualify a supported strict XYZ-only parent/candidate admission and replay through existing recipe, registration, Cedar and execution owners; reject changed identity/order, chemistry/content, internal breaks, frame or unsupported image/site-symmetry changes rather than guess. Existing recipe rebinding permits ADP changes, so it cannot alone admit the fixed-B/Q W168 route. Preserve native post-interpretation identity mapping and fresh child diffraction. Inspect W164 B2/A13 residual distortion against saved maps before another fit. No W166/W168 repeat, global 4 A rule or Rfree-driven continuation. W167 cluster opening stays planned with Alder A03/A07 and Cedar Q15; noisy calibration, reciprocal targets, ordinary ancestry and B09/B10 remain separate.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -386,14 +389,15 @@
         "E_LARGER_DECLARED_LINKS",
         "E_LARGER_RECOVERY_WINDOW",
         "E_PARENT_GEOMETRY_TRANSPORT",
-        "E_CLUSTER_ACCOMMODATION_PLAN"
+        "E_CLUSTER_ACCOMMODATION_PLAN",
+        "E_PARENT_PREPARATION_RECOVERY"
       ],
       "last_audit": {
         "date": "2026-11-20",
-        "code_commit": "f772132ae0e2933a5157fd61c2601f124f7e3d79",
-        "human_update": 167,
-        "reviewer": "Linden; user clarification coordinated with Hazel and Rowan",
-        "scope": "Shared architecture/planning only; no milestone closure or new native execution"
+        "code_commit": "da8794d779a04e9601a480f3eb8de3aee91bd0ae",
+        "human_update": 168,
+        "reviewer": "Linden; shared scope coordinated with Rowan and Hazel",
+        "scope": "Private two-dry-run and one-five-cycle native diagnostic; no product or general repair qualification"
       }
     },
     {
@@ -434,7 +438,8 @@
         "W164: One matched further5cycle restart reaches.25257/.03972A RMS from the generator; no-op remains.01436A. Final Rwork/Rfree .0211/.0259 and.0086/.0100. All859atoms,38links,126sugar signs and7554raw/effective endpoint F/SIGF/Free tuples survive. Positive B2O3-prime remains1.41A away and a local angle deviates31.32degrees. Nine reconstructed managers have identical explicit443torsion/62plane policies through the existing live owner. 601cold checks;51offline view checks and6-model ChimeraX1.12 headless load pass. Five plus five cycles with a rounded-PDB restart, not uninterrupted10cycles or convergence proof. Low R values do not accept the positive distortion. Noiseless synthetic data and one target shape; reconstructed manager policy does not retroactively fill omitted optimizer fields. Browser/GPU/human review and broad repair remain open.",
         "W165 plans an enabled-by-default read-only backbone-fit check after usable refinement: high Rfree plus coherent atom-associated negative phosphate density or significant coherent positive backbone density. Separate detection, permissioned bounded trial and adoption; matched recovery/control and geometry/map/content review remain required. Planning only: no detector, operational thresholds, CLI flag, automatic displacement or checkpoint replacement. Density ambiguity/noise calibration and source/frame binding remain gates; W164 synthetic recovery is not experimental acceptance.",
         "W166 retains 38 known same-ASU backbone links, the 3.8359 A bond and four flank angles using the default-cutoff parent manager with identity-mapped displaced sites. Complete geometry/planes/torsion policies and fixed exclusions agree with independent 4 A controls; raw energy/gradient comparisons pass and parent restoration is exact. Three qualified dry-runs, seven energy calls, 77 cold checks; no refinement. Geometry-only returned-manager scope, not pre-fmodel integration, optimizer execution, automatic topology or accepted repair. Five setup refusals are preserved; native OP3 reordering requires exact atom mapping. No production source/schema/default change.",
-        "W167 records user/Hazel/Rowan coordination: intact cluster rigid pose, then bounded coupled DNA opening/closing when needed, source chemical geometry/exclusions, neighboring-step/donor/width measurements and Alder A03/A07 recovery/assessment. Bridge linearity, cluster shape/local coordination/oxidation and count hypotheses remain distinct. Planning only. No dedicated width mode, cluster experiment, new target/default or combined-runtime qualification; W166 signed-bend geometry transport and FT_Hg descriptive evidence cannot qualify cluster accommodation."
+        "W167 records user/Hazel/Rowan coordination: intact cluster rigid pose, then bounded coupled DNA opening/closing when needed, source chemical geometry/exclusions, neighboring-step/donor/width measurements and Alder A03/A07 recovery/assessment. Bridge linearity, cluster shape/local coordination/oxidation and count hypotheses remain distinct. Planning only. No dedicated width mode, cluster experiment, new target/default or combined-runtime qualification; W166 signed-bend geometry transport and FT_Hg descriptive evidence cannot qualify cluster accommodation.",
+        "W168 carries parent-derived same-ASU chemistry through child-native diffraction preparation at the default 3 A cutoff. Two dry-runs pass 102 checks with exact initial Fcalc/Fmodel/masks and 7554 original tuples/389 Free; 38 links, the stretched bond/four angles and complete fixed geometry/policies remain. One admitted five-cycle native fit passes 39 cold checks and improves selected RMS 2.287991 to 0.271141 A (prior 4 A control 0.279044);RW/RF .0467/.0589. Local covalent RMS .007954 A/1.965877 deg, largest angle deviation 10.54 deg; all 126 sugar signs remain. Endpoints differ .008788 A RMS, not exact replay. One canonical signed synthetic control, private process-local wrappers, not an installed/ordinary workflow, new link inference, modified chemistry, cluster widening, symmetry-seam qualification or accepted repair. Native diffraction is constructed before chemical interpretation, so the former pre-fmodel description is superseded for this entry. Complete source topology and input-admission/execution integration remain separate gates; no further fit queued."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -445,7 +450,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "W166 closes the geometry-only parent-manager transport comparison. Next inspect W164 B2/A13 distortion against saved source-bound maps and define the shared pre-fmodel execution seam with exact parent/candidate atom mapping, unchanged chemistry/ADPs/occupancy, frame/site symmetry, geometry/exclusions and fresh diffraction state. Do not repeat W166 or infer that a moved returned model updates fmodel. W162 stays limited; no C397-C400 rerun, global4A policy or Rfree-driven continuation. Noisy density calibration, reciprocal/nonuniform targets, ordinary ancestry and B09/B10 remain separate. W165 remains planned default read-only detection, permissioned trial and separate adoption, pending noisy calibration. W167 cluster/DNA opening remains a coordinated planned follow-on after this retention/execution gate, with Alder A03/A07 and Cedar; no immediate new fit.",
+      "next_action": "W168 closes the private parent-chemistry/child-diffraction lifecycle diagnostic with one five-cycle replay. Next qualify a supported strict XYZ-only parent/candidate admission and replay through existing recipe, registration, Cedar and execution owners; reject changed identity/order, chemistry/content, internal breaks, frame or unsupported image/site-symmetry changes rather than guess. Existing recipe rebinding permits ADP changes, so it cannot alone admit the fixed-B/Q W168 route. Preserve native post-interpretation identity mapping and fresh child diffraction. Inspect W164 B2/A13 residual distortion against saved maps before another fit. No W166/W168 repeat, global 4 A rule or Rfree-driven continuation. W167 cluster opening stays planned with Alder A03/A07 and Cedar Q15; noisy calibration, reciprocal targets, ordinary ancestry and B09/B10 remain separate.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -518,14 +523,15 @@
         "E_LARGER_RECOVERY_WINDOW",
         "E_DEFAULT_BACKBONE_CHECK_PLAN",
         "E_PARENT_GEOMETRY_TRANSPORT",
-        "E_CLUSTER_ACCOMMODATION_PLAN"
+        "E_CLUSTER_ACCOMMODATION_PLAN",
+        "E_PARENT_PREPARATION_RECOVERY"
       ],
       "last_audit": {
         "date": "2026-11-20",
-        "code_commit": "f772132ae0e2933a5157fd61c2601f124f7e3d79",
-        "human_update": 167,
-        "reviewer": "Linden; user clarification coordinated with Hazel and Rowan",
-        "scope": "Shared architecture/planning only; no milestone closure or new native execution"
+        "code_commit": "da8794d779a04e9601a480f3eb8de3aee91bd0ae",
+        "human_update": 168,
+        "reviewer": "Linden; shared scope coordinated with Rowan and Hazel",
+        "scope": "Private two-dry-run and one-five-cycle native diagnostic; no product or general repair qualification"
       }
     },
     {
@@ -3799,6 +3805,87 @@
       "reference": "docs/topostitch.md#cluster-accommodation-bounded-helix-opening-and-closing-w167-planned",
       "result": "W167 records user/Hazel/Rowan coordination: intact cluster rigid pose, then bounded coupled DNA opening/closing when needed, source chemical geometry/exclusions, neighboring-step/donor/width measurements and Alder A03/A07 recovery/assessment. Bridge linearity, cluster shape/local coordination/oxidation and count hypotheses remain distinct.",
       "limitation": "Planning only. No dedicated width mode, cluster experiment, new target/default or combined-runtime qualification; W166 signed-bend geometry transport and FT_Hg descriptive evidence cannot qualify cluster accommodation."
+    },
+    "E_PARENT_PREPARATION_RECOVERY": {
+      "kind": "same_asu_parent_chemistry_child_diffraction_recovery",
+      "date": "2026-11-20",
+      "human_update": 168,
+      "code_commit": "da8794d779a04e9601a480f3eb8de3aee91bd0ae",
+      "native_execution_code_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
+      "reference": "docs/topostitch-periodic.md#w168--retain-parent-chemistry-through-child-diffraction-and-recovery",
+      "result": "W168 carries parent-derived same-ASU chemistry through child-native diffraction preparation at the default 3 A cutoff. Two dry-runs pass 102 checks with exact initial Fcalc/Fmodel/masks and 7554 original tuples/389 Free; 38 links, the stretched bond/four angles and complete fixed geometry/policies remain. One admitted five-cycle native fit passes 39 cold checks and improves selected RMS 2.287991 to 0.271141 A (prior 4 A control 0.279044);RW/RF .0467/.0589. Local covalent RMS .007954 A/1.965877 deg, largest angle deviation 10.54 deg; all 126 sugar signs remain. Endpoints differ .008788 A RMS, not exact replay.",
+      "limitation": "One canonical signed synthetic control, private process-local wrappers, not an installed/ordinary workflow, new link inference, modified chemistry, cluster widening, symmetry-seam qualification or accepted repair. Native diffraction is constructed before chemical interpretation, so the former pre-fmodel description is superseded for this entry. Complete source topology and input-admission/execution integration remain separate gates; no further fit queued.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w168-parent-preparation/preparation.json",
+          "sha256": "34212ae878dc2526d0d8d9c5296ad570f29d0c1b89a5f2aae4b0ba8a5e543f3d",
+          "size": 158
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w168-parent-preparation/preflight-review.json",
+          "sha256": "7b75dcd2a115a87a39651923210394571daab236bcd97d5a90af31fe96fc9bef",
+          "size": 13138
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w168-parent-preparation/final-review.json",
+          "sha256": "76214602eae1472618d8f4407ad0c04fce5098706ba66d57854ca80b0cf1d095",
+          "size": 57536
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w168-parent-preparation/stopping-review.json",
+          "sha256": "9ae54dbc33f98fb7ed8391258aa5d05407e0854a6c277ae103474c07083c5a95",
+          "size": 1536
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w168-parent-preparation/viewer-check.json",
+          "sha256": "38d8bf4067c332b7e8141dfaead3be883c492067ba21d99cacee406b09278815",
+          "size": 1979
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w168-parent-preparation/viewer-execution-authorized.json",
+          "sha256": "624a5c4bcea55914ffe027467cc0a303c2f58227be7b270bbf79756f8a34e8fd",
+          "size": 758
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w168-parent-preparation/recovery-html-review.json",
+          "sha256": "baa78df96f704e868cf8d99b4ecb6182d627df28357bcfc6c5ff07e95288b80e",
+          "size": 2245
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w168-parent-preparation/remaining-html-review.json",
+          "sha256": "7c7ddb38c5a112e8f21a965da8710e7bdedbab999e6b73b774c5507ba888dcc7",
+          "size": 2245
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w168-parent-preparation/archive.json",
+          "sha256": "43818c9dadf04652dd25d812a06291b0fc4f9ed50ce6c09a259fd797105aa26f",
+          "size": 331
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w168-parent-preparation-evidence-2026-11-20.zip",
+          "sha256": "19c917b1f121b72f4c76bdf8c269071e122066615b800f21767d37a16764eb53",
+          "size": 9100709,
+          "indexed_files": 112,
+          "integrity_verified": true,
+          "portable_or_resumable": false
+        },
+        {
+          "anchor": "GitHub workspace",
+          "path": "ScienceCheckouts/Linden/2026-11-20_retained-backbone-recovery/manifest.json",
+          "sha256": "580aabab5d258ce1ab2d81fa8ff7ff9e8d71fb8b6a05e5073fc5637be3b95f52",
+          "size": 5575
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -3960,8 +4047,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 167,
-    "next": 168,
+    "current": 168,
+    "next": 169,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -4773,6 +4860,12 @@
         "title": "Align intact-cluster placement and coupled DNA opening",
         "state": "RECORDED",
         "code_commit": "f772132ae0e2933a5157fd61c2601f124f7e3d79"
+      },
+      {
+        "number": 168,
+        "title": "Retain parent chemistry through child diffraction and recovery",
+        "state": "RECORDED",
+        "code_commit": "da8794d779a04e9601a480f3eb8de3aee91bd0ae"
       }
     ]
   },
