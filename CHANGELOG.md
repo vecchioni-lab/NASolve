@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Measure compact-trial audit scope against a compressed baseline
+
+- Record cold replay of three historical FT freeze audits and explicit altered
+  evidence refusals, separating complete trial archives, selected audit evidence
+  and historical-only compact records.
+- Compare like compressed storage scopes before proposing pruning; retain full
+  proof nodes and require shared native-process shutdown and a new compact-child
+  lifecycle. No runtime, persisted schema, scientific default or cleanup changes.
+
 ### Inspect a published frozen-trial batch in one archive view
 
 - Add `inspect-recorded-fdp --all-trials` with a pinned publication receipt and

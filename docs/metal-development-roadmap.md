@@ -52,6 +52,12 @@ Whole-publication inspection now shares one archive expansion across all named
 attempts; 51 focused tests and installed real readback qualify exact rows and
 late-selection refusal. This is a read-only comparison improvement, not an
 execution session or retirement contract.
+The subsequent private audit-boundary study recovers exact freeze checks from
+selected native evidence, but saves only 16.5% versus compressing complete trial
+files. Keep full compressed proof nodes; use explicit historical-only compact
+children for ordinary increments. Next connect the shared owned-process lifecycle
+and durable child publication before retiring any new disposable payload;
+scientific parent/runtime qualification remains required.
 
 **Scientific milestone: A01 — ligand geometry and open XYZ/B foundation.**
 **Parallel engineering step: A04 — compact records and protected parent transport.**

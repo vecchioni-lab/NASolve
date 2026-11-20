@@ -171,6 +171,21 @@ publication,cli}.py`; one new focused test module covers the batch contract.
 The original single-result interface and all persisted schemas remain unchanged;
 no migration, native execution, full suite, scientific acceptance or retirement.
 
+The next read-only A04 audit-boundary proof now replays all three historical FT
+freeze audits from retained input bytes plus exact native arrays/Free-R/final-PDB
+receipts, using unchanged owners; 19 altered/incomplete-evidence controls refuse.
+A fair compressed baseline is **620,211 B** for all trial files versus **517,639 B**
+for inputs/publication plus selected audit evidence and **136,711 B** for inputs
+plus historical results only. Parent storage is excluded. Most raw-size reduction
+comes from compression/deduplication; avoid a new production sidecar format for
+this modest additional saving. Full compressed proof nodes and explicitly
+historical-only cheap children remain the design. Exact measurements, commands,
+checks and the next owned-process/compact-publication boundary are in the
+[storage contract](metal-campaign-storage.md#measured-audit-retention-boundary-on-historical-ft-trials).
+Private `compact-audit-boundary-20261120-01/review.html` supplies the checkout
+figure. No original files are deleted; no native fit, runtime/schema change,
+full suite or migration occurs. A04 remains partial.
+
 ### Ordinary recorded-result CLI
 
 The maintained historical inspector now has a stdout-only normal CLI consumer,

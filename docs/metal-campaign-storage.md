@@ -759,6 +759,66 @@ input invalidates automatic reuse. A new result becomes a separate comparison
 if its scientific basis differs. Merely having a recipe is not a recoverability
 proof, and a typical short f″ runtime is not a universal timing guarantee.
 
+### Measured audit-retention boundary on historical FT trials
+
+The three already-published FT_Hg attempts now have a private cold component-audit
+rehearsal using the same installed archive and freeze-audit owners. Exact native
+arrays, Free-R receipts, final PDBs and original manifests form a 13-path sidecar
+with nine distinct objects. After restoring inputs and closing that archive view,
+the sidecar opens separately; the unchanged `audit_result` reproduces all three
+full-precision stored results. The original serialized-PDB freeze check also
+passes. Nineteen controls reject changed XYZ, Q, B, fixed f′, Free-R assignments,
+scalar-only pseudo-evidence and an incomplete legacy-trial copy. This is **component
+audit replay**, not complete `verify_fdp`, live-parent verification or native
+regeneration. No original trial or parent is changed.
+
+The fair compressed baseline uses the same shared archive owner:
+
+| Package for the same three attempts | Measured bytes | Retained evidence scope |
+| --- | ---: | --- |
+| All 60 original trial files, 37 distinct objects | 620,211 | Complete selected trial files; protected parent remains separate |
+| Exact inputs/publication plus selected audit sidecar | 517,639 | Recorded results and the freeze/serialized-model audit components |
+| Exact inputs and pinned published results | 136,711 | Historical measurements; no independent replay of omitted native arrays |
+
+Original uncompressed trial files total 2,478,875 B. The selective audit package
+saves only 102,572 B (16.5%) relative to the compressed complete-trial baseline.
+Do not claim the raw-to-compressed difference as a benefit of evidence retirement.
+This sample supports retaining complete shared archives at important/proof nodes,
+while cheap ordinary children can explicitly carry the historical-only evidence
+level after lifecycle qualification. It does **not** justify a new production
+sidecar format by itself. The private sidecar is diagnostic evidence, not a
+published schema or permission to remove files.
+
+These historical low-B, poor-fit examples do not qualify A01/A02 or predict a
+200-dataset campaign's capacity. Protected parents, complete software identity,
+map-bearing cases, peak native scratch and concurrent reservations remain
+additional. The temporary full-trial baseline copy/archive is removed after its
+receipt; original scientific files remain untouched. Existing immutable trial
+formats/readers are unchanged.
+
+Local evidence: `compact-audit-boundary-20261120-01/{review.json,cold-review.json,
+full-trial-baseline.json,delivery.json}` and the visually checked
+`review.html`/`retention-scopes.svg` under the private Alder artifact anchor.
+Read-only runners `A306_compact_audit_boundary.py` and
+`A307_full_trial_archive_baseline.py` run with
+`PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B`.
+There are 35 transport/source checks and 31 cold checks plus the 19 refusals;
+no new Phenix/Coot execution or full suite. Saved native evidence is from
+Phenix 2.2.1-6174. The installed wheel is unchanged from the qualified batch reader.
+
+**Next implementation boundary:** the legacy frozen worker still uses
+`subprocess.run` with a timeout. A future disposable child must use the shared
+`campaign_process.run_owned_command` and durable process-record scope before
+retirement is possible; a saved PID or scalar success flag is insufficient.
+Keep that new lifecycle separate from historical numbered trial inventories.
+Reserve owned scratch, bind a protected parent and exact worker/inputs, audit
+while full output exists, durably publish and reread the new compact record,
+verify process shutdown and protection/pins, then retire only explicitly owned
+new disposable payload. Failures and interrupted publication retain evidence.
+Reuse shared locking/record/archive owners; do not apply the CIF complete-attempt
+schema to metal trials or claim that the current publication receipt already
+implements this lifecycle. Scientific parent and runtime-identity gates remain.
+
 ## Retention through the solution tree
 
 Protect dataset roots, geometry/B branch roots, important chemical or metal-count
