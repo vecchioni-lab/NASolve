@@ -1,6 +1,6 @@
 # Metal campaign storage and recovery plan
 
-Status: **inventory, compact projection and exact input transport implemented; complete retention/regeneration pending**; 20 November 2026.
+Status: **inventory, compact projection, exact inputs and explicit parent transport implemented; scientific retention/regeneration lifecycle pending**; 20 November 2026.
 The [post-merge development roadmap](metal-development-roadmap.md) places this
 work at **A04**, after single-dataset ligand/open-refinement qualification and
 before large f″ campaigns. It is a feature milestone after merge, not a
@@ -169,6 +169,71 @@ retains its 16 MiB cap. Upstream scientific replay still traverses original
 parents and native JSON; these are not total I/O, memory, peak disk or campaign
 reservation guarantees. No original scientific run is modified by this adapter.
 
+## Implemented fourth step: explicit parent-layout transport
+
+`nasolve.metal.parent_archive.pack_parent_inputs(layout, output)` retains one
+explicit, caller-prepared portable layout as checksum-indexed archive parts and
+a `metal-parent-input-archive` v1 manifest. It preserves all declared paths and
+bytes, deduplicates equal objects, and uses the existing archive serializer,
+decoder and member grammar. It neither discovers scientific dependencies nor
+checks their completeness. Unsafe paths are refused; the caller must explicitly
+prepare any opaque attachments. No automatic renaming or basename lookup occurs.
+
+`materialized_parent_inputs(directory, manifest_sha256, ...)` yields a temporary
+parent root and a transport receipt. It copies out the verified transport view,
+closes that view, then allows ordinary scientific readers to open their own
+archive scopes. Entry/exit hashes and read-only modes protect against observed
+changes; they are not hostile-process isolation. The caller must replay the
+appropriate scientific owner. A valid transport receipt never substitutes for
+that replay, a trusted software identity or frozen-state validation.
+
+The unchanged global bounds are 1,024 files, 32 MiB per file and 128 MiB logical
+contents; each compressed part remains capped at 32 MiB. At most eight explicitly
+named parts and 128 MiB total compressed parts are allowed. Metadata is at most
+1 MiB. Packing rejects unsupported single-object or archive sizes rather than
+relaxing a shared bound. The output must be fresh and separate. Parts are synced
+before the manifest is written last. An interrupted partial publication remains
+unadoptable and is not silently overwritten; crash recovery and automatic cleanup
+of such partial directories are not provided by this API.
+
+The materialization allowance includes retained parts/manifest, transport-copy
+overlap and one ordinary reader's full shared temporary allowance. Defaults are
+256 MiB per invocation plus 256 MiB free-space reserve. A caller can restrict or
+explicitly increase its task allowance without enlarging any archive bounds.
+If caller scratch and system temporary storage use different filesystems, each
+must have the conservative allowance available. This is a preflight check, not
+an atomic space reservation or an overall RAM bound. Concurrent campaign tasks
+still need an aggregate reservation owner. Nested parent snapshots in the same
+context are refused. Temporary paths expire on normal and exceptional exit.
+
+The adapter changes no existing run/registry/trial schema, checkpoint selection,
+native worker, CLI or GUI. Its new transport schema is additive; no migration is
+required. It grants no execution, automatic reuse, scientific acceptance or
+retirement authority. Complete parent selection, trusted software identity,
+compact child audit/regeneration and campaign retirement remain separate gates.
+
+Qualification: **96 focused tests pass in 24.36 s**, including the new lifecycle
+regression, source-removed relocation, changed/missing/aliased inputs, budgets,
+copy fallback and interrupted publication, plus the directly reused archive and
+existing metal input-transport tests. A source-free relocated wheel has **346
+exact package files**. The installed adapter recovers the same complete modern
+parent through ordinary readers with original science/source reads denied:
+**876 cold checks**, one full registry read (**99.78 s**) and subsequent
+checkpoint resolutions (**0.031 s**). Four parts occupy **35,687,332 B**;
+the manifest is **104,364 B**, and the conservative disk bound is **246,715,191 B**.
+All 392 original files remain unchanged; temporary staging/build/install paths
+are removed. The original science remains present but blocked during the probe.
+No Phenix/Coot call or new scientific acceptance occurs, and the owned process
+is verified stopped. No full suite was run.
+
+Exact commands and hashes are under the Alder artifact anchor
+`parent-adapter-20261120-01/`: `focused-tests.json`, `installed/result.json`,
+`packing.json`, `cold-execution.json` and `snapshot-recovery/cold-review.json`.
+The focused command uses `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`, Python
+3.12.14 and the four named modules in its receipt. An initial wrapper keyword
+error was refused before any process spawned and is preserved separately.
+Generated bundles, models and reports remain local and excluded from Git.
+
 ## Bounded protected-parent and regeneration rehearsal
 
 A 19 November rehearsal extends the earlier input-only archive to the existing
@@ -295,8 +360,9 @@ Python 3.12.14 `-B runners/A207_cold_snapshot.py`, with the pinned installed pac
 boundary checks: `-B runners/A208_parent_boundary_checks.py`. No full suite or
 unchanged native refinement was rerun. Generated bundles/reports stay local.
 
-**Next:** settle the shared production lifecycle owner, qualify trusted software
-identity and the lean frozen-child audit/regeneration contract, then add explicit
+**Next:** the additive parent-layout transport now implements the bounded
+lifetime separation above. Qualify trusted software identity and the lean
+frozen-child audit/regeneration contract, then add explicit
 campaign reservations and crash-safe publication/retirement. Preserve important
 geometry parents throughout. No original run is yet eligible for deletion, and
 the diagnostic recovery alone does not provide a reusable metal-trial session.
@@ -510,9 +576,9 @@ parents; compact f″ rows do not make upstream refinement archives free.
    is implemented; native peak scratch measurement remains pending and must be
    supplied as an explicit scenario allowance for now.
 2. **Versioned compact frozen records:** the read-only result projection and
-   full-source replay are implemented. Shared retained parents, complete execution
-   identity, durable compact publication and lossless native input materialization
-   remain pending. Existing schema-1 runs stay untouched and verifiable.
+   full-source replay, exact input recovery and explicit parent-layout transport
+   are implemented. Scientific parent selection, complete execution identity and
+   durable compact child publication remain pending. Existing schema-1 runs stay untouched and verifiable.
 3. **Bounded executor:** run one cheap f″ child in owned scratch, audit, commit
    and reread the result, then retire only newly declared disposable payload.
    First native control is a qualified single-Hg branch, then mixed Au/Ag/cluster.

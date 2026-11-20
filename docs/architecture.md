@@ -2099,6 +2099,16 @@ a new attempt. General contexts, automatic search, compaction/recovery and their
 native qualification remain unimplemented; the development-intent additions do
 not change current artifact schemas or operational behavior.
 
+The additive `metal.parent_archive` adapter transports an explicit portable parent
+layout through unchanged checksum-indexed archive owners. Bounded parts preserve
+global limits; a temporary protected copy releases the transport scope before
+ordinary scientific readers open their own evidence. Full entry/exit hashes,
+manifest-last publication and declared overlap/reader allowances qualify byte
+recovery and lifetime, not complete scientific dependency selection, trusted
+execution or retirement. Existing registries and metal trials remain unchanged.
+See [parent transport](metal-campaign-storage.md#implemented-fourth-step-explicit-parent-layout-transport)
+for schema, bounds, validation and remaining campaign responsibilities.
+
 Existing AutoRefine switches are a foundation, not proof of the frozen protocol.
 In particular, `RefineDoctor/ML-fdp-only` still defaults to coordinate refinement
 and group ADPs; it does not freeze all atomic parameters. A qualified diagnostic

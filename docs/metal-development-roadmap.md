@@ -13,12 +13,12 @@ own scientific contracts. A mechanism passing tests does not close its scientifi
 gate. Update milestone status, evidence, limitations and next action together.
 
 **Scientific milestone: A01 — ligand geometry and open XYZ/B foundation.**
-**Parallel engineering step: A04 — compact records and exact input transport.**
+**Parallel engineering step: A04 — compact records and protected parent transport.**
 A04 measures saved trials while A01 remains unresolved; it does not bypass A02
 or authorize large fan-out. The read-only projection substep now retains complete results with shared
-experiment metadata. Exact input transport now uses the shared archive owner;
-complete retained-parent publication remains next, followed by qualified native
-regeneration before any retirement. A small
+experiment metadata. Exact input and explicit parent-layout transport use the
+shared archive owner. Scientific parent selection, complete execution identity
+and the compact child lifecycle remain next before retirement. A small
 19 November rehearsal recovers four requests from a 251,197-byte archive;
 it does not yet retain complete parents or qualify native regeneration.
 A later bounded rehearsal recovers both legacy PostMR roots and metal parents
@@ -26,8 +26,9 @@ from 782,402 bytes, then exactly reproduces two historical frozen-f″ result
 records. This is recovery feasibility, not a new production retention contract;
 modern checked ancestry is now recovered in a separate bounded diagnostic proof.
 That proof preserves all 392 source files, uses 35.7 MB of compressed parts and
-passes 876 cold checks with source reads denied. Complete software identity,
-public session lifecycle and pruning remain open. The full registry walk belongs
+passes 876 cold checks with source reads denied. The explicit parent-layout
+adapter is now implemented with focused and installed recovery qualification. Complete software identity, scientific session lifecycle
+and pruning remain open. The full registry walk belongs
 to parent intake, not the current frozen-trial verification path; avoid a redundant
 per-point validation cache. The [storage contract](metal-campaign-storage.md#modern-parent-recovery-proof)
 owns the measured scope, prototype refusals and next production boundaries.
@@ -122,8 +123,8 @@ descriptive; broad geometry and combined scientific evidence guide review.
    First demonstrate a small Hg occupancy-response set before widening the grid.
 3. **A04, before fan-out:** retain the complete protected modern parent once per
    bounded session; check each trial's exact inputs and frozen state. The legacy and modern
-   ancestry recovery proofs now exist; qualify trusted software identity and
-   the production lifecycle before any retirement. Keep structural parents; regenerate cheap frozen
+   ancestry recovery proofs now exist; use the qualified transport adapter, then qualify trusted software identity
+   and the scientific child lifecycle before any retirement. Keep structural parents; regenerate cheap frozen
    increments from verified inputs and compact statistics under a disk budget.
 4. **A02/A03 → A07:** apply the same mechanics to mixed Au/Ag, then cluster totals
    and anomalous-background controls. Preserve element identities, occupancies,
@@ -183,7 +184,7 @@ the exact source pin, counts, commands and remaining integration boundaries.
 | **A01 — Ligand geometry and open XYZ/B foundation** | PARTIAL; native stopping evidence implemented; FT_Hg open-fit geometry gate remains | Qualify exact source chemistry, linkage/terminal context, all intended NARestraints and metal recipe terms; demonstrate open XYZ/B refinement, explicit phase/Free-R policy, active-state B export and inspectable maps. FT_Hg first, then mixed Au/Ag. | Merged development base |
 | **A02 — Controlled f″/Q quantitation** | PARTIAL; frozen fits, B environments and matched comparisons implemented | Use qualified endpoints; freeze XYZ/all ADPs/f′, prepare metal B from the refined environment, and qualify Q/start/budget responses, mixed elements, cluster sums/cancellation and anomalous-background controls. | A01 |
 | **A03 — Editable recipes and structural alternatives** | PARTIAL; recipe core and candidate comparisons implemented | Source-backed ligand/metal-state targets, saved editable recipes, count/identity alternatives, optional chi flips and multiple/adjacent sites; preserve ambiguity and human choice. | A01–A02 |
-| **A04 — Lean storage and regeneration** | PARTIAL; [inventory/forecast, compact projection and exact input transport](metal-campaign-storage.md) implemented; complete parents/regeneration/pruning pending | Shared pristine parents, compact frozen-trial records, protected important nodes, size-capped map retention, cold native regeneration, crash-safe retirement and campaign disk reservations. | Qualified A01–A02 examples; before large fan-out |
+| **A04 — Lean storage and regeneration** | PARTIAL; [inventory/forecast, compact projection and exact input transport](metal-campaign-storage.md) implemented; explicit parent transport qualified; scientific lifecycle/regeneration/pruning pending | Shared pristine parents, compact frozen-trial records, protected important nodes, size-capped map retention, cold native regeneration, crash-safe retirement and campaign disk reservations. | Qualified A01–A02 examples; before large fan-out |
 | **A05 — Dedicated GUI co-design session** | OPEN; earlier sketches and inspection viewer are starting points | Scientist and developer jointly walk through real cases, debate navigation/controls, compare alternatives and agree a usable modular design with recorded decisions and usability checks. | Representative A02/A03 evidence; can run alongside A04 |
 | **A06 — Campaign and GUI integration** | PARTIAL; identities, navigation and inspection mechanisms exist | Connect the agreed GUI to bounded multi-dataset execution, structures/sites, compact comparisons, branching history, maps/Coot, selection, reuse and recovery; include no-metal/empty-frame policy. | A02–A05 |
 | **A07 — Reconstruct known metal solutions through the mechanics** | OPEN; solved references and diagnostic fixtures available | Reconstruct defensible solutions from declared experimental inputs and general NASolve mechanics, with reference models withheld from construction/search; record intervention and remaining ambiguity against predeclared criteria. | Mechanical rehearsals through A01–A03; campaign demonstration after A06 |

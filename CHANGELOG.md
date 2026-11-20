@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Add bounded metal parent-layout transport
+
+- Add explicit parent-layout packing and temporary materialization through the
+  unchanged shared archive owners. Bounded parts preserve exact files and allow
+  ordinary checked readers to open their own evidence after transport closes.
+- Enforce input integrity, declared disk allowances, manifest-last publication
+  and cleanup; qualify focused tests and source-denied installed recovery.
+  The transport schema is additive, with no existing-run migration, scientific
+  acceptance, native execution, reuse or retirement authority.
+
 ### Record modern protected-parent recovery
 
 - Record bounded cold recovery of a complete modern checked parent, preserving

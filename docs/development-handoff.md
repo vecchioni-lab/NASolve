@@ -77,9 +77,12 @@ the latest compact checkout is
 `ScienceCheckouts/Hazel/2026-11-20_matched-continuation/review.html`, with an
 adjacent standard-Python opener. A04's separate modern-parent recovery proof
 now passes 876 cold checks and 16 synthetic refusals with no native calls or
-source changes. Production session, full software identity and retirement remain
-open; the [storage contract](metal-campaign-storage.md#modern-parent-recovery-proof)
-owns that boundary. Runtime and public schemas are unchanged.
+source changes. The subsequent additive parent-layout adapter passes 96 focused tests and an
+installed 876-check recovery with all 346 package files exact. Only the new
+transport API/schema changes; existing readers/native workers stay unchanged.
+Scientific session, full software identity and retirement remain open; the
+[storage contract](metal-campaign-storage.md#implemented-fourth-step-explicit-parent-layout-transport)
+owns that boundary. No full-suite rerun or new scientific acceptance follows.
 A09 remains deferred until after the main A01–A08 build.
 
 ## Scientific scope and owners
@@ -101,7 +104,7 @@ The last complete shared-runtime execution remains the explicitly recorded
 | --- | --- | --- |
 | Metal geometry | **A01 partial**: FT_Hg source terms reach the native manager, but open XYZ/B geometry is unresolved; A02 stays gated | [Metal handoff](metal-development-handoff.md), [A01–A09 roadmap](metal-development-roadmap.md) |
 | Modified-residue construction/refinement | **Q06 open**: PDU/DF geometry survival remains unaccepted; C406 records declared local terms without changing the fit | [Chemistry handoff](chemistry-development-handoff.md), [completion queue](cif-doctor-completion-queue.md) |
-| Lean metal storage | **A04 partial**: inventory, compact records and exact input transport exist; complete parents, native regeneration and retirement remain next | [Storage contract](metal-campaign-storage.md) |
+| Lean metal storage | **A04 partial**: inventory, compact records and exact input transport exist; explicit parent transport qualified; scientific lifecycle, native regeneration and retirement remain next | [Storage contract](metal-campaign-storage.md) |
 | Maps/campaign interaction | Willow retains its separate owner and qualification; no new map-generation or density-fitting policy enters here | [GUI contract](gui.md), [architecture](architecture.md) |
 
 The two subsystem handoffs preserve their evidence-time branch statements and

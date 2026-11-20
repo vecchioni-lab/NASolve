@@ -20,8 +20,8 @@ issues. No accepted endpoint or new f″ result follows. See
 [matched continuation](#a01-matched-ordinary-continuation) below. The latest compact
 checkout is `ScienceCheckouts/Hazel/2026-11-20_matched-continuation/review.html`;
 its adjacent `open_report.py` opens it with standard Python, without native work.
-A04 now has a modern-parent recovery proof, separately from geometry acceptance;
-production lifecycle and trusted-software integration remain next.
+A04 now has qualified explicit parent-layout transport, separately from geometry
+acceptance; trusted software and the lean child lifecycle remain next.
 
 **Early session, 20 November:** the selected-state capture and two bounded
 FT_Hg motion profiles are complete. The modest coupled movement is ready for
@@ -90,9 +90,9 @@ one full registry read (**105.35 s**), subsequent resolutions **0.027 s**, and
 zero native calls. All 392 original files remain exact. The private bounded
 multipart layout stores **35,686,175 B**; its explicit peak disk bound is
 **246,609,670 B**, including reader workspace. Temporary copies are removed.
-Sixteen synthetic entry/exit refusal checks pass. A04 remains partial: public
-parent publication/session lifecycle, complete software identity, campaign
-reservations and retirement are still unimplemented. The
+Sixteen synthetic entry/exit refusal checks pass. A04 remains partial: the adapter below now supports explicit layout transport;
+complete scientific session/software identity, campaign reservations and
+retirement remain unimplemented. The
 [storage contract](metal-campaign-storage.md#modern-parent-recovery-proof)
 records preserved failed attempts, scope and next steps. Evidence:
 `modern-parent-20261120-04/` under the Alder artifact anchor.
@@ -102,9 +102,21 @@ context/source inputs; they do not perform C414's full registry walk per point.
 The measured registry cost belongs to parent intake. Do not introduce a redundant
 validation cache or describe it as a measured per-point performance improvement.
 
+**A04 parent transport adapter, 20 November: implemented and qualified.**
+The explicit portable-layout adapter reuses unchanged archive owners, releases
+its transport scope before ordinary readers and checks its declared disk bound.
+**96 focused tests pass**; the relocated **346-file installation** then recovers
+the modern parent with **876 cold checks**, source reads denied and no native
+calls. Registry intake takes **99.78 s**, subsequent resolutions **0.031 s**.
+All owned processes and temporary views stop/close. Public transport is additive;
+no existing run schema or native science changes. The
+[storage contract](metal-campaign-storage.md#implemented-fourth-step-explicit-parent-layout-transport)
+owns exact bounds, methods, evidence levels and remaining lifecycle limits.
+Receipts: `parent-adapter-20261120-01/` under the Alder artifact anchor.
+
 **A04 remains partial: lean frozen-trial storage.** Read-only inventory, scenario
-forecast, lossless compact projection and exact input archive transport are
-implemented. The adapter reuses the shared archive/temporary-view owner, preserves
+forecast, lossless compact projection, exact input archives and explicit parent
+transport/lifetime separation are implemented. The adapter reuses the shared archive/temporary-view owner, preserves
 all attempts and reconstructs inputs without original-data lookup. Production
 shared-parent retention, native regeneration, campaign budgets and safe retirement
 remain separate gates; the bounded feasibility result below does not close them. Do not prune old immutable trials through an input-transport receipt.
