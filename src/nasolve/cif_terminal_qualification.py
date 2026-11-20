@@ -85,9 +85,10 @@ def definition_projection_checks(native: dict, projections: Mapping[str,tuple[Pa
     return checks
 
 
-def _native_atom_identities(native):
+def _native_atom_identities(native, *, pdb_spaces_only=False):
     """Existing structured identities shared by named-proxy comparisons."""
     atoms={}; identities={}; seen=set()
+    padding = " " if pdb_spaces_only else None
     fields=('model_id','chain_id','resseq','icode','resname','altloc')
     for atom in native['atoms']:
         index=atom['i_seq']; identity=atom['identity']
@@ -96,13 +97,15 @@ def _native_atom_identities(native):
         values=[identity[k] for k in fields]+[atom['atom_id']]
         if any(not isinstance(v,str) for v in values) or not isinstance(atom['label'],str):
             raise ValueError('Incomplete native atom identity')
-        key=tuple(v.strip() for v in values)
+        key=tuple(v.strip(padding) for v in values)
         if not key[2] or not key[4] or not key[-1] or key in seen:
             raise ValueError('Missing or ambiguous named native atom')
         element=atom.get('element')
         if element is not None and (not isinstance(element,str) or not element.strip()):
             raise ValueError('Invalid native element')
-        atoms[index]=atom; identities[index]=key+(element.strip() if element is not None else None,); seen.add(key)
+        atoms[index]=atom
+        identities[index]=key+(element.strip(padding) if element is not None else None,)
+        seen.add(key)
     return atoms, identities
 
 
@@ -151,7 +154,7 @@ def _request_display_label(atom):
             or '\n' in label or '\r' in label):
         return None
     if (not isinstance(field,str) or len(field)!=4 or field!=label[5:9]
-            or field.strip()!=atom['atom_id']):
+            or field.strip(' ')!=atom['atom_id']):
         raise ValueError('Native atom-name field contradicts its display or identity')
     return label[:5]+atom['atom_id'].ljust(4)+label[9:]
 
@@ -174,7 +177,7 @@ def _ordered_named_custom_requests(native):
     This helper neither qualifies capture provenance nor selects a model.
     """
     from .cif_native_context import _bound_request_signature as validate_request
-    atoms, identities = _native_atom_identities(native)
+    atoms, identities = _native_atom_identities(native, pdb_spaces_only=True)
     if any(not a['label'].strip() or not isinstance(a.get('element'),str)
            or not a['element'].strip() for a in atoms.values()):
         raise ValueError('Missing explicit-request atom label or element')

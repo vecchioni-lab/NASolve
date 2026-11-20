@@ -182,3 +182,25 @@ def test_large_request_inventory_builds_each_atom_index_once():
         native['atoms']=CountedAtoms(native['atoms'])
     assert matches(a,b)
     assert a['atoms'].traversals==b['atoms'].traversals==1
+
+
+@pytest.mark.parametrize('padding', ['\t', '\u00a0'])
+def test_only_literal_pdb_spaces_can_pad_an_atom_name(padding):
+    before, after = pair()
+    atom = after['atoms'][0]
+    field = atom['atom_name_field'].replace(' ', padding, 1)
+    assert field != atom['atom_name_field']
+    atom['atom_name_field'] = field
+    atom['label'] = atom['label'][:5] + field + atom['label'][9:]
+    rebind_labels(after)
+    with pytest.raises(ValueError, match='atom-name field'):
+        matches(before, after)
+
+
+@pytest.mark.parametrize('part', ['chain_id', 'element'])
+def test_non_pdb_whitespace_in_structured_identity_is_significant(part):
+    before, after = pair()
+    atom = after['atoms'][0]
+    table = atom if part == 'element' else atom['identity']
+    table[part] += '\t'
+    assert not matches(before, after)

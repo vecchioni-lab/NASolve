@@ -832,8 +832,10 @@ custom-restraint shape/target validator. Each display label must first equal
 its own captured atom label. Structured identities, including elements, remain
 part of the comparison. Only a recognized 21-character native `pdb="…"` label
 with a four-character `atom_name_field` equal to `label[5:9]` and whose trimmed
-name exactly matches `atom_id` can ignore padding in that field. Every other
-prefix/suffix character remains exact. Other display formats or missing optional
+name exactly matches `atom_id` after trimming ordinary ASCII spaces can ignore
+padding in that field. Every other display character remains exact.
+The structured identity and element retain the existing fixed-width space
+normalization. Tabs and other non-PDB whitespace are significant. Other display formats or missing optional
 name-field evidence require identical raw labels. Contradictory supplied fields
 refuse. Both parallelity planes are validated; missing/duplicate identities,
 malformed memberships or unsupported requests refuse. No whole-label whitespace
