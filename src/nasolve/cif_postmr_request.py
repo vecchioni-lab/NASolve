@@ -21,7 +21,7 @@ from .cif_restraint_context import derive_restraint_context
 
 
 def initialize_postmr_dictionary_request(model, report, components, source_output, output, *,
-        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, construction_inputs=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, **execution_limits):
+        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, construction_inputs=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, select_anionic_phosphate=False, **execution_limits):
     """Freeze ordinary sources and derived contexts for one existing request.
 
     Components specify code/generation and optional retained_snapshot,
@@ -64,6 +64,7 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     Alternatively automatic_bond_targets freezes source/library-discovery intent,
     also using v4. Intake performs no lookup; continuation uses only saved intent.
     """
+    _need(type(select_anionic_phosphate) is bool, "Require an explicit phosphate selection choice")
     bond_discovery_fields(automatic_bond_targets,bond_targets)
     bond_targets = _bond_target_declarations(bond_targets)
     _need(type(automatic_plane_support) is bool, 'automatic_plane_support must be a boolean')
@@ -77,6 +78,9 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
               'Unsupported PostMR component settings or manual context override')
         generation_dictionary_options(item['generation'])
         _generation_binding(item['generation'])
+        if select_anionic_phosphate:
+            _need(item.get("phosphate_atom_policy") is None and item["generation"].get("bond_representation_policy"),
+                  "Source-selected phosphate requires strict generation and no manual phosphate policy")
     codes = _codes([item['code'] for item in components])
     _need(bond_targets is None or bond_targets.keys() <= set(codes),
           'Bond targets must belong to the prepared components')
@@ -139,10 +143,17 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     if frozen_sources is None:
         freeze_acquisition_sources(codes, sources, data_root=data_root,
                                    ready_set_executable=ready_set_executable)
-    else:
+    if frozen_sources is not None or select_anionic_phosphate:
         selected = read_acquisition_sources(sources)
         _need(selected['report']['components'] == codes,
               'Frozen source components differ from the complete prepared-model request')
+    if select_anionic_phosphate:
+        from .cif_anionic_phosphate import select_anionic_phosphate as select_state
+        for item in components:
+            code = item["code"]
+            policy = select_state(selected["sources"][code]["source"], code, item["contexts"])
+            if policy is not None:
+                item["phosphate_atom_policy"] = policy
     _need(all(_read(p) == data for p,data in literal_originals),
           'Literal original PHIL changed during source freezing')
     return initialize_dictionary_request(sources, components, model, request,

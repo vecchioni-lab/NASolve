@@ -129,7 +129,8 @@ def _derive(root, controls, destination):
         options['construction_targets']=controls['construction_targets']
     if 'phosphate_atom_policy' in controls:
         from .cif_phosphate_names import POLICY_ID as names_policy
-        _need(controls['phosphate_atom_policy']==names_policy
+        from .cif_anionic_phosphate import POLICY_ID as anionic_policy
+        _need(controls['phosphate_atom_policy'] in (names_policy, anionic_policy)
             and controls.get('native_context',{}).get('monomer_inventory')=='full_model',
             'Source-named preparation requires explicit current policy and full native context')
         _need(not terminal, 'Source-named terminal recipe is not qualified')

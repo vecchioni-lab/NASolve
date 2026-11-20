@@ -118047,5 +118047,75 @@
         "size": 16573
       }
     ]
+  },
+  "internal_phosphate_and_mixed_panel_2026_11_20": {
+    "owner": "Rowan",
+    "evidence_anchor": "local Cedar evidence",
+    "native": "Phenix 2.2.1-6174",
+    "construction": "Coot 1.3.3 revision-count 0",
+    "ordinary_5PC_five_cycles": {
+      "target_A": 1.47,
+      "sigma_A": 0.027,
+      "terminal_bond_A": 1.54932,
+      "terminal_to_ring_A": 0.08714
+    },
+    "anionic_internal_sites": [
+      "1AP",
+      "5CM",
+      "DP",
+      "DZ"
+    ],
+    "leaving_oxygen": "OP3",
+    "charge_evidence": "Source definition and numerical dictionary projection. Native formal charge unavailable.",
+    "native_model": {
+      "components": 13,
+      "sites": 42,
+      "atoms": 869,
+      "links": 38,
+      "neighbor_angles": 152,
+      "frame_terms": 211,
+      "locked_sugar": "separate C144 adapter"
+    },
+    "mixed_readyset": false,
+    "mixed_diffraction": false,
+    "ordinary_1AP": "Completed linked preparation. Optional plane audit stopped on different bond representation.",
+    "raw_scientific_files_committed": false,
+    "evidence": [
+      {
+        "path": "c437-ordinary-scaffold-only-refinement/cold-review.json",
+        "sha256": "129d00fd48b08fba06c27c8bca2ae0ddcc77e0d5db394cfea6382867ecbb280a",
+        "size": 1524
+      },
+      {
+        "path": "c437-ordinary-scaffold-only-refinement/matched-inputs.json",
+        "sha256": "4f3ccdf6dc9c72f074e6e7c9c2907c22edff19f334ee247674a48ff59e040b20",
+        "size": 1310
+      },
+      {
+        "path": "c439-linked-dianionic-phosphate/review.json",
+        "sha256": "896037d54f02814cc9fcfee44e96fb0aba8faa06d5ea920a9bf7ff558f6edd6c",
+        "size": 986
+      },
+      {
+        "path": "c440-current-locked-sugar/review.json",
+        "sha256": "e9bf2b93277df51ae57f181d37cfeb9b6a93386906a6c4da2414132f07e4b002",
+        "size": 1531
+      },
+      {
+        "path": "c441-all-current-native-panel/review.json",
+        "sha256": "2391d3cfaa06431e8eb549f90f2ba1974133b59b3caf1dfca92607eafb27352f",
+        "size": 957
+      },
+      {
+        "path": "c441-all-current-native-panel/chemistry-review.json",
+        "sha256": "f37568b8704cdb8a82bb0a47a6e20689f84a5289e39d393ae43c200f8b72953b",
+        "size": 3710
+      },
+      {
+        "path": "c442-ordinary-anionic-phosphate/outcome.json",
+        "sha256": "4b93ad5b7f5a9db1453a0d875d0f36afb2905dc9a97b2e6736fd2bd36476c4a2",
+        "size": 165
+      }
+    ]
   }
 }

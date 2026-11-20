@@ -172,6 +172,7 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
         record = initialize_postmr_dictionary_request(inputs.model_path,inputs.run_report,components,None,request,
             consumer=configured.consumer,ready_set_executable=None,supplementary_phils=list(inputs.supplementary_phils),
             literal_na_inputs=literal_inputs,frozen_sources=sources,construction_inputs=inputs.run_directory,
+            **({"select_anionic_phosphate":True} if select_representation else {}),
             continuation_options=continuation_options,
             **({'automatic_plane_support':True} if automatic_plane_support else {}),
             **({'bond_targets':bond_targets} if bond_targets is not None else {}),

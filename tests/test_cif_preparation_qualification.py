@@ -275,3 +275,74 @@ def test_qualified_legacy_source_still_requires_explicit_dna_group(tmp_path,grou
         prepare_linked_component(s,c,m,contexts,tmp_path/'new',code='ZZZ',
             native_qualification=q,bond_representation_policy=POLICY)
     assert not (tmp_path/'new').exists()
+
+
+@pytest.mark.parametrize("reverse", [False, True])
+def test_anionic_phosphate_projection_preserves_the_other_two_oxygens(reverse):
+    from nasolve.cif_anionic_phosphate import verify_anionic_projection
+    from nasolve.cif_preparation_qualification import qualify_native_backbone_ports
+    from nasolve.cif_linked_preparation import component_values, _prune
+    from nasolve.curated_ligands import ligand_source
+    code = "1AP" if reverse else "DP"
+    values = component_values(ligand_source(code).path, code)
+    names = {n:n for n in ("OP1","OP2","OP3")}
+    context = dict(site="A:2", incoming_site="A:1", outgoing_site="A:3", five_prime_state="linked",
+                   three_prime_state="linked")
+    state = qualify_native_backbone_ports(values, context, phosphate_names=names, anionic_leaving=True)
+    assert state["leaving_atom"] == "OP3"
+    assert state["retained_phosphate_oxygens"]["OP1"]["bond_order"] == ("SINGLE" if reverse else "DOUBLE")
+    removed = {"OP3", *state["source_o3_hydrogens"]}
+    projected = _prune(values, removed, outgoing=True)
+    result = verify_anionic_projection(values, projected, context, state)
+    assert result["deleted_atoms"] == sorted(removed)
+    assert result["component_charge_after"] - result["component_charge_before"] == 1
+    changed = projected["_chem_comp_atom.atom_id"].index("OP2")
+    projected["_chem_comp_atom.charge"][changed] = "1"
+    with pytest.raises(ValueError, match="retained"):
+        verify_anionic_projection(values, projected, context, state)
+
+
+@pytest.mark.parametrize("defect", ["no_incoming","symmetry","experimental","not_internal","protonated","sulfur","neutral","double","second_charge","charged_P","explicit_P_hand","additional_H","charged_O5"])
+def test_anionic_phosphate_requires_internal_site_and_exact_source_chemistry(defect):
+    from nasolve.cif_preparation_qualification import qualify_native_backbone_ports
+    from nasolve.cif_linked_preparation import component_values
+    from nasolve.curated_ligands import ligand_source
+    code = "DP"
+    source = component_values(ligand_source(code).path,code)
+    context = dict(site="A:2", incoming_site="A:1", outgoing_site="A:3", five_prime_state="linked", three_prime_state="linked")
+    a, b = "_chem_comp_atom.", "_chem_comp_bond."
+    if defect == "no_incoming": context["incoming_site"] = None
+    if defect == "symmetry": context["symmetry_operation"] = "-x,y,-z"
+    if defect == "experimental": context["experimental_passthrough"] = True
+    if defect == "not_internal": context["five_prime_state"] = "phosphate"
+    if defect in {"sulfur","neutral","second_charge","charged_P","charged_O5"}:
+        name, field, val = {"sulfur":("OP3","type_symbol","S"),"neutral":("OP3","charge","0"),"second_charge":("OP2","charge","0"),"charged_P":("P","charge","1"),"charged_O5":("O5'","charge","1")}[defect]
+        source[a+field][source[a+"atom_id"].index(name)] = val
+    if defect == "protonated":
+        # Give OP3 an explicit H without disturbing the independent outgoing O3' donor.
+        source[a+"charge"][source[a+"atom_id"].index("OP3")] = "0"
+        for i,(x,y) in enumerate(zip(source[b+"atom_id_1"],source[b+"atom_id_2"])):
+            if {x,y} == {"N2","H21"}:
+                source[b+("atom_id_1" if x=="N2" else "atom_id_2")][i] = "OP3"
+    if defect == "explicit_P_hand":
+        chir="_chem_comp_chir."
+        source[chir+"volume_sign"][source[chir+"atom_id_centre"].index("P")]="positive"
+    if defect in {"double","additional_H"}:
+        for i,(x,y) in enumerate(zip(source[b+"atom_id_1"],source[b+"atom_id_2"])):
+            if defect=="double" and {x,y}=={"P","OP3"}:
+                source[b+"type"][i]="double"
+            if defect=="additional_H" and {x,y}=={"H3","O3'"}:
+                source[b+("atom_id_1" if x=="O3'" else "atom_id_2")][i]="OP3"
+    with pytest.raises(ValueError):
+        qualify_native_backbone_ports(source,context, phosphate_names={n:n for n in ("OP1","OP2","OP3")}, anionic_leaving=True)
+
+
+def test_automatic_anionic_projection_requires_linked_intent_for_each_occurrence():
+    from nasolve.cif_anionic_phosphate import POLICY_ID, select_anionic_phosphate
+    from nasolve.curated_ligands import ligand_source
+    source = ligand_source("1AP").path
+    internal = dict(site="A:2", incoming_site="A:1", five_prime_state="linked")
+    assert select_anionic_phosphate(source,"1AP",[internal]) == POLICY_ID
+    free = dict(site="B:1", incoming_site=None, five_prime_state="phosphate")
+    assert select_anionic_phosphate(source,"1AP",[internal,free]) is None
+    assert select_anionic_phosphate(source,"1AP",[dict(internal,symmetry_operation="-x,y,z")]) is None

@@ -22,14 +22,18 @@ A separate placement retained all four ATL sugar centres. Phenix applied
 all 211 current W-frame terms and both backbone links around ATL. The outgoing
 link starts long. C430 carried the current PDU, 5PC and DF definitions into
 this model and matched their local covalent restraints to the individual runs.
-Ten other definitions remain historical. C428/C429 show that Coot's B=20 Å²
-can reach ordinary refinement even on atoms whose coordinates were preserved.
-C433 restored host displacement on 110 scaffold atoms across ten generic
-sites with unchanged coordinates. Ordinary G:5PC preparation delivered the
-predicted eleven scaffold B values through ReadySet. New base atoms still
-need separate evidence. C436 qualified all thirteen current dictionaries in
-isolation. Before mixed diffraction, qualify their internal links under the
-same strict rules, connect locked ATL, and check both of its junctions.
+C441 replaces the historical inputs for a native reading of all thirteen current
+definitions. All 38 link targets, 152 neighboring angles and 211 frame terms
+are present. The four source-declared phosphate dianions now lose just OP3 at
+the incoming link. The conserved OP1 and OP2 keep their supplied bond orders.
+ATL still uses the separately assembled C144 adapter. Ordinary 1AP:T passes
+the phosphate step and stops at the optional plane screen for its aromatic
+representation. Resolve that boundary, carry the known numerical repairs into
+the ordinary mixture, and check the long ATL junction before mixed diffraction.
+C437 also shows why Q06 retains a separate displacement check. Five cycles with
+the measured host scaffold B factors and new 5PC base atoms at B=20 brought
+the terminal carbon close to the ring plane (0.087 Å) while stretching its
+terminal bond to 1.549 Å against a 1.470(27) Å target.
 The [Q07 experiment order](#q07--one-mixed-scaffold-ordinary-acceptance-run)
 preserves the earlier linked-sugar work. The unfamiliar-residue challenge follows
 the known mixture. Q08–Q14 cover remaining chemistry, then Q15/Q16 reporting

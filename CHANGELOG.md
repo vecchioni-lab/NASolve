@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve the two nonbridging oxygens when linking a phosphate dianion
+
+- Fresh PostMR requests using `source-preserving-v2` can link a source
+  phosphate whose disposable OP3 is singly bonded, negatively charged and
+  carries no hydrogen. The reaction preserves the supplied OP1 and OP2 bond
+  orders and charges. It requires an explicitly linked site in the same
+  asymmetric unit and retains the original free-end and symmetry decisions.
+  Previously recorded requests keep their original chemistry.
+
 ### Select dictionary input representation for each frozen source
 
 - Checked PostMR and schema-2 campaigns accept `source-preserving-v2`.
