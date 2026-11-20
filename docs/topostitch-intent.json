@@ -1246,6 +1246,30 @@
       "modified_metal_motion_qualified": false,
       "optimization_runs": 0,
       "next_action": "Bind a real selected checkpoint/request to W171 parent-snapshot and strict endpoint owners, retaining dispatch freshness. Reuse W172 live-topology boundary and explicit policy/control; ordinary installation/lifecycle and complete source chemistry remain open. Keep legacy SS-enabled W168 at REVIEW; do not infer soft authority or repeat its fits. Preserve phosphate and symmetry intent; modified/metal admission stays separate with Alder. No additional tiny motion or identical preflight is needed without a changed integration question."
+    },
+    "selected_checkpoint_motion_binding": {
+      "human_update": 173,
+      "module": "nasolve.topostitch_checkpoint",
+      "function": "load_checkpoint_bend_motion",
+      "implemented": true,
+      "code_commit": "16a5e13478a9fb4be9d559390bb65f3d084d3793",
+      "reference": "docs/topostitch-periodic.md#w173--bind-motion-to-the-selected-checkpoint-inputs",
+      "required_registry_schema": 2,
+      "input_roles": [
+        "model",
+        "observations",
+        "ordered restraints",
+        "optional declared phases"
+      ],
+      "exact_checkpoint_identity": true,
+      "context_pin_optional": true,
+      "read_only": true,
+      "existing_schema_changed": false,
+      "runtime_authority": false,
+      "locking": false,
+      "retained_native_lifecycle_qualified": false,
+      "modified_metal_motion_qualified": false,
+      "next_action": "Compose the W173 selected-checkpoint binding with the maintained Cedar request/preparation owner, freezing consumed inputs under executor ownership. Reuse W172 independently declared topology before child-coordinate transfer; qualify the supported retained-manager lifecycle before another fit. Keep legacy SS-enabled W168 and incompletely declared FT metal topology at REVIEW. No repeated tiny-motion/preflight or inferred chemistry authority."
     }
   },
   "planned_diffraction_benchmark": {

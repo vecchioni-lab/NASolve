@@ -10257,3 +10257,61 @@ child-diffraction control remains distinct from the observed unchanged fmodel.
 Next bind the actual selected checkpoint/request and dispatch freshness before
 promoting this native entry. Do not repeat the same tiny move or old recovery fits.
 S04/S05/S06 stay PARTIAL. Alder owns typed coordination declarations separately.
+
+
+## W173 — Bind motion to the selected checkpoint inputs
+
+Before this change, W171 bound a caller-supplied parent snapshot to a preview but
+did not resolve the selected checkpoint. `nasolve.topostitch_checkpoint` now
+composes the existing checkpoint, preview and endpoint owners. It requires a
+saved schema-2 registry, one exact usable selected ID, and complete checksummed
+anchored model/observations/ordered-restraint/optional-phase references. Both
+current selection and explicit ID/bookmark resolution preserve the current pointer.
+
+The read-only result binds registry/report bytes, selected record, inherited
+inputs and preview receipt. Repeated reads surround preview replay; the returned
+context digest can be required on a fresh dispatch-time call. Even a different
+checkpoint with identical coordinates is refused. The strict endpoint owner
+retains full-precision and rounded displacement, fixed-atom and non-XYZ checks.
+This detects input drift; it does not lock mutable files or authorize execution.
+
+Code commit: `16a5e13478a9fb4be9d559390bb65f3d084d3793`. Changed runtime file:
+`src/nasolve/topostitch_checkpoint.py`; regression module:
+`tests/test_topostitch_checkpoint.py`. New returned binding/context objects are
+schema 1; no existing stored schema, CLI, default or dependency changes. Existing
+APIs remain compatible. The new strict API refuses legacy/incomplete references
+rather than migrating them or weakening their provenance.
+
+Validation used Python 3.12.14:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src \
+  /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider \
+  tests/test_topostitch_checkpoint.py tests/test_topostitch_preview.py \
+  tests/test_topostitch_endpoint.py tests/test_checkpoints.py tests/test_run_context.py
+```
+
+The first 22 added cases failed before implementation; the final 25-case addition
+includes later input-race and declared-phase controls. **138 tests plus 6 subtests
+pass**. The same selection passes against a relocated wheel installation after
+removing the copied build source and original install path (3.52 s test time).
+A dataset/preview relocation regression removes the original paths and reproduces
+the context. Installed import location, six entry-point helps, `pip check`, all
+94 package-file hashes and Python 3.10 syntax checks pass. Wheel SHA-256:
+`a9d86b3d1b19be93233b664f2f84a7bd87a5db1b97b946993f4a7480c03a0922`.
+The three existing ligand provenance JSON files remain outside package data;
+this change does not alter that packaging policy. No full suite or native
+Phenix/Coot execution was repeated for this isolated additive input adapter.
+
+Exact commands, logs, source hashes and installation record are under the local
+NASolve artifact anchor `branch-artifacts/willow/w173-checkpoint-motion/`.
+Generated checks/fixtures remain outside Git; no scientific run is published.
+Tests and installation validate this API, not portability of every historical run.
+
+Next: pass this binding through the maintained executor's frozen input ownership
+and separately authenticate complete intended chemistry before W172's live parent
+transfer. No atomic lock, retained-manager hook, Free-R semantic validation,
+modified/metal admission or scientific acceptance follows. Hazel confirms the FT
+parent lacks whole-model link/C128 authority; the native inventory cannot fill
+that gap. S04/S05/S06 remain partial. Do not repeat a tiny move or old fit without
+a new integration question.

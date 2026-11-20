@@ -1157,6 +1157,15 @@ coordinates. Existing numerical callers may omit the digest. No new saved schema
 or native policy is introduced; other parameter values still need backbone,
 packing, tensor and scientific qualification through their existing owners.
 
+`topostitch_checkpoint.load_checkpoint_bend_motion` composes the existing
+checkpoint resolver, saved-preview loader and strict endpoint auditor. A saved
+schema-2 parent and complete anchored model/data/ordered-restraint/phase inputs
+are bound to the exact selected ID and preview. Repeated input reads and a context
+digest detect drift; the executor still owns locking, frozen consumed inputs,
+chemical admission and the retained-manager lifecycle. This adapter writes no
+registry or checkpoint and adds no CLI or automatic selection. See the
+[checkpoint binding API](topostitch-preview.md#bind-a-motion-to-a-saved-checkpoint-w173).
+
 `topostitch_trial` reuses installed scitbx for explicit bounded diagnostic trials,
 with complete initial/full-precision/rounded derivative gates and retained capped
 outcomes. `run_native_masked_trial(..., initial_displacements=...)` optionally

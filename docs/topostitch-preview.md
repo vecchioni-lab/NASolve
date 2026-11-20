@@ -47,6 +47,42 @@ mask/bound. That existing owner retains candidate-byte and tensor restrictions.
 The optional parent comparison does not allow an ANISOU-rotating preview into a
 route requiring fixed non-XYZ bytes, or admit modified residues/metals.
 
+## Bind a motion to a saved checkpoint (W173)
+
+For the supported canonical coordinate-only route, use the read-only adapter:
+
+```python
+from nasolve.topostitch_checkpoint import load_checkpoint_bend_motion
+
+motion, parameters, binding = load_checkpoint_bend_motion(
+    run_directory, preview_directory,
+    expected_checkpoint_id=parent_id,
+    expected_receipt_sha256=preview_digest,
+    checkpoint=None,  # current selection, or an explicit ID/bookmark
+)
+```
+
+The run must already have a saved schema-2 registry and complete checksummed
+`run`, `dataset` or `repository` references. The exact selected ID, parent record,
+model, observations, ordered restraints and optional declared phases are checked.
+No registry is initialized or migrated, and current selection is unchanged.
+The existing preview loader supplies full-precision points; the strict endpoint
+owner checks fixed atoms, non-XYZ bytes and full/rounded displacement limits.
+
+Before dispatch, call again with the same arguments and
+`expected_checkpoint_context_sha256=binding["context_sha256"]`. This detects
+changed selection, metadata, declarations or inherited inputs. Each call reads
+and verifies inputs both before and after preview replay. The returned binding
+contains anchored references and hashes, not operational host-absolute paths.
+
+This is **not a run lock or a refinement request**. The executor must freeze and
+consume the verified inputs under its own ownership protocol. Chemical/topology
+intent, Free-R meaning, retained native manager, ordinary execution lineage and
+scientific acceptance remain separate. Existing APIs/previews need no migration;
+older or incomplete registries remain usable through their existing workflows,
+but this narrow adapter refuses them. Modified/metal motion and ANISOU-changing
+previews are not admitted. [Validation and limits](topostitch-periodic.md#w173--bind-motion-to-the-selected-checkpoint-inputs).
+
 ## Inputs and use
 
 Start with the existing [registered discovery manifest](topostitch-periodic.md)
