@@ -35,6 +35,10 @@ than duplicating their models. Original scientific evidence remains in its decla
 immutable location. Local checkout reports are not authorization to publish data;
 they do not replace the maintained queue, handoff or machine-readable receipts.
 
+For new ChimeraX scripts, use a grey background, silhouettes, soft lighting,
+an orthographic camera and thin nucleic-acid ring fills. Set the camera with
+`run(session, "camera ortho")` before framing or saving the figure.
+
 ## Documentation roles
 
 The root `README.md` is the human-facing operating guide. `architecture.md` and
