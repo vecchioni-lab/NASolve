@@ -149,3 +149,74 @@ def test_receipt_cannot_rebind_oxo_permission(tmp_path,policy):
     r["bond_representation_policy"]=policy
     (out/"source_candidate_receipt.json").write_text(json.dumps(r))
     with pytest.raises(ValueError):read_representation_candidate(out)
+
+
+@pytest.mark.parametrize("defect", ["none", "sulfur_charge", "thioether", "single", "six_ring", "thiol_H", "oxygen", "renamed"])
+def test_explicit_five_ring_beside_an_unchanged_thione(tmp_path, defect):
+    policy = "cif-source-declared-neutral-6-thioxo-purine-aromatic-v1"
+    left, right = pair()
+    for d in (left, right):
+        d[A+"type_symbol"][9] = "O" if defect=="oxygen" else "S"
+    right[A+"type_energy"][9] = right[A+"type_symbol"][9]
+    if defect=="sulfur_charge":
+        for d in (left,right): d[A+"charge"][9]="-1"
+    if defect in {"thioether","thiol_H"}:
+        for d in (left,right): d[B+"atom_id_1"][12 if defect=="thioether" else 13]="O6"
+    if defect=="single": right[B+"type"][10]="SING"
+    if defect=="six_ring": right[B+"type"][0]="AROM"
+    if defect=="renamed":
+        mapping={n:"E"+str(i) for i,n in enumerate(left[A+"atom_id"])}
+        for d in (left,right):
+            for tag in list(d):
+                if "atom_id" in tag: d[tag]=[mapping.get(n,n) for n in d[tag]]
+    source=write(tmp_path/"source.cif",left)
+    candidate=write(tmp_path/"candidate.cif",right)
+    result=inspect_component_generation(source,candidate,"Q17",bond_representation_policy=policy)
+    if defect in {"none","renamed"}:
+        assert result["status"]=="CANDIDATE_REVIEW"
+        system,=result["bond_representation"]["equivalent_fused_systems"]
+        assert len(system["unchanged_thiocarbonyl"])==2 and len(system["bonds"])==5
+        assert len(generation_representation_contract(source,"Q17",policy)["allowed_systems"][0])==5
+        assert inspect_component_generation(source,candidate,"Q17",bond_representation_policy=POLICY)["status"]=="REJECTED"
+    else:
+        assert result["status"]=="REJECTED"
+
+
+def test_source_selected_recipe_routes_by_graph_and_keeps_invalid_sources_visible(tmp_path):
+    from nasolve.cif_generation_input import source_selected_generation
+    from nasolve.cif_purine_representation import OXO_POLICY_ID, THIOXO_POLICY_ID
+    from nasolve.curated_ligands import ligand_source
+
+    initial={"source_input_policy":"cif-source-reader-preparation-v1"}
+    v,_=pair()
+    oxygen=write(tmp_path/"oxygen.cif",v)
+    assert source_selected_generation(oxygen,"Q17",initial)["bond_representation_policy"]==OXO_POLICY_ID
+    v[A+"type_symbol"][9]="S"
+    sulfur=write(tmp_path/"sulfur.cif",v)
+    assert source_selected_generation(sulfur,"Q17",initial)["bond_representation_policy"]==THIOXO_POLICY_ID
+    assert source_selected_generation(ligand_source("5CM").path,"5CM",initial) == {
+        **initial,"bond_representation_policy":"cif-source-exact-bond-orders-v1"}
+    assert "bond_representation_policy" not in initial
+    with pytest.raises(ValueError):
+        source_selected_generation(sulfur,"BAD",initial)
+
+
+def test_exact_representation_keeps_declared_aromatic_resonance_out_of_the_native_contract(tmp_path):
+    from nasolve.cif_purine_representation import EXACT_POLICY_ID
+    from tests.test_cif_aromatic_representation import pair as six_ring
+
+    left, right = six_ring("Q17")
+    for axis in "xyz":
+        left[A+"pdbx_model_Cartn_"+axis+"_ideal"] = [str(i) for i in range(len(left[A+"atom_id"]))]
+    source, candidate = write(tmp_path/"s.cif",left), write(tmp_path/"c.cif",right)
+    result = inspect_component_generation(source, candidate, "Q17", bond_representation_policy=EXACT_POLICY_ID)
+    rep = result["bond_representation"]
+    assert result["status"] == "REJECTED" and rep["status"] == "UNSUPPORTED_DIFFERENCE"
+    assert not rep["equivalent_rings"] and len(rep["unresolved_bonds"]) == 6
+    contract = generation_representation_contract(source, "Q17", EXACT_POLICY_ID)
+    assert contract["allowed_systems"] == []
+    inventory = expected(source)
+    read = snapshot(inventory)
+    assert native_representation_check(read, inventory, contract)["status"] == "SOURCE_REPRESENTATION_PASS"
+    read["bonds"][0]["native_order"] = 1.5
+    assert native_representation_check(read, inventory, contract)["status"] == "BLOCKED"

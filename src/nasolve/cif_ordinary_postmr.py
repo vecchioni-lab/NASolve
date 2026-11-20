@@ -120,6 +120,9 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
     if generation_options is not None and not isinstance(generation_options,dict):
         raise ValueError('Require explicit generation options')
     options = dict(generation_options or {})
+    select_representation = options.pop("select_source_representation", False)
+    if type(select_representation) is not bool or (select_representation and "bond_representation_policy" in options):
+        raise ValueError("Require one unambiguous source representation selection")
     allowed = {'single_block_steps','timeout_seconds','max_attempts','bond_representation_policy','source_input_policy','multiple_planes'}
     if set(options)-allowed:
         raise ValueError('Unsupported ordinary generation option')
@@ -148,7 +151,14 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
             prepare_postmr_literal_inputs(inputs.model_path,list(inputs.supplementary_phils),sources,literal,
                 data_root=data_root,ready_set_executable=configured.ready_set_executable)
             literal_inputs = literal
-        components = [dict(code=code,generation=configured.generation) for code in inputs.components]
+        generation = {code:dict(configured.generation) for code in inputs.components}
+        if select_representation:
+            from .cif_acquisition_sources import read_acquisition_sources
+            from .cif_generation_input import source_selected_generation
+            frozen = read_acquisition_sources(sources)["sources"]
+            generation = {code:source_selected_generation(frozen[code]["source"], code, settings)
+                          for code, settings in generation.items()}
+        components = [dict(code=code,generation=generation[code]) for code in inputs.components]
         if construction is not None:
             from .cif_dictionary_sites import read_dictionary_sites
             for item in components:
@@ -166,8 +176,7 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
             **({'automatic_plane_support':True} if automatic_plane_support else {}),
             **({'bond_targets':bond_targets} if bond_targets is not None else {}),
             **({'automatic_bond_targets':True} if automatic_bond_targets else {}),**execution_limits)
-        return PreparedPostMRRequest(inputs.run_directory,request,record,
-            {code:dict(configured.generation) for code in inputs.components})
+        return PreparedPostMRRequest(inputs.run_directory,request,record,generation)
     result = _prepare_postmr(run_directory,configured.ready_set_executable,phenix_installation=phenix,
         coot_executable=coot_executable,environment=phenix.environment,data_root=data_root,
         allow_mr_review=allow_mr_review,modified_pairs_only=modified_pairs_only,restraint_scope=restraint_scope,

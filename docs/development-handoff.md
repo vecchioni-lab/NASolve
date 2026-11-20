@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-20, C431 nine-pair dictionary intake and matched starting B-factor control — Rowan**.
-Active branch **cedar**, worktree **NASolve-c96**. Current construction code is **`9e8f2943`**.
+Updated **2026-11-20, C432–C438 mixed-source and backbone checks — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
 **3104.30 s**. All 1,417 tracked test-checkout files and exact NARestraints
@@ -13,6 +13,12 @@ Focused, relocated installed, matched native and independent checks also pass.
 Software qualification does not change the scientific REVIEW or close Q06.
 
 ## Where to resume
+
+**20 November, Q07.** All thirteen current component dictionaries passed isolated Phenix qualification on the C436 request. The first whole-model preparation stopped at the internal 1AP phosphate. A separate site-by-site read also identified the RNA-classified locked ATL. 5CM, DP and DZ reached site preparation through the older exact-order route, which uses different phosphate checks. Explicit exact-order generation now supplies the same strict source-bound site checks as the aromatic policies. Verify its three fresh native results before counting their linked states.
+
+Simon confirmed that OP3 is the disposable oxygen at an incoming phosphodiester. For the four curated dianions, check the separate reaction that removes singly bonded OP3⁻ with no attached hydrogen and raises the remaining component charge by one. Retain every other formal charge, hydrogen, and bond order, including either orientation of the OP1/OP2 single and double bonds. Keep the earlier neutral hydroxyl route and each free-end/symmetry declaration. Read the C265 holdover in Q13 before implementation. For ATL, reuse C144/C146's locked-sugar reaction and its source-named leaving atom. Mixed diffraction remains ahead.
+
+Ordinary G:5PC preparation now preserves all eleven original scaffold B factors and leaves eleven base-atom values at their construction settings. ReadySet and checkpoint publication delivered exactly the C428 scaffold-only prediction. A parallel edit to worker source interrupted the original publication check. Cold publication used the unchanged completed attempt with its matching code. Future concurrent experiments run from pinned per-job source trees. The C425 mixed-coordinate replay recovered 110 B values on ten sites with all coordinates unchanged. C437 measures the new ordinary five-cycle child.
 
 **20 November, C423.** Nonmetal DF at A:19 opposite D:4 adenine completed
 five ordinary Phenix cycles. The prepared sulfur bond was 1.812 Å, its native

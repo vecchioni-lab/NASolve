@@ -117985,5 +117985,67 @@
       "local_size_bytes": 896707,
       "scope": "One ordinary-source request was initialized on the separately constructed model and verified by the read-only request inspector. Native qualification of the full chemical set is pending."
     }
+  },
+  "mixed_scaffold_displacement_and_source_representations_2026_11_20": {
+    "owner": "Rowan",
+    "evidence_anchor": "local Cedar evidence",
+    "native": "Phenix 2.2.1-6174; Coot 1.3.3 revision-count 0 for ordinary 5PC construction",
+    "ordinary_host_B_donor_atoms": 11,
+    "mixed_B_values_recovered": 110,
+    "mixed_coordinates_changed": 0,
+    "isolated_current_components": 13,
+    "retained_matching_snapshots": 8,
+    "strict_native_bond_orders": [
+      "5CM",
+      "DP",
+      "DZ"
+    ],
+    "sulfur_five_ring": "S6G, five declared bonds; C6=S6 double retained",
+    "whole_model_status": "REFUSED_AT_1AP_ANIONIC_OP3",
+    "other_known_boundaries": [
+      "RNA-classified locked ATL",
+      "charge-specific linked chemistry for four curated components",
+      "new base B factors",
+      "mixed diffraction"
+    ],
+    "mixed_diffraction": false,
+    "raw_scientific_files_committed": false,
+    "evidence": [
+      {
+        "path": "c432-mixed-execution/source-screen.json",
+        "sha256": "fea90fe9aa0ca6626286d8ca20299f3ed4a8a98b416e5786c9bbb34ea41c979b",
+        "size": 5870
+      },
+      {
+        "path": "c433-host-scaffold-b/mixed-replay.json",
+        "sha256": "fd26083b2bebfc316af44e674dc4636938a70e4ccd304a99ccb7aa1eff3c1c31",
+        "size": 853
+      },
+      {
+        "path": "c433-host-scaffold-b/ordinary/published-review.json",
+        "sha256": "1104c5505961dd906b82f278601becef70b2d658bd8474527e61230d41e7b595",
+        "size": 618
+      },
+      {
+        "path": "c435-thiocarbonyl-ring/review.json",
+        "sha256": "ca4fadbef221bd80767caa0e5f33a6970774ff5eb98ac801beb092053ee4fd8a",
+        "size": 991
+      },
+      {
+        "path": "c436-mixed-selected-representations/intake.json",
+        "sha256": "97e9570fa53af7a5abe792d3b777b62402610d314890da9ed952b5aaabbe5675",
+        "size": 2070
+      },
+      {
+        "path": "c436-mixed-selected-representations/execution.json",
+        "sha256": "69eeb8fff0999e058646e248481a69873b6518ac87df9797ec26c69ba335bfbe",
+        "size": 1693
+      },
+      {
+        "path": "c436-mixed-selected-representations/site-review-002.json",
+        "sha256": "20252980c96388d85ceeb2810d49933f09af3c18a073efebfc28ff9bcbd90f33",
+        "size": 16573
+      }
+    ]
   }
 }

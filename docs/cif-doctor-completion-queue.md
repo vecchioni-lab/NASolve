@@ -24,9 +24,12 @@ link starts long. C430 carried the current PDU, 5PC and DF definitions into
 this model and matched their local covalent restraints to the individual runs.
 Ten other definitions remain historical. C428/C429 show that Coot's B=20 Å²
 can reach ordinary refinement even on atoms whose coordinates were preserved.
-The next construction step is to preserve recorded displacement for matched
-host atoms and qualify new atoms separately. Resolve the ATL junction and
-ordinary dictionary acquisition before the mixed diffraction run.
+C433 restored host displacement on 110 scaffold atoms across ten generic
+sites with unchanged coordinates. Ordinary G:5PC preparation delivered the
+predicted eleven scaffold B values through ReadySet. New base atoms still
+need separate evidence. C436 qualified all thirteen current dictionaries in
+isolation. Before mixed diffraction, qualify their internal links under the
+same strict rules, connect locked ATL, and check both of its junctions.
 The [Q07 experiment order](#q07--one-mixed-scaffold-ordinary-acceptance-run)
 preserves the earlier linked-sugar work. The unfamiliar-residue challenge follows
 the known mixture. Q08–Q14 cover remaining chemistry, then Q15/Q16 reporting
@@ -1356,8 +1359,13 @@ model or establishes pair restraints.
    restraints. The ten remaining components in that native comparison still
    use the older definitions. C431 then froze and reopened one pending request
    with all thirteen current sources, every selected site, all 38 backbone
-   links and all 211 frame terms. It has zero generation attempts. Reuse this
-   evidence for intake and qualify the remaining chemical definitions.
+   links and all 211 frame terms. C432 executed it once and stopped at 5CM’s aromatic annotations. C434/C435
+   qualified three original exact bond representations and one source-declared
+   five-ring beside C=S. C436 then acquired all thirteen in isolation with eight
+   matching snapshots reused. Linked preparation stopped at singly bonded
+   anionic OP3 in 1AP. Reuse the strict C438 controls and the Q13 holdover.
+   The separately placed ATL still requires its own source-bound locked-sugar
+   reaction and both native junction checks.
    Once this can be prepared ordinarily, run one new mixed diffraction lineage.
    Verify source identity, native pair/stack membership, unchanged flags and
    achieved local geometry at PDU, 5PC, DF and ATL. Exercise cache reuse and

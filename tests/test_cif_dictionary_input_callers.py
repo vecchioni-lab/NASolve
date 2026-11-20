@@ -25,14 +25,18 @@ def test_invalid_input_policy_refuses_before_construction(tmp_path,monkeypatch,p
     assert list(tmp_path.iterdir())==[]
 
 
-def test_postmr_cli_forwards_recipe_without_low_level_generation_arguments(tmp_path,monkeypatch,capsys):
+@pytest.mark.parametrize("policy, options", [
+    (POLICY, OPTIONS),
+    ("source-preserving-v2", {"source_input_policy":"cif-source-reader-preparation-v1", "select_source_representation":True}),
+])
+def test_postmr_cli_forwards_recipe_without_low_level_generation_arguments(tmp_path,monkeypatch,capsys,policy,options):
     from nasolve.cli import main
     from nasolve.config import AppConfig
     from nasolve.coot_runtime import CootDiscoveryError
     run,ready,sdk,exact,calls,reads=checked_case(tmp_path,monkeypatch)
     with patch('nasolve.cli.load_config',return_value=AppConfig()),patch('nasolve.cli.save_config'),patch('nasolve.cli.discover_phenix',return_value=sdk),patch('nasolve.cli.remember_phenix'),patch('nasolve.cli.discover_coot',side_effect=CootDiscoveryError('absent')):
-        assert main(['postmr',str(run),'--checked-preparation','--dictionary-input-policy',POLICY])==0
-    assert calls[0][1]['generation_options']==OPTIONS and reads==[1]
+        assert main(['postmr',str(run),'--checked-preparation','--dictionary-input-policy',policy])==0
+    assert calls[0][1]['generation_options']==options and reads==[1]
     assert 'POSTMR_READY' in capsys.readouterr().out
 
 
@@ -64,14 +68,15 @@ def test_bad_frozen_recipe_rejects(tmp_path,schema,checked,value):
     with pytest.raises(PresetError):load_preset(p)
 
 
-def test_recipe_is_frozen_and_relocated_without_source_or_default_migration():
+@pytest.mark.parametrize("policy", [POLICY, "source-preserving-v2"])
+def test_recipe_is_frozen_and_relocated_without_source_or_default_migration(policy):
     from tests.test_campaigns import CampaignTests
     from nasolve.campaigns import campaign_status
     case=CampaignTests();case.setUp()
     try:
-        case.dataset('sample');case.write_preset(extra='[postmr]\nchecked_preparation = true\ndictionary_input_policy = "'+POLICY+'"\n')
+        case.dataset('sample');case.write_preset(extra='[postmr]\nchecked_preparation = true\ndictionary_input_policy = "'+policy+'"\n')
         case.preset.write_text(case.preset.read_text().replace('schema_version = 1','schema_version = 2'))
-        plan=case.plan();expected=plan['preset']['policy']['postmr'];assert expected['dictionary_input_policy']==POLICY
+        plan=case.plan();expected=plan['preset']['policy']['postmr'];assert expected['dictionary_input_policy']==policy
         frozen=case.state_path().read_bytes();old=case.root;case.root=case.base/'relocated';old.rename(case.root);case.preset.unlink()
         assert not old.exists()
         with patch('subprocess.Popen',side_effect=AssertionError('No native lookup')):status=campaign_status(case.root)

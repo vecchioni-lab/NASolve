@@ -43,7 +43,7 @@ from .refine_doctor import RefineDoctorError, execute_refine_doctor
 
 
 def build_parser() -> argparse.ArgumentParser:
-    from .cif_generation_input import ORDINARY_INPUT_POLICY
+    from .cif_generation_input import ORDINARY_INPUT_POLICY, SOURCE_SELECTED_INPUT_POLICY
     parser = argparse.ArgumentParser(prog="nasolve", description="Guarded nucleic-acid structure solution")
     parser.add_argument("--phenix-root", help="one-run Phenix root, phenix_env.sh, or executable override")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -159,8 +159,8 @@ def build_parser() -> argparse.ArgumentParser:
     postmr.add_argument("--coot", help="one-run Coot executable override")
     postmr.add_argument("--checked-preparation", action="store_true",
                         help="check/repair dictionaries and save the exact model/restraints as a review checkpoint; retain independently checked fallbacks")
-    postmr.add_argument("--dictionary-input-policy", choices=(ORDINARY_INPUT_POLICY,),
-                        help="prepare source-preserving input for Phenix dictionary generation; original chemistry remains authoritative")
+    postmr.add_argument("--dictionary-input-policy", choices=(ORDINARY_INPUT_POLICY, SOURCE_SELECTED_INPUT_POLICY),
+                        help="choose the Phenix input recipe (v1 uses one fixed representation, v2 selects a representation for each source)")
     postmr.add_argument("--automatic-plane-support", action="store_true",
                         help="request bounded source-checked support for missing planes; requires --checked-preparation")
     postmr.add_argument("--restraint-scope", choices=("all",),
@@ -259,8 +259,8 @@ def build_parser() -> argparse.ArgumentParser:
     checked.add_argument("--modified-pairs-only", action="store_true", help="restrain only pairs containing a modified nucleotide")
     checked.add_argument("--restraint-scope", choices=("all",), help="restrain all model-derived pairs and chain-order stacks")
     checked.add_argument("--allow-unreviewed-backbone", action="store_true", help="allow the declared experimental backbone passthrough")
-    checked.add_argument("--dictionary-input-policy", choices=(ORDINARY_INPUT_POLICY,),
-                        help="prepare source-preserving input for Phenix dictionary generation; original chemistry remains authoritative")
+    checked.add_argument("--dictionary-input-policy", choices=(ORDINARY_INPUT_POLICY, SOURCE_SELECTED_INPUT_POLICY),
+                        help="choose the Phenix input recipe (v1 uses one fixed representation, v2 selects a representation for each source)")
     checked.add_argument("--automatic-plane-support", action="store_true",
         help="obtain missing source-supported plane evidence through owned generation; repair/ReadySet qualification still applies")
     continued = cif_sub.add_parser("continue-preparation", help="start one fresh attempt from saved preparation after earlier work has stopped")

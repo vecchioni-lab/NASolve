@@ -11,6 +11,7 @@ from tempfile import TemporaryDirectory
 POLICY_ID = 'cif-source-reader-preparation-v1'
 CYCLE_LOCAL_INPUT_POLICY = 'cif-source-reader-cycle-local-flags-v1'
 ORDINARY_INPUT_POLICY = 'source-preserving-v1'
+SOURCE_SELECTED_INPUT_POLICY = 'source-preserving-v2'
 
 
 def ordinary_generation_options(policy):
@@ -22,10 +23,29 @@ def ordinary_generation_options(policy):
     """
     if policy is None:
         return {}
+    if type(policy) is str and policy == SOURCE_SELECTED_INPUT_POLICY:
+        return dict(source_input_policy=POLICY_ID, select_source_representation=True)
     if type(policy) is not str or policy != ORDINARY_INPUT_POLICY:
         raise ValueError('Unsupported dictionary_input_policy')
     return dict(source_input_policy='cif-source-reader-preparation-v1',
                 bond_representation_policy='cif-source-declared-neutral-purine-aromatic-v1')
+
+
+def source_selected_generation(source, code, generation):
+    """Bind one frozen source to an existing representation or the exact-order reader."""
+    from .cif_purine_representation import POLICY_ID as PURINE_POLICY
+    from .cif_purine_representation import EXACT_POLICY_ID, OXO_POLICY_ID, THIOXO_POLICY_ID, FIVE_RING_POLICY_ID
+    from .cif_source_representation import UnsupportedAromaticConversion, generation_representation_contract
+
+    if "bond_representation_policy" in generation:
+        raise ValueError("Cannot combine an explicit bond representation with source selection")
+    for policy in (PURINE_POLICY, OXO_POLICY_ID, THIOXO_POLICY_ID, FIVE_RING_POLICY_ID):
+        try:
+            generation_representation_contract(source, code, policy)
+        except UnsupportedAromaticConversion:
+            continue
+        return dict(generation, bond_representation_policy=policy)
+    return dict(generation, bond_representation_policy=EXACT_POLICY_ID)
 
 
 def validate_source_input_policy(policy):

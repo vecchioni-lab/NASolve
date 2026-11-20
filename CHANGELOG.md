@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Select dictionary input representation for each frozen source
+
+- Checked PostMR and schema-2 campaigns accept `source-preserving-v2`.
+  The recipe matches supported aromatic rings by the declared source graph.
+  An exact-order choice binds the same strict native and site checks when the
+  ring rules do not apply. A separate neutral thioxopurine rule preserves C=S
+  while allowing the declared aromatic five-membered ring. Existing requests
+  retain their recorded recipes.
+
 ### Preserve host B factors on restored DNA sugars and phosphates
 
 - Fresh PostMR mutations carry the original isotropic B factors of corresponding

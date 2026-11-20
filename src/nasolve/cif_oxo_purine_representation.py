@@ -1,4 +1,4 @@
-"""Source-declared five-ring aromatic representation beside a fixed 6-oxo ring.
+"""Source-declared five-ring aromatic representation beside a fixed 6-oxo or 6-thioxo group.
 
 This structural whitelist does not infer aromaticity, tautomers or protonation.
 The old whole-purine policy remains separate and unchanged.
@@ -6,12 +6,16 @@ The old whole-purine policy remains separate and unchanged.
 from copy import deepcopy
 
 from .cif_doctor import _bridges, _comparison_inventory
-from .cif_purine_representation import OXO_POLICY_ID, _charges, _cycles, _orders
+from .cif_purine_representation import OXO_POLICY_ID, THIOXO_POLICY_ID, _charges, _cycles, _orders
 
 
-def oxo_purine_bond_representation(source, generated, legacy):
+def oxo_purine_bond_representation(source, generated, legacy, policy=OXO_POLICY_ID):
+    element, family, bond_field, donor_field = {
+        OXO_POLICY_ID: ("O", "neutral-6-oxo-purine-five-ring", "unchanged_carbonyl", "source_lactam_nitrogen"),
+        THIOXO_POLICY_ID: ("S", "neutral-6-thioxo-purine-five-ring", "unchanged_thiocarbonyl", "source_thiolactam_nitrogen"),
+    }[policy]
     result = deepcopy(legacy)
-    result.update(policy_id=OXO_POLICY_ID, equivalent_fused_systems=[])
+    result.update(policy_id=policy, equivalent_fused_systems=[])
     if result["status"] in {"EXACT", "SOURCE_DECLARED_EQUIVALENT"} or not result["connectivity_unchanged"]:
         return result
     a, b = source["inventory"], generated["inventory"]
@@ -68,18 +72,18 @@ def oxo_purine_bond_representation(source, generated, legacy):
             continue
         carbon, lactam = (six[-2], six[-3]) if pattern[0] == "N" else (six[1], six[2])
         side_edges = {edge for edge in left if set(edge) & atoms} - edges
-        carbonyls = {edge for edge in side_edges if carbon in edge and _orders(left[edge]) == {"DOUBLE"}
-                     and all(elements[n] == "O" and charges[n] == 0 and len(adjacency[n]) == 1 for n in set(edge) - {carbon})}
-        if len(carbonyls) != 1:
+        terminal_doubles = {edge for edge in side_edges if carbon in edge and _orders(left[edge]) == {"DOUBLE"}
+                     and all(elements[n] == element and charges[n] == 0 and len(adjacency[n]) == 1 for n in set(edge) - {carbon})}
+        if len(terminal_doubles) != 1:
             continue
-        carbonyl = next(iter(carbonyls))
+        terminal_double = next(iter(terminal_doubles))
         fixed = (edges - five_edges) | side_edges
         if any(_orders(left[edge]) != _orders(right[edge])
                or not set(left[edge]["aromatic_declarations"].values()) <= {"N"}
                or not set(right[edge]["aromatic_declarations"].values()) <= {"N"}
                or any(not set(row["stereo_declarations"].values()) <= {"N"} for row in (left[edge], right[edge])) for edge in fixed):
             continue
-        if any(frozenset(edge) not in bridges or _orders(left[edge]) != ({"DOUBLE"} if edge == carbonyl else {"SINGLE"}) for edge in side_edges):
+        if any(frozenset(edge) not in bridges or _orders(left[edge]) != ({"DOUBLE"} if edge == terminal_double else {"SINGLE"}) for edge in side_edges):
             continue
         all_incident = edges | side_edges
         if any(_orders(left[edge]) not in ({"SINGLE"}, {"DOUBLE"}) for edge in all_incident):
@@ -101,10 +105,10 @@ def oxo_purine_bond_representation(source, generated, legacy):
         if not valid or len(donors) != 1:
             continue
         covered |= five_edges
-        result["equivalent_fused_systems"].append({"family": "neutral-6-oxo-purine-five-ring",
+        result["equivalent_fused_systems"].append({"family": family,
             "atoms": sorted(atoms), "cycle_sizes": [5, 6], "cycles": cycles,
-            "source_pyrrolic_nitrogen": donors[0], "source_lactam_nitrogen": lactam,
-            "unchanged_carbonyl": list(carbonyl), "bonds": [
+            "source_pyrrolic_nitrogen": donors[0], donor_field: lactam,
+            bond_field: list(terminal_double), "bonds": [
                 {"atoms": list(edge), "source_order": next(iter(_orders(left[edge]))),
                  "generated_order": "AROMATIC", "source_aromatic_declaration": "Y"} for edge in sorted(five_edges)]})
     result["unresolved_bonds"] = [list(edge) for edge in sorted(changed - covered)]

@@ -1274,7 +1274,14 @@ Exact checks: `campaign_first_refinement_2026_11_14` in the evidence ledger.
 
 The successful C270 control passed C263/C264 source-input options directly to the
 Python preparation API. C276 makes that exact combination available to the normal
-callers through the explicit versioned choice `source-preserving-v1`:
+callers through the explicit versioned choice `source-preserving-v1`.
+The newer `source-preserving-v2` selects a recorded representation for each
+frozen source by its graph, declared orders and formal charges. It accepts a
+verified five-ring beside a neutral terminal C=S and can also require exact
+orders throughout. The protected sulfur double bond and the orders in the
+neighboring six-ring must survive both native reading and generation. A
+component that passes in isolation still needs a separate linked-site check.
+The following examples select the original fixed recipe.
 
 ```sh
 nasolve postmr RUN --checked-preparation --automatic-plane-support --dictionary-input-policy source-preserving-v1
