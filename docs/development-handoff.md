@@ -126,6 +126,8 @@ data uploaded. New capabilities retain their existing explicit policies and
 schema boundaries; integration itself introduces no new artifact schema.
 Refine Doctor's declared-site continuation remains a separately qualified gap.
 Receiving Pine, a release merge, scientific acceptance and completion of A01–A08
-are separate decisions. The next A01 step is the prepared matched ordinary
-continuation and broad scientific review. A04 reuses the integrated archive
-owner for input transport; complete-parent retention and actual regeneration still precede pruning.
+are separate decisions. The matched A01 continuation and subsequent donor-span/current-state objective
+reviews are complete; the metal handoff owns the remaining local coordination
+question and the withheld numerical profile. No repeated unchanged controls are
+queued. A04 has explicit parent transport; scientific session/software identity
+and the compact child lifecycle still precede pruning.

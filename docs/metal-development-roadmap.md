@@ -120,7 +120,12 @@ descriptive; broad geometry and combined scientific evidence guide review.
    human-reference C1′ spans agree near 10.40 Å despite different donor spans;
    local base pose matters, not just opening the DNA. The human reference is
    descriptive and has a short DF attachment itself. No recipe or coordinates
-   changed. Choose a distinct structural hypothesis before further native work.
+   changed. The later actual-state diagnostic separates the conflict: phased
+   likelihood opposes tested Hg-only straightening while recipe and nonbonded
+   geometry favour it; finite Hg movements worsen the combined target. The
+   base-opening finite profile is withheld after one predeclared numerical check
+   misses tolerance. Do not repeat or loosen that check. Scope an explicit local
+   coordination alternative before another fit; no new f″ parent is accepted.
 2. **A01 → A02:** qualify an open XYZ/B endpoint through local chemistry,
    coordination, Rwork/Rfree, stopping evidence and maps. Derive environmental
    metal B from the actual refined donors/base-only atoms, report disagreement

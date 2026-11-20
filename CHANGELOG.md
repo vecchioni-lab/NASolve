@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record native metal-bridge objective evidence
+
+- Separate phased-likelihood, metal-recipe and surrounding-geometry contributions
+  at an exactly replayed selected XYZ state. Preserve the unsuccessful Hg-only
+  profile and the withheld base-opening profile without new scientific acceptance.
+- Publish small local visual reports and update the A01 queue and shared regional
+  measurement ownership. Runtime, schemas, defaults and migration remain unchanged;
+  generated scientific inputs/outputs and private diagnostics are excluded from Git.
+
 ### Record cluster pose and DNA-accommodation experiments
 
 - Specify whole-cluster pose searches and bounded coupled DNA opening/closing,

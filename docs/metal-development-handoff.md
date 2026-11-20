@@ -7,42 +7,64 @@ owns feature completion. The earlier chronological diary is preserved as
 [evidence through 18 November](history/metal-development-handoff-2026-11-18.md),
 not a second queue.
 
-## Pause checkpoint: cluster intent and saved-model review
+## A01 current checkpoint: native bridge objective
 
-The 20 November user clarification is recorded in the
-[cluster placement contract](metal-restraint-builder.md#cluster-placement-and-coupled-dna-accommodation-20-november-intent).
-A03/A07 must explicitly test whole-cluster rotation/translation and coupled DNA
-opening/closing, followed by fresh open XYZ/B and branch-specific frozen f″/Q
-assessment. Default to nucleobase participation, with strongly evidenced
-exceptions. Cluster coordination does not inherit low-coordinate bridge
-linearity. This is design intent only: no new angle restraint, cluster recipe,
-structural movement or native fit was introduced. Shared movement limits and
-measurement ownership remain to be qualified with the integration owners.
+The bounded 20 November diagnostic returns to the exact selected XYZ state of
+the **first five-cycle neutral parent**, before the final group-ADP/core/mask
+refresh. It does not measure the later continuations' different B/scales.
+Phenix **2.2.1-6174** reproduces all **105** returned-state records, makes **16**
+diagnostic evaluations and stops irreversibly; no optimizer resumes, new model
+is selected or f″ parent is accepted. The complete owned replay takes **555.02 s**;
+the diagnostic evaluations take **4.14 s**.
 
-The A01 read-only donor-span review is complete: **260 checks**, zero native
-fits. Continued N3 spans are **3.4924/3.5230 Å**, with Hg perpendicular offsets
-**1.0651/1.0348 Å** and axial fractions near **0.5**. Parent C1′ span is
-**10.4025 Å**, versus **10.4031 Å** in the descriptive human reference, while N3
-spans are **3.5124/4.2108 Å**. Thus local base pose contributes; this does not
-establish a helix-widening fix. The human DF attachment is itself short
-(**1.3524 Å**) and is not an ideal target to copy. PDB-rounded measurements are
-distinct from full-precision native receipts. No endpoint or f″ parent is
-accepted. Local evidence: `a01-donor-span-20261120-01/{plan,review,plane-supplement}.json`
-under the Alder artifact anchor; its `checkout/` holds a draft visual report.
-Native jobs are stopped. Resume from this result, not another tiny-shift or
-completed derivative/weight control matrix.
+Moving Hg toward the N3 donor line has native directional slopes of **+0.028262**
+for the phased-likelihood term, **−0.010150** for the explicit metal recipe and
+**−0.011380** for the remaining geometry (nonbonded), giving **+0.006732 per Å**
+overall. Both geometry subsets favour straightening locally; the retained
+likelihood/phase/ADP/Q context opposes it. This distinguishes the tested conflict
+from a missing recipe or an opposing nonbonded force. It is not independent
+experimental evidence or a general explanation of every endpoint.
 
-Documentation checkpoint validation: `python3 /private/tmp/alder-cluster-doc-check-20261120.py`
-passes **49** scope/link/new-anchor/evidence checks; `git diff --check` passes.
-Changed files: this handoff, metal roadmap, restraint-builder design, campaign
-storage contract and `CHANGELOG.md`. Before: cluster pose/coupled accommodation
-was not an explicit experiment and the donor-span queue was stale. After: the
-experiment and its open parameters are recorded and completed measurements are
-separated from proposals. No runtime/schema/compatibility migration occurs.
-No native run or full suite is needed for these documentation edits. Private
-models, maps, numerical receipts, reports and scripts remain excluded from Git.
-Remaining work includes qualified motion proposals, a shared measurement contract
-and cluster-specific end-to-end experiments; no scientific adoption is implied.
+All six Hg-direction finite-difference checks pass. Hg movements of
+**0.05/0.10/0.25 Å** raise the combined target by
+**0.001273/0.004374/0.023916** while shortening the contacts; the 11,222-term
+inventory remains unchanged. Hg-only repositioning does not solve the donor-span
+problem. The fixed-sugar outward base-rotation tangent passes five of six checks;
+its combined check at 0.001 rad misses the predeclared tolerance
+(**1.20e−5** error versus **6.85e−6** bound). The 0.0001-rad check passes. Its
+finite profile is withheld without changing tolerances or rerunning it. This is
+a numerical qualification limit, not a chemical angular cutoff or evidence of
+a native derivative defect. Native family sums and restored objectives close.
+
+Validation: **34** kinematic checks and **287** independent cold readback checks;
+original inputs remain exact and both owned phases are stopped. Exact native
+commands/processes are in `a01-bridge-forces-20261120-01/native/execution.json`
+under the Alder artifact anchor. Preparation/adaptation failures are retained;
+one text-adapter syntax failure occurred before any native call. Cold command:
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<Alder>/src <Python-3.12.14> -B <Alder-artifacts>/runners/A231_review_bridge.py`.
+Documentation validation with `python3 <Alder-artifacts>/runners/A237_check_bridge_docs.py`
+passes **40** scope/reference/result/report checks; `git diff --check` passes.
+Changed files are this handoff, the root integration handoff, metal roadmap and
+changelog. No production runtime/schema/default changed and no full suite was repeated.
+The last full shared-runtime qualification remains in the root handoff.
+
+The current local checkout is
+`ScienceCheckouts/Hazel/2026-11-20_bridge-objective-v2/open_report.py`, with HTML,
+editable SVG and PNG. It links the **260-check** donor-span review at
+`ScienceCheckouts/Hazel/2026-11-20_donor-span/open_report.py` and the earlier
+matched maps. Reports link exact models/evidence without copying large artifacts;
+all generated science, reports and private scripts stay excluded from Git.
+A01 remains partial and A02 gated. The next question is an explicitly declared
+local coordination alternative, not another Hg-only shift, tiny-input restart,
+global weight sweep or repeat of completed controls.
+
+The [cluster placement contract](metal-restraint-builder.md#cluster-placement-and-coupled-dna-accommodation-20-november-intent)
+remains planned A03/A07 work, with default nucleobase participation. No cluster
+movement or universal linearity rule follows from this single-Hg diagnostic.
+Cedar Q15/Q16 owns the shared regional measurement/export plan (Cedar
+`84257082`); Willow W167 (`da8794d7`) owns the planned displacement/frame boundary.
+Those follow-ons are not silently adopted into this build. Donor span, sugar
+anchors, phosphate spans and axis radii remain distinct measurements.
 
 ## Current scientific and engineering boundary
 
@@ -54,8 +76,8 @@ Rwork/Rfree to **0.2802/0.2902** (unchanged restart) and **0.2820/0.2910**
 Final fitted B values rise substantially, with an explicit final scale update.
 The known bent Hg coordination and negative difference density remain review
 issues. No accepted endpoint or new f″ result follows. See
-[matched continuation](#a01-matched-ordinary-continuation) below. The latest compact
-checkout is `ScienceCheckouts/Hazel/2026-11-20_matched-continuation/review.html`;
+[matched continuation](#a01-matched-ordinary-continuation) below. That continuation checkout is
+`ScienceCheckouts/Hazel/2026-11-20_matched-continuation/review.html`;
 its adjacent `open_report.py` opens it with standard Python, without native work.
 A04 now has qualified explicit parent-layout transport, separately from geometry
 acceptance; trusted software and the lean child lifecycle remain next.
@@ -556,8 +578,12 @@ No production software collector or new scientific endpoint is adopted.
    The matched small-movement continuations are complete with no preferred
    endpoint. The saved-model donor-span decomposition is also complete (see
    pause checkpoint): both compressed donor separation and off-line Hg matter,
-   while matching C1′ spans do not establish matching base pose. Preserve this
-   read-only result and choose a distinct structural hypothesis before any fit.
+   while matching C1′ spans do not establish matching base pose. The new actual-state
+   bridge diagnostic also closes: phased likelihood opposes tested Hg straightening,
+   while both recipe and nonbonded geometry favour it. The base-opening finite
+   profile is withheld on a predeclared numerical check; do not relax the tolerance
+   or repeat it to obtain a pass. Scope an explicit local coordination alternative
+   before any new fit, reusing the completed unchanged continuation as appropriate.
    Broad geometry/maps/refinement guide review; fractional deviations are not
    vetoes. No repeated control matrix is queued.
 4. A04 explicit parent transport is qualified. The software census shows lazy
