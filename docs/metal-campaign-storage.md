@@ -236,6 +236,29 @@ is capped at 1 MiB. The unchanged recorded-result reader validates the selected
 archive/parent/result binding; it does not open the source run or re-audit native
 science. No execution, reuse, scientific acceptance or retirement follows.
 
+For a complete comparison, replace `--trial-id TRIAL` with `--all-trials`.
+This requires a pinned publication receipt; the legacy individual-pin form stays
+single-trial. `inspect_published_fdp_batch` opens one bounded temporary archive
+view, applies the unchanged recorded-result checks to each indexed attempt, and
+returns the ordered list only after every selection matches. Repeated requests
+remain distinct attempts. The JSON list contains the same full inspection
+objects as separate calls; text output groups sites under each attempt. No
+cached verification, persistent view or new on-disk schema is introduced.
+A failed final selection yields no partial result/table, and the archive context
+closes before return. Archive expansion occurs once; per-result metadata checks
+are still applied for every selection.
+
+**Batch-view qualification:** 51 focused tests pass in 39.05 s, including the
+regression that failed before the API existed. A relocated fresh installation
+keeps all 349 package members exact and reads the existing three-trial FT_Hg
+archive with original access denied. Its 370 checks include package integrity:
+one expansion for the successful batch, one for a changed final-record refusal,
+and zero for a wrong independent publication pin. Results and parent identities
+match the prior independent readback exactly, archive bytes remain unchanged,
+and all temporary views/scratch are removed. No native run or full suite occurs.
+Exact commands and receipts are in `batch-inspection-20261120-01/{validation.json,
+installed-review.json}` under the private Alder artifact anchor.
+
 Final-source evidence: **16 focused tests pass in 10.94 s**, including normal
 two-trial production/publication/readback and interrupted archive/receipt checks.
 A relocated installed normal-entrypoint control produces two trials with the
@@ -576,8 +599,8 @@ execution cache, new persisted schema, CLI/GUI action, pruning policy or migrati
 Existing pack/expand/full-replay APIs and Cedar complete-attempt rules remain
 unchanged. The inspector returns data only, with no temporary path escaping its
 scope; all execution/reuse/retirement permissions stay false. An incomplete or
-changed archive remains untouched. This per-selection API is not yet a campaign
-batch/session optimization or an authority to discard original native evidence.
+changed archive remains untouched. The later publication batch adapter shares one expansion across named selections;
+it is still not a scientific execution session or authority to discard native evidence.
 
 Qualification: **117 focused tests in 34.76 s**, including 17 new cases covering
 source removal, repeated attempts, wrong identities/budget, changed internal

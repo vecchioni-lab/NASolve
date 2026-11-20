@@ -10,7 +10,8 @@ from pathlib import Path
 from .. import campaign_records as records
 from ..cif_attempt_retention import _sync_archive
 from . import compact
-from .input_archive import pack_fdp_inputs, expanded_fdp_inputs, inspect_recorded_fdp, archive_owner
+from .input_archive import (pack_fdp_inputs, expanded_fdp_inputs, inspect_recorded_fdp,
+                            _inspect_recorded_projection, archive_owner)
 from .recipe import RecipeError, checksum, digest
 from .storage import DEFAULT_MAX_BYTES
 
@@ -124,3 +125,31 @@ def inspect_published_fdp(archive, publication, *, publication_id, trial_id,
     if result['record']['record_id'] != selected['record_id']:
         raise RecipeError('Published attempt belongs to a different recorded result')
     return result
+
+
+def inspect_published_fdp_batch(archive, publication, *, publication_id,
+                                max_input_bytes=archive_owner.MAX_BYTES):
+    """Read all named published attempts in one temporary archive context.
+
+    Returns the same ordered inspection records as individual selection. All
+    results must validate before anything is returned; no archive view escapes.
+    Repeated requests retain their distinct trial identities and result records.
+    """
+    try:
+        first = publication['attempts'][0]['trial_id']
+    except (KeyError, TypeError, IndexError) as exc:
+        raise RecipeError('Require a nonempty completed fdp publication') from exc
+    _selection(publication, publication_id, first)
+    selections = [_selection(publication, publication_id, a['trial_id'])
+                  for a in publication['attempts']]
+    reports = []
+    with expanded_fdp_inputs(archive, publication['archive_sha256'],
+            projection_id=publication['projection_id'], max_input_bytes=max_input_bytes) as (_, projection):
+        for selected, parent in selections:
+            report = _inspect_recorded_projection(projection, publication['archive_sha256'],
+                projection_id=publication['projection_id'], trial_id=selected['trial_id'],
+                expected_parent=parent)
+            if report['record']['record_id'] != selected['record_id']:
+                raise RecipeError('Published attempt belongs to a different recorded result')
+            reports.append(report)
+    return reports

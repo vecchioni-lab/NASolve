@@ -91,7 +91,15 @@ immediate flanking links are retained individually. OP1/OP2 stay source labels;
 these ranges are not ideal targets or acceptance limits. The broad separation
 is a long gap plus phosphate-side distortion, particularly at D:7→C:8, despite
 an O3′-vertex angle resembling ordinary links. Fractional-degree differences do
-not set the acceptance decision. Rowan owns the independent finite strand graph.
+not set the acceptance decision. The independent Cedar graph now finds, conditional
+on both declared junctions being realized at all three symmetry positions, one
+21-nucleotide closed B path, three 14-nucleotide D:1→C:14 paths, and three separate
+A:1→A:21 strands. The 126 sites use 114 local and six image edges. This is intended
+construct topology, not proof of ligation, nick state, occupancy or native
+restraint enforcement; D:1 retains OP3. The shared source-bound evidence is
+`cedar/ft-construct-strands-20261120/topology.json` under `branch-artifacts`,
+SHA-256 `e4e38cf7c7f9ebd4fc73d3e7a5e409df080c604d494fda5cdd777cf91318680c`.
+It binds the same model, native inventory, investigator intent and angle receipt.
 
 Read-only command: `PYTHONDONTWRITEBYTECODE=1
 /private/tmp/willow-w94-pivot/env/bin/python -B
@@ -145,6 +153,23 @@ existing private artifact anchor. The runner reuses the already qualified wheel;
 no runtime/schema changes or migration are introduced by this follow-up.
 Generated inputs, results and figures remain outside Git. A01 partial, A02 gated,
 A04 partial; next qualify the scientific parent and compact child lifecycle.
+
+The follow-on batch reader adds `inspect-recorded-fdp --all-trials` for a pinned
+publication. It returns the same ordered full records using one archive expansion,
+without merging repeated attempts or returning partial output after a late refusal.
+**51 focused tests pass in 39.05 s** across `test_metal_publication_batch.py`,
+`test_metal_publication.py`, `test_metal_recorded_fdp.py`,
+`test_metal_recorded_fdp_cli.py` and `test_metal_input_archive.py`, with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python
+-B -m pytest -q -p no:cacheprovider`. The new regression failed before implementation.
+The installed real three-attempt FT_Hg readback passes **370 checks**, including
+349 package members, exact historical rows/parents and changed-selection refusal.
+Original source access is denied, original bytes remain exact, and owned scratch
+is removed. Local evidence: `batch-inspection-20261120-01/{validation.json,
+installed-review.json}`. Changed runtime files are `metal/{input_archive,
+publication,cli}.py`; one new focused test module covers the batch contract.
+The original single-result interface and all persisted schemas remain unchanged;
+no migration, native execution, full suite, scientific acceptance or retirement.
 
 ### Ordinary recorded-result CLI
 

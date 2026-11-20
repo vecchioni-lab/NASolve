@@ -31,6 +31,8 @@ The follow-up same-image angle readback shows near-local O3′-vertex angles but
 long P–O3′ gaps and substantial phosphate-side distortion, especially D:7→C:8.
 Inverse views agree; 38 ordinary links provide descriptive context, not targets.
 No coordinate repair or new native enforcement is implied.
+Cedar's conditional threefold graph supplies the intended 21-site B cycle and
+three D/C crossover paths; ligation/nick state and enforcement remain unverified.
 
 A04 now exposes pinned historical result inspection through the normal CLI
 (`metal inspect-recorded-fdp`), with 53 focused tests and exact relocated installed
@@ -46,6 +48,10 @@ The real three-attempt FT_Hg readback also passes 48 checks with original access
 blocked: 134,901 B archive plus 1,810 B receipt, exact saved values and FreeR_flag
 selection. These historical low-B poor-fit controls validate recovery only;
 protected-parent storage is additional and scientific/retirement gates stay open.
+Whole-publication inspection now shares one archive expansion across all named
+attempts; 51 focused tests and installed real readback qualify exact rows and
+late-selection refusal. This is a read-only comparison improvement, not an
+execution session or retirement contract.
 
 **Scientific milestone: A01 — ligand geometry and open XYZ/B foundation.**
 **Parallel engineering step: A04 — compact records and protected parent transport.**

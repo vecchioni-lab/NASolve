@@ -2105,6 +2105,10 @@ completed-batch receipt shares exact parent identities and separates all attempt
 and result identities. Source provenance is verified at packing; subsequent
 indexed historical inspection requires an independently retained receipt digest,
 adds no source-parent traversal and grants no native execution or retirement.
+An optional batch reader holds one archive context for all receipt selections,
+reuses the same per-result checks, and returns only after every row validates.
+No temporary path or successful partial table escapes; single-result callers
+and persisted formats stay unchanged.
 See the [metal storage contract](metal-campaign-storage.md#completed-batch-publication-and-selection-receipt)
 for schema, limits, interruption behavior and qualification scope.
 

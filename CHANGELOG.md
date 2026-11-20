@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Inspect a published frozen-trial batch in one archive view
+
+- Add `inspect-recorded-fdp --all-trials` with a pinned publication receipt and
+  the matching read-only batch API. Retain exact ordered results and distinct
+  attempts while expanding the archive once per comparison.
+- Reject a changed late selection without partial output and release temporary
+  views on success or failure. Preserve the single-result API, persisted formats,
+  scientific defaults and all execution/reuse/retirement restrictions.
+- Validate with 51 focused tests and relocated installed readback of three real
+  historical FT_Hg records; no new native fitting or full suite.
+
 ### Publish completed frozen-trial review identities
 
 - Add explicit completed-batch input publication with one shared parent index

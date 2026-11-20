@@ -45,7 +45,10 @@ def configure(subparsers):
     recorded.add_argument('--archive', type=Path, required=True)
     recorded.add_argument('--archive-sha256', help='independently retained archive checksum')
     recorded.add_argument('--projection-id')
-    recorded.add_argument('--trial-id', required=True, help='exact saved attempt identity')
+    recorded_selection = recorded.add_mutually_exclusive_group(required=True)
+    recorded_selection.add_argument('--trial-id', help='exact saved attempt identity')
+    recorded_selection.add_argument('--all-trials', action='store_true',
+                                    help='read all attempts from a pinned publication in one archive view')
     recorded.add_argument('--expected-parent', type=Path,
                           help='independently retained parent identity JSON; no original model required')
     recorded.add_argument('--max-input-bytes', type=int, help='tighten the shared archive expansion budget')
@@ -673,13 +676,19 @@ def _recorded_fdp(args):
     options = {} if args.max_input_bytes is None else {'max_input_bytes': args.max_input_bytes}
     explicit = (args.archive_sha256, args.projection_id, args.expected_parent)
     if args.publication is not None:
-        from .publication import inspect_published_fdp, MAX_PUBLICATION_BYTES
+        from .publication import inspect_published_fdp, inspect_published_fdp_batch, MAX_PUBLICATION_BYTES
         if not args.publication_id or any(p is not None for p in explicit):
             raise RecipeError('Publication requires its independent identity and cannot mix individual pins')
         publication = read_projection(args.publication, max_projection_bytes=MAX_PUBLICATION_BYTES)
-        report = inspect_published_fdp(args.archive, publication,
-            publication_id=args.publication_id, trial_id=args.trial_id, **options)
+        if args.all_trials:
+            report = inspect_published_fdp_batch(args.archive, publication,
+                publication_id=args.publication_id, **options)
+        else:
+            report = inspect_published_fdp(args.archive, publication,
+                publication_id=args.publication_id, trial_id=args.trial_id, **options)
     else:
+        if args.all_trials:
+            raise RecipeError('--all-trials requires a pinned publication receipt')
         if args.publication_id is not None or any(p is None for p in explicit):
             raise RecipeError('Require archive/projection/parent pins or a pinned publication receipt')
         # Parent references are data, not instructions to reopen the source run.
@@ -693,15 +702,17 @@ def _recorded_fdp(args):
     if args.json:
         print(json.dumps(report, indent=2, allow_nan=False))
     else:
-        result = report['record']['result']
-        # Build the complete display before printing, so bad metadata produces
-        # an error without a partially published success-looking table.
-        lines = ['Historical result: ' + report['record']['trial_id'],
-                 'Site / element | Q (occ) | B (Å²) | f″ (e) | Expected f″ (e)']
-        for site in result['sites']:
-            lines.append(f"{site['node_id']} / {site['element']} | {site['occupancy']} | {site['b_iso']} | {site['f_double_prime']} | {site['reference_f_double_prime']}")
-        lines.extend([f"Rwork {result['r_work']}; Rfree {result['r_free']}; wavelength {result['wavelength_A']} Å",
-                      'No new scientific audit; current parent and native environment are not verified.',
+        # Build every row before printing: late failure must not leak a partial table.
+        reports = report if args.all_trials else [report]
+        lines = [f'{len(reports)} historical attempts'] if args.all_trials else []
+        for row in reports:
+            result = row['record']['result']
+            lines.extend(['Historical result: ' + row['record']['trial_id'],
+                          'Site / element | Q (occ) | B (Å²) | f″ (e) | Expected f″ (e)'])
+            for site in result['sites']:
+                lines.append(f"{site['node_id']} / {site['element']} | {site['occupancy']} | {site['b_iso']} | {site['f_double_prime']} | {site['reference_f_double_prime']}")
+            lines.append(f"Rwork {result['r_work']}; Rfree {result['r_free']}; wavelength {result['wavelength_A']} Å")
+        lines.extend(['No new scientific audit; current parent and native environment are not verified.',
                       'Scientific acceptance not assessed. No execution, reuse or retirement authority.'])
         print('\n'.join(lines))
     return 0

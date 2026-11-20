@@ -167,6 +167,15 @@ def inspect_recorded_fdp(archive, archive_sha256, *, projection_id, trial_id,
     job (pack_fdp_inputs/project_trials). This read-only view grants no execution,
     reuse or retirement permission and returns no temporary filesystem paths.
     """
+    with expanded_fdp_inputs(archive, archive_sha256,
+            projection_id=projection_id, max_input_bytes=max_input_bytes) as (_, projection):
+        return _inspect_recorded_projection(projection, archive_sha256,
+            projection_id=projection_id, trial_id=trial_id, expected_parent=expected_parent)
+
+
+def _inspect_recorded_projection(projection, archive_sha256, *, projection_id,
+                                 trial_id, expected_parent):
+    """Internal selection inside an already checked, live archive context."""
     checksum(trial_id, 'recorded trial identity')
     if (not isinstance(expected_parent, dict) or set(expected_parent) not in (
             {'geometry_id','manifest'}, {'xyz_trial_id','manifest'})):
@@ -177,50 +186,48 @@ def inspect_recorded_fdp(archive, archive_sha256, *, projection_id, trial_id,
         compact._portable_references(expected_parent)
         if expected_parent['manifest']['anchor'] != 'run':
             raise RecipeError('Recorded parent must be run anchored')
-        with expanded_fdp_inputs(archive, archive_sha256,
-                projection_id=projection_id, max_input_bytes=max_input_bytes) as (_, projection):
-            if projection.get('source_replay') != 'FULL_FDP_REPLAY_AT_PROJECTION':
-                raise RecipeError('Recorded result lacks its publication replay declaration')
-            bases = projection['bases']; requests = projection['requests']
-            records = projection['records']
-            if (not isinstance(bases, dict)
-                    or set(bases) != {row['basis_id'] for row in records}):
-                raise RecipeError('Recorded results require exact referenced bases')
-            for basis_id, basis in bases.items():
-                if digest(basis) != basis_id:
-                    raise RecipeError('Recorded experiment basis changed')
-            selected = None
-            for row in records:
-                if set(row) != {'trial_id','source_manifest','source_result','basis_id',
-                               'input_id','occupancy_vector','result','record_id'}:
-                    raise RecipeError('Unsupported recorded trial fields')
-                check = dict(row); record_id = check.pop('record_id')
-                checksum(row['trial_id'], 'recorded trial identity')
-                if digest(check) != record_id:
-                    raise RecipeError('Recorded trial content changed')
-                request = requests[row['input_id']]
-                if (request['basis_id'] != row['basis_id']
-                        or request['occupancy_vector'] != row['occupancy_vector']):
-                    raise RecipeError('Recorded trial differs from its exact input request')
-                result = row['result']
-                if (result['status'] != 'FDP_REVIEW' or result['freeze_audit'] != 'PASS'
-                        or result['scientific_acceptance'] != 'NOT_ASSESSED'
-                        or result['automatic_checkpoint_selection'] is not False):
-                    raise RecipeError('Require a completed review-only recorded result')
-                if row['trial_id'] == trial_id:
-                    selected = row
-            if selected is None:
-                raise RecipeError('Requested trial is absent from the recorded projection')
-            basis = bases[selected['basis_id']]
-            if compact.encode(basis['parent']) != compact.encode(expected_parent):
-                raise RecipeError('Recorded trial belongs to a different expected parent')
-            return dict(status='RECORDED_FDP_REVIEW', projection_id=projection_id,
-                archive_sha256=archive_sha256, record=selected,
-                request=requests[selected['input_id']], basis=basis,
-                evidence_scope='HISTORICAL_RESULT_REPLAYED_AT_PUBLICATION',
-                current_parent_verified=False, native_evidence_replayed=False,
-                software_environment_identity_complete=False,
-                scientific_acceptance='NOT_ASSESSED', automatic_checkpoint_selection=False,
-                execution_authorized=False, reuse_authorized=False, retirement_authorized=False)
+        if projection.get('source_replay') != 'FULL_FDP_REPLAY_AT_PROJECTION':
+            raise RecipeError('Recorded result lacks its publication replay declaration')
+        bases = projection['bases']; requests = projection['requests']
+        records = projection['records']
+        if (not isinstance(bases, dict)
+                or set(bases) != {row['basis_id'] for row in records}):
+            raise RecipeError('Recorded results require exact referenced bases')
+        for basis_id, basis in bases.items():
+            if digest(basis) != basis_id:
+                raise RecipeError('Recorded experiment basis changed')
+        selected = None
+        for row in records:
+            if set(row) != {'trial_id','source_manifest','source_result','basis_id',
+                           'input_id','occupancy_vector','result','record_id'}:
+                raise RecipeError('Unsupported recorded trial fields')
+            check = dict(row); record_id = check.pop('record_id')
+            checksum(row['trial_id'], 'recorded trial identity')
+            if digest(check) != record_id:
+                raise RecipeError('Recorded trial content changed')
+            request = requests[row['input_id']]
+            if (request['basis_id'] != row['basis_id']
+                    or request['occupancy_vector'] != row['occupancy_vector']):
+                raise RecipeError('Recorded trial differs from its exact input request')
+            result = row['result']
+            if (result['status'] != 'FDP_REVIEW' or result['freeze_audit'] != 'PASS'
+                    or result['scientific_acceptance'] != 'NOT_ASSESSED'
+                    or result['automatic_checkpoint_selection'] is not False):
+                raise RecipeError('Require a completed review-only recorded result')
+            if row['trial_id'] == trial_id:
+                selected = row
+        if selected is None:
+            raise RecipeError('Requested trial is absent from the recorded projection')
+        basis = bases[selected['basis_id']]
+        if compact.encode(basis['parent']) != compact.encode(expected_parent):
+            raise RecipeError('Recorded trial belongs to a different expected parent')
+        return dict(status='RECORDED_FDP_REVIEW', projection_id=projection_id,
+            archive_sha256=archive_sha256, record=selected,
+            request=requests[selected['input_id']], basis=basis,
+            evidence_scope='HISTORICAL_RESULT_REPLAYED_AT_PUBLICATION',
+            current_parent_verified=False, native_evidence_replayed=False,
+            software_environment_identity_complete=False,
+            scientific_acceptance='NOT_ASSESSED', automatic_checkpoint_selection=False,
+            execution_authorized=False, reuse_authorized=False, retirement_authorized=False)
     except (KeyError, TypeError, OverflowError, RecursionError) as exc:
         raise RecipeError('Invalid recorded trial metadata: ' + str(exc)) from exc
