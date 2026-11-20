@@ -1006,6 +1006,12 @@ acceptance and structural assessment.
 
 ## Isolated TopoStitch backend
 
+The planned [cluster accommodation contract](topostitch.md#cluster-accommodation-bounded-helix-opening-and-closing-w167-planned)
+coordinates Alder's intact-cluster placement/metal hypotheses, Willow's bounded
+DNA opening/closing and Cedar's source chemistry/native exclusions. It reuses
+the shared preparation/execution owners; it is not an implemented width mode
+or a qualification inferred from the signed-bend controls.
+
 The pairing owner supplies exact forward/reciprocal edge incidence to selected
 atom-image audits. These bind one-partner capacity only within their recorded
 coordinate scope; nontrivial lattice translations, ambiguity and unresolved

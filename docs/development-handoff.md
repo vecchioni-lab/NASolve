@@ -1,12 +1,20 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-20**, through **W166**. Larger prescribed backbone
+Updated **2026-11-20**, through **W167**. Larger prescribed backbone
 displacements now recover under a declared matching-data control. Starting at
 2.288 Å RMS (up to 4.79 Å movement), the two directions reach **0.253/0.040 Å**
 after matched five-plus-five-cycle recovery; the no-op remains **0.014 Å**.
 All checked links, atom identities and sugar signs survive. The positive arm
 still has B2/A13 local distortion despite Rfree .0259, so it is not accepted.
 [W163–W164 methods and limits](topostitch-periodic.md#w163--retain-known-backbone-links-before-larger-displacement-recovery).
+
+**W167 coordination:** the user/Hazel cluster clarification is now a planned
+shared contract: intact-cluster pose first, bounded coupled DNA opening/closing
+when needed, then Alder's restrained recovery and frozen f″/Q assessment.
+Willow owns DNA motion; Cedar retains chemical geometry/exclusions. No blanket
+linear-bridge target, radial atom scaling or new width qualification follows.
+This stays after the current pre-fmodel retention gate; no new fit is queued.
+[Motion, measurements and ownership](topostitch.md#cluster-accommodation-bounded-helix-opening-and-closing-w167-planned).
 
 **W165 pipeline addition:** plan a default-on read-only backbone-fit check for
 high Rfree with coherent red phosphate/backbone or positive backbone difference

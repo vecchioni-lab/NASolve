@@ -1102,6 +1102,70 @@
         "S06 density and matched refinement",
         "S07 review"
       ]
+    },
+    "cluster_accommodation": {
+      "implemented": false,
+      "qualified": false,
+      "human_update": 167,
+      "reference": "docs/topostitch.md#cluster-accommodation-bounded-helix-opening-and-closing-w167-planned",
+      "stage": "S04 bounded motion after parent-derived geometry/pre-fmodel integration; S05 chemical validation; S06 matched recovery, coordinated with Alder A03/A07",
+      "owners": {
+        "Alder": "Donor-defined metal networks, rigid cluster placement, coordination/oxidation hypotheses and assessment protocol",
+        "Willow": "Bounded local-frame DNA opening/closing proposals and neighboring-step readback",
+        "Cedar": "Source base/sugar/phosphate chemistry, native link/angle/torsion/chirality and exclusion validation"
+      },
+      "metal_contract": "docs/metal-restraint-builder.md#cluster-extension-and-chemical-declarations",
+      "sequence": [
+        "Place/rotate intact cluster with internal geometry held for that proposal",
+        "When needed, propose bounded coupled DNA opening/closing within declared windows",
+        "Use Alder admitted restrained open XYZ/B, environment-B preparation and frozen XYZ/ADP/f-prime f-double-prime/Q assessment"
+      ],
+      "nucleobase_participation": "Default cluster hypothesis; nonparticipating alternatives require strong recorded evidence",
+      "linear_bridge_constraint_inherited": false,
+      "metal_shape_coordination_and_oxidation_state_separate": true,
+      "dna_motion": [
+        "Candidate intact base poses and glycosidic orientation",
+        "Sugar pucker and both sugar-phosphate paths",
+        "Coupled local step twist/rise and asymmetric strand accommodation"
+      ],
+      "open_parameters": [
+        "Exact pivots and neighborhood",
+        "Mobility boundaries and displacement limits",
+        "Boundary restraints",
+        "Kinematic implementation",
+        "Ranking"
+      ],
+      "environment_b_policy": "After changed geometry return through open XYZ/B and refresh branch-environment B; never reuse old frozen B for the new assessment",
+      "invariants": [
+        "Exact atom/sequence identity and unchanged declared chemical state",
+        "Parent covalent links with associated angles/torsions/chirality and fixed exclusions",
+        "Nicks and protected junctions",
+        "Explicit applicable pair/register and coordination intent",
+        "Source-bound maps and original observations/Free"
+      ],
+      "forbidden_shortcuts": [
+        "Radial scaling of all atom coordinates to make room",
+        "Stretching ring/sugar bond targets instead of restrained conformational relaxation",
+        "Treating C1-prime span as a universal helix diameter",
+        "Relabelling W166 signed-bend evidence as cluster/width qualification"
+      ],
+      "measurements": [
+        "Cluster pose, donor spans/offsets, local coordination and metal-metal geometry",
+        "Explicit local-frame sugar spans, phosphate-path separation and cluster clearance",
+        "Neighboring pair step rise/shift/slide/roll/tilt/twist, pair contacts and stacking",
+        "Glycosidic/sugar/backbone geometry, link angles, boundary strain and periodic packing",
+        "Ordinary/difference density at donors/sugars/phosphates and matched post-recovery statistics"
+      ],
+      "controls": "Matched no-opening and predeclared bounded opening/closing alternatives; distinguish cluster pose from DNA response; retain ambiguous/failed results",
+      "count_inference": "Cluster-summed f-double-prime supports count hypotheses, not a uniquely determined atom count",
+      "current_evidence": "Canonical signed bends and W166 geometry-only parent transport; Hazel FT_Hg single-bridge observations are local and descriptive. No cluster opening/closing experiment.",
+      "coordination_provenance": {
+        "owner_branch": "Alder",
+        "commit": "928aa8e69835789ac48f4567b65560f710469c32",
+        "document": "docs/metal-restraint-builder.md",
+        "section": "Cluster placement and coupled DNA accommodation (20 November intent)",
+        "combined_runtime_qualified": false
+      }
     }
   },
   "planned_diffraction_benchmark": {

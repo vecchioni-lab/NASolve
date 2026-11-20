@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W167 — Align planned cluster placement and DNA accommodation
+
+- Record Alder/Willow/Cedar ownership for intact-cluster rigid-body placement,
+  bounded DNA opening/closing, chemical geometry retention and matched recovery.
+  Separate cluster coordination from a linear single-bridge hypothesis and
+  local donor/sugar spans from a general helix-width claim.
+- Extend human/machine intent and milestone planning only; no new fit, runtime
+  behavior, schema/default, dependency or installed-code change.
+
 ### W166 — Retain known topology in a transported native geometry manager
 
 - Record the bounded canonical same-ASU parent-manager diagnostic: stretched

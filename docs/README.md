@@ -61,12 +61,14 @@ current instructions; other branches retain their own status and validation pins
   W163–W164 add larger matched synthetic recovery, declared-link retention and
   an explicit remaining local distortion despite low Rfree. W166 qualifies
   geometry-only parent-manager transport without raising the production link
-  cutoff; diffraction-state/execution integration remains open.
+  cutoff; diffraction-state/execution integration remains open. W167 aligns
+  the planned cluster-placement/coupled-DNA-opening contract with Alder and Cedar;
+  it adds no width-changing runtime or experiment.
   Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W166;
-  the next substantial audit is W167. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W167;
+  the next substantial audit is W168. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

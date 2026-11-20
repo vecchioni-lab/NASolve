@@ -655,6 +655,90 @@ across the model and occupancy/ADP alternatives. Freeze calibration separately
 from later evaluation; do not use held-out Rfree to tune detection thresholds.
 Initially flag for review only, with no automatic deletion or displacement.
 
+### Cluster accommodation: bounded helix opening and closing (W167, planned)
+
+The user clarified the nanocluster architecture with Hazel: first place and
+rotate an intact cluster, then, if needed, open or close the surrounding DNA
+through bounded coupled motions and restrained recovery. This is a distinct
+planned motion, not a result established by the signed-bend controls or W166.
+It belongs after parent-derived geometry and pre-fmodel execution integration;
+it does not replace the current bending/map-review queue.
+
+**Shared ownership.** Alder owns donor-defined Ag–Ag network hypotheses, cluster
+rigid-body pose and the A03/A07 assessment experiment in
+[Cluster extension and chemical declarations](metal-restraint-builder.md#cluster-extension-and-chemical-declarations).
+The clarification is pinned to Alder `928aa8e6`, subsection **Cluster placement
+and coupled DNA accommodation (20 November intent)**. Linking it here does not
+merge the branches or qualify their combined runtime.
+Willow owns the bounded DNA proposal and its local frames/windows. Cedar owns
+source chemical definitions and native geometry/exclusion validation. Use one
+explicit parent/candidate atom mapping and declared topology across the three;
+do not introduce another chemistry dictionary, launcher or refinement lifecycle.
+
+**Motion and chemistry.** Rigid cluster placement preserves internal cluster
+geometry during that proposal. Later internal flexibility is a separate declared
+hypothesis, under Alder's supported restraints. Do not apply the near-linear
+donor–metal–donor preference of a low-coordinate bridge to an entire cluster:
+cluster shape, each metal's local coordination and oxidation-state assumptions
+are separate. Nucleobase participation is the default cluster hypothesis;
+nonparticipating alternatives need strong recorded evidence, not silent fallback.
+
+For DNA, use oriented local base/pair frames and an explicit editable window on
+both strands, with a displacement bound, boundary context and protected
+junctions. Exact pivots, neighborhood, mobility boundaries, displacement limits,
+boundary restraints, kinematic parameterization and ranking remain open; no
+particular pair or implementation has been selected. Opening can involve base
+pose, glycosidic orientation, sugar pucker and sugar-phosphate paths, coupled to
+rise/twist and asymmetric strand motion.
+Move intact base geometry and let supported torsions/angles and backbone geometry
+relax; do not radially scale all atoms or stretch ring/sugar bonds to manufacture
+room. Retain atom identities, chemistry, nicks, declared source covalent links,
+flank angles, applicable torsions/chirality and nonbonded exclusions. Any change
+to pair/register or coordination intent must be explicit; canonical pairing
+restraints apply only where that pairing remains the declared hypothesis.
+W166's exact-identity mapping and parent context checks are reusable prerequisites,
+not proof for a metal-containing or width-changing model. Symmetry covalent seams
+remain outside this qualification.
+
+**Measurements and comparison.** Record source, proposed and recovered states:
+
+- Cluster pose and donor/metal identities; donor spans, metal offsets and local
+  coordination, internal metal–metal distances, DNA participation and clashes.
+- Opening in declared local frames: report C1′ spans, relevant donor spans,
+  phosphate-path separation and cluster clearance separately. A C1′–C1′ distance
+  is a local anchor measurement, not a universal helix diameter; define the
+  measured atoms, projection and frame, including asymmetric/curved cases.
+- Both neighboring pair steps and transitions into fixed context: rise, shift,
+  slide, roll, tilt and twist; pair orientation/contacts, stacking separation and
+  overlap; glycosidic/sugar/backbone geometry, link angles and periodic clashes.
+- Source-bound ordinary/difference maps at donors, sugars and phosphates;
+  molecular content, unchanged observations/Free and matched post-recovery
+  Rwork/Rfree. Density fit and geometry must be reviewed together.
+
+Compare a matched no-opening control and prospectively bounded opening/closing
+alternatives, with the cluster-pose proposal and recovery budget recorded so
+their effects can be distinguished. Follow Alder's admitted sequence: restrained
+open XYZ/B refinement, environment-B preparation, then f″/Q assessment with
+XYZ/ADP/f′ frozen. Refresh the branch's environment B after changed geometry;
+do not carry old frozen B into the new assessment. Do not silently reset or relax
+that phase policy; allow the declared recovery window before judging initial Rfree. Cluster-summed f″ can
+support count hypotheses but does not uniquely determine an atom count.
+
+**Evidence boundary.** Hazel's FT_Hg single-bridge review motivates measuring
+base pose and donor spacing independently of sugar-anchor span; its human model
+is descriptive, not an ideal geometry target. No cluster accommodation or helix
+widening/narrowing experiment is qualified. `TaperedMotion` currently supplies
+one six-parameter tapered rotation/translation, not a dedicated width mode.
+No new fit, angle target, operational flag or automatic adoption is introduced
+by this plan. S04/S05/S06 and Alder A03/A07 retain their open qualification gates.
+
+Documentation validation: eight focused `tests/test_topostitch_roadmap.py` tests
+with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`, generated roadmap `--check`,
+JSON/reference checks and `git diff --check` pass. No product code or runtime
+schema/default changes, no migration, native execution or raw scientific
+artifacts in this patch. Installation and full-suite checks are not repeated
+for this planning-only update.
+
 ### Planned default backbone-fit check (W165)
 
 **User direction after viewing the 11:20 larger-bend checkout:** make a backbone
