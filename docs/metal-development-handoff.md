@@ -171,6 +171,32 @@ controls at the exact launch (Willow W182), unchanged freeze/FreeR/model audits,
 compact scientific publication, quotas and retirement remain next. **A01 partial;
 A02 gated; A04 partial.**
 
+### Scientific audit handoff traced without a new fit
+
+The saved real FT_Hg component audit is reused after verifying unchanged auditor
+sources and pinned historical files. It can already verify full-precision frozen
+XYZ/Q/B/U/f′, groups/background scattering and native reflection/Free-R invariance;
+the existing caller separately verifies serialized model state and Free-R/map
+receipts. It does not establish the new process route's parent-to-input derivation.
+That is the concrete next boundary: bind `_input_bundle` → `make_plan` →
+`parameters` to an ordinarily admitted XYZ/B parent with explicit environmental B,
+original reflections/Free-R and separately carried typed reader controls.
+
+The [exact handoff](metal-campaign-storage.md#output-to-scientific-audit-handoff-exact-remaining-boundary)
+records calls and scope. Private `output-audit-handoff-20261120-01/review.html`
+shows the retained poor-fit Hg control: Q=0.60, B=25 Å², f″=35.30914 e versus
+8.67857 e expected, Rwork/Rfree=0.397237/0.423648. This is historical, not the
+current open-XYZ endpoint and not a newly accepted solution. The trace checks
+96 receipt/path/hash assertions, reuses prior cold qualification, and leaves
+historical science/process identities untouched.
+
+Only one compatibility test is added: exact output bytes containing a changed
+native B can receive a byte receipt but fail the existing scientific auditor.
+The named control passes in 1.46 s. No runtime/schema change, package rebuild,
+full suite or new Phenix/Coot science execution. The prior 47-test/installed
+qualification remains applicable; current output science, publication and
+retirement integration remain open. Generated trace artifacts remain local.
+
 ### Completed-batch provenance handoff
 
 `metal publish-fdp-inputs` now publishes a bounded explicit completed batch and a

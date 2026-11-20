@@ -896,6 +896,62 @@ reader-control gap is a separate prerequisite, not supplied by this inventory.
 Quota/reservation and retirement integration remain open; A04 stays partial.
 
 
+### Output-to-scientific-audit handoff: exact remaining boundary
+
+The output receipt establishes bytes and process linkage. The next scientific
+caller must supply a separately admitted parent and derived plan/model; it must
+not fabricate a legacy numbered-trial manifest or historical process identity.
+The component call already exists:
+
+```python
+result = audit_result(plan, model_bytes, json.loads(gzip.decompress(native_result_bytes)))
+```
+
+It checks effective policy, complete atom/group identity and parameter freedoms,
+fixed XYZ/Q/B/U, fixed f′ and background f″, normal scattering-type invariance,
+and native before/after reflection indices/Free-R membership. Only common F/σ
+rescaling is allowed. Source/kernel fingerprints are required, but their presence
+is not independent build qualification. Separate existing caller checks compare
+serialized `final.pdb` atoms/state, usable original Free-R evidence, and requested
+anomalous map files. `audit_result` does not itself replay parent derivation,
+prove original MTZ provenance, validate the final PDB file, or choose a solution.
+
+The exact blocker is ordinary parent-to-prepared-input derivation. The existing
+`_input_bundle` obtains checked geometry/XYZ lineage, hypothesis/sites, preview,
+model, original observations and ordered resources. `make_plan` then applies the
+explicit environmental B policy to the open-refined endpoint, fixed per-trial Q,
+wavelength and all-element references; `parameters` produces exact native inputs.
+Native XYZ endpoints require an explicit B policy. The fresh route currently
+pins prepared bytes and a parent archive independently; that is not proof of this
+derivation. Typed reader controls must also reach the exact launch separately
+from restraints. A future auditor must use the freshly admitted parent and
+original `FreeR_flag` audit rather than borrow a historical recipe parent or its
+process identity. `verify_fdp(run, numbered_trial)` remains the unchanged legacy
+whole-trial verifier, not an adapter for the fresh process receipt.
+
+The read-only `output-audit-handoff-20261120-01/review.json` trace reuses the earlier
+cold component qualification after verifying unchanged auditor modules. It checks
+96 receipt/path/checksum assertions against one explicitly selected saved FT_Hg
+trial; these are integrity checks, not new fits or independent science experiments.
+Historical files remain unchanged, and no process receipt is made for them.
+At λ=0.92009 Å, the selected saved trial has Hg Q=0.60, B=25 Å², f′=-8.10018 e,
+f″=35.30914 e versus 8.67857 e expected, Rwork=0.397237 and Rfree=0.423648.
+This is a low-B poor-fit diagnostic, not an accepted endpoint or evidence for
+additional atoms. The stored Free-R receipt is usable but `NOISY`: 82 free groups
+among 1,635 independent stored groups, versus 109 free observations among 2,128
+anomalous observations in the native capture. These counts describe different
+representations. `SA_flag` is present in the data but is not the selected flag.
+
+One new compatibility control proves the distinction: a synthetic completed
+child can seal exact bytes containing a +1 Å² native B change, while the unchanged
+scientific auditor rejects those same bytes. It passes in 1.46 s with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src
+/private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider
+ tests/test_metal_child_outputs.py::test_exact_output_bytes_do_not_bypass_existing_scientific_freeze_audit`.
+Runtime/package code is unchanged from the preceding installed qualification;
+no repeated suite, native science or cleanup. The private trace's `review.html`
+gives the small science table and exact boundary for the combined report.
+
 ### Measured audit-retention boundary on historical FT trials
 
 The three already-published FT_Hg attempts now have a private cold component-audit

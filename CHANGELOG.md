@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Trace scientific admission after output-byte sealing
+
+- Record the exact existing freeze/Free-R/model audit responsibilities and the
+  remaining ordinary parent-to-input derivation boundary, using unchanged saved
+  FT_Hg evidence. Preserve its poor-fit scientific status and process identity.
+- Add a narrow compatibility test showing that an exact byte receipt cannot
+  bypass a changed-B scientific refusal. No runtime/schema changes or new native fit.
+
 ### Seal stopped-child output bytes without accepting the science
 
 - Add explicit Python freeze/read owners for a completed, verified-stopped

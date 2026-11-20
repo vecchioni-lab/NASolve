@@ -64,7 +64,11 @@ tests and relocated installed readback. Required output presence is not scientif
 validity; no automatic invocation or pruning follows. Next connect scientific
 parent/input admission and exact typed reader controls, then freeze auditing and
 compact scientific publication; native qualification, reservations and retirement
-remain open.
+remain open. The next exact seam is ordinary `_input_bundle` → `make_plan` →
+`parameters` derivation from the admitted open-XYZ/B parent into the protected
+prepared bytes. The read-only real FT trace reuses existing scientific audit
+qualification; a new negative control confirms byte sealing cannot bypass a B
+freeze failure. No historical parent or process identity is promoted.
 
 **Scientific milestone: A01 — ligand geometry and open XYZ/B foundation.**
 **Parallel engineering step: A04 — compact records and protected parent transport.**

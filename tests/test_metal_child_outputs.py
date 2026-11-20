@@ -124,3 +124,31 @@ def test_inventory_boundaries(tmp_path,unsupported):
         for i in range(256):(job/('extra-'+str(i))).write_text('x')
     with pytest.raises(RecipeError):outputs.freeze_child_outputs(root,request_id=values[2]['request_id'])
     assert not (root/'outputs.json').exists()
+
+
+def test_exact_output_bytes_do_not_bypass_existing_scientific_freeze_audit(tmp_path):
+    """A correctly sealed but scientifically bad payload remains unacceptable."""
+    import gzip
+    from nasolve.metal import child_process
+    from nasolve.metal.fdp import audit_result
+    from tests.test_metal_fdp import prepared as science_prepared, native_result
+    science=tmp_path/'science';science.mkdir()
+    _,_,plan,model=science_prepared(science)
+    process=tmp_path/'process';process.mkdir()
+    prepared,parent,request,native=setup(process)
+    (prepared/'input.pdb').write_bytes(model)
+    (prepared/'plan.json').write_text(json.dumps(plan))
+    native_plan=json.loads((prepared/'native-plan.json').read_text());native_plan['plan']=plan
+    (prepared/'native-plan.json').write_text(json.dumps(native_plan))
+    request=child_process.make_request(prepared,parent_manifest_sha256=request['parent_manifest_sha256'])
+    invoke(process,(prepared,parent,request,native))
+    root=process/'attempt';job=root/'native/fdp/job'
+    bad=native_result(plan,model);bad['atoms'][-1]['b_iso']+=1.
+    (job/'native-result.json.gz').write_bytes(gzip.compress(json.dumps(bad).encode(),mtime=0))
+    (job/'final.pdb').write_bytes(model)
+    (job/'effective-final.phil').write_text('Synthetic effective parameters\n')
+    receipt=outputs.freeze_child_outputs(root,request_id=request['request_id'])
+    assert outputs.inspect_child_outputs(root,request_id=request['request_id'],output_id=receipt['record_sha256'])==receipt
+    with pytest.raises(RecipeError,match='Frozen native state changed: b_A2'):
+        audit_result(plan,model,json.loads(gzip.decompress((job/'native-result.json.gz').read_bytes())))
+    assert receipt['scientific_acceptance']=='NOT_ASSESSED' and not receipt['retirement_authorized']
