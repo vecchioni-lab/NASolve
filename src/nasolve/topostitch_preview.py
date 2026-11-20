@@ -365,13 +365,19 @@ def load_bend_preview(directory):
     return report
 
 
-def load_bend_motion(directory, *, expected_receipt_sha256):
+def load_bend_motion(directory, *, expected_receipt_sha256, parent_model_bytes=None):
     """Return (immutable motion, six trial parameters) from a pinned preview.
 
     Reuses the existing source/registration/trial replay; no atom-name, chain or
     sequence inference occurs here. Every source atom retains its original order,
     and context/fixed atoms receive zero weight. The motion is bound to the exact
     source model, not the candidate or a subsequently refined child.
+
+    When supplied, ``parent_model_bytes`` must be an immutable exact snapshot of
+    that source. This lets an admitting caller reject a preview for a changed
+    current parent before consuming the motion. The caller still owns checkpoint
+    identity, dispatch-time freshness and native admission; this check grants no
+    lifecycle authority. Omitting the snapshot preserves the existing API.
 
     This is coordinate arithmetic only: it does not transport ADPs, authorize an
     optimizer, preserve backbone audit limits at other parameter values, or confer
@@ -382,6 +388,8 @@ def load_bend_motion(directory, *, expected_receipt_sha256):
     from .topostitch_recipe import model_atom_rows
     from .topostitch_transport import CoordinateMask, TaperedMotion
 
+    if parent_model_bytes is not None and not isinstance(parent_model_bytes,bytes):
+        raise ValueError('Current parent snapshot must be immutable PDB bytes')
     pin = expected_receipt_sha256
     if (not isinstance(pin,str) or len(pin)!=64
             or any(c not in '0123456789abcdef' for c in pin)):
@@ -390,6 +398,8 @@ def load_bend_motion(directory, *, expected_receipt_sha256):
     frozen={path:path.read_bytes() for path in (manifest,*(root/name for name in _FILES.values()))}
     if sha256(frozen[manifest]).hexdigest()!=pin:
         raise ValueError('Saved preview receipt differs from the requested motion binding')
+    if parent_model_bytes is not None and parent_model_bytes!=frozen[root/_FILES['source']]:
+        raise ValueError('Current parent bytes differ from the saved preview source')
     packet=load_bend_preview(root)
     if (packet!=_json(frozen[manifest])
             or any(sha256(frozen[root/ref['relative_path']]).hexdigest()!=ref['sha256']

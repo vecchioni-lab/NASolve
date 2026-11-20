@@ -397,11 +397,57 @@ def test_saved_motion_requires_exact_receipt_and_rechecks_during_binding(tmp_pat
     with pytest.raises(ValueError,match='changed'):module.load_bend_motion(out,expected_receipt_sha256=pin)
 
 
-def test_saved_motion_does_not_relax_unrounded_displacement_bound(tmp_path):
+@pytest.mark.parametrize('bind_parent', [False, True])
+def test_saved_motion_does_not_relax_unrounded_displacement_bound(tmp_path,bind_parent):
     from nasolve.topostitch_preview import load_bend_motion
     paths=setup_preview(tmp_path,rotation=(0,0,0),translation=(.0004,0,0))
     change_trial(paths,max_atom_displacement_angstrom=.0003)
     out=tmp_path/'preview';build(paths,out)  # Rounded candidate has not moved.
     assert coords((out/'candidate.pdb').read_bytes())==coords((out/'source.pdb').read_bytes())
     with pytest.raises(ValueError,match='bound'):
-        load_bend_motion(out,expected_receipt_sha256=digest((out/'preview.json').read_bytes()))
+        load_bend_motion(out,expected_receipt_sha256=digest((out/'preview.json').read_bytes()),
+                         **({'parent_model_bytes':paths[0].read_bytes()} if bind_parent else {}))
+
+
+@pytest.mark.parametrize('extended', [False, True])
+def test_saved_motion_binds_current_parent_and_composes_strict_endpoint(tmp_path, extended):
+    from nasolve.topostitch_preview import load_bend_motion
+    from nasolve.topostitch_endpoint import audit_masked_endpoint
+    paths=setup_preview(tmp_path,anisou=False,extended=extended)
+    out=tmp_path/'preview';build(paths,out)
+    frozen={p.name:p.read_bytes() for p in out.iterdir()}
+    parent=paths[0].read_bytes();pin=digest(frozen['preview.json'])
+    motion,parameters=load_bend_motion(out,expected_receipt_sha256=pin,parent_model_bytes=parent)
+    assert (motion,parameters)==load_bend_motion(out,expected_receipt_sha256=pin)
+    points=motion.mask.expand(motion.displacements(parameters))
+    report=audit_masked_endpoint(parent,frozen['candidate.pdb'],points,
+        movable_indices=motion.mask.indices,max_displacement_angstrom=motion.mask.max_displacement_angstrom)
+    assert report['source_model_sha256']==digest(parent)==motion.source_model_sha256
+    assert report['status']=='EXACT_MASKED_SERIALIZATION'
+    assert report['noncoordinate_bytes_preserved'] and not report['runtime_authority']
+    assert report['roundtrip_max_distance_angstrom']>0
+    assert frozen=={p.name:p.read_bytes() for p in out.iterdir()}
+
+
+@pytest.mark.parametrize('change', ['coordinate','occupancy','b_factor','identity','metadata'])
+def test_saved_motion_refuses_current_parent_drift(tmp_path,change):
+    from nasolve.topostitch_preview import load_bend_motion
+    paths=setup_preview(tmp_path,anisou=False)
+    out=tmp_path/'preview';build(paths,out)
+    parent=paths[0].read_bytes();rows=parent.splitlines(keepends=True)
+    if change=='coordinate':rows[0]=rows[0][:30]+b'  99.000'+rows[0][38:]
+    elif change=='occupancy':rows[0]=rows[0][:54]+b'  0.50'+rows[0][60:]
+    elif change=='b_factor':rows[0]=rows[0][:60]+b' 99.00'+rows[0][66:]
+    elif change=='identity':rows[0]=rows[0][:21]+b'Z'+rows[0][22:]
+    else:rows.insert(0,b'REMARK different parent snapshot\n')
+    with pytest.raises(ValueError,match='Current parent'):
+        load_bend_motion(out,expected_receipt_sha256=digest((out/'preview.json').read_bytes()),
+                         parent_model_bytes=b''.join(rows))
+    assert paths[0].read_bytes()==parent
+
+
+@pytest.mark.parametrize('parent', ['PDB text', bytearray(b'PDB'), True, []])
+def test_saved_motion_parent_requires_immutable_bytes_before_reading(tmp_path,parent):
+    from nasolve.topostitch_preview import load_bend_motion
+    with pytest.raises(ValueError,match='parent.*bytes'):
+        load_bend_motion(tmp_path/'absent',expected_receipt_sha256='a'*64,parent_model_bytes=parent)

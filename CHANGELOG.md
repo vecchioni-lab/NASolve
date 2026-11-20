@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W171 — Bind a saved bend to the current parent snapshot
+
+- Add optional `parent_model_bytes` to `load_bend_motion`. Exact current-parent
+  bytes must match the pinned preview source before the existing unrounded
+  motion is returned; changed coordinates, B/Q, identity or metadata are refused.
+- Preserve the existing call and return shape when the option is omitted. The
+  strict endpoint auditor still owns candidate-byte and tensor policy; checkpoint
+  identity, dispatch freshness and retained-chemistry execution remain separate.
+- No CLI, artifact schema, native preparation/refinement or default-policy change.
+
 ### W170 — Inspect remaining backbone distortion in saved maps
 
 - Complete the read-only B2/A13 map review and retain the distinction between
