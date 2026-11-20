@@ -112,3 +112,136 @@ def load_checkpoint_bend_motion(run_directory, preview_directory, *, expected_ch
     return motion,parameters,dict(schema_version=1,kind='topostitch-checkpoint-motion-binding',
         context=before,context_sha256=context_digest,endpoint=endpoint,
         runtime_authority=False,locking=False,scientific_acceptance=False)
+
+
+def load_execution_bend_motion(run_directory, preview_directory, *, expected_checkpoint_id,
+        expected_receipt_sha256, expected_checkpoint_context_sha256, execution_reference,
+        child_checkpoint_id, request_model_role, generated_parameters, checkpoint=None,
+        additional_restraints=(), refinement_input_reference=None, execution_reader=None,
+        refinement_input_reader=None, expected_execution_context_sha256=None):
+    """Join a checked preview/parent to an existing immutable execution request.
+
+    The caller explicitly distinguishes an unchanged ``parent`` input from the
+    exact serialized preview ``candidate``. Neither result grants native transfer
+    or launch authority. Default readers belong to Cedar; an explicitly supplied
+    trusted reader permits branch compatibility checks without copying its code.
+    Generated round parameters are a separate input, never inherited restraints.
+    """
+    _pin(expected_checkpoint_context_sha256)
+    if expected_execution_context_sha256 is not None:_pin(expected_execution_context_sha256)
+    if (not isinstance(child_checkpoint_id,str)
+            or re.fullmatch(r'refine-[0-9]{3,}',child_checkpoint_id) is None
+            or child_checkpoint_id==expected_checkpoint_id):
+        raise ValueError('Require a distinct numbered child checkpoint identity')
+    if request_model_role not in ('parent','candidate'):
+        raise ValueError('Require an explicit parent or candidate request model role')
+    run=checkpoints.registry_path(Path(run_directory)).parent.parent
+    directory='AutoRefine/round_'+child_checkpoint_id.split('-')[1]
+    request_ref=_reference(execution_reference);params_ref=_reference(generated_parameters)
+    if (request_ref['anchor']!='run'
+            or request_ref['relative_path']!=directory+'/parallelity_runtime/request.json'):
+        raise ValueError('Execution request does not belong to the expected child')
+    if params_ref['anchor']!='run' or params_ref['relative_path']!=directory+'/autorefine.params':
+        raise ValueError('Generated parameters must belong to the exact child round')
+    if not isinstance(additional_restraints,(list,tuple)):
+        raise ValueError('Require an ordered additional restraint declaration')
+    for ref in additional_restraints:_reference(ref)
+    adapter_ref=None if refinement_input_reference is None else _reference(refinement_input_reference)
+    if execution_reader is None:
+        try:from .refinement_parallelity import read_execution_request as execution_reader
+        except ImportError as exc:
+            raise RuntimeError('The maintained Cedar execution request reader is required') from exc
+    if adapter_ref is not None and refinement_input_reader is None:
+        try:from .refinement_inputs import validate_refinement_inputs as refinement_input_reader
+        except ImportError as exc:
+            raise RuntimeError('The maintained Cedar refinement input reader is required') from exc
+    motion,parameters,parent_binding=load_checkpoint_bend_motion(run,preview_directory,
+        expected_checkpoint_id=expected_checkpoint_id,expected_receipt_sha256=expected_receipt_sha256,
+        checkpoint=checkpoint,expected_checkpoint_context_sha256=expected_checkpoint_context_sha256)
+    parent_context=parent_binding['context']
+    candidate_bytes=(Path(preview_directory)/'candidate.pdb').read_bytes()
+    candidate_identity=dict(sha256=sha256(candidate_bytes).hexdigest(),size=len(candidate_bytes))
+
+    def read_join():
+        return _execution_input_context(run,execution_reference=execution_reference,
+            child_checkpoint_id=child_checkpoint_id,expected_checkpoint_id=expected_checkpoint_id,
+            request_model_role=request_model_role,generated_parameters=generated_parameters,
+            parent_context=parent_context,parent_context_sha256=parent_binding['context_sha256'],
+            candidate_identity=candidate_identity,additional_restraints=additional_restraints,
+            refinement_input_reference=refinement_input_reference,execution_reader=execution_reader,
+            refinement_input_reader=refinement_input_reader)
+
+    before=read_join()
+    if expected_execution_context_sha256 is not None and recipe_digest(before)!=expected_execution_context_sha256:
+        raise ValueError('Bound execution context changed')
+    after=read_join()
+    latest,source=_snapshot(run,checkpoint,expected_checkpoint_id,expected_receipt_sha256)
+    if before!=after or latest!=parent_context:
+        raise ValueError('Execution request or checkpoint changed during binding')
+    # Recheck all preview inputs after request readers; this remains non-atomic.
+    load_bend_motion(preview_directory,expected_receipt_sha256=expected_receipt_sha256,
+                     parent_model_bytes=source)
+    checkpoints._ref_path(execution_reference,'execution request',run)
+    if (Path(preview_directory)/'candidate.pdb').read_bytes()!=candidate_bytes:
+        raise ValueError('Preview candidate changed during execution binding')
+    return motion,parameters,dict(schema_version=1,kind='topostitch-execution-input-binding',
+        **before,context_sha256=recipe_digest(before),parent_binding=parent_binding,
+        candidate_coordinates_in_request=request_model_role=='candidate',
+        runtime_authority=False,chemical_admission=False,locking=False,scientific_acceptance=False)
+
+
+def _execution_input_context(run, *, execution_reference, child_checkpoint_id,
+        expected_checkpoint_id, request_model_role, generated_parameters,
+        parent_context, parent_context_sha256, candidate_identity,
+        additional_restraints, refinement_input_reference, execution_reader,
+        refinement_input_reader):
+    """Read request membership; caller must authenticate the parent context."""
+    request_ref=_reference(execution_reference)
+    params_ref=_reference(generated_parameters)
+    extras=[_reference(ref) for ref in additional_restraints]
+    adapter_ref=None if refinement_input_reference is None else _reference(refinement_input_reference)
+    inherited=parent_context['inputs']
+    source_restraints=[_reference(row) for row in inherited if row['role']=='restraint']
+    declared_restraints=[*source_restraints,*extras]
+    # The maintained owner validates request records, frozen code and inputs.
+    request=execution_reader(run,execution_reference,checkpoint=child_checkpoint_id)
+    if request.get('checkpoint')!=child_checkpoint_id or request.get('parent')!=expected_checkpoint_id:
+        raise ValueError('Execution request parent or child identity differs')
+    actual=[_reference(row) for row in request['inputs']]
+    execution_restraints=list(declared_restraints)
+    adaptation=None
+    if adapter_ref is not None:
+        adaptation=refinement_input_reader(run,declared_restraints,
+            refinement_input_reference,checkpoint=child_checkpoint_id)
+        for row in adaptation['adaptations']:
+            # Semantic validation of the namespace derivative stays with its owner.
+            index=row['index']
+            if (type(index) is not int or index not in range(len(declared_restraints))
+                    or _reference(row['source'])!=declared_restraints[index]):
+                raise ValueError('Adapted restraint differs from its declared source order')
+            execution_restraints[index]=_reference(row['execution'])
+    observations=next(_reference(row) for row in inherited if row['role']=='observations')
+    source_model=next(_reference(row) for row in inherited if row['role']=='model')
+    phases=[_reference(row) for row in inherited if row['role']=='phases']
+    if len(actual)<2:raise ValueError('Execution request omits model/data inputs')
+    if request_model_role=='parent':
+        if actual[1]!=source_model:raise ValueError('Request model is not the exact declared parent')
+    elif any(actual[1][key]!=value for key,value in candidate_identity.items()):
+        raise ValueError('Request model is not the exact preview candidate')
+    expected=[observations,actual[1],*execution_restraints,*phases,params_ref]
+    if actual!=expected:
+        raise ValueError('Execution input roles or ordered restraints differ from declarations')
+    # Resolve independently declared extra/parameter/adapter files as well.
+    for ref in [*extras,params_ref,*([adapter_ref] if adapter_ref is not None else [])]:
+        path=checkpoints._ref_path(ref,'declared execution input',run)
+        if path.stat().st_size!=ref['size']:raise ValueError('Execution input size differs')
+    roles=['observations','model',*(['restraint']*len(source_restraints)),
+        *(['additional_restraint']*len(extras)),*(['phases']*len(phases)),'generated_parameters']
+    inputs=[dict(role=role,**ref) for role,ref in zip(roles,actual)]
+    for index,source in enumerate(declared_restraints):
+        if source!=execution_restraints[index]:inputs[index+2]['source']=source
+    return dict(request_sha256=request_ref['sha256'],request_record_sha256=recipe_digest(request),
+        policy_id=request['policy_id'],checkpoint_context_sha256=parent_context_sha256,
+        parent_checkpoint_id=expected_checkpoint_id,child_checkpoint_id=child_checkpoint_id,
+        request_model_role=request_model_role,inputs=inputs,refinement_input_reference=adapter_ref,
+        adaptation_sha256=None if adaptation is None else recipe_digest(adaptation))

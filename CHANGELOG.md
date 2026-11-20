@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W174 — Join checked motion to a frozen refinement request
+
+- Add an opt-in read-only join to Cedar's existing request and restraint-adaptation
+  readers. Bind parent/child identities, exact parent versus preview-candidate
+  model roles, ordered inputs and separately generated round parameters.
+- Refuse changed requests, selection or inputs; preserve relocation. Require
+  installed shared readers or explicitly supplied trusted compatibility readers.
+  No new executor, chemical admission, native hook, stored schema or default.
+
 ### W173 — Bind registered motion to a selected checkpoint
 
 - Add a read-only checkpoint-aware preview loader using existing checkpoint,
