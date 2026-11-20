@@ -3529,6 +3529,37 @@ stacks on this public frame, versus the 20 frozen declarations retained above.
 It must not silently replace declared intent. No native execution was needed for
 that separate readiness audit. Evidence: `literal_input_provenance_2026_11_10`.
 
+#### Typed native reader controls (implementation candidate)
+
+`cif_literal_na_controls.prepare_typed_literal_na_inputs` accepts an exact native
+receipt SHA-256 and an ordered `phil_roles` list. Each row has precisely
+`input_index` (the capture's global input index), `sha256`, and `role`
+(`literal_restraints` or `interpretation_controls`). Every captured PHIL must
+have one role; at least one of each role is required. No partition is inferred.
+
+The separate schema-1 policy `cif-typed-native-literal-inputs-v1` retains the
+complete native capture, original PHIL order, role declarations, control values
+and native definition readback. Only False-valued `pdb_interpretation.sort_atoms`,
+`pdb_interpretation.restraints_library.cdl`,
+`pdb_interpretation.restraints_library.cdl_nucleotides.enable`, and
+`pdb_interpretation.use_ncs_to_build_restraints` are accepted as controls.
+Scoped and dotted spellings use the existing bounded PHIL parser. Unknown or
+repeated controls, embedded edits, altered roles/digests, and inconsistent native
+readback refuse before publication. The unchanged C21 compiler receives only
+the declared literal restraint inputs; native index identities remain native.
+
+`read_literal_na_inputs` reconstructs this artifact after relocation without
+following historical source paths. `inspect_typed_literal_na_inputs` exposes
+separate `compiled_restraint_phils` and `interpretation_control_phils`; it does
+not expose an executable `phils` list. `resolve_literal_na_inputs`, and therefore
+the ordinary complete-request intake, deliberately refuse typed artifacts until
+an execution owner explicitly binds and forwards the controls. Preserving
+controls in evidence does not prove they have been applied downstream.
+
+This is additive inspection support, not native qualification, automatic
+adoption, coordinate optimization, or refinement. Legacy native and source-mode
+artifacts keep their existing bytes and semantics; no migration is required.
+
 ### Exact planarity intake (C186)
 
 The existing `derive_restraint_context` also accepts explicit `planarity` edits

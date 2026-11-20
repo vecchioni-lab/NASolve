@@ -35,7 +35,7 @@ def _exact_tree(root):
     return files
 
 
-def _payload(model, native_receipt):
+def _captured_source(model, native_receipt):
     model = Path(model).absolute(); native_receipt = Path(native_receipt).absolute()
     original = _read(model); tree = _exact_tree(native_receipt.parent)
     _need(native_receipt.name == 'native_receipt.json', 'Require the maintained native receipt filename')
@@ -50,6 +50,12 @@ def _payload(model, native_receipt):
     _native_atoms(native, original)
     names = [row['path'] for row in receipt['inputs'] if row['role'] == 'phil']
     _need(1 <= len(names) <= 63, 'Require one to 63 original ordered PHIL inputs')
+    return original, tree, receipt, native, names
+
+
+def _payload(model, native_receipt):
+    model = Path(model).absolute(); native_receipt = Path(native_receipt).absolute()
+    original, tree, receipt, native, names = _captured_source(model, native_receipt)
     pins = _implementation()
     compilation, compiled = _compile_na_policy_payload(model, [native_receipt.parent/n for n in names], native)
     order = [*compilation['retained_phils'], compilation['compiled_phil']]
@@ -100,14 +106,18 @@ def prepare_literal_na_inputs(model, native_receipt, output):
 
 def read_literal_na_inputs(directory):
     """Reconstruct every compiled byte without writes, execution or old paths."""
+    from .cif_literal_na_controls import POLICY_ID as TYPED_POLICY_ID, _typed_payload
     root = Path(directory).absolute(); tree = _exact_tree(root)
     _need(MANIFEST in tree, 'Missing literal-input manifest')
     report = _json(tree[MANIFEST])
     _need(isinstance(report,dict) and type(report.get('schema_version')) is int
-          and report['schema_version'] == 1 and report.get('policy_id') in {POLICY_ID,SOURCE_POLICY_ID},
+          and report['schema_version'] == 1 and report.get('policy_id') in {POLICY_ID,SOURCE_POLICY_ID,TYPED_POLICY_ID},
           'Unsupported literal-input artifact')
     if report['policy_id']==POLICY_ID:
         expected,files=_payload(root/'model.pdb',root/'native/native_receipt.json')
+    elif report['policy_id']==TYPED_POLICY_ID:
+        expected,files=_typed_payload(root/'model.pdb',root/'native/native_receipt.json',
+            report.get('phil_roles'), report.get('native_receipt',{}).get('sha256'))
     else:
         from .cif_explicit_na_policy import _CODE
         originals=report.get('original_phils');sources=report.get('source_components')
@@ -130,6 +140,8 @@ def read_literal_na_inputs(directory):
 def resolve_literal_na_inputs(directory):
     """Resolve only the model and ordered compiled PHIL proven by reconstruction."""
     root = Path(directory).absolute(); report = read_literal_na_inputs(root)
+    _need(report['policy_id'] in {POLICY_ID,SOURCE_POLICY_ID},
+          'Typed controls require owner binding before ordinary handoff')
     return dict(report=report, model=root/report['model']['path'],
                 phils=[root/row['path'] for row in report['compiled_phils']])
 

@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Captured reader controls in literal restraint evidence
+
+- A separate typed native-input artifact freezes explicit ordered PHIL roles and
+  reviewed sorting/CDL/full-monomer reader controls with the complete capture.
+  Inspection replays the unchanged restraint compiler. Ordinary execution
+  refuses until its owner binds the controls; existing native and source literal
+  artifact bytes and behavior remain unchanged.
+
 ### Reopening large checked preparations
 
 - When verifying a compact ReadySet result, NASolve now releases the enclosing

@@ -1,0 +1,136 @@
+"""Capture-bound reader controls for researcher inspection, never execution.
+
+Only the reviewed False-valued sorting/CDL/full-monomer reader controls are
+accepted. The literal compiler is unchanged; no control is silently discarded.
+"""
+from pathlib import Path
+import re
+
+from .cif_dictionary_sites import _need, _read
+from .cif_explicit_na_policy import _implementation
+from .cif_literal_na_inputs import (_captured_source, _exact_tree, _ref,
+    _write_payload, read_literal_na_inputs)
+from .cif_na_policy import _compile_na_policy_payload, _parse
+from .cif_repair_attempt import _root
+from .cif_restraint_context import _derive_restraint_payload
+
+POLICY_ID = 'cif-typed-native-literal-inputs-v1'
+CONTROLS = frozenset(('pdb_interpretation.sort_atoms',
+    'pdb_interpretation.restraints_library.cdl',
+    'pdb_interpretation.restraints_library.cdl_nucleotides.enable',
+    'pdb_interpretation.use_ncs_to_build_restraints'))
+
+
+def _control_values(data, adaptation, seen):
+    # Reuse the maintained bounded parser; the wrapper permits flat PHIL.
+    nodes, _ = _parse('capture_controls {\n'+data.decode('utf-8')+'\n}\n')
+    containers = {''} | {
+        '.'.join(key.split('.')[:i]) for key in CONTROLS
+        for i in range(1, len(key.split('.')))}
+    values = {}; mappings = []
+    for node in nodes:
+        path = node['path']
+        _need(path == 'capture_controls' or path.startswith('capture_controls.'),
+              'Control escaped its parser scope')
+        source_path = path.removeprefix('capture_controls').removeprefix('.')
+        normalized = '' if source_path == 'refinement' else source_path.removeprefix('refinement.')
+        _need(normalized in containers, 'Unsupported interpretation control scope')
+        for key, value in node['fields'].items():
+            source = '.'.join(part for part in (source_path, key) if part)
+            target = source.removeprefix('refinement.')
+            _need(target in CONTROLS and value == 'False',
+                  'Unsupported interpretation control or value')
+            _need(target not in seen, 'Repeated interpretation control')
+            seen.add(target); values[target] = False
+            mappings.append(dict(source=source, interpreter=target, value_tokens=['False']))
+    _need(values, 'Empty interpretation control input')
+    _need(adaptation.get('policy') in {'direct', 'refinement-root-to-interpreter-v1'},
+          'Unsupported native control namespace policy')
+    if adaptation['policy'] == 'direct':
+        _need(all(row['source'] == row['interpreter'] for row in mappings),
+              'Direct native control namespace differs')
+    captured = adaptation.get('field_mapping')
+    _need(isinstance(captured, list) and len(captured) == len(mappings)
+          and all(isinstance(row, dict) and row in mappings for row in captured)
+          and all(captured.count(row) == 1 for row in mappings)
+          and type(adaptation.get('definitions_preserved')) is int
+          and adaptation['definitions_preserved'] == len(mappings),
+          'Native control definition readback differs')
+    return values
+
+
+def _typed_payload(model, native_receipt, phil_roles, expected_receipt_sha256):
+    model = Path(model).absolute(); native_receipt = Path(native_receipt).absolute()
+    original, tree, receipt, native, names = _captured_source(model, native_receipt)
+    receipt_ref = _ref('native/native_receipt.json', tree['native_receipt.json'])
+    _need(isinstance(expected_receipt_sha256, str)
+          and re.fullmatch('[0-9a-f]{64}', expected_receipt_sha256)
+          and receipt_ref['sha256'] == expected_receipt_sha256, 'Native receipt pin differs')
+    rows = [row for row in receipt['inputs'] if row['role'] == 'phil']
+    _need(isinstance(phil_roles, list) and len(phil_roles) == len(rows),
+          'Require exact ordered PHIL roles')
+    literals = []; controls = []; seen = set()
+    adaptations = native.get('phil_adaptations', [])
+    for row, role, adaptation in zip(rows, phil_roles, adaptations):
+        _need(isinstance(role, dict) and set(role) == {'input_index', 'role', 'sha256'}
+              and type(role['input_index']) is int and role['input_index'] == row['input_index']
+              and role['sha256'] == row['sha256']
+              and isinstance(role['role'], str)
+              and role['role'] in {'literal_restraints', 'interpretation_controls'},
+              'Ordered PHIL role or digest differs')
+        if role['role'] == 'literal_restraints':
+            literals.append(row['path'])
+        else:
+            _need(adaptation.get('policy') == receipt.get('phil_namespace_policy'),
+                  'Native control namespace differs from capture policy')
+            values = _control_values(tree[row['path']], adaptation, seen)
+            controls.append(dict(input_index=row['input_index'],
+                input=_ref('native/'+row['path'], tree[row['path']]), values=values,
+                native_definition_readback=adaptation))
+    _need(literals and controls, 'Require both literal restraint and interpretation control roles')
+    pins = _implementation()
+    compilation, compiled = _compile_na_policy_payload(model,
+        [native_receipt.parent/name for name in literals], native)
+    order = [*compilation['retained_phils'], compilation['compiled_phil']]
+    context = _derive_restraint_payload(model, [compiled[n] for n in order], require_scoped_names=True)
+    files = {'model.pdb': original, **{'native/'+n:b for n,b in tree.items()},
+             **{'compiled/'+n:b for n,b in compiled.items()}}
+    report = dict(schema_version=1, policy_id=POLICY_ID, status='FROZEN_LITERAL_INPUTS',
+        index_basis='NATIVE_CAPTURE_INDICES', model=_ref('model.pdb', original),
+        native_receipt=receipt_ref, phil_roles=phil_roles,
+        original_phils=[_ref('native/'+n, tree[n]) for n in names],
+        captured_controls=controls, compiled_phils=[_ref('compiled/'+n, compiled[n]) for n in order],
+        implementation=pins, compilation=compilation, restraint_context=context,
+        execution_context=dict(status='REQUIRES_CONTROL_AWARE_OWNER', ordinary_handoff_allowed=False),
+        files=[_ref(n,b) for n,b in sorted(files.items())],
+        native_membership='NOT_ASSESSED_FOR_COMPILED_INPUTS', automatic_adoption=False,
+        scientific_approval='NOT_RUN', model_optimization='NOT_RUN', refinement='NOT_RUN')
+    _need(_read(model) == original and _exact_tree(native_receipt.parent) == tree
+          and _implementation() == pins, 'Typed input or compiler changed during compilation')
+    return report, files
+
+
+def prepare_typed_literal_na_inputs(model, native_receipt, output, *, phil_roles,
+                                   expected_receipt_sha256):
+    """Freeze explicit PHIL roles, receipt pin, and reviewed controls together."""
+    root = _root(output)
+    if root.exists(): raise FileExistsError(root)
+    capture_root = Path(native_receipt).absolute().parent
+    _need(not root.is_relative_to(capture_root) and not capture_root.is_relative_to(root)
+          and not Path(model).absolute().is_relative_to(root), 'Typed output overlaps its inputs')
+    report, files = _typed_payload(model, native_receipt, phil_roles, expected_receipt_sha256)
+    _write_payload(root, report, files)
+    _need(read_literal_na_inputs(root) == report, 'Typed literal replay differs')
+    fresh, fresh_files = _typed_payload(model, native_receipt, phil_roles, expected_receipt_sha256)
+    _need(fresh == report and fresh_files == files, 'Typed source changed while freezing')
+    return report
+
+
+def inspect_typed_literal_na_inputs(directory):
+    """Expose separate inspected inputs; this is not an executable PHIL list."""
+    root = Path(directory).absolute(); report = read_literal_na_inputs(root)
+    _need(report['policy_id'] == POLICY_ID, 'Require typed native literal input artifact')
+    return dict(report=report, model=root/report['model']['path'],
+        compiled_restraint_phils=[root/ref['path'] for ref in report['compiled_phils']],
+        interpretation_control_phils=[root/row['input']['path'] for row in report['captured_controls']],
+        execution_context=report['execution_context'])
