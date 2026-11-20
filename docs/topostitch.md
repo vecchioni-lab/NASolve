@@ -700,6 +700,32 @@ whole-model declaration authority. No verified canonical ordinary checkpoint
 currently carries the exact W172 policy. Ordinary producer/request integration
 and a supported retained-manager hook remain open, owned with Cedar.
 
+W176 supplies the missing maintained fixed-coordinate parent capture, including
+42 complete effective monomer mappings, consumed PHIL definitions and policy/API
+provenance. All captured named proxy definitions match the older private parent.
+These are observations of the native interpretation; they do not independently
+approve its chemical definitions, record nonbonded forces, or supply ordinary
+checkpoint ancestry. [Exact scope](topostitch-periodic.md#w176--capture-the-complete-fixed-parent-through-the-maintained-native-owner).
+
+**Smallest ordinary integration step.** Reuse Cedar's
+`cif_postmr_publication.validate_published_preparation` and
+`cif_complete_request.read_dictionary_request_result`. Existing checked publication
+already binds its prepared model, inherited restraints, topology and request/result
+references; the complete result exposes model/restraint contexts and compiler
+inputs where they were frozen. A Willow-side read-only adapter should report that
+availability for the exact parent, without another producer, copied evidence,
+new history or an implicit chemical verdict. Legacy missing contexts stay missing.
+The source/PDB-index compiler policy is not the native-index C128 policy.
+
+The selected descendant still needs its own identity/byte binding and the
+published preparation lineage; a refined child's coordinates need not equal its
+prepared ancestor. Before bending, retain the qualified parent declaration rather
+than validating intended connectivity by distances in the deformed candidate.
+Only after that join is qualified should the existing request/executor gain the
+supported retained-chemistry lifetime. A modified ordinary input may qualify this
+reader's evidence reporting without qualifying modified motion. Rowan owns the
+publication/execution boundary; no shared Cedar code changes in W176.
+
 ### Cluster accommodation: bounded helix opening and closing (W167, planned)
 
 The user clarified the nanocluster architecture with Hazel: first place and
@@ -752,7 +778,11 @@ junctions. Exact pivots, neighborhood, mobility boundaries, displacement limits,
 boundary restraints, kinematic parameterization and ranking remain open; no
 particular pair or implementation has been selected. Opening can involve base
 pose, glycosidic orientation, sugar pucker and sugar-phosphate paths, coupled to
-rise/twist and asymmetric strand motion.
+rise/twist and asymmetric strand motion. Preserving chemistry does **not** freeze
+sugar or backbone coordinates: their connected atoms may move together to make
+room. The constraints preserve chemical identity and supported geometry; they
+do not require the initial conformation to remain fixed. Hazel reconfirmed this
+interpretation of W167 on 20 November; it adds no new motion implementation.
 Move intact base geometry and let supported torsions/angles and backbone geometry
 relax; do not radially scale all atoms or stretch ring/sugar bonds to manufacture
 room. Retain atom identities, chemistry, nicks, declared source covalent links,

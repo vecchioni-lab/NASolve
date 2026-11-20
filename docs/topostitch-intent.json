@@ -1132,7 +1132,7 @@
       "metal_shape_coordination_and_oxidation_state_separate": true,
       "dna_motion": [
         "Candidate intact base poses and glycosidic orientation",
-        "Sugar pucker and both sugar-phosphate paths",
+        "Sugar pucker and both sugar-phosphate paths: connected sugar/backbone coordinates may move; preserving chemical identity and supported geometry does not freeze their initial conformation",
         "Coupled local step twist/rise and asymmetric strand accommodation"
       ],
       "open_parameters": [
@@ -1245,7 +1245,7 @@
       "symmetry_covalent_seams_qualified": false,
       "modified_metal_motion_qualified": false,
       "optimization_runs": 0,
-      "next_action": "Coordinate Cedar first-capture/publication integration: reuse prepared model topology, literal/explicit NAR input producers and complete native capture; preserve their authenticated references for the exact ordinary parent and candidate before the existing executor transfers coordinates. Do not regenerate expected topology from bent coordinates or retrofit a policy to legacy FT/W168. Qualify actual native lifetime only after the ordinary parent, source chemistry and compiled-input join is available; no duplicate capture/compiler/executor or repeated private fit.",
+      "next_action": "Read the ordinary parent through existing Cedar validate_published_preparation and read_dictionary_request_result. Expose exactly which frozen model/restraint/compiler/capture fields are authenticated, refuse a different parent, and preserve unavailable evidence explicitly. Reuse current published references before proposing any new schema. Genuine modified-parent controls remain evidence-only; no canonical motion adoption, reconstructed history, inferred chemistry or repeated private fit.",
       "whole_context_input_join": {
         "human_update": 175,
         "reference": "docs/topostitch-periodic.md#w175--bind-the-private-candidate-and-check-its-untouched-remainder",
@@ -1355,6 +1355,24 @@
           }
         ],
         "next_action": "Coordinate Cedar first-capture/publication integration: reuse prepared model topology, literal/explicit NAR input producers and complete native capture; preserve their authenticated references for the exact ordinary parent and candidate before the existing executor transfers coordinates. Do not regenerate expected topology from bent coordinates or retrofit a policy to legacy FT/W168. Qualify actual native lifetime only after the ordinary parent, source chemistry and compiled-input join is available; no duplicate capture/compiler/executor or repeated private fit."
+      },
+      "maintained_fixed_parent_capture": {
+        "human_update": 176,
+        "reference": "docs/topostitch-periodic.md#w176--capture-the-complete-fixed-parent-through-the-maintained-native-owner",
+        "scope": "Fixed canonical parent, complete monomer/policy/native capture",
+        "native_calls": 1,
+        "refinement_runs": 0,
+        "atom_count": 859,
+        "monomer_count": 42,
+        "declared_links": 38,
+        "soft_distances": 51,
+        "custom_requests": 213,
+        "checks": 17,
+        "full_model_mapping_policy": "Explicit use_ncs_to_build_restraints=False; distinct capture, not historical optimizer replay",
+        "named_proxy_families_equal": 8,
+        "ordinary_checkpoint_qualified": false,
+        "chemical_qualification": "NOT_ESTABLISHED",
+        "next_action": "Read the ordinary parent through existing Cedar validate_published_preparation and read_dictionary_request_result. Expose exactly which frozen model/restraint/compiler/capture fields are authenticated, refuse a different parent, and preserve unavailable evidence explicitly. Reuse current published references before proposing any new schema. Genuine modified-parent controls remain evidence-only; no canonical motion adoption, reconstructed history, inferred chemistry or repeated private fit."
       }
     },
     "selected_checkpoint_motion_binding": {
@@ -1379,7 +1397,7 @@
       "locking": false,
       "retained_native_lifecycle_qualified": false,
       "modified_metal_motion_qualified": false,
-      "next_action": "Coordinate Cedar first-capture/publication integration: reuse prepared model topology, literal/explicit NAR input producers and complete native capture; preserve their authenticated references for the exact ordinary parent and candidate before the existing executor transfers coordinates. Do not regenerate expected topology from bent coordinates or retrofit a policy to legacy FT/W168. Qualify actual native lifetime only after the ordinary parent, source chemistry and compiled-input join is available; no duplicate capture/compiler/executor or repeated private fit.",
+      "next_action": "Read the ordinary parent through existing Cedar validate_published_preparation and read_dictionary_request_result. Expose exactly which frozen model/restraint/compiler/capture fields are authenticated, refuse a different parent, and preserve unavailable evidence explicitly. Reuse current published references before proposing any new schema. Genuine modified-parent controls remain evidence-only; no canonical motion adoption, reconstructed history, inferred chemistry or repeated private fit.",
       "execution_join": {
         "human_update": 174,
         "function": "load_execution_bend_motion",
@@ -1401,7 +1419,7 @@
         "runtime_authority": false,
         "locking": false,
         "ordinary_motion_qualified": false,
-        "next_action": "Coordinate Cedar first-capture/publication integration: reuse prepared model topology, literal/explicit NAR input producers and complete native capture; preserve their authenticated references for the exact ordinary parent and candidate before the existing executor transfers coordinates. Do not regenerate expected topology from bent coordinates or retrofit a policy to legacy FT/W168. Qualify actual native lifetime only after the ordinary parent, source chemistry and compiled-input join is available; no duplicate capture/compiler/executor or repeated private fit."
+        "next_action": "Read the ordinary parent through existing Cedar validate_published_preparation and read_dictionary_request_result. Expose exactly which frozen model/restraint/compiler/capture fields are authenticated, refuse a different parent, and preserve unavailable evidence explicitly. Reuse current published references before proposing any new schema. Genuine modified-parent controls remain evidence-only; no canonical motion adoption, reconstructed history, inferred chemistry or repeated private fit."
       }
     }
   },

@@ -75,12 +75,13 @@ current instructions; other branches retain their own status and validation pins
   installation checks. W174 joins Cedar frozen child inputs with explicit
   parent/candidate roles. W175 checks the private moving/boundary/fixed context
   and identifies existing first-capture producers; ordinary chemical provenance
-  and native transfer remain separate.
+  and native transfer remain separate. W176 adds a maintained complete fixed-parent
+  reading; the next reader will reuse Cedar checked publication and complete results.
   Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W175;
-  the next substantial audit is W176. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W176;
+  the next substantial audit is W177. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

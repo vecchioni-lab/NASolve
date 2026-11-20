@@ -10454,3 +10454,78 @@ lifetime join is missing for this canonical control. Source-mode and native-inde
 compiler artifacts are different policies, not interchangeable labels. Do not
 weaken the fixed-coordinate dictionary comparator for moved coordinates or derive
 source intent from the bent child's observed bonds. S04/S05/S06 remain partial.
+
+
+## W176 — Capture the complete fixed parent through the maintained native owner
+
+One **Phenix 2.2.1-6174 fixed-coordinate interpretation** uses Cedar
+`cif_native_validation.inspect_native_bundle`, pinned at
+`a1ce98818fb3ece14a2cbdb6ecbf24d30a7d9393`. It is a complete invocation of that
+read-only interpreter, not a refinement or a new coordinate proposal. The parent
+is W172's exact canonical source (`f33754cc…`), with its unchanged combined C21
+edits and twenty retained pair planes. The original sort-atoms/CDL settings are
+copied explicitly. Full monomer mapping additionally requires
+`use_ncs_to_build_restraints=False`; this declared capture policy is distinct
+from replaying the historical optimizer's state.
+
+A first setup stopped before launching: the native output directory lay beneath
+an input's directory. The preserved attempt contains only its plan/settings. The
+corrected sibling input/output layout completed **one native invocation in
+1.554410 s**, with zero optimization cycles. All historical inputs remain exact.
+The installation setup records `PHENIX_VERSION=2.2.1-6174`; API and executable
+hashes are also frozen. No Coot invocation or suite rerun occurs.
+
+The maintained capture reader and complete-monomer owner verify **859 atoms and
+42 residue mappings**, including effective component definitions and terminal
+modifications for every residue. All explicit PHIL definitions are consumed;
+there are no unsupported inventory fields. C128 finds all **38 independently
+declared backbone links** and exactly **51 declared soft distances**; all
+**213 supplied requests** agree with the prior private parent. Its outcome is
+still `REVIEW`, `link_status=MATCH`, `chemical_qualification=NOT_ESTABLISHED`.
+
+Cedar's named-proxy comparator finds identical definitions/multiplicity in all
+eight captured families: 1,011 simple distances, zero ASU bonds, 1,558 angles,
+443 dihedrals, 345 constant dihedrals, 167 chiralities, 62 planarities and
+58 parallelities. These are restraint counts, including soft terms. They are
+not a claim that every distance restraint is a chemical bond.
+
+**17 cold checks pass**, including refusal of a missing monomer mapping and an
+altered explicit soft target, and a retained REVIEW for an omitted declared
+link. These detached controls do not alter the original capture. Exact commands,
+from the NASolve workspace:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w176-parent-capture.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w176-review-capture.py
+```
+
+The local-only evidence is anchored at
+`NASolve:branch-artifacts/willow/w176-parent-capture/`; `attempt02/result.json`
+identifies the capture relative to the owned root in `attempt02/ownership.json`.
+The original prelaunch controller and plan remain recorded. These are historical
+local invocation paths, not portable package entry points. Generated coordinates,
+receipts and scientific evidence are deliberately excluded from Git; no portable
+run claim is made.
+
+**What this adds:** a maintained, integrity-checked reading of complete effective
+monomers, native policy, consumed PHIL and named geometry for the fixed parent.
+It does **not** add independent full chemical-intent approval, nonbonded exclusion/
+force evidence, actual optimizer-lifetime retention, ordinary checkpoint ancestry,
+modified/metal motion or accepted repair. An observed effective monomer definition
+is not an independently declared source dictionary.
+
+**Next producer boundary:** Rowan identified existing
+`cif_postmr_publication.validate_published_preparation` and
+`cif_complete_request.read_dictionary_request_result`. Their authenticated
+publication already points to exact prepared-model/restraint contexts and compiler
+inputs when present. Read those through their owners for the exact parent before
+adding a producer or schema. Legacy missing fields remain unavailable. Canonical
+motion and modified-input evidence reporting remain distinct. Cedar head
+`d3267292e7f124fcbfe379220c401e9178d29202` leaves the capture, monomer, topology,
+publication and execution reader modules unchanged from the pinned owner; its
+PostMR request adds the explicitly declared furanose-reaction option. No shared
+Cedar file is edited or combined runtime qualified here.
+
+The same doc audit reconfirms Hazel's W167 nanocluster contract: preserving
+chemical identity and targets permits coupled sugar/backbone coordinate movement.
+It does not freeze conformation or establish an implemented widening move.

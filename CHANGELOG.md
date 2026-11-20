@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W176 — Capture the complete fixed-parent native interpretation
+
+- Record one maintained full-monomer/policy capture and exact named-proxy
+  comparison, including explicit NCS mapping policy and the prelaunch layout stop.
+- Narrow ordinary integration to existing checked-publication/result readers;
+  no installed-code, runtime schema/default or compatibility change, refinement
+  or chemical acceptance. Private scientific captures remain outside Git.
+
 ### W175 — Check the moving region and untouched chemical context together
 
 - Bind the existing private candidate/request to declared topology, supplied
@@ -103,6 +111,8 @@ entries are reconstructed from repository history.
 
 ### W167 — Align planned cluster placement and DNA accommodation
 
+- Clarify with Hazel that preserving chemical identity and restraints permits
+  coupled sugar/backbone coordinate movement; it does not freeze conformation.
 - Record Alder/Willow/Cedar ownership for intact-cluster rigid-body placement,
   bounded DNA opening/closing, chemical geometry retention and matched recovery.
   Separate cluster coordination from a linear single-bridge hypothesis and

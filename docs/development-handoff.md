@@ -1,5 +1,13 @@
 # NASolve development handoff — Willow
 
+**W176:** one maintained fixed-coordinate parent capture supplies **42 complete
+monomer mappings / 859 atoms**, with the same 38 declared backbone links,
+51 soft distances, 213 custom requests and all named proxy definitions as W172.
+**17 cold checks pass.** No motion, fit, chemical acceptance or ordinary ancestry.
+Next consume Cedar's existing checked-publication and complete-result readers
+for the exact parent; report missing authority rather than inventing it.
+[Methods and limits](topostitch-periodic.md#w176--capture-the-complete-fixed-parent-through-the-maintained-native-owner).
+
 **W175:** the saved private canonical candidate now has a whole-context readback:
 **60 moving / 799 fixed atoms**, with all captured proxy definitions retained.
 Boundary support includes **2 distance restraints, 8 angles, 6 dihedrals and
@@ -31,7 +39,7 @@ W174 joins the frozen request; retained-manager integration remains next.
 [Exact scope, controls and setup stops](topostitch-periodic.md#w172--require-declared-topology-before-parent-coordinate-transfer).
 
 
-Updated **2026-11-20**, through **W175**. W168’s private native diagnostic now retains
+Updated **2026-11-20**, through **W176**. W168’s private native diagnostic now retains
 known parent chemistry at the ordinary 3 Å interpretation cutoff while diffraction
 and refinement use the displaced child. One five-cycle run recovers **2.288 →
 0.271 Å RMS**, keeping all 38 backbone links, atom identities and checked sugar
@@ -77,6 +85,8 @@ linear-bridge target, radial atom scaling or new width qualification follows.
 This stays after supported ordinary retention/execution integration. Hazel reconfirmed
 that W167 captures the latest architecture; no cluster fit is queued. Cedar Q15 owns
 the shared offline regional twist, paired-P span and strand-to-axis radius report.
+Preserving chemistry permits coupled sugar/backbone coordinate movement; it does
+not mean holding those atoms fixed. Hazel reconfirmed this scope on 20 November.
 [Motion, measurements and ownership](topostitch.md#cluster-accommodation-bounded-helix-opening-and-closing-w167-planned).
 
 **W165 pipeline addition:** plan a default-on read-only backbone-fit check for
