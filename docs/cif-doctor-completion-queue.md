@@ -18,8 +18,13 @@ and its routine integration is deferred. C466 places the PDU, 5PC and DF control
 on the same ordinarily constructed twelve-change scaffold through five Phenix
 cycles. All three monitored bond lengths finish within 0.007 Å of their targets.
 PDU’s terminal distance from its six-atom ring plane increases to 0.171 Å.
-5PC’s decreases to 0.382 Å. All 211 supplied terms were retained. Use these
-paired baseline measurements when evaluating a change to whole-arm geometry.
+5PC’s distance decreases to 0.382 Å. All 211 supplied terms were retained.
+C470 tests one extra soft plane per arm at 0.10 Å. After five cycles the PDU
+and 5PC tips sat 0.123 and 0.285 Å from their rings. Their terminal bonds were
+1.478 and 1.461 Å. C474 transferred the same plane to B:4 in the single G:5PC
+construction. The tip-to-ring distance changed from 0.087 to 0.079 Å. The terminal
+bond still measured 1.548 Å against 1.470(27) Å. The full frame, protected
+phosphate angles and original Free-R assignments were verified for both comparisons.
 
 Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
 after correcting the orientation of DP and IMC from their source graphs.
@@ -38,8 +43,12 @@ terms. The declared substitutions preserve RNA classification and all four
 sugar centres. C463–C464 carry this preparation through the complete request to
 both native readings. C467 publishes the verified parent separately after the first
 attempt stopped on the temporary allowance. Eight explicit requests differ in
-display padding. Preserve existing selections when qualifying their named identities.
-Ordinary placement and diffraction with ATL remain open. Ordinary 1AP:T and
+display padding. The new C468 request sealed normally with the historical parent.
+C471 verifies the exact atom-name fields, both planes and every ordered restraint
+in a separately published ReadySet endpoint. Both selections reopen from the
+installed program. In C472 both junctions approached their target as the two
+paired-base contacts lengthened. Adding phosphate rotation also increased the
+number of steric overlaps. Ordinary placement and diffraction with ATL remain open. Ordinary 1AP:T and
 S6G:C now pass through ReadySet and five Phenix cycles. In 1AP the local plane
 covers both amino groups. In S6G only the shared pair plane includes sulfur.
 On the thirteen-component model the corrected PDU, 5PC and DF restraints now
@@ -655,7 +664,7 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Complete for recorded alternatives, selected-model phasing, Coot, cold inspection and the ordinary five-cycle refinement handoff. Actual chemical survival/effective restraint behavior is Q06; no default activation or historical migration. |
-| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C391 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control, chemical observation and actual final pair measurements. C392/C395 record real PDU weight fallback and actual source membership; C396 changes screening privately but does not repair the model; C393/W134 qualify combined observation and ordinary canonical continuation without claiming chemical repair. C400 qualifies an explicit longer control and matched native/zero/full pair mechanics; all arms stop early and chemical acceptance remains open. C403–C417 qualify ordinary PDU delivery, plane and scalar measurements, the explicit Doctor handoff, and agreement with the planes printed by Phenix. The matched bond correction improves its target while a whole-arm bend can remain. C419/C421 qualify fresh 5PC through five cycles. C423 qualifies neutral DF:A in one substituted host. C429 isolates the effect of 5PC starting B values. C466 measures all three local controls in one ordinary twelve-change refinement. Whole-arm PDU survival and the broader DF decision remain open. |
+| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C391 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control, chemical observation and actual final pair measurements. C392/C395 record real PDU weight fallback and actual source membership; C396 changes screening privately but does not repair the model; C393/W134 qualify combined observation and ordinary canonical continuation without claiming chemical repair. C400 qualifies an explicit longer control and matched native/zero/full pair mechanics; all arms stop early and chemical acceptance remains open. C403–C417 qualify ordinary PDU delivery, plane and scalar measurements, the explicit Doctor handoff, and agreement with the planes printed by Phenix. The matched bond correction improves its target while a whole-arm bend can remain. C419/C421 qualify fresh 5PC through five cycles. C423 qualifies neutral DF:A in one substituted host. C429 isolates the effect of 5PC starting B values. C466 measures all three local controls in one ordinary twelve-change refinement. The C470 soft planes reduce both mixed-scaffold tip heights. In the C474 single-site G:5PC comparison the terminal bond still measures 1.548 Å. Whole-arm PDU survival and the broader DF decision remain open. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | C427/C430 verify all 211 frame restraints, both ATL links and the current PDU, 5PC and DF dictionaries on the fresh nine-pair model. All thirteen sources now reach Phenix on the separately placed scaffold. Complete ordinary locked-sugar placement, defensible starting displacement and diffraction with ATL, followed by the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |
@@ -1424,8 +1433,13 @@ model or establishes pair restraints.
    parent. C466 completed its five-cycle diffraction child. C463 binds the
    two-ended ATL reaction to the complete request for separately placed atoms.
    C464 and C467 retain the old stopped attempt and its independently relocated
-   fallback. Next qualify the ordinary ATL coordinate seed, both junctions and
-   initial displacement, then run one thirteen-change mixed diffraction lineage.
+   fallback. C468 completed the fresh request and C471 reopened the new
+   named-atom alternative on the exact checked endpoint. C472 tested isolated
+   rigid motion and phosphate torsions against both junctions and the two pair
+   distances. The outgoing link shortened as the pair contacts worsened.
+   Qualify the ordinary ATL seed with immediate neighbouring flexibility, screen
+   crystal-image contacts and check its starting displacement. Then run one
+   thirteen-change mixed diffraction lineage.
    Verify source identity, native pair/stack membership, unchanged flags and
    achieved local geometry at PDU, 5PC, DF and ATL. Exercise cache reuse and
    changed-source rejection. Keep the unfamiliar eight-residue challenge separate.

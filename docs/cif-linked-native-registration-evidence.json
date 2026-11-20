@@ -119385,5 +119385,276 @@
       "c467_reopen_thirteen.py",
       "ft_threefold_strands.py"
     ]
+  },
+  "matched_arm_planes_and_named_readyset_2026_11_20": {
+    "source_code": {
+      "ordered_atom_requests": "f27a8dd2",
+      "literal_spaces": "d5448343",
+      "installed_ligand_provenance": "999a42ef"
+    },
+    "native": "Phenix 2.2.1-6174, complete five-cycle coordinate/diffraction trials on substituted-host observations",
+    "mixed": {
+      "parent": "a3f4f183d7e0c8d45aa233d91da005904772c11ea632c73a1029928f0d638ffe",
+      "children": [
+        "0ce08c61b21a176a642f92fb8b02e63f357bcb163f76cc022c6a886e30dbd667",
+        "6e63521af2996395823d74ec8b0906c1af99c91589689391ac470f1ee172229a"
+      ],
+      "cycles": 5,
+      "extra_plane_sigma_A": 0.1,
+      "site_geometry": {
+        "5PC": {
+          "site": "A:4",
+          "terminal_target_A": 1.47,
+          "sigma_A": 0.027,
+          "tip_A": [
+            0.7097002488315601,
+            0.3820818246204239,
+            0.28529191929619724
+          ],
+          "terminal_bond_A": [
+            1.455016494751864,
+            1.4646875919193516,
+            1.4609069782724375
+          ]
+        },
+        "PDU": {
+          "site": "D:5",
+          "terminal_target_A": 1.47,
+          "sigma_A": 0.02,
+          "tip_A": [
+            0.09459696155547581,
+            0.17093687294086557,
+            0.12322749105290853
+          ],
+          "terminal_bond_A": [
+            1.4567865320629512,
+            1.4761413003551402,
+            1.4776412139929547
+          ]
+        }
+      },
+      "original_frame": 211,
+      "protected_terminal_angles": 6,
+      "chirality": {
+        "measured": 36,
+        "reversed_or_degenerate": []
+      },
+      "printed_R": [
+        0.2667,
+        0.2612
+      ],
+      "status": "AUTOREFINE_REVIEW",
+      "selected": "postmr"
+    },
+    "single_site_control": {
+      "site": "B:4",
+      "parent": "aac8a7beafe8dc222ade6a2cb98aa57639d71e63520afe89975a99a2060929de",
+      "children": [
+        "a2efc13d6bdc2282282cd3b4d3aa46532b4f1841e24282423c543f6bfea146c6",
+        "5cc7780f7f25142c6c7e6f1ab2a26bd1e6a8e8461a876e1fdf7c9b62157cd225"
+      ],
+      "trial_sigma_A": 0.1,
+      "target_A": 1.47,
+      "target_sigma_A": 0.027,
+      "terminal_bond_A": [
+        1.5493185578719941,
+        1.5475179883361898
+      ],
+      "tip_A": [
+        0.08714402729972637,
+        0.07895202196176787
+      ],
+      "printed_R": {
+        "control": [
+          0.2083,
+          0.2296
+        ],
+        "extra_plane": [
+          0.2083,
+          0.2293
+        ]
+      },
+      "frame": {
+        "bond": 52,
+        "angle": 88,
+        "planarity": 3,
+        "parallelity": 58
+      },
+      "protected_terminal_angles": 6,
+      "original_registry_preserved": true,
+      "selected": "postmr"
+    },
+    "observations": {
+      "sha256": "40050be2ba0b3cf389314b3d4454098115645066a7966e1f7d23838f3e1dd40b",
+      "equal_intensity_and_sigma_rows": 2273,
+      "equal_original_flags": 3236,
+      "working": 2146,
+      "free": 127,
+      "interpretation": "Different substitutions and positions on the same host observations. These are controls of restraint behavior."
+    },
+    "thirteen": {
+      "fresh_historical_policy": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+      "returned": "RETURNED",
+      "result": "8df8f03fc79216094c47760f3c13eb2ef2b5173663946938e2b177c6ae27c62d",
+      "old_selection": "verified_parent_runtime",
+      "old_model": "d189062511f643a8d238bcc7ce73698fd2fa0efe67d5e49e70d65cf2fc41e085",
+      "old_manifest": "48a3fb88b43c4ceeb8382ff293673b99d8681f411252c75457d7042c63a2cbfa",
+      "opted_selection": "readyset_checked_model",
+      "named_model": "fc7420ceac234cfea762b66c1bf6cbd99137ce95450a1aee860d32c717f6eb79",
+      "named_manifest": "d10be8b508eb4d01f7f9eecc00de5c9e76f4299fa3d13a8025d9094c3b2c0e71",
+      "native_inputs": [
+        14,
+        17
+      ],
+      "preserved_native_checks": 28,
+      "store_bytes": 21103899,
+      "peak_temporary_bytes": 116175325,
+      "original_seals": [
+        "6145bd73b852a646d6c1636172549d723a7a7b5fb10b4b0f1b5bbb85d85ba33f",
+        "19355624c325f968507646941f140ee415f10b03370b4f24ae31cab6c3eb6c88"
+      ],
+      "placement": "Independent locked-sugar seed, no diffraction experiment carrying ATL"
+    },
+    "placement": {
+      "site": "A:11",
+      "bystanders": 41,
+      "sugar_centres": 4,
+      "terms": [
+        "two backbone bonds",
+        "eight junction angles",
+        "two paired-base distances"
+      ],
+      "alternatives": {
+        "initial": {
+          "links_A": [
+            1.5952824201375764,
+            1.8394904185670564
+          ],
+          "pair_A": [
+            3.3175811971977405,
+            3.300672810200975
+          ],
+          "worst_overlap_A": 0.7528598800992645,
+          "overlaps_above_0_4_A": 6
+        },
+        "rigid_body": {
+          "links_A": [
+            1.6070060138131197,
+            1.6182489080757474
+          ],
+          "pair_A": [
+            3.4230635249706585,
+            3.536138092467114
+          ],
+          "worst_overlap_A": 0.6344765349459598,
+          "overlaps_above_0_4_A": 5
+        },
+        "rigid_body_and_arm": {
+          "links_A": [
+            1.6087306375566517,
+            1.6135718140637239
+          ],
+          "pair_A": [
+            3.4551828821082387,
+            3.463264975377795
+          ],
+          "worst_overlap_A": 1.1026006764680254,
+          "overlaps_above_0_4_A": 14
+        }
+      },
+      "scope": "Partial kinematic target comparison. The fixed original contact list is descriptive and lacks new-neighbor discovery. No coordinates selected or published."
+    },
+    "validation": {
+      "c471": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_cif_named_custom_requests.py tests/test_cif_named_custom_execution.py tests/test_cif_named_proxy_comparison.py tests/test_cif_postmr_cached_model.py tests/test_cif_native_context.py tests/test_cif_terminal_qualification.py",
+      "counters": {
+        "cedar_integrated_focused": 251,
+        "seconds": 22.82,
+        "new_negative_controls": 4,
+        "previous_negative_controls_failed": 4,
+        "willow_source": 247,
+        "willow_installed": 247
+      },
+      "wheel": {
+        "commit": "d5448343a4c7222eaf3d86871a0f77628cd258f9",
+        "members": 317,
+        "sha256": "f78c9ded1dc88c6a583aea9578cbe6d7331730c19a727a5307f9a0d077400d94",
+        "installed_ligand_provenance": "3 passed, 20 deselected in 0.02s",
+        "readback": [
+          "nine base B factors",
+          "historical parent, 26 CIF and 17 PHIL",
+          "named endpoint, 14 CIF and 17 PHIL",
+          "four inspectable native reader controls"
+        ],
+        "original_sources_denied": true
+      },
+      "full_cedar_regression": false
+    },
+    "compact_sources": {
+      "c468-complete-thirteen/complete.json": "65937d33ef23826a3f077970fb7d536d1a36073ab076fbfb45867dc5b7ebfa70",
+      "c470-soft-arm-planes/science.json": "4d7a79bb6a449bb42765c5a36cf4b46f0d655a3af103caa4363006828fc2a338",
+      "c470-soft-arm-planes/reflections.json": "b0a81dcc89c5ee0ca30efd8ed9c961056df20d2b131a5aca56287eceea3bb001",
+      "c471-named-readyset/relocated.json": "291bf04908009fdde175b824ed6d0b08e54d1fc46c0fd53a6dc76cdece97e8e7",
+      "c471-named-readyset/installed/read.json": "1002274e6788d46acb9d5246f155714a06ca0f6bd4f846feaf54681790dd1cc8",
+      "c472-locked-sugar-junctions/comparison.json": "63605c0d27e89e7061f2f74524ccc6d116aff6731e60fd4c9c3188ba0f326949",
+      "c474-heldout-arm/science.json": "a5bae769be4b6cb31aecbe12c7ea4c11cd9d0b216274efce18965fd51bf3ce40",
+      "c474-heldout-arm/reflections.json": "ada98cc1ea9392fdc4f4012cc728098d33133d9a29e89c4dad0196c8f9ad20f6"
+    },
+    "reproduction": [
+      "c468_repeat_complete.py",
+      "c470_arm_plane.py",
+      "c470_phil_read.py",
+      "c470_science.py",
+      "c470_reflections.py",
+      "c471_named_readyset.py",
+      "c471_installed.py",
+      "c472_sugar_junctions.py",
+      "c474_heldout.py",
+      "c474_reflections.py",
+      "c474_science.py",
+      "c470_ring_motion.py"
+    ],
+    "followup": "Use a second PDU context to judge the arm and terminal bond together. For ATL, allow bounded neighbour accommodation and recalculate contacts before ordinary thirteen-change diffraction.",
+    "height_decomposition": {
+      "c470-soft-arm-planes": {
+        "source": "d81ac9518adcdd0b11c49168e56bc999779d52103a6c1d9d092b7edf7bcdb4ed",
+        "sites": {
+          "5PC A:4": {
+            "control_signed_height_A": 0.3820818246204239,
+            "plane_signed_height_A": 0.28529191929619724,
+            "projected_tip_shift_A": -0.051706156557918215,
+            "ring_centroid_contribution_A": -0.01112282788571953,
+            "ring_normal_contribution_A": -0.03396092088058861,
+            "tip_cartesian_distance_A": 0.052112964166857276,
+            "centroid_cartesian_distance_A": 0.011794851638256705,
+            "normal_angle_deg": 0.36659589352159627
+          },
+          "PDU D:5": {
+            "control_signed_height_A": 0.170936872940866,
+            "plane_signed_height_A": 0.12322749105290853,
+            "projected_tip_shift_A": -0.024486157269441318,
+            "ring_centroid_contribution_A": -0.008704950612702732,
+            "ring_normal_contribution_A": -0.014518274005812723,
+            "tip_cartesian_distance_A": 0.028791165098216023,
+            "centroid_cartesian_distance_A": 0.010128612501021586,
+            "normal_angle_deg": 0.22810189027165592
+          }
+        }
+      },
+      "c474-heldout-arm": {
+        "source": "a9f52a68d29a31e1995c496a88db90161acfd2dc7f283523e615f4f83f411060",
+        "sites": {
+          "5PC B:4": {
+            "control_signed_height_A": 0.08714402729972637,
+            "plane_signed_height_A": 0.07895202196176787,
+            "projected_tip_shift_A": -0.0026194838133665036,
+            "ring_centroid_contribution_A": -0.0007625882558959978,
+            "ring_normal_contribution_A": -0.004809933268695889,
+            "tip_cartesian_distance_A": 0.011576941141710127,
+            "centroid_cartesian_distance_A": 0.011023193614433859,
+            "normal_angle_deg": 0.055054902955214056
+          }
+        }
+      }
+    }
   }
 }
