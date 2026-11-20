@@ -733,6 +733,18 @@ do not carry old frozen B into the new assessment. Do not silently reset or rela
 that phase policy; allow the declared recovery window before judging initial Rfree. Cluster-summed f″ can
 support count hypotheses but does not uniquely determine an atom count.
 
+**Available motion is narrower than this plan.** The canonical whole-residue
+preview gives a residue/pair step one rigid transform, preserving its internal
+shape (including glycosidic geometry when all involved atoms share the transform)
+before rounding. A shared pair transform does not open that pair. Different
+residue transforms can strain flanking polymer junctions; the preview audits
+those changes but does not solve closure. `TaperedMotion` is bounded arithmetic
+with caller-supplied atom weights, not a geometry-preserving two-donor opening
+solver. No qualified modified-base/sugar/metal opening move preserves both
+flanking junctions today. W168 retains source geometry during a private canonical
+recovery diagnostic; W169 protects bytes/mask/B/Q. Neither supplies that missing
+closure primitive. Hazel and Rowan received this exact scope.
+
 **Evidence boundary.** Hazel's FT_Hg single-bridge review motivates measuring
 base pose and donor spacing independently of sugar-anchor span; its human model
 is descriptive, not an ideal geometry target. No cluster accommodation or helix

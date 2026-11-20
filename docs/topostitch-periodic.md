@@ -9962,3 +9962,113 @@ callback lifetime, actual output proof and ordinary checkpoint ancestry remain
 supported-integration work. Keep the W168 private hook gated. W164's B2/A13 saved-
 map review remains a separate science step; no new fit or cluster-width claim
 follows this input audit.
+
+
+## W170 — Inspect saved maps at the remaining B2/A13 distortion
+
+**Question and scope.** W164 left local positive-arm distortion despite synthetic
+Rfree .0259. Does the saved density retain evidence of that discrepancy? This
+posthoc review holds each completed map fixed and samples the generator, no-op,
+positive and negative coordinates. It adds no deformation, coefficients, scale
+fit, alignment, sharpening or refinement, and does not identify the forces or
+optimizer history that caused the residual.
+
+The exact W164 archive binds all three endpoint PDB/MTZ/parameter/geometry files,
+original generator and synthetic observations. The maintained exact-label map
+selector and Hazel's already-qualified A72 sphere sampler are reused with the
+unchanged W152 native-geometry reader. Select unfilled `2FOFCWT_no_fill,
+PH2FOFCWT_no_fill` and `FOFCWT,PHFOFCWT` only. Native declarations retain
+isotropization, exclude no Free reflections and add no missing reflections or
+sharpening. All **7,554 original F/SIGF/Free tuples and 389 Free rows** match.
+
+**Readback.** Six maps and **44 backbone atoms** in A13/A14/B2/B3, each sampled at
+four saved coordinate states, pass **108 checks**. A common 144×144×125 FFT grid
+uses resolution factor .25. Each map's raw FFT σ/mean and own-σ samples are kept;
+the displayed comparison uses one shared **saved reference ordinary-map σ**,
+not the difference map's own σ. Periodic translation checks pass, and direct
+Fourier sums at selected grid nodes agree with FFT values within **5.60e-14**.
+The native saved-coefficient calculation completes in 15.62s in this one run;
+this is not a performance claim.
+
+| Positive-endpoint observation | B2 O3′ | A13 C5′ |
+| --- | --- | --- |
+| Position error versus generator | 1.411713 Å | 1.184607 Å |
+| Native angle model / target | 76.68° / 108.00° | 91.04° / 114.10° |
+| Absolute native angle deviation | 31.32° | 23.06° |
+| Ordinary map at generator / recovered point, common σ | 4.385273 / 4.166316 | 3.329110 / 3.812315 |
+| Difference map at generator / recovered point, common σ | +.082704 / −.224824 | +.190477 / −.059613 |
+| Difference map at generator / recovered point, own σ | +3.18954 / −8.67044 | +7.34583 / −2.29900 |
+
+The respective angles are B2 O3′–B3 P–B3 OP2 and A13 C5′–C4′–C3′. Native `.geo`
+values describe the final geometry before PDB coordinate rounding; coordinate
+errors and map markers use the saved rounded PDBs. The positive difference map
+has the expected signed discrepancy at both known residual sites. Yet the
+ordinary-map point sample is **higher at the misplaced C5′** than at its
+known generating position. An ordinary-map uphill direction alone therefore
+cannot settle placement in this example; no causal optimizer conclusion follows.
+
+An atom-centred red-only 3.5σ display would omit the C5′ negative sample, while
+its nearby generating position has positive signal. This does not calibrate an
+automatic detector or change the viewer/default planned trigger. The negative
+control is only .06225 Å from the generating B2 O3′ but still samples −2.93 of
+its own difference-map σ. The no-op also retains a 5.29° B2 junction-angle
+deviation; the source is not assumed ideally restrained. Keep signed spatial
+context and geometry alongside ordinary maps/global R, with near-zero/own-map
+normalization and phase/model bias explicit. These are noiseless synthetic,
+model-assisted maps containing Free reflections, not independent experimental
+validation or a universal significance policy.
+
+**Visible packet.** GitHub workspace anchor:
+`ScienceCheckouts/Linden/2026-11-20_remaining-backbone-density/review.html`.
+It contains a four-panel PNG/SVG figure, exact matched-control table and the
+standard-Python checksum/opening script. The planes contain each known positive
+residual direction and a declared nearby anchor; this is a 2D diagnostic slice,
+not a whole-volume classifier. PNG layout/markers/legends were viewed directly;
+HTML/GPU rendering is not claimed. Existing coordinate checkouts are linked,
+without duplicating PDB/MTZ files. `python3 open_report.py --check` passes.
+
+**Execution and preserved setup limits.** Phenix **2.2.1-6174** performs a complete
+read-only saved-coefficient FFT/interpolation; no `phenix.refine` or refinement
+dry-run is invoked. Three initial readers stop before FFT at the saved Free-flag
+declaration: first the obsolete input scope, then integer/scalar assumptions.
+A separate raw-PHIL inspection shows that the untyped `data_manager.fmodel.
+xray_data.r_free_flags.test_flag_value` extracts as the one-word list `['0']`.
+The corrected reader uses that exact representation; the independent numerical
+MTZ membership checks, map policy and numerical bounds are unchanged. All failed
+workers/logs/receipts and the successful run remain preserved. Matplotlib writes
+the static plot separately; its font-cache warnings do not prevent output.
+
+Completed commands, from main NASolve, use
+`PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w170-saved-maps.py`
+(the controller records the exact native Python command/environment) and the
+bound `w170-figure.py` under the same Phenix Python. These are historical commands,
+not a request to rerun the immutable folders. Native/direct-FFT checks, cold
+normalization/readback, process-stop checks, figure hashes and the Python opener
+pass. The main artifact anchor is
+`branch-artifacts/willow/w170-residual-maps-attempt04/`.
+Archive `branch-artifacts/willow/w170-residual-map-evidence-2026-11-20.zip`
+contains **29 indexed files / 1,069,446 bytes**, SHA256
+`9f70b4d33e5f8640a48a1ff398da1f7f4d42b94ccb25a29cce46535ab4b30037`.
+Every member hash/size validates; original scientific inputs remain in the
+already-bound W163/W164 archive. This is integrity evidence, not a portable or
+resumable checkpoint, and no generated science is committed or uploaded.
+
+Documentation validation from the Willow checkout:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider tests/test_topostitch_roadmap.py
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/audit_topostitch_roadmap.py --write
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/audit_topostitch_roadmap.py --check
+git diff --check
+```
+
+Eight focused tests pass; roadmap structure/references/synchronization pass.
+Both JSON documents parse, and all seven declared receipt hashes/sizes match
+through their anchors. Product code, runtime schemas/defaults, installation,
+dependencies and generic rebinding remain unchanged, with no migration required.
+No full suite or new installation repeat. S04/S05/S06/S07 remain **PARTIAL**. The descriptive
+B2/A13 map-review task is closed in this exact scope; the distorted model is not
+accepted and its causal/remedial question remains open. Continue supported
+request/chemistry/execution integration, with noisy density calibration and
+cluster opening as separate later gates; do not repeat this sampling or launch
+an identical fit as a substitute for a distinct hypothesis.

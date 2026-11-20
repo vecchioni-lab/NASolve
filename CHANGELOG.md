@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W170 — Inspect remaining backbone distortion in saved maps
+
+- Complete the read-only B2/A13 map review and retain the distinction between
+  ordinary density, signed residuals, common/own map σ and local geometry.
+  Add a small PNG/SVG lab figure and matched-control table without another fit.
+- Clarify that existing rigid/tapered motion does not supply a qualified
+  two-donor base/sugar opening with closed flanking polymer junctions.
+- Update current human/machine milestones only; no product code, runtime
+  schema/default, calibrated detector, new coefficients or accepted repair.
+
 ### W169 — Reuse existing coordinate-only admission checks
 
 - Verify the current endpoint and recipe owners on the real displaced input and

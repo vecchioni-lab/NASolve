@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-20**, through **W169**. W168’s private native diagnostic now retains
+Updated **2026-11-20**, through **W170**. W168’s private native diagnostic now retains
 known parent chemistry at the ordinary 3 Å interpretation cutoff while diffraction
 and refinement use the displaced child. One five-cycle run recovers **2.288 →
 0.271 Å RMS**, keeping all 38 backbone links, atom identities and checked sugar
@@ -15,6 +15,15 @@ Source/installed readbacks match exactly (27/29 checks). The generic recipe
 rebinder remains unchanged. No duplicate guard or product patch is needed;
 original full-precision proposal binding and supported lifecycle integration
 remain open. [Scope](topostitch-periodic.md#w169--reuse-the-existing-coordinate-only-admission-guard).
+
+**W170 closes the queued B2/A13 map review, not the repair.** Both distorted sites
+have negative difference density at the recovered atom and positive samples at
+the generating position. At A13 C5′ the ordinary-map sample is higher at the wrong
+point; its negative centre is only −2.30 own-map σ, despite 1.18 Å coordinate error
+and 23.06° local angle deviation. Signed context and geometry remain essential;
+this noiseless posthoc example does not calibrate an experimental trigger.
+Six saved maps/44 atoms/four coordinate states pass 108 checks, with no new fit.
+[Methods and figure](topostitch-periodic.md#w170--inspect-saved-maps-at-the-remaining-b2a13-distortion).
 
 The earlier matched five-plus-five-cycle signed controls reach **0.253/0.040 Å**;
 the positive arm still has B2/A13 local distortion despite Rfree .0259. That
@@ -64,11 +73,11 @@ known C395/C396 screening-fallback diagnosis. New synthetic recovery does not
 explain that baseline, qualify ordinary PostMR ancestry or reopen selector tuning.
 
 Latest small lab packet, GitHub workspace anchor:
-`ScienceCheckouts/Linden/2026-11-20_retained-backbone-recovery/review.html`.
-Standard-Python `open_report.py`, four PDBs, a ChimeraX loader and two unchanged-
-renderer views show recovery and remaining distortion. The earlier six-model
-`2026-11-20_larger-bend-recovery` packet remains available. Checks and graphical
-limits are in the linked ledger.
+`ScienceCheckouts/Linden/2026-11-20_remaining-backbone-density/review.html`.
+Standard-Python `open_report.py` opens the four-panel PNG/SVG figure and matched
+map/geometry table. The four-model `2026-11-20_retained-backbone-recovery` and
+six-model `2026-11-20_larger-bend-recovery` coordinate packets remain available.
+Checks and graphical limits are in the linked ledger.
 
 W154 lets the installed inspector name density sources independently of the
 coordinate states. Complete source and relocated-install checks pass; the two
@@ -109,6 +118,7 @@ remains inconclusive.
 | W149/W154 reusable inspector | Installed prepared-scene renderer; full/source-free installation, exact saved-data replay and bounded peer review | Stage adapter, source/frame proof, browser/GPU qualification and campaign actions |
 | W153 experimental control | Exact original observations/Free and output/map audit; relaxed-reference and common-HKL endpoint comparison | Mixed geometry/diffraction outcome; adaptive work filtering, occupancy/ADP and model-phase ambiguity |
 | W148/W152/W163/W164/W168 matching-data recovery | Larger signed starts, matched recovery and private parent-chemistry/child-diffraction execution; residual angle costs explicit | Supported ordinary retention/admission, reciprocal/nonuniform targets, experimental/noisy data and general repair |
+| W170 saved local maps | Six bound saved maps and matched controls show signed residuals at B2/A13; common/own σ retained | Causal diagnosis, corrective motion, noisy calibration and general detector |
 | W139/W140 matched canonical control | Native/zero identity, local pair benefit, recorded backbone supports and saved-map sampling | Numerical stops; density calibration, broader controls and whole-model acceptance |
 | W138 ordinary longer control | Explicit v8 100-cap route, actual final writer/pair capture; full/installed/native gates pass | Broader protocols, semantic weighting and CLI/Doctor activation |
 | W125–W134 shared execution/readback | Original pair intent, fresh admission, actual output proof and compatible registered continuation | Ordinary modified-chemistry descendants, unclassified native remainder and broader efficacy |
@@ -138,8 +148,10 @@ The supported caller must also authenticate original full-precision points and
 the prospectively declared mask/bound. W169's saved-coordinate cold check does
 not retroactively establish that original proposal provenance.
 
-Inspect W164's remaining B2/A13 distortion against source-bound maps before another
-fit. W162 remains limited; no repeated C395–C400 matrix or relaxed tolerance.
+W170 completes the descriptive W164 B2/A13 saved-map review. The distorted model
+remains unaccepted; no causal force diagnosis or corrective fit is implied. Do
+not repeat this sampling or run an identical continuation just because Rfree is
+low. W162 remains limited; no repeated C395–C400 matrix or relaxed tolerance.
 W156 matched recovery/map review governs scientific acceptance. W167 cluster
 opening/closing is still planned after supported retention/execution, coordinated
 with Alder A03/A07 and Cedar Q15; reuse Cedar's regional measurement owner.

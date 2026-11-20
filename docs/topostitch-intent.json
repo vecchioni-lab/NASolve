@@ -977,6 +977,13 @@
         "adoption": "Separate from detection and execution; compare against an equivalently refined unchanged control and review geometry, maps, retained content/intent and original data/Free",
         "automatic_replacement": false,
         "early_deformation_rfree_is_rejection_gate": false
+      },
+      "saved_synthetic_counterexample": {
+        "human_update": 170,
+        "reference": "docs/topostitch-periodic.md#w170--inspect-saved-maps-at-the-remaining-b2a13-distortion",
+        "observation": "A13 C5-prime retains 1.18 A position error and 23.06 degrees of angle deviation at synthetic Rfree 0.0259. Ordinary density is higher at its misplaced point; its negative centre is only -2.30 own-map sigma while the generating point is +7.35. Use signed context and geometry; pointwise ordinary density or a red-only cutoff is insufficient in this example.",
+        "experimental_threshold_calibrated": false,
+        "default_policy_changed": false
       }
     },
     "generality_contract": {
@@ -1182,7 +1189,9 @@
           "Donor spacing",
           "Cluster clearance"
         ]
-      }
+      },
+      "available_motion_scope": "Canonical whole-residue/pair rigid preview preserves internal shape before rounding, but shared pair motion cannot open the pair and differently transformed residues can strain flanking links. TaperedMotion supplies bounded arithmetic, not exact closure; W168/W169 are diagnostic/preservation evidence only.",
+      "two_donor_opening_with_flanking_polymer_closure_qualified": false
     }
   },
   "planned_diffraction_benchmark": {
