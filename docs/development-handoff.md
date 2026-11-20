@@ -1,5 +1,14 @@
 # NASolve development handoff — Willow
 
+**W179:** a genuine original-intent native capture now reproduces the intended
+C21 conversion: **15 binding/compiler checks + 14 native mechanics checks** pass,
+with the same **213 supplied restraints** and all unaffected captured proxies.
+The complete artifact producer still refuses the preserved interpreter-settings
+input. An explicit diagnostic partition demonstrates the compiler result, while
+keeping those settings bound; it does not publish a supported producer artifact.
+Next coordinate typed control-versus-restraint roles with Cedar. One fixed native
+reading, no fit or ordinary ancestry. [Exact boundary](topostitch-periodic.md#w179--capture-original-literal-intent-and-isolate-the-control-role-gap).
+
 **W178:** the existing source-literal producer now has a source-bound canonical
 control: **20 declared pairs / 38 stacks / 20 retained planes**. Its compiled PHIL
 matches W172 and all **213 requests** match W176. **17 selection/relocation/drift
@@ -57,7 +66,7 @@ W174 joins the frozen request; retained-manager integration remains next.
 [Exact scope, controls and setup stops](topostitch-periodic.md#w172--require-declared-topology-before-parent-coordinate-transfer).
 
 
-Updated **2026-11-20**, through **W178**. W168’s private native diagnostic now retains
+Updated **2026-11-20**, through **W179**. W168’s private native diagnostic now retains
 known parent chemistry at the ordinary 3 Å interpretation cutoff while diffraction
 and refinement use the displaced child. One five-cycle run recovers **2.288 →
 0.271 Å RMS**, keeping all 38 backbone links, atom identities and checked sugar

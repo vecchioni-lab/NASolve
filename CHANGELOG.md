@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W179 — Capture original intent and isolate interpreter-control roles
+
+- Record one fixed original-literal native capture and the existing compiler’s
+  exact restraint conversion, including 15 binding and 14 mechanics checks.
+- Preserve the producer refusal for interpreter-control PHIL and distinguish the
+  diagnostic input partition from a supported artifact or ordinary parent.
+- No product code/schema/default, installation, optimizer or motion-admission
+  change; native scientific evidence remains local.
+
 ### W178 — Bind source-literal evidence without inventing ordinary authority
 
 - Record the existing canonical source producer, exact compiled/native term

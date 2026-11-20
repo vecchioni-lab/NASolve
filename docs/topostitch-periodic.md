@@ -10664,3 +10664,73 @@ the A21 condition holds in the exact current, PostMR and selected MR models. Ald
 versioned v2 declaration supersedes the earlier tentative status; residue-level
 image realization and native seam angles/exclusions remain separate. Older Cedar
 free-end scaffold declarations do not override this newer FT-specific intent.
+
+
+## W179 — Capture original literal intent and isolate the control-role gap
+
+One new **Phenix 2.2.1-6174 maintained fixed-coordinate interpretation** captures
+original literal intent on the exact W172/W176 canonical parent. This is the
+missing pre-compilation input, not another fit or a repeat of already-compiled
+W176 input. Cedar `a1ce98818…` owns capture, atom/monomer readback, compilation,
+policy comparison and topology review. No shared Cedar source changes.
+
+The three ordered PHIL roles remain explicit: independently pinned original
+20-pair/38-stack declarations, twenty retained pair planes, and source sort/CDL
+settings plus `use_ncs_to_build_restraints=False` for full monomer capture. The
+native run completes in **1.709551 s**, with **859 atoms / 42 full monomer mappings**.
+Its original secondary-structure policy is enabled; only the twenty retained
+planes are explicit custom edits before compilation. Original science is unchanged.
+
+The complete `prepare_literal_na_inputs` producer **refuses**:
+`Unsupported line-oriented PHIL syntax`. It feeds all captured PHIL inputs into
+the bounded literal compiler, including the flat interpreter-settings file.
+No supported literal artifact is published. The first cold review also reaches
+that same parser stop when passing the whole input list directly to the compiler;
+its original runner is preserved. This is not a native failure or permission to
+strip settings.
+
+An explicit **diagnostic input partition** then passes only the two independently
+bound literal/plane inputs to the unchanged compiler, while the full native
+receipt continues to bind all interpreter controls. This produces 193 C21 terms
+(51 bonds, 84 angles, 58 parallelities) and retains twenty planes. The C21 PHIL is
+byte-identical to W172. All **213 complete requests** match W176 actual native
+readback by content and multiplicity.
+
+The existing `qualify_na_policy` reports **14/14 native mechanics checks PASS**:
+atom identities, effective component definitions, policy readback, exact custom
+requests, absence of competing native SS terms, and unchanged remaining proxies
+across all eight captured families. C128 accepts the genuine native-index policy
+for **38 declared backbone links and 51 soft distances**, while keeping
+`chemical_qualification=NOT_ESTABLISHED`. **15 binding/compiler checks** also pass.
+This is a two-capture fixed-parent policy comparison, not optimizer/force evidence,
+nonbonded exclusion qualification or recovery.
+
+Original-intent native receipt SHA-256:
+`0b1e68c877b7ee21253411a0f2b5bfb57cd9e2b840c6e9d80c185533e26c006a`.
+Diagnostic native-index policy SHA-256:
+`dd9b46190f1aab02956c2df0deb9033a2fb504fe8069989ff0b2949225b8dbd4`.
+These hashes identify evidence; they do not make a supported ordinary artifact.
+
+**Exact missing producer seam:** classify captured interpreter controls and
+literal/plane compiler inputs separately, with every role/input authenticated.
+The supported owner must preserve interpretation requirements into later execution
+and refuse unsupported/misclassified controls. An arbitrary caller-selected subset
+or discarded setting is insufficient. Cedar owns that interface; no duplicate
+compiler or forged producer policy is introduced here. A genuine ordinary canonical
+parent and selected ancestry remain unresolved, so no request/checkpoint is
+fabricated and W173/modified-motion admission remains unchanged.
+
+Local evidence is anchored at
+`NASolve:branch-artifacts/willow/w179-original-intent/`; the result resolves its
+native receipt beneath the owned root recorded in `ownership.json`. Exact commands:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w179-original-intent.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w179-producer-review.py
+```
+
+Scientific inputs/captures remain outside Git. No branch-wide suite or reinstall
+is repeated for this documentation/local-diagnostic change; W177's installed
+software remains unchanged. Eight focused roadmap checks and generated-document
+synchronization validate the documentation update, without asserting scientific
+closure. No additional native run or optimization is queued by this result.

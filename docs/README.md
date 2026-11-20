@@ -79,12 +79,13 @@ current instructions; other branches retain their own status and validation pins
   reading. W177 reuses Cedar checked publication/complete results to report
   available authority for an exact preparation. W178 binds original source intent
   through the existing literal producer and records the remaining native/ordinary
-  provenance boundary; no motion policy is broadened.
+  provenance boundary. W179 adds the genuine original-intent capture and isolates
+  the producer control-role gap; no motion policy is broadened.
   Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W178;
-  the next substantial audit is W179. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W179;
+  the next substantial audit is W180. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

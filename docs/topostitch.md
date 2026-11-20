@@ -745,6 +745,23 @@ The separate ordinary canonical PostMR context is still unavailable for this
 private parent. Do not create it retrospectively from native observations.
 [Exact roles, checks and limits](topostitch-periodic.md#w178--bind-the-existing-source-producer-without-inventing-ordinary-authority).
 
+**W179 original-intent capture.** A fresh maintained fixed-coordinate capture
+preserves the original pair/stack declarations, retained planes and all
+interpreter settings. The complete literal artifact producer refuses those flat
+interpreter controls in its line-oriented restraint parser. An explicitly labelled
+diagnostic partition of just the two independent literal/plane inputs lets the
+unchanged native-index compiler reproduce W172 PHIL and all 213 W176 requests;
+all fourteen native mechanics checks pass. Capture settings are retained in the
+full evidence, not silently discarded or reclassified as restraints.
+
+The missing supported interface is a **typed control-versus-compiler input
+partition** under Cedar ownership. It must bind every captured input and preserve
+interpretation requirements through later execution, while allowing only supported
+literal/plane inputs into the restraint compiler. Neither an arbitrary index
+selection nor stripping an unsupported PHIL establishes that contract. The
+ordinary canonical parent and actual retained-manager lifetime remain separate.
+[Methods and producer refusal](topostitch-periodic.md#w179--capture-original-literal-intent-and-isolate-the-control-role-gap).
+
 **FT connectivity clarification (20 November, via Hazel).** The investigator
 now declares B:7 O3′ → B:1 P as a symmetry continuation. B:1 is therefore not
 assumed to be a free terminus. The current coordinate-derived realization images
