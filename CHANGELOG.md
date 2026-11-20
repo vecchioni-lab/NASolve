@@ -18,6 +18,9 @@ entries are reconstructed from repository history.
   Failed/interrupted publication grants no selectable completed receipt.
 - Introduce only `metal-fdp-review-publication` v1; existing trial/archive
   formats and scientific defaults are unchanged. No cleanup or new fit follows.
+- Qualify the same installed producer/reader against three historical FT_Hg
+  attempts: exact cold input/result recovery, 134,901 B archive and 1,810 B receipt.
+  This is poor-fit diagnostic evidence, not scientific acceptance or safe pruning.
 
 ### Inspect archived metal results from the command line
 
@@ -35,7 +38,8 @@ entries are reconstructed from repository history.
   operator realization from chemical intent and native enforcement.
 - Bind the current FT source declarations to their frozen sequence, selected
   model, pairing, phosphate and coordination inputs. Preserve unresolved B:1/C:8
-  symmetry chemistry and the 19 pair planes instead of inventing a whole recipe.
+  symmetry realization/native enforcement and the 19 pair planes; the later
+  investigator confirmation supplies topology intent, not a qualified whole recipe.
 - Record the ordinary-checkpoint and modified/metal endpoint restrictions,
   including a labelled synthetic consumer refusal. Runtime, schemas and
   scientific defaults are unchanged; no real model moves or new fit follows.

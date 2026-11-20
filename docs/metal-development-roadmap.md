@@ -38,6 +38,10 @@ selections with shared parent identities, using existing archive/durable record
 owners. Sixteen final focused tests and installed two-trial synthetic readback
 cover completion and interruption; indexing adds no parent replay. Safe pruning,
 new parent-session execution and automatic campaign publication remain open.
+The real three-attempt FT_Hg readback also passes 48 checks with original access
+blocked: 134,901 B archive plus 1,810 B receipt, exact saved values and FreeR_flag
+selection. These historical low-B poor-fit controls validate recovery only;
+protected-parent storage is additional and scientific/retirement gates stay open.
 
 **Scientific milestone: A01 — ligand geometry and open XYZ/B foundation.**
 **Parallel engineering step: A04 — compact records and protected parent transport.**

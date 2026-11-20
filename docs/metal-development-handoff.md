@@ -92,6 +92,30 @@ advance follows. Local evidence: `fdp-publication-20261120-01/{validation.json,
 installed/result.json}`. See the
 [storage contract](metal-campaign-storage.md#completed-batch-publication-and-selection-receipt).
 
+**Real historical FT_Hg qualification:** the same installed wheel now publishes
+three complete existing attempts (008/013/014), producing a **134,901 B archive**
+and **1,810 B receipt**. The archive is byte-identical to the independently pinned
+19 November archive. With original science/source reads blocked, all executable
+inputs, frozen atom states, parent identities, full reflection arrays and saved
+results match exactly: **48 checks in 9.50 s**. `FreeR_flag` selects 2,128 anomalous
+observations, including 109 free observations; `SA_flag` is not selected. Existing
+packing makes twelve source-parent replays; indexing adds zero. Originals remain
+unchanged. Protected-parent storage is additional, and this proof grants no
+retirement authority.
+
+These are historical **Phenix 2.2.1-6174** poor-fit controls at Q=0.60 and B=25 Å²:
+f″=29.000000/35.309143/35.309136 e, expected 8.678570 e, Rwork≈0.397 and
+Rfree≈0.424. Exact recovery does not improve geometry, calibrate f″, count metals
+or qualify convergence. No new native execution or full suite ran. Command:
+`PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B
+<Alder-artifacts>/runners/A301_real_publication.py`. Evidence and the compact
+visually checked comparison are `real-publication-20261120-01/{review.json,
+delivery-review.json,science-review.html,science-comparison.svg}` under the
+existing private artifact anchor. The runner reuses the already qualified wheel;
+no runtime/schema changes or migration are introduced by this follow-up.
+Generated inputs, results and figures remain outside Git. A01 partial, A02 gated,
+A04 partial; next qualify the scientific parent and compact child lifecycle.
+
 ### Ordinary recorded-result CLI
 
 The maintained historical inspector now has a stdout-only normal CLI consumer,

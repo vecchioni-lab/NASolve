@@ -251,6 +251,17 @@ record the exact sources/commands. No native fit or full suite ran. A04 remains
 partial: protected-parent session execution, exact regeneration, scheduling and
 safe retirement remain separate gates.
 
+The subsequent real FT_Hg completed-batch proof reuses that installed wheel and
+three existing attempts. Its 134,901 B archive exactly reproduces the independently
+pinned earlier archive; the new selection receipt is 1,810 B. Forty-eight checks
+recover all inputs, parent identity, full model/reflection arrays and unrounded
+results with original reads denied. The original trial inventory (2,478,875 B)
+and parent remain unchanged. These sizes exclude complete protected-parent
+storage and do not authorize deletion. The historical B=25 Å² poor-fit results
+remain diagnostic; no native run, scientific acceptance or schema change occurs.
+See `real-publication-20261120-01/review.json` and the
+[handoff](metal-development-handoff.md#completed-batch-provenance-handoff).
+
 ## Implemented fourth step: explicit parent-layout transport
 
 `nasolve.metal.parent_archive.pack_parent_inputs(layout, output)` retains one
