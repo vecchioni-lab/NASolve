@@ -102,6 +102,15 @@ private evidence and compatibility limits. Consult it before scheduling new test
 
 ## Immediate bridge from A01 to quantitative trials
 
+The explicit coordination-topology adapter now separates exact metal contacts
+from covalent/NAR authority without hiding unwanted neighbors. Its 309 focused
+tests and 269-check saved FT_Hg readback close this bounded accounting substep.
+The legacy whole-model result remains REVIEW: supplied-PHIL delivery and four
+qualified local junctions do not supply the missing whole-context authority.
+Consume this adapter with the shared retained-parent work; do not repeat its
+native control or use it to bypass modified/metal endpoint admission. A01 stays
+partial and A02 stays gated; no new milestone or cluster default is introduced.
+
 The 20 November [current-state profiles](metal-development-handoff.md#a01-current-state-profiles)
 close the exact-state capture/finite-motion experiment. The neutral source fit
 reproduces exactly; contraction gains reverse, while modest reorientation can

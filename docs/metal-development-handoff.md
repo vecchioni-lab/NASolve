@@ -7,7 +7,75 @@ owns feature completion. The earlier chronological diary is preserved as
 [evidence through 18 November](history/metal-development-handoff-2026-11-18.md),
 not a second queue.
 
-## A01 current checkpoint: fixed-endpoint donor motion
+## A01 current checkpoint: explicit coordination topology
+
+The shared topology reviewer now accepts an optional, exactly declared metal
+contact inventory. The metal adapter reuses the existing recipe preview and PHIL
+export, binds exact source-model bytes and the complete native atom inventory,
+and emits only enabled metal-containing distances. The reviewer requires one
+matching request and one matching native bond with the same endpoints, origin,
+target and weight. Coordination, NAR soft restraints and covalent links remain
+separate. Same-residue metal–metal contacts are checked explicitly; an unknown
+neighbor or competing request is not hidden by its element or origin.
+
+Default calls retain their schema-1 result. Explicit `coordination_bonds` calls
+return schema 2, policy `cif-declared-coordination-topology-v1`, with typed
+`coordination_restraints`; no stored run migration or native default changes.
+Angles, nonmetal distances, full force semantics, source/capture authentication,
+modified/metal endpoint admission and scientific acceptance remain separate.
+The shared checker still requires a nonempty explicit covalent topology and its
+existing supported PDB subset. A cluster-only model without such a declaration
+is not newly admitted. The adapter refuses explicit MODEL records, nonblank
+segments, alternatives and insertion codes under this capture contract.
+
+**FT_Hg saved-evidence result:** all **210** supplied requests are realized
+exactly: 51 distances (49 NAR plus two Hg contacts), 83 angles, 57 parallelities
+and 19 planes. The complete 859-atom native capture has 38 covalent cross-site
+links, all O3′–P, and no extra inter-base covalent bond. All **1,009** bonds in
+the saved initial/final metal-centred `.geo` files retain endpoints, categories,
+targets and weights at printed precision. This rules out that specific unwanted
+link in these saved controls, not the remaining ligand strain.
+
+**Keep the whole-topology result at REVIEW.** This older experiment carries
+independent preparation authority for four selected-site junctions only. Its
+34 other observed backbone links and 49 historical supplied-PHIL contacts remain
+visible, without fabricating a current NAR compiler-authority receipt. Existing
+shared supplied-PHIL readers verify delivery separately. No complete retained
+manager, whole-model chemical qualification or accepted f″ parent follows.
+The B:1/formal-charge and open XYZ/B limitations persist. **A01 partial; A02 gated.**
+
+Validation: **309 focused tests pass in 29.91 s** under Python 3.12.14,
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<Alder>/src`, using
+`python -B -m pytest -q -p no:cacheprovider` on
+`tests/test_{metal_coordination_topology,cif_topology_gate,metal_native_terms,cif_attachment_native,cif_na_policy,cif_native_context,cif_restraint_context,metal_motion_scope}.py`.
+The exact expanded command, source hashes, XML and log are in
+`topology-coordination-20261120-01/focused-tests/`. The process stopped and source
+files stayed exact. The new positive regression fails before implementation;
+controls cover undeclared covalent neighbors, declared crosslinks, changed or
+duplicate requests/proxies, symmetry, source identity and same-residue contacts.
+No full suite is repeated for this bounded adapter; the prior integration record
+above the metal scope in the root handoff is unchanged.
+
+Cold readback with `python -B <Alder-artifacts>/runners/A263_coordination_readback.py`
+passes **269 checks**, using the same environment. Receipts are
+`topology-coordination-20261120-01/ft-hg-{readback,topology}.json` under the existing
+Alder artifact anchor. Evidence is from completed **Phenix 2.2.1-6174** runs;
+no new Phenix/Coot execution or f″ measurement was made. The local table checkout
+is `ScienceCheckouts/Hazel/2026-11-20_coordination-topology/open_report.py`:
+three files, **6,074 bytes**, linking existing models/maps rather than copying
+them. Generated science, private runners and reports remain outside Git;
+no parent or trial data is pruned.
+
+Changed runtime files are `cif_topology_gate.py` and the new
+`metal/coordination_topology.py`, with one focused regression module. Current
+handoff, roadmap, feature contract and changelog change together. Shared-owner
+review accepts the narrow opt-in boundary and preserves the legacy REVIEW.
+**Next:** consume source-bound parent topology and the shared retained-manager
+boundary before modified/metal motion admission. Separate donor pose and Hg
+placement, then qualify open XYZ/B before branch-specific environmental B and
+frozen f″/Q. Do not repeat this readback or the completed 25-point pivot grid.
+
+### Fixed-endpoint donor motion (preceding diagnostic)
 
 A bounded private coordinate study now consumes the connected-region inventory
 and existing shared `TaperedMotion` / `CoordinateMask` arithmetic. Each complete

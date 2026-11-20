@@ -53,6 +53,38 @@ Exact term coverage does not establish correct chemistry, force equivalence,
 convergence or an acceptable model. See the [current handoff](metal-development-handoff.md)
 for pinned dependency versions, negative controls and remaining integration work.
 
+## Keep coordination distinct from covalent topology
+
+Before admitting a structural branch, intended metal contacts must be accounted
+for without hiding a spurious covalent link to a nearby base. The read-only
+`nasolve.metal.coordination_topology.describe_coordination_bonds(preview, native,
+model_payload, edit_origin_id=...)` binds exact model bytes, full native atom
+identity and the existing recipe/export to typed metal-containing distances.
+It does not identify metals from their surroundings or infer missing partners.
+
+Supply that declaration explicitly as `coordination_bonds` to the shared
+`cif_topology_gate.review_native_topology`. Every declared contact needs a unique
+native request and identity-image bond with exact endpoints, edit origin,
+target and weight. Conflicts with covalent or NAR authority, competing requests,
+duplicates and symmetry contacts refuse. Unknown cross-site links remain in the
+review. Same-residue declared metal–metal bonds are checked too; this does not
+turn the cross-site checker into a complete intramolecular topology validator.
+
+Methods: replay the source-bound preview, project existing exported distances
+onto captured atom indices, then compare request and native-bond multiplicities
+before subtracting only those exact contacts from the covalent-link inventory.
+The opt-in schema-2 report uses policy
+`cif-declared-coordination-topology-v1`; ordinary calls retain the original
+schema-1 result. This is an in-memory review extension, not a new persisted run
+format. Existing files, CLI paths and defaults need no migration.
+
+The caller authenticates source/capture provenance and chemical intent. Angles,
+other recipe terms, native force/exclusion semantics, geometry quality, retained
+manager admission and scientific selection remain separate. Historical supplied
+PHIL can establish exact restraint delivery without establishing current
+compiler authority. Preserve REVIEW in that case. This step belongs to A01
+before an open XYZ/B branch; it does not authorize f″ quantitation.
+
 ## Inspecting the connected movement region
 
 Before testing a coupled base/metal pose, the implemented read-only inspector

@@ -96,6 +96,17 @@ A09 remains deferred until after the main A01–A08 build.
 
 ## Scientific scope and owners
 
+The bounded A01 coordination-topology follow-on adds an exact metal declaration
+adapter and optional shared-checker input. Ordinary schema-1 calls stay unchanged;
+explicit typed calls return schema 2. **309 focused tests** and **269 saved-data
+checks** pass, with stopped processes and unchanged scientific inputs. Native
+workers/defaults stay unchanged; no new refinement or full-suite result follows.
+The FT_Hg control retains all supplied terms and no extra inter-base covalent
+bond, but legacy whole-topology authority remains REVIEW. The
+[metal handoff](metal-development-handoff.md#a01-current-checkpoint-explicit-coordination-topology)
+owns exact commands, source files, schema limits and the next retained-parent
+boundary. Generated science and local checkouts remain excluded from Git.
+
 The bounded A04 follow-on `26b0f41c02abb44317f8579e12b6b8782d572e68` adds
 only the input-transport adapter, its tests and documentation. Existing runtime
 owners/native workers remain unchanged. Its **86 focused tests pass in 51.35 s**;

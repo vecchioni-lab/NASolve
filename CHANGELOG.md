@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Distinguish explicit metal coordination from covalent links
+
+- Bind recipe-declared metal contacts to exact source model bytes, native
+  identities and unique restraint requests/proxies. Keep NAR soft contacts,
+  covalent links and coordination distinct; preserve unknown neighboring bonds
+  for review and refuse duplicates, conflicting requests and changed values.
+- Support explicitly declared same-residue metal–metal contacts. The opt-in
+  topology report is schema 2; existing calls, stored runs and defaults retain
+  their behavior. No geometry acceptance or native endpoint admission follows.
+- Record focused regression coverage and a compact saved FT_Hg readback. Legacy
+  provenance limits remain REVIEW; generated science stays outside Git.
+
 ### Record fixed-endpoint donor motion observations
 
 - Reuse shared rigid-motion and coordinate-mask arithmetic for a bounded private
