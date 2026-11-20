@@ -94,6 +94,17 @@ native worker changes. Existing runs need no migration. Source chemistry,
 B/Q and tensor preservation, covalent closure, symmetry packing and scientific
 selection remain with their shared owners and require separate qualification.
 
+A subsequent private FT_Hg experiment uses the existing `TaperedMotion` and
+`CoordinateMask` with each residue's P/O3′ endpoints excluded from its active
+mask. Twenty-five independent small rotations keep all four flanking bond
+lengths exact while changing donor pose and adjacent angles. Internal source
+strain is preserved. Hg follows the donor midpoint under a declared kinematic
+rule; no metal relaxation or native fit occurs. This demonstrates numerical
+motion on one bound context, not a public modified-metal movement mode or
+closure/packing qualification. The handoff links the prospective plan,
+independent readback and editable local figure; the canonical endpoint guard
+continues to refuse unsupported moving chemistry.
+
 ## Integration objectives and milestones
 
 The metal workspace is a consumer of NASolve's generated models and immutable

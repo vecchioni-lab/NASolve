@@ -77,10 +77,13 @@ accepted. A01 remains partial, A02 gated. The subsequent read-only movement-regi
 inspector enumerates the explicit whole-residue/metal region, fixed flanks and
 crossing captured bonded terms; it does not move coordinates or qualify closure.
 The metal handoff owns the new API's focused tests, preserved sandbox-failed
-chemistry profile and passing eleven-case process-permission recheck. The latest
-compact checkout is `ScienceCheckouts/Hazel/2026-11-20_movement-scope/review.html`,
-with a standard-Python opener, editable junction figure and provenance. The
-preceding local-angle maps remain retained. A04's separate modern-parent recovery
+chemistry profile and passing eleven-case process-permission recheck. A subsequent
+private 25-case P–O3′ pivot study reuses shared arithmetic and preserves all four
+flanking bond lengths, while retained attachment strain and limited donor span
+prevent a solution claim. The current editable report is
+`ScienceCheckouts/Hazel/2026-11-20_pivot-motion/review.html`; no candidate PDB,
+new native fit or modified-metal admission follows. The preceding junction
+figure and local-angle maps remain retained. A04's separate modern-parent recovery
 proof
 now passes 876 cold checks and 16 synthetic refusals with no native calls or
 source changes. The subsequent additive parent-layout adapter passes 96 focused tests and an

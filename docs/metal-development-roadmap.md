@@ -143,9 +143,14 @@ descriptive; broad geometry and combined scientific evidence guide review.
    flanks and 36 crossing bonded terms. Saved-model junctions and native target
    delivery are checked without new refinement. This is an inventory ingredient,
    not closure, source authentication, modified-mover admission or A01 completion.
-   Next qualify a bounded proposal against those connections through the shared
-   owners, including packing and fresh child diffraction; preserve the existing
-   negative results and geometry/B/Q boundaries.
+   A private 25-case fixed-endpoint donor study now reuses shared motion
+   arithmetic: all four bond lengths stay exact, with at most 2.27° junction-angle
+   change and 0.730 Å atom movement. Donor spans remain 3.379–3.938 Å, short of
+   the tested idealized 4.20 Å linear-contact span, and inherited attachment
+   strain remains. No candidate or native fit is selected. Close this numerical
+   substep; do not repeat its grid. Next separate donor/Hg pose choices, review
+   crossing geometry/packing and qualify source-bound modified-metal admission,
+   protected B/Q and fresh child diffraction through the shared owners.
 2. **A01 → A02:** qualify an open XYZ/B endpoint through local chemistry,
    coordination, Rwork/Rfree, stopping evidence and maps. Derive environmental
    metal B from the actual refined donors/base-only atoms, report disagreement

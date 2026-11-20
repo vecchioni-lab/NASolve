@@ -7,98 +7,112 @@ owns feature completion. The earlier chronological diary is preserved as
 [evidence through 18 November](history/metal-development-handoff-2026-11-18.md),
 not a second queue.
 
-## A01 current checkpoint: connected movement-region inspection
+## A01 current checkpoint: fixed-endpoint donor motion
 
-The bounded read-only region inspector is implemented. Before this change,
-selected-residue geometry did not describe the flanking native connections.
-The new consumer identifies whole selected residues and exact metal labels,
-checks explicit prepared polymer contexts, and retains every crossing term in
-the supported captured bonded families. It uses the existing Cartesian geometry
-and backbone readers; it does not add another geometry calculator or mover.
-The [feature descriptor](metal-restraint-builder.md#inspecting-the-connected-movement-region)
-owns the API, methods and supported scope.
+A bounded private coordinate study now consumes the connected-region inventory
+and existing shared `TaperedMotion` / `CoordinateMask` arithmetic. Each complete
+selected nucleotide rotates around its original P–O3′ line. Both axis endpoints
+are explicitly excluded from movement, leaving all four flanking bond lengths
+at their source values. The 41-atom region has **37 active atoms**; surrounding
+atoms stay fixed. Hg follows the mean N3 displacement, retaining its original
+vector from the donor midpoint. This is a declared transport rule, not a metal
+optimizer, new motion engine or general backbone-closure solver.
 
-The original hash-bound C410 neutral FT_Hg capture gives **41 selected atoms**
-(two complete modified residues and Hg), **818 fixed atoms**, and fixed flanks
-**A:11, A:13, B:3, B:5**. There are **36 crossing terms**: four bonds, sixteen
-angles, twelve torsions and four base-plane relationships. Source graph
-partitioning independently identifies nine base atoms in each selected residue.
-The complete native capture is essential: the shared V9 selected-site capture
-is deliberately intra-site only and is not widened or misrepresented here.
+The prospective grid uses −5, −2.5, 0, +2.5 and +5° independently for each
+residue: **25 observations**, with a **0.8 Å** atom-displacement bound. The source
+is the saved unchanged-continuation FT_Hg model, not a human endpoint. Original
+source chemistry, captured targets and inherited internal strain remain intact.
 
-| Saved endpoint | Four O3′–P distances | Largest adjacent-angle deviations per junction |
-| --- | --- | --- |
-| First five-cycle endpoint | 1.605–1.632 Å | 4.67–6.45° |
-| Unchanged continuation | 1.606–1.639 Å | 4.25–5.42° |
-| Metal-angle alternative | 1.607–1.634 Å | 4.73–6.02° |
+| Measured quantity | Result |
+| --- | --- |
+| Four flanking bond-length changes | Exactly zero in full precision and rounded-coordinate observations |
+| Maximum atom displacement | 0.730 Å |
+| Maximum flanking-angle change from the source | 2.27°; descriptive, not an acceptance threshold |
+| N3 donor span | 3.379–3.938 Å; source 3.492 Å |
+| N3–Hg–N3 under midpoint-following | 115.5–123.2° |
+| DF C1′–N1 | 1.623 Å retained; inherited strain remains |
 
-All four bond targets are 1.607 Å. These are PDB-rounded saved coordinates
-measured against original captured targets, not fresh native captures or
-acceptance cutoffs. The twenty junction bond/angle targets, sigmas and weights
-also match the saved angle arm's initial/final `.geo` at printed precision.
-This establishes a useful movement baseline without resolving the strained
-base attachment or accepting a metal geometry. Formal-charge readback remains
-unsupported without contradictions; unrelated B:1 terminal/symmetry context
-remains unqualified. No new native interpretation, refinement or f″ trial ran.
+Internal pair distances differ by at most **3.6e−15 Å** before rounding, a
+numerical identity check rather than experimental precision. All six selected
+chirality signs are retained. None of the sampled spans reaches the 4.20 Å
+implied by the tested idealized linear two-contact, 2.10 Å Hg recipe. Some Hg
+contacts worsen. The largest-span grid point is descriptive, not selected.
+This shows useful donor reorientation without stretching the four bonds; it
+does not resolve coordination or establish a diffraction-supported alternative.
 
-**Validation:** the new regression initially fails collection without its
-module. After implementation, 86 direct/helper tests pass in 11.97 s; the final
-new module, including two additional ambiguous-flank refusals, passes **28 tests
-in 0.13 s**. Commands use `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` and Python
-3.12.14: `python -B -m pytest -q -p no:cacheprovider` on
-`tests/test_metal_motion_scope.py`, `tests/test_cif_captured_geometry.py`,
-`tests/test_cif_linked_qualification.py`, `tests/test_postmr_restoration.py`;
-the final 28-case run selects only the first file. No shared helper changed.
+**Qualification:** 174 generation checks and **243 independent cold-readback
+checks** pass, including changed-coordinate, changed-angle and stale-source
+negative controls. Readback reconstructs saved masked displacements and compares
+them with the shared `CartesianImage` route. Full/rounded coordinate hashes,
+source models and shared code stay bound. The canonical endpoint guard still
+refuses these modified/metal atoms; no guard is weakened or copied, and no PDB
+candidate is emitted. Torsion/parallelity energy, complete symmetry packing,
+fresh likelihood/maps, source chemical acceptance and ordinary admission remain
+unassessed. The prior B:1/formal-charge limitations persist. **A01 partial;
+A02 gated; no native scientific execution or new f″ measurement.**
 
-The named `python -B scripts/run_tests.py chemistry --junitxml <new-file>` profile
-completes with **1,744 passed, 11 failed, 10 subtests passed in 394.19 s**. All
-eleven failures concern sandbox-denied process inspection/signalling; the exact
-eleven cases pass **11/11 in 20.66 s** with the required process permissions and
-unchanged shared sources. Preserve the failed profile and targeted recheck;
-this is not a fresh all-green profile or full-suite run. Both owned test
-processes are stopped. Logs, XML and exact commands live under
-`movement-scope-20261120-01/{chemistry-profile,process-recheck}/` in the Alder
-artifact anchor. The last full integration evidence remains in the root handoff.
+Exact reproducible commands use
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<Alder>/src <Python-3.12.14> -B`
+with `<Alder-artifacts>/runners/A258_pivot_motion.py` for the fresh numbered
+observation directory, and `A259_review_pivot_motion.py` for cold readback.
+The immutable plan, all 25 compact displacements, summaries and hashes are in
+`a01-pivot-motion-20261120-01/{plan,observations,summary,cold-review}.json` under
+the Alder artifact anchor. Source pin: `9f490b6903917692b55fc63526132e37242ec499`.
+No production source, schema, default, native worker or migration changes.
+Existing scientific/pytest suites are not repeated for this documentation-only
+delivery. The previous focused/full validation remains preserved below and in
+the root handoff; generated scientific artifacts and private runners stay out
+of Git. No scientific parent or trial files are pruned.
 
-Cold readback command:
-`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<Alder>/src <Python-3.12.14> -B <Alder-artifacts>/runners/A253_review_movement_scope.py`.
-Its 2,922 checks include atom identities, source/native hashes, native target
-delivery, unchanged originals and two refused negative controls. Exact results
-are `movement-scope-20261120-01/ft-hg-{review,scope}.json` under that anchor.
-The native evidence is historical **Phenix 2.2.1-6174**; this step is cold
-readback only. Matplotlib rendering uses its Python 3.11.15 without refinement.
-The five-file checkout is **152,024 bytes** at
-`ScienceCheckouts/Hazel/2026-11-20_movement-scope/open_report.py`, including
-editable SVG, PNG, HTML and provenance. The PNG is visually checked; large
-models/maps are linked, not copied. Private runners and generated science are
-excluded from Git; no scientific files are pruned. The complete new local evidence
-is under 1 MB before delivery metadata. The workflow-intent module passes
-**25 tests in 0.11 s**. The final source/document/report review passes **107 checks**
-using `python -B <Alder-artifacts>/runners/A257_check_movement_delivery.py`;
-its exact references and test commands are in `delivery-review.json` under the
-movement-scope anchor. `git diff --check` passes. This result sentence was added
-following that recorded review; no source or scientific artifact changed.
+The five-file local checkout is **240,593 bytes** at
+`ScienceCheckouts/Hazel/2026-11-20_pivot-motion/open_report.py`, with PNG,
+editable SVG, HTML and provenance. Its two heatmaps show donor separation and
+flanking-angle changes; the small table retains Hg contacts and the unchanged
+base attachment. Rendering uses Phenix 2.2.1-6174's Python 3.11.15 only for
+Matplotlib, with no refinement. The plot was visually inspected and the owned
+render process stopped. Large models/maps are referenced, not copied. The complete
+new evidence is about **0.80 MB** before delivery metadata. Source, local links,
+publication hashes and document scope pass **82 checks** with
+`python -B <Alder-artifacts>/runners/A262_check_pivot_delivery.py`;
+`delivery-review.json` records the result and `git diff --check` passes. This
+validation sentence is added after that review; product/science files stay exact.
 
-**Compatibility:** only the new read-only module/report, regression file and
-documentation change. The report is additive and in memory; there is no stored
-trial migration, default recipe change, native-worker change, source adoption,
-B/Q preservation claim or automatic selection. A01 remains partial; A02 gated.
+**Next:** use this demonstrated restricted motion without repeating the same
+grid. Separate donor-pose and Hg-placement choices, review all crossing geometry
+and packing, and qualify source-bound modified/metal admission with protected
+B/Q/tensor state and fresh child diffraction before any matched native recovery.
+Preserved inherited attachment strain still needs its source/geometry owner;
+it cannot be repaired by a whole-residue rigid move. A changed XYZ endpoint
+needs open XYZ/B and scientific review before environmental B and frozen f″/Q.
+This single-Hg study does not qualify cluster placement or count inference.
 
-**Next:** qualify a bounded coupled base/metal pose through shared movement and
-admission owners, using these exact flanks and crossing terms. Preserve source
-geometry, glycosidic attachment, both polymer junctions, handedness, exact B/Q
-and tensor policy; assess nonbonded packing and fresh child diffraction. The
-inspector does not solve closure or authenticate the caller's sources. No new
-pose or f″ parent is qualified. Any changed XYZ needs ordinary open XYZ/B and
-scientific review before branch-specific environmental B and frozen f″/Q.
+### Implemented region inventory and preceding junction check
 
-The coordinated audit of Cedar `84257082` and Willow `42bf701b` is retained in
-`a01-local-angle-20261120-01/linked-motion-scope.json`. Rigid fragment/pair
-transforms do not guarantee both junctions close. W169 byte/mask guards do not
-qualify modified donors/metals or covalent geometry; W168 retention evidence
-is not a metal movement hook. Willow `94dc8a7a` explicitly documents this gap.
-Reuse these owners; Cedar retains shared regional measurement ownership.
-Cluster pose/count/DNA-accommodation experiments remain planned A03/A07 work.
+`nasolve.metal.motion_scope.inspect_movement_scope` is the existing read-only
+owner, described in the [feature contract](metal-restraint-builder.md#inspecting-the-connected-movement-region).
+The hash-bound C410 native capture supplies 41 selected/818 fixed atoms, four
+flanks (A:11/A:13/B:3/B:5), and 36 crossing terms: four bonds, sixteen angles,
+twelve torsions and four parallelities. The full capture is required; V9's
+intra-site-only capture does not substitute for crossing geometry.
+
+Its source-bound saved-model review and 2,922 checks remain in
+`movement-scope-20261120-01/ft-hg-{scope,review}.json`. Original and saved refined
+junctions, plus twenty initial/final native bond/angle targets, are accounted
+for without a new interpretation. The earlier five-file junction checkout
+remains at `ScienceCheckouts/Hazel/2026-11-20_movement-scope/`.
+Initial direct/helper tests: 86 passed; final new module: 28 passed; workflow
+intent: 25 passed. The named chemistry profile retained 1,744 passes, eleven
+sandbox process failures and ten subtests; the exact eleven cases passed with
+process permissions and unchanged sources. Both owned test processes stopped.
+Exact commands/logs/XML and the 107-check delivery review remain in the same
+movement-scope anchor; the complete preceding handoff is preserved at commit
+`9f490b6903917692b55fc63526132e37242ec499`. This is not a new all-green profile.
+
+Coordination with Linden reuses the unchanged shared motion arithmetic and
+explicitly fixed endpoint masks. His independent registered-preview parent
+binding work does not admit modified metals. Cedar retains chemical geometry/
+regional measurement ownership; the shared canonical byte guard retains its
+existing limits. Cluster motion remains planned A03/A07 work.
 
 ### Retained preceding coordination result
 

@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record fixed-endpoint donor motion observations
+
+- Reuse shared rigid-motion and coordinate-mask arithmetic for a bounded private
+  two-donor study. Preserve four flanking bond lengths while recording donor
+  separation, junction angles, retained internal strain and metal-contact limits.
+- Add a compact editable figure and update the A01 queue. These are diagnostic
+  observations, not a new motion engine, native-admitted candidate or accepted
+  solution. Product code, schemas, defaults and migration remain unchanged;
+  generated coordinates, reports and private runners remain outside Git.
+
 ### Inspect the connected metal movement region
 
 - Add a read-only inspector for explicitly selected whole residues and metal
