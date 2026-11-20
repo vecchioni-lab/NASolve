@@ -1,12 +1,16 @@
 # NASolve development handoff — Willow
 
-**W173:** saved motion now binds to the exact selected checkpoint and its complete
-anchored input context through a maintained read-only API. Changed selection,
-input bytes/order and metadata refuse; relocation after removing the original
-path passes. **138 focused tests plus 6 subtests**, and the same source-free
-relocated installed suite, pass. No native hook or run lock is added.
-[API](topostitch-preview.md#bind-a-motion-to-a-saved-checkpoint-w173) ·
-[validation](topostitch-periodic.md#w173--bind-motion-to-the-selected-checkpoint-inputs).
+**W174:** the W173 selected-parent binding now joins an existing Cedar frozen
+request, distinguishing the unchanged parent from exact preview-candidate bytes.
+Ordered inherited/adapted/additional restraints, phases and generated round
+parameters remain explicit. **159 focused tests plus 6 subtests**, the same
+relocated installed suite, and supported-reader controls pass. Real C412 v3/v7
+requests qualify input membership only; their modified parents have no canonical
+preview admission. Standalone Willow needs explicitly supplied trusted Cedar
+readers. No native hook, lock or chemical admission is added.
+[API](topostitch-preview.md#join-an-existing-execution-request-w174) ·
+[validation and full-suite environment limit](topostitch-periodic.md#w174--join-checked-motion-to-the-frozen-child-request).
+
 
 **W172:** the actual private parent-preparation boundary now checks independently
 declared topology before restoring child coordinates. A separate explicit-policy
@@ -14,11 +18,11 @@ control passes before/after a prospectively bound 0.048 Å maximum move: 38 back
 links, 51 soft distances and all 213 supplied restraints remain. Legacy W168's
 SS-enabled policy is correctly held for missing explicit authority. No refinement
 or installed hook; W173 now supplies selected-checkpoint input binding, while
-ordinary request/retained-manager integration is next.
+W174 joins the frozen request; retained-manager integration remains next.
 [Exact scope, controls and setup stops](topostitch-periodic.md#w172--require-declared-topology-before-parent-coordinate-transfer).
 
 
-Updated **2026-11-20**, through **W173**. W168’s private native diagnostic now retains
+Updated **2026-11-20**, through **W174**. W168’s private native diagnostic now retains
 known parent chemistry at the ordinary 3 Å interpretation cutoff while diffraction
 and refinement use the displaced child. One five-cycle run recovers **2.288 →
 0.271 Å RMS**, keeping all 38 backbone links, atom identities and checked sugar
@@ -187,11 +191,11 @@ already accepts checksummed endpoint points or an explicitly opted-in frozen
 W173 now composes W171's parent snapshot with the actual selected checkpoint,
 complete inherited input references and strict endpoint audit. Reuse
 `load_checkpoint_bend_motion`; do not add another checkpoint or byte guard.
-The next integration belongs at Cedar's maintained request/preparation boundary:
-freeze verified inputs under executor ownership, carry independent complete
-chemistry/soft-restraint authority and gate the actual parent manager before
-coordinate transfer. Re-read the W173 context at dispatch; it supplies no atomic
-lock. Keep native interpretation reordering separate from input identity/order.
+W174 now joins the maintained immutable request reader and its namespace
+adaptation owner. Next carry independently complete chemistry/soft-restraint
+authority for that exact parent/candidate into the native transfer gate, checking
+both the moving region and untouched remainder. Freeze consumed inputs under
+executor ownership; re-reading the context supplies no atomic lock. Keep native interpretation reordering separate from input identity/order.
 The W163 interior taper is not a registered terminal preview, and replaying its historical parameters now cannot
 establish a prospective request for the old run. Preserve the first route's
 canonical/full-occupancy and tensor restrictions; a preview that rotates ANISOU

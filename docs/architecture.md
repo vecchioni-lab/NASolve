@@ -1162,8 +1162,11 @@ checkpoint resolver, saved-preview loader and strict endpoint auditor. A saved
 schema-2 parent and complete anchored model/data/ordered-restraint/phase inputs
 are bound to the exact selected ID and preview. Repeated input reads and a context
 digest detect drift; the executor still owns locking, frozen consumed inputs,
-chemical admission and the retained-manager lifecycle. This adapter writes no
-registry or checkpoint and adds no CLI or automatic selection. See the
+chemical admission and the retained-manager lifecycle. Its W174 execution join additionally matches Cedar-validated frozen child
+requests, with explicit parent/candidate model roles and ordered input provenance.
+Standalone Willow requires explicitly supplied trusted Cedar readers; the shared
+readers and launch owners are not copied. Neither adapter writes a registry or
+checkpoint or adds a CLI/default. See the
 [checkpoint binding API](topostitch-preview.md#bind-a-motion-to-a-saved-checkpoint-w173).
 
 `topostitch_trial` reuses installed scitbx for explicit bounded diagnostic trials,

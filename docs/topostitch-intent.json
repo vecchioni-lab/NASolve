@@ -1269,7 +1269,30 @@
       "locking": false,
       "retained_native_lifecycle_qualified": false,
       "modified_metal_motion_qualified": false,
-      "next_action": "Compose the W173 selected-checkpoint binding with the maintained Cedar request/preparation owner, freezing consumed inputs under executor ownership. Reuse W172 independently declared topology before child-coordinate transfer; qualify the supported retained-manager lifecycle before another fit. Keep legacy SS-enabled W168 and incompletely declared FT metal topology at REVIEW. No repeated tiny-motion/preflight or inferred chemistry authority."
+      "next_action": "Compose the W173 selected-checkpoint binding with the maintained Cedar request/preparation owner, freezing consumed inputs under executor ownership. Reuse W172 independently declared topology before child-coordinate transfer; qualify the supported retained-manager lifecycle before another fit. Keep legacy SS-enabled W168 and incompletely declared FT metal topology at REVIEW. No repeated tiny-motion/preflight or inferred chemistry authority.",
+      "execution_join": {
+        "human_update": 174,
+        "function": "load_execution_bend_motion",
+        "code_commit": "02411806ad7d444672803a27e6699f68b11d888d",
+        "reference": "docs/topostitch-periodic.md#w174--join-checked-motion-to-the-frozen-child-request",
+        "implemented": true,
+        "explicit_request_model_roles": [
+          "parent",
+          "candidate"
+        ],
+        "shared_owners": [
+          "refinement_parallelity.read_execution_request",
+          "refinement_inputs.validate_refinement_inputs"
+        ],
+        "standalone_willow_requires_explicit_trusted_readers": true,
+        "generated_parameters_separate": true,
+        "ordered_additional_restraints_explicit": true,
+        "chemical_admission": false,
+        "runtime_authority": false,
+        "locking": false,
+        "ordinary_motion_qualified": false,
+        "next_action": "Join W172 complete independently declared canonical chemistry and the exact candidate to W174 child-input binding; audit moving and untouched regions against one parent. Use a supported source-bound native owner only with complete policy for that actual parent. A private diagnostic control cannot supply ordinary checkpoint ancestry; C412 modified PDU is not canonical preview authority. Keep FT and legacy soft-policy gaps at REVIEW, and coordinate the maintained native transfer hook with Cedar before any fit."
+      }
     }
   },
   "planned_diffraction_benchmark": {

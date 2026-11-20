@@ -10315,3 +10315,75 @@ modified/metal admission or scientific acceptance follows. Hazel confirms the FT
 parent lacks whole-model link/C128 authority; the native inventory cannot fill
 that gap. S04/S05/S06 remain partial. Do not repeat a tiny move or old fit without
 a new integration question.
+
+
+## W174 — Join checked motion to the frozen child request
+
+W173 authenticated the selected parent and preview without joining the executor's
+request. W174 adds `load_execution_bend_motion` in the same module. It reuses
+Cedar's request and namespace-adaptation readers, checks parent and child IDs
+separately, and requires an explicit `parent` or `candidate` model role. The latter
+must match the preview's exact serialized bytes. Ordered inherited/adapted/extra
+restraints, phases and round-generated parameters are separate recorded roles.
+Repeated reads and an optional execution-context pin detect changed inputs.
+
+The adapter grants no chemistry, locking, command/force semantics or launch
+permission. It adds no executor, native hook, stored request/checkpoint schema,
+CLI/default or dependency. Existing APIs remain unchanged. Standalone Willow
+lacks the shared Cedar readers and refuses unless they are explicitly supplied by
+a trusted integration caller; no module is copied or branch silently merged.
+Returned `topostitch-execution-input-binding` records are schema 1 and retain
+`chemical_admission=False` and `runtime_authority=False`.
+
+**Validation, code `02411806ad7d444672803a27e6699f68b11d888d`:** the first
+18 new cases fail before implementation; 21 final cases cover input roles/order,
+selection/request/preview drift, explicit candidate identity, optional phases,
+extra restraints, namespace adaptation and old-path-gone relocation. Python
+3.12.14 source and source-free relocated wheel runs each pass **159 tests plus
+6 subtests**. Use the W173 focused command with
+`tests/test_topostitch_execution.py` additionally; all exact commands are in the
+local source/install records. Python 3.10 syntax, 94 unchanged installed files,
+six entry-point helps and `pip check` pass. Wheel SHA-256:
+`5d887e91b0bbfb1126c3d6a1297753eee03d1900de7a932aefe7913d5f5aabf8`.
+
+One complete Willow run with the same `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`
+environment and `python -B -m pytest -q -p no:cacheprovider` finished in 114.38 s:
+**2,145 tests plus 234 subtests passed; five process tests failed because the
+sandbox denied `/bin/ps` or process-group signals.** The whole
+`tests/test_campaign_process.py` module then passed outside that restriction:
+**22 tests plus 19 subtests, 2.79 s**. No process code changed; no test worker
+remained. This is a split validation result, not a clean uninterrupted full-suite
+pass. No further full suite is queued for tonight.
+
+**Cedar compatibility:** pinned source `a1ce98818fb3ece14a2cbdb6ecbf24d30a7d9393`
+reads two genuine C412 requests (v3 and v7), each with 11 inputs. The extracted
+membership join preserves the exact declared parent, validated namespace copy,
+terminal-protection declaration and separate generated parameters. Changed
+parent/data/order/request-hash controls refuse. The 223 cold/source checks include
+16 unchanged original files and isolated-owner source hashes. These real modified
+parents have no registered canonical preview; this is deliberately request-only
+readback, not a fabricated successful W173 admission. Request digests are
+`3f778e4e3e783fa06b288e19abba437a71d6876ad2627c62df75187110d71b0d`
+and `9ea5e242837ac781ac4c4cef88fd883c419751e98890a14bc9c39fccc70e3e14`.
+
+Separately, Cedar's actual freezer/adaptation/request readers produce labelled
+synthetic canonical parent- and candidate-model controls. The complete W174 API
+passes 17 checks, including selection/input refusal and relocation after removing
+the original dataset/preview paths. The same 17 checks pass using the relocated
+installed Willow package. No native Phenix/Coot process or fit runs in W174.
+
+Local evidence: NASolve anchor `branch-artifacts/willow/w174-execution-binding/`;
+private runners `w174-request-compat.py`, `w174-supported-request-fixture.py`,
+`w174-installed-supported-request.py` and `w174-install-execution.py` record exact
+invocations/source pins. Tests, wheels, reports and existing scientific inputs
+remain outside Git. Runtime change: `src/nasolve/topostitch_checkpoint.py`; new
+regressions: `tests/test_topostitch_execution.py`; human/machine docs updated.
+W173's disposable install tree was retired after its wheel/log archive verified;
+no scientific input or run was removed.
+
+Next gate: join independently complete W172-style chemical authority for an actual
+parent/candidate to these exact child inputs, checking the moving neighborhood
+and untouched remainder together. Native retention and ordinary ancestry remain
+open. An observed link inventory cannot manufacture expected chemistry; FT lacks
+both whole-model authority and an ordinary selected checkpoint. No repeated
+private tiny-motion or refinement control is justified without that new question.

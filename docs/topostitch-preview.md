@@ -83,6 +83,44 @@ older or incomplete registries remain usable through their existing workflows,
 but this narrow adapter refuses them. Modified/metal motion and ANISOU-changing
 previews are not admitted. [Validation and limits](topostitch-periodic.md#w173--bind-motion-to-the-selected-checkpoint-inputs).
 
+## Join an existing execution request (W174)
+
+`topostitch_checkpoint.load_execution_bend_motion` adds a read-only join to the
+W173 call. Supply the same parent/preview arguments plus:
+
+```python
+motion, parameters, binding = load_execution_bend_motion(
+    run_directory, preview_directory,
+    expected_checkpoint_id=parent_id,
+    expected_receipt_sha256=preview_digest,
+    expected_checkpoint_context_sha256=parent_context_digest,
+    execution_reference=frozen_request_reference,
+    child_checkpoint_id=child_id,
+    request_model_role="candidate",  # or explicitly "parent"
+    generated_parameters=round_parameters_reference,
+    refinement_input_reference=namespace_adaptation_reference,  # optional
+)
+```
+
+An unchanged-parent request proves ancestry/input membership only. A candidate
+request must contain the exact serialized preview bytes. Neither authorizes
+coordinate transfer. Model/data, ordered restraints and phases are checked
+against the selected parent; `additional_restraints` must be separately declared
+in order. Generated `AutoRefine/round_NNN/autorefine.params` is a distinct final
+input. Namespace derivatives are validated by Cedar's existing adaptation owner.
+A returned context digest can be required on the next call with
+`expected_execution_context_sha256`; requests and source/preview inputs are reread.
+
+The API uses the maintained `refinement_parallelity.read_execution_request` and,
+when needed, `refinement_inputs.validate_refinement_inputs`. These owners are
+not yet present on standalone Willow: that installation refuses clearly unless
+an integration caller explicitly supplies trusted `execution_reader` and
+`refinement_input_reader` callables. Pinned Cedar compatibility was tested;
+there is no dynamic source loader, copied reader or alternate executor here.
+The executor still owns file freezing, command/force semantics, chemistry,
+admission and launch. Output keeps `chemical_admission` and `runtime_authority`
+false. No existing request is rewritten or silently upgraded.
+
 ## Inputs and use
 
 Start with the existing [registered discovery manifest](topostitch-periodic.md)

@@ -72,12 +72,13 @@ current instructions; other branches retain their own status and validation pins
   boundary before/after a small transfer; legacy SS policy remains under review
   and ordinary retained-manager lifecycle integration stays open. W173 adds
   exact selected-checkpoint/input binding with changed-parent and relocated
-  installation checks; it grants no dispatch or native chemistry authority.
+  installation checks. W174 joins Cedar frozen child inputs with explicit
+  parent/candidate roles; chemical admission and native transfer remain separate.
   Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W173;
-  the next substantial audit is W174. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W174;
+  the next substantial audit is W175. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed
