@@ -10,7 +10,7 @@ from pathlib import Path
 from .cif_dictionary_bundle import read_dictionary_bundle, inspect_dictionary_bundle_native
 from .cif_dictionary_sites import _bind_capture, _need, _read
 from .cif_dictionary_store import resolve_dictionary_snapshot, _bytes
-from .cif_component_runtime import _tree, MAX_FILES, MAX_BYTES
+from .cif_component_runtime import _snapshot_roots, _tree, MAX_FILES, MAX_BYTES
 from .cif_linear_torsion_bundle import read_linear_torsion_bundle
 from .cif_captured_linear_attribution import read_captured_linear_attribution
 from .cif_captured_mixed_gradients import read_captured_mixed_gradients, _inputs
@@ -90,9 +90,8 @@ def _inspect(bundle, baseline_receipt, attribution_directory, repaired_gradient_
         'repair_attribution_directory':attribution}
     for name,p in [('repaired_gradient_directory',repaired_gradient_directory),('original_gradient_directory',original_gradient_directory)]:
         if p is not None:roots[name]=Path(p).absolute()
-    snapshots={name:_tree(p) for name,p in roots.items()}
-    _need(sum(len(v) for v in snapshots.values())<=MAX_FILES
-        and sum(len(b) for v in snapshots.values() for b in v.values())<=MAX_BYTES,'Combined repair evidence exceeds supported bounds')
+    snapshots = _snapshot_roots(roots, max_files=MAX_FILES, max_bytes=MAX_BYTES,
+        message='Combined repair evidence exceeds supported bounds')
     prepared=read_dictionary_bundle(root)
     if repair_chain:
         from .cif_repair_chain import repair_chain_inputs, REPORT
@@ -193,9 +192,8 @@ def _inspect_original(bundle, baseline_receipt, candidate_receipt, original_grad
     roots={'prepared_bundle_directory':root,'preparation_baseline_directory':baseline.parent,
         'prepared_capture_directory':candidate.parent}
     if original_gradient_directory is not None:roots['original_gradient_directory']=Path(original_gradient_directory).absolute()
-    snapshots={name:_tree(p) for name,p in roots.items()}
-    _need(sum(len(v) for v in snapshots.values())<=MAX_FILES
-        and sum(len(b) for v in snapshots.values() for b in v.values())<=MAX_BYTES,'Combined original evidence exceeds supported bounds')
+    snapshots = _snapshot_roots(roots, max_files=MAX_FILES, max_bytes=MAX_BYTES,
+        message='Combined original evidence exceeds supported bounds')
     prepared=read_dictionary_bundle(root)
     identity=_prepared_capture(prepared,candidate,prepared['after_dictionaries'])
     initial=inspect_dictionary_bundle_native(root,baseline,candidate)

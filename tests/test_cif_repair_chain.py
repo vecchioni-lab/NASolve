@@ -152,8 +152,8 @@ def test_combined_chain_cannot_borrow_larger_evidence_allowance(tmp_path,monkeyp
     monkeypatch.setattr(chain, bound, 1)
     with pytest.raises(ValueError, match=r'Combined repair evidence exceeds.*planes/000'):
         compose(chain, root, plane)
-    assert opened and all(path.is_relative_to(plane) for path in opened)
-    assert len(opened) <= 2
+    assert all(path.is_relative_to(plane) for path in opened)
+    assert len(opened) <= 1
     assert not (root/'chain').exists()
 
 

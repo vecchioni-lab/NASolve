@@ -36,8 +36,13 @@ repairs were individually verified, but repeated records exceeded the combined
 file and byte limits before publication. Close bounded storage and failed-attempt
 accounting first. C452 already replayed all seven changes from relocated,
 separately bounded archives while denying access to the original run.
-The outer unfinished attempt still exceeds the shared physical cap. Qualify
-ordinary mixed ReadySet, locked ATL and diffraction after those storage checks.
+The outer unfinished attempt still exceeds the shared physical cap. Removing
+the seven expanded stages from the size calculation still leaves 143.1 MiB of
+distinct outer payloads. Reopen only the declared children needed for each check
+and keep their ownership and hashes bound to the same attempt. C453 checked the
+current stop, portable four-change prefix, copy-only replay and altered-source
+refusal. Qualify ordinary mixed ReadySet, locked ATL and diffraction after those
+storage checks.
 C437 also shows why Q06 retains a separate displacement check. Five cycles with
 the measured host scaffold B factors and new 5PC base atoms at B=20 brought
 the terminal carbon close to the ring plane (0.087 Å) while stretching its

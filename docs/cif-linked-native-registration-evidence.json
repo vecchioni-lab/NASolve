@@ -118307,6 +118307,19 @@
         "wheel_sha256": "65642b5a3cbd0d3cc158ceed092823773f8c9505e784e547bd0b96b4ac5bcadf",
         "passed": 120,
         "seconds": 26.84
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_cif_component_runtime.py tests/test_cif_original_component_runtime.py tests/test_cif_repaired_component_runtime.py tests/test_cif_dictionary_bundle_repair.py tests/test_cif_repair_chain.py tests/test_cif_bond_repair_chain.py tests/test_cif_runtime_bundle.py tests/test_cif_runtime_continuation.py tests/test_cif_runtime_evidence.py tests/test_cif_runtime_readyset.py tests/test_cif_working_evidence_view.py tests/test_cif_prepared_repair_execution.py tests/test_cif_prepared_repair_failure.py tests/test_cif_prepared_repair_budget.py tests/test_cif_complete_continuation.py tests/test_cif_repair_attempt.py",
+        "passed": 633,
+        "seconds": 492.1,
+        "scope": "Second patch, affected storage, selection and process owners"
+      },
+      {
+        "command": "python -B -m pytest -q -p no:cacheprovider --import-mode=importlib tests/test_cif_component_runtime.py tests/test_cif_original_component_runtime.py tests/test_cif_repaired_component_runtime.py tests/test_cif_dictionary_bundle_repair.py tests/test_cif_repair_chain.py tests/test_cif_bond_repair_chain.py tests/test_cif_ordinary_cli.py tests/test_cif_ordinary_outcome.py",
+        "wheel_sha256": "f7549140bef142eff9e0bb6dcfaa0802c03859696467684e8215f6f90bcf99e2",
+        "passed": 205,
+        "seconds": 22.11,
+        "scope": "Second patch, installed distribution with its original build path absent"
       }
     ],
     "full_regression": "NOT_RUN",
@@ -118377,7 +118390,89 @@
         "path": "c452-mixed-storage-diagnostic/stage-replay.json",
         "sha256": "4a6457e8d78e7212c636bed43b8619b85c421e01dc105d1be20a6bf0dd0fddb6",
         "size": 2837
+      },
+      {
+        "anchor": "local Cedar evidence",
+        "path": "c452-mixed-storage-diagnostic/stage-controls.json",
+        "sha256": "d5a4a37c5ab39a06c9fe87e70a3326e2e697aa5b22429b6647d6197af2dd0ac0",
+        "size": 911
+      },
+      {
+        "anchor": "local Cedar evidence",
+        "path": "c453-mixed-resource-bound/read-bound.json",
+        "sha256": "f353a917ef0ae11504c005bdb98b63fad18478ef196bfa23e76b36851f725346",
+        "size": 1172
+      },
+      {
+        "anchor": "local Cedar evidence",
+        "path": "c453-mixed-resource-bound/outer-bounds.json",
+        "sha256": "5619a16d37165aeaebbc03b293452d5d821a3199efed23aafd46a6f0dd8ee869",
+        "size": 1978
+      },
+      {
+        "anchor": "local Cedar evidence",
+        "path": "c453-mixed-resource-bound/projection.json",
+        "sha256": "b199ba4ac1000b920243d1a4534182c2ebce7607651834c7c6d8a26438b86bea",
+        "size": 778
+      },
+      {
+        "anchor": "local Cedar evidence",
+        "path": "c453-mixed-resource-bound/ordinary-status.json",
+        "sha256": "249611fec13adcadcdd57b1cdca33652c32a86526457aef5dc0d20aee0cc4bdb",
+        "size": 1034
+      },
+      {
+        "anchor": "local Cedar evidence",
+        "path": "c453-mixed-resource-bound/original-diagnostic.json",
+        "sha256": "f022759b301bb528c58bde774f32f43164202a85a1d886a64b7fb777c47a43bf",
+        "size": 1273
       }
-    ]
+    ],
+    "bounded_publication_followup": {
+      "real_four_change_prefix": {
+        "logical_files": 797,
+        "logical_bytes": 118307702,
+        "receipt_sha256": "d5773cd01e25bf4202cc4d290ea8e7e44fdeb30776ce6462d6945b2aa5feb0ec"
+      },
+      "seven_change_stop_before_payload_read": "Combined repair evidence exceeds its limit while adding linear (1011/1024 files, 139079903/134217728 bytes)",
+      "unchanged_outer_status_files": 3792,
+      "ordinary_mixed_state": "STOPPED_UNFINISHED; all permitted attempts used",
+      "portable_copy_only_verified": "CAPTURED_PLANE_ATTRIBUTION_PASS",
+      "rehashed_altered_source_refused": true,
+      "interrupted_read_released": true,
+      "outer_bytes_even_excluding_seven_expanded_stage_trees": 150082481,
+      "actual_product_status": "Qualified individual stages and an in-bounds combined prefix. Full mixed selection and ReadySet still pending.",
+      "unpublished_original_diagnostic": {
+        "qualification": "VERIFIED_PREPARED_BUNDLE",
+        "own_derivatives_qualified": true,
+        "original_and_repaired_targets": {
+          "5PC": {
+            "before_A": 1.364,
+            "after_A": 1.47,
+            "atoms": [
+              "C8",
+              "C9"
+            ]
+          },
+          "PDU": {
+            "before_A": 1.607,
+            "after_A": 1.47,
+            "atoms": [
+              "C5B",
+              "C5M"
+            ]
+          },
+          "DF": {
+            "before_A": 1.638,
+            "after_A": 1.638,
+            "atoms": [
+              "C2",
+              "S1"
+            ]
+          }
+        },
+        "automatically_adopted": false
+      }
+    }
   }
 }

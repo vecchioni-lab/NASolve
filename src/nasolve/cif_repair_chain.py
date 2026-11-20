@@ -13,8 +13,7 @@ from .cif_captured_linear_attribution import read_captured_linear_attribution
 from .cif_captured_plane_attribution import read_captured_plane_attribution
 from .cif_linear_torsion_bundle import read_linear_torsion_bundle
 from .cif_captured_mixed_gradients import _inputs
-from . import cif_component_runtime as storage
-from .cif_component_runtime import _tree, MAX_FILES, MAX_BYTES
+from .cif_component_runtime import _snapshot_roots, _tree, MAX_FILES, MAX_BYTES
 from .cif_dictionary_store import _bytes, _json
 from .cif_fana_junction import _path
 from .cif_linked_linear_torsion import _exact
@@ -144,20 +143,8 @@ def prepare_repair_chain(plane_attributions, output, *, linear_attribution=None,
     output=Path(output).expanduser().absolute()
     _need(not output.exists() and not any(p.is_symlink() for p in (output,*output.parents))
           and all(not output.is_relative_to(p) and not p.is_relative_to(output) for p in sources.values()))
-    snapshots = {}
-    total_files = total_bytes = 0
-    for name, source in sources.items():
-        files = {}
-        for relative, data in storage._bounded_members(source, max_files=storage.MAX_FILES,
-                max_bytes=storage.MAX_BYTES):
-            total_files += 1
-            total_bytes += len(data)
-            if total_files > MAX_FILES or total_bytes > MAX_BYTES:
-                raise ValueError(
-                    f'Combined repair evidence exceeds its limit while adding {name} '
-                    f'({total_files}/{MAX_FILES} files, {total_bytes}/{MAX_BYTES} bytes)')
-            files[relative] = data
-        snapshots[name] = files
+    snapshots = _snapshot_roots(sources, max_files=MAX_FILES, max_bytes=MAX_BYTES,
+        message='Combined repair evidence exceeds its limit')
     directories={name:sorted(p.relative_to(source).as_posix() for p in source.rglob('*') if p.is_dir())
                  for name,source in sources.items()}
     controls=dict(linear=linear_attribution is not None,plane_count=len(plane_attributions))

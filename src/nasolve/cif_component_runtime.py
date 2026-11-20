@@ -49,7 +49,26 @@ def _bounded_inventory(root, *, max_files, max_bytes, partition_prefixes=()):
             max_bytes=max_bytes, partition_prefixes=partition_prefixes)}
 
 
-def _bounded_members(root, *, max_files, max_bytes, manifest=False, partition_prefixes=()):
+def _snapshot_roots(roots, *, max_files, max_bytes, message):
+    """Freeze multiple inputs under one allowance before reading each payload."""
+    count = size = 0
+    snapshots = {}
+
+    def reserve(member_size):
+        nonlocal count, size
+        count += 1
+        size += member_size
+        if count > max_files or size > max_bytes:
+            raise ValueError(f'{message} while adding {name} '
+                             f'({count}/{max_files} files, {size}/{max_bytes} bytes)')
+
+    for name, root in roots.items():
+        snapshots[name] = {} if root is None else dict(_bounded_members(
+            root, max_files=MAX_FILES, max_bytes=MAX_BYTES, reserve=reserve))
+    return snapshots
+
+
+def _bounded_members(root, *, max_files, max_bytes, manifest=False, partition_prefixes=(), reserve=None):
     # The complete continuation owner can inventory two separately bounded
     # children. Public/child artifacts continue through _tree's original caps.
     _need(type(max_files) is int and 0 < max_files <= 2*MAX_FILES
@@ -76,6 +95,8 @@ def _bounded_members(root, *, max_files, max_bytes, manifest=False, partition_pr
         size=p.stat().st_size
         _need(size<=MAX_FILE_BYTES and sizes[bucket]+size<=max_bytes and counts[bucket]<max_files,
               'Frozen tree exceeds supported bounds')
+        if reserve is not None:
+            reserve(size)
         data=_read(p)
         _need(len(data)==size, 'Frozen tree member changed while reading')
         counts[bucket]+=1; sizes[bucket]+=size
@@ -328,14 +349,11 @@ def _publish(output, roots, controls, policy_id, *, compact_evidence=False):
     _need(type(compact_evidence) is bool, 'Require an explicit boolean compact-evidence choice')
     if output.exists() or output.is_symlink(): raise FileExistsError(output)
     _need(not any(p.is_symlink() for p in output.parents), 'Unsafe runtime destination')
-    snapshots={}
-    for name,source in roots.items():
+    for source in roots.values():
         if source is not None:
-            source=source.absolute();_need(not output.resolve().is_relative_to(source.resolve()), 'Cannot publish inside source evidence')
-            snapshots[name]=_tree(source)
-        else:snapshots[name]={}
-    _need(sum(len(s) for s in snapshots.values())<=MAX_FILES
-        and sum(len(b) for s in snapshots.values() for b in s.values())<=MAX_BYTES, 'Combined source exceeds supported bounds')
+            _need(not output.resolve().is_relative_to(source.resolve()), 'Cannot publish inside source evidence')
+    snapshots = _snapshot_roots(roots, max_files=MAX_FILES, max_bytes=MAX_BYTES,
+        message='Combined source exceeds supported bounds')
     output.parent.mkdir(parents=True,exist_ok=True)
     with TemporaryDirectory(prefix='.component-runtime-',dir=output.parent) as temporary:
         root=Path(temporary)/'bundle';root.mkdir()

@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-20, C444–C452 ring planes and mixed-scaffold repairs — Rowan**.
+Updated **2026-11-20, C444–C453 ring planes and mixed-scaffold repairs — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -46,8 +46,20 @@ scientific readers verify the complete ordered series after relocation, with
 access to the original attempt disabled. One child at a time needed at most
 37.9 MiB of logical files plus a small bond library. The unfinished outer
 attempt still contains 144.6 MiB of unique payloads, beyond 128 MiB. Use the
-bounded stage results to qualify ordinary publication and a durable stop. Test
-tampering, interrupted writes and filesystems unable to share copies. See the
+bounded stage results to qualify ordinary publication and a durable stop.
+C453 also verified the real four-change prefix with the ordinary chain reader.
+On the full seven-change input the reader stopped before opening the file that
+would cross 128 MiB. Source and wheel checks covered the other callers.
+The copy-only archive test rejected a changed source even after the altered
+archive was rehashed, and released its temporary files after interruption.
+The installed status command identifies the exhausted request and the repair
+error before ReadySet. It left all 3,792 request files untouched. A durable
+outer stop after a genuinely interrupted native write remains to qualify.
+The twelve-component starting model independently passed the original-bundle
+and derivative checks. Its 5PC and PDU terminal targets were still 1.364 and
+1.607 Å. The repaired targets were both 1.470 Å. The original is
+an independently checked fallback with those known target discrepancies.
+The stopped request did not publish a model. See the
 `qualified_rings_and_mixed_repairs_2026_11_20` register entry. Do not repeat the seven native checks
 just to explore storage.
 

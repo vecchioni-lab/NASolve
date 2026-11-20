@@ -86,3 +86,22 @@ def test_resume_cannot_override_saved_plane_choice(tmp_path):
     with pytest.raises(SystemExit) as exc:
         main(['cif-doctor','continue-preparation',str(tmp_path),'--after-attempt','1','--automatic-plane-support'])
     assert exc.value.code==2
+
+
+@pytest.mark.parametrize('worker', ['STOPPED', 'STOPPED_UNFINISHED'])
+def test_unfinished_preparation_explains_exhausted_request_from_recorded_children(tmp_path, capsys, worker):
+    repair = {'state': worker}
+    if worker == 'STOPPED':
+        repair['finished'] = {'outcome': 'RAISED'}
+    row = {'number': 1, 'state': 'STOPPED_UNFINISHED', 'children': {
+        'repair': repair, 'continuation': {'state': 'NOT_CREATED'}}}
+    state = {'state': 'RECORDED', 'availability': 'EXHAUSTED', 'attempts': [row]}
+    with patch('nasolve.cif_complete_request.inspect_dictionary_request', return_value=state), \
+         patch('nasolve.cli.load_config', side_effect=AssertionError('Status requires no SDK')):
+        assert main(['cif-doctor', 'preparation-status', str(tmp_path)]) == 0
+    text = capsys.readouterr().out
+    assert 'recorded processes have stopped' in text and 'completion record is missing' in text
+    assert 'The run stopped before its ReadySet continuation.' in text
+    assert 'This request has used all its allowed attempts.' in text
+    assert ('Dictionary repair ended with an error.' in text) == (worker == 'STOPPED')
+    assert 'A new attempt requires' not in text

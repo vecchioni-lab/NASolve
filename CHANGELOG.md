@@ -20,9 +20,14 @@ entries are reconstructed from repository history.
   orders can now report the verified reason and retain the original evidence.
   A return code of zero alone cannot qualify its output. Earlier exact-order
   reports retain their original format and meaning.
-- Combining several repairs now stops reading as soon as the retained evidence
-  exceeds the established aggregate size or file limit. The error names the
-  stage and both counts. Accepted records and their storage limits are unchanged.
+- When combining repairs, checking the original or repaired dictionaries, and
+  publishing the selected bundle, Cedar checks the shared file and byte
+  allowance before reading the next payload. An over-budget request identifies
+  the stage and both counts. Accepted records retain their storage format.
+- `cif-doctor preparation-status` explains when all recorded workers stopped
+  before the completion record was written. It reports a verified repair error,
+  a pending ReadySet continuation and an exhausted attempt allowance when the
+  corresponding records establish them. Reading status preserves the attempt.
 
 ### Preserve the two nonbridging oxygens when linking a phosphate dianion
 

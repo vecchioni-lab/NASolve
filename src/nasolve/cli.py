@@ -1733,7 +1733,17 @@ def _cif_checked_preparation(args: argparse.Namespace) -> int:
             print(f"Further attempt: {state['availability']}")
             for row in state['attempts']:
                 print(f"Attempt {row['number']}: {row['state']}")
-            print("A new attempt requires every earlier process to be known stopped.")
+                if row['state'] == 'STOPPED_UNFINISHED':
+                    print("  The recorded processes have stopped. The completion record is missing.")
+                    repair = row['children'].get('repair', {})
+                    if repair.get('state') == 'STOPPED' and repair['finished']['outcome'] == 'RAISED':
+                        print("  Dictionary repair ended with an error.")
+                    if row['children'].get('continuation', {}).get('state') == 'NOT_CREATED':
+                        print("  The run stopped before its ReadySet continuation.")
+            if state['availability'] == 'EXHAUSTED':
+                print("This request has used all its allowed attempts.")
+            else:
+                print("A new attempt requires every earlier process to be known stopped.")
             return 0
         if args.cif_action == "prepared-result":
             result = read_ordinary_postmr_result(run, attempt_number=args.attempt)
