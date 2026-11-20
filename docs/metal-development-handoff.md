@@ -75,6 +75,64 @@ boundary before modified/metal motion admission. Separate donor pose and Hg
 placement, then qualify open XYZ/B before branch-specific environmental B and
 frozen f″/Q. Do not repeat this readback or the completed 25-point pivot grid.
 
+### Independent FT declarations and remaining symmetry input
+
+A source-only audit of the actual `d69966…` parent preserves all nine input pins
+and passes **90 checks** without a native call or model edit. The frozen 5W6W
+recipe/report explicitly permits terminal OP3 only at **D:1**. The maintained
+ordinary phosphate auditor refuses **B:1**; a separate site-scoped audit also
+refuses **C:8**. Both retain P/OP1/OP2 but lack an ordinary verified incoming link
+or an explicit FT cross-symmetry partner/operator in the audited intent. The
+earlier selected-site preparation intentionally left this whole-model context
+unqualified. Do not transfer the investigator's separate PDU B:1 symmetry
+interpretation automatically, delete phosphate atoms, classify these sites as
+free termini, or infer an angle restraint from proximity. The precise open input
+is a user-editable connection with atom identities, symmetry operator/cell image
+and intended chemistry for this FT construct. D:1 remains its distinct declared
+terminal phosphate.
+
+The generic frozen frame sequence lists A:13=T and B:3=A, whereas the independently
+pinned selected MR model and original PostMR model already contain C/G there,
+matching today's parent. This is a historical sequence/model declaration
+distinction, not new research-model drift. The frozen compatibility report calls
+complete recipient residue identity UNKNOWN. Current sites otherwise match the
+selected source model plus the declared QF1/QT1 aliases and placed Hg.
+
+Available pairing intent comprises **17 frozen frame Saenger pairs** and **two
+explicit standard-site flanks** (A:11–B:5, A:13–B:3). The original **19 pair planes**
+must be retained separately if C21 emits a fresh policy with `planes=False`.
+The 49 supplied NAR distances, 82 angles, 57 parallelity terms and 19 planes stay
+distinct from the two Hg distances and one donor-vertex angle. The PDB contains
+102 LINK rows repeating 51 supplied base/metal links; none involves phosphorus
+or supplies the missing symmetry connection. Neither these serialized records
+nor the 38+49+2 native observations establish whole-model intended connectivity.
+No prospective whole-model recipe was compiled from incomplete authority.
+
+W173 separately requires an ordinary selected checkpoint; this private FT
+endpoint has no such saved registry. A deliberately isolated synthetic consumer
+control reuses Willow's existing fixture: actual W173 input binding reaches the
+unchanged endpoint auditor and refuses both modified-donor and metal permission
+masks (**13 checks**). Only upstream motion replay is substituted, so this is
+neither full modified-preview authentication nor chemical/native qualification.
+No artificial FT registry or canonical native rerun was created. Shared owners
+and endpoint restrictions are unchanged.
+
+Local receipts: `ft-declaration-audit-20261120-03/{review.json,
+terminal-connections.json,synthetic-w173/review.json,editable-connection-intent.json}` under the Alder artifact
+anchor. The editable review preserves the current P/OP1/OP2/O5′ coordinates,
+B and Q at B:1/C:8, with unknown partner/operator/cell image/chemistry left null;
+D:1's declared OP3 is shown separately. It is not an executable recipe. The
+synthetic checkpoint consumer used the then-current working-tree source hashes
+recorded in its receipt, including checkpoint SHA `9120e4…`; it does not qualify
+the concurrently updated W174 adapter or claim an exact released revision. The
+validation record pins private runners A279–A284, their entrypoints/environment,
+the scientific input bindings and shared source hashes. Earlier audit-harness stops are
+preserved: the preset-policy hash has a different scope from the dataset INI;
+generic frame sequence equality was false; and the PDB does contain LINK rows,
+though none supplies the missing phosphate connection. No source/default/schema
+change, full suite, native refinement or f″ test follows. A01 remains partial;
+A02 remains gated.
+
 ### Current-parent interpretation and motion-intake boundary
 
 The next A01 check distinguishes a supplied topology declaration from an admitted

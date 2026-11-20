@@ -113,6 +113,15 @@ reuse and pruning remain unqualified; see the
 [storage contract](metal-campaign-storage.md#recorded-execution-and-parent-cross-binding).
 This follow-on changes documentation only and does not repeat runtime tests.
 
+The independent FT declaration audit preserves all nine current input pins and
+identifies B:1/C:8 cross-symmetry connection intent and an ordinary selected
+checkpoint as missing admission inputs. It preserves phosphates and all 19 pair
+planes; the native inventory is not used to invent intended links. The isolated
+W173 synthetic endpoint consumer refuses modified/metal permissions. See the
+[metal handoff](metal-development-handoff.md#independent-ft-declarations-and-remaining-symmetry-input)
+for the 90 source checks, 13 scoped refusal checks and remaining scientific limits.
+This follow-on changes documentation only; no refinement or full suite runs.
+
 The bounded A01 coordination-topology follow-on adds an exact metal declaration
 adapter and optional shared-checker input. Ordinary schema-1 calls stay unchanged;
 explicit typed calls return schema 2. **309 focused tests** and **269 saved-data

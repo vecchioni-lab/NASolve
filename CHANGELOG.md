@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record independent FT symmetry and checkpoint input gaps
+
+- Bind the current FT source declarations to their frozen sequence, selected
+  model, pairing, phosphate and coordination inputs. Preserve unresolved B:1/C:8
+  symmetry chemistry and the 19 pair planes instead of inventing a whole recipe.
+- Record the ordinary-checkpoint and modified/metal endpoint restrictions,
+  including a labelled synthetic consumer refusal. Runtime, schemas and
+  scientific defaults are unchanged; no real model moves or new fit follows.
+
 ### Inspect recorded metal results without original trial folders
 
 - Add a read-only input-archive inspector with explicit archive, projection,

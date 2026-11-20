@@ -12,6 +12,14 @@ the [anomalous workflow](metal-anomalous-doctor.md) and [restraint design](metal
 own scientific contracts. A mechanism passing tests does not close its scientific
 gate. Update milestone status, evidence, limitations and next action together.
 
+The latest independent FT source audit leaves two precise input boundaries:
+B:1 and C:8 need explicit connection/chemistry review before whole-model
+qualification, and the private endpoint needs a legitimate ordinary checkpoint
+before W173 intake. The existing modified/metal movement restriction remains.
+Preserve all phosphates, the 19 supplied pair planes and the separate generic
+sequence versus selected-model distinction; see the current handoff. No native
+recipe/fit was produced from those incomplete declarations.
+
 **Scientific milestone: A01 — ligand geometry and open XYZ/B foundation.**
 **Parallel engineering step: A04 — compact records and protected parent transport.**
 A04 measures saved trials while A01 remains unresolved; it does not bypass A02
