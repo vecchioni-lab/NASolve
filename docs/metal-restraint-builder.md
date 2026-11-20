@@ -640,6 +640,60 @@ Record source chemistry, protonation and oxidation-state assumptions without
 silently rewriting component dictionaries. A restraint graph and an element
 label alone do not establish those chemical properties.
 
+### Cluster placement and coupled DNA accommodation (20 November intent)
+
+For a declared low-coordinate two-donor bridge, near-linear donor–metal–donor
+geometry can be a chemical hypothesis. Do not transfer that preference to a
+cluster: identify the DNA anchoring ligands and build/test connected metal–metal
+networks around them. Cluster shape, each metal's local coordination number and
+geometry, and formal oxidation-state assumptions are separate declarations.
+No universal octahedral shape, linearity restraint or new angle target follows.
+
+For cluster experiments, nucleobase participation is the default chemical
+hypothesis. Preserve plausible base donor contacts during candidate generation;
+a nonparticipating alternative requires strong, recorded map/chemical evidence
+and explicit review. This prior is neither a fabricated bond nor permission to
+force an unsupported contact. Interior means the local DNA cavity occupied by
+the cluster and its coordinating bases, not one universal helix-width scalar.
+
+The requested backend search must test whole-cluster rigid-body rotation and
+translation, then bounded coupled opening or closing of the surrounding DNA
+when required by placement. A rigid-cluster proposal preserves internal metal
+geometry; internal cluster deformation/count/identity changes are separate
+recipe branches. DNA accommodation must involve chemically connected bases,
+sugars and backbone, rather than stretching attachment bonds or moving only
+metals. Preserve authoritative component/link restraints and declare the local
+movable region and its boundaries. Exact pivots, neighborhood, displacement
+limits, boundary restraints and sampling/ranking policy remain to be qualified
+with the shared structural-movement owners; none is a runtime default yet.
+
+The comparison cycle is:
+
+1. Qualify the restrained open XYZ/B parent and its cluster-level anomalous
+   response. Use cluster-summed, occupancy-aware f″ to support count hypotheses;
+   unresolved density and Q/B/identity ambiguity can prevent a unique count.
+2. Branch from that retained parent with a bounded whole-cluster pose proposal,
+   then a separately identified coupled DNA-accommodation proposal as needed.
+   Include an unchanged control and keep symmetry correspondence explicit.
+3. Run restrained open XYZ/B refinement for each changed structural hypothesis.
+   Prepare metal B from that branch's refined donor/base-only environment,
+   then freeze XYZ/all ADPs/f′ for the declared f″/Q comparisons. Never reuse
+   the old branch's frozen-B calibration after coordinates/environment change.
+4. Compare cluster totals and Q response alongside donor contacts, metal–metal
+   geometry, base/link/backbone integrity, ordinary/anomalous maps and matched
+   Rwork/Rfree context. Retain unresolved alternatives for human review; a better
+   anomalous total alone does not establish the best placement or atom count.
+
+Record local donor distances, base frames/orientations, paired sugar-anchor
+separations and backbone/frame changes with explicit identities. A C1′–C1′ span
+alone is not helix width. The present saved-model FT_Hg decomposition is evidence
+about a single bridge, not validation of cluster rotation or helix widening.
+This is A03 structural-alternative work with A02 quantitation and an explicit
+A07 experimental-input cluster rehearsal; no cluster movement/refinement test
+has yet been qualified. Reuse shared geometry/movement owners rather than a
+second structural engine. Geometry-changing branch points use protected-parent
+retention; only qualified cheap frozen increments receive lean retention.
+
 ## Local chemistry-aware target suggestions
 
 The default ligand state comes from the effective NARestraints, CIF Doctor and

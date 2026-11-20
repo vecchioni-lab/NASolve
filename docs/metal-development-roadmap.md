@@ -114,8 +114,13 @@ descriptive; broad geometry and combined scientific evidence guide review.
    DF attachment lengths and retain bent Hg coordination/negative difference
    density. No preferred endpoint or new f″ parent is selected. Close this
    subgoal; reuse the recorded delivery/derivative/weight controls rather than
-   repeating them. Further native work needs a distinct structural hypothesis
-   and broad scientific review, not another tiny coordinate variation.
+   repeating them. The completed saved-model review finds both compressed donor
+   span and off-line Hg placement: continued N3 spans are 3.49–3.52 Å, with Hg
+   about 1.03–1.07 Å off the donor line and nearly centered axially. Parent and
+   human-reference C1′ spans agree near 10.40 Å despite different donor spans;
+   local base pose matters, not just opening the DNA. The human reference is
+   descriptive and has a short DF attachment itself. No recipe or coordinates
+   changed. Choose a distinct structural hypothesis before further native work.
 2. **A01 → A02:** qualify an open XYZ/B endpoint through local chemistry,
    coordination, Rwork/Rfree, stopping evidence and maps. Derive environmental
    metal B from the actual refined donors/base-only atoms, report disagreement
@@ -132,6 +137,14 @@ descriptive; broad geometry and combined scientific evidence guide review.
    search; compare against them only after the candidate record is frozen.
    Representative data then support the dedicated A05 GUI discussion and A06
    campaign integration. A09 hydration remains deferred after the main build.
+
+The [cluster placement contract](metal-restraint-builder.md#cluster-placement-and-coupled-dna-accommodation-20-november-intent)
+adds an explicit A03 → A02 → A07 experiment: whole-cluster pose proposals and
+bounded coupled DNA opening/closing, followed by open XYZ/B, branch-specific
+environmental B and frozen f″/Q reassessment. Nucleobase anchoring is the default
+cluster hypothesis; exceptions need strong recorded evidence. Keep cluster
+shape separate from local metal coordination and preserve count ambiguity.
+This is planned work, not a qualified movement mode or accepted cluster fit.
 
 These are bounded bridges to the existing milestones, not additional milestone
 numbers or a promise that one profile resolves A01. Reuse recorded controls and

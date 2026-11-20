@@ -7,6 +7,43 @@ owns feature completion. The earlier chronological diary is preserved as
 [evidence through 18 November](history/metal-development-handoff-2026-11-18.md),
 not a second queue.
 
+## Pause checkpoint: cluster intent and saved-model review
+
+The 20 November user clarification is recorded in the
+[cluster placement contract](metal-restraint-builder.md#cluster-placement-and-coupled-dna-accommodation-20-november-intent).
+A03/A07 must explicitly test whole-cluster rotation/translation and coupled DNA
+opening/closing, followed by fresh open XYZ/B and branch-specific frozen f″/Q
+assessment. Default to nucleobase participation, with strongly evidenced
+exceptions. Cluster coordination does not inherit low-coordinate bridge
+linearity. This is design intent only: no new angle restraint, cluster recipe,
+structural movement or native fit was introduced. Shared movement limits and
+measurement ownership remain to be qualified with the integration owners.
+
+The A01 read-only donor-span review is complete: **260 checks**, zero native
+fits. Continued N3 spans are **3.4924/3.5230 Å**, with Hg perpendicular offsets
+**1.0651/1.0348 Å** and axial fractions near **0.5**. Parent C1′ span is
+**10.4025 Å**, versus **10.4031 Å** in the descriptive human reference, while N3
+spans are **3.5124/4.2108 Å**. Thus local base pose contributes; this does not
+establish a helix-widening fix. The human DF attachment is itself short
+(**1.3524 Å**) and is not an ideal target to copy. PDB-rounded measurements are
+distinct from full-precision native receipts. No endpoint or f″ parent is
+accepted. Local evidence: `a01-donor-span-20261120-01/{plan,review,plane-supplement}.json`
+under the Alder artifact anchor; its `checkout/` holds a draft visual report.
+Native jobs are stopped. Resume from this result, not another tiny-shift or
+completed derivative/weight control matrix.
+
+Documentation checkpoint validation: `python3 /private/tmp/alder-cluster-doc-check-20261120.py`
+passes **49** scope/link/new-anchor/evidence checks; `git diff --check` passes.
+Changed files: this handoff, metal roadmap, restraint-builder design, campaign
+storage contract and `CHANGELOG.md`. Before: cluster pose/coupled accommodation
+was not an explicit experiment and the donor-span queue was stale. After: the
+experiment and its open parameters are recorded and completed measurements are
+separated from proposals. No runtime/schema/compatibility migration occurs.
+No native run or full suite is needed for these documentation edits. Private
+models, maps, numerical receipts, reports and scripts remain excluded from Git.
+Remaining work includes qualified motion proposals, a shared measurement contract
+and cluster-specific end-to-end experiments; no scientific adoption is implied.
+
 ## Current scientific and engineering boundary
 
 **Day session, 20 November:** the matched ordinary continuations are complete
@@ -480,11 +517,21 @@ and final scaling distinct; the endpoint missing-work observation does not prove
 stagewise reflection identity. Its two `coordination-w153-stage*` receipts remain
 local, with no new fit, convergence claim or change to metal acceptance criteria.
 
-Only documentation changes in Alder this session. Relevant document/link and
-whitespace checks suffice; existing source tests and the root handoff's last
-integration evidence remain unchanged. All generated science, reports, private
-runners and experimental archives stay local and excluded from Git. No schema
-migration, production scientific-policy change or existing-run cleanup occurs.
+The preceding peer readbacks changed documentation only. The later A04 parent
+transport adapter above is a separate qualified runtime addition; its own focused
+and installed receipts apply. Generated science, reports, private runners and
+experimental archives remain local and excluded from Git. No scientific-policy
+default or existing-run cleanup follows.
+
+**A04 software census, 20 November:** one import-only probe and one exact
+historical frozen-Hg replay complete and stop. The actual fit adds 22 modules
+and 69 external resource reads beyond imports; 390 OS-image paths lack readable
+backing files. Complete environment identity is not established. Preserve
+historical results and share a scoped software profile across trial rows; do not
+copy large binaries/fingerprints per point. The
+[storage contract](metal-campaign-storage.md#software-identity-measured-boundary-and-next-contract)
+owns exact sizes, versions, limits and the poor-fit fixture's scientific scope.
+No production software collector or new scientific endpoint is adopted.
 
 ## Next work, in order
 
@@ -506,14 +553,20 @@ migration, production scientific-policy change or existing-run cleanup occurs.
    application is not the immediate gate. Preserve its read-only compatibility
    map and the completed matched neutral/deprotonated research comparison.
    Reuse the completed [current-state profiles](#a01-current-state-profiles).
-   Run the prepared modest coupled movement against an unshifted continuation
-   in the next bounded window. Review overall geometry, coordination, maps and
-   refinement behavior; fractional deviations are not vetoes. No broad weight,
-   derivative, iteration or donor-state matrix is queued.
-4. Advance A04 from input transport to complete protected parent/audit retention,
-   qualify modern checked ancestry/software identity beyond the successful legacy
-   two-case recovery, then the production regeneration/retirement boundary. Keep important nodes protected;
-   geometry-moving work retains the stronger shared retention discipline.
+   The matched small-movement continuations are complete with no preferred
+   endpoint. The saved-model donor-span decomposition is also complete (see
+   pause checkpoint): both compressed donor separation and off-line Hg matter,
+   while matching C1′ spans do not establish matching base pose. Preserve this
+   read-only result and choose a distinct structural hypothesis before any fit.
+   Broad geometry/maps/refinement guide review; fractional deviations are not
+   vetoes. No repeated control matrix is queued.
+4. A04 explicit parent transport is qualified. The software census shows lazy
+   modules/resources and unreadable OS components; store one scoped profile per
+   identity, not one broad fingerprint/binary copy per trial. Define the supported
+   execution identity and compact child audit/regeneration lifecycle before any
+   retirement. Keep important nodes protected; geometry-moving work retains the
+   stronger shared retention discipline. Reuse the completed legacy/modern cold
+   recovery and exact historical reproductions instead of repeating them.
 5. Return to A02 only with a qualified open XYZ/B endpoint. Keep A05 GUI co-design
    and A07 reconstruction from experimental inputs explicit on the roadmap.
 

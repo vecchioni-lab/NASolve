@@ -367,6 +367,51 @@ campaign reservations and crash-safe publication/retirement. Preserve important
 geometry parents throughout. No original run is yet eligible for deletion, and
 the diagnostic recovery alone does not provide a reusable metal-trial session.
 
+## Software identity: measured boundary and next contract
+
+The current frozen-trial/scan owner already binds the maintained worker, native
+version and five source/kernel hashes. Cedar's existing `_native_runtime` adds a
+selected 21-module/live-binding profile for its ordinary route, while
+`configure_dictionary_engine` pins declared dispatchers/API/prior sources. Reuse
+these owners; none is a general inventory of every dependency a frozen fit loads.
+
+A bounded Phenix **2.2.1-6174** import-only probe hashes **1,471 readable files /
+357,214,624 B** into a **464,146 B** record in **6.37 s**. One exact historical
+Hg request then loads **22 additional modules** and opens **69 external runtime
+files**, including chemistry/symmetry resources and Python bytecode caches.
+Its observed footprint covers **1,551 readable files / 403,961,691 B** in a
+**494,893 B** record. The full old result reproduces exactly, with XYZ/Q/B/f′
+frozen; it remains a poor-fit diagnostic, not a newly accepted metal solution.
+Q=0.60 and B=25 Å² belong to this historical reproducibility fixture, not today's
+open-XYZ/B endpoint or environmental-B recommendation. Its f″=29 e and
+Rwork/Rfree≈0.3971/0.4237 are preserved rather than relabelled as valid chemistry.
+The measured fit call is **6.24 s**; import/fit/census together take **28.67 s**.
+Those are distinct measured stages, not a general per-point performance claim.
+
+Both probes identify **390 loaded macOS image paths without readable backing
+files**. The snapshot is therefore explicitly not complete environment identity.
+Import-only capture also misses lazy/data-dependent resources. `-B` prevents
+bytecode writes but does not itself establish which source/bytecode was read;
+actual resource provenance matters. These observations neither diagnose changed
+software in the existing runs nor invalidate their retained results.
+
+**Design consequence:** store one bounded software/resource profile per declared
+identity, referenced by compact trial rows; never duplicate hundreds of MB of
+binaries or a half-MB fingerprint at every point. Separate declared supported
+runtime pins, observed runtime resources and unqualified environment components.
+Changed/unavailable software must make exact reuse/reproduction unavailable or
+produce a separately identified new attempt, without erasing historical stats.
+Hashes are provenance/checks, not retained executables or execution authority.
+A complete execution/retirement contract still needs explicit scope and negative
+controls; do not replace that work with an unrestricted environment crawl.
+
+Local receipts: `software-footprint-20261120-01/` (import-only dry probe) and
+`software-footprint-20261120-02/` (one complete native frozen-Hg execution), each
+with request, exact command/process, footprint and review. Both owned processes
+are stopped; input bytes and original numerical results are unchanged. No shared
+runtime/default, native worker or artifact schema was changed for this private
+measurement; no unchanged full/focused suite was repeated.
+
 ## Governing decision
 
 Retention follows the operation, not a generic per-attempt archive policy.

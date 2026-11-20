@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record cluster pose and DNA-accommodation experiments
+
+- Specify whole-cluster pose searches and bounded coupled DNA opening/closing,
+  followed by branch-specific XYZ/B and f″/Q reassessment. Separate cluster
+  coordination from low-coordinate bridge linearity; retain nucleobase anchoring
+  as the default hypothesis with evidence-based exceptions.
+- Close the saved-model donor-span review, distinguish local anchor spacing from
+  helix width, and preserve its limitations. These are design/evidence updates;
+  runtime behavior, schemas, restraints and scientific acceptance are unchanged.
+
+### Clarify frozen-trial software provenance
+
+- Record bounded import-only and exact historical-Hg dependency measurements,
+  including lazy resource reads and incomplete OS-library identity. Keep software
+  profiles shared, numerical history intact, and reuse/retirement authority separate.
+- Close stale continuation queue entries and record a saved-model donor-span/Hg
+  placement review. This documentation changes no scientific defaults or schemas.
+
 ### Add bounded metal parent-layout transport
 
 - Add explicit parent-layout packing and temporary materialization through the
