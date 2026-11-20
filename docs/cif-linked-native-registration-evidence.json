@@ -118115,7 +118115,35 @@
         "path": "c442-ordinary-anionic-phosphate/outcome.json",
         "sha256": "4b93ad5b7f5a9db1453a0d875d0f36afb2905dc9a97b2e6736fd2bd36476c4a2",
         "size": 165
+      },
+      {
+        "path": "c443-prepared-1ap-repair/ring-check.json",
+        "sha256": "edc881f4e570a99a7f68449e1fbc28909602dde27e7a39a4bd33f7f092a90fb3",
+        "size": 603
+      },
+      {
+        "path": "c443-prepared-1ap-repair/coverage.json",
+        "sha256": "43cb094725adaab9ad9293d91a66a9e72e07aac78652b926055c761b4f457f32",
+        "size": 1173
+      },
+      {
+        "path": "c443-prepared-1ap-repair/outcome.json",
+        "sha256": "a773ccd6e9a9595f74b40401743a3b43c23c9076c74f9f367a4f2281cb963c33",
+        "size": 63
       }
-    ]
+    ],
+    "ordinary_1AP_diagnostic": {
+      "source_declared_aromatic_edges": 10,
+      "explicitly_covered_trigonal_centres": [
+        "C2",
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "independent_repair": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+      "automatic_bond_discovery": true,
+      "optional_plane_generation": false,
+      "ordinary_publication": false
+    }
   }
 }
