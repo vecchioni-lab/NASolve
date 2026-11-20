@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W173 — Bind registered motion to a selected checkpoint
+
+- Add a read-only checkpoint-aware preview loader using existing checkpoint,
+  preview and endpoint owners. Verify the exact requested parent, inherited
+  model/data/restraints/phases and protected candidate bytes before returning.
+- A context digest permits a fresh dispatch-time read to detect changed
+  selection, declarations or inputs. Require a saved anchored schema-2 registry;
+  preserve existing APIs and current selection. No lock, native chemistry
+  approval, installed retention hook, CLI/default or checkpoint-schema change.
+
 ### W172 — Require intended topology before retained-parent motion
 
 - Record saved positive/unintended-bond controls and a live preparation gate that
