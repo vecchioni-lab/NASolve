@@ -682,6 +682,17 @@ P-to-local-axis radius separate from C1′ spans and donor/cluster measurements.
 Hazel reconfirmed W167 as the current architecture; the later single-Hg objective
 diagnostic is not cluster or width-change qualification.
 
+Alder now supplies the read-only connected-region inventory through
+`nasolve.metal.motion_scope.inspect_movement_scope` at commit
+`9f490b6903917692b55fc63526132e37242ec499`. It consumes complete Cedar native
+captures plus explicit prepared residue/flank contexts and metal labels, and
+records whole-residue/metal membership, fixed flanks and crossing bonded terms.
+Plan to reuse that owner for cluster proposals. Its content fingerprint does
+not authenticate the source; caller binding remains required. Source review
+confirms the narrow identity-symmetry scope, with no movement, closure, B/Q
+admission, packing or diffraction qualification. The inspector is on Alder;
+this reference neither imports it into Willow nor validates a combined build.
+
 **Motion and chemistry.** Rigid cluster placement preserves internal cluster
 geometry during that proposal. Later internal flexibility is a separate declared
 hypothesis, under Alder's supported restraints. Do not apply the near-linear

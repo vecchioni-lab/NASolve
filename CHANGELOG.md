@@ -26,6 +26,8 @@ entries are reconstructed from repository history.
   two-donor base/sugar opening with closed flanking polymer junctions.
 - Identify the existing saved-motion and full-precision diagnostic request
   owners for the next integration; no duplicate helper or new experiment.
+- Record Alder's connected-region inspector as a planned dependency; no
+  movement or combined-runtime qualification is implied.
 - Update current human/machine milestones only; no product code, runtime
   schema/default, calibrated detector, new coefficients or accepted repair.
 

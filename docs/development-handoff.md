@@ -175,6 +175,11 @@ low. W162 remains limited; no repeated C395–C400 matrix or relaxed tolerance.
 W156 matched recovery/map review governs scientific acceptance. W167 cluster
 opening/closing is still planned after supported retention/execution, coordinated
 with Alder A03/A07 and Cedar Q15; reuse Cedar's regional measurement owner.
+Alder `9f490b6903917692b55fc63526132e37242ec499` adds the read-only
+`metal.motion_scope.inspect_movement_scope` inventory for explicit modified
+residues/metals and their fixed flanks/crossing terms. Reuse its complete-capture
+contract for later cluster proposals; source review is not merged-runtime or
+movement qualification. The pinned dependency is in the cluster intent JSON.
 Noisy density calibration, reciprocal targets, B09/B10 and ordinary lineage remain
 separate gates. The user's 2D phosphate-density and ChimeraX style preferences
 remain in the collaboration guide.

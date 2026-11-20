@@ -1191,7 +1191,23 @@
         ]
       },
       "available_motion_scope": "Canonical whole-residue/pair rigid preview preserves internal shape before rounding, but shared pair motion cannot open the pair and differently transformed residues can strain flanking links. TaperedMotion supplies bounded arithmetic, not exact closure; W168/W169 are diagnostic/preservation evidence only.",
-      "two_donor_opening_with_flanking_polymer_closure_qualified": false
+      "two_donor_opening_with_flanking_polymer_closure_qualified": false,
+      "connected_region_inventory_owner": {
+        "branch": "Alder",
+        "commit": "9f490b6903917692b55fc63526132e37242ec499",
+        "module": "nasolve.metal.motion_scope",
+        "function": "inspect_movement_scope",
+        "document": "docs/metal-restraint-builder.md#inspecting-the-connected-movement-region",
+        "inputs": "Complete source-bound Cedar native capture, explicit prepared site/component/incoming/outgoing contexts and exact metal labels",
+        "scope": "Read-only whole-residue/metal membership, fixed flanks, junction measurements and crossing supported bonded terms; identity-symmetry movement region only",
+        "caller_authenticates_sources": true,
+        "fingerprint_is_authentication": false,
+        "willow_review": "Source and documented scope reviewed; peer test results not independently rerun",
+        "merged_into_willow": false,
+        "combined_runtime_qualified": false,
+        "movement_or_closure_qualified": false,
+        "packing_or_diffraction_qualified": false
+      }
     }
   },
   "planned_diffraction_benchmark": {
