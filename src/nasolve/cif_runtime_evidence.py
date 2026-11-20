@@ -120,15 +120,17 @@ def _archive_bytes(index, objects):
 
 
 @contextmanager
-def expanded_runtime_evidence(archive, digest):
+def expanded_runtime_evidence(archive, digest, *, subtree=None):
     """Yield one bounded temporary evidence root; no original paths are consulted.
 
     Each view retains its logical expansion bound. Nested views additionally share
     one physical-byte allowance and reuse identical temporary objects. A platform
-    without hard links must charge each real copy to that same allowance.
+    without hard links must charge each real copy to that same allowance. An
+    optional top-level directory limits materialization after every object and
+    the complete original index have been authenticated.
     """
     _need(not _REPAIR_STAGE_ACTIVE.get() and _ACTIVE_DEPTH.get()<MAX_DEPTH, 'Nested evidence exceeds supported view depth')
-    with _expanded_evidence(archive, digest, runtime_layer=True) as view:
+    with _expanded_evidence(archive, digest, runtime_layer=True, subtree=subtree) as view:
         yield view
 
 
@@ -172,12 +174,20 @@ def _working_evidence(archive, digest, *, decoder):
 
 
 @contextmanager
-def _expanded_evidence(archive, digest, *, runtime_layer, decoder=_decode):
+def _expanded_evidence(archive, digest, *, runtime_layer, decoder=_decode, subtree=None):
     """One decoder/expander and accounting path for both explicitly owned scopes."""
     archive=Path(archive).absolute()
     _need(archive.is_file() and not any(p.is_symlink() for p in (archive,*archive.parents))
           and archive.stat().st_size<=MAX_ARCHIVE_BYTES, 'Unsafe or oversized evidence archive')
     data=_read(archive);index,objects,total=decoder(data,digest)
+    if subtree is not None:
+        _need(isinstance(subtree, str) and _strict(subtree) and '/' not in subtree
+              and subtree in index['directories'], 'Missing or unsafe runtime evidence subtree')
+        prefix = subtree + '/'
+        files = {name:ref for name,ref in index['files'].items() if name.startswith(prefix)}
+        directories = [name for name in index['directories'] if name == subtree or name.startswith(prefix)]
+        index = dict(index, files=files, directories=directories)
+        objects = {ref['sha256']:objects[ref['sha256']] for ref in files.values()}
     used=_ACTIVE_BYTES.get();written=dict(_ACTIVE_OBJECTS.get() or {})
     _need(used+sum(len(data) for h,data in objects.items() if h not in written)<=MAX_ACTIVE_BYTES,
           'Nested evidence exceeds temporary expansion allowance')

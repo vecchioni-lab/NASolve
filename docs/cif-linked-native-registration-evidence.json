@@ -118902,5 +118902,212 @@
     "compatibility": "Unchanged flat schema 1 and historical readers. A fresh successfully sealed mixed attempt may use the compact working projection. Failed or uncertain native work retains its original working files.",
     "private_evidence": "branch-artifacts/cedar/c459-mixed-working-archive",
     "scientific_change": false
+  },
+  "mixed_readyset_roundtrip_and_storage_2026_11_20": {
+    "owner": "Rowan",
+    "checkpoints": [
+      "C458",
+      "C460"
+    ],
+    "source_parent": "a1ce9881",
+    "fresh_run_source": "1e44712d",
+    "native": {
+      "phenix": "2.2.1-6174",
+      "coot": "1.3.3",
+      "narestraints": "a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691",
+      "execution": "Fresh ordinary construction, seven native repairs, checked ReadySet and fresh before/after native interpretations.",
+      "chemistry": {
+        "stage": "Twelve ordinary mutations and actual Phenix ReadySet; held-out ATL remains host DT.",
+        "version": "2.2.1",
+        "parameters": [
+          [
+            "5PC",
+            "CAPTURED_PLANE_ATTRIBUTION_PASS"
+          ],
+          [
+            "DF",
+            "CAPTURED_PLANE_ATTRIBUTION_PASS"
+          ],
+          [
+            "IMC",
+            "NO_SUPPORTED_PLANE_COMPLETION"
+          ],
+          [
+            "PDU",
+            "CAPTURED_PLANE_ATTRIBUTION_PASS"
+          ],
+          [
+            "S6G",
+            "NO_SUPPORTED_PLANE_COMPLETION"
+          ],
+          [
+            "5PC",
+            "CAPTURED_BOND_TARGET_ATTRIBUTION_PASS"
+          ],
+          [
+            "PDU",
+            "CAPTURED_BOND_TARGET_ATTRIBUTION_PASS"
+          ]
+        ],
+        "captures": [
+          {
+            "phase": "baseline",
+            "receipt": "cbedb7040d340fa44d4915f5d37caca69ec10a725736179d008a6e051d6a50fc",
+            "model": "8e6cde92b6e6fa7e46123ba3defaefd6e7f41661cbabe8ae64efea33d32660d3",
+            "atoms": 867,
+            "sites": 42,
+            "backbone_links": 38,
+            "supplied_cross_site_distances": 53,
+            "extra_cross_site": 0,
+            "symmetry": 0,
+            "exact_frame": {
+              "angle": 90,
+              "bond": 53,
+              "parallelity": 58,
+              "planarity": 10
+            },
+            "local_bonds": {
+              "PDU": {
+                "site": "D:5",
+                "atoms": [
+                  "C5B",
+                  "C5M"
+                ],
+                "target_A": 1.47,
+                "sigma_A": 0.02,
+                "model_distance_A": 1.4567865320629534
+              },
+              "5PC": {
+                "site": "A:4",
+                "atoms": [
+                  "C8",
+                  "C9"
+                ],
+                "target_A": 1.47,
+                "sigma_A": 0.027,
+                "model_distance_A": 1.455016494751864
+              },
+              "DF": {
+                "site": "A:19",
+                "atoms": [
+                  "C2",
+                  "S1"
+                ],
+                "target_A": 1.638,
+                "sigma_A": 0.026,
+                "model_distance_A": 1.8120833314171831
+              }
+            },
+            "locked_site": "DT"
+          },
+          {
+            "phase": "endpoint",
+            "receipt": "7167205f99ed682dfe4ccc356035d422c6729e50e5dafd65e47db7e4cb158b2e",
+            "model": "a3f4f183d7e0c8d45aa233d91da005904772c11ea632c73a1029928f0d638ffe",
+            "atoms": 867,
+            "sites": 42,
+            "backbone_links": 38,
+            "supplied_cross_site_distances": 53,
+            "extra_cross_site": 0,
+            "symmetry": 0,
+            "exact_frame": {
+              "angle": 90,
+              "bond": 53,
+              "parallelity": 58,
+              "planarity": 10
+            },
+            "local_bonds": {
+              "PDU": {
+                "site": "D:5",
+                "atoms": [
+                  "C5B",
+                  "C5M"
+                ],
+                "target_A": 1.47,
+                "sigma_A": 0.02,
+                "model_distance_A": 1.4567865320629534
+              },
+              "5PC": {
+                "site": "A:4",
+                "atoms": [
+                  "C8",
+                  "C9"
+                ],
+                "target_A": 1.47,
+                "sigma_A": 0.027,
+                "model_distance_A": 1.455016494751864
+              },
+              "DF": {
+                "site": "A:19",
+                "atoms": [
+                  "C2",
+                  "S1"
+                ],
+                "target_A": 1.638,
+                "sigma_A": 0.026,
+                "model_distance_A": 1.8120833314171831
+              }
+            },
+            "locked_site": "DT"
+          }
+        ],
+        "raw_readyset_atom_differences": {
+          "XYZ": 0,
+          "occupancy": 0,
+          "B_iso": 0,
+          "element": 0
+        },
+        "literal_policy": "cif-source-literal-na-inputs-v1",
+        "decision": "readyset_checked_model",
+        "original_outer_outcome": "RAISED",
+        "mixed_diffraction": false,
+        "extra_native_calls": 0
+      },
+      "original_sealed": "RAISED",
+      "scientific_diffraction": false
+    },
+    "replay": {
+      "physical_limit": 134217728,
+      "former_concurrent_bytes": 138608313,
+      "actual_peak_bytes": 128968768,
+      "compressed_bytes": 18844518,
+      "relocated": {
+        "selection": "readyset_checked_model",
+        "manifest": "ccc6f1de37aeaa563fea30fafac7f4e59ddfdeebf48139b41171232e41e2951c",
+        "model": "a3f4f183d7e0c8d45aa233d91da005904772c11ea632c73a1029928f0d638ffe",
+        "dictionaries": 13,
+        "parameter_files": 16,
+        "all_public_paths_relocated": true,
+        "earlier_native_paths": "DENIED",
+        "native_calls": 0,
+        "peak": 128968768,
+        "limit": 134217728,
+        "outer_original": "RAISED",
+        "checkpoint_registered": false
+      },
+      "format_change": false
+    },
+    "regression": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider --tb=short tests/test_cif_runtime_evidence.py tests/test_cif_runtime_readyset.py tests/test_cif_runtime_continuation.py",
+      "initial_passed": 140,
+      "initial_blocked_process_controls": 2,
+      "initial_seconds": 299.81,
+      "process_controls": [
+        "test_known_stopped_optional_failure_preserves_complete_repaired_parent[readyset-timeout]",
+        "test_unknown_cleanup_or_interruption_never_becomes_a_published_fallback[unknown]"
+      ],
+      "process_controls_passed_with_system_process_group_access": 2,
+      "process_seconds": 8.1,
+      "added_check_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_cif_runtime_evidence.py::test_compact_readyset_compares_large_parent_and_endpoint_in_turn tests/test_cif_runtime_evidence.py::test_subtree_reader_authenticates_files_outside_the_selected_directory",
+      "rechecked": 3,
+      "tried_both_selections_before_fix": "Both exceeded the shared disk allowance",
+      "distinct_focused": 143,
+      "full_suite": false
+    },
+    "next": "Fresh ordinary publication. Locked-sugar construction and mixed diffraction remain open.",
+    "private_evidence": [
+      "branch-artifacts/cedar/c458-ordinary-owner",
+      "branch-artifacts/cedar/c460-ordinary-readyset-read"
+    ]
   }
 }

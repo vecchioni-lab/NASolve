@@ -31,11 +31,15 @@ def _parent(manifest):
     return resolve_runtime_bundle(path)
 
 
-@contextmanager
 def _selected_view(manifest):
-    parent = _parent(manifest); root = parent['manifest_path'].parent
+    return _selected_parent_view(_parent(manifest))
+
+
+@contextmanager
+def _selected_parent_view(parent):
+    root = parent['manifest_path'].parent
     frozen = _tree(root)
-    with component_runtime_evidence(root,parent['manifest']) as evidence:
+    with component_runtime_evidence(root, parent['manifest'], subtree='bundle') as evidence:
         prepared = read_dictionary_bundle(evidence/'evidence/bundle')
         original = prepared['after_dictionaries']; selected = parent['dictionaries']
         _need(len(original) == len(selected)
@@ -144,6 +148,28 @@ def _inspect_selected_readyset(parent, view, baseline_receipt, readyset_director
 
 def selected_runtime_readyset_publication(root, controls):
     """Recompute one public selection using fixed source-evidence anchors."""
+    return _readyset_publication(root, controls, _selected_view)
+
+
+@contextmanager
+def _compact_readyset_selection(root, value):
+    """Qualify the parent first, then compare the exact same parent to ReadySet."""
+    from .cif_component_runtime import _checked_resource_paths
+
+    with component_runtime_evidence(root, value, subtree='runtime') as view:
+        parent_manifest = _parent(view/'evidence/runtime')['manifest']
+
+    def same_parent(runtime):
+        # Verify the entire parent manifest and every public resource against
+        # the preceding full scientific replay, including its evidence archive.
+        parent = _checked_resource_paths(runtime/MANIFEST_FILE, parent_manifest)
+        return _selected_parent_view(parent)
+
+    with component_runtime_evidence(root, value) as view:
+        yield _readyset_publication(view, value['source_selection'], same_parent)
+
+
+def _readyset_publication(root, controls, parent_view):
     _need(isinstance(controls,dict) and set(controls) ==
           {'runtime','baseline_receipt','readyset_directory','endpoint_receipt','atom_order_directory'},
           'Incomplete selected-runtime ReadySet controls')
@@ -163,7 +189,7 @@ def selected_runtime_readyset_publication(root, controls):
     runtime = args.pop('runtime')
     # Qualify once for this read; the enclosing view rechecks every parent byte
     # after comparison and final input extraction. Nothing is cached across reads.
-    with _selected_view(runtime) as (parent, view):
+    with parent_view(runtime) as (parent, view):
         review = _inspect_selected_readyset(parent, view, **args)
         if isinstance(review['endpoint_error'], str):
             review['endpoint_error'] = review['endpoint_error'].replace(str(root.absolute())+'/', 'runtime_bundle/')

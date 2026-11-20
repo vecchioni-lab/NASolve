@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-20, C457 mixed-scaffold bond inventory and interruption records — Rowan**.
+Updated **2026-11-20, C458–C460 ordinary mixed ReadySet and relocated selection — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -44,6 +44,21 @@ local plane included N2 and N6. Of the two, the shared plane with C:11
 included N2 only. At C:9 the S6G local plane again omitted S6, and the shared
 plane with A:7 included it. These are interpreted restraints before diffraction.
 
+**C458–C460.** An ordinary fresh Coot construction and Phenix 2.2.1-6174
+ReadySet run completed the twelve substitutions with DT still at the separate
+ATL site. The repaired parent and ReadySet output have the same positions,
+occupancies and isotropic B values for all 867 atoms. Phenix retained 38
+backbone links, 53 supplied inter-residue distances and all 211 frame terms.
+PDU and 5PC have terminal bond targets of 1.470 Å. DF C=S starts at 1.812 Å
+against its 1.638 Å target. Mixed diffraction refinement is still open.
+
+The original attempt sealed its publication error after the native jobs
+stopped. C460 reopened those inputs in separate bounded stages and independently
+selected the checked ReadySet model. After relocation, all 13 dictionary and
+16 parameter paths resolved with the old run inaccessible. This separate
+diagnostic has no registered checkpoint. The next ordinary invocation must
+reach publication on its own fresh lineage before adding the locked sugar.
+
 **C455.** Cedar selected all seven consecutive repairs together for the first
 ordinary twelve-component mixture. Phenix 2.2.1-6174 passed the sampled restraint
 gradient checks on its final repaired dictionaries at the unchanged coordinates.
@@ -70,9 +85,8 @@ also passed on a separately completed test request.
 
 A complete bond count on both saved native models found 38 backbone and 53
 supplied inter-residue soft bonds, with no extra links. All 211 frame terms
-were realized. These are fixed-coordinate observations. The next test is a
-fresh ordinary twelve-component preparation through ReadySet, followed by the
-separate ATL junction and mixed diffraction checks. The existing register entry
+were realized. These are fixed-coordinate observations. The C458–C460 paragraph above records
+the subsequent ReadySet experiment and its scope. The existing register entry
 `qualified_rings_and_mixed_repairs_2026_11_20` retains exact evidence, including
 the independently qualified original with its 1.364 Å 5PC and 1.607 Å PDU targets.
 

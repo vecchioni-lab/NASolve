@@ -241,7 +241,7 @@ def _storage(root):
 
 
 @contextmanager
-def component_runtime_evidence(root, value):
+def component_runtime_evidence(root, value, *, subtree=None):
     """Keep temporary scientific paths inside this read scope; public paths stay put."""
     root=Path(root)
     if 'evidence_storage' not in value:
@@ -252,7 +252,7 @@ def component_runtime_evidence(root, value):
     _need(type(value.get('schema_version')) is int and value['schema_version']==2
           and _json_bytes(value['evidence_storage'])==_json_bytes(_storage(root)),
           'Unsupported or changed compact runtime storage')
-    with expanded_runtime_evidence(root/ARCHIVE,value['evidence_storage']['archive']['sha256']) as temporary:
+    with expanded_runtime_evidence(root/ARCHIVE, value['evidence_storage']['archive']['sha256'], subtree=subtree) as temporary:
         yield temporary
 
 
@@ -399,21 +399,36 @@ def verify_component_runtime_resources(path, value):
     return [_resolve_reference(root,r) for r in rows]
 
 
+def _checked_resource_paths(path, value):
+    paths = verify_component_runtime_resources(path, value)
+    first_phil = 1 + len(value['resources']['dictionaries'])
+    return dict(model=paths[0], dictionaries=paths[1:first_phil], phils=paths[first_phil:],
+                manifest=value, manifest_path=path)
+
+
+@contextmanager
+def _runtime_selection(root, value):
+    if value['policy_id'] == CONTINUATION_POLICY_ID and 'evidence_storage' in value:
+        from .cif_runtime_readyset import _compact_readyset_selection
+        with _compact_readyset_selection(root, value) as selection:
+            yield selection
+    else:
+        with component_runtime_evidence(root, value) as evidence:
+            yield _selection(evidence, value['source_selection'], policy_id=value['policy_id'])
+
+
 def resolve_component_runtime_bundle(path, value=None):
     """Replay selected source/native evidence before exposing any runtime paths."""
     path=Path(path);value=_load_json(path) if value is None else value;root=path.parent
     try:
         verify_component_runtime_resources(path,value)
-        with component_runtime_evidence(root,value) as evidence:
-            review,decision,inputs,unavailable=_selection(evidence,value['source_selection'],policy_id=value['policy_id'])
+        with _runtime_selection(root, value) as selection:
+            review,decision,inputs,unavailable=selection
             resources=_resources(root,inputs)
         expected=_manifest(root,value['source_selection'],review,decision,resources,unavailable,policy_id=value['policy_id'],
                            compact_evidence='evidence_storage' in value)
         _need(_json_bytes(value)==_json_bytes(expected), 'Runtime selection or evidence does not replay')
-        verify_component_runtime_resources(path,value)
-        return dict(model=_resolve_reference(root,resources['model']),
-            dictionaries=[_resolve_reference(root,r) for r in resources['dictionaries']],
-            phils=[_resolve_reference(root,r) for r in resources['phils']],manifest=value,manifest_path=path)
+        return _checked_resource_paths(path, value)
     except (KeyError,TypeError,IndexError,OSError) as exc:
         raise ValueError('Incomplete or changed component runtime bundle') from exc
 

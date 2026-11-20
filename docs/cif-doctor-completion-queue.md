@@ -43,8 +43,13 @@ interruption and a fresh retry. In both saved Phenix models all 38 backbone
 bonds and 53 declared inter-residue soft bonds accounted for every cross-site
 bond. C459 reopened all 3,599 original working files from a 10.5 MB archive
 after relocation, using 39.9 MB of temporary working files. The earlier repair
-failure and unfinished attempt remain explicit. Check ordinary mixed ReadySet
-on a new lineage and its eligibility for normal retirement.
+failure and unfinished attempt remain explicit. The fresh C458 twelve-component
+run completed ReadySet and preserved all 867 atom positions, occupancies and B
+values. Its native checks retained the 38 backbone links, 53 supplied distances
+and 211 frame terms. While publishing, the attempt sealed a storage error.
+C460 independently reopened the selected ReadySet endpoint under the original
+128 MiB limit after relocation. Next complete the ordinary parent-to-publication
+route on a fresh attempt and check its working-file retention.
 The locked ATL junction and mixed diffraction follow.
 C437 also shows why Q06 retains a separate displacement check. Five cycles with
 the measured host scaffold B factors and new 5PC base atoms at B=20 brought
@@ -1395,8 +1400,11 @@ model or establishes pair restraints.
    dictionaries after an independent native derivative check, and reopened the
    compact publication after moving it. C457 qualified the new outer owner
    against the original partial files, known-stopped recovery and fresh completion.
-   Run one fresh twelve-component preparation through ReadySet. Check the
-   selected model, exact cross-site bonds, storage and subsequent ATL junction. ATL still needs its own source-bound reaction in that ordinary
+   C458 completed the actual twelve-component ReadySet round trip. C460
+   separately reproduced the selected endpoint on relocation; its original
+   attempt has a verified failed publication. Complete a fresh ordinary
+   publication, then check the ATL junction and working-file retention.
+   ATL still needs its own source-bound reaction in that ordinary
    construction. Then run one new mixed diffraction lineage.
    Verify source identity, native pair/stack membership, unchanged flags and
    achieved local geometry at PDU, 5PC, DF and ATL. Exercise cache reuse and

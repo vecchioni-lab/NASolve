@@ -8,6 +8,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Reopen large mixtures after ReadySet
+
+- Cedar verifies the repaired parent and the ReadySet result in turn. It checks
+  the complete parent again when comparing model and restraints. Mixtures whose
+  two evidence sets exceed the temporary limit together can now reopen with the
+  existing archive format and the same disk limit.
+
 ### Reopen large mixed-residue preparations within the working limit
 
 - A completed multi-component preparation can now archive repeated native
