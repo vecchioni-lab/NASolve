@@ -2112,6 +2112,15 @@ and persisted formats stay unchanged.
 See the [metal storage contract](metal-campaign-storage.md#completed-batch-publication-and-selection-receipt)
 for schema, limits, interruption behavior and qualification scope.
 
+The separate `metal.child_process` route composes protected-parent transport and
+shared native process ownership for one explicit fresh invocation. Prepared bytes,
+worker and parent manifest are pinned; outcomes are durably recorded and fresh
+retry requires verified stopped evidence. Its normal CLI never replays stored
+argv, changes historical trial formats or grants scientific/retirement authority.
+Transport identity is not parent/input scientific admission; the ordinary frozen
+producer, audit and compact result lifecycle still need deliberate integration.
+See [child process ownership](metal-campaign-storage.md#fresh-frozen-child-process-ownership).
+
 The additive `metal.parent_archive` adapter transports an explicit portable parent
 layout through unchanged checksum-indexed archive owners. Bounded parts preserve
 global limits; a temporary protected copy releases the transport scope before

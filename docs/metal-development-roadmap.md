@@ -55,9 +55,12 @@ execution session or retirement contract.
 The subsequent private audit-boundary study recovers exact freeze checks from
 selected native evidence, but saves only 16.5% versus compressing complete trial
 files. Keep full compressed proof nodes; use explicit historical-only compact
-children for ordinary increments. Next connect the shared owned-process lifecycle
-and durable child publication before retiring any new disposable payload;
-scientific parent/runtime qualification remains required.
+children for ordinary increments. The fresh process-only prepare/run/inspect route now exercises shared parent
+transport and native-process ownership with durable outcomes and safe explicit
+retry. Qualification is 112 focused tests plus the late-parent-change control,
+and relocated installed simulated execution. Next connect scientific parent/input
+admission, freeze auditing and compact scientific publication; native qualification,
+reservations and retirement remain open.
 
 **Scientific milestone: A01 — ligand geometry and open XYZ/B foundation.**
 **Parallel engineering step: A04 — compact records and protected parent transport.**

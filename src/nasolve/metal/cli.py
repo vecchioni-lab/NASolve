@@ -16,6 +16,28 @@ from .scattering import inspect_observations, reference_scattering
 def configure(subparsers):
     metal = subparsers.add_parser('metal', help='inspect generated models and preview explicit metal restraints')
     actions = metal.add_subparsers(dest='metal_action', required=True)
+    child_prepare = actions.add_parser('prepare-fdp-child-process', help='pin prepared frozen inputs for a fresh process-only child')
+    child_prepare.add_argument('prepared', type=Path)
+    child_prepare.add_argument('--parent-manifest-sha256', required=True)
+    child_prepare.add_argument('--output', type=Path, required=True)
+    child_prepare.add_argument('--json', action='store_true')
+    child_run = actions.add_parser('run-fdp-child-process', help='run one owned frozen worker; no scientific acceptance or cleanup')
+    child_run.add_argument('prepared', type=Path)
+    child_run.add_argument('--request', type=Path, required=True)
+    child_run.add_argument('--request-id', required=True)
+    child_run.add_argument('--parent-archive', type=Path, required=True)
+    child_run.add_argument('--attempt', type=Path, required=True)
+    child_run.add_argument('--phenix-root', type=Path)
+    child_run.add_argument('--timeout', type=float, default=240)
+    child_run.add_argument('--retry-from', type=Path)
+    child_run.add_argument('--max-parent-disk-bytes', type=int, default=256*1024*1024)
+    child_run.add_argument('--json', action='store_true')
+    child_run.set_defaults(output=None)
+    child_inspect = actions.add_parser('inspect-fdp-child-process', help='inspect a child outcome without signalling or retrying')
+    child_inspect.add_argument('attempt', type=Path)
+    child_inspect.add_argument('--request-id', required=True)
+    child_inspect.add_argument('--json', action='store_true')
+    child_inspect.set_defaults(output=None)
     legacy = actions.add_parser('import-restraints', help='inspect legacy PHIL edits or rebind them to a reusable recipe')
     legacy.add_argument('source', type=Path, help='explicit local PHIL edits file')
     legacy.add_argument('--mapping', type=Path, help='JSON mapping of every selector ID to a logical node')
@@ -170,6 +192,8 @@ def execute(args):
         outputs = [p for p in (args.output, getattr(args, 'export', None)) if p is not None]
         if len({p.resolve() for p in outputs}) != len(outputs) or any(p.exists() or p.is_symlink() for p in outputs):
             raise RecipeError('Outputs must be distinct new files')
+        if args.metal_action in {'prepare-fdp-child-process','run-fdp-child-process','inspect-fdp-child-process'}:
+            return _child_process(args)
         if args.metal_action == 'publish-fdp-inputs':
             return _publish_fdp(args)
         if args.metal_action == 'inspect-recorded-fdp':
@@ -767,3 +791,31 @@ def _fdp_records(args):
         print(f"Projection: {len(serialized):,} bytes; source trial payload: {report['source_trial_bytes']:,} bytes (parents excluded)")
         print('Full original source replay; no retirement or reuse authority. Original parents and native evidence remain required.')
     return 0
+
+
+def _child_process(args):
+    from .child_process import make_request, run_child, inspect_child, MAX_REQUEST_BYTES
+    from .compact import read_projection
+    if args.metal_action == 'prepare-fdp-child-process':
+        report = make_request(args.prepared,parent_manifest_sha256=args.parent_manifest_sha256)
+        if not args.output.parent.is_dir():raise RecipeError('Output parent directory must exist')
+        if args.output.resolve().is_relative_to(args.prepared.expanduser().resolve()):
+            raise RecipeError('Request output must be outside prepared inputs')
+        with args.output.open('x') as handle:json.dump(report,handle,indent=2);handle.write('\n')
+    elif args.metal_action == 'inspect-fdp-child-process':
+        report = inspect_child(args.attempt,request_id=args.request_id)
+    else:
+        request = read_projection(args.request,max_projection_bytes=MAX_REQUEST_BYTES)
+        native = discover_phenix(load_config(),explicit=args.phenix_root)
+        report = run_child(args.prepared,args.parent_archive,request,request_id=args.request_id,
+            attempt_directory=args.attempt,native=native,timeout_seconds=args.timeout,
+            retry_from=args.retry_from,max_parent_disk_bytes=args.max_parent_disk_bytes)
+    if args.json:print(json.dumps(report,indent=2,allow_nan=False))
+    elif args.metal_action == 'prepare-fdp-child-process':
+        print('Prepared child request: '+report['request_id'])
+    else:
+        print('Child process: '+report['status'])
+        print('Stopped verified: '+str(report['stopped_verified']))
+        print('Fresh explicit retry eligible: '+str(report['fresh_retry_eligible']))
+        print('Process evidence only; no scientific acceptance or retirement authority.')
+    return 0 if args.metal_action=='prepare-fdp-child-process' or (report['status']=='COMPLETED' and report['stopped_verified']) else 2

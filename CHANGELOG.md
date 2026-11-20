@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Own one fresh frozen-child process through the shared lifecycle
+
+- Add normal prepare/run/inspect commands with exact prepared-input, maintained
+  worker and protected-parent archive pins. Reuse shared process/transport owners;
+  retain durable completion, timeout, failure and uncertain-stop outcomes.
+- Keep partial evidence, refuse live/uncertain/changed retries, and create an
+  explicitly requested retry as a new linked attempt. Inspection never signals
+  a saved PID or executes recorded argv.
+- Introduce v1 child-process request/outcome contracts and a metal process policy;
+  preserve legacy trial formats and scientific defaults. This is process-only
+  qualification, with 112 focused tests plus a parent-change control and installed
+  simulated execution; no native science run, pruning or full suite.
+
 ### Measure compact-trial audit scope against a compressed baseline
 
 - Record cold replay of three historical FT freeze audits and explicit altered

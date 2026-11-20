@@ -113,6 +113,35 @@ unchanged; no bond, target, model motion, schema or migration is introduced.
 A01 remains partial; whole-junction native enforcement and ordinary parent intake
 still need qualification before any geometry repair or A02 f″ work.
 
+### Fresh owned child invocation: process evidence only
+
+A04 now has a normal prepare/run/inspect caller for one fresh frozen-child process,
+with externally pinned parent transport and prepared inputs, a maintained worker
+snapshot, shared descendant ownership and durable completed/failed/timeout/uncertain
+outcomes. Fresh explicit retries link to a verified stopped failed attempt and
+never overwrite it. Live, uncertain, changed or unsealed outcomes cannot retry.
+The legacy scientific trial producer/format is unchanged.
+
+**112 focused tests pass in 28.18 s**, plus one late-parent-change control in
+1.34 s on unchanged runtime. Command: `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src
+/private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider`
+on `tests/test_metal_child_process.py`, `tests/test_cif_repair_process.py`,
+`tests/test_metal_parent_archive.py`, `tests/test_metal_recorded_fdp_cli.py` and
+`tests/test_metal_publication_batch.py`; the extra node is
+`test_metal_child_process.py::test_parent_change_after_worker_exit_prevents_successful_outcome`.
+The installed normal caller passes **366 checks**, including 350 package members,
+actual simulated-process timeout/descendant shutdown and relocated inspection.
+The initial timeout return-code mismatch was fixed and remains in the receipt.
+No real Phenix/Coot job, full suite, science acceptance or pruning occurs.
+
+Local `child-process-20261120-01/{validation.json,installed-review.json}` records
+exact sources/commands and the four simulated outcomes. New request/process/outcome
+contracts are v1; no existing artifact migration. Generated fixtures, wheels and
+reports remain private. The [storage contract](metal-campaign-storage.md#fresh-frozen-child-process-ownership)
+owns limits and remaining prerequisites: transport verification is not scientific
+parent/input admission; freeze auditing, compact scientific publication, quotas
+and retirement still need integration. **A04 partial; A01 partial; A02 gated.**
+
 ### Completed-batch provenance handoff
 
 `metal publish-fdp-inputs` now publishes a bounded explicit completed batch and a

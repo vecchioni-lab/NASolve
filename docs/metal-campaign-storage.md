@@ -759,6 +759,80 @@ input invalidates automatic reuse. A new result becomes a separate comparison
 if its scientific basis differs. Merely having a recipe is not a recoverability
 proof, and a typical short f″ runtime is not a universal timing guarantee.
 
+### Fresh frozen-child process ownership
+
+`metal.child_process` now exposes an opt-in fresh **process-only** route through
+normal `prepare-fdp-child-process`, `run-fdp-child-process` and
+`inspect-fdp-child-process` commands. It pins explicit prepared input bytes, the
+maintained worker and an independently supplied protected-parent archive manifest.
+The existing `materialized_parent_inputs` owner verifies parent transport before
+and after the invocation. The shared `_OwnedProcesses`/`run_owned_command`
+lifecycle owns the single `native-fdp` process and its descendants. Saved argv
+remain provenance; no stored command or PID is replayed or signalled by inspection.
+
+Prepare a request outside the prepared directory, then explicitly invoke it:
+
+```text
+nasolve metal prepare-fdp-child-process PREPARED --parent-manifest-sha256 PARENT_ID --output REQUEST --json
+nasolve metal run-fdp-child-process PREPARED --request REQUEST --request-id REQUEST_ID --parent-archive PARENT_ARCHIVE --attempt NEW_ATTEMPT --phenix-root PHENIX_ROOT --timeout 240 --json
+nasolve metal inspect-fdp-child-process ATTEMPT --request-id REQUEST_ID --json
+```
+
+The producer reserves a fresh attempt, copies exact inputs/worker, and writes
+shared process records plus a durable outcome. `COMPLETED` means process exit
+and input/parent transport checks, **not** an accepted refinement. Outcomes also
+include `FAILED`, `TIMED_OUT`, `INTERRUPTED`, `STOP_UNCERTAIN` and
+`REVIEW_REQUIRED`. Timeout records preserve the shared owner's actual termination
+code. Partial output is retained. A changed parent after worker exit prevents a
+successful outcome. A publication gap remains visible through process inspection.
+
+An optional `--retry-from OLD_ATTEMPT` requires a matching request/parent/worker
+and native executable, a sealed verified stop, and a failed/timed-out/interrupted
+outcome. It creates a separate fresh attempt linked to the old outcome digest;
+the old attempt remains immutable. Completed, live, uncertain, changed-input or
+unsealed outcomes are not eligible. Inspection never retries automatically.
+This is not an aggregate campaign reservation or a lock against separately
+requested fresh parallel invocations.
+
+New persisted contracts are `metal-fdp-child-process-request` v1 (`request_id`),
+the shared process-record schema under policy `metal-fdp-child-process-v1`, and
+`metal-fdp-child-process-outcome` v1 (durable `record_sha256`). Input names are
+explicit and portable within the prepared/child mounts; parent selection uses
+its independent manifest digest and explicit archive mount. No basename search,
+host-only operational reference, old trial migration or existing-format change
+is introduced. Requests allow 3–128 input files, at most 64 MiB total, a 1 MiB
+request record and a positive deadline up to 600 s. Parent transport has its
+separate declared disk allowance/reserve; native output quota and campaign
+reservations are not implemented by this seam.
+
+Qualification: **112 focused tests pass in 28.18 s**, plus one additional
+late-parent-change test in 1.34 s on unchanged runtime. The first nine-pass/
+one-failure run exposed a missing timeout termination code and is retained in
+the validation record; it was fixed. Tests exercise a live child, blocked retry,
+actual timeout/descendant shutdown, uncertain-stop refusal, fresh retry, changed
+pins/inputs, interrupted outcome publication and relocated readback. A fresh
+relocated installation preserves all 350 package members and passes 366 checks
+including four simulated-worker invocations through the normal CLI. Build and
+original install paths are removed; original product/science reads are denied.
+No Phenix/Coot science job or full suite runs. The worker targets Phenix
+2.2.1-6174, but these controls use tiny simulated executable/discovery fixtures,
+not native crystallographic qualification.
+
+Local evidence: `child-process-20261120-01/{validation.json,installed-review.json,
+source-manifest.json,package-manifest.json}` under the private Alder artifact
+anchor. The exact focused commands and installed runner are recorded there.
+Only `metal/child_process.py`, the CLI and its focused test module change runtime;
+shared process/archive owners are unchanged.
+
+**Remaining prerequisite:** the route validates parent **transport identity**,
+not scientific parent admission or derivation of the prepared model from that
+parent. It does not replay `make_plan`/`audit_result`, publish a compact scientific
+result, enforce convergence, grant reuse, or prune outputs. The legacy `fdp`
+producer and historical numbered-trial verifier are unchanged. Before using this
+seam as the compact f″ executor, connect ordinary parent/input admission, freeze
+and reflection audit, durable compact result publication/readback, protections
+and reservations. Native acceptance still requires the A01/A02 scientific gates.
+
 ### Measured audit-retention boundary on historical FT trials
 
 The three already-published FT_Hg attempts now have a private cold component-audit
@@ -806,9 +880,10 @@ There are 35 transport/source checks and 31 cold checks plus the 19 refusals;
 no new Phenix/Coot execution or full suite. Saved native evidence is from
 Phenix 2.2.1-6174. The installed wheel is unchanged from the qualified batch reader.
 
-**Next implementation boundary:** the legacy frozen worker still uses
-`subprocess.run` with a timeout. A future disposable child must use the shared
-`campaign_process.run_owned_command` and durable process-record scope before
+**Next integration boundary:** the legacy frozen producer still uses
+`subprocess.run` with a timeout; the separate fresh process-only route above now
+exercises the shared lifecycle. A disposable scientific child must connect that
+route to ordinary parent/input admission and compact result publication before
 retirement is possible; a saved PID or scalar success flag is insufficient.
 Keep that new lifecycle separate from historical numbered trial inventories.
 Reserve owned scratch, bind a protected parent and exact worker/inputs, audit
