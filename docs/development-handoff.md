@@ -94,8 +94,12 @@ W161 completes the saved-family/local-context audit, and W160 completes the
 noiseless map panel; do not repeat either or the C395/C396 selector experiment.
 Reuse the shared private capture precedent, bind the backbone's actual parallelity
 and full objective, and keep later final-map state distinct from selected XYZ.
-No new fit is admitted by this note. Noise/uncertainty and scientist calibration
-remain a separate track; ordinary lineage and broader repair remain open.
+No new fit is admitted by this note. Bound that mechanism study to a declared
+passive baseline and selected-state replay; it is not a universal prerequisite
+for every topology-driven trial or an invitation to perfect the no-op control.
+W156's matched-recovery/map review remains the acceptance framework. Noise/
+uncertainty and scientist calibration are separate; ordinary lineage and broader
+repair remain open.
 
 1. Keep the [stable-objective invariant sketch](topostitch.md#stable-objective-invariants-deferred-design-unimplemented)
    deferred under S06, using the exact recorded

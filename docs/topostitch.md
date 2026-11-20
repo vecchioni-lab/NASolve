@@ -1066,6 +1066,19 @@ reconstructed approximation or one map sample. Admission precedes the profile:
   retain all sampled outcomes, not the lowest Rfree. This profile would guide a
   later matched recovery experiment, not itself approve a bend or alter weights.
 
+Keep this a bounded mechanism question, not a new universal repair gate. The
+next capture study should predeclare one passive baseline and one selected-state
+replay; a failed admission returns a specific missing capability to its owner,
+not an open-ended protocol/weight sweep. A verified profile is still followed by
+a matched recovery comparison. Experimental no-op motion is measured control
+behavior, not by itself a requirement to recover the deposited coordinates exactly.
+Neither a perfect control map nor monotonically lower Rfree is a prerequisite
+for every topology-driven trial. The existing W156 review still requires retained
+content/intent, qualified geometry, a matched recovery window and close map review
+when final Rfree worsens. W159's lineage and scientific limitations remain real;
+this clarification does not accept its endpoint or reopen the paused displacement
+matrix without a prospectively justified experiment.
+
 Track noise/uncertainty and experimental normalization separately from this
 geometry/objective question; W160's known truth scale is not a campaign policy.
 Pine must retain declared scattering-state provenance across construction,
