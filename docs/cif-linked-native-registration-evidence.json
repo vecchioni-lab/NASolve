@@ -118509,6 +118509,16 @@
       }
     },
     "staged_selection_and_publication": {
+      "published_content_overlap": {
+        "old_attempt_paths": 3599,
+        "old_distinct_bytes": 151635232,
+        "matched_old_paths": 3300,
+        "matched_old_distinct_bytes": 147785922,
+        "remaining_distinct_bytes": 3849310,
+        "retained_published_bundle_bytes": 16919670,
+        "source_gradient_and_staged_chain_members_proven_exact": true,
+        "scope": "Content equality only. Prior incomplete work cannot depend on a later publication to prove its stop. No recovery authority or change to the old attempt."
+      },
       "control": "C455_STAGED_MIXED_REPAIR_SELECTION",
       "old_aggregate_files": 1600,
       "old_aggregate_bytes": 235160056,

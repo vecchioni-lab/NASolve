@@ -38,8 +38,11 @@ final mixture passed a fresh Phenix restraint-gradient check. The portable
 diagnostic reopened after relocation with access to the originals disabled.
 The outer attempt remains unfinished. Even omitting its seven expanded stage
 trees leaves 143.1 MiB of distinct evidence. Qualify bounded ownership of both
-success and interruption, then check ordinary mixed ReadySet, the locked ATL
-junction and diffraction on a fresh lineage.
+success and interruption. The published bundle can reproduce 3,300 of 3,599
+earlier files byte for byte. A successful attempt could reference that bundle.
+A stopped attempt must retain its own children because publication may never
+occur. Then check ordinary mixed ReadySet, the locked ATL junction and
+diffraction on a fresh lineage.
 C437 also shows why Q06 retains a separate displacement check. Five cycles with
 the measured host scaffold B factors and new 5PC base atoms at B=20 brought
 the terminal carbon close to the ring plane (0.087 Å) while stretching its
