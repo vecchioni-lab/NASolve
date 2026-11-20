@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-20, C444–C453 ring planes and mixed-scaffold repairs — Rowan**.
+Updated **2026-11-20, C444–C454 ring planes and mixed-scaffold repairs — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -31,6 +31,10 @@ reproduced the same covalent terms at those three sites, including 38 backbone
 bonds and 152 flanking angles across the scaffold. Phenix received 211 frame
 requests in each model. ATL used the separate locked-sugar adapter in the
 thirteen-component model. The ordinary control retained the host DT there.
+C454 found identical plane membership in both mixed models. At A:5 the 1AP
+local plane included N2 and N6. Of the two, the shared plane with C:11
+included N2 only. At C:9 the S6G local plane again omitted S6, and the shared
+plane with A:7 included it. These are interpreted restraints before diffraction.
 
 C450 stopped after seven individually verified repairs. The twelve isolated
 dictionaries were reused and the seven changes formed one consecutive series on

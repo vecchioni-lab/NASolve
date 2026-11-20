@@ -118265,7 +118265,35 @@
       "ordinary_mixed_readyset": false,
       "mixed_diffraction": false,
       "stopped_native_phases": 17,
-      "outer_stop_record_sealed": false
+      "outer_stop_record_sealed": false,
+      "plane_membership_at_new_sites": {
+        "1AP": {
+          "site": "A:5",
+          "pair": [
+            "A:5",
+            "C:11"
+          ],
+          "local_atoms": 12,
+          "shared_atoms": 19,
+          "tested_atom": "N6",
+          "in_local_plane": true,
+          "in_shared_plane": false,
+          "N2_in_both": true
+        },
+        "S6G": {
+          "site": "C:9",
+          "pair": [
+            "A:7",
+            "C:9"
+          ],
+          "local_atoms": 11,
+          "shared_atoms": 19,
+          "tested_atom": "S6",
+          "in_local_plane": false,
+          "in_shared_plane": true,
+          "N2_in_both": true
+        }
+      }
     },
     "combined_evidence": {
       "retained_limits": {
@@ -118426,6 +118454,12 @@
         "path": "c453-mixed-resource-bound/original-diagnostic.json",
         "sha256": "f022759b301bb528c58bde774f32f43164202a85a1d886a64b7fb777c47a43bf",
         "size": 1273
+      },
+      {
+        "anchor": "local Cedar evidence",
+        "path": "c454-mixed-ring-membership/review.json",
+        "size": 1770,
+        "sha256": "c5897e9fcb9c4021db8cb6e170f8670cd23bf537a17cf5bf513d380170336a1f"
       }
     ],
     "bounded_publication_followup": {
