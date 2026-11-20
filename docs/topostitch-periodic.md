@@ -9308,3 +9308,79 @@ It binds the motion audit, final history/figures, original display correction,
 peer reviews and updated human report/manifest without duplicating native data.
 Original W153 archive and all scientific runs remain unchanged. All science is
 local; this is integrity evidence, not portable execution or accepted repair.
+
+## W159 — Compare ordinary recovery with the fixed-unit baseline
+
+**Outcome.** The same undeformed deposited 5W6W model now has a completed ordinary-
+recipe diagnostic beside W153's retained fixed-unit XYZ control. The selected
+205-atom RMS to deposited coordinates is **0.591 versus 0.522 Å**. Common effective
+Rwork/Rfree is **0.226432/0.267735 versus 0.239233/0.259995** (4,630 work and 507
+original Free). Both start from the same first-scaled .2238/.2413 state. The
+ordinary recipe therefore does not establish an improved reference baseline.
+No opposite-start matrix, lowest-Rfree selection or repair acceptance follows.
+
+**Ownership and protocol.** Rowan confirmed that the deposited-source diagnostic
+has no ordinary AutoMR/PostMR root, and `checkpoints add` requires an existing
+valid run. We did not manufacture ancestry, remove counted gates or repeat MR.
+Instead, the existing C407 `autorefine.write_recipe_parameters`,
+`build_refine_command` and `refinement_parallelity` native owners execute the
+comparison. This is not `execute_autorefine`/ordinary checkpoint qualification.
+The installed 304-file C407 manifest remains exact at
+`f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad`.
+
+Phenix **2.2.1-6174**, selected local native source/extension profile, performed
+one complete five-cycle, one-process refinement (about 17.6 minutes). The SDK's
+family-version field is `2.2.1`; the map worker captures the full native version.
+The same seed 1, 100-iteration cap, bulk scaling, no-added-atoms, no-overall-B-shift
+and CDL-off policies are retained. The ordinary recipe changes optimized XYZ/ADP
+weights, XYZ scale 0.5, group ADPs and real-space-site steps together. Its auto target
+uses LS in cycles 1–2 and ML in 3–5. Eligible occupancy selection has zero atoms;
+rotamer fitting reports zero residues. Native XYZ weight selection consults Free
+data. Equal cycle budgets are not equal optimizer work, and final Rfree cannot
+independently select the protocol. Four selected-weight XYZ counts are 100; the
+last is 90, without recorded stopping reasons or all internal trial counts.
+
+**Geometry and scattering.** All 859 atom identities, 2,569 original bond/angle
+definitions, 58 pair/stack groups, 38 existing O3′–P links and 126 checked sugar signs
+survive. Local covalent bond/angle RMS is .00851 Å/2.142° versus .00357 Å/1.201°;
+the native pooled bond statistic also contains custom terms and is not relabeled
+covalent RMS. Pair/stack unsigned plane RMS is 4.749°/5.308° versus 3.383°/4.130°.
+All 859 B factors change; all occupancies remain 1. B2 P increases 90.39→112.52 Å²,
+yet its own-map negative sample is −8.38σ versus −8.09σ. At the common deposited
+site it is −8.04σ versus −7.57σ. Separate whole-cell normalization, model phases and
+coupled protocol changes prevent attributing this feature to position or ADP.
+
+**Data and display.** Raw F/SIGF and original flag membership are exact. Neither
+endpoint excludes an observation; common endpoint arithmetic agrees with native
+rounded R values, with no refit. Saved unfilled ML maps include all 507 Free rows.
+The predeclared B2–4 view uses 33 actual atoms / 35 native covalent bonds and 62 checked
+meshes. W154's unchanged renderer keeps map and model selection independent.
+Seventeen offline control/buffer contracts pass; these are not browser/GPU review.
+ChimeraX 1.12 headless loading confirms three 859-atom models, 205 visible atoms each,
+identity scene transforms and exact file coordinates within serialization precision.
+Its automatic bond inference differs (960 fixed / 962 ordinary); native geometry
+definitions, not those inferred display bonds, establish the scientific links.
+The initial hidden-model focus error and sandbox cache refusal are preserved;
+the corrected loader passed with an explicit result receipt, not exit code alone.
+
+**Evidence and validation.** Main `NASolve` anchor:
+`branch-artifacts/willow/w159-recovery-protocol-attempt03/` contains exact plan,
+preflight/final geometry, 43 native stage rows, maps, scene and viewer receipts.
+`w159-recovery-protocol-evidence-2026-11-20.zip` verifies 89 indexed files;
+SHA256 `bc11417d2cacdfd5e45f56ceca0d858550b8f0e660397001ef8f056538bad9d0`.
+This is a local integrity archive, not a portable continuation. Two prelaunch
+controller refusals are archived; the successful run and source inputs remain.
+The compact human packet is at GitHub workspace anchor
+`ScienceCheckouts/Linden/2026-11-20_recovery-protocol/review.html`.
+
+Exact local commands use `PYTHONDONTWRITEBYTECODE=1` and the retained Python at
+`/private/tmp/willow-w94-pivot/env/bin/python -B`, with runners under the main
+`branch-artifacts/willow/runners/`: `w159-protocol.py preflight`, `audit-preflight`,
+`refine`, `audit-final`; `w159-final-audit.py`; `w159-map-review.py`;
+`w159-scene-launch.py`; `w159-checkout.py`; and `w159-archive.py`. All final native
+and readback checks pass. `w154-view-contract-check.mjs:check` supplies 17 offline
+inspector checks; ChimeraX `--nogui --exit w159-viewer-check.py` supplies actual
+coordinate inventory. No production source/schema changed: existing readers need
+no migration, raw scientific artifacts stay out of Git, and no full suite or
+installation repeat is claimed. Documentation uses the focused 8-test roadmap
+check, roadmap `--write`/`--check` and `git diff --check`.

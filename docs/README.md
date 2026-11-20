@@ -51,13 +51,15 @@ current instructions; other branches retain their own status and validation pins
   this is planning, with no new native run or acceptance implementation.
   W157 audits saved scaling/XYZ histories and adds a stage plot to the existing
   experimental report, without another refinement or convergence claim.
-  W158 narrows the next experiments to a matched ordinary-recovery baseline
-  and a separate model-assisted density counterexample panel; planning only.
+  W159 completes the ordinary-recipe baseline diagnostic without resolving drift
+  or phosphate density; complete ordinary lineage and repair remain open.
+  W158 records the original comparison plan; its separate model-assisted density
+  counterexample panel remains planned.
   Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W158;
-  the next substantial audit is W159. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W159;
+  the next substantial audit is W160. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

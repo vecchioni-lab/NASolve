@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W159 — Audit ordinary recovery against the experimental baseline
+
+- Record one complete same-source ordinary-recipe diagnostic: retained molecular
+  content and data/Free, unresolved drift and phosphate density, explicit coupled
+  protocol changes and Free-dependent weight selection. Ordinary PostMR ancestry
+  remains unqualified; no repair acceptance or opposite-start expansion.
+- Publish evidence pointers and a small local coordinate/density inspection packet.
+  Runtime, schemas and install behavior are unchanged; raw science stays local.
+
 ### W158 — Plan discriminating recovery and density controls
 
 - Specify the next matched protocol comparison and separate model-assisted

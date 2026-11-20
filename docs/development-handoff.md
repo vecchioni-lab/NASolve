@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-19**, through **W158**. **W152 closes the independent
+Updated **2026-11-20**, through **W159**. **W152 closes the independent
 opposite-displacement/no-op subgate under idealized matching data.** Deposited
 5W6W starts recover from 0.764 Å RMS to 0.052/0.047 Å, with a 0.014 Å no-op.
 This complements W148's 8D93-derived control; both remain bounded evidence.
@@ -21,6 +21,13 @@ XYZ recovery, and the reference reaches the 100-iteration cap in all five cycles
 Hazel reviewed 84 native rows plus the corrected count-versus-membership wording.
 No native rerun or production history-parser change; these are budgeted endpoints,
 not settled-state proof. [Stage audit](topostitch-periodic.md#w157--separate-scaling-and-coordinate-recovery-in-saved-histories).
+
+**W159 tests the ordinary recovery recipe on that same undeformed source.**
+Selected drift is 0.591 Å, common Rwork/Rfree .2264/.2677 and B2 P negative density
+persists despite its changed B factor. All atoms and checked topology survive;
+the reference baseline remains unresolved. The recipe changes several policies
+together and consults Free during weight selection. It is a shared-owner diagnostic,
+not qualified ordinary PostMR lineage. [Exact scope and evidence](topostitch-periodic.md#w159--compare-ordinary-recovery-with-the-fixed-unit-baseline).
 
 W154 lets the installed inspector name density sources independently of the
 coordinate states. Complete source and relocated-install checks pass; the two
@@ -73,13 +80,13 @@ not another work queue; do not repeat them because this handoff is shorter.
 
 ## Next bounded work
 
-**W158 next experiment:** [one matched undeformed protocol comparison](topostitch.md#next-discriminating-experiments-w158-planning),
-then conditionally the existing opposite starts. Cedar owns the ordinary
-parent/protocol and actual restraint readback; preserve counted ancestry, original
-data/Free and explicit effective filtering. C403/W134 are precedents, not a
-same-source qualification. A separate three-case model-assisted density panel
-tests ambiguity without a new reader or detector. These are plans; no new native
-run tonight and no milestone closure.
+**W159 decision:** pause opposite-start expansion while the undeformed baseline
+still has unresolved map/geometry support. Inspect named objective/weight/ADP
+changes; do not add an Rfree-driven matrix. The independent [W158 model-assisted
+density panel](topostitch.md#next-discriminating-experiments-w158-planning) remains
+the next bounded density experiment. Reuse native map generation and W147 readback,
+with common truth amplitudes and explicit phase/mask/scale/Free policies. Ordinary
+checkpoint qualification still needs legitimate ancestry; no fabricated parent.
 
 1. Keep the [stable-objective invariant sketch](topostitch.md#stable-objective-invariants-deferred-design-unimplemented)
    deferred under S06, using the exact recorded
@@ -167,6 +174,13 @@ large-bend repair follow later. No CLI/default activation follows from these doc
 
 ## Validation and scientific interpretation
 
+- **W159:** one complete Phenix 2.2.1-6174 run; exact native geometry, raw-data/Free,
+  saved-map and process-stop checks pass. 17 offline inspector checks and actual
+  ChimeraX 1.12 headless three-model inventory pass. Docs-only publication uses
+  the same 8 focused roadmap tests and consistency/diff checks below; runtime and
+  schemas unchanged, so no full-suite/install repeat. Scientific artifacts remain
+  local. See the W159 ledger for exact commands, pins, retained failures and limits.
+
 - **W158 planning audit:** existing design, handoff, documentation index, changelog
   and machine/generated roadmaps updated; runtime code and schemas unchanged.
   `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -m pytest -q -p no:cacheprovider tests/test_topostitch_roadmap.py`
@@ -251,12 +265,17 @@ PASS upgrades older diagnostic models to accepted structures.
 
 ## Local science checkout
 
+**W159 recovery comparison:** GitHub workspace anchor,
+`ScienceCheckouts/Linden/2026-11-20_recovery-protocol/review.html`.
+Three actual PDBs, one independent-map inspector and a verified ChimeraX loader
+show the unresolved ordinary-versus-fixed baseline. Native graphical appearance
+still needs human review; no accepted repair.
+
 **W155 density ambiguity:** GitHub workspace anchor,
 `ScienceCheckouts/Linden/2026-11-19_density-ambiguity/review.html`. Four files
 contain the visually checked common-scale figure, vector export, short report
 and hashes. It illustrates three prescribed causes of negative modeled-P density;
 it does not identify the experimental cause or calibrate a threshold.
-
 
 **Current W153 experimental comparison:** GitHub workspace anchor,
 `ScienceCheckouts/Linden/2026-11-19_experimental-backbone/review.html`. Two
@@ -270,7 +289,6 @@ coordinates/visibility. These are not browser/GPU qualification or accepted repa
 `ScienceCheckouts/Linden/2026-11-19_opposite-bends/review.html`. Two coordinate-only
 views and the six-model loader separate signed recovery from no-op relaxation.
 Both checkouts preserve actual coordinates without alignment/magnification.
-
 
 **W149 reusable inspector:** GitHub workspace anchor,
 `ScienceCheckouts/Linden/2026-11-19_inspector/review.html`. Four files contain

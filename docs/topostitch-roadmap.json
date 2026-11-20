@@ -290,14 +290,15 @@
         "W148 reuses the exact W100 +5-degree canonical displacement with matching noiseless diffraction and fixed native refinement. Selected 204-atom RMS error falls 0.917427 to 0.029167 Å; endpoint-to-endpoint RMS is 0.026449 Å. Local covalent bonds recover, 126 sugar-volume signs survive, and Rowan independently reproduces the controls. Existing reference-link distortion remains explicit.",
         "W151 deposited 8D93 polymer positions3/4 map to PDB B107/B111: the numbering jump is not three missing residues. The existing phosphate-angle distortion is already deposited. W115 unvalidated-preview lineage remains explicit; recovery is distinct from a healthy-reference qualification.",
         "W152 independent deposited5W6W opposite displacements recover from0.7641A RMS to0.05152/0.04653A; relaxed-reference drift0.01436A. Local232 bonds/363 angles,38 links,126 sugar signs and2569 common targets independently audited. Identical58 parallelity groups retain explicit source/boundary residuals; idealized matching data only.",
-        "W153 deposited5W6W experimental comparison preserves5137 raw observations/507originalFree, but positive native filtering drops one work reflection. Endpoints approach relaxed control0.21485/0.14566A; reference itself moves0.52152A and Rfree rises~0.019. Geometry improves, strong B2P negative density remains. Common4629work/507Free endpoint arithmetic reuses saved F-model without refit; mixed outcome, not accepted repair."
+        "W153 deposited5W6W experimental comparison preserves5137 raw observations/507originalFree, but positive native filtering drops one work reflection. Endpoints approach relaxed control0.21485/0.14566A; reference itself moves0.52152A and Rfree rises~0.019. Geometry improves, strong B2P negative density remains. Common4629work/507Free endpoint arithmetic reuses saved F-model without refit; mixed outcome, not accepted repair.",
+        "W159 completes one five-cycle ordinary-recipe diagnostic on the same undeformed5W6W source. Exact859atoms,2569initial bond/angle definitions,58pair/stack groups and5137effective observations/507originalFree survive;38links and126sugar signs remain. Selected drift0.591A versus0.522A; common Rwork/Rfree0.2264/0.2677 versus0.2392/0.2600. B2P B90.39→112.52 while own residual remains−8.38σ versus−8.09σ. This does not resolve the reference baseline; no opposite-start matrix or accepted repair."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Retain W153 mixed geometry/diffraction outcome, existing links and explicit pair/stack residuals. Qualify physical geometry/packing and source-backed target semantics before general seam closure; do not fix a geometry score by deleting real topology. Native shared numerical/chemistry policy stays with Cedar; no new weight sweep follows from this control. W158 first qualifies an ordinary common parent/protocol and actual pair/stack readback for one same-source undeformed comparison; never remove counted ancestry to bypass admission.",
+      "next_action": "W159 leaves the undeformed recovery baseline unresolved. Inspect named objective/weight/ADP and map-supported local geometry before another opposite-bend matrix; no repeated weight search or lowest-Rfree choice. Preserve W152/W153/W157 controls. Continue W158 independent model-assisted zero/displacement/B panel through the native map owner, with exact phases/scales/membership and noise calibration still separate. Ordinary PostMR ancestry, broader repair, W150 integration and B09/B10 remain open.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -364,14 +365,15 @@
         "E_REFERENCE_SEQUENCE_ADJACENCY",
         "E_INDEPENDENT_OPPOSITE_RECOVERY",
         "E_EXPERIMENTAL_BACKBONE_TRADEOFF",
-        "E_DISCRIMINATING_RECOVERY_PLAN"
+        "E_DISCRIMINATING_RECOVERY_PLAN",
+        "E_ORDINARY_RECOVERY_DIAGNOSTIC"
       ],
       "last_audit": {
-        "date": "2026-11-19",
+        "date": "2026-11-20",
         "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
-        "human_update": 158,
-        "reviewer": "Linden; ordinary ownership clarified with Rowan",
-        "scope": "Next-experiment planning only; completed controls retained and milestone remains partial"
+        "human_update": 159,
+        "reviewer": "Linden; owner/interpretation coordination with Rowan and map-owner coordination with Hazel",
+        "scope": "One complete ordinary-recipe diagnostic and exact saved geometry/data/maps; ordinary checkpoint qualification remains open"
       }
     },
     {
@@ -403,7 +405,8 @@
         "W152 independent deposited5W6W opposite displacements recover from0.7641A RMS to0.05152/0.04653A; relaxed-reference drift0.01436A. Local232 bonds/363 angles,38 links,126 sugar signs and2569 common targets independently audited. Identical58 parallelity groups retain explicit source/boundary residuals; idealized matching data only.",
         "W153 deposited5W6W experimental comparison preserves5137 raw observations/507originalFree, but positive native filtering drops one work reflection. Endpoints approach relaxed control0.21485/0.14566A; reference itself moves0.52152A and Rfree rises~0.019. Geometry improves, strong B2P negative density remains. Common4629work/507Free endpoint arithmetic reuses saved F-model without refit; mixed outcome, not accepted repair.",
         "W155 prescribed complex-F contrasts at identical7554HKLs/3.06A show negative modeledP from displacement, Q excess and B mismatch separately, with zero control. Only3scatterers vary; full/group additivity≤4.82e-12 and direct/FFT≤1.18e-14. Hazel cold review passes with explicit missing original version-API capture. Common reference normalization is not ML difference-map sigma; no detector or experimental attribution.",
-        "W157 reads84 archived native stages,15 minimizer records and18 scaling counts with independent Hazel review. Initial unscaled Rfree0.3207/0.3437/0.3376 becomes0.2413/0.2637/0.2624 at first bulk/scaling before XYZ; final0.2600/0.2579/0.2611. Reference hits100iterations in all5cycles. Existing report gains a verified inline stage plot; no new refinement."
+        "W157 reads84 archived native stages,15 minimizer records and18 scaling counts with independent Hazel review. Initial unscaled Rfree0.3207/0.3437/0.3376 becomes0.2413/0.2637/0.2624 at first bulk/scaling before XYZ; final0.2600/0.2579/0.2611. Reference hits100iterations in all5cycles. Existing report gains a verified inline stage plot; no new refinement.",
+        "W159 completes one five-cycle ordinary-recipe diagnostic on the same undeformed5W6W source. Exact859atoms,2569initial bond/angle definitions,58pair/stack groups and5137effective observations/507originalFree survive;38links and126sugar signs remain. Selected drift0.591A versus0.522A; common Rwork/Rfree0.2264/0.2677 versus0.2392/0.2600. B2P B90.39→112.52 while own residual remains−8.38σ versus−8.09σ. This does not resolve the reference baseline; no opposite-start matrix or accepted repair."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -414,7 +417,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "W155 supplies read-only displacement/Q/B counterexamples; preserve them before detector work. Next attribution must address model-assisted phases, observed-amplitude/noise uncertainty and geometry context with scientist calibration; no red/green or one-atom sign rule. W153 common-HKL endpoint arithmetic is complete, not fixed-work-set trajectory qualification. Predeclare effective-data policy for future fits; no new native matrix or weight sweep is queued. W150 adoption and B09/B10 remain separate/open. W156 requires a predeclared recovery window before evaluating future deformations; initial Rfree alone cannot screen them out. W157 supplies stage-labelled saved histories; future recovery displays must preserve scaling/XYZ distinctions and must not relabel log-match indices as macrocycles. W158 specifies the next bounded protocol comparison and an independent model-assisted zero/displacement/B panel in the design contract; no native execution tonight, no repeat of completed C397-C400 or W153 arithmetic.",
+      "next_action": "W159 leaves the undeformed recovery baseline unresolved. Inspect named objective/weight/ADP and map-supported local geometry before another opposite-bend matrix; no repeated weight search or lowest-Rfree choice. Preserve W152/W153/W157 controls. Continue W158 independent model-assisted zero/displacement/B panel through the native map owner, with exact phases/scales/membership and noise calibration still separate. Ordinary PostMR ancestry, broader repair, W150 integration and B09/B10 remain open.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -478,14 +481,15 @@
         "E_DENSITY_SCATTERING_COUNTEREXAMPLES",
         "E_POST_DEFORMATION_RECOVERY_PLAN",
         "E_NATIVE_RECOVERY_STAGE_HISTORY",
-        "E_DISCRIMINATING_RECOVERY_PLAN"
+        "E_DISCRIMINATING_RECOVERY_PLAN",
+        "E_ORDINARY_RECOVERY_DIAGNOSTIC"
       ],
       "last_audit": {
-        "date": "2026-11-19",
+        "date": "2026-11-20",
         "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
-        "human_update": 158,
-        "reviewer": "Linden; ordinary ownership clarified with Rowan",
-        "scope": "Next-experiment planning only; completed controls retained and milestone remains partial"
+        "human_update": 159,
+        "reviewer": "Linden; owner/interpretation coordination with Rowan and map-owner coordination with Hazel",
+        "scope": "One complete ordinary-recipe diagnostic and exact saved geometry/data/maps; ordinary checkpoint qualification remains open"
       }
     },
     {
@@ -3346,11 +3350,12 @@
       "planned_experiments": [
         {
           "id": "recovery_protocol_baseline",
-          "status": "PLANNED_REQUIRES_OWNER_QUALIFICATION",
+          "status": "DIAGNOSTIC_EXECUTED_ORDINARY_LINEAGE_OPEN",
           "owner": "Cedar execute_autorefine; Willow comparison and geometry audit",
           "question": "Is W153 reference drift specific to the fixed-unit XYZ protocol?",
           "comparison": "Same undeformed source and intended restraints; one frozen ordinary recipe versus matched fixed-unit control. Reuse an old control only with verified complete identity.",
-          "next_decision": "If defensible, use the same frozen recipe on opposite starts; if unresolved, inspect named protocol/scattering changes before a new bend matrix."
+          "next_decision": "W159 does not resolve reference drift/maps; pause opposite-start expansion. Shared recipe/native diagnostic substitutes for unavailable legitimate bare-model PostMR root without fabricating ancestry; complete ordinary qualification remains open.",
+          "evidence": "E_ORDINARY_RECOVERY_DIAGNOSTIC"
         },
         {
           "id": "model_assisted_map_counterexamples",
@@ -3359,6 +3364,84 @@
           "question": "How do zero, displacement and B-mismatch controls appear under one declared model-assisted map protocol?",
           "comparison": "Same truth amplitudes and atom inventory, declared model states, phases/scales and own/common positions; no noise initially.",
           "next_decision": "Retain ambiguity and false positives; qualify noisy controls and scientist calibration separately before a detector."
+        }
+      ]
+    },
+    "E_ORDINARY_RECOVERY_DIAGNOSTIC": {
+      "kind": "ordinary_recipe_diagnostic_comparison",
+      "date": "2026-11-20",
+      "human_update": 159,
+      "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
+      "installed_native_owner_commit": "f83562b0c1f61eb5b696d1ba75ebb4578b22c7ad",
+      "reference": "docs/topostitch-periodic.md#w159--compare-ordinary-recovery-with-the-fixed-unit-baseline",
+      "result": "W159 completes one five-cycle ordinary-recipe diagnostic on the same undeformed5W6W source. Exact859atoms,2569initial bond/angle definitions,58pair/stack groups and5137effective observations/507originalFree survive;38links and126sugar signs remain. Selected drift0.591A versus0.522A; common Rwork/Rfree0.2264/0.2677 versus0.2392/0.2600. B2P B90.39→112.52 while own residual remains−8.38σ versus−8.09σ. This does not resolve the reference baseline; no opposite-start matrix or accepted repair.",
+      "limitation": "Direct shared recipe/native owner, not complete ordinary PostMR lineage. Several policies change together; XYZ weight selection consults Free. Four selected-weight XYZ counts hit100, final90; stopping reasons/internal trial totals not qualified. No detector, causal attribution, runtime/schema change, general repair or scientific closure.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w159-recovery-protocol-attempt03/archive.json",
+          "sha256": "4c683406830fff48298e6bc5bd07855d9de08ef0a1b246429aa9bf49ffb896a8",
+          "size": 371
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w159-recovery-protocol-attempt03/preparation.json",
+          "sha256": "4eb787af1eb05e7c1c67685674bd2784134e09db60b23a687468134c79936070",
+          "size": 157
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w159-recovery-protocol-attempt03/preflight-review.json",
+          "sha256": "6fae530c0b251f5cc2f8222030a7f843645412c8686f8c7041dba88922e0d053",
+          "size": 580
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w159-recovery-protocol-attempt03/final-review.json",
+          "sha256": "0674c23d54cd3d2f93add5af1f209d181803b92e453d322febf05da0cda81bde",
+          "size": 592662
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w159-recovery-protocol-attempt03/execution-review.json",
+          "sha256": "5fc077412964708c1995f07f630d6d562600666ec9eb6c8b1008afca24f927eb",
+          "size": 156106
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w159-recovery-protocol-attempt03/map-plan.json",
+          "sha256": "04ea2d81eb918f91863a79eefc898a7a42b72d428533945bdc1df6c89524d1d2",
+          "size": 2999
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w159-recovery-protocol-attempt03/map-review.json",
+          "sha256": "6c0eaaf9dbeaa07ba67d52bf8e3be96c285d47b3ce4734cbefa0e53f6ead1fd2",
+          "size": 1890333
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w159-recovery-protocol-attempt03/scene-review.json",
+          "sha256": "8153902df8ba065f85d14b788bc6795ffa5c87e235733d851b7ad69b8bf6e1fa",
+          "size": 14129
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w159-recovery-protocol-attempt03/html-review.json",
+          "sha256": "bebf29c60c05ebee00d6172b42df777fa5cae9d63ada345f0a8e0486ac43b085",
+          "size": 3679
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w159-recovery-protocol-attempt03/viewer-check.json",
+          "sha256": "967378b912646d75703128f08691bf93d204efb05c65b45d6385489381ca76ee",
+          "size": 1714
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w159-recovery-protocol-attempt03/viewer-corrected-execution.json",
+          "sha256": "5fcae40ebff4902c63ecb5d5c65450bbd0324a0fbb38f0674f71ea1735f8c266",
+          "size": 722
         }
       ]
     }
@@ -3522,8 +3605,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 158,
-    "next": 159,
+    "current": 159,
+    "next": 160,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -4279,6 +4362,12 @@
       {
         "number": 158,
         "title": "Plan discriminating recovery and density controls",
+        "state": "RECORDED",
+        "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a"
+      },
+      {
+        "number": 159,
+        "title": "Compare ordinary recovery with the fixed-unit experimental baseline",
         "state": "RECORDED",
         "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a"
       }
