@@ -11,6 +11,7 @@ from pathlib import Path
 import os
 
 from . import cif_runtime_evidence as storage
+from . import cif_complete_stages as stages
 from .campaign_records import read_record, _sync_directory
 from .cif_dictionary_sites import _need, _read
 
@@ -18,7 +19,7 @@ POLICY_ID = 'cif-complete-attempt-working-archive-v1'
 ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v3'
 SUPPORTED_ARTIFACT_POLICIES = frozenset({
     'cif-complete-request-partitioned-artifacts-v2', ARTIFACT_POLICY,
-    'cif-complete-request-partitioned-artifacts-v4'})
+    'cif-complete-request-partitioned-artifacts-v4', stages.POLICY_ID})
 REPAIR_RUNTIME = 'repair/attempts/attempt-0001/execution/runtime/'
 CONTINUATION_RUNTIME = 'continuation/runtime/'
 
@@ -40,12 +41,17 @@ def _index(value):
     prefixes=_prefixes(value['artifact_policy'],value['with_continuation'])
     files=value['files'];directories=value['directories']
     storage._file_index(files,directories,max_files=(1+len(prefixes))*storage.MAX_FILES)
-    partitions={p:[] for p in (*prefixes,'')}
-    for name,ref in files.items():
-        partitions[next((p for p in prefixes if name.startswith(p)),'')].append(ref)
-    for rows in partitions.values():
-        _need(len(rows)<=storage.MAX_FILES and sum(r['size'] for r in rows)<=storage.MAX_BYTES,
-              'Complete-attempt archive exceeds an owner partition bound')
+    if value['artifact_policy'] == stages.POLICY_ID:
+        bounds = stages.AttemptBounds(prefixes)
+        for name, ref in files.items():
+            bounds.charge(name, ref['size'])
+    else:
+        partitions={p:[] for p in (*prefixes,'')}
+        for name,ref in files.items():
+            partitions[next((p for p in prefixes if name.startswith(p)),'')].append(ref)
+        for rows in partitions.values():
+            _need(len(rows)<=storage.MAX_FILES and sum(r['size'] for r in rows)<=storage.MAX_BYTES,
+                  'Complete-attempt archive exceeds an owner partition bound')
     finished=value['finished_sha256']
     _need(isinstance(finished,str) and storage._SHA.fullmatch(finished)
           and files.get('finished.json',{}).get('sha256')==finished,

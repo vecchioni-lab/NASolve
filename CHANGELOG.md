@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record both completed and interrupted mixed preparations
+
+- New multi-component preparations that request automatic plane and bond repair
+  record the original files of each repair stage separately. A stopped job can
+  be verified even if it never published a dictionary. A fresh attempt keeps
+  its own identity. The individual file, proof and total working limits still
+  apply. Existing requests keep the policy written when they started.
+
 ### Keep complete repair evidence for mixtures of modified residues
 
 - When a compact preparation exceeds the combined evidence allowance, Cedar

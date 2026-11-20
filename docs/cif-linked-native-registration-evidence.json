@@ -118790,5 +118790,60 @@
     "raw_model_or_diffraction_in_git": false,
     "runtime_changes": false,
     "scientific_scope": "Substituted-host mechanics, reference-supported near planarity, provisional weight and separate rotamer assignment."
+  },
+  "mixed_working_ownership_and_topology_2026_11_20": {
+    "owner": "Rowan",
+    "checkpoint": "C457",
+    "parent_commit": "8fc657f8",
+    "artifact_policy": "cif-complete-request-staged-artifacts-v5",
+    "applicability": "Fresh multi-component PostMR requests with both automatic plane and automatic bond repair",
+    "original_attempt": {
+      "raw_files": 3599,
+      "raw_directories": 667,
+      "logical_bytes": 471648798,
+      "records_sha256": "3dfdadeda1bc039b7dc221f75d3c718f61746bc429b1a35af87e68e0a10cb8ed",
+      "original_finished": false,
+      "original_policy": "v4",
+      "original_resealed": false
+    },
+    "partial_storage_rehearsal": {
+      "phase_count": 16,
+      "core_files": 1337,
+      "core_distinct_bytes": 32139791,
+      "packets_bytes": 20207987,
+      "max_one_open_bytes": 37760551,
+      "collapsed_working_bytes": 52347778
+    },
+    "native": {
+      "version": "Phenix 2.2.1-6174",
+      "receipts": [
+        "63aa13f37e2bdc2944334bf1e8630cadd2ffeca8746134c82d514622990e8337",
+        "a10f7a2fef767e1709fc0ac870cbbc43719df319c7e1093165a7662d16c2c395"
+      ],
+      "model_sha256": "8e6cde92b6e6fa7e46123ba3defaefd6e7f41661cbabe8ae64efea33d32660d3",
+      "atoms": 867,
+      "components": 12,
+      "backbone_bonds": 38,
+      "declared_cross_site_soft_bonds": 53,
+      "unexpected": 0,
+      "symmetry_bonds": 0,
+      "exact_supplied_terms": {
+        "bond": 53,
+        "angle": 90,
+        "planarity": 10,
+        "parallelity": 58
+      },
+      "scope": "Replayed existing complete fixed-coordinate captures; no new Phenix execution or diffraction."
+    },
+    "regression": "Known-stopped RAISED and new RETURNED attempt, unchanged partial evidence, unknown/live continuation blocks. Focused only.",
+    "focused_commands": [
+      "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_cif_complete_staged_artifacts.py tests/test_cif_complete_capture_bounds.py tests/test_cif_complete_child_bounds.py (initial 9 stage cases; 55 passed in 18.44 s)",
+      "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_cif_complete_staged_artifacts.py tests/test_cif_automatic_bond_requests.py tests/test_cif_postmr_bond_targets.py tests/test_cif_complete_continuation.py tests/test_cif_complete_attempt_archive.py tests/test_cif_attempt_retention.py (154 passed in 284.86 s)"
+    ],
+    "distinct_focused": 200,
+    "full_suite": false,
+    "compatibility": "Earlier request policies and standard flat archive bounds retained. No migration.",
+    "local_evidence": "branch-artifacts/cedar/c457-mixed-ownership",
+    "next": "Fresh ordinary twelve-component preparation through ReadySet; check bounded retention."
   }
 }

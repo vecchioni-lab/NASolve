@@ -37,12 +37,13 @@ allowance. C455 selected those repairs together using the normal selector. The
 final mixture passed a fresh Phenix restraint-gradient check. The portable
 diagnostic reopened after relocation with access to the originals disabled.
 The outer attempt remains unfinished. Even omitting its seven expanded stage
-trees leaves 143.1 MiB of distinct evidence. Qualify bounded ownership of both
-success and interruption. The published bundle can reproduce 3,300 of 3,599
-earlier files byte for byte. A successful attempt could reference that bundle.
-A stopped attempt must retain its own children because publication may never
-occur. Then check ordinary mixed ReadySet, the locked ATL junction and
-diffraction on a fresh lineage.
+trees leaves 143.1 MiB of distinct evidence. C457 read all 3,599 original
+files independently of the later publication, and tested completion, verified
+interruption and a fresh retry. In both saved Phenix models all 38 backbone
+bonds and 53 declared inter-residue soft bonds accounted for every cross-site
+bond. Next check ordinary mixed ReadySet on a new lineage and demonstrate that
+its retained working evidence remains readable within the shared physical limit.
+The locked ATL junction and mixed diffraction follow.
 C437 also shows why Q06 retains a separate displacement check. Five cycles with
 the measured host scaffold B factors and new 5PC base atoms at B=20 brought
 the terminal carbon close to the ring plane (0.087 Å) while stretching its
@@ -1390,11 +1391,10 @@ model or establishes pair restraints.
 
    C455 verified each of those seven transitions, selected the combined
    dictionaries after an independent native derivative check, and reopened the
-   compact publication after moving it. Next, qualify the outer attempt's
-   completion and interruption records within their limits. Use the saved
-   evidence for those checks. Once that owner is ready, run one fresh mixed
-   preparation and check the selected model, ReadySet and the long outgoing ATL
-   junction. ATL still needs its own source-bound reaction in that ordinary
+   compact publication after moving it. C457 qualified the new outer owner
+   against the original partial files, known-stopped recovery and fresh completion.
+   Run one fresh twelve-component preparation through ReadySet. Check the
+   selected model, exact cross-site bonds, storage and subsequent ATL junction. ATL still needs its own source-bound reaction in that ordinary
    construction. Then run one new mixed diffraction lineage.
    Verify source identity, native pair/stack membership, unchanged flags and
    achieved local geometry at PDU, 5PC, DF and ATL. Exercise cache reuse and

@@ -41,6 +41,7 @@ from . import cif_runtime_continuation as continuation
 from .cif_runtime_continuation_process import inspect_runtime_continuation_processes, POLICY_ID as CONTINUATION_PROCESS_POLICY
 
 from .cif_prepared_bond_discovery import bond_discovery_fields
+from . import cif_complete_stages as staged_artifacts
 
 POLICY_ID = 'cif-complete-dictionary-request-v1'
 ANCHOR = 'dictionary_request_directory'
@@ -49,6 +50,7 @@ LEGACY_ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v1'
 NESTED_ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v2'
 ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v3'
 CAPTURE_ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v4'
+STAGED_ARTIFACT_POLICY = staged_artifacts.POLICY_ID
 _REPAIR_PREFIX = 'repair/attempts/attempt-0001/'
 _RUNTIME_PREFIX = 'repair/attempts/attempt-0001/execution/runtime/'
 _CAPTURE_PREFIX = 'repair/attempts/attempt-0001/execution/native/'
@@ -184,7 +186,7 @@ def _construction_input(directory, model, sources, model_context):
 
 
 def _artifact_fields(policy):
-    _need(policy is None or (type(policy) is str and policy in {LEGACY_ARTIFACT_POLICY, NESTED_ARTIFACT_POLICY, ARTIFACT_POLICY, CAPTURE_ARTIFACT_POLICY}),
+    _need(policy is None or (type(policy) is str and policy in {LEGACY_ARTIFACT_POLICY, NESTED_ARTIFACT_POLICY, ARTIFACT_POLICY, CAPTURE_ARTIFACT_POLICY, STAGED_ARTIFACT_POLICY}),
           'Unsupported complete-request artifact policy')
     return {} if policy is None else dict(artifact_policy=policy)
 
@@ -197,6 +199,7 @@ def _artifact_partitions(policy, with_continuation):
     retain their exact historical partition meanings. Explicit V4 additionally
     bounds raw native captures separately from derived repair evidence. Each
     logical partition and the shared physical archive keep their prior caps.
+    V5 uses these same parent scopes plus separately recorded repair stages.
     V3 remains the default; no failed historical request is reinterpreted.
     """
     _artifact_fields(policy)
@@ -204,13 +207,13 @@ def _artifact_partitions(policy, with_continuation):
     if policy is None:
         return ()
     prefixes = (_RUNTIME_PREFIX,)
-    if policy in {ARTIFACT_POLICY, CAPTURE_ARTIFACT_POLICY}:
+    if policy in {ARTIFACT_POLICY, CAPTURE_ARTIFACT_POLICY, STAGED_ARTIFACT_POLICY}:
         prefixes += (_REPAIR_PREFIX,)
-    if policy == CAPTURE_ARTIFACT_POLICY:
+    if policy in {CAPTURE_ARTIFACT_POLICY, STAGED_ARTIFACT_POLICY}:
         prefixes += (_CAPTURE_PREFIX,)
     if with_continuation:
         prefixes += ('continuation/',)
-        if policy in {NESTED_ARTIFACT_POLICY, ARTIFACT_POLICY, CAPTURE_ARTIFACT_POLICY}:
+        if policy in {NESTED_ARTIFACT_POLICY, ARTIFACT_POLICY, CAPTURE_ARTIFACT_POLICY, STAGED_ARTIFACT_POLICY}:
             prefixes += ('continuation/runtime/',)
     return tuple(sorted(prefixes, key=len, reverse=True))
 
@@ -222,8 +225,8 @@ def _artifact_options(config):
 
 def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=None, compact_evidence=False, plane_support=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False):
     bond_discovery_fields(automatic_bond_targets,bond_targets)
-    _need(not automatic_bond_targets or artifact_policy==CAPTURE_ARTIFACT_POLICY,
-          'Automatic bond discovery requires the v4 native-capture artifact policy')
+    _need(not automatic_bond_targets or artifact_policy in (CAPTURE_ARTIFACT_POLICY, STAGED_ARTIFACT_POLICY),
+          'Automatic bond discovery requires the v4 native-capture or v5 staged artifact policy')
     _need(type(automatic_plane_support) is bool and not (automatic_plane_support and plane_support is not None),
           'Require a boolean automatic plane choice separate from supplied support')
     _need(type(qualify_no_repair) is bool, "Require a boolean no-repair qualification mode")
@@ -398,12 +401,12 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     the existing prepared repair owner, continuation and retention. It does not
     authorize chemical identity changes or numerical acceptance. Alternatively,
     automatic_bond_targets=True freezes source/library-discovery intent; it requires
-    CAPTURE_ARTIFACT_POLICY and excludes explicit bond_targets. Exact proposals are
+    CAPTURE_ARTIFACT_POLICY or STAGED_ARTIFACT_POLICY and excludes explicit bond_targets. Exact proposals are
     frozen inside each fresh owned repair, never substituted into old attempts.
     """
     bond_discovery_fields(automatic_bond_targets,bond_targets)
-    _need(not automatic_bond_targets or artifact_policy==CAPTURE_ARTIFACT_POLICY,
-          'Automatic bond discovery requires the v4 native-capture artifact policy')
+    _need(not automatic_bond_targets or artifact_policy in (CAPTURE_ARTIFACT_POLICY, STAGED_ARTIFACT_POLICY),
+          'Automatic bond discovery requires the v4 native-capture or v5 staged artifact policy')
     _need(type(automatic_plane_support) is bool and not (automatic_plane_support and plane_support is not None),
           'Require a boolean automatic plane choice separate from supplied support')
     repair.compact_evidence_fields(compact_evidence)
@@ -645,6 +648,10 @@ def _repair_limits(config):
 
 def _attempt_files(attempt, *, with_continuation=False, artifact_policy=None):
     _artifact_fields(artifact_policy)
+    if artifact_policy == STAGED_ARTIFACT_POLICY:
+        inventory = staged_artifacts.working_inventory(attempt, _artifact_partitions(artifact_policy, with_continuation))
+        inventory['files'].pop('finished.json', None)
+        return inventory
     if artifact_policy is not None:
         prefixes = _artifact_partitions(artifact_policy, with_continuation)
         files=frozen_tree._bounded_inventory(attempt,max_files=frozen_tree.MAX_FILES,
@@ -820,6 +827,11 @@ def _seal(root, attempt, intent, request, outcome, error=None, remaining=None):
           and completion_size <= frozen_tree.MAX_FILE_BYTES
           and sum(r['size'] for r in partition.values())+completion_size <= frozen_tree.MAX_BYTES,
           'Outer completion exceeds frozen artifact bounds')
+    if policy == STAGED_ARTIFACT_POLICY:
+        bounds = staged_artifacts.AttemptBounds(prefixes)
+        for name, ref in artifacts['files'].items():
+            bounds.charge(name, ref['size'])
+        bounds.charge('finished.json', completion_size)
     if remaining is not None: remaining()
     write_record(attempt/'finished.json',completion)
 

@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-20, C455 mixed-scaffold selection and portable publication — Rowan**.
+Updated **2026-11-20, C457 mixed-scaffold bond inventory and interruption records — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -56,10 +56,19 @@ The original C450 attempt stopped with 1,600 paths and 235,160,056 logical
 bytes of repair evidence. C455 used those saved stages and a separate fresh
 derivative job. It published a standalone diagnostic bundle. The original
 attempt remains exhausted. Its unfinished outer record still contains
-144.6 MiB of distinct payloads. Next, qualify how that owner can record
-success or interruption within its storage allowance, then run one fresh
-ordinary mixed preparation through ReadySet. Preserve the separate ATL
-junction and subsequent diffraction checks. The existing register entry
+144.6 MiB of distinct payloads. C457 read all 3,599 original files without
+depending on a later published bundle. A controlled interruption with the new
+owner sealed the partial work, then a fresh attempt finished without changing
+the first. A live child still blocked retry. Separate lossless packs of the
+sixteen real working stages and the remaining distinct working files together
+required 52,347,778 bytes before outer archive metadata. This was a storage
+rehearsal on saved files. The original attempt still has no completion record.
+
+A complete bond count on both saved native models found 38 backbone and 53
+supplied inter-residue soft bonds, with no extra links. All 211 frame terms
+were realized. These are fixed-coordinate observations. The next test is a
+fresh ordinary twelve-component preparation through ReadySet, followed by the
+separate ATL junction and mixed diffraction checks. The existing register entry
 `qualified_rings_and_mixed_repairs_2026_11_20` retains exact evidence, including
 the independently qualified original with its 1.364 Å 5PC and 1.607 Å PDU targets.
 

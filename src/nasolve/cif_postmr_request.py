@@ -8,7 +8,7 @@ from copy import deepcopy
 from pathlib import Path
 
 from .cif_acquisition_sources import _codes, freeze_acquisition_sources, read_acquisition_sources
-from .cif_complete_request import CAPTURE_ARTIFACT_POLICY, _LIMITS, _compiler_input, _compiler_references, _continuation_fields, _construction_input, initialize_dictionary_request
+from .cif_complete_request import CAPTURE_ARTIFACT_POLICY, STAGED_ARTIFACT_POLICY, _LIMITS, _compiler_input, _compiler_references, _continuation_fields, _construction_input, initialize_dictionary_request
 from .cif_dictionary_sites import _consumer, _need, _read
 from .cif_generation_acquisition import generation_dictionary_options
 from .cif_acquisition_attempt import _generation_binding
@@ -156,6 +156,12 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
                 item["phosphate_atom_policy"] = policy
     _need(all(_read(p) == data for p,data in literal_originals),
           'Literal original PHIL changed during source freezing')
+    # Each independently verified repair in a mixture has its own working proof.
+    artifact_options = {}
+    if bond_targets is not None or automatic_bond_targets:
+        policy = (STAGED_ARTIFACT_POLICY if len(codes) > 1 and automatic_plane_support
+                  and automatic_bond_targets else CAPTURE_ARTIFACT_POLICY)
+        artifact_options['artifact_policy'] = policy
     return initialize_dictionary_request(sources, components, model, request,
         consumer=consumer, expected_links=model_context['expected_links'], native_context=native_context,
         supplementary_phils=phils, model_context=model_context, restraint_context=restraint_context,
@@ -163,7 +169,7 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
         **({'automatic_plane_support':True} if automatic_plane_support else {}),
         **({'bond_targets':bond_targets} if bond_targets is not None else {}),
         **({'automatic_bond_targets':True} if automatic_bond_targets else {}),
-        **({'artifact_policy':CAPTURE_ARTIFACT_POLICY} if bond_targets is not None or automatic_bond_targets else {}),
+        **artifact_options,
         **execution_limits)
 
 def prepare_postmr_literal_inputs(model, supplementary_phils, frozen_sources, output, *,
