@@ -32,17 +32,14 @@ covers both amino groups. In S6G only the shared pair plane includes sulfur.
 On the thirteen-component model the corrected PDU, 5PC and DF restraints now
 coexist with all ten other current definitions. The ordinary twelve-component
 control independently produces the same local targets and weights. Its seven
-repairs were individually verified, but repeated records exceeded the combined
-file and byte limits before publication. Close bounded storage and failed-attempt
-accounting first. C452 already replayed all seven changes from relocated,
-separately bounded archives while denying access to the original run.
-The outer unfinished attempt still exceeds the shared physical cap. Removing
-the seven expanded stages from the size calculation still leaves 143.1 MiB of
-distinct outer payloads. Reopen only the declared children needed for each check
-and keep their ownership and hashes bound to the same attempt. C453 checked the
-current stop, portable four-change prefix, copy-only replay and altered-source
-refusal. Qualify ordinary mixed ReadySet, locked ATL and diffraction after those
-storage checks.
+repairs were individually verified before repeated records exceeded the combined
+allowance. C455 selected those repairs together using the normal selector. The
+final mixture passed a fresh Phenix restraint-gradient check. The portable
+diagnostic reopened after relocation with access to the originals disabled.
+The outer attempt remains unfinished. Even omitting its seven expanded stage
+trees leaves 143.1 MiB of distinct evidence. Qualify bounded ownership of both
+success and interruption, then check ordinary mixed ReadySet, the locked ATL
+junction and diffraction on a fresh lineage.
 C437 also shows why Q06 retains a separate displacement check. Five cycles with
 the measured host scaffold B factors and new 5PC base atoms at B=20 brought
 the terminal carbon close to the ring plane (0.087 Å) while stretching its
@@ -1388,10 +1385,11 @@ model or establishes pair restraints.
    DNA route. Each of seven successive edits passed its own native check.
    Packaging the combined evidence stopped before the ordinary endpoint.
 
-   First reuse bounded object storage across repairs. Verify every stage and
-   ordered dictionary transition, and ensure the outer attempt can record a
-   bounded stop. Use the saved C450 evidence for engineering. Once the normal
-   reader can reopen the resulting record after relocation, run one fresh mixed
+   C455 verified each of those seven transitions, selected the combined
+   dictionaries after an independent native derivative check, and reopened the
+   compact publication after moving it. Next, qualify the outer attempt's
+   completion and interruption records within their limits. Use the saved
+   evidence for those checks. Once that owner is ready, run one fresh mixed
    preparation and check the selected model, ReadySet and the long outgoing ATL
    junction. ATL still needs its own source-bound reaction in that ordinary
    construction. Then run one new mixed diffraction lineage.

@@ -26,6 +26,7 @@ MAX_ACTIVE_BYTES = MAX_BYTES
 _ACTIVE_BYTES = ContextVar('runtime_evidence_expanded_bytes', default=0)
 _ACTIVE_OBJECTS = ContextVar('runtime_evidence_objects', default=None)
 _ACTIVE_DEPTH = ContextVar('runtime_evidence_depth', default=0)
+_REPAIR_STAGE_ACTIVE = ContextVar('repair_evidence_stage_active', default=False)
 _WORKING_VIEW_ACTIVE = ContextVar('working_evidence_view_active', default=False)
 MAX_DEPTH = 2
 _SHA = re.compile(r'[0-9a-f]{64}\Z')
@@ -80,7 +81,7 @@ def _decode(data,digest, *, index_reader=_index):
         raise ValueError('Incomplete or damaged compact evidence') from exc
 
 
-def pack_runtime_evidence(directory, output):
+def pack_runtime_evidence(directory, output, *, expected_inventory=None):
     """Write a fresh deterministic archive, retaining exact paths and bytes."""
     root=Path(directory).absolute();output=Path(output).absolute()
     _need(not output.exists() and not any(p.is_symlink() for p in (output,*output.parents))
@@ -88,6 +89,8 @@ def pack_runtime_evidence(directory, output):
     before=_tree(root)
     directories=sorted(p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_dir())
     refs={name:dict(sha256=sha256(data).hexdigest(),size=len(data)) for name,data in before.items()}
+    if expected_inventory is not None:
+        _need((refs, directories) == expected_inventory, 'Packed repair evidence changed during freezing')
     index=dict(schema_version=1,policy_id=POLICY_ID,files=refs,directories=directories)
     _index(index)
     objects={refs[name]['sha256']:data for name,data in before.items()}
@@ -124,9 +127,21 @@ def expanded_runtime_evidence(archive, digest):
     one physical-byte allowance and reuse identical temporary objects. A platform
     without hard links must charge each real copy to that same allowance.
     """
-    _need(_ACTIVE_DEPTH.get()<MAX_DEPTH, 'Nested evidence exceeds supported view depth')
+    _need(not _REPAIR_STAGE_ACTIVE.get() and _ACTIVE_DEPTH.get()<MAX_DEPTH, 'Nested evidence exceeds supported view depth')
     with _expanded_evidence(archive, digest, runtime_layer=True) as view:
         yield view
+
+
+@contextmanager
+def expanded_repair_stage(archive, digest):
+    """Open a single leaf proof inside the current physical-byte allowance."""
+    _need(not _REPAIR_STAGE_ACTIVE.get(), 'A repair stage cannot open another evidence view')
+    token = _REPAIR_STAGE_ACTIVE.set(True)
+    try:
+        with _expanded_evidence(archive, digest, runtime_layer=False) as view:
+            yield view
+    finally:
+        _REPAIR_STAGE_ACTIVE.reset(token)
 
 
 @contextmanager
@@ -145,7 +160,7 @@ def expanded_working_evidence(archive, digest):
 @contextmanager
 def _working_evidence(archive, digest, *, decoder):
     """Reserve the sole outer view, using an explicitly selected bounded index."""
-    _need(not _WORKING_VIEW_ACTIVE.get() and _ACTIVE_DEPTH.get() == 0
+    _need(not _REPAIR_STAGE_ACTIVE.get() and not _WORKING_VIEW_ACTIVE.get() and _ACTIVE_DEPTH.get() == 0
           and _ACTIVE_BYTES.get() == 0 and _ACTIVE_OBJECTS.get() is None,
           'Working evidence requires an outer root scope')
     token = _WORKING_VIEW_ACTIVE.set(True)

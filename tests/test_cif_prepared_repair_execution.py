@@ -308,11 +308,13 @@ def test_repair_plan_covers_model_components_outside_selected_dictionary_owners(
 
 
 @pytest.mark.parametrize('linear', [False, True])
-@pytest.mark.parametrize('outcome',['pass','unsupported','bad-evidence','negative-attribution','bad-final-derivative','native-timeout','changed-support','ownership-error','classified-plane-timeout','publication-error'])
+@pytest.mark.parametrize('outcome',['pass','compact-pass','unsupported','bad-evidence','negative-attribution','bad-final-derivative','native-timeout','changed-support','ownership-error','classified-plane-timeout','publication-error'])
 def test_plane_support_uses_existing_repair_owner_and_final_selector(case, monkeypatch, linear, outcome):
     from nasolve.campaign_process import CampaignProcessError
     m,b,sdk,out,state,calls,options=case
     state['steps']=linear
+    if outcome == 'compact-pass':
+        options['compact_evidence'] = True
     generation=b.parent/'generation';generation.mkdir();(generation/'proof').write_text('owned support')
     declared={'Q17':dict(request_directory=generation,attempt_number=1)}
     def snapshot(bundle, choices):
@@ -344,7 +346,8 @@ def test_plane_support_uses_existing_repair_owner_and_final_selector(case, monke
         return dict(status='REVIEW' if outcome=='negative-attribution' else 'CAPTURED_PLANE_ATTRIBUTION_PASS')
     monkeypatch.setattr(m,'audit_captured_plane_attribution',plane)
     chain_paths=[]
-    def chain(planes, output, *, linear_attribution=None):
+    def chain(planes, output, *, linear_attribution=None, storage='expanded'):
+        assert storage == ('auto' if outcome == 'compact-pass' else 'expanded')
         chain_paths.append(output)
         assert planes==[out/'plane-attribution-000']
         assert linear_attribution==(out/'attribution' if linear else None)
@@ -379,6 +382,16 @@ def test_plane_support_uses_existing_repair_owner_and_final_selector(case, monke
     if outcome=='classified-plane-timeout':
         options['optional_failure_policy']=m.FALLBACK_POLICY_ID
         monkeypatch.setattr(m,'inspect_prepared_native_failure',lambda root,phase:dict(phase=phase,status='KNOWN_STOPPED_NATIVE_FAILURE'))
+    if outcome == 'compact-pass':
+        publish = m.prepare_repaired_component_runtime_bundle
+        def compact_publish(output, **kwargs):
+            assert kwargs['compact_evidence'] is True
+            publish(output, **kwargs)
+            path = output/'runtime_bundle.json'
+            saved = json.loads(path.read_bytes())
+            saved['evidence_storage'] = 'synthetic compact test'
+            path.write_text(json.dumps(saved))
+        monkeypatch.setattr(m, 'prepare_repaired_component_runtime_bundle', compact_publish)
     if outcome=='publication-error':
         def fail_publication(**kwargs):raise OSError('Synthetic publication failure')
         monkeypatch.setattr(m,'prepare_repaired_component_runtime_bundle',fail_publication)

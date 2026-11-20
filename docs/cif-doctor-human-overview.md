@@ -26,6 +26,14 @@ ended 0.101 Å from the nine ring atoms. Doctor now reports the local omission
 even though the prepared model is usable. The reflections in these controls
 belong to the host scaffold.
 
+A mixture of twelve modified residue types exercised seven repairs to 5PC,
+DF and PDU. Doctor can now check the repairs one at a time, verify that each
+changes only its assigned dictionary, and give Phenix the complete ordered
+set. The energy derivatives on the fixed starting coordinates passed. The
+two propynyl targets remained 1.470 Å in the selected dictionaries. Testing
+whether the mixed model keeps those geometries during diffraction refinement
+requires its own run.
+
 The ordinary PDU control receives the corrected targets and plane but still bends
 under substituted-scaffold diffraction. The recorded weight, normalization and
 restart experiments do not establish a general repair; they should not be repeated

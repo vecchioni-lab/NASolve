@@ -463,6 +463,7 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
                 attribution = Path(proof_scratch.name).resolve()/'repair-chain'
                 prepare_repair_chain(plane_attributions,attribution,
                     linear_attribution=output/'attribution' if plan['steps'] else None,
+                    **({'storage':'auto'} if compact_evidence else {}),
                     **(dict(bond_attributions=bond_attributions,energy_library=output/'energy-library') if bond_attributions else {}))
             phase = 'REPAIRED_DERIVATIVES'; event('STARTED')
             repaired_gradient = output/'repaired-gradient'

@@ -118507,6 +118507,145 @@
         },
         "automatically_adopted": false
       }
+    },
+    "staged_selection_and_publication": {
+      "control": "C455_STAGED_MIXED_REPAIR_SELECTION",
+      "old_aggregate_files": 1600,
+      "old_aggregate_bytes": 235160056,
+      "component_ordered_edits": [
+        [
+          "linear",
+          "5PC",
+          4
+        ],
+        [
+          "linear",
+          "PDU",
+          20
+        ],
+        [
+          "plane",
+          "5PC",
+          4
+        ],
+        [
+          "plane",
+          "DF",
+          8
+        ],
+        [
+          "plane",
+          "PDU",
+          20
+        ],
+        [
+          "bond",
+          "5PC",
+          4
+        ],
+        [
+          "bond",
+          "PDU",
+          20
+        ]
+      ],
+      "stage_archive_count": 6,
+      "staged_chain_files": 78,
+      "staged_chain_bytes": 11459860,
+      "staged_chain_receipt_sha256": "89b34cf4fea26255737013c00c0ee9273a174a174355fc861d7ecfe3f4e102aa",
+      "final_native_check": {
+        "calls": 1,
+        "status": "CAPTURED_MIXED_DERIVATIVES_PASS",
+        "execution": {
+          "elapsed_seconds": 30.540121,
+          "returncode": 0,
+          "status": "COMPLETED"
+        },
+        "checks": {
+          "captured_raw_snapshot": true,
+          "complete_both_order_plane_derivatives_and_controls": true,
+          "complete_initial_sampled_derivatives": true,
+          "unchanged_native_energy": true,
+          "unchanged_static_constraint_signature": true
+        },
+        "receipt_sha256": "941252a6f1ac4d1365df5e22edf79a3d8559a6d47832e90f0b3600f308d81e3e"
+      },
+      "selection_scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+      "selected": "repaired_prepared_bundle",
+      "source_mechanics": "REVIEW",
+      "original_derivatives": "CAPTURED_MIXED_DERIVATIVES_PASS",
+      "dictionary_files": 24,
+      "portable_targets": {
+        "5PC": {
+          "atoms": [
+            "C8",
+            "C9"
+          ],
+          "angstrom": 1.47,
+          "sigma_angstrom": 0.027
+        },
+        "PDU": {
+          "atoms": [
+            "C5B",
+            "C5M"
+          ],
+          "angstrom": 1.47,
+          "sigma_angstrom": 0.02
+        },
+        "DF": {
+          "atoms": [
+            "C2",
+            "S1"
+          ],
+          "angstrom": 1.638,
+          "sigma_angstrom": 0.026
+        }
+      },
+      "portable_runtime_bytes": 16919670,
+      "portable_runtime_manifest_sha256": "240d534e23a79bdbfc081d068647de95bd4a40ee70fd57cc57299df329b3a35a",
+      "ordered_dictionary_sha256": "96e1fd6f1c56e4aa3857ff760f1d45f5457cf8fdadd5f4a2b597e830900f927b",
+      "cold_read_during_original_denial": true,
+      "new_native_processes_during_replay": 0,
+      "old_request_files_predating_rehearsal": 3792,
+      "mixed_readyset": false,
+      "mixed_diffraction": false,
+      "automatic_checkpoint_adoption": false,
+      "remaining": "Complete and interrupt one outer preparation under the existing storage limits before a fresh ordinary ReadySet run. ATL and mixed diffraction remain separate.",
+      "proof_references": {
+        "parent_mixed_review_sha256": "6d6c38e80b6f569e11e38b9654241f72f9ab0c7ae6f8b3733f9a1fff1e277d10",
+        "local_reproduction_driver_sha256": "ab49701ce4d0e0c3cfe62950727ece1ba34a6bf6272b978bc43eb0e4b870bf5a",
+        "portable_target_checker_sha256": "99f5e3a4fa8dd6f2d43b9845f846c1c04445c9f4118510292444019f9025c6aa"
+      },
+      "compatibility": "Small expanded v1/v2 chain records reproduce with their existing policy. Compact requests use stage archives only when the earlier combined allowance is exceeded. Offline intermediate paths live only during visit_repair_chain. No migration.",
+      "validation": {
+        "source_distinct_cases": 476,
+        "wheel_checks": 115,
+        "python": "3.12.14",
+        "native": "Phenix 2.2.1-6174; one completed fixed-coordinate derivative job, 30.54 seconds. No additional native subprocess during the relocated reads.",
+        "full_regression": "deferred at Simon’s request",
+        "source_test_files": [
+          "tests/test_cif_repair_chain.py",
+          "tests/test_cif_bond_repair_chain.py",
+          "tests/test_cif_dictionary_bundle_repair.py",
+          "tests/test_cif_component_runtime.py",
+          "tests/test_cif_original_component_runtime.py",
+          "tests/test_cif_repaired_component_runtime.py",
+          "tests/test_cif_prepared_repair_execution.py",
+          "tests/test_cif_prepared_repair_budget.py",
+          "tests/test_cif_prepared_repair_failure.py",
+          "tests/test_cif_prepared_bond_repair.py",
+          "tests/test_cif_prepared_bond_discovery.py",
+          "tests/test_cif_runtime_evidence.py",
+          "tests/test_cif_working_evidence_view.py",
+          "tests/test_cif_runtime_readyset.py"
+        ],
+        "source_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:$NARESTRAINTS $PY -m pytest -q -p no:cacheprovider <source_test_files>",
+        "native_worker_tests": "40 passed with process-group permission; 15 sandbox signal denials on the initial restricted run.",
+        "installed_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=$RELOCATED_INSTALL:$NARESTRAINTS $PY -B -m pytest -q -p no:cacheprovider tests/test_cif_repair_chain.py tests/test_cif_bond_repair_chain.py tests/test_cif_runtime_evidence.py tests/test_cif_working_evidence_view.py",
+        "package_sha256": "8aa0dfcb117cda4430652499c99a1f26f8b5b0fd2eb5fb3898f886127e4533ae",
+        "NARestraints": "a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691",
+        "generated_scientific_inputs_committed": false
+      }
     }
   }
 }

@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Keep complete repair evidence for mixtures of modified residues
+
+- When a compact preparation exceeds the combined evidence allowance, Cedar
+  stores each repair separately. The usual selector reopens each proof in order,
+  verifies its chemical source, and checks the starting and repaired dictionaries
+  against their own Phenix derivative results. It can publish a portable
+  diagnostic bundle within the original storage limits. Existing expanded
+  bundles and smaller preparations retain their format.
+
 ### Recognize verified aromatic rings when checking base planes
 
 - The ordinary PostMR plane check now uses the bond orders in the supplied

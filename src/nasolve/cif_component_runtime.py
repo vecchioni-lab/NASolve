@@ -49,6 +49,10 @@ def _bounded_inventory(root, *, max_files, max_bytes, partition_prefixes=()):
             max_bytes=max_bytes, partition_prefixes=partition_prefixes)}
 
 
+class CombinedEvidenceLimit(ValueError):
+    """Individually bounded sources exceeded one combined storage allowance."""
+
+
 def _snapshot_roots(roots, *, max_files, max_bytes, message):
     """Freeze multiple inputs under one allowance before reading each payload."""
     count = size = 0
@@ -59,7 +63,7 @@ def _snapshot_roots(roots, *, max_files, max_bytes, message):
         count += 1
         size += member_size
         if count > max_files or size > max_bytes:
-            raise ValueError(f'{message} while adding {name} '
+            raise CombinedEvidenceLimit(f'{message} while adding {name} '
                              f'({count}/{max_files} files, {size}/{max_bytes} bytes)')
 
     for name, root in roots.items():

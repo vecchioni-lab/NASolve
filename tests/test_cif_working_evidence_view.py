@@ -74,3 +74,25 @@ def test_working_copy_fallback_cannot_bypass_byte_accounting(tmp_path,monkeypatc
         with pytest.raises(ValueError,match='temporary'):
             with evidence.expanded_working_evidence(out,packed['archive_sha256']):pytest.fail('Uncharged copies')
     assert evidence._ACTIVE_BYTES.get()==0 and evidence._ACTIVE_DEPTH.get()==0
+
+
+def test_repair_leaf_cannot_nest_or_borrow_more_temporary_space(tmp_path, monkeypatch):
+    out, packed = archive(tmp_path)
+    digest = packed['archive_sha256']
+    views = []
+    with evidence.expanded_working_evidence(out,digest):
+        with evidence.expanded_runtime_evidence(out,digest), evidence.expanded_runtime_evidence(out,digest):
+            used = evidence._ACTIVE_BYTES.get()
+            monkeypatch.setattr(evidence, 'MAX_ACTIVE_BYTES', used)
+            with evidence.expanded_repair_stage(out,digest) as view:
+                views.append(view)
+                assert evidence._ACTIVE_BYTES.get() == used
+                for opener in (evidence.expanded_runtime_evidence, evidence.expanded_working_evidence,
+                               evidence.expanded_repair_stage):
+                    with pytest.raises(ValueError), opener(out,digest):
+                        pytest.fail('Leaf proof opened another view')
+            with patch.object(evidence.os,'link',side_effect=OSError('copies required')):
+                with pytest.raises(ValueError,match='temporary expansion'), evidence.expanded_repair_stage(out,digest):
+                    pytest.fail('A copied stage exceeded the shared allowance')
+            assert not views[0].exists()
+    assert evidence._ACTIVE_BYTES.get() == 0 and not evidence._REPAIR_STAGE_ACTIVE.get()
