@@ -27,6 +27,10 @@ confirmed B:7→B:1 and C/D crossover topology; exact image realization remains
 source-derived and native enforcement unqualified. The existing
 non-FT synthetic continuation reader preserves declared, unknown and chemical
 boundaries. Whole-model enforcement/slicing provenance remain open; A02 is gated.
+The follow-up same-image angle readback shows near-local O3′-vertex angles but
+long P–O3′ gaps and substantial phosphate-side distortion, especially D:7→C:8.
+Inverse views agree; 38 ordinary links provide descriptive context, not targets.
+No coordinate repair or new native enforcement is implied.
 
 A04 now exposes pinned historical result inspection through the normal CLI
 (`metal inspect-recorded-fdp`), with 53 focused tests and exact relocated installed

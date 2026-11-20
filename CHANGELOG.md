@@ -31,6 +31,13 @@ entries are reconstructed from repository history.
   parent JSON and incomplete archives through the existing inspection owners.
   No persisted schema, refinement default or cleanup authority changes.
 
+### Measure confirmed FT junction geometry without changing the model
+
+- Record both same-image phosphate-junction distances and four flanking angles,
+  checked against inverse images and existing ordinary local links.
+- Keep descriptive ranges separate from target selection; no bonds, coordinates,
+  refinement settings, persisted schemas or scientific acceptance change.
+
 ### Record independent FT symmetry and checkpoint input gaps
 
 - Record subsequent investigator confirmation of the FT B:7→B:1 symmetry

@@ -75,6 +75,36 @@ boundary before modified/metal motion admission. Separate donor pose and Hg
 placement, then qualify open XYZ/B before branch-specific environmental B and
 frozen f″/Q. Do not repeat this readback or the completed 25-point pivot grid.
 
+### Confirmed FT junction angles: existing coordinates only
+
+The two investigator-declared junctions now have complete same-image local
+measurements in the pinned current parent. B:7→B:1 has P–O3′ **3.100 Å**,
+C3′–O3′–P **120.42°**, and O3′–P–OP1/OP2/O5′ **124.86°/84.46°/106.21°**.
+D:7→C:8 has **3.027 Å**, **120.21°**, and **89.94°/55.79°/81.01°**, respectively.
+Both inverse image views and independent Gemmi transport/angle calculations agree
+within 1e-8. All six local atoms are transported consistently for each view.
+
+The same model's 38 captured ordinary P–O3′ links give descriptive context:
+distances **1.593–1.639 Å**, O3′-vertex angles **118.76–123.34°**, OP1 angles
+**94.99–116.61°**, OP2 **102.71–121.22°**, and O5′ **96.62–111.34°**. Four
+immediate flanking links are retained individually. OP1/OP2 stay source labels;
+these ranges are not ideal targets or acceptance limits. The broad separation
+is a long gap plus phosphate-side distortion, particularly at D:7→C:8, despite
+an O3′-vertex angle resembling ordinary links. Fractional-degree differences do
+not set the acceptance decision. Rowan owns the independent finite strand graph.
+
+Read-only command: `PYTHONDONTWRITEBYTECODE=1
+/private/tmp/willow-w94-pivot/env/bin/python -B
+<Alder-artifacts>/runners/A303_ft_junction_angles.py`. The **3,791 assertions**
+mostly validate atom identity, source integrity, inverse transport and arithmetic;
+they are not independent experiments or a runtime test suite. Gemmi 0.7.5 is
+used; no native execution or full suite ran. Receipts and the visually checked
+editable figure are `ft-junction-angles-20261120-01/{review.json,delivery.json,
+review.html,junction-geometry.svg}` under the private artifact anchor. Inputs stay
+unchanged; no bond, target, model motion, schema or migration is introduced.
+A01 remains partial; whole-junction native enforcement and ordinary parent intake
+still need qualification before any geometry repair or A02 f″ work.
+
 ### Completed-batch provenance handoff
 
 `metal publish-fdp-inputs` now publishes a bounded explicit completed batch and a
