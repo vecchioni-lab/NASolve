@@ -746,7 +746,9 @@ when required by placement. A rigid-cluster proposal preserves internal metal
 geometry; internal cluster deformation/count/identity changes are separate
 recipe branches. DNA accommodation must involve chemically connected bases,
 sugars and backbone, rather than stretching attachment bonds or moving only
-metals. Preserve authoritative component/link restraints and declare the local
+metals. Preserving chemical identity and restraint targets does not freeze sugar
+or backbone coordinates: they may move together within the declared restrained
+region. Preserve authoritative component/link restraints and declare the local
 movable region and its boundaries. Exact pivots, neighborhood, displacement
 limits, boundary restraints and sampling/ranking policy remain to be qualified
 with the shared structural-movement owners; none is a runtime default yet.

@@ -128,6 +128,12 @@ W173 synthetic endpoint consumer refuses modified/metal permissions. See the
 for the 90 source checks, 13 scoped refusal checks and remaining scientific limits.
 This follow-on changes documentation only; no refinement or full suite runs.
 
+The later source-bound symmetry diagnostic supplies exact B:1/C:8 contact
+hypotheses and compares selected MR, original PostMR and current coordinates.
+It preserves unresolved chemistry, D:1 terminal intent and the absence of an FT
+slicing packet. Independent enumeration and an existing non-FT synthetic
+continuation reader pass 46 scoped checks; no native work or new engine follows.
+
 The bounded A01 coordination-topology follow-on adds an exact metal declaration
 adapter and optional shared-checker input. Ordinary schema-1 calls stay unchanged;
 explicit typed calls return schema 2. **309 focused tests** and **269 saved-data

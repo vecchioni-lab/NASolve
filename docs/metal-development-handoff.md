@@ -106,6 +106,32 @@ is a user-editable connection with atom identities, symmetry operator/cell image
 and intended chemistry for this FT construct. D:1 remains its distinct declared
 terminal phosphate.
 
+A subsequent read-only geometric comparison makes the open input concrete.
+In the current model, B:1 P is **3.10034 Å** from B:7 O3′ under `-y,x-y,z`;
+C:8 P is **3.02708 Å** from D:7 O3′ under `-x+y,-x,z`. Both lattice shifts are
+zero in this explicit operator representation. These are contact hypotheses,
+not accepted covalent links. The 3 Å query finds none in the current model;
+one expanded 6 Å query retains every candidate and separates same-residue
+identity contacts. No nearest contact is automatically adopted.
+
+The pinned original MR model already has these chain starts and analogous
+partner identities (2.79492/2.91895 Å in its own cell/pose); original PostMR gives
+3.24056/3.08112 Å. No pinned FT representative-slicing packet is declared, so
+slicing origin remains unestablished. D:1 P is absent from the selected `noPO4`
+MR source and present after PostMR; its current terminal-OP3 declaration is
+preserved despite a nearby symmetry O3′ contact. These observations do not
+justify copying the separate PDU construct's connection intent.
+
+The private diagnostic consumes Willow's crystal/operator/Cartesian-image
+owners without fabricating duplex-end or recut declarations. Independent
+compiled Gemmi periodic enumeration matches all candidates/distances. **46
+consumer checks** also replay the existing explicitly declared non-FT synthetic
+continuation packet and retain unresolved/chemical-boundary alternatives.
+That fixture is not an experimental solved control and does not qualify FT.
+Local `ft-symmetry-contacts-20261120-03/` contains the editable interpretations,
+exact source/operator records, compact table figure and validation. No production
+symmetry adapter, new chemistry, native calculation or checkpoint is introduced.
+
 The generic frozen frame sequence lists A:13=T and B:3=A, whereas the independently
 pinned selected MR model and original PostMR model already contain C/G there,
 matching today's parent. This is a historical sequence/model declaration

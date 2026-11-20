@@ -20,6 +20,12 @@ Preserve all phosphates, the 19 supplied pair planes and the separate generic
 sequence versus selected-model distinction; see the current handoff. No native
 recipe/fit was produced from those incomplete declarations.
 
+A01's source-bound symmetry review now gives explicit B:1–B:7 and C:8–D:7
+contact hypotheses (3.100/3.027 Å in the current parent), with no selected link.
+The existing non-FT synthetic continuation reader preserves declared, unknown
+and chemical-boundary states. Independent FT connectivity and slicing provenance
+are still missing; these diagnostics do not open A02.
+
 A04 now exposes pinned historical result inspection through the normal CLI
 (`metal inspect-recorded-fdp`), with 53 focused tests and exact relocated installed
 Hg/Ag₄ readback. This closes a workflow surface only; no fresh fit, scientific

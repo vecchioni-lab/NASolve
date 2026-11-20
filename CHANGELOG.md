@@ -25,6 +25,9 @@ entries are reconstructed from repository history.
 - Record the ordinary-checkpoint and modified/metal endpoint restrictions,
   including a labelled synthetic consumer refusal. Runtime, schemas and
   scientific defaults are unchanged; no real model moves or new fit follows.
+- Add exact source-bound B:1/C:8 symmetry-contact hypotheses and preserve
+  unresolved connection/slicing intent. The independent geometric/reader checks
+  do not adopt bonds, alter D:1 or qualify a new refinement parent.
 
 ### Inspect recorded metal results without original trial folders
 
