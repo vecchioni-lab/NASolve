@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-20, C462 stored locked-sugar chemistry — Rowan**.
+Updated **2026-11-20, C461–C469 mixed refinement and the separately placed locked sugar — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -13,6 +13,41 @@ Focused, relocated installed, matched native and independent checks also pass.
 Software qualification does not change the scientific REVIEW or close Q06.
 
 ## Where to resume
+
+**Ordinary mixed refinement, C461/C466.** Twelve substitutions went from Coot
+1.3.3 and ReadySet through a registered parent and five Phenix 2.2.1-6174
+cycles. A:11 retained DT. The two terminal carbon bonds ended at 1.476 Å (PDU)
+and 1.465 Å (5PC) against 1.470 Å. DF C=S shortened from 1.812 to 1.632 Å
+against 1.638 Å. The final manager carried all 211 W-frame terms and six
+terminal-phosphate angles. PDU’s terminal carbon moved from 0.095 to 0.171 Å
+from its ring plane. The 5PC carbon moved from 0.710 to 0.382 Å. The child received
+REVIEW with Rwork/Rfree 0.2667/0.2612. The parent stays selected. The host
+observations serve as a restraint-delivery challenge. Q06 remains open on
+whole-arm geometry.
+
+**Locked sugar and starting displacement, C463–C467.** The complete dictionary
+request now carries its workbook and both explicitly reacting sugar ends. The
+separately placed 13-component model preserved all 869 positions, 38 backbone
+links, 152 neighboring angles and 211 frame terms through ReadySet. Nine ATL
+atom-name fields changed PDB spacing. The historical strict reader finds
+eight unequal display-label rows and retains the checked parent. The first
+attempt stopped at publication. C467 reopened its sealed evidence after
+relocation, within the unchanged 128 MiB allowance, with all 26 dictionaries
+and 17 parameter files. The original stop and selection are immutable.
+
+A separate optional construction seed transfers B factors only for a fully
+matched base. Nine thymine atoms could inherit their host values. The other
+13 ATL atoms kept B=20. At fixed coordinates, direct Phenix calculation on
+2,146 working reflections gave 52.7% of the original RMS amplitude from those
+nine atoms. The outgoing O3′–P still starts at 1.839 Å. Ordinary ATL placement,
+calibration of new sugar-atom B values and 13-component diffraction remain open.
+
+**Shared restraint input, C469/W180.** An authenticated native capture can
+now preserve the four explicitly reviewed Phenix reader controls alongside
+the original NARestraints input. The Willow example recovers 193 compiled
+terms and 20 retained planes. The independent ordinary run owner still needs
+to carry these controls before using that artifact for execution. See the
+[typed native literal input contract](cif-doctor.md#typed-native-reader-controls).
 
 **DY ring geometry, C456.** The triazole favors the plane of the pyrimidine.
 A soft shared plane recovered both twisted starts in five Phenix cycles.
@@ -53,7 +88,7 @@ links consumed OXT/HXT and the outgoing alcohol H; all four recorded sugar
 centres survived. The 13 unavailable formal-charge readings retain REVIEW.
 The prepared manager matches the separately assembled control for those
 backbone and frame terms. Ordinary locked-sugar coordinate
-placement, displacement assignment, and mixed diffraction remain open.
+placement, displacement assignment and diffraction with ATL remain open.
 
 **C458–C460.** An ordinary fresh Coot construction and Phenix 2.2.1-6174
 ReadySet run completed the twelve substitutions with DT still at the separate
@@ -61,14 +96,13 @@ ATL site. The repaired parent and ReadySet output have the same positions,
 occupancies and isotropic B values for all 867 atoms. Phenix retained 38
 backbone links, 53 supplied inter-residue distances and all 211 frame terms.
 PDU and 5PC have terminal bond targets of 1.470 Å. DF C=S starts at 1.812 Å
-against its 1.638 Å target. Mixed diffraction refinement is still open.
+against its 1.638 Å target. C466 above records the subsequent twelve-change refinement.
 
 The original attempt sealed its publication error after the native jobs
 stopped. C460 reopened those inputs in separate bounded stages and independently
 selected the checked ReadySet model. After relocation, all 13 dictionary and
 16 parameter paths resolved with the old run inaccessible. This separate
-diagnostic has no registered checkpoint. The next ordinary invocation must
-reach publication on its own fresh lineage before adding the locked sugar.
+diagnostic has no registered checkpoint. C461 subsequently registered its own fresh parent.
 
 **C455.** Cedar selected all seven consecutive repairs together for the first
 ordinary twelve-component mixture. Phenix 2.2.1-6174 passed the sampled restraint
@@ -407,7 +441,8 @@ six-atom ring plane 0.094297 Å. These descriptive starting values are not accep
 3. Ordinary continuation from a checked root is demonstrated with the counted pair
    fully supplied. Wider protocols, additional force terms in that combined route
    and validated density fitting each need their own evidence before being advertised.
-4. Q07: original mixed scaffold with ATL alongside, then the held-out modified-pair
+4. Q07: ordinary locked-sugar placement and displacement, followed by a matched
+   13-component diffraction child with ATL alongside. Then the held-out modified-pair
    challenge. Retain L-DNA/FANA/L-FANA/L-FDNA/PNA/locked-sugar learning under Q08–Q14.
    Q15 explains the result and owns the [regional twist and radius milestones](cif-doctor-completion-queue.md#regional-helix-analysis-for-publication)
    shared with Willow and Alder. Q16 ends with the AutoPhase compatibility audit,

@@ -80,6 +80,22 @@ nonbonded exclusions remain unqualified; angle-policy research is deferred.
 Current generic symmetry-link interpretation/enforcement is not qualified; see
 [Q06](cif-doctor-completion-queue.md#q06--qualify-the-actual-refinement-consumer).
 
+In the separate FT_Hg construct, the investigator declared the central B
+continuation and confirmed the C/D crossover. A runs from 1 to 21 in each of
+three saved models. On the selected source model, the directed correspondences
+are B:7 O3′ to B:1 P under `-x+y,-x,z` and D:7 O3′ to C:8 P under `-y,x-y,z`,
+both with zero lattice shift. B:1 and C:8 contain P/OP1/OP2. D:1 is a declared
+5′ terminal phosphate and also contains OP3.
+
+If both connections occur in all three equivalent positions, tracing the 38
+ordinary O3′–P links in each copy plus six image connections gives one closed
+21-nucleotide B path, three 14-nucleotide D:1–C:14 paths and three separate
+21-nucleotide A strands. The two image gaps in the measured model are 3.100 and
+3.027 Å, compared with 1.593–1.639 Å in its ordinary backbone. At the second
+gap the O3′–P–OP2 angle measures 55.79°. Keep this conditional strand map with
+the construct. Ligation, nick state, occupancy and native enforcement remain
+open. Reslicing must preserve the declared images and report the current gaps.
+
 ## Building a requested 5'-terminal phosphate
 
 When a site is explicitly declared as a 5'-terminal phosphate, PostMR runs an

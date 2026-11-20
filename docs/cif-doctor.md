@@ -3529,7 +3529,7 @@ stacks on this public frame, versus the 20 frozen declarations retained above.
 It must not silently replace declared intent. No native execution was needed for
 that separate readiness audit. Evidence: `literal_input_provenance_2026_11_10`.
 
-#### Typed native reader controls (implementation candidate)
+#### Typed native reader controls
 
 `cif_literal_na_controls.prepare_typed_literal_na_inputs` accepts an exact native
 receipt SHA-256 and an ordered `phil_roles` list. Each row has precisely
@@ -3556,9 +3556,9 @@ the ordinary complete-request intake, deliberately refuse typed artifacts until
 an execution owner explicitly binds and forwards the controls. Preserving
 controls in evidence does not prove they have been applied downstream.
 
-This is additive inspection support, not native qualification, automatic
-adoption, coordinate optimization, or refinement. Legacy native and source-mode
-artifacts keep their existing bytes and semantics; no migration is required.
+The W179 capture yielded 193 compiled terms and 20 retained planes. Its four
+reader controls remained bound to the recorded Phenix interpretation. Use this
+artifact for inspection while the ordinary execution handoff is being qualified.
 
 ### Exact planarity intake (C186)
 
