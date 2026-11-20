@@ -245,14 +245,17 @@
         "W176 completes one maintained Phenix2.2.1-6174 fixed-coordinate capture:859 atoms,42 complete effective monomer mappings,38 independently declared backbone links,51 explicit soft distances and213 custom requests. All8 named proxy families equal the W172 parent;17 cold checks pass. Explicit full-model mapping disables NCS restraint copying for this capture. No fit, motion, ordinary ancestry or chemical acceptance; C128 remains NOT_ESTABLISHED.",
         "W177 adds a read-only exact-parent preparation-availability adapter, consuming Cedar authenticated registry/publication results once.20 cases (18 fail-before),179 focused+6 subtests and the same relocated installed suite pass;95 packaged modules,6 helps/pip check. Real C412 owner read preserves14 inputs and reports model/restraint/source-literal fields available, native-index policy absent; source and selected prepared model hashes differ explicitly. No native call, descendant/motion admission or chemical approval.",
         "W178 reuses canonical source selection and the maintained source-literal producer for20 declared pairs/38 stacks and20 retained planes.17 selection/relocation/drift checks plus5 native-readback checks pass: compiled PHIL equalsW172,all213 supplied requests match W176. Source policy remains source-indexed and is correctly refused as C128 native authority. No ordinary PostMR context/history invented, product code changed, native call or refinement.",
-        "W179 completes one maintained Phenix2.2.1-6174 original-literal fixed capture (1.71s;859atoms/42fullmonomers). Full literal artifact producer refuses captured flat interpreter controls. An explicit diagnostic literal/plane input partition reproduces W172 C21 PHIL and all213 W176 requests;15 binding/compiler checks and14 native mechanics checks pass,38links+51softMATCH. All settings remain bound; no native policy relabelling, supported artifact publication, ordinary ancestry, fit or motion admission."
+        "W179 completes one maintained Phenix2.2.1-6174 original-literal fixed capture (1.71s;859atoms/42fullmonomers). Full literal artifact producer refuses captured flat interpreter controls. An explicit diagnostic literal/plane input partition reproduces W172 C21 PHIL and all213 W176 requests;15 binding/compiler checks and14 native mechanics checks pass,38links+51softMATCH. All settings remain bound; no native policy relabelling, supported artifact publication, ordinary ancestry, fit or motion admission.",
+        "W180: Cedar integrates typed capture roles and four reviewed reader controls with unchanged compilation of 213 terms. 30 new/310 focused/89 relocated installed candidate checks pass; Rowan reports 219 integration checks. Ordinary execution remains refused.",
+        "W181: Cedar integrates the opt-in atom-identity-bound PDB padding comparison. 247 focused source and247 relocated installed checks pass; saved C464/C467 replays preserve legacy outcomes. Rowan separately reports fresh13-component C471 publication and cold relocation selecting actual ReadySet output.",
+        "W182: Three saved-W180 probes plus30 existing typed tests pass (33 total). Public PostMR intake refuses before acquisition/request/process; exact compiled restraint context reproduces; controls cannot enter its grammar; existing synthetic dispatch freezes all4 ordered PHIL files and deliberately returns97 without native execution."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "Coordinate a Cedar-owned typed separation of captured interpreter-control inputs from literal/plane compiler inputs. Preserve all capture settings and provenance, define how required controls reach later execution, and reject unsupported/misclassified settings; never merely discard a PHIL to make compilation pass. Reuse existing compiler/context/publication owners. Ordinary canonical ancestry and native transfer remain separate; no W173/modified-motion broadening or repeat fit.",
+      "next_action": "Carry the authenticated typed reader-control role through existing PostMR/complete request and dictionary bundle into its frozen native dispatch, reconciling generated full-model controls. First qualify missing/changed/reordered/conflicting controls, legacy preservation and cold relocation; then one fixed-coordinate native readback of effective settings and the213 terms. No grammar relaxation, new launcher, retrospective canonical ancestry or renewed fit. Ordinary lineage and retained-manager motion remain separate.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -294,14 +297,17 @@
         "E_MAINTAINED_FIXED_PARENT_CAPTURE",
         "E_ORDINARY_PREPARATION_AVAILABILITY",
         "E_SOURCE_LITERAL_PRODUCER_BOUNDARY",
-        "E_ORIGINAL_LITERAL_NATIVE_PRODUCER"
+        "E_ORIGINAL_LITERAL_NATIVE_PRODUCER",
+        "E_TYPED_NATIVE_READER_CONTROLS",
+        "E_READYSET_NAMED_REQUEST_COMPARISON",
+        "E_ORDINARY_CONTROL_OWNER_BOUNDARY"
       ],
       "last_audit": {
         "date": "2026-11-20",
-        "code_commit": "06c43de3229250622fa48eb0494b7938d38d166b",
-        "human_update": 179,
-        "reviewer": "Linden; new original-intent fixed control authorized by Rowan",
-        "scope": "15 binding/compiler and14 native mechanics checks; capture-control role interface and ordinary ancestry remain open"
+        "code_commit": "999a42ef24d1567a5c16c5e5e4bb6835ddb4f6be",
+        "human_update": 182,
+        "reviewer": "Linden; shared Cedar integration reported by Rowan",
+        "scope": "Typed producer and named-request integration recorded;33 control-boundary checks, no ordinary motion or scientific closure"
       }
     },
     {
@@ -343,14 +349,17 @@
         "W176 completes one maintained Phenix2.2.1-6174 fixed-coordinate capture:859 atoms,42 complete effective monomer mappings,38 independently declared backbone links,51 explicit soft distances and213 custom requests. All8 named proxy families equal the W172 parent;17 cold checks pass. Explicit full-model mapping disables NCS restraint copying for this capture. No fit, motion, ordinary ancestry or chemical acceptance; C128 remains NOT_ESTABLISHED.",
         "W177 adds a read-only exact-parent preparation-availability adapter, consuming Cedar authenticated registry/publication results once.20 cases (18 fail-before),179 focused+6 subtests and the same relocated installed suite pass;95 packaged modules,6 helps/pip check. Real C412 owner read preserves14 inputs and reports model/restraint/source-literal fields available, native-index policy absent; source and selected prepared model hashes differ explicitly. No native call, descendant/motion admission or chemical approval.",
         "W178 reuses canonical source selection and the maintained source-literal producer for20 declared pairs/38 stacks and20 retained planes.17 selection/relocation/drift checks plus5 native-readback checks pass: compiled PHIL equalsW172,all213 supplied requests match W176. Source policy remains source-indexed and is correctly refused as C128 native authority. No ordinary PostMR context/history invented, product code changed, native call or refinement.",
-        "W179 completes one maintained Phenix2.2.1-6174 original-literal fixed capture (1.71s;859atoms/42fullmonomers). Full literal artifact producer refuses captured flat interpreter controls. An explicit diagnostic literal/plane input partition reproduces W172 C21 PHIL and all213 W176 requests;15 binding/compiler checks and14 native mechanics checks pass,38links+51softMATCH. All settings remain bound; no native policy relabelling, supported artifact publication, ordinary ancestry, fit or motion admission."
+        "W179 completes one maintained Phenix2.2.1-6174 original-literal fixed capture (1.71s;859atoms/42fullmonomers). Full literal artifact producer refuses captured flat interpreter controls. An explicit diagnostic literal/plane input partition reproduces W172 C21 PHIL and all213 W176 requests;15 binding/compiler checks and14 native mechanics checks pass,38links+51softMATCH. All settings remain bound; no native policy relabelling, supported artifact publication, ordinary ancestry, fit or motion admission.",
+        "W180: Cedar integrates typed capture roles and four reviewed reader controls with unchanged compilation of 213 terms. 30 new/310 focused/89 relocated installed candidate checks pass; Rowan reports 219 integration checks. Ordinary execution remains refused.",
+        "W181: Cedar integrates the opt-in atom-identity-bound PDB padding comparison. 247 focused source and247 relocated installed checks pass; saved C464/C467 replays preserve legacy outcomes. Rowan separately reports fresh13-component C471 publication and cold relocation selecting actual ReadySet output.",
+        "W182: Three saved-W180 probes plus30 existing typed tests pass (33 total). Public PostMR intake refuses before acquisition/request/process; exact compiled restraint context reproduces; controls cannot enter its grammar; existing synthetic dispatch freezes all4 ordered PHIL files and deliberately returns97 without native execution."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Coordinate a Cedar-owned typed separation of captured interpreter-control inputs from literal/plane compiler inputs. Preserve all capture settings and provenance, define how required controls reach later execution, and reject unsupported/misclassified settings; never merely discard a PHIL to make compilation pass. Reuse existing compiler/context/publication owners. Ordinary canonical ancestry and native transfer remain separate; no W173/modified-motion broadening or repeat fit.",
+      "next_action": "Carry the authenticated typed reader-control role through existing PostMR/complete request and dictionary bundle into its frozen native dispatch, reconciling generated full-model controls. First qualify missing/changed/reordered/conflicting controls, legacy preservation and cold relocation; then one fixed-coordinate native readback of effective settings and the213 terms. No grammar relaxation, new launcher, retrospective canonical ancestry or renewed fit. Ordinary lineage and retained-manager motion remain separate.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -435,14 +444,17 @@
         "E_MAINTAINED_FIXED_PARENT_CAPTURE",
         "E_ORDINARY_PREPARATION_AVAILABILITY",
         "E_SOURCE_LITERAL_PRODUCER_BOUNDARY",
-        "E_ORIGINAL_LITERAL_NATIVE_PRODUCER"
+        "E_ORIGINAL_LITERAL_NATIVE_PRODUCER",
+        "E_TYPED_NATIVE_READER_CONTROLS",
+        "E_READYSET_NAMED_REQUEST_COMPARISON",
+        "E_ORDINARY_CONTROL_OWNER_BOUNDARY"
       ],
       "last_audit": {
         "date": "2026-11-20",
-        "code_commit": "06c43de3229250622fa48eb0494b7938d38d166b",
-        "human_update": 179,
-        "reviewer": "Linden; new original-intent fixed control authorized by Rowan",
-        "scope": "15 binding/compiler and14 native mechanics checks; capture-control role interface and ordinary ancestry remain open"
+        "code_commit": "999a42ef24d1567a5c16c5e5e4bb6835ddb4f6be",
+        "human_update": 182,
+        "reviewer": "Linden; shared Cedar integration reported by Rowan",
+        "scope": "Typed producer and named-request integration recorded;33 control-boundary checks, no ordinary motion or scientific closure"
       }
     },
     {
@@ -494,7 +506,10 @@
         "W176 completes one maintained Phenix2.2.1-6174 fixed-coordinate capture:859 atoms,42 complete effective monomer mappings,38 independently declared backbone links,51 explicit soft distances and213 custom requests. All8 named proxy families equal the W172 parent;17 cold checks pass. Explicit full-model mapping disables NCS restraint copying for this capture. No fit, motion, ordinary ancestry or chemical acceptance; C128 remains NOT_ESTABLISHED.",
         "W177 adds a read-only exact-parent preparation-availability adapter, consuming Cedar authenticated registry/publication results once.20 cases (18 fail-before),179 focused+6 subtests and the same relocated installed suite pass;95 packaged modules,6 helps/pip check. Real C412 owner read preserves14 inputs and reports model/restraint/source-literal fields available, native-index policy absent; source and selected prepared model hashes differ explicitly. No native call, descendant/motion admission or chemical approval.",
         "W178 reuses canonical source selection and the maintained source-literal producer for20 declared pairs/38 stacks and20 retained planes.17 selection/relocation/drift checks plus5 native-readback checks pass: compiled PHIL equalsW172,all213 supplied requests match W176. Source policy remains source-indexed and is correctly refused as C128 native authority. No ordinary PostMR context/history invented, product code changed, native call or refinement.",
-        "W179 completes one maintained Phenix2.2.1-6174 original-literal fixed capture (1.71s;859atoms/42fullmonomers). Full literal artifact producer refuses captured flat interpreter controls. An explicit diagnostic literal/plane input partition reproduces W172 C21 PHIL and all213 W176 requests;15 binding/compiler checks and14 native mechanics checks pass,38links+51softMATCH. All settings remain bound; no native policy relabelling, supported artifact publication, ordinary ancestry, fit or motion admission."
+        "W179 completes one maintained Phenix2.2.1-6174 original-literal fixed capture (1.71s;859atoms/42fullmonomers). Full literal artifact producer refuses captured flat interpreter controls. An explicit diagnostic literal/plane input partition reproduces W172 C21 PHIL and all213 W176 requests;15 binding/compiler checks and14 native mechanics checks pass,38links+51softMATCH. All settings remain bound; no native policy relabelling, supported artifact publication, ordinary ancestry, fit or motion admission.",
+        "W180: Cedar integrates typed capture roles and four reviewed reader controls with unchanged compilation of 213 terms. 30 new/310 focused/89 relocated installed candidate checks pass; Rowan reports 219 integration checks. Ordinary execution remains refused.",
+        "W181: Cedar integrates the opt-in atom-identity-bound PDB padding comparison. 247 focused source and247 relocated installed checks pass; saved C464/C467 replays preserve legacy outcomes. Rowan separately reports fresh13-component C471 publication and cold relocation selecting actual ReadySet output.",
+        "W182: Three saved-W180 probes plus30 existing typed tests pass (33 total). Public PostMR intake refuses before acquisition/request/process; exact compiled restraint context reproduces; controls cannot enter its grammar; existing synthetic dispatch freezes all4 ordered PHIL files and deliberately returns97 without native execution."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -505,7 +520,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Coordinate a Cedar-owned typed separation of captured interpreter-control inputs from literal/plane compiler inputs. Preserve all capture settings and provenance, define how required controls reach later execution, and reject unsupported/misclassified settings; never merely discard a PHIL to make compilation pass. Reuse existing compiler/context/publication owners. Ordinary canonical ancestry and native transfer remain separate; no W173/modified-motion broadening or repeat fit.",
+      "next_action": "Carry the authenticated typed reader-control role through existing PostMR/complete request and dictionary bundle into its frozen native dispatch, reconciling generated full-model controls. First qualify missing/changed/reordered/conflicting controls, legacy preservation and cold relocation; then one fixed-coordinate native readback of effective settings and the213 terms. No grammar relaxation, new launcher, retrospective canonical ancestry or renewed fit. Ordinary lineage and retained-manager motion remain separate.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -589,14 +604,17 @@
         "E_MAINTAINED_FIXED_PARENT_CAPTURE",
         "E_ORDINARY_PREPARATION_AVAILABILITY",
         "E_SOURCE_LITERAL_PRODUCER_BOUNDARY",
-        "E_ORIGINAL_LITERAL_NATIVE_PRODUCER"
+        "E_ORIGINAL_LITERAL_NATIVE_PRODUCER",
+        "E_TYPED_NATIVE_READER_CONTROLS",
+        "E_READYSET_NAMED_REQUEST_COMPARISON",
+        "E_ORDINARY_CONTROL_OWNER_BOUNDARY"
       ],
       "last_audit": {
         "date": "2026-11-20",
-        "code_commit": "06c43de3229250622fa48eb0494b7938d38d166b",
-        "human_update": 179,
-        "reviewer": "Linden; new original-intent fixed control authorized by Rowan",
-        "scope": "15 binding/compiler and14 native mechanics checks; capture-control role interface and ordinary ancestry remain open"
+        "code_commit": "999a42ef24d1567a5c16c5e5e4bb6835ddb4f6be",
+        "human_update": 182,
+        "reviewer": "Linden; shared Cedar integration reported by Rowan",
+        "scope": "Typed producer and named-request integration recorded;33 control-boundary checks, no ordinary motion or scientific closure"
       }
     },
     {
@@ -743,7 +761,8 @@
         "W65 adds a source-bound preference download/readback for prefer-cut, keep-original or needs-revision. Fresh comparison replay rejects stale choices; scene remains unchanged and no authenticated approval/model selection is claimed. Browser/download validation still open.",
         "W66 projects declared directed backbone continuation, representation/chemical/unknown boundaries and existing phosphate inventory from replayed packets. Unresolved partners retain P/OP1/OP2 intent; OP3 conflicts are scoped to continuation, with terminal phosphate consent separate. Exact route-image transport, optional view and preference context are read-only; no new edge or native enforcement.",
         "W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement.",
-        "W70 exposes verified graph node/link IDs and checksum through existing cut-preview --describe-graph, with optional request MATCH/MISMATCH and explicit cut_selection_validated=false. No output directory or stale-hash rewrite; default preview semantics remain."
+        "W70 exposes verified graph node/link IDs and checksum through existing cut-preview --describe-graph, with optional request MATCH/MISMATCH and explicit cut_selection_validated=false. No output directory or stale-hash rewrite; default preview semantics remain.",
+        "W183 rechecked the existing preview rather than generating another copy; local file access was blocked by browser-tool URL policy. No rendered/browser-download or human-review closure."
       ],
       "acceptance": [
         "Enumerate bounded, intent-compatible cut alternatives; show central ASU plus connected mates, ownership, real nicks, seams, exposed ends and affected logical sites.",
@@ -761,14 +780,15 @@
         "E_CUT_PREFERENCE",
         "E_BACKBONE_INTENT",
         "E_EXPLICIT_CONTINUATIONS",
-        "E_GRAPH_DESCRIPTION"
+        "E_GRAPH_DESCRIPTION",
+        "E_RENDERED_CUT_BROWSER_ACCESS"
       ],
       "last_audit": {
-        "date": "2026-11-15",
-        "code_commit": "01069fe01e005bb5e53a4d29ad8bc3dd8c59b31a",
+        "date": "2026-11-20",
+        "human_update": 183,
+        "code_commit": "db339a05fec0ab3b76aa3b51334a3574c1820366",
         "reviewer": "Linden",
-        "human_update": 70,
-        "scope": "Read-only pre-proposal graph description and current installed composition; graphical/user review and scientific gates remain open"
+        "scope": "Existing tab discovered, local-file navigation refused; rendered/browser preference gate remains open"
       }
     },
     {
@@ -4410,6 +4430,50 @@
           "size": 2115
         }
       ]
+    },
+    "E_TYPED_NATIVE_READER_CONTROLS": {
+      "kind": "preserve_typed_reader_controls_with_original_literal_evidence",
+      "date": "2026-11-20",
+      "human_update": 180,
+      "code_commit": "ac339d3ee389083212335a11991e369d88e1093d",
+      "reference": "docs/topostitch-periodic.md#w180--preserve-typed-reader-controls-with-the-literal-capture",
+      "result": "Cedar integrates typed capture roles and four reviewed reader controls with unchanged compilation of 213 terms. 30 new/310 focused/89 relocated installed candidate checks pass; Rowan reports 219 integration checks. Ordinary execution remains refused.",
+      "limitation": "Typed evidence only; no ordinary ancestry, retained-manager motion or new native run."
+    },
+    "E_READYSET_NAMED_REQUEST_COMPARISON": {
+      "kind": "bind_readyset_restraint_comparisons_to_exact_native_atoms",
+      "date": "2026-11-20",
+      "human_update": 181,
+      "code_commit": "f27a8dd2c61a6387d1ec8771c607cad43c2c9449",
+      "reference": "docs/topostitch-periodic.md#w181--bind-readyset-restraint-comparisons-to-exact-native-atoms",
+      "result": "Cedar integrates the opt-in atom-identity-bound PDB padding comparison. 247 focused source and247 relocated installed checks pass; saved C464/C467 replays preserve legacy outcomes. Rowan separately reports fresh13-component C471 publication and cold relocation selecting actual ReadySet output.",
+      "limitation": "Fixed preparation comparison only; legacy policy exact, no moved-model acceptance or new Willow native run."
+    },
+    "E_ORDINARY_CONTROL_OWNER_BOUNDARY": {
+      "kind": "locate_the_ordinary_reader-control_handoff_without_relaxing_admission",
+      "date": "2026-11-20",
+      "human_update": 182,
+      "code_commit": "999a42ef24d1567a5c16c5e5e4bb6835ddb4f6be",
+      "reference": "docs/topostitch-periodic.md#w182--locate-the-ordinary-control-owner-without-admitting-execution",
+      "result": "Three saved-W180 probes plus30 existing typed tests pass (33 total). Public PostMR intake refuses before acquisition/request/process; exact compiled restraint context reproduces; controls cannot enter its grammar; existing synthetic dispatch freezes all4 ordered PHIL files and deliberately returns97 without native execution.",
+      "limitation": "No production change, ordinary admission, native fit or full suite. Next typed request/bundle control role must reconcile generated NCS=False and prove effective native settings; actual parent lineage/motion remain separate.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w182-control-owner/report.json",
+          "sha256": "db7c744126243695d82ce9a39c192cb300ccbc868b61b36aa0c3c3e1dd94a5e5",
+          "size": 2475
+        }
+      ]
+    },
+    "E_RENDERED_CUT_BROWSER_ACCESS": {
+      "kind": "rendered_cut_preview_access_boundary",
+      "date": "2026-11-20",
+      "human_update": 183,
+      "code_commit": "db339a05fec0ab3b76aa3b51334a3574c1820366",
+      "reference": "docs/topostitch-periodic.md#w183--retry-the-existing-cut-preview-browser-gate",
+      "result": "Browser inventory found the existing ASU representative preview, but claiming its local file tab was refused by the Browser Use URL policy. No alternate renderer, synthetic packet, model or preference file was created.",
+      "limitation": "No screenshot, interaction, preference download or human review was observed. P02 stays PARTIAL; prior DOM/canvas-double checks are not real-browser qualification."
     }
   },
   "benchmarks": [
@@ -4571,8 +4635,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 179,
-    "next": 180,
+    "current": 183,
+    "next": 184,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -5456,6 +5520,30 @@
         "title": "Capture original literal intent and isolate the control-role gap",
         "state": "RECORDED",
         "code_commit": "06c43de3229250622fa48eb0494b7938d38d166b"
+      },
+      {
+        "number": 180,
+        "title": "Preserve typed reader controls with original literal evidence",
+        "state": "RECORDED",
+        "code_commit": "ac339d3ee389083212335a11991e369d88e1093d"
+      },
+      {
+        "number": 181,
+        "title": "Bind ReadySet restraint comparisons to exact native atoms",
+        "state": "RECORDED",
+        "code_commit": "f27a8dd2c61a6387d1ec8771c607cad43c2c9449"
+      },
+      {
+        "number": 182,
+        "title": "Locate the ordinary reader-control handoff without relaxing admission",
+        "state": "RECORDED",
+        "code_commit": "999a42ef24d1567a5c16c5e5e4bb6835ddb4f6be"
+      },
+      {
+        "number": 183,
+        "title": "Check the existing cut-preview browser gate",
+        "state": "RECORDED",
+        "code_commit": "db339a05fec0ab3b76aa3b51334a3574c1820366"
       }
     ]
   },

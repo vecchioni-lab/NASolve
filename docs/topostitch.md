@@ -754,13 +754,28 @@ unchanged native-index compiler reproduce W172 PHIL and all 213 W176 requests;
 all fourteen native mechanics checks pass. Capture settings are retained in the
 full evidence, not silently discarded or reclassified as restraints.
 
-The missing supported interface is a **typed control-versus-compiler input
-partition** under Cedar ownership. It must bind every captured input and preserve
-interpretation requirements through later execution, while allowing only supported
-literal/plane inputs into the restraint compiler. Neither an arbitrary index
-selection nor stripping an unsupported PHIL establishes that contract. The
-ordinary canonical parent and actual retained-manager lifetime remain separate.
-[Methods and producer refusal](topostitch-periodic.md#w179--capture-original-literal-intent-and-isolate-the-control-role-gap).
+**W180–W182 update.** Cedar `ac339d3e` now supplies that typed artifact:
+`cif-typed-native-literal-inputs-v1` preserves ordered restraint/control roles and
+reconstructs the unchanged compiler result. It deliberately grants no ordinary
+execution authority. The public PostMR entry still refuses it before request
+creation. Cedar `f27a8dd2` separately adds an opt-in, native-identity-bound comparison
+for ReadySet atom-name padding; it does not change reader-control admission.
+
+The next owner is the existing `initialize_postmr_dictionary_request` /
+`cif_complete_request` contract, carrying typed controls through the dictionary
+bundle into `execute_prepared_dictionary_repair.capture`. Its native launcher
+already freezes the exact ordered PHIL list and command/spec inputs. Keep controls
+out of the explicit-restraint grammar, preserve original role order and bytes,
+and reconcile `FULL_MODEL_PHIL`'s generated `use_ncs_to_build_restraints=False`
+with the captured declaration. Require changed/missing/reordered/conflicting
+control refusals and a relocated cold read before a new native check. Native
+readback of the required effective settings remains necessary; a dispatch probe
+alone does not prove Phenix honored them. [W182 boundary proof](topostitch-periodic.md#w182--locate-the-ordinary-control-owner-without-admitting-execution).
+
+The read-only Willow preparation inspector remains reporting-only. Neither this
+handoff nor typed input capture supplies ordinary canonical ancestry, selected-child
+lineage, an atomic launch lock, or the retained chemical-manager lifetime for motion.
+The W167 cluster accommodation plan remains downstream of those gates.
 
 **FT connectivity clarification (20 November, via Hazel).** The investigator
 now declares B:7 O3′ → B:1 P as a symmetry continuation. B:1 is therefore not

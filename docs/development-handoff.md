@@ -1,22 +1,26 @@
 # NASolve development handoff — Willow
 
-**W179:** a genuine original-intent native capture now reproduces the intended
-C21 conversion: **15 binding/compiler checks + 14 native mechanics checks** pass,
-with the same **213 supplied restraints** and all unaffected captured proxies.
-The complete artifact producer still refuses the preserved interpreter-settings
-input. An explicit diagnostic partition demonstrates the compiler result, while
-keeping those settings bound; it does not publish a supported producer artifact.
-Next coordinate typed control-versus-restraint roles with Cedar. One fixed native
-reading, no fit or ordinary ancestry. [Exact boundary](topostitch-periodic.md#w179--capture-original-literal-intent-and-isolate-the-control-role-gap).
+**W180–W182: carry the same chemistry into ordinary preparation.** Cedar now
+has the typed capture artifact (`ac339d3e`): original restraints and four reviewed
+reader controls remain separate, with the same **213 compiled/retained terms**.
+W181's opt-in atom-name comparison is integrated as Cedar `f27a8dd2`; only
+verified PDB atom-field padding may differ. **247 focused source + 247 relocated
+installed checks** pass. Rowan reports fresh publication and independent cold
+relocation of the real 13-component ReadySet result; legacy selection is unchanged.
+This does not qualify a moved model or nanocluster opening.
 
-**W178:** the existing source-literal producer now has a source-bound canonical
-control: **20 declared pairs / 38 stacks / 20 retained planes**. Its compiled PHIL
-matches W172 and all **213 requests** match W176. **17 selection/relocation/drift
-checks + 5 native-readback checks** pass without a native call. The source-index
-policy correctly refuses native-index admission. No ordinary PostMR history is
-invented. Next, if needed, capture original literal intent through the existing
-native-index producer; its genuine ordinary-parent join remains separate.
-[Evidence and precise producer gap](topostitch-periodic.md#w178--bind-the-existing-source-producer-without-inventing-ordinary-authority).
+**Next, W182:** add the separately reviewed control role to the existing ordinary
+PostMR/complete-request and bundle owners, then bind it to their frozen native
+launch. **33 focused checks** locate the present refusal before any acquisition,
+request or process. The existing launcher freezes exact bytes; missing ownership
+is upstream, not a need for another launcher. Reconcile the bundle-generated
+full-model control rather than silently duplicating or dropping declarations.
+Keep the restraint grammar strict. Ordinary canonical ancestry and retained-manager
+motion remain separate gates. [Evidence and next experiment](topostitch-periodic.md#w182--locate-the-ordinary-control-owner-without-admitting-execution).
+
+**W183, independent Pine check:** the browser found the existing cut-preview tab
+but refused its local-file URL. P02 still needs rendered interaction and preference
+download validation. No new viewer, packet, model or test scaffolding was added.
 
 **W177:** the new read-only preparation inspector reports authenticated fields
 for an exact published parent. **179 focused tests + 6 subtests** and the same

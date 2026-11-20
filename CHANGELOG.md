@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W180–W183 — Record preparation progress and remaining owner/view boundaries
+
+- Update the Willow handoff and audited roadmap for Cedar's typed reader-control
+  artifact and opt-in ReadySet atom-name comparison, preserving legacy behavior.
+- Record the public-entry refusal and exact frozen native dispatch diagnostic;
+  specify the missing typed ordinary handoff before retained-chemistry motion.
+- Retain P02 as open after the browser tool refused the existing local preview.
+- Documentation only on Willow: no product/default/schema or installation change,
+  new native run, scientific data publication or milestone closure.
+
 ### W179 — Capture original intent and isolate interpreter-control roles
 
 - Record one fixed original-literal native capture and the existing compiler’s

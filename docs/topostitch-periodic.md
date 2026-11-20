@@ -10734,3 +10734,93 @@ is repeated for this documentation/local-diagnostic change; W177's installed
 software remains unchanged. Eight focused roadmap checks and generated-document
 synchronization validate the documentation update, without asserting scientific
 closure. No additional native run or optimization is queued by this result.
+
+
+## W180 — Preserve typed reader controls with the literal capture
+
+Cedar `ac339d3ee389083212335a11991e369d88e1093d` integrates the separate
+`cif-typed-native-literal-inputs-v1` artifact. Explicit ordered roles and input
+hashes bind each literal/plane or interpretation-control input to its genuine
+capture. Four reviewed False-valued controls cover sorting, CDL, nucleotide CDL
+and NCS restraint copying. Unknown values, missing/repeated roles and changed
+native definition readback refuse. Existing compiler bytes and older artifact
+semantics are unchanged. The saved W179 artifact contains 193 compiled terms and
+20 planes, and manifest SHA-256
+`4d4aaf7197d5ecbcfbc3d1364346b37da3914f5a8dd97dbd4ae6baab4c92a6bc`.
+
+Linden's candidate passed 30 new tests, 310 surrounding focused checks and 89
+relocated installed checks; Rowan reports 219 focused integration checks. The
+public reader exposes separate restraint/control paths, never an executable
+combined PHIL list. Ordinary execution still refuses. This closes the typed
+producer gap, not ordinary-parent authority or motion. The evidence remains local;
+no new native run was needed to replay the saved Phenix 2.2.1-6174 capture.
+
+## W181 — Bind ReadySet restraint comparisons to exact native atoms
+
+Cedar `f27a8dd2c61a6387d1ec8771c607cad43c2c9449` integrates an opt-in ordered
+named-request comparison. Only the four PDB atom-name columns may differ, and
+only after both display fields bind to their complete native atom identities.
+Indices, elements, endpoints, symmetry, selections, targets, order and multiplicity
+remain exact. Opaque labels and missing field evidence retain exact comparison.
+Historical request policies and selections remain unchanged.
+
+The final candidate passed 247 focused source and 247 relocated installed checks;
+313 installed package files match the built wheel/source. A 43-case feature
+red check, 20 narrower label-scope red checks and a once-per-capture identity-table
+check protect distinct behavior. Saved C464's eight padding-only row differences
+pass the new mode; its historical v2 review remains unchanged. Cold C467 still
+selects its old verified parent with 26 dictionaries and 17 parameter files.
+Linden did not rerun native preparation. Rowan separately reports fresh C471
+publication and independent cold relocation selecting the actual ReadySet output.
+That report is integration evidence, not a new Willow bending result.
+
+## W182 — Locate the ordinary control owner without admitting execution
+
+Three probes against clean Cedar `999a42ef24d1567a5c16c5e5e4bb6835ddb4f6be`
+use the pinned W180 artifact and existing fixture/transport owners. Together with
+all 30 typed-control tests, **33 pass in 5.34 s**. `subprocess.Popen` is forbidden.
+
+1. `initialize_postmr_dictionary_request` reaches `_compiler_input` then
+   `resolve_literal_na_inputs` and refuses with **Typed controls require owner
+   binding before ordinary handoff**. No source acquisition, request, cache or
+   process is created. Fixture component settings exercise only this early refusal;
+   they do not pretend to be a scientific ordinary parent for the saved model.
+2. The three compiled PHIL files reconstruct the exact 213-term restraint context.
+   Appending the fourth, control PHIL to that grammar correctly refuses.
+3. Direct diagnostic transport through `inspect_native_bundle` passes all four
+   byte-identical frozen PHIL files to the supplied runner via `native_spec.json`.
+   The exact command is the selected interpreter plus `native_worker.py` and
+   `native_spec.json`. The synthetic runner returns 97 before launching anything;
+   the result remains FAILED with no native validation or scientific approval.
+
+**Next bounded experiment:** introduce a separately reviewed, opt-in control role
+at ordinary request intake and carry it through bundle, continuation/publication
+and cold readers. Reuse the current launcher and process owner. Reconcile its
+existing generated full-monomer control with the captured declaration, preserving
+provenance and refusing conflicting/repeated input declarations. First test missing,
+changed, reordered and conflicting controls plus old-policy preservation and cold
+relocation. Only then run one fixed-coordinate native comparison proving effective
+settings and the same intended 213 restraints before considering deformation.
+No new parser, launcher, retrospective ancestry or generic PHIL relaxation is needed.
+
+Local reproducer and exact command are at
+`NASolve:branch-artifacts/willow/w182-control-owner/report.json` and the neighboring
+`test_control_owner_probe.py`. The report declares the typed-artifact anchor and
+checksums; its test checkout is a disposable committed-code snapshot. W182 changes
+no production code or schema and makes no installation, portability, full-suite,
+refinement or scientific-acceptance claim. The initial probe's wrong hardcoded PHIL
+count was corrected to the actual ordered list length; it is not a product red test.
+
+
+## W183 — Retry the existing cut-preview browser gate
+
+The existing in-app browser inventory exposes the saved ASU representative preview
+at `NASolve:branch-artifacts/willow/inspection-2026-11-16/05_cut_preview.html`.
+Claiming that known tab with the documented browser tool refused navigation under
+its local-file URL policy. No rendered state, preference interaction or download
+was observed. This is an access limitation, not a demonstrated viewer defect.
+No alternative transport was used to evade the restriction, no synthetic copy was
+created, and the earlier DOM/canvas-double results remain the only automated
+interaction evidence. P02 remains PARTIAL. The next check is still an actual
+permitted browser rendering and preference round trip with unchanged packet hashes;
+opening a view is not a human preference or scientific approval.
