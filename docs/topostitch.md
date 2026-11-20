@@ -1026,6 +1026,47 @@ existing S04 queue. W150 receiving integration, B09 geotest and B10 explicit sti
 activation remain separately open. No acceptance threshold, chemistry, production
 policy or runtime schema changes here.
 
+### Next capture qualification after W159–W161 (planning only)
+
+The saved-family/map audit is complete; do not repeat it or C395/C396 merely to
+rediscover screening fallback. A candidate next question is whether one declared
+local backbone motion improves the **actual held objective**, rather than a
+reconstructed approximation or one map sample. Admission precedes the profile:
+
+- Declare the exact parent and its scope. A private deposited-source diagnostic
+  must not masquerade as ordinary PostMR ancestry. Preserve atom/sequence/image
+  intent and original observations/Free; do not manufacture a workflow root.
+- Reuse Hazel's private passive-capture/replay precedent and the existing Cedar
+  state/inventory owner. Capture after native shifts are applied and consumed,
+  before core/mask refresh and later ADP/scaling; match actual selected-weight
+  identity and the full passive trajectory before takeover. Saved final F-model
+  arrays alone do not reconstruct that earlier selected-XYZ objective.
+- Bind all active likelihood, mask/scale and geometry state, **including actual
+  parallelity parameters and limits**, callbacks, normalization and full retained
+  forces. The current private metal precedent does not qualify these for a
+  backbone parent or establish a general per-proxy replay API. Refuse if they
+  cannot be bound; no partial target passed off as the original objective.
+  The existing C407 `cif_parallelity_kernel.parallelity_parameters` collector
+  already records ordered memberships, weight/target/slack/**limit**, top-out,
+  origin and symmetry fields, refusing incomplete or unsupported interfaces.
+  Reuse it on the actual captured proxy object. Its runtime caller records
+  complete parameter inventories at native calls, but deduplicated observations
+  alone do not identify an individual selected optimizer frame. These Cedar
+  owners are not yet integrated into Willow; this note creates no new API.
+- Only after admission, freeze one existing `TaperedMotion` window and a small
+  signed amplitude/call budget, with protected junctions/anchors and exact-image
+  correspondence. Validate its directional derivative and center restoration;
+  retain all sampled outcomes, not the lowest Rfree. This profile would guide a
+  later matched recovery experiment, not itself approve a bend or alter weights.
+
+Track noise/uncertainty and experimental normalization separately from this
+geometry/objective question; W160's known truth scale is not a campaign policy.
+Pine must retain declared scattering-state provenance across construction,
+mutation, recuts and bending. Rowan's current mixed-fixture B-transfer observation
+is Cedar-owned and still being traced; it does not explain W159 retroactively.
+No constructor, observer, target policy, automatic detector or public API is
+implemented by this planning note.
+
 ## Campaign-local memory and transfer
 
 Campaign memory is useful even with an excellent finder: it retains design

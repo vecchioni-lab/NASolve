@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-20**, through **W160**. **W152 closes the independent
+Updated **2026-11-20**, through **W161**. **W152 closes the independent
 opposite-displacement/no-op subgate under idealized matching data.** Deposited
 5W6W starts recover from 0.764 Å RMS to 0.052/0.047 Å, with a 0.014 Å no-op.
 This complements W148's 8D93-derived control; both remain bounded evidence.
@@ -28,6 +28,13 @@ persists despite its changed B factor. All atoms and checked topology survive;
 the reference baseline remains unresolved. The recipe changes several policies
 together and consults Free during weight selection. It is a shared-owner diagnostic,
 not qualified ordinary PostMR lineage. [Exact scope and evidence](topostitch-periodic.md#w159--compare-ordinary-recovery-with-the-fixed-unit-baseline).
+
+**W161 completes the saved local-context review:** A10 C5′ and D2 OP1 show
+contrasting density changes despite similarly large motions. All 76 printed
+ordinary weight candidates fail the initial pooled bond screen, reconnecting this
+baseline to the already-completed C395/C396 diagnosis. This is not a selector fix.
+The existing recovery packet gains a posthoc A9–11 view; no new refinement.
+[Context and screening evidence](topostitch-periodic.md#w161--locate-mixed-local-recovery-and-reuse-the-known-screening-diagnosis).
 
 W154 lets the installed inspector name density sources independently of the
 coordinate states. Complete source and relocated-install checks pass; the two
@@ -81,13 +88,14 @@ not another work queue; do not repeat them because this handoff is shorter.
 
 ## Next bounded work
 
-**W159/W160 decision:** pause opposite-start expansion while the experimental
-reference baseline has unresolved map/geometry support. Inspect saved named
-restraint families and local map context before a new fit; avoid an Rfree-driven
-matrix. W158's noiseless model-assisted panel is now complete, so do not repeat
-it merely to show ambiguity. Next density qualification requires declared noise/
-uncertainty controls, realistic normalization evidence and scientist calibration.
-Ordinary checkpoint qualification still needs legitimate ancestry.
+**Next bounded question:** [qualify an actual-state capture before a backbone-mode
+profile](topostitch.md#next-capture-qualification-after-w159w161-planning-only).
+W161 completes the saved-family/local-context audit, and W160 completes the
+noiseless map panel; do not repeat either or the C395/C396 selector experiment.
+Reuse the shared private capture precedent, bind the backbone's actual parallelity
+and full objective, and keep later final-map state distinct from selected XYZ.
+No new fit is admitted by this note. Noise/uncertainty and scientist calibration
+remain a separate track; ordinary lineage and broader repair remain open.
 
 1. Keep the [stable-objective invariant sketch](topostitch.md#stable-objective-invariants-deferred-design-unimplemented)
    deferred under S06, using the exact recorded
@@ -175,6 +183,12 @@ then separately qualified plane-only mismatch hypotheses. Automatic inference an
 large-bend repair follow later. No CLI/default activation follows from these docs.
 
 ## Validation and scientific interpretation
+
+- **W161:** cold saved-geometry/map/source audit, 5,508 cross-position samples,
+  76 candidate screen checks, 62 mesh checks and 17 offline inspector checks pass.
+  The P-count assumption failed safely and was corrected from the atom inventory.
+  Eight focused roadmap tests and consistency/diff checks cover docs-only changes;
+  no new refinement, product code, full suite or installation repeat.
 
 - **W160:** one complete native model-assisted calculation (Phenix 2.2.1-6174),
   exact coefficient/identity/state checks, 80 independent cold readback checks
@@ -280,7 +294,8 @@ B-mismatched models. The correct-model normalization caveat remains explicit.
 
 **W159 recovery comparison:** GitHub workspace anchor,
 `ScienceCheckouts/Linden/2026-11-20_recovery-protocol/review.html`.
-Three actual PDBs, one independent-map inspector and a verified ChimeraX loader
+Three actual PDBs, two independent-map inspectors (B2–4 and posthoc A9–11)
+and a verified ChimeraX loader
 show the unresolved ordinary-versus-fixed baseline. Native graphical appearance
 still needs human review; no accepted repair.
 

@@ -291,14 +291,15 @@
         "W151 deposited 8D93 polymer positions3/4 map to PDB B107/B111: the numbering jump is not three missing residues. The existing phosphate-angle distortion is already deposited. W115 unvalidated-preview lineage remains explicit; recovery is distinct from a healthy-reference qualification.",
         "W152 independent deposited5W6W opposite displacements recover from0.7641A RMS to0.05152/0.04653A; relaxed-reference drift0.01436A. Local232 bonds/363 angles,38 links,126 sugar signs and2569 common targets independently audited. Identical58 parallelity groups retain explicit source/boundary residuals; idealized matching data only.",
         "W153 deposited5W6W experimental comparison preserves5137 raw observations/507originalFree, but positive native filtering drops one work reflection. Endpoints approach relaxed control0.21485/0.14566A; reference itself moves0.52152A and Rfree rises~0.019. Geometry improves, strong B2P negative density remains. Common4629work/507Free endpoint arithmetic reuses saved F-model without refit; mixed outcome, not accepted repair.",
-        "W159 completes one five-cycle ordinary-recipe diagnostic on the same undeformed5W6W source. Exact859atoms,2569initial bond/angle definitions,58pair/stack groups and5137effective observations/507originalFree survive;38links and126sugar signs remain. Selected drift0.591A versus0.522A; common Rwork/Rfree0.2264/0.2677 versus0.2392/0.2600. B2P B90.39→112.52 while own residual remains−8.38σ versus−8.09σ. This does not resolve the reference baseline; no opposite-start matrix or accepted repair."
+        "W159 completes one five-cycle ordinary-recipe diagnostic on the same undeformed5W6W source. Exact859atoms,2569initial bond/angle definitions,58pair/stack groups and5137effective observations/507originalFree survive;38links and126sugar signs remain. Selected drift0.591A versus0.522A; common Rwork/Rfree0.2264/0.2677 versus0.2392/0.2600. B2P B90.39→112.52 while own residual remains−8.38σ versus−8.09σ. This does not resolve the reference baseline; no opposite-start matrix or accepted repair.",
+        "W161 cold review covers42residues,459backbone atoms at3states in4held maps (5508samples),41P versus38existingO3-P links, and unchanged4bond/angle families. A10C5-prime moves2.543A into higher ordinary density in both held sources; D2OP1 moves2.520A into lower density. All76printed weight trials fail the.015A first bond screen, requiring native fallback; final51pair distances contribute99.11% of pooled squared bond deviations, not energy/force. Reuses C395/C396 diagnosis; one posthoc A9-11 viewer added. No refinement or selector change."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "W159 leaves the undeformed recovery baseline unresolved. Inspect saved named objective/weight/ADP and map-supported local geometry before another opposite-bend matrix; no repeated weight search or lowest-Rfree choice. Preserve W152/W153/W157 controls. W160 completes the independent noiseless model-assisted panel; its remaining noise calibration is separate. Ordinary PostMR ancestry, broader repair, W150 integration and B09/B10 remain open.",
+      "next_action": "W161 completes the saved-family/local-context audit: preserve its mixed observations and C395/C396 screening qualification; do not repeat that selector experiment. Before a new backbone-mode profile, qualify the actual selected-XYZ state, likelihood/masks/scales, explicit parallelity parameters/limits, full restraint inventory and restoration using the existing shared capture precedent. Saved final_f_model arrays are not the earlier selected objective. W160 noisy/uncertain-density calibration is separate. No ordinary ancestry bypass, geometry-force deletion, lowest-Rfree selection or acceptance; W150 and B09/B10 remain open.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -366,14 +367,15 @@
         "E_INDEPENDENT_OPPOSITE_RECOVERY",
         "E_EXPERIMENTAL_BACKBONE_TRADEOFF",
         "E_DISCRIMINATING_RECOVERY_PLAN",
-        "E_ORDINARY_RECOVERY_DIAGNOSTIC"
+        "E_ORDINARY_RECOVERY_DIAGNOSTIC",
+        "E_SAVED_RECOVERY_CONTEXT"
       ],
       "last_audit": {
         "date": "2026-11-20",
         "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
-        "human_update": 159,
-        "reviewer": "Linden; owner/interpretation coordination with Rowan and map-owner coordination with Hazel",
-        "scope": "One complete ordinary-recipe diagnostic and exact saved geometry/data/maps; ordinary checkpoint qualification remains open"
+        "human_update": 161,
+        "reviewer": "Linden; source/history and owner coordination with Rowan/Hazel",
+        "scope": "Cold local-map/geometry/screening review; no global milestone closure"
       }
     },
     {
@@ -407,7 +409,8 @@
         "W155 prescribed complex-F contrasts at identical7554HKLs/3.06A show negative modeledP from displacement, Q excess and B mismatch separately, with zero control. Only3scatterers vary; full/group additivity≤4.82e-12 and direct/FFT≤1.18e-14. Hazel cold review passes with explicit missing original version-API capture. Common reference normalization is not ML difference-map sigma; no detector or experimental attribution.",
         "W157 reads84 archived native stages,15 minimizer records and18 scaling counts with independent Hazel review. Initial unscaled Rfree0.3207/0.3437/0.3376 becomes0.2413/0.2637/0.2624 at first bulk/scaling before XYZ; final0.2600/0.2579/0.2611. Reference hits100iterations in all5cycles. Existing report gains a verified inline stage plot; no new refinement.",
         "W159 completes one five-cycle ordinary-recipe diagnostic on the same undeformed5W6W source. Exact859atoms,2569initial bond/angle definitions,58pair/stack groups and5137effective observations/507originalFree survive;38links and126sugar signs remain. Selected drift0.591A versus0.522A; common Rwork/Rfree0.2264/0.2677 versus0.2392/0.2600. B2P B90.39→112.52 while own residual remains−8.38σ versus−8.09σ. This does not resolve the reference baseline; no opposite-start matrix or accepted repair.",
-        "W160 closes the planned noiseless model-assisted three-case panel: one higher-B truth, 7554 common HKLs, 389 synthetic Free and 859 unchanged atom identities. Known position and B errors both give negative modeled-P density. Common truth-map samples are −3.11e−15/−0.804/−1.524 for zero/position/B; zero own-map normalization gives −1.624σ from numerical-scale residuals. Native formula/readback/direct-FFT checks and Hazel80-check cold review pass. No refinement, scale fitting, detector or experimental attribution."
+        "W160 closes the planned noiseless model-assisted three-case panel: one higher-B truth, 7554 common HKLs, 389 synthetic Free and 859 unchanged atom identities. Known position and B errors both give negative modeled-P density. Common truth-map samples are −3.11e−15/−0.804/−1.524 for zero/position/B; zero own-map normalization gives −1.624σ from numerical-scale residuals. Native formula/readback/direct-FFT checks and Hazel80-check cold review pass. No refinement, scale fitting, detector or experimental attribution.",
+        "W161 cold review covers42residues,459backbone atoms at3states in4held maps (5508samples),41P versus38existingO3-P links, and unchanged4bond/angle families. A10C5-prime moves2.543A into higher ordinary density in both held sources; D2OP1 moves2.520A into lower density. All76printed weight trials fail the.015A first bond screen, requiring native fallback; final51pair distances contribute99.11% of pooled squared bond deviations, not energy/force. Reuses C395/C396 diagnosis; one posthoc A9-11 viewer added. No refinement or selector change."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -418,7 +421,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "W159 leaves the experimental recovery baseline unresolved; inspect saved named restraint families and local map context before any new fit. W160 completes W158 noiseless model-assisted controls; do not repeat W155/W160 merely to show ambiguity. Next density qualification needs declared uncertainty/noise controls, realistic normalization evidence and scientist calibration before any detector or motion inference. No new weight search, ordinary ancestry bypass or acceptance. W150 integration and B09/B10 remain separate.",
+      "next_action": "W161 completes the saved-family/local-context audit: preserve its mixed observations and C395/C396 screening qualification; do not repeat that selector experiment. Before a new backbone-mode profile, qualify the actual selected-XYZ state, likelihood/masks/scales, explicit parallelity parameters/limits, full restraint inventory and restoration using the existing shared capture precedent. Saved final_f_model arrays are not the earlier selected objective. W160 noisy/uncertain-density calibration is separate. No ordinary ancestry bypass, geometry-force deletion, lowest-Rfree selection or acceptance; W150 and B09/B10 remain open.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -484,14 +487,15 @@
         "E_NATIVE_RECOVERY_STAGE_HISTORY",
         "E_DISCRIMINATING_RECOVERY_PLAN",
         "E_ORDINARY_RECOVERY_DIAGNOSTIC",
-        "E_MODEL_ASSISTED_DENSITY_CONTROLS"
+        "E_MODEL_ASSISTED_DENSITY_CONTROLS",
+        "E_SAVED_RECOVERY_CONTEXT"
       ],
       "last_audit": {
         "date": "2026-11-20",
         "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
-        "human_update": 160,
-        "reviewer": "Linden; independent 80-check cold record/MTZ review by Hazel",
-        "scope": "Noiseless model-assisted zero/position/B panel only; S06 remains partial"
+        "human_update": 161,
+        "reviewer": "Linden; source/history and owner coordination with Rowan/Hazel",
+        "scope": "Cold local-map/geometry/screening review; no global milestone closure"
       }
     },
     {
@@ -3494,6 +3498,59 @@
           "size": 5400
         }
       ]
+    },
+    "E_SAVED_RECOVERY_CONTEXT": {
+      "kind": "saved_recovery_context_and_screening_audit",
+      "date": "2026-11-20",
+      "human_update": 161,
+      "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
+      "reference": "docs/topostitch-periodic.md#w161--locate-mixed-local-recovery-and-reuse-the-known-screening-diagnosis",
+      "result": "W161 cold review covers42residues,459backbone atoms at3states in4held maps (5508samples),41P versus38existingO3-P links, and unchanged4bond/angle families. A10C5-prime moves2.543A into higher ordinary density in both held sources; D2OP1 moves2.520A into lower density. All76printed weight trials fail the.015A first bond screen, requiring native fallback; final51pair distances contribute99.11% of pooled squared bond deviations, not energy/force. Reuses C395/C396 diagnosis; one posthoc A9-11 viewer added. No refinement or selector change.",
+      "limitation": "Posthoc description, not causal target attribution or accepted motion. Rounded trial tables prove the empty first screen, not full-precision tie replay or per-trial source inventory. No full-objective reconstruction, production policy, new refinement or browser/GPU qualification.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w161-recovery-context/archive.json",
+          "sha256": "0d53be716e4a4c035f7aa27d79aba7547f093f30e130d247f1f2779e70eeab6f",
+          "size": 367
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w161-recovery-context/plan.json",
+          "sha256": "6c761a7e16d71dc050e7d4d57cb80807707bb6febd98cc8a60bc34230e01bc91",
+          "size": 1192
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w161-recovery-context/result.json",
+          "sha256": "44305719b515325e1bf030e21567412eb131103516bd4836a6b4c99ad065796d",
+          "size": 279428
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w161-recovery-context/execution.json",
+          "sha256": "d8dfc039f5c4e588a6be0e8b7fc0871e54a7dd5d76e0692f5e2db2e5bcac1654",
+          "size": 676
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w161-recovery-context/scene-review.json",
+          "sha256": "7e0c865651b8e0d7ac94896cb37b166d2d6d102f9a96e54181efaf6b81600c1c",
+          "size": 13989
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w161-recovery-context/html-review.json",
+          "sha256": "3eacf483cfee1b152641f7c94398acb9bccb513199a3e3be42cfa3acdb4fc587",
+          "size": 3647
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w161-recovery-context/weight-screen-review.json",
+          "sha256": "4bf872777a2f1ac4adb5df280e6f6402fd0a4a3c6a456050687176b6ae19ca33",
+          "size": 39808
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -3655,8 +3712,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 160,
-    "next": 161,
+    "current": 161,
+    "next": 162,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -4424,6 +4481,12 @@
       {
         "number": 160,
         "title": "Qualify model-assisted density counterexamples and the near-zero control",
+        "state": "RECORDED",
+        "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a"
+      },
+      {
+        "number": 161,
+        "title": "Locate mixed local recovery and qualify the native screening fallback",
         "state": "RECORDED",
         "code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a"
       }

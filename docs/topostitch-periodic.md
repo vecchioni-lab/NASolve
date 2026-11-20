@@ -9454,3 +9454,68 @@ No production source/schema/compatibility change or installation migration;
 documentation uses the eight focused roadmap tests, roadmap `--write`/`--check`
 and `git diff --check`. No full-suite/install repeat or scientific acceptance is
 claimed. Do not rerun W155/W160 just to reestablish the ambiguity they now record.
+
+## W161 — Locate mixed local recovery and reuse the known screening diagnosis
+
+**Saved results only.** The W159 refinement is not repeated. A cold read separates
+four unchanged native bond/angle families, all 42 residues and 459 backbone atoms.
+Each atom's deposited/fixed/ordinary coordinates are sampled in each of the two
+saved ordinary and difference maps: **5,508 fixed-map samples**. Recomputed values
+agree with W159's own/common samples within 10⁻¹⁰. All 41 P atoms remain; these
+are distinct from the 38 existing O3′–P links. B1/C8/D1 have terminal phosphorus.
+The first audit incorrectly equated those counts; its stopped attempt and source
+are archived, then the read-only audit was corrected against the actual inventory.
+
+| RMS deviation from unchanged targets | Deposited | Fixed endpoint | Ordinary endpoint |
+| --- | ---: | ---: | ---: |
+| 960 covalent bonds / Å | .01810 | .00346 | .00741 |
+| 1,474 covalent angles / ° | 1.657 | 1.147 | 1.833 |
+| 51 declared pair-contact distances / Å | .4824 | .2467 | .3392 |
+| 84 declared pair-contact angles / ° | 19.474 | 3.313 | 6.277 |
+
+Largest ordinary movement **A10 C5′: 2.543 Å**. Its 2mFo−DFc sample rises from
+1.21→2.96σ in the held fixed-unit map and 1.40→2.75σ in the held ordinary map.
+**D2 OP1: 2.520 Å** instead moves to lower ordinary density in both sources
+(1.78→1.23σ and1.58→1.14σ). A10's other atoms do not uniformly improve. These are
+posthoc endpoint descriptions, not independent map validation, causal restraint
+attribution, correct-direction inference or a whole-model winner. Native printed
+family residual sums are retained, not presented as a full force/energy split.
+
+**Known screening limitation, now explicit in this baseline.** All **76** printed
+XYZ candidates (16/17/14/14/15 by cycle) fail the initial .015 Å bond-RMS screen.
+Even the most favorable printed rounding bounds exceed it; cycle minima are
+.070/.058/.069/.064/.066 Å. The actual pinned XYZ scorer source consequently
+requires its default fallback. `r_free_only=False` is explicit. Printed precision
+does not recover every fallback tie or original source membership for each trial.
+At the final endpoint, 51 pair distances contribute **99.11% of unweighted squared
+bond deviations**, reconstructing pooled RMS .07652 Å versus logged .077 Å.
+This is not their energy or force share. Pooled angle RMS likewise reconstructs
+2.30268° versus2.303°. The additional current statistics/linking source inspection
+is labeled separately from modules captured during W159.
+
+This is the C395/C396 issue already documented under W135/W136, not a newly
+discovered policy fix. C396's source-matched eligibility change altered choices
+without automatically improving its result. Do not repeat or activate that
+selector, change forces, or relax criteria because this baseline also falls back.
+
+**Inspection and evidence.** The existing eight-file local recovery packet gains
+one `a9-11.html` view plus context in `review.html`; its three coordinate files
+are unchanged. The posthoc A9–11 window displays 33 atoms/35 native covalent bonds
+against independently named endpoint maps, using W154 unchanged. All 62 meshes
+and 17 offline control/buffer checks pass; actual browser/GPU review remains open.
+The old human packet and failed audit are retained. Main NASolve anchor:
+`branch-artifacts/willow/w161-recovery-context/`; the verified 26-file archive
+`w161-saved-recovery-context-2026-11-20.zip` has SHA256
+`b7f8ae71b4be1738507be6574727ce4148e20a028d18af689de7c0cb9f8c361c`.
+Its parent points to the immutable W159 archive; no portable-run claim.
+
+Exact cold entry points under main `branch-artifacts/willow/runners/`:
+`w161-recovery-context.py`, `w161-weight-screen.py`, `w161-scene.py`,
+`w161-checkout.py`, `w161-archive.py`. Controllers use
+`PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B`;
+map/mesh workers run through the bound Phenix2.2.1-6174 SDK with 180 s ownership.
+The weight review launches no native tool. Eight focused roadmap tests,
+roadmap `--write`/`--check` and `git diff --check` cover docs-only publication.
+No runtime/schema/install change or migration, full-suite rerun or scientific
+acceptance; raw artifacts stay local. Cedar construction/orientation work and
+Hazel's private objective profiles remain separately owned and unmerged.

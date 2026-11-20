@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W161 — Resolve local recovery context before another fit
+
+- Audit saved residue/geometry/map changes and the native weight-screen fallback,
+  reusing the completed C395/C396 diagnosis without a new selector experiment.
+  Add one posthoc A9–11 view to the existing local recovery packet.
+- Record actual-state/parallelity admission requirements for a future bounded
+  backbone profile. No refinement, runtime/schema or policy change; data stay local.
+
 ### W160 — Qualify bounded model-assisted density controls
 
 - Complete the noiseless correct-model/position/B panel through the native map

@@ -56,11 +56,13 @@ current instructions; other branches retain their own status and validation pins
   W158 records the original comparison plan; its separate model-assisted density
   counterexample panel is completed by W160, including near-zero normalization
   ambiguity. No noisy/experimental detector is qualified.
+  W161 localizes mixed recovery and binds the known native-screening fallback;
+  the next profile requires actual-state admission, not another selector trial.
   Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W160;
-  the next substantial audit is W161. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W161;
+  the next substantial audit is W162. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed
