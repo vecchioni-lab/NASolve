@@ -138,6 +138,14 @@ descriptive; broad geometry and combined scientific evidence guide review.
    but no qualified modified-donor/metal move with both junctions closed. Extend
    the shared admission/chemistry boundary deliberately; do not duplicate a B/Q
    guard or treat canonical displacement evidence as metal qualification.
+   The read-only movement-region substep is now complete: explicit prepared
+   contexts and the full C410 native capture identify 41 FT_Hg atoms, four fixed
+   flanks and 36 crossing bonded terms. Saved-model junctions and native target
+   delivery are checked without new refinement. This is an inventory ingredient,
+   not closure, source authentication, modified-mover admission or A01 completion.
+   Next qualify a bounded proposal against those connections through the shared
+   owners, including packing and fresh child diffraction; preserve the existing
+   negative results and geometry/B/Q boundaries.
 2. **A01 → A02:** qualify an open XYZ/B endpoint through local chemistry,
    coordination, Rwork/Rfree, stopping evidence and maps. Derive environmental
    metal B from the actual refined donors/base-only atoms, report disagreement

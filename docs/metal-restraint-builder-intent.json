@@ -223,12 +223,23 @@
       "source-bound placement and serialized-coordinate preview",
       "exact hypothesis derivation replay",
       "bounded recipe-only metal-coordinate preparation",
-      "exact geometry-trial replay and residual tables"
+      "exact geometry-trial replay and residual tables",
+      "read-only complete-native movement-region and fixed-flank inventory"
     ],
     "gui_connected": false,
     "native_ready": false,
     "source_importer_implemented": true,
-    "layout_and_camera_outside_recipe": true
+    "layout_and_camera_outside_recipe": true,
+    "movement_region_review": {
+      "status": "read-only inventory implemented; coordinate proposal and closure not qualified",
+      "contract": "docs/metal-restraint-builder.md#inspecting-the-connected-movement-region",
+      "protocol": "metal-movement-scope-review-v1",
+      "schema_version": 1,
+      "source_authentication": "caller responsibility",
+      "coordinates_changed": false,
+      "native_admission": false,
+      "scientific_acceptance": false
+    }
   },
   "integration": {
     "contract": "docs/metal-restraint-builder.md#integration-objectives-and-milestones",

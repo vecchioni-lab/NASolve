@@ -53,6 +53,47 @@ Exact term coverage does not establish correct chemistry, force equivalence,
 convergence or an acceptable model. See the [current handoff](metal-development-handoff.md)
 for pinned dependency versions, negative controls and remaining integration work.
 
+## Inspecting the connected movement region
+
+Before testing a coupled base/metal pose, the implemented read-only inspector
+identifies the atoms inside the proposed region and the native restraints that
+connect them to the surrounding DNA. This makes the four flanking junctions
+visible alongside local base geometry; it does not yet move atoms or solve
+backbone closure. Its pipeline position is **A01, before a new open XYZ/B branch**.
+
+`nasolve.metal.motion_scope.inspect_movement_scope` consumes a complete captured
+native inventory, explicit prepared site contexts and exact captured metal
+labels. Each context declares `site`, `component`, `incoming_site` and
+`outgoing_site`; terminal absence is explicit `None`. Whole selected residues
+and the declared metals form the region. Polymer links come from captured O3′–P
+terms checked against the declarations, never proximity or consecutive numbers.
+
+Methods: the existing captured Cartesian reader validates atom/coordinate
+identity and measures junction bonds and adjacent angles. The shared backbone
+reader cross-checks native link representations. Each supported bonded family
+is counted as internal, crossing the boundary or outside; both planes of a
+parallelity term participate. Crossing records retain their exact target/weight
+data and fixed endpoints. No angular acceptance threshold is introduced.
+Nonbonded packing and diffraction are explicitly unassessed.
+
+The schema-1 in-memory `metal-movement-scope-review-v1` report has a content
+fingerprint, normalized declarations, atom sets, fixed flanks, junction
+measurements and crossing records. Its fingerprint is not authentication: the
+caller must bind the capture and prepared contexts to their exact sources.
+Supported scope is one model, unambiguous selected heavy-atom sites, blank
+selected alternates/insertions and identity-symmetry movement terms. Ambiguous
+junction endpoints, missing/extra declared links and incomplete family captures
+are refused. An intra-residue-only capture cannot substitute for full context.
+
+The FT_Hg readback supplies two source-bound modified sites and one Hg: 41 atoms,
+four fixed flanks and 36 crossing terms. This demonstrates inventory accounting
+on that capture, not general modified-residue movement qualification. The
+[current handoff](metal-development-handoff.md) owns tests, exact evidence and
+the editable local figure. No CLI, GUI, stored trial schema, default recipe or
+native worker changes. Existing runs need no migration. Source chemistry,
+B/Q and tensor preservation, covalent closure, symmetry packing and scientific
+selection remain with their shared owners and require separate qualification.
+
 ## Integration objectives and milestones
 
 The metal workspace is a consumer of NASolve's generated models and immutable

@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Inspect the connected metal movement region
+
+- Add a read-only inspector for explicitly selected whole residues and metal
+  atoms in a complete native capture. It identifies fixed flanks, polymer
+  junctions and crossing bonded restraints, refusing incomplete or ambiguous
+  contexts instead of inferring connectivity from distances or residue numbers.
+- Reuse the existing captured-geometry and backbone-link readers. The additive
+  in-memory report grants no coordinate movement, source authentication, native
+  admission, B/Q preservation or scientific acceptance; existing runs and
+  defaults need no migration.
+- Record a source-bound FT_Hg readback and compact saved-model junction figure.
+  Generated science, reports and private runners remain outside Git.
+
 ### Record the selective metal-angle comparison
 
 - Close the bounded native comparison of donor-vertex and metal-centred angular
