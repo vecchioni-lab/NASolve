@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-11-19** for **`willow`**. Start with the
+Updated **2026-11-20** for **`willow`**. Start with the
 [current development handoff](development-handoff.md) for the proven edge,
 remaining gates and next bounded task. Historical handoffs are evidence, not
 current instructions; other branches retain their own status and validation pins.
@@ -64,11 +64,16 @@ current instructions; other branches retain their own status and validation pins
   cutoff; diffraction-state/execution integration remains open. W167 aligns
   the planned cluster-placement/coupled-DNA-opening contract with Alder and Cedar;
   it adds no width-changing runtime or experiment.
+  W168 retains parent chemistry in a private child-diffraction recovery diagnostic;
+  W169 verifies existing coordinate-only admission owners. W170 completes the
+  remaining B2/A13 saved-map review. W171 adds optional current-parent snapshot
+  binding to the existing saved-motion loader; ordinary native integration and
+  general repair remain open.
   Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W167;
-  the next substantial audit is W168. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W171;
+  the next substantial audit is W172. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

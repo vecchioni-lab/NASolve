@@ -10099,3 +10099,78 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/p
 installation, native calculation, refinement or science files. This clarifies
 the same W170 queue without claiming another scientific milestone or repeating
 already-qualified arithmetic. Existing full/install evidence remains historical.
+
+
+## W171 — Bind a saved motion to the current parent snapshot
+
+**Before/after.** The saved-motion loader authenticated a pinned preview and
+reconstructed its source-bound unrounded motion; the caller compared any current
+parent separately. `load_bend_motion(..., parent_model_bytes=...)` now optionally
+requires immutable bytes that exactly match the pinned preview source before
+returning that same motion and six parameters. Any coordinate, B/Q, identity or
+metadata drift is refused. The old call/return and existing artifacts remain
+compatible; no schema migration or CLI/default behavior changes.
+
+This is a small composition point in the existing owner, not a new request
+format or lifecycle. The caller still authenticates its selected checkpoint,
+passes the actual parent snapshot and checks inputs again when dispatching.
+The strict endpoint auditor still owns full/rounded coordinate serialization,
+fixed records and tensor policy. New schema-1/schema-2 composition tests exercise
+that unchanged owner, while the sub-rounding bound case also runs with the new
+parent option. No retained-chemistry native hook, ordinary checkpoint activation,
+modified-metal movement, backbone closure or scientific acceptance follows.
+
+**Changed source:** `src/nasolve/topostitch_preview.py` adds the optional argument
+and exact-byte check; `tests/test_topostitch_preview.py` adds distinct composition,
+parent-drift/type cases and extends the existing unrounded-bound case. Code pin:
+`ab84322f6697fc29a25c170b1dbdbab11282c6c9`. The source parent digest alone is not a
+substitute for the pinned request or a trustworthy checkpoint caller.
+
+Validation from the Willow checkout:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider tests/test_topostitch_preview.py -k 'current_parent or parent_requires or unrounded'
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider tests/test_topostitch_preview.py tests/test_topostitch_endpoint.py tests/test_topostitch_captured_job.py
+```
+
+Before implementation, **12 fail / one existing unbound case passes** (47
+unselected). Afterward, **118 focused tests pass**. The exact commit is built
+and installed with `pip wheel --no-deps --no-build-isolation` and `pip install
+--no-deps --no-compile --target`; the copied build source is removed and target
+relocated. The same **118 tests**, actual installed import, `pip check`, all six
+entry-point help commands and **93 package-file hashes** pass there. Full exact
+commands/environment and results are in `install-result.json`, via the NASolve
+anchor `branch-artifacts/willow/w171-parent-bound-motion/`. Controller invocation:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w171-install-parent-binding.py
+```
+
+This historical command is not a request to rerun immutable output folders.
+No global/shared numerical mechanic changed, so no full-suite repeat; focused
+checks cover the loader and adjacent endpoint/captured-job contracts. No Phenix
+or Coot calculation, refinement or new structural result was produced. Existing
+W168/W170 coordinate/map checkouts remain the scientific illustrations.
+
+Archive `branch-artifacts/willow/w171-parent-binding-evidence-2026-11-20.zip`
+contains **31 indexed files / 506,537 bytes**, SHA256
+`147b88e8ab464d59d3447f6bbc12e87ddcbc5cbba4c5cf43a50b92072c270d1d`.
+All archive members verify. After preserving the wheel, exact code patch,
+commands/logs and source hashes, the owned installation scratch is retired:
+**209 files / 3,515,209 bytes**. The archive is integrity evidence, not a resumable
+crystallographic checkpoint. Generated diagnostics stay local; no raw science
+is committed. Human/machine docs and queue are updated; S04–S07 remain PARTIAL.
+
+The documentation gate also passes eight existing roadmap tests with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider tests/test_topostitch_roadmap.py`,
+roadmap `--write`/`--check`, JSON/declared receipt hashes, Python 3.10 AST syntax
+for the changed source/test files, and `git diff --check`. The small human note
+uses the existing GitHub workspace science folder:
+`ScienceCheckouts/Linden/2026-11-20_remaining-backbone-density/W171-parent-binding.txt`.
+
+Hazel confirmed no overlap: Alder keeps the read-only connected-region inventory
+and a private per-residue axis proposal using existing `TaperedMotion` arithmetic.
+Its modified-metal scope does not enter this canonical endpoint admission route.
+The next bounded step is the supported caller/lifecycle composition, with real
+checkpoint identity and dispatch-time freshness; repeat neither the arithmetic
+qualification nor the already-completed matching-data fits.

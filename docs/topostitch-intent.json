@@ -1208,6 +1208,21 @@
         "movement_or_closure_qualified": false,
         "packing_or_diffraction_qualified": false
       }
+    },
+    "saved_motion_parent_binding": {
+      "human_update": 171,
+      "module": "nasolve.topostitch_preview",
+      "function": "load_bend_motion",
+      "optional_keyword": "parent_model_bytes",
+      "implemented": true,
+      "code_commit": "ab84322f6697fc29a25c170b1dbdbab11282c6c9",
+      "reference": "docs/topostitch-periodic.md#w171--bind-a-saved-motion-to-the-current-parent-snapshot",
+      "scope": "Exact immutable current-parent snapshot versus pinned registered-preview source before returning existing full-precision motion",
+      "default_behavior_changed": false,
+      "stored_schema_changed": false,
+      "checkpoint_or_dispatch_authority": false,
+      "retained_native_lifecycle_qualified": false,
+      "modified_metal_motion_qualified": false
     }
   },
   "planned_diffraction_benchmark": {

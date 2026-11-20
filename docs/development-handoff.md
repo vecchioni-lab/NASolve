@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-20**, through **W170**. W168’s private native diagnostic now retains
+Updated **2026-11-20**, through **W171**. W168’s private native diagnostic now retains
 known parent chemistry at the ordinary 3 Å interpretation cutoff while diffraction
 and refinement use the displaced child. One five-cycle run recovers **2.288 →
 0.271 Å RMS**, keeping all 38 backbone links, atom identities and checked sugar
@@ -12,9 +12,17 @@ deviation of **10.54°**; low Rfree .0589 does not imply complete repair.
 in `topostitch_endpoint.audit_masked_endpoint`. Real W168 input and no-op controls
 pass; eight B/Q, protected-coordinate, identity/order and cell alterations refuse.
 Source/installed readbacks match exactly (27/29 checks). The generic recipe
-rebinder remains unchanged. No duplicate guard or product patch is needed;
+rebinder remains unchanged. No duplicate B/Q guard is needed;
 original full-precision proposal binding and supported lifecycle integration
 remain open. [Scope](topostitch-periodic.md#w169--reuse-the-existing-coordinate-only-admission-guard).
+
+**W171 adds an exact current-parent check to the existing saved-motion loader.**
+Callers may supply `parent_model_bytes`; any difference from the pinned preview
+source is refused before the unrounded motion is returned. Both preview schemas
+compose with the unchanged strict endpoint audit. Twelve fail-before cases,
+118 focused tests, 118 relocated installed tests and six entry-point helps pass.
+This is a snapshot guard; checkpoint identity, dispatch freshness and native
+retained-chemistry integration remain open. [Scope and checks](topostitch-periodic.md#w171--bind-a-saved-motion-to-the-current-parent-snapshot).
 
 **W170 closes the queued B2/A13 map review, not the repair.** Both distorted sites
 have negative difference density at the recovered atom and positive samples at
@@ -158,10 +166,11 @@ metadata, not independent authentication. The lower-level captured-job owner
 already accepts checksummed endpoint points or an explicitly opted-in frozen
 3N start. Neither diagnostic path is the ordinary retained-parent workflow.
 
-The next integration must pin the original request before dispatch and verify
-that its source still matches the exact current parent. Keep native interpretation
-reordering separate from input identity/order. The W163 interior taper is not a
-registered terminal preview, and replaying its historical parameters now cannot
+W171 now offers `parent_model_bytes` at that loader boundary, verified against
+its pinned source. The next integration must supply the actual current-parent
+snapshot, bind its checkpoint/request identity and recheck consumed inputs at
+dispatch. Keep native interpretation reordering separate from input identity/order.
+The W163 interior taper is not a registered terminal preview, and replaying its historical parameters now cannot
 establish a prospective request for the old run. Preserve the first route's
 canonical/full-occupancy and tensor restrictions; a preview that rotates ANISOU
 cannot silently enter an audit requiring unchanged non-XYZ bytes. This owner

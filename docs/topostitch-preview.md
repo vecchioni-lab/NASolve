@@ -15,6 +15,7 @@ from nasolve.topostitch_preview import load_bend_motion
 
 motion, parameters = load_bend_motion(
     preview_directory, expected_receipt_sha256=expected_preview_digest,
+    parent_model_bytes=current_parent_bytes,  # optional exact immutable snapshot
 )
 displacements = motion.displacements(parameters)
 ```
@@ -31,6 +32,20 @@ This returns coordinate arithmetic, not a model or permission to optimize. ADPs
 are not transported by this API, and a different parameter vector must undergo
 fresh backbone/packing and scientific review. It neither restores a failed trial
 nor changes optimizer stopping policy.
+
+When an admitting caller has a current parent, supply its immutable PDB bytes
+with `parent_model_bytes`. W171 rejects any difference from the preview's pinned
+source, including coordinates, B/Q, identities and metadata, before returning the
+motion. Omitting the option retains the existing numerical API. This verifies a
+snapshot; it does not resolve a checkpoint, authorize motion or keep a later
+mutable file current. The execution owner must bind the checkpoint and recheck
+its consumed inputs at dispatch.
+
+For the narrow coordinate-only route, pass the reconstructed full-precision
+points and the saved candidate bytes to `audit_masked_endpoint` with the motion's
+mask/bound. That existing owner retains candidate-byte and tensor restrictions.
+The optional parent comparison does not allow an ANISOU-rotating preview into a
+route requiring fixed non-XYZ bytes, or admit modified residues/metals.
 
 ## Inputs and use
 
