@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W184 — Compare surrounding DNA between completed plane trials
+
+- Record the matched sibling coordinate shifts with explicit nearby/distant groups,
+  exact input/frame binding and independent parsing; distinguish ring-relative
+  tip heights from absolute movement. Ordinary motion gates remain open.
+- Documentation/local analysis only; no product, schema, default, installation or
+  new native execution change. Scientific coordinates and results stay local.
+
 ### W180–W183 — Record preparation progress and remaining owner/view boundaries
 
 - Update the Willow handoff and audited roadmap for Cedar's typed reader-control

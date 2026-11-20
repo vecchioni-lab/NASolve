@@ -1,5 +1,13 @@
 # NASolve development handoff — Willow
 
+**W184, saved sibling-coordinate check:** Cedar’s two soft propynyl planes produce
+small surrounding shifts: nearby sugar/backbone RMS **0.00515 Å**, compared with
+**0.00561 Å** at distant controls. The two tips move **0.05187/0.02914 Å**; their
+rings move too. Identical 867-atom inventory and crystal frame, four arithmetic
+controls and independent Gemmi parsing pass. No new fit, map or helical metric;
+this does not establish preferential backbone propagation. The ordinary-owner
+next step below remains unchanged. [Scope and per-site evidence](topostitch-periodic.md#w184--measure-surrounding-dna-shifts-between-completed-plane-trials).
+
 **W180–W182: carry the same chemistry into ordinary preparation.** Cedar now
 has the typed capture artifact (`ac339d3e`): original restraints and four reviewed
 reader controls remain separate, with the same **213 compiled/retained terms**.

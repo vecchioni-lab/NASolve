@@ -10824,3 +10824,49 @@ created, and the earlier DOM/canvas-double results remain the only automated
 interaction evidence. P02 remains PARTIAL. The next check is still an actual
 permitted browser rendering and preference round trip with unchanged packet hashes;
 opening a view is not a human preference or scientific approval.
+
+
+## W184 — Measure surrounding DNA shifts between completed plane trials
+
+At Rowan's request, compare the saved C466 and C470 five-cycle siblings from
+Phenix 2.2.1-6174. Resolve the exact run through C466's declared `local_run`, then
+its checkpoint references; verify both model hashes against C470 `science.json`.
+Both records name `postmr` as parent and bind the same observations. All **867
+ordered identities/elements** and CRYST1/SCALE records agree. Willow's existing
+`model_atom_rows` and `CoordinateMask` supply parsing/displacement arithmetic.
+No superposition, wrapping, native run, geometry target or model change is made.
+
+Predeclared groups use control six-ring centroids: within 10 Å of either target
+is nearby; at least 20 Å from both is distant. NAR maps the six ring roles.
+Forty-one sites map completely (19 nearby, 5 distant); DX D:3 lacks all six
+landmarks and is excluded from the grouped analysis, but remains in the total.
+
+| Landmark group | Nearby RMS shift (Å) | Distant RMS shift (Å) |
+| --- | ---: | ---: |
+| Six mapped ring atoms | 0.00687 | 0.01016 |
+| Named sugar/backbone atoms | 0.00515 | 0.00561 |
+| P and phosphate oxygens | 0.00535 | 0.00511 |
+
+5PC C9 and PDU C5M move **0.05187 and 0.02914 Å**. Their own six-ring RMS shifts
+are **0.01491 and 0.01264 Å**. P shifts at A:4/D:5 are 0.00173/0.00447 Å.
+The whole-model RMS is 0.00678 Å. Ring-relative tip-height improvements are not
+literal atom travel because the ring plane also changes. Nearby backbone motion
+is comparable to distant controls; this single comparison gives no descriptive
+enrichment supporting preferential local propagation. All B-factor fields differ;
+occupancies do not. No causal, helical twist/radius or density interpretation is
+claimed. PDB coordinate precision is 0.001 Å and symmetry neighbors are not sampled.
+
+Zero, reverse, expand-roundtrip and independent-distance arithmetic controls pass.
+Independent **Gemmi 0.7.5** parsing reproduces every identity and the complete
+coordinate RMS/maximum exactly. Source metadata, models and observations remain
+byte-identical. This is a read-only coordinate audit, not a new native/refinement
+experiment or qualified cluster-opening move. The ordinary-control handoff remains
+S04/S05's next step; no milestone is closed by this local result.
+
+The anchored local packet is
+`NASolve:branch-artifacts/willow/w184-plane-neighborhood/`. `plan.json` binds inputs
+and groups; `result.json` retains all site values; `independent-reader.json` records
+the separate parse; `report.txt` is the compact science summary. Reproduce with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<willow>/src <python> -B inspect_shifts.py --nasolve <NASolve> --output <fresh-output>`
+using Python 3.12 and the existing NAR/Gemmi environment. Scientific files remain
+local. No installed code/schema change or full-suite rerun is required.
