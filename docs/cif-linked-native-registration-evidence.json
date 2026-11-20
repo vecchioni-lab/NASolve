@@ -119109,5 +119109,58 @@
       "branch-artifacts/cedar/c458-ordinary-owner",
       "branch-artifacts/cedar/c460-ordinary-readyset-read"
     ]
+  },
+  "stored_internal_furanose_2026_11_20": {
+    "stage": "C462",
+    "queue": "Q07",
+    "runtime": "5bc75aa9f2c1326700cd5dd5080eb7a4fa073fd8",
+    "preparation": "2b715b496ea2d2d37761153b53aaca66e68c6eff9757f96c59967ba80a912196",
+    "native_receipts": {
+      "before": "03f3e5312a6ba610ccffd136eb2be0d35dbf3226a486b0a651874147553c96b0",
+      "after": "d2469de09e303bc21346d3737815caf28a3cc5e0ca284b4c509bf1533e1e2a47"
+    },
+    "native": "Phenix 2.2.1-6174; two completed fixed-coordinate interpretations",
+    "coordinates": "Previously separately placed nine-pair model",
+    "components": 13,
+    "atoms": 869,
+    "sites": 42,
+    "backbone": 38,
+    "neighbor_angles": 152,
+    "frame_terms": 211,
+    "source_class": "RNA",
+    "native_group": "non-polymer",
+    "retained_centres": [
+      "C1'",
+      "C2'",
+      "C3'",
+      "C4'"
+    ],
+    "removed": [
+      "HA",
+      "HXT",
+      "OXT"
+    ],
+    "checks": {
+      "chemical": {
+        "PASS": 199,
+        "UNSUPPORTED": 13
+      },
+      "native": {
+        "PASS": 156
+      }
+    },
+    "formal_charges": "Native formal charge unavailable for all thirteen selected sites; diagnostic continuation with notes only",
+    "old_capsules": "Original C440 base dictionary, site modifier and PHIL reproduced byte for byte",
+    "validation": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_cif_stored_furanose.py tests/test_cif_furanose_reaction.py tests/test_cif_dictionary_sites.py tests/test_cif_dictionary_bundle.py",
+      "failed_before": 3,
+      "focused_passed": 164,
+      "full_suite": false
+    },
+    "new_site_policy": "cif-stored-internal-furanose-sites-v1",
+    "existing_policies": "Unchanged",
+    "diffraction": false,
+    "ordinary_atl_coordinates": false,
+    "evidence": "branch-artifacts/cedar/c462-stored-locked-sugar/science.json"
   }
 }

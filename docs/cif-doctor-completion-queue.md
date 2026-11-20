@@ -26,7 +26,12 @@ C441 replaces the historical inputs for a native reading of all thirteen current
 definitions. All 38 link targets, 152 neighboring angles and 211 frame terms
 are present. The four source-declared phosphate dianions now lose just OP3 at
 the incoming link. The conserved OP1 and OP2 keep their supplied bond orders.
-ATL still uses the separately assembled C144 adapter. Ordinary 1AP:T and
+C462 now runs the same locked-sugar reaction within the stored dictionary
+bundle on the separately placed scaffold. Both native managers completed;
+the candidate retained all 38 links, 152 neighboring angles and 211 frame
+terms. The declared substitutions preserve RNA classification and all four
+sugar centres. Carry this preparation through the complete request, then
+qualify ordinary coordinate placement and mixed diffraction. Ordinary 1AP:T and
 S6G:C now pass through ReadySet and five Phenix cycles. In 1AP the local plane
 covers both amino groups. In S6G only the shared pair plane includes sulfur.
 On the thirteen-component model the corrected PDU, 5PC and DF restraints now

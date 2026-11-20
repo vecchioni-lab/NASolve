@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-20, C458–C460 ordinary mixed ReadySet and relocated selection — Rowan**.
+Updated **2026-11-20, C462 stored locked-sugar chemistry — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -43,6 +43,17 @@ C454 found identical plane membership in both mixed models. At A:5 the 1AP
 local plane included N2 and N6. Of the two, the shared plane with C:11
 included N2 only. At C:9 the S6G local plane again omitted S6, and the shared
 plane with A:7 included it. These are interpreted restraints before diffraction.
+
+**C462.** The stored bundle now prepares the locked sugar on the independently
+placed mixed model. Two fixed-coordinate Phenix 2.2.1-6174 interpretations
+covered 869 atoms on 42 sites. The all-thirteen preparation retained 38
+backbone links, 152 neighboring angles and 211 supplied frame terms. At A:11
+Phenix read ATL as RNA with numerical group `non-polymer`. Its two declared
+links consumed OXT/HXT and the outgoing alcohol H; all four recorded sugar
+centres survived. The 13 unavailable formal-charge readings retain REVIEW.
+The prepared manager matches the separately assembled control for those
+backbone and frame terms. Ordinary locked-sugar coordinate
+placement, displacement assignment, and mixed diffraction remain open.
 
 **C458–C460.** An ordinary fresh Coot construction and Phenix 2.2.1-6174
 ReadySet run completed the twelve substitutions with DT still at the separate
