@@ -9691,3 +9691,74 @@ no installation repeat is needed for unchanged product code. S04/S05/S06 remain
 partial. Next inspect local distortion and qualify parent-derived topology
 retention through shared owners; do not turn the private 4 Å example into a
 production heuristic or rerun completed objective sweeps.
+
+
+## W166 — Carry known parent geometry without a global cutoff change
+
+**Question and scope.** Can the intact parent's native geometry manager retain
+the declared canonical same-ASU topology when its coordinates are changed to the
+existing W163 signed 15° starts? Rowan confirmed Cedar can audit missing/extra
+links but does not currently force a stretched parent link through preparation.
+This diagnostic reuses the C407 installed execution/Phenix owners, C397 observed
+inventory, complete parallelity reader, fixed nonbonded-policy reader and W164's
+unchanged supplemental live torsion/plane owner. It adds no product helper.
+
+**Prospective comparison.** One intact parent is interpreted at the unchanged
+native 3 Å cutoff. Its returned dry-run manager evaluates initial, positive,
+restored, negative and restored coordinates. Two independent 4 Å preparations
+evaluate the same positive/negative states, reusing W163's explicitly private
+control policy. The qualified run has **three dry-runs and seven energy/gradient
+calls**, with **zero refinement/optimizer calls**, on **Phenix 2.2.1-6174**.
+Per-component raw energy/gradient agreement was set beforehand to
+`1e-9 + 1e-10 * max(abs(a), abs(b))`. Nonbonded neighbor enumeration and normalized
+objectives are separately observed, not assumed invariant across different sites.
+
+**Result.** All 38 intended O3′–P links survive. The negative child's B2 O3′–B3 P
+distance is **3.83587656 Å**, yet its bond and four flank angles remain, alongside
+identical six-family definitions, 58 complete parallelity terms, 443 explicitly
+checked torsion policies, 62 planarity definitions and fixed graph exclusions,
+types, functions and search policy. Raw geometry energy differences versus
+independent preparation are at most **1.02e-10** and raw Cartesian gradient
+differences at most **1.92e-9**, within the declared componentwise bound.
+Normalized target differences are at most **8.9e-15**; both restoration checks
+reproduce the initial energy and gradient exactly. Same-coordinate nonbonded
+lists/counts match here (positive 11,378 total terms, negative 11,084; parent
+11,102). This does not resolve C400's general normalization-history question.
+The cold readback passes **77 checks**.
+
+**Identity lesson and retained failures.** Native preparation moves terminal
+D1 OP3 in the array, changing 20 indices despite `sort_atoms=False`. Transfer uses
+an explicit unique full-label bijection, not index coincidence or nearest atoms.
+Input non-XYZ state is checked against the source input; the separately prepared
+native hierarchy/scatterer state stays unchanged and matches the fresh controls.
+Raw element/charge whitespace is normalized by preparation, so raw-versus-native
+representation equality is not itself a chemical check. Five earlier wrapper
+refusals are preserved: dropped forwarded arguments, exact float equality across
+fractional roundtrip, assumed atom order, raw/prepared representation comparison,
+and temporary iotbx hierarchy lifetime. None transferred child coordinates or
+ran refinement. Four performed native preparation and two recorded an initial
+energy evaluation; the first only printed native usage. These are diagnostic
+setup failures, not failures of the physical retention hypothesis.
+
+**Artifacts and validation.** Main NASolve anchor:
+`branch-artifacts/willow/w166-parent-geometry-attempt06/review.json`.
+`runners/w166-parent-geometry.py plan` / `run` freeze and execute the prospective
+experiment; `runners/w166-review.py` performs independent cold comparison, using
+`PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B`.
+The archive `branch-artifacts/willow/w166-parent-geometry-evidence-2026-11-20.zip`
+retains 239 indexed files, including all setup attempts; SHA256
+`0fd86e7fd8b2d5bbb57f3f0250ba9100a53581b7c6263722b27f0b4976b121d0`.
+Its per-file size/hash readback passes. It is an integrity archive, not a portable
+or resumable run. No scientific inputs/results are committed or uploaded.
+
+**Remaining gate.** This observes a returned geometry manager, not an optimizer
+frame or a transported fmodel. Before supported refinement, bind both source and
+candidate identities and fresh diffraction state before optimizer preparation,
+preserve native chemistry/frame/site symmetry and refuse unsupported changes.
+Symmetry seams, automatic link inference and general repaired-model acceptance
+remain separate. No new installed code, runtime schema/default, migration or
+installation behavior changes. Tracked validation is the focused roadmap test,
+generated roadmap check, evidence checksum review and `git diff --check`; no
+full suite or redundant install check for unchanged product code. S04/S05/S06
+remain partial. Inspect W164's remaining B2/A13 distortion in its saved maps next;
+do not repeat this transport comparison or tune another refinement loop by Rfree.

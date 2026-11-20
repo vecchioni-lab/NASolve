@@ -1121,7 +1121,23 @@ preparation and execution owners:
   positive arm has low synthetic Rfree but a 31.32° local phosphate-angle error;
   checked chirality signs and R statistics alone cannot approve it.
 
-This is an integration specification, not a new installed feature. Reciprocal
+W166 qualifies the first bounded geometry-only seam: prepare the intact parent
+at the default 3 Å cutoff, bind a complete unique atom-identity bijection, and
+evaluate displaced coordinates using that same native manager. Both signed
+starts retain all 38 source links, the long bond's four flank angles and fixed
+exclusion context; physical energies/gradients agree with independent 4 Å
+controls, and restoring the parent reproduces the baseline exactly. Native
+preparation reorders terminal OP3 even with `sort_atoms=False`; input row order
+cannot be used as proxy identity. Compare input chemical state with input state,
+and preserve/check the separately prepared native state (including B/Q).
+
+This does **not** qualify changing coordinates after diffraction preparation:
+the next execution boundary must bind candidate hierarchy/scattering coordinates,
+native geometry/site symmetry and fresh diffraction state before optimizer use.
+No production API, cutoff default, new link or accepted child follows from the
+dry-run. [Exact scope and validation](topostitch-periodic.md#w166--carry-known-parent-geometry-without-a-global-cutoff-change).
+
+This remains an integration specification, not a new installed feature. Reciprocal
 curved/straight target shapes, nonuniform bending, larger experimental cases,
 B09 geotest, B10 sticky enforcement and symmetry-phosphate chemistry remain open.
 

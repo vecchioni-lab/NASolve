@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W166 — Retain known topology in a transported native geometry manager
+
+- Record the bounded canonical same-ASU parent-manager diagnostic: stretched
+  coordinates retain the known bond, flank angles and exclusions at the default
+  interpretation cutoff, matching independently prepared control forces.
+- Document exact atom-identity mapping, native preparation reordering and the
+  remaining pre-fmodel/execution integration gate. Local diagnostic and docs only;
+  no installed code, schema, default, migration or automatic acceptance change.
+
 ### W165 — Plan the default backbone-fit check
 
 - Record the user-confirmed high-Rfree/difference-density review trigger and

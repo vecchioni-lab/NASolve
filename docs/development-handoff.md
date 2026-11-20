@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-Updated **2026-11-20**, through **W165**. Larger prescribed backbone
+Updated **2026-11-20**, through **W166**. Larger prescribed backbone
 displacements now recover under a declared matching-data control. Starting at
 2.288 Å RMS (up to 4.79 Å movement), the two directions reach **0.253/0.040 Å**
 after matched five-plus-five-cycle recovery; the no-op remains **0.014 Å**.
@@ -17,9 +17,14 @@ runtime switch or automatic repair is implemented. [Contract](topostitch.md#plan
 **New preparation boundary:** the first larger input loses a 3.836 Å declared
 O3′–P link and four angles under native 3 Å interpretation. That attempt is held.
 A private matched 4 Å envelope preserves source links, angles and exclusions;
-it is not a production bonding rule or symmetry-seam solution. Next integrate
-parent-derived topology retention through existing owners, with exact refusals
-for new/lost context rather than distance-only chemistry.
+it is not a production bonding rule or symmetry-seam solution. **W166 now passes
+the geometry-only parent-manager transport seam** at the default 3 Å cutoff:
+38 links, four angles around the stretched bond, complete native definitions and
+fixed exclusions survive, with matching independent control forces and exact
+return to the parent. Native terminal OP3 reordering requires exact atom-identity
+mapping. Next integrate before diffraction-model preparation through shared
+owners; no fmodel transport, optimizer run or installed repair API is qualified.
+[W166 methods and retained setup refusals](topostitch-periodic.md#w166--carry-known-parent-geometry-without-a-global-cutoff-change).
 
 **W162 closes the bounded actual-state study as limited.** Passive LS/ML capture
 reproduces W159 outputs, then the selected-state replay matches its 73-state
@@ -93,11 +98,13 @@ not another work queue; do not repeat them because this handoff is shorter.
 
 ## Next bounded work
 
-**Next bounded question:** preserve declared canonical same-ASU topology across
-deformation and native preparation through the shared owners. W163's private
-4 Å envelope demonstrates the issue; it is not the production solution. Bind
-parent identity, links, associated geometry and exclusions, refuse unexplained
-additions/losses, and keep symmetry seams separate. Inspect the remaining W164
+**Next bounded question:** carry W166's qualified geometry-only parent-manager
+seam into the pre-fmodel preparation/execution boundary, with explicit parent and
+candidate identities. Do not repeat the completed energy comparison or assume
+that moving a returned dry-run model updates diffraction state. Native atom-order
+mapping, unchanged chemistry/ADPs/occupancy, frame/site symmetry and observations
+need explicit binding. Retain links, associated geometry and exclusions; refuse
+unexplained additions/losses and keep symmetry seams separate. Inspect the remaining W164
 B2/A13 distortion against source-bound maps before another fit. W162's bounded
 capture/profile is recorded as limited; do not repeat it or C395–C400, tune its
 tolerances after seeing results, or require a perfect no-op before useful repair.
