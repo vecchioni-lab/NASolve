@@ -62,7 +62,11 @@ owner sealed the partial work, then a fresh attempt finished without changing
 the first. A live child still blocked retry. Separate lossless packs of the
 sixteen real working stages and the remaining distinct working files together
 required 52,347,778 bytes before outer archive metadata. This was a storage
-rehearsal on saved files. The original attempt still has no completion record.
+rehearsal on saved files. C459 subsequently recovered all 3,599 original files from one 10,546,262-byte
+archive while access to both the original and the later publication was blocked.
+The temporary working view occupied 39,930,826 bytes. It preserved the stopped
+repair and missing outer completion. The normal retirement and later readback
+also passed on a separately completed test request.
 
 A complete bond count on both saved native models found 38 backbone and 53
 supplied inter-residue soft bonds, with no extra links. All 211 frame terms

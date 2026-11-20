@@ -41,8 +41,10 @@ trees leaves 143.1 MiB of distinct evidence. C457 read all 3,599 original
 files independently of the later publication, and tested completion, verified
 interruption and a fresh retry. In both saved Phenix models all 38 backbone
 bonds and 53 declared inter-residue soft bonds accounted for every cross-site
-bond. Next check ordinary mixed ReadySet on a new lineage and demonstrate that
-its retained working evidence remains readable within the shared physical limit.
+bond. C459 reopened all 3,599 original working files from a 10.5 MB archive
+after relocation, using 39.9 MB of temporary working files. The earlier repair
+failure and unfinished attempt remain explicit. Check ordinary mixed ReadySet
+on a new lineage and its eligibility for normal retirement.
 The locked ATL junction and mixed diffraction follow.
 C437 also shows why Q06 retains a separate displacement check. Five cycles with
 the measured host scaffold B factors and new 5PC base atoms at B=20 brought

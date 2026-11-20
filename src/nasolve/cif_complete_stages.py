@@ -12,7 +12,7 @@ import os
 import re
 
 from . import cif_component_runtime as trees
-from .cif_dictionary_sites import _need, _read
+from .cif_dictionary_sites import _need
 from .cif_repair_chain import MAX_BONDS, MAX_PLANES
 from .cif_review_transport import _strict
 from .cif_runtime_evidence import _file_index
@@ -65,13 +65,27 @@ class AttemptBounds:
               and self.sizes[owner] <= trees.MAX_BYTES, 'Complete evidence exceeds frozen bounds')
 
 
-def working_inventory(root, prefixes):
+def read_sized(path, size):
+    """Limit the actual read even if a working file grows after inspection."""
+    path = Path(path).absolute()
+    _need(0 <= size <= trees.MAX_FILE_BYTES and path.is_file()
+          and not any(p.is_symlink() for p in (path,*path.parents)),
+          'Unsafe or oversized complete evidence file')
+    with path.open('rb') as handle:
+        _need(os.fstat(handle.fileno()).st_size == size, 'Complete evidence size changed')
+        data = handle.read(size+1)
+    _need(len(data) == size, 'Complete evidence changed while reading')
+    return data
+
+
+def working_inventory(root, prefixes, *, expected=None):
     """Hash each raw file independently. Empty directories and partial jobs survive."""
     root = Path(root).absolute()
     _need(root.is_dir() and not any(p.is_symlink() for p in (root, *root.parents)), 'Unsafe complete evidence root')
     bounds = AttemptBounds(prefixes)
     files = {}
     directories = []
+    expected_dirs = set(expected['directories']) if expected is not None else None
     pending = [root]
     while pending:
         directory = pending.pop()
@@ -82,16 +96,25 @@ def working_inventory(root, prefixes):
                 name = path.relative_to(root).as_posix()
                 _need(_strict(name) and not entry.is_symlink(), 'Unsafe complete evidence member')
                 if entry.is_dir(follow_symlinks=False):
+                    if expected_dirs is not None:
+                        _need(name in expected_dirs, 'Unexpected staged working directory')
                     directories.append(name)
-                    _need(len(directories) <= 4*bounds.max_files, 'Complete directory count exceeds frozen bounds')
+                    _need(len(directories) <= 4*bounds.max_files + int(expected is not None), 'Complete directory count exceeds frozen bounds')
                     pending.append(path)
                 else:
                     _need(entry.is_file(follow_symlinks=False), 'Nonregular complete evidence member')
                     size = entry.stat(follow_symlinks=False).st_size
-                    bounds.charge(name, size)
-                    data = _read(path)
-                    _need(len(data) == size, 'Complete evidence changed while reading')
+                    if expected is None:
+                        bounds.charge(name, size)
+                    else:
+                        ref = expected['files'].get(name)
+                        _need(ref is not None and ref['size'] == size, 'Changed staged working file or size')
+                    data = read_sized(path, size)
                     files[name] = {'size':size, 'sha256':sha256(data).hexdigest()}
     directories.sort()
-    _file_index(files, directories, max_files=bounds.max_files)
-    return {'files':files, 'directories':directories}
+    inventory = {'files':files, 'directories':directories}
+    if expected is None:
+        _file_index(files, directories, max_files=bounds.max_files)
+    else:
+        _need(inventory == expected, 'Staged working view differs from its verified contents')
+    return inventory

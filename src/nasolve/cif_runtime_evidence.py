@@ -43,12 +43,12 @@ def _index(value):
     return files,directories,total
 
 
-def _file_index(files, directories, *, max_files):
+def _file_index(files, directories, *, max_files, extra_directories=0):
     """Shared path/object validation; callers retain their own logical budgets."""
     _need(isinstance(files,dict) and 0<len(files)<=max_files
           and all(_strict(name) for name in files), 'Unsafe or excessive logical evidence files')
     _unique(files)
-    _need(isinstance(directories,list) and len(directories)<=4*max_files
+    _need(isinstance(directories,list) and len(directories)<=4*max_files+extra_directories
           and all(_strict(name) for name in directories)
           and directories==sorted(set(directories))
           and len({_alias(n) for n in directories})==len(directories), 'Unsafe evidence directories')

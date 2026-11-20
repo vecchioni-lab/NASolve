@@ -649,7 +649,11 @@ def _repair_limits(config):
 def _attempt_files(attempt, *, with_continuation=False, artifact_policy=None):
     _artifact_fields(artifact_policy)
     if artifact_policy == STAGED_ARTIFACT_POLICY:
-        inventory = staged_artifacts.working_inventory(attempt, _artifact_partitions(artifact_policy, with_continuation))
+        from .cif_complete_staged_archive import view_inventory
+        prefixes = _artifact_partitions(artifact_policy, with_continuation)
+        inventory = view_inventory(attempt, prefixes)
+        if inventory is None:
+            inventory = staged_artifacts.working_inventory(attempt, prefixes)
         inventory['files'].pop('finished.json', None)
         return inventory
     if artifact_policy is not None:

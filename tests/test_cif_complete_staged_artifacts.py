@@ -140,3 +140,149 @@ def test_fresh_multi_component_plane_and_bond_work_chooses_stage_storage(frozen_
     assert len(options['components']) > 1
     request = initialize_postmr_dictionary_request(**options, automatic_plane_support=True, automatic_bond_targets=True)
     assert request['configuration']['artifact_policy'] == V5
+
+def test_oversize_original_reads_each_member_after_relocation(mixed, tmp_path):
+    import shutil
+    from nasolve.cif_complete_attempt_archive import expanded_complete_attempt_evidence, read_complete_attempt_member
+
+    original = requests._attempt_files(mixed, artifact_policy=V5)
+    intent = read_record(mixed/'attempt.json')
+    write_record(mixed/'finished.json', dict(attempt_sha256=intent['record_sha256'], outcome='RETURNED',
+                                             stopped_verified=True, artifacts=original))
+    expected = {p.relative_to(mixed).as_posix():p.read_bytes() for p in mixed.rglob('*') if p.is_file()}
+    archive = tmp_path/'working.zip'
+    report = pack_complete_attempt_evidence(mixed, archive, artifact_policy=V5, with_continuation=False)
+    assert report['unique_bytes'] > storage.MAX_ACTIVE_BYTES
+    assert report['working_unique_bytes'] < storage.MAX_ACTIVE_BYTES
+    assert report['encoded_only_files'] == 2
+    shutil.rmtree(mixed)
+    moved = archive.rename(tmp_path/'relocated.zip')
+    with expanded_complete_attempt_evidence(moved, report['archive_sha256'], finished_sha256=report['finished_sha256'],
+                                           artifact_policy=V5) as directory:
+        view = directory/'evidence'
+        assert requests._attempt_files(view, artifact_policy=V5) == original
+        assert {name:read_complete_attempt_member(view, name) for name in expected} == expected
+        assert not (view/EXECUTION/'plane-attribution-000/captures/before/data').exists()
+        assert storage._ACTIVE_BYTES.get() == report['working_unique_bytes']
+        with pytest.raises(ValueError):
+            read_complete_attempt_member(view, '../input')
+        with pytest.raises(ValueError):
+            read_complete_attempt_member(view, 'unrecorded')
+    assert not directory.exists() and storage._ACTIVE_BYTES.get() == 0
+
+
+def test_incompressible_stages_cannot_raise_the_shared_capacity(mixed, tmp_path):
+    import random
+    first = mixed/EXECUTION/'plane-attribution-000/captures/before/data'
+    second = mixed/EXECUTION/'bond-attribution-000/job/partial.bin'
+    first.write_bytes(random.Random(17).randbytes(17000))
+    second.write_bytes(random.Random(91).randbytes(17000))
+    original = requests._attempt_files(mixed, artifact_policy=V5)
+    intent = read_record(mixed/'attempt.json')
+    write_record(mixed/'finished.json', dict(attempt_sha256=intent['record_sha256'], outcome='RETURNED',
+                                             stopped_verified=True, artifacts=original))
+    out = tmp_path/'too-large.zip'
+    with pytest.raises(ValueError, match='physical|shared'):
+        pack_complete_attempt_evidence(mixed, out, artifact_policy=V5, with_continuation=False)
+    assert not out.exists() and second.exists()
+
+
+def test_archive_index_at_original_directory_limit(mixed, tmp_path, monkeypatch):
+    for module in (trees, storage):
+        monkeypatch.setattr(module, 'MAX_FILES', 3)
+    prefixes = requests._artifact_partitions(V5, False)
+    limit = 4 * (1 + len(prefixes)) * trees.MAX_FILES
+    existing = sum(path.is_dir() for path in mixed.rglob('*'))
+    for number in range(limit - existing):
+        (mixed / f'empty-{number}').mkdir()
+    original = requests._attempt_files(mixed, artifact_policy=V5)
+    intent = read_record(mixed / 'attempt.json')
+    write_record(mixed / 'finished.json', dict(attempt_sha256=intent['record_sha256'], outcome='RETURNED',
+                                                stopped_verified=True, artifacts=original))
+    packed = pack_complete_attempt_evidence(mixed, tmp_path / 'at-limit.zip', artifact_policy=V5, with_continuation=False)
+    assert packed['encoded_only_files'] == 2
+    (mixed / 'one-extra-real-directory').mkdir()
+    with pytest.raises(ValueError, match='directory count'):
+        requests._attempt_files(mixed, artifact_policy=V5)
+
+
+def test_public_owner_reads_retired_mixture_after_relocation(joined, monkeypatch, tmp_path):
+    from nasolve.cif_attempt_retention import retire_attempt_working_files
+    from nasolve import cif_complete_stages as stages
+
+    module, options, root, sdk, store, generation, state = joined
+    module.initialize_dictionary_request(output=root, artifact_policy=V5, **options)
+    original = module.repair.execute_prepared_dictionary_repair
+
+    def add_work(*args, **kwargs):
+        result = original(*args, **kwargs)
+        put(args[2], 'plane-attribution-000/job/details', b'P'*140000)
+        put(args[2], 'bond-attribution-000/job/details', b'B'*140000)
+        return result
+
+    monkeypatch.setattr(module.repair, 'execute_prepared_dictionary_repair', add_work)
+    module.execute_dictionary_request_attempt(root, sdk, store, generation=generation)
+    exact = module.read_dictionary_request_result(root, 1)
+    attempt = root/'attempts/attempt-0001'
+    before = read_record(attempt/'finished.json')['artifacts']['files']
+    core = {ref['sha256']:ref['size'] for name,ref in before.items() if stages.stage_root(name) is None}
+    # Leave room for the authenticated completion record and compressed objects.
+    limit = sum(core.values()) + (attempt/'finished.json').stat().st_size + 4096
+    assert limit < sum({ref['sha256']:ref['size'] for ref in before.values()}.values())
+    monkeypatch.setattr(storage, 'MAX_ACTIVE_BYTES', limit)
+    retire_attempt_working_files(root, 1)
+    assert not (attempt/EXECUTION/'plane-attribution-000/job/details').exists()
+    assert module.read_dictionary_request_result(root, 1) == exact
+    moved = root.rename(tmp_path/'relocated-staged-request')
+    result = module.read_dictionary_request_result(moved, 1)
+    assert result['runtime']['model'].is_relative_to(moved)
+    assert result['runtime']['model'].read_bytes() == Path(options['model']).read_bytes()
+    assert result['result'] == exact['result'] and not root.exists()
+    assert len(state['calls']) == 1
+
+
+@pytest.mark.parametrize('change', ['trailing compressed bytes', 'too much output', 'wrong bytes', 'hide original', 'extra object'])
+def test_changed_staged_object_refuses_even_with_new_outer_digest(mixed, tmp_path, change):
+    import zlib
+    from nasolve import cif_complete_attempt_archive as transport, cif_complete_staged_archive as packed
+    raw = requests._attempt_files(mixed, artifact_policy=V5)
+    intent = read_record(mixed/'attempt.json')
+    write_record(mixed/'finished.json', dict(attempt_sha256=intent['record_sha256'], outcome='RETURNED', stopped_verified=True, artifacts=raw))
+    output = tmp_path/'working.zip'
+    saved = pack_complete_attempt_evidence(mixed, output, artifact_policy=V5, with_continuation=False)
+    index, objects, _ = transport._decode(output.read_bytes(), saved['archive_sha256'])
+    member = next(n for n in index['files'] if n.startswith(packed.PACKED+'/') and n.endswith('.deflate'))
+    ref = index['files'][member]
+    data = objects.pop(ref['sha256'])
+    if change == 'hide original':
+        index['files'].pop(member)
+    elif change == 'extra object':
+        index['files'][member+'.extra'] = ref
+        objects[ref['sha256']] = data
+    else:
+        changed = {'trailing compressed bytes':data+b'X', 'too much output':zlib.compress(b'X'*27000),
+                   'wrong bytes':zlib.compress(b'Q'*17000)}[change]
+        h = sha256(changed).hexdigest()
+        objects[h] = changed
+        index['files'][member] = {'size':len(changed), 'sha256':h}
+    forged, digest = storage._archive_bytes(index, objects)
+    with pytest.raises(ValueError):
+        transport._decode(forged, digest)
+
+
+def test_same_original_shared_between_core_and_stages_is_recoverable(mixed, tmp_path):
+    from nasolve.cif_complete_attempt_archive import expanded_complete_attempt_evidence, read_complete_attempt_member
+    put(mixed, EXECUTION+'plane-attribution-001/captures/input', b'A'*17000)
+    original = requests._attempt_files(mixed, artifact_policy=V5)
+    intent = read_record(mixed/'attempt.json')
+    write_record(mixed/'finished.json', dict(attempt_sha256=intent['record_sha256'], outcome='RETURNED', stopped_verified=True, artifacts=original))
+    output = tmp_path/'shared.zip'
+    receipt = pack_complete_attempt_evidence(mixed, output, artifact_policy=V5, with_continuation=False)
+    with expanded_complete_attempt_evidence(output, receipt['archive_sha256'], finished_sha256=receipt['finished_sha256']) as view:
+        path = EXECUTION+'plane-attribution-001/captures/input'
+        assert read_complete_attempt_member(view/'evidence', path) == (view/'evidence'/EXECUTION/'plan/input.cif').read_bytes()
+        target = view/'evidence'/EXECUTION/'plan/input.cif'
+        target.chmod(0o600)
+        target.write_bytes(b'Z'*17000)
+        with pytest.raises(ValueError, match='differs|changed'):
+            requests._attempt_files(view/'evidence', artifact_policy=V5)

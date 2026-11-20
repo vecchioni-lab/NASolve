@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Reopen large mixed-residue preparations within the working limit
+
+- A completed multi-component preparation can now archive repeated native
+  captures and intermediate repairs once per distinct file. The public model
+  and restraints retain their usual paths. Each original intermediate can be
+  read individually and checked against the sealed attempt after relocation.
+  Earlier archives remain readable.
+
 ### Record both completed and interrupted mixed preparations
 
 - New multi-component preparations that request automatic plane and bond repair

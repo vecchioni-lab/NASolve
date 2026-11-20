@@ -118845,5 +118845,62 @@
     "compatibility": "Earlier request policies and standard flat archive bounds retained. No migration.",
     "local_evidence": "branch-artifacts/cedar/c457-mixed-ownership",
     "next": "Fresh ordinary twelve-component preparation through ReadySet; check bounded retention."
+  },
+  "bounded_mixed_working_archive_2026_11_20": {
+    "owner": "Rowan",
+    "checkpoint": "C459",
+    "source_parent": "1e44712d",
+    "archive_index": {
+      "schema_version": 2,
+      "policy_id": "cif-complete-attempt-staged-working-archive-v1",
+      "source_policy": "cif-complete-request-staged-artifacts-v5"
+    },
+    "existing_bounds_bytes": {
+      "single_source": 33554432,
+      "compressed_archive": 33554432,
+      "shared_physical_working": 134217728
+    },
+    "private_relocation": {
+      "packing": {
+        "original_inventory_sha256": "3dfdadeda1bc039b7dc221f75d3c718f61746bc429b1a35af87e68e0a10cb8ed",
+        "capsule_bytes": 10546262,
+        "capsule_sha256": "3a2ee74c4f4e0962e265e29452f340f568c665271effc6961858fc26d55248b4",
+        "stored_content_bytes": 39930826,
+        "distinct_original_objects": 521,
+        "original_physical_bytes": 151635232,
+        "individually_encoded_objects": 91,
+        "original_finished": false
+      },
+      "verified": {
+        "capsule_sha256": "3a2ee74c4f4e0962e265e29452f340f568c665271effc6961858fc26d55248b4",
+        "original_files": 3599,
+        "original_directories": 667,
+        "delivered_bytes": 471648798,
+        "actual_temporary_bytes": 39930826,
+        "physical_limit": 134217728,
+        "compressed_limit": 33554432,
+        "individual_file_limit": 33554432,
+        "child_outcome": "RAISED",
+        "outer_completion": "ABSENT",
+        "earlier_source_access": "DENIED",
+        "later_publication_access": "DENIED",
+        "native_calls": 0,
+        "retired_historical_files": 0,
+        "temporary_removed": true
+      }
+    },
+    "regression": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_cif_complete_staged_artifacts.py tests/test_cif_complete_attempt_archive.py tests/test_cif_attempt_retention.py tests/test_cif_complete_capture_bounds.py tests/test_cif_runtime_evidence.py",
+      "passed": 114,
+      "seconds": 199.25,
+      "edge_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider --tb=short tests/test_cif_complete_staged_artifacts.py::test_archive_index_at_original_directory_limit tests/test_cif_runtime_evidence.py",
+      "edge_passed": 35,
+      "edge_seconds": 17.77,
+      "distinct_focused": 115,
+      "full_suite": false
+    },
+    "compatibility": "Unchanged flat schema 1 and historical readers. A fresh successfully sealed mixed attempt may use the compact working projection. Failed or uncertain native work retains its original working files.",
+    "private_evidence": "branch-artifacts/cedar/c459-mixed-working-archive",
+    "scientific_change": false
   }
 }
