@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Inspect recorded metal results without original trial folders
+
+- Add a read-only input-archive inspector with explicit archive, projection,
+  trial and expected-parent identities. Preserve repeated attempts; refuse
+  changed internal links, failed records and partial archives without writes.
+- Label historical results separately from fresh native/parent verification.
+  Existing archives need no migration; no execution, reuse or pruning follows.
+- Qualify focused regressions and relocated installed Hg/Ag4 recovery. Generated
+  evidence remains outside Git; no native run or full suite is repeated.
+
 ### Record cold metal execution cross-binding
 
 - Document one saved historical Hg execution recovered with its exact parent,

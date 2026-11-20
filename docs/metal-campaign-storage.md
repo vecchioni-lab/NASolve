@@ -457,6 +457,60 @@ reader lifetimes and an isolated working directory fix the harness; no owner
 guard was weakened. No full suite or native replay was repeated. Exact commands
 and source hashes are in the adjacent validation record.
 
+## Implemented result inspection from the input archive
+
+`nasolve.metal.input_archive.inspect_recorded_fdp(archive, archive_sha256,
+projection_id=..., trial_id=..., expected_parent=...)` provides a read-only
+consumer of the existing v1 input archive. Supply independently retained
+archive/projection/trial identities and the exact geometry or XYZ-parent lineage
+dictionary. It uses the existing bounded archive reader, checks every recorded
+basis/request/attempt relationship and completed review-only result state, then
+returns the selected record, shared basis and exact request. A failed sibling
+cannot be hidden by selecting a successful row. Identical requests still retain
+distinct attempts. No original data discovery or native execution occurs.
+
+The returned status is **`RECORDED_FDP_REVIEW`**. The result was fully replayed
+when the projection was published; this inspection does not replay native
+evidence, read current parent files or establish present software equivalence.
+Accordingly, `native_evidence_replayed` and `current_parent_verified` are false,
+and scientific acceptance remains `NOT_ASSESSED`. A mismatched expected parent
+is refused; matching that caller-supplied identity is not an independent audit
+of a live parent. The external archive/projection pins matter: a self-digest
+alone does not authenticate newly fabricated scientific evidence.
+
+This closes the ordinary **recorded-result inspection** seam. It adds no writer,
+execution cache, new persisted schema, CLI/GUI action, pruning policy or migration.
+Existing pack/expand/full-replay APIs and Cedar complete-attempt rules remain
+unchanged. The inspector returns data only, with no temporary path escaping its
+scope; all execution/reuse/retirement permissions stay false. An incomplete or
+changed archive remains untouched. This per-selection API is not yet a campaign
+batch/session optimization or an authority to discard original native evidence.
+
+Qualification: **117 focused tests in 34.76 s**, including 17 new cases covering
+source removal, repeated attempts, wrong identities/budget, changed internal
+links, failed records/siblings, false acceptance and preserved partial archives.
+The positive regression first fails because the API is absent. The first test
+fixture revision attempted to edit read-only archive copies; its nine fixture
+errors are recorded and corrected without changing owner protections.
+
+A fresh wheel preserves all **348 packaged files**. With its build source and
+original installation removed, the relocated package reads exact historical
+Hg and Ag4 result records, refuses both changed-parent selections and a partial
+archive, and preserves all evidence. **718 assertions** pass with original
+science/source reads denied, zero native calls and all owned scratch removed.
+These are saved Phenix 2.2.1-6174 results; no Phenix/Coot execution or new chemistry
+qualification occurs. The incomplete environment caveat remains in force.
+
+Evidence under the Alder artifact anchor: `recorded-inspector-20261120-01/`,
+including `execution.json`, `results.xml`, `pytest.log`, and
+`installed/{source-manifest.json,package-manifest.json,result.json}`.
+The focused command is `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m
+pytest -q -p no:cacheprovider tests/test_metal_recorded_fdp.py
+tests/test_metal_input_archive.py tests/test_metal_compact.py
+tests/test_metal_storage.py tests/test_metal_fdp.py`; the receipt records the
+exact interpreter, working directory and XML path. No full suite reran.
+Generated science, the private wheel and validation artifacts remain outside Git.
+
 ## Governing decision
 
 Retention follows the operation, not a generic per-attempt archive policy.

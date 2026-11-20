@@ -96,6 +96,15 @@ A09 remains deferred until after the main A01–A08 build.
 
 ## Scientific scope and owners
 
+The additive A04 recorded-result inspector now reads existing input archives with
+explicit archive/projection/trial/expected-parent pins and preserves the distinction
+between recorded statistics and a fresh native audit. **117 focused tests** pass;
+**718 installed assertions** cover exact historical Hg/Ag4 readback and refusal
+without original source/data access. All 348 packaged files remain exact. No
+persisted schema, native worker, cleanup policy or existing reader changes. The
+[storage contract](metal-campaign-storage.md#implemented-result-inspection-from-the-input-archive)
+owns the command/evidence and remaining scientific lifecycle boundary.
+
 The parallel A04 recorded-execution proof now cross-binds a saved historical Hg
 result, its exact legacy parent and inputs, and its recorded worker/native/resource
 identity after relocation. The private read passes 213 assertions and 11 refusals

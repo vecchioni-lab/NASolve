@@ -429,6 +429,20 @@ no existing run schema or native science changes. The
 owns exact bounds, methods, evidence levels and remaining lifecycle limits.
 Receipts: `parent-adapter-20261120-01/` under the Alder artifact anchor.
 
+**A04 recorded-result inspector, 20 November: implemented and qualified.**
+`input_archive.inspect_recorded_fdp` reads a selected historical result using
+external archive/projection/trial/expected-parent pins and validates all internal
+record links. It preserves separate attempts and refuses failed/incomplete
+records, mismatched parents and partial archives without changing evidence.
+The explicit recorded status grants no fresh scientific audit, current-parent
+verification, execution, reuse or retirement. **117 focused tests / 34.76 s**
+pass; a relocated **348-file installation / 718 checks** recovers exact saved
+Hg and Ag4 results with original reads denied and no native calls. See the
+[storage contract](metal-campaign-storage.md#implemented-result-inspection-from-the-input-archive)
+for the API, exact command, failures and scope. Only the additive input-archive
+API, its focused tests and documentation change; v1 archives remain readable
+without migration. Existing full replay and shared retention owners are unchanged.
+
 **A04 remains partial: lean frozen-trial storage.** Read-only inventory, scenario
 forecast, lossless compact projection, exact input archives and explicit parent
 transport/lifetime separation are implemented. The adapter reuses the shared archive/temporary-view owner, preserves
