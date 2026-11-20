@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Current explanation, 2026-11-19.** CIF Doctor checks whether the model and
+**Current explanation, 2026-11-20.** CIF Doctor checks whether the model and
 chemical dictionaries preserve the intended molecule, whether Phenix receives
 the intended restraints, and whether a proposed repair changes only what it
 should. It works around ReadySet and NARestraints; it does not replace them.
@@ -17,6 +17,14 @@ trigonal attachment shape and whole-substituent measurements stay distinct from
 complete chemical acceptance. The same scalar calculation now serves captured
 non-triple modified sites without a DF/PDU-name rule. A source changed during a
 read refuses; historical reports keep their original meaning.
+
+Two closely related purines show why the final restraint table matters.
+Five Phenix cycles kept both amino nitrogens of 1AP in the residue's own
+12-atom plane. For thioguanosine (S6G), the ordinary dictionary omitted the
+sulfur from that local plane. The shared base-pair plane included it. Sulfur
+ended 0.101 Å from the nine ring atoms. Doctor now reports the local omission
+even though the prepared model is usable. The reflections in these controls
+belong to the host scaffold.
 
 The ordinary PDU control receives the corrected targets and plane but still bends
 under substituted-scaffold diffraction. The recorded weight, normalization and

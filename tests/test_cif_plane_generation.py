@@ -176,8 +176,8 @@ def test_support_changed_after_candidate_is_preserved_and_refused(tmp_path,monke
     import nasolve.cif_plane_generation as module
     source,dictionary,request,directory=plane_generation(tmp_path)
     prepare=module.prepare_trigonal_plane_candidate
-    def changed(*args):
-        result=prepare(*args)
+    def changed(*args,**kwargs):
+        result=prepare(*args,**kwargs)
         p=directory/'candidate.cif';p.write_text(p.read_text()+'\n')
         return result
     monkeypatch.setattr(module,'prepare_trigonal_plane_candidate',changed)
@@ -407,3 +407,52 @@ def test_rejected_generation_requires_matching_completed_process(tmp_path,monkey
         return value
     monkeypatch.setattr(m,'inspect_generation_process',changed)
     with pytest.raises(ValueError):m.inspect_owned_plane_generation_failure(source,'Q17',request,1)
+
+
+@pytest.mark.parametrize("mode", ["finished_edge", "finished_charge", "exception_after"])
+def test_only_replayed_final_bond_order_veto_is_a_known_optional_failure(tmp_path, mode):
+    from nasolve.cif_plane_generation import inspect_owned_plane_generation_failure, read_owned_plane_support
+    from tests.test_cif_source_representation import fake_generation
+
+    work, receipt = fake_generation(tmp_path, mode=mode, multiple_planes=True, request_owned=True)
+    request = work.parents[2]
+    source = request/"inputs/source.cif"
+    assert receipt["execution"]["returncode"] == 0
+    assert receipt["result"]["builder"]["status"] == "EXCEPTION"
+    with pytest.raises(ValueError):
+        read_owned_plane_support(source, "Q17", request, 1)
+    if mode == "finished_edge":
+        assert receipt["result"]["representation_finished"]["checks"]["exact_connectivity"]
+        proof = inspect_owned_plane_generation_failure(source, "Q17", request, 1)
+        assert proof["failure_kind"] == "FINAL_BOND_ORDERS_REJECTED"
+        assert proof["candidate_qualification"] == "SOURCE_REJECTED"
+        assert proof["stopped_verified"] and not proof["retry_authorized"] and not proof["fallback_authorized"]
+        assert "support" not in proof
+        moved = request.rename(tmp_path/"relocated")
+        assert not request.exists()
+        assert inspect_owned_plane_generation_failure(moved/"inputs/source.cif", "Q17", moved, 1) == proof
+    else:
+        with pytest.raises(ValueError):
+            inspect_owned_plane_generation_failure(source, "Q17", request, 1)
+
+def test_resealed_unrelated_builder_exception_cannot_authorize_known_order_failure(tmp_path):
+    from nasolve.campaign_records import read_record, write_record
+    from nasolve.cif_plane_generation import inspect_owned_plane_generation_failure
+    from tests.test_cif_source_representation import fake_generation
+
+    work, _ = fake_generation(tmp_path, mode="finished_edge", multiple_planes=True, request_owned=True)
+    request = work.parents[2]
+
+    def change(report):
+        result = report["result"]
+        result["builder"]["message"] = "Unrelated failure"
+        (work/"candidate_result.json").write_text(json.dumps(result))
+
+    rebound(work, change)
+    receipt = work/"source_candidate_receipt.json"
+    seal = work.parent/"finished.json"
+    completed = read_record(seal)
+    completed["candidate_receipt"].update(size=receipt.stat().st_size, sha256=sha256(receipt.read_bytes()).hexdigest())
+    write_record(seal, completed, replace=True)
+    with pytest.raises(ValueError):
+        inspect_owned_plane_generation_failure(request/"inputs/source.cif", "Q17", request, 1)

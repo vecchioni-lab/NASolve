@@ -13,6 +13,7 @@ from .cif_stereochemistry_audit import _values, _graph, _stereo, _coordinates
 from .cif_triple_bond_audit import _numeric
 
 POLICY_ID = "cif-source-trigonal-plane-coverage-v1"
+QUALIFIED_RING_POLICY = "cif-qualified-ring-trigonal-plane-coverage-v1"
 
 
 def _table(values, category):
@@ -52,21 +53,75 @@ def _local_geometry(coordinates, centre, neighbors):
     return {"status": "DESCRIPTIVE", "absolute_normalized_volume": abs(determinant)}
 
 
-def audit_trigonal_plane_coverage(source, dictionary, code):
+def audit_trigonal_plane_coverage(source, dictionary, code, *, bond_representation_policy=None):
     """Screen explicit neutral C(=X)(-Y)(-Z) centres with three heavy neighbors.
 
-    Exact graph/charge correspondence is required. Aromatic-only representations,
+    The default requires identical graphs. An explicit policy can reassess a
+    complete source-declared ring representation. Aromatic-only sources,
     implicit-H centres, charged/unknown states and declared chiral centres are
     explicitly outside this first rule. No residue or atom-name allowlist is used.
     Existing graph-numerics policies and historical receipts are not changed.
     """
-    source, dictionary = Path(source), Path(dictionary)
+    from .cif_purine_representation import validate_policy
+    validate_policy(bond_representation_policy)
+    return _audit_coverage(Path(source), Path(dictionary), code, bond_representation_policy, snapshot=None)
+
+
+def audit_snapshot_trigonal_planes(directory, code):
+    """Read the isolated, qualified dictionary before site edits or plane generation."""
+    from .cif_dictionary_store import resolve_dictionary_snapshot
+
+    saved = resolve_dictionary_snapshot(directory)
+    if saved["manifest"]["request"]["component"] != code:
+        raise ValueError("Plane screen component differs from the acquired snapshot")
+    policy = saved["manifest"]["request"]["recipe"].get("bond_representation_policy")
+    audit = _audit_coverage(saved["source"], saved["dictionary"], code, policy, snapshot=saved)
+    files = saved["manifest"]["artifacts"]
+    if (audit["source_sha256"] != files["source"]["sha256"]
+            or audit["dictionary_sha256"] != files["dictionary"]["sha256"]):
+        raise ValueError("Plane screen inputs differ from the qualified snapshot")
+    return audit
+
+
+def _qualified_ring_changes(source, dictionary, code, sg, dg, policy, saved):
+    """Require the maintained representation check for these two chemical definitions."""
+    if policy is None or sg[0] != dg[0] or sg[2:] != dg[2:] or sg[1].keys() != dg[1].keys():
+        raise ValueError("Require identical source/dictionary atom, bond and charge graphs")
+    if saved is not None:
+        # resolve_dictionary_snapshot already replays the bound isolated qualification.
+        if not saved["qualification_current"]:
+            raise ValueError("Ring plane screen requires current isolated qualification")
+        assessment = saved["qualification"]["source_assessment"]
+    else:
+        # A generated support or selected file can differ from the isolated CIF.
+        # Its own atoms, charges, orders and source configurations must qualify.
+        from .cif_candidate_usability import reassess_complete_candidate
+        assessment = reassess_complete_candidate(source, dictionary, code, bond_representation_policy=policy)
+        if (assessment["candidate_status"] != "CANDIDATE_REVIEW" or any(
+                term["handedness"] != "PRESERVED" for term in assessment["finished_stereo"]["terms"])):
+            raise ValueError("Plane screen requires a source-preserving numerical dictionary")
+    proof = assessment["legacy_inspection"]["bond_representation"]
+    if (proof["status"] != "SOURCE_DECLARED_EQUIVALENT" or proof["policy_id"] != policy
+            or proof["unresolved_bonds"]):
+        raise ValueError("Require source-qualified equivalent ring bond orders")
+    changes = {edge: (order, dg[1][edge]) for edge, order in sg[1].items() if order != dg[1][edge]}
+    systems = proof["equivalent_rings"] + proof["equivalent_fused_systems"]
+    qualified = {tuple(b["atoms"]): (b["source_order"], b["generated_order"])
+                 for system in systems for b in system["bonds"]}
+    if changes != qualified:
+        raise ValueError("Plane screen bond differences exceed the qualified ring representation")
+    result = dict(policy_id=policy, changed_bonds=[list(edge) for edge in sorted(changes)])
+    if saved is not None:
+        result["qualification_sha256"] = saved["manifest"]["artifacts"]["qualification"]["sha256"]
+    return result
+
+
+def _audit_coverage(source, dictionary, code, policy, *, snapshot):
     original, before = source.read_bytes(), dictionary.read_bytes()
     try:
         sv, dv = _values(source, code), _values(dictionary, code)
         sg, dg = _graph(sv), _graph(dv)
-        if sg != dg:
-            raise ValueError("Require identical source/dictionary atom, bond and charge graphs")
+        representation = _qualified_ring_changes(source, dictionary, code, sg, dg, policy, snapshot) if sg != dg else None
         elements, orders, charges, neighbors = sg
         stereo = (_stereo(sv), _stereo(dv))
         chiral = {r["atom_id_centre"] for values in (sv,dv) for r in _table(values,"chir")}
@@ -116,7 +171,8 @@ def audit_trigonal_plane_coverage(source, dictionary, code):
                          "source_geometry": _local_geometry(source_xyz,centre,adjacent),
                          "dictionary_geometry": _local_geometry(dictionary_xyz,centre,adjacent)})
         missing = [r["centre"] for r in rows if r["coverage"] == "EXPLICIT_PLANE_MISSING"]
-        return {"schema_version": 1, "policy_id": POLICY_ID, "component": code,
+        return {"schema_version": 1, "policy_id": QUALIFIED_RING_POLICY if representation else POLICY_ID,
+                **({"qualified_representation": representation} if representation else {}), "component": code,
                 "source_sha256": sha256(original).hexdigest(), "dictionary_sha256": sha256(before).hexdigest(),
                 "status": "REVIEW" if missing else "SCOPED_EXPLICIT_COVERAGE_PASS" if rows else "UNASSESSED",
                 "centres": rows, "unassessed_carbon_centres": excluded, "missing_explicit_planes": missing,
@@ -134,7 +190,7 @@ def audit_trigonal_plane_coverage(source, dictionary, code):
 
 
 
-def audit_selected_trigonal_planes(sources, dictionaries):
+def audit_selected_trigonal_planes(sources, dictionaries, *, representation_policies=None):
     """Describe explicit selected-CIF coverage against already qualified source pins.
 
     Live references contain path and sha256; callers retain selection authority.
@@ -150,6 +206,12 @@ def audit_selected_trigonal_planes(sources, dictionaries):
         isinstance(code, str) and code.isascii() and code.isalnum() for code in sources),
         'Require explicit source component identities')
     _need(isinstance(dictionaries, (list, tuple)), 'Require ordered selected dictionaries')
+    from .cif_purine_representation import validate_policy
+    policies = {} if representation_policies is None else representation_policies
+    _need(isinstance(policies, dict) and policies.keys() <= sources.keys(),
+          'Selected plane-screen policies differ from source components')
+    for policy in policies.values():
+        validate_policy(policy)
     references = [*sources.values(), *dictionaries]
 
     def checked(reference):
@@ -181,7 +243,7 @@ def audit_selected_trigonal_planes(sources, dictionaries):
             else:
                 try:
                     audit = audit_trigonal_plane_coverage(Path(source['path']),
-                        Path(dictionaries[indices[0]]['path']), code)
+                        Path(dictionaries[indices[0]]['path']), code, bond_representation_policy=policies.get(code))
                 except ValueError as exc:
                     row['reason'] = str(exc)
                 else:
@@ -191,6 +253,8 @@ def audit_selected_trigonal_planes(sources, dictionaries):
                     row.update(status=audit['status'], missing_explicit_planes=audit['missing_explicit_planes'],
                         centres=[dict(centre=c['centre'], coverage=c['coverage']) for c in audit['centres']],
                         unassessed_centres=len(audit['unassessed_carbon_centres']))
+                    if 'qualified_representation' in audit:
+                        row['qualified_representation'] = audit['qualified_representation']
                     if audit['status'] == 'UNASSESSED':
                         row['reason'] = 'No centres meet the supported source-graph rule.'
             rows[code] = row

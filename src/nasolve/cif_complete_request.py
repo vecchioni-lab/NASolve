@@ -25,7 +25,7 @@ from .cif_dictionary_sites import _consumer, _links, _model_inventory, _need, _r
 from .cif_dictionary_store import _bytes, _json, make_dictionary_request, recipe_representation_policy, resolve_dictionary_snapshot
 from .cif_generation_acquisition import generation_dictionary_options
 from .cif_generation_attempt import _attempt_identity, generate_source_candidate_attempt, inspect_source_generation_request
-from .cif_plane_coverage import audit_trigonal_plane_coverage
+from .cif_plane_coverage import audit_snapshot_trigonal_planes
 from .cif_plane_generation import read_owned_plane_support, inspect_owned_plane_generation_failure
 from .cif_generation_process import _valid_identity
 from .cif_postmr_cache import verify_current_consumer
@@ -533,10 +533,11 @@ def _plane_plan(attempt):
     prepared = read_acquired_dictionary_bundle(attempt/'preparation')
     plan = {}
     for code in prepared['report']['selected_attempts']:
-        saved = resolve_dictionary_snapshot(attempt/'preparation/bundle/components'/code/'snapshot')
-        audit = audit_trigonal_plane_coverage(saved['source'],saved['dictionary'],code)
+        audit = audit_snapshot_trigonal_planes(attempt/'preparation/bundle/components'/code/'snapshot', code)
         plan[code] = dict(source_sha256=audit['source_sha256'],dictionary_sha256=audit['dictionary_sha256'],
             coverage_policy=audit['policy_id'],coverage_status=audit['status'],missing_centres=audit['missing_explicit_planes'])
+        if 'qualified_representation' in audit:
+            plan[code]['qualified_representation'] = audit['qualified_representation']
     return plan
 
 

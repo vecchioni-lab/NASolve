@@ -7,6 +7,38 @@ from tests import test_cif_plane_coverage as fixtures
 from nasolve.ligand_profiles import _blocks
 
 
+@pytest.mark.parametrize("evidence", ["complete", "missing", "unrelated_order"])
+def test_declared_ring_requires_independent_corroboration(tmp_path, evidence):
+    from nasolve.cif_plane_candidate import prepare_trigonal_plane_candidate, UnsupportedPlaneCompletion
+    from tests.test_cif_purine_representation import pair, POLICY
+
+    source, dictionary = pair("Z09")
+    names = source["_chem_comp_atom.atom_id"]
+    for axis, coords in zip("xyz", (range(len(names)), [i*i for i in range(len(names))], [0]*len(names))):
+        source[f"_chem_comp_atom.pdbx_model_Cartn_{axis}_ideal"] = list(map(str, coords))
+    support = deepcopy(dictionary)
+    ring = ["C4", "C5", "C6", "N1", "N3", "N7", "N9"]
+    fixtures.plane(dictionary, ring)
+    fixtures.plane(support, ring if evidence == "missing" else ring + ["N6"])
+    if evidence == "unrelated_order":
+        support["_chem_comp_bond.type"][10] = "double"  # Exocyclic C6–N6.
+    s, d, p = [fixtures.write(tmp_path, value, name) for value, name in
+               ((source, "source.cif"), (dictionary, "dictionary.cif"), (support, "support.cif"))]
+    output = tmp_path / "candidate.cif"
+    if evidence == "complete":
+        result = prepare_trigonal_plane_candidate(s, d, p, "Z09", output, bond_representation_policy=POLICY)
+        assert result["additions"] == [dict(plane="plane1", atom="N6", dist_esd=0.02)]
+        assert not result["remaining_missing_explicit_planes"] and not result["automatic_adoption"]
+    elif evidence == "missing":
+        with pytest.raises(UnsupportedPlaneCompletion, match="NO_CORROBORATING_LOCAL_PLANE"):
+            prepare_trigonal_plane_candidate(s, d, p, "Z09", output, bond_representation_policy=POLICY)
+        assert not output.exists()
+    else:
+        with pytest.raises(ValueError) as unsupported:
+            prepare_trigonal_plane_candidate(s, d, p, "Z09", output, bond_representation_policy=POLICY)
+        assert not isinstance(unsupported.value, UnsupportedPlaneCompletion) and not output.exists()
+
+
 def inputs(tmp_path, code="XYZ"):
     s=fixtures.values(code)
     for axis in "xyz":s["_chem_comp_atom.pdbx_model_Cartn_"+axis+"_ideal"]=s.pop("_chem_comp_atom."+axis)
@@ -106,8 +138,8 @@ def test_changing_input_refuses_and_preserves_any_partial_output(tmp_path,monkey
         monkeypatch.setattr(module,"_source_plane_evidence",changed)
     else:
         original=module.audit_trigonal_plane_coverage
-        def changed(source,dictionary,code):
-            r=original(source,dictionary,code)
+        def changed(source,dictionary,code,**kwargs):
+            r=original(source,dictionary,code,**kwargs)
             if dictionary==out:paths[0].write_text(paths[0].read_text()+"\n#changed\n")
             return r
         monkeypatch.setattr(module,"audit_trigonal_plane_coverage",changed)

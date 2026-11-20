@@ -141,8 +141,19 @@ def test_plane_only_chain_needs_no_fictitious_linear_attempt(tmp_path,monkeypatc
 @pytest.mark.parametrize('bound',['MAX_FILES','MAX_BYTES'])
 def test_combined_chain_cannot_borrow_larger_evidence_allowance(tmp_path,monkeypatch,bound):
     chain,selector,root,args,state,plane=fixture(tmp_path,monkeypatch)
-    monkeypatch.setattr(chain,bound,1)
-    with pytest.raises(ValueError):compose(chain,root,plane)
+    from nasolve import cif_component_runtime as storage
+
+    opened = []
+    read = storage._read
+    def observe(path):
+        opened.append(Path(path))
+        return read(path)
+    monkeypatch.setattr(storage, '_read', observe)
+    monkeypatch.setattr(chain, bound, 1)
+    with pytest.raises(ValueError, match=r'Combined repair evidence exceeds.*planes/000'):
+        compose(chain, root, plane)
+    assert opened and all(path.is_relative_to(plane) for path in opened)
+    assert len(opened) <= 2
     assert not (root/'chain').exists()
 
 

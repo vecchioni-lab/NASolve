@@ -34,10 +34,11 @@ def _canonical_proxy(row):
     return result
 
 
-def _qualify(before, after, source, dictionary, support, component, candidate):
+def _qualify(before, after, source, dictionary, support, component, candidate, policy):
     with TemporaryDirectory(prefix='nasolve-plane-replay-') as scratch:
         rebuilt = Path(scratch).resolve()/'candidate.cif'
-        plan = prepare_trigonal_plane_candidate(source, dictionary, support, component, rebuilt)
+        plan = prepare_trigonal_plane_candidate(source, dictionary, support, component, rebuilt,
+            bond_representation_policy=policy)
         _need(candidate.read_bytes() == rebuilt.read_bytes(),
               'Candidate differs from the complete source-supported plane plan')
     for native in (before, after):
@@ -123,7 +124,8 @@ def _qualify(before, after, source, dictionary, support, component, candidate):
         scientific_approval='NOT_RUN', model_editing='NOT_RUN', automatic_adoption=False)
 
 
-def qualify_linked_plane_candidate(before, after, source, dictionary, support, component, candidate):
+def qualify_linked_plane_candidate(before, after, source, dictionary, support, component, candidate, *,
+                                   bond_representation_policy=None):
     """Allow only reconstructed plane additions in the complete linked inventory.
 
     Callers must authenticate captures against identical ordered model/PHIL/tool
@@ -134,7 +136,7 @@ def qualify_linked_plane_candidate(before, after, source, dictionary, support, c
     paths = [Path(p) for p in (source, dictionary, support, candidate)]
     frozen = [p.read_bytes() for p in paths]
     try:
-        return _qualify(before, after, *paths[:3], component, paths[-1])
+        return _qualify(before, after, *paths[:3], component, paths[-1], bond_representation_policy)
     except (KeyError, TypeError, IndexError, OverflowError) as exc:
         raise ValueError('Incomplete native plane qualification evidence') from exc
     finally:
@@ -203,7 +205,8 @@ def _qualify_owned_captures(source, component, request_directory, attempt_number
     _need(isinstance(digest,str) and len(digest)==64 and all(c in '0123456789abcdef' for c in digest)
           and bool(records[0]['api_sources']), 'Incomplete captured native producer identity')
     result = qualify_linked_plane_candidate(*inventories, source, dictionaries[index],
-        path_in(Path(request_directory).absolute(), support['support']['path']), component, candidate)
+        path_in(Path(request_directory).absolute(), support['support']['path']), component, candidate,
+        bond_representation_policy=support['recipe'].get('bond_representation_policy'))
     _need(result['inventory_checks_pass'], 'Native changes exceed the supported plane completion')
     _need(read_owned_plane_support(source, component, request_directory, attempt_number) == support
           and all(_read(p)==data for p,data in original.items())

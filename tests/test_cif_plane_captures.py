@@ -106,8 +106,11 @@ def test_capture_provenance_or_unexplained_native_changes_cannot_pass(tmp_path,d
 def test_changed_capture_after_qualification_is_refused(tmp_path,monkeypatch):
     import nasolve.cif_plane_native as module
     args,options=setup(tmp_path);original=module.qualify_linked_plane_candidate
-    def changed(*values):
-        result=original(*values);p=args[-1].parent/'native.log';p.write_text(p.read_text()+'changed\n');return result
+    def changed(*values, **options):
+        result = original(*values, **options)
+        log = args[-1].parent/'native.log'
+        log.write_text(log.read_text()+'changed\n')
+        return result
     monkeypatch.setattr(module,'qualify_linked_plane_candidate',changed)
     with pytest.raises(ValueError,match='changed during'):qualify(args,options)
 

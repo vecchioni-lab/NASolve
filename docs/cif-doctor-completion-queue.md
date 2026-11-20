@@ -26,10 +26,18 @@ C441 replaces the historical inputs for a native reading of all thirteen current
 definitions. All 38 link targets, 152 neighboring angles and 211 frame terms
 are present. The four source-declared phosphate dianions now lose just OP3 at
 the incoming link. The conserved OP1 and OP2 keep their supplied bond orders.
-ATL still uses the separately assembled C144 adapter. Ordinary 1AP:T passes
-the phosphate step and stops at the optional plane screen for its aromatic
-representation. Resolve that boundary, carry the known numerical repairs into
-the ordinary mixture, and check the long ATL junction before mixed diffraction.
+ATL still uses the separately assembled C144 adapter. Ordinary 1AP:T and
+S6G:C now pass through ReadySet and five Phenix cycles. In 1AP the local plane
+covers both amino groups. In S6G only the shared pair plane includes sulfur.
+On the thirteen-component model the corrected PDU, 5PC and DF restraints now
+coexist with all ten other current definitions. The ordinary twelve-component
+control independently produces the same local targets and weights. Its seven
+repairs were individually verified, but repeated records exceeded the combined
+file and byte limits before publication. Close bounded storage and failed-attempt
+accounting first. C452 already replayed all seven changes from relocated,
+separately bounded archives while denying access to the original run.
+The outer unfinished attempt still exceeds the shared physical cap. Qualify
+ordinary mixed ReadySet, locked ATL and diffraction after those storage checks.
 C437 also shows why Q06 retains a separate displacement check. Five cycles with
 the measured host scaffold B factors and new 5PC base atoms at B=20 brought
 the terminal carbon close to the ring plane (0.087 Å) while stretching its
@@ -1351,10 +1359,10 @@ model or establishes pair restraints.
    as an immutable construction control. C428 found 110 B resets among 132
    coordinate-identical scaffold atoms. C429 tested a host-based alternative
    on a 5PC site whose original base had a single recorded B. Eight of the
-   ten generic host bases had nonuniform B values. Qualify unchanged and
-   newly added atoms separately before generalizing this result. The current
-   graph restoration copies XYZ only. Preserve its versioned replay when
-   introducing host B values. C318/C319 already handle the separate issue
+   ten generic host bases had nonuniform B values. C433 now transfers measured host B values for
+   unchanged sugar and phosphate atoms. A defensible initial B for new base
+   atoms on a nonuniform host is still open. Historical coordinate-only
+   restorations keep their recorded interpretation. C318/C319 already handle the separate issue
    of writing consistent B values at the end of native refinement.
 3. C430 transferred three ordinary component dictionaries onto the nine-pair
    scaffold with freshly derived site modifications. Phenix applied 1.470 Å
@@ -1367,10 +1375,21 @@ model or establishes pair restraints.
    qualified three original exact bond representations and one source-declared
    five-ring beside C=S. C436 then acquired all thirteen in isolation with eight
    matching snapshots reused. Linked preparation stopped at singly bonded
-   anionic OP3 in 1AP. Reuse the strict C438 controls and the Q13 holdover.
-   The separately placed ATL still requires its own source-bound locked-sugar
-   reaction and both native junction checks.
-   Once this can be prepared ordinarily, run one new mixed diffraction lineage.
+   anionic OP3 in 1AP. C438–C439 qualified this same-ASU leaving group.
+   C444–C448 resolved the source-ring plane screen and followed two contrasting
+   single-site controls through diffraction refinement. C449 combined all
+   thirteen current definitions with the proven numerical repairs. C450 then
+   obtained those same three sites' local terms ordinarily on the twelve-component
+   DNA route. Each of seven successive edits passed its own native check.
+   Packaging the combined evidence stopped before the ordinary endpoint.
+
+   First reuse bounded object storage across repairs. Verify every stage and
+   ordered dictionary transition, and ensure the outer attempt can record a
+   bounded stop. Use the saved C450 evidence for engineering. Once the normal
+   reader can reopen the resulting record after relocation, run one fresh mixed
+   preparation and check the selected model, ReadySet and the long outgoing ATL
+   junction. ATL still needs its own source-bound reaction in that ordinary
+   construction. Then run one new mixed diffraction lineage.
    Verify source identity, native pair/stack membership, unchanged flags and
    achieved local geometry at PDU, 5PC, DF and ATL. Exercise cache reuse and
    changed-source rejection. Keep the unfamiliar eight-residue challenge separate.

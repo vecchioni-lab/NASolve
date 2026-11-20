@@ -12,14 +12,14 @@ from .test_cif_stereochemistry_audit import write
 POLICY='cif-source-declared-neutral-6-oxo-purine-aromatic-v1'
 
 
-def qualification(source,candidate,code):
+def qualification(source,candidate,code,policy=POLICY):
     from nasolve.cif_candidate_usability import reassess_complete_candidate
     from nasolve.cif_preparation_qualification import REQUIRED_NATIVE_CHECKS
     return {'schema_version':1,'policy_id':'cif-isolated-candidate-native-usability-v3',
         'status':'ISOLATED_NATIVE_USABILITY_PASS','native_usable':True,'component':code,
         'scope':'ISOLATED_COMPONENT_ONLY','candidate_sha256':sha256(candidate.read_bytes()).hexdigest(),
         'checks':{k:True for k in REQUIRED_NATIVE_CHECKS},
-        'source_assessment':reassess_complete_candidate(source,candidate,code,bond_representation_policy=POLICY)}
+        'source_assessment':reassess_complete_candidate(source,candidate,code,bond_representation_policy=policy)}
 
 
 def bind(source,candidate,code,q,policy=POLICY):

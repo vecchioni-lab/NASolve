@@ -215,19 +215,24 @@ def _ordinary_request_directory(run_directory):
     return _root(run_directory)/'PostMR'/'DictionaryEngine'/'request'
 
 
-def _plane_support_limitations(report):
+def _plane_support_limitations(report, execution=None):
     """Describe already replayed generation outcomes, never infer final adoption."""
     if 'plane_generation' not in report:
         return ('This preparation has no recorded automatic plane-generation outcome; these notes do not establish complete plane coverage.',)
     notes = ['Plane-support generation does not establish final plane adoption in the selected restraints; repair and ReadySet qualification still govern selection.']
+    unfilled = {row['component'] for row in (execution or {}).get('plane_results', [])
+                if row['status'] == 'NO_SUPPORTED_PLANE_COMPLETION'}
     for code,row in sorted(report['plane_generation']['components'].items()):
         status = row['status']; centres = ', '.join(row['missing_centres'])
         if status == 'NO_GENERATION_NEEDED':
             notes.append(f'{code}: no missing planes were found within the supported source-graph screen; other chemistry is not assessed by that screen.')
+        elif status == 'OWNED_SUPPORT_READY' and code in unfilled:
+            notes.append(f'{code}: existing plane membership was retained at {centres}; the available evidence did not support a plane addition.')
         elif status == 'OWNED_SUPPORT_READY':
-            notes.append(f'{code}: generated source-checked support for screened centres {centres}.')
+            notes.append(f'{code}: generated source-checked support for review of screened centres {centres}.')
         elif status == 'KNOWN_GENERATION_FAILURE':
-            reason = {'TIMED_OUT':'timed out','REJECTED_CANDIDATE':'was chemically rejected'}.get(row['proof']['failure_kind'],'failed')
+            reason = {'TIMED_OUT':'timed out','REJECTED_CANDIDATE':'was chemically rejected',
+                      'FINAL_BOND_ORDERS_REJECTED':'ended with bond orders outside the declared chemistry'}.get(row['proof']['failure_kind'],'failed')
             notes.append(f'{code}: optional plane generation {reason}; generated output was not used. Initially missing screened centres: {centres}.')
         else:
             raise ValueError('Unsupported checked plane-generation outcome')
@@ -255,7 +260,18 @@ def _selected_plane_limitations(exact):
     sources = {code:dict(path=Path(prepared['bundle_directory'])/'components'/code/'snapshot/entry/source.cif',
                         sha256=row['source_sha256']) for code,row in plan.items()}
     dictionaries = [dict(path=path,sha256=ref['sha256']) for path,ref in zip(runtime['dictionaries'],refs)]
-    report = audit_selected_trigonal_planes(sources, dictionaries)
+    policies = {}
+    for site in prepared.get('bundle', {}).get('preparations', []):
+        binding = site.get('preparation_qualification')
+        if binding is None:
+            continue
+        code = site['component']
+        _need(code in plan and code not in policies and binding['component'] == code
+              and binding['source_sha256'] == plan[code]['source_sha256']
+              and binding['candidate_sha256'] == plan[code]['dictionary_sha256'],
+              'Selected plane policy differs from the acquired source or numerical dictionary')
+        policies[code] = binding['bond_representation_policy']
+    report = audit_selected_trigonal_planes(sources, dictionaries, representation_policies=policies)
     notes = ['Selected dictionary coverage is scoped to explicit source-graph planes; native modifications, alternative restraints, achieved geometry and diffraction refinement are not assessed by this screen.']
     for code, row in report['components'].items():
         if row['status'] == 'UNASSESSED':
@@ -317,7 +333,7 @@ def _ordinary_result_from_exact(request, attempt_number, exact):
         report_path=request/'attempts'/f'attempt-{attempt_number:04d}'/'result.json',
         limitations=(
             'These preparation checks do not establish diffraction-refinement success.',
-            *_plane_support_limitations(exact['result']),
+            *_plane_support_limitations(exact['result'], exact.get('execution')),
             *_selected_plane_limitations(exact),
         ),
     )

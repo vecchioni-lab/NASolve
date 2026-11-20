@@ -118145,5 +118145,239 @@
       "optional_plane_generation": false,
       "ordinary_publication": false
     }
+  },
+  "qualified_rings_and_mixed_repairs_2026_11_20": {
+    "owner": "Rowan",
+    "native": "Phenix 2.2.1-6174",
+    "coot": "1.3.3, revision-count 0",
+    "narestraints_commit": "a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691",
+    "ordinary_single_site_refinements": {
+      "macro_cycles": 5,
+      "processors": 1,
+      "postmr_remains_selected": true,
+      "1AP_T": {
+        "native_plane_atoms": 12,
+        "both_amino_nitrogens_included": true,
+        "native_plane_rms_A": 0.008662737663726112
+      },
+      "S6G_C": {
+        "local_plane_includes_S6": false,
+        "shared_pair_plane_includes_S6": true,
+        "sulfur_from_nine_ring_atoms_A": 0.10101458876158254,
+        "C6_S6_start_A": 1.7172373161563903,
+        "C6_S6_final_A": 1.5583484847748275,
+        "C6_S6_native_target": {
+          "target_A": 1.598,
+          "width_A": 0.024
+        }
+      },
+      "unchanged_observations_and_sigmas": 2273,
+      "unchanged_Free_R_assignments": 3236,
+      "measured_free": 127,
+      "scope": "Substituted host diffraction. No experimental residue assignment."
+    },
+    "source_ring_omission_control": {
+      "raw_builder_returncode": 0,
+      "retained_native_changes": 6,
+      "required_whole_ring_edges": 10,
+      "kind": "FINAL_BOND_ORDERS_REJECTED",
+      "additional_plane_qualified": false
+    },
+    "mixed_native_comparison": {
+      "separate_panel_components": 13,
+      "ordinary_components": 12,
+      "locked_ATL_in_separate_panel": true,
+      "ordinary_host_A11": "DT",
+      "complete_ordered_repairs": [
+        [
+          "linear",
+          "5PC",
+          4
+        ],
+        [
+          "linear",
+          "PDU",
+          20
+        ],
+        [
+          "plane",
+          "5PC",
+          4
+        ],
+        [
+          "plane",
+          "DF",
+          8
+        ],
+        [
+          "plane",
+          "PDU",
+          20
+        ],
+        [
+          "bond",
+          "5PC",
+          4
+        ],
+        [
+          "bond",
+          "PDU",
+          20
+        ]
+      ],
+      "PDU_5PC_DF_local_terms": {
+        "bonds": 67,
+        "angles": 94,
+        "chiralities": 9,
+        "torsions": 96,
+        "planes": 3
+      },
+      "ordinary_targets": {
+        "5PC": {
+          "atoms": [
+            "C8",
+            "C9"
+          ],
+          "target_A": 1.47,
+          "sigma_A": 0.027
+        },
+        "PDU": {
+          "atoms": [
+            "C5B",
+            "C5M"
+          ],
+          "target_A": 1.47,
+          "sigma_A": 0.02
+        },
+        "DF": {
+          "atoms": [
+            "C2",
+            "S1"
+          ],
+          "target_A": 1.638,
+          "sigma_A": 0.026
+        }
+      },
+      "matched_backbone_links": 38,
+      "matched_flanking_angles": 152,
+      "frame_requests_per_model": 211,
+      "ordinary_selected_runtime_published": false,
+      "ordinary_mixed_readyset": false,
+      "mixed_diffraction": false,
+      "stopped_native_phases": 17,
+      "outer_stop_record_sealed": false
+    },
+    "combined_evidence": {
+      "retained_limits": {
+        "files": 1024,
+        "logical_bytes": 134217728
+      },
+      "stage_paths": 1600,
+      "stage_bytes": 235160056,
+      "distinct_payloads": 196,
+      "distinct_payload_bytes": 104003497,
+      "experimental_archive_bytes": 6649677,
+      "outer_distinct_payload_bytes": 151635232,
+      "archive_retained": false,
+      "normal_publication_qualified": false,
+      "stage_replay": {
+        "relocated_archive_bytes": 10957647,
+        "maximum_one_child_logical_bytes": 39725119,
+        "source_access_during_replay": "REFUSED_BY_AUDIT_HOOK",
+        "verified_consecutive_edits": 7,
+        "new_native_calls": 0
+      }
+    },
+    "compatibility": "Existing exact-order reports retain their policy and layout. Verified aromatic ring changes carry their own source/qualification binding. A proven final-order veto is negative evidence only. Existing grants and maximum evidence sizes are unchanged.",
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py chemistry",
+        "passed": 1781,
+        "subtests_passed": 10,
+        "seconds": 362.63
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_cif_repair_chain.py tests/test_cif_bond_repair_chain.py tests/test_cif_plane_captures.py tests/test_cif_plane_generation.py",
+        "passed": 170,
+        "seconds": 67.54
+      },
+      {
+        "command": "python -B -m pytest -q -p no:cacheprovider --import-mode=importlib tests/test_cif_plane_coverage.py tests/test_cif_plane_candidate.py tests/test_cif_repair_chain.py tests/test_cif_bond_repair_chain.py",
+        "scope": "Relocated offline wheel, original build path absent, modules imported from wheel",
+        "wheel_sha256": "65642b5a3cbd0d3cc158ceed092823773f8c9505e784e547bd0b96b4ac5bcadf",
+        "passed": 120,
+        "seconds": 26.84
+      }
+    ],
+    "full_regression": "NOT_RUN",
+    "raw_scientific_files_committed": false,
+    "evidence": [
+      {
+        "anchor": "local Cedar evidence",
+        "path": "c444-ordinary-qualified-ring/final-reader.json",
+        "sha256": "0ce0b7c2c6401948871ccf732ce70626bb60b45c8f20a82e62d06c1b8e1ee09a",
+        "size": 946
+      },
+      {
+        "anchor": "local Cedar evidence",
+        "path": "c445-mixed-ring-coverage/panel.json",
+        "sha256": "94a65fb92b75ead481047ef0fbe21659a25038185e910286483f2657215b2267",
+        "size": 13824
+      },
+      {
+        "anchor": "local Cedar evidence",
+        "path": "c446-ordinary-ring-refinement/cold-review.json",
+        "sha256": "24f1039258c645d21162d6f87294493c2a644b66dba64ef5ca901e328475fb2d",
+        "size": 2462
+      },
+      {
+        "anchor": "local Cedar evidence",
+        "path": "c447-ordinary-s6g/selected.json",
+        "sha256": "0403e4ef05f06f6484106724bcd75fb4b7eac266dc4d87efcc415c8f9a2cd8fc",
+        "size": 1676
+      },
+      {
+        "anchor": "local Cedar evidence",
+        "path": "c448-s6g-refinement/cold-review.json",
+        "sha256": "5620113bdb1a0e524d9ce5a0fbeb7650727052255ccbb6009dd5e9cdbbf24484",
+        "size": 2651
+      },
+      {
+        "anchor": "local Cedar evidence",
+        "path": "c449-mixed-current-repaired/review.json",
+        "sha256": "ea0173a65dc550bdc946dc15e159a143e780fde2c7ce9a15d63f7fe1aa7a38e0",
+        "size": 1447
+      },
+      {
+        "anchor": "local Cedar evidence",
+        "path": "c450-ordinary-twelve/cold-review.json",
+        "sha256": "6d6c38e80b6f569e11e38b9654241f72f9ab0c7ae6f8b3733f9a1fff1e277d10",
+        "size": 2757
+      },
+      {
+        "anchor": "local Cedar evidence",
+        "path": "c450-ordinary-twelve/mixed-targets.json",
+        "sha256": "dc479ec2cf2586f1d17f48e2bfa221ac963ba75546b628edf0560d7a7c7da403",
+        "size": 3232
+      },
+      {
+        "anchor": "local Cedar evidence",
+        "path": "c451-1ap-omitted-member/review.json",
+        "sha256": "c3156131df16c43a3566f8bc1999123d0eb15430f83875163c8d2bcefceaa258",
+        "size": 1404
+      },
+      {
+        "anchor": "local Cedar evidence",
+        "path": "c452-mixed-storage-diagnostic/transport.json",
+        "sha256": "08288d70b0eda547f564b5bf7abbacd2e883ddeaf1e084e105d5d1ef9e3b3053",
+        "size": 852
+      },
+      {
+        "anchor": "local Cedar evidence",
+        "path": "c452-mixed-storage-diagnostic/stage-replay.json",
+        "sha256": "4a6457e8d78e7212c636bed43b8619b85c421e01dc105d1be20a6bf0dd0fddb6",
+        "size": 2837
+      }
+    ]
   }
 }

@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-20, C437–C443 linked phosphate and mixed-model checks — Rowan**.
+Updated **2026-11-20, C444–C452 ring planes and mixed-scaffold repairs — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -14,9 +14,49 @@ Software qualification does not change the scientific REVIEW or close Q06.
 
 ## Where to resume
 
-**20 November, Q07.** Phenix 2.2.1-6174 read all thirteen current definitions together on the nine-pair scaffold. All 38 backbone link targets, all 152 neighboring angle targets and their weights matched the prior control. All 211 base-pair and stacking terms were present. Twelve definitions used the DNA site preparer. The thirteenth, locked ATL, used its separately verified C144 RNA reaction. This manually assembled panel establishes native interpretation. Ordinary mixed preparation, ReadySet, diffraction and the long outgoing ATL junction remain open.
+**Q07, 20 November.** Ordinary Coot and ReadySet now prepare 1AP:T and S6G:C
+on the same substituted host. The plane screen follows the verified source chemistry.
+All four screened 1AP carbons were already covered. Five Phenix cycles retained
+both amino nitrogens in its 12-atom plane (0.00866 Å RMS). S6G was different.
+Its 11-atom local plane excluded sulfur, while the 19-atom shared pair plane
+included it. After five cycles sulfur lay 0.101 Å from the nine-atom ring.
+The C=S bond finished at 1.558 Å against 1.598(24) Å. Both controls preserved
+2,273 measured intensities and uncertainties and 3,236 Free-R assignments.
+These are delivery and shape checks on substituted host reflections.
 
-Simon confirmed that OP3 is disposable at an incoming phosphodiester. C438–C439 qualify the source-declared anionic form for 1AP, 5CM, DP and DZ. The same-ASU reaction removes unprotonated OP3⁻ and retains OP1/OP2 with their original orders and charges. Each site retained eight native flanking angles. Charge accounting comes from the chemical definition because the native reader does not expose these formal charges. Free-end and symmetry declarations retain their separate scope. An ordinary 1AP:T request selected this reaction and completed site preparation. Its optional plane screen then stopped on the allowed aromatic ring representation. C443 isolated the stop. All ten differing bonds belong to the source-declared aromatic purine. One existing plane already covers all four source-selected trigonal carbons with their three neighbors. The separately run native repair qualified with automatic bond discovery enabled. Resume by teaching the ordinary plane check to recognize this already-covered case using the frozen source and isolated qualification. Preserve the refusal for unrelated graph changes and retain explicit evidence for any missing plane. The starting mixed PDU and 5PC terminal bond targets still need the demonstrated numerical repair before refinement.
+**Mixed scaffold.** The separately assembled model with all thirteen current
+components gave the repaired PDU and 5PC terminal targets of 1.470 Å and DF
+C=S of 1.638 Å. The first ordinary twelve-component preparation independently
+reproduced the same covalent terms at those three sites, including 38 backbone
+bonds and 152 flanking angles across the scaffold. Phenix received 211 frame
+requests in each model. ATL used the separate locked-sugar adapter in the
+thirteen-component model. The ordinary control retained the host DT there.
+
+C450 stopped after seven individually verified repairs. The twelve isolated
+dictionaries were reused and the seven changes formed one consecutive series on
+the same model. Their records occupy 1,600 paths and 235,160,056 logical bytes
+before publication, above the existing limits of 1,024 files and 128 MiB.
+The inner worker completed its shutdown record. The outer attempt could not
+seal its file inventory. Preserve that attempt. ReadySet and mixed diffraction
+remain ahead. The next step is to reuse shared copies of identical evidence
+while independently verifying each repair, bounded expansion and the outer
+stop record. C452 reproduced every source byte in a 6.3 MiB shared archive.
+Seven separate existing archives totalled 10.5 MiB and let the installed
+scientific readers verify the complete ordered series after relocation, with
+access to the original attempt disabled. One child at a time needed at most
+37.9 MiB of logical files plus a small bond library. The unfinished outer
+attempt still contains 144.6 MiB of unique payloads, beyond 128 MiB. Use the
+bounded stage results to qualify ordinary publication and a durable stop. Test
+tampering, interrupted writes and filesystems unable to share copies. See the
+`qualified_rings_and_mixed_repairs_2026_11_20` register entry. Do not repeat the seven native checks
+just to explore storage.
+
+Simon confirmed that OP3 is disposable at an incoming phosphodiester. The
+C438–C439 charge-aware reaction preserves the original OP1 and OP2 orders at
+same-ASU incoming links. Free ends and symmetry-linked sites retain their
+separate declarations. Q06 still owns the PDU arm after diffraction refinement,
+and Q07 retains the long outgoing ATL junction and the held-out eight-residue
+challenge.
 
 **20 November, Q06.** C437 followed the ordinary G:5PC control through five Phenix cycles after C433 restored the eleven measured host scaffold B factors. The 5PC terminal carbon finished 0.087 Å from the ring plane, while its terminal bond reached 1.549 Å against 1.470(27) Å. The original uniform starting values gave 0.130 Å and 1.460 Å. Inputs and Free-R flags matched. Retain the measured scaffold displacement and separately qualify a starting displacement for new base atoms. C433 publication reused the completed native attempt after an edit to worker source interrupted verification. Subsequent experiments use pinned per-job code. See `internal_phosphate_and_mixed_panel_2026_11_20` in the native evidence register.
 

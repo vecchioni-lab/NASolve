@@ -240,17 +240,37 @@ def read_rejected_multiple_plane_candidate(directory):
     return _read_completed_multiple_plane_candidate(directory, "REJECTED")
 
 
+def _finished_bond_order_veto(report):
+    """Recognize only the maintained worker's fully replayed final-order refusal."""
+    result = report['result']
+    builder = result.get('builder', {})
+    finished = result.get('representation_finished', {})
+    validation = report.get('representation_validation', {})
+    return (report['status'] == 'REJECTED' and report.get('candidate_retained') is True
+            and builder.get('status') == 'EXCEPTION' and builder.get('exception_type') == 'ValueError'
+            and builder.get('message') == 'Finished native inventory changed source chemistry'
+            and builder.get('before') == result.get('representation_conversion_inventory')
+            and builder.get('before_format') == result.get('reader', {}).get('format')
+            and validation.get('finished_inventory') == 'RECORDED' and validation.get('status') == 'BLOCKED'
+            and {k for k,v in validation.get('checks', {}).items() if v is not True} == {'finished_authorized'}
+            and finished.get('status') == 'BLOCKED' and
+            {k for k,v in finished.get('checks', {}).items() if v is not True} == {'authorized_complete_representation'})
+
+
 def _read_completed_multiple_plane_candidate(directory, status):
     try:
         report = _read_representation_candidate(Path(directory), multiple_planes=True)
         result = report.get("result", {})
         reader = result.get("reader", {})
         spec = json.loads((Path(directory)/"candidate_spec.json").read_text())
+        finished = result.get("builder", {}).get("status") == "COMPLETED"
+        if status == "REJECTED" and not finished:
+            finished = _finished_bond_order_veto(report)
         if (report["status"] != status
                 or report["execution"]["status"] != "COMPLETED"
                 or type(report["execution"].get("returncode")) is not int
                 or report["execution"]["returncode"] != 0
-                or result.get("builder", {}).get("status") != "COMPLETED"
+                or not finished
                 or reader.get("execution") != "COMPLETED"
                 or reader.get("dispatch_is_chemical_components") is not
                     (spec["declared_charge_control"]["dialect"] == "CHEMICAL_COMPONENTS_CIF")

@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Recognize verified aromatic rings when checking base planes
+
+- The ordinary PostMR plane check now uses the bond orders in the supplied
+  chemical definition when the isolated native check has independently verified
+  an equivalent aromatic ring. It checks the identity of every affected bond,
+  every atom, its charge and its neighbors. The selected restraints are checked
+  again after ReadySet. A missing substituent is reported even when a separate
+  base-pair plane includes it.
+- An optional plane-generation job that finishes with chemically incorrect bond
+  orders can now report the verified reason and retain the original evidence.
+  A return code of zero alone cannot qualify its output. Earlier exact-order
+  reports retain their original format and meaning.
+- Combining several repairs now stops reading as soon as the retained evidence
+  exceeds the established aggregate size or file limit. The error names the
+  stage and both counts. Accepted records and their storage limits are unchanged.
+
 ### Preserve the two nonbridging oxygens when linking a phosphate dianion
 
 - Fresh PostMR requests using `source-preserving-v2` can link a source
