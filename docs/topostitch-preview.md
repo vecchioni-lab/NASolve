@@ -1920,3 +1920,36 @@ remain the current software validation; roadmap synchronization and 8 focused
 roadmap tests pass for this documentation update. Scientific artifacts remain
 local and excluded from Git. S05 is still partial; ordinary enforcement, full
 chemical judgment and later matched diffraction qualification remain open.
+
+
+### Inspect existing preparation authority (W177)
+
+`nasolve.topostitch_preparation.inspect_checkpoint_preparation` consumes the
+existing Cedar registry/publication/result reader. Supply `expected_checkpoint_id`
+and the exact `expected_model_sha256`; `checkpoint=None` uses the saved current
+selection, while an explicit checkpoint/bookmark must resolve to that same ID.
+An optional `expected_context_sha256` refuses metadata/input changes after an
+initial inspection. The function writes no files and launches no native job.
+
+The result describes availability of frozen prepared-model context, restraint
+context and literal/explicit NAR compiler records. It reports their hashes and
+original index basis, retaining missing authority as `UNAVAILABLE`. A source-model
+context may legitimately describe the pre-ReadySet input rather than the selected
+prepared model: both hashes remain explicit and the equality flag is descriptive.
+They must not be substituted for each other. Native-capture coverage is not
+assessed by this adapter.
+
+Only published `postmr` or explicit preparation checkpoints are in scope. Refined
+descendants require a later lineage join and refuse; legacy roots without checked
+publication return `NO_CHECKED_PREPARATION`. This availability report does not
+admit modified/canonical motion, grant chemical approval or freeze dispatch.
+W173's schema-2 motion policy is unchanged. The single call-local existing owner
+result is reused rather than reading its entire history twice.
+
+Standalone Willow does not include Cedar's maintained preparation owner. Its
+absence raises a clear runtime error; cross-branch integration may pass an
+explicitly trusted `preparation_reader` implementing
+`checkpoints._read_registry_with_preparations`. This dependency injection is a
+caller trust boundary, not an importer or a way to load executable code from a
+saved report. No chemistry producer, compiler, artifact copy or new launcher is
+added.

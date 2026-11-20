@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W177 — Inspect authenticated preparation fields for the selected parent
+
+- Add a read-only adapter for existing Cedar checked-publication results. Pin
+  the selected preparation identity/model, report available or missing frozen
+  model/restraint/compiler fields, and keep source and selected model hashes distinct.
+- Explicit PostMR/preparation checkpoints are supported; refined descendants,
+  chemical admission and motion remain separate. Standalone Willow requires an
+  explicitly supplied trusted Cedar reader; no CLI, checkpoint schema, default
+  refinement or legacy behavior changes.
+
 ### W176 — Capture the complete fixed-parent native interpretation
 
 - Record one maintained full-monomer/policy capture and exact named-proxy
