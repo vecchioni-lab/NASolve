@@ -117505,5 +117505,112 @@
       "A linear witness locates an extra atom against the frozen plane. No restraint creation or assumption that the achieved structure is flat.",
       "C412 angle-screen and global substituent outcome can diverge. Q06 remains open."
     ]
+  },
+  "nonmetal_df_ordinary_refinement_2026_11_20": {
+    "milestone": "C423",
+    "author": "Rowan",
+    "cedar_source_commit": "e37f5f9c16e6a645810581dacca8797058cdd9de",
+    "narestraints_source_commit": "a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691",
+    "status": "COMPLETE_NONMETAL_DF_A_SUBSTITUTED_SCAFFOLD_CONTROL",
+    "tools": {
+      "Phenix": "2.2.1-6174",
+      "Coot": "1.3.3 revision-count 0"
+    },
+    "scope": "Actual Phaser, Coot, NARestraints, source-preserving dictionary preparation, ReadySet and five ordinary one-CPU Phenix AutoRefine cycles. A:19 DT to DF opposite D:4 adenine on a C:G host. No Hg. Original data and selection retained.",
+    "chemical_source_sha256": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+    "published_dictionary_sha256": "c632ad07eed7feed22132021bed28a047d9441b5f762451e09d5f960a6e763cc",
+    "sulfur_C2_S1_A": {
+      "CCD_example": 1.8127200556070415,
+      "CCD_ideal": 1.7123016673471994,
+      "Coot": 1.8124381368752978,
+      "ReadySet_model": 1.8120833314171831,
+      "target_A": 1.638,
+      "width_A": 0.026000000000000002,
+      "achieved_A": 1.6372828457951496,
+      "origin_id": 0
+    },
+    "sugar_C1prime_N1_A": {
+      "ReadySet_model": 1.52484130321814,
+      "target_A": 1.499,
+      "width_A": 0.038,
+      "achieved_A": 1.5137002622049938,
+      "origin_id": 0
+    },
+    "native_final_DF": {
+      "sugar_attachment_A": 1.5137002622049938,
+      "C2_N1_A": 1.3896376560391512,
+      "C2_outer_atom": "S1",
+      "C2_outer_bond_A": 1.6372828457951496,
+      "C2_N3_C4_deg": 123.73558247348828,
+      "six_atom_ring_rms_A": 0.0006030666240825605,
+      "outer_atom_from_six_ring_A": 0.005004851219883227,
+      "chi_deg": -109.20629841156061
+    },
+    "source_sugar_hands_preserved": [
+      "C1'",
+      "C3'",
+      "C4'"
+    ],
+    "neutral_N3_H_in_dictionary": true,
+    "model_hydrogens_at_N3": 0,
+    "DF_A_native_contacts_A": {
+      "N3": 2.825,
+      "O4": 2.691
+    },
+    "contact_target_A": 2.8,
+    "contact_sigma_A": 0.4,
+    "DF_A_printed_joint_plane_rms_A": 0.0712,
+    "sulfur_in_achieved_local_and_joint_planes": true,
+    "all_frame_terms_matched": {
+      "bond": 52,
+      "angle": 88,
+      "planarity": 4,
+      "parallelity": 58
+    },
+    "D1_separate_phosphate_angles_matched": 6,
+    "both_adjacent_O3prime_P_A_as_written": [
+      1.6091233638226725,
+      1.6179981458580226
+    ],
+    "exact_observations": {
+      "measured": 2273,
+      "total_flagged": 3236,
+      "measured_free": 127,
+      "all_intensities_sigmas_and_flags_identical": true
+    },
+    "postmr_model_sha256": "5458922167a441ec5505e36c1282d2837782d49dabc8384f45007309eb7bd3a3",
+    "final_model_sha256": "b61b5ac6562951d48f042f33aa7d1da60dbe499fa678fc37edf17b94d5510c94",
+    "final_geometry_sha256": "2ec7a39f5905c2e9fd8c4cdd32586add4d979ed61da5fcdca0327a5d49aa5067",
+    "checkpoint": "refine-001",
+    "selected": "postmr",
+    "local_evidence_anchor": "NASolve/branch-artifacts/cedar",
+    "relative_receipt_and_runner_sha256": {
+      "c423-nonmetal-df/plan.json": "911dba04cabd5e4654820ffd4c7a4870637d043d4374b765725441788703dc21",
+      "c423-nonmetal-df/preparation-review.json": "e379d62693b3f30a2fdc19a931cf7605e2d191cee848822ac54f9483b0f0189d",
+      "c423-nonmetal-df/refinement/plan.json": "fa5c2643778ea260e40d0f3d877ee9785f1155d9e8a10bf0a28f90b1587b7502",
+      "c423-nonmetal-df/refinement/cold-review.json": "156d33100e51e24ddb30f06ba862c89c8065899e73e3210ba808d995daff3697",
+      "runners/c423_nonmetal_df.py": "d12591922f5ee9bf7edb8eba0cab19aadbe3c62444db0fec3e3b41e5f9d21b27",
+      "runners/c423_review_preparation.py": "8a811c468c6f4735ca5c17cd9559c79186e9236b2dbb2a9ec61cf76fd7079215",
+      "runners/c423_refine_df.py": "8c70d063e43c5deb0c150d041bbfcf6788fc78ccb1588b900828fb4f4029c04f",
+      "runners/c423_review_refinement.py": "250004a681ccc7dc126b3267a2a0fbebb36d35952b6913e9f11219ff740870fb",
+      "runners/c423_df_measurements.py": "b6f36a00dab02c6bd164dfe5cdc554de7684605f08cf303090fa81c201e994d6",
+      "runners/c423_printed_ledger.py": "179f8e53349a7aaaafc477b09e109c0a29413c7f2c9782a3d62634ffa7afc388"
+    },
+    "commands": [
+      "python -B runners/c423_nonmetal_df.py",
+      "python -B runners/c423_review_preparation.py",
+      "python -B runners/c423_refine_df.py",
+      "python -B runners/c423_review_refinement.py"
+    ],
+    "focused_validation": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:<pinned-NAR> python -B -m pytest -q -p no:cacheprovider tests/test_postmr_conformation.py tests/test_refinement_scalar_geometry.py tests/test_refinement_plane_departures.py",
+      "result": "77 passed in 6.48 s",
+      "full_suite": "NOT_RUN"
+    },
+    "limitations": [
+      "Diffraction came from the substituted host. This tests the route and achieved geometry at one site.",
+      "C149 used geometry alone. C410 changed the metal, partner and other conditions. Neither comparison isolates a mercury effect.",
+      "Historical triple-only score is unassessed for DF. Source-linked scalar measurements directly measure this residue. No automatic scientific acceptance, default policy change or full regression."
+    ]
   }
 }

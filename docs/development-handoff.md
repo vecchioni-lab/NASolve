@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-19, C410–C422 refinement and mixed-scaffold checks — Rowan**.
+Updated **2026-11-20, C423 nonmetal refinement and mixed-scaffold construction — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**; C420 source **`c50b96c7`**. The C421 native runner began at **`f1d0aedd`** and its AutoRefine and geometry sources are unchanged at C420.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -14,16 +14,31 @@ Software qualification does not change the scientific REVIEW or close Q06.
 
 ## Where to resume
 
+**20 November, C423.** Nonmetal DF at A:19 opposite D:4 adenine completed
+five ordinary Phenix cycles. The prepared sulfur bond was 1.812 Å, its native
+target was 1.638 Å and the final distance was 1.637 Å. The sugar–base bond
+finished at 1.514 Å against 1.499 Å. Both base-pair contacts, all three source
+sugar hands, all 202 frame terms, D:1 protection and the original Free-R flags
+survived. PostMR remains selected. This substituted-host test scopes nonmetal
+DF:A. The separate Hg experiment has different inputs. The compact evidence
+key is `nonmetal_df_ordinary_refinement_2026_11_20`.
+
+**Q07, current construction check.** On the fresh MR scaffold all twelve
+other target dictionaries resolve. Actual Coot stops at B:4 DP even when ATL
+is left out. C207 anticipated this finding. Its graph matcher measures a base
+rotation about 179° from the named parent angle. C207's direct torsion setter
+also failed on a missing Coot atom tree. Keep the refusal and its partial files.
+Investigate a rigid rotation of the source-defined base around its single
+sugar attachment and check the named angle and the shape before insertion.
+The separate A:11 locked-sugar requirement remains.
+
 **Q06.** Fresh G:5PC completed both construction and ordinary five-cycle Phenix
 refinement. Its automatically corrected C8–C9 target survived in the native
 covalent restraints at 1.470 Å. The refined distance was 1.460 Å. The terminal
 carbon moved from 0.712 to 0.130 Å from the six-atom ring plane. PostMR remains
 selected and the new child is `refine-001`. C418's separately prepared one-cycle
 continuation moved the terminal atom farther out despite straighter alkyne angles.
-Keep both observations. This is a substituted-scaffold test. The ordinary
-planner accepts one DT→DF change at A:19 opposite the existing D:4 adenine
-on the C:G host. This localizes the next nonmetal DF:A refinement
-without waiting for construction of the full mixed scaffold.
+Keep both observations. This is a substituted-scaffold test. C423 now supplies the corresponding nonmetal DF:A refinement.
 
 **Q07.** The ordinary planner recognized all 13 mutations for the nine-pair
 scaffold and stopped at A:11 ATL. A canonical DT sugar has opposite C3′ and C4′

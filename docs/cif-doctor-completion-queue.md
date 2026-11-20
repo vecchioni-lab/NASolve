@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current work order, 2026-11-19.** This is the one unfinished-work queue. The
+**Current work order, 2026-11-20.** This is the one unfinished-work queue. The
 [capability table](cif-doctor.md#current-capability-boundary) records demonstrated
 support; the [handoff](development-handoff.md) says where work stopped. Old notes
 record what was known then. They do not create a second set of instructions.
@@ -9,17 +9,17 @@ record what was known then. They do not create a second set of instructions.
 Cedar now builds a second propyne-bearing base, 5PC, corrects its terminal bond
 from the source chemistry and delivers that correction through five ordinary
 Phenix cycles. The existing PDU controls explain why a corrected bond and straight
-alkyne angles alone cannot approve the entire appendage. The wider PDU/DF geometry
-decision is still open. Next examine the nonmetal DF:A control under ordinary
-refinement. On the existing C:G host, one A:19 DT→DF mutation pairs with the
-unchanged D:4 adenine. The ordinary planner accepts this single change. Read the
-sugar attachment, thione, ring and both pair contacts after refinement, using
-the existing geometry-only reference to interpret them. The matched mercury
-experiment is complete and its routine integration is deferred.
+alkyne angles alone cannot approve the entire appendage. C423 separately follows neutral DF paired with adenine through five ordinary
+cycles. Its thione reaches 1.637 Å against 1.638 Å and its sugar attachment
+reaches 1.514 Å against 1.499 Å. All 202 frame terms and six separate phosphate
+angles survive. Q06 has this nonmetal control; the broader PDU whole-arm and
+DF scope decision remains open. The matched mercury experiment is complete
+and its routine integration is deferred.
 
-Q07 has one archived geometry-only model with all nine pairs. C422 located the
-first obstacle to rebuilding that mixture through ordinary NASolve at A:11, where
-the locked ATL sugar has different stereochemistry from its DT host.
+Q07 has one archived geometry-only model with all nine pairs. C422 identified
+the locked ATL sugar at A:11 during planning. On a fresh host with ATL held
+aside, actual Coot also refuses the previously documented C207 DP χ mismatch
+at B:4 before it can construct the other sites.
 The [Q07 experiment order](#q07--one-mixed-scaffold-ordinary-acceptance-run)
 preserves the earlier linked-sugar work. The unfamiliar-residue challenge follows
 the known mixture. Q08–Q14 cover remaining chemistry, then Q15/Q16 reporting
