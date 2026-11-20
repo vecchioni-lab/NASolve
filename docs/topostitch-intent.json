@@ -1211,18 +1211,19 @@
       "latest_ft_connectivity_intent": {
         "reference": {
           "anchor": "NASolve",
-          "path": "branch-artifacts/Alder/ft-symmetry-contacts-20261120-03/user-connection-intent.json",
-          "sha256": "d61c28d32877b2b94dddfbe013386e32f6fd86e041127df5d2a248bacd4189e2"
+          "path": "branch-artifacts/Alder/ft-symmetry-contacts-20261120-03/user-connection-intent-v2.json",
+          "sha256": "64bb43560c27dbb6f34eb3166f7de69e808fa88402ba156982a7118826a3d09f"
         },
         "declared_continuation": "B:7 O3-prime to B:1 P",
         "target_image": "-x+y,-x,z",
         "inverse_phosphorus_fixed_view": "-y,x-y,z",
         "operator_authority": "Coordinate-derived in the pinned model; not separately user-specified",
-        "crossover": "C/D tentative; D:7 O3-prime to C:8 P remains provisional",
+        "crossover": "User confirmed C/D conditional on A21; exact current/PostMR/MR each have A:1-A:21. D:7 O3-prime to C:8 P correspondence remains source-derived, native-unqualified",
         "D1": "Terminal intent unchanged",
         "native_symmetry_restraints_qualified": false,
         "slicing_origin": "UNESTABLISHED",
-        "whole_model_authority_complete": false
+        "whole_model_authority_complete": false,
+        "topology_followup_owner": "Rowan/Cedar; older free-end scaffold declarations do not override newer FT-specific investigator intent"
       }
     },
     "saved_motion_parent_binding": {
@@ -1261,7 +1262,7 @@
       "symmetry_covalent_seams_qualified": false,
       "modified_metal_motion_qualified": false,
       "optimization_runs": 0,
-      "next_action": "Use the qualified preparation-availability reader in Cedar integration planning. Before extending motion beyond schema2, qualify the selected preparation/descendant lineage and an existing-owner source-compiler-to-native-membership join; source/PDB-order policies cannot be relabelled as C128 native policies. Identify one independently complete canonical ordinary parent, while modified C412/C461 remain evidence-only controls. Reuse existing readers/execution, retain missing authority, and do not repeat the private fit.",
+      "next_action": "If needed, qualify prepare_literal_na_inputs against one genuinely maintained fixed capture of ORIGINAL literal pair/stack declarations plus retained edits, before compilation; W176 already-compiled inputs cannot supply that origin. Preserve independent38-link intent and source identities. A real ordinary canonical parent context and execution-role join remain separate; do not invent PostMR history, relabel source indices, repeat C412/C461 availability reads or broaden W173/modified motion.",
       "whole_context_input_join": {
         "human_update": 175,
         "reference": "docs/topostitch-periodic.md#w175--bind-the-private-candidate-and-check-its-untouched-remainder",
@@ -1410,6 +1411,36 @@
         "installed_subtests": 6,
         "real_control": "C412 modified-parent evidence only;14 inputs unchanged",
         "next_action": "Use the qualified preparation-availability reader in Cedar integration planning. Before extending motion beyond schema2, qualify the selected preparation/descendant lineage and an existing-owner source-compiler-to-native-membership join; source/PDB-order policies cannot be relabelled as C128 native policies. Identify one independently complete canonical ordinary parent, while modified C412/C461 remain evidence-only controls. Reuse existing readers/execution, retain missing authority, and do not repeat the private fit."
+      },
+      "source_bound_producer_evidence": {
+        "human_update": 178,
+        "reference": "docs/topostitch-periodic.md#w178--bind-the-existing-source-producer-without-inventing-ordinary-authority",
+        "producer": "cif_postmr_request.prepare_postmr_literal_inputs",
+        "reader": "cif_complete_request._compiler_input",
+        "role": "literal_na_inputs",
+        "source_policy_id": "narestraints-source-bound-literal-membership-v1",
+        "bound_roles": {
+          "model_sha256": "f33754cc170ab8167e8085cb848f4ef0b6bd0f545c81db6163a650a41f503e71",
+          "topology": {
+            "anchor": "evidence_directory",
+            "path": "declared-links.json",
+            "sha256": "501d1f29c45a9fe12aed0def66089790a4e8bfc653d4a7545f7eb0c936605f27",
+            "size": 9597
+          },
+          "role": "literal_na_inputs",
+          "compiler": {
+            "anchor": "evidence_directory",
+            "path": "literal/literal_na_inputs.json",
+            "sha256": "97a2b6f38a89fa5c904237765ee41512eb74d4de473bc13f7181685301f44d7b",
+            "size": 286602
+          }
+        },
+        "role_binding_sha256": "a9719094e8124aec8defc6fed5d6ac51c0aba7075d8d7a7b6a1251805a5b1cb9",
+        "checks": 22,
+        "native_calls": 0,
+        "ordinary_request": false,
+        "chemical_admission": false,
+        "next_action": "If needed, qualify prepare_literal_na_inputs against one genuinely maintained fixed capture of ORIGINAL literal pair/stack declarations plus retained edits, before compilation; W176 already-compiled inputs cannot supply that origin. Preserve independent38-link intent and source identities. A real ordinary canonical parent context and execution-role join remain separate; do not invent PostMR history, relabel source indices, repeat C412/C461 availability reads or broaden W173/modified motion."
       }
     },
     "selected_checkpoint_motion_binding": {
@@ -1434,7 +1465,7 @@
       "locking": false,
       "retained_native_lifecycle_qualified": false,
       "modified_metal_motion_qualified": false,
-      "next_action": "Use the qualified preparation-availability reader in Cedar integration planning. Before extending motion beyond schema2, qualify the selected preparation/descendant lineage and an existing-owner source-compiler-to-native-membership join; source/PDB-order policies cannot be relabelled as C128 native policies. Identify one independently complete canonical ordinary parent, while modified C412/C461 remain evidence-only controls. Reuse existing readers/execution, retain missing authority, and do not repeat the private fit.",
+      "next_action": "If needed, qualify prepare_literal_na_inputs against one genuinely maintained fixed capture of ORIGINAL literal pair/stack declarations plus retained edits, before compilation; W176 already-compiled inputs cannot supply that origin. Preserve independent38-link intent and source identities. A real ordinary canonical parent context and execution-role join remain separate; do not invent PostMR history, relabel source indices, repeat C412/C461 availability reads or broaden W173/modified motion.",
       "execution_join": {
         "human_update": 174,
         "function": "load_execution_bend_motion",
@@ -1456,7 +1487,7 @@
         "runtime_authority": false,
         "locking": false,
         "ordinary_motion_qualified": false,
-        "next_action": "Use the qualified preparation-availability reader in Cedar integration planning. Before extending motion beyond schema2, qualify the selected preparation/descendant lineage and an existing-owner source-compiler-to-native-membership join; source/PDB-order policies cannot be relabelled as C128 native policies. Identify one independently complete canonical ordinary parent, while modified C412/C461 remain evidence-only controls. Reuse existing readers/execution, retain missing authority, and do not repeat the private fit."
+        "next_action": "If needed, qualify prepare_literal_na_inputs against one genuinely maintained fixed capture of ORIGINAL literal pair/stack declarations plus retained edits, before compilation; W176 already-compiled inputs cannot supply that origin. Preserve independent38-link intent and source identities. A real ordinary canonical parent context and execution-role join remain separate; do not invent PostMR history, relabel source indices, repeat C412/C461 availability reads or broaden W173/modified motion."
       }
     }
   },

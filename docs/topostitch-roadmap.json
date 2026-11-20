@@ -189,7 +189,8 @@
         "Exact nearby images and factorized one-partner alternatives exist; no physical/global assignment is approved.",
         "Periodic fitting now returns IMAGE_IDENTITY_REVIEW_REQUIRED with zero solver calls for selected-coordinate coincidences or occupancy uncertainty; no connection is automatically selected.",
         "W47 binds exact forward/reciprocal incidence to fresh selected source/transformed atom audits. Periodic fitting requires one partner in that scope; screw/centering/translation and ambiguity controls pass. Complete molecular/global identity remains open.",
-        "W177 records newly explicit investigator intent for FT B7 O3-prime to B1 P symmetry continuation. The current directed target-P operator is coordinate-derived -x+y,-x,z, reciprocal to the P-fixed view; C/D crossover remains tentative. No geometry, native angle/exclusion or molecular assignment qualification; D1 terminal intent is unchanged."
+        "W177 records newly explicit investigator intent for FT B7 O3-prime to B1 P symmetry continuation. The current directed target-P operator is coordinate-derived -x+y,-x,z, reciprocal to the P-fixed view; C/D crossover remains tentative. No geometry, native angle/exclusion or molecular assignment qualification; D1 terminal intent is unchanged.",
+        "W178 records investigator confirmation of FT C/D crossover conditional on A21, verified by Hazel in the exact current/PostMR/MR models. Both B7-to-B1 and C/D topology are now declared; residue/image realization remains source-derived and native-unqualified. New v2 intent supersedes prior tentativeness without rewriting historical receipts."
       ],
       "acceptance": [
         "A selected edge has verified physical image identity, sequence/register/orientation and capacity; wrong, ambiguous, self-orbit and impossible cases stay distinct.",
@@ -200,14 +201,15 @@
         "E_SOFTWARE",
         "E_IMAGE_AUDIT",
         "E_SINGLE_EDGE_CAPACITY",
-        "E_FT_USER_CONTINUATION_INTENT"
+        "E_FT_USER_CONTINUATION_INTENT",
+        "E_FT_CONFIRMED_CROSSOVER_INTENT"
       ],
       "last_audit": {
         "date": "2026-11-20",
-        "human_update": 177,
-        "code_commit": "a725c575f2f8f6979108526d79e474ce9d63deec",
-        "reviewer": "Linden; explicit investigator clarification relayed and source-bound by Hazel",
-        "scope": "One declared periodic continuation; S03 remains PARTIAL, C/D unresolved and no native enforcement"
+        "human_update": 178,
+        "code_commit": "94e9baedc21e247142167c866a30beb5dbfc41e0",
+        "reviewer": "Linden; new investigator confirmation and exact model condition relayed by Hazel/Rowan",
+        "scope": "C/D intent confirmed, exact native geometry still unqualified; S03 remains PARTIAL"
       }
     },
     {
@@ -241,14 +243,15 @@
         "W174 joins W173 to Cedar-owned frozen execution requests, distinguishing parent/candidate model roles and ordered inherited/adapted/extra restraints, phases and generated round parameters.159 focused+6 subtests and relocated installed tests pass;21 new cases,223 cold checks on real C412 v3/v7 requests and17 synthetic supported-reader checks in both source and installed contexts. No native call, chemical admission, lock or ordinary motion qualification.",
         "W175 reuses W172 source/candidate, original genuine v3 request and actual saved manager views.64 cold binding checks plus28 maintained named-proxy checks preserve60 moving/799 fixed atoms and all captured definitions across moving/boundary/fixed partitions; boundary2 bonds/8 angles/6 dihedrals/2 parallelities. A separate diagnostic request only tests standard round-parameter naming with all4 input hashes unchanged. No native call, new motion/refinement or fabricated ordinary history; C128 chemical qualification remains NOT_ESTABLISHED.",
         "W176 completes one maintained Phenix2.2.1-6174 fixed-coordinate capture:859 atoms,42 complete effective monomer mappings,38 independently declared backbone links,51 explicit soft distances and213 custom requests. All8 named proxy families equal the W172 parent;17 cold checks pass. Explicit full-model mapping disables NCS restraint copying for this capture. No fit, motion, ordinary ancestry or chemical acceptance; C128 remains NOT_ESTABLISHED.",
-        "W177 adds a read-only exact-parent preparation-availability adapter, consuming Cedar authenticated registry/publication results once.20 cases (18 fail-before),179 focused+6 subtests and the same relocated installed suite pass;95 packaged modules,6 helps/pip check. Real C412 owner read preserves14 inputs and reports model/restraint/source-literal fields available, native-index policy absent; source and selected prepared model hashes differ explicitly. No native call, descendant/motion admission or chemical approval."
+        "W177 adds a read-only exact-parent preparation-availability adapter, consuming Cedar authenticated registry/publication results once.20 cases (18 fail-before),179 focused+6 subtests and the same relocated installed suite pass;95 packaged modules,6 helps/pip check. Real C412 owner read preserves14 inputs and reports model/restraint/source-literal fields available, native-index policy absent; source and selected prepared model hashes differ explicitly. No native call, descendant/motion admission or chemical approval.",
+        "W178 reuses canonical source selection and the maintained source-literal producer for20 declared pairs/38 stacks and20 retained planes.17 selection/relocation/drift checks plus5 native-readback checks pass: compiled PHIL equalsW172,all213 supplied requests match W176. Source policy remains source-indexed and is correctly refused as C128 native authority. No ordinary PostMR context/history invented, product code changed, native call or refinement."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "Use the qualified preparation-availability reader in Cedar integration planning. Before extending motion beyond schema2, qualify the selected preparation/descendant lineage and an existing-owner source-compiler-to-native-membership join; source/PDB-order policies cannot be relabelled as C128 native policies. Identify one independently complete canonical ordinary parent, while modified C412/C461 remain evidence-only controls. Reuse existing readers/execution, retain missing authority, and do not repeat the private fit.",
+      "next_action": "If needed, qualify prepare_literal_na_inputs against one genuinely maintained fixed capture of ORIGINAL literal pair/stack declarations plus retained edits, before compilation; W176 already-compiled inputs cannot supply that origin. Preserve independent38-link intent and source identities. A real ordinary canonical parent context and execution-role join remain separate; do not invent PostMR history, relabel source indices, repeat C412/C461 availability reads or broaden W173/modified motion.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -288,14 +291,15 @@
         "E_EXECUTION_MOTION_BINDING",
         "E_PRIVATE_WHOLE_CONTEXT_JOIN",
         "E_MAINTAINED_FIXED_PARENT_CAPTURE",
-        "E_ORDINARY_PREPARATION_AVAILABILITY"
+        "E_ORDINARY_PREPARATION_AVAILABILITY",
+        "E_SOURCE_LITERAL_PRODUCER_BOUNDARY"
       ],
       "last_audit": {
         "date": "2026-11-20",
-        "code_commit": "a725c575f2f8f6979108526d79e474ce9d63deec",
-        "human_update": 177,
-        "reviewer": "Linden; ordinary owner and scoped parent coverage agreed with Rowan",
-        "scope": "Source/relocated installation and one real C412 evidence read; no native call or motion admission"
+        "code_commit": "94e9baedc21e247142167c866a30beb5dbfc41e0",
+        "human_update": 178,
+        "reviewer": "Linden; bounded ownership review coordinated with Rowan",
+        "scope": "22 source/native-readback checks; no native call, ordinary history or broadened motion"
       }
     },
     {
@@ -335,14 +339,15 @@
         "W174 joins W173 to Cedar-owned frozen execution requests, distinguishing parent/candidate model roles and ordered inherited/adapted/extra restraints, phases and generated round parameters.159 focused+6 subtests and relocated installed tests pass;21 new cases,223 cold checks on real C412 v3/v7 requests and17 synthetic supported-reader checks in both source and installed contexts. No native call, chemical admission, lock or ordinary motion qualification.",
         "W175 reuses W172 source/candidate, original genuine v3 request and actual saved manager views.64 cold binding checks plus28 maintained named-proxy checks preserve60 moving/799 fixed atoms and all captured definitions across moving/boundary/fixed partitions; boundary2 bonds/8 angles/6 dihedrals/2 parallelities. A separate diagnostic request only tests standard round-parameter naming with all4 input hashes unchanged. No native call, new motion/refinement or fabricated ordinary history; C128 chemical qualification remains NOT_ESTABLISHED.",
         "W176 completes one maintained Phenix2.2.1-6174 fixed-coordinate capture:859 atoms,42 complete effective monomer mappings,38 independently declared backbone links,51 explicit soft distances and213 custom requests. All8 named proxy families equal the W172 parent;17 cold checks pass. Explicit full-model mapping disables NCS restraint copying for this capture. No fit, motion, ordinary ancestry or chemical acceptance; C128 remains NOT_ESTABLISHED.",
-        "W177 adds a read-only exact-parent preparation-availability adapter, consuming Cedar authenticated registry/publication results once.20 cases (18 fail-before),179 focused+6 subtests and the same relocated installed suite pass;95 packaged modules,6 helps/pip check. Real C412 owner read preserves14 inputs and reports model/restraint/source-literal fields available, native-index policy absent; source and selected prepared model hashes differ explicitly. No native call, descendant/motion admission or chemical approval."
+        "W177 adds a read-only exact-parent preparation-availability adapter, consuming Cedar authenticated registry/publication results once.20 cases (18 fail-before),179 focused+6 subtests and the same relocated installed suite pass;95 packaged modules,6 helps/pip check. Real C412 owner read preserves14 inputs and reports model/restraint/source-literal fields available, native-index policy absent; source and selected prepared model hashes differ explicitly. No native call, descendant/motion admission or chemical approval.",
+        "W178 reuses canonical source selection and the maintained source-literal producer for20 declared pairs/38 stacks and20 retained planes.17 selection/relocation/drift checks plus5 native-readback checks pass: compiled PHIL equalsW172,all213 supplied requests match W176. Source policy remains source-indexed and is correctly refused as C128 native authority. No ordinary PostMR context/history invented, product code changed, native call or refinement."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Use the qualified preparation-availability reader in Cedar integration planning. Before extending motion beyond schema2, qualify the selected preparation/descendant lineage and an existing-owner source-compiler-to-native-membership join; source/PDB-order policies cannot be relabelled as C128 native policies. Identify one independently complete canonical ordinary parent, while modified C412/C461 remain evidence-only controls. Reuse existing readers/execution, retain missing authority, and do not repeat the private fit.",
+      "next_action": "If needed, qualify prepare_literal_na_inputs against one genuinely maintained fixed capture of ORIGINAL literal pair/stack declarations plus retained edits, before compilation; W176 already-compiled inputs cannot supply that origin. Preserve independent38-link intent and source identities. A real ordinary canonical parent context and execution-role join remain separate; do not invent PostMR history, relabel source indices, repeat C412/C461 availability reads or broaden W173/modified motion.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -425,14 +430,15 @@
         "E_EXECUTION_MOTION_BINDING",
         "E_PRIVATE_WHOLE_CONTEXT_JOIN",
         "E_MAINTAINED_FIXED_PARENT_CAPTURE",
-        "E_ORDINARY_PREPARATION_AVAILABILITY"
+        "E_ORDINARY_PREPARATION_AVAILABILITY",
+        "E_SOURCE_LITERAL_PRODUCER_BOUNDARY"
       ],
       "last_audit": {
         "date": "2026-11-20",
-        "code_commit": "a725c575f2f8f6979108526d79e474ce9d63deec",
-        "human_update": 177,
-        "reviewer": "Linden; ordinary owner and scoped parent coverage agreed with Rowan",
-        "scope": "Source/relocated installation and one real C412 evidence read; no native call or motion admission"
+        "code_commit": "94e9baedc21e247142167c866a30beb5dbfc41e0",
+        "human_update": 178,
+        "reviewer": "Linden; bounded ownership review coordinated with Rowan",
+        "scope": "22 source/native-readback checks; no native call, ordinary history or broadened motion"
       }
     },
     {
@@ -482,7 +488,8 @@
         "W174 joins W173 to Cedar-owned frozen execution requests, distinguishing parent/candidate model roles and ordered inherited/adapted/extra restraints, phases and generated round parameters.159 focused+6 subtests and relocated installed tests pass;21 new cases,223 cold checks on real C412 v3/v7 requests and17 synthetic supported-reader checks in both source and installed contexts. No native call, chemical admission, lock or ordinary motion qualification.",
         "W175 reuses W172 source/candidate, original genuine v3 request and actual saved manager views.64 cold binding checks plus28 maintained named-proxy checks preserve60 moving/799 fixed atoms and all captured definitions across moving/boundary/fixed partitions; boundary2 bonds/8 angles/6 dihedrals/2 parallelities. A separate diagnostic request only tests standard round-parameter naming with all4 input hashes unchanged. No native call, new motion/refinement or fabricated ordinary history; C128 chemical qualification remains NOT_ESTABLISHED.",
         "W176 completes one maintained Phenix2.2.1-6174 fixed-coordinate capture:859 atoms,42 complete effective monomer mappings,38 independently declared backbone links,51 explicit soft distances and213 custom requests. All8 named proxy families equal the W172 parent;17 cold checks pass. Explicit full-model mapping disables NCS restraint copying for this capture. No fit, motion, ordinary ancestry or chemical acceptance; C128 remains NOT_ESTABLISHED.",
-        "W177 adds a read-only exact-parent preparation-availability adapter, consuming Cedar authenticated registry/publication results once.20 cases (18 fail-before),179 focused+6 subtests and the same relocated installed suite pass;95 packaged modules,6 helps/pip check. Real C412 owner read preserves14 inputs and reports model/restraint/source-literal fields available, native-index policy absent; source and selected prepared model hashes differ explicitly. No native call, descendant/motion admission or chemical approval."
+        "W177 adds a read-only exact-parent preparation-availability adapter, consuming Cedar authenticated registry/publication results once.20 cases (18 fail-before),179 focused+6 subtests and the same relocated installed suite pass;95 packaged modules,6 helps/pip check. Real C412 owner read preserves14 inputs and reports model/restraint/source-literal fields available, native-index policy absent; source and selected prepared model hashes differ explicitly. No native call, descendant/motion admission or chemical approval.",
+        "W178 reuses canonical source selection and the maintained source-literal producer for20 declared pairs/38 stacks and20 retained planes.17 selection/relocation/drift checks plus5 native-readback checks pass: compiled PHIL equalsW172,all213 supplied requests match W176. Source policy remains source-indexed and is correctly refused as C128 native authority. No ordinary PostMR context/history invented, product code changed, native call or refinement."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -493,7 +500,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Use the qualified preparation-availability reader in Cedar integration planning. Before extending motion beyond schema2, qualify the selected preparation/descendant lineage and an existing-owner source-compiler-to-native-membership join; source/PDB-order policies cannot be relabelled as C128 native policies. Identify one independently complete canonical ordinary parent, while modified C412/C461 remain evidence-only controls. Reuse existing readers/execution, retain missing authority, and do not repeat the private fit.",
+      "next_action": "If needed, qualify prepare_literal_na_inputs against one genuinely maintained fixed capture of ORIGINAL literal pair/stack declarations plus retained edits, before compilation; W176 already-compiled inputs cannot supply that origin. Preserve independent38-link intent and source identities. A real ordinary canonical parent context and execution-role join remain separate; do not invent PostMR history, relabel source indices, repeat C412/C461 availability reads or broaden W173/modified motion.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -575,14 +582,15 @@
         "E_EXECUTION_MOTION_BINDING",
         "E_PRIVATE_WHOLE_CONTEXT_JOIN",
         "E_MAINTAINED_FIXED_PARENT_CAPTURE",
-        "E_ORDINARY_PREPARATION_AVAILABILITY"
+        "E_ORDINARY_PREPARATION_AVAILABILITY",
+        "E_SOURCE_LITERAL_PRODUCER_BOUNDARY"
       ],
       "last_audit": {
         "date": "2026-11-20",
-        "code_commit": "a725c575f2f8f6979108526d79e474ce9d63deec",
-        "human_update": 177,
-        "reviewer": "Linden; ordinary owner and scoped parent coverage agreed with Rowan",
-        "scope": "Source/relocated installation and one real C412 evidence read; no native call or motion admission"
+        "code_commit": "94e9baedc21e247142167c866a30beb5dbfc41e0",
+        "human_update": 178,
+        "reviewer": "Linden; bounded ownership review coordinated with Rowan",
+        "scope": "22 source/native-readback checks; no native call, ordinary history or broadened motion"
       }
     },
     {
@@ -4315,6 +4323,52 @@
           "size": 4586
         }
       ]
+    },
+    "E_SOURCE_LITERAL_PRODUCER_BOUNDARY": {
+      "kind": "source_bound_existing_producer_evidence",
+      "date": "2026-11-20",
+      "human_update": 178,
+      "code_commit": "94e9baedc21e247142167c866a30beb5dbfc41e0",
+      "reference": "docs/topostitch-periodic.md#w178--bind-the-existing-source-producer-without-inventing-ordinary-authority",
+      "result": "W178 reuses canonical source selection and the maintained source-literal producer for20 declared pairs/38 stacks and20 retained planes.17 selection/relocation/drift checks plus5 native-readback checks pass: compiled PHIL equalsW172,all213 supplied requests match W176. Source policy remains source-indexed and is correctly refused as C128 native authority. No ordinary PostMR context/history invented, product code changed, native call or refinement.",
+      "limitation": "Source-indexed original-intent artifact only; full C128 native authority and ordinary canonical provenance are not invented. No native process, admission/runtime code or scientific acceptance.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w178-source-intake/plan.json",
+          "sha256": "15d2fc37d6d53e8e46396448224f17a82baaebaa73d43aba57208679a942996a",
+          "size": 1380
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w178-source-intake/review.json",
+          "sha256": "001c694d1cfe6c9da78ff7b52b3ae4e250d4fb54a9a5cafbb7803e20b7fee99e",
+          "size": 2155
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w178-source-intake/native-membership-review.json",
+          "sha256": "6abf8c9946017f6e239299e29eb09b81929b8a03f34e694fecf850a3a65241c2",
+          "size": 940
+        }
+      ]
+    },
+    "E_FT_CONFIRMED_CROSSOVER_INTENT": {
+      "kind": "cross_owner_investigator_connectivity_intent",
+      "date": "2026-11-20",
+      "human_update": 178,
+      "code_commit": "94e9baedc21e247142167c866a30beb5dbfc41e0",
+      "reference": "docs/topostitch.md#preserve-chemistry-before-a-bend-w175-integration-contract",
+      "result": "W178 records investigator confirmation of FT C/D crossover conditional on A21, verified by Hazel in the exact current/PostMR/MR models. Both B7-to-B1 and C/D topology are now declared; residue/image realization remains source-derived and native-unqualified. New v2 intent supersedes prior tentativeness without rewriting historical receipts.",
+      "limitation": "Construct-level intent only; exact image realization, source slicing and native seam geometry/exclusions remain separate. Older generic free-end controls cannot override FT-specific intent.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/ft-symmetry-contacts-20261120-03/user-connection-intent-v2.json",
+          "sha256": "64bb43560c27dbb6f34eb3166f7de69e808fa88402ba156982a7118826a3d09f",
+          "size": 7056
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -4476,8 +4530,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 177,
-    "next": 178,
+    "current": 178,
+    "next": 179,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -5349,6 +5403,12 @@
         "title": "Read authenticated preparation availability for an exact parent",
         "state": "RECORDED",
         "code_commit": "a725c575f2f8f6979108526d79e474ce9d63deec"
+      },
+      {
+        "number": 178,
+        "title": "Bind existing source-literal producer and preserve the authority gap",
+        "state": "RECORDED",
+        "code_commit": "94e9baedc21e247142167c866a30beb5dbfc41e0"
       }
     ]
   },

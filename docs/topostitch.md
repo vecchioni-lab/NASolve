@@ -727,6 +727,24 @@ supported retained-chemistry lifetime. A modified ordinary input may qualify thi
 reader's evidence reporting without qualifying modified motion. Rowan owns the
 publication/execution boundary; no shared Cedar code changes in W176.
 
+**W178 source-producer evidence.** The existing canonical source selection and
+`prepare_postmr_literal_inputs` produce a legitimate `literal_na_inputs` artifact
+from frozen original pair/stack declarations and retained planes. Its compiler
+manifest digest is `97a2b6f38a89fa5c904237765ee41512eb74d4de473bc13f7181685301f44d7b`.
+All 213 terms agree with W176 native readback and compiled PHIL is byte-identical
+to W172. Selection, old-path-gone relocation and changed-input refusals pass.
+This is source-bound evidence, not an ordinary request or C128 native policy.
+
+The existing native-index producer `prepare_literal_na_inputs` requires a genuine
+capture of original literal intent. W176 already contains compiled edits: no
+literal relationships remain to compile, and recompiling original declarations
+against those populated edits would overlap them. W172's separately declared
+private recipe is not a maintained original-capture artifact. A fresh original-
+intent capture could use the existing producer; no replacement compiler is needed.
+The separate ordinary canonical PostMR context is still unavailable for this
+private parent. Do not create it retrospectively from native observations.
+[Exact roles, checks and limits](topostitch-periodic.md#w178--bind-the-existing-source-producer-without-inventing-ordinary-authority).
+
 **FT connectivity clarification (20 November, via Hazel).** The investigator
 now declares B:7 O3′ → B:1 P as a symmetry continuation. B:1 is therefore not
 assumed to be a free terminus. The current coordinate-derived realization images
@@ -734,15 +752,18 @@ the **target P** by `-x+y,-x,z`; the inverse `-y,x-y,z` belongs to the alternate
 view holding P fixed and imaging O3′. Both have zero lattice translation in this
 specific pinned model. These image assignments are geometric evidence, not
 separately user-specified operators or qualified native symmetry restraints.
-The C/D crossover statement is tentative; D:7 O3′ → C:8 P remains provisional.
+The investigator subsequently confirmed C/D crossover conditional on chain A
+having 21 residues. Hazel verified A:1–A:21 in the exact current, PostMR and
+selected MR models. The condition is met; the residue-level D:7 O3′ → C:8 P
+correspondence and its image remain source-derived geometric realization.
 D:1 terminal intent is unchanged. Preserve OP1/OP2 continuation intent; do not
 materialize an unqualified symmetry bond or infer missing whole-model authority.
 
 Alder owns the exact local declaration:
-`NASolve:branch-artifacts/Alder/ft-symmetry-contacts-20261120-03/user-connection-intent.json`,
-SHA-256 `d61c28d32877b2b94dddfbe013386e32f6fd86e041127df5d2a248bacd4189e2`.
-It supersedes only earlier absence of B:1 continuation intent. Historical null-
-intent receipts remain immutable; slicing provenance and native seam angles/
+`NASolve:branch-artifacts/Alder/ft-symmetry-contacts-20261120-03/user-connection-intent-v2.json`,
+SHA-256 `64bb43560c27dbb6f34eb3166f7de69e808fa88402ba156982a7118826a3d09f`.
+Version 2 supersedes earlier C/D tentativeness after the initial B:1 declaration.
+Older receipts remain immutable; slicing provenance and native seam angles/
 exclusions remain unresolved. No new inference or executable recipe follows.
 
 ### Cluster accommodation: bounded helix opening and closing (W167, planned)

@@ -1,5 +1,14 @@
 # NASolve development handoff — Willow
 
+**W178:** the existing source-literal producer now has a source-bound canonical
+control: **20 declared pairs / 38 stacks / 20 retained planes**. Its compiled PHIL
+matches W172 and all **213 requests** match W176. **17 selection/relocation/drift
+checks + 5 native-readback checks** pass without a native call. The source-index
+policy correctly refuses native-index admission. No ordinary PostMR history is
+invented. Next, if needed, capture original literal intent through the existing
+native-index producer; its genuine ordinary-parent join remains separate.
+[Evidence and precise producer gap](topostitch-periodic.md#w178--bind-the-existing-source-producer-without-inventing-ordinary-authority).
+
 **W177:** the new read-only preparation inspector reports authenticated fields
 for an exact published parent. **179 focused tests + 6 subtests** and the same
 relocated installed suite pass. Real C412 supplies model/restraint/source-literal
@@ -48,7 +57,7 @@ W174 joins the frozen request; retained-manager integration remains next.
 [Exact scope, controls and setup stops](topostitch-periodic.md#w172--require-declared-topology-before-parent-coordinate-transfer).
 
 
-Updated **2026-11-20**, through **W177**. W168’s private native diagnostic now retains
+Updated **2026-11-20**, through **W178**. W168’s private native diagnostic now retains
 known parent chemistry at the ordinary 3 Å interpretation cutoff while diffraction
 and refinement use the displaced child. One five-cycle run recovers **2.288 →
 0.271 Å RMS**, keeping all 38 backbone links, atom identities and checked sugar
@@ -99,7 +108,8 @@ not mean holding those atoms fixed. Hazel reconfirmed this scope on 20 November.
 [Motion, measurements and ownership](topostitch.md#cluster-accommodation-bounded-helix-opening-and-closing-w167-planned).
 
 **FT intent update:** Hazel records the investigator-declared B:7 O3′ → B:1 P
-symmetry continuation. C/D remains tentative; D:1 stays terminal. Directed target-P
+symmetry continuation. The investigator now also confirms C/D crossover, with
+A:1–21 verified in current/PostMR/MR models; D:1 stays terminal. Directed target-P
 and inverse fixed-P image operators are distinguished in the existing contract.
 This changes intent, not native symmetry-bond/angle qualification or coordinates.
 

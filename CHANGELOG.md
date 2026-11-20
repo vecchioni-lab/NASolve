@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W178 — Bind source-literal evidence without inventing ordinary authority
+
+- Record the existing canonical source producer, exact compiled/native term
+  readback, relocation and changed-input refusals; distinguish its source index
+  basis from native-index admission and missing ordinary parent provenance.
+- Update FT intent to the investigator-confirmed C/D crossover after the A21
+  condition is verified. Direction-specific coordinate realization remains separate.
+- Documentation/local diagnostics only: no installed-code, schema/default,
+  motion-admission or refinement change; generated science remains local.
+
 ### W177 — Inspect authenticated preparation fields for the selected parent
 
 - Record Hazel’s new investigator-declared B:7→B:1 periodic continuation,

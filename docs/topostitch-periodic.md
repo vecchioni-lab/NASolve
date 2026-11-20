@@ -10586,3 +10586,81 @@ claim follows from the relocated software check.
 Next audit the existing source-policy/native-membership and descendant-lineage
 owners before broadening motion. An availability report cannot manufacture the
 missing chemical authority or turn a source-index policy into C128 native indices.
+
+
+## W178 — Bind the existing source producer without inventing ordinary authority
+
+The bounded question is whether existing producers supply complete declared
+canonical topology and compiled-restraint provenance that can be carried into an
+ordinary request. W172's private 38-link declaration and separate native-index C21
+recipe are real evidence, but no authenticated ordinary canonical PostMR context
+is available for that private parent. No PostMR report, registry, missing terminal
+intent or ordinary history is fabricated to make a new request pass.
+
+The existing source path **does** work. Cedar `a1ce98818…` owners
+`freeze_acquisition_sources`, `prepare_postmr_literal_inputs` and
+`cif_complete_request._compiler_input` freeze four canonical component sources,
+20 independently declared pairs, 38 stacks and twenty retained pair planes. No
+pair guesser reruns. The returned role is `literal_na_inputs`, policy
+`cif-source-literal-na-inputs-v1`, with explicit
+`PDB_RECORD_ORDER; NOT_NATIVE_CAPTURE_INDICES` basis. Compiled membership policy
+remains `narestraints-source-bound-literal-membership-v1`.
+
+The source-bound evidence joins these exact roles:
+
+| Role | SHA-256 |
+| --- | --- |
+| Canonical parent | `f33754cc170ab8167e8085cb848f4ef0b6bd0f545c81db6163a650a41f503e71` |
+| Independently declared links | `501d1f29c45a9fe12aed0def66089790a4e8bfc653d4a7545f7eb0c936605f27` |
+| Literal compiler manifest | `97a2b6f38a89fa5c904237765ee41512eb74d4de473bc13f7181685301f44d7b` |
+| Local role binding | `a9719094e8124aec8defc6fed5d6ac51c0aba7075d8d7a7b6a1251805a5b1cb9` |
+
+**17 checks pass**: source component coverage, declared pair/stack/link counts,
+index/approval labels, exact compiled PHIL bytes, different-parent refusal,
+relocation with the old evidence directory gone, changed topology/original PHIL/
+source-CIF refusal, restored replay and untouched original scientific inputs.
+The generated C21 PHIL is byte-identical to W172's compiled policy; retained planes
+remain separate ordered inputs. This local role binding is diagnostic evidence,
+not a new executable request or runtime schema.
+
+**Five further checks** reuse W176's maintained fixed-parent capture and existing
+C128/PHIL owners. All **213 supplied requests** agree exactly by full request
+content/multiplicity, including all **20 retained planes**. C128 correctly refuses
+the source policy as native-index authority. This verifies observed membership
+without relabelling policy identity, supplying chemical approval or launching a
+new native process.
+
+The producer gap is precise: `prepare_literal_na_inputs` already owns native-index
+literal provenance, but requires a maintained capture of **original literal
+intent**. W176 contains already-compiled edits, so there are no literal
+relationships left to compile; compiling original relationships against the
+populated edits would overlap them. W172 explicitly constructed a separate private
+recipe using native identities with an empty old-edit list. It is not a maintained
+original-capture artifact and cannot be silently promoted into one.
+
+A fresh fixed capture of original pair/stack declarations plus retained edits
+could qualify that existing producer. The genuinely ordinary canonical parent and
+execution-role join would still be required afterward. A source-index manifest
+or matching native inventory cannot substitute for either. W173 and all modified-
+motion admission criteria are unchanged; C461 was not reread because C412 already
+answered availability. No product code, installation behavior, native invocation,
+refinement or branch-wide test suite changes in W178.
+
+Exact local commands, from the NASolve workspace:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w178-source-intake.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w178-native-membership-review.py
+```
+
+Evidence is anchored at `NASolve:branch-artifacts/willow/w178-source-intake/`.
+Its owned root contains the relocated producer artifact and checksummed local
+role binding. Scientific inputs and resulting captures stay outside Git. The
+producer artifact's relocated readback is proven; no complete ordinary portable
+scientific run is claimed.
+
+The same coordination update records the investigator-confirmed FT C/D crossover:
+the A21 condition holds in the exact current, PostMR and selected MR models. Alder's
+versioned v2 declaration supersedes the earlier tentative status; residue-level
+image realization and native seam angles/exclusions remain separate. Older Cedar
+free-end scaffold declarations do not override this newer FT-specific intent.
