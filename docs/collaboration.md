@@ -68,8 +68,8 @@ pages. A PDF or polished layout is not required for every checkout.
 ### Visual inspection preference
 
 For every newly generated ChimeraX script, use the user's shared defaults:
-**grey background, silhouettes enabled, soft lighting, and thin nucleic-acid
-ring fills**. Apply these explicitly
+**grey background, silhouettes enabled, soft lighting, orthographic camera, and
+thin nucleic-acid ring fills**. Apply these explicitly
 so the result does not depend on the viewer's previous session settings:
 
 ```python
@@ -77,6 +77,7 @@ from chimerax.core.commands import run
 run(session, "set bgColor gray")
 run(session, "graphics silhouettes true")
 run(session, "lighting soft")
+run(session, "camera ortho")
 run(session, "style nucleic ringFill thin")
 ```
 

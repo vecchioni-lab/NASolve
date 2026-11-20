@@ -17,6 +17,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Visualization preference
+
+- Add `camera ortho` to the shared defaults and Python snippet for newly
+  generated ChimeraX scripts. Preserve historical checkouts.
+
 ### W171 — Bind a saved bend to the current parent snapshot
 
 - Add optional `parent_model_bytes` to `load_bend_motion`. Exact current-parent
