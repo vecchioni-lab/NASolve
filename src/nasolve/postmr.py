@@ -798,7 +798,7 @@ def _restore_shared_parent_coordinates(
     actions: tuple[MutationAction, ...],
     parent_models: Mapping[str, Path],
     dictionary_paths: Mapping[str, Path] | None = None,
-    *, site_dictionary_paths: Mapping[str, Path] | None = None,
+    *, displacement_reference: Path | None = None, site_dictionary_paths: Mapping[str, Path] | None = None,
 ) -> dict[str, object]:
     """Restore supported DNA scaffolds without copying partial same-name bases.
 
@@ -816,6 +816,8 @@ def _restore_shared_parent_coordinates(
     if len({a.site for a in modified}) != len(modified):
         raise PostMRPreparationError("Duplicate selected restoration sites")
     records = _coordinate_records(raw_model)
+    from .postmr_scaffold_displacement import HostDisplacement
+    host = HostDisplacement(displacement_reference, records) if displacement_reference is not None else None
     report: dict[str, object] = {}
     special = tuple(a for a in modified if (ligand := CURATED_LIGANDS.get(a.after)) is not None
                     and (ligand.atom_substitutions or ligand.ring_substituents))
@@ -852,6 +854,8 @@ def _restore_shared_parent_coordinates(
                 "substitutions": [], "reason": str(exc), "requires_cif_review": False,
                 "notes": ["The complete raw Coot site was retained because this DNA transport rule does not support its graph or coordinate context."]}
         else:
+            if host is not None:
+                replacements = host.apply(action, replacements, item)
             for index,line in zip(indices,replacements):
                 records[index] = line
         report[action.site] = item
@@ -1885,6 +1889,7 @@ def construct_postmr_model(
     coot_executable: Path | None = None,
     environment: Mapping[str, str] | None = None,
     coot_directory: Path | None = None,
+    inherit_scaffold_b: bool = False,
     reference_model: Path | None = None,
     timeout_seconds: float | None = None,
     allow_op3_sites: tuple[str, ...] = (),
@@ -1906,6 +1911,8 @@ def construct_postmr_model(
     Coot reloads them before each monomer and actual heavy-atom inventories must
     agree. The same choices feed context/restoration and are returned for lineage.
     Their upstream source/end-state/numerical qualification remains separate.
+    Fresh ordinary PostMR sets inherit_scaffold_b to carry isotropic B factors
+    from the original model for coordinate-identical restored DNA scaffold atoms.
     """
     input_model, output_model = Path(input_model), Path(output_model)
     reference_model = Path(reference_model) if reference_model is not None else input_model
@@ -1980,10 +1987,13 @@ def construct_postmr_model(
         serial_identity_policy=COMPONENT_PADDING_POLICY_ID,
         canonical_serial_policy=CANONICAL_SERIAL_POLICY_ID, **site_options)
     restoration_input = context["model"]
+    restoration_options = dict(site_options)
+    if inherit_scaffold_b:
+        restoration_options["displacement_reference"] = reference_model
     restoration_actions = tuple(a for a in overlap_actions if a.site not in passthrough_sites)
     if restoration_actions:
         restoration = _restore_shared_parent_coordinates(restoration_input, geometry_model,
-            restoration_actions, parent_models, dictionary_paths, **site_options)
+            restoration_actions, parent_models, dictionary_paths, **restoration_options)
     else:
         shutil.copyfile(restoration_input, geometry_model)
         restoration = {}
@@ -2016,7 +2026,7 @@ def construct_postmr_model(
             rollback_geometry = output_model.with_name(output_model.stem + "_context_rollback_geometry.pdb")
             if restoration_actions:
                 restoration = _restore_shared_parent_coordinates(raw_model, rollback_geometry,
-                    restoration_actions, parent_models, dictionary_paths, **site_options)
+                    restoration_actions, parent_models, dictionary_paths, **restoration_options)
             else:
                 shutil.copyfile(raw_model, rollback_geometry)
                 restoration = {}
@@ -2384,7 +2394,7 @@ def _prepare_postmr(
     construction = construct_postmr_model(
         coot_input, actions, construction_sources, after_coot,
         coot_executable=coot_executable, environment=environment,
-        coot_directory=coot_dir, reference_model=original,
+        coot_directory=coot_dir, reference_model=original, inherit_scaffold_b=True,
         allow_op3_sites=allowed_op3, passthrough_sites=passthrough_sites,
         **({'site_dictionary_paths':staged['site_dictionary_paths']} if staged is not None else {}),
     )

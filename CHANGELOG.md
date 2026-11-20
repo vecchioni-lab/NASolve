@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve host B factors on restored DNA sugars and phosphates
+
+- Fresh PostMR mutations carry the original isotropic B factors of corresponding
+  sugar and phosphate atoms when coordinate restoration, element identity and
+  occupancy agree. The mutation report names the transferred atoms. Ambiguous
+  sites retain the existing values and record the reason. New base atoms and
+  historical coordinate-only constructions retain their original handling.
+
 ### Preserve the base orientation when Coot matches the wrong ring atoms
 
 - Ordinary DNA mutation can recover a mismatched glycosidic angle. It rotates

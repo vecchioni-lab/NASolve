@@ -637,12 +637,15 @@ the prepared model are also collected even when unchanged, so their CIFs and
 automatic resolution of every pre-existing noncurated residue. Generic
 definitions add no inferred sulfur substitutions or ring-substituent rules.
 
-A restored host coordinate and its displacement parameter have separate
-provenance. Generic Coot placement can preserve the sugar and phosphate
-coordinates exactly while assigning its B=20 Å² default. That value reached
-ReadySet and ordinary refinement in the 5PC control. The matched experiment
-and limits on assigning B values to new atoms are in the
-[Cedar completion queue](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
+Fresh ordinary PostMR carries isotropic B factors from the original model
+for graph-restored sugar and phosphate atoms of canonical DNA hosts. The
+atoms must match in site, name, element, occupancy and restored coordinates.
+Transfer succeeds for a whole selected scaffold or its existing B values
+are retained with a reason. New base atoms keep their construction values.
+A selected site with an alternate conformation or associated displacement
+records retains its existing values. Historical coordinate-only replay
+remains available. See the [Cedar completion queue](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run)
+for the separate problem of selecting displacement values for new atoms.
 
 The registry also declares exact parent/target atom substitutions. `DE`, `DF`,
 and `S6G` place sulfur along the canonical `C-O` vector, use the transformed

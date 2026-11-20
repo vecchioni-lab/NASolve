@@ -217,3 +217,52 @@ def test_invalid_coot_time_budget_is_rejected_before_creating_files(tmp_path,sec
     with pytest.raises(PostMRPreparationError,match='finite and positive'):
         _run_coot(tmp_path/'input',tmp_path/'output',(),tmp_path/'coot',tmp_path/'missing',None,{}, {},timeout_seconds=seconds)
     assert not (tmp_path/'missing').exists()
+
+
+@pytest.mark.parametrize("free_oh", [False, True])
+def test_host_displacement_follows_only_restored_scaffold(tmp_path, free_oh):
+    raw, parent, dictionary, action, _ = inputs(tmp_path, free_oh=free_oh)
+    host = tmp_path / "original.pdb"
+    host.write_text("".join(
+        line[:60] + f"{42 + index:6.2f}" + line[66:]
+        if line.startswith(("ATOM  ", "HETATM")) else line
+        for index, line in enumerate(parent.read_text().splitlines(keepends=True))
+    ))
+    old, new = tmp_path / "historical.pdb", tmp_path / "current.pdb"
+    args = (raw, (action,), {action.site: parent}, {action.after: dictionary})
+    _restore_shared_parent_coordinates(args[0], old, *args[1:])
+    report = _restore_shared_parent_coordinates(args[0], new, *args[1:], displacement_reference=host)[action.site]
+    expected_scaffold = set(report["scaffold_atoms"])
+    assert report["host_displacement"]["status"] == "TRANSFERRED"
+    assert set(report["host_displacement"]["atoms"]) == expected_scaffold
+    before, after, original = rows(old), rows(new), rows(host)
+    for name, line in after.items():
+        assert line[:60] + line[66:] == before[name][:60] + before[name][66:]
+        donor = original if name in expected_scaffold else before
+        assert line[60:66] == donor[name][60:66]
+
+
+@pytest.mark.parametrize("issue", ["anisou", "occupancy", "element", "position", "unknown_B", "alternate", "multiple_models"])
+def test_ambiguous_host_displacement_preserves_restored_geometry(tmp_path, issue):
+    raw, parent, dictionary, action, _ = inputs(tmp_path)
+    host = tmp_path / "original.pdb"
+    lines = parent.read_text().splitlines(keepends=True)
+    idx = next(i for i,line in enumerate(lines) if line[12:16].strip() == "O4'")
+    atom = lines[idx]
+    changes = {"occupancy":(54,60,"  0.25"), "element":(76,78," S"), "position":(30,38,"  98.200"),
+               "unknown_B":(60,66,"      "), "alternate":(16,17,"A")}
+    if issue in changes:
+        start, end, value = changes[issue]
+        lines[idx] = atom[:start] + value + atom[end:]
+    elif issue == "anisou":
+        lines.insert(idx+1, "ANISOU"+atom[6:])
+    else:
+        lines = ["MODEL        1\n", *lines, "ENDMDL\n"]
+    host.write_text("".join(lines))
+    old, new = tmp_path/"historical.pdb", tmp_path/"current.pdb"
+    options = ((action,), {action.site:parent}, {action.after:dictionary})
+    _restore_shared_parent_coordinates(raw, old, *options)
+    report = _restore_shared_parent_coordinates(raw, new, *options, displacement_reference=host)[action.site]
+    assert new.read_bytes()==old.read_bytes()
+    assert report["status"]=="GRAPH_FRAGMENT_RESTORED"
+    assert report["host_displacement"]["status"]=="RETAINED"
