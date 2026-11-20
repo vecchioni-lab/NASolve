@@ -2099,6 +2099,15 @@ a new attempt. General contexts, automatic search, compaction/recovery and their
 native qualification remain unimplemented; the development-intent additions do
 not change current artifact schemas or operational behavior.
 
+The additive `metal.publication` layer composes existing input-archive packing,
+recorded-result inspection and durable campaign record publication. Its explicit
+completed-batch receipt shares exact parent identities and separates all attempt
+and result identities. Source provenance is verified at packing; subsequent
+indexed historical inspection requires an independently retained receipt digest,
+adds no source-parent traversal and grants no native execution or retirement.
+See the [metal storage contract](metal-campaign-storage.md#completed-batch-publication-and-selection-receipt)
+for schema, limits, interruption behavior and qualification scope.
+
 The additive `metal.parent_archive` adapter transports an explicit portable parent
 layout through unchanged checksum-indexed archive owners. Bounded parts preserve
 global limits; a temporary protected copy releases the transport scope before

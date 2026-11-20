@@ -201,6 +201,56 @@ refusal, with original source/science reads blocked and no Phenix call. The
 See local `recorded-cli-20261120-01/{validation.json,installed/result.json}` under
 the Alder artifact anchor; no generated science is committed.
 
+### Completed-batch publication and selection receipt
+
+The normal frozen-trial producer already emits an exact parent, trial identity
+and result checksum after its freeze audit. The additive
+`metal.publication.publish_fdp_inputs(run, trials, archive, output)` now provides
+the next explicit handoff: pack a named completed batch through the existing
+full-source owner, reopen that exact checksum-pinned archive, and emit a compact
+trial/result index with shared parent identities. It adds no source-parent replay
+while building the index and does not pack automatically after every trial.
+
+`metal publish-fdp-inputs RUN --trial Metal/fdp_001 --trial Metal/fdp_002
+--archive ARCHIVE --output RECEIPT` exposes this producer. Both output paths must
+be distinct, fresh and outside the immutable source run. Existing limits remain
+1–128 explicit attempts, bounded archive contents and optional tighter
+`--max-trial-bytes`/`--max-input-bytes` allowances. There is no implicit discovery.
+
+The new **`metal-fdp-review-publication` v1** receipt contains archive/projection
+identities, unique parent records and separate trial/result-record identities.
+The existing durable campaign writer supplies `record_sha256`: retain this
+identity independently at publication. Archive fsync uses the shared storage
+primitive, and the receipt is published last with create-only atomic linking.
+The CIF complete-attempt schema/retirement machinery is not applied to metal
+trials. Failed source audits and interrupted archive/final-receipt publication
+issue no successful selection receipt; incomplete or orphan archives remain
+for explicit recovery, and existing outputs are never replaced.
+
+Read with `metal inspect-recorded-fdp --archive ARCHIVE --publication RECEIPT
+--publication-id ID --trial-id TRIAL --json`. The publication ID is the producer's
+independently retained `record_sha256`, not a newly trusted value extracted from
+an unknown receipt. The existing individual archive/projection/parent flags
+remain supported and cannot be mixed with receipt selection. Receipt metadata
+is capped at 1 MiB. The unchanged recorded-result reader validates the selected
+archive/parent/result binding; it does not open the source run or re-audit native
+science. No execution, reuse, scientific acceptance or retirement follows.
+
+Final-source evidence: **16 focused tests pass in 10.94 s**, including normal
+two-trial production/publication/readback and interrupted archive/receipt checks.
+A relocated installed normal-entrypoint control produces two trials with the
+existing explicitly synthetic native-result fixture, then reads exact results
+after removing the synthetic source run. It retains two attempts and one shared
+parent in a **1,538 B receipt** beside a **12,749 B archive**; those are synthetic
+fixture sizes, not campaign estimates. Its 728 checks include 349 package members.
+Existing packing makes eight source-parent replays for the two trials; index
+construction adds zero, cold selection reads zero parents, and this legacy fixture
+does not walk a whole checkpoint registry. No modern-parent speedup is claimed.
+Local `fdp-publication-20261120-01/validation.json` and `installed/result.json`
+record the exact sources/commands. No native fit or full suite ran. A04 remains
+partial: protected-parent session execution, exact regeneration, scheduling and
+safe retirement remain separate gates.
+
 ## Implemented fourth step: explicit parent-layout transport
 
 `nasolve.metal.parent_archive.pack_parent_inputs(layout, output)` retains one

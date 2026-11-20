@@ -14,8 +14,8 @@ gate. Update milestone status, evidence, limitations and next action together.
 
 The latest independent FT source audit leaves two precise input boundaries:
 B:1 now has an investigator-declared B:7→B:1 symmetry continuation; its exact
-operator realization/native enforcement and the provisional C/D crossover still
-need qualification. The private endpoint needs a legitimate ordinary checkpoint
+operator realization/native enforcement still needs qualification. The investigator
+also confirmed C/D crossover after the A:1–A:21 condition was verified. The private endpoint needs a legitimate ordinary checkpoint
 before W173 intake. The existing modified/metal movement restriction remains.
 Preserve all phosphates, the 19 supplied pair planes and the separate generic
 sequence versus selected-model distinction; see the current handoff. No native
@@ -23,7 +23,8 @@ recipe/fit was produced from those incomplete declarations.
 
 A01's source-bound symmetry review now gives explicit B:1–B:7 and C:8–D:7
 contact hypotheses (3.100/3.027 Å in the current parent). The investigator then
-confirmed B:7→B:1 connectivity; exact D:7→C:8 remains provisional. The existing
+confirmed B:7→B:1 and C/D crossover topology; exact image realization remains
+source-derived and native enforcement unqualified. The existing
 non-FT synthetic continuation reader preserves declared, unknown and chemical
 boundaries. Whole-model enforcement/slicing provenance remain open; A02 is gated.
 
@@ -31,6 +32,12 @@ A04 now exposes pinned historical result inspection through the normal CLI
 (`metal inspect-recorded-fdp`), with 53 focused tests and exact relocated installed
 Hg/Ag₄ readback. This closes a workflow surface only; no fresh fit, scientific
 acceptance, campaign cleanup or exact regeneration authority follows.
+
+A04's completed-batch handoff now issues exact independently pinned trial/result
+selections with shared parent identities, using existing archive/durable record
+owners. Sixteen final focused tests and installed two-trial synthetic readback
+cover completion and interruption; indexing adds no parent replay. Safe pruning,
+new parent-session execution and automatic campaign publication remain open.
 
 **Scientific milestone: A01 — ligand geometry and open XYZ/B foundation.**
 **Parallel engineering step: A04 — compact records and protected parent transport.**

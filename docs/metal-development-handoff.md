@@ -75,6 +75,23 @@ boundary before modified/metal motion admission. Separate donor pose and Hg
 placement, then qualify open XYZ/B before branch-specific environmental B and
 frozen f″/Q. Do not repeat this readback or the completed 25-point pivot grid.
 
+### Completed-batch provenance handoff
+
+`metal publish-fdp-inputs` now publishes a bounded explicit completed batch and a
+shared parent/trial/result index, using the unchanged packing reader, archive
+sync primitive and durable create-only campaign record writer. The new
+`metal-fdp-review-publication` v1 receipt is independently pinned by
+`record_sha256`; `inspect-recorded-fdp` can consume it or the original explicit
+pins. Existing source formats/defaults stay unchanged; no migration is required.
+**16 final focused tests** pass in 10.94 s. An installed two-trial synthetic
+producer/readback uses 1,538 B of receipt metadata; all results survive source
+removal and relocation. Indexing adds no parent replay; existing packing still
+performs eight parent reads for two trials. Interrupted publication issues no
+selectable completed receipt. No native fit, cleanup, whole suite or A01/A02
+advance follows. Local evidence: `fdp-publication-20261120-01/{validation.json,
+installed/result.json}`. See the
+[storage contract](metal-campaign-storage.md#completed-batch-publication-and-selection-receipt).
+
 ### Ordinary recorded-result CLI
 
 The maintained historical inspector now has a stdout-only normal CLI consumer,
@@ -95,14 +112,17 @@ campaign orchestration or retirement. See the
 **Investigator clarification received after this audit:** B:7 O3′ → B:1 P is
 an explicitly declared symmetry continuation forming the triangle's central
 strand. This supersedes the earlier absence of B:1 chemical intent below.
-C/D were described tentatively as the crossover strand; the exact D:7 → C:8
-assignment remains provisional. D:1 retains its terminal-phosphate declaration.
+The investigator subsequently confirmed the C/D crossover conditional on A
+having 21 residues. That condition holds in all three pinned models: A:1–A:21.
+The D:7 O3′ → C:8 P correspondence remains source-derived, and native symmetry
+enforcement still needs qualification. D:1 retains its terminal phosphate.
 The coordinate-derived operators have not become user-specified geometry or
 native qualification. In the current pinned model, `-y,x-y,z` places B:7 O3′
 relative to identity B:1 P; the directed B:7 O3′ → B:1 P edge therefore uses
 the **inverse** target image `-x+y,-x,z`. Retain that direction explicitly.
-Local authority: `ft-symmetry-contacts-20261120-03/user-connection-intent.json`;
-the earlier audit/contact records remain historical evidence, not overwritten.
+Local current authority: `ft-symmetry-contacts-20261120-03/user-connection-intent-v2.json`;
+the earlier declaration and audit/contact records remain historical evidence, not overwritten.
+Cedar leads deeper construct-topology review against its existing records.
 No executable recipe, recut packet, model change or accepted parent follows.
 
 A source-only audit of the actual `d69966…` parent preserves all nine input pins

@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Publish completed frozen-trial review identities
+
+- Add explicit completed-batch input publication with one shared parent index
+  and exact trial/result identities. Sync the archive, then publish its final
+  receipt through the existing durable create-only campaign writer.
+- Add `metal publish-fdp-inputs` and independently pinned receipt selection to
+  `inspect-recorded-fdp`; preserve the original explicit-pin invocation.
+  Failed/interrupted publication grants no selectable completed receipt.
+- Introduce only `metal-fdp-review-publication` v1; existing trial/archive
+  formats and scientific defaults are unchanged. No cleanup or new fit follows.
+
 ### Inspect archived metal results from the command line
 
 - Add `nasolve metal inspect-recorded-fdp` with explicit archive, projection,
@@ -20,7 +31,7 @@ entries are reconstructed from repository history.
 ### Record independent FT symmetry and checkpoint input gaps
 
 - Record subsequent investigator confirmation of the FT B:7→B:1 symmetry
-  continuation; keep C/D correspondence provisional and distinguish directed
+  continuation and C/D crossover after verifying A:1–A:21. Distinguish directed
   operator realization from chemical intent and native enforcement.
 - Bind the current FT source declarations to their frozen sequence, selected
   model, pairing, phosphate and coordination inputs. Preserve unresolved B:1/C:8

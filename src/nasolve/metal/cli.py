@@ -43,14 +43,24 @@ def configure(subparsers):
             parser.add_argument('--json', action='store_true')
     recorded = actions.add_parser('inspect-recorded-fdp', help='read one pinned historical result from an input archive; no new audit or native run')
     recorded.add_argument('--archive', type=Path, required=True)
-    recorded.add_argument('--archive-sha256', required=True, help='independently retained archive checksum')
-    recorded.add_argument('--projection-id', required=True)
+    recorded.add_argument('--archive-sha256', help='independently retained archive checksum')
+    recorded.add_argument('--projection-id')
     recorded.add_argument('--trial-id', required=True, help='exact saved attempt identity')
-    recorded.add_argument('--expected-parent', type=Path, required=True,
+    recorded.add_argument('--expected-parent', type=Path,
                           help='independently retained parent identity JSON; no original model required')
     recorded.add_argument('--max-input-bytes', type=int, help='tighten the shared archive expansion budget')
     recorded.add_argument('--json', action='store_true', help='print the complete recorded inspection without rounding')
     recorded.set_defaults(output=None)
+    recorded.add_argument('--publication', type=Path, help='completed batch receipt, instead of individual archive/projection/parent pins')
+    recorded.add_argument('--publication-id', help='independently retained publication identity; required with --publication')
+    publish = actions.add_parser('publish-fdp-inputs', help='archive an explicit completed trial batch and publish a pinned review receipt')
+    publish.add_argument('run', type=Path)
+    publish.add_argument('--trial', type=Path, action='append', required=True)
+    publish.add_argument('--archive', type=Path, required=True, help='new archive outside the source run')
+    publish.add_argument('--output', type=Path, required=True, help='new publication receipt outside the source run')
+    publish.add_argument('--max-trial-bytes', type=int, default=1024**3)
+    publish.add_argument('--max-input-bytes', type=int)
+    publish.add_argument('--json', action='store_true')
     inspect = actions.add_parser('inspect', help='read one generated W checkpoint and its observation wavelength')
     preview = actions.add_parser('preview', help='bind a recipe to an explicit generated W checkpoint')
     build = actions.add_parser('build', help='add explicitly placed metal sites in a new review bundle')
@@ -157,6 +167,8 @@ def execute(args):
         outputs = [p for p in (args.output, getattr(args, 'export', None)) if p is not None]
         if len({p.resolve() for p in outputs}) != len(outputs) or any(p.exists() or p.is_symlink() for p in outputs):
             raise RecipeError('Outputs must be distinct new files')
+        if args.metal_action == 'publish-fdp-inputs':
+            return _publish_fdp(args)
         if args.metal_action == 'inspect-recorded-fdp':
             return _recorded_fdp(args)
         if args.metal_action == 'inspect-fdp-storage':
@@ -641,19 +653,43 @@ def _fdp_count_comparison(args):
     return 0
 
 
+def _publish_fdp(args):
+    from .publication import publish_fdp_inputs
+    options = {} if args.max_input_bytes is None else {'max_input_bytes': args.max_input_bytes}
+    receipt = publish_fdp_inputs(args.run, args.trial, args.archive, args.output,
+                                max_trial_bytes=args.max_trial_bytes, **options)
+    if args.json:
+        print(json.dumps(receipt, indent=2, allow_nan=False))
+    else:
+        print(f"Published {len(receipt['attempts'])} recorded attempts; {len(receipt['parents'])} shared parents.")
+        print('Publication identity: ' + receipt['record_sha256'])
+        print('Historical review only; no new fit, reuse or retirement authority.')
+    return 0
+
+
 def _recorded_fdp(args):
     from .compact import read_projection
     from .input_archive import inspect_recorded_fdp
-    # Reuse the bounded, duplicate-key-rejecting JSON reader. Parent references
-    # are data: do not resolve them or rediscover the original run.
-    try:
-        parent = read_projection(args.expected_parent, max_projection_bytes=16 * 1024)
-    except RecipeError as exc:
-        raise RecipeError('Cannot read expected parent JSON: ' + str(exc)) from exc
     options = {} if args.max_input_bytes is None else {'max_input_bytes': args.max_input_bytes}
-    report = inspect_recorded_fdp(args.archive, args.archive_sha256,
-        projection_id=args.projection_id, trial_id=args.trial_id,
-        expected_parent=parent, **options)
+    explicit = (args.archive_sha256, args.projection_id, args.expected_parent)
+    if args.publication is not None:
+        from .publication import inspect_published_fdp, MAX_PUBLICATION_BYTES
+        if not args.publication_id or any(p is not None for p in explicit):
+            raise RecipeError('Publication requires its independent identity and cannot mix individual pins')
+        publication = read_projection(args.publication, max_projection_bytes=MAX_PUBLICATION_BYTES)
+        report = inspect_published_fdp(args.archive, publication,
+            publication_id=args.publication_id, trial_id=args.trial_id, **options)
+    else:
+        if args.publication_id is not None or any(p is None for p in explicit):
+            raise RecipeError('Require archive/projection/parent pins or a pinned publication receipt')
+        # Parent references are data, not instructions to reopen the source run.
+        try:
+            parent = read_projection(args.expected_parent, max_projection_bytes=16 * 1024)
+        except RecipeError as exc:
+            raise RecipeError('Cannot read expected parent JSON: ' + str(exc)) from exc
+        report = inspect_recorded_fdp(args.archive, args.archive_sha256,
+            projection_id=args.projection_id, trial_id=args.trial_id,
+            expected_parent=parent, **options)
     if args.json:
         print(json.dumps(report, indent=2, allow_nan=False))
     else:
