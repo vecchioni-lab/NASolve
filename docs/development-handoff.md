@@ -1,5 +1,14 @@
 # NASolve development handoff — Willow
 
+**W172:** the actual private parent-preparation boundary now checks independently
+declared topology before restoring child coordinates. A separate explicit-policy
+control passes before/after a prospectively bound 0.048 Å maximum move: 38 backbone
+links, 51 soft distances and all 213 supplied restraints remain. Legacy W168's
+SS-enabled policy is correctly held for missing explicit authority. No refinement
+or installed hook; ordinary selected-checkpoint/request binding is next.
+[Exact scope, controls and setup stops](topostitch-periodic.md#w172--require-declared-topology-before-parent-coordinate-transfer).
+
+
 Updated **2026-11-20**, through **W171**. W168’s private native diagnostic now retains
 known parent chemistry at the ordinary 3 Å interpretation cutoff while diffraction
 and refinement use the displaced child. One five-cycle run recovers **2.288 →

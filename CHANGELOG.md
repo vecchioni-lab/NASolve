@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W172 — Require intended topology before retained-parent motion
+
+- Record saved positive/unintended-bond controls and a live preparation gate that
+  holds the legacy soft policy before coordinate transfer. A separately declared
+  explicit-policy dry-run retains all intended links and supplied restraints
+  through a small prospectively bound move.
+- Preserve setup failures and scope limits. Documentation/local diagnostics only;
+  no installed hook, schema/default, refinement or automatic adoption change.
+
 ### Visualization preference
 
 - Add `camera ortho` to the shared defaults and Python snippet for newly

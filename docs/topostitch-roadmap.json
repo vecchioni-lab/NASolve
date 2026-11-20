@@ -232,14 +232,15 @@
         "W167 records user/Hazel/Rowan coordination: intact cluster rigid pose, then bounded coupled DNA opening/closing when needed, source chemical geometry/exclusions, neighboring-step/donor/width measurements and Alder A03/A07 recovery/assessment. Bridge linearity, cluster shape/local coordination/oxidation and count hypotheses remain distinct. Planning only. No dedicated width mode, cluster experiment, new target/default or combined-runtime qualification; W166 signed-bend geometry transport and FT_Hg descriptive evidence cannot qualify cluster accommodation.",
         "W168 carries parent-derived same-ASU chemistry through child-native diffraction preparation at the default 3 A cutoff. Two dry-runs pass 102 checks with exact initial Fcalc/Fmodel/masks and 7554 original tuples/389 Free; 38 links, the stretched bond/four angles and complete fixed geometry/policies remain. One admitted five-cycle native fit passes 39 cold checks and improves selected RMS 2.287991 to 0.271141 A (prior 4 A control 0.279044);RW/RF .0467/.0589. Local covalent RMS .007954 A/1.965877 deg, largest angle deviation 10.54 deg; all 126 sugar signs remain. Endpoints differ .008788 A RMS, not exact replay. One canonical signed synthetic control, private process-local wrappers, not an installed/ordinary workflow, new link inference, modified chemistry, cluster widening, symmetry-seam qualification or accepted repair. Native diffraction is constructed before chemical interpretation, so the former pre-fmodel description is superseded for this entry. Complete source topology and input-admission/execution integration remain separate gates; no further fit queued.",
         "W169 reuses audit_masked_endpoint and rebind_pair_recipe on actual W168 source/candidate bytes. Real displacement and no-op pass; eight altered children are refused by the endpoint owner, while generic rebinding keeps its intended B-change and unrestricted-coordinate scope. Source 27 / existing installed C407 29 checks pass with exact scientific readback; five owner modules are byte-identical. No missing fixed-B/Q helper was found, no product code changed and no native call or fit ran. Cold byte/mask binding only. Supplied coordinates are saved three-decimal PDB points; the 5 A audit bound is declared posthoc and does not authenticate the original unrounded proposal or prospective admission. A fresh seven-pair recipe exercises binding only and does not replace executed native restraints. Existing installed-package replay is not a fresh installation qualification. Source chemistry/site symmetry, native topology/exclusions, fresh diffraction, callback lifetime and ordinary ancestry still require supported integration.",
-        "W171: Optional parent_model_bytes on load_bend_motion compares the admitting caller's immutable parent snapshot with the pinned preview source before returning the existing full-precision motion. Both preview schemas compose with the unchanged strict endpoint audit. Coordinate, B/Q, identity and metadata drift, mutable/non-byte input and sub-rounding bound violations are refused. Twelve new cases fail before; 118 focused and 118 source-free relocated installed tests pass, with 93 package-file hashes, pip check and six entry-point helps. Snapshot binding only: caller still owns checkpoint identity, dispatch freshness and retained-parent/native lifecycle integration. Existing calls/returns and artifacts need no migration; no default, tensor policy, chemistry, CLI or native execution changes. Canonical registered-terminal-preview scope; no modified-metal opening, covalent closure, new refinement or scientific acceptance. No full-suite rerun for this isolated additive API change."
+        "W171: Optional parent_model_bytes on load_bend_motion compares the admitting caller's immutable parent snapshot with the pinned preview source before returning the existing full-precision motion. Both preview schemas compose with the unchanged strict endpoint audit. Coordinate, B/Q, identity and metadata drift, mutable/non-byte input and sub-rounding bound violations are refused. Twelve new cases fail before; 118 focused and 118 source-free relocated installed tests pass, with 93 package-file hashes, pip check and six entry-point helps. Snapshot binding only: caller still owns checkpoint identity, dispatch freshness and retained-parent/native lifecycle integration. Existing calls/returns and artifacts need no migration; no default, tensor policy, chemistry, CLI or native execution changes. Canonical registered-terminal-preview scope; no modified-metal opening, covalent closure, new refinement or scientific acceptance. No full-suite rerun for this isolated additive API change.",
+        "W172 binds a fresh registered 60-atom,0.048166 A maximum preview through W171 and the strict endpoint owner, then checks actual parent topology before and after private native transfer. No optimizer or installed/ordinary lifecycle qualification."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "Use W171 parent_model_bytes with the pinned registered-preview loader and W169 strict endpoint/recipe owners. Supply the actual current-parent snapshot, bind checkpoint/request identity and recheck consumed inputs at dispatch before supported retained-parent chemistry/child diffraction. Native identity mapping, source topology/policies, callback/output proof and ordinary ancestry remain open. Do not retrofit W163 interior-taper provenance. Coupled opening/polymer closure, noisy density calibration, reciprocal targets and B09/B10 remain separate gates. W170 descriptive B2/A13 map review is complete; its distortion and causal/remedial question remain open, with no repeated sampling or identical fit queued.",
+      "next_action": "Bind a real selected checkpoint/request to W171 parent-snapshot and strict endpoint owners, retaining dispatch freshness. Reuse W172 live-topology boundary and explicit policy/control; ordinary installation/lifecycle and complete source chemistry remain open. Keep legacy SS-enabled W168 at REVIEW; do not infer soft authority or repeat its fits. Preserve phosphate and symmetry intent; modified/metal admission stays separate with Alder. No additional tiny motion or identical preflight is needed without a changed integration question.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -273,14 +274,15 @@
         "E_CLUSTER_ACCOMMODATION_PLAN",
         "E_PARENT_PREPARATION_RECOVERY",
         "E_EXISTING_COORDINATE_ADMISSION",
-        "E_SAVED_PARENT_BINDING"
+        "E_SAVED_PARENT_BINDING",
+        "E_LIVE_PARENT_TOPOLOGY"
       ],
       "last_audit": {
         "date": "2026-11-20",
-        "code_commit": "ab84322f6697fc29a25c170b1dbdbab11282c6c9",
-        "human_update": 171,
-        "reviewer": "Linden; scope coordinated with Hazel and Rowan",
-        "scope": "Isolated additive current-parent snapshot binding; focused/source-free installed checks, no native execution"
+        "code_commit": "a1df851398fd743b3d1723fdd5c0a31916bef15c",
+        "human_update": 172,
+        "reviewer": "Linden; coordinated with Rowan and Hazel",
+        "scope": "Saved topology controls and private actual native preparation/transfer; no installed execution or general repair closure"
       }
     },
     {
@@ -314,14 +316,15 @@
         "W167 records user/Hazel/Rowan coordination: intact cluster rigid pose, then bounded coupled DNA opening/closing when needed, source chemical geometry/exclusions, neighboring-step/donor/width measurements and Alder A03/A07 recovery/assessment. Bridge linearity, cluster shape/local coordination/oxidation and count hypotheses remain distinct. Planning only. No dedicated width mode, cluster experiment, new target/default or combined-runtime qualification; W166 signed-bend geometry transport and FT_Hg descriptive evidence cannot qualify cluster accommodation.",
         "W168 carries parent-derived same-ASU chemistry through child-native diffraction preparation at the default 3 A cutoff. Two dry-runs pass 102 checks with exact initial Fcalc/Fmodel/masks and 7554 original tuples/389 Free; 38 links, the stretched bond/four angles and complete fixed geometry/policies remain. One admitted five-cycle native fit passes 39 cold checks and improves selected RMS 2.287991 to 0.271141 A (prior 4 A control 0.279044);RW/RF .0467/.0589. Local covalent RMS .007954 A/1.965877 deg, largest angle deviation 10.54 deg; all 126 sugar signs remain. Endpoints differ .008788 A RMS, not exact replay. One canonical signed synthetic control, private process-local wrappers, not an installed/ordinary workflow, new link inference, modified chemistry, cluster widening, symmetry-seam qualification or accepted repair. Native diffraction is constructed before chemical interpretation, so the former pre-fmodel description is superseded for this entry. Complete source topology and input-admission/execution integration remain separate gates; no further fit queued.",
         "W169 reuses audit_masked_endpoint and rebind_pair_recipe on actual W168 source/candidate bytes. Real displacement and no-op pass; eight altered children are refused by the endpoint owner, while generic rebinding keeps its intended B-change and unrestricted-coordinate scope. Source 27 / existing installed C407 29 checks pass with exact scientific readback; five owner modules are byte-identical. No missing fixed-B/Q helper was found, no product code changed and no native call or fit ran. Cold byte/mask binding only. Supplied coordinates are saved three-decimal PDB points; the 5 A audit bound is declared posthoc and does not authenticate the original unrounded proposal or prospective admission. A fresh seven-pair recipe exercises binding only and does not replace executed native restraints. Existing installed-package replay is not a fresh installation qualification. Source chemistry/site symmetry, native topology/exclusions, fresh diffraction, callback lifetime and ordinary ancestry still require supported integration.",
-        "W170 saved-map review locates signed residuals at both remaining distorted sites; A13 C5-prime has higher ordinary density at the misplaced point. Geometry and signed context remain necessary in this noiseless example. Repair and causal diagnosis remain open; see E_SAVED_RESIDUAL_MAP_REVIEW."
+        "W170 saved-map review locates signed residuals at both remaining distorted sites; A13 C5-prime has higher ordinary density at the misplaced point. Geometry and signed context remain necessary in this noiseless example. Repair and causal diagnosis remain open; see E_SAVED_RESIDUAL_MAP_REVIEW.",
+        "W172 reproduces saved declared/unintended-bond controls and holds legacy W168 soft-policy ambiguity. The separate explicit-policy live control retains38 backbone links,51 soft distances,all213 supplied terms and phosphate identities;35 cold checks. Chemistry and symmetry seams remain separate."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Use W171 parent_model_bytes with the pinned registered-preview loader and W169 strict endpoint/recipe owners. Supply the actual current-parent snapshot, bind checkpoint/request identity and recheck consumed inputs at dispatch before supported retained-parent chemistry/child diffraction. Native identity mapping, source topology/policies, callback/output proof and ordinary ancestry remain open. Do not retrofit W163 interior-taper provenance. Coupled opening/polymer closure, noisy density calibration, reciprocal targets and B09/B10 remain separate gates. W170 descriptive B2/A13 map review is complete; its distortion and causal/remedial question remain open, with no repeated sampling or identical fit queued.",
+      "next_action": "Bind a real selected checkpoint/request to W171 parent-snapshot and strict endpoint owners, retaining dispatch freshness. Reuse W172 live-topology boundary and explicit policy/control; ordinary installation/lifecycle and complete source chemistry remain open. Keep legacy SS-enabled W168 at REVIEW; do not infer soft authority or repeat its fits. Preserve phosphate and symmetry intent; modified/metal admission stays separate with Alder. No additional tiny motion or identical preflight is needed without a changed integration question.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -398,14 +401,15 @@
         "E_CLUSTER_ACCOMMODATION_PLAN",
         "E_PARENT_PREPARATION_RECOVERY",
         "E_EXISTING_COORDINATE_ADMISSION",
-        "E_SAVED_RESIDUAL_MAP_REVIEW"
+        "E_SAVED_RESIDUAL_MAP_REVIEW",
+        "E_LIVE_PARENT_TOPOLOGY"
       ],
       "last_audit": {
         "date": "2026-11-20",
-        "code_commit": "42bf701be453b20673fa88bdda64c20db5c6411e",
-        "human_update": 170,
-        "reviewer": "Linden; scope shared with Rowan and Hazel",
-        "scope": "Read-only saved-map calculation and inspected static figure, not repair/detector qualification"
+        "code_commit": "a1df851398fd743b3d1723fdd5c0a31916bef15c",
+        "human_update": 172,
+        "reviewer": "Linden; coordinated with Rowan and Hazel",
+        "scope": "Saved topology controls and private actual native preparation/transfer; no installed execution or general repair closure"
       }
     },
     {
@@ -449,7 +453,8 @@
         "W167 records user/Hazel/Rowan coordination: intact cluster rigid pose, then bounded coupled DNA opening/closing when needed, source chemical geometry/exclusions, neighboring-step/donor/width measurements and Alder A03/A07 recovery/assessment. Bridge linearity, cluster shape/local coordination/oxidation and count hypotheses remain distinct. Planning only. No dedicated width mode, cluster experiment, new target/default or combined-runtime qualification; W166 signed-bend geometry transport and FT_Hg descriptive evidence cannot qualify cluster accommodation.",
         "W168 carries parent-derived same-ASU chemistry through child-native diffraction preparation at the default 3 A cutoff. Two dry-runs pass 102 checks with exact initial Fcalc/Fmodel/masks and 7554 original tuples/389 Free; 38 links, the stretched bond/four angles and complete fixed geometry/policies remain. One admitted five-cycle native fit passes 39 cold checks and improves selected RMS 2.287991 to 0.271141 A (prior 4 A control 0.279044);RW/RF .0467/.0589. Local covalent RMS .007954 A/1.965877 deg, largest angle deviation 10.54 deg; all 126 sugar signs remain. Endpoints differ .008788 A RMS, not exact replay. One canonical signed synthetic control, private process-local wrappers, not an installed/ordinary workflow, new link inference, modified chemistry, cluster widening, symmetry-seam qualification or accepted repair. Native diffraction is constructed before chemical interpretation, so the former pre-fmodel description is superseded for this entry. Complete source topology and input-admission/execution integration remain separate gates; no further fit queued.",
         "W169 reuses audit_masked_endpoint and rebind_pair_recipe on actual W168 source/candidate bytes. Real displacement and no-op pass; eight altered children are refused by the endpoint owner, while generic rebinding keeps its intended B-change and unrestricted-coordinate scope. Source 27 / existing installed C407 29 checks pass with exact scientific readback; five owner modules are byte-identical. No missing fixed-B/Q helper was found, no product code changed and no native call or fit ran. Cold byte/mask binding only. Supplied coordinates are saved three-decimal PDB points; the 5 A audit bound is declared posthoc and does not authenticate the original unrounded proposal or prospective admission. A fresh seven-pair recipe exercises binding only and does not replace executed native restraints. Existing installed-package replay is not a fresh installation qualification. Source chemistry/site symmetry, native topology/exclusions, fresh diffraction, callback lifetime and ordinary ancestry still require supported integration.",
-        "W170 completes descriptive review of six saved W164 maps, 44 backbone atoms and four coordinate states per map, with 108 checks and unchanged observations/Free. This is model-assisted synthetic evidence, not an independent validation or experimental detector calibration; see E_SAVED_RESIDUAL_MAP_REVIEW."
+        "W170 completes descriptive review of six saved W164 maps, 44 backbone atoms and four coordinate states per map, with 108 checks and unchanged observations/Free. This is model-assisted synthetic evidence, not an independent validation or experimental detector calibration; see E_SAVED_RESIDUAL_MAP_REVIEW.",
+        "W172 completes one private Phenix2.2.1-6174 dry-run after declared-topology admission, retaining child diffraction during parent interpretation and original observations/Free. No refinement, physical-recovery or independent child-diffraction comparison; no repeat fit queued."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -460,7 +465,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Use W171 parent_model_bytes with the pinned registered-preview loader and W169 strict endpoint/recipe owners. Supply the actual current-parent snapshot, bind checkpoint/request identity and recheck consumed inputs at dispatch before supported retained-parent chemistry/child diffraction. Native identity mapping, source topology/policies, callback/output proof and ordinary ancestry remain open. Do not retrofit W163 interior-taper provenance. Coupled opening/polymer closure, noisy density calibration, reciprocal targets and B09/B10 remain separate gates. W170 descriptive B2/A13 map review is complete; its distortion and causal/remedial question remain open, with no repeated sampling or identical fit queued.",
+      "next_action": "Bind a real selected checkpoint/request to W171 parent-snapshot and strict endpoint owners, retaining dispatch freshness. Reuse W172 live-topology boundary and explicit policy/control; ordinary installation/lifecycle and complete source chemistry remain open. Keep legacy SS-enabled W168 at REVIEW; do not infer soft authority or repeat its fits. Preserve phosphate and symmetry intent; modified/metal admission stays separate with Alder. No additional tiny motion or identical preflight is needed without a changed integration question.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -536,14 +541,15 @@
         "E_CLUSTER_ACCOMMODATION_PLAN",
         "E_PARENT_PREPARATION_RECOVERY",
         "E_EXISTING_COORDINATE_ADMISSION",
-        "E_SAVED_RESIDUAL_MAP_REVIEW"
+        "E_SAVED_RESIDUAL_MAP_REVIEW",
+        "E_LIVE_PARENT_TOPOLOGY"
       ],
       "last_audit": {
         "date": "2026-11-20",
-        "code_commit": "42bf701be453b20673fa88bdda64c20db5c6411e",
-        "human_update": 170,
-        "reviewer": "Linden; scope shared with Rowan and Hazel",
-        "scope": "Read-only saved-map calculation and inspected static figure, not repair/detector qualification"
+        "code_commit": "a1df851398fd743b3d1723fdd5c0a31916bef15c",
+        "human_update": 172,
+        "reviewer": "Linden; coordinated with Rowan and Hazel",
+        "scope": "Saved topology controls and private actual native preparation/transfer; no installed execution or general repair closure"
       }
     },
     {
@@ -4049,6 +4055,59 @@
           "scientific_acceptance": false
         }
       ]
+    },
+    "E_LIVE_PARENT_TOPOLOGY": {
+      "kind": "private_live_declared_topology_admission",
+      "human_update": 172,
+      "date": "2026-11-20",
+      "code_commit": "a1df851398fd743b3d1723fdd5c0a31916bef15c",
+      "reference": "docs/topostitch-periodic.md#w172--require-declared-topology-before-parent-coordinate-transfer",
+      "result": "W172 independently replays C345 declared two-link MATCH and C346 extra DA N6-DY C5T REVIEW. Inside actual Phenix parent preparation, legacy W168 stops before child restoration because SS-enabled soft membership is not C128-authorized. A separately declared C21 control consumes a prospectively bound W171 registered .25-degree motion (60 atoms; max0.048166 A;0.2 A bound). One completed dry-run retains38 declared backbone links,51 exact soft bonds,all213 supplied requests including20 original pair-planarity terms,complete bonded parameters,859 identities and phosphate oxygen inventory. Child diffraction is unchanged during parent interpretation.35 independent cold checks pass; two setup stops and one expected policy stop are preserved; zero optimization/refinement.",
+      "limitation": "Private canonical same-ASU preparation/transfer only; no installed hook, ordinary selected-checkpoint ancestry, modified/metal motion, symmetry-covalent seam, independent child diffraction control or physical recovery qualification. The explicit policy is a distinct objective, not a continuation of W168. DY is a saved negative control, not a fresh live DY trial. No global milestone closes or raw science enters Git.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w172-parent-topology/review.json",
+          "sha256": "a1356ed91fa9fa1041c4c4e671bf8c813b789a4323b1f0d9ebed037866b2ae4c",
+          "size": 6335
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w172-parent-topology/dy-cold-review.json",
+          "sha256": "4414cd1bc01c697fe183c8e95ebf7638f61fc89a9eaab25734c7b1de1e2efe05",
+          "size": 23873
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w172-parent-topology/positive-cold-review.json",
+          "sha256": "d43eebe8a949357d733702ef4b478744feaf6e759a2ff62a28979fa0a29baa92",
+          "size": 6599
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w172-parent-topology/attempt03/live-execution.json",
+          "sha256": "78408f4196ad6d23e112d3d66e0a35ad81cea7ccba32fb3b2ed6230a147ab2d1",
+          "size": 3166
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w172-parent-topology/explicit-control/live-execution.json",
+          "sha256": "0300c2ea2b7a0c9b13b7efd8a731c4984086dd239098cd30d6e4b53651991dd8",
+          "size": 5234
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w172-parent-topology/explicit-policy-attempt02/comparison.json",
+          "sha256": "63d3c6ad6b1b20da23978a750cb2f0fb6e8a3c835a6fddf76d2b0f37c9f0fbca",
+          "size": 76517
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w172-parent-topology/prospective-motion/admission.json",
+          "sha256": "4f85fb7aa2e0fcd41f99542cc7def38e8ec64c58958d3007ed37b08b3274a413",
+          "size": 50740
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -4210,8 +4269,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 171,
-    "next": 172,
+    "current": 172,
+    "next": 173,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -5047,6 +5106,12 @@
         "title": "Bind a saved motion to the current parent snapshot",
         "state": "RECORDED",
         "code_commit": "ab84322f6697fc29a25c170b1dbdbab11282c6c9"
+      },
+      {
+        "number": 172,
+        "title": "Require declared topology before parent-coordinate transfer",
+        "state": "RECORDED",
+        "code_commit": "a1df851398fd743b3d1723fdd5c0a31916bef15c"
       }
     ]
   },

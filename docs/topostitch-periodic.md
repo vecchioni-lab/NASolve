@@ -10174,3 +10174,86 @@ Its modified-metal scope does not enter this canonical endpoint admission route.
 The next bounded step is the supported caller/lifecycle composition, with real
 checkpoint identity and dispatch-time freshness; repeat neither the arithmetic
 qualification nor the already-completed matching-data fits.
+
+## W172 — Require declared topology before parent-coordinate transfer
+
+**Question.** Exact replay of a native manager can preserve an unwanted bond.
+The source declaration must therefore be checked independently before motion.
+Cedar's maintained C109 capture reader and C128 topology checker already own
+this comparison; no new bond classifier or origin-wide exemption was added.
+
+Cold authenticated controls reproduce C345's two intended O3′–P links (MATCH)
+and C346's 38 intended links plus the unwanted A:12 DA N6–B:4 DY C5T bond
+(REVIEW). The controls use their bundle-declared endpoints and model/receipt
+checksums. They do not authorize DY movement or rerun either native capture.
+
+The existing W168 private Phenix wrapper now checks the actual manager after
+parent interpretation, before child-coordinate restoration or optimizer entry.
+Its original SS-enabled frame remains REVIEW: all 38 backbone links exist, but
+the 51 explicit distances have no complete C128 soft-policy authorization. The
+original model, parameters and historical result are unchanged.
+
+A distinct control uses C21 to compile the frozen W152 `pairs.txt` (20 pairs)
+and original 38 stack declarations. All 155 original non-planarity explicit
+requests match; the original 20 pair-planarity requests are carried unchanged
+as a separate retained PHIL block. The 38 native stacking terms become explicit
+NAR requests, so this is a **new objective**, not W168 energy continuation.
+The compiler first refused a literal declaration with SS disabled; its required
+source declaration is enabled and its compiled output disables competing SS.
+Both inputs remain preserved.
+
+A fresh registered terminal preview supplies a prospective 0.25° rotation with
+a 0.2 Å hard bound. W171 loads it against the exact parent snapshot and the
+existing endpoint auditor verifies full-precision/serialized coordinates and
+every protected byte. Sixty atoms move; maximum serialized displacement is
+0.048166 Å. This tests admission, not a new bending-efficacy claim.
+
+The completed **Phenix 2.2.1-6174 dry-run** admits the fresh parent manager and
+retains, after child transfer, 38 declared backbone links, 51 individually
+verified soft distances, **213 exact custom requests**, all bonded parameter
+inventories, all 859 atom identities and P/OP1/OP2/OP3 inventory. Child diffraction
+is unchanged during parent-only interpretation; observations/Free are retained.
+No optimizer, macrocycle, refinement, Coot job or scientific adoption ran.
+
+Two setup stops precede the qualified policy stop/control. First, importing the
+full host topology module in Phenix encountered its transitive workbook
+dependency. The diagnostic stages unchanged pure C109/C128 functions and checks
+their complete-owner parity on both saved controls. Second, `model.process`
+clears its processed-PDB handle before returning. Retaining the actual
+interpreter return object fixes its lifetime. Each failed attempt retains its
+evidence and restores all five scoped hooks. No installed/native source is edited.
+
+**Validation:** `w172-review.py` passes **35 cold checks**, including host/native
+checker parity and Cedar's `custom_restraint_check` for all 213 terms. Four native
+preflight launches comprise two setup stops, one intended policy stop and one
+completed dry-run. The compiler and registered-preview checks run without native
+optimization. Human/machine documentation uses existing roadmap tests and audit;
+no full suite or install repetition for this documentation/private-diagnostic slice.
+
+Exact local evidence is under the NASolve anchor
+`branch-artifacts/willow/w172-parent-topology/`; `review.json`, the two cold
+reviews, `attempt03/live-execution.json`, `explicit-control/live-execution.json`,
+the explicit-policy comparison and prospective-motion admission are pinned in
+the machine roadmap. Controllers are in `branch-artifacts/willow/runners/`:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w172-topology-cold.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w172-explicit-policy.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w172-motion.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w172-prepare.py --explicit
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/willow-w94-pivot/env/bin/python -B branch-artifacts/willow/runners/w172-review.py
+```
+
+These record completed invocations, not instructions to overwrite their output.
+Attempt controllers/helper snapshots are retained inside their exact job roots.
+The positive cold control was a separate recorded host invocation. No generated
+science is committed. Portable checkpoint/resumption is not claimed.
+
+**Remaining:** private canonical same-ASU preparation only; no installed hook,
+ordinary selected-checkpoint ancestry, symmetry covalent seam, modified/metal
+admission or physical recovery qualification. The live negative is the legacy
+soft-policy refusal; DY remains a separate saved negative. A matched independent
+child-diffraction control remains distinct from the observed unchanged fmodel.
+Next bind the actual selected checkpoint/request and dispatch freshness before
+promoting this native entry. Do not repeat the same tiny move or old recovery fits.
+S04/S05/S06 stay PARTIAL. Alder owns typed coordination declarations separately.

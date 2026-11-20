@@ -1223,6 +1223,29 @@
       "checkpoint_or_dispatch_authority": false,
       "retained_native_lifecycle_qualified": false,
       "modified_metal_motion_qualified": false
+    },
+    "retained_parent_topology_admission": {
+      "human_update": 172,
+      "reference": "docs/topostitch-periodic.md#w172--require-declared-topology-before-parent-coordinate-transfer",
+      "installed": false,
+      "ordinary_checkpoint_qualified": false,
+      "live_private_diagnostic_qualified": true,
+      "topology_owner": "nasolve.cif_topology_gate.review_native_topology",
+      "source_capture_owner": "nasolve.cif_attachment_native._capture",
+      "admission_order": [
+        "Bind exact current parent and prospective motion",
+        "Authenticate source capture and independent link/soft declarations",
+        "Interpret parent chemistry",
+        "Read actual manager and require exact topology before restoring child coordinates",
+        "Recheck topology, all supplied restraints and fixed parameters after transfer"
+      ],
+      "legacy_ss_policy": "REVIEW; matching native inventories cannot grant missing soft-restraint authority",
+      "explicit_control": "Distinct C21 policy with all20 original pair-planarity requests retained",
+      "canonical_scope_only": true,
+      "symmetry_covalent_seams_qualified": false,
+      "modified_metal_motion_qualified": false,
+      "optimization_runs": 0,
+      "next_action": "Bind a real selected checkpoint/request to W171 parent-snapshot and strict endpoint owners, retaining dispatch freshness. Reuse W172 live-topology boundary and explicit policy/control; ordinary installation/lifecycle and complete source chemistry remain open. Keep legacy SS-enabled W168 at REVIEW; do not infer soft authority or repeat its fits. Preserve phosphate and symmetry intent; modified/metal admission stays separate with Alder. No additional tiny motion or identical preflight is needed without a changed integration question."
     }
   },
   "planned_diffraction_benchmark": {
