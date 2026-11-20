@@ -20,8 +20,8 @@ issues. No accepted endpoint or new f″ result follows. See
 [matched continuation](#a01-matched-ordinary-continuation) below. The latest compact
 checkout is `ScienceCheckouts/Hazel/2026-11-20_matched-continuation/review.html`;
 its adjacent `open_report.py` opens it with standard Python, without native work.
-Next engineering step: A04 protected-parent session, separately from geometry
-acceptance. Rowan confirms no newer shared session owner exists.
+A04 now has a modern-parent recovery proof, separately from geometry acceptance;
+production lifecycle and trusted-software integration remain next.
 
 **Early session, 20 November:** the selected-state capture and two bounded
 FT_Hg motion profiles are complete. The modest coupled movement is ready for
@@ -83,6 +83,25 @@ input. Recover declared links from preparation before pruning terminal atoms;
 neighbor distances are inventory evidence, not link authority. This read-only
 map is under the shared local `cedar/c409-declared-donor-state/` artifact anchor.
 
+**A04 modern-parent recovery, 20 November: complete diagnostic proof.** The
+retained modern checked root recovers all four checkpoints through unchanged
+installed readers, with original science/source reads denied: **876 checks**,
+one full registry read (**105.35 s**), subsequent resolutions **0.027 s**, and
+zero native calls. All 392 original files remain exact. The private bounded
+multipart layout stores **35,686,175 B**; its explicit peak disk bound is
+**246,609,670 B**, including reader workspace. Temporary copies are removed.
+Sixteen synthetic entry/exit refusal checks pass. A04 remains partial: public
+parent publication/session lifecycle, complete software identity, campaign
+reservations and retirement are still unimplemented. The
+[storage contract](metal-campaign-storage.md#modern-parent-recovery-proof)
+records preserved failed attempts, scope and next steps. Evidence:
+`modern-parent-20261120-04/` under the Alder artifact anchor.
+
+The call-path audit confirms current frozen metal trials already replay saved
+context/source inputs; they do not perform C414's full registry walk per point.
+The measured registry cost belongs to parent intake. Do not introduce a redundant
+validation cache or describe it as a measured per-point performance improvement.
+
 **A04 remains partial: lean frozen-trial storage.** Read-only inventory, scenario
 forecast, lossless compact projection and exact input archive transport are
 implemented. The adapter reuses the shared archive/temporary-view owner, preserves
@@ -97,8 +116,8 @@ seven missing/changed-dependency refusals. Exact archived-request reproductions
 then return identical complete result records in **7.83 s (Hg)** and
 **17.15 s (four Ag)** under the original trusted worker/native hashes.
 These are diagnostic recovery checks, not scientific solutions. No new public
-storage interface or deletion follows. Modern checked ancestry and full software
-identity remain open; details and receipt anchors are in the
+storage interface or deletion follows. Modern checked ancestry is now recovered in the separate diagnostic proof above;
+production retention and full software identity remain open. Receipt anchors are in the
 [storage contract](metal-campaign-storage.md#bounded-protected-parent-and-regeneration-rehearsal).
 
 Construction is chemistry/connectivity driven. PDU and DF are qualification
@@ -271,7 +290,12 @@ The capture seam is a private **ML/MLHL** precedent, not an LS-general supported
 API. Future consumers need their own parent/stage qualification. Reuse the
 existing `parallelity_parameters` collector on the actual frame to include
 `limit`; the retained C397 inventory alone is insufficient to reconstruct all
-native energies. Per-atom gradient projections and shared scalar geometry are
+native energies. Its dihedral inventory also omits `limit`, `top_out` and
+`slack`; historical captures cannot be retroactively completed. Willow's existing
+`topostitch_native_terms.checked_proxy_rows` already checks those live fields and
+refuses unsupported nondefaults: this is a private capture-scope limitation,
+not a newly discovered supported-reader defect. No repeated fit is needed to
+qualify the older inventory's narrower recorded scope. Per-atom gradient projections and shared scalar geometry are
 not per-restraint energies. Runtime, public schemas and migration remain unchanged.
 
 ## New readbacks and declared donor state

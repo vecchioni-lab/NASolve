@@ -1,6 +1,6 @@
 # Metal campaign storage and recovery plan
 
-Status: **inventory, compact projection and exact input transport implemented; complete retention/regeneration pending**; 19 November 2026.
+Status: **inventory, compact projection and exact input transport implemented; complete retention/regeneration pending**; 20 November 2026.
 The [post-merge development roadmap](metal-development-roadmap.md) places this
 work at **A04**, after single-dataset ligand/open-refinement qualification and
 before large f″ campaigns. It is a feature milestone after merge, not a
@@ -226,10 +226,12 @@ exhaustively traced, and no metal verifier or root-free relocation was exercised
 
 That single instrumented registry read takes **88.48 s**, with 1,774 temporary
 write-open events and 81,328 temporary read-open events. Open counts are not
-bytes transferred or campaign performance estimates. They identify a design
-boundary: repeating full ancestry expansion per short frozen-f″ point may cost
-more than its native fit. Reuse the retained parent, not only the ten returned
-operational inputs, and do not copy or wrap the complete root per point.
+bytes transferred or campaign performance estimates. This is parent-intake cost:
+the current frozen metal verifier already uses its saved context/source bundle
+and does **not** repeat that registry walk per point. The future retained-parent
+executor should preserve this boundary, retaining complete parent evidence once
+instead of copying or reopening it for every short frozen-f″ point. No measured
+per-point speedup or need for a separate validation cache follows.
 
 The next bounded executor design should verify a protected parent once into an
 owned immutable view, pin its complete evidence/software identities, and validate
@@ -245,6 +247,59 @@ Census: `cedar/c414-checked-root-dependencies/classified-census.json` under
 `4391f0d2a20f5f24b004e59f235156cd6f167fc40dfca21086165a2f412627de`.
 C401's protected parent and C403's nonstandalone child delta already exist; reuse
 their owners and evidence. This census creates no archive and authorizes no pruning.
+
+## Modern-parent recovery proof
+
+The 20 November diagnostic proof recovers C412's complete isolated modern root
+through the installed ordinary readers: original PostMR plus three refinement
+checkpoints, unchanged selection, exact models/observations/restraints and
+ancestry. It retains all **392 original files / 76,570,165 B**, rather than treating
+the C414 census as exhaustive. Seven colon-named Coot backups are retained as
+exact opaque attachments with an explicit original-name/hash map. Their original
+bytes are preserved; they are neither decompressed nor inferred as dependencies.
+Scientific operational paths remain unchanged.
+
+The private layout includes its mapping: **393 files / 76,705,767 logical B**,
+**247 unique objects / 62,410,176 B**, and **35,686,175 compressed B**. It uses
+bounded parts decoded by the unchanged shared archive owner. Each part respects
+the original 32 MiB compressed cap and the complete index respects the shared
+file/logical/unique-object bounds. This is a diagnostic adapter, not a new public
+schema or a reason to enlarge shared caps.
+
+Three useful refusals are preserved: unsafe backup names, the whole archive
+exceeding 32 MiB, and ordinary checked intake refusing an already-active outer
+working view. The successful lifecycle materializes one protected snapshot,
+closes the transport scope, and only then calls the ordinary readers, which own
+their separate archive scopes. Read-only modes and full entry/exit hashes detect
+observed changes; they are not isolation against same-user chmod or privileged
+access. A conservative whole-task disk bound of **246,609,670 B** includes stored
+parts, copy overlap and the reader's full temporary allowance, below the declared
+256 MiB task budget. This is an explicit calculated bound, not measured peak
+physical allocation, RAM usage or a campaign reservation.
+
+Cold recovery passes **876 checks**, with one full registry read (**105.35 s**)
+and four subsequent checkpoint resolutions (**0.027 s**). Original science and
+source reads are denied; the original files remain physically present and
+unchanged. The installed package's 345 files remain pinned. No Phenix/Coot call,
+checkpoint selection or scientific acceptance occurs. The owned process stops
+and both transport and protected temporary views are removed. Sixteen small
+synthetic checks cover changed/missing/escaping parts, complete-index changes,
+changed/extra/symlink snapshot inputs and cleanup. They qualify prototype
+entry/exit behavior, not per-trial invalidation or crash recovery.
+
+Receipts: `modern-parent-20261120-04/` under the Alder artifact anchor, including
+`packing.json`, `snapshot-execution.json`, `snapshot-recovery/cold-review.json`
+and `boundary-checks.json`; preceding attempts 01–03 and the first nested-view
+failure remain retained. Exact commands are in the execution receipts. Cold read:
+Python 3.12.14 `-B runners/A207_cold_snapshot.py`, with the pinned installed package;
+boundary checks: `-B runners/A208_parent_boundary_checks.py`. No full suite or
+unchanged native refinement was rerun. Generated bundles/reports stay local.
+
+**Next:** settle the shared production lifecycle owner, qualify trusted software
+identity and the lean frozen-child audit/regeneration contract, then add explicit
+campaign reservations and crash-safe publication/retirement. Preserve important
+geometry parents throughout. No original run is yet eligible for deletion, and
+the diagnostic recovery alone does not provide a reusable metal-trial session.
 
 ## Governing decision
 

@@ -75,8 +75,11 @@ coordination still needs review. A01 remains partial, A02 gated. No new runtime,
 accepted model or f″ parent follows. The metal handoff owns exact results;
 the latest compact checkout is
 `ScienceCheckouts/Hazel/2026-11-20_matched-continuation/review.html`, with an
-adjacent standard-Python opener. Next bounded engineering scope is A04's
-protected-parent session; no new shared session or retirement owner exists yet.
+adjacent standard-Python opener. A04's separate modern-parent recovery proof
+now passes 876 cold checks and 16 synthetic refusals with no native calls or
+source changes. Production session, full software identity and retirement remain
+open; the [storage contract](metal-campaign-storage.md#modern-parent-recovery-proof)
+owns that boundary. Runtime and public schemas are unchanged.
 A09 remains deferred until after the main A01–A08 build.
 
 ## Scientific scope and owners

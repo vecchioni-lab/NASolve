@@ -1,6 +1,6 @@
 # Post-merge metal-coordination roadmap
 
-Updated **19 November 2026**. Working branch **Alder**. The feature milestones
+Updated **20 November 2026**. Working branch **Alder**. The feature milestones
 below are numbered **A01–A09** and are explicitly **post-merge work**. A09 is
 further deferred until after the main build and core A01–A08 work. These are
 not prerequisites for merging the current experimental implementation.
@@ -24,10 +24,13 @@ it does not yet retain complete parents or qualify native regeneration.
 A later bounded rehearsal recovers both legacy PostMR roots and metal parents
 from 782,402 bytes, then exactly reproduces two historical frozen-f″ result
 records. This is recovery feasibility, not a new production retention contract;
-modern checked ancestry, complete software identity and pruning remain open. The shared
-modern-root dependency census now identifies the larger checked-parent boundary;
-retain and validate it once per bounded trial session rather than per point.
-That session contract is planned, not implemented.
+modern checked ancestry is now recovered in a separate bounded diagnostic proof.
+That proof preserves all 392 source files, uses 35.7 MB of compressed parts and
+passes 876 cold checks with source reads denied. Complete software identity,
+public session lifecycle and pruning remain open. The full registry walk belongs
+to parent intake, not the current frozen-trial verification path; avoid a redundant
+per-point validation cache. The [storage contract](metal-campaign-storage.md#modern-parent-recovery-proof)
+owns the measured scope, prototype refusals and next production boundaries.
 Source-preserving construction, explicit restraint coverage and actual-state
 B export have mechanical evidence. Matched geometry, phase, iteration, map and
 scale controls leave the FT_Hg open-fit geometry gate unresolved. New native XYZ
@@ -118,9 +121,9 @@ descriptive; broad geometry and combined scientific evidence guide review.
    between bases, and then freeze XYZ/all ADPs/f′ for declared fixed-Q f″ trials.
    First demonstrate a small Hg occupancy-response set before widening the grid.
 3. **A04, before fan-out:** retain the complete protected modern parent once per
-   bounded session; check each trial's exact inputs and frozen state. Extend the
-   existing legacy recovery proof to modern ancestry/software identity before
-   any production retirement. Keep structural parents; regenerate cheap frozen
+   bounded session; check each trial's exact inputs and frozen state. The legacy and modern
+   ancestry recovery proofs now exist; qualify trusted software identity and
+   the production lifecycle before any retirement. Keep structural parents; regenerate cheap frozen
    increments from verified inputs and compact statistics under a disk budget.
 4. **A02/A03 → A07:** apply the same mechanics to mixed Au/Ag, then cluster totals
    and anomalous-background controls. Preserve element identities, occupancies,

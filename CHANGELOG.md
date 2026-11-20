@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record modern protected-parent recovery
+
+- Record bounded cold recovery of a complete modern checked parent, preserving
+  original files and existing archive caps. Distinguish private recovery evidence
+  from production session, native regeneration and retirement authority.
+- Clarify parent-intake versus frozen-point validation costs, and the narrower
+  scope of historical private dihedral captures. Public runtime, schemas and
+  migration requirements are unchanged.
+
 ### Record matched metal geometry continuation
 
 - Close the bounded unchanged-versus-shifted FT_Hg restart experiment, recording
