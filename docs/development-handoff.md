@@ -1,5 +1,14 @@
 # NASolve development handoff — Willow
 
+**W175:** the saved private canonical candidate now has a whole-context readback:
+**60 moving / 799 fixed atoms**, with all captured proxy definitions retained.
+Boundary support includes **2 distance restraints, 8 angles, 6 dihedrals and
+2 parallelity terms**. The original W172 native request remains authoritative;
+a separate naming-only request copy changes no input bytes. No new native run,
+motion or ordinary history. **64 cold plus 28 named-proxy checks pass.**
+[Evidence](topostitch-periodic.md#w175--bind-the-private-candidate-and-check-its-untouched-remainder) ·
+[first-capture contract and existing producers](topostitch.md#preserve-chemistry-before-a-bend-w175-integration-contract).
+
 **W174:** the W173 selected-parent binding now joins an existing Cedar frozen
 request, distinguishing the unchanged parent from exact preview-candidate bytes.
 Ordered inherited/adapted/additional restraints, phases and generated round
@@ -22,7 +31,7 @@ W174 joins the frozen request; retained-manager integration remains next.
 [Exact scope, controls and setup stops](topostitch-periodic.md#w172--require-declared-topology-before-parent-coordinate-transfer).
 
 
-Updated **2026-11-20**, through **W174**. W168’s private native diagnostic now retains
+Updated **2026-11-20**, through **W175**. W168’s private native diagnostic now retains
 known parent chemistry at the ordinary 3 Å interpretation cutoff while diffraction
 and refinement use the displaced child. One five-cycle run recovers **2.288 →
 0.271 Å RMS**, keeping all 38 backbone links, atom identities and checked sugar
@@ -192,9 +201,11 @@ W173 now composes W171's parent snapshot with the actual selected checkpoint,
 complete inherited input references and strict endpoint audit. Reuse
 `load_checkpoint_bend_motion`; do not add another checkpoint or byte guard.
 W174 now joins the maintained immutable request reader and its namespace
-adaptation owner. Next carry independently complete chemistry/soft-restraint
-authority for that exact parent/candidate into the native transfer gate, checking
-both the moving region and untouched remainder. Freeze consumed inputs under
+adaptation owner. W175 now audits the existing private source/candidate and its untouched
+remainder. Next preserve the existing prepared-topology and literal-compiler
+artifacts in the ordinary producer/request; no verified ordinary canonical parent
+currently carries that exact policy. Chemical acceptance and the native transfer
+hook remain separate. Freeze consumed inputs under
 executor ownership; re-reading the context supplies no atomic lock. Keep native interpretation reordering separate from input identity/order.
 The W163 interior taper is not a registered terminal preview, and replaying its historical parameters now cannot
 establish a prospective request for the old run. Preserve the first route's

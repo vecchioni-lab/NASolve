@@ -235,14 +235,15 @@
         "W171: Optional parent_model_bytes on load_bend_motion compares the admitting caller's immutable parent snapshot with the pinned preview source before returning the existing full-precision motion. Both preview schemas compose with the unchanged strict endpoint audit. Coordinate, B/Q, identity and metadata drift, mutable/non-byte input and sub-rounding bound violations are refused. Twelve new cases fail before; 118 focused and 118 source-free relocated installed tests pass, with 93 package-file hashes, pip check and six entry-point helps. Snapshot binding only: caller still owns checkpoint identity, dispatch freshness and retained-parent/native lifecycle integration. Existing calls/returns and artifacts need no migration; no default, tensor policy, chemistry, CLI or native execution changes. Canonical registered-terminal-preview scope; no modified-metal opening, covalent closure, new refinement or scientific acceptance. No full-suite rerun for this isolated additive API change.",
         "W172 binds a fresh registered 60-atom,0.048166 A maximum preview through W171 and the strict endpoint owner, then checks actual parent topology before and after private native transfer. No optimizer or installed/ordinary lifecycle qualification.",
         "W173 binds a saved canonical preview to an exact selected/current checkpoint and its anchored model, observations, ordered restraints and declared phases. It rechecks inputs around strict endpoint replay and supports a context pin for a fresh dispatch read. 138 focused plus 6 subtests and the same relocated/source-free installed suite pass; 25 added cases include selection drift, input races and old-path-gone relocation. Read-only admission only; no native hook, run lock, schema migration or scientific acceptance.",
-        "W174 joins W173 to Cedar-owned frozen execution requests, distinguishing parent/candidate model roles and ordered inherited/adapted/extra restraints, phases and generated round parameters.159 focused+6 subtests and relocated installed tests pass;21 new cases,223 cold checks on real C412 v3/v7 requests and17 synthetic supported-reader checks in both source and installed contexts. No native call, chemical admission, lock or ordinary motion qualification."
+        "W174 joins W173 to Cedar-owned frozen execution requests, distinguishing parent/candidate model roles and ordered inherited/adapted/extra restraints, phases and generated round parameters.159 focused+6 subtests and relocated installed tests pass;21 new cases,223 cold checks on real C412 v3/v7 requests and17 synthetic supported-reader checks in both source and installed contexts. No native call, chemical admission, lock or ordinary motion qualification.",
+        "W175 reuses W172 source/candidate, original genuine v3 request and actual saved manager views.64 cold binding checks plus28 maintained named-proxy checks preserve60 moving/799 fixed atoms and all captured definitions across moving/boundary/fixed partitions; boundary2 bonds/8 angles/6 dihedrals/2 parallelities. A separate diagnostic request only tests standard round-parameter naming with all4 input hashes unchanged. No native call, new motion/refinement or fabricated ordinary history; C128 chemical qualification remains NOT_ESTABLISHED."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "Join W172 complete independently declared canonical chemistry and the exact candidate to W174 child-input binding; audit moving and untouched regions against one parent. Use a supported source-bound native owner only with complete policy for that actual parent. A private diagnostic control cannot supply ordinary checkpoint ancestry; C412 modified PDU is not canonical preview authority. Keep FT and legacy soft-policy gaps at REVIEW, and coordinate the maintained native transfer hook with Cedar before any fit.",
+      "next_action": "Coordinate Cedar first-capture/publication integration: reuse prepared model topology, literal/explicit NAR input producers and complete native capture; preserve their authenticated references for the exact ordinary parent and candidate before the existing executor transfers coordinates. Do not regenerate expected topology from bent coordinates or retrofit a policy to legacy FT/W168. Qualify actual native lifetime only after the ordinary parent, source chemistry and compiled-input join is available; no duplicate capture/compiler/executor or repeated private fit.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -279,14 +280,15 @@
         "E_SAVED_PARENT_BINDING",
         "E_LIVE_PARENT_TOPOLOGY",
         "E_CHECKPOINT_MOTION_BINDING",
-        "E_EXECUTION_MOTION_BINDING"
+        "E_EXECUTION_MOTION_BINDING",
+        "E_PRIVATE_WHOLE_CONTEXT_JOIN"
       ],
       "last_audit": {
         "date": "2026-11-20",
-        "code_commit": "02411806ad7d444672803a27e6699f68b11d888d",
-        "human_update": 174,
-        "reviewer": "Linden; Cedar interface reviewed by Rowan",
-        "scope": "Frozen request/input join and installed supported-reader controls; no native transfer or general repair closure"
+        "code_commit": "3ac2a106d046e8bfad98eb544fd5df404aa2f908",
+        "human_update": 175,
+        "reviewer": "Linden; bounded scope coordinated with Rowan",
+        "scope": "Cold private source/candidate/input join and captured whole-context partitions; ordinary chemical integration remains open"
       }
     },
     {
@@ -323,14 +325,15 @@
         "W170 saved-map review locates signed residuals at both remaining distorted sites; A13 C5-prime has higher ordinary density at the misplaced point. Geometry and signed context remain necessary in this noiseless example. Repair and causal diagnosis remain open; see E_SAVED_RESIDUAL_MAP_REVIEW.",
         "W172 reproduces saved declared/unintended-bond controls and holds legacy W168 soft-policy ambiguity. The separate explicit-policy live control retains38 backbone links,51 soft distances,all213 supplied terms and phosphate identities;35 cold checks. Chemistry and symmetry seams remain separate.",
         "W173 binds a saved canonical preview to an exact selected/current checkpoint and its anchored model, observations, ordered restraints and declared phases. It rechecks inputs around strict endpoint replay and supports a context pin for a fresh dispatch read. 138 focused plus 6 subtests and the same relocated/source-free installed suite pass; 25 added cases include selection drift, input races and old-path-gone relocation. Read-only admission only; no native hook, run lock, schema migration or scientific acceptance.",
-        "W174 joins W173 to Cedar-owned frozen execution requests, distinguishing parent/candidate model roles and ordered inherited/adapted/extra restraints, phases and generated round parameters.159 focused+6 subtests and relocated installed tests pass;21 new cases,223 cold checks on real C412 v3/v7 requests and17 synthetic supported-reader checks in both source and installed contexts. No native call, chemical admission, lock or ordinary motion qualification."
+        "W174 joins W173 to Cedar-owned frozen execution requests, distinguishing parent/candidate model roles and ordered inherited/adapted/extra restraints, phases and generated round parameters.159 focused+6 subtests and relocated installed tests pass;21 new cases,223 cold checks on real C412 v3/v7 requests and17 synthetic supported-reader checks in both source and installed contexts. No native call, chemical admission, lock or ordinary motion qualification.",
+        "W175 reuses W172 source/candidate, original genuine v3 request and actual saved manager views.64 cold binding checks plus28 maintained named-proxy checks preserve60 moving/799 fixed atoms and all captured definitions across moving/boundary/fixed partitions; boundary2 bonds/8 angles/6 dihedrals/2 parallelities. A separate diagnostic request only tests standard round-parameter naming with all4 input hashes unchanged. No native call, new motion/refinement or fabricated ordinary history; C128 chemical qualification remains NOT_ESTABLISHED."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Join W172 complete independently declared canonical chemistry and the exact candidate to W174 child-input binding; audit moving and untouched regions against one parent. Use a supported source-bound native owner only with complete policy for that actual parent. A private diagnostic control cannot supply ordinary checkpoint ancestry; C412 modified PDU is not canonical preview authority. Keep FT and legacy soft-policy gaps at REVIEW, and coordinate the maintained native transfer hook with Cedar before any fit.",
+      "next_action": "Coordinate Cedar first-capture/publication integration: reuse prepared model topology, literal/explicit NAR input producers and complete native capture; preserve their authenticated references for the exact ordinary parent and candidate before the existing executor transfers coordinates. Do not regenerate expected topology from bent coordinates or retrofit a policy to legacy FT/W168. Qualify actual native lifetime only after the ordinary parent, source chemistry and compiled-input join is available; no duplicate capture/compiler/executor or repeated private fit.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -410,14 +413,15 @@
         "E_SAVED_RESIDUAL_MAP_REVIEW",
         "E_LIVE_PARENT_TOPOLOGY",
         "E_CHECKPOINT_MOTION_BINDING",
-        "E_EXECUTION_MOTION_BINDING"
+        "E_EXECUTION_MOTION_BINDING",
+        "E_PRIVATE_WHOLE_CONTEXT_JOIN"
       ],
       "last_audit": {
         "date": "2026-11-20",
-        "code_commit": "02411806ad7d444672803a27e6699f68b11d888d",
-        "human_update": 174,
-        "reviewer": "Linden; Cedar interface reviewed by Rowan",
-        "scope": "Frozen request/input join and installed supported-reader controls; no native transfer or general repair closure"
+        "code_commit": "3ac2a106d046e8bfad98eb544fd5df404aa2f908",
+        "human_update": 175,
+        "reviewer": "Linden; bounded scope coordinated with Rowan",
+        "scope": "Cold private source/candidate/input join and captured whole-context partitions; ordinary chemical integration remains open"
       }
     },
     {
@@ -464,7 +468,8 @@
         "W170 completes descriptive review of six saved W164 maps, 44 backbone atoms and four coordinate states per map, with 108 checks and unchanged observations/Free. This is model-assisted synthetic evidence, not an independent validation or experimental detector calibration; see E_SAVED_RESIDUAL_MAP_REVIEW.",
         "W172 completes one private Phenix2.2.1-6174 dry-run after declared-topology admission, retaining child diffraction during parent interpretation and original observations/Free. No refinement, physical-recovery or independent child-diffraction comparison; no repeat fit queued.",
         "W173 binds a saved canonical preview to an exact selected/current checkpoint and its anchored model, observations, ordered restraints and declared phases. It rechecks inputs around strict endpoint replay and supports a context pin for a fresh dispatch read. 138 focused plus 6 subtests and the same relocated/source-free installed suite pass; 25 added cases include selection drift, input races and old-path-gone relocation. Read-only admission only; no native hook, run lock, schema migration or scientific acceptance.",
-        "W174 joins W173 to Cedar-owned frozen execution requests, distinguishing parent/candidate model roles and ordered inherited/adapted/extra restraints, phases and generated round parameters.159 focused+6 subtests and relocated installed tests pass;21 new cases,223 cold checks on real C412 v3/v7 requests and17 synthetic supported-reader checks in both source and installed contexts. No native call, chemical admission, lock or ordinary motion qualification."
+        "W174 joins W173 to Cedar-owned frozen execution requests, distinguishing parent/candidate model roles and ordered inherited/adapted/extra restraints, phases and generated round parameters.159 focused+6 subtests and relocated installed tests pass;21 new cases,223 cold checks on real C412 v3/v7 requests and17 synthetic supported-reader checks in both source and installed contexts. No native call, chemical admission, lock or ordinary motion qualification.",
+        "W175 reuses W172 source/candidate, original genuine v3 request and actual saved manager views.64 cold binding checks plus28 maintained named-proxy checks preserve60 moving/799 fixed atoms and all captured definitions across moving/boundary/fixed partitions; boundary2 bonds/8 angles/6 dihedrals/2 parallelities. A separate diagnostic request only tests standard round-parameter naming with all4 input hashes unchanged. No native call, new motion/refinement or fabricated ordinary history; C128 chemical qualification remains NOT_ESTABLISHED."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -475,7 +480,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Join W172 complete independently declared canonical chemistry and the exact candidate to W174 child-input binding; audit moving and untouched regions against one parent. Use a supported source-bound native owner only with complete policy for that actual parent. A private diagnostic control cannot supply ordinary checkpoint ancestry; C412 modified PDU is not canonical preview authority. Keep FT and legacy soft-policy gaps at REVIEW, and coordinate the maintained native transfer hook with Cedar before any fit.",
+      "next_action": "Coordinate Cedar first-capture/publication integration: reuse prepared model topology, literal/explicit NAR input producers and complete native capture; preserve their authenticated references for the exact ordinary parent and candidate before the existing executor transfers coordinates. Do not regenerate expected topology from bent coordinates or retrofit a policy to legacy FT/W168. Qualify actual native lifetime only after the ordinary parent, source chemistry and compiled-input join is available; no duplicate capture/compiler/executor or repeated private fit.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -554,14 +559,15 @@
         "E_SAVED_RESIDUAL_MAP_REVIEW",
         "E_LIVE_PARENT_TOPOLOGY",
         "E_CHECKPOINT_MOTION_BINDING",
-        "E_EXECUTION_MOTION_BINDING"
+        "E_EXECUTION_MOTION_BINDING",
+        "E_PRIVATE_WHOLE_CONTEXT_JOIN"
       ],
       "last_audit": {
         "date": "2026-11-20",
-        "code_commit": "02411806ad7d444672803a27e6699f68b11d888d",
-        "human_update": 174,
-        "reviewer": "Linden; Cedar interface reviewed by Rowan",
-        "scope": "Frozen request/input join and installed supported-reader controls; no native transfer or general repair closure"
+        "code_commit": "3ac2a106d046e8bfad98eb544fd5df404aa2f908",
+        "human_update": 175,
+        "reviewer": "Linden; bounded scope coordinated with Rowan",
+        "scope": "Cold private source/candidate/input join and captured whole-context partitions; ordinary chemical integration remains open"
       }
     },
     {
@@ -4190,6 +4196,35 @@
           "size": 21661
         }
       ]
+    },
+    "E_PRIVATE_WHOLE_CONTEXT_JOIN": {
+      "kind": "private_source_candidate_chemical_input_join",
+      "date": "2026-11-20",
+      "human_update": 175,
+      "code_commit": "3ac2a106d046e8bfad98eb544fd5df404aa2f908",
+      "reference": "docs/topostitch-periodic.md#w175--bind-the-private-candidate-and-check-its-untouched-remainder",
+      "result": "W175 reuses W172 source/candidate, original genuine v3 request and actual saved manager views.64 cold binding checks plus28 maintained named-proxy checks preserve60 moving/799 fixed atoms and all captured definitions across moving/boundary/fixed partitions; boundary2 bonds/8 angles/6 dihedrals/2 parallelities. A separate diagnostic request only tests standard round-parameter naming with all4 input hashes unchanged. No native call, new motion/refinement or fabricated ordinary history; C128 chemical qualification remains NOT_ESTABLISHED.",
+      "limitation": "Captured private geometry scope only; full maintained capture/ordinary ancestry and complete chemical acceptance remain open. No source declaration inferred from observed inventory. Existing producers preserve pieces but do not yet join this canonical parent to ordinary retained-manager motion.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w175-diagnostic-chemistry/review.json",
+          "sha256": "fe0351a1101e0fe69d0ef4ba55c41a12cc1f565e5b7f1162298e60db593c0e6d",
+          "size": 9202
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w175-diagnostic-chemistry/owner-review.json",
+          "sha256": "efb0267e022f35f8ce9696a0ae9c5075235716c48dca10424dc1360e22b93a53",
+          "size": 1812
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w175-diagnostic-chemistry/producer-audit.json",
+          "sha256": "fe3dde6f08fe6feeb00f983b3dbe35faf4841431fc32db273de15e9cd41c7afc",
+          "size": 5344
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -4351,8 +4386,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 174,
-    "next": 175,
+    "current": 175,
+    "next": 176,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -5206,6 +5241,12 @@
         "title": "Join checked motion to frozen child inputs",
         "state": "RECORDED",
         "code_commit": "02411806ad7d444672803a27e6699f68b11d888d"
+      },
+      {
+        "number": 175,
+        "title": "Bind candidate chemistry across moving and fixed regions",
+        "state": "RECORDED",
+        "code_commit": "3ac2a106d046e8bfad98eb544fd5df404aa2f908"
       }
     ]
   },

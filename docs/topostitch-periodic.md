@@ -10387,3 +10387,70 @@ and untouched remainder together. Native retention and ordinary ancestry remain
 open. An observed link inventory cannot manufacture expected chemistry; FT lacks
 both whole-model authority and an ordinary selected checkpoint. No repeated
 private tiny-motion or refinement control is justified without that new question.
+
+
+## W175 — Bind the private candidate and check its untouched remainder
+
+The new question is whether the candidate/request and the entire captured
+chemical context agree, including the region outside the moving window. Reuse
+W172's original genuine v3 request and completed **Phenix 2.2.1-6174 dry-run**;
+no new native invocation, coordinate proposal, fit or accepted repair occurs.
+Original request SHA-256:
+`d787499d4815195a4ce6248d7fa840022950d75c316b1a6f7b216e64e1e8bd12`.
+
+W171 replays the exact prospective preview; the strict endpoint auditor reproduces
+W172's original audit. Source/candidate bytes, independently declared 38 covalent
+links, compiled C21 policy/PHIL, 51 soft distances and all 213 supplied requests
+remain bound. Cedar's topology/supplied-term owners reproduce the saved results.
+These are explicitly private collected views, not complete maintained native
+capture receipts. `link_status=MATCH` does not change C128's
+`chemical_qualification=NOT_ESTABLISHED`.
+
+The native-to-source mapping is a complete 859-atom bijection. **60 atoms** move
+in A:1/A:2/C:14; **799 remain fixed**. Native fixed-coordinate differences are
+at most **1.1235e−14 Å**; serialized fixed records and all non-XYZ bytes are exact.
+All captured proxy definitions are unchanged in the following disjoint partitions:
+
+| Captured family | Moving only | Crossing boundary | Fixed remainder |
+| --- | ---: | ---: | ---: |
+| Simple distance restraints | 68 | 2 | 941 |
+| Angles | 100 | 8 | 1,450 |
+| Dihedrals | 27 | 6 | 410 |
+| Constant dihedrals | 29 | 0 | 316 |
+| Chiralities | 11 | 0 | 156 |
+| Planarities | 4 | 0 | 58 |
+| Parallelities | 2 | 2 | 54 |
+
+No symmetry covalent proxies are present. Distances include supplied soft terms;
+the table is a native restraint inventory, not a new list of chemical bonds.
+Cedar's `cif_terminal_qualification._proxy_subset` independently checks named
+endpoints, every captured parameter and multiplicity for complete/fixed subsets.
+Detached moving/fixed target changes are detected; removing a declared link
+returns REVIEW. No historical native model or expectation is edited.
+
+A separate explicitly diagnostic request tests only the standard final
+`autorefine.params` role, replacing W172's historical `source.params` filename.
+All four consumed input hashes remain identical. It has no AutoMR report or
+checkpoint registry, creates no ordinary ancestry, and is never launched.
+W174's read-only membership join is used; its full checkpoint-preview API is
+not claimed to admit this private parent. C412 remains a separate genuine
+ordinary request control with modified chemistry.
+
+Validation: **64 cold binding checks plus 28 maintained named-proxy checks**
+pass using Python 3.12.14, `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<Willow>/src`,
+with `python -B <NASolve>/branch-artifacts/willow/runners/w175-diagnostic-chemistry.py`
+and `w175-owner-review.py`. Cedar owners are pinned to
+`a1ce98818fb3ece14a2cbdb6ecbf24d30a7d9393`; Willow code remains W174
+`02411806ad7d444672803a27e6699f68b11d888d`. Local evidence and source hashes are
+under `branch-artifacts/willow/w175-diagnostic-chemistry/`. No new runtime/test
+code, installed package, CLI/default or stored schema changes; W174 validation
+remains applicable. Science and diagnostic request files stay outside Git.
+
+The [first-capture contract](topostitch.md#preserve-chemistry-before-a-bend-w175-integration-contract)
+identifies ten existing producer/consumer interfaces. Prepared-model context,
+literal NAR provenance, complete dictionary requests and native capture already
+preserve relevant pieces. Their authenticated ordinary parent/request/native
+lifetime join is missing for this canonical control. Source-mode and native-index
+compiler artifacts are different policies, not interchangeable labels. Do not
+weaken the fixed-coordinate dictionary comparator for moved coordinates or derive
+source intent from the bent child's observed bonds. S04/S05/S06 remain partial.

@@ -1012,6 +1012,11 @@ DNA opening/closing and Cedar's source chemistry/native exclusions. It reuses
 the shared preparation/execution owners; it is not an implemented width mode
 or a qualification inferred from the signed-bend controls.
 
+The [pre-deformation chemistry contract](topostitch.md#preserve-chemistry-before-a-bend-w175-integration-contract)
+reuses prepared-model topology, literal restraint provenance and native-capture
+owners. Their authenticated join into ordinary motion is pending; matching native
+inventories cannot create missing source authority.
+
 The pairing owner supplies exact forward/reciprocal edge incidence to selected
 atom-image audits. These bind one-partner capacity only within their recorded
 coordinate scope; nontrivial lattice translations, ambiguity and unresolved

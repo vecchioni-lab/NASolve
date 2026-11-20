@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W175 — Check the moving region and untouched chemical context together
+
+- Bind the existing private candidate/request to declared topology, supplied
+  restraints and complete captured proxy partitions without another native run.
+- Identify existing first-capture producers and the missing ordinary provenance
+  join. Documentation/local diagnostics only; no new schema, hook or acceptance.
+
 ### W174 — Join checked motion to a frozen refinement request
 
 - Add an opt-in read-only join to Cedar's existing request and restraint-adaptation

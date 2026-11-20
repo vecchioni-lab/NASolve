@@ -655,6 +655,51 @@ across the model and occupancy/ADP alternatives. Freeze calibration separately
 from later evaluation; do not use held-out Rfree to tune detection thresholds.
 Initially flag for review only, with no automatic deletion or displacement.
 
+### Preserve chemistry before a bend (W175, integration contract)
+
+A source model and the bent candidate must share declared chemistry, even when
+stretching temporarily puts a known link beyond native distance discovery.
+Freeze the source contract **before deformation** and retain it through the
+existing ordinary request/executor. Do not reconstruct the intended graph from
+the displaced coordinates or promote observed native bonds into declarations.
+
+The first capture must preserve:
+
+- Exact parent identity/bytes, component/source definitions and declared links,
+  nicks, terminal-phosphate choices and any supported symmetry intent.
+- Original literal pair/stack/plane declarations, compiler/source provenance,
+  compiled ordered PHIL and retained edits. Changed geometry does not rerun a
+  pairing guesser or discard a supplied plane.
+- Complete native input/version identity, model-to-native atom mapping and the
+  required policy/monomer/geometry evidence, distinguished from chemical intent.
+- Anchored checksummed references joining those records to the ordinary selected
+  parent, exact child inputs and actual preparation lifetime. W173/W174 bind
+  inputs; they do not supply this missing chemical authority.
+
+Reuse existing producers rather than another chemistry format:
+
+| Existing owner | What it already preserves | Remaining join |
+| --- | --- | --- |
+| `cif_model_context` | Audited prepared-model links, identities and phosphate intent | Freeze before the move; its distance audit cannot reconstruct stretched intent |
+| `cif_literal_na_inputs` | Original and compiled NAR inputs, source/compiler provenance and replay | Native-index and source/PDB-index policies remain distinct; no policy-ID substitution |
+| `cif_complete_request` / `cif_postmr_request` | Exact model/restraint contexts and compiler references in dictionary preparation | Carry authenticated provenance into the applicable ordinary motion route |
+| `cif_native_validation.inspect_native_bundle` | Explicit native input capture with policy and optional full monomer inventory | Select required capture scope; later actual-manager retention is separate |
+| `refinement_parallelity` / `refinement_counted` | Frozen child inputs/code, original counted-pair intent, admission and launch | Their current request policy does not bind a complete chemical contract for this motion |
+
+The native transfer gate must check moving atoms, crossing terms and untouched
+remainder against the **same** declared parent. Reuse Cedar's named-proxy and
+supplied-restraint owners. A complete cross-site `link_status=MATCH` still reports
+`chemical_qualification=NOT_ESTABLISHED`; it is not a chemical acceptance flag.
+The fixed-coordinate dictionary-comparison owner is not applicable to moved
+parent/child coordinates and must not be weakened to make them pass.
+
+W175 binds this boundary on the existing private W172 control, including a
+separate naming-only request copy. It creates no ordinary registry or MR history.
+C412 remains a genuine ordinary but modified-parent request control; FT lacks
+whole-model declaration authority. No verified canonical ordinary checkpoint
+currently carries the exact W172 policy. Ordinary producer/request integration
+and a supported retained-manager hook remain open, owned with Cedar.
+
 ### Cluster accommodation: bounded helix opening and closing (W167, planned)
 
 The user clarified the nanocluster architecture with Hazel: first place and
