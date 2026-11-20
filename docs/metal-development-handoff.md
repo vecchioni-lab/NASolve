@@ -75,6 +75,71 @@ boundary before modified/metal motion admission. Separate donor pose and Hg
 placement, then qualify open XYZ/B before branch-specific environmental B and
 frozen f″/Q. Do not repeat this readback or the completed 25-point pivot grid.
 
+### Current-parent interpretation and motion-intake boundary
+
+The next A01 check distinguishes a supplied topology declaration from an admitted
+movement. A fully declared **synthetic** control passes typed topology with two
+metal–ligand contacts and one same-residue metal–metal contact. A 0.02 Å
+canonical-atom displacement within a 0.05 Å mask passes the existing exact-byte
+audit, preserving B/Q and fixed records, but stops at the absent supported
+retained-manager entry. A mask containing a metal remains refused even for a
+no-op. Changed parent bytes stop before topology; an unrequested covalent
+neighbor stops before endpoint auditing; changed candidate B/Q stops before
+manager preparation. Contact **declarations**, not post-movement distances or
+forces, remain fixed. No metal motion, complete chemical capture or manager
+retention is qualified by this fixture.
+
+The six-case diagnostic passes **17 checks** and independent replay passes
+**32**, including maintained-adapter refusal of changed parent metadata, XYZ,
+B and Q. Small complete synthetic inputs are retained with hashes. This is a
+consumer-order rehearsal, not an installed execution hook or a second B/Q guard.
+The canonical movement owner and its restrictions remain unchanged.
+
+The real FT_Hg parent-state comparison passes **15 checks**. The original full
+capture input and later unchanged-continuation endpoint have identical 859 atom
+identities, but **all 859 XYZ and B values differ**; Q and ANISOU do not change.
+The existing reader correctly refuses the old capture against the later parent.
+
+| Printed PDB state | Original capture input | Later retained endpoint |
+| --- | ---: | ---: |
+| DF base-only mean B (Å²) | 20.00 | 100.22 |
+| DT base-only mean B (Å²) | 47.91 | 161.18 |
+| Hg B (Å²) | 72.95 | 141.34 |
+| Hg Q (occ) | 1.00 | 1.00 |
+
+One new **fixed-coordinate interpretation**, not a refinement, now observes the
+actual later parent using the same dictionaries and ordered PHIL. Phenix
+**2.2.1-6174** completes in **2.25 s** within a 120 s bound; the owned process
+stops and all nine source-input fingerprints remain exact. The maintained full
+capture authenticates and passes **260 cold checks**: 859 current atoms, 38
+observed O3′–P links, 49 supplied NAR distances and two Hg contacts; all **210**
+supplied terms and **1,009** simple-bond endpoints/origins/values are retained.
+No extra nonbackbone covalent cross-site link appears.
+
+This closes the stale-coordinate observation gap only. Fresh interpretation is
+not retention of the historical final manager. Legacy whole-parent chemical/NAR
+authority stays **REVIEW**; the capture observes coordinates/occupancies but not
+dual hierarchy/scattering ADPs. Modified/metal movement, checkpoint/dispatch
+binding, complete packing and the supported retained-manager entry remain open.
+The existing B:1/formal-charge and geometry limits persist. Before any frozen
+anomalous terms, verify actual endpoint XYZ/ADPs, obtain an accepted open XYZ/B
+state, then derive environmental B from that branch. The arithmetic equal-base
+mean would differ (33.95 versus 130.70 Å²); neither value is applied here.
+
+Local receipts are under `motion-intake-20261120-01/`: `review.json`,
+`cold-review.json`, `parent-state-review.json` and
+`current-parent-capture/{execution,review}.json`. Reproducible private runners are
+`A267_motion_intake_boundary.py`, `A268_review_motion_intake.py`,
+`A269_parent_state_boundary.py`, `A270_capture_current_parent.py` and
+`A271_review_current_parent_capture.py` under the established Alder artifact
+anchor, with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<Alder>/src` and Python 3.12.14.
+Native execution uses the recorded selected Phenix interpreter/environment.
+No product code/schema/default changes or new pytest suite follow; the existing
+309-test source pin is unchanged. Scientific data remain local, no old inputs
+are copied into Git or pruned, and A01 remains partial/A02 gated. Shared movement
+admission stays with its existing owner; A04 software/execution binding is the
+parallel next bounded task while that interface is pending.
+
 ### Fixed-endpoint donor motion (preceding diagnostic)
 
 A bounded private coordinate study now consumes the connected-region inventory

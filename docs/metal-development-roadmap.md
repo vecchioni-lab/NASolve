@@ -111,6 +111,15 @@ Consume this adapter with the shared retained-parent work; do not repeat its
 native control or use it to bypass modified/metal endpoint admission. A01 stays
 partial and A02 stays gated; no new milestone or cluster default is introduced.
 
+A later current-parent check now refuses the stale full capture against the
+refined FT_Hg endpoint: all 859 XYZ/B values changed, while Q did not. A fresh
+fixed-coordinate interpretation of that exact endpoint preserves all 210
+supplied terms, 1,009 bonds and the expected observed contact counts; 260 cold
+checks pass. This is new parent observation, not retained-manager admission or
+an accepted solution. Complete shared admission and actual XYZ/ADP validation
+still precede f″. A04 software/execution binding can progress in parallel while
+that supported motion interface is pending; do not repeat the same capture.
+
 The 20 November [current-state profiles](metal-development-handoff.md#a01-current-state-profiles)
 close the exact-state capture/finite-motion experiment. The neutral source fit
 reproduces exactly; contraction gains reverse, while modest reorientation can

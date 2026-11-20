@@ -133,6 +133,15 @@ integration queues. Update the relevant handoff and milestone together. Use
 existing patches/readers before new diagnostics; no repeated weight, derivative
 or native sweep is justified merely by this merge.
 
+The A01 follow-up now binds a fresh fixed-coordinate FT_Hg interpretation to
+the actual retained endpoint, after proving the old capture has stale XYZ/B.
+Phenix 2.2.1-6174 completes in 2.25 s with unchanged inputs; 260 cold checks
+retain all supplied contacts. The six-case intake diagnostic preserves canonical
+movement restrictions and refuses stale parents, unwanted neighbors and B/Q
+changes. Product sources stay exact; whole-parent authority and supported
+modified/metal manager retention remain open. The metal handoff owns the numbers,
+commands and parallel A04 next step; no new scientific acceptance follows.
+
 ## Compatibility and remaining limits
 
 The package includes Cedar replay resources and Alder viewer resources. The

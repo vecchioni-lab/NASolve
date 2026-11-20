@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record the current-parent motion-admission boundary
+
+- Distinguish the old FT_Hg capture from the later refined XYZ/B state and retain
+  a fresh fixed-coordinate native readback of the actual parent. All supplied
+  contacts remain, without promoting legacy topology authority or accepting a fit.
+- Record stale-parent, unexpected-link and B/Q refusal order. Existing canonical
+  movement restrictions remain intact; runtime, schemas and defaults do not change.
+
 ### Distinguish explicit metal coordination from covalent links
 
 - Bind recipe-declared metal contacts to exact source model bytes, native
