@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-20, C470–C474 matched arm-shape tests and checked ReadySet publication — Rowan**.
+Updated **2026-11-20, C470–C475 matched arm-shape tests and checked ReadySet publication — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -38,6 +38,17 @@ the same substituted-host reflections. In the mixed scaffold, the drop in 5PC
 tip height was 0.097 Å. Movement of the tip accounted for 0.052 Å along the
 plane normal, movement of the ring centre for 0.011 Å and ring tilt for 0.034 Å.
 The soft plane remains an experimental option.
+
+C475 tested the same plane independently at B:4 in the ordinary A:PDU control.
+After five cycles its tip-to-ring distance was 0.175 Å with the original restraints
+and 0.231 Å with the added plane. Its terminal bond measured 1.500 and
+1.475 Å respectively against 1.470(20) Å. Chi was -112.6° and -111.6°.
+Rfree rose from 0.2265 to 0.2414. Here the terminal bond approached its
+target as the arm departed farther from the ring. Keep the plane experimental.
+The original 196 frame restraints, six phosphate angles and Free-R assignments
+survived. This control explicitly has a free hydroxyl at B:1. The historical
+PDU:PDU construct has an incoming phosphate at B:1 through symmetry and
+requires its own declared partner and a qualified native link.
 
 **Locked sugar and starting displacement, C463–C467.** The complete dictionary
 request now carries its workbook and both explicitly reacting sugar ends. The
@@ -464,8 +475,11 @@ six-atom ring plane 0.094297 Å. These descriptive starting values are not accep
 1. Q06 still needs a defensible scope for post-refinement PDU and DF geometry.
    Use C470/C474 as matched arm-plane controls. Measure terminal bond, both
    alkyne angles, tip height, sugar hand and surrounding contacts together.
-   For a second PDU site, retain the recorded internal phosphate and symmetry
-   intent when using the earlier PDU:PDU model. The
+   C475 provides a second PDU site on an A:PDU scaffold. Use the existing
+   native geometry reports to distinguish an arm that approaches its ring
+   from a bond that approaches its target. Qualify which cases benefit from
+   a trial plane, including the long 5PC terminal bond. The earlier PDU:PDU
+   construct retains separate incoming-phosphate and symmetry requirements. The
    synthetic recovery and omitted-scattering controls are complete. Repeating them
    or locating the original collaborator files is unnecessary for this checkpoint.
 2. The [DF–Hg–DT comparison](cif-doctor-completion-queue.md#df-hg-dt-comparison)

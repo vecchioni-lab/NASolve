@@ -119597,7 +119597,10 @@
       "c471-named-readyset/installed/read.json": "1002274e6788d46acb9d5246f155714a06ca0f6bd4f846feaf54681790dd1cc8",
       "c472-locked-sugar-junctions/comparison.json": "63605c0d27e89e7061f2f74524ccc6d116aff6731e60fd4c9c3188ba0f326949",
       "c474-heldout-arm/science.json": "a5bae769be4b6cb31aecbe12c7ea4c11cd9d0b216274efce18965fd51bf3ce40",
-      "c474-heldout-arm/reflections.json": "ada98cc1ea9392fdc4f4012cc728098d33133d9a29e89c4dad0196c8f9ad20f6"
+      "c474-heldout-arm/reflections.json": "ada98cc1ea9392fdc4f4012cc728098d33133d9a29e89c4dad0196c8f9ad20f6",
+      "c475-independent-pdu/science.json": "66d821046df535d77549d679e06f5c07b384933fe381ce6e80b69a8e4b6888fa",
+      "c475-independent-pdu/reflections.json": "b787f095d0cc0947ce8ce9715f17d1f374323337ffacb9476f5c18fa67b77be4",
+      "c475-independent-pdu/restored-inputs.json": "888141437fd2aca8304e9d08de30678b41ce84520a76bb6b4f7ce4db0daa09a2"
     },
     "reproduction": [
       "c468_repeat_complete.py",
@@ -119611,9 +119614,13 @@
       "c474_heldout.py",
       "c474_reflections.py",
       "c474_science.py",
-      "c470_ring_motion.py"
+      "c470_ring_motion.py",
+      "c475_restore_inputs.py",
+      "c475_independent_pdu.py",
+      "c475_reflections.py",
+      "c475_science.py"
     ],
-    "followup": "Use a second PDU context to judge the arm and terminal bond together. For ATL, allow bounded neighbour accommodation and recalculate contacts before ordinary thirteen-change diffraction.",
+    "followup": "Judge terminal length, arm angles and tip height together across both sites in each chemistry. The separate PDU:PDU symmetry linkage needs declared partner and qualified consumption. For ATL, test local neighbour accommodation and a fresh symmetry-inclusive contact inventory before diffraction.",
     "height_decomposition": {
       "c470-soft-arm-planes": {
         "source": "d81ac9518adcdd0b11c49168e56bc999779d52103a6c1d9d092b7edf7bcdb4ed",
@@ -119655,6 +119662,83 @@
           }
         }
       }
+    },
+    "independent_pdu": {
+      "site": "B:4",
+      "pair": "A:PDU",
+      "historical": "C403",
+      "model": "636223e4edb19caf32e6bf70799f20d008c8ae45a65cc83a727bf1a3d38203d3",
+      "baseline": "2d8dd526db59be3754d7d775ffb202ed971f01f8fca9d03c4f0c8bdfb240b8ad",
+      "trial": "ee01406e6adb4ba26fd06bfee51ca2ad4560d6efcaff2588858073989a69962b",
+      "additional_plane_A": 0.1,
+      "terminal_target_A": 1.47,
+      "terminal_sigma_A": 0.02,
+      "baseline_geometry": {
+        "terminal_bond_A": 1.4995616265150704,
+        "terminal_to_six_ring_A": 0.1748120967829736,
+        "arm_heights_A": {
+          "C5A": 0.012221336291261098,
+          "C5B": 0.07660270579133055,
+          "C5M": 0.1748120967829736
+        },
+        "triple_bond_A": 1.2132259502811595,
+        "chi_deg": -112.58642839890975,
+        "ring_anchor_angle_sum_deg": 359.96370569881634,
+        "alkyne_angles_degrees": [
+          175.44943044712613,
+          174.42513750030056
+        ],
+        "six_ring_rms_A": 0.007992089032186836
+      },
+      "plane_geometry": {
+        "terminal_bond_A": 1.4754688329401777,
+        "terminal_to_six_ring_A": 0.2311105753339795,
+        "arm_heights_A": {
+          "C5A": 0.010969257828491119,
+          "C5B": 0.0959814528008105,
+          "C5M": 0.2311105753339795
+        },
+        "triple_bond_A": 1.1802312270260766,
+        "chi_deg": -111.59130739428157,
+        "ring_anchor_angle_sum_deg": 359.9532567155942,
+        "alkyne_angles_degrees": [
+          176.68621881552852,
+          177.84392480665161
+        ],
+        "six_ring_rms_A": 0.007932216616406394
+      },
+      "native_execution_sha256": {
+        "control": "f91a53e48d06bb7c59c207c2f7d78995aa0bc44a43f71f25c6c5ce29077db318",
+        "extra_plane": "309699a31c826a9aba2aa98297daa905e358c976cfe99c99b289e9c6b62a3d58"
+      },
+      "original_frame": {
+        "bond": 51,
+        "angle": 84,
+        "planarity": 3,
+        "parallelity": 58
+      },
+      "protected_terminal_angles": 6,
+      "preserved_sugar_hands": {
+        "C4'": -1,
+        "C3'": -1,
+        "C1'": 1
+      },
+      "printed_R": {
+        "control": [
+          0.2125,
+          0.2265
+        ],
+        "extra_plane": [
+          0.2224,
+          0.2414
+        ]
+      },
+      "initial_selection": "postmr",
+      "same_flags": 3236,
+      "same_intensity_and_errors": 2273,
+      "original_inputs_restored": 4,
+      "original_control_preserved": true,
+      "classification": "Separate A:PDU software fixture. B:1 is free OH here. In the original PDU:PDU construct the incoming phosphate is symmetry-related. No contact inferred from distance."
     }
   }
 }
