@@ -712,9 +712,10 @@ checkpoint ancestry. [Exact scope](topostitch-periodic.md#w176--capture-the-comp
 `cif_complete_request.read_dictionary_request_result`. Existing checked publication
 already binds its prepared model, inherited restraints, topology and request/result
 references; the complete result exposes model/restraint contexts and compiler
-inputs where they were frozen. A Willow-side read-only adapter should report that
-availability for the exact parent, without another producer, copied evidence,
-new history or an implicit chemical verdict. Legacy missing contexts stay missing.
+inputs where they were frozen. W177 now reports that availability through a Willow-side read-only adapter
+for the exact published parent, without another producer, copied evidence,
+new history or an implicit chemical verdict. Legacy missing contexts stay missing. Its source/installed checks and real C412
+read qualify reporting only; W173 remains schema-2/canonical-motion scoped.
 The source/PDB-index compiler policy is not the native-index C128 policy.
 
 The selected descendant still needs its own identity/byte binding and the
@@ -725,6 +726,24 @@ Only after that join is qualified should the existing request/executor gain the
 supported retained-chemistry lifetime. A modified ordinary input may qualify this
 reader's evidence reporting without qualifying modified motion. Rowan owns the
 publication/execution boundary; no shared Cedar code changes in W176.
+
+**FT connectivity clarification (20 November, via Hazel).** The investigator
+now declares B:7 O3′ → B:1 P as a symmetry continuation. B:1 is therefore not
+assumed to be a free terminus. The current coordinate-derived realization images
+the **target P** by `-x+y,-x,z`; the inverse `-y,x-y,z` belongs to the alternate
+view holding P fixed and imaging O3′. Both have zero lattice translation in this
+specific pinned model. These image assignments are geometric evidence, not
+separately user-specified operators or qualified native symmetry restraints.
+The C/D crossover statement is tentative; D:7 O3′ → C:8 P remains provisional.
+D:1 terminal intent is unchanged. Preserve OP1/OP2 continuation intent; do not
+materialize an unqualified symmetry bond or infer missing whole-model authority.
+
+Alder owns the exact local declaration:
+`NASolve:branch-artifacts/Alder/ft-symmetry-contacts-20261120-03/user-connection-intent.json`,
+SHA-256 `d61c28d32877b2b94dddfbe013386e32f6fd86e041127df5d2a248bacd4189e2`.
+It supersedes only earlier absence of B:1 continuation intent. Historical null-
+intent receipts remain immutable; slicing provenance and native seam angles/
+exclusions remain unresolved. No new inference or executable recipe follows.
 
 ### Cluster accommodation: bounded helix opening and closing (W167, planned)
 

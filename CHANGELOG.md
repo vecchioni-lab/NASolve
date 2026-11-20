@@ -19,6 +19,8 @@ entries are reconstructed from repository history.
 
 ### W177 — Inspect authenticated preparation fields for the selected parent
 
+- Record Hazel’s new investigator-declared B:7→B:1 periodic continuation,
+  keeping reciprocal image direction, tentative C/D intent and native limits explicit.
 - Add a read-only adapter for existing Cedar checked-publication results. Pin
   the selected preparation identity/model, report available or missing frozen
   model/restraint/compiler fields, and keep source and selected model hashes distinct.

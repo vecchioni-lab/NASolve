@@ -10529,3 +10529,60 @@ Cedar file is edited or combined runtime qualified here.
 The same doc audit reconfirms Hazel's W167 nanocluster contract: preserving
 chemical identity and targets permits coupled sugar/backbone coordinate movement.
 It does not freeze conformation or establish an implemented widening move.
+
+
+## W177 — Read existing ordinary preparation authority without admitting motion
+
+`inspect_checkpoint_preparation` reuses Cedar's
+`checkpoints._read_registry_with_preparations`, including its authenticated
+checked-publication and complete-result values. It consumes the expensive history
+read once rather than replaying it for each field. No chemistry producer, model
+edit, native invocation, CLI or saved checkpoint schema is added.
+
+The caller pins selected checkpoint identity and model SHA-256. The adapter
+brackets the owner read with saved metadata/input checks, binds the returned
+preparation/result to that exact selection, and exposes field availability/hashes.
+A previous context pin detects changed inputs on a later call; it does not lock
+or authorize dispatch. Missing model/restraint/compiler fields stay unavailable.
+Native-capture coverage is not assessed. The default owner is absent on standalone
+Willow, requiring an explicitly trusted reader dependency until branch integration.
+
+Scope is published `postmr` or explicit `prepare-NNN`; refined descendants refuse
+pending their lineage join. Legacy roots without checked publication return
+`NO_CHECKED_PREPARATION`. W173's canonical/schema-2 motion admission is unchanged.
+An available source model context may describe pre-ReadySet coordinates rather
+than the selected prepared model: both hashes and their inequality are retained.
+
+Validation at code `a725c575f2f8f6979108526d79e474ce9d63deec`:
+
+- **20 new cases**, with the first **18 failing before implementation**: wrong
+  parent/model, explicit preparation, missing authority, owner-side metadata/input
+  races, mismatched returned result/compiler, unavailable owner, context changes,
+  and relocation with the old path gone. Legacy missing authority is explicit.
+- **179 focused tests + 6 subtests** pass with
+  `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`, covering preparation, execution,
+  checkpoint, preview, endpoint and run-context boundaries. Python 3.10 syntax passes.
+- The same **179 + 6** pass from a clean wheel after removing the build checkout
+  and old install path. **95 installed module/resource files** match source and
+  remain unchanged; dependency checks and all six entry-point helps pass.
+  Wheel SHA-256: `74d0be1c4ad78e90c62df98ff28b07fbd6b3bedc8a12cb902ef070efa4bb7c23`.
+- One real C412 supported-owner read completes in **99.50 s**, with **14 original
+  input/metadata files unchanged**. It supplies prepared-model/restraint contexts
+  and source-literal inputs with `PDB_RECORD_ORDER; NOT_NATIVE_CAPTURE_INDICES`.
+  Native-index explicit policy is unavailable. Source model `f2c07a22…` and
+  selected prepared model `636223e4…` are explicitly different. This modified
+  parent is evidence-only, not canonical/modified-motion admission. C461 was not
+  read while Rowan's optional retention work remained active.
+
+The real owner is pinned to Cedar `a1ce98818…`; default integrated-runtime testing
+is separate from explicitly injected reader compatibility. No full-suite rerun
+or native refinement was needed for this bounded read-only adapter.
+Local-only logs, exact commands and hashes are anchored at
+`NASolve:branch-artifacts/willow/w177-preparation-reader/`. Runners
+`w177-c412-preparation.py` and `w177-install-preparation.py` preserve the exact
+commands; scientific files are excluded from Git. No portable scientific-run
+claim follows from the relocated software check.
+
+Next audit the existing source-policy/native-membership and descendant-lineage
+owners before broadening motion. An availability report cannot manufacture the
+missing chemical authority or turn a source-index policy into C128 native indices.

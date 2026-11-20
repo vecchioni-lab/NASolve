@@ -1207,6 +1207,22 @@
         "combined_runtime_qualified": false,
         "movement_or_closure_qualified": false,
         "packing_or_diffraction_qualified": false
+      },
+      "latest_ft_connectivity_intent": {
+        "reference": {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/ft-symmetry-contacts-20261120-03/user-connection-intent.json",
+          "sha256": "d61c28d32877b2b94dddfbe013386e32f6fd86e041127df5d2a248bacd4189e2"
+        },
+        "declared_continuation": "B:7 O3-prime to B:1 P",
+        "target_image": "-x+y,-x,z",
+        "inverse_phosphorus_fixed_view": "-y,x-y,z",
+        "operator_authority": "Coordinate-derived in the pinned model; not separately user-specified",
+        "crossover": "C/D tentative; D:7 O3-prime to C:8 P remains provisional",
+        "D1": "Terminal intent unchanged",
+        "native_symmetry_restraints_qualified": false,
+        "slicing_origin": "UNESTABLISHED",
+        "whole_model_authority_complete": false
       }
     },
     "saved_motion_parent_binding": {
@@ -1245,7 +1261,7 @@
       "symmetry_covalent_seams_qualified": false,
       "modified_metal_motion_qualified": false,
       "optimization_runs": 0,
-      "next_action": "Read the ordinary parent through existing Cedar validate_published_preparation and read_dictionary_request_result. Expose exactly which frozen model/restraint/compiler/capture fields are authenticated, refuse a different parent, and preserve unavailable evidence explicitly. Reuse current published references before proposing any new schema. Genuine modified-parent controls remain evidence-only; no canonical motion adoption, reconstructed history, inferred chemistry or repeated private fit.",
+      "next_action": "Use the qualified preparation-availability reader in Cedar integration planning. Before extending motion beyond schema2, qualify the selected preparation/descendant lineage and an existing-owner source-compiler-to-native-membership join; source/PDB-order policies cannot be relabelled as C128 native policies. Identify one independently complete canonical ordinary parent, while modified C412/C461 remain evidence-only controls. Reuse existing readers/execution, retain missing authority, and do not repeat the private fit.",
       "whole_context_input_join": {
         "human_update": 175,
         "reference": "docs/topostitch-periodic.md#w175--bind-the-private-candidate-and-check-its-untouched-remainder",
@@ -1373,6 +1389,27 @@
         "ordinary_checkpoint_qualified": false,
         "chemical_qualification": "NOT_ESTABLISHED",
         "next_action": "Read the ordinary parent through existing Cedar validate_published_preparation and read_dictionary_request_result. Expose exactly which frozen model/restraint/compiler/capture fields are authenticated, refuse a different parent, and preserve unavailable evidence explicitly. Reuse current published references before proposing any new schema. Genuine modified-parent controls remain evidence-only; no canonical motion adoption, reconstructed history, inferred chemistry or repeated private fit."
+      },
+      "ordinary_preparation_availability": {
+        "human_update": 177,
+        "reference": "docs/topostitch-periodic.md#w177--read-existing-ordinary-preparation-authority-without-admitting-motion",
+        "api": "nasolve.topostitch_preparation.inspect_checkpoint_preparation",
+        "owner": "Cedar checkpoints._read_registry_with_preparations; existing checked publication and complete result",
+        "scope": "Exact published postmr or explicit preparation; no refined descendants",
+        "requires_expected_checkpoint_id": true,
+        "requires_expected_model_sha256": true,
+        "context_pin_supported": true,
+        "source_selected_model_distinguished": true,
+        "missing_authority": "UNAVAILABLE",
+        "native_capture_coverage": "NOT_ASSESSED_BY_THIS_READER",
+        "native_calls": 0,
+        "chemical_admission": false,
+        "motion_admission": false,
+        "locking": false,
+        "installed_tests": 179,
+        "installed_subtests": 6,
+        "real_control": "C412 modified-parent evidence only;14 inputs unchanged",
+        "next_action": "Use the qualified preparation-availability reader in Cedar integration planning. Before extending motion beyond schema2, qualify the selected preparation/descendant lineage and an existing-owner source-compiler-to-native-membership join; source/PDB-order policies cannot be relabelled as C128 native policies. Identify one independently complete canonical ordinary parent, while modified C412/C461 remain evidence-only controls. Reuse existing readers/execution, retain missing authority, and do not repeat the private fit."
       }
     },
     "selected_checkpoint_motion_binding": {
@@ -1397,7 +1434,7 @@
       "locking": false,
       "retained_native_lifecycle_qualified": false,
       "modified_metal_motion_qualified": false,
-      "next_action": "Read the ordinary parent through existing Cedar validate_published_preparation and read_dictionary_request_result. Expose exactly which frozen model/restraint/compiler/capture fields are authenticated, refuse a different parent, and preserve unavailable evidence explicitly. Reuse current published references before proposing any new schema. Genuine modified-parent controls remain evidence-only; no canonical motion adoption, reconstructed history, inferred chemistry or repeated private fit.",
+      "next_action": "Use the qualified preparation-availability reader in Cedar integration planning. Before extending motion beyond schema2, qualify the selected preparation/descendant lineage and an existing-owner source-compiler-to-native-membership join; source/PDB-order policies cannot be relabelled as C128 native policies. Identify one independently complete canonical ordinary parent, while modified C412/C461 remain evidence-only controls. Reuse existing readers/execution, retain missing authority, and do not repeat the private fit.",
       "execution_join": {
         "human_update": 174,
         "function": "load_execution_bend_motion",
@@ -1419,7 +1456,7 @@
         "runtime_authority": false,
         "locking": false,
         "ordinary_motion_qualified": false,
-        "next_action": "Read the ordinary parent through existing Cedar validate_published_preparation and read_dictionary_request_result. Expose exactly which frozen model/restraint/compiler/capture fields are authenticated, refuse a different parent, and preserve unavailable evidence explicitly. Reuse current published references before proposing any new schema. Genuine modified-parent controls remain evidence-only; no canonical motion adoption, reconstructed history, inferred chemistry or repeated private fit."
+        "next_action": "Use the qualified preparation-availability reader in Cedar integration planning. Before extending motion beyond schema2, qualify the selected preparation/descendant lineage and an existing-owner source-compiler-to-native-membership join; source/PDB-order policies cannot be relabelled as C128 native policies. Identify one independently complete canonical ordinary parent, while modified C412/C461 remain evidence-only controls. Reuse existing readers/execution, retain missing authority, and do not repeat the private fit."
       }
     }
   },

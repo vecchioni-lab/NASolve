@@ -1,5 +1,14 @@
 # NASolve development handoff — Willow
 
+**W177:** the new read-only preparation inspector reports authenticated fields
+for an exact published parent. **179 focused tests + 6 subtests** and the same
+relocated installed suite pass. Real C412 supplies model/restraint/source-literal
+context; its native-index C128 policy is absent, and pre-ReadySet/source and
+selected prepared model hashes remain distinct. No native call or motion admission.
+Only `postmr`/explicit preparations are supported; descendants remain a separate
+lineage gate. [API](topostitch-preview.md#inspect-existing-preparation-authority-w177) ·
+[exact validation](topostitch-periodic.md#w177--read-existing-ordinary-preparation-authority-without-admitting-motion).
+
 **W176:** one maintained fixed-coordinate parent capture supplies **42 complete
 monomer mappings / 859 atoms**, with the same 38 declared backbone links,
 51 soft distances, 213 custom requests and all named proxy definitions as W172.
@@ -39,7 +48,7 @@ W174 joins the frozen request; retained-manager integration remains next.
 [Exact scope, controls and setup stops](topostitch-periodic.md#w172--require-declared-topology-before-parent-coordinate-transfer).
 
 
-Updated **2026-11-20**, through **W176**. W168’s private native diagnostic now retains
+Updated **2026-11-20**, through **W177**. W168’s private native diagnostic now retains
 known parent chemistry at the ordinary 3 Å interpretation cutoff while diffraction
 and refinement use the displaced child. One five-cycle run recovers **2.288 →
 0.271 Å RMS**, keeping all 38 backbone links, atom identities and checked sugar
@@ -88,6 +97,11 @@ the shared offline regional twist, paired-P span and strand-to-axis radius repor
 Preserving chemistry permits coupled sugar/backbone coordinate movement; it does
 not mean holding those atoms fixed. Hazel reconfirmed this scope on 20 November.
 [Motion, measurements and ownership](topostitch.md#cluster-accommodation-bounded-helix-opening-and-closing-w167-planned).
+
+**FT intent update:** Hazel records the investigator-declared B:7 O3′ → B:1 P
+symmetry continuation. C/D remains tentative; D:1 stays terminal. Directed target-P
+and inverse fixed-P image operators are distinguished in the existing contract.
+This changes intent, not native symmetry-bond/angle qualification or coordinates.
 
 **W165 pipeline addition:** plan a default-on read-only backbone-fit check for
 high Rfree with coherent red phosphate/backbone or positive backbone difference
