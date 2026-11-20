@@ -142,6 +142,35 @@ owns limits and remaining prerequisites: transport verification is not scientifi
 parent/input admission; freeze auditing, compact scientific publication, quotas
 and retirement still need integration. **A04 partial; A01 partial; A02 gated.**
 
+### Stopped-child output evidence: byte integrity only
+
+The next A04 boundary now uses existing storage snapshots/hashes and the durable
+campaign writer to seal a completed, verified-stopped child's exact flat job
+inventory. Previously the process outcome pinned inputs/ownership but no output
+bytes; the new explicit Python freeze/read owner adds optional `outputs.json`
+(`metal-fdp-child-output-evidence` v1), with independent receipt identity and
+portable child-relative references. It requires the worker's three nonempty
+output files and unchanged working inputs. Live/uncertain/failed/timed-out or
+incomplete output cannot seal; later changed files invalidate readback.
+
+Only `metal/child_outputs.py` and `tests/test_metal_child_outputs.py` are added to
+runtime/tests; existing process/CLI/trial formats and scientific settings remain
+unchanged. No migration, automatic invocation or payload deletion follows.
+The [storage contract](metal-campaign-storage.md#stopped-child-output-byte-evidence)
+owns exact API, limits and validation commands. **47 focused tests pass in
+11.95 s**, followed by 374 installed checks including 351 package files and
+four simulated native process invocations. Build/original installation paths are
+removed; original product/science reads are denied. Private receipts are
+`child-outputs-20261120-01/{validation.json,installed-review.json}`. Initial missing
+owner and corrected test-fixture import are recorded. No full suite or actual
+Phenix/Coot science run; generated outputs/wheels remain local and excluded.
+
+The receipt proves bytes, not crystallographic validity or OS immutability.
+Ordinary scientific parent/input admission, separately carried typed reader
+controls at the exact launch (Willow W182), unchanged freeze/FreeR/model audits,
+compact scientific publication, quotas and retirement remain next. **A01 partial;
+A02 gated; A04 partial.**
+
 ### Completed-batch provenance handoff
 
 `metal publish-fdp-inputs` now publishes a bounded explicit completed batch and a

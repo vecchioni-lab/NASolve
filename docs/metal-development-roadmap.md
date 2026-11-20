@@ -58,9 +58,13 @@ files. Keep full compressed proof nodes; use explicit historical-only compact
 children for ordinary increments. The fresh process-only prepare/run/inspect route now exercises shared parent
 transport and native-process ownership with durable outcomes and safe explicit
 retry. Qualification is 112 focused tests plus the late-parent-change control,
-and relocated installed simulated execution. Next connect scientific parent/input
-admission, freeze auditing and compact scientific publication; native qualification,
-reservations and retirement remain open.
+and relocated installed simulated execution. A separate explicit Python owner now
+seals exact output-byte evidence only after verified completion, with 47 focused
+tests and relocated installed readback. Required output presence is not scientific
+validity; no automatic invocation or pruning follows. Next connect scientific
+parent/input admission and exact typed reader controls, then freeze auditing and
+compact scientific publication; native qualification, reservations and retirement
+remain open.
 
 **Scientific milestone: A01 — ligand geometry and open XYZ/B foundation.**
 **Parallel engineering step: A04 — compact records and protected parent transport.**

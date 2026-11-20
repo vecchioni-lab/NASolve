@@ -2121,6 +2121,13 @@ Transport identity is not parent/input scientific admission; the ordinary frozen
 producer, audit and compact result lifecycle still need deliberate integration.
 See [child process ownership](metal-campaign-storage.md#fresh-frozen-child-process-ownership).
 
+The explicit `metal.child_outputs` Python owner can then seal a create-only,
+child-relative inventory of all flat job files after verified completion. It
+reuses storage snapshots/hashes and durable campaign records, with exact
+request/outcome binding and independent receipt-pinned readback. Required output
+presence and unchanged bytes do not establish scientific validity. No automatic
+scientific producer integration, output quota or retirement authority is added.
+
 The additive `metal.parent_archive` adapter transports an explicit portable parent
 layout through unchanged checksum-indexed archive owners. Bounded parts preserve
 global limits; a temporary protected copy releases the transport scope before

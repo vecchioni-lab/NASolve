@@ -833,6 +833,69 @@ seam as the compact f″ executor, connect ordinary parent/input admission, free
 and reflection audit, durable compact result publication/readback, protections
 and reservations. Native acceptance still requires the A01/A02 scientific gates.
 
+### Stopped-child output byte evidence
+
+The existing `metal.storage._snapshot` and `_hash` already provide bounded,
+regular-file inventory and change detection. `metal.child_outputs` reuses those
+helpers and the campaign create-only record writer, without a second archive or
+copy of native payload. This closes the output-byte gap after the process owner;
+it does not close scientific admission or accept refinement results.
+
+The explicit Python calls are `freeze_child_outputs(child, request_id=ID,
+max_bytes=64*1024*1024)` and `inspect_child_outputs(child, request_id=ID,
+output_id=RECORD_SHA256)`. The latter independently pins the receipt. There is no
+new CLI command or automatic call from the scientific producer yet.
+
+A receipt requires a `COMPLETED` child with verified shutdown and parent transport.
+The job's prepared inputs must still match their pinned bytes. The maintained
+worker's `native-result.json.gz`, `final.pdb` and `effective-final.phil` must be
+present and nonempty. Presence does **not** establish valid contents: the reader
+intentionally performs no gzip, model, reflection or PHIL scientific validation.
+Every flat job file, including inputs/logs and additional native output, is hashed.
+Missing/extra/changed files, symlinks, directories, nonportable names and inventory
+changes during hashing refuse. The child outcome is rechecked before publication.
+Failed, timed-out, live or uncertain attempts retain their evidence without this
+completed-output receipt. A partial job that exits zero still cannot seal unless
+all required output names are present and nonempty.
+
+The optional `outputs.json` record uses `metal-fdp-child-output-evidence` v1:
+exact request/outcome hashes, the child anchor plus `native/fdp/job` relative path,
+all file SHA-256/size pairs, required names, total bytes and declared byte budget.
+It is durable and create-only, followed by exact readback; existing records are
+never overwritten. This freezes the **record**, not filesystem permissions.
+Subsequent file changes invalidate inspection. A failed post-publication readback
+retains the receipt and payload for review, without scientific or cleanup authority.
+No old process/trial format changes or migration are required.
+
+Limits are 256 regular files, 64 MiB default inventory budget, an explicitly
+selected budget no larger than 1 GiB, and a 1 MiB receipt read limit. This is a
+bounded inspection allowance, **not** a native output quota or campaign storage
+capacity claim. Unknown nested output layouts require a separate qualified owner.
+`scientific_acceptance=NOT_ASSESSED` and `retirement_authorized=false` remain explicit.
+
+Qualification: **47 focused tests pass in 11.95 s** using
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src
+/private/tmp/willow-w94-pivot/env/bin/python -B -m pytest -q -p no:cacheprovider
+ tests/test_metal_child_outputs.py tests/test_metal_child_process.py
+ tests/test_metal_storage.py`.
+They cover actual live/timeout/uncertain process ownership, missing/empty output,
+same-size mutations, added/missing files, changed inputs, publication immutability,
+late-owner changes, bounded counts/bytes and relocation. A fresh installed probe
+passes 374 checks including 351 exact package members, with four simulated native
+process invocations. Original build/install paths are removed and original
+product/science access is denied. Private evidence is
+`child-outputs-20261120-01/{validation.json,installed-review.json}` under the Alder
+artifact anchor; `runners/A310_installed_child_outputs.py` reproduces the probe.
+Phenix 2.2.1-6174 remains the worker target, but no Phenix/Coot science job or full
+suite was run. Generated fixtures, package wheel and reports remain local.
+
+Next connect ordinary parent/input admission and exact typed reader controls to
+the scientific launch, then run the unchanged freeze/FreeR/model audit over these
+bound bytes and publish/reread the compact scientific result. Willow's W182
+reader-control gap is a separate prerequisite, not supplied by this inventory.
+Quota/reservation and retirement integration remain open; A04 stays partial.
+
+
 ### Measured audit-retention boundary on historical FT trials
 
 The three already-published FT_Hg attempts now have a private cold component-audit

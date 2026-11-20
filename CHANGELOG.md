@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Seal stopped-child output bytes without accepting the science
+
+- Add explicit Python freeze/read owners for a completed, verified-stopped
+  frozen child. Reuse bounded storage snapshots/hashes and durable create-only
+  records; bind every job file to the exact request and process outcome.
+- Refuse incomplete required outputs, changed inputs/files, live or uncertain
+  processes, oversized inventories and unsafe paths. Preserve all original files.
+- Add optional `metal-fdp-child-output-evidence` v1 receipts; existing process,
+  trial and CLI contracts are unchanged. Scientific validation, automatic
+  invocation, quotas and pruning remain separate.
+- Qualify with 47 focused tests and relocated installed simulated-process checks;
+  no native crystallographic execution or full suite.
+
 ### Own one fresh frozen-child process through the shared lifecycle
 
 - Add normal prepare/run/inspect commands with exact prepared-input, maintained
