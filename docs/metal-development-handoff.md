@@ -75,6 +75,21 @@ boundary before modified/metal motion admission. Separate donor pose and Hg
 placement, then qualify open XYZ/B before branch-specific environmental B and
 frozen f″/Q. Do not repeat this readback or the completed 25-point pivot grid.
 
+### Ordinary recorded-result CLI
+
+The maintained historical inspector now has a stdout-only normal CLI consumer,
+`metal inspect-recorded-fdp`. It requires external archive/projection/trial/parent
+pins and prints Q/B/f″ or exact JSON without original-run or native discovery.
+**53 focused tests** passed in 32.13 s; a relocated installation recovered both
+historical Hg and Ag₄ results exactly and refused changed parents/partial work.
+Its 723 checks include package integrity; no native fit or full suite ran.
+Local evidence: `recorded-cli-20261120-01/validation.json` and `installed/result.json`.
+Only the CLI and its focused test file change runtime behavior. No persisted
+schema, scientific default, migration or cleanup authority changes. A04 remains
+partial; this closes the explicit ordinary command-line inspection gap, not
+campaign orchestration or retirement. See the
+[storage contract](metal-campaign-storage.md#normal-cli-inspection-of-one-recorded-attempt).
+
 ### Independent FT declarations and remaining symmetry input
 
 A source-only audit of the actual `d69966…` parent preserves all nine input pins

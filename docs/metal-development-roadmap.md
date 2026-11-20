@@ -20,6 +20,11 @@ Preserve all phosphates, the 19 supplied pair planes and the separate generic
 sequence versus selected-model distinction; see the current handoff. No native
 recipe/fit was produced from those incomplete declarations.
 
+A04 now exposes pinned historical result inspection through the normal CLI
+(`metal inspect-recorded-fdp`), with 53 focused tests and exact relocated installed
+Hg/Ag₄ readback. This closes a workflow surface only; no fresh fit, scientific
+acceptance, campaign cleanup or exact regeneration authority follows.
+
 **Scientific milestone: A01 — ligand geometry and open XYZ/B foundation.**
 **Parallel engineering step: A04 — compact records and protected parent transport.**
 A04 measures saved trials while A01 remains unresolved; it does not bypass A02

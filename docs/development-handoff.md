@@ -113,6 +113,12 @@ reuse and pruning remain unqualified; see the
 [storage contract](metal-campaign-storage.md#recorded-execution-and-parent-cross-binding).
 This follow-on changes documentation only and does not repeat runtime tests.
 
+The additive `metal inspect-recorded-fdp` CLI reads one explicitly pinned
+historical attempt without original-run/native discovery. It passed 53 focused
+tests and relocated installed Hg/Ag₄ readback; schemas/defaults and scientific
+acceptance remain unchanged. See the metal handoff and storage contract for
+the exact historical-evidence boundary. No full suite or native fit ran.
+
 The independent FT declaration audit preserves all nine current input pins and
 identifies B:1/C:8 cross-symmetry connection intent and an ordinary selected
 checkpoint as missing admission inputs. It preserves phosphates and all 19 pair

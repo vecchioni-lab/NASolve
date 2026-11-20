@@ -41,6 +41,16 @@ def configure(subparsers):
                             help='explicit dataset mount; repeat for each catalog dataset')
         if parser is not serve:
             parser.add_argument('--json', action='store_true')
+    recorded = actions.add_parser('inspect-recorded-fdp', help='read one pinned historical result from an input archive; no new audit or native run')
+    recorded.add_argument('--archive', type=Path, required=True)
+    recorded.add_argument('--archive-sha256', required=True, help='independently retained archive checksum')
+    recorded.add_argument('--projection-id', required=True)
+    recorded.add_argument('--trial-id', required=True, help='exact saved attempt identity')
+    recorded.add_argument('--expected-parent', type=Path, required=True,
+                          help='independently retained parent identity JSON; no original model required')
+    recorded.add_argument('--max-input-bytes', type=int, help='tighten the shared archive expansion budget')
+    recorded.add_argument('--json', action='store_true', help='print the complete recorded inspection without rounding')
+    recorded.set_defaults(output=None)
     inspect = actions.add_parser('inspect', help='read one generated W checkpoint and its observation wavelength')
     preview = actions.add_parser('preview', help='bind a recipe to an explicit generated W checkpoint')
     build = actions.add_parser('build', help='add explicitly placed metal sites in a new review bundle')
@@ -147,6 +157,8 @@ def execute(args):
         outputs = [p for p in (args.output, getattr(args, 'export', None)) if p is not None]
         if len({p.resolve() for p in outputs}) != len(outputs) or any(p.exists() or p.is_symlink() for p in outputs):
             raise RecipeError('Outputs must be distinct new files')
+        if args.metal_action == 'inspect-recorded-fdp':
+            return _recorded_fdp(args)
         if args.metal_action == 'inspect-fdp-storage':
             return _fdp_storage(args)
         if args.metal_action in {'project-fdp-records', 'verify-fdp-records'}:
@@ -626,6 +638,36 @@ def _fdp_count_comparison(args):
         compared = sum(p['status']=='COMPARED' for p in report['profiles'])
         print(f'{compared} matched one-variable profiles; full Q vectors, per-site values and controls: {path}')
         print('Coefficient diagnostics only; no integer count, convergence claim or checkpoint selection.')
+    return 0
+
+
+def _recorded_fdp(args):
+    from .compact import read_projection
+    from .input_archive import inspect_recorded_fdp
+    # Reuse the bounded, duplicate-key-rejecting JSON reader. Parent references
+    # are data: do not resolve them or rediscover the original run.
+    try:
+        parent = read_projection(args.expected_parent, max_projection_bytes=16 * 1024)
+    except RecipeError as exc:
+        raise RecipeError('Cannot read expected parent JSON: ' + str(exc)) from exc
+    options = {} if args.max_input_bytes is None else {'max_input_bytes': args.max_input_bytes}
+    report = inspect_recorded_fdp(args.archive, args.archive_sha256,
+        projection_id=args.projection_id, trial_id=args.trial_id,
+        expected_parent=parent, **options)
+    if args.json:
+        print(json.dumps(report, indent=2, allow_nan=False))
+    else:
+        result = report['record']['result']
+        # Build the complete display before printing, so bad metadata produces
+        # an error without a partially published success-looking table.
+        lines = ['Historical result: ' + report['record']['trial_id'],
+                 'Site / element | Q (occ) | B (Å²) | f″ (e) | Expected f″ (e)']
+        for site in result['sites']:
+            lines.append(f"{site['node_id']} / {site['element']} | {site['occupancy']} | {site['b_iso']} | {site['f_double_prime']} | {site['reference_f_double_prime']}")
+        lines.extend([f"Rwork {result['r_work']}; Rfree {result['r_free']}; wavelength {result['wavelength_A']} Å",
+                      'No new scientific audit; current parent and native environment are not verified.',
+                      'Scientific acceptance not assessed. No execution, reuse or retirement authority.'])
+        print('\n'.join(lines))
     return 0
 
 

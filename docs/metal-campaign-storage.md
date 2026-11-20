@@ -154,7 +154,7 @@ does not retain their complete transitive proof, full software/environment
 identity or all native outputs. It therefore grants no reuse, execution or
 retirement authority. A successful cold expansion after original test data are
 removed establishes byte recovery only; actual Phenix regeneration and safe
-scientific-output retirement remain unqualified. There is no new CLI/GUI action.
+scientific-output retirement remain unqualified. Packing remains a Python API; the recorded-result CLI below is read-only.
 
 The existing shared limits remain: at most 1,024 logical files, 32 MiB per file
 and 128 MiB total logical input contents, including the compact projection.
@@ -168,6 +168,38 @@ rather than raising shared limits. `max_trial_bytes` defaults to the existing
 retains its 16 MiB cap. Upstream scientific replay still traverses original
 parents and native JSON; these are not total I/O, memory, peak disk or campaign
 reservation guarantees. No original scientific run is modified by this adapter.
+
+### Normal CLI inspection of one recorded attempt
+
+`nasolve metal inspect-recorded-fdp` exposes the same maintained recorded-result
+reader through the ordinary CLI. Supply `--archive`, `--archive-sha256`,
+`--projection-id`, `--trial-id` and `--expected-parent` (a JSON file holding the
+exact independently retained `geometry_id`/`xyz_trial_id` and run-anchored
+`manifest` object). These identifiers come from the original publication and
+selected parent; extracting replacement identities from an untrusted archive
+would not establish independent trust. Original parent model files are not opened.
+
+The default display contains site/element, **Q (occ)**, B, fitted f″, expected f″,
+Rwork/Rfree and wavelength. `--json` prints the complete API result without
+rounding. Output is stdout only; there is no `--output`, implicit run, file search,
+native discovery or permanent result-directory creation. Temporary archive views
+remain owned and cleaned by the existing bounded transport owner. Parent JSON
+is limited to 16 KiB using the existing strict duplicate-key-rejecting reader.
+`--max-input-bytes` may tighten the existing archive allowance.
+
+This is historical inspection, not `verify-fdp` or a new scientific audit. Current
+parent/native environment verification, reuse, cleanup, automatic selection and
+scientific acceptance remain false. A different trial with the same inputs is
+still a separate attempt. Existing project/verify/storage commands are unchanged.
+
+The command passed **53 focused tests** (10 new CLI cases plus existing result
+inspection and compact-record controls). The normal entrypoint was then tested
+from a relocated installed package against the actual saved FT_Hg and Ag₄
+archives: exact full results, wrong-parent refusals and preserved partial-archive
+refusal, with original source/science reads blocked and no Phenix call. The
+**723 installed checks** include package byte checks, not 723 scientific trials.
+See local `recorded-cli-20261120-01/{validation.json,installed/result.json}` under
+the Alder artifact anchor; no generated science is committed.
 
 ## Implemented fourth step: explicit parent-layout transport
 

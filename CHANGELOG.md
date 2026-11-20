@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Inspect archived metal results from the command line
+
+- Add `nasolve metal inspect-recorded-fdp` with explicit archive, projection,
+  trial and parent identities. Print the full recorded inspection as JSON or a
+  compact Q/B/f″ table without original-run discovery, native execution or writes.
+- Preserve historical-only evidence labels and reject incorrect pins, malformed
+  parent JSON and incomplete archives through the existing inspection owners.
+  No persisted schema, refinement default or cleanup authority changes.
+
 ### Record independent FT symmetry and checkpoint input gaps
 
 - Bind the current FT source declarations to their frozen sequence, selected
