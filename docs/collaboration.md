@@ -17,6 +17,10 @@ Keep one current queue and a short current handoff. Replace superseded status
 instead of adding another milestone diary. Link immutable Git history or the
 existing evidence ledger for older results; do not duplicate those records.
 
+Raise a disagreement when a measurement, chemical assumption or proposed task
+points elsewhere. Branch owners can challenge the coordinator, and the coordinator
+can bring the same question to Simon. Name the observation that would settle it.
+
 ## Small science checkouts
 
 After a substantial work stretch, leave a lightweight visual science report in
