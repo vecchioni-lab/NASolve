@@ -422,11 +422,17 @@ def _candidate(
         isinstance(terminal_audit, Mapping)
         and terminal_audit.get("requires_review") is True
     )
+    bond_audit = statistics.get("inter_residue_bonds")
+    has_bond_audit = "inter_residue_bonds" in statistics
+    bond_review = has_bond_audit and (
+        not isinstance(bond_audit, Mapping) or bond_audit.get("requires_review") is not False
+    )
     eligible = (
         usable
         and work is not None
         and free is not None
         and not terminal_geometry_review
+        and not bond_review
     )
     gap = free - work if work is not None and free is not None else None
     return {
@@ -437,6 +443,7 @@ def _candidate(
         "r_free_minus_r_work": gap,
         "usable": usable,
         "terminal_geometry_review": terminal_geometry_review,
+        **({"inter_residue_bond_review": bond_review} if has_bond_audit else {}),
         "eligible_for_inspection": eligible,
         "strict_success": bool(eligible and accepted and work < .30 and work < free),
     }

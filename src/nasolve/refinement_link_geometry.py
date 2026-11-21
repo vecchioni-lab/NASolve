@@ -138,7 +138,8 @@ def _endpoint_rows(edges):
     return [[list(atom) for atom in edge] for edge in sorted(edges)]
 
 
-def read_refined_links(model, geometry, *, preparation_model=None, backbone_links=None, restraint_phils=()):
+def read_refined_links(model, geometry, *, preparation_model=None, backbone_links=None, restraint_phils=(),
+                       allow_unassessed=False):
     """Account for every printed cross-site bond or crystal-image bond in a final GEO.
 
     With no preparation, report observed endpoints and origins only. The caller
@@ -156,11 +157,20 @@ def read_refined_links(model, geometry, *, preparation_model=None, backbone_link
     }
     _require(len(labels) == len(atoms), "ambiguous PDB atom labels")
     data = geometry.read_bytes()
-    sections, printed = _printed_rows(data.decode("utf-8"), labels)
     declared = preparation_model is not None
     backbone, supplied, source, frame_hashes = (
         _declarations(preparation_model, backbone_links, restraint_phils) if declared else (set(), {}, None, None)
     )
+    reason = None
+    try:
+        sections, printed = _printed_rows(data.decode("utf-8"), labels)
+    except ValueError as exc:
+        if not allow_unassessed:
+            raise
+        # An unreadable native table can coexist with a usable model.
+        # Discard partial counts. Source validation and file identity still apply.
+        reason = str(exc)
+        sections, printed = {}, []
     remaining_backbone, remaining_supplied = backbone.copy(), supplied.copy()
     rows = []
     needs_review = False
@@ -190,7 +200,9 @@ def read_refined_links(model, geometry, *, preparation_model=None, backbone_link
         rows.append(dict(endpoints=[list(e) for e in ends], origin=origin, classification=classification,
                          target_A=float(numbers["ideal"]), model_A=float(numbers["model"]), sigma_A=float(numbers["sigma"]),
                          weight=float(numbers["weight"]), slack_A=float(numbers.get("slack", 0)), image_of_second_atom=image))
-    if not sections:
+    if reason is not None:
+        status = "UNASSESSED"
+    elif not sections:
         status = "NOT_RECORDED"
     elif not declared:
         status = "OBSERVED"
@@ -199,6 +211,7 @@ def read_refined_links(model, geometry, *, preparation_model=None, backbone_link
     compared = bool(sections) and declared
     _require(geometry.read_bytes() == data and model.read_bytes() == raw, "checkpoint files changed during read")
     return dict(schema_version=1, policy_id=POLICY_ID, status=status, sections=sections, links=rows,
+                **({"reason": reason} if reason is not None else {}),
                 model_sha256=sha256(raw).hexdigest(), geometry_sha256=sha256(data).hexdigest(),
                 preparation_model_sha256=source, restraint_input_sha256=frame_hashes,
                 matched_backbone=len(backbone)-len(remaining_backbone) if compared else None,
@@ -247,19 +260,72 @@ def read_checkpoint_link_geometry(run, registry, verified, checkpoint, model, ge
     from .refinement_chemistry import _preparation_context
 
     context = _preparation_context(run, registry, verified, checkpoint)
+    return read_prepared_link_geometry(context, model, geometry)
+
+
+def read_prepared_link_geometry(context, model, geometry, *, allow_unassessed=False):
+    """Compare to one already verified preparation and bind its source bytes."""
     if context is None:
         return dict(read_refined_links(model, geometry), preparation_checkpoint=None)
     acquired, preparation_id, _ = context
     bundle = acquired["bundle"]
     directory = acquired["bundle_directory"]
     names = bundle["report"]["supplementary_phils"]
-    report = read_refined_links(
-        model, geometry, preparation_model=bundle["model"], backbone_links=bundle["report"]["expected_links"],
-        restraint_phils=[directory / name for name in names],
-    )
     pins = {row["path"]: row["sha256"] for row in bundle["report"]["files"]}
     source_name = bundle["model"].relative_to(directory).as_posix()
+    report = read_refined_links(
+        model, geometry, preparation_model=bundle["model"], backbone_links=bundle["report"]["expected_links"],
+        restraint_phils=[directory / name for name in names], allow_unassessed=allow_unassessed,
+    )
     _require(report["preparation_model_sha256"] == pins[source_name]
              and report["restraint_input_sha256"] == [pins[name] for name in names],
              "declarations differ from the checked preparation")
     return dict(report, preparation_checkpoint=preparation_id)
+
+
+def _stage_summary(report):
+    """Keep counts and the first actionable finding in the ordinary round report."""
+    if report is None:
+        return None
+    result = {key: report[key] for key in ("status", "model_sha256", "geometry_sha256")}
+    if report["status"] == "UNASSESSED":
+        return dict(result, reason=report["reason"])
+    if report["status"] == "NOT_RECORDED":
+        return dict(result, reason="No bond table was printed.")
+    issues = [r for r in report["links"] if r["classification"] in {"OUTSIDE_DECLARATION", "SYMMETRY_REVIEW"}]
+    first = issues[0] if issues else None
+    for kind in ("missing_backbone", "missing_supplied"):
+        if first is None and report[kind]:
+            first = dict(classification=kind.upper(), endpoints=report[kind][0])
+    return dict(result, matched_backbone=report["matched_backbone"], matched_supplied=report["matched_supplied"],
+                outside_declaration=sum(row["classification"] == "OUTSIDE_DECLARATION" for row in issues),
+                crystal_images=sum(row["classification"] == "SYMMETRY_REVIEW" for row in issues),
+                missing_backbone=len(report["missing_backbone"] or ()), missing_supplied=len(report["missing_supplied"] or ()),
+                first_issue=first)
+
+
+def summarize_round_links(preparation_id, initial, refined):
+    """Use the same rule when publishing a round and independently reopening it."""
+    return dict(policy_id=POLICY_ID, preparation_checkpoint=preparation_id,
+                preflight=_stage_summary(initial), refined=_stage_summary(refined),
+                requires_review=any(stage is None or stage["status"] != "MATCH" for stage in (initial, refined)))
+
+
+def review_round_links(run, registry, verified, parent, checkpoint, execution, model, geometry):
+    """Summarize an opt-in ordinary round from its established preparation and native evidence."""
+    from .refinement_chemistry import _preparation_context
+
+    context = _preparation_context(run, registry, verified, parent)
+    if context is None:
+        return None
+    item = dict(id=checkpoint, parent=parent["id"], outputs={"parallelity_execution": execution})
+    early = preflight_link_inputs(run, item)
+    initial = refined = None
+    if early is not None:
+        (entrance, entrance_ref), (geo, geo_ref) = early
+        initial = read_prepared_link_geometry(context, entrance, geo, allow_unassessed=True)
+        _require(initial["model_sha256"] == entrance_ref["sha256"] and initial["geometry_sha256"] == geo_ref["sha256"],
+                 "preflight bonds differ from their recorded model or geometry")
+    if model is not None and geometry is not None:
+        refined = read_prepared_link_geometry(context, model, geometry, allow_unassessed=True)
+    return summarize_round_links(context[1], initial, refined)

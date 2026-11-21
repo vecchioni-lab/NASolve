@@ -13826,6 +13826,15 @@ bond section gives `NOT_RECORDED`. A checkpoint without a frozen final table
 returns `null`. With this option the JSON preserves the independent
 `dictionary_status`. A local bond match alone cannot approve a refinement.
 
+For a new checked round with `--observe-declared-sites`, AutoRefine compares
+the incoming and final bond tables automatically. The round report records
+the preparation, both model and geometry fingerprints, counts and the first
+bond that needs attention under `statistics.inter_residue_bonds`.
+An unreadable table records the reason. A completed model remains available
+for inspection. Selection and numerical ranking require two complete matches.
+The same `--refined-links` command shows all findings and independently
+checks this compact record. Historical rounds can still be read.
+
 When the log ends with one complete Phenix Start/Final recap, the reported
 starting Rwork/Rfree is the native scaled start. The trajectory retains the
 actual observations, including initial scaling. A recap with no earlier

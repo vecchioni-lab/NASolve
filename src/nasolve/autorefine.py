@@ -2161,6 +2161,18 @@ def execute_autorefine(
     statistics = parse_refinement_statistics(log_text, model_text)
     statistics["terminal_geometry_audit"] = terminal_geometry_audit
     chemistry_review = False
+    link_review = None
+    if observe_declared_sites and parallelity_execution_reference is not None:
+        from .refinement_link_geometry import review_round_links
+        try:
+            link_review = review_round_links(
+                run, registry, verified_preparations, parent, checkpoint_id, parallelity_execution_reference,
+                output_model if completed_returncode == 0 else None, final_geometry,
+            )
+        except (OSError, ValueError, RuntimeError) as exc:
+            raise AutoRefineError(f"Refinement bond evidence is inconsistent: {exc}") from exc
+        if link_review is not None:
+            statistics["inter_residue_bonds"] = link_review
     if parallelity_execution_reference is not None and completed_returncode == 0 and output_model is not None:
         from .refinement_parallelity import read_execution_chemistry
         try:
@@ -2326,6 +2338,12 @@ def execute_autorefine(
         checkpoint_status = "REVIEW"
         usable = True
         exit_code = 0
+    elif link_review is not None and link_review["requires_review"]:
+        status = "AUTOREFINE_REVIEW"
+        message = "Refinement completed. Inspect the inter-residue bonds in the preflight and final geometry."
+        checkpoint_status = "REVIEW"
+        usable = True
+        exit_code = 0
     elif counted_protocol is not None:
         status = "AUTOREFINE_REVIEW"
         message = "Explicit counted-coordinate control completed; inspect the model before selection"
@@ -2466,6 +2484,7 @@ def execute_autorefine(
             "numerical_success": numerical_success,
             "terminal_geometry_review": terminal_geometry_audit["requires_review"],
             "chemical_geometry_review": chemistry_review,
+            **({"inter_residue_bond_review": link_review["requires_review"]} if link_review is not None else {}),
             "visual_inspection_required": True,
         },
         "outputs": {

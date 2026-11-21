@@ -151,13 +151,18 @@ def assess_run(
         *zip(restraints, restraint_refs),
     ]
     if refined_links:
-        from .refinement_link_geometry import preflight_link_inputs, read_checkpoint_link_geometry
+        from .campaigns import _canonical
+        from .refinement_chemistry import _preparation_context
+        from .refinement_link_geometry import preflight_link_inputs, read_prepared_link_geometry, summarize_round_links
+        context = _preparation_context(run, registry, verified, selected)
+        metrics = selected.get("metrics", {})
+        recorded = isinstance(metrics, Mapping) and "inter_residue_bonds" in metrics
         receipt["preflight_links"] = None
         receipt["refined_links"] = None
         initial_files = preflight_link_inputs(run, selected)
         if initial_files is not None:
             (entrance, entrance_ref), (early_geo, early_ref) = initial_files
-            initial = read_checkpoint_link_geometry(run, registry, verified, selected, entrance, early_geo)
+            initial = read_prepared_link_geometry(context, entrance, early_geo, allow_unassessed=recorded)
             if initial["model_sha256"] != entrance_ref["sha256"] or initial["geometry_sha256"] != early_ref["sha256"]:
                 raise CheckpointError("Preflight bonds differ from the frozen entrance model or geometry")
             receipt["preflight_links"] = initial
@@ -169,15 +174,23 @@ def assess_run(
             if selected.get("kind") != "refinement":
                 raise CheckpointError("Final geometry must belong to a refinement checkpoint")
             geo = _ref_path(final_ref, "final geometry", run)
-            links = read_checkpoint_link_geometry(run, registry, verified, selected, model, geo)
+            links = read_prepared_link_geometry(context, model, geo, allow_unassessed=recorded)
             if links["model_sha256"] != model_ref["sha256"] or links["geometry_sha256"] != final_ref["sha256"].casefold():
                 raise CheckpointError("Refined link evidence differs from the frozen checkpoint files")
             receipt["refined_links"] = links
             tracked.append((geo, {"sha256": links["geometry_sha256"]}))
+        bond_review = False
+        if recorded:
+            if context is None:
+                raise CheckpointError("Recorded bond summary has no checked preparation")
+            current = summarize_round_links(context[1], receipt["preflight_links"], receipt["refined_links"])
+            if _canonical(current) != _canonical(metrics["inter_residue_bonds"]):
+                raise CheckpointError("Recorded bond summary differs from the native geometry evidence")
+            bond_review = current["requires_review"]
         receipt["dictionary_status"] = receipt["status"]
         link_status = (receipt["refined_links"] or {}).get("status")
         initial_status = (receipt["preflight_links"] or {}).get("status")
-        if receipt["status"] != "INVALID" and "REVIEW" in (link_status, initial_status):
+        if receipt["status"] != "INVALID" and (bond_review or "REVIEW" in (link_status, initial_status)):
             receipt["status"] = "REVIEW"
         elif receipt["status"] == "PASS" and (link_status != "MATCH" or initial_status not in (None, "MATCH")):
             receipt["status"] = "UNASSESSED"

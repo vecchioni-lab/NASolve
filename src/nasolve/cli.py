@@ -1948,6 +1948,8 @@ def _cif_doctor(args: argparse.Namespace) -> int:
                     print(f"{checkpoint} has no frozen {name} geometry.")
                 else:
                     print(f"{stage} bonds at {checkpoint} were reported as {links['status']}.")
+                    if links.get("reason"):
+                        print(f"  {links['reason']}")
                     if links["status"] == "OBSERVED":
                         print("  Comparison requires a checked preparation. The JSON lists the observed bonds.")
                     if links["matched_backbone"] is not None:

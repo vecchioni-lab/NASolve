@@ -121357,5 +121357,61 @@
     },
     "method": "Rebuild the controls from the bound ReadySet entrance model. For each proposed pair verify one distinct named heavy atom per Phenix selector, add one exclusion, then compare all native proxy objects and crystal-image bonds. Once the declared topology matches, qualify zero and five cycles against the same HKL assignments.",
     "scope": "No automatic exclusion or pairing inference. A pair exclusion in this Phenix build can affect its other lattice images. An empty second selection broadens the scope to every partner of the first. Atom identity and noncovalent intent require independent evidence."
+  },
+  "mixed_scaffold_second_ordinary_round_2026_11_21": {
+    "program": "Phenix 2.2.1-6174",
+    "cycles_after_refine_001": 5,
+    "parent_model_sha256": "4b971c7174eb76a0ef79366400f87bbced8cd97117ad106b4d8323e5dc9c13cc",
+    "written_model_sha256": "fcc1dc52cb81548b4ca0c67bc43a703e927248993a8680ed68fedcc5bfca9642",
+    "execution_sha256": "1815e51b7bdf1401075ab554efac26404222c2998edc095492c259218a4db6b7",
+    "preflight_geo_sha256": "8c18a32a698a351b947869fc0736d5028e03baed594f95e66a1887d689a7134e",
+    "final_geo_sha256": "2a1d1fac1cdfda24164992e6e210e704bc343e50fa2ec0487bc7e75a8de53ec3",
+    "source_observations_sha256": "40050be2ba0b3cf389314b3d4454098115645066a7966e1f7d23838f3e1dd40b",
+    "written_reflections_sha256": "037672e99ee48b97b624a58ce4a0ce2104cf28dd847b1cbf07fd137bb105688a",
+    "observations_and_sigmas_by_hkl": 2273,
+    "original_free_flags_by_hkl": 3236,
+    "measured_free": 127,
+    "declared_sites": 13,
+    "frame_terms_by_kind": {
+      "bond": 53,
+      "angle": 90,
+      "planarity": 10,
+      "parallelity": 58
+    },
+    "additional_protected_angles": 6,
+    "backbone_and_supplied_bonds_before_and_after": [
+      38,
+      53
+    ],
+    "endpoint": {
+      "terminal_bond_A": {
+        "5PC": 1.47055,
+        "PDU": 1.47235
+      },
+      "tip_from_six_ring_A": {
+        "5PC": 0.25442,
+        "PDU": 0.10541
+      },
+      "ATL_pair_A": [
+        2.85906,
+        2.81876
+      ],
+      "ATL_overlap_A": [
+        0.528,
+        0.586
+      ],
+      "ATL_backbone_A": [
+        1.60868,
+        1.61107
+      ],
+      "ATL_all_four_sugar_centres_retained": true,
+      "DF_thione_and_glycosidic_A": [
+        1.63163,
+        1.52065
+      ],
+      "r_work": 0.2544,
+      "r_free": 0.2465
+    },
+    "scope": "Substituted host observations. The selected checkpoint remained PostMR. No new placement, extra plane or chemical acceptance."
   }
 }

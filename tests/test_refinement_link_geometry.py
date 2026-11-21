@@ -199,3 +199,104 @@ def test_preflight_uses_the_entrance_model_and_its_sealed_geometry_after_move(tm
     sealed.write_text("changed after admission")
     with pytest.raises((CheckpointError, ValueError), match="checksum|changed|size"):
         assess_run(run, checkpoint=child["id"], refined_links=True)
+
+
+@pytest.mark.parametrize(("initial", "final", "outcome"), [
+    ("extra", "match", "REVIEW"), ("match", "extra", "REVIEW"),
+    ("match", "match", "SUCCESS"), ("unknown", "match", "REVIEW"),
+])
+def test_checked_autorefine_retains_a_model_and_accounts_for_both_native_tables(
+        tmp_path, monkeypatch, initial, final, outcome):
+    import subprocess
+    from pathlib import Path
+    from nasolve.model_assessment import file_sha256
+    from . import test_refinement_parallelity as harness
+
+    definition = tmp_path / "checked"
+    definition.mkdir()
+    model, geo, labels, intent = geometry(definition)
+    matched = geo.read_bytes()
+    unexpected = section("Misc.", bond(labels, 2, 4, "1.430", "1.436", "1.00e-02", "1.00e+04")).encode()
+    tables = {"match": matched, "extra": matched + unexpected,
+              "unknown": matched.replace(b"1.610", b"6.610")}
+    phil, = intent["restraint_phils"]
+    report = {"expected_links": intent["backbone_links"], "supplementary_phils": [phil.name],
+              "files": [{"path": p.name, "sha256": file_sha256(p)} for p in (model, phil)]}
+    acquisition = {"bundle": {"model": model, "report": report}, "bundle_directory": definition}
+    monkeypatch.setattr("nasolve.refinement_chemistry._preparation_context",
+                        lambda *args: (acquisition, "postmr", {}))
+    monkeypatch.setattr("nasolve.refinement_chemistry.prepare_chemistry_scope", lambda *args, **kwargs: [])
+    original_inputs = harness.inputs
+
+    def inputs(root):
+        run, policy, executable, dump = original_inputs(root)
+        source = run / "report.json"
+        record = json.loads(source.read_bytes())
+        Path(record["postmr"]["prepared_model"]).write_bytes(model.read_bytes())
+        record["postmr"]["mutation_actions"] = []
+        record["postmr"]["anomalous"]["candidates"] = []
+        source.write_text(json.dumps(record))
+        return run, policy, executable, dump
+
+    original_run = subprocess.run
+
+    def produce_tables(command, *args, **kwargs):
+        result = original_run(command, *args, **kwargs)
+        if Path(command[0]).name == "phenix.refine":
+            folder = Path(kwargs["cwd"])
+            if "--dry_run" in command:
+                (folder / "parallelity_runtime/preflight/native_001.geo").write_bytes(tables[initial])
+            else:
+                (folder / "refined_001_final.geo").write_bytes(tables[final])
+        return result
+
+    monkeypatch.setattr(harness, "inputs", inputs)
+    monkeypatch.setattr(subprocess, "run", produce_tables)
+    run, result, registry, child, _, commands = harness.completed(tmp_path, monkeypatch, declared_sites=True)
+    assert commands == ["preflight", "refine"] and child["usable"] and child["status"] == outcome
+    assert registry["current"] == (child["id"] if outcome == "SUCCESS" else "postmr")
+    saved = json.loads(result.report_path.read_bytes())
+    report = saved["statistics"]["inter_residue_bonds"]
+    assert report == result.statistics["inter_residue_bonds"]
+    assert report["preparation_checkpoint"] == "postmr"
+    assert saved["acceptance"]["inter_residue_bond_review"] is (outcome == "REVIEW")
+    from nasolve.refine_doctor import _candidate
+    ranked = _candidate(child["id"], "test", result.statistics, accepted=outcome == "SUCCESS")
+    assert ranked["eligible_for_inspection"] is (outcome == "SUCCESS")
+    assert ranked["inter_residue_bond_review"] is (outcome == "REVIEW")
+    for stage, test in (("preflight", initial), ("refined", final)):
+        result = report[stage]
+        assert result["status"] == {"extra": "REVIEW", "match": "MATCH", "unknown": "UNASSESSED"}[test]
+        if test == "extra":
+            assert result["outside_declaration"] == 1 and result["first_issue"]["endpoints"] == [
+                ["A:2", "DC", "N4"], ["B:4", "Z99", "C5T"]]
+        if test == "unknown":
+            assert "written coordinates" in result["reason"]
+        assert "links" not in result
+
+    from nasolve import cif_doctor_run
+    from nasolve.checkpoints import CheckpointError
+
+    cold = cif_doctor_run.assess_run(run, checkpoint=child["id"], refined_links=True)
+    assert cold["preflight_links"]["status"] == report["preflight"]["status"]
+    assert cold["refined_links"]["status"] == report["refined"]["status"]
+    if initial == "unknown":
+        assert cold["preflight_links"]["reason"] == report["preflight"]["reason"]
+    if outcome == "SUCCESS":
+        altered = dict(report, requires_review=0)
+        original_resolve = cif_doctor_run.resolve_checkpoint
+        def changed_summary(registry, checkpoint):
+            original = original_resolve(registry, checkpoint)
+            return dict(original, metrics=dict(original["metrics"], inter_residue_bonds=altered))
+        monkeypatch.setattr(cif_doctor_run, "resolve_checkpoint", changed_summary)
+        with pytest.raises(CheckpointError, match="bond summary"):
+            cif_doctor_run.assess_run(run, checkpoint=child["id"], refined_links=True)
+
+
+def test_numerical_ranking_requires_a_boolean_verdict_when_bond_evidence_is_recorded():
+    from nasolve.refine_doctor import _candidate
+    numerical = {"r_work": .2, "r_free": .23}
+    assert _candidate("old", "test", numerical)["eligible_for_inspection"]
+    for incomplete in (None, {}, {"requires_review": 0}):
+        result = _candidate("new", "test", dict(numerical, inter_residue_bonds=incomplete))
+        assert result["inter_residue_bond_review"] and not result["eligible_for_inspection"]

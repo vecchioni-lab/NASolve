@@ -43,6 +43,12 @@ all eleven local Phenix restraints, including the last angle before the next
 table. The DY starting geometry warrants review and its two refined controls
 pass the existing phosphate criterion.
 
+C505 continued the thirteen-change registered child for another five ordinary
+cycles. Its PDU and 5PC tip heights fell from 0.189/0.434 to 0.105/0.254 Å.
+Both local terminal bonds remained within 0.003 Å of 1.470 Å. ATL's two pair
+contacts approached 2.8 Å, with two substantial overlaps still present.
+Use this same-parent control when testing a second-round intervention.
+
 Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
 after correcting the orientation of DP and IMC from their source graphs.
 A separate placement retained all four ATL sugar centres. Phenix applied
@@ -109,7 +115,7 @@ C460 independently reopened the selected ReadySet endpoint under the original
 128 MiB limit after relocation. C461 then registered its twelve-change parent on
 a fresh lineage. Two failed optional generation probes preserved the working
 evidence under the established retirement policy. C466 completed the ordinary
-five-cycle child. The thirteen-change locked-sugar junction still needs qualification.
+five-cycle child. The later thirteen-change locked-sugar result is recorded above.
 C437 also shows why Q06 retains a separate displacement check. Five cycles with
 the measured host scaffold B factors and new 5PC base atoms at B=20 brought
 the terminal carbon close to the ring plane (0.087 Å) while stretching its
@@ -1555,8 +1561,9 @@ for the 38 backbone and 53 supplied distances in the registered mixed scaffold.
 C503 reads both ends of the same round. In the DY control, excluding the
 observed N6–C5T pair revealed a second automatic bond to N4T. Excluding
 both exact pairs restored all 38 declared links through five cycles.
-Next surface the preflight finding in ordinary checked refinement. General
-recovery needs explicit noncovalent intent and independently resolved atom
+C505 carries the two-stage check into ordinary checked refinement and numerical
+recommendation. A usable result with an unexplained bond remains available
+for inspection. General recovery needs explicit noncovalent intent and independently resolved atom
 selections, including their effect on symmetry mates. The
 [matched experiments](cif-doctor.md#dy-ring-orientation-and-unrequested-interbase-bond-c456)
 include negative chemical controls and a ReadySet readback.

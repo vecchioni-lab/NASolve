@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C497–C502 mixed refinement, locked sugars and cross-residue bonds — Rowan**.
+Updated **2026-11-21, C505 mixed-scaffold continuation and background bond checks — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -34,6 +34,17 @@ The nine-pair control has its registered diffraction result. The unfamiliar
 eight-residue challenge and the independent symmetry-linked PDU:PDU gate
 remain open. The compact ledger entry is
 `registered_thirteen_change_diffraction_2026_11_21`.
+
+**What survives another ordinary round.** Starting from that registered child,
+five more Phenix 2.2.1-6174 cycles put the PDU and 5PC tips 0.105 and 0.254 Å
+from their respective ring planes. Their terminal bonds measured 1.472 and
+1.471 Å. ATL's two pair distances reached 2.859 and 2.819 Å. Its sugar
+stereochemistry and phosphate oxygen order survived, with two overlaps of
+0.528 and 0.586 Å still present. All 211 frame restraints, six protective
+angles, 2,273 measured intensities with uncertainties and 3,236 original
+Free-R flags were checked. These observations belong to the substituted host.
+The next comparison uses the same first-round model to distinguish an added
+soft plane from ordinary second-round recovery.
 
 **How far the locked-sugar result transfers.** TLN passed all 21 isolated
 Phenix dictionary checks. In the same ordinary thirteen-substitution card,
@@ -326,8 +337,8 @@ distances match the checked preparation. C503 reads both tables from the same
 round and binds the initial table to its entrance model. The archived DY control
 required two exact atom-pair exclusions. Five cycles retained the 38 backbone
 links and put adenine N6 at 2.913 Å from C5T and 3.104 Å from N4T.
-The open questions are ordinary reporting during refinement, explicit authority
-to exclude additional links, and the triazole edge facing adenine. The [DY queue
+Ordinary checked refinement now records both bond tables. The open questions
+are explicit authority to exclude additional links and the triazole edge facing adenine. The [DY queue
 entry](cif-doctor-completion-queue.md#dy--packaged-retained-triazole-reference-and-mutation-support)
 records the separate chemistry milestone.
 
@@ -370,6 +381,23 @@ With `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cach
 87 tests and 48 subtests passed. The first two modules passed 48 tests and
 38 subtests on the relocated wheel. All 321 packaged source and data files
 matched. Only synthetic fixtures, code and the compact findings are tracked.
+
+**C505 background readback.** Previously an operator had to ask for the
+cross-residue bond comparison. AutoRefine now records it when declared-site
+observation is enabled on a checked preparation. Refine Doctor keeps a flagged
+child out of numerical recommendation. The read-only bond assessment
+reproduces its recorded decision. Both tables in the mixed continuation
+matched 38 backbone bonds and 53 supplied distances. The child remained usable
+for review and the selected checkpoint stayed at PostMR. Older rounds need
+no migration. The additive metric and acceptance flag are described in
+[CIF Doctor](cif-doctor.md). The code is in `autorefine`, `refine_doctor`,
+`refinement_link_geometry`, `cif_doctor_run` and the CLI. The source check used
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:$GEMMI_PATH python -B -m pytest -q -p no:cacheprovider tests/test_refinement_link_geometry.py tests/test_cif_doctor_run.py tests/test_cif_doctor_cli.py tests/test_refinement_parallelity.py tests/test_refinement_declared_sites.py tests/test_refine_doctor.py tests/test_autorefine.py`.
+191 tests and 45 subtests passed. The first three modules passed 47 tests
+and 7 subtests from the relocated wheel. All 321 packaged files matched.
+Full regression remains deferred. The ledger entry
+`mixed_scaffold_second_ordinary_round_2026_11_21` retains the scientific
+fingerprints. Synthetic tests and compact observations accompany the change.
 
 **Q07, 20 November.** Ordinary Coot and ReadySet now prepare 1AP:T and S6G:C
 on the same substituted host. The plane screen follows the verified source chemistry.

@@ -24,6 +24,11 @@ entries are reconstructed from repository history.
   It identifies distances outside the checked preparation, missing backbone or
   supplied distances, and contacts with a symmetry image that need review.
   Older checkpoints with a frozen final table can list the observed bonds.
+- AutoRefine now checks both tables when a round uses `--observe-declared-sites`
+  with a checked preparation. A missing or additional bond, a crystal-image
+  bond or an unreadable table leaves the completed model available for review.
+  Automatic selection and numerical ranking require both tables to match.
+  The read-only assessment can reproduce the decision from the frozen files.
 
 ### Building an internal locked sugar during checked preparation
 
