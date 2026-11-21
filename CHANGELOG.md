@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record inherited FT_Hg B offsets and one explicit group comparison
+
+- Document unchanged base–scaffold B differences across four saved controls.
+  One matched native run splits only the two selected residues' ADP groups;
+  native membership and final written B response verify the intended change.
+- Offsets respond, but the long DF attachment and short Hg contact persist.
+  Keep A01 partial/A02 gated, final-scale limitations and no-default-change scope.
+- Documentation only. No runtime/schema/migration, full suite, new f″ parent or
+  pruning; private scientific records and compact figures remain outside Git.
+
 ### Record the completed FT_Hg attachment-stiffness control
 
 - Record one native five-cycle sensitivity: a shorter DF sugar–base attachment

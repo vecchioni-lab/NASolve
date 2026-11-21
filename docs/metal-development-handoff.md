@@ -86,6 +86,72 @@ copied, not models/maps. This is not a portability claim for the historical run.
 The preceding local packing/map inventory remains separately recorded under
 `a01-local-support-20261121-01/`, including its two stopped script setup failures.
 
+### Starting B offsets and explicit group response
+
+The coordinated 21 November saved-model check adds a distinct observation.
+Cedar's installed C514 `compare_pdb_displacements` reads the initial constructed
+model, first neutral endpoint, unchanged restart, metal-angle restart and stiffer
+attachment restart. Across **28 case/site comparisons** (DF, opposing DT, four
+immediate flanks and Hg), every atom within each residue has the same written
+B increment and Q is unchanged. DF starts with base/scaffold means of
+**20.00/57.0345 Å²**; DT starts at **47.9056/81.0018 Å²**. Their −37.0345 and
+−33.0963 Å² offsets survive all four comparisons. Source-graph partitions define
+the nine base and eleven sugar/phosphate atoms; no spatial/name heuristic selects
+them. The source-bound read verifies **325 installed package files / 36 checks**,
+with no native execution. Evidence: `a01-starting-B-review-20261121-01/`.
+
+One new matched five-cycle experiment then changes only ADP grouping at these
+two residues. The same saved parent coordinates/B/Q and all other scientific
+inputs are retained; no starting B is reset. Native preflight verifies **45
+groups instead of 43**, covering all **859 atoms once**, with the default native
+residue groups reproduced on the same hierarchy and every other group unchanged.
+All five actual group-ADP minimizations use those exact memberships. Final
+within-group written B increments are uniform, and all Q values remain unchanged.
+
+| Observation | Unchanged restart | Explicit base/scaffold groups |
+| --- | ---: | ---: |
+| DF base minus scaffold B (Å²) | −37.0345 | −13.6245 |
+| DT base minus scaffold B (Å²) | −33.0963 | −38.6963 |
+| DF base / scaffold mean B (Å²) | 100.22 / 137.2545 | 44.25 / 57.8745 |
+| DT base / scaffold mean B (Å²) | 161.1756 / 194.2718 | 92.0656 / 130.7618 |
+| DF C1′–N1 (Å; target 1.499) | 1.62294 | 1.60960 |
+| DF base bond RMS deviation (Å) | 0.06038 | 0.06015 |
+| Hg–O4 B:4 (Å) | 1.44159 | 1.43626 |
+| Final Rwork / Rfree | 0.2802 / 0.2902 | 0.3053 / 0.3349 |
+| Hg B / final global B transfer (Å²) | 141.34 / +43.10 | 73.39 / −3.03 |
+
+**Interpretation:** inherited offsets are real and independent group freedom
+lets them respond. This alone does not rescue the attachment or coordination.
+Different final scaling remains explicit; do not attribute the whole R/B gap to
+local chemistry. The model-assisted Hg map samples are +5.24σ / −2.60σ, with the
+same normalization/Free-R limitations above. The retained offset does not itself
+prove causation, and releasing it does not qualify a new default. Close this
+control; no repeated group/reset grid or new f″ parent is queued. The coherent
+placement question below remains the next distinct scientific hypothesis.
+
+Phenix **2.2.1-6174** completes in **425.74 s**; all owned processes stop.
+Independent cold review passes **6,609 checks**, map consistency **250**, and
+C508 contact readback **42**. All 1,009 final printed bond targets/weights match
+preflight. XYZ stopping records 85 iteration-limit and 7 unreported reasons over
+92 calls; convergence/selected-call attribution remains unassessed. No runtime,
+schema, compatibility/default change, full suite, automatic selection or pruning.
+The maintained readers are reused; native instrumentation is private and passive.
+
+Private anchor: `a01-split-B-20261121-01/`, source
+`18283942cbbbe2a5d93ea192d799de77baf2b9fb` (documentation-only successor to the
+same native runtime). Model SHA-256:
+`8e8b2cdd9c156a44780ee090e47d3361363be2d86cb01abd562c5bd89f288ac4`;
+map SHA-256: `c8a1bff032f87b437538212b21f7bb854355d385412f4986136d6b5271aca2ce`.
+`plan.json`, `science-comparison.json`, `B-response.json` and both ADP-membership
+receipts retain exact inputs, grouping and command evidence. The cold command
+uses the preceding Python/PYTHONPATH prefix with `runners/A383_review_split_B.py`;
+C514 reading uses `runners/A389_split_B_response.py` with the exact installed
+path recorded in `checkout/evidence.json`. The five-cycle command and map reads
+are recorded there in full. Reports/models/maps remain excluded from Git.
+The compact visual checkout is
+`ScienceCheckouts/Hazel/2026-11-21_ft-B-groups/index.html`; it copies figures and
+summaries only. No historical-run portability claim follows.
+
 **Next bounded scientific bridge:** the existing source-bound whole-base
 constructor already supplies an approximately 1.49958 Å initial attachment;
 strain emerges during refinement. Reuse that constructor rather than rebuild it.

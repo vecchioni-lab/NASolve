@@ -296,6 +296,12 @@ descriptive; broad geometry and combined scientific evidence guide review.
    transport pieces without claiming modified-metal qualification. The
    [current A01 science record](metal-development-handoff.md#a01-current-science-attachment-stiffness-transfers-strain)
    records exact values, checks, missing evidence and the next admission boundary.
+   The later saved-state B review finds preserved DF/DT base–scaffold offsets.
+   One explicit 45-versus-43-group native comparison releases those offsets,
+   but leaves DF attachment at 1.610 Å, Hg–O4 at 1.436 Å and Rwork/Rfree
+   0.3053/0.3349. Close that distinct control as well; no new B-group default,
+   reset grid or f″ parent is selected. Reuse its actual native membership and
+   written-state evidence before considering further ADP changes.
 2. **A01 → A02:** qualify an open XYZ/B endpoint through local chemistry,
    coordination, Rwork/Rfree, stopping evidence and maps. Derive environmental
    metal B from the actual refined donors/base-only atoms, report disagreement
