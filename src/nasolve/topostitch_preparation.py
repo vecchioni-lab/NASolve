@@ -120,3 +120,149 @@ def inspect_checkpoint_preparation(run_directory, *, expected_checkpoint_id,
         context=context,context_sha256=pin,availability=fields,
         native_capture='NOT_ASSESSED_BY_THIS_READER',chemical_admission=False,
         motion_admission=False,runtime_authority=False,locking=False,scientific_acceptance=False)
+
+
+def inspect_checkpoint_native_window(run_directory, *, expected_checkpoint_id,
+        expected_model_sha256, native_receipt, expected_native_receipt_sha256,
+        selected_indices, expected_context_sha256=None, checkpoint=None,
+        preparation_reader=None, native_owners=None):
+    """Report captured restraint support for an explicit preparation atom window.
+
+    Indices refer to source PDB atom-record order, not native order or serials.
+    Counts retain proxy multiplicity, including both planes of parallelity terms.
+    Selection is ASU atom-index membership; captured symmetry metadata is retained
+    without claiming an image-aware spatial window or complete interaction graph.
+
+    ``native_owners`` optionally supplies trusted Cedar attachment, named-proxy
+    and full-monomer modules, in that order. This mirrors the existing explicit
+    preparation-reader seam for standalone Willow; it never imports artifact code.
+    The capture may use additional explicit inputs, which are separately reported.
+    Every inherited restraint must be represented with its actual multiplicity.
+    This performs repeated snapshot checks, not locking or execution admission.
+    """
+    from collections import Counter
+    from .topostitch_recipe import model_atom_rows
+    _pin(expected_native_receipt_sha256)
+    if (not isinstance(selected_indices, (list, tuple)) or not selected_indices
+            or any(type(i) is not int or i < 0 for i in selected_indices)
+            or list(selected_indices) != sorted(set(selected_indices))):
+        raise ValueError('Require nonempty ordered unique atom indices')
+    selected_indices = list(selected_indices)
+    if native_owners is None:
+        try:
+            from . import cif_attachment_native, cif_terminal_qualification, cif_native_monomers
+        except ImportError as exc:
+            raise RuntimeError('Maintained Cedar native capture/proxy/monomer readers are required') from exc
+        native_owners = (cif_attachment_native, cif_terminal_qualification, cif_native_monomers)
+    if not isinstance(native_owners, (tuple, list)) or len(native_owners) != 3:
+        raise ValueError('Require three trusted native reader owners')
+    capture_owner, proxy_owner, monomer_owner = native_owners
+    opts = dict(expected_checkpoint_id=expected_checkpoint_id,
+        expected_model_sha256=expected_model_sha256, checkpoint=checkpoint,
+        preparation_reader=preparation_reader)
+    prepared = inspect_checkpoint_preparation(run_directory,
+        expected_context_sha256=expected_context_sha256, **opts)
+    run = checkpoints.registry_path(Path(run_directory)).parent.parent
+    model_ref = next(r for r in prepared['context']['inputs'] if r['role'] == 'model')
+    model_path = checkpoints._ref_path(model_ref, 'native window model', run)
+    payload = model_path.read_bytes()
+    if sha256(payload).hexdigest() != expected_model_sha256:
+        raise ValueError('Parent model changed before native window read')
+    identities = model_atom_rows(payload)
+    if selected_indices[-1] >= len(identities):
+        raise ValueError('Selected atom indices exceed parent inventory')
+    path = Path(native_receipt).expanduser().resolve(strict=True)
+    receipt_bytes = path.read_bytes()
+    if sha256(receipt_bytes).hexdigest() != expected_native_receipt_sha256:
+        raise ValueError('Native receipt differs from expected capture')
+    receipt, native, snapshots = capture_owner._capture(path, payload)
+    if receipt.get('status') != 'REVIEW' or native.get('status') != 'REVIEW':
+        raise ValueError('Require a completed fixed-coordinate native capture')
+    if snapshots.get(path) != receipt_bytes:
+        raise ValueError('Native receipt changed during capture read')
+    native_keys, _ = capture_owner._native_atoms(native, payload)
+    monomers = monomer_owner.review_full_monomers(native)
+    atoms, named = proxy_owner._native_atom_identities(native)
+    input_keys = [((r['chain'] or '_') + ':' + str(r['residue_number']),
+                   r['residue_code'], r['atom_name']) for r in identities]
+    if (len(set(input_keys)) != len(input_keys) or len(native_keys) != len(input_keys)
+            or set(native_keys) != set(input_keys) or set(atoms) != set(range(len(input_keys)))):
+        raise ValueError('Native atom mapping does not cover the exact parent')
+    input_index = {key:i for i,key in enumerate(input_keys)}
+    native_to_input = [input_index[key] for key in native_keys]
+    selected_input = set(selected_indices)
+    selected = {i for i,j in enumerate(native_to_input) if j in selected_input}
+    inherited = [r for r in prepared['context']['inputs'] if r['role'] == 'restraint']
+    required = Counter((r['sha256'].lower(),r['size']) for r in inherited)
+    supplied = [r for r in receipt['inputs'] if r['role'] in ('phil','dictionary')]
+    available = Counter((r['sha256'].lower(),r['size']) for r in supplied)
+    if required - available:
+        raise ValueError('Native capture lacks inherited restraint input multiplicity')
+    extras = []
+    for r in supplied:
+        key = (r['sha256'].lower(),r['size'])
+        if required[key]: required[key] -= 1
+        else: extras.append({k:r[k] for k in ('role','input_index','path','sha256','size')})
+    families = ('bond_simple','bond_asu','angle','dihedral','const_dihedral',
+                'chirality','planarity','parallelity')
+    geometry = native['geometry']; details = geometry.get('proxy_details',{})
+    if set(details) != set(families):
+        raise ValueError('Missing or unknown native proxy families')
+    counts = {}; boundary = []; all_native_indices = set(atoms)
+    for family in families:
+        rows = details[family]; number = geometry['proxy_counts'].get(family)
+        state = ('RECORDED' if family.startswith('bond_')
+                 else geometry.get('proxy_count_status',{}).get(family))
+        if rows is None and number is None and state == 'UNSUPPORTED':
+            counts[family] = dict(status='UNAVAILABLE',counts=None); continue
+        if (state != 'RECORDED' or not isinstance(rows,list)
+                or type(number) is not int or number != len(rows)):
+            raise ValueError('Native proxy count/detail disagreement: '+family)
+        partition = dict(selected=0,boundary=0,fixed=0,total=len(rows))
+        for ordinal,row in enumerate(rows):
+            indices, endpoints = proxy_owner._bound_proxy_endpoints(row,atoms,named)
+            support = set(indices)
+            if not support or not support <= all_native_indices:
+                raise ValueError('Unbound native proxy support')
+            role = 'selected' if support <= selected else 'boundary' if support & selected else 'fixed'
+            partition[role] += 1
+            if role == 'boundary':
+                boundary.append(dict(family=family,ordinal=ordinal,
+                    native_indices=indices,input_indices=[native_to_input[i] for i in indices],
+                    named_endpoints=endpoints,parameters={k:v for k,v in row.items()
+                        if k not in ('i_seqs','j_seqs','atoms','j_atoms')}))
+        counts[family] = dict(status='RECORDED',counts=partition)
+    requests = geometry.get('custom_proxy_requests')
+    if not isinstance(requests,list):
+        raise ValueError('Missing native custom-request inventory')
+    if (model_path.read_bytes() != payload
+            or any(p.read_bytes() != b for p,b in snapshots.items())):
+        raise ValueError('Native window inputs changed during inspection')
+    repeated = inspect_checkpoint_preparation(run_directory,
+        expected_context_sha256=prepared['context_sha256'], **opts)
+    if repeated != prepared or any(p.read_bytes() != b for p,b in snapshots.items()):
+        raise ValueError('Preparation or native capture changed during inspection')
+    result = dict(schema_version=1,kind='topostitch-preparation-native-window',
+        policy_id='topostitch-preparation-native-window-v1',status='RECORDED',
+        preparation=prepared,
+        native_receipt=dict(anchor='native_capture_directory',relative_path=path.name,
+            sha256=expected_native_receipt_sha256,size=len(receipt_bytes)),
+        native_version=receipt['phenix_version'],full_monomers=monomers,
+        window=dict(index_basis='SOURCE_PDB_ATOM_RECORD_ORDER',
+            selected_input_indices=selected_indices,selected_native_indices=sorted(selected),
+            selected_atoms=[identities[i] for i in selected_indices],
+            selected_atom_count=len(selected),fixed_atom_count=len(identities)-len(selected),
+            image_scope='ASU_INDEX_MEMBERSHIP; CAPTURED_SYMMETRY_METADATA_RETAINED'),
+        source_intent=dict(inherited_restraint_file_count=len(inherited),
+            captured_custom_request_count=len(requests),
+            pair_or_stack_assignments='NOT_INFERRED',interaction_absence='NOT_ESTABLISHED',
+            additional_capture_inputs=extras),
+        families=counts,boundary_terms=boundary,proxy_definitions_sha256=recipe_digest(details),
+        coverage='PARTIAL_NATIVE_FAMILIES' if any(r['status']=='UNAVAILABLE' for r in counts.values())
+            else 'RECORDED_NATIVE_FAMILIES',
+        nonbonded_interactions='NOT_ASSESSED',geometry_quality='NOT_ASSESSED',
+        chemical_admission=False,motion_admission=False,locking=False,
+        runtime_authority=False,scientific_acceptance=False)
+    # Detach structured reader values and refuse nonfinite numerical evidence.
+    import json
+    return json.loads(json.dumps(result,allow_nan=False))
