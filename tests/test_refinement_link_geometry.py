@@ -143,6 +143,64 @@ def test_absent_bond_sections_are_unavailable(tmp_path):
     assert report["status"] == "NOT_RECORDED" and report["matched_backbone"] is None
 
 
+def nonbonded(a, b, actual, vdw, image=None):
+    op = " sym.op." if image is not None else ""
+    tail = " " + image if image is not None else ""
+    return f"nonbonded {a}\n          {b}\n   model   vdw{op}\n   {actual} {vdw}{tail}\n"
+
+
+def test_contact_environment_keeps_signed_gaps_and_images_of_the_second_atom(tmp_path):
+    from nasolve.refinement_contact_geometry import read_refined_contacts
+
+    model, path, labels, _ = geometry(tmp_path)
+    local = nonbonded(labels[3], labels[5], "2.800", "2.690")
+    mate = nonbonded(labels[4], labels[4], "3.500", "3.800", "x+1,y,z")
+    distinct = nonbonded(labels[5], labels[2], "4.200", "4.500", "-x+y,-x,z")
+    further_image = nonbonded(labels[3], labels[4], "4.700", "3.300", "x,y+1,z")
+    with path.open("a") as fh:
+        fh.write("Nonbonded | unspecified | interactions: 4\nSorted by model distance:\n" + local + mate + distinct + further_image)
+    result = read_refined_contacts(model, path, ["B:4", "A:2"])
+    assert result["status"] == "OBSERVED" and result["sections"] == {"unspecified": 4}
+    b = result["sites"]["B:4"]["atoms"]
+    assert (b["C5T"]["printed_contacts"], b["C5T"]["shorter_than_vdw"], b["C5T"]["image_contacts"]) == (2, 1, 2)
+    assert b["C5T"]["largest_overlap_A"] == .300
+    second = b["N2T"]["largest_contacts"][0]
+    assert second["endpoints"] == [["B:4", "Z99", "N2T"], ["A:2", "DC", "N4"]]
+    assert second["image_of_second_atom"] == "-x+y,-x,z"
+    a = result["sites"]["A:2"]["atoms"]
+    assert a["N3"]["largest_overlap_A"] == -.110 and a["N3"]["shorter_than_vdw"] == 0
+    assert a["N3"]["largest_image_overlap_A"] == -1.4
+    assert a["N3"]["largest_image_contacts"][0]["image_of_second_atom"] == "x,y+1,z"
+    assert a["P"]["printed_contacts"] == 0 and a["P"]["largest_overlap_A"] is None
+    assert result["scientific_approval"] == "NOT_ASSESSED"
+
+
+@pytest.mark.parametrize("change", ["missing", "empty", "truncated", "wrong-distance", "wrong-label", "bad-image"])
+def test_contact_environment_distinguishes_omitted_empty_and_invalid_tables(tmp_path, change):
+    from nasolve.refinement_contact_geometry import read_refined_contacts
+
+    model, path, labels, _ = geometry(tmp_path)
+    row = nonbonded(labels[3], labels[5], "2.800", "3.000")
+    if change == "wrong-distance":
+        row = row.replace("2.800", "1.000")
+    elif change == "wrong-label":
+        row = row.replace(labels[3], 'pdb=" unknown label"')
+    elif change == "bad-image":
+        row = nonbonded(labels[5], labels[5], "2.800", "3.000", "unknown")
+    if change != "missing":
+        count = {"empty": 0, "truncated": 2}.get(change, 1)
+        with path.open("a") as fh:
+            fh.write(f"Nonbonded | unspecified | interactions: {count}\n" + ("" if change == "empty" else row))
+    result = read_refined_contacts(model, path, ["B:4"])
+    if change == "empty":
+        assert result["status"] == "OBSERVED" and result["sites"]["B:4"]["atoms"]["C5T"]["printed_contacts"] == 0
+    else:
+        assert result["status"] == ("NOT_RECORDED" if change == "missing" else "UNASSESSED")
+        assert result["sites"] is None
+    with pytest.raises(ValueError, match="site"):
+        read_refined_contacts(model, path, ["A:88"])
+
+
 def test_verified_parent_pins_bind_the_frame_used_for_comparison(tmp_path, monkeypatch):
     from nasolve.model_assessment import file_sha256
     from nasolve.refinement_link_geometry import read_checkpoint_link_geometry

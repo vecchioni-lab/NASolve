@@ -138,6 +138,18 @@ def _endpoint_rows(edges):
     return [[list(atom) for atom in edge] for edge in sorted(edges)]
 
 
+def _model_labels(model):
+    """Bind the fixed-column labels printed by Phenix to validated PDB identities."""
+    raw, atoms, _, _, _, _ = _model(model)
+    records = (line for line in raw.decode("ascii").splitlines() if line[:6] in {"ATOM  ", "HETATM"})
+    labels = {
+        line[12:27]: (_identity(atom), tuple(float(line[i:i+8]) for i in (30, 38, 46)))
+        for line, atom in zip(records, atoms, strict=True)
+    }
+    _require(len(labels) == len(atoms), "ambiguous PDB atom labels")
+    return raw, labels
+
+
 def read_refined_links(model, geometry, *, preparation_model=None, backbone_links=None, restraint_phils=(),
                        allow_unassessed=False):
     """Account for every printed cross-site bond or crystal-image bond in a final GEO.
@@ -149,13 +161,7 @@ def read_refined_links(model, geometry, *, preparation_model=None, backbone_link
     _require((preparation_model is None) == (backbone_links is None), "require both a preparation model and its backbone")
     _require(preparation_model is not None or not restraint_phils, "supplied distances need a preparation model")
     model, geometry = Path(model), Path(geometry)
-    raw, atoms, _, _, _, _ = _model(model)
-    records = (line for line in raw.decode("ascii").splitlines() if line[:6] in {"ATOM  ", "HETATM"})
-    labels = {
-        line[12:27]: (_identity(atom), tuple(float(line[i:i+8]) for i in (30, 38, 46)))
-        for line, atom in zip(records, atoms, strict=True)
-    }
-    _require(len(labels) == len(atoms), "ambiguous PDB atom labels")
+    raw, labels = _model_labels(model)
     data = geometry.read_bytes()
     declared = preparation_model is not None
     backbone, supplied, source, frame_hashes = (

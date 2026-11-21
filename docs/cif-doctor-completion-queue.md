@@ -55,6 +55,12 @@ retained a terminal bond near 1.55 Å. The public readback now reports both
 tip height and terminal bond through refinement. Reuse this comparison and
 keep the added plane experimental.
 
+C508 reopened the same four checkpoints. The independent 5PC methyl tip
+had over 1.23 Å of clearance from the closest approach relative to its
+printed van der Waals contact distance in both endpoints. The base rotated
+less than 2.4° from preflight. Preserve this counterexample when deciding
+the scope of a general arm correction.
+
 C507 gives Willow a shared reading of the geometry already in Phenix after
 atoms move. The compiled W200 scaffold retained all 38 backbone links and 51
 supplied distances. Willow owns the next check using all four declared

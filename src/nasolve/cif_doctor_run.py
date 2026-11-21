@@ -59,7 +59,7 @@ def _require_registry_unchanged(
 
 def assess_run(
     run: Path, *, checkpoint: str | None = None, refined_planes: bool = False,
-    refined_links: bool = False,
+    refined_links: bool = False, contact_sites: list[str] | tuple[str, ...] | None = None,
 ) -> dict[str, object]:
     """Assess a selected run/checkpoint without creating or modifying artifacts.
 
@@ -67,13 +67,16 @@ def assess_run(
     The established checkpoint resolver verifies every available frozen checksum,
     including observations and phase data, before the assessor sees any inputs.
     An uninitialized run uses the existing validated, in-memory PostMR root.
-    On request, include the final selected-site plane measurements recorded for
-    this checkpoint, or its inter-residue bonds at native preflight and after refinement.
+    Optional readings cover selected-site planes, inter-residue bonds and
+    per-atom nonbonded contacts at native preflight and after refinement.
     """
     if type(refined_planes) is not bool:
         raise ValueError("The refined plane option must be boolean")
     if type(refined_links) is not bool:
         raise ValueError("The refined link option must be boolean")
+    if contact_sites is not None:
+        from .refinement_contact_geometry import read_refined_contacts, validate_contact_sites
+        validate_contact_sites(contact_sites)
     requested_run = run.expanduser().resolve()
     if requested_run.name == "report.json":
         requested_run = requested_run.parent
@@ -133,7 +136,7 @@ def assess_run(
     model_descriptor["frozen_reference"] = dict(model_ref)
 
     outputs = selected.get("outputs", {})
-    if (refined_planes or refined_links) and not isinstance(outputs, Mapping):
+    if (refined_planes or refined_links or contact_sites) and not isinstance(outputs, Mapping):
         raise CheckpointError("Malformed checkpoint output references")
     if refined_planes:
         receipt["refined_planes"] = None
@@ -153,20 +156,14 @@ def assess_run(
     if refined_links:
         from .campaigns import _canonical
         from .refinement_chemistry import _preparation_context
-        from .refinement_link_geometry import preflight_link_inputs, read_prepared_link_geometry, summarize_round_links
+        from .refinement_link_geometry import read_prepared_link_geometry, summarize_round_links
         context = _preparation_context(run, registry, verified, selected)
         metrics = selected.get("metrics", {})
         recorded = isinstance(metrics, Mapping) and "inter_residue_bonds" in metrics
-        receipt["preflight_links"] = None
-        receipt["refined_links"] = None
+    if refined_links or contact_sites:
+        from .refinement_link_geometry import preflight_link_inputs
         initial_files = preflight_link_inputs(run, selected)
-        if initial_files is not None:
-            (entrance, entrance_ref), (early_geo, early_ref) = initial_files
-            initial = read_prepared_link_geometry(context, entrance, early_geo, allow_unassessed=recorded)
-            if initial["model_sha256"] != entrance_ref["sha256"] or initial["geometry_sha256"] != early_ref["sha256"]:
-                raise CheckpointError("Preflight bonds differ from the frozen entrance model or geometry")
-            receipt["preflight_links"] = initial
-            tracked.extend(initial_files)
+        final_files = None
         final_ref = outputs.get("final_geometry")
         if final_ref is not None:
             if not isinstance(final_ref, Mapping) or not isinstance(final_ref.get("sha256"), str):
@@ -174,11 +171,29 @@ def assess_run(
             if selected.get("kind") != "refinement":
                 raise CheckpointError("Final geometry must belong to a refinement checkpoint")
             geo = _ref_path(final_ref, "final geometry", run)
-            links = read_prepared_link_geometry(context, model, geo, allow_unassessed=recorded)
-            if links["model_sha256"] != model_ref["sha256"] or links["geometry_sha256"] != final_ref["sha256"].casefold():
-                raise CheckpointError("Refined link evidence differs from the frozen checkpoint files")
-            receipt["refined_links"] = links
-            tracked.append((geo, {"sha256": links["geometry_sha256"]}))
+            final_files = ((model, model_ref), (geo, final_ref))
+        for stage, files in (("preflight", initial_files), ("refined", final_files)):
+            if refined_links:
+                receipt[stage + "_links"] = None
+            if contact_sites:
+                receipt[stage + "_contacts"] = None
+            if files is None:
+                continue
+            (coords, coords_ref), (geo, geo_ref) = files
+            observations_at_stage = {}
+            if refined_links:
+                observations_at_stage["links"] = read_prepared_link_geometry(context, coords, geo, allow_unassessed=recorded)
+            if contact_sites:
+                observations_at_stage["contacts"] = read_refined_contacts(coords, geo, contact_sites)
+            for kind, observed in observations_at_stage.items():
+                if (observed["model_sha256"] != coords_ref["sha256"].casefold()
+                        or observed["geometry_sha256"] != geo_ref["sha256"].casefold()):
+                    raise CheckpointError(f"{stage.capitalize()} {kind} differ from the frozen model or geometry")
+                receipt[stage + "_" + kind] = observed
+            tracked.append((geo, {"sha256": geo_ref["sha256"].casefold()}))
+            if stage == "preflight":
+                tracked.append((coords, {"sha256": coords_ref["sha256"].casefold()}))
+    if refined_links:
         bond_review = False
         if recorded:
             if context is None:

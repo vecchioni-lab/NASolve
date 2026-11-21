@@ -63,7 +63,7 @@ def test_read_only_run_uses_selected_checkpoint_without_runtime_discovery(tmp_pa
             redirect_stdout(io.StringIO()) as stream:
         assert main(['cif-doctor', 'assess', '--run', str(tmp_path),
                      '--checkpoint', 'refine-002', '--json']) == 2
-    assess.assert_called_once_with(tmp_path, checkpoint='refine-002', refined_planes=False, refined_links=False)
+    assess.assert_called_once_with(tmp_path, checkpoint='refine-002', refined_planes=False, refined_links=False, contact_sites=None)
     discover.assert_not_called()
     assert json.loads(stream.getvalue()) == audit
 
@@ -86,6 +86,23 @@ def test_refinement_measurements_need_a_run(tmp_path, capsys, mode, option):
     arguments = [str(source)] if mode == "standalone" else ["--bundle", str(tmp_path)]
     assert main(["cif-doctor", "assess", *arguments, option]) == 1
     assert option + " requires --run" in capsys.readouterr().err
+
+
+def test_nonbonded_contacts_need_a_run(tmp_path, capsys):
+    source = _graph(tmp_path / "source.cif")
+    assert main(["cif-doctor", "assess", str(source), "--contacts-at", "B:4"]) == 1
+    assert "--contacts-at requires --run" in capsys.readouterr().err
+
+
+def test_contact_sites_are_forwarded_individually_and_report_missing_tables(tmp_path, capsys):
+    audit = {"status": "REVIEW", "preflight_contacts": None,
+             "refined_contacts": {"status": "UNASSESSED", "reason": "Incomplete printed nonbonded section"}}
+    with patch("nasolve.cif_doctor_run.assess_run", return_value=audit) as assess:
+        assert main(["cif-doctor", "assess", "--run", str(tmp_path), "--checkpoint", "refine-001",
+                     "--contacts-at", "A:2", "--contacts-at", "B:4"]) == 2
+    assert assess.call_args.kwargs["contact_sites"] == ["A:2", "B:4"]
+    text = capsys.readouterr().out
+    assert "Preflight nonbonded geometry is unavailable" in text and "Incomplete printed nonbonded" in text
 
 
 def test_compare_reports_explicit_change_without_rewriting_files(tmp_path):

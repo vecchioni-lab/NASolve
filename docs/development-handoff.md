@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C507 shared Phenix geometry reading — Rowan**.
+Updated **2026-11-21, C508 local packing at the stretched 5PC bond — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -51,6 +51,14 @@ and could be distinguished by one additional input. In the independent B:4
 the terminal bond stretched to about 1.55 Å. Keep this treatment experimental.
 The operator can now read both measurements before and after refinement from
 the existing `--refined-planes` assessment.
+
+**Why the independent 5PC still needs review.** At B:4 the roughly 1.55 Å
+terminal bond persisted with or without the extra plane. Phenix listed two
+nonbonded contacts for the terminal methyl carbon in each endpoint. Even the
+closer approach relative to its van der Waals distance had over 1.23 Å of
+clearance. The source-verified glycosidic torsion changed by +1.8° and +2.4°
+respectively. Local terminal crowding and a half-turn of the base do not
+explain this control. The cause of the bond stretch remains open.
 
 **How far the locked-sugar result transfers.** TLN passed all 21 isolated
 Phenix dictionary checks. In the same ordinary thirteen-substitution card,
@@ -441,6 +449,25 @@ topology and atom mapping modules. All 321 packaged files matched. The Phenix
 comparison uses `phenix.python -B c507_live_geometry_compare.py W200_HANDOFF RELOCATED_INSTALL NEW_JSON`.
 The local checkout retains the runner, compact result and input fingerprints.
 Only code, synthetic tests and documentation accompany this change.
+
+**C508 validation.** The existing run assessor now accepts repeatable
+`--contacts-at` selections. The public reader shares fixed-column model
+identity with the bond reader, verifies every section count and preserves
+both atom ordering and the printed operator. Four completed checkpoints
+were read at both phases without starting Phenix. On the mixed model the
+signed PDU tip overlaps finished at 0.091/0.125 Å (ordinary/extra plane).
+At D:1, 18 initial and 19 final crystal-image witnesses per sibling reproduced
+the printed distances within 0.0014 Å using the declared cell and space
+group. These readings add no restraint or chemical-selection rule.
+The focused test modules were `test_refinement_link_geometry`,
+`test_cif_doctor_run`, `test_cif_doctor_cli`, `test_refinement_parallelity`
+and `test_refinement_declared_sites`, using
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:$GEMMI_PATH python -B -m pytest -q -p no:cacheprovider`.
+152 tests and 7 subtests passed. The first three modules passed 56 tests and
+7 subtests from the relocated wheel and all 322 packaged files matched.
+Reproduce the compact measurements with `c508_local_contacts.py WORK CEDAR_HISTORY NEW_JSON`.
+Historical checkpoints need no migration. Only the reader, tests and
+documentation are tracked.
 
 **Q07, 20 November.** Ordinary Coot and ReadySet now prepare 1AP:T and S6G:C
 on the same substituted host. The plane screen follows the verified source chemistry.

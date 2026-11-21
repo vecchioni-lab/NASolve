@@ -13844,6 +13844,21 @@ for inspection. Selection and numerical ranking require two complete matches.
 The same `--refined-links` command shows all findings and independently
 checks this compact record. Historical rounds can still be read.
 
+To examine crowding, run
+`nasolve cif-doctor assess --run RUN --checkpoint ID --contacts-at B:4 --json`.
+Repeat `--contacts-at` to include another residue. For each atom, the report
+counts the entries in Phenix's nonbonded table and subtracts each model
+separation from the printed van der Waals distance. A positive value is an
+overlap by this measure. A negative maximum means every listed contact has a
+gap. The report retains all ties for the largest overlap and the largest
+crystal-image overlap, with the printed operator acting on the second atom.
+Reciprocal rows are counted as printed. Zero contacts in a complete table and
+an unavailable or incomplete table are reported separately.
+
+The printed contacts describe packing at that checkpoint. Hydrogen-bond
+intent, a covalent connection across symmetry, diffraction support and the
+cause of a strained bond each require their own evidence.
+
 When the log ends with one complete Phenix Start/Final recap, the reported
 starting Rwork/Rfree is the native scaled start. The trajectory retains the
 actual observations, including initial scaling. A recap with no earlier

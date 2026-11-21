@@ -327,6 +327,10 @@ def build_parser() -> argparse.ArgumentParser:
         "--refined-links", action="store_true",
         help="compare inter-residue bonds at Phenix preflight and after refinement with the checked preparation (requires --run)",
     )
+    cif_assess.add_argument(
+        "--contacts-at", action="append", metavar="CHAIN:NUMBER",
+        help="read Phenix nonbonded contacts for this residue before and after refinement; may be repeated (requires --run)",
+    )
     cif_assess.add_argument("--model", type=Path, help="optional PDB atom inventory (standalone only)")
     cif_assess.add_argument("--stage", choices=("source", "effective", "standalone"), default="standalone")
     cif_assess.add_argument("--output", type=Path, help="new JSON receipt; existing files are refused")
@@ -1898,6 +1902,8 @@ def _cif_doctor(args: argparse.Namespace) -> int:
         else:
             if args.refined_planes and args.run is None:
                 raise ValueError("--refined-planes requires --run")
+            if args.contacts_at and args.run is None:
+                raise ValueError("--contacts-at requires --run")
             if args.refined_links and args.run is None:
                 raise ValueError("--refined-links requires --run")
             if args.bundle is not None:
@@ -1909,7 +1915,7 @@ def _cif_doctor(args: argparse.Namespace) -> int:
                 if args.dictionaries or args.model is not None or args.stage != "standalone":
                     raise ValueError("--run selects its frozen model/bundle; omit dictionaries, --model and --stage")
                 payload = assess_run(args.run, checkpoint=args.checkpoint, refined_planes=args.refined_planes,
-                                     refined_links=args.refined_links)
+                                     refined_links=args.refined_links, contact_sites=args.contacts_at)
             else:
                 if not args.dictionaries or args.checkpoint is not None:
                     raise ValueError("Provide dictionary paths, or --run with an optional --checkpoint")
@@ -1938,6 +1944,20 @@ def _cif_doctor(args: argparse.Namespace) -> int:
             print(text, end="")
         else:
             print(f"CIF Doctor: {payload.get('status', 'PREPARED')}")
+            for field, stage in (("preflight_contacts", "Preflight"), ("refined_contacts", "Refined")):
+                if field not in payload:
+                    continue
+                contacts = payload[field]
+                if contacts is None:
+                    print(f"{stage} nonbonded geometry is unavailable.")
+                elif contacts["status"] != "OBSERVED":
+                    print(f"{stage} nonbonded contacts were {contacts['status']}. {contacts['reason'] or ''}".rstrip())
+                else:
+                    for site, group in contacts["sites"].items():
+                        atoms = group["atoms"]
+                        shorter = sum(values["shorter_than_vdw"] > 0 for values in atoms.values())
+                        print(f"{stage} {site} {group['component']}: {shorter} of {len(atoms)} atoms have a "
+                              "reported distance below the Phenix van der Waals distance.")
             for field, stage in (("preflight_links", "Preflight"), ("refined_links", "Refined")):
                 if field not in payload:
                     continue

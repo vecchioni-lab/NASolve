@@ -8,6 +8,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Checking crowding around a modified residue
+
+- On a saved refinement, `cif-doctor assess --contacts-at CHAIN:NUMBER`
+  reports the local nonbonded contacts Phenix printed before and after the
+  round. Repeat the option for more residues. The JSON includes each atom's
+  largest overlap, including a separate reading for crystal images.
+
 ### Following the same molecule while Phenix prepares it
 
 - Cedar and Willow can use `collect_live_atoms(model)` and
