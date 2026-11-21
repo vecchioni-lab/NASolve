@@ -2534,3 +2534,23 @@ disposal. This is qualified diagnostic composition, not a callable ordinary
 Willow execution route. Full original-source chemistry remains a separate Cedar
 gate; neither receipt nor matching compiled topology authorizes transfer in the
 future ordinary path. No W200 protocol or W203 field changed.
+
+
+### Original source chemistry in that same call (W205)
+
+Pass `source_native_json` to the same C510 `service.interpret` call when requiring
+the original per-site definition/restraint comparison. These must be the exact
+original native-observation bytes bound by `bound_inputs.source_report_json`.
+The service authenticates them, observes the real effective residue mappings
+during its one interpretation, compares through the existing NARestraints owner,
+and returns `interpreted.receipt["source_chemistry"]`. Require its `status == "MATCH"`
+and exact source hash before transfer. Preserve its unsupported formal-charge
+readback list; do not turn source agreement into complete chemical authority.
+
+The [W205 receiving diagnostic](topostitch-periodic.md#w205--join-source-chemistry-to-candidate-transfer)
+joins that parent proof to unchanged W204 post-transfer geometry/scattering and
+candidate diffraction. Its source-byte mismatch refuses before interpretation
+and movement. The optional observer requires an unoccupied thread profiler point
+and restores only its own binding. Ordinary dispatch and retained-input lifetime
+are still separate integration gates; the service has no persistent observer or
+second comparison interpretation.

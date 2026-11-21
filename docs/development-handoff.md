@@ -1,8 +1,8 @@
 # NASolve development handoff — Willow
 
-**Current audit/Willow implementation: W204, 2026-11-21.** The installed one-shot preparation context now
+**Current audit/Willow implementation: W205, 2026-11-21.** The installed one-shot preparation context now
 carries admitted candidate → original parent geometry → candidate coordinates
-through the installed Cedar C509 service in a source-qualified diagnostic builder. No ordinary execution-policy or
+through the installed Cedar C510 service in a source-qualified diagnostic builder. No ordinary execution-policy or
 CLI activation follows. S04/S05/S06 remain PARTIAL.
 
 **Latest science:** W197's signed fixed-frame control moves 205 interior atoms
@@ -23,6 +23,7 @@ The longer pre-consolidation handoff is preserved at Git `86e7489c2314f738bd7fe1
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
+| W205 source chemistry + transfer | 42 source site definitions/eight families/3451 retained terms; 72 cold checks; exact post-transfer state/diffraction | Full formal-charge readback and maintained ordinary execution/lifetime route |
 | W204 native service composition | C509 + W203/W200; 99 cold checks, actual dry-run/failure; exact W202 prepared state and diffraction | Original-source chemical admission and ordinary lifetime/execution route |
 | W203 typed source binding | Immutable parent/report and ordered separate PHIL roles; 175 source/175 installed; real-source 3.12/3.11 parity | Concrete Cedar service and full chemical/ordinary admission |
 | W202 shared live collector | Installed Cedar C507; four authenticated reader controls; exact live prepared state and failure cleanup | Maintained source-qualified builder, full chemical admission and ordinary dispatcher |
@@ -45,15 +46,15 @@ No returned boolean/None or coordinate mapping alone is chemical authority.
 
 ## Next bounded work
 
-**W205:** compose Cedar's original-source chemistry evidence with the qualified
-C509/W203/W200 service path before a maintained receiving builder and ordinary
-execution/lifetime route. W204 now captures the actual processed object from one
-C509 call, maps the fresh order and preserves four controls, complete compiled
-geometry and candidate diffraction. The diagnostic still has observation-only
-chemical authority. Cedar owns reconciliation of original residue definitions;
-do not recreate it or convert collector MATCH into admission. Preserve old
-execution policies, actual retained-input/process lifetime and failed-manager
-disposal. No second interpreter or private-worker compatibility wrapper.
+**W206:** audit the existing proposed versioned parent-preparation execution
+route against the qualified C510/W203/W200 composition and actual retained-input
+lifetime owner. Agree one maintained receiving boundary with Rowan before code.
+W205 now joins original-source per-site definitions and all eight restraint
+families to exact retained geometry/scattering/candidate diffraction in one
+interpretation. Keep formal-charge limitations and source-versus-experimental
+correctness visible. Ordinary authority remains off. Preserve old helper bytes,
+readers/defaults, explicit parent/candidate roles and the early preparation hook;
+no second interpreter, private-worker wrapper or redundant generic callback layer.
 
 
 The shared collector boundary is agreed and tested; the ordinary execution
@@ -115,6 +116,10 @@ for repeated Rfree-guided tuning. No noisy phosphate detector is qualified.
 
 ## Validation and scientific interpretation
 
+- W205: 72 cold checks; one Phenix 2.2.1-6174 complete dry-run and one
+  source-byte rejection before interpretation/transfer. Original 42 definitions
+  match, full prior final state/diffraction retained; profile/server/outer hooks
+  restore and both children stop. Zero refinements; formal-charge limits explicit.
 - W204: 99 cold checks; one complete Phenix 2.2.1-6174 dry-run and one
   deliberate pre-transfer failure; exact W202 geometry/model/diffraction parity.
   Both children stopped, five outer bindings and Cedar server binding restored.
@@ -175,7 +180,8 @@ B2/B3 phosphate angle remains ~76.71°; the original ~4.79 Å maximum start
 motion is not the residual displacement. All 859 atoms could refine in those
 older controls. Manifest and viewer evidence stay local.
 
-W198–W204 add no geometry effect to illustrate. W204 local receipts are under
+W198–W205 add no geometry effect to illustrate. W205 source-chemistry/transfer
+receipts are under `NASolve:branch-artifacts/willow/w205-source-chemistry-transfer/`. W204 local receipts are under
 `NASolve:branch-artifacts/willow/w204-parent-service/`; see the
 [service composition audit](topostitch-periodic.md#w204--compose-the-installed-cedar-parent-service). W203 cold/installation receipts
 are under `NASolve:branch-artifacts/willow/w203-source-input-binding/`. W202 source/live receipts are

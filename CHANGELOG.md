@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W205 — Join source chemistry and candidate transfer
+
+- Qualify C510 original source-definition/restraint agreement during the same
+  W204 interpretation, with exact prepared geometry and candidate diffraction
+  retained after movement. One dry-run and one pre-interpretation source refusal
+  pass 72 cold checks; no refinement. Formal-charge limitations remain explicit.
+- Documentation/qualification only; ordinary runtime authority, defaults and
+  schemas remain unchanged. Scientific observations and inputs stay local.
+
 ### W204 — Compose installed parent interpretation and coordinate transfer
 
 - Qualify Cedar C509 with W203 source binding and W200 transfer: 99 cold checks

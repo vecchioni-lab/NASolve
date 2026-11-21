@@ -1709,7 +1709,7 @@
       "Real ordinary X11_22 ancestry does not supply the independently checked source pair/stack and chemistry authority of the canonical diagnostic.",
       "A W200 callback contract alone is not a maintained live Phenix builder, native source qualification or whole-session lifetime proof."
     ],
-    "next_gate": "W205: compose Cedar original-source chemistry evidence with the qualified C509/W203/W200 service path, then design the maintained receiving builder and retained-input lifetime boundary. Require chemical authority before ordinary transfer; compiled-stack parity alone is insufficient. Preserve current candidate diffraction and old execution policies. No second interpreter, private-worker wrapper or premature ordinary dispatcher.",
+    "next_gate": "W206: audit the existing proposed versioned parent-preparation execution route against the qualified C510/W203/W200 composition and actual retained-input lifetime owner. Agree one maintained receiving boundary with Cedar before implementation. Preserve old helper bytes/readers/defaults, geometry-parent versus diffraction-candidate roles and the required early hook. No second interpreter or generic callback wrapper; ordinary authority remains off.",
     "live_collector_qualification": {
       "human_update": 202,
       "reference": "docs/topostitch-periodic.md#w202--qualify-typed-controls-and-the-maintained-live-collector",
@@ -1800,6 +1800,28 @@
       "runtime_authority": false,
       "scientific_acceptance": false,
       "cedar_code_commit": "a78931eb1962e731a7873c5acf49e67b4e241aca"
+    },
+    "source_chemistry_transfer": {
+      "human_update": 205,
+      "reference": "docs/topostitch-periodic.md#w205--join-source-chemistry-to-candidate-transfer",
+      "status": "INSTALLED_DIAGNOSTIC_CHECKED",
+      "owner": "nasolve.cif_native_parent_chemistry",
+      "service_argument": "source_native_json",
+      "source_role": "Exact bytes at native/native_validation.json bound by the original typed report, not a newly produced parent capture.",
+      "service_module_sha256": "9a39ac073e58549573d0e49a1643efceed1139051a3ea3596f1f14c3ce4e8195",
+      "chemistry_module_sha256": "9ff7d08d0482d067237c7813bf9b5ea06bc4d50cba7de3b47bc591649f97e545",
+      "result": "receipt.source_chemistry.status == MATCH before transfer; exact retained prepared geometry/scattering/diffraction afterward",
+      "site_count": 42,
+      "retained_term_count": 3451,
+      "families": 8,
+      "formal_charge_readback": "Incomplete at all 42 sites, explicitly retained",
+      "native_interpretations": 1,
+      "source_rejections_before_interpretation": 1,
+      "cold_checks": 72,
+      "refinements": 0,
+      "ordinary_runtime_authority": false,
+      "scientific_acceptance": false,
+      "cedar_code_commit": "6842107c122ce15e5042e92687730c7b23c04020"
     }
   }
 }

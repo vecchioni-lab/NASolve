@@ -12025,3 +12025,59 @@ and machine documentation only, with no runtime/schema/default/migration change.
 Eight focused roadmap checks and content/link checks cover the docs; no new
 full suite or redundant installation build. Generated coordinates, snapshots,
 logs and native receipts are deliberately excluded from Git.
+
+
+## W205 — Join source chemistry to candidate transfer
+
+**Result:** installed Cedar C510 compares the exact original native observation
+during W204's single parent interpretation. All **42 per-site definitions** match,
+with **3,451 retained terms across eight restraint families**; compiler-replaced
+secondary-structure relationships are accounted for separately. The C510 receipt
+is checked before W200 moves candidate coordinates. Complete final geometry,
+model/scattering, fixed inputs, selected atoms and every candidate diffraction
+snapshot reproduce W204 exactly afterward. The component definitions are observed
+during interpretation; they are not reconstructed by a second interpretation after
+transfer. No new physical deformation or refined endpoint is claimed.
+
+One Phenix **2.2.1-6174 complete dry-run** took 10.65 s. A second process received
+a deliberately changed source byte string and refused in 4.59 s **before native
+interpretation or coordinate transfer**. W200 exposes no completed result; candidate
+atoms and diffraction remain unchanged, the manager is discarded, and the original
+ValueError is preserved. The thread profiler point, Cedar server binding and five
+outer hooks restore; both owned children stop. **72 cold checks pass; one actual
+interpretation, zero refinements.** Rowan's altered-Td chemistry tests are not
+repeated: this receiving check tests the source-byte/transfer integration boundary.
+
+`source_native_json` is the exact original `native/native_validation.json` byte
+string from the typed compiler report, SHA-256
+`278da35a6cda125558d091c30f02d60e8c78aabb0be0d35f81935937b0d97fca`.
+C510's live site-definition digest is
+`6e55b86eacc18438e11ce22be965f91225a509b9772fd5af27f11a3e9d6bdf1a`.
+The comparison preserves its limitation: **all 42 sites lack full formal-charge
+readback**. Matching available definitions/proxies to the source is not independent
+chemical correctness or an accepted structural solution. Both the service's
+chemical/ordinary authority flags and scientific acceptance remain False.
+
+**Commands**, from NASolve:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w205-source-chemistry.py plan experiment
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w205-source-chemistry.py run experiment
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w205-review.py
+```
+
+Each owned process is single-threaded with the existing 180 s cap. Installed
+C510 commit is `6842107c122ce15e5042e92687730c7b23c04020`;
+wheel SHA-256 is `4441fac28b9a0006f1484d683bbb6da11eeb9300de8cb77376c87a25cac29084`;
+service module `9a39ac073e58549573d0e49a1643efceed1139051a3ea3596f1f14c3ce4e8195`;
+chemistry module `9ff7d08d0482d067237c7813bf9b5ea06bc4d50cba7de3b47bc591649f97e545`.
+The C507 collector and W203/W200 Willow code remain unchanged. Local evidence
+under NASolve anchor `branch-artifacts/willow/w205-source-chemistry-transfer/`
+contains frozen module/input closures and all observations; the roadmap pins
+review and plan. No scientific data or local state is committed.
+
+This Willow patch updates current human/machine docs only. Eight roadmap tests,
+JSON/link checks and exact receipt pins validate the documentation; no full suite
+or redundant installation build. No runtime schema/default/dependency/migration
+change. **W206** audits the existing versioned execution and outer lifetime route
+with Rowan before maintaining the receiving bridge. S04/S05/S06 remain PARTIAL.

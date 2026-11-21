@@ -16,8 +16,9 @@ W203 adds the [immutable typed input binding](topostitch-preview.md#bind-typed-n
 with 175 source/175 installed tests and exact real-source readback in Python 3.12/3.11.
 W204 now composes that single Cedar-owned service with Willow transfer: 99 cold
 checks on a completed dry-run and intentional pre-transfer failure reproduce the
-previous geometry and diffraction exactly. W205 is original-source chemical
-admission before a maintained receiving builder and ordinary execution/lifetime route.
+previous geometry and diffraction exactly. W205 joins original source definitions and eight restraint families to that
+transfer in the same interpretation (72 checks). W206 audits the maintained
+receiving/ordinary execution and retained-input lifetime boundary with Rowan.
 
 W200 adds the [maintained one-shot preparation context](topostitch-preview.md#prepare-parent-geometry-once-w200):
 160 source/160 installed tests and an actual success/failure pair preserve the
