@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C514 following individual atoms' B factors through refinement — Rowan**.
+Updated **2026-11-21, C515 locating the bend along a substituted base — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -733,6 +733,30 @@ again from a relocated installation. All 325 packaged files matched.
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_refinement_displacement.py tests/test_cif_doctor_run.py tests/test_cif_doctor_cli.py tests/test_refinement_link_geometry.py
 ```
 
+**Where the arm bends.** C515 brings C405's signed bond directions into the
+existing `--refined-planes` reading for any eligible source ring. In the
+matched PDU the three successive bond elevations changed from −0.82°, −3.04°
+and −3.76° to −1.99°, −9.42° and −13.88° at the final model when only the
+starting base B changed. The last bond alone contributed 0.354 Å of the
+0.582 Å displacement. In G:5PC the same change gave −1.85°, −5.46° and
+−7.67°. The signed sum reproduces all six tip distances, and the old C403
+model independently reproduces the original C405 calculation. The other
+two 5PC B starts finish on the opposite side. These directions describe
+coordinates. They do not resolve the driving forces.
+
+Only the optional plane report and its tests changed. Existing checkpoints
+and stored schemas need no migration. Source and relocated installation
+each passed 105 focused tests and seven subtests. All 325 packaged files
+matched. Three new regression cases failed before the change. The offline
+replay used six existing five-cycle Phenix 2.2.1-6174 results and launched
+zero native workers. It saved only the compact measurements in
+`branch-artifacts/cedar/c515-arm-directions/science.json`.
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_refinement_plane_departures.py tests/test_cif_plane_coverage.py tests/test_cif_doctor_run.py tests/test_cif_doctor_cli.py
+python -B c515_arm_directions.py WORK CEDAR_SHELF NEW_OUTPUT.json
+```
+
 **Q06.** Fresh G:5PC completed both construction and ordinary five-cycle Phenix
 refinement. Its automatically corrected C8–C9 target survived in the native
 covalent restraints at 1.470 Å. The refined distance was 1.460 Å. The terminal
@@ -784,8 +808,8 @@ operational inputs. Temporary verification files were released. A04 needs
 its own metal-parent verifier before making a retention or pruning claim.
 
 C416 confirmed all eight original pairs plus ATL:A on the saved mixed scaffold,
-including all 201 intended restraints. That geometry-only run supplies the Q07
-starting recipe. Ordinary diffraction refinement of the mixture is still open.
+including all 201 intended restraints. That geometry-only run supplied the Q07
+starting recipe for the registered C497 diffraction refinement and C505 continuation.
 C417 checked the final geometry files written by Phenix in four ordinary runs.
 The local PDU plane, the shared base-pair plane and the two neighbouring stacking
 restraints all include the first alkyne carbon. The outer two carbons are absent

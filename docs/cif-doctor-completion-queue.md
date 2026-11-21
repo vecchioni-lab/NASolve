@@ -72,6 +72,10 @@ nonuniform host remains an open decision.
 C514 exposes these inherited B values and occupancies for named residues in
 any saved PDB checkpoint. Use this reading alongside the ring and terminal
 bond measurements when comparing future controls.
+C515 exposes C405's signed rises along the three bonds. All six existing
+PDU/5PC controls now have that reading. In PDU the last bond accounts for
+0.354 Å of the adverse endpoint's 0.582 Å tip height. The driving force and
+the separate symmetry-linked PDU:PDU case remain open.
 
 C507–C509 give Willow a shared reading of the geometry before and after
 atoms move. With all four W203 reader settings applied, Phenix recovered the

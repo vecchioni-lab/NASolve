@@ -46,6 +46,8 @@ entries are reconstructed from repository history.
   the length of its terminal bond at native preflight and after refinement.
   The JSON includes both phases' actual bond targets and weights. Unavailable
   measurements, missing local targets and contacts across symmetry stay explicit.
+- For the same arm, each bond now has a signed rise and elevation relative
+  to the ring. This shows where the terminal carbon's departure accumulates.
 
 ### Reading terminal-phosphate restraints from Phenix
 

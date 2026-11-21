@@ -13810,6 +13810,16 @@ each have their own explanation. An empty list means the observed sites had
 no eligible arm. An unavailable native observation yields `null`. This is a
 measurement of the written chemistry with no new force or acceptance threshold.
 
+The `bond_directions` reading follows the three consecutive bonds from the
+ring to the tip. Each has its length, signed rise perpendicular to the
+six-atom plane (Å), and signed elevation above it (degrees). The signed
+position of the attachment plus the three rises gives the tip's signed
+position. The positive side is set by the cross product of the two bonds from
+the attachment to its listed ring neighbours, in their reported order. Use
+the same ordered labels when comparing signs between models. A coincident
+pair of atoms or an ambiguous local orientation leaves the directions
+unassessed. The ordinary unsigned distance can still be measured.
+
 `refined_planes.source_ring_arm_changes` compares that same source graph in
 the zero-cycle Phenix interpretation and the final model. Atom identity joins
 the two measurements even if Phenix assigns different indices. Both distances

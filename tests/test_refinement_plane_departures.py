@@ -86,6 +86,49 @@ def test_arm_comparison_measures_the_terminal_bond_even_when_the_tip_gets_flatte
     assert result["terminal_bond_change_A"] == arm["terminal_bond_change_A"]
 
 
+def test_signed_arm_segments_reconstruct_a_tip_that_crosses_the_ring_plane():
+    from math import asin, degrees, hypot
+    from nasolve.refinement_plane_departures import compare_source_ring_arms
+
+    sources, original = ring_arm_observation()
+    original["atoms"][7]["xyz"] = [3., 0., 1.8]
+    original["geometry"]["proxy_details"]["bond_simple"] = []
+    moved = deepcopy(original)
+    for atom in moved["atoms"]:
+        x, y, z = atom["xyz"]
+        atom["xyz"] = [z + 100., x - 50., y + 75.]
+    arm, = compare_source_ring_arms(sources, original, moved)["arms"]
+    for phase in ("preflight", "refined"):
+        bonds = arm[phase]["bond_directions"]
+        assert bonds["status"] == "MEASURED"
+        assert bonds["ring_flanks"] == ["Q1", "Q5"] and bonds["anchor"] == "Q0"
+        assert bonds["anchor_offset_A"] == pytest.approx(0., abs=1e-13)
+        assert bonds["tip_offset_A"] == pytest.approx(.4)
+        segments = bonds["segments"]
+        assert [b["atoms"] for b in segments] == [["Q0","Q6"],["Q6","Q7"],["Q7","Q8"]]
+        rises = [b["normal_rise_A"] for b in segments]
+        assert rises == pytest.approx([.05, -.25, .60])
+        assert [b["length_A"] for b in segments] == pytest.approx([hypot(1., dz) for dz in rises])
+        assert [b["elevation_deg"] for b in segments] == pytest.approx(
+            [degrees(asin(z / hypot(1., z))) for z in rises])
+        assert abs(bonds["anchor_offset_A"] + sum(rises)) == pytest.approx(arm[phase]["tip_height_A"])
+
+
+@pytest.mark.parametrize("degenerate", ["flanks", "arm_bond"])
+def test_ambiguous_local_direction_preserves_the_six_atom_height(degenerate):
+    from nasolve.refinement_plane_departures import measure_source_ring_arms
+
+    sources, phase = ring_arm_observation()
+    if degenerate == "flanks":
+        phase["atoms"][5]["xyz"] = list(phase["atoms"][1]["xyz"])
+    else:
+        phase["atoms"][7]["xyz"] = list(phase["atoms"][6]["xyz"])
+    arm, = measure_source_ring_arms(sources, phase, [])
+    assert arm["status"] == "MEASURED" and arm["arm_distances_angstrom"]["Q8"] == pytest.approx(.4)
+    assert arm["bond_directions"]["status"] == "UNASSESSED"
+    assert arm["bond_directions"]["reason"]
+
+
 def test_arm_comparison_explains_unavailable_geometry_and_missing_atoms():
     from nasolve.refinement_plane_departures import compare_source_ring_arms
 

@@ -5,7 +5,7 @@ Only positive-weight plane members determine the plane. A recorded, active
 additional atoms separately so they cannot tilt the reference being tested.
 """
 from collections import defaultdict, deque
-from math import sqrt
+from math import asin, degrees, sqrt
 
 from .cif_captured_geometry import _number, _observed, _point, _site
 
@@ -57,8 +57,8 @@ def _linear_extensions(members, by_atom, atoms, coords, distance, site):
     return [extensions[i] for i in sorted(extensions)]
 
 
-def _fit_plane(points, weights):
-    """Return a Cartesian distance function, or the reason the normal is undefined."""
+def _fit_plane_offsets(points, weights):
+    """Return a signed offset function and its unit normal, or a fit failure."""
     import numpy as np
 
     used = weights > 0
@@ -75,10 +75,45 @@ def _fit_plane(points, weights):
     if singular[1] - singular[2] <= tolerance:
         return None, "Positive-weight positions do not define a unique plane"
 
-    def distance(point):
-        return float(abs((np.asarray(point) - origin - centre) @ axes[-1]))
+    normal = axes[-1]
 
-    return distance, None
+    def offset(point):
+        return float((np.asarray(point) - origin - centre) @ normal)
+
+    return (offset, normal), None
+
+
+def _fit_plane(points, weights):
+    frame, reason = _fit_plane_offsets(points, weights)
+    if frame is None:
+        return None, reason
+    offset, _ = frame
+    return lambda point: abs(offset(point)), None
+
+
+def _arm_bond_directions(arm, ring, coords, offset, normal):
+    """Orient the fitted plane by the two source ring bonds at the attachment."""
+    import numpy as np
+
+    anchor, left, right = ring[0], ring[1], ring[-1]
+    first, second = coords[left] - coords[anchor], coords[right] - coords[anchor]
+    alignment = float(normal @ np.cross(first, second))
+    scale = np.linalg.norm(first) * np.linalg.norm(second)
+    result = dict(anchor=anchor, ring_flanks=[left, right], status="UNASSESSED")
+    if abs(alignment) <= 16 * np.finfo(float).eps * scale:
+        return dict(result, reason="The ring bonds at the anchor do not determine a side of the fitted plane")
+    sign = 1 if alignment > 0 else -1
+    segments = []
+    for a, b in zip(arm, arm[1:]):
+        vector = coords[b] - coords[a]
+        length = float(np.linalg.norm(vector))
+        if not length:
+            return dict(result, reason=f"Coincident atoms leave the direction of {a}–{b} undefined")
+        rise = sign * float(vector @ normal)
+        elevation = degrees(asin(max(-1., min(1., rise / length))))
+        segments.append(dict(atoms=[a, b], length_A=length, normal_rise_A=rise, elevation_deg=elevation))
+    return dict(result, status="MEASURED", segments=segments,
+                anchor_offset_A=sign * offset(coords[anchor]), tip_offset_A=sign * offset(coords[arm[-1]]))
 
 
 def measure_source_ring_arms(sources, observation, planes):
@@ -99,7 +134,7 @@ def measure_source_ring_arms(sources, observation, planes):
         for arm, rings in source_ring_alkyne_arms(*sources[site]):
             row = dict(**declared, status="UNASSESSED", arm_atoms=list(arm),
                        candidate_ring_count=len(rings), ring_atoms=None, ring_rms_angstrom=None,
-                       arm_distances_angstrom=None, captured_ring_planes=None, missing_atoms=[])
+                       arm_distances_angstrom=None, bond_directions=None, captured_ring_planes=None, missing_atoms=[])
             rows.append(row)
             if len(rings) != 1:
                 row["reason"] = "Multiple chordless six-membered source rings through the attachment"
@@ -115,13 +150,15 @@ def measure_source_ring_arms(sources, observation, planes):
             if row["missing_atoms"]:
                 row["reason"] = "Source ring or arm atoms missing from the selected capture"
                 continue
-            coords = {n: _point(atoms[site][n]["xyz"]) for n in required}
-            distance, reason = _fit_plane(np.array([coords[n] for n in ring]), np.ones(len(ring)))
+            coords = {n: np.asarray(_point(atoms[site][n]["xyz"])) for n in required}
+            frame, reason = _fit_plane_offsets(np.array([coords[n] for n in ring]), np.ones(len(ring)))
             row["reason"] = reason
-            if distance is not None:
+            if frame is not None:
+                offset, normal = frame
                 row.update(status="MEASURED",
-                           ring_rms_angstrom=sqrt(sum(distance(coords[n])**2 for n in ring) / len(ring)),
-                           arm_distances_angstrom={n: distance(coords[n]) for n in arm[1:]})
+                           ring_rms_angstrom=sqrt(sum(offset(coords[n])**2 for n in ring) / len(ring)),
+                           arm_distances_angstrom={n: abs(offset(coords[n])) for n in arm[1:]},
+                           bond_directions=_arm_bond_directions(arm, ring, coords, offset, normal))
     return rows
 
 
@@ -144,7 +181,7 @@ def _arm_endpoints(sources, phase):
         measured = arm["arm_distances_angstrom"]
         row = dict(status=arm["status"], reason=arm["reason"], ring_atoms=arm["ring_atoms"],
                    tip_height_A=measured[path[-1]] if measured is not None else None,
-                   terminal_bond_A=None, terminal_targets=None)
+                   bond_directions=arm["bond_directions"], terminal_bond_A=None, terminal_targets=None)
         outside, tip = (atoms.get((site, name)) for name in path[-2:])
         if outside is not None and tip is not None:
             row["terminal_bond_A"] = _observed("bond_simple", [outside["xyz"], tip["xyz"]])
