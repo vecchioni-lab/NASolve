@@ -143,5 +143,26 @@
     ],
     "native_execution": false,
     "runtime_authority": false
+  },
+  "simple_twist_reference_qualification": {
+    "human_update": "W192",
+    "status": "CURRENT_REFERENCE_CONTROL_MATCH_NOT_IMPLEMENTED",
+    "method_source_url": "https://github.com/x3dna-dssr/x3dna-v2.4/blob/43eafa8407be1a8292e38ca995ab16adfbeffcac/src/analyze.c#L237-L247",
+    "reference_version": "3DNA v2.4.10-2026nov01",
+    "source_commit": "43eafa8407be1a8292e38ca995ab16adfbeffcac",
+    "required_convention": "Orient each pair normal along the next-pair origin displacement before C1-prime frame construction and midpoint untilting. Keep strand direction and missing/degenerate origins explicit.",
+    "public_control": "1XVK deposited biological assembly, MODEL1 A1..8 : MODEL2 A8..1, author blank/A/1 conformer policy",
+    "original_pilot_matches": 4,
+    "corrected_current_reference_matches": 7,
+    "historical_web_table_matches": 6,
+    "historical_table_limit": "Step5 prints25.70 in old webpage but25.71 in exact current reference; corrected calculation25.705047. Preserve both.",
+    "7SDG_control": "Exact declared A9..15/B7..1 matches all6 current reference simple-step values. Local mean30.35568 (~30.36 printed) versus recordedSI32.08 remains a provenance/assignment discrepancy; no fitted correction.",
+    "evidence": {
+      "anchor": "NASolve",
+      "relative_path": "branch-artifacts/willow/w192-simple-twist/review.json",
+      "sha256": "942a92f77583f3d3a7b5589c79a077ade121a1a820a33786c695ad98ceec26c1"
+    },
+    "production_change": false,
+    "next": "Implement only with exact frame/atom provenance, rigid/sign/degenerate controls and independent public readback; retain the unresolved SI comparison and separate local-axis radii."
   }
 }

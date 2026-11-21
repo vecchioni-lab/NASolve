@@ -1,5 +1,24 @@
 # NASolve development handoff — Willow
 
+**W192: simple twist now has an exact reference convention, not a fitted fix.**
+The unadapted C444 pilot misses three of seven printed 1XVK steps around non-WC
+pairs. The author's archived `analyze.c` orients **each pair normal toward the
+next pair's origin** before constructing C1′ frames. Applying that rule matches
+all seven steps from a fresh **3DNA v2.4.10-2026nov01** analysis at printed
+precision. The old web table differs by 0.01° on one step; both are retained.
+The same reference program independently reproduces all six C444 7SDG steps,
+including local mean ~30.36° versus the recorded SI 32.08°. Historical input/image/
+assignment provenance remains unresolved; do not tune the calculation to that value.
+[Methods and exact evidence](topostitch-periodic.md#w192--resolve-the-simple-twist-normal-convention-against-the-reference).
+
+Local visual checkout: `ScienceCheckouts/Linden/2026-11-21_helix-measurement-controls/index.html`.
+
+Four reference analysis invocations; no Phenix, refinement, coordinate changes or
+new product twist implementation. Next implementation must preserve normal
+orientation, declared strand direction, exact base/C1′ mapping, missing/degenerate
+cases and independent phosphate reporting. H1/H2 remain partial; axis radii and
+regional/cross-state statistics remain separately qualified work.
+
 **W191: measure declared paired phosphates through one shared offline reader.**
 `nasolve.helical_geometry` supplies source-bound region/site assignments and
 Cartesian P–P spans. Logical pair order, core/flank roles, breaks, exact modified

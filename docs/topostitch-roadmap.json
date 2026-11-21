@@ -251,7 +251,8 @@
         "W182: Three saved-W180 probes plus30 existing typed tests pass (33 total). Public PostMR intake refuses before acquisition/request/process; exact compiled restraint context reproduces; controls cannot enter its grammar; existing synthetic dispatch freezes all4 ordered PHIL files and deliberately returns97 without native execution.",
         "W184 compares saved C466/C470 siblings in the same frame with867 identical atoms. Tips shift0.05187/0.02914 A; target-ring RMS0.01491/0.01264 A. Nearby sugar/backbone RMS0.00515 versus distant0.00561 A, phosphate0.00535 versus0.00511 A. Four arithmetic controls and independent Gemmi parsing pass; no preferential nearby backbone displacement is demonstrated.",
         "W190 binds derived original canonical source connectivity separately from checked preparation;121 links match saved native capture,128 source and128 installed checks pass.",
-        "W191 adds the shared Q15 exact paired-phosphate report with local missing-site results; it does not qualify helix opening or choose a bend target."
+        "W191 adds the shared Q15 exact paired-phosphate report with local missing-site results; it does not qualify helix opening or choose a bend target.",
+        "W192 establishes the source-defined simple-twist orientation convention with independent public reference controls; no runtime promotion or motion acceptance."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
@@ -310,14 +311,15 @@
         "E_ORDINARY_NATIVE_WINDOW_SUPPORT",
         "E_CANONICAL_WINDOW_GEOMETRY_BASELINE",
         "ordinary_source_context_w190",
-        "E_PAIRED_PHOSPHATE_SPANS"
+        "E_PAIRED_PHOSPHATE_SPANS",
+        "E_SIMPLE_TWIST_REFERENCE"
       ],
       "last_audit": {
         "date": "2026-11-21",
-        "human_update": 191,
+        "human_update": 192,
         "code_commit": "d50076e92af79e765841f8d4dc1679a059167c8c",
-        "reviewer": "Linden; shared Q15 ownership coordinated with Rowan and Hazel",
-        "scope": "Q15 phosphate-span slice delivered; source intent available, motion and independent paired-window target remain open."
+        "reviewer": "Linden; independent reference scope coordinated with Rowan",
+        "scope": "Shared helix convention narrowed by primary source and exact public control; motion and historical7SDG comparison remain open."
       }
     },
     {
@@ -365,7 +367,8 @@
         "W182: Three saved-W180 probes plus30 existing typed tests pass (33 total). Public PostMR intake refuses before acquisition/request/process; exact compiled restraint context reproduces; controls cannot enter its grammar; existing synthetic dispatch freezes all4 ordered PHIL files and deliberately returns97 without native execution.",
         "W184 compares saved C466/C470 siblings in the same frame with867 identical atoms. Tips shift0.05187/0.02914 A; target-ring RMS0.01491/0.01264 A. Nearby sugar/backbone RMS0.00515 versus distant0.00561 A, phosphate0.00535 versus0.00511 A. Four arithmetic controls and independent Gemmi parsing pass; no preferential nearby backbone displacement is demonstrated.",
         "W190 binds derived original canonical source connectivity separately from checked preparation;121 links match saved native capture,128 source and128 installed checks pass.",
-        "W191 adds the shared Q15 exact paired-phosphate report with local missing-site results; it does not qualify helix opening or choose a bend target."
+        "W191 adds the shared Q15 exact paired-phosphate report with local missing-site results; it does not qualify helix opening or choose a bend target.",
+        "W192 establishes the source-defined simple-twist orientation convention with independent public reference controls; no runtime promotion or motion acceptance."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
@@ -467,14 +470,15 @@
         "E_ORDINARY_NATIVE_WINDOW_SUPPORT",
         "E_CANONICAL_WINDOW_GEOMETRY_BASELINE",
         "ordinary_source_context_w190",
-        "E_PAIRED_PHOSPHATE_SPANS"
+        "E_PAIRED_PHOSPHATE_SPANS",
+        "E_SIMPLE_TWIST_REFERENCE"
       ],
       "last_audit": {
         "date": "2026-11-21",
-        "human_update": 191,
+        "human_update": 192,
         "code_commit": "d50076e92af79e765841f8d4dc1679a059167c8c",
-        "reviewer": "Linden; shared Q15 ownership coordinated with Rowan and Hazel",
-        "scope": "Q15 phosphate-span slice delivered; source intent available, motion and independent paired-window target remain open."
+        "reviewer": "Linden; independent reference scope coordinated with Rowan",
+        "scope": "Shared helix convention narrowed by primary source and exact public control; motion and historical7SDG comparison remain open."
       }
     },
     {
@@ -532,7 +536,8 @@
         "W182: Three saved-W180 probes plus30 existing typed tests pass (33 total). Public PostMR intake refuses before acquisition/request/process; exact compiled restraint context reproduces; controls cannot enter its grammar; existing synthetic dispatch freezes all4 ordered PHIL files and deliberately returns97 without native execution.",
         "W185 authenticates both real C403/C475 requests:10 checks over41 frozen files pass. Original postmr/model, diffraction, five-cycle settings, v3 runtime/code, projection and terminal fixture agree; only one seven-atom B:4 PDU plane at0.10 A and declared paths differ. Four restored dataset hashes and unchanged selection verify; no native run or child-outcome claim.",
         "W190 binds derived original canonical source connectivity separately from checked preparation;121 links match saved native capture,128 source and128 installed checks pass.",
-        "W191 adds the shared Q15 exact paired-phosphate report with local missing-site results; it does not qualify helix opening or choose a bend target."
+        "W191 adds the shared Q15 exact paired-phosphate report with local missing-site results; it does not qualify helix opening or choose a bend target.",
+        "W192 establishes the source-defined simple-twist orientation convention with independent public reference controls; no runtime promotion or motion acceptance."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -637,14 +642,15 @@
         "E_ORDINARY_NATIVE_WINDOW_SUPPORT",
         "E_CANONICAL_WINDOW_GEOMETRY_BASELINE",
         "ordinary_source_context_w190",
-        "E_PAIRED_PHOSPHATE_SPANS"
+        "E_PAIRED_PHOSPHATE_SPANS",
+        "E_SIMPLE_TWIST_REFERENCE"
       ],
       "last_audit": {
         "date": "2026-11-21",
-        "human_update": 191,
+        "human_update": 192,
         "code_commit": "d50076e92af79e765841f8d4dc1679a059167c8c",
-        "reviewer": "Linden; shared Q15 ownership coordinated with Rowan and Hazel",
-        "scope": "Q15 phosphate-span slice delivered; source intent available, motion and independent paired-window target remain open."
+        "reviewer": "Linden; independent reference scope coordinated with Rowan",
+        "scope": "Shared helix convention narrowed by primary source and exact public control; motion and historical7SDG comparison remain open."
       }
     },
     {
@@ -4682,6 +4688,15 @@
       "reference": "docs/topostitch-periodic.md#w191--measure-explicit-paired-phosphate-spans",
       "result": "67 source and67 relocated installed checks;34 new cases. Seven public7SDF spans reproduce, localA12/B4=18.1937341137 A; one deleted P leaves six unchanged and one missing. Installed CLI matches after original copied paths disappear.",
       "limitation": "Identity-image single-model PDB, explicit pairing only. Half-span is not an axis radius. No inferred correspondence, ring-frame/twist qualification, native call, motion or acceptance; H1/H2 partial,H3 open."
+    },
+    "E_SIMPLE_TWIST_REFERENCE": {
+      "kind": "public_reference_simple_twist_convention",
+      "date": "2026-11-21",
+      "human_update": 192,
+      "code_commit": "d50076e92af79e765841f8d4dc1679a059167c8c",
+      "reference": "docs/topostitch-periodic.md#w192--resolve-the-simple-twist-normal-convention-against-the-reference",
+      "result": "Author-required normal orientation fixes3 non-WC failures; all7 corrected1XVK steps match3DNA v2.4.10-2026nov01 at printed precision. Exact7SDG region matches all6 prior pilot steps. Four reference analysis calls, no product change.",
+      "limitation": "Old1XVK web step5 differs0.01 degree from fresh reference.7SDG historicalSI mean32.08 versus current30.36 remains unresolved. No maintained twist/axis metric, global qualification, refinement or coordinates changed."
     }
   },
   "benchmarks": [
@@ -4843,8 +4858,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 191,
-    "next": 192,
+    "current": 192,
+    "next": 193,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -5798,6 +5813,12 @@
       {
         "number": 191,
         "title": "Measure explicit paired phosphate spans with missing-site reporting",
+        "state": "RECORDED",
+        "code_commit": "d50076e92af79e765841f8d4dc1679a059167c8c"
+      },
+      {
+        "number": 192,
+        "title": "Resolve simple-twist normal orientation against exact public reference",
         "state": "RECORDED",
         "code_commit": "d50076e92af79e765841f8d4dc1679a059167c8c"
       }

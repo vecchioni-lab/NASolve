@@ -11218,3 +11218,58 @@ H1/H2 remain partial and H3 open: nonidentity images, mmCIF, registered cross-st
 correspondence, modified ring frames, axis radii, weighted regional twist and the
 7SDG discrepancy still need their own qualification. Existing C444 pilot evidence
 is preserved; this slice does not claim agreement for unimplemented quantities.
+
+## W192 — Resolve the simple-twist normal convention against the reference
+
+The [author's printed 1XVK example](https://x3dna.org/articles/simple-parameters-for-non-watson-crick-base-pairs)
+provides seven signed simple-step values. Exact RCSB biological-assembly bytes
+(`1XVK.pdb1`, SHA256 `0be88f42985e557973ea4e3aef4eb377528bd7aae34ef6cd71fec2b90dbf183c`)
+contain two coordinate MODEL blocks: explicit MODEL1 A1–8 pairs with MODEL2 A8–1.
+No new symmetry expansion or inferred production assignment is made. The initial
+C444 pilot refuses alternate C1′ positions; the [documented default](https://x3dna.org/articles/about-alternate-location-altloc-field)
+selects blank/A/1, not the highest-occupancy conformer. Using only that atom-selection
+adapter retains the original pilot's failures: steps 1/4/5 give 113.23548/−0.00555/
+−132.93433° against the historical printed 23.36/25.67/25.70°. Four other steps match.
+Exact selected ring/C1′ identities, altlocs, occupancies and coordinates are retained.
+
+The official archived [source](https://github.com/x3dna-dssr/x3dna-v2.4/blob/43eafa8407be1a8292e38ca995ab16adfbeffcac/src/analyze.c#L237-L247)
+requires both pair normals to point along the pair-origin displacement **before**
+C1′ frame construction and midpoint untilting. A preliminary nearest-hemisphere
+diagnostic is retained separately; it is not the adopted source definition.
+Applying the source rule gives 23.36225/25.66901/25.70505° for those three steps.
+A temporary source build at commit `43eafa8407be1a8292e38ca995ab16adfbeffcac`
+(Apple clang 21.0.0; `make -j2 analyze find_pair`) supplies **3DNA v2.4.10-2026nov01**.
+Complete `find_pair -symm 1XVK.pdb1 1XVK.bps` and `analyze -symm 1XVK.bps`
+runs reproduce the declared eight-pair mapping. All seven corrected steps agree
+with the fresh reference at two decimals. Its step 5 prints **25.71**, whereas
+the historical web table prints **25.70**; neither result is relabelled or rounded
+to force agreement. This confirms one current-input/current-reference control,
+not universal simple-twist equivalence or qualification of an axis method.
+
+The same reference's `find_pair -s 7SDG.pdb all.bps` establishes residue ordinals;
+`analyze declared-region.bps` then uses explicit A9–15/B7–1, identity coordinates.
+All six printed simple twists agree with C444. The two flanking steps give 30.36°
+from the printed table (pilot 30.35568286°), not the recorded S15 value 32.08°;
+the edge mean is ~37.92° versus 37.63°. The ordinary local-step mean is 34.49°,
+so merely substituting that quantity does not resolve the discrepancy. Historical
+SI model/image/assignment provenance is still required. No publication correction
+or inferred replacement target is asserted.
+
+Local-only evidence: anchor `NASolve`, relative directory
+`branch-artifacts/willow/w192-simple-twist/`, `review.json` SHA256
+`942a92f77583f3d3a7b5589c79a077ade121a1a820a33786c695ad98ceec26c1`.
+It pins raw/corrected comparisons, assembly/atom mapping, both exact models,
+reference requests/outputs, source commit and executable hashes. Four complete
+reference analysis calls; **zero Phenix/Coot/refinement calls**, no coordinate or
+product changes. No third-party code, executable or raw science is committed.
+Use the same independent controls when implementing the maintained metric; retain
+missing/degenerate orientation and modified-frame gates. W191 phosphate distances
+remain independently qualified, with no axis or twist inferred from those spans.
+
+The compact local checkout is
+`ScienceCheckouts/Linden/2026-11-21_helix-measurement-controls/index.html` with a
+visually checked PNG/SVG, paired-span JSON and twist evidence inventory.
+Matplotlib 3.11.1 rendered the two independent controls; no models are copied into
+the checkout. Local links/JSON validate. The temporary reference build, redundant
+copied test trees and clean already-integrated W186 worktree/branch were retired;
+build/source manifests, wheels, validation logs and all science remain retained.

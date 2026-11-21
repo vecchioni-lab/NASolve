@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W192 — Qualify the simple-twist reference convention
+
+- Preserve the original non-WC pilot failures and identify the author's required
+  pair-normal orientation step. Seven corrected 1XVK steps match a fresh exact
+  3DNA reference run; retain its small difference from the historical web table.
+- Confirm the existing six-step 7SDG calculation independently without resolving
+  its publication/input discrepancy. Update the shared plan and next gates.
+- Documentation and local diagnostics only: no runtime, schema, coordinate,
+  installation or workflow changes; generated reference outputs remain local.
+
 ### W191 — Measure declared paired phosphate spans
 
 - Add a shared offline API and `python -m nasolve.helical_geometry` CLI for
