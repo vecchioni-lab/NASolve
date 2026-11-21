@@ -66,9 +66,9 @@ def observation_metadata(output: str) -> dict:
             'qualification': 'Header/column presence only; no reflection-level or refinement qualification'}
 
 
-def _run(command, environment):
+def _run(command, environment, *, command_runner=None):
     try:
-        result = subprocess.run([str(x) for x in command], env=environment, text=True,
+        result = (subprocess.run if command_runner is None else command_runner)([str(x) for x in command], env=environment, text=True,
                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=60, check=False)
     except (OSError, subprocess.TimeoutExpired) as exc:
         raise RecipeError(f'Native input inspection failed: {exc}') from exc
@@ -77,11 +77,12 @@ def _run(command, environment):
     return result.stdout
 
 
-def inspect_observations(path, *, executable, environment=None):
-    return observation_metadata(_run([executable, path], environment))
+def inspect_observations(path, *, executable, environment=None, command_runner=None):
+    options={} if command_runner is None else dict(command_runner=command_runner)
+    return observation_metadata(_run([executable, path], environment,**options))
 
 
-def reference_scattering(elements, wavelength, *, executable, version, table='sasaki', environment=None):
+def reference_scattering(elements, wavelength, *, executable, version, table='sasaki', environment=None, command_runner=None):
     """Use the configured Phenix Python and record exact provider/version/inputs."""
     elements = sorted({element(item) for item in elements})
     wavelength = number(wavelength, 'wavelength')
@@ -98,7 +99,8 @@ def reference_scattering(elements, wavelength, *, executable, version, table='sa
               ' if not (value.is_valid_fp() and value.is_valid_fdp()): raise ValueError("Reference out of range")\n'
               ' rows.append({"element":name,"f_prime":value.fp(),"f_double_prime":value.fdp(),"table_sha256":table_hash,"native_version":native_version})\n'
               'print("NASOLVE_SCATTERING="+json.dumps(rows))\n')
-    output = _run([executable, '-c', script], environment)
+    options={} if command_runner is None else dict(command_runner=command_runner)
+    output = _run([executable, '-c', script], environment,**options)
     markers = [line.split('=', 1)[1] for line in output.splitlines() if line.startswith('NASOLVE_SCATTERING=')]
     try:
         if len(markers) != 1: raise ValueError('missing reference marker')

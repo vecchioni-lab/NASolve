@@ -9,6 +9,67 @@ not a second queue.
 
 ## A04 current checkpoint: cooperative storage reservations
 
+**Latest bounded step: explicit owned native preflight in the normal audited session.**
+`run_audited_child(..., owned_preflight=True)` now runs observation-header inspection,
+scattering reference lookup and the original Free-R audit through the existing
+shared process owner. Every phase must be verifiably stopped before f″ begins.
+Failed/uncertain checks preserve their evidence and never start the main child.
+The current default route remains unchanged; this is an explicit Python option,
+not CLI activation, a session storage grant or a scientific acceptance decision.
+
+**Qualification:** eight initial regressions fail before implementation. The final
+profile passes **90 focused tests in 30.49 s** and **50 relocated installed tests
+in 34.27 s**, with all **356 package files** verified. The previous reader returns
+the same default scientific review and refuses the new v3 owned-preflight review.
+V1 ordinary and v2 retained reviews remain supported. An added missing-phase test
+found a cold-read fallback to historical PID inspection; requiring complete saved
+stop seals fixes that before invoking the shared reader. Initial 86-pass and
+89-pass/one-failure evidence is retained; no shared process owner was changed.
+
+**Real native boundary:** Phenix **2.2.1-6174** completes the three input inspections
+on preserved Ag4 observations; no refinement or full science panel runs. The
+configured discovery label is 2.2.1, while the reference provider confirms the
+full build. Wavelength remains **0.97935 Å**, calculated Ag f″ **1.9543249607086182 e**,
+and the original `FreeR_flag` has **103 / 1,734** independent groups (**5.9400%**).
+Its existing **NOISY** warning remains: this stored flag array does not expose
+Friedel mates for a direct consistency test. The unmodified Free-R script is pinned,
+and the owned native record reopens after relocation. Retained preflight evidence
+is **409,137 B**. No new f″, Q, B, coordinates or R statistics are claimed.
+
+**Changed files/schemas:** optional `command_runner` hooks in `metal/scattering.py`
+and `refine_doctor.audit_free_r_flags`, new `metal/preflight_process.py`, normal
+`metal/child_session.py` integration/reader, one regression module and current docs.
+The shared process framework, scientific scripts/parsers and native f″ workers are
+preserved. A new v1 input-inspection record binds request, copied inputs, native
+process seals and exact capture files. Explicit scientific review v3 references
+that evidence; its process/parent derivation remains v1 or v2 according to actual
+lifetime. Cold reads verify recorded acquisition and saved stops, never new native
+acquisition, historical PID liveness or parent cleanup. No migration is required.
+
+Exact focused command:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_metal_owned_preflight.py tests/test_metal_child_session.py tests/test_metal_child_review.py tests/test_metal_retained_execution.py tests/test_metal_integration.py tests/test_refine_doctor.py
+```
+
+Private evidence: `owned-preflight-20261121-01/`. Installed qualification is
+`runners/A349_owned_preflight_qualification.py`; native input-only control is
+`A350_owned_preflight_native.py`. Exact commands/manifests are in `validation.json`;
+wheel SHA-256 `cdc67477c9c42a19a6ae480c3f6d2d2ec867805772600a43f2f8f185acbfc9b2`.
+Native inspection pin `03733a0f95c66fbe4692a89a3e328e008a8b7c861df046f5407f20e2d8ddf115`.
+Generated captures, models, logs, wheel and reports stay outside Git; only owned
+staging is removed. Source archives and earlier results remain unchanged.
+
+**Next gap:** whole audited-session admission/release must cover preflight, native
+child, postflight and review publication under one explicit lifetime contract.
+Do not merely forward a child budget and call that session accounting. The main
+child's stop alone cannot release preflight or coordinator work. Unknown inspection
+ownership must retain any future session claim. Session/campaign scheduling,
+pruning and 200-dataset capacity remain unqualified. A01 is partial, A02 gated,
+A04 partial. The original scientific geometry gates remain unchanged.
+
+### Qualified retained-parent release and normal child admission
+
 **Latest bounded step: actual retained-parent release and normal child admission.**
 The ordinary `retained_parent_inputs(..., storage_budget=...)` context now reserves
 one parent allowance before expansion. It records its grant/opening and publishes

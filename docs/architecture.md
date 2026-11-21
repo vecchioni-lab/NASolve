@@ -2170,6 +2170,17 @@ Uncertain children remain held independently. Prior readers refuse unsupported
 parent settlement; no v1 conversion or full-session scheduler is introduced. See
 [mixed-scope admission](metal-campaign-storage.md#opt-in-mixed-scope-ledger-admission).
 
+The explicit audited-session `owned_preflight=True` option records observation,
+scattering and Free-R commands through a thin `_ProcessScope` profile of the
+existing `_OwnedProcesses`. Optional scientific command runners preserve the
+original scripts/parsers and existing defaults. All inspection processes must
+finish before the separate native child begins. A v1 input-inspection receipt and
+opt-in scientific review v3 bind exact copied inputs, process seals and native
+captures; ordinary review v1/retained v2 remain supported. Cold inspection requires
+complete saved stop seals before the shared reader, avoiding historical PID probes.
+This does not settle storage, qualify a geometry or own the whole audited-session
+allowance. See [owned preflight](metal-campaign-storage.md#owned-native-preflight-before-the-audited-child).
+
 The separate `metal.child_process` route composes protected-parent transport and
 shared native process ownership for one explicit fresh invocation. Prepared bytes,
 worker and parent manifest are pinned; outcomes are durably recorded and fresh

@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Own optional metal input inspections before frozen refinement
+
+- Add narrow optional command runners to the existing metadata/scattering and
+  Free-R APIs, retaining their parsers, scripts and default execution behavior.
+- Offer `run_audited_child(owned_preflight=True)` through the shared process owner;
+  all three inspections must stop before f″ starts. Preserve failed/uncertain
+  evidence and require complete saved seals for cold reads without PID probing.
+- Bind opt-in scientific review v3 to a separate v1 input-inspection receipt;
+  preserve ordinary v1 and retained v2 readers and refuse v3 in the previous reader.
+- Qualify 90 focused and 50 relocated installed tests plus three actual Phenix
+  2.2.1-6174 input inspections. No native refinement, science-panel rerun, full suite,
+  whole-session storage claim or pruning.
+
 ### Release owned retained-parent space after verified closure
 
 - Bind the ordinary retained-parent context to an explicit v2 budget, recording

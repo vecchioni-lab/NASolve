@@ -235,13 +235,14 @@ def audit_free_r_flags(
     phenix_python: Path,
     destination: Path,
     environment: Mapping[str, str] | None = None,
+    *, command_runner: Callable | None = None,
 ) -> FreeRAudit:
-    """Audit the frozen test set without changing or regenerating it."""
+    """Audit frozen flags; an explicit runner may supply existing process ownership."""
     script_path = destination / "audit_free_r.py"
     log_path = destination / "free_r_audit.log"
     script_path.write_text(_AUDIT_SCRIPT.lstrip(), encoding="utf-8")
     try:
-        completed = subprocess.run(
+        completed = (subprocess.run if command_runner is None else command_runner)(
             [
                 str(phenix_python.expanduser().resolve()),
                 str(script_path),

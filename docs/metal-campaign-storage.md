@@ -1278,6 +1278,47 @@ the offline session reader below now supplies scientific replay while compact
 publication remains next. Exact
 focused/installed/native receipts are in the [handoff](metal-development-handoff.md).
 
+### Owned native preflight before the audited child
+
+The metadata, scattering-reference and Free-R inspections consume native processes
+before the main frozen-f″ child. A verified main-child stop therefore cannot by
+itself prove that an entire session has released its resources. The explicit
+Python option `run_audited_child(..., owned_preflight=True)` now gives those three
+inspections a shared process lifetime, while leaving default calls unchanged.
+
+`metal.preflight_process` is a thin profile of the existing `_OwnedProcesses`,
+not another process controller. It freezes copied prepared inputs and the exact
+Free-R script under `preflight/inputs`, records dispatcher hashes/provenance and
+runs three bounded phases. Narrow optional `command_runner` hooks feed the existing
+scientific APIs. The exact parsers, scattering script and Free-R script/policy
+remain unchanged. Native log capture has bounded reads; this is not an OS output
+quota. One preflight deadline bounds the three commands, separate from the main
+child deadline. Dispatcher/input/script changes refuse; uncertain stop prevents
+refinement and preserves the owned attempt for review.
+
+Successful input checks publish `metal-fdp-owned-input-inspection` v1, linking
+request, input ownership, complete phase/outer seals and exact captured files.
+The normal session verifies it before launching f″ and includes its reference in
+scientific review v3. Parent derivation/process outcomes still use their existing
+v1/v2 lifetime versions; v3 does not invent a new parent cleanup claim. All current
+scientific gates and unchanged native output audits still run. Default review v1
+and retained review v2 stay exact; the previous reader refuses v3.
+
+The cold reader verifies the independently pinned input-inspection receipt,
+immutable request/copies, native captures, complete process seals and agreement
+with the session's fresh-input/Free-R records. Missing stop evidence refuses
+before consulting historical process IDs. This is recorded acquisition, not new
+native acquisition or scientific acceptance. It gives no session allowance release,
+retirement, cached acceptance, retry scheduling or checkpoint selection authority.
+
+Qualification: 90 focused checks, 50 relocated installed checks with source/native
+access blocked, and three real Phenix **2.2.1-6174** input inspections on preserved
+Ag4 observations. The exact wavelength/reference values and original Free-R audit
+remain unchanged; no native refinement or full science panel ran. The native
+capture occupies 409,137 B and cold-reopens after relocation. See the
+[current handoff](metal-development-handoff.md#a04-current-checkpoint-cooperative-storage-reservations)
+for exact commands, pins, failure history and remaining whole-session budget scope.
+
 ### Offline audited-session inspection
 
 ```text
