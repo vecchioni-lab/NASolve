@@ -17,6 +17,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W200 — Maintain one-shot parent geometry preparation
+
+- Add an opt-in in-memory context around an explicitly qualified native builder:
+  bind the initial candidate, verify source geometry before transferring candidate
+  coordinates, and expose a result only after successful final verification.
+- Reuse W198 mappings across changed native atom order. Refuse stale state,
+  replaced managers, repeated/reentrant calls, false verifier returns and swallowed
+  failures. Outer worker retains native binding cleanup and failed-model disposal.
+- 160 focused source + 160 relocated installed tests; one actual Phenix
+  2.2.1-6174 dry-run and one injected preparation failure pass 81 cold checks.
+  Zero refinements; native/counted execution policies, CLI and schemas unchanged.
+- Full-suite attempt was interrupted at the coordinated task-specific stop:
+  446 passed, 15 skipped, 133 subtests; five process tests encountered sandbox
+  denial of /bin/ps. No full-suite success is claimed and unrelated code was not
+  changed. Scientific artifacts and test logs remain local.
+
 ### W199 — Check live parent preparation and failure cleanup
 
 - Qualify the installed W198 coordinate handoff across candidate diffraction,

@@ -233,3 +233,169 @@ def test_zero_motion_native_handoff_preserves_declared_movable_scope():
     result=endpoint.map_native_endpoint(data,data,points,**opts)
     assert result.movable_native_indices==(1,)
     assert result.parent_points==result.candidate_points==result.full_precision_points
+
+class PreparationBuilder:
+    """Constructed stage/failure control; real native qualification is separate."""
+    def __init__(self, data, child, opts):
+        import copy
+        self.model=object();self.data=data;self.child=child
+        self.view=copy.deepcopy(opts['native']);self.view['atoms'][1]['xyz']=[2.001,0.,0.]
+        self.events=[];self.stop=None;self.error=RuntimeError('native first error');self.corrupt=None
+
+    def observe_atoms(self, model):
+        assert model is self.model
+        return self.view
+
+    def step(self,name):
+        self.events.append(name)
+        if self.stop==name:raise self.error
+
+    def interpret_parent(self, model, data):
+        assert model is self.model and data==self.data
+        self.step('build')
+        # The native interpretation returns source order, unlike initial parsing.
+        self.view['atoms'].sort(key=lambda a: {'P':0,'OP3':1,"O5'":2,"C5'":3}[a['key'][-1]])
+        for i,a in enumerate(self.view['atoms']):a['xyz']=[float(i),0.,0.]
+        if self.corrupt=='parent':self.view['atoms'][0]['xyz'][0]=99
+        if self.corrupt=='manager':self.model=object()
+
+    def verify_parent(self, model, mapping):
+        assert mapping.native_model_role=='parent'
+        self.step('parent_check')
+        if self.corrupt=='false_check':return False
+
+    def set_candidate_sites(self, model, points):
+        self.step('transfer')
+        for a,p in zip(self.view['atoms'],points):a['xyz']=list(p)
+        if self.corrupt=='candidate':self.view['atoms'][0]['xyz'][0]=99
+
+    def verify_candidate(self, model, parent, candidate):
+        assert parent.native_to_source==candidate.native_to_source
+        self.step('candidate_check')
+
+
+def preparation_case():
+    from nasolve.topostitch_endpoint import map_native_endpoint
+    from nasolve.topostitch_native_preparation import NativeEndpointPreparation
+    data,child,points,opts=native_transfer_case();builder=PreparationBuilder(data,child,opts)
+    opts.update(native=builder.view,native_model_role='candidate')
+    mapping=map_native_endpoint(data,child,points,**opts)
+    context=NativeEndpointPreparation(data,child,points,initial_mapping=mapping,
+        max_displacement_angstrom=.01,native_owner=opts['native_owner'],builder=builder)
+    return context,builder
+
+
+def test_preparation_uses_current_parent_order_and_completes_only_on_context_exit():
+    context,builder=preparation_case()
+    with context:
+        context.prepare()
+        assert context.statistics()['status']=='PREPARED'
+        with pytest.raises(RuntimeError,match='completed'):context.result()
+    final=context.result()
+    assert final.native_to_source==(0,1,2,3)
+    assert final.movable_native_indices==(2,) and final.candidate_points[2]==(2.001,0.,0.)
+    assert builder.events==['build','parent_check','transfer','candidate_check']
+    assert context.statistics()['status']=='COMPLETE'
+    with pytest.raises(RuntimeError,match='reuse'):context.__enter__()
+
+
+@pytest.mark.parametrize('stage',['build','parent_check','transfer','candidate_check'])
+def test_preparation_keeps_first_native_error_and_never_retries(stage):
+    context,builder=preparation_case();builder.stop=stage
+    with pytest.raises(RuntimeError)as caught:
+        with context:context.prepare()
+    assert caught.value is builder.error
+    assert context.statistics()['status']=='FAILED'
+    assert context.statistics()['error']['message']=='native first error'
+    assert builder.events[-1]==stage
+    if stage in ('build','parent_check'):assert 'transfer'not in builder.events
+    with pytest.raises(RuntimeError,match='completed'):context.result()
+    with pytest.raises(RuntimeError,match='reuse'):context.__enter__()
+
+
+@pytest.mark.parametrize('corrupt',['parent','candidate','manager','false_check'])
+def test_preparation_refuses_drift_replaced_manager_and_false_verification(corrupt):
+    context,builder=preparation_case();builder.corrupt=corrupt
+    with pytest.raises((ValueError,RuntimeError)):
+        with context:context.prepare()
+    assert context.statistics()['status']=='FAILED'
+    if corrupt in ('parent','manager','false_check'):assert 'transfer'not in builder.events
+
+
+def test_preparation_stale_initial_observation_refuses_before_native_build():
+    context,builder=preparation_case();builder.view['atoms'][0]['xyz'][0]=99
+    with pytest.raises(ValueError):
+        with context:context.prepare()
+    assert not builder.events
+
+
+def test_preparation_swallowed_error_does_not_close_successfully():
+    context,builder=preparation_case();builder.stop='parent_check'
+    with pytest.raises(RuntimeError,match='did not complete'):
+        with context:
+            try:context.prepare()
+            except RuntimeError:pass
+    assert context.statistics()['status']=='FAILED'
+
+
+def test_preparation_missing_or_second_call_is_not_a_completed_transaction():
+    context,_=preparation_case()
+    with pytest.raises(RuntimeError,match='did not complete'):
+        with context:pass
+    context,builder=preparation_case()
+    with pytest.raises(RuntimeError,match='exactly once'):
+        with context:context.prepare();context.prepare()
+    assert builder.events.count('build')==1
+    assert context.statistics()['status']=='FAILED'
+
+
+def test_preparation_outer_failure_invalidates_prepared_result():
+    context,_=preparation_case();error=RuntimeError('outer failed')
+    with pytest.raises(RuntimeError)as caught:
+        with context:context.prepare();raise error
+    assert caught.value is error and context.statistics()['status']=='FAILED'
+    with pytest.raises(RuntimeError,match='completed'):context.result()
+
+
+def test_preparation_preentry_call_cannot_launch_native_work():
+    context,builder=preparation_case()
+    with pytest.raises(RuntimeError,match='exactly once'):context.prepare()
+    assert not builder.events
+    with pytest.raises(RuntimeError,match='reuse'):context.__enter__()
+
+
+def test_preparation_swallowed_reentrant_call_cannot_restore_success():
+    context,builder=preparation_case();original=builder.verify_parent
+    def reentrant(model,mapping):
+        original(model,mapping)
+        try:context.prepare()
+        except RuntimeError:pass
+    builder.verify_parent=reentrant
+    with pytest.raises(RuntimeError,match='invalidated'):
+        with context:context.prepare()
+    assert context.statistics()['status']=='FAILED'
+    assert 'exactly once' in context.statistics()['error']['message']
+    assert 'transfer' not in builder.events
+
+
+@pytest.mark.parametrize('when',['parent_verifier','candidate_verifier','before_exit'])
+def test_preparation_checks_after_verifiers_and_at_scope_close(when):
+    context,builder=preparation_case()
+    if when!='before_exit':
+        name='verify_parent'if when=='parent_verifier'else'verify_candidate'
+        original=getattr(builder,name)
+        def corrupt(*args):
+            original(*args);builder.view['atoms'][0]['xyz'][0]=99
+        setattr(builder,name,corrupt)
+    with pytest.raises(ValueError):
+        with context:
+            context.prepare()
+            if when=='before_exit':builder.view['atoms'][0]['xyz'][0]=99
+    assert context.statistics()['status']=='FAILED'
+
+
+def test_preparation_statistics_are_detached():
+    context,_=preparation_case()
+    with context:context.prepare()
+    report=context.statistics();report['status']='FAILED'
+    assert context.statistics()['status']=='COMPLETE'
