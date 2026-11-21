@@ -1554,11 +1554,59 @@ or whole-session quota. The focused/installed synthetic checks and measured
 interrupted launch are linked in the [current handoff](metal-development-handoff.md).
 No scientific rerun or payload deletion was needed for this integration.
 
+### Opt-in mixed-scope ledger admission
+
+**Implemented admission only; no parent lifetime or native scheduling.**
+`create_budget(..., include_retained_parents=True)` explicitly creates schema-2
+configuration and ledger records. The default remains schema 1. Both profiles
+use the same existing persistent lock, durable writer, bounded inventory and
+admission calculation. No existing store is converted or rewritten to a new
+version. A pinned configuration and its ledger must agree on the version; the
+previous reader refuses schema 2 rather than silently overlooking parent charges.
+
+`reserve_retained_parent(store, budget_id=..., scope=...,
+parent_manifest_sha256=..., allowance_bytes=...)` grants a fresh store-relative
+namespace and generated scope identity. It does not expand a parent, create that
+namespace, acquire a live retained handle or scientifically verify the named
+manifest. The scope path may not overlap any other parent/child reservation.
+`reserve_child(..., parent_reservation_id=...)` can reference a held parent grant
+in the same v2 ledger. Missing, child-typed or foreign references refuse. This is
+accounting lineage, not proof that a native request uses that parent's chemistry.
+V1 child grants retain their prior shape and reject parent references.
+
+All held allowances enter **one sum**, with observed bytes and ledger publication
+overlap. Concurrent parent/child requests compete against the same limit and
+physical free-space reserve. There is no second parent budget or lock. V2
+inspection reports `held_by_scope` and `outstanding_by_scope`; v1 inspection
+retains its original schema and fields. Unique parent scope identities and exact
+references are rechecked on every ledger read. A resealed unknown type/version,
+missing parent reference or unsupported parent settlement refuses.
+
+**Parent charges remain held.** `settle_child` cannot settle a parent grant and
+there is no parent-settlement API in this checkpoint. A stopped child can settle
+its own allowance while its referenced parent stays held; every retained file
+still counts. Interrupted parent-grant publication retains a published allowance.
+The native `run_child(storage_budget=...)` entry remains limited to the qualified
+v1 profile and refuses v2 before expansion or a new grant. Default/no-budget and
+v1 execution are unchanged. Mixed-scope stores are a bounded development interface,
+not production parent-lifetime management or an automatic migration path.
+
+Qualification includes 70 focused checks covering both legacy budget/launcher
+profiles and mixed admission, 19 final mixed checks and 19 relocated installed
+checks. The exact previous reader from the prior qualified wheel reads v1 grants
+made by both implementations with matching fields (excluding live free-space
+measurement), and refuses v2. A manual ledger-only simulated-child control keeps
+1 MB of parent allowance after settling 1 MB of child allowance, then reopens after
+relocation. No parent snapshot is materialized in that control; the native launcher
+is deliberately not configured with v2. See the [current handoff](metal-development-handoff.md)
+for exact commands, package identities and excluded artifacts. Authoritative
+parent closure and mixed scheduling remain the next separate qualification.
+
 ### Proposed retained-parent charge and closure contract
 
-**Scoped and observed; not implemented.** The existing storage ledger grants
-space to child requests and settles against verified stopped-child outcomes.
-The existing retained parent is owned by an outer Python scope, with serial
+**Lifecycle integration and parent settlement remain proposed.** The opt-in v2
+ledger above now admits distinct parent and child grants, but only child settlement
+is implemented. The retained parent is owned by an outer Python scope, with serial
 borrowed reads and temporary snapshot cleanup. A parent must not be represented
 as a synthetic child or settled using a child's native outcome. Cedar's time
 allowance and parent-attempt provenance do not supply a disk ownership contract.
@@ -1579,9 +1627,9 @@ it is not a supported use pattern. It demonstrates why `snapshot_removed` or pat
 absence alone is insufficient for a future budget release. An open file can retain
 storage after its pathname is removed. The normal parent owner is unchanged.
 
-**Proposed version boundary:** add an explicitly opted-in configuration/ledger
-version supporting distinct `child` and `retained_parent` grants. Keep existing
-v1 stores readable and behavior-compatible. Do not silently rewrite a v1 ledger,
+**Version boundary:** the opt-in v2 admission above now supports distinct `child`
+and `retained_parent` grants; it does not yet consume parent closure receipts.
+Keep existing v1 stores readable and behavior-compatible. Do not silently rewrite a v1 ledger,
 add parent charges that an older reader ignores, or maintain a second independent
 budget whose grants can oversubscribe the same disk. Older readers must refuse
 an unsupported version. New-store creation and any explicit verified conversion
@@ -1611,9 +1659,9 @@ leave the parent charge held. PID death, age, path absence or a forged closure
 record cannot substitute for the live owner's evidence. Recovery from those
 uncertain states needs a separate explicit proof and is not inferred here.
 
-**Next bounded implementation:** first qualify parent admission and authoritative
-closure under the versioned ledger; then bind child grants to that live parent
-scope, including same-store/scope checks and prevention of premature discharge.
+**Next bounded implementation:** connect the now-qualified ledger admission to
+the actual parent owner and qualify authoritative closure; then bind child grants
+to that live parent scope, including same-store/scope checks and prevention of premature discharge.
 Exercise interruption before expansion, within a borrowed read, between children,
 before/after closure publication, cleanup failure, stale/substituted handles,
 concurrent admission and cold relocation. Only then connect audited-session and

@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Admit explicitly opted-in mixed parent and child storage grants
+
+- Add a schema-2 budget/ledger profile created only with explicit retained-parent
+  support. Parent and child grants share one existing lock, accounting sum and
+  durable publication path; no v1 store is silently converted.
+- Check exact typed grants, relative nonoverlapping namespaces, unique parent
+  scope identities and same-ledger parent references. Child settlement leaves
+  parent charges held; parent settlement and mixed native scheduling remain refused.
+- Preserve default v1 record/inspection behavior. Qualify 70 focused, 19 final
+  and 19 relocated installed checks, plus exact previous-reader v1 compatibility
+  and v2 refusal. No native chemistry changes, parent materialization, full suite
+  or original data retirement; the live parent closure contract remains separate.
+
 ### Scope retained-parent storage ownership without changing execution
 
 - Document seven observed parent/read/child interruption cases and a proposed

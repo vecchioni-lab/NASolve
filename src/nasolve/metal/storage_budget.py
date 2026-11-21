@@ -65,17 +65,21 @@ def _read(root, budget_id):
           'Budget metadata is incomplete or contains interrupted/unrecognized files')
     config = _record(metadata/'config.json', MAX_RECORD_BYTES)
     _need(config.get('record_sha256') == budget_id and config.get('kind') == 'metal-storage-budget'
-          and type(config.get('schema_version')) is int and config['schema_version'] == 1,
+          and type(config.get('schema_version')) is int and config['schema_version'] in (1,2),
           'Storage budget identity or version changed')
+    if config['schema_version']==2:
+        _need(config.get('reservation_types')==['child','retained_parent'], 'Unsupported mixed reservation profile')
+    else:
+        _need('reservation_types' not in config, 'Mixed scopes cannot use budget version 1')
     checksum(config.get('store_id'), 'storage instance identity')
     _integer(config.get('quota_bytes'), 'quota_bytes', 1)
     _integer(config.get('free_space_reserve_bytes'), 'free_space_reserve_bytes')
     ledger = _record(metadata/'ledger.json', MAX_LEDGER_BYTES)
     _need(ledger.get('kind') == 'metal-storage-reservations' and type(ledger.get('schema_version')) is int
-          and ledger['schema_version'] == 1 and ledger.get('budget_id') == budget_id
+          and ledger['schema_version'] == config['schema_version'] and ledger.get('budget_id') == budget_id
           and isinstance(ledger.get('reservations'), dict)
           and len(ledger['reservations']) <= MAX_RESERVATIONS, 'Malformed storage reservation ledger')
-    paths = []
+    paths = []; scope_ids = set()
     for reservation_id, item in ledger['reservations'].items():
         checksum(reservation_id, 'reservation identity')
         _need(isinstance(item, dict) and set(item) == {'grant', 'settlement'}, 'Malformed reservation entry')
@@ -83,9 +87,25 @@ def _read(root, budget_id):
         _need(isinstance(grant, dict) and digest(grant) == reservation_id
               and grant.get('budget_id') == budget_id, 'Reservation identity changed')
         _integer(grant.get('allowance_bytes'), 'allowance_bytes', 1)
-        checksum(grant.get('request_id'), 'child request identity')
-        child = _child_path(root, grant.get('child'))
-        paths.append(child)
+        kind = _scope_type(ledger,grant)
+        if ledger['schema_version']==1:
+            _need(not {'scope_type','parent_reservation_id','scope'}.intersection(grant),
+                  'Mixed scopes cannot use ledger version 1')
+        else:
+            common={'budget_id','allowance_bytes','nonce','scope_type'}
+            fields={'child','request_id','parent_reservation_id'} if kind=='child' else {'scope','scope_id','parent_manifest_sha256'}
+            _need(set(grant)==common|fields, 'Malformed mixed-scope grant')
+            _need(isinstance(grant['nonce'],str) and len(grant['nonce'])==32
+                  and all(c in '0123456789abcdef' for c in grant['nonce']), 'Malformed grant nonce')
+        if kind=='child':
+            checksum(grant.get('request_id'), 'child request identity')
+        else:
+            checksum(grant.get('parent_manifest_sha256'), 'parent manifest identity')
+            checksum(grant.get('scope_id'), 'reserved parent scope identity')
+            _need(grant['scope_id'] not in scope_ids, 'Parent scope identity reused')
+            scope_ids.add(grant['scope_id'])
+            _need(item['settlement'] is None, 'Retained parent settlement is not implemented')
+        paths.append(_grant_path(root,grant))
         settled = item['settlement']
         if settled is not None:
             _need(isinstance(settled, dict) and settled.get('reservation_id') == reservation_id
@@ -93,6 +113,10 @@ def _read(root, budget_id):
                   and settled.get('stopped_verified') is True
                   and settled.get('retirement_authorized') is False, 'Malformed recorded settlement')
             checksum(settled.get('outcome_sha256'), 'recorded stopped outcome identity')
+    if ledger['schema_version']==2:
+        for item in ledger['reservations'].values():
+            grant=item['grant']
+            if grant['scope_type']=='child':_parent_reference(ledger,grant['parent_reservation_id'])
     paths.sort(key=lambda path: path.parts)
     _need(not any(right == left or right.is_relative_to(left)
                   for left, right in zip(paths, paths[1:])), 'Reserved child paths overlap')
@@ -104,6 +128,24 @@ def _child_path(root, relative):
     child = records.path_in(root, relative)
     _need(child.parts[len(root.parts)] not in {META, LOCK}, 'Child cannot occupy budget metadata')
     return child
+
+
+def _scope_type(ledger, grant):
+    kind = 'child' if ledger['schema_version']==1 else grant.get('scope_type')
+    _need(isinstance(kind,str) and kind in {'child','retained_parent'}, 'Unsupported reservation scope')
+    return kind
+
+
+def _grant_path(root, grant):
+    return _child_path(root, grant.get('scope') if grant.get('scope_type')=='retained_parent' else grant.get('child'))
+
+
+def _parent_reference(ledger, reference):
+    if reference is None:return
+    checksum(reference, 'parent reservation identity')
+    item=ledger['reservations'].get(reference)
+    _need(item is not None and item['grant'].get('scope_type')=='retained_parent'
+          and item['settlement'] is None, 'Missing or wrong parent reservation reference')
 
 
 def _pending(ledger):
@@ -121,19 +163,23 @@ def _save(root, ledger):
     return records.write_record(root/META/'ledger.json', ledger, replace=True)
 
 
-def create_budget(directory, *, quota_bytes, free_space_reserve_bytes=256*1024*1024):
+def create_budget(directory, *, quota_bytes, free_space_reserve_bytes=256*1024*1024,
+                  include_retained_parents=False):
     """Declare one immutable budget on an existing store; never adopt partial state."""
     root = _root(directory)
+    _need(type(include_retained_parents) is bool, 'Explicit retained-parent profile must be boolean')
+    version=2 if include_retained_parents else 1
     _integer(quota_bytes, 'quota_bytes', 1)
     _integer(free_space_reserve_bytes, 'free_space_reserve_bytes')
     with exclusive_lock(records.path_in(root, LOCK)):
         metadata = records.path_in(root, META)
         _need(not metadata.exists(), 'Storage budget already exists or is incomplete')
         observed, _ = _observed(root)
-        config = dict(kind='metal-storage-budget', schema_version=1, store_id=secrets.token_hex(32), quota_bytes=quota_bytes,
+        config = dict(kind='metal-storage-budget', schema_version=version, store_id=secrets.token_hex(32), quota_bytes=quota_bytes,
                       free_space_reserve_bytes=free_space_reserve_bytes)
+        if include_retained_parents:config['reservation_types']=['child','retained_parent']
         # The digest has fixed length; reserve exact config/initial-ledger sizes.
-        ledger = dict(kind='metal-storage-reservations', schema_version=1,
+        ledger = dict(kind='metal-storage-reservations', schema_version=version,
                       budget_id='0'*64, reservations={})
         required = records.serialized_record_size(config) + records.serialized_record_size(ledger)
         _need(observed + required <= quota_bytes, 'Existing store exceeds storage budget')
@@ -146,39 +192,65 @@ def create_budget(directory, *, quota_bytes, free_space_reserve_bytes=256*1024*1
         return result
 
 
-def reserve_child(directory, *, budget_id, child, request_id, allowance_bytes):
-    """Reserve before launch; no child directory or native process is created.
+def _admit(root, config, ledger, grant):
+    """One locked publication path for all supported grants."""
+    path = _grant_path(root,grant)
+    _need(path.parent.is_dir() and not path.exists(), 'Reserved path must be fresh with an existing parent')
+    _need(len(ledger['reservations']) < MAX_RESERVATIONS, 'Budget reservation limit exceeded')
+    for item in ledger['reservations'].values():
+        other = _grant_path(root,item['grant'])
+        _need(not (path == other or path.is_relative_to(other) or other.is_relative_to(path)),
+              'Path already reserved or overlaps an existing reservation')
+    observed, _ = _observed(root)
+    reservation_id = digest(grant)
+    ledger['reservations'][reservation_id] = dict(grant=grant, settlement=None)
+    ledger_bytes = records.serialized_record_size(ledger)
+    _need(ledger_bytes <= MAX_LEDGER_BYTES, 'Budget ledger byte limit exceeded')
+    pending = _pending(ledger)
+    # Charge the complete replacement while the old ledger still exists.
+    _need(observed + pending + ledger_bytes <= config['quota_bytes'], 'Storage budget cannot admit reservation')
+    _space(root, pending + ledger_bytes, config['free_space_reserve_bytes'])
+    _save(root, ledger)
+    return dict(grant, reservation_id=reservation_id)
 
-    The allowance must include all caller-owned growth, inputs, outputs and
-    temporary overlap. The caller must separately arrange scratch on this device;
-    existing parent/native helpers are not automatically wired into this API.
+
+def reserve_child(directory, *, budget_id, child, request_id, allowance_bytes,
+                  parent_reservation_id=None):
+    """Reserve child growth; a v2 parent reference records accounting lineage only.
+
+    No directory or process is created, and a parent reference is not a live
+    retained handle or scientific parent admission. V1 remains child-only.
     """
     root = _root(directory)
     checksum(request_id, 'child request identity')
     _integer(allowance_bytes, 'allowance_bytes', 1)
     with exclusive_lock(records.path_in(root, LOCK)):
         config, ledger = _read(root, budget_id)
-        path = _child_path(root, child)
-        _need(path.parent.is_dir() and not path.exists(), 'Reserved child must be fresh with an existing parent')
-        _need(len(ledger['reservations']) < MAX_RESERVATIONS, 'Budget reservation limit exceeded')
-        for item in ledger['reservations'].values():
-            other = _child_path(root, item['grant']['child'])
-            _need(not (path == other or path.is_relative_to(other) or other.is_relative_to(path)),
-                  'Child path already reserved or overlaps an existing reservation')
-        observed, _ = _observed(root)
         grant = dict(budget_id=budget_id, child=child, request_id=request_id,
                      allowance_bytes=allowance_bytes, nonce=secrets.token_hex(16))
-        reservation_id = digest(grant)
-        ledger['reservations'][reservation_id] = dict(grant=grant, settlement=None)
-        ledger_bytes = records.serialized_record_size(ledger)
-        _need(ledger_bytes <= MAX_LEDGER_BYTES, 'Budget ledger byte limit exceeded')
-        pending = _pending(ledger)
-        # Existing includes the old ledger; include the entire new ledger while
-        # its temporary publication coexists. Deliberately conservative.
-        _need(observed + pending + ledger_bytes <= config['quota_bytes'], 'Storage budget cannot admit child')
-        _space(root, pending + ledger_bytes, config['free_space_reserve_bytes'])
-        _save(root, ledger)
-        return dict(grant, reservation_id=reservation_id)
+        if ledger['schema_version']==1:
+            _need(parent_reservation_id is None, 'Parent references require ledger version 2')
+        else:
+            _parent_reference(ledger,parent_reservation_id)
+            grant.update(scope_type='child',parent_reservation_id=parent_reservation_id)
+        return _admit(root,config,ledger,grant)
+
+
+def reserve_retained_parent(directory, *, budget_id, scope, parent_manifest_sha256, allowance_bytes):
+    """Reserve a v2 parent scope without expanding or creating a live handle.
+
+    The grant stays held: authoritative parent closure/settlement is separate.
+    """
+    root = _root(directory)
+    checksum(parent_manifest_sha256, 'parent manifest identity')
+    _integer(allowance_bytes, 'allowance_bytes', 1)
+    with exclusive_lock(records.path_in(root, LOCK)):
+        config, ledger = _read(root,budget_id)
+        _need(ledger['schema_version']==2, 'Retained parent grants require ledger version 2')
+        grant=dict(budget_id=budget_id,scope_type='retained_parent',scope=scope,
+                   scope_id=secrets.token_hex(32),parent_manifest_sha256=parent_manifest_sha256,
+                   allowance_bytes=allowance_bytes,nonce=secrets.token_hex(16))
+        return _admit(root,config,ledger,grant)
 
 
 def _stopped(path, request_id):
@@ -204,7 +276,9 @@ def settle_child(directory, *, budget_id, reservation_id):
         config, ledger = _read(root, budget_id)
         item = ledger['reservations'].get(reservation_id)
         _need(item is not None and item['settlement'] is None, 'Reservation absent or already settled')
-        grant = item['grant']; path = _child_path(root, grant['child'])
+        grant = item['grant']
+        _need(_scope_type(ledger,grant)=='child', 'Retained parent cannot settle as a child')
+        path = _child_path(root, grant['child'])
         status, outcome_id = _stopped(path, grant['request_id'])
         _observed(root)
         value = dict(reservation_id=reservation_id, request_id=grant['request_id'], status=status,
@@ -225,7 +299,7 @@ def inspect_budget(directory, *, budget_id):
         pending = _pending(ledger)
         held = sum(item['settlement'] is None for item in ledger['reservations'].values())
         free = shutil.disk_usage(root).free
-        return dict(kind='metal-storage-budget-inspection', schema_version=1, budget_id=budget_id,
+        result = dict(kind='metal-storage-budget-inspection', schema_version=ledger['schema_version'], budget_id=budget_id,
                     ledger_sha256=ledger['record_sha256'], observed_bytes=observed, observed_entries=entries,
                     outstanding_bytes=pending, charged_bytes=observed+pending,
                     quota_bytes=config['quota_bytes'], within_declared_budget=observed+pending<=config['quota_bytes'],
@@ -234,6 +308,11 @@ def inspect_budget(directory, *, budget_id):
                     held_count=held, settled_count=len(ledger['reservations'])-held,
                     stop_evidence='RECORDED_AT_SETTLEMENT', os_enforced=False,
                     scientific_acceptance='NOT_ASSESSED', retirement_authorized=False)
+        if ledger['schema_version']==2:
+            held_items=[item['grant'] for item in ledger['reservations'].values() if item['settlement'] is None]
+            result['held_by_scope']={kind:sum(grant['scope_type']==kind for grant in held_items) for kind in ('child','retained_parent')}
+            result['outstanding_by_scope']={kind:sum(grant['allowance_bytes'] for grant in held_items if grant['scope_type']==kind) for kind in ('child','retained_parent')}
+        return result
 
 
 def _reserve_execution(options, *, attempt, request_id, max_parent_disk_bytes,
@@ -253,6 +332,9 @@ def _reserve_execution(options, *, attempt, request_id, max_parent_disk_bytes,
     allowance = _integer(options['allowance_bytes'], 'execution allowance', 1)
     _need(allowance > max_parent_disk_bytes + known_child_input_bytes + 16*1024,
           'Execution allowance needs parent space, known input copies and child headroom')
+    with exclusive_lock(records.path_in(root,LOCK)):
+        config,_ = _read(root,options['budget_id'])
+        _need(config['schema_version']==1, 'The mixed-scope ledger is not activated for native execution')
     grant = reserve_child(root, budget_id=options['budget_id'], child=attempt.relative_to(root).as_posix(),
                           request_id=request_id, allowance_bytes=allowance)
     return root, grant
