@@ -8,6 +8,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Following the same molecule while Phenix prepares it
+
+- Cedar and Willow can use `collect_live_atoms(model)` and
+  `collect_live_geometry(model, processed=interpretation)` to read the actual
+  model, its restraints and the crystal images involved. The geometry reader
+  checks that the selections belong to this hierarchy and use its atom order.
+
 ### Following a modified base through refinement
 
 - `cif-doctor assess --run RUN --checkpoint ID --refined-planes` now shows

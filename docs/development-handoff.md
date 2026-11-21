@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C506 before-and-after measurements on the mixed scaffold — Rowan**.
+Updated **2026-11-21, C507 shared Phenix geometry reading — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -419,6 +419,28 @@ its prior output when the comparison is omitted. The focused command was
 passed 60 tests and 7 subtests from the relocated wheel. All 321 package
 files matched. Only the compact measurements, code, synthetic checks and
 documentation are tracked. Full regression remains deferred.
+
+**C507, between Cedar and Willow.** Both branches can now read atoms before
+Phenix builds restraints and read those restraints after a bend moves the
+atoms. The live geometry reader in `cif_native_validation` binds selections
+to the original interpretation and checks the current native indices. It uses
+the same atom and restraint readers as the existing sealed standalone worker.
+On Willow's W200 compiled scaffold, 205 of 859 atoms moved by more than
+0.002 Å, up to 0.400 Å. Each complete live view agreed with the earlier
+diagnostic on the same manager. All 1,011 bond rows, 1,558 angle rows, 213
+explicit requests, 38 backbone links and 51 supplied soft distances also
+agreed with the saved compiled-stack observations at each end. This was a
+Phenix 2.2.1-6174 geometry preparation with zero refinement cycles. W180's
+original restraints and Willow's four-control candidate need separate evidence.
+
+The additive Python API requires no checkpoint migration. The isolated worker
+keeps SHA-256 `9be6157312896609f51165adc6e5579365fa261709ac7633420bbea798373e78`.
+The focused command was `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:$GEMMI_PATH python -B -m pytest -q -p no:cacheprovider tests/test_cif_native_validation.py tests/test_cif_topology_gate.py tests/test_cif_attachment_native.py tests/test_cif_native_atom_mapping.py`.
+All 170 passed. The relocated install passed 114 across the native validation,
+topology and atom mapping modules. All 321 packaged files matched. The Phenix
+comparison uses `phenix.python -B c507_live_geometry_compare.py W200_HANDOFF RELOCATED_INSTALL NEW_JSON`.
+The local checkout retains the runner, compact result and input fingerprints.
+Only code, synthetic tests and documentation accompany this change.
 
 **Q07, 20 November.** Ordinary Coot and ReadySet now prepare 1AP:T and S6G:C
 on the same substituted host. The plane screen follows the verified source chemistry.

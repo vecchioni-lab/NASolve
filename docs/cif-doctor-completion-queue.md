@@ -55,6 +55,11 @@ retained a terminal bond near 1.55 Å. The public readback now reports both
 tip height and terminal bond through refinement. Reuse this comparison and
 keep the added plane experimental.
 
+C507 gives Willow a shared reading of the geometry already in Phenix after
+atoms move. The compiled W200 scaffold retained all 38 backbone links and 51
+supplied distances. Willow owns the next check using all four declared
+preparation controls. Cedar's independent PDU and DF chemical scope stays open.
+
 Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
 after correcting the orientation of DP and IMC from their source graphs.
 A separate placement retained all four ATL sugar centres. Phenix applied
