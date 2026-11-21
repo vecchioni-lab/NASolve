@@ -252,3 +252,186 @@ def bind_native_preparation_inputs(directory, parent_bytes, *, expected_report_s
         tuple(snapshots[p] for p in restraints),tuple(snapshots[p] for p in controls),
         tuple(sorted(values.items())),policy,
         source_native_json=snapshots[source_native[0]] if source_native else None)
+
+
+def _builder_step(method):
+    """Preserve the first error and deny reuse of any failed native manager."""
+    from functools import wraps
+    @wraps(method)
+    def call(self,*args,**kwargs):
+        if self._failure is not None:
+            raise RuntimeError('Parent builder failed; discard the manager')
+        try:return method(self,*args,**kwargs)
+        except BaseException as error:
+            self._failure=dict(type=type(error).__name__,message=str(error))
+            raise
+    return call
+
+
+class SourceBoundParentBuilder:
+    """Concrete W200 builder; explicit trusted readers retain their native ownership.
+
+    Construct after binding the W206 inputs and BEFORE native preparation. The
+    Cedar service itself must have been created before any native worker hooks.
+    The enclosing worker qualifies all supplied code and owns input/process
+    lifetime, binding restoration and disposal on failure. No callbacks are read
+    from an artifact. None of these observations grants runtime authority.
+
+    ``geometry_reader(model, processed, payload)`` composes Cedar's live collector
+    and topology reviewer, returning ``native_view`` and ``topology``. The latter
+    must report MATCH. ``protected_reader(model)`` returns exactly two JSON roles:
+    ``model_noncoordinate`` (atoms, scattering and crystal, in stable identity
+    order, excluding XYZ) and ``fixed_geometry_inputs`` (None before geometry).
+    It must include native ADPs/occupancies/charges, crystal/special positions and
+    complete fixed nonbonded inputs through qualified existing readers.
+    ``diffraction_reader()`` snapshots the original candidate F-model, including
+    observations, flags, coefficients, scales and masks. It is never a parent
+    F-model. ``coordinate_writer(model, points)`` only sets the supplied sites.
+    These readers supply evidence, not verdict booleans. This class compares it;
+    W200 still owns mapped atom correspondence, fixed coordinates and stage order.
+    """
+    def __init__(self, *, model, bound_inputs, expected_report_sha256,
+                 candidate_bytes, service, process_options, atom_reader,
+                 geometry_reader, protected_reader, diffraction_reader,
+                 coordinate_writer):
+        if (not isinstance(bound_inputs,NativePreparationInputs)
+                or type(bound_inputs.source_native_json) is not bytes
+                or not bound_inputs.source_native_json
+                or bound_inputs.report_sha256!=expected_report_sha256
+                or type(candidate_bytes) is not bytes or model is None):
+            raise ValueError('Require source-bound parent, original native bytes and candidate')
+        callbacks=(atom_reader,geometry_reader,protected_reader,diffraction_reader,coordinate_writer)
+        if not all(callable(x)for x in callbacks)or not callable(getattr(service,'interpret',None)):
+            raise ValueError('Require explicit trusted native readers, service and writer')
+        self.model=model;self._model=model;self._bound=bound_inputs
+        self._pin=expected_report_sha256;self._candidate=candidate_bytes
+        self._service=service;self._options=dict(process_options)
+        self._atoms=atom_reader;self._review=geometry_reader;self._protected_reader=protected_reader
+        self._diffraction=diffraction_reader;self._writer=coordinate_writer
+        self._interpretation=None;self._parent_review=None;self._written=False
+        self._complete=False;self._failure=None;self._record=None
+
+    @staticmethod
+    def _snapshot(value):
+        if not isinstance(value,dict)or not value:
+            raise ValueError('Require a nonempty native evidence snapshot')
+        return json.loads(json.dumps(value,sort_keys=True,separators=(',',':'),allow_nan=False))
+
+    @staticmethod
+    def _digest(value):
+        return sha256(json.dumps(value,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()
+
+    def _same(self,model):
+        if model is not self._model or self.model is not self._model:
+            raise ValueError('Builder replaced the bound native manager')
+
+    def _protected(self):
+        value=self._snapshot(self._protected_reader(self._model))
+        if (set(value)!={'model_noncoordinate','fixed_geometry_inputs'}
+                or not isinstance(value['model_noncoordinate'],dict)
+                or set(value['model_noncoordinate'])!={'atoms','scattering','crystal'}
+                or not all(value['model_noncoordinate'].values())
+                or value['fixed_geometry_inputs'] is not None
+                   and not isinstance(value['fixed_geometry_inputs'],dict)):
+            raise ValueError('Missing protected native state roles')
+        return value
+
+    def _unchanged_diffraction(self):
+        if self._snapshot(self._diffraction())!=self._initial_diffraction:
+            raise ValueError('Candidate diffraction changed during parent preparation')
+
+    def _geometry(self,payload):
+        view=self._snapshot(self._review(self._model,self._interpretation.processed,payload))
+        if view['topology']['link_status']!='MATCH':
+            raise ValueError('Declared parent topology did not match')
+        geometry=view['native_view']['geometry']
+        if not isinstance(geometry['proxy_details'],dict)or not isinstance(geometry['custom_proxy_requests'],list):
+            raise ValueError('Missing retained native geometry definitions')
+        return view
+
+    @_builder_step
+    def observe_atoms(self,model):
+        self._same(model)
+        return self._atoms(model)
+
+    @_builder_step
+    def interpret_parent(self,model,payload):
+        self._same(model)
+        if self._interpretation is not None or self._complete:
+            raise RuntimeError('Cannot reuse a parent builder')
+        if payload!=self._bound.parent_bytes:
+            raise ValueError('Geometry parent differs from bound source bytes')
+        self._initial_diffraction=self._snapshot(self._diffraction())
+        self._initial_protected=self._protected()
+        value=self._service.interpret(model,self._bound,expected_report_sha256=self._pin,
+            process_options=self._options,source_native_json=self._bound.source_native_json)
+        receipt=self._snapshot(value.receipt);chemistry=receipt['source_chemistry']
+        if (receipt['policy_id']!='cif-native-parent-interpretation-v1'
+                or receipt['source_report_sha256']!=self._pin
+                or receipt['parent_sha256']!=self._bound.model_sha256
+                or type(receipt['native_interpretations'])is not int or receipt['native_interpretations']!=1
+                or chemistry['status']!='MATCH'
+                or chemistry['source_native_sha256']!=sha256(self._bound.source_native_json).hexdigest()
+                or chemistry['scientific_acceptance']is not False
+                or receipt['chemical_admission']is not False or receipt['ordinary_handoff_allowed']is not False):
+            raise ValueError('Require exact original source chemistry before transfer')
+        self._interpretation=value;self._service_receipt=receipt
+        self._unchanged_diffraction()
+
+    @_builder_step
+    def verify_parent(self,model,mapping):
+        self._same(model)
+        if self._interpretation is None or self._parent_review is not None:
+            raise RuntimeError('Parent verification is out of order')
+        self._geometry_object=model.restraints_manager.geometry
+        if self._geometry_object is None:raise ValueError('Missing interpreted native geometry')
+        self._parent_protected=self._protected()
+        if (self._parent_protected['model_noncoordinate']!=self._initial_protected['model_noncoordinate']
+                or self._parent_protected['fixed_geometry_inputs'] is None):
+            raise ValueError('Parent interpretation changed protected native state')
+        self._parent_review=self._geometry(self._bound.parent_bytes)
+        if self._protected()!=self._parent_protected or model.restraints_manager.geometry is not self._geometry_object:
+            raise ValueError('Parent observer changed protected state')
+        self._unchanged_diffraction()
+
+    @_builder_step
+    def set_candidate_sites(self,model,points):
+        self._same(model)
+        if self._parent_review is None or self._written or self._complete:
+            raise RuntimeError('Candidate transfer is out of order')
+        if model.restraints_manager.geometry is not self._geometry_object or self._protected()!=self._parent_protected:
+            raise ValueError('Prepared geometry or protected state changed before transfer')
+        self._unchanged_diffraction();self._written=True
+        if self._writer(model,points) is not None:
+            raise ValueError('Coordinate writer must raise on failure, not return a verdict')
+
+    @_builder_step
+    def verify_candidate(self,model,parent_mapping,candidate_mapping):
+        self._same(model)
+        if not self._written or self._complete:raise RuntimeError('Candidate verification is out of order')
+        if model.restraints_manager.geometry is not self._geometry_object or self._protected()!=self._parent_protected:
+            raise ValueError('Transfer changed geometry or protected native state')
+        current=self._geometry(self._candidate);previous=self._parent_review
+        if self._protected()!=self._parent_protected or model.restraints_manager.geometry is not self._geometry_object:
+            raise ValueError('Candidate observer changed protected state')
+        if (current['topology']!=previous['topology']or any(
+                current['native_view']['geometry'][key]!=previous['native_view']['geometry'][key]
+                for key in ('proxy_details','custom_proxy_requests'))):
+            raise ValueError('Transfer changed retained topology or restraint definitions')
+        self._unchanged_diffraction()
+        self._record=dict(status='COMPLETE',runtime_authority=False,scientific_acceptance=False,
+            parent_sha256=self._bound.model_sha256,candidate_sha256=sha256(self._candidate).hexdigest(),
+            service=self._service_receipt,topology=previous['topology'],
+            parent_observation_sha256=self._digest(previous),candidate_observation_sha256=self._digest(current),
+            protected_state_sha256=self._digest(self._parent_protected),
+            unchanged_candidate_diffraction_sha256=self._digest(self._initial_diffraction))
+        self._complete=True
+
+    def result(self):
+        if self._failure is not None or not self._complete:
+            raise RuntimeError('No completed parent builder result; discard failed managers')
+        return self._interpretation
+
+    def evidence(self):
+        self.result()
+        return deepcopy(self._record)

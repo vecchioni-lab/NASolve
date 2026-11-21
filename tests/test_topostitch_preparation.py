@@ -284,3 +284,125 @@ def test_source_observation_binding_refuses_ambiguous_or_changed_evidence(typed_
 def test_source_observation_opt_in_requires_boolean(typed_preparation,option):
     with pytest.raises(ValueError):bind_typed(typed_preparation,include_source_native=option)
     assert not typed_preparation.calls
+
+
+@pytest.fixture
+def parent_builder():
+    """Owner doubles exercise orchestration, not native chemistry qualification."""
+    from nasolve.topostitch_native_preparation import NativePreparationInputs, SourceBoundParentBuilder
+    state=SimpleNamespace(model=SimpleNamespace(restraints_manager=None),diffraction={'F':[1,2]},
+        protected={'model_noncoordinate':{'atoms':['A'], 'scattering':['C'], 'crystal':[1]},'fixed_geometry_inputs':None},
+        view={'topology':{'link_status':'MATCH','links':[]},'native_view':{'geometry':{'proxy_details':{'bond':[1]},'custom_proxy_requests':[2]}}},calls=[])
+    bound=NativePreparationInputs(b'parent',b'{}',(b'geometry',),(b'controls',),(), 'test',b'original native')
+    def interpret(model,inputs,**kw):
+        state.calls.append('interpret')
+        assert model is state.model and kw['source_native_json']==b'original native'
+        if getattr(state,'failure',False):raise RuntimeError('original service error')
+        model.restraints_manager=SimpleNamespace(geometry=object());state.protected['fixed_geometry_inputs']={'exclusions':[1]}
+        receipt=dict(policy_id='cif-native-parent-interpretation-v1',source_report_sha256=sha256(b'{}').hexdigest(),parent_sha256=sha256(b'parent').hexdigest(),native_interpretations=1,source_chemistry=dict(status='MATCH',source_native_sha256=sha256(b'original native').hexdigest(),scientific_acceptance=False),chemical_admission=False,ordinary_handoff_allowed=False)
+        if getattr(state,'bad_chemistry',False):receipt['source_chemistry']['status']='DIFFERENT'
+        return SimpleNamespace(processed=object(),native_result='native-return',receipt=receipt)
+    def geometry(model,processed,payload):
+        state.calls.append(payload.decode());assert model is state.model and processed is not None
+        return state.view
+    def writer(model,points):state.calls.append('write');state.points=points
+    args=dict(model=state.model,bound_inputs=bound,expected_report_sha256=sha256(b'{}').hexdigest(),candidate_bytes=b'candidate',service=SimpleNamespace(interpret=interpret),process_options={'make_restraints':True},
+        atom_reader=lambda model:{'atoms':[]},geometry_reader=geometry,protected_reader=lambda model:state.protected,diffraction_reader=lambda:state.diffraction,coordinate_writer=writer)
+    state.args=args;state.builder=SourceBoundParentBuilder(**args);return state
+
+
+def prepare_builder(s):
+    s.builder.interpret_parent(s.model,b'parent');s.builder.verify_parent(s.model,None)
+
+
+def finish_builder(s):
+    s.builder.set_candidate_sites(s.model,((1,2,3),));s.builder.verify_candidate(s.model,None,None)
+
+
+def test_source_bound_builder_requires_source_match_and_retains_evidence(parent_builder):
+    s=parent_builder
+    with pytest.raises(RuntimeError):s.builder.result()
+    prepare_builder(s);finish_builder(s)
+    assert s.builder.result().native_result=='native-return'
+    r=s.builder.evidence();assert r['status']=='COMPLETE'and not r['runtime_authority']
+    assert s.calls==['interpret','parent','write','candidate']
+    s.view['topology']['links'].append('later mutation');s.diffraction['F'].append(3)
+    assert s.builder.evidence()==r
+
+
+@pytest.mark.parametrize('fault',['no_native','wrong_report','wrong_parent','wrong_chemistry','service_error','diffraction_parent','noncoordinate_parent','topology','geometry_missing','empty_protected','nan_snapshot'])
+def test_source_bound_builder_refuses_before_transfer(parent_builder,fault):
+    from dataclasses import replace
+    from nasolve.topostitch_native_preparation import SourceBoundParentBuilder
+    s=parent_builder
+    if fault in ('no_native','wrong_report','wrong_parent'):
+        args=dict(s.args)
+        if fault=='no_native':args['bound_inputs']=replace(args['bound_inputs'],source_native_json=None)
+        elif fault=='wrong_report':args['expected_report_sha256']='0'*64
+        else:args['bound_inputs']=replace(args['bound_inputs'],parent_bytes=b'wrong')
+        if fault=='wrong_parent':
+            # Wrong parent is rejected when the service receipt names the original.
+            s.builder=SourceBoundParentBuilder(**args)
+            with pytest.raises((ValueError,AssertionError)):s.builder.interpret_parent(s.model,b'wrong')
+        else:
+            with pytest.raises(ValueError):SourceBoundParentBuilder(**args)
+    else:
+        if fault=='wrong_chemistry':s.bad_chemistry=True
+        if fault=='service_error':s.failure=True
+        if fault=='nan_snapshot':s.diffraction['F']=[float('nan')]
+        if fault in ('wrong_chemistry','service_error','nan_snapshot'):
+            with pytest.raises((ValueError,RuntimeError)):s.builder.interpret_parent(s.model,b'parent')
+        else:
+            s.builder.interpret_parent(s.model,b'parent')
+            if fault=='diffraction_parent':s.diffraction['F'].append(99)
+            elif fault=='noncoordinate_parent':s.protected['model_noncoordinate']['atoms']=['changed']
+            elif fault=='topology':s.view['topology']['link_status']='DIFFERENT'
+            elif fault=='geometry_missing':s.view['native_view']['geometry'].pop('proxy_details')
+            elif fault=='empty_protected':s.protected['fixed_geometry_inputs']=None
+            with pytest.raises((ValueError,KeyError)):s.builder.verify_parent(s.model,None)
+    assert 'write'not in s.calls
+    with pytest.raises(RuntimeError):s.builder.result()
+
+
+@pytest.mark.parametrize('fault',['diffraction','noncoordinate','fixed_geometry','proxy','custom','topology','geometry_object','foreign_model'])
+def test_source_bound_builder_refuses_changed_transfer_state(parent_builder,fault):
+    s=parent_builder;prepare_builder(s);s.builder.set_candidate_sites(s.model,((1,2,3),))
+    if fault=='diffraction':s.diffraction['F'].append(99)
+    elif fault=='noncoordinate':s.protected['model_noncoordinate']['atoms']=['changed']
+    elif fault=='fixed_geometry':s.protected['fixed_geometry_inputs']['exclusions']=[2]
+    elif fault=='proxy':s.view['native_view']['geometry']['proxy_details']['bond'].append(3)
+    elif fault=='custom':s.view['native_view']['geometry']['custom_proxy_requests'].append(3)
+    elif fault=='topology':s.view['topology']['links'].append('unexpected')
+    elif fault=='geometry_object':s.model.restraints_manager.geometry=object()
+    model=object()if fault=='foreign_model'else s.model
+    with pytest.raises(ValueError):s.builder.verify_candidate(model,None,None)
+    with pytest.raises(RuntimeError):s.builder.result()
+
+
+@pytest.mark.parametrize('method',['verify_parent','set_candidate_sites','verify_candidate'])
+def test_source_bound_builder_rejects_out_of_order_and_invalidates(parent_builder,method):
+    s=parent_builder;args=(s.model,None,None)if method=='verify_candidate'else(s.model,None)
+    with pytest.raises(RuntimeError):getattr(s.builder,method)(*args)
+    with pytest.raises(RuntimeError,match='failed'):s.builder.interpret_parent(s.model,b'parent')
+
+
+def test_source_bound_builder_reuse_invalidates_result(parent_builder):
+    s=parent_builder;prepare_builder(s);finish_builder(s)
+    with pytest.raises(RuntimeError):s.builder.interpret_parent(s.model,b'parent')
+    with pytest.raises(RuntimeError):s.builder.result()
+
+
+@pytest.mark.parametrize('stage',['parent','candidate'])
+def test_source_bound_builder_catches_reader_side_effects(parent_builder,stage):
+    s=parent_builder;original=s.builder._review
+    def changed(*args):
+        result=original(*args);s.protected['model_noncoordinate']['scattering'].append('changed ADP')
+        return result
+    if stage=='parent':
+        s.builder.interpret_parent(s.model,b'parent');s.builder._review=changed
+        with pytest.raises(ValueError,match='observer'):s.builder.verify_parent(s.model,None)
+        assert 'write'not in s.calls
+    else:
+        prepare_builder(s);s.builder.set_candidate_sites(s.model,((1,2,3),));s.builder._review=changed
+        with pytest.raises(ValueError,match='observer'):s.builder.verify_candidate(s.model,None,None)
+    with pytest.raises(RuntimeError):s.builder.result()

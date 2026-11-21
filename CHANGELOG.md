@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W208 — Maintain the source-bound parent builder
+
+- Add an explicit opt-in builder beside the existing W200 preparation context.
+  It composes Cedar source chemistry/topology with trusted native snapshots and
+  the coordinate writer; it owns no native hooks, files, process or dispatch.
+- Require original native bytes and source MATCH before transfer; retain exact
+  protected state, geometry definitions and candidate diffraction. Any failure
+  invalidates the builder; original exceptions propagate and the manager is discarded.
+- Old APIs/defaults and execution policies remain unchanged. Native success/failure
+  and relocated-install qualification are recorded in the current handoff.
+
 ### W207 — Record larger fixed-flank recovery and its remaining defects
 
 - One4.96 Å maximum-atom perturbation and five-cycle synthetic recovery retain
