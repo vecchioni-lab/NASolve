@@ -147,3 +147,89 @@ def test_rounded_observation_uses_actual_binary_displacement_coordinates():
     assert cases['rounded']==[list(p) for p in actual]
     assert cases['rounded'][0][2]!=.014
     assert format(cases['rounded'][0][2],'.3f')=='0.014'
+
+
+def native_transfer_case():
+    """An OP3 reorder crosses the movable/fixed boundary in this small fixture."""
+    from types import SimpleNamespace
+    from nasolve.topostitch_recipe import model_atom_rows, recipe_digest
+    data=(''.join(pdb_record('ATOM',i+1,name,'DA','A',1,x=i,y=0,z=0)
+                  for i,name in enumerate(('P','OP3',"O5'",'C5\'')))+'END\n').encode()
+    points=[[0.,0,0],[1.,0,0],[2.0014,0,0],[3.,0,0]]
+    rows=data.splitlines(keepends=True)
+    rows[2]=rows[2][:30]+b'   2.001   0.000   0.000'+rows[2][54:]
+    child=b''.join(rows);identities=model_atom_rows(data);order=[0,2,3,1]
+    native=dict(atom_count=4,atoms=[dict(key=['A:1','DA',identities[i]['atom_name']],xyz=[float(i),0.,0.]) for i in order])
+    # Trusted-owner stand-in tests the adapter boundary, not Cedar's native reader.
+    def reader(view,payload):
+        actual=model_atom_rows(payload)
+        expected={('A:1','DA',r['atom_name']):[float(l[j:j+8])for j in (30,38,46)]
+                  for r,l in zip(actual,[l for l in payload.decode().splitlines() if l.startswith('ATOM')])}
+        keys=[tuple(r['key']) for r in view['atoms']]
+        for key,row in zip(keys,view['atoms']):
+            if key not in expected or row['xyz']!=expected[key]:raise ValueError('native coordinate role/identity mismatch')
+        return keys,[str(k)for k in keys]
+    audit=audit_masked_endpoint(data,child,points,movable_indices=[2],max_displacement_angstrom=.01)
+    opts=dict(movable_indices=[2],max_displacement_angstrom=.01,
+              expected_audit_sha256=recipe_digest(audit),native=native,native_model_role='parent',
+              native_owner=SimpleNamespace(_native_atoms=reader))
+    return data,child,points,opts
+
+
+def test_native_reordered_op3_keeps_fixed_and_movable_identities_together():
+    from nasolve import topostitch_endpoint as endpoint
+    data,child,points,opts=native_transfer_case()
+    result=endpoint.map_native_endpoint(data,child,points,**opts)
+    assert result.native_to_source==(0,2,3,1)
+    assert result.movable_native_indices==(1,)
+    assert result.fixed_native_indices==(0,2,3)
+    assert result.native_model_role=='parent'
+    assert result.candidate_points[1]==(2.001,0.,0.)
+    assert result.full_precision_points[1]==(2.0014,0.,0.)
+    assert all(result.parent_points[i]==result.candidate_points[i]for i in result.fixed_native_indices)
+    # The old source index would select C5-prime, leaving O5-prime fixed.
+    assert result.native_identities[2][-1]=="C5'"
+    assert result.native_identities[1][-1]=="O5'"
+
+
+def test_native_handoff_is_detached_and_requires_the_explicit_coordinate_role():
+    from dataclasses import FrozenInstanceError
+    from nasolve import topostitch_endpoint as endpoint
+    data,child,points,opts=native_transfer_case()
+    opts['native']['atoms'][1]['xyz']=[2.001,0.,0.]
+    with pytest.raises(ValueError,match='role'):endpoint.map_native_endpoint(data,child,points,**opts)
+    opts['native_model_role']='candidate'
+    result=endpoint.map_native_endpoint(data,child,points,**opts)
+    opts['native']['atoms'][1]['xyz'][0]=99;points[2][0]=99;opts['movable_indices'].append(1)
+    assert result.native_points[1]==(2.001,0.,0.)
+    assert result.full_precision_points[1]==(2.0014,0.,0.)
+    assert result.movable_native_indices==(1,)
+    with pytest.raises(FrozenInstanceError):result.native_model_role='parent'
+
+
+@pytest.mark.parametrize('change',['duplicate','missing','renamed','nonfinite','wrong_role','stale_audit','changed_mask','changed_bound','changed_parent','reordered_source'])
+def test_native_handoff_refuses_changed_assignment_or_admitted_endpoint(change):
+    from nasolve import topostitch_endpoint as endpoint
+    data,child,points,opts=native_transfer_case()
+    if change=='duplicate':opts['native']['atoms'][3]=dict(opts['native']['atoms'][0])
+    if change=='missing':opts['native']['atoms'].pop()
+    if change=='renamed':opts['native']['atoms'][3]['key'][-1]='OPX'
+    if change=='nonfinite':opts['native']['atoms'][0]['xyz'][0]=float('nan')
+    if change=='wrong_role':opts['native_model_role']='guess'
+    if change=='stale_audit':opts['expected_audit_sha256']='0'*64
+    if change=='changed_mask':opts['movable_indices']=[0,2]
+    if change=='changed_bound':opts['max_displacement_angstrom']=.02
+    if change=='changed_parent':data=b'REMARK new parent\n'+data;child=b'REMARK new parent\n'+child
+    if change=='reordered_source':
+        rows=data.splitlines(keepends=True);rows[0],rows[1]=rows[1],rows[0];data=b''.join(rows)
+    with pytest.raises(ValueError):endpoint.map_native_endpoint(data,child,points,**opts)
+
+
+def test_zero_motion_native_handoff_preserves_declared_movable_scope():
+    from nasolve import topostitch_endpoint as endpoint
+    from nasolve.topostitch_recipe import recipe_digest
+    data,_,_,opts=native_transfer_case();points=[[float(i),0.,0.]for i in range(4)]
+    opts['expected_audit_sha256']=recipe_digest(audit_masked_endpoint(data,data,points,movable_indices=[2],max_displacement_angstrom=.01))
+    result=endpoint.map_native_endpoint(data,data,points,**opts)
+    assert result.movable_native_indices==(1,)
+    assert result.parent_points==result.candidate_points==result.full_precision_points

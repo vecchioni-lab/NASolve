@@ -17,6 +17,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W198 — Hand off endpoint coordinates in exact native atom order
+
+- Extend the existing endpoint owner with a detached immutable mapping of an
+  admitted source/candidate and explicit native role. Reuse Cedar's atom reader
+  and share W188's bijection; carry the movable/fixed scope with both coordinate
+  representations instead of assuming PDB and native indices are interchangeable.
+- Refuse altered identities, missing/duplicate atoms, coordinate-role mismatch
+  and changed endpoint bindings. Existing input order remains strict.
+- 141 focused source and 141 relocated installed checks pass; nine actual saved
+  native stages and altered-identity controls reproduce in Python 3.12/3.11.
+  No native launch, file/execution schema, default, migration or new dependency.
+  Native chemistry, crystal/ADPs, lifecycle and live application remain separate.
+
 ### W197 — Record native recovery with fixed end frames
 
 - Compare fresh zero/signed interior proposals under the same explicit native

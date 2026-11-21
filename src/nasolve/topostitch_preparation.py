@@ -12,6 +12,7 @@ from . import checkpoints
 from .topostitch_checkpoint import _pin, _reference
 from .topostitch_preview import _json
 from .topostitch_recipe import recipe_digest
+from .topostitch_endpoint import _native_atom_order
 
 
 def inspect_checkpoint_preparation(run_directory, *, expected_checkpoint_id,
@@ -211,16 +212,11 @@ def inspect_checkpoint_native_window(run_directory, *, expected_checkpoint_id,
         raise ValueError('Require a completed fixed-coordinate native capture')
     if snapshots.get(path) != receipt_bytes:
         raise ValueError('Native receipt changed during capture read')
-    native_keys, _ = capture_owner._native_atoms(native, payload)
+    native_to_input, _ = _native_atom_order(native, payload, capture_owner)
     monomers = monomer_owner.review_full_monomers(native)
     atoms, named = proxy_owner._native_atom_identities(native)
-    input_keys = [((r['chain'] or '_') + ':' + str(r['residue_number']),
-                   r['residue_code'], r['atom_name']) for r in identities]
-    if (len(set(input_keys)) != len(input_keys) or len(native_keys) != len(input_keys)
-            or set(native_keys) != set(input_keys) or set(atoms) != set(range(len(input_keys)))):
+    if set(atoms) != set(range(len(identities))):
         raise ValueError('Native atom mapping does not cover the exact parent')
-    input_index = {key:i for i,key in enumerate(input_keys)}
-    native_to_input = [input_index[key] for key in native_keys]
     selected_input = set(selected_indices)
     selected = {i for i,j in enumerate(native_to_input) if j in selected_input}
     inherited = [r for r in prepared['context']['inputs'] if r['role'] == 'restraint']

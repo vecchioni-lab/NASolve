@@ -3,6 +3,7 @@
 Native chemistry/packing review is delegated to Cedar. This audit checks what
 moved and what rounding changed; it does not select or approve a candidate.
 """
+from dataclasses import dataclass
 from hashlib import sha256
 import math
 
@@ -114,3 +115,89 @@ def project_coordinate_observation(native, observation, *, expected_points):
     result['energy_inventory']['snapshots']=deepcopy(observation['native_energy_snapshots'])
     result['nonbonded_inventory']=deepcopy(observation['nonbonded_inventory'])
     return result
+
+
+@dataclass(frozen=True)
+class NativeEndpointMapping:
+    """Detached coordinate assignment, not a native-manager or lifetime permit.
+
+    All point arrays use the observed native order. Candidate points are the
+    exact PDB decimals; full_precision_points retain the admitted initializer.
+    Nothing is applied to a model. The executor still owns crystal/scattering,
+    ADPs, topology/geometry, input lifetime and the actual preparation transition.
+    """
+    endpoint_audit_sha256: str
+    native_model_role: str
+    native_to_source: tuple
+    native_identities: tuple
+    movable_native_indices: tuple
+    fixed_native_indices: tuple
+    native_points: tuple
+    parent_points: tuple
+    candidate_points: tuple
+    full_precision_points: tuple
+    source_index_basis: str = "SOURCE_PDB_ATOM_RECORD_ORDER"
+
+
+def _native_atom_order(native, payload, owner):
+    """Share W188's complete source/native bijection through Cedar's reader."""
+    identities=model_atom_rows(payload)
+    native_keys,_=owner._native_atoms(native,payload)
+    input_keys=[((r['chain'] or '_')+':'+str(r['residue_number']),r['residue_code'],r['atom_name'])
+                for r in identities]
+    if (type(native.get('atom_count')) is not int or native['atom_count']!=len(input_keys)
+            or len(native_keys)!=len(input_keys) or len(set(input_keys))!=len(input_keys)
+            or len(set(native_keys))!=len(native_keys) or set(native_keys)!=set(input_keys)):
+        raise ValueError('Native atom mapping does not cover the exact parent')
+    input_index={key:i for i,key in enumerate(input_keys)}
+    return tuple(input_index[key] for key in native_keys),tuple(native_keys)
+
+
+def map_native_endpoint(source, candidate, points, *, movable_indices,
+        max_displacement_angstrom, expected_audit_sha256, native,
+        native_model_role, native_owner=None):
+    """Map one already-admitted endpoint onto an observed native atom order.
+
+    The expected audit digest comes from the existing trusted preview/checkpoint
+    join. Caller-supplied points or an unpinned fresh audit are not motion authority.
+    Cedar's trusted ``_native_atoms`` owner checks complete identity, element,
+    occupancy and coordinates against the explicitly chosen parent/candidate.
+    It retains its strict conformer/model scope and roundoff policy. No nearest
+    atom matching, relabelling, recut, new tolerance, file format or dispatch.
+
+    Input atom order remains strict; only the native interpretation may reorder.
+    Native ADPs, crystal and chemistry remain separate executor-owned checks.
+    ``native_owner`` is a trusted dependency, never code imported from a receipt.
+    """
+    if native_model_role not in ('parent','candidate'):
+        raise ValueError('Require an explicit parent or candidate native coordinate role')
+    points=tuple(tuple(p) for p in points)
+    audit=audit_masked_endpoint(source,candidate,points,movable_indices=movable_indices,
+                               max_displacement_angstrom=max_displacement_angstrom)
+    if (not isinstance(expected_audit_sha256,str)
+            or recipe_digest(audit)!=expected_audit_sha256):
+        raise ValueError('Endpoint differs from the admitted audit binding')
+    if native_owner is None:
+        try:from . import cif_attachment_native as native_owner
+        except ImportError as exc:
+            raise RuntimeError('The maintained Cedar native atom reader is required') from exc
+    if (not isinstance(native,dict) or type(native.get('atom_count')) is not int
+            or not isinstance(native.get('atoms'),list)):
+        raise ValueError('Require a complete native atom observation')
+    # Detach only atom state; unrelated large native geometry inventories stay
+    # with their owner and cannot masquerade as chemistry qualification here.
+    import json
+    observed=json.loads(json.dumps({k:native[k] for k in ('atom_count','atoms')},allow_nan=False))
+    payload=source if native_model_role=='parent' else candidate
+    order,identities=_native_atom_order(observed,payload,native_owner)
+    source_to_native={j:i for i,j in enumerate(order)}
+    movable=tuple(source_to_native[i] for i in audit['movable_indices'])
+    selected=set(movable)
+    def ordered(data):
+        xyz=tuple(tuple(float(l[a:b]) for a,b in ((30,38),(38,46),(46,54)))
+                  for l in data.splitlines() if l[:6] in (b'ATOM  ',b'HETATM'))
+        return tuple(xyz[i] for i in order)
+    return NativeEndpointMapping(expected_audit_sha256,native_model_role,order,identities,
+        movable,tuple(i for i in range(len(order)) if i not in selected),
+        tuple(tuple(a['xyz']) for a in observed['atoms']),ordered(source),ordered(candidate),
+        tuple(points[i] for i in order))
