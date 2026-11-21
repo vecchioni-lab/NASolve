@@ -63,6 +63,13 @@ def _sync_directory(path: Path) -> None:
         os.close(descriptor)
 
 
+def serialized_record_size(value: dict[str, Any]) -> int:
+    """Exact UTF-8 publication size including the digest and trailing newline."""
+    unsigned = {key: item for key, item in value.items() if key != "record_sha256"}
+    return len(json.dumps(dict(unsigned, record_sha256="0" * 64),
+                          indent=2, sort_keys=True, allow_nan=False).encode("utf-8")) + 1
+
+
 def write_record(path: Path, value: dict[str, Any], *, replace: bool = False) -> dict[str, Any]:
     unsigned = {key: item for key, item in value.items() if key != "record_sha256"}
     record = dict(unsigned, record_sha256=hashlib.sha256(_canonical(unsigned)).hexdigest())
@@ -156,6 +163,11 @@ def read_receipt(root: Path, directory: Path, job: dict[str, Any]) -> dict[str, 
             or not isinstance(result.get("message"), str)
             or not isinstance(result.get("artifacts"), list)):
         raise CampaignError("Stage receipt does not match its immutable job")
+    if "preparation_notes" in result:
+        notes = result["preparation_notes"]
+        if (job["stage"] != "postmr" or not isinstance(notes, list)
+                or any(not isinstance(note, str) or not note.strip() for note in notes)):
+            raise CampaignError("Malformed preparation notes in stage receipt")
     if result.get("run") is not None:
         run_path(root, job["dataset"], result["run"])
         if job.get("run") is not None and result["run"] != job["run"]:

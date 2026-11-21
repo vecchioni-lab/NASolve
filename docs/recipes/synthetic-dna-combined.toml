@@ -1,0 +1,16 @@
+schema_version = 2
+id = "synthetic-dna-combined-w"
+version = "1.0.0"
+description = "Fresh DNA-only K:X/B:S/Z:P/D:T mechanics challenge on copied donor observations; synthetic identities are not experimental claims"
+
+[chemistry]
+terminal_phosphate_sites = []
+
+[workflow]
+mode = "full-auto"
+run_doctor = true
+select_recommendation = true
+
+[autosol]
+policy = "disabled"
+reason = "The modified target is synthetic and is not the chemistry measured in the donor diffraction data; do not attempt anomalous phasing"

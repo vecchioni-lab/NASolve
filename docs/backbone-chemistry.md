@@ -35,6 +35,67 @@ runs, but new user-facing configuration should use `five_prime_phosphate_sites`.
 The chemistry request is a terminal-phosphate state; OP3 is only one atom in
 that state.
 
+Coordinate cleanup and effective dictionary chemistry require separate checks.
+Removing OP3 from a PDB does not itself remove a monomer dictionary's OP3,
+attached hydrogen or terminal O3' typing. Production linked profiles currently
+cover the declared 1AP/DZ/DP/5CM scope; they are not a generic monomer-to-polymer
+adapter.
+
+The explicit `06_Cedar` diagnostic now prepares source-preserving, per-site
+DNA derivatives using declared incoming/outgoing links and terminal states.
+It requires a context for every model site sharing a component code, finds H
+through graph adjacency, retains source OP2 protonation, and audits projected
+and actual native monomers. This remains external diagnostic preparation;
+production profiles and PostMR continuation are unchanged. The fresh 05 trial
+has four declared free 5′-OH ends and zero coordinate OP3 atoms. Its earlier
+D:1-phosphate exception must not be inherited. See [CIF Doctor](cif-doctor.md#source-preserving-linked-state-diagnostic).
+
+The October 10 combined-W diagnostic passed graph-based leaving-atom/hydrogen
+removal and O3' typing for IGU/IMC/CGY/DX, with no missing heavy atoms or dangling
+references and D:1 terminal phosphate preserved. This was a separate diagnostic,
+not integrated production behavior. Source-specific OP2 protonation was retained
+and remains a geometry/chemical-state review item. Generalization must follow
+verified site connectivity, preserve terminal/nick intent and audit the effective
+native restraints; it must not assume that a hydrogen-free coordinate model has
+an unprotonated dictionary. Exact evidence and remaining checks are in the
+[native ledger](native-modified-pair-live-validation.md).
+
+## Declared symmetry continuation — planned shared contract
+
+A chain boundary in the asymmetric unit need not be a chemical terminus. Pine
+will carry editable declared connections, including exact atom identities,
+symmetry operations and lattice shifts, separately from current coordinate
+support and refinement capability. TopoStitch previews those connections; Cedar
+checks the chemistry and whether native restraints actually enforce it. Reslicing
+or an edit must preserve previous choices and explicitly remap endpoints/images
+or mark them unresolved. Missing local neighbors must not silently change intent.
+
+For the W/PDU control, Simon clarified B:1 as an intended symmetry-linked internal
+phosphate (P/OP1/OP2, no OP3), superseding an earlier free-OH reply. Its nearest
+observed O3′ image remains outside the current bond-distance guard. This does not
+authorize atom deletion, OP3 completion, or automatic link assignment. D:1's
+separately declared complete terminal phosphate is a different chemical state.
+Do not activate a lone symmetry bond while its surrounding phosphate angles and
+nonbonded exclusions remain unqualified; angle-policy research is deferred.
+Current generic symmetry-link interpretation/enforcement is not qualified; see
+[Q06](cif-doctor-completion-queue.md#q06--qualify-the-actual-refinement-consumer).
+
+In the separate FT_Hg construct, the investigator declared the central B
+continuation and confirmed the C/D crossover. A runs from 1 to 21 in each of
+three saved models. On the selected source model, the directed correspondences
+are B:7 O3′ to B:1 P under `-x+y,-x,z` and D:7 O3′ to C:8 P under `-y,x-y,z`,
+both with zero lattice shift. B:1 and C:8 contain P/OP1/OP2. D:1 is a declared
+5′ terminal phosphate and also contains OP3.
+
+If both connections occur in all three equivalent positions, tracing the 38
+ordinary O3′–P links in each copy plus six image connections gives one closed
+21-nucleotide B path, three 14-nucleotide D:1–C:14 paths and three separate
+21-nucleotide A strands. The two image gaps in the measured model are 3.100 and
+3.027 Å, compared with 1.593–1.639 Å in its ordinary backbone. At the second
+gap the O3′–P–OP2 angle measures 55.79°. Keep this conditional strand map with
+the construct. Ligation, nick state, occupancy and native enforcement remain
+open. Reslicing must preserve the declared images and report the current gaps.
+
 ## Building a requested 5'-terminal phosphate
 
 When a site is explicitly declared as a 5'-terminal phosphate, PostMR runs an

@@ -8,6 +8,7 @@ or unidentifiable live record requires inspection rather than a guessed retry.
 from __future__ import annotations
 
 import errno
+import math
 import os
 import platform
 import re
@@ -110,8 +111,9 @@ def _start_marker(pid: int) -> str | None:
         result = subprocess.run(
             ["/bin/ps", "-p", str(pid), "-o", "lstart="],
             capture_output=True, text=True, timeout=2, check=False,
+            env={**os.environ, "LC_ALL": "C", "TZ": "UTC"},
         )
-        return "ps-lstart:" + result.stdout.strip() if result.returncode == 0 and result.stdout.strip() else None
+        return "ps-lstart-utc:" + result.stdout.strip() if result.returncode == 0 and result.stdout.strip() else None
     except (OSError, ValueError, IndexError, subprocess.SubprocessError):
         return None
 
@@ -192,6 +194,38 @@ def process_alive(identity: Mapping[str, object] | None) -> bool | None:
     if isinstance(saved_boot, str) and saved_boot and boot_id and saved_boot != boot_id:
         return False
     return _group_alive(pgid)
+
+
+def coordinator_alive(identity: Mapping[str, object] | None) -> bool | None:
+    """Observe one saved coordinator, which need not lead a process group.
+
+    A missing PID, different known boot, or different known start identity
+    proves that coordinator gone. Worker groups must be checked separately.
+    Permission failures, foreign hosts and missing identity markers are unknown.
+    This never sends a terminating signal or grants recovery authority itself.
+    """
+    if os.name != "posix" or not isinstance(identity, Mapping) or identity.get("host") != platform.node():
+        return None
+    pid = identity.get("pid")
+    if type(pid) is not int or pid <= 1:
+        return None
+    boot, saved_boot = _boot_id(), identity.get("boot_id")
+    if isinstance(saved_boot, str) and saved_boot and boot and saved_boot != boot:
+        return False
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return False
+    except OSError:
+        return None
+    marker, saved_marker = _start_marker(pid), identity.get("start_marker")
+    if not (boot and saved_boot == boot and marker and isinstance(saved_marker, str) and saved_marker):
+        return None
+    # Old locale/timezone-dependent ps markers are diagnostic only. A change
+    # of marker representation cannot establish that the original process died.
+    if marker.partition(":")[0] != saved_marker.partition(":")[0]:
+        return None
+    return marker == saved_marker
 
 
 @contextmanager
@@ -318,6 +352,50 @@ def run_job(
             f"Cannot create immutable campaign worker log {logfile}: {exc}",
             stopped_verified=not isinstance(exc, FileExistsError),
         ) from exc
+    return _run_owned_process(
+        [sys.executable, "-m", "nasolve.campaign_worker", str(job_path)], output,
+        on_process=on_process, on_heartbeat=on_heartbeat, poll_interval=poll_interval,
+    )
+
+
+def run_owned_command(
+    command: list[str], *, log_path: Path, cwd: Path,
+    environment: Mapping[str, str], timeout_seconds: float,
+    on_process: Callable[[dict[str, object]], None] | None = None,
+    poll_interval: float = 0.05,
+) -> int:
+    """Run a bounded external command under the same ownership as a campaign.
+
+    The caller reserves its immutable attempt and persists identity in the
+    callback. A timeout includes launch/identity publication; verified cleanup
+    may add its own bounded grace period. Never signal a saved process record.
+    """
+    _require_posix()
+    if (not isinstance(command, list) or not command
+            or any(not isinstance(item, str) or not item or "\0" in item for item in command)):
+        raise CampaignProcessError("Require an explicit command", stopped_verified=True)
+    if (type(timeout_seconds) not in (int, float) or not math.isfinite(timeout_seconds)
+            or timeout_seconds <= 0 or not 0 < poll_interval <= 60):
+        raise CampaignProcessError("Require a finite positive command deadline", stopped_verified=True)
+    try:
+        output = Path(log_path).open("xb")
+    except OSError as exc:
+        raise CampaignProcessError(
+            f"Cannot create immutable command log {log_path}: {exc}",
+            stopped_verified=not isinstance(exc, FileExistsError),
+        ) from exc
+    return _run_owned_process(
+        command, output, cwd=cwd, environment=environment, timeout_seconds=timeout_seconds,
+        on_process=on_process, poll_interval=poll_interval,
+    )
+
+
+def _run_owned_process(
+    command, output, *, cwd=None, environment=None, timeout_seconds=None,
+    on_process=None, on_heartbeat=None, poll_interval=1.0,
+) -> int:
+    """Shared live-handle cleanup, including the unrecorded fork/exec interval."""
+    deadline = None if timeout_seconds is None else time.monotonic() + timeout_seconds
     previous_term = None
     previous_int = None
     if threading.current_thread() is threading.main_thread():
@@ -331,7 +409,7 @@ def run_job(
             try:
                 with _defer_spawn_interrupts():
                     process = subprocess.Popen(
-                        [sys.executable, "-m", "nasolve.campaign_worker", str(job_path)],
+                        command, cwd=cwd, env=environment,
                         stdin=subprocess.DEVNULL, stdout=output, stderr=subprocess.STDOUT,
                         start_new_session=True, close_fds=True,
                     )
@@ -339,6 +417,9 @@ def run_job(
                 if on_process is not None:
                     on_process(dict(identity))
                 while True:
+                    remaining = None if deadline is None else deadline - time.monotonic()
+                    if remaining is not None and remaining <= 0:
+                        raise subprocess.TimeoutExpired(command, timeout_seconds)
                     code = process.poll()
                     if code is not None:
                         if _group_alive(process.pid) is not False:
@@ -349,7 +430,7 @@ def run_job(
                     if on_heartbeat is not None:
                         identity["heartbeat_utc"] = _now()
                         on_heartbeat(dict(identity))
-                    time.sleep(poll_interval)
+                    time.sleep(poll_interval if remaining is None else min(poll_interval, remaining))
             except BaseException as exc:
                 if process is not None:
                     _stop_owned_group(process)
@@ -357,6 +438,8 @@ def run_job(
                 # this assignment. KeyboardInterrupt also retains this proof
                 # when it arrived before the process callback could save a PID.
                 exc.stopped_verified = True
+                if isinstance(exc, subprocess.TimeoutExpired):
+                    exc.returncode = None if process is None else process.returncode
                 raise
     except OSError as exc:
         raise CampaignProcessError(

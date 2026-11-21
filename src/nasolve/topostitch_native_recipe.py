@@ -1,0 +1,708 @@
+"""Optional native evaluation of frozen canonical pair energies.
+
+No native manager/callback is modified. A caller must compose this unnormalized
+additive objective with a qualified native geometry/movement policy explicitly.
+"""
+from __future__ import annotations
+
+from hashlib import sha256
+import json
+import math
+from pathlib import Path
+
+from .topostitch_recipe import KIND, POLICY, model_atom_rows, recipe_digest
+from .topostitch_transport import CartesianImage, IDENTITY_IMAGE, expand_sites, accumulate_image_gradients
+
+CORRECTION_ID = 'native-parallelity-both-first-planes-v1'
+_ALLOWED = {
+    'bond': {'action','atom_selection_1','atom_selection_2','distance_ideal','sigma'},
+    'angle': {'action','atom_selection_1','atom_selection_2','atom_selection_3','angle_ideal','sigma'},
+    'planarity': {'action','atom_selection','sigma'},
+    'parallelity': {'action','atom_selection_1','atom_selection_2','target_angle_deg','sigma'},
+}
+
+
+def native_atom_identities(hierarchy):
+    rows = []
+    for atom in hierarchy.atoms():
+        label = atom.fetch_labels()
+        rows.append({'chain': label.chain_id.strip(), 'residue_number': int(label.resseq),
+            'insertion_code': label.icode.strip(), 'residue_code': label.resname.strip(),
+            'atom_name': atom.name.strip(), 'altloc': label.altloc.strip()})
+    return rows
+
+
+def _positive(value):
+    if type(value) not in (int,float) or not math.isfinite(value) or value <= 0:
+        raise ValueError('Require finite positive recipe ideal/sigma')
+    return value
+
+
+class NativePairRecipe:
+    """Bind one exact packet and model; evaluate under explicit atom ordering.
+
+    `correction` is a caller-supplied trusted Cedar module, never captured text.
+    Phenix imports are delayed until construction. No Gemmi/NARestraints import
+    is required in the native interpreter because their effective recipe is frozen.
+    """
+    def __init__(self, packet, model_bytes, *, expected_recipe_sha256, correction):
+        from iotbx import pdb, phil
+        from mmtbx.command_line import pdb_interpretation
+        from cctbx import geometry_restraints as gr, sgtbx
+        from scitbx import matrix
+        from scitbx.array_family import flex
+        if recipe_digest(packet) != expected_recipe_sha256:
+            raise ValueError('Recipe checksum mismatch')
+        # Detach from mutable caller data before compiling or retaining it.
+        packet = json.loads(json.dumps(packet, allow_nan=False))
+        if (packet.get('schema_version') != 1 or type(packet['schema_version']) is not int
+                or packet.get('kind') != KIND or packet.get('policy') != POLICY
+                or packet.get('runtime_authority') is not False
+                or packet.get('scientific_acceptance') is not False
+                or packet.get('connection_capacity_validated') is not False):
+            raise ValueError('Unsupported recipe schema or policy')
+        if not isinstance(model_bytes, bytes) or sha256(model_bytes).hexdigest() != packet['source_model_sha256']:
+            raise ValueError('Source model checksum mismatch')
+        identities = model_atom_rows(model_bytes)
+        if identities != packet['atom_identities'] or len(identities) != packet['atom_count']:
+            raise ValueError('Recipe atom inventory differs from source model')
+        effective = packet['library']['effective']
+        if (recipe_digest(effective) != packet['library']['effective_sha256']
+                or effective['emitted_recipes'] != [p['phil'] for p in packet['pairs']]):
+            raise ValueError('Effective recipe library does not reproduce')
+        if not 1 <= len(packet['pairs']) <= 1000:
+            raise ValueError('Recipe pair budget exceeded')
+        if correction.ORDER_CORRECTION_ID != CORRECTION_ID:
+            raise ValueError('Require the qualified Cedar plane-order correction')
+        self._gr, self._flex, self._correction = gr, flex, correction
+        self._identities = identities
+        self._count = len(identities)
+        self._refs, self._terms = [], []
+        self._bonds = gr.shared_bond_simple_proxy()
+        self._angles = gr.shared_angle_proxy()
+        self._planes = gr.shared_planarity_proxy()
+        self._parallel = gr.shared_parallelity_proxy()
+        native_input = pdb.input(source_info=None, lines=model_bytes.decode('ascii'))
+        hierarchy = native_input.construct_hierarchy(sort_atoms=False)
+        if native_atom_identities(hierarchy) != identities:
+            raise ValueError('Native interpretation reordered or renamed source atoms')
+        crystal = native_input.crystal_symmetry()
+        if crystal is None or any(abs(a-b) > 1e-10 for a,b in
+                zip(crystal.unit_cell().parameters(), packet['crystal']['cell_parameters'])):
+            raise ValueError('Native crystal cell differs from the frozen recipe')
+        from cctbx import crystal as crystal_module
+        declared = crystal_module.symmetry(unit_cell=packet['crystal']['cell_parameters'],
+                                          space_group_symbol=packet['crystal']['space_group'])
+        if declared.space_group() != crystal.space_group():
+            raise ValueError('Native crystal group differs from the frozen recipe')
+        unit_cell = crystal.unit_cell()
+        orth, frac = matrix.sqr(unit_cell.orthogonalization_matrix()), matrix.sqr(unit_cell.fractionalization_matrix())
+        source_rows = [l for l in model_bytes.decode('ascii').splitlines() if l[:6] in ('ATOM  ','HETATM')]
+        seen_ids, seen_edges, term_keys = set(), set(), set()
+        for pair in packet['pairs']:
+            if pair['pair_id'] in seen_ids:
+                raise ValueError('Duplicate pair identifier')
+            seen_ids.add(pair['pair_id'])
+            op = sgtbx.rt_mx(pair['target_operator_xyz'])
+            if op.mod_positive() not in crystal.space_group():
+                raise ValueError('Recipe operator does not belong to source crystal')
+            sites = pair['sites']
+            site_keys = [tuple(site[k] for k in ('chain','residue_number','insertion_code')) for site in sites]
+            edge = (tuple(site_keys),op.as_xyz())
+            inverse = (tuple(reversed(site_keys)),op.inverse().as_xyz())
+            if edge in seen_edges or inverse in seen_edges or len(sites) != 2 or site_keys[0] == site_keys[1]:
+                raise ValueError('Duplicate or unsupported pair image')
+            seen_edges.add(edge)
+            rotation = orth*matrix.sqr(op.r().as_double())*frac
+            image = CartesianImage(tuple(tuple(rotation[3*i+j] for j in range(3)) for i in range(3)),
+                                   tuple(unit_cell.orthogonalize(op.t().as_double())))
+            virtual, local_refs, expected_planes = [], [], []
+            for role, site, transform in zip(('L','R'), sites, (IDENTITY_IMAGE,image)):
+                indices = [i for i,row in enumerate(identities) if all(row[k] == site[k] for k in ('chain','residue_number','insertion_code'))]
+                if not indices or indices != pair['role_indices'][role]:
+                    raise ValueError('Pair role atom inventory differs from source model')
+                codes = {identities[i]['residue_code'] for i in indices}
+                if len(codes) != 1 or next(iter(codes)) not in ('DA','DT','DG','DC'):
+                    raise ValueError('Require canonical residue roles')
+                code = next(iter(codes))
+                needed = set(effective['atom_roles'][code].values())
+                names = {identities[i]['atom_name'] for i in indices}
+                if not needed <= names:
+                    raise ValueError('Incomplete canonical plane/contact atoms')
+                expected_plane = set()
+                for i in indices:
+                    ref_id = None
+                    if identities[i]['atom_name'] in needed:
+                        ref = (i,transform)
+                        if ref not in self._refs:
+                            self._refs.append(ref)
+                        ref_id = self._refs.index(ref)
+                        expected_plane.add(ref_id)
+                    local_refs.append(ref_id)
+                    line = source_rows[i]
+                    virtual.append(line[:21]+role+'   1 '+line[27:])
+                expected_planes.append(expected_plane)
+                virtual.append('TER')
+            virtual.append('END')
+            cache = pdb.input(source_info=None, lines='\n'.join(virtual)+'\n').construct_hierarchy(sort_atoms=False).atom_selection_cache()
+            text = pair['phil']
+            if sha256(text.encode()).hexdigest() != pair['phil_sha256']:
+                raise ValueError('Pair PHIL checksum mismatch')
+            scope = phil.parse(text)
+            for definition in scope.all_definitions():
+                path = definition.path.split('.')
+                if len(path) != 4 or path[:2] != ['geometry_restraints','edits'] or path[2] not in _ALLOWED or path[3] not in _ALLOWED[path[2]]:
+                    raise ValueError('Unsupported field in frozen pair PHIL')
+            params, unused = pdb_interpretation.get_master_phil().fetch(sources=[scope], track_unused_definitions=True)
+            if unused:
+                raise ValueError('Unconsumed pair PHIL definition')
+            edits = params.extract().geometry_restraints.edits
+            counts = {k:0 for k in _ALLOWED}
+            def selection(expression, minimum, maximum=None):
+                ids = [local_refs[i] for i in cache.iselection(expression)]
+                if None in ids or len(ids) < minimum or (maximum is not None and len(ids) > maximum) or len(set(ids)) != len(ids):
+                    raise ValueError('Incomplete or ambiguous recipe atom selection')
+                return ids
+            for kind in _ALLOWED:
+                for term in getattr(edits,kind):
+                    first = getattr(term,'atom_selection' if kind == 'planarity' else 'atom_selection_1')
+                    if first is None:
+                        continue
+                    if term.action != 'add':
+                        raise ValueError('Only additive pair-energy terms are supported')
+                    sigma = _positive(term.sigma)
+                    record = {'kind':kind,'pair_id':pair['pair_id'],'purpose':pair['purpose'],'sigma':sigma}
+                    if kind in ('bond','angle'):
+                        n = 2 if kind == 'bond' else 3
+                        ids = [selection(getattr(term,'atom_selection_'+str(k)),1,1)[0] for k in range(1,n+1)]
+                        if len(set(ids)) != n:
+                            raise ValueError('Degenerate recipe atom indices')
+                        ideal = _positive(getattr(term,'distance_ideal' if kind == 'bond' else 'angle_ideal'))
+                        if kind == 'angle' and ideal >= 180:
+                            raise ValueError('Unsupported linear pair angle')
+                        record.update(i_seqs=ids,ideal=ideal)
+                        key = (kind,min(tuple(ids),tuple(reversed(ids))))
+                        if kind == 'bond':
+                            self._bonds.append(gr.bond_simple_proxy(i_seqs=ids,distance_ideal=ideal,weight=1/sigma**2))
+                        else:
+                            self._angles.append(gr.angle_proxy(i_seqs=ids,angle_ideal=ideal,weight=1/sigma**2))
+                    elif kind == 'planarity':
+                        ids = selection(first,6)
+                        if set(ids) != set.union(*expected_planes):
+                            raise ValueError('Planarity selection omits or adds canonical atoms')
+                        record['i_seqs'] = ids
+                        key = (kind,tuple(sorted(ids)))
+                        self._planes.append(gr.planarity_proxy(i_seqs=ids,weights=flex.double(len(ids),1/sigma**2)))
+                    else:
+                        ids, other = selection(first,3), selection(term.atom_selection_2,3)
+                        if {frozenset(ids),frozenset(other)} != {frozenset(p) for p in expected_planes}:
+                            raise ValueError('Parallelity selections omit or add canonical atoms')
+                        if term.target_angle_deg != 0:
+                            raise ValueError('Only canonical parallel planes are supported')
+                        record.update(i_seqs=ids,j_seqs=other,ideal=0.)
+                        key = (kind,tuple(sorted((tuple(sorted(ids)),tuple(sorted(other))))))
+                        self._parallel.append(gr.parallelity_proxy(i_seqs=ids,j_seqs=other,weight=1/sigma**2,
+                            target_angle_deg=0.,slack=0.,limit=1.,top_out=False))
+                    if key in term_keys:
+                        raise ValueError('Duplicate native recipe term')
+                    term_keys.add(key)
+                    self._terms.append(record)
+                    counts[kind] += 1
+            if counts != pair['expected_counts'] or any(not value for value in counts.values()):
+                raise ValueError('Incomplete canonical term inventory')
+        self._refs = tuple(self._refs)
+        self._report = {'schema_version':1,'kind':'topostitch-native-pair-binding',
+            'recipe_sha256':expected_recipe_sha256,'source_model_sha256':packet['source_model_sha256'],
+            'atom_count':self._count,'terms':self._terms,
+            'references':[{'asu_index':i,'rotation':image.rotation,'translation':image.translation} for i,image in self._refs],
+            'correction_policy':CORRECTION_ID,
+            'correction_source_sha256':sha256(Path(correction.__file__).read_bytes()).hexdigest(),
+            'policy':dict(POLICY),'scientific_acceptance':False}
+
+    def binding_report(self):
+        return json.loads(json.dumps(self._report,allow_nan=False))
+
+    def evaluate(self, points, *, atom_identities, compute_gradients=True):
+        """Return component energies and ASU gradients, with no native attachment."""
+        return self._evaluate_proxies(points, atom_identities=atom_identities,
+            compute_gradients=compute_gradients,
+            proxies=(self._bonds, self._angles, self._planes, self._parallel))
+
+    def evaluate_terms(self, points, *, atom_identities, packet,
+                       expected_binding_sha256, selected_terms,
+                       expected_terms_sha256, compute_gradients=True):
+        """Evaluate an explicitly frozen ordered subset of the complete recipe.
+
+        Use W105/W108 declarations without rewriting their IDs, images or scoring
+        parameters. Authenticate the original packet, compiled binding and live
+        proxy definitions on every call, including an empty selection. This does
+        not observe native coverage: the caller must separately replay its frozen
+        provider plan and guard the manager, source, policy and callback lifetime.
+        Full-recipe evaluation and the compiler remain unchanged.
+        """
+        from .topostitch_pair_coverage import describe_compiled_pair_terms, _digest, _need
+        try:
+            selected = json.loads(json.dumps(selected_terms, allow_nan=False))
+            _need(isinstance(selected, list) and _digest(expected_terms_sha256)
+                  and recipe_digest(selected) == expected_terms_sha256,
+                  'Changed selected pair-term digest')
+            declared = describe_compiled_pair_terms(self, packet,
+                expected_binding_sha256=expected_binding_sha256)['terms']
+            _need(len(selected) <= len(declared), 'Too many selected pair terms')
+            names = [row['term_id'] for row in selected]
+            _need(all(isinstance(name, str) for name in names) and len(set(names)) == len(names),
+                  'Invalid selected pair-term identities')
+            chosen = set(names)
+            expected = [row for row in declared if row['term_id'] in chosen]
+            _need(recipe_digest(expected) == expected_terms_sha256,
+                  'Selected terms differ from the ordered compiled declarations')
+            containers = (self._bonds, self._angles, self._planes, self._parallel)
+            positions = {kind: 0 for kind in _ALLOWED}
+            included = {kind: [] for kind in _ALLOWED}
+            by_kind = dict(zip(_ALLOWED, containers))
+            for row in declared:
+                kind = row['kind']; proxy = by_kind[kind][positions[kind]]
+                positions[kind] += 1
+                if row['term_id'] in chosen:
+                    included[kind].append(proxy)
+            proxies = tuple(type(by_kind[kind])(included[kind]) for kind in _ALLOWED)
+            result = self._evaluate_proxies(points, atom_identities=atom_identities,
+                compute_gradients=compute_gradients, proxies=proxies)
+            return dict(result, compiled_binding_sha256=expected_binding_sha256,
+                        selected_terms_sha256=expected_terms_sha256,
+                        runtime_authority=False, scientific_acceptance=False)
+        except (KeyError, TypeError, IndexError, OverflowError) as exc:
+            raise ValueError('Malformed selected pair terms') from exc
+
+    def _evaluate_proxies(self, points, *, atom_identities, compute_gradients, proxies):
+        """Shared kernel/pullback path for complete and explicitly selected terms."""
+        if atom_identities != self._identities or type(compute_gradients) is not bool:
+            raise ValueError('Native atom order/identity or gradient request changed')
+        points = list(points)
+        if len(points) != self._count:
+            raise ValueError('Native coordinate count changed')
+        gr, flex = self._gr, self._flex
+        expanded = flex.vec3_double(expand_sites(points,self._refs))
+        gradient = flex.vec3_double(len(expanded),(0,0,0)) if compute_gradients else flex.vec3_double()
+        values = {}
+        bonds, angles, planes, parallel = proxies
+        for name,fn,selected in [('bond',gr.bond_residual_sum,bonds),
+                ('angle',gr.angle_residual_sum,angles),('planarity',gr.planarity_residual_sum,planes),
+                ('parallelity',gr.parallelity_residual_sum,parallel)]:
+            values[name] = float(fn(sites_cart=expanded,proxies=selected,gradient_array=gradient))
+        pulled = None
+        if compute_gradients:
+            corrected = self._correction.correct_parallelity_gradient(gr,flex,parallel,list(expanded),
+                list(gradient.as_double()),native_residual=values['parallelity'],plane_order_safe=True)
+            corrected = flex.vec3_double(flex.double(corrected['gradient']))
+            pulled = accumulate_image_gradients(self._count,self._refs,list(corrected))
+        total = math.fsum(values.values())
+        if any(not math.isfinite(v) for v in (*values.values(),total)):
+            raise ValueError('Nonfinite native recipe energy')
+        return {'target':total,'components':values,'gradients':pulled,'normalization':POLICY['normalization']}
+
+
+    def describe_terms(self, points, *, atom_identities):
+        """Attribute existing native terms without changing their objective.
+
+        Complete container sums are checked against individual kernel residuals.
+        Measurements describe these explicit recipes, never calibrated acceptance.
+        """
+        points=[tuple(p) for p in points]
+        aggregate=self.evaluate(points,atom_identities=atom_identities,compute_gradients=False)
+        expanded=self._flex.vec3_double(expand_sites(points,self._refs))
+        containers=dict(bond=self._bonds,angle=self._angles,planarity=self._planes,parallelity=self._parallel)
+        positions={kind:0 for kind in containers};rows=[]
+        for number,definition in enumerate(self._terms,1):
+            kind=definition['kind'];proxy=containers[kind][positions[kind]];positions[kind]+=1
+            restraint=getattr(self._gr,kind)(sites_cart=expanded,proxy=proxy)
+            if kind=='bond':measurement=dict(distance_angstrom=float(restraint.distance_model))
+            elif kind=='angle':measurement=dict(angle_degrees=float(restraint.angle_model))
+            elif kind=='planarity':measurement=dict(rms_distance_angstrom=float(restraint.rms_deltas()))
+            else:measurement=dict(native_delta_degrees=float(restraint.delta))
+            if any(not math.isfinite(v) for v in measurement.values()):
+                raise ValueError('Nonfinite native pair measurement')
+            rows.append(dict(number=number,definition=dict(definition),native_residual=float(restraint.residual()),measurement=measurement))
+        if any(positions[k]!=len(v) for k,v in containers.items()):
+            raise ValueError('Native term containers differ from the bound definition inventory')
+        summary=_pair_term_summary(rows)
+        if (not math.isclose(summary['target'],aggregate['target'],rel_tol=1e-10,abs_tol=1e-8)
+                or any(not math.isclose(summary['components'][k],v,rel_tol=1e-10,abs_tol=1e-8) for k,v in aggregate['components'].items())):
+            raise ValueError('Individual pair terms do not reproduce complete native containers')
+        return dict(schema_version=1,kind='topostitch-native-pair-attribution',
+            binding_sha256=recipe_digest(self.binding_report()),points_sha256=recipe_digest(points),
+            terms=rows,**summary,normalization=POLICY['normalization'],
+            native_container_sum_verified=True,runtime_authority=False,scientific_acceptance=False)
+
+
+# Exact Python helper closure for the existing frozen execution loader. Native
+# API/profile and correction-source qualification remain the caller's owners.
+CONTRIBUTION_SOURCE_MODULES = (
+    'topostitch_native_recipe', 'topostitch_pair_coverage', 'topostitch_recipe',
+    'topostitch_transport', 'topostitch_coordinates', 'topostitch_periodic',
+    'topostitch', 'topostitch_packing',
+)
+PAIR_COUNT_POLICY = 'canonical-pair-one-per-proxy-v1'
+
+
+class NativePairContribution:
+    """Freeze a fresh numerical recipe and an existing term-provider selection.
+
+    This factory accepts data, never a caller evaluator. Cedar must authenticate
+    the factory/helper bytes and live methods, observe the actual native inventory
+    and call ``revalidate`` at its admission and entry/exit boundaries. Evaluation
+    checks the compiled/selected definitions but cannot observe a manager by itself.
+    No callbacks, arrays, exclusions, source coordinates or runtime are modified.
+    """
+    def __init__(self, packet, model_bytes, *, expected_recipe_sha256,
+                 expected_binding_sha256, provider_selection,
+                 expected_provider_selection_sha256, native_terms,
+                 current_context, correction):
+        from .topostitch_pair_coverage import _digest, _need
+        try:
+            self._packet, self._selection = json.loads(json.dumps(
+                [packet, provider_selection], allow_nan=False))
+            _need(_digest(expected_recipe_sha256)
+                  and recipe_digest(self._packet) == expected_recipe_sha256,
+                  'Changed contribution packet digest')
+            _need(type(self._selection) is dict and set(self._selection) == {'additive', 'frozen', 'review'}
+                  and _digest(expected_provider_selection_sha256)
+                  and recipe_digest(self._selection) == expected_provider_selection_sha256,
+                  'Changed contribution provider selection')
+            self._packet_sha256 = expected_recipe_sha256
+            self._binding_sha256 = expected_binding_sha256
+            self._selection_sha256 = expected_provider_selection_sha256
+            self._recipe = NativePairRecipe(self._packet, model_bytes,
+                expected_recipe_sha256=expected_recipe_sha256, correction=correction)
+            self.revalidate(native_terms, current_context=current_context)
+        except (KeyError, TypeError, AttributeError, IndexError, OverflowError) as exc:
+            raise ValueError('Incomplete frozen pair contribution') from exc
+
+    def _declarations(self):
+        from .topostitch_pair_coverage import describe_compiled_pair_terms, _need
+        _need(recipe_digest(self._packet) == self._packet_sha256
+              and recipe_digest(self._selection) == self._selection_sha256,
+              'Frozen contribution inputs changed')
+        declared = describe_compiled_pair_terms(self._recipe, self._packet,
+            expected_binding_sha256=self._binding_sha256)
+        context = self._selection['frozen']['context']
+        _need(context['source_model_sha256'] == declared['source_model_sha256']
+              and context['recipe_sha256'] == declared['recipe_sha256']
+              and context['atom_labels'] == declared['atom_labels'],
+              'Provider context differs from compiled contribution')
+        return declared
+
+    def revalidate(self, native_terms, *, current_context):
+        """Recheck frozen ownership against freshly admitted declarations; no plan selection."""
+        from .topostitch_pair_coverage import review_pair_coverage, _need
+        declared = self._declarations()
+        reviewed = review_pair_coverage(declared['terms'], native_terms,
+            self._selection['additive'], frozen=self._selection['frozen'],
+            current_context=current_context)
+        _need(reviewed == self._selection['review'], 'Frozen provider review does not reproduce')
+        return reviewed
+
+    def binding_report(self):
+        """Return detached existing binding/selection records and supported count semantics."""
+        self._declarations()
+        return json.loads(json.dumps(dict(compiled_binding=self._recipe.binding_report(),
+            provider_selection=self._selection, compiled_binding_sha256=self._binding_sha256,
+            provider_selection_sha256=self._selection_sha256,
+            supported_count=len(self._selection['additive']), count_policy=PAIR_COUNT_POLICY,
+            atom_count=self._packet['atom_count'], runtime_authority=False,
+            scientific_acceptance=False), allow_nan=False))
+
+    def evaluate(self, points, *, atom_identities, compute_gradients=True):
+        """Evaluate the frozen four-family subset; never infer native counts or ownership."""
+        from .topostitch_pair_coverage import _need
+        self._declarations()
+        _need(type(compute_gradients) is bool and atom_identities == self._packet['atom_identities'],
+              'Contribution atom ordering or gradient mode changed')
+        result = self._recipe.evaluate_terms(points, atom_identities=atom_identities,
+            packet=self._packet, expected_binding_sha256=self._binding_sha256,
+            selected_terms=self._selection['additive'],
+            expected_terms_sha256=self._selection['frozen']['additive_sha256'],
+            compute_gradients=compute_gradients)
+        _need(type(result['target']) in (int, float) and math.isfinite(result['target'])
+              and result['normalization'] == POLICY['normalization'],
+              'Invalid unnormalized contribution target')
+        gradients = result['gradients']
+        if compute_gradients:
+            _need(type(gradients) in (list, tuple) and len(gradients) == self._packet['atom_count']
+                  and all(type(p) in (list, tuple) and len(p) == 3
+                          and all(type(v) in (int, float) and math.isfinite(v) for v in p)
+                          for p in gradients), 'Invalid complete contribution gradient')
+        else:
+            _need(gradients is None, 'Energy-only contribution returned gradients')
+        return dict(result, supported_count=len(self._selection['additive']),
+                    count_policy=PAIR_COUNT_POLICY, provider_selection_sha256=self._selection_sha256)
+
+
+def _pair_term_summary(terms):
+    """Pure attribution arithmetic; caller owns native execution/authentication."""
+    if not isinstance(terms,list) or not terms or len(terms)>20000:
+        raise ValueError('Require a bounded complete pair-term inventory')
+    numbers=[];groups={};components={k:[] for k in _ALLOWED}
+    measurement_keys={'bond':'distance_angstrom','angle':'angle_degrees',
+        'planarity':'rms_distance_angstrom','parallelity':'native_delta_degrees'}
+    for row in terms:
+        definition=row['definition'];kind=definition['kind'];pair=definition['pair_id'];purpose=definition['purpose']
+        number=row['number'];value=row['native_residual'];measurement=row['measurement']
+        if (type(number) is not int or not isinstance(pair,str) or not pair
+                or kind not in _ALLOWED or purpose not in ('selected','core')
+                or type(value) not in (int,float) or not math.isfinite(value) or value<0
+                or set(measurement)!={measurement_keys[kind]}
+                or any(type(v) not in (int,float) or not math.isfinite(v) for v in measurement.values())):
+            raise ValueError('Invalid pair-term attribution')
+        numbers.append(number);group=groups.setdefault(pair,dict(purpose=purpose,values={k:[] for k in _ALLOWED}))
+        if group['purpose']!=purpose:raise ValueError('Pair purpose changed within its terms')
+        group['values'][kind].append(value);components[kind].append(value)
+    if numbers!=list(range(1,len(terms)+1)):
+        raise ValueError('Pair-term numbers must retain the complete bound order')
+    pairs=[]
+    for pair,group in groups.items():
+        if any(not values for values in group['values'].values()):raise ValueError('Incomplete pair family inventory')
+        values={k:math.fsum(v) for k,v in group['values'].items()}
+        pairs.append(dict(pair_id=pair,purpose=group['purpose'],target=math.fsum(values.values()),components=values,
+            term_counts={k:len(v) for k,v in group['values'].items()}))
+    values={k:math.fsum(v) for k,v in components.items()}
+    return dict(target=math.fsum(values.values()),components=values,pairs=pairs)
+
+
+def compare_pair_attribution(before, after):
+    """Retain each pair's change; lower aggregate energy is not acceptance."""
+    for report in (before,after):
+        if (type(report['schema_version']) is not int or report['schema_version']!=1
+                or report['kind']!='topostitch-native-pair-attribution'
+                or report['normalization']!=POLICY['normalization']
+                or report['native_container_sum_verified'] is not True
+                or report['runtime_authority'] is not False or report['scientific_acceptance'] is not False):
+            raise ValueError('Unsupported pair attribution policy')
+        if any(not isinstance(report[k],str) or len(report[k])!=64 or any(c not in '0123456789abcdef' for c in report[k])
+                for k in ('binding_sha256','points_sha256')):
+            raise ValueError('Require explicit pair binding and coordinate digests')
+        actual=_pair_term_summary(report['terms'])
+        if any(actual[k]!=report[k] for k in ('target','components','pairs')):
+            raise ValueError('Pair attribution summary does not reproduce its terms')
+    if (before['binding_sha256']!=after['binding_sha256']
+            or [r['definition'] for r in before['terms']]!=[r['definition'] for r in after['terms']]):
+        raise ValueError('Pair binding or complete term definitions changed')
+    rows=[]
+    for a,b in zip(before['pairs'],after['pairs']):
+        if (a['pair_id'],a['purpose'],a['term_counts'])!=(b['pair_id'],b['purpose'],b['term_counts']):
+            raise ValueError('Pair attribution identities changed')
+        rows.append(dict(pair_id=a['pair_id'],purpose=a['purpose'],before=a['target'],after=b['target'],
+            change=b['target']-a['target'],component_changes={k:b['components'][k]-a['components'][k] for k in _ALLOWED}))
+    return dict(schema_version=1,kind='topostitch-pair-attribution-comparison',
+        binding_sha256=before['binding_sha256'],source_points_sha256=before['points_sha256'],endpoint_points_sha256=after['points_sha256'],
+        target_change=after['target']-before['target'],pairs=rows,
+        purposes={purpose:dict(target_change=math.fsum(r['change'] for r in rows if r['purpose']==purpose),
+            pair_count=sum(r['purpose']==purpose for r in rows),
+            increased_pair_ids=[r['pair_id'] for r in rows if r['purpose']==purpose and r['change']>0]) for purpose in ('selected','core')},
+        increases_are_descriptive_not_acceptance_thresholds=True,runtime_authority=False,scientific_acceptance=False)
+
+
+class NativeMaskedObjective:
+    """Direct, bounded composition of native geometry, pair energy and a tether.
+
+    This does not own native interpretation, capture authentication, optimization
+    or refinement. The caller supplies the trusted Cedar audit/correction owners
+    and a manager constructed from the exact source model. Static-definition
+    checks do not freeze native nonbonded neighbours or prove capture provenance.
+    """
+    def __init__(self, geometry, native_hierarchy, model_bytes, pair_binding, *,
+                 movable_indices, expected_native_signature, correction, native_audit,
+                 tether_sigma_angstrom, max_displacement_angstrom, max_evaluations, include_pairs=True,
+                 live_policy_owner=None, expected_live_policy=None):
+        if ((live_policy_owner is None) != (expected_live_policy is None)
+                or (live_policy_owner is not None and not callable(
+                    getattr(live_policy_owner, 'require_live_nonbonded_policy', None)))):
+            raise ValueError('Require both a trusted live policy owner and expected snapshot')
+        self._live_policy_owner = None
+        if type(include_pairs) is not bool:
+            raise ValueError('Pair inclusion must be an explicit boolean')
+        from iotbx import pdb
+        from cctbx import geometry_restraints as gr
+        from cctbx.geometry_restraints import flags
+        from scitbx.array_family import flex
+        from .topostitch_transport import CoordinateMask
+        if not isinstance(pair_binding, NativePairRecipe):
+            raise ValueError('Require a compiled complete pair recipe')
+        if type(max_evaluations) is not int or not 1 <= max_evaluations <= 100000:
+            raise ValueError('Require an evaluation budget from 1 to 100000')
+        sigma = _positive(tether_sigma_angstrom)
+        try:
+            weight = 1/(sigma*sigma)
+        except (OverflowError,ZeroDivisionError) as exc:
+            raise ValueError('Tether weight exceeds finite range') from exc
+        if not math.isfinite(weight) or weight <= 0:
+            raise ValueError('Tether weight exceeds finite range')
+        binding = pair_binding.binding_report()
+        if sha256(model_bytes).hexdigest() != binding['source_model_sha256']:
+            raise ValueError('Masked objective source differs from pair binding')
+        inp = pdb.input(source_info=None, lines=model_bytes.decode('ascii'))
+        source = inp.construct_hierarchy(sort_atoms=False)
+        identities = model_atom_rows(model_bytes)
+        if native_atom_identities(native_hierarchy) != identities:
+            raise ValueError('Native hierarchy order/identity differs from source model')
+        points = tuple(source.atoms().extract_xyz())
+        native_points = tuple(native_hierarchy.atoms().extract_xyz())
+        roundoff = max(abs(a-b) for p,q in zip(points,native_points) for a,b in zip(p,q))
+        if roundoff > 1e-10:
+            raise ValueError('Native starting coordinates differ from source beyond roundoff')
+        self._hierarchy_reference = native_points
+        self._mask = CoordinateMask(points,movable_indices,max_displacement_angstrom)
+        if (correction.ORDER_CORRECTION_ID != CORRECTION_ID
+                or sha256(Path(correction.__file__).read_bytes()).hexdigest() != binding['correction_source_sha256']):
+            raise ValueError('Native and pair corrections must use the same trusted source')
+        self._geometry, self._hierarchy = geometry, native_hierarchy
+        self._correction, self._audit = correction, native_audit
+        self._gr, self._flex, self._flags = gr, flex, flags
+        self._pairs, self._identities = pair_binding, identities
+        self._pair_weight = 1. if include_pairs else 0.
+        self._signature = expected_native_signature
+        self._crystal = inp.crystal_symmetry()
+        self._tether_weight, self._max_calls, self._calls = weight,max_evaluations,0
+        guard_report = None
+        if live_policy_owner is not None:
+            active_flags = self._flags.flags(default=True)
+            guard_report = self._bind_live_policy(live_policy_owner, expected_live_policy, active_flags)
+        self._check_native(points)
+        if guard_report is not None:
+            self._check_live_policy(active_flags)
+        self._report = {'schema_version':1,'kind':'topostitch-masked-native-objective',
+            'source_model_sha256':binding['source_model_sha256'],
+            'pair_recipe_sha256':binding['recipe_sha256'],
+            'native_static_definition_sha256':expected_native_signature,
+            'correction_policy':CORRECTION_ID,
+            'correction_source_sha256':binding['correction_source_sha256'],
+            'native_audit_source_sha256':sha256(Path(native_audit.__file__).read_bytes()).hexdigest(),
+            'movable_indices':list(self._mask.indices),
+            'movable_atom_identities':[identities[i] for i in self._mask.indices],
+            'native_starting_roundoff_angstrom':roundoff,
+            'atom_count':len(points),'fixed_atom_count':len(points)-len(self._mask.indices),
+            'tether_sigma_angstrom':sigma,'max_displacement_angstrom':self._mask.max_displacement_angstrom,
+            'max_evaluations':max_evaluations,'normalization':'UNNORMALIZED_SUM',
+            'component_weights':{'native':1.,'pair':self._pair_weight,'tether':1.},
+            'native_flags':'all ordinary geometry flags enabled',
+            'native_bonded_tables_changed':False,'native_exclusions_changed':False,
+            'native_callback_attached':False,'optimization':False,'scientific_acceptance':False,'runtime_authority':False,
+            'limitations':['Caller owns trusted native construction and capture authentication',
+                'Static-definition signature does not freeze nonbonded neighbours or qualify packing',
+                'Explicit mask is not permission to move atoms or proof of complete chemistry',
+                'No optimizer, manager rebuild, refinement or campaign lifecycle is qualified']}
+        if guard_report is not None:
+            self._report['live_nonbonded_policy'] = guard_report
+
+    @staticmethod
+    def _live_policy_options(active_flags):
+        # These must match evaluate_fixed_native's actual energies_sites call.
+        return dict(flags=active_flags, normalization=False, compute_gradients=True,
+            disable_asu_cache=False, gradients=None, custom_nonbonded_function=None,
+            external_energy_function=None, extension_objects=())
+
+    def _bind_live_policy(self, owner, expected, active_flags):
+        # The trusted owner validates bounded primitive data and the actual
+        # manager before copying the baseline. Never snapshot away a mismatch.
+        owner.require_live_nonbonded_policy(self._geometry, expected,
+            **self._live_policy_options(active_flags))
+        frozen = json.dumps(expected, sort_keys=True, allow_nan=False)
+        try:
+            source = Path(owner.__file__)
+            profile = source.parent/'data/nonbonded-native-profile.json'
+            provenance = dict(policy_id=expected['policy_id'],
+                native_profile_id=expected['native_profile_id'], policy_sha256=expected['policy_sha256'],
+                owner_source_sha256=sha256(source.read_bytes()).hexdigest(),
+                native_profile_sha256=sha256(profile.read_bytes()).hexdigest())
+        except (AttributeError, OSError, KeyError, TypeError) as exc:
+            raise ValueError('Require complete trusted live policy owner/profile provenance') from exc
+        self._live_policy_owner, self._live_policy_expected = owner, frozen
+        return provenance
+
+    def _check_live_policy(self, active_flags):
+        owner = getattr(self, '_live_policy_owner', None)
+        if owner is not None:
+            owner.require_live_nonbonded_policy(self._geometry, json.loads(self._live_policy_expected),
+                **self._live_policy_options(active_flags))
+
+    def _check_native(self, points):
+        geo = self._geometry
+        if native_atom_identities(self._hierarchy) != self._identities:
+            raise ValueError('Native atom ordering changed after binding')
+        if tuple(self._hierarchy.atoms().extract_xyz()) != self._hierarchy_reference:
+            raise ValueError('Native reference hierarchy coordinates changed after binding')
+        if geo.external_energy_function is not None:
+            raise ValueError('An existing native external callback is unsupported')
+        for name in ('reference_dihedral_manager','ncs_dihedral_manager','den_manager','ramachandran_manager'):
+            if getattr(geo,name,None) is not None:
+                raise ValueError('Unsupported auxiliary native geometry manager: '+name)
+        if geo.reference_coordinate_proxies is not None and len(geo.reference_coordinate_proxies):
+            raise ValueError('Native reference-coordinate proxies are unsupported')
+        crystal = geo.crystal_symmetry
+        if (crystal is None or crystal.space_group() != self._crystal.space_group()
+                or any(abs(a-b)>1e-10 for a,b in zip(crystal.unit_cell().parameters(),self._crystal.unit_cell().parameters()))):
+            raise ValueError('Native manager crystal differs from source model')
+        table = geo.site_symmetry_table
+        if (table is None or table.indices().size() != len(self._mask.reference)
+                or len(table.special_position_indices())):
+            raise ValueError('Require complete native identity without special-position constraints')
+        if self._audit.fixed_signature(geo,self._flex.vec3_double(points)) != self._signature:
+            raise ValueError('Native static definitions changed or differ from expected capture')
+
+    def binding_report(self):
+        return json.loads(json.dumps(self._report,allow_nan=False))
+
+    def evaluate(self, displacements):
+        """Evaluate only explicit displacement variables; every other atom stays fixed."""
+        values = tuple(displacements)
+        points = self._mask.expand(values)
+        if self._calls >= self._max_calls:
+            raise ValueError('Masked objective evaluation budget exhausted')
+        self._calls += 1
+        active_flags = self._flags.flags(default=True)
+        self._check_live_policy(active_flags)
+        self._check_native(points)
+        native = self._correction.evaluate_fixed_native(self._geometry,points,
+            active_flags,self._gr,self._flex,plane_order_safe=True)
+        self._check_live_policy(active_flags)
+        pair = self._pairs.evaluate(points,atom_identities=self._identities)
+        full = tuple(tuple(native['gradient'][3*i+k]+self._pair_weight*pair['gradients'][i][k] for k in range(3))
+                     for i in range(len(points)))
+        tether = math.fsum(v*v*self._tether_weight for v in values)
+        gradient = tuple(g+2*v*self._tether_weight for g,v in zip(self._mask.project(full),values))
+        target = math.fsum((native['target'],self._pair_weight*pair['target'],tether))
+        if not math.isfinite(target) or any(not math.isfinite(v) for v in gradient):
+            raise ValueError('Nonfinite masked objective value or gradient')
+        self._check_native(points)
+        self._check_live_policy(active_flags)
+        return {'target':target,'gradient':gradient,'points':points,
+            'native_target':native['target'],'pair_target':self._pair_weight*pair['target'],'tether_target':tether,
+            'unweighted_pair_target':pair['target'],
+            'native_components':native['terms'],'pair_components':{k:self._pair_weight*v for k,v in pair['components'].items()},
+            'unweighted_pair_components':pair['components'],
+            'native_proxy_counts':native['proxy_counts'],'evaluation_calls':self._calls,
+            'normalization':'UNNORMALIZED_SUM','fixed_coordinates_preserved':True}
+
+
+    def evaluate_motion(self, motion, parameters):
+        """Evaluate an explicit coarse motion through the unchanged native owner.
+
+        This optional six-parameter view is not the 3N Cartesian optimizer
+        protocol. It changes neither the objective nor its native policy, call
+        budget, neighbor lifecycle or scientific acceptance. The caller owns
+        motion provenance and must qualify the native context as usual. A saved
+        preview motion additionally checks its exact source-model byte digest.
+        """
+        from .topostitch_transport import TaperedMotion
+        if not isinstance(motion, TaperedMotion) or motion.mask != self._mask:
+            raise ValueError('Motion must bind the exact native coordinate mask and order')
+        if (motion.source_model_sha256 is not None
+                and motion.source_model_sha256 != self._report['source_model_sha256']):
+            raise ValueError('Motion source model differs from the native objective binding')
+        parameters = motion.parameters(parameters)
+        evaluation = self.evaluate(motion.displacements(parameters))
+        cartesian = evaluation['gradient']
+        return {**evaluation, 'cartesian_gradient': cartesian,
+                'gradient': motion.pullback(parameters, cartesian),
+                'parameters': parameters,
+                'parameterization': 'tapered-rotation-degrees-translation-angstrom-v1'}

@@ -34,6 +34,7 @@ class ViewProfile:
     map_source: str
     checkpoint_id: str | None = None
     anomalous_map_paths: tuple[Path, ...] = ()
+    preparation_attempt: int | None = None
 
 
 @dataclass(frozen=True)
@@ -51,6 +52,7 @@ class CootViewResult:
     source: str
     map_source: str
     checkpoint_id: str | None
+    preparation_attempt: int | None = None
 
 
 def _required_file(path: Path, description: str) -> Path:
@@ -247,10 +249,19 @@ def _phaser_profile(run: Path, report: Mapping[str, object]) -> ViewProfile:
     )
 
 
+def _validate_preparation_view(run, report, registry=None):
+    from .checkpoints import _validate_preparation, CheckpointError
+    try:
+        _validate_preparation(run, report, registry)
+    except CheckpointError as exc:
+        raise CootViewError(str(exc)) from exc
+
+
 def _prepared_model(run: Path, report: Mapping[str, object]) -> Path:
     postmr = report.get("postmr")
     if not isinstance(postmr, Mapping) or postmr.get("status") != "POSTMR_READY":
         raise CootViewError("This run has no completed PostMR result")
+    _validate_preparation_view(run, report)
     model = _reported_file(postmr.get("prepared_model"), "ReadySet model", run)
     _verify_report_checksum(model, postmr.get("prepared_sha256"), "ReadySet model")
     return model
@@ -287,7 +298,7 @@ def _postmr_profile(run: Path, report: Mapping[str, object]) -> ViewProfile:
         map_path,
         (),
         _postmr_dictionaries(run, report),
-        "PostMR ReadySet prepared model",
+        str(report["postmr"]["message"]) if "checked_preparation" in report["postmr"] else "PostMR ReadySet prepared model",
         map_source,
     )
 
@@ -295,6 +306,16 @@ def _postmr_profile(run: Path, report: Mapping[str, object]) -> ViewProfile:
 def _autosol_map(
     run: Path, report: Mapping[str, object], *, allow_missing: bool = False
 ) -> Path | None:
+    from .autosol_reference import validate_result_reference
+    try:
+        validate_result_reference(run, report)
+    except (OSError, ValueError, RuntimeError) as exc:
+        raise CootViewError(str(exc)) from exc
+    return _autosol_map_outputs(run, report, allow_missing=allow_missing)
+
+
+def _autosol_map_outputs(run, report, *, allow_missing=False):
+    """Resolve the map after its owning caller has checked the site reference."""
     autosol = report.get("autosol")
     outputs = autosol.get("outputs") if isinstance(autosol, Mapping) else None
     value = outputs.get("density_modified_map") if isinstance(outputs, Mapping) else None
@@ -335,6 +356,11 @@ def _autosol_map(
 
 
 def _autosol_profile(run: Path, report: Mapping[str, object]) -> ViewProfile:
+    from .autosol_reference import validate_result_reference
+    try:
+        reference = validate_result_reference(run, report)
+    except (OSError, ValueError, RuntimeError) as exc:
+        raise CootViewError(str(exc)) from exc
     autosol = report.get("autosol")
     outputs = autosol.get("outputs") if isinstance(autosol, Mapping) else None
     if not isinstance(outputs, Mapping):
@@ -347,8 +373,20 @@ def _autosol_profile(run: Path, report: Mapping[str, object]) -> ViewProfile:
         outputs.get("heavy_atom_model_sha256"),
         "AutoSol HA model",
     )
-    model = _prepared_model(run, report)
-    map_path = _autosol_map(run, report)
+    if reference is None:
+        model = _prepared_model(run, report)
+        dictionaries = _postmr_dictionaries(run, report)
+        source = "PostMR ReadySet prepared model"
+    else:
+        from .campaign_records import read_record
+        from .checkpoints import registry_path, resolve_checkpoint
+        registry = read_record(registry_path(run))
+        _validate_preparation_view(run, report, registry)
+        checkpoint = resolve_checkpoint(registry, reference['checkpoint_id'])
+        model = _reported_file(reference['model'], "AutoSol validation model", run)
+        dictionaries = _checkpoint_dictionaries(run, checkpoint, registry['schema_version'])
+        source = f"Saved AutoSol validation checkpoint {reference['checkpoint_id']}"
+    map_path = _autosol_map_outputs(run, report)
     assert map_path is not None
     status = str(autosol.get("status", "legacy status unrecorded"))
     acceptance = "accepted" if _accepted_autosol(report) else "unaccepted; inspection only"
@@ -357,9 +395,10 @@ def _autosol_profile(run: Path, report: Mapping[str, object]) -> ViewProfile:
         model,
         map_path,
         (heavy_atom,),
-        _postmr_dictionaries(run, report),
-        f"PostMR ReadySet prepared model with separate AutoSol HA sites ({status})",
+        dictionaries,
+        f"{source} with separate AutoSol HA sites ({status})",
         f"AutoSol density-modified map ({acceptance}; {status})",
+        checkpoint_id=None if reference is None else _checkpoint_component(reference['checkpoint_id']),
     )
 
 
@@ -368,7 +407,7 @@ def _refinement_map(
 ) -> Path:
     outputs = checkpoint.get("outputs")
     map_value = outputs.get("map_coefficients") if isinstance(outputs, Mapping) else None
-    if schema_version == 2 and map_value is not None:
+    if schema_version in {2, 3, 4, 5} and map_value is not None:
         _require_checkpoint_checksum(map_value, "map coefficients")
     reported_map = resolve_artifact_path(map_value, run)
     if reported_map is not None:
@@ -377,7 +416,7 @@ def _refinement_map(
         raise CootViewError(
             "Checkpoint map coefficients are missing or failed checksum validation"
         )
-    if schema_version == 2:
+    if schema_version in {2, 3, 4, 5}:
         reflection_value = (
             outputs.get("refinement_reflections")
             if isinstance(outputs, Mapping)
@@ -395,24 +434,25 @@ def _checkpoint_dictionaries(
     run: Path, checkpoint: Mapping[str, object], schema_version: int
 ) -> tuple[Path, ...]:
     restraints = checkpoint.get("restraints")
+    if restraints is not None and not isinstance(restraints, list):
+        raise CootViewError("Malformed checkpoint restraint list")
     dictionaries: list[Path] = []
-    if isinstance(restraints, list):
-        for value in restraints:
-            if schema_version == 2:
-                _require_checkpoint_checksum(value, "restraint")
-            path = resolve_artifact_path(value, run)
-            if path is not None:
-                if path.suffix.casefold() == ".cif" and not is_modification_only(path):
-                    dictionaries.append(path)
-                continue
-            reported_value = (
-                value.get("relative_path", value.get("absolute_path", value.get("path")))
-                if isinstance(value, Mapping) else value
-            )
-            if isinstance(reported_value, str) and reported_value.casefold().endswith(".cif"):
-                raise CootViewError(
-                    "Checkpoint ligand dictionary is missing or failed checksum validation"
-                )
+    for value in restraints or []:
+        if schema_version in {2, 3, 4, 5}:
+            _require_checkpoint_checksum(value, "restraint")
+        # PHIL and modification-only CIFs belong to the same frozen selection,
+        # even though Coot displays only component dictionaries. Validate every
+        # recorded input before deciding which dictionaries to load.
+        reported = (
+            value.get("relative_path", value.get("absolute_path", value.get("path")))
+            if isinstance(value, Mapping) else value
+        )
+        description = ("checkpoint ligand dictionary"
+                       if isinstance(reported, str) and reported.casefold().endswith(".cif")
+                       else "checkpoint restraint")
+        path = _reported_file(value, description, run)
+        if path.suffix.casefold() == ".cif" and not is_modification_only(path):
+            dictionaries.append(path)
     return tuple(dictionaries)
 
 
@@ -424,7 +464,7 @@ def _refinement_anomalous_maps(
     value = outputs.get("refinement_reflections") if isinstance(outputs, Mapping) else None
     if value is None:
         return (map_path,)
-    if schema_version == 2:
+    if schema_version in {2, 3, 4, 5}:
         _require_checkpoint_checksum(value, "refinement reflections")
     reflections = _reported_file(value, "checkpoint refinement reflections", run)
     return tuple(dict.fromkeys((map_path, reflections)))
@@ -436,7 +476,7 @@ def _same_observations(
     paths = []
     for item in (child, parent):
         value = item.get("observations")
-        if schema_version == 2:
+        if schema_version in {2, 3, 4, 5}:
             _require_checkpoint_checksum(value, "observations")
         paths.append(_reported_file(value, "checkpoint observations", run))
     if paths[0] != paths[1] and file_sha256(paths[0]) != file_sha256(paths[1]):
@@ -465,7 +505,7 @@ def _checkpoint_map(
     if kind == "postmr":
         map_path, map_source = _postmr_map(run, report)
         return map_path, map_source, (map_path,)
-    if kind != "manual":
+    if kind not in {"manual", "preparation"}:
         raise CootViewError(f"Checkpoint {identifier} has unsupported kind: {kind}")
     parent_id = checkpoint.get("parent")
     parent = checkpoints.get(parent_id) if isinstance(parent_id, str) else None
@@ -477,7 +517,7 @@ def _checkpoint_map(
     )
     return (
         map_path,
-        f"inherited {map_source} (not recalculated for manual model)",
+        f"inherited {map_source} (not recalculated for {'prepared alternative' if kind == 'preparation' else 'manual model'})",
         anomalous_paths,
     )
 
@@ -491,6 +531,7 @@ def _autorefine_profile(
     schema_version = registry.get("schema_version")
     if type(schema_version) is not int or schema_version not in READABLE_SCHEMA_VERSIONS:
         raise CootViewError(f"Unsupported checkpoint schema: {schema_version}")
+    _validate_preparation_view(run, report, registry)
     current = checkpoint_id or registry.get("current")
     items = registry.get("checkpoints")
     if not isinstance(current, str) or not isinstance(items, list):
@@ -508,8 +549,13 @@ def _autorefine_profile(
     if checkpoint is None:
         requested = "requested checkpoint" if checkpoint_id else "current pointer"
         raise CootViewError(f"Checkpoint registry {requested} is unknown: {current}")
+    from .cif_postmr_publication import validate_preparation_lineage
+    try:
+        validate_preparation_lineage(registry, checkpoint)
+    except ValueError as exc:
+        raise CootViewError(str(exc)) from exc
     model_ref = checkpoint.get("model")
-    if schema_version == 2:
+    if schema_version in {2, 3, 4, 5}:
         _require_checkpoint_checksum(model_ref, "model")
     model = _reported_file(model_ref, "checkpoint model", run)
     map_path, map_source, anomalous_paths = _checkpoint_map(
@@ -523,10 +569,47 @@ def _autorefine_profile(
         map_path,
         (),
         _checkpoint_dictionaries(run, checkpoint, schema_version),
-        f"{selection} {checkpoint.get('kind')} checkpoint {current} ({status})",
+        f"{selection} {checkpoint.get('kind')} checkpoint {current} ({status})"
+        + (f": {checkpoint.get('label')}" if schema_version in {3, 4, 5} else ""),
         map_source,
         current,
         anomalous_paths,
+    )
+
+
+def _preparation_profile(run: Path, report: Mapping[str, object], attempt: int) -> ViewProfile:
+    """Display one checked preparation, including a verified retained parent.
+
+    The exact request reader validates the complete model/CIF/PHIL evidence.
+    Display does not approve refinement or publish/select a checkpoint. Reuse the
+    original MR map; it has not been recalculated for the prepared model.
+    """
+    import shlex
+    from .cif_ordinary_postmr import read_ordinary_postmr_result
+    from .campaigns import CampaignError
+
+    command = shlex.join([
+        "nasolve", "cif-doctor", "prepared-result", str(run), "--attempt", str(attempt),
+    ])
+    try:
+        result = read_ordinary_postmr_result(run, attempt_number=attempt)
+    except (OSError, ValueError, CampaignError) as exc:
+        raise CootViewError(
+            f"Cannot verify preparation attempt {attempt}: {exc}. Read saved result: {command}"
+        ) from exc
+    if result.model_path is None:
+        raise CootViewError(
+            f"Preparation attempt {attempt} has no checked model/restraint combination. "
+            f"Read saved result: {command}"
+        )
+    return ViewProfile(
+        stage="preparation", model_path=result.model_path,
+        map_path=_phaser_map(run, report), extra_model_paths=(),
+        dictionary_paths=tuple(path for path in result.dictionary_paths if not is_modification_only(path)),
+        source=(f"Preparation attempt {attempt}: {result.message} ReadySet: {result.readyset_status}. "
+                "Diagnostic inspection; no refinement or checkpoint adoption."),
+        map_source="Phaser MR map (not recalculated for this preparation)",
+        preparation_attempt=attempt,
     )
 
 
@@ -535,11 +618,19 @@ def resolve_view_profile(
     *,
     stage: str | None = None,
     checkpoint: str | None = None,
+    preparation_attempt: int | None = None,
 ) -> ViewProfile:
+    if preparation_attempt is not None:
+        if type(preparation_attempt) is not int or preparation_attempt < 1:
+            raise CootViewError("Preparation attempt must be an exact positive integer")
+        if stage is not None or checkpoint is not None:
+            raise CootViewError("--preparation-attempt cannot be combined with --stage or --checkpoint")
     run = run_directory.expanduser().resolve()
     if checkpoint is not None:
         checkpoint = _checkpoint_component(checkpoint)
     report = _read_json(_required_file(run / "report.json", "AutoMR report"), "run report")
+    if preparation_attempt is not None:
+        return _preparation_profile(run, report, preparation_attempt)
     resolvers = {
         "automr": _phaser_profile,
         "postmr": _postmr_profile,
@@ -641,6 +732,7 @@ def launch_coot_view(
     *,
     stage: str | None = None,
     checkpoint: str | None = None,
+    preparation_attempt: int | None = None,
     environment: Mapping[str, str] | None = None,
     launcher: Callable[..., object] = subprocess.Popen,
 ) -> CootViewResult:
@@ -648,11 +740,15 @@ def launch_coot_view(
     run = run_directory.expanduser().resolve()
     if checkpoint is not None:
         checkpoint = _checkpoint_component(checkpoint)
-    profile = resolve_view_profile(run, stage=stage, checkpoint=checkpoint)
+    profile = resolve_view_profile(
+        run, stage=stage, checkpoint=checkpoint, preparation_attempt=preparation_attempt,
+    )
     scratch_root = run / "CootGUI"
     working = scratch_root / profile.stage
     if profile.checkpoint_id is not None:
         working = working / profile.checkpoint_id
+    if profile.preparation_attempt is not None:
+        working = working / f"attempt-{profile.preparation_attempt:04d}"
     backups = working / "backups"
     _reject_symlink_components(run, backups)
     try:
@@ -709,6 +805,8 @@ def launch_coot_view(
                 "stage": profile.stage,
                 "run_directory": str(run),
                 "checkpoint_id": profile.checkpoint_id,
+                **({"preparation_attempt": profile.preparation_attempt}
+                   if profile.preparation_attempt is not None else {}),
                 "source": profile.source,
                 "map_source": profile.map_source,
                 "model_path": str(profile.model_path),
@@ -741,6 +839,7 @@ def launch_coot_view(
         source=profile.source,
         map_source=profile.map_source,
         checkpoint_id=profile.checkpoint_id,
+        preparation_attempt=profile.preparation_attempt,
     )
 
 

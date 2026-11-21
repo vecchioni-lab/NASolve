@@ -16,7 +16,7 @@ from .config import AppConfig, PhenixSettings
 
 
 REQUIRED_PROGRAMS = ("phenix.phaser", "phenix.ready_set", "phenix.refine")
-OPTIONAL_PROGRAMS = ("phenix.mtz.dump", "phenix.autosol")
+OPTIONAL_PROGRAMS = ("phenix.mtz.dump", "phenix.autosol", "phenix.elbow", "phenix.python")
 VERSION_PROGRAM = "phenix.version"
 
 
@@ -106,7 +106,13 @@ def _from_environment(
     resolved: dict[str, Path] = {}
     missing: list[str] = []
     for program in (*REQUIRED_PROGRAMS, *OPTIONAL_PROGRAMS, VERSION_PROGRAM):
-        found = shutil.which(program, path=path_value)
+        if program in {"phenix.elbow", "phenix.python"}:
+            # Explicit candidate/native diagnostics use this installation's
+            # dispatchers, rather than a different installation on a mixed PATH.
+            phaser = resolved.get("phenix.phaser")
+            found = shutil.which(str(phaser.parent / program)) if phaser is not None else None
+        else:
+            found = shutil.which(program, path=path_value)
         if found:
             resolved[program] = Path(found).resolve()
         elif program in REQUIRED_PROGRAMS:

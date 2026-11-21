@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "kind": "NASolve packaged chemical reference",
+  "identity": {
+    "laboratory_code": "DY",
+    "display_name": "Y / retained-triazole deoxynucleoside",
+    "chemical_name": "Y: 4-(1,2,4-triazol-1-yl)-2-pyrimidinone beta-D-2-deoxyriboside",
+    "formula": "C11H13N5O4",
+    "formal_charge": 0,
+    "deposition_code": null,
+    "isomeric_smiles": "O=c1nc(-n2cncn2)ccn1[C@H]1C[C@H](O)[C@@H](CO)O1",
+    "stereochemistry": {
+      "C1'": "R",
+      "C3'": "S",
+      "C4'": "R"
+    },
+    "attachment": "pyrimidine C4 -- triazole N1T, direct single C-N bond; no O4 bridge",
+    "chemical_state": "neutral free nucleoside; 3-prime and 5-prime hydroxyl; no phosphate, DMT or phosphoramidite",
+    "previous_preview_label": "YTR; historical display label only, not a runtime alias"
+  },
+  "definition": {
+    "anchor": "nasolve:data/chemical_references",
+    "path": "DY.cif",
+    "sha256": "d8345c307d35f5385c95d7ba9ad46d1462fb39f3b6bd4e1904ffc41b0c5ac572",
+    "contents": [
+      "explicit named atoms, elements, formal charges and bond orders",
+      "sugar absolute stereochemical labels",
+      "computed coordinate preview",
+      "stereochemical SMILES cross-check"
+    ],
+    "not_contents": [
+      "bond-length/angle/torsion targets or ESDs",
+      "polymer-link or terminal-phosphate dictionary",
+      "pairing or metal-coordination intent"
+    ]
+  },
+  "provenance": {
+    "author": "Rowan",
+    "date": "2026-11-16",
+    "user_intent": "Simon explicitly requested retained triazole, approved the visual preview, chose laboratory code DY and authorized packaging with NASolve. Visual agreement does not qualify numerical restraints.",
+    "sources": [
+      "https://web.archive.org/web/20250211154209/https://www.glenresearch.com/convertible-nucleosides/10-1051.html",
+      "https://www.cambio.co.uk/library/images/html_images/Glen_structures/dec2025/10-1051.png",
+      "https://www.synthose.com/products/DR571"
+    ],
+    "source_interpretation": "Synthose title/formula agree; its Search Terms SMILES/InChI incorrectly describe the 5-methyl analog and were NOT used. Graph transcribed from drawing and named nonmethyl structure.",
+    "preview_sha256": "e48802eb36aef3754e900899330031d63d0856a39248ca4b2b0267a6b6a0b7ae",
+    "source_drawing_sha256": "b72758fd47fdb1384bccd90d23f1c19c35f986b4e7f5d0a1724fb9318a68a10a",
+    "conversion": "Rename only component/display labels YTR to DY; append explicit stereo and descriptor metadata. Preview coordinates, atom IDs and bond orders retained exactly.",
+    "generation": {
+      "RDKit": "2026.03.1",
+      "embedding": "ETKDGv3 seed1051,12 conformers",
+      "optimization": "MMFF94s,1000 maximum iterations,one thread",
+      "converged_conformers": 12,
+      "selected_energy_kcal_mol": 23.52632879134529,
+      "interring_dihedral_N3_C4_N1T_N2T_deg": -179.54649695329192,
+      "added_plane_or_torsion_constraints": false
+    }
+  },
+  "qualification": {
+    "status": "REFERENCE_PACKAGED_MUTATION_QUEUED",
+    "mutation_enabled": false,
+    "refinement_restraints": "NOT_QUALIFIED",
+    "polymer_linkage": "NOT_QUALIFIED",
+    "readyset": "NOT_RUN",
+    "coot_construction": "NOT_RUN",
+    "phenix_refinement": "NOT_RUN",
+    "chimerax_readback": {
+      "status": "CHIMERAX_READ_PASS",
+      "atoms": 33,
+      "heavy_atoms": 20,
+      "bonds": 35,
+      "exact_named_connectivity": true,
+      "residue": "YTR"
+    },
+    "checks": [
+      "sanitized valence/aromaticity",
+      "formula",
+      "three specified sugar stereocentres",
+      "3D-derived chirality",
+      "SDF/MOL stereochemical roundtrip",
+      "Gemmi coordinate CIF parse"
+    ],
+    "limitations": [
+      "Computed isolated conformer, not experimental coordinates or a unique preferred conformation.",
+      "No Cedar/ReadySet/Phenix restraint or polymer linkage qualification.",
+      "No imposed whole-base coplanarity; MMFF torsional energetics still apply."
+    ]
+  },
+  "development": {
+    "queue": "docs/cif-doctor-completion-queue.md#dy--packaged-retained-triazole-reference-and-mutation-support",
+    "requirements": [
+      "Reuse the existing source-bound dictionary acquisition/repair and immutable request owners.",
+      "Qualify neutral source state, numerical restraints and native/derivative readback, preserving rotatable inter-ring bond.",
+      "Prepare linked and explicit terminal contexts without silently inheriting free-nucleoside OH or adding OP3.",
+      "Test ordinary Coot/PostMR mutation with unchanged neighboring sites, sugar hand, chi and complete connected base.",
+      "Publish DY through existing curated/alias and NARestraints contracts only after qualification; do not infer Watson-Crick or metal pairing.",
+      "Check actual Phenix refinement survival and a related sound rotating-ring false-positive control."
+    ]
+  }
+}

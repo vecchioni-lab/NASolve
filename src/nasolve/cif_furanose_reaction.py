@@ -1,0 +1,256 @@
+"""Explicit graph-bound neutral furanose reaction controls for native inspection.
+
+Source chemistry, complete candidate numerics and native reaction conventions are
+separate authorities. This adapter emits diagnostic inputs, not a linked or
+isolated native qualification and not an automatic ReadySet replacement.
+"""
+from hashlib import sha256
+import json
+from pathlib import Path
+import re
+import tempfile
+
+from .cif_attachment_profiles import inspect_attachment_profile
+from .cif_attachment_sites import _model, _object, _projection_values, _site, inspect_attachment_site
+from .cif_candidate_usability import reassess_complete_candidate
+from .cif_fana_component import _digest, _load, _save
+from .cif_linked_preparation import _prune, _render, _selection, atom_rows
+from .cif_preparation_qualification import project_source_configurations
+from .cif_stereochemistry_audit import _graph
+from .ligand_profiles import _emit
+
+POLICY_ID = 'cif-graph-furanose-native-reaction-v1'
+# OC2 follows the native NA-STAND outgoing oxygen convention, but only after
+# the source graph proves a neutral C-O-H port and an explicit O-P substitution.
+# Its other blanket phosphate deletions are deliberately not imported here.
+ENERGY_POLICY = 'cif-neutral-furanose-outgoing-oxygen-oc2-v1'
+_PROFILES = {'unbridged-furanose-phosphate-v1', 'two-o-four-c-methylene-furanose-phosphate-v1'}
+_INPUTS = {'source.cif', 'numerical.cif', 'Ligands.xlsx', 'model.pdb', 'contexts.json', 'selection.json'}
+_OUTPUTS = {'base_dictionary.cif', 'site_modifications.cif', 'site_modifications.phil', 'preparation.json'}
+
+
+def _derive(root):
+    selection = _load(root/'selection.json'); _object(selection, ('code',))
+    return derive_furanose_reaction(root/'source.cif', root/'numerical.cif', root/'Ligands.xlsx',
+                                    root/'model.pdb', selection['code'], _load(root/'contexts.json'))
+
+
+def derive_furanose_reaction(source_path, numerical_path, workbook, model_path, code, contexts, *,
+                             bond_representation_policy=None):
+    """Derive the same site chemistry from a diagnostic capsule or a stored dictionary."""
+    if not isinstance(code, str) or not re.fullmatch('[A-Z0-9]{1,3}', code):
+        raise ValueError('Require explicit PDB-compatible component identity')
+    values = _projection_values(numerical_path, code)
+    source = _projection_values(source_path, code)
+    # Numerical generation may choose a native group independently. It must not
+    # change the source's declared polymer classification to gain link support.
+    classification = lambda v: [' '.join(x.upper().split()) for x in v.get('_chem_comp.type', [])]
+    if classification(values) and classification(source) != classification(values):
+        raise ValueError('Candidate changes the source polymer classification')
+    metadata_changes = []
+    if not classification(values) and classification(source):
+        metadata_changes.append({'field': '_chem_comp.type', 'before': None,
+                                 'after': source['_chem_comp.type'], 'authority': 'SOURCE'})
+        values['_chem_comp.type'] = list(source['_chem_comp.type'])
+    assessment = reassess_complete_candidate(source_path, numerical_path, code,
+                                              bond_representation_policy=bond_representation_policy)
+    stereo = assessment['finished_stereo']
+    if (assessment['candidate_status'] != 'CANDIDATE_REVIEW' or not stereo['terms']
+            or any(t['handedness'] != 'PRESERVED' for t in stereo['terms'])):
+        raise ValueError('Require complete source-preserving numerics and all source configurations')
+    profile = inspect_attachment_profile(source_path, code, workbook=workbook)
+    if profile['topology_status'] != 'MATCH' or profile['matched_profile'] not in _PROFILES:
+        raise ValueError('Require a uniquely supported furanose source graph')
+    roles = profile['bindings']; charges = _graph(source)[2]
+    model = _model(model_path.read_bytes())
+    if not isinstance(contexts, list) or not contexts or len(contexts) > 256:
+        raise ValueError('Require one to 256 explicit site contexts')
+    for c in contexts:_object(c, ('schema_version', 'site', 'ports'))
+    sites = [c['site'] for c in contexts]
+    if (any(not isinstance(s, str) for s in sites) or len(set(sites)) != len(sites)
+            or set(sites) != {s for s, row in model.items() if row['component'] == code}):
+        raise ValueError('Contexts must cover every model site with this component exactly once')
+    plans = []; blocks = []; phil = []
+    with tempfile.TemporaryDirectory(prefix='nasolve-reaction-sites-') as temporary:
+        context_file = Path(temporary)/'context.json'
+        for context in sorted(contexts, key=lambda c: c['site']):
+            # This existing source authority owns protonation, leaving groups,
+            # model identity, partner elements and identity-symmetry restrictions.
+            context_file.write_text(json.dumps(context))
+            plan = inspect_attachment_site(source_path, code, workbook=workbook,
+                                           model=model_path, context=context_file)
+            if plan['plan_status'] != 'PROPOSED':
+                raise ValueError('Source authority cannot qualify the declared neutral port operation')
+            projection = plan['permitted_source_projection']; removed = set(projection['deleted_atoms'])
+            outgoing = context['ports']['alcohol']['state'] == 'linked'
+            incoming = context['ports']['phosphate']['state'] == 'linked'
+            if incoming and charges[roles['phosphate']] != 0:
+                raise ValueError('Charged phosphate centre needs separate native-state authority')
+            derivative = _prune(values, removed, outgoing=False)
+            changes = []; rows = []
+            identifier = 'NSFR'+sha256(json.dumps({'code': code, 'context': context},sort_keys=True).encode()).hexdigest()[:12]
+            for atom in sorted(removed):rows.append([identifier,'delete',atom,'.','.','.','.'])
+            if outgoing:
+                atom = roles['three_o']; index = derivative['_chem_comp_atom.atom_id'].index(atom)
+                before = derivative['_chem_comp_atom.type_energy'][index]
+                if before != 'OH1':
+                    raise ValueError('Outgoing neutral alcohol requires explicit native OH1 typing')
+                derivative['_chem_comp_atom.type_energy'][index] = 'OC2'
+                changes.append({'atom_id': atom, 'before': before, 'after': 'OC2', 'policy_id': ENERGY_POLICY})
+                rows.append([identifier,'change',atom,'.','.','OC2','.'])
+            configuration = project_source_configurations({'source_configuration': stereo}, values, derivative)
+            if any(c['status'] != 'RETAINED_SOURCE_NEIGHBORS' for c in configuration):
+                raise ValueError('Reaction cannot remove a source-declared configuration')
+            site = context['site']; selector = _selection(site, code)
+            if rows:
+                mod = {'data_':'mod_'+identifier}
+                fields = ('mod_id','function','atom_id','new_atom_id','new_type_symbol','new_type_energy','new_partial_charge')
+                for i, field in enumerate(fields):mod['_chem_mod_atom.'+field] = [r[i] for r in rows]
+                blocks.append(_emit(mod))
+                phil.append('refinement.pdb_interpretation.apply_cif_modification {\n'
+                            f'  data_mod = {identifier}\n  residue_selection = {selector}\n}}\n')
+            actual = atom_rows(derivative)
+            plans.append({'site': site, 'context': context, 'selection': selector,
+                          'modification_id': identifier if rows else None,
+                          'source_projection': projection, 'deleted_atoms': sorted(removed),
+                          'energy_type_changes': changes, 'expected_atoms': sorted(actual),
+                          'source_configuration_projection': configuration,
+                          'projected_definition': derivative})
+    artifacts = {'base_dictionary.cif': _render(values, code),
+                 'site_modifications.cif': '\n'.join(blocks) if blocks else 'data_mod_reaction_sites\n# No modifications.\n',
+                 'site_modifications.phil': ''.join(phil)}
+    report = {'schema_version': 1, 'policy_id': POLICY_ID, 'status': 'PREPARED_REVIEW',
+              'component': code, 'source_profile': profile['matched_profile'], 'roles': roles,
+              'source_configuration': stereo, 'sites': plans,
+              'numerical_group_preserved': True, 'source_classification_preserved': True,
+              'metadata_changes': metadata_changes, 'formal_charge_changes': [],
+              'native_qualification': 'NOT_ASSESSED', 'isolated_native_qualification': 'NOT_ASSESSED',
+              'partner_chemistry': 'NOT_ASSESSED', 'junction_geometry': 'NOT_ASSESSED',
+              'experimental_protonation': 'UNASSESSED', 'automatic_adoption': False}
+    return report, artifacts
+
+
+def internal_furanose_contexts(contexts, reaction_contexts):
+    """Check the two explicit bond declarations before any numerical work."""
+    if (not isinstance(contexts,list) or not isinstance(reaction_contexts,list)
+            or not 1 <= len(reaction_contexts) <= 256):
+        raise ValueError('Require explicit internal furanose contexts')
+    sites = {}
+    for declaration in contexts:
+        _object(declaration, ('site','five_prime_state','three_prime_state','incoming_site','outgoing_site'),
+                ('symmetry_operation','experimental_passthrough'))
+        sites[_site(declaration['site'])] = declaration
+    for context in reaction_contexts:
+        _object(context, ('schema_version','site','ports'))
+        _site(context['site'])
+        if type(context['schema_version']) is not int or context['schema_version'] != 1:
+            raise ValueError('Unrecognized graph reaction context')
+    if (len(sites) != len(contexts) or len(sites) != len(reaction_contexts)
+            or sites.keys() != {c['site'] for c in reaction_contexts}):
+        raise ValueError('Stored sites and graph reaction sites differ')
+    for context in reaction_contexts:
+        declaration = sites[context['site']]
+        if (declaration['five_prime_state'] != 'linked' or declaration['three_prime_state'] != 'linked'
+                or declaration.get('symmetry_operation') not in (None,'x,y,z')
+                or declaration.get('experimental_passthrough',False) is not False):
+            raise ValueError('Stored graph reaction requires two declared same-ASU phosphodiester links')
+        ports = context['ports']
+        _object(ports, ('phosphate','alcohol'))
+        for name, partner, atom in [('phosphate',declaration['incoming_site'],"O3'"),
+                                    ('alcohol',declaration['outgoing_site'],'P')]:
+            port = ports[name]
+            _object(port, ('state','partner','symmetry_operation') + (('leaving_atom',) if name=='phosphate' else ()))
+            _object(port['partner'], ('component','site','atom_id'))
+            if (port['state'] != 'linked' or port['symmetry_operation'] != 'x,y,z'
+                    or _site(port['partner']['site']) != partner
+                    or port['partner']['atom_id'] != atom):
+                raise ValueError('Reaction partner disagrees with the complete backbone declaration')
+            if name=='phosphate' and not (isinstance(port['leaving_atom'],str) and port['leaving_atom'].strip()):
+                raise ValueError('A phosphate reaction requires an explicit leaving atom')
+    return sites
+
+
+def prepare_internal_furanose_sites(source, numerical, workbook, model, output, *, code,
+                                    contexts, reaction_contexts, bond_representation_policy):
+    """Join the declared port substitution to the exact whole-model phosphodiester links."""
+    from .cif_phosphate_names import phosphate_names
+    from .cif_terminal_qualification import projection_site_plan
+
+    sites = internal_furanose_contexts(contexts,reaction_contexts)
+    reaction, artifacts = derive_furanose_reaction(source, numerical, workbook, model, code,
+        reaction_contexts, bond_representation_policy=bond_representation_policy)
+    roles = reaction['roles']
+    if (roles['phosphate'], roles['five_o'], roles['three_o']) != ('P', "O5'", "O3'"):
+        raise ValueError('Stored native backbone requires conventional phosphorus and linkage oxygen names')
+    output.mkdir()
+    for name, content in artifacts.items():
+        (output/name).write_text(content)
+    plans = []
+    for plan in reaction['sites']:
+        site = plan['site']; declaration = sites[site]
+        definition = plan['projected_definition']
+        phosphate_names(definition, leaving_required=False)
+        groups = definition.get('_chem_comp.group', [])
+        types = [' '.join(t.upper().split()) for t in definition.get('_chem_comp.type', [])]
+        classes = {'RNA LINKING':'RNA','L-RNA LINKING':'RNA','DNA LINKING':'DNA','L-DNA LINKING':'DNA'}
+        if (len(types) != 1 or types[0] not in classes or
+                len(groups) != 1 or groups[0] not in ('RNA','DNA','non-polymer')):
+            raise ValueError('Require explicit source linking type and a supported numerical native group')
+        path = output/('projected_'+site.replace(':','_')+'.cif')
+        path.write_text(_render(definition, code))
+        plans.append({**declaration, **projection_site_plan(path,code,site),
+                      **{k:plan[k] for k in ('selection','modification_id','deleted_atoms',
+                         'energy_type_changes','source_configuration_projection')},
+                      'expected_native_group':groups[0], 'expected_native_classification':classes[types[0]]})
+    return {**reaction, 'sites':plans}
+
+
+def prepare_furanose_reaction_control(source, numerical, workbook, model, output, *, code, contexts):
+    """Freeze a fresh diagnostic attempt and emit native per-site modifiers.
+
+    All model sites sharing this component require explicit contexts. Candidate
+    completeness and source stereochemistry are reassessed; a prior isolated pass
+    is not treated as proof of the new linked state. No external tool is run.
+    """
+    paths = dict(zip(('source.cif','numerical.cif','Ligands.xlsx','model.pdb'),
+                     [Path(p).expanduser().resolve(strict=True) for p in (source,numerical,workbook,model)]))
+    out = Path(output).expanduser().absolute()
+    if out.exists() or out.is_symlink():raise FileExistsError(out)
+    if any(p.is_symlink() for p in out.parents) or any(p.is_relative_to(out.resolve()) for p in paths.values()):
+        raise ValueError('Output must be separate and cannot traverse symlinks')
+    before = {n:p.read_bytes() for n,p in paths.items()}
+    with tempfile.TemporaryDirectory(prefix='nasolve-reaction-preflight-') as temporary:
+        stage = Path(temporary)
+        for n,data in before.items():(stage/n).write_bytes(data)
+        _save(stage/'contexts.json', contexts); _save(stage/'selection.json', {'code':code})
+        expected, outputs = _derive(stage)
+        out.mkdir(parents=True, exist_ok=False)
+        for n in _INPUTS:
+            with (out/n).open('xb') as stream:stream.write((stage/n).read_bytes())
+    actual, frozen = _derive(out)
+    if actual != expected or frozen != outputs or any(p.read_bytes() != before[n] for n,p in paths.items()):
+        raise ValueError('Reaction inputs changed during freezing')
+    for n,data in outputs.items():
+        with (out/n).open('x') as stream:stream.write(data)
+    _save(out/'preparation.json', actual)
+    _save(out/'receipt.json', {'schema_version':1,'policy_id':POLICY_ID,
+          'files':{n:_digest(out/n) for n in sorted(_INPUTS | _OUTPUTS)}})
+    return read_furanose_reaction_control(out)
+
+
+def read_furanose_reaction_control(control):
+    """Recompute the frozen chemical operation and exact native inputs offline."""
+    root = Path(control).expanduser().resolve(strict=True); paths = list(root.rglob('*'))
+    if (any(p.is_symlink() or not p.is_file() for p in paths)
+            or {p.name for p in paths} != _INPUTS | _OUTPUTS | {'receipt.json'}):
+        raise ValueError('Require an exact nonsymlinked reaction capsule')
+    before = {p:p.read_bytes() for p in paths}; receipt = _load(root/'receipt.json')
+    if (set(receipt) != {'schema_version','policy_id','files'} or type(receipt['schema_version']) is not int
+            or receipt['schema_version'] != 1 or receipt['policy_id'] != POLICY_ID
+            or receipt['files'] != {n:_digest(root/n) for n in sorted(_INPUTS | _OUTPUTS)}):
+        raise ValueError('Invalid completion receipt or checksums')
+    report, outputs = _derive(root)
+    if (report != _load(root/'preparation.json') or any((root/n).read_bytes() != data.encode() for n,data in outputs.items())
+            or any(p.read_bytes() != data for p,data in before.items())):
+        raise ValueError('Saved reaction differs from fresh source derivation')
+    return report
