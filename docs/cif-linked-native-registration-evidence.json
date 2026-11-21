@@ -121106,5 +121106,128 @@
       "full_suite": "DEFERRED"
     },
     "scope": "ATL is the positive reference. Three reduced models explicitly expose the two native phosphate bonds, eight flanking angles and two requested pair bonds. For TLN/9V9 the ordinary fit stops at its existing 2 Å limit. The diagnostic 5 Å seed enabled a native geometry reading only. These are neither diffraction children nor approvals to use a proposed held-out pose."
+  },
+  "locked_sugar_paired_pose_diffraction_2026_11_21": {
+    "source_commit": "d5b0307c7556f627ef993b5f1c1428a728b39f37",
+    "program": "Phenix 2.2.1-6174",
+    "narestraints": "1.1.3",
+    "question": "Can motion of the declared opposing base and its flanks improve a held-out locked-sugar pair on the same W host?",
+    "component": "9V9",
+    "site": "A:11",
+    "partner": "B:5",
+    "source_sha256": "646036e882852014640c062744bfbdbecb8f526694e67cffd9c6d7f1c42c79c4",
+    "native_start_sha256": "60b419e29766e333b5376165a125f823ea109943bc43919ce202c467d2174529",
+    "controls": {
+      "atoms": 869,
+      "residues": 42,
+      "component_sites": 13,
+      "unchanged_other_sources": 12,
+      "covalent_links": 38,
+      "flanking_angles": 152,
+      "frame": {
+        "angle": 90,
+        "bond": 53,
+        "parallelity": 58,
+        "planarity": 10
+      },
+      "protected_terminal_angles": 6,
+      "pair_target_A": 2.8,
+      "pair_sigma_A": 0.4,
+      "cycles": 5,
+      "intensities_and_sigmas": 2273,
+      "original_free_R_flags": 3236,
+      "measured_free": 127,
+      "measured_work": 2146
+    },
+    "design": "Same starting sugar, native restraints and five-cycle recipe. Source-constrained rigid groups and graph-defined rotors, with one-angstrom tethers. Only the six-site start also admitted motion of B:5, B:4 and B:6. Both refinements then allowed the same atoms to move.",
+    "methods": {
+      "c500_full_locked_geometry.py": "6858260ced3a716cf291ecabec0a4813076c437e0d127c406862c24d43248212",
+      "c501_native_paired_neighbours.py": "3957eee9acd7277172ecdc801457be90d261ed47f4c1ddf100f4c4ffd1a0d70f",
+      "c501_refine_locked_pose.py": "e94f78799a1587f8c87e58e579652b6f9b920a0508babd75ddd146a26aedd23f",
+      "c501_locked_pose_observations.py": "6477780ad95fd4a7ffbe7670f6bc0c5477cf4615a61b09190102a95da7decdde"
+    },
+    "cases": {
+      "moving_one_strand": {
+        "start_sha256": "b2d0be22be949b2415f6b805caa6c11ef2fffa30d9b168fad6a16ae3fdab380b",
+        "written_sha256": "e2817a7ff2a228943dd48456a87df9ba1cfc7afb012b6b1362498aab7f4a3b5d",
+        "execution_sha256": "1802ec69ff2f77f062697bd6ebab6712b5313511f38cb829a1e567723dea0d62",
+        "final_geo_sha256": "5b85e26758586501a55cad053405286e3bcf6278850314f8b0dfa4eebd6de926",
+        "max_seed_base_displacement_A": 1.5327,
+        "N3_N1_then_O4_N6_before_after_A": [
+          [
+            3.6684,
+            3.4189
+          ],
+          [
+            4.4326,
+            3.8766
+          ]
+        ],
+        "incoming_then_outgoing_before_after_A": [
+          [
+            1.6134,
+            1.6081
+          ],
+          [
+            1.6343,
+            1.6151
+          ]
+        ],
+        "final_pair_plane_rms_A": 0.0779,
+        "sugar_centres_retaining_hand": 4,
+        "local_phosphates_retaining_order": 8,
+        "central_final_contacts_over_point4_A": 4,
+        "worst_overlap_A": 0.579,
+        "central_B_range_A2": [
+          195.14,
+          195.14
+        ],
+        "r_work_free": [
+          0.2656,
+          0.2418
+        ]
+      },
+      "moving_both_strands": {
+        "start_sha256": "3511bec38c1f8c591f92bf496913b735fc016a62cfc4c6c6e1130eaca4d9d1ca",
+        "written_sha256": "fdcfd980bc13077a145b267baecc4a952549e0c6430e8cccfad8aea694eeb347",
+        "execution_sha256": "05365db18b037f3821701506fa4341a785282f4353dbb0710e52df47734b782f",
+        "final_geo_sha256": "e14ab12380668012f103ef97b96e513314e418bca76096dc9145230f8d3141ca",
+        "max_seed_base_displacement_A": 1.2977,
+        "N3_N1_then_O4_N6_before_after_A": [
+          [
+            3.2894,
+            3.2014
+          ],
+          [
+            3.3878,
+            3.1758
+          ]
+        ],
+        "incoming_then_outgoing_before_after_A": [
+          [
+            1.6148,
+            1.6077
+          ],
+          [
+            1.6307,
+            1.6147
+          ]
+        ],
+        "final_pair_plane_rms_A": 0.0653,
+        "sugar_centres_retaining_hand": 4,
+        "local_phosphates_retaining_order": 8,
+        "central_final_contacts_over_point4_A": 4,
+        "worst_overlap_A": 0.584,
+        "central_B_range_A2": [
+          191.74,
+          191.74
+        ],
+        "r_work_free": [
+          0.2652,
+          0.2505
+        ]
+      }
+    },
+    "interpretation": "Both contacts improve when the opposing strand can accommodate placement. The same-strand seed has the lower final global R-free. Four overlaps persist and local displacement is high in both. These are unregistered diagnostic refinements on host observations. Neither particular pose nor a default constructor is selected."
   }
 }

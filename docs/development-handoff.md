@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C497–C499 mixed refinement and locked-sugar transfer — Rowan**.
+Updated **2026-11-21, C497–C501 mixed refinement and locked-sugar transfer — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -55,9 +55,17 @@ sugars' dictionaries actually produce the expected links. Each showed both
 the two requested NARestraints pair bonds. Both the ten covalent targets
 and their sigmas agreed across ATL, TLN and 9V9. Phenix found every expected
 heavy atom. This was a geometry reading using a 5 Å diagnostic allowance for
-placement. TLN and 9V9 still need a working ordinary pose and diffraction
-testing. Reuse the source-bound three-residue adjustment with the full duplex
-and original frame before considering a change to automatic construction.
+placement. TLN still needs a working pose. For 9V9, C500/C501 rebuilt the full
+duplex and compared two starts in five Phenix cycles on the same host data.
+Allowing the opposing adenine and its flanks to move during construction gave
+final pairing distances of 3.201/3.176 Å. Moving only the substituted strand
+gave 3.419/3.877 Å and a lower global Rfree (0.2418 versus 0.2505). Both
+refinements preserved the sugar hands, all eight local phosphate oxygen orders,
+the 211 frame terms and both central backbone bonds (1.608/1.615 Å). Each
+retained four close contacts, with central B values above 190 Å². This shows
+how placement affects local pairing under unchanged restraints. Both tests
+used separate diagnostic parents. The ordinary placement guard remains at 2 Å.
+See `locked_sugar_paired_pose_diffraction_2026_11_21` in the native evidence ledger.
 
 The changed diagnostic passed 72 focused tests across furanose construction,
 PostMR lineage and explicit mutation targets. Both atom-naming regressions
@@ -730,8 +738,10 @@ Alder; coordinate before shared-source or native work. Do not duplicate their ru
   at native precision. Good construction is not successful refinement; preserve
   curated sulfur/iodine protections and the separate metal experiment's authority.
 - **DY:** explicit packaged-source/backbone composition and ordinary construction
-  are connected through C366. The C4–N1T single bond joins two independently rotatable
-  rings; do not impose a common plane. PDU→DT→DY and the reverse preserve the shared
+  are connected through C366. The C4–N1T single bond permits rotation. Conjugation
+  favors near-coplanarity. C456 tested a soft shared plane and found that the
+  triazole edge facing adenine also needs checking. Plane weight and ordinary
+  use remain open. PDU→DT→DY and the reverse preserve the shared
   scaffold under the explicit deoxy rule. Broader sugar-family placement and DY
   pairing semantics remain separate; do not invent NARestraints relationships.
 - **Phosphates:** original PDU:PDU B:1 is incoming symmetry continuation with
