@@ -217,3 +217,70 @@ def test_typed_preparation_binding_refuses_mismatched_or_changed_sources(typed_p
             return result
         s.compiler._compiler_input=changed
     with pytest.raises(ValueError):bind_typed(s)
+
+
+@pytest.fixture
+def typed_source_observation(typed_preparation):
+    from nasolve.topostitch_recipe import recipe_digest
+    s=typed_preparation
+    s.native=s.root/'native/native_validation.json';s.native.parent.mkdir()
+    s.native_bytes=b'{"status":"REVIEW","original":"site definitions"}\n'
+    s.native.write_bytes(s.native_bytes)
+    s.report['files']=[dict(anchor='literal_na_input_directory',path='native/native_validation.json',
+        sha256=sha256(s.native_bytes).hexdigest(),size=len(s.native_bytes))]
+    s.report_pin=recipe_digest(s.report)
+    return s
+
+
+def test_original_native_observation_is_opt_in_and_detached(typed_source_observation):
+    s=typed_source_observation
+    assert bind_typed(s).source_native_json is None
+    bound=bind_typed(s,include_source_native=True)
+    assert bound.source_native_json==s.native_bytes
+    assert bound.report_sha256==s.report_pin
+    assert bound.compiled_restraint_phils==(b'restraints',)
+    assert bound.interpretation_control_phils==(b'controls',)
+    assert bound.runtime_authority is False and bound.chemical_admission is False
+    s.native.unlink()
+    s.report['files'][0]['sha256']='0'*64
+    assert bound.source_native_json==s.native_bytes
+    assert json.loads(bound.source_report_json)['files'][0]['sha256']==sha256(s.native_bytes).hexdigest()
+
+
+@pytest.mark.parametrize('fault',['missing','duplicate','anchor','path','size','digest','bytes',
+    'outside','role_alias','byte_race','path_race','report_race'])
+def test_source_observation_binding_refuses_ambiguous_or_changed_evidence(typed_source_observation,fault):
+    from nasolve.topostitch_recipe import recipe_digest
+    s=typed_source_observation;row=s.report['files'][0]
+    if fault=='missing':s.report.pop('files')
+    elif fault=='duplicate':s.report['files'].append(dict(row))
+    elif fault=='anchor':row['anchor']='other'
+    elif fault=='path':row['path']='another/native_validation.json'
+    elif fault=='size':row['size']+=1
+    elif fault=='digest':row['sha256']='0'*64
+    elif fault=='bytes':s.native.write_bytes(b'changed')
+    elif fault=='outside':
+        outside=s.root.parent/(s.root.name+'-external.json');outside.write_bytes(s.native_bytes)
+        s.native.unlink();s.native.symlink_to(outside)
+    elif fault=='role_alias':
+        s.value['compiled_restraint_phils']=[s.native];s.value['phils']=[s.native]
+    else:
+        original=s.compiler._compiler_input
+        def changed(*args,**kw):
+            result=original(*args,**kw)
+            if s.calls.count('read')==2:
+                if fault=='byte_race':s.native.write_bytes(b'changed after binding')
+                elif fault=='path_race':
+                    new=s.root/'other.json';new.write_bytes(s.native_bytes)
+                    s.native.rename(s.root/'preserved.json');s.native.symlink_to(new)
+                else:row['sha256']='0'*64
+            return result
+        s.compiler._compiler_input=changed
+    s.report_pin=recipe_digest(s.report)
+    with pytest.raises(ValueError):bind_typed(s,include_source_native=True)
+
+
+@pytest.mark.parametrize('option',[1,None,'yes'])
+def test_source_observation_opt_in_requires_boolean(typed_preparation,option):
+    with pytest.raises(ValueError):bind_typed(typed_preparation,include_source_native=option)
+    assert not typed_preparation.calls

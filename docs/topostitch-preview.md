@@ -2554,3 +2554,67 @@ and movement. The optional observer requires an unoccupied thread profiler point
 and restores only its own binding. Ordinary dispatch and retained-input lifetime
 are still separate integration gates; the service has no persistent observer or
 second comparison interpretation.
+
+
+## Bind the original native observation (W206)
+
+W205 still reopened the original native JSON separately in its local receiving
+runner. The existing W203 binder can now carry those bytes with the same immutable
+parent/report/PHIL snapshot:
+
+```python
+bound = bind_native_preparation_inputs(
+    typed_directory, parent_bytes,
+    expected_report_sha256=expected_report_sha256,
+    compiler_owner=compiler_owner, controls_owner=controls_owner,
+    include_source_native=True,
+)
+# After separate native/execution admission, use the existing Cedar keyword:
+# interpreted = service.interpret(model, bound, ...,
+#     source_native_json=bound.source_native_json)
+```
+
+`source_native_json` defaults to None, preserving old callers and the unmodified
+PHIL ordering/source report. The opt-in requires exactly one
+`literal_na_input_directory:native/native_validation.json` declaration, verifies
+its exact size/hash and confined, non-aliased resolved path, and includes its
+bytes/path in the repeated snapshot checks. It does not search by basename or
+parse new chemistry. Cedar's actual source-observation reader verifies the bytes
+again at use. **Passing None to C510 leaves its chemistry comparison disabled**;
+the future ordinary receiver must require the opt-in bytes rather than mistake
+an omitted observation for a successful comparison.
+
+The regression fails before this change because the result lacks the new field.
+Sixteen new cases cover opt-out/detachment, absent/duplicate/wrong source roles,
+size/hash/byte mismatch, external or aliased paths, read races and strict boolean
+opt-in. Focused validation:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_topostitch_endpoint.py tests/test_topostitch_preparation.py tests/test_topostitch_native_window.py tests/test_topostitch_checkpoint.py tests/test_topostitch_execution.py
+```
+
+**191 source +191 freshly relocated installed tests pass.** The temporary build
+source and original install path are removed before installed testing. Real W205
+inputs pass **16 cold checks each** through source/installed Python 3.12 and Phenix
+**2.2.1-6174 Python 3.11**, with identical bound outputs. The temporary input tree
+is renamed, then removed before the installed C510 source-observation and bound
+input readers consume the detached result. Both compiler-time and point-of-use
+byte substitution refuse. Python 3.10 syntax parses. No native interpretation or
+refinement was repeated; W205 already qualifies the identical payload at that
+boundary.
+
+The local recipe `NASolve:branch-artifacts/willow/runners/w206-install.py` builds
+and tests the relocated wheel. `w206-bind-source.py` in that runners directory
+accepts `source`, `installed` or `python311`; run with the matching interpreter
+and `-B`. Receipts are under
+`NASolve:branch-artifacts/willow/w206-source-observation-binding/`; pins are in
+the roadmap. No new file format, CLI, dependency or execution policy. The in-memory
+result gains one optional field; constructing it still grants no chemical,
+motion, locking, process, storage or ordinary runtime authority. No full-suite run.
+
+The receiving audit also keeps three lifetimes distinct: immutable ordinary
+round inputs, Cedar's counted prepared-view/native-force scope, and Alder's
+budgeted frozen-metal session. Neither a counted scope nor an Alder review is a
+generic coordinate-moving session grant. The first opt-in ordinary route needs
+an explicit early parent hook and source-bound parent/candidate input role in the
+existing execution owner; future compact-parent expansion/budgeting is separate.

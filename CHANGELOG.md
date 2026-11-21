@@ -17,6 +17,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W206 — Bind the original native observation with preparation inputs
+
+- Add opt-in `include_source_native=True` to the existing typed input binder;
+  `NativePreparationInputs.source_native_json` carries exact declared original
+  native-observation bytes. Default None and all earlier PHIL roles remain unchanged.
+- Require one source role, the declared anchor/path, non-aliasing, exact size/hash
+  and stable repeated source reads. Cedar still validates chemistry and the byte
+  pin at use; the bundle grants no runtime, locking or storage authority.
+- 191 focused source/191 relocated installed tests pass. Sixteen real-source
+  checks each in source/installed Python 3.12 and Phenix Python 3.11 agree after
+  original temporary input/build/install paths are gone. No native run or schema,
+  CLI, dependency/default change; old callers need no migration.
+
 ### W205 — Join source chemistry and candidate transfer
 
 - Qualify C510 original source-definition/restraint agreement during the same

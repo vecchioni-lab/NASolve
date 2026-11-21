@@ -161,6 +161,7 @@ class NativePreparationInputs:
     interpretation_control_phils: tuple[bytes, ...]
     reader_controls: tuple[tuple[str, bool], ...]
     reader_policy: str
+    source_native_json: bytes | None = None
 
     @property
     def report_sha256(self):
@@ -180,7 +181,7 @@ class NativePreparationInputs:
 
 
 def bind_native_preparation_inputs(directory, parent_bytes, *, expected_report_sha256,
-                                   compiler_owner, controls_owner):
+                                   compiler_owner, controls_owner, include_source_native=False):
     """Reopen typed source roles through explicit trusted Cedar owners.
 
     The expected digest comes from the authenticated compiler-report binding,
@@ -188,7 +189,11 @@ def bind_native_preparation_inputs(directory, parent_bytes, *, expected_report_s
     artifact; this adapter binds it to exact current-parent bytes and returns
     immutable inputs for the later native service. Repeated checks are snapshot
     checks, not locks or retained-process authority. No native work occurs here.
+    Opt in to carrying the declared original native observation bytes for Cedar
+    source-chemistry comparison; its native owner still validates them at use.
     """
+    if type(include_source_native) is not bool:
+        raise ValueError('Original native observation opt-in must be boolean')
     policy='cif-captured-reader-control-handoff-v1'
     if type(parent_bytes) is not bytes or controls_owner.POLICY_ID!=policy:
         raise ValueError('Require exact parent bytes and the supported reader-control owner')
@@ -207,9 +212,29 @@ def bind_native_preparation_inputs(directory, parent_bytes, *, expected_report_s
         if (not restraints or not controls or len(set(paths))!=len(paths)
                 or tuple(Path(p).resolve() for p in value['phils'])!=restraints):
             raise ValueError('Require separate unambiguous ordered restraint and control roles')
-        return payload,model,restraints,controls
-    payload,model,restraints,controls=read()
-    snapshots={p:p.read_bytes() for p in (model,*restraints,*controls)}
+        source_native=None
+        if include_source_native:
+            files=report.get('files')
+            if not isinstance(files,list):
+                raise ValueError('Missing original native observation declaration')
+            records=[r for r in files if isinstance(r,dict)
+                     and r.get('path')=='native/native_validation.json']
+            if len(records)!=1 or records[0].get('anchor')!='literal_na_input_directory':
+                raise ValueError('Require one declared original native observation role')
+            record=records[0];path=(directory/record['path']).resolve()
+            if not path.is_relative_to(directory.resolve()) or path in paths:
+                raise ValueError('Original native observation escaped its source or aliases another role')
+            if type(record.get('size')) is not int or record['size']<0:
+                raise ValueError('Invalid original native observation size')
+            source_native=(path,record.get('sha256'),record['size'])
+        return payload,model,restraints,controls,source_native
+    payload,model,restraints,controls,source_native=read()
+    paths=(model,*restraints,*controls,*((source_native[0],) if source_native else ()))
+    snapshots={p:p.read_bytes() for p in paths}
+    if source_native:
+        path,pin,size=source_native
+        if len(snapshots[path])!=size or sha256(snapshots[path]).hexdigest()!=pin:
+            raise ValueError('Original native observation bytes differ from the declared source')
     if snapshots[model]!=parent_bytes:
         raise ValueError('Typed source belongs to a different current parent')
     values={};seen=set()
@@ -220,9 +245,10 @@ def bind_native_preparation_inputs(directory, parent_bytes, *, expected_report_s
             or any(v is not False for v in values.values())):
         raise ValueError('Require all four authenticated False reader controls')
     controls_owner.reject_shadow_controls(list(restraints))
-    if (read()!=(payload,model,restraints,controls)
+    if (read()!=(payload,model,restraints,controls,source_native)
             or any(p.read_bytes()!=data for p,data in snapshots.items())):
         raise ValueError('Typed preparation inputs changed while binding')
     return NativePreparationInputs(parent_bytes,payload,
         tuple(snapshots[p] for p in restraints),tuple(snapshots[p] for p in controls),
-        tuple(sorted(values.items())),policy)
+        tuple(sorted(values.items())),policy,
+        source_native_json=snapshots[source_native[0]] if source_native else None)
