@@ -2127,7 +2127,11 @@ Each serial read rehashes the pinned archive and full snapshot and repeats the
 scientific derivation. The context-local handle expires or invalidates after
 interruption/change; no generic cached PASS, new decoder or process owner is added.
 Retained derivations use schema 2 to distinguish read closure from outer snapshot
-removal; ordinary one-shot schema 1 and native sessions remain unchanged. See
+removal. Opt-in retained native calls carry an explicit context-local scope through
+process/review schema 2; cold inspection cross-binds lifetime and scientific proof
+without claiming outer cleanup. Fresh per-child metadata/Free-R/scattering and
+all existing audits remain required; the worker receives only copied inputs.
+Ordinary one-shot schema 1 and CLI execution defaults remain unchanged. See
 [retained parent reads](metal-campaign-storage.md#retained-parent-reads-without-another-expansion)
 for lifetime, measured cost and the separate execution/retirement gates.
 

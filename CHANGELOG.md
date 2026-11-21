@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Carry retained parents through explicit execution and cold review
+
+- Add opt-in retained-parent handles to existing child/audited-child Python APIs;
+  share one snapshot while preserving fresh per-child acquisition, derivation,
+  frozen science/model audits and shared owned-process lifecycle.
+- Version retained process outcomes/scientific reviews as v2, binding the exact
+  scope and closed read evidence. Cold inspection supports both versions and
+  distinguishes recorded lifetime from independently verified outer cleanup.
+- Refuse expired/substituted parents and cross-version lifetime claims; invalidate
+  uncertain-stop scopes while preserving attempts, interruption evidence and
+  originals. One-shot v1, native workers/settings and CLI execution stay unchanged.
+- Qualify 162 focused tests, 42 final affected checks and 38 relocated installed
+  tests, reusing exact Hg/Ag4 cold evidence. No new native fit, full suite, cached
+  scientific acceptance, campaign-capacity claim or pruning.
+
 ### Reuse one protected parent snapshot for explicit serial reads
 
 - Add a context-local retained-parent read API using existing archive/snapshot

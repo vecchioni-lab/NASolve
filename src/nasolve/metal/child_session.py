@@ -68,7 +68,7 @@ def run_audited_child(prepared_directory,parent_directory,request,*,request_id,
                       run_relative,endpoint_relative,session_directory,native,
                       timeout_seconds=240,reader_control_policy=None,
                       max_parent_disk_bytes=parent_archive.DEFAULT_DISK_BYTES,
-                      max_output_bytes=child_outputs.DEFAULT_MAX_BYTES):
+                      max_output_bytes=child_outputs.DEFAULT_MAX_BYTES,retained_parent=None):
     """Derive, freshly inspect, execute and audit one conditional frozen fit.
 
     FDP_REVIEW means the declared frozen calculation passed its audits; it does
@@ -82,6 +82,8 @@ def run_audited_child(prepared_directory,parent_directory,request,*,request_id,
     child_process._need(type(max_output_bytes) is int and 0<max_output_bytes<=child_outputs.MAX_BYTES,
         'Invalid output byte budget')
     prepared=child_process._root(prepared_directory);parent=child_process._root(parent_directory)
+    scope=parent_archive.retained_parent_binding(retained_parent,parent,request['parent_manifest_sha256']) if retained_parent is not None else None
+    lifetime=dict(parent_scope=scope) if scope is not None else {}
     payload=child_process._inputs(prepared,request['files']);child_process._declared_plan(payload)
     child_process._worker_payload(Path(child_process.__file__).parent,request['worker_files'])
     session=Path(session_directory).expanduser().absolute()
@@ -90,7 +92,7 @@ def run_audited_child(prepared_directory,parent_directory,request,*,request_id,
         and not session.resolve().is_relative_to(prepared) and not session.resolve().is_relative_to(parent),
         'Require a new session outside prepared inputs and parent archive')
     options=dict(request_id=request_id,run_relative=run_relative,endpoint_relative=endpoint_relative,
-        reader_control_policy=reader_control_policy,max_parent_disk_bytes=max_parent_disk_bytes)
+        reader_control_policy=reader_control_policy,max_parent_disk_bytes=max_parent_disk_bytes,retained_parent=retained_parent)
     before=child_inputs.verify_child_inputs(prepared,parent,request,**options)
     plan=_json(payload['plan.json']);model=payload['input.pdb']
     session.mkdir()
@@ -100,7 +102,7 @@ def run_audited_child(prepared_directory,parent_directory,request,*,request_id,
         proofs[name]=records.write_record(session/name,value)
     try:
         record('request.json',dict(request=request,run_relative=run_relative,
-            endpoint_relative=endpoint_relative,timeout_seconds=timeout_seconds,max_output_bytes=max_output_bytes))
+            endpoint_relative=endpoint_relative,timeout_seconds=timeout_seconds,max_output_bytes=max_output_bytes,**lifetime))
         record('parent-before.json',before)
         fresh=_fresh_scattering(prepared,plan,native)
         record('fresh-inputs.json',fresh)
@@ -114,7 +116,7 @@ def run_audited_child(prepared_directory,parent_directory,request,*,request_id,
         stage='OWNED_NATIVE_CHILD'
         process=child_process.run_child(prepared,parent,request,request_id=request_id,
             attempt_directory=session/'attempt',native=native,timeout_seconds=timeout_seconds,
-            max_parent_disk_bytes=max_parent_disk_bytes)
+            max_parent_disk_bytes=max_parent_disk_bytes,retained_parent=retained_parent)
         if process['status']!='COMPLETED' or not process['stopped_verified']:
             raise RecipeError('Native child did not complete with a verified stop: '+process['status'])
         stage='SCIENTIFIC_AUDIT'
@@ -126,18 +128,21 @@ def run_audited_child(prepared_directory,parent_directory,request,*,request_id,
         child_outputs.inspect_child_outputs(session/'attempt',request_id=request_id,output_id=output['record_sha256'])
         record('parent-after.json',after)
         stage='REVIEW_PUBLICATION'
+        if scope is not None:
+            _same(parent_archive.retained_parent_binding(retained_parent,parent,request['parent_manifest_sha256']),scope,'Retained parent lifetime')
+            _same(process['outcome']['parent_scope'],scope,'Native child parent lifetime')
         for name,recorded in proofs.items():
             _same(records.read_record(session/name),recorded,'Session proof '+name)
         proof_names=sorted(proofs)
         files={name:dict(anchor='session',relative_path=name,size=(session/name).stat().st_size,
             sha256=sha256((session/name).read_bytes()).hexdigest()) for name in proof_names}
-        return records.write_record(session/'review.json',dict(kind=KIND,schema_version=1,status='FDP_REVIEW',
+        return records.write_record(session/'review.json',dict(kind=KIND,schema_version=2 if scope is not None else 1,status='FDP_REVIEW',
             request_id=request_id,parent_manifest_sha256=request['parent_manifest_sha256'],
             parent_derivation_before=before['derivation_id'],parent_derivation_after=after['derivation_id'],
             attempt=dict(anchor='session',relative_path='attempt'),output_evidence_id=output['record_sha256'],
             files=files,result=result,fresh_metadata=True,fresh_scattering=True,fresh_free_r_audit=True,
             serialized_model_unchanged=True,scientific_acceptance='NOT_ASSESSED',
-            automatic_checkpoint_selection=False,reuse_authorized=False,retirement_authorized=False))
+            automatic_checkpoint_selection=False,reuse_authorized=False,retirement_authorized=False,**lifetime))
     except BaseException as exc:
         records.write_record(session/'failure.json',dict(kind='metal-fdp-audited-child-failure',schema_version=1,
             request_id=request_id,stage=stage,error=type(exc).__name__,message=str(exc),
@@ -185,8 +190,10 @@ def inspect_audited_child(session_directory,*,review_id):
             'parent_derivation_after','attempt','output_evidence_id','files','result','fresh_metadata','fresh_scattering',
             'fresh_free_r_audit','serialized_model_unchanged','scientific_acceptance','automatic_checkpoint_selection',
             'reuse_authorized','retirement_authorized','record_sha256'}
+        version=review.get('schema_version')
+        if version==2:fields.add('parent_scope')
         child_process._need(set(review)==fields and review['kind']==KIND
-            and type(review['schema_version']) is int and review['schema_version']==1
+            and type(version) is int and version in (1,2)
             and review['status']=='FDP_REVIEW' and review['scientific_acceptance']=='NOT_ASSESSED'
             and all(review[k] is True for k in ('fresh_metadata','fresh_scattering','fresh_free_r_audit','serialized_model_unchanged'))
             and all(review[k] is False for k in ('automatic_checkpoint_selection','reuse_authorized','retirement_authorized')),
@@ -199,15 +206,23 @@ def inspect_audited_child(session_directory,*,review_id):
         attempt=root/'attempt'
         _same(_json((attempt/'inputs/request.json').read_bytes()),request,'Copied child request')
         seal=child_outputs.inspect_child_outputs(attempt,request_id=review['request_id'],output_id=review['output_evidence_id'])
+        outcome=records.read_record(attempt/'outcome.json')
+        child_process._need(outcome['schema_version']==version,'Scientific review and process lifetime versions differ')
+        if version==2:
+            parent_archive.validate_parent_binding(review['parent_scope'],request['parent_manifest_sha256'])
+            _same(declaration.get('parent_scope'),review['parent_scope'],'Declared parent lifetime')
+            _same(outcome['parent_scope'],review['parent_scope'],'Executed parent lifetime')
         payload=child_process._inputs(attempt/'inputs',request['files']);child_process._declared_plan(payload)
         plan=_json(payload['plan.json']);model=payload['input.pdb']
         before=proofs['parent-before.json'];after=proofs['parent-after.json'];_same(before,after,'Recorded parent derivations')
         unsigned={k:v for k,v in before.items() if k not in {'record_sha256','derivation_id'}}
-        child_process._need(before['kind']==child_inputs.KIND and before['schema_version']==1
+        child_process._need(before['kind']==child_inputs.KIND and type(before['schema_version']) is int and before['schema_version']==version
             and before['derivation_verified'] is True and before['ordinary_checkpoint_verified'] is True
             and before['request_id']==request['request_id'] and before['parent_manifest_sha256']==request['parent_manifest_sha256']
             and before['derivation_id']==digest(unsigned)==review['parent_derivation_before']==review['parent_derivation_after'],
             'Recorded parent derivation differs')
+        if version==2:
+            parent_archive.validate_parent_read(before['parent_transport'],request['parent_manifest_sha256'],completed=True)
         _same(before['run'],dict(anchor='parent',relative_path=declaration['run_relative']),'Recorded run selection')
         _same(before['endpoint'],dict(anchor='run',relative_path=declaration['endpoint_relative']),'Recorded endpoint selection')
         _same(before['input_model_sha256'],sha256(model).hexdigest(),'Recorded parent-derived model')
@@ -222,14 +237,15 @@ def inspect_audited_child(session_directory,*,review_id):
         _same(_saved_proofs(root,review),proofs,'Session proof during read')
         _same(child_outputs.inspect_child_outputs(attempt,request_id=review['request_id'],output_id=review['output_evidence_id']),seal,'Child output during read')
         _same(_session_record(root,'review.json'),review,'Session review during read')
-        return dict(kind='metal-fdp-audited-child-inspection',schema_version=1,review_id=review_id,
+        lifetime=dict(recorded_parent_scope=review['parent_scope'],parent_snapshot_cleanup_verified=False) if version==2 else {}
+        return dict(kind='metal-fdp-audited-child-inspection',schema_version=version,review_id=review_id,
             request_id=review['request_id'],output_evidence_id=review['output_evidence_id'],result=result,
             parent_context={k:before[k] for k in ('run','endpoint','parent','source_kind','root_checkpoint_id','root_context_id','metal_b_policy')},
             recorded_free_r=dict(label=before['free_r_label'],test_value=before['free_r_test_value'],status=free_r['status'],
                 usable=free_r['usable'],details=free_r['details'],warnings=free_r['warnings']),
             verification_scope='SAVED_SESSION_EVIDENCE_AND_FROZEN_STATE',fresh_parent_verification=False,
             fresh_free_r_audit=False,fresh_scattering=False,new_native_calls=0,
-            scientific_acceptance='NOT_ASSESSED',reuse_authorized=False,retirement_authorized=False)
+            scientific_acceptance='NOT_ASSESSED',reuse_authorized=False,retirement_authorized=False,**lifetime)
     except (OSError,ValueError,KeyError,TypeError,OverflowError,CampaignError) as exc:
         if isinstance(exc,RecipeError):raise
         raise RecipeError('Cannot inspect audited child: '+str(exc)) from exc

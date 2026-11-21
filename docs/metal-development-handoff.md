@@ -7,80 +7,75 @@ owns feature completion. The earlier chronological diary is preserved as
 [evidence through 18 November](history/metal-development-handoff-2026-11-18.md),
 not a second queue.
 
-## A04 current checkpoint: retained read-only parent
+## A04 current checkpoint: retained execution and cold review
 
-Repeated parent/input checks can now share one protected temporary snapshot via
-`parent_archive.retained_parent_inputs` and explicit
-`verify_child_inputs(..., retained_parent=handle)`. The ordinary archive decoder,
-size limits and checkpoint/scientific readers are reused. Each read checks the
-independently pinned manifest, all archive parts and the complete snapshot on
-entry and exit; no scientific verdict is cached. Stale/substituted parents,
-expired handles, different contexts and overlapping reads refuse. A detected
-change or interrupted consumer invalidates the handle. Normal/exceptional scope
-exit removes only the owned snapshot and preserves original inputs/archive.
+An explicit Python `retained_parent_inputs` scope can now serve repeated
+`run_audited_child(..., retained_parent=handle)` calls. Each trial keeps its own
+prepared inputs, owned process, fresh metadata/scattering/original Free-R audit,
+pre/post parent derivation, frozen-state/model checks and stopped-output seal.
+Only the protected parent snapshot is shared. Two synthetic audited children
+use one expansion while repeating all scientific acquisition and registry checks.
+The native worker receives copied trial inputs, never the retained handle/path.
 
-**Prior work/gap:** the shared complete-attempt reader owns chemistry attempts,
-not a general metal parent lifetime. Keeping the shared outer expansion open
-blocks nested ordinary readers. The existing parent adapter already closes that
-scope before its independent read-only copy; this change retains that same copy
-across serial reads. It introduces no new decoder, coordinator or native worker.
-The normal audited native command still performs its existing independent intakes;
-execution lifetime and admission caching are deliberately outside this step.
+**Prior work/gap:** the preceding read-only scope reused the shared archive and
+snapshot owners but could not enter process/review v1: those records described
+a completed one-shot transport. The new explicit route carries one context-local
+scope identity through declaration, child execution/outcome and scientific review.
+Process outcome/review **v2** distinguish completed reads from outer cleanup;
+derivation v2 and the read receipt are reused. One-shot v1 records, current CLI
+execution defaults, request v2 and output-seal v1 remain unchanged. Cold inspection
+reads both review versions, binds the matching process lifetime and reports that
+outer snapshot cleanup is **not independently verified**. It grants no reuse.
 
-**Evidence:** 95 focused tests pass in 19.61 s; a relocated installation passes
-74 parent/derivation tests in 9.20 s with all 353 package files exact. Four cold
-real derivations (Hg and Ag4, twice each) reproduce the earlier exact parent/input
-results with original source/science/native access blocked. They use one
-4,730,256-byte expansion and one snapshot copy, then zero additional expansions
-or copies. Each read rehashes **11,049,802 bytes** at the transport boundary;
-all four reads plus scope setup/cleanup take 2.50 s in this small case. The shared
-registry is replayed four times. This is not a scientific cache or a native fit.
+Expired/substituted parents refuse before allocation or publication. An uncertain
+stop invalidates the retained scope and withholds review/retry; stopped timeouts
+and interrupts retain their phase/outcome and require a new explicit retry attempt.
+Interrupted outcome/review publication leaves visible incomplete evidence.
+Rehashed scope/cleanup/incomplete-read claims and version relabelling refuse.
+No ordinary result is automatically selected. Original archives/science remain
+exact; only owned temporary snapshots/staging are removed.
 
-The command is `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src
+**Validation:** before implementation, 13 new tests fail in 3.53 s. The first
+profile passes 80 tests in 29.23 s; the expanded scientific/lifecycle profile passes
+**162 in 39.35 s**. After strict version-binding additions, **42 affected tests
+pass in 20.21 s**. A relocated installation passes **38 tests in 24.84 s**, with
+all **353** packaged files exact and copied build/old-install paths gone.
+The existing real Hg and Ag4 controls re-audit exactly with original source,
+science and Phenix access blocked. Four worker/helper files, the fdp/scattering/
+Free-R modules and the shared scientific auditor match the previously qualified
+consumer exactly. No new Phenix/Coot fit or full suite ran. The first installed
+harness stopped before tests because its reference wheel predated extraction of
+that auditor helper; this failed reference check is retained and corrected.
+
+The focused command is `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src
 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest
--q -p no:cacheprovider tests/test_metal_retained_parent.py
- tests/test_metal_parent_archive.py tests/test_metal_child_inputs.py
- tests/test_metal_child_session.py tests/test_metal_child_review.py`.
-Before implementation, 13 new controls fail on missing APIs (2.49 s). The first
-pass has 71 passes/two failures: interrupted-consumer state was incorrectly
-conflated with unchanged bytes. The final receipt distinguishes both, and an
-additional context/interruption control passes. No full suite or Phenix/Coot job
-runs. The last integrated full execution remains the root handoff's recorded
-runtime execution plus focused fixture amendment.
+-q -p no:cacheprovider tests/test_metal_retained_execution.py
+ tests/test_metal_retained_parent.py tests/test_metal_child_process.py
+ tests/test_metal_child_session.py tests/test_metal_child_review.py
+ tests/test_metal_child_outputs.py tests/test_metal_child_inputs.py
+ tests/test_metal_worker_bundle.py tests/test_metal_fdp.py`.
+The final 42-test command selects retained-execution, child-review and child-process
+modules. Exact commands/hashes and the last integrated full execution remain in
+the local receipts and root handoff, respectively.
 
-**Files/schemas:** `metal/parent_archive.py`, `metal/child_inputs.py` and one new
-test module; documentation updates this handoff, roadmap, storage contract,
-architecture and changelog. Explicit retained reads return a new
-`metal-parent-input-read` v1 receipt and derivation schema 2; one-shot derivation
-schema 1 and all existing commands/native-session readers remain unchanged.
-The new receipt says the read closed, **not** that its outer snapshot was removed.
-No old artifact is migrated or reinterpreted. Generated science, wheels, fixtures
-and logs remain excluded from Git under the Alder artifact anchor
-`retained-parent-20261121-01/` (`validation.json`, `real-readback.json`, focused and
-installed logs). Original evidence stays exact; disposable staging is removed.
+Runtime files are `metal/parent_archive.py`, `metal/child_process.py` and
+`metal/child_session.py`, plus one new test module. No old artifacts migrate.
+Generated science, fixtures, wheels and reports stay out of Git. Evidence under
+the Alder artifact anchor is `retained-execution-20261121-01/` (source profiles and
+failed harness reference) and `retained-execution-20261121-02/` (installed receipt,
+unchanged consumer hashes, Hg/Ag4 readbacks and small report). The preceding
+read-only cost proof remains in `retained-parent-20261121-01/`: a 4.73 MB parent
+expands/copies once, but each read still rehashes 11.05 MB. No campaign-capacity,
+scientific-pass-cache or performance guarantee follows.
 
-**Next:** qualify execution lifetime separately through the existing process
-owner before any multi-trial fan-out. Keep fresh scientific gates and original
-Free-R checks; no inherited success flag. Compact publication, important-node
-protection, quota reservations and retirement remain open. At this exact parent
-size, an illustrative 100 parent groups × 100 reads still hashes 110.50 GB,
-although logical expansion/copy volume falls 100-fold. That arithmetic is byte
-traffic, not retained disk size or a 100-dataset capacity claim; the measured
-parent contains two historical datasets. Current FT geometry remains unresolved.
-The [next execution-lifetime qualification](metal-campaign-storage.md#next-bounded-execution-lifetime-qualification-planned)
-is now scoped against the actual process/output/cold-reader owners. Existing
-outcome/review v1 assumptions prevent silently passing retained derivation v2.
-No execution sharing or new native test has been enabled. This is the current
-bounded stopping point, with a clean committed read-only implementation.
-
-Willow W194 (`76f6cd8c`) supplies explicit named-state/pair correspondence and
-signed geometry deltas after 113 source and 113 installed checks on its own
-branch. It is available for later A01 consumption, not integrated here. Its
-saved rigid-pair example moves atoms about 2.29 Å RMS with less than 0.001 Å
-paired-phosphate span change: width alone does not detect bending. Canonical
-simple twist is available there; modified frames, axes and curvature remain
-unqualified. Reuse that owner when A01's intended movement becomes admissible.
-
+**Next:** connect completed results to compact publication and important-node
+protection through existing owners, then qualify reservations/retirement before
+campaign fan-out. No extra Hg/Ag control fit is warranted for unchanged scientific
+consumers. Current FT ligand geometry remains unresolved. Willow W194 named-state
+comparison (`76f6cd8c`, 113 source/113 installed tests on Willow) is available for
+later A01 work, not integrated here: its 2.29 Å RMS rigid-pair movement with less
+than 0.001 Å paired-P span change shows why width alone cannot detect bending.
+Modified frames, axes and curvature remain unqualified.
 **A01 partial; A02 gated; A04 partial.**
 
 ## A04 supporting checkpoint: explicit offline session review
@@ -122,10 +117,10 @@ fixtures, wheels and reports remain outside Git. Runtime changes are in
 `metal/child_session.py` and the metal CLI, with one focused test module; exact
 commands, source and package hashes are retained in the local receipt.
 
-**Next:** compact publication and campaign quota/protection/retirement through
-shared owners. Before scaling, avoid repeated full parent intake/metadata work
-per 14-second trial by qualifying a retained common session; do not add a second
-campaign coordinator. No further sweep of these poor historical controls is
+The current retained-execution checkpoint above now shares the parent lifetime;
+compact publication and campaign quota/protection/retirement remain next through
+shared owners. Metadata and scientific checks still run per child; do not add a
+second campaign coordinator or a generic cached success flag. No further sweep of these poor historical controls is
 needed. Shared Q15 phosphate-span reporting is available on Willow for later
 A01 context; width is not local-axis radius, and it does not authorize motion.
 **A01 partial; A02 gated; A04 partial.**

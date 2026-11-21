@@ -185,9 +185,20 @@ def inspect_child(directory, *, request_id):
               and outcome.get('policy_id')==POLICY,'Outcome belongs to a different child request')
     if outcome is not None:
         _need(outcome.get('kind')=='metal-fdp-child-process-outcome'
-              and type(outcome.get('schema_version')) is int and outcome['schema_version']==1
+              and type(outcome.get('schema_version')) is int and outcome['schema_version'] in (1,2)
               and outcome.get('scientific_acceptance')=='NOT_ASSESSED'
               and outcome.get('retirement_authorized') is False,'Unsupported process outcome')
+        if outcome['schema_version']==1:
+            _need(not {'parent_scope','parent_read'}.intersection(outcome), 'Retained lifetime cannot use legacy outcome')
+        if outcome['schema_version']==2:
+            parent_archive.validate_parent_binding(outcome.get('parent_scope'),request['parent_manifest_sha256'])
+            parent_archive.validate_parent_read(outcome.get('parent_read'),request['parent_manifest_sha256'],
+                completed=outcome.get('parent_transport_verified') is True)
+            _need(type(outcome.get('parent_transport_verified')) is bool
+                and (outcome['status']!='COMPLETED' or outcome['parent_transport_verified']),
+                'Retained child completion lacks a verified parent read')
+            execution=records.read_record(root/'inputs/execution.json')
+            _need(execution.get('parent_scope')==outcome['parent_scope'], 'Outcome parent lifetime changed')
         header = process.get('header')
         if header is not None:
             _need(outcome.get('ownership_sha256')==header['record_sha256'],'Outcome ownership changed')
@@ -211,7 +222,7 @@ def inspect_child(directory, *, request_id):
 
 def run_child(prepared_directory, parent_directory, request, *, request_id,
               attempt_directory, native, timeout_seconds=240, retry_from=None,
-              max_parent_disk_bytes=parent_archive.DEFAULT_DISK_BYTES):
+              max_parent_disk_bytes=parent_archive.DEFAULT_DISK_BYTES,retained_parent=None):
     """Invoke the maintained worker once in a fresh owned attempt.
 
     Parent transport is verified, not scientific admission. A normal pipeline
@@ -223,6 +234,7 @@ def run_child(prepared_directory, parent_directory, request, *, request_id,
     _need(type(timeout_seconds) in (int,float) and math.isfinite(timeout_seconds)
           and 0 < timeout_seconds <= 600,'Require a bounded positive child deadline')
     prepared = _root(prepared_directory); parent = _root(parent_directory)
+    scope=parent_archive.retained_parent_binding(retained_parent,parent,request['parent_manifest_sha256']) if retained_parent is not None else None
     payload = _inputs(prepared,request['files'])
     _declared_plan(payload)
     workers=_worker_payload(Path(__file__).parent,request['worker_files'])
@@ -246,14 +258,15 @@ def run_child(prepared_directory, parent_directory, request, *, request_id,
         previous = prior['outcome']['record_sha256']
     owner = None; transport = None; status = 'REVIEW_REQUIRED'; code = None; error = None; sealed = False
     try:
-        with parent_archive.materialized_parent_inputs(parent,request['parent_manifest_sha256'],
-                max_disk_bytes=max_parent_disk_bytes) as (_,transport):
+        with parent_archive.read_parent_inputs(parent,request['parent_manifest_sha256'],
+                max_disk_bytes=max_parent_disk_bytes,retained_parent=retained_parent) as (_,transport):
             attempt.mkdir(); inputs = attempt/'inputs'; inputs.mkdir()
             for name,raw in payload.items():(inputs/name).write_bytes(raw)
             for name,raw in workers.items():(inputs/name).write_bytes(raw)
             (inputs/'request.json').write_text(json.dumps(request,sort_keys=True)+'\n')
             execution = dict(native_version=native.version,native_executable_sha256=executable_sha,
                 request_id=request_id,parent_manifest_sha256=request['parent_manifest_sha256'],retry_of=previous)
+            if scope is not None:execution['parent_scope']=scope
             records.write_record(inputs/'execution.json',execution)
             owner = ChildProcesses(attempt)
             work = attempt/'native/fdp/job';work.mkdir(parents=True)
@@ -272,15 +285,24 @@ def run_child(prepared_directory, parent_directory, request, *, request_id,
             finally:
                 sealed = owner.finish('RETURNED' if error is None else 'RAISED')
                 if not sealed: status = 'STOP_UNCERTAIN'
+            if scope is not None and not sealed:
+                raise RecipeError('Native stop uncertain; invalidate retained parent lifetime')
     except BaseException as exc:
         if owner is None: raise
         status = 'STOP_UNCERTAIN' if not sealed else 'REVIEW_REQUIRED';error = dict(type=type(exc).__name__,message=str(exc))
-    parent_verified = bool(transport and transport['inputs_unchanged'] and transport['snapshot_removed'])
-    if not parent_verified:status='REVIEW_REQUIRED'
-    records.write_record(attempt/'outcome.json',dict(kind='metal-fdp-child-process-outcome',schema_version=1,
+    if scope is None:
+        parent_verified = bool(transport and transport['inputs_unchanged'] and transport['snapshot_removed'])
+    else:
+        try:
+            parent_archive.validate_parent_read(transport,request['parent_manifest_sha256'],completed=True)
+            parent_verified=True
+        except ValueError:parent_verified=False
+    if not parent_verified and (scope is None or status!='STOP_UNCERTAIN'):status='REVIEW_REQUIRED'
+    lifetime=dict(parent_scope=scope,parent_read=transport) if scope is not None else {}
+    records.write_record(attempt/'outcome.json',dict(kind='metal-fdp-child-process-outcome',schema_version=2 if scope is not None else 1,
         policy_id=POLICY,request_id=request_id,parent_manifest_sha256=request['parent_manifest_sha256'],
         parent_transport_verified=parent_verified,native_executable_sha256=executable_sha,
         ownership_sha256=owner.header['record_sha256'],status=status,returncode=code,
         stopped_verified=sealed,error=error,retry_of=previous,
-        scientific_acceptance='NOT_ASSESSED',retirement_authorized=False))
+        scientific_acceptance='NOT_ASSESSED',retirement_authorized=False,**lifetime))
     return inspect_child(attempt,request_id=request_id)

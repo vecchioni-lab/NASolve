@@ -359,7 +359,7 @@ context-local handle after the shared archive scope has closed. Serial
 snapshot. `verify_child_inputs` accepts that handle and replays its ordinary
 checkpoint, endpoint, environmental-B/Q and exact input derivation on **every**
 call. No registry or scientific pass is cached. Existing one-shot calls retain
-their exact behavior and receipt shape; normal CLI/native execution is unchanged.
+their exact behavior and receipt shape; normal one-shot execution defaults are unchanged.
 
 The independently supplied digest is authoritative throughout. Every borrowed
 read compares directory and digest, checks its budget, then rehashes the current
@@ -375,17 +375,17 @@ A borrowed read returns `metal-parent-input-read` schema 1, including
 the read boundary: outer cleanup is still pending. A consumer exception can
 leave unchanged bytes while `consumer_completed=false`; it never becomes a
 successful scientific derivation. Explicit retained derivations use schema 2;
-old one-shot derivations remain schema 1. Existing native-session readers are not
-extended to consume these new records. There is no persisted lease registry,
+old one-shot derivations remain schema 1. The retained execution adapter below explicitly consumes these records;
+legacy one-shot readers keep their version-1 semantics. There is no persisted lease registry,
 execution/reuse/retirement grant, default activation or migration.
 
 The outer existing transport scope rechecks the snapshot/archive and removes
 only its owned temporary copy on normal or exceptional exit. Original archives
 and scientific inputs remain. Same-user/privileged mutation is detectable, not
 prevented; the handle is not an OS isolation boundary. Abrupt process termination
-can leave scratch, so crash recovery/aggregate reservations and execution across
-this lifetime remain separate work. This read-only adapter is a stopping boundary,
-not permission to keep a native child alive after its owner exits.
+can leave scratch, so crash recovery and aggregate reservations remain separate
+work. Execution across this lifetime uses the explicit adapter below; a read
+handle never permits keeping a native child alive after its process owner exits.
 
 **Qualification and measured cost.** The 95-test focused source profile and
 74-test relocated installed profile cover stale/substituted bytes, expired or
@@ -413,45 +413,89 @@ checks. This is arithmetic from two historical datasets, **not** a measured
 checked roots and native scheduling remain unqualified here.
 
 Exact commands, hashes and cold measurements are under the local Alder artifact
-anchor `retained-parent-20261121-01/`. The [current handoff](metal-development-handoff.md#a04-current-checkpoint-retained-read-only-parent)
+anchor `retained-parent-20261121-01/`. The [current handoff](metal-development-handoff.md#a04-current-checkpoint-retained-execution-and-cold-review)
 records failed-before evidence, validation commands and exclusions. No new
 Phenix/Coot refinement or full suite ran; retained scientific evidence was not
-pruned. The next execution adapter must preserve the same explicit lifetime,
-fresh gates and shared process ownership without promoting this read proof.
+pruned. The execution adapter below preserves this explicit lifetime, fresh gates
+and shared process ownership without promoting a read proof into acceptance.
 
-### Next bounded execution-lifetime qualification (planned)
+### Explicit retained-parent execution and cold review
 
-The retained read handle is intentionally not accepted by `run_child` or
-`run_audited_child` yet. Their current outcome/review version 1 records derive
-from a fully closed one-shot transport, and the cold scientific reader requires
-derivation schema 1. Passing a retained schema-2 derivation through those old
-contracts would conflate read completion with snapshot cleanup. Do not broaden
-old meanings or add a generic successful-parent cache.
+The next lifetime step is now implemented as an **opt-in Python API**. Within
+`retained_parent_inputs`, pass its handle to `run_audited_child` (or the existing
+lower-level `run_child`). Calls remain serial and individually bounded. The
+existing `ChildProcesses` owner controls launch, deadline, stop verification and
+explicit retry; no second coordinator or process manager is introduced. Normal
+CLI execution still uses independent one-shot transport. Existing inspection
+commands accept both completed record versions without native execution.
 
-The next opt-in adapter should:
+The retained context owns an opaque random scope identity, independent of its
+parent-content digest. Each call must supply the same active, idle, uninvalidated
+handle and explicit directory/digest. A borrowed read checks active ownership
+again on exit, so expiry during consumption cannot be mistaken for success.
+Scope identity is recorded, not a transferable live handle, authorization token
+or scientific cache key. The independently pinned parent digest remains the
+content authority.
 
-1. Carry an explicit retained-read identity and lifetime in versioned process and
-   scientific-review records; preserve all old one-shot records/readers exactly.
-2. Reuse `ChildProcesses` for launch, deadline, stop verification and retry. The
-   worker receives only its copied request/inputs, never the parent handle or
-   snapshot path. Its maintained helper bundle and frozen strategy stay exact.
-3. Preserve fresh metadata, scattering, original Free-R, pre/post derivation,
-   frozen atomic/reflection/model audits and output sealing for each child.
-   Any reuse of fresh acquisition needs its own input/software-bound contract;
-   this scope does not grant it.
-4. Refuse changed/expired/foreign parents before launch and before review.
-   A stopped failed/timed-out child retains its attempt; uncertain stop withholds
-   review, retry and retirement. Original protected archives remain regardless
-   of temporary snapshot lifetime. No signal may be sent from saved PID records.
-5. Qualify cold relocated readback of the new lifetime without originals, then
-   reuse the existing exact Hg/Ag4 worker/input/science controls where unchanged.
-   Add only changed-lifetime tests: process/output interruption, uncertain stop,
-   parent substitution, late mutation and cross-scope expiry. A native rerun needs
-   a changed scientific/native consumer or a specific unresolved hypothesis.
+New process-outcome schema 2 records that scope plus the exact closed parent-read
+receipt. The execution declaration carries the same scope; the reader cross-binds
+both. New audited-review schema 2 carries the matching declaration/outcome scope
+and the existing derivation schema 2. Cold inspection repeats stopped-output and
+frozen science/model checks, validates completed read semantics and refuses
+mismatched scopes, incomplete reads, cleanup claims and cross-version relabelling.
+Its inspection schema 2 explicitly reports recorded scope and
+`parent_snapshot_cleanup_verified=false`. A successful child read does not prove
+that a later outer context closed, or confer retirement authority.
 
-This is the next A04 subgoal, not an implemented coordinator, cleanup policy or
-license for multi-site fan-out. Compact result publication, protected important
-nodes and quota/retirement remain subsequent gates. Keep all current evidence.
+One-shot process/review/inspection schema 1 keeps its meaning; explicit request
+schema 2 and stopped-output seal schema 1 are unchanged. Old valid records need
+no migration. Retained outcomes cannot be relabelled legacy while carrying the
+new lifetime fields. Existing workers/helpers/native arguments stay byte-exact,
+and the worker receives only its copied attempt inputs. It never receives the
+parent handle or snapshot path.
+
+Every audited child still performs fresh observation metadata, Sasaki reference
+and original Free-R acquisition, ordinary parent/input derivation before/after,
+atomic/reflection freeze checks, serialized-model equality, optional requested
+map checks and output sealing. No metadata, registry or scientific PASS cache is
+introduced. Different occupancy requests remain separate trial records. Per-site
+signed f″, Q, B and expected values retain their existing scientific meaning;
+sharing a parent neither resolves occupancy ambiguity nor counts cluster atoms.
+
+Failure behavior stays explicit:
+
+- Stale/expired/substituted parents refuse before new allocation or review.
+- A stopped failed/timed-out/interrupted child retains its immutable attempt and
+  phase/outcome. A retry is a separately requested new attempt with lineage.
+- Uncertain stop invalidates the retained scope; review, retry and retirement are
+  withheld. Original protected archives and attempt evidence remain.
+- Interrupted outcome or scientific-review publication leaves inspectable partial
+  evidence and no completed review. No implicit retry occurs.
+- Outer cleanup removes only the owned snapshot on normal/exceptional exit;
+  abrupt process death can still leave scratch. No crash recovery, quota owner or
+  pruning policy is claimed. Earlier child reviews describe their own completed
+  checks, not future scope validity or later cleanup.
+
+Qualification passes 162 focused checks, followed by 42 affected checks after
+strict version binding, and 38 relocated installed tests with all 353 package
+files exact. Synthetic controls cover two children sharing one expansion while
+fresh metadata/scattering/Free-R runs twice and registry replay runs four times;
+owned interruption, timeouts, uncertain stop, incomplete publication, parent
+expiry/change and cold relocation are exercised. The original Hg and Ag4 native
+control evidence re-audits exactly without originals/native access. The four
+native worker/helper files, fdp/scattering/Free-R modules and scientific auditor
+match the previously qualified consumer; no new native fit is needed. The old
+poor-fit Hg B=25/Q=0.6 and Ag4 B=188.75/Q=1 results remain unaccepted, including
+both negative Ag terms and the large Rfree. No atom-count inference follows.
+
+Receipts are under `retained-execution-20261121-01/` and `-02/` at the Alder
+artifact anchor; the [handoff](metal-development-handoff.md#a04-current-checkpoint-retained-execution-and-cold-review)
+owns exact commands/results and the corrected installed-harness reference.
+Generated data and packages remain local. No full suite or scientific data
+retirement ran. The previous measured read cost remains applicable: transport
+copying is shared, full byte checks and scientific replay remain per read.
+Compact publication/protected important nodes, aggregate reservations, cleanup
+and representative campaign capacity remain the next gates before fan-out.
 
 ## Bounded protected-parent and regeneration rehearsal
 

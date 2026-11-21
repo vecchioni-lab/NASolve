@@ -12,6 +12,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory, gettempdir
 import os
 import shutil
+import secrets
 
 from .. import cif_runtime_evidence as owner
 from ..campaign_records import _sync_directory
@@ -232,15 +233,17 @@ READ_KIND = 'metal-parent-input-read'
 
 class _RetainedParent:
     """Opaque, context-local lifetime owner; never a cached scientific verdict."""
-    __slots__ = ('directory','digest','root','receipt','active','reading','invalidated')
+    __slots__ = ('directory','digest','root','receipt','active','reading','invalidated','scope_id')
 
     def __init__(self,directory,digest,root,receipt):
         self.directory=directory;self.digest=digest;self.root=root;self.receipt=receipt
         self.active=True;self.reading=False;self.invalidated=False
+        self.scope_id=secrets.token_hex(32)
 
     def verify(self):
         _need(not self.invalidated, 'Retained parent was invalidated; open a fresh scope')
         try:
+            _need(self.active and _RETAINED_PARENT.get() is self, 'Retained parent expired during read')
             # The independently supplied digest remains authoritative. Neither
             # a handle nor an earlier read substitutes for current byte checks.
             value=_manifest(self.directory,self.digest)
@@ -324,3 +327,52 @@ def read_parent_inputs(directory, manifest_sha256, *, retained_parent=None,
     finally:
         retained.reading=False
         receipt['read_scope_closed']=True
+
+
+def retained_parent_binding(retained,directory,manifest_sha256):
+    """Bind the active context-local lifetime, without granting execution/reuse."""
+    _need(type(retained) is _RetainedParent and retained.active
+          and _RETAINED_PARENT.get() is retained and not retained.reading
+          and not retained.invalidated, 'Require an idle valid retained parent scope')
+    _need(_path(directory)==retained.directory and manifest_sha256==retained.digest,
+          'Retained parent directory or digest substituted')
+    return dict(kind='metal-retained-parent-scope',schema_version=1,scope_id=retained.scope_id,
+        parent_manifest_sha256=manifest_sha256,lifetime='CONTEXT_LOCAL_SERIAL_READS',
+        snapshot_cleanup='OWNED_BY_OUTER_SCOPE',worker_inherits_snapshot=False)
+
+
+def validate_parent_binding(value,manifest_sha256):
+    """Validate recorded lifetime identity; it is not a live handle or authority."""
+    _need(isinstance(value,dict) and set(value)=={'kind','schema_version','scope_id',
+        'parent_manifest_sha256','lifetime','snapshot_cleanup','worker_inherits_snapshot'},
+        'Invalid recorded retained-parent scope')
+    checksum(value['scope_id'],'retained parent scope identity')
+    _need(value['kind']=='metal-retained-parent-scope' and type(value['schema_version']) is int
+        and value['schema_version']==1 and value['parent_manifest_sha256']==manifest_sha256
+        and value['lifetime']=='CONTEXT_LOCAL_SERIAL_READS'
+        and value['snapshot_cleanup']=='OWNED_BY_OUTER_SCOPE' and value['worker_inherits_snapshot'] is False,
+        'Changed recorded retained-parent scope')
+
+
+def validate_parent_read(value,manifest_sha256,*,completed=False):
+    """Check saved read semantics without pretending to reacquire its parent."""
+    fields={'kind','schema_version','manifest_sha256','logical_bytes','archive_bytes','manifest_bytes',
+        'disk_bound_bytes','max_disk_bytes','transport_scope_closed','inputs_unchanged','snapshot_removed',
+        'scientific_validation','execution_authorized','reuse_authorized','retirement_authorized',
+        'retained_snapshot','read_scope_closed','consumer_completed'}
+    _need(isinstance(value,dict) and set(value)==fields and value['kind']==READ_KIND
+        and type(value['schema_version']) is int and value['schema_version']==1
+        and value['manifest_sha256']==manifest_sha256, 'Invalid retained parent read receipt')
+    for field in ('logical_bytes','archive_bytes','manifest_bytes','disk_bound_bytes','max_disk_bytes'):
+        _integer(value[field],field,1)
+    logical=value['logical_bytes'];compressed=value['archive_bytes'];manifest=value['manifest_bytes']
+    _need(logical<=owner.MAX_BYTES and compressed<=owner.MAX_BYTES and manifest<=MAX_MANIFEST_BYTES
+        and value['disk_bound_bytes']==compressed+manifest+max(2*logical,logical+owner.MAX_ACTIVE_BYTES)
+        and value['disk_bound_bytes']<=value['max_disk_bytes'], 'Invalid retained read budget')
+    _need(all(value[k] is True for k in ('transport_scope_closed','retained_snapshot','read_scope_closed'))
+        and all(value[k] is False for k in ('snapshot_removed','scientific_validation','execution_authorized',
+            'reuse_authorized','retirement_authorized'))
+        and all(type(value[k]) is bool for k in ('inputs_unchanged','consumer_completed')),
+        'Invalid retained read lifecycle')
+    _need(not value['consumer_completed'] or value['inputs_unchanged'], 'Completed read has changed inputs')
+    if completed:_need(value['consumer_completed'] and value['inputs_unchanged'], 'Retained parent read did not complete')
