@@ -85,7 +85,11 @@ reads. Each read still rehashes 11.05 MB for the measured 4.73 MB parent; there 
 no scientific-pass cache or native execution sharing. Next: qualify execution
 lifetime through the existing process owner, then compact publication and shared
 quota/protection/retirement before large fan-out. Read-only scope completion does
-not close the retained scientific-session gate.
+not close the retained scientific-session gate. The next opt-in execution step
+is [explicitly scoped](metal-campaign-storage.md#next-bounded-execution-lifetime-qualification-planned):
+version lifetime evidence, retain fresh science/process checks, qualify stopped/
+uncertain/interrupted behavior, then cold readback. Existing native controls are
+reused when their actual consumer and inputs are unchanged.
 Typed reader-control support remains with Willow W186. No historical parent or
 process identity is promoted; A01's current FT geometry gate is unchanged.
 

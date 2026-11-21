@@ -67,6 +67,20 @@ size, an illustrative 100 parent groups × 100 reads still hashes 110.50 GB,
 although logical expansion/copy volume falls 100-fold. That arithmetic is byte
 traffic, not retained disk size or a 100-dataset capacity claim; the measured
 parent contains two historical datasets. Current FT geometry remains unresolved.
+The [next execution-lifetime qualification](metal-campaign-storage.md#next-bounded-execution-lifetime-qualification-planned)
+is now scoped against the actual process/output/cold-reader owners. Existing
+outcome/review v1 assumptions prevent silently passing retained derivation v2.
+No execution sharing or new native test has been enabled. This is the current
+bounded stopping point, with a clean committed read-only implementation.
+
+Willow W194 (`76f6cd8c`) supplies explicit named-state/pair correspondence and
+signed geometry deltas after 113 source and 113 installed checks on its own
+branch. It is available for later A01 consumption, not integrated here. Its
+saved rigid-pair example moves atoms about 2.29 Å RMS with less than 0.001 Å
+paired-phosphate span change: width alone does not detect bending. Canonical
+simple twist is available there; modified frames, axes and curvature remain
+unqualified. Reuse that owner when A01's intended movement becomes admissible.
+
 **A01 partial; A02 gated; A04 partial.**
 
 ## A04 supporting checkpoint: explicit offline session review

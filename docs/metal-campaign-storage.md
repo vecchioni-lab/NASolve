@@ -419,6 +419,40 @@ Phenix/Coot refinement or full suite ran; retained scientific evidence was not
 pruned. The next execution adapter must preserve the same explicit lifetime,
 fresh gates and shared process ownership without promoting this read proof.
 
+### Next bounded execution-lifetime qualification (planned)
+
+The retained read handle is intentionally not accepted by `run_child` or
+`run_audited_child` yet. Their current outcome/review version 1 records derive
+from a fully closed one-shot transport, and the cold scientific reader requires
+derivation schema 1. Passing a retained schema-2 derivation through those old
+contracts would conflate read completion with snapshot cleanup. Do not broaden
+old meanings or add a generic successful-parent cache.
+
+The next opt-in adapter should:
+
+1. Carry an explicit retained-read identity and lifetime in versioned process and
+   scientific-review records; preserve all old one-shot records/readers exactly.
+2. Reuse `ChildProcesses` for launch, deadline, stop verification and retry. The
+   worker receives only its copied request/inputs, never the parent handle or
+   snapshot path. Its maintained helper bundle and frozen strategy stay exact.
+3. Preserve fresh metadata, scattering, original Free-R, pre/post derivation,
+   frozen atomic/reflection/model audits and output sealing for each child.
+   Any reuse of fresh acquisition needs its own input/software-bound contract;
+   this scope does not grant it.
+4. Refuse changed/expired/foreign parents before launch and before review.
+   A stopped failed/timed-out child retains its attempt; uncertain stop withholds
+   review, retry and retirement. Original protected archives remain regardless
+   of temporary snapshot lifetime. No signal may be sent from saved PID records.
+5. Qualify cold relocated readback of the new lifetime without originals, then
+   reuse the existing exact Hg/Ag4 worker/input/science controls where unchanged.
+   Add only changed-lifetime tests: process/output interruption, uncertain stop,
+   parent substitution, late mutation and cross-scope expiry. A native rerun needs
+   a changed scientific/native consumer or a specific unresolved hypothesis.
+
+This is the next A04 subgoal, not an implemented coordinator, cleanup policy or
+license for multi-site fan-out. Compact result publication, protected important
+nodes and quota/retirement remain subsequent gates. Keep all current evidence.
+
 ## Bounded protected-parent and regeneration rehearsal
 
 A 19 November rehearsal extends the earlier input-only archive to the existing
