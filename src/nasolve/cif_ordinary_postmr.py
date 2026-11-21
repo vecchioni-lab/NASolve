@@ -94,13 +94,14 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
         narestraints_builder=None, modified_pair_builder=None, generation_options=None,
         continuation_options=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False,
         frozen_sources=None, construction_choices=None, furanose_substitution=None,
+        locked_sugar_site=None, store_root=None,
         **execution_limits) -> PreparedPostMRRequest:
     """Prepare ordinary inputs once and publish a fresh complete request.
 
     Configuration/chemical permissions remain explicit. Existing constructors,
     source authority, literal compiler and request context gates own their rules.
-    The default CLI remains unchanged. No legacy modifiers, cache adapter, ReadySet
-    or request execution runs on this route. Failure retains all partial outputs;
+    The site-only construction can acquire its isolated dictionary before Coot.
+    The whole-model request is frozen here and executed by its caller. Failure retains all partial outputs;
     an existing PostMR directory cannot be prepared again in place. The explicit
     automatic_plane_support choice is frozen by the complete owner; continuation
     reads that saved choice rather than accepting a new override. Optional explicit
@@ -114,6 +115,9 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
     complete request or enable automatic mutation/selection. An explicit
     furanose_substitution binds one internal site to its qualified component,
     host dictionary and NARestraints workbook before the restraint builder runs.
+    Alternatively, locked_sugar_site reads that site's target from the frozen
+    run. After PostMR has reserved its directory, its usual isolated acquisition
+    owner reuses or qualifies the original component before Coot runs.
     """
     from .postmr import _prepare_postmr
     bond_discovery_fields(automatic_bond_targets,bond_targets)
@@ -123,6 +127,9 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
     if generation_options is not None and not isinstance(generation_options,dict):
         raise ValueError('Require explicit generation options')
     options = dict(generation_options or {})
+    if locked_sugar_site is not None and (furanose_substitution is not None or frozen_sources is not None
+                                         or construction_choices is not None):
+        raise ValueError('Select either an ordinary locked-sugar site or explicit construction sources')
     select_representation = options.pop("select_source_representation", False)
     if type(select_representation) is not bool or (select_representation and "bond_representation_policy" in options):
         raise ValueError("Require one unambiguous source representation selection")
@@ -133,6 +140,12 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
     construction = (None if frozen_sources is None and construction_choices is None else
                     _read_construction_inputs(frozen_sources, construction_choices, configured.consumer))
     furanose = None
+    if locked_sugar_site is not None:
+        from .cif_dictionary_store import default_dictionary_store
+        from .postmr_furanose import plan_catalogue_substitution
+        store = default_dictionary_store() if store_root is None else store_root
+        furanose = plan_catalogue_substitution(run_directory,locked_sugar_site,configured,phenix,store,data_root,
+                                               execution_limits)
     if furanose_substitution is not None:
         from .postmr_furanose import capture_substitution
         furanose = capture_substitution(furanose_substitution, configured.consumer)
@@ -174,7 +187,9 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
             frozen = selected["sources"]
             generation = {code:source_selected_generation(frozen[code]["source"], code, settings)
                           for code, settings in generation.items()}
-        if furanose is not None and 'bond_representation_policy' not in generation[furanose.code]:
+        if locked_sugar_site is not None:
+            generation[furanose.code] = dict(furanose.generation)
+        elif furanose is not None and 'bond_representation_policy' not in generation[furanose.code]:
             from .cif_generation_input import source_selected_generation
             generation[furanose.code] = source_selected_generation(
                 selected['sources'][furanose.code]['source'], furanose.code, generation[furanose.code])
@@ -195,7 +210,7 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
             built = read_substitution(stage)
             source = selected['sources'][furanose.code]
             furanose.verify_source(source['source'], source['source_authority'])
-            if built['snapshot']['entry_id'] != furanose.entry_id:
+            if built['snapshot']['entry_id'] != inputs.furanose_entry_id:
                 raise ValueError('Furanose construction retained a different dictionary entry')
             item, = [c for c in components if c['code'] == furanose.code]
             item.update(retained_snapshot=stage/'snapshot',
@@ -390,6 +405,8 @@ def _execute_ordinary_postmr(run_directory, phenix, *, store_root=None, **prepar
     options = dict(preparation_options)
     options.setdefault('expected_dialect', 'CHEMICAL_COMPONENTS_CIF')
     options.setdefault('continuation_options', dict(readyset_timeout_seconds=120, restore_serialization=True))
+    if options.get('locked_sugar_site') is not None:
+        options['store_root'] = store_root
     prepared = initialize_ordinary_postmr_request(run_directory, phenix, **options)
     result = execute_dictionary_request_attempt(prepared.request_directory, phenix,
         default_dictionary_store() if store_root is None else store_root,

@@ -17,6 +17,23 @@ def test_ordinary_postmr_freezes_existing_source_recipe_in_one_owner(tmp_path,mo
     assert [name for name,_ in calls]==['construct','execute'] and reads==[1]
 
 
+def test_site_only_locked_sugar_uses_checked_postmr_and_survives_its_public_command(tmp_path,monkeypatch,capsys):
+    from nasolve.cli import main
+    from nasolve.config import AppConfig
+    from nasolve.coot_runtime import CootDiscoveryError
+    with patch('nasolve.cli.load_config',side_effect=AssertionError('No discovery')):
+        assert main(['postmr',str(tmp_path),'--locked-sugar-site','A:11'])==2
+    assert 'requires --checked-preparation' in capsys.readouterr().err
+    with pytest.raises(PostMRPreparationError,match='requires checked_preparation'):
+        prepare_postmr(tmp_path,tmp_path/'unused',locked_sugar_site='A:11')
+    run, _, sdk, _, calls, _ = checked_case(tmp_path,monkeypatch)
+    with patch('nasolve.cli.load_config',return_value=AppConfig()),patch('nasolve.cli.save_config'), \
+         patch('nasolve.cli.discover_phenix',return_value=sdk),patch('nasolve.cli.remember_phenix'), \
+         patch('nasolve.cli.discover_coot',side_effect=CootDiscoveryError('absent')):
+        assert main(['postmr',str(run),'--checked-preparation','--locked-sugar-site','A:11'])==0
+    assert calls[0][1]['locked_sugar_site']=='A:11' and calls[0][1]['store_root'] is None
+
+
 @pytest.mark.parametrize('policy,checked',[(POLICY,False),('unknown',True),(True,True),({},True)])
 def test_invalid_input_policy_refuses_before_construction(tmp_path,monkeypatch,policy,checked):
     monkeypatch.setattr('nasolve.postmr._prepare_postmr',lambda *a,**k:pytest.fail('No construction'))

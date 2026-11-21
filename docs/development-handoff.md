@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C494 ordinary thirteen-substitution construction — Rowan**.
+Updated **2026-11-21, C495–C496 site-only construction and checkpoint publication — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -13,6 +13,40 @@ Focused, relocated installed, matched native and independent checks also pass.
 Software qualification does not change the scientific REVIEW or close Q06.
 
 ## Where to resume
+
+**The mutation card can now supply the locked-sugar chemistry.** On a fresh
+Phaser run, the ordinary site option found ATL, its DT host at A:11 and the
+NARestraints workbook. Phenix 2.2.1-6174 qualified the new dictionary on
+all 21 isolated checks. The second request reused the same entry without
+eLBOW or another native qualification. The resulting thirteen-change PDB
+matched the explicit-source construction byte for byte.
+
+**Publishing the result exposed a separate bug.** The original publisher
+tried to plan ATL a second time as ordinary DNA after the chemistry had
+completed. The corrected publisher checks the current mutation card against
+the verified source-bound construction. It also recovers explicitly chosen
+deoxy temporary parents from the retained chemical source. Changed card
+targets, sites and mirrored intent still fail. The original thirteen-component
+request completed and preserved its independent parent selection. ReadySet
+changed atom-name spacing in eight of 211 ordered requests. Rechecking its
+two native captures with the existing named-atom comparison passed all 28
+endpoint checks. The separate comparison leaves the recorded selection intact.
+The frozen request, cold and warm receipts and compact measurements are in
+`site_only_locked_sugar_and_publication_2026_11_21` in the evidence ledger.
+
+The saved thirteen-change attempt registered as the `postmr` review checkpoint
+without repeating Coot, eLBOW, ReadySet or Phenix. Removing OXT's leaving-group
+flag from a disposable copy after planning stopped acquisition before it could
+create a cache entry. The relocated install matched 320 package source files.
+The initial site/caller group passed 143 focused checks. The final publication,
+source and named-request group passed 194. A relocated install passed another
+104 on publication, construction, source selection and CLI forwarding. The
+full regression was deferred. The existing record schemas and older selections
+can be read without migration. Only compact measurements are tracked.
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_postmr_furanose_lineage.py tests/test_cif_ordinary_construction.py tests/test_cif_postmr_publication.py tests/test_postmr_explicit_targets.py tests/test_cif_named_custom_requests.py tests/test_cif_named_custom_execution.py
+```
 
 **Ordinary construction, C494.** Fresh molecular replacement, Coot 1.3.3 and
 NARestraints 1.1.3 produced all thirteen substitutions in one PostMR run.

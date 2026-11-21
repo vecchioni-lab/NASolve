@@ -141,6 +141,26 @@ def test_sugar_choice_verifies_the_current_consumer_and_the_selected_workbook(tm
         choice.verify()
 
 
+def test_new_publication_rechecks_the_frozen_sugar_against_current_mutation_intent(tmp_path):
+    from nasolve.cif_postmr_publication import _check_new_mutation_intent
+    from nasolve.postmr import PostMRPreparationError
+
+    selection, consumer, frame = sugar_inputs(tmp_path)
+    run = tmp_path/'run'
+    request = run/'PostMR/DictionaryEngine/request'
+    frozen = request/'inputs/construction'
+    sealed(frozen,selection,consumer,frame)
+    exact = {'construction_inputs':read_postmr_construction(frozen)}
+    current = dict(post_mr_plan=dict(mutations={'A:11':{'ligand_code':'Z99'}}))
+    with patch('subprocess.Popen',side_effect=AssertionError('Publication started a process')):
+        _check_new_mutation_intent(run,current,request,exact)
+        for mutations in ({'A:11':{'ligand_code':'DT'}}, {'A:12':{'ligand_code':'Z99'}}, {}):
+            with pytest.raises((PostMRPreparationError,ValueError)):
+                _check_new_mutation_intent(run,dict(post_mr_plan=dict(mutations=mutations)),request,exact)
+        with pytest.raises(PostMRPreparationError,match='unmirrored'):
+            _check_new_mutation_intent(run,dict(current,inputs=dict(mirror=True)),request,exact)
+
+
 def test_changed_acquisition_source_refuses_before_allocating_postmr_or_launching_coot(tmp_path, monkeypatch):
     from nasolve import curated_ligands
     from nasolve.cif_ordinary_postmr import initialize_ordinary_postmr_request
@@ -158,6 +178,59 @@ def test_changed_acquisition_source_refuses_before_allocating_postmr_or_launchin
         initialize_ordinary_postmr_request(run,sdk,data_root=local,expected_dialect='CHEMICAL_COMPONENTS_CIF',
                                            furanose_substitution=selection)
     assert not run.exists()
+
+
+def test_site_only_plan_resolves_the_two_chemical_sources_and_reuses_the_exact_current_dictionary(tmp_path, monkeypatch):
+    from pathlib import Path
+    from restraints import residue_library
+    from nasolve import curated_ligands, postmr
+    from nasolve.cif_acquisition_attempt import read_acquisition_result
+    from nasolve.cif_dictionary_store import make_dictionary_request, publish_dictionary, resolve_dictionary_snapshot
+    from nasolve.cif_generation_acquisition import generation_dictionary_options
+    from nasolve.postmr_furanose import plan_catalogue_substitution
+    from tests.test_cif_phenix_configuration import configure, sdk_at
+
+    sdk, _ = sdk_at(tmp_path/'sdk')
+    cfg = configure(sdk)
+    selection, consumer, model = sugar_inputs(tmp_path,cfg.consumer)
+    saved = resolve_dictionary_snapshot(selection['snapshot'])
+    local = tmp_path/'library'
+    (local/'ligands').mkdir(parents=True)
+    (local/'ligands/Z99.cif').write_bytes(saved['source'].read_bytes())
+    (local/'ligands/HST.cif').write_bytes(selection['host_dictionary'].read_bytes())
+    package = tmp_path/'restraints'
+    (package/'data').mkdir(parents=True)
+    book = package/'data/Ligands.xlsx'
+    book.write_bytes(selection['workbook'].read_bytes())
+    module_file = package/'residue_library.py'
+    module_file.write_bytes(Path(residue_library.__file__).read_bytes())
+    monkeypatch.setattr(residue_library,'__file__',str(module_file))
+    monkeypatch.setattr(curated_ligands,'_registered_record',lambda code: {'Ligand code':code})
+    run = tmp_path/'run'
+    intent = dict(post_mr_plan=dict(mutations={'A:11':{'ligand_code':'Z99'}}))
+    monkeypatch.setattr(postmr,'_read_report',lambda path:(run,intent))
+    monkeypatch.setattr(postmr,'_solution_model',lambda path, report:model)
+    store = tmp_path/'catalogue-store'
+    plan = plan_catalogue_substitution(run,'A:11',cfg,sdk,store,local,{})
+    assert plan.code == 'Z99' and plan.host.name=='HST.cif' and plan.workbook==book
+    assert plan.generation['source_input_policy'] == 'cif-source-reader-preparation-v1'
+    params = generation_dictionary_options(plan.generation)
+    request = make_dictionary_request(plan.source,plan.code,source_authority=plan.source_authority,**params)
+    actual = qualification(plan.source,saved['dictionary'],plan.code,policy=plan.generation['bond_representation_policy'])
+    expected = publish_dictionary(store,request,plan.source,saved['dictionary'],actual,
+                                  consumer=consumer,provenance=saved['provenance'])
+    with patch('nasolve.cif_acquisition_attempt.generate_source_candidate_attempt',side_effect=AssertionError('Cache hit regenerated the dictionary')), \
+         patch('nasolve.cif_acquisition_attempt.execute_candidate_qualification',side_effect=AssertionError('Cache hit requalified the dictionary')):
+        choice = plan.acquire(tmp_path/'acquisition')
+    assert choice.entry_id == expected['entry_id']
+    assert read_acquisition_result(tmp_path/'acquisition',1)['report']['status']=='REUSED'
+    assert not (tmp_path/'acquisition/generation').exists()
+    with pytest.raises(ValueError,match='frozen mutation'):
+        plan_catalogue_substitution(run,'A:12',cfg,sdk,store,local,{})
+    book.write_bytes(b'workbook replaced after planning')
+    with pytest.raises(ValueError,match='changed before acquisition'):
+        plan.acquire(tmp_path/'never-started')
+    assert not (tmp_path/'never-started').exists()
 
 
 def test_complete_request_binds_the_same_workbook_reaction_and_qualified_component(tmp_path, case):

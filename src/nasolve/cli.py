@@ -159,6 +159,8 @@ def build_parser() -> argparse.ArgumentParser:
     postmr.add_argument("--coot", help="one-run Coot executable override")
     postmr.add_argument("--checked-preparation", action="store_true",
                         help="check/repair dictionaries and save the exact model/restraints as a review checkpoint; retain independently checked fallbacks")
+    sugar_help = "build one internal locked sugar from the mutation card, source chemistry and NARestraints workbook"
+    postmr.add_argument("--locked-sugar-site", metavar="CHAIN:RESIDUE", help=sugar_help+" (requires --checked-preparation)")
     postmr.add_argument("--dictionary-input-policy", choices=(ORDINARY_INPUT_POLICY, SOURCE_SELECTED_INPUT_POLICY),
                         help="choose the Phenix input recipe (v1 uses one fixed representation, v2 selects a representation for each source)")
     postmr.add_argument("--automatic-plane-support", action="store_true",
@@ -254,6 +256,7 @@ def build_parser() -> argparse.ArgumentParser:
     checked = cif_sub.add_parser("prepare-run", help="build and check modified-residue preparation; does not start refinement")
     checked.add_argument("run", type=Path, help="accepted AutoMR run; requires a fresh PostMR directory")
     checked.add_argument("--store", type=Path, help="optional dictionary-cache location; otherwise use the normal local cache")
+    checked.add_argument("--locked-sugar-site", metavar="CHAIN:RESIDUE", help=sugar_help)
     checked.add_argument("--coot", help="one-run Coot executable override")
     checked.add_argument("--allow-mr-review", action="store_true", help="explicitly allow a recorded MR_REVIEW result")
     checked.add_argument("--modified-pairs-only", action="store_true", help="restrain only pairs containing a modified nucleotide")
@@ -887,6 +890,8 @@ def _automr(args: argparse.Namespace) -> int:
 
 def _postmr(args: argparse.Namespace) -> int:
     try:
+        if getattr(args,"locked_sugar_site",None) is not None and not getattr(args,"checked_preparation",False):
+            raise PostMRPreparationError("--locked-sugar-site requires --checked-preparation")
         if getattr(args, "automatic_plane_support", False) and not getattr(args, "checked_preparation", False):
             raise PostMRPreparationError("--automatic-plane-support requires --checked-preparation")
         if getattr(args, "dictionary_input_policy", None) is not None and not getattr(args, "checked_preparation", False):
@@ -916,6 +921,7 @@ def _postmr(args: argparse.Namespace) -> int:
             restraint_scope=args.restraint_scope,
             allow_unreviewed_backbone=args.allow_unreviewed_backbone,
             checked_preparation=getattr(args, "checked_preparation", False),
+            **({"locked_sugar_site": args.locked_sugar_site} if getattr(args,"locked_sugar_site",None) is not None else {}),
             **({"automatic_plane_support": True} if getattr(args, "automatic_plane_support", False) else {}),
             **({"dictionary_input_policy": args.dictionary_input_policy}
                if getattr(args, "dictionary_input_policy", None) is not None else {}),
@@ -1767,6 +1773,7 @@ def _cif_checked_preparation(args: argparse.Namespace) -> int:
                 from .cif_generation_input import ordinary_generation_options
                 generation_options = ordinary_generation_options(args.dictionary_input_policy)
                 result = prepare_checked_postmr(run, phenix, store_root=args.store,
+                    **({"locked_sugar_site":args.locked_sugar_site} if args.locked_sugar_site is not None else {}),
                     coot_executable=coot.executable if coot else None,
                     allow_mr_review=args.allow_mr_review, restraint_scope=args.restraint_scope,
                     modified_pairs_only=args.modified_pairs_only,

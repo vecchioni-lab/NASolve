@@ -10,6 +10,12 @@ entries are reconstructed from repository history.
 
 ### Building an internal locked sugar during checked preparation
 
+- For an internal locked sugar on the mutation card, checked PostMR accepts
+  `--locked-sugar-site CHAIN:RESIDUE`. It finds the target, the host sugar and
+  the installed NARestraints workbook. The local dictionary store can reuse a
+  qualified entry or acquire one before model building. Checkpoint publication
+  rechecks the current card with the source-bound construction that produced
+  the model. Explicit source and temporary-parent choices work after relocation.
 - The ordinary PostMR dictionary engine can now use one explicitly selected
   locked sugar alongside Coot substitutions. It reads the base anchors from
   the two chemical graphs and the NARestraints workbook, and reads the two

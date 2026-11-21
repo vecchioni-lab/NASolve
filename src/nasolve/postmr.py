@@ -2100,6 +2100,7 @@ class _PreparedDictionaryInputs:
     model_path: Path
     components: tuple[str, ...]
     supplementary_phils: tuple[Path, ...]
+    furanose_entry_id: str | None = None
 
 
 _PostMRReturn = TypeVar("_PostMRReturn")
@@ -2131,6 +2132,7 @@ def prepare_postmr(
     bond_targets: dict | None = None,
     automatic_bond_targets: bool = False,
     dictionary_input_policy: str | None = None,
+    locked_sugar_site: str | None = None,
     coot_executable: Path | None = None,
     environment: Mapping[str, str] | None = None,
     allow_mr_review: bool = False,
@@ -2173,6 +2175,8 @@ def prepare_postmr(
             bond_targets = _bond_target_declarations(bond_targets)
         except ValueError as exc:
             raise PostMRPreparationError(str(exc)) from exc
+    if locked_sugar_site is not None and not checked_preparation:
+        raise PostMRPreparationError('locked_sugar_site requires checked_preparation')
     from .cif_generation_input import ordinary_generation_options
     try:
         generation_options = ordinary_generation_options(dictionary_input_policy)
@@ -2193,6 +2197,7 @@ def prepare_postmr(
         from .checkpoints import CheckpointError
         try:
             return prepare_published_postmr(run_directory, phenix_installation,
+                **({"locked_sugar_site": locked_sugar_site} if locked_sugar_site is not None else {}),
                 **({"automatic_plane_support": True} if automatic_plane_support else {}),
                 **({"bond_targets": bond_targets} if bond_targets is not None else {}),
                 **({"automatic_bond_targets": True} if automatic_bond_targets else {}),
@@ -2306,6 +2311,13 @@ def _prepare_postmr(
 
     original = model_dir / "mr_solution.pdb"
     shutil.copyfile(source_model, original)
+    if _furanose_input is not None:
+        from .postmr_furanose import CatalogueSubstitution
+        if isinstance(_furanose_input, CatalogueSubstitution):
+            try:
+                _furanose_input = _furanose_input.acquire(coot_dir/'furanose_acquisition')
+            except (OSError, ValueError, RuntimeError) as exc:
+                raise PostMRPreparationError(f'Isolated dictionary preparation failed at {_furanose_input.site}: {exc}') from exc
     actions = (
         family_actions if family_actions is not None
         else build_mutation_plan(report, original)
@@ -2679,7 +2691,8 @@ def _prepare_postmr(
     )
     if _dictionary_handler is not None:
         return _dictionary_handler(_PreparedDictionaryInputs(
-            run, report, prepared, tuple(ligand_codes), tuple(restraint_paths)))
+            run, report, prepared, tuple(ligand_codes), tuple(restraint_paths),
+            _furanose_input.entry_id if _furanose_input is not None else None))
 
     copied_cifs: list[Path] = []
     dictionary_input_audit: list[dict] = []

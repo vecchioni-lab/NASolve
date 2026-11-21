@@ -74,8 +74,16 @@ def test_ordinary_construction_uses_frozen_choices_and_complete_request(chosen,t
     assert read_postmr_construction(result.request_directory/'inputs/construction')['files']==lineage['files']
     shutil.rmtree(parent);moved=tmp_path/'relocated';run.rename(moved)
     from nasolve.cif_complete_request import inspect_dictionary_request
+    from nasolve.cif_postmr_publication import _check_new_mutation_intent
     with patch('subprocess.Popen',side_effect=AssertionError('Cold read must not execute')):
-        state=inspect_dictionary_request(moved/'PostMR/DictionaryEngine/request')
+        request = moved/'PostMR/DictionaryEngine/request'
+        state = inspect_dictionary_request(request)
+        live = json.loads((moved/'report.json').read_bytes())
+        verified = {'construction_inputs':read_postmr_construction(request/'inputs/construction')}
+        _check_new_mutation_intent(moved,live,request,verified)
+        del live['post_mr_plan']['mutations']['B:1']
+        with pytest.raises(ValueError,match='mutation intent'):
+            _check_new_mutation_intent(moved,live,request,verified)
     assert state['availability']=='AVAILABLE' and not state['attempts']
     before={str(p.relative_to(moved)):(p.read_bytes(),p.stat().st_mtime_ns) for p in moved.rglob('*') if p.is_file()}
     with pytest.raises(RuntimeError,match='already exists'):

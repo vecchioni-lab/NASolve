@@ -120640,5 +120640,78 @@
     "scope": "Ordinary model construction and native dictionary corrections. ReadySet publication and registered diffraction have their own receipts.",
     "source_workbook": "94a66af42081188fd95f3fdcbe04cb01bed8f1826772597272320a8b4c0433b2",
     "host_dictionary": "47a7972b4707d3d2b4bd01ab4916b90bbfa659867d612f58a3a79665cce5e9d7"
+  },
+  "site_only_locked_sugar_and_publication_2026_11_21": {
+    "verified_with": {
+      "phenix": "2.2.1-6174",
+      "coot": "1.3.3, revision count 0",
+      "narestraints": "1.1.3"
+    },
+    "mutation_card": {
+      "opened_site": "A:11",
+      "component": "ATL",
+      "host_code": "DT",
+      "original_source": "cd7bd864ac5fb1a125294d30ff6da7bd36ac95fc7a4b72e6c7aaeee92f7f3c01",
+      "host": "47a7972b4707d3d2b4bd01ab4916b90bbfa659867d612f58a3a79665cce5e9d7",
+      "workbook": "94a66af42081188fd95f3fdcbe04cb01bed8f1826772597272320a8b4c0433b2",
+      "dictionary": "ba9feb8fc21ae2abaccef2022ee4ebae4ca367ee68131987c0cc9d3249be900c",
+      "old_dictionary": "23dd4b09d128219200dcf083b65eed1de77259feadd09f54987b3a684ddbc3e5",
+      "parsed_dictionary_identical": true,
+      "entry": "f8b38ad9f972ff30f525a7b8136038db1158d9f15500e86150cf47cc1dba9f8a",
+      "initial": "PREPARED_AND_FROZEN",
+      "second": "REUSED",
+      "warm_native_jobs": 0,
+      "prepared": "35f298f0514077011d9ac59c0f25e9626832783bd89f1800b09e8d4a1846358b",
+      "same_prepared_as_explicit": true,
+      "prepared_components": 13,
+      "expected_links": 38,
+      "frozen_request": "bb3fef048e2210ace7ac3b2733fb33d179a937307ce21773528e79154dc88caa"
+    },
+    "isolated_native_checks_passed": 21,
+    "isolated_working_bytes": {
+      "new_qualification": 4345106,
+      "cache_reuse": 269185
+    },
+    "changed_leaving_group": {
+      "original_source": "cd7bd864ac5fb1a125294d30ff6da7bd36ac95fc7a4b72e6c7aaeee92f7f3c01",
+      "altered_copy": "392086cd213f19e1abc1774cb846ba499f179561aa38d6ca1c93276c15fe2895",
+      "change": "Only the OXT leaving-atom declaration on a disposable local diagnostic copy was removed after planning.",
+      "acquisition_started": false,
+      "cache_created": false,
+      "matched_package_sources": 320,
+      "wheel": "253e0674645603d8b02ded821fe6272d2508936597b2ec7cea35c64d8a47319a"
+    },
+    "ordinary_publication": {
+      "request": "56191bae6ad765e7fb4a1878534f5702e1da981cb562d54f89aff6bf3b2713aa",
+      "source_attempt_finish": "4bd79e4153dd6e2add8e910142cad0684ef255b1d2781925919951e4961fa36c",
+      "selected": "verified_parent_runtime",
+      "root_record": "08a4e5ee7ed53ddb31bcd0aef403c0a1bea5a6afb9c21e9a7f9154fbfda27c77",
+      "native_jobs": 0,
+      "wheel": "51b7db424a86a389f6fc2bf0bd51229f697479cb978b8a03e382e21b32e61442"
+    },
+    "readyset_comparison": {
+      "comparison": "cif-native-ordered-named-custom-requests-v1",
+      "captures": {
+        "baseline": "94fa66d3334807b32bee453841d9cddf914e5f8d969292980c4bc7a393487c29",
+        "endpoint": "32a463ba04ac142e88161bded71753c3740be399bd521f194232817b8a90de9e"
+      },
+      "ordinary_selection": "verified_parent_runtime",
+      "separate_read": "readyset_checked_model",
+      "ordered_requests": 211,
+      "checks_passed": 28,
+      "native_calls": 0,
+      "registered_endpoint_changed": false
+    },
+    "different_atom_name_rows": [
+      0,
+      1,
+      53,
+      54,
+      143,
+      153,
+      168,
+      169
+    ],
+    "scope": "Ordinary construction, isolated acquisition, and registration of the selected parent. The diffraction child has a separate measurement."
   }
 }
