@@ -1041,7 +1041,11 @@ scope supplies P–P spans only; half-span, local-axis radii and twist have dist
 meaning and qualification. W193 adds an explicit `helical_twist` adapter using
 canonical ring fits and an exact C1′/pair-normal convention through optional Gemmi.
 It preserves independent missing quantities and caller-declared fit limits;
-modified frames and axes remain unmeasured. See the [shared plan](helical-geometry-plan.json).
+modified frames and axes remain unmeasured. W194 composes these readers through
+`helical_comparison`, requiring explicit pair and strand correspondence between
+two named states. It binds both model/region snapshots, retains unmatched pairs
+and compares only matching directed adjacency; there is no alignment or inferred
+physical equivalence. See the [shared plan](helical-geometry-plan.json).
 
 The pairing owner supplies exact forward/reciprocal edge incidence to selected
 atom-image audits. These bind one-partner capacity only within their recorded

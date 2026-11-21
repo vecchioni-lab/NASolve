@@ -17,6 +17,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W194 — Compare explicitly matched helix states
+
+- Add a read-only API composing existing span/twist readers for two named models.
+  Require explicit complete pair accounting and strand correspondence, preserve
+  missing/changed sites, compare only actual matching adjacency and use signed
+  wrap-safe twist changes. No inference from numbering or spatial proximity.
+- New schema-1 comparison report with independently pinned states and raw values;
+  default readers and CLI remain unchanged. No new dependency or migration.
+- 113 focused source and 113 relocated installed checks pass. Five saved 5W6W
+  comparisons reproduce from the installed package; 35 span changes independently
+  agree with Gemmi. No new coordinates/refinement or scientific acceptance.
+
 ### W193 — Measure canonical simple step twist
 
 - Add opt-in canonical ring-frame/simple-step twist to the shared paired-region

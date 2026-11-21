@@ -1,6 +1,6 @@
 {
   "id": "regional-helical-geometry",
-  "status": "PARTIAL_CANONICAL_TWIST_AND_PAIRED_PHOSPHATE_REPORT",
+  "status": "PARTIAL_NAMED_STATE_SPAN_AND_CANONICAL_TWIST_COMPARISONS",
   "required_before": "NASolve completion",
   "delivery": "Q15 reporting with a Q16 integration check",
   "scope": "One offline, read-only analysis shared by Cedar, Willow and Alder. Support an explicit model or checkpoint and comparisons between named model states. An optional post-processing hook can call the same calculation.",
@@ -29,7 +29,7 @@
     },
     {
       "id": "H3",
-      "status": "open",
+      "status": "partial",
       "name": "Report regions and changes across checkpoints",
       "acceptance": [
         "Retain every step with its weight. Modified-site twist is the mean of the two flanking steps. For the published seven-pair edge average six full steps. For the junction-inclusive example add the two bordering half-steps and divide by seven effective steps. Use the actual declared weights for other regions.",
@@ -122,11 +122,11 @@
     }
   },
   "implementation": {
-    "human_update": "W193",
+    "human_update": "W194",
     "owner": "Linden / Willow; shared with Cedar and Alder",
-    "code_commit": "80bfb8582f7c60848f5d47ca90bc4bbd8e287100",
-    "module": "nasolve.helical_geometry + nasolve.helical_twist",
-    "guide": "docs/topostitch-preview.md#measure-canonical-simple-step-twist-w193",
+    "code_commit": "ab02a1bd25a6f000d0896e1cf6e46e5510da6c35",
+    "module": "nasolve.helical_geometry + nasolve.helical_twist + nasolve.helical_comparison",
+    "guide": "docs/topostitch-preview.md#compare-declared-helix-states-w194",
     "report_schema": 1,
     "delivered": [
       "Exact single-model PDB and identity-image site/component/conformer binding",
@@ -135,19 +135,23 @@
       "67 focused source and67 relocated installed checks; exact7SDF/C444 span agreement",
       "Canonical DA/DC/DG/DT ring frames with exact atom provenance and explicit fit limit",
       "Signed simple-step twist using author normal convention; independent missing quantities",
-      "96 focused source and 96 fresh relocated installed checks; all 13 current-reference public steps match at printed precision; default W191 report unchanged without Gemmi"
+      "96 focused source and 96 fresh relocated installed checks; all 13 current-reference public steps match at printed precision; default W191 report unchanged without Gemmi",
+      "Explicit named-state pair correspondence with exact independent sources, unmatched rows, visible chemistry/role changes and directed adjacency",
+      "Candidate-minus-reference P-span/half-span and wrap-safe simple-twist deltas, without inferred physical equivalence",
+      "113 focused source and 113 relocated installed checks; five exact saved 5W6W comparisons, 35 independent P-span delta checks; no new native run"
     ],
     "remaining": [
       "Other crystal images, mmCIF and registered cross-state correspondence",
       "Modified base-frame mapping/fit quality",
       "Local-axis per-strand radii and historical 7SDG publication-input discrepancy",
-      "Weighted region statistics, matched-state changes and publication table export"
+      "Weighted region statistics and publication table export"
     ],
     "native_execution": false,
     "runtime_authority": false,
     "methods": [
       "declared-pair-phosphate-span-v1",
-      "declared-canonical-simple-step-twist-v1"
+      "declared-canonical-simple-step-twist-v1",
+      "declared-helical-state-comparison-v1"
     ]
   },
   "simple_twist_reference_qualification": {

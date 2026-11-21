@@ -253,14 +253,15 @@
         "W190 binds derived original canonical source connectivity separately from checked preparation;121 links match saved native capture,128 source and128 installed checks pass.",
         "W191 adds the shared Q15 exact paired-phosphate report with local missing-site results; it does not qualify helix opening or choose a bend target.",
         "W192 establishes the source-defined simple-twist orientation convention with independent public reference controls; no runtime promotion or motion acceptance.",
-        "W193 supplies shared canonical simple-step twist with exact atom/fit provenance, independent missing quantities and current-reference public readback; this is measurement, not bend acceptance."
+        "W193 supplies shared canonical simple-step twist with exact atom/fit provenance, independent missing quantities and current-reference public readback; this is measurement, not bend acceptance.",
+        "W194 supplies explicit named-state span/twist deltas with unmatched/changed sites and directed adjacency retained; saved signed 5W6W recovery illustrates span insensitivity and residual local twist."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "Qualify explicit named-state correspondence in the shared helix reader before regional comparisons. Preserve independent missing quantities and distinguish span, radius and curvature. Real motion still requires independent target and complete execution settings; do not repeat saved native captures.",
+      "next_action": "Audit H3 explicit region weights, gap coverage and near-zero signed helicity before regional summaries/export. Registered images, modified frames and axis radii remain separate qualification. Real motion still requires independent target and exact settings authority.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -314,14 +315,15 @@
         "ordinary_source_context_w190",
         "E_PAIRED_PHOSPHATE_SPANS",
         "E_SIMPLE_TWIST_REFERENCE",
-        "E_CANONICAL_SIMPLE_TWIST"
+        "E_CANONICAL_SIMPLE_TWIST",
+        "E_NAMED_HELIX_STATE_COMPARISON"
       ],
       "last_audit": {
         "date": "2026-11-21",
-        "human_update": 193,
-        "code_commit": "80bfb8582f7c60848f5d47ca90bc4bbd8e287100",
-        "reviewer": "Linden; shared scope coordinated with Rowan",
-        "scope": "Canonical optional measurement qualified; motion and historical publication provenance remain open."
+        "human_update": 194,
+        "code_commit": "ab02a1bd25a6f000d0896e1cf6e46e5510da6c35",
+        "reviewer": "Linden; shared reader scope coordinated with Rowan and Hazel",
+        "scope": "Explicit state comparison qualified; H3 partial, motion and physical/image equivalence remain open."
       }
     },
     {
@@ -371,14 +373,15 @@
         "W190 binds derived original canonical source connectivity separately from checked preparation;121 links match saved native capture,128 source and128 installed checks pass.",
         "W191 adds the shared Q15 exact paired-phosphate report with local missing-site results; it does not qualify helix opening or choose a bend target.",
         "W192 establishes the source-defined simple-twist orientation convention with independent public reference controls; no runtime promotion or motion acceptance.",
-        "W193 supplies shared canonical simple-step twist with exact atom/fit provenance, independent missing quantities and current-reference public readback; this is measurement, not bend acceptance."
+        "W193 supplies shared canonical simple-step twist with exact atom/fit provenance, independent missing quantities and current-reference public readback; this is measurement, not bend acceptance.",
+        "W194 supplies explicit named-state span/twist deltas with unmatched/changed sites and directed adjacency retained; saved signed 5W6W recovery illustrates span insensitivity and residual local twist."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Qualify explicit named-state correspondence in the shared helix reader before regional comparisons. Preserve independent missing quantities and distinguish span, radius and curvature. Real motion still requires independent target and complete execution settings; do not repeat saved native captures.",
+      "next_action": "Audit H3 explicit region weights, gap coverage and near-zero signed helicity before regional summaries/export. Registered images, modified frames and axis radii remain separate qualification. Real motion still requires independent target and exact settings authority.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -475,14 +478,15 @@
         "ordinary_source_context_w190",
         "E_PAIRED_PHOSPHATE_SPANS",
         "E_SIMPLE_TWIST_REFERENCE",
-        "E_CANONICAL_SIMPLE_TWIST"
+        "E_CANONICAL_SIMPLE_TWIST",
+        "E_NAMED_HELIX_STATE_COMPARISON"
       ],
       "last_audit": {
         "date": "2026-11-21",
-        "human_update": 193,
-        "code_commit": "80bfb8582f7c60848f5d47ca90bc4bbd8e287100",
-        "reviewer": "Linden; shared scope coordinated with Rowan",
-        "scope": "Canonical optional measurement qualified; motion and historical publication provenance remain open."
+        "human_update": 194,
+        "code_commit": "ab02a1bd25a6f000d0896e1cf6e46e5510da6c35",
+        "reviewer": "Linden; shared reader scope coordinated with Rowan and Hazel",
+        "scope": "Explicit state comparison qualified; H3 partial, motion and physical/image equivalence remain open."
       }
     },
     {
@@ -542,7 +546,8 @@
         "W190 binds derived original canonical source connectivity separately from checked preparation;121 links match saved native capture,128 source and128 installed checks pass.",
         "W191 adds the shared Q15 exact paired-phosphate report with local missing-site results; it does not qualify helix opening or choose a bend target.",
         "W192 establishes the source-defined simple-twist orientation convention with independent public reference controls; no runtime promotion or motion acceptance.",
-        "W193 supplies shared canonical simple-step twist with exact atom/fit provenance, independent missing quantities and current-reference public readback; this is measurement, not bend acceptance."
+        "W193 supplies shared canonical simple-step twist with exact atom/fit provenance, independent missing quantities and current-reference public readback; this is measurement, not bend acceptance.",
+        "W194 supplies explicit named-state span/twist deltas with unmatched/changed sites and directed adjacency retained; saved signed 5W6W recovery illustrates span insensitivity and residual local twist."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -553,7 +558,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Qualify explicit named-state correspondence in the shared helix reader before regional comparisons. Preserve independent missing quantities and distinguish span, radius and curvature. Real motion still requires independent target and complete execution settings; do not repeat saved native captures.",
+      "next_action": "Audit H3 explicit region weights, gap coverage and near-zero signed helicity before regional summaries/export. Registered images, modified frames and axis radii remain separate qualification. Real motion still requires independent target and exact settings authority.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -649,14 +654,15 @@
         "ordinary_source_context_w190",
         "E_PAIRED_PHOSPHATE_SPANS",
         "E_SIMPLE_TWIST_REFERENCE",
-        "E_CANONICAL_SIMPLE_TWIST"
+        "E_CANONICAL_SIMPLE_TWIST",
+        "E_NAMED_HELIX_STATE_COMPARISON"
       ],
       "last_audit": {
         "date": "2026-11-21",
-        "human_update": 193,
-        "code_commit": "80bfb8582f7c60848f5d47ca90bc4bbd8e287100",
-        "reviewer": "Linden; shared scope coordinated with Rowan",
-        "scope": "Canonical optional measurement qualified; motion and historical publication provenance remain open."
+        "human_update": 194,
+        "code_commit": "ab02a1bd25a6f000d0896e1cf6e46e5510da6c35",
+        "reviewer": "Linden; shared reader scope coordinated with Rowan and Hazel",
+        "scope": "Explicit state comparison qualified; H3 partial, motion and physical/image equivalence remain open."
       }
     },
     {
@@ -4712,6 +4718,15 @@
       "reference": "docs/topostitch-periodic.md#w193--maintain-canonical-simple-step-twist",
       "result": "96 focused source and 96 relocated installed checks; all 13 saved current-reference public steps match at printed precision. Default P-span report unchanged without Gemmi.",
       "limitation": "Canonical single-model identity-image PDB only; caller-declared pairing and fit limit. Modified frames, axes, matched-state summaries and historical 7SDG SI provenance remain open. No coordinates, native execution, workflow activation or acceptance."
+    },
+    "E_NAMED_HELIX_STATE_COMPARISON": {
+      "kind": "explicit_named_state_helix_comparison",
+      "date": "2026-11-21",
+      "human_update": 194,
+      "code_commit": "ab02a1bd25a6f000d0896e1cf6e46e5510da6c35",
+      "reference": "docs/topostitch-periodic.md#w194--compare-explicit-named-helix-states",
+      "result": "113 focused source and 113 relocated installed checks; five saved reports reproduce. 35 independent P-span delta checks and 30 measured simple-twist changes. Original spans stay within0.001A despite2.288A RMS displacement.",
+      "limitation": "Caller-declared correspondence, canonical identity-image twist and single-model PDB only. Not registered physical equivalence, axis radii, curvature, weighted regional summaries or repair acceptance. No new native run."
     }
   },
   "benchmarks": [
@@ -4873,8 +4888,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 193,
-    "next": 194,
+    "current": 194,
+    "next": 195,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -5842,6 +5857,12 @@
         "title": "Maintain canonical simple-step twist with public reference and installed readback",
         "state": "RECORDED",
         "code_commit": "80bfb8582f7c60848f5d47ca90bc4bbd8e287100"
+      },
+      {
+        "number": 194,
+        "title": "Compare explicit named helix states without inferring correspondence or bending",
+        "state": "RECORDED",
+        "code_commit": "ab02a1bd25a6f000d0896e1cf6e46e5510da6c35"
       }
     ]
   },

@@ -1,5 +1,29 @@
 # NASolve development handoff — Willow
 
+**W194: follow explicitly matched pairs across named model states.**
+`nasolve.helical_comparison.compare_helical_states` composes the same readers
+with complete caller-declared correspondence, independent source hashes,
+per-quantity missing reasons and wrap-safe signed deltas. Renumbering is explicit;
+changed/reversed adjacency never gets bridged or sign-guessed. Component and role
+changes stay visible. **113 focused source + 113 relocated installed checks**
+pass; five saved W163/W164 reports reproduce after input-copy relocation.
+[Usage](topostitch-preview.md#compare-declared-helix-states-w194) ·
+[methods](topostitch-periodic.md#w194--compare-explicit-named-helix-states).
+
+The saved ±15° starts move selected atoms ~2.29 Å RMS yet leave paired-P spans
+within 0.001 Å of the generator. Positive/negative recovered maximum absolute
+twist changes are 2.193° / 0.262°, versus 0.128° for the relaxed control. These
+are local twist/width changes, not helix curvature or axis radii; the positive
+endpoint's known B2/A13 covalent distortion remains. No new native run.
+Local figure: `ScienceCheckouts/Linden/2026-11-21_helix-state-comparison/index.html`.
+
+**Next:** H3 is partial for explicit named-state deltas, not regional summaries
+or export. Audit declared step weights, gap coverage and near-zero/signed helicity
+before implementing those summaries. H1/H2 stay partial for registered crystal
+images, modified-ring frames and independently qualified local screw-axis radii.
+Do not substitute pair widths or simple twist for a bend target. Real motion still
+needs independent target/settings authority and supported preparation ownership.
+
 **W193: canonical simple-step twist is now an installed shared measurement.**
 `nasolve.helical_twist.inspect_helical_region` and the existing module CLI opt-in
 compose canonical ring fits, C1′ directions and the W192 normal convention with
@@ -12,7 +36,7 @@ at printed precision. Default W191 reports remain unchanged without Gemmi.
 [methods](topostitch-periodic.md#w193--maintain-canonical-simple-step-twist).
 
 No coordinates, refinement or workflow defaults change. H1/H2 remain partial and
-H3 open: next qualify explicit correspondence between named model states, preserving
+H3 was open at W193; W194 now qualifies explicit named-state deltas while preserving
 independent missing quantities. A change in twist is not an inferred helix bend;
 P–P span/half-span is not radius to an axis. Axis and modified-frame work remain
 separate. An actual new bend still needs independent target/settings authority.
@@ -48,11 +72,10 @@ A12/B4 = **18.193734 Å**, after the original copied input path is gone.
 [shared H1/H2/H3 plan](helical-geometry-plan.json) ·
 [validation](topostitch-periodic.md#w191--measure-explicit-paired-phosphate-spans).
 
-This is identity-image, single-model PDB support. H1/H2 are partial; H3 remains
-open. Crystal images, registered cross-state correspondence, ring-frame mapping,
-axis radii and modified frames remain separately qualified work; canonical twist
-is supplied by W193. The 7SDG historical twist discrepancy
-is unchanged. No pairing discovery, coordinates, native execution or refinement
+This is identity-image, single-model PDB support. H1/H2 remain partial; W194
+advances H3 to partial for named-state deltas. Crystal images, registered cross-state
+correspondence, axis radii and modified frames remain separately qualified work;
+canonical twist is supplied by W193. The 7SDG historical discrepancy is unchanged. No pairing discovery, coordinates, native execution or refinement
 changes. Linden owns this shared Q15 slice; Cedar/Alder reuse the same reader.
 
 **W190: ordinary source connectivity is bound without inventing approval.**
@@ -67,10 +90,11 @@ identical protected cold readback and no new native execution.
 [API](topostitch-preview.md#derived-ordinary-source-context-w190) ·
 [validation](topostitch-periodic.md#w190--bind-derived-ordinary-source-connectivity).
 
-**Next:** extend the shared Q15/H1 reader only against its recorded acceptance
-gates: explicit correspondence between named model states, then independently
-qualified crystal-image and frame/axis work. Preserve missing measurements. P–P span and optional half-span are not local-axis radii. Historical twist provenance, including the unresolved 7SDG discrepancy, remains
-separate from W193’s current-reference match. An
+**Remaining shared Q15 gates:** W194 supplies explicit named-state correspondence;
+registered crystal-image and modified-frame/axis work remains independently
+qualified work. Preserve missing measurements. P–P span and optional half-span
+are not local-axis radii. Historical twist provenance, including the unresolved
+7SDG discrepancy, remains separate from W193’s current-reference match. An
 actual bend still needs an independently declared paired-window target; none is
 invented for the canonical X11_22 example. S04/S05/S06 remain partial.
 

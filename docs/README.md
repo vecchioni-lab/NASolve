@@ -11,6 +11,8 @@ W191 adds the [shared paired-phosphate reader](topostitch-preview.md#measure-dec
 with [machine-readable helix milestones](helical-geometry-plan.json). W190's
 derived source connectivity remains distinct from checked chemistry. See the
 handoff for the next bounded work and roadmap for remaining motion gates.
+W194 adds [explicit named-state comparisons](topostitch-preview.md#compare-declared-helix-states-w194),
+with missing matches and signed local changes retained.
 W193 implements [canonical simple-step twist](topostitch-preview.md#measure-canonical-simple-step-twist-w193)
 against W192’s exact reference convention. Historical 7SDG publication provenance,
 modified frames, axis radii and matched-state summaries remain open.

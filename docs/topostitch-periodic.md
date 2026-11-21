@@ -11319,3 +11319,63 @@ Raw coordinates, frame reports, runners and build products are excluded from Git
 Next: named-state correspondence; modified frames, axis radii, regional summaries
 and real bend/acceptance remain separate gates. P–P span/half-span is not radius
 and this signed twist is not a measurement of helix curvature.
+
+
+## W194 — Compare explicit named helix states
+
+Code `ab02a1bd25a6f000d0896e1cf6e46e5510da6c35` adds `helical_comparison.py` and its focused tests.
+Before this slice, the caller had separate measurements without maintained
+correspondence/delta handling. The new schema-1 API requires named, byte-pinned
+states, complete explicit pair accounting and declared I→I/II→II strand mapping.
+It composes existing readers; no separate geometry calculation, CLI/default change,
+new dependency, source migration or physical-equivalence claim. Missing mates,
+changed components/roles and reversed/nonmatching adjacency remain visible.
+
+Validation (Python 3.12.14, Gemmi 0.7.5):
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 \
+PYTHONPATH=src:/private/tmp/w193-qualification-c1tf1610/optional-relocated \
+python -B -m pytest -q -p no:cacheprovider tests/test_helical_comparison.py \
+  tests/test_helical_twist.py tests/test_helical_geometry.py tests/test_topostitch_coordinates.py
+```
+
+**113 source + 113 fresh relocated installed checks pass**. The new tests fail
+before implementation. Renumbering, partial/duplicate mapping, changed chemistry,
+per-state missing atoms, signed wrap/half-turn ambiguity, declared breaks,
+reordering, local perturbation and source drift are covered. Installed tests use
+the same copied test set with `PYTHONPATH` pointing to relocated package/Gemmi
+roots after build/install/input-copy originals are gone. Five real reports match
+exactly through a fresh installed process; five phosphate-only comparisons also
+work without Gemmi. Wheel SHA256
+`89db06cd49e2a6ea344f091bff99465b38f99d305f7810addc6d5b1b9aa6e0da`.
+No full suite: isolated optional analysis, unchanged workflow mechanics.
+
+The immutable W163/W164 six-model local packet supplies actual 5W6W generator,
+relaxed control, signed starts and recovered endpoints, using declared A9..15 /
+B7..1 pairs. All six model checksums match their original manifest; 35 span deltas
+independently match Gemmi atom lookup/distance calculations. All 30 twist deltas
+are available under the declared 0.15 Å ring-fit policy. Starts move ~2.288 Å RMS
+while their spans differ by <0.001 Å: paired sites rotate together. Recovered
+positive/negative maximum |twist change| is 2.193°/0.262°; relaxed control 0.128°.
+The positive maximum is A13/B3→A14/B2. Maximum |span change| is 0.0555/0.0314 Å;
+control 0.0132 Å. This preserves the previous positive covalent-distortion finding,
+not a new repair or causal diagnosis. These are neither axis radii nor curvature.
+
+No new native execution: saved source recovery used Phenix 2.2.1-6174 and matching
+noiseless synthetic diffraction, as recorded in W163/W164. New figures use
+Matplotlib 3.11.1 only. Local evidence anchor `NASolve`, directory
+`branch-artifacts/willow/w194-helical-state-comparison/`:
+`request.json` SHA256 `61226a5782219b8fd30d95015d79a7b1e151ff53d11bfdc796b1826977c648e1`;
+`review.json` SHA256 `219010ed4a3db5b06a3f20f284707c5ba707376936b064b06709ed81246d7d5c`;
+`installed-check.json` SHA256 `fe11e4ad08a2df6b393a3ac8d35dbb3bf41356c319008694eda0e8027640435e`.
+Inputs are resolved only through that request's declared GitHub/checkout anchors
+and verified checksums. Raw science, figures, reports and runners remain outside
+Git. Small visual checkout: GitHub anchor
+`ScienceCheckouts/Linden/2026-11-21_helix-state-comparison/index.html`, with checked
+local links, inspected PNG/SVG and a standard-Python checksum/open helper.
+
+H3 advances to partial for explicit named-state changes. Weighted region summaries,
+publication export and modified-site qualification remain open; H1/H2 also retain
+registered-image, modified-frame and local screw-axis gates. Next audit actual
+step weights/gaps and near-zero helicity rules before adding summary arithmetic.

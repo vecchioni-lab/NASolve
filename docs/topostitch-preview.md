@@ -2116,3 +2116,52 @@ move coordinates or authorize bending. P–P span, half-span and axis radii rema
 different quantities. [W193 qualification](topostitch-periodic.md#w193--maintain-canonical-simple-step-twist)
 retains the current-versus-historical 1XVK rounding difference and unresolved 7SDG
 publication-input discrepancy.
+
+
+### Compare declared helix states (W194)
+
+The Python API compares two named, independently byte-pinned models through the
+same readers. Pair identifiers may differ after renumbering; the caller supplies
+complete one-to-one accounting and explicitly declares strand I → I, II → II.
+Existing construct registration may supply those assignments upstream, but this
+adapter does not establish or infer physical correspondence.
+
+```python
+from nasolve.helical_comparison import (
+    HelicalState, PairCorrespondence, compare_helical_states,
+)
+reference = HelicalState("before", before_path, before_region, before_sha256)
+candidate = HelicalState("after", after_path, after_region, after_sha256)
+comparison = compare_helical_states(
+    reference, candidate,
+    correspondence=(PairCorrespondence("logical-pair", "old-id", "new-id"),),
+    strand_correspondence="I_TO_I_II_TO_II",
+    simple_twist=True, max_ring_fit_rmsd_angstrom=0.15,
+    include_half_span=True,
+)
+```
+
+Supply one row per logical correspondence covering every pair in both declared
+regions exactly once. Use `None` for an unmatched state pair; do not drop it to
+join its neighbors. The example contains one pair, so it has no step: multiple
+adjacent pairs are needed for twist. The optional twist and fit-limit rules are
+those of W193. Default phosphate-only comparisons need no Gemmi. This slice is
+an API; the single-state CLI remains unchanged.
+
+The schema-1 `helical-state-comparison` contains both raw measurement reports,
+state names, complete correspondence/hash, per-pair values/changes and coverage.
+Each embedded state owns its own `model_directory` anchor; pass the relocated
+exact paths and original hashes. No old-path or basename search occurs. Both
+source hashes are rechecked after measurement; this is not a filesystem lock.
+
+Changes are **candidate minus reference**. Angular differences wrap into
+(-180°, 180°); exact half-turn ambiguity is unavailable. Reordered/reversed
+steps are not assigned a guessed sign: each state's actual directed adjacency
+is retained and unmatched steps have no delta. Declared breaks and unavailable
+frames survive. Component and core/flank changes remain visible; these do not
+rewrite chemistry or imply comparison of equivalent biological states.
+
+This measures local P–P span, optional half-span and simple-step twist. It does
+not measure axis radii or helix curvature, average regions, validate pairing,
+infer symmetry correspondence or approve a bend. [W194 saved-state check](topostitch-periodic.md#w194--compare-explicit-named-helix-states)
+shows why unchanged pair width is compatible with large coordinate displacement.
