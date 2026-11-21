@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C508 local packing at the stretched 5PC bond — Rowan**.
+Updated **2026-11-21, C509 preparing the geometry of a bent model — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -468,6 +468,35 @@ and `test_refinement_declared_sites`, using
 Reproduce the compact measurements with `c508_local_contacts.py WORK CEDAR_HISTORY NEW_JSON`.
 Historical checkpoints need no migration. Only the reader, tests and
 documentation are tracked.
+
+**C509, preparing the pre-bend restraints.** An outer worker can create
+`cif_native_parent.load_native_parent_service()` before its model hook and
+call `interpret(model, bound_inputs, expected_report_sha256=..., process_options=...)`.
+The expected digest comes from the original W203 compiler report. The service
+returns the native result, the actual interpretation and a compact receipt.
+It verifies the geometric PHIL parameters at full precision, all four False
+reader controls and ownership of the pending Phenix call. It restores its
+own service binding on exit. An outer worker discards any failed manager.
+Scope is a PDB parent, the reviewed geometric inputs and Phenix 2.2.1-6174.
+Checkpoint formats and ordinary refinement keep their existing behavior.
+
+One installed geometry preparation on the 859-atom W202 scaffold gave all
+1,011 bond rows, 1,558 angle rows and 213 compiled requests from the saved
+parent. The largest parent coordinate difference was 1.7 × 10⁻¹⁴ Å.
+The incoming atom order differed, with 205 moved sites when matched by
+identity. A changed report, a changed NCS setting and a 10⁻⁹ Å change to
+one target each refused before interpretation. This comparison ran zero
+refinement cycles. Source residue chemistry, coordinate transfer and
+candidate diffraction have separate owners and checks.
+
+From the local Cedar runners, use
+`phenix.python -B c509_native_parent.py CEDAR_INSTALL WILLOW_PACKAGE W202_EXPERIMENT NEW_JSON`.
+The saved 2.7 kB receipt records the exact inputs. The branch carries the
+service, synthetic tests and documentation. Focused validation used
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:$GEMMI_PATH python -B -m pytest -q -p no:cacheprovider tests/test_cif_native_parent.py tests/test_cif_native_validation.py tests/test_cif_reader_control_handoff.py tests/test_cif_complete_request.py`.
+The source run passed 208 before seven additional edge cases; all 27 final
+service cases passed. The relocated wheel passed all 215, and all 323
+packaged files matched source. Full regression remains deferred.
 
 **Q07, 20 November.** Ordinary Coot and ReadySet now prepare 1AP:T and S6G:C
 on the same substituted host. The plane screen follows the verified source chemistry.

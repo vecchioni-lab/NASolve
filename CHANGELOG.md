@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preparing restraints for a bent model
+
+- A worker can give Phenix the authenticated geometry parent for one
+  interpretation while retaining the identity of the incoming candidate.
+  The service checks the compiled restraints and four reader settings before
+  returning the live interpretation. This Python interface requires the
+  qualified Phenix 2.2.1-6174 build.
+
 ### Checking crowding around a modified residue
 
 - On a saved refinement, `cif-doctor assess --contacts-at CHAIN:NUMBER`

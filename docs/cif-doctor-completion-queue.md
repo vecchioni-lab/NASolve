@@ -61,10 +61,12 @@ printed van der Waals contact distance in both endpoints. The base rotated
 less than 2.4° from preflight. Preserve this counterexample when deciding
 the scope of a general arm correction.
 
-C507 gives Willow a shared reading of the geometry already in Phenix after
-atoms move. The compiled W200 scaffold retained all 38 backbone links and 51
-supplied distances. Willow owns the next check using all four declared
-preparation controls. Cedar's independent PDU and DF chemical scope stays open.
+C507–C509 give Willow a shared reading of the geometry before and after
+atoms move. With all four W203 reader settings applied, Phenix recovered the
+compiled parent geometry, including 38 backbone links and 51 supplied
+distances, on the incoming model. Cedar next checks the effective chemistry
+against the original residue definitions. Willow owns coordinate transfer
+and diffraction checks. The independent PDU and DF chemical scope stays open.
 
 Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
 after correcting the orientation of DP and IMC from their source graphs.
