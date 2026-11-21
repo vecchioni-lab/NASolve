@@ -195,9 +195,11 @@ def compare_parent_chemistry(service, model, bound, pin, options, source_native_
     """Observe one ordinary service call under its outer ownership and cleanup."""
     from mmtbx.monomer_library import pdb_interpretation
     before, policy = _source_observation(bound, pin, source_native_json)
-    summary = pdb_interpretation.monomer_mapping.summary
+    # The selected-site observer may now own the class binding. It returns
+    # the real summary unchanged. Observe the original method inside it.
+    summary = service._api.monomer_summary
     _require(_digest(Path(pdb_interpretation.__file__).read_bytes()) == _INTERPRETER_SHA
-             and summary.__qualname__ == "monomer_mapping.summary"
+             and getattr(summary, "__qualname__", None) == "monomer_mapping.summary"
              and summary.__globals__ is vars(pdb_interpretation)
              and Path(summary.__code__.co_filename).resolve() == Path(pdb_interpretation.__file__).resolve(),
              "Unqualified native monomer summary")

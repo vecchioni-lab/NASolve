@@ -18,6 +18,9 @@ entries are reconstructed from repository history.
 - Supplying the original native chemistry record also compares the effective
   dictionary at every residue and the restraints built from it. A difference
   identifies the affected sites and gives an example of a changed target.
+- Whole-model chemistry and a requested residue can now be inspected on the
+  same Phenix interpretation. Create the service before installing either
+  worker hook.
 
 ### Checking crowding around a modified residue
 

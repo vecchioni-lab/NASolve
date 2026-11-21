@@ -3,7 +3,7 @@ from copy import deepcopy
 from hashlib import sha256
 import json
 import sys
-from types import SimpleNamespace as NS
+from types import ModuleType, SimpleNamespace as NS
 
 import pytest
 
@@ -97,6 +97,49 @@ def bound_to(payload, *, record_changes=None):
                         "compilation":{"policy_id":"narestraints-explicit-membership-v1",
                                        "compiled_requests":[],"policy_authority":"NARestraints"}})
     return NS(source_report_json=report), sha256(report).hexdigest()
+
+
+@pytest.mark.parametrize("replace_summary", (False, True))
+def test_parent_comparison_under_selected_site_observer(tmp_path, monkeypatch, original, replace_summary):
+    from nasolve.cif_refinement_sites import observe_monomers
+
+    module = ModuleType("mmtbx.monomer_library.pdb_interpretation")
+    path = tmp_path / "pdb_interpretation.py"
+    source = "class monomer_mapping:\n    def summary(self):\n        return object()\n"
+    path.write_text(source)
+    module.__file__ = str(path)
+    exec(compile(source, str(path), "exec"), vars(module))
+    library = ModuleType("mmtbx.monomer_library")
+    library.pdb_interpretation = module
+    monkeypatch.setitem(sys.modules, library.__name__, library)
+    monkeypatch.setattr(chemistry, "_INTERPRETER_SHA", sha256(path.read_bytes()).hexdigest())
+    mapping = module.monomer_mapping()
+    mapping.pdb_residue = NS(atoms=lambda: [])
+    captured = module.monomer_mapping.summary
+    def interpret(*args):
+        summary = mapping.summary()
+        chain = NS(fatal_problems_message=lambda: None,
+                   all_monomer_mappings=[object() if replace_summary else summary])
+        return chemistry.NativeParentInterpretation(NS(all_chain_proxies=chain), None, {})
+    def component_reader(chain):
+        assert chain.all_monomer_mappings == [mapping]
+        return original
+    monkeypatch.setattr(chemistry, "_component_reader", lambda: component_reader)
+    monkeypatch.setattr(chemistry.native, "collect_live_geometry", lambda *a, **kw: {"native_view": original})
+    service = NS(_api=NS(monomer_summary=captured), _interpret=interpret)
+    data = canonical(original)
+    bound, pin = bound_to(data)
+    with observe_monomers(module.monomer_mapping, []):
+        outer = module.monomer_mapping.summary
+        assert outer is not captured
+        if replace_summary:
+            with pytest.raises(ValueError, match="do not belong"):
+                chemistry.compare_parent_chemistry(service, None, bound, pin, {}, data)
+        else:
+            result = chemistry.compare_parent_chemistry(service, None, bound, pin, {}, data)
+            assert result.receipt["source_chemistry"]["status"] == "MATCH"
+        assert module.monomer_mapping.summary is outer and sys.getprofile() is None
+    assert module.monomer_mapping.summary is captured
 
 
 def test_binds_source_native_bytes_to_original_compiler_report(original):

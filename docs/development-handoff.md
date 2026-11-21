@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C511 testing starting B factors through refinement — Rowan**.
+Updated **2026-11-21, C512 reading the whole parent and a selected residue together — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -526,6 +526,21 @@ from the local runner shelf. The focused commands use
 All 122 passed in source and again after wheel relocation. All 324 packaged
 files matched; full regression remains deferred. The shared historical
 standalone reader keeps its original bytes.
+
+C512 fixes a false refusal when the refinement worker is also recording a
+selected residue. Create the parent service before either observer is
+installed. The usual A:9 reader then returned its 20 DT heavy atoms, 21 local
+covalent bonds and four chiral restraints during the same Phenix interpretation
+that checked all 42 residues and 3,451 retained terms. The ordinary and
+explicit unmodified dictionaries agreed. Changing the thymidine attachment
+still identified the same nine sites. Both observers released their own hooks.
+The underlying selected-site reader and stored checkpoint formats are unchanged.
+Two regressions failed on C510. The source and relocated package each passed
+72 focused tests and three actual Phenix 2.2.1-6174 geometry interpretations
+with zero refinement cycles. All 324 package files matched. Repeat with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_cif_native_parent.py tests/test_cif_native_parent_chemistry.py tests/test_cif_na_policy.py tests/test_cif_refinement_sites.py`
+and `phenix.python -B c512_joint_observers.py CEDAR_INSTALL WILLOW_PACKAGE W202_EXPERIMENT C510_RUNNER NEW_JSON`.
+The compact record is `branch-artifacts/cedar/c512-joint-observation/science.json`.
 
 **Q07, 20 November.** Ordinary Coot and ReadySet now prepare 1AP:T and S6G:C
 on the same substituted host. The plane screen follows the verified source chemistry.

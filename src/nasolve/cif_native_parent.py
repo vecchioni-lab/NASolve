@@ -1,6 +1,6 @@
 """One qualified Phenix interpretation of a typed geometry parent.
 
-Create the service before installing the outer refinement worker's model hook.
+Create the service before installing the worker's model and selected-site hooks.
 It captures geometry on the caller's stable model. The caller owns candidate
 diffraction, coordinate transfer, subsequent checks and disposal on failure.
 """
@@ -41,6 +41,8 @@ def _require(condition, message):
 
 
 def _native_api():
+    from mmtbx.monomer_library import pdb_interpretation
+
     modules = {name: importlib.import_module(name) for name in _SOURCES}
     for name, module in modules.items():
         _require(_digest(Path(module.__file__).read_bytes()) == _SOURCES[name],
@@ -56,6 +58,7 @@ def _native_api():
                  and Path(method.__code__.co_filename).resolve() == Path(modules[name].__file__).resolve(),
                  f"Capture the native {qualified} before installing any wrapper")
     return SimpleNamespace(manager=manager, server=server, process=manager.process,
+        monomer_summary=pdb_interpretation.monomer_mapping.summary,
         process_files=server.process_pdb_files, pdb_input=pdb_input, phil=modules["iotbx.phil"],
         scope_type=modules["libtbx.phil"].scope_extract, profile="phenix-2.2.1-6174-parent-service-v1")
 
@@ -242,5 +245,5 @@ class _ParentService:
 
 
 def load_native_parent_service():
-    """Capture the qualified native callables before the outer model-process hook."""
+    """Capture the native entry points before the model and selected-site observers."""
     return _ParentService(_native_api())
