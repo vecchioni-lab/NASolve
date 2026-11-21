@@ -1015,7 +1015,15 @@ or a qualification inferred from the signed-bend controls.
 The [pre-deformation chemistry contract](topostitch.md#preserve-chemistry-before-a-bend-w175-integration-contract)
 reuses prepared-model topology, literal restraint provenance and native-capture
 owners. Their authenticated join into ordinary motion is pending; matching native
-inventories cannot create missing source authority.
+inventories cannot create missing source authority. Cedar's W186 explicit
+`cif-captured-reader-control-handoff-v1` policy carries authenticated reader
+settings separately from geometry through preparation and native dispatch;
+Willow consumes the owning branch rather than copying those readers.
+W187 distinguishes an ordinary canonical root (available) from checked chemical
+preparation and original compiled pair intent (absent in that example). A legacy
+absolute-only run report is not a declared anchored reference; initialize through
+its supported exact dataset suffix before testing relocation of the schema-2 root.
+See [W186/W187 evidence](topostitch-periodic.md#w186--carry-captured-reader-controls-through-ordinary-preparation).
 
 The pairing owner supplies exact forward/reciprocal edge incidence to selected
 atom-image audits. These bind one-partner capacity only within their recorded

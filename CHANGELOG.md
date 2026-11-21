@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W186–W187 — Connect ordinary controls and audit real canonical ancestry
+
+- Record Cedar's integrated opt-in reader-control handoff, focused source/install
+  qualification and one fixed-coordinate native capture. Willow runtime is unchanged.
+- Reopen a normal canonical PostMR root on a protected relocated copy, retaining
+  the legacy initialization stop and separating real root metadata from missing
+  chemical/compiled-restraint authority. No resolver, schema or default change.
+- Advance the audited handoff/roadmap; raw science and local diagnostics stay out
+  of Git. No new refinement, bend acceptance or full-suite qualification.
+
 ### W185 — Record independent matched-input review
 
 - Verify the two saved PDU trial requests differ only by the declared plane and

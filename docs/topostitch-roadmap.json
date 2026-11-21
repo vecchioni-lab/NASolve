@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "topostitch-development-roadmap",
-  "updated": "2026-11-20",
+  "updated": "2026-11-21",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
   "audited_code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
@@ -256,7 +256,7 @@
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "Carry the authenticated typed reader-control role through existing PostMR/complete request and dictionary bundle into its frozen native dispatch, reconciling generated full-model controls. First qualify missing/changed/reordered/conflicting controls, legacy preservation and cold relocation; then one fixed-coordinate native readback of effective settings and the213 terms. No grammar relaxation, new launcher, retrospective canonical ancestry or renewed fit. Ordinary lineage and retained-manager motion remain separate.",
+      "next_action": "Use the authenticated canonical ordinary root to define prospective parent topology/restraint intent through existing owners, then qualify its fixed-parent native capture before any coordinate transfer. Do not invent zero-acquisition dictionary bundles or historical859-atom ancestry. W186 control transport is delivered; W187 shows a usable root but no checked chemical preparation or inherited compiled pair/stack intent. Keep exact parent/model/data binding and guard relocation; do not repeat the completed transport or root probes.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -302,14 +302,16 @@
         "E_TYPED_NATIVE_READER_CONTROLS",
         "E_READYSET_NAMED_REQUEST_COMPARISON",
         "E_ORDINARY_CONTROL_OWNER_BOUNDARY",
-        "E_SIBLING_PLANE_NEIGHBORHOOD"
+        "E_SIBLING_PLANE_NEIGHBORHOOD",
+        "E_CAPTURED_CONTROL_ORDINARY_HANDOFF",
+        "E_CANONICAL_ORDINARY_ROOT_REPLAY"
       ],
       "last_audit": {
-        "date": "2026-11-20",
-        "code_commit": "3510a5aeb1a37b0f7e66dd98b579c1ad933d8272",
-        "human_update": 184,
-        "reviewer": "Linden; matched sibling question from Rowan",
-        "scope": "Read-only coordinate/neighborhood comparison with independent parser; ordinary owner gate unchanged"
+        "date": "2026-11-21",
+        "code_commit": "04d506c5866d9075cfa4076de59fd269ee04f267",
+        "human_update": 187,
+        "reviewer": "Linden; shared owner coordination with Rowan",
+        "scope": "W186 ordinary reader-control transport qualified separately from W187 genuine canonical root; retained-manager motion remains open"
       }
     },
     {
@@ -362,7 +364,7 @@
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Carry the authenticated typed reader-control role through existing PostMR/complete request and dictionary bundle into its frozen native dispatch, reconciling generated full-model controls. First qualify missing/changed/reordered/conflicting controls, legacy preservation and cold relocation; then one fixed-coordinate native readback of effective settings and the213 terms. No grammar relaxation, new launcher, retrospective canonical ancestry or renewed fit. Ordinary lineage and retained-manager motion remain separate.",
+      "next_action": "Use the authenticated canonical ordinary root to define prospective parent topology/restraint intent through existing owners, then qualify its fixed-parent native capture before any coordinate transfer. Do not invent zero-acquisition dictionary bundles or historical859-atom ancestry. W186 control transport is delivered; W187 shows a usable root but no checked chemical preparation or inherited compiled pair/stack intent. Keep exact parent/model/data binding and guard relocation; do not repeat the completed transport or root probes.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -451,14 +453,16 @@
         "E_TYPED_NATIVE_READER_CONTROLS",
         "E_READYSET_NAMED_REQUEST_COMPARISON",
         "E_ORDINARY_CONTROL_OWNER_BOUNDARY",
-        "E_SIBLING_PLANE_NEIGHBORHOOD"
+        "E_SIBLING_PLANE_NEIGHBORHOOD",
+        "E_CAPTURED_CONTROL_ORDINARY_HANDOFF",
+        "E_CANONICAL_ORDINARY_ROOT_REPLAY"
       ],
       "last_audit": {
-        "date": "2026-11-20",
-        "code_commit": "3510a5aeb1a37b0f7e66dd98b579c1ad933d8272",
-        "human_update": 184,
-        "reviewer": "Linden; matched sibling question from Rowan",
-        "scope": "Read-only coordinate/neighborhood comparison with independent parser; ordinary owner gate unchanged"
+        "date": "2026-11-21",
+        "code_commit": "04d506c5866d9075cfa4076de59fd269ee04f267",
+        "human_update": 187,
+        "reviewer": "Linden; shared owner coordination with Rowan",
+        "scope": "W186 ordinary reader-control transport qualified separately from W187 genuine canonical root; retained-manager motion remains open"
       }
     },
     {
@@ -525,7 +529,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Carry the authenticated typed reader-control role through existing PostMR/complete request and dictionary bundle into its frozen native dispatch, reconciling generated full-model controls. First qualify missing/changed/reordered/conflicting controls, legacy preservation and cold relocation; then one fixed-coordinate native readback of effective settings and the213 terms. No grammar relaxation, new launcher, retrospective canonical ancestry or renewed fit. Ordinary lineage and retained-manager motion remain separate.",
+      "next_action": "Use the authenticated canonical ordinary root to define prospective parent topology/restraint intent through existing owners, then qualify its fixed-parent native capture before any coordinate transfer. Do not invent zero-acquisition dictionary bundles or historical859-atom ancestry. W186 control transport is delivered; W187 shows a usable root but no checked chemical preparation or inherited compiled pair/stack intent. Keep exact parent/model/data binding and guard relocation; do not repeat the completed transport or root probes.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -613,14 +617,16 @@
         "E_TYPED_NATIVE_READER_CONTROLS",
         "E_READYSET_NAMED_REQUEST_COMPARISON",
         "E_ORDINARY_CONTROL_OWNER_BOUNDARY",
-        "E_INDEPENDENT_PDU_MATCHED_INPUTS"
+        "E_INDEPENDENT_PDU_MATCHED_INPUTS",
+        "E_CAPTURED_CONTROL_ORDINARY_HANDOFF",
+        "E_CANONICAL_ORDINARY_ROOT_REPLAY"
       ],
       "last_audit": {
-        "date": "2026-11-20",
-        "human_update": 185,
-        "code_commit": "856aeb0d152a80bc3462722e44c6357dbd103b43",
-        "reviewer": "Linden; independent frozen-request review for Rowan",
-        "scope": "Matched scientific input comparison only; native outcome and motion gates unchanged"
+        "date": "2026-11-21",
+        "code_commit": "04d506c5866d9075cfa4076de59fd269ee04f267",
+        "human_update": 187,
+        "reviewer": "Linden; shared owner coordination with Rowan",
+        "scope": "W186 ordinary reader-control transport qualified separately from W187 genuine canonical root; retained-manager motion remains open"
       }
     },
     {
@@ -4526,6 +4532,50 @@
           "size": 3485
         }
       ]
+    },
+    "E_CAPTURED_CONTROL_ORDINARY_HANDOFF": {
+      "kind": "explicit_typed_reader_role_through_existing_ordinary_owners",
+      "date": "2026-11-21",
+      "human_update": 186,
+      "code_commit": "04d506c5866d9075cfa4076de59fd269ee04f267",
+      "reference": "docs/topostitch-periodic.md#w186--carry-captured-reader-controls-through-ordinary-preparation",
+      "result": "Cedar integrates the explicit authenticated reader-control handoff; duplicate generated NCS=False is suppressed. 558 focused source tests pass; relocated installed 546 pass plus12 fixture-corrected reruns. One Phenix2.2.1-6174 fixed-coordinate capture preserves859 atoms/42 complete monomers/213 terms and all4 effective False settings exactly once.",
+      "limitation": "Python API opt-in; legacy paths unchanged. Synthetic owner/ReadySet transport and real direct native capture are separate proofs. No real complete-parent ancestry, motion, diffraction refinement or full-suite qualification. Willow documents this Cedar feature; it does not duplicate its implementation."
+    },
+    "E_CANONICAL_ORDINARY_ROOT_REPLAY": {
+      "kind": "protected_cold_canonical_postmr_root_readback",
+      "date": "2026-11-21",
+      "human_update": 187,
+      "code_commit": "04d506c5866d9075cfa4076de59fd269ee04f267",
+      "reference": "docs/topostitch-periodic.md#w187--reopen-a-real-canonical-postmr-root-with-the-original-inaccessible",
+      "result": "Exact X11_22 PostMR closure:2603 canonical atoms and checksummed observations. Normal schema-2 root writer and cold reopening after dataset renaming pass with original reads/stat denied to fresh Python readers, zero original access attempts. Five source hashes and original refine-001 selection unchanged. The prior stopped copy and a protected legacy negative are retained.",
+      "limitation": "Legacy absolute-only report must preserve its exact dataset-name suffix for root initialization; that is distinct from anchored checkpoint relocation. No ignored declared anchor or resolver patch demonstrated. No checked chemistry/compiled original pair intent, native process, private859-atom equivalence, or whole-history portability.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w187-canonical-root/result.json",
+          "sha256": "8b52c661ad2ca7074f7b86414f2b2416dbd3dd4147367e92184fbc9de1988f0e",
+          "size": 1822
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w187-canonical-root/initial-stop.json",
+          "sha256": "c08691f87b0aa74e8d62fc4473f7d2f7c1e178370237749217466fe63a221543",
+          "size": 1045
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w187-canonical-root/normal-writer-protected.json",
+          "sha256": "687a51e92c52ac0ba59bb1293f5114b6346750e20b3cdab3ba752d2684498599",
+          "size": 2437
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w187-canonical-root/cold-renamed-protected.json",
+          "sha256": "687a51e92c52ac0ba59bb1293f5114b6346750e20b3cdab3ba752d2684498599",
+          "size": 2437
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -4687,8 +4737,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 185,
-    "next": 186,
+    "current": 187,
+    "next": 188,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -5608,6 +5658,18 @@
         "title": "Check independent PDU trial input equivalence",
         "state": "RECORDED",
         "code_commit": "856aeb0d152a80bc3462722e44c6357dbd103b43"
+      },
+      {
+        "number": 186,
+        "title": "Carry captured reader controls through ordinary preparation",
+        "state": "RECORDED",
+        "code_commit": "04d506c5866d9075cfa4076de59fd269ee04f267"
+      },
+      {
+        "number": 187,
+        "title": "Reopen a real canonical PostMR root with the original inaccessible",
+        "state": "RECORDED",
+        "code_commit": "04d506c5866d9075cfa4076de59fd269ee04f267"
       }
     ]
   },

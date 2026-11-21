@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-11-20** for **`willow`**. Start with the
+Updated **2026-11-21** for **`willow`**. Start with the
 [current development handoff](development-handoff.md) for the proven edge,
 remaining gates and next bounded task. Historical handoffs are evidence, not
 current instructions; other branches retain their own status and validation pins.
@@ -81,11 +81,16 @@ current instructions; other branches retain their own status and validation pins
   through the existing literal producer and records the remaining native/ordinary
   provenance boundary. W179 adds the genuine original-intent capture and isolates
   the producer control-role gap; no motion policy is broadened.
+  W180–W182 preserve typed capture roles and identify their ordinary owner.
+  W186 delivers that explicit handoff on Cedar with source/relocated-install checks
+  and a fixed native capture. W187 qualifies a separate genuine canonical PostMR
+  root through normal writing and protected cold reopening; original compiled
+  intent and retained-manager motion remain open.
   Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W179;
-  the next substantial audit is W180. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W187;
+  the next substantial audit is W188. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

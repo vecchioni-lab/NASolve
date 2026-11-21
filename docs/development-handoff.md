@@ -1,5 +1,28 @@
 # NASolve development handoff — Willow
 
+**W186–W187: ordinary control transport is delivered; canonical ancestry is now
+concrete.** Cedar `04d506c5` carries authenticated captured reader controls through
+existing preparation owners and frozen native dispatch. **558 focused source
+checks** pass; relocated installed checks pass **546 + 12** after correcting the
+test fixture layout. One fixed-coordinate Phenix **2.2.1-6174** capture retains
+859 atoms, 42 complete monomers and all 213 terms, with each reviewed setting once.
+No coordinates moved. [W186 contract and limits](topostitch-periodic.md#w186--carry-captured-reader-controls-through-ordinary-preparation).
+
+**W187** independently reconstructs the genuine X11_22 canonical PostMR root
+(2603 atoms) through the normal registry writer on a protected copy. A fresh reader
+reopens it after relocation and dataset renaming with access to the original denied.
+The original selected `refine-001` and five input hashes are unchanged. An initial
+legacy-path stop is retained: its absolute-only report is distinct from an anchored
+checkpoint, and requires the exact dataset suffix during root initialization.
+No shared resolver patch is warranted by this result. Checked chemical preparation
+and original compiled pair/stack authority are still absent; this is not ancestry
+for the separate 859-atom diagnostic. [W187 finding](topostitch-periodic.md#w187--reopen-a-real-canonical-postmr-root-with-the-original-inaccessible).
+
+**Next:** define prospective parent topology/restraint intent for this authenticated
+canonical root through existing owners, then qualify a fixed-parent native capture
+before coordinate transfer. Preserve the complete dictionary acquisition contract;
+no empty bundle or fabricated historical authority. S04/S05/S06 remain partial.
+
 **W185, independent matched-input review:** C403/C475's real frozen requests
 match except one seven-atom B:4 PDU plane and declared path relocation. Ten checks
 cover 41 frozen files, the original parent, diffraction, settings, runtime code
@@ -22,15 +45,6 @@ verified PDB atom-field padding may differ. **247 focused source + 247 relocated
 installed checks** pass. Rowan reports fresh publication and independent cold
 relocation of the real 13-component ReadySet result; legacy selection is unchanged.
 This does not qualify a moved model or nanocluster opening.
-
-**Next, W182:** add the separately reviewed control role to the existing ordinary
-PostMR/complete-request and bundle owners, then bind it to their frozen native
-launch. **33 focused checks** locate the present refusal before any acquisition,
-request or process. The existing launcher freezes exact bytes; missing ownership
-is upstream, not a need for another launcher. Reconcile the bundle-generated
-full-model control rather than silently duplicating or dropping declarations.
-Keep the restraint grammar strict. Ordinary canonical ancestry and retained-manager
-motion remain separate gates. [Evidence and next experiment](topostitch-periodic.md#w182--locate-the-ordinary-control-owner-without-admitting-execution).
 
 **W183, independent Pine check:** the browser found the existing cut-preview tab
 but refused its local-file URL. P02 still needs rendered interaction and preference
@@ -84,7 +98,7 @@ W174 joins the frozen request; retained-manager integration remains next.
 [Exact scope, controls and setup stops](topostitch-periodic.md#w172--require-declared-topology-before-parent-coordinate-transfer).
 
 
-Updated **2026-11-20**, through **W179**. W168’s private native diagnostic now retains
+Updated **2026-11-21**, through **W187**. W168’s private native diagnostic now retains
 known parent chemistry at the ordinary 3 Å interpretation cutoff while diffraction
 and refinement use the displaced child. One five-cycle run recovers **2.288 →
 0.271 Å RMS**, keeping all 38 backbone links, atom identities and checked sugar

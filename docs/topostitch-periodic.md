@@ -10903,3 +10903,107 @@ Reproducer and checksummed input references are local at
 and `result.json`. Exact invocation:
 `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<cedar>/src <python> -B inspect_inputs.py --nasolve <NASolve> --output <fresh-result.json>`.
 No product/schema/default change, installation or full-suite rerun is involved.
+
+
+## W186 — Carry captured reader controls through ordinary preparation
+
+Cedar commit `04d506c5866d9075cfa4076de59fd269ee04f267` delivers the W182 missing
+role. Python callers explicitly choose `cif-captured-reader-control-handoff-v1`
+with authenticated typed literal input. Original PHIL bytes/order and model binding
+remain checked; geometry and reader settings remain separate. Complete requests,
+acquired preparation and stored bundles freeze the ordered reader role. The
+existing launcher carries it unchanged; only redundant generated NCS=False is
+omitted when the captured declaration already supplies it. Conflicting, missing,
+changed, reordered or unknown controls are refused. The generic literal resolver
+and old artifacts retain their behavior; older readers refuse the new opt-in role.
+No outer schema version, CLI or campaign default changes.
+
+The six changed runtime modules, exact commands, hashes, additive field locations
+and qualification are in Cedar's
+[technical evidence at the integrated commit](https://github.com/vecchioni-lab/NASolve/blob/04d506c5866d9075cfa4076de59fd269ee04f267/docs/cif-linked-native-registration-evidence.json),
+key `captured_reader_control_handoff_2026_11_21`; its
+[API contract](https://github.com/vecchioni-lab/NASolve/blob/04d506c5866d9075cfa4076de59fd269ee04f267/docs/cif-doctor.md#explicit-captured-control-handoff-w186)
+is owned by Cedar. Willow records the join without duplicating that implementation.
+
+Two fail-before cases demonstrate the missing API, and all **25 new tests** pass.
+The focused source command (`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`, Python
+3.12.14, `-B -m pytest -q -p no:cacheprovider`, exact twelve-file list in the linked
+receipt) passes **558 tests in 667.01 s**. A separately built/relocated wheel passes
+**546**, with **12 fixture failures**: the test copy lacked six CIFs in its expected
+source-tree fixture layout, although they were present in the wheel. Copying those
+six installed CIFs into that fixture layout, with no runtime/test-source changes,
+lets the 12 compiler-intake tests pass in 21.11 s. The original build source and
+installation path are gone; six runtime source hashes match. This is a corrected
+546+12 installed result, not an uninterrupted 558-test pass. No full suite ran,
+per the scoped push. The historical Cedar full-suite baseline is not new validation.
+
+One actual Phenix **2.2.1-6174** fixed-coordinate capture, without diffraction or
+refinement, retains **859 atoms / 42 full monomers / 213 terms** (51 distances,
+84 angles, 58 parallelity, 20 planarity). Four effective settings are False and
+appear once, with identical ordered input bytes. A reviewer initially compared
+untyped PHIL string tokens with booleans; re-reading the saved capture through the
+native master schema corrected the reviewer without repeating the native run.
+The receipt is `w186_native_check:capture/cif-native-srqes1xw/native_receipt.json`,
+SHA256 `a0d7d83ff4959209817cc1cae046a5dcc6a5c89c88f264f9ab02398a59074890`.
+Native inputs, captures, wheels and local runners remain excluded from Git.
+
+Synthetic complete/ReadySet transport tests and this real direct native capture
+are separate proofs. No real complete ordinary-parent execution, retained-manager
+motion, geometry acceptance or nanocluster widening is established. Alder's older
+read-only bridge must explicitly adopt the role; selected runtime manifests keep
+it in their authenticated source bundle, not a duplicated top-level field.
+
+## W187 — Reopen a real canonical PostMR root with the original inaccessible
+
+The declared geotest inventory selects the X11_22 member ending `cd527b22bf7e`,
+its `AutoMR/run_001` report, and the explicit PostMR root. All 2603 atoms are
+canonical DA/DC/DG/DT. Model and observation checksums are verified. The real
+selected checkpoint remains `refine-001`; only a fresh local root closure is written.
+This is distinct from the private 859-atom bend example and cannot supply its ancestry.
+
+The first replay stopped honestly: copying an unchanged legacy schema-1 report
+under `fresh-dataset` prevented its exact dataset-component rebase, so the still
+available historical absolute MTZ path won. The report contains an absolute
+`inputs.reflections` string/checksum and string `dataset`, not an ignored declared
+observation anchor. Its original schema-2 checkpoint already has an explicit
+`dataset` reference. Current `automr.prepare_automr` retains that schema-1 input
+writer; `checkpoints.initialize_registry` → `_root_payload` →
+`_required_observations` → `_required_file` uses the legacy resolver for this report.
+A checked preparation's declared observation anchor takes a separate strict route.
+
+A second protected copy preserves the exact declared dataset component for
+initialization, using explicit inventory/root references and checksums, with no
+input search or report rewrite. The normal writer produces the expected schema-2
+run/model and dataset/observation references. After renaming this copy to
+`relocated-dataset`, with its earlier path absent, a fresh process reopens the
+same registry and identical Willow preparation-availability digest. Original
+science open/stat calls are denied to each Python reader, with positive guard
+controls and **zero original access attempts** during successful owner operations.
+This is reader-level isolation, not an OS/container isolation claim. A separate
+protected negative confirms the first renamed legacy report refuses initialization
+when its historical fallback is unavailable. The first guard harness needed ENOENT
+on its synthetic FileNotFoundError; that pre-owner stop is retained too.
+
+Five original hashes and `refine-001` selection remain unchanged. This proves
+ordinary root metadata and anchored cold readback, not portability of the complete
+historical run. The inspector correctly returns `NO_CHECKED_PREPARATION`, with
+model/restraint/compiler authority unavailable. No inherited PHIL/CIF exists;
+historical guessed-pair diagnostics do not become compiled restraint authority.
+No acquisition, native process, Phenix run, refinement, chemical admission or
+runtime patch is involved. There is no demonstrated ignored-anchor bug to fix.
+
+Local anchored evidence: `NASolve:branch-artifacts/willow/w187-canonical-root/`
+contains `plan.json`, `initial-stop.json`, the protected negative, normal-writer and
+cold-reader snapshots, and `result.json`; the roadmap binds receipt hashes.
+The preserved initial runner and follow-up are under
+`NASolve:branch-artifacts/willow/runners/w187-canonical-root.py` and
+`w187-root-review.py`. Exact follow-up invocation:
+`PYTHONDONTWRITEBYTECODE=1 <python3.12> -B <NASolve>/branch-artifacts/willow/runners/w187-root-review.py`.
+These are immutable one-shot diagnostics, not an installed regeneration command.
+Original/copy roots in the ownership record are local anchor provenance.
+
+Next define prospective parent topology/restraint intent through existing owners
+for this exact canonical parent, then qualify its fixed native capture before
+coordinate transfer. Preserve dictionary acquisition >=1 rather than constructing
+an empty chemical bundle. S04/S05/S06 remain partial; do not repeat completed
+transport/root probes or infer scientific closure from this metadata result.
