@@ -2112,6 +2112,15 @@ and persisted formats stay unchanged.
 See the [metal storage contract](metal-campaign-storage.md#completed-batch-publication-and-selection-receipt)
 for schema, limits, interruption behavior and qualification scope.
 
+The read-only `metal.child_inputs` bridge checks exact prepared bytes against an
+explicit protected parent layout, its ordinary source checkpoint and replayed
+geometry/XYZ lineage. It reuses `make_plan`/`parameters`, preserving environmental
+B, Q, resource order and original reflection identity. The normal
+`verify-fdp-child-inputs` CLI emits portable derivation evidence; it neither
+reacquires scientific metadata/Free-R nor authorizes execution or cleanup.
+Typed interpretation-control roles remain explicitly unsupported until their
+shared handoff is qualified. See [protected input derivation](metal-campaign-storage.md#protected-parent-to-prepared-input-derivation).
+
 The separate `metal.child_process` route composes protected-parent transport and
 shared native process ownership for one explicit fresh invocation. Prepared bytes,
 worker and parent manifest are pinned; outcomes are durably recorded and fresh

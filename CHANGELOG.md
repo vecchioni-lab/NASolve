@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Verify prepared frozen inputs against the protected ordinary parent
+
+- Add explicit read-only `verify-fdp-child-inputs` CLI/API, reusing checkpoint and
+  metal endpoint readers plus existing environmental-B/Q/PHIL derivation.
+- Bind exact prepared model, observations, resources and parameters to the
+  selected parent; reject rehashed mismatches, missing B policy/resources,
+  external fallback, changed transport and unsupported typed reader-control roles.
+- Emit additive v1 derivation reports without migrating existing trials or
+  granting native execution, fresh Free-R/scattering qualification or pruning.
+- Validate focused controls and relocated installed Hg/Ag4 saved-input readback;
+  preserve historical poor-fit results and all source data. No native fit/full suite.
+
 ### Trace scientific admission after output-byte sealing
 
 - Record the exact existing freeze/Free-R/model audit responsibilities and the

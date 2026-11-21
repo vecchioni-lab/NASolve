@@ -1,11 +1,65 @@
 # Metal development handoff — current state
 
-Updated **20 November 2026**. Active feature branch: **Alder**. The
+Updated **21 November 2026**. Active feature branch: **Alder**. The
 [root integration handoff](development-handoff.md) owns the current combined
 source, full validation and delivery. The [A01–A09 roadmap](metal-development-roadmap.md)
 owns feature completion. The earlier chronological diary is preserved as
 [evidence through 18 November](history/metal-development-handoff-2026-11-18.md),
 not a second queue.
+
+## A04 current checkpoint: protected parent-to-input derivation
+
+`metal verify-fdp-child-inputs` now binds an explicit prepared child request to a
+pinned parent archive and selected geometry/XYZ endpoint. It reuses the existing
+checkpoint, `_input_bundle`, `make_plan` and `parameters` readers, checks the
+ordinary root's model/reflections/ordered restraints/phases against the captured
+hypothesis, and requires byte-identical derived inputs. Previously the parent
+archive and prepared files were pinned independently. The new bridge supplies
+their derivation relationship without changing the native producer or chemistry.
+
+The explicit normal CLI/API checks one root registry per intake. Changed inputs
+remain rejected after rehashing; dropping a resource or required environmental-B
+policy fails. Linked typed reader-control roles, including empty roles, refuse
+until Willow W186 is qualified. Mutable report display text is not confused with
+frozen scientific source identity. Preserve the declared dataset/run layout;
+external original-file fallback is not an accepted result.
+
+**Validation:** 80 focused tests pass in 15.18 s under Python 3.12.14/pytest 9.1.1,
+plus two checked-preparation role-link controls in 0.86 s on unchanged runtime.
+The command is `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src
+/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest
+-q -p no:cacheprovider tests/test_metal_child_inputs.py
+ tests/test_metal_fdp_endpoint.py tests/test_metal_child_process.py
+ tests/test_metal_parent_archive.py`; the extra node is
+`test_metal_child_inputs.py::test_guard_follows_declared_checked_preparation_to_request`.
+A source-free relocated installation passes 364 checks including all 352 package
+files. The subsequent installed real Hg/Ag4 replay passes 389 checks including
+those package identities, with original science/source access denied and no
+subprocess during inspection. No full suite or Phenix/Coot fit was run.
+
+The retained Ag4 native XYZ endpoint reproduces base-mean B=188.75 Å² and Q=1
+for four sites. The Hg geometry control preserves B=25 Å²/Q=0.60. These old
+poor-fit/negative-f″ controls remain scientifically unaccepted. Exact local receipts
+are `child-inputs-20261121-03/{validation.json,installed-review.json}` and
+`real-child-inputs-20261121-01/{validation.json,cold-review.json,review.html}`.
+The two earlier packaging attempts stopped on missing build/dependency tools;
+they are retained as failed environment checks. An isolated temporary validation
+environment was provisioned; the shared lab environment stayed unchanged.
+
+Changed runtime files: new `metal/child_inputs.py` and additive metal CLI; one
+focused test module. The stdout report has additive kind
+`metal-fdp-child-input-derivation` v1 and a digest; no existing persisted artifact
+migration. Generated archives/fixtures/wheel/reports stay private, with temporary
+views removed and historical inputs unchanged. Exact API and limits are in the
+[storage contract](metal-campaign-storage.md#protected-parent-to-prepared-input-derivation).
+
+**Next:** the maintained worker's sibling helper modules must be pinned and
+available in the fresh invocation; the process-only route currently snapshots
+only `_fdp_native.py`. Then connect input verification into execution, independent
+metadata/scattering/Free-R acquisition, scientific freeze/output auditing and
+compact publication, followed by quota/protection/retirement. Full checked-root
+coverage and supported typed controls are separate. **A01 partial; A02 gated;
+A04 partial.** No verified input relationship alone authorizes execution or reuse.
 
 ## A01 current checkpoint: explicit coordination topology
 

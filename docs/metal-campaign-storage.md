@@ -896,6 +896,71 @@ reader-control gap is a separate prerequisite, not supplied by this inventory.
 Quota/reservation and retirement integration remain open; A04 stays partial.
 
 
+### Protected parent-to-prepared-input derivation
+
+The explicit read-only `metal.child_inputs.verify_child_inputs` API and
+`nasolve metal verify-fdp-child-inputs` command now connect the already pinned
+parent archive and prepared request. They reuse ordinary checkpoint resolution,
+the exact metal geometry/XYZ reader and the existing `make_plan`/`parameters`
+derivation. They do not implement a second environmental-B or refinement policy.
+
+```text
+nasolve metal verify-fdp-child-inputs PREPARED --parent-archive PARENT_ARCHIVE --request REQUEST --request-id REQUEST_ID --run-relative DATASET/AutoMR/run_001 --endpoint-relative Metal/xyz_001 --json
+```
+
+`--run-relative` is relative to the declared parent layout, and
+`--endpoint-relative` is the exact geometry/XYZ directory within that run.
+There is no basename discovery. The parent archive digest comes from the
+independently pinned child request. Inside its protected temporary view, the
+existing metal reader replays the endpoint and hypothesis; the ordinary registry
+reader resolves that hypothesis's source checkpoint once. Its model, observations,
+ordered restraints and phases must agree with the captured context and resolve
+inside the declared parent layout. Frozen report provenance remains historical;
+a display-only update to the current report does not change source identity.
+
+The replay derives the model, observations, all ordered resources, parameters,
+plan and native arguments and requires exact equality with the request's prepared
+input inventory. Native XYZ endpoints require the existing explicit environmental
+B policy (including explicit `keep` where intended); the B source is their refined
+model. Fixed Q and scientific defaults are unchanged. Changed prepared bytes
+cannot pass merely by receiving new hashes. Parent and prepared input changes
+are rechecked before a result is returned; temporary views are removed.
+
+The emitted `metal-fdp-child-input-derivation` v1 report carries exact request,
+parent, endpoint and context identities, portable parent/run references, source
+kind, B policy, Free-R declaration and transport status. `derivation_verified`
+and `ordinary_checkpoint_verified` describe those checks only. Declared metadata
+and Sasaki references are replayed, not independently reacquired; no new original
+Free-R audit, native process, scientific acceptance, automatic reuse or retirement
+is authorized. The producer/process/output receipt formats stay unchanged. This
+is not a durable multi-point admission session, cached pass, or automatic launch
+gate yet; a normal scientific run must compose the remaining owners explicitly.
+
+`--reader-control-policy` currently refuses every non-null value. The declared
+`interpretation_controls` role also refuses by presence, even with an empty PHIL
+list, in relevant root/source records and their checked-preparation request.
+This is a capability guard, not a parser or implementation of Willow W186.
+Unsupported controls cannot be silently treated as ordinary restraints here.
+
+The existing input limit (3–128 files, 64 MiB) and parent disk/reserve bounds are
+reused. No quota is relaxed. Exact validation commands and package/readback
+identities are in the [current handoff](metal-development-handoff.md).
+Qualification is 80 focused tests plus two linked-role controls, 364 installed
+checks (352 package members), and 389 installed real-input checks with original
+sources denied. These counts include checksum assertions, not independent
+scientific experiments. Real coverage is a legacy ordinary Hg geometry and Ag4
+native XYZ endpoint; broader checked-parent ancestry is not newly qualified.
+The archived Ag4 model yields the same base-mean B=188.75 Å²/Q=1 at all four
+sites; the Hg control retains its old B=25 Å²/Q=0.60. Poor-fit and negative-f″
+results retain their original review state. No new Phenix/Coot calculation occurs.
+
+A separate execution prerequisite was identified during this audit: copying
+`_fdp_native.py` alone omits its maintained `fit_diagnostics` sibling and optional
+`anomalous_maps`/`map_diagnostics` helpers. The simulated process qualification
+did not establish that code closure. Resolve and pin the maintained helper bundle
+before attempting genuine native execution through the fresh route. Existing
+source-directory execution and historical workers remain unchanged.
+
 ### Output-to-scientific-audit handoff: exact remaining boundary
 
 The output receipt establishes bytes and process linkage. The next scientific

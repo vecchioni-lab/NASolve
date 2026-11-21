@@ -1,6 +1,6 @@
 # Post-merge metal-coordination roadmap
 
-Updated **20 November 2026**. Working branch **Alder**. The feature milestones
+Updated **21 November 2026**. Working branch **Alder**. The feature milestones
 below are numbered **A01–A09** and are explicitly **post-merge work**. A09 is
 further deferred until after the main build and core A01–A08 work. These are
 not prerequisites for merging the current experimental implementation.
@@ -64,11 +64,15 @@ tests and relocated installed readback. Required output presence is not scientif
 validity; no automatic invocation or pruning follows. Next connect scientific
 parent/input admission and exact typed reader controls, then freeze auditing and
 compact scientific publication; native qualification, reservations and retirement
-remain open. The next exact seam is ordinary `_input_bundle` → `make_plan` →
-`parameters` derivation from the admitted open-XYZ/B parent into the protected
-prepared bytes. The read-only real FT trace reuses existing scientific audit
-qualification; a new negative control confirms byte sealing cannot bypass a B
-freeze failure. No historical parent or process identity is promoted.
+remain open. The normal read-only `verify-fdp-child-inputs` bridge now checks the
+ordinary source checkpoint and replays `_input_bundle` → `make_plan` → `parameters`
+inside the protected parent view. Eighty focused tests plus two role-link controls,
+installed readback and exact retained Hg/Ag4 input recovery qualify this bounded
+relationship. This is not fresh Free-R/scattering acquisition or native admission.
+Next close the copied worker's maintained helper-module dependency set, then
+compose verified derivation with execution, scientific audit and publication.
+Typed reader-control support remains with Willow W186. No historical parent or
+process identity is promoted; A01's current FT geometry gate is unchanged.
 
 **Scientific milestone: A01 — ligand geometry and open XYZ/B foundation.**
 **Parallel engineering step: A04 — compact records and protected parent transport.**

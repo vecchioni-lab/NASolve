@@ -16,6 +16,17 @@ from .scattering import inspect_observations, reference_scattering
 def configure(subparsers):
     metal = subparsers.add_parser('metal', help='inspect generated models and preview explicit metal restraints')
     actions = metal.add_subparsers(dest='metal_action', required=True)
+    child_inputs = actions.add_parser('verify-fdp-child-inputs', help='replay prepared bytes from one protected ordinary parent; no native run')
+    child_inputs.add_argument('prepared', type=Path)
+    child_inputs.add_argument('--parent-archive', type=Path, required=True)
+    child_inputs.add_argument('--request', type=Path, required=True)
+    child_inputs.add_argument('--request-id', required=True)
+    child_inputs.add_argument('--run-relative', required=True)
+    child_inputs.add_argument('--endpoint-relative', required=True)
+    child_inputs.add_argument('--reader-control-policy')
+    child_inputs.add_argument('--max-parent-disk-bytes', type=int, default=256*1024*1024)
+    child_inputs.add_argument('--json', action='store_true')
+    child_inputs.set_defaults(output=None)
     child_prepare = actions.add_parser('prepare-fdp-child-process', help='pin prepared frozen inputs for a fresh process-only child')
     child_prepare.add_argument('prepared', type=Path)
     child_prepare.add_argument('--parent-manifest-sha256', required=True)
@@ -192,6 +203,8 @@ def execute(args):
         outputs = [p for p in (args.output, getattr(args, 'export', None)) if p is not None]
         if len({p.resolve() for p in outputs}) != len(outputs) or any(p.exists() or p.is_symlink() for p in outputs):
             raise RecipeError('Outputs must be distinct new files')
+        if args.metal_action == 'verify-fdp-child-inputs':
+            return _child_inputs(args)
         if args.metal_action in {'prepare-fdp-child-process','run-fdp-child-process','inspect-fdp-child-process'}:
             return _child_process(args)
         if args.metal_action == 'publish-fdp-inputs':
@@ -819,3 +832,20 @@ def _child_process(args):
         print('Fresh explicit retry eligible: '+str(report['fresh_retry_eligible']))
         print('Process evidence only; no scientific acceptance or retirement authority.')
     return 0 if args.metal_action=='prepare-fdp-child-process' or (report['status']=='COMPLETED' and report['stopped_verified']) else 2
+
+
+def _child_inputs(args):
+    from .child_inputs import verify_child_inputs
+    from .child_process import MAX_REQUEST_BYTES
+    from .compact import read_projection
+    request=read_projection(args.request,max_projection_bytes=MAX_REQUEST_BYTES)
+    report=verify_child_inputs(args.prepared,args.parent_archive,request,request_id=args.request_id,
+        run_relative=args.run_relative,endpoint_relative=args.endpoint_relative,
+        reader_control_policy=args.reader_control_policy,max_parent_disk_bytes=args.max_parent_disk_bytes)
+    if args.json:print(json.dumps(report,indent=2,allow_nan=False))
+    else:
+        print('Protected parent/input derivation: verified')
+        print('Source checkpoint: '+report['root_checkpoint_id'])
+        print('Source kind: '+report['source_kind'])
+        print('No fresh Free-R/scattering acquisition, native run or scientific acceptance.')
+    return 0
