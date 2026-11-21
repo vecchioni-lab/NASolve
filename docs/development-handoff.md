@@ -13,6 +13,9 @@ retains all 859 atoms and original observations/Free flags. **Partial recovery:*
 A11 OP2–P–O5′ remains77.42° against 108° and A14 O5′–C5′1.303 Å against 1.418 Å.
 Synthetic Rwork/Rfree0.008515/0.009151 hides those defects; S04/S05/S06 stay open.
 [Exact evidence and comparison](topostitch-preview.md#larger-displacement-with-fixed-flanks-w207).
+Saved-map follow-up (46 checks) shows A14 green evidence toward the generator,
+but A11 lacks strong red at its misplaced O5′. Ordinary-map samples favor both
+misplaced atoms. No sigma calibration, detector activation or new fit follows.
 
 Start with the [machine roadmap](topostitch-roadmap.json) and
 [human roadmap](topostitch-roadmap.md). Detailed failed attempts, exact commands
@@ -64,7 +67,9 @@ No new optimizer, generic quota system or second native interpretation is needed
 Keep W207's A11/A14 local defects as an explicit later recovery question; do not
 silently extend this immutable five-cycle run. Investigator-requested stress
 benchmarks are separately **10 Å segment-centroid displacement** and **5 Å from
-a declared helix centerline**, not maximum atom displacement or P–P span. Define
+a declared helix centerline**, not maximum atom displacement or P–P span. W207
+actually shifts the unweighted 205-atom centroid 0.253 Å (largest pair centroid
+0.885 Å); no local helix centerline is measured. Define
 and qualify those measurements and bounded recovery before running them. No
 such stress test has run. W206 opt-in bytes must be non-None and source MATCH
 must precede movement; ordinary immutable round ownership remains separate from

@@ -30,6 +30,11 @@ entries are reconstructed from repository history.
 
 ### W207 — Record larger fixed-flank recovery and its remaining defects
 
+- Saved-map inspection (46 checks) distinguishes strong A14 positive context
+  from weak A11 atom-centred negative density despite poor local angles; no new
+  fit or experimental threshold. Clarify 0.253 Å whole-region centroid motion
+  versus 4.96 Å maximum atom motion and the unmeasured helix centerline.
+
 - One4.96 Å maximum-atom perturbation and five-cycle synthetic recovery retain
   source chemistry,859 atoms and654 fixed surroundings.39 preflight/41 final
   cold checks pass; A11 phosphate-angle and A14 sugar-shoulder defects remain.

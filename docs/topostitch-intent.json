@@ -1728,9 +1728,11 @@
       "complete_capture": false,
       "complete_chemical_qualification": false,
       "ordinary_dispatcher_implemented": false,
-      "private_builder_still_required": true,
+      "private_builder_still_required": false,
       "runtime_authority": false,
-      "scientific_acceptance": false
+      "scientific_acceptance": false,
+      "private_builder_superseded_by_human_update": 208,
+      "qualification_note": "Original W202 evidence remains historical; W208 supplies the maintained builder. Explicit worker observation readers and shared entry/dispatch still need their declared qualification."
     },
     "source_input_binding": {
       "human_update": 203,
@@ -1891,6 +1893,19 @@
       "Retain fixed flanks/protected junctions; predeclare any expanded editable window, matched controls and bounded recovery protocol.",
       "Local geometry and supported diffraction both matter; no acceptance solely from Rfree or arbitrary per-step limits."
     ],
-    "current_evidence": "W207 maximum individual atom displacement4.96 A does not establish either requested stress target."
+    "current_evidence": "W207 maximum individual atom displacement4.96 A does not establish either requested stress target.",
+    "W207_metric_distinction": {
+      "definition": "Unweighted arithmetic mean of explicitly selected present PDB atoms; serialized Cartesian coordinates in the unchanged crystal frame. No alignment, mass weighting or helix-axis fit.",
+      "whole_movable_region_centroid_displacement_angstrom": 0.25302167499848144,
+      "largest_pair_centroid_displacement_angstrom": 0.8846597066384732,
+      "max_atom_displacement_angstrom": 4.961844213596392,
+      "helix_centerline_displacement": "NOT_MEASURED",
+      "evidence": {
+        "anchor": "NASolve",
+        "path": "branch-artifacts/willow/w207-fixed-flank-recovery/displacement-metrics.json",
+        "sha256": "b19a54600e52c992138f04b505ced3e30ad0fffa82b8026fec59a6674b71463d",
+        "size": 6887
+      }
+    }
   }
 }

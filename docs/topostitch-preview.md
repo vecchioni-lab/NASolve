@@ -2692,6 +2692,19 @@ measurement/qualification and fixed-boundary/window expansion controls come
 before a claim of radial displacement; P–P span is not an axis radius. These
 future tests do not authorize an undeclared continuation of W207.
 
+A separately bound descriptive readback makes this distinction concrete:
+using the **unweighted arithmetic mean of the 205 movable present atoms**, the
+start centroid shifts **0.25302 Å** (recovered departure 0.00539 Å). The largest
+unweighted complete-pair atom-centroid shift is **0.88466 Å**. Coordinates are
+compared in their original crystal frame without alignment; these centroids are
+not fitted helix axes. The 4.96184 Å maximum atom motion therefore cannot stand in
+for either requested future stress target. Opposing rotational motions largely
+cancel in a whole-window centroid. Declare the exact segment or local centers
+before targeting 10 Å, and distinguish displacement along an axis from offset
+away from a centerline. `w207-displacement-metrics.py` reuses the unchanged W152
+coordinate reader and writes `displacement-metrics.json` beside the preserved
+W207 results; no additional native call or parameter choice is involved.
+
 
 ## Maintained source-bound parent builder (W208)
 
@@ -2800,3 +2813,44 @@ bind them. These local runs are not advertised as portable committed artifacts.
 Generated scientific models/data/runners remain excluded from Git. Only library,
 focused tests and human/machine documentation are committed. Shared versioned
 parent-input/early-entry/dispatch integration is next and remains Cedar-owned.
+
+
+### W207 saved-map check
+
+A final **read-only** inspection reuses W170's pinned coefficient selector and
+Hazel's existing A72 sampler on the already written W207 maps. Two exact unfilled
+arrays (2mFo–DFc and mFo–DFc), 44 backbone atoms across A10/A11/A13/A14 and two
+known O5′ residual planes pass 46 checks. All 7554 observation/sigma/Free tuples
+and 389 Free reflections remain; native map declarations show no filling or
+sharpening. Original crystal frame, periodic sampling and direct-Fourier/FFT
+grid-node checks pass (maximum discrepancies 2.71e-14/1.07e-14).
+
+| O5′ site | Difference at generating position / own map σ | At recovered position / own map σ | Ordinary at generating / recovered, common ordinary σ |
+| --- | ---: | ---: | ---: |
+| A11 |+0.948 |−0.215 |2.877 /3.221 |
+| A14 |+8.268 |+0.982 |3.915 /4.323 |
+
+The A11 atom lacks a strong negative sample despite 30.57° phosphate-angle error.
+A14 has positive evidence toward the generating position but no negative sample
+at the misplaced atom. Ordinary-map samples favor both displaced O5′ positions.
+This supports keeping geometry and signed local context together; it does not
+validate a red-only trigger, identify the causal force or calibrate a detector.
+The map is held fixed while comparing positions. These are noiseless,
+model-assisted synthetic maps including Free reflections, not independent
+experimental validation. The 2D slices use the known residual vector plus a P
+anchor; they are not a whole-volume classification or fitted helix centerline.
+
+The comparison packet now includes `residual-maps.png`, the vector SVG and a
+small `figure-evidence.json`. The rendered figure was inspected. Exact commands:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w207-saved-maps.py
+MPLCONFIGDIR=/private/tmp/w207-matplotlib PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python -B branch-artifacts/willow/runners/w207-map-figure.py
+```
+
+The owned **Phenix 2.2.1-6174** child only reads saved coefficients and computes
+FFT/interpolation; it stopped cleanly. No new coefficients, alignment, coordinate
+changes or refinement. Receipts under
+`NASolve:branch-artifacts/willow/w207-fixed-flank-recovery/saved-maps/` are bound
+in the roadmap. W170's earlier map panel and W207's current panel are different
+endpoints; no new matched-control experiment is implied.

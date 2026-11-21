@@ -607,7 +607,8 @@
         "W195 adds declared regional step summaries with missing coverage and near-zero/wrap limits; regional cancellation reinforces the next local repair/admission gate.",
         "W196 extends the existing replayable initializer to an explicit registered interior whole-pair window with two fixed flanks and declared nonuniform weights; native retention/recovery remains separate.",
         "W197 retains7554 original synthetic observations/389Free and neutral control across three five-cycle native runs. Small Rfree and coordinate RMS do not override the remaining local chemical cost; no experimental acceptance.",
-        "W207 tests one predeclared +25-degree Cartesian-Y interior profile with both flanks fixed: maximum initial atom displacement4.96184 A;205 movable/654 fixed. One Phenix2.2.1-6174 preflight and five-cycle/100-cap XYZ fit pass39/41 cold checks. Interior RMS1.76560->0.12238 A;boundary bond RMS0.55659->0.01657 A. All859 atoms,124 phosphate atoms,126 sugar signs,38links,213explicit terms,source chemistry and original7554/389 observations/Free retained. A11 OP2-P-O5 angle77.42 vs108deg and A14 O5-C5 bond1.303 vs1.418A remain;synthetic RW/RF0.008515/0.009151 does not establish accepted geometry."
+        "W207 tests one predeclared +25-degree Cartesian-Y interior profile with both flanks fixed: maximum initial atom displacement4.96184 A;205 movable/654 fixed. One Phenix2.2.1-6174 preflight and five-cycle/100-cap XYZ fit pass39/41 cold checks. Interior RMS1.76560->0.12238 A;boundary bond RMS0.55659->0.01657 A. All859 atoms,124 phosphate atoms,126 sugar signs,38links,213explicit terms,source chemistry and original7554/389 observations/Free retained. A11 OP2-P-O5 angle77.42 vs108deg and A14 O5-C5 bond1.303 vs1.418A remain;synthetic RW/RF0.008515/0.009151 does not establish accepted geometry.",
+        "Read-only W207 saved-map inspection passes46 checks on2 arrays/44 backbone atoms, preserving7554 F/SIGF/Free tuples and389 Free flags. A11 O5-prime generator/recovered difference samples+0.948/-0.215 own-map sigma;A14+8.268/+0.982. Ordinary-map samples are higher at both misplaced sites. Red-at-atom alone misses important local geometry; no detector threshold or experimental claim."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -719,7 +720,8 @@
         "E_DECLARED_REGIONAL_TWIST_SUMMARY",
         "E_INTERIOR_PAIRED_PREVIEW",
         "E_FIXED_FRAME_NATIVE_RECOVERY",
-        "E_LARGE_FIXED_FLANK_RECOVERY"
+        "E_LARGE_FIXED_FLANK_RECOVERY",
+        "E_W207_SAVED_MAPS"
       ],
       "last_audit": {
         "date": "2026-11-21",
@@ -5111,7 +5113,7 @@
       "human_update": 207,
       "code_commit": "8cbab5c6a6ddd7a775ecb3c93b147ff766f84822",
       "reference": "docs/topostitch-preview.md#larger-displacement-with-fixed-flanks-w207",
-      "result": "W207 tests one predeclared +25-degree Cartesian-Y interior profile with both flanks fixed: maximum initial atom displacement4.96184 A;205 movable/654 fixed. One Phenix2.2.1-6174 preflight and five-cycle/100-cap XYZ fit pass39/41 cold checks. Interior RMS1.76560->0.12238 A;boundary bond RMS0.55659->0.01657 A. All859 atoms,124 phosphate atoms,126 sugar signs,38links,213explicit terms,source chemistry and original7554/389 observations/Free retained. A11 OP2-P-O5 angle77.42 vs108deg and A14 O5-C5 bond1.303 vs1.418A remain;synthetic RW/RF0.008515/0.009151 does not establish accepted geometry.",
+      "result": "W207 tests one predeclared +25-degree Cartesian-Y interior profile with both flanks fixed: maximum initial atom displacement4.96184 A;205 movable/654 fixed. One Phenix2.2.1-6174 preflight and five-cycle/100-cap XYZ fit pass39/41 cold checks. Interior RMS1.76560->0.12238 A;boundary bond RMS0.55659->0.01657 A. All859 atoms,124 phosphate atoms,126 sugar signs,38links,213explicit terms,source chemistry and original7554/389 observations/Free retained. A11 OP2-P-O5 angle77.42 vs108deg and A14 O5-C5 bond1.303 vs1.418A remain;synthetic RW/RF0.008515/0.009151 does not establish accepted geometry. Subsequent descriptive measurement distinguishes4.96184 A maximum atom motion from0.25302 A whole205-atom centroid motion and0.88466 A largest pair-centroid motion; no helix centerline is measured.",
       "limitation": "Partial recovery with unresolved local defects. Canonical same-ASU synthetic diagnostic, not experimental repair or ordinary dispatch; source formal-charge readback limits remain. Historical W197 zero is contextual, not a new matched control.",
       "local_receipts": [
         {
@@ -5149,6 +5151,12 @@
           "path": "branch-artifacts/willow/w207-fixed-flank-recovery/viewer-check.json",
           "sha256": "a7de6bfca76e20bdf3ee3c6881e9c5fb7b0e10683b724221de822ffeafb5bcef",
           "size": 692
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w207-fixed-flank-recovery/displacement-metrics.json",
+          "sha256": "b19a54600e52c992138f04b505ced3e30ad0fffa82b8026fec59a6674b71463d",
+          "size": 6887
         }
       ]
     },
@@ -5184,6 +5192,47 @@
           "path": "branch-artifacts/willow/w208-maintained-parent-builder/review.json",
           "sha256": "6aea9dc35da4a71e6521c8a76d3ebe250eed979c31aa64083aee982b6c322232",
           "size": 6641
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w208-maintained-parent-builder/compatibility-review.json",
+          "sha256": "cd784a443d6154d4ae9ff828d4a41948788be10fc855c9c94ae65131022874d2",
+          "size": 495
+        }
+      ]
+    },
+    "E_W207_SAVED_MAPS": {
+      "kind": "W207_saved_local_map_inspection",
+      "date": "2026-11-21",
+      "human_update": 207,
+      "code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4",
+      "reference": "docs/topostitch-preview.md#w207-saved-map-check",
+      "result": "Read-only W207 saved-map inspection passes46 checks on2 arrays/44 backbone atoms, preserving7554 F/SIGF/Free tuples and389 Free flags. A11 O5-prime generator/recovered difference samples+0.948/-0.215 own-map sigma;A14+8.268/+0.982. Ordinary-map samples are higher at both misplaced sites. Red-at-atom alone misses important local geometry; no detector threshold or experimental claim.",
+      "limitation": "Posthoc slices through known residual vectors on one recovered synthetic endpoint. Model-assisted maps include Free; no new controls, fitting, coefficients, causal attribution, candidate ranking or sigma calibration.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w207-fixed-flank-recovery/saved-maps/plan.json",
+          "sha256": "cc65abdc570ae61ff3288a6c955638eb013dda3eb2e84204f769be56117a0d49",
+          "size": 2889
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w207-fixed-flank-recovery/saved-maps/result.json",
+          "sha256": "609796ac40344626787f937d253fc889376cb6d2b955c02919abba6e6064b649",
+          "size": 880456
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w207-fixed-flank-recovery/saved-maps/execution.json",
+          "sha256": "09600f519987fc784315e071848982acf1c4c56884a0e2a32b35c73640e7f6ec",
+          "size": 606
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w207-fixed-flank-recovery/saved-maps/figure/figure-evidence.json",
+          "sha256": "2f9da9ca4ebb46856b7567b042885d5abfc9eaeacb9e120b317121a0923ef6bd",
+          "size": 7378
         }
       ]
     }
@@ -6435,6 +6484,19 @@
       "Retain fixed flanks/protected junctions; predeclare any expanded editable window, matched controls and bounded recovery protocol.",
       "Local geometry and supported diffraction both matter; no acceptance solely from Rfree or arbitrary per-step limits."
     ],
-    "current_evidence": "W207 maximum individual atom displacement4.96 A does not establish either requested stress target."
+    "current_evidence": "W207 maximum individual atom displacement4.96 A does not establish either requested stress target.",
+    "W207_metric_distinction": {
+      "definition": "Unweighted arithmetic mean of explicitly selected present PDB atoms; serialized Cartesian coordinates in the unchanged crystal frame. No alignment, mass weighting or helix-axis fit.",
+      "whole_movable_region_centroid_displacement_angstrom": 0.25302167499848144,
+      "largest_pair_centroid_displacement_angstrom": 0.8846597066384732,
+      "max_atom_displacement_angstrom": 4.961844213596392,
+      "helix_centerline_displacement": "NOT_MEASURED",
+      "evidence": {
+        "anchor": "NASolve",
+        "path": "branch-artifacts/willow/w207-fixed-flank-recovery/displacement-metrics.json",
+        "sha256": "b19a54600e52c992138f04b505ced3e30ad0fffa82b8026fec59a6674b71463d",
+        "size": 6887
+      }
+    }
   }
 }

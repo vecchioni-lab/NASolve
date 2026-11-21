@@ -1048,6 +1048,17 @@ process/input lifetime and binding cleanup stay outside this context. Results
 exist only after successful closure; any failure poisons the context and requires
 discarding the manager. No native/counted execution policy is changed.
 
+W208 supplies `SourceBoundParentBuilder` for that protocol. It requires W206's
+original native bytes and composes the Cedar C512 service with explicit qualified
+atom/geometry/protected-state/candidate-diffraction readers and a site writer.
+Source MATCH precedes transfer; protected state, topology/targets and candidate
+F-model are checked through closure. The builder owns no source parser, native
+binding, input lease, process, force or dispatch policy. Both W200 completion and
+builder evidence are required; the outer worker discards any failed manager.
+The installed success/failure qualification and minimal receiver interface are
+[documented here](topostitch-preview.md#maintained-source-bound-parent-builder-w208).
+Cedar retains shared early-entry/dispatch ownership; no ordinary route is enabled.
+
 W190 optionally binds the existing ordinary model-context derivation to the exact
 canonical PostMR source and frozen plan. Derived source connectivity is separate
 from checked preparation and experimental topology; the opt-in result enters the
