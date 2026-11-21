@@ -208,7 +208,7 @@ def _audit_extended_links(links,before,after,trial):
 
 
 def _audit_links(links, before, after, trial):
-    if trial.get('schema_version',1)==2:
+    if trial.get('schema_version',1)>=2:
         return _audit_extended_links(links,before,after,trial)
     rows = []
     for a,b in links:
@@ -232,6 +232,50 @@ def _audit_links(links, before, after, trial):
             'limits_passed':True,'ideal_geometry_validated':False}
 
 
+def _interior_window(discovery, trial):
+    """Select one declared antiparallel route interval with fixed paired flanks."""
+    pairs, weights = trial['ordered_pairs'], trial['pair_weights']
+    limit, anchors, pivot = trial['max_window_pairs'], trial['fixed_anchor_pairs'], trial['origin_pair_index']
+    if (type(limit) is not int or type(anchors) is not int or anchors < 1
+            or not isinstance(pairs, list) or not 2*anchors < len(pairs) <= limit
+            or type(pivot) is not int or not 0 <= pivot < len(pairs)):
+        raise ValueError('Interior window requires bounded ordered pairs, two fixed flanks and a valid origin pair')
+    if (not isinstance(weights, list) or len(weights) != len(pairs)
+            or any(not 0 <= _number(w, 'pair weight') <= 1 for w in weights)):
+        raise ValueError('Require one finite pair weight in [0,1] per declared pair')
+    for i, weight in enumerate(weights):
+        fixed = i < anchors or i >= len(pairs)-anchors
+        if (fixed and weight != 0) or (not fixed and weight <= 0):
+            raise ValueError('Both paired flanks must have zero weight; every interior pair must have positive weight')
+    values = discovery['inputs']
+    owners = {site:(route['strand_id'],i) for route in values['strands'] for i,site in enumerate(route['sites'])}
+    partners = {a:b for pair in values['duplex_pairs'] for a,b in (pair,pair[::-1])}
+    used = set()
+    for pair in pairs:
+        if (not isinstance(pair,list) or len(pair)!=2
+                or any(not isinstance(site,str) or site not in owners or site in used for site in pair)
+                or pair[0]==pair[1] or partners.get(pair[0])!=pair[1]):
+            raise ValueError('Interior pairs must be distinct declared partners on known routes')
+        used.update(pair)
+    if used & set(values['protected_sites']):
+        raise ValueError('Interior window touches a protected junction')
+    if used & set(values.get('do_not_connect_sites',())):
+        raise ValueError('Interior window touches a declared free-site boundary')
+    for left,right in zip(pairs,pairs[1:]):
+        a,b,c,d=(owners[site] for site in (*left,*right))
+        if a[0]!=c[0] or b[0]!=d[0] or abs(c[1]-a[1])!=1 or d[1]-b[1]!=a[1]-c[1]:
+            raise ValueError('Interior pairs must follow consecutive antiparallel routes without a break')
+    moving=pairs[anchors:-anchors];fixed=pairs[:anchors]+pairs[-anchors:]
+    window=dict(kind='interior-paired-window',end_id=None,copy_id=values['copy_id'],
+        base_pair_count=len(pairs),ordered_pairs=pairs,pair_weights=weights,
+        fixed_anchor_pairs_per_flank=anchors,origin_pair_index=pivot,overhang_sites=[],
+        movable_pairs=moving,fixed_pairs=fixed,
+        movable_sites=[site for pair in moving for site in pair],
+        fixed_sites=[site for pair in fixed for site in pair])
+    window['window_id']='interior_'+sha256(json.dumps(window,sort_keys=True,separators=(',',':')).encode()).hexdigest()[:20]
+    return window
+
+
 def _prepare(model_path, discovery_path, registration_path, trial_path=None, *, trial_value=None):
     if (trial_path is None) == (trial_value is None):
         raise ValueError('Supply exactly one explicit trial path or trial value')
@@ -244,13 +288,14 @@ def _prepare(model_path, discovery_path, registration_path, trial_path=None, *, 
         snapshots['trial'] = (json.dumps(trial_value,sort_keys=True,allow_nan=False)+'\n').encode('utf-8')
     trial = _json(snapshots['trial'])
     version=trial.get('schema_version') if isinstance(trial,dict) else None
-    if type(version) is not int or version not in (1,2) or trial.get('kind')!='topostitch-window-transform':
-        raise ValueError('Expected schema-1 or schema-2 topostitch-window-transform trial')
+    if type(version) is not int or version not in (1,2,3) or trial.get('kind')!='topostitch-window-transform':
+        raise ValueError('Expected schema-1, schema-2 or schema-3 topostitch-window-transform trial')
     _keys(trial, {'schema_version','kind','model_sha256','discovery_file_sha256','registration_file_sha256',
-        'window_id','max_window_pairs','fixed_anchor_pairs','rotation_vector_degrees','translation_angstrom',
+        'max_window_pairs','fixed_anchor_pairs','rotation_vector_degrees','translation_angstrom',
         'max_atom_displacement_angstrom','max_backbone_bond_change_angstrom','max_backbone_angle_change_degrees'}
-        | ({'max_backbone_torsion_change_degrees'} if version==2 else set()))
-    if version==2 and not 0 < _number(trial['max_backbone_torsion_change_degrees'],'max_backbone_torsion_change_degrees',positive=True) <= 180:
+        | ({'max_backbone_torsion_change_degrees'} if version>=2 else set())
+        | ({'ordered_pairs','pair_weights','origin_pair_index'} if version==3 else {'window_id'}))
+    if version>=2 and not 0 < _number(trial['max_backbone_torsion_change_degrees'],'max_backbone_torsion_change_degrees',positive=True) <= 180:
         raise ValueError('Torsion change limit must not exceed 180 degrees')
     for name,key in (('source','model_sha256'),('discovery','discovery_file_sha256'),('registration','registration_file_sha256')):
         if sha256(snapshots[name]).hexdigest() != trial[key]:
@@ -265,26 +310,32 @@ def _prepare(model_path, discovery_path, registration_path, trial_path=None, *, 
     discovery = mapping.get('discovery_assessment')
     if discovery is None:
         raise ValueError('Bend preview requires a registered discovery manifest')
-    windows = plan_editable_windows(discovery,max_base_pairs=trial['max_window_pairs'],fixed_anchor_pairs=trial['fixed_anchor_pairs'])
-    matches = [w for end in windows['ends'] for w in end['windows'] if w['window_id']==trial['window_id']]
-    if len(matches) != 1:
-        raise ValueError('Selected window is absent, excluded or ambiguous')
-    window = matches[0]
-    if not any(a.end_id==window['end_id'] and a.state=='available' for a in assignments):
-        raise ValueError('Selected window has an unresolved or unavailable end')
+    if version==3:
+        window = _interior_window(discovery,trial)
+    else:
+        windows = plan_editable_windows(discovery,max_base_pairs=trial['max_window_pairs'],fixed_anchor_pairs=trial['fixed_anchor_pairs'])
+        matches = [w for end in windows['ends'] for w in end['windows'] if w['window_id']==trial['window_id']]
+        if len(matches) != 1:
+            raise ValueError('Selected window is absent, excluded or ambiguous')
+        window = matches[0]
+        if not any(a.end_id==window['end_id'] and a.state=='available' for a in assignments):
+            raise ValueError('Selected window has an unresolved or unavailable end')
     moving = set(window['movable_sites'])
     links = [(a,b) for strand in discovery['inputs']['strands']
              for a,b in zip(strand['sites'],strand['sites'][1:]) if a in moving or b in moving]
     required = moving | set(window['fixed_sites']) | {s for pair in links for s in pair}
     registry = validate_construct_registration(_json(snapshots['registration']))
     sites,before = _mapped_residues(snapshots['source'],registry,window['copy_id'],required)
-    terminal = window['movable_pairs'][0]
-    origin = _mean([_plane(before[s])[0] for s in terminal])
-    weights = {s:1. for s in window['overhang_sites']}
-    count = len(window['movable_pairs'])
-    for i,pair in enumerate(window['movable_pairs']):
-        t = 1-i/count
-        weights.update({s:t*t*(3-2*t) for s in pair})
+    origin_pair = window['ordered_pairs'][trial['origin_pair_index']] if version==3 else window['movable_pairs'][0]
+    origin = _mean([_plane(before[s])[0] for s in origin_pair])
+    if version==3:
+        weights = {site:w for pair,w in zip(window['ordered_pairs'],window['pair_weights']) if w>0 for site in pair}
+    else:
+        weights = {s:1. for s in window['overhang_sites']}
+        count = len(window['movable_pairs'])
+        for i,pair in enumerate(window['movable_pairs']):
+            t = 1-i/count
+            weights.update({s:t*t*(3-2*t) for s in pair})
     transforms = {sites[s]:(_rotation(rotation,w),w) for s,w in weights.items()}
     candidate,atom_count,tensor_count = _render(snapshots['source'],transforms,origin,translation)
     _,after = _mapped_residues(candidate,registry,window['copy_id'],required)
@@ -298,7 +349,7 @@ def _prepare(model_path, discovery_path, registration_path, trial_path=None, *, 
         raise ValueError('Preview inputs changed while being read')
     snapshots['candidate'] = candidate
     report = {'schema_version':version,'kind':'topostitch-bend-preview',
-        'algorithm':f'whole-pair-smoothstep-terminal-transform-v{version}',
+        'algorithm':('whole-pair-declared-interior-transform-v3' if version==3 else f'whole-pair-smoothstep-terminal-transform-v{version}'),
         'source_model_sha256':trial['model_sha256'],'candidate_model_sha256':sha256(candidate).hexdigest(),
         'window':window,'terminal_origin_angstrom':list(origin),
         'site_weights':weights,'trial':trial,'transformed_atom_count':atom_count,
@@ -311,7 +362,10 @@ def _prepare(model_path, discovery_path, registration_path, trial_path=None, *, 
             'Bond/angle limits measure change from source, not ideal stereochemistry',
             'No packing, density, torsion, periodic-cut or native refinement qualification',
             'No new bonds, missing atoms, chemistry changes or campaign adoption']}
-    if version==2:
+    if version==3:
+        report['motion_origin_angstrom']=report.pop('terminal_origin_angstrom')
+        report['limitations'].append('Declared interior paired weights and fixed flanks; no automatic localization, direction or repair inference')
+    if version>=2:
         report['limitations'][2]='Backbone bond/angle/circular-torsion limits measure source changes, not ideal stereochemistry'
         report['limitations'][3]='No packing, density, torsion ideal/pucker, periodic-cut or native refinement qualification'
     return snapshots,report
@@ -341,7 +395,7 @@ def load_bend_preview(directory):
     """Resolve checksummed local snapshots and replay the exact trial after relocation."""
     root = Path(directory)
     report = _json((root/'preview.json').read_bytes())
-    if not isinstance(report,dict) or report.get('kind') != 'topostitch-bend-preview' or type(report.get('schema_version')) is not int or report['schema_version'] not in (1,2):
+    if not isinstance(report,dict) or report.get('kind') != 'topostitch-bend-preview' or type(report.get('schema_version')) is not int or report['schema_version'] not in (1,2,3):
         raise ValueError('Unsupported bend-preview receipt')
     references = report.get('artifacts')
     if not isinstance(references,dict) or set(references) != set(_FILES):
@@ -417,7 +471,7 @@ def load_bend_motion(directory, *, expected_receipt_sha256, parent_model_bytes=N
     indices=tuple(i for i,w in enumerate(weights) if w>0)
     trial=packet['trial']
     motion=TaperedMotion(CoordinateMask(points,indices,trial['max_atom_displacement_angstrom']),
-                         packet['terminal_origin_angstrom'],weights,
+                         packet['motion_origin_angstrom'] if packet['schema_version']==3 else packet['terminal_origin_angstrom'],weights,
                          source_model_sha256=packet['source_model_sha256'])
     parameters=motion.parameters(trial['rotation_vector_degrees']+trial['translation_angstrom'])
     derived=motion.mask.expand(motion.displacements(parameters))
