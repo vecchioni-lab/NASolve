@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Reserve an entire audited metal session before native inspection
+
+- Add an explicitly opted-in v3 ledger profile with whole-session grants under
+  the existing parent/child lock and accounting sum. Default v1/v2 stores remain exact.
+- Admit the normal owned-preflight session before native work; keep its allowance
+  through postflight and review. Explicit settlement reuses the scientific reader
+  and requires complete stopped evidence bound to the exact shared parent.
+- Preserve failed, uncertain and unrecorded session charges; keep parent release
+  independent. Record compact, idempotent settlement without deleting payloads or
+  replaying native arrays during ordinary budget inspection.
+- Qualify 146 focused and 67 relocated installed tests, previous-reader v1/v2
+  compatibility and v3 refusal. Reuse the saved real Ag4/parent checks; no new native
+  run, full suite, migration, campaign fan-out or retirement.
+
 ### Own optional metal input inspections before frozen refinement
 
 - Add narrow optional command runners to the existing metadata/scattering and

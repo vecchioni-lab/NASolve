@@ -70,7 +70,7 @@ def run_audited_child(prepared_directory,parent_directory,request,*,request_id,
                       run_relative,endpoint_relative,session_directory,native,
                       timeout_seconds=240,reader_control_policy=None,
                       max_parent_disk_bytes=parent_archive.DEFAULT_DISK_BYTES,
-                      max_output_bytes=child_outputs.DEFAULT_MAX_BYTES,retained_parent=None,owned_preflight=False):
+                      max_output_bytes=child_outputs.DEFAULT_MAX_BYTES,retained_parent=None,owned_preflight=False,storage_budget=None):
     """Derive, freshly inspect, execute and audit one conditional frozen fit.
 
     FDP_REVIEW means the declared frozen calculation passed its audits; it does
@@ -78,6 +78,8 @@ def run_audited_child(prepared_directory,parent_directory,request,*,request_id,
     Failed sessions remain distinct and retained. No implicit retry is performed.
     """
     child_process._need(type(owned_preflight) is bool,'Owned input inspection must be explicitly boolean')
+    child_process._need(storage_budget is None or (owned_preflight and retained_parent is not None),
+                       'Session budget requires owned preflight and a live budgeted retained parent')
     request=child_process._request(request,request_id)
     child_process._need(request['schema_version']==2,'Audited child requires a helper-pinned request')
     child_process._need(type(timeout_seconds) in (int,float) and math.isfinite(timeout_seconds)
@@ -99,14 +101,27 @@ def run_audited_child(prepared_directory,parent_directory,request,*,request_id,
         reader_control_policy=reader_control_policy,max_parent_disk_bytes=max_parent_disk_bytes,retained_parent=retained_parent)
     before=child_inputs.verify_child_inputs(prepared,parent,request,**options)
     plan=_json(payload['plan.json']);model=payload['input.pdb']
+    admission=None
+    if storage_budget is not None:
+        from . import storage_budget as budget_owner
+        known=sum(map(len,payload.values()))+sum(ref['size'] for ref in request['worker_files'].values())
+        _,grant,minimum=budget_owner._reserve_audited_execution(storage_budget,session=session,request_id=request_id,
+            known_input_bytes=known,max_output_bytes=max_output_bytes,retained_parent=retained_parent)
+        admission=dict(kind=budget_owner.SESSION_ADMISSION,schema_version=1,reservation_id=grant['reservation_id'],
+            grant={k:v for k,v in grant.items() if k!='reservation_id'},minimum_allowance_bytes=minimum,
+            scientific_acceptance='NOT_ASSESSED',retirement_authorized=False)
     session.mkdir()
+    if admission is not None:records.write_record(session/'storage-admission.json',admission)
     stage='FRESH_INPUT_INSPECTION'
     proofs={}
     def record(name,value):
         proofs[name]=records.write_record(session/name,value)
     try:
+        storage_binding={} if admission is None else dict(storage_reservation=dict(
+            budget_id=grant['budget_id'],reservation_id=grant['reservation_id']))
         record('request.json',dict(request=request,run_relative=run_relative,
-            endpoint_relative=endpoint_relative,timeout_seconds=timeout_seconds,max_output_bytes=max_output_bytes,**lifetime,**inspection_mode))
+            endpoint_relative=endpoint_relative,timeout_seconds=timeout_seconds,max_output_bytes=max_output_bytes,
+            **lifetime,**inspection_mode,**storage_binding))
         record('parent-before.json',before)
         if owned_preflight:
             from . import preflight_process

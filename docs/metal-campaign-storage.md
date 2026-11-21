@@ -1757,9 +1757,9 @@ leave the parent charge held. PID death, age, path absence or a forged closure
 record cannot substitute for the live owner's evidence. Recovery from those
 uncertain states needs a separate explicit proof and is not inferred here.
 
-**Remaining integration:** the parent owner and normal child launcher are now
-connected and qualified above. Audited-session pre/post work and campaign admission
-must keep this same lifecycle authority. Retirement remains separate; no original
+**Remaining integration:** parent, child and successful whole-session admission
+are now qualified above/below. Known-stopped failed-session recovery and campaign
+admission must retain this same lifecycle authority. Retirement remains separate; no original
 scientific file can be pruned merely because a storage allowance settled.
 
 The final private observation and 28 independent saved-evidence checks are under
@@ -1770,6 +1770,72 @@ rerun before final handoff. Both runs preserve original archives and current
 runtime sources. The 22-byte cleanup-failure fixture is intentionally retained in
 each local proof; other owned staging is closed. No production parent reservation,
 new artifact schema or automatic release was implemented by this probe.
+
+### Whole audited-session space admission
+
+**Purpose:** a frozen fit is only one part of an audited trial. The session also
+inspects observations/reference values/Free-R, verifies parent derivation again,
+audits native output and publishes a review. Reserve for that entire operation,
+not just the main child process.
+
+Create a new store with `create_budget(..., include_retained_parents=True,
+include_audited_sessions=True)`. Both choices are explicit. V3 configuration,
+ledger and inspection support `child`, `retained_parent` and `audited_session`
+under the same existing lock, inventory and admission sum. Existing v1/v2 stores
+are neither rewritten nor upgraded; the previous reader refuses v3. A session
+namespace cannot overlap any other reserved parent, child or session.
+
+The normal Python `run_audited_child` accepts `storage_budget={directory,
+budget_id, allowance_bytes}` only with `owned_preflight=True` and a live budgeted
+retained parent. After ordinary readonly input derivation but before session
+allocation/native inspection, it verifies the same-store held parent and reserves
+one whole-session grant. A separate v1 `storage-admission.json` records the grant
+and conservative minimum headroom. Copies, declared native output, bounded input
+captures and proof headroom contribute to that minimum. Native writes are not OS
+quota-enforced. The main child consumes this allowance; it does not create a second
+nested claim. Its stop cannot settle the surrounding session.
+
+A successful scientific review remains charged until an explicit call:
+
+```python
+settle_audited_session(store, budget_id=budget_id,
+                      reservation_id=session_reservation_id,
+                      review_id=review["record_sha256"])
+```
+
+The existing scientific reader checks the exact v3 review, stopped preflight,
+stopped native result, frozen state, completed postflight and retained-parent scope.
+The admission/request/parent linkage and hashed declaration's budget/reservation
+identity must match the grant. Valid science copied from another session of the
+same request cannot release this grant. Those checks run twice
+under the existing ledger lock before a compact v1 settlement is published. Identical
+retry is idempotent, including a lost acknowledgement after durable publication.
+A busy lock leaves credit held. Failed preflight/postflight, uncertain stop, missing
+review or mismatched evidence cannot release the allowance in this first profile.
+Parent cleanup remains independent and can finish while an unresolved session
+keeps its own claim.
+
+**Accounting versus current scientific evidence:** settlement records that the
+complete review was checked at that point. Routine ledger inspection validates
+this compact record, not every old native array. Explicit scientific reopening
+still uses `inspect_audited_child` and refuses missing/changed science. This avoids
+repeatedly loading all historical native payloads on each budget query. Settlement
+releases future logical allowance only; every remaining file still counts.
+It removes no data, measures no physical reclaimed space and grants no retirement
+or scientific acceptance. Poor-fit but fully audited calculations may settle;
+accepting their geometry/metal identity is a separate scientific decision.
+
+Qualification covers 146 focused/67 relocated installed checks, old-reader v1/v2
+compatibility and v3 refusal, normal session admission before preflight, completed
+sessions still competing for space, explicit settlement, independent parent closure,
+failed/unknown retention, busy/acknowledgement retries and exact relocation.
+Real Ag4 input-inspection and parent-closure evidence is reused from the preceding
+qualified steps; no new native fit or inspection ran here. Exact commands, package
+identity, measured bytes and deliberate exclusions are in the
+[current handoff](metal-development-handoff.md#a04-current-checkpoint-cooperative-storage-reservations).
+Known-stopped failed-session recovery, admission scheduling, ledger compaction and
+actual output retirement remain separate gates. The existing reservation-count
+and ledger-size bounds are unchanged.
 
 ## Capacity and scheduling
 

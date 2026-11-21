@@ -2181,6 +2181,18 @@ complete saved stop seals before the shared reader, avoiding historical PID prob
 This does not settle storage, qualify a geometry or own the whole audited-session
 allowance. See [owned preflight](metal-campaign-storage.md#owned-native-preflight-before-the-audited-child).
 
+Explicit `create_budget(include_retained_parents=True,
+include_audited_sessions=True)` creates the v3 whole-session profile, using the
+same ledger/lock. A normal audited run with owned preflight and a live budgeted
+parent reserves before its first native inspection. Its session grant remains
+held through native work, postflight and publication. Explicit successful-review
+settlement reuses the complete scientific reader and records only compact checked
+identities; ledger inspection is historical accounting, not scientific re-audit.
+Failed/unknown sessions remain held and parent closure stays independent. V1/v2
+stores/defaults do not migrate; old readers refuse v3. Files remain charged and no
+retirement or campaign-capacity authority follows. See
+[whole-session admission](metal-campaign-storage.md#whole-audited-session-space-admission).
+
 The separate `metal.child_process` route composes protected-parent transport and
 shared native process ownership for one explicit fresh invocation. Prepared bytes,
 worker and parent manifest are pinned; outcomes are durably recorded and fresh

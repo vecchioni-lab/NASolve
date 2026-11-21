@@ -9,136 +9,95 @@ not a second queue.
 
 ## A04 current checkpoint: cooperative storage reservations
 
-**Latest bounded step: explicit owned native preflight in the normal audited session.**
-`run_audited_child(..., owned_preflight=True)` now runs observation-header inspection,
-scattering reference lookup and the original Free-R audit through the existing
-shared process owner. Every phase must be verifiably stopped before f″ begins.
-Failed/uncertain checks preserve their evidence and never start the main child.
-The current default route remains unchanged; this is an explicit Python option,
-not CLI activation, a session storage grant or a scientific acceptance decision.
+**Latest bounded step: whole audited-session admission and explicit settlement.**
+Create a fresh budget with both `include_retained_parents=True` and
+`include_audited_sessions=True` for the opt-in v3 ledger. The normal
+`run_audited_child(..., owned_preflight=True, retained_parent=handle,
+storage_budget=...)` reserves one session allowance before native inspection.
+That allowance covers preflight, native work, postflight and review publication;
+the shared parent retains its separate allowance. Main-child completion cannot
+release the session. A complete review still stays charged until an explicit
+`settle_audited_session(..., review_id=...)` verifies it through the existing reader.
 
-**Qualification:** eight initial regressions fail before implementation. The final
-profile passes **90 focused tests in 30.49 s** and **50 relocated installed tests
-in 34.27 s**, with all **356 package files** verified. The previous reader returns
-the same default scientific review and refuses the new v3 owned-preflight review.
-V1 ordinary and v2 retained reviews remain supported. An added missing-phase test
-found a cold-read fallback to historical PID inspection; requiring complete saved
-stop seals fixes that before invoking the shared reader. Initial 86-pass and
-89-pass/one-failure evidence is retained; no shared process owner was changed.
+Settlement checks the exact admission, request, retained-parent scope, stopped
+preflight, stopped native output and completed scientific postflight twice under
+the existing ledger lock. It then saves a compact historical settlement; ordinary
+budget inspection does not reload every old native array. Identical retries are
+idempotent, including an acknowledgement lost after publication. Wrong/missing
+review, failed preflight/postflight, interrupted publication and uncertain ownership
+remain charged. Parent closure can settle independently of an unresolved session.
+**Only future allowance is released: all payloads remain and still count.**
 
-**Real native boundary:** Phenix **2.2.1-6174** completes the three input inspections
-on preserved Ag4 observations; no refinement or full science panel runs. The
-configured discovery label is 2.2.1, while the reference provider confirms the
-full build. Wavelength remains **0.97935 Å**, calculated Ag f″ **1.9543249607086182 e**,
-and the original `FreeR_flag` has **103 / 1,734** independent groups (**5.9400%**).
-Its existing **NOISY** warning remains: this stored flag array does not expose
-Friedel mates for a direct consistency test. The unmodified Free-R script is pinned,
-and the owned native record reopens after relocation. Retained preflight evidence
-is **409,137 B**. No new f″, Q, B, coordinates or R statistics are claimed.
+**Qualification:** 13 regressions fail before implementation. Final **146 focused
+tests pass in 42.97 s**; a relocated installed package passes **67 tests in
+22.25 s**, with **356 files** verified and original source/native access blocked.
+The previous reader gives the same v1/v2 budget observations (apart from live free
+space) and refuses v3. Two ordinary synthetic audited sessions demonstrate admission
+before preflight, review remaining charged, independent parent closure and cold
+relocation. A completed-but-unsettled session blocks another claim until explicit
+settlement; busy locks and durable acknowledgement gaps preserve/retry correctly.
+The first combined check exposed a remaining v2-only parent gate (120 pass/12 fail);
+it was corrected. A subsequent copied-evidence regression demonstrated that another
+completed session of the same request could supply the wrong grant's release.
+Binding the budget/reservation into the hashed scientific declaration fixes that;
+the regression now refuses. Earlier 145/66 qualification and the failing case remain
+in `audited-session-budget-20261121-01/`. No full suite or new native call.
 
-**Changed files/schemas:** optional `command_runner` hooks in `metal/scattering.py`
-and `refine_doctor.audit_free_r_flags`, new `metal/preflight_process.py`, normal
-`metal/child_session.py` integration/reader, one regression module and current docs.
-The shared process framework, scientific scripts/parsers and native f″ workers are
-preserved. A new v1 input-inspection record binds request, copied inputs, native
-process seals and exact capture files. Explicit scientific review v3 references
-that evidence; its process/parent derivation remains v1 or v2 according to actual
-lifetime. Cold reads verify recorded acquisition and saved stops, never new native
-acquisition, historical PID liveness or parent cleanup. No migration is required.
-
-Exact focused command:
+Exact source command, from the Alder worktree:
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_metal_owned_preflight.py tests/test_metal_child_session.py tests/test_metal_child_review.py tests/test_metal_retained_execution.py tests/test_metal_integration.py tests/test_refine_doctor.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_metal_session_budget.py tests/test_metal_parent_budget.py tests/test_metal_retained_budgeted_child.py tests/test_metal_storage_budget.py tests/test_metal_mixed_storage_budget.py tests/test_metal_budgeted_child.py tests/test_metal_owned_preflight.py tests/test_metal_child_session.py
 ```
 
-Private evidence: `owned-preflight-20261121-01/`. Installed qualification is
-`runners/A349_owned_preflight_qualification.py`; native input-only control is
-`A350_owned_preflight_native.py`. Exact commands/manifests are in `validation.json`;
-wheel SHA-256 `cdc67477c9c42a19a6ae480c3f6d2d2ec867805772600a43f2f8f185acbfc9b2`.
-Native inspection pin `03733a0f95c66fbe4692a89a3e328e008a8b7c861df046f5407f20e2d8ddf115`.
-Generated captures, models, logs, wheel and reports stay outside Git; only owned
-staging is removed. Source archives and earlier results remain unchanged.
+Private final evidence: `audited-session-budget-20261121-02/`. Installed runner:
+`runners/A353_session_budget_bound_qualification.py`; exact commands, source/package
+manifests and measurements are in `validation.json` and `measurements.json`.
+Wheel SHA-256: `3eae9b07988718305cb4c7129603008b66072a5726277204a9d655016201e466`.
 
-**Next gap:** whole audited-session admission/release must cover preflight, native
-child, postflight and review publication under one explicit lifetime contract.
-Do not merely forward a child budget and call that session accounting. The main
-child's stop alone cannot release preflight or coordinator work. Unknown inspection
-ownership must retain any future session claim. Session/campaign scheduling,
-pruning and 200-dataset capacity remain unqualified. A01 is partial, A02 gated,
-A04 partial. The original scientific geometry gates remain unchanged.
+Local visual checkout: `ScienceCheckouts/Hazel/2026-11-21_session-budget/index.html`
+beside the repositories, with an identical `review.html` in the private evidence
+folder. The two-session fixture ends with **417,235 B** of retained files and
+zero future allowance held; no payload was deleted. It links the earlier actual
+Ag4 input checks and signed f″/Q/B report. These synthetic sizes are not campaign
+capacity estimates.
 
-### Qualified retained-parent release and normal child admission
+**Files/schemas/compatibility:** `metal/storage_budget.py`, `metal/child_session.py`,
+one regression module and current docs. Config/ledger/inspection v3 explicitly
+adds an `audited_session` grant alongside existing parent/child types. Session
+admission/settlement use separate v1 kinds. Budgeted sessions bind their exact grant
+into the existing hashed request declaration. Scientific review stays v3 and all
+scientific workers/results remain unchanged. Existing v1/v2 stores,
+default sessions, native helpers and CLI behavior stay unchanged; no store migrates.
+All grants share the existing lock/admission sum. Generated fixtures, scientific
+captures, wheels and reports remain outside Git; only owned staging is removed.
+No original data or meaningful failed evidence was retired.
 
-**Latest bounded step: actual retained-parent release and normal child admission.**
-The ordinary `retained_parent_inputs(..., storage_budget=...)` context now reserves
-one parent allowance before expansion. It records its grant/opening and publishes
-closure only after managed reads finish, the handle expires and transport/snapshot
-cleanup verifies. The existing child launcher can borrow that live v2 parent and
-reserve only child growth. Two serial children share one expansion; stopping a
-child never releases its parent. Default/no-budget and v1 execution stay unchanged.
+**Supporting qualified evidence, reused rather than rerun:**
 
-**Release is not deletion or scientific acceptance.** A known stopped child can
-settle independently. Uncertain or missing child outcomes keep their own allowance,
-even after independently verified parent cleanup. Active-reader teardown, cleanup
-failure or missing closure keep the parent held. A published closure can be settled
-again after an acknowledgement/lock failure without expanding the parent. Existing
-scope namespaces are never reused. The cold reader verifies recorded owner closure
-and current scratch absence, not historical live references or physical reclaim.
+- Parent release/normal child consumption: `17d52b73`, 138 focused/57 installed;
+  `retained-parent-release-20261121-02/`. One real 55-file / **4,730,256 B** Hg/Ag4
+  snapshot served both exact derivations, then closed. Logical bytes, allocated
+  blocks and free-space delta stay distinct; physical reclaim is unverified.
+- Owned preflight: `9c43b8d8`, 90 focused/50 installed;
+  `owned-preflight-20261121-01/`. Phenix **2.2.1-6174** completed only three input
+  inspections, no refinement. Ag4 λ **0.97935 Å**, expected Ag f″
+  **1.9543249607086182 e**, original `FreeR_flag` **103/1,734 (5.9400%)**. The existing
+  **NOISY**/unexposed-Friedel-mates warning remains. The unchanged Free-R script and
+  **409,137 B** native capture cold-reopen after relocation. Complete native
+  execution applies to those input inspections only, not a new f″ calculation.
+- Saved Ag4 science remains a poor-fit historical control: Q=1, B=188.75 Å²,
+  signed f″ approximately −3.819, +3.136, +3.068, −2.393 e and
+  Rwork/Rfree **0.29184/0.75871**. Its cancellation is not a cluster count.
+  The earlier seven-case lifetime probe/28 checks also stand unchanged.
 
-**Qualification:** 17 original release regressions failed before implementation;
-4 normal-consumer regressions failed before connection. Final **138 focused tests
-pass in 18.51 s**, covering parent/read/execution ownership and legacy/mixed budgets.
-A relocated installation, with original build/install removed and source/Phenix
-access blocked, passes **57 tests in 7.04 s**; all **355 packaged files** match.
-The previous reader still reads held v2 grants and v1 records, and refuses the new
-parent settlement. Review found an opening/declaration version gap: both added
-regressions failed before the fix. Earlier 136-source/55-installed results remain
-under `retained-parent-release-20261121-01/`; final installed receipts are in `-02/`.
-Seven scientific/native helper owners are byte-identical to the prior checkpoint.
-No full suite, Phenix/Coot calculation, new geometry acceptance or original pruning.
-
-The exact source command (from the Alder worktree) is:
-
-```bash
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_metal_parent_budget.py tests/test_metal_retained_budgeted_child.py tests/test_metal_retained_parent.py tests/test_metal_retained_execution.py tests/test_metal_storage_budget.py tests/test_metal_mixed_storage_budget.py tests/test_metal_budgeted_child.py
-```
-
-Installed qualification uses the owned Python 3.12.14 environment and private
-`runners/A346_parent_release_final.py`; exact build/install/test commands, hashes
-and measurements are in `retained-parent-release-20261121-02/validation.json`.
-Wheel SHA-256: `a70fe18cf863ec5891262e567f62003e673c812052f5b02bab8973f3b443f213`.
-`A347_parent_release_final_readback.py` checks the real preserved Hg/Ag4 inputs.
-
-**Real-data readback:** one **55-file / 4,730,256 B** snapshot serves both exact
-historical input derivations, then closes and settles. The recorded allocated file
-blocks and system free-space change are separate observations; physical reclaim
-is explicitly unverified. Saved Ag4 science re-audits unchanged after relocation:
-Q=1 and B=188.75 Å² at each site, signed f″ approximately −3.819, +3.136, +3.068,
-−2.393 e; Rwork/Rfree 0.29184/0.75871. This remains a poor-fit historical control,
-not a cluster count or accepted endpoint. There is no new native fit.
-
-**Files/schemas/compatibility:** new `metal/parent_budget.py`, changes to
-`parent_archive.py`, `storage_budget.py`, `child_process.py`, two test modules and
-current docs. Parent declaration/opening/closure/settlement/inspection are distinct
-v1 kinds; opt-in budget/ledger stays v2. Retained child storage admission is v2 and
-binds its parent scope; old one-shot admission stays v1. No existing store migrates.
-Closure records pin the grant, parent manifest, scope, relative scratch and proof
-chain. Source archives, native helpers, scientific request/result formats and CLI
-defaults stay unchanged. Generated fixtures, wheels, logs and reports stay local;
-owned staging is removed. Important science and failed evidence remain preserved.
-
-**Next:** qualify whole audited-session space ownership, including fresh inspection,
-Free-R audit, scientific postflight and review publication, before campaign fan-out.
-The current child allowance covers the launcher only. No scheduler, OS quota,
-crash-recovery inference, automatic retirement or capacity guarantee is implied.
-A04 remains partial; A01 geometry is unresolved and A02 remains gated. Willow's
-scientific candidate/movement binding remains separate from reader-release authority.
-
-The earlier seven-case lifetime probe and 28 independent saved-evidence checks at
-`retained-charge-scope-20261121-02/` remain valid and were not rerun. Earlier qualified
-admission/publication checkpoints remain in Git and their original private receipts.
-See the [live closure contract](metal-campaign-storage.md#implemented-retained-parent-release-and-child-consumption).
+**Next:** qualify recovery/release of known-stopped failed sessions separately,
+then campaign admission and explicit compact publication/retirement. Current
+successful-session settlement does not automatically prune outputs, accept a
+scientific solution or establish capacity. The existing 4,096-reservation/16 MiB
+ledger limits still apply; no 200-dataset fan-out claim is made. Ledger inspection
+reports historical release, while `inspect_audited_child` independently checks
+current scientific payloads. A01 remains partial, A02 gated and A04 partial.
+See the [whole-session contract](metal-campaign-storage.md#whole-audited-session-space-admission).
 
 ## A04 supporting checkpoint: explicit offline session review
 

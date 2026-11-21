@@ -65,10 +65,11 @@ def _read(root, budget_id):
           'Budget metadata is incomplete or contains interrupted/unrecognized files')
     config = _record(metadata/'config.json', MAX_RECORD_BYTES)
     _need(config.get('record_sha256') == budget_id and config.get('kind') == 'metal-storage-budget'
-          and type(config.get('schema_version')) is int and config['schema_version'] in (1,2),
+          and type(config.get('schema_version')) is int and config['schema_version'] in (1,2,3),
           'Storage budget identity or version changed')
-    if config['schema_version']==2:
-        _need(config.get('reservation_types')==['child','retained_parent'], 'Unsupported mixed reservation profile')
+    if config['schema_version']>=2:
+        types=['child','retained_parent']+(['audited_session'] if config['schema_version']==3 else [])
+        _need(config.get('reservation_types')==types, 'Unsupported mixed reservation profile')
     else:
         _need('reservation_types' not in config, 'Mixed scopes cannot use budget version 1')
     checksum(config.get('store_id'), 'storage instance identity')
@@ -93,11 +94,12 @@ def _read(root, budget_id):
                   'Mixed scopes cannot use ledger version 1')
         else:
             common={'budget_id','allowance_bytes','nonce','scope_type'}
-            fields={'child','request_id','parent_reservation_id'} if kind=='child' else {'scope','scope_id','parent_manifest_sha256'}
+            fields=({'scope','scope_id','parent_manifest_sha256'} if kind=='retained_parent' else
+                    {'session' if kind=='audited_session' else 'child','request_id','parent_reservation_id'})
             _need(set(grant)==common|fields, 'Malformed mixed-scope grant')
             _need(isinstance(grant['nonce'],str) and len(grant['nonce'])==32
                   and all(c in '0123456789abcdef' for c in grant['nonce']), 'Malformed grant nonce')
-        if kind=='child':
+        if kind!='retained_parent':
             checksum(grant.get('request_id'), 'child request identity')
         else:
             checksum(grant.get('parent_manifest_sha256'), 'parent manifest identity')
@@ -109,16 +111,19 @@ def _read(root, budget_id):
                 _check_settlement(root,grant,reservation_id,item['settlement'])
         paths.append(_grant_path(root,grant))
         settled = item['settlement']
+        if settled is not None and kind=='audited_session':_check_session_settlement(grant,reservation_id,settled)
         if settled is not None and kind=='child':
             _need(isinstance(settled, dict) and settled.get('reservation_id') == reservation_id
                   and settled.get('request_id') == grant['request_id'] and settled.get('status') in STOPPED
                   and settled.get('stopped_verified') is True
                   and settled.get('retirement_authorized') is False, 'Malformed recorded settlement')
             checksum(settled.get('outcome_sha256'), 'recorded stopped outcome identity')
-    if ledger['schema_version']==2:
+    if ledger['schema_version']>=2:
         for item in ledger['reservations'].values():
             grant=item['grant']
-            if grant['scope_type']=='child':_parent_reference(ledger,grant['parent_reservation_id'])
+            if grant['scope_type']!='retained_parent':
+                if grant['scope_type']=='audited_session':checksum(grant['parent_reservation_id'],'session parent reservation')
+                _parent_reference(ledger,grant['parent_reservation_id'])
     paths.sort(key=lambda path: path.parts)
     _need(not any(right == left or right.is_relative_to(left)
                   for left, right in zip(paths, paths[1:])), 'Reserved child paths overlap')
@@ -134,12 +139,14 @@ def _child_path(root, relative):
 
 def _scope_type(ledger, grant):
     kind = 'child' if ledger['schema_version']==1 else grant.get('scope_type')
-    _need(isinstance(kind,str) and kind in {'child','retained_parent'}, 'Unsupported reservation scope')
+    allowed={'child','retained_parent'} | ({'audited_session'} if ledger['schema_version']==3 else set())
+    _need(isinstance(kind,str) and kind in allowed, 'Unsupported reservation scope')
     return kind
 
 
 def _grant_path(root, grant):
-    return _child_path(root, grant.get('scope') if grant.get('scope_type')=='retained_parent' else grant.get('child'))
+    field={'retained_parent':'scope','audited_session':'session'}.get(grant.get('scope_type'),'child')
+    return _child_path(root,grant.get(field))
 
 
 def _parent_reference(ledger, reference, *, require_held=False):
@@ -166,11 +173,13 @@ def _save(root, ledger):
 
 
 def create_budget(directory, *, quota_bytes, free_space_reserve_bytes=256*1024*1024,
-                  include_retained_parents=False):
+                  include_retained_parents=False,include_audited_sessions=False):
     """Declare one immutable budget on an existing store; never adopt partial state."""
     root = _root(directory)
     _need(type(include_retained_parents) is bool, 'Explicit retained-parent profile must be boolean')
-    version=2 if include_retained_parents else 1
+    _need(type(include_audited_sessions) is bool and (not include_audited_sessions or include_retained_parents),
+          'Audited sessions require explicit retained-parent support')
+    version=3 if include_audited_sessions else 2 if include_retained_parents else 1
     _integer(quota_bytes, 'quota_bytes', 1)
     _integer(free_space_reserve_bytes, 'free_space_reserve_bytes')
     with exclusive_lock(records.path_in(root, LOCK)):
@@ -179,7 +188,7 @@ def create_budget(directory, *, quota_bytes, free_space_reserve_bytes=256*1024*1
         observed, _ = _observed(root)
         config = dict(kind='metal-storage-budget', schema_version=version, store_id=secrets.token_hex(32), quota_bytes=quota_bytes,
                       free_space_reserve_bytes=free_space_reserve_bytes)
-        if include_retained_parents:config['reservation_types']=['child','retained_parent']
+        if include_retained_parents:config['reservation_types']=['child','retained_parent']+(['audited_session'] if include_audited_sessions else [])
         # The digest has fixed length; reserve exact config/initial-ledger sizes.
         ledger = dict(kind='metal-storage-reservations', schema_version=version,
                       budget_id='0'*64, reservations={})
@@ -248,7 +257,7 @@ def reserve_retained_parent(directory, *, budget_id, scope, parent_manifest_sha2
     _integer(allowance_bytes, 'allowance_bytes', 1)
     with exclusive_lock(records.path_in(root, LOCK)):
         config, ledger = _read(root,budget_id)
-        _need(ledger['schema_version']==2, 'Retained parent grants require ledger version 2')
+        _need(ledger['schema_version'] in (2,3), 'Retained parent grants require ledger version 2 or 3')
         grant=dict(budget_id=budget_id,scope_type='retained_parent',scope=scope,
                    scope_id=secrets.token_hex(32),parent_manifest_sha256=parent_manifest_sha256,
                    allowance_bytes=allowance_bytes,nonce=secrets.token_hex(16))
@@ -279,7 +288,7 @@ def settle_child(directory, *, budget_id, reservation_id):
         item = ledger['reservations'].get(reservation_id)
         _need(item is not None and item['settlement'] is None, 'Reservation absent or already settled')
         grant = item['grant']
-        _need(_scope_type(ledger,grant)=='child', 'Retained parent cannot settle as a child')
+        _need(_scope_type(ledger,grant)=='child', 'Only child reservations settle as a child; parent/session need their own evidence')
         path = _child_path(root, grant['child'])
         status, outcome_id = _stopped(path, grant['request_id'])
         _observed(root)
@@ -310,10 +319,11 @@ def inspect_budget(directory, *, budget_id):
                     held_count=held, settled_count=len(ledger['reservations'])-held,
                     stop_evidence='RECORDED_AT_SETTLEMENT', os_enforced=False,
                     scientific_acceptance='NOT_ASSESSED', retirement_authorized=False)
-        if ledger['schema_version']==2:
+        if ledger['schema_version']>=2:
+            kinds=('child','retained_parent')+(('audited_session',) if ledger['schema_version']==3 else ())
             held_items=[item['grant'] for item in ledger['reservations'].values() if item['settlement'] is None]
-            result['held_by_scope']={kind:sum(grant['scope_type']==kind for grant in held_items) for kind in ('child','retained_parent')}
-            result['outstanding_by_scope']={kind:sum(grant['allowance_bytes'] for grant in held_items if grant['scope_type']==kind) for kind in ('child','retained_parent')}
+            result['held_by_scope']={kind:sum(grant['scope_type']==kind for grant in held_items) for kind in kinds}
+            result['outstanding_by_scope']={kind:sum(grant['allowance_bytes'] for grant in held_items if grant['scope_type']==kind) for kind in kinds}
         return result
 
 
@@ -339,7 +349,7 @@ def _reserve_execution(options, *, attempt, request_id, max_parent_disk_bytes,
             _need(allowance > max_parent_disk_bytes + known_child_input_bytes + 16*1024,
                   'Execution allowance needs parent space, known input copies and child headroom')
         else:
-            _need(config['schema_version']==2, 'A budgeted retained parent requires the mixed profile')
+            _need(config['schema_version'] in (2,3), 'A budgeted retained parent requires the mixed profile')
             from .parent_budget import _active_reservation
             parent_id=_active_reservation(root,ledger,retained_parent)
             _need(allowance > known_child_input_bytes + 16*1024,
@@ -347,3 +357,98 @@ def _reserve_execution(options, *, attempt, request_id, max_parent_disk_bytes,
     grant = reserve_child(root, budget_id=options['budget_id'], child=attempt.relative_to(root).as_posix(),
                           request_id=request_id, allowance_bytes=allowance,parent_reservation_id=parent_id)
     return root, grant
+
+
+SESSION_SETTLEMENT='metal-audited-session-storage-settlement'
+SESSION_ADMISSION='metal-audited-session-storage-admission'
+
+
+def _reserve_audited_execution(options,*,session,request_id,known_input_bytes,max_output_bytes,retained_parent):
+    """Reserve the entire ordinary session before its first native inspection."""
+    from . import preflight_process
+    from .parent_budget import _active_reservation
+    _need(isinstance(options,dict) and set(options)=={'directory','budget_id','allowance_bytes'},
+          'Explicit session budget requires directory, budget_id and allowance_bytes')
+    root=_root(options['directory'])
+    _need(session.is_relative_to(root),'Budgeted session must be inside its declared store')
+    checksum(request_id,'audited session request identity')
+    _integer(options['allowance_bytes'],'session allowance',1)
+    # Three prepared-input copies (inspection plus the child's two copies),
+    # declared native output and bounded inspection captures/proofs. This is
+    # conservative cooperative headroom, not an OS-enforced write limit.
+    minimum=3*known_input_bytes+max_output_bytes+4*preflight_process.MAX_CAPTURE_BYTES+8*preflight_process.MAX_RECORD_BYTES
+    _need(options['allowance_bytes']>minimum,'Session allowance needs copied inputs, declared output and preflight headroom')
+    with exclusive_lock(records.path_in(root,LOCK)):
+        config,ledger=_read(root,options['budget_id'])
+        _need(config['schema_version']==3,'Audited session admission requires explicit ledger version 3')
+        parent_id=_active_reservation(root,ledger,retained_parent)
+        grant=dict(budget_id=options['budget_id'],scope_type='audited_session',session=session.relative_to(root).as_posix(),
+            request_id=request_id,parent_reservation_id=parent_id,allowance_bytes=options['allowance_bytes'],nonce=secrets.token_hex(16))
+        return root,_admit(root,config,ledger,grant),minimum
+
+
+def _check_session_settlement(grant,reservation_id,value):
+    fields={'kind','schema_version','reservation_id','request_id','parent_reservation_id','review_sha256',
+            'output_evidence_id','preflight_stopped_verified','native_stopped_verified','postflight_review_complete',
+            'verification_scope','scientific_acceptance','retirement_authorized'}
+    _need(isinstance(value,dict) and set(value)==fields and value['kind']==SESSION_SETTLEMENT
+          and type(value['schema_version']) is int and value['schema_version']==1
+          and value['reservation_id']==reservation_id and value['request_id']==grant['request_id']
+          and value['parent_reservation_id']==grant['parent_reservation_id']
+          and all(value[k] is True for k in ('preflight_stopped_verified','native_stopped_verified','postflight_review_complete'))
+          and value['verification_scope']=='COMPLETED_REVIEW_CHECKED_AT_SETTLEMENT'
+          and value['scientific_acceptance']=='NOT_ASSESSED' and value['retirement_authorized'] is False,
+          'Malformed audited-session settlement')
+    checksum(value['review_sha256'],'settled scientific review identity')
+    checksum(value['output_evidence_id'],'settled native output evidence identity')
+
+
+def _audited_review(root,ledger,grant,reservation_id,review_id):
+    from . import child_session
+    path=_grant_path(root,grant);admission=_record(path/'storage-admission.json',MAX_RECORD_BYTES)
+    _need(set(admission)=={'kind','schema_version','reservation_id','grant','minimum_allowance_bytes','scientific_acceptance','retirement_authorized','record_sha256'}
+          and admission.get('kind')==SESSION_ADMISSION and type(admission.get('schema_version')) is int
+          and admission['schema_version']==1 and admission.get('grant')==grant
+          and admission.get('reservation_id')==reservation_id and admission.get('retirement_authorized') is False
+          and admission.get('scientific_acceptance')=='NOT_ASSESSED'
+          and type(admission.get('minimum_allowance_bytes')) is int
+          and 0<admission['minimum_allowance_bytes']<grant['allowance_bytes'],
+          'Session storage admission changed')
+    report=child_session.inspect_audited_child(path,review_id=review_id)
+    declaration=child_session._session_record(path,'request.json')
+    _need(declaration.get('storage_reservation')==dict(budget_id=grant['budget_id'],reservation_id=reservation_id),
+          'Scientific session reservation binding changed')
+    parent=ledger['reservations'][grant['parent_reservation_id']]['grant']
+    scope=report.get('recorded_parent_scope')
+    _need(report['schema_version']==3 and report['request_id']==grant['request_id']
+          and report.get('preflight_stopped_verified') is True and isinstance(scope,dict)
+          and scope.get('scope_id')==parent['scope_id'] and scope.get('parent_manifest_sha256')==parent['parent_manifest_sha256'],
+          'Complete owned session and exact retained parent are required for release')
+    return report
+
+
+def settle_audited_session(directory,*,budget_id,reservation_id,review_id):
+    """Release future session allowance only after a complete owned scientific review.
+
+    Failed, unknown or unrecorded sessions remain held. Native payloads are never
+    removed. The compact ledger records this check; routine budget inspection is
+    not a fresh scientific readback of all old arrays. Exact retries are idempotent.
+    """
+    root=_root(directory);checksum(reservation_id,'session reservation identity');checksum(review_id,'independent scientific review identity')
+    with exclusive_lock(records.path_in(root,LOCK)):
+        config,ledger=_read(root,budget_id);item=ledger['reservations'].get(reservation_id)
+        _need(item is not None and item['grant'].get('scope_type')=='audited_session','Require an exact audited-session reservation')
+        grant=item['grant']
+        if item['settlement'] is not None:
+            _need(item['settlement']['review_sha256']==review_id,'Session already settled against a different review')
+            return item['settlement']
+        report=_audited_review(root,ledger,grant,reservation_id,review_id)
+        value=dict(kind=SESSION_SETTLEMENT,schema_version=1,reservation_id=reservation_id,request_id=grant['request_id'],
+            parent_reservation_id=grant['parent_reservation_id'],review_sha256=review_id,output_evidence_id=report['output_evidence_id'],
+            preflight_stopped_verified=True,native_stopped_verified=True,postflight_review_complete=True,
+            verification_scope='COMPLETED_REVIEW_CHECKED_AT_SETTLEMENT',scientific_acceptance='NOT_ASSESSED',retirement_authorized=False)
+        _observed(root);item['settlement']=value
+        _space(root,records.serialized_record_size(ledger),config['free_space_reserve_bytes'])
+        _need(_audited_review(root,ledger,grant,reservation_id,review_id)==report,'Audited session changed during settlement')
+        _check_session_settlement(grant,reservation_id,value);_save(root,ledger)
+        return value
