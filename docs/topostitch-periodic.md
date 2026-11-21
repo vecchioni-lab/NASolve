@@ -11838,3 +11838,54 @@ reclaim remain distinct. S04/S05/S06 stay PARTIAL. No new physical result or
 picture is implied; reuse W197's small recovery checkout. Scientific payload stays
 local. The current handoff was consolidated; older exact evidence remains in the
 ledgers and Git rather than another diary file.
+
+
+## W201 — Identify the missing geometry-only parent input role
+
+**Question:** can the current ordinary execution owner carry W200's exact parent
+and candidate without confusing source geometry with the diffraction model?
+The cold audit uses actual Cedar `refinement_parallelity` readers/writer at clean
+commit `ed4fa6d736aada7e2202671854b407622d2e059f`, a frozen W200 v3 request and
+its declared checksummed inputs/helper files. Temporary copies are made only
+through those references and removed after the audit; original evidence is intact.
+
+| Control | Actual outcome |
+| --- | --- |
+| Existing ordinary v3 capture | Readable through the current owner |
+| Fresh ordinary default request | Same v3 policy and exact frozen helper hashes; command not executed |
+| Rehashed extra geometry-parent field | Refused by the historical request reader |
+| Proposed new execution policy | Refused by the historical request reader |
+| Extra parent input without a native command argument | Refused before runtime-directory allocation |
+
+Thus ordinary v3 cannot currently express a **typed geometry-only parent**.
+The extra-input refusal is useful: silently passing the parent as another native
+model argument would lose the intended role separation. Code review also notes
+that counted original-model provenance is not automatically the current geometry
+parent. These five controls do not claim to exercise every historical policy.
+
+The [human contract](topostitch.md#versioned-parent-preparation-execution-contract-w201)
+and `native_preparation_execution_contract` in the existing intent JSON propose
+named opt-in `topostitch-bound-parent-preparation-v1` under a new versioned policy
+of the same owner. Its unfinalized `parent_preparation` field must bind original
+parent, exact candidate, motion, current source chemistry/reader intent, original
+diffraction/Free, a maintained native builder and actual input lifetime. No new
+request reader, execution format, CLI flag, callback loader or policy registration
+is implemented. Old readers/defaults remain untouched. Shared changes were sent
+to Rowan for owner agreement before editing.
+
+**Validation:** five cold owner controls, unchanged source/owner hashes and removed
+temporary fixtures. **Zero native calls/refinements**. Command from NASolve:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w201-execution-contract.py
+```
+
+Local report `NASolve:branch-artifacts/willow/w201-execution-contract/review.json`
+pins the source request, owner/functions and audit script; its hash is in the
+roadmap. Eight roadmap tests and `--write`/`--check` plus intent JSON parsing cover
+this docs/design update. No full-suite or installation repeat; W200 remains the
+latest qualified implementation. Scientific inputs, generated request controls
+and native evidence remain outside Git. Only current intent/guides/changelog and
+roadmap change. No schema migration; the new identifiers are explicitly proposed,
+not supported. S04/S05/S06 stay PARTIAL. The absence of an expressible role is the
+result, not a reason to fabricate current-parent authority or repeat W197.

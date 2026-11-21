@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current: W200, 2026-11-21.** The installed one-shot preparation context now
+**Current audit: W201; latest implementation: W200, 2026-11-21.** The installed one-shot preparation context now
 carries admitted candidate → original parent geometry → candidate coordinates
 through an explicit qualified native builder. No ordinary execution-policy or
 CLI activation follows. S04/S05/S06 remain PARTIAL.
@@ -41,14 +41,22 @@ No returned boolean/None or coordinate mapping alone is chemical authority.
 
 ## Next bounded work
 
-**W201:** agree the frozen execution-policy integration with Cedar before editing
-shared runtime owners. Bind the admitted source/candidate and native builder to
-one explicit fresh policy; preserve historical readers/defaults and place the
-context at the earlier interpretation call, not the counted driver entry.
-Consume W173/W174 checkpoint/request joins and W200; do not write another preview
-reader, private execution format or coordinate mapper. A complete runtime adapter
-must carry actual topology/monomer/plane proof, current phosphate intent, original
-observations/Free, stable ADPs/crystal and the full fixed context.
+**W202:** agree the exact versioned shared extension with Cedar before editing
+runtime owners. W201's five cold controls show that ordinary v3 has no typed
+geometry-only parent role: old capture/default helpers remain readable/unchanged,
+while an extra field, proposed policy and untyped sidecar are refused. The
+[unfinalized contract](topostitch.md#versioned-parent-preparation-execution-contract-w201)
+is named `topostitch-bound-parent-preparation-v1`; its proposed v10 execution
+policy and `parent_preparation` field are not implemented or accepted.
+
+Bind existing W173/W174 joins, W200 and current Cedar chemistry/reader intent;
+keep the candidate as the ordinary diffraction-model argument. A maintained
+source-qualified live builder is still needed before dispatch. Counted
+`original_model` is original pair provenance, not an automatic immediate-parent
+geometry reference. Distinguish original observations from a separately computed
+parent F-model, and require separate evidence if the latter is requested. Preserve
+all old helper bytes, policies and defaults. No new private refinement or request
+reader is warranted.
 
 Keep input lifetime separate from model preparation. Hazel reports qualified
 Alder `17d52b730a74682ab0f9d5548405681b24d3313e`: ordinary retained parents now
@@ -80,6 +88,9 @@ are scientific investigation rules, not an implemented classifier or permission
 for repeated Rfree-guided tuning. No noisy phosphate detector is qualified.
 
 ## Validation and scientific interpretation
+
+- W201: five actual cold owner controls, source/input immutability and temporary
+  cleanup pass; zero native calls. Proposed execution contract remains unimplemented.
 
 - W200: **160 focused source + 160 relocated installed tests**, Python 3.10 syntax;
   one actual Phenix **2.2.1-6174 dry-run** and one injected preparation failure,

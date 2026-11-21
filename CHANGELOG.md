@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W201 — Specify the separate geometry-parent execution role
+
+- Record five cold controls against the existing execution owner: ordinary v3
+  remains readable with unchanged helpers, while a geometry-only parent cannot
+  be added as an untyped sidecar or unknown request field/policy.
+- Propose a named opt-in versioned contract in existing human/machine docs.
+  No new route is registered; old runtime policies, schemas and defaults stay
+  unchanged. Shared native-builder/input integration requires owner agreement.
+- Docs/planning only; zero native calls, no full-suite/install repeat or raw
+  scientific payload in Git. Eight focused roadmap checks cover synchronization.
+
 ### W200 — Maintain one-shot parent geometry preparation
 
 - Add an opt-in in-memory context around an explicitly qualified native builder:

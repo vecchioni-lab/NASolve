@@ -1728,3 +1728,55 @@ failure and restore only owned bindings; foreign replacement requires refusal.
 This is not a new execution format. Existing counted/native policies remain
 versioned and unchanged until a separate integration is agreed with Cedar.
 [Qualification and limits](topostitch-periodic.md#w199--use-the-installed-handoff-during-live-preparation).
+
+
+### Versioned parent preparation execution contract (W201)
+
+**Planning, no dispatch:** named opt-in route
+`topostitch-bound-parent-preparation-v1`, with proposed existing-owner policy
+`round-local-parent-geometry-execution-v10`. Neither identifier is registered or
+accepted by current code. The [intent JSON](topostitch-intent.json) records the
+same unfinished contract; it is not a runtime request schema.
+
+Five cold controls against Cedar `ed4fa6d7` establish the current ordinary v3
+boundary: historical capture readable; fresh default helper bytes unchanged;
+rehashed extra parent field and proposed policy refused; parent sidecar absent
+from the native command refused before allocation. The parent must be a typed
+geometry-only reference, separate from the command's candidate model input.
+Do not pass two models or quietly overload counted `original_model`: that field
+records original pair provenance and need not equal the immediate current parent.
+
+| Required role | Existing authority to bind |
+| --- | --- |
+| Geometry parent | Exact selected/current checkpoint plus applicable Cedar source/preparation context |
+| Diffraction candidate | Exact admitted preview candidate in ordinary model input; W174 ordered request join |
+| Motion scope | Existing full-precision preview/endpoint audit, raw-record index basis and complete moving/fixed identities |
+| Chemistry | Current phosphate/topology intent, literal and compiled pair/stack/plane policy, reader controls and effective definitions |
+| Diffraction | Original observations/Free and phases, plus actual candidate F-model invariance around parent interpretation |
+| Native builder | Maintained, source-qualified bridge for one interpretation under the same manager and complete Cedar verification |
+| Lifetime | Actual outer retained-input/process scope, never a cold release receipt |
+
+Parent/candidate roles remain explicit for a byte-identical neutral control.
+Original observation provenance and a computed parent-model F-model are distinct.
+If the latter is required, supply separately bound evidence or refuse; do not
+rename candidate F-model evidence as the parent. This contract does not invent
+a missing ordinary pair assignment or chemical approval for X11_22.
+
+The proposed `parent_preparation` request field belongs only to a new versioned
+policy in the existing owner. Shared edits must be agreed before changing
+`prepare_execution`, `read_execution_request`, `_code`/`_expected_code`, its frozen
+entry/helper set or the new live builder. Keep old helper bytes/readers/defaults
+unchanged. Old readers must refuse the new policy. W200 alone is not the native
+builder or a replacement for those owners.
+
+At runtime, verify retained inputs; build candidate diffraction; interpret the
+bound parent once; require complete parent proof; transfer via W200 in current
+native order; require exact fixed context, retained chemistry/scattering and
+unchanged candidate diffraction; then close preparation. A separate successful
+preflight/admission must precede refinement. Failure preserves the first error,
+restores only owned temporary bindings/settings and discards the failed process/
+manager; it grants no rollback/reuse. Keep inputs held until every consumer stops.
+
+Next is agreement on that shared extension and a bounded maintained dry-run/failure
+qualification, not another private refinement or another Willow request reader.
+[Exact audit](topostitch-periodic.md#w201--identify-the-missing-geometry-only-parent-input-role).

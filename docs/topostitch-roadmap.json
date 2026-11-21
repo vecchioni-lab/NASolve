@@ -260,14 +260,15 @@
         "W197 qualifies matched fixed-frame recovery from fresh signed interior initializers:205 atoms relax while654 remain fixed; no new motion algorithm or ordinary native hook.",
         "W198 couples exact admitted source/candidate coordinates and movable/fixed scope through the existing strict native identity owner; nine saved-stage handoffs pass. Actual native application and lifetime integration remain separate.",
         "W199 uses installed W198 in the live earlier interpretation boundary: exact prior preparation/diffraction parity and deliberate-failure binding cleanup pass. No refinement or maintained hook yet.",
-        "W200 maintains the one-shot preparation stage owner with W198 mapping and explicit native builder; installed live success/failure and160/160 tests pass. No ordinary execution-policy integration or scientific acceptance."
+        "W200 maintains the one-shot preparation stage owner with W198 mapping and explicit native builder; installed live success/failure and160/160 tests pass. No ordinary execution-policy integration or scientific acceptance.",
+        "W201 records a named, unimplemented versioned execution/input contract and five actual cold controls showing the current ordinary geometry-parent role gap while preserving old v3 readers/defaults."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "W201: agree versioned ordinary execution integration with Cedar before shared-runtime edits. Bind existing checkpoint/request admission, W200 source-qualified native builder, current phosphate/chemical policy, exact original diffraction/Free and fixed context; compose committed Alder lifetime ownership separately. Preserve old policies/defaults and do not repeat private refinements.",
+      "next_action": "W202: agree the exact shared Cedar extension for the proposed typed parent_preparation field and source-qualified live builder before runtime edits. Keep existing candidate model input, checkpoint/request joins, complete source chemistry and original diffraction/Free distinct; preserve historical policies and actual outer lifetime ownership. Qualify a bounded maintained dry-run/failure after implementation, not another private refinement.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -328,14 +329,15 @@
         "E_FIXED_FRAME_NATIVE_RECOVERY",
         "E_NATIVE_ENDPOINT_HANDOFF",
         "E_LIVE_PREPARATION_HANDOFF",
-        "E_MAINTAINED_NATIVE_PREPARATION"
+        "E_MAINTAINED_NATIVE_PREPARATION",
+        "E_PARENT_EXECUTION_CONTRACT"
       ],
       "last_audit": {
         "date": "2026-11-21",
         "reviewer": "Linden",
-        "human_update": 200,
+        "human_update": 201,
         "code_commit": "6013c5c8fc0822498778ee117b65602063bd4e1f",
-        "scope": "Installed maintained context and live dry-run/failure; no ordinary runtime integration or scientific acceptance"
+        "scope": "Cold current-owner representation audit and proposed contract only; no runtime integration"
       }
     },
     {
@@ -392,14 +394,15 @@
         "W197 strongly recovers four crossing-boundary bonds while retaining complete topology and phosphate inventory. A12 phosphate-angle and B2 sugar/backbone bond costs persist; local repair remains partial.",
         "W198 couples exact admitted source/candidate coordinates and movable/fixed scope through the existing strict native identity owner; nine saved-stage handoffs pass. Actual native application and lifetime integration remain separate.",
         "W199 uses installed W198 in the live earlier interpretation boundary: exact prior preparation/diffraction parity and deliberate-failure binding cleanup pass. No refinement or maintained hook yet.",
-        "W200 maintains the one-shot preparation stage owner with W198 mapping and explicit native builder; installed live success/failure and160/160 tests pass. No ordinary execution-policy integration or scientific acceptance."
+        "W200 maintains the one-shot preparation stage owner with W198 mapping and explicit native builder; installed live success/failure and160/160 tests pass. No ordinary execution-policy integration or scientific acceptance.",
+        "W201 records a named, unimplemented versioned execution/input contract and five actual cold controls showing the current ordinary geometry-parent role gap while preserving old v3 readers/defaults."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "W201: agree versioned ordinary execution integration with Cedar before shared-runtime edits. Bind existing checkpoint/request admission, W200 source-qualified native builder, current phosphate/chemical policy, exact original diffraction/Free and fixed context; compose committed Alder lifetime ownership separately. Preserve old policies/defaults and do not repeat private refinements.",
+      "next_action": "W202: agree the exact shared Cedar extension for the proposed typed parent_preparation field and source-qualified live builder before runtime edits. Keep existing candidate model input, checkpoint/request joins, complete source chemistry and original diffraction/Free distinct; preserve historical policies and actual outer lifetime ownership. Qualify a bounded maintained dry-run/failure after implementation, not another private refinement.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -503,14 +506,15 @@
         "E_FIXED_FRAME_NATIVE_RECOVERY",
         "E_NATIVE_ENDPOINT_HANDOFF",
         "E_LIVE_PREPARATION_HANDOFF",
-        "E_MAINTAINED_NATIVE_PREPARATION"
+        "E_MAINTAINED_NATIVE_PREPARATION",
+        "E_PARENT_EXECUTION_CONTRACT"
       ],
       "last_audit": {
         "date": "2026-11-21",
         "reviewer": "Linden",
-        "human_update": 200,
+        "human_update": 201,
         "code_commit": "6013c5c8fc0822498778ee117b65602063bd4e1f",
-        "scope": "Installed maintained context and live dry-run/failure; no ordinary runtime integration or scientific acceptance"
+        "scope": "Cold current-owner representation audit and proposed contract only; no runtime integration"
       }
     },
     {
@@ -4903,6 +4907,23 @@
           "size": 33205
         }
       ]
+    },
+    "E_PARENT_EXECUTION_CONTRACT": {
+      "kind": "planned_versioned_parent_execution_contract",
+      "date": "2026-11-21",
+      "human_update": 201,
+      "code_commit": "6013c5c8fc0822498778ee117b65602063bd4e1f",
+      "reference": "docs/topostitch-periodic.md#w201--identify-the-missing-geometry-only-parent-input-role",
+      "result": "Five cold current Cedar owner controls: old v3 readable, fresh default helper hashes unchanged, extra parent field/proposed policy/untyped sidecar refused. Original inputs/owner unchanged and temporary fixtures removed. Zero native calls.",
+      "limitation": "Named opt-in route and proposed request field are planning only. No new policy/reader/schema/runtime implementation, ordinary parent authority or scientific acceptance. Old policies remain unchanged.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w201-execution-contract/review.json",
+          "sha256": "b74e636d5c9a4275c7eebf8f89283b910166b6c250531202fcfb22edb8d876bc",
+          "size": 2073
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -5064,8 +5085,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 200,
-    "next": 201,
+    "current": 201,
+    "next": 202,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -6073,6 +6094,12 @@
       {
         "number": 200,
         "title": "Maintain one-shot parent preparation with installed live success and failure checks",
+        "state": "RECORDED",
+        "code_commit": "6013c5c8fc0822498778ee117b65602063bd4e1f"
+      },
+      {
+        "number": 201,
+        "title": "Define the separate geometry-parent role and demonstrate the current execution limit",
         "state": "RECORDED",
         "code_commit": "6013c5c8fc0822498778ee117b65602063bd4e1f"
       }

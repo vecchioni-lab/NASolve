@@ -741,11 +741,11 @@
       "schema_version": 1,
       "kind": "topostitch-representative-comparison-view",
       "cli": "nasolve-topostitch-view --compare (repeatable)",
-      "input_scope": "2\u20138 explicit packets from one exact source and registered graph; no inferred alternatives",
+      "input_scope": "2–8 explicit packets from one exact source and registered graph; no inferred alternatives",
       "display_point_budget": 50000,
       "camera": "Shared across cuts; rotation/pan/zoom/mode/toggles retained",
       "stale_selection": "Atom/edge inspection cleared on cut switch; warnings, ownership and native seams refreshed",
-      "local_identifiers": "Cut 1, Cut 2, \u2026 in explicit input order; exact hashes retain proposal identity",
+      "local_identifiers": "Cut 1, Cut 2, … in explicit input order; exact hashes retain proposal identity",
       "legacy_scenes_unchanged": true,
       "selection_applied": false,
       "graphical_review_recorded": false,
@@ -1640,5 +1640,75 @@
     "cli_and_runtime_schema_finalized": false,
     "implementation_started": false,
     "new_native_runs": false
+  },
+  "native_preparation_execution_contract": {
+    "human_update": 201,
+    "date": "2026-11-21",
+    "status": "PLANNED_CURRENT_ORDINARY_POLICY_CANNOT_REPRESENT_ROLE",
+    "runtime_authority": false,
+    "implemented": false,
+    "default_enabled": false,
+    "schema_finalized": false,
+    "reference": "docs/topostitch.md#versioned-parent-preparation-execution-contract-w201",
+    "named_opt_in_route": "topostitch-bound-parent-preparation-v1",
+    "proposed_execution_policy": "round-local-parent-geometry-execution-v10",
+    "current_policy_audited": "round-local-parallelity-execution-v3",
+    "current_cedar_commit": "ed4fa6d736aada7e2202671854b407622d2e059f",
+    "ordinary_owner": "nasolve.refinement_parallelity",
+    "required_bindings": [
+      {
+        "role": "geometry_parent",
+        "source": "Exact selected/current parent through W173 and existing Cedar preparation/source context; separate from original counted recipe model."
+      },
+      {
+        "role": "diffraction_candidate",
+        "source": "Exact admitted preview bytes in ordinary model input; W174 joins current request and ordered restraints/phases/generated parameters."
+      },
+      {
+        "role": "motion",
+        "source": "Existing preview/checkpoint/endpoint audit with full-precision points, raw PDB index basis, complete movable/fixed scope and explicit parent/candidate roles even for byte-identical neutral control."
+      },
+      {
+        "role": "chemical_intent",
+        "source": "Existing Cedar current source topology, phosphate intent, literal/compiled NA policy, reader controls, effective definitions and checked preparation; none inferred from stretched child distances."
+      },
+      {
+        "role": "diffraction",
+        "source": "Exact original observation/Free and phase references; runtime candidate F-model unchanged across geometry interpretation. A separately requested parent-model diffraction state must have its own evidence, never relabel candidate evidence."
+      },
+      {
+        "role": "native_builder",
+        "source": "Maintained source-qualified live builder and collector bridge; stable owning manager, one actual interpretation and supported policy/profile."
+      },
+      {
+        "role": "lifetime",
+        "source": "Actual outer retained-input/process scope, not a cold receipt; retain inputs through all consumers and stop children before release."
+      }
+    ],
+    "proposed_new_request_field": "parent_preparation",
+    "native_command_input_rule": "Keep candidate as sole model argument. Geometry-only parent is a separately typed frozen reference, never an untyped extra PDB argument.",
+    "transition": [
+      "Verify exact current parent/preview/request and retained inputs before launch.",
+      "Build candidate diffraction, verify its role and source scattering state.",
+      "Interpret bound parent exactly once under the owning manager using the qualified builder.",
+      "Require parent chemical/native proof before W200 transfers candidate PDB-decimal coordinates in freshly mapped native order.",
+      "Require retained complete chemistry, exact fixed coordinates and unchanged candidate diffraction before closing preparation.",
+      "Only then enter separately admitted refinement; preflight is not refinement permission."
+    ],
+    "failure": "Preserve first failure, restore only owned temporary bindings/settings, expose no usable result, stop owned child and discard manager/context; no same-process rollback/retry. Unknown children keep lifetime charges.",
+    "shared_changes_requiring_owner_agreement": [
+      "refinement_parallelity.prepare_execution",
+      "refinement_parallelity.read_execution_request",
+      "refinement_parallelity._code/_expected_code and new-policy frozen helper set",
+      "new-policy entry/phase consumer and maintained Cedar live native builder"
+    ],
+    "historical_policy_rule": "Old fields, helper bytes, defaults and readers remain unchanged; old readers must refuse the new route rather than silently ignore it.",
+    "unrepresentable_now": [
+      "Current ordinary v3 has no geometry-only parent role; extra field/unknown policy refuses and an input sidecar absent from the native command refuses before allocation.",
+      "Current counted original_model is original pair provenance, not a general immediate-parent geometry reference.",
+      "Real ordinary X11_22 ancestry does not supply the independently checked source pair/stack and chemistry authority of the canonical diagnostic.",
+      "A W200 callback contract alone is not a maintained live Phenix builder, native source qualification or whole-session lifetime proof."
+    ],
+    "next_gate": "Agree exact shared extension before implementation; then qualify source/install reader compatibility and one maintained complete dry-run/failure through the new owner. No repeated W197 refinement panel."
   }
 }

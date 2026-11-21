@@ -7,10 +7,15 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+W201 records the [versioned execution/input contract](topostitch.md#versioned-parent-preparation-execution-contract-w201):
+five cold controls identify the missing geometry-only parent role while old v3
+captures/defaults remain valid. The named opt-in route is proposed, not registered.
+W202 is the shared-owner decision before implementation.
+
 W200 adds the [maintained one-shot preparation context](topostitch-preview.md#prepare-parent-geometry-once-w200):
 160 source/160 installed tests and an actual success/failure pair preserve the
-exact atom-order handoff and prior prepared state. W201 is separate Cedar
-execution-policy integration; no additional refinement or user-facing activation.
+exact atom-order handoff and prior prepared state. Ordinary Cedar
+execution-policy integration remains separate; no additional refinement or user-facing activation.
 W198/W199's cold/live qualification and limitations remain in the handoff/ledger.
 
 W197 adds a [matched signed fixed-frame recovery control](topostitch-periodic.md#w197--recover-a-signed-interior-window-with-fixed-end-frames):
