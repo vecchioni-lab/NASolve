@@ -1,8 +1,8 @@
-"""Read-only measurements of explicitly assigned paired phosphate sites.
+"""Read-only measurements of explicitly assigned nucleic-acid pairs.
 
-The first shared regional-helix slice measures Cartesian P--P spans, not a
-screw-axis radius or twist. Assignments declare pairing; this reader does not
-infer or validate it. Single-model PDB and identity images only.
+Default mode measures Cartesian P--P spans, not screw-axis radii. The explicit
+simple-twist mode reuses the separate canonical frame reader. Assignments declare
+pairing; neither mode infers or validates it. Single-model PDB, identity images.
 """
 from __future__ import annotations
 
@@ -98,8 +98,9 @@ class PairedRegion:
             raise ValueError('A physical residue cannot occupy multiple declared pairs')
 
 
-def _phosphate(atoms, site):
-    result = dict(site=asdict(site), atom_name='P', status='UNAVAILABLE', reason=None)
+def _site_atom(atoms, site, atom_name, *, missing_reason='MISSING_ATOM',
+               ambiguous_reason='AMBIGUOUS_ATOM'):
+    result = dict(site=asdict(site), atom_name=atom_name, status='UNAVAILABLE', reason=None)
 
     def absent(reason):
         return {**result, 'reason': reason}
@@ -112,21 +113,26 @@ def _phosphate(atoms, site):
     rows = next(iter(groups.values()))
     if site.altloc and not any(row[2] == site.altloc for row in rows):
         return absent('MISSING_CONFORMER')
-    if not site.altloc and any(row[0] == 'P' and row[2] for row in rows):
+    if not site.altloc and any(row[0] == atom_name and row[2] for row in rows):
         return absent('ALTERNATE_CONFORMER_REQUIRED')
     candidates = [row for row in rows if row[2] in ('', site.altloc)]
     if not candidates or {row[1] for row in candidates} != {site.component}:
         return absent('COMPONENT_MISMATCH')
-    phosphates = [row for row in candidates if row[0] == 'P']
+    phosphates = [row for row in candidates if row[0] == atom_name]
     if not phosphates:
-        return absent('MISSING_PHOSPHATE')
+        return absent(missing_reason)
     if len(phosphates) != 1:
-        return absent('AMBIGUOUS_PHOSPHATE')
+        return absent(ambiguous_reason)
     name, component, altloc, xyz, occupancy = phosphates[0]
     if occupancy is None or not math.isfinite(occupancy) or not 0 < occupancy <= 1:
         return absent('UNUSABLE_OCCUPANCY')
     return {**result, 'status': 'AVAILABLE', 'actual_altloc': altloc,
             'component': component, 'xyz_angstrom': list(xyz), 'occupancy': occupancy}
+
+
+def _phosphate(atoms, site):
+    return _site_atom(atoms, site, 'P', missing_reason='MISSING_PHOSPHATE',
+                      ambiguous_reason='AMBIGUOUS_PHOSPHATE')
 
 
 def inspect_phosphate_spans(model_path, region, *, expected_model_sha256,
@@ -194,15 +200,26 @@ def main(argv=None):
     parser.add_argument('--region', required=True, type=Path, help='Explicit PairedRegion JSON')
     parser.add_argument('--sha256', required=True, help='Expected model SHA256')
     parser.add_argument('--half-span', action='store_true')
+    parser.add_argument('--simple-twist', action='store_true', help='Opt into canonical simple-step twist; requires topology extra')
+    parser.add_argument('--max-ring-fit-rmsd', type=float, help='Explicit maximum canonical ring-fit RMSD in angstroms')
     args = parser.parse_args(argv)
     try:
         region = _region_from_json(json.loads(args.region.read_text()))
-        result = inspect_phosphate_spans(args.model, region, expected_model_sha256=args.sha256,
-                                        include_half_span=args.half_span)
-    except (ValueError, TypeError, KeyError, OSError) as exc:
+        if args.simple_twist:
+            from .helical_twist import inspect_helical_region
+            result = inspect_helical_region(args.model, region, expected_model_sha256=args.sha256,
+                include_half_span=args.half_span, max_ring_fit_rmsd_angstrom=args.max_ring_fit_rmsd)
+        else:
+            if args.max_ring_fit_rmsd is not None:
+                raise ValueError('--max-ring-fit-rmsd requires --simple-twist')
+            result = inspect_phosphate_spans(args.model, region, expected_model_sha256=args.sha256,
+                                            include_half_span=args.half_span)
+    except (ValueError, TypeError, KeyError, OSError, RuntimeError) as exc:
         parser.error(str(exc))
     print(json.dumps(result, indent=2, allow_nan=False))
 
 
 if __name__ == '__main__':
-    main()
+    # Keep CLI declarations identical to the classes used by optional adapters.
+    from .helical_geometry import main as _installed_main
+    _installed_main()
