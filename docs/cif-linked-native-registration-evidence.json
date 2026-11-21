@@ -121229,5 +121229,133 @@
       }
     },
     "interpretation": "Both contacts improve when the opposing strand can accommodate placement. The same-strand seed has the lower final global R-free. Four overlaps persist and local displacement is high in both. These are unregistered diagnostic refinements on host observations. Neither particular pose nor a default constructor is selected."
+  },
+  "dy_two_atom_pair_exclusions_2026_11_21": {
+    "program": "phenix-2.2.1-6174",
+    "comparison": "Original as-built DY control on 4.02 \u00c5 substituted host diffraction, same input/dictionaries/settings, two specific automatic-link exclusions. No base pairing PHIL or extra plane.",
+    "source_commit": "3b4a69994c0e7665cff03c91ec63839a18dbfeae",
+    "model_sha256": "7445f568370f1e86192fde255a78eae007f8be882c4a9e30e32c983528f9fec5",
+    "source_preparation_sha256": "70ad0e45d896e144ae7d3ed8707bcfbbe593a5d6f3099483929cd93c81f289ce",
+    "native_fixed_receipts": [
+      "38b016aa5b9cb6b99c9072e3399c34f7f9677cc292c1dfd9bfb56ab6306fe924",
+      "d9c6cbf7fa1e3e82421f33fe8b45ac654d3cfeb5429f8c03e5db3f0ffe3270fc",
+      "065a5207b75843060c9bfca59d7ad0213daf3670c43f9272606ec4b1a4a85cad"
+    ],
+    "exclusion_phil_sha256": [
+      "684d6a2b34733730973aa2c350599799bc6552ee07eb75d5cc7ace8a7e30a456",
+      "e0d17723e60fde864b519a78ed5e6ad08c8d716a6fe7df2bd9c1f2199f0026b3"
+    ],
+    "observed_branches": {
+      "original": {
+        "endpoints": [
+          [
+            "A:12",
+            "DA",
+            "N6"
+          ],
+          [
+            "B:4",
+            "DY",
+            "C5T"
+          ]
+        ],
+        "distance_ideal": 1.43,
+        "weight": 10000.0,
+        "origin_id": 10
+      },
+      "after_first": [
+        {
+          "endpoints": [
+            [
+              "A:12",
+              "DA",
+              "N6"
+            ],
+            [
+              "B:4",
+              "DY",
+              "N4T"
+            ]
+          ],
+          "distance_ideal": 1.35,
+          "weight": 10000.0,
+          "origin_id": 10
+        }
+      ],
+      "after_both": [],
+      "missing_after_both": []
+    },
+    "native_counts": {
+      "unchanged_declared_links": 38,
+      "original_covalent": 959,
+      "with_both_exclusions": 958,
+      "other_proxy_families_identical": true
+    },
+    "refinement": {
+      "macro_cycles": 5,
+      "independent_initial_and_final_link_verdict": [
+        "MATCH",
+        "MATCH"
+      ],
+      "execution_sha256": "caa7329d2d5ab322c2ae67d700199e27dcab7795e1dacaf07271148e11ef8388",
+      "checks": {
+        "original": "40050be2ba0b3cf389314b3d4454098115645066a7966e1f7d23838f3e1dd40b",
+        "written": "3d2777698fffadb71eb95eedaaea4c101315ae5dc5b7cacb8594f80176b46535",
+        "intensities_and_sigmas": 2273,
+        "flags": 3236,
+        "free_measured": 127,
+        "work_measured": 2146
+      },
+      "result_geometry": [
+        {
+          "stage": "original_start",
+          "model_sha256": "7445f568370f1e86192fde255a78eae007f8be882c4a9e30e32c983528f9fec5",
+          "geo_sha256": "21574d44b3e38ae62c847761240658b64e2ff67ed7a8cce8b87eef24499c4997",
+          "ring_angle_deg": 6.89848,
+          "signed_junction_deg": -173.72086,
+          "N6_distances_A": {
+            "C5T": 1.37483,
+            "N4T": 1.76612,
+            "N2T": 3.57792
+          }
+        },
+        {
+          "stage": "original_final",
+          "model_sha256": "46aea8fb14a2fce0c059790bdea41090586deaae3a0e60f7439989e461fd7377",
+          "geo_sha256": "84a97cdde323ca7e8eda3f1c871952c810c924037db35d912c56c14764de0739",
+          "ring_angle_deg": 9.39453,
+          "signed_junction_deg": 172.27498,
+          "N6_distances_A": {
+            "C5T": 1.43606,
+            "N4T": 1.70223,
+            "N2T": 3.63731
+          }
+        },
+        {
+          "stage": "treated_final",
+          "model_sha256": "69ebe693ca6c9354445a6493c83330b157f67cfda4ccd5d58dfcd137cf4112da",
+          "geo_sha256": "0b9f63144dc10d270161d22dd9be80dc866c088bba45998f8d621345f2e5262d",
+          "ring_angle_deg": 10.63521,
+          "signed_junction_deg": 178.70148,
+          "N6_distances_A": {
+            "C5T": 2.91269,
+            "N4T": 3.10384,
+            "N2T": 5.14681
+          }
+        }
+      ],
+      "final_statistics": {
+        "initial_r_work": 0.3014,
+        "initial_r_free": 0.2806,
+        "r_work": 0.2251,
+        "r_free": 0.2246,
+        "bond_rmsd": 0.005,
+        "angle_rmsd": 1.252
+      },
+      "identical_atom_keys": 856,
+      "phosphate_atom_count": 118
+    },
+    "method": "Rebuild the controls from the bound ReadySet entrance model. For each proposed pair verify one distinct named heavy atom per Phenix selector, add one exclusion, then compare all native proxy objects and crystal-image bonds. Once the declared topology matches, qualify zero and five cycles against the same HKL assignments.",
+    "scope": "No automatic exclusion or pairing inference. A pair exclusion in this Phenix build can affect its other lattice images. An empty second selection broadens the scope to every partner of the first. Atom identity and noncovalent intent require independent evidence."
   }
 }

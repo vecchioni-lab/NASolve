@@ -68,7 +68,7 @@ def assess_run(
     including observations and phase data, before the assessor sees any inputs.
     An uninitialized run uses the existing validated, in-memory PostMR root.
     On request, include the final selected-site plane measurements recorded for
-    this checkpoint, or the cross-residue bonds in its own frozen final GEO.
+    this checkpoint, or its inter-residue bonds at native preflight and after refinement.
     """
     if type(refined_planes) is not bool:
         raise ValueError("The refined plane option must be boolean")
@@ -151,7 +151,17 @@ def assess_run(
         *zip(restraints, restraint_refs),
     ]
     if refined_links:
+        from .refinement_link_geometry import preflight_link_inputs, read_checkpoint_link_geometry
+        receipt["preflight_links"] = None
         receipt["refined_links"] = None
+        initial_files = preflight_link_inputs(run, selected)
+        if initial_files is not None:
+            (entrance, entrance_ref), (early_geo, early_ref) = initial_files
+            initial = read_checkpoint_link_geometry(run, registry, verified, selected, entrance, early_geo)
+            if initial["model_sha256"] != entrance_ref["sha256"] or initial["geometry_sha256"] != early_ref["sha256"]:
+                raise CheckpointError("Preflight bonds differ from the frozen entrance model or geometry")
+            receipt["preflight_links"] = initial
+            tracked.extend(initial_files)
         final_ref = outputs.get("final_geometry")
         if final_ref is not None:
             if not isinstance(final_ref, Mapping) or not isinstance(final_ref.get("sha256"), str):
@@ -159,7 +169,6 @@ def assess_run(
             if selected.get("kind") != "refinement":
                 raise CheckpointError("Final geometry must belong to a refinement checkpoint")
             geo = _ref_path(final_ref, "final geometry", run)
-            from .refinement_link_geometry import read_checkpoint_link_geometry
             links = read_checkpoint_link_geometry(run, registry, verified, selected, model, geo)
             if links["model_sha256"] != model_ref["sha256"] or links["geometry_sha256"] != final_ref["sha256"].casefold():
                 raise CheckpointError("Refined link evidence differs from the frozen checkpoint files")
@@ -167,9 +176,10 @@ def assess_run(
             tracked.append((geo, {"sha256": links["geometry_sha256"]}))
         receipt["dictionary_status"] = receipt["status"]
         link_status = (receipt["refined_links"] or {}).get("status")
-        if receipt["status"] != "INVALID" and link_status == "REVIEW":
+        initial_status = (receipt["preflight_links"] or {}).get("status")
+        if receipt["status"] != "INVALID" and "REVIEW" in (link_status, initial_status):
             receipt["status"] = "REVIEW"
-        elif receipt["status"] == "PASS" and link_status != "MATCH":
+        elif receipt["status"] == "PASS" and (link_status != "MATCH" or initial_status not in (None, "MATCH")):
             receipt["status"] = "UNASSESSED"
     if registry_ref is not None:
         tracked.append((existing_registry, registry_ref))

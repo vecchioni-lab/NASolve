@@ -160,3 +160,42 @@ def test_verified_parent_pins_bind_the_frame_used_for_comparison(tmp_path, monke
     files[1]["sha256"] = "0"*64
     with pytest.raises(ValueError, match="differ from the checked preparation"):
         read_checkpoint_link_geometry(tmp_path, {}, {}, {}, model, geo)
+
+
+def test_preflight_uses_the_entrance_model_and_its_sealed_geometry_after_move(tmp_path, monkeypatch):
+    from hashlib import sha256
+    from pathlib import Path
+    import subprocess
+    from nasolve.checkpoints import CheckpointError
+    from nasolve.cif_doctor_run import assess_run
+    from .test_refinement_parallelity import completed
+
+    root = tmp_path / "original"
+    root.mkdir()
+    original_run = subprocess.run
+    def write_distinct_model(command, *args, **kwargs):
+        result = original_run(command, *args, **kwargs)
+        if Path(command[0]).name == "phenix.refine" and "--dry_run" not in command:
+            output = Path(kwargs["cwd"]) / "refined_001.pdb"
+            with output.open("a") as handle:
+                handle.write("REMARK distinct final model\n")
+        return result
+    monkeypatch.setattr(subprocess, "run", write_distinct_model)
+    run, _, registry, child, _, _ = completed(root, monkeypatch)
+    parent = next(row for row in registry["checkpoints"] if row["id"] == child["parent"])
+    moved = tmp_path / "moved"
+    root.rename(moved)
+    run = moved / run.relative_to(root)
+    assert not root.exists()
+    result = assess_run(run, checkpoint=child["id"], refined_links=True)
+    initial = result["preflight_links"]
+    assert initial["status"] == "NOT_RECORDED"
+    assert initial["model_sha256"] == parent["model"]["sha256"]
+    assert initial["model_sha256"] != child["model"]["sha256"]
+    assert initial["geometry_sha256"] == sha256(b"preflight geometry preserved").hexdigest()
+    assert initial["preparation_checkpoint"] is None
+    assert assess_run(run, checkpoint=child["parent"], refined_links=True)["preflight_links"] is None
+    sealed = run / "AutoRefine/round_001/parallelity_runtime/preflight/native_001.geo"
+    sealed.write_text("changed after admission")
+    with pytest.raises((CheckpointError, ValueError), match="checksum|changed|size"):
+        assess_run(run, checkpoint=child["id"], refined_links=True)

@@ -322,8 +322,12 @@ The original native topology check identified it. C502 now reads the bonds in
 the selected refinement checkpoint. In the archived DY final geometry it reports
 the extra A:12 DA N6–B:4 DY C5T bond at 1.436 Å with a 1.430(10) Å target.
 In the registered ATL mixed child all 38 backbone links and 53 supplied
-distances match the checked preparation. Preflight detection, scoped recovery
-and the triazole edge facing adenine remain open. The [DY queue
+distances match the checked preparation. C503 reads both tables from the same
+round and binds the initial table to its entrance model. The archived DY control
+required two exact atom-pair exclusions. Five cycles retained the 38 backbone
+links and put adenine N6 at 2.913 Å from C5T and 3.104 Å from N4T.
+The open questions are ordinary reporting during refinement, explicit authority
+to exclude additional links, and the triazole edge facing adenine. The [DY queue
 entry](cif-doctor-completion-queue.md#dy--packaged-retained-triazole-reference-and-mutation-support)
 records the separate chemistry milestone.
 
@@ -336,6 +340,22 @@ The first three modules passed 41 tests and 7 subtests on the relocated install.
 All 321 packaged source and data files matched. The DY and ATL checks read
 existing Phenix 2.2.1-6174 results. The commit carries code, synthetic tests
 and documentation. Full regression remains deferred for the branch.
+
+C503 adds `preflight_links` to the requested Doctor assessment. Historical
+rounds without a recorded isolated preflight return null for this field.
+The registered ATL child had 38 backbone and 53 intentional distances at
+both stages. Its dictionary stayed at REVIEW. One separate DY experiment
+completed native preflight and five cycles with Phenix 2.2.1-6174. All 2,273
+intensities with uncertainties and 3,236 Free-R assignments matched by HKL.
+The following phosphate-audit issue emerged during readback. D:1 has a printed
+O5′–P–OP3 angle immediately before the first dihedral. The terminal reader
+reported only ten of eleven terms. Check the read boundary against this actual
+GEO before attributing the warning to the model. The compact evidence is under
+`dy_two_atom_pair_exclusions_2026_11_21` in the native register.
+With the existing Gemmi 0.7.5 topology extra on the Python path,
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:$GEMMI_PATH python -B -m pytest -q -p no:cacheprovider tests/test_refinement_link_geometry.py tests/test_cif_doctor_run.py tests/test_cif_doctor_cli.py tests/test_refinement_parallelity.py tests/test_refinement_declared_sites.py`
+passed 138 tests and 7 subtests. The first three modules passed 42 tests and
+7 subtests from the relocated wheel. All 321 packaged files matched source.
 
 **Q07, 20 November.** Ordinary Coot and ReadySet now prepare 1AP:T and S6G:C
 on the same substituted host. The plane screen follows the verified source chemistry.

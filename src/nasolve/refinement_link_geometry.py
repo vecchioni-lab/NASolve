@@ -209,6 +209,39 @@ def read_refined_links(model, geometry, *, preparation_model=None, backbone_link
                 scientific_approval="NOT_ASSESSED", automatic_adoption=False)
 
 
+def preflight_link_inputs(run, checkpoint):
+    """Find the original model and its zero-cycle GEO in an already validated round."""
+    from .campaign_records import read_record
+    from .refinement_inputs import _bound_path
+    from .refinement_parallelity import _root, read_execution_request
+
+    execution = checkpoint.get("outputs", {}).get("parallelity_execution")
+    if execution is None:
+        return None
+    identity = checkpoint["id"]
+    root = _root(identity)
+    _require(execution.get("anchor") == "run" and execution.get("relative_path") == root + "/execution.json",
+             "execution belongs to a different round")
+    record = read_record(_bound_path(execution, "refinement execution", run))
+    _require(record["checkpoint"] == identity, "execution checkpoint differs")
+    request = read_execution_request(run, record["request"], checkpoint=identity)
+    _require(request["parent"] == checkpoint["parent"], "preflight parent differs")
+    phase = record["phases"][0]
+    _require(phase["name"] == "preflight", "first native phase is not preflight")
+    if request.get("preflight_mode") != "native-model-zero-cycle-isolated-v1" or phase["returncode"] != 0:
+        return None
+    name = root + "/preflight/native_001.geo"
+    refs = [ref for ref in phase["files"] if ref["relative_path"] == name]
+    if not refs:
+        return None
+    _require(len(refs) == 1 and refs[0]["anchor"] == "run" and len(request["inputs"]) >= 2,
+             "ambiguous zero-cycle geometry or entrance model")
+    model = request["inputs"][1]
+    geo = refs[0]
+    return ((_bound_path(model, "preflight entrance model", run), model),
+            (_bound_path(geo, "preflight geometry", run), geo))
+
+
 def read_checkpoint_link_geometry(run, registry, verified, checkpoint, model, geometry):
     """Use the closest checked preparation already verified by the registry reader."""
     from .refinement_chemistry import _preparation_context

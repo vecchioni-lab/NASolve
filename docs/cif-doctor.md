@@ -14194,6 +14194,18 @@ and the transferable plane weight remain open. The evidence record
 `dy_ring_junction_planarity_2026_11_20` includes all comparison arms and the
 replay recipe. These were tests with substituted host reflections.
 
+C503 followed the individual atom pairs in the as-built orientation. Phenix
+had already made the N6–C5T bond at zero cycles. Excluding just those atoms
+made Phenix attach N6 to N4T at a target of 1.350 Å. With both exact pairs
+excluded, the native manager retained all 958 ordinary covalent bonds and
+their targets, including all 38 phosphodiester links. The remaining restraint
+families were identical at the starting coordinates. After five cycles the two
+interbase distances were 2.913 and 3.104 Å. The rings finished 10.64° apart
+with the signed torsion at +178.70°, reproducing the older site-wide control.
+Each atom selection resolved independently to exactly one heavy atom. This
+recovery is qualified for this noncovalent test pair. The selected lattice
+images and the chemical intent still need to be established in a new case.
+
 ### Verify actual canonical identity after Coot mutation (C347)
 
 The ordinary executor now asks Coot for the actual residue name after each

@@ -1548,9 +1548,12 @@ Measure the ring angle and the signed torsion independently so a half-turn
 cannot silently exchange the presented nitrogen edge. C502 adds the final
 checkpoint bond comparison. It finds the recorded adenine–DY link and accounts
 for the 38 backbone and 53 supplied distances in the registered mixed scaffold.
-Next carry the source-bound comparison to the preflight. When a bond lacks chemical
-authority, qualify a pair-specific recovery that preserves phosphodiesters,
-intentional crosslinks, metals and declared base-pair restraints. The
+C503 reads both ends of the same round. In the DY control, excluding the
+observed N6–C5T pair revealed a second automatic bond to N4T. Excluding
+both exact pairs restored all 38 declared links through five cycles.
+Next surface the preflight finding in ordinary checked refinement. General
+recovery needs explicit noncovalent intent and independently resolved atom
+selections, including their effect on symmetry mates. The
 [matched experiments](cif-doctor.md#dy-ring-orientation-and-unrequested-interbase-bond-c456)
 include negative chemical controls and a ReadySet readback.
 

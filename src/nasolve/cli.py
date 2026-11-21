@@ -325,7 +325,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     cif_assess.add_argument(
         "--refined-links", action="store_true",
-        help="read the bonds Phenix printed between residues and compare them with the checked preparation (requires --run)",
+        help="compare inter-residue bonds at Phenix preflight and after refinement with the checked preparation (requires --run)",
     )
     cif_assess.add_argument("--model", type=Path, help="optional PDB atom inventory (standalone only)")
     cif_assess.add_argument("--stage", choices=("source", "effective", "standalone"), default="standalone")
@@ -1938,13 +1938,16 @@ def _cif_doctor(args: argparse.Namespace) -> int:
             print(text, end="")
         else:
             print(f"CIF Doctor: {payload.get('status', 'PREPARED')}")
-            if "refined_links" in payload:
-                links = payload["refined_links"]
+            for field, stage in (("preflight_links", "Preflight"), ("refined_links", "Refined")):
+                if field not in payload:
+                    continue
+                links = payload[field]
                 checkpoint = payload["run_context"]["checkpoint"]["id"]
                 if links is None:
-                    print(f"{checkpoint} has no frozen final geometry.")
+                    name = "isolated preflight" if field == "preflight_links" else "final"
+                    print(f"{checkpoint} has no frozen {name} geometry.")
                 else:
-                    print(f"Refined bonds at {checkpoint} were reported as {links['status']}.")
+                    print(f"{stage} bonds at {checkpoint} were reported as {links['status']}.")
                     if links["status"] == "OBSERVED":
                         print("  Comparison requires a checked preparation. The JSON lists the observed bonds.")
                     if links["matched_backbone"] is not None:

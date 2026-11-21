@@ -8,10 +8,12 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
-### Checking bonds between residues after refinement
+### Checking bonds between residues before and after refinement
 
 - `nasolve cif-doctor assess --run RUN --checkpoint ID --refined-links`
   reads the final bond table that Phenix wrote for the selected checkpoint.
+  For rounds with an isolated native preflight it also reads the initial
+  table against the exact model that entered refinement.
   It identifies distances outside the checked preparation, missing backbone or
   supplied distances, and contacts with a symmetry image that need review.
   Older checkpoints with a frozen final table can list the observed bonds.
