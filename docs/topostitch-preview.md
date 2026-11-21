@@ -2691,3 +2691,112 @@ before generation. Record maximum atom motion and RMS separately. Centerline
 measurement/qualification and fixed-boundary/window expansion controls come
 before a claim of radial displacement; P–P span is not an axis radius. These
 future tests do not authorize an undeclared continuation of W207.
+
+
+## Maintained source-bound parent builder (W208)
+
+`SourceBoundParentBuilder` lives beside W200 in `topostitch_native_preparation`.
+The five methods remain useful: W200 checks actual native identity/order and
+fixed-coordinate roles around interpretation, parent verification, transfer and
+candidate verification. The concrete builder now owns the previously local
+composition of Cedar's native service and explicit trusted observation readers.
+It does not install hooks, launch a child, retain files or change forces.
+
+```python
+# Outer worker: bind exact source/candidate/motion and qualify every callable.
+# Cedar service must be created BEFORE installing model/selected-site hooks.
+service = cedar_parent.load_native_parent_service()
+builder = SourceBoundParentBuilder(
+    model=pending_model, bound_inputs=bound,
+    expected_report_sha256=source_report_pin, candidate_bytes=candidate_bytes,
+    service=service, process_options=actual_pending_process_options,
+    atom_reader=cedar_collector.collect_live_atoms,
+    geometry_reader=read_and_review_live_geometry,
+    protected_reader=read_protected_native_state,
+    diffraction_reader=read_original_candidate_fmodel,
+    coordinate_writer=set_native_sites,
+)
+context = NativeEndpointPreparation(
+    parent_bytes, candidate_bytes, full_precision_points,
+    initial_mapping=admitted_candidate_mapping,
+    max_displacement_angstrom=declared_limit,
+    native_owner=cedar_atom_owner, builder=builder,
+)
+with context:
+    context.prepare()
+mapping = context.result()       # W200 correspondence/closure proof
+interpreted = builder.result()   # completed same native interpretation
+proof = builder.evidence()       # detached observations, not runtime authority
+native_return = interpreted.native_result
+```
+
+The outer worker discards the model/process on **any** exception, including W200
+checks outside builder methods. A successful builder alone is not completed W200
+admission. Do not catch an error, edit an observer and reuse that native manager.
+The first builder-method error is re-raised unchanged; subsequent calls/result
+access refuse. Returned proof snapshots are detached from mutable native state.
+No existing caller, schema, default, CLI or execution policy changes; the API is
+an explicit opt-in and requires no migration.
+
+| Trusted input | Required meaning |
+| --- | --- |
+| `bound_inputs` | W206 source bytes, original native observation, compiled PHILs and controls; original observation cannot be None |
+| `geometry_reader(model, processed, payload)` | Existing Cedar live collector and topology review; `native_view.geometry.proxy_details`, `custom_proxy_requests` and complete `topology` are retained; require MATCH |
+| `protected_reader(model)` | Exactly `model_noncoordinate` and `fixed_geometry_inputs`; first contains stable-identity `atoms`, `scattering`, `crystal`, including ADPs/occupancy/charges/special positions; second is None before geometry and complete fixed native geometry inputs afterward |
+| `diffraction_reader()` | Original candidate observations/Free, Fcalc/Fmodel, masks, scales and crystal/scattering snapshot; never silently a parent F-model |
+| `coordinate_writer(model, points)` | Set only W200-mapped sites; return None or raise |
+
+These are trusted installed/worker-code dependencies, never executable callbacks
+loaded from a scientific artifact. The builder introduces no replacement native
+chemistry or diffraction parser. Cedar C512 owns actual source definitions and
+compiled restraint interpretation; W200 owns coordinate correspondence; existing
+outer owners retain source qualification, binding cleanup and input/process life.
+A generic boolean validator is not a substitute for the required evidence roles.
+
+**Validation:** 26 new regression cases fail before the API exists and pass after
+implementation. They cover missing/wrong source bindings, source mismatch, native
+error propagation, altered diffraction/ADPs/fixed inputs/geometry/topology, reader
+side effects, wrong manager/stage order and attempted reuse.217 source and 217
+freshly relocated installed checks pass, using the same five focused files and
+command listed under W206. Temporary build source and original install path are
+removed before installed tests; Python 3.10 syntax also parses. The installed
+qualification recipe is `NASolve:branch-artifacts/willow/runners/w208-install.py`.
+No full-suite repeat or new general supported native scope is claimed.
+
+Actual **Phenix 2.2.1-6174** qualification uses installed W208 and C512 on the
+already-qualified W207 candidate, not another deformation. One completed dry-run
+and one deliberately refused post-parent/pre-transfer child pass **54 cold
+checks**. The successful final model, complete recorded geometry, prepared state,
+selector and every diffraction snapshot exactly reproduce W207. The C512 source
+chemistry receipt matches C510's prior result exactly. The failure preserves the
+original RuntimeError after one interpretation, makes zero coordinate transfers,
+exposes no builder result/child proof and leaves candidate diffraction unchanged.
+Five outer hooks, native service and thread profiler restore; both processes stop.
+No refinement runs. The formal-charge readback limitation remains.
+
+The first attempt stopped earlier on an over-exact cell snapshot comparison.
+It is preserved, including its zero-transfer failure and unchanged candidate
+F-model. Comparison to original W207 captures isolates metric reconstruction:
+stable-identity non-XYZ scattering, group and special positions match; raw cell
+values differ by at most 2.8422e-14. The fresh attempt canonicalizes **only cell
+values** at 10 decimal places in the trusted worker reader, retains all raw cell
+observations and requires a difference below 1e-10. Library comparisons stay
+strict; the candidate diffraction snapshot remains bitwise exact. This is a
+representation correction, not a change to geometry/diffraction policy.
+
+Exact local native commands, from NASolve:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w208-native-builder.py plan attempt02
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w208-native-builder.py run attempt02
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w208-review.py
+```
+
+Frozen `attempt02/entry.py` gives the concrete successful reader composition;
+`post_parent_failure/request.json` binds the sole deliberate failure. Reports,
+first-refusal evidence and installed receipts are under
+`NASolve:branch-artifacts/willow/w208-maintained-parent-builder/`; roadmap pins
+bind them. These local runs are not advertised as portable committed artifacts.
+Generated scientific models/data/runners remain excluded from Git. Only library,
+focused tests and human/machine documentation are committed. Shared versioned
+parent-input/early-entry/dispatch integration is next and remains Cedar-owned.

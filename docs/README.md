@@ -21,8 +21,10 @@ transfer in the same interpretation (72 checks). W206 binds original native
 bytes in the existing input bundle (191 source/191 installed checks); ordinary
 immutable inputs and future compressed/budgeted sessions keep distinct owners.
 W207 tests 4.96 Å maximum-atom motion with fixed flanks: strong recovery but
-A11/A14 defects remain. W208 moves the proven builder into maintained Willow
-code; Cedar owns early entry and dispatch.
+A11/A14 defects remain. W208 now supplies the [maintained source-bound builder](topostitch-preview.md#maintained-source-bound-parent-builder-w208):
+217 source/217 relocated installed tests and 54 actual-native cold checks.
+It reproduces W207 exactly and safely refuses a post-parent transfer. Cedar owns
+the remaining shared early-entry/dispatch step (W209).
 
 W200 adds the [maintained one-shot preparation context](topostitch-preview.md#prepare-parent-geometry-once-w200):
 160 source/160 installed tests and an actual success/failure pair preserve the

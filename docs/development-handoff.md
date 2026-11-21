@@ -1,8 +1,9 @@
 # NASolve development handoff — Willow
 
-**Current audit/Willow implementation: W207, 2026-11-21.** The installed one-shot preparation context now
+**Current audit/Willow implementation: W208, 2026-11-21.** The installed one-shot preparation context now
 carries admitted candidate → original parent geometry → candidate coordinates
-through the installed Cedar C510 service in a source-qualified diagnostic builder. No ordinary execution-policy or
+through the installed Cedar C512 service and maintained Willow builder, with
+explicit source-qualified worker observation readers. No ordinary execution-policy or
 CLI activation follows. S04/S05/S06 remain PARTIAL.
 
 **Latest science:** W207 displaces an interior atom by **4.96 Å** while keeping
@@ -23,6 +24,7 @@ The longer pre-consolidation handoff is preserved at Git `86e7489c2314f738bd7fe1
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
+| W208 maintained parent builder |217 source/217 relocated installed;54 actual-native cold checks, exact W207 prepared state and disposable post-parent failure | Cedar-owned early entry/dispatch and declared ordinary roles |
 | W207 larger fixed-flank recovery |4.96 Å maximum displacement, one five-cycle fit,39/41 cold checks; retained source chemistry, content and fixed context | A11/A14 local geometry; experimental/general recovery |
 | W206 original native bytes | Opt-in detached original source observation; 191 source/191 installed and 16 real-source checks × three environments | Explicit native use and ordinary receiving route; no lifetime grant |
 | W205 source chemistry + transfer | 42 source site definitions/eight families/3451 retained terms; 72 cold checks; exact post-transfer state/diffraction | Full formal-charge readback and maintained ordinary execution/lifetime route |
@@ -48,13 +50,16 @@ No returned boolean/None or coordinate mapping alone is chemical authority.
 
 ## Next bounded work
 
-**W208:** Rowan assigns Willow the smallest maintained parent builder around
-C512/W200, with explicit input/output and one success/failure example. Audit
-whether the existing five-method builder protocol is still the right boundary;
-reuse Cedar chemistry/geometry readers and the existing outer process lifetime.
-Cedar owns shared early-entry/dispatch edits. No new perturbation is needed.
-W207 used its predeclared C510 version without a selected-residue observer;
-C512 qualifies coexistence with that observer for the integration successor.
+**W209:** Cedar owns the shared early-entry/dispatch slice. W208 now provides
+`SourceBoundParentBuilder` around C512/W200, with explicit readers and one actual
+success/failure qualification. The ordinary receiver needs the W206 bound source,
+admitted current-parent/candidate motion, pending native model/process options,
+Cedar service created before hooks, and qualified atom/geometry/protected-state/
+diffraction readers plus a coordinate writer. It must require both W200 completion
+and builder evidence. Source qualification, native binding cleanup, input/process
+lifetime and failed-manager disposal remain with existing outer owners.
+[Minimal interface and example](topostitch-preview.md#maintained-source-bound-parent-builder-w208).
+No new optimizer, generic quota system or second native interpretation is needed.
 
 Keep W207's A11/A14 local defects as an explicit later recovery question; do not
 silently extend this immutable five-cycle run. Investigator-requested stress
@@ -75,8 +80,9 @@ is named `topostitch-bound-parent-preparation-v1`; its proposed v10 execution
 policy and `parent_preparation` field are not implemented or accepted.
 
 Bind existing W173/W174 joins, W200 and current Cedar chemistry/reader intent;
-keep the candidate as the ordinary diffraction-model argument. A maintained
-source-qualified live builder is still needed before dispatch. Counted
+keep the candidate as the ordinary diffraction-model argument. The maintained
+builder now exists; its native readers and early ordinary placement still need
+the agreed shared source qualification before dispatch. Counted
 `original_model` is original pair provenance, not an automatic immediate-parent
 geometry reference. Distinguish original observations from a separately computed
 parent F-model, and require separate evidence if the latter is requested. Preserve
@@ -125,6 +131,11 @@ for repeated Rfree-guided tuning. No noisy phosphate detector is qualified.
 
 ## Validation and scientific interpretation
 
+- W208: 217 focused source/217 relocated installed;54 native cold checks on
+  one completed Phenix 2.2.1-6174 dry-run and one intentional post-parent refusal.
+  Initial last-bit cell-representation refusal is preserved; raw values prove
+  at most 2.85e-14 difference, bounded below 1e-10 in the worker reader. All native
+  processes stopped; no refinement or full-suite repeat.
 - W207: Phenix 2.2.1-6174 actual one preflight/one five-cycle fit;39/41 cold
   checks. Local helical/covalent readback and ChimeraX 1.12 headless three-model/
   five-control check pass; figure visually inspected. No full suite or new runtime code.

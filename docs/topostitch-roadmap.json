@@ -4,7 +4,7 @@
   "updated": "2026-11-21",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "8cbab5c6a6ddd7a775ecb3c93b147ff766f84822",
+  "audited_code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -267,14 +267,15 @@
         "W204 composes installed Cedar C509 with W203 binding and W200 transfer. One actual Phenix 2.2.1-6174 dry-run and deliberate pre-transfer failure pass 99 cold checks. All three atom maps, final model/geometry/fixed inputs/native selection and full candidate diffraction reproduce W202 exactly; all four controls False, five outer hooks and Cedar service binding restored. Zero refinements. Initial import-only failure preserved.",
         "W205 joins C510 source chemistry to W204 transfer in one actual Phenix 2.2.1-6174 interpretation: 42 original per-site definitions, eight families and 3451 retained terms MATCH before candidate movement; exact prior final geometry/model/scattering/fixed inputs and all candidate diffraction snapshots survive. One completed dry-run and one source-byte rejection before interpretation/transfer pass 72 cold checks. Profile/server/outer hooks restored, children stopped, zero refinements. All 42 sites retain the explicit missing full formal-charge-readback limitation.",
         "W206 adds opt-in original native-observation bytes to the existing immutable input bundle. Unique declared source role/anchor/path, non-aliasing, exact size/hash and repeated reads are checked; default None preserves earlier behavior. 191 source/191 fresh relocated installed tests and 16 actual-source checks each in source/installed Python3.12 and Phenix3.11 pass with identical outputs. C510 consumes detached bytes after temporary input removal and still refuses substitution. No new native call or runtime authority.",
-        "W207 tests one predeclared +25-degree Cartesian-Y interior profile with both flanks fixed: maximum initial atom displacement4.96184 A;205 movable/654 fixed. One Phenix2.2.1-6174 preflight and five-cycle/100-cap XYZ fit pass39/41 cold checks. Interior RMS1.76560->0.12238 A;boundary bond RMS0.55659->0.01657 A. All859 atoms,124 phosphate atoms,126 sugar signs,38links,213explicit terms,source chemistry and original7554/389 observations/Free retained. A11 OP2-P-O5 angle77.42 vs108deg and A14 O5-C5 bond1.303 vs1.418A remain;synthetic RW/RF0.008515/0.009151 does not establish accepted geometry."
+        "W207 tests one predeclared +25-degree Cartesian-Y interior profile with both flanks fixed: maximum initial atom displacement4.96184 A;205 movable/654 fixed. One Phenix2.2.1-6174 preflight and five-cycle/100-cap XYZ fit pass39/41 cold checks. Interior RMS1.76560->0.12238 A;boundary bond RMS0.55659->0.01657 A. All859 atoms,124 phosphate atoms,126 sugar signs,38links,213explicit terms,source chemistry and original7554/389 observations/Free retained. A11 OP2-P-O5 angle77.42 vs108deg and A14 O5-C5 bond1.303 vs1.418A remain;synthetic RW/RF0.008515/0.009151 does not establish accepted geometry.",
+        "W208 maintains SourceBoundParentBuilder beside W200: explicit C512 service and trusted native observers/writer, original source MATCH before transfer, unchanged protected state/topology/proxies/candidate diffraction, first-error invalidation.217 source/217 relocated installed tests and54 actual-native cold checks pass. Actual dry-run exactly reproduces W207; intentional post-parent failure performs zero transfer and exposes no builder result. Earlier last-bit cell-representation refusal is preserved; raw metric changes are bounded below1e-10 with10-decimal canonical cell representation only. No ordinary dispatch or new refinement."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "W208: maintain the smallest Willow parent builder around C512/W200, with explicit inputs, one success and failure example; Cedar owns shared early entry/dispatch. No further amplitude or refinement sweep. Retain W207 A11/A14 defects for a separately predeclared geometry-recovery comparison after integration.",
+      "next_action": "W209: Cedar-led receiving integration of the maintained builder with typed geometry-parent/candidate roles and an early source-qualified native entry, after explicit shared review. Willow supplies bound inputs/motion and native evidence contract. Preserve old policies/defaults and process ownership. No new amplitude or optimization panel until that route is settled; W207 A11/A14 recovery defects remain an explicit later physical question.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -342,14 +343,15 @@
         "E_NATIVE_PARENT_SERVICE_COMPOSITION",
         "E_SOURCE_CHEMISTRY_TRANSFER",
         "E_ORIGINAL_NATIVE_OBSERVATION_BINDING",
-        "E_LARGE_FIXED_FLANK_RECOVERY"
+        "E_LARGE_FIXED_FLANK_RECOVERY",
+        "E_MAINTAINED_PARENT_BUILDER"
       ],
       "last_audit": {
         "date": "2026-11-21",
         "reviewer": "Linden",
-        "human_update": 207,
-        "code_commit": "8cbab5c6a6ddd7a775ecb3c93b147ff766f84822",
-        "scope": "One larger fixed-flank synthetic recovery; local defects retained, no scientific closure"
+        "human_update": 208,
+        "code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4",
+        "scope": "Maintained opt-in builder, installed/native success and refusal; ordinary integration still open"
       }
     },
     {
@@ -413,14 +415,15 @@
         "W204 composes installed Cedar C509 with W203 binding and W200 transfer. One actual Phenix 2.2.1-6174 dry-run and deliberate pre-transfer failure pass 99 cold checks. All three atom maps, final model/geometry/fixed inputs/native selection and full candidate diffraction reproduce W202 exactly; all four controls False, five outer hooks and Cedar service binding restored. Zero refinements. Initial import-only failure preserved.",
         "W205 joins C510 source chemistry to W204 transfer in one actual Phenix 2.2.1-6174 interpretation: 42 original per-site definitions, eight families and 3451 retained terms MATCH before candidate movement; exact prior final geometry/model/scattering/fixed inputs and all candidate diffraction snapshots survive. One completed dry-run and one source-byte rejection before interpretation/transfer pass 72 cold checks. Profile/server/outer hooks restored, children stopped, zero refinements. All 42 sites retain the explicit missing full formal-charge-readback limitation.",
         "W206 adds opt-in original native-observation bytes to the existing immutable input bundle. Unique declared source role/anchor/path, non-aliasing, exact size/hash and repeated reads are checked; default None preserves earlier behavior. 191 source/191 fresh relocated installed tests and 16 actual-source checks each in source/installed Python3.12 and Phenix3.11 pass with identical outputs. C510 consumes detached bytes after temporary input removal and still refuses substitution. No new native call or runtime authority.",
-        "W207 tests one predeclared +25-degree Cartesian-Y interior profile with both flanks fixed: maximum initial atom displacement4.96184 A;205 movable/654 fixed. One Phenix2.2.1-6174 preflight and five-cycle/100-cap XYZ fit pass39/41 cold checks. Interior RMS1.76560->0.12238 A;boundary bond RMS0.55659->0.01657 A. All859 atoms,124 phosphate atoms,126 sugar signs,38links,213explicit terms,source chemistry and original7554/389 observations/Free retained. A11 OP2-P-O5 angle77.42 vs108deg and A14 O5-C5 bond1.303 vs1.418A remain;synthetic RW/RF0.008515/0.009151 does not establish accepted geometry."
+        "W207 tests one predeclared +25-degree Cartesian-Y interior profile with both flanks fixed: maximum initial atom displacement4.96184 A;205 movable/654 fixed. One Phenix2.2.1-6174 preflight and five-cycle/100-cap XYZ fit pass39/41 cold checks. Interior RMS1.76560->0.12238 A;boundary bond RMS0.55659->0.01657 A. All859 atoms,124 phosphate atoms,126 sugar signs,38links,213explicit terms,source chemistry and original7554/389 observations/Free retained. A11 OP2-P-O5 angle77.42 vs108deg and A14 O5-C5 bond1.303 vs1.418A remain;synthetic RW/RF0.008515/0.009151 does not establish accepted geometry.",
+        "W208 maintains SourceBoundParentBuilder beside W200: explicit C512 service and trusted native observers/writer, original source MATCH before transfer, unchanged protected state/topology/proxies/candidate diffraction, first-error invalidation.217 source/217 relocated installed tests and54 actual-native cold checks pass. Actual dry-run exactly reproduces W207; intentional post-parent failure performs zero transfer and exposes no builder result. Earlier last-bit cell-representation refusal is preserved; raw metric changes are bounded below1e-10 with10-decimal canonical cell representation only. No ordinary dispatch or new refinement."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "W208: maintain the smallest Willow parent builder around C512/W200, with explicit inputs, one success and failure example; Cedar owns shared early entry/dispatch. No further amplitude or refinement sweep. Retain W207 A11/A14 defects for a separately predeclared geometry-recovery comparison after integration.",
+      "next_action": "W209: Cedar-led receiving integration of the maintained builder with typed geometry-parent/candidate roles and an early source-qualified native entry, after explicit shared review. Willow supplies bound inputs/motion and native evidence contract. Preserve old policies/defaults and process ownership. No new amplitude or optimization panel until that route is settled; W207 A11/A14 recovery defects remain an explicit later physical question.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -531,14 +534,15 @@
         "E_NATIVE_PARENT_SERVICE_COMPOSITION",
         "E_SOURCE_CHEMISTRY_TRANSFER",
         "E_ORIGINAL_NATIVE_OBSERVATION_BINDING",
-        "E_LARGE_FIXED_FLANK_RECOVERY"
+        "E_LARGE_FIXED_FLANK_RECOVERY",
+        "E_MAINTAINED_PARENT_BUILDER"
       ],
       "last_audit": {
         "date": "2026-11-21",
         "reviewer": "Linden",
-        "human_update": 207,
-        "code_commit": "8cbab5c6a6ddd7a775ecb3c93b147ff766f84822",
-        "scope": "One larger fixed-flank synthetic recovery; local defects retained, no scientific closure"
+        "human_update": 208,
+        "code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4",
+        "scope": "Maintained opt-in builder, installed/native success and refusal; ordinary integration still open"
       }
     },
     {
@@ -747,14 +751,15 @@
         "W150 exact shared-base composition passes192 focused+37 subtests and the same source-free installed profile.348 package files, genuine two-checkpoint reads, saved W143 HTML and19054 native preview segments remain exact. Candidate bundle is ready for receiving-owner review; no active merge or new full-pass claim.",
         "W154 optional map_labels separates density provenance text from coordinate-state names while preserving defaults and science.30focused,2092full+234subtests,159relocatedinstalled+53subtests;93package files unchanged; exact saved-scene/source-installed HTML and17mock controls. Hazel reviews source and published payloads. Two owned scratch roots retired after archived verification:3956files/29020618bytes.",
         "W165 plans an enabled-by-default read-only backbone-fit check after usable refinement: high Rfree plus coherent atom-associated negative phosphate density or significant coherent positive backbone density. Separate detection, permissioned bounded trial and adoption; matched recovery/control and geometry/map/content review remain required. Planning only: no detector, operational thresholds, CLI flag, automatic displacement or checkpoint replacement. Density ambiguity/noise calibration and source/frame binding remain gates; W164 synthetic recovery is not experimental acceptance.",
-        "W170 adds a checked PNG/SVG report and matched map/geometry table, preserving common and own-map sigma scales. The static figure was inspected directly; browser/GPU rendering is unqualified. No runtime viewer or detector change; see E_SAVED_RESIDUAL_MAP_REVIEW."
+        "W170 adds a checked PNG/SVG report and matched map/geometry table, preserving common and own-map sigma scales. The static figure was inspected directly; browser/GPU rendering is unqualified. No runtime viewer or detector change; see E_SAVED_RESIDUAL_MAP_REVIEW.",
+        "W208 maintains SourceBoundParentBuilder beside W200: explicit C512 service and trusted native observers/writer, original source MATCH before transfer, unchanged protected state/topology/proxies/candidate diffraction, first-error invalidation.217 source/217 relocated installed tests and54 actual-native cold checks pass. Actual dry-run exactly reproduces W207; intentional post-parent failure performs zero transfer and exposes no builder result. Earlier last-bit cell-representation refusal is preserved; raw metric changes are bounded below1e-10 with10-decimal canonical cell representation only. No ordinary dispatch or new refinement."
       ],
       "acceptance": [
         "Create immutable children with exact model/CIF/PHIL inputs, preserve current selection, and reuse existing Coot/model-tree paths; viewing never selects or approves.",
         "Show actual before/after coordinates, moved/fixed sites, mates, geometry and matched refinement deltas. Test stale evidence, interruption, relocation and explicit keep/reject/use decisions.",
         "For final B09 review, show source, proposed and refined geotest coordinates with the intended periodic mates and per-member pass/review/failure evidence."
       ],
-      "next_action": "After shared receiving-owner qualification, compose W146 selection and W147 coefficient/header evidence with the W149 renderer through existing map/frame owners. Show missing/stale/unassessed evidence explicitly. Do not build another reader/history or treat display settings as scientific authority. Stage/campaign/Pine actions and ordinary repair publication remain separate; preserve Hazel residue/metal views. W165 default-check planning stays in its pipeline position: qualify source-bound noisy density detection before operational triggers; expose read-only findings before permissioned trials and separate adoption.",
+      "next_action": "W209: Cedar-led receiving integration of the maintained builder with typed geometry-parent/candidate roles and an early source-qualified native entry, after explicit shared review. Willow supplies bound inputs/motion and native evidence contract. Preserve old policies/defaults and process ownership. No new amplitude or optimization panel until that route is settled; W207 A11/A14 recovery defects remain an explicit later physical question.",
       "evidence": [
         "E_SOFTWARE",
         "E_VIEW",
@@ -769,14 +774,15 @@
         "E_SHARED_INSPECTION_COMPOSITION",
         "E_INDEPENDENT_MAP_LABELS",
         "E_DEFAULT_BACKBONE_CHECK_PLAN",
-        "E_SAVED_RESIDUAL_MAP_REVIEW"
+        "E_SAVED_RESIDUAL_MAP_REVIEW",
+        "E_MAINTAINED_PARENT_BUILDER"
       ],
       "last_audit": {
-        "date": "2026-11-20",
-        "code_commit": "42bf701be453b20673fa88bdda64c20db5c6411e",
-        "human_update": 170,
-        "reviewer": "Linden; scope shared with Rowan and Hazel",
-        "scope": "Read-only saved-map calculation and inspected static figure, not repair/detector qualification"
+        "date": "2026-11-21",
+        "reviewer": "Linden",
+        "human_update": 208,
+        "code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4",
+        "scope": "Maintained opt-in builder, installed/native success and refusal; ordinary integration still open"
       }
     },
     {
@@ -5145,6 +5151,41 @@
           "size": 692
         }
       ]
+    },
+    "E_MAINTAINED_PARENT_BUILDER": {
+      "kind": "maintained_source_bound_parent_builder",
+      "date": "2026-11-21",
+      "human_update": 208,
+      "code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4",
+      "reference": "docs/topostitch-preview.md#maintained-source-bound-parent-builder-w208",
+      "result": "W208 maintains SourceBoundParentBuilder beside W200: explicit C512 service and trusted native observers/writer, original source MATCH before transfer, unchanged protected state/topology/proxies/candidate diffraction, first-error invalidation.217 source/217 relocated installed tests and54 actual-native cold checks pass. Actual dry-run exactly reproduces W207; intentional post-parent failure performs zero transfer and exposes no builder result. Earlier last-bit cell-representation refusal is preserved; raw metric changes are bounded below1e-10 with10-decimal canonical cell representation only. No ordinary dispatch or new refinement.",
+      "limitation": "Trusted worker observation readers remain explicitly source-qualified dependencies. Builder evidence and W200 completion are both required; neither grants chemical/scientific/ordinary runtime authority. Shared early entry/dispatch remains Cedar-owned and unimplemented here.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w208-maintained-parent-builder/install/installed-check.json",
+          "sha256": "c8bc6363ac482047c4cc54647d115249a59a5ed5ee804ae1ca971e107b23abea",
+          "size": 899
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w208-maintained-parent-builder/attempt02/plan.json",
+          "sha256": "9963706f125a7ecf559bdd4b00bf5fd7920fbde0a75e8aba9b0ca3f744e42089",
+          "size": 24635
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w208-maintained-parent-builder/first-refusal-review.json",
+          "sha256": "d3739999bf8f21bc2d091d1c6519913d517119ed9dcbc8f8c4dde407a088b260",
+          "size": 1509
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w208-maintained-parent-builder/review.json",
+          "sha256": "6aea9dc35da4a71e6521c8a76d3ebe250eed979c31aa64083aee982b6c322232",
+          "size": 6641
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -5310,8 +5351,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 207,
-    "next": 208,
+    "current": 208,
+    "next": 209,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -6363,6 +6404,12 @@
         "title": "Recover a larger interior displacement with both flanks fixed",
         "state": "RECORDED",
         "code_commit": "8cbab5c6a6ddd7a775ecb3c93b147ff766f84822"
+      },
+      {
+        "number": 208,
+        "title": "Maintain the source-bound parent builder",
+        "state": "RECORDED",
+        "code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4"
       }
     ]
   },

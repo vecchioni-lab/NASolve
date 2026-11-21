@@ -1709,7 +1709,7 @@
       "Real ordinary X11_22 ancestry does not supply the independently checked source pair/stack and chemistry authority of the canonical diagnostic.",
       "A W200 callback contract alone is not a maintained live Phenix builder, native source qualification or whole-session lifetime proof."
     ],
-    "next_gate": "W208: maintain the smallest Willow parent builder around C512/W200, with explicit inputs, one success and failure example; Cedar owns shared early entry/dispatch. No further amplitude or refinement sweep. Retain W207 A11/A14 defects for a separately predeclared geometry-recovery comparison after integration.",
+    "next_gate": "W209: Cedar-led receiving integration of the maintained builder with typed geometry-parent/candidate roles and an early source-qualified native entry, after explicit shared review. Willow supplies bound inputs/motion and native evidence contract. Preserve old policies/defaults and process ownership. No new amplitude or optimization panel until that route is settled; W207 A11/A14 recovery defects remain an explicit later physical question.",
     "live_collector_qualification": {
       "human_update": 202,
       "reference": "docs/topostitch-periodic.md#w202--qualify-typed-controls-and-the-maintained-live-collector",
@@ -1844,6 +1844,30 @@
       "alder_scope": "metal.child_session.run_audited_child and budget settlement consume metal-specific frozen-state review/failure evidence; never substitute Willow receipts or copied grants.",
       "future_archive_scope": "Compressed/budgeted non-metal sessions need a separate typed contract and owner composition; not an implicit prerequisite for ordinary immutable inputs.",
       "shared_owner_agreement": "Rowan and Hazel consulted; no new lifetime engine or generic quota claim."
+    },
+    "maintained_builder": {
+      "human_update": 208,
+      "code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4",
+      "api": "topostitch_native_preparation.SourceBoundParentBuilder",
+      "service": "Cedar C512 native parent interpretation with original source comparison",
+      "inputs": [
+        "bound_inputs with non-None source_native_json",
+        "exact candidate bytes and expected source report digest",
+        "same pending native model and actual process_options",
+        "trusted atom/geometry/protected-state/candidate-diffraction readers and coordinate writer"
+      ],
+      "output": "Completed native interpretation and detached observation evidence only after builder success; use W200 completion independently.",
+      "native_result": "Actual native return belongs to original same manager interpretation; no second interpretation.",
+      "ownership": {
+        "stage_order_and_mapping": "W200",
+        "chemistry_and_native_geometry": "Cedar",
+        "state_comparison": "Willow builder",
+        "source_qualification_and_binding_cleanup": "enclosing worker",
+        "input_and_process_lifetime": "existing outer execution owner",
+        "shared_early_entry_and_dispatch": "Cedar"
+      },
+      "ordinary_runtime_enabled": false,
+      "reference": "docs/topostitch-preview.md#maintained-source-bound-parent-builder-w208"
     }
   },
   "larger_displacement_stress_plan": {
