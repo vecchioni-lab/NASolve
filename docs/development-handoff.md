@@ -1,5 +1,30 @@
 # NASolve development handoff — Willow
 
+**W197: signed interior starts recover with both end frames held fixed.**
+The fresh W196 zero/±2° proposals now complete three matched five-cycle native
+refinements under the existing explicit C21 policy. Only 205 interior atoms
+refine; all 654 context atoms stay fixed in the written models. Signed RMS
+displacement falls from ~0.142 Å to **0.03163 / 0.02929 Å**; the zero control
+drifts 0.01633 Å. Four boundary-bond RMS errors fall from 0.09329 / 0.10372 Å
+to **0.01167 / 0.01071 Å**. All 38 declared links, 213 custom terms, 859 atoms,
+124 P/OP atoms and 7554 original observations (389 Free) survive.
+
+**Remaining chemical cost:** A12 OP2–P–O5′ still differs from its target by
+10.15° / 9.69° versus 9.55° in the refined zero control. Low synthetic Rfree
+(~0.007) is not complete geometry repair. B1 P/OP1/OP2 remains fixed; no incoming
+symmetry bond is asserted. Prescribed Cartesian rotation is not helical twist.
+The signed maxima of measured local twist change are 0.294° / 0.243°; zero 0.130°.
+
+**Next:** qualify the source/motion/policy handoff through the existing execution
+owner, with a frozen fixed-coordinate scope and explicit retained-parent lifecycle.
+Do not repeat W197 or tune another amplitude/weight sweep against its Free set.
+This remains a private canonical diagnostic, not ordinary PostMR ancestry,
+installed native integration, a solved symmetry seam or experimental acceptance.
+S04/S05/S06 stay partial. [Methods](topostitch-periodic.md#w197--recover-a-signed-interior-window-with-fixed-end-frames).
+Local small checkout: `GitHub:ScienceCheckouts/Linden/2026-11-21_fixed-frame-recovery/index.html`.
+Three actual Phenix 2.2.1-6174 dry-runs and three complete refinements;
+**74 dry + 80 final cold checks**. No product-code/schema change or full suite.
+
 **W196: a prospective interior pair window now reaches the existing motion reader.**
 Schema 3 extends the preview/replay owner with explicit registered antiparallel
 pairs, nonuniform per-pair weights and fixed paired flanks on both sides. Route
@@ -16,13 +41,11 @@ successful repair. No native execution or retrospective W163 authority follows.
 Existing local 3D viewer: NASolve anchor
 `branch-artifacts/willow/w196-interior-preview/positive.html` (negative/zero beside it).
 
-**Next:** bind one prospective interior/terminal proposal to a legitimate current
-parent and its owned native preparation, then qualify retained-parent geometry
-through the existing execution lifecycle. Reuse W173/W174/W188/W190; do not add
-another endpoint guard or repeat private W168 to prove the same lifecycle. The
-new direct-input 5W6W packet has no ordinary PostMR ancestry and does not supply
-missing experimental pairing/target authority for X11_22. Keep native retention,
-geometry recovery and matched diffraction acceptance separate.
+W197 now judges these fresh proposals with a matched fixed-frame native panel.
+The direct-input 5W6W packet still has no ordinary PostMR ancestry and does not
+supply missing experimental pairing/target authority for X11_22. Reuse
+W173/W174/W188/W190 for the remaining execution handoff; no duplicate endpoint
+guard or repeat of private W168 is warranted.
 
 Numerical portability limit: all three packets and an installed CLI rebuild
 reproduce after relocation under generating Python 3.12. Python 3.11 creates

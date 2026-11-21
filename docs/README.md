@@ -7,6 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+W197 adds a [matched signed fixed-frame recovery control](topostitch-periodic.md#w197--recover-a-signed-interior-window-with-fixed-end-frames):
+interior displacement and boundary bonds recover while a local phosphate-angle
+cost remains. Ordinary retained-parent integration and general repair stay open.
+
 W196 returns to S04 with [registered interior paired previews](topostitch-preview.md#registered-interior-paired-windows-w196):
 nonuniform declared weights and two fixed flanks through the existing motion
 reader. Native retention and successful repair remain separate gates.
@@ -110,8 +114,8 @@ modified frames, axis radii and matched-state summaries remain open.
   Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W189;
-  the next substantial audit is W190. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W197;
+  the next substantial audit is W198. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

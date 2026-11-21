@@ -11502,3 +11502,101 @@ remain local and uncommitted. Existing viewer HTML is beside each packet; no new
 checkout framework. Next bind a prospective motion to legitimate current-parent
 preparation and qualified native retention, then assess local recovery. This
 slice does not retroactively qualify the private W163 taper or close S04/S05/S06.
+
+## W197 — Recover a signed interior window with fixed end frames
+
+**Question and distinction.** W196 supplies fresh source-bound interior proposals,
+but W168's all-site relaxation cannot prove fixed-frame recovery. Its old SS-enabled
+policy is also C128 REVIEW. This new panel therefore uses W172's independently
+declared 38 backbone links and explicit C21 20-pair/38-stack policy, retaining
+the twenty original pair planes: 213 custom requests including 51 authorized
+soft distances. It is a new fixed-scope experiment, not another proof of W168's
+private lifecycle and not continuation under its older objective.
+
+The existing W172 private worker and C407 installed execution/process owners are
+reused. Scoped observation adds the actual native atom selection and checks six
+full-model coordinate updates per refinement; native source, forces and optimizer
+are unchanged. Preflight/refinement topology outputs are phase-separated. Each
+case is a new immutable execution; no interrupted child was resumed or replaced.
+The controller freezes exact current inputs before all native calls. Generating
+Python 3.12.14 authenticates W196 full-precision motion and strict endpoint bytes;
+native Python 3.11 consumes this frozen binding. Cross-version preview equality
+is not relaxed or claimed.
+
+One predeclared panel: zero, +2°, −2° Cartesian-Y initial rotations, unchanged
+W196 nonuniform pair weights; five macrocycles, 100-iteration cap, nproc=1 and
+seed=1. Individual XYZ selection is exactly A10–A14/B2–B6 (205 atoms). The two
+paired flanks and all remaining atoms (654) are fixed; B/Q and the chemical
+inventory remain fixed. All cases use the original 7554 F/SIGF/Free tuples,
+including 389 Free observations, fixed unit objective weights and no weight sweep.
+These are matching noiseless 5W6W synthetic data, not a new experimental dataset.
+
+**Completed external execution:** three actual Phenix **2.2.1-6174 dry-runs** and
+three complete five-cycle refinements. 74 cold preflight and 80 cold final checks
+pass. Native selected labels, exact source atom bijection, parent-only chemical
+interpretation, unchanged child diffraction during that interpretation, complete
+bonded/plane/exclusion policies, all 213 requests and original data/Free survive.
+126 ordered sugar handedness signs are retained. All 859 atoms and 124 P/OP atoms
+remain. Written fixed coordinates are exact; observed native update differences
+are floating-point roundoff, at most 2.9e−14 Å. B1 P/OP1/OP2 remains fixed, and no
+new incoming symmetry bond or OP3 addition is inferred.
+
+| Quantity | Zero | Positive | Negative |
+| --- | ---: | ---: | ---: |
+| Interior starting RMS to generator, Å | 0 | 0.14195 | 0.14196 |
+| Recovered RMS to generator, Å | 0.01633 | 0.03163 | 0.02929 |
+| Recovered RMS to refined zero, Å | 0 | 0.02235 | 0.01960 |
+| Boundary-bond starting RMS error, Å | 0.00507 | 0.09329 | 0.10372 |
+| Boundary-bond recovered RMS error, Å | 0.00822 | 0.01167 | 0.01071 |
+| Largest boundary-bond recovered error, Å | 0.012 | 0.018 | 0.017 |
+| Largest local recovered angle error, degrees | 9.55 | 10.15 | 9.69 |
+| Final Rfree | 0.00717 | 0.00744 | 0.00726 |
+
+The largest local angle cost is A12 OP2–P–O5′ (8.86° already in the generator).
+Largest touching-interior bond errors are 0.099/0.088/0.089 Å; signed cases
+retain a B2 O5′–C5′ cost. Local geometry is not wholly repaired just because
+boundary bonds and coordinate RMS recover. The zero control exposes inherited
+strain and refinement drift. Actual iterations per macrocycle and elapsed times
+are recorded in the checkout manifest; completing five cycles is not a claim
+of optimizer convergence or chemical acceptance.
+
+Existing W191/W193 readers provide seven paired-P and six simple-step measurements,
+with raw coverage retained. Maximum recovered local twist changes from the
+generator are zero 0.13029°, positive 0.29424°, negative 0.24332°; maximum P
+departures are 0.01334/0.02548/0.02258 Å. These are distinct from the prescribed
+Cartesian rotation, helix curvature and local-axis radii. No alignment is fitted.
+
+**Exact local evidence:** NASolve anchor `branch-artifacts/willow/w197-fixed-frame-native/`:
+`experiment/plan.json`, `preflight-review.json`, `refine-review.json` and
+`local-science.json` are pinned in the machine roadmap. Native code/request/input
+snapshots and each stopped process receipt stay in their new experiment folders.
+Local runner commands, from NASolve, with the host's generating Python and the
+already qualified optional Gemmi directory (the latter is environment provenance):
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w197-fixed-frame-native.py plan
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w197-fixed-frame-native.py preflight
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/private/tmp/w193-qualification-c1tf1610/optional-relocated .venv/bin/python -B branch-artifacts/willow/runners/w197-review.py preflight
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w197-fixed-frame-native.py refine
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/private/tmp/w193-qualification-c1tf1610/optional-relocated .venv/bin/python -B branch-artifacts/willow/runners/w197-review.py refine
+```
+
+These describe completed invocations, not permission to overwrite the experiment.
+An initial cold reader expected a dry-run PDB that Phenix does not write; it was
+corrected to read the frozen candidate plus exact captured native coordinates.
+No native phase was repeated. No full suite or installation repeat: product code,
+dependencies and schemas are unchanged. Roadmap `--write`/`--check` pass, and
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_topostitch_roadmap.py`
+passes **8 tests**. W196's source/installed qualification is not relabelled as new W197 validation.
+
+Small local checkout: GitHub anchor
+`ScienceCheckouts/Linden/2026-11-21_fixed-frame-recovery/index.html` with one PNG/SVG
+figure, provenance and Python opening scripts. Models are linked and hash checked,
+not copied. Figure visually inspected; ChimeraX script prepared with shared defaults,
+not GUI-executed in this update. Generated science remains uncommitted.
+
+**Next decision:** retain the signed and neutral outcome; qualify the existing
+source/motion/policy/execution handoff before another perturbation or weight sweep.
+The private native hook is not an installed ordinary workflow. Experimental
+diffraction, independent targets, larger deformation, full local geometry and
+symmetry covalent seams remain open; S04/S05/S06 stay PARTIAL.

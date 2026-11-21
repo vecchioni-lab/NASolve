@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W197 — Record native recovery with fixed end frames
+
+- Compare fresh zero/signed interior proposals under the same explicit native
+  policy, original synthetic reflections and fixed 654-atom context. Record
+  strong boundary-bond recovery and the remaining local phosphate-angle cost.
+- Three actual Phenix 2.2.1-6174 dry-runs and three five-cycle refinements pass
+  74 dry/80 final cold checks. Preserve all atoms, phosphate intent and Free-R.
+- Documentation and local scientific diagnostics only; no product API/schema,
+  dependency, default or migration change. Ordinary native integration and full
+  chemical/experimental acceptance remain open. Raw science stays out of Git.
+
 ### W196 — Replay registered interior pair motion with fixed flanks
 
 - Extend the existing preview/replay/motion owner with additive schema-3 trials:
