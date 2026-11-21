@@ -261,14 +261,15 @@
         "W198 couples exact admitted source/candidate coordinates and movable/fixed scope through the existing strict native identity owner; nine saved-stage handoffs pass. Actual native application and lifetime integration remain separate.",
         "W199 uses installed W198 in the live earlier interpretation boundary: exact prior preparation/diffraction parity and deliberate-failure binding cleanup pass. No refinement or maintained hook yet.",
         "W200 maintains the one-shot preparation stage owner with W198 mapping and explicit native builder; installed live success/failure and160/160 tests pass. No ordinary execution-policy integration or scientific acceptance.",
-        "W201 records a named, unimplemented versioned execution/input contract and five actual cold controls showing the current ordinary geometry-parent role gap while preserving old v3 readers/defaults."
+        "W201 records a named, unimplemented versioned execution/input contract and five actual cold controls showing the current ordinary geometry-parent role gap while preserving old v3 readers/defaults.",
+        "W202 qualifies installed Cedar C507 live collectors and current topology reader with authenticated four-control source inputs. A fresh dry-run and failure retain W200 prepared state and candidate diffraction; 84 cold checks. Private builder and ordinary integration remain open."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "W202: agree the exact shared Cedar extension for the proposed typed parent_preparation field and source-qualified live builder before runtime edits. Keep existing candidate model input, checkpoint/request joins, complete source chemistry and original diffraction/Free distinct; preserve historical policies and actual outer lifetime ownership. Qualify a bounded maintained dry-run/failure after implementation, not another private refinement.",
+      "next_action": "W203: maintain the source-qualified native builder around W200 and Cedar C507 collectors before registering a dispatcher. Bind exact typed compiled inputs and all four reader controls, the one actual interpretation, source geometry/scattering and unchanged candidate diffraction. Missing chemical authority must refuse before transfer; collector equality alone is not complete chemical admission. Preserve old execution bytes and the separately owned outer input/process lifetime. No repeated W197 refinement panel.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -330,14 +331,15 @@
         "E_NATIVE_ENDPOINT_HANDOFF",
         "E_LIVE_PREPARATION_HANDOFF",
         "E_MAINTAINED_NATIVE_PREPARATION",
-        "E_PARENT_EXECUTION_CONTRACT"
+        "E_PARENT_EXECUTION_CONTRACT",
+        "E_TYPED_LIVE_COLLECTOR"
       ],
       "last_audit": {
         "date": "2026-11-21",
         "reviewer": "Linden",
-        "human_update": 201,
+        "human_update": 202,
         "code_commit": "6013c5c8fc0822498778ee117b65602063bd4e1f",
-        "scope": "Cold current-owner representation audit and proposed contract only; no runtime integration"
+        "scope": "Installed shared collector and explicit typed-control native qualification; no ordinary builder/dispatcher or new refinement"
       }
     },
     {
@@ -395,14 +397,15 @@
         "W198 couples exact admitted source/candidate coordinates and movable/fixed scope through the existing strict native identity owner; nine saved-stage handoffs pass. Actual native application and lifetime integration remain separate.",
         "W199 uses installed W198 in the live earlier interpretation boundary: exact prior preparation/diffraction parity and deliberate-failure binding cleanup pass. No refinement or maintained hook yet.",
         "W200 maintains the one-shot preparation stage owner with W198 mapping and explicit native builder; installed live success/failure and160/160 tests pass. No ordinary execution-policy integration or scientific acceptance.",
-        "W201 records a named, unimplemented versioned execution/input contract and five actual cold controls showing the current ordinary geometry-parent role gap while preserving old v3 readers/defaults."
+        "W201 records a named, unimplemented versioned execution/input contract and five actual cold controls showing the current ordinary geometry-parent role gap while preserving old v3 readers/defaults.",
+        "W202 qualifies installed Cedar C507 live collectors and current topology reader with authenticated four-control source inputs. A fresh dry-run and failure retain W200 prepared state and candidate diffraction; 84 cold checks. Private builder and ordinary integration remain open."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "W202: agree the exact shared Cedar extension for the proposed typed parent_preparation field and source-qualified live builder before runtime edits. Keep existing candidate model input, checkpoint/request joins, complete source chemistry and original diffraction/Free distinct; preserve historical policies and actual outer lifetime ownership. Qualify a bounded maintained dry-run/failure after implementation, not another private refinement.",
+      "next_action": "W203: maintain the source-qualified native builder around W200 and Cedar C507 collectors before registering a dispatcher. Bind exact typed compiled inputs and all four reader controls, the one actual interpretation, source geometry/scattering and unchanged candidate diffraction. Missing chemical authority must refuse before transfer; collector equality alone is not complete chemical admission. Preserve old execution bytes and the separately owned outer input/process lifetime. No repeated W197 refinement panel.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -507,14 +510,15 @@
         "E_NATIVE_ENDPOINT_HANDOFF",
         "E_LIVE_PREPARATION_HANDOFF",
         "E_MAINTAINED_NATIVE_PREPARATION",
-        "E_PARENT_EXECUTION_CONTRACT"
+        "E_PARENT_EXECUTION_CONTRACT",
+        "E_TYPED_LIVE_COLLECTOR"
       ],
       "last_audit": {
         "date": "2026-11-21",
         "reviewer": "Linden",
-        "human_update": 201,
+        "human_update": 202,
         "code_commit": "6013c5c8fc0822498778ee117b65602063bd4e1f",
-        "scope": "Cold current-owner representation audit and proposed contract only; no runtime integration"
+        "scope": "Installed shared collector and explicit typed-control native qualification; no ordinary builder/dispatcher or new refinement"
       }
     },
     {
@@ -4924,6 +4928,36 @@
           "size": 2073
         }
       ]
+    },
+    "E_TYPED_LIVE_COLLECTOR": {
+      "kind": "typed_controls_installed_collector_native_diagnostic",
+      "date": "2026-11-21",
+      "human_update": 202,
+      "code_commit": "6013c5c8fc0822498778ee117b65602063bd4e1f",
+      "cedar_code_commit": "d09962f378c0aeae7125fa515f08fa66e2269809",
+      "reference": "docs/topostitch-periodic.md#w202--qualify-typed-controls-and-the-maintained-live-collector",
+      "result": "12 cold source checks; one actual Phenix 2.2.1-6174 dry-run and one deliberate preparation failure; 84 cold checks. Four False reader settings requested/interpreted/retained. All three mappings and full prepared geometry, model, fixed inputs, native selection and candidate diffraction reproduce W200 exactly. Six native bindings restored; failed model discarded.",
+      "limitation": "Private source-qualified builder remains; only collector/topology owners are maintained Cedar APIs. Explicit NCS True-to-False change and typed retained-plane provenance are recorded, not retroactively assigned to W200. No refinement, complete chemical qualification, ordinary workflow/lifetime integration or scientific acceptance.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w202-typed-native-builder/source-review.json",
+          "sha256": "3941a20f06ca1da03f01cdac85b4e4e95a38ed508b9d7ffadbfb1407ddf2438a",
+          "size": 5684
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w202-typed-native-builder/review.json",
+          "sha256": "34aa61e5fe0b039a61e55d6cbb4794dbf07d3500fd14b82c884a63f14f731254",
+          "size": 10776
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w202-typed-native-builder/experiment/plan.json",
+          "sha256": "9e4bdab7496c38966eb760a7d7a02c38e7ab216f08fc644b509b203a743d71d8",
+          "size": 23889
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -5085,8 +5119,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 201,
-    "next": 202,
+    "current": 202,
+    "next": 203,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -6100,6 +6134,12 @@
       {
         "number": 201,
         "title": "Define the separate geometry-parent role and demonstrate the current execution limit",
+        "state": "RECORDED",
+        "code_commit": "6013c5c8fc0822498778ee117b65602063bd4e1f"
+      },
+      {
+        "number": 202,
+        "title": "Qualify authenticated reader controls and the shared live geometry collector",
         "state": "RECORDED",
         "code_commit": "6013c5c8fc0822498778ee117b65602063bd4e1f"
       }

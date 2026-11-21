@@ -17,6 +17,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W202 — Qualify typed reader controls and the shared live collector
+
+- Reuse installed Cedar C507 atom/geometry collectors and the current topology
+  reader in a source-bound native diagnostic. Retire the private collector copies
+  from the new run; historical workers, execution policies and inputs stay intact.
+- Explicitly change NCS=True from W200 to the authenticated source's False value
+  and preserve all four control roles and retained-plane provenance. One actual
+  Phenix 2.2.1-6174 dry-run plus one injected failure pass 84 cold checks, after
+  12 source checks. Prepared state and candidate diffraction reproduce exactly.
+- Willow documentation/qualification only; no refinement, new schema/default,
+  complete chemical admission or maintained builder/ordinary dispatcher claim.
+  Scientific evidence remains local. Eight roadmap checks cover documentation.
+
 ### W201 — Specify the separate geometry-parent execution role
 
 - Record five cold controls against the existing execution owner: ordinary v3

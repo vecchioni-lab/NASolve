@@ -1,8 +1,8 @@
 # NASolve development handoff — Willow
 
-**Current audit: W201; latest implementation: W200, 2026-11-21.** The installed one-shot preparation context now
+**Current audit: W202; latest Willow implementation: W200, 2026-11-21.** The installed one-shot preparation context now
 carries admitted candidate → original parent geometry → candidate coordinates
-through an explicit qualified native builder. No ordinary execution-policy or
+through a source-qualified diagnostic builder. No ordinary execution-policy or
 CLI activation follows. S04/S05/S06 remain PARTIAL.
 
 **Latest science:** W197's signed fixed-frame control moves 205 interior atoms
@@ -10,7 +10,8 @@ while fixing 654 context atoms. Matched five-cycle refinement reduces ~0.142 Å
 starting RMS to 0.03163/0.02929 Å; zero drifts 0.01633 Å. Boundary bonds recover,
 but A12 phosphate-angle error remains 10.15°/9.69° versus 9.55° in refined zero.
 Low synthetic Rfree does not establish complete geometry repair. W198–W200
-validate transport/preparation of that motion, not another bend or refinement.
+validate transport/preparation of that motion; W202 adds the shared live collector
+and authenticated controls, not another bend or refinement.
 
 Start with the [machine roadmap](topostitch-roadmap.json) and
 [human roadmap](topostitch-roadmap.md). Detailed failed attempts, exact commands
@@ -22,6 +23,7 @@ The longer pre-consolidation handoff is preserved at Git `86e7489c2314f738bd7fe1
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
+| W202 shared live collector | Installed Cedar C507; four authenticated reader controls; exact live prepared state and failure cleanup | Maintained source-qualified builder, full chemical admission and ordinary dispatcher |
 | W200 native preparation context | One-shot stage order, stable manager, exact W198 mapping, fail-closed result; installed real success/failure | Versioned ordinary execution integration and retained-file lifetime composition |
 | W198/W199 native atom order | Candidate/parser and parent/prepared orders separately bound; real OP3 reorder and live parity | Broader conformers, modified moving residues, tensors and registered recuts |
 | W196 interior initializer | Registered whole-pair windows, explicit weights and two fixed flanks | Successful general repair; cross-Python whole-preview last-bit audit replay |
@@ -41,8 +43,16 @@ No returned boolean/None or coordinate mapping alone is chemical authority.
 
 ## Next bounded work
 
-**W202:** agree the exact versioned shared extension with Cedar before editing
-runtime owners. W201's five cold controls show that ordinary v3 has no typed
+**W203:** maintain the source-qualified native builder around W200 and Cedar
+C507 before registering a dispatcher. W202 has qualified the installed
+`collect_live_atoms`/`collect_live_geometry` and current topology owner with
+explicit typed inputs. Bind all four reader controls, one actual interpretation,
+source geometry/scattering and unchanged candidate diffraction. Missing chemical
+authority must refuse before transfer; a linked-geometry observation is not a
+complete chemical capture. Preserve old helper bytes and outer lifecycle ownership.
+
+The shared collector boundary is agreed and tested; the ordinary execution
+extension remains proposed. W201's five cold controls show that ordinary v3 has no typed
 geometry-only parent role: old capture/default helpers remain readable/unchanged,
 while an extra field, proposed policy and untyped sidecar are refused. The
 [unfinalized contract](topostitch.md#versioned-parent-preparation-execution-contract-w201)
@@ -59,12 +69,14 @@ all old helper bytes, policies and defaults. No new private refinement or reques
 reader is warranted.
 
 Keep input lifetime separate from model preparation. Hazel reports qualified
-Alder `17d52b730a74682ab0f9d5548405681b24d3313e`: ordinary retained parents now
-support closure/settlement and ordinary children can borrow the actual parent
-grant. This is receiving-owner evidence, not a Willow combined-build claim.
-Inner `read_scope_closed` is not outer snapshot removal or physical disk reclaim.
-Unknown/interrupted children keep charges. Reuse the committed owner; do not
-implement a second archive/process/budget mechanism.
+Alder `7d84c84d6b16b352f4d2717ce3e8ea8c01718f98`: whole audited-session
+admission reserves before owned preflight and stays held through postflight/review;
+settlement binds the scientific reader and exact retained-parent grant. Cross-session
+request substitution refuses. Owner validation: 146 focused/67 relocated installed;
+no new native calls. This is receiving-owner evidence, not Willow combined adoption.
+Inner read completion is not outer release or physical reclaim. Unknown/interrupted
+sessions remain charged; stopped-failure recovery and campaign admission stay open.
+Reuse this owner rather than adding a second storage/process mechanism.
 
 The real X11_22 PostMR root (2603 atoms) is available and relocates, but lacks the
 independently checked pair/stack target and chemical authority of the separate
@@ -89,6 +101,12 @@ for repeated Rfree-guided tuning. No noisy phosphate detector is qualified.
 
 ## Validation and scientific interpretation
 
+- W202: 12 cold source checks plus one actual Phenix 2.2.1-6174 dry-run and
+  one injected failure, 84 cold checks. All four authenticated controls are False
+  before/after interpretation and transfer. Exact prior prepared geometry and
+  candidate diffraction survive; failed model is discarded. NCS=True in W200
+  is preserved as historical fact, not relabelled. Installed Cedar C507 is source
+  pinned; its code is not merged into Willow. No new refinement/full suite.
 - W201: five actual cold owner controls, source/input immutability and temporary
   cleanup pass; zero native calls. Proposed execution contract remains unimplemented.
 
@@ -125,8 +143,9 @@ remaining local phosphate-angle cost. Models are linked/hash checked, not copied
 The associated ChimeraX script uses gray/silhouettes/soft/orthographic/thin rings;
 it was prepared and checked, not GUI-executed for W197.
 
-W198–W200 add no geometry effect to illustrate. Their exact local receipts are
-under NASolve anchor `branch-artifacts/willow/w198-native-handoff/`,
+W198–W202 add no geometry effect to illustrate. W202 source/live receipts are
+under `NASolve:branch-artifacts/willow/w202-typed-native-builder/`. Earlier receipts
+remain under NASolve anchor `branch-artifacts/willow/w198-native-handoff/`,
 `w199-live-preparation/` and `w200-native-context/`; checksummed references are in
 the machine roadmap. Scientific runs, failed attempts and native observations
 remain immutable/local. Reuse the existing inspector for the next physical result.

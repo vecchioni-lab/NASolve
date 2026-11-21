@@ -11889,3 +11889,79 @@ and native evidence remain outside Git. Only current intent/guides/changelog and
 roadmap change. No schema migration; the new identifiers are explicitly proposed,
 not supported. S04/S05/S06 stay PARTIAL. The absence of an expressible role is the
 result, not a reason to fabricate current-parent authority or repeat W197.
+
+
+## W202 — Qualify typed controls and the maintained live collector
+
+**Before/after:** W200's context used a private extraction of Cedar geometry
+readers, a separately extracted topology reader and three explicit reader
+settings. W202 consumes installed Cedar C507's `collect_live_atoms(model)` and
+`collect_live_geometry(model, processed=...)`, plus the existing maintained
+`review_native_topology`. The collector checks that the interpreted selection
+indices belong to the current hierarchy while allowing coordinates to move.
+The old `_NATIVE_WORKER` literal and historical frozen helpers remain unchanged.
+This removes the private copies from the new experiment; the live native builder
+itself remains source-qualified diagnostic code, not a product dispatcher.
+
+The existing typed source reader reopens the exact W180 artifact. Its model,
+C21 PHIL and retained-plane bytes match W200, but provenance/settings differ:
+the planes are now a second explicit compiler source, and source
+`use_ncs_to_build_restraints=False` differs from W200's effective **True**.
+Sorting, CDL and nucleotide CDL remain False. Twelve cold checks record these
+differences, reject the old duplicate control declarations and reproduce both
+saved topology classifications using the current owner. Earlier W200 evidence
+remains valid under its actual settings; it is not retroactively called typed
+four-control transport.
+
+A fresh diagnostic freezes the complete typed source, installed Cedar code,
+unchanged installed W200 context and original candidate/data/Free scope. The
+new parameter file removes the three shadow declarations; a separately bound
+control file adds only the explicit `refinement` namespace wrapper. The existing
+bounded control reader verifies all four definitions. The actual native builder
+checks requested controls, interpreted parameters and retained parameters after
+transfer. No global native defaults are edited.
+
+**Actual Phenix 2.2.1-6174 outcomes:** one completed dry-run (9.685 s), one
+deliberate failure before coordinate restoration (4.602 s), **zero refinements**.
+The independent cold review passes **84 checks**. All three mapping digests
+match W200; 205 movable and 654 fixed atoms remain correctly partitioned.
+Complete prepared geometry, model, fixed inputs, selected native labels and
+candidate diffraction reproduce exactly despite the explicitly changed NCS
+setting. Geometry retains 1,011 simple bonds, 1,558 angles and 213 explicit
+requests. Both topology classifications preserve 38 declared backbone links and
+51 supplied soft distances. Six temporary native bindings are restored on both
+paths, both owned children stop, and the original failure is retained. The failed
+manager is discarded, with no rollback/retry claim.
+
+The **original literal source capture** has 1,001 simple bonds/1,556 angles;
+compilation of its secondary-structure intent into the explicit C21 stack is
+a real transformation. Therefore neither matching the compiled stack nor these
+live observations constitutes whole original-capture equality or complete
+chemical qualification. The collector explicitly returns `complete_capture=False`
+and `scientific_acceptance=False`. Ordinary checkpoint/chemical admission,
+maintained builder and retained-file lifetime composition remain open.
+
+**Provenance/validation:** Cedar C507 commit
+`d09962f378c0aeae7125fa515f08fa66e2269809`; installed native-validation module
+SHA-256 `2e8df0a5a3e06e08e45dff701fe41c8a6d463bd2fccbd78d54255223e66644c1`.
+Its installed closure is copied and hashed into the local experiment; no host
+path is the sole operational reference. W200's installed preparation code is
+unchanged. Commands from the NASolve anchor:
+
+```bash
+/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python -B branch-artifacts/willow/runners/w202-source-controls.py
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w202-live-collector.py plan
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w202-live-collector.py run
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w202-review.py
+```
+
+The versioned local interpreter path above records the actual invocation, not
+a portable launch contract. Plan/source/final reports are under NASolve anchor
+`branch-artifacts/willow/w202-typed-native-builder/`; their hashes are in the
+roadmap. Scientific payload, native observations and code snapshots stay local.
+No Willow runtime code/schema/dependency changes, merge or migration occur.
+Eight roadmap tests and generated-document checks cover the docs; no full suite
+or redundant installation build. C507's installation is independently qualified
+by its owner and exercised here through the exact installed closure. W203 is the
+maintained source-qualified builder, before a new public execution policy.
+S04/S05/S06 remain PARTIAL. W197 remains the latest physical recovery checkout.

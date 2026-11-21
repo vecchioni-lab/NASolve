@@ -1780,3 +1780,18 @@ manager; it grants no rollback/reuse. Keep inputs held until every consumer stop
 Next is agreement on that shared extension and a bounded maintained dry-run/failure
 qualification, not another private refinement or another Willow request reader.
 [Exact audit](topostitch-periodic.md#w201--identify-the-missing-geometry-only-parent-input-role).
+
+
+### Shared live geometry boundary (W202)
+
+Cedar C507 exposes `cif_native_validation.collect_live_atoms` before geometry
+exists and `collect_live_geometry` with the retained interpretation afterward.
+These use Cedar's pinned native readers; the geometry observer checks selection
+identity/index correspondence and reads current coordinates. TopoStitch consumes
+the existing topology reviewer separately. [W202 qualification](topostitch-periodic.md#w202--qualify-typed-controls-and-the-maintained-live-collector)
+binds all four authenticated reader settings in an actual dry-run/failure pair.
+Original literal capture, compiled restraint intent and current live geometry
+remain distinct evidence roles. A successful collector does not establish full
+chemistry or authorize transfer/refinement. The next maintained builder must
+compose this evidence with W200, exact source/current-parent identity, candidate
+diffraction and the separately owned outer lifetime before public dispatch.

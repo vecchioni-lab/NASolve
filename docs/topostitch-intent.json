@@ -741,11 +741,11 @@
       "schema_version": 1,
       "kind": "topostitch-representative-comparison-view",
       "cli": "nasolve-topostitch-view --compare (repeatable)",
-      "input_scope": "2–8 explicit packets from one exact source and registered graph; no inferred alternatives",
+      "input_scope": "2\u20138 explicit packets from one exact source and registered graph; no inferred alternatives",
       "display_point_budget": 50000,
       "camera": "Shared across cuts; rotation/pan/zoom/mode/toggles retained",
       "stale_selection": "Atom/edge inspection cleared on cut switch; warnings, ownership and native seams refreshed",
-      "local_identifiers": "Cut 1, Cut 2, … in explicit input order; exact hashes retain proposal identity",
+      "local_identifiers": "Cut 1, Cut 2, \u2026 in explicit input order; exact hashes retain proposal identity",
       "legacy_scenes_unchanged": true,
       "selection_applied": false,
       "graphical_review_recorded": false,
@@ -1709,6 +1709,28 @@
       "Real ordinary X11_22 ancestry does not supply the independently checked source pair/stack and chemistry authority of the canonical diagnostic.",
       "A W200 callback contract alone is not a maintained live Phenix builder, native source qualification or whole-session lifetime proof."
     ],
-    "next_gate": "Agree exact shared extension before implementation; then qualify source/install reader compatibility and one maintained complete dry-run/failure through the new owner. No repeated W197 refinement panel."
+    "next_gate": "W203: maintain the source-qualified native builder around W200 and Cedar C507 collectors before registering a dispatcher. Bind exact typed compiled inputs and all four reader controls, the one actual interpretation, source geometry/scattering and unchanged candidate diffraction. Missing chemical authority must refuse before transfer; collector equality alone is not complete chemical admission. Preserve old execution bytes and the separately owned outer input/process lifetime. No repeated W197 refinement panel.",
+    "live_collector_qualification": {
+      "human_update": 202,
+      "reference": "docs/topostitch-periodic.md#w202--qualify-typed-controls-and-the-maintained-live-collector",
+      "cedar_commit": "d09962f378c0aeae7125fa515f08fa66e2269809",
+      "owner": "nasolve.cif_native_validation",
+      "functions": [
+        "collect_live_atoms",
+        "collect_live_geometry"
+      ],
+      "policy_id": "cif-live-geometry-inventory-v1",
+      "module_sha256": "2e8df0a5a3e06e08e45dff701fe41c8a6d463bd2fccbd78d54255223e66644c1",
+      "status": "INSTALLED_NATIVE_DIAGNOSTIC_CHECKED",
+      "reader_policy": "cif-captured-reader-control-handoff-v1",
+      "explicit_change": "W200 NCS=True becomes authenticated source NCS=False; sorting/CDL/nucleotide-CDL remain False. Retained planes now carry their typed compiler source role.",
+      "source_capture_is_compiled_capture": false,
+      "complete_capture": false,
+      "complete_chemical_qualification": false,
+      "ordinary_dispatcher_implemented": false,
+      "private_builder_still_required": true,
+      "runtime_authority": false,
+      "scientific_acceptance": false
+    }
   }
 }
