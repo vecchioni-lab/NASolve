@@ -120369,5 +120369,133 @@
       "c489-heldout-locked-source/placement-intake.json": "23203e7712468088e029fbcbd3076f421ac93a361cf0bd4c59b5e4baa8a02173",
       "c489-heldout-locked-source/placement-review.json": "a4764348996bf7806115a9ccad05b7d91fb264ca52cc4b789df868256396e953"
     }
+  },
+  "heldout_native_bond_recovery_and_reference_frames_2026_11_21": {
+    "owner": "Rowan",
+    "native_program": "Phenix 2.2.1-6174",
+    "C490": {
+      "component": "9V9",
+      "authoritative_source": "646036e882852014640c062744bfbdbecb8f526694e67cffd9c6d7f1c42c79c4",
+      "authority": "NATIVE",
+      "failed_native_bond": {
+        "atoms": [
+          "C4",
+          "O4'"
+        ],
+        "native_length_angstrom": 5.061,
+        "source_bonds_matched": 40
+      },
+      "failure_pins": {
+        "acquisition_request": "bddf4d6546ebedd7b7e8f098f4a1cd39b3ea8478ff7803da26069460a7802d88",
+        "acquisition_attempt": "3bbcc4331d2ef8c1e2aa3bb82f41af43efb5044dedff2d0b906c75892217a1db",
+        "acquisition_completion": "43651bb5d55ed3c3a431a2e59599e8094265d923b1df963da0efe2c2d2e838b5",
+        "generation_attempt": "44633ced43feef66e429cb55cf199d231fe7114c3dce8165fb751069008897f1",
+        "generation_completion": "2d85940804d79b49b9f5ad50339cf30bf3190b0c093b2696d284696b89d1862a",
+        "generation_receipt": "fcf791e118224249ec362f11a72ca43e98165676f09d3d3c0cf2b7bf8c635baf"
+      },
+      "original_source_reordered_reader": "c44bdc4b3c45beb971079b62b1f4e99eee7f9be2a5e54725b8ad8590791e7e2a",
+      "original_source_candidate": "a172e4b2fde5eb82f3cc4a7020069950a9b00d730f6b3a95c306244e4a054167",
+      "historical_reordered_source_candidate": "559f24525238be3994a356c218a30052346d77c30b07f04fca37c93ce6cbbb15",
+      "candidate_difference": "One eLBOW time-of-writing comment; every other byte and both complete parsed blocks agree.",
+      "qualification_sha256": "df5a00c3f5ec0ff472a7806364b18923569e6ea032c5bdcc2533183b69b56708",
+      "isolated_native_checks": 21,
+      "reuse": [
+        "REUSED",
+        "PREPARED_AND_FROZEN"
+      ],
+      "reused_jobs": 0,
+      "previous_file_bytes": 611151,
+      "bytes_of_retained_decision": 895,
+      "wheel": "374c358891c06051630ad93c513b6e76e1cafa392e8c1671860c65373c45f263",
+      "installed_files": 319,
+      "denied_original_roots": 9
+    },
+    "C491": {
+      "host": "DT A:11, opposite DA B:5. Same selected twelve-change parent.",
+      "base_motion_limit_A": 2.0,
+      "source_chi_deg": -160.528,
+      "host_chi_deg": -133.69,
+      "endpoint_weights": [
+        1,
+        5,
+        25,
+        125,
+        1000
+      ],
+      "max_base_motion_at_source_chi_A": [
+        2.071,
+        2.372,
+        2.551,
+        2.787,
+        3.852
+      ],
+      "max_base_motion_at_host_chi_A": [
+        2.462,
+        3.059,
+        3.445,
+        3.719,
+        4.629
+      ],
+      "least_displaced_source_chi_pose": {
+        "links_A": [
+          1.5365,
+          1.8186
+        ],
+        "intended_pair_A": [
+          3.7986,
+          4.6657
+        ]
+      },
+      "qualified_poses": 0
+    },
+    "C492": {
+      "sugar_frames": {
+        "9V9": {
+          "host_hand_matches": {
+            "anomeric": true,
+            "ring_c3": true,
+            "ring_c4": true
+          },
+          "sugar_frame": {
+            "chi_deg": -160.54204758424606,
+            "links_A": [
+              3.3327257612951002,
+              4.234851237056623
+            ],
+            "pair_A": [
+              3.949039883313412,
+              3.9824268982619127
+            ],
+            "bystanders": 41,
+            "verified_hand_triples": 7,
+            "registered_or_refined": false
+          }
+        },
+        "ATL": {
+          "host_hand_matches": {
+            "anomeric": true,
+            "ring_c3": false,
+            "ring_c4": false
+          },
+          "sugar_frame": {
+            "refused": "Host and target sugar hands differ or are degenerate: ring_c3"
+          }
+        }
+      },
+      "interpretation": "Source-declared family labels and matching hand at three host centres do not establish a compatible linked pose."
+    },
+    "validation": {
+      "source_checks": "216 selected tests. The sandbox denied its own group-stop signal in one timeout case. That case passed separately with group-stop access.",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_cif_acquisition_attempt.py tests/test_cif_connected_atom_order.py tests/test_cif_generation_input.py tests/test_cif_generation_acquisition.py tests/test_cif_source_representation.py",
+      "scope": "Cold installed recovery, two placements and a weight comparison. No joined 9V9 native run, diffraction or full regression."
+    },
+    "compact_source_fingerprints": {
+      "bound-recovery.json": "05fb80f397b0a6b71ce0b3f70a74a1457759933e9d341d81fd1068b7288535f9",
+      "ordered-original-result.json": "8569f29ff221fea9342d7f5e344a8403debf6492d8b59c0ff5d14a0bafaeb87b",
+      "installed-bound.json": "c964b653ea8425fa5a9230e251d91f826137ff7505d3945f2b2eb394ace2e3a5",
+      "bridge-weights.json": "c4f2c0b79ab392c647751f7936f38bfee507389613cc73bf5975084862d6618d",
+      "measured-host-chi.json": "2ac797d055c6eadb68da4abc970d0d90b022187541b8e1ecfa13328dde9fefbb",
+      "reference-frame-comparison.json": "f59620d3ef21b1d684d10eb0225802882d1a790bfc1767ee3c5020dca26c7b8d"
+    }
   }
 }

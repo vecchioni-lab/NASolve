@@ -1662,14 +1662,20 @@ that isolated C/A/G controls qualify a PNA polymer.
 10C has a source/native isolated and two-copy numerical control; the separated
 copies are not a connected polymer or physical stacking proof. Construct a linked
 10C control through graph-derived ports, source-preserving placement, both native
-junctions, exact NAR membership and fresh derivative/geometry checks. Consider
+junctions, exact NAR membership and fresh derivative/geometry checks.
 9V9 was checked against its actual source in C486/C489. Its flagged OP3 is
 a terminal neutral hydroxyl. Standard eLBOW introduced an unlisted sugar
 O4′–base C4 bond; the existing C116 row ordering produced an independently
 qualified isolated dictionary and retained all four source sugar centres
 during base placement. The proposed bridge exceeded the 2 Å base-movement
-limit. The next held-out check is the two native junctions and the correct
-NARestraints pair on this sulfur-bearing base.
+limit. C490 now binds the successful isolated dictionary to the original
+source and the specific failed native attempt. C491–C492 tested both reference
+frames. All three host sugar hands match 9V9, yet sugar alignment leaves the
+junctions 3.33 and 4.23 Å apart. Transferring the host glycosidic angle before
+fitting also exceeded the base-motion limit at all five weights. The next
+held-out check is a bounded linked pose that keeps the NARestraints pair and
+both backbone bonds. These controls already cover a simple change of frame,
+arm weight or host glycosidic angle.
 
 The source flag for 10C names a doubly bonded O3P with no hydrogen. LCA and
 LCC flag OP2 while a distinct protonated OP3 remains unflagged. Automatic

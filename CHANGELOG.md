@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Recovering a bond absent from the source dictionary
+
+- An explicit dictionary acquisition can now recover from a stopped eLBOW
+  attempt that printed all source bonds and one extra heavy-atom bond. Cedar
+  changes the atom order seen by the reader, preserves the original source and
+  its authority, and applies the usual native checks. The fresh request carries
+  a compact reference to the failed attempt and can be reopened after relocation.
+
 ### Placing a locked sugar between its observed neighbours
 
 - The base-anchored placement API can now read both covalent partners from the

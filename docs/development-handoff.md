@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C486–C489 ordinary backbone partners, measured host B factors and held-out locked sugar — Rowan**.
+Updated **2026-11-21, C490–C492 source-bound dictionary recovery and held-out sugar placement — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -13,6 +13,24 @@ Focused, relocated installed, matched native and independent checks also pass.
 Software qualification does not change the scientific REVIEW or close Q06.
 
 ## Where to resume
+
+**9V9 dictionary recovery.** Phenix printed all 40 source bonds plus one
+5.061 Å O4′–C4 bond. The new acquisition follows that exact stopped attempt
+into a fresh request. Only the order of the reader's atom rows changes.
+All 21 isolated checks passed against the original native source. The ordinary
+retained-dictionary route then reused exactly those results. The historical
+failure occupies 611,151 bytes; the new request links it with 895 bytes.
+The relocated installed program reopened both results and the failure.
+
+**9V9 in the helix.** At five weights, fitting the phosphate arm moved the
+base 2.07–3.85 Å. Giving it the measured host glycosidic angle first moved it
+2.46–4.63 Å. All ten trials exceed the established 2 Å limit. 9V9 matches
+the host at all three corresponding sugar-hand checks, whereas ATL matches
+only at C1′. A sugar-aligned 9V9 still leaves its two junctions 3.33 and
+4.23 Å apart. Sugar hand alone cannot pick a working pose. Q11 still needs a
+qualified placement and both native links. Q07 still needs ordinary ATL
+mutation followed through registered refinement. Compact evidence is under
+`heldout_native_bond_recovery_and_reference_frames_2026_11_21`.
 
 **Building ATL on the selected parent, C486–C488.** Cedar now reads both
 backbone neighbours at A:11 and the departing oxygen directly from the

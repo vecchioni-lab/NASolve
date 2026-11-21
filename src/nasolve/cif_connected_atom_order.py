@@ -5,8 +5,10 @@ correct. All downstream source identity and native qualification gates still app
 """
 from collections import deque
 from copy import deepcopy
+from decimal import Decimal
 from hashlib import sha256
 from pathlib import Path
+import re
 
 from .cif_doctor import assess_dictionaries
 from .cif_stereochemistry_audit import _graph
@@ -118,3 +120,48 @@ def prepare_connected_atom_order(source, code, output):
             "chemical_declarations": "PRESERVED", "coordinate_values": "PRESERVED",
             "atom_ordinals": "PRESERVED_AS_SOURCE_METADATA", "reader_dialect": "PRESERVED",
             "native_qualification": "NOT_RUN", "automatic_adoption": False}
+def unlisted_builder_bond(values, code, diagnostic, log):
+    """Identify one extra heavy bond in eLBOW's printed table after a failed build.
+
+    Require every source edge and order exactly once. The failing two-decimal
+    length must identify only the additional row at the table's printed precision.
+    A stretched source bond, partial table or retained candidate is ineligible.
+    """
+    error = diagnostic.get("native_exception") or {}
+    if (diagnostic.get("blocking_stage") != "NATIVE_BUILDER" or diagnostic.get("builder_started") is not True
+            or diagnostic.get("candidate_state") != "ABSENT" or error.get("exception_type") != "Sorry"):
+        return None
+    match = re.fullmatch(r"Bond length too long\s*:\s*([0-9]{1,4}\.\d{2})", error.get("message", ""))
+    if not match:
+        return None
+    specified = Decimal(match.group(1))
+    elements, bonds, _, _ = _graph(values)
+    printed = {}
+    for line in log.splitlines():
+        parts = line.split()
+        if not parts or parts[0] != code:
+            continue
+        if len(parts) != 6:
+            return None
+        _, left, right, order, length, width = parts
+        edge = tuple(sorted((left, right)))
+        if (left == right or left not in elements or right not in elements or edge in printed
+                or not all(re.fullmatch(r"[0-9]{1,4}\.\d{3}", v) for v in (length, width))
+                or Decimal(length) <= 0 or Decimal(width) <= 0):
+            return None
+        printed[edge] = (order.upper(), Decimal(length))
+    if any(edge not in printed or printed[edge][0] != order for edge, order in bonds.items()):
+        return None
+    additional = printed.keys() - bonds.keys()
+    if len(additional) != 1:
+        return None
+    edge, = additional
+    if any(elements[n] in _HYDROGENS for n in edge):
+        return None
+    # Other rows at either rounding boundary could also have triggered the error.
+    consistent = {pair for pair, (_, length) in printed.items() if abs(length-specified) <= Decimal("0.0055")}
+    order, length = printed[edge]
+    if (consistent != additional or abs(length-specified) >= Decimal("0.0045")
+            or order not in {"SINGLE", "DOUBLE", "TRIPLE", "AROMATIC"}):
+        return None
+    return {"atoms": list(edge), "native_length_angstrom": float(length), "source_bonds_matched": len(bonds)}

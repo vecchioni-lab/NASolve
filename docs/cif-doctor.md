@@ -4209,6 +4209,16 @@ C168. No full suite, chemical-support expansion or ordinary runtime change.
 
 ### Explicit component acquisition requests (C167)
 
+An acquisition may take `connected_order_failure=(previous_request, attempt_number)`.
+It checks the stopped native worker, the original component and the complete
+printed bond table. A unique extra heavy-atom bond must explain the reported
+length. The caller supplies the original generation settings and a separate
+request directory. The recovery orders whole atom rows for the reader and
+qualifies the numerical dictionary against the unchanged source. A qualified
+entry can enter a later ordinary acquisition through its existing retained
+snapshot input. Recovery is an explicit choice at the component boundary.
+Linked model placement and diffraction are separate checks.
+
 `cif_acquisition_attempt.acquire_dictionary_attempt(source, code, store_root,
 request_directory, ..., generation, consumer, phenix=None, retained_snapshot=None)`
 owns one explicit cache-first component acquisition. The source is already declared.

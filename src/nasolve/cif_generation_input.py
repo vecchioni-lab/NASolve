@@ -10,6 +10,7 @@ from tempfile import TemporaryDirectory
 
 POLICY_ID = 'cif-source-reader-preparation-v1'
 CYCLE_LOCAL_INPUT_POLICY = 'cif-source-reader-cycle-local-flags-v1'
+CONNECTED_INPUT_POLICY = 'cif-source-reader-connected-atoms-v1'
 ORDINARY_INPUT_POLICY = 'source-preserving-v1'
 SOURCE_SELECTED_INPUT_POLICY = 'source-preserving-v2'
 
@@ -49,7 +50,7 @@ def source_selected_generation(source, code, generation):
 
 
 def validate_source_input_policy(policy):
-    if policy not in (None, POLICY_ID, CYCLE_LOCAL_INPUT_POLICY):
+    if policy not in (None, POLICY_ID, CYCLE_LOCAL_INPUT_POLICY, CONNECTED_INPUT_POLICY):
         raise ValueError('Unsupported source input preparation policy')
 
 
@@ -105,8 +106,14 @@ def source_input_files(original, code, *, policy=POLICY_ID):
         root=Path(temporary).resolve(strict=True)
         source, graph, reader, consumer=[root/name for name in ('source.cif','graph.cif','reader.cif','consumer.cif')]
         source.write_bytes(original)
-        graph_report=prepare_graph_generation_source(source,code,graph)
-        reader_report=prepare_elbow_source_dialect_input(source,graph,code,reader)
+        reading_source = source
+        atom_order = None
+        if policy == CONNECTED_INPUT_POLICY:
+            from .cif_connected_atom_order import prepare_connected_atom_order
+            reading_source = root/'ordered.cif'
+            atom_order = prepare_connected_atom_order(source, code, reading_source)
+        graph_report=prepare_graph_generation_source(reading_source,code,graph)
+        reader_report=prepare_elbow_source_dialect_input(reading_source,graph,code,reader)
         dialect=reader_report['consumer_reader_dialect']
         order_report=None
         if dialect=='MONOMER_LIBRARY_CIF':
@@ -129,6 +136,11 @@ def source_input_files(original, code, *, policy=POLICY_ID):
         if cycle_report is not None:
             report['cycle_local_flags'] = cycle_report
             report['chemical_declarations'] = 'EXPLICIT_SINGLE_BRIDGE_FLAGS_PROJECTED; OTHER_DECLARATIONS_PRESERVED'
+        if atom_order is not None:
+            report['connected_atom_order'] = {
+                key: atom_order[key] for key in ('policy_id', 'source_sha256', 'consumer_sha256', 'changed')
+            }
+            report['connected_atom_order']['atom_count'] = len(atom_order['output_atom_order'])
         files={f'prepared/{p.name}':p.read_bytes() for p in (graph,reader,consumer)}
         report['files']={name:_digest(data) for name,data in files.items()}
         files['prepared/preparation.json']=(json.dumps(report,sort_keys=True,indent=2,allow_nan=False)+'\n').encode()
