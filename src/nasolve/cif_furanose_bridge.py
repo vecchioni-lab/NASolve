@@ -27,6 +27,29 @@ BASE_B_SEED_POLICY = 'cif-graph-furanose-bounded-bridge-seed-v2'
 _FILES = {'config.json', 'model.pdb', 'seed.json'}
 
 
+def phosphate_arm_rotors(roles, graph, bonds, *, leaving_atom):
+    """Find the single-bond rotations in a declared furanose phosphate arm.
+
+    Return atom names from the source, including the leaving atom. A caller
+    working on a linked model must verify its actual retained atoms and links.
+    """
+    phosphorus = roles["phosphate"]
+    if leaving_atom == roles["five_o"] or leaving_atom not in graph[phosphorus]:
+        raise ValueError("Require a declared leaving atom bonded to the phosphate")
+    protected = base_fragment_atoms(roles, graph) | {
+        roles[r] for r in ("anomeric", "ring_o", "ring_c2", "ring_c3", "ring_c4", "three_o")
+    }
+    groups = []
+    for left, right in (("ring_c4", "five_c"), ("five_c", "five_o"), ("five_o", "phosphate")):
+        a, b = roles[left], roles[right]
+        group = _moving_group(graph, bonds, a, b)
+        if not {leaving_atom, phosphorus} <= group or group & protected:
+            raise ValueError("Rotor must move only the acyclic source phosphate arm")
+        groups.append({"axis_roles": [left, right], "axis_atoms": [a, b],
+                       "moving_source_atoms": sorted(group)})
+    return groups
+
+
 def _seed(control, config):
     if (set(config)-{'base_b_policy'} != {'endpoint_weight', 'max_base_displacement'}
             or ('base_b_policy' in config and config['base_b_policy'] != BASE_B_POLICY)):
@@ -48,15 +71,10 @@ def _seed(control, config):
     if set(heavy)-retained != {leaving}:
         raise ValueError('Require exactly one declared virtual heavy leaving atom')
     base = base_fragment_atoms(roles,graph) & retained
-    protected = base | {roles[r] for r in ('anomeric', 'ring_o', 'ring_c2', 'ring_c3', 'ring_c4', 'three_o')}
     index = {n:i for i,n in enumerate(heavy)}; xyz = np.array([coordinates[n] for n in heavy], dtype=float)
-    axes = []; groups = []
-    for left, right in [('ring_c4', 'five_c'), ('five_c', 'five_o'), ('five_o', 'phosphate')]:
-        a, b = roles[left], roles[right]; group = _moving_group(graph, bonds, a, b)
-        if not {leaving, roles['phosphate']} <= group or group & protected:
-            raise ValueError('Rotor must move only the acyclic source phosphate arm')
-        axes.append((index[a], index[b], [index[n] for n in heavy if n in group]))
-        groups.append({'axis_roles':[left, right], 'axis_atoms':[a, b], 'moving_source_atoms':sorted(group)})
+    groups = phosphate_arm_rotors(roles, graph, bonds, leaving_atom=leaving)
+    axes = [(index[g['axis_atoms'][0]], index[g['axis_atoms'][1]],
+             [index[n] for n in heavy if n in g['moving_source_atoms']]) for g in groups]
     frame = _pdb_inventory(control/'frame.pdb'); prior = _pdb_inventory(control/'model.pdb')
     anchors = [*placement['target_frame_atoms'], roles['phosphate'], roles['three_o'], leaving]
     host_code = _model((control/'frame.pdb').read_bytes())[selected]['component']

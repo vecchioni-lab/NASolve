@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-20, C470–C475 matched arm-shape tests and checked ReadySet publication — Rowan**.
+Updated **2026-11-21, C476–C480 refined arm measurements and the receiving phosphate at ATL — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -48,7 +48,11 @@ target as the arm departed farther from the ring. Keep the plane experimental.
 The original 196 frame restraints, six phosphate angles and Free-R assignments
 survived. This control explicitly has a free hydroxyl at B:1. The historical
 PDU:PDU construct has an incoming phosphate at B:1 through symmetry and
-requires its own declared partner and a qualified native link.
+requires its own declared partner and a qualified native link. C476/C477
+reopened all six final models. At independent A:PDU the tip was 0.036 Å
+from the seven-atom fit and 0.231 Å from the ring alone. Phenix chose final
+coordinate weights of 10.000 and 1.517. Treat the runs as comparisons of
+complete refinements. The mixed-scaffold weights were 0.957 and 0.951.
 
 **Locked sugar and starting displacement, C463–C467.** The complete dictionary
 request now carries its workbook and both explicitly reacting sugar ends. The
@@ -72,12 +76,17 @@ matched base. Nine thymine atoms could inherit their host values. The other
 2,146 working reflections gave 52.7% of the original RMS amplitude from those
 nine atoms. The outgoing O3′–P still starts at 1.839 Å. Ordinary ATL placement,
 calibration of new sugar-atom B values and 13-component diffraction remain open.
-In C472, moving the intact locked sugar and rotating its phosphate arm brought
-the two backbone links to 1.609 and 1.614 Å. The base-pair contacts lengthened
-to 3.455 and 3.463 Å, and native contacts with more than 0.4 Å of overlap
-increased from 6 to 14 on the original contact list. Retain the starting seed.
-Next test limited movement of its immediate neighbours with the same backbone,
-pair and steric checks, including a fresh symmetry-aware neighbour search.
+C472 moved the intact locked sugar while holding its neighbours fixed. The
+links shortened but the pair opened. C478–C479 then allowed rigid movement
+of both neighbours. The outgoing O3′–P–OP2 angle reached 82.8° against
+108°. One extra rotation about the receiving O5′–P single bond brought it
+to 106.2°. Both central links ended within 0.004 Å of 1.607 Å. Fresh
+crystal-image searches found four contacts around ATL with more than 0.4 Å
+of overlap, down from six at the start. C480 serialized this candidate with
+the nine measured base B factors and repeated the full Phenix reading. All
+869 atoms, 42 monomers, 211 frame terms and eight restraint categories were
+preserved. These are construction and native reading results. Check ordinary
+delivery and what survives diffraction before accepting the placement.
 
 **Shared reader settings, W186.** The explicit typed-input handoff now carries
 reviewed controls through ordinary PostMR/complete-request intake, acquisition,
@@ -90,7 +99,7 @@ The wheel's build source and original installation directory were removed.
 One fixed-coordinate Phenix 2.2.1-6174 read retains **859 atoms, 42 monomers and
 213 terms**, with each reader control supplied once and all four effectively
 False. No motion, refinement or real ordinary-parent ancestry is claimed.
-This isolated implementation targets Cedar integration; no new remote branch.
+This implementation reached Cedar in `04d506c5`.
 Next trace the existing canonical PostMR/checkpoint writer without changing the
 nonempty dictionary-acquisition contract. See the [API and remaining gates](cif-doctor.md#explicit-captured-control-handoff-w186)
 and evidence `captured_reader_control_handoff_2026_11_21`. No full suite in this
@@ -479,12 +488,10 @@ six-atom ring plane 0.094297 Å. These descriptive starting values are not accep
 ## Next work, in order
 
 1. Q06 still needs a defensible scope for post-refinement PDU and DF geometry.
-   Use C470/C474 as matched arm-plane controls. Measure terminal bond, both
-   alkyne angles, tip height, sugar hand and surrounding contacts together.
-   C475 provides a second PDU site on an A:PDU scaffold. Use the existing
-   native geometry reports to distinguish an arm that approaches its ring
-   from a bond that approaches its target. Qualify which cases benefit from
-   a trial plane, including the long 5PC terminal bond. The earlier PDU:PDU
+   Reuse the six saved C470/C474/C475 endpoints. Measure the tip against its
+   source ring, including the ordinary control without a seven-atom plane.
+   Compare both straight-angle targets, the terminal bond, the selected
+   weights and contacts alongside it. The earlier PDU:PDU
    construct retains separate incoming-phosphate and symmetry requirements. The
    synthetic recovery and omitted-scattering controls are complete. Repeating them
    or locating the original collaborator files is unnecessary for this checkpoint.

@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current work order, 2026-11-20.** This is the one unfinished-work queue. The
+**Current work order, 2026-11-21.** This is the one unfinished-work queue. The
 [capability table](cif-doctor.md#current-capability-boundary) records demonstrated
 support; the [handoff](development-handoff.md) says where work stopped. Old notes
 record what was known then. They do not create a second set of instructions.
@@ -28,8 +28,11 @@ phosphate angles and original Free-R assignments were verified for both comparis
 C475 transferred the plane to the separate A:PDU B:4 construction. Its tip
 distances were 0.175 Å with ordinary restraints and 0.231 Å with the added
 plane. Its terminal bond measured 1.475 Å. Rfree increased from 0.2265 to
-0.2414. Retain the current defaults and compare the competing restraints
-in these saved runs before another weight trial. The distinct PDU:PDU
+0.2414. C476/C477 read the same six final models and logs. In A:PDU the
+added plane itself missed the tip by only 0.036 Å because the tip tilted
+the fitted plane. The last coordinate weights were 10.000 and 1.517.
+Use the source ring alone as the common reference in ordinary and trial
+models. Keep the soft plane experimental. The distinct PDU:PDU
 symmetry-linked phosphate case still requires a verified incoming link.
 
 Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
@@ -53,8 +56,12 @@ display padding. The new C468 request sealed normally with the historical parent
 C471 verifies the exact atom-name fields, both planes and every ordered restraint
 in a separately published ReadySet endpoint. Both selections reopen from the
 installed program. In C472 both junctions approached their target as the two
-paired-base contacts lengthened. Adding phosphate rotation also increased the
-number of steric overlaps. Ordinary placement and diffraction with ATL remain open. Ordinary 1AP:T and
+paired-base contacts lengthened. C478–C480 let the two neighbouring residues
+move and gave the receiving phosphate one source-declared rotation. Its
+O3′–P–OP2 angle recovered from 82.8° to 106.2° against 108°. A new Phenix
+reading of the rounded PDB preserved all eight restraint categories and the
+211 frame terms. Four close contacts around ATL remain. Ordinary placement
+and diffraction with ATL remain open. Ordinary 1AP:T and
 S6G:C now pass through ReadySet and five Phenix cycles. In 1AP the local plane
 covers both amino groups. In S6G only the shared pair plane includes sulfur.
 On the thirteen-component model the corrected PDU, 5PC and DF restraints now
@@ -1443,8 +1450,14 @@ model or establishes pair restraints.
    named-atom alternative on the exact checked endpoint. C472 tested isolated
    rigid motion and phosphate torsions against both junctions and the two pair
    distances. The outgoing link shortened as the pair contacts worsened.
-   Qualify the ordinary ATL seed with immediate neighbouring flexibility, screen
-   crystal-image contacts and check its starting displacement. Then run one
+   C478–C480 tested that neighbouring flexibility with a fresh crystal-image
+   contact search. A single extra receiving-phosphate rotation kept the two
+   central links at 1.610 and 1.603 Å, retained the source hands and brought
+   the paired contacts to 2.873 and 3.171 Å against 2.8 Å. A fresh Phenix
+   reading preserved the eight covalent and plane categories, all 211 frame
+   requests and the nine measured base B values. The two neighbours were
+   allowed to move, so check both outer junctions and all three pairs as well.
+   Carry the verified construction through the ordinary owner, then run one
    thirteen-change mixed diffraction lineage.
    Verify source identity, native pair/stack membership, unchanged flags and
    achieved local geometry at PDU, 5PC, DF and ATL. Exercise cache reuse and

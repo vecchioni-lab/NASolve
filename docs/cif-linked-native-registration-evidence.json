@@ -119860,5 +119860,238 @@
       "Canonical-only ordinary ancestry and retained-manager motion remain separate"
     ],
     "next": "Integrate verified local commit on Cedar; retire isolated checkout after integration audit. Then trace the existing canonical PostMR/checkpoint writer, preserving the distinction from the private 859-atom diagnostic."
+  },
+  "refined_plane_weights_and_linked_phosphate_2026_11_21": {
+    "scope": "C476–C480. Independent ring geometry and reported weights after actual refinement. Local locked-sugar construction and a fresh Phenix reading.",
+    "source": "86243467b3fa4b4bd6b86571e998fb579c533ce8",
+    "integrated_reader_controls": "04d506c5866d9075cfa4076de59fd269ee04f267",
+    "phenix": "2.2.1-6174",
+    "arm_measurement": {
+      "order": "Tip distance to all seven positive members, then to the six remaining ring atoms. Weights list control then added plane.",
+      "sites": [
+        {
+          "case": "c470-soft-arm-planes",
+          "site": "A:4",
+          "component": "5PC",
+          "atom": "C9",
+          "tip_A": [
+            0.045959,
+            0.285292
+          ],
+          "final_xyz_weights": [
+            0.957,
+            0.951
+          ],
+          "final_xyz_trial_counts": [
+            1,
+            1
+          ]
+        },
+        {
+          "case": "c470-soft-arm-planes",
+          "site": "D:5",
+          "component": "PDU",
+          "atom": "C5M",
+          "tip_A": [
+            0.018861,
+            0.123227
+          ],
+          "final_xyz_weights": [
+            0.957,
+            0.951
+          ],
+          "final_xyz_trial_counts": [
+            1,
+            1
+          ]
+        },
+        {
+          "case": "c474-heldout-arm",
+          "site": "B:4",
+          "component": "5PC",
+          "atom": "C9",
+          "tip_A": [
+            0.012704,
+            0.078952
+          ],
+          "final_xyz_weights": [
+            9.0,
+            10.0
+          ],
+          "final_xyz_trial_counts": [
+            14,
+            14
+          ]
+        },
+        {
+          "case": "c475-independent-pdu",
+          "site": "B:4",
+          "component": "PDU",
+          "atom": "C5M",
+          "tip_A": [
+            0.0358,
+            0.231111
+          ],
+          "final_xyz_weights": [
+            10.0,
+            1.517
+          ],
+          "final_xyz_trial_counts": [
+            14,
+            9
+          ]
+        }
+      ],
+      "independent_PDU": {
+        "terminal_bond_printed_residual": [
+          2.18,
+          0.0748
+        ],
+        "terminal_angle_printed_residual": [
+          3.45,
+          0.517
+        ],
+        "whole_added_plane_residual": 0.866,
+        "overlapping_printed_tip_contacts": [
+          0,
+          0
+        ]
+      },
+      "scope": "Reopened six complete five-cycle substituted-host refinements. No new diffraction run. Global adaptive weights differ. No independent ligand density claim."
+    },
+    "locked_sugar": {
+      "site": "A:11",
+      "neighbours": [
+        "A:10",
+        "A:12"
+      ],
+      "original": {
+        "links_A": [
+          1.5953,
+          1.8395
+        ],
+        "pair_A": [
+          3.3176,
+          3.3007
+        ],
+        "outgoing_O3_P_OP2_deg": 106.626,
+        "local_overlaps_over_0_4_A": 6,
+        "maximum_base_motion_A": 0.0,
+        "solver_converged": null,
+        "parameter_bounds_hit": null
+      },
+      "capped_rigid_flanks": {
+        "links_A": [
+          1.6103,
+          1.6084
+        ],
+        "pair_A": [
+          2.9884,
+          3.2052
+        ],
+        "outgoing_O3_P_OP2_deg": 82.873,
+        "local_overlaps_over_0_4_A": 3,
+        "maximum_base_motion_A": 1.186,
+        "solver_converged": false,
+        "parameter_bounds_hit": null
+      },
+      "continued_rigid_flanks": {
+        "links_A": [
+          1.6101,
+          1.608
+        ],
+        "pair_A": [
+          2.9946,
+          3.2111
+        ],
+        "outgoing_O3_P_OP2_deg": 82.842,
+        "local_overlaps_over_0_4_A": 3,
+        "maximum_base_motion_A": 1.183,
+        "solver_converged": true,
+        "parameter_bounds_hit": 0
+      },
+      "receiving_ester_rotation": {
+        "links_A": [
+          1.6105,
+          1.6031
+        ],
+        "pair_A": [
+          2.873,
+          3.171
+        ],
+        "outgoing_O3_P_OP2_deg": 106.201,
+        "local_overlaps_over_0_4_A": 4,
+        "maximum_base_motion_A": 1.584,
+        "solver_converged": true,
+        "parameter_bounds_hit": 0
+      },
+      "receiving_three_rotations": {
+        "links_A": [
+          1.609,
+          1.5994
+        ],
+        "pair_A": [
+          2.7346,
+          3.139
+        ],
+        "outgoing_O3_P_OP2_deg": 105.962,
+        "local_overlaps_over_0_4_A": 4,
+        "maximum_base_motion_A": 1.852,
+        "solver_converged": true,
+        "parameter_bounds_hit": 1
+      },
+      "rounded_candidate": "a9e1ee7842aa3b089adf6e30d9061d3b4287e86e97627a79fd4f754afabc9b81",
+      "fresh_native": {
+        "receipt": "f85af42c0a589e9f535644926c22faccda973026feb0c25671e18f3abb34b0cc",
+        "atoms": 869,
+        "monomers": 42,
+        "ordered_frame": 211,
+        "proxy_categories_equal": true,
+        "all_26_cifs_17_phils_in_order": true,
+        "all_9_host_B_preserved": true,
+        "maximum_serialization_A": 0.0007604014868528639
+      },
+      "scope": "Original coordinates were reproduced, 39 sites stayed fixed, seven ordered source-hand volumes retained sign. Distance-overlap counts include native crystal images. Separate construction only. No selection or diffraction with ATL."
+    },
+    "API": {
+      "unchanged_default_plane_format": 1,
+      "opt_in_plane_format": 2,
+      "assessment": "cif-doctor assess --run RUN --checkpoint ID --refined-planes --json",
+      "optional_round_statistics": "coordinate_weight_steps",
+      "old_artifacts_require_migration": false
+    },
+    "focused_validation": {
+      "environment": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src",
+      "pytest": "-m pytest -q -p no:cacheprovider",
+      "tests": [
+        "test_autorefine",
+        "test_refinement_plane_departures",
+        "test_refinement_chemistry",
+        "test_refinement_scalar_geometry",
+        "test_refine_doctor",
+        "test_cif_doctor_cli",
+        "test_cif_doctor_run",
+        "test_cif_furanose_bridge",
+        "test_cif_base_anchored_furanose",
+        "test_cif_reader_control_handoff"
+      ],
+      "result": "211 passed, 38 subtests passed in 82.53 s",
+      "full_suite": "Not run for this push."
+    },
+    "local_evidence": {
+      "c476-independent-plane-measurement/sealed-planes.json": "e4a4d1b1769040f745aaab43b91f6d0d3320880deb7e91adabac8ad02f984222",
+      "c476-independent-plane-measurement/printed.json": "3bd59ed6f3c94c0c6f0cc678fbb26f666a8861ea28965285d06196b8d70a3b9e",
+      "c476-independent-plane-measurement/weights.json": "9f9f57495a5f3d3854c3cff5747ab4556fa82c53b91025c8103fe8e188ea64af",
+      "c478-locked-sugar-neighbours/attempt-002/flanks.json": "699746a64b9f3af3874f0770da31d4086e308fda38a26247c0523f74d83c0266",
+      "c479-downstream-phosphate/fit-001/continued-control.json": "3ec0b1fa84290c77eaedc9bb5262c8518d8282f8697202726fc560892d46ffd4",
+      "c479-downstream-phosphate/fit-001/ester-only.json": "345ddd4429e5fcab4ac3ff78ecba43503d2c3d79a54f30fa2623928867e8c32e",
+      "c479-downstream-phosphate/fit-001/full-recipient-arm.json": "c164db04da5cce35daa08d1b321314d765f29e13b468c66431969921ad19bb0e",
+      "c480-rounded-locked-seed/attempt-003/native.json": "6bd3dd47aa9ead88c2630792eb1dcbabd0792062b195b5fe4dfe7bf622612bf5",
+      "runners/c476_arm_planes.py": "65a089cc4b45ca0b3da7316ec35f3fcc168e42362b88f75bee7415c8fa13912b",
+      "runners/c478_neighbour_geometry.py": "a24b98c6675b0da5ec830e96399e48bfae34abffb6400ac283560bf519f41b5b",
+      "runners/c479_phosphate_rotation.py": "13c7cd36fc173c5df1ad14c47d21656c6ae1a39dd1e9a1aef30edfc594c0cf9f",
+      "runners/c480_rounded_locked_seed.py": "eb2ffb93105a619dc1b08f252e7bf18818a6dd205f4c8440e0554f65fc3b84fa"
+    },
+    "next": "Compare the same source ring in ordinary and added-plane models. Carry the bounded locked-sugar construction into an ordinary lineage before claiming survival in diffraction."
   }
 }

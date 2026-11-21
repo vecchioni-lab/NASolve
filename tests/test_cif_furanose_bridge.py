@@ -30,6 +30,28 @@ def seed(placement,out,**kw):
     return prepare_furanose_bridge_seed(placement,out,endpoint_weight=1000.,max_base_displacement=2.,**kw)
 
 
+def test_source_phosphate_arm_roles_survive_renaming_but_refuse_a_ring_or_double_bond(tmp_path):
+    from nasolve.cif_attachment_profiles import inspect_attachment_profile
+    from nasolve.cif_furanose_bridge import phosphate_arm_rotors
+    from nasolve.cif_stereochemistry_audit import _values, _graph
+
+    paths, context = inputs(tmp_path, bridged=True, rename=True)
+    roles = inspect_attachment_profile(paths[0], "Z99", workbook=paths[3])["bindings"]
+    _, bonds, _, graph = _graph(_values(paths[0], "Z99"))
+    leaving = context["ports"]["phosphate"]["leaving_atom"]
+    groups = phosphate_arm_rotors(roles, graph, bonds, leaving_atom=leaving)
+    ester, phosphorus = groups[-1]["axis_atoms"]
+    assert (ester, phosphorus) == (roles["five_o"], roles["phosphate"])
+    assert leaving in groups[-1]["moving_source_atoms"]
+    assert roles["ring_c4"] not in set().union(*(set(r["moving_source_atoms"]) for r in groups))
+    with pytest.raises(ValueError, match="single bond"):
+        phosphate_arm_rotors(roles, graph, {**bonds, tuple(sorted([ester, phosphorus])): "DOUBLE"}, leaving_atom=leaving)
+    graph[roles["ring_c4"]].add(leaving)
+    graph[leaving].add(roles["ring_c4"])
+    with pytest.raises(ValueError, match="ring bond"):
+        phosphate_arm_rotors(roles, graph, bonds, leaving_atom=leaving)
+
+
 @pytest.mark.parametrize('bridged,rename,hand',[(False,False,'D'),(False,True,'L'),(True,False,'D'),(True,True,'D')])
 def test_general_seed_preserves_all_source_hands_and_bystanders(tmp_path,bridged,rename,hand):
     from nasolve.cif_furanose_bridge import read_furanose_bridge_seed
