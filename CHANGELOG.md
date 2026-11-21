@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record the completed FT_Hg attachment-stiffness control
+
+- Record one native five-cycle sensitivity: a shorter DF sugar–base attachment
+  transfers strain into neighboring bonds and does not establish an accepted fit.
+- Preserve separate final B/scaling, model-assisted map and missing-contact-table
+  limitations; keep A01 partial and A02 gated. Scope source-bound coupled placement
+  through existing shared owners instead of repeating isolated stiffness controls.
+- Documentation only; no runtime, schema, default, migration or new f″ behavior.
+  Private models/maps and the small local science checkout remain outside Git.
+
 ### Release a verified stopped failed metal session's future allowance
 
 - Add explicit `settle_failed_audited_session` for newly bound budgeted failures

@@ -7,6 +7,106 @@ owns feature completion. The earlier chronological diary is preserved as
 [evidence through 18 November](history/metal-development-handoff-2026-11-18.md),
 not a second queue.
 
+## A01 current science: attachment stiffness transfers strain
+
+**21 November, completed control; A01 partial and A02 gated.** One bounded
+five-cycle FT_Hg continuation changed only the DF C1′–N1 sigma from 0.038 to
+0.019 Å (weight ×4), retaining its 1.499 Å target. It reused the completed
+unchanged continuation as comparator. The native preflight verified exactly
+one changed local bond weight, all 859 atom identities and all 1,009 printed
+bond terms. Final effective local proxy families and the full printed bond
+inventory preserve this declared change; source chemistry, target values,
+original Hg recipe, NAR/frame terms, observations/Free-R, MLHL phases, starting
+XYZ/B/Q, global weighting policy and five-cycle recipe remain matched.
+
+| Observation | Unchanged continuation | Stiffer attachment |
+| --- | ---: | ---: |
+| DF C1′–N1 (Å; target 1.499) | 1.62294 | 1.53401 |
+| DF N1–C2 (Å; target 1.396) | 1.50804 | 1.54737 |
+| DF C1′–O4′ (Å; target 1.402) | 1.41962 | 1.45405 |
+| DF base bond RMS deviation (Å) | 0.06038 | 0.07031 |
+| Final Rwork / Rfree | 0.2802 / 0.2902 | 0.3060 / 0.3391 |
+| Hg–O4 B:4 (Å) | 1.44159 | 1.41447 |
+| N3–Hg–N3 (°) | 117.24 | 117.06 |
+| DF / DT base mean B (Å²) | 100.22 / 161.18 | 27.66 / 88.26 |
+| Hg B (Å²) | 141.34 | 63.85 |
+| Final overall B transfer (Å²) | +43.10 | −1.61 |
+
+The attachment improves but adjacent bonds stretch. Selected sugar hands remain
+correct and DF base planarity is retained. This is an informative negative
+control, not a new dictionary default or accepted endpoint. Close the isolated
+stiffness subgoal; do not repeat a sigma grid. Broad chemistry, coordination,
+maps and fit govern review rather than fractional angle differences. R/B-scale
+paths differ substantially: the full fit difference is not an isolated estimate
+of this bond's chemical effect. All Q remain 1; f″ is fixed at zero, not measured.
+
+**Local evidence:** the qualified installed C508 reader remeasures 41 selected
+contact witnesses from the new final native table. The listed DF N1/C1′ contacts
+show no positive printed vdW overlap; direct attachment crowding is not supported
+by that table. This does not establish a full chemical clash classification.
+The unchanged continuation did not save its final nonbonded table; it remains
+missing. Saved map coefficients were sampled at 41 positions in each of three
+states, also at common reference positions. New Hg samples are +5.54σ / −2.49σ
+for 2mFo−DFc / mFo−DFc. At 5.06 Å these are overlapping sample locations, not
+resolved atomic peaks. The unfilled, unsharpened, isotropized maps are
+model-assisted, include Free-R, and use separate whole-cell σ normalization.
+Reduced negative density is not independent occupancy/count evidence.
+
+**Execution and review:** Phenix **2.2.1-6174**, one complete native five-cycle
+execution, **410.94 s**; all owned processes stopped. Cold readers pass **6,607
+field/evidence checks**, saved-map consistency **250**, and contact readback
+**42**. These are scientific readback assertions, not a new product test suite.
+The observer records 87 maximum-iteration and 7 unreported stops across 94 XYZ
+calls; selected-endpoint attribution and independent convergence remain
+unassessed. No runtime/schema/default change, full suite, new f″, automatic
+selection, migration or data retirement. Source inputs and earlier runs remain
+unchanged; generated science is deliberately excluded from Git.
+
+Private evidence at the existing Alder artifact anchor:
+`a01-attachment-stiffness-20261121-02/`; source commit
+`3b83edce40202b0595230aa5f92ed6a3c3f102b6`. New model SHA-256:
+`dbd7954fc261ec08b1e1643202b9bbb54924a3a74ef4e3f0bf9e12768b8acab3`;
+map SHA-256: `66cec5b421174491241ae6701d5cffa66965dbc081491de7aae8cfdb2f1eaa2b`.
+`plan.json`, `science-comparison.json` and execution receipts bind exact sources,
+commands and native delivery. Runners A368/A371/A373/A374/A376 own execution,
+cold review, saved-map sampling, contact readback and figure rendering. From the
+NASolve artifact checkout, the cold command was:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-metal-coordination/src /private/tmp/alder-validation-20261121-01/bin/python branch-artifacts/Alder/runners/A371_review_attachment.py
+```
+
+The exact native commands and remaining validation commands are in the local
+checkout `evidence.json`; absolute command paths are historical provenance.
+Operational artifact references use the declared Alder anchor and checksums.
+The small visual report is
+`ScienceCheckouts/Hazel/2026-11-21_ft-attachment/index.html` beside the repositories;
+its source is the experiment's `checkout/`. Figures and summary records are
+copied, not models/maps. This is not a portability claim for the historical run.
+The preceding local packing/map inventory remains separately recorded under
+`a01-local-support-20261121-01/`, including its two stopped script setup failures.
+
+**Next bounded scientific bridge:** the existing source-bound whole-base
+constructor already supplies an approximately 1.49958 Å initial attachment;
+strain emerges during refinement. Reuse that constructor rather than rebuild it.
+A whole-residue rigid transform also preserves inherited strain. The new question
+is whether source-consistent internal geometry combined with motion of both
+partners and declared flanks can survive open refinement. Use coherent base/sugar
+and neighbor placement rather than independently tightening another bond. Cedar
+C488–501 supplies related graph-constrained placement and paired/flanking motion;
+C397–400 separates geometric and native target forces. Neither qualifies FT_Hg
+modified-base/metal motion. Willow's canonical transport/mask contract also does
+not admit that chemistry. The next proposal must bind the full effective
+source/projection dictionaries, all crossing terms and declared coordination,
+retain original B/Q/element identity and bystander bytes, and verify both polymer
+links, stereochemistry, internal geometry, packing and displacement bounds before
+any fresh diffraction child. Compare the same open XYZ/B policy and branch-specific
+maps/R statistics; derive environmental B and freeze only after an acceptable
+endpoint. Reuse the completed movement-region/pivot inventory, with no second
+geometry engine, repeated grid or automatic admission. Cedar's separate target
+change also altered native sugar chirality restraints: a requested single edit
+is not sufficient proof of a single effective native change.
+
 ## A04 current checkpoint: cooperative storage reservations
 
 **Latest bounded step: explicit release of a known-stopped failed session.**
@@ -1471,9 +1571,11 @@ private runners stay excluded. No unchanged runtime tests or full suite reran.
    bridge diagnostic also closes: phased likelihood opposes tested Hg straightening,
    while both recipe and nonbonded geometry favour it. The base-opening finite
    profile is withheld on a predeclared numerical check; do not relax the tolerance
-   or repeat it to obtain a pass. Scope an explicit local coordination alternative
-   before any new fit, reusing the completed unchanged continuation as appropriate.
-   Broad geometry/maps/refinement guide review; fractional deviations are not
+   or repeat it to obtain a pass. The local angle and selective attachment-stiffness
+   alternatives are now completed, unselected controls; reuse their evidence.
+   Follow the [current science bridge](#a01-current-science-attachment-stiffness-transfers-strain)
+   for coherent source-bound placement and modified-metal admission before another
+   fit. Broad geometry/maps/refinement guide review; fractional deviations are not
    vetoes. No repeated control matrix is queued.
 4. A04 explicit parent transport is qualified. The software census shows lazy
    modules/resources and unreadable OS components; store one scoped profile per

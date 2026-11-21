@@ -284,6 +284,18 @@ descriptive; broad geometry and combined scientific evidence guide review.
    substep; do not repeat its grid. Next separate donor/Hg pose choices, review
    crossing geometry/packing and qualify source-bound modified-metal admission,
    protected B/Q and fresh child diffraction through the shared owners.
+   The 21 November selective attachment-stiffness control is also complete:
+   halving DF C1′–N1 sigma shortens it to 1.534 Å, but stretches N1–C2 to
+   1.547 Å and leaves Rwork/Rfree at 0.3060/0.3391, with different final B/scaling.
+   It supplies no new default or accepted endpoint. Saved maps/contact tables
+   do not support direct attachment crowding or independent occupancy inference.
+   Close this control, retain its evidence, and scope coherent source-bound
+   base/sugar/neighbor placement. Reuse the already correct initial constructor;
+   do not confuse rigid transport of a strained residue with internal repair.
+   Reuse Cedar's related placement and Willow's
+   transport pieces without claiming modified-metal qualification. The
+   [current A01 science record](metal-development-handoff.md#a01-current-science-attachment-stiffness-transfers-strain)
+   records exact values, checks, missing evidence and the next admission boundary.
 2. **A01 → A02:** qualify an open XYZ/B endpoint through local chemistry,
    coordination, Rwork/Rfree, stopping evidence and maps. Derive environmental
    metal B from the actual refined donors/base-only atoms, report disagreement
