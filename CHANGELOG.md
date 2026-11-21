@@ -10,6 +10,8 @@ entries are reconstructed from repository history.
 
 ### Building an internal locked sugar during checked preparation
 
+- When a proposed sugar fit moves its base too far, the diagnostic identifies
+  the residue, site, atom, measured distance and configured limit in ångströms.
 - For an internal locked sugar on the mutation card, checked PostMR accepts
   `--locked-sugar-site CHAIN:RESIDUE`. It finds the target, the host sugar and
   the installed NARestraints workbook. The local dictionary store can reuse a

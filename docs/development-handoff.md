@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C497 registered mixed-duplex refinement — Rowan**.
+Updated **2026-11-21, C497–C499 mixed refinement and locked-sugar transfer — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -34,6 +34,37 @@ The nine-pair control has its registered diffraction result. The unfamiliar
 eight-residue challenge and the independent symmetry-linked PDU:PDU gate
 remain open. The compact ledger entry is
 `registered_thirteen_change_diffraction_2026_11_21`.
+
+**How far the locked-sugar result transfers.** TLN passed all 21 isolated
+Phenix dictionary checks. In the same ordinary thirteen-substitution card,
+its base oxygen O4 moved 4.739 Å when fitted between the phosphates. For
+9V9, O4 moved 3.852 Å. Cedar now reports the residue, site, atom, measured
+motion and limit. In 27 starts per residue the existing routine found
+13 fits below 2 Å for ATL and zero for TLN or 9V9. Changing the glycosidic
+angle brought 9V9 down to 1.801 Å but left its pair contacts at 4.38/4.42 Å.
+The three independently generated NARestraints files request 2.8 Å with
+sigmas of 0.2 Å (ATL/TLN) or 0.4 Å (9V9). The measured starting host also
+has long contacts. A fixed-neighbour fit that mimics that host cannot
+establish a good pair. The prescribed-target control recovered the two
+bond lengths but shifted the bases too far. No new pose qualified for
+ordinary use. See `locked_sugar_transfer_geometry_2026_11_21`.
+
+Three separate four-residue Phenix readings then checked whether the other
+sugars' dictionaries actually produce the expected links. Each showed both
+1.607(12) Å phosphate bonds, the corresponding eight flanking angles, and
+the two requested NARestraints pair bonds. Both the ten covalent targets
+and their sigmas agreed across ATL, TLN and 9V9. Phenix found every expected
+heavy atom. This was a geometry reading using a 5 Å diagnostic allowance for
+placement. TLN and 9V9 still need a working ordinary pose and diffraction
+testing. Reuse the source-bound three-residue adjustment with the full duplex
+and original frame before considering a change to automatic construction.
+
+The changed diagnostic passed 72 focused tests across furanose construction,
+PostMR lineage and explicit mutation targets. Both atom-naming regressions
+failed on the previous wording and passed on the relocated install, where
+all 320 package source files matched. Use
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_cif_furanose_bridge.py tests/test_postmr_furanose_lineage.py tests/test_postmr_explicit_targets.py`.
+There is no record migration. The full suite was deferred.
 
 **The mutation card can now supply the locked-sugar chemistry.** On a fresh
 Phaser run, the ordinary site option found ATL, its DT host at A:11 and the
@@ -659,11 +690,10 @@ six-atom ring plane 0.094297 Å. These descriptive starting values are not accep
 ## Next work, in order
 
 1. Q06 still needs a defensible scope for post-refinement PDU and DF geometry.
-   Reuse the six saved C470/C474/C475 endpoints. Measure the tip against its
-   source ring, including the ordinary control without a seven-atom plane.
-   Compare both straight-angle targets, the terminal bond, the selected
-   weights and contacts alongside it. The earlier PDU:PDU
-   construct retains separate incoming-phosphate and symmetry requirements. The
+   C476/C477 already compared the six C470/C474/C475 endpoints against the
+   source rings. C497 adds the four named sites from the registered mixed
+   scaffold. The earlier PDU:PDU construct retains separate incoming-phosphate
+   and symmetry requirements. The
    synthetic recovery and omitted-scattering controls are complete. Repeating them
    or locating the original collaborator files is unnecessary for this checkpoint.
 2. The [DF–Hg–DT comparison](cif-doctor-completion-queue.md#df-hg-dt-comparison)
@@ -672,9 +702,9 @@ six-atom ring plane 0.094297 Å. These descriptive starting values are not accep
 3. Ordinary continuation from a checked root is demonstrated with the counted pair
    fully supplied. Wider protocols, additional force terms in that combined route
    and validated density fitting each need their own evidence before being advertised.
-4. Q07: ordinary locked-sugar placement and displacement, followed by a matched
-   13-component diffraction child with ATL alongside. Then the held-out modified-pair
-   challenge. Retain L-DNA/FANA/L-FANA/L-FDNA/PNA/locked-sugar learning under Q08–Q14.
+4. Q07 has its registered thirteen-component diffraction child with ATL
+   alongside. The held-out eight-residue modified-pair challenge remains.
+   Retain L-DNA/FANA/L-FANA/L-FDNA/PNA/locked-sugar learning under Q08–Q14.
    Q15 explains the result and owns the [regional twist and radius milestones](cif-doctor-completion-queue.md#regional-helix-analysis-for-publication)
    shared with Willow and Alder. Q16 ends with the AutoPhase compatibility audit,
    combined-source/full/native gates and merge review. No automatic merge or defaults.

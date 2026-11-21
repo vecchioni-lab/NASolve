@@ -701,7 +701,7 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |
 | **Q10 — handle PNA as PNA** | Respect its backbone and attachments instead of pretending it has a DNA phosphate. | Validate connected construction, native restraints and numerical behavior. |
-| **Q11 — transfer the locked-sugar fixes** | Check another alpha-L-LNA example beyond ATL. | Complete linked 10C/held-out validation while rejecting an incompatible scaffold. |
+| **Q11 — transfer the locked-sugar fixes** | Check another alpha-L-LNA example beyond ATL. | Phenix reads both native junctions for 9V9 and TLN in four-residue tests. Find a source-preserving pose that also holds the pair in the complete duplex, then test it against diffraction. 10C still needs a chemically supported leaving group. |
 | **Q12 — know the catalogue's actual coverage** | Account for every NARestraints ligand entry. | Turn the 599-code/618-row census into supported, repairable or specifically unresolved cases. A family example does not prove every member. |
 | **Q13 — preserve chemical identity** | Keep hydrogens, charge, phosphates and attachment changes chemically justified. | Resolve ambiguous source states explicitly; a prettier geometry cannot authorize different chemistry. |
 | **Q14 — make sure Doctor catches real errors** | Test broken examples and sound examples that should be left alone. | Retain reproducible challenge inputs and false-alarm controls, with unavailable historical inputs stated honestly. |
@@ -1687,6 +1687,28 @@ fitting also exceeded the base-motion limit at all five weights. The next
 held-out check is a bounded linked pose that keeps the NARestraints pair and
 both backbone bonds. These controls already cover a simple change of frame,
 arm weight or host glycosidic angle.
+
+C498 used a fresh TLN mutation card alongside ATL and the held-out 9V9.
+All 21 isolated TLN checks passed. Of the existing 27 phosphate-arm fits,
+13 preserved the 2 Å base limit for ATL and none did for TLN or 9V9.
+Rotating the source-declared sugar–base bond by 30° increments gave a 9V9
+pose within the limit, but its two adenine contacts were 4.38/4.42 Å.
+NARestraints actually requests 2.8 Å for both contacts in all three cases.
+Its sigmas are 0.2 Å for ATL/TLN and 0.4 Å for 9V9. The original host
+contacts themselves measure 3.81/3.63 Å. Copying that host shape or
+optimizing the two junctions alone leaves poor pairing. Use the existing
+three-residue method when testing a candidate and measure both outer
+junctions and neighbouring pairs. Keep the 2 Å ordinary limit.
+
+C499 checked the alternate starting models directly in Phenix 2.2.1-6174.
+Each four-residue model contained DG–locked sugar–DZ and the opposing
+adenine. Phenix recognized the two native phosphate bonds, all eight
+flanking angles, and the two supplied NARestraints bond targets with their
+actual sigmas. All ten covalent targets and sigmas agreed with the registered
+ATL control. All expected heavy atoms were present. TLN and 9V9 needed a
+separate 5 Å diagnostic allowance to expose their junctions for this test.
+They still exceed the ordinary 2 Å limit. Whole-duplex clashes, stacking,
+outer junctions and diffraction remain to be tested for those two residues.
 
 The source flag for 10C names a doubly bonded O3P with no hydrogen. LCA and
 LCC flag OP2 while a distinct protonated OP3 remains unflagged. Automatic

@@ -89,8 +89,14 @@ def _seed(control, config):
     fitted = {n:points[index[n]].tolist() for n in heavy}
     rounded = {n:[float(f'{x:.3f}') for x in fitted[n]] for n in retained}
     displacement = {n:math.dist(rounded[n], prior[(chain, resid, '', '', n)]['xyz']) for n in sorted(base)}
-    if not displacement or max(displacement.values()) > config['max_base_displacement']:
-        raise ValueError('Selected fit exceeds the explicit base displacement limit')
+    if not displacement:
+        raise ValueError(f'{code} at {selected} has no retained base atoms to measure')
+    worst_atom = max(displacement, key=displacement.__getitem__)
+    maximum = displacement[worst_atom]
+    limit = config['max_base_displacement']
+    if maximum > limit:
+        raise ValueError(f'{code} at {selected} exceeds the explicit base displacement limit '
+                         f'({worst_atom} moved {maximum:.3f} Å, limit {limit:.3f} Å)')
     lengths = []; final_lengths = []; angles = []; final_angles = []
     for a, b in bonds:
         if {a, b} <= retained:
@@ -138,7 +144,7 @@ def _seed(control, config):
         'fit_anchors':anchors, 'fit_weights':weights.tolist(), 'rotors':groups, 'search':search,
         'full_precision_heavy_coordinates':{n:fitted[n] for n in sorted(retained)},
         'source_hands':hands, 'junctions':junctions, 'base_displacement_angstrom':displacement,
-        'max_base_displacement_angstrom':max(displacement.values()),
+        'max_base_displacement_angstrom':maximum,
         'preservation':{'all_declared_source_hands':True, 'max_bond_length_error':max(lengths),
             'max_angle_error_degrees':max(angles), 'rounded_max_bond_length_error':max(final_lengths),
             'rounded_max_angle_error_degrees':max(final_angles), 'bystander_records_exact':True},

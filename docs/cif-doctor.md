@@ -1343,7 +1343,10 @@ on a fresh accepted MR run. For example, a card with `A:11 = ATL` can use
 same chemistry for review before checkpoint publication. Cedar checks the
 2′-O,4′-C bridge from the source, finds both same-asymmetric-unit backbone
 partners and preserves the sugar centres. The stored dictionary must pass
-the current Phenix checks. End residues, ambiguous leaving atoms and a
+the current Phenix checks. If the fitted base moves too far, the diagnostic
+names its most displaced atom and gives the measured distance and limit.
+For example, in the TLN control it reported O4 moving 4.739 Å at A:11
+against a 2.000 Å limit. End residues, ambiguous leaving atoms and a
 bridged sugar that cannot fit its neighbours still need review. Campaign
 cards do not yet expose this site option.
 

@@ -83,15 +83,29 @@ def test_invalid_bound_refuses_without_output(tmp_path,key,value):
     assert not out.exists()
 
 
-def test_excessive_motion_never_becomes_a_seed(tmp_path):
+@pytest.mark.parametrize("rename", [False, True])
+def test_excessive_motion_names_the_atom_and_never_becomes_a_seed(tmp_path, rename):
     import nasolve.cif_furanose_bridge as module
-    placement=control(tmp_path)
-    original=module._search
-    def shifted(*args):
-        points,report=original(*args);return points+10,report
-    with patch.object(module,'_search',shifted),pytest.raises(ValueError,match='base displacement'):
-        seed(placement,tmp_path/'seed')
-    assert not (tmp_path/'seed').exists()
+    from nasolve.cif_construction_provenance import _pdb_inventory
+
+    placement = control(tmp_path, bridged=True, rename=rename)
+    data = json.loads((placement / "placement.json").read_bytes())
+    atom = data["target_frame_atoms"][1]
+    prior = _pdb_inventory(placement / "model.pdb")[("A", "11", "", "", atom)]["xyz"]
+    search = module._search
+
+    def shifted(xyz, axes, indices, target, weights):
+        points, report = search(xyz, axes, indices, target, weights)
+        points[indices[1]] = [prior[0] + 3.456, prior[1], prior[2]]
+        return points, report
+
+    with patch.object(module, "_search", shifted), pytest.raises(ValueError) as error:
+        seed(placement, tmp_path / "seed")
+    assert str(error.value) == (
+        f"Z99 at A:11 exceeds the explicit base displacement limit "
+        f"({atom} moved 3.456 Å, limit 2.000 Å)"
+    )
+    assert not (tmp_path / "seed").exists()
 
 
 @pytest.mark.parametrize('defect',['model','report','config','extra','empty_directory','receipt','incomplete'])
