@@ -191,3 +191,69 @@ def inspect_helical_region(model_path, region, *, expected_model_sha256,
         pair_frames=frames, steps=steps,
         coverage={'declared_steps':len(steps),'measured_steps':measured,'unavailable_steps':len(steps)-measured})
     return result
+
+
+def _weighted_step_summary(steps, weights, minimum):
+    """Summarize reader-owned steps; no partial-coverage renormalization."""
+    if (type(minimum) not in (int, float) or not math.isfinite(minimum)
+            or not 0 < minimum < 180):
+        raise ValueError('Require an explicit finite mean-twist limit between 0 and 180 degrees')
+    if (not isinstance(weights, (list, tuple)) or len(weights) != len(steps)
+            or not weights or any(type(w) not in (int, float) or not math.isfinite(w) or w < 0 for w in weights)
+            or not any(w > 0 for w in weights)):
+        raise ValueError('Declare one finite nonnegative weight per step, with positive total weight')
+    try:
+        total = math.fsum(weights)
+    except OverflowError as exc:
+        raise ValueError('Total step weight must be finite') from exc
+    if not math.isfinite(total):
+        raise ValueError('Total step weight must be finite')
+    rows = [{**step, 'weight': weight} for step, weight in zip(steps, weights)]
+    selected = [i for i, weight in enumerate(weights) if weight > 0]
+    measured = [r for r in rows if r['weight'] > 0 and r['status'] == 'MEASURED']
+    result = dict(method='declared-weighted-simple-twist-v1', status='UNAVAILABLE',
+        reason=None, weighted_mean_twist_deg=None, signed_bp_per_turn=None,
+        repeat_reason='MEAN_UNAVAILABLE', min_abs_mean_twist_deg=minimum,
+        weight_policy='Caller-declared ordered weights; zero excludes a step',
+        angle_policy='Signed arithmetic mean on one branch; range >=180 degrees unavailable',
+        steps=rows, coverage=dict(declared_steps=len(steps), included_steps=len(selected),
+            excluded_steps=len(steps)-len(selected), measured_included_steps=len(measured),
+            declared_weight=total, measured_weight=math.fsum(r['weight'] for r in measured)))
+    if len(measured) != len(selected):
+        return {**result, 'reason': 'INCOMPLETE_WEIGHTED_COVERAGE'}
+    if selected != list(range(selected[0], selected[-1]+1)):
+        return {**result, 'reason': 'DISCONTIGUOUS_WEIGHTED_REGION'}
+    values = [r['twist_deg'] for r in measured]
+    if max(values)-min(values) >= 180-1e-8:
+        return {**result, 'reason': 'AMBIGUOUS_ANGLE_BRANCH'}
+    # Normalize first to avoid overflow in weight*angle for large valid weights.
+    mean = math.fsum(r['weight']/total*r['twist_deg'] for r in measured)
+    result.update(status='MEASURED', weighted_mean_twist_deg=mean,
+                  repeat_reason='MEAN_AT_OR_BELOW_DECLARED_LIMIT')
+    if abs(mean) > minimum:
+        repeat = 360/mean
+        if math.isfinite(repeat):
+            result.update(signed_bp_per_turn=repeat, repeat_reason=None)
+        else:
+            result['repeat_reason'] = 'NONFINITE_REPEAT'
+    return result
+
+
+def inspect_weighted_twist(model_path, region, *, expected_model_sha256,
+                           max_ring_fit_rmsd_angstrom, step_weights,
+                           min_abs_mean_twist_deg, include_half_span=False):
+    """Add a declared contiguous regional summary to the existing raw report.
+
+    Supply one weight for every adjacent pair step, including explicit zeros.
+    Missing positive-weight steps leave the mean unavailable. The caller's
+    positive mean-magnitude limit suppresses unstable signed bp/turn; it is not
+    an experimental uncertainty or chemical acceptance threshold. No circular
+    unwrapping, radius, curvature or coordinate operation is inferred.
+    """
+    result = inspect_helical_region(model_path, region,
+        expected_model_sha256=expected_model_sha256,
+        max_ring_fit_rmsd_angstrom=max_ring_fit_rmsd_angstrom,
+        include_half_span=include_half_span)
+    result['regional_twist_summary'] = _weighted_step_summary(
+        result['simple_step_twist']['steps'], step_weights, min_abs_mean_twist_deg)
+    return result
