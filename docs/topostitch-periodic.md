@@ -11092,3 +11092,54 @@ Next use the existing Cedar captured-geometry reader to examine these actual
 boundary targets and current covalent strain before planning a deformation. Keep
 torsion/plane conventions, absent pair intent, nonbonded scope and density separate.
 No new native capture or duplicate metric engine is needed for that question.
+
+
+## W189 — Measure the existing local and remote covalent baseline
+
+The existing Cedar `cif_captured_geometry.review_captured_geometry` reads W188's
+saved exact capture. No runtime modification, new native interpretation, optimizer
+or refinement occurs. All **7909** bond/angle/chirality scalars retain their actual
+native index and window partition; the **10** boundary bond/angle values reproduce
+with independent distance/atan2 arithmetic to 1e-10. Inputs and selection are unchanged.
+
+The two edge bonds are **1.59668782 / 1.62668251 Å**, against **1.607 Å** targets.
+Eight boundary angles have maximum absolute target difference **2.53505544°**;
+all ten edge scalars are below three nominal deviation units. Selected-window
+bond/angle RMS differences are **0.01028839 Å / 1.14480175°**, with one internal
+angle above three nominal units and none above five. Its 20 captured ordered-volume
+signs agree with their targets; this does not establish independent absolute
+stereochemistry or sugar pucker.
+
+The unselected remainder already contains **7 bonds and 26 angles above five
+nominal units**. Worst examples are B1 O3′–B2 P **1.28539255 Å** and C1 O3′–C2 P
+**1.39036326 Å**; their C3′–O3′–P angles are **148.996676° / 142.734004°**, against
+119.7° targets. These are defects in this unmodified original **PostMR parent**,
+not a result of a bend and not an assessment of the selected `refine-001` child.
+Future local/global comparisons must preserve this baseline rather than attributing
+all remote strain to a new candidate. Nominal deviation is the existing reader's
+(descriptive) difference × sqrt(weight), not a native residual or calibrated gate.
+Six crossing dihedrals remain unscored; pair/stack intent, symmetry/image closure,
+nonbonded geometry, density and chemical/scientific acceptance remain separate.
+
+The compact local checkout is
+`ScienceCheckouts:Linden/2026-11-21_canonical-boundary-baseline/geometry-baseline.html`,
+with PNG/SVG figure, exact JSON and W188 window report. **Matplotlib 3.11.1** in the
+existing Phenix Python environment generated the standard plot; the PNG was visually
+inspected for labels, units and clipping. Raw models/MTZ/native captures stay in their
+original local locations. No figure or unpublished numerical result file is uploaded.
+
+Anchored receipts are in `NASolve:branch-artifacts/willow/w188-canonical-window/`:
+`geometry-baseline.json` binds model/capture/window and reader/controller hashes;
+`geometry-baseline.html` and PNG/SVG explain the findings. Reproducer:
+`PYTHONDONTWRITEBYTECODE=1 <python3.12> -B <NASolve>/branch-artifacts/willow/runners/w189-boundary-geometry.py`.
+It is an immutable one-shot local diagnostic; do not overwrite its output. The
+unchanged geometry owner is Cedar `04d506c5`; no new installation or suite rerun
+is needed for this evidence-only step.
+
+There is no independently declared paired-window target authorizing a bend in this
+root. The next maintained source/intent step is to compose the existing
+`cif_model_context.derive_prepared_model_context` with the exact parent reader,
+keeping DERIVED ordinary backbone context distinct from checked preparation.
+An initial direct call returns 121 standard links and all 128 canonical sites.
+This is the ordinary auditor's coordinate/frozen-plan derivation, not independent
+experimental topology or permission to invent missing sticky-end partners.

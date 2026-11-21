@@ -1,5 +1,23 @@
 # NASolve development handoff — Willow
 
+**W189: keep local and pre-existing remote strain separate.** The shared Cedar
+geometry reader measures the saved W188 capture without another native run.
+E8–E9 / E13–E14 boundary bonds are 1.59669 / 1.62668 Å against 1.607 Å targets;
+the eight boundary angles differ by at most 2.535°. The original PostMR parent
+already has remote B1–B2 and C1–C2 distortions: 1.28539 / 1.39036 Å links and
+148.997° / 142.734° C3′–O3′–P angles (119.7° target). Global post-bend scores must
+separate those inherited defects from local changes. Ten crossing scalars reproduce
+independently and all 7909 scalar rows map to their original partitions. Torsions,
+pucker, density and acceptance remain open. [Methods](topostitch-periodic.md#w189--measure-the-existing-local-and-remote-covalent-baseline).
+Local checkout: `ScienceCheckouts/Linden/2026-11-21_canonical-boundary-baseline/geometry-baseline.html`.
+
+**Next source integration:** use the existing ordinary model-context owner on the
+actual frozen plan/model. An initial read derives 121 standard-backbone links
+across 128 canonical residues; preserve this as derived source intent, separately
+from checked dictionary preparation or experimental truth. Bind it through the
+maintained exact-parent reader and compare with the saved native capture before
+any bend. No independent paired-window target exists here; do not invent one.
+
 **W188: inspect what a proposed window is attached to.** The new read-only
 `inspect_checkpoint_native_window` composes the exact ordinary parent with Cedar's
 capture, monomer and named-proxy readers. The genuine X11_22 parent has 2603 atoms
@@ -14,9 +32,8 @@ Native support is observational: inherited file hashes/multiplicity do not prove
 identical effective settings when extra PHIL is present or input order differs.
 Zero custom requests does not establish absent pairing or interactions. Before an
 execution gate, bind exact roles/order/settings and prospective topology intent.
-Next use this same measured boundary to assess its existing covalent geometry
-through the shared Cedar geometry reader; do not build another force calculator
-or repeat native interpretation. Original pairing/motion gates remain open.
+W189 now supplies that measured boundary baseline. Original pairing/motion
+gates remain open; no force calculator or native interpretation was duplicated.
 
 **W186–W187: ordinary control transport is delivered; canonical ancestry is now
 concrete.** Cedar `04d506c5` carries authenticated captured reader controls through
@@ -116,7 +133,7 @@ W174 joins the frozen request; retained-manager integration remains next.
 [Exact scope, controls and setup stops](topostitch-periodic.md#w172--require-declared-topology-before-parent-coordinate-transfer).
 
 
-Updated **2026-11-21**, through **W188**. W168’s private native diagnostic now retains
+Updated **2026-11-21**, through **W189**. W168’s private native diagnostic now retains
 known parent chemistry at the ordinary 3 Å interpretation cutoff while diffraction
 and refinement use the displaced child. One five-cycle run recovers **2.288 →
 0.271 Å RMS**, keeping all 38 backbone links, atom identities and checked sugar

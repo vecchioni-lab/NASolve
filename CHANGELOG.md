@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W189 — Preserve a local and remote geometry baseline before bending
+
+- Reuse the maintained captured-geometry reader to record exact boundary scalars,
+  local geometry and existing remote strain on the real canonical PostMR parent.
+- Add a compact local scientific checkout; advance the source-intent integration
+  step without introducing a target, new native run, runtime change or acceptance.
+
 ### W188 — Inspect native support around a proposed preparation window
 
 - Add an opt-in read-only report binding an exact preparation, native capture and

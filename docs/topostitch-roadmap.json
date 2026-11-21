@@ -256,7 +256,7 @@
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "Use the existing Cedar captured-geometry reader on W188 saved evidence to assess current boundary covalent strain without a new native run. Preserve observed support versus prospective pairing/topology intent. Before execution, separately bind input roles/order/effective settings and qualify coordinate transfer/retained-manager lifecycle; do not reimplement captured geometry or repeat root/transport/window tests.",
+      "next_action": "Compose the maintained ordinary model-context owner with the exact canonical parent reader, keeping DERIVED source intent separate from checked preparation and native/chemical acceptance. Bind model/report and compare its121 derived standard links with the saved capture. Preserve W189 local versus remote baseline; no invented pairing target or repeat native interpretation.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -305,14 +305,15 @@
         "E_SIBLING_PLANE_NEIGHBORHOOD",
         "E_CAPTURED_CONTROL_ORDINARY_HANDOFF",
         "E_CANONICAL_ORDINARY_ROOT_REPLAY",
-        "E_ORDINARY_NATIVE_WINDOW_SUPPORT"
+        "E_ORDINARY_NATIVE_WINDOW_SUPPORT",
+        "E_CANONICAL_WINDOW_GEOMETRY_BASELINE"
       ],
       "last_audit": {
         "date": "2026-11-21",
-        "code_commit": "adca2e07c50cb313541918f261c6a4c80ea6745b",
-        "human_update": 188,
-        "reviewer": "Linden; narrow API scope reviewed with Rowan",
-        "scope": "Exact ordinary-parent native window support and installed cold reopening; no geometry or motion qualification"
+        "code_commit": "04d506c5866d9075cfa4076de59fd269ee04f267",
+        "human_update": 189,
+        "reviewer": "Linden; source integration order coordinated with Rowan",
+        "scope": "Measured existing covalent baseline through shared reader; missing independent pairing target forbids an invented trial"
       }
     },
     {
@@ -365,7 +366,7 @@
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Use the existing Cedar captured-geometry reader on W188 saved evidence to assess current boundary covalent strain without a new native run. Preserve observed support versus prospective pairing/topology intent. Before execution, separately bind input roles/order/effective settings and qualify coordinate transfer/retained-manager lifecycle; do not reimplement captured geometry or repeat root/transport/window tests.",
+      "next_action": "Compose the maintained ordinary model-context owner with the exact canonical parent reader, keeping DERIVED source intent separate from checked preparation and native/chemical acceptance. Bind model/report and compare its121 derived standard links with the saved capture. Preserve W189 local versus remote baseline; no invented pairing target or repeat native interpretation.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -457,14 +458,15 @@
         "E_SIBLING_PLANE_NEIGHBORHOOD",
         "E_CAPTURED_CONTROL_ORDINARY_HANDOFF",
         "E_CANONICAL_ORDINARY_ROOT_REPLAY",
-        "E_ORDINARY_NATIVE_WINDOW_SUPPORT"
+        "E_ORDINARY_NATIVE_WINDOW_SUPPORT",
+        "E_CANONICAL_WINDOW_GEOMETRY_BASELINE"
       ],
       "last_audit": {
         "date": "2026-11-21",
-        "code_commit": "adca2e07c50cb313541918f261c6a4c80ea6745b",
-        "human_update": 188,
-        "reviewer": "Linden; narrow API scope reviewed with Rowan",
-        "scope": "Exact ordinary-parent native window support and installed cold reopening; no geometry or motion qualification"
+        "code_commit": "04d506c5866d9075cfa4076de59fd269ee04f267",
+        "human_update": 189,
+        "reviewer": "Linden; source integration order coordinated with Rowan",
+        "scope": "Measured existing covalent baseline through shared reader; missing independent pairing target forbids an invented trial"
       }
     },
     {
@@ -531,7 +533,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Use the existing Cedar captured-geometry reader on W188 saved evidence to assess current boundary covalent strain without a new native run. Preserve observed support versus prospective pairing/topology intent. Before execution, separately bind input roles/order/effective settings and qualify coordinate transfer/retained-manager lifecycle; do not reimplement captured geometry or repeat root/transport/window tests.",
+      "next_action": "Compose the maintained ordinary model-context owner with the exact canonical parent reader, keeping DERIVED source intent separate from checked preparation and native/chemical acceptance. Bind model/report and compare its121 derived standard links with the saved capture. Preserve W189 local versus remote baseline; no invented pairing target or repeat native interpretation.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -622,14 +624,15 @@
         "E_INDEPENDENT_PDU_MATCHED_INPUTS",
         "E_CAPTURED_CONTROL_ORDINARY_HANDOFF",
         "E_CANONICAL_ORDINARY_ROOT_REPLAY",
-        "E_ORDINARY_NATIVE_WINDOW_SUPPORT"
+        "E_ORDINARY_NATIVE_WINDOW_SUPPORT",
+        "E_CANONICAL_WINDOW_GEOMETRY_BASELINE"
       ],
       "last_audit": {
         "date": "2026-11-21",
-        "code_commit": "adca2e07c50cb313541918f261c6a4c80ea6745b",
-        "human_update": 188,
-        "reviewer": "Linden; narrow API scope reviewed with Rowan",
-        "scope": "Exact ordinary-parent native window support and installed cold reopening; no geometry or motion qualification"
+        "code_commit": "04d506c5866d9075cfa4076de59fd269ee04f267",
+        "human_update": 189,
+        "reviewer": "Linden; source integration order coordinated with Rowan",
+        "scope": "Measured existing covalent baseline through shared reader; missing independent pairing target forbids an invented trial"
       }
     },
     {
@@ -4614,6 +4617,41 @@
           "size": 492
         }
       ]
+    },
+    "E_CANONICAL_WINDOW_GEOMETRY_BASELINE": {
+      "kind": "saved_ordinary_parent_boundary_geometry_baseline",
+      "date": "2026-11-21",
+      "human_update": 189,
+      "code_commit": "04d506c5866d9075cfa4076de59fd269ee04f267",
+      "reference": "docs/topostitch-periodic.md#w189--measure-the-existing-local-and-remote-covalent-baseline",
+      "result": "Existing Cedar reader partitions7909 saved scalar rows;10 crossing bond/angle measurements independently reproduce. Boundary links1.59669/1.62668 A, max angle difference2.535 degrees; selected RMS0.01029 A/1.14480 degrees. Remote B1/B2 and C1/C2 strain already exists. Local PNG/SVG/HTML checkout distinguishes original PostMR from selected refined child.",
+      "limitation": "Baseline only: no new native run, code, optimization or acceptance. Nominal ranks are not native energy; six crossing torsions, pucker, density and independent pairing remain unqualified.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w188-canonical-window/geometry-baseline.json",
+          "sha256": "58139dd2dd5b8f5f912a81aaa10087cff22cb4990482e2a6119f86f78cbf6482",
+          "size": 39293
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w188-canonical-window/geometry-baseline.html",
+          "sha256": "e7a0e3beeda63d86b5e1c23f9bc35b2ee234651b62c3322c5525e5ab5eacfb29",
+          "size": 5257
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w188-canonical-window/geometry-baseline.png",
+          "sha256": "b5f5dac62c4a2c95726aabfd32e0f3113a90585a9686589b839a331ac5d28326",
+          "size": 98707
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w188-canonical-window/geometry-baseline.svg",
+          "sha256": "d500e1f41b1ef7f8c1bcef9c082b9140d447657d25f3e9b5864e878815358e2f",
+          "size": 75795
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -4775,8 +4813,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 188,
-    "next": 189,
+    "current": 189,
+    "next": 190,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -5714,6 +5752,12 @@
         "title": "Inspect native support across a real preparation window",
         "state": "RECORDED",
         "code_commit": "adca2e07c50cb313541918f261c6a4c80ea6745b"
+      },
+      {
+        "number": 189,
+        "title": "Separate existing local and remote covalent strain before bending",
+        "state": "RECORDED",
+        "code_commit": "04d506c5866d9075cfa4076de59fd269ee04f267"
       }
     ]
   },
