@@ -319,6 +319,8 @@ def build_parser() -> argparse.ArgumentParser:
     cif_assess.add_argument("--run", type=Path, help="assess a completed run's frozen checkpoint bundle")
     cif_assess.add_argument("--bundle", type=Path, help="assess an activated portable runtime bundle")
     cif_assess.add_argument("--checkpoint", help="checkpoint ID/bookmark (requires --run)")
+    cif_assess.add_argument("--b-factors-at", action="append", metavar="CHAIN:NUMBER",
+                            help="read a residue's saved B factors and occupancies and compare them with the refinement parent (requires --run)")
     cif_assess.add_argument(
         "--refined-planes", action="store_true",
         help="measure atoms against the other plane members and compare ring-bound alkyne tips and terminal bonds before and after refinement (requires --run)",
@@ -1904,6 +1906,8 @@ def _cif_doctor(args: argparse.Namespace) -> int:
                 raise ValueError("--refined-planes requires --run")
             if args.contacts_at and args.run is None:
                 raise ValueError("--contacts-at requires --run")
+            if args.b_factors_at and args.run is None:
+                raise ValueError("--b-factors-at requires --run")
             if args.refined_links and args.run is None:
                 raise ValueError("--refined-links requires --run")
             if args.bundle is not None:
@@ -1915,7 +1919,8 @@ def _cif_doctor(args: argparse.Namespace) -> int:
                 if args.dictionaries or args.model is not None or args.stage != "standalone":
                     raise ValueError("--run selects its frozen model/bundle; omit dictionaries, --model and --stage")
                 payload = assess_run(args.run, checkpoint=args.checkpoint, refined_planes=args.refined_planes,
-                                     refined_links=args.refined_links, contact_sites=args.contacts_at)
+                                     refined_links=args.refined_links, contact_sites=args.contacts_at,
+                                     b_factor_sites=args.b_factors_at)
             else:
                 if not args.dictionaries or args.checkpoint is not None:
                     raise ValueError("Provide dictionary paths, or --run with an optional --checkpoint")
@@ -1944,6 +1949,20 @@ def _cif_doctor(args: argparse.Namespace) -> int:
             print(text, end="")
         else:
             print(f"CIF Doctor: {payload.get('status', 'PREPARED')}")
+            if "b_factors" in payload:
+                for site, group in payload["b_factors"]["sites"].items():
+                    if group.get("b_change_range_A2") is not None:
+                        low, high = group["b_change_range_A2"]
+                        print(f"{site} {group['component']} B changes span {low:+.2f} to {high:+.2f} Å² "
+                              f"across {group['matched_atoms']} of {len(group['atoms'])} atoms. "
+                              f"Occupancies changed for {group['changed_occupancies']}.")
+                    elif group["status"] == "PARTIAL":
+                        print(f"{site} {group['component']} has no matching atom identities across the two models.")
+                    elif group["status"] == "SELECTED_ONLY":
+                        print(f"{site} {group['component']} has {len(group['atoms'])} saved B readings "
+                              "with no verified refinement parent for comparison.")
+                    else:
+                        print(f"{site} B factors are unavailable. {group['reason']}")
             for field, stage in (("preflight_contacts", "Preflight"), ("refined_contacts", "Refined")):
                 if field not in payload:
                     continue

@@ -65,6 +65,48 @@ def _child(run):
 
 class CifDoctorRunTests(unittest.TestCase):
     @patch("nasolve.cif_doctor_run.assess_dictionaries", side_effect=_assessor)
+    def test_b_fields_follow_the_recorded_parent_after_relocation(self, assessor):
+        from .test_refinement_link_geometry import setup_files
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            original = root / "original"
+            run = make_checkpoint_run(original)
+            parent = run / "PostMR/Model/readyset_model.pdb"
+            example, _, _ = setup_files(root)
+            parent.write_bytes(example.read_bytes())
+            report = json.loads((run / "report.json").read_text())
+            report["postmr"]["prepared_sha256"] = file_sha256(parent)
+            (run / "report.json").write_text(json.dumps(report))
+            _child(run)
+            reg_path = run / "AutoRefine/checkpoints.json"
+            reg = json.loads(reg_path.read_text())
+            reg["current"] = "postmr"
+            item = reg["checkpoints"][-1]
+            child = run / item["model"]["relative_path"]
+            child.write_bytes(child.read_bytes().replace(b" 30.00", b" 50.00"))
+            item.update(kind="refinement", model=_reference(child, run))
+            reg_path.write_text(json.dumps(reg))
+            moved = root / "moved"
+            original.rename(moved)
+            new_run = moved / run.relative_to(original)
+            frozen = _snapshot(moved)
+            with patch("subprocess.Popen", side_effect=AssertionError("Unexpected refinement")):
+                result = assess_run(new_run, checkpoint="first-refinement", b_factor_sites=["B:4"])
+                comparison = result["b_factors"]
+                self.assertEqual(comparison["input_checkpoint"], "postmr")
+                self.assertEqual(comparison["selected_checkpoint"], "refine-001")
+                self.assertEqual(comparison["input_model_sha256"], reg["checkpoints"][0]["model"]["sha256"])
+                self.assertEqual(comparison["selected_model_sha256"], item["model"]["sha256"])
+                self.assertEqual(comparison["sites"]["B:4"]["b_change_range_A2"], [20, 20])
+                single = assess_run(new_run, b_factor_sites=["B:4"])["b_factors"]
+                self.assertEqual(single["sites"]["B:4"]["status"], "SELECTED_ONLY")
+                self.assertIsNone(single["input_checkpoint"])
+            self.assertEqual(_snapshot(moved), frozen)
+            (moved / parent.relative_to(original)).write_bytes(b"REMARK externally changed\n")
+            with self.assertRaises(CheckpointError):
+                assess_run(new_run, checkpoint="first-refinement", b_factor_sites=["B:4"])
+
+    @patch("nasolve.cif_doctor_run.assess_dictionaries", side_effect=_assessor)
     def test_refined_links_use_only_the_named_checkpoints_frozen_final_geometry(self, assessor):
         from .test_refinement_link_geometry import geometry, nonbonded
         with tempfile.TemporaryDirectory() as directory:

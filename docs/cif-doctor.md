@@ -13859,6 +13859,19 @@ The printed contacts describe packing at that checkpoint. Hydrogen-bond
 intent, a covalent connection across symmetry, diffraction support and the
 cause of a strained bond each require their own evidence.
 
+To see which starting B values a refinement inherited, run
+`nasolve cif-doctor assess --run RUN --checkpoint ID --b-factors-at B:4 --json`.
+Repeat the site option to compare a base with its neighbours. The report
+reads the registered PDB files and matches each atom by name and element.
+It records both written occupancies and B values, their B difference in Å²,
+and whether the atom has an ANISOU record. A single B field at an
+anisotropic atom is its reported equivalent value. The six tensor components
+are outside this comparison. The root and manual checkpoints describe only
+the selected model. Changed atom identities or missing atoms give a partial
+comparison. Alternate conformations and multiple models remain unresolved.
+The values describe the saved models. Density support and chemical acceptance
+require independent evidence.
+
 When the log ends with one complete Phenix Start/Final recap, the reported
 starting Rwork/Rfree is the native scaled start. The trajectory retains the
 actual observations, including initial scaling. A recap with no earlier

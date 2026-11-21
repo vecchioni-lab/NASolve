@@ -60,6 +60,7 @@ def _require_registry_unchanged(
 def assess_run(
     run: Path, *, checkpoint: str | None = None, refined_planes: bool = False,
     refined_links: bool = False, contact_sites: list[str] | tuple[str, ...] | None = None,
+    b_factor_sites: list[str] | tuple[str, ...] | None = None,
 ) -> dict[str, object]:
     """Assess a selected run/checkpoint without creating or modifying artifacts.
 
@@ -77,6 +78,9 @@ def assess_run(
     if contact_sites is not None:
         from .refinement_contact_geometry import read_refined_contacts, validate_contact_sites
         validate_contact_sites(contact_sites)
+    if b_factor_sites is not None:
+        from .refinement_contact_geometry import validate_contact_sites
+        validate_contact_sites(b_factor_sites)
     requested_run = run.expanduser().resolve()
     if requested_run.name == "report.json":
         requested_run = requested_run.parent
@@ -153,6 +157,23 @@ def assess_run(
         (observations, observations_ref),
         *zip(restraints, restraint_refs),
     ]
+    if b_factor_sites:
+        from .refinement_displacement import compare_pdb_displacements
+        input_model = None
+        parent_id = record.parent if selected.get("kind") == "refinement" else None
+        if parent_id is not None:
+            parent = resolve_checkpoint(registry, parent_id)
+            parent_ref = parent["model"]
+            if isinstance(parent_ref, Mapping) and isinstance(parent_ref.get("sha256"), str):
+                parent_path = _ref_path(parent_ref, "refinement parent model", run)
+                input_model = parent_path.read_bytes()
+                tracked.append((parent_path, {"sha256": parent_ref["sha256"].casefold()}))
+        values = compare_pdb_displacements(input_model, model.read_bytes(), b_factor_sites)
+        if (values["selected_model_sha256"] != model_ref["sha256"] or
+                (input_model is not None and values["input_model_sha256"] != parent_ref["sha256"].casefold())):
+            raise CheckpointError("B factor readings differ from the recorded models")
+        receipt["b_factors"] = dict(values, input_checkpoint=parent_id if input_model is not None else None,
+                                    selected_checkpoint=record.checkpoint_id)
     if refined_links:
         from .campaigns import _canonical
         from .refinement_chemistry import _preparation_context

@@ -63,7 +63,8 @@ def test_read_only_run_uses_selected_checkpoint_without_runtime_discovery(tmp_pa
             redirect_stdout(io.StringIO()) as stream:
         assert main(['cif-doctor', 'assess', '--run', str(tmp_path),
                      '--checkpoint', 'refine-002', '--json']) == 2
-    assess.assert_called_once_with(tmp_path, checkpoint='refine-002', refined_planes=False, refined_links=False, contact_sites=None)
+    assess.assert_called_once_with(tmp_path, checkpoint='refine-002', refined_planes=False, refined_links=False,
+                                   contact_sites=None, b_factor_sites=None)
     discover.assert_not_called()
     assert json.loads(stream.getvalue()) == audit
 
@@ -92,6 +93,22 @@ def test_nonbonded_contacts_need_a_run(tmp_path, capsys):
     source = _graph(tmp_path / "source.cif")
     assert main(["cif-doctor", "assess", str(source), "--contacts-at", "B:4"]) == 1
     assert "--contacts-at requires --run" in capsys.readouterr().err
+
+
+def test_b_factors_require_a_run_and_use_the_selected_sites(tmp_path, capsys):
+    source = _graph(tmp_path / "source.cif")
+    assert main(["cif-doctor", "assess", str(source), "--b-factors-at", "B:4"]) == 1
+    assert "--b-factors-at requires --run" in capsys.readouterr().err
+    audit = {"status": "REVIEW", "b_factors": {"sites": {"B:4": {
+        "status": "PARTIAL", "component": "X01", "b_change_range_A2": [4.5, 4.6],
+        "atoms": {"C": {}, "O": {}, "H": {}}, "matched_atoms": 2, "changed_occupancies": 1},
+        "A:2": {"status": "UNASSESSED", "reason": "Requested residue is absent from the model"}}}}
+    with patch("nasolve.cif_doctor_run.assess_run", return_value=audit) as assess:
+        assert main(["cif-doctor", "assess", "--run", str(tmp_path), "--checkpoint", "refine-001",
+                     "--b-factors-at", "B:4", "--b-factors-at", "A:2"]) == 2
+    assert assess.call_args.kwargs["b_factor_sites"] == ["B:4", "A:2"]
+    text = capsys.readouterr().out
+    assert "+4.50 to +4.60 Å² across 2 of 3 atoms" in text and "A:2 B factors are unavailable" in text
 
 
 def test_contact_sites_are_forwarded_individually_and_report_missing_tables(tmp_path, capsys):

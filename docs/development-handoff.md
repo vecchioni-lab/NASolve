@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C513 comparing the PDU and 5PC responses to starting B — Rowan**.
+Updated **2026-11-21, C514 following individual atoms' B factors through refinement — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -705,6 +705,33 @@ moved closer to its target. This common host has a free B:1 hydroxyl.
 The independent PDU:PDU incoming symmetry phosphate still needs its own
 link evidence. Reopen `branch-artifacts/cedar/c513-pdu-displacement/science.json`.
 The native and cold commands are in `matched_pdu_base_displacement_2026_11_21`.
+
+C514 adds a read-only `--b-factors-at` option to the ordinary run assessment.
+For a registered refinement it verifies the chosen model and its exact
+parent and matches individual atom names and elements across the two PDBs.
+The original checkpoint selection survives the reading. A single-model
+checkpoint can also report its own values. The new reader, run integration
+and CLI are in `refinement_displacement.py`, `cif_doctor_run.py` and `cli.py`.
+There is no migration or change to normal refinement. Only numerical
+readback is retained in the compact local record. Existing coordinates,
+maps and run outputs stay in their original locations.
+
+The installed reader recovered the four independent 5PC controls, the
+matched A:PDU and the registered thirteen-change host. The latter retained
+equal shifts within each of ATL (+164.94), DF (+8.80), 5PC (+222.74) and PDU
+(+161.10 Å²). Their written occupancies stayed fixed. Each of the 22 atoms
+in the independent PDU shifted by +168.12 Å². All six registries retained
+their original fingerprints. Reopen
+`branch-artifacts/cedar/c514-model-displacement/science.json`. Reproduce
+with the relocated installation using
+`python -B c514_bound_b_cli.py WORK CEDAR_SHELF NEW_OUTPUT.json`.
+
+The following focused set passed 61 tests and seven subtests from source and
+again from a relocated installation. All 325 packaged files matched.
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_refinement_displacement.py tests/test_cif_doctor_run.py tests/test_cif_doctor_cli.py tests/test_refinement_link_geometry.py
+```
 
 **Q06.** Fresh G:5PC completed both construction and ordinary five-cycle Phenix
 refinement. Its automatically corrected C8–C9 target survived in the native

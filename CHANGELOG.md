@@ -28,6 +28,9 @@ entries are reconstructed from repository history.
   reports the local nonbonded contacts Phenix printed before and after the
   round. Repeat the option for more residues. The JSON includes each atom's
   largest overlap, including a separate reading for crystal images.
+- `cif-doctor assess --b-factors-at CHAIN:NUMBER` reads the occupancies and
+  B factors recorded in a saved model. On a refinement it also compares
+  matching atoms with the recorded parent. Repeat the option for more sites.
 
 ### Following the same molecule while Phenix prepares it
 

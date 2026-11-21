@@ -69,6 +69,9 @@ The matched A:PDU transfer in C513 also raised the tip, from 0.175 to
 angle triggered chemical review. Preserve the base-only change as a
 diagnostic for this scaffold. Transfer to a new chemical base on a
 nonuniform host remains an open decision.
+C514 exposes these inherited B values and occupancies for named residues in
+any saved PDB checkpoint. Use this reading alongside the ring and terminal
+bond measurements when comparing future controls.
 
 C507–C509 give Willow a shared reading of the geometry before and after
 atoms move. With all four W203 reader settings applied, Phenix recovered the
