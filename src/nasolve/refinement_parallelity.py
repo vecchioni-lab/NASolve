@@ -719,8 +719,8 @@ def read_execution_trigonal_geometry(run, reference, *, checkpoint, parent, mode
     return result
 
 
-def read_execution_plane_geometry(run, reference, *, checkpoint, parent, model):
-    """Measure recorded local planes and their linear continuations on the exact model."""
+def read_execution_plane_geometry(run, reference, *, checkpoint, parent, model, omit_each_member=False):
+    """Measure captured planes and optionally each atom against its remaining plane members."""
     selected = _selected_chemistry_observation(run, reference, checkpoint=checkpoint, parent=parent, model=model)
     if selected is None:
         return None
@@ -729,7 +729,7 @@ def read_execution_plane_geometry(run, reference, *, checkpoint, parent, model):
     if observation["status"] == "OBSERVED":
         from .refinement_chemistry import _source_checked_atoms
         _source_checked_atoms(projections, observation)
-    report = describe_planes(observation)
+    report = describe_planes(observation, omit_each_member=omit_each_member)
     declared = _declared_chemistry_sources(run, reference, checkpoint=checkpoint)
     expected = [dict(site=site, component=source["component"]) for site, source in sorted(declared.items())]
     _need(set(projections) == set(declared) and observation["sites"] == expected,

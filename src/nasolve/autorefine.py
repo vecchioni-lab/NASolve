@@ -1193,6 +1193,59 @@ def _reported_geometry(log_text: str) -> tuple[float | None, float | None]:
     return max(observations, key=lambda item: item[0])[1] if observations else (None, None)
 
 
+def _weight_table(lines: list[str], start: int) -> list[list[str]]:
+    if lines[start+1:start+2] != ["work free delta bonds angl"]:
+        return []
+    rows = []
+    for line in lines[start+2:]:
+        if not line:
+            break
+        fields = line.split()
+        if len(fields) != 10:
+            return []
+        try:
+            for index, token in enumerate(fields):
+                if 3 <= index <= 8 and token in {"-", "none"}:
+                    continue
+                if not math.isfinite(float(token)):
+                    return []
+            if float(fields[-1]) < 0:
+                return []
+        except ValueError:
+            return []
+        rows.append(fields)
+    return rows
+
+
+def _reported_coordinate_weights(log_text: str) -> list[dict[str, object]]:
+    """Read the chosen XYZ weight at printed precision, without recreating Phenix's selector."""
+    heading = "XYZ individual (reciprocal space)"
+    if heading not in log_text:
+        return []
+    sections = re.split(r"(?m)^[ \t]*={3,}[ \t]+([^=\r\n]+?)[ \t]+={3,}[ \t]*\r?$", log_text)
+    steps = []
+    for title, body in zip(sections[1::2], sections[2::2]):
+        if title != heading:
+            continue
+        lines = [" ".join(line.split()) for line in body.splitlines()]
+        starts = [i for i, line in enumerate(lines) if line == "R-FACTORS RMSD CLASH RAMA ROTA CBET WEIGHT"]
+        choices = [i for i, line in enumerate(lines) if line == "Best weight:"]
+        step = {"step": len(steps)+1, "source": "unreported", "trial_count": None, "weight": None}
+        steps.append(step)
+        if not starts:
+            continue
+        trials = _weight_table(lines, starts[0])
+        if len(starts) == 2 and len(choices) == 1 and starts[0] < choices[0] < starts[1]:
+            chosen = _weight_table(lines, starts[1])
+            if len(chosen) == 1 and chosen[0] in trials:
+                step.update(source="best_weight", trial_count=len(trials), weight=float(chosen[0][-1]))
+        elif len(starts) == 1 and len(trials) == 1 and not choices:
+            # An interrupted multi-trial table can end immediately after its first row.
+            if any(line.startswith("Number of minimizer iterations:") for line in lines[starts[0]+2:]):
+                step.update(source="single_trial", trial_count=1, weight=float(trials[0][-1]))
+    return steps
+
+
 def parse_refinement_statistics(log_text: str, model_text: str = "") -> dict[str, object]:
     pairs = [(float(a), float(b)) for a, b in _R_PAIR.findall(log_text)]
     # Logs repeat some summaries; preserve changes while collapsing immediate duplicates.
@@ -1211,7 +1264,7 @@ def parse_refinement_statistics(log_text: str, model_text: str = "") -> dict[str
         if re.match(r"^(?:WARNING\b|ERROR\b|Sorry\b|FATAL\b)", stripped, re.I):
             if stripped not in diagnostics:
                 diagnostics.append(stripped)
-    return {
+    statistics = {
         "initial_r_work": initial["r_work"] if initial else None,
         "initial_r_free": initial["r_free"] if initial else None,
         "r_work": final["r_work"] if final else None,
@@ -1226,6 +1279,10 @@ def parse_refinement_statistics(log_text: str, model_text: str = "") -> dict[str
         "cycle_series": series,
         "diagnostics": diagnostics,
     }
+    coordinate_weights = _reported_coordinate_weights(log_text)
+    if coordinate_weights:
+        statistics["coordinate_weight_steps"] = coordinate_weights
+    return statistics
 
 
 def _write_metrics_tsv(path: Path, statistics: Mapping[str, object]) -> None:
@@ -2342,7 +2399,7 @@ def execute_autorefine(
         "metrics": {
             key: value
             for key, value in statistics.items()
-            if key not in {"cycle_series", "diagnostics"}
+            if key not in {"cycle_series", "coordinate_weight_steps", "diagnostics"}
         },
         "compatibility": {
             **compatibility,

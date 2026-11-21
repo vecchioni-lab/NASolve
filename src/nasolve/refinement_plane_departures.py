@@ -51,13 +51,37 @@ def _linear_extensions(members, by_atom, atoms, coords, distance, site):
                 i_seq=tip, atom=atoms[tip]["atom_id"], angle_proxy_index=index,
                 angle_i_seqs=list(indices), supporting_i_seqs=[first, second],
                 angle_target_degrees=180., angle_weight=weight,
-                distance_angstrom=distance(tip),
+                distance_angstrom=distance(coords[tip]),
                 observed_angle_degrees=_observed("angle", [coords[i] for i in indices]),
             )
     return [extensions[i] for i in sorted(extensions)]
 
 
-def _measure_plane(index, proxy, atoms, coords, angles):
+def _fit_plane(points, weights):
+    """Return a Cartesian distance function, or the reason the normal is undefined."""
+    import numpy as np
+
+    used = weights > 0
+    if used.sum() < 3:
+        return None, "Fewer than three positive-weight members"
+    # Work relative to a member. Translation and common weight scale cancel.
+    origin = points[used][0]
+    relative = points[used] - origin
+    scaled = weights[used] / weights[used].max()
+    centre = np.average(relative, axis=0, weights=scaled)
+    weighted = (relative - centre) * np.sqrt(scaled[:, None])
+    _, singular, axes = np.linalg.svd(weighted, full_matrices=False)
+    tolerance = np.finfo(float).eps * max(weighted.shape) * singular[0]
+    if singular[1] - singular[2] <= tolerance:
+        return None, "Positive-weight positions do not define a unique plane"
+
+    def distance(point):
+        return float(abs((np.asarray(point) - origin - centre) @ axes[-1]))
+
+    return distance, None
+
+
+def _measure_plane(index, proxy, atoms, coords, angles, omit_each_member):
     import numpy as np
 
     ids = proxy["i_seqs"]
@@ -74,38 +98,34 @@ def _measure_plane(index, proxy, atoms, coords, angles):
     row = dict(proxy_index=index, origin_id=proxy["origin_id"], site=site,
                component=atoms[ids[0]]["identity"]["resname"].strip(), members=members,
                status="UNASSESSED", reason=None, positive_member_rms_angstrom=None, linear_extensions=[])
-    used = weights > 0
-    if used.sum() < 3:
-        row["reason"] = "Fewer than three positive-weight members"
-        return row
-
-    # Work relative to a member, with normalized weights. Translation and
-    # multiplying all weights by a common positive factor leave the fit intact.
     points = np.array([coords[i] for i in ids])
-    origin = points[used][0]
-    relative = points[used] - origin
-    scaled = weights[used] / weights[used].max()
-    centre = np.average(relative, axis=0, weights=scaled)
-    weighted = (relative - centre) * np.sqrt(scaled[:, None])
-    _, singular, axes = np.linalg.svd(weighted, full_matrices=False)
-    tolerance = np.finfo(float).eps * max(weighted.shape) * singular[0]
-    if singular[1] - singular[2] <= tolerance:
-        row["reason"] = "Positive-weight positions do not define a unique plane"
+    distance, reason = _fit_plane(points, weights)
+    for pos, member in enumerate(members):
+        if distance is not None:
+            member["distance_angstrom"] = distance(points[pos])
+        if omit_each_member:
+            other_distance, other_reason = distance, reason
+            if weights[pos] > 0:
+                other_weights = weights.copy()
+                other_weights[pos] = 0.
+                other_distance, other_reason = _fit_plane(points, other_weights)
+            member["other_members"] = {
+                "distance_angstrom": other_distance(points[pos]) if other_distance is not None else None,
+                "reason": other_reason,
+            }
+    if distance is None:
+        row["reason"] = reason
         return row
-
-    def distance(i):
-        return float(abs((np.asarray(coords[i]) - origin - centre) @ axes[-1]))
-
-    for member in members:
-        member["distance_angstrom"] = distance(member["i_seq"])
-    rms = sqrt(sum(m["distance_angstrom"]**2 for m in members if m["weight"] > 0) / int(used.sum()))
+    rms = sqrt(sum(m["distance_angstrom"]**2 for m in members if m["weight"] > 0) / int((weights > 0).sum()))
     row.update(status="MEASURED", positive_member_rms_angstrom=rms,
                linear_extensions=_linear_extensions(members, angles, atoms, coords, distance, site))
     return row
 
 
-def describe_planes(observation):
+def describe_planes(observation, *, omit_each_member=False):
     """Describe literal Cartesian geometry from an already authenticated snapshot."""
+    if type(omit_each_member) is not bool:
+        raise ValueError("Plane member omission choice must be boolean")
     result = dict(schema_version=1, policy_id="refinement-declared-site-plane-departures-v1",
                   status="UNASSESSED", reason=observation.get("reason"), planes=[],
                   coordinate_scope="LITERAL_SAME_SITE_CARTESIAN", symmetry_context="UNASSESSED",
@@ -113,6 +133,8 @@ def describe_planes(observation):
                   coordinate_precision=observation.get("coordinate_precision"),
                   model_state_sha256=observation.get("model_state_sha256"),
                   native_residuals="UNASSESSED", scientific_approval="NOT_RUN", automatic_adoption=False)
+    if omit_each_member:
+        result.update(schema_version=2, policy_id="refinement-declared-site-plane-departures-v2")
     if observation["status"] == "UNASSESSED":
         return result
     if observation["status"] != "OBSERVED":
@@ -126,7 +148,7 @@ def describe_planes(observation):
     atoms = {a["i_seq"]: a for a in observation["atoms"]}
     coords = {i: _point(a["xyz"]) for i, a in atoms.items()}
     angles = _straight_angles(proxies["angle"])
-    planes = [_measure_plane(i, p, atoms, coords, angles) for i, p in enumerate(proxies["planarity"])]
+    planes = [_measure_plane(i, p, atoms, coords, angles, omit_each_member) for i, p in enumerate(proxies["planarity"])]
     measured = sum(p["status"] == "MEASURED" for p in planes)
     result["planes"] = planes
     uncovered = sorted(declared_sites - {plane["site"] for plane in planes})

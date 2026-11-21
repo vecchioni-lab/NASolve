@@ -1406,6 +1406,35 @@ class AutoRefineTests(unittest.TestCase):
         self.assertEqual(stats["bond_rmsd"], 0.009)
         self.assertEqual(stats["diagnostics"], ["WARNING geometry needs inspection"])
 
+    def test_statistics_reports_printed_coordinate_choices_from_each_xyz_step(self):
+        xyz = "====== XYZ individual (reciprocal space) ======\n"
+        adp = "====== ADP refinement (reciprocal space) ======\n"
+        header = " R-FACTORS  RMSD  CLASH RAMA ROTA CBET WEIGHT\n work free delta bonds angl\n"
+        first = " .20 .25 .05 .011 1.7 none 0.0 0.0 0 0.125\n"
+        second = " .21 .24 .03 .013 1.8 3.0 0.0 0.0 0 0.500\n"
+        done = "\nNumber of minimizer iterations: 25 (28 function evaluations)\n"
+        chosen = "\n Best weight:\n\n" + header + first
+        text = (xyz + header + second + done + adp + header + first + done
+                + xyz + header + first + second + chosen + done)
+        steps = parse_refinement_statistics(text)["coordinate_weight_steps"]
+        self.assertEqual(steps, [
+            {"step": 1, "source": "single_trial", "weight": .5, "trial_count": 1},
+            {"step": 2, "source": "best_weight", "weight": .125, "trial_count": 2},
+        ])
+        # The smaller R-free belongs to the other row. Phenix prints its actual choice.
+        self.assertNotIn("coordinate_weight_steps", parse_refinement_statistics(adp + header + first))
+        incomplete = [
+            header + first, header + first + second + done,
+            header + first + second + chosen.replace("0.125", "9.00") + done,
+            header + first.replace("0.125", "NaN") + done,
+            header + first.replace("0.125", "-1") + done,
+            header + first.replace(" .011 ", " broken ") + done,
+        ]
+        for fragment in incomplete:
+            with self.subTest(fragment=fragment):
+                result = parse_refinement_statistics(xyz + fragment)["coordinate_weight_steps"]
+                self.assertEqual(result, [{"step": 1, "source": "unreported", "weight": None, "trial_count": None}])
+
     def test_statistics_parser_reads_completed_native_step_table(self):
         # Phenix 2.2.1 prints candidate criteria and initial geometry too; neither
         # supplies the final geometry. The explicit end row does.

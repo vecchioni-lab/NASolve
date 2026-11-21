@@ -13748,6 +13748,25 @@ Fewer than three effective positions or an ambiguous plane normal leave distance
 unassessed. A declared site with no captured plane is listed. Mixed coverage
 or a mix of measurable and ambiguous planes yields a partial result.
 
+To see whether an atom tilted its own plane, run
+`nasolve cif-doctor assess --run RUN --checkpoint ID --refined-planes --json`.
+Each member in `refined_planes` gives its distance to the full weighted fit
+and its distance to the fit through the other members. Both use the coordinates
+Phenix recorded for that checkpoint. In the independent A:PDU control the
+terminal carbon was 0.036 Å from the seven-atom plane and 0.231 Å from the
+six ring atoms. If the remaining atoms cannot define a plane, the second
+measurement gives the reason. A checkpoint without this capture returns
+`null`. Python callers request the same measurements with
+`omit_each_member=True`. The default reader keeps its original format.
+
+The AutoRefine round report can also contain `statistics.coordinate_weight_steps`.
+Each entry identifies the XYZ step, the number of printed trials and the chosen
+weight at log precision. A single completed trial and the explicit Phenix
+“Best weight” table are distinguished. A recognized step with incomplete or
+unrecognized evidence reports an unknown weight. In the five-cycle A:PDU
+comparison the last chosen weights were 10.000 and 1.517. The coordinates from
+that comparison alone cannot isolate how much of the change came from the plane.
+
 When a captured positive-weight angle has an exact 180° target and any two of
 its atoms have distinct known positions in the fitted group or its linear
 continuation, the report measures the third against the original plane. The

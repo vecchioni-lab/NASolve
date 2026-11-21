@@ -316,6 +316,10 @@ def build_parser() -> argparse.ArgumentParser:
     cif_assess.add_argument("--run", type=Path, help="assess a completed run's frozen checkpoint bundle")
     cif_assess.add_argument("--bundle", type=Path, help="assess an activated portable runtime bundle")
     cif_assess.add_argument("--checkpoint", help="checkpoint ID/bookmark (requires --run)")
+    cif_assess.add_argument(
+        "--refined-planes", action="store_true",
+        help="also measure recorded base planes in the checkpoint model, fitting each atom against the others (requires --run)",
+    )
     cif_assess.add_argument("--model", type=Path, help="optional PDB atom inventory (standalone only)")
     cif_assess.add_argument("--stage", choices=("source", "effective", "standalone"), default="standalone")
     cif_assess.add_argument("--output", type=Path, help="new JSON receipt; existing files are refused")
@@ -1881,6 +1885,8 @@ def _cif_doctor(args: argparse.Namespace) -> int:
             }
             receipt = args.output.expanduser() if args.output is not None else None
         else:
+            if args.refined_planes and args.run is None:
+                raise ValueError("--refined-planes requires --run")
             if args.bundle is not None:
                 if args.run is not None or args.dictionaries or args.model is not None or args.checkpoint is not None or args.stage != "standalone":
                     raise ValueError("--bundle selects its frozen model/resources; omit --run, dictionaries, --model, --checkpoint and --stage")
@@ -1889,7 +1895,7 @@ def _cif_doctor(args: argparse.Namespace) -> int:
             elif args.run is not None:
                 if args.dictionaries or args.model is not None or args.stage != "standalone":
                     raise ValueError("--run selects its frozen model/bundle; omit dictionaries, --model and --stage")
-                payload = assess_run(args.run, checkpoint=args.checkpoint)
+                payload = assess_run(args.run, checkpoint=args.checkpoint, refined_planes=args.refined_planes)
             else:
                 if not args.dictionaries or args.checkpoint is not None:
                     raise ValueError("Provide dictionary paths, or --run with an optional --checkpoint")
@@ -1918,6 +1924,22 @@ def _cif_doctor(args: argparse.Namespace) -> int:
             print(text, end="")
         else:
             print(f"CIF Doctor: {payload.get('status', 'PREPARED')}")
+            if "refined_planes" in payload:
+                checkpoint = payload["run_context"]["checkpoint"]["id"]
+                planes = payload["refined_planes"]
+                if planes is None:
+                    print(f"{checkpoint} has no selected-site plane capture.")
+                else:
+                    print(f"Refined planes at {checkpoint}: {planes['status']}.")
+                    if planes["reason"]:
+                        print(planes["reason"])
+                    for plane in planes["planes"]:
+                        members = [m for m in plane["members"] if m["other_members"]["distance_angstrom"] is not None]
+                        if members:
+                            furthest = max(members, key=lambda m: m["other_members"]["distance_angstrom"])
+                            print(f"  {plane['site']} {plane['component']} plane {plane['proxy_index']}: "
+                                  f"{furthest['atom']} lies furthest from the other members "
+                                  f"({furthest['other_members']['distance_angstrom']:.3f} Å).")
             if payload.get("solution_report", {}).get("text"):
                 print(payload["solution_report"]["text"])
             assessments = [("", payload)]

@@ -55,14 +55,20 @@ def _require_registry_unchanged(
         raise CheckpointError("Checkpoint registry appeared during CIF assessment")
 
 
-def assess_run(run: Path, *, checkpoint: str | None = None) -> dict[str, object]:
+def assess_run(
+    run: Path, *, checkpoint: str | None = None, refined_planes: bool = False
+) -> dict[str, object]:
     """Assess a selected run/checkpoint without creating or modifying artifacts.
 
     The current checkpoint is used unless an explicit ID or bookmark is given.
     The established checkpoint resolver verifies every available frozen checksum,
     including observations and phase data, before the assessor sees any inputs.
     An uninitialized run uses the existing validated, in-memory PostMR root.
+    On request, include the final selected-site plane measurements recorded for
+    this checkpoint. A checkpoint without a capture has no such measurement.
     """
+    if type(refined_planes) is not bool:
+        raise ValueError("The refined plane option must be boolean")
     requested_run = run.expanduser().resolve()
     if requested_run.name == "report.json":
         requested_run = requested_run.parent
@@ -114,6 +120,18 @@ def assess_run(run: Path, *, checkpoint: str | None = None) -> dict[str, object]
     if not isinstance(model_descriptor, dict) or model_descriptor.get("sha256") != model_ref["sha256"]:
         raise CheckpointError("CIF assessor model inventory does not match the selected checkpoint")
     model_descriptor["frozen_reference"] = dict(model_ref)
+
+    if refined_planes:
+        outputs = selected.get("outputs", {})
+        if not isinstance(outputs, Mapping):
+            raise CheckpointError("Malformed checkpoint output references")
+        receipt["refined_planes"] = None
+        if "parallelity_execution" in outputs:
+            from .refinement_parallelity import read_execution_plane_geometry
+            receipt["refined_planes"] = read_execution_plane_geometry(
+                run, outputs["parallelity_execution"], checkpoint=record.checkpoint_id,
+                parent=record.parent, model=model, omit_each_member=True,
+            )
 
     tracked = [
         (report_path, report_ref),

@@ -49,6 +49,40 @@ def test_nonuniform_weights_set_plane_and_zero_weight_member_cannot_tilt_it():
     assert p["members"][-1]["weight"] == 0.
 
 
+def test_distant_member_cannot_tilt_its_own_independent_reference():
+    points = [(-1,0,0), (1,0,0), (0,-1,0), (0,1,0), (5,0,1), (0,0,2)]
+    weights = [1., 2., 3., 4., 5., 0.]
+    obs = observation(points, list(range(6)), weights)
+    original, = describe_planes(obs)["planes"]
+    reported = describe_planes(obs, omit_each_member=True)
+    plane, = reported["planes"]
+    tip, inactive = plane["members"][-2:]
+    assert reported["policy_id"] == "refinement-declared-site-plane-departures-v2"
+    assert 0. < tip["distance_angstrom"] < .1
+    assert tip["other_members"] == {"distance_angstrom": pytest.approx(1.), "reason": None}
+    assert inactive["other_members"]["distance_angstrom"] == pytest.approx(inactive["distance_angstrom"])
+    for before, after in zip(original["members"], plane["members"]):
+        assert {k: v for k, v in after.items() if k != "other_members"} == before
+    moved = [(z+7, x-5, y+3) for x, y, z in points]
+    other = observation(moved, list(range(6)), [w*11 for w in weights])
+    transformed, = describe_planes(other, omit_each_member=True)["planes"]
+    assert [m["other_members"]["distance_angstrom"] for m in transformed["members"]] == pytest.approx(
+        [m["other_members"]["distance_angstrom"] for m in plane["members"]])
+
+
+def test_member_omission_only_reports_a_distance_with_independent_support():
+    obs = observation([(0,0,0), (1,0,0), (2,0,0), (0,1,1)], [0,1,2,3], [1,1,1,1])
+    plane, = describe_planes(obs, omit_each_member=True)["planes"]
+    assert plane["status"] == "MEASURED"
+    assert plane["members"][0]["other_members"]["distance_angstrom"] == pytest.approx(0.)
+    outside = plane["members"][-1]["other_members"]
+    assert outside["distance_angstrom"] is None and "unique" in outside["reason"]
+    obs["geometry"]["proxy_details"]["planarity"][0]["weights"][2] = 0
+    plane, = describe_planes(obs, omit_each_member=True)["planes"]
+    assert "three" in plane["members"][0]["other_members"]["reason"]
+    assert plane["members"][2]["other_members"]["distance_angstrom"] == pytest.approx(0.)
+
+
 @pytest.mark.parametrize("points,weights", [
     ([(0,0,0),(1,0,0),(2,0,0)],[1,1,1]),
     ([(0,0,0),(1,0,0),(0,1,0)],[0,0,0]),
@@ -114,6 +148,9 @@ def test_existing_owner_relocates_checks_exact_model_and_preserves_reports(tmp_p
     snapshot = {p:(p.read_bytes(),p.stat().st_mtime_ns) for p in run.rglob("*") if p.is_file()}
     with patch("subprocess.Popen",side_effect=AssertionError("Cold reader launched a process")):
         report = read_execution_plane_geometry(run,ref,model=model,**args)
+        excluded = read_execution_plane_geometry(run,ref,model=model,omit_each_member=True,**args)
+        assert excluded["policy_id"] == "refinement-declared-site-plane-departures-v2"
+        assert excluded["model_sha256"] == report["model_sha256"]
         assert report["model_sha256"] == sha256(model.read_bytes()).hexdigest()
         assert report["declared_sites"] == result.statistics["chemical_geometry"]["declared_sites"]
         assert read_execution_chemistry(run,ref,model=model,**args) == result.statistics["chemical_geometry"]
@@ -121,6 +158,8 @@ def test_existing_owner_relocates_checks_exact_model_and_preserves_reports(tmp_p
         wrong.write_bytes(model.read_bytes()+b"REMARK different model\n")
         with pytest.raises(ValueError):
             read_execution_plane_geometry(run,ref,model=wrong,**args)
+        with pytest.raises(ValueError):
+            read_execution_plane_geometry(run,ref,model=wrong,omit_each_member=True,**args)
     assert {p:(p.read_bytes(),p.stat().st_mtime_ns) for p in run.rglob("*") if p.is_file()} == snapshot
 
 
@@ -135,6 +174,33 @@ def test_legacy_or_unavailable_capture_remains_explicit(tmp_path, monkeypatch, c
         assert report is None
     else:
         assert report["status"]=="UNASSESSED" and report["reason"] and report["planes"]==[]
+
+
+def test_cif_doctor_reads_selected_refined_planes_without_changing_checkpoint(tmp_path, monkeypatch, capsys):
+    import json
+    from nasolve.cli import main
+    from tests.test_refinement_parallelity import completed
+
+    run, _, _, child, _, _ = completed(tmp_path, monkeypatch, chemistry="bent")
+    moved = tmp_path / "moved"
+    old = run.parents[1]
+    old.rename(moved)
+    run = moved / run.relative_to(old)
+    before = {p: (p.stat().st_mtime_ns, p.read_bytes()) for p in run.rglob("*") if p.is_file()}
+    capsys.readouterr()
+    with patch("subprocess.Popen", side_effect=AssertionError("Inspection launched a process")):
+        for checkpoint in (child["id"], "postmr"):
+            code = main(["cif-doctor", "assess", "--run", str(run), "--checkpoint", checkpoint,
+                         "--refined-planes", "--json"])
+            assert code in (0, 2, 3)
+            receipt = json.loads(capsys.readouterr().out)
+            assert receipt["run_context"]["checkpoint"]["id"] == checkpoint
+            if checkpoint == "postmr":
+                assert receipt["refined_planes"] is None
+            else:
+                assert receipt["refined_planes"]["schema_version"] == 2
+                assert receipt["refined_planes"]["model_sha256"] == child["model"]["sha256"]
+    assert before == {p: (p.stat().st_mtime_ns, p.read_bytes()) for p in run.rglob("*") if p.is_file()}
 
 
 def test_linear_angle_with_two_known_ends_measures_its_middle_atom():

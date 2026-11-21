@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Inspecting a refined base and the coordinate weights Phenix chose
+
+- `nasolve cif-doctor assess --run RUN --checkpoint ID --refined-planes`
+  measures each captured plane member against the fit to the other atoms. A
+  long substituent can tilt a plane fitted through itself. The JSON receipt
+  gives both distances and identifies fits with too few independent atoms.
+- AutoRefine records the coordinate weight printed for each recognized
+  reciprocal-space XYZ step in the round report. Incomplete or unfamiliar
+  tables leave the weight unknown. The measurements do not affect selection.
+
 ### Carry captured Phenix reader settings through preparation
 
 - Explicit typed-input requests can now retain reviewed sorting, CDL and
