@@ -11673,3 +11673,75 @@ Coordinate assignment must be checked against the actual live model at use.
 Agree that transition with Cedar before adopting it through the existing
 versioned execution policy. No duplicate preview reader or private refinement
 repeat is warranted. S04/S05/S06 remain PARTIAL; scientific payload stays local.
+
+
+## W199 — Use the installed handoff during live preparation
+
+Cedar review confirms that the counted driver entry is later than the relevant
+geometry construction. The tested boundary is `finalize_model → manager.process
+→ process_pdb_files`, with exactly one parent interpretation. This experiment
+uses the installed W198 endpoint owner in that earlier path; it does not repeat
+W197 refinements or change the counted/native execution policy.
+
+The explicit positive W197 initializer, original reflections, complete C21
+policy and fixed-coordinate selection are copied from their checksummed declared
+paths into two fresh cases. The existing frozen execution owner constructs their
+requests; only dry-run commands are retained. W198 maps actual live atoms with
+the maintained Cedar collector at initial candidate diffraction, interpreted
+parent and restored candidate. The returned `candidate_points` supply the one
+coordinate transfer. Native geometry/topology, non-coordinate scattering and
+candidate diffraction retain their existing independent checks.
+
+**Result:** one completed Phenix **2.2.1-6174 dry-run**, 9.15 seconds; one injected
+preparation failure, 4.07 seconds; **zero refinements**. Three live mapping digests
+exactly equal the saved W198 positive-stage results. Initial native order moves
+20 atoms relative to raw PDB order; interpreted parent/candidate have raw order.
+All W197 diffraction snapshots, prepared geometry/model, fixed native inputs and
+205-atom movement selection reproduce exactly. This is preparation equivalence,
+not additional evidence of bending recovery or scientific acceptance.
+
+Failure is deliberately raised after parent mapping, before candidate restoration.
+The initial candidate F-model remains unchanged. All six private Python bindings
+and the native runtime bindings restore; the original RuntimeError is preserved
+and the child process stops. The partially prepared manager is **discarded with
+the failed process**. This does not qualify coordinate rollback, manager reuse,
+re-entry, foreign binding replacement or a fresh retry in the same execution.
+
+The first attempt failed on the indirect `openpyxl` import before entering the
+native program. It remains at `experiment/`; no scientific result is inferred.
+Fresh `attempt02/` explicitly binds the previously qualified pure dependencies.
+It does not overwrite/restart the failed attempt. No dependency was added to
+NASolve. Installed W198 source files and all input/code hashes are checked.
+
+**71 independent cold checks pass**, including exact prior-state comparison,
+input immutability, expected failure, stopped process identity and the existing
+execution owner's successful dry-run validation. Commands from the NASolve anchor:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w199-live-preparation.py plan
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w199-live-preparation.py run
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w199-review.py
+```
+
+These describe completed calls; their destinations are immutable. Local evidence:
+`branch-artifacts/willow/w199-live-preparation/review.json`,
+`attempt02/experiment/plan.json`, each child's `execution.json` and
+`preparation-preflight.json.gz`; exact review/plan pins are in the roadmap.
+The first controller is preserved with its failed experiment. No new picture is
+needed: the existing W197 fixed-frame recovery checkout shows the actual science.
+
+**Next contract, agreed with Rowan:** maintain an opt-in one-shot preparation
+context using bound parent/candidate bytes, admitted W198 mapping and an explicit
+qualified native builder. The builder/native owners retain actual interpretation,
+chemistry/diffraction checks and the live manager; the outer worker owns input
+lifetime, process completion and failed-manager disposal. Keep exactly one
+interpretation and transfer, and refuse stale/reused state. Do not attach at the
+later counted driver or change historical runtime policies. Separately qualify
+that maintained entry on one success/failure before any ordinary integration.
+Alder's committed retained-file reader remains the lifetime owner; its pending
+storage-budget work is not adopted by this experiment.
+
+Only current guides/changelog/roadmap change in Git. Local workers/receipts and
+science remain uncommitted. Eight focused roadmap tests and `--write`/`--check`
+pass; no full suite or install repeat for a diagnostic/docs-only update. W198's
+installed checks are not relabelled as new W199 tests. S04/S05/S06 remain PARTIAL.

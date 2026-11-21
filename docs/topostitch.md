@@ -1706,3 +1706,25 @@ installation, dependency, compatibility or migration change is included. No
 generated coordinates, maps, diffraction data or local workspace state are
 included. Remaining work is the staged implementation and benchmark/native
 qualification above; no TopoStitch scientific success is claimed.
+
+
+### Single-call parent preparation boundary (W199/W200)
+
+W199's private live qualification identifies the interpretation call before the
+counted driver as the required boundary. Candidate diffraction must be built from
+the candidate, while geometry interpretation receives the bound original parent.
+The admitted W198 mapping handles initial parser order and prepared native order
+separately; its candidate coordinates restore the same live manager before
+preparation continues. Do not enlarge the link cutoff or re-infer stretched bonds.
+
+The next maintained context is opt-in and one-shot. Explicit inputs are the
+bound parent/candidate/motion plus a trusted, source-qualified native builder.
+The context must require complete candidate→parent→candidate identity checks and
+fixed/moving scope, exactly one interpretation/transfer and success-only closure.
+The native builder retains chemistry/topology and diffraction evidence; the outer
+worker owns retained input lifetime, process and disposal of failed managers.
+No exception grants a reusable manager or an implicit retry. Preserve the first
+failure and restore only owned bindings; foreign replacement requires refusal.
+This is not a new execution format. Existing counted/native policies remain
+versioned and unchanged until a separate integration is agreed with Cedar.
+[Qualification and limits](topostitch-periodic.md#w199--use-the-installed-handoff-during-live-preparation).

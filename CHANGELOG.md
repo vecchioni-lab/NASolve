@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W199 — Check live parent preparation and failure cleanup
+
+- Qualify the installed W198 coordinate handoff across candidate diffraction,
+  parent-only interpretation and candidate restoration. Existing prepared state
+  and diffraction reproduce exactly in one actual Phenix 2.2.1-6174 dry-run.
+- Inject a separate preparation failure; retain the original error, restore
+  bindings and discard the failed manager/process. 71 independent cold checks.
+- Local diagnostic and documentation only; zero refinements, no product schema,
+  runtime-policy or dependency change. Preserve the first startup failure and
+  keep scientific payload out of Git. Maintained context remains the next step.
+
 ### W198 — Hand off endpoint coordinates in exact native atom order
 
 - Extend the existing endpoint owner with a detached immutable mapping of an

@@ -258,14 +258,15 @@
         "W195 adds declared regional step summaries with missing coverage and near-zero/wrap limits; regional cancellation reinforces the next local repair/admission gate.",
         "W196 extends the existing replayable initializer to an explicit registered interior whole-pair window with two fixed flanks and declared nonuniform weights; native retention/recovery remains separate.",
         "W197 qualifies matched fixed-frame recovery from fresh signed interior initializers:205 atoms relax while654 remain fixed; no new motion algorithm or ordinary native hook.",
-        "W198 couples exact admitted source/candidate coordinates and movable/fixed scope through the existing strict native identity owner; nine saved-stage handoffs pass. Actual native application and lifetime integration remain separate."
+        "W198 couples exact admitted source/candidate coordinates and movable/fixed scope through the existing strict native identity owner; nine saved-stage handoffs pass. Actual native application and lifetime integration remain separate.",
+        "W199 uses installed W198 in the live earlier interpretation boundary: exact prior preparation/diffraction parity and deliberate-failure binding cleanup pass. No refinement or maintained hook yet."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "Agree the live model preparation/coordinate-transfer boundary with Cedar, preserving W198 exact identity and role, source-bound motion, fixed context, current phosphate intent and Alder-owned input lifetime. Adopt only through the existing frozen execution policy; no duplicate reader, ad hoc execution format or repeat W197 refinement.",
+      "next_action": "W200: maintain a one-shot opt-in preparation context with bound parent/candidate/motion and qualified native builder. Keep candidate diffraction, source geometry, full fixed scope, existing Cedar scientific checks and outer-worker lifetime/discard; qualify one maintained success/failure. Leave counted/native execution policy integration separate.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -324,14 +325,15 @@
         "E_DECLARED_REGIONAL_TWIST_SUMMARY",
         "E_INTERIOR_PAIRED_PREVIEW",
         "E_FIXED_FRAME_NATIVE_RECOVERY",
-        "E_NATIVE_ENDPOINT_HANDOFF"
+        "E_NATIVE_ENDPOINT_HANDOFF",
+        "E_LIVE_PREPARATION_HANDOFF"
       ],
       "last_audit": {
         "date": "2026-11-21",
         "reviewer": "Linden",
-        "human_update": 198,
+        "human_update": 199,
         "code_commit": "da438d6c66f75996d2307852f3818dd1a98d2a64",
-        "scope": "Source/installed coordinate handoff only; no new native execution or scientific acceptance"
+        "scope": "Live preparation-only equivalence and injected failure; no ordinary integration or scientific acceptance"
       }
     },
     {
@@ -386,14 +388,15 @@
         "W195 adds declared regional step summaries with missing coverage and near-zero/wrap limits; regional cancellation reinforces the next local repair/admission gate.",
         "W196 extends the existing replayable initializer to an explicit registered interior whole-pair window with two fixed flanks and declared nonuniform weights; native retention/recovery remains separate.",
         "W197 strongly recovers four crossing-boundary bonds while retaining complete topology and phosphate inventory. A12 phosphate-angle and B2 sugar/backbone bond costs persist; local repair remains partial.",
-        "W198 couples exact admitted source/candidate coordinates and movable/fixed scope through the existing strict native identity owner; nine saved-stage handoffs pass. Actual native application and lifetime integration remain separate."
+        "W198 couples exact admitted source/candidate coordinates and movable/fixed scope through the existing strict native identity owner; nine saved-stage handoffs pass. Actual native application and lifetime integration remain separate.",
+        "W199 uses installed W198 in the live earlier interpretation boundary: exact prior preparation/diffraction parity and deliberate-failure binding cleanup pass. No refinement or maintained hook yet."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Agree the live model preparation/coordinate-transfer boundary with Cedar, preserving W198 exact identity and role, source-bound motion, fixed context, current phosphate intent and Alder-owned input lifetime. Adopt only through the existing frozen execution policy; no duplicate reader, ad hoc execution format or repeat W197 refinement.",
+      "next_action": "W200: maintain a one-shot opt-in preparation context with bound parent/candidate/motion and qualified native builder. Keep candidate diffraction, source geometry, full fixed scope, existing Cedar scientific checks and outer-worker lifetime/discard; qualify one maintained success/failure. Leave counted/native execution policy integration separate.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -495,14 +498,15 @@
         "E_DECLARED_REGIONAL_TWIST_SUMMARY",
         "E_INTERIOR_PAIRED_PREVIEW",
         "E_FIXED_FRAME_NATIVE_RECOVERY",
-        "E_NATIVE_ENDPOINT_HANDOFF"
+        "E_NATIVE_ENDPOINT_HANDOFF",
+        "E_LIVE_PREPARATION_HANDOFF"
       ],
       "last_audit": {
         "date": "2026-11-21",
         "reviewer": "Linden",
-        "human_update": 198,
+        "human_update": 199,
         "code_commit": "da438d6c66f75996d2307852f3818dd1a98d2a64",
-        "scope": "Source/installed coordinate handoff only; no new native execution or scientific acceptance"
+        "scope": "Live preparation-only equivalence and injected failure; no ordinary integration or scientific acceptance"
       }
     },
     {
@@ -4837,6 +4841,29 @@
           "size": 997
         }
       ]
+    },
+    "E_LIVE_PREPARATION_HANDOFF": {
+      "kind": "live_native_preparation_handoff",
+      "date": "2026-11-21",
+      "human_update": 199,
+      "code_commit": "da438d6c66f75996d2307852f3818dd1a98d2a64",
+      "reference": "docs/topostitch-periodic.md#w199--use-the-installed-handoff-during-live-preparation",
+      "result": "One completed Phenix2.2.1-6174 dry-run and one injected preparation failure;71 cold checks. Three live mapping digests and complete prepared geometry/model/diffraction reproduce saved controls. All bindings restore and both children stop. Zero refinements.",
+      "limitation": "Private boundary qualification only. Failed manager discarded, not rolled back/reused. First missing-dependency startup failure preserved. Maintained one-shot context, retained-file lifetime and ordinary execution integration remain separate; no product/schema change.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w199-live-preparation/review.json",
+          "sha256": "e199d30e24d4e15ec2ed8188ca64ee09c1064ee0b190dff798e1ed607754feca",
+          "size": 9033
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w199-live-preparation/attempt02/experiment/plan.json",
+          "sha256": "68c003cd461560df6b4df9d2c453ae786313bb809efc751181091909efe7785e",
+          "size": 17802
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -4998,8 +5025,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 198,
-    "next": 199,
+    "current": 199,
+    "next": 200,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -5995,6 +6022,12 @@
       {
         "number": 198,
         "title": "Keep admitted coordinates and movement masks in exact native atom order",
+        "state": "RECORDED",
+        "code_commit": "da438d6c66f75996d2307852f3818dd1a98d2a64"
+      },
+      {
+        "number": 199,
+        "title": "Qualify live native handoff and discard a deliberately failed preparation",
         "state": "RECORDED",
         "code_commit": "da438d6c66f75996d2307852f3818dd1a98d2a64"
       }

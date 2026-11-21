@@ -1,5 +1,25 @@
 # NASolve development handoff — Willow
 
+**W199: the installed atom-order handoff now passes a live preparation boundary.**
+One Phenix 2.2.1-6174 dry-run uses W198 at initial candidate diffraction,
+interpreted parent and restored candidate. All three mapping digests, complete
+diffraction snapshots, prepared geometry/model and movement selection exactly
+match the saved controls. A second child deliberately fails after parent mapping;
+all Python bindings restore, the original error survives and the process stops.
+The failed manager is discarded, not rolled back or reused. **71 cold checks**;
+zero refinements. One earlier missing-dependency startup failure is retained.
+[Methods](topostitch-periodic.md#w199--use-the-installed-handoff-during-live-preparation).
+
+**Next (W200, agreed with Cedar):** a maintained opt-in one-shot preparation
+context on Willow, with bound parent/candidate/motion and an explicitly qualified
+native builder. Keep the earlier single interpretation boundary; the counted
+refinement driver is too late to preserve source-based interpretation. Outer
+worker owns lifetime/process/discard; existing Cedar owners judge chemistry and
+diffraction. Versioned counted/native execution policies stay unchanged pending
+separate integration. No new refinement panel or coordinate reader is needed.
+S04/S05/S06 remain partial. Existing science visual:
+`GitHub:ScienceCheckouts/Linden/2026-11-21_fixed-frame-recovery/index.html`.
+
 **W198: native atom order now travels with the exact movement scope.**
 The existing endpoint owner returns a detached immutable mapping for one admitted
 parent/candidate role. It reuses Cedar's strict atom reader and W188's complete
@@ -16,7 +36,7 @@ coordinate drift refuse. No new native refinement, disk schema or runtime hook.
 [API](topostitch-preview.md#map-an-admitted-endpoint-to-native-atom-order-w198) ·
 [methods](topostitch-periodic.md#w198--keep-native-atom-order-and-movement-scope-together).
 
-**Next (W199):** agree the exact live preparation/transfer boundary with Cedar,
+**W198 remaining integration boundary:** agree the exact live preparation/transfer boundary with Cedar,
 then qualify the opt-in integration using the existing frozen execution owner.
 Willow owns admitted source/motion/mask; Cedar owns native model state, chemistry,
 crystal/ADPs and transition; Alder owns retained input lifetime. A completed read
