@@ -121439,5 +121439,36 @@
       ]
     },
     "scope": "The two second rounds share the exact same first-round parent. The B4 rows are a separate first-round experiment. The tested planes have seven atoms each and sigma 0.10 angstrom. No default plane weight or scientific acceptance."
+  },
+  "crossed_5pc_starting_displacements_2026_11_21": {
+    "cedar": 511,
+    "program": "Phenix 2.2.1-6174",
+    "scope": "One G:5PC host-scaffold substitution at B:4, identical initial coordinates and occupancies, five group-ADP cycles. Three existing controls and one new base-only experiment. No automatic adoption.",
+    "columns": ["source", "base_B_A2", "sugar_phosphate_B_range_A2", "terminal_bond_A", "tip_height_A", "per_atom_B_shift_A2"],
+    "rows": [
+      ["C421", 20.0, [20.0,20.0], 1.460439, 0.129664, 169.39],
+      ["C437", 20.0, [224.56,302.58], 1.549319, 0.087144, 107.62],
+      ["C429", 138.44, [224.56,302.58], 1.471587, 0.140134, -0.41],
+      ["C511", 138.44, [20.0,20.0], 1.443086, 0.343260, 157.11]
+    ],
+    "terminal_target_sigma_A": [1.47,0.027],
+    "new_case": {
+      "input_model": "7280e57df376f78c4b3800ddc7b642ddcb9fc4a844db624f89e207145200314d",
+      "written_model": "d8485854c8bae41e62d2c60fcf534f8ba43310bfbe47b4f3a8432882f06b0f7b",
+      "execution": "2454de6c28b6720a5c64fc891c639ee189addd76becc4a5d21e29009a561e64a",
+      "frame": {"bond":52, "angle":88, "planarity":3, "parallelity":58},
+      "backbone_links": 38,
+      "additional_phosphate_angles": 6,
+      "source_reflections": "40050be2ba0b3cf389314b3d4454098115645066a7966e1f7d23838f3e1dd40b",
+      "intensities_and_sigmas": 2273, "free_flags": 3236, "measured_free": 127,
+      "selected": "postmr", "Rwork": 0.2087, "Rfree": 0.2334
+    },
+    "fixed_coordinate_calculation": {"work_HKLs":2146, "direct_complex_additivity_relative_rms":3.79e-16, "base_only_relative_rms_amplitude_change":0.05407},
+    "local_reproduction": {
+      "anchor": "NASolve_checkout",
+      "path": "branch-artifacts/cedar/c511-crossed-displacement",
+      "measurements": "science.json", "calculated_structure_factors_summary": "scattering.json",
+      "commands": ["python -B c511_crossed_starting_b.py HISTORY NEW_DIRECTORY MATCHED_RUNTIME NAREST_ROOT PHENIX_ROOT run", "python -B c511_crossed_science.py HISTORY CASE NEW_JSON", "phenix.python -B c511_scattering_balance.py HISTORY CASE SCIENCE_JSON NEW_JSON"]
+    }
   }
 }

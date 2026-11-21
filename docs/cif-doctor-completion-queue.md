@@ -58,8 +58,12 @@ keep the added plane experimental.
 C508 reopened the same four checkpoints. The independent 5PC methyl tip
 had over 1.23 Å of clearance from the closest approach relative to its
 printed van der Waals contact distance in both endpoints. The base rotated
-less than 2.4° from preflight. Preserve this counterexample when deciding
-the scope of a general arm correction.
+less than 2.4° from preflight. C511 completed the four-way starting B
+comparison at this site. Moving only the base to its host B gave a 1.443 Å
+terminal bond and 0.343 Å tip height. Moving only the scaffold gave
+1.549/0.087 Å. Each of the four per-residue refinements preserved the
+starting B differences within the site. Compare both shape measurements
+and the incoming displacement fields before choosing a general arm correction.
 
 C507–C509 give Willow a shared reading of the geometry before and after
 atoms move. With all four W203 reader settings applied, Phenix recovered the

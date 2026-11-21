@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C510 checking the chemistry Phenix used — Rowan**.
+Updated **2026-11-21, C511 testing starting B factors through refinement — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -649,7 +649,7 @@ all thirteen current sources, all 38 links and all 211 frame terms. The
 request uses the separately constructed nine-pair seed. Generation,
 qualification of the full set and mixed diffraction refinement remain open.
 
-**C428–C429, starting B factors.** Of 132 sugar and phosphate atoms that
+**C428–C429/C511, starting B factors.** Of 132 sugar and phosphate atoms that
 kept their host coordinates through twelve mutations, 110 acquired B=20 Å².
 On a separate 5PC site the starting guanine base had one recorded B value.
 Changing only 22 starting B values to their host-supported values changed
@@ -659,8 +659,23 @@ bond at 1.460 Å from the Coot start and 1.472 Å from the host-derived start
 (target 1.470 Å). The terminal carbon lay 0.130 and 0.140 Å from the ring
 plane. PostMR remains selected. Carry forward B values where the original
 atom identity is established. A defensible rule for newly added atoms on a
-nonuniform host remains open. Compact evidence is under
-`host_displacement_and_mixed_ordinary_dictionary_transfer_2026_11_20`.
+nonuniform host remains open.
+
+The fourth matched five-cycle Phenix 2.2.1-6174 refinement completes the crossed
+comparison. With the base alone set to the original host-base value of 138.44 Å²
+and the scaffold at 20 Å², the 5PC terminal bond was 1.443 Å and the tip lay
+0.343 Å above its six ring atoms. The previously tested scaffold-only change
+gave 1.549/0.087 Å, both changes gave 1.472/0.140 Å, and the original Coot
+start gave 1.460/0.130 Å. All four began with the same coordinates.
+The per-residue B refinement shifted every atom at this site by the same
+amount within each experiment. For the new case the shift was +157.11 Å²,
+so its initial base–scaffold difference survived. The complex starting model
+structure factors from the two B changes add on all 2,146 work indices.
+The final shapes therefore cannot be predicted from either starting change
+alone. All 38 backbone links, 201 supplied frame terms, six protective
+phosphate angles, 2,273 intensity/sigma pairs and 3,236 flags survived.
+Reuse the three previous controls. The evidence ledger entry is
+`crossed_5pc_starting_displacements_2026_11_21`.
 
 **Q06.** Fresh G:5PC completed both construction and ordinary five-cycle Phenix
 refinement. Its automatically corrected C8–C9 target survived in the native
