@@ -53,16 +53,20 @@ No returned boolean/None or coordinate mapping alone is chemical authority.
 
 ## Next bounded work
 
-**W209:** Cedar owns the shared early-entry/dispatch slice. W208 now provides
-`SourceBoundParentBuilder` around C512/W200, with explicit readers and one actual
-success/failure qualification. The ordinary receiver needs the W206 bound source,
-admitted current-parent/candidate motion, pending native model/process options,
-Cedar service created before hooks, and qualified atom/geometry/protected-state/
-diffraction readers plus a coordinate writer. It must require both W200 completion
-and builder evidence. Source qualification, native binding cleanup, input/process
-lifetime and failed-manager disposal remain with existing outer owners.
-[Minimal interface and example](topostitch-preview.md#maintained-source-bound-parent-builder-w208).
-No new optimizer, generic quota system or second native interpretation is needed.
+**W209 remaining:** Cedar owns the versioned ordinary request carrying the
+bound geometry-parent/source and admitted candidate motion. Rowan's **C516**
+(`7ed50ffab8ecfcd232a50abfda41c45e9cf545ce`) now owns early validation/finalization/
+pending-process ordering and reproduces W208's success and failure natively.
+The linked owner receipt binds our exact prior records; do not repeat that panel.
+[Receiving handoff](topostitch-preview.md#cedar-native-entry-handoff-c516).
+
+The ordinary receiver still needs W206 bound source, admitted current-parent/
+candidate motion, a pending native model/process options, and qualified native
+readers/writer. Bind builder, W200 context, input class and W198 mapping from the
+same qualified Willow module namespace. Require both context.result() and
+builder.result()/evidence(). Source qualification, input/process lifetime and
+failed-manager disposal remain with existing outer owners; v3/v9 request and
+helper bytes retain their meanings. No extra optimizer or generic quota owner.
 
 Keep W207's A11/A14 local defects as an explicit later recovery question; do not
 silently extend this immutable five-cycle run. Investigator-requested stress

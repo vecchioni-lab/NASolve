@@ -275,7 +275,7 @@
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "W209: Cedar-led receiving integration of the maintained builder with typed geometry-parent/candidate roles and an early source-qualified native entry, after explicit shared review. Willow supplies bound inputs/motion and native evidence contract. Preserve old policies/defaults and process ownership. No new amplitude or optimization panel until that route is settled; W207 A11/A14 recovery defects remain an explicit later physical question.",
+      "next_action": "W209 remaining: Cedar owns the versioned ordinary request carrying authenticated geometry-parent/source and admitted motion, preserving earlier policies/helper bytes. C516 now qualifies early native ordering with exact W208 success/failure parity; do not repeat that native panel. Willow supplies the same bound-input/builder/mapping namespace and evidence. No new amplitude or optimization sweep.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -423,7 +423,7 @@
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "W209: Cedar-led receiving integration of the maintained builder with typed geometry-parent/candidate roles and an early source-qualified native entry, after explicit shared review. Willow supplies bound inputs/motion and native evidence contract. Preserve old policies/defaults and process ownership. No new amplitude or optimization panel until that route is settled; W207 A11/A14 recovery defects remain an explicit later physical question.",
+      "next_action": "W209 remaining: Cedar owns the versioned ordinary request carrying authenticated geometry-parent/source and admitted motion, preserving earlier policies/helper bytes. C516 now qualifies early native ordering with exact W208 success/failure parity; do not repeat that native panel. Willow supplies the same bound-input/builder/mapping namespace and evidence. No new amplitude or optimization sweep.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -754,14 +754,15 @@
         "W154 optional map_labels separates density provenance text from coordinate-state names while preserving defaults and science.30focused,2092full+234subtests,159relocatedinstalled+53subtests;93package files unchanged; exact saved-scene/source-installed HTML and17mock controls. Hazel reviews source and published payloads. Two owned scratch roots retired after archived verification:3956files/29020618bytes.",
         "W165 plans an enabled-by-default read-only backbone-fit check after usable refinement: high Rfree plus coherent atom-associated negative phosphate density or significant coherent positive backbone density. Separate detection, permissioned bounded trial and adoption; matched recovery/control and geometry/map/content review remain required. Planning only: no detector, operational thresholds, CLI flag, automatic displacement or checkpoint replacement. Density ambiguity/noise calibration and source/frame binding remain gates; W164 synthetic recovery is not experimental acceptance.",
         "W170 adds a checked PNG/SVG report and matched map/geometry table, preserving common and own-map sigma scales. The static figure was inspected directly; browser/GPU rendering is unqualified. No runtime viewer or detector change; see E_SAVED_RESIDUAL_MAP_REVIEW.",
-        "W208 maintains SourceBoundParentBuilder beside W200: explicit C512 service and trusted native observers/writer, original source MATCH before transfer, unchanged protected state/topology/proxies/candidate diffraction, first-error invalidation.217 source/217 relocated installed tests and54 actual-native cold checks pass. Actual dry-run exactly reproduces W207; intentional post-parent failure performs zero transfer and exposes no builder result. Earlier last-bit cell-representation refusal is preserved; raw metric changes are bounded below1e-10 with10-decimal canonical cell representation only. No ordinary dispatch or new refinement."
+        "W208 maintains SourceBoundParentBuilder beside W200: explicit C512 service and trusted native observers/writer, original source MATCH before transfer, unchanged protected state/topology/proxies/candidate diffraction, first-error invalidation.217 source/217 relocated installed tests and54 actual-native cold checks pass. Actual dry-run exactly reproduces W207; intentional post-parent failure performs zero transfer and exposes no builder result. Earlier last-bit cell-representation refusal is preserved; raw metric changes are bounded below1e-10 with10-decimal canonical cell representation only. No ordinary dispatch or new refinement.",
+        "Cedar C516 owns validation/finalization/one pending process ordering. Owner-qualified actual success and post-parent failure match W208 model/restraints/source chemistry/mappings and all three diffraction snapshots;3 early hooks+2 observers restore, processes stop. Zero refinement; ordinary dispatcher remains false."
       ],
       "acceptance": [
         "Create immutable children with exact model/CIF/PHIL inputs, preserve current selection, and reuse existing Coot/model-tree paths; viewing never selects or approves.",
         "Show actual before/after coordinates, moved/fixed sites, mates, geometry and matched refinement deltas. Test stale evidence, interruption, relocation and explicit keep/reject/use decisions.",
         "For final B09 review, show source, proposed and refined geotest coordinates with the intended periodic mates and per-member pass/review/failure evidence."
       ],
-      "next_action": "W209: Cedar-led receiving integration of the maintained builder with typed geometry-parent/candidate roles and an early source-qualified native entry, after explicit shared review. Willow supplies bound inputs/motion and native evidence contract. Preserve old policies/defaults and process ownership. No new amplitude or optimization panel until that route is settled; W207 A11/A14 recovery defects remain an explicit later physical question.",
+      "next_action": "W209 remaining: Cedar owns the versioned ordinary request carrying authenticated geometry-parent/source and admitted motion, preserving earlier policies/helper bytes. C516 now qualifies early native ordering with exact W208 success/failure parity; do not repeat that native panel. Willow supplies the same bound-input/builder/mapping namespace and evidence. No new amplitude or optimization sweep.",
       "evidence": [
         "E_SOFTWARE",
         "E_VIEW",
@@ -777,7 +778,8 @@
         "E_INDEPENDENT_MAP_LABELS",
         "E_DEFAULT_BACKBONE_CHECK_PLAN",
         "E_SAVED_RESIDUAL_MAP_REVIEW",
-        "E_MAINTAINED_PARENT_BUILDER"
+        "E_MAINTAINED_PARENT_BUILDER",
+        "E_C516_NATIVE_ENTRY_HANDOFF"
       ],
       "last_audit": {
         "date": "2026-11-21",
@@ -5233,6 +5235,23 @@
           "path": "branch-artifacts/willow/w207-fixed-flank-recovery/saved-maps/figure/figure-evidence.json",
           "sha256": "2f9da9ca4ebb46856b7567b042885d5abfc9eaeacb9e120b317121a0923ef6bd",
           "size": 7378
+        }
+      ]
+    },
+    "E_C516_NATIVE_ENTRY_HANDOFF": {
+      "kind": "Cedar_owner_qualified_parent_entry",
+      "date": "2026-11-21",
+      "human_update": 208,
+      "code_commit": "7ed50ffab8ecfcd232a50abfda41c45e9cf545ce",
+      "reference": "docs/topostitch-preview.md#cedar-native-entry-handoff-c516",
+      "result": "Cedar C516 owns validation/finalization/one pending process ordering. Owner-qualified actual success and post-parent failure match W208 model/restraints/source chemistry/mappings and all three diffraction snapshots;3 early hooks+2 observers restore, processes stop. Zero refinement; ordinary dispatcher remains false.",
+      "limitation": "Cedar owner validation consumed as linked evidence; Willow verifies the referenced W208 prior hashes but does not claim another independent native run. Shared versioned source/motion request is still pending.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/cedar/c516-source-parent-entry/science.json",
+          "sha256": "9875ea33c09a24b193c419238399b3f7dae564d24972cbec84343e0d1dae1eb0",
+          "size": 2352
         }
       ]
     }

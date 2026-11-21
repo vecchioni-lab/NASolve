@@ -2854,3 +2854,32 @@ changes or refinement. Receipts under
 `NASolve:branch-artifacts/willow/w207-fixed-flank-recovery/saved-maps/` are bound
 in the roadmap. W170's earlier map panel and W207's current panel are different
 endpoints; no new matched-control experiment is implied.
+
+
+### Cedar native-entry handoff (C516)
+
+After W208, Rowan qualified the shared early native ordering on Cedar at
+`7ed50ffab8ecfcd232a50abfda41c45e9cf545ce`. C516 owns three hooks at validation,
+finalization and the one pending `model.process` call; the existing two diagnostic
+observers remain separate. Its actual Phenix 2.2.1-6174 success matches W208's
+final model, geometry, prepared state, source chemistry, mappings and all three
+diffraction snapshots. The post-parent refusal preserves the original error,
+performs zero transfer and denies a usable result. All bindings restore and
+both processes stop; zero refinement cycles.
+
+This is **Cedar owner-qualified evidence**, not another Willow experiment.
+Willow checked that the two prior-record hashes in
+`NASolve:branch-artifacts/cedar/c516-source-parent-entry/science.json` exactly
+identify its W208 success/failure captures; the roadmap binds that receipt.
+The qualified relocated package remains at its historical local path
+`/private/tmp/rowan-cedar-nov21-BrSPrj/package-516-final/relocated`, alongside the
+separate retained W208 installation. No portable-public-run claim follows.
+
+Cedar's remaining W209 step is the versioned ordinary request with authenticated
+source/parent and motion roles. Preserve old request meanings/helper bytes. Both
+W200 completion and builder evidence are mandatory; use one consistent Willow
+module namespace for their typed classes. On a post-parent failure the disposable
+native manager can hold parent coordinates: unchanged input files and candidate
+F-model do **not** mean rollback of that manager. Discard it. Ordinary dispatch
+and scientific acceptance remain false. Do not repeat C516 just to obtain another
+copy of the same successful native evidence.

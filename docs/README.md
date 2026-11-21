@@ -23,8 +23,9 @@ immutable inputs and future compressed/budgeted sessions keep distinct owners.
 W207 tests 4.96 Å maximum-atom motion with fixed flanks: strong recovery but
 A11/A14 defects remain. W208 now supplies the [maintained source-bound builder](topostitch-preview.md#maintained-source-bound-parent-builder-w208):
 217 source/217 relocated installed tests and 54 actual-native cold checks.
-It reproduces W207 exactly and safely refuses a post-parent transfer. Cedar owns
-the remaining shared early-entry/dispatch step (W209).
+It reproduces W207 exactly and safely refuses a post-parent transfer. Cedar C516
+now qualifies the early native ordering with the same evidence; W209 remains
+the versioned ordinary source/motion request and dispatch integration.
 
 W200 adds the [maintained one-shot preparation context](topostitch-preview.md#prepare-parent-geometry-once-w200):
 160 source/160 installed tests and an actual success/failure pair preserve the

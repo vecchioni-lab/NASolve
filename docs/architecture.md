@@ -1057,7 +1057,9 @@ binding, input lease, process, force or dispatch policy. Both W200 completion an
 builder evidence are required; the outer worker discards any failed manager.
 The installed success/failure qualification and minimal receiver interface are
 [documented here](topostitch-preview.md#maintained-source-bound-parent-builder-w208).
-Cedar retains shared early-entry/dispatch ownership; no ordinary route is enabled.
+Cedar retains shared early-entry/dispatch ownership; C516 now qualifies native
+ordering with W208 success/failure parity. The versioned ordinary source/motion
+request remains open; no ordinary route is enabled.
 
 W190 optionally binds the existing ordinary model-context derivation to the exact
 canonical PostMR source and frozen plan. Derived source connectivity is separate
