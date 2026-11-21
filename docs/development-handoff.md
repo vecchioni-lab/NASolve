@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C512 reading the whole parent and a selected residue together — Rowan**.
+Updated **2026-11-21, C513 comparing the PDU and 5PC responses to starting B — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -691,6 +691,20 @@ alone. All 38 backbone links, 201 supplied frame terms, six protective
 phosphate angles, 2,273 intensity/sigma pairs and 3,236 flags survived.
 Reuse the three previous controls. The evidence ledger entry is
 `crossed_5pc_starting_displacements_2026_11_21`.
+
+C513 changed the same eleven base B fields in the independent A:PDU control.
+It used the original C403 runtime and restraints. Five Phenix 2.2.1-6174
+cycles shortened the terminal bond from the control's 1.500 to 1.476 Å
+(target 1.470 Å), while tip height increased from 0.175 to 0.582 Å.
+The inner alkyne angle reached 172.49°. Cedar retained the geometry
+review. All 38 backbone links, 196 supplied terms, six D:1 protective
+angles and all original intensity/sigma and flag values survived.
+Both PDU and 5PC moved their tips farther from the ring under the base-only
+change. The two terminal bonds moved in the same direction, but only PDU
+moved closer to its target. This common host has a free B:1 hydroxyl.
+The independent PDU:PDU incoming symmetry phosphate still needs its own
+link evidence. Reopen `branch-artifacts/cedar/c513-pdu-displacement/science.json`.
+The native and cold commands are in `matched_pdu_base_displacement_2026_11_21`.
 
 **Q06.** Fresh G:5PC completed both construction and ordinary five-cycle Phenix
 refinement. Its automatically corrected C8–C9 target survived in the native

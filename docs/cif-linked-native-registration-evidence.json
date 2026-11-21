@@ -121470,5 +121470,20 @@
       "measurements": "science.json", "calculated_structure_factors_summary": "scattering.json",
       "commands": ["python -B c511_crossed_starting_b.py HISTORY NEW_DIRECTORY MATCHED_RUNTIME NAREST_ROOT PHENIX_ROOT run", "python -B c511_crossed_science.py HISTORY CASE NEW_JSON", "phenix.python -B c511_scattering_balance.py HISTORY CASE SCIENCE_JSON NEW_JSON"]
     }
+  },
+  "matched_pdu_base_displacement_2026_11_21": {
+    "cedar": 513, "program": "Phenix 2.2.1-6174", "macrocycles": 5,
+    "scope": "Same A:PDU host-scaffold control as C403/C475. Only the eleven PDU base B values changed from 20 to 138.44 A^2. The eleven sugar and phosphate B values stayed at 20. No added plane or automatic selection.",
+    "columns": ["case", "tip_height_A", "terminal_bond_A", "inner_alkyne_angle_deg", "outer_alkyne_angle_deg", "Rwork", "Rfree"],
+    "rows": [["C403",0.174812,1.499562,175.449,174.425,0.2125,0.2265],["C513",0.581761,1.476085,172.490,175.146,0.2119,0.2283]],
+    "terminal_target_sigma_A": [1.47,0.020],
+    "written_model": "bffdaaab05276eadc7306ab6910eadde5841365e9e8440d46c9882c5be50c499",
+    "native_execution": "b89304816ee3d7ef9b8a388d2d3ea95ea51c7865f7488aa5449ed42f0980bb58",
+    "outcome": "AUTOREFINE_REVIEW", "native_exit": 0,
+    "frame": {"bond":51, "angle":84, "planarity":3, "parallelity":58},
+    "protected_phosphate_angles": 6, "verified_backbone": 38, "original_intensities_and_sigmas": 2273,
+    "all_original_flags":3236, "measured_free":127, "selected_checkpoint":"postmr",
+    "local_reproduction": {"anchor":"NASolve_checkout","path":"branch-artifacts/cedar/c513-pdu-displacement","measurements":"science.json",
+      "commands":["python -B c513_pdu_transfer.py HISTORY NEW_DIRECTORY NAREST_ROOT PHENIX_ROOT run","python -B c513_pdu_science.py HISTORY CASE NEW_JSON"]}
   }
 }

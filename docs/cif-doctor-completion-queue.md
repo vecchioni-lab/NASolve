@@ -64,6 +64,11 @@ terminal bond and 0.343 Å tip height. Moving only the scaffold gave
 1.549/0.087 Å. Each of the four per-residue refinements preserved the
 starting B differences within the site. Compare both shape measurements
 and the incoming displacement fields before choosing a general arm correction.
+The matched A:PDU transfer in C513 also raised the tip, from 0.175 to
+0.582 Å, even as the terminal bond approached 1.470 Å. The inner alkyne
+angle triggered chemical review. Preserve the base-only change as a
+diagnostic for this scaffold. Transfer to a new chemical base on a
+nonuniform host remains an open decision.
 
 C507–C509 give Willow a shared reading of the geometry before and after
 atoms move. With all four W203 reader settings applied, Phenix recovered the
