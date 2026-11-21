@@ -173,9 +173,18 @@ def run_audited_child(prepared_directory,parent_directory,request,*,request_id,
             automatic_checkpoint_selection=False,reuse_authorized=False,retirement_authorized=False,
             **(dict(owned_preflight=True,parent_scope=scope) if owned_preflight else lifetime)))
     except BaseException as exc:
-        records.write_record(session/'failure.json',dict(kind='metal-fdp-audited-child-failure',schema_version=1,
+        failure=dict(kind='metal-fdp-audited-child-failure',schema_version=1,
             request_id=request_id,stage=stage,error=type(exc).__name__,message=str(exc),
-            scientific_acceptance='NOT_ASSESSED',retirement_authorized=False))
+            scientific_acceptance='NOT_ASSESSED',retirement_authorized=False)
+        if admission is not None:
+            declaration=proofs.get('request.json')
+            stop=None
+            if declaration is not None and stage in FAILED_STOP_STAGES:
+                try:stop=_failed_stop_evidence(session,declaration)
+                except (OSError,ValueError,KeyError,TypeError,CampaignError):pass
+            failure.update(schema_version=2,session_declaration_sha256=(declaration or {}).get('record_sha256'),
+                           process_stop_evidence=stop)
+        records.write_record(session/'failure.json',failure)
         if isinstance(exc,(RecipeError,KeyboardInterrupt,SystemExit)):raise
         raise RecipeError('Audited child failed at '+stage+': '+str(exc)) from exc
 
@@ -294,3 +303,69 @@ def inspect_audited_child(session_directory,*,review_id):
     except (OSError,ValueError,KeyError,TypeError,OverflowError,CampaignError) as exc:
         if isinstance(exc,RecipeError):raise
         raise RecipeError('Cannot inspect audited child: '+str(exc)) from exc
+
+
+FAILED_STOP_STAGES=frozenset({'OWNED_NATIVE_CHILD','SCIENTIFIC_AUDIT','REVIEW_PUBLICATION'})
+
+
+def _failed_stop_evidence(root,declaration):
+    """Read sealed process owners only; a scientific review is not required."""
+    from . import preflight_process
+    child_process._need(not (root/'review.json').exists() and not (root/'review.json').is_symlink(),
+                        'A published or ambiguous review cannot settle as a failed session')
+    request=child_process._request(declaration['request'],declaration['request']['request_id'])
+    child_process._need(declaration.get('owned_preflight') is True,'Failed-session release requires owned preflight')
+    parent_archive.validate_parent_binding(declaration.get('parent_scope'),request['parent_manifest_sha256'])
+    binding=declaration.get('storage_reservation')
+    child_process._need(isinstance(binding,dict) and set(binding)=={'budget_id','reservation_id'},
+                        'Failed session has no exact reservation binding')
+    for name,value in binding.items():checksum(value,name)
+    proof=_session_record(root,'owned-preflight.json')
+    _same(proof.get('directory'),dict(anchor='session',relative_path='preflight'),'Failed session preflight location')
+    preflight=preflight_process.inspect_preflight(root/'preflight',inspection_id=proof['inspection_id'])
+    child_process._need(preflight['request_id']==request['request_id'],'Failed session preflight request changed')
+    attempt=child_process._root(root/'attempt')
+    # Require saved seals before the shared reader; never query historical PIDs
+    # as a substitute for missing process completion evidence.
+    _session_record(attempt/'ownership','finished.json')
+    _session_record(attempt/'ownership/phases/native-fdp','finished.json')
+    outcome=_session_record(attempt,'outcome.json')
+    report=child_process.inspect_child(attempt,request_id=request['request_id'])
+    child_process._need(report['status'] in {'COMPLETED','FAILED','TIMED_OUT','INTERRUPTED'}
+        and report['stopped_verified'] is True and outcome.get('stopped_verified') is True
+        and report['outcome']==outcome and outcome.get('schema_version')==2,
+        'Failed session requires a verified stopped native outcome')
+    _same(outcome['parent_scope'],declaration['parent_scope'],'Failed session native parent lifetime')
+    return dict(preflight_inspection_id=proof['inspection_id'],native_outcome_sha256=outcome['record_sha256'],
+                native_status=report['status'],preflight_stopped_verified=True,native_stopped_verified=True)
+
+
+def inspect_failed_audited_child(session_directory,*,failure_id):
+    """Verify a pinned new failure and stopped owners; never retry or accept science.
+
+    Initial preflight failures and older unbound failures remain unsupported.
+    Missing stop seals refuse before the shared process reader can inspect PIDs.
+    """
+    checksum(failure_id,'independent failed session identity');root=child_process._root(session_directory)
+    try:
+        failure=_session_record(root,'failure.json')
+        fields={'kind','schema_version','request_id','stage','error','message','scientific_acceptance',
+                'retirement_authorized','session_declaration_sha256','process_stop_evidence','record_sha256'}
+        child_process._need(set(failure)==fields and failure['record_sha256']==failure_id
+            and failure['kind']=='metal-fdp-audited-child-failure' and type(failure['schema_version']) is int
+            and failure['schema_version']==2 and failure['stage'] in FAILED_STOP_STAGES
+            and isinstance(failure['error'],str) and isinstance(failure['message'],str)
+            and failure['scientific_acceptance']=='NOT_ASSESSED' and failure['retirement_authorized'] is False
+            and isinstance(failure['process_stop_evidence'],dict),'Unsupported or incomplete failed-session closure')
+        declaration=_session_record(root,'request.json')
+        _same(declaration['record_sha256'],failure['session_declaration_sha256'],'Failed session declaration')
+        _same(declaration['request']['request_id'],failure['request_id'],'Failed session request')
+        stop=_failed_stop_evidence(root,declaration)
+        _same(stop,failure['process_stop_evidence'],'Failed session stopped evidence')
+        return dict(kind='metal-fdp-failed-child-read',schema_version=1,failure_id=failure_id,
+            request_id=failure['request_id'],stage=failure['stage'],recorded_parent_scope=declaration['parent_scope'],
+            storage_reservation=declaration['storage_reservation'],postflight_review_complete=False,
+            scientific_acceptance='NOT_ASSESSED',retirement_authorized=False,**stop)
+    except (OSError,ValueError,KeyError,TypeError,CampaignError) as exc:
+        if isinstance(exc,RecipeError):raise
+        raise RecipeError('Cannot inspect failed session: '+str(exc)) from exc

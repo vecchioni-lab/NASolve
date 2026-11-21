@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Release a verified stopped failed metal session's future allowance
+
+- Add explicit `settle_failed_audited_session` for newly bound budgeted failures
+  after successful owned preflight and a verified stopped native child. Scientific
+  rejection stays failed, all files remain, and parent cleanup stays independent.
+- Bind failure v2 to its exact request declaration/reservation and process-stop
+  evidence. Default failure v1 is unchanged. Preflight, uncertain, unsealed and
+  historical unbound failures remain charged; no PID probing, retry or migration.
+- Preserve the original error when closure metadata is corrupt. Keep successful
+  and failed settlement distinct, idempotent and checked under the existing lock.
+- Qualify 165 focused/86 relocated installed checks. Previous v1/v2 and existing
+  v3 reads agree; the previous reader refuses the new failed-settlement kind.
+  No Phenix/Coot invocation, full suite, data retirement or campaign-capacity claim.
+
 ### Reserve an entire audited metal session before native inspection
 
 - Add an explicitly opted-in v3 ledger profile with whole-session grants under

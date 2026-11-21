@@ -388,6 +388,8 @@ def _reserve_audited_execution(options,*,session,request_id,known_input_bytes,ma
 
 
 def _check_session_settlement(grant,reservation_id,value):
+    if isinstance(value,dict) and value.get('kind')==FAILED_SESSION_SETTLEMENT:
+        return _check_failed_session_settlement(grant,reservation_id,value)
     fields={'kind','schema_version','reservation_id','request_id','parent_reservation_id','review_sha256',
             'output_evidence_id','preflight_stopped_verified','native_stopped_verified','postflight_review_complete',
             'verification_scope','scientific_acceptance','retirement_authorized'}
@@ -403,9 +405,8 @@ def _check_session_settlement(grant,reservation_id,value):
     checksum(value['output_evidence_id'],'settled native output evidence identity')
 
 
-def _audited_review(root,ledger,grant,reservation_id,review_id):
-    from . import child_session
-    path=_grant_path(root,grant);admission=_record(path/'storage-admission.json',MAX_RECORD_BYTES)
+def _session_admission(path,grant,reservation_id):
+    admission=_record(path/'storage-admission.json',MAX_RECORD_BYTES)
     _need(set(admission)=={'kind','schema_version','reservation_id','grant','minimum_allowance_bytes','scientific_acceptance','retirement_authorized','record_sha256'}
           and admission.get('kind')==SESSION_ADMISSION and type(admission.get('schema_version')) is int
           and admission['schema_version']==1 and admission.get('grant')==grant
@@ -414,6 +415,11 @@ def _audited_review(root,ledger,grant,reservation_id,review_id):
           and type(admission.get('minimum_allowance_bytes')) is int
           and 0<admission['minimum_allowance_bytes']<grant['allowance_bytes'],
           'Session storage admission changed')
+
+
+def _audited_review(root,ledger,grant,reservation_id,review_id):
+    from . import child_session
+    path=_grant_path(root,grant);_session_admission(path,grant,reservation_id)
     report=child_session.inspect_audited_child(path,review_id=review_id)
     declaration=child_session._session_record(path,'request.json')
     _need(declaration.get('storage_reservation')==dict(budget_id=grant['budget_id'],reservation_id=reservation_id),
@@ -440,7 +446,7 @@ def settle_audited_session(directory,*,budget_id,reservation_id,review_id):
         _need(item is not None and item['grant'].get('scope_type')=='audited_session','Require an exact audited-session reservation')
         grant=item['grant']
         if item['settlement'] is not None:
-            _need(item['settlement']['review_sha256']==review_id,'Session already settled against a different review')
+            _need(item['settlement'].get('review_sha256')==review_id,'Session already settled against a different review')
             return item['settlement']
         report=_audited_review(root,ledger,grant,reservation_id,review_id)
         value=dict(kind=SESSION_SETTLEMENT,schema_version=1,reservation_id=reservation_id,request_id=grant['request_id'],
@@ -451,4 +457,62 @@ def settle_audited_session(directory,*,budget_id,reservation_id,review_id):
         _space(root,records.serialized_record_size(ledger),config['free_space_reserve_bytes'])
         _need(_audited_review(root,ledger,grant,reservation_id,review_id)==report,'Audited session changed during settlement')
         _check_session_settlement(grant,reservation_id,value);_save(root,ledger)
+        return value
+
+
+FAILED_SESSION_SETTLEMENT='metal-failed-session-storage-settlement'
+
+
+def _check_failed_session_settlement(grant,reservation_id,value):
+    fields={'kind','schema_version','reservation_id','request_id','parent_reservation_id','failure_sha256',
+            'preflight_inspection_id','native_outcome_sha256','native_status','preflight_stopped_verified',
+            'native_stopped_verified','postflight_review_complete','verification_scope','scientific_acceptance','retirement_authorized'}
+    _need(set(value)==fields and value['kind']==FAILED_SESSION_SETTLEMENT
+        and type(value['schema_version']) is int and value['schema_version']==1
+        and value['reservation_id']==reservation_id and value['request_id']==grant['request_id']
+        and value['parent_reservation_id']==grant['parent_reservation_id'] and value['native_status'] in STOPPED
+        and value['preflight_stopped_verified'] is True and value['native_stopped_verified'] is True
+        and value['postflight_review_complete'] is False and value['verification_scope']=='FAILED_SESSION_STOP_CHECKED_AT_SETTLEMENT'
+        and value['scientific_acceptance']=='NOT_ASSESSED' and value['retirement_authorized'] is False,
+        'Malformed failed-session settlement')
+    for key in ('failure_sha256','preflight_inspection_id','native_outcome_sha256'):checksum(value[key],key)
+
+
+def _failed_session_review(root,ledger,grant,reservation_id,failure_id):
+    from . import child_session
+    path=_grant_path(root,grant)
+    _session_admission(path,grant,reservation_id)
+    report=child_session.inspect_failed_audited_child(path,failure_id=failure_id)
+    _need(report['storage_reservation']==dict(budget_id=grant['budget_id'],reservation_id=reservation_id),
+          'Failed session reservation binding changed')
+    parent=ledger['reservations'][grant['parent_reservation_id']]['grant'];scope=report['recorded_parent_scope']
+    _need(report['request_id']==grant['request_id'] and scope['scope_id']==parent['scope_id']
+          and scope['parent_manifest_sha256']==parent['parent_manifest_sha256'],'Failed session retained parent changed')
+    return report
+
+
+def settle_failed_audited_session(directory,*,budget_id,reservation_id,failure_id):
+    """Release a new, exactly bound, known-stopped failed session's allowance.
+
+    This is accounting only: failed science stays failed and files remain.
+    Preflight/unknown/unsealed and historical unbound failures stay held.
+    """
+    root=_root(directory);checksum(reservation_id,'session reservation identity');checksum(failure_id,'independent session failure')
+    with exclusive_lock(records.path_in(root,LOCK)):
+        config,ledger=_read(root,budget_id);item=ledger['reservations'].get(reservation_id)
+        _need(item is not None and item['grant'].get('scope_type')=='audited_session','Require an exact audited-session reservation')
+        grant=item['grant']
+        if item['settlement'] is not None:
+            _need(item['settlement'].get('failure_sha256')==failure_id,'Session already settled against different evidence')
+            return item['settlement']
+        report=_failed_session_review(root,ledger,grant,reservation_id,failure_id)
+        value=dict(kind=FAILED_SESSION_SETTLEMENT,schema_version=1,reservation_id=reservation_id,
+            request_id=grant['request_id'],parent_reservation_id=grant['parent_reservation_id'],failure_sha256=failure_id,
+            **{k:report[k] for k in ('preflight_inspection_id','native_outcome_sha256','native_status',
+               'preflight_stopped_verified','native_stopped_verified','postflight_review_complete')},
+            verification_scope='FAILED_SESSION_STOP_CHECKED_AT_SETTLEMENT',scientific_acceptance='NOT_ASSESSED',retirement_authorized=False)
+        _observed(root);item['settlement']=value
+        _space(root,records.serialized_record_size(ledger),config['free_space_reserve_bytes'])
+        _need(_failed_session_review(root,ledger,grant,reservation_id,failure_id)==report,'Failed session changed during settlement')
+        _check_failed_session_settlement(grant,reservation_id,value);_save(root,ledger)
         return value

@@ -2188,9 +2188,13 @@ parent reserves before its first native inspection. Its session grant remains
 held through native work, postflight and publication. Explicit successful-review
 settlement reuses the complete scientific reader and records only compact checked
 identities; ledger inspection is historical accounting, not scientific re-audit.
-Failed/unknown sessions remain held and parent closure stays independent. V1/v2
-stores/defaults do not migrate; old readers refuse v3. Files remain charged and no
-retirement or campaign-capacity authority follows. See
+New budgeted failure v2 can separately record a stopped session after completed
+owned preflight and a stopped native child. Explicit failed settlement requires
+its independently pinned failure, exact grant binding and existing process readers;
+it grants no completed scientific review. Preflight/unknown/unsealed and historical
+unbound failures remain held. Parent closure stays independent. V1/v2 stores and
+default failure v1 do not migrate; older readers refuse unsupported v3/settlement
+kinds. Files remain charged and no retirement or campaign-capacity authority follows. See
 [whole-session admission](metal-campaign-storage.md#whole-audited-session-space-admission).
 
 The separate `metal.child_process` route composes protected-parent transport and

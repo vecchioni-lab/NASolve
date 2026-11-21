@@ -1758,8 +1758,8 @@ record cannot substitute for the live owner's evidence. Recovery from those
 uncertain states needs a separate explicit proof and is not inferred here.
 
 **Remaining integration:** parent, child and successful whole-session admission
-are now qualified above/below. Known-stopped failed-session recovery and campaign
-admission must retain this same lifecycle authority. Retirement remains separate; no original
+are now qualified above/below. The bounded failed-session route below and future
+campaign admission retain this same lifecycle authority. Retirement remains separate; no original
 scientific file can be pruned merely because a storage allowance settled.
 
 The final private observation and 28 independent saved-evidence checks are under
@@ -1810,10 +1810,32 @@ identity must match the grant. Valid science copied from another session of the
 same request cannot release this grant. Those checks run twice
 under the existing ledger lock before a compact v1 settlement is published. Identical
 retry is idempotent, including a lost acknowledgement after durable publication.
-A busy lock leaves credit held. Failed preflight/postflight, uncertain stop, missing
-review or mismatched evidence cannot release the allowance in this first profile.
+A busy lock leaves credit held. The successful-review API refuses failed
+preflight/postflight, uncertain stop, missing review or mismatched evidence.
 Parent cleanup remains independent and can finish while an unresolved session
 keeps its own claim.
+
+A separate explicit `settle_failed_audited_session(store, budget_id=...,
+reservation_id=..., failure_id=...)` supports newly recorded budgeted failures
+only after successful owned preflight and a verified stopped native child. The
+producer's failure v2 pins the hashed declaration (including exact reservation)
+and captured preflight/native-stop identities. `inspect_failed_audited_child`
+reuses existing readers; outer and phase stop seals must exist before reading
+process evidence, without querying historical PIDs. Native nonzero exit, verified
+timeout or scientific-audit rejection may qualify. A present review cannot be
+settled as a failure; publication acknowledgement loss uses the successful route
+when the complete review exists.
+
+Missing/malformed stop evidence preserves the original error and records no
+recoverable closure. Incomplete preflight, uncertain owners, old failure v1 and
+unrecorded failures remain held. No historical failure is upgraded. Default
+unbudgeted failure v1 stays unchanged. Settlement checks the exact grant, parent
+scope and pinned failure twice under the same lock, then records a distinct
+compact v1 `metal-failed-session-storage-settlement` with
+`postflight_review_complete=False`. Exact retries are idempotent. The previous
+v3 reader can inspect held grants and prior successful settlements but refuses
+this new failed-settlement kind. Current readers retain the previous formats.
+Failed science remains failed; this API grants no retry, reuse or acceptance.
 
 **Accounting versus current scientific evidence:** settlement records that the
 complete review was checked at that point. Routine ledger inspection validates
@@ -1825,16 +1847,18 @@ It removes no data, measures no physical reclaimed space and grants no retiremen
 or scientific acceptance. Poor-fit but fully audited calculations may settle;
 accepting their geometry/metal identity is a separate scientific decision.
 
-Qualification covers 146 focused/67 relocated installed checks, old-reader v1/v2
-compatibility and v3 refusal, normal session admission before preflight, completed
-sessions still competing for space, explicit settlement, independent parent closure,
-failed/unknown retention, busy/acknowledgement retries and exact relocation.
+Whole-session admission passed 146 focused/67 relocated installed checks; its
+failed-session follow-up passes 165 focused/86 installed checks. The latter covers
+old-reader v1/v2/prior-v3 agreement and new-kind refusal, known failed/nonzero/timed-out
+settlement, unknown retention, copied-receipt refusal, malformed-stop error
+preservation, distinct publication outcomes, busy/acknowledgement retries and
+exact relocation. No retained failed scientific file is changed or deleted.
 Real Ag4 input-inspection and parent-closure evidence is reused from the preceding
 qualified steps; no new native fit or inspection ran here. Exact commands, package
 identity, measured bytes and deliberate exclusions are in the
 [current handoff](metal-development-handoff.md#a04-current-checkpoint-cooperative-storage-reservations).
-Known-stopped failed-session recovery, admission scheduling, ledger compaction and
-actual output retirement remain separate gates. The existing reservation-count
+Partial-preflight recovery, admission scheduling, ledger compaction and actual
+output retirement remain separate gates. The existing reservation-count
 and ledger-size bounds are unchanged.
 
 ## Capacity and scheduling

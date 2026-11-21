@@ -9,71 +9,70 @@ not a second queue.
 
 ## A04 current checkpoint: cooperative storage reservations
 
-**Latest bounded step: whole audited-session admission and explicit settlement.**
-Create a fresh budget with both `include_retained_parents=True` and
-`include_audited_sessions=True` for the opt-in v3 ledger. The normal
-`run_audited_child(..., owned_preflight=True, retained_parent=handle,
-storage_budget=...)` reserves one session allowance before native inspection.
-That allowance covers preflight, native work, postflight and review publication;
-the shared parent retains its separate allowance. Main-child completion cannot
-release the session. A complete review still stays charged until an explicit
-`settle_audited_session(..., review_id=...)` verifies it through the existing reader.
+**Latest bounded step: explicit release of a known-stopped failed session.**
+The normal budgeted session still reserves before owned input inspection and
+keeps its grant through native work and scientific review. A complete successful
+review uses `settle_audited_session`. Newly recorded failures now have a separate
+`settle_failed_audited_session(..., failure_id=...)` route, requiring successful
+owned preflight and a verified stopped main child. This covers nonzero exits,
+verified timeouts and failed scientific audits. It does not grant a scientific
+review, automatic retry or acceptance. All files remain charged and untouched.
 
-Settlement checks the exact admission, request, retained-parent scope, stopped
-preflight, stopped native output and completed scientific postflight twice under
-the existing ledger lock. It then saves a compact historical settlement; ordinary
-budget inspection does not reload every old native array. Identical retries are
-idempotent, including an acknowledgement lost after publication. Wrong/missing
-review, failed preflight/postflight, interrupted publication and uncertain ownership
-remain charged. Parent closure can settle independently of an unresolved session.
-**Only future allowance is released: all payloads remain and still count.**
+Budgeted failure v2 binds the exact request declaration/reservation and captured
+process-stop evidence. Default failure v1 is unchanged. Missing/corrupt evidence
+preserves the original error without a recoverable closure. Preflight failures,
+uncertain owners, missing seals, historical unbound failures and absent receipts
+remain charged. The existing readers verify saved stops without historical PID
+probing. Copied same-request receipts cannot release another grant. A present
+review refuses failed settlement; an acknowledgement lost after successful
+publication uses the successful route. Parent closure stays independent.
 
-**Qualification:** 13 regressions fail before implementation. Final **146 focused
-tests pass in 42.97 s**; a relocated installed package passes **67 tests in
-22.25 s**, with **356 files** verified and original source/native access blocked.
-The previous reader gives the same v1/v2 budget observations (apart from live free
-space) and refuses v3. Two ordinary synthetic audited sessions demonstrate admission
-before preflight, review remaining charged, independent parent closure and cold
-relocation. A completed-but-unsettled session blocks another claim until explicit
-settlement; busy locks and durable acknowledgement gaps preserve/retry correctly.
-The first combined check exposed a remaining v2-only parent gate (120 pass/12 fail);
-it was corrected. A subsequent copied-evidence regression demonstrated that another
-completed session of the same request could supply the wrong grant's release.
-Binding the budget/reservation into the hashed scientific declaration fixes that;
-the regression now refuses. Earlier 145/66 qualification and the failing case remain
-in `audited-session-budget-20261121-01/`. No full suite or new native call.
+**Qualification:** 11 valid regressions fail before implementation. The initial
+163 focused/84 installed pass is retained. Review then found malformed stop metadata
+could obscure the original scientific error; two reproducing failures were retained
+and fixed. Final **165 focused tests pass in 61.13 s**, and **86 relocated installed
+tests pass in 44.48 s**, with **356 packaged files** verified, original source/native
+reads blocked and the build/old installation removed. Prior v1/v2/v3 observations
+agree with the previous reader; it refuses the new failed-settlement kind. No full
+suite, Phenix or Coot execution. No new scientific result is claimed.
 
 Exact source command, from the Alder worktree:
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_metal_session_budget.py tests/test_metal_parent_budget.py tests/test_metal_retained_budgeted_child.py tests/test_metal_storage_budget.py tests/test_metal_mixed_storage_budget.py tests/test_metal_budgeted_child.py tests/test_metal_owned_preflight.py tests/test_metal_child_session.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_metal_failed_session_budget.py tests/test_metal_session_budget.py tests/test_metal_parent_budget.py tests/test_metal_retained_budgeted_child.py tests/test_metal_storage_budget.py tests/test_metal_mixed_storage_budget.py tests/test_metal_budgeted_child.py tests/test_metal_owned_preflight.py tests/test_metal_child_session.py
 ```
 
-Private final evidence: `audited-session-budget-20261121-02/`. Installed runner:
-`runners/A353_session_budget_bound_qualification.py`; exact commands, source/package
-manifests and measurements are in `validation.json` and `measurements.json`.
-Wheel SHA-256: `3eae9b07988718305cb4c7129603008b66072a5726277204a9d655016201e466`.
+Final private evidence: `failed-session-budget-20261121-02/`; installed runner
+`runners/A356_failed_session_final_qualification.py`. Exact installed commands and
+package/fixture manifests are retained. Source log:
+`failed-session-final-focused-20261121.log` at the same Alder artifact anchor.
+The prior package/checks remain in `failed-session-budget-20261121-01/`; baseline
+and error-preservation failures remain in `failed-session-before-20261121-02.log`
+and `failed-session-error-before-20261121.log`. The first baseline's incorrectly
+named test mock is separately retained, not counted as the valid baseline.
+Wheel SHA-256: `1912007b630713c3ee7f0e8771ff837a7898cd835f6391f9c0a6068f699a1663`.
 
-Local visual checkout: `ScienceCheckouts/Hazel/2026-11-21_session-budget/index.html`
-beside the repositories, with an identical `review.html` in the private evidence
-folder. The two-session fixture ends with **417,235 B** of retained files and
-zero future allowance held; no payload was deleted. It links the earlier actual
-Ag4 input checks and signed f″/Q/B report. These synthetic sizes are not campaign
-capacity estimates.
+**Files/schemas/compatibility:** `metal/child_session.py`, `metal/storage_budget.py`,
+one new focused regression module and current docs. Config/ledger/inspection stay
+v3; failure v2 and a separate failed-settlement v1 kind are explicit. Scientific
+review v3, native workers, default failure v1 and old stores retain their meaning.
+No migration, CLI/default activation or source-science change. Compact ledger
+inspection records the past check; it does not re-open every scientific array.
+Generated fixtures, wheels, reports and source science remain outside Git.
 
-**Files/schemas/compatibility:** `metal/storage_budget.py`, `metal/child_session.py`,
-one regression module and current docs. Config/ledger/inspection v3 explicitly
-adds an `audited_session` grant alongside existing parent/child types. Session
-admission/settlement use separate v1 kinds. Budgeted sessions bind their exact grant
-into the existing hashed request declaration. Scientific review stays v3 and all
-scientific workers/results remain unchanged. Existing v1/v2 stores,
-default sessions, native helpers and CLI behavior stay unchanged; no store migrates.
-All grants share the existing lock/admission sum. Generated fixtures, scientific
-captures, wheels and reports remain outside Git; only owned staging is removed.
-No original data or meaningful failed evidence was retired.
+The installed measurement runs three synthetic sessions: a successful review,
+a scientific rejection and an incomplete preflight. After parent closure, explicit
+settlement releases only the verified failed session's **40 MiB** allowance.
+The incomplete session retains **40 MiB**, and **441,846 B** of files remain in the
+store. These fixture sizes are not a campaign-capacity estimate. Local visual report:
+`ScienceCheckouts/Hazel/2026-11-21_failed-session/index.html` beside the repositories;
+an identical `review.html` is retained with the final private evidence.
 
 **Supporting qualified evidence, reused rather than rerun:**
 
+- Whole-session admission/successful settlement: `7d84c84d`, 146 focused/67
+  installed; `audited-session-budget-20261121-02/`. Exact grant binding prevents
+  same-request cross-session substitution. Earlier visual reports remain available.
 - Parent release/normal child consumption: `17d52b73`, 138 focused/57 installed;
   `retained-parent-release-20261121-02/`. One real 55-file / **4,730,256 B** Hg/Ag4
   snapshot served both exact derivations, then closed. Logical bytes, allocated
@@ -90,10 +89,10 @@ No original data or meaningful failed evidence was retired.
   Rwork/Rfree **0.29184/0.75871**. Its cancellation is not a cluster count.
   The earlier seven-case lifetime probe/28 checks also stand unchanged.
 
-**Next:** qualify recovery/release of known-stopped failed sessions separately,
-then campaign admission and explicit compact publication/retirement. Current
-successful-session settlement does not automatically prune outputs, accept a
-scientific solution or establish capacity. The existing 4,096-reservation/16 MiB
+**Next:** partial-preflight recovery remains separate; then bounded campaign
+admission and explicit compact publication/retirement. Current successful/failed
+settlement does not automatically prune outputs, accept a scientific solution or
+establish capacity. The existing 4,096-reservation/16 MiB
 ledger limits still apply; no 200-dataset fan-out claim is made. Ledger inspection
 reports historical release, while `inspect_audited_child` independently checks
 current scientific payloads. A01 remains partial, A02 gated and A04 partial.
