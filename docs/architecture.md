@@ -2145,6 +2145,10 @@ and evidence rechecks. This is conditional `FDP_REVIEW`, not checkpoint adoption
 or scientific acceptance. Native write quotas, multi-trial retained sessions,
 compact retirement and typed reader-control adoption remain separate. See the
 [normal audited child](metal-campaign-storage.md#one-normal-audited-frozen-child).
+Its explicit offline reader verifies the session/output pins and replays the same
+scientific audit helper without native execution. Recorded parent/Free-R/scattering
+checks are not labelled fresh; signed values and Q/B context remain intact. See
+[offline session inspection](metal-campaign-storage.md#offline-audited-session-inspection).
 
 The additive `metal.parent_archive` adapter transports an explicit portable parent
 layout through unchanged checksum-indexed archive owners. Bounded parts preserve

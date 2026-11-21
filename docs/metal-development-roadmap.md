@@ -75,8 +75,11 @@ reproduces the poor-fit historical Hg control with frozen-state/Free-R audits.
 The normal opt-in audited-child command now composes derivation, fresh metadata/
 Sasaki/Free-R, execution and scientific/output audits. One installed Ag4 child
 exactly reproduces the historical high-B poor-fit control, with negative terms
-retained and no count acceptance. Next add explicit offline scientific-session
-readback for tables, then compact publication and quota/protection/retirement.
+retained and no count acceptance. The explicit offline session reader now
+verifies those saved results after relocation without originals/native execution,
+preserving Q/B/Free-R and signed site contributions. Next: compact publication
+and shared quota/protection/retirement, with a retained common session before
+large fan-out to avoid repeated parent intake.
 Typed reader-control support remains with Willow W186. No historical parent or
 process identity is promoted; A01's current FT geometry gate is unchanged.
 

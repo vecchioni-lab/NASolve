@@ -27,6 +27,11 @@ def configure(subparsers):
     child_inputs.add_argument('--max-parent-disk-bytes', type=int, default=256*1024*1024)
     child_inputs.add_argument('--json', action='store_true')
     child_inputs.set_defaults(output=None)
+    audited_inspect = actions.add_parser('inspect-audited-fdp-child', help='read saved session evidence and recheck frozen state without native execution')
+    audited_inspect.add_argument('session', type=Path)
+    audited_inspect.add_argument('--review-id', required=True)
+    audited_inspect.add_argument('--json', action='store_true')
+    audited_inspect.set_defaults(output=None)
     audited_child = actions.add_parser('run-audited-fdp-child', help='derive, execute and audit one frozen child; no scientific acceptance')
     audited_child.add_argument('prepared', type=Path)
     audited_child.add_argument('--parent-archive', type=Path, required=True)
@@ -218,6 +223,8 @@ def execute(args):
         outputs = [p for p in (args.output, getattr(args, 'export', None)) if p is not None]
         if len({p.resolve() for p in outputs}) != len(outputs) or any(p.exists() or p.is_symlink() for p in outputs):
             raise RecipeError('Outputs must be distinct new files')
+        if args.metal_action == 'inspect-audited-fdp-child':
+            return _inspect_audited_child(args)
         if args.metal_action == 'run-audited-fdp-child':
             return _audited_child(args)
         if args.metal_action == 'verify-fdp-child-inputs':
@@ -886,4 +893,21 @@ def _audited_child(args):
         print('Frozen child audit: '+report['result']['freeze_audit'])
         print('Review: '+report['record_sha256'])
         print('Geometry, identity, count and fit remain for scientific review.')
+    return 0
+
+
+def _inspect_audited_child(args):
+    from .child_session import inspect_audited_child
+    report=inspect_audited_child(args.session,review_id=args.review_id)
+    if args.json:print(json.dumps(report,indent=2,allow_nan=False))
+    else:
+        result=report['result']
+        print('Saved conditional fit: '+report['review_id'])
+        print(f"Rwork {result['r_work']:.4f}  Rfree {result['r_free']:.4f}  wavelength {result['wavelength_A']:.5f} Å")
+        print('Site  Element  Q (occ)  B (Å²)  f″ (e)  Expected f″ (e)')
+        for row in result['sites']:
+            print(f"{row['node_id']}  {row['element']}  {row['occupancy']:.2f}  {row['b_iso']:.2f}  {row['f_double_prime']:.6f}  {row['reference_f_double_prime']:.6f}")
+        flags=report['recorded_free_r']
+        print(f"Recorded Free-R: {flags['label']} = {flags['test_value']} ({flags['status']})")
+        print('Saved freeze audit replayed; no fresh parent, Free-R or scattering acquisition. Scientific review remains open.')
     return 0

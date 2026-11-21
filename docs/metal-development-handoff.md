@@ -7,7 +7,54 @@ owns feature completion. The earlier chronological diary is preserved as
 [evidence through 18 November](history/metal-development-handoff-2026-11-18.md),
 not a second queue.
 
-## A04 current checkpoint: one normal audited frozen child
+## A04 current checkpoint: explicit offline session review
+
+`metal inspect-audited-fdp-child SESSION --review-id ID` now reads the normal
+audited session without original parent files, discovery or a native process.
+It requires an independently retained review identity, verifies every linked
+preflight record and the stopped-output seal, then reuses the existing frozen
+atomic/reflection, serialized-model and optional map auditors. The producer and
+reader share one `_audit_job` helper. Changed result claims, proof files and
+post-run records refuse; even a resealed native B change cannot bypass the
+scientific auditor. Signed site f″, Q, B, wavelength, expected values and original
+Free-R context remain exact. Parent/Free-R/scattering checks are explicitly
+**recorded evidence**, not fresh acquisition by this reader.
+
+The stdout-only inspection is additive; stored session schema 1 and all existing
+trial readers remain unchanged. Review/proof records are bounded to 1 MiB each;
+the shared live/read helper now caps decompressed native audit JSON at 64 MiB.
+Oversized or invalid evidence refuses with partial execution records retained.
+The reader writes nothing, grants no reuse/retirement and does not infer a count.
+It adds no alternative parser, flags reader or checkpoint admission route.
+
+**Validation:** 132 focused tests pass in 30.12 s, using the documented environment
+and previous six-file command plus `tests/test_metal_child_review.py`. Before
+implementation the normal caller fails (2.65 s); the first 19-pass/1-failure check
+identified shared-record error normalization, which is fixed. A relocated installed
+package passes 21 session/reader tests with all **353** package files exact.
+An independently pinned real Ag4 session then replays every saved result exactly
+with original science/source/Phenix access blocked and all subprocess calls denied.
+It preserves B=188.75 Å²/Q=1, both negative site contributions, original
+`FreeR_flag=0`, and Rwork/Rfree=0.2918387029/0.7587086386. No new native job,
+full suite, scientific acceptance or source-data changes occurred in this step.
+
+Evidence is `audited-child-read-20261121-01/{validation.json,installed-review.json,
+real-readback.json,review.html}` under the Alder artifact anchor. The small local
+checkout table combines the two native control replays for the coordinated report;
+its near-zero Ag4 signed sum is **not absence or count evidence**. Generated data,
+fixtures, wheels and reports remain outside Git. Runtime changes are in
+`metal/child_session.py` and the metal CLI, with one focused test module; exact
+commands, source and package hashes are retained in the local receipt.
+
+**Next:** compact publication and campaign quota/protection/retirement through
+shared owners. Before scaling, avoid repeated full parent intake/metadata work
+per 14-second trial by qualifying a retained common session; do not add a second
+campaign coordinator. No further sweep of these poor historical controls is
+needed. Shared Q15 phosphate-span reporting is available on Willow for later
+A01 context; width is not local-axis radius, and it does not authorize motion.
+**A01 partial; A02 gated; A04 partial.**
+
+## A04 supporting checkpoint: one normal audited frozen child
 
 `metal run-audited-fdp-child` now composes the existing owners in the installed
 normal workflow: protected-parent derivation, fresh observation metadata/Sasaki
@@ -55,9 +102,8 @@ The real rehearsal retains about **1.69 MB**; all original archives remain exact
 Generated models, observations, logs, wheels and reports are deliberately excluded
 from Git. Native output limits are post-run evidence budgets, not write quotas.
 
-**Next:** an explicit offline session reader for table/review consumption using
-the existing byte seals and scientific auditors; then compact publication and
-campaign quota/protection/retirement. This single-child path still repeats parent
+The explicit offline reader is implemented above. Compact publication and
+campaign quota/protection/retirement remain next. This single-child path still repeats parent
 intake and fresh inspections per invocation; it is not a retained multi-trial
 session or 200-dataset capacity claim. Do not fan out the poor historical controls.
 `read_registry` already validates published checked preparations through the

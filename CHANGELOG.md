@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Inspect an audited frozen-child session without native execution
+
+- Add `inspect-audited-fdp-child` CLI/API with an independently pinned review.
+  Reuse stopped-output verification and the same atomic/reflection, serialized
+  model and optional map auditors used during execution.
+- Verify all linked preflight records and result equality; distinguish recorded
+  parent/Free-R/scattering checks from fresh acquisition. Preserve signed site
+  values, original Q/B and Free-R context without a cluster-count inference.
+- Bound review/proof records and decompressed native audit JSON. Keep stored
+  session schemas unchanged; reject altered evidence and scientifically invalid
+  output even after resealing. No native execution, writes, reuse or pruning.
+- Qualify 132 focused source tests, 21 relocated installed tests and exact offline
+  Ag4 replay with original science/source/Phenix unavailable. No full suite.
+
 ### Run one protected frozen metal child with scientific audits
 
 - Add opt-in `run-audited-fdp-child` CLI/API composing existing parent derivation,

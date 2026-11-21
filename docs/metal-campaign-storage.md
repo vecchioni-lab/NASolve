@@ -1038,8 +1038,47 @@ f″ values and the poor Rfree exactly. Negative site terms remain visible and d
 not imply an accepted cluster count. The full temporary rehearsal takes 26.36 s
 and retains about 1.69 MB. Source archives are unchanged. After relocation and
 removal of disposable intake views, the existing output-byte reader still passes;
-scientific session readback/publication remains the next explicit API. Exact
+the offline session reader below now supplies scientific replay while compact
+publication remains next. Exact
 focused/installed/native receipts are in the [handoff](metal-development-handoff.md).
+
+### Offline audited-session inspection
+
+```text
+nasolve metal inspect-audited-fdp-child SESSION --review-id REVIEW_ID --json
+```
+
+The additive `metal.child_session.inspect_audited_child` requires the independently
+retained digest of `review.json`. It checks the exact session-relative proof
+inventory, request/parent/endpoint identities, saved metadata/Sasaki/Free-R records
+and stopped output seal. It then reuses the same `_audit_job` helper as the normal
+producer: native atom/reflection freeze audit, serialized final-model equality and
+optional requested map-file checks. The recomputed result must equal the published
+result exactly. Proofs, output seal and review are rechecked before returning.
+
+This read works after relocation without original intake directories or a Phenix
+installation. Its `metal-fdp-audited-child-inspection` v1 stdout report preserves
+all signed site results, Q, B, wavelength/reference values and original Free-R
+label/test value/details. `fresh_parent_verification`, `fresh_free_r_audit` and
+`fresh_scattering` are false, with `new_native_calls=0`. The successful original
+checks remain recorded evidence. There is no new scientific acceptance, cache
+reuse or retirement authority; a near-zero signed cluster sum is not an inferred
+absence or accepted atom count.
+
+Stored session formats are unchanged. Session/proof JSON records are capped at
+1 MiB; the shared producer/reader now bounds decompressed native JSON to 64 MiB.
+This is a read/validation envelope, not a live output quota. Changed files,
+independently rehashed inconsistent claims, an invalid newly sealed native state,
+late changes and oversized evidence refuse. No readback path signals a saved PID,
+executes stored commands, creates artifacts or reacquires source data.
+
+Qualification: 132 focused source tests, 21 relocated installed tests, 353 package
+identities and exact cold Ag4 session replay with original source/science/Phenix
+unavailable. Individual negative contributions and high Rfree remain visible.
+The existing input-archive `inspect_recorded_fdp` reader continues to own legacy
+archived trials; it is not replaced or used to relabel a new session as a legacy
+trial. The GUI map/Coot inspector retains its existing source-bound role. See the
+[current handoff](metal-development-handoff.md) for exact commands and receipts.
 
 ### Output-to-scientific-audit handoff: exact remaining boundary
 
