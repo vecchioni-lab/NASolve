@@ -1709,7 +1709,7 @@
       "Real ordinary X11_22 ancestry does not supply the independently checked source pair/stack and chemistry authority of the canonical diagnostic.",
       "A W200 callback contract alone is not a maintained live Phenix builder, native source qualification or whole-session lifetime proof."
     ],
-    "next_gate": "W203: maintain the source-qualified native builder around W200 and Cedar C507 collectors before registering a dispatcher. Bind exact typed compiled inputs and all four reader controls, the one actual interpretation, source geometry/scattering and unchanged candidate diffraction. Missing chemical authority must refuse before transfer; collector equality alone is not complete chemical admission. Preserve old execution bytes and the separately owned outer input/process lifetime. No repeated W197 refinement panel.",
+    "next_gate": "W204: qualify one Cedar-owned native interpretation/service binding consuming W203 source bytes and W200 orchestration. Capture the actual processed object and prove exactly one parent interpretation, stable manager, all four controls, preserved source chemistry and unchanged candidate diffraction. A compiled-stack collector MATCH is not full source chemical admission. Keep hooks out of the ordinary dispatcher until that evidence and actual retained-input lifetime compose; do not wrap the private worker as a second runtime.",
     "live_collector_qualification": {
       "human_update": 202,
       "reference": "docs/topostitch-periodic.md#w202--qualify-typed-controls-and-the-maintained-live-collector",
@@ -1731,6 +1731,49 @@
       "private_builder_still_required": true,
       "runtime_authority": false,
       "scientific_acceptance": false
-    }
+    },
+    "source_input_binding": {
+      "human_update": 203,
+      "code_commit": "bf12b2adbe65d8a357b54572786b33a9e0f17b3d",
+      "owner": "nasolve.topostitch_native_preparation",
+      "function": "bind_native_preparation_inputs",
+      "result_type": "NativePreparationInputs",
+      "fields": [
+        "parent_bytes",
+        "source_report_json",
+        "compiled_restraint_phils",
+        "interpretation_control_phils",
+        "reader_controls",
+        "reader_policy"
+      ],
+      "properties": [
+        "report_sha256",
+        "model_sha256",
+        "runtime_authority",
+        "chemical_admission"
+      ],
+      "digest_convention": "report_sha256 hashes canonical complete report JSON, not the raw source file; model/PHIL bytes remain exact.",
+      "evidence_owner": "Explicit trusted Cedar compiler/control readers; never load code from an artifact.",
+      "input_role_rule": "Ordered compiled restraint PHIL bytes and original control PHIL bytes remain separate, with all four False controls.",
+      "native_service_owner": "Cedar",
+      "native_service_implemented": false,
+      "existing_w200_builder_protocol_changed": false,
+      "snapshot_only": true,
+      "runtime_authority": false,
+      "chemical_admission": false,
+      "reference": "docs/topostitch-preview.md#bind-typed-native-preparation-inputs-w203"
+    },
+    "concrete_service_success_cases": [
+      "Exactly one observed process_pdb_files call consumes bound parent bytes for geometry on the original manager.",
+      "Requested/interpreted controls equal the four bound source settings; current compiled intent and original source evidence retain distinct roles.",
+      "Capture actual processed object; C507 selection/atom order agrees, W200 maps the fresh order and transfers exact candidate decimals.",
+      "Required chemical proof, source scattering/crystal/ADPs and candidate diffraction survive before/after transfer; final result only after context closure."
+    ],
+    "concrete_service_failure_cases": [
+      "Missing source/compiled chemical authority refuses before transfer; a geometry collector MATCH is insufficient.",
+      "Wrong manager/model-input identity, unsupported native source or unexpected service call shape refuses.",
+      "Zero/repeated/nested service calls, changed controls, stale source roles, mutated fixed context or changed candidate diffraction invalidates the preparation.",
+      "Any native/service/verifier failure preserves the first error, restores only owned bindings, stops the owned child and discards manager; no rollback/retry."
+    ]
   }
 }

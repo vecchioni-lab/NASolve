@@ -12,7 +12,9 @@ five cold controls identify the missing geometry-only parent role while old v3
 captures/defaults remain valid. The named opt-in route is proposed, not registered.
 W202 qualifies the installed Cedar live collector with authenticated reader controls
 in a fresh dry-run/failure pair (84 checks); the shared-owner boundary is agreed.
-W203 is the maintained source-qualified builder before any public dispatcher.
+W203 adds the [immutable typed input binding](topostitch-preview.md#bind-typed-native-preparation-inputs-w203)
+with 175 source/175 installed tests and exact real-source readback in Python 3.12/3.11.
+W204 is the single Cedar-owned native service boundary before any public dispatcher.
 
 W200 adds the [maintained one-shot preparation context](topostitch-preview.md#prepare-parent-geometry-once-w200):
 160 source/160 installed tests and an actual success/failure pair preserve the

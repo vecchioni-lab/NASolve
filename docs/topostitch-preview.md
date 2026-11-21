@@ -2363,3 +2363,105 @@ policies and ordinary checkpoint admission remain separate integration work.
 The real qualification used one unchanged native dry-run path and one injected
 failure; broader chemistry and actual ordinary integration are not implied.
 [Evidence](topostitch-periodic.md#w200--maintain-one-shot-native-parent-preparation).
+
+
+## Bind typed native preparation inputs (W203)
+
+`topostitch_native_preparation.bind_native_preparation_inputs(directory,
+parent_bytes, expected_report_sha256=..., compiler_owner=..., controls_owner=...)`
+reopens existing typed inputs through trusted Cedar owners. Before W203, the
+private worker carried these roles itself; now an independently testable binding
+preserves the exact current parent, complete source report and separate PHIL roles.
+It performs no native interpretation and changes no W200 builder method.
+
+The expected digest is the **canonical complete compiler-report digest**, as used
+by preparation availability; it is not the raw JSON-file checksum. The existing
+`_compiler_input` reader authenticates the actual artifact. The adapter compares
+the exact parent bytes, requires separate ordered compiled/control paths, calls
+the existing control parser/shadow check, requires all four False settings, then
+repeats the owner read and source-byte checks. These are snapshot checks, not locks.
+There is no filename search, artifact code loading or inferred authority.
+
+The returned frozen `NativePreparationInputs` contains:
+
+| Field | Meaning |
+| --- | --- |
+| `parent_bytes` | Exact authenticated current-parent model bytes |
+| `source_report_json` | Complete canonical report, retaining original source/compiled provenance |
+| `compiled_restraint_phils` | Ordered tuple of unchanged compiled PHIL byte strings |
+| `interpretation_control_phils` | Separate ordered tuple of unchanged original control bytes |
+| `reader_controls` | Sorted `(name, False)` tuples for the four authenticated settings |
+| `reader_policy` | Existing `cif-captured-reader-control-handoff-v1` |
+
+Properties expose `model_sha256`, `report_sha256`, `runtime_authority=False` and
+`chemical_admission=False`. Byte snapshots remain detached when source files or
+owner dictionaries later change. Constructing this object or matching its digest
+does not authorize native work. The concrete Cedar service must independently
+qualify its live source/profile, scope and required chemical evidence.
+
+**One native owner:** Cedar owns actual Phenix interpretation/service binding;
+Willow owns typed parent/candidate roles, controls, atom movement and W200 ordering.
+A Willow builder may receive the explicit Cedar interface. It must not become a
+wrapper that imports the private W200 worker or another global dispatcher. Existing
+C507 live readers can observe atoms/geometry but do not interpret a parent.
+Inspection of the maintained owners finds no current early parent-service hook;
+the counted `driver.run` hook is after geometry construction and cannot substitute.
+
+The proposed concrete binding returns W200's existing stable-model builder with
+`observe_atoms`, `interpret_parent`, `verify_parent`, `set_candidate_sites` and
+`verify_candidate`. Its exact factory signature remains Cedar-owned. Required
+success/failure cases, before a public execution policy:
+
+- Observe exactly one qualified `process_pdb_files` call on the intended model
+  and capture its actual processed object. Verify expected model-input identity
+  and native call shape; do not attach a different manager or merely count a callback.
+- Consume the bound parent only for geometry, under the four exact controls and
+  the authenticated compiled stack. Preserve original literal source evidence
+  separately; its proxy counts need not equal those of the compiled C21 stack.
+- Require source chemical/scattering/crystal/ADP proof before transfer. C507's
+  linked-geometry MATCH alone is not complete chemical admission. W200 then maps
+  the freshly observed native order and transfers candidate PDB decimals.
+- Preserve candidate diffraction and complete prepared state through closure.
+  Refuse wrong/stale identities, changed controls, zero/repeated/nested native
+  calls, altered fixed atoms or missing evidence before exposing a result.
+- Preserve the original failure, restore only owned bindings, stop the owned
+  child and discard the failed manager. There is no model rollback or same-process
+  retry. Retained-file/session ownership remains outside this input snapshot.
+
+**Validation:** the new regression fails before implementation with ImportError.
+Fifteen new cases cover detached immutable bytes, parent/report/owner mismatches,
+role aliasing/merging, missing/nonboolean/True controls, shadows and read races.
+The existing five-file focused set passes **175 source +175 relocated installed**:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_topostitch_endpoint.py tests/test_topostitch_preparation.py tests/test_topostitch_native_window.py tests/test_topostitch_checkpoint.py tests/test_topostitch_execution.py
+```
+
+The installed run uses the same tests from a copied fixture closure with
+`PYTHONPATH` pointing to the relocated installation after its original install
+and temporary build-source paths are removed. Python 3.10 syntax parses. The
+real W202-frozen typed source passes **14 cold checks in each of source3.12,
+installed3.12 and Phenix3.11**, with identical bound output. Its temporary source
+is renamed before reading; the old path is gone. Wrong parent/report and a changed
+captured control refuse through actual Cedar readers. Temporary input trees are
+removed; original scientific artifacts remain unchanged.
+
+Commands from NASolve use `branch-artifacts/willow/runners/w203-bind-source-final.py`
+with `source`, `installed` or `python311`; the last uses the exact
+Phenix **2.2.1-6174** `phenix.python -B` interpreter. These are cold reads,
+**not native interpretations or refinement executions**. Local reports and
+installation receipt are under `NASolve:branch-artifacts/willow/w203-source-input-binding/`
+and pinned in the roadmap. Wheel SHA-256
+`4e4994f4176ff92d17f1b01648453a650fa558c2345dac218356dd1f76c696be`;
+module SHA-256 `cd5ff34c91410b7d9ba5e72e0cdf859887c2c2f03574d58ddec8f2e35565fbc5`.
+Final receipts use `*-final-review.json` and `install-final/installed-check.json`.
+The preliminary passing build remains recorded separately; the final rebuild
+includes a module-description correction, with unchanged function behavior.
+
+Changed code: the existing native-preparation module and preparation tests;
+current guides/intent/roadmap/changelog stay synchronized. No new disk schema,
+dependency, default or native dispatcher; no migration. No full-suite repeat.
+Scientific data and source snapshots remain outside Git. Ordinary current-parent
+lineage, complete chemical admission, concrete service and outer lifetime remain
+separate gates. W204 is that Cedar-owned service boundary; no new refinement panel
+or physical recovery claim is attached to W203.

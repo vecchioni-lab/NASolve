@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current audit: W202; latest Willow implementation: W200, 2026-11-21.** The installed one-shot preparation context now
+**Current audit/Willow implementation: W203, 2026-11-21.** The installed one-shot preparation context now
 carries admitted candidate → original parent geometry → candidate coordinates
 through a source-qualified diagnostic builder. No ordinary execution-policy or
 CLI activation follows. S04/S05/S06 remain PARTIAL.
@@ -23,6 +23,7 @@ The longer pre-consolidation handoff is preserved at Git `86e7489c2314f738bd7fe1
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
+| W203 typed source binding | Immutable parent/report and ordered separate PHIL roles; 175 source/175 installed; real-source 3.12/3.11 parity | Concrete Cedar service and full chemical/ordinary admission |
 | W202 shared live collector | Installed Cedar C507; four authenticated reader controls; exact live prepared state and failure cleanup | Maintained source-qualified builder, full chemical admission and ordinary dispatcher |
 | W200 native preparation context | One-shot stage order, stable manager, exact W198 mapping, fail-closed result; installed real success/failure | Versioned ordinary execution integration and retained-file lifetime composition |
 | W198/W199 native atom order | Candidate/parser and parent/prepared orders separately bound; real OP3 reorder and live parity | Broader conformers, modified moving residues, tensors and registered recuts |
@@ -43,13 +44,17 @@ No returned boolean/None or coordinate mapping alone is chemical authority.
 
 ## Next bounded work
 
-**W203:** maintain the source-qualified native builder around W200 and Cedar
-C507 before registering a dispatcher. W202 has qualified the installed
-`collect_live_atoms`/`collect_live_geometry` and current topology owner with
-explicit typed inputs. Bind all four reader controls, one actual interpretation,
-source geometry/scattering and unchanged candidate diffraction. Missing chemical
-authority must refuse before transfer; a linked-geometry observation is not a
-complete chemical capture. Preserve old helper bytes and outer lifecycle ownership.
+**W204:** qualify one Cedar-owned concrete native interpretation/service binding.
+Willow now supplies immutable W203 typed inputs and unchanged W200 orchestration;
+Cedar owns actual Phenix hooks and the required chemical evidence. Capture the
+actual processed object from exactly one service call, preserve all four controls
+and candidate diffraction, then let W200 map the fresh native order. Missing
+chemical authority must refuse before transfer. A C507 geometry/declared-link
+MATCH alone is insufficient. The [small contract and failure cases](topostitch-preview.md#bind-typed-native-preparation-inputs-w203)
+are recorded; no second dispatcher or compatibility wrapper around the private
+worker is planned. Existing counted driver hooks occur after geometry and are too
+late for this interpretation boundary. Old execution bytes and actual outer
+input/process lifetime stay separately owned.
 
 The shared collector boundary is agreed and tested; the ordinary execution
 extension remains proposed. W201's five cold controls show that ordinary v3 has no typed
@@ -75,7 +80,11 @@ settlement binds the scientific reader and exact retained-parent grant. Cross-se
 request substitution refuses. Owner validation: 146 focused/67 relocated installed;
 no new native calls. This is receiving-owner evidence, not Willow combined adoption.
 Inner read completion is not outer release or physical reclaim. Unknown/interrupted
-sessions remain charged; stopped-failure recovery and campaign admission stay open.
+sessions remain charged. Alder `3b83edce40202b0595230aa5f92ed6a3c3f102b6` adds
+explicit settlement only for newly bound, verified-stopped failed sessions after
+completed owned preflight (165 focused/86 installed owner checks; no native calls).
+Incomplete preflight and unsealed/old failures remain charged; campaign admission
+and physical retirement stay open. Neither Alder delivery is a Willow integration claim.
 Reuse this owner rather than adding a second storage/process mechanism.
 
 The real X11_22 PostMR root (2603 atoms) is available and relocates, but lacks the
@@ -101,6 +110,11 @@ for repeated Rfree-guided tuning. No noisy phosphate detector is qualified.
 
 ## Validation and scientific interpretation
 
+- W203: 175 focused source/175 relocated installed tests; 14 real-source cold
+  checks each in source/installed Python 3.12 and Phenix Python 3.11, identical
+  output. Wrong parent/report and tampered captured controls refuse. Temporary
+  original input/build/install paths are gone. Zero native interpretations or
+  refinements; existing W200 protocol and native execution policies unchanged.
 - W202: 12 cold source checks plus one actual Phenix 2.2.1-6174 dry-run and
   one injected failure, 84 cold checks. All four authenticated controls are False
   before/after interpretation and transfer. Exact prior prepared geometry and
@@ -143,7 +157,8 @@ remaining local phosphate-angle cost. Models are linked/hash checked, not copied
 The associated ChimeraX script uses gray/silhouettes/soft/orthographic/thin rings;
 it was prepared and checked, not GUI-executed for W197.
 
-W198–W202 add no geometry effect to illustrate. W202 source/live receipts are
+W198–W203 add no geometry effect to illustrate. W203 cold/installation receipts
+are under `NASolve:branch-artifacts/willow/w203-source-input-binding/`. W202 source/live receipts are
 under `NASolve:branch-artifacts/willow/w202-typed-native-builder/`. Earlier receipts
 remain under NASolve anchor `branch-artifacts/willow/w198-native-handoff/`,
 `w199-live-preparation/` and `w200-native-context/`; checksummed references are in

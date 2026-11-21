@@ -4,7 +4,7 @@
   "updated": "2026-11-21",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "71dda01aecc616a8bc8f94506567ef3a3218842a",
+  "audited_code_commit": "bf12b2adbe65d8a357b54572786b33a9e0f17b3d",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -262,14 +262,15 @@
         "W199 uses installed W198 in the live earlier interpretation boundary: exact prior preparation/diffraction parity and deliberate-failure binding cleanup pass. No refinement or maintained hook yet.",
         "W200 maintains the one-shot preparation stage owner with W198 mapping and explicit native builder; installed live success/failure and160/160 tests pass. No ordinary execution-policy integration or scientific acceptance.",
         "W201 records a named, unimplemented versioned execution/input contract and five actual cold controls showing the current ordinary geometry-parent role gap while preserving old v3 readers/defaults.",
-        "W202 qualifies installed Cedar C507 live collectors and current topology reader with authenticated four-control source inputs. A fresh dry-run and failure retain W200 prepared state and candidate diffraction; 84 cold checks. Private builder and ordinary integration remain open."
+        "W202 qualifies installed Cedar C507 live collectors and current topology reader with authenticated four-control source inputs. A fresh dry-run and failure retain W200 prepared state and candidate diffraction; 84 cold checks. Private builder and ordinary integration remain open.",
+        "W203 binds the complete typed report, exact parent and ordered separate restraint/control bytes into a detached immutable object through existing Cedar readers. All four controls and repeated source checks are explicit; source/installed/native-Python readback agrees. No interpretation or chemical permission is added."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "W203: maintain the source-qualified native builder around W200 and Cedar C507 collectors before registering a dispatcher. Bind exact typed compiled inputs and all four reader controls, the one actual interpretation, source geometry/scattering and unchanged candidate diffraction. Missing chemical authority must refuse before transfer; collector equality alone is not complete chemical admission. Preserve old execution bytes and the separately owned outer input/process lifetime. No repeated W197 refinement panel.",
+      "next_action": "W204: qualify one Cedar-owned native interpretation/service binding consuming W203 source bytes and W200 orchestration. Capture the actual processed object and prove exactly one parent interpretation, stable manager, all four controls, preserved source chemistry and unchanged candidate diffraction. A compiled-stack collector MATCH is not full source chemical admission. Keep hooks out of the ordinary dispatcher until that evidence and actual retained-input lifetime compose; do not wrap the private worker as a second runtime.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -332,14 +333,15 @@
         "E_LIVE_PREPARATION_HANDOFF",
         "E_MAINTAINED_NATIVE_PREPARATION",
         "E_PARENT_EXECUTION_CONTRACT",
-        "E_TYPED_LIVE_COLLECTOR"
+        "E_TYPED_LIVE_COLLECTOR",
+        "E_TYPED_PREPARATION_INPUT_BINDING"
       ],
       "last_audit": {
         "date": "2026-11-21",
         "reviewer": "Linden",
-        "human_update": 202,
-        "code_commit": "6013c5c8fc0822498778ee117b65602063bd4e1f",
-        "scope": "Installed shared collector and explicit typed-control native qualification; no ordinary builder/dispatcher or new refinement"
+        "human_update": 203,
+        "code_commit": "bf12b2adbe65d8a357b54572786b33a9e0f17b3d",
+        "scope": "Maintained typed input binding and relocated installation/real-source readback; concrete native service remains Cedar-owned"
       }
     },
     {
@@ -398,14 +400,15 @@
         "W199 uses installed W198 in the live earlier interpretation boundary: exact prior preparation/diffraction parity and deliberate-failure binding cleanup pass. No refinement or maintained hook yet.",
         "W200 maintains the one-shot preparation stage owner with W198 mapping and explicit native builder; installed live success/failure and160/160 tests pass. No ordinary execution-policy integration or scientific acceptance.",
         "W201 records a named, unimplemented versioned execution/input contract and five actual cold controls showing the current ordinary geometry-parent role gap while preserving old v3 readers/defaults.",
-        "W202 qualifies installed Cedar C507 live collectors and current topology reader with authenticated four-control source inputs. A fresh dry-run and failure retain W200 prepared state and candidate diffraction; 84 cold checks. Private builder and ordinary integration remain open."
+        "W202 qualifies installed Cedar C507 live collectors and current topology reader with authenticated four-control source inputs. A fresh dry-run and failure retain W200 prepared state and candidate diffraction; 84 cold checks. Private builder and ordinary integration remain open.",
+        "W203 binds the complete typed report, exact parent and ordered separate restraint/control bytes into a detached immutable object through existing Cedar readers. All four controls and repeated source checks are explicit; source/installed/native-Python readback agrees. No interpretation or chemical permission is added."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "W203: maintain the source-qualified native builder around W200 and Cedar C507 collectors before registering a dispatcher. Bind exact typed compiled inputs and all four reader controls, the one actual interpretation, source geometry/scattering and unchanged candidate diffraction. Missing chemical authority must refuse before transfer; collector equality alone is not complete chemical admission. Preserve old execution bytes and the separately owned outer input/process lifetime. No repeated W197 refinement panel.",
+      "next_action": "W204: qualify one Cedar-owned native interpretation/service binding consuming W203 source bytes and W200 orchestration. Capture the actual processed object and prove exactly one parent interpretation, stable manager, all four controls, preserved source chemistry and unchanged candidate diffraction. A compiled-stack collector MATCH is not full source chemical admission. Keep hooks out of the ordinary dispatcher until that evidence and actual retained-input lifetime compose; do not wrap the private worker as a second runtime.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -511,14 +514,15 @@
         "E_LIVE_PREPARATION_HANDOFF",
         "E_MAINTAINED_NATIVE_PREPARATION",
         "E_PARENT_EXECUTION_CONTRACT",
-        "E_TYPED_LIVE_COLLECTOR"
+        "E_TYPED_LIVE_COLLECTOR",
+        "E_TYPED_PREPARATION_INPUT_BINDING"
       ],
       "last_audit": {
         "date": "2026-11-21",
         "reviewer": "Linden",
-        "human_update": 202,
-        "code_commit": "6013c5c8fc0822498778ee117b65602063bd4e1f",
-        "scope": "Installed shared collector and explicit typed-control native qualification; no ordinary builder/dispatcher or new refinement"
+        "human_update": 203,
+        "code_commit": "bf12b2adbe65d8a357b54572786b33a9e0f17b3d",
+        "scope": "Maintained typed input binding and relocated installation/real-source readback; concrete native service remains Cedar-owned"
       }
     },
     {
@@ -4958,6 +4962,41 @@
           "size": 23889
         }
       ]
+    },
+    "E_TYPED_PREPARATION_INPUT_BINDING": {
+      "kind": "maintained_in_memory_typed_preparation_inputs",
+      "date": "2026-11-21",
+      "human_update": 203,
+      "code_commit": "bf12b2adbe65d8a357b54572786b33a9e0f17b3d",
+      "reference": "docs/topostitch-preview.md#bind-typed-native-preparation-inputs-w203",
+      "result": "175 source/175 relocated installed tests; 14 real-source cold checks each in source/installed Python3.12 and Phenix Python3.11 with identical output. Existing Cedar owners authenticate typed report/current parent, original ordered PHIL roles and all four False controls; altered bindings/controls and read races refuse. Original temporary input/build/install paths removed.",
+      "limitation": "Immutable byte snapshot only. No native interpretation, chemical/motion/runtime admission, new disk schema, complete native builder, retained lifetime or ordinary dispatcher. Cedar remains an explicit trusted owner dependency, not imported artifact code.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w203-source-input-binding/install-final/installed-check.json",
+          "sha256": "46f3413aa6f1af7de305e96b5a397e40463a329a0bdc8e75a2d52cd0f1129186",
+          "size": 899
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w203-source-input-binding/source-final-review.json",
+          "sha256": "c9c54aa8e8b85783971adba96c7c386b610576749f0005f8d5a5dd16978609f3",
+          "size": 2805
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w203-source-input-binding/installed-final-review.json",
+          "sha256": "f7a31da6779cece7f0c25b3ae434aa2d762e89828047d91887a27177eb9a7856",
+          "size": 2808
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w203-source-input-binding/python311-final-review.json",
+          "sha256": "030391f4a8cd51c8967b624457c6b89e311d40456edc32e8383c2a39283289ea",
+          "size": 2816
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -5119,8 +5158,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 202,
-    "next": 203,
+    "current": 203,
+    "next": 204,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -6142,6 +6181,12 @@
         "title": "Qualify authenticated reader controls and the shared live geometry collector",
         "state": "RECORDED",
         "code_commit": "6013c5c8fc0822498778ee117b65602063bd4e1f"
+      },
+      {
+        "number": 203,
+        "title": "Bind immutable parent, compiled restraints and reader-control roles",
+        "state": "RECORDED",
+        "code_commit": "bf12b2adbe65d8a357b54572786b33a9e0f17b3d"
       }
     ]
   },
