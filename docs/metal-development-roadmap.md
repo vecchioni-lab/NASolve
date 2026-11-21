@@ -98,15 +98,14 @@ known-stopped settlement with 77 focused, 31 final and 31 relocated installed
 checks. An incomplete child keeps its allowance; settlement deletes no files.
 The first explicit `run_child` caller now reserves before one-shot expansion
 and launch; 83 focused and 21 relocated installed checks preserve stopped versus
-interrupted ownership and no-budget behavior. Next: qualify outer retained-parent
-and campaign accounting plus a disposable increment profile before retirement
-or campaign fan-out. A seven-case retained-lifetime probe scopes authoritative parent closure.
-Explicit v2 mixed-scope ledger admission now qualifies one shared parent/child
-sum with 70 focused, 19 final and 19 installed checks, including previous-reader
-compatibility. Parent grants remain held; actual lifetime integration, parent
-settlement and mixed native scheduling are not implemented. Orderly read closure is required
-in addition to snapshot removal, and unresolved children keep their own charges.
-See the [proposed retained-parent contract](metal-campaign-storage.md#proposed-retained-parent-charge-and-closure-contract).
+interrupted ownership and no-budget behavior. The ordinary retained-parent owner now records verified closure and settles its
+explicit allowance; the existing child launcher borrows that live held scope and
+reserves only child growth. Focused/installed checks and exact real-parent readback
+qualify this boundary. Active readers, missing closure or uncertain cleanup keep
+parent charges held; uncertain children retain independent charges. Physical
+reclaim remains unverified. Next: whole audited-session space ownership, then
+bounded campaign scheduling and separately qualified retirement.
+See the [implemented retained-parent contract](metal-campaign-storage.md#implemented-retained-parent-release-and-child-consumption).
 Arbitrary protection ancestry is not inferred. Read/execution lifetime qualification does not establish capacity or
 close the A01/A02 science gates.
 Typed reader-control support remains with Willow W186. No historical parent or
@@ -351,7 +350,7 @@ the exact source pin, counts, commands and remaining integration boundaries.
 | **A01 — Ligand geometry and open XYZ/B foundation** | PARTIAL; native stopping evidence implemented; FT_Hg open-fit geometry gate remains | Qualify exact source chemistry, linkage/terminal context, all intended NARestraints and metal recipe terms; demonstrate open XYZ/B refinement, explicit phase/Free-R policy, active-state B export and inspectable maps. FT_Hg first, then mixed Au/Ag. | Merged development base |
 | **A02 — Controlled f″/Q quantitation** | PARTIAL; frozen fits, B environments and matched comparisons implemented | Use qualified endpoints; freeze XYZ/all ADPs/f′, prepare metal B from the refined environment, and qualify Q/start/budget responses, mixed elements, cluster sums/cancellation and anomalous-background controls. | A01 |
 | **A03 — Editable recipes and structural alternatives** | PARTIAL; recipe core and candidate comparisons implemented | Source-backed ligand/metal-state targets, saved editable recipes, count/identity alternatives, optional chi flips and multiple/adjacent sites; preserve ambiguity and human choice. | A01–A02 |
-| **A04 — Lean storage and regeneration** | PARTIAL; [inventory/forecast, compact projection and exact input transport](metal-campaign-storage.md) implemented; explicit parent transport, retained execution/cold review and compact publication with declared protected references qualified on bounded controls; v1 one-shot admission and opt-in mixed-scope ledger admission qualified on small controls; parent closure/lifetime still pending; accepted scientific regeneration, scheduler-wide accounting and pruning pending | Shared pristine parents, compact frozen-trial records, protected important nodes, size-capped map retention, cold native regeneration, crash-safe retirement and campaign disk reservations. | Qualified A01–A02 examples; before large fan-out |
+| **A04 — Lean storage and regeneration** | PARTIAL; [inventory/forecast, compact projection and exact input transport](metal-campaign-storage.md) implemented; explicit parent transport, retained execution/cold review and compact publication with declared protected references qualified on bounded controls; v1 one-shot admission and opt-in mixed-scope ledger admission qualified on small controls; ordinary parent closure and retained-child budget admission qualified; whole audited-session accounting and accepted scientific regeneration, scheduler-wide accounting and pruning pending | Shared pristine parents, compact frozen-trial records, protected important nodes, size-capped map retention, cold native regeneration, crash-safe retirement and campaign disk reservations. | Qualified A01–A02 examples; before large fan-out |
 | **A05 — Dedicated GUI co-design session** | OPEN; earlier sketches and inspection viewer are starting points | Scientist and developer jointly walk through real cases, debate navigation/controls, compare alternatives and agree a usable modular design with recorded decisions and usability checks. | Representative A02/A03 evidence; can run alongside A04 |
 | **A06 — Campaign and GUI integration** | PARTIAL; identities, navigation and inspection mechanisms exist | Connect the agreed GUI to bounded multi-dataset execution, structures/sites, compact comparisons, branching history, maps/Coot, selection, reuse and recovery; include no-metal/empty-frame policy. | A02–A05 |
 | **A07 — Reconstruct known metal solutions through the mechanics** | OPEN; solved references and diagnostic fixtures available | Reconstruct defensible solutions from declared experimental inputs and general NASolve mechanics, with reference models withheld from construction/search; record intervention and remaining ambiguity against predeclared criteria. | Mechanical rehearsals through A01–A03; campaign demonstration after A06 |

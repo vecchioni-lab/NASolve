@@ -9,84 +9,75 @@ not a second queue.
 
 ## A04 current checkpoint: cooperative storage reservations
 
-**Latest bounded step: opt-in mixed-scope ledger admission.**
-`create_budget(..., include_retained_parents=True)` creates a new v2 store in which
-parent and child allowances compete under the same existing lock and admission
-sum. Default v1 creation/read/child behavior is preserved; there is no implicit
-conversion. A parent grant reserves a relative namespace and identity without
-materializing a snapshot or acquiring a live handle. A child may reference a
-held parent grant in the same ledger. Unsupported versions/types, wrong references,
-overlapping namespaces and parent scope reuse refuse.
+**Latest bounded step: actual retained-parent release and normal child admission.**
+The ordinary `retained_parent_inputs(..., storage_budget=...)` context now reserves
+one parent allowance before expansion. It records its grant/opening and publishes
+closure only after managed reads finish, the handle expires and transport/snapshot
+cleanup verifies. The existing child launcher can borrow that live v2 parent and
+reserve only child growth. Two serial children share one expansion; stopping a
+child never releases its parent. Default/no-budget and v1 execution stay unchanged.
 
-**Parent charges cannot yet settle.** The child settlement API explicitly refuses
-parent grants. Native budgeted execution remains limited to the already-qualified
-v1 profile; v2 refuses before expansion or a new grant. A v2 stopped-child control
-uses manual ledger calls around the unchanged launcher, not activated scheduling.
-This deliberately separates admission from actual retained-parent lifecycle,
-scientific acceptance, campaign scheduling and retirement.
+**Release is not deletion or scientific acceptance.** A known stopped child can
+settle independently. Uncertain or missing child outcomes keep their own allowance,
+even after independently verified parent cleanup. Active-reader teardown, cleanup
+failure or missing closure keep the parent held. A published closure can be settled
+again after an acknowledgement/lock failure without expanding the parent. Existing
+scope namespaces are never reused. The cold reader verifies recorded owner closure
+and current scratch absence, not historical live references or physical reclaim.
 
-**Qualification:** 18 regressions fail before implementation. **70 focused tests
-pass in 7.75 s**, covering mixed admission, existing v1 budgets and the ordinary
-budgeted launcher. After adding malformed scope-type handling, **19 final tests
-pass in 0.93 s**. A relocated installation with original build/install removed and
-source/Phenix access blocked passes **19 tests in 1.17 s**; all **354 packaged files**
-match. The exact previous reader from the earlier qualified wheel reads v1 grants
-from both implementations with matching fields (apart from live free-space),
-and rejects v2. Nine native/scientific/process/parent owners remain byte-identical.
-No full suite, Phenix/Coot calculation, new geometry or payload retirement.
+**Qualification:** 17 original release regressions failed before implementation;
+4 normal-consumer regressions failed before connection. Final **138 focused tests
+pass in 18.51 s**, covering parent/read/execution ownership and legacy/mixed budgets.
+A relocated installation, with original build/install removed and source/Phenix
+access blocked, passes **57 tests in 7.04 s**; all **355 packaged files** match.
+The previous reader still reads held v2 grants and v1 records, and refuses the new
+parent settlement. Review found an opening/declaration version gap: both added
+regressions failed before the fix. Earlier 136-source/55-installed results remain
+under `retained-parent-release-20261121-01/`; final installed receipts are in `-02/`.
+Seven scientific/native helper owners are byte-identical to the prior checkpoint.
+No full suite, Phenix/Coot calculation, new geometry acceptance or original pruning.
 
-The source command is `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src
-/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest
--q -p no:cacheprovider tests/test_metal_mixed_storage_budget.py
- tests/test_metal_storage_budget.py tests/test_metal_budgeted_child.py`.
-Final source/installed checks select the mixed module. Exact commands, manifests,
-old-reader identity and small report are under the local Alder artifact anchor
-`mixed-storage-budget-20261121-01/`.
+The exact source command (from the Alder worktree) is:
 
-**Measured ledger-only example:** 1 MB parent + 1 MB child allowances charge
-2,003,857 B including existing files. After a simulated stopped child settles,
-49,032 B of files remain and the parent still holds 1 MB: total charge 1,049,032 B.
-Attempting to settle that parent as a child refuses. The same accounting reopens
-after the original store path is gone. This is a small accounting proof, not a
-measured parent expansion, native peak or 200-dataset capacity result.
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_metal_parent_budget.py tests/test_metal_retained_budgeted_child.py tests/test_metal_retained_parent.py tests/test_metal_retained_execution.py tests/test_metal_storage_budget.py tests/test_metal_mixed_storage_budget.py tests/test_metal_budgeted_child.py
+```
 
-**Files/schemas/compatibility:** one runtime owner (`metal/storage_budget.py`), one
-new test module and maintained architecture/storage/roadmap/handoff/changelog text.
-Configuration, ledger and inspection gain explicitly opted-in schema 2; v1 valid
-records and default formats stay unchanged. V2 typed parent/child grants use exact
-relative paths, independently pinned budget/request/manifest identities and
-optional same-ledger parent references. Parent settlement is unsupported and
-fails closed. A future closure format needs its own compatibility qualification.
-Generated observations, fixtures, logs, wheels and reports stay outside Git;
-owned installed-test staging is removed and original science remains unchanged.
+Installed qualification uses the owned Python 3.12.14 environment and private
+`runners/A346_parent_release_final.py`; exact build/install/test commands, hashes
+and measurements are in `retained-parent-release-20261121-02/validation.json`.
+Wheel SHA-256: `a70fe18cf863ec5891262e567f62003e673c812052f5b02bab8973f3b443f213`.
+`A347_parent_release_final_readback.py` checks the real preserved Hg/Ag4 inputs.
 
-**Next:** connect this distinct grant to the existing opaque retained-parent owner.
-Only orderly borrowed-read closure plus independently verified transport/snapshot
-cleanup may authorize its eventual settlement. Keep unknown/unclean parents held;
-unknown children retain their own allowance even after independently proven parent
-cleanup. Bind child execution to that live parent scope only after this authority
-is qualified. Audited-session pre/post work, campaign scheduling, conversion and
-retirement remain separate. A04 is partial; unresolved FT geometry leaves A01
-partial and A02 gated. Willow W194 remains the later A01 comparison owner.
+**Real-data readback:** one **55-file / 4,730,256 B** snapshot serves both exact
+historical input derivations, then closes and settles. The recorded allocated file
+blocks and system free-space change are separate observations; physical reclaim
+is explicitly unverified. Saved Ag4 science re-audits unchanged after relocation:
+Q=1 and B=188.75 Å² at each site, signed f″ approximately −3.819, +3.136, +3.068,
+−2.393 e; Rwork/Rfree 0.29184/0.75871. This remains a poor-fit historical control,
+not a cluster count or accepted endpoint. There is no new native fit.
 
-The seven-case lifecycle probe and 28 independent saved-evidence checks remain
-in `retained-charge-scope-20261121-02/`, documented at `08a0d1fc`. A deliberately
-out-of-order close correctly refuses but removes the path while an active reader
-can still read 22 bytes: path absence alone cannot prove release. The injected
-22-byte cleanup-failure fixture stays local. The initial private probe's no-op
-serial assertion was corrected and those cases rerun; earlier evidence is retained.
-The [closure contract](metal-campaign-storage.md#proposed-retained-parent-charge-and-closure-contract)
-keeps the unimplemented lifecycle boundary explicit.
+**Files/schemas/compatibility:** new `metal/parent_budget.py`, changes to
+`parent_archive.py`, `storage_budget.py`, `child_process.py`, two test modules and
+current docs. Parent declaration/opening/closure/settlement/inspection are distinct
+v1 kinds; opt-in budget/ledger stays v2. Retained child storage admission is v2 and
+binds its parent scope; old one-shot admission stays v1. No existing store migrates.
+Closure records pin the grant, parent manifest, scope, relative scratch and proof
+chain. Source archives, native helpers, scientific request/result formats and CLI
+defaults stay unchanged. Generated fixtures, wheels, logs and reports stay local;
+owned staging is removed. Important science and failed evidence remain preserved.
 
-Earlier checkpoints remain qualified: v1 reservation owner `13596fbc` (77 focused,
-31 final/installed); optional one-shot launcher `6d694fe6` (83 focused, 21 installed);
-compact publication `9d1628c2`; retained execution `134d647a`. Their exact prior
-receipts remain at `storage-budget-20261121-01/` through `-03/`,
-`budgeted-child-20261121-01/`, `audited-publication-20261121-01/` and
-`retained-execution-20261121-01/`/`-02/`. The normal v1 caller reserves before
-expansion and only settles after verified stop; busy settlement preserves the
-completed result with its allowance still held. No accepted scientific node or
-original output was retired by any of these engineering controls.
+**Next:** qualify whole audited-session space ownership, including fresh inspection,
+Free-R audit, scientific postflight and review publication, before campaign fan-out.
+The current child allowance covers the launcher only. No scheduler, OS quota,
+crash-recovery inference, automatic retirement or capacity guarantee is implied.
+A04 remains partial; A01 geometry is unresolved and A02 remains gated. Willow's
+scientific candidate/movement binding remains separate from reader-release authority.
+
+The earlier seven-case lifetime probe and 28 independent saved-evidence checks at
+`retained-charge-scope-20261121-02/` remain valid and were not rerun. Earlier qualified
+admission/publication checkpoints remain in Git and their original private receipts.
+See the [live closure contract](metal-campaign-storage.md#implemented-retained-parent-release-and-child-consumption).
 
 ## A04 supporting checkpoint: explicit offline session review
 

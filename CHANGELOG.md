@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Release owned retained-parent space after verified closure
+
+- Bind the ordinary retained-parent context to an explicit v2 budget, recording
+  managed-read closure, handle expiry and verified snapshot/transport cleanup.
+  Retain unresolved charges and support idempotent settlement from saved closure.
+- Let the existing child launcher borrow that live held parent while reserving
+  only child growth. Child completion and outer parent release remain separate;
+  uncertain children stay held. Default/v1 behavior and scientific workers stay exact.
+- Add separate v1 parent lifecycle records and v2 retained-child storage admission;
+  qualify previous-reader refusal, relocation, acknowledgement gaps and proof versions.
+- Pass 138 focused and 57 relocated installed checks; recover real Hg/Ag4 inputs
+  and exact saved Ag4 science without a new native run. Physical reclaim, whole-session
+  scheduling, scientific acceptance and original-data retirement remain unclaimed.
+
 ### Admit explicitly opted-in mixed parent and child storage grants
 
 - Add a schema-2 budget/ledger profile created only with explicit retained-parent

@@ -104,10 +104,12 @@ def _read(root, budget_id):
             checksum(grant.get('scope_id'), 'reserved parent scope identity')
             _need(grant['scope_id'] not in scope_ids, 'Parent scope identity reused')
             scope_ids.add(grant['scope_id'])
-            _need(item['settlement'] is None, 'Retained parent settlement is not implemented')
+            if item['settlement'] is not None:
+                from .parent_budget import _check_settlement
+                _check_settlement(root,grant,reservation_id,item['settlement'])
         paths.append(_grant_path(root,grant))
         settled = item['settlement']
-        if settled is not None:
+        if settled is not None and kind=='child':
             _need(isinstance(settled, dict) and settled.get('reservation_id') == reservation_id
                   and settled.get('request_id') == grant['request_id'] and settled.get('status') in STOPPED
                   and settled.get('stopped_verified') is True
@@ -140,12 +142,12 @@ def _grant_path(root, grant):
     return _child_path(root, grant.get('scope') if grant.get('scope_type')=='retained_parent' else grant.get('child'))
 
 
-def _parent_reference(ledger, reference):
+def _parent_reference(ledger, reference, *, require_held=False):
     if reference is None:return
     checksum(reference, 'parent reservation identity')
     item=ledger['reservations'].get(reference)
     _need(item is not None and item['grant'].get('scope_type')=='retained_parent'
-          and item['settlement'] is None, 'Missing or wrong parent reservation reference')
+          and (not require_held or item['settlement'] is None), 'Missing, closed or wrong parent reservation reference')
 
 
 def _pending(ledger):
@@ -231,7 +233,7 @@ def reserve_child(directory, *, budget_id, child, request_id, allowance_bytes,
         if ledger['schema_version']==1:
             _need(parent_reservation_id is None, 'Parent references require ledger version 2')
         else:
-            _parent_reference(ledger,parent_reservation_id)
+            _parent_reference(ledger,parent_reservation_id,require_held=True)
             grant.update(scope_type='child',parent_reservation_id=parent_reservation_id)
         return _admit(root,config,ledger,grant)
 
@@ -317,11 +319,10 @@ def inspect_budget(directory, *, budget_id):
 
 def _reserve_execution(options, *, attempt, request_id, max_parent_disk_bytes,
                        known_child_input_bytes, scratch_directory, retained_parent):
-    """First caller: one-shot parent expansion and child growth on one device."""
+    """Admit one-shot growth or a child borrowing a separately charged live parent."""
     _need(isinstance(options, dict)
           and set(options) == {'directory', 'budget_id', 'allowance_bytes'},
           'Explicit storage budget requires directory, budget_id and allowance_bytes')
-    _need(retained_parent is None, 'Budgeted retained parent lifetime needs separate outer accounting')
     root = _root(options['directory'])
     _need(attempt.is_relative_to(root), 'Budgeted child must be inside the declared store')
     scratch = Path(scratch_directory).expanduser().resolve()
@@ -330,11 +331,19 @@ def _reserve_execution(options, *, attempt, request_id, max_parent_disk_bytes,
     _integer(max_parent_disk_bytes, 'parent disk allowance', 1)
     _integer(known_child_input_bytes, 'known child input bytes')
     allowance = _integer(options['allowance_bytes'], 'execution allowance', 1)
-    _need(allowance > max_parent_disk_bytes + known_child_input_bytes + 16*1024,
-          'Execution allowance needs parent space, known input copies and child headroom')
+    parent_id=None
     with exclusive_lock(records.path_in(root,LOCK)):
-        config,_ = _read(root,options['budget_id'])
-        _need(config['schema_version']==1, 'The mixed-scope ledger is not activated for native execution')
+        config,ledger = _read(root,options['budget_id'])
+        if retained_parent is None:
+            _need(config['schema_version']==1, 'A mixed-scope launch requires a live budgeted retained parent')
+            _need(allowance > max_parent_disk_bytes + known_child_input_bytes + 16*1024,
+                  'Execution allowance needs parent space, known input copies and child headroom')
+        else:
+            _need(config['schema_version']==2, 'A budgeted retained parent requires the mixed profile')
+            from .parent_budget import _active_reservation
+            parent_id=_active_reservation(root,ledger,retained_parent)
+            _need(allowance > known_child_input_bytes + 16*1024,
+                  'Execution allowance needs known input copies and child headroom')
     grant = reserve_child(root, budget_id=options['budget_id'], child=attempt.relative_to(root).as_posix(),
-                          request_id=request_id, allowance_bytes=allowance)
+                          request_id=request_id, allowance_bytes=allowance,parent_reservation_id=parent_id)
     return root, grant

@@ -2154,15 +2154,20 @@ identity and relative child paths. This conservative logical-byte accounting is
 not an OS quota. Explicit `run_child(storage_budget=...)` now reserves before
 one-shot parent expansion/native work on the same filesystem and settles only
 after verified stop; no-budget behavior is unchanged. Interrupted/uncertain work
-keeps its allowance. Budgeted outer retained lifetimes, audited-session pre/post
+keeps its allowance. Audited-session pre/post
 work, general scheduling and native capacity remain separate. See [cooperative reservations](metal-campaign-storage.md#cooperative-child-space-reservations).
 
 Explicit `create_budget(include_retained_parents=True)` creates a separate v2
 configuration/ledger profile with typed parent and child grants under the same
 admission lock/sum. V1 defaults remain unchanged and older readers refuse v2.
 Parent references are accounting lineage, not live-handle/scientific admission.
-Child settlement leaves the parent held; parent settlement and v2 native launch
-are refused until the lifetime owner is qualified. See
+Child settlement leaves the parent held. The ordinary retained context now composes
+an explicit parent-budget grant, opening, owner closure and idempotent settlement;
+managed-reference release and cleanup are required. The ordinary child launcher
+may borrow that live held scope and reserve only child growth. Recorded closure
+and current absence do not prove historical live state or physical reclaimed space.
+Uncertain children remain held independently. Prior readers refuse unsupported
+parent settlement; no v1 conversion or full-session scheduler is introduced. See
 [mixed-scope admission](metal-campaign-storage.md#opt-in-mixed-scope-ledger-admission).
 
 The separate `metal.child_process` route composes protected-parent transport and

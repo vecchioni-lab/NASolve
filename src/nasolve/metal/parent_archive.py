@@ -233,12 +233,13 @@ READ_KIND = 'metal-parent-input-read'
 
 class _RetainedParent:
     """Opaque, context-local lifetime owner; never a cached scientific verdict."""
-    __slots__ = ('directory','digest','root','receipt','active','reading','invalidated','scope_id')
+    __slots__ = ('directory','digest','root','receipt','active','reading','invalidated','scope_id','storage_budget')
 
-    def __init__(self,directory,digest,root,receipt):
+    def __init__(self,directory,digest,root,receipt,scope_id=None):
         self.directory=directory;self.digest=digest;self.root=root;self.receipt=receipt
         self.active=True;self.reading=False;self.invalidated=False
-        self.scope_id=secrets.token_hex(32)
+        self.scope_id=secrets.token_hex(32) if scope_id is None else checksum(scope_id,'owned parent scope identity')
+        self.storage_budget=None
 
     def verify(self):
         _need(not self.invalidated, 'Retained parent was invalidated; open a fresh scope')
@@ -258,7 +259,29 @@ class _RetainedParent:
 def retained_parent_inputs(directory, manifest_sha256, *,
                            max_disk_bytes=DEFAULT_DISK_BYTES,
                            reserve_bytes=DEFAULT_RESERVE_BYTES,
-                           scratch_directory=None):
+                           scratch_directory=None,storage_budget=None):
+    """Use the ordinary retained owner, optionally binding an explicit budget.
+
+    Default behavior is unchanged. Budgeted scopes delegate only storage lifecycle
+    bookkeeping; materialization, serial reads and byte checks keep their owner.
+    """
+    options=dict(max_disk_bytes=max_disk_bytes,reserve_bytes=reserve_bytes,
+                 scratch_directory=scratch_directory)
+    if storage_budget is None:
+        with _retained_parent_inputs(directory,manifest_sha256,**options) as retained:
+            yield retained
+    else:
+        from . import parent_budget
+        with parent_budget.retained_parent_inputs(directory,manifest_sha256,
+                storage_budget=storage_budget,**options) as retained:
+            yield retained
+
+
+@contextmanager
+def _retained_parent_inputs(directory, manifest_sha256, *,
+                           max_disk_bytes=DEFAULT_DISK_BYTES,
+                           reserve_bytes=DEFAULT_RESERVE_BYTES,
+                           scratch_directory=None,scope_id=None):
     """Retain one owned read-only snapshot for serial, explicit parent reads.
 
     The existing transport owner expands/copies once and closes its archive
@@ -271,7 +294,7 @@ def retained_parent_inputs(directory, manifest_sha256, *,
     directory=_path(directory)
     with materialized_parent_inputs(directory,manifest_sha256,max_disk_bytes=max_disk_bytes,
             reserve_bytes=reserve_bytes,scratch_directory=scratch_directory) as (root,receipt):
-        retained=_RetainedParent(directory,manifest_sha256,root,receipt)
+        retained=_RetainedParent(directory,manifest_sha256,root,receipt,scope_id=scope_id)
         token=_RETAINED_PARENT.set(retained)
         try:
             yield retained

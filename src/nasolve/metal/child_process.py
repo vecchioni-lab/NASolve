@@ -230,7 +230,8 @@ def run_child(prepared_directory, parent_directory, request, *, request_id,
     must still qualify the parent, replay input derivation and audit the result.
     Retry never overwrites a prior attempt or executes its stored argv.
     Optional storage_budget reserves one-shot parent expansion and child growth
-    before work. Retained parents require separate outer-lifetime accounting.
+    before work. An explicit mixed-profile launch borrows a live, separately
+    charged retained parent; its child allowance covers only child work.
     """
     request = _request(request,request_id)
     _need(request['schema_version']==2,'Legacy process-only request cannot execute; prepare a new helper-pinned request')
@@ -266,10 +267,11 @@ def run_child(prepared_directory, parent_directory, request, *, request_id,
         budget_root, grant = budget_owner._reserve_execution(storage_budget,attempt=attempt,request_id=request_id,
             max_parent_disk_bytes=max_parent_disk_bytes,known_child_input_bytes=known_input_bytes,
             scratch_directory=parent_archive.gettempdir(),retained_parent=retained_parent)
-        admission = dict(kind='metal-fdp-child-storage-admission',schema_version=1,
+        admission = dict(kind='metal-fdp-child-storage-admission',schema_version=2 if scope is not None else 1,
             reservation_id=grant['reservation_id'],grant={k:v for k,v in grant.items() if k!='reservation_id'},
             max_parent_disk_bytes=max_parent_disk_bytes,known_child_input_bytes=known_input_bytes,
             scientific_acceptance='NOT_ASSESSED',retirement_authorized=False)
+        if scope is not None:admission['parent_scope']=scope
     owner = None; transport = None; status = 'REVIEW_REQUIRED'; code = None; error = None; sealed = False
     try:
         with parent_archive.read_parent_inputs(parent,request['parent_manifest_sha256'],
