@@ -323,6 +323,10 @@ def build_parser() -> argparse.ArgumentParser:
         "--refined-planes", action="store_true",
         help="measure each atom against the other plane members and eligible carbon alkynes against their six ring atoms (requires --run)",
     )
+    cif_assess.add_argument(
+        "--refined-links", action="store_true",
+        help="read the bonds Phenix printed between residues and compare them with the checked preparation (requires --run)",
+    )
     cif_assess.add_argument("--model", type=Path, help="optional PDB atom inventory (standalone only)")
     cif_assess.add_argument("--stage", choices=("source", "effective", "standalone"), default="standalone")
     cif_assess.add_argument("--output", type=Path, help="new JSON receipt; existing files are refused")
@@ -1894,6 +1898,8 @@ def _cif_doctor(args: argparse.Namespace) -> int:
         else:
             if args.refined_planes and args.run is None:
                 raise ValueError("--refined-planes requires --run")
+            if args.refined_links and args.run is None:
+                raise ValueError("--refined-links requires --run")
             if args.bundle is not None:
                 if args.run is not None or args.dictionaries or args.model is not None or args.checkpoint is not None or args.stage != "standalone":
                     raise ValueError("--bundle selects its frozen model/resources; omit --run, dictionaries, --model, --checkpoint and --stage")
@@ -1902,7 +1908,8 @@ def _cif_doctor(args: argparse.Namespace) -> int:
             elif args.run is not None:
                 if args.dictionaries or args.model is not None or args.stage != "standalone":
                     raise ValueError("--run selects its frozen model/bundle; omit dictionaries, --model and --stage")
-                payload = assess_run(args.run, checkpoint=args.checkpoint, refined_planes=args.refined_planes)
+                payload = assess_run(args.run, checkpoint=args.checkpoint, refined_planes=args.refined_planes,
+                                     refined_links=args.refined_links)
             else:
                 if not args.dictionaries or args.checkpoint is not None:
                     raise ValueError("Provide dictionary paths, or --run with an optional --checkpoint")
@@ -1931,6 +1938,26 @@ def _cif_doctor(args: argparse.Namespace) -> int:
             print(text, end="")
         else:
             print(f"CIF Doctor: {payload.get('status', 'PREPARED')}")
+            if "refined_links" in payload:
+                links = payload["refined_links"]
+                checkpoint = payload["run_context"]["checkpoint"]["id"]
+                if links is None:
+                    print(f"{checkpoint} has no frozen final geometry.")
+                else:
+                    print(f"Refined bonds at {checkpoint} were reported as {links['status']}.")
+                    if links["status"] == "OBSERVED":
+                        print("  Comparison requires a checked preparation. The JSON lists the observed bonds.")
+                    if links["matched_backbone"] is not None:
+                        print(f"  Matched {links['matched_backbone']} backbone bonds and "
+                              f"{links['matched_supplied']} explicitly supplied distances.")
+                    for row in links["links"]:
+                        if row["classification"] in {"OUTSIDE_DECLARATION", "SYMMETRY_REVIEW"}:
+                            pair = " to ".join(" ".join(atom) for atom in row["endpoints"])
+                            image = f" (second atom at {row['image_of_second_atom']})" if row["image_of_second_atom"] else ""
+                            print(f"  {pair}{image}, {row['origin']}, {row['model_A']:.3f} Å.")
+                    for key in ("missing_backbone", "missing_supplied"):
+                        for ends in links[key] or []:
+                            print("  Missing " + " to ".join(" ".join(atom) for atom in ends) + ".")
             if "refined_planes" in payload:
                 checkpoint = payload["run_context"]["checkpoint"]["id"]
                 planes = payload["refined_planes"]

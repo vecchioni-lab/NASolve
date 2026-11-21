@@ -65,6 +65,41 @@ def _child(run):
 
 class CifDoctorRunTests(unittest.TestCase):
     @patch("nasolve.cif_doctor_run.assess_dictionaries", side_effect=_assessor)
+    def test_refined_links_use_only_the_named_checkpoints_frozen_final_geometry(self, assessor):
+        from .test_refinement_link_geometry import geometry
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            original = root / "original"
+            run = make_checkpoint_run(original)
+            _child(run)
+            registry_path = run / "AutoRefine/checkpoints.json"
+            reg = json.loads(registry_path.read_text())
+            reg["current"] = "postmr"
+            item = reg["checkpoints"][-1]
+            work = run / "AutoRefine/refine_001"
+            model, geo, _, _ = geometry(work, extra=True)
+            item.update(kind="refinement", model=_reference(model, run),
+                        outputs={"final_geometry": _reference(geo, run)})
+            registry_path.write_text(json.dumps(reg))
+            relocated = root / "relocated"
+            original.rename(relocated)
+            moved = relocated / run.relative_to(original)
+            original_files = _snapshot(relocated)
+            self.assertIsNone(assess_run(moved, refined_links=True)["refined_links"])
+            result = assess_run(moved, checkpoint="first-refinement", refined_links=True)
+            links = result["refined_links"]
+            self.assertEqual((links["status"], len(links["links"])), ("OBSERVED", 3))
+            self.assertIsNone(links["preparation_checkpoint"])
+            self.assertEqual(links["geometry_sha256"], item["outputs"]["final_geometry"]["sha256"])
+            self.assertEqual(original_files, _snapshot(relocated))
+            actual = moved / geo.relative_to(run)
+            # An intact same-name neighbor must never substitute for the changed selected file.
+            (actual.parent.parent / actual.name).write_bytes(actual.read_bytes())
+            actual.write_bytes(actual.read_bytes() + b"\n")
+            with self.assertRaisesRegex(CheckpointError, "final geometry changed after it was frozen"):
+                assess_run(moved, checkpoint="refine-001", refined_links=True)
+
+    @patch("nasolve.cif_doctor_run.assess_dictionaries", side_effect=_assessor)
     def test_uninitialized_run_assessment_does_not_write_or_initialize(self, assessor):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory).resolve()

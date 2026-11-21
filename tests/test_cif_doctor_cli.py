@@ -63,7 +63,7 @@ def test_read_only_run_uses_selected_checkpoint_without_runtime_discovery(tmp_pa
             redirect_stdout(io.StringIO()) as stream:
         assert main(['cif-doctor', 'assess', '--run', str(tmp_path),
                      '--checkpoint', 'refine-002', '--json']) == 2
-    assess.assert_called_once_with(tmp_path, checkpoint='refine-002', refined_planes=False)
+    assess.assert_called_once_with(tmp_path, checkpoint='refine-002', refined_planes=False, refined_links=False)
     discover.assert_not_called()
     assert json.loads(stream.getvalue()) == audit
 
@@ -80,11 +80,12 @@ def test_prepare_surfaces_invalid_candidate_without_adoption(tmp_path):
 
 
 @pytest.mark.parametrize("mode", ["standalone", "bundle"])
-def test_refined_planes_need_a_run(tmp_path, capsys, mode):
+@pytest.mark.parametrize("option", ["--refined-planes", "--refined-links"])
+def test_refinement_measurements_need_a_run(tmp_path, capsys, mode, option):
     source = _graph(tmp_path / "source.cif")
     arguments = [str(source)] if mode == "standalone" else ["--bundle", str(tmp_path)]
-    assert main(["cif-doctor", "assess", *arguments, "--refined-planes"]) == 1
-    assert "--refined-planes requires --run" in capsys.readouterr().err
+    assert main(["cif-doctor", "assess", *arguments, option]) == 1
+    assert option + " requires --run" in capsys.readouterr().err
 
 
 def test_compare_reports_explicit_change_without_rewriting_files(tmp_path):

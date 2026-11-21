@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C497–C501 mixed refinement and locked-sugar transfer — Rowan**.
+Updated **2026-11-21, C497–C502 mixed refinement, locked sugars and cross-residue bonds — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -318,10 +318,24 @@ explicitly scoped push; the earlier full baseline above is not a new release pas
 **DY ring geometry, C456.** The triazole favors the plane of the pyrimidine.
 A soft shared plane recovered both twisted starts in five Phenix cycles.
 The original scaffold also had an unintended covalent bond between the bases.
-The existing topology check identified it. Carry that check into ordinary
-refinement and track which edge of the triazole faces adenine. The [DY queue
+The original native topology check identified it. C502 now reads the bonds in
+the selected refinement checkpoint. In the archived DY final geometry it reports
+the extra A:12 DA N6–B:4 DY C5T bond at 1.436 Å with a 1.430(10) Å target.
+In the registered ATL mixed child all 38 backbone links and 53 supplied
+distances match the checked preparation. Preflight detection, scoped recovery
+and the triazole edge facing adenine remain open. The [DY queue
 entry](cif-doctor-completion-queue.md#dy--packaged-retained-triazole-reference-and-mutation-support)
 records the separate chemistry milestone.
+
+C502 adds the optional `refined_links` assessment field. Existing checkpoint
+schemas and native inputs need no migration. The public CLI reopened the exact
+registered child. Its dictionary verdict stayed at REVIEW, and its bond verdict
+was MATCH. Source validation passed 187 tests and 7 subtests with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_refinement_link_geometry.py tests/test_cif_doctor_run.py tests/test_cif_doctor_cli.py tests/test_cif_printed_parallelity.py tests/test_cif_topology_gate.py tests/test_cif_restraint_context.py`.
+The first three modules passed 41 tests and 7 subtests on the relocated install.
+All 321 packaged source and data files matched. The DY and ATL checks read
+existing Phenix 2.2.1-6174 results. The commit carries code, synthetic tests
+and documentation. Full regression remains deferred for the branch.
 
 **Q07, 20 November.** Ordinary Coot and ReadySet now prepare 1AP:T and S6G:C
 on the same substituted host. The plane screen follows the verified source chemistry.

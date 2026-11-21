@@ -1545,8 +1545,10 @@ source-declared triazolyl–pyrimidinone and determine whether Phenix actually
 restrains twist between its rings. Test the soft eleven-atom plane at a second
 site or against experimental DY evidence before selecting its weight by default.
 Measure the ring angle and the signed torsion independently so a half-turn
-cannot silently exchange the presented nitrogen edge. Reuse the complete
-declared-link check before interpreting refinement. When a bond lacks chemical
+cannot silently exchange the presented nitrogen edge. C502 adds the final
+checkpoint bond comparison. It finds the recorded adenine–DY link and accounts
+for the 38 backbone and 53 supplied distances in the registered mixed scaffold.
+Next carry the source-bound comparison to the preflight. When a bond lacks chemical
 authority, qualify a pair-specific recovery that preserves phosphodiesters,
 intentional crosslinks, metals and declared base-pair restraints. The
 [matched experiments](cif-doctor.md#dy-ring-orientation-and-unrequested-interbase-bond-c456)

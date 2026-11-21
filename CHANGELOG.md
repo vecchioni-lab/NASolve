@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Checking bonds between residues after refinement
+
+- `nasolve cif-doctor assess --run RUN --checkpoint ID --refined-links`
+  reads the final bond table that Phenix wrote for the selected checkpoint.
+  It identifies distances outside the checked preparation, missing backbone or
+  supplied distances, and contacts with a symmetry image that need review.
+  Older checkpoints with a frozen final table can list the observed bonds.
+
 ### Building an internal locked sugar during checked preparation
 
 - When a proposed sugar fit moves its base too far, the diagnostic identifies

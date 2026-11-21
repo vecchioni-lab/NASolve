@@ -13810,6 +13810,22 @@ each have their own explanation. An empty list means the observed sites had
 no eligible arm. An unavailable native observation yields `null`. This is a
 measurement of the written chemistry with no new force or acceptance threshold.
 
+To check bonds between residues, run
+`nasolve cif-doctor assess --run RUN --checkpoint ID --refined-links --json`.
+The final Phenix GEO table and written coordinates identify both atoms,
+the reported origin, achieved distance, target and sigma. With a checked
+preparation, Cedar compares each backbone connection and every explicitly
+supplied inter-residue distance. An edit must retain its endpoints, origin,
+target and strength at the printed precision. Rows outside that declaration
+and missing terms produce `REVIEW`. The second atom’s printed crystal image
+is retained for review. Metal coordination or an intentional chemical crosslink
+may need authority beyond the checked nucleic-acid preparation.
+
+Without a checked preparation, `OBSERVED` gives the named rows. An absent
+bond section gives `NOT_RECORDED`. A checkpoint without a frozen final table
+returns `null`. With this option the JSON preserves the independent
+`dictionary_status`. A local bond match alone cannot approve a refinement.
+
 When the log ends with one complete Phenix Start/Final recap, the reported
 starting Rwork/Rfree is the native scaled start. The trajectory retains the
 actual observations, including initial scaling. A recap with no earlier

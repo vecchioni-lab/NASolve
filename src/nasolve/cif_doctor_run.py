@@ -11,6 +11,8 @@ from typing import Mapping
 
 from .checkpoints import (
     CheckpointError,
+    _read_registry_with_preparations,
+    _ref_path,
     checkpoint_record,
     inherited_paths,
     read_registry,
@@ -56,7 +58,8 @@ def _require_registry_unchanged(
 
 
 def assess_run(
-    run: Path, *, checkpoint: str | None = None, refined_planes: bool = False
+    run: Path, *, checkpoint: str | None = None, refined_planes: bool = False,
+    refined_links: bool = False,
 ) -> dict[str, object]:
     """Assess a selected run/checkpoint without creating or modifying artifacts.
 
@@ -65,10 +68,12 @@ def assess_run(
     including observations and phase data, before the assessor sees any inputs.
     An uninitialized run uses the existing validated, in-memory PostMR root.
     On request, include the final selected-site plane measurements recorded for
-    this checkpoint. A checkpoint without a capture has no such measurement.
+    this checkpoint, or the cross-residue bonds in its own frozen final GEO.
     """
     if type(refined_planes) is not bool:
         raise ValueError("The refined plane option must be boolean")
+    if type(refined_links) is not bool:
+        raise ValueError("The refined link option must be boolean")
     requested_run = run.expanduser().resolve()
     if requested_run.name == "report.json":
         requested_run = requested_run.parent
@@ -82,7 +87,13 @@ def assess_run(
         )
     except OSError as exc:
         raise CheckpointError(f"Could not snapshot CIF assessment run provenance: {exc}") from exc
-    run, registry = read_registry(requested_run)
+    verified = None
+    if refined_links:
+        from .cif_numerical_replay import numerical_replay_scope
+        with numerical_replay_scope():
+            run, registry, verified = _read_registry_with_preparations(requested_run)
+    else:
+        run, registry = read_registry(requested_run)
     _require_unchanged(report_path, report_ref)
     _require_registry_unchanged(existing_registry, registry_ref)
     selected = resolve_checkpoint(registry, checkpoint)
@@ -121,10 +132,10 @@ def assess_run(
         raise CheckpointError("CIF assessor model inventory does not match the selected checkpoint")
     model_descriptor["frozen_reference"] = dict(model_ref)
 
+    outputs = selected.get("outputs", {})
+    if (refined_planes or refined_links) and not isinstance(outputs, Mapping):
+        raise CheckpointError("Malformed checkpoint output references")
     if refined_planes:
-        outputs = selected.get("outputs", {})
-        if not isinstance(outputs, Mapping):
-            raise CheckpointError("Malformed checkpoint output references")
         receipt["refined_planes"] = None
         if "parallelity_execution" in outputs:
             from .refinement_parallelity import read_execution_plane_geometry
@@ -139,6 +150,27 @@ def assess_run(
         (observations, observations_ref),
         *zip(restraints, restraint_refs),
     ]
+    if refined_links:
+        receipt["refined_links"] = None
+        final_ref = outputs.get("final_geometry")
+        if final_ref is not None:
+            if not isinstance(final_ref, Mapping) or not isinstance(final_ref.get("sha256"), str):
+                raise CheckpointError("Final geometry needs its recorded checksum")
+            if selected.get("kind") != "refinement":
+                raise CheckpointError("Final geometry must belong to a refinement checkpoint")
+            geo = _ref_path(final_ref, "final geometry", run)
+            from .refinement_link_geometry import read_checkpoint_link_geometry
+            links = read_checkpoint_link_geometry(run, registry, verified, selected, model, geo)
+            if links["model_sha256"] != model_ref["sha256"] or links["geometry_sha256"] != final_ref["sha256"].casefold():
+                raise CheckpointError("Refined link evidence differs from the frozen checkpoint files")
+            receipt["refined_links"] = links
+            tracked.append((geo, {"sha256": links["geometry_sha256"]}))
+        receipt["dictionary_status"] = receipt["status"]
+        link_status = (receipt["refined_links"] or {}).get("status")
+        if receipt["status"] != "INVALID" and link_status == "REVIEW":
+            receipt["status"] = "REVIEW"
+        elif receipt["status"] == "PASS" and link_status != "MATCH":
+            receipt["status"] = "UNASSESSED"
     if registry_ref is not None:
         tracked.append((existing_registry, registry_ref))
     _require_registry_unchanged(existing_registry, registry_ref)
