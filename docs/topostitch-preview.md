@@ -2482,7 +2482,7 @@ The installed run uses the same tests from a copied fixture closure with
 `PYTHONPATH` pointing to the relocated installation after its original install
 and temporary build-source paths are removed. Python 3.10 syntax parses. The
 real W202-frozen typed source passes **14 cold checks in each of source3.12,
-installed3.12 and Phenix3.11**, with identical bound output. Its temporary source
+installed3.12 and Phenix 3.11**, with identical bound output. Its temporary source
 is renamed before reading; the old path is gone. Wrong parent/report and a changed
 captured control refuse through actual Cedar readers. Temporary input trees are
 removed; original scientific artifacts remain unchanged.
@@ -2618,3 +2618,76 @@ budgeted frozen-metal session. Neither a counted scope nor an Alder review is a
 generic coordinate-moving session grant. The first opt-in ordinary route needs
 an explicit early parent hook and source-bound parent/candidate input role in the
 existing execution owner; future compact-parent expansion/budgeting is separate.
+
+
+## Larger displacement with fixed flanks (W207)
+
+W207 changes the physical question from W197's small fixed-flank perturbations
+and W163/W164's larger all-atom fits. It prospectively declares one+25° Cartesian-Y
+profile across A9..A15/B7..B1, weights `[0,.2,.4,.7,1,.5,0]`, origin pair3 and
+one fixed pair at each flank. The largest atom moves4.96184 Å; this is **not**
+25° of helical twist or a4.96 Å centroid movement. The initial backbone is
+intentionally strained: maximum link-length change1.11831 Å. Broad declared
+initialization limits permit the test; they are not geometry acceptance limits.
+
+One Phenix**2.2.1-6174** dry-run is followed, after39 cold checks, by one actual
+**five-cycle,100-iteration-cap XYZ-only refinement**, nproc1/seed1. Original
+synthetic F/SIGF/Free, fixed B/Q, source geometry, explicit restraints and four
+False reader controls remain unchanged. W206 detached source bytes feed the
+same C510 interpretation before transfer;42 source sites/eight families/3451
+retained terms match. The formal-charge readback caveat remains. No second
+amplitude, weight search, retry or continuation is run.
+
+| Measurement | Displaced start | Recovered |
+| --- | ---: | ---: |
+| Interior RMS from generator, Å |1.76560 |0.12238 |
+| Largest atom departure, Å |4.96184 |0.90391 |
+| Boundary bond RMS target error, Å |0.55659 |0.01657 |
+| Boundary angle RMS target error, degrees |29.9634 |2.5935 |
+| Synthetic Rwork / Rfree |0.23615 /0.22946 |0.008515 /0.009151 |
+
+Final cold review passes41 checks:205 selected/654 fixed, fixed movement below
+3e-14 Å, all 859 atoms,124 phosphate atoms,126 sugar handedness signs,38 declared
+links,213 explicit terms, original 7554 observations/389 Free flags, source
+chemistry/target definitions and all owned bindings retained. **This is partial
+recovery, not accepted local geometry.** A11 OP2–P–O5′ is 77.42° against 108°;
+A14 O5′–C5′ is 1.303 Å against 1.418 Å. O5′/C5′ carry the largest residual
+positions, while maximum phosphate-P departure is 0.154 Å. The A11 angle began
+at 109.57° and worsened during recovery; low synthetic Rfree conceals it. Existing
+W197 zero is explicitly a historical reference, not a new matched panel.
+
+Local recipes under `NASolve:branch-artifacts/willow/runners/`:
+
+```bash
+# From NASolve; plan is immutable and refuses an existing output directory.
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w207-fixed-flank-recovery.py plan
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w207-fixed-flank-recovery.py preflight
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/private/tmp/alder-validation-20261121-01/lib/python3.12/site-packages .venv/bin/python -B branch-artifacts/willow/runners/w207-review.py preflight
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w207-fixed-flank-recovery.py refine
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/private/tmp/alder-validation-20261121-01/lib/python3.12/site-packages .venv/bin/python -B branch-artifacts/willow/runners/w207-review.py refine
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/private/tmp/w206-qualified-dswq6ef2/installed-relocated:/private/tmp/alder-validation-20261121-01/lib/python3.12/site-packages .venv/bin/python -B branch-artifacts/willow/runners/w207-local-science.py
+```
+
+These exact historical commands borrow Gemmi from the existing local validation
+environment; they are not a portable installation prescription. Current receipts,
+frozen inputs and preserved local runners live under
+`NASolve:branch-artifacts/willow/w207-fixed-flank-recovery/`; roadmap references
+bind their bytes. Native worker calls are actual executions, not mocked tests.
+No full suite was run for this documentation/science-only update.
+
+The compact local packet at
+`ScienceCheckouts/Linden/2026-11-21_fixed-flank-recovery/` contains three PDBs,
+`open_comparison.py`, `review.html`, one figure and a checksummed manifest.
+ChimeraX 1.12 headless verifies all 3×859 coordinates and five view controls;
+the static plot is visually inspected. No interactive GUI rendering is claimed.
+Gray background, silhouettes, soft lighting and thin nucleic rings are retained.
+Raw models, data, local runners and generated results remain excluded from Git.
+No schema/default/CLI or migration change; this does not close S04/S05/S06.
+
+**Larger stress targets, planned:** the investigator requests 10 Å displacement
+of a specified segment centroid and/or5 Å from a defined helix centerline.
+Specify atom/pair weights, centroid definition, centerline and reference frame
+before generation. Record maximum atom motion and RMS separately. Centerline
+measurement/qualification and fixed-boundary/window expansion controls come
+before a claim of radial displacement; P–P span is not an axis radius. These
+future tests do not authorize an undeclared continuation of W207.

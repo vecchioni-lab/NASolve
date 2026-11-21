@@ -266,14 +266,15 @@
         "W203 binds the complete typed report, exact parent and ordered separate restraint/control bytes into a detached immutable object through existing Cedar readers. All four controls and repeated source checks are explicit; source/installed/native-Python readback agrees. No interpretation or chemical permission is added.",
         "W204 composes installed Cedar C509 with W203 binding and W200 transfer. One actual Phenix 2.2.1-6174 dry-run and deliberate pre-transfer failure pass 99 cold checks. All three atom maps, final model/geometry/fixed inputs/native selection and full candidate diffraction reproduce W202 exactly; all four controls False, five outer hooks and Cedar service binding restored. Zero refinements. Initial import-only failure preserved.",
         "W205 joins C510 source chemistry to W204 transfer in one actual Phenix 2.2.1-6174 interpretation: 42 original per-site definitions, eight families and 3451 retained terms MATCH before candidate movement; exact prior final geometry/model/scattering/fixed inputs and all candidate diffraction snapshots survive. One completed dry-run and one source-byte rejection before interpretation/transfer pass 72 cold checks. Profile/server/outer hooks restored, children stopped, zero refinements. All 42 sites retain the explicit missing full formal-charge-readback limitation.",
-        "W206 adds opt-in original native-observation bytes to the existing immutable input bundle. Unique declared source role/anchor/path, non-aliasing, exact size/hash and repeated reads are checked; default None preserves earlier behavior. 191 source/191 fresh relocated installed tests and 16 actual-source checks each in source/installed Python3.12 and Phenix3.11 pass with identical outputs. C510 consumes detached bytes after temporary input removal and still refuses substitution. No new native call or runtime authority."
+        "W206 adds opt-in original native-observation bytes to the existing immutable input bundle. Unique declared source role/anchor/path, non-aliasing, exact size/hash and repeated reads are checked; default None preserves earlier behavior. 191 source/191 fresh relocated installed tests and 16 actual-source checks each in source/installed Python3.12 and Phenix3.11 pass with identical outputs. C510 consumes detached bytes after temporary input removal and still refuses substitution. No new native call or runtime authority.",
+        "W207 tests one predeclared +25-degree Cartesian-Y interior profile with both flanks fixed: maximum initial atom displacement4.96184 A;205 movable/654 fixed. One Phenix2.2.1-6174 preflight and five-cycle/100-cap XYZ fit pass39/41 cold checks. Interior RMS1.76560->0.12238 A;boundary bond RMS0.55659->0.01657 A. All859 atoms,124 phosphate atoms,126 sugar signs,38links,213explicit terms,source chemistry and original7554/389 observations/Free retained. A11 OP2-P-O5 angle77.42 vs108deg and A14 O5-C5 bond1.303 vs1.418A remain;synthetic RW/RF0.008515/0.009151 does not establish accepted geometry."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "W207: review a genuinely new controlled physical question or implement the next agreed ordinary receiving boundary; do not repeat W197 just to exercise identical chemistry. Keep ordinary immutable round inputs and existing process ownership; compressed/budgeted sessions are separate contracts. Preserve old execution policies and parent/candidate roles. First ordinary path still needs the explicit early parent hook and typed geometry-only parent role, with C510 source proof and W206 non-None original bytes required.",
+      "next_action": "W208: maintain the smallest Willow parent builder around C512/W200, with explicit inputs, one success and failure example; Cedar owns shared early entry/dispatch. No further amplitude or refinement sweep. Retain W207 A11/A14 defects for a separately predeclared geometry-recovery comparison after integration.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -340,14 +341,15 @@
         "E_TYPED_PREPARATION_INPUT_BINDING",
         "E_NATIVE_PARENT_SERVICE_COMPOSITION",
         "E_SOURCE_CHEMISTRY_TRANSFER",
-        "E_ORIGINAL_NATIVE_OBSERVATION_BINDING"
+        "E_ORIGINAL_NATIVE_OBSERVATION_BINDING",
+        "E_LARGE_FIXED_FLANK_RECOVERY"
       ],
       "last_audit": {
         "date": "2026-11-21",
         "reviewer": "Linden",
-        "human_update": 206,
+        "human_update": 207,
         "code_commit": "8cbab5c6a6ddd7a775ecb3c93b147ff766f84822",
-        "scope": "Maintained opt-in original native bytes, installed relocation and receiving-owner audit; ordinary execution still separate"
+        "scope": "One larger fixed-flank synthetic recovery; local defects retained, no scientific closure"
       }
     },
     {
@@ -410,14 +412,15 @@
         "W203 binds the complete typed report, exact parent and ordered separate restraint/control bytes into a detached immutable object through existing Cedar readers. All four controls and repeated source checks are explicit; source/installed/native-Python readback agrees. No interpretation or chemical permission is added.",
         "W204 composes installed Cedar C509 with W203 binding and W200 transfer. One actual Phenix 2.2.1-6174 dry-run and deliberate pre-transfer failure pass 99 cold checks. All three atom maps, final model/geometry/fixed inputs/native selection and full candidate diffraction reproduce W202 exactly; all four controls False, five outer hooks and Cedar service binding restored. Zero refinements. Initial import-only failure preserved.",
         "W205 joins C510 source chemistry to W204 transfer in one actual Phenix 2.2.1-6174 interpretation: 42 original per-site definitions, eight families and 3451 retained terms MATCH before candidate movement; exact prior final geometry/model/scattering/fixed inputs and all candidate diffraction snapshots survive. One completed dry-run and one source-byte rejection before interpretation/transfer pass 72 cold checks. Profile/server/outer hooks restored, children stopped, zero refinements. All 42 sites retain the explicit missing full formal-charge-readback limitation.",
-        "W206 adds opt-in original native-observation bytes to the existing immutable input bundle. Unique declared source role/anchor/path, non-aliasing, exact size/hash and repeated reads are checked; default None preserves earlier behavior. 191 source/191 fresh relocated installed tests and 16 actual-source checks each in source/installed Python3.12 and Phenix3.11 pass with identical outputs. C510 consumes detached bytes after temporary input removal and still refuses substitution. No new native call or runtime authority."
+        "W206 adds opt-in original native-observation bytes to the existing immutable input bundle. Unique declared source role/anchor/path, non-aliasing, exact size/hash and repeated reads are checked; default None preserves earlier behavior. 191 source/191 fresh relocated installed tests and 16 actual-source checks each in source/installed Python3.12 and Phenix3.11 pass with identical outputs. C510 consumes detached bytes after temporary input removal and still refuses substitution. No new native call or runtime authority.",
+        "W207 tests one predeclared +25-degree Cartesian-Y interior profile with both flanks fixed: maximum initial atom displacement4.96184 A;205 movable/654 fixed. One Phenix2.2.1-6174 preflight and five-cycle/100-cap XYZ fit pass39/41 cold checks. Interior RMS1.76560->0.12238 A;boundary bond RMS0.55659->0.01657 A. All859 atoms,124 phosphate atoms,126 sugar signs,38links,213explicit terms,source chemistry and original7554/389 observations/Free retained. A11 OP2-P-O5 angle77.42 vs108deg and A14 O5-C5 bond1.303 vs1.418A remain;synthetic RW/RF0.008515/0.009151 does not establish accepted geometry."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "W207: review a genuinely new controlled physical question or implement the next agreed ordinary receiving boundary; do not repeat W197 just to exercise identical chemistry. Keep ordinary immutable round inputs and existing process ownership; compressed/budgeted sessions are separate contracts. Preserve old execution policies and parent/candidate roles. First ordinary path still needs the explicit early parent hook and typed geometry-only parent role, with C510 source proof and W206 non-None original bytes required.",
+      "next_action": "W208: maintain the smallest Willow parent builder around C512/W200, with explicit inputs, one success and failure example; Cedar owns shared early entry/dispatch. No further amplitude or refinement sweep. Retain W207 A11/A14 defects for a separately predeclared geometry-recovery comparison after integration.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -527,14 +530,15 @@
         "E_TYPED_PREPARATION_INPUT_BINDING",
         "E_NATIVE_PARENT_SERVICE_COMPOSITION",
         "E_SOURCE_CHEMISTRY_TRANSFER",
-        "E_ORIGINAL_NATIVE_OBSERVATION_BINDING"
+        "E_ORIGINAL_NATIVE_OBSERVATION_BINDING",
+        "E_LARGE_FIXED_FLANK_RECOVERY"
       ],
       "last_audit": {
         "date": "2026-11-21",
         "reviewer": "Linden",
-        "human_update": 206,
+        "human_update": 207,
         "code_commit": "8cbab5c6a6ddd7a775ecb3c93b147ff766f84822",
-        "scope": "Maintained opt-in original native bytes, installed relocation and receiving-owner audit; ordinary execution still separate"
+        "scope": "One larger fixed-flank synthetic recovery; local defects retained, no scientific closure"
       }
     },
     {
@@ -598,7 +602,8 @@
         "W194 supplies explicit named-state span/twist deltas with unmatched/changed sites and directed adjacency retained; saved signed 5W6W recovery illustrates span insensitivity and residual local twist.",
         "W195 adds declared regional step summaries with missing coverage and near-zero/wrap limits; regional cancellation reinforces the next local repair/admission gate.",
         "W196 extends the existing replayable initializer to an explicit registered interior whole-pair window with two fixed flanks and declared nonuniform weights; native retention/recovery remains separate.",
-        "W197 retains7554 original synthetic observations/389Free and neutral control across three five-cycle native runs. Small Rfree and coordinate RMS do not override the remaining local chemical cost; no experimental acceptance."
+        "W197 retains7554 original synthetic observations/389Free and neutral control across three five-cycle native runs. Small Rfree and coordinate RMS do not override the remaining local chemical cost; no experimental acceptance.",
+        "W207 tests one predeclared +25-degree Cartesian-Y interior profile with both flanks fixed: maximum initial atom displacement4.96184 A;205 movable/654 fixed. One Phenix2.2.1-6174 preflight and five-cycle/100-cap XYZ fit pass39/41 cold checks. Interior RMS1.76560->0.12238 A;boundary bond RMS0.55659->0.01657 A. All859 atoms,124 phosphate atoms,126 sugar signs,38links,213explicit terms,source chemistry and original7554/389 observations/Free retained. A11 OP2-P-O5 angle77.42 vs108deg and A14 O5-C5 bond1.303 vs1.418A remain;synthetic RW/RF0.008515/0.009151 does not establish accepted geometry."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -609,7 +614,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Bind a prospective registered motion to legitimate current-parent preparation and qualified native retention using W173/W174/W188/W190. Preserve source topology, full-precision mask, exact settings and target authority. Do not fabricate ordinary ancestry for the direct-input 5W6W packet or repeat private W168 unchanged.",
+      "next_action": "W208: maintain the smallest Willow parent builder around C512/W200, with explicit inputs, one success and failure example; Cedar owns shared early entry/dispatch. No further amplitude or refinement sweep. Retain W207 A11/A14 defects for a separately predeclared geometry-recovery comparison after integration.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -709,14 +714,15 @@
         "E_NAMED_HELIX_STATE_COMPARISON",
         "E_DECLARED_REGIONAL_TWIST_SUMMARY",
         "E_INTERIOR_PAIRED_PREVIEW",
-        "E_FIXED_FRAME_NATIVE_RECOVERY"
+        "E_FIXED_FRAME_NATIVE_RECOVERY",
+        "E_LARGE_FIXED_FLANK_RECOVERY"
       ],
       "last_audit": {
         "date": "2026-11-21",
         "reviewer": "Linden",
-        "human_update": 197,
-        "code_commit": "9ea58d08122e59ca09089f652b823b6f112b57a2",
-        "scope": "Matched fixed-frame private native control; local geometry cost retained, ordinary integration and scientific acceptance still open"
+        "human_update": 207,
+        "code_commit": "8cbab5c6a6ddd7a775ecb3c93b147ff766f84822",
+        "scope": "One larger fixed-flank synthetic recovery; local defects retained, no scientific closure"
       }
     },
     {
@@ -5092,6 +5098,53 @@
           "size": 3071
         }
       ]
+    },
+    "E_LARGE_FIXED_FLANK_RECOVERY": {
+      "kind": "large_fixed_flank_synthetic_recovery",
+      "date": "2026-11-21",
+      "human_update": 207,
+      "code_commit": "8cbab5c6a6ddd7a775ecb3c93b147ff766f84822",
+      "reference": "docs/topostitch-preview.md#larger-displacement-with-fixed-flanks-w207",
+      "result": "W207 tests one predeclared +25-degree Cartesian-Y interior profile with both flanks fixed: maximum initial atom displacement4.96184 A;205 movable/654 fixed. One Phenix2.2.1-6174 preflight and five-cycle/100-cap XYZ fit pass39/41 cold checks. Interior RMS1.76560->0.12238 A;boundary bond RMS0.55659->0.01657 A. All859 atoms,124 phosphate atoms,126 sugar signs,38links,213explicit terms,source chemistry and original7554/389 observations/Free retained. A11 OP2-P-O5 angle77.42 vs108deg and A14 O5-C5 bond1.303 vs1.418A remain;synthetic RW/RF0.008515/0.009151 does not establish accepted geometry.",
+      "limitation": "Partial recovery with unresolved local defects. Canonical same-ASU synthetic diagnostic, not experimental repair or ordinary dispatch; source formal-charge readback limits remain. Historical W197 zero is contextual, not a new matched control.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w207-fixed-flank-recovery/declaration.json",
+          "sha256": "039559f6f122e2ae1ea85473e17a079889064a33d38ac61213d7ee23a2c3361b",
+          "size": 1162
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w207-fixed-flank-recovery/experiment/plan.json",
+          "sha256": "fab0221c17e6b34189a1c5a077b9150e9ac7a0d1689c0908e5178af666bd823b",
+          "size": 59486
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w207-fixed-flank-recovery/preflight-review.json",
+          "sha256": "bb6378da3a43baa82ad42fb55660330946bb2dbed27e80cf3e0a258271c51348",
+          "size": 53647
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w207-fixed-flank-recovery/refine-review.json",
+          "sha256": "15e8f081eab624992d99cc7a0ea89a34c33fb82361365da314bf84790202ba94",
+          "size": 53861
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w207-fixed-flank-recovery/local-science.json",
+          "sha256": "30e48c477ec38cd4db2f4a45f4a8efad03077bd6b6cef06262a5dbc9eabfd719",
+          "size": 433347
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w207-fixed-flank-recovery/viewer-check.json",
+          "sha256": "a7de6bfca76e20bdf3ee3c6881e9c5fb7b0e10683b724221de822ffeafb5bcef",
+          "size": 692
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -5257,8 +5310,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 206,
-    "next": 207,
+    "current": 207,
+    "next": 208,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -6304,8 +6357,37 @@
         "title": "Bind original native observation bytes with preparation inputs",
         "state": "RECORDED",
         "code_commit": "8cbab5c6a6ddd7a775ecb3c93b147ff766f84822"
+      },
+      {
+        "number": 207,
+        "title": "Recover a larger interior displacement with both flanks fixed",
+        "state": "RECORDED",
+        "code_commit": "8cbab5c6a6ddd7a775ecb3c93b147ff766f84822"
       }
     ]
   },
-  "publication_demonstrations_reference": "docs/campaign-model-roadmap.md#nasolve-publication-demonstrations"
+  "publication_demonstrations_reference": "docs/campaign-model-roadmap.md#nasolve-publication-demonstrations",
+  "larger_displacement_stress_plan": {
+    "status": "PLANNED_NOT_RUN",
+    "requested_date": "2026-11-21",
+    "requested_by": "investigator",
+    "targets": [
+      {
+        "metric": "declared_segment_centroid_displacement",
+        "target_angstrom": 10
+      },
+      {
+        "metric": "displacement_from_declared_helix_centerline",
+        "target_angstrom": 5
+      }
+    ],
+    "prerequisites": [
+      "Declare atom/pair selection, weights, source and target centroid, and physical coordinate frame before generating coordinates.",
+      "Define and qualify a local helix centerline before claiming a radial displacement; P-P span is not an axis radius.",
+      "Record maximum atom displacement, RMS displacement, centroid displacement and centerline offset separately.",
+      "Retain fixed flanks/protected junctions; predeclare any expanded editable window, matched controls and bounded recovery protocol.",
+      "Local geometry and supported diffraction both matter; no acceptance solely from Rfree or arbitrary per-step limits."
+    ],
+    "current_evidence": "W207 maximum individual atom displacement4.96 A does not establish either requested stress target."
+  }
 }

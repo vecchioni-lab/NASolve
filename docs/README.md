@@ -20,7 +20,9 @@ previous geometry and diffraction exactly. W205 joins original source definition
 transfer in the same interpretation (72 checks). W206 binds original native
 bytes in the existing input bundle (191 source/191 installed checks); ordinary
 immutable inputs and future compressed/budgeted sessions keep distinct owners.
-W207 chooses new physical evidence or the next agreed ordinary receiving step.
+W207 tests 4.96 Å maximum-atom motion with fixed flanks: strong recovery but
+A11/A14 defects remain. W208 moves the proven builder into maintained Willow
+code; Cedar owns early entry and dispatch.
 
 W200 adds the [maintained one-shot preparation context](topostitch-preview.md#prepare-parent-geometry-once-w200):
 160 source/160 installed tests and an actual success/failure pair preserve the

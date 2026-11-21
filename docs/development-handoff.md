@@ -1,17 +1,17 @@
 # NASolve development handoff — Willow
 
-**Current audit/Willow implementation: W206, 2026-11-21.** The installed one-shot preparation context now
+**Current audit/Willow implementation: W207, 2026-11-21.** The installed one-shot preparation context now
 carries admitted candidate → original parent geometry → candidate coordinates
 through the installed Cedar C510 service in a source-qualified diagnostic builder. No ordinary execution-policy or
 CLI activation follows. S04/S05/S06 remain PARTIAL.
 
-**Latest science:** W197's signed fixed-frame control moves 205 interior atoms
-while fixing 654 context atoms. Matched five-cycle refinement reduces ~0.142 Å
-starting RMS to 0.03163/0.02929 Å; zero drifts 0.01633 Å. Boundary bonds recover,
-but A12 phosphate-angle error remains 10.15°/9.69° versus 9.55° in refined zero.
-Low synthetic Rfree does not establish complete geometry repair. W198–W200
-validate transport/preparation of that motion; W202 adds the shared live collector
-and authenticated controls, not another bend or refinement.
+**Latest science:** W207 displaces an interior atom by **4.96 Å** while keeping
+both flanks fixed. One five-cycle fit reduces interior RMS 1.76560→0.12238 Å and
+boundary bond RMS error 0.55659→0.01657 Å, with 205 movable/654 fixed atoms. It
+retains all 859 atoms and original observations/Free flags. **Partial recovery:**
+A11 OP2–P–O5′ remains77.42° against 108° and A14 O5′–C5′1.303 Å against 1.418 Å.
+Synthetic Rwork/Rfree0.008515/0.009151 hides those defects; S04/S05/S06 stay open.
+[Exact evidence and comparison](topostitch-preview.md#larger-displacement-with-fixed-flanks-w207).
 
 Start with the [machine roadmap](topostitch-roadmap.json) and
 [human roadmap](topostitch-roadmap.md). Detailed failed attempts, exact commands
@@ -23,6 +23,7 @@ The longer pre-consolidation handoff is preserved at Git `86e7489c2314f738bd7fe1
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
+| W207 larger fixed-flank recovery |4.96 Å maximum displacement, one five-cycle fit,39/41 cold checks; retained source chemistry, content and fixed context | A11/A14 local geometry; experimental/general recovery |
 | W206 original native bytes | Opt-in detached original source observation; 191 source/191 installed and 16 real-source checks × three environments | Explicit native use and ordinary receiving route; no lifetime grant |
 | W205 source chemistry + transfer | 42 source site definitions/eight families/3451 retained terms; 72 cold checks; exact post-transfer state/diffraction | Full formal-charge readback and maintained ordinary execution/lifetime route |
 | W204 native service composition | C509 + W203/W200; 99 cold checks, actual dry-run/failure; exact W202 prepared state and diffraction | Original-source chemical admission and ordinary lifetime/execution route |
@@ -47,17 +48,22 @@ No returned boolean/None or coordinate mapping alone is chemical authority.
 
 ## Next bounded work
 
-**W207:** choose a genuinely new controlled physical question or implement the
-next agreed ordinary receiving boundary; avoid repeating W197 merely to exercise
-the same chemistry. W206 now supplies detached original native bytes to C510's
-existing keyword. The ordinary receiver must require non-None bytes and source
-MATCH before movement. Normal immutable round inputs keep their existing process
-ownership. Alder's budgeted frozen-metal reviews/grants and Cedar's counted
-prepared/native scopes are not interchangeable generic input leases. Future
-compressed/budgeted non-metal sessions need a separate explicit contract; they
-do not silently become an initial immutable-round prerequisite. Existing execution
-still lacks a typed geometry-only parent and early installed hook. Keep old
-policies/defaults unchanged and coordinate shared changes with Rowan.
+**W208:** Rowan assigns Willow the smallest maintained parent builder around
+C512/W200, with explicit input/output and one success/failure example. Audit
+whether the existing five-method builder protocol is still the right boundary;
+reuse Cedar chemistry/geometry readers and the existing outer process lifetime.
+Cedar owns shared early-entry/dispatch edits. No new perturbation is needed.
+W207 used its predeclared C510 version without a selected-residue observer;
+C512 qualifies coexistence with that observer for the integration successor.
+
+Keep W207's A11/A14 local defects as an explicit later recovery question; do not
+silently extend this immutable five-cycle run. Investigator-requested stress
+benchmarks are separately **10 Å segment-centroid displacement** and **5 Å from
+a declared helix centerline**, not maximum atom displacement or P–P span. Define
+and qualify those measurements and bounded recovery before running them. No
+such stress test has run. W206 opt-in bytes must be non-None and source MATCH
+must precede movement; ordinary immutable round ownership remains separate from
+Alder's frozen-metal budgets and Cedar's counted prepared/native scope.
 
 
 The shared collector boundary is agreed and tested; the ordinary execution
@@ -119,6 +125,9 @@ for repeated Rfree-guided tuning. No noisy phosphate detector is qualified.
 
 ## Validation and scientific interpretation
 
+- W207: Phenix 2.2.1-6174 actual one preflight/one five-cycle fit;39/41 cold
+  checks. Local helical/covalent readback and ChimeraX 1.12 headless three-model/
+  five-control check pass; figure visually inspected. No full suite or new runtime code.
 - W206: 191 focused source/191 freshly relocated installed; 16 actual-source
   cold checks each in source/installed Python 3.12 and Phenix Python 3.11, identical
   output. Original temporary input/build/install paths removed. No native call.
@@ -186,7 +195,9 @@ B2/B3 phosphate angle remains ~76.71°; the original ~4.79 Å maximum start
 motion is not the residual displacement. All 859 atoms could refine in those
 older controls. Manifest and viewer evidence stay local.
 
-W198–W206 add no geometry effect to illustrate. W206 binding/installation
+W198–W206 add no geometry effect to illustrate. W207 now supplies a new
+three-model comparison under `ScienceCheckouts/Linden/2026-11-21_fixed-flank-recovery/`
+(`review.html`, `open_comparison.py`), including the unresolved A11/A14 close-ups. W206 binding/installation
 receipts are under `NASolve:branch-artifacts/willow/w206-source-observation-binding/`. W205 source-chemistry/transfer
 receipts are under `NASolve:branch-artifacts/willow/w205-source-chemistry-transfer/`. W204 local receipts are under
 `NASolve:branch-artifacts/willow/w204-parent-service/`; see the

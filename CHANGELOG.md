@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W207 — Record larger fixed-flank recovery and its remaining defects
+
+- One4.96 Å maximum-atom perturbation and five-cycle synthetic recovery retain
+  source chemistry,859 atoms and654 fixed surroundings.39 preflight/41 final
+  cold checks pass; A11 phosphate-angle and A14 sugar-shoulder defects remain.
+- Add a local three-model comparison and explicit future 10 Å centroid/5 Å
+  centerline stress targets. These are distinct measurements, not attained claims.
+- Documentation/evidence only; no runtime/schema/default changes, no migration.
+  Generated scientific inputs and outputs remain local; no full-suite run.
+
 ### W206 — Bind the original native observation with preparation inputs
 
 - Add opt-in `include_source_native=True` to the existing typed input binder;
