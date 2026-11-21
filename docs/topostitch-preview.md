@@ -2205,6 +2205,46 @@ A small regional mean does not prove local repair. In the saved positive recover
 curvature, coordinate repair and scientific selection remain outside this API.
 
 
+### Regional helicity model building (planned)
+
+The 2026-11-21 request is a later-stage **geometric MR-model construction**
+operation: for example, declare one duplex region at 9 bp/turn and another at
+11 bp/turn. It belongs beside bending and helix opening, after supported intact
+placement and backbone repair. W204 remains next; no builder, CLI flag or new
+runtime schema is introduced here. The [shared helix plan](helical-geometry-plan.json)
+records inputs, constraints and qualification gates; H1–H3 remain read-only.
+
+For an ideal straight right-handed helix those targets are 40° and approximately
+32.727° per step. Name the convention: conventional base-pair-step Twist, local
+helical/screw-axis Twist and the current simple-step measurement are different
+in general. We must qualify a matching construction/measurement pair rather than
+silently invert the existing reporter. Declare ordered **steps** and their weights:
+N pairs normally contain N−1 internal steps. A regional mean allows local variation;
+a uniform per-step target is a stronger, separately requested constraint.
+
+Use registered base-pair frames and step transforms shared with bending. Specify
+rise and the other step geometry separately: 11 bp/turn alone does not make A-DNA.
+Changing twist rotates downstream frames and changes how a local roll/tilt maps
+onto a global bend direction. This geometric construction has precedent in
+[3DNA](https://doi.org/10.1093/nar/gkg680) and
+[3D-DART](https://doi.org/10.1093/nar/gkp287); their reconstruction principles do
+not by themselves guarantee a chemically sound sugar–phosphate backbone.
+
+Blend transitions through allowed flanks, retain base-pair integrity, and let
+sugars/phosphates adjust through Cedar/NARestraints reconstruction and regularization.
+Report the achieved profile after repair along with bonds, angles, chirality,
+pucker, stacking, clashes and endpoint residuals. Density is unnecessary for
+initial geometric generation; later MR/refinement determines experimental support.
+
+First qualify canonical DNA with one anchored end and a free opposite end.
+Two fixed endpoint **positions and orientations** can conflict with accumulated
+twist. Allow explicit transition flexibility or expansion within the editable
+region, stop at protected junctions, and refuse infeasible requests. Periodic
+closure, modified bases and metal-coupled geometry need their own qualification.
+Use bounded, declared candidate ensembles through existing campaign machinery;
+this is neither an unrestricted Free-R search nor a separate geometry engine.
+
+
 ### Registered interior paired windows (W196)
 
 The existing builder, CLI, viewer and `load_bend_motion` now also read schema-3

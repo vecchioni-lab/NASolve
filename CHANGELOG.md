@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Planned regional helicity model construction
+
+- Record geometry-driven regional twist targets, smooth transitions, endpoint
+  feasibility and shared backbone regularization in the existing helix plan and
+  deferred roadmap. No implementation, runtime schema, dependency or default
+  changes; current native-service integration stays next.
+
 ### W203 — Bind immutable native preparation source inputs
 
 - Add an in-memory source binding through the existing trusted Cedar compiler

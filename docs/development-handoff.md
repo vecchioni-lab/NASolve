@@ -100,6 +100,11 @@ opening/closing remains planned, including sugar/backbone movement; P–P span i
 not radius to an axis. [Cluster contract](topostitch.md) and
 [shared helix plan](helical-geometry-plan.json) retain those constraints.
 
+User-requested regional helicity generation (9 versus 11 bp/turn) is now a
+[late-stage geometric model-building plan](topostitch-preview.md#regional-helicity-model-building-planned),
+with explicit step convention, endpoint phase, transition and backbone-repair
+gates in the shared helix plan. It adds no implementation and does not displace W204.
+
 Density stays in the pipeline: use original fixed data/Free, a recovery interval,
 no-op control and both geometry and map review. Early post-bend R deterioration
 is not a rejection by itself. After full recovery, worsening Rfree merits map
@@ -156,6 +161,15 @@ One figure shows signed phosphate displacement, boundary-bond recovery and the
 remaining local phosphate-angle cost. Models are linked/hash checked, not copied.
 The associated ChimeraX script uses gray/silhouettes/soft/orthographic/thin rings;
 it was prepared and checked, not GUI-executed for W197.
+
+For the user's larger-displacement inspection, GitHub anchor
+`ScienceCheckouts/Linden/2026-11-21_half-nanometer-comparison/open_comparison.py`
+reuses six checksummed W163/W164 models with five clickable Log comparisons.
+ChimeraX 1.12 headless verifies six × 859 coordinates unchanged and all five
+view actions; no rendered GUI review or new refinement. Positive recovered
+B2/B3 phosphate angle remains ~76.71°; the original ~4.79 Å maximum start
+motion is not the residual displacement. All 859 atoms could refine in those
+older controls. Manifest and viewer evidence stay local.
 
 W198–W203 add no geometry effect to illustrate. W203 cold/installation receipts
 are under `NASolve:branch-artifacts/willow/w203-source-input-binding/`. W202 source/live receipts are

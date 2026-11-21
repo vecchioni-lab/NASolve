@@ -1735,6 +1735,7 @@ Five cold current Cedar owner controls: old v3 readable, fresh default helper ha
 ## Deferred extensions, not hidden blockers
 
 - **Canonical rebuilding / missing-residue generation:** Only after intact-duplex placement is qualified and an explicit rebuilding case requires it; preserve sequence and separately qualify chemistry.
+- **Regional helicity MR-model construction:** After intact-duplex placement and supported backbone repair; canonical, one-free-end profiles first. Reuse pair-frame bending and Cedar/NARestraints, qualify twist convention, transitions, achieved geometry and fixed-end feasibility. See docs/helical-geometry-plan.json planned_model_generation and docs/topostitch-preview.md#regional-helicity-model-building-planned. Planning only; W204 remains next.
 - **Junction hinges and broader modified/RNA/backbone chemistry:** Explicit capability and native tests; fixed junctions and canonical DNA remain the first supported scope.
 - **AlphaFold provider integration:** Separate input-provider work; existing predicted coordinates can be benchmark inputs without an AI runtime dependency.
 - **Calibrated negative backbone difference-density detection:** S06 after exact map/model/data binding and matched-refinement baselines; read-only patch evidence and scientist-calibrated false-positive controls first, S07/campaign review next, direct coordinate fitting later. Retain nearby positive support, ordinary map fit, spatial correlation, occupancy/ADP and processing uncertainty.

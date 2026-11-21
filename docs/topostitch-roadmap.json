@@ -5118,6 +5118,10 @@
       "trigger": "Only after intact-duplex placement is qualified and an explicit rebuilding case requires it; preserve sequence and separately qualify chemistry."
     },
     {
+      "scope": "Regional helicity MR-model construction",
+      "trigger": "After intact-duplex placement and supported backbone repair; canonical, one-free-end profiles first. Reuse pair-frame bending and Cedar/NARestraints, qualify twist convention, transitions, achieved geometry and fixed-end feasibility. See docs/helical-geometry-plan.json planned_model_generation and docs/topostitch-preview.md#regional-helicity-model-building-planned. Planning only; W204 remains next."
+    },
+    {
       "scope": "Junction hinges and broader modified/RNA/backbone chemistry",
       "trigger": "Explicit capability and native tests; fixed junctions and canonical DNA remain the first supported scope."
     },

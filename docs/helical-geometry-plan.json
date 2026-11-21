@@ -178,5 +178,40 @@
     },
     "production_change": false,
     "next": "W193 implements canonical frames and twist; preserve historical evidence and qualify cross-state correspondence, modified-ring mapping and local-axis radii separately."
+  },
+  "planned_model_generation": {
+    "status": "PLANNING_ONLY_NOT_IMPLEMENTED",
+    "requested": "2026-11-21",
+    "guide": "docs/topostitch-preview.md#regional-helicity-model-building-planned",
+    "scheduling": "Late-stage extension after intact-duplex placement and supported backbone repair. Current W204 service integration remains next. Existing H1-H3 read-only APIs retain their scope.",
+    "purpose": "Generate sequence-registered MR regions with user-declared regional helicity using shared pair-frame/bending geometry; density is optional downstream evidence, not required to generate a candidate.",
+    "convention": "Declare signed handedness and the exact twist definition. For an ideal straight right-handed helix 9 bp/turn corresponds to 40 degrees per step, and 11 to 360/11 degrees. Conventional step Twist, local helical/screw-axis Twist and the current simple-step reporter differ in general; do not treat the read-only reporter as an inverse builder.",
+    "inputs": [
+      "Exact sequence and ordered paired sites/images, source model or canonical template and explicit step membership/weights",
+      "Regional mean target versus a uniform per-step profile, transition extent and tolerances",
+      "Fixed/free endpoint positions and orientations, protected junctions and allowed editable flanks",
+      "Separate rise, roll, tilt, shift, slide and starting backbone conformation; bp/turn alone does not specify DNA form"
+    ],
+    "procedure": [
+      "Reuse registered pair frames and step transforms, retaining intact base pairs and the declared stacking geometry. Account for accumulated twist when expressing bend direction in local frames.",
+      "Blend regional transitions within explicitly editable flanks, reconstruct or regularize sugars/phosphates through Cedar/NARestraints and preserve sequence, connectivity, chirality and component identity.",
+      "Audit requested and achieved twist with matched conventions, step coverage and endpoint residuals after regularization; write an immutable candidate with provenance. Do not silently sacrifice geometry to hit an exact mean."
+    ],
+    "constraints": [
+      "Start with canonical DNA and one anchored/free endpoint; qualify two-ended closure separately. Fixed positions and orientations can make accumulated twist incompatible. Expand only through allowed flanks, stop at protected junctions and refuse incompatible requests.",
+      "A region of N pairs has N-1 internal steps. Explicit border weights are different from silently adding a step. Preserve local variation when the user requested only a regional mean.",
+      "Periodic/covalently closed loops require explicit closure and topology constraints; modified and metal-coupled regions require separate Cedar/Alder qualification.",
+      "Candidate generation establishes geometry, not experimental correctness. Later MR/refinement uses bounded predeclared candidates and existing campaign review, without repeated Free-R-guided tuning. No AI runtime dependency."
+    ],
+    "qualification_gates": [
+      "Straight canonical 9 and 11 bp/turn controls; independently measured convention-matched reference and identity/no-op controls",
+      "Two-region transition, both strand directions, rigid-motion invariance and explicit missing-step behavior",
+      "Backbone bonds/angles, sugar chirality/pucker, stacking, clashes and endpoint closure after regularization; disclose achieved profile",
+      "Deliberately incompatible fixed-end request refuses; larger or modified cases advance only after canonical geometry is qualified"
+    ],
+    "sources": [
+      "https://doi.org/10.1093/nar/gkg680",
+      "https://doi.org/10.1093/nar/gkp287"
+    ]
   }
 }
