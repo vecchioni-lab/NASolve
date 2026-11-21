@@ -224,3 +224,103 @@ def materialized_parent_inputs(directory, manifest_sha256, *,
     finally:
         receipt['snapshot_removed']=root is not None and not root.exists()
         _PARENT_ACTIVE.reset(token)
+
+
+_RETAINED_PARENT = ContextVar('metal_retained_parent', default=None)
+READ_KIND = 'metal-parent-input-read'
+
+
+class _RetainedParent:
+    """Opaque, context-local lifetime owner; never a cached scientific verdict."""
+    __slots__ = ('directory','digest','root','receipt','active','reading','invalidated')
+
+    def __init__(self,directory,digest,root,receipt):
+        self.directory=directory;self.digest=digest;self.root=root;self.receipt=receipt
+        self.active=True;self.reading=False;self.invalidated=False
+
+    def verify(self):
+        _need(not self.invalidated, 'Retained parent was invalidated; open a fresh scope')
+        try:
+            # The independently supplied digest remains authoritative. Neither
+            # a handle nor an earlier read substitutes for current byte checks.
+            value=_manifest(self.directory,self.digest)
+            for ref in value['parts']:_part_bytes(self.directory,ref)
+            _verify_snapshot(self.root,value['index'])
+        except BaseException:
+            self.invalidated=True
+            raise
+
+
+@contextmanager
+def retained_parent_inputs(directory, manifest_sha256, *,
+                           max_disk_bytes=DEFAULT_DISK_BYTES,
+                           reserve_bytes=DEFAULT_RESERVE_BYTES,
+                           scratch_directory=None):
+    """Retain one owned read-only snapshot for serial, explicit parent reads.
+
+    The existing transport owner expands/copies once and closes its archive
+    scope before yielding this opaque handle. Each read still hashes the full
+    snapshot and pinned archive on entry/exit and replays its scientific owner.
+    No source files are linked, chmodded or retired. Only this owned temporary
+    snapshot is removed on normal/exceptional exit. Abrupt process termination
+    may leave scratch; this is not crash recovery or campaign quota ownership.
+    """
+    directory=_path(directory)
+    with materialized_parent_inputs(directory,manifest_sha256,max_disk_bytes=max_disk_bytes,
+            reserve_bytes=reserve_bytes,scratch_directory=scratch_directory) as (root,receipt):
+        retained=_RetainedParent(directory,manifest_sha256,root,receipt)
+        token=_RETAINED_PARENT.set(retained)
+        try:
+            yield retained
+            _need(not retained.reading, 'Cannot close retained parent with an active read')
+        finally:
+            retained.active=False
+            _RETAINED_PARENT.reset(token)
+
+
+@contextmanager
+def read_parent_inputs(directory, manifest_sha256, *, retained_parent=None,
+                       max_disk_bytes=DEFAULT_DISK_BYTES):
+    """Read one pinned parent, optionally borrowing its explicit retained scope.
+
+    An ordinary call keeps the existing one-shot receipt. A borrowed read returns
+    a distinct read receipt: its read scope closes, but snapshot cleanup belongs
+    to the outer retained scope. It never claims that the snapshot was removed.
+    Handles expire on exit, cannot be substituted across directories/digests or
+    contexts, and do not permit overlapping reads. Detected changes or consumer
+    exceptions invalidate the handle even if the offending bytes are restored.
+    """
+    if retained_parent is None:
+        with materialized_parent_inputs(directory,manifest_sha256,max_disk_bytes=max_disk_bytes) as value:
+            yield value
+        return
+    retained=retained_parent
+    _need(type(retained) is _RetainedParent and retained.active
+          and _RETAINED_PARENT.get() is retained, 'Require an active retained parent in this context')
+    _need(not retained.reading, 'Retained parent already has an active read')
+    _need(_path(directory)==retained.directory and manifest_sha256==retained.digest,
+          'Retained parent directory or digest substituted')
+    _integer(max_disk_bytes,'parent disk budget',1)
+    _need(retained.receipt['disk_bound_bytes']<=max_disk_bytes, 'Retained parent exceeds read disk budget')
+    retained.verify()
+    receipt=dict(retained.receipt,kind=READ_KIND,schema_version=1,max_disk_bytes=max_disk_bytes,
+        retained_snapshot=True,read_scope_closed=False,snapshot_removed=False,inputs_unchanged=False,
+        consumer_completed=False)
+    retained.reading=True
+    try:
+        try:yield retained.root,receipt
+        except BaseException:
+            # Still check exact bytes below, but never continue an interrupted
+            # consumer's lifetime as if it completed normally.
+            try:
+                retained.verify()
+                receipt['inputs_unchanged']=True
+            finally:retained.invalidated=True
+            raise
+        else:
+            retained.verify()
+            receipt['inputs_unchanged']=True
+            receipt['consumer_completed']=True
+    finally:
+        retained.reading=False
+        receipt['read_scope_closed']=True

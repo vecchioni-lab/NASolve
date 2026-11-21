@@ -110,11 +110,14 @@ def _derive(root, payload, run_relative, endpoint_relative):
 
 def verify_child_inputs(prepared_directory,parent_directory,request,*,request_id,
                         run_relative,endpoint_relative,reader_control_policy=None,
-                        max_parent_disk_bytes=parent_archive.DEFAULT_DISK_BYTES):
+                        max_parent_disk_bytes=parent_archive.DEFAULT_DISK_BYTES,retained_parent=None):
     """Verify one explicit protected parent/input relationship; no mutation.
 
     Metadata and scattering references are replayed as declared in the request,
-    not independently reacquired. No fresh original Free-R audit or supported
+    not independently reacquired. An explicit retained parent avoids repeated
+    transport copies, but each call replays the scientific readers. Its schema-2
+    report records a closed read scope, not removal of the outer snapshot.
+    No fresh original Free-R audit or supported
     native-control delivery is asserted by this derivation-only result.
     """
     if reader_control_policy is not None:
@@ -128,16 +131,17 @@ def verify_child_inputs(prepared_directory,parent_directory,request,*,request_id
     prepared=child_process._root(prepared_directory)
     payload=child_process._inputs(prepared,request['files']);child_process._declared_plan(payload)
     try:
-        with parent_archive.materialized_parent_inputs(parent_directory,request['parent_manifest_sha256'],
-                max_disk_bytes=max_parent_disk_bytes) as (root,transport):
+        with parent_archive.read_parent_inputs(parent_directory,request['parent_manifest_sha256'],
+                max_disk_bytes=max_parent_disk_bytes,retained_parent=retained_parent) as (root,transport):
             result=_derive(root,payload,run_relative,endpoint_relative)
             child_process._inputs(prepared,request['files'])
-        if not transport['inputs_unchanged'] or not transport['snapshot_removed']:
+        closed=transport.get('read_scope_closed') if retained_parent is not None else transport['snapshot_removed']
+        if not transport['inputs_unchanged'] or not closed:
             raise RecipeError('Protected parent transport did not finish verified')
     except (CheckpointError,OSError,ValueError,KeyError,TypeError,OverflowError) as exc:
         if isinstance(exc,RecipeError):raise
         raise RecipeError('Cannot verify child input derivation: '+str(exc)) from exc
-    result.update(kind=KIND,schema_version=1,request_id=request_id,
+    result.update(kind=KIND,schema_version=2 if retained_parent is not None else 1,request_id=request_id,
         parent_manifest_sha256=request['parent_manifest_sha256'],parent_transport=transport,
         metadata_reacquired=False,scattering_reacquired=False,fresh_free_r_audit=False,
         typed_reader_controls_supported=False,scientific_acceptance='NOT_ASSESSED',

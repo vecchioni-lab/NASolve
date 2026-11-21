@@ -2121,6 +2121,16 @@ reacquires scientific metadata/Free-R nor authorizes execution or cleanup.
 Typed interpretation-control roles remain explicitly unsupported until their
 shared handoff is qualified. See [protected input derivation](metal-campaign-storage.md#protected-parent-to-prepared-input-derivation).
 
+Explicit retained parent reads hold the existing independently owned snapshot
+past the shared archive scope, allowing nested ordinary readers to work normally.
+Each serial read rehashes the pinned archive and full snapshot and repeats the
+scientific derivation. The context-local handle expires or invalidates after
+interruption/change; no generic cached PASS, new decoder or process owner is added.
+Retained derivations use schema 2 to distinguish read closure from outer snapshot
+removal; ordinary one-shot schema 1 and native sessions remain unchanged. See
+[retained parent reads](metal-campaign-storage.md#retained-parent-reads-without-another-expansion)
+for lifetime, measured cost and the separate execution/retirement gates.
+
 The separate `metal.child_process` route composes protected-parent transport and
 shared native process ownership for one explicit fresh invocation. Prepared bytes,
 worker and parent manifest are pinned; outcomes are durably recorded and fresh

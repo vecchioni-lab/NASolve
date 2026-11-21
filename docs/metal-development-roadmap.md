@@ -77,9 +77,15 @@ Sasaki/Free-R, execution and scientific/output audits. One installed Ag4 child
 exactly reproduces the historical high-B poor-fit control, with negative terms
 retained and no count acceptance. The explicit offline session reader now
 verifies those saved results after relocation without originals/native execution,
-preserving Q/B/Free-R and signed site contributions. Next: compact publication
-and shared quota/protection/retirement, with a retained common session before
-large fan-out to avoid repeated parent intake.
+preserving Q/B/Free-R and signed site contributions. Explicit read-only parent
+retention now shares one snapshot across repeated derivations, with full digest
+checks and fresh ordinary scientific replay on each use. Qualification is 95
+focused tests, 74 relocated installed tests and four exact saved Hg/Ag4 input
+reads. Each read still rehashes 11.05 MB for the measured 4.73 MB parent; there is
+no scientific-pass cache or native execution sharing. Next: qualify execution
+lifetime through the existing process owner, then compact publication and shared
+quota/protection/retirement before large fan-out. Read-only scope completion does
+not close the retained scientific-session gate.
 Typed reader-control support remains with Willow W186. No historical parent or
 process identity is promoted; A01's current FT geometry gate is unchanged.
 

@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Reuse one protected parent snapshot for explicit serial reads
+
+- Add a context-local retained-parent read API using existing archive/snapshot
+  owners; rehash archive and snapshot and replay ordinary scientific derivation
+  on every read, with no new copy or cached scientific verdict.
+- Reject stale/substituted/expired/foreign/overlapping reads; invalidate after
+  change or interrupted consumption. Remove only owned scratch on scope exit.
+- Add a distinct read receipt and explicit retained derivation schema 2;
+  existing one-shot schema 1, CLI/native sessions and scientific defaults stay
+  unchanged. Execution lifetime and retirement remain separate gates.
+- Qualify 95 focused tests, 74 relocated installed tests and four exact retained
+  Hg/Ag4 input reads. Measure expansion/copy versus rehash traffic without a new
+  native fit, full suite, data pruning or campaign-capacity claim.
+
 ### Inspect an audited frozen-child session without native execution
 
 - Add `inspect-audited-fdp-child` CLI/API with an independently pinned review.

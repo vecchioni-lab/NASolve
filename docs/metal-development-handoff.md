@@ -7,7 +7,69 @@ owns feature completion. The earlier chronological diary is preserved as
 [evidence through 18 November](history/metal-development-handoff-2026-11-18.md),
 not a second queue.
 
-## A04 current checkpoint: explicit offline session review
+## A04 current checkpoint: retained read-only parent
+
+Repeated parent/input checks can now share one protected temporary snapshot via
+`parent_archive.retained_parent_inputs` and explicit
+`verify_child_inputs(..., retained_parent=handle)`. The ordinary archive decoder,
+size limits and checkpoint/scientific readers are reused. Each read checks the
+independently pinned manifest, all archive parts and the complete snapshot on
+entry and exit; no scientific verdict is cached. Stale/substituted parents,
+expired handles, different contexts and overlapping reads refuse. A detected
+change or interrupted consumer invalidates the handle. Normal/exceptional scope
+exit removes only the owned snapshot and preserves original inputs/archive.
+
+**Prior work/gap:** the shared complete-attempt reader owns chemistry attempts,
+not a general metal parent lifetime. Keeping the shared outer expansion open
+blocks nested ordinary readers. The existing parent adapter already closes that
+scope before its independent read-only copy; this change retains that same copy
+across serial reads. It introduces no new decoder, coordinator or native worker.
+The normal audited native command still performs its existing independent intakes;
+execution lifetime and admission caching are deliberately outside this step.
+
+**Evidence:** 95 focused tests pass in 19.61 s; a relocated installation passes
+74 parent/derivation tests in 9.20 s with all 353 package files exact. Four cold
+real derivations (Hg and Ag4, twice each) reproduce the earlier exact parent/input
+results with original source/science/native access blocked. They use one
+4,730,256-byte expansion and one snapshot copy, then zero additional expansions
+or copies. Each read rehashes **11,049,802 bytes** at the transport boundary;
+all four reads plus scope setup/cleanup take 2.50 s in this small case. The shared
+registry is replayed four times. This is not a scientific cache or a native fit.
+
+The command is `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src
+/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest
+-q -p no:cacheprovider tests/test_metal_retained_parent.py
+ tests/test_metal_parent_archive.py tests/test_metal_child_inputs.py
+ tests/test_metal_child_session.py tests/test_metal_child_review.py`.
+Before implementation, 13 new controls fail on missing APIs (2.49 s). The first
+pass has 71 passes/two failures: interrupted-consumer state was incorrectly
+conflated with unchanged bytes. The final receipt distinguishes both, and an
+additional context/interruption control passes. No full suite or Phenix/Coot job
+runs. The last integrated full execution remains the root handoff's recorded
+runtime execution plus focused fixture amendment.
+
+**Files/schemas:** `metal/parent_archive.py`, `metal/child_inputs.py` and one new
+test module; documentation updates this handoff, roadmap, storage contract,
+architecture and changelog. Explicit retained reads return a new
+`metal-parent-input-read` v1 receipt and derivation schema 2; one-shot derivation
+schema 1 and all existing commands/native-session readers remain unchanged.
+The new receipt says the read closed, **not** that its outer snapshot was removed.
+No old artifact is migrated or reinterpreted. Generated science, wheels, fixtures
+and logs remain excluded from Git under the Alder artifact anchor
+`retained-parent-20261121-01/` (`validation.json`, `real-readback.json`, focused and
+installed logs). Original evidence stays exact; disposable staging is removed.
+
+**Next:** qualify execution lifetime separately through the existing process
+owner before any multi-trial fan-out. Keep fresh scientific gates and original
+Free-R checks; no inherited success flag. Compact publication, important-node
+protection, quota reservations and retirement remain open. At this exact parent
+size, an illustrative 100 parent groups × 100 reads still hashes 110.50 GB,
+although logical expansion/copy volume falls 100-fold. That arithmetic is byte
+traffic, not retained disk size or a 100-dataset capacity claim; the measured
+parent contains two historical datasets. Current FT geometry remains unresolved.
+**A01 partial; A02 gated; A04 partial.**
+
+## A04 supporting checkpoint: explicit offline session review
 
 `metal inspect-audited-fdp-child SESSION --review-id ID` now reads the normal
 audited session without original parent files, discovery or a native process.

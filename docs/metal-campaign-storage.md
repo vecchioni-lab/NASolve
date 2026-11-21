@@ -350,6 +350,75 @@ The focused command uses `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`, Python
 error was refused before any process spawned and is preserved separately.
 Generated bundles, models and reports remain local and excluded from Git.
 
+### Retained parent reads without another expansion
+
+The explicit Python `retained_parent_inputs(directory, manifest_sha256, ...)`
+context reuses the existing parent transport owner once. It yields an opaque,
+context-local handle after the shared archive scope has closed. Serial
+`read_parent_inputs(..., retained_parent=handle)` calls borrow the same read-only
+snapshot. `verify_child_inputs` accepts that handle and replays its ordinary
+checkpoint, endpoint, environmental-B/Q and exact input derivation on **every**
+call. No registry or scientific pass is cached. Existing one-shot calls retain
+their exact behavior and receipt shape; normal CLI/native execution is unchanged.
+
+The independently supplied digest is authoritative throughout. Every borrowed
+read compares directory and digest, checks its budget, then rehashes the current
+manifest, all parts and complete snapshot at entry and exit. Overlap, foreign
+contexts, expired handles, changed/substituted inputs and insufficient budgets
+refuse. Detected changes or consumer exceptions invalidate subsequent use even
+if bytes are restored. No basename discovery, retained-source hard links or
+source-mode changes are introduced. The same shared decoder and bounds apply.
+
+A borrowed read returns `metal-parent-input-read` schema 1, including
+`read_scope_closed`, `inputs_unchanged`, `consumer_completed`,
+`retained_snapshot=true` and `snapshot_removed=false`. The last value describes
+the read boundary: outer cleanup is still pending. A consumer exception can
+leave unchanged bytes while `consumer_completed=false`; it never becomes a
+successful scientific derivation. Explicit retained derivations use schema 2;
+old one-shot derivations remain schema 1. Existing native-session readers are not
+extended to consume these new records. There is no persisted lease registry,
+execution/reuse/retirement grant, default activation or migration.
+
+The outer existing transport scope rechecks the snapshot/archive and removes
+only its owned temporary copy on normal or exceptional exit. Original archives
+and scientific inputs remain. Same-user/privileged mutation is detectable, not
+prevented; the handle is not an OS isolation boundary. Abrupt process termination
+can leave scratch, so crash recovery/aggregate reservations and execution across
+this lifetime remain separate work. This read-only adapter is a stopping boundary,
+not permission to keep a native child alive after its owner exits.
+
+**Qualification and measured cost.** The 95-test focused source profile and
+74-test relocated installed profile cover stale/substituted bytes, expired or
+foreign handles, overlapping reads, budget refusal, interruption and exact
+original preservation. All 353 installed package files match after the copied
+build and old install paths are removed. Original source/science/Phenix access is
+blocked during four real retained Hg/Ag4 input derivations. The ordinary registry
+runs four times; exact historical Q/B and input identities are preserved without
+new native calls. Both old controls remain scientifically unaccepted.
+
+The shared two-dataset parent contains 4,730,256 logical bytes, 782,402 compressed
+bytes and a 12,243-byte manifest. It expands once and is copied once. Each of
+four reads adds zero expansion/copy but hashes
+`2 × (4,730,256 + 782,402 + 12,243) = 11,049,802` bytes at its transport boundaries.
+Measured reads take 0.47–0.63 s each; complete scope time is 2.50 s. These counts
+exclude additional archive-decoder hashing, scientific-reader work, OS caching
+and physical I/O. They are byte traffic, not retained storage or a speed guarantee.
+
+For an explicitly hypothetical 100 parent groups of this size and 100 reads per
+group, one retained expansion is 0.473 GB versus 47.303 GB for independent
+one-shot expansion; the same figures apply separately to snapshot copying.
+Read-boundary hashes still total 110.498 GB, plus setup/cleanup and scientific
+checks. This is arithmetic from two historical datasets, **not** a measured
+100-dataset campaign or evidence that large fan-out is ready. Larger modern
+checked roots and native scheduling remain unqualified here.
+
+Exact commands, hashes and cold measurements are under the local Alder artifact
+anchor `retained-parent-20261121-01/`. The [current handoff](metal-development-handoff.md#a04-current-checkpoint-retained-read-only-parent)
+records failed-before evidence, validation commands and exclusions. No new
+Phenix/Coot refinement or full suite ran; retained scientific evidence was not
+pruned. The next execution adapter must preserve the same explicit lifetime,
+fresh gates and shared process ownership without promoting this read proof.
+
 ## Bounded protected-parent and regeneration rehearsal
 
 A 19 November rehearsal extends the earlier input-only archive to the existing
