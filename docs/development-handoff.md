@@ -347,15 +347,29 @@ The registered ATL child had 38 backbone and 53 intentional distances at
 both stages. Its dictionary stayed at REVIEW. One separate DY experiment
 completed native preflight and five cycles with Phenix 2.2.1-6174. All 2,273
 intensities with uncertainties and 3,236 Free-R assignments matched by HKL.
-The following phosphate-audit issue emerged during readback. D:1 has a printed
-O5′–P–OP3 angle immediately before the first dihedral. The terminal reader
-reported only ten of eleven terms. Check the read boundary against this actual
-GEO before attributing the warning to the model. The compact evidence is under
+The compact evidence is under
 `dy_two_atom_pair_exclusions_2026_11_21` in the native register.
 With the existing Gemmi 0.7.5 topology extra on the Python path,
 `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:$GEMMI_PATH python -B -m pytest -q -p no:cacheprovider tests/test_refinement_link_geometry.py tests/test_cif_doctor_run.py tests/test_cif_doctor_cli.py tests/test_refinement_parallelity.py tests/test_refinement_declared_sites.py`
 passed 138 tests and 7 subtests. The first three modules passed 42 tests and
 7 subtests from the relocated wheel. All 321 packaged files matched source.
+
+**D:1 terminal phosphate, C504.** Phenix printed the O5′–P–OP3 angle as the
+last angle before the first dihedral. AutoRefine had counted the dihedral's
+atoms in that row and reported ten of eleven expected restraints. The reader
+now checks four P–O bonds, six O–P–O angles and the P–O5′–C5′ angle by atom
+identity. A repeated angle with reversed endpoints cannot replace a missing
+one. A bond to a different crystal image cannot satisfy a local bond.
+The starting DY phosphate genuinely warrants review at 7.69σ. All eleven
+terms are present after refinement. The largest deviations were 1.84σ in
+the original control, 2.12σ with the two excluded interbase bonds, and 1.75σ
+in the registered mixed scaffold. These are fresh reads of the saved Phenix
+2.2.1-6174 tables. The separate B:1 symmetry-linked phosphate has a different
+declared end state. Historical checkpoints retain their original reports.
+With `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_autorefine.py tests/test_refine_doctor.py tests/test_phosphate.py tests/test_refinement_inputs.py`,
+87 tests and 48 subtests passed. The first two modules passed 48 tests and
+38 subtests on the relocated wheel. All 321 packaged source and data files
+matched. Only synthetic fixtures, code and the compact findings are tracked.
 
 **Q07, 20 November.** Ordinary Coot and ReadySet now prepare 1AP:T and S6G:C
 on the same substituted host. The plane screen follows the verified source chemistry.

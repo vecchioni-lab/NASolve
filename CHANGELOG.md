@@ -8,6 +8,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Reading terminal-phosphate restraints from Phenix
+
+- AutoRefine reads each printed bond or angle through its own value row,
+  including the last angle before a dihedral table. It verifies the identity
+  of all eleven expected local restraints and names any missing or repeated
+  term. The six protective angles must cover six distinct oxygen pairs.
+
 ### Checking bonds between residues before and after refinement
 
 - `nasolve cif-doctor assess --run RUN --checkpoint ID --refined-links`

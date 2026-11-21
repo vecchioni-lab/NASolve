@@ -38,6 +38,10 @@ A:PDU comparison. The ordinary and added-plane tip heights were 0.466
 and 0.304 Å. Rfree was 0.2501 and 0.2500. The adaptive run favored the
 ordinary arm by this measurement. Keep the soft plane experimental. The distinct PDU:PDU
 symmetry-linked phosphate case still requires a verified incoming link.
+For the explicitly phosphorylated D:1 on the host control, C504 accounts for
+all eleven local Phenix restraints, including the last angle before the next
+table. The DY starting geometry warrants review and its two refined controls
+pass the existing phosphate criterion.
 
 Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
 after correcting the orientation of DP and IMC from their source graphs.

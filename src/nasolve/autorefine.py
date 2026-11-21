@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+from collections import Counter
 from contextlib import nullcontext
+from itertools import combinations
 import json
 import math
 import os
@@ -108,6 +110,11 @@ FREE_R_LABELS = ("FreeR_flag", "R-free-flags", "FREE", "FreeR")
 DATA_MANAGER_FILE_SCOPED = "data-manager-file-scoped"
 LEGACY_EXPLICIT = "legacy-explicit"
 _TERMINAL_GEOMETRY_REVIEW_SIGMA = 5.0
+_PHOSPHATE_OXYGENS = ("O5'", "OP1", "OP2", "OP3")
+_TERMINAL_P_ANGLES = {(left, "P", right) for left, right in combinations(_PHOSPHATE_OXYGENS, 2)}
+_TERMINAL_GEOMETRY_TERMS = (
+    _TERMINAL_P_ANGLES | {(oxygen, "P") for oxygen in _PHOSPHATE_OXYGENS} | {("C5'", "O5'", "P")}
+)
 _GEO_ATOM = re.compile(r'pdb="\s*([^"]+?)\s*"')
 _PHENIX_VERSION = re.compile(
     r"(?:Phenix\s+)?(\d+)\.(\d+)(?:\.(\d+))?"
@@ -812,7 +819,7 @@ def audit_terminal_phosphate_geometry(
                 {
                     "site": site,
                     "restraint_count": 0,
-                    "expected_restraint_count": 11,
+                    "expected_restraint_count": len(_TERMINAL_GEOMETRY_TERMS),
                     "max_sigma_deviation": None,
                     "severe_restraints": [],
                     "restraints": [],
@@ -822,93 +829,50 @@ def audit_terminal_phosphate_geometry(
         }
 
     lines = geometry_file.read_text(encoding="utf-8", errors="replace").splitlines()
-    starts = [
-        index
-        for index, line in enumerate(lines)
-        if line.startswith(("bond ", "angle "))
-    ]
-
     aliases = {"O1P": "OP1", "O2P": "OP2", "O3P": "OP3"}
-    terminal_oxygens = {"O5'", "OP1", "OP2", "OP3"}
-    rows_by_site: dict[str, list[dict[str, object]]] = {
-        site: [] for site in requested
-    }
-
-    for number, start in enumerate(starts):
-        end = starts[number + 1] if number + 1 < len(starts) else len(lines)
-        block = lines[start:end]
-        text = "\n".join(block)
-        kind = block[0].split(None, 1)[0]
-
-        atoms: list[tuple[str, str, str]] = []
-        for match in _GEO_ATOM.finditer(text):
-            fields = match.group(1).split()
-            if len(fields) < 4:
-                continue
-            name = aliases.get(fields[0], fields[0])
-            atoms.append((name, fields[-2], fields[-1]))
-
-        if kind == "bond" and len(atoms) != 2:
+    rows_by_site: dict[str, list[dict[str, object]]] = {site: [] for site in requested}
+    for start, line in enumerate(lines):
+        if not line.startswith(("bond ", "angle ")):
             continue
-        if kind == "angle" and len(atoms) != 3:
+        kind = line.split(None, 1)[0]
+        atom_count = 2 if kind == "bond" else 3
+        value_line = start + atom_count + 1
+        if value_line >= len(lines):
             continue
-
-        atom_names = tuple(atom[0] for atom in atoms)
-
-        if kind == "bond":
-            wanted = (
-                "P" in atom_names
-                and len(set(atom_names) & terminal_oxygens) == 1
-            )
-        else:
-            wanted = (
-                (
-                    atom_names[1] == "P"
-                    and atom_names[0] in terminal_oxygens
-                    and atom_names[2] in terminal_oxygens
-                    and atom_names[0] != atom_names[2]
-                )
-                or (
-                    atom_names[1] == "O5'"
-                    and {atom_names[0], atom_names[2]} == {"P", "C5'"}
-                )
-            )
-        if not wanted:
+        # Each Phenix row has one label per atom followed by its own header
+        # and numbers. The next section may begin with a dihedral or a plane.
+        labels = [_GEO_ATOM.search(label) for label in lines[start:start + atom_count]]
+        if not all(labels):
+            continue
+        fields = [label[1].split() for label in labels]
+        if any(len(atom) < 4 for atom in fields):
+            continue
+        site = ":".join(fields[0][-2:])
+        if site not in rows_by_site or any(atom[-2:] != fields[0][-2:] for atom in fields[1:]):
+            continue
+        names = tuple(aliases.get(atom[0], atom[0]) for atom in fields)
+        if min(names, names[::-1]) not in _TERMINAL_GEOMETRY_TERMS:
             continue
 
-        values = None
-        for index, line in enumerate(block[:-1]):
-            if all(label in line for label in ("ideal", "model", "delta", "sigma")):
-                fields = block[index + 1].split()
-                if len(fields) >= 4:
-                    try:
-                        values = tuple(float(value) for value in fields[:4])
-                    except ValueError:
-                        values = None
-                break
-        if values is None:
+        columns = lines[value_line - 1].split()
+        values = lines[value_line].split()
+        if len(columns) != len(values) or len(set(columns)) != len(columns):
             continue
-
-        ideal, model, delta, sigma = values
-        sigma_deviation = (
-            abs(delta) / sigma
-            if sigma > 0 and math.isfinite(sigma)
-            else math.inf
-        )
-
-        for site in requested:
-            chain, resid = site.split(":", 1)
-            if all(atom[1] == chain and atom[2] == resid for atom in atoms):
-                rows_by_site[site].append({
-                    "kind": kind,
-                    "atoms": list(atom_names),
-                    "ideal": ideal,
-                    "model": model,
-                    "delta": delta,
-                    "sigma": sigma,
-                    "sigma_deviation": sigma_deviation,
-                    "severe": sigma_deviation >= sigma_threshold,
-                })
+        printed = dict(zip(columns, values))
+        if printed.get("sym.op.", "x,y,z") != "x,y,z":
+            continue
+        try:
+            ideal, model, delta, sigma = (float(printed[key]) for key in ("ideal", "model", "delta", "sigma"))
+        except (KeyError, ValueError):
+            continue
+        if sigma <= 0 or not all(math.isfinite(v) for v in (ideal, model, delta, sigma)):
+            continue
+        sigma_deviation = abs(delta) / sigma
+        rows_by_site[site].append({
+            "kind": kind, "atoms": list(names), "ideal": ideal, "model": model,
+            "delta": delta, "sigma": sigma, "sigma_deviation": sigma_deviation,
+            "severe": sigma_deviation >= sigma_threshold,
+        })
 
     site_reports: list[dict[str, object]] = []
     requires_review = False
@@ -916,7 +880,10 @@ def audit_terminal_phosphate_geometry(
     for site in requested:
         restraints = rows_by_site[site]
         severe = [row for row in restraints if row["severe"] is True]
-        complete = len(restraints) == 11
+        identities = Counter(min(tuple(row["atoms"]), tuple(reversed(row["atoms"]))) for row in restraints)
+        missing = sorted(_TERMINAL_GEOMETRY_TERMS - identities.keys())
+        duplicated = sorted(names for names, count in identities.items() if count > 1)
+        complete = not missing and not duplicated
         maximum = max(
             (float(row["sigma_deviation"]) for row in restraints),
             default=None,
@@ -926,10 +893,12 @@ def audit_terminal_phosphate_geometry(
         site_reports.append({
             "site": site,
             "restraint_count": len(restraints),
-            "expected_restraint_count": 11,
+            "expected_restraint_count": len(_TERMINAL_GEOMETRY_TERMS),
             "max_sigma_deviation": maximum,
             "severe_restraints": severe,
             "restraints": restraints,
+            **({"missing_restraints": [list(names) for names in missing]} if missing else {}),
+            **({"duplicate_restraints": [list(names) for names in duplicated]} if duplicated else {}),
             "requires_review": site_review,
         })
 
@@ -1040,8 +1009,8 @@ def write_terminal_phosphate_protection(
 
             angles.append((atom_tuple, float(ideal)))
 
-        unique = {atoms for atoms, unused in angles}
-        if len(angles) != 6 or len(unique) != 6:
+        unique = {min(atoms, atoms[::-1]) for atoms, unused in angles}
+        if len(angles) != len(_TERMINAL_P_ANGLES) or unique != _TERMINAL_P_ANGLES:
             raise AutoRefineError(
                 f"Terminal phosphate {site}: expected six native P-centered "
                 f"angles, found {len(angles)}"
@@ -2345,8 +2314,8 @@ def execute_autorefine(
     elif terminal_geometry_audit["requires_review"] is True:
         status = "AUTOREFINE_REVIEW"
         message = (
-            "Refinement completed, but declared terminal-phosphate geometry exceeds "
-            "the Phenix geometry-restraint review threshold"
+            "Refinement completed. Inspect the declared terminal-phosphate geometry "
+            "for missing, repeated or outlying Phenix restraints."
         )
         checkpoint_status = "REVIEW"
         usable = True
