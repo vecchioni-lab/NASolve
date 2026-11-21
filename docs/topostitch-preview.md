@@ -2308,3 +2308,58 @@ native execution request. The executing owner must bind it to the actual live
 model and independently preserve topology, crystal/scattering/ADPs, fixed context
 and input lifetime. No coordinates are applied and no files are emitted.
 [Qualification](topostitch-periodic.md#w198--keep-native-atom-order-and-movement-scope-together).
+
+
+## Prepare parent geometry once (W200)
+
+`nasolve.topostitch_native_preparation.NativeEndpointPreparation` is an opt-in
+in-memory stage owner. It consumes the existing admitted W198 mapping of the
+actual initial **candidate**, then reobserves it before any interpretation:
+
+```python
+context = NativeEndpointPreparation(
+    source_bytes, candidate_bytes, full_precision_points,
+    initial_mapping=admitted_candidate_mapping,
+    max_displacement_angstrom=bound,
+    native_owner=trusted_cedar_atom_owner,
+    builder=qualified_native_builder,
+)
+with context:
+    context.prepare()
+prepared_candidate_mapping = context.result()
+```
+
+The builder is explicit executable infrastructure qualified by the caller, never
+code selected from a saved receipt. It exposes a stable `model` and five methods:
+
+| Method | Required owner responsibility |
+| --- | --- |
+| `observe_atoms(model)` | Exact current atom observation from Cedar's maintained collector |
+| `interpret_parent(model, parent_bytes)` | Exactly one qualified interpretation using those bound bytes; retain candidate diffraction |
+| `verify_parent(model, mapping)` | Prove independently declared source topology/chemistry and protected crystal/scattering/ADP state before transfer |
+| `set_candidate_sites(model, points)` | Apply candidate PDB-decimal coordinates to the same manager, once |
+| `verify_candidate(model, parent_mapping, candidate_mapping)` | Prove complete retained native chemistry/protected state and unchanged candidate diffraction through transfer |
+
+Except `observe_atoms`, methods return `None` or raise; a false verdict cannot
+silently count as success. This protocol does not itself establish chemistry:
+retain and independently check the builder's actual native evidence. The context
+reuses the unchanged W198 strict byte/role/mask/order checks before/after verifiers.
+Reordered interpretation receives a fresh mapping. Full-precision initializer
+coordinates remain admitted evidence; the transfer uses exact candidate PDB
+coordinates, matching the frozen refinement input.
+
+One context permits one interpretation request and one transfer. Missing,
+repeated/reentrant calls, swallowed failures, changed managers, stale observations
+and verifier-induced coordinate drift invalidate it. `result()` is unavailable
+until successful context exit and remains unavailable on failure. `statistics()`
+returns detached control-flow data, not a native execution or chemistry receipt.
+An outer exception also invalidates a prepared result. No rollback or reuse is
+supported: discard the failed manager/context with its owned worker.
+
+This module installs no native patches, opens no files and launches no process.
+The outer worker owns binding cleanup, source qualification, serial native use,
+retained-input lifetime and failed-manager disposal. Native/counted execution
+policies and ordinary checkpoint admission remain separate integration work.
+The real qualification used one unchanged native dry-run path and one injected
+failure; broader chemistry and actual ordinary integration are not implied.
+[Evidence](topostitch-periodic.md#w200--maintain-one-shot-native-parent-preparation).

@@ -11745,3 +11745,96 @@ Only current guides/changelog/roadmap change in Git. Local workers/receipts and
 science remain uncommitted. Eight focused roadmap tests and `--write`/`--check`
 pass; no full suite or install repeat for a diagnostic/docs-only update. W198's
 installed checks are not relabelled as new W199 tests. S04/S05/S06 remain PARTIAL.
+
+
+## W200 — Maintain one-shot native parent preparation
+
+**Before/after.** W199's private builder controlled coordinate roles itself.
+The new installed `NativeEndpointPreparation` owns the single candidate→parent
+interpretation→candidate transition, reusing W198 mappings and an explicitly
+qualified builder. It checks the initial candidate again, requires parent
+verification before transfer and candidate verification at context close, and
+refuses replaced managers, stale native observations and false verifier returns.
+Repeated/reentrant operations, swallowed errors and outer exceptions poison the
+context. Only successful closure exposes a result; failed managers are discarded.
+
+The builder retains the actual single native interpretation and complete Cedar
+chemistry/topology/diffraction proof. The context is not a new native collector,
+force owner, file reader, process controller or execution format. Outer worker
+owns binding cleanup, input lifetime and process disposal. Source qualification
+of executable adapters remains mandatory; no artifact imports arbitrary code.
+[API and responsibilities](topostitch-preview.md#prepare-parent-geometry-once-w200).
+
+**Focused regression and installation.** The first real-order test fails before
+the module exists. **160 source + 160 fresh relocated installed tests** pass:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src \
+  /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider \
+  tests/test_topostitch_endpoint.py tests/test_topostitch_preparation.py \
+  tests/test_topostitch_native_window.py tests/test_topostitch_checkpoint.py \
+  tests/test_topostitch_execution.py
+```
+
+Tests cover changed native order, all failure stages, no transfer after failed
+parent verification, wrong model, stale coordinates, false verdicts, missing/
+repeated/reentrant calls, swallowed errors, post-verifier drift and closure.
+Current source equals installed modules and parses under Python 3.10 syntax.
+The fresh build source and original installation path were removed before the
+relocated package tests. No dependency, CLI or disk schema changes. Wheel SHA256:
+`cec58413983f38bdaaa90ce0c9bce614b30526368d67df2277d83785e060c5c2`.
+
+**Actual installed native experiment:** one completed Phenix **2.2.1-6174 dry-run**
+(9.13 s) and one deliberately failed preparation (4.57 s); **zero refinements**.
+The existing frozen native execution policy, source snapshots and Cedar reviewers
+are unchanged. The maintained context receives exact bound parent bytes via its
+builder. Initial candidate/parser order and interpreted parent/prepared order
+remain separate. All three mapping digests exactly match W198/W199, and complete
+W197 diffraction snapshots, prepared geometry/model, fixed inputs and native
+selection reproduce. **81 independent cold checks** pass. No code changes or
+additional iterations were needed after this real run.
+
+The deliberate error occurs in parent verification before transfer. Context
+reports one interpretation request, zero transfers and FAILED; successful closure
+reports one of each and COMPLETE. Original RuntimeError survives. Six outer
+Python bindings and native runtime bindings restore, both child processes stop,
+and input bytes remain unchanged. This qualifies disposal/cleanup, not model
+rollback, same-process retry, arbitrary native versions or broader chemistry.
+
+Exact local evidence under NASolve anchor `branch-artifacts/willow/w200-native-context/`:
+`installed-check.json`, `review.json`, `native/experiment/plan.json`, plus each
+child's `execution.json` and `preparation-preflight.json.gz`. Roadmap pins those
+receipts. Frozen context module hash binds the actual installed implementation
+before its Git commit; the matching committed code is the W200 ledger pin.
+Local completed commands from NASolve:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B /private/tmp/w200-install.py
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w200-live-preparation.py plan
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w200-live-preparation.py run
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w200-review.py
+```
+
+The temporary installer path is historical execution provenance. Scientific
+inputs/results are not located by basename; the native controller uses declared
+checksummed W197 source paths. Completed destinations refuse overwrite/restart.
+
+**Full-suite attempt, explicitly not a pass.** A repository-wide invocation used
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` and the same Python/pytest flags with no
+file selection. It was interrupted after the task-specific branch-only scope
+was clarified: 446 passed, 15 skipped, 133 subtests and five process-lifecycle
+tests failed because the sandbox denied `/bin/ps`; elapsed 73.39 s, exit 2.
+`full-suite.log` is retained. A scoped process listing afterward found no remaining
+matching pytest/test workers. No unrelated process patch/retry or full-suite
+success is claimed. Eight roadmap tests and `--write`/`--check` cover the docs.
+
+**Handoff:** new module plus existing endpoint tests/changelog and current guides;
+no native/counted policy edits or schema migration. Ordinary runtime integration
+is next and requires separately agreed versioned execution/input ownership with
+Cedar. Hazel's qualified Alder `17d52b730a74682ab0f9d5548405681b24d3313e` now offers
+ordinary retained-parent closure/settlement, but no combined Willow adoption is
+claimed. Input retention, inner reader completion, outer cleanup and physical
+reclaim remain distinct. S04/S05/S06 stay PARTIAL. No new physical result or
+picture is implied; reuse W197's small recovery checkout. Scientific payload stays
+local. The current handoff was consolidated; older exact evidence remains in the
+ledgers and Git rather than another diary file.

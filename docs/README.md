@@ -7,16 +7,11 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-W199 exercises that handoff in [live native preparation](topostitch-periodic.md#w199--use-the-installed-handoff-during-live-preparation):
-one completed dry-run and one injected failure preserve exact roles/order and
-restore bindings; 71 cold checks pass. W200 is the maintained one-shot preparation
-context, with ordinary execution-policy integration still separate.
-
-W198 qualifies the [native atom-order handoff](topostitch-preview.md#map-an-admitted-endpoint-to-native-atom-order-w198):
-exact parent/candidate identity, coordinates and movement masks remain coupled
-through Phenix's terminal-atom reorder. 141 source + 141 installed tests and nine
-saved native stages pass. W199 tests the existing live preparation boundary;
-no new refinement or ordinary runtime integration is claimed here.
+W200 adds the [maintained one-shot preparation context](topostitch-preview.md#prepare-parent-geometry-once-w200):
+160 source/160 installed tests and an actual success/failure pair preserve the
+exact atom-order handoff and prior prepared state. W201 is separate Cedar
+execution-policy integration; no additional refinement or user-facing activation.
+W198/W199's cold/live qualification and limitations remain in the handoff/ledger.
 
 W197 adds a [matched signed fixed-frame recovery control](topostitch-periodic.md#w197--recover-a-signed-interior-window-with-fixed-end-frames):
 interior displacement and boundary bonds recover while a local phosphate-angle

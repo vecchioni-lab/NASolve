@@ -1039,6 +1039,15 @@ indices. It neither applies coordinates nor replaces the native chemistry,
 crystal/ADP, process or retained-input lifetime owners. A recorded permutation
 cannot authorize use against a different live model. No execution schema changes.
 
+W200's opt-in `topostitch_native_preparation.NativeEndpointPreparation` owns
+one candidate→parent→candidate stage sequence over that mapping. The caller
+supplies a trusted, source-qualified builder with a stable live manager and
+mandatory before-transfer/closure verification. Native interpretation, topology,
+crystal/ADPs and diffraction proof stay with the builder's existing Cedar owners;
+process/input lifetime and binding cleanup stay outside this context. Results
+exist only after successful closure; any failure poisons the context and requires
+discarding the manager. No native/counted execution policy is changed.
+
 W190 optionally binds the existing ordinary model-context derivation to the exact
 canonical PostMR source and frozen plan. Derived source connectivity is separate
 from checked preparation and experimental topology; the opt-in result enters the

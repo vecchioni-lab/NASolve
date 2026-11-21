@@ -1717,9 +1717,9 @@ The admitted W198 mapping handles initial parser order and prepared native order
 separately; its candidate coordinates restore the same live manager before
 preparation continues. Do not enlarge the link cutoff or re-infer stretched bonds.
 
-The next maintained context is opt-in and one-shot. Explicit inputs are the
+W200 now provides the opt-in one-shot `NativeEndpointPreparation` context. Explicit inputs are the
 bound parent/candidate/motion plus a trusted, source-qualified native builder.
-The context must require complete candidate→parent→candidate identity checks and
+The context requires complete candidate→parent→candidate identity checks and
 fixed/moving scope, exactly one interpretation/transfer and success-only closure.
 The native builder retains chemistry/topology and diffraction evidence; the outer
 worker owns retained input lifetime, process and disposal of failed managers.
