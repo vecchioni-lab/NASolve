@@ -17,6 +17,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W191 — Measure declared paired phosphate spans
+
+- Add a shared offline API and `python -m nasolve.helical_geometry` CLI for
+  byte-pinned single-model PDBs and explicit identity-image paired regions.
+  Preserve exact sites/components/conformers, logical order, flanks and breaks;
+  report missing/ambiguous phosphates independently without filling gaps.
+- Distinguish P–P distance and optional half-span from unmeasured axis radii and
+  twist. No pair inference, chemistry change, movement or workflow activation.
+- New schema-1 measurement report; existing APIs/reports need no migration.
+  67 focused source and 67 fresh relocated installed checks pass; one public
+  modified-site control reproduces the prior pilot. No new dependencies.
+
 ### W190 — Bind derived ordinary source connectivity
 
 - Add an explicit trusted ordinary-model-context owner to both preparation

@@ -1034,6 +1034,12 @@ canonical PostMR source and frozen plan. Derived source connectivity is separate
 from checked preparation and experimental topology; the opt-in result enters the
 parent context digest. Defaults and missing pair/stack authority remain unchanged.
 
+The shared `helical_geometry` reader (W191) measures exact assigned paired P atoms
+without a chemistry or motion dependency. Source/region hashes, logical identities,
+missing-site reasons and declared breaks are preserved. Its identity-image PDB
+scope supplies P–P spans only; half-span, local-axis radii and twist have distinct
+meaning and qualification. See the [shared plan](helical-geometry-plan.json).
+
 The pairing owner supplies exact forward/reciprocal edge incidence to selected
 atom-image audits. These bind one-partner capacity only within their recorded
 coordinate scope; nontrivial lattice translations, ambiguity and unresolved

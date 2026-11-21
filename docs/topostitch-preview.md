@@ -2016,3 +2016,59 @@ status stays `NO_CHECKED_PREPARATION`. Coordinates and frozen policy supply the
 derivation, not independent experimental truth or original pair/stack assignment.
 No modified-source, descendant or motion scope is added; existing calls and
 schema versions are unchanged. [Validation](topostitch-periodic.md#w190--bind-derived-ordinary-source-connectivity).
+
+### Measure declared paired phosphates (W191)
+
+The shared `nasolve.helical_geometry` module measures an explicitly assigned
+region independently of refinement, Cedar chemistry or Alder cluster placement.
+`HelicalSite` holds exact chain, residue number, component, insertion code,
+`altloc` and `operator_xyz`. `DeclaredPair` preserves a logical `pair_id`, strand
+I and II, `role` (`core` or `flank`) and a boolean `break_before`. `PairedRegion`
+keeps caller order; numbering is never used to invent adjacency or pairing.
+Logical IDs can be carried to later states, but correspondence is not inferred.
+
+```python
+from nasolve.helical_geometry import (
+    HelicalSite, DeclaredPair, PairedRegion, inspect_phosphate_spans,
+)
+region = PairedRegion("inner-edge", (
+    DeclaredPair("local", HelicalSite("A", 12, "DC"),
+                 HelicalSite("B", 4, "IMC")),
+))
+report = inspect_phosphate_spans(
+    model_path, region, expected_model_sha256=model_sha256,
+    include_half_span=True,
+)
+```
+
+An installed environment also provides:
+
+```bash
+python -m nasolve.helical_geometry --model model.pdb \
+  --region region.json --sha256 EXPECTED_MODEL_SHA256 --half-span > spans.json
+```
+
+`region.json` is the JSON form of the dataclasses (for example
+`json.dumps(dataclasses.asdict(region))`). The CLI writes JSON only to stdout;
+redirection selects the output path. It does not find datasets or alter a model.
+Every result includes model bytes/hash/size, method version, region/hash, exact
+P atom mapping/coordinates/occupancy and measured/missing pair coverage. Its source
+reference uses anchor `model_directory` and the explicit model filename. Relocate
+by supplying the new exact model path; the reader never searches by basename.
+
+Only **one PDB model**, `model_index=0` (ordinal, not MODEL serial), and explicitly
+identity images `x,y,z` are supported. Nonidentity images and multi-model inputs
+are refused; mmCIF and registered recut correspondence are future adapters. Exact
+modified component labels remain intact without requiring a base-ring projection.
+A chosen alternate uses its named P or a shared blank P; an ambiguous/absent
+conformer, duplicate site/atom, component mismatch, absent phosphate or unusable
+occupancy remains unavailable with a reason. Missing measurements are never zero
+or an invitation to join across a break. Labels supply nominal atom identity;
+this report does not chemically validate the selected component or pairing.
+
+The measured **P–P span** is the straight Cartesian distance between the paired
+phosphates. Optional `half_span_angstrom` divides this number by two. It is **not**
+either strand's distance to a local screw axis. Axis radii and simple step twist
+are explicitly `NOT_MEASURED`. Geometry quality, density and topology acceptance
+are outside this read-only method. The [shared plan](helical-geometry-plan.json)
+keeps those gates and the unresolved 7SDG twist discrepancy visible.

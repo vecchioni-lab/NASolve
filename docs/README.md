@@ -7,9 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-W190 adds explicitly derived ordinary source connectivity, retaining the original
-checked-chemistry boundary. Next is the shared Q15 paired-region phosphate report;
-see the handoff for ownership and the audited roadmap for remaining motion gates.
+W191 adds the [shared paired-phosphate reader](topostitch-preview.md#measure-declared-paired-phosphates-w191),
+with [machine-readable helix milestones](helical-geometry-plan.json). W190's
+derived source connectivity remains distinct from checked chemistry. See the
+handoff for the next bounded work and roadmap for remaining motion gates.
 
 - **Willow queue:** [Development handoff](development-handoff.md). W128–W138
   qualify explicit bounded ordinary counted-pair execution, compatible registered

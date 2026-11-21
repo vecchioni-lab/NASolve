@@ -1,0 +1,147 @@
+{
+  "id": "regional-helical-geometry",
+  "status": "PARTIAL_PAIRED_PHOSPHATE_REPORT",
+  "required_before": "NASolve completion",
+  "delivery": "Q15 reporting with a Q16 integration check",
+  "scope": "One offline, read-only analysis shared by Cedar, Willow and Alder. Support an explicit model or checkpoint and comparisons between named model states. An optional post-processing hook can call the same calculation.",
+  "milestones": [
+    {
+      "id": "H1",
+      "status": "partial",
+      "name": "Identify the same pairs in each model",
+      "acceptance": [
+        "Read a declared region in strand order, including flanking pairs, with both strand identities, model, residue number, insertion code, alternate conformer and crystal image. Reuse construct registration or require explicit assignments. Preserve breaks and missing pairs.",
+        "Bind each result to model bytes, the ordered region, atom mapping and method version. Preserve modified component identity. Declare how its ring maps to a reference and record coordinate fit quality. A projection onto a reference never changes the model or its chemistry.",
+        "Use matched logical sites across bending, renumbering or re-slicing. Record an unresolved correspondence when a mate, anchor or orientation cannot be established."
+      ]
+    },
+    {
+      "id": "H2",
+      "status": "partial",
+      "name": "Qualify simple step twist and the two width measurements",
+      "acceptance": [
+        "Measure signed simple base-pair-step twist (degrees) from consecutive oriented C1\u2032\u2013C1\u2032 directions with the two base-pair normals brought into a common frame. Keep strand order, handedness, normal convention and ring-atom choice explicit.",
+        "For each declared pair report the distance between its two P atoms in \u00c5 (the mmDNA diameter). If useful also report half that distance as a derived half-span.",
+        "For each antiparallel step use conventional base-pair frames to obtain its local screw axis. Record the position, unit direction and exact phosphate on each strand. The radii are the two perpendicular point-to-axis distances in \u00c5. For an ordinary uninterrupted step i\u2192i+1 the crossing phosphate belongs to i+1 on strand I and i on strand II. Resolve both physical anchors explicitly at junctions.",
+        "Report absent phosphates, poorly determined axes, unavailable sugar anchors and ambiguous mappings per quantity, including the reason. One missing radius does not invalidate an independently measured twist or opposite-strand radius. Leave genuinely phosphate-free backbones unmeasured for that quantity.",
+        "Compare against public tables for canonical and modified sites, both signs and bent, off-center and degenerate controls. Verify invariance under a rigid movement of the whole model. Resolve or bound the 7SDG twist discrepancy with the exact pair list, images, input coordinates, mapping and Web 3DNA output before claiming equivalence for it."
+      ]
+    },
+    {
+      "id": "H3",
+      "status": "open",
+      "name": "Report regions and changes across checkpoints",
+      "acceptance": [
+        "Retain every step with its weight. Modified-site twist is the mean of the two flanking steps. For the published seven-pair edge average six full steps. For the junction-inclusive example add the two bordering half-steps and divide by seven effective steps. Use the actual declared weights for other regions.",
+        "Compute bp/turn as 360 divided by the signed weighted mean twist. Preserve missing-step coverage, ambiguous wrap or near-zero mean. Do not bridge a gap, substitute zero for an absent step, or quote an unbounded repeat.",
+        "Produce one reusable offline table (CSV or TSV) and a machine-readable report for a model or matched checkpoints. Record experiment, checkpoint/model hash, region, pair or step, residues, strand/image/anchor, method, units, weights, missing reason and coverage. Keep raw values and signed changes, including wrap-safe angle differences.",
+        "Acceptance requires a published modified-site control and a genuine parent/bent-checkpoint comparison with reproducible inputs. Verify that moving the whole model leaves observables unchanged, a controlled single-pair perturbation changes only measurements that depend on its atoms, and exported rows can regenerate the summaries without access to a run directory or a web service."
+      ]
+    }
+  ],
+  "integration": {
+    "cedar": "Qualify modified rings and atom roles. Keep local base/sugar integrity and helical measurements available independently.",
+    "willow": "Use matched registered regions before and after bending or opening. W167 documents the future cluster-accommodation use on willow at da8794d779a04e9601a480f3eb8de3aee91bd0ae.",
+    "alder": "Compare cavity/helix geometry before and after a cluster trial alongside independent donor spans and density. The A03/A07 design is recorded on Alder at 928aa8e69835789ac48f4567b65560f710469c32.",
+    "completion": "Exercise the same released reader from the three workflows and verify publication export. Ordinary solving and model selection remain independent of optional analysis."
+  },
+  "sources": {
+    "mmDNA": {
+      "doi": "10.1002/adma.202210938",
+      "location": "Figure 5 and SI Figure S6, Table S15 (simple step twist), Table S17 (diameter across the paired phosphates). Table S14 is the standard-twist comparator."
+    },
+    "tertiary_chirality": {
+      "doi": "10.1073/pnas.2321992121",
+      "location": "Regional helicity and junction comparisons. The model cylinder in the SI uses an assumed 1 nm radius. Backbone curvature, torsion, link and writhe are different observables."
+    },
+    "simple_step": {
+      "doi": "10.1093/nar/gkz394",
+      "authors_method": "https://x3dna.org/articles/simple-parameters-for-non-watson-crick-base-pairs"
+    },
+    "base_frames": {
+      "doi": "10.1006/jmbi.2001.4987",
+      "location": "Table 1 ring coordinates"
+    },
+    "local_axis": {
+      "doi": "10.1093/nar/gkg680",
+      "worked_example": "https://web.x3dna.org/public/3dna_old/doc/x3dna_v1.5.pdf",
+      "location": "1TC3 (pde0128), helix radius table, page numbered 48"
+    }
+  },
+  "public_coordinate_pilot": {
+    "role": "Development check on the deposited models only. No production report or experiment on a bent checkpoint yet.",
+    "assignment": "Triangle inner edge A:9..15 paired with B:7..1, identity image. Local mean uses both sides of A:12/B:4. IMC in 7SDF was fitted using its six matching pyrimidine ring atoms against the T geometric reference. 1TC3 uses A:2..20 paired with B:119..101.",
+    "model_url_template": "https://files.rcsb.org/download/{pdb_id}.pdb",
+    "diagnostics": {
+      "5W6W": {
+        "sha256": "f33754cc170ab8167e8085cb848f4ef0b6bd0f545c81db6163a650a41f503e71",
+        "edge_mean_deg": 36.42160122384262,
+        "local_mean_deg": 32.834047981114246,
+        "pair_PP_diameter_A": 18.38290719663242,
+        "S15_local_deg": 32.84,
+        "S15_edge_deg": 36.4,
+        "local_difference_deg": -0.005952018885757582,
+        "edge_difference_deg": 0.021601223842623085
+      },
+      "7SDG": {
+        "sha256": "09e0876f835a68b0e06cbe5607c05419efe2305c78a5378ad3ff1f54e158e577",
+        "edge_mean_deg": 37.920932172681354,
+        "local_mean_deg": 30.35568285714888,
+        "pair_PP_diameter_A": 18.560096335956878,
+        "S15_local_deg": 32.08,
+        "S15_edge_deg": 37.63,
+        "local_difference_deg": -1.7243171428511168,
+        "edge_difference_deg": 0.29093217268135163
+      },
+      "7SDF": {
+        "sha256": "19b942e87abbbc1021225da11d704ad83bb221fbfcb33ac264bd447eb76df21c",
+        "edge_mean_deg": 37.15672109824121,
+        "local_mean_deg": 34.572143204202604,
+        "pair_PP_diameter_A": 18.193734113699694,
+        "S15_local_deg": 34.58,
+        "S15_edge_deg": 37.16,
+        "local_difference_deg": -0.007856795797394511,
+        "edge_difference_deg": -0.0032789017587830926
+      },
+      "1TC3": {
+        "sha256": "0459524bf0f23742f8c89d127621969f272e7de59911da026b07c29372622d86",
+        "radii_at_printed_precision": 36,
+        "compared": 36,
+        "max_abs_difference_A": 0.0490569103867724
+      }
+    },
+    "evidence": {
+      "anchor": "local_cedar_artifacts",
+      "path": "c444-helical-geometry-pilot/review.json",
+      "sha256": "a5288f673bb14c3cba838144695c96cd715d713aa58ea694a59b5ef831cade77"
+    },
+    "runner": {
+      "anchor": "local_cedar_artifacts",
+      "path": "runners/c444_helical_geometry.py",
+      "sha256": "819d10848019dc3e150bf1a82d17352dad1073fd4ad7176d4091c27894e43dde"
+    }
+  },
+  "implementation": {
+    "human_update": "W191",
+    "owner": "Linden / Willow; shared with Cedar and Alder",
+    "code_commit": "d50076e92af79e765841f8d4dc1679a059167c8c",
+    "module": "nasolve.helical_geometry",
+    "guide": "docs/topostitch-preview.md#measure-declared-paired-phosphates-w191",
+    "method": "declared-pair-phosphate-span-v1",
+    "report_schema": 1,
+    "delivered": [
+      "Exact single-model PDB and identity-image site/component/conformer binding",
+      "Caller-ordered logical pairs with flanks/breaks; no inferred correspondence",
+      "Per-pair P\u2013P span and optional half-span with explicit missing/ambiguity reasons",
+      "67 focused source and67 relocated installed checks; exact7SDF/C444 span agreement"
+    ],
+    "remaining": [
+      "Other crystal images, mmCIF and registered cross-state correspondence",
+      "Modified base-frame mapping/fit quality",
+      "Local-axis per-strand radii and simple step twist, including7SDG discrepancy",
+      "Weighted region statistics, matched-state changes and publication table export"
+    ],
+    "native_execution": false,
+    "runtime_authority": false
+  }
+}

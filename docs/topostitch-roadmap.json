@@ -250,14 +250,15 @@
         "W181: Cedar integrates the opt-in atom-identity-bound PDB padding comparison. 247 focused source and247 relocated installed checks pass; saved C464/C467 replays preserve legacy outcomes. Rowan separately reports fresh13-component C471 publication and cold relocation selecting actual ReadySet output.",
         "W182: Three saved-W180 probes plus30 existing typed tests pass (33 total). Public PostMR intake refuses before acquisition/request/process; exact compiled restraint context reproduces; controls cannot enter its grammar; existing synthetic dispatch freezes all4 ordered PHIL files and deliberately returns97 without native execution.",
         "W184 compares saved C466/C470 siblings in the same frame with867 identical atoms. Tips shift0.05187/0.02914 A; target-ring RMS0.01491/0.01264 A. Nearby sugar/backbone RMS0.00515 versus distant0.00561 A, phosphate0.00535 versus0.00511 A. Four arithmetic controls and independent Gemmi parsing pass; no preferential nearby backbone displacement is demonstrated.",
-        "W190 binds derived original canonical source connectivity separately from checked preparation;121 links match saved native capture,128 source and128 installed checks pass."
+        "W190 binds derived original canonical source connectivity separately from checked preparation;121 links match saved native capture,128 source and128 installed checks pass.",
+        "W191 adds the shared Q15 exact paired-phosphate report with local missing-site results; it does not qualify helix opening or choose a bend target."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "Keep independently specified paired-window target and complete execution settings as prerequisites for real motion. Meanwhile implement shared Q15/H1 explicit paired-region/model binding and phosphate-span measurement; do not infer targets or conflate P\u2013P half-span with local-axis radii. Preserve W189 inherited-strain baseline.",
+      "next_action": "Retain independent target and complete execution settings before real motion. Extend shared Q15 against docs/helical-geometry-plan.json: explicit cross-state correspondence, then qualified image/frame/axis work. Do not infer a target, conflate half-span with axis radii, or repeat qualified native captures.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -308,14 +309,15 @@
         "E_CANONICAL_ORDINARY_ROOT_REPLAY",
         "E_ORDINARY_NATIVE_WINDOW_SUPPORT",
         "E_CANONICAL_WINDOW_GEOMETRY_BASELINE",
-        "ordinary_source_context_w190"
+        "ordinary_source_context_w190",
+        "E_PAIRED_PHOSPHATE_SPANS"
       ],
       "last_audit": {
         "date": "2026-11-21",
-        "code_commit": "776f0c316e06d8198d438a6c39b84e2fef18c82f",
-        "reviewer": "Linden; next scope coordinated with Rowan and Hazel",
-        "scope": "Derived source context delivered; motion and independent intent remain open.",
-        "human_update": 190
+        "human_update": 191,
+        "code_commit": "d50076e92af79e765841f8d4dc1679a059167c8c",
+        "reviewer": "Linden; shared Q15 ownership coordinated with Rowan and Hazel",
+        "scope": "Q15 phosphate-span slice delivered; source intent available, motion and independent paired-window target remain open."
       }
     },
     {
@@ -362,14 +364,15 @@
         "W181: Cedar integrates the opt-in atom-identity-bound PDB padding comparison. 247 focused source and247 relocated installed checks pass; saved C464/C467 replays preserve legacy outcomes. Rowan separately reports fresh13-component C471 publication and cold relocation selecting actual ReadySet output.",
         "W182: Three saved-W180 probes plus30 existing typed tests pass (33 total). Public PostMR intake refuses before acquisition/request/process; exact compiled restraint context reproduces; controls cannot enter its grammar; existing synthetic dispatch freezes all4 ordered PHIL files and deliberately returns97 without native execution.",
         "W184 compares saved C466/C470 siblings in the same frame with867 identical atoms. Tips shift0.05187/0.02914 A; target-ring RMS0.01491/0.01264 A. Nearby sugar/backbone RMS0.00515 versus distant0.00561 A, phosphate0.00535 versus0.00511 A. Four arithmetic controls and independent Gemmi parsing pass; no preferential nearby backbone displacement is demonstrated.",
-        "W190 binds derived original canonical source connectivity separately from checked preparation;121 links match saved native capture,128 source and128 installed checks pass."
+        "W190 binds derived original canonical source connectivity separately from checked preparation;121 links match saved native capture,128 source and128 installed checks pass.",
+        "W191 adds the shared Q15 exact paired-phosphate report with local missing-site results; it does not qualify helix opening or choose a bend target."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Keep independently specified paired-window target and complete execution settings as prerequisites for real motion. Meanwhile implement shared Q15/H1 explicit paired-region/model binding and phosphate-span measurement; do not infer targets or conflate P\u2013P half-span with local-axis radii. Preserve W189 inherited-strain baseline.",
+      "next_action": "Retain independent target and complete execution settings before real motion. Extend shared Q15 against docs/helical-geometry-plan.json: explicit cross-state correspondence, then qualified image/frame/axis work. Do not infer a target, conflate half-span with axis radii, or repeat qualified native captures.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -463,14 +466,15 @@
         "E_CANONICAL_ORDINARY_ROOT_REPLAY",
         "E_ORDINARY_NATIVE_WINDOW_SUPPORT",
         "E_CANONICAL_WINDOW_GEOMETRY_BASELINE",
-        "ordinary_source_context_w190"
+        "ordinary_source_context_w190",
+        "E_PAIRED_PHOSPHATE_SPANS"
       ],
       "last_audit": {
         "date": "2026-11-21",
-        "code_commit": "776f0c316e06d8198d438a6c39b84e2fef18c82f",
-        "reviewer": "Linden; next scope coordinated with Rowan and Hazel",
-        "scope": "Derived source context delivered; motion and independent intent remain open.",
-        "human_update": 190
+        "human_update": 191,
+        "code_commit": "d50076e92af79e765841f8d4dc1679a059167c8c",
+        "reviewer": "Linden; shared Q15 ownership coordinated with Rowan and Hazel",
+        "scope": "Q15 phosphate-span slice delivered; source intent available, motion and independent paired-window target remain open."
       }
     },
     {
@@ -527,7 +531,8 @@
         "W181: Cedar integrates the opt-in atom-identity-bound PDB padding comparison. 247 focused source and247 relocated installed checks pass; saved C464/C467 replays preserve legacy outcomes. Rowan separately reports fresh13-component C471 publication and cold relocation selecting actual ReadySet output.",
         "W182: Three saved-W180 probes plus30 existing typed tests pass (33 total). Public PostMR intake refuses before acquisition/request/process; exact compiled restraint context reproduces; controls cannot enter its grammar; existing synthetic dispatch freezes all4 ordered PHIL files and deliberately returns97 without native execution.",
         "W185 authenticates both real C403/C475 requests:10 checks over41 frozen files pass. Original postmr/model, diffraction, five-cycle settings, v3 runtime/code, projection and terminal fixture agree; only one seven-atom B:4 PDU plane at0.10 A and declared paths differ. Four restored dataset hashes and unchanged selection verify; no native run or child-outcome claim.",
-        "W190 binds derived original canonical source connectivity separately from checked preparation;121 links match saved native capture,128 source and128 installed checks pass."
+        "W190 binds derived original canonical source connectivity separately from checked preparation;121 links match saved native capture,128 source and128 installed checks pass.",
+        "W191 adds the shared Q15 exact paired-phosphate report with local missing-site results; it does not qualify helix opening or choose a bend target."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -538,7 +543,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Keep independently specified paired-window target and complete execution settings as prerequisites for real motion. Meanwhile implement shared Q15/H1 explicit paired-region/model binding and phosphate-span measurement; do not infer targets or conflate P\u2013P half-span with local-axis radii. Preserve W189 inherited-strain baseline.",
+      "next_action": "Retain independent target and complete execution settings before real motion. Extend shared Q15 against docs/helical-geometry-plan.json: explicit cross-state correspondence, then qualified image/frame/axis work. Do not infer a target, conflate half-span with axis radii, or repeat qualified native captures.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -631,14 +636,15 @@
         "E_CANONICAL_ORDINARY_ROOT_REPLAY",
         "E_ORDINARY_NATIVE_WINDOW_SUPPORT",
         "E_CANONICAL_WINDOW_GEOMETRY_BASELINE",
-        "ordinary_source_context_w190"
+        "ordinary_source_context_w190",
+        "E_PAIRED_PHOSPHATE_SPANS"
       ],
       "last_audit": {
         "date": "2026-11-21",
-        "code_commit": "776f0c316e06d8198d438a6c39b84e2fef18c82f",
-        "reviewer": "Linden; next scope coordinated with Rowan and Hazel",
-        "scope": "Derived source context delivered; motion and independent intent remain open.",
-        "human_update": 190
+        "human_update": 191,
+        "code_commit": "d50076e92af79e765841f8d4dc1679a059167c8c",
+        "reviewer": "Linden; shared Q15 ownership coordinated with Rowan and Hazel",
+        "scope": "Q15 phosphate-span slice delivered; source intent available, motion and independent paired-window target remain open."
       }
     },
     {
@@ -4667,6 +4673,15 @@
       "kind": "derived_ordinary_source_context",
       "date": "2026-11-21",
       "code_commit": "776f0c316e06d8198d438a6c39b84e2fef18c82f"
+    },
+    "E_PAIRED_PHOSPHATE_SPANS": {
+      "kind": "shared_offline_paired_phosphate_measurement",
+      "date": "2026-11-21",
+      "human_update": 191,
+      "code_commit": "d50076e92af79e765841f8d4dc1679a059167c8c",
+      "reference": "docs/topostitch-periodic.md#w191--measure-explicit-paired-phosphate-spans",
+      "result": "67 source and67 relocated installed checks;34 new cases. Seven public7SDF spans reproduce, localA12/B4=18.1937341137 A; one deleted P leaves six unchanged and one missing. Installed CLI matches after original copied paths disappear.",
+      "limitation": "Identity-image single-model PDB, explicit pairing only. Half-span is not an axis radius. No inferred correspondence, ring-frame/twist qualification, native call, motion or acceptance; H1/H2 partial,H3 open."
     }
   },
   "benchmarks": [
@@ -4828,8 +4843,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 190,
-    "next": 191,
+    "current": 191,
+    "next": 192,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -5779,6 +5794,12 @@
         "title": "Bind derived ordinary source connectivity without promoting authority",
         "state": "RECORDED",
         "code_commit": "776f0c316e06d8198d438a6c39b84e2fef18c82f"
+      },
+      {
+        "number": 191,
+        "title": "Measure explicit paired phosphate spans with missing-site reporting",
+        "state": "RECORDED",
+        "code_commit": "d50076e92af79e765841f8d4dc1679a059167c8c"
       }
     ]
   },

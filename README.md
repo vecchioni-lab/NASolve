@@ -299,6 +299,14 @@ For each dataset, AutoMR:
 
 NASolve does not edit the original dataset or search model.
 
+## Optional paired-phosphate measurements
+
+For an explicitly assigned region, the offline
+[paired-phosphate reader](docs/topostitch-preview.md#measure-declared-paired-phosphates-w191)
+reports P–P separation and missing atoms from a byte-pinned model. It preserves
+modified component identities and never infers pairing or changes coordinates.
+This measurement is separate from helix-axis radius and twist.
+
 ## Backbone and terminal-phosphate chemistry
 
 NASolve treats ordinary DNA/RNA-like backbones as standard phosphodiesters. A requested 5'-terminal phosphate is a complete P/OP1/OP2/OP3 group; PostMR preserves a complete group, completes a missing OP3 when P/OP1/OP2 are present, or seeds the whole group from O5'-C5' when the phosphate is absent. New input files may use `five_prime_phosphate_sites`; the historical `allow_op3_sites` name remains readable for old frozen runs.

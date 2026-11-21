@@ -11182,3 +11182,39 @@ Phenix 2.2.1-6174 capture and makes **no new native execution or refinement**.
 No generated science is committed. No migration is required. Modified roots,
 refined descendants, independent pair/stack intent, effective input-order/settings
 identity and motion acceptance remain separate. No full suite was run, as scoped.
+
+## W191 — Measure explicit paired phosphate spans
+
+Code `d50076e92af79e765841f8d4dc1679a059167c8c` adds `helical_geometry.py` and 34 targeted
+cases in `test_helical_geometry.py`. Before: C444 was an offline public-coordinate
+pilot only. After: one installed read-only API/module CLI preserves explicit logical
+pair order, exact components/sites/conformers, core/flank roles and breaks; it binds
+model/region hashes and reports each missing/ambiguous phosphate independently.
+The new schema-1 report does not change any existing artifact or require migration.
+No dependency, automatic pairing, ring projection or workflow default is added.
+
+Exact focused command: `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest
+-q -p no:cacheprovider tests/test_helical_geometry.py tests/test_topostitch_coordinates.py`.
+Python 3.12.14: **67 source passed (0.29 s); 67 fresh relocated installed passed
+(0.26 s)**, using the installed path instead of `src`. The new API fails import
+before implementation. Tests include rigid motion, isolated pair perturbation,
+component/conformer ambiguity, insertion codes, absent phosphates, explicit breaks,
+source drift, duplicate physical identities and relocation with the old path gone.
+Wheel SHA256 `aecf61096691d733127af859a77962b7b156b0941f7699abd26cf326b2d01d38`.
+
+One public control downloads exact [7SDF PDB bytes](https://files.rcsb.org/download/7SDF.pdb),
+SHA256 `19b942e87abbbc1021225da11d704ad83bb221fbfcb33ac264bd447eb76df21c`,
+and declares A9–15/B7–1 in the identity image. Seven measurements independently
+reproduce; A12 DC/B4 IMC = **18.1937341137 Å**, identical to C444's independent
+Gemmi-based pilot. Its half-span is 9.0968670568 Å, not an axis radius. Removing only
+B4 P leaves six exact results and one missing measurement. A relocated installed
+CLI gives identical full JSON after its original model/installation copies and
+build source are gone. Public/local evidence stays under anchor `NASolve`, relative
+`branch-artifacts/willow/w191-phosphate-spans/`; report SHA256
+`cdb3fd3ecb6abf9da45897a247ff84f6de02cf26497f65006b1ea0e20ea40d94`.
+No PDB or generated report is committed. No Phenix/Coot call, fit or coordinate change.
+
+H1/H2 remain partial and H3 open: nonidentity images, mmCIF, registered cross-state
+correspondence, modified ring frames, axis radii, weighted regional twist and the
+7SDG discrepancy still need their own qualification. Existing C444 pilot evidence
+is preserved; this slice does not claim agreement for unimplemented quantities.

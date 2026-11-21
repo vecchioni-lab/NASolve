@@ -1,5 +1,23 @@
 # NASolve development handoff — Willow
 
+**W191: measure declared paired phosphates through one shared offline reader.**
+`nasolve.helical_geometry` supplies source-bound region/site assignments and
+Cartesian P–P spans. Logical pair order, core/flank roles, breaks, exact modified
+components, insertion codes and explicit conformers survive. Missing phosphates
+remain per-pair unavailable. Optional half-span is labelled separately from
+unmeasured local-axis radii and twist. **67 focused source + 67 relocated installed
+checks** pass; the installed CLI reproduces seven public 7SDF pairs, including
+A12/B4 = **18.193734 Å**, after the original copied input path is gone.
+[Usage](topostitch-preview.md#measure-declared-paired-phosphates-w191) ·
+[shared H1/H2/H3 plan](helical-geometry-plan.json) ·
+[validation](topostitch-periodic.md#w191--measure-explicit-paired-phosphate-spans).
+
+This is identity-image, single-model PDB support. H1/H2 are partial; H3 remains
+open. Crystal images, registered cross-state correspondence, ring-frame mapping,
+axis radii and twist remain separately qualified work. The 7SDG twist discrepancy
+is unchanged. No pairing discovery, coordinates, native execution or refinement
+changes. Linden owns this shared Q15 slice; Cedar/Alder reuse the same reader.
+
 **W190: ordinary source connectivity is bound without inventing approval.**
 The exact-parent and native-window readers can explicitly reuse Cedar's ordinary
 model-context owner on an original canonical PostMR model and frozen plan.
@@ -12,9 +30,9 @@ identical protected cold readback and no new native execution.
 [API](topostitch-preview.md#derived-ordinary-source-context-w190) ·
 [validation](topostitch-periodic.md#w190--bind-derived-ordinary-source-connectivity).
 
-**Next:** Q15/H1 explicit paired-region phosphate measurements, owned by Linden
-and shared with Cedar/Alder. Preserve model/site/image identity, missing phosphates
-and relocation. P–P span and optional half-span are not local-axis radii. Twist
+**Next:** extend the shared Q15/H1 reader only against its recorded acceptance
+gates: explicit correspondence between named model states, then independently
+qualified crystal-image and frame/axis work. Preserve missing measurements. P–P span and optional half-span are not local-axis radii. Twist
 qualification, including the unresolved 7SDG discrepancy, remains separate. An
 actual bend still needs an independently declared paired-window target; none is
 invented for the canonical X11_22 example. S04/S05/S06 remain partial.
