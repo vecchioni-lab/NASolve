@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Carry the maintained native worker helpers into owned metal children
+
+- New child-process requests use schema 2, pinning the entry worker and its
+  three diagnostic/map helpers by exact name, size and SHA-256. Copy and verify
+  this bundle before execution and on completed-attempt inspection.
+- Preserve read-only schema-1 process evidence; require a newly prepared
+  helper-pinned request for fresh execution/retry. Existing outcome, trial and
+  output-receipt schemas stay unchanged.
+- Accept Phenix's short discovery label for the supported release while keeping
+  the maintained worker's independent exact-build refusal before refinement.
+- Qualify focused and relocated installed controls plus a real historical Hg
+  replay with original Free-R, frozen-state and serialized-model audits. The
+  poor-fit control remains unaccepted; no geometry/default changes or full suite.
+
 ### Verify prepared frozen inputs against the protected ordinary parent
 
 - Add explicit read-only `verify-fdp-child-inputs` CLI/API, reusing checkpoint and

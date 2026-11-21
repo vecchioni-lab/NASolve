@@ -69,8 +69,11 @@ ordinary source checkpoint and replays `_input_bundle` → `make_plan` → `para
 inside the protected parent view. Eighty focused tests plus two role-link controls,
 installed readback and exact retained Hg/Ag4 input recovery qualify this bounded
 relationship. This is not fresh Free-R/scattering acquisition or native admission.
-Next close the copied worker's maintained helper-module dependency set, then
-compose verified derivation with execution, scientific audit and publication.
+The copied worker now pins its complete maintained helper set in schema-2
+requests; old request inspection is preserved. One actual owned Phenix child
+reproduces the poor-fit historical Hg control with frozen-state/Free-R audits.
+Next compose verified derivation with execution, scientific audit and publication
+in the normal workflow, rather than the private qualification runner.
 Typed reader-control support remains with Willow W186. No historical parent or
 process identity is promoted; A01's current FT geometry gate is unchanged.
 

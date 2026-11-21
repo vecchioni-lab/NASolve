@@ -21,6 +21,8 @@ KIND = 'metal-fdp-child-process-request'
 POLICY = 'metal-fdp-child-process-v1'
 MAX_INPUT_BYTES = 64 * 1024 * 1024
 MAX_REQUEST_BYTES = 1024 * 1024
+MAX_WORKER_FILE_BYTES = 1024 * 1024
+WORKER_FILES = frozenset({'_fdp_native.py', 'fit_diagnostics.py', 'anomalous_maps.py', 'map_diagnostics.py'})
 _SCOPE = _ProcessScope(POLICY, 'child_directory', 'inputs', 'child.json',
     'inputs', 'input_files', 'child_sha256', r'native-fdp',
     'FRESH_FROZEN_CHILD_PROCESS_ONLY; NO_SCIENTIFIC_ACCEPTANCE_OR_RETIREMENT')
@@ -68,19 +70,54 @@ def _inputs(root, files):
     return payload
 
 
+def _worker_inventory():
+    root=Path(__file__).parent
+    refs={}
+    for name in sorted(WORKER_FILES):
+        path=_file(root,name);size=path.stat().st_size
+        _need(0<size<=MAX_WORKER_FILE_BYTES,'Maintained worker file exceeds byte budget')
+        raw=path.read_bytes();_need(len(raw)==size,'Maintained worker changed during inventory')
+        refs[name]=dict(size=size,sha256=sha256(raw).hexdigest())
+    return refs
+
+
+def _worker_payload(root, refs):
+    payload={}
+    for name,ref in refs.items():
+        path=_file(root,name)
+        _need(path.stat().st_size==ref['size'],'Worker snapshot size changed: '+name)
+        with path.open('rb') as handle:raw=handle.read(ref['size']+1)
+        _need(len(raw)==ref['size'] and sha256(raw).hexdigest()==ref['sha256'],
+              'Worker snapshot changed: '+name)
+        payload[name]=raw
+    return payload
+
+
 def _request(value, request_id):
     checksum(request_id, 'independent child request identity')
     try:
         body = dict(value); actual = body.pop('request_id')
-        _need(set(body) == {'kind','schema_version','parent_manifest_sha256','files','worker_sha256',
-                           'native_version','scientific_validation','retirement_authorized'}, 'Unsupported child request fields')
+        version=body.get('schema_version')
+        fields={'kind','schema_version','parent_manifest_sha256','files','worker_sha256',
+                'native_version','scientific_validation','retirement_authorized'}
+        if version==2:fields.add('worker_files')
+        _need(set(body)==fields,'Unsupported child request fields')
         _need(actual == request_id == digest(body) and body['kind'] == KIND
-              and type(body['schema_version']) is int and body['schema_version'] == 1
+              and type(version) is int and version in {1,2}
               and body['native_version'] == NATIVE_VERSION
               and body['scientific_validation'] is False and body['retirement_authorized'] is False,
               'Changed or unsupported child request')
         checksum(body['parent_manifest_sha256'], 'protected parent identity')
         checksum(body['worker_sha256'], 'maintained worker identity')
+        if version==2:
+            refs=body['worker_files']
+            _need(isinstance(refs,dict) and set(refs)==WORKER_FILES,'Incomplete or unexpected maintained worker bundle')
+            for ref in refs.values():
+                _need(isinstance(ref,dict) and set(ref)=={'size','sha256'}
+                      and type(ref['size']) is int and 0<ref['size']<=MAX_WORKER_FILE_BYTES,
+                      'Invalid maintained worker file reference')
+                checksum(ref['sha256'],'maintained worker file')
+            _need(refs['_fdp_native.py']['sha256']==body['worker_sha256'],'Entry worker identity disagrees with bundle')
         return value
     except (KeyError, TypeError, ValueError) as exc:
         raise RecipeError('Invalid child request: '+str(exc)) from exc
@@ -110,7 +147,7 @@ def make_request(prepared_directory, *, parent_manifest_sha256):
     _need(isinstance(args,list) and args and all(isinstance(n,str) for n in args)
           and len(args) == len(set(args)), 'Require explicit unique native input names')
     names = set(args) | {'input.pdb','plan.json','native-plan.json'}
-    _need(not names.intersection({'request.json','execution.json','_fdp_native.py'}), 'Reserved child input name')
+    _need(not names.intersection({'request.json','execution.json',*WORKER_FILES}), 'Reserved child input name')
     files = {}
     for name in sorted(names):
         path = _file(root,name); size = path.stat().st_size
@@ -119,8 +156,9 @@ def make_request(prepared_directory, *, parent_manifest_sha256):
         raw = path.read_bytes(); _need(len(raw)==size,'Prepared input changed during inventory')
         files[name] = dict(sha256=sha256(raw).hexdigest(),size=size)
     _declared_plan(_inputs(root,files))
-    body = dict(kind=KIND,schema_version=1,parent_manifest_sha256=parent_manifest_sha256,
-        files=files,worker_sha256=sha256(Path(__file__).with_name('_fdp_native.py').read_bytes()).hexdigest(),
+    workers=_worker_inventory()
+    body = dict(kind=KIND,schema_version=2,parent_manifest_sha256=parent_manifest_sha256,
+        files=files,worker_sha256=workers['_fdp_native.py']['sha256'],worker_files=workers,
         native_version=NATIVE_VERSION,scientific_validation=False,retirement_authorized=False)
     return dict(body,request_id=digest(body))
 
@@ -132,7 +170,12 @@ def inspect_child(directory, *, request_id):
     error = None
     try:
         _inputs(root/'inputs',request['files'])
-        _need(sha256((root/'inputs/_fdp_native.py').read_bytes()).hexdigest()==request['worker_sha256'],'Worker snapshot changed')
+        if request['schema_version']==2:
+            _worker_payload(root/'inputs',request['worker_files'])
+        else:
+            worker=_file(root/'inputs','_fdp_native.py')
+            _need(worker.stat().st_size<=MAX_WORKER_FILE_BYTES,'Legacy worker exceeds byte budget')
+            _need(sha256(worker.read_bytes()).hexdigest()==request['worker_sha256'],'Worker snapshot changed')
         process = _inspect_owned_processes(root,_SCOPE)
     except (OSError,ValueError,KeyError,TypeError) as exc:
         process = dict(state='UNKNOWN',phases={}); error = str(exc)
@@ -157,13 +200,13 @@ def inspect_child(directory, *, request_id):
             _need(phase is not None and phase['status']==outcome['status']
                   and phase['returncode']==outcome.get('returncode'),'Outcome contradicts native phase')
     stopped = process['state']=='STOPPED' and error is None
-    ready = bool(stopped and outcome and outcome.get('stopped_verified') is True
+    ready = bool(request['schema_version']==2 and stopped and outcome and outcome.get('stopped_verified') is True
                  and outcome.get('parent_transport_verified') is True
                  and outcome.get('status') in {'FAILED','TIMED_OUT','INTERRUPTED'})
     return dict(status=outcome['status'] if outcome and error is None else 'REVIEW_REQUIRED',
         request_id=request_id,parent_manifest_sha256=request['parent_manifest_sha256'],
         process=process,outcome=outcome,stopped_verified=stopped,
-        fresh_retry_eligible=ready,error=error,scientific_acceptance='NOT_ASSESSED',retirement_authorized=False)
+        fresh_retry_eligible=ready,worker_bundle_pinned=request['schema_version']==2,error=error,scientific_acceptance='NOT_ASSESSED',retirement_authorized=False)
 
 
 def run_child(prepared_directory, parent_directory, request, *, request_id,
@@ -176,14 +219,17 @@ def run_child(prepared_directory, parent_directory, request, *, request_id,
     Retry never overwrites a prior attempt or executes its stored argv.
     """
     request = _request(request,request_id)
+    _need(request['schema_version']==2,'Legacy process-only request cannot execute; prepare a new helper-pinned request')
     _need(type(timeout_seconds) in (int,float) and math.isfinite(timeout_seconds)
           and 0 < timeout_seconds <= 600,'Require a bounded positive child deadline')
     prepared = _root(prepared_directory); parent = _root(parent_directory)
     payload = _inputs(prepared,request['files'])
     _declared_plan(payload)
-    worker = Path(__file__).with_name('_fdp_native.py').read_bytes()
-    _need(sha256(worker).hexdigest()==request['worker_sha256'],'Request requires a different maintained worker')
-    _need(native.version==NATIVE_VERSION,'Unsupported native version')
+    workers=_worker_payload(Path(__file__).parent,request['worker_files'])
+    # Discovery may report only the release. The maintained worker independently
+    # checks the full build tag before starting refinement.
+    _need(native.version in {NATIVE_VERSION, NATIVE_VERSION.rsplit('-',1)[0]},
+          'Unsupported discovered native version')
     executable = Path(native.executables['phenix.python']).resolve()
     _need(executable.is_file(),'Native executable missing')
     executable_sha = sha256(executable.read_bytes()).hexdigest()
@@ -204,7 +250,7 @@ def run_child(prepared_directory, parent_directory, request, *, request_id,
                 max_disk_bytes=max_parent_disk_bytes) as (_,transport):
             attempt.mkdir(); inputs = attempt/'inputs'; inputs.mkdir()
             for name,raw in payload.items():(inputs/name).write_bytes(raw)
-            (inputs/'_fdp_native.py').write_bytes(worker)
+            for name,raw in workers.items():(inputs/name).write_bytes(raw)
             (inputs/'request.json').write_text(json.dumps(request,sort_keys=True)+'\n')
             execution = dict(native_version=native.version,native_executable_sha256=executable_sha,
                 request_id=request_id,parent_manifest_sha256=request['parent_manifest_sha256'],retry_of=previous)
@@ -216,6 +262,7 @@ def run_child(prepared_directory, parent_directory, request, *, request_id,
                 code = owner.runner('native-fdp')([str(executable),'-B',str(inputs/'_fdp_native.py'),'native-plan.json'],
                     cwd=work,log_path=work/'native.log',environment=native.environment,timeout_seconds=timeout_seconds)
                 _need(all((work/n).read_bytes()==raw for n,raw in payload.items()),'Native worker changed a frozen input')
+                _worker_payload(inputs,request['worker_files'])
                 _need(sha256(executable.read_bytes()).hexdigest()==executable_sha,'Native executable changed during execution')
                 status = 'COMPLETED' if code==0 else 'FAILED'
             except BaseException as exc:

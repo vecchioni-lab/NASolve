@@ -53,13 +53,60 @@ migration. Generated archives/fixtures/wheel/reports stay private, with temporar
 views removed and historical inputs unchanged. Exact API and limits are in the
 [storage contract](metal-campaign-storage.md#protected-parent-to-prepared-input-derivation).
 
-**Next:** the maintained worker's sibling helper modules must be pinned and
-available in the fresh invocation; the process-only route currently snapshots
-only `_fdp_native.py`. Then connect input verification into execution, independent
-metadata/scattering/Free-R acquisition, scientific freeze/output auditing and
-compact publication, followed by quota/protection/retirement. Full checked-root
-coverage and supported typed controls are separate. **A01 partial; A02 gated;
-A04 partial.** No verified input relationship alone authorizes execution or reuse.
+## A04 follow-up: complete copied worker and first owned native replay
+
+Fresh process requests are schema 2 and pin the exact maintained entry worker
+plus three diagnostic/map helpers. Previously only the entry worker was copied,
+so result capture could fail on a missing sibling import. Old schema-1 process
+records remain readable; new execution/retry requires a newly prepared request.
+Native worker/scientific settings, outcome/trial/output schemas and shared owners
+stay unchanged. Short `2.2.1` discovery is accepted, while the unchanged worker
+still rejects any actual build other than `2.2.1-6174` before refinement.
+
+**Validation:** 62 focused tests pass in 16.82 s, plus one different-build refusal
+in 0.77 s on unchanged runtime behavior. The exact command uses the same Python,
+environment and flags above with `tests/test_metal_worker_bundle.py`,
+`tests/test_metal_child_process.py`, `tests/test_metal_child_outputs.py` and
+`tests/test_metal_child_inputs.py`. The positive helper regression fails on the
+previous committed source. The first relocated installation passed 10 checks
+before exposing the short discovery-label assumption; preserve that failed
+qualification. The corrected installation passed 11 focused tests, all 352
+package identities and an actual Phenix cold helper import/full-build read.
+The final installed package includes that refusal and passes 12 focused checks;
+all 352 package files and the cold native import remain qualified. Its only
+runtime-file change after the actual replay is a corrected explanatory comment;
+native worker bytes are unchanged. No full suite or Coot session was run.
+
+**Actual Phenix 2.2.1-6174 execution:** the normal installed CLI completed one
+120-second-bounded historical FT_Hg replay (12.77 s for the whole rehearsal).
+Fresh metadata/Sasaki/original Free-R checks, frozen XYZ/B/Q/f′ and serialized
+PDB checks, post-run parent derivation, process shutdown and output seal pass.
+It exactly reproduces Q=0.60/B=25 Å²/f″=29.0 e, Rwork=0.3970696509 and
+Rfree=0.4237310159. These are newly measured numbers for an old poor-fit control,
+not the current A01 geometry. No improvement or accepted solution is claimed.
+
+Local evidence under the Alder artifact anchor:
+`worker-bundle-20261121-01/` (retained diagnostic failure),
+`worker-bundle-20261121-02/{validation.json,installed-review.json}` (native replay
+package), `worker-bundle-20261121-03/{validation.json,installed-review.json}`
+(final comment/test amendment) and
+`native-child-20261121-01/{review.json,science-review.json,process-review.json}`.
+The native child retains about 1.24 MB including input and output evidence.
+Protected historical sources remain exact; temporary parent/package views are
+removed. No scientific files are committed or pruned. Runtime changes are
+`metal/child_process.py` and the metal CLI; tests are in
+`test_metal_worker_bundle.py`. Schema-2 request migration is explicit and additive;
+see the [storage contract](metal-campaign-storage.md#maintained-worker-bundle).
+
+**Next:** compose verified derivation with fresh metadata/scattering/Free-R,
+owned execution, scientific freeze/output audit and compact publication in the
+normal workflow. Full checked-root coverage and W186 typed controls remain
+separate: runtime manifests carry that role in authenticated
+`source_selection.bundle` → `evidence/bundle`, not necessarily at the top level.
+The current guard's traversal of that runtime bundle is **not qualified**; do
+not admit it on top-level key absence. W188 offers a later source-bound native
+window description, not movement or inferred pair authority. Quota/protection
+and retirement follow. **A01 partial; A02 gated; A04 partial.**
 
 ## A01 current checkpoint: explicit coordination topology
 

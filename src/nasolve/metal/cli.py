@@ -830,6 +830,8 @@ def _child_process(args):
         print('Child process: '+report['status'])
         print('Stopped verified: '+str(report['stopped_verified']))
         print('Fresh explicit retry eligible: '+str(report['fresh_retry_eligible']))
+        if not report['worker_bundle_pinned']:
+            print('Legacy request: prepare a new helper-pinned request before execution.')
         print('Process evidence only; no scientific acceptance or retirement authority.')
     return 0 if args.metal_action=='prepare-fdp-child-process' or (report['status']=='COMPLETED' and report['stopped_verified']) else 2
 

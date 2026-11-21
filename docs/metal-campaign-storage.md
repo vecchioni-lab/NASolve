@@ -794,7 +794,7 @@ unsealed outcomes are not eligible. Inspection never retries automatically.
 This is not an aggregate campaign reservation or a lock against separately
 requested fresh parallel invocations.
 
-New persisted contracts are `metal-fdp-child-process-request` v1 (`request_id`),
+The original persisted contracts are `metal-fdp-child-process-request` v1 (`request_id`),
 the shared process-record schema under policy `metal-fdp-child-process-v1`, and
 `metal-fdp-child-process-outcome` v1 (durable `record_sha256`). Input names are
 explicit and portable within the prepared/child mounts; parent selection uses
@@ -954,12 +954,50 @@ The archived Ag4 model yields the same base-mean B=188.75 Å²/Q=1 at all four
 sites; the Hg control retains its old B=25 Å²/Q=0.60. Poor-fit and negative-f″
 results retain their original review state. No new Phenix/Coot calculation occurs.
 
-A separate execution prerequisite was identified during this audit: copying
-`_fdp_native.py` alone omits its maintained `fit_diagnostics` sibling and optional
-`anomalous_maps`/`map_diagnostics` helpers. The simulated process qualification
-did not establish that code closure. Resolve and pin the maintained helper bundle
-before attempting genuine native execution through the fresh route. Existing
-source-directory execution and historical workers remain unchanged.
+The copied worker prerequisite is now implemented: see the
+[maintained bundle contract](#maintained-worker-bundle). Existing source-directory
+execution and historical workers remain unchanged. The first native child is a
+historical control replay, not a newly accepted scientific geometry.
+
+### Maintained worker bundle
+
+New `metal-fdp-child-process-request` records use **schema 2**. `worker_files`
+pins `_fdp_native.py`, `fit_diagnostics.py`, `anomalous_maps.py` and
+`map_diagnostics.py` by size and SHA-256 (each bounded to 1 MiB). The existing
+`worker_sha256` must agree with the entry file. Extra/missing names, rehashed
+wrong helpers and reserved prepared-input names refuse before a new attempt.
+Execution copies trusted installed bytes, not executable content from a saved
+science archive. Inspection and post-run checks reverify the same bundle.
+The shared process header also pins these files. Full environment identity and
+OS-level immutability are not implied.
+
+Schema-1 completed/failed process evidence stays readable and explicitly reports
+`worker_bundle_pinned=False`; it cannot authorize fresh execution or retry.
+Prepare a new request from the same explicit input files and parent manifest.
+This yields a new request identity and a separate attempt; do not overwrite or
+relabel old records. Shared process/outcome and output-receipt schemas stay v1.
+
+Discovery may identify this Phenix installation as `2.2.1`. The launcher accepts
+that release label or `2.2.1-6174`; the unchanged pinned worker independently
+requires the actual full `2.2.1-6174` build before starting refinement. Other
+builds with the same short release label still fail. Discovery text alone is not
+a native-build qualification receipt.
+
+The first installed actual replay reconstructs the old FT_Hg geometry control,
+checks its parent derivation, freshly reads reflection metadata/Sasaki values
+and audits original `FreeR_flag` before one bounded native invocation. It then
+passes frozen XYZ/B/Q/f′, reflection and serialized-PDB audits, rechecks parent
+derivation and seals stopped-child outputs. Q=0.60, B=25 Å², f″=29.0 e,
+Rwork=0.3970696509 and Rfree=0.4237310159 reproduce the historical poor-fit
+control. No current A01 geometry or accepted f″ parent follows. The retained
+rehearsal is approximately 1.24 MB; this is not campaign-capacity qualification.
+
+These pre/postflight calls are still composed by a private qualification runner,
+not yet an automatic normal scientific-session owner. The existing low-level
+`run-fdp-child-process` remains explicitly process-only. A normal audited caller,
+typed reader-control adoption, quota/protection and retirement remain next.
+Exact focused/installed/native evidence and limitations are in the
+[current handoff](metal-development-handoff.md).
 
 ### Output-to-scientific-audit handoff: exact remaining boundary
 
