@@ -10,6 +10,7 @@ import json
 import subprocess
 
 from .. import campaign_records as records
+from ..campaign_process import CampaignProcessError
 from ..cif_repair_process import _ProcessScope, _OwnedProcesses, _inspect_owned_processes
 from . import parent_archive
 from .compact import read_projection
@@ -222,12 +223,14 @@ def inspect_child(directory, *, request_id):
 
 def run_child(prepared_directory, parent_directory, request, *, request_id,
               attempt_directory, native, timeout_seconds=240, retry_from=None,
-              max_parent_disk_bytes=parent_archive.DEFAULT_DISK_BYTES,retained_parent=None):
+              max_parent_disk_bytes=parent_archive.DEFAULT_DISK_BYTES,retained_parent=None,storage_budget=None):
     """Invoke the maintained worker once in a fresh owned attempt.
 
     Parent transport is verified, not scientific admission. A normal pipeline
     must still qualify the parent, replay input derivation and audit the result.
     Retry never overwrites a prior attempt or executes its stored argv.
+    Optional storage_budget reserves one-shot parent expansion and child growth
+    before work. Retained parents require separate outer-lifetime accounting.
     """
     request = _request(request,request_id)
     _need(request['schema_version']==2,'Legacy process-only request cannot execute; prepare a new helper-pinned request')
@@ -256,11 +259,23 @@ def run_child(prepared_directory, parent_directory, request, *, request_id,
         _need(prior['fresh_retry_eligible'],'Prior child is not qualified for a fresh retry')
         _need(prior['outcome'].get('native_executable_sha256')==executable_sha,'Retry native executable changed')
         previous = prior['outcome']['record_sha256']
+    admission = None
+    if storage_budget is not None:
+        from . import storage_budget as budget_owner
+        known_input_bytes = 2*sum(map(len,payload.values())) + sum(map(len,workers.values())) + len(json.dumps(request,sort_keys=True).encode('utf-8'))+1
+        budget_root, grant = budget_owner._reserve_execution(storage_budget,attempt=attempt,request_id=request_id,
+            max_parent_disk_bytes=max_parent_disk_bytes,known_child_input_bytes=known_input_bytes,
+            scratch_directory=parent_archive.gettempdir(),retained_parent=retained_parent)
+        admission = dict(kind='metal-fdp-child-storage-admission',schema_version=1,
+            reservation_id=grant['reservation_id'],grant={k:v for k,v in grant.items() if k!='reservation_id'},
+            max_parent_disk_bytes=max_parent_disk_bytes,known_child_input_bytes=known_input_bytes,
+            scientific_acceptance='NOT_ASSESSED',retirement_authorized=False)
     owner = None; transport = None; status = 'REVIEW_REQUIRED'; code = None; error = None; sealed = False
     try:
         with parent_archive.read_parent_inputs(parent,request['parent_manifest_sha256'],
                 max_disk_bytes=max_parent_disk_bytes,retained_parent=retained_parent) as (_,transport):
             attempt.mkdir(); inputs = attempt/'inputs'; inputs.mkdir()
+            if admission is not None:records.write_record(attempt/'storage-admission.json',admission)
             for name,raw in payload.items():(inputs/name).write_bytes(raw)
             for name,raw in workers.items():(inputs/name).write_bytes(raw)
             (inputs/'request.json').write_text(json.dumps(request,sort_keys=True)+'\n')
@@ -305,4 +320,18 @@ def run_child(prepared_directory, parent_directory, request, *, request_id,
         ownership_sha256=owner.header['record_sha256'],status=status,returncode=code,
         stopped_verified=sealed,error=error,retry_of=previous,
         scientific_acceptance='NOT_ASSESSED',retirement_authorized=False,**lifetime))
-    return inspect_child(attempt,request_id=request_id)
+    result = inspect_child(attempt,request_id=request_id)
+    if admission is not None:
+        info = dict(budget_id=grant['budget_id'],reservation_id=grant['reservation_id'],
+                    allowance_bytes=grant['allowance_bytes'],state='HELD',settlement=None)
+        if result['status'] in budget_owner.STOPPED and result['stopped_verified']:
+            try:
+                info['settlement'] = budget_owner.settle_child(budget_root,budget_id=grant['budget_id'],
+                    reservation_id=grant['reservation_id'])
+            except CampaignProcessError as exc:
+                # A busy/unavailable admission lock does not invalidate the
+                # completed native result. Its allowance stays held for retry.
+                info['settlement_error'] = str(exc)
+            else:info['state'] = 'SETTLED'
+        result['storage_budget'] = info
+    return result

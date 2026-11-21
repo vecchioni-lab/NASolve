@@ -234,3 +234,25 @@ def inspect_budget(directory, *, budget_id):
                     held_count=held, settled_count=len(ledger['reservations'])-held,
                     stop_evidence='RECORDED_AT_SETTLEMENT', os_enforced=False,
                     scientific_acceptance='NOT_ASSESSED', retirement_authorized=False)
+
+
+def _reserve_execution(options, *, attempt, request_id, max_parent_disk_bytes,
+                       known_child_input_bytes, scratch_directory, retained_parent):
+    """First caller: one-shot parent expansion and child growth on one device."""
+    _need(isinstance(options, dict)
+          and set(options) == {'directory', 'budget_id', 'allowance_bytes'},
+          'Explicit storage budget requires directory, budget_id and allowance_bytes')
+    _need(retained_parent is None, 'Budgeted retained parent lifetime needs separate outer accounting')
+    root = _root(options['directory'])
+    _need(attempt.is_relative_to(root), 'Budgeted child must be inside the declared store')
+    scratch = Path(scratch_directory).expanduser().resolve()
+    _need(scratch.is_dir() and scratch.stat().st_dev == root.stat().st_dev,
+          'Budgeted child and parent temporary expansion must share one filesystem')
+    _integer(max_parent_disk_bytes, 'parent disk allowance', 1)
+    _integer(known_child_input_bytes, 'known child input bytes')
+    allowance = _integer(options['allowance_bytes'], 'execution allowance', 1)
+    _need(allowance > max_parent_disk_bytes + known_child_input_bytes + 16*1024,
+          'Execution allowance needs parent space, known input copies and child headroom')
+    grant = reserve_child(root, budget_id=options['budget_id'], child=attempt.relative_to(root).as_posix(),
+                          request_id=request_id, allowance_bytes=allowance)
+    return root, grant

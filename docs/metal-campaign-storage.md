@@ -1459,8 +1459,8 @@ their existing Cedar rules; the lean profile does not silently override them.
 
 The opt-in Python owner `metal.storage_budget` supplies `create_budget`,
 `reserve_child`, `settle_child` and `inspect_budget`. This implements explicit
-admission on one declared store/filesystem. Existing execution commands do not
-invoke it automatically. The caller must reserve before launching work and must
+admission on one declared store/filesystem. Default/CLI execution does not
+invoke it automatically; the explicit Python child caller is described below. The caller must reserve before launching work and must
 include input copies, native growth, temporary expansion and packing overlap in
 its allowance; scratch elsewhere needs its own explicit accounting. No scientific
 admission, native peak guarantee or deletion permission is implied.
@@ -1507,9 +1507,52 @@ the ledger is still required. No new retention profile or retirement is added.
 The synthetic concurrent, interrupted-publication and relocated installed checks
 are in the [current handoff](metal-development-handoff.md). The small proof admits
 one of two competing 1 MB requests under a 1.5 MB budget and retains an incomplete
-child's allowance after relocation. Scheduling integration, external scratch
+child's allowance after relocation. General scheduling integration, outer retained-snapshot
 coverage, abandoned-reservation recovery and large-campaign performance remain
 separate qualifications. This is not an OS-enforced quota.
+
+### Explicit budget at the existing child launcher
+
+`metal.child_process.run_child(..., storage_budget={"directory": store,
+"budget_id": config["record_sha256"], "allowance_bytes": total_allowance})` now
+uses that admission owner. All three values are required; an empty/partial mapping
+is not a default. Ordinary input, worker/native-version and retry checks precede
+the reservation. The reservation precedes `read_parent_inputs`, attempt creation
+and native launch. No-budget calls preserve the existing route and return shape.
+
+For this first caller, the declared store and the actual system temporary space
+used by one-shot parent expansion must be on the same filesystem. Total allowance
+must exceed the explicit parent disk allowance plus known duplicate input/helper
+bytes and 16 KiB of bookkeeping headroom. Remaining native growth is an explicit
+caller estimate, not an observed peak or OS limit. Existing parent transport still
+applies its own expansion/free-space checks. Parent archives or unrelated data
+outside the store are not part of its logical retained-byte inventory.
+
+After attempt creation, a create-only `storage-admission.json` records the grant,
+reservation identity, parent allowance and known input bytes as
+`metal-fdp-child-storage-admission` v1. Its child path remains relative to the
+budget store; no host-absolute locator is its operational reference. The budget
+ledger already retains the grant if interruption happens before this file exists.
+No new process owner, worker, outcome version or scientific acceptance is added.
+
+The existing process result and parent-scope closure determine whether settlement
+is attempted. Verified stopped completed/failed/timed-out/interrupted outcomes can
+settle. Unknown/uncertain/review states and missing outcomes stay held. A busy or
+unavailable admission lock leaves the completed native result available with
+`storage_budget.state = HELD` and a settlement error; the caller may later invoke
+`settle_child` explicitly. Other settlement publication failures propagate while
+preserving the durable child evidence and ledger; they do not authorize a rerun.
+An explicit-budget return includes the reservation and state at return. Cold
+process inspection does not infer present quota state; use the budget owner.
+
+Budgeted retained-parent execution currently refuses before a new claim: the
+outer snapshot is not owned by one child's stopping event. Existing retained
+execution without a budget is unchanged. The audited-session wrapper, its pre/post
+scientific reads, shared outer snapshots and general campaign scheduler remain
+separate integration gates. Do not describe this one-shot caller as a campaign
+or whole-session quota. The focused/installed synthetic checks and measured
+interrupted launch are linked in the [current handoff](metal-development-handoff.md).
+No scientific rerun or payload deletion was needed for this integration.
 
 ## Capacity and scheduling
 

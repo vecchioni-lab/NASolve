@@ -9,80 +9,77 @@ not a second queue.
 
 ## A04 current checkpoint: cooperative storage reservations
 
-The opt-in `metal.storage_budget` Python API now declares one immutable store
-budget, reserves space before a frozen child, and settles its future allowance
-only after the existing child owner verifies a stopped outcome. Two simultaneous
-1 MB claims against a 1.5 MB budget admit one. An unfinished child keeps its full
-allowance, including after relocation. No trial output is deleted by settlement.
-The mechanism uses the shared persistent kernel lock and atomic durable record
-writer; it is not a second scheduler or process owner.
+The first normal caller is now connected: `metal.child_process.run_child` accepts
+an optional explicit `storage_budget` mapping. After ordinary input/native/retry
+validation, it reserves before parent expansion or child creation. A verified
+stopped outcome settles the allowance; interrupted launches, missing outcomes,
+changed frozen inputs and uncertain ownership keep it held. A busy settlement
+lock preserves the completed result and reports a held allowance for later retry.
+Calls without a budget retain their original behavior and output formats.
 
-**Prior work/gap:** existing per-parent disk checks and the read-only forecast did
-not account for other workers' outstanding allowances. Explicit admission now
-charges all observed store bytes plus all outstanding allowances, including
-ledger publication overlap and a separate free-space reserve. This deliberately
-double-counts partial work. The ledger never expires a claim based on time or PID.
-Missing outcomes, uncertain stops, broken ledgers and interrupted publication
-fail closed. A known stopped failed/timed-out/interrupted child may settle its
-allowance while retaining its full diagnostic evidence.
+**Boundary:** this budgets one-shot parent expansion and child growth on the same
+filesystem. The explicit total allowance must cover the declared parent disk
+allowance, known input/helper copies and positive child headroom. It is not a
+live write limit or measured native peak. Budgeted retained-parent execution
+refuses because that snapshot outlives one child; ordinary nonbudgeted retained
+execution remains supported. Whole audited-session pre/post work and campaign
+scheduling are not automatically covered. No CLI/default activation or pruning.
 
-**Qualification:** 24 new regressions fail before implementation. The first pass
-has 22 passes and two test exception-type mismatches with the shared record owner;
-correcting those assertions preserves its existing exceptions. **77 focused
-checks pass in 14.66 s** across storage, child processes and stopped-output
-handling. After bounding overlap validation, testing entry limits and ensuring the new
-budget directory itself is synced before a grant,
-**31 final budget checks pass in 3.49 s**. A relocated installation with its build
-source/old installation removed and original source/Phenix access blocked passes
-**31 checks in 2.88 s**, with all **354 packaged files** exact. The first installed
-harness lacked its pytest scratch parent (29 setup errors); that evidence is
-retained, and the corrected staging passes. No full suite or Phenix/Coot execution.
+**Qualification:** 17 new regressions fail before the optional argument exists.
+The initial combined profile has 80 passes and one test-only relocation collision:
+parameter cases reused a vacated temporary name. A reservation-specific destination
+fixes that without deleting existing evidence. Final qualification passes **83
+focused tests in 24.21 s** across the caller, reservation owner, ordinary process
+owner and retained execution. A relocated installation, with its original build
+and installation removed and source/Phenix access blocked, passes **21 tests in
+3.85 s**, with all **354 packaged files** exact. Tests include overlapping launcher
+calls, denial before expansion, interruption before ownership/outcome publication,
+uncertain stop, delayed settlement and legacy/default behavior. No full suite or
+Phenix/Coot calculation. Native helpers, f″/scattering and scientific-session
+owners remain byte-identical to the preceding qualified package.
 
-The focused command is `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src
+The source command is `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src
 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest
--q -p no:cacheprovider tests/test_metal_storage_budget.py
- tests/test_metal_child_process.py tests/test_metal_child_outputs.py
- tests/test_metal_storage.py`. The final source/installed profile selects the new
-budget module. Exact commands, logs, hashes and report are under the established
-local Alder artifact anchors `storage-budget-20261121-01/`, `-02/` and `-03/`; the last
-owns `review.html`, `measurements.json` and passing `validation.json`.
+-q -p no:cacheprovider tests/test_metal_budgeted_child.py
+ tests/test_metal_storage_budget.py tests/test_metal_child_process.py
+ tests/test_metal_retained_execution.py`. Installed qualification selects the new
+caller tests. Exact commands, logs, unchanged-owner hashes, manifests and report
+are under the local Alder artifact anchor `budgeted-child-20261121-01/`.
 
-**Measured synthetic example:** the admitted 1 MB reservation initially charges
-1,003,080 B including existing files. After a simulated child stops, charge is
-1,047,863 B. Settlement retains all **44,783 B** of child files and charges
-48,250 B for the complete store, with no remaining allowance. A subsequent
-incomplete child retains 1 MB and charges 1,065,064 B. The store reopens after its
-original path is gone. These are logical-byte observations from one small proof,
-not measured Phenix peak usage or a 100/200-dataset capacity result.
+**Measured simulated caller:** a 300 MiB store grants **269,484,032 B** (the existing
+256 MiB parent allowance plus 1 MiB declared child headroom) before expansion.
+This is reserved capacity, not actual file usage. After the simulated worker stops,
+the complete store contains **48,955 B**, including all **45,480 B** of child files;
+its allowance is settled. A second launch interrupted before process ownership
+retains its full allowance plus partial inputs (89,218 B observed). A third launch
+is denied without creating an attempt. After relocation, the stopped child and
+held interrupted reservation reopen correctly. Zero outputs are deleted.
 
-**Files/schemas/compatibility:** add `metal/storage_budget.py`, its focused test
-module and maintained storage/architecture/roadmap/handoff/changelog text. New
-v1 configuration, mutable grant/settlement ledger and inspection kinds are
-separate from existing trial/publication records; no old schema migrates. Every
-operation uses an independently pinned budget identity and store-relative child
-paths. The API preserves all grants and settlement evidence. The installed
-wheel, synthetic runs and reports stay outside Git; owned temporary staging is
-removed. Scientific originals, historical failures and shared environments stay
-unchanged. The source/installed tests use simulated owned processes, not native
-crystallographic validation.
+**Files/schemas/compatibility:** two runtime modules (`metal/child_process.py` and
+`metal/storage_budget.py`), one new test module and maintained documentation.
+The optional create-only `storage-admission.json` uses a new
+`metal-fdp-child-storage-admission` v1 kind, binding the original grant, request,
+relative child and declared allowance. Existing request/outcome/scientific-review
+versions do not change. The return value adds a storage state only for an explicit
+budget; cold process inspection remains its established process-only contract.
+Read the budget owner for current space accounting. Generated fixtures, packages,
+logs and reports remain outside Git; owned temporary staging is removed. Existing
+scientific data and shared environments are unchanged.
 
-**Next:** integrate admission deliberately at the existing scheduling/parent
-scratch boundary, measuring peak native scratch before claiming campaign
-capacity. A qualified disposable increment profile is still required before any
-retirement. The present API neither launches nor blocks unrelated writers;
-external scratch is not automatically covered. It scans the declared store and
-rewrites a bounded ledger (4,096 reservations; 100,000 inventory entries), so
-large-campaign throughput remains unqualified. A04 remains partial; A01's FT
-geometry remains unresolved and A02 remains gated. Willow W194 named-state
-comparison remains a later A01 input; paired-P width alone is not bending.
+**Next:** qualify an outer retained-parent reservation and the existing campaign
+caller without releasing shared space while children still use it. Measure native
+peak scratch and account for audited-session pre/post work before any capacity
+claim. A disposable increment profile and regeneration proof remain prerequisites
+for retirement. A04 remains partial; FT geometry leaves A01 partial and A02 gated.
+Willow W194 comparison remains a later A01 input; paired-P width alone is not bending.
 
-The preceding compact-publication checkpoint `9d1628c2` remains qualified by
-46 focused, 13 final and 13 installed checks plus exact saved Ag4 readback. Its
-142,395 B archive and 1,679 B receipt reference 2,366,158 B of protected evidence;
-none of those originals was retired. See `audited-publication-20261121-01/` and
-[the publication contract](metal-campaign-storage.md#compact-audited-child-publication-with-explicit-protected-references).
-Retained execution/cold review remains qualified at `134d647a`. No scientific
-acceptance or automatic pruning follows from these engineering controls.
+The underlying reservation owner is delivered at `13596fbc`: 77 focused, 31 final
+and 31 installed checks, with report/evidence in `storage-budget-20261121-01/`
+through `-03/`. It uses the existing lock and durable writer, charges observed
+bytes plus full held allowances, and never expires a claim by age/PID. Its bounded
+ledger/scan does not establish large-campaign throughput. Earlier compact
+publication `9d1628c2` and retained execution `134d647a` remain qualified; no original
+scientific node was retired. See the [storage contract](metal-campaign-storage.md).
 
 ## A04 supporting checkpoint: explicit offline session review
 

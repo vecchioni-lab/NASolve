@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Admit the existing one-shot metal child through an explicit storage budget
+
+- Add optional Python `run_child(storage_budget=...)` admission after ordinary
+  validation but before parent expansion and native launch. Require a shared
+  filesystem and explicit allowance covering parent space and known input copies.
+- Settle only after verified stopped outcome/parent closure; preserve interrupted,
+  uncertain or unrecorded children and all files. A busy settlement lock reports
+  a held allowance without hiding the completed native result.
+- Add a separate v1 storage-admission receipt; preserve no-budget behavior,
+  request/outcome versions, native helpers, scientific policy and CLI defaults.
+  Budgeted retained parents and whole audited/campaign lifetimes remain separate.
+- Qualify 83 focused and 21 relocated installed tests plus a simulated normal
+  caller/interrupted launch measurement. Preserve initial relocation-fixture
+  failure evidence; no full suite, Phenix/Coot calculation or pruning.
+
 ### Reserve cooperative space for explicit frozen metal children
 
 - Add an opt-in budget API using the existing process lock and durable record

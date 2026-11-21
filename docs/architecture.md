@@ -2151,8 +2151,11 @@ held child allowances, settles only against the existing verified-stopped proces
 owner, and never deletes files or expires a claim by age/PID. Configuration,
 grant/settlement ledger and inspection use separate v1 kinds with a pinned store
 identity and relative child paths. This conservative logical-byte accounting is
-not an OS quota; scheduling integration, external scratch and native capacity
-remain separate. See [cooperative reservations](metal-campaign-storage.md#cooperative-child-space-reservations).
+not an OS quota. Explicit `run_child(storage_budget=...)` now reserves before
+one-shot parent expansion/native work on the same filesystem and settles only
+after verified stop; no-budget behavior is unchanged. Interrupted/uncertain work
+keeps its allowance. Budgeted outer retained lifetimes, audited-session pre/post
+work, general scheduling and native capacity remain separate. See [cooperative reservations](metal-campaign-storage.md#cooperative-child-space-reservations).
 
 The separate `metal.child_process` route composes protected-parent transport and
 shared native process ownership for one explicit fresh invocation. Prepared bytes,
