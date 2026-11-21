@@ -4,7 +4,7 @@
   "updated": "2026-11-21",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "bf12b2adbe65d8a357b54572786b33a9e0f17b3d",
+  "audited_code_commit": "8cbab5c6a6ddd7a775ecb3c93b147ff766f84822",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -265,14 +265,15 @@
         "W202 qualifies installed Cedar C507 live collectors and current topology reader with authenticated four-control source inputs. A fresh dry-run and failure retain W200 prepared state and candidate diffraction; 84 cold checks. Private builder and ordinary integration remain open.",
         "W203 binds the complete typed report, exact parent and ordered separate restraint/control bytes into a detached immutable object through existing Cedar readers. All four controls and repeated source checks are explicit; source/installed/native-Python readback agrees. No interpretation or chemical permission is added.",
         "W204 composes installed Cedar C509 with W203 binding and W200 transfer. One actual Phenix 2.2.1-6174 dry-run and deliberate pre-transfer failure pass 99 cold checks. All three atom maps, final model/geometry/fixed inputs/native selection and full candidate diffraction reproduce W202 exactly; all four controls False, five outer hooks and Cedar service binding restored. Zero refinements. Initial import-only failure preserved.",
-        "W205 joins C510 source chemistry to W204 transfer in one actual Phenix 2.2.1-6174 interpretation: 42 original per-site definitions, eight families and 3451 retained terms MATCH before candidate movement; exact prior final geometry/model/scattering/fixed inputs and all candidate diffraction snapshots survive. One completed dry-run and one source-byte rejection before interpretation/transfer pass 72 cold checks. Profile/server/outer hooks restored, children stopped, zero refinements. All 42 sites retain the explicit missing full formal-charge-readback limitation."
+        "W205 joins C510 source chemistry to W204 transfer in one actual Phenix 2.2.1-6174 interpretation: 42 original per-site definitions, eight families and 3451 retained terms MATCH before candidate movement; exact prior final geometry/model/scattering/fixed inputs and all candidate diffraction snapshots survive. One completed dry-run and one source-byte rejection before interpretation/transfer pass 72 cold checks. Profile/server/outer hooks restored, children stopped, zero refinements. All 42 sites retain the explicit missing full formal-charge-readback limitation.",
+        "W206 adds opt-in original native-observation bytes to the existing immutable input bundle. Unique declared source role/anchor/path, non-aliasing, exact size/hash and repeated reads are checked; default None preserves earlier behavior. 191 source/191 fresh relocated installed tests and 16 actual-source checks each in source/installed Python3.12 and Phenix3.11 pass with identical outputs. C510 consumes detached bytes after temporary input removal and still refuses substitution. No new native call or runtime authority."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "W206: audit the existing proposed versioned parent-preparation execution route against the qualified C510/W203/W200 composition and actual retained-input lifetime owner. Agree one maintained receiving boundary with Cedar before implementation. Preserve old helper bytes/readers/defaults, geometry-parent versus diffraction-candidate roles and the required early hook. No second interpreter or generic callback wrapper; ordinary authority remains off.",
+      "next_action": "W207: review a genuinely new controlled physical question or implement the next agreed ordinary receiving boundary; do not repeat W197 just to exercise identical chemistry. Keep ordinary immutable round inputs and existing process ownership; compressed/budgeted sessions are separate contracts. Preserve old execution policies and parent/candidate roles. First ordinary path still needs the explicit early parent hook and typed geometry-only parent role, with C510 source proof and W206 non-None original bytes required.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -338,14 +339,15 @@
         "E_TYPED_LIVE_COLLECTOR",
         "E_TYPED_PREPARATION_INPUT_BINDING",
         "E_NATIVE_PARENT_SERVICE_COMPOSITION",
-        "E_SOURCE_CHEMISTRY_TRANSFER"
+        "E_SOURCE_CHEMISTRY_TRANSFER",
+        "E_ORIGINAL_NATIVE_OBSERVATION_BINDING"
       ],
       "last_audit": {
         "date": "2026-11-21",
         "reviewer": "Linden",
-        "human_update": 205,
-        "code_commit": "bf12b2adbe65d8a357b54572786b33a9e0f17b3d",
-        "scope": "Same-interpretation original source chemistry and candidate transfer/diffraction parity; maintained ordinary execution/lifetime route remains open"
+        "human_update": 206,
+        "code_commit": "8cbab5c6a6ddd7a775ecb3c93b147ff766f84822",
+        "scope": "Maintained opt-in original native bytes, installed relocation and receiving-owner audit; ordinary execution still separate"
       }
     },
     {
@@ -407,14 +409,15 @@
         "W202 qualifies installed Cedar C507 live collectors and current topology reader with authenticated four-control source inputs. A fresh dry-run and failure retain W200 prepared state and candidate diffraction; 84 cold checks. Private builder and ordinary integration remain open.",
         "W203 binds the complete typed report, exact parent and ordered separate restraint/control bytes into a detached immutable object through existing Cedar readers. All four controls and repeated source checks are explicit; source/installed/native-Python readback agrees. No interpretation or chemical permission is added.",
         "W204 composes installed Cedar C509 with W203 binding and W200 transfer. One actual Phenix 2.2.1-6174 dry-run and deliberate pre-transfer failure pass 99 cold checks. All three atom maps, final model/geometry/fixed inputs/native selection and full candidate diffraction reproduce W202 exactly; all four controls False, five outer hooks and Cedar service binding restored. Zero refinements. Initial import-only failure preserved.",
-        "W205 joins C510 source chemistry to W204 transfer in one actual Phenix 2.2.1-6174 interpretation: 42 original per-site definitions, eight families and 3451 retained terms MATCH before candidate movement; exact prior final geometry/model/scattering/fixed inputs and all candidate diffraction snapshots survive. One completed dry-run and one source-byte rejection before interpretation/transfer pass 72 cold checks. Profile/server/outer hooks restored, children stopped, zero refinements. All 42 sites retain the explicit missing full formal-charge-readback limitation."
+        "W205 joins C510 source chemistry to W204 transfer in one actual Phenix 2.2.1-6174 interpretation: 42 original per-site definitions, eight families and 3451 retained terms MATCH before candidate movement; exact prior final geometry/model/scattering/fixed inputs and all candidate diffraction snapshots survive. One completed dry-run and one source-byte rejection before interpretation/transfer pass 72 cold checks. Profile/server/outer hooks restored, children stopped, zero refinements. All 42 sites retain the explicit missing full formal-charge-readback limitation.",
+        "W206 adds opt-in original native-observation bytes to the existing immutable input bundle. Unique declared source role/anchor/path, non-aliasing, exact size/hash and repeated reads are checked; default None preserves earlier behavior. 191 source/191 fresh relocated installed tests and 16 actual-source checks each in source/installed Python3.12 and Phenix3.11 pass with identical outputs. C510 consumes detached bytes after temporary input removal and still refuses substitution. No new native call or runtime authority."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "W206: audit the existing proposed versioned parent-preparation execution route against the qualified C510/W203/W200 composition and actual retained-input lifetime owner. Agree one maintained receiving boundary with Cedar before implementation. Preserve old helper bytes/readers/defaults, geometry-parent versus diffraction-candidate roles and the required early hook. No second interpreter or generic callback wrapper; ordinary authority remains off.",
+      "next_action": "W207: review a genuinely new controlled physical question or implement the next agreed ordinary receiving boundary; do not repeat W197 just to exercise identical chemistry. Keep ordinary immutable round inputs and existing process ownership; compressed/budgeted sessions are separate contracts. Preserve old execution policies and parent/candidate roles. First ordinary path still needs the explicit early parent hook and typed geometry-only parent role, with C510 source proof and W206 non-None original bytes required.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -523,14 +526,15 @@
         "E_TYPED_LIVE_COLLECTOR",
         "E_TYPED_PREPARATION_INPUT_BINDING",
         "E_NATIVE_PARENT_SERVICE_COMPOSITION",
-        "E_SOURCE_CHEMISTRY_TRANSFER"
+        "E_SOURCE_CHEMISTRY_TRANSFER",
+        "E_ORIGINAL_NATIVE_OBSERVATION_BINDING"
       ],
       "last_audit": {
         "date": "2026-11-21",
         "reviewer": "Linden",
-        "human_update": 205,
-        "code_commit": "bf12b2adbe65d8a357b54572786b33a9e0f17b3d",
-        "scope": "Same-interpretation original source chemistry and candidate transfer/diffraction parity; maintained ordinary execution/lifetime route remains open"
+        "human_update": 206,
+        "code_commit": "8cbab5c6a6ddd7a775ecb3c93b147ff766f84822",
+        "scope": "Maintained opt-in original native bytes, installed relocation and receiving-owner audit; ordinary execution still separate"
       }
     },
     {
@@ -5053,6 +5057,41 @@
         }
       ],
       "cedar_code_commit": "6842107c122ce15e5042e92687730c7b23c04020"
+    },
+    "E_ORIGINAL_NATIVE_OBSERVATION_BINDING": {
+      "kind": "opt_in_original_native_observation_binding",
+      "date": "2026-11-21",
+      "human_update": 206,
+      "code_commit": "8cbab5c6a6ddd7a775ecb3c93b147ff766f84822",
+      "reference": "docs/topostitch-preview.md#bind-the-original-native-observation-w206",
+      "result": "W206 adds opt-in original native-observation bytes to the existing immutable input bundle. Unique declared source role/anchor/path, non-aliasing, exact size/hash and repeated reads are checked; default None preserves earlier behavior. 191 source/191 fresh relocated installed tests and 16 actual-source checks each in source/installed Python3.12 and Phenix3.11 pass with identical outputs. C510 consumes detached bytes after temporary input removal and still refuses substitution. No new native call or runtime authority.",
+      "limitation": "Detached source bytes only; chemistry revalidation still belongs to Cedar at use. Default None does not request C510 chemistry comparison. No input lease, storage grant, native interpretation, new execution policy or scientific acceptance.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w206-source-observation-binding/install/installed-check.json",
+          "sha256": "c15249c2dbb7ee44cece65ecceaa49a46584d56c21a5451fc233269309c6d5bd",
+          "size": 899
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w206-source-observation-binding/source-review.json",
+          "sha256": "367d8aed7e0b9b9aa64eef0d679a5ab415ca7411463b501ca79ceeb75905706e",
+          "size": 3060
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w206-source-observation-binding/installed-review.json",
+          "sha256": "72f973d688b9f25568dba918dfe7a22f043c2cd7214bca46a2c35e72d6087bf1",
+          "size": 3063
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w206-source-observation-binding/python311-review.json",
+          "sha256": "721e98593cd0dce2211893a8d3bd129ca832a0d46878b299ab468229955eb6f5",
+          "size": 3071
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -5218,8 +5257,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 205,
-    "next": 206,
+    "current": 206,
+    "next": 207,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -6259,6 +6298,12 @@
         "title": "Join original source chemistry to candidate coordinate transfer",
         "state": "RECORDED",
         "code_commit": "bf12b2adbe65d8a357b54572786b33a9e0f17b3d"
+      },
+      {
+        "number": 206,
+        "title": "Bind original native observation bytes with preparation inputs",
+        "state": "RECORDED",
+        "code_commit": "8cbab5c6a6ddd7a775ecb3c93b147ff766f84822"
       }
     ]
   },

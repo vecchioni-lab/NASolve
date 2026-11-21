@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current audit/Willow implementation: W205, 2026-11-21.** The installed one-shot preparation context now
+**Current audit/Willow implementation: W206, 2026-11-21.** The installed one-shot preparation context now
 carries admitted candidate → original parent geometry → candidate coordinates
 through the installed Cedar C510 service in a source-qualified diagnostic builder. No ordinary execution-policy or
 CLI activation follows. S04/S05/S06 remain PARTIAL.
@@ -23,6 +23,7 @@ The longer pre-consolidation handoff is preserved at Git `86e7489c2314f738bd7fe1
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
+| W206 original native bytes | Opt-in detached original source observation; 191 source/191 installed and 16 real-source checks × three environments | Explicit native use and ordinary receiving route; no lifetime grant |
 | W205 source chemistry + transfer | 42 source site definitions/eight families/3451 retained terms; 72 cold checks; exact post-transfer state/diffraction | Full formal-charge readback and maintained ordinary execution/lifetime route |
 | W204 native service composition | C509 + W203/W200; 99 cold checks, actual dry-run/failure; exact W202 prepared state and diffraction | Original-source chemical admission and ordinary lifetime/execution route |
 | W203 typed source binding | Immutable parent/report and ordered separate PHIL roles; 175 source/175 installed; real-source 3.12/3.11 parity | Concrete Cedar service and full chemical/ordinary admission |
@@ -46,15 +47,17 @@ No returned boolean/None or coordinate mapping alone is chemical authority.
 
 ## Next bounded work
 
-**W206:** audit the existing proposed versioned parent-preparation execution
-route against the qualified C510/W203/W200 composition and actual retained-input
-lifetime owner. Agree one maintained receiving boundary with Rowan before code.
-W205 now joins original-source per-site definitions and all eight restraint
-families to exact retained geometry/scattering/candidate diffraction in one
-interpretation. Keep formal-charge limitations and source-versus-experimental
-correctness visible. Ordinary authority remains off. Preserve old helper bytes,
-readers/defaults, explicit parent/candidate roles and the early preparation hook;
-no second interpreter, private-worker wrapper or redundant generic callback layer.
+**W207:** choose a genuinely new controlled physical question or implement the
+next agreed ordinary receiving boundary; avoid repeating W197 merely to exercise
+the same chemistry. W206 now supplies detached original native bytes to C510's
+existing keyword. The ordinary receiver must require non-None bytes and source
+MATCH before movement. Normal immutable round inputs keep their existing process
+ownership. Alder's budgeted frozen-metal reviews/grants and Cedar's counted
+prepared/native scopes are not interchangeable generic input leases. Future
+compressed/budgeted non-metal sessions need a separate explicit contract; they
+do not silently become an initial immutable-round prerequisite. Existing execution
+still lacks a typed geometry-only parent and early installed hook. Keep old
+policies/defaults unchanged and coordinate shared changes with Rowan.
 
 
 The shared collector boundary is agreed and tested; the ordinary execution
@@ -116,6 +119,9 @@ for repeated Rfree-guided tuning. No noisy phosphate detector is qualified.
 
 ## Validation and scientific interpretation
 
+- W206: 191 focused source/191 freshly relocated installed; 16 actual-source
+  cold checks each in source/installed Python 3.12 and Phenix Python 3.11, identical
+  output. Original temporary input/build/install paths removed. No native call.
 - W205: 72 cold checks; one Phenix 2.2.1-6174 complete dry-run and one
   source-byte rejection before interpretation/transfer. Original 42 definitions
   match, full prior final state/diffraction retained; profile/server/outer hooks
@@ -180,7 +186,8 @@ B2/B3 phosphate angle remains ~76.71°; the original ~4.79 Å maximum start
 motion is not the residual displacement. All 859 atoms could refine in those
 older controls. Manifest and viewer evidence stay local.
 
-W198–W205 add no geometry effect to illustrate. W205 source-chemistry/transfer
+W198–W206 add no geometry effect to illustrate. W206 binding/installation
+receipts are under `NASolve:branch-artifacts/willow/w206-source-observation-binding/`. W205 source-chemistry/transfer
 receipts are under `NASolve:branch-artifacts/willow/w205-source-chemistry-transfer/`. W204 local receipts are under
 `NASolve:branch-artifacts/willow/w204-parent-service/`; see the
 [service composition audit](topostitch-periodic.md#w204--compose-the-installed-cedar-parent-service). W203 cold/installation receipts

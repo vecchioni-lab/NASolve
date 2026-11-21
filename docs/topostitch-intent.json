@@ -1709,7 +1709,7 @@
       "Real ordinary X11_22 ancestry does not supply the independently checked source pair/stack and chemistry authority of the canonical diagnostic.",
       "A W200 callback contract alone is not a maintained live Phenix builder, native source qualification or whole-session lifetime proof."
     ],
-    "next_gate": "W206: audit the existing proposed versioned parent-preparation execution route against the qualified C510/W203/W200 composition and actual retained-input lifetime owner. Agree one maintained receiving boundary with Cedar before implementation. Preserve old helper bytes/readers/defaults, geometry-parent versus diffraction-candidate roles and the required early hook. No second interpreter or generic callback wrapper; ordinary authority remains off.",
+    "next_gate": "W207: review a genuinely new controlled physical question or implement the next agreed ordinary receiving boundary; do not repeat W197 just to exercise identical chemistry. Keep ordinary immutable round inputs and existing process ownership; compressed/budgeted sessions are separate contracts. Preserve old execution policies and parent/candidate roles. First ordinary path still needs the explicit early parent hook and typed geometry-only parent role, with C510 source proof and W206 non-None original bytes required.",
     "live_collector_qualification": {
       "human_update": 202,
       "reference": "docs/topostitch-periodic.md#w202--qualify-typed-controls-and-the-maintained-live-collector",
@@ -1761,7 +1761,20 @@
       "snapshot_only": true,
       "runtime_authority": false,
       "chemical_admission": false,
-      "reference": "docs/topostitch-preview.md#bind-typed-native-preparation-inputs-w203"
+      "reference": "docs/topostitch-preview.md#bind-typed-native-preparation-inputs-w203",
+      "optional_source_observation": {
+        "human_update": 206,
+        "code_commit": "8cbab5c6a6ddd7a775ecb3c93b147ff766f84822",
+        "argument": "include_source_native=True",
+        "field": "source_native_json",
+        "default": null,
+        "role": "literal_na_input_directory:native/native_validation.json",
+        "validation": "Unique role, declared anchor, confined non-aliased path, exact size/hash, repeated path/byte/report snapshot",
+        "consumer": "Existing C510 source_native_json keyword; Cedar revalidates at use",
+        "source_chemistry_required_rule": "Explicitly require non-None bytes; C510 None opts out of comparison",
+        "runtime_authority": false,
+        "reference": "docs/topostitch-preview.md#bind-the-original-native-observation-w206"
+      }
     },
     "concrete_service_success_cases": [
       "Exactly one observed process_pdb_files call consumes bound parent bytes for geometry on the original manager.",
@@ -1822,6 +1835,15 @@
       "ordinary_runtime_authority": false,
       "scientific_acceptance": false,
       "cedar_code_commit": "6842107c122ce15e5042e92687730c7b23c04020"
+    },
+    "lifetime_receiving_audit": {
+      "date": "2026-11-21",
+      "human_update": 206,
+      "ordinary_inputs": "Keep normal immutable round inputs and existing AutoRefine/process ownership for the first opt-in route.",
+      "counted_scope": "refinement_counted.refinement_command retains a counted prepared view; cif_counted_refinement owns native counted scope. Neither is a generic input session grant.",
+      "alder_scope": "metal.child_session.run_audited_child and budget settlement consume metal-specific frozen-state review/failure evidence; never substitute Willow receipts or copied grants.",
+      "future_archive_scope": "Compressed/budgeted non-metal sessions need a separate typed contract and owner composition; not an implicit prerequisite for ordinary immutable inputs.",
+      "shared_owner_agreement": "Rowan and Hazel consulted; no new lifetime engine or generic quota claim."
     }
   }
 }
