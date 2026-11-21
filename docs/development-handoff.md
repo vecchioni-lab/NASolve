@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C516 preparing a bent model inside the Phenix worker — Rowan**.
+Updated **2026-11-21, C517 measuring the diffraction response to a flatter arm — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -790,6 +790,27 @@ zero native workers. It saved only the compact measurements in
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_refinement_plane_departures.py tests/test_cif_plane_coverage.py tests/test_cif_doctor_run.py tests/test_cif_doctor_cli.py
 python -B c515_arm_directions.py WORK CEDAR_SHELF NEW_OUTPUT.json
 ```
+
+C517 used the four existing original and base-only PDU/5PC models to ask
+how much calculated scattering changes when the arm moves. In memory, the
+three pendant carbons were rotated together about their attachment until the
+tip reached the ring plane. All distances within the arm were preserved.
+At the same coordinates the written arm B factors gave 59.7% (PDU) and
+58.6% (5PC) of the complex structure-factor response obtained by assigning
+those three atoms their own sugar C1′ B. In the uniform-B controls the
+two calculations agreed. For PDU the 0.584 Å tip motion changed calculated
+whole-model amplitudes by 0.204% RMS relative to model RMS amplitude. For
+5PC the 0.341 Å motion gave 0.124%. Both use the exact 2,146 work indices;
+all 127 measured free indices were excluded. This is a model sensitivity
+measurement. The data's preferred orientation remains unresolved.
+
+The native calculation reproduced the atom-only change from independent
+whole-model sums and the expected B attenuation on every index. The three
+PDB decimals shift the six-ring 5PC tip height from 0.34326 to 0.34112 Å
+in the base-only model. The higher-precision coordinates reproduce the
+existing C515 result. Full command and compact record are under
+`arm_motion_work_scattering_sensitivity_2026_11_21`. No new refinement,
+checkpoint, schema or product code was needed.
 
 **Q06.** Fresh G:5PC completed both construction and ordinary five-cycle Phenix
 refinement. Its automatically corrected C8–C9 target survived in the native

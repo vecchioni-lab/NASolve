@@ -121485,5 +121485,15 @@
     "all_original_flags":3236, "measured_free":127, "selected_checkpoint":"postmr",
     "local_reproduction": {"anchor":"NASolve_checkout","path":"branch-artifacts/cedar/c513-pdu-displacement","measurements":"science.json",
       "commands":["python -B c513_pdu_transfer.py HISTORY NEW_DIRECTORY NAREST_ROOT PHENIX_ROOT run","python -B c513_pdu_science.py HISTORY CASE NEW_JSON"]}
+  },
+  "arm_motion_work_scattering_sensitivity_2026_11_21": {
+    "cedar": 517, "program": "Phenix 2.2.1-6174", "calculation": "direct n_gaussian model structure factors",
+    "measured_work": 2146, "excluded_measured_free": 127, "highest_resolution_A": 4.016875, "refinement_cycles": 0,
+    "scope": "Rigidly rotate three carbons about the ring attachment to put the tip into its six-atom plane. Compare the identical motion at its written and sugar C1-prime B values.",
+    "columns": ["component", "starting_case", "tip_motion_A", "complex_RMS_response_at_written_B_over_sugar_B", "whole_model_amplitude_RMS_change_fraction"],
+    "rows": [["PDU","uniform",0.17496,1,0.00097],["PDU","base_only",0.58374,0.59738,0.00204],["5PC","uniform",0.13050,1,0.00075],["5PC","base_only",0.34145,0.58619,0.00124]],
+    "local_reproduction": {"anchor":"NASolve_checkout", "path":"branch-artifacts/cedar/c517-arm-scattering/science.json", "sha256":"7c3a2985fc297243bd377d29b5f0e40049d75765bfac70cf11744779bcb7cdc2",
+      "runner_sha256":"967f3b257733f2eeeaa1b9f8d2258b682dbb7f020a417a948799556638a17053", "command":"phenix.python -B c517_arm_scattering.py CEDAR_SHELF WORK NEW_OUTPUT.json"},
+    "fit_to_observed_values": false, "scientific_approval": false
   }
 }
