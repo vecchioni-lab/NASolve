@@ -66,8 +66,11 @@ O3′–P–OP2 angle recovered from 82.8° to 106.2° against 108°. A new Phen
 reading of the rounded PDB preserved all eight restraint categories and the
 211 frame terms. C481–C483 carried that separate construction through
 ReadySet and five diffraction cycles. Both links finished within 0.004 Å
-of target and two close contacts remain. The next Q07 gate is ordinary
-placement and registered refinement on the same scaffold. Ordinary 1AP:T and
+of target and two close contacts remain on that historical host. C486 recovers
+both partners from the Coot model. C488 preserves the B values of the selected
+ordinary parent at all ten previously reset sites. After five cycles the two
+links are 1.611 and 1.604 Å and three close contacts remain. The next Q07 gate
+is invocation by ordinary mutation and registered refinement on the same scaffold. Ordinary 1AP:T and
 S6G:C now pass through ReadySet and five Phenix cycles. In 1AP the local plane
 covers both amino groups. In S6G only the shared pair plane includes sulfur.
 On the thirteen-component model the corrected PDU, 5PC and DF restraints now
@@ -1660,7 +1663,18 @@ that isolated C/A/G controls qualify a PNA polymer.
 copies are not a connected polymer or physical stacking proof. Construct a linked
 10C control through graph-derived ports, source-preserving placement, both native
 junctions, exact NAR membership and fresh derivative/geometry checks. Consider
-9V9 only after checking its actual source, not from a guessed name/family label.
+9V9 was checked against its actual source in C486/C489. Its flagged OP3 is
+a terminal neutral hydroxyl. Standard eLBOW introduced an unlisted sugar
+O4′–base C4 bond; the existing C116 row ordering produced an independently
+qualified isolated dictionary and retained all four source sugar centres
+during base placement. The proposed bridge exceeded the 2 Å base-movement
+limit. The next held-out check is the two native junctions and the correct
+NARestraints pair on this sulfur-bearing base.
+
+The source flag for 10C names a doubly bonded O3P with no hydrogen. LCA and
+LCC flag OP2 while a distinct protonated OP3 remains unflagged. Automatic
+construction requests review on all three. ATL, 9V9, LCG and TLN passed this
+source flag check. Five other catalogue rows need a different topology.
 
 Done when the held-out code uses the same maintained rules as ATL, including
 negative stereochemical and incompatible-host controls, with no code-specific

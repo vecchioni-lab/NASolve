@@ -5381,6 +5381,22 @@ report and model offline and refuses incomplete, extra, forged or mismatched-pol
 capsules. Existing compatible-host capsules remain readable with their original
 policy. No public CLI, production default, checkpoint migration or adoption changes.
 
+For an internal substitution, `prepare_base_anchored_furanose_from_model`
+takes the same five inputs, the site and the PostMR report. The ordinary
+phosphate audit supplies the upstream O3′ and the downstream P, including
+their residue identities, across two observed links in the asymmetric unit.
+The placement binds that model and its terminal-phosphate intent. Reopening
+it repeats the audit. A chain end or a partner in another crystal image needs
+its own declared chemistry. The earlier explicit-context API remains available.
+
+Omitting `leaving_atom` asks the source which oxygen departs. All four
+phosphate oxygens must carry known flags. Exactly one must be flagged, with
+a single bond to P, neutral charge and one attached neutral H or D. The ester
+oxygen and the two retained nonbridging oxygens are protected. The twelve
+NARestraints rows labelled LNA supplied four consistent assignments, three
+source conflicts and five graphs outside the current profile. The ordinary
+PostMR mutation command still needs a route to this Python placement API.
+
 **Mixed-scaffold evidence.** ATL replaces background DT at A:11, paired with DA
 B:5; the original eight requested pairs remain in the same 42-site scaffold. All
 bystander atoms are unchanged. ATL retains its bridge, four source sugar centres

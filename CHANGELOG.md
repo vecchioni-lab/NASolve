@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Placing a locked sugar between its observed neighbours
+
+- The base-anchored placement API can now read both covalent partners from the
+  host model and its PostMR phosphate intent. It records the exact model and
+  checks those links again when the placement is reopened.
+- The same route can identify the departing phosphate oxygen from the source
+  dictionary. It requires one flagged, singly bonded neutral hydroxyl on the
+  phosphate. OP1, OP2 and their O1P/O2P aliases stay on the model. Disputed
+  sources remain available for review. Existing placement records still open.
+
 ### Inspecting a refined base and the coordinate weights Phenix chose
 
 - `nasolve cif-doctor assess --run RUN --checkpoint ID --refined-planes`

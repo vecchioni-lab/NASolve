@@ -120230,5 +120230,144 @@
       "c485-refinement-recap/logs.json": "ba383b344e1e2bdb35fae957d244bfaf5af9f12760b764d4b9f7dd7c96a430b0"
     },
     "next": "Connect verified locked-sugar placement and starting displacement to ordinary construction. Keep the PDU plane experimental."
+  },
+  "ordinary_locked_placement_host_displacement_and_heldout_generation_2026_11_21": {
+    "owner": "Rowan",
+    "method": "Host-data and isolated Phenix 2.2.1-6174 controls. One selected registered twelve-change root. Thirteenth change built separately.",
+    "construction": {
+      "policy": "cif-model-linked-base-anchored-furanose-v1",
+      "source_leaving_tag": "_chem_comp_atom.pdbx_leaving_atom_flag",
+      "placement_model": "0822574036e2e8e35d3da961e3afe3741e55f2b3776ba035165d8aa2055563a3",
+      "seed_model": "5aba995bed8b26517b61fcdd888592d1e7417cb78d21609264834fe9d8630d0d",
+      "neighbours": [
+        "DG A:10 O3′",
+        "DZ A:12 P"
+      ],
+      "installed_wheel": "86b16c27f9e8f36243ad0630796149f9aa68047d5273ccafd3e14f65a68bf558",
+      "package_files": 318,
+      "reopened_after_relocation": true
+    },
+    "sources": {
+      "workbook": "94a66af42081188fd95f3fdcbe04cb01bed8f1826772597272320a8b4c0433b2",
+      "flag_consistent": {
+        "ATL": "OXT",
+        "9V9": "OP3",
+        "LCG": "OP3",
+        "TLN": "OP3"
+      },
+      "conflict": {
+        "LCA": "protected OP2 flagged; protonated OP3 unflagged",
+        "LCC": "protected OP2 flagged; protonated OP3 unflagged",
+        "10C": "O3P flagged; source declares a double P=O bond and no attached hydrogen"
+      },
+      "outside_profile": [
+        "LKC",
+        "ULF",
+        "UMX",
+        "URX",
+        "UVX"
+      ],
+      "scope": "Source assignment only for the panel."
+    },
+    "ATL_B_controls": {
+      "shared": "Five cycles, original 2273 measured intensities and sigmas, 3236 matching Free-R flags, 211 frame terms, six protected angles, 38 backbone links, four sugar stereocentres and labelled phosphate order retained in both.",
+      "experimental_median": {
+        "changed": "Thirteen new sugar/phosphate B values changed from 20 to 239.94, the median of eleven host backbone atoms; nine distinct base B values preserved.",
+        "model": "bc71a7ec3c985fa03b3b96e28187f53556c0c406f384f2247749bb9c30acba0e",
+        "execution": "133cec0c7355277ea4304d135d35509146325d0cb388ca39480d97090cd220ca",
+        "final_R": [
+          0.2534,
+          0.2388
+        ],
+        "final_links_A": [
+          1.6106,
+          1.6035
+        ],
+        "final_pair_A": [
+          2.6994,
+          2.9033
+        ],
+        "outward_O3_P_OP2_deg": 112.618,
+        "ATL_B_range": [
+          137.72,
+          247.7
+        ],
+        "overlaps_gt_0_4_A": 3,
+        "R_selection": "REVIEW; separate construction"
+      },
+      "registered_ordinary_host": {
+        "parent": "a3f4f183d7e0c8d45aa233d91da005904772c11ea632c73a1029928f0d638ffe",
+        "registry": "4f90c636ca40d4ed425c7ff5e35801078f5057c7918dd3e2412ee66a1cde7649",
+        "selected_node": "postmr",
+        "changed": "All 869 Cartesian positions and occupancies matched the separately constructed C483 endpoint; exactly 110 B values at ten host sites retained from selected parent.",
+        "model": "e96cad4972449644fd8aeaf9a133b04e779c9134fdd53c47b34d2e9a4e4658a4",
+        "execution": "40ca64df6e6d3f5d86334b4c04afc54a50cb20f01f456c78858cac0842661a4a",
+        "final_R": [
+          0.2632,
+          0.2439
+        ],
+        "final_links_A": [
+          1.6112,
+          1.6036
+        ],
+        "final_pair_A": [
+          2.7079,
+          2.9691
+        ],
+        "outward_O3_P_OP2_deg": 112.442,
+        "ATL_B_range": [
+          180.71,
+          436.86
+        ],
+        "overlaps_gt_0_4_A": 3,
+        "R_selection": "REVIEW; separate construction"
+      }
+    },
+    "heldout": {
+      "code": "9V9",
+      "source": "646036e882852014640c062744bfbdbecb8f526694e67cffd9c6d7f1c42c79c4",
+      "original_atoms": 38,
+      "original_edges": 40,
+      "native_failure": "Raw eLBOW and source-selected acquisition both stopped at 5.06 Å on a non-source O4′–C4 edge.",
+      "recovered_dictionary": "559f24525238be3994a356c218a30052346d77c30b07f04fca37c93ce6cbbb15",
+      "qualification": "51d950b2f85a811a0faf8f8c4005866204dc3acac3f8ace260b2686918034370",
+      "recovery": "Existing C116 connected atom order, followed by the existing ordinary source-selected acquisition on an explicitly frozen reordered input. Isolated dictionary cross-checked against the original source.",
+      "isolated_checks": 21,
+      "incidental_optimization_convergence": "not established",
+      "placement": "a129bf67f8f05485bb28d93309b947ff627cdce243f85bcc2fc4bdbd17d37762",
+      "parent": "a3f4f183d7e0c8d45aa233d91da005904772c11ea632c73a1029928f0d638ffe",
+      "nonselected_lines_exact": true,
+      "sugar_hand_triples": 7,
+      "flagged_leaving": "OP3",
+      "first_junctions_A": [
+        3.7283,
+        3.5345
+      ],
+      "base_limit_A": 2.0,
+      "bridge": "Initial high-endpoint-weight fit exceeds the base-motion limit. No connected native qualification or refinement of 9V9."
+    },
+    "validation": {
+      "files": [
+        "tests/test_cif_base_anchored_furanose.py",
+        "tests/test_cif_whole_furanose.py",
+        "tests/test_cif_furanose_bridge.py",
+        "tests/test_cif_model_context.py",
+        "tests/test_cif_furanose_reaction.py"
+      ],
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider",
+      "focused": "178 passed in 53.46 s",
+      "installed": "Relocated isolated package on ordinary Coot frame, 12 real workbook sources, denied displaced package/build roots.",
+      "full": "Not run in this push."
+    },
+    "evidence_sha256": {
+      "c486-ordinary-locked-site/installed-final.json": "d9090ab62b15b5c31008c516169e32bb3626a4b627dace2b7131ff3d35761c8e",
+      "c487-sugar-displacement/attempt-002/chemistry.json": "d89253062f5084e47d9d415629390b6f1c49072fd6c11ceec1ae9369bd53cf96",
+      "c488-registered-host-locked-construction/start.json": "0c1cd68f2b5bb5a776fdfdc45dbf36117e72af36db951ef08e2635c5d63c7f02",
+      "c488-registered-host-locked-construction/attempt-001/chemistry.json": "dafd8d3981052719e720f27adecbc8fb224cfd07181a0c72aa1f2dd9ee57f454",
+      "c489-heldout-locked-source/ordinary-outcome.json": "6cb59e541963520566e1e34f532b7111657a143d7a11fd42a9c3d825ff979fc8",
+      "c489-heldout-locked-source/connected-outcome.json": "40e4d69ad77cce434bd404118cda087ccde824a804f5f3e312a8633343a9bd22",
+      "c489-heldout-locked-source/placement-intake.json": "23203e7712468088e029fbcbd3076f421ac93a361cf0bd4c59b5e4baa8a02173",
+      "c489-heldout-locked-source/placement-review.json": "a4764348996bf7806115a9ccad05b7d91fb264ca52cc4b789df868256396e953"
+    }
   }
 }

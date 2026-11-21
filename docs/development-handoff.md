@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C481–C485 mixed scaffold, PDU weight control and native refinement reports — Rowan**.
+Updated **2026-11-21, C486–C489 ordinary backbone partners, measured host B factors and held-out locked sugar — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -13,6 +13,44 @@ Focused, relocated installed, matched native and independent checks also pass.
 Software qualification does not change the scientific REVIEW or close Q06.
 
 ## Where to resume
+
+**Building ATL on the selected parent, C486–C488.** Cedar now reads both
+backbone neighbours at A:11 and the departing oxygen directly from the
+ordinary model, its phosphate intent and the source dictionary. DG A:10
+supplies O3′, DZ A:12 supplies P and ATL loses OXT. On the earlier Coot
+model the installed program reproduced the hand-declared placement and seed
+byte for byte. On the selected twelve-change PostMR parent, the same atom
+positions carried 110 different B values at ten surrounding residues. The
+older mixed control had inherited historical resets at those sites.
+
+Keeping the measured host B values gave ATL junctions of 1.611 and 1.604 Å
+after five Phenix cycles. Its two contacts to adenine were 2.708 and 2.969 Å.
+The four sugar stereocentres survived. Three overlaps exceeded 0.4 Å and the
+outgoing O3′–P–OP2 angle was 112.4° against 108°. Rwork/Rfree finished at
+0.2632/0.2439 on the original host reflections. An independent run using the
+local median B for the thirteen new sugar/phosphate atoms also left three
+overlaps. Keep the measured host B values and leave the median experimental.
+The thirteenth substitution is still a separate construction. Q07 needs an
+ordinary mutation and a registered thirteen-change refinement.
+
+**Held-out locked sugar, C489.** For 9V9, raw eLBOW and Cedar's ordinary
+dictionary acquisition both failed on a 5.06 Å O4′–C4 bond absent from the
+source. Reusing C116's connected atom ordering preserved all 38 atom identities
+and 40 source bonds. The resulting isolated dictionary passed all 21 Phenix
+checks. Base placement kept all four sugar hands and removed OP3. Its two
+backbone distances started at 3.728 and 3.535 Å. The first bridge fit exceeded
+the existing 2 Å base-movement limit. Q11 still needs a connected native
+reading and Q07 retains its ordinary ATL gate.
+
+The C486–C489 change is confined to the whole-furanose Python placement
+reader/writer, its focused test and these documents. The new placement policy
+uses the existing version 1 envelope. Historical explicit-context records
+replay without migration. The five placement, bridge, model-context and
+reaction test files passed all 178 checks; a relocated installed wheel
+reproduced the control with the old code paths inaccessible. Raw models,
+diffraction files and Phenix logs stay in the local checkout. The compact
+ledger records the exact test command, source and result fingerprints under
+`ordinary_locked_placement_host_displacement_and_heldout_generation_2026_11_21`.
 
 **PDU with equal weights, C484.** On the independent A:PDU scaffold, two
 five-cycle Phenix children used the same parent, random seed, original
