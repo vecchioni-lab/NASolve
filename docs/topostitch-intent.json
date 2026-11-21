@@ -1709,7 +1709,7 @@
       "Real ordinary X11_22 ancestry does not supply the independently checked source pair/stack and chemistry authority of the canonical diagnostic.",
       "A W200 callback contract alone is not a maintained live Phenix builder, native source qualification or whole-session lifetime proof."
     ],
-    "next_gate": "W204: qualify one Cedar-owned native interpretation/service binding consuming W203 source bytes and W200 orchestration. Capture the actual processed object and prove exactly one parent interpretation, stable manager, all four controls, preserved source chemistry and unchanged candidate diffraction. A compiled-stack collector MATCH is not full source chemical admission. Keep hooks out of the ordinary dispatcher until that evidence and actual retained-input lifetime compose; do not wrap the private worker as a second runtime.",
+    "next_gate": "W205: compose Cedar original-source chemistry evidence with the qualified C509/W203/W200 service path, then design the maintained receiving builder and retained-input lifetime boundary. Require chemical authority before ordinary transfer; compiled-stack parity alone is insufficient. Preserve current candidate diffraction and old execution policies. No second interpreter, private-worker wrapper or premature ordinary dispatcher.",
     "live_collector_qualification": {
       "human_update": 202,
       "reference": "docs/topostitch-periodic.md#w202--qualify-typed-controls-and-the-maintained-live-collector",
@@ -1756,7 +1756,7 @@
       "evidence_owner": "Explicit trusted Cedar compiler/control readers; never load code from an artifact.",
       "input_role_rule": "Ordered compiled restraint PHIL bytes and original control PHIL bytes remain separate, with all four False controls.",
       "native_service_owner": "Cedar",
-      "native_service_implemented": false,
+      "native_service_implemented": true,
       "existing_w200_builder_protocol_changed": false,
       "snapshot_only": true,
       "runtime_authority": false,
@@ -1774,6 +1774,32 @@
       "Wrong manager/model-input identity, unsupported native source or unexpected service call shape refuses.",
       "Zero/repeated/nested service calls, changed controls, stale source roles, mutated fixed context or changed candidate diffraction invalidates the preparation.",
       "Any native/service/verifier failure preserves the first error, restores only owned bindings, stops the owned child and discards manager; no rollback/retry."
-    ]
+    ],
+    "native_service_composition": {
+      "human_update": 204,
+      "status": "INSTALLED_DIAGNOSTIC_CHECKED",
+      "reference": "docs/topostitch-periodic.md#w204--compose-the-installed-cedar-parent-service",
+      "owner": "nasolve.cif_native_parent",
+      "factory": "load_native_parent_service",
+      "factory_order": "Before outer model-process hook",
+      "method": "interpret(model, bound_inputs, expected_report_sha256=..., process_options=...)",
+      "process_options": "Exact pending finalize_model keyword dictionary",
+      "result_fields": [
+        "processed",
+        "native_result",
+        "receipt"
+      ],
+      "service_module_sha256": "f967ccc8e4d539dbf2f51b2ac17c6d5bbc68e017f297fb6090cb95ee75eec13f",
+      "native_version": "Phenix 2.2.1-6174",
+      "cold_checks": 99,
+      "dry_runs": 1,
+      "injected_preparation_failures": 1,
+      "refinements": 0,
+      "source_chemical_admission": false,
+      "ordinary_dispatcher_implemented": false,
+      "runtime_authority": false,
+      "scientific_acceptance": false,
+      "cedar_code_commit": "a78931eb1962e731a7873c5acf49e67b4e241aca"
+    }
   }
 }

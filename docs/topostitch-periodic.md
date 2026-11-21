@@ -11965,3 +11965,63 @@ or redundant installation build. C507's installation is independently qualified
 by its owner and exercised here through the exact installed closure. W203 is the
 maintained source-qualified builder, before a new public execution policy.
 S04/S05/S06 remain PARTIAL. W197 remains the latest physical recovery checkout.
+
+
+## W204 — Compose the installed Cedar parent service
+
+**Question:** can installed Cedar C509 perform the actual parent interpretation
+inside the existing W203 input binding and W200 coordinate-role handoff without
+changing candidate diffraction or the retained geometry?
+
+**Result:** one complete Phenix **2.2.1-6174 dry-run** (10.09 s) and one deliberate
+post-parent/pre-transfer failure (5.56 s) pass **99 cold checks**. Zero refinement
+cycles. The three W200/W202 mapping digests, complete final model/geometry/fixed
+inputs, native moving selection and all initial/final diffraction snapshots
+reproduce exactly. All 859 atoms remain; 205 movable/654 fixed roles survive.
+All four authenticated reader controls stay False. The compiled stack retains
+1,011 simple bonds, 1,558 angles and 213 explicit requests. The original literal
+capture is a different stage (1,001 bonds/1,556 angles), not silently equated.
+
+The maintained service factory is created before the outer manager hook. Its
+single `interpret` call receives the exact pending `finalize_model` kwargs and
+W203 immutable inputs. The returned actual `processed` object feeds the existing
+live geometry reader; W200 then maps the newly observed order and transfers the
+candidate PDB decimals. The private parent-input interpreter is removed from this
+new diagnostic. Cedar restores its own server binding before transfer and at exit;
+five outer observation bindings also restore. The failure preserves its original
+error, transfers no coordinates and discards the manager with its stopped child.
+
+The first attempt omitted a lazy compiler dependency from the frozen closure and
+stopped with `ModuleNotFoundError` before any interpretation. It remains under
+`experiment/`; the corrected `attempt02/` preserves the already qualified W202
+lazy-import closure plus C509. No existing scientific run was overwritten.
+
+**Validation commands**, from the NASolve anchor:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w204-parent-service.py plan attempt02
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w204-parent-service.py run attempt02
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w204-review.py
+```
+
+The frozen controller resolves the recorded Phenix installation and runs each
+owned child sequentially with one thread and a 180 s timeout. Both stopped.
+The installed W203 module is unchanged (`cd5ff34c91410b7d9ba5e72e0cdf859887c2c2f03574d58ddec8f2e35565fbc5`).
+Cedar C509 commit is `a78931eb1962e731a7873c5acf49e67b4e241aca`.
+Installed C509 parent-service module SHA-256 is
+`f967ccc8e4d539dbf2f51b2ac17c6d5bbc68e017f297fb6090cb95ee75eec13f`;
+its wheel is `59c01f878a1d420b34f67fcaa4b577259e859adcdc4c2f9152149ee62c17aece`.
+Module closures are copied/pinned in the local experiment. Evidence is under
+NASolve anchor `branch-artifacts/willow/w204-parent-service/`; review/plan pins
+are in the roadmap. These remain local diagnostics, not portable committed runs.
+
+**Limits/next:** C509's receipt and W203 binding explicitly carry no chemical or
+ordinary runtime authority. Exact compiled-state reproduction does not reconcile
+all original residue definitions or authorize a new refinement. Cedar owns that
+remaining source-chemistry gate. W205 joins that evidence before a maintained
+receiving builder and ordinary lifetime/execution route. S04/S05/S06 remain
+PARTIAL; W197 is still the latest physical recovery. This patch changes human
+and machine documentation only, with no runtime/schema/default/migration change.
+Eight focused roadmap checks and content/link checks cover the docs; no new
+full suite or redundant installation build. Generated coordinates, snapshots,
+logs and native receipts are deliberately excluded from Git.

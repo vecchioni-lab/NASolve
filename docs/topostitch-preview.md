@@ -2210,7 +2210,8 @@ curvature, coordinate repair and scientific selection remain outside this API.
 The 2026-11-21 request is a later-stage **geometric MR-model construction**
 operation: for example, declare one duplex region at 9 bp/turn and another at
 11 bp/turn. It belongs beside bending and helix opening, after supported intact
-placement and backbone repair. W204 remains next; no builder, CLI flag or new
+placement and backbone repair. Current source-chemistry/execution integration
+stays ahead of this feature; no builder, CLI flag or new
 runtime schema is introduced here. The [shared helix plan](helical-geometry-plan.json)
 records inputs, constraints and qualification gates; H1–H3 remain read-only.
 
@@ -2505,3 +2506,31 @@ Scientific data and source snapshots remain outside Git. Ordinary current-parent
 lineage, complete chemical admission, concrete service and outer lifetime remain
 separate gates. W204 is that Cedar-owned service boundary; no new refinement panel
 or physical recovery claim is attached to W203.
+
+
+## Installed parent-service composition (W204)
+
+The [W204 diagnostic](topostitch-periodic.md#w204--compose-the-installed-cedar-parent-service)
+now exercises the concrete Cedar interface anticipated by W203:
+
+```python
+# Capture qualified native functions before installing any outer manager hook.
+service = cedar_parent_owner.load_native_parent_service()
+interpreted = service.interpret(
+    model, bound_inputs,
+    expected_report_sha256=expected_report_sha256,
+    process_options=pending_process_kwargs,
+)
+```
+
+Pass the exact pending native kwargs, not a reconstructed subset. Its result
+contains `processed` (the actual interpretation used), `native_result` (the
+original native return) and `receipt`. Willow's W200 builder retains the same
+model, observes the fresh order through the maintained atom reader, transfers
+candidate coordinates and verifies retained geometry/scattering/diffraction.
+C509 owns the one native interpretation and restores its server hook. An outer
+worker owns all other hooks, retained inputs, child lifetime and failed-manager
+disposal. This is qualified diagnostic composition, not a callable ordinary
+Willow execution route. Full original-source chemistry remains a separate Cedar
+gate; neither receipt nor matching compiled topology authorizes transfer in the
+future ordinary path. No W200 protocol or W203 field changed.

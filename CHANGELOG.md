@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W204 — Compose installed parent interpretation and coordinate transfer
+
+- Qualify Cedar C509 with W203 source binding and W200 transfer: 99 cold checks
+  on one actual Phenix 2.2.1-6174 dry-run and one intentional pre-transfer failure.
+  Exact prior geometry, atom mappings and candidate diffraction survive together.
+- Record the initial import-only failure and remaining original-source chemical
+  admission/lifetime gates. Documentation only; no refinement, runtime schema,
+  dependency, default, migration or scientific acceptance change.
+
 ### Planned regional helicity model construction
 
 - Record geometry-driven regional twist targets, smooth transitions, endpoint

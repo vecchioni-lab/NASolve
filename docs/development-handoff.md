@@ -1,8 +1,8 @@
 # NASolve development handoff — Willow
 
-**Current audit/Willow implementation: W203, 2026-11-21.** The installed one-shot preparation context now
+**Current audit/Willow implementation: W204, 2026-11-21.** The installed one-shot preparation context now
 carries admitted candidate → original parent geometry → candidate coordinates
-through a source-qualified diagnostic builder. No ordinary execution-policy or
+through the installed Cedar C509 service in a source-qualified diagnostic builder. No ordinary execution-policy or
 CLI activation follows. S04/S05/S06 remain PARTIAL.
 
 **Latest science:** W197's signed fixed-frame control moves 205 interior atoms
@@ -23,6 +23,7 @@ The longer pre-consolidation handoff is preserved at Git `86e7489c2314f738bd7fe1
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
+| W204 native service composition | C509 + W203/W200; 99 cold checks, actual dry-run/failure; exact W202 prepared state and diffraction | Original-source chemical admission and ordinary lifetime/execution route |
 | W203 typed source binding | Immutable parent/report and ordered separate PHIL roles; 175 source/175 installed; real-source 3.12/3.11 parity | Concrete Cedar service and full chemical/ordinary admission |
 | W202 shared live collector | Installed Cedar C507; four authenticated reader controls; exact live prepared state and failure cleanup | Maintained source-qualified builder, full chemical admission and ordinary dispatcher |
 | W200 native preparation context | One-shot stage order, stable manager, exact W198 mapping, fail-closed result; installed real success/failure | Versioned ordinary execution integration and retained-file lifetime composition |
@@ -44,17 +45,16 @@ No returned boolean/None or coordinate mapping alone is chemical authority.
 
 ## Next bounded work
 
-**W204:** qualify one Cedar-owned concrete native interpretation/service binding.
-Willow now supplies immutable W203 typed inputs and unchanged W200 orchestration;
-Cedar owns actual Phenix hooks and the required chemical evidence. Capture the
-actual processed object from exactly one service call, preserve all four controls
-and candidate diffraction, then let W200 map the fresh native order. Missing
-chemical authority must refuse before transfer. A C507 geometry/declared-link
-MATCH alone is insufficient. The [small contract and failure cases](topostitch-preview.md#bind-typed-native-preparation-inputs-w203)
-are recorded; no second dispatcher or compatibility wrapper around the private
-worker is planned. Existing counted driver hooks occur after geometry and are too
-late for this interpretation boundary. Old execution bytes and actual outer
-input/process lifetime stay separately owned.
+**W205:** compose Cedar's original-source chemistry evidence with the qualified
+C509/W203/W200 service path before a maintained receiving builder and ordinary
+execution/lifetime route. W204 now captures the actual processed object from one
+C509 call, maps the fresh order and preserves four controls, complete compiled
+geometry and candidate diffraction. The diagnostic still has observation-only
+chemical authority. Cedar owns reconciliation of original residue definitions;
+do not recreate it or convert collector MATCH into admission. Preserve old
+execution policies, actual retained-input/process lifetime and failed-manager
+disposal. No second interpreter or private-worker compatibility wrapper.
+
 
 The shared collector boundary is agreed and tested; the ordinary execution
 extension remains proposed. W201's five cold controls show that ordinary v3 has no typed
@@ -103,7 +103,7 @@ not radius to an axis. [Cluster contract](topostitch.md) and
 User-requested regional helicity generation (9 versus 11 bp/turn) is now a
 [late-stage geometric model-building plan](topostitch-preview.md#regional-helicity-model-building-planned),
 with explicit step convention, endpoint phase, transition and backbone-repair
-gates in the shared helix plan. It adds no implementation and does not displace W204.
+gates in the shared helix plan. It adds no implementation and does not displace the current service/chemistry integration.
 
 Density stays in the pipeline: use original fixed data/Free, a recovery interval,
 no-op control and both geometry and map review. Early post-bend R deterioration
@@ -115,6 +115,10 @@ for repeated Rfree-guided tuning. No noisy phosphate detector is qualified.
 
 ## Validation and scientific interpretation
 
+- W204: 99 cold checks; one complete Phenix 2.2.1-6174 dry-run and one
+  deliberate pre-transfer failure; exact W202 geometry/model/diffraction parity.
+  Both children stopped, five outer bindings and Cedar server binding restored.
+  Initial import-only failure preserved. No refinements or complete chemistry claim.
 - W203: 175 focused source/175 relocated installed tests; 14 real-source cold
   checks each in source/installed Python 3.12 and Phenix Python 3.11, identical
   output. Wrong parent/report and tampered captured controls refuse. Temporary
@@ -171,7 +175,9 @@ B2/B3 phosphate angle remains ~76.71°; the original ~4.79 Å maximum start
 motion is not the residual displacement. All 859 atoms could refine in those
 older controls. Manifest and viewer evidence stay local.
 
-W198–W203 add no geometry effect to illustrate. W203 cold/installation receipts
+W198–W204 add no geometry effect to illustrate. W204 local receipts are under
+`NASolve:branch-artifacts/willow/w204-parent-service/`; see the
+[service composition audit](topostitch-periodic.md#w204--compose-the-installed-cedar-parent-service). W203 cold/installation receipts
 are under `NASolve:branch-artifacts/willow/w203-source-input-binding/`. W202 source/live receipts are
 under `NASolve:branch-artifacts/willow/w202-typed-native-builder/`. Earlier receipts
 remain under NASolve anchor `branch-artifacts/willow/w198-native-handoff/`,

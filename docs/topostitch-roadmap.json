@@ -263,14 +263,15 @@
         "W200 maintains the one-shot preparation stage owner with W198 mapping and explicit native builder; installed live success/failure and160/160 tests pass. No ordinary execution-policy integration or scientific acceptance.",
         "W201 records a named, unimplemented versioned execution/input contract and five actual cold controls showing the current ordinary geometry-parent role gap while preserving old v3 readers/defaults.",
         "W202 qualifies installed Cedar C507 live collectors and current topology reader with authenticated four-control source inputs. A fresh dry-run and failure retain W200 prepared state and candidate diffraction; 84 cold checks. Private builder and ordinary integration remain open.",
-        "W203 binds the complete typed report, exact parent and ordered separate restraint/control bytes into a detached immutable object through existing Cedar readers. All four controls and repeated source checks are explicit; source/installed/native-Python readback agrees. No interpretation or chemical permission is added."
+        "W203 binds the complete typed report, exact parent and ordered separate restraint/control bytes into a detached immutable object through existing Cedar readers. All four controls and repeated source checks are explicit; source/installed/native-Python readback agrees. No interpretation or chemical permission is added.",
+        "W204 composes installed Cedar C509 with W203 binding and W200 transfer. One actual Phenix 2.2.1-6174 dry-run and deliberate pre-transfer failure pass 99 cold checks. All three atom maps, final model/geometry/fixed inputs/native selection and full candidate diffraction reproduce W202 exactly; all four controls False, five outer hooks and Cedar service binding restored. Zero refinements. Initial import-only failure preserved."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "W204: qualify one Cedar-owned native interpretation/service binding consuming W203 source bytes and W200 orchestration. Capture the actual processed object and prove exactly one parent interpretation, stable manager, all four controls, preserved source chemistry and unchanged candidate diffraction. A compiled-stack collector MATCH is not full source chemical admission. Keep hooks out of the ordinary dispatcher until that evidence and actual retained-input lifetime compose; do not wrap the private worker as a second runtime.",
+      "next_action": "W205: compose Cedar original-source chemistry evidence with the qualified C509/W203/W200 service path, then design the maintained receiving builder and retained-input lifetime boundary. Require chemical authority before ordinary transfer; compiled-stack parity alone is insufficient. Preserve current candidate diffraction and old execution policies. No second interpreter, private-worker wrapper or premature ordinary dispatcher.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -334,14 +335,15 @@
         "E_MAINTAINED_NATIVE_PREPARATION",
         "E_PARENT_EXECUTION_CONTRACT",
         "E_TYPED_LIVE_COLLECTOR",
-        "E_TYPED_PREPARATION_INPUT_BINDING"
+        "E_TYPED_PREPARATION_INPUT_BINDING",
+        "E_NATIVE_PARENT_SERVICE_COMPOSITION"
       ],
       "last_audit": {
         "date": "2026-11-21",
         "reviewer": "Linden",
-        "human_update": 203,
+        "human_update": 204,
         "code_commit": "bf12b2adbe65d8a357b54572786b33a9e0f17b3d",
-        "scope": "Maintained typed input binding and relocated installation/real-source readback; concrete native service remains Cedar-owned"
+        "scope": "Installed Cedar service plus Willow input/coordinate composition in two actual preparations; original chemistry and ordinary lifetime admission remain open"
       }
     },
     {
@@ -401,14 +403,15 @@
         "W200 maintains the one-shot preparation stage owner with W198 mapping and explicit native builder; installed live success/failure and160/160 tests pass. No ordinary execution-policy integration or scientific acceptance.",
         "W201 records a named, unimplemented versioned execution/input contract and five actual cold controls showing the current ordinary geometry-parent role gap while preserving old v3 readers/defaults.",
         "W202 qualifies installed Cedar C507 live collectors and current topology reader with authenticated four-control source inputs. A fresh dry-run and failure retain W200 prepared state and candidate diffraction; 84 cold checks. Private builder and ordinary integration remain open.",
-        "W203 binds the complete typed report, exact parent and ordered separate restraint/control bytes into a detached immutable object through existing Cedar readers. All four controls and repeated source checks are explicit; source/installed/native-Python readback agrees. No interpretation or chemical permission is added."
+        "W203 binds the complete typed report, exact parent and ordered separate restraint/control bytes into a detached immutable object through existing Cedar readers. All four controls and repeated source checks are explicit; source/installed/native-Python readback agrees. No interpretation or chemical permission is added.",
+        "W204 composes installed Cedar C509 with W203 binding and W200 transfer. One actual Phenix 2.2.1-6174 dry-run and deliberate pre-transfer failure pass 99 cold checks. All three atom maps, final model/geometry/fixed inputs/native selection and full candidate diffraction reproduce W202 exactly; all four controls False, five outer hooks and Cedar service binding restored. Zero refinements. Initial import-only failure preserved."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "W204: qualify one Cedar-owned native interpretation/service binding consuming W203 source bytes and W200 orchestration. Capture the actual processed object and prove exactly one parent interpretation, stable manager, all four controls, preserved source chemistry and unchanged candidate diffraction. A compiled-stack collector MATCH is not full source chemical admission. Keep hooks out of the ordinary dispatcher until that evidence and actual retained-input lifetime compose; do not wrap the private worker as a second runtime.",
+      "next_action": "W205: compose Cedar original-source chemistry evidence with the qualified C509/W203/W200 service path, then design the maintained receiving builder and retained-input lifetime boundary. Require chemical authority before ordinary transfer; compiled-stack parity alone is insufficient. Preserve current candidate diffraction and old execution policies. No second interpreter, private-worker wrapper or premature ordinary dispatcher.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -515,14 +518,15 @@
         "E_MAINTAINED_NATIVE_PREPARATION",
         "E_PARENT_EXECUTION_CONTRACT",
         "E_TYPED_LIVE_COLLECTOR",
-        "E_TYPED_PREPARATION_INPUT_BINDING"
+        "E_TYPED_PREPARATION_INPUT_BINDING",
+        "E_NATIVE_PARENT_SERVICE_COMPOSITION"
       ],
       "last_audit": {
         "date": "2026-11-21",
         "reviewer": "Linden",
-        "human_update": 203,
+        "human_update": 204,
         "code_commit": "bf12b2adbe65d8a357b54572786b33a9e0f17b3d",
-        "scope": "Maintained typed input binding and relocated installation/real-source readback; concrete native service remains Cedar-owned"
+        "scope": "Installed Cedar service plus Willow input/coordinate composition in two actual preparations; original chemistry and ordinary lifetime admission remain open"
       }
     },
     {
@@ -4997,6 +5001,30 @@
           "size": 2816
         }
       ]
+    },
+    "E_NATIVE_PARENT_SERVICE_COMPOSITION": {
+      "kind": "installed_native_parent_service_composition",
+      "date": "2026-11-21",
+      "human_update": 204,
+      "code_commit": "bf12b2adbe65d8a357b54572786b33a9e0f17b3d",
+      "reference": "docs/topostitch-periodic.md#w204--compose-the-installed-cedar-parent-service",
+      "result": "W204 composes installed Cedar C509 with W203 binding and W200 transfer. One actual Phenix 2.2.1-6174 dry-run and deliberate pre-transfer failure pass 99 cold checks. All three atom maps, final model/geometry/fixed inputs/native selection and full candidate diffraction reproduce W202 exactly; all four controls False, five outer hooks and Cedar service binding restored. Zero refinements. Initial import-only failure preserved.",
+      "limitation": "Diagnostic outer hooks and observation-only source binding; complete original-source chemical admission and ordinary execution/lifetime composition remain open. No new bend, refinement, runtime default/schema or accepted structure.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w204-parent-service/review.json",
+          "sha256": "fff5f8f9eedc9bff1a59f3a211f22e2538acb435cac5844c9ee04387b856345b",
+          "size": 12270
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w204-parent-service/attempt02/plan.json",
+          "sha256": "fad68ea28ad97fad52445d0bb7d3ba387151c244af96f13905eceaf1976c663a",
+          "size": 24376
+        }
+      ],
+      "cedar_code_commit": "a78931eb1962e731a7873c5acf49e67b4e241aca"
     }
   },
   "benchmarks": [
@@ -5119,7 +5147,7 @@
     },
     {
       "scope": "Regional helicity MR-model construction",
-      "trigger": "After intact-duplex placement and supported backbone repair; canonical, one-free-end profiles first. Reuse pair-frame bending and Cedar/NARestraints, qualify twist convention, transitions, achieved geometry and fixed-end feasibility. See docs/helical-geometry-plan.json planned_model_generation and docs/topostitch-preview.md#regional-helicity-model-building-planned. Planning only; W204 remains next."
+      "trigger": "After intact-duplex placement and supported backbone repair; canonical, one-free-end profiles first. Reuse pair-frame bending and Cedar/NARestraints, qualify twist convention, transitions, achieved geometry and fixed-end feasibility. See docs/helical-geometry-plan.json planned_model_generation and docs/topostitch-preview.md#regional-helicity-model-building-planned. Planning only; Current source-chemistry and ordinary execution/lifetime integration stay ahead of this feature."
     },
     {
       "scope": "Junction hinges and broader modified/RNA/backbone chemistry",
@@ -5162,8 +5190,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 203,
-    "next": 204,
+    "current": 204,
+    "next": 205,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -6189,6 +6217,12 @@
       {
         "number": 203,
         "title": "Bind immutable parent, compiled restraints and reader-control roles",
+        "state": "RECORDED",
+        "code_commit": "bf12b2adbe65d8a357b54572786b33a9e0f17b3d"
+      },
+      {
+        "number": 204,
+        "title": "Compose Cedar parent interpretation with Willow coordinate transfer",
         "state": "RECORDED",
         "code_commit": "bf12b2adbe65d8a357b54572786b33a9e0f17b3d"
       }

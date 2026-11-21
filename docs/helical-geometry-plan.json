@@ -183,7 +183,7 @@
     "status": "PLANNING_ONLY_NOT_IMPLEMENTED",
     "requested": "2026-11-21",
     "guide": "docs/topostitch-preview.md#regional-helicity-model-building-planned",
-    "scheduling": "Late-stage extension after intact-duplex placement and supported backbone repair. Current W204 service integration remains next. Existing H1-H3 read-only APIs retain their scope.",
+    "scheduling": "Late-stage extension after intact-duplex placement and supported backbone repair. Current source-chemistry and ordinary execution/lifetime integration stay ahead of this feature. Existing H1-H3 read-only APIs retain their scope.",
     "purpose": "Generate sequence-registered MR regions with user-declared regional helicity using shared pair-frame/bending geometry; density is optional downstream evidence, not required to generate a candidate.",
     "convention": "Declare signed handedness and the exact twist definition. For an ideal straight right-handed helix 9 bp/turn corresponds to 40 degrees per step, and 11 to 360/11 degrees. Conventional step Twist, local helical/screw-axis Twist and the current simple-step reporter differ in general; do not treat the read-only reporter as an inverse builder.",
     "inputs": [
