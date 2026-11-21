@@ -1,6 +1,6 @@
 {
   "id": "regional-helical-geometry",
-  "status": "PARTIAL_NAMED_STATE_SPAN_AND_CANONICAL_TWIST_COMPARISONS",
+  "status": "PARTIAL_DECLARED_REGIONAL_TWIST_SUMMARIES",
   "required_before": "NASolve completion",
   "delivery": "Q15 reporting with a Q16 integration check",
   "scope": "One offline, read-only analysis shared by Cedar, Willow and Alder. Support an explicit model or checkpoint and comparisons between named model states. An optional post-processing hook can call the same calculation.",
@@ -122,11 +122,11 @@
     }
   },
   "implementation": {
-    "human_update": "W194",
+    "human_update": "W195",
     "owner": "Linden / Willow; shared with Cedar and Alder",
-    "code_commit": "ab02a1bd25a6f000d0896e1cf6e46e5510da6c35",
+    "code_commit": "796af35a5a9f4dc8a40fc970dffa917c2b807dc9",
     "module": "nasolve.helical_geometry + nasolve.helical_twist + nasolve.helical_comparison",
-    "guide": "docs/topostitch-preview.md#compare-declared-helix-states-w194",
+    "guide": "docs/topostitch-preview.md#summarize-declared-regional-twist-w195",
     "report_schema": 1,
     "delivered": [
       "Exact single-model PDB and identity-image site/component/conformer binding",
@@ -138,21 +138,25 @@
       "96 focused source and 96 fresh relocated installed checks; all 13 current-reference public steps match at printed precision; default W191 report unchanged without Gemmi",
       "Explicit named-state pair correspondence with exact independent sources, unmatched rows, visible chemistry/role changes and directed adjacency",
       "Candidate-minus-reference P-span/half-span and wrap-safe simple-twist deltas, without inferred physical equivalence",
-      "113 focused source and 113 relocated installed checks; five exact saved 5W6W comparisons, 35 independent P-span delta checks; no new native run"
+      "113 focused source and 113 relocated installed checks; five exact saved 5W6W comparisons, 35 independent P-span delta checks; no new native run",
+      "Declared contiguous regional step weights, full raw coverage, signed mean and guarded signed bp/turn",
+      "136 focused source and 136 relocated installed checks; twelve saved-state summaries and prior generator values reproduce"
     ],
     "remaining": [
       "Other crystal images, mmCIF and registered cross-state correspondence",
       "Modified base-frame mapping/fit quality",
       "Local-axis per-strand radii and historical 7SDG publication-input discrepancy",
-      "Weighted region statistics and publication table export"
+      "Publication table export and modified-site regional qualification"
     ],
     "native_execution": false,
     "runtime_authority": false,
     "methods": [
       "declared-pair-phosphate-span-v1",
       "declared-canonical-simple-step-twist-v1",
-      "declared-helical-state-comparison-v1"
-    ]
+      "declared-helical-state-comparison-v1",
+      "declared-weighted-simple-twist-v1"
+    ],
+    "next_solving_gate": "Return to local repair/source-bound comparison: existing positive endpoint localization is informative, but its small regional mean hides covalent defects. Do not expand reporting before supported admission/retention integration."
   },
   "simple_twist_reference_qualification": {
     "human_update": "W192",

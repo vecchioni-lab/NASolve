@@ -11379,3 +11379,54 @@ H3 advances to partial for explicit named-state changes. Weighted region summari
 publication export and modified-site qualification remain open; H1/H2 also retain
 registered-image, modified-frame and local screw-axis gates. Next audit actual
 step weights/gaps and near-zero helicity rules before adding summary arithmetic.
+
+
+## W195 — Declare regional step weights and retain coverage
+
+Code `796af35a5a9f4dc8a40fc970dffa917c2b807dc9` extends only `helical_twist.py` and adds focused
+summary regressions. The new opt-in function retains the existing schema-1 raw
+measurement and adds a method-versioned weighted summary. One finite nonnegative
+weight per step is required. Positive weights cover one contiguous segment;
+missing included values, disjoint selections and angle ranges >=180° leave the
+mean unavailable. No zero filling, observed-only renormalization or guessed
+unwrapping. Signed bp/turn is 360/mean only beyond the caller's explicit positive
+mean-magnitude limit; that policy is not experimental uncertainty.
+
+Exact focused command (Python 3.12.14, Gemmi 0.7.5):
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 \
+PYTHONPATH=src:/private/tmp/w193-qualification-c1tf1610/optional-relocated \
+python -B -m pytest -q -p no:cacheprovider tests/test_helical_summary.py \
+  tests/test_helical_comparison.py tests/test_helical_twist.py \
+  tests/test_helical_geometry.py tests/test_topostitch_coordinates.py
+```
+
+**136 source + 136 fresh relocated installed checks pass**; new imports fail
+before implementation. Local/two-flank, full-edge and half-step weights, missing
+coverage, gaps, signed/near-zero means, ambiguous wrap and numerical overflow
+are covered. No full suite for isolated optional analysis. Installed tests use
+the same copied test set and relocated package/Gemmi targets, with original
+build/install/input-copy paths removed. Twelve summaries match fresh installed
+API output; five prior W194 reports remain identical, and base phosphate-only
+comparison still works without Gemmi. Wheel SHA256
+`31b37baac555a4cf5ad2fe6056070a6653ce026d2207a1912863d42dcd1a55c2`.
+
+Existing W163/W164 six-model evidence only: six full-step edge summaries and
+six central A12/B4 two-flank summaries under a declared 0.1° minimum mean and
+0.15 Å ring-fit limit. Generator edge/local 36.421601°/32.834048° reproduces C444.
+Positive recovered edge mean changes −0.122274°, local mean +0.219737°; the
+known −2.192997° A13/B3→A14/B2 step departure and covalent defect remain. Regional
+cancellation is why the next science task returns to S04/S05 local repair and
+source-bound comparison rather than a descriptive axis metric. The existing
+W194 figure/coordinate packet is sufficient; no new checkout or export layer.
+
+No new native/refinement execution or coordinate changes. Local evidence anchor
+`NASolve`, directory `branch-artifacts/willow/w195-regional-summary/`:
+`review.json` SHA256 `98304f55520704e34b57d316bb3df4635723c47fb462d0309e83d5b817a826e6`;
+`installed-check.json` SHA256 `d2ff6d54f5625d6f014f7aaaabfc3bb297867b045cacdcddab362b43a692f2d5`.
+Input references reuse W194's exact anchored request/checksums. Raw science and
+local runners stay out of Git. No migration/default/dependency changes. H3 remains
+partial pending modified-site qualification/publication export; H1/H2 retain
+registered-image, modified-frame and axis gates. Do not relabel a historical
+private taper as a prospectively authenticated registered preview.

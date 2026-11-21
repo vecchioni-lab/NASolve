@@ -1045,7 +1045,10 @@ modified frames and axes remain unmeasured. W194 composes these readers through
 `helical_comparison`, requiring explicit pair and strand correspondence between
 two named states. It binds both model/region snapshots, retains unmatched pairs
 and compares only matching directed adjacency; there is no alignment or inferred
-physical equivalence. See the [shared plan](helical-geometry-plan.json).
+physical equivalence. W195 adds explicit contiguous step-weight summaries to
+`helical_twist`; unavailable coverage and ambiguous angle branches never produce
+a mean. These reporting layers do not control repair or acceptance.
+See the [shared plan](helical-geometry-plan.json).
 
 The pairing owner supplies exact forward/reciprocal edge incidence to selected
 atom-image audits. These bind one-partner capacity only within their recorded

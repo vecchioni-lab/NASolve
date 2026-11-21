@@ -17,6 +17,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W195 — Summarize declared regional twist without hiding gaps
+
+- Add a bounded API on the existing twist reader: one explicit weight per step,
+  raw step retention, coverage, signed arithmetic mean and signed bp/turn.
+  Missing positive-weight steps, disjoint selections and ambiguous angular branches
+  leave the regional mean unavailable; near-zero means retain no unstable repeat.
+- Require a caller-declared mean-magnitude limit. No CLI/export layer, workflow
+  change, new dependency or migration; existing reports remain unchanged.
+- 136 focused source and 136 relocated installed checks pass; twelve saved-state
+  summaries reproduce. Small regional means can conceal large local departures,
+  so the next solving gate returns to local repair rather than another metric.
+
 ### W194 — Compare explicitly matched helix states
 
 - Add a read-only API composing existing span/twist readers for two named models.

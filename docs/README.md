@@ -7,6 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+W195 adds [declared regional step summaries](topostitch-preview.md#summarize-declared-regional-twist-w195)
+with explicit coverage and signed-repeat limits. Next work returns to the local
+repair/admission gate; no additional export layer is queued.
+
 W191 adds the [shared paired-phosphate reader](topostitch-preview.md#measure-declared-paired-phosphates-w191),
 with [machine-readable helix milestones](helical-geometry-plan.json). W190's
 derived source connectivity remains distinct from checked chemistry. See the

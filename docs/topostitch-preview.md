@@ -2165,3 +2165,41 @@ This measures local P–P span, optional half-span and simple-step twist. It doe
 not measure axis radii or helix curvature, average regions, validate pairing,
 infer symmetry correspondence or approve a bend. [W194 saved-state check](topostitch-periodic.md#w194--compare-explicit-named-helix-states)
 shows why unchanged pair width is compatible with large coordinate displacement.
+
+
+### Summarize declared regional twist (W195)
+
+Use `nasolve.helical_twist.inspect_weighted_twist` with the same pinned model,
+region and canonical ring-fit policy as W193. Add `step_weights` (one finite,
+nonnegative number for every adjacent pair step) and an explicit positive
+`min_abs_mean_twist_deg` below 180°. At least one step weight must be positive.
+The result retains the raw report and adds `regional_twist_summary` with method
+`declared-weighted-simple-twist-v1`; existing API/CLI output is unchanged.
+
+For a seven-pair edge, `(1,1,1,1,1,1)` averages six full steps. For its central
+pair, `(0,0,1,1,0,0)` averages the two flanking steps. For a separately declared
+nine-pair junction-inclusive region, `(.5,1,1,1,1,1,1,.5)` has total weight seven.
+Weights come from the scientific declaration, not inferred component/core labels.
+A modified ring still needs separate W193 mapping qualification.
+
+```python
+from nasolve.helical_twist import inspect_weighted_twist
+report = inspect_weighted_twist(
+    model_path, region, expected_model_sha256=model_sha256,
+    max_ring_fit_rmsd_angstrom=0.15, step_weights=(1,1,1,1,1,1),
+    min_abs_mean_twist_deg=0.1,
+)
+```
+
+The example's 0.1° limit is explicit caller policy, not experimental uncertainty
+or a biological threshold. A mean at/below that magnitude is retained but has no
+bp/turn estimate. Negative means retain a negative signed repeat. Missing included
+steps never become zero or a renormalized observed-only mean. Positive weights
+must cover one contiguous segment; interior zero-weight gaps remain unavailable.
+An included angle range of at least 180° is ambiguous: no circular unwrapping is
+guessed. Half-turn comparisons and regional averaging are different operations.
+Every raw step, weight, availability reason and declared/measured weight survives.
+
+A small regional mean does not prove local repair. In the saved positive recovery,
+−0.122° edge-mean change hides a −2.193° individual step change. Axis radii,
+curvature, coordinate repair and scientific selection remain outside this API.

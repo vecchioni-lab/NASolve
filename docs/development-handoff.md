@@ -1,5 +1,25 @@
 # NASolve development handoff — Willow
 
+**W195: regional summaries preserve declared weights and unavailable coverage.**
+The existing twist reader now supplies an opt-in weighted summary, raw steps,
+coverage, signed mean and bp/turn. Missing included steps, disjoint weights and
+ambiguous angle branches remain unavailable; a caller-declared near-zero limit
+suppresses unstable repeats. **136 source + 136 relocated installed checks** pass;
+twelve saved-state summaries reproduce, as do the five original W194 comparisons.
+The 5W6W generator matches C444 edge/local values 36.421601° / 32.834048°.
+[Usage](topostitch-preview.md#summarize-declared-regional-twist-w195) ·
+[qualification](topostitch-periodic.md#w195--declare-regional-step-weights-and-retain-coverage).
+
+**Next science gate: local repair/source-bound comparison, not a local-axis metric.**
+Positive recovered edge mean changes only −0.122274° while W194 locates a
+−2.192997° single-step departure and the existing B2/A13 covalent defect remains.
+An axis calculation would not clear S04/S05's supported admission/retention gap.
+Cap reporting here: audit the existing parent/preparation/motion interfaces and
+preserve known topology before another repair trial. The historical W163 interior
+taper cannot be retroactively treated as a registered terminal preview. Do not
+repeat W168 or add an exporter/force engine to avoid this integration boundary.
+H1/H2/H3 remain partial; modified frames, axes and publication tables stay open.
+
 **W194: follow explicitly matched pairs across named model states.**
 `nasolve.helical_comparison.compare_helical_states` composes the same readers
 with complete caller-declared correspondence, independent source hashes,
@@ -17,10 +37,9 @@ are local twist/width changes, not helix curvature or axis radii; the positive
 endpoint's known B2/A13 covalent distortion remains. No new native run.
 Local figure: `ScienceCheckouts/Linden/2026-11-21_helix-state-comparison/index.html`.
 
-**Next:** H3 is partial for explicit named-state deltas, not regional summaries
-or export. Audit declared step weights, gap coverage and near-zero/signed helicity
-before implementing those summaries. H1/H2 stay partial for registered crystal
-images, modified-ring frames and independently qualified local screw-axis radii.
+W195 supplies the bounded regional summary after W194's named-state deltas;
+publication export remains open. H1/H2 stay partial for registered crystal images,
+modified-ring frames and independently qualified local screw-axis radii.
 Do not substitute pair widths or simple twist for a bend target. Real motion still
 needs independent target/settings authority and supported preparation ownership.
 
