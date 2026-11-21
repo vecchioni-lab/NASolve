@@ -202,6 +202,46 @@ def test_ordinary_placement_can_use_declared_phosphate_leaving_flag(tmp_path):
     assert read_base_anchored_furanose_control(paths[-1]) == inferred
 
 
+def test_ordinary_base_frame_can_follow_the_two_mapped_ring_neighbours(tmp_path):
+    from nasolve.cif_whole_furanose import prepare_base_anchored_furanose_from_model, read_base_anchored_furanose_control
+    from tests.test_cif_model_context import report
+
+    paths, _ = ordinary_three_site_frame(tmp_path)
+    options = dict(code="Z99", site="A:17", postmr_report=report())
+    inferred = prepare_base_anchored_furanose_from_model(*paths, **options)
+    explicit = tmp_path/"declared"
+    prepare_base_anchored_furanose_from_model(*paths[:-1], explicit, base_frame_roles=["N1","C2","C6"], **options)
+    assert inferred["frame_roles"] == ["N1","C2","C6"]
+    assert inferred["base_frame_source"] == "source-ring-and-workbook-roles-v1"
+    assert (paths[-1]/"model.pdb").read_bytes() == (explicit/"model.pdb").read_bytes()
+    assert read_base_anchored_furanose_control(paths[-1]) == inferred
+
+
+@pytest.mark.parametrize("defect", ["missing role", "ambiguous role", "open ring"])
+def test_automatic_base_frame_refuses_unproved_correspondence(tmp_path, defect):
+    from nasolve.cif_attachment_profiles import inspect_attachment_profile
+    from nasolve.cif_stereochemistry_audit import _values
+    from nasolve.cif_whole_furanose import _mapped_ring_frame
+
+    paths, _ = inputs(tmp_path, bridged=True)
+    profile = inspect_attachment_profile(paths[0],"Z99",workbook=paths[3])
+    values = _values(paths[0],"Z99")
+    mapping = profile["operational_signature"]["atom_roles"]
+    if defect == "missing role":
+        del mapping["C2"]
+    elif defect == "ambiguous role":
+        mapping["extra"] = mapping["C2"]
+    else:
+        prefix = "_chem_comp_bond."
+        edges = zip(values[prefix+"atom_id_1"], values[prefix+"atom_id_2"], strict=True)
+        edge, = [i for i, pair in enumerate(edges) if set(pair) == {mapping["C5"],mapping["C6"]}]
+        for key, column in values.items():
+            if key.startswith(prefix):
+                column.pop(edge)
+    with pytest.raises(ValueError, match="ring|workbook"):
+        _mapped_ring_frame(profile, values)
+
+
 @pytest.mark.parametrize("defect", [None,"missing flags","unknown neighbour","two flags","retained oxygen","ester","unprotonated","double"])
 def test_source_flag_uses_the_bound_graph_and_refuses_disputed_chemistry(tmp_path, defect):
     from nasolve.cif_attachment_profiles import inspect_attachment_profile

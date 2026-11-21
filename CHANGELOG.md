@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Building an internal locked sugar during checked preparation
+
+- The ordinary PostMR dictionary engine can now use one explicitly selected
+  locked sugar alongside Coot substitutions. It reads the base anchors from
+  the two chemical graphs and the NARestraints workbook, and reads the two
+  backbone partners from the model. The prepared model, original dictionary,
+  departing oxygen and retained sugar centres can be checked after relocation.
+
 ### Recovering a bond absent from the source dictionary
 
 - An explicit dictionary acquisition can now recover from a stopped eLBOW

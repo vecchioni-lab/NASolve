@@ -18,6 +18,7 @@ POLICY_ID = 'postmr-construction-lineage-v1'
 CANONICAL_POLICY_ID = 'postmr-canonical-construction-lineage-v1'
 SITE_DICTIONARY_POLICY_ID = 'postmr-site-dictionary-construction-lineage-v1'
 PROJECTION_POLICY_ID = 'postmr-projected-dictionary-construction-lineage-v1'
+FURANOSE_POLICY_ID = 'postmr-internal-furanose-construction-lineage-v1'
 RECORD_PATH = 'PostMR/Coot/construction.json'
 
 
@@ -66,10 +67,10 @@ def _controls(value, dictionaries):
         _need(all(isinstance(action[k],str) and action[k] for k in ('site','before','after','method'))
               and all(action[k] is None or isinstance(action[k],str) and action[k]
                       for k in ('parent_code','deposition_code')), 'Invalid construction action fields')
-        _need(action['method'] in {'none','component-normalization','coot-mutate-base','coot-parent-overlap'},
+        _need(action['method'] in {'none','component-normalization','coot-mutate-base','coot-parent-overlap','base-anchored-furanose'},
               'Unknown construction method')
     _need(len({a['site'] for a in actions})==len(actions), 'Duplicate construction site')
-    _need(set(dictionaries)=={a['after'] for a in actions if a['method'] in {'coot-parent-overlap','component-normalization'}},
+    _need(set(dictionaries)=={a['after'] for a in actions if a['method'] in {'coot-parent-overlap','component-normalization','base-anchored-furanose'}},
           'Consumed construction dictionaries differ from mutation actions')
     for key in ('allow_op3_sites','passthrough_sites'):
         _need(isinstance(value[key],list) and all(isinstance(s,str) for s in value[key])
@@ -196,6 +197,43 @@ def _canonical_closure(root, reference, inputs, controls):
     return saved, files
 
 
+def _furanose_closure(root, references, record):
+    from tempfile import TemporaryDirectory
+    from .backbone import ensure_five_prime_phosphates
+    from .phosphate import sanitize_phosphates
+    from .postmr import FURANOSE_METHOD, residue_name
+    from .postmr_furanose import DIRECTORY, read_substitution
+    from .cif_component_runtime import _tree
+
+    expected = {'snapshot': 'snapshot/resolution.json', 'seed': 'seed/receipt.json'}
+    _need(isinstance(references,dict) and set(references) == set(expected), 'Incomplete furanose construction references')
+    for key, path in expected.items():
+        _need(_resolve(references[key], root) == root/DIRECTORY/path, 'Wrong furanose construction role')
+    saved = read_substitution(root/DIRECTORY)
+    controls = record['controls']
+    actions = [a for a in controls['actions'] if a['method'] == FURANOSE_METHOD]
+    site, code = saved['context']['site'], saved['code']
+    _need(len(actions) == 1 and actions[0]['site'] == site and actions[0]['after'] == code
+          and actions[0]['parent_code'] is None and actions[0]['deposition_code'] is None
+          and site not in controls['allow_op3_sites'] and site not in controls['passthrough_sites']
+          and actions[0]['before'] == residue_name(saved['host_frame'], site)
+          and _read(saved['snapshot']['source']) == _read(_resolve(record['inputs']['dictionaries'][code], root))
+          and _read(saved['model']) == _read(_resolve(record['outputs']['prepared'], root)),
+          'Furanose construction differs from the requested action, source or prepared model')
+    coot = _resolve(record['outputs']['after_coot'], root)
+    original = _resolve(record['inputs']['reference_model'], root)
+    with TemporaryDirectory(prefix='postmr-furanose-frame-') as temporary:
+        temp = Path(temporary).resolve(strict=True)
+        if controls['allow_op3_sites']:
+            ensure_five_prime_phosphates(coot, temp/'terminal.pdb', controls['allow_op3_sites'])
+            coot = temp/'terminal.pdb'
+        sanitize_phosphates(coot, temp/'scaffold.pdb', reference_model=original,
+            allow_op3_sites=controls['allow_op3_sites'], passthrough_sites=controls['passthrough_sites'])
+        _need(_read(temp/'scaffold.pdb') == _read(saved['host_frame']),
+              'Furanose frame differs from the recorded Coot model and phosphate intent')
+    return saved, {DIRECTORY+'/'+n:data for n,data in _tree(root/DIRECTORY).items()}
+
+
 def finish_postmr_construction(run, started, prepared_model, construction):
     """Seal a fresh, non-qualifying record before downstream numerical work."""
     root=_root(run); path=root/RECORD_PATH
@@ -241,6 +279,15 @@ def finish_postmr_construction(run, started, prepared_model, construction):
     else:
         _need(not (root/'PostMR/Coot/construction_projections').exists(),
               'Construction projection evidence cannot be silently omitted')
+    if any(a['method'] == 'base-anchored-furanose' for a in started['controls']['actions']):
+        from .postmr_furanose import DIRECTORY
+        record['furanose_substitution'] = {
+            'snapshot': _reference(root/DIRECTORY/'snapshot/resolution.json', root),
+            'seed': _reference(root/DIRECTORY/'seed/receipt.json', root)}
+        record['policy_id'] = FURANOSE_POLICY_ID
+        _furanose_closure(root, record['furanose_substitution'], record)
+    else:
+        _need(not (root/'PostMR/Coot/furanose').exists(), 'Furanose construction cannot be silently omitted')
     write_record(path,record)
     return read_postmr_construction(root)['report']
 
@@ -256,20 +303,24 @@ def read_postmr_construction(run):
     canonical = 'canonical_parent_input' in r
     site_choices = 'site_dictionaries' in r
     projections = 'construction_projections' in r
+    furanose = 'furanose_substitution' in r
     fields = {'schema_version','policy_id','status','scientific_qualification','native_interpretation',
               'automatic_adoption','inputs','outputs','controls','evidence','record_sha256'}
     if canonical: fields.add('canonical_parent_input')
     if site_choices: fields.add('site_dictionaries')
     if projections: fields.add('construction_projections')
+    if furanose: fields.add('furanose_substitution')
     _need(set(r)==fields
           and type(r['schema_version']) is int and r['schema_version']==1
-          and r['policy_id']==(PROJECTION_POLICY_ID if projections else
+          and r['policy_id']==(FURANOSE_POLICY_ID if furanose else PROJECTION_POLICY_ID if projections else
                                SITE_DICTIONARY_POLICY_ID if site_choices else
                                CANONICAL_POLICY_ID if canonical else POLICY_ID)
           and r['status']=='CONSTRUCTION_RETURNED'
           and r['scientific_qualification']=='NOT_ASSESSED' and r['native_interpretation']=='NOT_RUN'
           and r['automatic_adoption'] is False, 'Invalid construction lineage claims')
     _, reference = _inputs(root,r['inputs']); _controls(r['controls'],r['inputs']['dictionaries'])
+    _need(furanose == any(a['method'] == 'base-anchored-furanose' for a in r['controls']['actions']),
+          'Furanose evidence and construction action must agree')
     _need(isinstance(r['outputs'],dict) and set(r['outputs'])=={'after_coot','prepared'}, 'Invalid construction output inventory')
     for key,name in [('after_coot','after_coot.pdb'),('prepared','prepared_model.pdb')]:
         _resolve(r['outputs'][key],root)
@@ -294,12 +345,17 @@ def read_postmr_construction(run):
         projection_contexts, projection_files, projection_sources = _projection_closure(root, r['construction_projections'],
             r['inputs'], r['controls'], r.get('site_dictionaries'))
         files.update(projection_files)
+    if furanose:
+        substitution, members = _furanose_closure(root, r['furanose_substitution'], r)
+        files.update(members)
     # Check declared identities with the ordinary caller's existing parser. This
     # is a model/action join, not a second chemistry or geometry validator.
-    from .postmr import PostMRPreparationError, residue_name
+    from .postmr import FURANOSE_METHOD, PostMRPreparationError, residue_name
     try:
         for action in r['controls']['actions']:
             _need(residue_name(reference,action['site']) == action['before']
+                  and residue_name(root/r['outputs']['after_coot']['path'],action['site']) ==
+                      (action['before'] if action['method'] == FURANOSE_METHOD else action['after'])
                   and residue_name(root/r['outputs']['prepared']['path'],action['site']) == action['after'],
                   'Construction action differs from recorded model identities')
     except PostMRPreparationError as exc:
@@ -308,4 +364,5 @@ def read_postmr_construction(run):
     return dict(report=r,files=files,model=root/r['outputs']['prepared']['path'],
                 dictionaries={c:root/ref['path'] for c,ref in r['inputs']['dictionaries'].items()},
                 **({'site_dictionary_paths': selected} if site_choices else {}),
-                **({'projection_contexts': projection_contexts, 'projection_sources': projection_sources} if projections else {}))
+                **({'projection_contexts': projection_contexts, 'projection_sources': projection_sources} if projections else {}),
+                **({'furanose_substitution': substitution} if furanose else {}))

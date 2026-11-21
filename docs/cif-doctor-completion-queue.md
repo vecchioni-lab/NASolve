@@ -72,8 +72,10 @@ ordinary parent at all ten previously reset sites. After five cycles the two
 links are 1.611 and 1.604 Å and three close contacts remain. C493 left the
 neighbours in their original positions before Phenix. Its final junctions
 measured 1.612 and 1.603 Å, two overlaps exceeded 0.55 Å, and Rfree was
-0.2514. Both trials kept the four sugar centres and the original flags. The next Q07 gate
-is invocation by ordinary mutation and registered refinement on the same scaffold. Ordinary 1AP:T and
+0.2514. Both trials kept the four sugar centres and the original flags. C494
+then built all thirteen in ordinary PostMR, matching every C493 atom and all
+four recorded fields. The next Q07 gate is the registered thirteen-change
+refinement. Ordinary 1AP:T and
 S6G:C now pass through ReadySet and five Phenix cycles. In 1AP the local plane
 covers both amino groups. In S6G only the shared pair plane includes sulfur.
 On the thirteen-component model the corrected PDU, 5PC and DF restraints now

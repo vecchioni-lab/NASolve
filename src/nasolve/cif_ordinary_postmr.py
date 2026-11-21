@@ -7,7 +7,7 @@ preparation does not establish successful diffraction refinement.
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from .cif_acquisition_sources import freeze_acquisition_sources
+from .cif_acquisition_sources import freeze_acquisition_sources, read_acquisition_sources
 from .cif_phenix_configuration import configure_dictionary_engine
 from .cif_postmr_request import initialize_postmr_dictionary_request, prepare_postmr_literal_inputs
 from .cif_prepared_repair_execution import _bond_target_declarations
@@ -93,7 +93,8 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
         modified_pairs_only=False, restraint_scope=None, allow_unreviewed_backbone=False,
         narestraints_builder=None, modified_pair_builder=None, generation_options=None,
         continuation_options=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False,
-        frozen_sources=None, construction_choices=None, **execution_limits) -> PreparedPostMRRequest:
+        frozen_sources=None, construction_choices=None, furanose_substitution=None,
+        **execution_limits) -> PreparedPostMRRequest:
     """Prepare ordinary inputs once and publish a fresh complete request.
 
     Configuration/chemical permissions remain explicit. Existing constructors,
@@ -110,7 +111,9 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
     model/actions and phosphate intent must agree; no catalogue/pairing role is
     fabricated. Original source composition and each numerical choice are retained
     in the existing run/request owners. This route still does not execute the
-    complete request or enable automatic mutation/selection.
+    complete request or enable automatic mutation/selection. An explicit
+    furanose_substitution binds one internal site to its qualified component,
+    host dictionary and NARestraints workbook before the restraint builder runs.
     """
     from .postmr import _prepare_postmr
     bond_discovery_fields(automatic_bond_targets,bond_targets)
@@ -129,6 +132,19 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
     configured = configure_dictionary_engine(phenix,expected_dialect=expected_dialect,**options)
     construction = (None if frozen_sources is None and construction_choices is None else
                     _read_construction_inputs(frozen_sources, construction_choices, configured.consumer))
+    furanose = None
+    if furanose_substitution is not None:
+        from .postmr_furanose import capture_substitution
+        furanose = capture_substitution(furanose_substitution, configured.consumer)
+        if construction is None:
+            from .curated_ligands import ligand_source
+            current = ligand_source(furanose.code, data_root, ready_set_executable=configured.ready_set_executable)
+            furanose.verify_source(current.path, current.authority)
+        else:
+            chosen = construction['selection']['sources'].get(furanose.code)
+            if chosen is None:
+                raise ValueError('Furanose target is absent from the frozen acquisition sources')
+            furanose.verify_source(chosen['source'], chosen['source_authority'])
     def initialize(inputs):
         root = inputs.run_directory/'PostMR'/'DictionaryEngine'
         sources, literal, request = [root/name for name in ('sources','literal','request')]
@@ -137,12 +153,13 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
             freeze_acquisition_sources(list(inputs.components),sources,data_root=data_root,
                 ready_set_executable=configured.ready_set_executable)
         else:
-            from .cif_acquisition_sources import read_acquisition_sources
             from .cif_dictionary_sites import _need
-            from .cif_dictionary_store import _bytes
             _need(not root.is_symlink() and {p.name for p in root.iterdir()} == {'sources'},
                   'Unexpected preconstruction source owner members')
+        if construction is not None or select_representation or furanose is not None:
             selected = read_acquisition_sources(sources)
+        if construction is not None:
+            from .cif_dictionary_store import _bytes
             _need(selected['report']['components'] == sorted(inputs.components)
                   and _bytes(selected['report']) == _bytes(construction['selection']['report']),
                   'Prepared components differ from the captured source selection')
@@ -153,11 +170,14 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
             literal_inputs = literal
         generation = {code:dict(configured.generation) for code in inputs.components}
         if select_representation:
-            from .cif_acquisition_sources import read_acquisition_sources
             from .cif_generation_input import source_selected_generation
-            frozen = read_acquisition_sources(sources)["sources"]
+            frozen = selected["sources"]
             generation = {code:source_selected_generation(frozen[code]["source"], code, settings)
                           for code, settings in generation.items()}
+        if furanose is not None and 'bond_representation_policy' not in generation[furanose.code]:
+            from .cif_generation_input import source_selected_generation
+            generation[furanose.code] = source_selected_generation(
+                selected['sources'][furanose.code]['source'], furanose.code, generation[furanose.code])
         components = [dict(code=code,generation=generation[code]) for code in inputs.components]
         if construction is not None:
             from .cif_dictionary_sites import read_dictionary_sites
@@ -169,6 +189,17 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
                     item['retained_snapshot'] = projected/'snapshot'
                     if saved['report']['terminal_resource'] is not None:
                         item['terminal_resource'] = projected/saved['report']['terminal_resource']
+        if furanose is not None:
+            from .postmr_furanose import DIRECTORY, read_substitution
+            stage = inputs.run_directory/DIRECTORY
+            built = read_substitution(stage)
+            source = selected['sources'][furanose.code]
+            furanose.verify_source(source['source'], source['source_authority'])
+            if built['snapshot']['entry_id'] != furanose.entry_id:
+                raise ValueError('Furanose construction retained a different dictionary entry')
+            item, = [c for c in components if c['code'] == furanose.code]
+            item.update(retained_snapshot=stage/'snapshot',
+                        furanose_reaction=dict(workbook=built['workbook'], contexts=[built['context']]))
         record = initialize_postmr_dictionary_request(inputs.model_path,inputs.run_report,components,None,request,
             consumer=configured.consumer,ready_set_executable=None,supplementary_phils=list(inputs.supplementary_phils),
             literal_na_inputs=literal_inputs,frozen_sources=sources,construction_inputs=inputs.run_directory,
@@ -183,6 +214,7 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
         allow_mr_review=allow_mr_review,modified_pairs_only=modified_pairs_only,restraint_scope=restraint_scope,
         allow_unreviewed_backbone=allow_unreviewed_backbone,narestraints_builder=narestraints_builder,
         modified_pair_builder=modified_pair_builder,_dictionary_handler=initialize,
+        **({'_furanose_input':furanose} if furanose is not None else {}),
         **({"_construction_inputs":construction} if construction is not None else {}))
     if not isinstance(result,PreparedPostMRRequest):raise ValueError('Ordinary request boundary was not reached')
     return result

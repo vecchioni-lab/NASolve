@@ -24,6 +24,7 @@ from .cif_stereochemistry_audit import _values, _graph, _coordinates, _volume, V
 POLICY_ID = 'cif-rigid-whole-furanose-linked-control-v1'
 BASE_POLICY_ID = 'cif-base-anchored-whole-furanose-control-v1'
 MODEL_BASE_POLICY_ID = 'cif-model-linked-base-anchored-furanose-v1'
+_MAPPED_RING_FRAME = 'source-ring-and-workbook-roles-v1'
 _LEAVING_FLAG = '_chem_comp_atom.pdbx_leaving_atom_flag'
 _RETAINED_PHOSPHATE_OXYGENS = {'OP1', 'OP2', 'O1P', 'O2P'}
 _PROFILES = {'unbridged-furanose-phosphate-v1', 'two-o-four-c-methylene-furanose-phosphate-v1'}
@@ -66,6 +67,27 @@ def _base_frame_bindings(profile, values, frame_roles):
     if any(edge is None for edge in edges):
         raise ValueError('Require two source-bonded neighbors of the glycosidic base atom')
     return names, [elements[n] for n in names], edges
+
+
+def _mapped_ring_frame(profile, values):
+    """Identify the three alignment roles from the ring and this component's workbook row."""
+    from .cif_doctor import _bridges
+
+    elements, _, _, neighbors = _graph(values)
+    roles = profile['bindings']
+    base = roles['base']
+    fragment = base_fragment_atoms(roles, neighbors)
+    adjacent = {n for n in neighbors[base] & fragment if elements[n] not in {'H','D','T'}}
+    bridges = _bridges(neighbors)
+    if len(adjacent) != 2 or any(frozenset((base, n)) in bridges for n in adjacent):
+        raise ValueError('Base alignment requires two ring neighbours of the glycosidic atom')
+    mapped = {}
+    for atom in {base, *adjacent}:
+        labels = [role for role, n in profile['operational_signature']['atom_roles'].items() if n == atom]
+        if len(labels) != 1:
+            raise ValueError('Base ring alignment requires one distinct workbook role for each anchor')
+        mapped[atom] = labels[0]
+    return [mapped[base], *sorted(mapped[n] for n in adjacent)]
 
 
 def _derive_base(root):
@@ -138,7 +160,8 @@ def _derive(root, *, base_anchored=False, model_ports=False):
     fields = ('code', 'base_frame_roles') if base_anchored else ('code',)
     _object(selection, fields + (('ordinary_backbone',) if model_ports else ()),
             ('leaving_atom_source',) if model_ports else ())
-    if base_anchored:
+    automatic_frame = model_ports and selection.get('base_frame_roles') == _MAPPED_RING_FRAME
+    if base_anchored and not automatic_frame:
         frame_roles = selection['base_frame_roles']
         if (not isinstance(frame_roles, list) or len(frame_roles) != 3
                 or any(not isinstance(r, str) or not r for r in frame_roles)
@@ -236,6 +259,10 @@ def _derive(root, *, base_anchored=False, model_ports=False):
         checks.append({'role': role, 'target_volume': a, 'host_volume': b})
         if base_anchored:checks[-1]['compatible'] = _hand(a, b)
     if base_anchored:
+        if automatic_frame:
+            frame_roles = _mapped_ring_frame(profiles[0], values)
+            if _mapped_ring_frame(profiles[1], host_values) != frame_roles:
+                raise ValueError('Host and target have different workbook roles at the glycosidic ring')
         target_frame, target_elements, target_edges = _base_frame_bindings(profiles[0], values, frame_roles)
         host_frame, frame_elements, host_edges = _base_frame_bindings(profiles[1], host_values, frame_roles)
         if (target_elements != frame_elements or target_edges != host_edges
@@ -309,6 +336,8 @@ def _derive(root, *, base_anchored=False, model_ports=False):
             host_sugar_compatibility_required=False, base_chemical_equivalence='NOT_ASSERTED')
     if model_ports:
         report.update(policy_id=MODEL_BASE_POLICY_ID, ordinary_backbone=selection['ordinary_backbone'])
+    if automatic_frame:
+        report['base_frame_source'] = _MAPPED_RING_FRAME
     if 'leaving_atom_source' in selection:
         report['phosphate_leaving_atom'] = dict(atom=context['ports']['phosphate']['leaving_atom'], source=_LEAVING_FLAG)
     return report, model
@@ -333,13 +362,17 @@ def prepare_base_anchored_furanose_control(source, numerical, host_source, workb
 
 
 def prepare_base_anchored_furanose_from_model(source, numerical, host_source, workbook, frame, output,
-                                              *, code, site, base_frame_roles, postmr_report, leaving_atom=None):
+                                              *, code, site, postmr_report, base_frame_roles=None, leaving_atom=None):
     """Place an internal replacement using the host's audited asymmetric-unit links.
 
     Without an explicit leaving atom the source must flag exactly one terminal,
-    neutral phosphate hydroxyl. The frozen choice is rechecked on every replay.
+    neutral phosphate hydroxyl. Without explicit base roles, both source graphs
+    and workbook rows must agree on the two ring neighbours of the glycosidic
+    atom. The frozen choices are rechecked on every replay.
     """
-    selection = dict(code=code, base_frame_roles=base_frame_roles)
+    if base_frame_roles is not None and not isinstance(base_frame_roles, list):
+        raise ValueError('Require three explicit distinct NARestraints base frame roles')
+    selection = dict(code=code, base_frame_roles=_MAPPED_RING_FRAME if base_frame_roles is None else base_frame_roles)
     if leaving_atom is None:
         profile = inspect_attachment_profile(source, code, workbook=workbook)
         if profile['topology_status'] != 'MATCH' or profile['matched_profile'] not in _PROFILES:

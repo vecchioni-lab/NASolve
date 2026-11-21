@@ -120564,5 +120564,81 @@
     },
     "comparison_interpretation": "Both construction seeds retain the two covalent bonds and four sugar centres. Rfree is higher without neighbour adjustment and the two remaining printed overlaps are larger than 0.55 angstrom.",
     "registered_thirteenth_substitution": false
+  },
+  "ordinary_thirteen_mutation_construction_2026_11_21": {
+    "policy": "postmr-internal-furanose-construction-lineage-v1",
+    "construction": "b353ed770473f5367600dc196af55924ca2da5c309858c2424a0ade1374ee461",
+    "prepared": "35f298f0514077011d9ac59c0f25e9626832783bd89f1800b09e8d4a1846358b",
+    "known_cold_files": 40,
+    "known_cold_bytes": 1267441,
+    "actions": {
+      "A:12": "DZ",
+      "B:4": "DP",
+      "A:11": "ATL",
+      "A:19": "DF",
+      "A:20": "CGY",
+      "A:4": "5PC",
+      "A:5": "1AP",
+      "A:6": "IGU",
+      "A:7": "5CM",
+      "C:10": "IMC",
+      "C:9": "S6G",
+      "D:3": "DX",
+      "D:5": "PDU"
+    },
+    "coot_changes": 12,
+    "qualified_dictionary": "a026698afe1a7c2e066a1b0d974c63cf562a09636ddbded393aea384c21adaec",
+    "source_sha256": "cd7bd864ac5fb1a125294d30ff6da7bd36ac95fc7a4b72e6c7aaeee92f7f3c01",
+    "measured_vs_separate_seed": {
+      "labels": [
+        "coordinates",
+        "occupancy",
+        "B",
+        "element"
+      ],
+      "different_atoms": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "reused_base_B": 9,
+    "max_base_movement_A": 1.1510321455111485,
+    "sugar_centres": 4,
+    "sugar_signed_triples": 7,
+    "expected_links": 38,
+    "wheel": "f90de7b9780563ecc55a1f743ce179ba3d8d22af9d0a592e90cc5690d4780963",
+    "installed_files": 329,
+    "native": {
+      "phenix": "2.2.1-6174",
+      "coot": "1.3.3 revision-count 0, embedded Python 3.14.6",
+      "narestraints": "1.1.3"
+    },
+    "terminal_phosphate_permissions": [
+      "D:1"
+    ],
+    "consumed_ports": {
+      "incoming": "A:10 O3′ to A:11 P",
+      "outgoing": "A:11 O3′ to A:12 P",
+      "departing_atom": "OXT"
+    },
+    "actual_native_repair": {
+      "plane_results": {
+        "5PC": "CAPTURED_PLANE_ATTRIBUTION_PASS",
+        "ATL": "CAPTURED_PLANE_ATTRIBUTION_PASS",
+        "DF": "CAPTURED_PLANE_ATTRIBUTION_PASS",
+        "IMC": "NO_SUPPORTED_PLANE_COMPLETION",
+        "PDU": "CAPTURED_PLANE_ATTRIBUTION_PASS",
+        "S6G": "NO_SUPPORTED_PLANE_COMPLETION"
+      },
+      "bond_results": {
+        "5PC": "CAPTURED_BOND_TARGET_ATTRIBUTION_PASS",
+        "PDU": "CAPTURED_BOND_TARGET_ATTRIBUTION_PASS"
+      }
+    },
+    "scope": "Ordinary model construction and native dictionary corrections. ReadySet publication and registered diffraction have their own receipts.",
+    "source_workbook": "94a66af42081188fd95f3fdcbe04cb01bed8f1826772597272320a8b4c0433b2",
+    "host_dictionary": "47a7972b4707d3d2b4bd01ab4916b90bbfa659867d612f58a3a79665cce5e9d7"
   }
 }

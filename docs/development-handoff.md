@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C493 direct ATL construction through five Phenix cycles — Rowan**.
+Updated **2026-11-21, C494 ordinary thirteen-substitution construction — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -13,6 +13,27 @@ Focused, relocated installed, matched native and independent checks also pass.
 Software qualification does not change the scientific REVIEW or close Q06.
 
 ## Where to resume
+
+**Ordinary construction, C494.** Fresh molecular replacement, Coot 1.3.3 and
+NARestraints 1.1.3 produced all thirteen substitutions in one PostMR run.
+Coot handled twelve. The source-qualified route read ATL's base anchors from
+the workbook, kept nine matched base B values and removed OXT at A:11. All
+869 atoms matched the separate C493 seed in coordinates, occupancy, element
+and B. A relocated install reopened the 40 construction files (1,267,441
+bytes) after the first checkout disappeared. Native dictionary checking
+confirmed four plane changes and both PDU/5PC bond corrections. The next
+gate is the registered ReadySet endpoint and its five-cycle diffraction child.
+The first attempt stopped at a macOS temporary-directory alias after Coot.
+The second ran on its own numbered MR lineage.
+
+Focused checks used `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m
+pytest -q -p no:cacheprovider` on the furanose lineage, explicit targets, base
+anchors, stored furanose, canonical/site/projection lineage, PostMR construction,
+ordinary construction, ordinary PostMR and complete request tests (326 passed).
+The changed-source refusal and both ordinary preparation files then passed all
+29 checks. The full regression was deferred. Existing explicit records retain
+their version 1 envelope. Native models and diffraction files stay in the
+numbered run. The compact measurements are in the scientific evidence ledger.
 
 **ATL on the selected twelve-change scaffold, C493.** The simpler seed used the
 currently qualified dictionary without first shifting either neighbour. Its 869

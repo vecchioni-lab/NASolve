@@ -138,3 +138,32 @@ def test_no_explicit_source_keeps_unknown_target_error(inputs, monkeypatch):
     monkeypatch.setattr(postmr, 'ligand_definition', missing)
     with pytest.raises(postmr.PostMRPreparationError, match='no usable canonical parent'):
         postmr.build_mutation_plan(report, model)
+
+
+def test_locked_sugar_planning_keeps_the_whole_residue_separate_from_coot(inputs, monkeypatch):
+    _, model, report = inputs
+    report['post_mr_plan']['mutations']['A:1']['ligand_code'] = 'Z99'
+    monkeypatch.setattr(postmr, 'ligand_definition', forbidden)
+    action, = postmr.build_mutation_plan(report, model, furanose_target=('A:1','Z99'))
+    assert action == postmr.MutationAction('A:1','DA','Z99','base-anchored-furanose')
+    with pytest.raises(postmr.PostMRPreparationError, match='phosphate-prepared'):
+        postmr.construct_postmr_model(model,(action,),{},model.with_name('unbuilt.pdb'))
+    assert not model.with_name('unbuilt.pdb').exists()
+
+
+@pytest.mark.parametrize("target,mirror", [(('A:2','Z99'),False),(('A:1','ZZZ'),False),(('A:1','Z99'),True)])
+def test_locked_sugar_plan_requires_exact_ordinary_target(inputs, target, mirror):
+    _, model, report = inputs
+    report['inputs'] = {'mirror':mirror}
+    report['post_mr_plan']['mutations']['A:1']['ligand_code'] = 'Z99'
+    with pytest.raises(postmr.PostMRPreparationError, match='furanose'):
+        postmr.build_mutation_plan(report, model, furanose_target=target)
+
+
+def test_one_sugar_declaration_cannot_select_a_second_site_with_the_same_component(inputs, monkeypatch):
+    _, model, report = inputs
+    for site in ('A:1','A:2'):
+        report['post_mr_plan']['mutations'][site] = {'ligand_code':'Z99'}
+    monkeypatch.setattr(postmr,'ligand_definition',forbidden)
+    with pytest.raises(postmr.PostMRPreparationError,match='one exact'):
+        postmr.build_mutation_plan(report, model, furanose_target=('A:1','Z99'))

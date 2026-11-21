@@ -349,6 +349,19 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
     construction_ref = {}
     if construction_inputs is not None:
         bound = _construction_input(inputs/'construction',inputs/'model.pdb',selected['sources'],model_context)
+        if 'furanose_substitution' in bound:
+            substitution = bound['furanose_substitution']
+            code = substitution['code']
+            site = controls['sites'].get(code, {})
+            reaction = _furanose_inputs(inputs, site).get('furanose_reaction')
+            retained_path = site.get('retained')
+            _need(retained_path == 'retained/'+code and reaction is not None
+                  and reaction['contexts'] == [substitution['context']]
+                  and _read(reaction['workbook']) == _read(substitution['workbook'])
+                  and substitution['snapshot']['manifest']['consumer'] == controls['consumer']
+                  and substitution['snapshot']['manifest']['request']['source_authority'] == selected['sources'][code]['source_authority']
+                  and resolve_dictionary_snapshot(inputs/retained_path)['manifest'] == substitution['snapshot']['manifest'],
+                  'Prepared furanose chemistry differs from its constructed component, ports or qualified dictionary')
         reference = dict(anchor=ANCHOR,path='inputs/construction',policy_id=bound['report']['policy_id'])
         _need(construction_inputs == reference, 'Invalid construction lineage reference')
         allowed.update('construction/'+name for name in bound['files'])
