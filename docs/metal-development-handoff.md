@@ -73,6 +73,28 @@ claim. A disposable increment profile and regeneration proof remain prerequisite
 for retirement. A04 remains partial; FT geometry leaves A01 partial and A02 gated.
 Willow W194 comparison remains a later A01 input; paired-P width alone is not bending.
 
+**Retained-parent follow-up is scoped, not implemented.** Seven existing-owner
+scenarios confirm that parent closure and child settlement need separate evidence.
+Two completed children leave the parent open until outer exit; uncertain/missing
+child outcomes keep their 1 MB allowances after parent cleanup. A deliberately
+out-of-order close correctly refuses yet removes the path while an active reader
+can still read 22 bytes. Parent release therefore needs orderly read closure as
+well as verified cleanup. An injected cleanup failure leaves a 22-byte synthetic
+fixture. No source/runtime owner was changed. Four simulated children per probe,
+zero Phenix/Coot calls; 28 independent checks validate final saved observations.
+The initial private probe had a no-op serial assertion; it was corrected and only
+those seven cases were rerun. Earlier evidence remains retained. Final local
+report and exact receipts are `retained-charge-scope-20261121-02/{review.html,
+observations.json,review-checks.json}`. Existing focused qualification remains
+applicable to unchanged runtime; no suite was repeated for the documentation.
+
+The [proposed charge/closure contract](metal-campaign-storage.md#proposed-retained-parent-charge-and-closure-contract)
+uses explicitly opted-in versioned parent/child grants under one shared lock and
+admission sum. V1 stores stay unchanged; unsupported readers must refuse newer
+versions. A parent is never disguised as a child or released from a native
+outcome. Broader scheduling and live-ledger migration remain separate decisions.
+Rowan confirmed Cedar's outer time allowance does not provide disk ownership.
+
 The underlying reservation owner is delivered at `13596fbc`: 77 focused, 31 final
 and 31 installed checks, with report/evidence in `storage-budget-20261121-01/`
 through `-03/`. It uses the existing lock and durable writer, charges observed

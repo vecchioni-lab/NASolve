@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Scope retained-parent storage ownership without changing execution
+
+- Document seven observed parent/read/child interruption cases and a proposed
+  explicitly versioned parent/child reservation contract under one admission sum.
+- Require orderly borrowed-read closure plus verified cleanup for future parent
+  settlement; path removal alone is insufficient, and unresolved children keep
+  their own allowances. Preserve current v1 behavior and ordinary scheduling.
+- Retain the small synthetic evidence and 28 saved-observation checks locally.
+  No runtime/schema change, production parent quota, native science run or pruning.
+
 ### Admit the existing one-shot metal child through an explicit storage budget
 
 - Add optional Python `run_child(storage_budget=...)` admission after ordinary

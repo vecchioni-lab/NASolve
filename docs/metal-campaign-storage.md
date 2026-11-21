@@ -1554,6 +1554,81 @@ or whole-session quota. The focused/installed synthetic checks and measured
 interrupted launch are linked in the [current handoff](metal-development-handoff.md).
 No scientific rerun or payload deletion was needed for this integration.
 
+### Proposed retained-parent charge and closure contract
+
+**Scoped and observed; not implemented.** The existing storage ledger grants
+space to child requests and settles against verified stopped-child outcomes.
+The existing retained parent is owned by an outer Python scope, with serial
+borrowed reads and temporary snapshot cleanup. A parent must not be represented
+as a synthetic child or settled using a child's native outcome. Cedar's time
+allowance and parent-attempt provenance do not supply a disk ownership contract.
+
+A seven-case synthetic observation of these unchanged owners establishes:
+
+| Observed case | Parent lifetime | Child allowance |
+| --- | --- | --- |
+| Two completed children | Snapshot remains open after each child settles; cleanup happens at outer exit | Each child's allowance settles independently |
+| Caught read interruption | Read ends and handle invalidates, but the snapshot stays until outer exit | No child in this control |
+| Uncertain child stop or missing outcome | Outer cleanup can succeed independently | Existing 1 MB child allowance remains held after parent cleanup |
+| Outer interruption | Existing owner can still finish cleanup | No child in this control |
+| Out-of-order close with an active reader | Existing contract refuses; path is removed but an open descriptor can still read its 22 bytes | No child in this control |
+| Injected cleanup failure | A 22-byte owned synthetic snapshot remains; cleanup receipt is false | No child in this control |
+
+The out-of-order case deliberately violates the existing serial scope contract;
+it is not a supported use pattern. It demonstrates why `snapshot_removed` or path
+absence alone is insufficient for a future budget release. An open file can retain
+storage after its pathname is removed. The normal parent owner is unchanged.
+
+**Proposed version boundary:** add an explicitly opted-in configuration/ledger
+version supporting distinct `child` and `retained_parent` grants. Keep existing
+v1 stores readable and behavior-compatible. Do not silently rewrite a v1 ledger,
+add parent charges that an older reader ignores, or maintain a second independent
+budget whose grants can oversubscribe the same disk. Older readers must refuse
+an unsupported version. New-store creation and any explicit verified conversion
+need their own qualification; live-store migration is not part of this proposal.
+
+**One admission sum:** under the existing persistent lock, charge observed store
+bytes plus every held parent allowance plus every held child allowance plus
+publication overlap. Use the actual filesystem holding both store and expansion;
+multiple-device accounting remains outside the initial profile. Reserve the parent
+before expansion, once per retained scope. Each child reserves only its own known
+copies and declared growth while borrowing that already charged parent. Neither
+child completion nor failure changes the parent's grant. No lock is held across
+native execution or scientific reads. Retained files remain charged after any
+allowance settlement; the existing conservative double-counting remains explicit.
+
+**Parent release authority:** the actual opaque parent owner, not caller-supplied
+booleans, must bind a closure receipt to the grant, scope identity, manifest and
+owned scratch. It must observe that borrowed reads ended in the proper order, the
+outer scope ended, and its transport/snapshot cleanup completed. Preserve the
+fact that no native worker inherits the snapshot: child workers own copied inputs.
+A consumer exception or scientific invalidation need not retain already-cleaned
+parent space when orderly read closure and cleanup are independently verified;
+it still grants no scientific acceptance. An uncertain child retains its own
+allowance even when independent parent closure qualifies. Active-reader teardown,
+missing closure, uncertain cleanup, interrupted publication or abrupt death must
+leave the parent charge held. PID death, age, path absence or a forged closure
+record cannot substitute for the live owner's evidence. Recovery from those
+uncertain states needs a separate explicit proof and is not inferred here.
+
+**Next bounded implementation:** first qualify parent admission and authoritative
+closure under the versioned ledger; then bind child grants to that live parent
+scope, including same-store/scope checks and prevention of premature discharge.
+Exercise interruption before expansion, within a borrowed read, between children,
+before/after closure publication, cleanup failure, stale/substituted handles,
+concurrent admission and cold relocation. Only then connect audited-session and
+campaign callers. Ordinary scheduling, v1 admission, native chemistry and cleanup
+behavior stay unchanged during this design step. Retirement remains separate.
+
+The final private observation and 28 independent saved-evidence checks are under
+`retained-charge-scope-20261121-02/` at the Alder artifact anchor. Its four children
+use a simulated executable, not Phenix/Coot. The preceding probe is retained; a
+no-op serial assertion in that private harness was corrected and the seven cases
+rerun before final handoff. Both runs preserve original archives and current
+runtime sources. The 22-byte cleanup-failure fixture is intentionally retained in
+each local proof; other owned staging is closed. No production parent reservation,
+new artifact schema or automatic release was implemented by this probe.
+
 ## Capacity and scheduling
 
 Use bytes, not trial counts, to enforce both a campaign retained-data budget and

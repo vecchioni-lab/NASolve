@@ -100,7 +100,12 @@ The first explicit `run_child` caller now reserves before one-shot expansion
 and launch; 83 focused and 21 relocated installed checks preserve stopped versus
 interrupted ownership and no-budget behavior. Next: qualify outer retained-parent
 and campaign accounting plus a disposable increment profile before retirement
-or campaign fan-out. Arbitrary protection ancestry is not inferred. Read/execution lifetime qualification does not establish capacity or
+or campaign fan-out. A seven-case retained-lifetime probe now scopes a distinct
+parent grant and authoritative closure under one versioned admission sum; it
+implements no parent quota or scheduling change. Orderly read closure is required
+in addition to snapshot removal, and unresolved children keep their own charges.
+See the [proposed retained-parent contract](metal-campaign-storage.md#proposed-retained-parent-charge-and-closure-contract).
+Arbitrary protection ancestry is not inferred. Read/execution lifetime qualification does not establish capacity or
 close the A01/A02 science gates.
 Typed reader-control support remains with Willow W186. No historical parent or
 process identity is promoted; A01's current FT geometry gate is unchanged.
