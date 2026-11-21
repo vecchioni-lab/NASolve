@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Publish compact audited results with explicit protected references
+
+- Extend the maintained metal publisher with opt-in audited-child packing/cold
+  inspection. Share exact requests/inputs/helpers, preserve distinct full signed
+  results and reuse existing scientific readers, archive and durable writers.
+- Add separate v1 projection/publication/inspection kinds with checksummed
+  store-relative parent/full-review references. Missing protected evidence
+  refuses even when compact rows survive; no implicit pin registry or pruning.
+- Preserve legacy formats, native workers, execution defaults and scientific
+  limits. Qualify 46 focused checks, 13 final publication checks and 13 relocated
+  installed tests plus exact saved Ag4 reopening and two protection refusals.
+  No new native fit, full suite or original data retirement.
+
 ### Carry retained parents through explicit execution and cold review
 
 - Add opt-in retained-parent handles to existing child/audited-child Python APIs;

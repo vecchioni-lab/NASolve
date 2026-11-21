@@ -7,75 +7,76 @@ owns feature completion. The earlier chronological diary is preserved as
 [evidence through 18 November](history/metal-development-handoff-2026-11-18.md),
 not a second queue.
 
-## A04 current checkpoint: retained execution and cold review
+## A04 current checkpoint: compact publication with protected references
 
-An explicit Python `retained_parent_inputs` scope can now serve repeated
-`run_audited_child(..., retained_parent=handle)` calls. Each trial keeps its own
-prepared inputs, owned process, fresh metadata/scattering/original Free-R audit,
-pre/post parent derivation, frozen-state/model checks and stopped-output seal.
-Only the protected parent snapshot is shared. Two synthetic audited children
-use one expansion while repeating all scientific acquisition and registry checks.
-The native worker receives copied trial inputs, never the retained handle/path.
+The maintained `metal.publication` owner now accepts completed audited-child
+sessions through opt-in Python `publish_audited_results` and
+`inspect_published_audited_results`. It shares exact requests/inputs/helpers,
+retains distinct full result rows, and publishes an archive followed by its
+independently pinned durable receipt. Every parent archive and explicitly pinned
+full-evidence result stays in the caller's declared store, referenced with relative
+paths and exact identities. The publisher neither copies nor retires these nodes.
+Cold reopening checks those references and refuses missing/changed protected
+bytes even when the compact table remains intact.
 
-**Prior work/gap:** the preceding read-only scope reused the shared archive and
-snapshot owners but could not enter process/review v1: those records described
-a completed one-shot transport. The new explicit route carries one context-local
-scope identity through declaration, child execution/outcome and scientific review.
-Process outcome/review **v2** distinguish completed reads from outer cleanup;
-derivation v2 and the read receipt are reused. One-shot v1 records, current CLI
-execution defaults, request v2 and output-seal v1 remain unchanged. Cold inspection
-reads both review versions, binds the matching process lifetime and reports that
-outer snapshot cleanup is **not independently verified**. It grants no reuse.
+**Prior work/gap:** the existing legacy numbered-trial publisher, input archive,
+shared bounded serializer and durable record writer are reused. Audited children
+have a distinct source/profile contract, not a fabricated legacy trial. Rowan
+confirmed that current Cedar protects specific complete-attempt artifacts; its
+model-tree comparison pins are not a retention registry. This step therefore
+uses explicit parent/full-review references, not a new global pin registry or
+inferred dependency traversal. Full source audits run before publication; cold
+inspection re-audits explicitly protected full reviews. Other compact rows remain
+recorded measurements with exact inputs, not reconstructed native-array audits.
 
-Expired/substituted parents refuse before allocation or publication. An uncertain
-stop invalidates the retained scope and withholds review/retry; stopped timeouts
-and interrupts retain their phase/outcome and require a new explicit retry attempt.
-Interrupted outcome/review publication leaves visible incomplete evidence.
-Rehashed scope/cleanup/incomplete-read claims and version relabelling refuse.
-No ordinary result is automatically selected. Original archives/science remain
-exact; only owned temporary snapshots/staging are removed.
-
-**Validation:** before implementation, 13 new tests fail in 3.53 s. The first
-profile passes 80 tests in 29.23 s; the expanded scientific/lifecycle profile passes
-**162 in 39.35 s**. After strict version-binding additions, **42 affected tests
-pass in 20.21 s**. A relocated installation passes **38 tests in 24.84 s**, with
-all **353** packaged files exact and copied build/old-install paths gone.
-The existing real Hg and Ag4 controls re-audit exactly with original source,
-science and Phenix access blocked. Four worker/helper files, the fdp/scattering/
-Free-R modules and the shared scientific auditor match the previously qualified
-consumer exactly. No new Phenix/Coot fit or full suite ran. The first installed
-harness stopped before tests because its reference wheel predated extraction of
-that auditor helper; this failed reference check is retained and corrected.
+**Validation:** 11 before-change controls fail in 11.39 s. The first implementation
+has four passes/seven failures because owned staging used macOS's `/var` alias;
+the shared reader correctly refused its symlink ancestor. Resolving that owned
+temporary path fixes the issue without weakening source checks. **46 focused
+checks pass in 28.58 s**; after output-location/protected-output-binding refinements,
+**13 publication checks pass in 13.90 s**. A source-free relocated installation
+passes those **13 tests in 16.07 s**, with all **353** package files exact. Existing
+legacy publisher/archive/cold-review behavior is covered by the focused profile.
+No full suite or new Phenix/Coot fit runs.
 
 The focused command is `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src
 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest
--q -p no:cacheprovider tests/test_metal_retained_execution.py
- tests/test_metal_retained_parent.py tests/test_metal_child_process.py
- tests/test_metal_child_session.py tests/test_metal_child_review.py
- tests/test_metal_child_outputs.py tests/test_metal_child_inputs.py
- tests/test_metal_worker_bundle.py tests/test_metal_fdp.py`.
-The final 42-test command selects retained-execution, child-review and child-process
-modules. Exact commands/hashes and the last integrated full execution remain in
-the local receipts and root handoff, respectively.
+-q -p no:cacheprovider tests/test_metal_audited_publication.py
+ tests/test_metal_publication.py tests/test_metal_publication_batch.py
+ tests/test_metal_input_archive.py tests/test_metal_child_review.py`.
+The final source/installed profile selects the new publication module. Exact
+commands, hashes and failed-stage evidence are under the local Alder artifact
+anchor `audited-publication-20261121-01/`. The last full integrated execution
+remains the root handoff's recorded runtime run plus focused fixture amendment.
 
-Runtime files are `metal/parent_archive.py`, `metal/child_process.py` and
-`metal/child_session.py`, plus one new test module. No old artifacts migrate.
-Generated science, fixtures, wheels and reports stay out of Git. Evidence under
-the Alder artifact anchor is `retained-execution-20261121-01/` (source profiles and
-failed harness reference) and `retained-execution-20261121-02/` (installed receipt,
-unchanged consumer hashes, Hg/Ag4 readbacks and small report). The preceding
-read-only cost proof remains in `retained-parent-20261121-01/`: a 4.73 MB parent
-expands/copies once, but each read still rehashes 11.05 MB. No campaign-capacity,
-scientific-pass-cache or performance guarantee follows.
+**Small real proof:** the saved Ag4 review reopens exactly with original source,
+science and Phenix access blocked: all four Q=1/B=188.75 Å² values, both negative
+site contributions and Rwork/Rfree=0.2918387029/0.7587086386 remain unchanged.
+Its compact input/result archive is **142,395 B**, receipt **1,679 B**, and existing
+protected parent/full-review evidence **2,366,158 B**. Publication takes 0.96 s;
+reopening takes 0.27 s. Removing a parent part or protected native-array file
+from expendable copied fixtures refuses before archive expansion. Originals
+remain exact. A separate two-child synthetic test shares one request while
+preserving both attempts and reopens after only its expendable source is removed.
+This is no 100-dataset benchmark or authority to replace 2.37 MB with 144 KB.
 
-**Next:** connect completed results to compact publication and important-node
-protection through existing owners, then qualify reservations/retirement before
-campaign fan-out. No extra Hg/Ag control fit is warranted for unchanged scientific
-consumers. Current FT ligand geometry remains unresolved. Willow W194 named-state
-comparison (`76f6cd8c`, 113 source/113 installed tests on Willow) is available for
-later A01 work, not integrated here: its 2.29 Å RMS rigid-pair movement with less
-than 0.001 Å paired-P span change shows why width alone cannot detect bending.
-Modified frames, axes and curvature remain unqualified.
+**Files/schemas:** one runtime module (`metal/publication.py`), one test module,
+and maintained handoff/roadmap/storage/architecture/changelog. Additive v1 audited
+projection/publication/inspection kinds are separate from legacy formats; no old
+record migrates. No native worker, execution default, scientific policy or GUI
+changes. Generated models, observations, packages and reports remain outside Git;
+owned staging is removed, and original scientific/partial evidence is preserved.
+The earlier retained parent execution/cold-review boundary remains qualified at
+`134d647a`; its 162 focused, 42 final affected and 38 installed receipts remain in
+`retained-execution-20261121-01/` and `-02/`.
+
+**Next:** qualify quota/reservation accounting and an explicitly disposable new
+increment profile before any retirement. Current compact publications grant no
+execution, cache reuse, checkpoint acceptance or pruning. Arbitrary branch
+ancestors, external pins and campaign-wide protection are not inferred. Keep
+important geometry/full-evidence nodes. A01's FT geometry remains unresolved;
+A02 is gated. Willow W194 named-state comparison remains a later A01 input;
+paired-P width alone does not establish bending or a local axis.
 **A01 partial; A02 gated; A04 partial.**
 
 ## A04 supporting checkpoint: explicit offline session review

@@ -285,6 +285,91 @@ remain diagnostic; no native run, scientific acceptance or schema change occurs.
 See `real-publication-20261120-01/review.json` and the
 [handoff](metal-development-handoff.md#completed-batch-provenance-handoff).
 
+### Compact audited-child publication with explicit protected references
+
+The maintained publisher now has a separate audited-child input profile:
+`publish_audited_results(store, children, archive, output, parent_archives=...,
+protected_reviews=...)`. Each child is an explicit directory plus independent
+review ID. The archive and receipt must be fresh files under the declared store,
+outside every source/protected node. Parents and explicitly protected full reviews
+must already reside under that store. The caller owns their placement; this API
+never copies, changes or retires them. No basename lookup or automatic selection
+of important nodes is performed.
+
+Existing `inspect_audited_child` owns source qualification. Exact requests and
+executable input/helper bytes are indexed once per request; repeated requests
+keep distinct review/result identities. The shared content-addressed archive
+serializer also deduplicates equal byte objects across distinct requests. Complete
+signed result rows, Free-R context and parent context are retained without rounding.
+The existing durable writer publishes the final receipt only after packing,
+fsync, repeated source/protection checks and prospective receipt validation.
+Completion reads the receipt back and invokes the same cold inspector.
+
+New `metal-audited-child-projection`, `metal-audited-child-publication` and
+`metal-audited-publication-inspection` kinds use schema 1. They do not reinterpret
+legacy numbered-trial formats or retained execution/review v2. The receipt pins
+the archive/projection, distinct attempts, request count, every used parent
+manifest and the explicit protected-review set. Operational references use
+`publication_store` plus relative path, byte size and SHA-256; full-review IDs
+are independently cross-bound by their existing owner. A changed root path is
+handled only by the caller's declared store anchor, never by searching originals.
+
+`inspect_published_audited_results(store, receipt, publication_id=...)` checks the
+independent receipt identity before reopening. It verifies protected parent
+manifest/part bytes, re-audits explicit protected full reviews, then uses one
+bounded archive view for all compact records. Requests/inputs/helpers and ordered
+record selections must match. Protected result/request/output/Free-R/parent
+identities must agree with their full evidence. All declared protections are
+checked again before returning any comparison. Missing or changed protected
+material refuses even when scalar rows remain intact; a compact table cannot
+substitute for an important proof node.
+
+The reader explicitly distinguishes recorded compact measurements from a full
+native-array audit. Only declared protected reviews have that full saved-evidence
+replay; `scientific_audit_replayed_for_all_records` is true only if every row is
+protected and replayed. No fresh metadata/Free-R acquisition or native execution
+occurs. Both negative Ag terms and occupancy/atom-count limitations remain intact.
+Checksums are integrity evidence, not cryptographic protection against a hostile
+rewriter or authority to run captured code. No record grants execution, automatic
+reuse, checkpoint acceptance, scientific fitness or retirement.
+
+Shared bounds remain unchanged: at most 128 explicit completed children per
+batch, 1 MiB receipt, 16 MiB projection, 1,024 archive members, 32 MiB per file,
+128 MiB logical archive payload and the existing 32 MiB compressed limit. Caller
+input budgets can restrict these limits. Larger batches must be explicitly split;
+no automatic campaign scheduler is added. These packing bounds do not bound all
+upstream scientific replay, RAM usage or existing protected storage. Protected
+parents/full results are referenced rather than duplicated by each batch.
+
+There is **no general retention registry** behind these declarations. Shared CIF
+retention protects its own public artifacts; comparison-view pins are unrelated.
+This adapter checks the explicitly supplied parent/full-review references and
+leaves originals intact. It does not discover arbitrary transitive branch pins,
+reserve aggregate disk space, retire old session files, or make an incomplete
+publication selectable. Interrupted packing/final receipt publication preserves
+partial archives and all sources. Existing immutable trial manifests keep their
+full-file promises until a separately qualified disposable profile exists.
+
+Qualification: 46 focused source tests pass, then 13 final affected publication
+checks; a relocated installation passes the same 13 with 353 exact package files.
+The two-child synthetic control shares one request and preserves both attempts,
+then reopens with only its expendable source copy removed. The unchanged real
+Ag4 review publishes/reopens with original source/science/Phenix blocked and zero
+native calls. Its archive is 142,395 B plus a 1,679 B receipt, alongside 2,366,158 B
+of pre-existing protected parent/full evidence. Publication/reopening take
+0.96/0.27 s. Deleting either a parent part or protected native result **only in
+expendable copied fixtures** refuses before compact archive expansion; both files
+are restored, and all originals remain exact. The negative terms and poor-fit
+statistics are unchanged. This is a small boundary proof, not a 100-dataset capacity
+claim or safe-pruning demonstration.
+
+Exact commands, hashes, initial macOS staging failure and corrected installed
+receipts are under `audited-publication-20261121-01/` at the Alder artifact anchor.
+The [current handoff](metal-development-handoff.md#a04-current-checkpoint-compact-publication-with-protected-references)
+owns validation scope and exclusions. No full suite or new Phenix/Coot execution
+runs. Next qualify aggregate reservations and an explicit new disposable increment
+profile before retirement or broad campaign fan-out.
+
 ## Implemented fourth step: explicit parent-layout transport
 
 `nasolve.metal.parent_archive.pack_parent_inputs(layout, output)` retains one
@@ -413,7 +498,7 @@ checks. This is arithmetic from two historical datasets, **not** a measured
 checked roots and native scheduling remain unqualified here.
 
 Exact commands, hashes and cold measurements are under the local Alder artifact
-anchor `retained-parent-20261121-01/`. The [current handoff](metal-development-handoff.md#a04-current-checkpoint-retained-execution-and-cold-review)
+anchor `retained-parent-20261121-01/`. The [current handoff](metal-development-handoff.md#a04-current-checkpoint-compact-publication-with-protected-references)
 records failed-before evidence, validation commands and exclusions. No new
 Phenix/Coot refinement or full suite ran; retained scientific evidence was not
 pruned. The execution adapter below preserves this explicit lifetime, fresh gates
@@ -489,13 +574,14 @@ poor-fit Hg B=25/Q=0.6 and Ag4 B=188.75/Q=1 results remain unaccepted, including
 both negative Ag terms and the large Rfree. No atom-count inference follows.
 
 Receipts are under `retained-execution-20261121-01/` and `-02/` at the Alder
-artifact anchor; the [handoff](metal-development-handoff.md#a04-current-checkpoint-retained-execution-and-cold-review)
+artifact anchor; the [handoff](metal-development-handoff.md#a04-current-checkpoint-compact-publication-with-protected-references)
 owns exact commands/results and the corrected installed-harness reference.
 Generated data and packages remain local. No full suite or scientific data
 retirement ran. The previous measured read cost remains applicable: transport
 copying is shared, full byte checks and scientific replay remain per read.
-Compact publication/protected important nodes, aggregate reservations, cleanup
-and representative campaign capacity remain the next gates before fan-out.
+The compact publication profile above now checks explicit important-node references.
+Aggregate reservations, a disposable increment profile, cleanup and representative
+campaign capacity remain the next gates before fan-out.
 
 ## Bounded protected-parent and regeneration rehearsal
 

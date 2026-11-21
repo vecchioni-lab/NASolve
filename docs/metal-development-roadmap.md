@@ -88,9 +88,14 @@ scope identity across each child's fresh scientific gates and shared process
 owner. Process/review v2 distinguish completed reads from outer cleanup; one-shot
 v1 remains unchanged. Qualification is 162 focused tests, a final 42-test version
 check and 38 relocated installed tests, plus unchanged real Hg/Ag4 cold evidence.
-No native rerun or automatic acceptance/pruning occurs. Next: compact publication
-and important-node protection, then shared quota/retirement before campaign
-fan-out. Read/execution lifetime qualification does not establish capacity or
+No native rerun or automatic acceptance/pruning occurs. The maintained publisher
+now also packages compact audited results and shared exact inputs while checking
+explicit protected parent/full-review references. Qualification is 46 focused
+checks, 13 final publication checks and 13 installed checks plus one real cold
+Ag4 reopening and missing-protection refusal. The 142 KB archive references 2.37 MB
+of existing protected evidence; it does not replace it. Next: aggregate quota/
+reservations and a qualified disposable increment profile before retirement or
+campaign fan-out. Arbitrary protection ancestry is not inferred. Read/execution lifetime qualification does not establish capacity or
 close the A01/A02 science gates.
 Typed reader-control support remains with Willow W186. No historical parent or
 process identity is promoted; A01's current FT geometry gate is unchanged.
@@ -334,7 +339,7 @@ the exact source pin, counts, commands and remaining integration boundaries.
 | **A01 — Ligand geometry and open XYZ/B foundation** | PARTIAL; native stopping evidence implemented; FT_Hg open-fit geometry gate remains | Qualify exact source chemistry, linkage/terminal context, all intended NARestraints and metal recipe terms; demonstrate open XYZ/B refinement, explicit phase/Free-R policy, active-state B export and inspectable maps. FT_Hg first, then mixed Au/Ag. | Merged development base |
 | **A02 — Controlled f″/Q quantitation** | PARTIAL; frozen fits, B environments and matched comparisons implemented | Use qualified endpoints; freeze XYZ/all ADPs/f′, prepare metal B from the refined environment, and qualify Q/start/budget responses, mixed elements, cluster sums/cancellation and anomalous-background controls. | A01 |
 | **A03 — Editable recipes and structural alternatives** | PARTIAL; recipe core and candidate comparisons implemented | Source-backed ligand/metal-state targets, saved editable recipes, count/identity alternatives, optional chi flips and multiple/adjacent sites; preserve ambiguity and human choice. | A01–A02 |
-| **A04 — Lean storage and regeneration** | PARTIAL; [inventory/forecast, compact projection and exact input transport](metal-campaign-storage.md) implemented; explicit parent transport, retained child execution and cold review qualified on bounded controls; accepted scientific regeneration, quotas and pruning pending | Shared pristine parents, compact frozen-trial records, protected important nodes, size-capped map retention, cold native regeneration, crash-safe retirement and campaign disk reservations. | Qualified A01–A02 examples; before large fan-out |
+| **A04 — Lean storage and regeneration** | PARTIAL; [inventory/forecast, compact projection and exact input transport](metal-campaign-storage.md) implemented; explicit parent transport, retained execution/cold review and compact publication with declared protected references qualified on bounded controls; accepted scientific regeneration, aggregate quotas and pruning pending | Shared pristine parents, compact frozen-trial records, protected important nodes, size-capped map retention, cold native regeneration, crash-safe retirement and campaign disk reservations. | Qualified A01–A02 examples; before large fan-out |
 | **A05 — Dedicated GUI co-design session** | OPEN; earlier sketches and inspection viewer are starting points | Scientist and developer jointly walk through real cases, debate navigation/controls, compare alternatives and agree a usable modular design with recorded decisions and usability checks. | Representative A02/A03 evidence; can run alongside A04 |
 | **A06 — Campaign and GUI integration** | PARTIAL; identities, navigation and inspection mechanisms exist | Connect the agreed GUI to bounded multi-dataset execution, structures/sites, compact comparisons, branching history, maps/Coot, selection, reuse and recovery; include no-metal/empty-frame policy. | A02–A05 |
 | **A07 — Reconstruct known metal solutions through the mechanics** | OPEN; solved references and diagnostic fixtures available | Reconstruct defensible solutions from declared experimental inputs and general NASolve mechanics, with reference models withheld from construction/search; record intervention and remaining ambiguity against predeclared criteria. | Mechanical rehearsals through A01–A03; campaign demonstration after A06 |

@@ -2135,6 +2135,16 @@ Ordinary one-shot schema 1 and CLI execution defaults remain unchanged. See
 [retained parent reads](metal-campaign-storage.md#retained-parent-reads-without-another-expansion)
 for lifetime, measured cost and the separate execution/retirement gates.
 
+The maintained metal publisher also accepts completed audited children under a
+separate v1 compact profile. Exact requests/inputs/helpers are shared; every
+attempt retains full signed result rows. Store-relative checksummed references
+bind each parent archive and explicitly protected full review. Cold reopening
+uses one archive view, replays protected full evidence and refuses missing or
+changed protections even when scalar rows survive. Other rows remain recorded
+results, not a native-array replay. No general pin registry, ancestry inference,
+retirement, cache acceptance or execution default is added. See
+[compact audited publication](metal-campaign-storage.md#compact-audited-child-publication-with-explicit-protected-references).
+
 The separate `metal.child_process` route composes protected-parent transport and
 shared native process ownership for one explicit fresh invocation. Prepared bytes,
 worker and parent manifest are pinned; outcomes are durably recorded and fresh
