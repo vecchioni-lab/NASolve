@@ -77,8 +77,10 @@ then built all thirteen in ordinary PostMR, matching every C493 atom and all
 four recorded fields. C495 finds the target and host from the run and acquires
 the same parsed ATL chemistry from an empty local store. A second acquisition
 reused the exact qualified entry. C496 carries the recorded construction through
-the check against the current mutation card when saving a checkpoint. The next
-Q07 gate is the registered thirteen-change refinement. Ordinary 1AP:T and
+the check against the current mutation card when saving a checkpoint. C497
+now follows all thirteen through five ordinary Phenix cycles. ATL's two bonds
+finished at 1.610 and 1.619 Å and its pair at 2.971 and 2.873 Å. Two close
+contacts remain. The unfamiliar eight-residue challenge is still open. Ordinary 1AP:T and
 S6G:C now pass through ReadySet and five Phenix cycles. In 1AP the local plane
 covers both amino groups. In S6G only the shared pair plane includes sulfur.
 On the thirteen-component model the corrected PDU, 5PC and DF restraints now
@@ -695,7 +697,7 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Complete for recorded alternatives, selected-model phasing, Coot, cold inspection and the ordinary five-cycle refinement handoff. Actual chemical survival/effective restraint behavior is Q06; no default activation or historical migration. |
 | **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C391 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control, chemical observation and actual final pair measurements. C392/C395 record real PDU weight fallback and actual source membership; C396 changes screening privately but does not repair the model; C393/W134 qualify combined observation and ordinary canonical continuation without claiming chemical repair. C400 qualifies an explicit longer control and matched native/zero/full pair mechanics; all arms stop early and chemical acceptance remains open. C403–C417 qualify ordinary PDU delivery, plane and scalar measurements, the explicit Doctor handoff, and agreement with the planes printed by Phenix. The matched bond correction improves its target while a whole-arm bend can remain. C419/C421 qualify fresh 5PC through five cycles. C423 qualifies neutral DF:A in one substituted host. C429 isolates the effect of 5PC starting B values. C466 measures all three local controls in one ordinary twelve-change refinement. The C470 soft planes reduce both mixed-scaffold tip heights. In the C474 single-site G:5PC comparison the terminal bond still measures 1.548 Å. C475 adds a second five-cycle PDU pair context. Scope for whole-arm PDU survival and the broader DF decision remain open. |
-| **Q07 — prove the pieces work together** | Test the eight named pairs with ATL alongside, including broken PDU and DF/A1AAZ. | C494–C496 build all thirteen in ordinary PostMR, verify the isolated sugar on a cold and warm store and bind its construction to the mutation card. Read the registered child for local junctions, ring shape and the full frame. The separate eight-residue challenge uses unfamiliar catalogue ligands, compatible LNA:RNA/PNA contexts and a chemically specified phosphorothioate where supported. |
+| **Q07 — prove the pieces work together** | Test the eight named pairs with ATL alongside, including broken PDU and DF/A1AAZ. | The thirteen-change card now builds and refines in one ordinary lineage. C497 checked all 38 backbone links, 211 frame restraints, protected phosphate angles, original reflections and final chemistry at the four named sites. Two ATL contacts and substantial 5PC tip height remain under review. Next comes the separate eight-residue challenge with unfamiliar catalogue ligands, compatible LNA:RNA/PNA contexts and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |
 | **Q10 — handle PNA as PNA** | Respect its backbone and attachments instead of pretending it has a DNA phosphate. | Validate connected construction, native restraints and numerical behavior. |
@@ -1479,12 +1481,13 @@ model or establishes pair restraints.
    placement against diffraction before changing ordinary construction. All
    four sugar centres survived, both pair contacts shortened and the outgoing
    O3′–P–OP2 angle ended at 112.5° against 108°. Two overlaps exceed 0.4 Å,
-   one with the preceding sugar and one within ATL. Carry the verified
-   construction through the ordinary owner, then run one registered
-   thirteen-change mixed diffraction lineage.
-   Verify source identity, native pair/stack membership, unchanged flags and
-   achieved local geometry at PDU, 5PC, DF and ATL. Exercise cache reuse and
-   changed-source rejection. Keep the unfamiliar eight-residue challenge separate.
+   one with the preceding sugar and one within ATL. C494–C497 then built
+   all thirteen substitutions through the ordinary owner, checked cache reuse
+   and changed-source rejection, and registered a five-cycle child against
+   the host observations. The compact ledger records the native pair/stack
+   membership, unchanged intensities and flags, four source sugar centres and
+   final geometry at PDU, 5PC, DF and ATL. The local contacts and unfamiliar
+   eight-residue challenge remain open.
 
 Done when an ordinary invocation acquires or repairs the necessary dictionaries,
 qualifies the selected state and produces inspectable refinement artifacts with

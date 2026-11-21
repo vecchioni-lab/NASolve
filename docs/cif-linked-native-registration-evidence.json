@@ -120713,5 +120713,182 @@
       169
     ],
     "scope": "Ordinary construction, isolated acquisition, and registration of the selected parent. The diffraction child has a separate measurement."
+  },
+  "registered_thirteen_change_diffraction_2026_11_21": {
+    "program": "Phenix 2.2.1-6174",
+    "coot": "1.3.3 revision-count 0 during construction",
+    "cycles": 5,
+    "source_commit": "ef879512f873d5394c76402bc9c946b3e0bdcdae",
+    "request": "ea089c40b8794a3adc951335a08fe857bcfe6730f78c8521d82f8565ba6f0bec",
+    "parent": "35f298f0514077011d9ac59c0f25e9626832783bd89f1800b09e8d4a1846358b",
+    "child": "4b971c7174eb76a0ef79366400f87bbced8cd97117ad106b4d8323e5dc9c13cc",
+    "native": "9c30f11fadee24d84c50ec135f91ea71046caa846b650c123ea195027f482182",
+    "final_geometry": "4723e362e906b81f68454730e9bfe7c9031a21dda4c1ead434ed1787b136c535",
+    "registered": "refine-001",
+    "selected": "postmr",
+    "report": "9a2b112c39ab269c4da52b09ac317c97bb1ae2fe0185f64b29f719d974134d5e",
+    "model_atoms": 869,
+    "residues": 42,
+    "substitutions": 13,
+    "declared_links": 38,
+    "restraint_inputs": 43,
+    "frame": {
+      "bond": 53,
+      "angle": 90,
+      "planarity": 10,
+      "parallelity": 58
+    },
+    "protected_terminal_sites": [
+      "D:1"
+    ],
+    "additional_terminal_angles": 6,
+    "reflections": {
+      "incoming_sha256": "40050be2ba0b3cf389314b3d4454098115645066a7966e1f7d23838f3e1dd40b",
+      "written_sha256": "448107b07f77acb4027c4a9b128ed2dce337adfce7174b324e0d0e9d60c630cd",
+      "complete_identical_intensity_and_sigma_by_hkl": 2273,
+      "identical_original_flag_by_hkl": 3236,
+      "measured_free": 127,
+      "measured_work": 2146,
+      "native": "Phenix 2.2.1-6174",
+      "scope": "Original FreeR_flag in the host observations, across the ordinary five-cycle child."
+    },
+    "metrics": {
+      "r_work": 0.267,
+      "r_free": 0.2517,
+      "initial_r_work": 0.3346,
+      "initial_r_free": 0.2966,
+      "clashscore": 26.2,
+      "angle_rmsd": 2.193,
+      "bond_rmsd": 0.081
+    },
+    "ATL": {
+      "backbone": [
+        {
+          "atoms": [
+            "A:10:O3'",
+            "A:11:P"
+          ],
+          "before_A": 1.5953,
+          "after_A": 1.6102,
+          "target_A": 1.607
+        },
+        {
+          "atoms": [
+            "A:11:O3'",
+            "A:12:P"
+          ],
+          "before_A": 1.8395,
+          "after_A": 1.6192,
+          "target_A": 1.607
+        }
+      ],
+      "pair": [
+        {
+          "atoms": [
+            "A:11:N3",
+            "B:5:N1"
+          ],
+          "before_A": 3.3176,
+          "after_A": 2.9708,
+          "target_A": 2.8
+        },
+        {
+          "atoms": [
+            "A:11:O4",
+            "B:5:N6"
+          ],
+          "before_A": 3.3007,
+          "after_A": 2.8734,
+          "target_A": 2.8
+        }
+      ],
+      "source_sugar_centres": 4,
+      "verified_local_handedness_tests": 7,
+      "oxygen_order": {
+        "labels": [
+          "A:12:O5'",
+          "A:12:OP1",
+          "A:12:OP2",
+          "A:11:O3'"
+        ],
+        "volumes_A3": [
+          -12.522390095999999,
+          -12.721129864999996
+        ]
+      },
+      "overlaps": [
+        {
+          "atoms": [
+            "A:11:C2'",
+            "A:12:O5'"
+          ],
+          "overlap_A": 0.557,
+          "symmetry": []
+        },
+        {
+          "atoms": [
+            "A:10:C2'",
+            "A:11:C6"
+          ],
+          "overlap_A": 0.572,
+          "symmetry": []
+        }
+      ],
+      "B_range_A2": [
+        184.94,
+        441.09
+      ],
+      "outgoing_O3_P_OP2_deg": 110.402
+    },
+    "other_local_bonds": {
+      "PDU": {
+        "atoms": [
+          "C5B",
+          "C5M"
+        ],
+        "sigma": 0.02,
+        "target": 1.47,
+        "before_A": 1.4568,
+        "after_A": 1.4751
+      },
+      "5PC": {
+        "atoms": [
+          "C8",
+          "C9"
+        ],
+        "sigma": 0.027,
+        "target": 1.47,
+        "before_A": 1.455,
+        "after_A": 1.4648
+      },
+      "DF thione": {
+        "atoms": [
+          "C2",
+          "S1"
+        ],
+        "sigma": 0.026,
+        "target": 1.638,
+        "before_A": 1.8121,
+        "after_A": 1.6326
+      },
+      "DF sugar": {
+        "atoms": [
+          "C1'",
+          "N1"
+        ],
+        "sigma": 0.038,
+        "target": 1.499,
+        "before_A": 1.5248,
+        "after_A": 1.519
+      }
+    },
+    "six_ring_tip_heights_A": {
+      "5PC": 0.4341,
+      "PDU": 0.1886
+    },
+    "independent_observation": "64e87217a093787dc27113defcd928d48aaa8e68d0d6ad12aba8d924f9036794",
+    "reflection_reader": "52c425998b975cc73cea30237c409a8934e260730629b272069f3036233e17e2",
+    "geometry_reader": "3fc7f6d8a529e1862bc766c695c6cdeee79025f59401cad390c2513e172e18ee",
+    "scope": "Five actual Phenix diffraction cycles on the host observations from the registered thirteen-substitution PostMR parent. The child has REVIEW status. The held-out eight-residue challenge, symmetry-linked PDU:PDU and scientific acceptance remain open."
   }
 }

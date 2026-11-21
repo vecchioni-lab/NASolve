@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C495–C496 site-only construction and checkpoint publication — Rowan**.
+Updated **2026-11-21, C497 registered mixed-duplex refinement — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -13,6 +13,27 @@ Focused, relocated installed, matched native and independent checks also pass.
 Software qualification does not change the scientific REVIEW or close Q06.
 
 ## Where to resume
+
+**All thirteen substitutions have now gone through one ordinary refinement.**
+Phenix 2.2.1-6174 ran five cycles on the registered PostMR model using the
+host reflections. At A:11, ATL's two backbone bonds went from 1.595/1.839
+to 1.610/1.619 Å (target 1.607). Its two adenine contacts went from
+3.318/3.301 to 2.971/2.873 Å (target 2.800). The four sugar stereocentres
+and the receiving phosphate's oxygen order survived. The two remaining close
+contacts overlap by 0.557 and 0.572 Å. ATL's B values span 185–441 Å².
+The parent remains selected. Rwork/Rfree changed from 0.3346/0.2966 to
+0.2670/0.2517. These host observations test the refinement machinery.
+
+Phenix printed all 211 frame restraints and six protected D:1 angles.
+Both models retained all 38 backbone links. All 2,273 measured intensities
+and uncertainties and 3,236 Free-R assignments matched by Miller index.
+The final PDU and 5PC terminal bonds measured 1.475 and 1.465 Å against
+1.470 Å. Their tip heights above their six-atom rings were 0.189 and
+0.434 Å. DF's C=S moved from 1.812 to 1.633 Å against 1.638 Å.
+The nine-pair control has its registered diffraction result. The unfamiliar
+eight-residue challenge and the independent symmetry-linked PDU:PDU gate
+remain open. The compact ledger entry is
+`registered_thirteen_change_diffraction_2026_11_21`.
 
 **The mutation card can now supply the locked-sugar chemistry.** On a fresh
 Phaser run, the ordinary site option found ATL, its DT host at A:11 and the
@@ -55,8 +76,8 @@ the workbook, kept nine matched base B values and removed OXT at A:11. All
 869 atoms matched the separate C493 seed in coordinates, occupancy, element
 and B. A relocated install reopened the 40 construction files (1,267,441
 bytes) after the first checkout disappeared. Native dictionary checking
-confirmed four plane changes and both PDU/5PC bond corrections. The next
-gate is the registered ReadySet endpoint and its five-cycle diffraction child.
+confirmed four plane changes and both PDU/5PC bond corrections. C496 records
+the endpoint selection and C497 records the registered diffraction child.
 The first attempt stopped at a macOS temporary-directory alias after Coot.
 The second ran on its own numbered MR lineage.
 
@@ -113,8 +134,8 @@ outgoing O3′–P–OP2 angle was 112.4° against 108°. Rwork/Rfree finished a
 0.2632/0.2439 on the original host reflections. An independent run using the
 local median B for the thirteen new sugar/phosphate atoms also left three
 overlaps. Keep the measured host B values and leave the median experimental.
-The thirteenth substitution is still a separate construction. Q07 needs an
-ordinary mutation and a registered thirteen-change refinement.
+C488 used a separate construction for the thirteenth substitution. C494–C497
+subsequently exercised the ordinary mutation and its registered refinement.
 
 **Held-out locked sugar, C489.** For 9V9, raw eLBOW and Cedar's ordinary
 dictionary acquisition both failed on a 5.06 Å O4′–C4 bond absent from the
