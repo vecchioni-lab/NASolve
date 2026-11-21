@@ -1406,6 +1406,37 @@ class AutoRefineTests(unittest.TestCase):
         self.assertEqual(stats["bond_rmsd"], 0.009)
         self.assertEqual(stats["diagnostics"], ["WARNING geometry needs inspection"])
 
+    def test_native_recap_reports_scaled_start_without_replaying_it_as_a_cycle(self):
+        recap = "Start R-work = 0.3439, R-free = 0.3059\nFinal R-work = 0.2492, R-free = 0.2345\n"
+        log = (
+            "| r_work= 0.5307 r_free= 0.7513 coordinate error: 2.18 A |\n"
+            "r_work=0.3439 r_free=0.3059\n"
+            "r_work=0.2600 r_free=0.2400\n"
+            "r_work=0.2492 r_free=0.2345\n"
+        )
+        for ending in (recap, recap.replace("\n", "\r\n")):
+            with self.subTest(ending=ending):
+                stats = parse_refinement_statistics(log + ending + "Job complete\n")
+                self.assertEqual((stats["initial_r_work"], stats["initial_r_free"]), (0.3439, 0.3059))
+                self.assertEqual((stats["r_work"], stats["r_free"]), (0.2492, 0.2345))
+                self.assertEqual([r["r_work"] for r in stats["cycle_series"]], [0.5307, 0.3439, 0.2600, 0.2492])
+        summary_only = parse_refinement_statistics(recap)
+        self.assertEqual([r["r_free"] for r in summary_only["cycle_series"]], [0.3059, 0.2345])
+
+    def test_statistics_uses_chronological_fallback_without_one_terminal_native_recap(self):
+        raw = "r_work=0.53 r_free=0.75\n"
+        start = "Start R-work = 0.34, R-free = 0.31\n"
+        final = "Final R-work = 0.25, R-free = 0.23\n"
+        later = "r_work=0.27 r_free=0.26\n"
+        for suffix, expected in (
+            (start, 0.34), (final, 0.25), (start + "another stage\n" + final, 0.25),
+            (start + final + later, 0.27), (start + final + start + final, 0.25),
+        ):
+            with self.subTest(suffix=suffix):
+                stats = parse_refinement_statistics(raw + suffix)
+                self.assertEqual((stats["initial_r_work"], stats["initial_r_free"]), (0.53, 0.75))
+                self.assertEqual(stats["r_work"], expected)
+
     def test_statistics_reports_printed_coordinate_choices_from_each_xyz_step(self):
         xyz = "====== XYZ individual (reciprocal space) ======\n"
         adp = "====== ADP refinement (reciprocal space) ======\n"

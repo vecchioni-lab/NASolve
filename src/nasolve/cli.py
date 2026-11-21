@@ -318,7 +318,7 @@ def build_parser() -> argparse.ArgumentParser:
     cif_assess.add_argument("--checkpoint", help="checkpoint ID/bookmark (requires --run)")
     cif_assess.add_argument(
         "--refined-planes", action="store_true",
-        help="also measure recorded base planes in the checkpoint model, fitting each atom against the others (requires --run)",
+        help="measure each atom against the other plane members and eligible carbon alkynes against their six ring atoms (requires --run)",
     )
     cif_assess.add_argument("--model", type=Path, help="optional PDB atom inventory (standalone only)")
     cif_assess.add_argument("--stage", choices=("source", "effective", "standalone"), default="standalone")
@@ -1940,6 +1940,14 @@ def _cif_doctor(args: argparse.Namespace) -> int:
                             print(f"  {plane['site']} {plane['component']} plane {plane['proxy_index']}: "
                                   f"{furthest['atom']} lies furthest from the other members "
                                   f"({furthest['other_members']['distance_angstrom']:.3f} Å).")
+                    for arm in planes["source_ring_arms"] or []:
+                        tip = arm["arm_atoms"][-1]
+                        site = f"{arm['site']} {arm['component']} {tip}"
+                        if arm["status"] == "MEASURED":
+                            height = arm["arm_distances_angstrom"][tip]
+                            print(f"  {site} lies {height:.3f} Å from the six ring atoms fitted alone.")
+                        else:
+                            print(f"  {site} could not be measured against its ring. {arm['reason']}.")
             if payload.get("solution_report", {}).get("text"):
                 print(payload["solution_report"]["text"])
             assessments = [("", payload)]

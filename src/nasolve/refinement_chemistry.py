@@ -87,21 +87,25 @@ def _observed_readback(model_bytes, projections, observation):
 
 
 def _source_checked_atoms(projections, observation):
-    """Bind each observed heavy atom to its declared source name, element and site."""
+    """Bind each observed heavy atom and retain the same validated source graphs by site."""
     from .cif_stereochemistry_audit import _values, _graph
     from .cif_linked_qualification import _site
-    sources = {}; atoms = {}; identities = set()
+    sources = {}; by_site = {}; atoms = {}; identities = set()
+    for site, (path, code) in projections.items():
+        key = (Path(path), code)
+        if key not in sources:
+            values = _values(path, code)
+            sources[key] = values, _graph(values)
+        by_site[site] = sources[key]
     for atom in observation['atoms']:
         site = _site(atom); name = atom['atom_id']; index = atom['i_seq']
         _need(site in projections and type(index) is int and index >= 0 and index not in atoms
               and (site, name) not in identities, 'Ambiguous observed atom identity')
-        path, code = projections[site]; key = (Path(path), code)
-        if key not in sources:
-            sources[key] = _graph(_values(path, code))[0]
-        _need(atom['identity']['resname'].strip() == code and name in sources[key]
-              and atom['element'] == sources[key][name], 'Observed atom differs from source')
+        elements = by_site[site][1][0]
+        _need(atom['identity']['resname'].strip() == projections[site][1] and name in elements
+              and atom['element'] == elements[name], 'Observed atom differs from source')
         atoms[index] = atom; identities.add((site, name))
-    return atoms
+    return atoms, by_site
 
 
 def _observed_scalar_geometry(projections, observation):
@@ -138,7 +142,7 @@ def _observed_scalar_geometry(projections, observation):
         if observation['status'] == 'UNASSESSED':
             return result
         _need(observation['status'] == 'OBSERVED', 'Require an observed native state')
-        atoms = _source_checked_atoms(projections, observation)
+        atoms, _ = _source_checked_atoms(projections, observation)
         coords = {index: _point(atom['xyz']) for index, atom in atoms.items()}
         details = observation['geometry']['proxy_details']
         counts = {kind: len(rows) for kind, rows in details.items()}

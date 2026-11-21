@@ -13759,6 +13759,23 @@ measurement gives the reason. A checkpoint without this capture returns
 `null`. Python callers request the same measurements with
 `omit_each_member=True`. The default reader keeps its original format.
 
+The same option reports `refined_planes.source_ring_arms`. It follows a
+source-declared C–C≡C–C arm attached to a neutral trigonal carbon in a
+chordless six-membered C/N ring. Six equally weighted ring atoms determine
+the reference. The report gives their own RMS departure, the three pendant
+atom distances and the positive-weight arm members in each captured plane
+covering the ring. The two single bonds must lead outside ring cycles.
+Multiple possible rings, missing coordinates and a poorly determined normal
+each have their own explanation. An empty list means the observed sites had
+no eligible arm. An unavailable native observation yields `null`. This is a
+measurement of the written chemistry with no new force or acceptance threshold.
+
+When the log ends with one complete Phenix Start/Final recap, the reported
+starting Rwork/Rfree is the native scaled start. The trajectory retains the
+actual observations, including initial scaling. A recap with no earlier
+observations supplies its own two endpoints. Older or incomplete logs retain
+the original chronological interpretation.
+
 The AutoRefine round report can also contain `statistics.coordinate_weight_steps`.
 Each entry identifies the XYZ step, the number of printed trials and the chosen
 weight at log precision. A single completed trial and the explicit Phenix

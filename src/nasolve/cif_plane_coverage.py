@@ -116,34 +116,95 @@ def _qualified_ring_changes(source, dictionary, code, sg, dg, policy, saved):
     return result
 
 
+def _declared_chiral_centres(values):
+    marked = {atom for atom, marker in _stereo(values).items() if marker not in {"N", "?"}}
+    return marked | {r["atom_id_centre"] for r in _table(values, "chir")}
+
+
+def _trigonal_carbon_neighborhood(graph, centre, chiral):
+    """Read the neutral three-heavy-neighbor carbon rule from an explicit graph."""
+    elements, orders, charges, neighbors = graph
+    adjacent = sorted(neighbors[centre])
+    declared = [orders[tuple(sorted((centre, n)))] for n in adjacent]
+    reason = None
+    if elements[centre] != "C" or len(adjacent) != 3:
+        reason = "OUTSIDE_THREE_COORDINATE_CARBON_SCOPE"
+    elif any(elements[n] in {"H", "D"} for n in adjacent):
+        reason = "IMPLICIT_OR_HYDROGEN_FLANK_NOT_ASSESSED"
+    elif sorted(declared) != ["DOUBLE", "SINGLE", "SINGLE"]:
+        reason = "BOND_REPRESENTATION_NOT_ASSESSED"
+    elif charges[centre] != 0:
+        reason = "CHARGED_OR_UNKNOWN_CENTRE_NOT_ASSESSED"
+    elif centre in chiral:
+        reason = "DECLARED_CHIRAL_CENTRE_NOT_ASSESSED"
+    return adjacent, declared, reason
+
+
+def _six_rings_through(centre, flanks, elements, neighbors):
+    """Chordless six-membered C/N rings through both specified ring bonds."""
+    left, right = sorted(flanks)
+    rings = []
+    for second in sorted(neighbors[left] - {centre, right}):
+        for fourth in sorted(neighbors[right] - {centre, left}):
+            for third in sorted(neighbors[second] & neighbors[fourth]):
+                ring = (centre, left, second, third, fourth, right)
+                members = set(ring)
+                if (len(members) == 6 and all(elements[n] in {"C", "N"} for n in ring)
+                        and all(len(neighbors[n] & members) == 2 for n in ring)):
+                    rings.append(ring)
+    return rings
+
+
+def source_ring_alkyne_arms(values, graph):
+    """Select source-declared ring–C≡C–C paths. Return each possible ring explicitly."""
+    from .cif_doctor import _bridges
+
+    elements, orders, charges, neighbors = graph
+    triples = [edge for edge, order in sorted(orders.items())
+               if order == "TRIPLE" and all(elements[n] == "C" for n in edge)]
+    if not triples:
+        return []
+    chiral = _declared_chiral_centres(values)
+    bridges = _bridges(neighbors)
+    arms = []
+    for a, b in triples:
+        for inner, outer in ((a, b), (b, a)):
+            if inner in chiral or outer in chiral:
+                continue
+            before, after = neighbors[inner] - {outer}, neighbors[outer] - {inner}
+            if len(before) != 1 or len(after) != 1:
+                continue
+            anchor, = before
+            tip, = after
+            arm = (anchor, inner, outer, tip)
+            if any(elements[n] != "C" or charges[n] != 0 for n in arm):
+                continue
+            if any(frozenset(edge) not in bridges or orders[tuple(sorted(edge))] != "SINGLE"
+                   for edge in ((anchor, inner), (outer, tip))):
+                continue
+            adjacent, _, reason = _trigonal_carbon_neighborhood(graph, anchor, chiral)
+            if reason is None:
+                rings = _six_rings_through(anchor, set(adjacent) - {inner}, elements, neighbors)
+                if rings:
+                    arms.append((arm, rings))
+    return arms
+
+
 def _audit_coverage(source, dictionary, code, policy, *, snapshot):
     original, before = source.read_bytes(), dictionary.read_bytes()
     try:
         sv, dv = _values(source, code), _values(dictionary, code)
         sg, dg = _graph(sv), _graph(dv)
         representation = _qualified_ring_changes(source, dictionary, code, sg, dg, policy, snapshot) if sg != dg else None
-        elements, orders, charges, neighbors = sg
-        stereo = (_stereo(sv), _stereo(dv))
-        chiral = {r["atom_id_centre"] for values in (sv,dv) for r in _table(values,"chir")}
+        elements, _, charges, _ = sg
+        chiral = _declared_chiral_centres(sv) | _declared_chiral_centres(dv)
         planes = _planes(dv, elements)
         angles, torsions = _table(dv, "angle"), _table(dv, "tor")
         source_family, source_xyz = _coordinates(sv, source=True)
         dictionary_family, dictionary_xyz = _coordinates(dv, source=False)
         rows, excluded = [], []
         for centre in sorted(n for n,e in elements.items() if e == "C"):
-            adjacent = sorted(neighbors[centre])
-            declared = [orders[tuple(sorted((centre,n)))] for n in adjacent]
-            reason = None
-            if len(adjacent) != 3:
-                reason = "OUTSIDE_THREE_COORDINATE_CARBON_SCOPE"
-            elif any(elements[n] in {"H", "D"} for n in adjacent):
-                reason = "IMPLICIT_OR_HYDROGEN_FLANK_NOT_ASSESSED"
-            elif sorted(declared) != ["DOUBLE", "SINGLE", "SINGLE"]:
-                reason = "BOND_REPRESENTATION_NOT_ASSESSED"
-            elif charges[centre] != 0:
-                reason = "CHARGED_OR_UNKNOWN_CENTRE_NOT_ASSESSED"
-            elif centre in chiral or any(s[centre] not in {"N", "?"} for s in stereo):
-                reason = "DECLARED_CHIRAL_CENTRE_NOT_ASSESSED"
+            adjacent, declared, reason = _trigonal_carbon_neighborhood(sg, centre, chiral)
             if reason:
                 excluded.append({"centre": centre, "neighbors": adjacent, "reason": reason})
                 continue

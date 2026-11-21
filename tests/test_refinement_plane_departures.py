@@ -7,6 +7,91 @@ import pytest
 from nasolve.refinement_plane_departures import describe_planes
 
 
+def ring_arm_observation(*, extra_bonds=(), revised_orders=None, charge=None, stereo=None):
+    from math import cos, pi, sin
+    from nasolve.cif_stereochemistry_audit import _graph
+
+    names = ["Q" + str(i) for i in range(11)]
+    bonds = [(i, (i+1) % 6, "DOUBLE" if i % 2 == 0 else "SINGLE") for i in range(6)]
+    bonds += [(0, 6, "SINGLE"), (6, 7, "TRIPLE"), (7, 8, "SINGLE"), *extra_bonds]
+    # The first carbon beyond the triple can have another carbon attached.
+    bonds.append((8, 10, "SINGLE"))
+    values = {
+        "_chem_comp_atom.atom_id": names,
+        "_chem_comp_atom.type_symbol": ["N" if i == 2 else "C" for i in range(11)],
+        "_chem_comp_atom.charge": ["1" if i == charge else "0" for i in range(11)],
+        "_chem_comp_atom.pdbx_stereo_config": ["R" if i == stereo else "N" for i in range(11)],
+        "_chem_comp_bond.atom_id_1": [names[i] for i, _, _ in bonds],
+        "_chem_comp_bond.atom_id_2": [names[j] for _, j, _ in bonds],
+        "_chem_comp_bond.value_order": [(revised_orders or {}).get((i, j), order) for i, j, order in bonds],
+    }
+    pts = [(cos(i*pi/3), sin(i*pi/3), 2.) for i in range(6)]
+    pts += [(2.,0.,2.05),(3.,0.,2.18),(4.,0.,2.4),(0.,1.,3.),(5.,0.,2.5)]
+    obs = observation(pts, list(range(7)), [3.] * 7)
+    for atom, name in zip(obs["atoms"], names, strict=True):
+        atom["atom_id"] = name
+    return {"B:4": (values, _graph(values))}, obs
+
+
+def test_same_source_ring_reference_survives_changing_native_plane_membership():
+    from nasolve.refinement_plane_departures import measure_source_ring_arms
+
+    sources, obs = ring_arm_observation()
+    for include_tip in (False, True):
+        if include_tip:
+            obs["geometry"]["proxy_details"]["planarity"][0]["i_seqs"].append(obs["atoms"][8]["i_seq"])
+            obs["geometry"]["proxy_details"]["planarity"][0]["weights"].append(3.)
+        native = describe_planes(obs)["planes"]
+        arm, = measure_source_ring_arms(sources, obs, native)
+        assert arm["status"] == "MEASURED" and arm["component"] == "XYZ"
+        assert arm["ring_atoms"] == ["Q" + str(i) for i in range(6)]
+        assert arm["arm_atoms"] == ["Q0", "Q6", "Q7", "Q8"]
+        assert arm["ring_rms_angstrom"] == pytest.approx(0., abs=1e-12)
+        assert arm["arm_distances_angstrom"] == pytest.approx({"Q6":.05, "Q7":.18, "Q8":.4})
+        plane, = arm["captured_ring_planes"]
+        assert plane == {"proxy_index": 0, "positive_arm_members": ["Q6", "Q8"] if include_tip else ["Q6"]}
+    assert measure_source_ring_arms(sources, obs, [])[0]["arm_distances_angstrom"]["Q8"] == pytest.approx(.4)
+
+
+@pytest.mark.parametrize("case", [
+    {"charge": 7}, {"stereo": 0}, {"stereo": 6}, {"revised_orders": {(0,1):"SINGLE"}},
+    {"revised_orders": {(6,7):"DOUBLE"}}, {"extra_bonds":[(8, 4, "SINGLE")]},
+])
+def test_ring_arm_requires_the_declared_neutral_pendant_carbon_alkyne(case):
+    from nasolve.refinement_plane_departures import measure_source_ring_arms
+
+    sources, obs = ring_arm_observation(**case)
+    assert measure_source_ring_arms(sources, obs, []) == []
+
+
+def test_ring_arm_reports_ambiguous_ring_missing_atoms_and_degenerate_ring():
+    from nasolve.refinement_plane_departures import measure_source_ring_arms
+
+    sources, obs = ring_arm_observation(extra_bonds=[(2,9,"SINGLE"), (9,4,"SINGLE")])
+    ambiguous, = measure_source_ring_arms(sources, obs, [])
+    assert ambiguous["status"] == "UNASSESSED" and ambiguous["candidate_ring_count"] == 2
+    sources, obs = ring_arm_observation()
+    del obs["atoms"][8]
+    missing, = measure_source_ring_arms(sources, obs, [])
+    assert missing["status"] == "UNASSESSED" and missing["missing_atoms"] == ["Q8"]
+    sources, obs = ring_arm_observation()
+    for i, atom in enumerate(obs["atoms"][:6]):
+        atom["xyz"] = [float(i), 0., 0.]
+    degenerate, = measure_source_ring_arms(sources, obs, [])
+    assert degenerate["status"] == "UNASSESSED" and "unique plane" in degenerate["reason"]
+
+
+def test_nitrile_and_unknown_carbon_charge_do_not_create_a_source_ring_arm():
+    from nasolve.cif_stereochemistry_audit import _graph
+    from nasolve.refinement_plane_departures import measure_source_ring_arms
+
+    for field, value in (("type_symbol", "N"), ("charge", "?")):
+        sources, obs = ring_arm_observation()
+        values, _ = sources["B:4"]
+        values["_chem_comp_atom." + field][7] = value
+        assert measure_source_ring_arms({"B:4": (values, _graph(values))}, obs, []) == []
+
+
 def observation(points, plane_ids, weights, angles=()):
     ids = [7 + 3*i for i in range(len(points))]
     atoms = [{"i_seq": index, "atom_id": f"X{i}", "xyz": list(xyz),
@@ -150,6 +235,8 @@ def test_existing_owner_relocates_checks_exact_model_and_preserves_reports(tmp_p
         report = read_execution_plane_geometry(run,ref,model=model,**args)
         excluded = read_execution_plane_geometry(run,ref,model=model,omit_each_member=True,**args)
         assert excluded["policy_id"] == "refinement-declared-site-plane-departures-v2"
+        assert excluded["source_ring_arms"] == []
+        assert "source_ring_arms" not in report
         assert excluded["model_sha256"] == report["model_sha256"]
         assert report["model_sha256"] == sha256(model.read_bytes()).hexdigest()
         assert report["declared_sites"] == result.statistics["chemical_geometry"]["declared_sites"]

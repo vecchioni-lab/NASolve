@@ -724,12 +724,16 @@ def read_execution_plane_geometry(run, reference, *, checkpoint, parent, model, 
     selected = _selected_chemistry_observation(run, reference, checkpoint=checkpoint, parent=parent, model=model)
     if selected is None:
         return None
-    from .refinement_plane_departures import describe_planes
+    from .refinement_plane_departures import describe_planes, measure_source_ring_arms
     model_bytes, projections, observation = selected
+    sources = None
     if observation["status"] == "OBSERVED":
         from .refinement_chemistry import _source_checked_atoms
-        _source_checked_atoms(projections, observation)
+        _, sources = _source_checked_atoms(projections, observation)
     report = describe_planes(observation, omit_each_member=omit_each_member)
+    if omit_each_member:
+        report["source_ring_arms"] = (measure_source_ring_arms(sources, observation, report["planes"])
+                                      if sources is not None else None)
     declared = _declared_chemistry_sources(run, reference, checkpoint=checkpoint)
     expected = [dict(site=site, component=source["component"]) for site, source in sorted(declared.items())]
     _need(set(projections) == set(declared) and observation["sites"] == expected,

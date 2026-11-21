@@ -14,6 +14,13 @@ entries are reconstructed from repository history.
   measures each captured plane member against the fit to the other atoms. A
   long substituent can tilt a plane fitted through itself. The JSON receipt
   gives both distances and identifies fits with too few independent atoms.
+- The same option measures a pendant carbon alkyne against the six C/N ring
+  atoms named by its source graph. Ordinary and experimental refinements use
+  the same reference even when Phenix gave the tip a different plane.
+- AutoRefine uses Phenix's final printed Start/Final summary for the starting
+  and final Rwork/Rfree. The history retains the earlier unscaled observation
+  and shows the footer only as a final endpoint. Older or incomplete logs
+  continue to use the first and last observed values.
 - AutoRefine records the coordinate weight printed for each recognized
   reciprocal-space XYZ step in the round report. Incomplete or unfamiliar
   tables leave the weight unknown. The measurements do not affect selection.

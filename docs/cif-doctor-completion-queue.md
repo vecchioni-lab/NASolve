@@ -31,8 +31,12 @@ plane. Its terminal bond measured 1.475 Å. Rfree increased from 0.2265 to
 0.2414. C476/C477 read the same six final models and logs. In A:PDU the
 added plane itself missed the tip by only 0.036 Å because the tip tilted
 the fitted plane. The last coordinate weights were 10.000 and 1.517.
-Use the source ring alone as the common reference in ordinary and trial
-models. Keep the soft plane experimental. The distinct PDU:PDU
+C482 now uses the six source ring atoms alone as the common reference in
+ordinary and trial models, including when the tip has no recorded plane.
+C484 held the coordinate weight at 1 through all five cycles in the independent
+A:PDU comparison. The ordinary and added-plane tip heights were 0.466
+and 0.304 Å. Rfree was 0.2501 and 0.2500. The adaptive run favored the
+ordinary arm by this measurement. Keep the soft plane experimental. The distinct PDU:PDU
 symmetry-linked phosphate case still requires a verified incoming link.
 
 Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
@@ -60,8 +64,10 @@ paired-base contacts lengthened. C478–C480 let the two neighbouring residues
 move and gave the receiving phosphate one source-declared rotation. Its
 O3′–P–OP2 angle recovered from 82.8° to 106.2° against 108°. A new Phenix
 reading of the rounded PDB preserved all eight restraint categories and the
-211 frame terms. Four close contacts around ATL remain. Ordinary placement
-and diffraction with ATL remain open. Ordinary 1AP:T and
+211 frame terms. C481–C483 carried that separate construction through
+ReadySet and five diffraction cycles. Both links finished within 0.004 Å
+of target and two close contacts remain. The next Q07 gate is ordinary
+placement and registered refinement on the same scaffold. Ordinary 1AP:T and
 S6G:C now pass through ReadySet and five Phenix cycles. In 1AP the local plane
 covers both amino groups. In S6G only the shared pair plane includes sulfur.
 On the thirteen-component model the corrected PDU, 5PC and DF restraints now
@@ -1457,7 +1463,13 @@ model or establishes pair restraints.
    reading preserved the eight covalent and plane categories, all 211 frame
    requests and the nine measured base B values. The two neighbours were
    allowed to move, so check both outer junctions and all three pairs as well.
-   Carry the verified construction through the ordinary owner, then run one
+   C481 independently recompiled all 211 frame requests on the moved model
+   and preserved all 869 named atoms through ReadySet. C483 tested that
+   placement against diffraction before changing ordinary construction. All
+   four sugar centres survived, both pair contacts shortened and the outgoing
+   O3′–P–OP2 angle ended at 112.5° against 108°. Two overlaps exceed 0.4 Å,
+   one with the preceding sugar and one within ATL. Carry the verified
+   construction through the ordinary owner, then run one registered
    thirteen-change mixed diffraction lineage.
    Verify source identity, native pair/stack membership, unchanged flags and
    achieved local geometry at PDU, 5PC, DF and ATL. Exercise cache reuse and

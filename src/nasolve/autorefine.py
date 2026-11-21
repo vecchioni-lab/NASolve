@@ -550,6 +550,12 @@ _R_PAIR = re.compile(
     r"r[_ -]?free\s*[=:]\s*([0-9]*\.?[0-9]+)",
     re.I,
 )
+_RECAP_R_PAIR = r"R-work[ \t]*=[ \t]*([0-9]+(?:\.[0-9]+)?),[ \t]*R-free[ \t]*=[ \t]*([0-9]+(?:\.[0-9]+)?)"
+_NATIVE_R_RECAP = re.compile(
+    rf"^[ \t]*Start[ \t]+{_RECAP_R_PAIR}[ \t]*\r?\n"
+    rf"[ \t]*Final[ \t]+{_RECAP_R_PAIR}[ \t]*\r?$",
+    re.I | re.M,
+)
 _BONDS_ANGLES = re.compile(
     r"bonds?\s*[=:]\s*([0-9]*\.?[0-9]+).*?"
     r"angles?\s*[=:]\s*([0-9]*\.?[0-9]+)",
@@ -1247,7 +1253,18 @@ def _reported_coordinate_weights(log_text: str) -> list[dict[str, object]]:
 
 
 def parse_refinement_statistics(log_text: str, model_text: str = "") -> dict[str, object]:
-    pairs = [(float(a), float(b)) for a, b in _R_PAIR.findall(log_text)]
+    recaps = list(_NATIVE_R_RECAP.finditer(log_text))
+    recap = recaps[0] if len(recaps) == 1 and not _R_PAIR.search(log_text, recaps[0].end()) else None
+    history = log_text[:recap.start()] if recap else log_text
+    pairs = [(float(a), float(b)) for a, b in _R_PAIR.findall(history)]
+    if recap:
+        # Phenix reports its scaled start again after the last cycle.
+        initial_work, initial_free, final_work, final_free = map(float, recap.groups())
+        if not pairs:
+            pairs.append((initial_work, initial_free))
+        pairs.append((final_work, final_free))
+    else:
+        initial_work, initial_free = pairs[0] if pairs else (None, None)
     # Logs repeat some summaries; preserve changes while collapsing immediate duplicates.
     series: list[dict[str, float | int]] = []
     for work, free in pairs:
@@ -1256,7 +1273,6 @@ def parse_refinement_statistics(log_text: str, model_text: str = "") -> dict[str
         series.append({"index": len(series), "r_work": work, "r_free": free})
     clash_values = [float(value) for value in _CLASHSCORE.findall(log_text + "\n" + model_text)]
     final = series[-1] if series else None
-    initial = series[0] if series else None
     final_geometry = _reported_geometry(log_text)
     diagnostics: list[str] = []
     for line in log_text.splitlines():
@@ -1265,8 +1281,8 @@ def parse_refinement_statistics(log_text: str, model_text: str = "") -> dict[str
             if stripped not in diagnostics:
                 diagnostics.append(stripped)
     statistics = {
-        "initial_r_work": initial["r_work"] if initial else None,
-        "initial_r_free": initial["r_free"] if initial else None,
+        "initial_r_work": initial_work,
+        "initial_r_free": initial_free,
         "r_work": final["r_work"] if final else None,
         "r_free": final["r_free"] if final else None,
         "r_free_minus_r_work": (

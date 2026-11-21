@@ -81,6 +81,50 @@ def _fit_plane(points, weights):
     return distance, None
 
 
+def measure_source_ring_arms(sources, observation, planes):
+    """Measure a pendant carbon alkyne against its source ring alone, with equal atom weights."""
+    import numpy as np
+    from .cif_plane_coverage import source_ring_alkyne_arms
+
+    atoms = defaultdict(dict)
+    for atom in observation["atoms"]:
+        atoms[_site(atom)][atom["atom_id"]] = atom
+    by_site = defaultdict(list)
+    for plane in planes:
+        active = {m["atom"] for m in plane["members"] if m["weight"] > 0}
+        by_site[plane["site"]].append((plane["proxy_index"], active))
+    rows = []
+    for declared in observation["sites"]:
+        site = declared["site"]
+        for arm, rings in source_ring_alkyne_arms(*sources[site]):
+            row = dict(**declared, status="UNASSESSED", arm_atoms=list(arm),
+                       candidate_ring_count=len(rings), ring_atoms=None, ring_rms_angstrom=None,
+                       arm_distances_angstrom=None, captured_ring_planes=None, missing_atoms=[])
+            rows.append(row)
+            if len(rings) != 1:
+                row["reason"] = "Multiple chordless six-membered source rings through the attachment"
+                continue
+            ring, = rings
+            row["ring_atoms"] = list(ring)
+            row["captured_ring_planes"] = [
+                dict(proxy_index=index, positive_arm_members=[n for n in arm[1:] if n in active])
+                for index, active in by_site[site] if set(ring) <= active
+            ]
+            required = set(ring) | set(arm)
+            row["missing_atoms"] = sorted(required - atoms[site].keys())
+            if row["missing_atoms"]:
+                row["reason"] = "Source ring or arm atoms missing from the selected capture"
+                continue
+            coords = {n: _point(atoms[site][n]["xyz"]) for n in required}
+            distance, reason = _fit_plane(np.array([coords[n] for n in ring]), np.ones(len(ring)))
+            row["reason"] = reason
+            if distance is not None:
+                row.update(status="MEASURED",
+                           ring_rms_angstrom=sqrt(sum(distance(coords[n])**2 for n in ring) / len(ring)),
+                           arm_distances_angstrom={n: distance(coords[n]) for n in arm[1:]})
+    return rows
+
+
 def _measure_plane(index, proxy, atoms, coords, angles, omit_each_member):
     import numpy as np
 

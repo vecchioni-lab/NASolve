@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C476–C480 refined arm measurements and the receiving phosphate at ATL — Rowan**.
+Updated **2026-11-21, C481–C485 mixed scaffold, PDU weight control and native refinement reports — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -13,6 +13,36 @@ Focused, relocated installed, matched native and independent checks also pass.
 Software qualification does not change the scientific REVIEW or close Q06.
 
 ## Where to resume
+
+**PDU with equal weights, C484.** On the independent A:PDU scaffold, two
+five-cycle Phenix children used the same parent, random seed, original
+observations and fixed coordinate weight of 1 in every cycle. The extra
+0.10 Å plane reduced the tip height above the six ring atoms from 0.466 to
+0.304 Å. The terminal bond was 1.475 and 1.476 Å. The two alkyne angles
+changed from 173.5°/177.1° to 175.4°/178.1°. Rfree was 0.2501 and 0.2500.
+The earlier adaptive pair gave 0.175 and 0.231 Å. Keep the plane experimental.
+Both fixed-weight children preserved all original Free-R flags, the three
+sugar hands, the 196 frame terms and six protected phosphate angles.
+
+C485 also corrected the reported starting Rwork/Rfree. The mixed ATL log
+first printed 0.5307/0.7513 before scaling. Phenix published 0.3439/0.3059
+as its start and 0.2492/0.2345 as its final pair. New round reports use that
+explicit recap and retain the preceding scaling observations in the history.
+Nine saved native logs independently reproduced their printed endpoints.
+
+**Mixed scaffold with ATL, C481–C483.** A separately built 42-residue model
+carried all thirteen substitutions through ReadySet and five Phenix 2.2.1-6174
+cycles on the host reflections. Both ATL backbone links finished at 1.610 and
+1.606 Å (target 1.607 Å). The two contacts to adenine finished at 2.735 and
+2.991 Å (target 2.8 Å). The outgoing O3′–P–OP2 angle went from 106.2° to
+112.5° (target 108°). All four sugar stereocentres and the order of the two
+labelled nonbridging phosphate oxygens survived. Contacts around ATL with more
+than 0.4 Å overlap fell from four to two. Phenix printed all 211 requested
+frame terms and six separately protected D:1 angles. The output retained
+all 2,273 measured intensities and sigmas and all 3,236 original Free-R flags.
+Rwork/Rfree finished at 0.2492/0.2345. These are host-data software controls.
+Next connect the ordinary mutation request to the source-bound locked-sugar
+builder and keep the separately constructed model as its comparison.
 
 **Ordinary mixed refinement, C461/C466.** Twelve substitutions went from Coot
 1.3.3 and ReadySet through a registered parent and five Phenix 2.2.1-6174
@@ -75,7 +105,7 @@ matched base. Nine thymine atoms could inherit their host values. The other
 13 ATL atoms kept B=20. At fixed coordinates, direct Phenix calculation on
 2,146 working reflections gave 52.7% of the original RMS amplitude from those
 nine atoms. The outgoing O3′–P still starts at 1.839 Å. Ordinary ATL placement,
-calibration of new sugar-atom B values and 13-component diffraction remain open.
+calibration of new sugar-atom B values and ordinary 13-component delivery remain open.
 C472 moved the intact locked sugar while holding its neighbours fixed. The
 links shortened but the pair opened. C478–C479 then allowed rigid movement
 of both neighbours. The outgoing O3′–P–OP2 angle reached 82.8° against
@@ -85,8 +115,7 @@ crystal-image searches found four contacts around ATL with more than 0.4 Å
 of overlap, down from six at the start. C480 serialized this candidate with
 the nine measured base B factors and repeated the full Phenix reading. All
 869 atoms, 42 monomers, 211 frame terms and eight restraint categories were
-preserved. These are construction and native reading results. Check ordinary
-delivery and what survives diffraction before accepting the placement.
+preserved. C483 above measures what survived diffraction in that construction.
 
 **Shared reader settings, W186.** The explicit typed-input handoff now carries
 reviewed controls through ordinary PostMR/complete-request intake, acquisition,

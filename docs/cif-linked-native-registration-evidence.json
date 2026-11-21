@@ -120093,5 +120093,142 @@
       "runners/c480_rounded_locked_seed.py": "eb2ffb93105a619dc1b08f252e7bf18818a6dd205f4c8440e0554f65fc3b84fa"
     },
     "next": "Compare the same source ring in ordinary and added-plane models. Carry the bounded locked-sugar construction into an ordinary lineage before claiming survival in diffraction."
+  },
+  "source_ring_mixed_diffraction_and_equal_weights_2026_11_21": {
+    "owner": "Rowan",
+    "scope": "C481–C485. Host-data software controls. Separate ATL construction and two diagnostic fixed-weight PDU children.",
+    "programs": [
+      "Phenix 2.2.1-6174 ReadySet and complete five-cycle phenix.refine, seed 1 for the matched PDU pair."
+    ],
+    "mixed": {
+      "preparation": {
+        "sites": 42,
+        "atoms": 869,
+        "links": 38,
+        "endpoint_cifs": 14,
+        "endpoint_phils": 17,
+        "ordered_frame": {
+          "angle": 90,
+          "bond": 53,
+          "parallelity": 58,
+          "planarity": 10
+        },
+        "roundtrip": "All atom identities, elements, Cartesian coordinates, occupancies and B values agreed."
+      },
+      "execution_sha256": "292e69f1132d3933e1c6a140afdc061aa853d023afa4f61b66a5b60aa31d4eb5",
+      "model_sha256": "d01bbb46aec82ba81edb5d1217deadd123fcdc81336cde6f13a999cc23daec9a",
+      "final_ATL_links_A": [
+        1.6104,
+        1.6056
+      ],
+      "final_ATL_pair_A": [
+        2.7348,
+        2.9914
+      ],
+      "outgoing_O3_P_OP2_degrees": [
+        106.2353,
+        112.5213
+      ],
+      "target_degrees": 108,
+      "source_sugar_centres_preserved": 4,
+      "phosphate_ligand_volumes_A3": [
+        -12.52239,
+        -11.21932,
+        -12.58194
+      ],
+      "ATL_overlaps_above_0_4_A": [
+        4,
+        2
+      ],
+      "frame_terms": 211,
+      "D1_protected_angles": 6,
+      "matched_observations": 2273,
+      "matched_FreeR_flags": 3236,
+      "R_start": [
+        0.3439,
+        0.3059
+      ],
+      "R_final": [
+        0.2492,
+        0.2345
+      ],
+      "lineage": "Source-bound separate placement on the ordinary twelve-change model. No registered thirteen-change PostMR checkpoint."
+    },
+    "common_ring": {
+      "reference": "Six source C/N ring atoms with equal weights; no change to native forces.",
+      "cold_children": 6,
+      "installed_files": 318,
+      "wheel_sha256": "5800dbb8386269d710d62e584b38cf9f660efd7f5cb617848c340d1ae83d2a09",
+      "relocated_cli_A_PDU_B4_tip_A": 0.1748120967829756
+    },
+    "fixed_weight_A_PDU": {
+      "weights": "wxc=1, wxc_scale=1 and wc=1 in all five cycles of both children.",
+      "original_frame_terms": 196,
+      "added_planes": 1,
+      "terminal_protection_angles": 6,
+      "source_flags": 3236,
+      "ordinary_then_trial": [
+        {
+          "tip_A": 0.4662,
+          "terminal_bond_A": 1.47539,
+          "alkyne_angles_deg": [
+            173.498,
+            177.142
+          ],
+          "R_free": 0.2501,
+          "model": "1dbef8a21ea42c7e3dfee12a7f7710def88f2cf2319c342b26a5521f97856ca9"
+        },
+        {
+          "tip_A": 0.3038,
+          "terminal_bond_A": 1.47647,
+          "alkyne_angles_deg": [
+            175.402,
+            178.147
+          ],
+          "R_free": 0.25,
+          "model": "6461b4c9615ded5ac4806fc50cff6846092800337a2fc7e18c9130329a5c1608"
+        }
+      ],
+      "comparison": "At adaptive weights the tip moved from 0.17481 to 0.23111 Å. Continue experimental review."
+    },
+    "reporting": {
+      "native_logs": 9,
+      "scaled_recap_used": true,
+      "retained_unscaled_history": true,
+      "compatibility": "New reports only. Sealed reports retain their stored values."
+    },
+    "validation": {
+      "env": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src",
+      "entry": "python -m pytest -q -p no:cacheprovider",
+      "ring": [
+        "tests/test_refinement_plane_departures.py",
+        "tests/test_cif_plane_coverage.py",
+        "tests/test_refinement_chemistry.py",
+        "tests/test_cif_doctor_run.py",
+        "105 passed + 7 subtests"
+      ],
+      "recap": [
+        "tests/test_autorefine.py",
+        "tests/test_refine_doctor.py",
+        "48 passed + 38 subtests"
+      ],
+      "installed": "Relocated isolated wheel: 9 short ring tests plus cif-doctor assess --run RUN --checkpoint refine-001 --refined-planes --json on the A:PDU control.",
+      "full_regression": "Not run this session."
+    },
+    "corrections": "The first local frame driver handed a disposable checkout's template to the overlay writer. The template was restored and all 211 terms reproduced from a run-local copy. A first ATL driver stopped before preflight; a fresh attempt completed. Earlier comparison records remain untouched.",
+    "local_evidence_hashes": {
+      "c481-locked-readyset-roundtrip/attempt-001/native.json": "ba9862c1731dc39ef5a1af7b9b0cdbc87c9b032b5d9c4dce5d4bb6bfc34595e2",
+      "c481-locked-readyset-roundtrip/frame-recheck/replay/frame.json": "c1ee0609bb2f301a3a976b8a335d13720186d5b1d3ee82b8c8fce143bcbad1c7",
+      "c482-source-ring-arms/sealed.json": "7bcc0d0a60b12c10c7609b8c9173b051506c55fcb19a66b5412e9e17fb4df251",
+      "c482-source-ring-arms/installed.json": "6c14b5ae362470c8b8ac9caee9cb182b91df523aeafe3f77916df53a68c72c54",
+      "c483-locked-refinement/attempt-002/outcome.json": "92c25b66d2cc2ff35b3009929b49b07201d1df0b3b73d0d1c8a9d081521edf13",
+      "c483-locked-refinement/attempt-002/chemistry.json": "f781dbf2357189a778c6391a11c41b12585eefbdda1a4fabbca4a549f7ad42f9",
+      "c483-locked-refinement/attempt-002/reflections.json": "e84a1b10f2e9b75df18541a71e2b82512197c0faf2e27a8d896283b483bd8782",
+      "c484-matched-pdu-weights/pair-001/plan.json": "24176c733bc284f2536c838e7638f1378c737397f52c25c766bfa9002faa73f4",
+      "c484-matched-pdu-weights/pair-001/science.json": "ca31437344a16a194158932dc900449f3cf2d0af08ac33982620e95f3c65c200",
+      "c484-matched-pdu-weights/pair-001/reflections.json": "dd030fafc63f53f091c53907911ea15dbb5d03f28cae5d3567678fff1ddf125f",
+      "c485-refinement-recap/logs.json": "ba383b344e1e2bdb35fae957d244bfaf5af9f12760b764d4b9f7dd7c96a430b0"
+    },
+    "next": "Connect verified locked-sugar placement and starting displacement to ordinary construction. Keep the PDU plane experimental."
   }
 }
