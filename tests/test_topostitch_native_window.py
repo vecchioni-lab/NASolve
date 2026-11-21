@@ -146,3 +146,80 @@ def test_default_missing_native_owners_is_explicit(window):
     from importlib.util import find_spec
     if find_spec('nasolve.cif_attachment_native') is not None:pytest.skip('Cedar native readers installed')
     with pytest.raises(RuntimeError,match='Cedar'):load(window,native_owners=None)
+
+
+@pytest.fixture
+def ordinary(window):
+    s=window
+    report=dict(post_mr_plan={'allow_op3_sites':[]},postmr={'prepared_sha256':sha256(s['model'].read_bytes()).hexdigest()})
+    (s['run']/'report.json').write_text(json.dumps(report))
+    calls=[]
+    def derive(model,frozen,components):
+        calls.append((model,frozen,components))
+        return dict(schema_version=1,policy_id='cif-prepared-model-context-v1',
+            model_sha256=sha256(model.read_bytes()).hexdigest(),components=components,
+            intent={'post_mr_plan':frozen['post_mr_plan']},contexts={},expected_links=[],
+            phosphate_audit={'synthetic_fixture':True},scientific_qualification='NOT_ASSESSED')
+    s['ordinary_owner']=SimpleNamespace(POLICY_ID='cif-prepared-model-context-v1',derive_prepared_model_context=derive)
+    s['ordinary_calls']=calls
+    return s
+
+
+def test_opted_source_context_is_derived_separately_from_checked_authority(ordinary):
+    before=load(ordinary)
+    r=load(ordinary,ordinary_model_context_owner=ordinary['ordinary_owner'])
+    p=r['preparation'];d=p['derived_source_context']
+    assert p['status']=='NO_CHECKED_PREPARATION'
+    assert all(v['status']=='UNAVAILABLE' for v in p['availability'].values())
+    assert d['status']=='DERIVED_ORDINARY_BACKBONE_CONTEXT'
+    assert d['pair_or_stack_assignments']=='NOT_INFERRED'
+    assert d['model_context']['components']==['DA']
+    assert d['model_context']['model_sha256']==p['context']['source_model_sha256']
+    assert p['context_sha256']!=before['preparation']['context_sha256']
+    assert len(ordinary['ordinary_calls'])==2
+    assert load(ordinary)==before
+    assert not p['chemical_admission'] and not p['motion_admission']
+
+
+@pytest.mark.parametrize('fault',['frozen_parent','noncanonical','owner_policy','returned_model','returned_components','claim_acceptance','missing_plan'])
+def test_source_context_cannot_invent_or_promote_frozen_intent(ordinary,fault):
+    s=ordinary;owner=s['ordinary_owner'];rp=s['run']/'report.json';report=json.loads(rp.read_text())
+    if fault=='frozen_parent':report['postmr']['prepared_sha256']='0'*64
+    elif fault=='missing_plan':report.pop('post_mr_plan')
+    elif fault=='noncanonical':
+        p=s['model'];p.write_bytes(p.read_bytes().replace(b' DA ',b'PDU '))
+        cp=checkpoints.registry_path(s['run']);r=json.loads(cp.read_text());r['checkpoints'][0]['model']=checkpoints._file_reference(p,s['run']);cp.write_text(json.dumps(r));report['postmr']['prepared_sha256']=sha256(p.read_bytes()).hexdigest()
+    elif fault=='owner_policy':owner.POLICY_ID='other'
+    else:
+        derive=owner.derive_prepared_model_context
+        def changed(*args):
+            r=derive(*args)
+            if fault=='returned_model':r['model_sha256']='0'*64
+            elif fault=='returned_components':r['components']=['DT']
+            else:r['scientific_qualification']='APPROVED'
+            return r
+        owner.derive_prepared_model_context=changed
+    rp.write_text(json.dumps(report))
+    with pytest.raises(ValueError):load(s,ordinary_model_context_owner=owner)
+
+
+def test_ordinary_context_rejects_a_previous_nonopted_context_pin(ordinary):
+    old=load(ordinary)['preparation']['context_sha256']
+    with pytest.raises(ValueError,match='context changed'):
+        load(ordinary,ordinary_model_context_owner=ordinary['ordinary_owner'],expected_context_sha256=old)
+
+
+def test_ordinary_derivation_propagates_auditor_refusal_without_fallback(ordinary):
+    def refuse(*a):raise ValueError('unexplained phosphate contact')
+    ordinary['ordinary_owner'].derive_prepared_model_context=refuse
+    with pytest.raises(ValueError,match='unexplained phosphate'):
+        load(ordinary,ordinary_model_context_owner=ordinary['ordinary_owner'])
+
+
+def test_original_report_change_during_context_derivation_refuses(ordinary):
+    old=ordinary['ordinary_owner'].derive_prepared_model_context
+    def changed(*a):
+        r=old(*a);p=ordinary['run']/'report.json';p.write_bytes(p.read_bytes()+b'\n');return r
+    ordinary['ordinary_owner'].derive_prepared_model_context=changed
+    with pytest.raises(ValueError,match='changed'):
+        load(ordinary,ordinary_model_context_owner=ordinary['ordinary_owner'])

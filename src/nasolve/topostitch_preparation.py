@@ -16,13 +16,17 @@ from .topostitch_recipe import recipe_digest
 
 def inspect_checkpoint_preparation(run_directory, *, expected_checkpoint_id,
         expected_model_sha256, checkpoint=None, preparation_reader=None,
-        expected_context_sha256=None):
+        expected_context_sha256=None, ordinary_model_context_owner=None):
     """Inspect a published PostMR/preparation checkpoint, without writing files.
 
     The optional reader is a trusted dependency with Cedar's
     ``_read_registry_with_preparations`` contract. Its checked/exact result pair
     is consumed from that one call, without replaying the complete history again.
     Refined descendants require a later lineage join and are explicitly refused.
+    Opt in to deriving canonical ordinary backbone context with the trusted Cedar
+    ``ordinary_model_context_owner``. It uses this exact original PostMR model and
+    frozen plan, and remains separate from checked-preparation availability. Its
+    coordinate/plan derivation is not independent experimental topology or pairing.
     This snapshot is neither atomic dispatch nor chemical/motion authorization.
     """
     model_pin=_pin(expected_model_sha256)
@@ -107,11 +111,35 @@ def inspect_checkpoint_preparation(run_directory, *, expected_checkpoint_id,
                     policy_id=report['policy_id'],index_basis=report.get('index_basis'),
                     reference_sha256=recipe_digest(config[name]))
         status='CHECKED_PREPARATION_FIELDS'
+    derived = None
+    if ordinary_model_context_owner is not None:
+        from .topostitch_recipe import model_atom_rows
+        report = _json(snapshots[run/'report.json'])
+        codes = sorted({r['residue_code'] for r in model_atom_rows(model_bytes)})
+        owner = ordinary_model_context_owner
+        if (published is not None or parent['id'] != 'postmr'
+                or not codes or not set(codes) <= {'DA','DC','DG','DT'}
+                or not isinstance(report.get('post_mr_plan'),dict)
+                or not isinstance(report.get('postmr'),dict)
+                or report['postmr'].get('prepared_sha256') != model_pin
+                or owner.POLICY_ID != 'cif-prepared-model-context-v1'):
+            raise ValueError('Require an exact original canonical PostMR model and frozen ordinary intent')
+        record = owner.derive_prepared_model_context(model_path, report, codes)
+        if (record.get('policy_id') != owner.POLICY_ID
+                or type(record.get('schema_version')) is not int or record['schema_version'] != 1
+                or record.get('model_sha256') != model_pin or record.get('components') != codes
+                or record.get('scientific_qualification') != 'NOT_ASSESSED'):
+            raise ValueError('Ordinary source context differs from the exact canonical parent or scope')
+        derived = dict(status='DERIVED_ORDINARY_BACKBONE_CONTEXT',model_context=record,
+            authority='CURRENT_MODEL_AND_FROZEN_ORDINARY_PLAN',
+            pair_or_stack_assignments='NOT_INFERRED',experimental_topology='NOT_ESTABLISHED',
+            checked_preparation=False,chemical_admission=False,motion_admission=False)
     context=dict(schema_version=1,kind='topostitch-preparation-input-context',checkpoint_id=expected_checkpoint_id,
         selection=dict(mode='current' if checkpoint is None else 'explicit',requested=checkpoint),
         registry_sha256=sha256(snapshots[cp]).hexdigest(),report_sha256=sha256(snapshots[run/'report.json']).hexdigest(),
         parent_record_sha256=recipe_digest(parent),source_model_sha256=model_pin,inputs=inputs,
         publication=publication,request=request_ref,result=result_ref,availability=fields)
+    if derived is not None:context['derived_source_context_sha256']=recipe_digest(derived)
     pin=recipe_digest(context)
     if expected_context_sha256 is not None and expected_context_sha256!=pin:
         raise ValueError('Preparation context changed since the previous read')
@@ -119,13 +147,14 @@ def inspect_checkpoint_preparation(run_directory, *, expected_checkpoint_id,
     return dict(schema_version=1,kind='topostitch-preparation-availability',status=status,
         context=context,context_sha256=pin,availability=fields,
         native_capture='NOT_ASSESSED_BY_THIS_READER',chemical_admission=False,
-        motion_admission=False,runtime_authority=False,locking=False,scientific_acceptance=False)
+        motion_admission=False,runtime_authority=False,locking=False,scientific_acceptance=False,
+        **({'derived_source_context':derived} if derived is not None else {}))
 
 
 def inspect_checkpoint_native_window(run_directory, *, expected_checkpoint_id,
         expected_model_sha256, native_receipt, expected_native_receipt_sha256,
         selected_indices, expected_context_sha256=None, checkpoint=None,
-        preparation_reader=None, native_owners=None):
+        preparation_reader=None, native_owners=None, ordinary_model_context_owner=None):
     """Report captured restraint support for an explicit preparation atom window.
 
     Indices refer to source PDB atom-record order, not native order or serials.
@@ -138,6 +167,8 @@ def inspect_checkpoint_native_window(run_directory, *, expected_checkpoint_id,
     preparation-reader seam for standalone Willow; it never imports artifact code.
     The capture may use additional explicit inputs, which are separately reported.
     Every inherited restraint must be represented with its actual multiplicity.
+    Optional ordinary model context is forwarded to the preparation inspector;
+    derived source topology remains distinct from native or chemical qualification.
     This performs repeated snapshot checks, not locking or execution admission.
     """
     from collections import Counter
@@ -159,7 +190,7 @@ def inspect_checkpoint_native_window(run_directory, *, expected_checkpoint_id,
     capture_owner, proxy_owner, monomer_owner = native_owners
     opts = dict(expected_checkpoint_id=expected_checkpoint_id,
         expected_model_sha256=expected_model_sha256, checkpoint=checkpoint,
-        preparation_reader=preparation_reader)
+        preparation_reader=preparation_reader, ordinary_model_context_owner=ordinary_model_context_owner)
     prepared = inspect_checkpoint_preparation(run_directory,
         expected_context_sha256=expected_context_sha256, **opts)
     run = checkpoints.registry_path(Path(run_directory)).parent.parent
