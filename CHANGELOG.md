@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Carry captured Phenix reader settings through preparation
+
+- Explicit typed-input requests can now retain reviewed sorting, CDL and
+  full-monomer settings separately from geometric restraints through acquisition,
+  stored preparation and the existing native workflow. Captured NCS settings
+  replace the redundant generated definition; conflicting declarations refuse.
+  Default requests and historical artifacts retain their original behavior.
+  This adds a Python API opt-in, not automatic CLI/campaign activation.
+
 ### Recognizing atom-name spacing after ReadySet
 
 - A new dictionary request can opt into comparing the exact atoms behind

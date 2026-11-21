@@ -45,6 +45,7 @@ from .cif_runtime_continuation_process import inspect_runtime_continuation_proce
 
 from .cif_prepared_bond_discovery import bond_discovery_fields
 from . import cif_complete_stages as staged_artifacts
+from .cif_interpretation_controls import control_fields, control_inputs, control_kwargs, reject_shadow_controls
 
 POLICY_ID = 'cif-complete-dictionary-request-v1'
 ANCHOR = 'dictionary_request_directory'
@@ -131,8 +132,15 @@ def _continuation_parameters(config):
         **repair.compact_evidence_fields(config.get('compact_evidence',False)))
 
 
-def _compiler_input(kind, directory, selected_sources=None):
+def _compiler_input(kind, directory, selected_sources=None, *, reader_control_policy=None):
     """Resolve an existing compiler artifact; never compile or guess new intent."""
+    if reader_control_policy is not None:
+        from .cif_interpretation_controls import POLICY_ID as control_policy
+        _need(reader_control_policy == control_policy and kind == 'literal_na_inputs',
+              'Reader-control handoff requires typed literal inputs and its explicit policy')
+        from .cif_literal_na_controls import inspect_typed_literal_na_inputs
+        result = inspect_typed_literal_na_inputs(directory)
+        return dict(result, phils=result['compiled_restraint_phils'])
     if kind == 'literal_na_inputs':
         result=resolve_literal_na_inputs(directory)
         if selected_sources is not None:
@@ -243,7 +251,7 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
     _need(set(limits) == set(_LIMITS) and all(type(v) is int and 1 <= v <= _LIMITS[k] for k,v in limits.items()),
           'Require bounded integer complete-request limits')
     _need(type(maximum) is int and 1 <= maximum <= 5, 'Require one to five outer attempts')
-    _need(isinstance(controls,dict) and set(controls) == {'sites','consumer','expected_links','native_context','supplementary_phils'},
+    _need(isinstance(controls,dict) and set(controls)-{'interpretation_controls'} == {'sites','consumer','expected_links','native_context','supplementary_phils'},
           'Unexpected complete-request controls')
     _consumer(controls['consumer']); _context(controls['native_context'])
     selected = read_acquisition_sources(inputs/'sources'); codes = selected['report']['components']
@@ -259,7 +267,11 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
     _need(_same(expected_bonds,bond_targets),'Frozen complete bond targets changed')
     names = controls['supplementary_phils']
     _need(isinstance(names,list) and names == [f'phils/{i:03}.phil' for i in range(len(names))], 'Invalid shared PHIL order')
-    allowed = {'model.pdb', *names, *('sources/'+n for n in _tree(inputs/'sources'))}
+    reader_phils, _ = control_inputs(inputs, controls, prefix='')
+    reader_policy = controls.get('interpretation_controls', {}).get('policy_id')
+    if reader_phils: reject_shadow_controls([inputs/n for n in names])
+    allowed = {'model.pdb', *names, *[p.relative_to(inputs).as_posix() for p in reader_phils],
+               *('sources/'+n for n in _tree(inputs/'sources'))}
     expected_support, support_files = _source_plane_support_snapshot(
         {code:row['source'] for code,row in selected['sources'].items()},
         repair._support_declarations(inputs/'plane-support',plane_support))
@@ -317,9 +329,13 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
               'Explicit restraint ownership requires model context and required custom restraints')
         validate_restraint_context(inputs/'model.pdb', [inputs/n for n in names], restraint_context)
     compiler_refs = _compiler_references(literal_na_inputs,explicit_na_policy)
+    _need(not reader_phils or set(compiler_refs) == {'literal_na_inputs'},
+          'Reader controls require authenticated typed literal provenance')
     for kind,reference in compiler_refs.items():
         folder = _COMPILER_INPUTS[kind]
-        compiled = _compiler_input(kind,inputs/folder,selected['sources'])
+        compiled = _compiler_input(kind,inputs/folder,selected['sources'], reader_control_policy=reader_policy)
+        _need([_read(p) for p in compiled.get('interpretation_control_phils', [])]
+              == [_read(p) for p in reader_phils], 'Captured interpretation control bytes or order differ')
         _need(reference == dict(anchor=ANCHOR,path='inputs/'+folder,policy_id=compiled['report']['policy_id'])
               and model_context is not None and restraint_context is not None,
               'Compiler provenance requires both owned contexts and its exact reference')
@@ -371,7 +387,7 @@ def _request(root):
 def initialize_dictionary_request(source_selection, components, model, output, *, consumer,
         expected_links, native_context, supplementary_phils=(), native_timeout_seconds=90,
         component_timeout_seconds=600, attribution_timeout_seconds=90,
-        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=ARTIFACT_POLICY, compact_evidence=True, plane_support=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False):
+        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=ARTIFACT_POLICY, compact_evidence=True, plane_support=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, reader_control_policy=None):
     """Freeze all declared inputs before children exist. Require a fresh destination.
 
     One to sixteen component types declare code, contexts and generation settings, with optional
@@ -389,6 +405,11 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     preserve their frozen meaning but ambiguous records cannot start new attempts.
     Optional literal_na_inputs freezes original native/PHIL/compiler provenance
     and must reproduce the exact supplied model and ordered compiled PHIL.
+    reader_control_policy="cif-captured-reader-control-handoff-v1" additionally
+    admits the typed captured-input artifact and freezes its separately ordered
+    reader controls. These never enter supplementary_phils/restraint_context;
+    downstream preparation carries them into the existing native dispatch.
+    Omission preserves the historical refusal and request bytes.
     Alternatively explicit_na_policy retains an existing source-bound C80 artifact;
     overlapping source components must match the chosen acquisition bytes.
     The two provenance modes are mutually exclusive and never reselect relationships.
@@ -440,12 +461,17 @@ def initialize_dictionary_request(source_selection, components, model, output, *
         {code:row['source'] for code,row in selected['sources'].items()},bond_targets)
     if support_config is not None:
         trees.update({'plane-support/'+code:_root(row['request_directory']) for code,row in plane_support.items()})
-    compiler_refs = {}
+    compiler_refs = {}; reader_phils = []
+    _need(reader_control_policy is None or (literal_na_inputs is not None and explicit_na_policy is None),
+          'Reader-control handoff requires typed literal provenance')
     for kind,value in _compiler_references(literal_na_inputs,explicit_na_policy).items():
         folder = _COMPILER_INPUTS[kind]
         trees[folder] = _root(value)
-        compiled = _compiler_input(kind,trees[folder],selected['sources'])
+        compiled = _compiler_input(kind,trees[folder],selected['sources'], reader_control_policy=reader_control_policy)
+        reader_phils = compiled.get('interpretation_control_phils', [])
         compiler_refs[kind] = dict(anchor=ANCHOR,path='inputs/'+folder,policy_id=compiled['report']['policy_id'])
+    role = control_fields(reader_phils, reader_control_policy, prefix='')
+    if role: reject_shadow_controls(supplementary_phils)
     for item in components:
         _need(isinstance(item,dict) and {'code','contexts','generation'} <= item.keys()
             and item.keys() <= {'code','contexts','generation','retained_snapshot','terminal_resource',
@@ -465,6 +491,9 @@ def initialize_dictionary_request(source_selection, components, model, output, *
             **_freeze_furanose(item,files,originals))
     controls = _json(_bytes(dict(sites=sites,consumer=consumer,expected_links=expected_links,native_context=native_context,
         supplementary_phils=[f'phils/{i:03}.phil' for i in range(len(supplementary_phils))])))
+    controls.update(role)
+    for i,p in enumerate(reader_phils):
+        originals[Path(p)] = _read(p); files[f'reader_controls/{i:03}.phil'] = originals[Path(p)]
     limits = dict(native_timeout_seconds=native_timeout_seconds,component_timeout_seconds=component_timeout_seconds,
         attribution_timeout_seconds=attribution_timeout_seconds,derivative_timeout_seconds=derivative_timeout_seconds,
         total_timeout_seconds=total_timeout_seconds)
@@ -718,6 +747,9 @@ def _result(root, attempt, intent, config, children, bindings):
         for code,site in controls['sites'].items()}
     expected = dict(components=sorted(selection),sites=sites,consumer=controls['consumer'],expected_links=controls['expected_links'],
         native_context=controls['native_context'],supplementary_phils=['inputs/'+n for n in controls['supplementary_phils']])
+    if 'interpretation_controls' in controls:
+        role = controls['interpretation_controls']
+        expected['interpretation_controls'] = dict(policy_id=role['policy_id'], phils=['inputs/'+n for n in role['phils']])
     _need(_same(pc,expected), 'Prepared controls differ from complete frozen intent')
     outer_only = ('retained/',) + (('plane-support/',) if 'plane_support' in config else ()) + (('construction/',) if 'construction_inputs' in config else ()) + tuple(folder+'/' for name,folder in _COMPILER_INPUTS.items() if name in config)
     for name,data in _tree(root/'inputs').items():
@@ -751,7 +783,7 @@ def _result(root, attempt, intent, config, children, bindings):
         **(dict(plane_generation=_plane_outcomes(root,attempt,config)[2]) if 'plane_generation_policy' in config else {}))
     _need(_same({k:v for k,v in report.items() if k != 'record_sha256'},expected), 'Complete request result claims differ')
     return dict(result=report,preparation=prepared,execution=execution,runtime=runtime,
-        **{name:_compiler_input(name,root/'inputs'/folder) for name,folder in _COMPILER_INPUTS.items() if name in config},
+        **{name:_compiler_input(name,root/'inputs'/folder, reader_control_policy=controls.get('interpretation_controls', {}).get('policy_id')) for name,folder in _COMPILER_INPUTS.items() if name in config},
         **({'construction_inputs':read_postmr_construction(root/'inputs/construction')} if 'construction_inputs' in config else {}),
         **({'continuation':continued} if 'continuation' in config else {}))
 
@@ -964,7 +996,8 @@ def execute_dictionary_request_attempt(directory, phenix, store_root, *, generat
             remaining()
             prepare_acquired_dictionary_bundle(root/'inputs/sources',components,root/'inputs/model.pdb',attempt/'preparation',
                 consumer=controls['consumer'],expected_links=controls['expected_links'],native_context=controls['native_context'],
-                supplementary_phils=[root/'inputs'/n for n in controls['supplementary_phils']])
+                supplementary_phils=[root/'inputs'/n for n in controls['supplementary_phils']],
+                **control_kwargs(root/'inputs', controls, prefix=''))
             remaining()
             plane_fields = {}; support_declarations = repair._support_declarations(root/'inputs/plane-support',config.get('plane_support'))
             if 'plane_generation_policy' in config:

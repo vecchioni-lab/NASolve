@@ -3599,14 +3599,69 @@ the declared literal restraint inputs; native index identities remain native.
 `read_literal_na_inputs` reconstructs this artifact after relocation without
 following historical source paths. `inspect_typed_literal_na_inputs` exposes
 separate `compiled_restraint_phils` and `interpretation_control_phils`; it does
-not expose an executable `phils` list. `resolve_literal_na_inputs`, and therefore
-the ordinary complete-request intake, deliberately refuse typed artifacts until
-an execution owner explicitly binds and forwards the controls. Preserving
-controls in evidence does not prove they have been applied downstream.
+not expose an executable `phils` list. `resolve_literal_na_inputs` and default
+complete-request intake still refuse typed artifacts. The explicit owner below
+binds the separate role without rewriting the captured artifact's historical
+`execution_context.ordinary_handoff_allowed=False` evidence.
 
-The W179 capture yielded 193 compiled terms and 20 retained planes. Its four
-reader controls remained bound to the recorded Phenix interpretation. Use this
-artifact for inspection while the ordinary execution handoff is being qualified.
+#### Explicit captured-control handoff (W186)
+
+**Purpose.** Preserve the sorting, CDL and full-monomer settings that accompanied
+reviewed restraints when preparing a new model for the existing native workflow.
+Reader settings remain separate from forces between atoms. This is an explicit
+Python API option; ordinary CLI/campaign defaults do not change.
+
+`initialize_postmr_dictionary_request` and `initialize_dictionary_request` accept
+`reader_control_policy="cif-captured-reader-control-handoff-v1"` only with a
+replayed `cif-typed-native-literal-inputs-v1` artifact in `literal_na_inputs`.
+PostMR intake still verifies the exact original model and **all** original PHILs
+in capture order. Complete intake receives the compiled geometry PHILs and
+owned model/restraint contexts. It takes reader controls only from the typed
+artifact; users cannot substitute another control list at that entry point.
+
+The complete request persists a separate optional field:
+
+```json
+"interpretation_controls": {
+  "policy_id": "cif-captured-reader-control-handoff-v1",
+  "phils": ["reader_controls/000.phil"]
+}
+```
+
+This field lives in `configuration.controls`; its paths are relative to the
+request's `inputs` directory. Acquisition preparation keeps it in its intent's
+`controls`, and the stored bundle keeps it in its report, using
+`inputs/reader_controls/000.phil` relative to each artifact root. The exact raw
+bytes and order are copied and rechecked at every boundary. Lower-level
+preparers take explicit `interpretation_control_phils` plus the same policy;
+those APIs transport a role, while the complete owner verifies captured provenance.
+`supplementary_phils` and `restraint_context`
+continue to describe geometry only. Missing/changed controls, unknown policies,
+reordered files and duplicate definitions refuse before native execution.
+
+The existing native input order is geometry PHILs, captured controls, active
+site modifiers, then the generated full-model policy if still needed. When
+captured controls explicitly supply `use_ncs_to_build_restraints=False`, the
+bundle omits its redundant generated policy. A second declaration in other
+supplied PHILs refuses even when it also says `False`; an added generated
+policy cannot be made valid by rehashing the artifact. If NCS is not captured,
+the existing generated `False` remains. No setting is stripped from the captured
+files. Existing repair, selection, ReadySet, publication and process ownership
+carry the resulting ordered files; there is no alternate launcher.
+
+**Evidence and limits.** W186's fixed-coordinate Phenix 2.2.1-6174 read retained
+859 atoms, 42 complete monomers and all 213 explicit terms: 51 bonds, 84 angles,
+58 parallelities and 20 planes. Native definition readback contains each control
+once; the saved effective PHIL gives all four as `False` under the native master
+schema. Software tests cover the complete owner, repeated immutable attempts,
+cold relocation, frozen dispatch and runtime/ReadySet retention. This is not an
+end-to-end real ordinary-parent or refinement qualification. That parent lineage,
+retained-manager motion and scientific recovery remain separate milestone gates.
+
+Historical requests with no control role retain their serialization and behavior.
+The optional role uses the existing outer schema versions with its own explicit
+policy; older readers refuse the new role rather than silently discarding it.
+No historical artifact is migrated or promoted automatically.
 
 ### Exact planarity intake (C186)
 

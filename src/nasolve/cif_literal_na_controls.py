@@ -10,40 +10,14 @@ from .cif_dictionary_sites import _need, _read
 from .cif_explicit_na_policy import _implementation
 from .cif_literal_na_inputs import (_captured_source, _exact_tree, _ref,
     _write_payload, read_literal_na_inputs)
-from .cif_na_policy import _compile_na_policy_payload, _parse
+from .cif_na_policy import _compile_na_policy_payload
+from .cif_interpretation_controls import CONTROLS, control_definitions
 from .cif_repair_attempt import _root
 from .cif_restraint_context import _derive_restraint_payload
 
 POLICY_ID = 'cif-typed-native-literal-inputs-v1'
-CONTROLS = frozenset(('pdb_interpretation.sort_atoms',
-    'pdb_interpretation.restraints_library.cdl',
-    'pdb_interpretation.restraints_library.cdl_nucleotides.enable',
-    'pdb_interpretation.use_ncs_to_build_restraints'))
-
-
 def _control_values(data, adaptation, seen):
-    # Reuse the maintained bounded parser; the wrapper permits flat PHIL.
-    nodes, _ = _parse('capture_controls {\n'+data.decode('utf-8')+'\n}\n')
-    containers = {''} | {
-        '.'.join(key.split('.')[:i]) for key in CONTROLS
-        for i in range(1, len(key.split('.')))}
-    values = {}; mappings = []
-    for node in nodes:
-        path = node['path']
-        _need(path == 'capture_controls' or path.startswith('capture_controls.'),
-              'Control escaped its parser scope')
-        source_path = path.removeprefix('capture_controls').removeprefix('.')
-        normalized = '' if source_path == 'refinement' else source_path.removeprefix('refinement.')
-        _need(normalized in containers, 'Unsupported interpretation control scope')
-        for key, value in node['fields'].items():
-            source = '.'.join(part for part in (source_path, key) if part)
-            target = source.removeprefix('refinement.')
-            _need(target in CONTROLS and value == 'False',
-                  'Unsupported interpretation control or value')
-            _need(target not in seen, 'Repeated interpretation control')
-            seen.add(target); values[target] = False
-            mappings.append(dict(source=source, interpreter=target, value_tokens=['False']))
-    _need(values, 'Empty interpretation control input')
+    values, mappings = control_definitions(data, seen)
     _need(adaptation.get('policy') in {'direct', 'refinement-root-to-interpreter-v1'},
           'Unsupported native control namespace policy')
     if adaptation['policy'] == 'direct':

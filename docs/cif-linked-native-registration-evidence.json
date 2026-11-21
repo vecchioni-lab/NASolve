@@ -119740,5 +119740,125 @@
       "original_control_preserved": true,
       "classification": "Separate A:PDU software fixture. B:1 is free OH here. In the original PDU:PDU construct the incoming phosphate is symmetry-related. No contact inferred from distance."
     }
+  },
+  "captured_reader_control_handoff_2026_11_21": {
+    "date": "2026-11-21",
+    "human_update": "W186",
+    "status": "SCOPED_QUALIFIED_FOR_REVIEW",
+    "base_commit": "86243467b3fa4b4bd6b86571e998fb579c533ce8",
+    "before": "Typed captured reader controls were inspectable but refused at ordinary request intake.",
+    "after": "An explicit authenticated typed-input policy freezes reader controls separately through existing preparation owners and native dispatch, suppressing only redundant generated NCS=False.",
+    "policy_id": "cif-captured-reader-control-handoff-v1",
+    "changed_runtime_files": [
+      "src/nasolve/cif_interpretation_controls.py",
+      "src/nasolve/cif_literal_na_controls.py",
+      "src/nasolve/cif_complete_request.py",
+      "src/nasolve/cif_postmr_request.py",
+      "src/nasolve/cif_acquisition_preparation.py",
+      "src/nasolve/cif_dictionary_bundle.py"
+    ],
+    "schemas": {
+      "outer_versions": "unchanged; strict additive opt-in role with explicit policy",
+      "complete_request": "configuration.controls.interpretation_controls; ordered paths relative to inputs",
+      "acquired_preparation": "controls.interpretation_controls; inputs/reader_controls paths relative to artifact root",
+      "stored_bundle": "report.interpretation_controls; same artifact-relative paths",
+      "legacy": "absent field retains original serialization and behavior; older readers refuse new role"
+    },
+    "validation": {
+      "python": "3.12.14",
+      "source": {
+        "environment": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src",
+        "command": "python -B -m pytest -q -p no:cacheprovider tests/test_cif_reader_control_handoff.py tests/test_cif_literal_na_controls.py tests/test_cif_literal_na_inputs.py tests/test_cif_dictionary_bundle.py tests/test_cif_acquisition_preparation.py tests/test_cif_complete_request.py tests/test_cif_postmr_request.py tests/test_cif_compiler_intake.py tests/test_cif_prepared_repair_execution.py tests/test_cif_component_runtime.py tests/test_cif_runtime_readyset.py tests/test_cif_dictionary_bundle_readyset.py",
+        "passed": 558,
+        "seconds": 667.01
+      },
+      "installed": {
+        "environment": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<relocated-installed-package>",
+        "command": "python -B -m pytest -q -p no:cacheprovider tests/test_cif_reader_control_handoff.py tests/test_cif_literal_na_controls.py tests/test_cif_literal_na_inputs.py tests/test_cif_dictionary_bundle.py tests/test_cif_acquisition_preparation.py tests/test_cif_complete_request.py tests/test_cif_postmr_request.py tests/test_cif_compiler_intake.py tests/test_cif_prepared_repair_execution.py tests/test_cif_component_runtime.py tests/test_cif_runtime_readyset.py tests/test_cif_dictionary_bundle_readyset.py",
+        "first_passed": 546,
+        "first_fixture_failures": 12,
+        "seconds": 665.21,
+        "fixture_correction": "Six packaged ligand CIFs copied from the installed wheel into the existing test fixture source-tree layout; runtime/test source unchanged.",
+        "rerun_command": "python -B -m pytest -q -p no:cacheprovider tests/test_cif_compiler_intake.py",
+        "rerun_passed": 12,
+        "rerun_seconds": 21.11,
+        "build_source_removed": true,
+        "original_install_removed": true,
+        "installed_source_matches_candidate": true
+      },
+      "regression_before": {
+        "tests": [
+          "test_opted_compiler_intake_retains_separate_controls",
+          "test_bundle_carries_controls_once_and_relocates"
+        ],
+        "result": "2 failed: missing reader-control API keywords, before implementation"
+      },
+      "new_tests_passed": 25,
+      "full_suite": "NOT_RUN; explicitly scoped development push; latest recorded Cedar full baseline 58965920 remains historical"
+    },
+    "build": {
+      "base_commit": "86243467b3fa4b4bd6b86571e998fb579c533ce8",
+      "source_files": {
+        "cif_interpretation_controls.py": "f226afce720ce07494d2c57fcbfae6996429554a4a6e14e90e676c947c38266c",
+        "cif_literal_na_controls.py": "60be2faa49f0f3428c4ec78610eb1307ec1896d260da157406729ce9426c8498",
+        "cif_complete_request.py": "e44c894dc802548b88c3bd1edfc139e31228f9181b6cf3432bad932d2efbe031",
+        "cif_postmr_request.py": "c3db7c043badea7e62e348e5c721f20c0867da1c6c802ea616d406e4fcd3931d",
+        "cif_acquisition_preparation.py": "b60193255ebefc6b3392fb0d7e64093513170e5c631df2b1d380ebbea8b00ecc",
+        "cif_dictionary_bundle.py": "afa9853c15b6d71350ff0984b7696f202334627896fa0398308c86e8cdeeae7b"
+      },
+      "new_test_sha256": "fd67bb2fb70e947c20d62db67012e7e2ca41c69108846a8c231bee803d1c4037",
+      "wheel_sha256": "2c4f0f1565caa69db5787f26ea76c71893c7e151a2e7f873ce3a141e992a2ea9",
+      "build_tools": {
+        "setuptools": "84.2.1",
+        "wheel": "0.48.0",
+        "packaging": "26.3"
+      },
+      "build_source_removed": true,
+      "original_install_removed": true
+    },
+    "native": {
+      "status": "PASS",
+      "native_calls": 1,
+      "effective_parser_calls": 2,
+      "refinement_runs": 0,
+      "version": "2.2.1",
+      "atom_count": 859,
+      "monomer_count": 42,
+      "requested_terms": {
+        "planarity": 20,
+        "parallelity": 58,
+        "angle": 84,
+        "bond": 51
+      },
+      "total_requested_terms": 213,
+      "effective_reader_controls": {
+        "sort_atoms": false,
+        "cdl": false,
+        "cdl_nucleotides": false,
+        "use_ncs_to_build_restraints": false
+      },
+      "control_definitions_once": true,
+      "input_order_and_bytes_preserved": true,
+      "unchanged_model": true,
+      "ordinary_parent_ancestry": "NOT_ESTABLISHED",
+      "geometry_qualification": "NOT_ASSESSED",
+      "native_receipt": {
+        "anchor": "w186_native_check",
+        "path": "capture/cif-native-srqes1xw/native_receipt.json",
+        "sha256": "a0d7d83ff4959209817cc1cae046a5dcc6a5c89c88f264f9ab02398a59074890"
+      },
+      "reviewer_sha256": "7078614f801fcf7168ea86cab988b0c645ee1121ae59d4fad5afe67abd74ccfc",
+      "diagnostic_correction": "First reviewer extracted untyped PHIL string tokens; this reviewer uses the native master schema. Native capture was not repeated."
+    },
+    "native_installation": "Phenix 2.2.1-6174; dispatcher reports family 2.2.1",
+    "included_artifacts": "Source, tests, human documentation and technical evidence only.",
+    "excluded_artifacts": "All scientific inputs, models, maps, reflections, raw native captures, generated runners, wheels and local workspace state remain local.",
+    "limits": [
+      "Python API opt-in only; no CLI/campaign default activation",
+      "Real complete ordinary-parent execution is not established by synthetic transport tests",
+      "No coordinate movement, diffraction refinement or acceptance claim",
+      "Canonical-only ordinary ancestry and retained-manager motion remain separate"
+    ],
+    "next": "Integrate verified local commit on Cedar; retire isolated checkout after integration audit. Then trace the existing canonical PostMR/checkpoint writer, preserving the distinction from the private 859-atom diagnostic."
   }
 }

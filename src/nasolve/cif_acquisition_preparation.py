@@ -16,6 +16,7 @@ from .cif_dictionary_bundle import prepare_dictionary_bundle, read_dictionary_bu
 from .cif_dictionary_sites import _consumer, _need, _read, _resource, _safe, read_dictionary_sites
 from .cif_dictionary_store import _bytes, _json
 from .cif_repair_attempt import _root, _members, _inventory
+from .cif_interpretation_controls import control_fields, control_inputs, control_kwargs, reject_shadow_controls
 
 POLICY_ID = 'cif-acquired-bundle-preparation-v1'
 ANCHOR = 'acquisition_preparation_directory'
@@ -86,7 +87,7 @@ def _furanose_inputs(inputs, site, allowed=None):
 
 
 def _bindings(root, controls):
-    _need(set(controls) == {'components','sites','consumer','expected_links','native_context','supplementary_phils'},
+    _need(set(controls)-{'interpretation_controls'} == {'components','sites','consumer','expected_links','native_context','supplementary_phils'},
         'Unexpected acquired preparation controls')
     sources = read_acquisition_sources(root/'inputs/sources')
     codes = controls['components']
@@ -94,7 +95,9 @@ def _bindings(root, controls):
         and isinstance(controls['sites'], dict) and set(controls['sites']) == set(codes),
         'Acquisition/source component coverage differs')
     _consumer(controls['consumer']); _context(controls['native_context'])
+    reader_phils, _ = control_inputs(root, controls)
     folders = {'sources','acquisitions','resources','phils'}
+    if reader_phils: folders.add('reader_controls')
     if any(isinstance(s,dict) and 'furanose_reaction' in s for s in controls['sites'].values()):
         folders.add('furanose')
     _members(root/'inputs', {'model.pdb'}, folders)
@@ -102,7 +105,10 @@ def _bindings(root, controls):
     names = controls['supplementary_phils']
     _need(isinstance(names, list) and names == [f'inputs/phils/{i:03}.phil' for i in range(len(names))],
         'Supplementary PHIL order differs')
-    allowed = {'model.pdb', *[name.removeprefix('inputs/') for name in names]}
+    if reader_phils:
+        reject_shadow_controls([root/name for name in names])
+    allowed = {'model.pdb', *[name.removeprefix('inputs/') for name in names],
+               *[p.relative_to(root/'inputs').as_posix() for p in reader_phils]}
     allowed.update('sources/'+name for name in _tree(root/'inputs/sources'))
     items = []; bindings = {}
     for code in codes:
@@ -166,6 +172,11 @@ def _report(root, intent):
                   'Prepared sugar reaction differs from the acquired declaration')
     _need([_read(root/name) for name in controls['supplementary_phils']]
         == [_read(root/'bundle'/name) for name in r['supplementary_phils']], 'Prepared shared PHIL bytes differ')
+    expected_controls, _ = control_inputs(root, controls)
+    actual_controls, _ = control_inputs(root/'bundle', r)
+    _need(controls.get('interpretation_controls') == r.get('interpretation_controls')
+          and [_read(p) for p in expected_controls] == [_read(p) for p in actual_controls],
+          'Prepared interpretation control role or bytes differ')
     files, directories = _capture(root); files.pop('acquisition_preparation.json',None)
     report = dict(schema_version=1, policy_id=POLICY_ID, status='PREPARED_REVIEW',
         intent_sha256=intent['record_sha256'], selected_attempts=bindings,
@@ -195,16 +206,20 @@ def read_acquired_dictionary_bundle(directory):
 
 
 def prepare_acquired_dictionary_bundle(source_selection, components, model, output, *,
-        consumer, expected_links, native_context, supplementary_phils=()):
+        consumer, expected_links, native_context, supplementary_phils=(), interpretation_control_phils=(), reader_control_policy=None):
     """Prepare a fresh bundle from exact successful attempts, preserving input evidence.
 
     Every selected source must have one explicit completed attempt. Copied
     acquisition histories are evidence only; this function neither retries them
-    nor owns a complete multi-component acquisition/repair request.
+    nor owns a complete multi-component acquisition/repair request. Explicit
+    interpretation_control_phils and reader_control_policy retain a separate
+    frozen role through the stored bundle; legacy absence remains unchanged.
     """
     root = _root(output)
     if root.exists():raise FileExistsError(root)
     _consumer(consumer); _context(native_context)
+    role = control_fields(interpretation_control_phils, reader_control_policy)
+    if role: reject_shadow_controls(supplementary_phils)
     source_selection = _root(source_selection); selected = read_acquisition_sources(source_selection)
     codes = selected['report']['components']
     _need(isinstance(components,(list,tuple)) and 1 <= len(components) <= 16, 'Require one to sixteen acquired components')
@@ -231,7 +246,10 @@ def prepare_acquired_dictionary_bundle(source_selection, components, model, outp
     _need(set(sites) == set(codes), 'Complete selected-source coverage is required')
     controls = _json(_bytes(dict(components=codes, sites=sites, consumer=consumer, expected_links=expected_links,
         native_context=native_context, supplementary_phils=[f'inputs/phils/{i:03}.phil' for i in range(len(supplementary_phils))])))
+    controls.update(role)
     files = {'model.pdb':originals[Path(model)], **resources}; directories = set()
+    for i,p in enumerate(interpretation_control_phils):
+        originals[Path(p)] = _read(p); files[f'reader_controls/{i:03}.phil'] = originals[Path(p)]
     for i,p in enumerate(supplementary_phils):originals[Path(p)] = _read(p); files[f'phils/{i:03}.phil'] = originals[Path(p)]
     captured = {}
     for name,path in trees.items():
@@ -247,7 +265,8 @@ def prepare_acquired_dictionary_bundle(source_selection, components, model, outp
     items, _ = _bindings(root,controls)
     prepare_dictionary_bundle(items,root/'inputs/model.pdb',root/'bundle',consumer=controls['consumer'],
         expected_links=controls['expected_links'],native_context=controls['native_context'],
-        supplementary_phils=[root/name for name in controls['supplementary_phils']])
+        supplementary_phils=[root/name for name in controls['supplementary_phils']],
+        **control_kwargs(root, controls))
     unchanged()
     report, _ = _report(root,intent)
     write_record(root/'acquisition_preparation.json',report)

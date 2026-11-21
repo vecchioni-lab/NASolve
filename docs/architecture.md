@@ -227,6 +227,18 @@ remain authoritative; no CLI/default activation or new executor. See the
 [discovery contract](cif-doctor.md#source-aware-bond-target-discovery-c332) and
 [request binding](cif-doctor.md#automatic-bond-discovery-in-fresh-preparation-c333).
 
+## Captured reader settings at prepared intake
+
+The explicit [W186 control handoff](cif-doctor.md#explicit-captured-control-handoff-w186)
+keeps captured Phenix settings out of the geometry-only restraint context. A
+new complete request authenticates the typed literal artifact and freezes a
+separate `interpretation_controls` role. Acquisition and stored preparation
+preserve its ordered bytes into the existing native/repair/runtime owners.
+Captured NCS=False suppresses only the redundant bundle-generated declaration;
+other duplicates refuse. Default requests and old artifact semantics are unchanged.
+Native fixed-coordinate readback qualifies parameter delivery and term membership,
+not ordinary parent ancestry, coordinate recovery or scientific model acceptance.
+
 ## Runtime precedence
 
 Phenix is resolved in this order:

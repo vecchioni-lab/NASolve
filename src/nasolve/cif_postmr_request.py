@@ -21,7 +21,7 @@ from .cif_restraint_context import derive_restraint_context
 
 
 def initialize_postmr_dictionary_request(model, report, components, source_output, output, *,
-        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, construction_inputs=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, select_anionic_phosphate=False, **execution_limits):
+        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, construction_inputs=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, select_anionic_phosphate=False, reader_control_policy=None, **execution_limits):
     """Freeze ordinary sources and derived contexts for one existing request.
 
     Components specify code/generation and optional retained_snapshot,
@@ -34,6 +34,9 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     With literal_na_inputs, supplementary_phils names the original ordered inputs;
     the frozen compiler artifact must match them and the exact model before its
     compiled PHIL is selected. Original evidence accompanies the owned request.
+    An explicit reader_control_policy="cif-captured-reader-control-handoff-v1"
+    admits the typed artifact; supplementary_phils still names every original
+    captured input in order. Reader controls then travel in their own frozen role.
     The literal artifact may use native-capture or source-bound PDB identities;
     the latter also binds overlapping source bytes at complete intake. Neither
     mode replaces final native qualification or invents native capture indices.
@@ -94,10 +97,12 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     _continuation_fields(continuation_options,_LIMITS)
     _need(isinstance(supplementary_phils, (list, tuple)), 'Require an explicit ordered PHIL sequence')
     _compiler_references(literal_na_inputs,explicit_na_policy)
+    _need(reader_control_policy is None or (literal_na_inputs is not None and explicit_na_policy is None),
+          'Reader-control handoff requires typed literal provenance')
     phils = list(supplementary_phils); literal_originals = []
     if literal_na_inputs is not None:
         literal_root = _root(literal_na_inputs)
-        literal = _compiler_input('literal_na_inputs',literal_root)
+        literal = _compiler_input('literal_na_inputs',literal_root, reader_control_policy=reader_control_policy)
         literal_originals = [(Path(p),_read(p)) for p in phils]
         _need(_read(model) == _read(literal['model'])
               and [data for _,data in literal_originals] == [_read(literal_root/r['path']) for r in literal['report']['original_phils']],
@@ -171,6 +176,7 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
         **({'automatic_plane_support':True} if automatic_plane_support else {}),
         **({'bond_targets':bond_targets} if bond_targets is not None else {}),
         **({'automatic_bond_targets':True} if automatic_bond_targets else {}),
+        **({'reader_control_policy':reader_control_policy} if reader_control_policy is not None else {}),
         **artifact_options,
         **execution_limits)
 

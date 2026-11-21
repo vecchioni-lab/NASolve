@@ -15,6 +15,7 @@ from .cif_dictionary_sites import (
 )
 from .cif_native_context import validate_native_context, native_context_options
 from .cif_native_monomers import FULL_MODEL_PHIL
+from .cif_interpretation_controls import NCS, control_fields, control_inputs, reject_shadow_controls
 from .ligand_profiles import combine_dictionary_inputs, dictionary_component_codes, COMPONENT_LIST_POLICY
 
 POLICY_ID = 'cif-stored-dictionary-bundle-v1'
@@ -68,13 +69,15 @@ def _children(root, controls):
     return children, owners
 
 
-def _derive(root, children, destination, *, component_list_policy=None):
+def _derive(root, children, destination, *, component_list_policy=None, controls=None):
     destination.mkdir()
     combine_dictionary_inputs([c['snapshot']['source'] for c in children], destination/'sources.cif',
         component_list_policy=component_list_policy)
     combine_dictionary_inputs([c['after_dictionaries'][0] for c in children], destination/'dictionaries.cif',
         component_list_policy=component_list_policy)
-    (destination/'native_interpretation.phil').write_text(FULL_MODEL_PHIL)
+    _, values = control_inputs(root, controls or {})
+    if NCS not in values:
+        (destination/'native_interpretation.phil').write_text(FULL_MODEL_PHIL)
 
 
 def _inputs(root, controls, children):
@@ -83,7 +86,10 @@ def _inputs(root, controls, children):
         'Shared PHIL layout or order differs')
     phils = [root/name for name in names]
     for path in phils: _read(path)
-    policy = root/'prepared/native_interpretation.phil'
+    reader_phils, values = control_inputs(root, controls)
+    if reader_phils:
+        reject_shadow_controls(phils)
+    policy = [] if NCS in values else [root/'prepared/native_interpretation.phil']
     # Empty modification placeholders are evidence, not effective definitions.
     active = [c for c in children if any(p.get('modification_id') for p in c['preparation']['sites'])]
     return dict(model=root/'inputs/model.pdb',
@@ -91,8 +97,8 @@ def _inputs(root, controls, children):
         before_dictionaries=[c['before_dictionaries'][0] for c in children],
         after_dictionaries=[p for c in children for p in
             (c['after_dictionaries'][:2] if c in active else c['after_dictionaries'][:1])],
-        before_phils=[*phils, policy],
-        after_phils=[*phils, *(c['after_phils'][0] for c in active), policy],
+        before_phils=[*phils, *reader_phils, *policy],
+        after_phils=[*phils, *reader_phils, *(c['after_phils'][0] for c in active), *policy],
         component_dictionaries={c['report']['component']:c['after_dictionaries'][0] for c in children},
         native_options=native_context_options(controls['native_context']),
         preparations=[c['preparation'] for c in children],
@@ -109,14 +115,17 @@ def _report(root, controls, children, owners):
 
 
 def prepare_dictionary_bundle(components, model, output, *, consumer, expected_links,
-        native_context, supplementary_phils=()):
+        native_context, supplementary_phils=(), interpretation_control_phils=(), reader_control_policy=None):
     """Publish a fresh composition; no native execution or automatic adoption.
 
     Each component supplies a snapshot and its site contexts. Optional site inputs
     include a terminal resource or an explicit graph-bound furanose reaction.
     Every site of each selected code must be declared. Shared PHILs keep
     their caller order; component dictionaries are ordered by code, with active
-    modifiers adjacent and the full-model interpretation policy last.
+    modifiers adjacent and the full-model interpretation policy last. Explicit
+    interpretation_control_phils require the reviewed reader_control_policy.
+    They follow supplementary geometry PHILs, before site modifiers. The generated
+    full-model policy is omitted only when that role already declares NCS=False.
     """
     output = Path(output).absolute()
     if output.exists() or output.is_symlink(): raise FileExistsError(output)
@@ -124,6 +133,9 @@ def prepare_dictionary_bundle(components, model, output, *, consumer, expected_l
     _need(isinstance(components, (list, tuple)) and 1 <= len(components) <= 16,
         'Require one to sixteen explicit components')
     _consumer(consumer); _context(native_context)
+    role = control_fields(interpretation_control_phils, reader_control_policy)
+    if role:
+        reject_shadow_controls(supplementary_phils)
     selected = {}
     for item in components:
         _need(isinstance(item, dict) and {'snapshot', 'contexts'} <= item.keys()
@@ -137,12 +149,15 @@ def prepare_dictionary_bundle(components, model, output, *, consumer, expected_l
     controls = _json(_bytes(dict(components=sorted(selected), component_list_policy=COMPONENT_LIST_POLICY, consumer=consumer,
         expected_links=expected_links, native_context=native_context,
         supplementary_phils=[f'inputs/phils/{i:03}.phil' for i in range(len(supplementary_phils))])))
-    originals = {Path(p):_read(p) for p in [model, *supplementary_phils]}
+    controls.update(role)
+    originals = {Path(p):_read(p) for p in [model, *supplementary_phils, *interpretation_control_phils]}
     output.parent.mkdir(parents=True, exist_ok=True)
     with TemporaryDirectory(prefix='dictionary-bundle-', dir=output.parent) as temporary:
         root = Path(temporary)/'bundle'; (root/'inputs').mkdir(parents=True)
         (root/'inputs/model.pdb').write_bytes(originals[Path(model)])
         for name, path in zip(controls['supplementary_phils'], supplementary_phils):
+            target = root/name; target.parent.mkdir(exist_ok=True); target.write_bytes(originals[Path(path)])
+        for name, path in zip(role.get('interpretation_controls', {}).get('phils', []), interpretation_control_phils):
             target = root/name; target.parent.mkdir(exist_ok=True); target.write_bytes(originals[Path(path)])
         for code, item in sorted(selected.items()):
             prepare_dictionary_sites(item['snapshot'], root/'inputs/model.pdb', item['contexts'],
@@ -150,7 +165,7 @@ def prepare_dictionary_bundle(components, model, output, *, consumer, expected_l
                 native_context=native_context, terminal_resource=item.get('terminal_resource'),
                 phosphate_atom_policy=item.get('phosphate_atom_policy'), furanose_reaction=item.get('furanose_reaction'))
         children, owners = _children(root, controls)
-        _derive(root, children, root/'prepared', component_list_policy=controls['component_list_policy'])
+        _derive(root, children, root/'prepared', component_list_policy=controls['component_list_policy'], controls=controls)
         report = _report(root, controls, children, owners)
         (root/'bundle_receipt.json').write_bytes(_bytes(report))
         read_dictionary_bundle(root)
@@ -170,14 +185,17 @@ def read_dictionary_bundle(output):
     if 'component_list_policy' in report:
         _need(report['component_list_policy'] == COMPONENT_LIST_POLICY, 'Unknown component-list policy')
         controls['component_list_policy'] = report['component_list_policy']
+    if 'interpretation_controls' in report:
+        controls['interpretation_controls'] = report['interpretation_controls']
     children, owners = _children(root, controls); inputs = _inputs(root, controls, children)
-    allowed = {'inputs/model.pdb', *controls['supplementary_phils']}
+    allowed = {'inputs/model.pdb', *controls['supplementary_phils'],
+               *controls.get('interpretation_controls', {}).get('phils', [])}
     for code, child in zip(controls['components'], children):
         allowed.add(f'components/{code}/site_receipt.json')
         allowed.update(f'components/{code}/'+r['path'] for r in child['report']['files'])
     with TemporaryDirectory(prefix='dictionary-bundle-read-') as temporary:
         replay = Path(temporary)/'prepared'; _derive(root, children, replay,
-            component_list_policy=controls.get('component_list_policy'))
+            component_list_policy=controls.get('component_list_policy'), controls=controls)
         for path in replay.iterdir():
             allowed.add('prepared/'+path.name)
             _need(_read(root/'prepared'/path.name) == path.read_bytes(), 'Combined dictionary/policy does not replay')
