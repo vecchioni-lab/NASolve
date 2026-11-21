@@ -252,14 +252,15 @@
         "W184 compares saved C466/C470 siblings in the same frame with867 identical atoms. Tips shift0.05187/0.02914 A; target-ring RMS0.01491/0.01264 A. Nearby sugar/backbone RMS0.00515 versus distant0.00561 A, phosphate0.00535 versus0.00511 A. Four arithmetic controls and independent Gemmi parsing pass; no preferential nearby backbone displacement is demonstrated.",
         "W190 binds derived original canonical source connectivity separately from checked preparation;121 links match saved native capture,128 source and128 installed checks pass.",
         "W191 adds the shared Q15 exact paired-phosphate report with local missing-site results; it does not qualify helix opening or choose a bend target.",
-        "W192 establishes the source-defined simple-twist orientation convention with independent public reference controls; no runtime promotion or motion acceptance."
+        "W192 establishes the source-defined simple-twist orientation convention with independent public reference controls; no runtime promotion or motion acceptance.",
+        "W193 supplies shared canonical simple-step twist with exact atom/fit provenance, independent missing quantities and current-reference public readback; this is measurement, not bend acceptance."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "Retain independent target and complete execution settings before real motion. Extend shared Q15 against docs/helical-geometry-plan.json: explicit cross-state correspondence, then qualified image/frame/axis work. Do not infer a target, conflate half-span with axis radii, or repeat qualified native captures.",
+      "next_action": "Qualify explicit named-state correspondence in the shared helix reader before regional comparisons. Preserve independent missing quantities and distinguish span, radius and curvature. Real motion still requires independent target and complete execution settings; do not repeat saved native captures.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -312,14 +313,15 @@
         "E_CANONICAL_WINDOW_GEOMETRY_BASELINE",
         "ordinary_source_context_w190",
         "E_PAIRED_PHOSPHATE_SPANS",
-        "E_SIMPLE_TWIST_REFERENCE"
+        "E_SIMPLE_TWIST_REFERENCE",
+        "E_CANONICAL_SIMPLE_TWIST"
       ],
       "last_audit": {
         "date": "2026-11-21",
-        "human_update": 192,
-        "code_commit": "d50076e92af79e765841f8d4dc1679a059167c8c",
-        "reviewer": "Linden; independent reference scope coordinated with Rowan",
-        "scope": "Shared helix convention narrowed by primary source and exact public control; motion and historical7SDG comparison remain open."
+        "human_update": 193,
+        "code_commit": "80bfb8582f7c60848f5d47ca90bc4bbd8e287100",
+        "reviewer": "Linden; shared scope coordinated with Rowan",
+        "scope": "Canonical optional measurement qualified; motion and historical publication provenance remain open."
       }
     },
     {
@@ -368,14 +370,15 @@
         "W184 compares saved C466/C470 siblings in the same frame with867 identical atoms. Tips shift0.05187/0.02914 A; target-ring RMS0.01491/0.01264 A. Nearby sugar/backbone RMS0.00515 versus distant0.00561 A, phosphate0.00535 versus0.00511 A. Four arithmetic controls and independent Gemmi parsing pass; no preferential nearby backbone displacement is demonstrated.",
         "W190 binds derived original canonical source connectivity separately from checked preparation;121 links match saved native capture,128 source and128 installed checks pass.",
         "W191 adds the shared Q15 exact paired-phosphate report with local missing-site results; it does not qualify helix opening or choose a bend target.",
-        "W192 establishes the source-defined simple-twist orientation convention with independent public reference controls; no runtime promotion or motion acceptance."
+        "W192 establishes the source-defined simple-twist orientation convention with independent public reference controls; no runtime promotion or motion acceptance.",
+        "W193 supplies shared canonical simple-step twist with exact atom/fit provenance, independent missing quantities and current-reference public readback; this is measurement, not bend acceptance."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Retain independent target and complete execution settings before real motion. Extend shared Q15 against docs/helical-geometry-plan.json: explicit cross-state correspondence, then qualified image/frame/axis work. Do not infer a target, conflate half-span with axis radii, or repeat qualified native captures.",
+      "next_action": "Qualify explicit named-state correspondence in the shared helix reader before regional comparisons. Preserve independent missing quantities and distinguish span, radius and curvature. Real motion still requires independent target and complete execution settings; do not repeat saved native captures.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -471,14 +474,15 @@
         "E_CANONICAL_WINDOW_GEOMETRY_BASELINE",
         "ordinary_source_context_w190",
         "E_PAIRED_PHOSPHATE_SPANS",
-        "E_SIMPLE_TWIST_REFERENCE"
+        "E_SIMPLE_TWIST_REFERENCE",
+        "E_CANONICAL_SIMPLE_TWIST"
       ],
       "last_audit": {
         "date": "2026-11-21",
-        "human_update": 192,
-        "code_commit": "d50076e92af79e765841f8d4dc1679a059167c8c",
-        "reviewer": "Linden; independent reference scope coordinated with Rowan",
-        "scope": "Shared helix convention narrowed by primary source and exact public control; motion and historical7SDG comparison remain open."
+        "human_update": 193,
+        "code_commit": "80bfb8582f7c60848f5d47ca90bc4bbd8e287100",
+        "reviewer": "Linden; shared scope coordinated with Rowan",
+        "scope": "Canonical optional measurement qualified; motion and historical publication provenance remain open."
       }
     },
     {
@@ -537,7 +541,8 @@
         "W185 authenticates both real C403/C475 requests:10 checks over41 frozen files pass. Original postmr/model, diffraction, five-cycle settings, v3 runtime/code, projection and terminal fixture agree; only one seven-atom B:4 PDU plane at0.10 A and declared paths differ. Four restored dataset hashes and unchanged selection verify; no native run or child-outcome claim.",
         "W190 binds derived original canonical source connectivity separately from checked preparation;121 links match saved native capture,128 source and128 installed checks pass.",
         "W191 adds the shared Q15 exact paired-phosphate report with local missing-site results; it does not qualify helix opening or choose a bend target.",
-        "W192 establishes the source-defined simple-twist orientation convention with independent public reference controls; no runtime promotion or motion acceptance."
+        "W192 establishes the source-defined simple-twist orientation convention with independent public reference controls; no runtime promotion or motion acceptance.",
+        "W193 supplies shared canonical simple-step twist with exact atom/fit provenance, independent missing quantities and current-reference public readback; this is measurement, not bend acceptance."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -548,7 +553,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Retain independent target and complete execution settings before real motion. Extend shared Q15 against docs/helical-geometry-plan.json: explicit cross-state correspondence, then qualified image/frame/axis work. Do not infer a target, conflate half-span with axis radii, or repeat qualified native captures.",
+      "next_action": "Qualify explicit named-state correspondence in the shared helix reader before regional comparisons. Preserve independent missing quantities and distinguish span, radius and curvature. Real motion still requires independent target and complete execution settings; do not repeat saved native captures.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -643,14 +648,15 @@
         "E_CANONICAL_WINDOW_GEOMETRY_BASELINE",
         "ordinary_source_context_w190",
         "E_PAIRED_PHOSPHATE_SPANS",
-        "E_SIMPLE_TWIST_REFERENCE"
+        "E_SIMPLE_TWIST_REFERENCE",
+        "E_CANONICAL_SIMPLE_TWIST"
       ],
       "last_audit": {
         "date": "2026-11-21",
-        "human_update": 192,
-        "code_commit": "d50076e92af79e765841f8d4dc1679a059167c8c",
-        "reviewer": "Linden; independent reference scope coordinated with Rowan",
-        "scope": "Shared helix convention narrowed by primary source and exact public control; motion and historical7SDG comparison remain open."
+        "human_update": 193,
+        "code_commit": "80bfb8582f7c60848f5d47ca90bc4bbd8e287100",
+        "reviewer": "Linden; shared scope coordinated with Rowan",
+        "scope": "Canonical optional measurement qualified; motion and historical publication provenance remain open."
       }
     },
     {
@@ -4697,6 +4703,15 @@
       "reference": "docs/topostitch-periodic.md#w192--resolve-the-simple-twist-normal-convention-against-the-reference",
       "result": "Author-required normal orientation fixes3 non-WC failures; all7 corrected1XVK steps match3DNA v2.4.10-2026nov01 at printed precision. Exact7SDG region matches all6 prior pilot steps. Four reference analysis calls, no product change.",
       "limitation": "Old1XVK web step5 differs0.01 degree from fresh reference.7SDG historicalSI mean32.08 versus current30.36 remains unresolved. No maintained twist/axis metric, global qualification, refinement or coordinates changed."
+    },
+    "E_CANONICAL_SIMPLE_TWIST": {
+      "kind": "installed_canonical_simple_twist",
+      "date": "2026-11-21",
+      "human_update": 193,
+      "code_commit": "80bfb8582f7c60848f5d47ca90bc4bbd8e287100",
+      "reference": "docs/topostitch-periodic.md#w193--maintain-canonical-simple-step-twist",
+      "result": "96 focused source and 96 relocated installed checks; all 13 saved current-reference public steps match at printed precision. Default P-span report unchanged without Gemmi.",
+      "limitation": "Canonical single-model identity-image PDB only; caller-declared pairing and fit limit. Modified frames, axes, matched-state summaries and historical 7SDG SI provenance remain open. No coordinates, native execution, workflow activation or acceptance."
     }
   },
   "benchmarks": [
@@ -4858,8 +4873,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 192,
-    "next": 193,
+    "current": 193,
+    "next": 194,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -5821,6 +5836,12 @@
         "title": "Resolve simple-twist normal orientation against exact public reference",
         "state": "RECORDED",
         "code_commit": "d50076e92af79e765841f8d4dc1679a059167c8c"
+      },
+      {
+        "number": 193,
+        "title": "Maintain canonical simple-step twist with public reference and installed readback",
+        "state": "RECORDED",
+        "code_commit": "80bfb8582f7c60848f5d47ca90bc4bbd8e287100"
       }
     ]
   },

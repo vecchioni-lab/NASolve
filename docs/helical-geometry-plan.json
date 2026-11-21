@@ -1,6 +1,6 @@
 {
   "id": "regional-helical-geometry",
-  "status": "PARTIAL_PAIRED_PHOSPHATE_REPORT",
+  "status": "PARTIAL_CANONICAL_TWIST_AND_PAIRED_PHOSPHATE_REPORT",
   "required_before": "NASolve completion",
   "delivery": "Q15 reporting with a Q16 integration check",
   "scope": "One offline, read-only analysis shared by Cedar, Willow and Alder. Support an explicit model or checkpoint and comparisons between named model states. An optional post-processing hook can call the same calculation.",
@@ -122,31 +122,37 @@
     }
   },
   "implementation": {
-    "human_update": "W191",
+    "human_update": "W193",
     "owner": "Linden / Willow; shared with Cedar and Alder",
-    "code_commit": "d50076e92af79e765841f8d4dc1679a059167c8c",
-    "module": "nasolve.helical_geometry",
-    "guide": "docs/topostitch-preview.md#measure-declared-paired-phosphates-w191",
-    "method": "declared-pair-phosphate-span-v1",
+    "code_commit": "80bfb8582f7c60848f5d47ca90bc4bbd8e287100",
+    "module": "nasolve.helical_geometry + nasolve.helical_twist",
+    "guide": "docs/topostitch-preview.md#measure-canonical-simple-step-twist-w193",
     "report_schema": 1,
     "delivered": [
       "Exact single-model PDB and identity-image site/component/conformer binding",
       "Caller-ordered logical pairs with flanks/breaks; no inferred correspondence",
       "Per-pair P\u2013P span and optional half-span with explicit missing/ambiguity reasons",
-      "67 focused source and67 relocated installed checks; exact7SDF/C444 span agreement"
+      "67 focused source and67 relocated installed checks; exact7SDF/C444 span agreement",
+      "Canonical DA/DC/DG/DT ring frames with exact atom provenance and explicit fit limit",
+      "Signed simple-step twist using author normal convention; independent missing quantities",
+      "96 focused source and 96 fresh relocated installed checks; all 13 current-reference public steps match at printed precision; default W191 report unchanged without Gemmi"
     ],
     "remaining": [
       "Other crystal images, mmCIF and registered cross-state correspondence",
       "Modified base-frame mapping/fit quality",
-      "Local-axis per-strand radii and simple step twist, including7SDG discrepancy",
+      "Local-axis per-strand radii and historical 7SDG publication-input discrepancy",
       "Weighted region statistics, matched-state changes and publication table export"
     ],
     "native_execution": false,
-    "runtime_authority": false
+    "runtime_authority": false,
+    "methods": [
+      "declared-pair-phosphate-span-v1",
+      "declared-canonical-simple-step-twist-v1"
+    ]
   },
   "simple_twist_reference_qualification": {
     "human_update": "W192",
-    "status": "CURRENT_REFERENCE_CONTROL_MATCH_NOT_IMPLEMENTED",
+    "status": "CURRENT_REFERENCE_CONTROL_MATCH_IMPLEMENTED_W193",
     "method_source_url": "https://github.com/x3dna-dssr/x3dna-v2.4/blob/43eafa8407be1a8292e38ca995ab16adfbeffcac/src/analyze.c#L237-L247",
     "reference_version": "3DNA v2.4.10-2026nov01",
     "source_commit": "43eafa8407be1a8292e38ca995ab16adfbeffcac",
@@ -163,6 +169,6 @@
       "sha256": "942a92f77583f3d3a7b5589c79a077ade121a1a820a33786c695ad98ceec26c1"
     },
     "production_change": false,
-    "next": "Implement only with exact frame/atom provenance, rigid/sign/degenerate controls and independent public readback; retain the unresolved SI comparison and separate local-axis radii."
+    "next": "W193 implements canonical frames and twist; preserve historical evidence and qualify cross-state correspondence, modified-ring mapping and local-axis radii separately."
   }
 }

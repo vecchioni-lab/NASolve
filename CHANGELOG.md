@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W193 — Measure canonical simple step twist
+
+- Add opt-in canonical ring-frame/simple-step twist to the shared paired-region
+  reader and installed CLI, with an explicit ring-fit limit and existing optional
+  Gemmi dependency. Preserve per-quantity missing and degenerate results.
+- Bind frame atoms, fit quality, source bytes and convention. All 13 saved current
+  3DNA reference steps reproduce at printed precision; 96 focused source and 96
+  fresh relocated installed checks pass. Default phosphate reports are unchanged.
+- New opt-in schema-1 regional report; no existing migration, coordinate changes,
+  pair inference, axis-radius measurement, refinement or workflow activation.
+
 ### W192 — Qualify the simple-twist reference convention
 
 - Preserve the original non-WC pilot failures and identify the author's required

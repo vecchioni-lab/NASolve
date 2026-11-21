@@ -11,8 +11,9 @@ W191 adds the [shared paired-phosphate reader](topostitch-preview.md#measure-dec
 with [machine-readable helix milestones](helical-geometry-plan.json). W190's
 derived source connectivity remains distinct from checked chemistry. See the
 handoff for the next bounded work and roadmap for remaining motion gates.
-W192 identifies and cross-checks the exact simple-twist normal convention;
-implementation and the historical 7SDG publication comparison remain open.
+W193 implements [canonical simple-step twist](topostitch-preview.md#measure-canonical-simple-step-twist-w193)
+against W192’s exact reference convention. Historical 7SDG publication provenance,
+modified frames, axis radii and matched-state summaries remain open.
 
 - **Willow queue:** [Development handoff](development-handoff.md). W128–W138
   qualify explicit bounded ordinary counted-pair execution, compatible registered

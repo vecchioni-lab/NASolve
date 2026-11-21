@@ -2069,6 +2069,50 @@ this report does not chemically validate the selected component or pairing.
 The measured **P–P span** is the straight Cartesian distance between the paired
 phosphates. Optional `half_span_angstrom` divides this number by two. It is **not**
 either strand's distance to a local screw axis. Axis radii and simple step twist
-are explicitly `NOT_MEASURED`. Geometry quality, density and topology acceptance
+are explicitly `NOT_MEASURED` in this default mode. Geometry quality, density and topology acceptance
 are outside this read-only method. The [shared plan](helical-geometry-plan.json)
 keeps those gates and the unresolved 7SDG twist discrepancy visible.
+
+
+### Measure canonical simple step twist (W193)
+
+Opt in through the same explicitly assigned region and exact model hash:
+
+```python
+from nasolve.helical_twist import inspect_helical_region
+report = inspect_helical_region(
+    model_path, region, expected_model_sha256=model_sha256,
+    max_ring_fit_rmsd_angstrom=0.15, include_half_span=True,
+)
+```
+
+```bash
+python -m nasolve.helical_geometry --model model.pdb --region region.json \
+  --sha256 EXPECTED_MODEL_SHA256 --simple-twist --max-ring-fit-rmsd 0.15 \
+  --half-span > geometry.json
+```
+
+Install the existing `.[topology]` extra. The positive finite fit limit is required;
+0.15 Å is the explicit policy used for the public controls, not a validated
+chemical acceptance cutoff. Default phosphate-only use needs no Gemmi and retains
+its original report. Opt-in output has kind `regional-helical-geometry`, schema 1,
+and a `simple_step_twist` section with method
+`declared-canonical-simple-step-twist-v1`. It records canonical reference hash,
+Gemmi version, exact ring/C1′ atoms and conformers, per-base RMSD, pair frames,
+normal reversals, signed step values in degrees and coverage.
+
+Only DA/DC/DG/DT rings are mapped. Canonical reference fits follow Olson et al.
+(DOI 10.1006/jmbi.2001.4987). Each pair normal is oriented along the displacement
+to the next pair origin before the C1′ directions are untilted into a common
+frame. This is the qualified simple-step convention, not a reconstruction model.
+Missing ring/C1′ atoms, modified residues, ambiguous conformers, poor/degenerate
+fits, undefined step directions and exact 180° ambiguity retain explicit reasons.
+A declared break suppresses its step. Missing P does not suppress valid twist;
+missing twist does not suppress an independently measured P–P span.
+
+Identity-image, single-model PDB limits still apply. The reader does not discover
+or validate pairs, map modified rings, infer a screw axis, compute region means,
+move coordinates or authorize bending. P–P span, half-span and axis radii remain
+different quantities. [W193 qualification](topostitch-periodic.md#w193--maintain-canonical-simple-step-twist)
+retains the current-versus-historical 1XVK rounding difference and unresolved 7SDG
+publication-input discrepancy.

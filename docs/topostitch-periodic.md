@@ -11273,3 +11273,49 @@ Matplotlib 3.11.1 rendered the two independent controls; no models are copied in
 the checkout. Local links/JSON validate. The temporary reference build, redundant
 copied test trees and clean already-integrated W186 worktree/branch were retired;
 build/source manifests, wheels, validation logs and all science remain retained.
+
+
+## W193 — Maintain canonical simple step twist
+
+Code `80bfb8582f7c60848f5d47ca90bc4bbd8e287100` adds `helical_twist.py`, generalizes the existing
+site-atom selector without changing default P-span reports, and adds focused
+regressions. Opt-in schema-1 `regional-helical-geometry` records canonical fits,
+atom mappings, signs, missing reasons and the W192 convention. No migration or
+new dependency; use the existing optional Gemmi 0.7.5 extra. H1/H2 stay partial.
+
+Validation (Python 3.12.14, `PYTHONDONTWRITEBYTECODE=1`):
+
+```bash
+PYTHONPATH=src:/private/tmp/w193-qualification-c1tf1610/optional-relocated \
+  python -B -m pytest -q -p no:cacheprovider tests/test_helical_twist.py \
+  tests/test_helical_geometry.py tests/test_topostitch_coordinates.py
+```
+
+**96 source + 96 fresh relocated installed checks pass**. The new regressions
+first fail without the implementation; the installed module test also exposed
+and fixed duplicate `__main__` declaration-class identity. Sign/rigid controls,
+missing/ambiguous atoms, degeneracy, declared breaks and coordinate drift are
+covered. Installed tests use the same command with `PYTHONPATH` set to the
+relocated wheel and optional-dependency targets, copied tests and original build/
+install paths removed. No full suite: this is an isolated opt-in measurement.
+Wheel SHA256 `8456646205d21bc38aa6522d98f93603a4ce5f8916e35513f236da33d63aacb2`.
+
+Existing W192 reference outputs supply independent values from **3DNA
+v2.4.10-2026nov01**; no new reference or Phenix execution. 1XVK's two biological
+MODEL copies are explicitly flattened to A/Z for this diagnostic, preserving all
+selected coordinates and source-atom mapping; this is not a crystal ASU. All
+7 steps match at two decimals, including three former non-WC failures. Exact
+7SDG A9..15/B7..1 matches all 6 steps. With a declared 0.15 Å fit limit, maximum
+ring RMSD is 0.02940 / 0.01874 Å. Missing terminal phosphates leave 6/8 1XVK spans
+but all 7 twists. The old 1XVK web step-5 0.01° difference and 7SDG SI provenance
+problem remain unresolved historical distinctions, not fitted corrections.
+
+Both fresh installed public CLI reports match after copied inputs are relocated;
+default W191 7SDF report is unchanged with Gemmi absent. Local evidence uses
+anchor `NASolve`, directory `branch-artifacts/willow/w193-simple-twist/`:
+`public-review.json` SHA256 `94c928d8edf5391b30018895ca48f4fff639def6049d101837985551a0b6ad54`;
+`installed-check.json` SHA256 `25145ac4b1e78e9b9deb21d0177e92dcdd3edb4e301d42bd1bd0f256a7a8cd6c`.
+Raw coordinates, frame reports, runners and build products are excluded from Git.
+Next: named-state correspondence; modified frames, axis radii, regional summaries
+and real bend/acceptance remain separate gates. P–P span/half-span is not radius
+and this signed twist is not a measurement of helix curvature.

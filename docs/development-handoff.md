@@ -1,5 +1,22 @@
 # NASolve development handoff — Willow
 
+**W193: canonical simple-step twist is now an installed shared measurement.**
+`nasolve.helical_twist.inspect_helical_region` and the existing module CLI opt-in
+compose canonical ring fits, C1′ directions and the W192 normal convention with
+independent phosphate spans. Exact atoms, declared strand order, fit quality,
+missing/degenerate reasons and breaks survive. An explicit ring-fit limit is
+required; modified rings remain unavailable. **96 focused source + 96 relocated
+installed checks** pass; all **7 1XVK + 6 7SDG** current-reference values reproduce
+at printed precision. Default W191 reports remain unchanged without Gemmi.
+[Usage](topostitch-preview.md#measure-canonical-simple-step-twist-w193) ·
+[methods](topostitch-periodic.md#w193--maintain-canonical-simple-step-twist).
+
+No coordinates, refinement or workflow defaults change. H1/H2 remain partial and
+H3 open: next qualify explicit correspondence between named model states, preserving
+independent missing quantities. A change in twist is not an inferred helix bend;
+P–P span/half-span is not radius to an axis. Axis and modified-frame work remain
+separate. An actual new bend still needs independent target/settings authority.
+
 **W192: simple twist now has an exact reference convention, not a fitted fix.**
 The unadapted C444 pilot misses three of seven printed 1XVK steps around non-WC
 pairs. The author's archived `analyze.c` orients **each pair normal toward the
@@ -14,7 +31,7 @@ assignment provenance remains unresolved; do not tune the calculation to that va
 Local visual checkout: `ScienceCheckouts/Linden/2026-11-21_helix-measurement-controls/index.html`.
 
 Four reference analysis invocations; no Phenix, refinement, coordinate changes or
-new product twist implementation. Next implementation must preserve normal
+product twist implementation at that update. W193 now preserves normal
 orientation, declared strand direction, exact base/C1′ mapping, missing/degenerate
 cases and independent phosphate reporting. H1/H2 remain partial; axis radii and
 regional/cross-state statistics remain separately qualified work.
@@ -33,7 +50,8 @@ A12/B4 = **18.193734 Å**, after the original copied input path is gone.
 
 This is identity-image, single-model PDB support. H1/H2 are partial; H3 remains
 open. Crystal images, registered cross-state correspondence, ring-frame mapping,
-axis radii and twist remain separately qualified work. The 7SDG twist discrepancy
+axis radii and modified frames remain separately qualified work; canonical twist
+is supplied by W193. The 7SDG historical twist discrepancy
 is unchanged. No pairing discovery, coordinates, native execution or refinement
 changes. Linden owns this shared Q15 slice; Cedar/Alder reuse the same reader.
 
@@ -51,8 +69,8 @@ identical protected cold readback and no new native execution.
 
 **Next:** extend the shared Q15/H1 reader only against its recorded acceptance
 gates: explicit correspondence between named model states, then independently
-qualified crystal-image and frame/axis work. Preserve missing measurements. P–P span and optional half-span are not local-axis radii. Twist
-qualification, including the unresolved 7SDG discrepancy, remains separate. An
+qualified crystal-image and frame/axis work. Preserve missing measurements. P–P span and optional half-span are not local-axis radii. Historical twist provenance, including the unresolved 7SDG discrepancy, remains
+separate from W193’s current-reference match. An
 actual bend still needs an independently declared paired-window target; none is
 invented for the canonical X11_22 example. S04/S05/S06 remain partial.
 

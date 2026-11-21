@@ -1038,7 +1038,10 @@ The shared `helical_geometry` reader (W191) measures exact assigned paired P ato
 without a chemistry or motion dependency. Source/region hashes, logical identities,
 missing-site reasons and declared breaks are preserved. Its identity-image PDB
 scope supplies P–P spans only; half-span, local-axis radii and twist have distinct
-meaning and qualification. See the [shared plan](helical-geometry-plan.json).
+meaning and qualification. W193 adds an explicit `helical_twist` adapter using
+canonical ring fits and an exact C1′/pair-normal convention through optional Gemmi.
+It preserves independent missing quantities and caller-declared fit limits;
+modified frames and axes remain unmeasured. See the [shared plan](helical-geometry-plan.json).
 
 The pairing owner supplies exact forward/reciprocal edge incidence to selected
 atom-image audits. These bind one-partner capacity only within their recorded
