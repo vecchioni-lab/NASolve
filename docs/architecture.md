@@ -2137,6 +2137,15 @@ request/outcome binding and independent receipt-pinned readback. Required output
 presence and unchanged bytes do not establish scientific validity. No automatic
 scientific producer integration, output quota or retirement authority is added.
 
+The opt-in `metal.child_session` owner composes those existing gates with fresh
+observation/Sasaki/original-Free-R inspection and the existing atomic/reflection,
+serialized-model and optional map auditors. One new session owns one child;
+failures are retained, and a create-only v1 review follows only post-run parent
+and evidence rechecks. This is conditional `FDP_REVIEW`, not checkpoint adoption
+or scientific acceptance. Native write quotas, multi-trial retained sessions,
+compact retirement and typed reader-control adoption remain separate. See the
+[normal audited child](metal-campaign-storage.md#one-normal-audited-frozen-child).
+
 The additive `metal.parent_archive` adapter transports an explicit portable parent
 layout through unchanged checksum-indexed archive owners. Bounded parts preserve
 global limits; a temporary protected copy releases the transport scope before

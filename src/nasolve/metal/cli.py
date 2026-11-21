@@ -27,6 +27,21 @@ def configure(subparsers):
     child_inputs.add_argument('--max-parent-disk-bytes', type=int, default=256*1024*1024)
     child_inputs.add_argument('--json', action='store_true')
     child_inputs.set_defaults(output=None)
+    audited_child = actions.add_parser('run-audited-fdp-child', help='derive, execute and audit one frozen child; no scientific acceptance')
+    audited_child.add_argument('prepared', type=Path)
+    audited_child.add_argument('--parent-archive', type=Path, required=True)
+    audited_child.add_argument('--request', type=Path, required=True)
+    audited_child.add_argument('--request-id', required=True)
+    audited_child.add_argument('--run-relative', required=True)
+    audited_child.add_argument('--endpoint-relative', required=True)
+    audited_child.add_argument('--session', type=Path, required=True)
+    audited_child.add_argument('--phenix-root', type=Path)
+    audited_child.add_argument('--timeout', type=float, default=240)
+    audited_child.add_argument('--reader-control-policy')
+    audited_child.add_argument('--max-parent-disk-bytes', type=int, default=256*1024*1024)
+    audited_child.add_argument('--max-output-bytes', type=int, default=64*1024*1024)
+    audited_child.add_argument('--json', action='store_true')
+    audited_child.set_defaults(output=None)
     child_prepare = actions.add_parser('prepare-fdp-child-process', help='pin prepared frozen inputs for a fresh process-only child')
     child_prepare.add_argument('prepared', type=Path)
     child_prepare.add_argument('--parent-manifest-sha256', required=True)
@@ -203,6 +218,8 @@ def execute(args):
         outputs = [p for p in (args.output, getattr(args, 'export', None)) if p is not None]
         if len({p.resolve() for p in outputs}) != len(outputs) or any(p.exists() or p.is_symlink() for p in outputs):
             raise RecipeError('Outputs must be distinct new files')
+        if args.metal_action == 'run-audited-fdp-child':
+            return _audited_child(args)
         if args.metal_action == 'verify-fdp-child-inputs':
             return _child_inputs(args)
         if args.metal_action in {'prepare-fdp-child-process','run-fdp-child-process','inspect-fdp-child-process'}:
@@ -850,4 +867,23 @@ def _child_inputs(args):
         print('Source checkpoint: '+report['root_checkpoint_id'])
         print('Source kind: '+report['source_kind'])
         print('No fresh Free-R/scattering acquisition, native run or scientific acceptance.')
+    return 0
+
+
+def _audited_child(args):
+    from .child_session import run_audited_child
+    from .child_process import MAX_REQUEST_BYTES
+    from .compact import read_projection
+    request=read_projection(args.request,max_projection_bytes=MAX_REQUEST_BYTES)
+    native=discover_phenix(load_config(),explicit=args.phenix_root)
+    report=run_audited_child(args.prepared,args.parent_archive,request,request_id=args.request_id,
+        run_relative=args.run_relative,endpoint_relative=args.endpoint_relative,
+        session_directory=args.session,native=native,timeout_seconds=args.timeout,
+        reader_control_policy=args.reader_control_policy,max_parent_disk_bytes=args.max_parent_disk_bytes,
+        max_output_bytes=args.max_output_bytes)
+    if args.json:print(json.dumps(report,indent=2,allow_nan=False))
+    else:
+        print('Frozen child audit: '+report['result']['freeze_audit'])
+        print('Review: '+report['record_sha256'])
+        print('Geometry, identity, count and fit remain for scientific review.')
     return 0

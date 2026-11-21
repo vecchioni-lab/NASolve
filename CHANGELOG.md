@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Run one protected frozen metal child with scientific audits
+
+- Add opt-in `run-audited-fdp-child` CLI/API composing existing parent derivation,
+  fresh MTZ/Sasaki/original Free-R checks, owned execution, freeze/serialized-model
+  auditing and stopped-output sealing. Preserve the low-level process-only route.
+- Retain failures by stage and publish a create-only `metal-fdp-audited-child-review`
+  v1 only after post-run parent and preflight-proof rechecks. Geometry, count,
+  convergence, checkpoint adoption, reuse and retirement remain unaccepted.
+- Validate focused and relocated installed checks plus one real Ag4 replay at
+  base-mean B=188.75 Å²/Q=1. Negative site contributions and high Rfree remain
+  visible; no full suite, source-data mutation or automatic pruning.
+
 ### Carry the maintained native worker helpers into owned metal children
 
 - New child-process requests use schema 2, pinning the entry worker and its

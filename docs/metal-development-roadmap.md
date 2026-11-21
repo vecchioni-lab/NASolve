@@ -72,8 +72,11 @@ relationship. This is not fresh Free-R/scattering acquisition or native admissio
 The copied worker now pins its complete maintained helper set in schema-2
 requests; old request inspection is preserved. One actual owned Phenix child
 reproduces the poor-fit historical Hg control with frozen-state/Free-R audits.
-Next compose verified derivation with execution, scientific audit and publication
-in the normal workflow, rather than the private qualification runner.
+The normal opt-in audited-child command now composes derivation, fresh metadata/
+Sasaki/Free-R, execution and scientific/output audits. One installed Ag4 child
+exactly reproduces the historical high-B poor-fit control, with negative terms
+retained and no count acceptance. Next add explicit offline scientific-session
+readback for tables, then compact publication and quota/protection/retirement.
 Typed reader-control support remains with Willow W186. No historical parent or
 process identity is promoted; A01's current FT geometry gate is unchanged.
 

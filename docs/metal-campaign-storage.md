@@ -992,12 +992,54 @@ Rwork=0.3970696509 and Rfree=0.4237310159 reproduce the historical poor-fit
 control. No current A01 geometry or accepted f″ parent follows. The retained
 rehearsal is approximately 1.24 MB; this is not campaign-capacity qualification.
 
-These pre/postflight calls are still composed by a private qualification runner,
-not yet an automatic normal scientific-session owner. The existing low-level
-`run-fdp-child-process` remains explicitly process-only. A normal audited caller,
-typed reader-control adoption, quota/protection and retirement remain next.
+The Hg pre/postflight calls were composed by a private qualification runner.
+The normal audited caller described below now owns this single-child composition.
+The low-level `run-fdp-child-process` remains explicitly process-only. Typed
+reader-control adoption, quota/protection and retirement remain next.
 Exact focused/installed/native evidence and limitations are in the
 [current handoff](metal-development-handoff.md).
+
+### One normal audited frozen child
+
+The opt-in `metal.child_session.run_audited_child` and normal command compose
+existing readers and auditors without changing scientific defaults:
+
+```text
+nasolve metal run-audited-fdp-child PREPARED --request REQUEST --request-id REQUEST_ID --parent-archive PARENT_ARCHIVE --run-relative DATASET/AutoMR/run_NNN --endpoint-relative Metal/xyz_NNN --session NEW_SESSION --phenix-root PHENIX_ROOT --timeout 120 --json
+```
+
+A geometry endpoint is also supported where the existing derivation permits it.
+The session path must be new and outside prepared inputs/protected archive.
+Schema-2 helper-pinned requests are required. Before refinement, the command
+verifies parent derivation, reads observation metadata and Sasaki values afresh,
+compares them with the frozen plan and audits original `FreeR_flag`. Discovery's
+version display label may differ; actual native build/table identity and all
+scattering values must agree. No input flags or stored scattering settings are changed.
+
+One shared owned child runs in `attempt/`. Only verified completion proceeds to
+the existing output-byte seal, native atomic/reflection freeze audit, serialized
+PDB equality and optional requested map-file verification. The protected parent
+is replayed again, sealed child files and retained preflight records are rechecked,
+then a create-only `review.json` is published with kind
+`metal-fdp-audited-child-review` v1. It binds result rows, request/parent/output
+identities and session-relative proof files. `scientific_acceptance` stays
+`NOT_ASSESSED`; automatic checkpoint selection, reuse and retirement remain false.
+The result is a conditional `FDP_REVIEW`, not model/identity/count acceptance.
+
+Failures retain `failure.json` with their stage and all available evidence;
+no final review is published. The native child has its explicit deadline (up to
+600 s); the reused input inspectors retain their own bounded timeouts. Output
+sealing defaults to 64 MiB and accepts a tighter `--max-output-bytes` budget;
+this measures stopped output and does not enforce a live disk quota. No automatic
+retry, cleanup, campaign fan-out or parent-session cache is introduced.
+
+The real installed Ag4 replay at B=188.75 Å²/Q=1 reproduces all four historical
+f″ values and the poor Rfree exactly. Negative site terms remain visible and do
+not imply an accepted cluster count. The full temporary rehearsal takes 26.36 s
+and retains about 1.69 MB. Source archives are unchanged. After relocation and
+removal of disposable intake views, the existing output-byte reader still passes;
+scientific session readback/publication remains the next explicit API. Exact
+focused/installed/native receipts are in the [handoff](metal-development-handoff.md).
 
 ### Output-to-scientific-audit handoff: exact remaining boundary
 

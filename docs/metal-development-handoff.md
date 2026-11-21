@@ -7,7 +7,65 @@ owns feature completion. The earlier chronological diary is preserved as
 [evidence through 18 November](history/metal-development-handoff-2026-11-18.md),
 not a second queue.
 
-## A04 current checkpoint: protected parent-to-input derivation
+## A04 current checkpoint: one normal audited frozen child
+
+`metal run-audited-fdp-child` now composes the existing owners in the installed
+normal workflow: protected-parent derivation, fresh observation metadata/Sasaki
+references/original Free-R, owned native child, frozen atomic/reflection audit,
+serialized PDB checks, optional requested map verification, post-run parent replay
+and stopped-output sealing. These calls previously lived in the private native
+qualification runner. The low-level process-only commands remain unchanged.
+
+A fresh session retains preflight evidence and one child attempt. Failed gates
+write a stage-specific failure and never publish `review.json`. Rehashed changes
+to retained preflight proof also refuse publication. The new create-only
+`metal-fdp-audited-child-review` v1 contains result rows, session-relative evidence
+and exact request/output identities; it grants no scientific acceptance, reuse,
+checkpoint adoption or pruning. `FDP_REVIEW` means the declared frozen calculation
+passed its audits, not that its model fits the experiment. Existing schemas need
+no migration. Runtime files are new `metal/child_session.py` and the metal CLI;
+regressions are in `test_metal_child_session.py`.
+
+**Validation:** 120 focused tests pass in 23.22 s using
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src
+/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest
+-q -p no:cacheprovider tests/test_metal_child_session.py tests/test_metal_child_inputs.py
+ tests/test_metal_child_process.py tests/test_metal_child_outputs.py
+ tests/test_metal_worker_bundle.py tests/test_metal_fdp.py`.
+After the final proof-binding addition, all ten session tests pass in 5.28 s.
+The isolated relocated installation passes those ten tests with original source
+unavailable and all **353** package files exact. Before implementation, collection
+fails on the missing module; the initial CLI indentation failure (1 failed/8 passed)
+is retained and fixed. No full suite or Coot execution was run.
+
+**Actual Phenix 2.2.1-6174 execution:** one installed ordinary audited command on
+retained Ag4 inputs completes the whole rehearsal in 26.36 s. All four sites keep
+B=188.75 Å² and Q=1. The fitted f″ values are −3.8185983693, 3.1364001624,
+3.0681792419 and −2.3925167724 e (reference 1.9543249607 e), with
+Rwork=0.2918387029/Rfree=0.7587086386. Every value reproduces the historical
+control exactly. The signed/Q-weighted sum −0.0065357375 e is recorded, **not
+interpreted as a cluster count**. This poor-fit endpoint remains unaccepted.
+Relocated output-byte verification passes after the disposable intake/parent
+views are removed; this is not a new cold scientific-session reader.
+
+Receipts under the Alder artifact anchor are
+`audited-child-20261121-01/{validation.json,installed-review.json}` and
+`native-audited-child-20261121-01/{review.json,relocated-session/review.json}`.
+The real rehearsal retains about **1.69 MB**; all original archives remain exact.
+Generated models, observations, logs, wheels and reports are deliberately excluded
+from Git. Native output limits are post-run evidence budgets, not write quotas.
+
+**Next:** an explicit offline session reader for table/review consumption using
+the existing byte seals and scientific auditors; then compact publication and
+campaign quota/protection/retirement. This single-child path still repeats parent
+intake and fresh inspections per invocation; it is not a retained multi-trial
+session or 200-dataset capacity claim. Do not fan out the poor historical controls.
+`read_registry` already validates published checked preparations through the
+shared complete-request/runtime reader; do not replace that chain with a
+standalone top-level role check. W186 explicit reader-control adoption and broader
+checked-root qualification remain separate. **A01 partial; A02 gated; A04 partial.**
+
+## A04 supporting checkpoint: protected parent-to-input derivation
 
 `metal verify-fdp-child-inputs` now binds an explicit prepared child request to a
 pinned parent archive and selected geometry/XYZ endpoint. It reuses the existing
@@ -98,9 +156,8 @@ removed. No scientific files are committed or pruned. Runtime changes are
 `test_metal_worker_bundle.py`. Schema-2 request migration is explicit and additive;
 see the [storage contract](metal-campaign-storage.md#maintained-worker-bundle).
 
-**Next:** compose verified derivation with fresh metadata/scattering/Free-R,
-owned execution, scientific freeze/output audit and compact publication in the
-normal workflow. Full checked-root coverage and W186 typed controls remain
+The normal single-child composition is implemented above. Full checked-root
+coverage and W186 typed controls remain
 separate: runtime manifests carry that role in authenticated
 `source_selection.bundle` → `evidence/bundle`, not necessarily at the top level.
 The current guard's traversal of that runtime bundle is **not qualified**; do
