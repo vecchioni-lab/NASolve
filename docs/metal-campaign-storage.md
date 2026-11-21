@@ -365,10 +365,11 @@ claim or safe-pruning demonstration.
 
 Exact commands, hashes, initial macOS staging failure and corrected installed
 receipts are under `audited-publication-20261121-01/` at the Alder artifact anchor.
-The [current handoff](metal-development-handoff.md#a04-current-checkpoint-compact-publication-with-protected-references)
+The [current handoff](metal-development-handoff.md#a04-current-checkpoint-cooperative-storage-reservations)
 owns validation scope and exclusions. No full suite or new Phenix/Coot execution
-runs. Next qualify aggregate reservations and an explicit new disposable increment
-profile before retirement or broad campaign fan-out.
+runs. Cooperative reservations are now qualified separately below. Scheduler
+integration and a qualified disposable increment profile remain prerequisites
+for retirement or broad campaign fan-out.
 
 ## Implemented fourth step: explicit parent-layout transport
 
@@ -404,7 +405,8 @@ explicitly increase its task allowance without enlarging any archive bounds.
 If caller scratch and system temporary storage use different filesystems, each
 must have the conservative allowance available. This is a preflight check, not
 an atomic space reservation or an overall RAM bound. Concurrent campaign tasks
-still need an aggregate reservation owner. Nested parent snapshots in the same
+must explicitly use the cooperative reservation owner below; parent materialization
+does not invoke it automatically. Nested parent snapshots in the same
 context are refused. Temporary paths expire on normal and exceptional exit.
 
 The adapter changes no existing run/registry/trial schema, checkpoint selection,
@@ -498,7 +500,7 @@ checks. This is arithmetic from two historical datasets, **not** a measured
 checked roots and native scheduling remain unqualified here.
 
 Exact commands, hashes and cold measurements are under the local Alder artifact
-anchor `retained-parent-20261121-01/`. The [current handoff](metal-development-handoff.md#a04-current-checkpoint-compact-publication-with-protected-references)
+anchor `retained-parent-20261121-01/`. The [current handoff](metal-development-handoff.md#a04-current-checkpoint-cooperative-storage-reservations)
 records failed-before evidence, validation commands and exclusions. No new
 Phenix/Coot refinement or full suite ran; retained scientific evidence was not
 pruned. The execution adapter below preserves this explicit lifetime, fresh gates
@@ -574,14 +576,15 @@ poor-fit Hg B=25/Q=0.6 and Ag4 B=188.75/Q=1 results remain unaccepted, including
 both negative Ag terms and the large Rfree. No atom-count inference follows.
 
 Receipts are under `retained-execution-20261121-01/` and `-02/` at the Alder
-artifact anchor; the [handoff](metal-development-handoff.md#a04-current-checkpoint-compact-publication-with-protected-references)
+artifact anchor; the [handoff](metal-development-handoff.md#a04-current-checkpoint-cooperative-storage-reservations)
 owns exact commands/results and the corrected installed-harness reference.
 Generated data and packages remain local. No full suite or scientific data
 retirement ran. The previous measured read cost remains applicable: transport
 copying is shared, full byte checks and scientific replay remain per read.
 The compact publication profile above now checks explicit important-node references.
-Aggregate reservations, a disposable increment profile, cleanup and representative
-campaign capacity remain the next gates before fan-out.
+Cooperative reservations are now qualified below. Scheduling integration, a
+disposable increment profile, cleanup and representative campaign capacity remain
+the next gates before fan-out.
 
 ## Bounded protected-parent and regeneration rehearsal
 
@@ -1452,6 +1455,62 @@ Active, interrupted or ownership-uncertain processes cannot be compacted. No
 filename extension alone authorizes deletion. Legacy geometry failures retain
 their existing Cedar rules; the lean profile does not silently override them.
 
+## Cooperative child-space reservations
+
+The opt-in Python owner `metal.storage_budget` supplies `create_budget`,
+`reserve_child`, `settle_child` and `inspect_budget`. This implements explicit
+admission on one declared store/filesystem. Existing execution commands do not
+invoke it automatically. The caller must reserve before launching work and must
+include input copies, native growth, temporary expansion and packing overlap in
+its allowance; scratch elsewhere needs its own explicit accounting. No scientific
+admission, native peak guarantee or deletion permission is implied.
+
+`create_budget(store, quota_bytes=..., free_space_reserve_bytes=...)` creates
+`.metal-budget/config.json` and `ledger.json` with new v1 kinds
+`metal-storage-budget` and `metal-storage-reservations`. The independent budget
+identity binds a random store identity and immutable limits. All later operations
+require that identity. `reserve_child` binds a fresh store-relative child path,
+request identity and positive byte allowance; it returns an independently named
+reservation without creating the child directory or launching a process.
+
+The existing `campaign_process.exclusive_lock` serializes readers/writers through
+a persistent `.metal-budget.lock`. The existing durable record writer atomically
+replaces the ledger while retaining every grant and any settlement. A grant is
+acknowledged only after durable publication. Failure before publication leaves
+no grant; a failure after publication can leave a held grant even if the caller
+never received its answer. Missing, malformed or interrupted metadata blocks
+admission. The ledger is operational state: do not restore an older snapshot,
+merge it or remove its lock while workers may still own reservations.
+
+Admission charges **observed logical bytes + all held allowances + temporary
+ledger-publication bytes** against the declared budget. It separately compares
+held allowances and publication bytes against free disk space minus the explicit
+reserve. Partial files are deliberately counted in addition to their entire
+allowance. Protected nodes, failed attempts and maps all count as files; nothing
+is reclaimed to make a grant fit. Symlinks, nonregular files, nested filesystems
+and overlapping child paths refuse. Inventory is limited to 100,000 entries;
+the ledger is limited to 4,096 reservations and 16 MiB. Filesystem block overhead,
+unrelated writers and native growth beyond declared allowances are not controlled
+by this cooperative API. Inspection reports overruns without deleting anything.
+
+`settle_child` reuses the existing child inspector before and after inventory.
+Only an exact request with a verified stopped completed, failed, timed-out or
+interrupted outcome can release its future allowance. A process that stopped
+without publishing an outcome still holds its reservation; no age/PID heuristic
+or implicit cancellation releases it. Settlement records the verified outcome
+identity and leaves every input/output/error file present and charged. Subsequent
+budget inspection reports this stop evidence as recorded at settlement, not a
+fresh scientific replay. It does not require a scientifically successful fit.
+Settlement may reduce an already exceeded budget; sufficient space to publish
+the ledger is still required. No new retention profile or retirement is added.
+
+The synthetic concurrent, interrupted-publication and relocated installed checks
+are in the [current handoff](metal-development-handoff.md). The small proof admits
+one of two competing 1 MB requests under a 1.5 MB budget and retains an incomplete
+child's allowance after relocation. Scheduling integration, external scratch
+coverage, abandoned-reservation recovery and large-campaign performance remain
+separate qualifications. This is not an OS-enforced quota.
+
 ## Capacity and scheduling
 
 Use bytes, not trial counts, to enforce both a campaign retained-data budget and
@@ -1508,15 +1567,18 @@ parents; compact f″ rows do not make upstream refinement archives free.
    supplied as an explicit scenario allowance for now.
 2. **Versioned compact frozen records:** the read-only result projection and
    full-source replay, exact input recovery and explicit parent-layout transport
-   are implemented. Scientific parent selection, complete execution identity and
-   durable compact child publication remain pending. Existing schema-1 runs stay untouched and verifiable.
+   are implemented. Explicit helper-bound execution and durable audited-child publication are
+   qualified separately; accepted scientific parent selection remains pending.
+   Existing schema-1 runs stay untouched and verifiable.
 3. **Bounded executor:** run one cheap f″ child in owned scratch, audit, commit
    and reread the result, then retire only newly declared disposable payload.
    First native control is a qualified single-Hg branch, then mixed Au/Ag/cluster.
 4. **Recovery and important-node protection:** retain pins/ancestors/alternatives,
    test map regeneration and identical-request reuse, preserve discrepancies.
-5. **Budgeted campaign scheduling:** concurrent reservations, crash-safe cleanup,
-   byte-capped map cache and relocatable export; only then enable large fan-out.
+5. **Budgeted campaign scheduling:** explicit concurrent reservations are
+   qualified on small synthetic controls. Connect the existing scheduler and
+   scratch owners, then qualify crash-safe cleanup, byte-capped map cache and
+   relocatable export before large fan-out.
 
 A new storage profile requires a new reader/manifest contract. Do not retrofit
 it by deleting files promised by old immutable manifests. Optional migration is

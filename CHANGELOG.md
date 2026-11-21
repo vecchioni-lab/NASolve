@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Reserve cooperative space for explicit frozen metal children
+
+- Add an opt-in budget API using the existing process lock and durable record
+  writer. Count observed store bytes plus held allowances and publication overlap;
+  refuse competing claims that cannot fit the declared budget/free-space reserve.
+- Bind fresh relative child paths and exact request identities. Settle future
+  allowance only after shared verified-stopped outcome checks; incomplete or
+  uncertain children keep reservations. Preserve every payload and prior grant.
+- Add separate v1 configuration/ledger/inspection kinds; old science records,
+  native workers, execution defaults and GUI remain unchanged. No automatic
+  scheduling, OS quota, PID expiry, science acceptance or retirement.
+- Qualify 77 focused, 31 final and 31 relocated installed tests plus a small
+  concurrent/stopped/incomplete synthetic measurement. Preserve the failed
+  installed-harness setup log; no full suite or native crystallographic run.
+
 ### Publish compact audited results with explicit protected references
 
 - Extend the maintained metal publisher with opt-in audited-child packing/cold

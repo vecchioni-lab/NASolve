@@ -7,77 +7,82 @@ owns feature completion. The earlier chronological diary is preserved as
 [evidence through 18 November](history/metal-development-handoff-2026-11-18.md),
 not a second queue.
 
-## A04 current checkpoint: compact publication with protected references
+## A04 current checkpoint: cooperative storage reservations
 
-The maintained `metal.publication` owner now accepts completed audited-child
-sessions through opt-in Python `publish_audited_results` and
-`inspect_published_audited_results`. It shares exact requests/inputs/helpers,
-retains distinct full result rows, and publishes an archive followed by its
-independently pinned durable receipt. Every parent archive and explicitly pinned
-full-evidence result stays in the caller's declared store, referenced with relative
-paths and exact identities. The publisher neither copies nor retires these nodes.
-Cold reopening checks those references and refuses missing/changed protected
-bytes even when the compact table remains intact.
+The opt-in `metal.storage_budget` Python API now declares one immutable store
+budget, reserves space before a frozen child, and settles its future allowance
+only after the existing child owner verifies a stopped outcome. Two simultaneous
+1 MB claims against a 1.5 MB budget admit one. An unfinished child keeps its full
+allowance, including after relocation. No trial output is deleted by settlement.
+The mechanism uses the shared persistent kernel lock and atomic durable record
+writer; it is not a second scheduler or process owner.
 
-**Prior work/gap:** the existing legacy numbered-trial publisher, input archive,
-shared bounded serializer and durable record writer are reused. Audited children
-have a distinct source/profile contract, not a fabricated legacy trial. Rowan
-confirmed that current Cedar protects specific complete-attempt artifacts; its
-model-tree comparison pins are not a retention registry. This step therefore
-uses explicit parent/full-review references, not a new global pin registry or
-inferred dependency traversal. Full source audits run before publication; cold
-inspection re-audits explicitly protected full reviews. Other compact rows remain
-recorded measurements with exact inputs, not reconstructed native-array audits.
+**Prior work/gap:** existing per-parent disk checks and the read-only forecast did
+not account for other workers' outstanding allowances. Explicit admission now
+charges all observed store bytes plus all outstanding allowances, including
+ledger publication overlap and a separate free-space reserve. This deliberately
+double-counts partial work. The ledger never expires a claim based on time or PID.
+Missing outcomes, uncertain stops, broken ledgers and interrupted publication
+fail closed. A known stopped failed/timed-out/interrupted child may settle its
+allowance while retaining its full diagnostic evidence.
 
-**Validation:** 11 before-change controls fail in 11.39 s. The first implementation
-has four passes/seven failures because owned staging used macOS's `/var` alias;
-the shared reader correctly refused its symlink ancestor. Resolving that owned
-temporary path fixes the issue without weakening source checks. **46 focused
-checks pass in 28.58 s**; after output-location/protected-output-binding refinements,
-**13 publication checks pass in 13.90 s**. A source-free relocated installation
-passes those **13 tests in 16.07 s**, with all **353** package files exact. Existing
-legacy publisher/archive/cold-review behavior is covered by the focused profile.
-No full suite or new Phenix/Coot fit runs.
+**Qualification:** 24 new regressions fail before implementation. The first pass
+has 22 passes and two test exception-type mismatches with the shared record owner;
+correcting those assertions preserves its existing exceptions. **77 focused
+checks pass in 14.66 s** across storage, child processes and stopped-output
+handling. After bounding overlap validation, testing entry limits and ensuring the new
+budget directory itself is synced before a grant,
+**31 final budget checks pass in 3.49 s**. A relocated installation with its build
+source/old installation removed and original source/Phenix access blocked passes
+**31 checks in 2.88 s**, with all **354 packaged files** exact. The first installed
+harness lacked its pytest scratch parent (29 setup errors); that evidence is
+retained, and the corrected staging passes. No full suite or Phenix/Coot execution.
 
 The focused command is `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src
 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest
--q -p no:cacheprovider tests/test_metal_audited_publication.py
- tests/test_metal_publication.py tests/test_metal_publication_batch.py
- tests/test_metal_input_archive.py tests/test_metal_child_review.py`.
-The final source/installed profile selects the new publication module. Exact
-commands, hashes and failed-stage evidence are under the local Alder artifact
-anchor `audited-publication-20261121-01/`. The last full integrated execution
-remains the root handoff's recorded runtime run plus focused fixture amendment.
+-q -p no:cacheprovider tests/test_metal_storage_budget.py
+ tests/test_metal_child_process.py tests/test_metal_child_outputs.py
+ tests/test_metal_storage.py`. The final source/installed profile selects the new
+budget module. Exact commands, logs, hashes and report are under the established
+local Alder artifact anchors `storage-budget-20261121-01/`, `-02/` and `-03/`; the last
+owns `review.html`, `measurements.json` and passing `validation.json`.
 
-**Small real proof:** the saved Ag4 review reopens exactly with original source,
-science and Phenix access blocked: all four Q=1/B=188.75 Å² values, both negative
-site contributions and Rwork/Rfree=0.2918387029/0.7587086386 remain unchanged.
-Its compact input/result archive is **142,395 B**, receipt **1,679 B**, and existing
-protected parent/full-review evidence **2,366,158 B**. Publication takes 0.96 s;
-reopening takes 0.27 s. Removing a parent part or protected native-array file
-from expendable copied fixtures refuses before archive expansion. Originals
-remain exact. A separate two-child synthetic test shares one request while
-preserving both attempts and reopens after only its expendable source is removed.
-This is no 100-dataset benchmark or authority to replace 2.37 MB with 144 KB.
+**Measured synthetic example:** the admitted 1 MB reservation initially charges
+1,003,080 B including existing files. After a simulated child stops, charge is
+1,047,863 B. Settlement retains all **44,783 B** of child files and charges
+48,250 B for the complete store, with no remaining allowance. A subsequent
+incomplete child retains 1 MB and charges 1,065,064 B. The store reopens after its
+original path is gone. These are logical-byte observations from one small proof,
+not measured Phenix peak usage or a 100/200-dataset capacity result.
 
-**Files/schemas:** one runtime module (`metal/publication.py`), one test module,
-and maintained handoff/roadmap/storage/architecture/changelog. Additive v1 audited
-projection/publication/inspection kinds are separate from legacy formats; no old
-record migrates. No native worker, execution default, scientific policy or GUI
-changes. Generated models, observations, packages and reports remain outside Git;
-owned staging is removed, and original scientific/partial evidence is preserved.
-The earlier retained parent execution/cold-review boundary remains qualified at
-`134d647a`; its 162 focused, 42 final affected and 38 installed receipts remain in
-`retained-execution-20261121-01/` and `-02/`.
+**Files/schemas/compatibility:** add `metal/storage_budget.py`, its focused test
+module and maintained storage/architecture/roadmap/handoff/changelog text. New
+v1 configuration, mutable grant/settlement ledger and inspection kinds are
+separate from existing trial/publication records; no old schema migrates. Every
+operation uses an independently pinned budget identity and store-relative child
+paths. The API preserves all grants and settlement evidence. The installed
+wheel, synthetic runs and reports stay outside Git; owned temporary staging is
+removed. Scientific originals, historical failures and shared environments stay
+unchanged. The source/installed tests use simulated owned processes, not native
+crystallographic validation.
 
-**Next:** qualify quota/reservation accounting and an explicitly disposable new
-increment profile before any retirement. Current compact publications grant no
-execution, cache reuse, checkpoint acceptance or pruning. Arbitrary branch
-ancestors, external pins and campaign-wide protection are not inferred. Keep
-important geometry/full-evidence nodes. A01's FT geometry remains unresolved;
-A02 is gated. Willow W194 named-state comparison remains a later A01 input;
-paired-P width alone does not establish bending or a local axis.
-**A01 partial; A02 gated; A04 partial.**
+**Next:** integrate admission deliberately at the existing scheduling/parent
+scratch boundary, measuring peak native scratch before claiming campaign
+capacity. A qualified disposable increment profile is still required before any
+retirement. The present API neither launches nor blocks unrelated writers;
+external scratch is not automatically covered. It scans the declared store and
+rewrites a bounded ledger (4,096 reservations; 100,000 inventory entries), so
+large-campaign throughput remains unqualified. A04 remains partial; A01's FT
+geometry remains unresolved and A02 remains gated. Willow W194 named-state
+comparison remains a later A01 input; paired-P width alone is not bending.
+
+The preceding compact-publication checkpoint `9d1628c2` remains qualified by
+46 focused, 13 final and 13 installed checks plus exact saved Ag4 readback. Its
+142,395 B archive and 1,679 B receipt reference 2,366,158 B of protected evidence;
+none of those originals was retired. See `audited-publication-20261121-01/` and
+[the publication contract](metal-campaign-storage.md#compact-audited-child-publication-with-explicit-protected-references).
+Retained execution/cold review remains qualified at `134d647a`. No scientific
+acceptance or automatic pruning follows from these engineering controls.
 
 ## A04 supporting checkpoint: explicit offline session review
 
@@ -118,9 +123,9 @@ fixtures, wheels and reports remain outside Git. Runtime changes are in
 `metal/child_session.py` and the metal CLI, with one focused test module; exact
 commands, source and package hashes are retained in the local receipt.
 
-The current retained-execution checkpoint above now shares the parent lifetime;
-compact publication and campaign quota/protection/retirement remain next through
-shared owners. Metadata and scientific checks still run per child; do not add a
+Retained execution, compact publication and explicit cooperative reservations
+are now qualified at the checkpoints above. Campaign scheduling/protection and
+retirement still need deliberate integration through shared owners. Metadata and scientific checks still run per child; do not add a
 second campaign coordinator or a generic cached success flag. No further sweep of these poor historical controls is
 needed. Shared Q15 phosphate-span reporting is available on Willow for later
 A01 context; width is not local-axis radius, and it does not authorize motion.
@@ -174,10 +179,10 @@ The real rehearsal retains about **1.69 MB**; all original archives remain exact
 Generated models, observations, logs, wheels and reports are deliberately excluded
 from Git. Native output limits are post-run evidence budgets, not write quotas.
 
-The explicit offline reader is implemented above. Compact publication and
-campaign quota/protection/retirement remain next. This single-child path still repeats parent
-intake and fresh inspections per invocation; it is not a retained multi-trial
-session or 200-dataset capacity claim. Do not fan out the poor historical controls.
+The explicit offline reader, retained lifetime, compact publication and
+cooperative reservations are now qualified above. Campaign scheduling/protection
+and retirement remain open. This original single-child path repeats parent
+intake and fresh inspections; it does not claim 200-dataset capacity. Do not fan out the poor historical controls.
 `read_registry` already validates published checked preparations through the
 shared complete-request/runtime reader; do not replace that chain with a
 standalone top-level role check. W186 explicit reader-control adoption and broader
@@ -414,9 +419,10 @@ Local `child-process-20261120-01/{validation.json,installed-review.json}` record
 exact sources/commands and the four simulated outcomes. New request/process/outcome
 contracts are v1; no existing artifact migration. Generated fixtures, wheels and
 reports remain private. The [storage contract](metal-campaign-storage.md#fresh-frozen-child-process-ownership)
-owns limits and remaining prerequisites: transport verification is not scientific
-parent/input admission; freeze auditing, compact scientific publication, quotas
-and retirement still need integration. **A04 partial; A01 partial; A02 gated.**
+owns this process-only boundary: transport verification is not scientific
+parent/input admission. Subsequent qualified scientific audits, publication and
+cooperative reservations are summarized above; campaign scheduling and retirement
+remain separate. **A04 partial; A01 partial; A02 gated.**
 
 ### Stopped-child output evidence: byte integrity only
 
@@ -442,9 +448,9 @@ owner and corrected test-fixture import are recorded. No full suite or actual
 Phenix/Coot science run; generated outputs/wheels remain local and excluded.
 
 The receipt proves bytes, not crystallographic validity or OS immutability.
-Ordinary scientific parent/input admission, separately carried typed reader
-controls at the exact launch (Willow W182), unchanged freeze/FreeR/model audits,
-compact scientific publication, quotas and retirement remain next. **A01 partial;
+Subsequent ordinary scientific admission, freeze/FreeR/model audits, compact
+publication and explicit cooperative reservations are qualified above. Broader
+typed-reader/native qualification, campaign scheduling and retirement remain open. **A01 partial;
 A02 gated; A04 partial.**
 
 ### Scientific audit handoff traced without a new fit
@@ -992,8 +998,8 @@ zero native calls. All 392 original files remain exact. The private bounded
 multipart layout stores **35,686,175 B**; its explicit peak disk bound is
 **246,609,670 B**, including reader workspace. Temporary copies are removed.
 Sixteen synthetic entry/exit refusal checks pass. A04 remains partial: the adapter below now supports explicit layout transport;
-complete scientific session/software identity, campaign reservations and
-retirement remain unimplemented. The
+subsequent software-bound audited sessions and cooperative reservations are
+qualified above. Campaign scheduling and retirement remain unimplemented. The
 [storage contract](metal-campaign-storage.md#modern-parent-recovery-proof)
 records preserved failed attempts, scope and next steps. Evidence:
 `modern-parent-20261120-04/` under the Alder artifact anchor.

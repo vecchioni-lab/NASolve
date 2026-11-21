@@ -2145,6 +2145,15 @@ results, not a native-array replay. No general pin registry, ancestry inference,
 retirement, cache acceptance or execution default is added. See
 [compact audited publication](metal-campaign-storage.md#compact-audited-child-publication-with-explicit-protected-references).
 
+The opt-in `metal.storage_budget` API reuses the shared kernel lock and durable
+record writer for explicit store-wide admission. It charges observed bytes plus
+held child allowances, settles only against the existing verified-stopped process
+owner, and never deletes files or expires a claim by age/PID. Configuration,
+grant/settlement ledger and inspection use separate v1 kinds with a pinned store
+identity and relative child paths. This conservative logical-byte accounting is
+not an OS quota; scheduling integration, external scratch and native capacity
+remain separate. See [cooperative reservations](metal-campaign-storage.md#cooperative-child-space-reservations).
+
 The separate `metal.child_process` route composes protected-parent transport and
 shared native process ownership for one explicit fresh invocation. Prepared bytes,
 worker and parent manifest are pinned; outcomes are durably recorded and fresh
