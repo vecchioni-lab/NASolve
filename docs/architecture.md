@@ -1048,6 +1048,10 @@ and compares only matching directed adjacency; there is no alignment or inferred
 physical equivalence. W195 adds explicit contiguous step-weight summaries to
 `helical_twist`; unavailable coverage and ambiguous angle branches never produce
 a mean. These reporting layers do not control repair or acceptance.
+W196 returns to the existing preview/replay owner with schema-3 registered
+interior windows, two fixed paired flanks and explicit per-pair weights. It reuses
+coordinate rendering, full-precision motion and extended backbone audits; neither
+a new force owner nor automatic repair is introduced.
 See the [shared plan](helical-geometry-plan.json).
 
 The pairing owner supplies exact forward/reciprocal edge incidence to selected

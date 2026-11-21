@@ -255,14 +255,15 @@
         "W192 establishes the source-defined simple-twist orientation convention with independent public reference controls; no runtime promotion or motion acceptance.",
         "W193 supplies shared canonical simple-step twist with exact atom/fit provenance, independent missing quantities and current-reference public readback; this is measurement, not bend acceptance.",
         "W194 supplies explicit named-state span/twist deltas with unmatched/changed sites and directed adjacency retained; saved signed 5W6W recovery illustrates span insensitivity and residual local twist.",
-        "W195 adds declared regional step summaries with missing coverage and near-zero/wrap limits; regional cancellation reinforces the next local repair/admission gate."
+        "W195 adds declared regional step summaries with missing coverage and near-zero/wrap limits; regional cancellation reinforces the next local repair/admission gate.",
+        "W196 extends the existing replayable initializer to an explicit registered interior whole-pair window with two fixed flanks and declared nonuniform weights; native retention/recovery remains separate."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "Return to supported local repair/admission using existing parent, preparation, registered-motion and execution owners. Regional mean cancellation does not remove the localized covalent defect. Do not repeat private W168 or add axis/export plumbing before this gate; retain source topology and exact target/settings authority.",
+      "next_action": "Bind a prospective registered motion to legitimate current-parent preparation and qualified native retention using W173/W174/W188/W190. Preserve source topology, full-precision mask, exact settings and target authority. Do not fabricate ordinary ancestry for the direct-input 5W6W packet or repeat private W168 unchanged.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -318,14 +319,15 @@
         "E_SIMPLE_TWIST_REFERENCE",
         "E_CANONICAL_SIMPLE_TWIST",
         "E_NAMED_HELIX_STATE_COMPARISON",
-        "E_DECLARED_REGIONAL_TWIST_SUMMARY"
+        "E_DECLARED_REGIONAL_TWIST_SUMMARY",
+        "E_INTERIOR_PAIRED_PREVIEW"
       ],
       "last_audit": {
         "date": "2026-11-21",
-        "human_update": 195,
-        "code_commit": "796af35a5a9f4dc8a40fc970dffa917c2b807dc9",
-        "reviewer": "Linden; next science choice communicated to Rowan",
-        "scope": "Bounded regional arithmetic qualified; reporting capped before local repair/source-bound integration."
+        "human_update": 196,
+        "code_commit": "020aa1ba030cd30a375642f2408a69b6a099449f",
+        "reviewer": "Linden; scope coordinated with Rowan",
+        "scope": "Prospective interior motion delivery and refusal/relocation controls only; no accepted repair or native execution."
       }
     },
     {
@@ -377,14 +379,15 @@
         "W192 establishes the source-defined simple-twist orientation convention with independent public reference controls; no runtime promotion or motion acceptance.",
         "W193 supplies shared canonical simple-step twist with exact atom/fit provenance, independent missing quantities and current-reference public readback; this is measurement, not bend acceptance.",
         "W194 supplies explicit named-state span/twist deltas with unmatched/changed sites and directed adjacency retained; saved signed 5W6W recovery illustrates span insensitivity and residual local twist.",
-        "W195 adds declared regional step summaries with missing coverage and near-zero/wrap limits; regional cancellation reinforces the next local repair/admission gate."
+        "W195 adds declared regional step summaries with missing coverage and near-zero/wrap limits; regional cancellation reinforces the next local repair/admission gate.",
+        "W196 extends the existing replayable initializer to an explicit registered interior whole-pair window with two fixed flanks and declared nonuniform weights; native retention/recovery remains separate."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Return to supported local repair/admission using existing parent, preparation, registered-motion and execution owners. Regional mean cancellation does not remove the localized covalent defect. Do not repeat private W168 or add axis/export plumbing before this gate; retain source topology and exact target/settings authority.",
+      "next_action": "Bind a prospective registered motion to legitimate current-parent preparation and qualified native retention using W173/W174/W188/W190. Preserve source topology, full-precision mask, exact settings and target authority. Do not fabricate ordinary ancestry for the direct-input 5W6W packet or repeat private W168 unchanged.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -483,14 +486,15 @@
         "E_SIMPLE_TWIST_REFERENCE",
         "E_CANONICAL_SIMPLE_TWIST",
         "E_NAMED_HELIX_STATE_COMPARISON",
-        "E_DECLARED_REGIONAL_TWIST_SUMMARY"
+        "E_DECLARED_REGIONAL_TWIST_SUMMARY",
+        "E_INTERIOR_PAIRED_PREVIEW"
       ],
       "last_audit": {
         "date": "2026-11-21",
-        "human_update": 195,
-        "code_commit": "796af35a5a9f4dc8a40fc970dffa917c2b807dc9",
-        "reviewer": "Linden; next science choice communicated to Rowan",
-        "scope": "Bounded regional arithmetic qualified; reporting capped before local repair/source-bound integration."
+        "human_update": 196,
+        "code_commit": "020aa1ba030cd30a375642f2408a69b6a099449f",
+        "reviewer": "Linden; scope coordinated with Rowan",
+        "scope": "Prospective interior motion delivery and refusal/relocation controls only; no accepted repair or native execution."
       }
     },
     {
@@ -552,7 +556,8 @@
         "W192 establishes the source-defined simple-twist orientation convention with independent public reference controls; no runtime promotion or motion acceptance.",
         "W193 supplies shared canonical simple-step twist with exact atom/fit provenance, independent missing quantities and current-reference public readback; this is measurement, not bend acceptance.",
         "W194 supplies explicit named-state span/twist deltas with unmatched/changed sites and directed adjacency retained; saved signed 5W6W recovery illustrates span insensitivity and residual local twist.",
-        "W195 adds declared regional step summaries with missing coverage and near-zero/wrap limits; regional cancellation reinforces the next local repair/admission gate."
+        "W195 adds declared regional step summaries with missing coverage and near-zero/wrap limits; regional cancellation reinforces the next local repair/admission gate.",
+        "W196 extends the existing replayable initializer to an explicit registered interior whole-pair window with two fixed flanks and declared nonuniform weights; native retention/recovery remains separate."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -563,7 +568,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Return to supported local repair/admission using existing parent, preparation, registered-motion and execution owners. Regional mean cancellation does not remove the localized covalent defect. Do not repeat private W168 or add axis/export plumbing before this gate; retain source topology and exact target/settings authority.",
+      "next_action": "Bind a prospective registered motion to legitimate current-parent preparation and qualified native retention using W173/W174/W188/W190. Preserve source topology, full-precision mask, exact settings and target authority. Do not fabricate ordinary ancestry for the direct-input 5W6W packet or repeat private W168 unchanged.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -661,14 +666,15 @@
         "E_SIMPLE_TWIST_REFERENCE",
         "E_CANONICAL_SIMPLE_TWIST",
         "E_NAMED_HELIX_STATE_COMPARISON",
-        "E_DECLARED_REGIONAL_TWIST_SUMMARY"
+        "E_DECLARED_REGIONAL_TWIST_SUMMARY",
+        "E_INTERIOR_PAIRED_PREVIEW"
       ],
       "last_audit": {
         "date": "2026-11-21",
-        "human_update": 195,
-        "code_commit": "796af35a5a9f4dc8a40fc970dffa917c2b807dc9",
-        "reviewer": "Linden; next science choice communicated to Rowan",
-        "scope": "Bounded regional arithmetic qualified; reporting capped before local repair/source-bound integration."
+        "human_update": 196,
+        "code_commit": "020aa1ba030cd30a375642f2408a69b6a099449f",
+        "reviewer": "Linden; scope coordinated with Rowan",
+        "scope": "Prospective interior motion delivery and refusal/relocation controls only; no accepted repair or native execution."
       }
     },
     {
@@ -4742,6 +4748,15 @@
       "reference": "docs/topostitch-periodic.md#w195--declare-regional-step-weights-and-retain-coverage",
       "result": "136 source and 136 relocated installed checks; twelve saved-state summaries reproduce. Positive recovered edge mean change -0.122274 degrees hides the known -2.192997 degree local step departure.",
       "limitation": "Explicit weights and caller limit only; missing/gap/wrap ambiguity remains unavailable. No modified-frame mapping, axis radius, curvature, exporter, new native run or repair acceptance."
+    },
+    "E_INTERIOR_PAIRED_PREVIEW": {
+      "kind": "registered_interior_paired_motion",
+      "date": "2026-11-21",
+      "human_update": 196,
+      "code_commit": "020aa1ba030cd30a375642f2408a69b6a099449f",
+      "reference": "docs/topostitch-periodic.md#w196--replay-a-prospective-interior-paired-window",
+      "result": "155 source and 155 installed checks. Three fresh zero/signed 5W6W proposals keep two paired flanks and654 atoms fixed;205 move up to0.400A. Source-bound replay, changed-parent and protected-junction refusals qualified.",
+      "limitation": "Direct-input prospective initializer, not ordinary ancestry, native retention or successful geometry repair. Same-Python relocation passes; cross-Python last-bit audit differences refuse despite identical PDB. No native program or old-run reauthentication."
     }
   },
   "benchmarks": [
@@ -4903,8 +4918,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 195,
-    "next": 196,
+    "current": 196,
+    "next": 197,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -5884,6 +5899,12 @@
         "title": "Summarize declared regional steps and return to the localized repair gate",
         "state": "RECORDED",
         "code_commit": "796af35a5a9f4dc8a40fc970dffa917c2b807dc9"
+      },
+      {
+        "number": 196,
+        "title": "Deliver registered interior pair previews with two fixed flanks",
+        "state": "RECORDED",
+        "code_commit": "020aa1ba030cd30a375642f2408a69b6a099449f"
       }
     ]
   },

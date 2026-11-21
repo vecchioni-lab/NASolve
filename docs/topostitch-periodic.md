@@ -11430,3 +11430,75 @@ local runners stay out of Git. No migration/default/dependency changes. H3 remai
 partial pending modified-site qualification/publication export; H1/H2 retain
 registered-image, modified-frame and axis gates. Do not relabel a historical
 private taper as a prospectively authenticated registered preview.
+
+
+## W196 — Replay a prospective interior paired window
+
+Code `020aa1ba030cd30a375642f2408a69b6a099449f` changes only the existing `topostitch_preview.py`
+owner and adds focused interior regressions. Schema-3 trials retain registered
+source/discovery identity, explicit ordered antiparallel pairs, declared [0,1]
+weights, source-derived pivot and zero-weight paired flanks on both sides.
+Canonical mapping, whole-residue rendering, extended backbone audits, portable
+snapshots and unrounded `TaperedMotion` replay are reused. No new force engine,
+export layer, checkpoint ancestry or native retention hook is manufactured.
+Schema-1/2 terminal reports and APIs remain unchanged; old readers reject schema 3.
+
+**155 focused source + 155 fresh installed checks pass** for:
+`test_topostitch_interior_preview.py`, `test_topostitch_preview.py`,
+`test_topostitch_checkpoint.py`, `test_topostitch_execution.py`,
+`test_topostitch_view.py`, `test_topostitch_fit.py`. New success cases fail before
+implementation. Protected junctions, changed parent, route gaps, invalid weights,
+byte-fixed flanks/context, stale receipts, displacement bounds and relocation are
+covered. The complete optional fitting/view checks use existing Phenix Python
+3.11, SciPy 1.17.1, Gemmi 0.7.5 and isolated copies of NARestraints 1.1.3 with
+openpyxl 3.1.5/et_xmlfile 2.0.0. Initial harness attempts lacked PYTHONPATH/NAR/
+openpyxl; completing that environment yields the same unchanged-code pass.
+No crystallographic Phenix program or full repository suite was run.
+
+Exact source runner, from the Willow checkout (the temporary dependency root is
+qualification provenance, not an operational artifact reference):
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 phenix.python -B -c '
+import os,sys
+from pathlib import Path
+paths=[str(Path("src").resolve()),"/private/tmp/w196-qualified-3a52c_8h/pure-dependencies"]
+sys.path[:0]=paths
+os.environ["PYTHONPATH"]=os.pathsep.join(paths)
+import pytest
+raise SystemExit(pytest.main(["-q","-p","no:cacheprovider",
+ "tests/test_topostitch_interior_preview.py","tests/test_topostitch_preview.py",
+ "tests/test_topostitch_checkpoint.py","tests/test_topostitch_execution.py",
+ "tests/test_topostitch_view.py","tests/test_topostitch_fit.py"]))'
+```
+
+The launcher resets PYTHONPATH, hence the explicit bootstrap. Installed tests use
+the same copied fixture closure and relocated wheel path instead of `src`, after
+build/install originals are removed. Wheel SHA256
+`fc671694bed12c4842dde07bc844bb614520ce3ba23588479420ae9a71690ab0`.
+
+Fresh direct-input 5W6W proposals use existing checksum-verified coordinates and
+literal identity registration, explicit A9..15/B7..1 routes and no claim of
+complete global topology. Zero/±2° Cartesian-Y rotations, pair weights
+`[0,.2,.4,.7,1,.5,0]`, central-pair pivot and two paired flanks are declared before
+execution. All 859 atoms remain; 205 move and 654 stay fixed. Maximum signed-start
+motion is ~0.400 Å; zero preserves every source byte. Max link/angle/torsion
+changes are positive 0.17178 Å/5.94510°/4.52854°, negative
+0.18189 Å/5.58918°/4.01827°. These are source-relative trial costs, not healthy
+geometry or a repaired endpoint. Changed-parent checks refuse all three packets.
+
+All three reports and endpoint audits reproduce from a fresh installed Python
+3.12.14 process after original packet-copy paths are gone; the installed CLI
+rebuilds the positive candidate exactly. Cross-version Python 3.11 replay refuses:
+PDB bytes match but 30 audit scalars differ at last bits (~1e-14 degrees). Preserve
+this exact-replay limitation rather than claim universal numerical portability
+or relax admission. No source/runtime tolerance changed.
+
+Local evidence anchor `NASolve`, directory `branch-artifacts/willow/w196-interior-preview/`:
+`review.json` SHA256 `8ce18dbc110a0abdb03e76a839657adaf7d42bc731eebe2fbf1586d0e7c97d4d`;
+`installed-check.json` SHA256 `9ce61d7668187ac050dc859a3f03266304bd771db9df5675492880470fdf440e`.
+New source/registration/discovery/trial snapshots and zero/positive/negative PDBs
+remain local and uncommitted. Existing viewer HTML is beside each packet; no new
+checkout framework. Next bind a prospective motion to legitimate current-parent
+preparation and qualified native retention, then assess local recovery. This
+slice does not retroactively qualify the private W163 taper or close S04/S05/S06.

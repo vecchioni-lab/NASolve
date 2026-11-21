@@ -2203,3 +2203,67 @@ Every raw step, weight, availability reason and declared/measured weight survive
 A small regional mean does not prove local repair. In the saved positive recovery,
 −0.122° edge-mean change hides a −2.193° individual step change. Axis radii,
 curvature, coordinate repair and scientific selection remain outside this API.
+
+
+### Registered interior paired windows (W196)
+
+The existing builder, CLI, viewer and `load_bend_motion` now also read schema-3
+`topostitch-window-transform` trials. Use the same exact model/discovery/registration
+hashes and motion/audit limits as schema 2. Replace `window_id` with:
+
+```json
+{
+  "schema_version": 3,
+  "ordered_pairs": [["A:9","B:7"],["A:10","B:6"],["A:11","B:5"],
+                    ["A:12","B:4"],["A:13","B:3"],["A:14","B:2"],
+                    ["A:15","B:1"]],
+  "pair_weights": [0,0.2,0.4,0.7,1,0.5,0],
+  "origin_pair_index": 3,
+  "max_window_pairs": 7,
+  "fixed_anchor_pairs": 1
+}
+```
+
+This is the schema-specific fragment, not a complete executable request. Retain
+`kind`, the three file hashes, explicit rotation/translation, displacement limit,
+and all bond/angle/torsion change limits. The existing `nasolve-topostitch-preview`
+command still writes only to a new directory and takes explicit input paths.
+
+`ordered_pairs` lists logical sites from the selected registered copy. Each pair
+must be a declared mate; consecutive pairs must advance one site along one
+chemical route and retreat one along the other. Reordering, route gaps, duplicate
+sites and protected junctions refuse. The fixed-anchor count applies **per flank**;
+those paired weights must be zero, and all intervening weights must be in (0,1].
+Declared free-site boundaries also refuse. Neither pairing nor missing junction
+intent is inferred. Incomplete global discovery coverage stays visible.
+
+The pivot is the mean of the existing base-plane centroids of the zero-based
+`origin_pair_index`, computed from the original model. Both residues of a pair
+receive the same weighted rotation and translation. Context and both flanks stay
+fixed. Weights are caller-supplied; no smoothness, corrective direction, local-axis
+measurement or density fit is inferred. Nonuniform weights are a motion proposal,
+not an atomic relaxation rule.
+
+The schema-3 receipt uses algorithm `whole-pair-declared-interior-transform-v3`,
+`window.kind=interior-paired-window`, `end_id=null`, and
+`motion_origin_angstrom`. It preserves the original window declaration and exact
+source snapshots. Schema-1/2 receipt fields remain unchanged; old readers reject
+schema 3 and require an updated installation. No migration of old runs is needed.
+The existing viewer can show the before/after region without an end-mate selection.
+
+`load_bend_motion` replays the new packet and enforces unrounded displacement
+limits, exact coordinate serialization and, when supplied, the current parent
+bytes. Existing checkpoint/request bindings compose that loader; this does not
+create an ordinary checkpoint or qualify retained-parent native transfer.
+Selected ANISOU handling and stricter downstream endpoint rules are unchanged.
+
+Three fresh 5W6W diagnostic proposals (zero and ±2° about the declared Cartesian
+Y direction) demonstrate delivery and replay, not repair. 205 atoms move while
+654 remain fixed; maximum motion is ~0.400 Å. Audited link changes reach 0.182 Å
+and angle changes 5.95°, so the models still need geometry recovery. The new
+proposals do not authenticate the older private W163 taper retroactively.
+
+Exact replay currently also requires compatible numerical behavior: the same
+packet relocates under Python 3.12, while Python 3.11 produces identical PDB bytes
+but last-bit audit-angle differences and is refused. No tolerance is widened.
+[Qualification and limits](topostitch-periodic.md#w196--replay-a-prospective-interior-paired-window).

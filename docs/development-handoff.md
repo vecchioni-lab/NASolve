@@ -1,5 +1,34 @@
 # NASolve development handoff — Willow
 
+**W196: a prospective interior pair window now reaches the existing motion reader.**
+Schema 3 extends the preview/replay owner with explicit registered antiparallel
+pairs, nonuniform per-pair weights and fixed paired flanks on both sides. Route
+gaps, protected junctions and changed parents refuse. Source identity, full-precision
+bounds, serialized coordinates and extended backbone audits remain checked.
+**155 focused source + 155 installed checks** pass, including existing terminal
+fitting/view/checkpoint behavior. [Usage](topostitch-preview.md#registered-interior-paired-windows-w196) ·
+[qualification](topostitch-periodic.md#w196--replay-a-prospective-interior-paired-window).
+
+Fresh 5W6W zero/±2° diagnostic proposals keep 654 atoms fixed and move 205 by up
+to ~0.400 Å; zero is byte-identical. Original A9/B7 and A15/B1 paired flanks stay
+fixed. Bond/angle changes reach 0.182 Å/5.95°: delivered initialization is not a
+successful repair. No native execution or retrospective W163 authority follows.
+Existing local 3D viewer: NASolve anchor
+`branch-artifacts/willow/w196-interior-preview/positive.html` (negative/zero beside it).
+
+**Next:** bind one prospective interior/terminal proposal to a legitimate current
+parent and its owned native preparation, then qualify retained-parent geometry
+through the existing execution lifecycle. Reuse W173/W174/W188/W190; do not add
+another endpoint guard or repeat private W168 to prove the same lifecycle. The
+new direct-input 5W6W packet has no ordinary PostMR ancestry and does not supply
+missing experimental pairing/target authority for X11_22. Keep native retention,
+geometry recovery and matched diffraction acceptance separate.
+
+Numerical portability limit: all three packets and an installed CLI rebuild
+reproduce after relocation under generating Python 3.12. Python 3.11 creates
+identical candidate PDBs but differs in last audit bits and strict replay refuses;
+no tolerance is relaxed. Schema-1/2 APIs remain unchanged; schema-3 needs this reader.
+
 **W195: regional summaries preserve declared weights and unavailable coverage.**
 The existing twist reader now supplies an opt-in weighted summary, raw steps,
 coverage, signed mean and bp/turn. Missing included steps, disjoint weights and
@@ -15,8 +44,8 @@ Positive recovered edge mean changes only −0.122274° while W194 locates a
 −2.192997° single-step departure and the existing B2/A13 covalent defect remains.
 An axis calculation would not clear S04/S05's supported admission/retention gap.
 Cap reporting here: audit the existing parent/preparation/motion interfaces and
-preserve known topology before another repair trial. The historical W163 interior
-taper cannot be retroactively treated as a registered terminal preview. Do not
+preserve known topology before another repair trial. W196 supplies a fresh registered interior proposal; the historical W163 taper
+still cannot be retroactively treated as authenticated motion. Do not
 repeat W168 or add an exporter/force engine to avoid this integration boundary.
 H1/H2/H3 remain partial; modified frames, axes and publication tables stay open.
 

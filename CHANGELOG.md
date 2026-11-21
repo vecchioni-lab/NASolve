@@ -17,6 +17,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W196 — Replay registered interior pair motion with fixed flanks
+
+- Extend the existing preview/replay/motion owner with additive schema-3 trials:
+  explicit ordered antiparallel pairs, per-pair weights, a declared origin pair
+  and fixed paired flanks on both sides. Reuse full-precision motion and the
+  extended bond/angle/torsion audit; preserve schema-1/2 terminal behavior.
+- Refuse route gaps, protected junctions, malformed weights and changed parents.
+  This delivers a prospective initializer, not backbone closure or native repair.
+- 155 focused source and 155 installed compatibility checks pass; three fresh
+  5W6W zero/signed controls replay after relocation in their generating Python
+  version. Cross-Python last-bit audit differences remain a strict refusal.
+
 ### W195 — Summarize declared regional twist without hiding gaps
 
 - Add a bounded API on the existing twist reader: one explicit weight per step,

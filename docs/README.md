@@ -7,6 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+W196 returns to S04 with [registered interior paired previews](topostitch-preview.md#registered-interior-paired-windows-w196):
+nonuniform declared weights and two fixed flanks through the existing motion
+reader. Native retention and successful repair remain separate gates.
+
 W195 adds [declared regional step summaries](topostitch-preview.md#summarize-declared-regional-twist-w195)
 with explicit coverage and signed-repeat limits. Next work returns to the local
 repair/admission gate; no additional export layer is queued.
