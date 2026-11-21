@@ -15,6 +15,9 @@ entries are reconstructed from repository history.
   The service checks the compiled restraints and four reader settings before
   returning the live interpretation. This Python interface requires the
   qualified Phenix 2.2.1-6174 build.
+- Supplying the original native chemistry record also compares the effective
+  dictionary at every residue and the restraints built from it. A difference
+  identifies the affected sites and gives an example of a changed target.
 
 ### Checking crowding around a modified residue
 

@@ -148,8 +148,9 @@ class _ParentService:
         self._used = False
         self._invalid = False
 
-    def interpret(self, model, bound_inputs, *, expected_report_sha256, process_options):
-        """Interpret once, then retain the actual object Phenix used to build geometry."""
+    def interpret(self, model, bound_inputs, *, expected_report_sha256, process_options,
+                  source_native_json=None):
+        """Interpret once. Optional original native bytes require a component and restraint match."""
         active = getattr(_THREAD, "owner", None)
         if active is not None:
             active._invalid = True
@@ -160,7 +161,12 @@ class _ParentService:
             _require(not self._used, "Cannot reuse a parent interpretation service")
             self._used = True
             _THREAD.owner = self
-            return self._interpret(model, bound_inputs, expected_report_sha256, dict(process_options))
+            options = dict(process_options)
+            if source_native_json is None:
+                return self._interpret(model, bound_inputs, expected_report_sha256, options)
+            from .cif_native_parent_chemistry import compare_parent_chemistry
+            return compare_parent_chemistry(self, model, bound_inputs, expected_report_sha256,
+                                            options, source_native_json)
         finally:
             _THREAD.owner = None
             _SERVICE_LOCK.release()

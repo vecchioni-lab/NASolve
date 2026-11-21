@@ -64,9 +64,13 @@ the scope of a general arm correction.
 C507–C509 give Willow a shared reading of the geometry before and after
 atoms move. With all four W203 reader settings applied, Phenix recovered the
 compiled parent geometry, including 38 backbone links and 51 supplied
-distances, on the incoming model. Cedar next checks the effective chemistry
-against the original residue definitions. Willow owns coordinate transfer
-and diffraction checks. The independent PDU and DF chemical scope stays open.
+distances, on the incoming model. C510 verified the original chemical
+definitions at all 42 canonical sites and accounted for each change in the
+restraint list. Increasing a single test dictionary bond target by 0.040 Å
+changed nine glycosidic bonds and nine sugar chiral volumes. The reader
+identified all nine thymines. Willow owns coordinate transfer and diffraction
+checks; modified/metal parents require their own evidence. The independent
+PDU and DF chemical scope stays open.
 
 Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
 after correcting the orientation of DP and IMC from their source graphs.

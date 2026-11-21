@@ -279,10 +279,15 @@ def compile_na_policy(model: Path, phils: list[Path], captured: dict, output: Pa
 
 def qualify_na_policy(before: dict, after: dict, policy: dict) -> dict:
     """Check exact custom membership and every unaffected proxy, retaining REVIEW."""
-    checks=[]
+    complete=(after.get('status')=='REVIEW' and after.get('fatal_problems') is None
+              and not after.get('unused_definitions') and not after.get('unsupported_fields'))
+    return _qualify_observed_fields(before, after, policy,
+        [{'check':'native-interpreter','status':'PASS' if complete else 'REVIEW'}])
+
+
+def _qualify_observed_fields(before, after, policy, checks):
+    """Compare the same observed atoms, component definitions and native restraints."""
     def check(name,value,**extra):checks.append({'check':name,'status':'PASS' if value else 'REVIEW',**extra})
-    check('native-interpreter',after.get('status')=='REVIEW' and after.get('fatal_problems') is None
-          and not after.get('unused_definitions') and not after.get('unsupported_fields'))
     check('atom-identities',[{k:v for k,v in a.items() if k!='xyz'} for a in before['atoms']]==
           [{k:v for k,v in a.items() if k!='xyz'} for a in after['atoms']])
     check('component-definitions',before['monomer_mappings']==after['monomer_mappings'])

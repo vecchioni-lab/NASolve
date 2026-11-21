@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C509 preparing the geometry of a bent model — Rowan**.
+Updated **2026-11-21, C510 checking the chemistry Phenix used — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -497,6 +497,35 @@ service, synthetic tests and documentation. Focused validation used
 The source run passed 208 before seven additional edge cases; all 27 final
 service cases passed. The relocated wheel passed all 215, and all 323
 packaged files matched source. Full regression remains deferred.
+
+**C510, checking the actual residue dictionaries.** Passing the original
+typed `native/native_validation.json` bytes as `source_native_json` to
+C509 observes each effective monomer before Phenix reduces it to a summary.
+The service checks the summary identities on that same manager and reuses
+the existing dictionary and restraint comparison. Only compact fingerprints,
+counts and any changed-site examples persist. This optional check requires
+the reviewed native interpreter and an available thread profiling hook.
+Existing callers and checkpoint formats require no migration.
+
+On the 42-residue canonical control, all original per-site definitions and
+3,451 retained restraints matched. NARestraints supplied 51 pair distances,
+84 angles and 58 plane relationships. This explains the change from 41 to 51
+pair distances and from 82 to 84 angles. The native dictionary interface
+could not read all formal charges. In a negative control, changing only
+the thymidine C1′–N1 target from 1.468 to 1.508 Å changed nine bond targets
+and nine C1′ chiral-volume targets. At A:9 the latter changed from 2.4315
+to 2.4977 Å³, with its sign preserved. The unmodified supplied dictionary
+matched the ordinary parent. Each case used one Phenix 2.2.1-6174 geometry
+interpretation and zero refinement cycles. Modified/metal motion, scattering
+and diffraction qualification have separate evidence requirements.
+
+Reopen `branch-artifacts/cedar/c510-native-source-chemistry/science.json`
+or run `phenix.python -B c510_native_source_comparison.py CEDAR_INSTALL WILLOW_PACKAGE W202_EXPERIMENT NEW_JSON`
+from the local runner shelf. The focused commands use
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:$GEMMI_PATH python -B -m pytest -q -p no:cacheprovider tests/test_cif_native_parent_chemistry.py tests/test_cif_native_parent.py tests/test_cif_na_policy.py tests/test_cif_native_validation.py tests/test_cif_topology_gate.py`.
+All 122 passed in source and again after wheel relocation. All 324 packaged
+files matched; full regression remains deferred. The shared historical
+standalone reader keeps its original bytes.
 
 **Q07, 20 November.** Ordinary Coot and ReadySet now prepare 1AP:T and S6G:C
 on the same substituted host. The plane screen follows the verified source chemistry.
