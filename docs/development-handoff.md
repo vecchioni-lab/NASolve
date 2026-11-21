@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C515 locating the bend along a substituted base — Rowan**.
+Updated **2026-11-21, C516 preparing a bent model inside the Phenix worker — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -541,6 +541,40 @@ with zero refinement cycles. All 324 package files matched. Repeat with
 `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_cif_native_parent.py tests/test_cif_native_parent_chemistry.py tests/test_cif_na_policy.py tests/test_cif_refinement_sites.py`
 and `phenix.python -B c512_joint_observers.py CEDAR_INSTALL WILLOW_PACKAGE W202_EXPERIMENT C510_RUNNER NEW_JSON`.
 The compact record is `branch-artifacts/cedar/c512-joint-observation/science.json`.
+
+**C516, connecting Willow's preparation to Phenix.** The shared
+`cif_native_parent_entry.native_parent_entry` now calls the admitted candidate
+reader after Phenix builds its diffraction model. During finalization it hands
+that same manager to the qualified Willow builder exactly once. The closed
+coordinate mapping must identify the original motion and the closed chemistry
+builder must identify the same manager. Only then does Phenix receive its
+native result. The trusted worker owns both callbacks and the input lifetime.
+The source-bound builder and coordinate mapping must come from the same
+installed Willow package. The outer worker discards the process after a failure.
+
+An installed Phenix 2.2.1-6174 dry-run reproduced Willow W208's final native
+model, restraints, candidate diffraction snapshots and all 42 source-defined
+residues exactly. It kept 38 backbone links and 51 supplied distances while
+transferring 205 moving atoms among 654 fixed atoms. A second dry-run stopped
+at the deliberate error after parent interpretation, before any coordinate
+transfer. Both restored the three entry bindings, the two observers, the
+parent service and thread profiler. Both processes stopped. Neither ran a
+refinement cycle. The ordinary request still needs distinct geometry-parent
+and candidate roles, motion evidence and preflight admission before this
+route can run automatically. Existing policies, workers and saved schemas
+need no migration. Reuse the compact
+`branch-artifacts/cedar/c516-source-parent-entry/science.json` and the two
+runner scripts. The models and diffraction files stayed local.
+
+The new module and its regression tests are `cif_native_parent_entry.py`
+and `test_cif_native_parent_entry.py`. Source and relocated installation
+each passed 138 focused tests. All 326 packaged files matched the source.
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_cif_native_parent_entry.py tests/test_cif_native_parent.py tests/test_cif_native_parent_chemistry.py tests/test_refinement_parallelity.py
+python -B c516_parent_entry.py W208_ATTEMPT INSTALLED_NASOLVE NEW_ATTEMPT PHENIX_ROOT
+python -B c516_entry_review.py W208_ATTEMPT NEW_ATTEMPT NEW_OUTPUT.json
+```
 
 **Q07, 20 November.** Ordinary Coot and ReadySet now prepare 1AP:T and S6G:C
 on the same substituted host. The plane screen follows the verified source chemistry.

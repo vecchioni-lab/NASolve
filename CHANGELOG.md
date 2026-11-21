@@ -21,6 +21,9 @@ entries are reconstructed from repository history.
 - Whole-model chemistry and a requested residue can now be inspected on the
   same Phenix interpretation. Create the service before installing either
   worker hook.
+- An explicitly configured bend worker can now receive the pending Phenix
+  model after the candidate diffraction calculation and return its prepared
+  restraints after the coordinate and chemistry checks both complete.
 
 ### Checking crowding around a modified residue
 

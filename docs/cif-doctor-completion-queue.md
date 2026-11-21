@@ -86,7 +86,11 @@ restraint list. Increasing a single test dictionary bond target by 0.040 Å
 changed nine glycosidic bonds and nine sugar chiral volumes. The reader
 identified all nine thymines. C512 also verified this comparison while the
 ordinary worker recorded one chosen residue on the same Phenix model.
-Willow owns coordinate transfer and diffraction checks. Modified and
+C516 and Willow W208 route the actual pending model through both owners
+and return the prepared restraints after the checked transfer. A deliberate
+failure stopped before any transfer. The next integration step is to carry
+the geometry parent and the admitted candidate as distinct verified inputs
+in a versioned ordinary request. Modified and
 metal-containing parents still need separate evidence. The independent
 PDU and DF chemical scope stays open.
 
