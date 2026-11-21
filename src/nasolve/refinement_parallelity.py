@@ -634,7 +634,7 @@ def validate_checkpoint_execution(run, item, registry):
         return record
 
 
-def _selected_chemistry_observation(run, reference, *, checkpoint, parent, model):
+def _selected_chemistry_observation(run, reference, *, checkpoint, parent, model, include_preflight=False):
     """Use one existing validation path for explicit selected-site readers."""
     record=validate_execution(run,reference,checkpoint=checkpoint,parent=parent,usable=True)
     request=read_execution_request(run,record['request'],checkpoint=checkpoint)
@@ -647,7 +647,18 @@ def _selected_chemistry_observation(run, reference, *, checkpoint, parent, model
     if result['chemistry_observation']['status']=='OBSERVED':
         _need(result['chemistry_model']==dict(sha256=_digest(data),size=len(data)),
               'Observed native output differs from the checkpoint model')
-    return data,projections,result['chemistry_observation']
+    final = (data, projections, result['chemistry_observation'])
+    if not include_preflight:
+        return final
+    root = _root(checkpoint)
+    initial = _phase(run, root, 'preflight', request['code'], request, require_complete=True)
+    filename = root + '/preflight/result.json'
+    pins = [item for item in record['phases'][0]['files'] if item['relative_path'] == filename]
+    _need(len(pins) == 1 and len(request['inputs']) >= 2, 'Missing native preflight or entrance model')
+    _bound_path(pins[0], 'preflight chemistry', run)
+    entrance = request['inputs'][1]
+    _bound_path(entrance, 'preflight entrance model', run)
+    return (*final, (entrance['sha256'], initial['chemistry_observation']))
 
 
 def _declared_chemistry_sources(run, reference, *, checkpoint):
@@ -719,13 +730,17 @@ def read_execution_trigonal_geometry(run, reference, *, checkpoint, parent, mode
     return result
 
 
-def read_execution_plane_geometry(run, reference, *, checkpoint, parent, model, omit_each_member=False):
-    """Measure captured planes and optionally each atom against its remaining plane members."""
-    selected = _selected_chemistry_observation(run, reference, checkpoint=checkpoint, parent=parent, model=model)
+def read_execution_plane_geometry(run, reference, *, checkpoint, parent, model, omit_each_member=False,
+                                  compare_preflight=False):
+    """Measure captured planes and optionally compare source-defined arms with native preflight."""
+    if type(compare_preflight) is not bool:
+        raise ValueError("The preflight plane comparison option must be boolean")
+    selected = _selected_chemistry_observation(run, reference, checkpoint=checkpoint, parent=parent,
+                                               model=model, include_preflight=compare_preflight)
     if selected is None:
         return None
     from .refinement_plane_departures import describe_planes, measure_source_ring_arms
-    model_bytes, projections, observation = selected
+    model_bytes, projections, observation, *initial = selected
     sources = None
     if observation["status"] == "OBSERVED":
         from .refinement_chemistry import _source_checked_atoms
@@ -734,6 +749,18 @@ def read_execution_plane_geometry(run, reference, *, checkpoint, parent, model, 
     if omit_each_member:
         report["source_ring_arms"] = (measure_source_ring_arms(sources, observation, report["planes"])
                                       if sources is not None else None)
+    if compare_preflight:
+        from .refinement_chemistry import _source_checked_atoms
+        from .refinement_plane_departures import compare_source_ring_arms
+        (input_sha, preflight), = initial
+        if preflight["status"] == "OBSERVED":
+            _, sources = _source_checked_atoms(projections, preflight)
+        comparison = compare_source_ring_arms(sources, preflight, observation)
+        comparison.update(input_model_sha256=input_sha,
+                          written_model_sha256=_digest(model_bytes) if observation["status"] == "OBSERVED" else None,
+                          preflight_state_sha256=preflight.get("model_state_sha256"),
+                          refined_state_sha256=observation.get("model_state_sha256"))
+        report["source_ring_arm_changes"] = comparison
     declared = _declared_chemistry_sources(run, reference, checkpoint=checkpoint)
     expected = [dict(site=site, component=source["component"]) for site, source in sorted(declared.items())]
     _need(set(projections) == set(declared) and observation["sites"] == expected,

@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Following a modified base through refinement
+
+- `cif-doctor assess --run RUN --checkpoint ID --refined-planes` now shows
+  the height of a source-defined carbon alkyne above its six ring atoms and
+  the length of its terminal bond at native preflight and after refinement.
+  The JSON includes both phases' actual bond targets and weights. Unavailable
+  measurements, missing local targets and contacts across symmetry stay explicit.
+
 ### Reading terminal-phosphate restraints from Phenix
 
 - AutoRefine reads each printed bond or angle through its own value row,

@@ -121413,5 +121413,31 @@
       "r_free": 0.2465
     },
     "scope": "Substituted host observations. The selected checkpoint remained PostMR. No new placement, extra plane or chemical acceptance."
+  },
+  "source_ring_arm_recovery_from_the_same_parent_2026_11_21": {
+    "program": "Phenix 2.2.1-6174",
+    "matched_parent_model": "4b971c7174eb76a0ef79366400f87bbced8cd97117ad106b4d8323e5dc9c13cc",
+    "shared_preflight_state": "1825196024dea76b57a53d6e99599c373077cc753f0895f791c40ab65f8f9872",
+    "native_states": ["623d94e41eb099c5a8f0e04fbe8866ccef76c43e6987e8a2c57fa7d6cec3a8e2","99772d75fc54b51822d1b1493cc8dd6fe13d0ffc688523b90a3cb8017f7bf8e2"],
+    "experimental_model": "a29283801e38178f4fcaf82964cfabdc8172fa15285fe66b062dbbaa7f90440f",
+    "experimental_execution": "b96e5dfc512d90729e804e28e6f3944c55e6d5758b80dc85f90ae9ed1ca9fae2",
+    "experimental_final_geometry": "5db810ee7de8b3676ce5ea2eeb362f454ba8f5679edb806bd1447f27947a2bdd",
+    "experimental_reflections": "298cca217e6aa471933cd6fb0558d935d99142cc752ec8d8ec679211dea5cf01",
+    "original_intensities_and_sigmas": 2273,
+    "original_free_flags": 3236,
+    "experimental_frame": {"bond":53,"angle":90,"planarity":12,"parallelity":58},
+    "additional_terminal_angles": 6,
+    "measurements": {
+      "columns": ["site", "component", "round", "tip_before_A", "tip_after_A", "terminal_before_A", "terminal_after_A", "target_A", "sigma_A"],
+      "rows": [
+        ["A:4", "5PC", "refine-002", 0.43423, 0.25442, 1.4648, 1.47124, 1.47, 0.027],
+        ["D:5", "PDU", "refine-002", 0.18867, 0.10541, 1.47512, 1.47238, 1.47, 0.02],
+        ["A:4", "5PC", "refine-003", 0.43423, 0.18887, 1.4648, 1.47067, 1.47, 0.027],
+        ["D:5", "PDU", "refine-003", 0.18867, 0.07622, 1.47512, 1.47175, 1.47, 0.02],
+        ["B:4", "5PC", "B4_control", 0.71192, 0.08714, 1.45517, 1.54932, 1.47, 0.027],
+        ["B:4", "5PC", "B4_extra_plane", 0.71192, 0.07895, 1.45517, 1.54752, 1.47, 0.027]
+      ]
+    },
+    "scope": "The two second rounds share the exact same first-round parent. The B4 rows are a separate first-round experiment. The tested planes have seven atoms each and sigma 0.10 angstrom. No default plane weight or scientific acceptance."
   }
 }

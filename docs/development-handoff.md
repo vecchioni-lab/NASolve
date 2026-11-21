@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C505 mixed-scaffold continuation and background bond checks — Rowan**.
+Updated **2026-11-21, C506 before-and-after measurements on the mixed scaffold — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -43,8 +43,14 @@ stereochemistry and phosphate oxygen order survived, with two overlaps of
 0.528 and 0.586 Å still present. All 211 frame restraints, six protective
 angles, 2,273 measured intensities with uncertainties and 3,236 original
 Free-R flags were checked. These observations belong to the substituted host.
-The next comparison uses the same first-round model to distinguish an added
-soft plane from ordinary second-round recovery.
+The matched sibling added one soft plane per arm at 0.10 Å. The final heights
+were 0.076 Å for PDU and 0.189 Å for 5PC. Both terminal bonds remained close
+to 1.470 Å. The two siblings started with the same full native coordinates
+and could be distinguished by one additional input. In the independent B:4
+5PC comparison, both refinements placed the tip within 0.09 Å of the ring while
+the terminal bond stretched to about 1.55 Å. Keep this treatment experimental.
+The operator can now read both measurements before and after refinement from
+the existing `--refined-planes` assessment.
 
 **How far the locked-sugar result transfers.** TLN passed all 21 isolated
 Phenix dictionary checks. In the same ordinary thirteen-substitution card,
@@ -398,6 +404,21 @@ and 7 subtests from the relocated wheel. All 321 packaged files matched.
 Full regression remains deferred. The ledger entry
 `mixed_scaffold_second_ordinary_round_2026_11_21` retains the scientific
 fingerprints. Synthetic tests and compact observations accompany the change.
+
+**C506 validation.** One additional sibling completed Phenix 2.2.1-6174
+preflight and five real cycles. Its native table contained the original 211
+frame restraints, six protective angles and the two extra planes. All 3,236
+original flags and 2,273 intensities with uncertainties matched by Miller
+index. The read-only assessment also reopened four finished checkpoints,
+including the independent B:4 controls. The new optional comparison in
+`refinement_plane_departures`, `refinement_parallelity`, the run assessor
+and CLI needs no checkpoint migration. The existing Python reader retains
+its prior output when the comparison is omitted. The focused command was
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:$GEMMI_PATH python -B -m pytest -q -p no:cacheprovider tests/test_refinement_plane_departures.py tests/test_refinement_parallelity.py tests/test_refinement_declared_sites.py tests/test_cif_doctor_run.py tests/test_cif_doctor_cli.py tests/test_refinement_link_geometry.py`.
+178 tests and 7 subtests passed. The plane, run-assessment and CLI modules
+passed 60 tests and 7 subtests from the relocated wheel. All 321 package
+files matched. Only the compact measurements, code, synthetic checks and
+documentation are tracked. Full regression remains deferred.
 
 **Q07, 20 November.** Ordinary Coot and ReadySet now prepare 1AP:T and S6G:C
 on the same substituted host. The plane screen follows the verified source chemistry.

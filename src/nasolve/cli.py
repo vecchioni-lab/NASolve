@@ -321,7 +321,7 @@ def build_parser() -> argparse.ArgumentParser:
     cif_assess.add_argument("--checkpoint", help="checkpoint ID/bookmark (requires --run)")
     cif_assess.add_argument(
         "--refined-planes", action="store_true",
-        help="measure each atom against the other plane members and eligible carbon alkynes against their six ring atoms (requires --run)",
+        help="measure atoms against the other plane members and compare ring-bound alkyne tips and terminal bonds before and after refinement (requires --run)",
     )
     cif_assess.add_argument(
         "--refined-links", action="store_true",
@@ -1979,10 +1979,20 @@ def _cif_doctor(args: argparse.Namespace) -> int:
                             print(f"  {plane['site']} {plane['component']} plane {plane['proxy_index']}: "
                                   f"{furthest['atom']} lies furthest from the other members "
                                   f"({furthest['other_members']['distance_angstrom']:.3f} Å).")
+                    comparison = planes.get("source_ring_arm_changes", {})
+                    for phase, reason in comparison.get("unavailable", {}).items():
+                        print(f"  The {phase} arm measurement is unavailable. {reason}")
+                    changes = {(r["site"], tuple(r["arm_atoms"])): r for r in comparison.get("arms", [])}
                     for arm in planes["source_ring_arms"] or []:
                         tip = arm["arm_atoms"][-1]
                         site = f"{arm['site']} {arm['component']} {tip}"
-                        if arm["status"] == "MEASURED":
+                        change = changes.get((arm["site"], tuple(arm["arm_atoms"])))
+                        if change is not None and change["tip_height_change_A"] is not None:
+                            before, after = change["preflight"], change["refined"]
+                            print(f"  {site} moved from {before['tip_height_A']:.3f} to {after['tip_height_A']:.3f} Å "
+                                  f"from its six ring atoms. Its terminal bond went from {before['terminal_bond_A']:.3f} "
+                                  f"to {after['terminal_bond_A']:.3f} Å.")
+                        elif arm["status"] == "MEASURED":
                             height = arm["arm_distances_angstrom"][tip]
                             print(f"  {site} lies {height:.3f} Å from the six ring atoms fitted alone.")
                         else:

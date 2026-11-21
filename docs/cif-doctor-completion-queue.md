@@ -47,7 +47,13 @@ C505 continued the thirteen-change registered child for another five ordinary
 cycles. Its PDU and 5PC tip heights fell from 0.189/0.434 to 0.105/0.254 Å.
 Both local terminal bonds remained within 0.003 Å of 1.470 Å. ATL's two pair
 contacts approached 2.8 Å, with two substantial overlaps still present.
-Use this same-parent control when testing a second-round intervention.
+C506 then added one soft plane per arm to a sibling with identical starting
+coordinates. The tips finished 0.076 and 0.189 Å from their rings. This
+corresponds to an additional 0.029 Å for PDU and 0.066 Å for 5PC beyond
+ordinary second-round recovery. At the independent B:4 5PC site both models
+retained a terminal bond near 1.55 Å. The public readback now reports both
+tip height and terminal bond through refinement. Reuse this comparison and
+keep the added plane experimental.
 
 Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
 after correcting the orientation of DP and IMC from their source graphs.

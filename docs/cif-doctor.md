@@ -13810,6 +13810,15 @@ each have their own explanation. An empty list means the observed sites had
 no eligible arm. An unavailable native observation yields `null`. This is a
 measurement of the written chemistry with no new force or acceptance threshold.
 
+`refined_planes.source_ring_arm_changes` compares that same source graph in
+the zero-cycle Phenix interpretation and the final model. Atom identity joins
+the two measurements even if Phenix assigns different indices. Both distances
+use the full-precision native coordinates. A decrease in tip height can
+accompany a stretched terminal bond. The report therefore gives both changes,
+the recorded terminal targets and their weights, and any separate crystal-image
+targets. No eligible arm, missing atoms and an unavailable capture have distinct
+outcomes. Python callers request this readback with `compare_preflight=True`.
+
 To check bonds between residues, run
 `nasolve cif-doctor assess --run RUN --checkpoint ID --refined-links --json`.
 The final Phenix GEO table and written coordinates identify both atoms,

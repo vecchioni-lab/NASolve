@@ -141,7 +141,7 @@ def assess_run(
             from .refinement_parallelity import read_execution_plane_geometry
             receipt["refined_planes"] = read_execution_plane_geometry(
                 run, outputs["parallelity_execution"], checkpoint=record.checkpoint_id,
-                parent=record.parent, model=model, omit_each_member=True,
+                parent=record.parent, model=model, omit_each_member=True, compare_preflight=True,
             )
 
     tracked = [

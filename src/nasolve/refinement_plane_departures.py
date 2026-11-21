@@ -125,6 +125,65 @@ def measure_source_ring_arms(sources, observation, planes):
     return rows
 
 
+def _arm_endpoints(sources, phase):
+    arms = measure_source_ring_arms(sources, phase, [])
+    if not arms:
+        return {}
+    atoms = {(_site(atom), atom["atom_id"]): atom for atom in phase["atoms"]}
+    targets = defaultdict(list)
+    for bond in phase["geometry"]["proxy_details"]["bond_simple"]:
+        weight = bond["weight"]
+        targets[frozenset(bond["i_seqs"])].append(dict(
+            ideal_A=bond["distance_ideal"], weight=weight,
+            sigma_A=1 / sqrt(weight) if weight is not None and weight > 0 else None,
+            origin_id=bond["origin_id"], symmetry_operation=bond.get("symmetry_operation"),
+        ))
+    rows = {}
+    for arm in arms:
+        site, path = arm["site"], tuple(arm["arm_atoms"])
+        measured = arm["arm_distances_angstrom"]
+        row = dict(status=arm["status"], reason=arm["reason"], ring_atoms=arm["ring_atoms"],
+                   tip_height_A=measured[path[-1]] if measured is not None else None,
+                   terminal_bond_A=None, terminal_targets=None)
+        outside, tip = (atoms.get((site, name)) for name in path[-2:])
+        if outside is not None and tip is not None:
+            row["terminal_bond_A"] = _observed("bond_simple", [outside["xyz"], tip["xyz"]])
+            recorded = targets[frozenset((outside["i_seq"], tip["i_seq"]))]
+            row["terminal_targets"] = [t for t in recorded if t["symmetry_operation"] in (None, "x,y,z")]
+            images = [t for t in recorded if t["symmetry_operation"] not in (None, "x,y,z")]
+            if images:
+                row["terminal_image_targets"] = images
+        rows[(site, arm["component"], path)] = row
+    return rows
+
+
+def compare_source_ring_arms(sources, preflight, refined):
+    """Compare the same chemical arm at two native stages using each stage's atom indices."""
+    phases = {"preflight": preflight, "refined": refined}
+    unavailable = {stage: phase["reason"] for stage, phase in phases.items() if phase["status"] == "UNASSESSED"}
+    result = dict(policy_id="refinement-source-ring-arm-change-v1", status="UNASSESSED",
+                  unavailable=unavailable, arms=[], scientific_approval="NOT_RUN")
+    if unavailable:
+        return result
+    before, after = (_arm_endpoints(sources, phase) for phase in (preflight, refined))
+    if before.keys() != after.keys():
+        raise ValueError("The observed stages have different source-defined arms")
+    if not before:
+        return dict(result, status="NO_ELIGIBLE_ARMS")
+    result["status"] = "MEASURED"
+    for key, old in before.items():
+        new = after[key]
+        if old["ring_atoms"] != new["ring_atoms"]:
+            raise ValueError("The observed stages have different source ring atoms")
+        if old["status"] != "MEASURED" or new["status"] != "MEASURED":
+            result["status"] = "PARTIAL"
+        row = dict(site=key[0], component=key[1], arm_atoms=list(key[2]), preflight=old, refined=new)
+        for field, change in (("tip_height_A", "tip_height_change_A"), ("terminal_bond_A", "terminal_bond_change_A")):
+            row[change] = None if old[field] is None or new[field] is None else new[field] - old[field]
+        result["arms"].append(row)
+    return result
+
+
 def _measure_plane(index, proxy, atoms, coords, angles, omit_each_member):
     import numpy as np
 

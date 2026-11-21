@@ -53,6 +53,56 @@ def test_same_source_ring_reference_survives_changing_native_plane_membership():
     assert measure_source_ring_arms(sources, obs, [])[0]["arm_distances_angstrom"]["Q8"] == pytest.approx(.4)
 
 
+def test_arm_comparison_measures_the_terminal_bond_even_when_the_tip_gets_flatter():
+    from nasolve.refinement_plane_departures import compare_source_ring_arms
+
+    sources, before = ring_arm_observation()
+    after = deepcopy(before)
+    after["atoms"][8]["xyz"] = [4.5, 0., 2.01]
+    for index, phase in enumerate((before, after)):
+        for atom in phase["atoms"]:
+            atom["i_seq"] += 100 * index
+        atoms = phase["atoms"]
+        phase["geometry"]["proxy_details"]["bond_simple"] = [{
+            "i_seqs": [atoms[8]["i_seq"], atoms[7]["i_seq"]],
+            "distance_ideal": 1.47, "weight": 2500., "origin_id": 0, "slack": 0.,
+        }]
+    comparison = compare_source_ring_arms(sources, before, after)
+    arm, = comparison["arms"]
+    assert comparison["status"] == "MEASURED" and arm["site"] == "B:4"
+    assert arm["arm_atoms"] == ["Q0", "Q6", "Q7", "Q8"]
+    assert arm["tip_height_change_A"] == pytest.approx(-.39)
+    assert arm["terminal_bond_change_A"] > .45
+    assert arm["refined"]["tip_height_A"] == pytest.approx(.01)
+    assert arm["refined"]["terminal_targets"] == [
+        {"ideal_A": 1.47, "weight": 2500., "sigma_A": .02, "origin_id": 0, "symmetry_operation": None}]
+    proxy, = after["geometry"]["proxy_details"]["bond_simple"]
+    proxy["symmetry_operation"] = "-x,y,-z"
+    image = compare_source_ring_arms(sources, before, after)["arms"][0]["refined"]
+    assert image["terminal_targets"] == [] and image["terminal_image_targets"][0]["symmetry_operation"] == "-x,y,-z"
+    after["geometry"]["proxy_details"]["bond_simple"] = []
+    result = compare_source_ring_arms(sources, before, after)["arms"][0]
+    assert result["refined"]["terminal_targets"] == []
+    assert result["terminal_bond_change_A"] == arm["terminal_bond_change_A"]
+
+
+def test_arm_comparison_explains_unavailable_geometry_and_missing_atoms():
+    from nasolve.refinement_plane_departures import compare_source_ring_arms
+
+    sources, before = ring_arm_observation()
+    after = deepcopy(before)
+    after["atoms"].pop(8)
+    for phase in (before, after):
+        phase["geometry"]["proxy_details"]["bond_simple"] = []
+    result = compare_source_ring_arms(sources, before, after)
+    arm, = result["arms"]
+    assert result["status"] == "PARTIAL" and arm["tip_height_change_A"] is None
+    assert arm["refined"]["status"] == "UNASSESSED" and "missing" in arm["refined"]["reason"].lower()
+    unknown = {"status": "UNASSESSED", "reason": "Selected atoms unavailable", "sites": before["sites"]}
+    result = compare_source_ring_arms(sources, unknown, after)
+    assert result["status"] == "UNASSESSED" and result["unavailable"] == {"preflight": unknown["reason"]}
+
+
 @pytest.mark.parametrize("case", [
     {"charge": 7}, {"stereo": 0}, {"stereo": 6}, {"revised_orders": {(0,1):"SINGLE"}},
     {"revised_orders": {(6,7):"DOUBLE"}}, {"extra_bonds":[(8, 4, "SINGLE")]},
@@ -256,11 +306,14 @@ def test_legacy_or_unavailable_capture_remains_explicit(tmp_path, monkeypatch, c
     from tests.test_refinement_parallelity import completed
     run,result,_,child,_,_ = completed(tmp_path,monkeypatch,chemistry=chemistry,declared_sites=True)
     report = read_execution_plane_geometry(run,child["outputs"]["parallelity_execution"],
-        checkpoint=child["id"],parent=child["parent"],model=result.model_path)
+        checkpoint=child["id"],parent=child["parent"],model=result.model_path,compare_preflight=True)
     if chemistry is None:
         assert report is None
     else:
         assert report["status"]=="UNASSESSED" and report["reason"] and report["planes"]==[]
+        change = report["source_ring_arm_changes"]
+        assert change["status"] == "UNASSESSED" and change["written_model_sha256"] is None
+        assert change["unavailable"].keys() == {"preflight", "refined"}
 
 
 def test_cif_doctor_reads_selected_refined_planes_without_changing_checkpoint(tmp_path, monkeypatch, capsys):
@@ -268,7 +321,8 @@ def test_cif_doctor_reads_selected_refined_planes_without_changing_checkpoint(tm
     from nasolve.cli import main
     from tests.test_refinement_parallelity import completed
 
-    run, _, _, child, _, _ = completed(tmp_path, monkeypatch, chemistry="bent")
+    run, _, registry, child, _, _ = completed(tmp_path, monkeypatch, chemistry="bent")
+    entrance = next(row for row in registry["checkpoints"] if row["id"] == child["parent"])
     moved = tmp_path / "moved"
     old = run.parents[1]
     old.rename(moved)
@@ -287,6 +341,10 @@ def test_cif_doctor_reads_selected_refined_planes_without_changing_checkpoint(tm
             else:
                 assert receipt["refined_planes"]["schema_version"] == 2
                 assert receipt["refined_planes"]["model_sha256"] == child["model"]["sha256"]
+                phases = receipt["refined_planes"]["source_ring_arm_changes"]
+                assert phases["status"] == "NO_ELIGIBLE_ARMS" and phases["arms"] == []
+                assert phases["input_model_sha256"] == entrance["model"]["sha256"]
+                assert phases["written_model_sha256"] == child["model"]["sha256"]
     assert before == {p: (p.stat().st_mtime_ns, p.read_bytes()) for p in run.rglob("*") if p.is_file()}
 
 
