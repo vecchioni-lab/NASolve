@@ -123,3 +123,97 @@ def test_legacy_missing_preparation_is_explicit_unavailable(prepared):
 def test_context_pin_refuses_new_report_even_with_identical_model(prepared):
     pin=load(prepared)['context_sha256'];p=prepared['run']/'report.json';p.write_bytes(p.read_bytes()+b'\n')
     with pytest.raises(ValueError,match='context changed'):load(prepared,expected_context_sha256=pin)
+
+
+@pytest.fixture
+def typed_preparation(tmp_path):
+    from types import SimpleNamespace
+    from nasolve.topostitch_recipe import recipe_digest
+    parent=tmp_path/'parent.pdb';parent.write_bytes(b'exact parent')
+    restraint=tmp_path/'restraint.phil';restraint.write_bytes(b'restraints')
+    control=tmp_path/'control.phil';control.write_bytes(b'controls')
+    keys=('pdb_interpretation.sort_atoms','pdb_interpretation.restraints_library.cdl',
+          'pdb_interpretation.restraints_library.cdl_nucleotides.enable',
+          'pdb_interpretation.use_ncs_to_build_restraints')
+    report=dict(policy_id='cif-typed-native-literal-inputs-v1',authority='original capture',
+                execution_context=dict(ordinary_handoff_allowed=False))
+    value=dict(report=report,model=parent,phils=[restraint],
+               compiled_restraint_phils=[restraint],interpretation_control_phils=[control])
+    calls=[]
+    def read(kind,directory,*,reader_control_policy):
+        assert kind=='literal_na_inputs' and directory==tmp_path
+        assert reader_control_policy=='cif-captured-reader-control-handoff-v1'
+        calls.append('read');return value
+    def definitions(data,seen):
+        assert data==b'controls' and not seen;seen.update(keys)
+        calls.append('controls');return {k:False for k in keys},[]
+    def shadows(paths):assert paths==[restraint];calls.append('shadows')
+    compiler=SimpleNamespace(_compiler_input=read)
+    controls=SimpleNamespace(POLICY_ID='cif-captured-reader-control-handoff-v1',
+        CONTROLS=frozenset(keys),control_definitions=definitions,reject_shadow_controls=shadows)
+    return SimpleNamespace(root=tmp_path,parent=parent,restraint=restraint,control=control,
+        report=report,value=value,compiler=compiler,controls=controls,calls=calls,
+        report_pin=recipe_digest(report))
+
+
+def bind_typed(s,**kw):
+    from nasolve.topostitch_native_preparation import bind_native_preparation_inputs
+    options=dict(expected_report_sha256=s.report_pin,compiler_owner=s.compiler,controls_owner=s.controls)
+    options.update(kw)
+    return bind_native_preparation_inputs(s.root,b'exact parent',**options)
+
+
+def test_typed_preparation_binding_is_detached_without_runtime_authority(typed_preparation):
+    from dataclasses import FrozenInstanceError
+    import json
+    s=typed_preparation;bound=bind_typed(s)
+    assert bound.parent_bytes==b'exact parent'
+    assert bound.compiled_restraint_phils==(b'restraints',)
+    assert bound.interpretation_control_phils==(b'controls',)
+    assert dict(bound.reader_controls)=={k:False for k in s.controls.CONTROLS}
+    assert bound.report_sha256==s.report_pin
+    assert json.loads(bound.source_report_json)==s.report
+    assert bound.runtime_authority is False and bound.chemical_admission is False
+    assert s.calls==['read','controls','shadows','read']
+    s.restraint.write_bytes(b'new');s.report['authority']='changed'
+    assert bound.compiled_restraint_phils==(b'restraints',)
+    assert json.loads(bound.source_report_json)['authority']=='original capture'
+    with pytest.raises(FrozenInstanceError):bound.parent_bytes=b'new'
+
+
+@pytest.mark.parametrize('fault',['parent','report_pin','report_policy','owner_policy','alias_role',
+    'combined_controls','missing_role','missing_control','nonboolean_control','true_control',
+    'shadow','file_race','report_race','role_race'])
+def test_typed_preparation_binding_refuses_mismatched_or_changed_sources(typed_preparation,fault):
+    from nasolve.topostitch_recipe import recipe_digest
+    s=typed_preparation
+    if fault=='parent':s.parent.write_bytes(b'other parent')
+    elif fault=='report_pin':s.report_pin='0'*64
+    elif fault=='report_policy':
+        s.report['policy_id']='old untyped';s.report_pin=recipe_digest(s.report)
+    elif fault=='owner_policy':s.controls.POLICY_ID='different'
+    elif fault=='alias_role':s.value['interpretation_control_phils']=[s.restraint]
+    elif fault=='combined_controls':s.value['phils'].append(s.control)
+    elif fault=='missing_role':s.value['interpretation_control_phils']=[]
+    elif fault in ('missing_control','nonboolean_control','true_control'):
+        original=s.controls.control_definitions
+        def changed(*args):
+            values,mappings=original(*args);key=sorted(values)[0]
+            if fault=='missing_control':values.pop(key)
+            else:values[key]=0 if fault=='nonboolean_control'else True
+            return values,mappings
+        s.controls.control_definitions=changed
+    elif fault=='shadow':
+        def fail(paths):raise ValueError('conflicting shadow setting')
+        s.controls.reject_shadow_controls=fail
+    else:
+        original=s.compiler._compiler_input
+        def changed(*args,**kw):
+            result=original(*args,**kw)
+            if s.calls.count('read')==2:
+                if fault=='file_race':s.restraint.write_bytes(b'changed')
+                elif fault=='report_race':s.report['authority']='changed'
+                else:result['compiled_restraint_phils']=[s.control]
+            return result
+        s.compiler._compiler_input=changed
+    with pytest.raises(ValueError):bind_typed(s)

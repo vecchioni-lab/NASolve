@@ -17,6 +17,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W203 — Bind immutable native preparation source inputs
+
+- Add an in-memory source binding through the existing trusted Cedar compiler
+  and control readers. Pin the complete typed report and exact current parent;
+  preserve ordered compiled PHIL bytes and separate original control PHIL bytes.
+- Require all four authenticated False controls. Refuse role overlap, shadow
+  settings, stale source/report bindings and changes during repeated owner reads.
+  The detached frozen object is not chemical, motion or runtime authority.
+- 175 focused source/175 relocated installed tests pass; the real typed source
+  passes 14 cold checks identically in source/installed Python 3.12 and Phenix's
+  Python 3.11. Original temporary input/install paths are gone. No native
+  interpretation, refinement, dispatcher, disk schema or dependency change.
+
 ### W202 — Qualify typed reader controls and the shared live collector
 
 - Reuse installed Cedar C507 atom/geometry collectors and the current topology

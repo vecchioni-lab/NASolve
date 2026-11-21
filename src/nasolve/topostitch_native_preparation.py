@@ -1,10 +1,15 @@
 """One-shot coordinate-role ordering around a caller-qualified native builder.
 
-No native monkeypatch, file reader, process, force or execution policy lives here.
+Source-input binding delegates authentication to explicit trusted Cedar readers.
+No native monkeypatch, process, force or execution policy lives here.
 Cedar's builder owns the actual interpretation and chemistry/diffraction proof;
 the enclosing worker owns input lifetime and disposal of every failed manager.
 """
 from copy import deepcopy
+from dataclasses import dataclass
+from hashlib import sha256
+import json
+from pathlib import Path
 
 from .topostitch_endpoint import NativeEndpointMapping, map_native_endpoint
 
@@ -139,3 +144,85 @@ class NativeEndpointPreparation:
 
     def statistics(self):
         return deepcopy(self._record)
+
+
+@dataclass(frozen=True)
+class NativePreparationInputs:
+    """Detached typed source bytes, never a chemical or runtime permission.
+
+    ``source_report_json`` preserves the complete original compiler report;
+    its canonical digest is distinct from a raw JSON-file checksum. PHIL tuples
+    preserve each role's byte order without wrapping, merging or editing them.
+    A later Cedar consumer must revalidate its live scope and actual parameters.
+    """
+    parent_bytes: bytes
+    source_report_json: bytes
+    compiled_restraint_phils: tuple[bytes, ...]
+    interpretation_control_phils: tuple[bytes, ...]
+    reader_controls: tuple[tuple[str, bool], ...]
+    reader_policy: str
+
+    @property
+    def report_sha256(self):
+        return sha256(self.source_report_json).hexdigest()
+
+    @property
+    def model_sha256(self):
+        return sha256(self.parent_bytes).hexdigest()
+
+    @property
+    def runtime_authority(self):
+        return False
+
+    @property
+    def chemical_admission(self):
+        return False
+
+
+def bind_native_preparation_inputs(directory, parent_bytes, *, expected_report_sha256,
+                                   compiler_owner, controls_owner):
+    """Reopen typed source roles through explicit trusted Cedar owners.
+
+    The expected digest comes from the authenticated compiler-report binding,
+    not a newly inferred policy. Cedar's existing reader verifies the source
+    artifact; this adapter binds it to exact current-parent bytes and returns
+    immutable inputs for the later native service. Repeated checks are snapshot
+    checks, not locks or retained-process authority. No native work occurs here.
+    """
+    policy='cif-captured-reader-control-handoff-v1'
+    if type(parent_bytes) is not bytes or controls_owner.POLICY_ID!=policy:
+        raise ValueError('Require exact parent bytes and the supported reader-control owner')
+    directory=Path(directory)
+    def read():
+        value=compiler_owner._compiler_input('literal_na_inputs',directory,
+                                            reader_control_policy=policy)
+        report=value['report']
+        payload=json.dumps(report,sort_keys=True,separators=(',',':'),allow_nan=False).encode()
+        if (report.get('policy_id')!='cif-typed-native-literal-inputs-v1'
+                or sha256(payload).hexdigest()!=expected_report_sha256):
+            raise ValueError('Typed source compiler report differs from the expected binding')
+        restraints=tuple(Path(p).resolve() for p in value['compiled_restraint_phils'])
+        controls=tuple(Path(p).resolve() for p in value['interpretation_control_phils'])
+        model=Path(value['model']).resolve();paths=(model,*restraints,*controls)
+        if (not restraints or not controls or len(set(paths))!=len(paths)
+                or tuple(Path(p).resolve() for p in value['phils'])!=restraints):
+            raise ValueError('Require separate unambiguous ordered restraint and control roles')
+        return payload,model,restraints,controls
+    payload,model,restraints,controls=read()
+    snapshots={p:p.read_bytes() for p in (model,*restraints,*controls)}
+    if snapshots[model]!=parent_bytes:
+        raise ValueError('Typed source belongs to a different current parent')
+    values={};seen=set()
+    for p in controls:
+        parsed,_=controls_owner.control_definitions(snapshots[p],seen)
+        values.update(parsed)
+    if (set(values)!=controls_owner.CONTROLS or len(values)!=4
+            or any(v is not False for v in values.values())):
+        raise ValueError('Require all four authenticated False reader controls')
+    controls_owner.reject_shadow_controls(list(restraints))
+    if (read()!=(payload,model,restraints,controls)
+            or any(p.read_bytes()!=data for p,data in snapshots.items())):
+        raise ValueError('Typed preparation inputs changed while binding')
+    return NativePreparationInputs(parent_bytes,payload,
+        tuple(snapshots[p] for p in restraints),tuple(snapshots[p] for p in controls),
+        tuple(sorted(values.items())),policy)
