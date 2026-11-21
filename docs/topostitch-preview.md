@@ -1996,3 +1996,23 @@ admission are not qualified. Repeated reads detect drift, not races; no locking,
 model/registry writing, launch, model selection or runtime authority is added.
 The unselected/fixed remainder label is a partition, not an installed movement
 constraint. [Real parent and checks](topostitch-periodic.md#w188--inspect-native-support-across-a-real-preparation-window).
+
+### Derived ordinary source context (W190)
+
+Both preparation inspectors accept `ordinary_model_context_owner=cedar_model_context`,
+a trusted installed `cif_model_context` module supplied explicitly by the caller.
+Only an original canonical DA/DC/DG/DT `postmr` model with no checked publication
+is supported. Its frozen `post_mr_plan` and recorded prepared-model hash must bind
+the exact selected bytes. The existing owner derives the standard-backbone context;
+no new chemistry implementation or artifact-supplied code is used.
+
+The additive `derived_source_context` field has status
+`DERIVED_ORDINARY_BACKBONE_CONTEXT`, authority
+`CURRENT_MODEL_AND_FROZEN_ORDINARY_PLAN`, and `checked_preparation=False`.
+The parent digest includes `derived_source_context_sha256`; use the resulting
+`expected_context_sha256` for a later read. Omitting the opt-in does not reproduce
+that pin. Existing checked availability remains unavailable and the preparation
+status stays `NO_CHECKED_PREPARATION`. Coordinates and frozen policy supply the
+derivation, not independent experimental truth or original pair/stack assignment.
+No modified-source, descendant or motion scope is added; existing calls and
+schema versions are unchanged. [Validation](topostitch-periodic.md#w190--bind-derived-ordinary-source-connectivity).

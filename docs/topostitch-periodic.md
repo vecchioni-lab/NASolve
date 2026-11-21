@@ -11143,3 +11143,42 @@ keeping DERIVED ordinary backbone context distinct from checked preparation.
 An initial direct call returns 121 standard links and all 128 canonical sites.
 This is the ordinary auditor's coordinate/frozen-plan derivation, not independent
 experimental topology or permission to invent missing sticky-end partners.
+
+## W190 — Bind derived ordinary source connectivity
+
+Code `776f0c316e06d8198d438a6c39b84e2fef18c82f` adds only an explicit optional
+ordinary-model-context owner in `topostitch_preparation.py`; eleven additional
+cases in `test_topostitch_native_window.py` cover source binding and refusal.
+Before: ordinary checked authority was unavailable with no maintained source-intent
+join. After: original canonical roots can report separately derived source context,
+while checked authority stays unavailable. Defaults and schema versions are unchanged.
+
+The genuine 2603-atom/128-residue source yields 121 standard backbone links through
+Cedar's existing `cif_model_context`. Its existing topology reader matches all 121
+against W188's saved capture. Removing one expected edge yields REVIEW with one
+unexpected link. This agreement is between two source-derived interpretations,
+not independent topology truth. No pairing/stack intent or motion approval follows.
+
+Validation command (both source and relocated installation, Python 3.12.14):
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider
+ tests/test_topostitch_native_window.py tests/test_topostitch_preparation.py
+ tests/test_topostitch_checkpoint.py tests/test_topostitch_execution.py
+ tests/test_topostitch_endpoint.py`.
+Source **128 passed (3.80 s)**; fresh relocated installed **128 passed (3.75 s)**,
+with PYTHONPATH replaced by the installed package path and build source removed.
+A new-API test fails before the patch. A protected fresh installed reader reproduces
+the actual result with original-path open/stat denied and zero access attempts;
+this is reader-level protection, not OS isolation. Default W188 JSON is identical.
+Wheel SHA256 `5d2118b595d258e5646b8f912ba777a886a99a76b93c87be47f7d819d0ff70bb`.
+
+Local-only evidence uses anchor `NASolve`, relative directory
+`branch-artifacts/willow/w190-source-context/`: `review.json`,
+`ordinary-context-window.json` (SHA256
+`ee15cca6432f8dcd333f3293dd0e78dda39b5ba4cedcd4b24ba337112f245dcd`),
+`native-topology.json` (SHA256
+`63c22a65c365eefd6c565418c638c28e8ee2516ac16cd1b53a20f07a3a0a7d92`),
+and installed/cold-read receipts. Cedar source is `04d506c5`; this reuses the saved
+Phenix 2.2.1-6174 capture and makes **no new native execution or refinement**.
+No generated science is committed. No migration is required. Modified roots,
+refined descendants, independent pair/stack intent, effective input-order/settings
+identity and motion acceptance remain separate. No full suite was run, as scoped.

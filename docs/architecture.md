@@ -1029,6 +1029,11 @@ composes that parent with a fixed-coordinate capture and explicit source-order a
 selection. It reports within/boundary/outside support without replacing the existing
 native geometry reader or granting force, chemistry, pair-assignment or motion authority.
 
+W190 optionally binds the existing ordinary model-context derivation to the exact
+canonical PostMR source and frozen plan. Derived source connectivity is separate
+from checked preparation and experimental topology; the opt-in result enters the
+parent context digest. Defaults and missing pair/stack authority remain unchanged.
+
 The pairing owner supplies exact forward/reciprocal edge incidence to selected
 atom-image audits. These bind one-partner capacity only within their recorded
 coordinate scope; nontrivial lattice translations, ambiguity and unresolved

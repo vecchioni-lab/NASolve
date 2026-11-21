@@ -7,6 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+W190 adds explicitly derived ordinary source connectivity, retaining the original
+checked-chemistry boundary. Next is the shared Q15 paired-region phosphate report;
+see the handoff for ownership and the audited roadmap for remaining motion gates.
+
 - **Willow queue:** [Development handoff](development-handoff.md). W128–W138
   qualify explicit bounded ordinary counted-pair execution, compatible registered
   continuation and actual final-writer pair readback, including the opt-in 100-cap

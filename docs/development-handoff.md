@@ -1,5 +1,24 @@
 # NASolve development handoff — Willow
 
+**W190: ordinary source connectivity is bound without inventing approval.**
+The exact-parent and native-window readers can explicitly reuse Cedar's ordinary
+model-context owner on an original canonical PostMR model and frozen plan.
+The result remains `NO_CHECKED_PREPARATION`; its separately labelled derived
+source context is pinned in the parent digest. The real 2603-atom parent supplies
+121 standard backbone links, all matching the saved native capture. No pairing,
+stacking, experimental topology or motion authority is inferred. Defaults are
+unchanged. **128 focused source + 128 relocated installed tests** pass, with
+identical protected cold readback and no new native execution.
+[API](topostitch-preview.md#derived-ordinary-source-context-w190) ·
+[validation](topostitch-periodic.md#w190--bind-derived-ordinary-source-connectivity).
+
+**Next:** Q15/H1 explicit paired-region phosphate measurements, owned by Linden
+and shared with Cedar/Alder. Preserve model/site/image identity, missing phosphates
+and relocation. P–P span and optional half-span are not local-axis radii. Twist
+qualification, including the unresolved 7SDG discrepancy, remains separate. An
+actual bend still needs an independently declared paired-window target; none is
+invented for the canonical X11_22 example. S04/S05/S06 remain partial.
+
 **W189: keep local and pre-existing remote strain separate.** The shared Cedar
 geometry reader measures the saved W188 capture without another native run.
 E8–E9 / E13–E14 boundary bonds are 1.59669 / 1.62668 Å against 1.607 Å targets;
@@ -10,13 +29,6 @@ separate those inherited defects from local changes. Ten crossing scalars reprod
 independently and all 7909 scalar rows map to their original partitions. Torsions,
 pucker, density and acceptance remain open. [Methods](topostitch-periodic.md#w189--measure-the-existing-local-and-remote-covalent-baseline).
 Local checkout: `ScienceCheckouts/Linden/2026-11-21_canonical-boundary-baseline/geometry-baseline.html`.
-
-**Next source integration:** use the existing ordinary model-context owner on the
-actual frozen plan/model. An initial read derives 121 standard-backbone links
-across 128 canonical residues; preserve this as derived source intent, separately
-from checked dictionary preparation or experimental truth. Bind it through the
-maintained exact-parent reader and compare with the saved native capture before
-any bend. No independent paired-window target exists here; do not invent one.
 
 **W188: inspect what a proposed window is attached to.** The new read-only
 `inspect_checkpoint_native_window` composes the exact ordinary parent with Cedar's

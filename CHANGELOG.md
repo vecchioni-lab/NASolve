@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W190 — Bind derived ordinary source connectivity
+
+- Add an explicit trusted ordinary-model-context owner to both preparation
+  readers. Bind derived canonical source intent separately from checked chemistry;
+  preserve defaults and refuse missing frozen plans or mismatched model/context.
+- Qualify 128 focused source and 128 relocated installed checks, plus real saved
+  native topology and protected cold readback. No schema migration, native run,
+  coordinate change, automatic pairing or motion admission.
+
 ### W189 — Preserve a local and remote geometry baseline before bending
 
 - Reuse the maintained captured-geometry reader to record exact boundary scalars,
