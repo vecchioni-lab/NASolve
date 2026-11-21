@@ -11007,3 +11007,88 @@ for this exact canonical parent, then qualify its fixed native capture before
 coordinate transfer. Preserve dictionary acquisition >=1 rather than constructing
 an empty chemical bundle. S04/S05/S06 remain partial; do not repeat completed
 transport/root probes or infer scientific closure from this metadata result.
+
+
+## W188 — Inspect native support across a real preparation window
+
+Code `adca2e07c50cb313541918f261c6a4c80ea6745b` adds the read-only native-window API
+to the existing preparation module. It composes the preparation inspector with
+Cedar's maintained capture/atom/full-monomer/named-endpoint readers; no native
+parser or force calculator is copied. This turns W175's private partition into
+an exact ordinary-parent inspection with source/native order mapping, captured
+family status, named boundary rows and actual proxy multiplicity. No checkpoint
+schema, default, CLI, selection or motion behavior changes.
+
+One fixed-coordinate Phenix **2.2.1-6174** capture reads the W187 canonical parent.
+A prospective E9–E13 window selects all **102 atoms** in those five residues;
+**2501 atoms** are outside it. Its capture covers **2603 atoms / 128 monomers**.
+The selected region is not a declaration of its duplex mate or a qualified bend
+window. Atom-order preservation and full monomer mapping are new explicit capture
+settings, not reconstructed historical refinement settings. The initial output
+layout was refused before native launch; moving the exact PHIL bytes into an input
+subdirectory permits the single actual capture, completed in **11.63 s**.
+
+| Captured proxy family | Selected | Boundary | Fixed remainder | Total |
+| --- | ---: | ---: | ---: | ---: |
+| Simple bond | 113 | 2 | 2801 | 2916 |
+| ASU bond | 0 | 0 | 0 | 0 |
+| Angle | 172 | 8 | 4308 | 4488 |
+| Dihedral | 47 | 6 | 1299 | 1352 |
+| Constant dihedral | 31 | 0 | 1009 | 1040 |
+| Chirality | 20 | 0 | 485 | 505 |
+| Planarity | 5 | 0 | 123 | 128 |
+| Parallelity | 0 | 0 | 0 | 0 |
+
+The two boundary bonds are **E8 O3′–E9 P** and **E13 O3′–E14 P**, each with a
+captured 1.607 Å target. There are **16 named crossing terms** in total. Coordinates
+and source selection are unchanged; no optimizer or refinement ran. The source
+has no inherited PHIL/CIF and the capture has zero custom requests. Neither fact
+establishes missing physical pairing/stacking/interactions. Complete monomer
+mapping is not complete-atom chemical quality or scientific acceptance.
+
+The inherited-file check is byte/multiplicity inclusion, allowing explicit
+additional capture inputs; it does not prove identical effective settings or
+original role/order. Rowan independently reviewed this distinction, full endpoint
+binding and two-list parallelity. A future execution gate must bind ordered roles,
+settings and prospective topology/interaction intent separately.
+
+The new regression fails before implementation (missing API). **25 new cases**
+cover native/input reorder, repeated boundary terms, both parallelity planes,
+missing versus zero evidence, parent/receipt/context pins, capture-time drift,
+inherited-input multiplicity and old-path-gone relocation. Exact focused command:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider \
+  tests/test_topostitch_native_window.py tests/test_topostitch_preparation.py \
+  tests/test_topostitch_checkpoint.py tests/test_topostitch_execution.py \
+  tests/test_topostitch_endpoint.py
+```
+
+Python **3.12.14**: **117 passed in 4.28 s**. A newly built wheel, with build source
+removed and the original installation path gone, passes the same **117 tests in
+3.64 s** using `PYTHONPATH=<relocated-install>` from an isolated test copy. Wheel
+SHA256 `46d1a3433110781329986a730961f03477b01d41ae8543d0b9553f216db0d8df`;
+runtime module SHA256 `3fc83d7a9d4aeb92de4ce09769fc16c1822d78a56d783b44ab817892fa5ba158`.
+No full suite ran, per the scoped push.
+
+The installed reader also reproduces the exact real report after copying/renaming
+its root and capture, with old copy paths gone. Fresh-process original open/stat
+denial and positive guard controls pass, with **zero original access attempts**.
+This is reader-level isolation, not OS isolation. Scientific inputs and original
+selection are untouched. Source and installed readers use the same trusted Cedar
+`04d506c5` modules; this is a composed read-only API check, not a merged release.
+
+Local evidence remains excluded from Git at
+`NASolve:branch-artifacts/willow/w188-canonical-window/`: `plan.json`,
+`layout-stop.json`, `capture.json`, `window-report.json`, `review.json`,
+`installed-check.json` and `cold-installed.json`. The roadmap binds receipt hashes;
+local ownership records supply anchor provenance. Native receipt:
+`w188_capture:native/cif-native-589qdd0b/native_receipt.json`, SHA256
+`8c8780da19411414677703f28be8288213c4f4fa014bab92d660fc4fe7dbf318`.
+The source review preceded a computation-preserving set-lookup optimization; final
+installed source hashes and identical real report establish final-code parity.
+
+Next use the existing Cedar captured-geometry reader to examine these actual
+boundary targets and current covalent strain before planning a deformation. Keep
+torsion/plane conventions, absent pair intent, nonbonded scope and density separate.
+No new native capture or duplicate metric engine is needed for that question.

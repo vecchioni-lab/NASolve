@@ -1953,3 +1953,46 @@ explicitly trusted `preparation_reader` implementing
 caller trust boundary, not an importer or a way to load executable code from a
 saved report. No chemistry producer, compiler, artifact copy or new launcher is
 added.
+
+
+### Inspect native support for a preparation window (W188)
+
+`topostitch_preparation.inspect_checkpoint_native_window` reads an existing
+PostMR/explicit preparation and a maintained native capture at the exact selected
+model bytes. Supply `expected_checkpoint_id`, `expected_model_sha256`,
+`native_receipt`, its `expected_native_receipt_sha256`, and a nonempty sorted list
+of unique `selected_indices` in **source PDB atom-record order**, not atom serials
+or native indices. `expected_context_sha256` optionally pins the earlier preparation
+snapshot; an explicit `checkpoint` preserves the existing selection API.
+
+Standalone Willow callers supply the trusted `preparation_reader` and
+`native_owners=(cedar_attachment_native, cedar_terminal_qualification,
+cedar_native_monomers)` modules. An integrated installation uses those existing
+owners automatically. No artifact-supplied code is loaded. The strict supported
+PDB identity/alternate-conformer limits remain Cedar's; mmCIF and ambiguous atom
+mapping are not silently broadened. Refined descendants still require a separately
+qualified preparation-lineage join.
+
+The returned schema-1 `topostitch-preparation-native-window` observation includes
+exact parent context, an anchored native receipt, full monomer proof, selected
+source/native indices, atom identities, and selected/boundary/fixed counts for
+eight captured proxy families. Each crossing term retains its native ordinal,
+both endpoint lists when present, input indices, structured atom names and recorded
+parameters/symmetry metadata. Repeated proxies are counted repeatedly. Unsupported
+families are unavailable, never zero. A zero observed family count is specific to
+this captured manager and is not evidence that the physical interaction is absent.
+
+Every inherited PHIL/CIF must be included by bytes and multiplicity. Additional
+capture inputs are explicit. This **multiset inclusion is not input-order/role or
+effective-setting equivalence**: extra PHIL can override settings, and even the
+same files in another order may differ. An execution gate must separately bind
+those roles, order and effective settings. Pair/stack assignments and absence of
+interactions are never inferred from the file or custom-request count.
+
+Selection means ASU atom-index membership; it is not a geometrically bounded
+crystal-image neighborhood. Native symmetry metadata remains visible, but image
+closure, nonbonded support, geometric quality, identity of partners and motion
+admission are not qualified. Repeated reads detect drift, not races; no locking,
+model/registry writing, launch, model selection or runtime authority is added.
+The unselected/fixed remainder label is a partition, not an installed movement
+constraint. [Real parent and checks](topostitch-periodic.md#w188--inspect-native-support-across-a-real-preparation-window).

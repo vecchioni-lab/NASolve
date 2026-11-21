@@ -1,5 +1,23 @@
 # NASolve development handoff — Willow
 
+**W188: inspect what a proposed window is attached to.** The new read-only
+`inspect_checkpoint_native_window` composes the exact ordinary parent with Cedar's
+capture, monomer and named-proxy readers. The genuine X11_22 parent has 2603 atoms
+and 128 complete monomer mappings. A prospective E9–E13 window contains 102 atoms,
+with 2501 outside it; its boundaries carry **2 bonds, 8 angles and 6 dihedrals**.
+All terms retain their actual multiplicity and named endpoints. **117 source +
+117 relocated installed tests** and an identical protected real cold readback pass.
+No atom moves. [API](topostitch-preview.md#inspect-native-support-for-a-preparation-window-w188) ·
+[methods and limits](topostitch-periodic.md#w188--inspect-native-support-across-a-real-preparation-window).
+
+Native support is observational: inherited file hashes/multiplicity do not prove
+identical effective settings when extra PHIL is present or input order differs.
+Zero custom requests does not establish absent pairing or interactions. Before an
+execution gate, bind exact roles/order/settings and prospective topology intent.
+Next use this same measured boundary to assess its existing covalent geometry
+through the shared Cedar geometry reader; do not build another force calculator
+or repeat native interpretation. Original pairing/motion gates remain open.
+
 **W186–W187: ordinary control transport is delivered; canonical ancestry is now
 concrete.** Cedar `04d506c5` carries authenticated captured reader controls through
 existing preparation owners and frozen native dispatch. **558 focused source
@@ -18,10 +36,10 @@ No shared resolver patch is warranted by this result. Checked chemical preparati
 and original compiled pair/stack authority are still absent; this is not ancestry
 for the separate 859-atom diagnostic. [W187 finding](topostitch-periodic.md#w187--reopen-a-real-canonical-postmr-root-with-the-original-inaccessible).
 
-**Next:** define prospective parent topology/restraint intent for this authenticated
-canonical root through existing owners, then qualify a fixed-parent native capture
-before coordinate transfer. Preserve the complete dictionary acquisition contract;
-no empty bundle or fabricated historical authority. S04/S05/S06 remain partial.
+W188 supplies the fixed-parent capture and window support; prospective topology,
+pair/stack intent and coordinate transfer remain separate. Preserve dictionary
+acquisition requirements; no empty bundle or fabricated historical authority.
+S04/S05/S06 remain partial.
 
 **W185, independent matched-input review:** C403/C475's real frozen requests
 match except one seven-atom B:4 PDU plane and declared path relocation. Ten checks
@@ -98,7 +116,7 @@ W174 joins the frozen request; retained-manager integration remains next.
 [Exact scope, controls and setup stops](topostitch-periodic.md#w172--require-declared-topology-before-parent-coordinate-transfer).
 
 
-Updated **2026-11-21**, through **W187**. W168’s private native diagnostic now retains
+Updated **2026-11-21**, through **W188**. W168’s private native diagnostic now retains
 known parent chemistry at the ordinary 3 Å interpretation cutoff while diffraction
 and refinement use the displaced child. One five-cycle run recovers **2.288 →
 0.271 Å RMS**, keeping all 38 backbone links, atom identities and checked sugar

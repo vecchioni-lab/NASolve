@@ -1024,6 +1024,10 @@ preparation and original compiled pair intent (absent in that example). A legacy
 absolute-only run report is not a declared anchored reference; initialize through
 its supported exact dataset suffix before testing relocation of the schema-2 root.
 See [W186/W187 evidence](topostitch-periodic.md#w186--carry-captured-reader-controls-through-ordinary-preparation).
+The W188 [native-window inspector](topostitch-preview.md#inspect-native-support-for-a-preparation-window-w188)
+composes that parent with a fixed-coordinate capture and explicit source-order atom
+selection. It reports within/boundary/outside support without replacing the existing
+native geometry reader or granting force, chemistry, pair-assignment or motion authority.
 
 The pairing owner supplies exact forward/reciprocal edge incidence to selected
 atom-image audits. These bind one-partner capacity only within their recorded

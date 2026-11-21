@@ -86,11 +86,14 @@ current instructions; other branches retain their own status and validation pins
   and a fixed native capture. W187 qualifies a separate genuine canonical PostMR
   root through normal writing and protected cold reopening; original compiled
   intent and retained-manager motion remain open.
+  W188 adds exact native support reporting around a declared ordinary-parent
+  atom window, preserving boundary multiplicity and missing intent. No motion
+  or chemical acceptance follows from the measured support.
   Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W187;
-  the next substantial audit is W188. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W188;
+  the next substantial audit is W189. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

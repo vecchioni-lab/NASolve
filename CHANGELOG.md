@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W188 — Inspect native support around a proposed preparation window
+
+- Add an opt-in read-only report binding an exact preparation, native capture and
+  source-order atom window through existing Cedar readers. Preserve named crossing
+  terms, both parallelity planes, proxy multiplicity and unavailable families.
+- Keep inherited-file inclusion separate from effective-setting equivalence and
+  missing pairing intent. No motion, chemical admission, selection or CLI default.
+- Verify 117 focused source and 117 relocated installed checks; one actual
+  fixed-coordinate canonical capture and protected installed cold replay pass.
+
 ### W186–W187 — Connect ordinary controls and audit real canonical ancestry
 
 - Record Cedar's integrated opt-in reader-control handoff, focused source/install
