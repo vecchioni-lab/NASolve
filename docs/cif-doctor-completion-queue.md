@@ -69,7 +69,10 @@ ReadySet and five diffraction cycles. Both links finished within 0.004 Å
 of target and two close contacts remain on that historical host. C486 recovers
 both partners from the Coot model. C488 preserves the B values of the selected
 ordinary parent at all ten previously reset sites. After five cycles the two
-links are 1.611 and 1.604 Å and three close contacts remain. The next Q07 gate
+links are 1.611 and 1.604 Å and three close contacts remain. C493 left the
+neighbours in their original positions before Phenix. Its final junctions
+measured 1.612 and 1.603 Å, two overlaps exceeded 0.55 Å, and Rfree was
+0.2514. Both trials kept the four sugar centres and the original flags. The next Q07 gate
 is invocation by ordinary mutation and registered refinement on the same scaffold. Ordinary 1AP:T and
 S6G:C now pass through ReadySet and five Phenix cycles. In 1AP the local plane
 covers both amino groups. In S6G only the shared pair plane includes sulfur.

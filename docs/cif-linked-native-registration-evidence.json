@@ -120497,5 +120497,72 @@
       "measured-host-chi.json": "2ac797d055c6eadb68da4abc970d0d90b022187541b8e1ecfa13328dde9fefbb",
       "reference-frame-comparison.json": "f59620d3ef21b1d684d10eb0225802882d1a790bfc1767ee3c5020dca26c7b8d"
     }
+  },
+  "separate_ATL_direct_seed_diffraction_2026_11_21": {
+    "owner": "Rowan",
+    "native_program": "Phenix 2.2.1-6174",
+    "scope": "Separate source-driven replacement on the selected ordinary twelve-change parent.",
+    "selected_parent": "a3f4f183d7e0c8d45aa233d91da005904772c11ea632c73a1029928f0d638ffe",
+    "selected_registry": "4f90c636ca40d4ed425c7ff5e35801078f5057c7918dd3e2412ee66a1cde7649",
+    "comparison": "C488 three-residue adjustment",
+    "original_source": "cd7bd864ac5fb1a125294d30ff6da7bd36ac95fc7a4b72e6c7aaeee92f7f3c01",
+    "numerical_dictionary": "23dd4b09d128219200dcf083b65eed1de77259feadd09f54987b3a684ddbc3e5",
+    "qualification": "41623e69b9c99b64c8a0d5cd3a72c095b5b646686bddf2699e2b4a95ff530d8e",
+    "replacement_seed": "1260c47d2111e3f8c627cebedad93465a8a76c20eeed23305b2bb82f0f2b3c18",
+    "model_in": "e2b165c86280be66a4e0625f5370259bc9cb232c804e0c275813825a69e32f21",
+    "model_out": "4d9dd31e23aee8a2a0e803481bd4d1abb3cc86a71e09759f5f324d9a97672116",
+    "native_execution": "5ddf0fda8349883ced0c7e6802865c58a0ec7a90f160c016c0de6d3992ae6017",
+    "atoms": 869,
+    "same_occupancies_elements_and_starting_B": 869,
+    "changed_start_coordinates": 66,
+    "changed_start_sites": [
+      "A:10",
+      "A:11",
+      "A:12"
+    ],
+    "ordered_chemical_input_count": 32,
+    "cycles": 5,
+    "at_start_links_A": [
+      1.5953,
+      1.8395
+    ],
+    "achieved_links_A": [
+      1.6122,
+      1.6025
+    ],
+    "achieved_pair_distances_A": [
+      2.9744,
+      2.8743
+    ],
+    "receiving_O3_P_OP2_deg": 110.7397,
+    "printed_ATL_overlaps_above_0_4_A": [
+      0.561,
+      0.574
+    ],
+    "source_sugar_centres": 4,
+    "signed_sugar_triples": 7,
+    "ordered_phosphate_volume_A3": -12.681,
+    "backbone_links": 38,
+    "frame_restraints": {
+      "bond": 53,
+      "angle": 90,
+      "planarity": 10,
+      "parallelity": 58
+    },
+    "protected_angles": 6,
+    "ATL_B_range": [
+      185.1,
+      441.25
+    ],
+    "r_work": 0.2668,
+    "r_free": 0.2514,
+    "reflections": {
+      "matched_measurements_and_sigmas": 2273,
+      "matched_flags": 3236,
+      "work": 2146,
+      "free": 127
+    },
+    "comparison_interpretation": "Both construction seeds retain the two covalent bonds and four sugar centres. Rfree is higher without neighbour adjustment and the two remaining printed overlaps are larger than 0.55 angstrom.",
+    "registered_thirteenth_substitution": false
   }
 }

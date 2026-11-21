@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-21, C490–C492 source-bound dictionary recovery and held-out sugar placement — Rowan**.
+Updated **2026-11-21, C493 direct ATL construction through five Phenix cycles — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
@@ -13,6 +13,16 @@ Focused, relocated installed, matched native and independent checks also pass.
 Software qualification does not change the scientific REVIEW or close Q06.
 
 ## Where to resume
+
+**ATL on the selected twelve-change scaffold, C493.** The simpler seed used the
+currently qualified dictionary without first shifting either neighbour. Its 869
+atoms had the same starting occupancies, B values and elements as C488. After
+five Phenix 2.2.1-6174 cycles its junctions measured 1.612 and 1.603 Å, and its
+two adenine contacts measured 2.974 and 2.874 Å. All four sugar centres and the
+original Free-R assignments survived. The two remaining overlaps measured
+0.561 and 0.574 Å. Rfree rose from 0.2439 in C488 to 0.2514 here. This supports
+testing the simpler construction in ordinary PostMR. The thirteenth substitution
+in C493 was built separately from the selected twelve-change checkpoint.
 
 **9V9 dictionary recovery.** Phenix printed all 40 source bonds plus one
 5.061 Å O4′–C4 bond. The new acquisition follows that exact stopped attempt
