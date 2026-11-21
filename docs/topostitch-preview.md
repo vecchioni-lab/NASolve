@@ -2267,3 +2267,44 @@ Exact replay currently also requires compatible numerical behavior: the same
 packet relocates under Python 3.12, while Python 3.11 produces identical PDB bytes
 but last-bit audit-angle differences and is refused. No tolerance is widened.
 [Qualification and limits](topostitch-periodic.md#w196--replay-a-prospective-interior-paired-window).
+
+
+## Map an admitted endpoint to native atom order (W198)
+
+`nasolve.topostitch_endpoint.map_native_endpoint` adapts an already admitted
+motion to an explicitly observed native **parent** or **candidate**. Obtain
+`expected_audit_sha256` through the existing trusted preview/checkpoint/execution
+join; recomputing a digest from arbitrary new coordinates is not motion authority.
+
+```python
+mapping = map_native_endpoint(
+    source_bytes, candidate_bytes, full_precision_points,
+    movable_indices=source_indices,
+    max_displacement_angstrom=bound,
+    expected_audit_sha256=admitted_audit_digest,
+    native=observed_native_atoms,
+    native_model_role="parent",  # or "candidate", matching observed coordinates
+    native_owner=trusted_cedar_native_owner,
+)
+```
+
+The trusted owner defaults to the installed Cedar module when present. Standalone
+Willow must receive that dependency explicitly; do not load executable code from
+an artifact. Cedar's strict identity/element/occupancy/coordinate checks retain
+their existing model/conformer scope and roundoff limit.
+
+The frozen `NativeEndpointMapping` contains `native_to_source`,
+`native_identities`, `movable_native_indices`, `fixed_native_indices`, and
+native-order `native_points`, `parent_points`, `candidate_points` and
+`full_precision_points`. Its `source_index_basis` is
+`SOURCE_PDB_ATOM_RECORD_ORDER`, never an implicitly sorted parser order.
+Candidate points are exact PDB decimals; full-precision points retain the admitted
+initializer. Nested tuples are detached from mutable input observations. Fixed
+atoms, full atom coverage, source record order and the bound audit stay strict.
+Movable ANISOU is rejected by this first handoff scope.
+
+This is a coordinate assignment, not a mutable model handle, lifetime permit or
+native execution request. The executing owner must bind it to the actual live
+model and independently preserve topology, crystal/scattering/ADPs, fixed context
+and input lifetime. No coordinates are applied and no files are emitted.
+[Qualification](topostitch-periodic.md#w198--keep-native-atom-order-and-movement-scope-together).

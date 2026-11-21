@@ -1,5 +1,30 @@
 # NASolve development handoff — Willow
 
+**W198: native atom order now travels with the exact movement scope.**
+The existing endpoint owner returns a detached immutable mapping for one admitted
+parent/candidate role. It reuses Cedar's strict atom reader and W188's complete
+bijection; source indices explicitly mean raw PDB ATOM/HETATM record order.
+This matters for terminal OP3: the saved initial diffraction state puts D1 OP3
+at index 733 while raw PDB order puts it at 714. The prepared state returns to
+raw order. W197's label-based transfer was correct; its parsed-input index array
+was never a raw-record index array.
+
+**Qualification:** 141 focused source + 141 fresh relocated installed tests;
+nine saved native stages / 63 cold checks agree exactly in source, installed
+Python 3.12 and the Phenix Python 3.11 interpreter. Altered identities and fixed
+coordinate drift refuse. No new native refinement, disk schema or runtime hook.
+[API](topostitch-preview.md#map-an-admitted-endpoint-to-native-atom-order-w198) ·
+[methods](topostitch-periodic.md#w198--keep-native-atom-order-and-movement-scope-together).
+
+**Next (W199):** agree the exact live preparation/transfer boundary with Cedar,
+then qualify the opt-in integration using the existing frozen execution owner.
+Willow owns admitted source/motion/mask; Cedar owns native model state, chemistry,
+crystal/ADPs and transition; Alder owns retained input lifetime. A completed read
+is not release of its enclosing retained scope. Do not add a second preview
+reader, another execution format, or repeat W197's refinements. S04/S05/S06 remain
+partial. W196's cross-Python whole-preview audit limit remains; W198 only qualifies
+the already-frozen endpoint handoff. Raw scientific artifacts stay local.
+
 **W197: signed interior starts recover with both end frames held fixed.**
 The fresh W196 zero/±2° proposals now complete three matched five-cycle native
 refinements under the existing explicit C21 policy. Only 205 interior atoms

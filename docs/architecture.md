@@ -1029,6 +1029,16 @@ composes that parent with a fixed-coordinate capture and explicit source-order a
 selection. It reports within/boundary/outside support without replacing the existing
 native geometry reader or granting force, chemistry, pair-assignment or motion authority.
 
+W198's `topostitch_endpoint.map_native_endpoint` shares W188's complete
+source/native bijection and Cedar's strict `_native_atoms` reader. An existing
+trusted endpoint-audit digest binds source/candidate bytes, full-precision points,
+mask and bound before mapping. The immutable in-memory result carries explicit
+parent/candidate role, raw-PDB source index basis and observed native coordinates
+beside reordered parent/candidate/full-precision coordinates and movable/fixed
+indices. It neither applies coordinates nor replaces the native chemistry,
+crystal/ADP, process or retained-input lifetime owners. A recorded permutation
+cannot authorize use against a different live model. No execution schema changes.
+
 W190 optionally binds the existing ordinary model-context derivation to the exact
 canonical PostMR source and frozen plan. Derived source connectivity is separate
 from checked preparation and experimental topology; the opt-in result enters the

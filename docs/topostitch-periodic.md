@@ -11600,3 +11600,76 @@ source/motion/policy/execution handoff before another perturbation or weight swe
 The private native hook is not an installed ordinary workflow. Experimental
 diffraction, independent targets, larger deformation, full local geometry and
 symmetry covalent seams remain open; S04/S05/S06 stay PARTIAL.
+
+
+## W198 — Keep native atom order and movement scope together
+
+**Before/after.** W188 could inspect a complete native/source bijection, but a
+caller had to reconstruct coordinate and mask assignments separately. The
+existing endpoint owner now returns `NativeEndpointMapping` through
+`map_native_endpoint`; W188 uses the same factored bijection. An explicit
+parent/candidate role and trusted endpoint audit bind the detached immutable
+assignment. Source order stays strict; only native interpretation may reorder.
+Changed masks, bounds, parent bytes, identities and coordinate roles refuse.
+No model is modified, no process launched, no disk/execution schema introduced.
+
+**Real order distinction.** Nine saved stages from W197 (three signed/zero cases,
+each with prepared parent, prepared candidate and initial diffraction state)
+pass 63 cold checks. Initial diffraction has 20 reordered atoms, all fixed in
+this experiment: D1 OP3 moves from raw source index 714 to native index 733.
+Prepared `sort_atoms=False` states return to raw order. W197's private
+`native_to_input_index` refers to default iotbx parsed input, not raw PDB records;
+its actual transfer already matched labels correctly. The initial W198 cold
+reader assumed these index bases were equal and refused. Its preserved attempt
+was corrected without rerunning native science. A separate constructed test
+moves the selection boundary through the reordered atoms to catch assignment of
+C5′ instead of O5′; this is not claimed as an observed W197 moving atom.
+
+The cold reader derives initial-stage atom observations from saved diffraction
+labels, coordinates, elements and occupancies, joining exact immutable identity
+metadata by label. It does not generate a new native capture. OP3→OPX and a
+0.001 Å fixed-coordinate change refuse through the existing Cedar reader.
+Parent/candidate observations and frozen source inputs remain unchanged.
+
+**Validation.** The new regression fails before the API exists. Source and fresh
+relocated wheel each pass **141 focused tests** with the same five-file scope:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src \
+  /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider \
+  tests/test_topostitch_endpoint.py tests/test_topostitch_preparation.py \
+  tests/test_topostitch_native_window.py tests/test_topostitch_checkpoint.py \
+  tests/test_topostitch_execution.py
+```
+
+The interpreter path is historical environment provenance, not an artifact
+lookup. Installation uses a fresh source copy, offline wheel build and relocated
+installation with the original build source/install paths removed. Wheel SHA256:
+`9e4104eaba2dcad8b2e39b5402594ab68e5b8fb3c4fe890e22b76b1237ab6f0a`.
+The source, relocated Python 3.12.14 and Phenix 2.2.1-6174 Python 3.11 cold reports
+are exactly equal for all nine handoffs/63 checks. This invokes the Phenix
+interpreter only: **zero native dry-runs or refinements**. W196's whole-preview
+cross-Python last-bit replay limitation is not resolved or relaxed.
+
+Local evidence under NASolve anchor `branch-artifacts/willow/w198-native-handoff/`:
+`source-final-review.json`, `python311-review.json`, `installed-review.json`,
+`installed-check.json`. Checksums are in the roadmap. `attempt01-reader.py` and
+`source-review.json` preserve precursor evidence; final claims use the final
+reports. The existing runner is `branch-artifacts/willow/runners/w198-native-handoff.py`;
+its source invocation from NASolve used the Willow source path in `PYTHONPATH`
+and `.venv/bin/python -B`, with the final report as its output argument. The
+Phenix interpreter explicitly prepended Willow source and the already pinned
+pure-Python dependencies before `runpy.run_path`; the report records owner hashes.
+No full suite: this bounded mapping refactor does not alter force/optimizer or
+workflow defaults. Roadmap audit and its eight focused tests cover the doc update.
+
+**Compatibility and next gate.** No new dependency, CLI, file format or migration;
+existing W188 reports/APIs remain unchanged. Files changed: endpoint/preparation
+owners, existing endpoint tests, changelog and current guides/roadmap. Native
+ADPs, crystal/scattering, topology, process completion and retained-parent input
+lifetime remain independently owned. Alder's retained-reader completion is not
+release of the enclosing retained scope; a cold receipt is not a live handle.
+Coordinate assignment must be checked against the actual live model at use.
+Agree that transition with Cedar before adopting it through the existing
+versioned execution policy. No duplicate preview reader or private refinement
+repeat is warranted. S04/S05/S06 remain PARTIAL; scientific payload stays local.

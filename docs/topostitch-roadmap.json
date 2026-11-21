@@ -257,14 +257,15 @@
         "W194 supplies explicit named-state span/twist deltas with unmatched/changed sites and directed adjacency retained; saved signed 5W6W recovery illustrates span insensitivity and residual local twist.",
         "W195 adds declared regional step summaries with missing coverage and near-zero/wrap limits; regional cancellation reinforces the next local repair/admission gate.",
         "W196 extends the existing replayable initializer to an explicit registered interior whole-pair window with two fixed flanks and declared nonuniform weights; native retention/recovery remains separate.",
-        "W197 qualifies matched fixed-frame recovery from fresh signed interior initializers:205 atoms relax while654 remain fixed; no new motion algorithm or ordinary native hook."
+        "W197 qualifies matched fixed-frame recovery from fresh signed interior initializers:205 atoms relax while654 remain fixed; no new motion algorithm or ordinary native hook.",
+        "W198 couples exact admitted source/candidate coordinates and movable/fixed scope through the existing strict native identity owner; nine saved-stage handoffs pass. Actual native application and lifetime integration remain separate."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "Qualify the prospective source/motion/policy handoff through the existing native execution owner with a frozen fixed-coordinate scope; do not repeat W197 or add an amplitude/weight sweep.",
+      "next_action": "Agree the live model preparation/coordinate-transfer boundary with Cedar, preserving W198 exact identity and role, source-bound motion, fixed context, current phosphate intent and Alder-owned input lifetime. Adopt only through the existing frozen execution policy; no duplicate reader, ad hoc execution format or repeat W197 refinement.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -322,14 +323,15 @@
         "E_NAMED_HELIX_STATE_COMPARISON",
         "E_DECLARED_REGIONAL_TWIST_SUMMARY",
         "E_INTERIOR_PAIRED_PREVIEW",
-        "E_FIXED_FRAME_NATIVE_RECOVERY"
+        "E_FIXED_FRAME_NATIVE_RECOVERY",
+        "E_NATIVE_ENDPOINT_HANDOFF"
       ],
       "last_audit": {
         "date": "2026-11-21",
         "reviewer": "Linden",
-        "human_update": 197,
-        "code_commit": "9ea58d08122e59ca09089f652b823b6f112b57a2",
-        "scope": "Matched fixed-frame private native control; local geometry cost retained, ordinary integration and scientific acceptance still open"
+        "human_update": 198,
+        "code_commit": "da438d6c66f75996d2307852f3818dd1a98d2a64",
+        "scope": "Source/installed coordinate handoff only; no new native execution or scientific acceptance"
       }
     },
     {
@@ -383,14 +385,15 @@
         "W194 supplies explicit named-state span/twist deltas with unmatched/changed sites and directed adjacency retained; saved signed 5W6W recovery illustrates span insensitivity and residual local twist.",
         "W195 adds declared regional step summaries with missing coverage and near-zero/wrap limits; regional cancellation reinforces the next local repair/admission gate.",
         "W196 extends the existing replayable initializer to an explicit registered interior whole-pair window with two fixed flanks and declared nonuniform weights; native retention/recovery remains separate.",
-        "W197 strongly recovers four crossing-boundary bonds while retaining complete topology and phosphate inventory. A12 phosphate-angle and B2 sugar/backbone bond costs persist; local repair remains partial."
+        "W197 strongly recovers four crossing-boundary bonds while retaining complete topology and phosphate inventory. A12 phosphate-angle and B2 sugar/backbone bond costs persist; local repair remains partial.",
+        "W198 couples exact admitted source/candidate coordinates and movable/fixed scope through the existing strict native identity owner; nine saved-stage handoffs pass. Actual native application and lifetime integration remain separate."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Bind a prospective registered motion to legitimate current-parent preparation and qualified native retention using W173/W174/W188/W190. Preserve source topology, full-precision mask, exact settings and target authority. Do not fabricate ordinary ancestry for the direct-input 5W6W packet or repeat private W168 unchanged.",
+      "next_action": "Agree the live model preparation/coordinate-transfer boundary with Cedar, preserving W198 exact identity and role, source-bound motion, fixed context, current phosphate intent and Alder-owned input lifetime. Adopt only through the existing frozen execution policy; no duplicate reader, ad hoc execution format or repeat W197 refinement.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -491,14 +494,15 @@
         "E_NAMED_HELIX_STATE_COMPARISON",
         "E_DECLARED_REGIONAL_TWIST_SUMMARY",
         "E_INTERIOR_PAIRED_PREVIEW",
-        "E_FIXED_FRAME_NATIVE_RECOVERY"
+        "E_FIXED_FRAME_NATIVE_RECOVERY",
+        "E_NATIVE_ENDPOINT_HANDOFF"
       ],
       "last_audit": {
         "date": "2026-11-21",
         "reviewer": "Linden",
-        "human_update": 197,
-        "code_commit": "9ea58d08122e59ca09089f652b823b6f112b57a2",
-        "scope": "Matched fixed-frame private native control; local geometry cost retained, ordinary integration and scientific acceptance still open"
+        "human_update": 198,
+        "code_commit": "da438d6c66f75996d2307852f3818dd1a98d2a64",
+        "scope": "Source/installed coordinate handoff only; no new native execution or scientific acceptance"
       }
     },
     {
@@ -4798,6 +4802,41 @@
           "size": 1036160
         }
       ]
+    },
+    "E_NATIVE_ENDPOINT_HANDOFF": {
+      "kind": "native_endpoint_identity_handoff",
+      "date": "2026-11-21",
+      "human_update": 198,
+      "code_commit": "da438d6c66f75996d2307852f3818dd1a98d2a64",
+      "reference": "docs/topostitch-periodic.md#w198--keep-native-atom-order-and-movement-scope-together",
+      "result": "141 focused source and141 relocated installed checks;9 saved native stages/63 cold checks match in source/installed Python3.12 and Phenix Python3.11. Raw PDB record and parsed native index bases stay explicit; altered identities/coordinates refuse.",
+      "limitation": "Pure in-memory coordinate handoff, not live model application, native chemistry/ADP/crystal or lifetime authority. Zero new native runs. W196 whole-preview cross-Python replay limit remains; no new disk schema/default/dependency or full suite.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w198-native-handoff/source-final-review.json",
+          "sha256": "95180ecc6b314bfc80d3d66c066ac116bbb92b1d6721651bd701b9d9ae359c22",
+          "size": 12491
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w198-native-handoff/python311-review.json",
+          "sha256": "95180ecc6b314bfc80d3d66c066ac116bbb92b1d6721651bd701b9d9ae359c22",
+          "size": 12491
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w198-native-handoff/installed-review.json",
+          "sha256": "95180ecc6b314bfc80d3d66c066ac116bbb92b1d6721651bd701b9d9ae359c22",
+          "size": 12491
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w198-native-handoff/installed-check.json",
+          "sha256": "99245b358aa41b372f67c7f1e1d3250848c8bf4ccbb6763451cf2f9564c7438e",
+          "size": 997
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -4959,8 +4998,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 197,
-    "next": 198,
+    "current": 198,
+    "next": 199,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -5952,6 +5991,12 @@
         "title": "Recover signed interior proposals with fixed end frames and matched native controls",
         "state": "RECORDED",
         "code_commit": "9ea58d08122e59ca09089f652b823b6f112b57a2"
+      },
+      {
+        "number": 198,
+        "title": "Keep admitted coordinates and movement masks in exact native atom order",
+        "state": "RECORDED",
+        "code_commit": "da438d6c66f75996d2307852f3818dd1a98d2a64"
       }
     ]
   },
