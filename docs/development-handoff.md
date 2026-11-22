@@ -1,7 +1,23 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C528 testing a phosphate across a crystal boundary in native refinement — Rowan**.
+Updated **2026-11-22, C529 reading the angles Phenix actually printed — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+C529 adds `printed_geometry.angles` to the read-only phosphate inspection in
+`cif_phosphate_image`, `cif_phosphate_angles` and the CLI. The real five-cycle
+bond-only GEO has zero crossing angle rows. The image-aware GEO has four,
+all measured in the asymmetric unit. Doctor now shows the discrepancy alongside
+the angles from the named mate. An explicitly printed image is checked against
+the requested triplet independently of numerical agreement. Existing command
+arguments and saved runs remain compatible. The additive output needs no
+migration. Seven regression cases failed before the change. With
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`, the source and relocated wheel each
+passed 77 checks with
+`python -B -m pytest -q -p no:cacheprovider tests/test_phosphate_image.py tests/test_phosphate_reference_links.py tests/test_refinement_link_geometry.py tests/test_cif_printed_parallelity.py`.
+An additional `tests/test_cif_doctor_run.py` run passed 13 tests and 7 subtests.
+Use the local C528 checkout's `c529-printed-angles.json` for the source hashes
+and measured values. The full suite was deferred. A correctly reported angle
+still needs a separately verified native force and declared chemical partner.
 
 **C528, five actual diffraction cycles.** On the historical no-Hg PDU:PDU
 scaffold, both arms started from the same 862 atoms and a 2.824 Å gap. Both

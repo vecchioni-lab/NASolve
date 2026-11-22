@@ -23,7 +23,9 @@ entries are reconstructed from repository history.
   matching residue chemistry. A run directory and `--checkpoint` open the
   selected model and its recorded final GEO by verified file references.
   Doctor excludes reference pairs with an extra
-  bond edit and recognizes hydrogen bonds labelled by Phenix.
+  bond edit and recognizes hydrogen bonds labelled by Phenix. It compares the
+  four printed backbone angles with both the named crystal mate and the
+  asymmetric unit, including any operators printed for the angle atoms.
 
 ### Preparing restraints for a bent model
 

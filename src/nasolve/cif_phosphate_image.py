@@ -3,6 +3,7 @@ from hashlib import sha256
 from math import dist, isfinite
 from pathlib import Path
 
+from .cif_phosphate_angles import printed_phosphate_angles
 from .refinement_contact_geometry import _contacts
 from .refinement_link_geometry import _model_labels, _printed_rows
 from .topostitch_contacts import _angle
@@ -81,11 +82,19 @@ def inspect_phosphate_image(model, *, phosphate, o3, o3_image, geometry=None, na
 
     p = point(phosphate, "P", "P", required=True)
     oxygen = point(o3, "O3'", "O", apply_image=True, required=True)
-    c3 = point(o3, "C3'", "C", apply_image=True)
-    angles = {"C3'-O3'-P": _angle([c3, oxygen, p]) if c3 is not None else None}
+    p_atom, o_atom = (phosphate, "P", "P", False), (o3, "O3'", "O", True)
+    triplets = {"C3'-O3'-P": ((o3, "C3'", "C", True), o_atom, p_atom)}
     for name in ("OP1", "OP2", "O5'"):
-        neighbour = point(phosphate, name, "O")
-        angles["O3'-P-" + name] = _angle([oxygen, p, neighbour]) if neighbour is not None else None
+        triplets["O3'-P-" + name] = (o_atom, p_atom, (phosphate, name, "O", False))
+    angles = {}
+    samples = {}
+    for name, triplet in triplets.items():
+        positions = [point(site, atom, element, apply_image=use_mate) for site, atom, element, use_mate in triplet]
+        angles[name] = _angle(positions) if all(x is not None for x in positions) else None
+        if geometry is not None and all((site, atom) in atoms for site, atom, _, _ in triplet):
+            keys = tuple(atoms[site, atom][0] for site, atom, _, _ in triplet)
+            samples[keys] = dict(name=name, mate=positions, image_atoms=[row[3] for row in triplet],
+                                 asu=[point(site, atom, element) for site, atom, element, _ in triplet])
     phosphate_atoms = {}
     for name in ("P", "OP1", "OP2", "OP3", "O5'"):
         atom = atoms.get((phosphate, name))
@@ -100,6 +109,7 @@ def inspect_phosphate_image(model, *, phosphate, o3, o3_image, geometry=None, na
         images = (op, _inverse(op, gemmi.Op("x,y,z")))
         printed = {kind: _printed_evidence(kind, text, labels, ends, images, gemmi, members, distance)
                    for kind in ("bonds", "nonbonded")}
+        printed["angles"] = printed_phosphate_angles(text, labels, samples, op, gemmi, members)
         printed["geometry_sha256"] = sha256(data).hexdigest()
         if geometry.read_bytes() != data:
             raise ValueError("Printed geometry changed during inspection")

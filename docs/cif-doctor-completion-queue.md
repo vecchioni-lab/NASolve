@@ -114,7 +114,9 @@ to their 108° reference, at 107.5° and 110.5°. The historical PDU side arms
 still stand well off their base rings. Check written coordinates against any
 printed image angles, establish the central strand's nick and ownership in
 Pine, and carry eligible source terms through a registered continuation.
-The diagnostic alone authorizes no new default.
+The diagnostic alone authorizes no new default. C529 now checks the four
+printed angles against both coordinate frames at a named model or checkpoint.
+All four angles in the C528 image-aware GEO match the asymmetric unit alone.
 
 Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
 after correcting the orientation of DP and IMC from their source graphs.

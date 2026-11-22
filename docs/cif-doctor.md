@@ -21,6 +21,16 @@ zero matches. Use `--json` for file fingerprints, occupancies and numerical
 differences between the two files. The scientist's choice of partner remains
 part of the construct description.
 
+The report also compares the four backbone angles with Phenix's printed
+bond-angle rows. For example, the final GEO may report 58.85° for O3′–P–OP1
+while the named crystal mate measures 107.49° in the written model. Doctor
+identifies the first value as the angle measured inside the asymmetric unit.
+It reports numerical agreement with either frame, both, or neither, allowing
+for PDB coordinate and table rounding with the supplied cell. JSON preserves
+the printed operators separately, including a different crystal image with
+the same atom labels. Coordinates or printed tables alone cannot establish
+which forces acted during refinement.
+
 For a numbered NASolve run, give the run directory and an explicit checkpoint
 ID or bookmark. Doctor opens the model and final GEO recorded for that
 checkpoint and checks their hashes. At a checkpoint without a final GEO it

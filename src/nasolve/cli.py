@@ -1739,6 +1739,17 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
                                      else f"van der Waals {row['vdw_A']:.3f}")
                         print(f"  {row['origin']}  {row['model_A']:.3f} Å, {reference} Å"
                               f" (printed minus coordinate {row['printed_minus_coordinate_A']:+.3f} Å)")
+            angles = result["printed_geometry"]["angles"]
+            if angles["matches"] is None:
+                print(f"Printed bond angles  {angles.get('reason') or angles['status']}")
+            else:
+                print(f"Printed angles involving these atoms  {len(angles['matches'])}")
+                descriptions = {"ASYMMETRIC_UNIT": "matches the asymmetric unit alone",
+                                "CRYSTAL_MATE": "matches the named crystal mate alone", "BOTH": "fits both coordinate readings",
+                                "NEITHER": "differs from both coordinate readings", "UNAVAILABLE": "coordinate comparison unavailable"}
+                for row in angles["matches"]:
+                    image_note = " (different image printed)" if row["image_relation"] == "OTHER_IMAGE" else ""
+                    print(f"  {row['angle']}  GEO {row['model_degrees']:.2f}° {descriptions[row['coordinate_agreement']]}{image_note}")
         reference = result.get("native_reference_links")
         if reference is not None:
             print("Intact links with matching residue definitions  " + reference["status"])

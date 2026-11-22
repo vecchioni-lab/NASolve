@@ -169,3 +169,95 @@ def test_unknown_crystal_operator_is_rejected(tmp_path, capsys):
     code = main(["cif-doctor", "phosphate-image", str(model), "--phosphate", "B:1", "--o3", "A:7",
                  "--o3-image=-x,-y,z"])
     assert code == 1 and "space group" in capsys.readouterr().err
+
+
+def printed_angle(model, geo, value, *, operations=("", "", ""), reverse=False):
+    lines = [line for line in model.read_text().splitlines() if line.startswith("ATOM")]
+    op1 = lines[1]
+    model.write_text(model.read_text().replace(op1, op1[:30] + f"{3.:8.3f}" + op1[38:]))
+    labels = [(f'pdb="{lines[i][12:27]}"' + ("  " + op if op else "")) for i, op in zip((3, 0, 1), operations)]
+    if reverse:
+        labels.reverse()
+    with geo.open("a") as out:
+        out.write("Bond angle | User supplied | restraints: 1\nSorted by residual:\n"
+                  + "angle " + "\n      ".join(labels) + "\n"
+                  + "  ideal model delta sigma weight residual\n"
+                  + f"  108.00 {value} 0.00 3.00e+00 1.11e-01 0.00e+00\n")
+
+
+@pytest.mark.parametrize("value,ops,reverse,agreement,image", [
+    ("45.00", ("", "", ""), False, "ASYMMETRIC_UNIT", "NOT_PRINTED"),
+    ("135.00", ("x-1,y,z", "", ""), True, "CRYSTAL_MATE", "REQUESTED_IMAGE"),
+    ("135.04", ("", "x+1,y,z", "x+1,y,z"), True, "CRYSTAL_MATE", "REQUESTED_IMAGE"),
+    ("45.00", ("x+1,y,z", "", ""), False, "ASYMMETRIC_UNIT", "OTHER_IMAGE"),
+    ("90.00", ("", "", ""), False, "NEITHER", "NOT_PRINTED"),
+])
+def test_printed_angle_compares_physical_mate_and_asymmetric_unit(tmp_path, capsys, value, ops, reverse, agreement, image):
+    pytest.importorskip("gemmi")
+    model, geo = inputs(tmp_path)
+    printed_angle(model, geo, value, operations=ops, reverse=reverse)
+    table = run(model, capsys, "--geometry", geo)["printed_geometry"]["angles"]
+    assert table["status"] == "OBSERVED" and table["sections"] == {"User supplied": 1}
+    row, = table["matches"]
+    assert (row["angle"], row["coordinate_agreement"], row["image_relation"]) == ("O3'-P-OP1", agreement, image)
+    assert row["origin"] == "User supplied" and row["model_degrees"] == float(value)
+    assert row["asymmetric_unit_degrees"] == pytest.approx(45) and row["crystal_mate_degrees"] == pytest.approx(135)
+
+
+def test_printed_angle_degenerate_evidence_is_explicit(tmp_path, capsys):
+    pytest.importorskip("gemmi")
+    model, geo = inputs(tmp_path)
+    assert run(model, capsys, "--geometry", geo)["printed_geometry"]["angles"]["status"] == "NOT_RECORDED"
+    printed_angle(model, geo, "90.00")
+    model.write_text(model.read_text().replace("   3.000   3.000   2.000", "   2.000   3.000   2.000"))
+    result = run(model, capsys, "--geometry", geo)["printed_geometry"]["angles"]
+    assert result["matches"][0]["coordinate_agreement"] == "BOTH"
+    lines = model.read_text().splitlines(keepends=True)
+    oi = next(i for i,line in enumerate(lines) if line[12:16].strip() == "OP1")
+    lines[oi] = lines[oi][:54] + "  0.00" + lines[oi][60:]
+    model.write_text("".join(lines))
+    row, = run(model, capsys, "--geometry", geo)["printed_geometry"]["angles"]["matches"]
+    assert row["coordinate_agreement"] == "UNAVAILABLE" and row["crystal_mate_degrees"] is None
+    geo.write_text(geo.read_text().replace("User supplied | restraints: 1", "User supplied | restraints: 2"))
+    table = run(model, capsys, "--geometry", geo)["printed_geometry"]["angles"]
+    assert table["status"] == "UNASSESSED" and table["matches"] is None
+
+
+def test_plain_report_explains_the_printed_coordinate_frame(tmp_path, capsys):
+    pytest.importorskip("gemmi")
+    model, geo = inputs(tmp_path)
+    printed_angle(model, geo, "45.00")
+    code = main(["cif-doctor", "phosphate-image", str(model), "--phosphate", "B:1", "--o3", "A:7",
+                 "--o3-image=x-1,y,z", "--geometry", str(geo)])
+    out = capsys.readouterr()
+    assert code == 0 and "45.00°" in out.out and "matches the asymmetric unit alone" in out.out
+
+
+def test_angle_operations_keep_translation_on_a_threefold_mate(tmp_path, capsys):
+    pytest.importorskip("gemmi")
+    model, geo = inputs(tmp_path)
+    model.write_text(model.read_text().replace("90.00  90.00  90.00 P 1", "90.00  90.00 120.00 P 3"))
+    printed_angle(model, geo, "45.00", operations=("-y+1,x-y,z", "x+1,y,z", "x+1,y,z"))
+    rows = run(model, capsys, "--geometry", geo, image="-y,x-y,z")["printed_geometry"]["angles"]
+    assert rows["matches"][0]["image_relation"] == "REQUESTED_IMAGE"
+    geo.write_text(geo.read_text().replace("-y+1,x-y,z", "-y,x-y+1,z"))
+    rows = run(model, capsys, "--geometry", geo, image="-y,x-y,z")["printed_geometry"]["angles"]
+    assert rows["matches"][0]["image_relation"] == "OTHER_IMAGE"
+
+
+@pytest.mark.parametrize("change", ["bad precision", "invalid image", "incomplete row"])
+def test_unreadable_angle_table_leaves_other_geometry_available(tmp_path, capsys, change):
+    pytest.importorskip("gemmi")
+    model, geo = inputs(tmp_path)
+    printed_angle(model, geo, "135.00", operations=("x-1,y,z", "", ""))
+    text = geo.read_text()
+    if change == "bad precision":
+        text = text.replace("135.00", "135")
+    elif change == "invalid image":
+        text = text.replace("x-1,y,z", "-x,-y,z")
+    else:
+        text = text.rsplit("  108.00", 1)[0]
+    geo.write_text(text)
+    tables = run(model, capsys, "--geometry", geo)["printed_geometry"]
+    assert tables["angles"]["status"] == "UNASSESSED" and tables["angles"]["matches"] is None
+    assert tables["nonbonded"]["status"] == "OBSERVED" and len(tables["nonbonded"]["matches"]) == 1
