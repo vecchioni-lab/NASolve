@@ -1,7 +1,29 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C534 identifying the crystal copy of a named atom — Rowan**.
+Updated **2026-11-22, C535 separating base orientation from propynyl geometry — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+C535 tested the C290-built orientations on the original no-mercury PDU pair.
+The existing graph-based rotation moved ten base atoms per residue about
+each glycosidic bond. Sugar atoms, all other residues, diffraction data,
+restraint strengths and the seed stayed fixed. Two additional five-cycle
+Phenix 2.2.1-6174 fits complete a two-by-two comparison with C531/C533.
+With the measured starting angles of −150°/−109°, the original ring
+plane allowed methyl heights of 0.927/1.718 Å. Including the first
+propynyl carbon brought them to **0.250/0.034 Å** and terminal bonds to
+1.469/1.471 Å. The glycosidic angles finished at −117.6°/−109.0°.
+R-free changed from 0.3470 to 0.3432 in that comparison. The alternative
+archived orientation still gave a lower overall R-free. Both starting
+conformations persisted on their respective sides of the sugar.
+
+The four fits retained the same seven rejected working observations, 1,778
+working and 124 free reflections, and all six source-declared sugar signs.
+The compact scripts and `c535-science.json` share the C531 evidence folder.
+The native invocation is the C531 command below. Cold comparison used
+`python -B c535_checkout.py ATTEMPT_PARENT NEW_JSON`. This controlled
+orientation transfer leaves the original runs and public schemas intact.
+Choosing an experimental conformer still needs local density and independent
+chemical evidence.
 
 C534 adds `--nearest-image` to CIF Doctor's existing phosphate inspection
 on an exact PDB or checkpoint. It reports the two closest operations for

@@ -149,6 +149,13 @@ construction already preserves the host orientation. Distinguish a model
 that starts rotated from a prepared model that loses its orientation in
 refinement. Ordinary continuation must retain the selected restraint inputs
 and crystal mate; overall refinement acceptance remains open.
+C535 tested that distinction on the original pair. With the two C290
+starting orientations and the CIF terminal-bond strength, adding C5A to
+the ring plane reduced terminal heights from 0.927/1.718 to 0.250/0.034 Å
+and preserved the six sugar signs after five cycles. A:12's glycosidic
+angle moved by 32.5° and B:4's by 0.1° or less. The alternative archived
+orientation still had the lower global R-free. A single global score
+cannot select the local orientation on these results alone.
 
 Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
 after correcting the orientation of DP and IMC from their source graphs.
