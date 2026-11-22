@@ -1835,6 +1835,29 @@ compatibility, initial placement and achieved geometry under a fixed objective.
 Preserve valid source and negative controls; separate dictionary, construction
 and optimizer causes. Do not infer a target error from high residual alone.
 
+**Check trigonal centres after dictionary generation.** Start with the existing
+three-neighbour carbon rule from C206/C208 and the C404/C406 native geometry
+readback. Identify the centre from elements, bond orders and stereochemistry.
+Compare the three bond lengths, the three individual angles and planarity in
+the generated CIF, the prepared model, the restraints Phenix actually used
+(targets and widths), and the refined coordinates. A flat group can still
+have its substituent pointing the wrong way. Allow chemically justified
+asymmetry. Ring substitution, formal charge, protonation and metal binding
+matter when choosing an independent reference.
+
+Use the [DF sulfur case under Q13](#df-sulfur-geometry) as the first example.
+Flag a suspect target separately from a missing restraint or a model that
+moved away from a delivered target. Where a saved fit permits it, compare
+the local pulls from geometry and working diffraction in the same physical
+direction. Automatic repair needs independent support for the intended
+chemical state, target and width. Preserve the original definition and
+record the candidate and its source. Qualify a repair through actual
+refinement and restart, checking neighbouring links and stereochemistry.
+Include a held-out, renamed example with a distorted but flat substituent,
+a legitimate asymmetric trigonal centre and a tetrahedral control. If the
+evidence is insufficient, retain the usable fallback and flag the site for
+review. This is queued work. Q06 phosphate restart remains the next gate.
+
 Done when the residual has a documented causal boundary and either a generalized,
 source-authorized correction or an explicit scientifically usable/unusable
 selection outcome. No restraint deletion, arbitrary softening, hand inversion or
@@ -1973,6 +1996,8 @@ and their uncertainties both changed. The outcome cannot be attributed solely
 to removing H or to changing formal charge. The cases remain unselected research
 controls. Explicit metal donor-state integration remains a post-build decision.
 
+<a id="df-sulfur-geometry"></a>
+
 **DF sulfur geometry, 22 November.** The matched neutral QF1 targets came
 from the Phenix 2.2.1-6174 eLBOW builder. Its N1–C2–S value was 126.83°,
 and the metal-pair fit reached 135.32°. The independent, unrestrained crystal
@@ -1981,6 +2006,17 @@ for N3–C2–S. It has neither the sugar nor the Hg–N3 bond. Use it to flag t
 distortion and require evidence for the appropriate donor state before changing
 any targets or widths. [Primary structure, Table 1](https://doi.org/10.1107/S010827010201315X)
 and [Alder’s source audit](https://github.com/vecchioni-lab/NASolve/blob/Alder/docs/metal-df-c2-angle-audit.md).
+
+The numbered input measured 126.82° and 115.90° at the two sulfur angles.
+After five cycles they were 135.32° and 108.70°. At that endpoint, moving
+S1 back within the ring plane improved both angle restraints and the total
+geometry score locally. Working diffraction favoured the other direction.
+Holding the rest of the 5.06 Å DF–Hg–DT fit fixed and restoring the first
+angle to 126.83° changed R-work from 0.306622 to 0.306667. The two-angle
+penalty fell from 27.04 to 0.23. This isolates one improvement and its cost.
+The correct metal-bound targets and their survival during a fresh refinement
+remain open. Simon would favour supported local chemistry at this small
+R-work cost. This observation is specific to this dataset.
 
 **C374 DF source-state confirmation:** exact original, numerical, plane-added and
 refinement dictionaries retain OP2 charge0/HOP2 and a single P–OP2 bond. Its

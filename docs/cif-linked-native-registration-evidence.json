@@ -1,6 +1,18 @@
 {
   "schema_version": 1,
   "document_kind": "LINKED_NATIVE_REGISTRATION_AND_COMPONENT_METADATA_RETURNS",
+  "df_sulfur_direction_2026_11_22": {
+    "queue": "Q08", "donor_state_question": "Q13", "residue": "QF1 A:12",
+    "chemistry": "Generated neutral DF definition used in the DF–Hg–DT fit",
+    "angles": ["N1-C2-S1", "N3-C2-S1", "N1-C2-N3"],
+    "native_targets_and_esd_deg": [[126.83, 1.918], [115.92, 2.647], [117.24, 2.665]],
+    "input_deg": [126.82, 115.90, 117.27], "refined_deg": [135.324, 108.705, 115.969],
+    "fixed_sulfur_trial_deg": [126.83, 117.199, 115.969],
+    "ordinary_fft_r_work": {"before": 0.3066218156, "after": 0.3066673198, "absolute_change": 0.0000455042},
+    "counts": {"working": 1092, "withheld": 59, "new_refinements": 0},
+    "interpretation": "Both native sulfur angles and net geometry locally favor the correction. Work diffraction mildly opposes it. This does not assign Hg-bound chemical targets or establish an optimal width.",
+    "replay": {"anchor": "NASolve-local-artifacts", "directory": "cedar/df-sulfur-20261122", "method": "df_sulfur_direction.py", "method_sha256": "f58491abf4588d1fc80a0f82b85c42a1a1fb24e2fa1df3c7b8c9443069c3be75", "receipt": "df-sulfur-direction.json", "receipt_sha256": "142d971996dc52bba11b2fda5c55f34ca86a39c50f9bf49af0d6964ab299a698"}
+  },
   "recorded_date": "2026-10-17",
   "archive": {
     "name": "07_Cedar_okkb2are_cif_linked_review.zip",

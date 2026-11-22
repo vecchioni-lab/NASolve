@@ -32,6 +32,19 @@ to its current frame, and reinstall the complete local forces once in the
 new driver. The original numbered run and its selection stayed intact.
 Routine automatic restart and Q06 remain open.
 
+Q08 now carries a [general check for trigonal geometry after dictionary
+generation](cif-doctor-completion-queue.md#q08--explain-persistent-mixed-pair-geometry).
+The first case is the [DF sulfur at C2](cif-doctor-completion-queue.md#df-sulfur-geometry).
+Hazel verified all native angle targets. Rowan traced the distortion to the
+five-cycle fit and measured the cost of returning one sulfur angle to its
+generated target at fixed coordinates for the rest of the crystal model.
+The replay used Phenix 2.2.1-6174, with 1,092 working and 59 withheld
+reflections. At the local artifact anchor, run
+`phenix.python -B cedar/df-sulfur-20261122/df_sulfur_direction.py Alder`.
+The compact receipt is `cedar/df-sulfur-20261122/df-sulfur-direction.json`.
+No new coordinate refinement, public schema, default or migration. Q06
+restart remains first.
+
 The local C528 evidence folder holds `c541-science.json`, `c542-science.json`
 and `c541-c542-replay.zip`. Each script has its invocation in the module
 docstring. The cold checks compare written models, GEO, native gradients,
