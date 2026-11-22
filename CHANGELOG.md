@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W222–W225 — Qualify staged recovery of a large synthetic perturbation
+
+- Qualify the existing live corrected collective force callback, then record a
+  capped six-parameter geometry warm-start and one matched receiving refinement.
+- Preserve the failed direct comparison, all source chemistry/data, successful
+  sugar retention and remaining written bond/angle outliers; no R-only acceptance.
+- Add a necessary fixed-flank path-length calculation to the planning evidence,
+  explicitly separate from calibrated DNA geometry and centerline measurements.
+- Evidence/docs only; no runtime/schema/default/dependency change or migration.
+  Generated coordinates, diffraction and local inspection files remain out of Git.
+
 ### W220–W221 — Distinguish raw diagnostic and corrected collective forces
 
 - Preserve whole-residue sugar geometry along five frozen stress-path poses;

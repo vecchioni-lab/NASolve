@@ -12515,3 +12515,88 @@ new recovery. The existing Cartesian trial API remains 3N; do not relabel it
 as a six-parameter optimizer. Source-informed return paths are diagnostics,
 not data-selected solutions. S04/S05/S06 remain PARTIAL. Evidence/docs only;
 no runtime/schema/default/dependency change, migration or scientific upload.
+
+
+## W222–W225 — Corrected collective warm-start and matched receiving refinement
+
+**W222 live force boundary:** one zero-cycle Phenix 2.2.1-6174 preparation,
+55 read-only geometry evaluations, 31 cold integrity checks. All 24 projected
+endpoint derivative comparisons pass a strict absolute 0.001 bound; energies
+match W220 exactly and corrected projections agree with W221. The existing
+Cedar correction is applied to actual live proxies before `TaperedMotion.pullback`.
+No new force implementation, `NativeMaskedObjective` constructor bypass, ordinary
+execution or relabeling of the maintained 3N Cartesian trial API is involved.
+
+**W223 geometry-only warm-start:** one predeclared six-parameter scitbx L-BFGS
+run begins at the exact W219 10 Å centroid perturbation. Source chemistry,
+205/654 mask, 20 Å atom bound and fixed pair weights remain. Rotation variables
+are degrees and translations Å, without hidden rescaling. The run stops at its
+**20-iteration cap, not convergence**, using 24 optimizer calls and 78 total
+geometry evaluations (including both 26-call derivative audits and restored
+baseline). All 24 derivative comparisons pass; 20 cold checks replay unchanged.
+Raw geometry cost falls 2,377,991 → 12,511. All 126 sugar signs and every internal
+distance in the seven full pairs survive. The four flank links become
+1.606–1.617 Å; worst original chain bond/angle is 1.75σ/3.15σ. The centroid/RMS/max
+return to 0.00626/0.01873/0.04683 Å from source. This undoes a large distortion;
+it is not a retained alternative 1 nm shape. Whole-model strain remains:
+31 bonds/38 angles exceed 4σ, with 6/8 touching movable atoms.
+
+**W224 receiving test:** separately frozen, exactly one preflight and one
+five-cycle/100-cap XYZ refinement receives the W223 PDB. Eleven independent
+retention checks confirm the same native worker, source chemistry, original
+7554 observations/389 Free flags, 205/654 mask, original B/Q and command after
+declared run rebasing; among the seven native inputs only the candidate changes.
+There is an additional geometry warm-start stage, so total computation differs
+from W219 even though the downstream diffraction refinement is matched. The
+initializer and recovery use the same frozen six-parameter motion family; this
+is a controlled same-family test, not independent deformation generalization.
+
+| Final written result | Direct W219 recovery | W223 → W224 staged recovery |
+| --- | ---: | ---: |
+| Sugar signs retained |125/126|126/126|
+| Four flank O3′–P lengths, Å |1.746/1.834/1.700/1.589|1.612/1.621/1.608/1.618|
+| Worst original chain bond/angle, σ |18.92/32.19|2.75/2.59|
+| Rwork/Rfree |0.3670/0.4148|0.007123/0.007274|
+| Region centroid / atom RMS / maximum, Å |7.776/9.756/18.486|0.00266/0.02072/0.05907|
+
+W224 passes 24 preflight and 25 final checks. Both repaired P centers have all
+four bonds/six angles within 2σ (maxima 1.71 and 1.91σ). **This is bounded
+synthetic staged recovery, not experimental or symmetry-stitch acceptance.**
+There are still 26 bonds and 32 angles above 4σ overall. Three touch the moving
+region: A11 base C4–O4 bond changes from −4.14σ in the source to −4.89σ;
+A11 O4′–C1′–N1 improves −9.16σ → −5.69σ; A12 C5′–C4′–O4′ worsens
+−2.37σ → −4.40σ. Thus not every residual is inherited unchanged, and tiny R
+factors do not override chemical review. The failed direct endpoint remains.
+
+**W225 fixed-flank planning bound:** the seven explicitly defined present-atom
+pair centers have source path length 21.057 Å and anchor separation 20.530 Å.
+The requested +10 Å selected-region centroid requires **at least 29.011 Å** of
+path (+37.77%); the actual initializer uses 40.421 Å. For a path of length L
+between A/B, every path point p obeys |p−A|+|p−B|≤L; convexity extends this to
+its positive weighted centroid. Five mathematical/control checks verify the
+calculation and the atom-count weighting reproduces the 205-atom centroid.
+This is a necessary bound on those measured centers, **not a helix-axis/rise,
+stacking, elasticity or universal DNA length limit**. It explains why retaining
+all center-step lengths cannot realize this target in this fixed window. Check
+window feasibility and explicit expansion toward protected junctions before
+forcing another large move; no amplitude/window search or native calculation ran.
+
+Local evidence roots under `NASolve:branch-artifacts/willow/` are
+`w222-live-collective-forces/`, `w223-collective-warmstart/`,
+`w224-collective-seed-recovery/`, and `w225-centroid-feasibility/`.
+Controllers/readers under `runners/` are `w222-live-collective-forces.py`
+(`plan`, `run`), `w222-review.py`, `w223-collective-warmstart.py` (`plan`, `run`),
+`w223-review.py`, `w224-collective-recovery.py` (`plan`, `preflight`, `refine`),
+`w224-review.py` (`preflight`, `refine`), `w224-retention.py`, and
+`w225-centroid-feasibility.py`; use the NASolve Python with `-B`. Native workers
+use the exact declared Phenix installation. Cold reviewer corrections (sample
+count, terminal metric print, and proposal-role naming) are retained separately;
+none required a native rerun or changed scientific outputs. W223's original
+saved review and reader remain hash-bound and its corrected cold replay matches.
+
+No product runtime/schema/default/dependency change or migration in these steps;
+scientific artifacts stay local. S04/S05/S06 remain PARTIAL. Do not repeat the
+closed trajectory to tune a result. Next: specify the maintained six-parameter
+trial's source/units/budget/stopping/rounding contract using existing owners;
+then qualify feasible windows and general data-supported deformation/stacking,
+including independent forward/reverse cases and eventual periodic closure.

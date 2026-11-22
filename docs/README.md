@@ -17,12 +17,14 @@ current instructions; other branches retain their own status and validation pins
 - **Ordinary integration:** W214/W215 bind a real PostMR root and an explicit
   dictionary-only native source; no pairing/motion intent is invented. Cedar
   owns the receiving request and native lifecycle. Read the [current handoff](development-handoff.md).
-- **Latest science: W219.** [A true 10 Å centroid stress case fails recovery](topostitch-periodic.md#w219--a-true-10-a-centroid-stress-case-fails-bounded-recovery):
-  sugar inversion and large local geometry/R errors survive despite shorter
-  boundary distances. Preserve the negative; no undeclared retry.
+- **Latest science: W222–W225.** [Collective warm-start and matched receiving refinement](topostitch-periodic.md#w222w225--corrected-collective-warm-start-and-matched-receiving-refinement)
+  recover a large synthetic perturbation while preserving sugar handedness.
+  The failed direct result and three remaining moving-region outliers stay
+  explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W219, next W220:
-  inspect the existing collective motion against native geometry before another fit. The 5 Å centerline target remains separate.
+  [generated human view](topostitch-roadmap.md). Current W225, next W226:
+  specify the maintained collective trial contract, then qualify feasible windows
+  and independent data-supported bending. The 5 Å centerline target is separate.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview/API guide](topostitch-preview.md) retain commands, failed attempts,
   compatibility pins and limits. Do not repeat closed probes because this index

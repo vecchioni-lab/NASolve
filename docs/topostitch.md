@@ -1813,3 +1813,15 @@ remain distinct evidence roles. A successful collector does not establish full
 chemistry or authorize transfer/refinement. The next maintained builder must
 compose this evidence with W200, exact source/current-parent identity, candidate
 diffraction and the separately owned outer lifetime before public dispatch.
+
+
+### Shared seven-site 5W6W intent recipe (Cedar)
+
+Cedar commit `9d5030fbc06f436f428ec2cb88308e73c72b8c74` owns
+`docs/recipes/5w6w-central-continuation.json`: fixed B:7 O3′, transformed B:1 P
+uses `-y,x-y,z`; the reciprocal P-fixed/O3′-transformed view uses `-x+y,-x,z`.
+This is the investigator's explicit central-strand convention, remapped through
+Pine's existing packet observer. The tested seven-site scope leaves other atoms
+as unchanged context. D:1 terminal chemistry is separate. It does not assert
+whole-assembly/triple-junction closure, approve geometry or enable native
+bonds automatically. Keep the source frame/operator roles explicit after recuts.

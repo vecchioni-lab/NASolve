@@ -1,20 +1,22 @@
 # NASolve development handoff — Willow
 
-**Current audit: W221, 2026-11-22. Maintained implementation: W218.**
+**Current audit: W225, 2026-11-22. Maintained implementation: W218.**
 The existing native input binder now accepts an explicitly selected dictionary-only
 parent policy from Cedar C526. Default literal inputs still require compiled
 restraints. W214 binds a real X11_22 PostMR checkpoint and original observations;
 W215 binds that exact model, original native observation and four reader controls
 without inventing pair restraints. S04/S05/S06 remain PARTIAL.
 
-**Latest science:** W219's true 10 Å centroid stress fails recovery: an A11
-C1′ inversion, 18.92σ/32.19σ worst chain bond/angle errors and final Rwork/Rfree
-0.3670/0.4148. W220's whole-residue return path preserves all 126 sugar signs,
-but its raw force diagnostic fails. W221 explains all 24 derivative differences
-using Cedar's **existing** corrected plane-force owner, with unchanged energies
-and tolerances. Actual refinement already uses that correction. No product fix,
-optimizer or accepted large repair follows. W217 remains the separate successful
-small local-repair receiving control. [Exact force boundary and evidence](topostitch-periodic.md#w220w221--whole-residue-path-and-the-existing-corrected-force-owner).
+**Latest science:** A constrained geometry warm-start now lets the original
+five-cycle protocol recover the 10 Å synthetic perturbation without the direct
+attempt's sugar inversion. W223 reaches its 20-iteration cap (not convergence);
+W224 retains 126/126 sugar signs, gives 1.612–1.621 Å flank links and
+Rwork/Rfree 0.007123/0.007274. Three moving-region bond/angle outliers remain,
+including one newly worsened angle. All original atoms, chemistry and data stay.
+The endpoint returns near source; no distinct 1 nm placement or experimental
+repair is claimed. W225 shows that the requested centroid needs at least
+29.011 Å between fixed anchors versus the 21.057 Å source pair-center path.
+[Exact staged result, residuals and feasibility limits](topostitch-periodic.md#w222w225--corrected-collective-warm-start-and-matched-receiving-refinement).
 
 **Receiving boundary:** W213's private motion fixture has no campaign ancestry.
 W214 now supplies a different, genuine current PostMR parent (2603 atoms, 128
@@ -79,14 +81,18 @@ No clean full-suite or skipped-case qualification is claimed; no suite rerun.
 
 ## Next bounded work
 
-Qualify the live corrected collective-motion callback before a six-parameter
-optimizer or another diffraction fit. Reuse `TaperedMotion` and Cedar's force
-owner; W221's saved-plane projection is not a live optimizer qualification.
-W219 is a closed negative control, not permission for a retry/amplitude sweep.
-The 5 Å centerline target is separate and unrun. Check feasible window length
-and preserved stacking before prescribing another large fixed-flank move.
-Do not repeat missing-intent searches or invent a target on the real X11_22 root.
-Rowan owns ordinary receiving and the shared W215 dictionary-parent artifact.
+The live corrected collective callback and one private bounded trajectory are
+qualified in W222/W223; a maintained six-parameter optimizer contract is still
+missing. Reuse Cedar's correction and the existing motion/endpoint owners.
+Freeze source identity, degree/Å units, hard call/motion limits, accepted-step
+lineage, stop/failure semantics and PDB-rounding review before promoting it.
+Do not relabel the 3N Cartesian trial protocol or assume rounded coordinates
+still lie exactly on the six-parameter motion surface. W224 closes one synthetic
+receiving comparison; do not tune/repeat it. Next qualify feasible editable
+windows and independent data-supported bending/straightening, preserving
+stacking, sequence and protected junctions. The 5 Å centerline test remains
+separate and unrun. Rowan owns ordinary receiving and the canonical 5W6W intent
+recipe; no missing-intent search or invented X11_22 motion.
 
 **Ordinary integration remains Cedar-owned:** the versioned request must carry the
 bound geometry-parent/source and admitted candidate motion. Rowan's **C516**
@@ -110,7 +116,9 @@ a declared helix centerline**, not maximum atom displacement or P–P span. W207
 actually shifts the unweighted 205-atom centroid 0.253 Å (largest pair centroid
 0.885 Å); no local helix centerline is measured. Define
 and qualify those measurements before claiming either target. W219 has now
-run and rejected the centroid stress recovery; the centerline test remains unrun. W206 opt-in bytes must be non-None and source MATCH
+run and rejected direct recovery; W223/W224 demonstrate staged synthetic
+recovery. The centerline test remains unrun. W206 opt-in bytes must be non-None
+and source MATCH
 must precede movement; ordinary immutable round ownership remains separate from
 Alder's frozen-metal budgets and Cedar's counted prepared/native scope.
 

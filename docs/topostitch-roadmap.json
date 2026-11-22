@@ -276,14 +276,15 @@
         "W217 completes one matched installed-seed receiving fit. Both local corrections survive saved-PDB rounding with original chemistry/data/fixed context retained; full local P-centered bond/angle readback within1.77native sigmas. Global scientific closure remains open.",
         "W218 maintains explicit selected-region displacement summaries with separate centroid/RMS/max and optional positive weights.310/310 tests and exact cross-Python saved-endpoint metrics; no centerline or achieved stress target.",
         "W219 performs the requested true10Acentroid stress once. Source/content/data survive but five-cycle recovery fails sugar handedness and large local geometry/R gates. Preserve the rejected endpoint; shorter link distances alone are not closure.",
-        "W220 preserves sugar signs on five fixed whole-residue poses. W221 resolves all24 raw derivative discrepancies through the existing Cedar plane correction; actual refinement already uses it. No new optimizer, accepted large repair or ordinary activation."
+        "W220 preserves sugar signs on five fixed whole-residue poses. W221 resolves all24 raw derivative discrepancies through the existing Cedar plane correction; actual refinement already uses it. No new optimizer, accepted large repair or ordinary activation.",
+        "W222qualifies live corrected forces; W223capped6Dgeometry warm-start plus W224matched5cycle receiving retains126sugarsigns and recovers synthetic data, with explicit remaining moving outliers. W225necessary fixed-flank path bound motivates window feasibility before larger targets."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "Qualify a live corrected collective-motion callback using existing owners before an optimizer/new fit. W221 explains the raw force discrepancy; W219 remains a rejected stress recovery. Check feasible window/stacking before another large move; centerline target is separate.",
+      "next_action": "Specify the maintained6Dtrial source/units/budget/accepted-step/stop/rounding contract using existing owners, then qualify feasible editable windows and independent data-supported deformation/stacking. W224is a closed synthetic receiving comparison, not permission to tune/repeat it. Preserve residual geometry and the unrun centerline target.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -364,7 +365,11 @@
         "E_EXPLICIT_DISPLACEMENT_METRICS",
         "E_CENTROID_STRESS_FAILURE",
         "E_COLLECTIVE_PATH",
-        "E_CORRECTED_FORCE_READBACK"
+        "E_CORRECTED_FORCE_READBACK",
+        "E_LIVE_COLLECTIVE_FORCES",
+        "E_COLLECTIVE_WARMSTART",
+        "E_STAGED_RECOVERY",
+        "E_CENTROID_PATH_BOUND"
       ],
       "last_audit": {
         "date": "2026-11-22",
@@ -372,7 +377,7 @@
         "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7",
         "reviewer": "Linden",
         "scope": "Bounded negative stress result, no scientific closure",
-        "basis": "28cold integrity checks and24/24 corrected saved-plane derivative comparisons; live collective callback remains unqualified."
+        "basis": "31live-force cold checks;20warm-start/replay checks;24/25receiving and11protocol checks; five mathematical controls. Scientific scope remains partial."
       }
     },
     {
@@ -444,14 +449,15 @@
         "W216 maintains explicit intrinsic O5/C5 proposals about fixed P/C4 anchors, exact endpoint serialization and relative sugar-hand checks;247/247 tests and48-state saved-PDB replay. Ordinary motion/admission remains separate.",
         "W217 completes one matched installed-seed receiving fit. Both local corrections survive saved-PDB rounding with original chemistry/data/fixed context retained; full local P-centered bond/angle readback within1.77native sigmas. Global scientific closure remains open.",
         "W219 performs the requested true10Acentroid stress once. Source/content/data survive but five-cycle recovery fails sugar handedness and large local geometry/R gates. Preserve the rejected endpoint; shorter link distances alone are not closure.",
-        "W220 preserves sugar signs on five fixed whole-residue poses. W221 resolves all24 raw derivative discrepancies through the existing Cedar plane correction; actual refinement already uses it. No new optimizer, accepted large repair or ordinary activation."
+        "W220 preserves sugar signs on five fixed whole-residue poses. W221 resolves all24 raw derivative discrepancies through the existing Cedar plane correction; actual refinement already uses it. No new optimizer, accepted large repair or ordinary activation.",
+        "W222qualifies live corrected forces; W223capped6Dgeometry warm-start plus W224matched5cycle receiving retains126sugarsigns and recovers synthetic data, with explicit remaining moving outliers. W225necessary fixed-flank path bound motivates window feasibility before larger targets."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Qualify a live corrected collective-motion callback using existing owners before an optimizer/new fit. W221 explains the raw force discrepancy; W219 remains a rejected stress recovery. Check feasible window/stacking before another large move; centerline target is separate.",
+      "next_action": "Specify the maintained6Dtrial source/units/budget/accepted-step/stop/rounding contract using existing owners, then qualify feasible editable windows and independent data-supported deformation/stacking. W224is a closed synthetic receiving comparison, not permission to tune/repeat it. Preserve residual geometry and the unrun centerline target.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -574,7 +580,11 @@
         "E_MAINTAINED_LOCAL_RECOVERY",
         "E_CENTROID_STRESS_FAILURE",
         "E_COLLECTIVE_PATH",
-        "E_CORRECTED_FORCE_READBACK"
+        "E_CORRECTED_FORCE_READBACK",
+        "E_LIVE_COLLECTIVE_FORCES",
+        "E_COLLECTIVE_WARMSTART",
+        "E_STAGED_RECOVERY",
+        "E_CENTROID_PATH_BOUND"
       ],
       "last_audit": {
         "date": "2026-11-22",
@@ -582,7 +592,7 @@
         "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7",
         "reviewer": "Linden",
         "scope": "Bounded negative stress result, no scientific closure",
-        "basis": "28cold integrity checks and24/24 corrected saved-plane derivative comparisons; live collective callback remains unqualified."
+        "basis": "31live-force cold checks;20warm-start/replay checks;24/25receiving and11protocol checks; five mathematical controls. Scientific scope remains partial."
       }
     },
     {
@@ -654,7 +664,8 @@
         "W214 binds a genuine canonical PostMR root but finds no independently declared motion. W215 explicitly binds dictionary-only native source with225/225focused tests and19real-source checks; no dummy restraint or ordinary execution authority.",
         "W217 completes one matched installed-seed receiving fit. Both local corrections survive saved-PDB rounding with original chemistry/data/fixed context retained; full local P-centered bond/angle readback within1.77native sigmas. Global scientific closure remains open.",
         "W219 performs the requested true10Acentroid stress once. Source/content/data survive but five-cycle recovery fails sugar handedness and large local geometry/R gates. Preserve the rejected endpoint; shorter link distances alone are not closure.",
-        "W220 preserves sugar signs on five fixed whole-residue poses. W221 resolves all24 raw derivative discrepancies through the existing Cedar plane correction; actual refinement already uses it. No new optimizer, accepted large repair or ordinary activation."
+        "W220 preserves sugar signs on five fixed whole-residue poses. W221 resolves all24 raw derivative discrepancies through the existing Cedar plane correction; actual refinement already uses it. No new optimizer, accepted large repair or ordinary activation.",
+        "W222qualifies live corrected forces; W223capped6Dgeometry warm-start plus W224matched5cycle receiving retains126sugarsigns and recovers synthetic data, with explicit remaining moving outliers. W225necessary fixed-flank path bound motivates window feasibility before larger targets."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -665,7 +676,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Qualify a live corrected collective-motion callback using existing owners before an optimizer/new fit. W221 explains the raw force discrepancy; W219 remains a rejected stress recovery. Check feasible window/stacking before another large move; centerline target is separate.",
+      "next_action": "Specify the maintained6Dtrial source/units/budget/accepted-step/stop/rounding contract using existing owners, then qualify feasible editable windows and independent data-supported deformation/stacking. W224is a closed synthetic receiving comparison, not permission to tune/repeat it. Preserve residual geometry and the unrun centerline target.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -777,7 +788,11 @@
         "E_MAINTAINED_LOCAL_RECOVERY",
         "E_CENTROID_STRESS_FAILURE",
         "E_COLLECTIVE_PATH",
-        "E_CORRECTED_FORCE_READBACK"
+        "E_CORRECTED_FORCE_READBACK",
+        "E_LIVE_COLLECTIVE_FORCES",
+        "E_COLLECTIVE_WARMSTART",
+        "E_STAGED_RECOVERY",
+        "E_CENTROID_PATH_BOUND"
       ],
       "last_audit": {
         "date": "2026-11-22",
@@ -785,7 +800,7 @@
         "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7",
         "reviewer": "Linden",
         "scope": "Bounded negative stress result, no scientific closure",
-        "basis": "28cold integrity checks and24/24 corrected saved-plane derivative comparisons; live collective callback remains unqualified."
+        "basis": "31live-force cold checks;20warm-start/replay checks;24/25receiving and11protocol checks; five mathematical controls. Scientific scope remains partial."
       }
     },
     {
@@ -820,7 +835,7 @@
         "Show actual before/after coordinates, moved/fixed sites, mates, geometry and matched refinement deltas. Test stale evidence, interruption, relocation and explicit keep/reject/use decisions.",
         "For final B09 review, show source, proposed and refined geotest coordinates with the intended periodic mates and per-member pass/review/failure evidence."
       ],
-      "next_action": "Qualify a live corrected collective-motion callback using existing owners before an optimizer/new fit. W221 explains the raw force discrepancy; W219 remains a rejected stress recovery. Check feasible window/stacking before another large move; centerline target is separate.",
+      "next_action": "Specify the maintained6Dtrial source/units/budget/accepted-step/stop/rounding contract using existing owners, then qualify feasible editable windows and independent data-supported deformation/stacking. W224is a closed synthetic receiving comparison, not permission to tune/repeat it. Preserve residual geometry and the unrun centerline target.",
       "evidence": [
         "E_SOFTWARE",
         "E_VIEW",
@@ -5680,6 +5695,122 @@
           "size": 11481
         }
       ]
+    },
+    "E_LIVE_COLLECTIVE_FORCES": {
+      "kind": "Qualify the existing live corrected collective callback",
+      "date": "2026-11-22",
+      "human_update": 222,
+      "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7",
+      "reference": "docs/topostitch-periodic.md#w222w225--corrected-collective-warm-start-and-matched-receiving-refinement",
+      "result": "55read-only native geometry calls,31cold checks,24strict absolute0.001derivative comparisons pass; same energies and existing correction.",
+      "limitation": "No maintained6Doptimizer, fit or scientific closure.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w222-live-collective-forces/declaration.json",
+          "sha256": "b11924c81af7f285b50338c8aa3e34bf4dffa5691ce83b82c73f2822d4df904c",
+          "size": 2503
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w222-live-collective-forces/review.json",
+          "sha256": "7349ab084baeb2c72c84529f653e0fa0ce3cfbdddbd384c19b9484233c4bcf64",
+          "size": 24444
+        }
+      ]
+    },
+    "E_COLLECTIVE_WARMSTART": {
+      "kind": "Record a capped whole-pair geometry warm-start",
+      "date": "2026-11-22",
+      "human_update": 223,
+      "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7",
+      "reference": "docs/topostitch-periodic.md#w222w225--corrected-collective-warm-start-and-matched-receiving-refinement",
+      "result": "20iterations/24optimizer/78total geometry calls;20cold checks.126sugar signs/seven complete pair shapes retained; flank links1.606–1.617A.",
+      "limitation": "Iteration cap, not convergence. Geometry-only return near source;31bonds/38angles>4sigma,6/8touch moving atoms. No fit or new-placement proof.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w223-collective-warmstart/declaration.json",
+          "sha256": "378bf8f9104dc83adc5a26150ea136476cd33860462d3220cf6f40c1d9cc5a8e",
+          "size": 3587
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w223-collective-warmstart/review.json",
+          "sha256": "381edf2a293cf14278ae9f2c85a026b6534545e88a865ba363da1966a496d7ed",
+          "size": 56501
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w223-collective-warmstart/review-validation.json",
+          "sha256": "6ef639be94169312ed63ab471c6f792580fda2fb0b27661cf25e3e38e116c054",
+          "size": 789
+        }
+      ]
+    },
+    "E_STAGED_RECOVERY": {
+      "kind": "Refine the collective seed through the matched original protocol",
+      "date": "2026-11-22",
+      "human_update": 224,
+      "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7",
+      "reference": "docs/topostitch-periodic.md#w222w225--corrected-collective-warm-start-and-matched-receiving-refinement",
+      "result": "One preflight/one5cycle fit;24/25cold checks plus11protocol/retention checks.126sugar signs retained; flank1.612–1.621A; chain max2.75/2.59sigma; RW/RF.007123/.007274; centroid/RMS/max.00266/.02072/.05907A.",
+      "limitation": "Synthetic staged recovery only.26bonds/32angles>4sigma overall; three moving terms remain, including newly worsened A12sugar angle. Original W219failed endpoint retained; no experimental/symmetry closure.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w224-collective-seed-recovery/declaration.json",
+          "sha256": "75e2ff49f772c8043600dc7ac29e452c9bfb3f8071cfa2f7031dd32e62457063",
+          "size": 1984
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w224-collective-seed-recovery/preflight-review.json",
+          "sha256": "b8b04236cb1d5a8e90f32e5942c41da5c9b328f426f78cd42d1096e55b5b6b30",
+          "size": 75310
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w224-collective-seed-recovery/refine-review.json",
+          "sha256": "0db9c7d11bd4835b84a0ca765266ecef3152312724c50e14433ff4fd3605ca48",
+          "size": 75405
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w224-collective-seed-recovery/retention.json",
+          "sha256": "374c1b29a71ef5177a0beeec72bffea9ef525d23d77e052b06d3657b07080c45",
+          "size": 39553
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w224-collective-seed-recovery/moving-outliers.json",
+          "sha256": "58bbe7396a21a2ef7bdfdcfcbdfff5f0159360b7564f961ff96bf933298806be",
+          "size": 2434
+        }
+      ]
+    },
+    "E_CENTROID_PATH_BOUND": {
+      "kind": "Measure the necessary fixed-flank path-length budget",
+      "date": "2026-11-22",
+      "human_update": 225,
+      "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7",
+      "reference": "docs/topostitch-periodic.md#w222w225--corrected-collective-warm-start-and-matched-receiving-refinement",
+      "result": "Original seven pair-center path21.057A; requested+10Acentroid needs>=29.011A(+37.77%); actual initializer40.421A. Five math controls, no native call.",
+      "limitation": "Necessary bound on explicit present-atom pair centers only; no helix axis, DNA elasticity, stacking, curvature calibration or sufficient feasibility. No window/amplitude search.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w225-centroid-feasibility/declaration.json",
+          "sha256": "fda62587af2e55977e236a8bc7847482fe6dda211080428db7d12e83f8979e1a",
+          "size": 2099
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w225-centroid-feasibility/readback.json",
+          "sha256": "10079626319a0cd115cf7745adb3a58a0592c41681382ca210757bd52c921983",
+          "size": 7536
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -5845,8 +5976,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 221,
-    "next": 222,
+    "current": 225,
+    "next": 226,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -6982,12 +7113,36 @@
         "title": "Existing corrected plane forces explain raw diagnostic discrepancy",
         "state": "RECORDED",
         "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7"
+      },
+      {
+        "number": 222,
+        "title": "Qualify the existing live corrected collective callback",
+        "state": "RECORDED",
+        "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7"
+      },
+      {
+        "number": 223,
+        "title": "Record a capped whole-pair geometry warm-start",
+        "state": "RECORDED",
+        "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7"
+      },
+      {
+        "number": 224,
+        "title": "Refine the collective seed through the matched original protocol",
+        "state": "RECORDED",
+        "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7"
+      },
+      {
+        "number": 225,
+        "title": "Measure the necessary fixed-flank path-length budget",
+        "state": "RECORDED",
+        "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7"
       }
     ]
   },
   "publication_demonstrations_reference": "docs/campaign-model-roadmap.md#nasolve-publication-demonstrations",
   "larger_displacement_stress_plan": {
-    "status": "CENTROID_TEST_RUN_RECOVERY_REJECTED_CENTERLINE_UNRUN",
+    "status": "CENTROID_PERTURBATION_STAGED_RECOVERY_RECORDED_CENTERLINE_UNRUN",
     "requested_date": "2026-11-21",
     "requested_by": "investigator",
     "targets": [
@@ -7007,7 +7162,7 @@
       "Retain fixed flanks/protected junctions; predeclare any expanded editable window, matched controls and bounded recovery protocol.",
       "Local geometry and supported diffraction both matter; no acceptance solely from Rfree or arbitrary per-step limits."
     ],
-    "current_evidence": "W219 meets10Ainitial centroid displacement but fails recovery with sugar inversion and large chain geometry/Rerrors; final centroid7.776A. The5Acenterline target remains unqualified and unrun.",
+    "current_evidence": "W219direct10Acentroid recovery rejected; W223geometry warm-start plus W224matched receiving retains sugar signs and recovers synthetic data, returning near source. Residual geometry remains. W225necessary path bound21.057→>=29.011Aexposes the fixed-window requirement; no distinct1nmplacement/5Acenterline claim.",
     "W207_metric_distinction": {
       "definition": "Unweighted arithmetic mean of explicitly selected present PDB atoms; serialized Cartesian coordinates in the unchanged crystal frame. No alignment, mass weighting or helix-axis fit.",
       "whole_movable_region_centroid_displacement_angstrom": 0.25302167499848144,
@@ -7063,6 +7218,15 @@
         "commit": "e493e7f2b3a31d78d37d4882c2830e021b6490d6",
         "path": "docs/backbone-chemistry.md",
         "section": "the-central-strand-in-the-5w6w-scaffold"
+      },
+      "pine_recipe_owner": {
+        "branch": "cedar",
+        "commit": "9d5030fbc06f436f428ec2cb88308e73c72b8c74",
+        "path": "docs/recipes/5w6w-central-continuation.json",
+        "fixed_endpoint": "B:7 O3'",
+        "transformed_endpoint": "B:1 P",
+        "operator": "-y,x-y,z",
+        "scope": "Seven observed central-strand sites, separate untouched context; no full-assembly closure or automatic enforcement"
       }
     }
   ]
