@@ -42,7 +42,7 @@ def _printed_evidence(kind, text, labels, endpoints, images, gemmi, members, dis
                 matches=matches if sections else None)
 
 
-def inspect_phosphate_image(model, *, phosphate, o3, o3_image, geometry=None):
+def inspect_phosphate_image(model, *, phosphate, o3, o3_image, geometry=None, native_receipt=None):
     """Compare coordinates and optional printed terms without assigning a partner.
 
     Apply the full image (including its cell translation) to O3' and its C3'.
@@ -103,10 +103,14 @@ def inspect_phosphate_image(model, *, phosphate, o3, o3_image, geometry=None):
         printed["geometry_sha256"] = sha256(data).hexdigest()
         if geometry.read_bytes() != data:
             raise ValueError("Printed geometry changed during inspection")
+    references = {}
+    if native_receipt is not None:
+        from .cif_phosphate_reference import read_phosphate_references
+        references["native_reference_links"] = read_phosphate_references(native_receipt, raw, phosphate=phosphate, o3=o3)
     if model.read_bytes() != raw:
         raise ValueError("Model changed during phosphate inspection")
     return dict(policy_id="phosphate-image-observation-v1", model_sha256=sha256(raw).hexdigest(),
                 phosphate=list(ends[0]), o3=list(ends[1]), o3_image=op.triplet(),
                 cell=list(cell.parameters), space_group=group, phosphate_atoms=phosphate_atoms,
                 distance_A=distance, coordinate_angles_degrees=angles, printed_geometry=printed,
-                scientific_approval="NOT_ASSESSED")
+                scientific_approval="NOT_ASSESSED", **references)

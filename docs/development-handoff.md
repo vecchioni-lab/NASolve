@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C519 testing a single phosphate bond across the boundary — Rowan**.
+Updated **2026-11-22, C520 finding intact phosphate references in the same model — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
 **Q06, original PDU:PDU.** The molecule on the other side of B:1 looks close in
@@ -20,6 +20,14 @@ control it supplied all four in both setups. These were native preparations at
 fixed coordinates. Q06 still needs complete linked chemistry and an ordinary
 refinement that preserves it. Willow W68 already checked image-aware angle
 energies and gradients and found that native angle serialization loses the images.
+
+C520 found two ordinary DA→DC links in the historical capture, A:16→A:17 and
+B:5→B:6. Their local dictionaries match B:7/B:1, and all eight recorded
+cross-residue covalent terms agree: one bond, four angles and three torsions.
+D:1's terminal dictionary matched neither example. The optional native receipt
+reading generalizes this lookup to other matching monomer definitions. It keeps
+competing examples separate. The intact references supply candidates for an
+image-aware force check, while Pine owns the identity of the intended connection.
 
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in

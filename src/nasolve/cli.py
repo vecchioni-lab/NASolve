@@ -290,6 +290,7 @@ def build_parser() -> argparse.ArgumentParser:
     phosphate_image.add_argument("--o3", required=True, metavar="CHAIN:NUMBER", help="site containing the candidate O3' atom")
     phosphate_image.add_argument("--o3-image", required=True, metavar="XYZ", help="full fractional operation applied to O3', including any cell translation")
     phosphate_image.add_argument("--geometry", type=Path, help="optional matching Phenix GEO with printed bonds and nonbonded contacts")
+    phosphate_image.add_argument("--native-receipt", type=Path, help="optional preserved linked native capture for intact backbone references in the same model")
     phosphate_image.add_argument("--json", action="store_true", help="include exact inputs, atom inventory and printed terms")
     cif_link_native = cif_sub.add_parser("link-native", help="read-only comparison of source links with a preserved native capture")
     cif_link_native.add_argument("manifest", type=Path, help="explicit source-link manifest")
@@ -1701,7 +1702,7 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
 
     try:
         result = inspect_phosphate_image(args.model, phosphate=args.phosphate, o3=args.o3,
-                                         o3_image=args.o3_image, geometry=args.geometry)
+                                         o3_image=args.o3_image, geometry=args.geometry, native_receipt=args.native_receipt)
     except (OSError, ValueError, RuntimeError) as exc:
         print(f"CIF Doctor: {exc}", file=sys.stderr)
         return 1
@@ -1726,6 +1727,12 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
                                      else f"van der Waals {row['vdw_A']:.3f}")
                         print(f"  {row['origin']}  {row['model_A']:.3f} Å, {reference} Å"
                               f" (printed minus coordinate {row['printed_minus_coordinate_A']:+.3f} Å)")
+        reference = result.get("native_reference_links")
+        if reference is not None:
+            print("Intact links with matching residue definitions  " + reference["status"])
+            for group in reference["groups"]:
+                pairs = ", ".join(source + " to " + target for source, target in group["links"])
+                print(f"  {pairs} share {len(group['terms'])} recorded covalent terms")
     return 0
 
 

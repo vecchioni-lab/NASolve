@@ -766,6 +766,12 @@ repulsion. Zero cross-link angles were added. Both native setups retained the
 same coordinates and diffraction observations. Pursue the complete source
 chemistry and its lifecycle. The single-bond experiment stays diagnostic.
 
+C520 found two matching intact DA→DC links from the same native capture. Their
+one bond, four angles and three torsions have identical targets, weights and
+torsion periodicities. The next distinct consumer check is delivery of these
+source-bound terms to the specified image, including torsion forces and local
+exclusions. A match between references cannot identify the covalent partner.
+
 | Job | In laboratory terms | What still closes it |
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |

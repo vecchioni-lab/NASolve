@@ -121538,5 +121538,30 @@
     "native_receipts": {"c519-baseline-002": "945bdaee42e06fd847201b9441e3dd8e888bbf3d5e7907f11159ae4593a83365", "c519-bond-only-001": "76d783bd41bd98a821571a51144ddda5477b81d2090173874513eaebf593f0ac"},
     "worker_sha256": "22e5873c1680bf477bc04a5a451d8dd8ca767851352825eb957149f8f12ef780",
     "local_reproduction": {"anchor": "NASolve_checkout", "path": "branch-artifacts/cedar/c519-phosphate-bond-control/c519-science.json", "sha256": "46601ad5a9c9d163c1f18817311d32de6b926d2f78e6207f97abbbe20ce03cd2"}
+  },
+  "native_intact_phosphate_references_2026_11_22": {
+    "milestone": "C520",
+    "branch_parent": "4b7dcd42",
+    "source_model_sha256": "00ee2b2f9ebc57e1bab1a51abc64a903c204cdddabccf6a8399ef1546c547313",
+    "native_receipt_sha256": "3f5f3b80cb16ec10dbd785ba323f4882a6bf75883eafae8759ec0d68ec45173d",
+    "capture_files_rechecked": 20,
+    "phenix": "2.2.1-6174",
+    "model": "original no-Hg PDU:PDU archived written checkpoint",
+    "candidate": ["B:7", "B:1"],
+    "unit_cell_image_of_o3": "-x+y,-x,z",
+    "references": [["A:16", "A:17"], ["B:5", "B:6"]],
+    "native_counts": {"dihedral": 3, "angle": 4, "bond_simple": 1},
+    "terms_sha256": "20306d3d54021322c095d6cce324aa8091174f02cf984e36b0148c6468cff34d",
+    "o3_chemistry_sha256": "3d0a17c381dad5eea478e8f1ebef4cb86c679cdc7dd0130191937e2475286c1e",
+    "phosphate_chemistry_sha256": "ea11808159203946a955248e909b779c0d223bf5e8251b4312b90906182701d9",
+    "torsions": [{"atoms": [["o3-site", "C3'"], ["o3-site", "O3'"], ["phosphate-site", "P"], ["phosphate-site", "O5'"]], "target_deg": 172.0, "periodicity": 3, "sigma_deg": 30.0}, {"atoms": [["o3-site", "C4'"], ["o3-site", "C3'"], ["o3-site", "O3'"], ["phosphate-site", "P"]], "target_deg": -140.0, "periodicity": 1, "sigma_deg": 35.0}, {"atoms": [["o3-site", "O3'"], ["phosphate-site", "P"], ["phosphate-site", "O5'"], ["phosphate-site", "C5'"]], "target_deg": 300.0, "periodicity": 3, "sigma_deg": 20.0}],
+    "terminal_control": "D:1 DC%p5*END, coordinate OP3 present, zero matching intact native references",
+    "validation": {"previous": "4 failing tests before the reference reader existed", "source": "125 passed", "relocated": "40 passed in 3.26s", "installed_source_files_identical": 328},
+    "command": "nasolve cif-doctor phosphate-image MODEL --phosphate B:1 --o3 B:7 --o3-image=-x+y,-x,z --geometry GEO --native-receipt CAPTURE/native_receipt.json --json",
+    "execution": "Read-only preserved geometry. No new Phenix cycles. Older angle/torsion captures omit per-atom image operators.",
+    "software_files": ["cif_phosphate_reference.py", "cif_phosphate_image.py", "cli.py"],
+    "full_suite_run": false,
+    "automatic_adoption": false,
+    "local_reproduction": {"anchor": "NASolve_checkout", "path": "branch-artifacts/cedar/c520-phosphate-references/c520-science.json", "sha256": "2a8c955a1e605fec0084b5cf3c303778c7a0586d1acf7f41e9a188d4b9fba8b0"}
   }
 }
