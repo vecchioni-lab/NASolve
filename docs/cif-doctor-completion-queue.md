@@ -775,8 +775,10 @@ missing terms exactly once alongside the native bond and exclusions in an
 explicit geometry-manager calculation. The native symmetry torsion gave a
 wrong force direction at correct energy for this threefold image. An ordinary
 torsion evaluated at the mate with its force rotated back passed the same
-check. The next gate is exact reconstruction on selection, rebuild and reload
-through the ordinary worker. Partner identity remains an explicit Pine decision.
+check. C524 reconstructed the terms on real Phenix selections, including the
+40-atom two-end fragment, and reproduced them in a fresh process. Next test
+ordinary worker adoption and checkpoint restoration on a genuinely registered
+parent. Partner identity remains an explicit Pine decision.
 
 | Job | In laboratory terms | What still closes it |
 | --- | --- | --- |

@@ -121607,5 +121607,28 @@
     "reproduction": {"worker_sha256": "a84a613e8182a97876d33c743ef99423d11a631b206e6274a17f14926499b6a2", "controller_sha256": "e2505880dc406db8276f5b4c59cb85326ac6d362757ee7867ccaabcf00c5fa03", "original_capture_sha256": "22e5873c1680bf477bc04a5a451d8dd8ca767851352825eb957149f8f12ef780", "result_sha256": "f18d68d150064785e8a81dd88bd4766d77b80699fe9204eb16983df240cb0360", "negative_sha256": "91c63347021c18f27fb24bb61dd8bf12cb66085d882754769b91b5b1a0e8152d"},
     "next": "Bind physical intent and exact atom identities prospectively, reconstruct the seven image terms through selection/reload and test the ordinary refinement worker before moving any candidate model.",
     "local_reproduction": {"anchor": "NASolve_checkout", "path": "branch-artifacts/cedar/c522-counted-image/c522-science.json", "sha256": "9946853a62d8df47e4a7e391f49effd81d693667c88438b3778a38865d1e617f"}
+  },
+  "c524_selected_phosphate_image_terms": {
+    "milestone": "C524",
+    "branch_parent": "79fca1d6",
+    "native": "Phenix 2.2.1-6174, two independent zero-cycle native preparations",
+    "method": "Select atoms with mmtbx.model.manager.select. Rebind the eight named atoms against the authenticated parent; rebuild four angles and three torsions from the original definitions. Compare the complete inner geometry calculation with and without them on each subset.",
+    "scope": "The deliberately invoked contribution is rebuilt after selection. Automatic ordinary-worker installation, saved checkpoint continuation, a declared partner and diffraction survival remain open.",
+    "operator": "-x+y,-x,z (image of B:7 DA on the B:1 DC phosphate)",
+    "source_reference_pairs": [["A:16", "A:17"], ["B:5", "B:6"]],
+    "selections": [{"case": "identity", "atom_count": 862, "added_terms": 7, "changed_atom_indices": 0, "max_gradient_change_from_original": 0.0, "remote_gradient_change": 0.0}, {"case": "chain_B", "atom_count": 143, "added_terms": 7, "changed_atom_indices": 8, "max_gradient_change_from_original": 0.0, "remote_gradient_change": 0.0}, {"case": "two_ends", "atom_count": 40, "added_terms": 7, "changed_atom_indices": 8, "max_gradient_change_from_original": 0.0, "remote_gradient_change": 0.0}, {"case": "missing_OP2", "atom_count": 861, "missing": ["B:1/DC/OP2"], "added_terms": 0, "ordinary_geometry_available": true, "scored_image": false}],
+    "unchanged_native_neighbour_shells": 5,
+    "added_residual": 646.5269586915001,
+    "fresh_process_identical": true,
+    "physical_partner_assigned": false,
+    "refinement_cycles": 0,
+    "full_suite_run": false,
+    "original_capture_sha256": "76d783bd41bd98a821571a51144ddda5477b81d2090173874513eaebf593f0ac",
+    "counted_chemistry_sha256": "f18d68d150064785e8a81dd88bd4766d77b80699fe9204eb16983df240cb0360",
+    "source_files": {"angle.h": "da2518746cee370c0c38fb428565510be5323f84cf068aaff9a80b6cde4c7375", "dihedral.h": "4f006d773127bb1fb4134bc5ce6aec6a7038f5fd0ef7466dc7ebd9d1e9683c48"},
+    "installed_source_observation": "For a transformed atom this build's angular gradient uses inverse Cartesian rotation times the gradient, whereas the torsion code multiplies the gradient on the other side. The directly tested threefold operator distinguishes these orders.",
+    "reproduction": {"controller_sha256": "a295e30fe9e855a41b5f0617c96d4b6c3ea9766b773224d888dec0d310a899ec", "worker_sha256": "e1de3f27d7abe5ccd0b9c767d12a13726d09900067d8f0c37771e6fe93e1791c", "counted_worker_sha256": "a84a613e8182a97876d33c743ef99423d11a631b206e6274a17f14926499b6a2", "two_independent_result_sha256": "12feba3daae2d0576f38c30e70b33907021cd7d9735ac0b6ddc46d2ddad42aae"},
+    "next": "Capture declared partner identity and the exact canonical PostMR/checkpoint ancestry in Pine/Willow. Test ordinary Cedar worker installation, rebuilding and a matched diffraction refinement on that registered parent.",
+    "local_reproduction": {"anchor": "NASolve_checkout", "path": "branch-artifacts/cedar/c524-selected-image/c524-science.json", "sha256": "be3d16a672f32c075f2e976a303b823272690e53ba4e0e24468dae2f7f8a5bfd"}
   }
 }

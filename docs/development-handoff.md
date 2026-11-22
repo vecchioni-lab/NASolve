@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C523 distinguishing an ordinary phosphate reference from an edited link — Rowan**.
+Updated **2026-11-22, C524 retaining phosphate forces when Phenix selects a smaller model — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
 **Q06, original PDU:PDU.** The molecule on the other side of B:1 looks close in
@@ -61,6 +61,15 @@ original PDU:PDU reference links and their measured terms are unchanged.
 Focused source checks passed 44 tests and 21 subtests. The relocated wheel
 passed 30 tests and seven subtests and gave the same readout on the archived
 capture. Existing models, dictionaries and checkpoint schemas remain compatible.
+
+C524 rebuilt the seven terms after Phenix selected the full 862-atom model,
+chain B alone (143 atoms), and the two end residues alone (40 atoms). All eight
+local atoms changed index in the smaller selections. Their forces, the native
+bond and the neighbouring exclusions were identical by atom identity. Omitting
+B:1 OP2 stopped the proposed addition while ordinary geometry remained usable.
+A second native process produced a byte-identical readout from the same inputs.
+The next distinction is whether the ordinary refinement worker can acquire
+that same chemically declared, registered parent and restore the terms on its own.
 
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
