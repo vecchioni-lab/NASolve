@@ -284,6 +284,13 @@ def build_parser() -> argparse.ArgumentParser:
     cif_catalogue.add_argument("--ccd-root", required=True, type=Path,
                                help="explicit CCD directory containing a/data_CODE.cif etc.; no discovery")
     cif_catalogue.add_argument("--json", action="store_true", help="print the complete coverage census")
+    phosphate_image = cif_sub.add_parser("phosphate-image", help="inspect a named O3' crystal image at a phosphate (requires NASolve[topology])")
+    phosphate_image.add_argument("model", type=Path, help="exact written PDB with its CRYST1 record")
+    phosphate_image.add_argument("--phosphate", required=True, metavar="CHAIN:NUMBER", help="site containing the phosphorus")
+    phosphate_image.add_argument("--o3", required=True, metavar="CHAIN:NUMBER", help="site containing the candidate O3' atom")
+    phosphate_image.add_argument("--o3-image", required=True, metavar="XYZ", help="full fractional operation applied to O3', including any cell translation")
+    phosphate_image.add_argument("--geometry", type=Path, help="optional matching Phenix GEO with printed bonds and nonbonded contacts")
+    phosphate_image.add_argument("--json", action="store_true", help="include exact inputs, atom inventory and printed terms")
     cif_link_native = cif_sub.add_parser("link-native", help="read-only comparison of source links with a preserved native capture")
     cif_link_native.add_argument("manifest", type=Path, help="explicit source-link manifest")
     cif_link_native.add_argument("--native-receipt", required=True, type=Path, help="exact preserved native_receipt.json; no native execution")
@@ -1689,6 +1696,39 @@ def _cif_site_plan(args: argparse.Namespace) -> int:
         return 1
 
 
+def _cif_phosphate_image(args: argparse.Namespace) -> int:
+    from .cif_phosphate_image import inspect_phosphate_image
+
+    try:
+        result = inspect_phosphate_image(args.model, phosphate=args.phosphate, o3=args.o3,
+                                         o3_image=args.o3_image, geometry=args.geometry)
+    except (OSError, ValueError, RuntimeError) as exc:
+        print(f"CIF Doctor: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print(json.dumps(result, indent=2, sort_keys=True, allow_nan=False))
+    else:
+        print(f"{args.phosphate} P to {args.o3} O3' in image {result['o3_image']} measures {result['distance_A']:.3f} Å.")
+        present = [name for name, atom in result["phosphate_atoms"].items() if atom is not None]
+        print("Phosphate site contains " + ", ".join(present) + ".")
+        print("Angles from the written coordinates")
+        for name, angle in result["coordinate_angles_degrees"].items():
+            print(f"  {name}  {angle:.2f}°" if angle is not None else f"  {name}  unavailable")
+        if result["printed_geometry"] is not None:
+            for kind in ("bonds", "nonbonded"):
+                table = result["printed_geometry"][kind]
+                if table["matches"] is None:
+                    print(f"Printed {kind}  {table.get('reason') or table['status']}")
+                else:
+                    print(f"Printed {kind} at this image  {len(table['matches'])}")
+                    for row in table["matches"]:
+                        reference = (f"target {row['ideal_A']:.3f}" if kind == "bonds"
+                                     else f"van der Waals {row['vdw_A']:.3f}")
+                        print(f"  {row['origin']}  {row['model_A']:.3f} Å, {reference} Å"
+                              f" (printed minus coordinate {row['printed_minus_coordinate_A']:+.3f} Å)")
+    return 0
+
+
 def _cif_link_native(args: argparse.Namespace) -> int:
     from .cif_attachment_native import inspect_native_attachment_links
 
@@ -1841,6 +1881,8 @@ def _cif_publish_preparation(args: argparse.Namespace) -> int:
 
 
 def _cif_doctor(args: argparse.Namespace) -> int:
+    if args.cif_action == "phosphate-image":
+        return _cif_phosphate_image(args)
     """Offline assessment/preparation and explicitly requested native candidates."""
     if args.cif_action == "publish-preparation":
         return _cif_publish_preparation(args)

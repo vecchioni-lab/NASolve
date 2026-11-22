@@ -1,5 +1,26 @@
 # CIF Doctor
 
+## Inspecting a phosphate at a crystal boundary
+
+When a strand may continue into the next crystal copy, identify the phosphorus,
+the possible O3′ partner and its exact symmetry operation, including the unit-cell
+translation. With the optional `NASolve[topology]` installation, this example reads
+the model and Phenix's saved geometry without moving any atoms.
+
+```sh
+nasolve cif-doctor phosphate-image final.pdb --phosphate B:1 --o3 B:7 \
+  --o3-image=-x+y,-x,z --geometry final.geo
+```
+
+The operation acts on O3′ and its C3′. The report gives the P–O3′ distance, the
+available backbone angles from the coordinates and the named phosphate atoms
+present. With a GEO file it shows each printed bond and nonbonded contact for that
+exact image. It accounts for Phenix printing the two atoms in reverse order. A
+missing or unreadable table is identified separately from a complete table with
+zero matches. Use `--json` for file fingerprints, occupancies and numerical
+differences between the two files. The scientist's choice of partner remains
+part of the construct description.
+
 <a id="current-capability-boundary-c96"></a>
 <a id="current-capability-boundary-c97"></a>
 

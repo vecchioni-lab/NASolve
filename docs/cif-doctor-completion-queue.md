@@ -751,6 +751,14 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 
 ## Pipeline position
 
+C518 read the original PDU:PDU packet's B:1 P and B:7 O3′ under
+`-x+y,-x,z`. The saved Phenix refinement printed a 2.825 Å nonbonded contact
+and zero bonds for those atoms at that image. Its adjacent internal control
+printed the 1.607 Å phosphodiester target. This closes identification of the
+archived restraint treatment. Pine retains partner and image intent. Q06 still
+requires evidence for the complete restraint neighbourhood and its behavior in
+ordinary refinement.
+
 | Job | In laboratory terms | What still closes it |
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |

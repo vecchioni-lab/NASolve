@@ -8,6 +8,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- CIF Doctor can measure a named crystal-image O3′ against a phosphate and show
+  whether Phenix printed that pair as a bond or a nonbonded contact. The
+  read-only `cif-doctor phosphate-image` command uses the optional topology
+  installation and accepts existing PDB and GEO files.
+
 ### Preparing restraints for a bent model
 
 - A worker can give Phenix the authenticated geometry parent for one
