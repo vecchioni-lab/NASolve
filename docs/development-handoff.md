@@ -1,7 +1,32 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C537 checking the plane members Phenix used — Rowan**.
+Updated **2026-11-22, C538 testing the diffraction evidence for the two PDU orientations — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+C538 removed both entire PDU bases from each C535 starting model. The four
+arms then gave identical bytes for all 840 remaining atoms. Their working
+reflection indices agreed, but the scaled amplitudes written by the four
+refinements differed. The map input therefore used F and SIGF from the
+original observations at the 1,778 shared working indices. The 124 original
+free observations and seven rejected working observations were absent.
+
+Phenix 2.2.1-6174 calculated common, unfilled maps at 4.19 Å with fixed
+coordinates. With bulk-solvent correction, the mean difference density over
+the three propynyl carbons was 1.15 map σ higher in the host orientation at
+A:12 and 1.86 σ lower at B:4. Omitting the bulk-solvent correction gave
+contrasts of −6.27 and −10.54 σ, respectively. Every coordinate-only Fc
+amplitude and phase stayed identical. The model-phased observed amplitudes
+changed phase by over 90° at 174 indices. Whole-cell map σ describes density
+contrast; these correlated atom samples do not give a significance test.
+This comparison leaves the experimental orientations open. It does not alter
+the C535 geometry results or choose a solvent policy for production.
+
+Gemmi 0.7.5 and Phenix's own cctbx Fourier reader independently reproduced
+the trilinear group contrasts on the same grid within 0.000001 map σ.
+No additional coordinate-refinement cycle or full regression ran.
+`c538-science.json` and `c538-replay.zip` in the existing C531 evidence
+folder retain the exact commands, fingerprints and small scripts. There are
+no new product settings, schemas or migration requirements.
 
 C537 extends the existing [plane reading](cif-doctor.md#checking-which-atoms-phenix-put-in-a-residue-plane)
 to a model, CIF and ordinary Phenix GEO, including the saved preflight and

@@ -172,6 +172,13 @@ planes had two modeled heavy atoms each and two absent hydrogens. Use the
 [printed plane reading](cif-doctor.md#checking-which-atoms-phenix-put-in-a-residue-plane)
 alongside the existing ring-height measurement when assessing survival.
 
+C538 compared the two PDU starting orientations against one common model
+with both bases omitted, using only the original working amplitudes at 4.19 Å.
+Changing the bulk-solvent treatment reversed the A:12 arm preference in the
+difference map. The audit therefore leaves both conformer decisions open.
+Carry the chemistry and refinement-survival checks forward independently of
+choosing a conformer for this experimental structure.
+
 Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
 after correcting the orientation of DP and IMC from their source graphs.
 A separate placement retained all four ATL sugar centres. Phenix applied
