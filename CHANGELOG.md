@@ -17,6 +17,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W216 — Propose explicit local phosphate-shoulder alternatives
+
+- Add a source-bound canonical P–O5′–C5′–C4′ proposal with fixed P/C4′ and
+  caller-chosen congruent branch/axial rotation. No score or automatic selection.
+- Reuse exact endpoint/mask checks; preserve fixed atoms/metadata and local
+  sugar handedness before and after PDB rounding. Unsupported local identities,
+  hydrogens, tensors, degenerate frames and excessive displacement refuse.
+- Add a detached proposal report; existing whole-pair/ordinary schemas, CLI,
+  dependencies and defaults remain unchanged. No migration or motion admission.
+- Qualify source and relocated installation (247 tests each) and replay 48
+  historical states within saved-PDB precision. Science remains local.
+
 ### W214/W215 — Bind a real dictionary-only geometry parent
 
 - Bind the unchanged real X11_22 PostMR checkpoint and original observations;

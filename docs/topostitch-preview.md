@@ -2937,3 +2937,69 @@ native source-reproduction qualification remains Cedar-owned. Receipts and
 runners stay local under `NASolve:branch-artifacts/willow/w215-dictionary-parent-binding/`;
 the roadmap pins exact bytes. This validates a source-binding interface, not
 whole-model chemistry, a motion declaration or an ordinary repair workflow.
+
+
+## Propose an intrinsic local backbone orientation (W216)
+
+`topostitch_local.propose_backbone_shoulder` makes one explicit canonical
+P–O5′–C5′–C4′ orientation from exact source PDB bytes:
+
+```python
+from nasolve.topostitch_coordinates import ResidueSite
+from nasolve.topostitch_local import propose_backbone_shoulder
+
+proposal = propose_backbone_shoulder(
+    source_bytes, expected_source_sha256=source_sha256,
+    site=ResidueSite("A", 11), reflection=True,
+    rotation_degrees=60, max_displacement_angstrom=6,
+)
+```
+
+The names/numbers/angle above are caller choices, not default repair targets.
+P and C4′ define the fixed axis. Reflection selects the congruent branch across
+the plane containing that axis and O5′; signed rotation then acts about P→C4′.
+Only O5′/C5′ move. All six distances within the four-atom chain, including its
+three bond lengths, are preserved at full precision. Existing bad lengths are
+also preserved; native refinement must still repair them. Angles to atoms
+outside this short chain can change. No score, search, map, Free-R set or known
+answer enters the proposal.
+
+The frozen result carries candidate PDB bytes, full-precision points, two source
+indices and a JSON report. It uses the existing exact endpoint audit, preserving
+all fixed records and noncoordinate bytes. Both precise and rounded positions
+must fit the caller's displacement bound. The selected site must be a single
+full-occupancy canonical residue without alternatives or explicit hydrogens;
+P/O5′/C5′/C4′/C3′/O4′ must be present with exact names. Movable ANISOU tensors
+refuse. Degenerate axis/plane/sugar frames refuse at 1e-8 in their corresponding
+norm or normalized triple product. C4′ relative handedness must survive at full
+precision and after PDB rounding. Other sugar centers and all base atoms stay
+fixed. Preserving the source sign does not establish correct source chemistry.
+
+This is a **proposal**, not registered motion or chemical admission. The new
+in-memory report is `topostitch-intrinsic-shoulder-proposal`, schema 1; it does not
+change the whole-pair preview schema or ordinary execution. Existing
+`map_native_endpoint` accepts the same endpoint shape after a trusted caller
+has separately admitted it. Native geometry/clash/diffraction checks and the
+process/chemistry owner remain required before transfer or selection. No CLI,
+dependency, default behavior or migration changes.
+
+Validation: **247 focused source +247 relocated installed tests**, including
+22 local cases. Twenty initial cases fail before implementation because the
+module is absent. Tests cover independently calculated geometry, all six
+internal distances, rigid-frame equivariance, canonical scope, degenerate
+frames, chirality reversal, exact insertion codes, movable tensors and reordered
+native indices. The existing six-file focused command is the W215 command with
+`tests/test_topostitch_local.py` added. Temporary build source and original
+installation are removed before the installed test run.
+
+The real saved 859-atom W211 input replays all 48 independently frozen W210
+orientations, retaining 857 fixed atoms per proposal and relative C4′ signs.
+Maximum difference from historical full-native coordinates is **0.001830 Å**:
+this API starts from saved three-decimal PDB coordinates. This is measured
+precision agreement, not identical historical inputs or renewed scientific
+acceptance. Source and installed outputs agree exactly; Phenix Python 3.11
+readback is recorded separately. No new native interpretation or refinement is
+part of this replay. Local install/replay runners and receipts live under
+`NASolve:branch-artifacts/willow/` in `runners/w216-*.py` and
+`w216-local-shoulder-proposals/`; the roadmap pins evidence. W211/W212 remain
+the separate prior recovery evidence, including residual geometry limitations.
