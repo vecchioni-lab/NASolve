@@ -285,7 +285,8 @@
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
-        "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
+        "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient.",
+        "Internal helix recovery explicitly compares neighbouring base-plane orientation, spacing, lateral offset/overlap and twist before deformation, after placement and after restrained recovery, including fixed-flank transitions. Within-pair coplanarity and between-pair stacking remain distinct; allow supported curvature/nonuniform twist rather than enforcing universal parallelism. Connectivity, sugar-sign retention and R factors alone do not close this gate. Investigator emphasis2026-11-22; planning only, reuse existing frame/geometry owners."
       ],
       "next_action": "Declare a source-qualified terminal/coupled or periodic-image window with actual paired neighbours, protected junctions and allowed endpoint movement; existing seven-pair W196/W219scope cannot expand while preserving its205atom core and both fixed flanks. Reuse W227core metrics and W226driver only after source/frame correspondence and baseline qualification. Then one bounded independent data-supported comparison; do not repeat/tune W224. Cedar owns ordinary receiving. The5Acenterline target remains separate and unrun.",
       "evidence": [

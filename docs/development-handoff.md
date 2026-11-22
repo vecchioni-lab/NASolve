@@ -113,6 +113,18 @@ The source B chain has seven sites and the discovery boundaries remain unknown.
 A fresh terminal/coupled/periodic declaration is the next prerequisite; neither
 a bigger pair cap nor W227's reporting subset creates movement permission.
 
+**Internal helix focus (Simon, 2026-11-22):** retain the rough but recoverable
+molecular placement as a useful intermediate, then explicitly assess stacking
+recovery within the duplex. Track neighbouring base-plane orientation, spacing,
+lateral offset/overlap and twist before deformation, after placement and after
+restrained recovery, including transitions into fixed flanks. Distinguish
+within-pair coplanarity from stacking between successive pairs. Allow genuine
+curvature and nonuniform twist; do not force every plane parallel or impose an
+uncalibrated universal cutoff. A connected backbone, retained sugar signs or
+better R factors alone do not qualify internal stacking. Reuse the existing
+pair/frame measurements and Cedar/NARestraints owners; this clarifies the current
+placement/recovery gate rather than starting another subsystem or run tonight.
+
 The next experiment must answer a new question, not repeat W224:
 
 1. **Feasible window:** declare source, intended endpoint/image, ordered pairs,

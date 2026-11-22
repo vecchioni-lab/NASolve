@@ -17,6 +17,10 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- Clarify internal stacking recovery as an explicit placement/recovery gate:
+  distinguish paired-base coplanarity from neighbouring-step orientation,
+  spacing, overlap and twist. Planning/docs only; no new run or runtime change.
+
 ### W229 — Bind the next wider-window experiment to real route scope
 
 - Record that the current 205-atom core already fills its only declared
