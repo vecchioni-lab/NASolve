@@ -8,6 +8,9 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- The backbone guide records the standard 5W6W B:7 O3′–B:1 P symmetry
+  connection and its operator, with the separate D:1 terminal phosphate.
+
 - A geometry-parent capture can explicitly record use of the installed Phenix
   dictionaries and four verified reader settings with zero added restraint
   files. This gives a canonical model with no declared pairing a reproducible

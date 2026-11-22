@@ -3,6 +3,23 @@
 Updated **2026-11-22, C530 reading native angles and torsions in the crystal mate — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
+**Standing 5W6W scaffold convention, confirmed on 22 November.** Simon confirms
+that B:7 O3′ and B:1 P are covalently connected in this scaffold family and
+accepts the nearest crystal copy. Carry the decision into derivatives that
+preserve this junction. A complete 30 Å search over lattice translations and the space group
+puts `-x+y,-x,z` first in all four C518 models. The first and second distances
+are 2.795/21.895 Å in the starting 5W6W frame, 3.340/21.895 Å in both the MR
+and prepared models, and 2.824/22.867 Å in the archived no-Hg refinement.
+The runner-up is the asymmetric-unit B:7 in each case. B:1 retains P/OP1/OP2
+with no OP3. D:1 has its separate terminal declaration. This supersedes the
+earlier pending partner decision for the lab construct. Simon supplied the
+endpoint identity. The coordinate comparison supplies the matrix.
+Pine can carry this editable distinction and remap it after reslicing. An
+explicit construct-specific nick or redesigned junction overrides the standard.
+See the [standing reference](backbone-chemistry.md#the-central-strand-in-the-5w6w-scaffold).
+Both readings and model hashes are in
+`NASolve:branch-artifacts/cedar/c528-phosphate-refinement/simon-image-intent.json`.
+
 C530 repeated C528's five-cycle fit and asked Phenix's own angle and torsion
 printer to use the unit cell on the seven crossing terms after the fit.
 Its separate 1.8 kB GEO now names the crystal image on the correct atoms.
@@ -59,8 +76,8 @@ The program’s output and the saved coordinates have to be read independently.
 
 This is a controlled comparison of the proposed geometry. The deposited
 structure also places the atoms close, and the original triangle design has
-a nick in its central strand. Pine still needs the operator’s actual
-connection and nick intent before adopting any crystal bond.
+a nick in its central strand. The subsequent operator decision above gives
+the lab interpretation for this junction across the 5W6W scaffold family.
 [5W6W](https://www.rcsb.org/structure/5W6W) and
 [original triangle study](https://pmc.ncbi.nlm.nih.gov/articles/PMC6660133/).
 The compact local checkout is

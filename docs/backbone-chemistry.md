@@ -70,15 +70,32 @@ checks the chemistry and whether native restraints actually enforce it. Reslicin
 or an edit must preserve previous choices and explicitly remap endpoints/images
 or mark them unresolved. Missing local neighbors must not silently change intent.
 
-For the W/PDU control, Simon clarified B:1 as an intended symmetry-linked internal
-phosphate (P/OP1/OP2, no OP3), superseding an earlier free-OH reply. Its nearest
-observed O3′ image remains outside the current bond-distance guard. This does not
-authorize atom deletion, OP3 completion, or automatic link assignment. D:1's
-separately declared complete terminal phosphate is a different chemical state.
-Do not activate a lone symmetry bond while its surrounding phosphate angles and
-nonbonded exclusions remain unqualified; angle-policy research is deferred.
-Current generic symmetry-link interpretation/enforcement is not qualified; see
-[Q06](cif-doctor-completion-queue.md#q06--qualify-the-actual-refinement-consumer).
+### The central strand in the 5W6W scaffold
+
+**In the standard 5W6W scaffold, B:7 O3′ bonds to B:1 P across crystal
+symmetry.** This is the lab's standing interpretation for 5W6W and derivatives
+that retain its central strand. Simon confirmed the covalent endpoints and
+the use of the closest crystal copy on 22 November 2026. In the deposited
+setting, hold B:1 P fixed and apply `-x+y,-x,z` to B:7 O3′. This operation
+needs zero additional unit-cell translation. **B:1 is an internal phosphate
+with P, OP1 and OP2. It has no OP3.** D:1 is the separately declared terminal
+5′ phosphate in the standard W recipe.
+
+The nearest and next-nearest copies of B:7 O3′ are 2.795 and 21.895 Å from
+B:1 P in the 5W6W starting frame. In the archived PDU:PDU refinement they
+are 2.824 and 22.867 Å. A stretched starting gap is a geometry issue. It
+does not change the declared chemistry. When a model is renumbered, reindexed
+or resliced, follow the corresponding atoms and transform the operation into
+the new frame. A construct-specific nick or changed central strand takes
+precedence. Apply the investigator's junction convention at this position;
+other nicks, crossovers and their occupancies have separate evidence.
+[Deposited 5W6W](https://www.rcsb.org/structure/5W6W).
+
+In the controlled PDU:PDU fit, a distance alone closed the gap but left the
+two O3′–P–OP angles at 84.5° and 129.3°. With angle and torsion forces evaluated
+in the named mate they reached 107.5° and 110.5° after five Phenix cycles.
+Pine owns editable connection intent. An ordinary restart still needs to
+recover the verified restraint neighbourhood. [Cedar completion queue](cif-doctor-completion-queue.md#pipeline-position).
 
 In the separate FT_Hg construct, the investigator declared the central B
 continuation and confirmed the C/D crossover. A runs from 1 to 21 in each of

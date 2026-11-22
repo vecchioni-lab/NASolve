@@ -112,15 +112,19 @@ provisional B:7 crystal partner for B:1. Both arms closed the distance. Only
 the image-aware angular forces brought the two phosphate oxygen angles close
 to their 108° reference, at 107.5° and 110.5°. The historical PDU side arms
 still stand well off their base rings. Check written coordinates against any
-printed image angles, establish the central strand's nick and ownership in
-Pine, and carry eligible source terms through a registered continuation.
+printed image angles and carry the declared central connection and eligible
+source terms through a registered continuation.
 The diagnostic alone authorizes no new default. C529 now checks the four
 printed angles against both coordinate frames at a named model or checkpoint.
 All four angles in the C528 image-aware GEO match the asymmetric unit alone.
 C530 obtained a separate native GEO for all seven crossing terms by passing
 the cell to the final model's angular printer. The written PDB independently
-agrees with all four angles and three torsions. Preserve this observation for
-an explicitly declared link and its registered, restartable continuation.
+agrees with all four angles and three torsions. Simon subsequently confirmed
+B:7 O3′ and B:1 P as the usual covalent pair across the 5W6W central strand
+and approved the closest image. Its [scaffold convention](backbone-chemistry.md#the-central-strand-in-the-5w6w-scaffold)
+also applies to derivatives retaining that junction. All four models choose `-x+y,-x,z`. The archived model
+places the first two images 2.824 and 22.867 Å away. Pine has the editable
+construct decision. Registered, restartable use of its restraints remains open.
 
 Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
 after correcting the orientation of DP and IMC from their source graphs.
