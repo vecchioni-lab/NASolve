@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W219 — Preserve a failed 10 Å centroid recovery stress test
+
+- Test one explicitly measured 10 Å selected-region centroid perturbation with
+  fixed flanks and original native chemistry/data; record the much larger
+  17.857 Å maximum atom displacement and severely stretched starting links.
+- Preserve the completed recovery's sugar inversion, large bond/angle errors,
+  remaining displacement and high final R statistics. No accepted closure or retry.
+- Evidence/docs only; the separate centerline target remains open. No runtime,
+  schema, defaults, dependencies or migration changes; science stays local.
+
 ### W218 — Distinguish region-centroid, RMS and maximum atom displacement
 
 - Add a read-only displacement summary to the existing coordinate mask with

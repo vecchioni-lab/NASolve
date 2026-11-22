@@ -10,17 +10,19 @@ current instructions; other branches retain their own status and validation pins
 - **Current code: W218.** [Explicit displacement metrics](topostitch-preview.md#measure-explicit-region-displacement-w218)
   separate centroid shift, weighted RMS and maximum atom motion (310 source/310
   relocated installed tests). No helix-centerline or frame/identity inference.
-- **Current science: W217.** [Maintained local proposals survive native recovery](topostitch-periodic.md#w217--recover-installed-local-proposals-after-pdb-rounding),
+- **Successful local receiving control: W217.** [Maintained local proposals survive native recovery](topostitch-periodic.md#w217--recover-installed-local-proposals-after-pdb-rounding),
   with original source chemistry, atom content, fixed context and data retained.
   Both local phosphate sites finish within two native sigmas; general repair,
   residual whole-model geometry and experimental qualification remain open.
 - **Ordinary integration:** W214/W215 bind a real PostMR root and an explicit
   dictionary-only native source; no pairing/motion intent is invented. Cedar
   owns the receiving request and native lifecycle. Read the [current handoff](development-handoff.md).
+- **Latest science: W219.** [A true 10 Å centroid stress case fails recovery](topostitch-periodic.md#w219--a-true-10-a-centroid-stress-case-fails-bounded-recovery):
+  sugar inversion and large local geometry/R errors survive despite shorter
+  boundary distances. Preserve the negative; no undeclared retry.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W218, next W219:
-  predeclare a single 10 Å centroid stress case, with starting link geometry
-  and bounded native recovery. The 5 Å centerline target remains separate.
+  [generated human view](topostitch-roadmap.md). Current W219, next W220:
+  inspect the existing collective motion against native geometry before another fit. The 5 Å centerline target remains separate.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview/API guide](topostitch-preview.md) retain commands, failed attempts,
   compatibility pins and limits. Do not repeat closed probes because this index

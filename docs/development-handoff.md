@@ -1,18 +1,19 @@
 # NASolve development handoff — Willow
 
-**Current audit: W218, 2026-11-22. Maintained implementation: W218.**
+**Current audit: W219, 2026-11-22. Maintained implementation: W218.**
 The existing native input binder now accepts an explicitly selected dictionary-only
 parent policy from Cedar C526. Default literal inputs still require compiled
 restraints. W214 binds a real X11_22 PostMR checkpoint and original observations;
 W215 binds that exact model, original native observation and four reader controls
 without inventing pair restraints. S04/S05/S06 remain PARTIAL.
 
-**Latest science:** W217 closes the installed-seed receiving check. One five-cycle
-fit recovers A11/A14 angles to 108.10°/102.87° and O5′–C5′ lengths to
-1.400/1.454 Å. All four P-centered bonds and six angles at both sites are within
-1.77 native sigmas. Original atoms, chemistry, data and fixed context survive.
-This reproduces W212 local behavior after PDB rounding; residual whole-model
-and synthetic-only limitations remain. [Measurements/controls](topostitch-periodic.md#w217--recover-installed-local-proposals-after-pdb-rounding).
+**Latest science:** W219 closes one true 10 Å centroid stress experiment with a
+**negative recovery**. Five cycles shorten the four boundary links, but A11 C1′
+inverts; worst chain bond/angle deviations are 18.92σ/32.19σ. Final centroid
+remains 7.776 Å away, maximum atom motion is 18.486 Å, and Rwork/Rfree are
+0.3670/0.4148. Source chemistry/content/data survive; no accepted closure or retry.
+[Exact negative evidence](topostitch-periodic.md#w219--a-true-10-a-centroid-stress-case-fails-bounded-recovery).
+W217 remains the separate successful small local-repair receiving control.
 
 **Receiving boundary:** W213's private motion fixture has no campaign ancestry.
 W214 now supplies a different, genuine current PostMR parent (2603 atoms, 128
@@ -77,11 +78,11 @@ No clean full-suite or skipped-case qualification is claimed; no suite rerun.
 
 ## Next bounded work
 
-Freeze one 10 Å selected-region centroid stress request using the existing
-registered paired window and fixed flanks. Measure maximum local displacement
-and starting link geometry before one preflight/one bounded recovery. No amplitude
-sweep. The 5 Å centerline target remains separate and unqualified. W217 receiving
-recovery is closed; do not repeat it or its angle grid. Do not repeat missing-intent searches
+Examine the existing constrained whole-residue motion against saved/native
+geometry before considering another diffraction fit. W219 is a closed negative
+control, not a reason for an undeclared retry or amplitude sweep. W85 only
+qualified small-motion derivatives; W209's broad-direction discrepancy remains.
+The 5 Å centerline target is still open. Do not repeat missing-intent searches
 or invent a target on the real X11_22 root. Rowan owns ordinary receiving and
 native qualification of the one shared W215 dictionary-parent artifact.
 

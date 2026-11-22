@@ -12401,3 +12401,57 @@ This is evidence/documentation after the installed W216 patch, not another code,
 CLI, schema or dependency change. Raw science is excluded from Git. Next work
 qualifies explicit displacement measurements before the separately requested
 centroid/centerline stress tests; neither target is claimed by these results.
+
+
+## W219 — A true 10 Å centroid stress case fails bounded recovery
+
+The investigator's larger-displacement target is now tested once with a precise
+metric. The existing registered five-pair window, two fixed flanks and taper
+are retained. Zero rotation and a declared +x translation scaled by the mean
+taper weight give **10.000 Å centroid displacement** of the same 205 atoms.
+This is neither a helix-centerline radius nor valid starting DNA geometry.
+Starting atomic RMS is 11.123 Å and maximum atom displacement 17.857 Å. Twelve
+original chain connections are audited before native execution; the longest
+O3′–P distance is 10.285 Å, with four fixed-flank crossings at
+5.022/10.285/7.585/3.340 Å. Loose initialization limits were frozen beforehand
+(20 Å atom motion, 12 Å bond-length change, 180° angle/torsion change); they
+confer no geometry acceptance.
+
+Phenix **2.2.1-6174** completed one zero-cycle preflight (23 cold checks) and
+one five-cycle, one-CPU recovery under the existing W212/W217 native policy.
+There was no amplitude sweep, retry or expanded window. Original atoms/B/Q,
+source chemistry, 205/654 mask, 38 links, 213 explicit terms and 7554/389
+observations/Free flags remain. Native preparation is finite and the actual
+owned processes stop; that does not imply recovery succeeded.
+
+**The result is rejected.** The original cold reviewer refuses the final
+sugar-handedness condition. A separate negative readback retains 24 input and
+chemistry/data-retention checks and records the physical failures:
+
+- A11 DT C1′ changes ordered sugar volume from **+2.33475 to −2.14440 Å³**.
+- The four boundary distances shrink to **1.746/1.834/1.700/1.589 Å**, but the
+  worst original chain-link bond and associated angle remain **18.92σ/32.19σ**.
+- Rwork/Rfree change **0.3993/0.4994 → 0.3670/0.4148**. Poor initial statistics
+  were allowed a recovery window; the final structure still fails.
+- Final selected-region centroid displacement is **7.776 Å**, RMS **9.756 Å**,
+  and maximum atom displacement **18.486 Å** from the original model.
+
+Shortened distances and some statistical improvement therefore do not establish
+junction closure or correct placement. The original failed review and its source
+hash are preserved separately from the negative readback. No further fit runs
+under this declaration. The next question is whether the existing collective
+whole-residue motion can preserve sugar shape and improve junction geometry
+before independent Cartesian refinement; first inspect native geometry only.
+W85's small-motion derivatives and W209's unresolved full-direction discrepancy
+remain distinct evidence, not permission for a new optimizer.
+
+Local commands use the NASolve environment with `-B`:
+`runners/w219-centroid-stress.py plan`, then `preflight`,
+`runners/w219-review.py preflight`, then the controller's `refine`.
+`runners/w219-review.py refine` refuses as described;
+`runners/w219-negative-readback.py` and `runners/w219-metric-readback.py`
+record the retained failure. All paths are beneath
+`NASolve:branch-artifacts/willow/`; pinned outputs are in `w219-centroid-stress/`.
+This is science/documentation only; no runtime/schema/default/dependency change,
+migration, ordinary activation or raw-data publication. The 5 Å centerline test
+remains unrun, and S04/S05/S06 remain PARTIAL.
