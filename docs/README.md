@@ -31,8 +31,9 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W228, next W229:
-  qualify feasible editable windows and independently supported bending/straightening.
+  [generated human view](topostitch-roadmap.md). Current W229, next W230:
+  declare the next terminal/coupled/periodic window before independent bending.
+  The existing two-fixed-flank interval cannot simply grow around the same core.
   Keep the successful synthetic receiving comparison closed. The 5 Å centerline target is separate.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview/API guide](topostitch-preview.md) retain commands, failed attempts,

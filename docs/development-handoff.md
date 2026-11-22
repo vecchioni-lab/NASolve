@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current audit: W228, 2026-11-22. Maintained implementation: W227.**
+**Current audit: W229, 2026-11-22. Maintained implementation: W227.**
 The existing native input binder now accepts an explicitly selected dictionary-only
 parent policy from Cedar C526. Default literal inputs still require compiled
 restraints. W214 binds a real X11_22 PostMR checkpoint and original observations;
@@ -105,6 +105,13 @@ remains distinct from convergence. [API, commands and limitations](topostitch-pr
 The complete suite is deferred to the merge gate under Rowan's direction for
 this focused evening run; the earlier W215 environment-limited result above is
 not replaced by a clean full-suite claim.
+
+[W229's route preflight](topostitch-periodic.md#w229--the-current-interior-window-cannot-simply-grow)
+finds no larger declared interval for the same 205 atoms and both fixed flanks:
+13 cold checks/three refused anchor releases, no new coordinates or native run.
+The source B chain has seven sites and the discovery boundaries remain unknown.
+A fresh terminal/coupled/periodic declaration is the next prerequisite; neither
+a bigger pair cap nor W227's reporting subset creates movement permission.
 
 The next experiment must answer a new question, not repeat W224:
 

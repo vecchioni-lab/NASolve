@@ -12648,3 +12648,36 @@ The read-only controllers are
 exact Cedar owners and input artifacts. Generated scientific inputs stay local.
 No source tests, installation or native run were repeated for this independent
 cold review; C539's own focused/relocated qualification remains Cedar-owned.
+
+
+## W229 — The current interior window cannot simply grow
+
+Before a wider-window control, the installed W227 package replayed W196/W207's
+frozen registration/discovery and original selector. **13 cold checks pass**,
+including three refused changes that would silently release a flank or remove
+both anchors. There were no candidate coordinates, model writes, native calls
+or fits. All input hashes/timestamps stayed unchanged.
+
+The same 205-atom core occupies five movable pairs within A9/B7 through A15/B1.
+Both declared routes contain seven sites, and the actual source B chain contains
+B1–B7. Enumerating every contiguous declared interval shows that the existing
+seven-pair interval is the only one containing this core with one fixed pair at
+each end. Raising `max_window_pairs` from 7 to 9 returns the identical window.
+The boundary types are `unknown`, pairing coverage is incomplete, and an empty
+protected-site list does not authorize surrounding junction movement.
+
+This is a **declaration/scope limit, not a physical impossibility result**.
+W227's wider reporting mask did not admit an expanded recovery. The next attempt
+needs a source-qualified terminal/coupled or periodic-image window, explicit
+paired neighbours and junction/anchor permissions. Keep the original measured
+core only after proving its source and image correspondence. The existing
+motion source (`f33754cc…`) and Cedar C539's canonical source (`d26ebf24…`)
+are different coordinate bytes; matching residue labels do not let one inherit
+the other's operators or motion authority.
+
+Receipt: `NASolve:branch-artifacts/willow/w229-window-scope/review.json`;
+controller: `branch-artifacts/willow/runners/w229-window-scope.py` under that
+same anchor, run with `PYTHONDONTWRITEBYTECODE=1`, the NASolve Python `-B`, and
+optional Gemmi 0.7.5. No production change, new tests, full suite or native run
+accompanies this read-only planning result. Rowan reviewed it as tonight's
+bounded stopping point.
