@@ -27,7 +27,8 @@ entries are reconstructed from repository history.
   is separately declared and completed, with no automatic selection.
 - Four matched five-cycle arms show both intrinsic phosphate-shoulder seeds
   surviving refinement, with original data, chemistry and fixed context retained;
-  residual geometry and synthetic-only scope remain explicit.
+  residual geometry and synthetic-only scope remain explicit. All four bonds
+  and six angles at each repaired phosphate are within two native sigmas.
 - Trace exact same-parent registered motion and typed source, while refusing to
   invent missing campaign checkpoint ancestry or an ordinary typed-parent role.
 - Evidence/documentation only: no runtime/schema/default/dependency changes or

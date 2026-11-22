@@ -5313,7 +5313,7 @@
       "human_update": 212,
       "code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4",
       "reference": "docs/topostitch-periodic.md#w211w212--local-corrections-survive-matched-refinement",
-      "result": "Each seed repairs its own shoulder. Both give A11/A14 angles107.96/103.06degrees, O5-C5 lengths1.398/1.455A, RMS/max generator error0.0290/0.1211A. Original205/654mask,859atoms,38links,213terms,126sugar signs,7554/389data retained.38+40 checks per pair and28 cross-arm checks.",
+      "result": "Each seed repairs its own shoulder. Both give A11/A14 angles107.96/103.06degrees, O5-C5 lengths1.398/1.455A, RMS/max generator error0.0290/0.1211A. Original205/654mask,859atoms,38links,213terms,126sugar signs,7554/389data retained.38+40 checks per pair and28 cross-arm checks. Complete local phosphate readback: all4bonds/6angles at each repaired site within2native sigmas, unchanged targets; no extra native calls.",
       "limitation": "Synthetic same-ASU diagnostic; residual A14 and inherited geometry outliers remain. No full stereochemistry, general/experimental repair, ordinary workflow or automatic selection.",
       "local_receipts": [
         {
@@ -5333,6 +5333,12 @@
           "path": "branch-artifacts/willow/w212-factorial-shoulder-recovery/factorial-review.json",
           "sha256": "ca9eb231857871708b5c4c2d8f8bf205452038f65095e713d09669ebc50458a2",
           "size": 88445
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w212-factorial-shoulder-recovery/phosphate-readback.json",
+          "sha256": "cbd69f9d938ac2cf48f50e5dacc897f2afa17993ac9e323a2026a2ddbe43df8c",
+          "size": 34509
         }
       ]
     },

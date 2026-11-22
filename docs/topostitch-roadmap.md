@@ -1799,7 +1799,7 @@ Cedar C516 owns validation/finalization/one pending process ordering. Owner-qual
 ### E_LOCAL_SEEDED_RECOVERY — Four-arm local recovery after intrinsic initialization
 
 [Evidence contract](topostitch-periodic.md#w211w212--local-corrections-survive-matched-refinement) at [W212](https://github.com/vecchioni-lab/NASolve/commit/86dd2ef5654a9cd7d90497acc1e3b192bc172bc4).
-Each seed repairs its own shoulder. Both give A11/A14 angles107.96/103.06degrees, O5-C5 lengths1.398/1.455A, RMS/max generator error0.0290/0.1211A. Original205/654mask,859atoms,38links,213terms,126sugar signs,7554/389data retained.38+40 checks per pair and28 cross-arm checks.
+Each seed repairs its own shoulder. Both give A11/A14 angles107.96/103.06degrees, O5-C5 lengths1.398/1.455A, RMS/max generator error0.0290/0.1211A. Original205/654mask,859atoms,38links,213terms,126sugar signs,7554/389data retained.38+40 checks per pair and28 cross-arm checks. Complete local phosphate readback: all4bonds/6angles at each repaired site within2native sigmas, unchanged targets; no extra native calls.
 **Limit:** Synthetic same-ASU diagnostic; residual A14 and inherited geometry outliers remain. No full stereochemistry, general/experimental repair, ordinary workflow or automatic selection.
 
 <a id="e_ordinary_binding_trace"></a>

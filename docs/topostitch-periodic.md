@@ -12203,6 +12203,19 @@ fixed-region geometry (25 bond and 30 angle outliers are wholly fixed); **this i
 Torsions, full chirality/clash validation, experimental data and symmetry seams
 are not certified by these local measurements.
 
+A final cold readback includes **all four P-centered bonds and all six angles**
+at each shoulder, not only the tracked OP2–P–O5′ angle. Unchanged-control maximum
+bond/angle deviations are 3.05/10.39 sigma at A11 and 7.55/8.87 at A14. With both
+seeds they are 1.60/1.70 and 1.25/1.887: every local phosphate bond/angle is within
+two native sigmas. Targets and term identities match exactly. This readback
+uses the saved native `.geo` precision, no new native call, and does not extend
+the global acceptance claim. The pinned supplemental receipt is
+`w212-factorial-shoulder-recovery/phosphate-readback.json`; command:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python -B branch-artifacts/willow/runners/w212-phosphate-readback.py
+```
+
 **Validation:** Phenix 2.2.1-6174, four completed zero-cycle preflights and four
 completed five-cycle refinements, all processes stopped. W211 and W212 each
 pass 38 preflight and 40 recovery checks; the cross-arm closure passes 28.

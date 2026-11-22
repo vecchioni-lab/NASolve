@@ -11,7 +11,8 @@ CLI activation follows. S04/S05/S06 remain PARTIAL.
 local-chain seeds each repair their own phosphate shoulder and survive together.
 Combined angles are 107.96° / 103.06° (108° target); maximum residual to the
 synthetic generator falls from 0.890 Å to 0.121 Å versus unchanged recovery.
-Original content, chemistry, observations/Free and fixed surroundings remain.
+All four bonds and six angles at each repaired phosphate are within two native
+restraint sigmas. Original content, chemistry, observations/Free and fixed surroundings remain.
 A14 and inherited geometry remain imperfect; this is not whole-model acceptance.
 [Measurements and controls](topostitch-periodic.md#w211w212--local-corrections-survive-matched-refinement).
 
