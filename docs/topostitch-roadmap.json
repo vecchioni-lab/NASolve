@@ -4,7 +4,7 @@
   "updated": "2026-11-22",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7",
+  "audited_code_commit": "1eb58fac2771f8d2bc07fbfd90e366583ad00be6",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -277,14 +277,15 @@
         "W218 maintains explicit selected-region displacement summaries with separate centroid/RMS/max and optional positive weights.310/310 tests and exact cross-Python saved-endpoint metrics; no centerline or achieved stress target.",
         "W219 performs the requested true10Acentroid stress once. Source/content/data survive but five-cycle recovery fails sugar handedness and large local geometry/R gates. Preserve the rejected endpoint; shorter link distances alone are not closure.",
         "W220 preserves sugar signs on five fixed whole-residue poses. W221 resolves all24 raw derivative discrepancies through the existing Cedar plane correction; actual refinement already uses it. No new optimizer, accepted large repair or ordinary activation.",
-        "W222qualifies live corrected forces; W223capped6Dgeometry warm-start plus W224matched5cycle receiving retains126sugarsigns and recovers synthetic data, with explicit remaining moving outliers. W225necessary fixed-flank path bound motivates window feasibility before larger targets."
+        "W222qualifies live corrected forces; W223capped6Dgeometry warm-start plus W224matched5cycle receiving retains126sugarsigns and recovers synthetic data, with explicit remaining moving outliers. W225necessary fixed-flank path bound motivates window feasibility before larger targets.",
+        "W226 maintains the bounded6Ddriver with exact points/units, accepted-step history, hard callback budgets, derivative/restoration gates and installed-native parity. It does not write/qualify rounded coordinates or grant ordinary/scientific permission."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "Specify the maintained6Dtrial source/units/budget/accepted-step/stop/rounding contract using existing owners, then qualify feasible editable windows and independent data-supported deformation/stacking. W224is a closed synthetic receiving comparison, not permission to tune/repeat it. Preserve residual geometry and the unrun centerline target.",
+      "next_action": "Use the qualified collective driver and existing atomic/endpoint owners. First freeze a feasible editable-window and independent intended motion/target; preserve protected junctions, stacking and original chemistry. Then one matched data-supported bending/straightening comparison after baseline qualification. Do not repeat/tune W224. Cedar owns ordinary receiving and the real5W6W periodic intent; the5Acenterline definition/test remains separate and unrun.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -369,15 +370,16 @@
         "E_LIVE_COLLECTIVE_FORCES",
         "E_COLLECTIVE_WARMSTART",
         "E_STAGED_RECOVERY",
-        "E_CENTROID_PATH_BOUND"
+        "E_CENTROID_PATH_BOUND",
+        "E_NATIVE_COLLECTIVE_TRIAL"
       ],
       "last_audit": {
         "date": "2026-11-22",
-        "human_update": 219,
-        "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7",
+        "human_update": 226,
+        "code_commit": "1eb58fac2771f8d2bc07fbfd90e366583ad00be6",
         "reviewer": "Linden",
-        "scope": "Bounded negative stress result, no scientific closure",
-        "basis": "31live-force cold checks;20warm-start/replay checks;24/25receiving and11protocol checks; five mathematical controls. Scientific scope remains partial."
+        "scope": "Installed driver parity plus existing staged synthetic recovery; scientific milestone remains partial",
+        "basis": "378 source/378 installed tests and26cold native checks; no additional fit and no full suite this slice."
       }
     },
     {
@@ -450,14 +452,15 @@
         "W217 completes one matched installed-seed receiving fit. Both local corrections survive saved-PDB rounding with original chemistry/data/fixed context retained; full local P-centered bond/angle readback within1.77native sigmas. Global scientific closure remains open.",
         "W219 performs the requested true10Acentroid stress once. Source/content/data survive but five-cycle recovery fails sugar handedness and large local geometry/R gates. Preserve the rejected endpoint; shorter link distances alone are not closure.",
         "W220 preserves sugar signs on five fixed whole-residue poses. W221 resolves all24 raw derivative discrepancies through the existing Cedar plane correction; actual refinement already uses it. No new optimizer, accepted large repair or ordinary activation.",
-        "W222qualifies live corrected forces; W223capped6Dgeometry warm-start plus W224matched5cycle receiving retains126sugarsigns and recovers synthetic data, with explicit remaining moving outliers. W225necessary fixed-flank path bound motivates window feasibility before larger targets."
+        "W222qualifies live corrected forces; W223capped6Dgeometry warm-start plus W224matched5cycle receiving retains126sugarsigns and recovers synthetic data, with explicit remaining moving outliers. W225necessary fixed-flank path bound motivates window feasibility before larger targets.",
+        "W226 maintains the bounded6Ddriver with exact points/units, accepted-step history, hard callback budgets, derivative/restoration gates and installed-native parity. It does not write/qualify rounded coordinates or grant ordinary/scientific permission."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Specify the maintained6Dtrial source/units/budget/accepted-step/stop/rounding contract using existing owners, then qualify feasible editable windows and independent data-supported deformation/stacking. W224is a closed synthetic receiving comparison, not permission to tune/repeat it. Preserve residual geometry and the unrun centerline target.",
+      "next_action": "Use the qualified collective driver and existing atomic/endpoint owners. First freeze a feasible editable-window and independent intended motion/target; preserve protected junctions, stacking and original chemistry. Then one matched data-supported bending/straightening comparison after baseline qualification. Do not repeat/tune W224. Cedar owns ordinary receiving and the real5W6W periodic intent; the5Acenterline definition/test remains separate and unrun.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -584,15 +587,16 @@
         "E_LIVE_COLLECTIVE_FORCES",
         "E_COLLECTIVE_WARMSTART",
         "E_STAGED_RECOVERY",
-        "E_CENTROID_PATH_BOUND"
+        "E_CENTROID_PATH_BOUND",
+        "E_NATIVE_COLLECTIVE_TRIAL"
       ],
       "last_audit": {
         "date": "2026-11-22",
-        "human_update": 219,
-        "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7",
+        "human_update": 226,
+        "code_commit": "1eb58fac2771f8d2bc07fbfd90e366583ad00be6",
         "reviewer": "Linden",
-        "scope": "Bounded negative stress result, no scientific closure",
-        "basis": "31live-force cold checks;20warm-start/replay checks;24/25receiving and11protocol checks; five mathematical controls. Scientific scope remains partial."
+        "scope": "Installed driver parity plus existing staged synthetic recovery; scientific milestone remains partial",
+        "basis": "378 source/378 installed tests and26cold native checks; no additional fit and no full suite this slice."
       }
     },
     {
@@ -665,7 +669,8 @@
         "W217 completes one matched installed-seed receiving fit. Both local corrections survive saved-PDB rounding with original chemistry/data/fixed context retained; full local P-centered bond/angle readback within1.77native sigmas. Global scientific closure remains open.",
         "W219 performs the requested true10Acentroid stress once. Source/content/data survive but five-cycle recovery fails sugar handedness and large local geometry/R gates. Preserve the rejected endpoint; shorter link distances alone are not closure.",
         "W220 preserves sugar signs on five fixed whole-residue poses. W221 resolves all24 raw derivative discrepancies through the existing Cedar plane correction; actual refinement already uses it. No new optimizer, accepted large repair or ordinary activation.",
-        "W222qualifies live corrected forces; W223capped6Dgeometry warm-start plus W224matched5cycle receiving retains126sugarsigns and recovers synthetic data, with explicit remaining moving outliers. W225necessary fixed-flank path bound motivates window feasibility before larger targets."
+        "W222qualifies live corrected forces; W223capped6Dgeometry warm-start plus W224matched5cycle receiving retains126sugarsigns and recovers synthetic data, with explicit remaining moving outliers. W225necessary fixed-flank path bound motivates window feasibility before larger targets.",
+        "W226 maintains the bounded6Ddriver with exact points/units, accepted-step history, hard callback budgets, derivative/restoration gates and installed-native parity. It does not write/qualify rounded coordinates or grant ordinary/scientific permission."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -676,7 +681,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Specify the maintained6Dtrial source/units/budget/accepted-step/stop/rounding contract using existing owners, then qualify feasible editable windows and independent data-supported deformation/stacking. W224is a closed synthetic receiving comparison, not permission to tune/repeat it. Preserve residual geometry and the unrun centerline target.",
+      "next_action": "Use the qualified collective driver and existing atomic/endpoint owners. First freeze a feasible editable-window and independent intended motion/target; preserve protected junctions, stacking and original chemistry. Then one matched data-supported bending/straightening comparison after baseline qualification. Do not repeat/tune W224. Cedar owns ordinary receiving and the real5W6W periodic intent; the5Acenterline definition/test remains separate and unrun.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -792,15 +797,16 @@
         "E_LIVE_COLLECTIVE_FORCES",
         "E_COLLECTIVE_WARMSTART",
         "E_STAGED_RECOVERY",
-        "E_CENTROID_PATH_BOUND"
+        "E_CENTROID_PATH_BOUND",
+        "E_NATIVE_COLLECTIVE_TRIAL"
       ],
       "last_audit": {
         "date": "2026-11-22",
-        "human_update": 219,
-        "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7",
+        "human_update": 226,
+        "code_commit": "1eb58fac2771f8d2bc07fbfd90e366583ad00be6",
         "reviewer": "Linden",
-        "scope": "Bounded negative stress result, no scientific closure",
-        "basis": "31live-force cold checks;20warm-start/replay checks;24/25receiving and11protocol checks; five mathematical controls. Scientific scope remains partial."
+        "scope": "Installed driver parity plus existing staged synthetic recovery; scientific milestone remains partial",
+        "basis": "378 source/378 installed tests and26cold native checks; no additional fit and no full suite this slice."
       }
     },
     {
@@ -5811,6 +5817,35 @@
           "size": 7536
         }
       ]
+    },
+    "E_NATIVE_COLLECTIVE_TRIAL": {
+      "kind": "Installed bounded six-parameter optimizer contract",
+      "date": "2026-11-22",
+      "human_update": 226,
+      "code_commit": "1eb58fac2771f8d2bc07fbfd90e366583ad00be6",
+      "reference": "docs/topostitch-preview.md#run-a-bounded-collective-trial-w226",
+      "result": "378 source and378 relocated-installed tests;26cold native checks. Installed Phenix2.2.1-6174 reproduces all24W223optimizer evaluations,20accepted steps and final coordinates/energies exactly.77callbacks/80outergeometry calls, two strict derivative audits and exact baseline restoration. No new fit or modelwrite.",
+      "limitation": "Caller owns source/chemistry/forces/lifetime. Same frozen canonical synthetic trajectory; cap is not convergence, no serialized-endpoint or ordinary/scientific admission. Full suite deferred to merge gate under coordinator direction for focused evening work.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w226-collective-trial/install/installed-check.json",
+          "sha256": "0eb292eb9bd74f3ff93e4548a46c4113f938d61b5338d4e0338e3d384e833844",
+          "size": 1409
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w226-collective-trial/native-review.json",
+          "sha256": "ee7cc15f45af8350f49c6ddd8007bb178b103bf2fd2f65fc3bbe59a5e940dd3d",
+          "size": 4470
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w226-collective-trial/review-note.json",
+          "sha256": "00bdb543154c3ffa934ed58bd79d5fd1c71125d8113d61608405bc967adabfaa",
+          "size": 537
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -5976,8 +6011,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 225,
-    "next": 226,
+    "current": 226,
+    "next": 227,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -7137,6 +7172,12 @@
         "title": "Measure the necessary fixed-flank path-length budget",
         "state": "RECORDED",
         "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7"
+      },
+      {
+        "number": 226,
+        "title": "Qualify the installed bounded collective-motion trial driver",
+        "state": "RECORDED",
+        "code_commit": "1eb58fac2771f8d2bc07fbfd90e366583ad00be6"
       }
     ]
   },

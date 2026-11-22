@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current audit: W225, 2026-11-22. Maintained implementation: W218.**
+**Current audit and maintained implementation: W226, 2026-11-22.**
 The existing native input binder now accepts an explicitly selected dictionary-only
 parent policy from Cedar C526. Default literal inputs still require compiled
 restraints. W214 binds a real X11_22 PostMR checkpoint and original observations;
@@ -81,18 +81,43 @@ No clean full-suite or skipped-case qualification is claimed; no suite rerun.
 
 ## Next bounded work
 
-The live corrected collective callback and one private bounded trajectory are
-qualified in W222/W223; a maintained six-parameter optimizer contract is still
-missing. Reuse Cedar's correction and the existing motion/endpoint owners.
-Freeze source identity, degree/Å units, hard call/motion limits, accepted-step
-lineage, stop/failure semantics and PDB-rounding review before promoting it.
-Do not relabel the 3N Cartesian trial protocol or assume rounded coordinates
-still lie exactly on the six-parameter motion surface. W224 closes one synthetic
-receiving comparison; do not tune/repeat it. Next qualify feasible editable
-windows and independent data-supported bending/straightening, preserving
-stacking, sequence and protected junctions. The 5 Å centerline test remains
-separate and unrun. Rowan owns ordinary receiving and the canonical 5W6W intent
-recipe; no missing-intent search or invented X11_22 motion.
+W226 closes the maintained collective-trial contract: 378 source/378 relocated
+installed tests and 26 cold installed-native checks. The exact W223 optimizer
+trajectory/end coordinates reproduce; two derivative audits and baseline
+restoration pass, with 77 callbacks/80 outer geometry evaluations. No new fit,
+writer, rounded-endpoint admission or ordinary activation follows. The cap
+remains distinct from convergence. [API, commands and limitations](topostitch-preview.md#run-a-bounded-collective-trial-w226).
+The complete suite is deferred to the merge gate under Rowan's direction for
+this focused evening run; the earlier W215 environment-limited result above is
+not replaced by a clean full-suite claim.
+
+The next experiment must answer a new question, not repeat W224:
+
+1. **Feasible window:** declare source, intended endpoint/image, ordered pairs,
+   fixed flanks and protected junctions. Apply W225's necessary center-path
+   bound before fitting; allow only predeclared window expansion up to those
+   hard stops. This bound cannot certify DNA curvature, stacking or torsion.
+2. **Independent placement:** qualify the unchanged reference and freeze a
+   target or map-supported region independently of the initializer. Test a bend
+   or straightening direction not generated and recovered through the same
+   six-parameter family. Declare the comparison, call budget and stop rules
+   before launch; use geometry warm-start plus matched restrained recovery.
+3. **Scientific readback:** compare final coordinates, individual stacking and
+   covalent residuals, sugars, source content, contacts and original FreeR/data.
+   Inspect supported/unsupported density before interpreting R differences.
+   Report a failure or near-reference return honestly; low synthetic R is not
+   evidence of a distinct experimental structure.
+
+The 5 Å centerline target remains separate and unrun until the local axis is
+defined. Rowan owns the ordinary receiving boundary and concrete 5W6W seam
+intent (`9d5030fbc06f436f428ec2cb88308e73c72b8c74`,
+`docs/recipes/5w6w-central-continuation.json` on Cedar): B7 O3′ to B1 P through
+`-y,x-y,z`, reciprocal `-x+y,-x,z`. It is a closed periodic strand, so an identity
+ASU representative can retain the cycle; do not force every connection into a
+single image-spanning tree. Preserve B1 P/OP1/OP2 and separate D1 terminal intent.
+That exact declared source must be verified before any new run; no missing-intent
+search or invented X11_22 motion is permitted. This note does not qualify a new
+native seam restraint or all three junction closures.
 
 **Ordinary integration remains Cedar-owned:** the versioned request must carry the
 bound geometry-parent/source and admitted candidate motion. Rowan's **C516**

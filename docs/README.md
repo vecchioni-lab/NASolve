@@ -7,9 +7,12 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Current code: W218.** [Explicit displacement metrics](topostitch-preview.md#measure-explicit-region-displacement-w218)
-  separate centroid shift, weighted RMS and maximum atom motion (310 source/310
-  relocated installed tests). No helix-centerline or frame/identity inference.
+- **Current code: W226.** [Bounded collective-motion trials](topostitch-preview.md#run-a-bounded-collective-trial-w226)
+  qualify six-parameter optimization with exact points, physical units, hard
+  budgets and accepted-step/derivative/restoration records: 378 source/378
+  installed tests and 26 installed-native checks. No ordinary activation.
+  [W218 displacement metrics](topostitch-preview.md#measure-explicit-region-displacement-w218)
+  keep centroid, RMS and maximum atom motion distinct from a helix centerline.
 - **Successful local receiving control: W217.** [Maintained local proposals survive native recovery](topostitch-periodic.md#w217--recover-installed-local-proposals-after-pdb-rounding),
   with original source chemistry, atom content, fixed context and data retained.
   Both local phosphate sites finish within two native sigmas; general repair,
@@ -22,9 +25,9 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W225, next W226:
-  specify the maintained collective trial contract, then qualify feasible windows
-  and independent data-supported bending. The 5 Å centerline target is separate.
+  [generated human view](topostitch-roadmap.md). Current W226, next W227:
+  qualify feasible editable windows and independently supported bending/straightening.
+  Keep the successful synthetic receiving comparison closed. The 5 Å centerline target is separate.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview/API guide](topostitch-preview.md) retain commands, failed attempts,
   compatibility pins and limits. Do not repeat closed probes because this index
