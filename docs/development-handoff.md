@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C521 measuring all eight source terms across the crystal boundary — Rowan**.
+Updated **2026-11-22, C522 correcting the torsion force across a crystal boundary — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
 **Q06, original PDU:PDU.** The molecule on the other side of B:1 looks close in
@@ -36,8 +36,22 @@ At a 0.00001 Å step the largest discrepancy was 6.3 × 10⁻⁷ in raw
 Phenix derivative units. Leaving out the rotation produced large errors in
 every family. The experiment used a separate coordinate array. The native
 model, geometry inventory and diffraction observations stayed unchanged. The
-next force test is to count the missing angles and torsions exactly once in a
-live manager, together with its changed exclusions, through rebuilding and reload.
+next test used the live geometry manager that already had the image bond and
+its nonbonded exclusions.
+
+C522 found a direction error in Phenix 2.2.1-6174 on this threefold image. For
+B:7 C3′ along y, symmetric displacements of ±0.00001 Å gave a torsion derivative
+of −5.1922. The native symmetry torsion returned +5.0962 at identical energy.
+All four symmetry angles passed. Evaluating the ordinary Phenix torsions at
+the crystal mate and rotating their gradients back with Willow's existing
+transport recovered the derivative. The largest error across all 24 coordinates
+was 2.84 × 10⁻⁷ for the seven added terms in the complete geometry calculation.
+Its restraint count rose from 11,301 to 11,308. Switching off either family or
+enabling normalization gave the expected counts and forces. All 854 other atoms
+kept their unnormalized gradients. The native bond and exclusions stayed active.
+The diagnostic took zero refinement cycles. The next gate is recovery of the
+same terms through a real selection, rebuild and checkpoint handoff with
+declared partner identity. Q06 remains open.
 
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in

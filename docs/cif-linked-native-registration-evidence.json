@@ -121589,5 +121589,23 @@
     "reproduction": {"worker_sha256": "ad6fba3a10940c5bd8dfbfe30546daae4379fe163e438333b8b521cad836a648", "controller_sha256": "4873db8b2300e6203cb90eeda5efe5013f49f1c7dbb6c5515a7faad5f76cdfdd", "receipt_sha256": "8f3ed650506e37991e574cd5c4fc9785dab5c04e9f183d3f351adcbcc70e15e3"},
     "next": "Deliver missing terms exactly once with the effective exclusion shells and the active manager at rebuild/reload. Preserve declared partner authority in Pine.",
     "local_reproduction": {"anchor": "NASolve_checkout", "path": "branch-artifacts/cedar/c521-phosphate-image-forces/c521-science.json", "sha256": "bbf5db1508c0737cddba2b12c68c3a5e3060647bf0295bc653ab1c246cebc5b7"}
+  },
+  "c522_counted_phosphate_image_terms": {
+    "milestone": "C522",
+    "branch_parent": "7b2c0a57",
+    "native": "Phenix 2.2.1-6174 / cctbx, complete zero-cycle preparation and geometry-manager evaluation",
+    "question": "Can four angles and three torsions act exactly once with the explicit image bond and its exclusions?",
+    "source": "Historical no-mercury PDU:PDU scaffold; B:7 O3′ at -x+y,-x,z against B:1 P. Both matched DA→DC references agree.",
+    "zero_cycle_controls": {"atoms": 862, "selected_amplitudes": 1909, "measured_Free": 124, "native_bond_proxies": 1008, "native_nonbonded_proxies": 7991, "atom_state_sha256": "58145c3f48512685be4b2aeb8c616db6373386669e9f8188de3bf210e700e6da", "observations_and_flags_sha256": "5c5153ab49d91becc9c1986450c5684a0e51e8d88a18538b4aad5b72e5d029de", "ordinary_geometry_unchanged_after_calls": true},
+    "direct_kernel": {"energy_agrees": true, "largest_torsion_gradient_error": 10.288409546653067, "atom_and_axis": "B:7 DA C3′ / y", "measured_slope": -5.192206751614137, "reported_slope": 5.0962027950389315, "largest_angle_gradient_error": 2.1712048692279495e-07},
+    "corrected": {"native_angle_kernel_with_explicit_cell": true, "ordinary_native_torsion_in_explicit_image": true, "cartesian_gradient_transpose": true, "geometry_count": [11301, 11308], "family_counts": {"both": 7, "angles": 4, "torsions": 3, "neither": 0}, "raw_angle_plus_torsion": 646.5269586915, "normalized_and_unnormalized": true, "energy_only_and_with_gradients": true, "local_atoms": 8, "other_atoms": 854, "max_absolute_other_atom_change_before_normalization": 5.684341886080802e-14, "two_step_derivative_max": {"0.0001": 5.204494300414808e-06, "1e-05": 2.8378042316035135e-07}, "corrected_torsion_max": 7.516627320569569e-10},
+    "scope": "Only the deliberately invoked inner geometry call received the seven terms. No atoms moved, no diffraction fit, automatic linkage or ordinary worker registration.",
+    "full_suite_run": false,
+    "refinement_cycles": 0,
+    "physical_partner_assigned": false,
+    "native_attempts": ["001 stopped at residue-label binding", "002 stopped at derivative gate", "003 reproduced and localized the wrong force", "004 passed"],
+    "reproduction": {"worker_sha256": "a84a613e8182a97876d33c743ef99423d11a631b206e6274a17f14926499b6a2", "controller_sha256": "e2505880dc406db8276f5b4c59cb85326ac6d362757ee7867ccaabcf00c5fa03", "original_capture_sha256": "22e5873c1680bf477bc04a5a451d8dd8ca767851352825eb957149f8f12ef780", "result_sha256": "f18d68d150064785e8a81dd88bd4766d77b80699fe9204eb16983df240cb0360", "negative_sha256": "91c63347021c18f27fb24bb61dd8bf12cb66085d882754769b91b5b1a0e8152d"},
+    "next": "Bind physical intent and exact atom identities prospectively, reconstruct the seven image terms through selection/reload and test the ordinary refinement worker before moving any candidate model.",
+    "local_reproduction": {"anchor": "NASolve_checkout", "path": "branch-artifacts/cedar/c522-counted-image/c522-science.json", "sha256": "9946853a62d8df47e4a7e391f49effd81d693667c88438b3778a38865d1e617f"}
   }
 }
