@@ -1,7 +1,29 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C532 checking which dictionary bond targets reached refinement — Rowan**.
+Updated **2026-11-22, C533 testing the side arm on the original PDU pair — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+C533 used the existing source-guided ring-plane repair on the original
+no-mercury PDU:PDU pair. It added the first propynyl carbon, C5A, to the
+existing ring plane with the corroborating dictionary's 0.020 Å sigma.
+Phenix 2.2.1-6174 printed the extra atom at A:12 and B:4 before and after
+five diffraction cycles. With matched site-specific terminal bond sigmas,
+the terminal methyl heights above the six-ring-atom plane fell from
+1.568/1.741 to 0.334/0.566 Å. With the CIF's bond sigma they fell from
+1.587/2.238 to 0.461/1.017 Å. The methyl itself had no plane restraint.
+Both comparisons retained the same 1,778 working and 124 held-out
+reflections and the signs of all six sugar centres. R-free increased by
+0.0031 and 0.0034. B:4 still needs attention.
+
+The archived PDU pair enters these tests with glycosidic angles of
++57°/+83°. The independently prepared C290 model has −150°/−109°, within
+1.1° of the respective canonical bases in the MR model. Improving the
+propynyl plane kept the saved pair on its original side of the sugar.
+Inspect construction, ring geometry and glycosidic orientation separately.
+Cold check with `python -B c533_checkout.py ATTEMPT_PARENT NEW_JSON` and
+`python -B c533_chi.py C518_JSON NASOLVE_ROOT LIVE_TEST_ROOT NEW_JSON`.
+The compact evidence and scripts share C531's existing folder. This adds
+two completed native comparisons and changes no run schema or defaults.
 
 C532 adds [bond-target inspection](cif-doctor.md#checking-which-bond-target-reached-phenix)
 to the existing CIF Doctor assessment. `refinement_component_bonds` reuses

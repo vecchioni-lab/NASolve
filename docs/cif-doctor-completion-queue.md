@@ -135,6 +135,17 @@ C532 now compares printed native bond targets to all supplied component CIFs
 at an ordinary checkpoint or on an explicit model/GEO pair. The old edits
 are visible without knowing the PDU atom names in advance.
 
+C533 restored one graph-supported member to the existing PDU ring plane.
+The methyl itself remained free of that plane. After five actual cycles
+its height improved at both sites under both terminal bond strengths.
+At the CIF strength, A:12 improved from 1.587 to 0.461 Å and B:4 from
+2.238 to 1.017 Å. Six sugar chirality signs persisted. Both archived bases
+entered these trials rotated relative to their canonical host. The C290
+construction already preserves the host orientation. Distinguish a model
+that starts rotated from a prepared model that loses its orientation in
+refinement. Ordinary continuation must retain the selected restraint inputs
+and crystal mate; overall refinement acceptance remains open.
+
 Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
 after correcting the orientation of DP and IMC from their source graphs.
 A separate placement retained all four ATL sugar centres. Phenix applied
