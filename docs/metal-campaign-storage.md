@@ -1882,6 +1882,49 @@ Unsealed-attempt recovery, admission scheduling, ledger compaction and actual
 output retirement remain separate gates. Reservation-count and ledger-size
 bounds are unchanged.
 
+## Read-only diagnosis of a held audited session
+
+`metal.session_diagnostics.diagnose_session_reservation(store, budget_id=...,
+reservation_id=..., failure_id=...)` explains one explicit audited-session grant.
+The equivalent additive CLI retains explicit paths:
+
+```bash
+python -m nasolve.metal.session_diagnostics /path/to/store --budget-id BUDGET_SHA256 --reservation-id RESERVATION_SHA256 --failure-id FAILURE_SHA256
+```
+
+The separately retained failure identity is optional for diagnosis, but required
+before reporting the ready failed-settlement route. JSON output names the exact
+store-relative receipt and phase that blocks release: missing/invalid outer or
+phase completion, absent captured stop proof, mismatched admission, unexpected
+main child/review or failure-pin mismatch. Unknown, unsealed and historical
+unbound attempts stay held. A present review directs the operator to the existing
+successful-review route; this command does not validate that review.
+
+`HELD_READY_FOR_EXPLICIT_SETTLEMENT` means the existing failed-session reader
+accepted the pinned proof at inspection time. **The allowance is still held.**
+Only the existing explicit settlement API can recheck and release it.
+`HELD_BLOCKED` reports the blockers; `ALREADY_SETTLED` reports the compact earlier
+accounting record, without reopening scientific payloads. Deeper scientific/input
+or ownership mismatches are returned as the authoritative reader's refusal,
+not reinterpreted by a new verifier. The report is a point-in-time observation,
+not a recovery receipt or proof of present process liveness.
+
+The reader preserves every file and ledger entry, requires the existing lock,
+does not query historical PIDs, execute native commands, repair missing seals,
+retry, prune or authorize scientific acceptance. Evidence references use the
+store anchor; relocated readback requires no original path. The transient JSON
+report has its own v1 kind; no persisted budget, session or process schema changes.
+There is no scheduler/default activation or abandoned-process recovery.
+
+Qualification: **117 focused tests**, **19 relocated installed tests** and two
+cold existing synthetic stores; all **357 package members** verified and every
+prior source module unchanged. The stopped case remains at **40 MiB** after
+diagnosis; subsequent ordinary explicit settlement releases that allowance.
+The ambiguous case names missing `native-observations` and outer finish receipts,
+plus missing captured failure proof, and retains **40 MiB**. All payloads remain.
+No new Phenix/Coot scientific run or full suite. Exact evidence and commands are
+in the [current handoff](metal-development-handoff.md#a04-current-checkpoint-cooperative-storage-reservations).
+
 ## Capacity and scheduling
 
 Use bytes, not trial counts, to enforce both a campaign retained-data budget and

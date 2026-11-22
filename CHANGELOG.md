@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Explain held metal-session reservations
+
+- Add a read-only API and explicit-path CLI that names missing/invalid stop
+  receipts, phases and reservation/failure binding problems. A pinned ready
+  result remains held until the established settlement API rechecks it.
+- Preserve every payload and prior budget/process format; no PID query, retry,
+  automatic release, recovery or deletion. Qualify 117 focused and 19 relocated
+  installed tests plus stopped/ambiguous cold witnesses; no full suite or new
+  scientific Phenix/Coot execution.
+
 ### Record the coupled attachment-freedom boundary
 
 - Verify source/effective/final-native FT_Hg attachment and nearby angle terms;

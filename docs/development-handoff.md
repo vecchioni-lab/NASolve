@@ -69,7 +69,14 @@ A01 remains partial and A02 gated. The latest compact report is
 `ScienceCheckouts/Hazel/2026-11-22_ft-split-base/index.html`; earlier model/map
 comparisons stay intact, with no generated science committed.
 
-A04's bounded runtime follow-up **`86d34a16`** is pushed on Alder: explicit
+A04 now also has an additive read-only held-session diagnostic and explicit-path
+CLI. It names missing receipts/phases and requires a separate failure pin before
+reporting a ready route; no allowance is released. **117 focused / 19 relocated
+installed tests** and two cold witnesses pass, with **357 package members** checked.
+All prior runtime modules remain unchanged. The [current metal handoff](metal-development-handoff.md#a04-current-checkpoint-cooperative-storage-reservations)
+owns exact commands, report and limitations; no unsealed recovery is claimed.
+
+A04's underlying bounded runtime follow-up **`86d34a16`** is pushed on Alder: explicit
 settlement now releases unused future allowance for a newly bound, sealed stopped
 partial preflight with no main child/review. Files remain. **184 focused / 105
 relocated installed tests** pass, with 356 package members checked. Earlier

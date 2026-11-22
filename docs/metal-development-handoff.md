@@ -178,6 +178,15 @@ process identities are in each bound execution receipt.
 
 ### Completed controls and the next bridge
 
+The next topology check should reuse Cedar `9d5030fb`'s tested
+`docs/recipes/5w6w-central-continuation.json`, not infer a new bridge. With B:7 O3′
+fixed, transform B:1 P by `-y,x-y,z`; the reverse fixed-B:1 view transforms B:7
+O3′ by `-x+y,-x,z`. This source recipe was read here; Cedar/Willow's seven-site
+reconstruction and 2.794915 Å measurement are their reported qualification,
+not a new Alder execution. B:1 carries P/OP1/OP2; D:1 is separately terminal.
+Do not infer full three-junction closure or runtime adoption in these diagnostics.
+
+
 Reuse the unchanged/small-motion continuations, metal-centred angle, attachment
 stiffness, split-B, source-consistent starting pose and current force/contact/
 attachment-freedom controls. Their original evidence and limits remain in this handoff and Git
@@ -201,6 +210,57 @@ Acceptable open XYZ/B still precedes refined base-only/donor environmental B,
 frozen XYZ/all ADPs/f′, and the first bounded f″/Q response set.
 
 ## A04 current checkpoint: cooperative storage reservations
+
+### Current step: read-only held-session diagnosis
+
+The new `metal/session_diagnostics.py` API and explicit-path `python -m` command
+explain which saved receipt or phase prevents a specific reservation's release.
+The previous ledger view stays compact; the prior failed-session reader remains
+the sole proof used by settlement. Prior-owner search found Cedar's public
+process-inspection wrappers over the existing shared owner, but no general
+unsealed Alder recovery owner. No second process or recovery policy is added.
+
+Missing outer/phase receipts, absent captured failure proof, invalid/copy-mismatched
+admission, unexpected main child/review and failure-pin problems have named
+store-relative references. A separately supplied failure pin is needed for
+`HELD_READY_FOR_EXPLICIT_SETTLEMENT`; this is still held and grants no release.
+`HELD_BLOCKED` preserves ambiguous cases, while `ALREADY_SETTLED` reports the prior
+compact accounting record. No PID query, retry, seal synthesis, pruning, native
+execution or scientific acceptance occurs. Deeper failures retain the existing
+reader's refusal. See the [API/CLI contract](metal-campaign-storage.md#read-only-diagnosis-of-a-held-audited-session).
+
+**Validation:** the absent API fails all 14 initial regressions. First implementation
+passes 13; one fixture incorrectly takes its reservation pin from the deliberately
+corrupted admission. Fixing that test to use its independent ledger grant and
+adding CLI/malformed/namespace/link/lock checks yields **117 focused tests in
+70.36 s**. Relocated installed qualification passes **19 tests in 12.72 s** plus
+two cold existing witnesses, with **357 package members** exact. Build/old install
+are gone and original source/witness reads are denied. All prior source modules
+remain byte-identical; native scientific workers and settlement are unchanged.
+No full suite or Phenix/Coot scientific execution. No existing persisted schema
+or migration change; the new transient diagnosis report is v1.
+
+The stopped and ambiguous synthetic stores each hold **40 MiB**. Diagnosis changes
+neither. The established explicit settlement subsequently releases only the
+stopped case; ambiguous settlement refuses and retains its **40 MiB**. Every
+payload remains unchanged. The 0.34 MB preserved witnesses, test logs/XML,
+wheel/manifests, process receipts and cold readbacks are private under
+`session-diagnostics-20261122-01/` at the Alder artifact anchor. The compact opening
+report is `ScienceCheckouts/Hazel/2026-11-22_reservation-diagnosis/index.html`.
+No generated inputs/outputs are committed. Installed runner:
+`runners/A501_qualify_installed_diagnosis.py`; exact bounded commands are retained.
+
+Focused command, from Alder:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/alder-validation-20261121-01/bin/python -B -m pytest -q -p no:cacheprovider tests/test_metal_session_diagnostics.py tests/test_metal_preflight_failure_budget.py tests/test_metal_failed_session_budget.py tests/test_metal_session_budget.py tests/test_metal_owned_preflight.py tests/test_metal_storage_budget.py
+```
+
+Changed files: one additive runtime module, one regression module and maintained
+storage/handoff/roadmap/changelog docs. Unsealed/interrupted recovery, admission
+scheduling, ledger compaction and actual retirement remain separate gates.
+
+### Underlying sealed-preflight settlement qualification
 
 **22 November: explicit release after a sealed, stopped partial preflight.**
 Previously, any failed input inspection retained the whole session's future disk
