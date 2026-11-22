@@ -140,3 +140,35 @@ def inspect_preflight(directory,*,inspection_id):
     except (OSError,ValueError,KeyError,TypeError) as exc:
         if isinstance(exc,RecipeError):raise
         raise RecipeError('Cannot inspect owned input checks: '+str(exc)) from exc
+
+
+def inspect_stopped_preflight(directory,*,request_id):
+    """Read a sealed partial inspection; no scientific pass, PID query or retry.
+
+    A raised input check can have zero, some or all native phases. Only the
+    ordinary owner's saved outer seal and every recorded phase seal establish
+    closure. Missing/uncertain completion stays unsupported.
+    """
+    checksum(request_id,'input-inspection request');root=child._root(directory)
+    try:
+        request=child._request(json.loads(_read(root/'inputs/request.json',child.MAX_REQUEST_BYTES)),request_id)
+        child._inputs(root/'inputs',request['files'])
+        _read(root/'ownership/finished.json',MAX_RECORD_BYTES)
+        seal=records.read_record(root/'ownership/finished.json')
+        child._need(isinstance(seal,dict) and isinstance(seal.get('phases'),dict)
+            and set(seal['phases'])<=PHASES,'Unsupported partial input-inspection seal')
+        phases=root/'ownership/phases'
+        names={p.name for p in phases.iterdir()} if phases.exists() else set()
+        child._need(names==set(seal['phases']),'Partial input-inspection phases changed')
+        for phase in names:_read(phases/phase/'finished.json',MAX_RECORD_BYTES)
+        state=_inspect_owned_processes(root,SCOPE)
+        child._need(state['state']=='STOPPED' and state['finished']==seal
+            and set(state['phases'])==names,'Input inspection is not verifiably stopped')
+        return dict(preflight_ownership_sha256=state['header']['record_sha256'],
+            preflight_finished_sha256=seal['record_sha256'],request_id=request_id,
+            phases={name:dict(finished_sha256=row['finished']['record_sha256'],status=row['finished']['status'])
+                    for name,row in state['phases'].items()},files=_files(root),
+            preflight_stopped_verified=True,input_inspection_complete=False)
+    except (OSError,ValueError,KeyError,TypeError) as exc:
+        if isinstance(exc,RecipeError):raise
+        raise RecipeError('Cannot inspect stopped partial input checks: '+str(exc)) from exc

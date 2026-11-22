@@ -182,7 +182,11 @@ def run_audited_child(prepared_directory,parent_directory,request,*,request_id,
             if declaration is not None and stage in FAILED_STOP_STAGES:
                 try:stop=_failed_stop_evidence(session,declaration)
                 except (OSError,ValueError,KeyError,TypeError,CampaignError):pass
-            failure.update(schema_version=2,session_declaration_sha256=(declaration or {}).get('record_sha256'),
+            if declaration is not None and stage=='FRESH_INPUT_INSPECTION':
+                try:stop=_failed_preflight_stop_evidence(session,declaration)
+                except (OSError,ValueError,KeyError,TypeError,CampaignError):pass
+            failure.update(schema_version=3 if stage=='FRESH_INPUT_INSPECTION' else 2,
+                           session_declaration_sha256=(declaration or {}).get('record_sha256'),
                            process_stop_evidence=stop)
         records.write_record(session/'failure.json',failure)
         if isinstance(exc,(RecipeError,KeyboardInterrupt,SystemExit)):raise
@@ -308,9 +312,8 @@ def inspect_audited_child(session_directory,*,review_id):
 FAILED_STOP_STAGES=frozenset({'OWNED_NATIVE_CHILD','SCIENTIFIC_AUDIT','REVIEW_PUBLICATION'})
 
 
-def _failed_stop_evidence(root,declaration):
-    """Read sealed process owners only; a scientific review is not required."""
-    from . import preflight_process
+def _failed_session_request(root,declaration):
+    """Bind any failed-session closure to its original request and reservation."""
     child_process._need(not (root/'review.json').exists() and not (root/'review.json').is_symlink(),
                         'A published or ambiguous review cannot settle as a failed session')
     request=child_process._request(declaration['request'],declaration['request']['request_id'])
@@ -320,6 +323,22 @@ def _failed_stop_evidence(root,declaration):
     child_process._need(isinstance(binding,dict) and set(binding)=={'budget_id','reservation_id'},
                         'Failed session has no exact reservation binding')
     for name,value in binding.items():checksum(value,name)
+    return request
+
+
+def _failed_preflight_stop_evidence(root,declaration):
+    from . import preflight_process
+    request=_failed_session_request(root,declaration)
+    child_process._need(not (root/'attempt').exists() and not (root/'attempt').is_symlink(),
+                        'Input-inspection failure cannot contain a native child attempt')
+    proof=preflight_process.inspect_stopped_preflight(root/'preflight',request_id=request['request_id'])
+    return dict(**proof,native_not_started_verified=True)
+
+
+def _failed_stop_evidence(root,declaration):
+    """Read sealed process owners only; a scientific review is not required."""
+    from . import preflight_process
+    request=_failed_session_request(root,declaration)
     proof=_session_record(root,'owned-preflight.json')
     _same(proof.get('directory'),dict(anchor='session',relative_path='preflight'),'Failed session preflight location')
     preflight=preflight_process.inspect_preflight(root/'preflight',inspection_id=proof['inspection_id'])
@@ -343,7 +362,8 @@ def _failed_stop_evidence(root,declaration):
 def inspect_failed_audited_child(session_directory,*,failure_id):
     """Verify a pinned new failure and stopped owners; never retry or accept science.
 
-    Initial preflight failures and older unbound failures remain unsupported.
+    New sealed preflight failures prove no main child began; older unbound
+    failures remain unsupported.
     Missing stop seals refuse before the shared process reader can inspect PIDs.
     """
     checksum(failure_id,'independent failed session identity');root=child_process._root(session_directory)
@@ -353,19 +373,22 @@ def inspect_failed_audited_child(session_directory,*,failure_id):
                 'retirement_authorized','session_declaration_sha256','process_stop_evidence','record_sha256'}
         child_process._need(set(failure)==fields and failure['record_sha256']==failure_id
             and failure['kind']=='metal-fdp-audited-child-failure' and type(failure['schema_version']) is int
-            and failure['schema_version']==2 and failure['stage'] in FAILED_STOP_STAGES
+            and ((failure['schema_version']==2 and failure['stage'] in FAILED_STOP_STAGES)
+                 or (failure['schema_version']==3 and failure['stage']=='FRESH_INPUT_INSPECTION'))
             and isinstance(failure['error'],str) and isinstance(failure['message'],str)
             and failure['scientific_acceptance']=='NOT_ASSESSED' and failure['retirement_authorized'] is False
             and isinstance(failure['process_stop_evidence'],dict),'Unsupported or incomplete failed-session closure')
         declaration=_session_record(root,'request.json')
         _same(declaration['record_sha256'],failure['session_declaration_sha256'],'Failed session declaration')
         _same(declaration['request']['request_id'],failure['request_id'],'Failed session request')
-        stop=_failed_stop_evidence(root,declaration)
+        partial=failure['schema_version']==3
+        stop=(_failed_preflight_stop_evidence if partial else _failed_stop_evidence)(root,declaration)
         _same(stop,failure['process_stop_evidence'],'Failed session stopped evidence')
-        return dict(kind='metal-fdp-failed-child-read',schema_version=1,failure_id=failure_id,
+        return dict(kind='metal-fdp-failed-child-read',schema_version=2 if partial else 1,failure_id=failure_id,
             request_id=failure['request_id'],stage=failure['stage'],recorded_parent_scope=declaration['parent_scope'],
             storage_reservation=declaration['storage_reservation'],postflight_review_complete=False,
-            scientific_acceptance='NOT_ASSESSED',retirement_authorized=False,**stop)
+            scientific_acceptance='NOT_ASSESSED',retirement_authorized=False,
+            **{k:v for k,v in stop.items() if k!='request_id'})
     except (OSError,ValueError,KeyError,TypeError,CampaignError) as exc:
         if isinstance(exc,RecipeError):raise
         raise RecipeError('Cannot inspect failed session: '+str(exc)) from exc

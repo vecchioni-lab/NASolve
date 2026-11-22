@@ -70,6 +70,12 @@ def test_incomplete_or_changed_failure_never_releases(tmp_path,monkeypatch,defec
 
 def test_preflight_failure_remains_held_without_recoverable_stop_receipt(tmp_path,monkeypatch):
     values,native,parent_options,options=setup(tmp_path,monkeypatch,'metadata')
+    from nasolve.metal import preflight_process
+    original=preflight_process.run_preflight
+    def lost_outer(*args,**kwargs):
+        try:return original(*args,**kwargs)
+        finally:(tmp_path/'session/preflight/ownership/finished.json').unlink(missing_ok=True)
+    monkeypatch.setattr(preflight_process,'run_preflight',lost_outer)
     with p.retained_parent_inputs(values[1],values[3]['parent_manifest_sha256'],storage_budget=parent_options) as parent:
         with pytest.raises(RecipeError):run(tmp_path,values,native,parent,options)
     failure=records.read_record(tmp_path/'session/failure.json')

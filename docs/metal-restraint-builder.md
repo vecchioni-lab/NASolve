@@ -22,6 +22,24 @@ receive a generic bond length. Metal–metal cluster lengths need their own fami
 and topology, not an arithmetic mean of ionic bond lengths. See the
 [implemented inspection boundary](metal-anomalous-doctor.md#implemented-native-trial-map-and-coot-inspection).
 
+## Straight and bent bridges remain competing hypotheses
+
+**22 November clarification.** For FT_Hg, compare chemically defensible straight
+and bent coordination hypotheses against the same experimental data. A straight
+bridge may be a plausible prior; straightness is not an acceptance criterion.
+The investigator-solved model uses the same limited-resolution observations and
+is a useful comparator, not guaranteed ground truth. Do not bend a candidate to
+match that model or straighten it solely to match an idealized picture.
+
+The current A01 concerns are the stretched base attachment and very short
+Hg–O4 contact; a bent donor–metal–donor angle alone does not establish failure.
+Keep source chemistry, attachment/contact checks, diffraction and map evidence,
+and subsequent branch-specific frozen f″/Q comparisons visible separately.
+Preserve ambiguity if the evidence does not distinguish the hypotheses. Angular
+differences at fractional-degree precision are descriptive, not a ranking rule.
+This clarification changes scientific interpretation, not current recipes,
+restraint targets, native settings or automatic selection.
+
 ## Explicit recipe coverage declarations
 
 The API `nasolve.metal.native_terms.describe_native_terms(preview, native_atoms)`

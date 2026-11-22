@@ -388,7 +388,7 @@ def _reserve_audited_execution(options,*,session,request_id,known_input_bytes,ma
 
 
 def _check_session_settlement(grant,reservation_id,value):
-    if isinstance(value,dict) and value.get('kind')==FAILED_SESSION_SETTLEMENT:
+    if isinstance(value,dict) and value.get('kind') in {FAILED_SESSION_SETTLEMENT,FAILED_PREFLIGHT_SETTLEMENT}:
         return _check_failed_session_settlement(grant,reservation_id,value)
     fields={'kind','schema_version','reservation_id','request_id','parent_reservation_id','review_sha256',
             'output_evidence_id','preflight_stopped_verified','native_stopped_verified','postflight_review_complete',
@@ -461,9 +461,25 @@ def settle_audited_session(directory,*,budget_id,reservation_id,review_id):
 
 
 FAILED_SESSION_SETTLEMENT='metal-failed-session-storage-settlement'
+FAILED_PREFLIGHT_SETTLEMENT='metal-failed-preflight-session-storage-settlement'
 
 
 def _check_failed_session_settlement(grant,reservation_id,value):
+    if value.get('kind')==FAILED_PREFLIGHT_SETTLEMENT:
+        fields={'kind','schema_version','reservation_id','request_id','parent_reservation_id','failure_sha256',
+                'preflight_ownership_sha256','preflight_finished_sha256','preflight_stopped_verified',
+                'native_not_started_verified','postflight_review_complete','verification_scope',
+                'scientific_acceptance','retirement_authorized'}
+        _need(set(value)==fields and type(value['schema_version']) is int and value['schema_version']==1
+            and value['reservation_id']==reservation_id and value['request_id']==grant['request_id']
+            and value['parent_reservation_id']==grant['parent_reservation_id']
+            and value['preflight_stopped_verified'] is True and value['native_not_started_verified'] is True
+            and value['postflight_review_complete'] is False
+            and value['verification_scope']=='FAILED_PREFLIGHT_STOP_CHECKED_AT_SETTLEMENT'
+            and value['scientific_acceptance']=='NOT_ASSESSED' and value['retirement_authorized'] is False,
+            'Malformed failed-preflight settlement')
+        for key in ('failure_sha256','preflight_ownership_sha256','preflight_finished_sha256'):checksum(value[key],key)
+        return
     fields={'kind','schema_version','reservation_id','request_id','parent_reservation_id','failure_sha256',
             'preflight_inspection_id','native_outcome_sha256','native_status','preflight_stopped_verified',
             'native_stopped_verified','postflight_review_complete','verification_scope','scientific_acceptance','retirement_authorized'}
@@ -495,7 +511,8 @@ def settle_failed_audited_session(directory,*,budget_id,reservation_id,failure_i
     """Release a new, exactly bound, known-stopped failed session's allowance.
 
     This is accounting only: failed science stays failed and files remain.
-    Preflight/unknown/unsealed and historical unbound failures stay held.
+    Uncertain/unsealed and historical unbound failures stay held. A newly
+    sealed preflight failure proves that no main child attempt was created.
     """
     root=_root(directory);checksum(reservation_id,'session reservation identity');checksum(failure_id,'independent session failure')
     with exclusive_lock(records.path_in(root,LOCK)):
@@ -506,11 +523,17 @@ def settle_failed_audited_session(directory,*,budget_id,reservation_id,failure_i
             _need(item['settlement'].get('failure_sha256')==failure_id,'Session already settled against different evidence')
             return item['settlement']
         report=_failed_session_review(root,ledger,grant,reservation_id,failure_id)
-        value=dict(kind=FAILED_SESSION_SETTLEMENT,schema_version=1,reservation_id=reservation_id,
+        partial=report['stage']=='FRESH_INPUT_INSPECTION'
+        proof_fields=(('preflight_ownership_sha256','preflight_finished_sha256','preflight_stopped_verified',
+                       'native_not_started_verified','postflight_review_complete') if partial else
+                      ('preflight_inspection_id','native_outcome_sha256','native_status',
+                       'preflight_stopped_verified','native_stopped_verified','postflight_review_complete'))
+        value=dict(kind=FAILED_PREFLIGHT_SETTLEMENT if partial else FAILED_SESSION_SETTLEMENT,
+            schema_version=1,reservation_id=reservation_id,
             request_id=grant['request_id'],parent_reservation_id=grant['parent_reservation_id'],failure_sha256=failure_id,
-            **{k:report[k] for k in ('preflight_inspection_id','native_outcome_sha256','native_status',
-               'preflight_stopped_verified','native_stopped_verified','postflight_review_complete')},
-            verification_scope='FAILED_SESSION_STOP_CHECKED_AT_SETTLEMENT',scientific_acceptance='NOT_ASSESSED',retirement_authorized=False)
+            **{k:report[k] for k in proof_fields},
+            verification_scope='FAILED_PREFLIGHT_STOP_CHECKED_AT_SETTLEMENT' if partial else 'FAILED_SESSION_STOP_CHECKED_AT_SETTLEMENT',
+            scientific_acceptance='NOT_ASSESSED',retirement_authorized=False)
         _observed(root);item['settlement']=value
         _space(root,records.serialized_record_size(ledger),config['free_space_reserve_bytes'])
         _need(_failed_session_review(root,ledger,grant,reservation_id,failure_id)==report,'Failed session changed during settlement')

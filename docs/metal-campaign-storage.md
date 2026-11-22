@@ -1830,26 +1830,33 @@ Parent cleanup remains independent and can finish while an unresolved session
 keeps its own claim.
 
 A separate explicit `settle_failed_audited_session(store, budget_id=...,
-reservation_id=..., failure_id=...)` supports newly recorded budgeted failures
-only after successful owned preflight and a verified stopped native child. The
-producer's failure v2 pins the hashed declaration (including exact reservation)
-and captured preflight/native-stop identities. `inspect_failed_audited_child`
-reuses existing readers; outer and phase stop seals must exist before reading
-process evidence, without querying historical PIDs. Native nonzero exit, verified
-timeout or scientific-audit rejection may qualify. A present review cannot be
-settled as a failure; publication acknowledgement loss uses the successful route
-when the complete review exists.
+reservation_id=..., failure_id=...)` has two qualified failure paths. Existing
+failure v2 records successful owned preflight plus a verified stopped main child
+(nonzero exit, timeout or scientific rejection). Newly budgeted preflight failure
+v3 instead binds stopped input-inspection ownership and proves no main child
+attempt was created. A failed input check can have zero, some or all native
+phases, including a lost inspection-publication acknowledgement. None implies
+that the scientific input inspection passed.
 
-Missing/malformed stop evidence preserves the original error and records no
-recoverable closure. Incomplete preflight, uncertain owners, old failure v1 and
-unrecorded failures remain held. No historical failure is upgraded. Default
-unbudgeted failure v1 stays unchanged. Settlement checks the exact grant, parent
-scope and pinned failure twice under the same lock, then records a distinct
-compact v1 `metal-failed-session-storage-settlement` with
-`postflight_review_complete=False`. Exact retries are idempotent. The previous
-v3 reader can inspect held grants and prior successful settlements but refuses
-this new failed-settlement kind. Current readers retain the previous formats.
-Failed science remains failed; this API grants no retry, reuse or acceptance.
+`inspect_stopped_preflight` reuses the shared process owner. The saved outer seal
+and every recorded phase seal must exist before inspection; missing or uncertain
+stops cannot be replaced by historical PID queries. Original input hashes,
+request, phase/stop identities and captured files remain bound. The failed-session
+reader refuses a main child directory, dangling child symlink or published review
+for the preflight path. A present complete review uses successful settlement.
+Missing/malformed stop evidence preserves the original error and stores no
+recoverable closure. Old unbound and unsealed failures remain held; no historical
+failure is upgraded. Default unbudgeted failure v1 stays unchanged.
+
+Both paths check the exact grant, parent scope and pinned failure twice under the
+existing lock. Native-failure settlement keeps its v1
+`metal-failed-session-storage-settlement`. Preflight closure uses distinct v1
+`metal-failed-preflight-session-storage-settlement`, with
+`native_not_started_verified=True` and `postflight_review_complete=False`, not
+an invented native outcome or stop. Exact retries remain idempotent. Old readers
+retain prior formats but refuse the new preflight kind/failure version; current
+readers retain old successful/native-failed formats. Failed science remains
+failed; this API grants no retry, reuse, acceptance or retirement.
 
 **Accounting versus current scientific evidence:** settlement records that the
 complete review was checked at that point. Routine ledger inspection validates
@@ -1861,19 +1868,19 @@ It removes no data, measures no physical reclaimed space and grants no retiremen
 or scientific acceptance. Poor-fit but fully audited calculations may settle;
 accepting their geometry/metal identity is a separate scientific decision.
 
-Whole-session admission passed 146 focused/67 relocated installed checks; its
-failed-session follow-up passes 165 focused/86 installed checks. The latter covers
-old-reader v1/v2/prior-v3 agreement and new-kind refusal, known failed/nonzero/timed-out
-settlement, unknown retention, copied-receipt refusal, malformed-stop error
-preservation, distinct publication outcomes, busy/acknowledgement retries and
-exact relocation. No retained failed scientific file is changed or deleted.
-Real Ag4 input-inspection and parent-closure evidence is reused from the preceding
-qualified steps; no new native fit or inspection ran here. Exact commands, package
-identity, measured bytes and deliberate exclusions are in the
+Earlier whole-session and native-failure checks remain evidence. The sealed
+partial-preflight follow-up passes **184 focused** and **105 relocated installed**
+tests, with **356 package members** verified. It covers earlier-format agreement,
+new-version refusal, zero/partial/complete phase stops, timeout ownership,
+uncertain/unsealed retention, copied-receipt refusal, malformed-stop error
+preservation, distinct publication outcomes and acknowledgement retries. No
+payload is changed or deleted. Source/build relocation and original-access denial
+are explicit; synthetic process checks are not new Phenix scientific execution.
+Exact commands, package identities and measured accounting are in the
 [current handoff](metal-development-handoff.md#a04-current-checkpoint-cooperative-storage-reservations).
-Partial-preflight recovery, admission scheduling, ledger compaction and actual
-output retirement remain separate gates. The existing reservation-count
-and ledger-size bounds are unchanged.
+Unsealed-attempt recovery, admission scheduling, ledger compaction and actual
+output retirement remain separate gates. Reservation-count and ledger-size
+bounds are unchanged.
 
 ## Capacity and scheduling
 

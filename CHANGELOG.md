@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Release stopped metal preflight headroom explicitly
+
+- Extend failed-session settlement to newly recorded input-inspection failures
+  with complete saved stop seals and no main child/review. Preserve every file,
+  parent lifetime, unknown/unsealed reservations and the original input error.
+- Bind failure v3/readback v2 to the exact request/reservation and add a distinct
+  preflight-settlement kind. Prior native-failure/default formats remain valid;
+  older readers refuse the new records. No scientific acceptance, retry or pruning.
+- Qualify 184 focused and 105 relocated installed tests; no full suite or new
+  Phenix/Coot science execution. Native worker/scientific audit bytes are unchanged.
+- Clarify that straight and bent FT_Hg are competing hypotheses; human solutions
+  from the same limited-resolution data are comparators, not ground truth.
+  Straightness is not an acceptance criterion. No numerical recipe changes.
+
 ### Record final-state force and local-contact evidence
 
 - Close the missing final-state capture/replay and closed pair/flank force

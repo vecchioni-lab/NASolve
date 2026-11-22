@@ -34,6 +34,12 @@ scores use **1,092 work reflections**, excluding **59 free reflections**.
 Selected earlier XYZ weights are historical observations, not a newly inferred
 final combined objective. Work likelihood and raw geometry retain distinct units.
 
+**Interpretation:** straight and bent FT_Hg bridges remain competing hypotheses.
+The human endpoint is a same-data comparator, not ground truth. Straightness is
+not an acceptance gate; current concern centres on attachment/contact pathology,
+not the bend alone. Preserve ambiguity when matched evidence cannot distinguish
+chemically defensible alternatives; see the [recipe contract](metal-restraint-builder.md#straight-and-bent-bridges-remain-competing-hypotheses).
+
 ### What the forces and finite moves show
 
 Moving Hg toward the donor axis has work-target derivative **+0.000416115/Å**
@@ -149,64 +155,79 @@ frozen XYZ/all ADPs/f′, and the first bounded f″/Q response set.
 
 ## A04 current checkpoint: cooperative storage reservations
 
-**Latest bounded step: explicit release of a known-stopped failed session.**
-The normal budgeted session still reserves before owned input inspection and
-keeps its grant through native work and scientific review. A complete successful
-review uses `settle_audited_session`. Newly recorded failures now have a separate
-`settle_failed_audited_session(..., failure_id=...)` route, requiring successful
-owned preflight and a verified stopped main child. This covers nonzero exits,
-verified timeouts and failed scientific audits. It does not grant a scientific
-review, automatic retry or acceptance. All files remain charged and untouched.
+**22 November: explicit release after a sealed, stopped partial preflight.**
+Previously, any failed input inspection retained the whole session's future disk
+allowance, even when its native processes had recorded stops and no main f″ child
+had begun. The existing explicit `settle_failed_audited_session(..., failure_id=...)`
+now handles that narrower case. Files stay intact and continue to count as used
+space. The protected parent's allowance/lifetime remains independent.
 
-Budgeted failure v2 binds the exact request declaration/reservation and captured
-process-stop evidence. Default failure v1 is unchanged. Missing/corrupt evidence
-preserves the original error without a recoverable closure. Preflight failures,
-uncertain owners, missing seals, historical unbound failures and absent receipts
-remain charged. The existing readers verify saved stops without historical PID
-probing. Copied same-request receipts cannot release another grant. A present
-review refuses failed settlement; an acknowledgement lost after successful
-publication uses the successful route. Parent closure stays independent.
+Methods: the existing process owner supplies the outer seal and every recorded
+phase seal; the new stopped-preflight reader binds original inputs, request,
+phase identities and captured logs. The failed-session reader requires no main
+child attempt and no scientific review, then binds the hashed declaration to its
+exact budget/reservation and retained-parent scope. Settlement repeats those
+checks under the existing ledger lock before releasing future headroom. It does
+not run another inspection, query historical PIDs, delete files, authorize retry
+or claim that the input science passed. Zero phases, a stopped partial inspection
+and a fully stopped inspection whose publication failed remain distinguishable.
+Missing/malformed/uncertain stops, old unbound failures and a present child/review
+remain held. Unsealed historical attempts are not upgraded.
 
-**Qualification:** 11 valid regressions fail before implementation. The initial
-163 focused/84 installed pass is retained. Review then found malformed stop metadata
-could obscure the original scientific error; two reproducing failures were retained
-and fixed. Final **165 focused tests pass in 61.13 s**, and **86 relocated installed
-tests pass in 44.48 s**, with **356 packaged files** verified, original source/native
-reads blocked and the build/old installation removed. Prior v1/v2/v3 observations
-agree with the previous reader; it refuses the new failed-settlement kind. No full
-suite, Phenix or Coot execution. No new scientific result is claimed.
+**Schemas/compatibility:** only newly budgeted preflight failures emit failure v3;
+its readback is v2 and its ledger result has a distinct v1
+`metal-failed-preflight-session-storage-settlement` kind, reporting
+`native_not_started_verified=True`. It does not invent a native outcome or say
+that an unstarted child stopped. Existing native-failure v2/readback v1 and its
+settlement are unchanged. Default unbudgeted failure v1, review/config/ledger v3,
+CLI paths and native workers retain their meaning. Old readers still agree on
+prior v1/v2/v3 observations and explicitly refuse the new record kind/version.
+No migration, automatic activation or crystallographic setting changes.
 
-Exact source command, from the Alder worktree:
+**Qualification:** six meaningful new regressions fail before implementation.
+The final focused profile passes **184 tests in 72.91 s**; relocated installed
+qualification passes **105 tests in 60.45 s**, checking **356 package members**.
+The build source and old installation are removed and original source/native
+reads blocked. Existing successful/native-failed observations, late child
+appearance, copied scope, absent/malformed evidence, original-error preservation,
+timeouts, missing publication, relocation and acknowledgement retries are covered.
+An initial restricted run records 44 passes and two timeout ownership refusals
+(new and existing cases); the exact two pass with process-inspection permissions,
+and the complete final focused profile passes with those permissions. No stop
+policy is weakened. This is not a full-suite or native Phenix/Coot execution.
+The earlier integrated full-run result and test-only amendment remain recorded
+in the root handoff; they are not relabelled as a current all-green full run.
+
+Exact source command, from Alder:
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_metal_failed_session_budget.py tests/test_metal_session_budget.py tests/test_metal_parent_budget.py tests/test_metal_retained_budgeted_child.py tests/test_metal_storage_budget.py tests/test_metal_mixed_storage_budget.py tests/test_metal_budgeted_child.py tests/test_metal_owned_preflight.py tests/test_metal_child_session.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/alder-validation-20261121-01/bin/python -B -m pytest -q -p no:cacheprovider tests/test_metal_preflight_failure_budget.py tests/test_metal_failed_session_budget.py tests/test_metal_session_budget.py tests/test_metal_parent_budget.py tests/test_metal_retained_budgeted_child.py tests/test_metal_storage_budget.py tests/test_metal_mixed_storage_budget.py tests/test_metal_budgeted_child.py tests/test_metal_owned_preflight.py tests/test_metal_child_session.py
 ```
 
-Final private evidence: `failed-session-budget-20261121-02/`; installed runner
-`runners/A356_failed_session_final_qualification.py`. Exact installed commands and
-package/fixture manifests are retained. Source log:
-`failed-session-final-focused-20261121.log` at the same Alder artifact anchor.
-The prior package/checks remain in `failed-session-budget-20261121-01/`; baseline
-and error-preservation failures remain in `failed-session-before-20261121-02.log`
-and `failed-session-error-before-20261121.log`. The first baseline's incorrectly
-named test mock is separately retained, not counted as the valid baseline.
-Wheel SHA-256: `1912007b630713c3ee7f0e8771ff837a7898cd835f6391f9c0a6068f699a1663`.
+Private evidence: `preflight-failure-budget-20261122-01/` at the Alder artifact
+anchor. `baseline/` retains six failures/nine passes; `focused-final/` contains
+exact commands, source pins, XML/log and stopped owner. `installed/` contains the
+wheel, package/fixture manifests, compatibility/relocation checks, measurements
+and owned command records. Runners `A487_run_preflight_profile.py` and
+`A489_qualify_preflight_installed.py` bind the completed checks. The scientific
+worker, frozen-state audit and map helper bytes match the preceding qualification.
 
-**Files/schemas/compatibility:** `metal/child_session.py`, `metal/storage_budget.py`,
-one new focused regression module and current docs. Config/ledger/inspection stay
-v3; failure v2 and a separate failed-settlement v1 kind are explicit. Scientific
-review v3, native workers, default failure v1 and old stores retain their meaning.
-No migration, CLI/default activation or source-science change. Compact ledger
-inspection records the past check; it does not re-open every scientific array.
-Generated fixtures, wheels, reports and source science remain outside Git.
+The installed synthetic store has two failed preflights after parent closure:
+**80 MiB** of future allowance is held. Explicit settlement releases the known
+stopped case's **40 MiB**, leaving the unsealed case's **40 MiB** held. Every
+payload stays unchanged; the store contains **486,395 B** after the small
+settlement record is written. These are fixture measurements, not campaign
+capacity or physical reclaimed bytes. The preceding A01 visual report remains
+`ScienceCheckouts/Hazel/2026-11-22_ft-final-forces/index.html`; the small A04
+accounting table is recorded alongside its evidence and in the evening addendum.
 
-The installed measurement runs three synthetic sessions: a successful review,
-a scientific rejection and an incomplete preflight. After parent closure, explicit
-settlement releases only the verified failed session's **40 MiB** allowance.
-The incomplete session retains **40 MiB**, and **441,846 B** of files remain in the
-store. These fixture sizes are not a campaign-capacity estimate. Local visual report:
-`ScienceCheckouts/Hazel/2026-11-21_failed-session/index.html` beside the repositories;
-an identical `review.html` is retained with the final private evidence.
+Changed implementation: `metal/preflight_process.py`, `metal/child_session.py`,
+`metal/storage_budget.py`, the new regression module and one existing
+missing-receipt fixture. Current contracts, roadmap and changelog are updated.
+Generated fixtures, wheels, science records and reports remain outside Git.
+Next: unsealed/interrupted ownership recovery, bounded campaign scheduling,
+ledger compaction and actual output retirement require separate qualification.
+Do not infer safe deletion or scientific acceptance from released headroom.
 
 **Supporting qualified evidence, reused rather than rerun:**
 

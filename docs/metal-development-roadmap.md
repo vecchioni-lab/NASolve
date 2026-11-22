@@ -112,9 +112,12 @@ Whole-session qualification was 146 focused/67 installed checks. The bounded
 failed-session follow-up now passes 165 focused/86 installed checks: completed
 preflight plus a verified stopped native child can explicitly release a newly
 bound failed session's allowance, without accepting science or deleting files.
-Preflight/unknown/unsealed and historical unbound failures remain held. No new
-native science was rerun. Next: partial-preflight recovery remains a separate gate;
-bounded campaign scheduling and output retirement need their own qualification.
+That earlier step kept all preflight failures held. No new native science was
+rerun. The sealed partial-preflight follow-up now passes 184 focused/105 installed
+checks. A newly bound failed input inspection can explicitly release future
+headroom only with its outer/phase stops verified and no main child/review; files
+remain. Missing or uncertain seals stay held. Unsealed-attempt recovery, bounded
+campaign scheduling and output retirement need their own qualification.
 See the [implemented retained-parent contract](metal-campaign-storage.md#implemented-retained-parent-release-and-child-consumption).
 Arbitrary protection ancestry is not inferred. Read/execution lifetime qualification does not establish capacity or
 close the A01/A02 science gates.
@@ -258,6 +261,10 @@ descriptive; broad geometry and combined scientific evidence guide review.
    derivative/closure and identity checks precede any new fit. Reuse completed
    weight, angle, pivot, stiffness, split-B and start-pose controls. No new geometry
    engine, adopted bad-contact target, repeated grid or relaxed tolerance follows.
+   Straight versus bent FT_Hg remain competing hypotheses: the investigator's
+   same-data endpoint is a comparator, not ground truth, and straightness alone
+   is not an acceptance criterion. Current attachment/contact defects remain
+   distinct from that geometry choice.
 2. **A01 → A02:** qualify an open XYZ/B endpoint through local chemistry,
    coordination, Rwork/Rfree, stopping evidence and maps. Derive environmental
    metal B from the actual refined donors/base-only atoms, report disagreement
@@ -334,7 +341,7 @@ the exact source pin, counts, commands and remaining integration boundaries.
 | **A01 — Ligand geometry and open XYZ/B foundation** | PARTIAL; native stopping evidence implemented; FT_Hg open-fit geometry gate remains | Qualify exact source chemistry, linkage/terminal context, all intended NARestraints and metal recipe terms; demonstrate open XYZ/B refinement, explicit phase/Free-R policy, active-state B export and inspectable maps. FT_Hg first, then mixed Au/Ag. | Merged development base |
 | **A02 — Controlled f″/Q quantitation** | PARTIAL; frozen fits, B environments and matched comparisons implemented | Use qualified endpoints; freeze XYZ/all ADPs/f′, prepare metal B from the refined environment, and qualify Q/start/budget responses, mixed elements, cluster sums/cancellation and anomalous-background controls. | A01 |
 | **A03 — Editable recipes and structural alternatives** | PARTIAL; recipe core and candidate comparisons implemented | Source-backed ligand/metal-state targets, saved editable recipes, count/identity alternatives, optional chi flips and multiple/adjacent sites; preserve ambiguity and human choice. | A01–A02 |
-| **A04 — Lean storage and regeneration** | PARTIAL; [inventory/forecast, compact projection and exact input transport](metal-campaign-storage.md) implemented; explicit parent transport, retained execution/cold review and compact publication with declared protected references qualified on bounded controls; v1 one-shot admission and opt-in mixed-scope ledger admission qualified on small controls; ordinary parent closure and retained-child budget admission qualified; owned native preflight qualified; whole audited-session admission and successful/verified-stopped-failure settlement qualified; incomplete-preflight recovery, accepted scientific regeneration, scheduler-wide accounting and pruning pending | Shared pristine parents, compact frozen-trial records, protected important nodes, size-capped map retention, cold native regeneration, crash-safe retirement and campaign disk reservations. | Qualified A01–A02 examples; before large fan-out |
+| **A04 — Lean storage and regeneration** | PARTIAL; [inventory/forecast, compact projection and exact input transport](metal-campaign-storage.md) implemented; explicit parent transport, retained execution/cold review and compact publication with declared protected references qualified on bounded controls; v1 one-shot admission and opt-in mixed-scope ledger admission qualified on small controls; ordinary parent closure and retained-child budget admission qualified; owned native preflight qualified; whole audited-session admission and successful/verified-stopped-failure settlement qualified; sealed partial-preflight settlement qualified; unsealed-attempt recovery, accepted scientific regeneration, scheduler-wide accounting and pruning pending | Shared pristine parents, compact frozen-trial records, protected important nodes, size-capped map retention, cold native regeneration, crash-safe retirement and campaign disk reservations. | Qualified A01–A02 examples; before large fan-out |
 | **A05 — Dedicated GUI co-design session** | OPEN; earlier sketches and inspection viewer are starting points | Scientist and developer jointly walk through real cases, debate navigation/controls, compare alternatives and agree a usable modular design with recorded decisions and usability checks. | Representative A02/A03 evidence; can run alongside A04 |
 | **A06 — Campaign and GUI integration** | PARTIAL; identities, navigation and inspection mechanisms exist | Connect the agreed GUI to bounded multi-dataset execution, structures/sites, compact comparisons, branching history, maps/Coot, selection, reuse and recovery; include no-metal/empty-frame policy. | A02–A05 |
 | **A07 — Reconstruct known metal solutions through the mechanics** | OPEN; solved references and diagnostic fixtures available | Reconstruct defensible solutions from declared experimental inputs and general NASolve mechanics, with reference models withheld from construction/search; record intervention and remaining ambiguity against predeclared criteria. | Mechanical rehearsals through A01–A03; campaign demonstration after A06 |

@@ -906,5 +906,25 @@
       "automatic_checkpoint_selection": false
     }
   },
-  "updated": "2026-10-30"
+  "updated": "2026-11-22",
+  "geometry_hypothesis_review": {
+    "date": "2026-11-22",
+    "example": "FT_Hg",
+    "straight_and_bent_are_alternatives": true,
+    "straightness_is_acceptance_criterion": false,
+    "human_endpoint_is_ground_truth": false,
+    "reference_role": "Comparator based on the same limited-resolution observations; neither a forced geometry nor independent experimental truth.",
+    "current_local_concerns": [
+      "stretched base attachment",
+      "very short Hg-O4 contact"
+    ],
+    "angle_alone_establishes_failure": false,
+    "compare": [
+      "source chemistry and local attachment/contact geometry",
+      "matched diffraction and map evidence",
+      "later branch-specific frozen f-double-prime/occupancy evidence"
+    ],
+    "preserve_unresolved_ambiguity": true,
+    "changes_runtime_targets": false
+  }
 }
