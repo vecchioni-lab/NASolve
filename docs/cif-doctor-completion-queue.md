@@ -1973,6 +1973,15 @@ and their uncertainties both changed. The outcome cannot be attributed solely
 to removing H or to changing formal charge. The cases remain unselected research
 controls. Explicit metal donor-state integration remains a post-build decision.
 
+**DF sulfur geometry, 22 November.** The matched neutral QF1 targets came
+from the Phenix 2.2.1-6174 eLBOW builder. Its N1–C2–S value was 126.83°,
+and the metal-pair fit reached 135.32°. The independent, unrestrained crystal
+structure of free 2-thiothymine gives 122.57(9)° for N1–C2–S and 122.80(9)°
+for N3–C2–S. It has neither the sugar nor the Hg–N3 bond. Use it to flag the
+distortion and require evidence for the appropriate donor state before changing
+any targets or widths. [Primary structure, Table 1](https://doi.org/10.1107/S010827010201315X)
+and [Alder’s source audit](https://github.com/vecchioni-lab/NASolve/blob/Alder/docs/metal-df-c2-angle-audit.md).
+
 **C374 DF source-state confirmation:** exact original, numerical, plane-added and
 refinement dictionaries retain OP2 charge0/HOP2 and a single P–OP2 bond. Its
 1.571 Å target (sigma0.022), versus OP1's1.473 Å (sigma0.012), is source-derived.
