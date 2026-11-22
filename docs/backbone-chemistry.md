@@ -91,6 +91,10 @@ precedence. Apply the investigator's junction convention at this position;
 other nicks, crossovers and their occupancies have separate evidence.
 [Deposited 5W6W](https://www.rcsb.org/structure/5W6W).
 
+To check the image in a saved model, run
+`nasolve cif-doctor phosphate-image MODEL.pdb --phosphate B:1 --o3 B:7 --nearest-image`.
+Use the remapped site labels when the construct's numbering has changed.
+
 In the controlled PDU:PDU fit, a distance alone closed the gap but left the
 two O3′–P–OP angles at 84.5° and 129.3°. With angle and torsion forces evaluated
 in the named mate they reached 107.5° and 110.5° after five Phenix cycles.

@@ -39,6 +39,102 @@ def run(model, capsys, *extra, image="x-1,y,z"):
     return json.loads(out.out)
 
 
+def nearest(model, capsys, *extra):
+    args = ["cif-doctor", "phosphate-image", str(model), "--phosphate", "B:1", "--o3", "A:7",
+            "--nearest-image", "--json", *map(str, extra)]
+    code = main(args)
+    output = capsys.readouterr()
+    assert code == 0, output.err
+    return json.loads(output.out)
+
+
+def test_nearest_and_runner_up_belong_to_these_named_atoms(tmp_path, capsys):
+    pytest.importorskip("gemmi")
+    model, geo = inputs(tmp_path)
+    explicit = run(model, capsys, "--geometry", geo)
+    ranked = nearest(model, capsys, "--geometry", geo)
+    ranking = ranked.pop("image_ranking")
+    assert ranked == explicit
+    assert ranking["status"] == "SEPARATED"
+    assert [(c["image"]["operator_xyz"], c["distance_A"]) for c in ranking["closest_two"]] == [
+        ("x-1,y,z", pytest.approx(3)), ("x,y,z", pytest.approx(17))]
+    assert ranking["separation_A"] == pytest.approx(14)
+
+
+@pytest.mark.parametrize("test_case", ["exact tie", "coordinate rounding", "special position"])
+def test_tied_operators_keep_the_decision_open(tmp_path, capsys, test_case):
+    pytest.importorskip("gemmi")
+    model, geo = inputs(tmp_path)
+    text = model.read_text()
+    if test_case == "special position":
+        text = text.replace("90.00 P 1", "90.00 P 2").replace("  19.000   2.000   2.000", "   0.000   2.000   0.000")
+        candidates = {"-x,y,-z", "x,y,z"}
+    else:
+        target = 12 if test_case == "exact tie" else 11.999
+        text = text.replace("  19.000   2.000   2.000", f"{target:8.3f}   2.000   2.000")
+        candidates = {"x-1,y,z", "x,y,z"}
+    model.write_text(text)
+    report = nearest(model, capsys, "--geometry", geo)
+    ranking = report["image_ranking"]
+    assert ranking["status"] == "AMBIGUOUS_AT_PDB_PRECISION"
+    assert {row["image"]["operator_xyz"] for row in ranking["closest_two"]} == candidates
+    assert report["o3_image"] is None and report["distance_A"] is None
+    assert all(a is None for a in report["coordinate_angles_degrees"].values())
+    assert report["printed_geometry"]["status"] == "UNASSESSED"
+    assert run(model, capsys, image="x,y,z")["distance_A"] is not None
+
+
+def test_nearest_in_skew_cell_checks_other_lattice_translations(tmp_path, capsys):
+    from itertools import product
+    import math
+    gemmi = pytest.importorskip("gemmi")
+    model, _ = inputs(tmp_path)
+    cell = gemmi.UnitCell(20,20,20,90,90,60)
+    xyz = cell.orthogonalize(gemmi.Fractional(3.44,-1.51,0))
+    written = tuple(round(v,3) for v in xyz)
+    text = model.read_text().replace("90.00  90.00  90.00", "90.00  90.00  60.00")
+    text = text.replace("   2.000   2.000   2.000", "   0.000   0.000   0.000")
+    text = text.replace("  19.000   2.000   2.000", "".join(f"{v:8.3f}" for v in written))
+    model.write_text(text)
+    brute = []
+    for shift in product(range(-6,7),range(-5,6),range(-2,3)):
+        offset = cell.orthogonalize(gemmi.Fractional(*shift))
+        brute.append((math.hypot(*(a+b for a,b in zip(written,offset))),list(shift)))
+    winners = sorted(brute)[:2]
+    assert winners[0][1] != [-3,2,0]
+    ranking = nearest(model, capsys)["image_ranking"]
+    for row, (distance, shift) in zip(ranking["closest_two"], winners, strict=True):
+        assert row["distance_A"] == pytest.approx(distance)
+        assert row["image"]["lattice_translation"] == shift
+
+
+def test_nearest_unoccupied_endpoint_and_resource_limit_are_explicit(tmp_path, capsys):
+    pytest.importorskip("gemmi")
+    from nasolve.cif_phosphate_image import inspect_phosphate_image
+    from nasolve.topostitch_images import closest_atom_images
+    from nasolve.topostitch_periodic import _crystal
+    model, _ = inputs(tmp_path)
+    rows = model.read_text().splitlines(keepends=True)
+    i = next(i for i, line in enumerate(rows) if line[12:16].strip() == "O3'")
+    rows[i] = rows[i][:54] + "  0.00" + rows[i][60:]
+    model.write_text("".join(rows))
+    with pytest.raises(ValueError,match="occupied"):
+        inspect_phosphate_image(model, phosphate="B:1", o3="A:7", nearest_image=True)
+    gemmi, cell, group = _crystal((20,20,20,90,90,90),"P 1")
+    with pytest.raises(ValueError,match="budget"):
+        closest_atom_images((0,0,0),(1,2,3),cell,group,gemmi,max_image_tests=5)
+
+
+def test_plain_ambiguous_report_names_both_copies(tmp_path, capsys):
+    pytest.importorskip("gemmi")
+    model, geo = inputs(tmp_path)
+    model.write_text(model.read_text().replace("  19.000   2.000   2.000", "  12.000   2.000   2.000"))
+    assert main(["cif-doctor", "phosphate-image", str(model), "--phosphate", "B:1", "--o3", "A:7",
+                 "--nearest-image", "--geometry", str(geo)]) == 0
+    output = capsys.readouterr().out
+    assert "x-1,y,z" in output and "x,y,z" in output and "--o3-image" in output
+
+
 def test_checkpoint_follows_its_own_model_and_geometry_after_relocation(tmp_path, capsys, monkeypatch):
     pytest.importorskip("gemmi")
     from nasolve.model_assessment import file_sha256
@@ -76,6 +172,9 @@ def test_checkpoint_follows_its_own_model_and_geometry_after_relocation(tmp_path
     assert selected["checkpoint"]["geometry"]["relative_path"] == child["outputs"]["final_geometry"]["relative_path"]
     assert selected["printed_geometry"]["geometry_sha256"] == file_sha256(geometry)
     assert len(selected["printed_geometry"]["nonbonded"]["matches"]) == 1
+    ranked = nearest(actual, capsys, "--checkpoint", "first-refinement")
+    assert ranked["image_ranking"]["status"] == "SEPARATED"
+    assert ranked["checkpoint"] == selected["checkpoint"] and ranked["printed_geometry"] == selected["printed_geometry"]
     root = run(actual, capsys, "--checkpoint", "postmr")
     assert root["model_sha256"] == file_sha256(model)
     assert root["checkpoint"]["geometry"] is None and root["printed_geometry"] is None

@@ -34,6 +34,16 @@ nasolve cif-doctor phosphate-image final.pdb --phosphate B:1 --o3 B:7 \
   --o3-image=-x+y,-x,z --geometry final.geo
 ```
 
+When you know which two atoms join but still need the symmetry operation,
+use `--nearest-image` in place of `--o3-image`. Doctor holds the phosphorus
+fixed, ranks crystal copies of the named O3′, and reports the two closest
+operations and distances. It includes unit-cell translations. A separation
+within the rounding allowance of the saved PDB leaves the choice open. Use
+the explicit operation to inspect either copy. Distance ranks the copies
+of these atoms; the construct supplies their chemical connection.
+For the [central strand of 5W6W](backbone-chemistry.md#the-central-strand-in-the-5w6w-scaffold),
+the two closest copies in the starting frame are 2.795 and 21.895 Å away.
+
 The operation acts on O3′ and its C3′. The report gives the P–O3′ distance, the
 available backbone angles from the coordinates and the named phosphate atoms
 present. With a GEO file it shows each printed bond and nonbonded contact for that

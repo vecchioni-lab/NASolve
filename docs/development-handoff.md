@@ -1,7 +1,23 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C533 testing the side arm on the original PDU pair — Rowan**.
+Updated **2026-11-22, C534 identifying the crystal copy of a named atom — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+C534 adds `--nearest-image` to CIF Doctor's existing phosphate inspection
+on an exact PDB or checkpoint. It reports the two closest operations for
+the two named atoms. Distances indistinguishable at PDB precision leave
+the image open. The existing explicit-image route and older checkpoint
+formats are compatible. The shared lattice bounds are also used by
+TopoStitch. All four original 5W6W-lineage models reproduce the independent
+C528 ranking, including the lattice translation and runner-up. The compact
+machine-readable 5W6W family convention and readback are in
+`NASolve:branch-artifacts/cedar/c528-phosphate-refinement/c534-scaffold-intent.json`.
+Six focused scenarios failed before implementation. The source and relocated
+wheel each passed 157 tests and 7 subtests using
+`python -B -m pytest -q -p no:cacheprovider tests/test_phosphate_image.py tests/test_topostitch_images.py tests/test_topostitch_periodic.py tests/test_topostitch_graph.py tests/test_cif_doctor_run.py`
+with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` for the source. The wheel ran
+with its original build and installation paths removed. No native program
+or full regression was needed for this coordinate inspection.
 
 C533 used the existing source-guided ring-plane repair on the original
 no-mercury PDU:PDU pair. It added the first propynyl carbon, C5A, to the

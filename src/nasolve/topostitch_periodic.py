@@ -67,6 +67,26 @@ def _image_record(op, gemmi):
             "translation_numerators": op.tran, "denominator": op.DEN}
 
 
+def _fractional_bounds(cell, radius):
+    """Bound each fractional component of a displacement inside a Cartesian sphere."""
+    bounds = [(radius + _CART_TOL) * math.hypot(*row) + _FRAC_TOL for row in cell.frac.mat.tolist()]
+    if any(not math.isfinite(b) for b in bounds):
+        raise ValueError("Search radius exceeds the supported numerical range")
+    return bounds
+
+
+def _lattice_box(fixed, transformed, bounds):
+    """Return the candidate cell translations and their count before enumeration."""
+    ranges = []
+    count = 1
+    for a, b, bound in zip(fixed, transformed, bounds, strict=True):
+        centre = a - b
+        lo, hi = math.ceil(centre - bound), math.floor(centre + bound)
+        count *= max(0, hi - lo + 1)
+        ranges.append(range(lo, hi + 1))
+    return ranges, count
+
+
 def propose_periodic_connections(
     ends, *, cell_parameters, space_group: str, source_model_sha256: str,
     max_distance_angstrom: float, max_pairs: int = 100_000,
@@ -97,12 +117,7 @@ def propose_periodic_connections(
         if any(not math.isfinite(v) or abs(v) > 1e6 for v in xyz):
             raise ValueError("Fractional coordinates exceed the supported numerical range")
         fractions[e.end_id] = xyz
-    # Each row of F maps a Cartesian displacement to one fractional component.
-    # Cauchy-Schwarz bounds that component over the Cartesian search sphere.
-    bounds = [(max_distance_angstrom+_CART_TOL)*math.hypot(*r)+_FRAC_TOL
-              for r in cell.frac.mat.tolist()]
-    if any(not math.isfinite(b) for b in bounds):
-        raise ValueError("Search radius exceeds the supported numerical range")
+    bounds = _fractional_bounds(cell, max_distance_angstrom)
     ops = sorted(group.operations(), key=_op_key)
     complement = str.maketrans("ACGT", "TGCA")
     candidates, seen, tested = [], set(), 0
@@ -112,15 +127,12 @@ def propose_periodic_connections(
         lf, rf = fractions[left.end_id], fractions[right.end_id]
         for op in ops:
             transformed = op.apply_to_xyz(rf)
-            center = [a-b for a,b in zip(lf,transformed)]
-            intervals = [(math.ceil(c-b), math.floor(c+b)) for c,b in zip(center,bounds)]
-            count = math.prod(max(0,hi-lo+1) for lo,hi in intervals)
+            ranges, count = _lattice_box(lf, transformed, bounds)
             if tested + count > max_image_tests:
                 raise ValueError("Periodic image search budget exceeded; no partial report returned")
             tested += count
             if count == 0:
                 continue
-            ranges = [range(lo,hi+1) for lo,hi in intervals]
             for shift in product(*ranges):
                 full = op.translated([op.DEN*n for n in shift])
                 key = _op_key(full)

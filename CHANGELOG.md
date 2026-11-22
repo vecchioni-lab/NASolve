@@ -8,6 +8,10 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor phosphate-image --nearest-image` reports the two closest
+  crystal copies of a named O3′ to a named phosphorus in a model or
+  checkpoint. Ambiguity at PDB coordinate precision stays visible.
+
 - `cif-doctor assess --bond-targets` compares the bond lengths and sigmas
   Phenix used with the explicitly supplied residue dictionaries. It works on
   saved checkpoints or a model and GEO, and preserves the separate dictionary

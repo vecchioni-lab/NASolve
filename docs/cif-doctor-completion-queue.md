@@ -125,6 +125,10 @@ and approved the closest image. Its [scaffold convention](backbone-chemistry.md#
 also applies to derivatives retaining that junction. All four models choose `-x+y,-x,z`. The archived model
 places the first two images 2.824 and 22.867 Å away. Pine has the editable
 construct decision. Registered, restartable use of its restraints remains open.
+C534 makes the image comparison available on an explicit model or saved
+checkpoint. It reproduces all four C528 nearest and next-nearest distances
+when supplied with the two confirmed sites. Ambiguous positions leave the
+choice open. Pine retains the declaration.
 
 In C531, two historical PHIL edits completely masked the source-supported
 PDU target change from 1.607 to 1.470 Å. Updating both site-specific targets

@@ -1,6 +1,6 @@
-"""Measure a caller-named O3' crystal image at a phosphorus in a written model."""
+"""Measure images of a named O3' atom at a named phosphorus in a written model."""
 from hashlib import sha256
-from math import dist, isfinite
+from math import dist, isfinite, sqrt
 from pathlib import Path
 
 from .cif_phosphate_angles import printed_phosphate_angles
@@ -8,7 +8,7 @@ from .refinement_contact_geometry import _contacts
 from .refinement_link_geometry import _model_labels, _printed_rows
 from .topostitch_contacts import _angle
 from .topostitch_graph import _inverse, _operator
-from .topostitch_images import _cartesian, _fractional
+from .topostitch_images import _cartesian, _fractional, closest_atom_images
 from .topostitch_periodic import _op_key, crystal_from_pdb_bytes
 
 
@@ -43,18 +43,21 @@ def _printed_evidence(kind, text, labels, endpoints, images, gemmi, members, dis
                 matches=matches if sections else None)
 
 
-def inspect_phosphate_image(model, *, phosphate, o3, o3_image, geometry=None, native_receipt=None):
+def inspect_phosphate_image(model, *, phosphate, o3, o3_image=None, nearest_image=False, geometry=None, native_receipt=None):
     """Compare coordinates and optional printed terms without assigning a partner.
 
     Apply the full image (including its cell translation) to O3' and its C3'.
     Missing or unoccupied angle atoms leave that measurement unavailable.
     Coordinate angles alone say nothing about the angles restrained by Phenix.
     """
+    if (o3_image is not None) == nearest_image:
+        raise ValueError("Choose either one explicit O3' image or the nearest-image comparison")
     model = Path(model)
     raw, labels = _model_labels(model)
     gemmi, cell, group = crystal_from_pdb_bytes(raw)
-    members = {_op_key(op) for op in gemmi.find_spacegroup_by_name(group).operations()}
-    op = _operator(o3_image, gemmi, members)
+    spacegroup = gemmi.find_spacegroup_by_name(group)
+    members = {_op_key(op) for op in spacegroup.operations()}
+    op = None if nearest_image else _operator(o3_image, gemmi, members)
     fields = {phosphate: {"P", "OP1", "OP2", "OP3", "O5'"}}
     fields.setdefault(o3, set()).update(("O3'", "C3'"))
     atoms = {}
@@ -77,10 +80,24 @@ def inspect_phosphate_image(model, *, phosphate, o3, o3_image, geometry=None, na
                 raise ValueError(f"Require an occupied {element} atom named {name} at {site}")
             return None
         if apply_image:
+            if op is None:
+                return None
             return _cartesian(op.apply_to_xyz(_fractional(atom[1], cell, gemmi)), cell, gemmi)
         return atom[1]
 
     p = point(phosphate, "P", "P", required=True)
+    observations = {}
+    if nearest_image:
+        moving = point(o3, "O3'", "O", required=True)
+        closest = closest_atom_images(p, moving, cell, spacegroup, gemmi)
+        gap = closest[1]["distance_A"] - closest[0]["distance_A"]
+        # Each distance uses two PDB positions rounded to 0.001 Å per axis.
+        # Their difference can therefore change by at most twice that distance error.
+        allowance = 2 * sqrt(3) * .001
+        if gap > allowance:
+            op = _operator(closest[0]["image"]["operator_xyz"], gemmi, members)
+        observations["image_ranking"] = dict(status="SEPARATED" if op is not None else "AMBIGUOUS_AT_PDB_PRECISION",
+            closest_two=closest, separation_A=gap, pdb_rounding_allowance_A=allowance)
     oxygen = point(o3, "O3'", "O", apply_image=True, required=True)
     p_atom, o_atom = (phosphate, "P", "P", False), (o3, "O3'", "O", True)
     triplets = {"C3'-O3'-P": ((o3, "C3'", "C", True), o_atom, p_atom)}
@@ -100,27 +117,29 @@ def inspect_phosphate_image(model, *, phosphate, o3, o3_image, geometry=None, na
         atom = atoms.get((phosphate, name))
         phosphate_atoms[name] = dict(element=atom[2], occupancy=atom[3]) if atom else None
     ends = atoms[phosphate, "P"][0], atoms[o3, "O3'"][0]
-    distance = dist(p, oxygen)
+    distance = dist(p, oxygen) if oxygen is not None else None
     printed = None
     if geometry is not None:
         geometry = Path(geometry)
         data = geometry.read_bytes()
-        text = data.decode("utf-8")
-        images = (op, _inverse(op, gemmi.Op("x,y,z")))
-        printed = {kind: _printed_evidence(kind, text, labels, ends, images, gemmi, members, distance)
-                   for kind in ("bonds", "nonbonded")}
-        printed["angles"] = printed_phosphate_angles(text, labels, samples, op, gemmi, members)
+        if op is None:
+            printed = dict(status="UNASSESSED", reason="Comparing printed terms requires one resolved O3' image")
+        else:
+            text = data.decode("utf-8")
+            images = (op, _inverse(op, gemmi.Op("x,y,z")))
+            printed = {kind: _printed_evidence(kind, text, labels, ends, images, gemmi, members, distance)
+                       for kind in ("bonds", "nonbonded")}
+            printed["angles"] = printed_phosphate_angles(text, labels, samples, op, gemmi, members)
         printed["geometry_sha256"] = sha256(data).hexdigest()
         if geometry.read_bytes() != data:
             raise ValueError("Printed geometry changed during inspection")
-    references = {}
     if native_receipt is not None:
         from .cif_phosphate_reference import read_phosphate_references
-        references["native_reference_links"] = read_phosphate_references(native_receipt, raw, phosphate=phosphate, o3=o3)
+        observations["native_reference_links"] = read_phosphate_references(native_receipt, raw, phosphate=phosphate, o3=o3)
     if model.read_bytes() != raw:
         raise ValueError("Model changed during phosphate inspection")
     return dict(policy_id="phosphate-image-observation-v1", model_sha256=sha256(raw).hexdigest(),
-                phosphate=list(ends[0]), o3=list(ends[1]), o3_image=op.triplet(),
+                phosphate=list(ends[0]), o3=list(ends[1]), o3_image=op.triplet() if op is not None else None,
                 cell=list(cell.parameters), space_group=group, phosphate_atoms=phosphate_atoms,
                 distance_A=distance, coordinate_angles_degrees=angles, printed_geometry=printed,
-                scientific_approval="NOT_ASSESSED", **references)
+                scientific_approval="NOT_ASSESSED", **observations)
