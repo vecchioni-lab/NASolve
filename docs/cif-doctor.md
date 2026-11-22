@@ -21,6 +21,17 @@ zero matches. Use `--json` for file fingerprints, occupancies and numerical
 differences between the two files. The scientist's choice of partner remains
 part of the construct description.
 
+For a numbered NASolve run, give the run directory and an explicit checkpoint
+ID or bookmark. Doctor opens the model and final GEO recorded for that
+checkpoint and checks their hashes. At a checkpoint without a final GEO it
+still measures the written coordinates. This example inspects the ordinary
+link between the first two residues of chain B.
+
+```sh
+nasolve cif-doctor phosphate-image dataset/AutoMR/run_002 --checkpoint refine-002 \
+  --phosphate B:2 --o3 B:1 --o3-image=x,y,z
+```
+
 If an original, complete CIF Doctor native capture exists for this model, add
 `--native-receipt PATH/TO/native_receipt.json`. Doctor finds intact O3′–P bonds
 elsewhere in that model whose two effective monomer dictionaries and chemical

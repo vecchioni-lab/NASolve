@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C524 retaining phosphate forces when Phenix selects a smaller model — Rowan**.
+Updated **2026-11-22, C525 inspecting the phosphate at an exact NASolve checkpoint — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
 **Q06, original PDU:PDU.** The molecule on the other side of B:1 looks close in
@@ -70,6 +70,22 @@ B:1 OP2 stopped the proposed addition while ordinary geometry remained usable.
 A second native process produced a byte-identical readout from the same inputs.
 The next distinction is whether the ordinary refinement worker can acquire
 that same chemically declared, registered parent and restore the terms on its own.
+
+C525 lets a scientist open a numbered run with `cif-doctor phosphate-image
+RUN --checkpoint ID`. The checkpoint reader verifies the exact model and the
+final GEO saved for that child. A root without a final GEO still gives
+coordinate measurements. A moved test run retained its bookmark, declined a
+changed GEO despite an intact file of the same name, and kept all file bytes
+and timestamps through both reads. The C290 construction packet lacks a
+completed PostMR checkpoint and remains available through the explicit-file
+command. In the separate thirteen-substitution run the root remained selected.
+At B:1 O3′ to B:2 P the root coordinates gave 1.613 Å with no final GEO.
+The saved geometries for `refine-001` and `refine-002` printed 1.605 and
+1.606 Å against the same 1.607 Å target. Both reads agreed with their exact
+model/GEO files. The feature changes no checkpoint schema or refinement settings.
+Focused source validation passed 93 tests and 27 subtests. The relocated
+installed wheel passed 60 tests and seven subtests, with all 328 package files
+matching their source. The complete suite remains scheduled separately.
 
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in

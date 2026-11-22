@@ -13,7 +13,9 @@ entries are reconstructed from repository history.
   read-only `cif-doctor phosphate-image` command uses the optional topology
   installation and accepts existing PDB and GEO files. An optional preserved
   native capture also shows the bonds, angles and torsions at intact links with
-  matching residue chemistry. Doctor excludes reference pairs with an extra
+  matching residue chemistry. A run directory and `--checkpoint` open the
+  selected model and its recorded final GEO by verified file references.
+  Doctor excludes reference pairs with an extra
   bond edit and recognizes hydrogen bonds labelled by Phenix.
 
 ### Preparing restraints for a bent model

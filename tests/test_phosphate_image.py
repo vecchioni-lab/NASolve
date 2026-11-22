@@ -39,6 +39,62 @@ def run(model, capsys, *extra, image="x-1,y,z"):
     return json.loads(out.out)
 
 
+def test_checkpoint_follows_its_own_model_and_geometry_after_relocation(tmp_path, capsys, monkeypatch):
+    pytest.importorskip("gemmi")
+    from nasolve.model_assessment import file_sha256
+    from .test_checkpoints import make_checkpoint_run
+    from .test_cif_doctor_run import _child, _reference, _snapshot
+
+    original = tmp_path / "original"
+    directory = make_checkpoint_run(original)
+    model, geometry = inputs(tmp_path)
+    parent = directory / "PostMR/Model/readyset_model.pdb"
+    parent.write_bytes(model.read_bytes())
+    report_path = directory / "report.json"
+    report = json.loads(report_path.read_bytes())
+    report["postmr"]["prepared_sha256"] = file_sha256(parent)
+    report_path.write_text(json.dumps(report))
+    _child(directory)
+    regpath = directory / "AutoRefine/checkpoints.json"
+    registry = json.loads(regpath.read_bytes())
+    registry["current"] = "postmr"
+    child = registry["checkpoints"][-1]
+    geo = (directory / child["model"]["relative_path"]).with_suffix(".geo")
+    geo.write_bytes(geometry.read_bytes())
+    child.update(kind="refinement", outputs={"final_geometry": _reference(geo, directory)})
+    regpath.write_text(json.dumps(registry))
+    moved = tmp_path / "relocated"
+    original.rename(moved)
+    actual = moved / directory.relative_to(original)
+    def unexpected_assessment(*args, **kwargs):
+        pytest.fail("A geometric observation started an unrelated dictionary assessment")
+    monkeypatch.setattr("nasolve.cif_doctor_run.assess_dictionaries", unexpected_assessment)
+    before = _snapshot(moved)
+    selected = run(actual, capsys, "--checkpoint", "first-refinement")
+    assert selected["checkpoint"]["id"] == "refine-001"
+    assert selected["model_sha256"] == child["model"]["sha256"]
+    assert selected["checkpoint"]["geometry"]["relative_path"] == child["outputs"]["final_geometry"]["relative_path"]
+    assert selected["printed_geometry"]["geometry_sha256"] == file_sha256(geometry)
+    assert len(selected["printed_geometry"]["nonbonded"]["matches"]) == 1
+    root = run(actual, capsys, "--checkpoint", "postmr")
+    assert root["model_sha256"] == file_sha256(model)
+    assert root["checkpoint"]["geometry"] is None and root["printed_geometry"] is None
+    assert _snapshot(moved) == before
+    args = ["cif-doctor", "phosphate-image", str(actual), "--checkpoint", "first-refinement",
+            "--phosphate", "B:1", "--o3", "A:7", "--o3-image=x-1,y,z"]
+    assert main([*args, "--geometry", str(geometry)]) == 1
+    assert "recorded" in capsys.readouterr().err
+    empty = [*args]
+    empty[empty.index("first-refinement")] = ""
+    assert main(empty) == 1
+    assert "explicit checkpoint" in capsys.readouterr().err
+    dest = actual / geo.relative_to(directory)
+    (actual / dest.name).write_bytes(dest.read_bytes())
+    dest.write_bytes(dest.read_bytes() + b"\n")
+    assert main(args) == 1
+    assert "changed after it was frozen" in capsys.readouterr().err
+
+
 def test_read_only_actual_image_and_reversed_printed_terms(tmp_path, capsys):
     pytest.importorskip("gemmi")
     model, geo = inputs(tmp_path)

@@ -121630,5 +121630,24 @@
     "reproduction": {"controller_sha256": "a295e30fe9e855a41b5f0617c96d4b6c3ea9766b773224d888dec0d310a899ec", "worker_sha256": "e1de3f27d7abe5ccd0b9c767d12a13726d09900067d8f0c37771e6fe93e1791c", "counted_worker_sha256": "a84a613e8182a97876d33c743ef99423d11a631b206e6274a17f14926499b6a2", "two_independent_result_sha256": "12feba3daae2d0576f38c30e70b33907021cd7d9735ac0b6ddc46d2ddad42aae"},
     "next": "Capture declared partner identity and the exact canonical PostMR/checkpoint ancestry in Pine/Willow. Test ordinary Cedar worker installation, rebuilding and a matched diffraction refinement on that registered parent.",
     "local_reproduction": {"anchor": "NASolve_checkout", "path": "branch-artifacts/cedar/c524-selected-image/c524-science.json", "sha256": "be3d16a672f32c075f2e976a303b823272690e53ba4e0e24468dae2f7f8a5bfd"}
+  },
+  "c525_checkpoint_phosphate_readback": {
+    "milestone": "C525",
+    "branch_parent": "9fcc6742",
+    "command": "nasolve cif-doctor phosphate-image RUN --checkpoint ID --phosphate B:2 --o3 B:1 --o3-image=x,y,z --json",
+    "source": "C505 retained mixed-scaffold run_002, independent from the original PDU:PDU symmetry experiment",
+    "current": "postmr",
+    "checkpoint_selection_and_model_hashes": {"postmr": {"parent": null, "model_sha256": "35f298f0514077011d9ac59c0f25e9626832783bd89f1800b09e8d4a1846358b", "distance_from_written_coordinates_A": 1.6130765635889714, "printed_geometry": null}, "refine-001": {"parent": "postmr", "model_sha256": "4b971c7174eb76a0ef79366400f87bbced8cd97117ad106b4d8323e5dc9c13cc", "distance_from_written_coordinates_A": 1.6059131358825094, "printed_geometry": {"printed_distance_A": 1.605, "target_A": 1.607, "sigma_A": 0.012, "nonbonded_rows": 0, "geometry_sha256": "4723e362e906b81f68454730e9bfe7c9031a21dda4c1ead434ed1787b136c535"}}, "refine-002": {"parent": "refine-001", "model_sha256": "fcc1dc52cb81548b4ca0c67bc43a703e927248993a8680ed68fedcc5bfca9642", "distance_from_written_coordinates_A": 1.60545351848006, "printed_geometry": {"printed_distance_A": 1.606, "target_A": 1.607, "sigma_A": 0.012, "nonbonded_rows": 0, "geometry_sha256": "2a1d1fac1cdfda24164992e6e210e704bc343e50fa2ec0487bc7e75a8de53ec3"}}},
+    "report_sha256": "ae17ca2976c35ddb96e7dbfebf4ceeeb593c9120410fdf8bd7b3dfef5844a41a",
+    "registry_sha256": "d64acc4ec833f47d9e2b23109f24566981228aa36b3447df9b8c33a080d6285b",
+    "source_and_relocated_install_match": true,
+    "registry_and_report_bytes_and_timestamps_unchanged": true,
+    "explicitly_named_files_agree": true,
+    "requested_child_returned_while_root_remained_current": true,
+    "validation": {"focused_tests": 93, "focused_subtests": 27, "relocated_tests": 60, "relocated_subtests": 7, "matching_package_files": 328, "wheel_sha256": "90b3e1d80c565bb21c5d2be9f2240deff24b6489e357cb122148e3e3bf332fad", "final_installed_readout_sha256": "f93aa09e3b919dfaf4ef055f4b22e3f94efa8378e30ab6e91cf0400f8594c34a", "commands": ["PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:<qualified_Gemmi> python -B -m pytest -q -p no:cacheprovider tests/test_phosphate_image.py tests/test_phosphate_reference_links.py tests/test_cif_doctor_run.py tests/test_refinement_link_geometry.py tests/test_checkpoints.py tests/test_cli.py", "installed target plus <qualified_Gemmi>, same pytest options, first four test modules, outside the original package location"]},
+    "full_suite_run": false,
+    "refinement_cycles_in_this_check": 0,
+    "cutoff_scope": "Read-only inspection. Automatic phosphate restraint delivery remains Q06.",
+    "local_reproduction": {"anchor": "NASolve_checkout", "path": "branch-artifacts/cedar/c525-checkpoint-image/c525-science.json", "sha256": "c31ff6ab3ac0508c7d6cf5a5434d2f30262074c6e75dcc146fede3f00d47b519"}
   }
 }

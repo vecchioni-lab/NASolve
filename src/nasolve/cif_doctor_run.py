@@ -57,6 +57,83 @@ def _require_registry_unchanged(
         raise CheckpointError("Checkpoint registry appeared during CIF assessment")
 
 
+def _checked_registry(run, *, preparations=False):
+    """Snapshot the report and registry around the existing validated read."""
+    requested_run = run.expanduser().resolve()
+    if requested_run.name == "report.json":
+        requested_run = requested_run.parent
+    report_path = requested_run / "report.json"
+    existing_registry = registry_path(requested_run)
+    try:
+        report_ref = _reference(report_path, requested_run)
+        registry_ref = (
+            _reference(existing_registry, requested_run)
+            if existing_registry.is_file() else None
+        )
+    except OSError as exc:
+        raise CheckpointError(f"Could not snapshot CIF assessment run provenance: {exc}") from exc
+    verified = None
+    if preparations:
+        from .cif_numerical_replay import numerical_replay_scope
+        with numerical_replay_scope():
+            run, registry, verified = _read_registry_with_preparations(requested_run)
+    else:
+        run, registry = read_registry(requested_run)
+    _require_unchanged(report_path, report_ref)
+    _require_registry_unchanged(existing_registry, registry_ref)
+    return run, registry, verified, report_ref, registry_ref
+
+
+def _final_geometry(run, selected):
+    outputs = selected.get("outputs", {})
+    if not isinstance(outputs, Mapping):
+        raise CheckpointError("Malformed checkpoint output references")
+    reference = outputs.get("final_geometry")
+    if reference is None:
+        return None
+    if not isinstance(reference, Mapping) or not isinstance(reference.get("sha256"), str):
+        raise CheckpointError("Final geometry needs its recorded checksum")
+    if selected.get("kind") != "refinement":
+        raise CheckpointError("Final geometry must belong to a refinement checkpoint")
+    return _ref_path(reference, "final geometry", run), reference
+
+
+def read_checkpoint_phosphate_image(run: Path, *, checkpoint: str, phosphate: str, o3: str, o3_image: str,
+                                   native_receipt: Path | None = None):
+    """Inspect only the named checkpoint's model and its own optional final GEO."""
+    from .cif_numerical_replay import numerical_replay_scope
+    from .cif_phosphate_image import inspect_phosphate_image
+
+    if not isinstance(checkpoint, str) or not checkpoint.strip():
+        raise CheckpointError("Phosphate inspection needs an explicit checkpoint ID or bookmark")
+    with numerical_replay_scope():
+        run, registry, _, report_ref, registry_ref = _checked_registry(run)
+        selected = resolve_checkpoint(registry, checkpoint)
+    frozen_model = selected.get("model")
+    if not isinstance(frozen_model, Mapping):
+        raise CheckpointError("Selected checkpoint has no model reference")
+    expected_model = frozen_model.get("sha256")
+    if expected_model is not None and not isinstance(expected_model, str):
+        raise CheckpointError("Invalid recorded checkpoint model checksum")
+    model = _ref_path(frozen_model, "model", run)
+    final_geometry = _final_geometry(run, selected)
+    geo, geo_ref = final_geometry if final_geometry is not None else (None, None)
+    result = inspect_phosphate_image(model, phosphate=phosphate, o3=o3, o3_image=o3_image,
+                                     geometry=geo, native_receipt=native_receipt)
+    model_ref = _reference(model, run)
+    geometry_ref = _reference(geo, run) if geo is not None else None
+    if result["model_sha256"] != model_ref["sha256"] or (expected_model is not None and model_ref["sha256"] != expected_model.casefold()):
+        raise CheckpointError("Phosphate image reading differs from the frozen model")
+    if geometry_ref is not None:
+        observed = result["printed_geometry"]["geometry_sha256"]
+        if observed != geometry_ref["sha256"] or observed != geo_ref["sha256"].casefold():
+            raise CheckpointError("Phosphate image reading differs from the frozen geometry")
+    _require_unchanged(run / "report.json", report_ref)
+    _require_registry_unchanged(registry_path(run), registry_ref)
+    result["checkpoint"] = dict(id=selected["id"], parent=selected.get("parent"), model=model_ref, geometry=geometry_ref)
+    return result
+
+
 def assess_run(
     run: Path, *, checkpoint: str | None = None, refined_planes: bool = False,
     refined_links: bool = False, contact_sites: list[str] | tuple[str, ...] | None = None,
@@ -81,28 +158,9 @@ def assess_run(
     if b_factor_sites is not None:
         from .refinement_contact_geometry import validate_contact_sites
         validate_contact_sites(b_factor_sites)
-    requested_run = run.expanduser().resolve()
-    if requested_run.name == "report.json":
-        requested_run = requested_run.parent
-    report_path = requested_run / "report.json"
-    existing_registry = registry_path(requested_run)
-    try:
-        report_ref = _reference(report_path, requested_run)
-        registry_ref = (
-            _reference(existing_registry, requested_run)
-            if existing_registry.is_file() else None
-        )
-    except OSError as exc:
-        raise CheckpointError(f"Could not snapshot CIF assessment run provenance: {exc}") from exc
-    verified = None
-    if refined_links:
-        from .cif_numerical_replay import numerical_replay_scope
-        with numerical_replay_scope():
-            run, registry, verified = _read_registry_with_preparations(requested_run)
-    else:
-        run, registry = read_registry(requested_run)
-    _require_unchanged(report_path, report_ref)
-    _require_registry_unchanged(existing_registry, registry_ref)
+    run, registry, verified, report_ref, registry_ref = _checked_registry(run, preparations=refined_links)
+    report_path = run / "report.json"
+    existing_registry = registry_path(run)
     selected = resolve_checkpoint(registry, checkpoint)
     record = checkpoint_record(selected, run)
     if record.model is None:
@@ -184,15 +242,8 @@ def assess_run(
     if refined_links or contact_sites:
         from .refinement_link_geometry import preflight_link_inputs
         initial_files = preflight_link_inputs(run, selected)
-        final_files = None
-        final_ref = outputs.get("final_geometry")
-        if final_ref is not None:
-            if not isinstance(final_ref, Mapping) or not isinstance(final_ref.get("sha256"), str):
-                raise CheckpointError("Final geometry needs its recorded checksum")
-            if selected.get("kind") != "refinement":
-                raise CheckpointError("Final geometry must belong to a refinement checkpoint")
-            geo = _ref_path(final_ref, "final geometry", run)
-            final_files = ((model, model_ref), (geo, final_ref))
+        geometry = _final_geometry(run, selected)
+        final_files = ((model, model_ref), geometry) if geometry is not None else None
         for stage, files in (("preflight", initial_files), ("refined", final_files)):
             if refined_links:
                 receipt[stage + "_links"] = None

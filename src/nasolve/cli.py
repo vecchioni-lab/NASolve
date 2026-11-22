@@ -285,7 +285,8 @@ def build_parser() -> argparse.ArgumentParser:
                                help="explicit CCD directory containing a/data_CODE.cif etc.; no discovery")
     cif_catalogue.add_argument("--json", action="store_true", help="print the complete coverage census")
     phosphate_image = cif_sub.add_parser("phosphate-image", help="inspect a named O3' crystal image at a phosphate (requires NASolve[topology])")
-    phosphate_image.add_argument("model", type=Path, help="exact written PDB with its CRYST1 record")
+    phosphate_image.add_argument("model", type=Path, metavar="PDB_OR_RUN", help="exact written PDB with CRYST1, or a numbered run with --checkpoint")
+    phosphate_image.add_argument("--checkpoint", help="read this checkpoint ID or bookmark and its recorded final geometry")
     phosphate_image.add_argument("--phosphate", required=True, metavar="CHAIN:NUMBER", help="site containing the phosphorus")
     phosphate_image.add_argument("--o3", required=True, metavar="CHAIN:NUMBER", help="site containing the candidate O3' atom")
     phosphate_image.add_argument("--o3-image", required=True, metavar="XYZ", help="full fractional operation applied to O3', including any cell translation")
@@ -1701,14 +1702,25 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
     from .cif_phosphate_image import inspect_phosphate_image
 
     try:
-        result = inspect_phosphate_image(args.model, phosphate=args.phosphate, o3=args.o3,
-                                         o3_image=args.o3_image, geometry=args.geometry, native_receipt=args.native_receipt)
+        if args.checkpoint is None:
+            result = inspect_phosphate_image(args.model, phosphate=args.phosphate, o3=args.o3,
+                                             o3_image=args.o3_image, geometry=args.geometry, native_receipt=args.native_receipt)
+        else:
+            from .cif_doctor_run import read_checkpoint_phosphate_image
+            if args.geometry is not None:
+                raise ValueError("Checkpoint inspection uses its recorded geometry. To supply a GEO, give a PDB path without --checkpoint.")
+            result = read_checkpoint_phosphate_image(args.model, checkpoint=args.checkpoint, phosphate=args.phosphate,
+                o3=args.o3, o3_image=args.o3_image, native_receipt=args.native_receipt)
     except (OSError, ValueError, RuntimeError) as exc:
         print(f"CIF Doctor: {exc}", file=sys.stderr)
         return 1
     if args.json:
         print(json.dumps(result, indent=2, sort_keys=True, allow_nan=False))
     else:
+        if "checkpoint" in result:
+            print(f"Checkpoint {result['checkpoint']['id']}.")
+            if result["printed_geometry"] is None:
+                print("This checkpoint has no recorded final geometry. Measurements use its saved coordinates.")
         print(f"{args.phosphate} P to {args.o3} O3' in image {result['o3_image']} measures {result['distance_A']:.3f} Å.")
         present = [name for name, atom in result["phosphate_atoms"].items() if atom is not None]
         print("Phosphate site contains " + ", ".join(present) + ".")
