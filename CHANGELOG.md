@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record the coupled attachment-freedom boundary
+
+- Verify source/effective/final-native FT_Hg attachment and nearby angle terms;
+  a separate connected rigid base permits only a tiny local improvement while
+  preserving inherited internal strain. A01 remains partial; no f″ parent advances.
+- Record strict derivative/cold geometry checks, the compact visual report and
+  the next shared internal-geometry retention contract. Reuse completed controls;
+  no production motion, restraint, native default, schema or migration changes.
+
 ### Release stopped metal preflight headroom explicitly
 
 - Extend failed-session settlement to newly recorded input-inspection failures

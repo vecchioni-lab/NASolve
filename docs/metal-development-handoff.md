@@ -77,6 +77,48 @@ internal strain. Fractional angle differences are descriptive, not pass/fail
 chemistry. No new R statistics/maps were calculated for directional samples;
 no endpoint, f″ parent or modified-metal movement is admitted.
 
+### Bounded attachment-freedom test
+
+A subsequent source/final audit verifies the original and effective dictionaries
+against all 16 nearby native bond/angle terms. The DF C1′–N1 target is **1.499 Å**,
+sigma **0.038 Å**, versus **1.673897 Å** achieved. C1′–N1–C2 is **121.76°**,
+sigma **2.483°**, versus **133.716°** achieved. The restraints are present; their
+transfer is not the explanation for this control's strained geometry.
+
+One additional diagnostic gives the graph-connected nine-heavy-atom DF base its
+own rigid body within the existing pair/flank scope. The shared
+`postmr_restoration.source_graph_fragment` returns exactly the same partition;
+its code and `cif_base_rotation_audit` agree between the current Alder/Cedar
+checkouts. There are 45 rigid-motion parameters, nine exact holds (eight polymer
+links plus Hg–O4) and 36 independent tangent directions. The moving/fixed atom
+counts, native targets and frozen scientific state remain unchanged.
+
+At the +0.025 Å common-direction seed, work MLHL changes **−0.000019614** and raw
+geometry **−4.83948**. The attachment shortens only to **1.670594 Å**. Hg–O4 stays
+**1.321855 Å**; C1′–N1–C2 is **133.815°**, effectively unchanged for scientific
+interpretation. Hg angle is **117.458°**; neither straightness nor matching the
+human structure defines this move. The +0.1 Å seed worsens both scores. Internal
+base/sugar distances remain rigid, so inherited internal strain cannot be
+repaired. Do not launch another fit to pursue this tiny shortening.
+
+All six strict three-step derivative comparisons pass. Phenix **2.2.1-6174**
+performs 14 new frozen-state evaluations in **6.62 s**; the owned process stops
+in **14.00 s**. Cold geometry review passes **13,944 assertions**, source/scalar
+audit **57**, and retained-state replay **8,309**. These are not pytest counts.
+Independent reconstruction checks exact fixed atoms, all fragment pair distances,
+ordered chirality, closure, source terms and local measurements. No full fit,
+map generation, anomalous refinement, full suite or production admission occurs.
+
+Private evidence: `a01-attachment-source-20261122-01/` and
+`a01-split-base-force-20261122-01/` at the same Alder artifact anchor. Commands
+use the environment contract below with `runners/A490_audit_attachment_source.py`,
+`runners/A494_run_split_base.py` and `runners/A495_review_split_base.py`.
+The latter directory records the exact native command, source pins, stopped
+process, independent review and `next-step-scope.json`. The compact 0.51 MB
+report is `ScienceCheckouts/Hazel/2026-11-22_ft-split-base/index.html` beside the
+repositories; editable constellation-style figures and numbers are retained,
+without copied model/map payloads. No product behavior/schema/migration changes.
+
 ### Saved-state replay, validation and evidence
 
 The retained final fmodel reopens exactly. The native geometry pickle alone is
@@ -137,13 +179,18 @@ process identities are in each bound execution receipt.
 ### Completed controls and the next bridge
 
 Reuse the unchanged/small-motion continuations, metal-centred angle, attachment
-stiffness, split-B, source-consistent starting pose and current force/contact
-controls. Their original evidence and limits remain in this handoff and Git
+stiffness, split-B, source-consistent starting pose and current force/contact/
+attachment-freedom controls. Their original evidence and limits remain in this handoff and Git
 history. Do not repeat grids or promote a better scalar score into acceptance.
 
-**Next:** scope source-backed internal base/attachment repair coupled to allowed
-pair/flank motion, through Cedar chemistry and Willow transport owners. A newly
-healthy starting pose already failed to survive open refinement; explain how
+**Next:** qualify a source-backed internal-geometry retention contract coupled
+to allowed pair/flank motion, through Cedar chemistry and Willow transport owners. Reuse
+the shared source-graph selector, proper rotations and complete native geometry
+inventory. Neither owner currently supplies a qualified general internal-coordinate
+deformation engine; canonical shoulder repair and whole-residue motion do not
+substitute for modified metal chemistry. Declare supported topology, internal
+freedoms, source uncertainty and preserved stereochemistry before implementation.
+A newly healthy starting pose already failed to survive open refinement; explain how
 internal geometry is retained during optimization. Bind explicit local contact
 witnesses alongside the work objective. Qualify any new parameterization's exact
 baseline, derivatives, fixed atoms and closure before native fitting. Do not add

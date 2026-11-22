@@ -1,6 +1,6 @@
 # NASolve development handoff — integrated development base
 
-Updated **20 November 2026**. Active integration target: **Alder**. The everyday
+Updated **22 November 2026**. Active integration target: **Alder**. The everyday
 Pine and the separate Cedar/Willow branches are not changed by this integration. This base
 combines the existing metal feature with the qualified shared chemistry, native
 observation and storage owners; it introduces no new scientific policy.
@@ -59,14 +59,25 @@ tests require explicit native opt-in. The source/installed gates do not execute
 a new scientific Phenix refinement. These records remain distinct from separate
 historical Alder and Cedar full passes.
 
-The 22 November A01 coupled pair/flank placement comparison is complete:
-source-consistent starting geometry does not survive the matched open XYZ/group-B
-fit. The [current metal science record](metal-development-handoff.md#a01-current-science-coupled-placement-does-not-survive-open-refinement)
-owns geometry/maps, the preserved exporter refusal, exact validation and the next
-fixed-state force diagnostic. A01 remains partial and A02 gated; runtime and
-integration qualification below are unchanged. The compact report is
-`ScienceCheckouts/Hazel/2026-11-22_ft-coupled-placement/index.html` beside the
-repositories; no models/maps are copied into that report or committed.
+The 22 November A01 final-state, contact-hold and split-base freedom comparisons
+are complete. A small shared score improvement does not repair the stretched DF
+attachment or inherited internal strain. Straight and bent FT_Hg remain competing
+hypotheses; the human endpoint is a comparator, not ground truth. The
+[current metal science record](metal-development-handoff.md#a01-current-science-coupled-placement-does-not-survive-open-refinement)
+owns exact native evidence and the next internal-geometry retention contract.
+A01 remains partial and A02 gated. The latest compact report is
+`ScienceCheckouts/Hazel/2026-11-22_ft-split-base/index.html`; earlier model/map
+comparisons stay intact, with no generated science committed.
+
+A04's bounded runtime follow-up **`86d34a16`** is pushed on Alder: explicit
+settlement now releases unused future allowance for a newly bound, sealed stopped
+partial preflight with no main child/review. Files remain. **184 focused / 105
+relocated installed tests** pass, with 356 package members checked. Earlier
+native-failure formats retain their behavior; old readers refuse the new
+preflight kind/version. See the [metal storage handoff](metal-development-handoff.md#a04-current-checkpoint-cooperative-storage-reservations)
+for schemas, exact commands, measurements and limits. This focused qualification
+does not relabel the preserved integration full-suite result above. Pruning,
+scheduling, unsealed recovery and scientific acceptance remain open.
 
 Today's scientific readback and small storage rehearsal are in the
 [metal handoff](metal-development-handoff.md). A01 remains partial, A02 gated,

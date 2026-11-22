@@ -261,6 +261,14 @@ descriptive; broad geometry and combined scientific evidence guide review.
    derivative/closure and identity checks precede any new fit. Reuse completed
    weight, angle, pivot, stiffness, split-B and start-pose controls. No new geometry
    engine, adopted bad-contact target, repeated grid or relaxed tolerance follows.
+   The bounded split-base follow-up is complete: the shared source graph agrees
+   with the nine-atom partition and native attachment targets. Extra attachment
+   freedom permits a tiny shared improvement (1.67390 → 1.67059 Å) while holding
+   Hg–O4, but preserves internal ring/sugar strain. Six derivative checks and
+   13,944 cold geometry assertions pass. Do not repeat that step or fit solely
+   for this tiny gain. The next contract must retain source-backed internal
+   geometry during coupled optimization, reusing shared graph/rotation/native
+   term owners; no qualified general internal-deformation owner exists yet.
    Straight versus bent FT_Hg remain competing hypotheses: the investigator's
    same-data endpoint is a comparator, not ground truth, and straightness alone
    is not an acceptance criterion. Current attachment/contact defects remain
