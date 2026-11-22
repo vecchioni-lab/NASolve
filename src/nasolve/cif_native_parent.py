@@ -68,19 +68,32 @@ def _checked_bytes(payload, record):
              and record["sha256"] == _digest(payload), "Typed input bytes differ from the source report")
 
 
+def _dictionary_parent(report):
+    if report["policy_id"] == "cif-typed-native-literal-inputs-v1":
+        return False
+    _require(report["policy_id"] == reader.DICTIONARY_PARENT_POLICY_ID
+             and report["status"] == "FROZEN_DICTIONARY_PARENT" and report["compiled_phils"] == []
+             and report["compilation"] is None and report["restraint_context"] is None,
+             "Require an explicit native dictionary parent with no supplied geometry")
+    return True
+
+
 def _bound_inputs(bound, pin):
     payload = bound.source_report_json
     _require(type(payload) is bytes and _digest(payload) == pin, "Typed compiler-report digest differs")
     report = json.loads(payload)
-    _require(_canonical(report) == payload and report["policy_id"] == "cif-typed-native-literal-inputs-v1"
+    _require(_canonical(report) == payload
              and report["execution_context"]["ordinary_handoff_allowed"] is False
              and report["scientific_approval"] == "NOT_RUN" and bound.runtime_authority is False
              and bound.chemical_admission is False, "Require a canonical observation-only typed source")
     _checked_bytes(bound.parent_bytes, report["model"])
+    dictionary_parent = _dictionary_parent(report)
     phils, controls = bound.compiled_restraint_phils, bound.interpretation_control_phils
+    _require(controls and (not phils if dictionary_parent else phils),
+             "Ordered restraint and control inputs differ from the source policy")
     for inputs, records in ((phils, report["compiled_phils"]),
                             (controls, [row["input"] for row in report["captured_controls"]])):
-        _require(type(inputs) is tuple and inputs and len(inputs) == len(records),
+        _require(type(inputs) is tuple and len(inputs) == len(records),
                  "Missing or merged ordered PHIL role")
         for data, record in zip(inputs, records):
             _checked_bytes(data, record)
@@ -91,7 +104,7 @@ def _bound_inputs(bound, pin):
     for data in controls:
         reader.control_definitions(data, seen)
     _require(seen == reader.CONTROLS, "Typed PHIL lacks a required reader control")
-    return bound.parent_bytes, phils
+    return bound.parent_bytes, phils, dictionary_parent
 
 
 def _check_controls(scope):
@@ -176,7 +189,7 @@ class _ParentService:
 
     def _interpret(self, model, bound, pin, options):
         api = self._api
-        parent, phils = _bound_inputs(bound, pin)
+        parent, phils, dictionary_parent = _bound_inputs(bound, pin)
         _require(type(model) is api.manager and model._model_input is not None
                  and model._processed_pdb_file is None, "Require the pending native model and candidate input")
         _require(options.get("make_restraints") is True and options.get("pdb_interpretation_params") is not None
@@ -187,7 +200,8 @@ class _ParentService:
         params = options["pdb_interpretation_params"]
         _check_controls(params.pdb_interpretation)
         expected_geometry = _compiled_geometry(api, phils)
-        _require(_live_geometry(api, params) == expected_geometry, "Effective compiled geometry differs")
+        mismatch = "Effective geometry differs from the dictionary-parent defaults" if dictionary_parent else "Effective compiled geometry differs"
+        _require(_live_geometry(api, params) == expected_geometry, mismatch)
         candidate_input = model._model_input
         parent_input = api.pdb_input(source_info="NASolve bound geometry parent", lines=parent.decode("ascii"))
         original = api.process_files
@@ -239,7 +253,9 @@ class _ParentService:
         return NativeParentInterpretation(processed, native_result, {
             "policy_id": "cif-native-parent-interpretation-v1", "profile": api.profile,
             "source_report_sha256": pin, "parent_sha256": _digest(parent),
-            "compiled_geometry_sha256": expected_geometry, "native_interpretations": 1,
+            **({"default_geometry_sha256": expected_geometry, "geometry_source_policy": reader.DICTIONARY_PARENT_POLICY_ID}
+               if dictionary_parent else {"compiled_geometry_sha256": expected_geometry}),
+            "native_interpretations": 1,
             "reader_controls": {k: False for k in sorted(reader.CONTROLS)},
             "chemical_admission": False, "ordinary_handoff_allowed": False})
 

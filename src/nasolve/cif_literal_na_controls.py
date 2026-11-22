@@ -11,12 +11,11 @@ from .cif_explicit_na_policy import _implementation
 from .cif_literal_na_inputs import (_captured_source, _exact_tree, _ref,
     _write_payload, read_literal_na_inputs)
 from .cif_na_policy import _compile_na_policy_payload
-from .cif_interpretation_controls import CONTROLS, control_definitions
+from .cif_interpretation_controls import CONTROLS, DICTIONARY_PARENT_POLICY_ID, control_definitions
 from .cif_repair_attempt import _root
 from .cif_restraint_context import _derive_restraint_payload
 
 POLICY_ID = 'cif-typed-native-literal-inputs-v1'
-DICTIONARY_PARENT_POLICY_ID = 'cif-typed-native-dictionary-parent-v1'
 
 
 def _control_values(data, adaptation, seen):

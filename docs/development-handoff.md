@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C526 preserving the geometry of a parent with no supplied restraints — Rowan**.
+Updated **2026-11-22, C527 checking Phenix's actual dictionary-only parent geometry — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
 **C526, Cedar and Willow.** W214 identifies a real current PostMR parent with
@@ -17,8 +17,24 @@ migration. No new native process or refinement was used for these software
 checks. With `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`, run
 `python -B -m pytest -q -p no:cacheprovider tests/test_cif_literal_na_controls.py tests/test_cif_literal_na_inputs.py tests/test_cif_reader_control_handoff.py`.
 Four new cases failed before the change. All 118 focused tests passed afterward.
-Raw captures stay local. The next check compares this source with the geometry
-Phenix actually constructs from the registered parent.
+Raw captures stay local.
+
+C527 and W215 compared that model with a fresh Phenix 2.2.1-6174 interpretation.
+All 128 effective residue dictionaries and all 10,429 recorded geometry entries
+matched. The 2,603 atoms retained their coordinates exactly. The source had
+zero custom terms. Enabling an extra secondary-structure setting stopped the
+control before Phenix allocated geometry. No diffraction cycle or bend ran.
+The comparison in `cif_native_parent`, `cif_native_parent_chemistry` and
+`cif_na_policy` preserves all original geometry for this distinct source,
+including any native secondary-structure terms. The old compiled-source
+comparison keeps its replacement rules. Two new cases failed before the
+change. Source and relocated wheel each passed 71 tests with the C526 command
+prefix and `tests/test_cif_native_parent.py tests/test_cif_native_parent_chemistry.py tests/test_cif_native_parent_entry.py tests/test_cif_na_policy.py`.
+The compact checkout is `NASolve:branch-artifacts/cedar/c527-dictionary-parent/science.json`.
+To repeat, use `python -B native-probe.py probe-inputs.json NEW_OUTPUT PHENIX_INSTALLATION`
+from that local checkout with this Cedar package on `PYTHONPATH`. The shared W215
+source remains the only retained typed capture. The actual prospective motion
+and its entry into an ordinary refinement still need independent evidence.
 
 **Q06, original PDU:PDU.** The molecule on the other side of B:1 looks close in
 the archived no-mercury refinement. Its native GEO lists B:7 O3′ at 2.825 Å

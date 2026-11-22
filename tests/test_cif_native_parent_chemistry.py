@@ -210,6 +210,34 @@ def test_repeated_same_atom_terms_do_not_supply_a_unique_difference_example():
     assert result["changed_with_identical_atoms_and_origin"] == 0
 
 
+def test_dictionary_source_preserves_original_geometry_including_native_pair_terms(original):
+    original["dictionary_loading"] = []
+    original["restraint_policy"]["secondary_structure_enabled"] = True
+    angles = original["geometry"]["proxy_details"]["angle"]
+    angles.append({"origin_id": 2, "atoms":["P", "O", "C"], "angle_ideal": 130.0, "weight": 1.0})
+    original["geometry"]["proxy_counts"]["angle"] = 1
+    live = deepcopy(original)
+    raw = canonical(original)
+    ref = {"anchor":"literal_na_input_directory", "path":"native/native_validation.json",
+           "sha256":sha256(raw).hexdigest(), "size":len(raw)}
+    report = canonical({"policy_id":"cif-typed-native-dictionary-parent-v1", "compilation":None,
+                        "restraint_context":None, "compiled_phils":[], "status":"FROZEN_DICTIONARY_PARENT",
+                        "files":[ref]})
+    before, policy = chemistry._source_observation(NS(source_report_json=report), sha256(report).hexdigest(), raw)
+    result = chemistry._compare(before, live, live["monomer_mappings"], policy)
+    assert result["proxy_families"]["angle"] == {"unchanged":1, "source_secondary_structure":1,
+                                               "compiled_relationships":0}
+    live["geometry"]["proxy_details"]["angle"][0]["weight"] = 0.5
+    with pytest.raises(chemistry.NativeParentChemistryMismatch) as failure:
+        chemistry._compare(before, live, live["monomer_mappings"], policy)
+    assert failure.value.differences["restraint_families"]["angle"]["first_example"]["parameters"] == {
+        "weight":{"source":1.0, "live":0.5}}
+    live = deepcopy(original)
+    live["restraint_policy"]["secondary_structure_enabled"] = False
+    with pytest.raises(chemistry.NativeParentChemistryMismatch, match="native-policy-readback"):
+        chemistry._compare(before, live, live["monomer_mappings"], policy)
+
+
 @pytest.mark.parametrize("changed", [{"slack": 0.1}, {"top_out": True}])
 def test_compiled_parallelity_keeps_its_force_law(original, changed):
     request = {"kind": "parallelity", "action": "add", "atoms":["A", "B", "C"], "i_seqs":[0,1,2],

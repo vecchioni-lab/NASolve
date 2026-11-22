@@ -7,6 +7,7 @@ from .cif_dictionary_sites import _need, _read
 from .cif_na_policy import _parse
 
 POLICY_ID = 'cif-captured-reader-control-handoff-v1'
+DICTIONARY_PARENT_POLICY_ID = 'cif-typed-native-dictionary-parent-v1'
 NCS = 'pdb_interpretation.use_ncs_to_build_restraints'
 
 CONTROLS = frozenset(('pdb_interpretation.sort_atoms',

@@ -12,6 +12,8 @@ entries are reconstructed from repository history.
   dictionaries and four verified reader settings with zero added restraint
   files. This gives a canonical model with no declared pairing a reproducible
   source. Existing explicit pair and stacking inputs keep their original format.
+  The optional live comparison verifies the original residue definitions and
+  all recorded geometry terms, including any native secondary-structure terms.
 
 - CIF Doctor can measure a named crystal-image O3′ against a phosphate and show
   whether Phenix printed that pair as a bond or a nonbonded contact. The

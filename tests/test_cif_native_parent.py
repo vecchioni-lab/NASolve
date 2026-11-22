@@ -152,6 +152,26 @@ def test_one_native_parent_and_owned_restoration(setup):
     assert x.state.native_calls == 1
 
 
+@pytest.mark.parametrize("with_restraint", [False, True])
+def test_dictionary_source_has_exactly_zero_geometry_files(setup, with_restraint):
+    x = setup
+    report = json.loads(x.bound.source_report_json)
+    report.update(policy_id="cif-typed-native-dictionary-parent-v1", compilation=None,
+                  restraint_context=None, status="FROZEN_DICTIONARY_PARENT")
+    restraints = x.bound.compiled_restraint_phils if with_restraint else ()
+    report["compiled_phils"] = list(map(record, restraints))
+    payload = json.dumps(report, sort_keys=True, separators=(",", ":")).encode()
+    bound = replace(x.bound, source_report_json=payload, compiled_restraint_phils=restraints)
+    if with_restraint:
+        with pytest.raises(ValueError):
+            interpret(x, bound=bound, pin=digest(payload))
+        assert x.state.native_calls == 0
+    else:
+        result = interpret(x, bound=bound, pin=digest(payload))
+        assert result.receipt["geometry_source_policy"] == report["policy_id"]
+        assert result.receipt["native_interpretations"] == x.state.native_calls == 1
+
+
 @pytest.mark.parametrize("change", ["wrong_pin", "parent", "reorder", "control_bytes", "missing_control",
                                     "numeric_false", "authority", "params", "no_restraints", "geometry",
                                     "custom_exclusions"])

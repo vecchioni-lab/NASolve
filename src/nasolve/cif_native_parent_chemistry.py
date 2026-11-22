@@ -16,7 +16,7 @@ from types import SimpleNamespace
 
 from . import cif_native_validation as native
 from .cif_na_policy import POLICY_ID, _qualify_observed_fields, _signature
-from .cif_native_parent import NativeParentInterpretation, _canonical, _checked_bytes, _digest, _require
+from .cif_native_parent import NativeParentInterpretation, _canonical, _checked_bytes, _dictionary_parent, _digest, _require
 
 _PROXY_FAMILIES = {"bond_simple", "bond_asu", "angle", "dihedral", "const_dihedral",
                    "chirality", "planarity", "parallelity"}
@@ -60,8 +60,8 @@ def _source_observation(bound, pin, data):
     raw = bound.source_report_json
     _require(type(raw) is bytes and _digest(raw) == pin, "Original typed compiler report differs")
     report = json.loads(raw)
-    _require(_canonical(report) == raw and report["policy_id"] == "cif-typed-native-literal-inputs-v1",
-             "Require the original typed compiler report")
+    _require(_canonical(report) == raw, "Require the original typed compiler report")
+    dictionary_parent = _dictionary_parent(report)
     records = [r for r in report["files"] if r.get("anchor") == "literal_na_input_directory"
                and r.get("path") == "native/native_validation.json"]
     _require(len(records) == 1, "Missing or repeated original native observation")
@@ -71,8 +71,12 @@ def _source_observation(bound, pin, data):
              and before["fatal_problems"] is None and before["unsupported_fields"] == []
              and before["unused_definitions"] == [], "Incomplete original native observation")
     policy = report["compilation"]
-    _require(policy["policy_id"] == POLICY_ID and policy["policy_authority"] == "NARestraints",
-             "Require the original compiled NARestraints policy")
+    if dictionary_parent:
+        _require(before.get("dictionary_loading") == [] and before["geometry"].get("custom_proxy_requests") == [],
+                 "Dictionary parent source contains additional dictionaries or custom geometry")
+    else:
+        _require(policy["policy_id"] == POLICY_ID and policy["policy_authority"] == "NARestraints",
+                 "Require the original compiled NARestraints policy")
     return before, policy
 
 
@@ -147,7 +151,7 @@ def _compare(before, live, components, policy):
     origins = before["restraint_policy"]["origin_ids"]
     _require(origins == live["restraint_policy"]["origin_ids"], "Native restraint origin registry changed")
     observed = dict(live, monomer_mappings=components)
-    qualification = _qualify_observed_fields(before, observed, policy, [])
+    qualification = _qualify_observed_fields(before, observed, policy, [], preserve_native=policy is None)
     failures = [r for r in qualification["checks"] if r["status"] != "PASS"]
     if failures:
         names = [r["check"] for r in failures]
@@ -170,7 +174,8 @@ def _compare(before, live, components, policy):
              "Native coordinates differ from the bound parent")
     # The compiler emits an ordinary quadratic parallelity with no slack.
     # The original C21 comparison already verified each target, weight and atom selection.
-    generated = {_signature("parallelity", r, values=False) for r in policy["compiled_requests"]
+    compiled = [] if policy is None else policy["compiled_requests"]
+    generated = {_signature("parallelity", r, values=False) for r in compiled
                  if r["kind"] == "parallelity"}
     for r in live["geometry"]["proxy_details"]["parallelity"]:
         if r["origin_id"] == origins["edits"] and _signature("parallelity", r, values=False) in generated:
@@ -179,8 +184,9 @@ def _compare(before, live, components, policy):
     automatic = {value for name, value in origins.items() if name != "edits"}
     families = {}
     for name, source_rows in before["geometry"]["proxy_details"].items():
-        retained = sum(r["origin_id"] not in automatic for r in source_rows)
-        families[name] = {"unchanged": retained, "source_secondary_structure": len(source_rows) - retained,
+        source_secondary = sum(r["origin_id"] in automatic for r in source_rows)
+        retained = len(source_rows) if policy is None else len(source_rows) - source_secondary
+        families[name] = {"unchanged": retained, "source_secondary_structure": source_secondary,
                           "compiled_relationships": len(live["geometry"]["proxy_details"][name]) - retained}
     missing_charge = [r["site"] for r in rows if
         r["metadata"]["formal_charge_readback"]["status"] != "SUPPORTED"
