@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record joint attachment-target feasibility and its limits
+
+- Qualify simultaneous FT_Hg source-distance/angle correction in the existing
+  tangent space while preserving eight polymer distances and measured Hg–O4 to
+  first order. The least-motion direction improves geometry but worsens work MLHL;
+  eleven internal terms cannot change. Other feasible directions remain possible.
+- Preserve 54 strict derivative checks, 451 independent assertions, the compact
+  unchanged-model illustration/table, failed report serialization and corrected
+  output-label accounting. No new refinement, fitted structure, maps, f″ parent,
+  runtime/schema change or full suite; A01 remains partial and A02 gated.
+
 ### Bind metal processes to their admitted session before launch
 
 - New budgeted audited sessions bind both preflight and native process owners to

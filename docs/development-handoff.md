@@ -65,8 +65,15 @@ attachment or inherited internal strain. Straight and bent FT_Hg remain competin
 hypotheses; the human endpoint is a comparator, not ground truth. The
 [current metal science record](metal-development-handoff.md#a01-current-science-coupled-placement-does-not-survive-open-refinement)
 owns exact native evidence and the next internal-geometry retention contract.
+A further bounded native diagnostic qualifies simultaneous source-targeted
+attachment distance/angle correction under the existing nine first-order holds.
+The minimum-motion direction improves geometry but worsens work MLHL; 11 internal
+terms stay fixed. This does not rule out other directions or qualify finite
+retention/internal repair. **54 derivative checks and 451 independent assertions**
+pass, with no new refinement, maps or fitted structure. The handoff records the
+report-only serialization correction and inherited console-label erratum.
 A01 remains partial and A02 gated. The latest compact report is
-`ScienceCheckouts/Hazel/2026-11-22_ft-split-base/index.html`; earlier model/map
+`ScienceCheckouts/Hazel/2026-11-22_ft-joint-target/index.html`; earlier model/map
 comparisons stay intact, with no generated science committed.
 
 A04's latest bounded prerequisite binds newly admitted preflight/main process

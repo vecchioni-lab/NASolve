@@ -279,6 +279,14 @@ descriptive; broad geometry and combined scientific evidence guide review.
    for this tiny gain. The next contract must retain source-backed internal
    geometry during coupled optimization, reusing shared graph/rotation/native
    term owners; no qualified general internal-deformation owner exists yet.
+   A subsequent bounded check now qualifies simultaneous attachment-distance and
+   adjacent-angle correction in the same tangent space under all nine holds.
+   Its least-motion direction improves raw geometry but worsens work MLHL; this
+   does not exclude other feasible directions. All 54 strict derivative checks
+   and 451 independent assertions pass. Eleven internal observables remain rigid
+   invariants. First-order feasibility is now answered; finite source retention,
+   internal repair and scientific admission remain open. No new fitted structure,
+   repeated fit/grid, full suite or f″ parent follows.
    Straight versus bent FT_Hg remain competing hypotheses: the investigator's
    same-data endpoint is a comparator, not ground truth, and straightness alone
    is not an acceptance criterion. Current attachment/contact defects remain

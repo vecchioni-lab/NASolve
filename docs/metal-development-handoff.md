@@ -119,6 +119,69 @@ report is `ScienceCheckouts/Hazel/2026-11-22_ft-split-base/index.html` beside th
 repositories; editable constellation-style figures and numbers are retained,
 without copied model/map payloads. No product behavior/schema/migration changes.
 
+### Joint attachment-distance and angle feasibility
+
+The next bounded question is now answered **locally, to first order**. The
+existing split-base/pair/flank parameterization has a direction that reduces
+C1′–N1 (1.673897 Å toward source 1.499 Å) and C1′–N1–C2 (133.716434° toward
+121.76°) together, by the same fractional error rate. Eight polymer distances
+and the measured Hg–O4 distance have zero first-order change (largest derivative
+7.42e−17). Source targets and uncertainty are unchanged; neither the human model
+nor a preferred Hg coordination angle defines the direction.
+
+Choosing the minimum Cartesian motion for those two rates gives work-MLHL
+**+0.00268217** and raw-geometry **−549.14697** directional derivatives, each per
+Å of maximum atom displacement at zero. Geometry improves while work data worsen
+for this particular direction. This does **not** exclude other feasible directions;
+the two objectives retain distinct units, with no inferred combined weight.
+The 16 previously audited source observables have tangent rank **five**. Eleven
+internal bond/angle measurements cannot change under these rigid fragments,
+including inherited ring/sugar deviations. Compatibility of two attachment
+observables is not complete internal repair or a retention engine.
+
+**Phenix 2.2.1-6174** rechecks two exact final-state baselines and performs eight
+new frozen evaluations in **1.47 s**; the owned process stops in **5.43 s**.
+All **54 strict derivative checks** pass (six work/geometry and 48 source-observable
+checks). A separate cold reader passes **451 assertions**, independently rebuilding
+source measurements/gradients, the minimum-motion direction, fixed atoms, shared
+transport, rigid distances and ordered handedness. Original work/geometry
+numerical tolerances are unchanged. The largest central-test hold drift is
+2.14e−8 Å, a second-order effect: exact finite closure or target retention is
+explicitly **not** claimed. These are diagnostic assertions, not pytest counts.
+
+All 1,092 work reflections, 59 excluded free reflections, phases, B/Q/f′/f″,
+masks, scales, likelihood core, native term identities and source targets remain
+bound. Existing Rwork/Rfree, maps and f″ status are unchanged. No optimizer,
+parameter grid, full refinement, new fitted structure, map, f″ parent, scientific
+acceptance, runtime/schema change or full suite occurs. The bad measured Hg–O4
+contact remains a diagnostic witness, not a newly adopted chemical ideal.
+
+Private evidence is `a01-joint-source-feasibility-20261122-02/` at the declared
+Alder artifact anchor. `execution-plan.json`, `execution.json`, `result.json`,
+`cold-review.json` and `replay-qualification.json` pin source, exact native command,
+process stop and checks. The first immutable `...-01/` attempt reaches report
+serialization but cannot encode NumPy booleans; the successor casts two output
+flags only, with unchanged calculations/tolerances. Both remain. The inherited
+final console label says “26 samples”; the structured receipt and executed code
+correctly state zero repeated old samples and two exact baseline rechecks. The
+cold report records this presentation erratum; no old replay is counted again.
+
+Commands from the artifact checkout:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-metal-coordination/src /private/tmp/alder-validation-20261121-01/bin/python -B branch-artifacts/Alder/runners/A516_run_joint_target.py
+PYTHONDONTWRITEBYTECODE=1 /private/tmp/alder-validation-20261121-01/bin/python -B branch-artifacts/Alder/runners/A517_review_joint_target.py
+```
+
+These document completed immutable executions, not overwrite-safe reruns. The
+compact report is `ScienceCheckouts/Hazel/2026-11-22_ft-joint-target/index.html`
+beside the repositories. Its constellation image shows the exact unchanged
+baseline, alongside source deviations; it does not depict a new fitted structure.
+Models/maps are referenced, not copied or committed. No production tests are
+needed for this documentation/evidence-only update. **A01 remains partial and
+A02 gated.** Do not repeat this tangent feasibility test as a substitute for
+qualifying source-backed internal geometry during optimization.
+
 ### Saved-state replay, validation and evidence
 
 The retained final fmodel reopens exactly. The native geometry pickle alone is
@@ -192,6 +255,12 @@ stiffness, split-B, source-consistent starting pose and current force/contact/
 attachment-freedom controls. Their original evidence and limits remain in this handoff and Git
 history. Do not repeat grids or promote a better scalar score into acceptance.
 
+The two-target tangent compatibility is now qualified, and its least-motion
+work/geometry tradeoff measured. That result does not provide finite retention
+or repair the 11 rigid internal terms. Willow's W226 optimizer is reported as
+shape-preserving whole-pair transport, not an internal DF/Hg engine; W216's
+canonical shoulder graph is also a different scope. No new owner is adopted.
+
 **Next:** qualify a source-backed internal-geometry retention contract coupled
 to allowed pair/flank motion, through Cedar chemistry and Willow transport owners. Reuse
 the shared source-graph selector, proper rotations and complete native geometry
@@ -200,7 +269,9 @@ deformation engine; canonical shoulder repair and whole-residue motion do not
 substitute for modified metal chemistry. Declare supported topology, internal
 freedoms, source uncertainty and preserved stereochemistry before implementation.
 A newly healthy starting pose already failed to survive open refinement; explain how
-internal geometry is retained during optimization. Bind explicit local contact
+internal geometry is retained during optimization. Do not assume a general deformation
+engine is required: first distinguish retaining a source-qualified fragment shape
+through coupled transport from explicitly allowing internal degrees of freedom. Bind explicit local contact
 witnesses alongside the work objective. Qualify any new parameterization's exact
 baseline, derivatives, fixed atoms and closure before native fitting. Do not add
 a second geometry engine, adopt the bad held distance as an ideal, relax
