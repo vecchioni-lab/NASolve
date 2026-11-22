@@ -777,6 +777,24 @@ handoff nor typed input capture supplies ordinary canonical ancestry, selected-c
 lineage, an atomic launch lock, or the retained chemical-manager lifetime for motion.
 The W167 cluster accommodation plan remains downstream of those gates.
 
+**5W6W scaffold default (22 November, via Rowan).** For 5W6W and derivatives
+preserving its central strand/junction, carry Simon's default covalent intent
+B:7 O3′ → B:1 P. Pine must keep that intent editable, let construct-specific
+nicks/topology changes override it, and resolve logical endpoints after
+renumbering or re-slicing. A large spatial gap does not make B:1 terminal:
+retain P/OP1/OP2, without OP3. See Cedar's canonical
+[central-strand chemistry guide](https://github.com/vecchioni-lab/NASolve/blob/e493e7f2b3a31d78d37d4882c2830e021b6490d6/docs/backbone-chemistry.md#the-central-strand-in-the-5w6w-scaffold).
+
+In Cedar's pinned original-frame/no-Hg PDU cases, hold B:1 P fixed and transform
+**B:7 O3′** by `-x+y,-x,z`. This is a measured image realization of
+investigator-supplied covalent intent, not a universal matrix for every ASU or
+origin. Keep the transformed endpoint explicit; the FT convention below images
+the opposite endpoint in its own pinned model. Rebind/recompute the operation
+when the representation changes. Other physical nicks, occupancies and
+whole-strand closure need their own evidence. This documentation records the
+scaffold default; it does not activate a symmetry bond without its full native
+angular/exclusion context or retroactively alter older diagnostic chemistry.
+
 **FT connectivity clarification (20 November, via Hazel).** The investigator
 now declares B:7 O3′ → B:1 P as a symmetry continuation. B:1 is therefore not
 assumed to be a free terminus. The current coordinate-derived realization images

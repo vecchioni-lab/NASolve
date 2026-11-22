@@ -17,6 +17,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- Record the investigator's editable 5W6W central-strand covalent default,
+  with construct-specific nick overrides, endpoint remapping and a reference
+  to Cedar's canonical chemistry guide. Keep image evidence separate from intent;
+  no native activation or retrospective chemistry change.
+
 ### W219 — Preserve a failed 10 Å centroid recovery stress test
 
 - Test one explicitly measured 10 Å selected-region centroid perturbation with

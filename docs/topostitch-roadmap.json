@@ -6945,5 +6945,49 @@
         "size": 6887
       }
     }
-  }
+  },
+  "scaffold_intent_defaults": [
+    {
+      "scaffold": "5W6W central-strand-preserving derivatives",
+      "declared_by": "Simon via Rowan,2026-11-22",
+      "connection": {
+        "source_atom": "B:7 O3'",
+        "target_atom": "B:1 P",
+        "kind": "covalent_phosphodiester",
+        "endpoint_names": "Original scaffold labels; remap logical endpoints after renumbering/reslicing"
+      },
+      "phosphate": {
+        "site": "B:1",
+        "retain": [
+          "P",
+          "OP1",
+          "OP2"
+        ],
+        "exclude": [
+          "OP3"
+        ]
+      },
+      "editable": true,
+      "construct_specific_nick_or_topology_overrides": true,
+      "coordinate_realization": {
+        "fixed_endpoint": "B:1 P",
+        "transformed_endpoint": "B:7 O3'",
+        "operator": "-x+y,-x,z",
+        "lattice_translation": [
+          0,
+          0,
+          0
+        ],
+        "scope": "Pinned deposited-frame/no-Hg PDU models; rebind after frame/representation changes, not a global hard-coded operator"
+      },
+      "whole_construct_closure_inferred": false,
+      "runtime_activation": false,
+      "chemistry_owner": {
+        "branch": "cedar",
+        "commit": "e493e7f2b3a31d78d37d4882c2830e021b6490d6",
+        "path": "docs/backbone-chemistry.md",
+        "section": "the-central-strand-in-the-5w6w-scaffold"
+      }
+    }
+  ]
 }
