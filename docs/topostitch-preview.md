@@ -2883,3 +2883,57 @@ native manager can hold parent coordinates: unchanged input files and candidate
 F-model do **not** mean rollback of that manager. Discard it. Ordinary dispatch
 and scientific acceptance remain false. Do not repeat C516 just to obtain another
 copy of the same successful native evidence.
+
+
+## Bind a dictionary-only native parent (W215)
+
+The default W203/W206 literal route still requires real compiled restraints.
+A canonical parent may instead have been interpreted using only the installed
+monomer library and explicit reader controls. Cedar C526 defines that separate
+source policy; opt in explicitly when binding its artifact:
+
+```python
+bound = bind_native_preparation_inputs(
+    typed_directory, parent_bytes,
+    expected_report_sha256=expected_report_sha256,
+    compiler_owner=compiler_owner, controls_owner=controls_owner,
+    include_source_native=True,
+    source_policy="cif-typed-native-dictionary-parent-v1",
+)
+```
+
+This calls Cedar's `native_dictionary_parent` reader and requires an empty
+compiled-restraint role, the exact pinned report, and separate authenticated
+reader controls. The four controls remain explicitly False. Original observation
+bytes, parent identity, ordering, repeated reads and detached snapshots retain
+W206 semantics. The default `cif-typed-native-literal-inputs-v1` rejects this
+artifact; unknown policies and invented compiled restraints refuse. No dummy
+pair restraints, pairing intent or execution authority are created. The result
+class, CLI, old source policy, dependencies and ordinary execution defaults are
+unchanged; no migration is required.
+
+Eight focused regression cases include success, old-default rejection, empty
+literal rejection, unknown policy and four role/control faults. Before the
+change, six fail because the opt-in argument is absent. Afterward, this command
+passes **225 tests**, repeated against a newly built, relocated installation
+with the temporary build source and original installation removed:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /path/to/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_topostitch_preparation.py tests/test_topostitch_endpoint.py tests/test_topostitch_native_window.py tests/test_topostitch_checkpoint.py tests/test_topostitch_execution.py
+```
+
+The existing local install recipe is `NASolve:branch-artifacts/willow/runners/w215-install.py`.
+Nineteen real-source checks cover source/installed parity, relocation after the
+old path disappears, exact original bytes, altered-control refusal and detached
+results. Phenix **2.2.1-6174**, Python 3.11, reads the same bound result after
+loading checksum-verified pure dependencies. The initial unbootstrapped Python
+3.11 attempt lacked openpyxl; it made no native call. Ordinary CLI help also
+passes from the relocated installed package.
+
+One completed fixed-coordinate native interpretation captured the real X11_22
+PostMR parent with all four controls. There was **no refinement, displacement or
+checkpoint write**. Cedar C526 supplied the shared typed artifact; its separate
+native source-reproduction qualification remains Cedar-owned. Receipts and
+runners stay local under `NASolve:branch-artifacts/willow/w215-dictionary-parent-binding/`;
+the roadmap pins exact bytes. This validates a source-binding interface, not
+whole-model chemistry, a motion declaration or an ordinary repair workflow.

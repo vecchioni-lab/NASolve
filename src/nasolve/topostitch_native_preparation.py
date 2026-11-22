@@ -181,7 +181,8 @@ class NativePreparationInputs:
 
 
 def bind_native_preparation_inputs(directory, parent_bytes, *, expected_report_sha256,
-                                   compiler_owner, controls_owner, include_source_native=False):
+                                   compiler_owner, controls_owner, include_source_native=False,
+                                   source_policy="cif-typed-native-literal-inputs-v1"):
     """Reopen typed source roles through explicit trusted Cedar owners.
 
     The expected digest comes from the authenticated compiler-report binding,
@@ -189,27 +190,38 @@ def bind_native_preparation_inputs(directory, parent_bytes, *, expected_report_s
     artifact; this adapter binds it to exact current-parent bytes and returns
     immutable inputs for the later native service. Repeated checks are snapshot
     checks, not locks or retained-process authority. No native work occurs here.
+    The default literal policy still requires real compiled restraints. Explicit
+    ``cif-typed-native-dictionary-parent-v1`` instead binds a controls-only
+    parent with no compiled restraints through Cedar's ``native_dictionary_parent``
+    reader. Neither policy creates pairing intent or execution authority.
     Opt in to carrying the declared original native observation bytes for Cedar
     source-chemistry comparison; its native owner still validates them at use.
     """
     if type(include_source_native) is not bool:
         raise ValueError('Original native observation opt-in must be boolean')
+    kinds={'cif-typed-native-literal-inputs-v1':'literal_na_inputs',
+           'cif-typed-native-dictionary-parent-v1':'native_dictionary_parent'}
+    if not isinstance(source_policy,str) or source_policy not in kinds:
+        raise ValueError('Require an explicitly supported parent source policy')
+    dictionary_parent=source_policy=='cif-typed-native-dictionary-parent-v1'
     policy='cif-captured-reader-control-handoff-v1'
     if type(parent_bytes) is not bytes or controls_owner.POLICY_ID!=policy:
         raise ValueError('Require exact parent bytes and the supported reader-control owner')
     directory=Path(directory)
     def read():
-        value=compiler_owner._compiler_input('literal_na_inputs',directory,
+        value=compiler_owner._compiler_input(kinds[source_policy],directory,
                                             reader_control_policy=policy)
         report=value['report']
         payload=json.dumps(report,sort_keys=True,separators=(',',':'),allow_nan=False).encode()
-        if (report.get('policy_id')!='cif-typed-native-literal-inputs-v1'
+        if (report.get('policy_id')!=source_policy
                 or sha256(payload).hexdigest()!=expected_report_sha256):
             raise ValueError('Typed source compiler report differs from the expected binding')
         restraints=tuple(Path(p).resolve() for p in value['compiled_restraint_phils'])
         controls=tuple(Path(p).resolve() for p in value['interpretation_control_phils'])
         model=Path(value['model']).resolve();paths=(model,*restraints,*controls)
-        if (not restraints or not controls or len(set(paths))!=len(paths)
+        if dictionary_parent and (restraints or report.get('compiled_phils')!=[]):
+            raise ValueError('Dictionary parent cannot carry compiled restraint roles')
+        if (not dictionary_parent and not restraints or not controls or len(set(paths))!=len(paths)
                 or tuple(Path(p).resolve() for p in value['phils'])!=restraints):
             raise ValueError('Require separate unambiguous ordered restraint and control roles')
         source_native=None

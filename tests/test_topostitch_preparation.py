@@ -406,3 +406,63 @@ def test_source_bound_builder_catches_reader_side_effects(parent_builder,stage):
         prepare_builder(s);s.builder.set_candidate_sites(s.model,((1,2,3),));s.builder._review=changed
         with pytest.raises(ValueError,match='observer'):s.builder.verify_candidate(s.model,None,None)
     with pytest.raises(RuntimeError):s.builder.result()
+
+
+@pytest.fixture
+def dictionary_parent_preparation(typed_source_observation):
+    from nasolve.topostitch_recipe import recipe_digest
+    s=typed_source_observation
+    s.report.update(policy_id='cif-typed-native-dictionary-parent-v1',compiled_phils=[])
+    s.report_pin=recipe_digest(s.report)
+    s.value.update(phils=[],compiled_restraint_phils=[])
+    s.kinds=[]
+    def read(kind,directory,*,reader_control_policy):
+        assert directory==s.root and reader_control_policy==s.controls.POLICY_ID
+        s.kinds.append(kind);return s.value
+    def shadows(paths):assert paths==[]
+    s.compiler._compiler_input=read;s.controls.reject_shadow_controls=shadows
+    return s
+
+
+def test_dictionary_parent_opt_in_binds_empty_restraints_and_original_source(dictionary_parent_preparation):
+    s=dictionary_parent_preparation
+    bound=bind_typed(s,source_policy='cif-typed-native-dictionary-parent-v1',include_source_native=True)
+    assert s.kinds==['native_dictionary_parent','native_dictionary_parent']
+    assert bound.compiled_restraint_phils==()
+    assert bound.interpretation_control_phils==(b'controls',)
+    assert bound.source_native_json==s.native_bytes and bound.parent_bytes==b'exact parent'
+    assert json.loads(bound.source_report_json)==s.report
+    assert not bound.runtime_authority and not bound.chemical_admission
+    s.control.write_bytes(b'changed')
+    assert bound.interpretation_control_phils==(b'controls',)
+
+
+def test_dictionary_parent_cannot_enter_default_literal_route(dictionary_parent_preparation):
+    with pytest.raises(ValueError,match='report'):bind_typed(dictionary_parent_preparation)
+
+
+@pytest.mark.parametrize('fault',['compiled_path','compiled_report','missing_controls','true_control'])
+def test_dictionary_parent_rejects_misclassified_restraints_or_controls(dictionary_parent_preparation,fault):
+    from nasolve.topostitch_recipe import recipe_digest
+    s=dictionary_parent_preparation
+    if fault=='compiled_path':s.value.update(phils=[s.restraint],compiled_restraint_phils=[s.restraint])
+    elif fault=='compiled_report':s.report['compiled_phils']=[{'path':'hidden.phil'}]
+    elif fault=='missing_controls':s.value['interpretation_control_phils']=[]
+    else:
+        original=s.controls.control_definitions
+        def changed(*args):
+            values,mappings=original(*args);values[sorted(values)[0]]=True;return values,mappings
+        s.controls.control_definitions=changed
+    s.report_pin=recipe_digest(s.report)
+    with pytest.raises(ValueError):bind_typed(s,source_policy='cif-typed-native-dictionary-parent-v1')
+
+
+def test_dictionary_parent_policy_must_be_explicit_supported_identifier(typed_preparation):
+    s=typed_preparation
+    with pytest.raises(ValueError,match='source policy'):bind_typed(s,source_policy='future')
+    assert s.calls==[]
+
+
+def test_literal_route_still_requires_real_restraint_input(typed_preparation):
+    s=typed_preparation;s.value.update(phils=[],compiled_restraint_phils=[])
+    with pytest.raises(ValueError,match='roles'):bind_typed(s)

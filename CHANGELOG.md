@@ -17,6 +17,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W214/W215 — Bind a real dictionary-only geometry parent
+
+- Bind the unchanged real X11_22 PostMR checkpoint and original observations;
+  preserve the distinction between genuine ancestry and missing motion intent.
+- Add explicit `cif-typed-native-dictionary-parent-v1` to the existing native
+  input binder. It accepts authenticated controls with no invented restraints;
+  the default literal policy still requires compiled restraints.
+- Preserve parent/source hashes, four reader controls, detached snapshots and
+  role checks. No CLI/default/dependency/schema migration or ordinary activation.
+- Validate source and relocated installation (225 tests each), real source
+  binding and Phenix Python 3.11 compatibility. Scientific artifacts stay local.
+
 ### W209–W213 — Diagnose, recover and trace local backbone alternatives
 
 - Record native chemical-energy paths and 48 frozen intrinsic local-chain
