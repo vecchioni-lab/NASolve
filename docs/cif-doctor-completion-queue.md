@@ -144,6 +144,12 @@ agreeing intact reference links. The matched image-aware model contained
 one printed bond at 1.628 Å. The next runtime step is to carry the verified
 terms through an ordinary refinement restart and prove they are applied once.
 
+C540 verified the starting point for that restart. The exact numbered parent
+with the ordinary AutoRefine settings, seven inherited files in their actual
+order and D:1 terminal protection recovered the same native reference forces
+as the exported handoff. No coordinates moved in this check. Further work
+can start at application of the verified forces.
+
 In C531, two historical PHIL edits completely masked the source-supported
 PDU target change from 1.607 to 1.470 Å. Updating both site-specific targets
 at the existing strength produced 1.472/1.468 Å in the written model, with

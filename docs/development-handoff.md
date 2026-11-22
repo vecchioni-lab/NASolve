@@ -1,7 +1,32 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C539 reading the registered 5W6W connection at a checkpoint — Rowan**.
+Updated **2026-11-22, C540 checking what Phenix inherits from the 5W6W checkpoint — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+C540 reopened the actual PDU:PDU `refine-005` through AutoRefine's parent,
+reflection and command builders. The ordinary recipe inherits the same seven
+restraint files as the old exported handoff, in a different order. It also
+requests real-space sites and occupancies and uses a coordinate weight scale
+of 0.5. The exported comparison used 0.01. Both routes kept the six D:1
+terminal angles and all 124 measured free reflections.
+
+Phenix 2.2.1-6174 passed its ordinary command-line preflight. A separate
+zero-cycle native evaluation then recovered the same 862 atoms, all 1,909
+observations with flags, measured native terms and two intact DA→DC examples.
+Their one bond, four angles and three torsions gave byte-identical force
+readbacks under both input orders. The maximum finite-difference discrepancy
+on 24 coordinates was 6.3 × 10⁻⁷ in native derivative units. The original
+checkpoint stayed selected. These measurements establish the starting
+forces only. The next gate is their single application through actual
+ordinary refinement and continuation. No run format or CLI changed.
+
+The C528 evidence folder contains the compact `c540-science.json` and
+`c540_parent.py`. Its module docstring gives the exact argument order. Use
+the C539 old-frame registration and discovery files, the shipped directed
+declaration, the matching original native receipt and the C521 worker and
+control directory. The worker and original registrations are content-checked.
+For C539 itself, run `python -B c539_checkout.py REPO EVENING_ATTEMPTS PDU_RUN MIXED_RUN NEW_DIRECTORY`
+and `python -B c539_checkout.py reference REPO PDU_RUN NEW_DIRECTORY/old-frame NATIVE_RECEIPT C520_REFERENCE NEW_JSON`.
 
 C539 lets [phosphate inspection](cif-doctor.md#inspecting-a-phosphate-at-a-crystal-boundary)
 take the same registration, end-discovery file and declared continuations
