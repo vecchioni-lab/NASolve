@@ -3149,3 +3149,57 @@ controllers live under the same anchor's `branch-artifacts/willow/runners/`:
 from Git. They qualify this frozen synthetic trajectory, not general scientific
 repair or ordinary integration. **The complete suite is deferred to the merge
 gate under Rowan's direction for tonight's focused run; it is not claimed passed.**
+
+
+## Keep the measured core fixed when a window expands (W227)
+
+`CoordinateMask.displacement_summary` accepts optional `measurement_indices`,
+a nonempty list/tuple of distinct indices **within the complete movable mask**.
+The mask still validates every candidate coordinate, every movable displacement
+bound and every fixed atom before reporting the subset. Explicit weights follow
+measurement order and remain strictly positive; omission means uniform atoms.
+
+```python
+# expanded_mask already declares and validates the complete editable region.
+core = expanded_mask.displacement_summary(
+    candidate_points,
+    measurement_indices=original_core_indices,
+)
+whole = expanded_mask.displacement_summary(candidate_points)
+```
+
+`atom_indices` identifies what was measured. Only the explicit-subset form adds
+`motion_atom_indices`, retaining the complete editable selection. Centroid/RMS/
+maximum describe the measured core, not all surrounding motion; call the default
+form separately to inspect the whole window. Existing default return values are
+unchanged. This does not select/expand a window, move a protected junction, grant
+motion permission, align coordinates or define a helix centerline. Actual source,
+correspondence and frame qualification remain with the caller.
+
+The distinction is observable in the saved W219 coordinates: the original
+205-atom core moved **10.000 Å**, while including its unchanged flanking pairs
+(287 atoms total) reports **7.142857 Å**. Keeping the original measurement subset
+reproduces its 10.000 Å target under that broader declared mask. This is a
+read-only measurement comparison, not a newly executed expanded-window repair.
+
+Validation: **14 regressions fail against the qualified W226 installed API**;
+**392 source/392 relocated-installed focused tests pass**. The same eight-file
+command as W226 is used, with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` and
+`python -B -m pytest -q -p no:cacheprovider`; the relocated run substitutes the
+installed package path after the build source and original installation are gone.
+The wheel SHA256 is
+`012dd56390d0360eabd88b454808af716bd3a0bbe3b046c9c4751dc1efc566cd`.
+Four saved endpoints each reproduce their complete old default report and core
+metrics exactly. **21 readback checks each** pass in source, installed Python
+3.12 and Phenix Python 3.11. `TaperedMotion` code is unchanged. No native geometry
+call or refinement ran; W226's separately frozen native qualification stays
+bound to its original installation. The complete suite remains deferred to the
+merge gate under tonight's focused-validation direction.
+
+Local receipts are anchored at
+`NASolve:branch-artifacts/willow/w227-core-measurement/`; the controllers are
+`branch-artifacts/willow/runners/w227-install.py` and `w227-readback.py`.
+The first new-test attempt had a missing test import and is preserved as a setup
+error, not counted as fail-before evidence. Corrected tests were replayed against
+W226 before qualification. Source/install/readback logs and generated coordinates
+are not committed; no existing artifact migration is needed.

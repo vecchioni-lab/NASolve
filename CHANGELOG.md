@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W227 — Keep a core measurement fixed while the editable window expands
+
+- Add optional `measurement_indices` to the existing displacement summary;
+  measure a declared movable subset while validating the complete motion mask.
+- Preserve default reports and all bounds/fixed-atom checks. Explicit subset
+  reports retain the whole motion index list; weights follow measurement order.
+- No motion, force, native lifecycle, CLI or default change. No report migration
+  or new experimental recovery claim; generated science remains local.
+
 ### W226 — Bound native collective-motion trials explicitly
 
 - Add a six-parameter trial driver beside the unchanged Cartesian API, using

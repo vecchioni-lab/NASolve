@@ -4,7 +4,7 @@ import math
 import pytest
 
 from nasolve.topostitch_transport import (
-    CartesianImage, IDENTITY_IMAGE, crystallographic_image,
+    CartesianImage, CoordinateMask, IDENTITY_IMAGE, crystallographic_image,
     expand_sites, accumulate_image_gradients,
 )
 
@@ -300,3 +300,69 @@ def test_displacement_summary_large_finite_weights_are_normalized_without_overfl
     weights[0]=0
     assert r['normalized_weights']==(.5,.5) and r['centroid_displacement_angstrom']==1
     assert mask.reference==((0.,0.,0.),(1.,0.,0.))
+
+
+def test_measurement_subset_keeps_core_target_when_editable_window_expands():
+    reference=((0.,0.,0.),(1.,0.,0.),(2.,0.,0.),(9.,9.,9.))
+    mask=CoordinateMask(reference,(0,1,2),11.)
+    # Surrounding atoms move in the opposite direction; the core still moved10A.
+    points=((-5.,0.,0.),(11.,0.,0.),(-3.,0.,0.),reference[3])
+    whole=mask.displacement_summary(points)
+    core=mask.displacement_summary(points,measurement_indices=(1,))
+    assert whole['centroid_displacement_angstrom']==0
+    assert core['centroid_displacement_angstrom']==10
+    assert core['weighted_rms_atom_displacement_angstrom']==10
+    assert core['max_atom_displacement_angstrom']==10
+    assert core['atom_indices']==(1,) and core['motion_atom_indices']==mask.indices
+    assert 'motion_atom_indices'not in whole
+    assert not core['frame_identity_verified']and not core['centerline_measured']
+
+
+def test_measurement_subset_weights_follow_explicit_order_not_mask_order():
+    mask=CoordinateMask(((0.,0.,0.),(1.,0.,0.),(2.,0.,0.)),(1,0,2),10.)
+    indices=[2,0];weights=[3,1]
+    result=mask.displacement_summary(((2.,0.,0.),(1.,0.,0.),(10.,0.,0.)),measurement_indices=indices,weights=weights)
+    assert result['atom_indices']==(2,0)and result['normalized_weights']==(.75,.25)
+    assert result['reference_centroid_angstrom']==(1.5,0.,0.)
+    assert result['candidate_centroid_angstrom']==(8.,0.,0.)
+    assert result['centroid_displacement_angstrom']==6.5
+    assert result['weighted_rms_atom_displacement_angstrom']==pytest.approx(7.)
+    indices[:]=[1];weights[:]=[99]
+    assert result['atom_indices']==(2,0)and result['normalized_weights']==(.75,.25)
+
+
+@pytest.mark.parametrize('selection',[[],[0,0],[True],[1.0],[-1],[3],[2],[[0]],'0'])
+def test_measurement_subset_refuses_empty_duplicate_noninteger_or_nonmovable(selection):
+    mask=CoordinateMask(((0.,0.,0.),(1.,0.,0.),(2.,0.,0.)),(0,1),2.)
+    with pytest.raises(ValueError):
+        mask.displacement_summary(mask.reference,measurement_indices=selection)
+
+
+def test_measurement_subset_cannot_hide_noncore_bound_or_fixed_atom_violation():
+    mask=CoordinateMask(((0.,0.,0.),(1.,0.,0.),(2.,0.,0.)),(0,1),2.)
+    with pytest.raises(ValueError,match='exceeds'):
+        mask.displacement_summary(((0.,0.,0.),(4.,0.,0.),(2.,0.,0.)),measurement_indices=(0,))
+    with pytest.raises(ValueError,match='Fixed ASU'):
+        mask.displacement_summary(((0.,0.,0.),(1.,0.,0.),(3.,0.,0.)),measurement_indices=(0,))
+    with pytest.raises(ValueError,match='weight'):
+        mask.displacement_summary(mask.reference,measurement_indices=(0,),weights=(1,1))
+
+
+def test_explicit_complete_measurement_preserves_existing_numeric_report():
+    mask=CoordinateMask(((0.,0.,0.),(1.,0.,0.)),(1,0),2.)
+    points=((1.,0.,0.),(1.,1.,0.))
+    old=mask.displacement_summary(points,weights=(2,1))
+    explicit=mask.displacement_summary(points,weights=(2,1),measurement_indices=mask.indices)
+    assert explicit.pop('motion_atom_indices')==mask.indices
+    assert explicit==old
+
+
+def test_measurement_subset_is_rigid_frame_invariant_and_requires_full_points():
+    reference=((0.,0.,0.),(1.,1.,0.),(2.,0.,0.));points=((1.,0.,0.),(2.,2.,0.),(3.,0.,0.))
+    image=CartesianImage(((0.,-1.,0.),(1.,0.,0.),(0.,0.,1.)),(7.,-4.,2.))
+    first=CoordinateMask(reference,(0,1,2),2.).displacement_summary(points,measurement_indices=(0,1),weights=(1,3))
+    other=CoordinateMask(tuple(map(image.apply,reference)),(0,1,2),2.).displacement_summary(tuple(map(image.apply,points)),measurement_indices=(0,1),weights=(1,3))
+    for key in ('centroid_displacement_angstrom','weighted_rms_atom_displacement_angstrom','max_atom_displacement_angstrom'):
+        assert other[key]==pytest.approx(first[key],abs=1e-12)
+    with pytest.raises(ValueError,match='count'):
+        CoordinateMask(reference,(0,1,2),2.).displacement_summary(points[:2],measurement_indices=(0,1))

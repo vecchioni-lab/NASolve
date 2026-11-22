@@ -233,10 +233,13 @@ class CoordinateMask:
         self.expand(delta)  # Same finite-motion policy in both directions.
         return delta
 
-    def displacement_summary(self, points, *, weights=None):
+    def displacement_summary(self, points, *, weights=None, measurement_indices=None):
         """Measure one explicit region in an unchanged, caller-bound frame.
 
-        Weights follow ``indices`` exactly; None means equal weight per selected
+        By default measure every movable atom. ``measurement_indices`` may name
+        a nonempty ordered subset of the movable indices, keeping a core metric
+        fixed when the editable window expands. Weights follow that measurement
+        order (or ``indices`` by default); None means equal weight per measured
         atom, not mass or pair weighting. Every explicit weight must be finite
         and positive, so no selected atom silently disappears. Return centroid
         shift, weighted per-atom RMS and maximum displacement separately: a
@@ -249,12 +252,19 @@ class CoordinateMask:
         Existing endpoint/preview audit formats and digests are not changed.
         """
         points=tuple(_vector(p)for p in points)
-        delta=self.displacements(points)
+        delta=self.displacements(points)  # Always validate the complete motion mask.
+        indices=self.indices
+        if measurement_indices is not None:
+            if (not isinstance(measurement_indices,(tuple,list)) or not measurement_indices
+                    or any(type(i)is not int or i not in self.indices for i in measurement_indices)
+                    or len(set(measurement_indices))!=len(measurement_indices)):
+                raise ValueError('Require distinct explicit measurement indices within the movable mask')
+            indices=tuple(measurement_indices)
         if weights is None:
-            values=(1.,)*len(self.indices)
+            values=(1.,)*len(indices)
         else:
             values=tuple(weights)
-            if len(values)!=len(self.indices) or any(type(w)not in (int,float)for w in values):
+            if len(values)!=len(indices) or any(type(w)not in (int,float)for w in values):
                 raise ValueError('Require one explicit numeric weight per selected atom')
             try:values=tuple(float(w)for w in values)
             except (OverflowError,ValueError)as exc:
@@ -269,11 +279,12 @@ class CoordinateMask:
         if any(w==0 for w in normalized):
             raise ValueError('Atom weight range loses a selected contribution')
         def centroid(xyz):
-            return _vector(tuple(math.fsum(w*xyz[i][a]for i,w in zip(self.indices,normalized))for a in range(3)))
-        vectors=tuple(delta[i:i+3]for i in range(0,len(delta),3))
+            return _vector(tuple(math.fsum(w*xyz[i][a]for i,w in zip(indices,normalized))for a in range(3)))
+        positions={index:n for n,index in enumerate(self.indices)}
+        vectors=tuple(delta[3*positions[i]:3*positions[i]+3]for i in indices)
         shift=_vector(tuple(math.fsum(w*v[a]for w,v in zip(normalized,vectors))for a in range(3)))
         distances=tuple(math.hypot(*v)for v in vectors)
-        return dict(atom_indices=self.indices,normalized_weights=normalized,
+        result=dict(atom_indices=indices,normalized_weights=normalized,
             weighting='uniform_atoms'if weights is None else'explicit',
             reference_centroid_angstrom=centroid(self.reference),
             candidate_centroid_angstrom=centroid(points),
@@ -282,6 +293,8 @@ class CoordinateMask:
             weighted_rms_atom_displacement_angstrom=math.hypot(*(math.sqrt(w)*d for w,d in zip(normalized,distances))),
             max_atom_displacement_angstrom=max(distances),
             frame_identity_verified=False,centerline_measured=False)
+        if measurement_indices is not None:result['motion_atom_indices']=self.indices
+        return result
 
     def project(self, gradients):
         gradients = tuple(_vector(g) for g in gradients)
