@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "topostitch-development-roadmap",
-  "updated": "2026-11-21",
+  "updated": "2026-11-22",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
   "audited_code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4",
@@ -268,14 +268,16 @@
         "W205 joins C510 source chemistry to W204 transfer in one actual Phenix 2.2.1-6174 interpretation: 42 original per-site definitions, eight families and 3451 retained terms MATCH before candidate movement; exact prior final geometry/model/scattering/fixed inputs and all candidate diffraction snapshots survive. One completed dry-run and one source-byte rejection before interpretation/transfer pass 72 cold checks. Profile/server/outer hooks restored, children stopped, zero refinements. All 42 sites retain the explicit missing full formal-charge-readback limitation.",
         "W206 adds opt-in original native-observation bytes to the existing immutable input bundle. Unique declared source role/anchor/path, non-aliasing, exact size/hash and repeated reads are checked; default None preserves earlier behavior. 191 source/191 fresh relocated installed tests and 16 actual-source checks each in source/installed Python3.12 and Phenix3.11 pass with identical outputs. C510 consumes detached bytes after temporary input removal and still refuses substitution. No new native call or runtime authority.",
         "W207 tests one predeclared +25-degree Cartesian-Y interior profile with both flanks fixed: maximum initial atom displacement4.96184 A;205 movable/654 fixed. One Phenix2.2.1-6174 preflight and five-cycle/100-cap XYZ fit pass39/41 cold checks. Interior RMS1.76560->0.12238 A;boundary bond RMS0.55659->0.01657 A. All859 atoms,124 phosphate atoms,126 sugar signs,38links,213explicit terms,source chemistry and original7554/389 observations/Free retained. A11 OP2-P-O5 angle77.42 vs108deg and A14 O5-C5 bond1.303 vs1.418A remain;synthetic RW/RF0.008515/0.009151 does not establish accepted geometry.",
-        "W208 maintains SourceBoundParentBuilder beside W200: explicit C512 service and trusted native observers/writer, original source MATCH before transfer, unchanged protected state/topology/proxies/candidate diffraction, first-error invalidation.217 source/217 relocated installed tests and54 actual-native cold checks pass. Actual dry-run exactly reproduces W207; intentional post-parent failure performs zero transfer and exposes no builder result. Earlier last-bit cell-representation refusal is preserved; raw metric changes are bounded below1e-10 with10-decimal canonical cell representation only. No ordinary dispatch or new refinement."
+        "W208 maintains SourceBoundParentBuilder beside W200: explicit C512 service and trusted native observers/writer, original source MATCH before transfer, unchanged protected state/topology/proxies/candidate diffraction, first-error invalidation.217 source/217 relocated installed tests and54 actual-native cold checks pass. Actual dry-run exactly reproduces W207; intentional post-parent failure performs zero transfer and exposes no builder result. Earlier last-bit cell-representation refusal is preserved; raw metric changes are bounded below1e-10 with10-decimal canonical cell representation only. No ordinary dispatch or new refinement.",
+        "W209/W210 separate local torsional alternatives from a straight interpolation path. Frozen chemistry/work-only scoring gives A11 joint improvement and an unresolved A14 tradeoff; no automatic selection or general repair claim.",
+        "W211/W212 four matched five-cycle arms show both intrinsic shoulder seeds survive together; residual geometry remains explicit. W213 separates genuine construct/motion/source identity from absent ordinary checkpoint ancestry. No new product runtime or ordinary authority."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "W209 remaining: Cedar owns the versioned ordinary request carrying authenticated geometry-parent/source and admitted motion, preserving earlier policies/helper bytes. C516 now qualifies early native ordering with exact W208 success/failure parity; do not repeat that native panel. Willow supplies the same bound-input/builder/mapping namespace and evidence. No new amplitude or optimization sweep.",
+      "next_action": "With Rowan, obtain genuine current-parent checkpoint/data/source bindings before an opt-in Cedar versioned parent-preparation consumer joins W174/W206/W208. Keep local two-atom proposal consumer queued; do not fabricate history, repeat W201/C516 panels or add orphan helpers. W211/W212 bounded local-recovery experiment is closed.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -344,14 +346,18 @@
         "E_SOURCE_CHEMISTRY_TRANSFER",
         "E_ORIGINAL_NATIVE_OBSERVATION_BINDING",
         "E_LARGE_FIXED_FLANK_RECOVERY",
-        "E_MAINTAINED_PARENT_BUILDER"
+        "E_MAINTAINED_PARENT_BUILDER",
+        "E_LOCAL_TORSIONAL_DIAGNOSIS",
+        "E_INTRINSIC_LOCAL_ALTERNATIVES",
+        "E_LOCAL_SEEDED_RECOVERY",
+        "E_ORDINARY_BINDING_TRACE"
       ],
       "last_audit": {
-        "date": "2026-11-21",
-        "reviewer": "Linden",
-        "human_update": 208,
+        "date": "2026-11-22",
+        "reviewer": "Linden with Rowan direction",
+        "human_update": 213,
         "code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4",
-        "scope": "Maintained opt-in builder, installed/native success and refusal; ordinary integration still open"
+        "scope": "Four-arm local recovery closed; same-source/motion replay qualified, ordinary checkpoint ancestry and receiving route absent"
       }
     },
     {
@@ -416,14 +422,16 @@
         "W205 joins C510 source chemistry to W204 transfer in one actual Phenix 2.2.1-6174 interpretation: 42 original per-site definitions, eight families and 3451 retained terms MATCH before candidate movement; exact prior final geometry/model/scattering/fixed inputs and all candidate diffraction snapshots survive. One completed dry-run and one source-byte rejection before interpretation/transfer pass 72 cold checks. Profile/server/outer hooks restored, children stopped, zero refinements. All 42 sites retain the explicit missing full formal-charge-readback limitation.",
         "W206 adds opt-in original native-observation bytes to the existing immutable input bundle. Unique declared source role/anchor/path, non-aliasing, exact size/hash and repeated reads are checked; default None preserves earlier behavior. 191 source/191 fresh relocated installed tests and 16 actual-source checks each in source/installed Python3.12 and Phenix3.11 pass with identical outputs. C510 consumes detached bytes after temporary input removal and still refuses substitution. No new native call or runtime authority.",
         "W207 tests one predeclared +25-degree Cartesian-Y interior profile with both flanks fixed: maximum initial atom displacement4.96184 A;205 movable/654 fixed. One Phenix2.2.1-6174 preflight and five-cycle/100-cap XYZ fit pass39/41 cold checks. Interior RMS1.76560->0.12238 A;boundary bond RMS0.55659->0.01657 A. All859 atoms,124 phosphate atoms,126 sugar signs,38links,213explicit terms,source chemistry and original7554/389 observations/Free retained. A11 OP2-P-O5 angle77.42 vs108deg and A14 O5-C5 bond1.303 vs1.418A remain;synthetic RW/RF0.008515/0.009151 does not establish accepted geometry.",
-        "W208 maintains SourceBoundParentBuilder beside W200: explicit C512 service and trusted native observers/writer, original source MATCH before transfer, unchanged protected state/topology/proxies/candidate diffraction, first-error invalidation.217 source/217 relocated installed tests and54 actual-native cold checks pass. Actual dry-run exactly reproduces W207; intentional post-parent failure performs zero transfer and exposes no builder result. Earlier last-bit cell-representation refusal is preserved; raw metric changes are bounded below1e-10 with10-decimal canonical cell representation only. No ordinary dispatch or new refinement."
+        "W208 maintains SourceBoundParentBuilder beside W200: explicit C512 service and trusted native observers/writer, original source MATCH before transfer, unchanged protected state/topology/proxies/candidate diffraction, first-error invalidation.217 source/217 relocated installed tests and54 actual-native cold checks pass. Actual dry-run exactly reproduces W207; intentional post-parent failure performs zero transfer and exposes no builder result. Earlier last-bit cell-representation refusal is preserved; raw metric changes are bounded below1e-10 with10-decimal canonical cell representation only. No ordinary dispatch or new refinement.",
+        "W209/W210 separate local torsional alternatives from a straight interpolation path. Frozen chemistry/work-only scoring gives A11 joint improvement and an unresolved A14 tradeoff; no automatic selection or general repair claim.",
+        "W211/W212 four matched five-cycle arms show both intrinsic shoulder seeds survive together; residual geometry remains explicit. W213 separates genuine construct/motion/source identity from absent ordinary checkpoint ancestry. No new product runtime or ordinary authority."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "W209 remaining: Cedar owns the versioned ordinary request carrying authenticated geometry-parent/source and admitted motion, preserving earlier policies/helper bytes. C516 now qualifies early native ordering with exact W208 success/failure parity; do not repeat that native panel. Willow supplies the same bound-input/builder/mapping namespace and evidence. No new amplitude or optimization sweep.",
+      "next_action": "With Rowan, obtain genuine current-parent checkpoint/data/source bindings before an opt-in Cedar versioned parent-preparation consumer joins W174/W206/W208. Keep local two-atom proposal consumer queued; do not fabricate history, repeat W201/C516 panels or add orphan helpers. W211/W212 bounded local-recovery experiment is closed.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -535,14 +543,18 @@
         "E_SOURCE_CHEMISTRY_TRANSFER",
         "E_ORIGINAL_NATIVE_OBSERVATION_BINDING",
         "E_LARGE_FIXED_FLANK_RECOVERY",
-        "E_MAINTAINED_PARENT_BUILDER"
+        "E_MAINTAINED_PARENT_BUILDER",
+        "E_LOCAL_TORSIONAL_DIAGNOSIS",
+        "E_INTRINSIC_LOCAL_ALTERNATIVES",
+        "E_LOCAL_SEEDED_RECOVERY",
+        "E_ORDINARY_BINDING_TRACE"
       ],
       "last_audit": {
-        "date": "2026-11-21",
-        "reviewer": "Linden",
-        "human_update": 208,
+        "date": "2026-11-22",
+        "reviewer": "Linden with Rowan direction",
+        "human_update": 213,
         "code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4",
-        "scope": "Maintained opt-in builder, installed/native success and refusal; ordinary integration still open"
+        "scope": "Four-arm local recovery closed; same-source/motion replay qualified, ordinary checkpoint ancestry and receiving route absent"
       }
     },
     {
@@ -608,7 +620,9 @@
         "W196 extends the existing replayable initializer to an explicit registered interior whole-pair window with two fixed flanks and declared nonuniform weights; native retention/recovery remains separate.",
         "W197 retains7554 original synthetic observations/389Free and neutral control across three five-cycle native runs. Small Rfree and coordinate RMS do not override the remaining local chemical cost; no experimental acceptance.",
         "W207 tests one predeclared +25-degree Cartesian-Y interior profile with both flanks fixed: maximum initial atom displacement4.96184 A;205 movable/654 fixed. One Phenix2.2.1-6174 preflight and five-cycle/100-cap XYZ fit pass39/41 cold checks. Interior RMS1.76560->0.12238 A;boundary bond RMS0.55659->0.01657 A. All859 atoms,124 phosphate atoms,126 sugar signs,38links,213explicit terms,source chemistry and original7554/389 observations/Free retained. A11 OP2-P-O5 angle77.42 vs108deg and A14 O5-C5 bond1.303 vs1.418A remain;synthetic RW/RF0.008515/0.009151 does not establish accepted geometry.",
-        "Read-only W207 saved-map inspection passes46 checks on2 arrays/44 backbone atoms, preserving7554 F/SIGF/Free tuples and389 Free flags. A11 O5-prime generator/recovered difference samples+0.948/-0.215 own-map sigma;A14+8.268/+0.982. Ordinary-map samples are higher at both misplaced sites. Red-at-atom alone misses important local geometry; no detector threshold or experimental claim."
+        "Read-only W207 saved-map inspection passes46 checks on2 arrays/44 backbone atoms, preserving7554 F/SIGF/Free tuples and389 Free flags. A11 O5-prime generator/recovered difference samples+0.948/-0.215 own-map sigma;A14+8.268/+0.982. Ordinary-map samples are higher at both misplaced sites. Red-at-atom alone misses important local geometry; no detector threshold or experimental claim.",
+        "W209/W210 separate local torsional alternatives from a straight interpolation path. Frozen chemistry/work-only scoring gives A11 joint improvement and an unresolved A14 tradeoff; no automatic selection or general repair claim.",
+        "W211/W212 four matched five-cycle arms show both intrinsic shoulder seeds survive together; residual geometry remains explicit. W213 separates genuine construct/motion/source identity from absent ordinary checkpoint ancestry. No new product runtime or ordinary authority."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -619,7 +633,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "W208: maintain the smallest Willow parent builder around C512/W200, with explicit inputs, one success and failure example; Cedar owns shared early entry/dispatch. No further amplitude or refinement sweep. Retain W207 A11/A14 defects for a separately predeclared geometry-recovery comparison after integration.",
+      "next_action": "With Rowan, obtain genuine current-parent checkpoint/data/source bindings before an opt-in Cedar versioned parent-preparation consumer joins W174/W206/W208. Keep local two-atom proposal consumer queued; do not fabricate history, repeat W201/C516 panels or add orphan helpers. W211/W212 bounded local-recovery experiment is closed.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -721,14 +735,18 @@
         "E_INTERIOR_PAIRED_PREVIEW",
         "E_FIXED_FRAME_NATIVE_RECOVERY",
         "E_LARGE_FIXED_FLANK_RECOVERY",
-        "E_W207_SAVED_MAPS"
+        "E_W207_SAVED_MAPS",
+        "E_LOCAL_TORSIONAL_DIAGNOSIS",
+        "E_INTRINSIC_LOCAL_ALTERNATIVES",
+        "E_LOCAL_SEEDED_RECOVERY",
+        "E_ORDINARY_BINDING_TRACE"
       ],
       "last_audit": {
-        "date": "2026-11-21",
-        "reviewer": "Linden",
-        "human_update": 207,
-        "code_commit": "8cbab5c6a6ddd7a775ecb3c93b147ff766f84822",
-        "scope": "One larger fixed-flank synthetic recovery; local defects retained, no scientific closure"
+        "date": "2026-11-22",
+        "reviewer": "Linden with Rowan direction",
+        "human_update": 213,
+        "code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4",
+        "scope": "Four-arm local recovery closed; same-source/motion replay qualified, ordinary checkpoint ancestry and receiving route absent"
       }
     },
     {
@@ -5254,6 +5272,86 @@
           "size": 2352
         }
       ]
+    },
+    "E_LOCAL_TORSIONAL_DIAGNOSIS": {
+      "kind": "Read-only local chemical energy profiles",
+      "date": "2026-11-22",
+      "human_update": 209,
+      "code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4",
+      "reference": "docs/topostitch-periodic.md#w209w210--local-torsional-alternatives-after-backbone-recovery",
+      "result": "38 cold checks; exact W207 endpoint native energy/gradient,31 explicit-point energy evaluations and two congruent local chain alternatives. A11 truth-assisted angle108.33\u00b0, A14 remains94.79\u00b0.",
+      "limitation": "Truth-assisted placement is diagnostic only; full-region directional derivative discrepancy and earlier failed closures remain explicit. No optimization or ordinary authority.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w209-backbone-energy-profile/review.json",
+          "sha256": "95dfce474b1ec9870830a00f2aa1de39035260a3ea2e523e077848fddb4dac99",
+          "size": 40720
+        }
+      ]
+    },
+    "E_INTRINSIC_LOCAL_ALTERNATIVES": {
+      "kind": "Frozen intrinsic chemistry/work comparison",
+      "date": "2026-11-22",
+      "human_update": 210,
+      "code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4",
+      "reference": "docs/topostitch-periodic.md#w209w210--local-torsional-alternatives-after-backbone-recovery",
+      "result": "48 predeclared local alternatives retain chain lengths/126 sugar signs.7165 original work amplitudes,389Free excluded, fixed scale/direct n_gaussian. A11+60\u00b0 improves both declared scores; A14 original/+90\u00b0 remain a tradeoff.26 cold checks,zero refinements.",
+      "limitation": "Synthetic atomic amplitude comparison, not likelihood/experimental significance. Coarse grid, unresolved A14 bond, no winner adoption or combined site fit.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w210-intrinsic-shoulder-candidates/review.json",
+          "sha256": "84e7651f8a687f13fe47c666758710214ba2b62f7dcfe9bc1a370885e20f2e91",
+          "size": 100294
+        }
+      ]
+    },
+    "E_LOCAL_SEEDED_RECOVERY": {
+      "kind": "Four-arm local recovery after intrinsic initialization",
+      "date": "2026-11-22",
+      "human_update": 212,
+      "code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4",
+      "reference": "docs/topostitch-periodic.md#w211w212--local-corrections-survive-matched-refinement",
+      "result": "Each seed repairs its own shoulder. Both give A11/A14 angles107.96/103.06degrees, O5-C5 lengths1.398/1.455A, RMS/max generator error0.0290/0.1211A. Original205/654mask,859atoms,38links,213terms,126sugar signs,7554/389data retained.38+40 checks per pair and28 cross-arm checks.",
+      "limitation": "Synthetic same-ASU diagnostic; residual A14 and inherited geometry outliers remain. No full stereochemistry, general/experimental repair, ordinary workflow or automatic selection.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w211-matched-shoulder-recovery/refine-review.json",
+          "sha256": "896568e7e926be2a5a2dd85538c1f04954bb2ed447adfb1b8129496b124803c6",
+          "size": 46072
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w212-factorial-shoulder-recovery/refine-review.json",
+          "sha256": "2ea19924aeb74d8371f843327a46fe25d5aa52723600ae48a68f98cc0cbbce3c",
+          "size": 46112
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w212-factorial-shoulder-recovery/factorial-review.json",
+          "sha256": "ca9eb231857871708b5c4c2d8f8bf205452038f65095e713d09669ebc50458a2",
+          "size": 88445
+        }
+      ]
+    },
+    "E_ORDINARY_BINDING_TRACE": {
+      "kind": "Same-parent motion/source replay and ordinary identity boundary",
+      "date": "2026-11-22",
+      "human_update": 213,
+      "code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4",
+      "reference": "docs/topostitch-periodic.md#w213--trace-the-ordinary-receiving-boundary-without-invented-ancestry",
+      "result": "18 cold checks replay W207/W208 canonical motion and W206 typed source exactly. Construct registration exists; genuine run report/checkpoint ancestry does not. W173 refuses missing report. Current Cedar3ordinary owner functions match W201 exactly; no duplicate panel.",
+      "limitation": "No W174 checkpoint authority is fabricated from diagnostics or unrelated fixtures. Cedar versioned typed geometry-parent request, qualified callbacks and lifetime consumer remain required.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w213-ordinary-binding-trace/review.json",
+          "sha256": "7f89cb7ef9fecc2a72cffe01ca7149329139f89cf8fb5c58c4936ed74a62c693",
+          "size": 6265
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -5419,8 +5517,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 208,
-    "next": 209,
+    "current": 213,
+    "next": 214,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -6476,6 +6574,36 @@
       {
         "number": 208,
         "title": "Maintain the source-bound parent builder",
+        "state": "RECORDED",
+        "code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4"
+      },
+      {
+        "number": 209,
+        "title": "Diagnose competing local torsional branches after recovery",
+        "state": "RECORDED",
+        "code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4"
+      },
+      {
+        "number": 210,
+        "title": "Score frozen intrinsic alternatives against chemistry and work-only diffraction",
+        "state": "RECORDED",
+        "code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4"
+      },
+      {
+        "number": 211,
+        "title": "Compare unchanged and A11-seeded bounded recovery",
+        "state": "RECORDED",
+        "code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4"
+      },
+      {
+        "number": 212,
+        "title": "Complete four matched local-seed recovery arms",
+        "state": "RECORDED",
+        "code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4"
+      },
+      {
+        "number": 213,
+        "title": "Trace exact canonical source and motion to the missing ordinary checkpoint boundary",
         "state": "RECORDED",
         "code_commit": "86dd2ef5654a9cd7d90497acc1e3b192bc172bc4"
       }

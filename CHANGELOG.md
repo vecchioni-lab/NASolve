@@ -17,6 +17,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W209–W213 — Diagnose, recover and trace local backbone alternatives
+
+- Record native chemical-energy paths and 48 frozen intrinsic local-chain
+  alternatives, scored with 7,165 original work amplitudes and 389 Free excluded.
+  A11 improves both declared scores; A14 retains a chemistry/data tradeoff.
+- Preserve local/boundary lengths and sugar handedness in the proposed seeds; retain derivative,
+  earlier failed-attempt and synthetic-data limitations. Matched recovery
+  is separately declared and completed, with no automatic selection.
+- Four matched five-cycle arms show both intrinsic phosphate-shoulder seeds
+  surviving refinement, with original data, chemistry and fixed context retained;
+  residual geometry and synthetic-only scope remain explicit.
+- Trace exact same-parent registered motion and typed source, while refusing to
+  invent missing campaign checkpoint ancestry or an ordinary typed-parent role.
+- Evidence/documentation only: no runtime/schema/default/dependency changes or
+  migration. Scientific data stays local; no full-suite or new install claim.
+
 ### W208 — Maintain the source-bound parent builder
 
 - Add an explicit opt-in builder beside the existing W200 preparation context.

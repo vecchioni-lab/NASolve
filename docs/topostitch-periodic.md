@@ -12081,3 +12081,206 @@ JSON/link checks and exact receipt pins validate the documentation; no full suit
 or redundant installation build. No runtime schema/default/dependency/migration
 change. **W206** audits the existing versioned execution and outer lifetime route
 with Rowan before maintaining the receiving bridge. S04/S05/S06 remain PARTIAL.
+
+
+## W209–W210 — Local torsional alternatives after backbone recovery
+
+W207's low synthetic R factors concealed A11/A14 phosphate-angle defects.
+W209 reconstructed its exact full-precision endpoint against the original
+source-bound native geometry. The two O5′/C5′ straight return paths initially
+increase chemical energy; their sampled midpoints cost about 1,497 and 697 raw
+units above the endpoint. This is a path-specific penalty, not proof of an
+unavoidable energy barrier. Two congruent P–O5′–C5′–C4′ configurations give a
+useful discrete alternative while keeping P/C4 fixed, all three chain lengths
+and both internal angles. A truth-assisted axial fit puts A11 at 108.33° and A14
+at 94.79° versus 108° target; only the former is close. This diagnosis uses the
+known synthetic generator and is **not** a production selector.
+
+One clean Phenix 2.2.1-6174 dry-run / 31 read-only energy evaluations reproduces
+W207's raw energy exactly and its gradient within 4.6e-13, with zero coordinate
+writes or diffraction changes. 38 cold checks pass. Both shoulder derivatives
+agree with central differences; the all 205-atom direction differs by 2.697 raw
+units (about0.25%) at steps 1e-4, 1e-5, 1e-6. That discrepancy remains explicit;
+no force/normalization tolerance or optimizer was changed. Earlier source-path
+and final-restoration failures remain frozen, stopped and excluded from the
+clean-closure claim. The successful evaluator passes points directly to native
+geometry rather than moving the live model.
+
+W210 freezes 48 intrinsic states before scoring: original and reflected local
+chain configurations at twelve 30° axial rotations per site. **No generating
+coordinates, Free amplitudes or saved maps enter generation/ranking.** All 48
+preserve the three local/boundary lengths and 126 sugar handedness signs. The
+same direct nonanomalous `n_gaussian`, no-solvent convention as the synthetic
+generator is used on 7,165 original work reflections; 389 Free amplitudes are
+excluded. One work-only least-squares amplitude scale 1.0000227985 is frozen
+across candidates. This is an atomic work-residual diagnostic, not Phenix
+Rwork, likelihood or a calibrated experimental score. C517's direct-scattering
+method is reused with four independent whole-model additivity controls.
+
+| Site / retained alternative | Chemical-energy change | Fixed-scale work squared residual | OP2–P–O5′ |
+| --- | ---: | ---: | ---: |
+| Original, either site |0|8.84111e-6|A11 77.43°; A14 78.81°|
+| A11 alternate +60° |−133.49|8.81805e-6|105.70°|
+| A14 alternate +90° |−167.99|9.07464e-6|95.79°|
+
+A11 has one non-dominated state in the frozen grid. A14 retains both original
+and alternate: chemistry improves while the declared squared work residual
+worsens. Its absolute amplitude residual improves slightly, demonstrating why
+we keep the predeclared primary score rather than choosing a favorable statistic.
+Differences are small; no significance or automatic adoption follows. The A14
+O5′–C5′ bond remains short because congruent alternatives preserve input lengths.
+One completed dry-run / 50 geometry and 55 direct scattering calls, 26 cold checks;
+an earlier Miller-index adapter import failure is preserved. Zero refinements.
+
+**Prespecified controlled experiment W211 (completed below):** matched unchanged endpoint versus A11-only
++60° seed, each one five-cycle/100-cap XYZ fit. Retain original 205 movable/654
+fixed atoms, all 7,554 / 389 observations/Free, B/Q, source targets and identical
+native weighting/scaling recipes. A14 is unchanged at entry, still movable.
+Measure both sites, local/boundary links and final original-data statistics;
+no additional restart or weight sweep. This is separately authorized by Rowan,
+not an ordinary workflow activation.
+
+Local frozen evidence: `branch-artifacts/willow/w209-backbone-energy-profile/`
+and `w210-intrinsic-shoulder-candidates/`. Their anchored hashes are in the
+roadmap; inputs/results stay untracked. Exact cold commands from the NASolve
+checkout (with its interpreter) are:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python -B branch-artifacts/willow/runners/w209-review.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python -B branch-artifacts/willow/runners/w210-review.py
+```
+
+These writers refuse existing outputs. Native controllers and commands are
+frozen alongside each attempt. No runtime/schema/default/dependency change,
+new install claim, full-suite run or migration; previous W208 installation
+qualification remains its own evidence. General local reconstruction,
+experimental support, modified chemistry, symmetry seams and ordinary request
+integration remain open; S04/S05/S06 stay PARTIAL.
+
+
+## W211–W212 — Local corrections survive matched refinement
+
+**Question:** can discrete local configurations escape the defects that remain
+after W207's large perturbation recovers, without changing chemical targets or
+using the generating answer to choose candidates? W211 compares unchanged and
+A11-only seeds; W212 adds A14-only and both-site seeds, reusing the two immutable
+W211 controls. The two candidates are exactly the retained W210 alternatives.
+No additional grid, re-ranking by Free, weight changes or restarts follow.
+
+All four arms use the same source-qualified worker, original data/Free flags,
+205 movable and 654 fixed atoms, fixed B/occupancy, five macrocycles, 100-iteration
+cap, seed 1 and one CPU. Native unit coordinate/geometry weights and scaling
+recipe are identical. Only the declared two or four O5′/C5′ input coordinates
+differ. Cross-arm checks compare complete commands, input hashes, frozen helper
+hashes and all native covalent target identities. Endpoint writes are independently
+checked against full-precision native observations within PDB precision.
+
+| Five-cycle arm | A11 OP2–P–O5′ | A14 OP2–P–O5′ | A11 / A14 O5′–C5′ (Å) | Rwork / Rfree |
+| --- | ---: | ---: | --- | --- |
+| Unchanged |76.83°|81.39°|1.369 / 1.275|0.007975 / 0.008418|
+| A11 seed only |108.11°|80.72°|1.405 / 1.270|0.007790 / 0.008135|
+| A14 seed only |76.94°|102.76°|1.361 / 1.447|0.007299 / 0.007561|
+| Both seeds |107.96°|103.06°|1.398 / 1.455|0.007216 / 0.007301|
+
+Native targets are 108° and 1.418 Å (bond sigma 0.025 Å). **Each local seed
+repairs its own shoulder, and both survive together.** A14's starting work-only
+squared residual was worse; the final native recovery is better. This supports
+allowing a bounded recovery before rejecting a promising deformation. It does
+not turn the direct-amplitude score into a likelihood, or establish an Rfree
+selection rule. All four predeclared results are retained, including imperfect
+A14 geometry. Generating coordinates are used only for post-run diagnostics:
+selected RMS falls from 0.1177 Å in the unchanged arm to 0.0290 Å with both seeds;
+maximum residual falls from 0.8900 Å to 0.1211 Å.
+
+All 859 atoms, 38 links, 213 explicit geometry terms, 126 sugar-handedness signs,
+7,554 observations and 389 Free reflections remain. Source definitions, native
+geometry policy and fixed surroundings are unchanged. The four movable/fixed
+boundary bonds improve from RMS 0.0133 Å to 0.00925 Å; their 16 angles improve
+from RMS 2.808° to 2.267°. Across all 960 covalent bonds and 1,474 angles, RMS
+changes from 0.01965 Å / 2.378° to 0.01819 Å / 1.693°. There remain 27 bonds and
+33 angles beyond four native sigmas in the combined model, including inherited
+fixed-region geometry (25 bond and 30 angle outliers are wholly fixed); **this is not complete stereochemical acceptance**.
+Torsions, full chirality/clash validation, experimental data and symmetry seams
+are not certified by these local measurements.
+
+**Validation:** Phenix 2.2.1-6174, four completed zero-cycle preflights and four
+completed five-cycle refinements, all processes stopped. W211 and W212 each
+pass 38 preflight and 40 recovery checks; the cross-arm closure passes 28.
+No full-suite run, new package installation or product code change. The local
+cold-review commands are:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python -B branch-artifacts/willow/runners/w211-review.py preflight
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python -B branch-artifacts/willow/runners/w211-review.py refine
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python -B branch-artifacts/willow/runners/w212-review.py preflight
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python -B branch-artifacts/willow/runners/w212-review.py refine
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python -B branch-artifacts/willow/runners/w212-factorial-review.py
+```
+
+They refuse existing outputs; frozen plans/controllers retain exact native
+commands. Local evidence stays under `w211-matched-shoulder-recovery/` and
+`w212-factorial-shoulder-recovery/`; roadmap receipts bind the results. No new
+maintained local-proposal API is added: the current registered motion is a
+whole-pair taper, and these two-atom discrete states have no maintained consumer.
+The queued seam must preserve exact atom identities, two fixed endpoints,
+existing masks/admission and complete native source chemistry. It must not
+quietly reinterpret an existing preview schema. S04/S05/S06 remain PARTIAL.
+
+## W213 — Trace the ordinary receiving boundary without invented ancestry
+
+The retained W208 canonical parent does genuinely match W207's registered bend
+preview and W206's detached typed source. Current maintained readers replay the
+exact 205-atom motion/candidate and rebind the same parent, compiler report,
+original native observation, ordered restraint/control PHIL bytes and four
+False controls. This is an 18-check cold trace, with zero native calls or source
+changes. No new generic helper is needed to connect those existing pieces.
+
+However, the registration is a **construct-identity registration**, not a saved
+campaign checkpoint. Its W196 ancestor explicitly declares a fresh diagnostic
+and denies ordinary checkpoint admission. The actual W208 execution names
+`private-W208-maintained-builder`; its run anchor contains neither `report.json`
+nor `AutoRefine/checkpoints.json`. The actual W173 loader refuses at the missing
+run report, before W174 can bind a current parent. No registry, checkpoint or
+historical authority is minted to bridge this gap. W174's synthetic fixture has
+a different parent hash; C412's real request membership evidence did not admit
+a registered motion. Neither supplies the missing identity.
+
+The current Cedar `read_execution_request`, `prepare_execution` and
+`_expected_code` function sources are byte-identical to the W201 audit. Therefore
+its five refusal/default controls remain applicable without repeating them:
+ordinary v3 has no typed geometry-only parent role. C516's qualified entry still
+requires trusted `observe_candidate` and `prepare_parent` providers; it is not
+an ordinary request consumer by itself. The exact owner hashes and retained
+C516 receipt are bound in the local trace.
+
+**Next gate, agreed with Rowan:** obtain a genuinely registered current-parent
+checkpoint with exact original data and source roles, then join W174/W206/W208
+through Cedar's opt-in versioned parent-preparation request and qualified native
+callback/lifetime consumer. Do not manufacture ancestry from an unrelated test
+fixture, repeat the already-qualified native entry panel, or patch the ordinary
+writer from Willow. Existing v3/v9 bytes/defaults remain unchanged.
+
+```bash
+# From the Willow source checkout, using the NASolve environment:
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /path/to/NASolve/.venv/bin/python -B /path/to/NASolve/branch-artifacts/willow/runners/w213-ordinary-binding-trace.py
+```
+
+The final trace is `NASolve:branch-artifacts/willow/w213-ordinary-binding-trace/review.json`.
+An initial diagnostic assertion expected a registry-related error; the actual
+owner first requires the run report. The corrected assertion records that exact
+missing-report refusal. No scientific state was written. Local artifacts remain
+untracked; documentation, intent and roadmap only are committed. No schema,
+compatibility, dependency or migration change. Next evidence must close a real
+receiving gap, not repeat a missing-identity demonstration.
+
+Current documentation validation: `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src
+/path/to/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider
+tests/test_topostitch_roadmap.py` passes **8 tests**.
+`python3 scripts/audit_topostitch_roadmap.py --write` and `--check` pass for
+16 jobs; `git diff --check` is clean. The local W212 science checkout contains
+three checksum-verified PDBs, a visually inspected four-arm plot and an openable
+comparison script. ChimeraX **1.12** headless validation opens all three
+859-atom models and all five view actions; no GUI-render claim is made. The
+first harness read hit ChimeraX's ASCII locale after opening the models; its
+UTF-8 read was made explicit and the complete check passed. The viewer uses
+gray background, soft lighting, silhouettes and thin nucleic rings.

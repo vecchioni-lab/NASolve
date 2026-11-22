@@ -1,21 +1,26 @@
 # NASolve development handoff — Willow
 
-**Current audit/Willow implementation: W208, 2026-11-21.** The installed one-shot preparation context now
+**Current science: W212 closed; W213 receiving trace recorded, 2026-11-22.**
+**Maintained Willow implementation: W208.** The installed one-shot preparation context now
 carries admitted candidate → original parent geometry → candidate coordinates
 through the installed Cedar C512 service and maintained Willow builder, with
 explicit source-qualified worker observation readers. No ordinary execution-policy or
 CLI activation follows. S04/S05/S06 remain PARTIAL.
 
-**Latest science:** W207 displaces an interior atom by **4.96 Å** while keeping
-both flanks fixed. One five-cycle fit reduces interior RMS 1.76560→0.12238 Å and
-boundary bond RMS error 0.55659→0.01657 Å, with 205 movable/654 fixed atoms. It
-retains all 859 atoms and original observations/Free flags. **Partial recovery:**
-A11 OP2–P–O5′ remains77.42° against 108° and A14 O5′–C5′1.303 Å against 1.418 Å.
-Synthetic Rwork/Rfree0.008515/0.009151 hides those defects; S04/S05/S06 stay open.
-[Exact evidence and comparison](topostitch-preview.md#larger-displacement-with-fixed-flanks-w207).
-Saved-map follow-up (46 checks) shows A14 green evidence toward the generator,
-but A11 lacks strong red at its misplaced O5′. Ordinary-map samples favor both
-misplaced atoms. No sigma calibration, detector activation or new fit follows.
+**Latest science:** Four matched five-cycle arms show that intrinsic A11/A14
+local-chain seeds each repair their own phosphate shoulder and survive together.
+Combined angles are 107.96° / 103.06° (108° target); maximum residual to the
+synthetic generator falls from 0.890 Å to 0.121 Å versus unchanged recovery.
+Original content, chemistry, observations/Free and fixed surroundings remain.
+A14 and inherited geometry remain imperfect; this is not whole-model acceptance.
+[Measurements and controls](topostitch-periodic.md#w211w212--local-corrections-survive-matched-refinement).
+
+**Receiving trace W213:** exact registered motion and typed source do join on
+the retained canonical parent, but its construct registration is not campaign
+checkpoint ancestry. There is no saved run report/registry; the actual checkpoint
+reader refuses. No history is fabricated. Current Cedar ordinary owner functions
+match W201, so its missing typed-parent-role finding stands without rerunning
+controls. [Next gate](topostitch-periodic.md#w213--trace-the-ordinary-receiving-boundary-without-invented-ancestry).
 
 Start with the [machine roadmap](topostitch-roadmap.json) and
 [human roadmap](topostitch-roadmap.md). Detailed failed attempts, exact commands
@@ -27,8 +32,10 @@ The longer pre-consolidation handoff is preserved at Git `86e7489c2314f738bd7fe1
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
-| W208 maintained parent builder |217 source/217 relocated installed;54 actual-native cold checks, exact W207 prepared state and disposable post-parent failure | Cedar-owned early entry/dispatch and declared ordinary roles |
-| W207 larger fixed-flank recovery |4.96 Å maximum displacement, one five-cycle fit,39/41 cold checks; retained source chemistry, content and fixed context | A11/A14 local geometry; experimental/general recovery |
+| W208 maintained parent builder |217 source/217 relocated installed;54 actual-native cold checks, exact W207 prepared state and disposable post-parent failure | Cedar-owned versioned ordinary request/dispatch; C516 early entry qualified |
+| W211/W212 intrinsic local recovery | Four matched arms, 38/40 checks per pair and 28 cross-arm; both seeds survive, original chemistry/data retained | General/experimental recovery, residual stereochemistry and maintained proposal consumer |
+| W213 source/motion trace | Exact same-parent preview and typed source replay; 18 cold checks | Genuine checkpoint ancestry and Cedar ordinary receiving route |
+| W207 larger fixed-flank recovery |4.96 Å maximum displacement, one five-cycle fit,39/41 cold checks; retained source chemistry, content and fixed context | Local geometry investigated in W209–W212; experimental/general recovery |
 | W206 original native bytes | Opt-in detached original source observation; 191 source/191 installed and 16 real-source checks × three environments | Explicit native use and ordinary receiving route; no lifetime grant |
 | W205 source chemistry + transfer | 42 source site definitions/eight families/3451 retained terms; 72 cold checks; exact post-transfer state/diffraction | Full formal-charge readback and maintained ordinary execution/lifetime route |
 | W204 native service composition | C509 + W203/W200; 99 cold checks, actual dry-run/failure; exact W202 prepared state and diffraction | Original-source chemical admission and ordinary lifetime/execution route |
@@ -53,7 +60,7 @@ No returned boolean/None or coordinate mapping alone is chemical authority.
 
 ## Next bounded work
 
-**W209 remaining:** Cedar owns the versioned ordinary request carrying the
+**Ordinary integration remains Cedar-owned:** the versioned request must carry the
 bound geometry-parent/source and admitted candidate motion. Rowan's **C516**
 (`7ed50ffab8ecfcd232a50abfda41c45e9cf545ce`) now owns early validation/finalization/
 pending-process ordering and reproduces W208's success and failure natively.
@@ -68,8 +75,8 @@ builder.result()/evidence(). Source qualification, input/process lifetime and
 failed-manager disposal remain with existing outer owners; v3/v9 request and
 helper bytes retain their meanings. No extra optimizer or generic quota owner.
 
-Keep W207's A11/A14 local defects as an explicit later recovery question; do not
-silently extend this immutable five-cycle run. Investigator-requested stress
+W207 remains immutable. W209–W212 close a separate bounded local-recovery
+comparison; no failed or completed run is relabelled. Investigator-requested stress
 benchmarks are separately **10 Å segment-centroid displacement** and **5 Å from
 a declared helix centerline**, not maximum atom displacement or P–P span. W207
 actually shifts the unweighted 205-atom centroid 0.253 Å (largest pair centroid
@@ -139,6 +146,20 @@ are scientific investigation rules, not an implemented classifier or permission
 for repeated Rfree-guided tuning. No noisy phosphate detector is qualified.
 
 ## Validation and scientific interpretation
+
+- W211/W212: four completed Phenix 2.2.1-6174 preflights and four five-cycle
+  refinements; 38/40 checks per pair, 28 cross-arm checks. W213: 18 cold source/
+  motion/identity checks, zero native calls. No source runtime changes, no new
+  install claim and no full-suite repeat. Original scientific artifacts stay local.
+  Eight roadmap tests and the synchronized 16-job roadmap audit pass; ChimeraX
+  1.12 opens all three checkout models and five view actions in headless validation.
+  The graph was visually inspected; no interactive GUI-render claim follows.
+
+- W209/W210: 38/26 cold checks; 31/50 native geometry evaluations, 55 direct
+  work-only scattering calls; zero refinement. Exact original source bindings,
+  coordinate/data preservation and stopped process records; earlier failed
+  adapters/closure retained. W209 full-region derivative disagreement is not
+  promoted to a qualified force. No runtime/schema changes or full-suite repeat.
 
 - W208: 217 focused source/217 relocated installed;54 native cold checks on
   one completed Phenix 2.2.1-6174 dry-run and one intentional post-parent refusal.

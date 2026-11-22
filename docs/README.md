@@ -1,11 +1,13 @@
 # NASolve documentation map
 
-Updated **2026-11-21** for **`willow`**. Start with the
+Updated **2026-11-22** for **`willow`**. Start with the
 [current development handoff](development-handoff.md) for the proven edge,
 remaining gates and next bounded task. Historical handoffs are evidence, not
 current instructions; other branches retain their own status and validation pins.
 
 ## What's current?
+
+W211/W212 [four matched recovery arms](topostitch-periodic.md#w211w212--local-corrections-survive-matched-refinement) show both local phosphate corrections surviving refinement. W213 [receiving trace](topostitch-periodic.md#w213--trace-the-ordinary-receiving-boundary-without-invented-ancestry) replays exact source/motion but finds no genuine campaign checkpoint ancestry. The experiment is closed; ordinary integration remains open with Rowan.
 
 W201 records the [versioned execution/input contract](topostitch.md#versioned-parent-preparation-execution-contract-w201):
 five cold controls identify the missing geometry-only parent role while old v3
@@ -21,10 +23,10 @@ transfer in the same interpretation (72 checks). W206 binds original native
 bytes in the existing input bundle (191 source/191 installed checks); ordinary
 immutable inputs and future compressed/budgeted sessions keep distinct owners.
 W207 tests 4.96 Å maximum-atom motion with fixed flanks: strong recovery but
-A11/A14 defects remain. W208 now supplies the [maintained source-bound builder](topostitch-preview.md#maintained-source-bound-parent-builder-w208):
+A11/A14 defects remained in that frozen run; W211/W212 now test separate local repairs. W208 now supplies the [maintained source-bound builder](topostitch-preview.md#maintained-source-bound-parent-builder-w208):
 217 source/217 relocated installed tests and 54 actual-native cold checks.
 It reproduces W207 exactly and safely refuses a post-parent transfer. Cedar C516
-now qualifies the early native ordering with the same evidence; W209 remains
+now qualifies the early native ordering with the same evidence; the remaining gate is
 the versioned ordinary source/motion request and dispatch integration.
 
 W200 adds the [maintained one-shot preparation context](topostitch-preview.md#prepare-parent-geometry-once-w200):
