@@ -11,6 +11,7 @@ import subprocess
 
 from .. import campaign_records as records
 from ..campaign_process import CampaignProcessError
+from ..cif_generation_process import _valid_attempt_identity
 from ..cif_repair_process import _ProcessScope, _OwnedProcesses, _inspect_owned_processes
 from . import parent_archive
 from .compact import read_projection
@@ -223,7 +224,7 @@ def inspect_child(directory, *, request_id):
 
 def run_child(prepared_directory, parent_directory, request, *, request_id,
               attempt_directory, native, timeout_seconds=240, retry_from=None,
-              max_parent_disk_bytes=parent_archive.DEFAULT_DISK_BYTES,retained_parent=None,storage_budget=None):
+              max_parent_disk_bytes=parent_archive.DEFAULT_DISK_BYTES,retained_parent=None,storage_budget=None,_attempt_identity=None):
     """Invoke the maintained worker once in a fresh owned attempt.
 
     Parent transport is verified, not scientific admission. A normal pipeline
@@ -233,6 +234,7 @@ def run_child(prepared_directory, parent_directory, request, *, request_id,
     before work. An explicit mixed-profile launch borrows a live, separately
     charged retained parent; its child allowance covers only child work.
     """
+    _need(_attempt_identity is None or _valid_attempt_identity(_attempt_identity), 'Invalid parent attempt identity')
     request = _request(request,request_id)
     _need(request['schema_version']==2,'Legacy process-only request cannot execute; prepare a new helper-pinned request')
     _need(type(timeout_seconds) in (int,float) and math.isfinite(timeout_seconds)
@@ -285,7 +287,7 @@ def run_child(prepared_directory, parent_directory, request, *, request_id,
                 request_id=request_id,parent_manifest_sha256=request['parent_manifest_sha256'],retry_of=previous)
             if scope is not None:execution['parent_scope']=scope
             records.write_record(inputs/'execution.json',execution)
-            owner = ChildProcesses(attempt)
+            owner = ChildProcesses(attempt, attempt_identity=_attempt_identity)
             work = attempt/'native/fdp/job';work.mkdir(parents=True)
             for name,raw in payload.items():(work/name).write_bytes(raw)
             try:

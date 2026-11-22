@@ -1882,6 +1882,43 @@ Unsealed-attempt recovery, admission scheduling, ledger compaction and actual
 output retirement remain separate gates. Reservation-count and ledger-size
 bounds are unchanged.
 
+## Forward binding of admitted process owners
+
+New budgeted audited sessions declare `process_attempt_id` (the grant nonce in
+canonical UUID form) in their existing hashed `request.json`. Both preflight and
+native worker scopes receive the shared optional `attempt_owner` before launch:
+`request_sha256` is the complete session declaration digest, `attempt_sha256` is
+the unique reservation digest, and `attempt_id` is the declared UUID. The inner
+scientific request remains unchanged. Identical science in different reservations
+therefore has different outer ownership. No second process manager is introduced.
+
+The session producer and successful/failed saved-session readers require exact
+agreement. A declaration without the marker requires an unbound owner: removing
+the field cannot downgrade a bound session to legacy. Existing unbound records
+keep their previous rules. This is an additive declaration field and reuse of an
+existing process-schema v1 extension, with no change to budget, review, failure or
+settlement versions. Older software can ignore the extension and does not provide
+this new check; use the updated reader when relying on forward binding. No
+automatic historical migration or rewritten receipt is offered.
+
+**This is a prerequisite for future recovery, not recovery itself.** The original
+bounded counterexample substitutes another stopped same-input preflight while
+leaving the reservation/declaration unchanged. Even with both controllers gone,
+that is not enough evidence of ownership. Public settlement already refuses a
+missing terminal receipt and still does so after this change. No dead-PID,
+missing-file, copied-owner or identical-input heuristic releases space. Saved
+stop/terminal proof and independent pins remain necessary; no seals are invented.
+
+Validation covers both preflight/main substitution, marker removal and changed
+pins, default/legacy agreement, and terminal-publication failure. There are
+137 distinct passing focused cases across bounded runs and nine installed tests.
+Two genuine historical unbound readbacks and two new bound stores relocated after
+old temporary paths are removed preserve their expected behavior. All 357 wheel
+members match; scientific modules are unchanged. A complete synthetic session
+adds 590 metadata bytes, no payload files. No Phenix/Coot science or full suite.
+Exact commands, source pins, initial test-only correction and limitations are in
+the [current handoff](metal-development-handoff.md#a04-current-checkpoint-cooperative-storage-reservations).
+
 ## Read-only diagnosis of a held audited session
 
 `metal.session_diagnostics.diagnose_session_reservation(store, budget_id=...,

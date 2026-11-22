@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bind metal processes to their admitted session before launch
+
+- New budgeted audited sessions bind both preflight and native process owners to
+  the complete session declaration and unique reservation before either runs.
+  Reject another same-input trial's owner and attempts to remove the binding.
+- Reuse the shared optional `attempt_owner` tuple; old unbound records retain
+  their prior checks. Missing terminal receipts still hold allowances. No recovery,
+  retry, pruning, scientific-policy or worker changes; no automatic migration.
+- Qualify 137 focused tests across bounded runs, nine relocated installed tests,
+  two genuine historical unbound readbacks and two relocated new bound readbacks.
+  No full suite or Phenix/Coot scientific execution. Only 590 metadata bytes are
+  added to a complete synthetic session, with no additional payload files.
+
 ### Explain held metal-session reservations
 
 - Add a read-only API and explicit-path CLI that names missing/invalid stop

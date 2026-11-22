@@ -11,6 +11,7 @@ import subprocess
 import time
 
 from .. import campaign_records as records
+from ..cif_generation_process import _valid_attempt_identity
 from ..cif_repair_process import _ProcessScope,_OwnedProcesses,_inspect_owned_processes
 from ..refine_doctor import _AUDIT_SCRIPT
 from . import child_process as child
@@ -51,8 +52,9 @@ def _files(root):
     return refs
 
 
-def run_preflight(prepared,request,*,request_id,directory,native,timeout_seconds,fresh_scattering,audit_flags):
+def run_preflight(prepared,request,*,request_id,directory,native,timeout_seconds,fresh_scattering,audit_flags,_attempt_identity=None):
     """Run the existing three inspections under one bounded shared-process scope."""
+    child._need(_attempt_identity is None or _valid_attempt_identity(_attempt_identity),'Invalid parent attempt identity')
     request=child._request(request,request_id);payload=child._inputs(prepared,request['files'])
     root=Path(directory).absolute();child._need(not root.exists() and root.parent.is_dir(),'Require a fresh input-inspection directory')
     child._need(native.version in {child.NATIVE_VERSION,child.NATIVE_VERSION.rsplit('-',1)[0]},'Unsupported input-inspection native version')
@@ -64,7 +66,7 @@ def run_preflight(prepared,request,*,request_id,directory,native,timeout_seconds
     (inputs/'audit_free_r.py').write_text(_AUDIT_SCRIPT.lstrip())
     records.write_record(inputs/'dispatchers.json',dict(native_version=native.version,
         executable_hashes=hashes,paths_provenance_only={k:str(v) for k,v in executable.items()}))
-    process=PreflightProcesses(root);deadline=time.monotonic()+timeout_seconds;returned=False
+    process=PreflightProcesses(root,attempt_identity=_attempt_identity);deadline=time.monotonic()+timeout_seconds;returned=False
     def runner(phase):
         work=root/'native'/phase[7:]/'job';work.mkdir(parents=True)
         log=work/'native.log'

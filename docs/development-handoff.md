@@ -69,7 +69,20 @@ A01 remains partial and A02 gated. The latest compact report is
 `ScienceCheckouts/Hazel/2026-11-22_ft-split-base/index.html`; earlier model/map
 comparisons stay intact, with no generated science committed.
 
-A04 now also has an additive read-only held-session diagnostic and explicit-path
+A04's latest bounded prerequisite binds newly admitted preflight/main process
+owners to the complete session declaration and unique reservation before launch.
+It rejects another identical-input trial's owner while retaining historical
+unbound behavior; missing terminal/phase receipts remain held. **137 distinct
+focused cases across bounded runs, nine relocated installed tests and four cold
+readbacks** pass; **357 package members** match. Only three metal process/session
+modules change; scientific/shared process owners are unchanged. The additive
+metadata costs 590 bytes in a complete synthetic session. The
+[current handoff](metal-development-handoff.md#a04-current-checkpoint-cooperative-storage-reservations)
+records the test-only correction, exact commands, compatibility and next recovery
+boundary. No migration, recovery, retirement, scientific acceptance or new full
+suite is claimed.
+
+A04 also has an additive read-only held-session diagnostic and explicit-path
 CLI. It names missing receipts/phases and requires a separate failure pin before
 reporting a ready route; no allowance is released. **117 focused / 19 relocated
 installed tests** and two cold witnesses pass, with **357 package members** checked.

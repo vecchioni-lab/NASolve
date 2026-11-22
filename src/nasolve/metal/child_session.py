@@ -8,6 +8,10 @@ from pathlib import Path
 import gzip
 import math
 import zlib
+from uuid import UUID
+
+from ..cif_generation_process import _valid_attempt_identity
+from ..cif_repair_process import _header
 
 from .. import campaign_records as records
 from ..campaigns import CampaignError
@@ -118,15 +122,19 @@ def run_audited_child(prepared_directory,parent_directory,request,*,request_id,
         proofs[name]=records.write_record(session/name,value)
     try:
         storage_binding={} if admission is None else dict(storage_reservation=dict(
-            budget_id=grant['budget_id'],reservation_id=grant['reservation_id']))
+            budget_id=grant['budget_id'],reservation_id=grant['reservation_id']),
+            process_attempt_id=str(UUID(hex=grant['nonce'])))
         record('request.json',dict(request=request,run_relative=run_relative,
             endpoint_relative=endpoint_relative,timeout_seconds=timeout_seconds,max_output_bytes=max_output_bytes,
             **lifetime,**inspection_mode,**storage_binding))
+        identity=_session_process_identity(proofs['request.json'])
+        process_options={} if identity is None else dict(_attempt_identity=identity)
         record('parent-before.json',before)
         if owned_preflight:
             from . import preflight_process
             checked=preflight_process.run_preflight(prepared,request,request_id=request_id,directory=session/'preflight',
-                native=native,timeout_seconds=timeout_seconds,fresh_scattering=_fresh_scattering,audit_flags=audit_free_r_flags)
+                native=native,timeout_seconds=timeout_seconds,fresh_scattering=_fresh_scattering,audit_flags=audit_free_r_flags,**process_options)
+            _check_session_process_owner(session,'preflight',proofs['request.json'])
             verified=preflight_process.inspect_preflight(session/'preflight',inspection_id=checked['record_sha256'])
             fresh=verified['fresh_inputs'];free_r=verified['free_r']
             record('fresh-inputs.json',fresh)
@@ -144,7 +152,8 @@ def run_audited_child(prepared_directory,parent_directory,request,*,request_id,
         stage='OWNED_NATIVE_CHILD'
         process=child_process.run_child(prepared,parent,request,request_id=request_id,
             attempt_directory=session/'attempt',native=native,timeout_seconds=timeout_seconds,
-            max_parent_disk_bytes=max_parent_disk_bytes,retained_parent=retained_parent)
+            max_parent_disk_bytes=max_parent_disk_bytes,retained_parent=retained_parent,**process_options)
+        _check_session_process_owner(session,'attempt',proofs['request.json'])
         if process['status']!='COMPLETED' or not process['stopped_verified']:
             raise RecipeError('Native child did not complete with a verified stop: '+process['status'])
         stage='SCIENTIFIC_AUDIT'
@@ -199,6 +208,33 @@ def _session_record(root,name):
     return records.read_record(path)
 
 
+def _session_process_identity(declaration):
+    """Forward-only ownership; old unbound declarations stay readable as such.
+
+    The existing shared tuple binds the whole session declaration, its unique
+    reservation and that grant's nonce. It does not replace terminal receipts.
+    """
+    if 'process_attempt_id' not in declaration:return None
+    binding=declaration.get('storage_reservation')
+    child_process._need(isinstance(binding,dict) and set(binding)=={'budget_id','reservation_id'}
+        and declaration.get('owned_preflight') is True,'Process owner requires a budgeted owned session')
+    checksum(binding['budget_id'],'process owner budget')
+    identity=dict(request_sha256=declaration.get('record_sha256'),
+                  attempt_sha256=binding['reservation_id'],attempt_id=declaration['process_attempt_id'])
+    child_process._need(_valid_attempt_identity(identity),'Invalid session process owner attempt identity')
+    return identity
+
+
+def _check_session_process_owner(root,component,declaration):
+    from . import preflight_process
+    child_process._need(component in {'preflight','attempt'},'Unknown session process owner component')
+    expected=_session_process_identity(declaration)
+    scope=preflight_process.SCOPE if component=='preflight' else child_process._SCOPE
+    actual=_header(root/component,scope).get('attempt_owner')
+    # An absent declaration cannot downgrade an already bound owner to legacy.
+    _same(actual,expected,'Session '+component+' process owner')
+
+
 def _saved_proofs(root,review):
     names={'request.json','parent-before.json','parent-after.json','fresh-inputs.json','free-r.json'}
     if review.get('schema_version')==3:names.add('owned-preflight.json')
@@ -249,6 +285,7 @@ def inspect_audited_child(session_directory,*,review_id):
         child_process._need(request['schema_version']==2,'Session requires a helper-pinned child')
         _same(request['parent_manifest_sha256'],review['parent_manifest_sha256'],'Session protected parent')
         attempt=root/'attempt'
+        _check_session_process_owner(root,'attempt',declaration)
         _same(_json((attempt/'inputs/request.json').read_bytes()),request,'Copied child request')
         seal=child_outputs.inspect_child_outputs(attempt,request_id=review['request_id'],output_id=review['output_evidence_id'])
         outcome=records.read_record(attempt/'outcome.json')
@@ -281,6 +318,7 @@ def inspect_audited_child(session_directory,*,review_id):
             child_process._need(declaration.get('owned_preflight') is True,'Owned input inspection declaration changed')
             link=proofs['owned-preflight.json']
             _same(link.get('directory'),dict(anchor='session',relative_path='preflight'),'Owned input inspection directory')
+            _check_session_process_owner(root,'preflight',declaration)
             inspected=preflight_process.inspect_preflight(root/'preflight',inspection_id=link['inspection_id'])
             _same(inspected['request_id'],review['request_id'],'Owned input inspection request')
             _same(inspected['fresh_inputs'],{k:v for k,v in proofs['fresh-inputs.json'].items() if k!='record_sha256'},'Owned input inspection values')
@@ -331,6 +369,7 @@ def _failed_preflight_stop_evidence(root,declaration):
     request=_failed_session_request(root,declaration)
     child_process._need(not (root/'attempt').exists() and not (root/'attempt').is_symlink(),
                         'Input-inspection failure cannot contain a native child attempt')
+    _check_session_process_owner(root,'preflight',declaration)
     proof=preflight_process.inspect_stopped_preflight(root/'preflight',request_id=request['request_id'])
     return dict(**proof,native_not_started_verified=True)
 
@@ -339,6 +378,8 @@ def _failed_stop_evidence(root,declaration):
     """Read sealed process owners only; a scientific review is not required."""
     from . import preflight_process
     request=_failed_session_request(root,declaration)
+    _check_session_process_owner(root,'preflight',declaration)
+    _check_session_process_owner(root,'attempt',declaration)
     proof=_session_record(root,'owned-preflight.json')
     _same(proof.get('directory'),dict(anchor='session',relative_path='preflight'),'Failed session preflight location')
     preflight=preflight_process.inspect_preflight(root/'preflight',inspection_id=proof['inspection_id'])

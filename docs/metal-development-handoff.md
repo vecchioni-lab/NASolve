@@ -211,7 +211,80 @@ frozen XYZ/all ADPs/f′, and the first bounded f″/Q response set.
 
 ## A04 current checkpoint: cooperative storage reservations
 
-### Current step: read-only held-session diagnosis
+### Current step: bind future processes before launch
+
+**22 November evening; this prerequisite is complete, A04 remains partial.**
+The missing-terminal boundary experiment demonstrates why inputs alone cannot
+establish a particular reservation's process ownership: a second stopped owner
+with identical science can satisfy the inner stop reader. Both producer
+coordinators are gone, yet that fact does not establish the association. Existing
+public diagnosis/settlement correctly refuse release without the terminal receipt;
+this is a counterexample to a proposed recovery shortcut, not a public release bug.
+
+New budgeted audited sessions add `process_attempt_id` to their hashed
+`request.json`, derived from the grant nonce. Before either input inspection or
+main native child starts, the existing shared `attempt_owner` tuple binds that
+complete declaration digest, reservation digest and UUID. Live completion and
+successful/failed cold readbacks require agreement. Same-science owners from
+another reservation and stripping the marker from a bound declaration refuse.
+Legacy absent-marker/absent-owner records retain their old behavior; no saved run
+is upgraded. Missing terminal or phase receipts still hold their allowance.
+
+Changes are limited to `metal/child_session.py`, `metal/preflight_process.py`,
+`metal/child_process.py`, `tests/test_metal_session_process_binding.py` and maintained
+handoff/storage/roadmap/changelog docs. The unversioned session declaration gains
+an optional field and process schema v1 reuses its existing optional tuple.
+Budget, failure, review and settlement schemas stay unchanged. Older readers may
+ignore the added association; the new guarantee requires the updated reader.
+Default unbudgeted callers and explicit paths remain supported. Shared ownership,
+scientific worker/audit and all other runtime bytes match the preceding checkpoint.
+
+**Validation:** three initial regressions fail before implementation. The first
+implementation passes eight. The focused eight-module run passes **117 in 61.94 s**;
+the existing failed-session module adds **19 passing cases**. A new terminal-gap
+test initially uses a nonexistent test-only `LEDGER` constant; correcting its path
+passes **one in 1.21 s**, without changing runtime. Thus **137 distinct focused
+cases pass across bounded runs**, not a new full-suite result. The original failed
+log remains. A relocated wheel passes **nine tests**, all **357 package members**
+match, and original source reads are denied. Two genuinely older unbound witnesses
+retain their behavior: stopped preflight can explicitly settle its 40 MiB allowance;
+ambiguous preflight retains 40 MiB. Neither payload is changed or upgraded.
+Two additional new bound stores reopen after original temporary paths are gone:
+a complete review remains readable and a missing-terminal attempt stays held.
+No native/PID queries or release occur in those latter readbacks.
+
+These are complete synthetic process tests, **not** Phenix scientific execution
+or a Phenix dry run. The maintained worker targets **Phenix 2.2.1-6174**; no new
+Phenix/Coot job, map, fit, f″ result or scientific acceptance is produced.
+The three added fields cost **590 serialized bytes** in a complete synthetic
+session and introduce no payload file. Older witnesses are reused rather than
+copied into another permanent store. Generated data stay private and out of Git.
+
+Evidence at the declared Alder artifact anchor:
+`session-recovery-boundary-20261122-01/` (original counterexample and cold controller
+observation) and `session-owner-binding-20261122-01/` (red/focused logs and XML,
+source/package pins, wheel, stopped commands, metadata sizing and cold readbacks).
+Runners are `A503_probe_terminal_binding_gap.py`, `A504_run_terminal_boundary.py`,
+`A506_qualify_installed_owner.py` and `A507_relocate_bound_sessions.py` under
+`runners/`. Exact test commands and final source pins are in `validation.json`;
+the reproducible focused invocations from Alder are:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/alder-validation-20261121-01/bin/python -m pytest -q tests/test_metal_session_process_binding.py tests/test_metal_child_process.py tests/test_metal_child_session.py tests/test_metal_owned_preflight.py tests/test_metal_session_budget.py tests/test_metal_preflight_failure_budget.py tests/test_metal_session_diagnostics.py tests/test_metal_child_outputs.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/alder-validation-20261121-01/bin/python -m pytest -q tests/test_metal_session_process_binding.py::test_launch_binding_does_not_replace_missing_terminal_receipt tests/test_metal_failed_session_budget.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /private/tmp/alder-validation-20261121-01/bin/python -m pytest -q tests/test_metal_session_process_binding.py::test_launch_binding_does_not_replace_missing_terminal_receipt
+```
+
+The first invocation ran before the ninth test was added; logs preserve the exact
+117-case collection. This change adds no recovery API, synthetic stop seal or
+release authority. Next recovery work must independently pin the declaration and
+reservation, prove controller quiescence through the shared owner, and distinguish
+missing terminal publication from unsealed processes. Old unbound/empty admission
+gaps remain held; do not infer ownership from identical inputs, a dead PID or
+file absence. Scientific A01/A02 gates remain unchanged. No extra science report
+is warranted for this metadata-only prerequisite.
+
+### Earlier step: read-only held-session diagnosis
 
 The new `metal/session_diagnostics.py` API and explicit-path `python -m` command
 explain which saved receipt or phase prevents a specific reservation's release.
