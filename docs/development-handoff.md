@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C518 reading the phosphate at the crystal boundary — Rowan**.
+Updated **2026-11-22, C519 testing a single phosphate bond across the boundary — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
 **Q06, original PDU:PDU.** The molecule on the other side of B:1 looks close in
@@ -11,6 +11,15 @@ prints at 1.610 Å against 1.607 Å. The original molecular-replacement and C290
 prepared models both measure 3.340 Å across the boundary. B:1 retains P/OP1/OP2
 throughout. D:1 retains its separate terminal phosphate including OP3. The new
 read-only command and its scope are in [CIF Doctor](cif-doctor.md#inspecting-a-phosphate-at-a-crystal-boundary).
+
+C519 reopened the saved Phenix continuation twice with its 862 atoms, 1,909
+amplitudes and 124 held-out observations. Adding one image bond removed the
+direct nonbonded interaction and the four neighbouring angle-end repulsions.
+Phenix supplied zero steering angles across the new bond. At the intact B:1–B:2
+control it supplied all four in both setups. These were native preparations at
+fixed coordinates. Q06 still needs complete linked chemistry and an ordinary
+refinement that preserves it. Willow W68 already checked image-aware angle
+energies and gradients and found that native angle serialization loses the images.
 
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in

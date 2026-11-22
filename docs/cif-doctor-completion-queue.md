@@ -759,6 +759,13 @@ archived restraint treatment. Pine retains partner and image intent. Q06 still
 requires evidence for the complete restraint neighbourhood and its behavior in
 ordinary refinement.
 
+C519 tested an explicit image bond on that same archived model. With the
+adjacent backbone's 1.607 Å target and 0.012 Å sigma, Phenix added exactly
+one bond. Its direct and four 1–3 neighbours became excluded from nonbonded
+repulsion. Zero cross-link angles were added. Both native setups retained the
+same coordinates and diffraction observations. Pursue the complete source
+chemistry and its lifecycle. The single-bond experiment stays diagnostic.
+
 | Job | In laboratory terms | What still closes it |
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
