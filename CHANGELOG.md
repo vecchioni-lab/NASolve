@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record final-state force and local-contact evidence
+
+- Close the missing final-state capture/replay and closed pair/flank force
+  diagnostics. Distinguish original native likelihood state, work-only scoring,
+  aggregate improvements and explicit local-contact deterioration.
+- Record one reversible contact hold without adopting its bad distance as a
+  chemical target. Preserve A01 partial/A02 gated and the next internal-repair bridge.
+- Document incomplete native geometry pickles and the narrower verified local
+  replay scope. No production retention, runtime, schema, default or migration change.
+- Keep exact scientific evidence and compact editable visual reports local;
+  focused numerical/cold checks only, no full suite, new f″ parent or data pruning.
+
 ### Record the FT_Hg coupled-placement comparison
 
 - Preserve the approved molecular-report style: faint constellation-like bases

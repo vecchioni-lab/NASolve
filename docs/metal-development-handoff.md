@@ -9,134 +9,143 @@ not a second queue.
 
 <a id="a01-current-science-attachment-stiffness-transfers-strain"></a>
 
-## A01 current science: coupled placement does not survive open refinement
+<a id="a01-current-science-coupled-placement-does-not-survive-open-refinement"></a>
 
-**22 November, completed bounded comparison; A01 partial and A02 gated.**
-The source-bound constructor already supplies a healthy DF attachment. Two
-geometry-only proposals moved the pair alone or the pair with four declared
-flanking residues. The coupled proposal preserves internal residue geometry,
-eight polymer-link lengths and input chiral signs while placing Hg between the
-donors: DF attachment 1.499 Å, Hg–N3 2.131/2.132 Å, N3–Hg–N3 179.86° and
-Hg–O4 B:4 2.688 Å. It moves 123 atoms, protects 736, and has maximum movement
-1.417 Å. Some crossing angles reach the declared 10° bound. This is a geometric
-proposal, not diffraction support or qualified modified-metal motion.
+## A01 current science: final-state forces and a contact-preserving comparison
 
-One five-cycle Phenix **2.2.1-6174** execution then compares that starting pose
-with the original first fit from the same constructed precursor and B/Q.
-Original reciprocal/real-space XYZ, residue-group B, source/projection
-chemistry, Hg/NAR/frame terms, MLHL phases, FreeR_flag test value 0, fixed
-Q/f′/f″ and global weighting remain matched. Later continuations with different
-starting B are context, not the matched comparator.
+**22 November evening; bounded diagnostics complete, A01 partial and A02 gated.**
+The noon source-consistent pair/flank proposal starts with a healthy 1.499 Å DF
+attachment and 179.86° Hg bridge, but open XYZ/group-B refinement returns to a
+stretched attachment and bent Hg. One matched five-cycle Phenix **2.2.1-6174**
+run now captures the missing actual final state. Its final PDB is byte-identical
+to noon: Rwork/Rfree **0.3066/0.3431**, printed DF attachment **1.67426 Å**,
+Hg bridge **116.95°**, Hg–O4 **1.32157 Å**, DF/DT base B **32.24/85.12 Å²**,
+Hg B **68.55 Å²**, all Q **1** and f″ **0 fixed, not measured**. Environmental
+metal B remains a later operation, not an explanation imposed on these results.
 
-| Observation | Original start → refined | Coupled start → refined |
+The native driver returns the final model/fmodels. A passive observer captures
+that return without changing its writer or resuming optimization. The older
+retained MLHL core differs from the ordinary fresh final-state core; its target
+−7.133479778 is not relabelled as the final native FFT target −7.138597265.
+The latter reproduces exactly. Direct-summation derivative checks are separately
+named. Original observations, FreeR_flag, phase coefficients, all ADPs/Q/f′/f″,
+scales, masks, likelihood core and complete geometry remain fixed. Directional
+scores use **1,092 work reflections**, excluding **59 free reflections**.
+Selected earlier XYZ weights are historical observations, not a newly inferred
+final combined objective. Work likelihood and raw geometry retain distinct units.
+
+### What the forces and finite moves show
+
+Moving Hg toward the donor axis has work-target derivative **+0.000416115/Å**
+and raw-geometry derivative **−157.482/Å**. Angle and nonbonded contributions
+favour that movement; compressed donor-bond geometry opposes it. The subsequent
+finite comparison uses six declared rigid residues and Hg (123 moving atoms),
+736 exactly fixed atoms and eight closed polymer-link distances. Work-only,
+geometry-only and shared descent directions are projected in Cartesian space,
+not an arbitrary mixture of Å and radians. Baselines, both signs and unchanged
+strict three-step derivative checks qualify the bounded observations.
+
+| At a +0.025 Å seed, with finite closure | Shared direction | Shared direction with Hg–O4 held |
 | --- | ---: | ---: |
-| Rwork / Rfree | 0.3082 / 0.3384 | 0.3066 / 0.3431 |
-| DF C1′–N1 (Å; target 1.499) | 1.65259 | 1.67426 |
-| Hg–N3 distances (Å) | 2.04273 / 2.05726 | 2.03031 / 2.04272 |
-| N3–Hg–N3 (°) | 117.89 | 116.95 |
-| Hg–O4 B:4 (Å) | 1.27908 | 1.32157 |
-| DF / DT base mean B (Å²) | 30.32 / 85.68 | 32.24 / 85.12 |
-| Hg B (Å²) | 63.37 | 68.55 |
-| Final overall B transfer (Å²) | −5.32 | −4.71 |
+| Work MLHL change | −0.000014995 | −0.000016264 |
+| Raw geometry change (native units) | −3.681 | −4.155 |
+| Hg–O4 distance (Å; baseline 1.321855) | 1.315368 | 1.321855 |
+| Hg angle (°; baseline 116.936) | 117.205 | 117.463 |
+| DF attachment (Å; baseline 1.673897) | 1.673897 | 1.673897 |
 
-**Outcome:** coherent starting placement alone does not keep the source geometry
-healthy through open refinement. Close this subgoal; do not repeat its pair/flank
-grid or select a new f″ parent. All Q remain 1 and f″ remains fixed at zero, not
-measured. The inherited DF/DT base–scaffold B offsets remain −37.03/−33.10 Å²
-under residue-group refinement. Environmental metal B is still a later step.
+These full-precision values differ slightly from rounded PDB measurements.
+The unheld step improves the aggregate while worsening Hg–O4: angular penalties
+fall **8.127**, while bonds rise **2.697** and nonbonded penalties **1.209**.
+The Hg–O4 penalty itself rises **23.217 → 24.097**. Exact native proxy identities,
+parameters and symmetry persist. Cedar's contact reader independently remeasures
+three identity-keyed written models against complete printed tables; no contact
+is silently lost. Native per-contact ASU contributions use the kernel's explicit
+`j_sym` half-counting and reproduce the complete aggregate.
 
-**Native and map evidence:** corrected complete captures agree in every original
-bonded definition. All 1,009 final printed bond endpoints, targets and weights
-match preflight; observed local proxy families remain identical. All 22 selected
-input ordered chiral signs survive; four phosphate proxies explicitly allow both
-signs. The qualified C508 contact reader remeasures 41 witnesses. Hg–O4 has a
-printed overlap of 0.694 Å and opposing O4 atoms 0.685 Å. The listed DF N1/C1′
-contacts do not show positive overlap. This is descriptive packing evidence,
-not a full chemical classification. The original comparator lacks a saved final
-nonbonded table. Saved Hg maps change little: original/coupled 2mFo−DFc
-+5.515/+5.552σ and mFo−DFc −2.558/−2.518σ. At 5.06 Å these are overlapping
-sample positions, not resolved peaks. Maps are unfilled, unsharpened,
-model-assisted, include Free-R and use separate whole-cell σ; they do not settle
-Q or atom count. Original frozen flags and actual effective selectors are checked;
-the map MTZ lacks output flags, so output membership is not claimed.
+A reversible comparison holds Hg–O4 at its existing distance while keeping all
+original native targets unchanged. Small common improvement remains; larger
+steps lose the work-score benefit. This diagnoses avoidable deterioration from
+pooled scoring, not a new ideal distance, Phenix restraint or production guard.
+The held contact is already too short; rigid residues cannot repair inherited
+internal strain. Fractional angle differences are descriptive, not pass/fail
+chemistry. No new R statistics/maps were calculated for directional samples;
+no endpoint, f″ parent or modified-metal movement is admitted.
 
-**Validation and failures:** one complete native fit took **442.56 s**; all owned
-processes stopped. Independent reads pass **559** identity/pose, **3,498** science,
-**166** saved-map and **2,068** final geometry/contact checks. These are scientific
-assertions, not a new full product suite. All 105 observed XYZ calls reached their
-iteration cap; convergence is unassessed. An initial private exporter confused
-native and PDB atom order for 19 QT1 atoms. Preflight refused its altered
-connectivity before refinement. Saved numeric poses were re-exported through
-Cedar's existing identity-keyed writer and independently verified; only those
-corrected coordinates entered the fit. Invalid proposals, superseded written-pose
-claims and stopped setup/metadata failures remain preserved and identified.
+### Saved-state replay, validation and evidence
 
-**Evidence:** at the declared Alder artifact anchor, use
-`a01-coupled-placement-20261122-02/` for the geometric study,
-`a01-coupled-export-20261122-01/` for corrected proposals and independent review,
-`a01-coupled-terms-20261122-02/` for complete native target comparison, and
-`a01-coupled-refine-20261122-02/` for the actual fit and saved readback.
-The successful owner receipt is `pair_flanks/continued-execution.json`;
-`pair_flanks/execution.json` retains the stopped setup failure.
-`checkout/evidence.json` binds exact commands, inputs, software and artifacts.
-Model SHA-256: `95ccb838c5658dfe264ac309a7380879402e469becc7cf51bb2bb6adf1d408e7`;
-map SHA-256: `f205e7f901fc9416415b60af2dfbb8d59bb6c2f13049eb7eb96043614e6f9edc`.
+The retained final fmodel reopens exactly. The native geometry pickle alone is
+unsafe/incomplete: direct cached-ASU evaluation segfaults; naive cache rebuild
+loses its vdW parameter maps and assigns captured contacts 1.0 Å. The qualified
+same-installation diagnostic rebuilds safe mappings at the exact saved reference,
+verifies every pair identity/symmetry and restores all **7,918** captured native
+distances. It preserves the original cache movement budget and refuses any
+regeneration. Matching the original Cartesian entry reproduces all **26** saved
+samples at unchanged **1e−10** target/gradient tolerance. This is not arbitrary
+pickle loading, cross-version replay, complete chemistry re-interpretation or a
+production retention contract. Preserve full proof nodes and source pins.
+
+The matched fit/capture owner took **530.97 s** including preflight; the coupled
+38-call diagnostic **15.81 s**, and the 14-call contact-hold diagnostic **5.32 s**.
+Every owned process stopped. Independent reads pass **1,870** final-capture,
+**8,122** replay, **45,320** coupled geometry, **137** contact and **15,126**
+held-contact checks. These are assertions, not pytest test counts or a full suite.
+Failed setup/serializer/cache/array-accounting attempts remain preserved. One
+cold reader initially passed radians to a degree helper; corrected independent
+reconstruction matches the frozen coordinates. No failed tolerance was relaxed.
+
+At the declared Alder artifact anchor:
+
+- `a01-final-forces-20261122-04/`: completed fit, snapshots, replay proof,
+  `science-review.json`, `retained-state-replay.json`, and next-step scope.
+- `a01-closed-force-20261122-01/`: finite study, cold review and complete compressed
+  native contact tables in `contact-readback-02/`; earlier failed read retained.
+- `a01-contact-guard-20261122-01/`: reversible hold, finite samples and cold review.
+- Noon construction/fit remains in `a01-coupled-placement-20261122-02/`,
+  `a01-coupled-export-20261122-01/`, `a01-coupled-terms-20261122-02/` and
+  `a01-coupled-refine-20261122-02/`. Only the identity-corrected export was fitted.
+
+Final model SHA-256:
+`95ccb838c5658dfe264ac309a7380879402e469becc7cf51bb2bb6adf1d408e7`.
 Runtime remains `3b83edce40202b0595230aa5f92ed6a3c3f102b6`; source documentation
-at execution was `bd9f220eb3f2e547aaa49cc6ed4fba1f0c06d1de`.
-The source-anchored cold command, from the artifact checkout, was:
+at capture was `b7804bed`. The compact visual report is
+`ScienceCheckouts/Hazel/2026-11-22_ft-final-forces/index.html` beside the repositories.
+It retains editable figures and compact records, not copied models/maps. The
+checkout's `summary.json` and manifest bind anchor-relative source evidence.
+There is no new runtime/schema/default, migration, data pruning or portable-run
+claim. Scientific inputs/outputs remain excluded from Git.
+
+Representative exact commands, from the artifact checkout, use the shared
+`PYTHONDONTWRITEBYTECODE=1` and `PYTHONPATH` contract:
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-metal-coordination/src /private/tmp/alder-validation-20261121-01/bin/python branch-artifacts/Alder/runners/A416_review_coupled_refinement.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-metal-coordination/src /private/tmp/alder-validation-20261121-01/bin/python branch-artifacts/Alder/runners/A444_run_final_capture.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-metal-coordination/src /private/tmp/alder-validation-20261121-01/bin/python branch-artifacts/Alder/runners/A461_run_cartesian_replay.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-metal-coordination/src /private/tmp/alder-validation-20261121-01/bin/python branch-artifacts/Alder/runners/A467_review_closed_force_units.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-metal-coordination/src /private/tmp/alder-validation-20261121-01/bin/python branch-artifacts/Alder/runners/A480_review_guarded_force.py
 ```
 
-The compact visual report is
-`ScienceCheckouts/Hazel/2026-11-22_ft-coupled-placement/index.html` beside the
-repositories. It copies figures and compact records only (about 1 MB), not
-models/maps. All related experiment directories total about 45.6 MB, including
-preserved failed captures; no immutable runs were pruned. Historical commands
-retain absolute provenance, while operational evidence references use the Alder
-anchor and checksums. No historical-run portability claim, runtime/schema/default
-change, migration, new f″, automatic selection or scientific data in Git follows.
+Numbered runners create immutable outputs; these commands document completed
+executions, not overwrite-safe rerun instructions. Exact native commands and
+process identities are in each bound execution receipt.
 
-### Completed controls to reuse
+### Completed controls and the next bridge
 
-The earlier full records remain in Git history and their named private evidence;
-they are completed experiments, not a repeat queue. Related detailed current-state
-and movement-region sections below preserve their original narrower claims.
+Reuse the unchanged/small-motion continuations, metal-centred angle, attachment
+stiffness, split-B, source-consistent starting pose and current force/contact
+controls. Their original evidence and limits remain in this handoff and Git
+history. Do not repeat grids or promote a better scalar score into acceptance.
 
-| Completed control | Main result | Private evidence at Alder anchor |
-| --- | --- | --- |
-| Unchanged versus small-movement continuation | Both reach roughly 0.28/0.29 Rwork/Rfree; attachment and bent Hg remain | `a01-continuation-20261120-01/` |
-| Stronger metal-centred angle | Bridge opens to 154.5°, with short Hg–O4 and stretched attachment; not accepted | See current-state profiles below |
-| Isolated attachment stiffness | Attachment 1.534 Å, but adjacent bonds worsen; no sigma default | `a01-attachment-stiffness-20261121-02/` |
-| Saved residue-group B review | Initial base/scaffold offsets survive ordinary group-B refinement | `a01-starting-B-review-20261121-01/` |
-| Explicit 45 versus 43 ADP groups | Offsets respond; attachment 1.610 Å, Hg–O4 1.436 Å, Rwork/Rfree 0.3053/0.3349 | `a01-split-B-20261121-01/` |
-| Source-consistent coupled starting placement | Healthy initial geometry returns to stretched DF/bent Hg in the matched fit | Current experiment above |
-
-### Next bounded scientific bridge
-
-Before changing the refinement engine or weights, separate work-only diffraction
-forces from chemistry/nonbonded forces for **one predefined coordinated pair/flank
-displacement at an explicitly fixed native state**. Reuse Cedar geometry/derivative
-owners and Willow transport arithmetic; canonical motion qualification does not
-admit this modified pair or metal. Bind identities, original observations/Free-R,
-HL phases, Q/B/f′/f″, scales, masks, likelihood core and complete geometry. Verify
-baseline reproduction and derivative tolerances; preserve all fixed atoms and
-report crossing-link/angle behavior. Rigid transport preserves inherited internal
-strain, so this is a force diagnostic, not internal chemical repair. Stop on any
-state mismatch; do not invent a new objective or relax a failed tolerance.
-
-This round has `pickle_fmodel=False` and no complete saved live target. Native
-`export_final_f_model` writes an MTZ, not a replayable target. Cedar's final-write
-observation verifies model/scattering correspondence but not all retained MLHL
-state; the existing last-XYZ observer precedes group ADP and output scaling.
-Do not relabel either as the final target. A future matched capture/replay needs
-an explicit owner and is justified only by this missing information, not a repeat
-of completed controls. Exact prerequisites and stop conditions are recorded in
-`a01-coupled-refine-20261122-02/next-step-scope.json`; this step is scoped, not run.
-Acceptable open XYZ/B still precedes environmental base-only/donor B, frozen
-XYZ/all ADPs/f′ and the first small f″/Q response set. Whole-context symmetry and
-modified-metal admission remain separate open gates with the shared owners.
+**Next:** scope source-backed internal base/attachment repair coupled to allowed
+pair/flank motion, through Cedar chemistry and Willow transport owners. A newly
+healthy starting pose already failed to survive open refinement; explain how
+internal geometry is retained during optimization. Bind explicit local contact
+witnesses alongside the work objective. Qualify any new parameterization's exact
+baseline, derivatives, fixed atoms and closure before native fitting. Do not add
+a second geometry engine, adopt the bad held distance as an ideal, relax
+numerical tolerances or resume deferred donor-state integration. Whole-context
+symmetry enforcement and modified-metal admission remain separate open gates.
+Acceptable open XYZ/B still precedes refined base-only/donor environmental B,
+frozen XYZ/all ADPs/f′, and the first bounded f″/Q response set.
 
 ## A04 current checkpoint: cooperative storage reservations
 

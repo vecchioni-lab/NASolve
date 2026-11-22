@@ -242,23 +242,22 @@ lower the target with essentially unchanged attachment angles. These are
 completed diagnostics, not accepted models. Small fractional deviations are
 descriptive; broad geometry and combined scientific evidence guide review.
 
-1. **A01:** the source-consistent coupled pair/flank starting-pose experiment is
-   complete. Six rigid residues and Hg preserve eight polymer-link lengths and
-   internal geometry before a matched five-cycle native fit. Open refinement
-   returns to a 1.674 Å DF attachment, 116.95° Hg bridge and 1.322 Å Hg–O4
-   contact, with Rwork/Rfree 0.3066/0.3431. All original effective targets remain
-   delivered; maps resemble the original fit. No accepted endpoint or f″ parent
-   is selected. Close this subgoal and reuse the completed small-movement,
-   target-force, local-angle, pivot, attachment-stiffness and split-B controls;
-   the [current A01 record](metal-development-handoff.md#a01-current-science-coupled-placement-does-not-survive-open-refinement)
-   keeps their evidence and limits. Next qualify an exact native-state observation
-   for one predefined coordinated displacement, separating work-only diffraction
-   from chemistry/overlap forces with unchanged scales, MLHL state and B/Q.
-   The final live target was not saved; map coefficients and the pre-ADP last-XYZ
-   observer cannot substitute for it. Scope the missing capture/replay through
-   existing shared owners before another fit. Preserve identity-keyed writing,
-   fixed atoms, complete crossing terms, numerical refusal and modified-metal
-   admission boundaries. No new geometry engine, repeated grid or default follows.
+1. **A01:** the coupled starting-pose and exact final-state force questions are
+   complete. A matched native capture reproduces the noon model byte-for-byte;
+   saved replay qualifies 26 target/force samples with complete native pair constants.
+   Three closed pair/flank directions and one reversible Hg–O4 hold distinguish
+   small aggregate-score gains from local contact deterioration. The contact is
+   present in the native calculation; its worsening is pooled with stronger angle
+   gains. Holding its already-too-short distance preserves a small shared gain,
+   but rigid motion leaves the 1.674 Å DF attachment unchanged. No accepted
+   endpoint or f″ parent follows. See the [current A01 record](metal-development-handoff.md#a01-current-science-final-state-forces-and-a-contact-preserving-comparison).
+   Next scope source-backed internal base/attachment repair coupled to allowed
+   pair/flank motion, explaining how geometry survives optimization rather than
+   merely changing its initial pose. Use Cedar chemistry/geometry and Willow
+   transport; retain named local witnesses alongside work-only scores. Exact state,
+   derivative/closure and identity checks precede any new fit. Reuse completed
+   weight, angle, pivot, stiffness, split-B and start-pose controls. No new geometry
+   engine, adopted bad-contact target, repeated grid or relaxed tolerance follows.
 2. **A01 → A02:** qualify an open XYZ/B endpoint through local chemistry,
    coordination, Rwork/Rfree, stopping evidence and maps. Derive environmental
    metal B from the actual refined donors/base-only atoms, report disagreement

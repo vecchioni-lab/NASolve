@@ -7,6 +7,20 @@ before large f″ campaigns. It is a feature milestone after merge, not a
 prerequisite for merging the current experimental implementation.
 This document does not enable cleanup or change an existing immutable run.
 
+## Native final-state replay observation (22 November)
+
+A01's local retained-state diagnostic distinguishes a replayable final fmodel
+from a complete geometry owner. Phenix 2.2.1-6174's native geometry pickle alone
+is unsafe/incomplete: cached-ASU evaluation can crash, and its nonbonded parameter
+pickle omits lookup tables. Naive rebuild can silently replace captured vdW
+values with 1.0 Å. The bounded diagnostic recovers exact source-bound pair
+constants and safe mappings, then verifies every target/gradient sample before
+reuse; cache regeneration is forbidden. This does not create a production
+pickle format or cross-version recovery contract. Preserve the pristine inputs,
+complete scientific proof and software identity required by the ordinary parent
+owners. Do not use a file's existence or successful unpickle as evidence that
+an XYZ/B parent can be regenerated. See the [current scientific evidence](metal-development-handoff.md#a01-current-science-final-state-forces-and-a-contact-preserving-comparison).
+
 ## Implemented first step: explicit frozen-trial inventory
 
 `nasolve metal inspect-fdp-storage RUN --trial Metal/fdp_001 --trial Metal/fdp_002 --json`
